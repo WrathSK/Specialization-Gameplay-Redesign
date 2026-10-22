@@ -1348,6 +1348,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  -- At most four scalar candidates and eight ordered completion notifications each.
  -- No Publish/Playback/timer gate, no unit lookup, no load-time district inference.
  local pending={};local eventSerial=0;local freshReady=false;local freshOverflow=false;local hooks={}
+ function store.FreshReady()return freshReady end
  local LIMIT,COMPLETIONS=modern and (capacity or 0) or 4,8
  local function integer(v)return type(v)=='number' and v>=0 and v<1000000000 and v%1==0 end
  local foundReason=P.Field(EventSubTypes,'FOUND_CITY')

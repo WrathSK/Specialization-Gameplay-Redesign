@@ -102,6 +102,10 @@ It does not enable Tuner, launch the game, select arbitrary Lua/context/host or 
 - B212: it also records the Expedition Gate's `[SPC][B191][N1_*]` prints (dispatch, task, completion, cancellation, return) as `gate` lines.
 - It sends no gameplay command and changes no configuration.
 
+B267 collection contract: meaningful TRAIN records no longer stop after a per-role lifetime quota. Repeated state/quote/failure reports are change-only by city/target/domain; temporal requests and receipts remain individual records. Each role retains a 512-record-per-turn runaway breaker with `TRACE_THROTTLED`, while optional Unit/Event native sampling has its independent 96-sample bound. The scalar ring holds 256 entries; the fixed reader accepts 256 snapshot entries (262 protocol rows), 2 MiB snapshot bytes, and up to 8,192 passive TRAIN rows / 16 MiB / 16,384 frames per window. Safety-limit failures and ring-overwrite gaps are explicit; disconnected output beyond the ring cannot be recovered. The separate `UI.DataError` fallback retains its 128-call safety limit and is not the complete collection channel.
+
+The collector saves META counters and alerts for suppression/errors, native-sampling exhaustion, fallback-channel stop, missing readiness/load samples and capture/ring gaps. Readiness means initialization gates, not successful effect reconciliation. Commerce turn records compare configured base Gold and current carrier bits; they do not prove net Treasury accrual. Carrier health observes the fixed 35 ResearchSupport/Lv2GPP types and never repairs them. First-session new-game/load delivery remains a native check.
+
 Tuner policy (user decision, 2026-10-16): during development `EnableTuner` stays 1 and the user toggles it from the terminal with the game closed. `AppOptions.txt` uses CRLF line endings, so a sed pattern must include `\r`. Primary does not restore it after sessions. From repository root:
 
 ```sh

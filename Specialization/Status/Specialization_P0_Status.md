@@ -1,25 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0706
-Implementation Build: B266.293 / modinfo293; stable B069.96
-Architecture Revision Reviewed: A0177
+Status Revision: S0707
+Implementation Build: B267.294 / modinfo294; stable B069.96
+Architecture Revision Reviewed: A0178
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: V01_PLAYTEST_CANDIDATE_READY
+Work State: B267_PREPLAYTEST_DIAGNOSTICS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B266 accepted; final scoped v0.1 readiness check complete.** [Readiness, scope and exact candidate](Validation/Results/Specialization_V01_Playtest_Readiness_B266.md).
+**B267 PRE-01–05 implemented and locally verified; native delivery pending.** [Scope, results and testing boundary](Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md).
 
-- The user accepted the combined B266 new-city institution recovery, city-panel shortcut and remaining profession-color review. Prior B265 failure evidence stays frozen. Consecutive governor promotions remain an ordinary-play observation; no forced reproduction or expanded PASS.
-- Research, Culture, Commerce and Industry mainlines have the recorded scoped acceptance. B263 neutral Roosevelt entry and B264/B262 presentation acceptance are retained. No new blocker was found for the user's defined first v0.1 playtest.
-- Current candidate/live remains B266.293/modinfo293 from `0c2c4ae`; 288/288 files match the deployment receipt. All 185 Lua files compile, 32 XML/artdef/dep files parse, exact package closure and recovery checks pass. B266's 64 local tests are inherited without rerunning.
-- REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks inside the v0.1 playtest. Own-city-loss handling, held Expedition task/root-cause work, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-playtest high priority. Institution softness stays deferred.
-- Supported first-test scope remains Standard-speed single-player human with the dedicated America/Roosevelt shell, installed HD/GS/persona dependencies and four professions. No ordinary-civilization/AI/multiplayer/future-profession expansion.
-- Main remains clean at B069.96. This checkpoint changes records only: no runtime/test/Design/Architecture/configuration changes, new deployment, tag, PR or main promotion.
-- Current scheduling: [approved 2026-10-21 roadmap and explicit pre-playtest list](../Reports/Proposals/Audit_Followup_Priorities.md#v01-approved-roadmap--2026-10-21). Prepare the bounded diagnostics/experimental-project batch before baseline designation; approximately 3–4 integrated campaigns follow. Necessary foundations precede their dependent ownership/Expedition repairs. No implementation is dispatched by this documentation checkpoint; W0003 remains unchanged.
+- The user authorizes the five pre-playtest fixes and Primary engineering choices. Meaningful diagnostics, readiness/load timing, Commerce/network/sender evidence, the fixed carrier-health observer and the overflow experimental-project gate are implemented. 243 scoped tests PASS; no gameplay policy change was needed.
+- B266 functional/UI acceptance remains the inherited mainline evidence. New trace delivery, Treasury timing, hidden-carrier behavior and project-list hiding need the first integrated campaign. Ready flags are not effect PASS; buffers are bounded and collection gaps explicit.
+- Source is B267.294/modinfo294. Live remains B266 until the guarded deployment checkpoint. No game launch, configuration change, art application, release designation, PR or main promotion.
+- Follow the [approved roadmap](../Reports/Proposals/Audit_Followup_Priorities.md#v01-approved-roadmap--2026-10-21): approximately 3–4 integrated campaigns, dependency-driven foundations, then ownership/Expedition and remaining scoped work before freeze. Deferred findings remain open.
+- Carry REALLOCATING cold-load and Standardization + Development additive output into play. Supported scope remains Standard-speed single-player human, dedicated America/Roosevelt, installed HD/GS/persona dependencies and four professions; existing deferred acquisition/loss and Expedition precautions remain.
+- Next: commit/push, then W0003 game-exit/hash/recovery checks for deployment. User designates the integrated-test baseline separately.
+
+## S0707 — B267 pre-playtest diagnostics and project gate
+
+PRE-01–05 are implemented within the approved boundary. Independent output/native-sampling limits, protected readiness/carrier observers, read-only Commerce/network instrumentation and a retained-but-gated overflow prototype pass the scoped local checks. Existing Store authority and network/withdrawal/retry behavior remain. Native observations belong to the first integrated campaign; live deployment is a separate checkpoint.
 
 ## S0706 — Approved v0.1 roadmap recorded
 

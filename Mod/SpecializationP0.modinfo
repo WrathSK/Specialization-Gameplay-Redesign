@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="293">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="294">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B266.293：修复新城机构显示与城市专业快捷入口的原生布局和刷新退出。</Description>
+    <Description>B267.294：补齐实机测试诊断记录、启动与载体观察，关闭溢出实验项目入口。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -105,6 +105,8 @@
       <File>UI/EngineeringStudyUI.lua</File>
       <File>ExpeditionTraining.lua</File>
       <File>ExpeditionTrainingDiagnostics.lua</File>
+      <File>ReadinessSummary.lua</File>
+      <File>CarrierHealthTrace.lua</File>
       <File>UI/ExpeditionTrainingUI.lua</File>
       <File>UI/ExpeditionTrainingName.lua</File>
       <File>ExpeditionSpyStore.lua</File>
@@ -484,6 +486,8 @@
     <File>Text/EngineeringStudy.sql</File>
     <File>ExpeditionTraining.lua</File>
       <File>ExpeditionTrainingDiagnostics.lua</File>
+      <File>ReadinessSummary.lua</File>
+      <File>CarrierHealthTrace.lua</File>
       <File>UI/ExpeditionTrainingUI.lua</File>
       <File>UI/ExpeditionTrainingName.lua</File>
       <File>ExpeditionSpyStore.lua</File>

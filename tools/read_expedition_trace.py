@@ -21,11 +21,11 @@ import time
 ADDRESS = ('127.0.0.1', 4318)
 DEADLINE_SECONDS = 5.0
 MAX_FRAME = 262144
-MAX_TOTAL = 1048576
-MAX_RECORDS = 70
+MAX_TOTAL = 2 * 1048576
+MAX_RECORDS = 262
 MAX_RECORD_SECONDS = 600
-MAX_STREAM_TOTAL = 4 * 1048576
-MAX_STREAM_RECORDS = 1024
+MAX_STREAM_TOTAL = 16 * 1048576
+MAX_STREAM_RECORDS = 8192
 MAX_HD_RECORDS = 200  # B206: per passive window; the remainder is only counted
 HD_PREFIX = '[SPC][B206][HD] '
 # B206: fixed allowlist of HD population/hospital print shapes (game text only).
@@ -33,7 +33,7 @@ HD_PATTERNS = (re.compile(r'\S{1,40} 人口变化 -?\d{1,6}$'), re.compile(r'中
 GATE_PREFIX = '[SPC][B212][GATE] '
 # Expedition Gate fixed-format action/task prints and explicitly requested Insight reports.
 GATE_PATTERN = re.compile(r'\[SPC\]\[B191\]\[N1_(?:SPY|SPY_ERROR|SPY_REQUEST|TASK|INSIGHT)\] [^\x00-\x1f]{1,400}$')
-MAX_FRAMES = 4096
+MAX_FRAMES = 16384
 PREFIX = '[SPC][B205][READ] '
 TRAIN_PREFIX = '[SPC][B205][TRAIN] '
 LOG_DIR = Path(__file__).resolve().parents[1] / 'local/diagnostics/B205'
@@ -128,12 +128,12 @@ end;
 if type(t)~='table' then out('ERROR TRACE_UNAVAILABLE')
 elseif t.schema~=205 then out('ERROR TRACE_SCHEMA_INVALID')
 else
- out('META schema=205 sequence='..scalar(t.sequence)..' suppressed='..scalar(t.suppressed)..' errors='..scalar(t.errors)..' sinkStatus='..scalar(t.sinkStatus));
+ out('META schema=205 sequence='..scalar(t.sequence)..' suppressed='..scalar(t.suppressed)..' errors='..scalar(t.errors)..' traceEpoch='..scalar(t.epoch)..' firstSequence='..scalar(type(t.entries)=='table' and type(t.entries[1])=='table' and t.entries[1].sequence)..' sampleSuppressed='..scalar(t.sampleSuppressed)..' sinkStatus='..scalar(t.sinkStatus));
  local entries=t.entries;
  if type(entries)~='table' then out('ERROR TRACE_ENTRIES_INVALID')
  else
   local gap=false;
-  for i=1,64 do
+  for i=1,256 do
    local e=entries[i];
    if e==nil then gap=true
    else
@@ -143,7 +143,7 @@ else
     else out('ERROR TRACE_ENTRY_INVALID '..i) end
    end
   end;
-  if entries[65]~=nil then out('ERROR TRACE_ENTRIES_OVER_LIMIT') end
+  if entries[257]~=nil then out('ERROR TRACE_ENTRIES_OVER_LIMIT') end
  end
 end; """
     else:

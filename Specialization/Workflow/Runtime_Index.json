@@ -266,9 +266,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "4881b7d360a39a0fc766a727501279f37643b18374c2cec6850ae1fa1f77bdd1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "sha256": "f90f12d6438e302da6a8d6b1eb7d50d56bffeed445c40e4317aa1c9919a04701",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -341,9 +341,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "f9523d9d43a55caa24a19129575a19a0c8df7982f5cea0ab363db4f577dd3016",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "5ba24bc278f4ebce71ee8132e86ae212c3b7db1ac5b9cfb684e93936ae2d8d98",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
@@ -351,9 +351,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/NetworkSender.lua": {
-      "sha256": "0e1a2e9b09286520537ec76d4a5404c54cda0c6ec708e43c5cfb10af785c6f59",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "18ebadec6cf2677d8b4a5851be7f4c5eef05909c2d8f02e7d8673899b719c331",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
       "sha256": "3fb804c0fa2091d800d09c7d3dae3d8745ae68f58e9c1bdbd740cac2e1c0c31d",
@@ -366,9 +366,9 @@
       "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
     },
     "Mod/Probe.lua": {
-      "sha256": "8d11de913a0d6e4752a09261fd327db385813065ca933319da3c478f3932eb98",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
-      "provenance": "B266 authorized native Stack/Grid sizing, unconditional UI guard release and bounded failure stages. 64 scoped local tests PASS; gameplay unchanged; native recovery pending."
+      "sha256": "4332f111adf09f0e819e2f55ce29f9044eb878b687f4273c0d0c00a7b9ce955e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
@@ -426,9 +426,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "42ca0834b2caeef1ac0900531aa393989b9bc53dde9eb9d65a8da70bfd0e8041",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
-      "provenance": "B266 authorized native Stack/Grid sizing, unconditional UI guard release and bounded failure stages. 64 scoped local tests PASS; gameplay unchanged; native recovery pending."
+      "sha256": "e266a7409fcf7a837ee83ee4fcb80d3409e3bdac6a340099298d8c2c810a4b62",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -761,9 +761,9 @@
       "provenance": "B094 narrow authorized event wrapper compatibility fix"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "ca943717080786ebf8f4c1b42efd3c2b967f01f8f77ae6d20de93ebc028c1f98",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
-      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
+      "sha256": "231fb33ee42172a8b17560abb5518f82d0027411a0d9592b6985f63718ff2791",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -791,9 +791,9 @@
       "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/Data/OverflowSinkTest.sql": {
-      "sha256": "3cda727d346275d56b24a7d7030d7ac189aa60c31cf7570bcb320d47fa38528d",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B118 authorized exact-project primitive; local 75 PASS, native pending; no automatic storage service"
+      "sha256": "f657b5cc1e8fb0c85d9b9cc854736a3d96b3239b145c296b6758fcb254839526",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -1096,9 +1096,9 @@
       "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "d84166ef7f6d972aee0153ef41ff577ffa7d92f9451515b31c214acd2d968c9f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "sha256": "0bed155d44ba1eca22faafca14c9d4bfb55d2e8f68c97256469e054f766f572e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     },
     "Mod/CultureInsightsTourism.lua": {
       "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",
@@ -1191,9 +1191,9 @@
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/Commerce.lua": {
-      "sha256": "ad37a6cd79c4f9a43a2c019249eb2ea5441b6a597ec59a7e19b7de92fbe799aa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "a7d46ebd45101f11a52c6fcdeb8f2d6be900bfe99f94fa79a013dc1e4d29eda0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -1444,6 +1444,17 @@
       "sha256": "1b25966fdccf9fee4f82c81110f841551e168b971dd57139d822ef1ee54b4dd0",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/CarrierHealthTrace.lua": {
+      "sha256": "263da102604f39e91beb0a156ade8d9f4f21429a02e6e290a9c46dfdf944f35c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+    },
+    "Mod/ReadinessSummary.lua": {
+      "sha256": "884a26e5b6da3ef00f22951c6769fa2e200efba267f689a49d8ed9b348059ad2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     }
-  }
+  },
+  "source_review": "B267.294 local implementation; top-level runtime_commit/runtime retain the last verified deployment until guarded switch."
 }

@@ -1,10 +1,14 @@
 -- B205/B206 diagnostic-only scalar trace. Never an admission/ownership authority.
-SPCExpeditionTrainingDiagnostics={ENABLED=true,KEEP=64,BUDGET=96}
+SPCExpeditionTrainingDiagnostics={ENABLED=true,KEEP=256,BUDGET=96,TURN_LIMIT=512,DEDUP_LIMIT=4096}
 local M=SPCExpeditionTrainingDiagnostics
 local KEY='SPC_B205TrainingTrace'
 local keys={'specialization','potential','active','activeStatus','projectionRevision','diagnosticStatus','diagnosticErrorCode','diagnosticErrorClass','diagnosticErrorFile','diagnosticErrorLine','readErrorCode','readErrorClass','readPoint','writeStatus','recordType','capitalType','contractType','diffPath','diffCount','expectedType','actualType','expectedNumber','actualNumber','viewStage','canSign','capitalD','capitalS','capitalC','capitalR','requestedDelta','moneyError','moneyTolerance','moneyAccepted','balanceBefore','balanceAfter','principal','returnAmount','profitRate','probability','contractID','contractDomain','contractDue','contractStage','baseCapacity','baseInput','projectType','lockedPrice','paused','actualDelta','afterProgress','targetChanged','wonderType','wonderEra','wonderCount','eraCount','historyCoverage','historyRevision','templateCount','districtTemplateCount','errorCode','errorClass','errorFile','errorLine','routeCount','sourceCount','centerCount','recipientCount','relation','networkKind','workers','expected','releaseBranch','networkLayer','networkValidity','networkAvailability','networkInputRevision','networkDerivedFor','networkRevalidation','networkError','bridgeReady','readyToSelect','sleepVisible','sleepAllowed','wakeVisible','wakeAllowed','wakeLegacyAllowed','evaluationOrigin','signalOrigin','coreBusy','operationEvent','lastOperationHash','stage','context','previous','gp','ui','bridge','reader','readerLoad','turn','owner','city','population','phase','reservation','queued','born','completed','eventOwner','eventCity','eventKind','eventIndex','eventUnit','cancelled','unitIndex','unitHash','unitReverse','definitionCost','costModel','costStep','populationCost','spyCost','nativeCost','nativeProgress','queueSize','currentHash','markerIndex','markerHash','markerReverse','markerPresent','wanted','count','priorReader','loads','loadSequence','spyNativeCost','popSource','popEvents','popDelta','popTo','popSum','popMin','popMax','popTurn','readStatus','activityKey','teamKey','mode','activity','activitySampleTurn','awake','hold','sleep','operationEnum','ready','eligibility','eligibilityStatus','guardStatus','guardError','requested','attempted','reason','x','y','actualX','actualY','operationHash','reasonQueryStatus','reasonResultHint','reasonPermission','unitType','nativeResultType','nativeReasonStatus','nativeReasonCount','nativeReasonTruncated','nativeReason1','nativeReason2','nativeReason3','nativeReason4','nativeOwner','nativeUnit','nativeActivity','movesRemaining','maxMoves','nativeReady','spyOperation','spyEndTurn','ownerTurnActive','localPlayer','interfaceMode','sourceCity','targetOwner','targetCity','targetX','targetY','entryX','entryY','arrivalRoute','requestAction','requestResult','requestKey','requestAccepted','storeStatus','storeRevision','savedPhase','savedMatches','taskStart','taskDue','owned','releasePending','submitStatus','missionCategory','requestMission'}
+local extraKeys={'packetSeq','packetTurn','packetSignal','packetEpoch','traceRole','throttleLimit','sampleSuppressed','sealed','loadBeforeSeal','loadSeen','notReady','writerState','controlState','goldBalance','goldYield','maintenance','commerceWrites','carrierGold','heldCount','senderResult','senderFailedTurn','senderTurn','senderTurnActive','networkSignal','routeSignal','buildingIndex','present','pillaged','carrierCount','unreadableCount'}
+for _,k in ipairs(extraKeys)do keys[#keys+1]=k end
+local changeOnly={REST_ACCESS=true,COMMERCE=true,COMMERCE_DOMAIN=true,NETWORK_PENDING=true,NETWORK_SIGNAL_STALE=true,NETWORK_RECEIVE_REJECT=true,NETWORK_RECEIVE_DROP=true,NETWORK_VERIFIED=true,NETWORK_SAMPLE_FAILED=true,CARRIER_PILLAGED_PRESENT=true,CARRIER_PILLAGE_CLEARED=true}
+local identityKeys={'owner','city','targetOwner','targetCity','targetX','targetY','sourceCity','networkKind','contractDomain','projectType','buildingIndex'}
 local precise={expectedNumber=true,actualNumber=true,balanceBefore=true,balanceAfter=true,principal=true,
- returnAmount=true,expected=true,actualDelta=true,requestedDelta=true,moneyError=true,moneyTolerance=true}
+ returnAmount=true,expected=true,actualDelta=true,requestedDelta=true,moneyError=true,moneyTolerance=true,goldBalance=true,goldYield=true,maintenance=true,carrierGold=true}
 local function scalar(v,key)
  local t=type(v)
  if t=='nil'then return 'NIL' end
@@ -15,7 +19,7 @@ local function scalar(v,key)
  if t=='boolean' or t=='number'then return tostring(v)end
  if t~='string'then return 'OMITTED_'..t end
  -- No user names, arbitrary errors, paths or object stringification.
- if #v>100 or v:find('[^%w_:%-%.|]')then return 'REDACTED' end
+ if #v>((key=='writerState' or key=='controlState') and 256 or 100) or v:find('[^%w_:%-%.|]')then return 'REDACTED' end
  return v
 end
 -- B231: allowlisted failure metadata only; never retain a path or raw error here.
@@ -33,7 +37,7 @@ end
 local function root()
  local r=ExposedMembers[KEY]
  if type(r)~='table' or r.schema~=205 then
-  r={schema=205,serial=0,sequence=0,entries={},roles={},suppressed=0,errors=0,logged=0}
+  r={schema=205,epoch=tostring({}):gsub('[^%w]',''),serial=0,sequence=0,entries={},roles={},suppressed=0,sampleSuppressed=0,errors=0,logged=0}
   ExposedMembers[KEY]=r
  end
  return r
@@ -97,36 +101,61 @@ function M.New(P,role)
   local prior=r.roles[role]
   -- Plain Lua allocation only: observational identity, never a saved/native token.
   local id=role..':'..r.serial..':'..tostring({}):gsub('[^%w]','')
-  local a={id=id,loads=0};local used=0;local busy=false;local sampling=false;local last={}
+  local a={id=id,loads=0};local sampled=0;local busy=false;local sampling=false
+  local last,order={},{};local turnKey,turnUsed,throttled=nil,0,false
   r.roles[role]=id
+  local function append(v)
+   local out,saved={},{}
+   for _,k in ipairs(keys)do if v[k]~=nil then saved[k]=scalar(v[k],k);out[#out+1]=k..'='..saved[k]end end
+   r.sequence=r.sequence+1;saved.sequence=r.sequence
+   saved.line=('[SPC][B205][TRAIN] seq='..r.sequence..' '..table.concat(out,' ')):sub(1,4096)
+   r.entries[#r.entries+1]=saved;if #r.entries>M.KEEP then table.remove(r.entries,1)end
+   pcall(print,saved.line)
+   pcall(function()if LuaEvents then LuaEvents.SPC_B205TrainingTrace()end end)
+  end
   local function record(stage,data)
-   if busy then return end
-   if used>=M.BUDGET then r.suppressed=math.min(2147483647,r.suppressed+1);return end
+   if busy or r.sinkEmitting then return end
    busy=true
    local good=pcall(function()
-    local v={stage=stage,context=id,gp=r.roles.GAMEPLAY,ui=r.roles.PRODUCTION_UI,bridge=r.bridge,loads=a.loads,loadSequence=r.loadSequence or 0}
+    local v={stage=stage,context=id,traceRole=role,gp=r.roles.GAMEPLAY,ui=r.roles.PRODUCTION_UI,bridge=r.bridge,loads=a.loads,loadSequence=r.loadSequence or 0}
     local turnOK,turn=pcall(function()return Game.GetCurrentGameTurn()end);v.turn=turnOK and turn or 'UNAVAILABLE'
     for _,k in ipairs(keys)do if data and data[k]~=nil then v[k]=data[k]end end
-    local out={};local saved={}
-    for _,k in ipairs(keys)do if v[k]~=nil then saved[k]=scalar(v[k],k);out[#out+1]=k..'='..saved[k]end end
-    local body=table.concat(out,' ')
-    if last[stage]==body then return end
-    -- stage is an internal fixed call-site label; cap the dedup map as well.
-    if not last[stage] and used<32 then last[stage]=body elseif last[stage]then last[stage]=body end
-    used=used+1;r.sequence=r.sequence+1;saved.sequence=r.sequence
-    saved.line=('[SPC][B205][TRAIN] seq='..r.sequence..' '..body):sub(1,4096)
-    r.entries[#r.entries+1]=saved;if #r.entries>M.KEEP then table.remove(r.entries,1)end
-    pcall(print,saved.line)
-    -- Existing engine LuaEvents transport; no function/native object in the trace.
-    pcall(function()if LuaEvents then LuaEvents.SPC_B205TrainingTrace()end end)
+    local stable=changeOnly[stage] or stage:match('_QUOTE$') or stage:match('_FAILURE$') or stage:match('_HELD$')
+    local ident={stage};for _,k in ipairs(identityKeys)do ident[#ident+1]=scalar(v[k],k)end
+    local k=table.concat(ident,'|');local parts={}
+    for _,name in ipairs(keys)do
+     if v[name]~=nil and (not stable or (name~='turn' and name~='context' and name~='gp' and name~='ui' and name~='loads' and name~='loadSequence'))then
+      parts[#parts+1]=name..'='..scalar(v[name],name)
+     end
+    end
+    local signature=table.concat(parts,' ')
+    if stable and last[k]==signature then return end
+    if turnKey~=v.turn then turnKey=v.turn;turnUsed=0;throttled=false end
+    if turnUsed>=M.TURN_LIMIT then
+     r.suppressed=math.min(2147483647,r.suppressed+1)
+     if not throttled then
+      throttled=true
+      append({stage='TRACE_THROTTLED',context=id,traceRole=role,turn=v.turn,throttleLimit=M.TURN_LIMIT,reason='RUNAWAY_BREAKER'})
+     end
+     return
+    end
+    if stable and not last[k]then
+     if #order>=M.DEDUP_LIMIT then last[table.remove(order,1)]=nil end
+     order[#order+1]=k
+    end
+    if stable then last[k]=signature end;turnUsed=turnUsed+1;append(v)
    end)
    if not good then r.errors=math.min(2147483647,r.errors+1)end
    busy=false
   end
+  local function sampleAllowed()
+   if sampled>=M.BUDGET then r.sampleSuppressed=math.min(2147483647,(r.sampleSuppressed or 0)+1);return false end
+   sampled=sampled+1;return true
+  end
   function a.Record(stage,data)record(stage,data)end
   function a.Unit(stage,u,extra)
    if busy or sampling then return end
-   if used>=M.BUDGET then record(stage);return end
+   if not sampleAllowed()then return end
    sampling=true
    local good=pcall(function()
     local v=unitSample(u)
@@ -141,7 +170,7 @@ function M.New(P,role)
   end
   function a.Event(stage,c,s,extra)
    if busy or sampling then return end
-   if used>=M.BUDGET then record(stage);return end
+   if not sampleAllowed()then return end
    sampling=true
    local good=pcall(function()
     local v={owner=read(c,'GetOwner'),city=read(c,'GetID'),population=read(c,'GetPopulation')}
@@ -185,7 +214,9 @@ function M.Sink(P)
     if e.sequence>r.logged then
      if emitted>=128 then r.sinkStatus='BUDGET_STOP';return end
      r.logged=e.sequence;emitted=emitted+1 -- before native call/reentry
+     r.sinkEmitting=true
      local good=pcall(UI.DataError,e.line)
+     r.sinkEmitting=false
      if not good then failed=true;r.sinkStatus='ERROR_STOP';return end
     end
    end

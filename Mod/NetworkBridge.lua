@@ -21,6 +21,18 @@ function SPCNetworkBridge.Start(P,shared)
  local reportTrace
  local traceOK,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'NETWORK_REPORT')
  if traceOK then reportTrace=value end
+ local stateTrace=SPCExpeditionTrainingDiagnostics.New(P,'NETWORK_STATE')
+ local function state(stage,pid,b,reason,packet)
+  pcall(function()
+   -- Fixed token only; never retain raw engine errors or route payloads.
+   local token=type(reason)=='string' and (reason:match('NETWORK_[A-Z0-9_]+') or reason:match(':%d+: ([A-Z][A-Z0-9_]+)') or reason:match('^([A-Z][A-Z0-9_]+)$') or reason:match('^[A-Za-z][A-Za-z0-9_]+$') and reason:upper()) or nil
+   stateTrace.Record(stage,{owner=pid,reason=token or 'READ_ERROR',ready=d.ready,
+    networkAvailability=b and b.availability,networkRevalidation=b and b.revalidation,
+    networkInputRevision=b and b.inputRevision,networkSignal=b and b.signal,routeSignal=shared.RouteSignalRevision or 0,
+    routeCount=b and b.routes and #b.routes,packetSeq=packet and packet.Seq,packetTurn=packet and packet.Turn,
+    packetSignal=packet and packet.Signal,packetEpoch=packet and packet.Epoch})
+  end)
+ end
  local function copy(v)
   if type(v)~='table' then return v end
   local out={};for k,x in pairs(v) do out[k]=copy(x) end;return out
@@ -64,9 +76,10 @@ function SPCNetworkBridge.Start(P,shared)
  end
  -- A dirty event requests one UI resample through its existing event flush.
  -- This callback only marks work; it never scans or sends a command inline.
- local function pendingProof(pid,b,request)
+ local function pendingProof(pid,b,request,cause)
   local first=b.revalidation~='NEEDS_REVALIDATION'
   b.revalidation='NEEDS_REVALIDATION';b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE'
+  if first then state('NETWORK_PENDING',pid,b,cause or 'READ_OR_SIGNAL')end
   if request==true or request==nil and first then
    local ui=ExposedMembers.SPC_P0_BackgroundRoutes
    if ui and type(ui.RequestRevalidation)=='function' then pcall(ui.RequestRevalidation,d.epoch,pid) end
@@ -207,9 +220,11 @@ function SPCNetworkBridge.Start(P,shared)
      b.input=input;P.Count('input_duplicate')
      if priorAvailability~='AVAILABLE' and b.availability=='AVAILABLE' then notify(pid) end
     else changed=publish(pid,b,input,view,withdrawal) end
-   else b.availability='NEEDS_REVALIDATION';b.error=short(view) end
+   if b.availability=='AVAILABLE' and b.revalidation=='VERIFIED'then state('NETWORK_VERIFIED',pid,b,'SAMPLE_ACCEPTED')end
+   else b.availability='NEEDS_REVALIDATION';b.error=short(view);state('NETWORK_SAMPLE_FAILED',pid,b,b.error)end
   else
    b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';b.error=short(input)
+   state('NETWORK_SAMPLE_FAILED',pid,b,b.error)
    -- A failed new sample cannot hide independently confirmed loss of an old input.
    local confirmed=false
    local checked,lost=pcall(function()
@@ -231,12 +246,12 @@ function SPCNetworkBridge.Start(P,shared)
   b.refreshing=false;return changed
  end
  function d.Receive(pid,p)
-  if isolated(pid) then return end -- includes delayed pre-experiment packets
+  if isolated(pid) then state('NETWORK_RECEIVE_DROP',pid,nil,'ISOLATED',p);return end -- includes delayed pre-experiment packets
   P.Count('net_receive')
-  if not P.IsTestPlayer(pid) or p.Epoch~=d.epoch or not integer(p.Seq) then P.Count('stale_input');return end
+  if not P.IsTestPlayer(pid) or p.Epoch~=d.epoch or not integer(p.Seq) then P.Count('stale_input');state('NETWORK_RECEIVE_DROP',pid,nil,'OWNER_EPOCH_OR_SEQUENCE',p);return end
   local b=bucket(pid)
-  if b.refreshing then P.Count('busy_skip');return end
-  if p.Seq<=b.seq then P.Count('send_duplicate');P.Count('stale_input');return end
+  if b.refreshing then P.Count('busy_skip');state('NETWORK_RECEIVE_DROP',pid,b,'BUSY',p);return end
+  if p.Seq<=b.seq then P.Count('send_duplicate');P.Count('stale_input');state('NETWORK_RECEIVE_DROP',pid,b,'REPLAY',p);return end
   b.seq=p.Seq;b.candidate=nil -- a newer packet supersedes any unpublished older candidate
   local ok,err=pcall(function()
    assert(d.ready,'LOAD_NOT_READY')
@@ -283,7 +298,7 @@ function SPCNetworkBridge.Start(P,shared)
    for _,r in ipairs(rows) do references[r.trader]={origin=SPCNetworkInput.Reference(city(r.op,r.oc)),destination=SPCNetworkInput.Reference(city(r.dp,r.dc))} end
    b.candidate={routes=rows,references=references,fingerprint=fingerprint,turn=p.Turn,signal=p.Signal,seq=p.Seq}
   end)
-  if not ok then pendingProof(pid,b,false);b.error=short(err);P.Count('route_failure');P.Count('stale_input') end
+  if not ok then pendingProof(pid,b,false,'RECEIVE_REJECT');b.error=short(err);state('NETWORK_RECEIVE_REJECT',pid,b,b.error,p);P.Count('route_failure');P.Count('stale_input')end
   if ok and p.Valid==1 then d.Refresh(pid) else d.Verified(pid) end
  end
  derive=function(pid,rows,input)
@@ -369,6 +384,7 @@ function SPCNetworkBridge.Start(P,shared)
    and b.derivedFor==b.inputRevision and v.signature==b.inputSignature
   if not matches then out.reason='NETWORK_VIEW_UNAVAILABLE';return out end
   if b.availability~='AVAILABLE' or b.revalidation~='VERIFIED' or b.signal~=(shared.RouteSignalRevision or 0) then
+   if b.signal~=(shared.RouteSignalRevision or 0)then state('NETWORK_SIGNAL_STALE',pid,b,'NETWORK_SIGNAL_UNPROVEN')end
    out.reason=b.transportFailure or 'NETWORK_REVALIDATION_PENDING';return out
   end
   local ok,ids,references,reference=pcall(function()
@@ -602,15 +618,15 @@ function SPCNetworkBridge.Start(P,shared)
  for _,name in ipairs({"OnDistrictConstructed","CityBuilt"}) do
   local ev=P.Field(GameEvents,name);if ev and ev.Add then ev.Add(d.Rebuild) end
  end
- function d.CheckEvidence(failedFullRead)
+ function d.CheckEvidence(failedFullRead,cause)
   if isolated() then return end
   for pid,b in pairs(d.players) do
-   if b.routes then pendingProof(pid,b,not failedFullRead);d.Verified(pid,failedFullRead) end
+   if b.routes then pendingProof(pid,b,not failedFullRead,cause);d.Verified(pid,failedFullRead) end
    d.Refresh(pid)
   end
  end
  for _,name in ipairs({'TradeRouteActivityChanged','TradeRouteRemovedFromMap','UnitRemovedFromMap','CityRemovedFromMap','CityTransfered','DiplomacyDeclareWar'}) do
-  local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(function() d.CheckEvidence(false) end) end
+  local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(function() d.CheckEvidence(false,name)end) end
  end
  -- Current facts, not the event name/turn, determine whether a version is published.
  -- These events identify the affected player in their first native argument.

@@ -72,6 +72,12 @@ class Session:
         self.gate_total = 0
         self.hd_total = 0
         self.hd_dropped = 0
+        self.meta_counts = {}
+        self.readiness = {}
+        self.sink_alerted = False
+        self.record_total = 0
+        self.trace_epoch = None
+        self.highest_sequence = 0
 
     def event(self, kind, **values):
         self.events.write(json.dumps({'time_utc': datetime.now(timezone.utc).isoformat(),
@@ -90,7 +96,17 @@ class Session:
         self.records.flush()
         f = fields(record)
         stage = f.get('stage', '?')
+        if f.get('seq', '').isdigit():
+            self.highest_sequence = max(self.highest_sequence, int(f['seq']))
         self.stages[stage] += 1
+        self.record_total += 1
+        if stage == 'TRACE_THROTTLED':
+            self.alert('TRACE_THROTTLED role=%s turn=%s' % (f.get('traceRole', '?'), f.get('turn', '?')))
+        if stage == 'READINESS_SUMMARY':
+            state = self.readiness.setdefault(f.get('context', '?'), set())
+            state.add(f.get('reason'))
+            if f.get('sealed') == 'true' and f.get('loadSeen') == 'true' and f.get('notReady') not in (None, 'NONE'):
+                self.alert('READINESS_NOT_READY context=%s modules=%s' % (f.get('context', '?'), f['notReady']))
         if 'context' in f:
             self.contexts.add(f['context'])
         if len(self.order) < MAX_SEEN:
@@ -120,6 +136,38 @@ class Session:
             definition or '?', native or '?', f.get('phase', '-'))
         return '\n'.join([line] + ['  !! ' + a for a in alerts])
 
+    def alert(self, text):
+        if text not in self.alerts:
+            self.alerts.append(text)
+            self.event('alert', text=text)
+
+    def add_meta(self, line):
+        # Keep bounded reader metadata in the evidence, never arbitrary engine output.
+        stamp = datetime.now(timezone.utc).strftime('%H:%M:%S')
+        self.records.write(stamp + ' meta ' + line + '\n')
+        self.records.flush()
+        f = fields(line)
+        epoch, first = f.get('traceEpoch'), f.get('firstSequence', '')
+        if epoch and epoch != 'UNKNOWN':
+            if epoch != self.trace_epoch:
+                self.trace_epoch = epoch
+                self.highest_sequence = 0
+                self.meta_counts = {}
+            if first.isdigit() and int(first) > self.highest_sequence + 1:
+                self.alert('TRACE_RING_GAP epoch=%s missing=%d..%d' % (epoch, self.highest_sequence + 1, int(first) - 1))
+                self.event('capture_gap', code='TRACE_RING_GAP', phase='SNAPSHOT')
+        for key in ('suppressed', 'errors', 'sampleSuppressed'):
+            value = f.get(key, '')
+            if value.isdigit():
+                count = int(value)
+                prior = self.meta_counts.get(key, 0)
+                if count > prior:
+                    self.alert('TRACE_META_%s count=%d previous=%d' % (key.upper(), count, prior))
+                self.meta_counts[key] = count
+        if f.get('sinkStatus') == 'BUDGET_STOP' and not self.sink_alerted:
+            self.sink_alerted = True
+            self.alert('TRACE_SINK_BUDGET_STOP native_error_channel_only')
+
     def add_hd(self, line):
         """HD prints repeat legitimately, so count each one; log a bounded prefix."""
         self.hd_total += 1
@@ -148,9 +196,12 @@ class Session:
         return stamp + ' GATE ' + text
 
     def summary(self, reason):
+        for context, stages in self.readiness.items():
+            if 'FIRST_PUBLISH' in stages and 'AFTER_LOAD' not in stages:
+                self.alert('READINESS_LOAD_SAMPLE_MISSING context=' + context)
         lines = ['B205 trace session summary (read-only collection; not a gameplay PASS)',
                  'end_reason: ' + reason,
-                 'unique_records: %d' % len(self.seen),
+                 'unique_records: %d' % self.record_total,
                  'observer_contexts: %d' % len(self.contexts),
                  'stages: ' + ', '.join('%s=%d' % kv for kv in sorted(self.stages.items()))]
         lines.append('hd_prints: %d (dropped by reader: %d)' % (self.hd_total, self.hd_dropped))
@@ -160,7 +211,7 @@ class Session:
         lines += ['alert: ' + text for text in self.alerts] or ['alerts: none']
         text = '\n'.join(lines) + '\n'
         (self.directory / 'summary.txt').write_text(text, encoding='utf-8')
-        self.event('end', reason=reason, unique_records=len(self.seen))
+        self.event('end', reason=reason, unique_records=self.record_total)
         return text
 
     def close(self):
@@ -190,6 +241,8 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
                     shown = session.add(record, 'snap' if 'ENTRY ' in line else 'live')
                     if shown:
                         out(shown)
+                elif line.startswith(reader.PREFIX + 'META '):
+                    session.add_meta(line)
                 elif line.startswith(reader.GATE_PREFIX):
                     shown = session.add_gate(line)
                     if shown:
@@ -262,6 +315,7 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
                 waiting_reported = True
             if not unavailable:
                 session.event('capture_error', code=code, phase=error.phase)
+                session.event('capture_gap', code=code, phase=error.phase)
             sleep(retry)
 
 

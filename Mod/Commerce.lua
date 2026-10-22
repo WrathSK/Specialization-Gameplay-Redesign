@@ -341,12 +341,56 @@ function M.Start(P,shared)
   rows[#rows+1]='各领域分别向下取整后相加；城市既有金币倍率可能进一步调整实际收益。'
   return table.concat(rows,'\n')
  end
+ -- B267 observes existing publications/carriers only; never reconciles effects.
+ local turnTrace=SPCExpeditionTrainingDiagnostics.New(P,'COMMERCE_TURN')
+ local turnStates={}
+ local function diagnosticRead(object,method)
+  local ok,v=pcall(function()local fn=object and object[method];if type(fn)~='function'then return 'UNAVAILABLE'end;return fn(object)end)
+  if not ok then return 'READ_ERROR'end
+  if type(v)=='number' or type(v)=='boolean' or v=='UNAVAILABLE'then return v end;return 'UNKNOWN'
+ end
+ local function turnSample(stage,pid)
+  if not SPCExpeditionTrainingDiagnostics.ENABLED then return end
+  if not P.IsTestPlayer(pid)then return end
+  local player=Players[pid];local treasuryOK,treasury=pcall(function()return player:GetTreasury()end)
+  if not treasuryOK then treasury=nil end
+  local expected,actual,held,unknown=0,0,0,0;local firstReason
+  for _,c in player:GetCities():Members()do
+   local id=c:GetID();local v=views[key(pid,id)];local good,n=pcall(observed,c)
+   local want=v and v.totalGold or 0
+   expected=expected+want;if good then actual=actual+n else unknown=unknown+1 end
+   if v and v.stage=='HELD'then held=held+1;firstReason=firstReason or v.reason end
+   local signature=table.concat({v and v.stage or 'NONE',v and v.reason or 'NONE',tostring(want),good and tostring(n) or 'UNKNOWN'},':')
+   local k=ref(c)
+   if turnStates[k]~=signature or not good or n~=want then
+    turnTrace.Record('COMMERCE_TURN_CITY',{owner=pid,city=id,expected=want,carrierGold=good and n or 'UNKNOWN',
+     phase=v and v.stage or 'NONE',reason=v and v.reason or 'NONE',readStatus=good and 'VERIFIED' or 'UNKNOWN'})
+   end
+   turnStates[k]=signature
+  end
+  local bridge=shared.NetworkBridge;local b=bridge and bridge.players and bridge.players[pid]
+  local sender=ExposedMembers.SPC_P0_BackgroundRoutes or {}
+  turnTrace.Record(stage,{owner=pid,goldBalance=diagnosticRead(treasury,'GetGoldBalance'),
+   goldYield=diagnosticRead(treasury,'GetGoldYield'),maintenance=diagnosticRead(treasury,'GetTotalMaintenance'),
+   ownerTurnActive=diagnosticRead(player,'IsTurnActive'),ready=d.ready,coreBusy=busy,commerceWrites=d.writes,
+   expected=expected,carrierGold=unknown==0 and actual or 'UNKNOWN',heldCount=held,reason=firstReason or 'NONE',
+   unreadableCount=unknown,networkRevalidation=b and b.revalidation,networkAvailability=b and b.availability,
+   networkSignal=b and b.signal,routeSignal=shared.RouteSignalRevision or 0,
+   senderResult=sender.senderResult or 'UNAVAILABLE',senderFailedTurn=sender.senderFailedTurn,
+   senderTurn=sender.senderTurn,senderTurnActive=sender.senderTurnActive})
+ end
+ local function diagnosticTurn(stage,pid)
+  local ok=pcall(turnSample,stage,pid)
+  if not ok then pcall(turnTrace.Record,'COMMERCE_TURN_FAILURE',{owner=pid,reason='TURN_READ_ERROR'})end
+ end
  local function flush()
   if busy then return end;local todo=dirty;dirty={}
   for pid,v in pairs(todo)do d.Audit({player=pid,changed=not v.all and v.cities or nil})end
  end
  local function hook(source,event,fn)local e=P.Field(source,event);if e and e.Add then e.Add(fn)end end
  hook(Events,'LoadScreenClose',function()d.Audit()end)
+ hook(Events,'PlayerTurnDeactivated',function(pid)diagnosticTurn('COMMERCE_TURN_END',pid)end)
+ hook(GameEvents,'PlayerTurnStarted',function(pid)diagnosticTurn('COMMERCE_TURN_STARTED',pid)end)
  hook(Events,'GameCoreEventPublishComplete',flush)
  hook(Events,'PlayerTurnActivated',function(pid)d.Mark(pid)end)
  for _,event in ipairs({'CityWorkerChanged','CityPopulationChanged','CityFocusChanged','CityBuildingsChanged','CityYieldChanged','CityYieldsChanged'})do

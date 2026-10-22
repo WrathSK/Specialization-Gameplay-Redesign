@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0057",
     "research": "D0040",
@@ -10,17 +10,22 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0177",
-    "status": "S0706",
-    "runtime": "B266.293 / modinfo293",
+    "architecture": "A0178",
+    "status": "S0707",
+    "runtime": "B267.294 / modinfo294",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md",
-  "goal": "Record B266 user acceptance and complete the final scoped four-profession v0.1 playtest-readiness check without implementation, deployment or PR.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+  "goal": "Implement PRE-01–05 diagnostic coverage and experimental overflow project gating without gameplay policy changes.",
+  "implementation_authorized": true,
   "context": [
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "kind": "full",
+      "reason": "Approved B267 scope, validation and stop boundary."
+    },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md",
       "kind": "full",
@@ -40,11 +45,12 @@
   ],
   "dependencies": [
     "Existing scoped Research/Culture/Industry/Commerce functional acceptance and later UI/name-pool changes.",
-    "D0057/A0177, the user-approved v0.1 scope and post-playtest priority decision.",
+    "D0057/A0178, the user-approved v0.1 scope and post-playtest priority decision.",
     "Exact committed source, current deployment receipt and retained recovery snapshots."
   ],
   "old_writers": [
-    "No writer changes or implementation in this documentation-only checkpoint."
+    "ExpeditionTrainingDiagnostics output and sampling share one lifetime budget; preserve native-read bounds while replacing only output policy.",
+    "Existing Commerce/network authorities and Store state writers remain; new modules observe readiness/carrier health only."
   ],
   "conditional_context": [
     {
@@ -56,23 +62,21 @@
     }
   ],
   "non_scope": [
-    "New implementation, gameplay/Design/Architecture/tests/configuration changes, deployment, game launch, new timers/frame updates.",
-    "Deferred audit/Expedition/city-loss fixes, added future professions or expanded native PASS.",
-    "Baseline designation/tag, PR, main promotion or changing W0003 authorization."
+    "Gameplay/Design, ownership/acquisition handling, automatic HELD recovery, network fallback/withdrawal/sender rules, Expedition repairs, carrier immunity/rebuild, art application, release tags, PR/main promotion."
   ],
   "validation": {
-    "depth": "Documentation/readiness: current references, package/static integrity, source/live/receipt and recovery equality; inherit scoped local/native evidence.",
-    "local": "288-file closure/equality; 185 Lua 5.1 compile; 32 XML/artdef/dep parse; context and whitespace. Prior B266 64 tests inherited without rerunning.",
-    "user": "B266 combined UI recovery accepted. REALLOCATING cold-load and Standardization + Development integration remain inside-playtest checks. Governor sequence remains ordinary-play observation."
+    "depth": "Scoped actual-Lua/Python counterexamples and affected regressions, package/context/syntax checks.",
+    "local": "243 scoped tests PASS; 187 Lua 5.1 compile; XML/package/context and added source review; read-only DB copied to memory for gate schema.",
+    "user": "First integrated session validates new-game/load log delivery, Commerce accrual observations and carrier pillage behavior."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md",
-    "source": "B266.293/modinfo293 DEVELOP_ACTIVE; unchanged source 0c2c4aec852411c40c0998c2693dad1346f470dd; receipt B266.293-0c2c4ae-playtest.json; 288/288 MATCH; digest c4a99db788159d5a986a963760543a8a331d2343e863cde4d002e5feb8eebab3. Read-only readiness check reverified source/live/receipt, stable and outgoing B265 recovery, and absent pending marker. B266 UI acceptance received. No new deployment, game operation or configuration/main change; no PR.",
-    "native": "B266 USER_GAME_TEST_PASS for the user's combined UI acceptance; earlier scoped evidence retained. No blanket full-Design/lifecycle/balance PASS.",
-    "stop": "B266 accepted; four-profession v0.1 readiness check complete. Await the user's first-playtest baseline designation. Carry REALLOCATING cold-load and Standardization + Development additive output into that playtest; retain all user-deferred post-playtest work. No new batch, deployment, PR or main promotion."
+    "report": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+    "local": "LOCAL_SIMULATION_PASS",
+    "native": "USER_GAME_TEST_REQUIRED; first integrated session observations only",
+    "deployment": "PENDING_GUARDED_W0003"
   }
 }

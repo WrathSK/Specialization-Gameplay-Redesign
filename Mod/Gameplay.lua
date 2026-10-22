@@ -7,6 +7,9 @@ local P=SPCP0
 -- B004 adds bounded automatic trader-operation diagnostics at the bottom.
 ExposedMembers.SPC_P0={Version=P.VERSION,Stage="INITIALIZED",Events={}}
 local shared=ExposedMembers.SPC_P0
+-- Diagnostic observers are protected and never control startup or reconciliation.
+local readiness
+pcall(function()include('ExpeditionTrainingDiagnostics');include('ReadinessSummary');readiness=SPCReadinessSummary.Start(P,shared)end)
 ExposedMembers.SPC_Performance=SPCPerformance.New()
 local function stage(value)
   shared.Stage=value
@@ -845,6 +848,7 @@ include("Lv2Housing")
 SPCLv2Housing.Start(P,shared)
 include("Lv2GPP")
 SPCLv2GPP.Start(P,shared)
+pcall(function()include('CarrierHealthTrace');SPCCarrierHealthTrace.Start(P,shared)end)
 
 include("NetworkBridge")
 SPCNetworkBridge.Start(P,shared)
@@ -1022,3 +1026,5 @@ SPCRestructuring.Start(P,shared)
 -- B254 read-only banner projection, installed after existing permanent-write observers.
 include('LevelBannerState')
 SPCLevelBannerState.Start(P,shared)
+
+if readiness then pcall(readiness.Seal)end

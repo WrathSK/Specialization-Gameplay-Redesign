@@ -9,9 +9,9 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0177",
-    "status": "S0706",
-    "runtime": "B266.293 / modinfo293",
+    "architecture": "A0178",
+    "status": "S0707",
+    "runtime": "B267.294 / modinfo294",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
   "runtime_commit": "0c2c4aec852411c40c0998c2693dad1346f470dd",
-  "current_batch": "B266_ACCEPTED_V01_READINESS_COMPLETE",
-  "next_batch": "Approved roadmap recorded: present PRE-01 through PRE-05 diagnostics/experimental-project scope, then await implementation authorization and subsequent user playtest-baseline designation. No implementation, deployment, release designation, PR or main promotion in this documentation batch.",
+  "current_batch": "B267_PREPLAYTEST_DIAGNOSTICS_LOCAL_PASS",
+  "next_batch": "Commit/push B267, then guarded W0003 deployment if the game is fully exited. Await user integrated-test baseline designation; first session verifies diagnostic delivery/native observations. No PR/main promotion/release tag.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B266.293/modinfo293 DEVELOP_ACTIVE; unchanged source 0c2c4aec852411c40c0998c2693dad1346f470dd; receipt B266.293-0c2c4ae-playtest.json; 288/288 MATCH; digest c4a99db788159d5a986a963760543a8a331d2343e863cde4d002e5feb8eebab3. Read-only readiness check reverified source/live/receipt, stable and outgoing B265 recovery, and absent pending marker. B266 UI acceptance received. No new deployment, game operation or configuration/main change; no PR.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0706: user-approved v0.1 roadmap and bounded pre-playtest list recorded after Advisor review. Runtime/D0057/A0177 and B266 evidence remain unchanged; original Advisor files unchanged. Documentation only.",
+  "context_review_status": "S0707: authorized PRE-01–05 implemented; 243 scoped local tests PASS. A0178 records observer/output boundaries; D0057 gameplay unchanged. New native delivery/treasury/pillage/project hiding remain unverified.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md"
 }
