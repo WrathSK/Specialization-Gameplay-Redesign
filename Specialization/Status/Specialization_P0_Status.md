@@ -1,22 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0712
-Implementation Build: B268.295 / modinfo295; stable B268.295
-Architecture Revision Reviewed: A0178
+Status Revision: S0713
+Implementation Build: B269.296 / modinfo296; stable/live B268.295
+Architecture Revision Reviewed: A0179
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B268_MAIN_PROMOTED_STABLE_DEPLOYED
+Work State: B269_MEMORY_DIAGNOSTICS_PREPARED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**用户审阅批准PR #2后，B268.295已晋升main并完成稳定部署。** [晋升与部署记录](Validation/Results/Specialization_V01_Alpha1_Merged.md)。
+B269.296已按用户批准补充正常实机随行诊断；[范围与结果](Validation/Results/Specialization_B269_Memory_Diagnostics.md)。13项新增测试和243项既有回归通过；实机数据交付与开销待正常游玩确认。
 
-- main合并提交852b04c；310/310源文件与live一致，运行字节与此前B268测试包完全相同。
-- main/develop保留各自README；临时B268凭据已恢复收尾，旧包/恢复资料保留。
-- 原243+28项本地检查和已记录实机范围保持；图标截图仅归档，综合测试、已知待办及最终v0.1冻结未完成。
-- 未创建版本标签或GitHub Release。W0003临时自动切换阶段结束，后续部署需明确批准。
+- 仅develop源码准备；main/live仍为B268.295、852b04c，原310文件稳定部署未更换。
+- 不改GC策略、玩法、存档结构；不启动游戏，不自动分类快照，不要求停下v0.1测试。
+- 部署仍需单独批准；无main合并、tag或Release。
+
+## S0713 — B269随行内存诊断
+
+用户明确批准诊断方案。补充Lua/GC/工作量有界证据、外部进程读数及采集完整性，根因保持UNKNOWN。当前等待部署批准。
 
 ## S0712 — main晋升与稳定部署
 

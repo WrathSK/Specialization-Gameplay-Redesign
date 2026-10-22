@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0178
+# Specialization v0.1 Architecture — A0179
 
 Document Owner: Codex
-Architecture Revision: A0178
+Architecture Revision: A0179
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -567,3 +567,7 @@ StandardizationDiscount独立于永久账本；当前来源并集和最高ACTIVE
 ## B054.71启动补偿
 
 后台DiscountEligibility在Gameplay模块已存在但ready=false时发送DISCOUNT_INIT；游戏侧按测试文明授权调用幂等EnsureReady，清理失效载体并生成计划，不依赖打开面板。正常LoadScreenClose路径仍保留。Describe无副作用，仅补充ready/busy/generation定位。缺失一次加载事件及重复初始化已做真实Lua模拟；引擎实际漏事件原因尚未确认，不把推断写成实机已证明。
+
+## A0179 — 正常实机随行内存证据
+
+B269仅增加有界Gameplay内存/GC/已有工作量记录，由固定只读采集器转存；128条加载内环，不写存档、不扩大城市扫描、不改变GC策略。外部复用OS统计，不自动分类采样。关联仅用接收时间并标注采样年龄，加载/进程身份分段，缺失保留UNKNOWN。容量/故障显式记录，诊断不成为玩法或v0.1长测的新门禁。精确范围、测试及部署边界见[本批结果](../Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md)。

@@ -22,7 +22,7 @@ ADDRESS = ('127.0.0.1', 4318)
 DEADLINE_SECONDS = 5.0
 MAX_FRAME = 262144
 MAX_TOTAL = 2 * 1048576
-MAX_RECORDS = 262
+MAX_RECORDS = 394
 MAX_RECORD_SECONDS = 600
 MAX_STREAM_TOTAL = 16 * 1048576
 MAX_STREAM_RECORDS = 8192
@@ -145,7 +145,23 @@ else
   end;
   if entries[257]~=nil then out('ERROR TRACE_ENTRIES_OVER_LIMIT') end
  end
-end; """
+end;
+local shared=type(ExposedMembers)=='table' and ExposedMembers.SPC_P0;
+local m=type(shared)=='table' and shared.MemoryEvidence;
+if type(m)=='table' and m.schema==1 and type(m.rows)=='table' then
+ out('MEM_META epoch='..scalar(m.epoch)..' sequence='..scalar(m.sequence)..' first='..scalar(type(m.rows[1])=='table' and m.rows[1].seq));
+ for i=1,128 do
+  local r=m.rows[i];if r==nil then break end;
+  if type(r)=='table' then
+   local parts={'MEM epoch='..scalar(m.epoch)};
+   for _,k in ipairs({'seq','turn','kind','reason','heapMiB','gcEnabled','gcFailure','gcCollections','before','after','cpu','wall','work_city_scan','work_district_scan','work_building_check','work_building_create','work_building_remove','work_property_write','work_net_send','work_net_receive','work_derive_executed','work_dc_read','work_dc_capture','work_dc_hit'})do
+    parts[#parts+1]=k..'='..scalar(r[k]);
+   end;
+   out(table.concat(parts,' '));
+  end;
+ end;
+elseif type(shared)=='table' then out('MEM_UNAVAILABLE') end;
+"""
     else:
         raise CaptureError('MODE_INVALID')
     return common + body + "print('" + sentinel + "')"
@@ -183,6 +199,11 @@ def training_line(line):
     if len(stages) != 1 or not re.fullmatch(r'[A-Z_]+', stages[0]):
         return None
     return value
+
+
+def gc_line(line):
+    match = re.search(r'\[SPC\]\[GC_TRIAL\] T\d+ [A-Za-z0-9_: .;=?>+/-]{1,350}$', line)
+    return match.group(0) if match else None
 
 
 def hd_line(line):
@@ -240,6 +261,7 @@ def capture(mode, connect=socket.create_connection, clock=time.monotonic,
                 if phase == 'PASSIVE' and expired and clock() >= wire.deadline:
                     if wire.total != before:
                         raise CaptureError('PARTIAL_FRAME_AT_DEADLINE') from None
+                    emit(PREFIX + 'TRANSPORT frames=' + str(wire.frames) + ' bytes=' + str(wire.total))
                     emit(PREFIX + 'WINDOW_COMPLETE passive_records=' + str(passive_count)
                          + ' hd_records=' + str(hd_count) + ' hd_dropped=' + str(hd_dropped))
                     return records
@@ -269,7 +291,7 @@ def capture(mode, connect=socket.create_connection, clock=time.monotonic,
                         wire.deadline = clock() + record_seconds
                         emit(PREFIX + 'LISTENING seconds=' + str(record_seconds))
                 elif mode == 'record':
-                    value = training_line(line)
+                    value = training_line(line) or gc_line(line)
                     if value:
                         if passive_count >= MAX_STREAM_RECORDS:
                             raise CaptureError('OUTPUT_RECORD_LIMIT')

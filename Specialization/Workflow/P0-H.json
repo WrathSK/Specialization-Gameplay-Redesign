@@ -10,72 +10,58 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0178",
-    "status": "S0712",
-    "runtime": "B268.295 / modinfo295",
+    "architecture": "A0179",
+    "status": "S0713",
+    "runtime": "B269.296 / modinfo296",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-  "goal": "Apply seventeen explicitly selected raw icon artworks to self-owned presentation only, preserving existing gameplay and native UI controls.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
+  "goal": "Add approved bounded memory/GC/work evidence during normal v0.1 play, without gameplay or GC-policy change.",
   "implementation_authorized": true,
   "context": [
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
       "kind": "full",
-      "reason": "Current approved raw selection, implementation, fixed binary review and native boundary."
+      "reason": "Approved diagnostic scope, verification and deployment boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "path": "Mod/PerformanceCounters.lua",
       "kind": "full",
-      "reason": "Native-proven cell/control size invariant; no engine resampling assumption."
+      "reason": "Existing GC owner and scalar counters."
     },
     {
-      "path": "tools/raw_icons_manifest.json",
+      "path": "tools/memory_evidence.py",
       "kind": "full",
-      "reason": "Exact approved source IDs/hashes."
-    },
-    {
-      "path": "tools/raw_icons_build.json",
-      "kind": "full",
-      "reason": "Exact derived DDS bytes, sizes and review bundle."
+      "reason": "Bounded external OS sampling and evidence segments."
     }
   ],
   "dependencies": [
-    "Existing B266 functional acceptance and B267 scoped four-city activation/presentation evidence.",
-    "Existing native/HD UnitPanel/production rendering and exact native district definitions."
+    "Existing PerformanceCounters GC coordinator and scalar counters.",
+    "Fixed B205 read-only collector and external_monitor process identity/statistics API."
   ],
   "old_writers": [
-    "Original IconDefinitions aliases remain historical; RawIcons.sql supersedes only self-owned IDs.",
-    "Native controls, eligibility and operation dispatch remain authoritative."
+    "Existing GC coordinator remains the sole full collection executor.",
+    "Diagnostics never write authoritative gameplay state."
   ],
-  "conditional_context": [
-    {
-      "trigger": "A new concrete discrepancy or later explicitly authorized task",
-      "paths": [
-        "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
-        "Specialization/Reports/Proposals/Audit_Followup_Priorities.md"
-      ]
-    }
-  ],
+  "conditional_context": [],
   "non_scope": [
-    "Gameplay/Design, state/settlement/ownership, art redesign, source PNG publication, game launch/configuration, PR/main promotion/release tag.",
-    "Civilopedia claim-overlay adapter; native district base retained there."
+    "Gameplay, save properties, GC policy, main promotion, deployment and automatic native profiling."
   ],
   "validation": {
-    "depth": "Scoped artwork/SQL/package/actual-Lua UI and direct affected native adapters.",
-    "local": "28 selected tests PASS;188 Lua5.1 compile;32 XML-family parse;18 DDS independently decoded pixel MATCH.",
-    "user": "Native raw-art rendering, overlays/click-through/recycling/scaling after activation."
+    "depth": "Actual Lua, offline collector and OS doubles, affected regressions",
+    "local": "13 new and243 existing PASS; native untested",
+    "user": "Normal campaign evidence delivery and overhead after authorized deployment"
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "B268.295 DEVELOP_ACTIVE; B268.295-5091059-playtest.json;310/310 MATCH; stable/outgoing recovery verified"
+    "deployment": "NOT_DEPLOYED; live B268.295"
   }
 }
