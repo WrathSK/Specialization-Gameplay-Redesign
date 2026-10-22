@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0713
-Implementation Build: B269.296 / modinfo296; stable/live B268.295
+Status Revision: S0714
+Implementation Build: B269.296 / modinfo296; stable/live B269.296
 Architecture Revision Reviewed: A0179
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B269_MEMORY_DIAGNOSTICS_PREPARED
+Work State: B269_MAIN_MERGED_STABLE_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B269.296已按用户批准补充正常实机随行诊断；[范围与结果](Validation/Results/Specialization_B269_Memory_Diagnostics.md)。13项新增测试和243项既有回归通过；实机数据交付与开销待正常游玩确认。
+用户批准PR #3合并并部署，B269.296已成为main/live稳定包；[结果与使用方式](Validation/Results/Specialization_B269_Memory_Diagnostics.md)。
 
-- 仅develop源码准备；main/live仍为B268.295、852b04c，原310文件稳定部署未更换。
-- 不改GC策略、玩法、存档结构；不启动游戏，不自动分类快照，不要求停下v0.1测试。
-- 部署仍需单独批准；无main合并、tag或Release。
+- 合并提交df70a88；310/310文件与live一致，B268备份保留，无待完成事务。
+- 13项新增测试与243项既有回归PASS；新增诊断的原生交付、读取权限和开销待正常游玩确认。
+- 不改变GC策略或玩法，不启动游戏；继续v0.1测试。后续新变更/部署仍需授权。
+
+## S0714 — B269 main合并与稳定部署
+
+用户分别批准PR及合并部署。已核对候选、游戏退出、旧包和新包哈希，事务完成。状态不扩大为实机验收；采集器由用户启动。
 
 ## S0713 — B269随行内存诊断
 

@@ -32,3 +32,11 @@ LOCAL_SIMULATION_PASS：13项新增实际Lua/离线测试；243项既有B267范�
 USER_GAME_TEST_REQUIRED：Mac游戏进程读取权限/耗时、Tuner共享表可见性、加载边界交付、正常游玩开销及实际GC结果。Lua为Gameplay调用处堆，非本Mod独占或全部UI Lua；计数器为已有埋点范围，非全部引擎调用。不得用进程增量减Lua增量认定原生泄漏，不同存档不得相减归因。根因UNKNOWN。
 
 User decision：实施已授权；部署另行确认。User testing：下一次正常游玩随行收集。Primary next：提交推送develop后等待部署批准，不合并main。
+
+## 已批准合并与稳定部署（2026-10-22）
+
+用户授权PR到main、随后明确批准合并及部署。PR #3合并提交df70a88a0feca951243e4686df112810b564d85b；候选保留main两份README，Mod树与develop e99df21一致。部署前再次确认游戏进程已退出，旧live与B268已记录哈希一致，事务保留B268备份后切换B269.296。
+
+310/310文件一致；源码/运行包聚合SHA256均为7a407a7259e9555aa2319ef9b49083c72927c8edcf1ae1d105343bf509190caa；无待完成事务。未启动游戏，未增加实机PASS。外部采集器仍由用户启动，命令见上文；无新专门长测。
+
+当前User decision：无。User testing：继续正常v0.1测试并随行采集。Primary next：等待日志/实机反馈；本批结束。
