@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0707
+Status Revision: S0708
 Implementation Build: B267.294 / modinfo294; stable B069.96
 Architecture Revision Reviewed: A0178
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B267_PREPLAYTEST_DIAGNOSTICS_NATIVE_PENDING
+Work State: B267_IMPLEMENTED_AWAITING_ACTIVATION_APPROVAL
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -18,7 +18,11 @@ Work State: B267_PREPLAYTEST_DIAGNOSTICS_NATIVE_PENDING
 - Source is B267.294/modinfo294. Live remains B266 until the guarded deployment checkpoint. No game launch, configuration change, art application, release designation, PR or main promotion.
 - Follow the [approved roadmap](../Reports/Proposals/Audit_Followup_Priorities.md#v01-approved-roadmap--2026-10-21): approximately 3–4 integrated campaigns, dependency-driven foundations, then ownership/Expedition and remaining scoped work before freeze. Deferred findings remain open.
 - Carry REALLOCATING cold-load and Standardization + Development additive output into play. Supported scope remains Standard-speed single-player human, dedicated America/Roosevelt, installed HD/GS/persona dependencies and four professions; existing deferred acquisition/loss and Expedition precautions remain.
-- Next: commit/push, then W0003 game-exit/hash/recovery checks for deployment. User designates the integrated-test baseline separately.
+- Source `5b421e8` is committed/pushed. Automatic approval review rejected B267 activation before execution and requires explicit approval for this package. Read-only verification confirms B266 receipt/hash unchanged, no B267 receipt and no pending marker. Next: obtain activation approval, then repeat guarded checks. Integrated-test baseline designation remains separate.
+
+## S0708 — B267 published; activation deferred
+
+Source `5b421e8` is pushed to develop; the publication gate passed for 23 exact paths. Automatic approval review rejected the external runtime replacement before execution, requiring this package's explicit activation approval despite recorded W0003 standing permission. No bypass was attempted. B266.293 remains live under its exact original receipt/hash; no new receipt/pending marker exists. PRE-01–05 implementation is complete; native testing follows activation.
 
 ## S0707 — B267 pre-playtest diagnostics and project gate
 

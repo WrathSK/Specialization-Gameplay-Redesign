@@ -40,3 +40,12 @@ A local regression caught fallback logger reentry after temporal deduplication w
 New-game/load trace delivery and readiness ordering, native Treasury accrual around turn boundaries, actual hidden-carrier pillage/repair behavior, and ordinary-list hiding of the experimental project remain USER_GAME_TEST_REQUIRED. Verify evidence delivery at the start of the integrated campaign; use collector `--idle-exit 300` through reloads. No new dedicated acceptance campaign is required and no native PASS is inferred.
 
 User decision: none for PRE-01–05; first integrated-test baseline designation remains separate. User testing: the native observations above, alongside the existing REALLOCATING cold-load and additive-output checks. Primary next: guarded W0003 deployment after clean-source and game-exit checks; no PR or main promotion.
+
+
+## Source publication and deferred activation
+
+Implementation source `5b421e8aec064e4b435e903ac82a2fd85aef39e8` is committed and pushed to develop. The 23-file staged publication gate passed; local artwork and raw evidence remain ignored. No PR, main promotion or release tag.
+
+The guarded activation command was rejected by automatic approval review before process creation. The reviewer requires explicit approval for this B267 activation and did not accept the recorded W0003 standing authorization as sufficient. Primary did not bypass the rejection. Read-only revalidation confirms B266.293 remains unchanged and DEVELOP_ACTIVE under its original receipt; no B267 receipt or pending transaction marker exists. B267 source package: 290 files, digest `af5ef23f6c1f9a368ec8b2e381e982dd05d01fb503736369d8aed65b5662ea01`.
+
+User decision: approve this exact B267.294 activation. User testing: after activation, use the first integrated session's diagnostic/native checks. Primary next: on approval, repeat game-exit/source/live/recovery checks and execute the existing receipt-bound deployment tool. PRE-01–05 implementation itself is complete.
