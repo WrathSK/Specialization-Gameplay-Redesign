@@ -63,7 +63,7 @@ function GetUnitActionsTable(u)
   end)
  end
  add('TRAVEL','ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY','TRAVEL',-196)
- add('TASK','ICON_UNITOPERATION_SPY_GAIN_SOURCES','TASK',-197)
+ add('TASK','ICON_SPC_RAW_TASK','TASK',-197)
  -- Allow only idle controls, not the base Spy builder or its mission hotkeys.
  -- Manual sleep is native-owned: it never writes the task activity lease.
  local function idle(selected)

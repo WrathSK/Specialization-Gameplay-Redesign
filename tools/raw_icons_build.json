@@ -1,0 +1,171 @@
+{
+  "build": "B268.295",
+  "source_manifest_sha256": "7efde0235d60c4e1c57036baa714e97e6795f5cf229bce9014f5daaa518f492a",
+  "transforms": "Alpha>=8 bounds, aspect-preserving contain86%, centered; investment pair union bounds; native district stays in engine; approved mark overlaid by UI. No repaint/whitening/shape edits.",
+  "files": [
+    {
+      "file": "SPC_Raw_Icons_12.dds",
+      "sha256": "9504fb896cd5fbb5a1b5374287d184b9be451c3d40aad9f3b9430822b3244451",
+      "bytes": 11648,
+      "width": 60,
+      "height": 48,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_16.dds",
+      "sha256": "7eb52e45e02202c85e58f686028ce40f045c8360d6885f18428546826380de57",
+      "bytes": 20608,
+      "width": 80,
+      "height": 64,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_20.dds",
+      "sha256": "f0cf275742ac0797e5fc91325742fcb1a1eb17fc4ee1c7cbbd4b5a11362c6f0e",
+      "bytes": 32128,
+      "width": 100,
+      "height": 80,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_22.dds",
+      "sha256": "c5f2f0ad7282ec4db1b9fd51e5734503dcac1c5a52899b3d8d3e277c08c785ff",
+      "bytes": 38848,
+      "width": 110,
+      "height": 88,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_24.dds",
+      "sha256": "024f16a9ba724357294cdcd69c6cbbbda9ff5bd0a8e76a9c3a2054a95ea830d2",
+      "bytes": 46208,
+      "width": 120,
+      "height": 96,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_30.dds",
+      "sha256": "302b8855a3907b5983a7f9f3afe9a79f4f62e87d3dcfdcc3897bcde284f3f7bf",
+      "bytes": 72128,
+      "width": 150,
+      "height": 120,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_32.dds",
+      "sha256": "f6cfa2c9b29b6bd1d7ee7cfb9ff1413a5d684a8b315c8deadb0e177edb1e69a3",
+      "bytes": 82048,
+      "width": 160,
+      "height": 128,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_38.dds",
+      "sha256": "04344a8f45bfdaf9fa5e673b02ff9f060e9ac9f0ba1fa08e22f123341d28947c",
+      "bytes": 115648,
+      "width": 190,
+      "height": 152,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_40.dds",
+      "sha256": "00d3a4619df0b27b5fe87f3858a274a75a3fb0d299d430d6e319edee391812d8",
+      "bytes": 128128,
+      "width": 200,
+      "height": 160,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_48.dds",
+      "sha256": "603bf3e156b03c374e632f2769ec17610c6bc24e8fe7e15dbf828ca44982ffc4",
+      "bytes": 184448,
+      "width": 240,
+      "height": 192,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_50.dds",
+      "sha256": "317263cc93353d0efbd6cfcf9ec6a33a349325f1588114c71a68fc0b88e2fafd",
+      "bytes": 200128,
+      "width": 250,
+      "height": 200,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_64.dds",
+      "sha256": "b98cda65faf9ce37bb542588e5914ab69f971cf4d4cf3caa0b1e2df5cf1472f3",
+      "bytes": 327808,
+      "width": 320,
+      "height": 256,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_70.dds",
+      "sha256": "b4c5fdd4de8bd23daea78397b59660f0f5925bfc720f524c99bb9e19abb3e825",
+      "bytes": 392128,
+      "width": 350,
+      "height": 280,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_80.dds",
+      "sha256": "78709259d0e893d9827fca6f3f034d2f47b9839c36973516144d46bac790f4a7",
+      "bytes": 512128,
+      "width": 400,
+      "height": 320,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_95.dds",
+      "sha256": "76a382c269dc7caff70c976235ccd5e08acb096972560296b8a03192080ce1ba",
+      "bytes": 722128,
+      "width": 475,
+      "height": 380,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_128.dds",
+      "sha256": "db535dc9086fd272743e7b46c97518d8ba761fb10b8216630cf576fe3cab4fea",
+      "bytes": 1310848,
+      "width": 640,
+      "height": 512,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_200.dds",
+      "sha256": "40bd878b9a9aac453ce21849db0915b7a31d6953295c43d56964747df7cf7286",
+      "bytes": 3200128,
+      "width": 1000,
+      "height": 800,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    },
+    {
+      "file": "SPC_Raw_Icons_256.dds",
+      "sha256": "1fdc7a31f46f2105b1e1f85fb2ae4bde82f20f882461126c437fafc63f1ba23e",
+      "bytes": 5243008,
+      "width": 1280,
+      "height": 1024,
+      "format": "BGRA8",
+      "decoded_pixel_match": true
+    }
+  ],
+  "total_bytes": 12640144,
+  "bundle_sha256": "a728ec540753a01cd5433038b37854f8c4668f4395ee780551e78f62f1df2766"
+}

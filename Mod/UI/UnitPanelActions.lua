@@ -105,14 +105,15 @@ local function update(dt)
  end
  if renderKey==false or renderKey==nil then Controls.ActionGroup:SetHide(false) end
  if visible then
-  local invest=kind=='UNIT_SETTLER';local icon=invest and 'ICON_UNITOPERATION_FOUND_CITY' or 'ICON_UNITOPERATION_BUILD_IMPROVEMENT'
+  local invest=kind=='UNIT_SETTLER';local icon=invest and 'ICON_SPC_RAW_INVEST_PREPARE' or 'ICON_SPC_RAW_CREW_PREPARE'
+  local confirmIcon=invest and 'ICON_SPC_RAW_INVEST_CONFIRM' or 'ICON_SPC_RAW_CREW_CONFIRM'
 
   readView(u);local v=crewView(u);local a,b
   if invest then a,b=investmentTips(v) else a,b=crewTips(v) end
   local confirmed=v and v.prepared and preview(u) and preview(u).token==v.planToken
   local newKey=icon..'|'..a..'|'..tostring(b)..'|'..tostring(confirmed)..'|'..tostring(pending~=nil)
   if newKey==renderKey then return end;renderKey=newKey
-  Controls.PrepareIcon:SetIcon(icon);Controls.ConfirmIcon:SetIcon(icon)
+  Controls.PrepareIcon:SetIcon(icon,38);Controls.ConfirmIcon:SetIcon(confirmIcon,38)
   -- The group grows to the left only when a matching confirmation exists.
   -- Keep Prepare at the right edge; Confirm never replaces the first-click hitbox.
   Controls.ActionGroup:SetSizeX(confirmed and 90 or 44)

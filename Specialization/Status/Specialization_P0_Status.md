@@ -1,24 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0709
-Implementation Build: B267.294 / modinfo294; stable B069.96
+Status Revision: S0710
+Implementation Build: B268.295 / modinfo295; live B267.294; stable B069.96
 Architecture Revision Reviewed: A0178
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B267_DEPLOYED_AWAITING_INTEGRATED_PLAYTEST
+Work State: B268_IMPLEMENTED_AWAITING_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B267.294 deployed; ready for the agreed integrated playtest.** [Scope, results and testing boundary](Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md).
+**B268 raw-art replacement implemented and locally checked; separate fixed DDS review complete; deployment pending.** [Selection, implementation and native boundary](Validation/Results/Specialization_B268_Raw_Icons.md).
 
-- The user authorizes the five pre-playtest fixes and Primary engineering choices. Meaningful diagnostics, readiness/load timing, Commerce/network/sender evidence, the fixed carrier-health observer and the overflow experimental-project gate are implemented. 243 scoped tests PASS; no gameplay policy change was needed.
-- B266 functional/UI acceptance remains the inherited mainline evidence. New trace delivery, Treasury timing, hidden-carrier behavior and project-list hiding need the first integrated campaign. Ready flags are not effect PASS; buffers are bounded and collection gaps explicit.
-- Source/live is B267.294/modinfo294 from `f385c48`; 290/290 files MATCH. Explicit user-approved restoration/activation and recovery checks completed; no pending marker. No game launch, configuration/artwork change, release tag, PR or main promotion.
-- Follow the [approved roadmap](../Reports/Proposals/Audit_Followup_Priorities.md#v01-approved-roadmap--2026-10-21): approximately 3–4 integrated campaigns, dependency-driven foundations, then ownership/Expedition and remaining scoped work before freeze. Deferred findings remain open.
-- Carry REALLOCATING cold-load and Standardization + Development additive output into play. Supported scope remains Standard-speed single-player human, dedicated America/Roosevelt, installed HD/GS/persona dependencies and four professions; existing deferred acquisition/loss and Expedition precautions remain.
-- The later explicit B267 deployment approval resolves the earlier automatic-review block. EnableTuner=1 was confirmed read-only. The user may start a new integrated campaign after starting collection and confirming initial delivery. Next: user testing; Primary awaits evidence.
+- The user selected01-06/02-02/07-02/14-08 and the thirteen remaining listed uses, and authorized direct replacement. Seventeen unchanged source PNGs remain local/untracked; eighteen derived DDS atlases and scoped self-owned UI/icon references are prepared.
+-28 selected tests PASS;188 Lua5.1 and32 XML-family files check. Cell/control sizes match; native claim district art is layered with the approved mark in runtime production surfaces. Civilopedia retains the native district base; gameplay/state/requests remain unchanged.
+- B267 quick acceptance confirms four professions at Potential4/ACTIVE4 with institution facts applied. Ability/yield/load/pillage and long-campaign coverage remain open. The agreed v0.1 roadmap continues.
+- Live remains B267.294 under the exact existing receipt. The24 text paths passed the publication gate;18 fixed DDS files passed separate narrow content/pixel review under the explicit replacement authorization. Guarded deployment follows clean committed source and game-exit checks. No game/configuration/main/PR/tag change.
+
+## S0710 — B268 approved raw-art replacement prepared
+
+Seventeen selections, exact source/artifact hashes, eighteen size-specific DDS atlases and unchanged raw shapes/colors are recorded in the new result. All27 Crew project variants and current self-owned unit/action/project icon uses are mapped. Read-only review corrected a potential repeat of the B255 cell/control mismatch and added guarded overlay cleanup. Separate fixed binary review is complete; guarded activation and native visual acceptance remain separate checkpoints.
 
 ## S0709 — B267 approved deployment verified
 

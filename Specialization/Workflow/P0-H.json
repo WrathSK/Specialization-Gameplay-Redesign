@@ -11,46 +11,44 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0178",
-    "status": "S0709",
-    "runtime": "B267.294 / modinfo294",
+    "status": "S0710",
+    "runtime": "B268.295 / modinfo295",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
-  "goal": "Implement PRE-01–05 diagnostic coverage and experimental overflow project gating without gameplay policy changes.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+  "goal": "Apply seventeen explicitly selected raw icon artworks to self-owned presentation only, preserving existing gameplay and native UI controls.",
   "implementation_authorized": true,
   "context": [
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
       "kind": "full",
-      "reason": "Approved B267 scope, validation and stop boundary."
+      "reason": "Current approved raw selection, implementation, fixed binary review and native boundary."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
       "kind": "full",
-      "reason": "Current accepted UI result, final readiness evidence and stop boundary."
+      "reason": "Native-proven cell/control size invariant; no engine resampling assumption."
     },
     {
-      "path": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md",
-      "kind": "section",
-      "selector": "## v0.1 approved roadmap — 2026-10-21",
-      "reason": "Current user-approved roadmap, bounded pre-playtest list, retained evidence and implementation stop boundary."
+      "path": "tools/raw_icons_manifest.json",
+      "kind": "full",
+      "reason": "Exact approved source IDs/hashes."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
+      "path": "tools/raw_icons_build.json",
       "kind": "full",
-      "reason": "Frozen implementation and local-validation evidence for the accepted B266 delta."
+      "reason": "Exact derived DDS bytes, sizes and review bundle."
     }
   ],
   "dependencies": [
-    "Existing scoped Research/Culture/Industry/Commerce functional acceptance and later UI/name-pool changes.",
-    "D0057/A0178, the user-approved v0.1 scope and post-playtest priority decision.",
-    "Exact committed source, current deployment receipt and retained recovery snapshots."
+    "Existing B266 functional acceptance and B267 scoped four-city activation/presentation evidence.",
+    "Existing native/HD UnitPanel/production rendering and exact native district definitions."
   ],
   "old_writers": [
-    "ExpeditionTrainingDiagnostics output and sampling share one lifetime budget; preserve native-read bounds while replacing only output policy.",
-    "Existing Commerce/network authorities and Store state writers remain; new modules observe readiness/carrier health only."
+    "Original IconDefinitions aliases remain historical; RawIcons.sql supersedes only self-owned IDs.",
+    "Native controls, eligibility and operation dispatch remain authoritative."
   ],
   "conditional_context": [
     {
@@ -62,21 +60,22 @@
     }
   ],
   "non_scope": [
-    "Gameplay/Design, ownership/acquisition handling, automatic HELD recovery, network fallback/withdrawal/sender rules, Expedition repairs, carrier immunity/rebuild, art application, release tags, PR/main promotion."
+    "Gameplay/Design, state/settlement/ownership, art redesign, source PNG publication, game launch/configuration, PR/main promotion/release tag.",
+    "Civilopedia claim-overlay adapter; native district base retained there."
   ],
   "validation": {
-    "depth": "Scoped actual-Lua/Python counterexamples and affected regressions, package/context/syntax checks.",
-    "local": "243 scoped tests PASS; 187 Lua 5.1 compile; XML/package/context and added source review; read-only DB copied to memory for gate schema.",
-    "user": "First integrated session validates new-game/load log delivery, Commerce accrual observations and carrier pillage behavior."
+    "depth": "Scoped artwork/SQL/package/actual-Lua UI and direct affected native adapters.",
+    "local": "28 selected tests PASS;188 Lua5.1 compile;32 XML-family parse;18 DDS independently decoded pixel MATCH.",
+    "user": "Native raw-art rendering, overlays/click-through/recycling/scaling after activation."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
     "local": "LOCAL_SIMULATION_PASS",
-    "native": "USER_GAME_TEST_REQUIRED; first integrated session observations only",
-    "deployment": "B267.294 DEVELOP_ACTIVE; B267.294-f385c48-playtest.json; 290/290 MATCH; stable/outgoing recovery verified"
+    "native": "USER_GAME_TEST_REQUIRED",
+    "deployment": "PENDING_GUARDED_ACTIVATION; fixed binary review complete; live B267.294 unchanged"
   }
 }

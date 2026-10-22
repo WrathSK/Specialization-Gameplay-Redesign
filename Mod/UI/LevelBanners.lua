@@ -1,5 +1,7 @@
 -- Event-driven display only. Instances are children of native city-banner containers.
 include('LevelBannerModel')
+include('ClaimIconOverlay')
+local claimOverlay
 local M=SPCLevelBannerModel
 local entries={};local lastBackend,lastRevision
 local bindings={}
@@ -46,6 +48,7 @@ local function bind(source,name,fn)
  local e=source[name];if e then e.Add(fn);bindings[#bindings+1]={e,fn}end
 end
 ContextPtr:SetInitHandler(function()
+ claimOverlay=SPCClaimIconOverlay.New()
  bind(LuaEvents,'SPC_LevelBannerAttach',attach);bind(LuaEvents,'SPC_LevelBannerDetach',detach)
  bind(Events,'GameCoreEventPublishComplete',published);bind(Events,'GameCoreEventPlaybackComplete',published)
  bind(Events,'LoadScreenClose',ready)
@@ -53,6 +56,7 @@ ContextPtr:SetInitHandler(function()
  ready()
 end)
 ContextPtr:SetShutdown(function()
+ if claimOverlay then claimOverlay.Stop();claimOverlay=nil end
  for _,b in ipairs(bindings)do b[1].Remove(b[2])end
  for k in pairs(entries)do destroy(k)end
  entries={};bindings={};lastBackend=nil;lastRevision=nil

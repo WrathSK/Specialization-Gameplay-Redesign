@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Context>
+<Instance Name="SPCClaimIconInstance">
+ <Container ID="Root" Anchor="R,B" Size="16,16" Hidden="1">
+  <Image ID="Mark" Anchor="C,C" Size="16,16" />
+ </Container>
+</Instance>
 <Instance Name="SPCLevelBannerInstance">
  <Container ID="Root" Anchor="L,B" AnchorSide="O,I" Offset="4,4" Size="32,37" Hidden="1">
   <!-- Main badge matches the city-name strip; status segments sit above it. -->

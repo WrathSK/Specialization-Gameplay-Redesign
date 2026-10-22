@@ -118,7 +118,7 @@
    <GridData Texture="DestinationChooser_Button" StateOffsetIncrement="0,76" SliceCorner="14,14" SliceSize="19,44" SliceTextureSize="48,76" NoStateChange="0" />
    <Container ID="MissionContent" Anchor="L,T" Size="parent,76" ConsumeMouse="0">
     <Grid Size="55,55" Offset="7,7" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
-     <Image ID="MissionIcon" Anchor="C,C" Size="40,40" IconSize="40" Icon="ICON_UNITOPERATION_SPY_GAIN_SOURCES" />
+     <Image ID="MissionIcon" Anchor="C,C" Size="40,40" IconSize="40" Icon="ICON_SPC_RAW_TASK" />
      <Image ID="MissionCivilizationIcon" Anchor="C,C" Size="36,36" IconSize="36" Hidden="1" />
     </Grid>
     <Stack ID="DetailsStack" StackGrowth="Down" Offset="70,7">

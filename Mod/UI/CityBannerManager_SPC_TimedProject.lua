@@ -3,6 +3,9 @@ include("TimedProjectDisplay")
 local baseProduction=CityBanner.UpdateProduction
 function CityBanner:UpdateProduction(c)
  baseProduction(self,c)
+ local production=self.m_StatProductionIM and self.m_StatProductionIM:GetAllocatedInstance(1)
+ local claim=c and SPCClaimProjectUI.Current(c)
+ if production then LuaEvents.SPC_ClaimIconDecorate(production.Icon,claim and ('ICON_'..claim)or nil)end
  if not SPCTimedProjectDisplay.IsCurrent(c) then return end
  local inst=self.m_StatProductionIM and self.m_StatProductionIM:GetAllocatedInstance(1)
  if not inst then return end

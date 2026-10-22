@@ -4,6 +4,9 @@ include("TimedProjectDisplay")
 local baseView=ViewMain
 function ViewMain(data)
  baseView(data)
+ local claimIcon
+ for _,icon in ipairs(data.CurrentProductionIcons or {})do if icon:match("^ICON_PROJECT_SPC_CLAIM_")then claimIcon=icon;break end end
+ LuaEvents.SPC_ClaimIconDecorate(Controls.ProductionIcon,claimIcon)
  local c=g_pCity
  if not SPCTimedProjectDisplay.IsCurrent(c) then return end
  local turns,note=SPCTimedProjectDisplay.Text(c:GetOwner(),c:GetID())

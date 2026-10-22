@@ -40,9 +40,10 @@ function M.Actions(u,actions)
   if not M.IsTeam(selected) or selected:GetID()~=uid or g_isOkayToProcess~=true then return end
   M.Request(confirm and 'REST_CONFIRM' or 'REST_PREPARE',selected,confirm and v.prepared or nil)
  end
- AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon='ICON_UNITOPERATION_BUILD_IMPROVEMENT'},not(v and v.legal),tip,-247,function()click(false)end)
+ local icon=v and v.action=='CONFIGURE' and 'ICON_SPC_RAW_CONFIGURE' or 'ICON_SPC_RAW_LIQUIDATE'
+ AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon=icon},not(v and v.legal),tip,-247,function()click(false)end)
  if v and v.prepared then
-  AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon='ICON_UNITOPERATION_FOUND_CITY'},not v.legal,
+  AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon=icon},not v.legal,
    Locale.Lookup('LOC_SPC_REST_CONFIRM',label)..'[NEWLINE]'..tip,-248,function()click(true)end)
  end
  return actions

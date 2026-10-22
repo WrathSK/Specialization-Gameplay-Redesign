@@ -2,10 +2,25 @@
 include('DL_ProductionPanel')
 include('TimedProjectDisplay')
 include('RestructuringUI')
+-- Decorate only this Mod's claim projects after native rendering; recycled
+-- rows receive a hide request for every non-claim item.
+local baseGenericItem=PopulateGenericItemData
+function PopulateGenericItemData(instance,item)
+ local result=baseGenericItem(instance,item)
+ LuaEvents.SPC_ClaimIconDecorate(instance.Icon,'ICON_'..item.Type)
+ return result
+end
+local baseQueueInstance=CreateQueueInstance
+function CreateQueueInstance(...)
+ local instance=baseQueueInstance(...)
+ if instance then LuaEvents.SPC_ClaimIconDecorate(instance.ProductionIcon,instance.iconTexture)end
+ return instance
+end
 local claimSelection,dialogueSelection,trainingSelection,engineeringSelection,crewSelection,commerceSelection,capitalSelection,developmentSelection
 local baseCurrent=RefreshCurrentProduction
 function RefreshCurrentProduction(parent,pid,id)
  local result=baseCurrent(parent,pid,id)
+ LuaEvents.SPC_ClaimIconDecorate(parent.ProductionIcon,result and parent.iconTexture or nil)
  SPCTimedProjectDisplay.Current(parent,pid,id)
  return result
 end

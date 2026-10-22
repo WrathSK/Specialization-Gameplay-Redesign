@@ -11,7 +11,7 @@ local diagnosticPhase,diagnosticRevision,diagnosticTurn
 local targets={};local selected=1;local taskSelected=false;local request;local lastNativePermit
 local refreshHeader;local taskDisplay;local previewRow;local districtStrips={};local missionRows={};local missionKey;local missionSite
 -- B212: the three Design missions (Culture D0049).
-local MISSIONS={{key='PEOPLE',icon='ICON_UNITOPERATION_SPY_LISTENING_POST'},{key='WORKS',icon='ICON_GREATWORKOBJECT_WRITING'},{key='PLACES',icon='ICON_DISTRICT_WONDER'}}
+local MISSIONS={{key='PEOPLE',icon='ICON_UNITOPERATION_SPY_LISTENING_POST'},{key='WORKS',icon='ICON_SPC_RAW_WORKS'},{key='PLACES',icon='ICON_DISTRICT_WONDER'}}
 local naming,nameStage,nameReason,nameObservation
 local auditSourceID
 local cityRows=InstanceManager:new('SPCExpeditionDestination','DestinationButton',Controls.DestinationStack)
@@ -491,7 +491,7 @@ local function paintDistricts(row,items)
   local instance=row.iconPool:GetInstance();local icon=instance.DistrictIcon
   local graphic=item.category=='WORKS' and instance.WorksIcon or (item.category=='PEOPLE' and instance.CivilizationIcon or instance.WonderIcon)
   instance.WorksIcon:SetHide(graphic~=instance.WorksIcon);instance.CivilizationIcon:SetHide(graphic~=instance.CivilizationIcon);instance.WonderIcon:SetHide(graphic~=instance.WonderIcon)
-  local iconName=item.icon
+  local iconName=item.category=='WORKS' and 'ICON_SPC_RAW_WORKS' or item.icon
   if item.kind=='WONDER' then
    -- Native IconManager reports missing atlas sizes with a nil/empty sheet.
    -- This is display-only; a missing individual asset must not hide the site.
@@ -663,7 +663,7 @@ local function open(mode,id)
   Controls.Title:SetText(L('ACTION_'..mode))
   Controls.NormalIntro:SetText(L(mode=='TRAVEL' and 'SIDEBAR_TRAVEL_HINT' or 'SIDEBAR_TASK_HINT'))
   Controls.NormalConfirmLabel:SetText(L(mode=='TASK' and 'NORMAL_START_TASK' or 'NORMAL_TRAVEL_CONFIRM'))
-  Controls.NormalConfirmIcon:SetIcon(mode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_UNITOPERATION_SPY_GAIN_SOURCES')
+  Controls.NormalConfirmIcon:SetIcon(mode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_SPC_RAW_TASK',32)
   Controls.NormalTargetLabel:SetHide(true);setReport('')
   -- Do not enable a control from a previous diagnostic reply.
   current=nil;Controls.NormalConfirmButton:SetDisabled(true)
