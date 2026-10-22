@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0705
+Status Revision: S0706
 Implementation Build: B266.293 / modinfo293; stable B069.96
 Architecture Revision Reviewed: A0177
 Design Revision Reviewed: D0057
@@ -19,7 +19,11 @@ Work State: V01_PLAYTEST_CANDIDATE_READY
 - REALLOCATING cold-load and simultaneous Standardization + Development additive output remain checks inside the v0.1 playtest. Own-city-loss handling, held Expedition task/root-cause work, remaining Meaning, precise Industry District purchase discounts, Research network redesign, era coverage and outstanding audits remain post-playtest high priority. Institution softness stays deferred.
 - Supported first-test scope remains Standard-speed single-player human with the dedicated America/Roosevelt shell, installed HD/GS/persona dependencies and four professions. No ordinary-civilization/AI/multiplayer/future-profession expansion.
 - Main remains clean at B069.96. This checkpoint changes records only: no runtime/test/Design/Architecture/configuration changes, new deployment, tag, PR or main promotion.
-- Next: await the user's first-playtest baseline designation; stop without another development batch. W0003 is not changed by this readiness recommendation.
+- Current scheduling: [approved 2026-10-21 roadmap and explicit pre-playtest list](../Reports/Proposals/Audit_Followup_Priorities.md#v01-approved-roadmap--2026-10-21). Prepare the bounded diagnostics/experimental-project batch before baseline designation; approximately 3–4 integrated campaigns follow. Necessary foundations precede their dependent ownership/Expedition repairs. No implementation is dispatched by this documentation checkpoint; W0003 remains unchanged.
+
+## S0706 — Approved v0.1 roadmap recorded
+
+User approved documenting the reviewed sequence and requested a precise pre-playtest list. The existing follow-up record now distinguishes five bounded diagnostics/data changes, playtest preparation, campaign coverage, ownership mechanisms versus profession outcomes, dependency-driven foundations, final regression/freeze and subsequent maintenance. Earlier findings and native boundaries remain; no gameplay, runtime, art, deployment, release designation, PR or main change. Next implementation requires its approved batch.
 
 ## S0705 — B266 acceptance and v0.1 readiness checkpoint
 

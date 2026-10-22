@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0705",
+    "status": "S0706",
     "runtime": "B266.293 / modinfo293",
     "military": "D0037",
     "harbor": "D0037",
@@ -29,8 +29,8 @@
     {
       "path": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md",
       "kind": "section",
-      "selector": "## v0.1 playtest scheduling checkpoint",
-      "reason": "Preserve the user's post-playtest deferrals and two inside-playtest checks."
+      "selector": "## v0.1 approved roadmap — 2026-10-21",
+      "reason": "Current user-approved roadmap, bounded pre-playtest list, retained evidence and implementation stop boundary."
     },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",

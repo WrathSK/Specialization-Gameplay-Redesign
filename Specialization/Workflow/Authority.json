@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0177",
-    "status": "S0705",
+    "status": "S0706",
     "runtime": "B266.293 / modinfo293",
     "military": "D0037",
     "harbor": "D0037",
@@ -36,7 +36,7 @@
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md",
   "runtime_commit": "0c2c4aec852411c40c0998c2693dad1346f470dd",
   "current_batch": "B266_ACCEPTED_V01_READINESS_COMPLETE",
-  "next_batch": "B266 accepted; four-profession v0.1 readiness check complete. Await the user's first-playtest baseline designation. Carry REALLOCATING cold-load and Standardization + Development additive output into that playtest; retain all user-deferred post-playtest work. No new batch, deployment, PR or main promotion.",
+  "next_batch": "Approved roadmap recorded: present PRE-01 through PRE-05 diagnostics/experimental-project scope, then await implementation authorization and subsequent user playtest-baseline designation. No implementation, deployment, release designation, PR or main promotion in this documentation batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B266.293/modinfo293 DEVELOP_ACTIVE; unchanged source 0c2c4aec852411c40c0998c2693dad1346f470dd; receipt B266.293-0c2c4ae-playtest.json; 288/288 MATCH; digest c4a99db788159d5a986a963760543a8a331d2343e863cde4d002e5feb8eebab3. Read-only readiness check reverified source/live/receipt, stable and outgoing B265 recovery, and absent pending marker. B266 UI acceptance received. No new deployment, game operation or configuration/main change; no PR.",
   "stable": "main B069.96 / modinfo96",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0705: user accepts B266 UI recovery; final scoped v0.1 readiness review found no new entry blocker. 288-file package closure/source-live-receipt equality, 185 Lua 5.1 compilations, 32 XML/artdef/dep parses and stable/outgoing recovery verified. Prior 64 local tests inherited, not rerun. Only owned readiness/current records and their reviewed hashes change; runtime/D0057/A0177 unchanged. Deferred findings remain open; no PR or baseline promotion.",
+  "context_review_status": "S0706: user-approved v0.1 roadmap and bounded pre-playtest list recorded after Advisor review. Runtime/D0057/A0177 and B266 evidence remain unchanged; original Advisor files unchanged. Documentation only.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -1,11 +1,82 @@
 # Audit follow-up priorities and Advisory publication review
 
-Date: 2026-10-18
+Date: 2026-10-21
 Maintainer: Primary (user-authorized main task)
-Basis: develop `bd3504d`; source/deployed B249.276 from `ad34b1f`. Earlier publication review below retains its B204 basis.
-Scope: record the user's v0.1 playtest scheduling decision and review the new Industry Advisory conclusions. No implementation, Design change, native test, deployment, or reopening of the completed independent audit.
+Basis: develop `718c49b`; accepted source/runtime B266.293 / modinfo293 from `0c2c4ae`. Earlier checkpoints retain their own B249/B204 evidence bases.
+Scope: record the user-approved v0.1 roadmap and bounded pre-playtest list after the latest Advisor review. Documentation only; no repair, Design revision, test dispatch, deployment, release designation, PR or main promotion.
 
-## v0.1 playtest scheduling checkpoint
+## v0.1 approved roadmap — 2026-10-21
+
+This checkpoint governs current scheduling and supersedes conflicting timing in the historical checkpoints below. It does not close findings, expand native acceptance or authorize the complete Advisor implementation roadmap. The user approved recording this plan; implementation stops at separately approved batch boundaries.
+
+### Reviewed basis and comparison
+
+Primary reviewed the Stable local Advisor files under `Specialization/Reports/Advisory/V01_Readiness/`: `V01_Preplaytest_Fix_List.md`, `V01_Architecture_Plan.md` and `V01_Architecture_Register.md`, against the earlier tracked follow-up checkpoint. The Advisor originals remain unchanged and locally ignored. They provide evidence and recommendations, not independent gameplay authority.
+
+- The earlier deferred subjects remain: ownership changes, Expedition, remaining Meaning, exact District-body purchase discount, Research network, era coverage and remaining audit work. Completed repairs are not reopened merely because their historical findings remain indexed.
+- The newer review adds cross-cutting concerns: single-city failures affecting empire-wide consumers, persistent HELD/CALLING/UNKNOWN_INTERVAL states, startup/observer coupling, UI-hosted readers, test fidelity, diagnostic coverage and measured performance.
+- Advisor P0 includes work required before the next feature; it does not mean every P0 is a blocker for this limited playtest. Merged candidates, watch items and positive findings are not independent defect counts.
+- Report descriptions with truncations or stale step references are an index, not an executable specification. Recheck the relevant source and accepted contract before each repair.
+- Network fault containment is not automatically non-semantic: skipping a city, treating unavailable facts as NONE or changing freeze/withdrawal outcomes can alter the accepted complete-topology/UNKNOWN policy. A local signature-read guard must be distinguished from that policy decision.
+- Diagnostic counters currently shown only in a runtime panel are not assumed to reach the collector. Static checks and inferred engine behavior remain separate from native evidence.
+
+### Ordered work and exit criteria
+
+| Stage | Work | Exit / boundary |
+|---|---|---|
+| 1. Pre-playtest preparation | Implement the five bounded items below, perform local checks and prepare the player briefing. | Reviewed build and collection path ready; the user designates the first campaign baseline. No separate native acceptance campaign required, but first-session delivery remains to be verified. |
+| 2. Integrated native play | Approximately 3–4 campaigns with deliberate coverage, logs, saves, screenshots and UI feedback. | Assess covered and missing scenarios, not campaign count alone. Record defects without silently repairing deferred semantics. |
+| 3. Evidence triage and necessary foundations | Reproduce observed failures and implement only foundations actually needed by the next repair: realistic regression fixtures, startup/observer isolation, trustworthy readers and explicit recovery boundaries. | Each dependency is scoped and verified before its consumer repair. Do not require a universal framework or complete foundation rewrite. |
+| 4. Ownership transitions | Consolidate the existing Design categories into a rule-to-test matrix, then implement remaining transitions for current modules. | Per-profession outcomes are explicit; relevant loss, return, acquisition and interruption cases are verified. Unsupported acquisition routes belong here. |
+| 5. Expedition | Continue root-cause work and repair using the collected evidence and required shared dependencies. | Known supported paths and unresolved engine constraints have explicit outcomes and evidence. |
+| 6. Remaining selected foundations and completion work | Select remaining foundational repairs by risk/dependency; integrate approved buttons/icons, UI corrections and balance adjustments. | Balance is assessed on repaired behavior. Existing deferred subjects receive an explicit disposition, rather than being silently declared complete. |
+| 7. v0.1 freeze | Audit the intended release baseline and perform final integrated native regression after the last material changes. | Exact baseline, evidence, supported scope, accepted limitations and outstanding work are recorded; promotion/PR still need user authorization. |
+| 8. Maintenance and new modules | Apply useful remaining fixes in subsequent maintenance versions, then resume new modules when their prerequisites are ready. | Current correctness/recovery/severe performance risks are resolved or explicitly accepted; foundations amplified by the next module are addressed. Clearing the entire historical audit backlog is not an entry requirement. |
+
+Stages express dependencies, not a ban on iteration. A foundation needed for ownership or Expedition moves ahead of that work. A new concrete blocker is triaged by impact; it does not automatically reopen all deferred findings. The frozen v0.1 baseline remains distinguishable from later maintenance builds.
+
+### Explicit pre-playtest implementation list
+
+These are the bounded changes selected for the next implementation proposal. The prior user–Advisor confirmations establish the intended direction; this documentation batch executes none of them. D1-prime replaces the older proposal to merely raise the fixed record budget from 96 to 144.
+
+| ID / Advisor mapping | Change | Validation and exclusions |
+|---|---|---|
+| PRE-01 / A4, D1-prime | Remove the fixed per-role limit on meaningful `a.Record` output; deduplicate repeated state reports by meaningful identity/content; retain a runaway breaker with an explicit throttle marker. Preserve the separate native-sampling bound. Make suppression/error metadata collector-visible and review passive-window/ring/reader limits together. | Locally verify state changes survive, duplicates are suppressed, breaker loss is visible and native sampling remains bounded. Buffer sizes are implementation choices to review, not a promise of lossless collection while disconnected. |
+| PRE-02 / A5, D2 | Add collector-visible readiness summaries for Store and relevant writers, including startup completion seal, load-event timing and not-ready reasons. | Verify record shapes and readiness interpretation locally, then verify actual new-game/load delivery during play. This observes missing initialization; it does not add automatic startup repair or rewrite all handlers. |
+| PRE-03 / A6, D3 P1–P4 | Record Commerce treasury/yield/carrier expectations at turn boundaries, network pending/stale/rejection/drop/verified transitions, and sender state; preserve collector metadata. | Verify bounded output and transition context. Actual treasury accrual timing remains native evidence to collect. Do not change withdrawal, sender or UNKNOWN policy. Optional P5 is not included by default. |
+| PRE-04 / A7, D4 | Add bounded carrier-health observation for the identified ResearchSupport/Lv2GPP carriers: load baseline, pillage events and changed health states. | Verify fixed scope and safe reads; use native evidence to determine actual pillage/repair behavior. Do not add immunity, carrier rebuilding or scan all internal types. |
+| PRE-05 / A9 | Remove the experimental overflow project's ordinary-play exposure. Prefer data gating after checking startup dependencies; remove definitions only if dependency/save review supports it. | Verify ordinary availability and package/startup references. Do not assume deleting the project is safe merely because it is experimental. |
+
+Recommended execution order: PRE-01 first so subsequent diagnostics are retained; PRE-02–04 next; PRE-05 can be a separate small data sub-batch. Local validation remains required. First-session log delivery is `USER_GAME_TEST_REQUIRED`; no local check is reported as native PASS.
+
+### Playtest preparation and coverage
+
+Preparation is not another gameplay repair:
+
+- Record the exact build, enabled dependencies, supported scope and known escape rules. Use Standard-speed single-player human, the dedicated America/Roosevelt test pair and four professions unless the user separately changes scope.
+- Start collection before the new game/load; account for reload disconnect gaps and the collector idle timeout. Preserve saves around important transitions. Verify useful records arrive in the first session before relying on long-run evidence.
+- First campaign: basic four-profession operation, startup/new-game/load behavior and UI. Middle campaigns: cross-profession combinations, multi-city actions, restructuring, purchases and interruptions. At least one longer/larger campaign: accumulated history, later eras, reload and performance observations. Targeted short tests can cover rare cases.
+- Carry the existing REALLOCATING cold-load and Standardization + Development additive-output checks forward; individual feature acceptance is not combination acceptance.
+- Treat approximately 3–4 campaigns as a budget. Maintain a covered/missing scenario list and distinguish natural play from cheats, same-turn from cross-turn results, and observed failures from engine hypotheses.
+- Record each session's actual build. UI or diagnostic changes still get revision attribution; SQL/type/carrier/save-shape changes require a compatibility decision and may require a new campaign. Do not combine different baselines as one controlled observation.
+- A1 ownership/acquisition failures remain deferred: avoid unsupported transfers/Free City acquisitions and own-city loss; preserve a pre-event save for reload if triggered. A2/A3 use the existing one-at-a-time Crew project and immediate/empty-queue project precautions. Preserve the Expedition briefing, including saves before restructuring/mission operations and the known unsupported purchase/queue combinations.
+- A8's eight-era decision remains deferred, not silently implemented here. Review the known era-limit risk before late-era coverage; do not claim late-game completeness while that boundary is untested or excluded.
+
+### Ownership abstraction boundary
+
+Share mechanisms where they actually repeat: city references and transition evidence, reconciliation phases, commit ordering, idempotency, exit notifications, error/retry accounting and common test scenarios. Each profession still owns its Design outcomes: retaining/freezing/clearing/resuming history, contract continuation or termination, withdrawing yields, and unit source loss/rebinding. First record the existing category decisions in a transition matrix; unresolved outcomes go to the user. This plan does not approve a universal state engine or automatic HELD release.
+
+### Release boundary and next action
+
+The current runtime remains B266.293. No alpha/beta/RC tag or first-playtest baseline is created by this document. Release naming can be selected independently of the internal build sequence; approval to document this roadmap is not approval to publish a release.
+
+- User decision: next implementation batch and eventual baseline/version designation.
+- User testing: none dispatched by this record; integrated testing follows the prepared baseline.
+- Primary next: present the bounded pre-playtest list, then await implementation authorization. No repairs, art application, PR or main promotion in this batch.
+
+## Historical v0.1 playtest scheduling checkpoint — 2026-10-18
+
+The following preserves the earlier B249 scheduling record. The 2026-10-21 roadmap above takes precedence for current timing and dependencies.
 
 The user explicitly moves the following outstanding work to **high priority after the v0.1 native playtest**. This supersedes the earlier before-dependent-module scheduling for this playtest phase. It changes timing, not Design, evidence strength or existing runtime behavior. Previously completed repairs remain completed; existing protections and accepted effects stay enabled as currently implemented.
 
