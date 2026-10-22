@@ -1,37 +1,37 @@
+include('RuntimeWork')
 -- B038: native population yield per specialist; Commerce direct connected types.
 SPCLv3Effects={}
-function SPCLv3Effects.Start(P,shared)
+function SPCLv3Effects.Start(P,shared,options)
+ local batch
+ local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
+ local function districtsFor(pid,c)
+  return (batch or SPCRuntimeWork.New(P,shared)).Districts(pid,c)
+ end
  local data={ready=false,busy=false,errors={},changes=0,observed={}};shared.Lv3Effects=data
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER',COMMERCE='DISTRICT_COMMERCIAL_HUB',INDUSTRY='DISTRICT_INDUSTRIAL_ZONE'}
  local names={}
- for _,k in ipairs({'RESEARCH','CULTURE'}) do for i=0,7 do names[#names+1]='BUILDING_SPC_DEV_LV3_POP_'..k..'_'..i end end
+ for _,k in ipairs({'CULTURE'}) do for i=0,7 do names[#names+1]='BUILDING_SPC_DEV_LV3_POP_'..k..'_'..i end end
  for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'}) do names[#names+1]='BUILDING_SPC_DEV_LV3_COM_'..k end
  local function desired(pid,c)
   local wanted={}
   if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return wanted end
-  local f=shared.EffectiveFacts.Read(pid,c)
+  local f=readFacts(pid,c)
+  if f.specialization=='COMMERCE' and options and options.retireCommerce then return wanted end
+  if f.specialization=='COMMERCE' and isolated(pid) then return wanted end
+  if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then return wanted end -- P0-D1/P0-L1 own these abilities
   if not districts[f.specialization] or type(f.active)~='number' or f.active<3 then return wanted end
   assert(f.first and f.potential>=3,'LV3_FACT_INVALID')
   local found=false
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+  for _,d in districtsFor(pid,c) do
    local city=d:GetCity();local row=P.Info('Districts',d:GetType())
    if city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then
     assert(row and row.DistrictType==districts[f.specialization] and f.first.type==row.DistrictType and d:IsComplete()==true,'LV3_ANCHOR_INVALID');found=true;break
    end
   end
   assert(found,'LV3_DISTRICT_MISSING')
-  if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then
-   local target
-   for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
-    local city=d:GetCity()
-    if city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then target=d;break end
-   end
-   local n=Map.GetPlot(target:GetX(),target:GetY()):GetWorkerCount()
-   data.observed[pid..':'..c:GetID()]={workers=n,pop=c:GetPopulation(),active=f.active}
-   assert(type(n)=='number' and n>=0 and n<=255 and n%1==0,'WORKERS_UNKNOWN_OR_OUT_OF_RANGE')
-   for i=0,7 do if math.floor(n/2^i)%2==1 then wanted['BUILDING_SPC_DEV_LV3_POP_'..f.specialization..'_'..i]=true end end
-  elseif f.specialization=='COMMERCE' then
-   local kinds=shared.NetworkBridge.ConnectedKinds(pid,c)
+  if f.specialization=='COMMERCE' then
+   local kinds=(shared.NetworkBridge.CurrentConnectedKinds or shared.NetworkBridge.ConnectedKinds)(pid,c)
    for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'}) do if kinds[k] then wanted['BUILDING_SPC_DEV_LV3_COM_'..k]=true end end
   end
   return wanted
@@ -48,9 +48,18 @@ function SPCLv3Effects.Start(P,shared)
   end
   return coefficients,flags
  end
- function data.Audit() P.Count('audit_lv3');
-  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
-  for pid,player in pairs(Players) do
+ function data.WithdrawCulture(c)
+  for bit=0,7 do
+   local r=assert(P.Info('Buildings','BUILDING_SPC_DEV_LV3_POP_CULTURE_'..bit),'B038_DATABASE_MISSING')
+   local b=c:GetBuildings();local present=P.HasBuilding(b,r.Index);assert(type(present)=='boolean','LV3_CARRIER_UNKNOWN')
+   if present then P.RemoveBuilding(b,r.Index);assert(P.HasBuilding(b,r.Index)==false,'LV3_REMOVE_UNCONFIRMED');data.changes=data.changes+1 end
+  end
+  return true
+ end
+ function data.Audit(scope) P.Count('audit_lv3');
+  if P.Observe then P.Observe('audit','Lv3Effects') end
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local ok,err=pcall(function()
     local cities=player:GetCities();if not cities then return end
     for _,c in cities:Members() do P.Count('city_scan');
@@ -61,7 +70,8 @@ function SPCLv3Effects.Start(P,shared)
       for _,adding in ipairs({false,true}) do for _,name in ipairs(names) do
        local row=P.Info('Buildings',name);assert(row and row.Index,'B038_DATABASE_MISSING')
        local want=wanted[name]==true
-       if want==adding then
+       local experimentOwned=isolated(pid) and (name=='BUILDING_SPC_DEV_LV3_COM_RESEARCH' or name=='BUILDING_SPC_DEV_LV3_COM_CULTURE' or name=='BUILDING_SPC_DEV_LV3_COM_INDUSTRY')
+       if want==adding and not experimentOwned then
         local b=c:GetBuildings();local present=P.HasBuilding(b,row.Index);assert(type(present)=='boolean','LV3_CARRIER_UNKNOWN')
         if present~=want then
          if want then P.CreateBuilding(c:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end
@@ -74,34 +84,45 @@ function SPCLv3Effects.Start(P,shared)
     end
    end)
    if not ok then print('[SPC][B038][SCAN_ERROR] '..tostring(err)) end
-  end
-  data.busy=false
-  if shared.Lv4Percent then shared.Lv4Percent.Audit() end
-  if shared.CopyYields then shared.CopyYields.Audit() end
+  end end
+  data.busy=false;batch=nil
+ end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function data.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not data.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  data.busy=true
+  local ok,why=pcall(function()
+   local ids={};for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'}) do ids[#ids+1]='BUILDING_SPC_DEV_LV3_COM_'..k end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
+   end
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);data.changes=data.changes+1 end
+    end
+   end
+
+  end)
+  data.busy=false;data.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
  end
  function data.Describe(pid,c)
   local ok,out=pcall(function()
    local coef,flags=read(c);local pop=c:GetPopulation()
-   local f=shared.EffectiveFacts.Read(pid,c)
+   local f=readFacts(pid,c)
+   if f.specialization=='RESEARCH' then return shared.ResearchCross and shared.ResearchCross.Describe(pid,c) or '跨学科研究尚未初始化' end
    local lines={}
-   if f.specialization=='RESEARCH' or f.specialization=='CULTURE' then
-    local workers
-    for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
-     local city=d:GetCity()
-     if f.first and city and city:GetOwner()==pid and city:GetID()==c:GetID() and d:GetID()==f.first.districtID then
-      workers=Map.GetPlot(d:GetX(),d:GetY()):GetWorkerCount();break
-     end
-    end
-    local valid=type(workers)=='number' and workers>=0 and workers%1==0
-    local enabled=type(f.active)=='number' and f.active>=3
-    local expected=valid and (enabled and 0.5*pop*workers or 0) or 'UNKNOWN'
-    local last=data.observed[pid..':'..c:GetID()]
-    local row=P.Info('Yields',f.specialization=='RESEARCH' and 'YIELD_SCIENCE' or 'YIELD_CULTURE')
-    local got,total=pcall(function() return c:GetYield(row.Index) end)
-    if not got or type(total)~='number' then total='UNKNOWN' end
-    lines[#lines+1]='Population support: ACTIVE='..tostring(f.active)..' pop='..pop..' live workers='..tostring(workers or 'UNKNOWN')
-    lines[#lines+1]='Base bonus expected='..expected..' carrier='..coef[f.specialization]*pop..' (not measured effect)'
-    lines[#lines+1]='Last audit workers='..tostring(last and last.workers or 'NONE')..' native city total='..tostring(total)
+   if f.specialization=='CULTURE' then
+    return '\n'..(shared.CultureAesthetic and shared.CultureAesthetic.Describe(pid,c) or '风雅熏陶等待确认；旧人口文化已退休。')
    else
     lines[#lines+1]='Commerce specialist +2 per type: '..(#flags>0 and table.concat(flags,',') or 'NONE')
    end
@@ -112,6 +133,12 @@ function SPCLv3Effects.Start(P,shared)
  end
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
  hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit() end)
- for _,n in ipairs({'PlayerTurnActivated','PlayerTurnDeactivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','CityWorkerChanged','CityFocusChanged','CityPopulationChanged'}) do hook(Events,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','CityWorkerChanged','CityFocusChanged','CityPopulationChanged'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Effects',function(c,loss)
+   local ids={};for _,id in ipairs(names)do ids[#ids+1]=id end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

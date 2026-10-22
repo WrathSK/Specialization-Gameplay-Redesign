@@ -1,18 +1,18 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-069.96"
+P.VERSION = "P0-B-268.295"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
   GREATWORKOBJECT_LANDSCAPE=true, GREATWORKOBJECT_PORTRAIT=true,
   GREATWORKOBJECT_RELIGIOUS=true, GREATWORKOBJECT_SCULPTURE=true,
   GREATWORKOBJECT_ARTIFACT=true}
-P.Specs = {{cost=280,charge=250},{cost=460,charge=420},{cost=820,charge=750},
-  {cost=1100,charge=1000},{cost=1500,charge=1360}}
+P.Specs = {{id=250,cost=390,charge=260},{cost=630,charge=420},{cost=1125,charge=750},
+  {cost=1500,charge=1000},{cost=2040,charge=1360}}
 -- D0012: shared denomination catalog; floor speed-scaled Crew Production for display and execution.
 function P.CrewBase(kind)
- for _,s in ipairs(P.Specs) do if kind=='UNIT_SPC_CREW_'..s.charge then return s.charge end end
+ for _,s in ipairs(P.Specs) do if kind=='UNIT_SPC_CREW_'..(s.id or s.charge) then return s.charge end end
 end
 function P.CrewAmount(kind)
  local base=P.CrewBase(kind);assert(base,'CREW_TYPE_UNKNOWN')
@@ -31,11 +31,24 @@ function P.Scalar(value)
   return "<"..kind..":not-inspected>"
 end
 
+-- Player.IsHuman is available in Gameplay and UI; configuration methods differ by context.
+-- IDs identify players, not human status: never infer eligibility from playerID == 0.
 function P.IsTestPlayer(playerID)
   local config=PlayerConfigurations and PlayerConfigurations[playerID]
   local ok,civ=P.Call(config,"GetCivilizationTypeName")
   local leaderOK,leader=P.Call(config,"GetLeaderTypeName")
-  return ok and leaderOK and civ=="CIVILIZATION_SPC_TEST" and leader=="LEADER_SPC_TEST"
+  if not ok or not leaderOK then return false,"玩家配置暂不可读" end
+  -- B263: exact identity pairs; legacy pair remains valid for preserved saves.
+  local matched=(civ=="CIVILIZATION_SPC_AMERICA" and leader=="LEADER_SPC_T_ROOSEVELT")
+    or (civ=="CIVILIZATION_SPC_TEST" and leader=="LEADER_SPC_TEST")
+  if not matched then return false,"非测试文明或领袖" end
+  local humanOK,human=P.Call(Players and Players[playerID],"IsHuman")
+  if not humanOK or type(human)~="boolean" then return false,"玩家人类身份暂不可读（Player.IsHuman）" end
+  if not human then return false,"AI玩家未启用" end
+  local modeOK,multi=pcall(function() return GameConfiguration.IsAnyMultiplayer() end)
+  if not modeOK or type(multi)~="boolean" then return false,"单人模式暂不可读（IsAnyMultiplayer）" end
+  if multi then return false,"多人模式未支持" end
+  return true
 end
 
 function P.Summary(playerID,cityID)
@@ -47,7 +60,9 @@ function P.Summary(playerID,cityID)
     local ok,v=P.Call(object,method,...)
     return ok and (v==nil and "nil" or v) or "API_UNAVAILABLE"
   end
-  out[#out+1]="City="..tostring(cityID).." "..city:GetName().." | CIVILIZATION_SPC_TEST / LEADER_SPC_TEST"
+  local cfg=PlayerConfigurations[playerID]
+  out[#out+1]="City="..tostring(cityID).." "..city:GetName().." | "
+    ..cfg:GetCivilizationTypeName().." / "..cfg:GetLeaderTypeName()
   out[#out+1]="Marker="..tostring(val(city,"GetProperty","SPC_P0_MARKER")).." | Spec(test)="..tostring(val(city,"GetProperty","SPC_P0_FIRST_SPEC"))
   out[#out+1]="Potential/Active=NOT_IMPLEMENTED (no invented levels)"
   local ok,gov=P.Call(city,"GetAssignedGovernor")
@@ -118,6 +133,9 @@ function P.Encode(v, seen)
   return "{"..table.concat(out,",").."}"
 end
 function P.Family(districtType)
+  -- Direct families already won before replacement traversal; avoid allocating
+  -- the replacement table for that common, fully determined result.
+  if districtType and P.Families[districtType] then return P.Families[districtType] end
   local seen = {}
   local replacements = P.Rows("DistrictReplaces") or {}
   while districtType and not seen[districtType] do
@@ -131,7 +149,7 @@ function P.Family(districtType)
   end
 end
 
--- Pure test oracle; does not inject anything into the game.
+-- Base-input oracle only; no injection or prediction of native modifiers/overflow.
 function P.CrewPreview(charge, cost, progress, kind)
   if kind~="DISTRICT" and kind~="BUILDING" and kind~="WONDER" then return nil,"INVALID_TARGET" end
   local values={charge,cost,progress}
@@ -247,7 +265,7 @@ function P.Snapshot(context, playerID, reason, cityID)
           local progress=read(key.." TARGET_PROGRESS",queue,"Get"..stem.."Progress",row.Index)
           for _,spec in ipairs(P.Specs) do
             local preview,status=P.CrewPreview(spec.charge,cost,progress,kind)
-            log(key.." CREW_DRY_RUN",{kind=kind,spec=spec,result=preview,error=status,status="USER_GAME_TEST_REQUIRED_NO_INJECTION"})
+            log(key.." CREW_DRY_RUN",{kind=kind,spec=spec,result=preview,error=status,status="BASE_INPUT_ONLY_NO_NATIVE_PREDICTION"})
           end
         else log(key.." CREW_TARGET","INVALID_OR_UNRESOLVED_NO_INJECTION") end
       end
@@ -298,6 +316,36 @@ function P.Snapshot(context, playerID, reason, cityID)
   return table.concat(lines,"\n"),complete
 end
 
+-- B136: fresh scalar gate shared by normal facts and on-demand role diagnostics.
+-- No cache: all six properties must retain their nil/invalid/inconsistent semantics.
+local function governorProperty(city,key)
+  local ok,value=P.Call(city,"GetProperty",key)
+  return ok and (value==nil or value==0 or value==1),value
+end
+local function governorGate(city)
+  local a,control=governorProperty(city,"SPC_P0_GOV_CONTROL_A007")
+  local b,present=governorProperty(city,"SPC_P0_GOV_PRESENT")
+  local c,established=governorProperty(city,"SPC_P0_GOV_ESTABLISHED")
+  local d,two=governorProperty(city,"SPC_P0_GOV_REQ_2")
+  local e,three=governorProperty(city,"SPC_P0_GOV_REQ_3")
+  local f,four=governorProperty(city,"SPC_P0_GOV_REQ_4")
+  if not (a and b and c and d and e and f) or control~=1 then return "UNKNOWN",nil end
+  present,established,two,three,four=present==1,established==1,two==1,three==1,four==1
+  if (established and not present) or ((two or three or four) and not established)
+    or (four and not three) or (three and not two) then
+    return "UNKNOWN_INCONSISTENT_PROPERTIES",nil
+  end
+  return "KNOWN",four and 4 or three and 3 or two and 2 or 1
+end
+function P.GovernorGate(city)
+  local ok,owner=P.Call(city,"GetOwner")
+  if not ok or not P.IsTestPlayer(owner) then return nil,nil,"UNKNOWN",nil end
+  local idOK,id=P.Call(city,"GetID")
+  if not idOK or type(id)~="number" then return nil,nil,"UNKNOWN",nil end
+  local status,ceiling=governorGate(city)
+  return owner,id,status,ceiling
+end
+
 -- Selected-city role facts only. No history reconstruction, defaults or writes.
 function P.CityRoleFacts(city)
   local facts={status="PARTIAL_ROLE_FACTS",sourceContext="GAMEPLAY_PROBE",
@@ -329,24 +377,7 @@ function P.CityRoleFacts(city)
       -- A noncapital may be Commerce; unknown specialization must not become NO.
     end
   end
-  local keys={"SPC_P0_GOV_CONTROL_A007","SPC_P0_GOV_PRESENT","SPC_P0_GOV_ESTABLISHED",
-    "SPC_P0_GOV_REQ_2","SPC_P0_GOV_REQ_3","SPC_P0_GOV_REQ_4"}
-  local values={};local valid=true
-  for i,key in ipairs(keys) do
-    local success,value=prop(key);values[i]=value
-    if not success or (value~=nil and value~=0 and value~=1) then valid=false end
-  end
-  if valid and values[1]==1 then
-    local present,established=values[2]==1,values[3]==1
-    local two,three,four=values[4]==1,values[5]==1,values[6]==1
-    if (established and not present) or ((two or three or four) and not established)
-      or (four and not three) or (three and not two) then
-      facts.governorGateStatus="UNKNOWN_INCONSISTENT_PROPERTIES"
-    else
-      facts.governorGateStatus="KNOWN"
-      facts.governorLevelCeiling=four and 4 or three and 3 or two and 2 or 1
-    end
-  end
+  facts.governorGateStatus,facts.governorLevelCeiling=governorGate(city)
   return facts
 end
 
@@ -521,10 +552,11 @@ end
 -- Instrument only owned call sites; do not monkey-patch engine objects.
 include('PerformanceCounters')
 P.Count=SPCPerformance.Count
+P.Observe=SPCPerformance.Observe
 function P.HasBuilding(object,id) P.Count('building_check');return object:HasBuilding(id) end
-function P.CreateBuilding(object,id) P.Count('building_create');return object:CreateBuilding(id) end
-function P.RemoveBuilding(object,id) P.Count('building_remove');return object:RemoveBuilding(id) end
-function P.SetProperty(object,key,value) P.Count('property_write');return object:SetProperty(key,value) end
+function P.CreateBuilding(object,id) P.Count('building_create');local r=object:CreateBuilding(id);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end
+function P.RemoveBuilding(object,id) P.Count('building_remove');local r=object:RemoveBuilding(id);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end
+function P.SetProperty(object,key,value) P.Count('property_write');local r=object:SetProperty(key,value);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end
 -- A live non-trader is a reliable negative. Missing/removed/unknown unit is not.
 function P.RouteUnitRelevant(pid,id)
  if type(pid)~='number' or type(id)~='number' then return true end
@@ -535,4 +567,57 @@ function P.RouteUnitRelevant(pid,id)
  local good,info=pcall(function() return P.Info('Units',u:GetType()) end)
  if not good or not info or info.MakeTradeRoute==nil then return true end
  return info.MakeTradeRoute==true or info.MakeTradeRoute==1
+end
+
+-- B213: explicit selected-city report only. No team, effect writer or event scan.
+function P.DescribeCultureInsights(pid,city,store)
+ local ok,report,logs=pcall(function()
+  assert(city and city:GetOwner()==pid,'INSIGHT_CITY_UNAVAILABLE')
+  assert(store and type(store.ExpeditionInsights)=='function','INSIGHT_STORE_UNAVAILABLE')
+  local cfg=PlayerConfigurations and PlayerConfigurations[pid]
+  local own=cfg and cfg:GetCivilizationTypeName()
+  assert(type(own)=='string' and own:match('^CIVILIZATION_[A-Z0-9_]+$'),'INSIGHT_OWNER_UNKNOWN')
+  local records=store.ExpeditionInsights(pid,city)
+  assert(type(records)=='table','INSIGHT_HISTORY_UNKNOWN')
+  local keys,groups={},{}
+  local labels={PEOPLE='风土考察',WORKS='艺文采撷',PLACES='奇观巡礼'}
+  local effective=0
+  for key,v in pairs(records)do
+   assert(type(v)=='table' and type(v.civ)=='string' and v.civ:match('^CIVILIZATION_[A-Z0-9_]+$')
+    and labels[v.category] and key==v.civ..':'..v.category,'INSIGHT_HISTORY_INVALID')
+   keys[#keys+1]=key;assert(#keys<=192,'INSIGHT_HISTORY_LIMIT')
+   groups[v.civ]=groups[v.civ] or {};groups[v.civ][v.category]=true
+   if v.civ~=own then effective=effective+1 end
+  end
+  table.sort(keys)
+  local civs={};for civ in pairs(groups)do civs[#civs+1]=civ end;table.sort(civs)
+  local function label(key)
+   local found=Locale and Locale.Lookup and Locale.Lookup(key)
+   return found or key
+  end
+  local lines={label('LOC_SPC_CULTURE_INSIGHTS_TITLE')..' · '..label(city:GetName()),
+   '历史记录：'..#keys..'份　当前有效：'..effective..'份',
+   '自身文明的记录保留，但不计入当前有效数量。',
+   '历史记录不等于当前网络收益；旅游倍率和网络接收状态分别显示。'}
+  if #keys==0 then lines[#lines+1]='本城尚无成功考察记录。' end
+  for _,civ in ipairs(civs)do
+   local row=GameInfo and GameInfo.Civilizations and GameInfo.Civilizations[civ]
+   local names={};for _,category in ipairs({'PEOPLE','WORKS','PLACES'})do
+    names[#names+1]=labels[category]..(groups[civ][category] and '：已完成' or '：未完成')
+   end
+   lines[#lines+1]=label(row and row.Name or civ)..(civ==own and '（自身文明，暂不计入）' or '')
+   lines[#lines+1]=table.concat(names,'　')
+  end
+  local out={'status=KNOWN owner='..pid..' city='..city:GetID()..' historical='..#keys..' effective='..effective}
+  for _,key in ipairs(keys)do local v=records[key]
+   out[#out+1]='civ='..v.civ..' category='..v.category..' effective='..tostring(v.civ~=own)
+  end
+  return table.concat(lines,'\n'),out
+ end)
+ if not ok then
+  print('[SPC][B191][N1_INSIGHT] status=UNKNOWN')
+  return '文化见闻暂不可读（UNKNOWN）；未将未知历史显示为0。请选中己方城市后再读取。'
+ end
+ for _,line in ipairs(logs)do print('[SPC][B191][N1_INSIGHT] '..line)end
+ return report
 end

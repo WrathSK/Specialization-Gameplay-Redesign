@@ -1,0 +1,1560 @@
+{
+  "schema": 1,
+  "runtime_commit": "50910590270286cb01abc5498ed0f550de93deb2",
+  "runtime": "B268.295 / modinfo295",
+  "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
+  "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
+  "files": {
+    "Mod/ArtDefs/Civilizations.artdef": {
+      "sha256": "b05df83d41ed1b5e1ff50ad778d59d3d088a24dd7acee5550de39e7455ffd926",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/ArtDefs/Cultures.artdef": {
+      "sha256": "3a27a4c4650366605bcf6f40c2632c26b4a8c7aa1f532cd5b9ca9056a16953c1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/ArtDefs/FallbackLeaders.artdef": {
+      "sha256": "d9ef152a001be47404b7a0a71b3c7bb3166c879f324fba9bb8a2e8228c6028a2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/ArtDefs/Leaders.artdef": {
+      "sha256": "444dd8087884d35bd0aa9777647e0aae28a9f748b60a3adb22e022bcefbf230c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/ArtDefs/Units.artdef": {
+      "sha256": "eae2ffd941b6b2a96c336b49ca5ba95a9f24bc84a2da9654fafa8a59eb8fab30",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
+      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
+    },
+    "Mod/BindingProbe.lua": {
+      "sha256": "0dba8b101c768738ccb300c9ff2266137b1053cfa0b0fcf82dca25dd3b21144c",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
+    },
+    "Mod/BoostConfig.lua": {
+      "sha256": "05c07baa343ff4f97cee940a24d328051af41095bc9d134d1b92b2eb763f6ef5",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/BoostIntegerConfig.lua": {
+      "sha256": "8e43d3e3ce29758d770f58682cd53e8d8abba7659f2587b3226a62881a4f65ab",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CapitalInvestment.lua": {
+      "sha256": "584456fc371760e6f27376f816e9b9f39015e33178de646bdd69dfbe1115f288",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
+    },
+    "Mod/CapitalInvestmentDiagnostics.lua": {
+      "sha256": "0ab8a511f180736f2d3d4a129d8fc9a15174e381a4ceaae1da6f78c7720542f9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
+    },
+    "Mod/CapitalInvestmentModel.lua": {
+      "sha256": "70cd65bc15f3353ca59f32f0eed6c4cb4124a0212e9f6737f7f67a529e31ba06",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
+      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
+    },
+    "Mod/CarrierHealthTrace.lua": {
+      "sha256": "263da102604f39e91beb0a156ade8d9f4f21429a02e6e290a9c46dfdf944f35c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+    },
+    "Mod/CityFlowProbe.lua": {
+      "sha256": "fafc371fb55c64763025a43ffcf46b91d4c76b44f831eff0092faa57d9961a99",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
+    },
+    "Mod/CityIdentityExperiment.lua": {
+      "sha256": "844c16c777649e2ee7126dcb9084cd4e3620e63a1f841493174edcfdced3bb31",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "provenance": "B092 pure shadow; no authority/migration change"
+    },
+    "Mod/CityIdentityMapping.lua": {
+      "sha256": "767ef64bbc71fa9434a4abe93c768253ec8b1a80c1448f1bc7a93437df008b6f",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
+      "provenance": "B094 narrow authorized event wrapper compatibility fix"
+    },
+    "Mod/CityIdentityRead.lua": {
+      "sha256": "c78eef76b28f9bb4a2458382ddf0790217749619aab3bcbd97e56d36e073ac20",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
+    },
+    "Mod/CityInheritance.lua": {
+      "sha256": "98867d60bdc7d612842744e432d344743a05e2341b8b578458153b66d32a4618",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CityInheritanceRead.lua": {
+      "sha256": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CityJournalProbe.lua": {
+      "sha256": "0f2dff3b0a8a3fcf8919f4c663b64d77a1e891b2eeadfdf837391e3e27085e68",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
+    },
+    "Mod/CityProgressionStore.lua": {
+      "sha256": "231fb33ee42172a8b17560abb5518f82d0027411a0d9592b6985f63718ff2791",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+    },
+    "Mod/CitySequenceProbe.lua": {
+      "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
+    },
+    "Mod/ClaimProjects.lua": {
+      "sha256": "91e1f241e10a80ebe05483c0ad023d44c2d61647c8107b934e8511517d2fccee",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
+    },
+    "Mod/Commerce.lua": {
+      "sha256": "a7d46ebd45101f11a52c6fcdeb8f2d6be900bfe99f94fa79a013dc1e4d29eda0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+    },
+    "Mod/CommerceCalculation.lua": {
+      "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
+      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
+    },
+    "Mod/CommerceConvergence.lua": {
+      "sha256": "4f3029c13904a2cdeba2affe857976de414425d829e4efe8bec3571a8986a303",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/CommerceModel.lua": {
+      "sha256": "48d885109e162057c00eae73bb3ad80f024c7034fbdb44535b05cff12558e525",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+    },
+    "Mod/CompletionProbe.lua": {
+      "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CompletionRecordProbe.lua": {
+      "sha256": "3cc597823cf066869769d2646ace389d7c087d4cb8926ee7c7fd8de849df1e72",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
+    },
+    "Mod/Config/Players.sql": {
+      "sha256": "3483a8e6119486bb11032306501fff90e834e6f5a2a1d11ff88c533229d83284",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/Config/TestAmerica.sql": {
+      "sha256": "1b463ca162e4fcc784a8a902cfcea635dde1ba04dc21ec651a081dc42e7d3905",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/ConstructionProbe.lua": {
+      "sha256": "fd5dfd146b376a96730321558f2da4e1585449ac7f9a906528acf70cae753127",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/CopyYields.lua": {
+      "sha256": "4c16707fd696b873ccc3121b12bf5e2848df97791bc3c943f1011ffab82e204c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
+      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+    },
+    "Mod/CrewModel.lua": {
+      "sha256": "dd741d672f769601e423af8e192738aff9353d2effc5dcb2b82dbd40372eb269",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
+    },
+    "Mod/CrewPrecision.lua": {
+      "sha256": "26b032b92352987028ddae7e111a6fb25369f645ac41adf9476981602b5b5142",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
+      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+    },
+    "Mod/CrewProjects.lua": {
+      "sha256": "494baacf1841aeec32ffd5079c002142798a79d9b2c655530d8fe4ab1f345b37",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/CultureAesthetic.lua": {
+      "sha256": "e035ce2b7225120daf3723344bfdde4d823631c0936ab8370153ec0833aacd67",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
+    },
+    "Mod/CultureAestheticModel.lua": {
+      "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+    },
+    "Mod/CultureInsightsTourism.lua": {
+      "sha256": "3c97f843cb0ee07d68bae9625992b9ec10c4153b0df84e022d275c623f52f623",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
+      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
+    },
+    "Mod/CultureInspiration.lua": {
+      "sha256": "aff0a250222f0848591d72ecb6b132dacd909e1ffd64aed13f76d94c11fdae8f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
+    },
+    "Mod/CultureInspirationModel.lua": {
+      "sha256": "23f8b218c1a5a556bbe330a54b733f5ae7d5c518c18f2d8d4abdaafd10e9e115",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
+      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+    },
+    "Mod/CultureInspirationProbe.lua": {
+      "sha256": "436bf4290966cddd03f084718c17c13aed282b62ad4423b8368a6b9c4f3fee31",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
+      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+    },
+    "Mod/CultureMeaning.lua": {
+      "sha256": "f4616dfbefb28dfdd8b09ee3db1684b5efbd7b55ff28694f44da7014c850414a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
+    },
+    "Mod/CultureMeaningModel.lua": {
+      "sha256": "2b4d396b91b4dc5623ae1dc0d74170995d6d34356fe101ade037784cfd686a1d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+    },
+    "Mod/CultureMeaningProbe.lua": {
+      "sha256": "c7b738aa0179fd97280dd3766a73ae936590f27f116af435fd89b3b0ed98207b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+    },
+    "Mod/CultureNetwork.lua": {
+      "sha256": "f9481b44dc667c21a60eb98789e96bd848395446a544c3b56bfe2399d202703a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
+    },
+    "Mod/CurrentSpecializationFacts.lua": {
+      "sha256": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
+      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
+      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+    },
+    "Mod/Data/BoostIntegerTest.sql": {
+      "sha256": "78fe221ecc883eeb0948001dc98638ff12111491baa7e254339c853d398f1f1b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+    },
+    "Mod/Data/ClaimProjects.sql": {
+      "sha256": "5d704c476ddb10b853d855dee8c751734bda1976251ca4bc55012e386f4f216d",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B124 exact four-project Claim and record-local persistence reviewed; STATIC/LOCAL pass, PT013 native pending"
+    },
+    "Mod/Data/Colors.sql": {
+      "sha256": "adac5b8d0599024c96d440b56b03af0d32b3e98dcfc36a753fe4a0cfe600ef0c",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Commerce.sql": {
+      "sha256": "5c1097c1b2ba54f62afb8a5d7749a7f9c79e5f1fa279c71508f942f8628b54cf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
+    },
+    "Mod/Data/CommerceConvergence.sql": {
+      "sha256": "33fd1c2e1d7a9598d5ca0cc61bfd4e20a738ddfc7dcbb84c99d863f6bf2dc50f",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/ConstantSupport.sql": {
+      "sha256": "94963738321a1f7c4a1c25a34e4f1cb1360ce9d971e3a94d5ac4422b98f9ae83",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/CopyYields.sql": {
+      "sha256": "8261e4a4fc4542a53edf8b6577588e8259b6d7b2553d988bdea350a741da88c8",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+    },
+    "Mod/Data/Crew.sql": {
+      "sha256": "c29c021ecb0b5475f1a99deaa322d10176e32e41b0cfe5dd78e6283967bea769",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
+    },
+    "Mod/Data/CrewProjects.sql": {
+      "sha256": "782c1363efd48ff934f67b74c9a31c01db981f1827b2f42ef1bfd8347be471e1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
+    },
+    "Mod/Data/CultureAesthetic.sql": {
+      "sha256": "c11ac2ce49551d086dc28a12bcd3c88560d2f180c36ce386c7082ea3e6004d51",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+    },
+    "Mod/Data/CultureInsightsTourism.sql": {
+      "sha256": "9b26e5df06f945ea28685622ebe483f924002e84d7933cc8251422de5091f962",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B216_Insight_Tourism.md",
+      "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
+    },
+    "Mod/Data/CultureInspiration.sql": {
+      "sha256": "b72705f4be2a464ae3187eb34e572da95a77e3c282f41b8a1270b02ac7655fa8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
+      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+    },
+    "Mod/Data/CultureInspirationProbe.sql": {
+      "sha256": "c0814c30d8cf913d36228a6528dc46aa8e8120327e0506e4112372fdcc33c552",
+      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+    },
+    "Mod/Data/CultureMeaningProbe.sql": {
+      "sha256": "963da6b8bdfbff5d63a5f04b7414f5fe109c02c5bc3fe43ac2a75fcd2686f024",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
+      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
+    },
+    "Mod/Data/CultureNetwork.sql": {
+      "sha256": "00eb6f340493511413ff6454fba728ae94e7e989b07c43eecc0e75ee8a570ecc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+    },
+    "Mod/Data/DevelopmentInvestment.sql": {
+      "sha256": "f2bdba6cbcc588b574a2cc41ba1d49980f680327ddd94c6c19d8809bedf58c37",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+    },
+    "Mod/Data/Dialogue.sql": {
+      "sha256": "488512ffe8d0864120350651777b502808c8fe2f43c5dcf797ad4189a374a82d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B176_Dialogue_Carrier_Local.md",
+      "provenance": "B176 authorized local carrier test; current exact source/caller review, native pending; no history change"
+    },
+    "Mod/Data/DialogueEffects.sql": {
+      "sha256": "ce0448f7a24cebd8fcec2ce0d83218bb54b2f02eda10c13c8bd3cef1b15ef0dd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
+      "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
+    },
+    "Mod/Data/DialogueProjects.sql": {
+      "sha256": "9a4ab6028432f366b8b2b98fc1c2477b79d40b624f243b7343231560fb797a93",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+    },
+    "Mod/Data/DistrictPrecisionProbe.sql": {
+      "sha256": "f32b2d1e845a208e4a9a025d9b3ce01995389ac72572c0d3372886e19b0a0bf4",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/Data/EngineeringStudy.sql": {
+      "sha256": "f2e7ae37ac66d92a375ecee86f2029ba487e4015f5c9f47e44029dbacd2ecf3d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/Data/ExpeditionGate.sql": {
+      "sha256": "a2444b37cc885e653b15e98c883dc2d794702b6aa505fd3fc3fb8af1e5c2f262",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
+    },
+    "Mod/Data/ExpeditionSpyGate.sql": {
+      "sha256": "2e4c7595f31c041da028607550671a44fe5188f2876f9919f5081032996f6ce2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+      "provenance": "B209 user-approved: marker NumSupported 1 restored; same-turn immediate native completion accepted as queue evidence; 111 targeted PASS, Expedition-suite failure set identical to HEAD."
+    },
+    "Mod/Data/GovernorProbe.sql": {
+      "sha256": "147edbe54f4c357d498f578ee3cf1de530581253310686134a0d46e2bf6badfd",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/GreatWorkAdjacency.sql": {
+      "sha256": "e14afd55f26d2e0727cb481d8fae9e875b8bc7f89173621c7e1657571c3b516d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/GreatWorkProbe.sql": {
+      "sha256": "12dc0f6336eaf75f6ec75eeb62a6371cedb7dd9e07bda98290b50b275cd483f2",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/HalfYieldProbe.sql": {
+      "sha256": "923db9239ae09d9d3a76f8d66d247cf31019b2cd632123490c33f277b8733669",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Icons.sql": {
+      "sha256": "55a2c7980c686d3a5f46d328dd94645140883a282096e2209af9cc08ffff25e9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+    },
+    "Mod/Data/Identity.sql": {
+      "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
+      "provenance": "B189 approved test-civilization native-name prototype;124 scoped local checks, explicit UI off-map observation boundary, own cap/source/task unchanged. Native pending."
+    },
+    "Mod/Data/IndustrySupport.sql": {
+      "sha256": "cfc3b01995f758362026fb1bcfe280012a980f7341b798071ab567f7743a4064",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Lv2GPP.sql": {
+      "sha256": "87c505c4d5ca020d13b18121d57a60f4d67d9cbffe342a490e77ff771d8f5d2d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Lv2Housing.sql": {
+      "sha256": "b909ba34e6569eaa36e5c877d3123aa8ffac2d990893774f18144eb63c4c18ba",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/Lv3Effects.sql": {
+      "sha256": "5a19a7008b0b21d5f7b81471f1c0c08e7925ada55fe36983f7c92302802e59f3",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+    },
+    "Mod/Data/Lv3Support.sql": {
+      "sha256": "688298fec1e2e9637e277d32c6bc8dc39643ce6101e8185a848764f158153c7b",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+    },
+    "Mod/Data/Lv4Percent.sql": {
+      "sha256": "0fa05ff3f0113d5635a136552fbcbec89b63a435c99521eec5c712f9a0a8fa38",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+    },
+    "Mod/Data/NetworkBoost.sql": {
+      "sha256": "bfb0b077ca00ab48999dd4c30ff294b48af1c10161d58246e2ec1e2ec3dd33d0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+    },
+    "Mod/Data/NetworkBoostInteger.sql": {
+      "sha256": "de5daa69168a6600e09501752fdadbdede59d3e461532529f3efbb52d8a10f70",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
+    },
+    "Mod/Data/OverflowSinkTest.sql": {
+      "sha256": "f657b5cc1e8fb0c85d9b9cc854736a3d96b3239b145c296b6758fcb254839526",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+    },
+    "Mod/Data/PurchaseProbe.sql": {
+      "sha256": "ea043f7ee0cf7cdb6aaf198cf971424e9bf2f5cf749e8d1dea2b39ca302f9a75",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/RawIcons.sql": {
+      "sha256": "6202048ac242973293b761c4406a3923c0b87ba6ae2a4aef622d48c799ad492c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Data/ResearchApply.sql": {
+      "sha256": "6fe79eb49be9282c2507d616d1c975b1a84ee5bf3847e341a9c06f5fe68fc0e3",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
+    },
+    "Mod/Data/ResearchChair.sql": {
+      "sha256": "35f33ed4ecf35790addb1c6c1d707fec498854d58e4686e3562d0b815929a4b2",
+      "review_source": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
+      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
+    },
+    "Mod/Data/ResearchCross.sql": {
+      "sha256": "58d437e730c83c129909b7bf4ed4824519abfa07c0de6c81ec96a07c407cc932",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/Data/ResearchInfrastructure.sql": {
+      "sha256": "b2c6dd3af4c57797040d6fb7cce967ced43a8f0eca6f95ce32d162cef279b248",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+    },
+    "Mod/Data/ResearchSupport.sql": {
+      "sha256": "fa06b82c35d28e4dc805cca7c6d84795fd4fadefb3bbdfe113524b95ecdce376",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/ResearchTradition.sql": {
+      "sha256": "7259c9cf380803b2d4035a6d30183f21db304089b85509eed153ae57d9ae480b",
+      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+    },
+    "Mod/Data/Restructuring.sql": {
+      "sha256": "54058527d27f32c730231629077510cd40b7b66d0ce1fa223a5813c73dbddeb1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+    },
+    "Mod/Data/StandardizationDiscount.sql": {
+      "sha256": "bdbb77b6bb8cc55d905b13bafa161a7b28b14e87dcbd09bee1a064b2392beac3",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Data/StandardizationEffects.sql": {
+      "sha256": "260593ac9ff2b946faa9552f617b0fe2f74fcb90b138465e2894b1b2ecca326f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
+      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+    },
+    "Mod/Data/TestAmerica.sql": {
+      "sha256": "786e8af3a34adffb77a0dbe0a2f119e2ddf67d900df356293306dbf967cc0619",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/Data/TestAmericaColors.xml": {
+      "sha256": "b00b9049a181f2507fd06de6b3603e208ca4120bcad357623dc684c4f20e7ac7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/Data/TestAmericaIcons.sql": {
+      "sha256": "d4baa13a1f3369ef1d21996e8939d28bca8e952c48807f556c03a1d5ed73619a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/Data/YieldCarrierProbe.sql": {
+      "sha256": "b63ddc3d9c7d6a1ca0634eeba3d610850fe4bfa2fe5f345237d2dcd14ffe91cd",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/DevelopmentInvestment.lua": {
+      "sha256": "16e2e001fba28ff71da366655f1cadb159e8ae4fffff88f0c151961ef89ecf2d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+    },
+    "Mod/DevelopmentInvestmentCatalog.lua": {
+      "sha256": "4f4df0ed1eee502d9ee19ad8e053c6070b9f17d74b0e33eaba26f33ab13e256a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+    },
+    "Mod/DevelopmentInvestmentModel.lua": {
+      "sha256": "df3d1b78280ba8c49bb1b51a6dc99996b655b0bb0207f0fe7b6197550d676e42",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+    },
+    "Mod/DiagnosticLog.lua": {
+      "sha256": "fd4c52434a868a69f74177321a8588aef51ea3e55cc4b0e5d53715ca0b780db3",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Dialogue.lua": {
+      "sha256": "68247e0af6e33c4372da77d484ff13791673a65d105a8fc7a8f5b3b7039d5d58",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
+      "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
+    },
+    "Mod/DialogueEffects.lua": {
+      "sha256": "5d50062c5296e7fec751e58c59d00bf8e7584f6a2f33bd1ae20d34a46ac9ea8b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
+      "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
+    },
+    "Mod/DialogueModel.lua": {
+      "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/DialogueProjectModel.lua": {
+      "sha256": "cc042bb1f281989edc3837307f27ca59ce5bb5c2117b67e064c35f49f897d8ed",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
+      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+    },
+    "Mod/DialogueProjects.lua": {
+      "sha256": "afb449b2bd32d3878af49ce0cad010bcd70df6703cdba0629152df2247c6cb4c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
+      "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
+    },
+    "Mod/DistrictCompleteness.lua": {
+      "sha256": "3399091abca7023c9744a480d1705fe85e4b98ab1d02c34b2929d942909f1813",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
+    },
+    "Mod/DistrictPrecisionProbe.lua": {
+      "sha256": "12a6b244c9694f8303400b544cd747e554ce56c88e9d2bf302a31c22f67aed6c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
+      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
+    },
+    "Mod/DistrictPrecisionRead.lua": {
+      "sha256": "d020abb8278d944b3c46ae63cc78baaa465fcd6fd77b0418e7ce6f45250ce590",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
+      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
+    },
+    "Mod/EffectiveFacts.lua": {
+      "sha256": "5ef1f6ed384c43b3932cb3de435aea55a734f9d257920b9ecc1d6dfc81d8d563",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+    },
+    "Mod/EligibilityProbe.lua": {
+      "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/EngineeringStudyModel.lua": {
+      "sha256": "2a4ee2568ba5eb3c4db5412c9545a71bbe41bd2ab5cc5a53cd5b9ecdc7dae479",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/EngineeringStudyProjects.lua": {
+      "sha256": "6a0c35b9dcd38e7842b3bb09ad975b7d6301885f02cb2530dc21b58d064f4456",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/EnvelopeProbe.lua": {
+      "sha256": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/ExpeditionGate.lua": {
+      "sha256": "da6cfd270182658465c51b925acc3a2af0efa9fa758d6400796a740e22627e32",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
+      "provenance": "B183 approved Gameplay capital-context/error-report correction and build stamps; 81 scoped tests reviewed. Spy0/cap/binding/placement/unit definitions unchanged; native pending."
+    },
+    "Mod/ExpeditionGateRead.lua": {
+      "sha256": "2044cee5d389d4030cdec1ec8ec4c0ec5c414dddda333d8136da4a9def3c8392",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
+    },
+    "Mod/ExpeditionMovementProbe.lua": {
+      "sha256": "9210477b186ed1cf40bf6a0ae26485242d2f3eae7458f3f4377113dd9dbc8cae",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+    },
+    "Mod/ExpeditionSpyGate.lua": {
+      "sha256": "d444f721d3e27571674d27dcc607b6fad0bf475135789eb0e02366e49771b08a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/ExpeditionSpyRead.lua": {
+      "sha256": "864d5b58350e7213a3054bd562912df1511f1352b3c571545126ded2748a5128",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
+    },
+    "Mod/ExpeditionSpyStore.lua": {
+      "sha256": "e792e7ea8e8f102ad8effce27f3e13e3b5891c0e170a9e1b197153380b9d0c41",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+    },
+    "Mod/ExpeditionSpyUI.lua": {
+      "sha256": "a19873023674c435b9eb132a8cdbdee0d01fa928245ce42c5dfb6d6db79bdc06",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
+    },
+    "Mod/ExpeditionTraining.lua": {
+      "sha256": "e37203dfc87afe07456cdb22e4ff7a03086bf2380cc7b4da31090329b44b3142",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+    },
+    "Mod/ExpeditionTrainingDiagnostics.lua": {
+      "sha256": "0bed155d44ba1eca22faafca14c9d4bfb55d2e8f68c97256469e054f766f572e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+    },
+    "Mod/FreshBindingHook.lua": {
+      "sha256": "03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
+    },
+    "Mod/GPPReadout.lua": {
+      "sha256": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Gameplay.lua": {
+      "sha256": "f90f12d6438e302da6a8d6b1eb7d50d56bffeed445c40e4317aa1c9919a04701",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+    },
+    "Mod/GreatWorkAdjacency.lua": {
+      "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+    },
+    "Mod/GreatWorkAdjacencyModel.lua": {
+      "sha256": "f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/GreatWorkCatalog.lua": {
+      "sha256": "c0669180efe21a4c2fd91289be9c0a1a4828ac785a3791ca1b059507cc2fec72",
+      "review_source": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
+    },
+    "Mod/GreatWorkFacts.lua": {
+      "sha256": "7d26a5a9121e0658091b7537ab68402480fdbe8f91558662e68a747224cb2a47",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
+    },
+    "Mod/GreatWorkProbe.lua": {
+      "sha256": "525f1658a6e37dd28c2a0512d147ffca5f0d48548b79e4082da3c4e9bd7e7607",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+    },
+    "Mod/HalfYieldProbe.lua": {
+      "sha256": "e97bda093ba66a9ef96b628eee29abcc4045caccb535abff9c25010c2c3a7d57",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+    },
+    "Mod/IndustryHistory.lua": {
+      "sha256": "0dd5e169f11c31caa1d5e9b6509a33a130b4d18c4475ede5991d171168ae4bdd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/IndustrySupport.lua": {
+      "sha256": "9e6a04238ab8cf73434b813bfaa9d1fd05113e463b2e5dd37c531dd68c89f8d2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
+      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+    },
+    "Mod/IndustryWonderEffects.lua": {
+      "sha256": "eed229b2e765cdd7ffc43404413b9c347f642e1041ee2fb280a66e4abc16a7b9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
+      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+    },
+    "Mod/InheritanceShadow.lua": {
+      "sha256": "a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/InspirationReadout.lua": {
+      "sha256": "ddf00f11702763f6e705056d5aa4481d4aca3eed61edae1e168c23fb5b5d1c69",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
+      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+    },
+    "Mod/InstitutionPresentation.lua": {
+      "sha256": "fab127ba8195fdf1c4f5891a8af77b7a7fedc96efafd2fb86f64d8ed8673533f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+    },
+    "Mod/InvestmentAction.lua": {
+      "sha256": "7f1089dbc0b54a5d6c82bc6d5efd0ff326515401da87d0f1498813f3be761ecd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+    },
+    "Mod/LevelBannerState.lua": {
+      "sha256": "a0e8e70cbdd183e750fb700d71d2cdda10a87c9a205a67e46311b5e3cfbea1a3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
+      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
+    },
+    "Mod/Lv2GPP.lua": {
+      "sha256": "66c61e4b84b625d1f6c6baa27a88288a3e7bf6dd3d034dae11e2a4d2dd0f4b5e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+    },
+    "Mod/Lv2Housing.lua": {
+      "sha256": "bea3d3c8519a2da29ab280e2945570bb770e44282926dd91e289a27bcb5d8300",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+    },
+    "Mod/Lv3Effects.lua": {
+      "sha256": "1eaf445b563091c5337865f5f4210d8460bf24a812fa287f87bb2269169bd438",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/Lv3Support.lua": {
+      "sha256": "13967ab958dc17bef5e9f3e700f9bfa6d0ffb510a51ee4a711835a4dc9599562",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+    },
+    "Mod/Lv4CopyRead.lua": {
+      "sha256": "964d15c56466bccb58bb832e21924f891fa25c7a548ac8ec8ddab11ea44cc05f",
+      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+    },
+    "Mod/Lv4Percent.lua": {
+      "sha256": "f7c323188cd4f6f6f6dc3f8eec2ceb37b1a8522fe527e211bb35b7801ac65438",
+      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
+      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+    },
+    "Mod/NetworkBoost.lua": {
+      "sha256": "35786ce184569607059f2c495a9f37b4f210f8b29fb73347b95e1479d7dd30bc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
+      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+    },
+    "Mod/NetworkBridge.lua": {
+      "sha256": "5ba24bc278f4ebce71ee8132e86ae212c3b7db1ac5b9cfb684e93936ae2d8d98",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+    },
+    "Mod/NetworkInput.lua": {
+      "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
+    },
+    "Mod/NetworkIsolation.lua": {
+      "sha256": "3b1ac34bd4dc421437e0cfa3968180114959bf98524b5179c148ab8a85bed8d2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/NetworkSender.lua": {
+      "sha256": "18ebadec6cf2677d8b4a5851be7f4c5eef05909c2d8f02e7d8673899b719c331",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+    },
+    "Mod/OrdinaryBuildingCatalog.lua": {
+      "sha256": "3fb804c0fa2091d800d09c7d3dae3d8745ae68f58e9c1bdbd740cac2e1c0c31d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
+      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
+    },
+    "Mod/OverflowStorageProbe.lua": {
+      "sha256": "90e72d14d83d0cef47b559d3fe7a2e038f972fc6ea9c1d761fa9699ff5aa641c",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
+    },
+    "Mod/PerformanceCounters.lua": {
+      "sha256": "2047dea377cd9a9929bc969dee5a91c37a1ee2eb3baac2d82666eb09849d5313",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
+    },
+    "Mod/Probe.lua": {
+      "sha256": "55e79b21e966657c1755244ddb2b21f10b7f63812f688a9bc3d2c549677ef4c3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/ProjectTurnObservation.lua": {
+      "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
+    },
+    "Mod/PurchaseProbe.lua": {
+      "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+    },
+    "Mod/PurchaseProbeRead.lua": {
+      "sha256": "8b01b03284548636d531d2305cdd70cdfc11a3f7f25f4acb5e0d53269c64ea24",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/QualificationProbe.lua": {
+      "sha256": "ba50636c2b083a9787126295470572561e10d405eb998d117492bef89a728a59",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/ReadinessSummary.lua": {
+      "sha256": "884a26e5b6da3ef00f22951c6769fa2e200efba267f689a49d8ed9b348059ad2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
+      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+    },
+    "Mod/ResearchApply.lua": {
+      "sha256": "b14ccc3d7fc768500b7569057a45c1b865b0a7ce5029ee3c66a35e73b776d904",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
+    },
+    "Mod/ResearchApplyModel.lua": {
+      "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
+      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
+      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
+    },
+    "Mod/ResearchChair.lua": {
+      "sha256": "6e598c5da206177880c09e3bd65767dcbec1fdc0bc5fe27e3f5f2fe2a880c896",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
+    },
+    "Mod/ResearchChairModel.lua": {
+      "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
+      "review_source": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
+      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
+    },
+    "Mod/ResearchCross.lua": {
+      "sha256": "fd823d7657eb72d8816478829e4b9e8e738d6009d86d0457ecd408c6eabb0cef",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+    },
+    "Mod/ResearchCrossModel.lua": {
+      "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/ResearchCrossSample.lua": {
+      "sha256": "8a99338b17a45895a04f4a839f01d081651a3418639258c8f9658293219c6c15",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/ResearchInfrastructure.lua": {
+      "sha256": "12d2c77d6419e07d95de46bbf9f34ec689495d4bc419fa48bf2544cdb2117019",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
+      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
+    },
+    "Mod/ResearchInfrastructureShadow.lua": {
+      "sha256": "8ad23bec61981d670c6c8a0b67c35e1c66e0c697a6abd6075e197656aec37b3f",
+      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
+      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
+    },
+    "Mod/ResearchSupport.lua": {
+      "sha256": "3f82c7e60465ffc601328d551182d4116611d39fcc2ab3dc46341f0dd6efe724",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+    },
+    "Mod/ResearchTradition.lua": {
+      "sha256": "bfd4e3437c873c97349216f876c86e80ba1b97cc4c847821f4990c2ab9d062c7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+    },
+    "Mod/ResearchTraditionEffects.lua": {
+      "sha256": "55aa2d441a565fe73f2029dd795273833e58b1d333d392436742aac99feb7447",
+      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
+      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+    },
+    "Mod/Restructuring.lua": {
+      "sha256": "b9a2019d21967b8bb8012408b465755be02360a4be561aa3421f2183fe0c03a6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
+      "provenance": "Unchanged B249 source;80 targeted local methods inherited. S0668 native evidence accepts same-turn access and continuous liquidation/wait/configuration, with manual disruption/refusal/effect confirmation. REALLOCATING cold-load remains pending; no expanded ownership or retreat PASS."
+    },
+    "Mod/RestructuringModel.lua": {
+      "sha256": "5d0893c5a2e8c717a8e8677428c7c82a1c1166f061facf51a16e9162e32b22b3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+    },
+    "Mod/RestructuringUI.lua": {
+      "sha256": "b0d00e3752fa737f49acb6bc385887cc1ffb80e6f6a2161abd1912f873ab1530",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/RuntimeAuditCore.lua": {
+      "sha256": "25aefb1036b4dd9aaedf6c5bc00a6b6c26823953ef4bae00a62a90f901e9f4ff",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
+    },
+    "Mod/RuntimeWork.lua": {
+      "sha256": "104ee9271c93bc5b40bf533003c1b86da016d47c487ef110fe0ed378da38a3e3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
+      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+    },
+    "Mod/SampleLifecycle.lua": {
+      "sha256": "2aef4ce1073e63d32371f2896fe51273b4b212884201fd571103bf1f44aad3a2",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+    },
+    "Mod/ShadowRouteState.lua": {
+      "sha256": "6f35992fd9e5b8d2429061acbaf83e3f7747300592bf050dbb23e1e5fe9163e6",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/SourceYieldProbe.lua": {
+      "sha256": "64d9e41633024f4db8526d3c74504a6aeae3bc4b4bbd1e142fafa91a75cc3a4e",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/SpecialistSupport.lua": {
+      "sha256": "54644c351b7ce4802857e57e77f8c2d83bf674cd1c0dc6273858547dcddc6a7f",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+    },
+    "Mod/Specialization.dep": {
+      "sha256": "33e4ab62dfc52efc143b9d56a77f6538cc6a25c986754984436e1aca10ab0e0d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/SpecializationP0.modinfo": {
+      "sha256": "91be7b31c05cfae39b806d018052ae573635957562d3793f6277548a0ec2426f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Standardization.lua": {
+      "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
+      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+    },
+    "Mod/StandardizationCatalog.lua": {
+      "sha256": "0bf50cb354ccd9f31c5f992b60c5107aad4ab3fa7c276382594aed20a20f9358",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
+    },
+    "Mod/StandardizationDiscount.lua": {
+      "sha256": "66ccdeff5c18cb95f5c2491e16995fae389317b3f56e4aedd3714f58ebf8f307",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
+      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+    },
+    "Mod/StandardizationEffects.lua": {
+      "sha256": "e17ea4b28fc527be90e9b6c5116e73d438df859d7871220e7c8d106c1115ba46",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/StorageProbe.lua": {
+      "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/Text/ClaimProjects.sql": {
+      "sha256": "a31dbfc5862df58c043a03adc68423dbabf299e6c389955207dfe21c8b68559c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+    },
+    "Mod/Text/Commerce.sql": {
+      "sha256": "db8fe2e2b2aad65b648d3c385adf614f0b67e95d3f84e98bfc893e4b04ec73cd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+    },
+    "Mod/Text/DevelopmentInvestment.sql": {
+      "sha256": "3b705eb02457d81262653d9c10d04aa5019d34fc9b61ab8df14f6dc3d6189a1c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+    },
+    "Mod/Text/DialogueProjects.sql": {
+      "sha256": "59d6a739740d9ab93cb5a87d93ef0d729168ef16c1c257962fb0e0971ee94a17",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+    },
+    "Mod/Text/EngineeringStudy.sql": {
+      "sha256": "5865a1136028a230e5acbf2d38012fa1e9d0155d5550d8a354f2d9b165917ef4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+    },
+    "Mod/Text/ExpeditionGate.sql": {
+      "sha256": "56b6a772a68d3389dd5ccadcecad119beed63d8993367877a27966bd7af57858",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+    },
+    "Mod/Text/LevelBanners.sql": {
+      "sha256": "987834d688846f7bd78afa0085f2c3a3d1502933b1b640eb26b7db7f2b97d73e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/Text/Restructuring.sql": {
+      "sha256": "ba463cb8f4d3310b8157f0381506cce3f750c49a79678a887dced2b562dbef89",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
+      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
+    },
+    "Mod/Text/TestAmerica.sql": {
+      "sha256": "1b25966fdccf9fee4f82c81110f841551e168b971dd57139d822ef1ee54b4dd0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+    },
+    "Mod/Text/TestText.sql": {
+      "sha256": "e395aafd1f5508903adcd5edaf9d0529da0d75ba8a488fa75b61a29a145b9300",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+    },
+    "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
+      "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
+      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+    },
+    "Mod/Textures/SPC_Institution_Backdrops_64.dds": {
+      "sha256": "912e8f148ea8698941d5e0be5482b70fdef9966340364b806b9b05c3ff03b0ce",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
+      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+    },
+    "Mod/Textures/SPC_Institutions_32.dds": {
+      "sha256": "a3f389f0a82e16599371e42fda5384868d915a3432e92e5f3f14ae678267fa91",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
+    },
+    "Mod/Textures/SPC_Institutions_64.dds": {
+      "sha256": "9fb525ddd843b5d3b1d472195804dcce60e4368f3ba3c5123f06504de988be81",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md",
+      "provenance": "B251 institution presentation:16 icons, all-level previews and guarded read-only scalar summary;23 targeted local checks PASS. New native visuals pending; no gameplay writer, schema or timer change."
+    },
+    "Mod/Textures/SPC_Level_Icons_32.dds": {
+      "sha256": "b08fe38e9a66bb0b157d9baf0b6ab818cb6431e4fdaa39cb6a801273559fde89",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/Textures/SPC_Level_Icons_49.dds": {
+      "sha256": "f4f3e925dd3f1d58027fdbd792099f64a7000a16c23b8fed859078ed6db3bcb6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+    },
+    "Mod/Textures/SPC_Level_Icons_58.dds": {
+      "sha256": "9d3277bca2704363223d7346592cbbcadd793883a851a2f190a1c0434258ad54",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+    },
+    "Mod/Textures/SPC_Level_Icons_64.dds": {
+      "sha256": "308bdf3bad9e027da81b9284c7b3a11c37fbb6312819995c9be763f1437e778e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/Textures/SPC_Raw_Icons_12.dds": {
+      "sha256": "9504fb896cd5fbb5a1b5374287d184b9be451c3d40aad9f3b9430822b3244451",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_128.dds": {
+      "sha256": "db535dc9086fd272743e7b46c97518d8ba761fb10b8216630cf576fe3cab4fea",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_16.dds": {
+      "sha256": "7eb52e45e02202c85e58f686028ce40f045c8360d6885f18428546826380de57",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_20.dds": {
+      "sha256": "f0cf275742ac0797e5fc91325742fcb1a1eb17fc4ee1c7cbbd4b5a11362c6f0e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_200.dds": {
+      "sha256": "40bd878b9a9aac453ce21849db0915b7a31d6953295c43d56964747df7cf7286",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_22.dds": {
+      "sha256": "c5f2f0ad7282ec4db1b9fd51e5734503dcac1c5a52899b3d8d3e277c08c785ff",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_24.dds": {
+      "sha256": "024f16a9ba724357294cdcd69c6cbbbda9ff5bd0a8e76a9c3a2054a95ea830d2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_256.dds": {
+      "sha256": "1fdc7a31f46f2105b1e1f85fb2ae4bde82f20f882461126c437fafc63f1ba23e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_30.dds": {
+      "sha256": "302b8855a3907b5983a7f9f3afe9a79f4f62e87d3dcfdcc3897bcde284f3f7bf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_32.dds": {
+      "sha256": "f6cfa2c9b29b6bd1d7ee7cfb9ff1413a5d684a8b315c8deadb0e177edb1e69a3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_38.dds": {
+      "sha256": "04344a8f45bfdaf9fa5e673b02ff9f060e9ac9f0ba1fa08e22f123341d28947c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_40.dds": {
+      "sha256": "00d3a4619df0b27b5fe87f3858a274a75a3fb0d299d430d6e319edee391812d8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_48.dds": {
+      "sha256": "603bf3e156b03c374e632f2769ec17610c6bc24e8fe7e15dbf828ca44982ffc4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_50.dds": {
+      "sha256": "317263cc93353d0efbd6cfcf9ec6a33a349325f1588114c71a68fc0b88e2fafd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_64.dds": {
+      "sha256": "b98cda65faf9ce37bb542588e5914ab69f971cf4d4cf3caa0b1e2df5cf1472f3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_70.dds": {
+      "sha256": "b4c5fdd4de8bd23daea78397b59660f0f5925bfc720f524c99bb9e19abb3e825",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_80.dds": {
+      "sha256": "78709259d0e893d9827fca6f3f034d2f47b9839c36973516144d46bac790f4a7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/Textures/SPC_Raw_Icons_95.dds": {
+      "sha256": "76a382c269dc7caff70c976235ccd5e08acb096972560296b8a03192080ce1ba",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/TimedProductionProbe.lua": {
+      "sha256": "08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
+    },
+    "Mod/TimedProject.lua": {
+      "sha256": "5fd1eda331046746024664c65030114505988ef9b305884b3373f90ef17f5779",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
+    },
+    "Mod/TradeRouteProbe.lua": {
+      "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+    },
+    "Mod/UI/BackgroundRoutes.lua": {
+      "sha256": "bdb9a4ff62c99389695b12e655d7832c649040687b01dbeefb167318eb54fae5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
+    },
+    "Mod/UI/BackgroundRoutes.xml": {
+      "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/BoostGreatWorkRead.lua": {
+      "sha256": "ae17bdd63047da547cf13dbe0fa1bca230146dbec882d0475a2339a4d293976c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
+      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
+    },
+    "Mod/UI/BoostRefresh.lua": {
+      "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/BoostRefresh.xml": {
+      "sha256": "ae33c200ecdfeffd91165035eac916d0d32759622607f5658f58a7500c7b3595",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/CapitalInvestmentPanel.lua": {
+      "sha256": "c723a334365de7d30071f8e67dc119d15b041e5fc587885a26aa183c16b8e5d7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+    },
+    "Mod/UI/CapitalInvestmentPanel.xml": {
+      "sha256": "ff0bcf91a2c7725fa69f717f55b1305d97bac389c9617442d311d8e59b1d4dfc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+    },
+    "Mod/UI/CapitalInvestmentUI.lua": {
+      "sha256": "e3ce29cc55a65ec356660a26f5b8d03b830111cf0adc62a89cbf6b78220955fe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
+      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
+    },
+    "Mod/UI/CityBannerManager_SPC_Levels.lua": {
+      "sha256": "849d2a82448990deb91f7b51b273cb71f6a086cd9d0cae047463209673d6f067",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/UI/CityBannerManager_SPC_TimedProject.lua": {
+      "sha256": "bea16e06bb725a2a2169f5f1b6439f784c152a609c0bb4430cd3f32d4db763fe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/UI/CityIdentityEvidence.lua": {
+      "sha256": "87bb4d9ef4c7d03959b448320e3c7bdef6e2d52d7968faf47b2f09923df335c6",
+      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "provenance": "B091 UI evidence supplement; no identity authority changes"
+    },
+    "Mod/UI/CityPotential.lua": {
+      "sha256": "ecaa2a77de27ac5aa16a46bfdfc796e6320f0dc9424ff1338b5d8bdf606d9deb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
+      "provenance": "B266 authorized native Stack/Grid sizing, unconditional UI guard release and bounded failure stages. 64 scoped local tests PASS; gameplay unchanged; native recovery pending."
+    },
+    "Mod/UI/CityPotential.xml": {
+      "sha256": "ee21aabc5a688151475978bc1fbd261edfeb64368c8f73e7f91789ed35e24043",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+    },
+    "Mod/UI/ClaimIconOverlay.lua": {
+      "sha256": "6b4015a25fedc26809bc716f96e69abd165e231723f22fa198ded9456a4075fa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/UI/ClaimProjectUI.lua": {
+      "sha256": "7339d909e206a181c06564ac0b1031278ff1bafe5216262bae45864a1e2b29d8",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B129 authorized bounded acknowledged reload synchronization; local PASS, native pending"
+    },
+    "Mod/UI/CommercePanel.lua": {
+      "sha256": "4a593323cacd8a9c6f3271ccbc1c57cb68986183eb9021b4f05c3d1d314352eb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+    },
+    "Mod/UI/CommercePanel.xml": {
+      "sha256": "0ed8ca0ccec0289637c39110edec10cf75413c559549ee8e1789a61ec1f28396",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
+      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+    },
+    "Mod/UI/CommerceUI.lua": {
+      "sha256": "f8e9efaf4e06bf5f54346b39f1558468a98c3fa0ec65fc1c8e853ac144b1d2bb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/UI/CopyYieldRefresh.lua": {
+      "sha256": "b2d133cd6860fb60e0f3398032d77575b4332cfe6ff7834d1079327b8a4c1032",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+    },
+    "Mod/UI/CopyYieldRefresh.xml": {
+      "sha256": "2f1d2b86731feaafbd41e4e2b5d17b8efe21c53c3f3df0ffba4cbc0c260c87f9",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/CrewProjectOrder.lua": {
+      "sha256": "f81b17dfe1f51c776bc71c7d0063eb78705bbba744e69ee6ce0735ccfdc2b08c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/UI/CrewProjectUI.lua": {
+      "sha256": "b07ea80a0db7f1fb10bcc259dd711afacab49fd6edafb2b5d097e19a1abdc64b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/UI/DevelopmentInvestmentPanel.lua": {
+      "sha256": "8ec0d4a6506e480c3801b652b7dff3a4e37768e8b6c8cc96e97f6b6ddba2d140",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
+      "provenance": "B261 approved UI and Escape refinement;19 scoped checks PASS; native pending."
+    },
+    "Mod/UI/DevelopmentInvestmentPanel.xml": {
+      "sha256": "48035d87eabd91a3df41c4c0c09274c4314f37e7a40aa6b5b1b73008ff433ec6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
+      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
+    },
+    "Mod/UI/DevelopmentInvestmentRead.lua": {
+      "sha256": "47f1b5543ee82591fee607ac29e021067ebf22c42324861716648e0bc36551d5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+    },
+    "Mod/UI/DevelopmentInvestmentUI.lua": {
+      "sha256": "f9be17cc361ba1be6dc8a18a17f95b7f8d9ec618287c90513298e0d8d83a4662",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
+      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+    },
+    "Mod/UI/DialogueProjectUI.lua": {
+      "sha256": "b9c06b39c2d2c3e5c7398c80f4372b20ce83933fd8b43be6cdfbfd647260625e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
+      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+    },
+    "Mod/UI/DialogueRefresh.lua": {
+      "sha256": "dda6cec0878eb854133983afe7e35652a019a0adf280d0c65747b0f4ef19373a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
+    },
+    "Mod/UI/DialogueRefresh.xml": {
+      "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/DiscountEligibility.lua": {
+      "sha256": "574e4ccc92c09b27ce57dcc9fa7bdd1aa99bea7e559eba1feb3829e3ace0a81b",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
+    },
+    "Mod/UI/DiscountEligibility.xml": {
+      "sha256": "83f53d04f035643a3b31783ac2a49c94d34d530d3dbbe69105dac7fd403b67e2",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/EngineeringStudyUI.lua": {
+      "sha256": "b0d50dc7e34d19559721742cecec37276702822b93e485d616db1ae42beb30a3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/UI/ExpeditionGateWindow.lua": {
+      "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
+      "provenance": "B183 approved Gameplay capital-context/error-report correction and build stamps; 81 scoped tests reviewed. Spy0/cap/binding/placement/unit definitions unchanged; native pending."
+    },
+    "Mod/UI/ExpeditionGateWindow.xml": {
+      "sha256": "5ce5ff851733a7b7d0bd1ab2e299b5b2acc11711c3d70c630144ce3b78a12373",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
+      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
+    },
+    "Mod/UI/ExpeditionMovementProbe.lua": {
+      "sha256": "3a737d2cd3a6caf49d11b23e805a8248f4d2e7eacc27a03d872614cb154dab55",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+    },
+    "Mod/UI/ExpeditionMovementProbe.xml": {
+      "sha256": "91593e59267da919a9b433b67e4f0d4b22ede5544005f32469f0c7d078edfdea",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
+      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
+    },
+    "Mod/UI/ExpeditionSpyActivity.lua": {
+      "sha256": "a3530d1b0321e3a436bf0bcdc4d08fe2025167a4654117905bf8c3b07cf19437",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md",
+      "provenance": "B229 authorized retained network waiting/release diagnostics;255 targeted offline PASS. Release semantics/native writers unchanged; native pending."
+    },
+    "Mod/UI/ExpeditionSpyActivity.xml": {
+      "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md",
+      "provenance": "B190 approved task-controlled activity prototype;179 scoped methods PASS. Native activity/readiness pending; exact source/cap/name unchanged."
+    },
+    "Mod/UI/ExpeditionSpyChooser.lua": {
+      "sha256": "153c44a5d223d71ba7cf9bc20fcdd9c582b7b5fee9e7b006fd406438caf003bc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md",
+      "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change."
+    },
+    "Mod/UI/ExpeditionSpyPopup.lua": {
+      "sha256": "f96d75a0793ecf0fb3f2301f50bea57a3f414727998b0b8dabf0ad615f9400e4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
+    },
+    "Mod/UI/ExpeditionSpyUnitPanel.lua": {
+      "sha256": "4ec825b38135f1fb779cc00baba6b8fe5722e9c040e2867d7d36adcbe9f3a6a9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/UI/ExpeditionSpyWindow.lua": {
+      "sha256": "8c0a5b6a203afc77c086b9193f55ffae205068b02f1afc38c541518d98550b58",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/UI/ExpeditionSpyWindow.xml": {
+      "sha256": "8a9b2f5ee3d27541f2880bf412ada76f19b5e265f6a8fae92a6fad6bc4109ec3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/UI/ExpeditionTrainingName.lua": {
+      "sha256": "e795a4ec009c61358f28deef878da9d2415871532c3876153f3b5b60420b201b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
+      "provenance": "B205 user-authorized bounded diagnostic-only sampling and fixed read path reviewed;529 targeted local tests PASS. Capacity/source/Store/unit formula/GC unchanged; no deployment or native root-cause claim."
+    },
+    "Mod/UI/ExpeditionTrainingName.xml": {
+      "sha256": "e0e9aedef6807f84f4028d03ca9defd52bee6040b978ed040a7c533e6f205c4e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
+      "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
+    },
+    "Mod/UI/ExpeditionTrainingUI.lua": {
+      "sha256": "8015d6e8164ea8bcbcd7121db2db2663d6333d6775c2374fdc106fee91e0c50f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+    },
+    "Mod/UI/GPPRefresh.lua": {
+      "sha256": "914e53cc361199500b7bdc6d7e723d98fd9605d5046ed401f15cb8115e9ea58b",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B135 authorized pure-local-worker scope and safe pending-cause handling; targeted local PASS; native pending"
+    },
+    "Mod/UI/GPPRefresh.xml": {
+      "sha256": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/GreatWorkBasis.lua": {
+      "sha256": "c76edc36a68408e790c0ff1d7bd05e5df0b11b473c6efb2baa0f54006f59574c",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/IndustryRefresh.lua": {
+      "sha256": "fb9fa4ea155982ded71744938d583b6146a20315df60830653a96ec7a1b2fdc8",
+      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+    },
+    "Mod/UI/IndustryRefresh.xml": {
+      "sha256": "9af08ee9bb27efd3a6dee21d6cda407965200834b4172d63d064a6b1b9396ebe",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/InstitutionOverview.lua": {
+      "sha256": "5b85c0a88a59fcf285ee5dc3cdc079e6a201b6afa265905433a95870dcd9a013",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+    },
+    "Mod/UI/Institutions.lua": {
+      "sha256": "f239ef9364fbbeb9d1b7574fd236253c51df7ffd5fed44da6df42373b9919864",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "provenance": "B256 matched-size atlas repair/build stamps;32 local checks PASS; native visual confirmation pending."
+    },
+    "Mod/UI/Institutions.xml": {
+      "sha256": "212d7dd48aa2318d2cfba2fe396191cb7e1e506195229af9d40335ebca323f3c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/UI/LevelBannerModel.lua": {
+      "sha256": "e22793c3e794fca50ef89ac7752634549e1b67833f24859f206f5142760d3b73",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+    },
+    "Mod/UI/LevelBanners.lua": {
+      "sha256": "37388bc260a55ea6a963e9b387bd11f404229248183d7d0e814dbdb1e975fda5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/UI/LevelBanners.xml": {
+      "sha256": "ef129b895cc972d261a8562a0725f0cc3ad4516e0e1fab9ccf16bb2bda948bf0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/UI/OverflowStorageRead.lua": {
+      "sha256": "832f026fd726c618ac816f2134f03958779d2430bbe70b92236056e5efb8646c",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
+    },
+    "Mod/UI/P0Panel.lua": {
+      "sha256": "14580e747caf44c7a9927e2d2421b8a791eb57bdc66a87c9d614eac052a2e02a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
+      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+    },
+    "Mod/UI/P0Panel.xml": {
+      "sha256": "c34df627a8d1f42f1b536b12347d930689344fc4b3b2f1c88b40e716a5e33f89",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
+      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
+    },
+    "Mod/UI/ProjectTurnRead.lua": {
+      "sha256": "ee9a0714f727f49821ef17998960e4577fbcdb34e5980420f35ccced594df3ad",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
+    },
+    "Mod/UI/ResearchCrossRefresh.lua": {
+      "sha256": "2dc2f58df5320e374bdf4af79493062dda5ba74615f57431a5ca6269ca12f2f4",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/UI/ResearchCrossRefresh.xml": {
+      "sha256": "72f1e300b5cdd94839ee4a6308b265115783af2bf5321da52ef1bebdd8b77498",
+      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
+      "provenance": "B084 P0-D1 reviewed formal cutover"
+    },
+    "Mod/UI/RuntimeAudit.lua": {
+      "sha256": "d33e2225094140b7b4edeb5504a4ff617a6da4be5722718e34f2f418a773989b",
+      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
+      "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
+    },
+    "Mod/UI/RuntimeAudit.xml": {
+      "sha256": "c4459246a7f485b74bb6e5fb4cbce4f148df0c7f2065c8e4d15aa093a845e655",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/TimedProjectCityPanel.lua": {
+      "sha256": "501eeb530040a2369f7b965e3b5afc6deff3cb079c6efcdff8e4c331ae33fe52",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/UI/TimedProjectDisplay.lua": {
+      "sha256": "70bd6d122f854a57b49f175a3619a193d356c9b7e8ebf90b76ea23084c9ff62d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
+      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+    },
+    "Mod/UI/TimedProjectRead.lua": {
+      "sha256": "4fdd50853302ca414249532becbdd17f052b31ebaa5860438a888f80d5e83214",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
+    },
+    "Mod/UI/TimedProjectSelection.lua": {
+      "sha256": "cad579bd9b2b6f7459edd32378e22c52ac974a04af754887cd8b43812fdb4a09",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
+    },
+    "Mod/UI/TimedTurnProbe.lua": {
+      "sha256": "c95456d666bf3636494d2f99460121cb19193d97f271d1292ac170ce62ef8245",
+      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
+      "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
+    },
+    "Mod/UI/UnitPanelActions.lua": {
+      "sha256": "14967b4e7acc4d3d54134eaf37c82001f9c9278376cdfa6b38e37fe81c2bf69f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+    },
+    "Mod/UI/UnitPanelActions.xml": {
+      "sha256": "7a48eaa0f2c9ef58d84a27547e78431407c840d14fb76332d702594546b61145",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
+    },
+    "Mod/UI/UnitSites.lua": {
+      "sha256": "a565b1c3bcb782e1fc44522286aacab4060f65f23777e66ed70dcad37e3ce6e1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
+      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+    },
+    "Mod/UI/UnitSites.xml": {
+      "sha256": "70d9f2854b603bfa9922fbb869b5a74e44ec7427b757b047851ee939aecaaa6e",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/UnitTargetMarkers.lua": {
+      "sha256": "03ccc4ff3ef3d80802f45638fabec6e603815e96357d3b25c58dffebb8c3ea8d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UI/UnitTargetMarkers.xml": {
+      "sha256": "d4a976b7811eb6f5df0f668f15b8a260e4c01576bca3716bfd8ad09e12792331",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UnitActionSitePolicy.lua": {
+      "sha256": "2ff1d9e151678a564e91a45a8324e320917eff617f86db8789b7ce068479dd7d",
+      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
+      "provenance": "B076 unchanged inherited inventory"
+    },
+    "Mod/UnitActions.lua": {
+      "sha256": "3f42d92378b2b363952955be33244d980922ee53582d4143888c934fc23eeb76",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
+      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+    },
+    "Mod/UnitSiteProbe.lua": {
+      "sha256": "2398a3af7567fbf58498eee3e95f91ff3e1c44574ad601cb75b38bb398a9d0fc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
+      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
+    },
+    "Mod/UnitTargets.lua": {
+      "sha256": "8dca19451eda53dc8c5fd7a0bcf195a2855c3cc67409258898ed3fdfbb564397",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
+      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+    },
+    "Mod/YieldCarrierProbe.lua": {
+      "sha256": "df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21",
+      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
+      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+    }
+  },
+  "source_review": "B268.295 selected raw-art delta,24 text gate PASS,18 fixed DDS separately reviewed. Guarded activation from5091059 verified310 source/live files and stable/outgoing recovery. Native rendering remains pending."
+}

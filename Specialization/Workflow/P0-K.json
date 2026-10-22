@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Single-player local human only; AI/free-city owners dormant, no investment. AI/MP future only; no dependency expansion."
+  },
+  "batch": "P0-K",
+  "status": "COMPLETE",
+  "authority_versions": {
+    "design": "D0036",
+    "research": "D0031",
+    "industry": "D0036",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0377",
+    "runtime": "B147.174 / modinfo174",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+  "goal": "Authoritative known Great Work eligibility/era/location facts, domestic era index, on-demand diagnostic; shadow-only, no new gameplay effects",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "kind": "full",
+      "reason": "Current complete facts-only implementation and stop contract"
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "Current authority/override for historical GW rules",
+      "selector": "## 6. Culture / Theater Square — CUL"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0029.json",
+      "kind": "json",
+      "reason": "Complete known eligibility/historical era contract and exclusion",
+      "selector": "/contracts/work_pool"
+    },
+    {
+      "path": "Specialization/Historical/Design/Records/Culture_Era_Presentation_D0032.md",
+      "kind": "full",
+      "reason": "Domestic source lookup/UNKNOWN/cached facts contract; UI layout remains out of scope"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Adaptation.md",
+      "kind": "section",
+      "reason": "Direct bounded P0-K dependency",
+      "selector": "## Shared facts and services"
+    },
+    {
+      "path": "Specialization/Architecture/v2/Batch_A_Input_Contract.md",
+      "kind": "section",
+      "reason": "Direct bounded P0-K dependency",
+      "selector": "## 2. 有效性与读取可用性分开"
+    },
+    {
+      "path": "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md",
+      "kind": "section",
+      "reason": "Direct bounded P0-K dependency",
+      "selector": "## Shared work and publication"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "reason": "Direct bounded P0-K dependency",
+      "selector": "### 公共更新与临时状态接入约束"
+    },
+    {
+      "path": "Mod/UI/DialogueRefresh.lua",
+      "kind": "full",
+      "reason": "Direct producer/receiver/legacy consumer/diagnostic wiring; mandatory implementation review, not mandatory archive/question full read"
+    },
+    {
+      "path": "Mod/DialogueModel.lua",
+      "kind": "full",
+      "reason": "Direct producer/receiver/legacy consumer/diagnostic wiring; mandatory implementation review, not mandatory archive/question full read"
+    },
+    {
+      "path": "Mod/Dialogue.lua",
+      "kind": "full",
+      "reason": "Direct producer/receiver/legacy consumer/diagnostic wiring; mandatory implementation review, not mandatory archive/question full read"
+    },
+    {
+      "path": "Mod/GreatWorkAdjacency.lua",
+      "kind": "full",
+      "reason": "Direct producer/receiver/legacy consumer/diagnostic wiring; mandatory implementation review, not mandatory archive/question full read"
+    },
+    {
+      "path": "Mod/GreatWorkAdjacencyModel.lua",
+      "kind": "full",
+      "reason": "Direct producer/receiver/legacy consumer/diagnostic wiring; mandatory implementation review, not mandatory archive/question full read"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Direct producer/receiver/legacy consumer/diagnostic wiring; mandatory implementation review, not mandatory archive/question full read"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "Direct producer/receiver/legacy consumer/diagnostic wiring; mandatory implementation review, not mandatory archive/question full read"
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "Direct producer/receiver/legacy consumer/diagnostic wiring; mandatory implementation review, not mandatory archive/question full read"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Direct producer/receiver/legacy consumer/diagnostic wiring; mandatory implementation review, not mandatory archive/question full read"
+    },
+    {
+      "path": "Mod/GreatWorkCatalog.lua",
+      "kind": "full",
+      "reason": "Direct implemented facts/catalog/ref/targeted acceptance contract; not a mandatory full read for archive/question actions"
+    },
+    {
+      "path": "Mod/GreatWorkFacts.lua",
+      "kind": "full",
+      "reason": "Direct implemented facts/catalog/ref/targeted acceptance contract; not a mandatory full read for archive/question actions"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Direct implemented facts/catalog/ref/targeted acceptance contract; not a mandatory full read for archive/question actions"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_k.py",
+      "kind": "full",
+      "reason": "Direct implemented facts/catalog/ref/targeted acceptance contract; not a mandatory full read for archive/question actions"
+    }
+  ],
+  "dependencies": [
+    "Existing local human eligibility and reliable current city reference",
+    "Single producer/transport with epoch/seq/ref validation; unchanged legacy Dialogue/GWA",
+    "Culture D0029 work_pool and approved cached domestic lookup contract"
+  ],
+  "old_writers": [
+    "Dialogue: existing B059 percentage/test carriers unchanged",
+    "GreatWorkAdjacency: existing B060 per-work carriers and old collection projection unchanged",
+    "Other Culture support/Lv3/Lv4/Eureka writers remain unchanged; retirement only in their later authorized batch"
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/Probe.lua",
+        "Mod/Text/TestText.sql",
+        "Mod/CurrentSpecializationFacts.lua",
+        "Mod/EffectiveFacts.lua"
+      ],
+      "trigger": "Before changing build/localization/owner read wiring; inspect exact existing callers"
+    },
+    {
+      "paths": [
+        "Specialization/Architecture/v2/P0_E2_Plan.md",
+        "Mod/CityProgressionStore.lua"
+      ],
+      "trigger": "Ownership/reference integration issue; begin with Current slice and precise exit/return contracts, not all E2 historical plans"
+    },
+    {
+      "paths": [
+        "DevelopmentTests/test_b059_dialogue.py",
+        "DevelopmentTests/test_b059_event_refresh.py",
+        "DevelopmentTests/test_b060_gw_adjacency.py",
+        "Specialization/Reports/Technical/Specialization_D0022_Dialogue_Percent.md"
+      ],
+      "trigger": "Targeted compatibility fixtures/legacy era counterexample; do not run full historical runner or adopt old era authority"
+    },
+    {
+      "paths": [
+        "Mod/Data/Dialogue.sql",
+        "Mod/Data/GreatWorkAdjacency.sql"
+      ],
+      "trigger": "Before any legacy writer/carrier change; no new effects authorized in K"
+    }
+  ],
+  "non_scope": [
+    "New Culture yields or old effect retirement",
+    "Dialogue project/permanent quota/Insights/Expedition",
+    "Hybrid D visual UI or U1 polish",
+    "AI specialization/multiplayer/new city identity/save schema",
+    "GC strategy or generalized performance investigation",
+    "Industry/Commerce/future professions"
+  ],
+  "validation": {
+    "local": [
+      "DevelopmentTests/test_p0_k.py: 26 targeted real-Lua tests; no historical broad wrappers",
+      "Read-only configured DB / explicit source registry311; Lua/XML/modinfo/localization/context checks"
+    ],
+    "user": "USER_GAME_TEST_PASS scoped: 10 B147 screenshots/user cold-restart statement; writing/sculpture, two cities, classical era; other boundaries not expanded."
+  },
+  "full_audit_triggers": [
+    "Unbounded dependency or unexpected old effect/state write",
+    "Unknown event/ref cannot establish current ownership/location",
+    "Registry/era semantic conflict with current authority"
+  ],
+  "result": {
+    "implementation": "B147.174 facts-only; authorized after reviewed plan; legacy writers unchanged; no persistent schema",
+    "local": "26 targeted tests LOCAL_SIMULATION_PASS; source/DB/syntax/modinfo STATIC_CONFIRMED",
+    "native": "USER_GAME_TEST_PASS scoped; Specialization/Status/Validation/Results/Specialization_B147_P0K_Pass.md",
+    "stop": "K minimal gate closed; next P0-L1 plan only, no implementation authorization; institution visual polish remains deferred."
+  }
+}

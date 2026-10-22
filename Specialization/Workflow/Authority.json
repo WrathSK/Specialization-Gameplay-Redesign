@@ -1,0 +1,68 @@
+{
+  "workflow": "W0001",
+  "role": "Navigation/review basis only. User is final semantic authority; Primary is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
+  "versions": {
+    "design": "D0057",
+    "research": "D0040",
+    "industry": "D0053",
+    "culture": "D0051",
+    "commerce": "D0057",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0178",
+    "status": "S0711",
+    "runtime": "B268.295 / modinfo295",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "paths": {
+    "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+    "research": "Specialization/Design/Content/Research_D0040.json",
+    "industry": "Specialization/Design/Content/Industry_D0053.json",
+    "culture": "Specialization/Design/Content/Culture_D0051.json",
+    "commerce": "Specialization/Design/Content/Commerce_D0057.json",
+    "shared": "Specialization/Design/Content/Shared_D0045.json",
+    "presentation": "Specialization/Historical/Design/Records/Culture_Era_Presentation_D0032.md",
+    "architecture": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+    "status": "Specialization/Status/Specialization_P0_Status.md",
+    "runtime": "Mod/SpecializationP0.modinfo",
+    "military": "Specialization/Design/Content/Military_D0037.json",
+    "harbor": "Specialization/Design/Content/Harbor_D0037.json",
+    "government": "Specialization/Design/Content/Government_D0047.json"
+  },
+  "acceptance": "Specialization/Design/Design_ChangeLog.md",
+  "content_index": "Specialization/Design/Content/README.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+  "runtime_commit": "50910590270286cb01abc5498ed0f550de93deb2",
+  "current_batch": "B268_DEPLOYED_AWAITING_NATIVE_ART_REVIEW",
+  "next_batch": "User authorized README conflict resolution preserving branch-specific overviews. Promotion candidate uses promotion/v0.1.0-alpha.1; see Specialization/Status/Validation/Results/Specialization_V01_Alpha1_Readme_Resolution.md, which corrects the previous ancestry claim. Await replacement PR review before main merge, stable deployment or tag; runtime unchanged.",
+  "manifest": "Specialization/Workflow/P0-H.json",
+  "live": "B268.295/modinfo295 DEVELOP_ACTIVE; source 50910590270286cb01abc5498ed0f550de93deb2; receipt B268.295-5091059-playtest.json;310/310 MATCH; digest 9c5c1b64a8b4a10c39c2f9bc975c3a59a6ecee08c650e77ac1e5455b2747d6da. Game exit and stable/outgoing recovery verified, no pending marker. Original PNGs remain ignored/untracked; no game launch/configuration/main change.",
+  "stable": "main B069.96 / modinfo96",
+  "historical_only": [
+    "Specialization/Design/Revisions/",
+    "Specialization/Architecture/v2/State_Ownership_Save.md",
+    "Specialization/Architecture/v2/Events_Dirty.md",
+    "Specialization/Architecture/v2/Source_Index.md",
+    "Specialization/Architecture/v2/Event_Catalog.tsv"
+  ],
+  "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
+  "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
+  "context_review_status": "S0711: B268 exact selected raw art deployed after text gate and separate fixed-DDS review.310-file source/live and stable/outgoing recovery MATCH; native rendering remains pending.",
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
+  },
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md"
+}

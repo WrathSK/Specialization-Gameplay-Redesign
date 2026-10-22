@@ -1,0 +1,721 @@
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_UNIT','考察团 #{1_ID}：己方，位置 ({2_X}, {3_Y})。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_OPEN','人文考察·验证'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_TITLE','人文考察团：Spy=0 派遣与共存验证'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_CLOSE','关闭'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_INTRO','独立容量与来源绑定；只通过本窗口派遣。等待期间暂留原地，到期尝试抵达外国城中心；无任务奖励。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_CREATE','① 创建原型'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_REFRESH','刷新报告'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_TRAVEL','② 检查原生接口'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_ARM','③ 开始独立派遣'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_END','结束并移除验证团'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_END_HINT','只移除本验证团，不影响其它单位。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_NO_TARGET','暂无可读目标（已遇见且已揭示的外国首都）'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_INITIAL','选中己方文化 ACTIVE IV 城市后创建。可在城中心保留一个普通平民，观察是否能共存。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_OWN_CITY','请先在地图上选中己方城市。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_CULTURE_IV','创建验证团需要当前文化 ACTIVE IV，且没有待确认投资。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_OCCUPIED','城中心已有平民单位，请先移开。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_CAP','已有验证团，不能再创建。点击刷新查看；完成后可结束验证。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_HELD','原型已暂停，不能继续派遣或重复创建。请回传报告；不会补造、撤退或猜测单位位置。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_TEAM_CHANGED','验证团不可用或已变化。请先刷新；不要用其它单位替代。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_END_FAILED','移除未得到确认。请停止并回传报告。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_DB','验证单位数据库未加载或不符合保护配置，请停止并回传报告。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_ERROR','当前操作未完成：{1_Reason}。请停止并回传报告。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_COUNT','验证团：{1_Count}／1（免费原型，不是正式训练）。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_ENDED','验证团已移除。本批没有写入城市历史或发放收益。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_MISSING','原单位不再属于原Owner或类型已变。测试停止，不创建替代单位。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_WATCH','标记单位 #{1_ID} 仍属于原Owner：标记位置 ({2_X}, {3_Y}) → 当前 ({4_X}, {5_Y})。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_WATCH_NOTE','位置变化不自动证明撤退，需结合实际操作判断。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_CAPACITY','间谍容量：创建前 {1_Before} → 当前 {2_After}（?＝未读到）。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_TIMING','目标：{1_City}；原生旅行 {2_Travel} 回合，建立 {3_Establish} 回合，合计 {4_Total}。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_TIMING_SCOPE','第 {1_Turn} 回合读数；实际派遣由本 Mod 计时，不提交原生间谍操作。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_TIMING_UNKNOWN','耗时接口未确认：{1_Reason}。停止此路径并回传；不会改走原生间谍操作或自行编造回合数。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STOP_HINT','创建/到达后检查双方单位是否仍在原位；接敌仍需观察。若位移、消失、捕获或暂停，请停止。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_WAIT','正在等待本次请求结果，请勿重复点击。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_TIMEOUT','等待结果超时。请点击刷新核对单位；不会自动重发创建请求。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_SEND_ERROR','请求未确认：{1_Error}。先刷新核对，不自动重发。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_UNIT','考察团 #{1_ID}：己方，位置 ({2_X}, {3_Y})。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_OPEN','人文考察·验证'),
+('en_US','LOC_SPC_EXPEDITION_GATE_TITLE','人文考察团：Spy=0 派遣与共存验证'),
+('en_US','LOC_SPC_EXPEDITION_GATE_CLOSE','关闭'),
+('en_US','LOC_SPC_EXPEDITION_GATE_INTRO','独立容量与来源绑定；只通过本窗口派遣。等待期间暂留原地，到期尝试抵达外国城中心；无任务奖励。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_CREATE','① 创建原型'),
+('en_US','LOC_SPC_EXPEDITION_GATE_REFRESH','刷新报告'),
+('en_US','LOC_SPC_EXPEDITION_GATE_TRAVEL','② 检查原生接口'),
+('en_US','LOC_SPC_EXPEDITION_GATE_ARM','③ 开始独立派遣'),
+('en_US','LOC_SPC_EXPEDITION_GATE_END','结束并移除验证团'),
+('en_US','LOC_SPC_EXPEDITION_GATE_END_HINT','只移除本验证团，不影响其它单位。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_NO_TARGET','暂无可读目标（已遇见且已揭示的外国首都）'),
+('en_US','LOC_SPC_EXPEDITION_GATE_INITIAL','选中己方文化 ACTIVE IV 城市后创建。可在城中心保留一个普通平民，观察是否能共存。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_OWN_CITY','请先在地图上选中己方城市。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_CULTURE_IV','创建验证团需要当前文化 ACTIVE IV，且没有待确认投资。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_OCCUPIED','城中心已有平民单位，请先移开。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_CAP','已有验证团，不能再创建。点击刷新查看；完成后可结束验证。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_HELD','原型已暂停，不能继续派遣或重复创建。请回传报告；不会补造、撤退或猜测单位位置。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_TEAM_CHANGED','验证团不可用或已变化。请先刷新；不要用其它单位替代。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_END_FAILED','移除未得到确认。请停止并回传报告。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_DB','验证单位数据库未加载或不符合保护配置，请停止并回传报告。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_ERROR','当前操作未完成：{1_Reason}。请停止并回传报告。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_COUNT','验证团：{1_Count}／1（免费原型，不是正式训练）。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_ENDED','验证团已移除。本批没有写入城市历史或发放收益。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_MISSING','原单位不再属于原Owner或类型已变。测试停止，不创建替代单位。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_WATCH','标记单位 #{1_ID} 仍属于原Owner：标记位置 ({2_X}, {3_Y}) → 当前 ({4_X}, {5_Y})。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_WATCH_NOTE','位置变化不自动证明撤退，需结合实际操作判断。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_CAPACITY','间谍容量：创建前 {1_Before} → 当前 {2_After}（?＝未读到）。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_TIMING','目标：{1_City}；原生旅行 {2_Travel} 回合，建立 {3_Establish} 回合，合计 {4_Total}。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_TIMING_SCOPE','第 {1_Turn} 回合读数；实际派遣由本 Mod 计时，不提交原生间谍操作。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_TIMING_UNKNOWN','耗时接口未确认：{1_Reason}。停止此路径并回传；不会改走原生间谍操作或自行编造回合数。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STOP_HINT','创建/到达后检查双方单位是否仍在原位；接敌仍需观察。若位移、消失、捕获或暂停，请停止。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_WAIT','正在等待本次请求结果，请勿重复点击。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_TIMEOUT','等待结果超时。请点击刷新核对单位；不会自动重发创建请求。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_SEND_ERROR','请求未确认：{1_Error}。先刷新核对，不自动重发。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_UNIT_NAME','人文考察团（验证）'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_DESCRIPTION','N1技术验证单位：非间谍，采用原生被捕撤退标志。免费测试创建；不提供正式任务或收益。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_UNIT_NAME','人文考察团（验证）'),
+('en_US','LOC_SPC_EXPEDITION_GATE_DESCRIPTION','N1技术验证单位：非间谍，采用原生被捕撤退标志。免费测试创建；不提供正式任务或收益。');
+
+-- B179: P0 entry and readable unavailable state; Chinese remains the UI language.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_UI_UNAVAILABLE','人文考察验证窗口尚未就绪（{1_Version}）。请停止并回传此提示；本次没有创建单位。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_UI_UNAVAILABLE','人文考察验证窗口尚未就绪（{1_Version}）。请停止并回传此提示；本次没有创建单位。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_PANEL_HINT','选中城市后查看专业与文化报告。人文考察团测试请点击右下方“人文考察·验证”。[NEWLINE]已完成阶段的诊断入口暂时隐藏，相关能力仍正常运行。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_PANEL_HINT','选中城市后查看专业与文化报告。人文考察团测试请点击右下方“人文考察·验证”。[NEWLINE]已完成阶段的诊断入口暂时隐藏，相关能力仍正常运行。');
+
+INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
+('zh_Hans_CN', 'LOC_SPC_EXPEDITION_GATE_UI_OPEN_FAILED', '人文考察验证窗口未能打开，当前面板已保留。请截图此提示并暂停本项测试；不要重复点击创建单位。'),
+('en_US', 'LOC_SPC_EXPEDITION_GATE_UI_OPEN_FAILED', '人文考察验证窗口未能打开，当前面板已保留。请截图此提示并暂停本项测试；不要重复点击创建单位。');
+
+-- B181: readable target navigation; no glyph-only arrows.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_PREVIOUS','上一目标'),
+('en_US','LOC_SPC_EXPEDITION_GATE_PREVIOUS','上一目标'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_NEXT','下一目标'),
+('en_US','LOC_SPC_EXPEDITION_GATE_NEXT','下一目标');
+
+-- B182: narrow independent dispatch diagnostics.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_LEGACY','这是旧撤退原型。请先“结束并移除验证团”，再创建 Spy=0 新原型。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_LEGACY','这是旧撤退原型。请先“结束并移除验证团”，再创建 Spy=0 新原型。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_UNBOUND','此团没有本次会话的可靠来源绑定（如读档后）。仍占容量，只能显式结束；不会猜测恢复。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_UNBOUND','此团没有本次会话的可靠来源绑定（如读档后）。仍占容量，只能显式结束；不会猜测恢复。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_SOURCE','来源：{1_City}（城市 #{2_ID}）；绑定保持，不随当前选城改变。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_SOURCE','来源：{1_City}（城市 #{2_ID}）；绑定保持，不随当前选城改变。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_JOURNEY','派遣中 → {1_City}：预计第 {2_Due} 回合抵达，剩余 {3_Left} 回合。原型等待期间留在出发地。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_JOURNEY','派遣中 → {1_City}：预计第 {2_Due} 回合抵达，剩余 {3_Left} 回合。原型等待期间留在出发地。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_ARRIVED','已精确抵达 {1_City}；到达时检查了 {2_Count} 个原有单位，未发现位移或消失。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_ARRIVED','已精确抵达 {1_City}；到达时检查了 {2_Count} 个原有单位，未发现位移或消失。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_READY','单位已绑定。请检查右键不能步行，再选择目标并开始独立派遣。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_READY','单位已绑定。请检查右键不能步行，再选择目标并开始独立派遣。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_COLOCATED','当前同格其它单位：{1_Count}。同格读数本身不证明接敌免疫。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_COLOCATED','当前同格其它单位：{1_Count}。同格读数本身不证明接敌免疫。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_NATIVE_UNKNOWN','原生间谍旅行操作：无法读取资格；不会提交该操作。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_NATIVE_UNKNOWN','原生间谍旅行操作：无法读取资格；不会提交该操作。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_NATIVE_ALLOWED','原生间谍旅行操作：资格查询允许；尚未执行，不能据此判定安全。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_NATIVE_ALLOWED','原生间谍旅行操作：资格查询允许；尚未执行，不能据此判定安全。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_NATIVE_REJECTED','原生间谍旅行操作：资格查询拒绝。原因未由引擎说明；独立派遣仍可测试。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_NATIVE_REJECTED','原生间谍旅行操作：资格查询拒绝。原因未由引擎说明；独立派遣仍可测试。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_ZERO_NAME','人文考察团（Spy=0原型）'),
+('en_US','LOC_SPC_EXPEDITION_ZERO_NAME','人文考察团（Spy=0原型）'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_ZERO_DESCRIPTION','独立派遣与共存测试；不参加间谍任务，不发放奖励。'),
+('en_US','LOC_SPC_EXPEDITION_ZERO_DESCRIPTION','独立派遣与共存测试；不参加间谍任务，不发放奖励。');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_OCCUPANCY_UNKNOWN','无法读取同格单位，不能判断共存结果。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_OCCUPANCY_UNKNOWN','无法读取同格单位，不能判断共存结果。');
+
+-- B183: bounded failure details with reliable source/capacity readback.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_FAILURE_STEP','失败环节：{1_Step}。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_FAILURE_STEP','失败环节：{1_Step}。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_FAILURE_DETAIL','技术详情：{1_Detail}'),
+('en_US','LOC_SPC_EXPEDITION_GATE_FAILURE_DETAIL','技术详情：{1_Detail}'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_READBACK_UNKNOWN','单位与容量回读未确认；不能按0团处理。请停止并回传。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_READBACK_UNKNOWN','单位与容量回读未确认；不能按0团处理。请停止并回传。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_SOURCE_RECORDED','记录来源：{1_City}（城市 #{2_ID}）；当前已暂停，不代表来源核对通过或已重新绑定。'),
+('en_US','LOC_SPC_EXPEDITION_GATE_SOURCE_RECORDED','记录来源：{1_City}（城市 #{2_ID}）；当前已暂停，不代表来源核对通过或已重新绑定。'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_REQUEST','请求检查'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_REQUEST','请求检查'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_READ','单位与来源回读'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_READ','单位与来源回读'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_CREATE','创建原型'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_CREATE','创建原型'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_DISPATCH','启动独立派遣'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_DISPATCH','启动独立派遣'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_TARGET','目标资格核对'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_TARGET','目标资格核对'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_CAPITAL','目标首都核对（GetCapitalCity）'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_CAPITAL','目标首都核对（GetCapitalCity）'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_ARRIVAL_CHECK','到达前核对'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_ARRIVAL_CHECK','到达前核对'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_RESTORE_MOVEMENT','到达前恢复移动接口'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_RESTORE_MOVEMENT','到达前恢复移动接口'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_PLACE_UNIT','精确放置（PlaceUnit）'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_PLACE_UNIT','精确放置（PlaceUnit）'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_ARRIVAL_VERIFY','到达位置与其它单位核对'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_ARRIVAL_VERIFY','到达位置与其它单位核对'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_END','移除验证团'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_END','移除验证团'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_TURN','回合核对'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_TURN','回合核对'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_GATE_STEP_REFERENCE','城市引用核对'),
+('en_US','LOC_SPC_EXPEDITION_GATE_STEP_REFERENCE','城市引用核对');
+
+-- B184 Spy=1 isolation prototype (old keys retained).
+INSERT INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME','人文考察团'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME','Humanities Expedition'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DESCRIPTION','绑定来源城市且拥有独立名额的特殊文化单位（当前暂占用 1 个原生间谍名额）。可派遣至已遇见的外国主要文明执行专属计时考察任务，首次完成可为来源城市赢得「文化见闻」；不可执行原生间谍任务。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DESCRIPTION','Own capacity/source probe; temporarily uses one native Spy slot. Independent timer, no reward or native Spy mission.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TITLE','人文考察·Spy=1隔离验证'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_TITLE','Expedition: Spy=1 isolation'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_INTRO','验证：派遣后绑定 → 独立2回合计时 → 无奖励。暂占1个原生间谍名额；仅新建验证团可测试。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_INTRO','Verify arrival binding, an independent two-turn timer and no reward. Temporarily uses one native Spy slot. Create a fresh probe.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_INITIAL','请选择文化IV来源城，创建一支验证团。旧验证团须先结束。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_INITIAL','Select a Culture IV source and create one probe. End any old probe first.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_CREATE','① 创建Spy验证团'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_CREATE','1. Create Spy probe'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_CHECK','② 读取派遣与情报隔离'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_CHECK','2. Read travel/source isolation'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DISPATCH','③ 原生派遣'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DISPATCH','3. Native dispatch'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_YES','是'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_YES','yes'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NO','否'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NO','no'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_RESERVED','途中/身份未确认：容量仍保留；当前可见验证团{1}支。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_RESERVED','Travelling/unconfirmed identity: capacity reserved; {1} visible probes.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_UNBOUND','旧团或未绑定团：只计入容量，可明确结束，不自动接回来源。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_UNBOUND','Old/unbound probe: counts against capacity; explicit END only, no automatic rebinding.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_JOURNEY','原生派遣至{1}；预计T{2}附近抵达，届时核对完整原生命名。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_JOURNEY','Native travel to {1}; expected near T{2}, followed by native-name verification.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_AUDIT','原生上限 {1}→{2}；普通间谍 {3}→{4}；来源城可训练普通间谍 {5}→{6}。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_AUDIT','Native maximum {1}→{2}; ordinary spies {3}→{4}; source can train ordinary Spy {5}→{6}.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_CLASSIFIED','原生Spy分类总数：{1}。隔离观察：{2}。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_CLASSIFIED','Native Spy-class count: {1}. Isolation observation: {2}.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_COMPARE_UNKNOWN','无法确认；仅为观察结果'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_COMPARE_UNKNOWN','unknown; diagnostic observation only'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_COMPARE_CHANGED','出现变化，需核对；不等于已证明干扰原因'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_COMPARE_CHANGED','changed; attribution requires review'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_COMPARE_SCOPED_UNCHANGED','上述可读项未变；不证明所有间谍名额完全隔离'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_COMPARE_SCOPED_UNCHANGED','readable fields unchanged; not proof of complete native slot isolation'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_COMPARE_PARTIAL','仅部分可读；训练名额是否受影响尚未证明'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_COMPARE_PARTIAL','partial; native training-slot isolation unproved'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TIMING','派遣{1}T＋建立{2}T；原生允许派遣：{3}。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_TIMING','Travel {1}T + establish {2}T; native travel allowed: {3}.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_READ_ERROR','接口读取未确认：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_READ_ERROR','Unconfirmed API read: {1}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_GAIN','目标情报源剩余：{1}T；任务可用：{2}；未察觉成功：{3}，暴露后逃离成功：{4}（原始概率）。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_GAIN','Target sources remaining: {1}T; eligible: {2}; undetected success: {3}, detected/escape success: {4} (raw probabilities).'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_GAIN_BLOCKED','获取情报源：禁止执行。原生情报状态与HD完成奖励尚无定域隔离证据；成功率100%不代表无副作用。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_GAIN_BLOCKED','Gain Sources: execution blocked. Native sources and HD completion rewards lack scoped isolation; 100% success is not absence of side effects.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_EVENTS','观察期间玩家级间谍完成事件：{1}；最近操作：{2}。归属未确认，不按名字猜测。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_EVENTS','Player-level Spy completion events during observation: {1}; latest operation: {2}. Attribution unknown; no name matching.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_STOP_HINT','出现暂停、原生任务弹窗或额外奖励请停止；旧/未绑定团只能明确结束。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_STOP_HINT','Stop on a hold, native mission popup or unexpected reward. Old/unbound probes allow explicit END only.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_BOUND_REQUIRED','请先创建本次绑定验证团；暂停/未绑定团只能读取或结束。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_BOUND_REQUIRED','Create this session''s bound probe first; held/unbound probes are read/END only.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_IDLE','尚未创建本次验证团'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_IDLE','No session probe yet'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_CREATING','正在确认创建结果'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_CREATING','Confirming creation'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_CREATED','验证团已创建，可读取派遣条件'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_CREATED','Probe created; read travel conditions'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_TRAVELLING','原生派遣中，容量与来源记录保留'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_TRAVELLING','Native travel in progress; capacity/source retained'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_ARRIVED','已抵达；身份与原来源绑定已核对，可开始无奖励任务。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_ARRIVED','Arrived; native name and original source verified. The no-reward task is available.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_HELD','实验暂停；保留原单位/来源记录，不猜测恢复'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_HELD','Probe held; unit/source record retained without guessed recovery'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_ENDING','正在确认结束结果'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_ENDING','Confirming END'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_ENDED','本次验证团已结束'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_ENDED','Probe ended');
+
+-- B185 owned timer and exact-type native UI isolation.
+INSERT INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MANAGE','管理人文考察团：打开自有派遣/任务窗口'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_MANAGE','Manage Expedition: open its own travel/task window'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TASK','④ 无奖励任务（2回合）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_TASK','4. No-reward task (two turns)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_BOUND','原生命名核对成功；创建编号{1} → 当前编号{2}，原来源保留。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_BOUND','Native name verified; created ID {1} → current ID {2}, original source retained.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TASK_PROGRESS','独立任务：T{1}开始，T{2}到期；完成次数{3}/1；奖励：无。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_TASK_PROGRESS','Own task: started T{1}, due T{2}; completions {3}/1; reward: none.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TASK_ISOLATION','情报源剩余回合 {1}→{2}；当前原生任务 {3}（-1=无）；本玩家原生任务完成事件新增 {4}。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_TASK_ISOLATION','Source turns {1}→{2}; native operation {3} (-1=none); additional player-level native completion events: {4}.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TASK_REQUIRES_ARRIVAL','需先抵达且身份/来源绑定核对成功。每支验证团只做一次任务。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_TASK_REQUIRES_ARRIVAL','Arrive with verified identity/source first. One task per probe.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TASK_NATIVE_NOT_IDLE','未确认原生任务为空；本次不启动。刷新报告后保留异常信息。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_TASK_NATIVE_NOT_IDLE','Native idle state is not confirmed; task not started. Refresh and retain the error.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_TASK_RUNNING','无奖励任务计时中；窗口关闭也会继续计时。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_TASK_RUNNING','Independent no-reward task running; closing this window does not stop it.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_TASK_COMPLETE','无奖励任务完成；仅完成计时，没有发放任何奖励。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_TASK_COMPLETE','No-reward task complete; only the timer completed, with no reward granted.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_COMPARE_SLOT_COST_ACCEPTED','原生名额/途中状态变化：暂接受；不代表原生容量独立'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_COMPARE_SLOT_COST_ACCEPTED','Native slot/travel-state change accepted temporarily; native capacity is not independent');
+
+-- B186: bounded arrival identity diagnostics; no raw marker or state mutation.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_RETAINED_SOURCE','记录来源：{1}（城市 #{2}）；记录仍保留，但尚未确认与当前单位绑定。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_RETAINED_SOURCE','Recorded source: {1} (city #{2}); retained, but not verified as bound to the current unit.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_SUMMARY','身份读取：可见标记={1}；精确查询标记={2}；地块枚举={3}；来源引用={4}。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_SUMMARY','Identity read: visible marker={1}; exact-lookup marker={2}; plot membership={3}; source reference={4}.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_IDS','创建/追踪/可见编号：{1} / {2} / {3}；验证团集合数量：{4}。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_IDS','Created/tracked/observed IDs: {1} / {2} / {3}; prototype collection count: {4}.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_LOOKUPS','旧编号查询→{1}（{2}）；追踪编号查询→{3}（{4}）；可见编号查询→{5}（{6}）。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_LOOKUPS','Created-ID lookup→{1} ({2}); tracked-ID lookup→{3} ({4}); observed-ID lookup→{5} ({6}).'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_TURN','本次读取T{1}；预计抵达T{2}。未确认身份时不会启动任务。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_TURN','Read at T{1}; arrival expected T{2}. An unconfirmed identity cannot start a task.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_MATCH','匹配'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_MATCH','match'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_ABSENT','未发现'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_ABSENT','absent'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_MISMATCH','不匹配'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_MISMATCH','mismatch'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_UNREADABLE','无法可靠读取'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_UNREADABLE','unreadable'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_NO_UNIT','没有可读对象'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_NO_UNIT','no readable unit'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_NO_SESSION','无本次身份记录'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_NO_SESSION','no session identity'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_WRONG_UNIT','Owner/类型不符'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_WRONG_UNIT','wrong owner/type'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_AMBIGUOUS','多个候选，停止绑定'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_AMBIGUOUS','multiple candidates; no binding'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_PRESENT','包含该单位'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_PRESENT','includes unit'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_OFF_MAP','原生途中/地图外'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_OFF_MAP','native travel/off-map');
+
+-- B187 native-name preparation and raw before/after readback.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_PREFIX','人文考察团·'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_PREFIX','Expedition · '),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_NAMING','正在准备名称；读回确认前不能派遣。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_NAMING','Preparing the name; dispatch is blocked until readback matches.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_READBACK','预期名称：{1}[NEWLINE]实际名称：{2}[NEWLINE]派遣前确认：{3}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_READBACK','Expected name: {1}[NEWLINE]Observed name: {2}[NEWLINE]Pre-dispatch confirmation: {3}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_VERIFIED','已确认；抵达后仍需重新匹配'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_VERIFIED','verified; arrival must match again'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_WAITING','尚未确认'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_WAITING','not yet verified'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_IDENTITY_SUMMARY','身份读取：可见名称={1}；精确查询名称={2}；地块枚举={3}；来源引用={4}。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_IDENTITY_SUMMARY','Identity read: visible name={1}; exact-lookup name={2}; plot membership={3}; source reference={4}.');
+
+-- B188: separate UI publication readiness, native command and name confirmation.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE','名称准备：{1}[NEWLINE]读取详情：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE','Name preparation: {1}[NEWLINE]Read detail: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READINESS','等待界面读到新考察团（最多10秒）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READINESS','waiting for the new unit in UI (up to10seconds)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_COMMAND','单位已核对；检查并提交一次改名'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_COMMAND','unit verified; checking and submitting one rename'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READBACK','已提交改名；等待名称读回（最多10秒）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READBACK','rename submitted; waiting for name readback (up to10seconds)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_GAMEPLAY','界面名称一致；等待游戏逻辑确认'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_GAMEPLAY','UI name matches; awaiting Gameplay confirmation'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_CONFIRMED','已确认，可以派遣'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_CONFIRMED','confirmed; ready to dispatch');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_CANCELLED','准备已因关闭窗口取消；不会自动重试。若仍未确认，请结束并移除验证团'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_CANCELLED','preparation cancelled on close; no automatic retry. If still unconfirmed, use END');
+
+-- B189: native automatic naming; no NAME_UNIT command.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_NAMING','等待原生姓名；尚不能派遣'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_NAMING','Waiting for a native name; dispatch unavailable'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READING','观察引擎分配的姓名'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STAGE_READING','Observing the engine-assigned name'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_POOL','已加载姓名池：{1}，{2}个姓名。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_POOL','Loaded name pool: {1}, {2} names.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_OBSERVATION','当前原生姓名：{1}；默认名：{2}；姓名池{3}条／途中间谍{4}。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_OBSERVATION','Observed raw name: {1}; default: {2}; pool {3} / off-map spies {4}.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_READBACK','本次确认姓名：{1}[NEWLINE]当前读回：{2}[NEWLINE]姓名核对：{3}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NAME_READBACK','Accepted session name: {1}[NEWLINE]Current readback: {2}[NEWLINE]Name check: {3}');
+
+
+-- B190 task-owned native activity. Display only; Gameplay remains authoritative.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_TASK_PREPARING','正在准备任务状态；确认后开始计时。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_TASK_PREPARING','Preparing task activity; timing begins after confirmation.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_SLEEP','正在让考察团进入任务状态，请稍候。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_SLEEP','Entering task activity; please wait.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ASLEEP','任务进行中：无需手动待命；完成后自动释放活动占用。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ASLEEP','Task active: no manual idle action required; activity releases on completion.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_RELEASE','正在释放任务活动占用，请稍候。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_RELEASE','Releasing task activity; please wait.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_NONE','任务活动占用已释放。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_NONE','Task activity released.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_BLOCKED','任务活动异常，已暂停；请保留报告，可结束并移除验证团。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_BLOCKED','Task activity blocked; retain the report. END can remove the probe.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ERROR','任务状态异常：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ERROR','Task activity error: {1}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_WAIT','任务进行中或正在释放活动占用；目前只能查看管理报告或结束验证团。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_WAIT','Task active or releasing activity; use management/status or END.');
+
+
+-- B191: a held task does not by itself prove lost source identity.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_HELD_MATCH','本次读取确认：当前单位、姓名及来源引用仍匹配；任务已暂停，不代表绑定丢失。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_HELD_MATCH','This read confirms matching unit, name and source reference. The task is held; binding loss is not demonstrated.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_HELD_RECHECK','任务暂停；来源记录保留，当前绑定请刷新核对。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_HELD_RECHECK','Task held; source record retained. Refresh to verify the current binding.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_HELD_SOURCE','保留的来源记录：{1}（城市 #{2}）。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_HELD_SOURCE','Retained source record: {1} (city #{2}).');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_FAILURE','任务状态异常：{1}[NEWLINE]错误代码：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_FAILURE','Task activity error: {1}[NEWLINE]Error code: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_DATA','任务活动所需的原生动作定义不可用。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_DATA','A required native action definition is unavailable.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_API','当前界面缺少所需的原生接口。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_API','A required native API is unavailable in this UI context.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_DENIED','原生引擎未允许或未接受本次活动操作。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_CAUSE_DENIED','The native engine did not allow or accept this activity action.');
+
+
+-- B192: read-only startup sample; this does not authorize an activity request.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_HEADER','启动时活动诊断 · 回合 {1}（历史采样，非实时状态）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_HEADER','Startup activity diagnostic · turn {1} (historical sample, not live state)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ACTIVITY','实际活动：{1}；待命就绪：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ACTIVITY','Actual activity: {1}; ready: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ENUM_A','活动枚举 AWAKE：{1}；HOLD：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ENUM_A','Activity enums AWAKE: {1}; HOLD: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ENUM_B','活动枚举 SLEEP：{1}；OPERATION：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ENUM_B','Activity enums SLEEP: {1}; OPERATION: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_SPY','原生间谍任务：{1}；结束回合：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_SPY','Native spy operation: {1}; end turn: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_SLEEP_HASH','原生 SLEEP 动作 Hash：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_SLEEP_HASH','Native SLEEP action Hash: {1}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ELIGIBILITY','原生 SLEEP 资格：{1}；原始返回值：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ELIGIBILITY','Native SLEEP eligibility: {1}; raw return: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ALLOWED','允许'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_ALLOWED','Allowed'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_DENIED','不允许'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_DENIED','Denied'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_UNKNOWN','未知'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_DIAGNOSTIC_UNKNOWN','Unknown');
+
+
+-- B193: exact failure-time guard sample, separate from the startup observation.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_HEADER','失败时活动诊断 · 回合 {1}（失败瞬间采样）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_HEADER','Failure-time activity diagnostic · turn {1} (sample at failure)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE','失败阶段：{1}；错误：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE','Failure phase: {1}; error: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE_PRE_REQUEST_GUARD','SLEEP 请求前的活动检查'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE_PRE_REQUEST_GUARD','activity guard before the SLEEP request'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE_POST_REQUEST_READBACK','SLEEP 请求后的活动读回'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE_POST_REQUEST_READBACK','activity readback after the SLEEP request'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE_UNKNOWN','未知'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE_UNKNOWN','unknown'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_ACTIVITY','失败时实际活动：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_ACTIVITY','Actual activity at failure: {1}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_REQUEST','本次已请求 SLEEP：{1}；SLEEP 尝试标记：{2}（不代表引擎已接受）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_REQUEST','SLEEP requested for this job: {1}; SLEEP attempt recorded: {2} (not proof of native acceptance)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_EQUAL_A','精确相等 AWAKE：{1}；HOLD：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_EQUAL_A','Exact equality AWAKE: {1}; HOLD: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_EQUAL_B','精确相等 SLEEP：{1}；OPERATION：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_EQUAL_B','Exact equality SLEEP: {1}; OPERATION: {2}');
+
+
+-- B194: timeout preserves the last valid activity read, not a new deadline query.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMEOUT_HEADER','等待超时诊断 · 回合 {1}（活动取自最近有效读取，非超时瞬间新读取）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMEOUT_HEADER','Activity timeout diagnostic · turn {1} (last valid read, not a fresh query at timeout)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE_PENDING_TIMEOUT','SLEEP 已请求，等待确认超时'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_PHASE_PENDING_TIMEOUT','SLEEP requested; confirmation wait timed out'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMING','超时时已等待：{1}秒；最近有效读取：等待{2}秒时（回合{3}）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMING','Elapsed at timeout: {1}s; last valid read at {2}s (turn {3})'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMEOUT_ACTIVITY','最近有效读取的活动：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_FAILURE_DIAGNOSTIC_TIMEOUT_ACTIVITY','Activity from the last valid read: {1}');
+
+-- B196: explicit normal action views; diagnostic copy remains separate.
+INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTION_TRAVEL','派遣到新城市'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTION_TRAVEL','Travel to a new city'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTION_TASK','任务'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTION_TASK','Tasks'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTION_UNAVAILABLE','当前不可用。抵达后可开始一次验证任务；完成后请从 P0「人文考察·验证」结束验证团。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTION_UNAVAILABLE','Unavailable in the current state. Start one test task after arrival; after completion, END the team through the P0 verification panel.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_INTRO','本批只列出已遇见外国主要文明的已揭示首都；确认时检查原生派遣条件。考察团容量与来源城绑定保持不变。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_INTRO','This batch lists only revealed capitals of met foreign major civilizations. Confirmation checks native travel eligibility; expedition capacity and source-city binding stay unchanged.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TASK_INTRO','当前原型仅提供一次无奖励的 2 回合任务。确认休眠后开始计时；关闭窗口不会中断任务。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TASK_INTRO','This prototype offers one no-reward, two-turn task. Timing starts after SLEEP is confirmed; closing the window does not interrupt it.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_CONFIRM','确认派遣'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_CONFIRM','Confirm travel'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TASK_CONFIRM','开始无奖励任务（2回合）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TASK_CONFIRM','Start no-reward task (2 turns)'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECTION_CHANGED','正在核对所选考察团；若已切换单位，请关闭窗口后从该团的按钮重新打开。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECTION_CHANGED','Checking the selected team. If selection changed, close this window and reopen it from that team’s action.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TEAM','考察团：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TEAM','Team: {1}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_SOURCE','来源城市：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_SOURCE','Source city: {1}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_DESTINATION','所在／目标城市：{1}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_DESTINATION','Current / destination city: {1}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_REMAINING','剩余：{1}回合'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_REMAINING','Remaining: {1} turns'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_NAME_UNKNOWN','尚未确认'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_NAME_UNKNOWN','Not confirmed'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_ONE_SHOT','本次任务已结束，考察团已返回该城市中心。你可在此城继续执行其它未完成的考察任务，或点击「派遣到新城市」前往新的目的地。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_ONE_SHOT','The mission has ended and the team returns to the city centre. Start another unfinished mission here, or travel to a new city.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_CREATED','状态：待派遣'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_CREATED','Status: ready to travel'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ARRIVED','状态：已抵达，可以开始任务'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ARRIVED','Status: arrived; task available'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TRAVELLING','状态：派遣中'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TRAVELLING','Status: travelling'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_PREPARING','状态：任务准备中（尚未开始计时）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_PREPARING','Status: preparing task; timer not started'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_RUNNING','状态：任务进行中'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_RUNNING','Status: task running'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_COMPLETE','状态：考察任务已完成'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_TASK_COMPLETE','Status: task complete; no reward'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_HELD','状态：已暂停（状态待核对）'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_HELD','Status: held; check the P0 detailed report'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ENDING','状态：结束中'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ENDING','Status: ending'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ENDED','状态：验证团已结束'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PHASE_ENDED','Status: team ended');
+
+-- B197: native-style sidebar presentation, no new task or reward.
+INSERT OR REPLACE INTO LocalizedText (Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TRAVEL_HINT','请先选择目的地，再点击确认派遣。确认派遣前请核对行程耗时与目标城市的考察条件。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TRAVEL_HINT','Select a destination, then confirm travel. Only revealed capitals of met civilizations are listed; travel time and eligibility are checked on confirmation.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_HINT','选择任务，使用下方按钮确认开始。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_HINT','Review the task, then use the button below to start it.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_NAME','无奖励验证任务'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_NAME','No-reward test task'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_DETAILS','在当前城市停留2回合，不发放奖励。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_DETAILS','Remain in the current city for 2 turns without rewards.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_LOCATION','[ICON_LocationPip] 当前城市'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_TASK_LOCATION','[ICON_LocationPip] Current city'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_SIDEBAR_CIV_UNKNOWN','文明信息未知'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_SIDEBAR_CIV_UNKNOWN','Civilization unavailable');
+
+-- B198: native-layout labels and readable scoped failure reasons.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_START_TASK','开始任务'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_START_TASK','Start task'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_PREVIEW','派遣预览'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_PREVIEW','Travel preview'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_CARD','派遣至所选城市'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_CARD','Travel to selected city'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_DETAILS','抵达后可选择无奖励验证任务。此处显示预计派遣与建立联络的总回合数，确认时重新核对。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TRAVEL_DETAILS','After arrival, select the no-reward test task. This preview shows travel plus establishment turns; confirmation checks them again.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_TIMING_UNKNOWN','预计时间暂时无法读取；确认时重新核对。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_TIMING_UNKNOWN','Estimated time unavailable; checked again on confirmation.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_PREFLIGHT_UNKNOWN','尚未确认当前考察团或目标的派遣条件，本次未发送派遣请求。请重新打开；若仍失败，查看 P0「人文考察·验证」详细报告。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_PREFLIGHT_UNKNOWN','Current team or target eligibility could not be confirmed; no travel request was sent. Reopen, or inspect the P0 Expedition verification report if it persists.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_CREATION','创建准备期间普通间谍状态发生变化或无法读取，验证团已暂停。请从 P0 结束本团后重新创建；准备完成后可正常操作普通间谍。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_CREATION','Ordinary Spy state changed or became unreadable during creation. The test team is held. END it through P0 and create a new team; ordinary Spies may be used normally after preparation.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_TARGET','目标城市已变化或无法确认，本次不能派遣。请重新打开目的地列表；详细原因见 P0 报告。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_TARGET','The target changed or could not be confirmed. Reopen the destination list; the P0 report retains the detailed reason.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_NATIVE','原生引擎未确认或拒绝本次派遣。请查看 P0「人文考察·验证」详细报告，不要连续重复提交。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_NATIVE','The native engine did not confirm or rejected this travel request. Inspect the P0 Expedition verification report; do not repeatedly submit.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_UNKNOWN','考察团已暂停或操作失败。请查看 P0「人文考察·验证」详细报告，保留其中的具体错误。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_FAILURE_UNKNOWN','The team is held or the action failed. Inspect the P0 Expedition verification report for the specific error.');
+
+
+-- B199: explicit choices and mission-only relocation preview.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECT_CITY','请选择目的地'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECT_CITY','Select a destination'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECT_TASK','请选择任务，再确认开始。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_SELECT_TASK','Select a task, then confirm to start.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW','任务预览'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW','Mission preview'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW_DETAILS','抵达后可开始一次2回合的无奖励任务。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_MISSION_PREVIEW_DETAILS','After arrival, start one two-turn task without rewards.');
+
+
+-- B199: partial foreign location data is not a complete empty result.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE','地点信息未完整确认'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE','Location data incomplete'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE_TT','仅显示已确认的地点；其余地点暂时无法完整读取，不代表不存在。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_NORMAL_LOCATIONS_INCOMPLETE_TT','Only confirmed locations are shown. Other locations could not be fully read; this does not mean they are absent.');
+
+-- B201: persistence and fresh activity recovery; no gameplay naming changes.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ARMED','任务开始请求已保存，等待单位进入休眠'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_ARMED','Task request saved; waiting for native sleep'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_RECOVER','正在核对读档后的单位活动，不重发原生指令'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_RECOVER','Checking loaded unit activity; native commands are not replayed'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE','考察团记录：{1}；记录代次：{2}'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE','Expedition record: {1}; generation: {2}'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_ABSENT','无本批保存记录'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_ABSENT','No saved batch record'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_CONFIRMED','已保存并读回确认'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_CONFIRMED','Saved and confirmed by readback'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_RESTORED','已从存档恢复'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_RESTORED','Restored from save'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_UNAVAILABLE','无法可靠读取；容量保留，禁止新建'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_PERSISTENCE_UNAVAILABLE','Record unavailable; capacity reserved, creation blocked');
+
+-- B202 normal training presentation.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAINING_HELP','本城文化启用等级达到 4 级时可训练。全国同时最多拥有 1 支（生产队列中的项目亦占用名额）。生产成本沿用间谍公式，并独立累计考察团的训练次数。训练完成后将自动绑定来源城市；请通过「派遣到新城市」或「任务」按钮进行操作。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_PHASE_TRAINING','训练中（名额已保留）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_TRAINING_HELP','文化专业ACTIVE IV可训练；全国上限1支，队列亦占用名额。生产成本沿用间谍公式，考察团次数独立累计。训练完成后自动绑定来源城；请使用派遣到新城市／任务按钮。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_SPY_PHASE_TRAINING','训练中（名额已保留）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TRAINING_ERROR','训练或自动登记未确认：{1_Reason}。请查看原因并保留报告；未确认的名额不会自动释放。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_SPY_TRAINING_ERROR','训练或自动登记未确认：{1_Reason}。请查看原因并保留报告；未确认的名额不会自动释放。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAINING_NATIVE_DENIED','原生生产条件未满足（例如间谍名额不足）；训练未开始，已释放本次预留。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_EXPEDITION_TRAINING_NATIVE_DENIED','原生生产条件未满足（例如间谍名额不足）；训练未开始，已释放本次预留。');
+
+-- B203: normal-training readiness, separate from free diagnostic creation.
+INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_TRAINED_COUNT','考察团：{1_Count}／1（城市训练）。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_TRAINED_COUNT','Expedition: {1_Count}/1 (city-trained).'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_PENDING','正在确认考察团身份，请稍候；无需打开 P0 面板。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_PENDING','Confirming Expedition identity; please wait. Opening P0 is not required.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_WAITING','原生姓名暂未就绪。重新选择本团或下个玩家回合会有限重试；名额与来源保留。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_WAITING','Native name is not ready. Reselect the team or wait for the next player turn for a bounded retry. Capacity and source are retained.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_STOPPED','身份确认已暂停：{1_Reason}。请保留此信息；不要另建考察团。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_STOPPED','Identity confirmation stopped: {1_Reason}. Preserve this message; do not create another team.');
+
+-- B204: one readable stage/reason, including absence of an initialized observer.
+INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_NOT_STARTED','身份确认服务尚未启动。请截图保留此状态；不必继续等待。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_NOT_STARTED','Identity confirmation has not initialized. Capture this status; further waiting is not required.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_NOT_OBSERVED','身份确认服务已启动，但尚未读取本团。请截图保留此状态。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_NOT_OBSERVED','Identity confirmation is initialized but has not observed this team. Capture this status.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_READING','正在读取本团的原生身份信息。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_READING','Reading this team''s native identity.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_PENDING','原生身份信息暂未就绪：{1_Reason}。名额与来源已保留。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_PENDING','Native identity information is not ready: {1_Reason}. Capacity and source are retained.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_CONFIRMING','原生姓名已核对，正在等待绑定确认。无需打开 P0 面板。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_CONFIRMING','Native name checked; awaiting binding confirmation. Opening P0 is not required.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_RETRY_WAIT','本次等待已结束：{1_Reason}。重新选择本团或下个玩家回合会有限重试；名额与来源保留。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_RETRY_WAIT','This wait ended: {1_Reason}. Reselect the team or use the next player turn for a bounded retry; capacity and source remain reserved.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_UNASSIGNED','游戏尚未分配原生姓名'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_UNASSIGNED','the game has not assigned a native name'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_UNIT','新单位尚未出现在界面读取中'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_UNIT','the new unit is not yet visible to the UI reader'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_OFFMAP','暂时无法核对在途间谍的重名情况'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_OFFMAP','names of off-map Spies cannot yet be checked for collisions'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_ACK','尚未收到可靠的绑定确认；不会重复提交'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_ACK','no reliable binding acknowledgement; the request will not be repeated'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_RETRIES','本次会话的有限重试已用完'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_RETRIES','the bounded retries for this session are exhausted'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_READ','原生身份读取发生异常'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_READ','native identity reading failed'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_NAME_REASON_OBSERVER','身份确认服务发生异常'),
+('en_US','LOC_SPC_EXPEDITION_SPY_NAME_REASON_OBSERVER','the identity confirmation observer encountered an error');
+
+-- B205 bounded diagnostic trace; never gameplay state.
+INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAIN_DIAG_HEADER','训练诊断（仅记录，不修复）'),
+('en_US','LOC_SPC_EXPEDITION_TRAIN_DIAG_HEADER','Training diagnostics (observation only)'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_TRAIN_DIAG_STATE','保留 {1} 条；限额抑制 {2}；记录异常 {3}；日志出口 {4}。下方 cost 为定义值/原生查询值。'),
+('en_US','LOC_SPC_EXPEDITION_TRAIN_DIAG_STATE','Retained {1}; budget-suppressed {2}; record errors {3}; log sink {4}. Cost below: definition/native query.');
+
+-- B212: Design mission names and tooltips (Culture D0049). English is a placeholder (Design has no en_US reference).
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_PEOPLE_NAME','风土考察'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_PEOPLE_NAME','People Survey'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_WORKS_NAME','艺文采撷'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_WORKS_NAME','Works Study'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_PLACES_NAME','奇观巡礼'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_PLACES_NAME','Wonder Pilgrimage'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_PEOPLE_TOOLTIP','深入考察该文明的社会生活、风俗习惯、典章制度与城市文化。首次成功完成可获得 1 份文化见闻。[NEWLINE]目标条件：该文明实际控制的现任首都（每个来源城市对该文明仅能成功完成一次此类考察）。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_PEOPLE_TOOLTIP','Study this civilization''s social life, customs, institutions and urban culture. The first completion grants 1 Cultural Insight.[NEWLINE]Target: its current capital. Each source city can complete this category once per civilization.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_WORKS_TOOLTIP','接触并品鉴该文明的艺文硕果，从中汲取文化经验。首次成功完成可获得 1 份文化见闻（不会移动、复制、窃取或消耗对方的巨作）。[NEWLINE]目标条件：该文明旗下拥有至少 1 件合格巨作的城市（每个来源城市对该文明仅能成功完成一次此类考察）。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_WORKS_TOOLTIP','Study this civilization''s artistic achievements. The first completion grants 1 Cultural Insight; no Great Work is moved, copied, stolen or consumed.[NEWLINE]Target: a city with at least one eligible Great Work. Each source city can complete this category once per civilization.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_PLACES_TOOLTIP','巡礼该文明的宏伟建筑与物质遗产，体悟其中的审美意趣、工程技艺与文明象征。首次成功完成可获得 1 份文化见闻。[NEWLINE]目标条件：该文明旗下拥有至少 1 座已建成奇观的城市（每个来源城市对该文明仅能成功完成一次此类考察）。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_PLACES_TOOLTIP','Visit this civilization''s great buildings and heritage. The first completion grants 1 Cultural Insight.[NEWLINE]Target: a city with at least one completed Wonder. Each source city can complete this category once per civilization.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_AVAILABLE','可执行 · 2回合'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_AVAILABLE','Available · 2 turns'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_DONE','已完成（当前来源城对该文明已归档）'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_DONE','Completed (this source city, this civilization)'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_NO_TARGET','此城没有符合条件的目标'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_NO_TARGET','No eligible target in this city'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_UNAVAILABLE','所选任务在此城不可执行或已完成。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_UNAVAILABLE','The selected mission is unavailable here or already completed.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_INSIGHTS','文化见闻：历史累计 {1_History} ｜ 当前有效 {2_Effective}'),
+('en_US','LOC_SPC_EXPEDITION_SPY_INSIGHTS','Cultural Insights: {1_History} recorded, {2_Effective} effective');
+
+-- Explicit uncertainty is not cancellation or successful completion.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_FACTS_UNKNOWN','任务目标事实暂时无法确认；本次检查未判定失效，也未发放见闻。'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_FACTS_UNKNOWN','Target facts are temporarily unconfirmed. This check has neither invalidated the target nor awarded an Insight.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_FACTS_DETAIL','诊断原因：{1_Reason}'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_FACTS_DETAIL','Diagnostic reason: {1_Reason}'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_MISSION_TARGET_UNKNOWN','目标信息待确认'),
+('en_US','LOC_SPC_EXPEDITION_SPY_MISSION_TARGET_UNKNOWN','Target information unconfirmed');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_INSIGHT_TOURISM_NAME','文化见闻旅游'),
+('zh_Hans_CN','LOC_SPC_INSIGHT_TOURISM_CURRENT','本城旅游压力倍率：+{1_Percent}%（已配置；原生结算待本批验证）。'),
+('zh_Hans_CN','LOC_SPC_INSIGHT_TOURISM_UNKNOWN','旅游倍率暂不可确认；未猜测见闻或资格。'),
+('en_US','LOC_SPC_INSIGHT_TOURISM_NAME','Cultural Insight Tourism'),
+('en_US','LOC_SPC_INSIGHT_TOURISM_CURRENT','City Tourism pressure modifier: +{1_Percent}% (configured; native settlement pending validation).'),
+('en_US','LOC_SPC_INSIGHT_TOURISM_UNKNOWN','Tourism projection is unconfirmed; no history or eligibility was inferred.');
+
+-- B219 isolated movement comparison; no gameplay naming change.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_TITLE','移动接口对照 · B219'),
+('en_US','LOC_SPC_MOVE_PROBE_TITLE','Movement comparison · B219'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_OPEN_HINT','左键：原有考察团验证。右键：B219 移动接口对照（测试副本，不运行任务）。'),
+('en_US','LOC_SPC_MOVE_PROBE_OPEN_HINT','Left-click: Expedition diagnostics. Right-click: B219 disposable-save movement comparison.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_INTRO','仅使用测试副本。地图上先选中普通间谍或闲置考察团。[NEWLINE]鼠标移到有平民的目标地块，按 M 标记。[NEWLINE]本次会先移至相邻空地，再试所选接口。执行后读回基线，勿保存或过回合。'),
+('en_US','LOC_SPC_MOVE_PROBE_INTRO','Use a disposable save. Select an idle Spy or bound Expedition first.[NEWLINE]Hover an occupied civilian plot and press M.[NEWLINE]Stages on an empty adjacent tile, then tries one interface. Reload the baseline afterwards; do not save or end the turn.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_MARK_HINT','鼠标停在目标地块上，按 M 标记。'),
+('en_US','LOC_SPC_MOVE_PROBE_MARK_HINT','Hover the destination and press M.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_TARGET','目标地块：({1_X}, {2_Y})'),
+('en_US','LOC_SPC_MOVE_PROBE_TARGET','Destination: ({1_X}, {2_Y})'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_PLACE','PlaceUnit 对照'),
+('en_US','LOC_SPC_MOVE_PROBE_PLACE','Compare PlaceUnit'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_MOVE','MoveUnit 对照'),
+('en_US','LOC_SPC_MOVE_PROBE_MOVE','Compare MoveUnit'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_READ','读取结果（不重试）'),
+('en_US','LOC_SPC_MOVE_PROBE_READ','Read result (no retry)'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_SELECTED','测试单位：{1_Name} #{2_ID}'),
+('en_US','LOC_SPC_MOVE_PROBE_SELECTED','Test unit: {1_Name} #{2_ID}'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_SELECT_FIRST','先在地图选中己方普通间谍或闲置考察团，再右键进入；按 M 标记被平民占用的目标。'),
+('en_US','LOC_SPC_MOVE_PROBE_SELECT_FIRST','Select an owned idle Spy or bound Expedition before opening; mark a civilian-occupied target with M.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_NO_PLOT','鼠标下没有可读取的地块。'),
+('en_US','LOC_SPC_MOVE_PROBE_NO_PLOT','No readable plot under the cursor.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_CHANGED','所选单位已变化；未执行移动。'),
+('en_US','LOC_SPC_MOVE_PROBE_CHANGED','Selected unit changed; no move requested.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_NOT_IDLE','原生任务状态不可读或不为空；未执行移动。'),
+('en_US','LOC_SPC_MOVE_PROBE_NOT_IDLE','Native operation is active or unknown; no move requested.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_WAIT','已提交一次。等待事件回报；可点“读取结果”，不会再次移动。'),
+('en_US','LOC_SPC_MOVE_PROBE_WAIT','Submitted once. Await event reply; Read result does not repeat movement.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_RESULT','结果：{1_Status} / {2_Reason}[NEWLINE]即时位置：({3_X}, {4_Y})；完整证据已写入日志。'),
+('en_US','LOC_SPC_MOVE_PROBE_RESULT','Result: {1_Status} / {2_Reason}[NEWLINE]Immediate position: ({3_X}, {4_Y}); detailed evidence is logged.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_RELOAD','本轮已停止。请读回测试前基线；不要保存、继续任务或过回合。'),
+('en_US','LOC_SPC_MOVE_PROBE_RELOAD','Trial stopped. Reload the baseline; do not save, continue missions or end the turn.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_RETRY','前置检查未通过，没有调用移动接口。修正准备后可再试。'),
+('en_US','LOC_SPC_MOVE_PROBE_RETRY','Preflight stopped before movement. Correct preparation to try again.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_SEND_UNKNOWN','请求结果未知；不重复发送。'),
+('en_US','LOC_SPC_MOVE_PROBE_SEND_UNKNOWN','Request outcome unknown; no resend.'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_UNAVAILABLE','移动对照窗口尚未就绪；未关闭当前面板。'),
+('en_US','LOC_SPC_MOVE_PROBE_UNAVAILABLE','Movement comparison UI is unavailable; current panel retained.');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_STATUS_EXACT','即时落点正确（仍需核对日志）'),
+('en_US','LOC_SPC_MOVE_PROBE_STATUS_EXACT','Immediate position exact; review logs'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_STATUS_NOT_EXACT','即时落点不符'),
+('en_US','LOC_SPC_MOVE_PROBE_STATUS_NOT_EXACT','Immediate position differs'),
+('zh_Hans_CN','LOC_SPC_MOVE_PROBE_STATUS_STOP','已停止；见原因代码'),
+('en_US','LOC_SPC_MOVE_PROBE_STATUS_STOP','Stopped; see reason code');
+
+-- B222: a clean pre-request denial leaves the team idle, not an accepted task.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_EXPIRED', '任务未能确认启动，已撤销此次准备；未消耗名额或发放文化见闻。可以重新选择任务。'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_DECLINED','任务未开始：引擎当前不允许休眠，未发出休眠指令，也未计时或发放见闻。本次启动锁定已解除；拒绝信息已记录，请保留日志，不必反复尝试。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_EXPIRED', 'Task startup was not confirmed; preparation was cancelled without consuming a mission allowance or awarding Cultural Insight. Select a mission again.'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTIVITY_START_DECLINED','Task not started: the engine currently denies Sleep. No Sleep request, task time or Insight was applied. The startup lock was released; denial details were recorded. Retain the log instead of repeatedly retrying.');
+
+-- B224: idle controls remain visible when a fresh native query cannot enable them.
+INSERT OR REPLACE INTO LocalizedText (Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_EXPEDITION_IDLE_DENIED','原生状态暂不允许此操作；状态更新后自动刷新。'),
+('en_US','LOC_SPC_EXPEDITION_IDLE_DENIED','The current native state does not allow this action. It refreshes when the state changes.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_IDLE_UNAVAILABLE','单位操作状态尚未就绪；状态更新后自动刷新。'),
+('en_US','LOC_SPC_EXPEDITION_IDLE_UNAVAILABLE','Unit action availability is not ready. It refreshes when the state changes.'),
+('zh_Hans_CN','LOC_SPC_EXPEDITION_IDLE_READ_ERROR','暂时无法读取单位操作状态；状态更新后自动刷新。'),
+('en_US','LOC_SPC_EXPEDITION_IDLE_READ_ERROR','Unit action availability could not be read. It refreshes when the state changes.');

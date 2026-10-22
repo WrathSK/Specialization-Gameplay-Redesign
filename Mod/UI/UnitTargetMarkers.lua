@@ -3,7 +3,7 @@ local P=SPCP0
 local selection,pending,timer,age,active
 local layer=UILens.CreateLensLayerHash('Hex_Coloring_Great_People')
 local ownsLayer=false
-local renderedKey,lastLog
+local renderedKey,lastLog;local revision
 local builderPreview=false
 local hooks={}
 local function clear()
@@ -42,8 +42,9 @@ end
 local function update(dt)
  timer=timer+dt;if timer<0.25 then return end
  local step=timer;timer=0
- local u=eligible();local key=u and (u:GetOwner()..':'..u:GetID()..':'..u:GetX()..':'..u:GetY()) or nil
+ local u=eligible();local key=u and (u:GetOwner()..':'..u:GetID()..':'..u:GetX()..':'..u:GetY()..':'..Game.GetCurrentGameTurn()) or nil
  if not key then if selection or pending then clear() end;selection=nil;return end
+ local r=ExposedMembers.SPC_RuntimeUIRevision or 0;if r~=revision then revision=r;selection=nil end
  if key~=selection then selection=key;request(u) end
  age=(age or 0)+step
  if pending then
@@ -81,13 +82,13 @@ local function update(dt)
   elseif age>10 then clear();ExposedMembers.SPC_TargetMarkerStatus='Target read timed out' end
  end
  -- Bounded read-only reconciliation for queue/investment changes with no selection event.
- if not pending and age>5 and not UI.IsGameCoreBusy() then request(u) end
+ -- No time-only retry after success/timeout; next direct change or turn reconciles.
 end
 local function init()
  ContextPtr:SetHide(false);timer=0;age=0;active=true
  ContextPtr:SetUpdate(function(dt) if active then update(dt) end end)
  LuaEvents.SPC_ToggleBuilderTargets.Add(toggle)
- for _,name in ipairs({'UnitSelectionChanged','InterfaceModeChanged','LoadScreenClose'}) do
+ for _,name in ipairs({'UnitSelectionChanged','InterfaceModeChanged','LoadScreenClose','CityProductionChanged','CityProductionUpdated','CityProductionCompleted','CityBuildQueueChanged','DistrictBuildProgressChanged','DistrictRemovedFromMap','CityTransfered'}) do
   local e=Events[name];if e then e.Add(changed);hooks[#hooks+1]={e,changed} end
  end
 end

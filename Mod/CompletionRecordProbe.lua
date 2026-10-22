@@ -65,6 +65,7 @@ function SPCCompletionRecordProbe.Start(P,shared)
    local district=CityManager.GetDistrictAt(x,y);assert(district,"DISTRICT_UNAVAILABLE")
    local city=district:GetCity()
    assert(city and city:GetOwner()==pid and district:GetOwner()==pid and district:GetType()==index,"OBJECT_MISMATCH")
+   if shared.CityProgressionStore and shared.CityProgressionStore.BlocksLegacy(city) then b.last="GAME_STORE_OR_PENDING";return end
    assert(district:IsComplete()==true,"NOT_COMPLETE")
    local token,state=shared.BindingProbe.Resolve(pid,city)
    if not token then b.last="BINDING_NOT_READY "..tostring(state);return end
@@ -88,6 +89,6 @@ function SPCCompletionRecordProbe.Start(P,shared)
   if e and type(e.Add)=="function" then local ok=pcall(e.Add,fn);d.hooks[name]=ok and "REGISTERED" or "REGISTER_ERROR"
   else d.hooks[name]="ABSENT" end
  end
- listen(GameEvents,"OnDistrictConstructed",onComplete)
+ if not (shared.CityProgressionStore and shared.CityProgressionStore.UsesNewAuthority) then listen(GameEvents,"OnDistrictConstructed",onComplete) end
  listen(Events,"LoadScreenClose",function() d.phase="AFTER_LOAD_CLOSE" end)
 end

@@ -1,11 +1,52 @@
 -- Narrow HD adapter: retain its production panel and all original item data.
 include('DL_ProductionPanel')
-local ranks={PROJECT_SPC_CREW_250=1,PROJECT_SPC_CREW_420=2,PROJECT_SPC_CREW_750=3,PROJECT_SPC_CREW_1000=4,PROJECT_SPC_CREW_1360=5}
+include('TimedProjectDisplay')
+include('RestructuringUI')
+-- Decorate only this Mod's claim projects after native rendering; recycled
+-- rows receive a hide request for every non-claim item.
+local baseGenericItem=PopulateGenericItemData
+function PopulateGenericItemData(instance,item)
+ local result=baseGenericItem(instance,item)
+ LuaEvents.SPC_ClaimIconDecorate(instance.Icon,'ICON_'..item.Type)
+ return result
+end
+local baseQueueInstance=CreateQueueInstance
+function CreateQueueInstance(...)
+ local instance=baseQueueInstance(...)
+ if instance then LuaEvents.SPC_ClaimIconDecorate(instance.ProductionIcon,instance.iconTexture)end
+ return instance
+end
+local claimSelection,dialogueSelection,trainingSelection,engineeringSelection,crewSelection,commerceSelection,capitalSelection,developmentSelection
+local baseCurrent=RefreshCurrentProduction
+function RefreshCurrentProduction(parent,pid,id)
+ local result=baseCurrent(parent,pid,id)
+ LuaEvents.SPC_ClaimIconDecorate(parent.ProductionIcon,result and parent.iconTexture or nil)
+ SPCTimedProjectDisplay.Current(parent,pid,id)
+ return result
+end
+include('CrewModel')
+local ranks=setmetatable({},{__index=function(_,id)return SPCCrewModel.Parse(id)end})
 local baseGetData=GetDataHelper
 function GetDataHelper(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
- local items=data.ProjectItems;local crew,others={},{};local insertion
+ if trainingSelection then trainingSelection.Items(data)end
+ pcall(SPCRestructuringUI.ObserveTraining,SPCP0,data)
+ if crewSelection then crewSelection.Items(data)end
+ if capitalSelection then capitalSelection.Items(data)end
+ if developmentSelection then developmentSelection.Items(data)end
+ if commerceSelection then commerceSelection.Items(data)end
+ if claimSelection then claimSelection.Sync(data.City)end
+ if dialogueSelection then dialogueSelection.Sync(data.City)end
+ SPCTimedProjectDisplay.Items(data)
+ -- HD exposes Disabled from native CanProduce. Filter only our exact project IDs.
+ local items={}
+ for _,item in ipairs(data.ProjectItems)do
+  local owned=ranks[item.Type] or SPCClaimProjectUI.IsProject(item.Type) or item.Type==SPCDialogueProjectUI.PROJECT or item.Type==SPCEngineeringStudyUI.PROJECT
+  if not owned or item.Disabled~=true or item.IsCurrentProduction==true or item.SPC_CrewRetained==true then items[#items+1]=item end
+ end
+ data.ProjectItems=items
+ local crew,others={},{};local insertion
  for _,item in ipairs(items) do
   if ranks[item.Type] then
    insertion=insertion or (#others+1);crew[#crew+1]=item
@@ -19,4 +60,86 @@ function GetDataHelper(...)
   if others[i] then result[#result+1]=others[i] end
  end
  data.ProjectItems=result;return data
+end
+
+-- Normal native project operation is retained; start only after the selected target is readable.
+include('Probe')
+include('ProjectTurnRead')
+include('TimedProjectSelection')
+include('ClaimProjectUI')
+SPCProjectTurnRead.New(SPCP0,function()end,function()end)
+local projectSelection=SPCTimedProjectSelection.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+ function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+claimSelection=SPCClaimProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+ function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+dialogueSelection=SPCDialogueProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+ function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+engineeringSelection=SPCEngineeringStudyUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+ function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+local baseAdvance=AdvanceProject
+include('CapitalInvestmentUI')
+capitalSelection=SPCCapitalInvestmentUI.New(SPCP0,function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+include('DevelopmentInvestmentUI')
+developmentSelection=SPCDevelopmentInvestmentUI.New(SPCP0,function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+include('CommerceUI')
+commerceSelection=SPCCommerceUI.New(SPCP0,function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+include('CrewProjectUI')
+crewSelection=SPCCrewProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+ function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end,baseAdvance)
+function AdvanceProject(c,item)
+ if not capitalSelection.Before(c,item,CheckQueueItemSelected())then return end
+ if not developmentSelection.Before(c,item,CheckQueueItemSelected())then return end
+ if not commerceSelection.Before(c,item,CheckQueueItemSelected())then return end
+ if not crewSelection.Before(c,item,CheckQueueItemSelected())then return end
+ if not engineeringSelection.Before(c,item,CheckQueueItemSelected())then return end
+ if not dialogueSelection.Before(c,item,CheckQueueItemSelected())then return end
+ if not claimSelection.Before(c,item,CheckQueueItemSelected()) then return end
+ if item.Type=="PROJECT_SPC_OVERFLOW_SINK_TEST" and CheckQueueItemSelected() then return end
+ if not projectSelection.Before(c,item) then return end
+ return baseAdvance(c,item)
+end
+Events.GameCoreEventPublishComplete.Add(capitalSelection.Publish)
+Events.GameCoreEventPublishComplete.Add(developmentSelection.Publish)
+Events.GameCoreEventPublishComplete.Add(commerceSelection.Publish)
+Events.GameCoreEventPublishComplete.Add(crewSelection.Publish)
+Events.GameCoreEventPublishComplete.Add(engineeringSelection.Publish)
+Events.GameCoreEventPublishComplete.Add(projectSelection.Pulse)
+Events.GameCoreEventPublishComplete.Add(claimSelection.Pulse)
+Events.GameCoreEventPublishComplete.Add(dialogueSelection.Pulse)
+Events.LoadScreenClose.Add(dialogueSelection.WarmStart)
+Events.LoadScreenClose.Add(claimSelection.WarmStart)
+LuaEvents.SPC_TimedProjectDisplayChanged.Add(function(pid,id)
+ local c=UI.GetHeadSelectedCity()
+ if c and c:GetOwner()==pid and c:GetID()==id and not ContextPtr:IsHidden() then Refresh()end
+end)
+
+-- B202 exact normal-unit queue admission, preserving the native insert mode.
+include('ExpeditionTrainingUI')
+local baseBuildUnit=BuildUnit
+trainingSelection=SPCExpeditionTrainingUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
+ function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end,baseBuildUnit)
+function BuildUnit(c,item)
+ if item.Type~=SPCExpeditionTrainingUI.KIND then return baseBuildUnit(c,item)end
+ if trainingSelection.Before(c,item,CheckQueueItemSelected())then return baseBuildUnit(c,item)end
+end
+local baseRemoveQueueItem=RemoveQueueItem
+function RemoveQueueItem(index)
+ trainingSelection.CancelQueue(UI.GetHeadSelectedCity(),index)
+ return baseRemoveQueueItem(index)
+end
+Events.GameCoreEventPublishComplete.Add(trainingSelection.Pulse)
+Events.GameCoreEventPlaybackComplete.Add(trainingSelection.RefreshFacts)
+for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'})do
+ local e=Events[name];if e then e.Add(trainingSelection.Invalidate)end
+end
+
+-- Observe native replacement intent without changing its parameters. This also
+-- covers ordinary building/project selection replacing the reserved queue slot.
+local baseGetBuildInsertMode=GetBuildInsertMode
+function GetBuildInsertMode(parameters)
+ local result=baseGetBuildInsertMode(parameters)
+ if parameters[CityOperationTypes.PARAM_INSERT_MODE]==CityOperationTypes.VALUE_REPLACE_AT then
+  trainingSelection.CancelQueue(UI.GetHeadSelectedCity(),parameters[CityOperationTypes.PARAM_QUEUE_DESTINATION_LOCATION])
+ end
+ return result
 end

@@ -72,7 +72,7 @@ function SPCUnitSiteProbe.Start(P,shared)
     return (yes and 'SITE OK (location only)' or reason)..' | '..tostring(current)..' target=('
      ..targetPlot:GetX()..','..targetPlot:GetY()..')\nSource='..source
    end)
-   lines[#lines+1]=(info.UnitType=='UNIT_SPC_CREW_250' and ('Crew 250 | charges='..unit:GetBuildCharges()..'. Use Prepare / Confirm unit action.') or 'No action executed. Builder is a location tester, not a Crew.')
+   lines[#lines+1]=(info.UnitType=='UNIT_SPC_CREW_250' and ('Tier-I Crew | charges='..unit:GetBuildCharges()..'. Use Prepare / Confirm unit action.') or 'No action executed. Builder is a location tester, not a Crew.')
    lines[#lines+1]='Existing investment still uses city center. Candidate site rules only.'
    return table.concat(lines,'\n')
   end)

@@ -20,6 +20,7 @@ def render():
                   f"INSERT INTO Modifiers(ModifierId,ModifierType) VALUES ('{m}','MODIFIER_PLAYER_ADJUST_{target}_BOOST'),('{m}_HD','MODIFIER_PLAYER_ADJUST_PROPERTY');",
                   f"INSERT INTO ModifierArguments(ModifierId,Name,Value) VALUES ('{m}','Amount','{amount}'),('{m}_HD','Key','HD_Player_Extra_{prop}_Boost'),('{m}_HD','Amount','{amount}');",
                   f"INSERT INTO BuildingModifiers(BuildingType,ModifierId) VALUES ('{b}','{m}'),('{b}','{m}_HD');"])
+                if kind=='CULTURE':sql.pop()  # B226: retained definition, no native/HD attachment.
                 lua.append(f"SPCBoostConfig.rows['{kind}:{level}:{n}']={{building='{b}',amount={amount}}}")
     return {'Mod/Data/NetworkBoost.sql':'\n'.join(sql)+'\n','Mod/BoostConfig.lua':'\n'.join(lua)+'\n'}
 if __name__=='__main__':

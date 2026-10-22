@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+  },
+  "batch": "P0-U1",
+  "status": "COMPLETE",
+  "authority_versions": {
+    "design": "D0036",
+    "research": "D0031",
+    "industry": "D0036",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0373",
+    "runtime": "B146.173 / modinfo173",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/U1_Presentation_Prototype.md",
+      "kind": "section",
+      "selector": "## B146.173 — 单行机构与阶段层级",
+      "reason": "Current authorized UI slice, native evidence boundary and minimal acceptance"
+    },
+    {
+      "path": "Mod/UI/Institutions.lua",
+      "kind": "full",
+      "reason": "Direct existing presentation dependency; no gameplay read expansion"
+    },
+    {
+      "path": "Mod/UI/Institutions.xml",
+      "kind": "full",
+      "reason": "Direct existing presentation dependency; no gameplay read expansion"
+    },
+    {
+      "path": "Mod/UI/InstitutionOverview.lua",
+      "kind": "full",
+      "reason": "Direct existing presentation dependency; no gameplay read expansion"
+    },
+    {
+      "path": "Mod/InstitutionPresentation.lua",
+      "kind": "full",
+      "reason": "Direct existing presentation dependency; no gameplay read expansion"
+    },
+    {
+      "path": "Mod/Probe.lua",
+      "kind": "full",
+      "reason": "Direct existing presentation dependency; no gameplay read expansion"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Direct existing presentation dependency; no gameplay read expansion"
+    },
+    {
+      "path": "Mod/Text/TestText.sql",
+      "kind": "full",
+      "reason": "Five new localized UI status/header keys in existing text source"
+    }
+  ],
+  "dependencies": [
+    "Existing confirmed presentation view and native/HD BreakdownStack"
+  ],
+  "old_writers": [
+    "No gameplay writers touched; existing institution display/filter and native/HD panel remain owners"
+  ],
+  "non_scope": [
+    "Full U1",
+    "Other professions",
+    "Gameplay/GC/save changes",
+    "Culture implementation"
+  ],
+  "validation": {
+    "local": [
+      "Actual Lua UI mock: levels/ACTIVE/UNKNOWN/sibling rows/repeat/hide/shutdown",
+      "Lua compile, XML/native style/truncation, localization SQL, context integrity and diff review"
+    ],
+    "user": "One P4/low-level/ACTIVE/scale/scroll institution-row check; pending"
+  },
+  "full_audit_triggers": [
+    "Conflict with HD/current panel structure",
+    "Required non-presentation write"
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/UI/P0Panel.lua",
+        "Mod/SpecializationP0.modinfo"
+      ],
+      "trigger": "Before modifying UI dispatch or registration; inspect actual native/HD hook owners read-only"
+    }
+  ],
+  "result": {
+    "local": "LOCAL_SIMULATION_PASS",
+    "native": "Scoped screenshot confirms shown P4 rows/stages/status only; user not fully satisfied; visual polish deferred nonblocking, no full native UI PASS",
+    "deployment": "B146.173 deployed;174/174 MATCH;source652c0fc;receipt B146.173-652c0fc-playtest.json DEVELOP_ACTIVE;B145/stable recovery verified;OS game exit verified",
+    "stop": "User permits development to proceed; visual polish remains U1 backlog; P0-K plan only"
+  },
+  "goal": "Bounded feasibility/display prototype, not full U1"
+}

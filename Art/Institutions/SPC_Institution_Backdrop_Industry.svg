@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 64 64">
+ <defs>
+  <linearGradient id="face" x1="0" y1="0" x2="0.22" y2="1"><stop stop-color="#351605"/><stop offset=".4" stop-color="#351605"/><stop offset="1" stop-color="#a06020"/></linearGradient>
+  <linearGradient id="rim" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#ac732b"/><stop offset=".55" stop-color="#ac732b"/><stop offset="1" stop-color="#edcb77"/></linearGradient>
+  <linearGradient id="bevel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#000000" stop-opacity=".35"/><stop offset=".5" stop-color="#000000" stop-opacity=".1"/><stop offset="1" stop-color="#edcb77" stop-opacity=".35"/></linearGradient>
+ </defs>
+ <path d="M32 1 L59 16.5 V47.5 L32 63 L5 47.5 V16.5 Z" fill="#06101b" fill-opacity=".7"/>
+ <path d="M32 3 L57 17.5 V46.5 L32 61 L7 46.5 V17.5 Z" fill="url(#face)" stroke="url(#rim)" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M32 6 L54.5 19 V45 L32 58 L9.5 45 V19 Z" fill="none" stroke="url(#bevel)" stroke-width="1.2"/>
+</svg>

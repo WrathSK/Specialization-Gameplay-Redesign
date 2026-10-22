@@ -1,0 +1,22 @@
+{
+  "source_head": "06a7300010baae8dc8bfe2ffc7097af83497ec16",
+  "execution_cwd": "<DEVELOP_WORKTREE>",
+  "saved_script": "fixed_owned_inventory.py",
+  "saved_result": "fixed_owned_inventory_result.json",
+  "provenance": "Script reconstructed verbatim from the already completed inline Python invocation; result copied verbatim from that invocation's JSON stdout. Saving did not rerun the inventory.",
+  "database": "sqlite3.connect(':memory:'); no external or native database was opened",
+  "stub_schema": "Types and Buildings only. Column names are the union of each table's registered literal INSERT column lists; SQLite columns have no declared type, defaults, primary keys, foreign keys or native game schema constraints. An extra _file column records the declaration file.",
+  "literal_selection": "Only InGameActions/UpdateDatabase/File entries from Mod/SpecializationP0.modinfo are read. The regex selects INSERT INTO Types/Buildings with explicit column lists. Only statements whose body starts with VALUES are executed. No other SQL statement is executed. Duplicate declarations are checked afterward by GROUP BY, rather than native schema enforcement.",
+  "dynamic_exclusions": {
+    "ResearchChair": "8 carriers per native Buildings member of the 13-name reviewed target candidate set; Types/Buildings SELECT statements excluded",
+    "StandardizationDiscount": "4 carriers per enabled native Buildings/HD tier target; Types/Buildings SELECT statements excluded",
+    "Dialogue": "BUILDING_SPC_B059_D2 through D#nativeEras; Types/Buildings SELECT statements excluded. Three literal TEST25/TEST50/TEST100 carriers are included."
+  },
+  "exact_family_formulas": "The script's add(...) calls preserve the fixed family constructors and ranges already checked against the scoped Lua creation/exit paths. BoostConfig/BoostIntegerConfig values are read verbatim. The script does not parse or prove Lua control flow, creation success, native effect values, or actual loaded SQL; those require the accompanying source audit.",
+  "ownership_boundary": "1720 includes current, retired and retained historical/prototype carrier declarations owned by currently started exit lists. MeaningProbe is not currently started; it shares the normal Meaning 92-name directory and has an explicit mutually exclusive Start gate. DistrictPrecision is not currently started; its three retained names are in ResearchCross's retired exit set. Property-controlled TraitModifiers, projects and one-off native grants are outside the Buildings set.",
+  "result_boundary": "Static registered literal definition closure only. Actual game database load/SQL execution and native yield behavior remain UNKNOWN. No new tests, native probe runs, formal repository writes, deployment or Git mutation were performed.",
+  "execution_cwd_definition": "Canonical develop Git root, run script from that directory.",
+  "parent_recheck": "Parent reran the saved static inventory against the unchanged source; result equals saved raw JSON.",
+  "script_sha256": "f144e2c57b618c4a75df59e2e3ea6c513c373abfd9acaca3e39c7090e11b9d5e",
+  "result_sha256": "4422b78844577d561142a4b5985251fd54569f9c4f9d6db3741abcc3078b7064"
+}

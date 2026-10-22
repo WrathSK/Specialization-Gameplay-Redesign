@@ -18,3 +18,121 @@ INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_UNIT_BUILDER';
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1000',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_UNIT_BUILDER';
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1360',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_UNIT_BUILDER';
+
+-- N1 temporary test unit reuses the existing Builder icon; no new artwork.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
+SELECT REPLACE(Name,'UNIT_BUILDER','UNIT_SPC_EXPEDITION_GATE'),Atlas,"Index"
+FROM IconDefinitions WHERE Name IN ('ICON_UNIT_BUILDER','ICON_UNIT_BUILDER_PORTRAIT');
+
+-- B182: reuse the same existing Builder icon, no new asset.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
+SELECT REPLACE(Name,'UNIT_BUILDER','UNIT_SPC_EXPEDITION_ZERO'),Atlas,"Index"
+FROM IconDefinitions WHERE Name IN ('ICON_UNIT_BUILDER','ICON_UNIT_BUILDER_PORTRAIT');
+
+-- B195: the current native Spy shell uses native Spy artwork only.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
+SELECT REPLACE(Name,'UNIT_SPY','UNIT_SPC_EXPEDITION_SPY'),Atlas,"Index"
+FROM IconDefinitions WHERE Name IN ('ICON_UNIT_SPY','ICON_UNIT_SPY_PORTRAIT');
+
+-- Formal one-turn projects reuse their district's native Great Person project icon.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CLAIM_RESEARCH',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_CAMPUS';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CLAIM_CULTURE',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_THEATER';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CLAIM_INDUSTRY',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_INDUSTRIAL_ZONE';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CLAIM_COMMERCE',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_COMMERCIAL_HUB';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_ERA_DIALOGUE',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_THEATER';
+
+-- B235: study uses the native Industrial Zone project artwork.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_ENGINEERING_STUDY',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_INDUSTRIAL_ZONE';
+
+-- B236: the same native artwork for each locked-price variant.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_P140',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_P130',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_P120',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_420_P140',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_420';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_420_P130',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_420';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_420_P120',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_420';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P140',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P130',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P120',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1000_P140',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1000';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1000_P130',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1000';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1000_P120',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1000';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1360_P140',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1360';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1360_P130',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1360';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_1360_P120',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_1360';
+
+-- Loaded Quick-speed integer-price variants use the same icon.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_P140_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_250_P120_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_250';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_420_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_420';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P140_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P130_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CREW_750_P120_S67',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_SPC_CREW_750';
+
+-- B239: configuration opener reuses native commercial project artwork.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_COMMERCIALIZATION',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_COMMERCIAL_HUB';
+
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CAPITAL_INVESTMENT',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_COMMERCIAL_HUB';
+
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_DEVELOPMENT_INVESTMENT',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_COMMERCIAL_HUB';
+
+-- Reuse the installed Monopoly++ Investor atlas entries, including white flag
+-- and civilization portrait variants. No external textures are redistributed.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
+ SELECT REPLACE(Name,'UNIT_LEU_INVESTOR','UNIT_SPC_RESTRUCTURING_TEAM'),Atlas,"Index"
+ FROM IconDefinitions WHERE Name='ICON_UNIT_LEU_INVESTOR' OR Name LIKE 'ICON_UNIT_LEU_INVESTOR\_%' ESCAPE '\';
+
+-- B251 user-supplied institution artwork; row order R/C/I/Commerce, stages I-IV.
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_INSTITUTIONS',32,4,4,'SPC_Institutions_32.dds');
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_INSTITUTIONS',64,4,4,'SPC_Institutions_64.dds');
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_RESEARCH_1','ICON_ATLAS_SPC_INSTITUTIONS',0);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_RESEARCH_2','ICON_ATLAS_SPC_INSTITUTIONS',1);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_RESEARCH_3','ICON_ATLAS_SPC_INSTITUTIONS',2);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_RESEARCH_4','ICON_ATLAS_SPC_INSTITUTIONS',3);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_CULTURE_1','ICON_ATLAS_SPC_INSTITUTIONS',4);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_CULTURE_2','ICON_ATLAS_SPC_INSTITUTIONS',5);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_CULTURE_3','ICON_ATLAS_SPC_INSTITUTIONS',6);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_CULTURE_4','ICON_ATLAS_SPC_INSTITUTIONS',7);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_INDUSTRY_1','ICON_ATLAS_SPC_INSTITUTIONS',8);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_INDUSTRY_2','ICON_ATLAS_SPC_INSTITUTIONS',9);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_INDUSTRY_3','ICON_ATLAS_SPC_INSTITUTIONS',10);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_INDUSTRY_4','ICON_ATLAS_SPC_INSTITUTIONS',11);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_COMMERCE_1','ICON_ATLAS_SPC_INSTITUTIONS',12);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_COMMERCE_2','ICON_ATLAS_SPC_INSTITUTIONS',13);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_COMMERCE_3','ICON_ATLAS_SPC_INSTITUTIONS',14);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_COMMERCE_4','ICON_ATLAS_SPC_INSTITUTIONS',15);
+
+-- B252: shaded district-style backdrops; stage numerals are native UI labels.
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_INSTITUTION_BASES',32,4,1,'SPC_Institution_Backdrops_32.dds');
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_INSTITUTION_BASES',64,4,1,'SPC_Institution_Backdrops_64.dds');
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_RESEARCH_BASE','ICON_ATLAS_SPC_INSTITUTION_BASES',0);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_CULTURE_BASE','ICON_ATLAS_SPC_INSTITUTION_BASES',1);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_INDUSTRY_BASE','ICON_ATLAS_SPC_INSTITUTION_BASES',2);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_COMMERCE_BASE','ICON_ATLAS_SPC_INSTITUTION_BASES',3);
+
+-- B254 embedded serif levels; old atlases remain for historical consumers.
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_LEVELS',32,4,4,'SPC_Level_Icons_32.dds');
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_LEVELS',64,4,4,'SPC_Level_Icons_64.dds');
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_RESEARCH_1','ICON_ATLAS_SPC_LEVELS',0);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_RESEARCH_2','ICON_ATLAS_SPC_LEVELS',1);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_RESEARCH_3','ICON_ATLAS_SPC_LEVELS',2);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_RESEARCH_4','ICON_ATLAS_SPC_LEVELS',3);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_CULTURE_1','ICON_ATLAS_SPC_LEVELS',4);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_CULTURE_2','ICON_ATLAS_SPC_LEVELS',5);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_CULTURE_3','ICON_ATLAS_SPC_LEVELS',6);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_CULTURE_4','ICON_ATLAS_SPC_LEVELS',7);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_INDUSTRY_1','ICON_ATLAS_SPC_LEVELS',8);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_INDUSTRY_2','ICON_ATLAS_SPC_LEVELS',9);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_INDUSTRY_3','ICON_ATLAS_SPC_LEVELS',10);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_INDUSTRY_4','ICON_ATLAS_SPC_LEVELS',11);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_COMMERCE_1','ICON_ATLAS_SPC_LEVELS',12);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_COMMERCE_2','ICON_ATLAS_SPC_LEVELS',13);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_COMMERCE_3','ICON_ATLAS_SPC_LEVELS',14);
+INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_LEVEL_COMMERCE_4','ICON_ATLAS_SPC_LEVELS',15);
+
+-- B258 exact-size city-banner Image cell.
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_LEVELS',58,4,4,'SPC_Level_Icons_58.dds');
+
+-- B259 screenshot-calibrated map cell.
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_LEVELS',49,4,4,'SPC_Level_Icons_49.dds');

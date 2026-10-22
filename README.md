@@ -29,7 +29,7 @@ I am **Xuting Zheng**. I lead gameplay design, define requirements and developme
 
 **v0.1 is in development.** City progression, specialization claims and selected abilities have implementations with scoped in-game test records. Advanced systems and validation remain incomplete. Current runtime support is limited to the local human player in single-player; AI-player participation, multiplayer and other recorded specializations are outside the current implementation scope.
 
-You are viewing **main**, the **B069.96 / modinfo96** stable playtest source baseline. The latest design and the examples below describe work on [develop](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/develop), and do not imply those changes have been promoted to main. See the [branch-matched documentation](Specialization/README.md) for this version.
+This is the **main-oriented playtest overview** for the **B268.295 / modinfo295** candidate, proposed as **v0.1.0-alpha.1**. Promotion and tagging remain subject to approval; see the [promotion record](Specialization/Status/Validation/Results/Specialization_V01_Alpha1_Readme_Resolution.md). This is an alpha testing baseline, not the final v0.1 release. Ongoing work continues on [develop](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/develop); see the [branch-matched documentation](Specialization/README.md) for this candidate.
 
 [Current progress and open issues](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Status/Specialization_P0_Status.md#current-authoritative-state) are tracked separately from design decisions. Validation records distinguish local checks from game-tested scenarios and document the scope of each result.
 
@@ -91,7 +91,7 @@ v0.1 的设计围绕四个专业展开：
 
 **v0.1 仍在开发中。** 城市成长、专业认领及部分能力已有实现，并有明确场景范围的实机测试记录；高级系统和验证尚未全部完成。当前运行支持限于单人游戏中的本地人类玩家，AI 参与、多人游戏及其它已记录专业不在当前实施范围内。
 
-你正在查看 **main**，即 **B069.96 / modinfo96** 稳定游玩源码基线。本页介绍的最新设计及下方案例对应 [develop](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/develop) 中的工作，其中的开发成果不代表已进入 main。本分支的具体内容见[配套资料](Specialization/README.md)。
+本页保留 **main 测试基线介绍**，配套候选源码为 **B268.295 / modinfo295**，拟定版本 **v0.1.0-alpha.1**。晋升与标签仍待批准，见[晋升记录](Specialization/Status/Validation/Results/Specialization_V01_Alpha1_Readme_Resolution.md)。这是 alpha 测试基线，不是最终 v0.1 发布；后续开发继续在 [develop](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/develop) 进行。本候选的具体内容见[配套资料](Specialization/README.md)。
 
 [当前进度与待处理问题](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Status/Specialization_P0_Status.md#current-authoritative-state) 与设计决定分别记录。验证资料区分本地检查和游戏内测试，并说明各项结果的适用范围。
 

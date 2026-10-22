@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "batch": "P0-H",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0057",
+    "research": "D0040",
+    "industry": "D0053",
+    "culture": "D0051",
+    "commerce": "D0057",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0178",
+    "status": "S0711",
+    "runtime": "B268.295 / modinfo295",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+  "goal": "Apply seventeen explicitly selected raw icon artworks to self-owned presentation only, preserving existing gameplay and native UI controls.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+      "kind": "full",
+      "reason": "Current approved raw selection, implementation, fixed binary review and native boundary."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
+      "kind": "full",
+      "reason": "Native-proven cell/control size invariant; no engine resampling assumption."
+    },
+    {
+      "path": "tools/raw_icons_manifest.json",
+      "kind": "full",
+      "reason": "Exact approved source IDs/hashes."
+    },
+    {
+      "path": "tools/raw_icons_build.json",
+      "kind": "full",
+      "reason": "Exact derived DDS bytes, sizes and review bundle."
+    }
+  ],
+  "dependencies": [
+    "Existing B266 functional acceptance and B267 scoped four-city activation/presentation evidence.",
+    "Existing native/HD UnitPanel/production rendering and exact native district definitions."
+  ],
+  "old_writers": [
+    "Original IconDefinitions aliases remain historical; RawIcons.sql supersedes only self-owned IDs.",
+    "Native controls, eligibility and operation dispatch remain authoritative."
+  ],
+  "conditional_context": [
+    {
+      "trigger": "A new concrete discrepancy or later explicitly authorized task",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
+        "Specialization/Reports/Proposals/Audit_Followup_Priorities.md"
+      ]
+    }
+  ],
+  "non_scope": [
+    "Gameplay/Design, state/settlement/ownership, art redesign, source PNG publication, game launch/configuration, PR/main promotion/release tag.",
+    "Civilopedia claim-overlay adapter; native district base retained there."
+  ],
+  "validation": {
+    "depth": "Scoped artwork/SQL/package/actual-Lua UI and direct affected native adapters.",
+    "local": "28 selected tests PASS;188 Lua5.1 compile;32 XML-family parse;18 DDS independently decoded pixel MATCH.",
+    "user": "Native raw-art rendering, overlays/click-through/recycling/scaling after activation."
+  },
+  "full_audit_triggers": [
+    "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
+    "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
+  ],
+  "result": {
+    "report": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
+    "local": "LOCAL_SIMULATION_PASS",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "deployment": "B268.295 DEVELOP_ACTIVE; B268.295-5091059-playtest.json;310/310 MATCH; stable/outgoing recovery verified"
+  }
+}

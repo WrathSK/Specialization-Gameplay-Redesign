@@ -1,90 +1,140 @@
+include('RuntimeWork')
+include('SampleLifecycle')
+include('SpecialistSupport')
 -- B036 IND-001: native per-specialist Food + base Production adjacency.
 -- No actual-adjacency fallback, rounding or city-wide multiplication. Crew access is independently audited.
 SPCIndustrySupport={}
 function SPCIndustrySupport.Start(P,shared)
+ local batch
+ local pending={} -- one current reference per affected city, cleared on success/loss/load
  local data={ready=false,busy=false,changes=0,errors={}};shared.IndustrySupport=data
- local samples={}
+ SPCSampleLifecycle.Reset(data,'industry')
+ local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'INDUSTRY_SUPPORT')
+ local function key(pid,cid)return tostring(pid)..':'..tostring(cid)end
+ local function reference(c)return table.concat({c:GetOwner(),c:GetID(),c:GetX(),c:GetY(),tostring(c:GetProperty('SPC_DEV_BINDING_B013_TOKEN'))},':')end
  local function name(bit) return 'BUILDING_SPC_DEV_INDUSTRY_LV1_'..bit end
- local function inspect(pid,city)
-  if city:GetOwner()~=pid or not P.IsTestPlayer(pid) then return nil end
-  local f=shared.EffectiveFacts.Read(pid,city)
-  if f.specialization~='INDUSTRY' then return nil end
-  assert(f.potential>=1 and f.first,'INDUSTRY_FACT_INVALID')
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
-   local c=d:GetCity()
-   if c and c:GetOwner()==pid and c:GetID()==city:GetID() and d:GetID()==f.first.districtID then
-    local row=P.Info('Districts',d:GetType())
-    assert(row and row.DistrictType=='DISTRICT_INDUSTRIAL_ZONE' and f.first.type==row.DistrictType and d:IsComplete()==true,'INDUSTRY_ANCHOR_CHANGED')
-    local sample=samples[pid..':'..city:GetID()]
-    assert(sample and sample.districtID==d:GetID(),'BASE_BACKGROUND_SAMPLE_PENDING')
-    local n=sample.value
-    assert(type(n)=='number' and n>=0 and n<=255 and n%1==0,'BASE_ADJACENCY_UNKNOWN_FRACTIONAL_OR_OUT_OF_RANGE')
-    return n
-   end
-  end
-  error('INDUSTRY_DISTRICT_MISSING')
+ local function inspect(pid,city,externalBatch)
+  local kind,d=SPCSpecialistSupport.Anchor(P,shared,pid,city,externalBatch or batch or SPCRuntimeWork.New(P,shared))
+  if kind~='INDUSTRY' then return nil end
+  local row=assert(P.Info('Districts',d:GetType()),'INDUSTRY_FACT_INVALID')
+  local batch=data.samples[pid];local sample=batch and batch.rows[city:GetID()..':'..d:GetID()]
+  assert(sample,'BASE_BACKGROUND_SAMPLE_PENDING')
+  assert(sample.reference==SPCSampleLifecycle.Reference(city,d,row),'BASE_BACKGROUND_REFERENCE_PENDING')
+  local n=sample.value
+  assert(type(n)=='number' and n>=0 and n<=255 and n%1==0,'BASE_ADJACENCY_UNKNOWN_FRACTIONAL_OR_OUT_OF_RANGE')
+  return n
  end
  local function carriers(city,n,write)
-  local total,food=0,0
+  local total,food=0,0;local removed=false
   for bit=-1,7 do
    local row=P.Info('Buildings',name(bit));assert(row and row.Index,'B036_DATABASE_MISSING: restart/new test game required')
    local wanted=n~=nil and (bit==-1 or math.floor(n/2^bit)%2==1)
    local b=city:GetBuildings();local present=P.HasBuilding(b,row.Index)
    assert(type(present)=='boolean','CARRIER_READ_UNKNOWN')
    if write and present~=wanted then
-    if wanted then P.CreateBuilding(city:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index) end
+    if wanted then P.CreateBuilding(city:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index);removed=true end
     assert(P.HasBuilding(b,row.Index)==wanted,'CARRIER_WRITE_UNCONFIRMED')
     data.changes=data.changes+1;present=wanted
    end
    if present then if bit==-1 then food=3 else total=total+2^bit end end
   end
+  if removed and n==nil then P.Count('industry_withdraw') end
   return total,food
  end
- function data.Audit()
-  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
-  for pid,player in pairs(Players) do
+ local function startReady()
+  if data.ready then return true end
+  local store=shared.CityProgressionStore
+  if store and store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return false end
+  data.ready=true;return true
+ end
+ function data.MarkCity(c)
+  if not c or not P.IsTestPlayer(c:GetOwner())then return end
+  pending[key(c:GetOwner(),c:GetID())]={player=c:GetOwner(),city=c:GetID(),reference=reference(c)}
+ end
+ function data.Audit(scope)
+  if P.Observe then P.Observe('audit','IndustrySupport') end
+  if not startReady() or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local scanOK,scanError=pcall(function()
     local cities=player:GetCities();if not cities then return end
-    for _,city in cities:Members() do P.Count('city_scan');
-     local k=pid..':'..city:GetID();local ok,n=pcall(inspect,pid,city)
-     local changed,err=pcall(carriers,city,ok and n or nil,true)
+    local visit,state,initial=cities:Members()
+    if type(scope)=='table' and scope.city~=nil then
+     local selected=cities:FindID(scope.city);local done=false
+     visit=function()if not done and selected then done=true;return scope.city,selected end end;state=nil;initial=nil
+    end
+    for _,city in visit,state,initial do P.Count('city_scan');
+     local k=pid..':'..city:GetID();local before=data.changes;local ok,n=pcall(inspect,pid,city)
+     local changed,err=true,nil
+     if ok then changed,err=pcall(function() SPCSpecialistSupport.Retire(P,city);carriers(city,n,true) end) end -- unreadable sample preserves projection
      data.errors[k]=not ok and tostring(n) or (not changed and tostring(err) or nil)
-     if data.errors[k] then print('[SPC][B036][ERROR] '..k..' '..data.errors[k]) end
+     if ok and changed then
+      if trace and data.changes~=before then trace.Record('INDUSTRY_SUPPORT',{owner=pid,city=city:GetID(),expected=n or 0,wanted=n~=nil and 'FOOD_3_PLUS_BASE_PRODUCTION' or 'NONE',readStatus='VERIFIED'})end
+      local waiting=pending[k]
+      local f=waiting and P.IsTestPlayer(pid) and batch.Facts(pid,city) or {specialization='EXIT'}
+      -- A committed Industrial Zone may precede the identity read; retain only
+      -- that explicitly signalled work until identity/sample has caught up.
+      if n~=nil or f.specialization~='NONE' or not waiting or reference(city)~=waiting.reference then pending[k]=nil end
+     elseif pending[k]==nil and P.IsTestPlayer(pid)then data.MarkCity(city)end
+
     end
    end)
    if not scanOK then print('[SPC][B036][SCAN_ERROR] '..tostring(scanError)) end
+  end end
+  data.busy=false;batch=nil
+ end
+ function data.FlushPending(pid)
+  if data.busy or not startReady() then return end
+  local todo={};for k,v in pairs(pending)do if pid==nil or pid==v.player then todo[k]=v end end
+  for k,v in pairs(todo)do
+   local player=Players[v.player];local c=player and player:GetCities():FindID(v.city)
+   if not c or c:GetOwner()~=v.player or reference(c)~=v.reference then pending[k]=nil
+   else data.Audit({player=v.player,city=v.city})end
   end
-  data.busy=false
-  if shared.Lv3Support then shared.Lv3Support.Audit() end
-  if shared.CrewProjects then shared.CrewProjects.Audit() end
+ end
+ function data.BindPermanentWrites()
+  local previous=shared.OnPermanentCityWrite
+  shared.OnPermanentCityWrite=function(c,reason)
+   if previous then previous(c,reason)end
+   if reason=='CityProgressionStore.lua' or reason=='ClaimProjects.lua'then data.MarkCity(c)end
+  end
  end
  data.ReadBase=inspect
  function data.Receive(pid,params)
-  if not data.ready or not P.IsTestPlayer(pid) then return end
-  if type(params.CityID)~='number' or type(params.DistrictID)~='number' or type(params.BaseProduction)~='number' then return end
-  local n=params.BaseProduction
-  if n~=-1 and not (n>=0 and n<=255 and n%1==0) then return end
-  -- Only a current owned matching district is admitted; inspect still checks permanent specialty anchor.
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
-   local c=d:GetCity();local row=P.Info('Districts',d:GetType())
-   if c and c:GetOwner()==pid and c:GetID()==params.CityID and d:GetID()==params.DistrictID
-    and row and row.DistrictType=='DISTRICT_INDUSTRIAL_ZONE' and d:IsComplete()==true then
-    samples[pid..':'..c:GetID()]={districtID=d:GetID(),value=n};data.Audit();return
-   end
-  end
+  if SPCSampleLifecycle.Receive(P,data,'industry',pid,params,true) then
+   data.Audit({player=pid})
+  else data.FlushPending(pid) end
  end
  function data.Describe(pid,city)
+  local bg=ExposedMembers.SPC_IndustryBackground
   local ok,n=pcall(inspect,pid,city)
   local valid,p,f=pcall(carriers,city,nil,false)
-  return 'B036 Industry Lv1 city='..city:GetID()
+  return 'P0-B1 Industry ACTIVE1–4 city='..city:GetID()
    ..'\nBASE Production adjacency='..(ok and tostring(n or 'N/A') or 'ERROR '..tostring(n))
    ..'\nPer worker expected='..(ok and n~=nil and ('3F / '..n..'P') or 'NONE')
    ..' carrier='..(valid and (f..'F / '..p..'P') or ('ERROR '..tostring(p)))
+   ..'\nbackground='..tostring(bg and bg.state or 'NOT_STARTED')..' pending='..tostring(bg and bg.pending or 0)..' requests='..tostring(bg and bg.requests or 0)
+   ..' receive='..tostring(data.receiveErrors and data.receiveErrors[pid] or 'NONE')
    ..'\nchanges='..data.changes..' error='..tostring(data.errors[pid..':'..city:GetID()] or 'NONE')
-   ..'\nRead only; verify native specialist yields. Crew projects available from Industry Lv1; project engine behavior requires B044 testing.'
+   ..'\nRead only; verify native specialist yields. Native district yields are additional; retired III Food/Gold upgrade cannot reactivate.'
  end
  local function hook(source,name,fn) local e=P.Field(source,name);if e and e.Add then e.Add(fn) end end
- hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit() end)
- for _,n in ipairs({'PlayerTurnActivated','PlayerTurnDeactivated','CityTransfered','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap','CityWorkerChanged'}) do hook(Events,n,data.Audit) end
- for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
+ hook(Events,'LoadScreenClose',function() pending={};data.ready=true;SPCSampleLifecycle.Reset(data,'industry');data.Audit() end)
+ hook(Events,'GameCoreEventPublishComplete',function()data.FlushPending()end)
+ hook(GameEvents,'OnDistrictConstructed',function(pid,index,x,y)
+  local r=P.Info('Districts',index)
+  if not r or P.Family(r.DistrictType)~='INDUSTRY' or not P.IsTestPlayer(pid)then return end
+  local district=CityManager.GetDistrictAt(x,y);local c=district and district:GetCity()
+  if c and c:GetOwner()==pid and district:GetType()==index then data.MarkCity(c);data.FlushPending(pid)end
+ end)
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','DistrictPillaged','DistrictRepaired'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
+ for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt','OnPillage'}) do hook(GameEvents,n,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('IndustrySupport',function(c,loss)
+   local ids={};for bit=-1,7 do ids[#ids+1]=name(bit)end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+   pending[key(loss.origin.owner,loss.origin.cityID)]=nil;pending[key(c:GetOwner(),c:GetID())]=nil
+ end)end
+
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('IndustrySupport',function(pid)SPCSampleLifecycle.Reset(data,'industry');data.last={} end)end
+
 end

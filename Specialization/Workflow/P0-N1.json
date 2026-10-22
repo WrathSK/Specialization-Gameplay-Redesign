@@ -1,0 +1,986 @@
+{
+  "schema_version": 1,
+  "batch": "P0-N1",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0051",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0051",
+    "commerce": "D0050",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0162",
+    "status": "S0619",
+    "runtime": "B232.259 / modinfo259",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出",
+  "goal": "B232 tested network update/withdrawal/recovery accepted. Expedition issues, remaining Meaning work and era-coverage presentation HOLD/nonblocking; no further Culture implementation/test authorized. Industry preparation is separate planning only; this retained Culture envelope grants no Industry implementation permission.",
+  "implementation_authorized": false,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "## CURRENT AUTHORITATIVE STATE",
+      "reason": "Current gate, authorization and source/live distinction"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B232_Native_Review.md",
+      "kind": "full",
+      "reason": "Latest scoped B232 network acceptance, explicit Expedition HOLD and current Culture remaining-scope index; not next-batch implementation authorization."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B231_Native_Review.md",
+      "kind": "full",
+      "reason": "Latest native partial result, source-backed counterexamples and proposed next repair; not implementation authorization."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B226_Native_Review_Advisor_Handoff.md",
+      "kind": "full",
+      "reason": "Current accepted/failed/pending native scopes, exact latest evidence and open-topic Advisor handoff; not an implementation authorization or mandatory reading of all Advisory reports."
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
+      "kind": "section",
+      "selector": "## N3：Culture Network与精确旧Eureka退出",
+      "reason": "Current N3 topology/history contract and B232 shared recovery boundary; prior N1 chronology stays conditional."
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_N_Expedition.md",
+      "kind": "section",
+      "selector": "## N2：任务事务、城市历史与整城旅游",
+      "reason": "Complete accepted mission/history/Tourism contract, current implementation and native evidence boundaries"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0051.json",
+      "kind": "json",
+      "selector": "/abilities/5",
+      "reason": "Accepted exact nonhostile unit/travel/source contract, not prototype-derived gameplay",
+      "expected_id": "CUL_L4_EXPEDITION"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0051.json",
+      "kind": "json",
+      "selector": "/contracts/expedition",
+      "reason": "Accepted exact nonhostile unit/travel/source contract, not prototype-derived gameplay"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "selector": "/concepts/LONG_TERM_STATE_LIFECYCLE/G_PROFESSIONAL_UNITS_AND_SOURCE_BINDING",
+      "reason": "Unit survival/protection and priority of named source-transfer semantics"
+    },
+    {
+      "path": "Mod/ExpeditionSpyGate.lua",
+      "kind": "full",
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
+    },
+    {
+      "path": "Mod/ExpeditionSpyRead.lua",
+      "kind": "full",
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyWindow.lua",
+      "kind": "full",
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyWindow.xml",
+      "kind": "full",
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
+    },
+    {
+      "path": "Mod/Data/ExpeditionSpyGate.sql",
+      "kind": "full",
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
+    },
+    {
+      "path": "Mod/Text/ExpeditionGate.sql",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "Direct gate implementation, inherited qualification dependency or validation"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_gate.py",
+      "kind": "full",
+      "reason": "Direct authorized Spy1 gate, safety/ordinary-Spy boundaries, or corresponding local/native delta evidence"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "N1 UI handoff/visibility and direct integration regression; preserve existing callbacks"
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "N1 UI handoff/visibility and direct integration regression; preserve existing callbacks"
+    },
+    {
+      "path": "DevelopmentTests/test_p0_panel_current_layout.py",
+      "kind": "full",
+      "reason": "N1 UI handoff/visibility and direct integration regression; preserve existing callbacks"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Direct reused city Reference implementation; no new persistent identity"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_gate.py",
+      "kind": "full",
+      "reason": "New targeted suite reuses prior fixture environment; old runtime assertions preserved"
+    },
+    {
+      "path": "Mod/ExpeditionSpyUI.lua",
+      "kind": "full",
+      "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyUnitPanel.lua",
+      "kind": "full",
+      "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyChooser.lua",
+      "kind": "full",
+      "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyPopup.lua",
+      "kind": "full",
+      "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_task.py",
+      "kind": "full",
+      "reason": "Direct B185 identity/task/native UI isolation path and corresponding targeted tests"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_binding.py",
+      "kind": "full",
+      "reason": "Exact returned-candidate and diagnostic fault/ambiguity cases for the changed lookup"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_name.py",
+      "kind": "full",
+      "reason": "Actual native-name preparation and exact identity/publication/cancellation counterexamples"
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyActivity.lua",
+      "kind": "full",
+      "reason": "Direct activity handshake, ownership, independent UI lifetime and failure/cross-context regression dependency."
+    },
+    {
+      "path": "Mod/UI/ExpeditionSpyActivity.xml",
+      "kind": "full",
+      "reason": "Direct activity handshake, ownership, independent UI lifetime and failure/cross-context regression dependency."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity.py",
+      "kind": "full",
+      "reason": "Direct activity handshake, ownership, independent UI lifetime and failure/cross-context regression dependency."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_ui.py",
+      "kind": "full",
+      "reason": "Direct activity handshake, ownership, independent UI lifetime and failure/cross-context regression dependency."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_integration.py",
+      "kind": "full",
+      "reason": "Direct activity handshake, ownership, independent UI lifetime and failure/cross-context regression dependency."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_report.py",
+      "kind": "full",
+      "reason": "Direct precise-error and fresh/stale HELD identity presentation regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_diagnostic.py",
+      "kind": "full",
+      "reason": "Direct one-shot diagnostic and historical report isolation regression; no new gameplay authority."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_diagnostic_report.py",
+      "kind": "full",
+      "reason": "Direct one-shot diagnostic and historical report isolation regression; no new gameplay authority."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_failure.py",
+      "kind": "full",
+      "reason": "Direct failure-time sample, PRE/POST request distinction and exact-identity report regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_failure_report.py",
+      "kind": "full",
+      "reason": "Direct failure-time sample, PRE/POST request distinction and exact-identity report regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_activity_pending.py",
+      "kind": "full",
+      "reason": "Direct bounded pending/timeout and actual Gate timer/completion/release regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_actions_ui.py",
+      "kind": "full",
+      "reason": "Direct B196 action/window guards or backing-failure evidence; action-scoped reading only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_sidebar_ui.py",
+      "kind": "full",
+      "reason": "New actual Window Lua/sidebar selection, request guards, cleanup and layout regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_relocation_ui.py",
+      "kind": "full",
+      "reason": "B198 actual UI-create/dispatch guard and bounded display regression; read for affected implementation/validation only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_selection_ui.py",
+      "kind": "full",
+      "reason": "Direct explicit-choice/ACK/incomplete-data/icon regression; read for affected UI work."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_locations.py",
+      "kind": "full",
+      "reason": "Direct optional location reader contract and bounded/UNKNOWN/no-write tests."
+    },
+    {
+      "path": "Mod/GreatWorkCatalog.lua",
+      "kind": "full",
+      "reason": "Existing catalog reused by optional location preview; inspect Resolve and observed entry metadata for affected work only."
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0051.json",
+      "kind": "json",
+      "reason": "Exact shared work pool used by display-only host identification.",
+      "selector": "/contracts/work_pool"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_auto_open.py",
+      "kind": "full",
+      "reason": "Exact selection/current-city/no-native-action/ordinary-path and actual Window regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_card_layout.py",
+      "kind": "full",
+      "reason": "Content-only sizing, repeated growth/shrink, header/footer geometry and error-preserving idle-copy regression."
+    },
+    {
+      "path": "Mod/ExpeditionSpyStore.lua",
+      "kind": "full",
+      "reason": "Direct B201 bounded persistence/readback/reconstruction dependency; task-scoped implementation and local regression only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_store.py",
+      "kind": "full",
+      "reason": "Direct B201 bounded persistence/readback/reconstruction dependency; task-scoped implementation and local regression only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_persistence.py",
+      "kind": "full",
+      "reason": "Direct B201 bounded persistence/readback/reconstruction dependency; task-scoped implementation and local regression only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_spy_recovery_activity.py",
+      "kind": "full",
+      "reason": "Direct B201 bounded persistence/readback/reconstruction dependency; task-scoped implementation and local regression only."
+    },
+    {
+      "path": "Mod/ExpeditionTraining.lua",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "Mod/UI/ExpeditionTrainingUI.lua",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "Mod/UI/ExpeditionTrainingName.lua",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "Mod/UI/ExpeditionTrainingName.xml",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "Mod/UI/CrewProjectOrder.lua",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training.py",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training_ui.py",
+      "kind": "full",
+      "reason": "Direct B202 queue/source/name implementation or targeted result; read for this delta only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training_name_recovery.py",
+      "kind": "full",
+      "reason": "B203 exact observer retry/ack/diagnostic separation counterexamples"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training_name_events.py",
+      "kind": "full",
+      "reason": "B204 event-only actual-reader/Gate/Store confirmation and exact stage feedback counterexamples; read for this delta only."
+    },
+    {
+      "path": "Mod/ExpeditionTrainingDiagnostics.lua",
+      "kind": "full",
+      "reason": "Bounded diagnostic-only scalar sampling, output and failure isolation"
+    },
+    {
+      "path": "tools/read_expedition_trace.py",
+      "kind": "full",
+      "reason": "Fixed read-only localhost transport (probe/trace/record); Mac GameCore_Tuner without rawget (8963218)"
+    },
+    {
+      "path": "tools/collect_expedition_trace.py",
+      "kind": "full",
+      "reason": "S0549 unattended read-only session collector reusing the fixed record capture; local-only logs"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training_diagnostics.py",
+      "kind": "full",
+      "reason": "Diagnostic bounds, error/reentry and scalar privacy counterexamples"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training_trace_integration.py",
+      "kind": "full",
+      "reason": "Actual Training/Gate/Store diagnostic ON/OFF equivalence and injected boundaries"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_trace_reader.py",
+      "kind": "full",
+      "reason": "Offline bounded transport/selection/filter/close failure tests"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_trace_collector.py",
+      "kind": "full",
+      "reason": "Offline collector dedup/alert/reconnect/idle-exit/cap/no-command tests"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_missions.py",
+      "kind": "full",
+      "reason": "B212 three missions, Insight ledger, movement/return, invalidation and entry travel"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0051.json",
+      "kind": "json",
+      "selector": "/missions",
+      "reason": "Full target eligibility and per-category first-success rules"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0051.json",
+      "kind": "json",
+      "selector": "/contracts/observations",
+      "reason": "City-owned history, owner filter, lifecycle and still-future benefit contract"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0051.json",
+      "kind": "json",
+      "selector": "/institutions",
+      "reason": "Accepted Culture names and stages for shared institution UI"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0051.json",
+      "kind": "json",
+      "selector": "/abilities",
+      "reason": "Full Culture effect/level descriptions; UI must not infer implementation from accepted Design"
+    },
+    {
+      "path": "Mod/CityProgressionStore.lua",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "Mod/InstitutionPresentation.lua",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "Mod/UI/Institutions.lua",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "Mod/UI/InstitutionOverview.lua",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "Mod/UI/Institutions.xml",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "Mod/Probe.lua",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "Mod/Text/TestText.sql",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_insights_report.py",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "DevelopmentTests/test_u1_presentation.py",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_institutions.py",
+      "kind": "full",
+      "reason": "Actual Research/Culture institution render, identity/ACTIVE/UNKNOWN and unchanged-layout regression"
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_idle_actions.py",
+      "kind": "full",
+      "reason": "Direct B215 native idle-action/lock and callback tests; action-scoped reading."
+    },
+    {
+      "path": "Mod/CultureInsightsTourism.lua",
+      "kind": "full",
+      "reason": "Direct B216 final-value Tourism projection/definitions/targeted validation; implementation action scope only."
+    },
+    {
+      "path": "Mod/Data/CultureInsightsTourism.sql",
+      "kind": "full",
+      "reason": "Direct B216 final-value Tourism projection/definitions/targeted validation; implementation action scope only."
+    },
+    {
+      "path": "DevelopmentTests/test_culture_insights_tourism.py",
+      "kind": "full",
+      "reason": "Direct B216 final-value Tourism projection/definitions/targeted validation; implementation action scope only."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_position_wait.py",
+      "kind": "full",
+      "reason": "Direct B217 event-only position convergence, protection, collector and Gate/UI isolation tests."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_placement_diagnostic.py",
+      "kind": "full",
+      "reason": "Direct diagnostic failure isolation and bounded event regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_activity_trace.py",
+      "kind": "full",
+      "reason": "Direct bounded activity diagnostic producer/consumer and delta regression."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_task_rejection.py",
+      "kind": "full",
+      "reason": "Direct clean-denial/owned-failure, exact attempt, persistence and bounded native reason counterexamples."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_native_state_trace.py",
+      "kind": "full",
+      "reason": "Direct actual-code native sample, final receipt/readback, offline retention and noninterference counterexamples."
+    },
+    {
+      "path": "Mod/GreatWorkFacts.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Mod/UI/DialogueRefresh.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Mod/CultureAesthetic.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Mod/CultureAestheticModel.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Mod/CultureMeaning.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "Mod/CultureInspiration.lua",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "DevelopmentTests/test_p0_k.py",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "DevelopmentTests/test_great_work_notifications.py",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "DevelopmentTests/test_b224_current_facts.py",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "path": "DevelopmentTests/refresh_fixture.py",
+      "kind": "full",
+      "reason": "Fixture-only deferred native UI refresh/event phases; no runtime scheduler."
+    },
+    {
+      "path": "DevelopmentTests/test_b225_task_lifecycle.py",
+      "kind": "full",
+      "reason": "B225 differential ordering, release, manual sleep, city Works and deal-only refresh regressions."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
+      "kind": "full",
+      "reason": "Current B225 result, authorization, native delta and stop point."
+    },
+    {
+      "path": "Mod/CultureNetwork.lua",
+      "kind": "full",
+      "reason": "New sole Culture network specialist writer; source/receiver/UNKNOWN/exit ownership."
+    },
+    {
+      "path": "Mod/Data/CultureNetwork.sql",
+      "kind": "full",
+      "reason": "32 exact native district specialist Culture carriers; no flat city yield."
+    },
+    {
+      "path": "Mod/NetworkBridge.lua",
+      "kind": "full",
+      "reason": "Complete copied Culture topology and isolated named publication."
+    },
+    {
+      "path": "Mod/NetworkBoost.lua",
+      "kind": "full",
+      "reason": "Research-only generation plus finite all-kind legacy cleanup."
+    },
+    {
+      "path": "Mod/NetworkIsolation.lua",
+      "kind": "full",
+      "reason": "Six exact network writers; no residual Culture projection during isolation."
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Current Identity and ACTIVE authority read facade."
+    },
+    {
+      "path": "Mod/RuntimeWork.lua",
+      "kind": "full",
+      "reason": "Existing bounded update scopes; no new framework."
+    },
+    {
+      "path": "Mod/Data/NetworkBoost.sql",
+      "kind": "full",
+      "reason": "Exact retired Culture native/HD attachments; Research unchanged."
+    },
+    {
+      "path": "Mod/Data/NetworkBoostInteger.sql",
+      "kind": "full",
+      "reason": "Exact integer Culture retirement and retained Research."
+    },
+    {
+      "path": "Mod/Data/BoostIntegerTest.sql",
+      "kind": "full",
+      "reason": "Hidden test Culture attachments disabled."
+    },
+    {
+      "path": "tools/generate_boost.py",
+      "kind": "full",
+      "reason": "Reproducible cleanup-only Culture definitions."
+    },
+    {
+      "path": "tools/generate_boost_integer.py",
+      "kind": "full",
+      "reason": "Reproducible integer retirement."
+    },
+    {
+      "path": "DevelopmentTests/test_culture_network.py",
+      "kind": "full",
+      "reason": "B226 actual consumer/Bridge/retirement/Research differential tests."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
+      "kind": "full",
+      "reason": "Current combined result and one native gate."
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0051.json",
+      "kind": "json",
+      "selector": "/contracts/network_effect",
+      "reason": "Whole accepted network qualification/merge/ownership/replacement contract."
+    },
+    {
+      "path": "Specialization/Design/Network.md",
+      "kind": "full",
+      "reason": "Complete existing direct-center/capital/distribution/no-recursion rules; linked formal authority unchanged."
+    },
+    {
+      "path": "DevelopmentTests/test_b227_event_activity.py",
+      "kind": "full",
+      "reason": "B227 authorized event/ownership delta and exact validation boundary."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B227_Event_Activity.md",
+      "kind": "full",
+      "reason": "B227 authorized event/ownership delta and exact validation boundary."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B228_Wake_Network_Diagnostics.md",
+      "kind": "full",
+      "reason": "Current narrow repair and validation boundaries."
+    },
+    {
+      "path": "DevelopmentTests/test_b228_native_network_diagnostics.py",
+      "kind": "full",
+      "reason": "Actual-source wake/network diagnostic counterexamples."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md",
+      "kind": "full",
+      "reason": "Current narrow diagnostic closure and limits."
+    },
+    {
+      "path": "DevelopmentTests/test_b229_retained_diagnostics.py",
+      "kind": "full",
+      "reason": "Retained snapshot and release-exit actual-source coverage."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B230_Culture_Network_Readiness.md",
+      "kind": "full",
+      "reason": "Direct B230 authorized delta, local evidence and native gate."
+    },
+    {
+      "path": "DevelopmentTests/test_b230_culture_network_ready.py",
+      "kind": "full",
+      "reason": "Direct B230 authorized delta, local evidence and native gate."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B231_Network_Initialization_Reports.md",
+      "kind": "full",
+      "reason": "Direct B231 approved delta, B230 evidence, local checks and network-only native gate."
+    },
+    {
+      "path": "DevelopmentTests/test_b231_network_initialization_reports.py",
+      "kind": "full",
+      "reason": "Actual-source initialization, shared-report independence and redaction counterexamples."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
+      "kind": "full",
+      "reason": "Current authorized B232 implementation, targeted checks and minimal native delta."
+    },
+    {
+      "path": "Mod/NetworkSender.lua",
+      "kind": "full",
+      "reason": "Direct proof-pending dedup and accepted sequence/one-flight failure boundary."
+    },
+    {
+      "path": "Mod/UI/BackgroundRoutes.lua",
+      "kind": "full",
+      "reason": "Direct event-driven request callback, coalescing, complete proof and bounded failures."
+    },
+    {
+      "path": "DevelopmentTests/test_b232_network_revalidation.py",
+      "kind": "full",
+      "reason": "Actual sender/collector/bridge/Culture regression and malformed/recovery controls."
+    }
+  ],
+  "dependencies": [
+    "Existing EffectiveFacts qualification and NetworkInput source reference remain authority. CityProgressionStore owns permanent city Insight records; ExpeditionSpyStore owns the one saved cap1 team/mission transaction. Native units/travel/activity remain engine-owned; UI mirrors and report logs are disposable.",
+    "Every attempt retains confirmed-revision-derived keys and exact source/team ownership. B225 implements accepted D0051 city-level WORKS existence; PLACES, UNKNOWN, due-time and reward isolation remain. Old exact instance/slot hints are not a continuation lock.",
+    "Read complete mission/observation contracts. Native current target readers must distinguish unavailable from confirmed invalid; current-source/owner loss keeps existing protection. Owned SLEEP/release and exact logical keys remain direct consumers.",
+    "Training retains B209 immediate source-city completion receipt and B210 three-condition removal/replacement release; do not reintroduce obsolete blanket empty-queue rejection. Exact source/owner/reference and one matching birth remain required; cost/capacity/source unchanged.",
+    "Research and Culture share selected-city institution rendering; ACTIVE does not erase established stages. Insight report only reads selected owned city on request, includes effective owner filtering and no reward writer. Native icons do not authorize missions.",
+    "Disposable diagnostic trace never authorizes admission or persistence. Missing trace retry is delayed; invalid trace is fatal; explicit report logs are bounded. No additional game polling, global scans or GC changes.",
+    "WORKS gets fresh city-level eligible-work existence via the always-loaded read-only UI endpoint; Gate alone validates and writes rewards. Explicit EMPTY requires count0 and complete KNOWN references; UNKNOWN never becomes zero. Three Culture consumers retain their existing effect ownership.",
+    "B226 consumes only copied complete AVAILABLE Culture topology. Each source history is read once per synchronous batch; receiver working count is native, not a cached authority. No partial-network fallback, new wire rows or transport-bound changes."
+  ],
+  "old_writers": [
+    "B183 gate Start and UI addin replaced, old source/data/tests preserved inert. Both prior prototype types count; exact END allowed. No ordinary Spy/effect writer changes.",
+    "B226: retire only Culture normal/TEST Eureka generation and all1126 native/HD attachments for563 exact cleanup IDs. Retain Research and exact saved-carrier withdrawal; never reset shared HD Tech property."
+  ],
+  "conditional_context": [
+    {
+      "trigger": "Inspect native/HD isolation boundary or prior Spy0 counterexample",
+      "paths": [
+        "Specialization/Reports/Technical/Specialization_Expedition_Movement_Coexistence.md",
+        "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md",
+        "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
+        "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "After native route evidence, formal N1 production/source/reattachment work",
+      "paths": [
+        "Specialization/Architecture/v2/P0_N_Expedition_UI.md",
+        "Mod/UnitActions.lua",
+        "Mod/CrewProjects.lua"
+      ]
+    },
+    {
+      "trigger": "Registration or deployment",
+      "paths": [
+        "Mod/ArtDefs/Units.artdef",
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ]
+    },
+    {
+      "trigger": "Need the direct native counterexample or unchanged independent timer/UI evidence",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Native_Review.md",
+        "Specialization/Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md",
+        "Specialization/Status/Validation/Results/Specialization_B186_Expedition_Marker_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Review original B187 local naming/readback coverage or its approved implementation delta",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Controlled_Name_Local.md"
+      ]
+    },
+    {
+      "trigger": "Inspect the direct B188 failure basis or separate-context reproduction",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B187_Expedition_Name_Preflight_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Review unchanged B188 readiness/name local coverage or an approved future repair delta",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B188_Expedition_UI_Readiness_Local.md"
+      ]
+    },
+    {
+      "trigger": "Review the directly preceding native-name investigation or independent test-civilization registration",
+      "paths": [
+        "Specialization/Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md",
+        "Mod/Config/Players.sql"
+      ]
+    },
+    {
+      "trigger": "Review unchanged B189 name-pool/local regression basis before an approved activity delta",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md"
+      ]
+    },
+    {
+      "trigger": "Inspect inherited B189 native name/source/task and user-confirmed END evidence",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Name_Task_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Implement an approved activity constant repair using unchanged B190 ownership/local evidence",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md"
+      ]
+    },
+    {
+      "trigger": "Review the direct native failure behind the B191 lookup repair",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Review unchanged B191 lookup implementation/local coverage before a separately approved activity diagnostic or repair",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B191_Expedition_Activity_Lookup_Local.md"
+      ]
+    },
+    {
+      "trigger": "Review the native activity precondition counterexample requiring B192 observation",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B191_Expedition_Activity_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Review unchanged B192 diagnostic capture implementation and local regression basis",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Diagnostic_Local.md"
+      ]
+    },
+    {
+      "trigger": "Review B192 native startup observation and correction to prior pre-request inference",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B192_Expedition_Activity_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Review unchanged B193 diagnostic implementation/local coverage before an approved pending-state repair",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B193_Expedition_Failure_Diagnostic_Local.md"
+      ]
+    },
+    {
+      "trigger": "Review the direct B193 native post-request OPERATION evidence behind the approved wait repair",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B193_Expedition_Activity_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Review inherited unchanged B194 wait/local evidence; no new activity implementation in B195",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Local.md"
+      ]
+    },
+    {
+      "trigger": "Inspect unchanged B195 icon/compact-slot evidence",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B195_Action_And_Project_Icons_Local.md"
+      ]
+    },
+    {
+      "trigger": "Review unchanged B196 UI implementation or its145 local checks",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md"
+      ]
+    },
+    {
+      "trigger": "Review unchanged inherited B200 selection/card evidence",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md"
+      ]
+    },
+    {
+      "trigger": "Trace superseded training preflight / obsolete cache mistake; implementation contract is the current training slice and B202 result.",
+      "paths": [
+        "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md"
+      ]
+    },
+    {
+      "trigger": "B203 panel-independent confirmation failure or event-first repair review",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B203_Expedition_Name_Recovery_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Need the exact inherited native evidence or historical failure chronology; select the relevant report/section, not every past batch.",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B196_Expedition_UI_Native_Review.md",
+        "Specialization/Status/Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md",
+        "Specialization/Status/Validation/Results/Specialization_B194_Expedition_Pending_Activity_Native_Review.md",
+        "Specialization/Status/Validation/Results/Specialization_B195_Action_Backing_Native_Review.md",
+        "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Local.md",
+        "Specialization/Status/Validation/Results/Specialization_B199_Expedition_UI_Native_Review.md",
+        "Specialization/Status/Validation/Results/Specialization_B201_Expedition_Persistence_Native_Review.md",
+        "Specialization/Status/Validation/Results/Specialization_B202_Expedition_Training_Local.md",
+        "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md"
+      ]
+    },
+    {
+      "trigger": "Native name-pool/registration or existing compact unit buttons/project icon aliases regress; unchanged by this mission-card/institution repair.",
+      "paths": [
+        "Mod/Data/Identity.sql",
+        "DevelopmentTests/test_expedition_spy_name_pool.py",
+        "Mod/UI/UnitPanelActions.lua",
+        "Mod/UI/UnitPanelActions.xml",
+        "Mod/Data/Icons.sql",
+        "DevelopmentTests/test_unit_panel_action_layout.py",
+        "DevelopmentTests/test_native_icon_aliases.py"
+      ]
+    },
+    {
+      "trigger": "Review direct B221 native denial or its B194/B214 comparison before changing native permission semantics",
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B221_Activity_Native_Review.md"
+      ]
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
+      "kind": "full",
+      "reason": "Direct changed source, consumer or validation for approved B213 repair/presentation"
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B218_Placement_Diagnostic.md",
+      "kind": "full",
+      "reason": "Current diagnostic authorization, local evidence and one native capture."
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Rejection.md",
+      "kind": "full",
+      "reason": "Current authorized repair, local checks, native uncertainty and bounded continuation."
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B222_Task_Start_Native_Review.md",
+      "kind": "full",
+      "reason": "Direct prior native evidence and missing manual-sleep/dispatch/arrival state plus final receipt motivating B223; action-scoped reading."
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B223_Native_State_Diagnostic.md",
+      "kind": "full",
+      "reason": "Current authorized diagnostic, evidence boundaries and one minimal native capture."
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
+      "kind": "full",
+      "reason": "Direct B224 current-facts transport/consumer or targeted validation; implementation scope, not default full recovery reading."
+    },
+    {
+      "trigger": "Only when investigating the inherited mission/native boundary named by this report; historical evidence, not an active instruction.",
+      "path": "Specialization/Status/Validation/Results/Specialization_B224_Native_Review.md",
+      "kind": "full",
+      "reason": "Direct B224 failure evidence and approved B225 plan; read when investigating the affected native boundary, not a current instruction."
+    }
+  ],
+  "non_scope": [
+    "No new timer, permanent schema/history, capacity/source/travel/task-rule change, partial-network policy, route capacity increase, reattachment/U2/site movement, Research redesign, GC/config/main/deployment-tool change or unrelated audit repair."
+  ],
+  "validation": {
+    "depth": "L1 documentation/evidence checkpoint; inherited B232 L3 shared-infrastructure validation",
+    "local": "163 unittest tests plus B134 actual-bridge scope regression PASS; historical B137 comparison fails identically on pre-B232 HEAD and is not counted. No unrelated wrapper/assertion repair.",
+    "user": "USER_GAME_TEST_PASS for tested B232 network update/withdrawal/recovery, with user-observed native effects and automatic projection records; B231 initial bonus retained. Expedition follow-up HOLD, not full PASS; no current retest requested.",
+    "review": "Reviewed contiguous 67-record evidence and current Culture implementation/accepted deferrals; unchanged B232 local results inherited. Held Expedition acceptance keeps the broad N1 envelope open without blocking other v0.1 development."
+  },
+  "full_audit_triggers": [
+    "Unexpected native Spy behavior, changed Owner/destruction or unusable helper: stop route and preserve evidence; no guessed fallback.",
+    "Implementation needs gameplay/unknown source semantics: DESIGN_DECISION_REQUIRED for that path."
+  ],
+  "result": {
+    "report": "Specialization/Status/Validation/Results/Specialization_B232_Native_Review.md",
+    "source": "B232.259/modinfo259 DEVELOP_ACTIVE; source a0e1d4ece94bac690c6a2018add37b96c37c145c; receipt B232.259-a0e1d4e-playtest.json;226/226 MATCH, digest 4830284febe3731cb9d0b0de0970613cf5358a9c98575934e163dc23a91036cb. Automatic game-exit checks before both guarded switches; B231/stable recovery retained, no pending transaction.",
+    "native": "USER_GAME_TEST_PASS for tested B232 network update/withdrawal/recovery, with user-observed native effects and automatic projection records; B231 initial bonus retained. Expedition follow-up HOLD, not full PASS; no current retest requested.",
+    "stop": "Culture follow-up HOLD: Expedition issues, remaining Meaning and era-coverage presentation; Balance outside current task. Proposed B233 Industry facts/knowledge plan awaits user review/implementation authorization. No code, deployment or new native test in this documentation checkpoint."
+  }
+}

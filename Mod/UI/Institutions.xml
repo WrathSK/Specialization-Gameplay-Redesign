@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="BodyTextCool" FontStyle="Shadow">
+<Stack ID="InstitutionContainer" Size="parent,auto" StackGrowth="Bottom" Hidden="1">
+<Grid Anchor="L,T" Size="parent,24" Style="DivHeader">
+<Container Size="parent,24"><Image Texture="Controls_Gradient_HalfRadial" Size="parent,120" FlipY="1" Anchor="C,T" Color="72,103,130,255"/></Container>
+<Label ID="InstitutionHeader" Anchor="C,C" Style="CityPanelSubPanelTitle" Align="Center" WrapWidth="parent" String="" />
+</Grid>
+<Stack ID="InstitutionRows" Size="parent,auto" StackGrowth="Bottom" StackPadding="3" />
+</Stack>
+<Instance Name="InstitutionRowInstance">
+<Grid ID="Top" Size="parent,32" Style="CityPanelSubPanelContainer">
+<Container Anchor="L,C" Offset="4,0" Size="32,32">
+ <Image ID="Icon" Anchor="C,C" Size="32,32"/>
+</Container>
+<Container Anchor="L,C" Offset="42,0" Size="parent-120,32"><Label ID="Name" Anchor="L,C" Style="CityPanelText" TruncateWidth="parent" String=""/></Container>
+<Container Anchor="R,C" Offset="8,0" Size="64,32"><Label ID="State" Anchor="R,C" Style="CityPanelTextSmall" TruncateWidth="parent" String=""/></Container>
+</Grid>
+</Instance>
+</Context>

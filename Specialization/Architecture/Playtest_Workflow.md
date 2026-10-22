@@ -1,15 +1,48 @@
 # v0.1 Playtest / Development contract
 
 Document Owner: Codex
-Workflow Revision: W0001
+Workflow Revision: W0003
 Baseline: B069.96 / modinfo96 / accepted D0025
 Baseline tag: v0.1-playtest-b069.96
 
-main worktree: `/Users/xutingzheng/Projects/Specialization-Gameplay-Redesign`
-develop worktree: `/Users/xutingzheng/Projects/Specialization-Gameplay-Redesign-develop`
-These are machine-local locations, not hardcoded tooling dependencies. Git worktree owns isolation; no second manually maintained source/runtime tree.
+- main worktree: the separate checkout of the `main` branch (stable source).
+- develop worktree: the canonical checkout of the `develop` branch (current development source).
+
+Run `git worktree list` from either repository checkout to locate their actual machine-local directories. Neither checkout is a deployment directory. Git worktree owns isolation; no second manually maintained source/runtime tree.
 
 The original unchanged source/document checkpoint is `ca54045`. A following infrastructure-only commit adds this contract and deployment gates; the annotated baseline tag and both initial branches point to that final infrastructure commit, with identical Mod/ contents. This is a playtest milestone, not a final release or balance/performance certification.
+
+## Validation depth — W0004 v1
+
+[W0004 v1 validation policy](../Workflow/README.md#w0004-v1--quota-efficient-validation-policy) defines risk-matched L1/L2/L3 local checks; “passes local checks” below means that minimum sufficient scope, not automatic full historical regression. W0003 deployment authorization and every exit/hash/manifest/backup/rollback/clean-source safeguard remain unchanged. Tools perform deterministic verification; consume their summary unless a mismatch needs investigation. Local PASS never substitutes for USER_GAME_TEST_PASS. Native acceptance follows the [delta/inherited-evidence policy](../Workflow/README.md#native-delta-and-inherited-evidence): test new uncertainty, inherit unchanged covered lifecycle paths, and justify any scoped save/load or cleanup retest.
+
+## Current temporary development-test mode — W0003
+
+2026-09-18 user explicitly authorizes B078.105 deployment and standing deployment of completed develop testing batches until the user declares a node ready for long-play testing. This section overrides older per-switch authorization prose below for this phase only; historical W0002 receipts remain valid.
+
+- Main/stable semantics, separate Git worktrees, source ownership, no automatic promotion and no game launch remain unchanged. This is temporary permission to update the external testing package, not a source-tree merge.
+- After an authorized implementation batch passes local checks: review diff → commit/push develop → confirm clean source → verify game fully exited → reviewed backup/hash transaction → per-file verification and receipt. Docs-only tasks need no package redeploy when Mod hash is unchanged.
+- Game exit can be established by safe OS process inspection. Running/uncertain process state blocks replacement; ask only for missing exit confirmation, not repeat deployment permission. Never close/kill the game automatically.
+- Existing `tools/temporary_playtest.py` flags remain mandatory. `--confirmed-game-exited` asserts the verified condition (user confirmation or reliable OS check); `--authorize-temporary-switch` cites this standing authorization.
+- Existing tool only accepts stable→develop: when another develop package is active, use its exact receipt to restore stable first (retaining the outgoing develop package), then activate the new committed build with a new receipt. No game launch between these two steps. Verify source/stable/live hashes at both steps; stop on any mismatch or pending transaction. Backups stay outside Mods and are not deleted.
+- No new implementation is authorized by automatic deployment. Known unresolved evidence, such as idle sounds, must still be reported honestly.
+- Stop this temporary mode when the USER identifies a long-play-ready milestone or revokes it. Resume explicit deployment approvals / development-runtime separation; do not silently restore a different package or promote main without user direction.
+
+Current authorization is ACTIVE. This changes deployment permission only, not Gameplay, Design or A0161 state contracts.
+
+## Save scope and test base (user decision 2026-10-16)
+
+- Development supports only saves of games that **started with the current mod build loaded**. Saves begun under an earlier build and continued after an update are out of scope; no compatibility, migration or protection code is added for them.
+- Faults that reproduce only in such saves are recorded and closed without repair. A fault that reappears in an in-scope game is treated as a real defect to locate.
+- Current test base: the new campaign started on 2026-10-16 with B208.235. Pre-Expedition campaign saves (base save `B204.231-1`, turn 88) are historical evidence only.
+
+## Git-era source recovery / records — W0004 v2
+
+Main is the last explicitly promoted trusted source, currently B069.96; develop holds current work including implementations awaiting USER_GAME_TEST. Existing promotion approval remains; no merge/promotion is implied. Recover source from main/known-good Git commits using non-destructive Git operations; ordinary source history no longer requires permanent batch copies or “before” snapshots. GitHub push supplies off-machine source backup. Preserve existing historical backups, accepted Design artifacts, frozen evidence and user saves.
+
+Deployment staging/backup/receipt protects an external directory, not canonical source history. Do not create additional manual source/runtime copies for ordinary batches beyond the existing tool-required recovery package. Current tools still retain complete packages and restore depends on receipt-bound paths; **bounded/previous-runtime-only retention is not implemented by W0004 v2**. No backup is pruned here, and no recovery guarantee is replaced by assuming Git owns unexpected runtime files.
+
+Future routine deployment records: build/modinfo, source commit, deployment result, automated equality summary and receipt reference; add details only for abnormal recovery/events. Do not duplicate complete file hashes, backup paths or reconstructible mechanics in long reports. Existing receipts keep all transaction details; existing reports stay untouched. This does not remove any target/UUID/path/unrelated-Mod/staging/hash/exit/rollback checks.
 
 ## Deployment
 
@@ -26,3 +59,15 @@ Classify reports first. Crash/save damage/turn blocker/confirmed severe performa
 ## Evidence and current session
 
 User's current long play continues on the unchanged package. Earlier crash attribution is unresolved; prior performance counters have local evidence, not a new user PASS. Record future reports in [Playtest Backlog](../Status/Playtest_Backlog.md). Do not retroactively accept untested balance, remove frozen evidence or rewrite published history.
+
+## Explicit temporary develop test (W0002)
+
+2026-09-14 user explicitly authorized one temporary B071.98/modinfo98 test and confirmed Civ VI fully exited. This does not promote develop to main or authorize future automatic deployments. Stable deployment tool/gate remains unchanged.
+
+Separate entry: `tools/temporary_playtest.py`. Default check-only. Apply requires `--authorize-temporary-switch --confirmed-game-exited`, reviewed source/runtime digests, clean committed develop and main. Activation requires live runtime exactly match main. Receipt and retained whole-package stable backup go to external `SpecializationDeploymentBackups`, outside Mods scan. Transaction marker, staged copy/hash check, atomic directory renames and error rollback prevent a mixed package. Only the one live SpecializationP0 UUID remains in Mods.
+
+Restore uses action `restore`, the same receipt and stable-root/config, expected-source=recorded stable hash and expected-runtime=recorded develop hash, plus explicit apply/authorization/game-exited flags. It restores the recorded complete stable backup, verifies main still matches, refuses unexpected live modifications and retains the outgoing develop runtime outside Mods. Full directory replacement removes develop-only files; backup is preserved. Pending transactions must be reviewed, never overwritten. A hard termination keeps recovery paths in the receipt/marker.
+
+Temporary test is tracked by the external receipt phase `DEVELOP_ACTIVE`; stable restoration is only complete at `STABLE_RESTORED` plus exact package hash verification. Git main remains B069.96 throughout. User should use a separate test save slot; no promise that a save rewritten by develop can be safely continued with stable. Normal future develop work still cannot deploy without separate authorization.
+
+Local regression: `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_temporary_playtest.py` (temporary directories only).

@@ -1,0 +1,440 @@
+{
+  "schema_version": 1,
+  "design_revision": "D0026",
+  "specialization": "RESEARCH",
+  "document_state": "ACCEPTED",
+  "freeze_status": "DESIGN_FROZEN",
+  "implementation_status": "NOT_IMPLEMENTED",
+  "balance_validation": "PENDING",
+  "authority": "User-confirmed clauses in current Research Design Talk; unresolved boundaries are explicit, not default rules.",
+  "accepted_base_revision": "D0025",
+  "supported_locales": [
+    "zh_CN"
+  ],
+  "reference_locales": [
+    "en_US"
+  ],
+  "presentation_contract": {
+    "existence": "Permanent Potential >= institution.level; cumulative, no replacement; ACTIVE decrease never removes institution.",
+    "ability_activation": "Existing ACTIVE contract, stage threshold recorded per ability; loss does not delete institution.",
+    "representation": "Presentation-only entry in corresponding district UI; not engine Building.",
+    "exclusions": [
+      "ordinary building count",
+      "HD building tier",
+      "standardization templates",
+      "Infrastructure Value unless explicitly named by Design"
+    ],
+    "technical_carriers": "Internal, hidden; no player-facing carrier names.",
+    "rendering": "Each institution shows only own stage new packages; basic support separately; event-driven cached state plus on-demand rendering, no polling."
+  },
+  "institutions": [
+    {
+      "institution_id": "RES_INST_1",
+      "specialization": "RESEARCH",
+      "level": 1,
+      "name": {
+        "zh_CN": "学者结社",
+        "en_US_reference": "Scholarly Circle"
+      },
+      "english_status": "STRONG_CANDIDATE_REFERENCE_ONLY",
+      "description": {
+        "zh_CN": "学者在此结成稳定的研究共同体，构成城市科研专业化的基础。",
+        "en_US": null
+      },
+      "philosophy": "人才聚集",
+      "potential_requirement": 1,
+      "existence_active_requirement": null,
+      "status": "USER_CONFIRMED",
+      "ability_ids": [],
+      "notes": "机构累计永久存在；不是普通建筑；能力状态与机构存在分离。"
+    },
+    {
+      "institution_id": "RES_INST_2",
+      "specialization": "RESEARCH",
+      "level": 2,
+      "name": {
+        "zh_CN": "研修院",
+        "en_US_reference": "Institute of Inquiry"
+      },
+      "english_status": "STRONG_CANDIDATE_REFERENCE_ONLY",
+      "description": {
+        "zh_CN": "系统的研修与人才培养，使科研从个人志业成为城市的长期事业。",
+        "en_US": null
+      },
+      "philosophy": "人才制度化",
+      "potential_requirement": 2,
+      "existence_active_requirement": null,
+      "status": "USER_CONFIRMED",
+      "ability_ids": [
+        "RES_L2_TRAIN"
+      ],
+      "notes": "机构累计永久存在；不是普通建筑；能力状态与机构存在分离。"
+    },
+    {
+      "institution_id": "RES_INST_3",
+      "specialization": "RESEARCH",
+      "level": 3,
+      "name": {
+        "zh_CN": "学术联合会",
+        "en_US_reference": "Research Consortium"
+      },
+      "english_status": "STRONG_CANDIDATE_REFERENCE_ONLY",
+      "description": {
+        "zh_CN": "不同专业领域在此交流，使研究成果与城市实践相互促进。",
+        "en_US": null
+      },
+      "philosophy": "广度",
+      "potential_requirement": 3,
+      "existence_active_requirement": null,
+      "status": "USER_CONFIRMED",
+      "ability_ids": [
+        "RES_L3_CROSS",
+        "RES_L3_APPLY"
+      ],
+      "notes": "机构累计永久存在；不是普通建筑；能力状态与机构存在分离。"
+    },
+    {
+      "institution_id": "RES_INST_4",
+      "specialization": "RESEARCH",
+      "level": 4,
+      "name": {
+        "zh_CN": "学术总署",
+        "en_US_reference": "Academic Directorate"
+      },
+      "english_status": "STRONG_CANDIDATE_REFERENCE_ONLY",
+      "description": {
+        "zh_CN": "完善的科研设施、学术组织与长期传统，共同支撑深入研究。",
+        "en_US": null
+      },
+      "philosophy": "深度",
+      "potential_requirement": 4,
+      "existence_active_requirement": null,
+      "status": "USER_CONFIRMED",
+      "ability_ids": [
+        "RES_L4_INFRA",
+        "RES_L4_CHAIR",
+        "RES_L4_TRADITION"
+      ],
+      "notes": "机构累计永久存在；不是普通建筑；能力状态与机构存在分离。"
+    }
+  ],
+  "base_effects": [
+    {
+      "effect_id": "RES_BASE_SUPPORT",
+      "institution_id": "RES_INST_1",
+      "specialization": "RESEARCH",
+      "level": 1,
+      "name": null,
+      "tooltip": {
+        "zh_CN": "每名正在工作的科研专家额外获得3点食物和3点生产力；各专业等级均保持此加成。",
+        "en_US": null
+      },
+      "mechanical_contract": "Each working Campus specialist: additional Food=3 and Production=3 at every ACTIVE level 1–4; no Lv3 support upgrade.",
+      "input_facts": [
+        "working Campus specialist count",
+        "ACTIVE",
+        "Potential"
+      ],
+      "output_effects": [
+        "specialist Food",
+        "specialist Production"
+      ],
+      "active_requirement": 1,
+      "potential_requirement": 1,
+      "status": "USER_CONFIRMED",
+      "notes": "没有named ability；空专家槽不产生收益。"
+    }
+  ],
+  "abilities": [
+    {
+      "ability_id": "RES_L2_TRAIN",
+      "institution_id": "RES_INST_2",
+      "specialization": "RESEARCH",
+      "level": 2,
+      "name": {
+        "zh_CN": "人才培养",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "每名正在工作的科研专家额外提供2点基础大科学家点数，并受到其它伟人点数百分比加成。本城学院区域及其每一级建筑各提供1点住房。",
+        "en_US": null
+      },
+      "mechanical_contract": "Retain SHARED-001 and SHARED-002 Research branch: district and each building tier +1 Housing; each working specialist +2 base Scientist GPP.",
+      "input_facts": [
+        "working Campus specialists",
+        "Campus/building tiers per SHARED-001",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "Housing",
+        "base Great Scientist Points"
+      ],
+      "active_requirement": 2,
+      "potential_requirement": 2,
+      "status": "USER_CONFIRMED",
+      "open_decisions": [],
+      "notes_compatibility": "同一能力包；不另拆住房能力。沿用共同规则，不修改其它专业。"
+    },
+    {
+      "ability_id": "RES_L3_CROSS",
+      "institution_id": "RES_INST_3",
+      "specialization": "RESEARCH",
+      "level": 3,
+      "name": {
+        "zh_CN": "跨学科研究",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "本城学院以外的合格专业区域，将基础相邻产出总和的50%转化为科技值。只计算已完成且未被掠夺的区域；不计政策等相邻倍率或其它非相邻产出。适用区域见专业领域表。",
+        "en_US": null
+      },
+      "mechanical_contract": "Science=0.5 * sum(BASE adjacency yields from qualified non-Campus districts in district_qualification); no actual/final yields.",
+      "input_facts": [
+        "eligible other districts",
+        "BASE adjacency by yield",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "base city Science"
+      ],
+      "active_requirement": 3,
+      "potential_requirement": 3,
+      "status": "USER_CONFIRMED",
+      "open_decisions": [],
+      "notes_compatibility": "不沿用旧Research IV所有非Campus区域Actual复制范围，不处理精度实现。"
+    },
+    {
+      "ability_id": "RES_L3_APPLY",
+      "institution_id": "RES_INST_3",
+      "specialization": "RESEARCH",
+      "level": 3,
+      "name": {
+        "zh_CN": "学以致用",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "每名正在工作的科研专家，从本城每一种合格的其它专业区域类型获得对应产出。每种类型提供的份数等于这些不同类型的总数，金币每份为3点，其它产出每份为1点；不同类型提供同一种产出时相加。只计已完成且未被掠夺的区域，特色替代视为同一类型，相同类型的多个区域不增加类型数。对应产出见专业领域表。",
+        "en_US": null
+      },
+      "mechanical_contract": "Q=distinct normalized types of qualified non-Campus districts; X=|Q|; K=1. Per working specialist and yield y: sum(K*X*mapping[t].value_multiplier for t in Q with mapping[t].yield_type=y). Different types mapping to same yield add.",
+      "input_facts": [
+        "distinct eligible non-Campus district types",
+        "working Campus specialists",
+        "yield_mapping",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "specialist mapped yields"
+      ],
+      "active_requirement": 3,
+      "potential_requirement": 3,
+      "status": "USER_CONFIRMED",
+      "open_decisions": [],
+      "notes_compatibility": "Neighborhood→Food为允许冻结时保留的默认Design Candidate，不扩展其它区域映射。"
+    },
+    {
+      "ability_id": "RES_L4_INFRA",
+      "institution_id": "RES_INST_4",
+      "specialization": "RESEARCH",
+      "level": 4,
+      "name": {
+        "zh_CN": "科研基础设施",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "每座普通学院一至四级建筑分别提供1、2、3、4点科研基础设施值；同级多座建筑分别计入。每点基础设施值，使每名正在工作的科研专家额外提供1点基础科技值。每级各一座时共10点，5名专家共增加50点基础科技值。学院区域本身及专业机构不计入。",
+        "en_US": null
+      },
+      "mechanical_contract": "V=sum(tier(b) for each ordinary Campus tier1–4 building b); tier weights 1/2/3/4, including multiple buildings of same tier individually. Per working specialist additional base Science=V. Exclude Campus district base, institutions, technical carriers; never read building Science as V.",
+      "input_facts": [
+        "eligible ordinary Campus buildings and tiers",
+        "working Campus specialists",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "specialist base Science"
+      ],
+      "active_requirement": 4,
+      "potential_requirement": 4,
+      "status": "USER_CONFIRMED",
+      "open_decisions": [],
+      "notes_compatibility": "建筑自身科技不改变V；四建筑五专家为示例，不是全局50上限。"
+    },
+    {
+      "ability_id": "RES_L4_CHAIR",
+      "institution_id": "RES_INST_4",
+      "specialization": "RESEARCH",
+      "level": 4,
+      "name": {
+        "zh_CN": "学术主持",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "每名正在工作的科研专家，使本城每座普通学院一至四级建筑额外提供1点基础科技值。4座建筑与5名专家共增加20点基础科技值；这些额外科技不会提高科研基础设施值。",
+        "en_US": null
+      },
+      "mechanical_contract": "For each ordinary Campus tier1–4 building, including multiple buildings of same tier: additional base Science=S (working Campus specialists). Total=S*building_count; never contributes to Infrastructure Value.",
+      "input_facts": [
+        "eligible ordinary Campus buildings",
+        "working Campus specialists",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "ordinary Campus building base Science"
+      ],
+      "active_requirement": 4,
+      "potential_requirement": 4,
+      "status": "USER_CONFIRMED",
+      "open_decisions": [],
+      "notes_compatibility": "逐建筑生效；四建筑五专家为示例而非20上限；无Science→Infrastructure递归。"
+    },
+    {
+      "ability_id": "RES_L4_TRADITION",
+      "institution_id": "RES_INST_4",
+      "specialization": "RESEARCH",
+      "level": 4,
+      "name": {
+        "zh_CN": "学术传统",
+        "en_US_reference": null
+      },
+      "tooltip": {
+        "zh_CN": "本城首次达到科研专业潜力4级后，学术传统开始积累：起始使本城科技值提高5%；标准速度下，满10、20、30、40回合分别提高至10%、15%、20%、25%，最高25%。其它速度按游戏速度同比缩放各阶段回合数并向下取整。专业暂未启用4级能力时，传统仍继续积累；恢复启用后按当前传统年限生效。",
+        "en_US": null
+      },
+      "mechanical_contract": "s=game speed turn-length multiplier relative to Standard; age=current turn-first permanent Research Potential4 turn, advances regardless of ACTIVE. Thresholds=floor(10*s),floor(20*s),floor(30*s),floor(40*s), calculated independently from unrounded values. Tier=max({0} union {j in 1..4 where age>=floor(10*j*s)}); bonusPercent=5*(1+Tier), cap25. Apply only ACTIVE>=4. Never floor s first or multiply a rounded 10-turn threshold.",
+      "input_facts": [
+        "first permanent Research Potential4 turn",
+        "current turn / speed convention",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "city Science percentage bonus"
+      ],
+      "active_requirement": 4,
+      "potential_requirement": 4,
+      "status": "USER_CONFIRMED",
+      "open_decisions": [],
+      "notes_compatibility": "制度年龄不受专家连续工作或总督连续驻扎影响。未来具体速度数据接口由Architecture评估；不改Crew或其它机制的速度合同。"
+    }
+  ],
+  "yield_mapping": [
+    {
+      "district_type": "DISTRICT_INDUSTRIAL_ZONE",
+      "district_name_zh_CN": "工业区",
+      "yield_type": "YIELD_PRODUCTION",
+      "yield_name_zh_CN": "生产力",
+      "value_multiplier": 1,
+      "status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "district_type": "DISTRICT_ENCAMPMENT",
+      "district_name_zh_CN": "军营",
+      "yield_type": "YIELD_PRODUCTION",
+      "yield_name_zh_CN": "生产力",
+      "value_multiplier": 1,
+      "status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "district_type": "DISTRICT_THEATER",
+      "district_name_zh_CN": "剧院广场",
+      "yield_type": "YIELD_CULTURE",
+      "yield_name_zh_CN": "文化值",
+      "value_multiplier": 1,
+      "status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "district_type": "DISTRICT_GOVERNMENT",
+      "district_name_zh_CN": "市政广场",
+      "yield_type": "YIELD_CULTURE",
+      "yield_name_zh_CN": "文化值",
+      "value_multiplier": 1,
+      "status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "district_type": "DISTRICT_DIPLOMATIC_QUARTER",
+      "district_name_zh_CN": "外交区",
+      "yield_type": "YIELD_CULTURE",
+      "yield_name_zh_CN": "文化值",
+      "value_multiplier": 1,
+      "status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "district_type": "DISTRICT_COMMERCIAL_HUB",
+      "district_name_zh_CN": "商业中心",
+      "yield_type": "YIELD_GOLD",
+      "yield_name_zh_CN": "金币",
+      "value_multiplier": 3,
+      "status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "district_type": "DISTRICT_HARBOR",
+      "district_name_zh_CN": "港口",
+      "yield_type": "YIELD_GOLD",
+      "yield_name_zh_CN": "金币",
+      "value_multiplier": 3,
+      "status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "district_type": "DISTRICT_HOLY_SITE",
+      "district_name_zh_CN": "圣地",
+      "yield_type": "YIELD_FAITH",
+      "yield_name_zh_CN": "信仰值",
+      "value_multiplier": 1,
+      "status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "district_type": "DISTRICT_NEIGHBORHOOD",
+      "district_name_zh_CN": "社区",
+      "yield_type": "YIELD_FOOD",
+      "yield_name_zh_CN": "食物",
+      "value_multiplier": 1,
+      "status": "DESIGN_CANDIDATE_DEFAULT_NONBLOCKING",
+      "notes": "未来Community redesign可复审；当前默认不阻塞冻结。"
+    }
+  ],
+  "unchanged_contracts": [
+    "Research Network RES-005 / NET-RC",
+    "common Potential / ACTIVE / investment rules",
+    "Culture / Industry / Commerce",
+    "Other specialties retain their existing support tiers; Research alone no longer upgrades to 5F5P."
+  ],
+  "replacement_intent": [
+    "Old RES-003 population-based Science and +5F5P upgrade removed; support remains additional +3F3P at all levels. New Lv3 uses two breadth abilities.",
+    "Old RES-004 specialist city Science percent and non-Campus Actual yield copy replaced by three Lv4 abilities. No automatic addition of old effects."
+  ],
+  "future_candidates": [
+    {
+      "id": "RES_FUTURE_MANUSCRIPTS",
+      "status": "FUTURE_CANDIDATE",
+      "description_zh_CN": "大科学家留下手稿；不进入当前冻结范围。"
+    }
+  ],
+  "acceptance": "User Research freeze authorization plus explicit boundary decisions in this turn; implementation/balance validation pending.",
+  "district_qualification": {
+    "scope": "Listed yield_mapping types only; Campus excluded; unique replacement maps to base district type.",
+    "existence": "Completed and not pillaged.",
+    "unknown_type": "Exclude by default; notify user for future review, non-blocking.",
+    "shared_pool": "Both Research Lv3 abilities use the qualified mapped non-Campus types."
+  },
+  "decisions_resolved": [
+    "RES-OPEN-01",
+    "RES-OPEN-02",
+    "RES-OPEN-03",
+    "RES-OPEN-04",
+    "RES-OPEN-05"
+  ],
+  "review_notes": [
+    "Unknown/unmapped district types are excluded and reported, not a freeze blocker.",
+    "Neighborhood Food remains non-blocking default candidate; English ability names/tooltips remain TBD.",
+    "Institutions persist at Potential stages; only ability effects require corresponding ACTIVE stage.",
+    "No implementation, precision fallback, save migration or balance validation is authorized by this content freeze."
+  ]
+}

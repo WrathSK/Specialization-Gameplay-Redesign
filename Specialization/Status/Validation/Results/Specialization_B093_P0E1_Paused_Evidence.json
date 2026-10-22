@@ -1,0 +1,7 @@
+{
+  "build": "B093.120 / modinfo120",
+  "file": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B093_P0E1_Paused_20260921/Screenshot 2026-09-21 at 8.03.47 PM.png",
+  "sha256": "b99e7fd05019952cd6fa20c876c120161e0704943ee88ee3ab6ac32f78e1ad51",
+  "integrity": "before/after MATCH",
+  "observation": "T8, selected EDINBURGH (TEST); ACK: 身份映射实验暂停： function expected instead of nil"
+}

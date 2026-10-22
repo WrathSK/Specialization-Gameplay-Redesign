@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "design_revision": "D0044",
+  "document_state": "USER_CONFIRMED_CONTRACTS",
+  "concepts": {
+    "ORDINARY_INFRASTRUCTURE": {
+      "definition": "Real ordinary buildings normally constructed or purchased, including Government Plaza ordinary buildings, unique replacements and otherwise-ordinary buildings obtained free. Constructible walls remain ordinary, not excluded merely because not purchasable.",
+      "exclusions": [
+        "Palace",
+        "Wonders",
+        "Specialization Institutions",
+        "technical/internal carriers",
+        "presentation entries",
+        "internal compensation buildings"
+      ],
+      "classification": "Explicit semantic classification, not InternalOnly=0 alone or HD Tier>0 alone. Unknown objects do not silently expand ordinary scope. HD taxonomy is evidence/adapter input, not semantic authority."
+    },
+    "BUILDING_CURRENT_ELIGIBILITY": {
+      "definition": "Unless explicitly excepted, pillaged buildings are treated as absent: no contribution and no received benefit. Under-construction buildings do not count. Free acquisition does not change ordinary nature.",
+      "history_exception": "This current-effect predicate never deletes explicitly permanent Industry learned templates or completed historical facts."
+    },
+    "DISTRICT_DEVELOPMENT": {
+      "name": {
+        "zh_CN": "区域基础设施深度",
+        "en_US_reference": "Absolute Infrastructure Depth"
+      },
+      "formula": "D(district)=min(10,sum(tier(b) for current eligible ordinary buildings in that district))",
+      "tiers": {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4
+      },
+      "hard_cap": 10,
+      "standard_sequence": [
+        0,
+        1,
+        3,
+        6,
+        10
+      ],
+      "same_tier": "Each ordinary building counts, then cap10. Unique replacement uses its tier. Missing lower tiers are not imputed.",
+      "multiple_districts_same_domain": "Use maximum single-district D for that domain, never sum instances.",
+      "tier_boundary": "Do not invent tier for unmapped/unknown buildings; classification investigation required. Tier0 does not grant positive tier value; ordinary eligibility for building-based abilities does not require positive tier.",
+      "tooltip_zh_CN": "区域基础设施深度衡量一个区域实际拥有的普通基础设施。一至四级合格普通建筑分别提供1、2、3、4点深度，最高10点；未完成或被掠夺的建筑不计。它不是完成百分比，建满区域不一定达到10点。专业机构不计入。",
+      "civilopedia_detail_zh_CN": "同级多座合格普通建筑分别计入，最后封顶10；缺少低级建筑时不补齐。同领域有多个区域时，取深度最高的单一区域。内部技术载体与补偿建筑不计入。三层完整链为6，四层完整链为10；额外建筑投资可带来更高深度，不按所在规则环境归一化。",
+      "scale_only": "Abilities specify their own coefficients; D is not a universal yield conversion.",
+      "historical_display_aliases": [
+        "区域完善度",
+        "District Completeness",
+        "DistrictDevelopment"
+      ],
+      "semantic_definition": "D measures absolute weighted eligible ordinary infrastructure actually present in a district, not relative completion or percentage of an environment-specific building system.",
+      "normalization": "None. A fully built district need not reach10. A normal three-tier chain1+2+3=6 and an extended four-tier chain1+2+3+4=10 are both intentionally legal. Extra infrastructure investment may produce higher D; do not normalize fully built environments to equal output.",
+      "relative_completeness": {
+        "status": "NOT_INTRODUCED",
+        "reason": "Current consumers reward actual infrastructure; Military efficiency begins before full completion. Requiring completion in an extended tree would defer benefits solely because a later tier exists. No additional C, Relative D or completion percentage.",
+        "reopen_condition": "A specifically approved future consumer needs progress relative to its own legal building system; reopen separate Shared review then."
+      },
+      "terminology_boundary": "Formal Design display term is 区域基础设施深度. Stable concept key DISTRICT_DEVELOPMENT and internal Lua/API identifiers are unchanged. Historical prose using 区域完善度 refers to this same absolute fact; future UI wording migration requires a separate task."
+    },
+    "YIELD_SHARE": {
+      "name": {
+        "zh_CN": "一份产出",
+        "en_US_reference": "Yield Share"
+      },
+      "units": {
+        "SCIENCE": 1,
+        "CULTURE": 1,
+        "PRODUCTION": 1,
+        "FAITH": 1,
+        "FOOD": 1,
+        "GOLD": 3
+      },
+      "tooltip_zh_CN": "一份科技、文化、生产力、信仰或食物等于1点对应产出；一份金币等于3金币。",
+      "authority": "Specialization-owned vocabulary, not HD function/data mapping. Only abilities expressly using shares apply this conversion."
+    },
+    "NETWORK_LAYER": {
+      "definition": "Network effects do not occupy named ability slots. Specialization creates capability; domestic network propagates derived value. No mandatory shared formula and no mandatory0/1/2/3 ability count."
+    },
+    "LONG_TERM_STATE_LIFECYCLE": {
+      "status": "USER_CONFIRMED_D0044_RETAINS_D0042",
+      "principle": "Classify by record ownership/meaning, never effect local/network/national scope. Record existence != current usability. Applies only explicitly listed assets, no universal inheritance or generic runtime framework. Distinguish record existence, effect activation, ability to accumulate, retained configuration, unit survival and contract validity.",
+      "A_CITY_HISTORICAL_LEGACY": {
+        "assets": [
+          "Research Academic Tradition eligible age",
+          "Culture Dialogue successful accumulated modifier and City x START Game Era quota",
+          "Industry permanent Building/District templates",
+          "Culture Insights and three-category records",
+          "Industry local genuine Wonder completion history for Practice",
+          "Industry completed Engineering Tradition city study L"
+        ],
+        "owner": "persistent city, not original Owner",
+        "active_decline": "History retained; current effect uses per-ability gate. Growth follows each asset semantics.",
+        "identity_exit": "History retained, profession effect paused; growth follows each asset rule.",
+        "owner_change": "Follows city; unsupported Owner freezes record/use/active growth. Any enabled Owner can use under current profession qualifications; no owner-specific copy needed on recapture.",
+        "exceptions": "Culture Insights history remains, current Owner own civilization excluded only from effective count/source3of3 set. Local Wonder practice ignores completion Owner; actual civil credit does not.",
+        "Industry_Tradition_study_L": "Completed L follows city without Owner partition. ACTIVE IV enables further study while L<E and outputs full L enhancement; III retains L/no new study/outputs only base10%/0%; belowIII or no Industry Identity retains history without source output. Legal IV return restores all L without relearning. New Owner national E<L never deletes/downgrades/clamps prior L; E only limits new additions. Unsupported Owner dormant. Unfinished study not automatically classified by Dialogue cancellation rule; exact Industry_D0044 contract governs."
+      },
+      "B_CIVILIZATION_HISTORICAL_LEGACY": {
+        "assets": [
+          "Industry Engineering Tradition actual completing civilization Wonder/era history"
+        ],
+        "owner": "actual completing civilization",
+        "lifecycle": "City loss/transfer does not erase/transfer credit; conquest never grants prior civilization credit. Current use follows profession gates; same event may separately create A city history."
+      },
+      "C_INSTITUTIONAL_RELATIONSHIP": {
+        "assets": [
+          "Commerce Reputation"
+        ],
+        "owner": "continuing Commerce Identity/institution, not Owner/history ledger",
+        "lifecycle": "ACTIVE decline retains/continues normal Identity age, effects IV-gated; Owner change no reset/partition, unsupported use dormant; Identity exit immediately R0 and re-establishment starts0."
+      },
+      "D_ESTABLISHED_CONTRACTS": {
+        "assets": [
+          "Capital Investment",
+          "Development Investment"
+        ],
+        "ordinary_changes": "Governor/ACTIVE/Identity/route/specialist-capacity changes do not retroactively cancel confirmed contracts.",
+        "owner_change": "Key-city Owner change is subject rupture, immediately exceptionally terminates. Capital loses principal/no maturity or venture failure/pity; Development no refund/withdraw+50%/release slot. Exact fields/parties governed by Commerce_D0042 contracts."
+      },
+      "scope": "Single-player local human only; unsupported AI/Free City dormant, no original-owner-exclusive Design assumption or multiplayer bookkeeping. Named A–G rules only; no universal inheritance, runtime schema or implementation authorization.",
+      "E_IN_PROGRESS_TRANSACTIONS": {
+        "Dialogue": "Before full uninterrupted production turn AND successful permanent commit: E only. Culture ACTIVE<III (including Governor loss), Culture Identity exit, REALLOCATING, Owner change or normal production interruption cancels progress; no modifier, no START Era successful quota, no half-progress. Requalify in legal era and restart full turn. Successful commit becomes A.",
+        "Expedition": "Completed unit survives source Governor/ACTIVE/Identity changes and REALLOCATING; may continue mission and credit bound city. Source Owner change aborts unfinished mission/no record, retains original unit Owner, invalidates archive binding. Free/unlimited reattachment to any own Culture Identity city, no high ACTIVE/training gate; without valid city retain unit but no new mission. Exact Culture contract governs.",
+        "REALLOCATING": "Retain existing dedicated transaction: old Identity liquidated, P-1, minimum5 full Standard turns, no automatic configuration. Target Owner change before configuration destroys incomplete transaction/asset ledger, clears current Identity and dissolves bound Team; later acquisition uses specified snapshot/Claim exception. Does not erase unrelated permanent histories."
+      },
+      "F_CONFIGURATION_AND_DERIVED_STATE": {
+        "derived": [
+          "ACTIVE",
+          "Network source/receiver/receiver union",
+          "current legal/highest sources",
+          "modifier carriers",
+          "Development signing capacity",
+          "Capital signing eligibility"
+        ],
+        "recompute": "Recompute from current authoritative facts after relevant Governor/routes/specialists/Identity/Owner/reload changes. No old carrier/ACTIVE/Network snapshot as permanent recovery authority.",
+        "configuration": "Commerce selected domains and activation ordinal/order persist. Capacity loss LIFO-suspends, never deletes; recovery resumes earliest selected first up to current capacity. Manual close removes; reopen newest. Governor/ACTIVE decline with Identity retained preserves stack. Identity exit OR Owner change clears stack. Same-Owner/same-Identity reload restores stack then derives effects from current facts; Reputation is distinct."
+      },
+      "G_PROFESSIONAL_UNITS_AND_SOURCE_BINDING": {
+        "principle": "Source binding is not automatically unit lifeline. Distinguish provenance, capacity, report archive and transaction binding.",
+        "Industry": "Independent completed Team remains original Owner asset despite source Governor/ACTIVE/Identity/Owner changes. Permanent training-source provenance; source capacity2 counts only current Owner surviving Teams trained there. Old-owner Teams exclude new owner capacity; original-owner recapture counts its surviving old Teams again. Consumed/legally removed frees slot, living retreat does not.",
+        "Commerce": "Completed Reallocation Team survives training-source Governor/ACTIVE/Identity/Owner changes, no source-triggered unit transfer. Once bound, lifecycle follows REALLOCATING transaction/target; training source is provenance only. Source transfer cannot cancel another target transaction; target transfer invokes existing exceptional termination.",
+        "Culture": "Archive source can change only through defined E3 reattachment; source transfer does not transfer/delete unit or permit new reports to old source.",
+        "direct_unit_capture": "No universal capture/Owner conversion rule. First investigate actual native behavior; do not automatically grant captured professional units to a new Owner. Any required protection/retreat implementation needs scoped technical investigation; unapproved gameplay disposition is not inferred."
+      },
+      "SETTLER_INVESTMENT_CONFIRMATION": {
+        "before": "Inspection/preparation only: Settler unconsumed, Potential unchanged, no pending investment asset.",
+        "after": "Confirmed action atomically consumes Settler, establishes receipt and updates Potential.",
+        "technical": "Internal consume/receipt/event-order window is transactional atomicity/reliable recovery, not Gameplay lifecycle TBD. No partial refund, half receipt or cross-Owner pending inheritance."
+      }
+    }
+  },
+  "domain_mapping": [
+    {
+      "domain": "DISTRICT_CAMPUS",
+      "yield": "SCIENCE",
+      "gpp": "SCIENTIST",
+      "gpp_status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "domain": "DISTRICT_INDUSTRIAL_ZONE",
+      "yield": "PRODUCTION",
+      "gpp": "ENGINEER",
+      "gpp_status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "domain": "DISTRICT_COMMERCIAL_HUB",
+      "yield": "GOLD",
+      "gpp": "MERCHANT",
+      "gpp_status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "domain": "DISTRICT_HARBOR",
+      "yield": "GOLD",
+      "gpp": "ADMIRAL",
+      "gpp_status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "domain": "DISTRICT_ENCAMPMENT",
+      "yield": "PRODUCTION",
+      "gpp": "GENERAL",
+      "gpp_status": "USER_CONFIRMED",
+      "notes": ""
+    },
+    {
+      "domain": "DISTRICT_HOLY_SITE",
+      "yield": "FAITH",
+      "gpp": "PROPHET",
+      "gpp_status": "USER_CONFIRMED",
+      "notes": "Natural Prophet points only; do not implement conversion to Faith or assume verified overflow behavior."
+    },
+    {
+      "domain": "DISTRICT_GOVERNMENT",
+      "yield": "CULTURE",
+      "gpp": null,
+      "gpp_status": "NO_NATURAL_GPP_MAPPING",
+      "notes": ""
+    },
+    {
+      "domain": "DISTRICT_DIPLOMATIC_QUARTER",
+      "yield": "CULTURE",
+      "gpp": null,
+      "gpp_status": "NO_NATURAL_GPP_MAPPING",
+      "notes": ""
+    },
+    {
+      "domain": "DISTRICT_NEIGHBORHOOD",
+      "yield": "FOOD",
+      "gpp": null,
+      "gpp_status": "NO_NATURAL_GPP_MAPPING",
+      "notes": ""
+    },
+    {
+      "domain": "DISTRICT_THEATER",
+      "yield": "CULTURE",
+      "gpp": null,
+      "gpp_status": "EXCLUDED_CULTURAL_GP_LOOP",
+      "notes": ""
+    }
+  ],
+  "implementation_status": "NOT_IMPLEMENTED",
+  "mapping_todo": [
+    "PRESERVE / LANDSCAPE and other future unmapped specialty domains; excluded until explicit mapping; not freeze blockers."
+  ],
+  "amendment_kind": "Named Industry Tradition completed study L added to A city history only; D/ontology/share/network/other A–G contracts unchanged; Design only",
+  "previous_shared_revision": "D0042",
+  "consumer_confirmation": {
+    "absolute_D": [
+      "Research_D0031: 科研基础设施",
+      "Research_D0031: 学以致用",
+      "Culture_D0029: 意义延展",
+      "Culture_D0029: 巨作启迪",
+      "Commerce_D0032: 商业化中已明确引用D的部分",
+      "Military_D0034: 综合训练Depth→Efficiency"
+    ],
+    "unresolved": [
+      "Commerce资本投资的未冻结D输入/公式",
+      "Commerce发展投资尚未冻结公式；展示D不等于已经存在D收益公式"
+    ],
+    "not_D_consumers": [
+      "Industry Standardization: template/tier rules",
+      "Shared Lv2 Housing: Tier existence",
+      "Military综合训练Breadth→Quality: eligibleT1 existence"
+    ],
+    "boundary": "No coefficients, profession formulas or purchase applicability changed; unresolved Commerce parts do not acquire relative completeness."
+  },
+  "reference_resolution": {
+    "current_authority": "Shared_D0044.json",
+    "unchanged_profession_files": [
+      "Research_D0031.json",
+      "Industry_D0032.json",
+      "Culture_D0029.json",
+      "Commerce_D0032.json",
+      "Military_D0034.json"
+    ],
+    "rule": "Current Shared references resolve through D0044: unchanged D/ontology/share/network facts, retained D0040 A–D and D0042 named E/F/G/Settler atomicity, plus only named completed Industry city study L. Existing frozen documents retain their historical meanings; no universal inheritance or new runtime schema."
+  },
+  "catalog_coverage_boundary": "Ordinary Building Catalog completeness is implementation/environment coverage, not D normalization. Data Center, 集市, Art Publisher and investigated Harbor/Neighborhood expansion gaps require separate catalog audit/adaptation. Existing P0-A game PASS covers tested objects only, not the entire HD catalog.",
+  "lifecycle_authority_ref": "../../Historical/Design/Reviews/Long_Term_State_D0042_Review.md",
+  "revision_authority_ref": "../../Historical/Design/Reviews/Industry_D0044_Review.md"
+}

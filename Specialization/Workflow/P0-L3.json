@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "batch": "P0-L3",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0049",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0049",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0461",
+    "runtime": "B173.200 / modinfo200",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+  "goal": "Preserve accepted D0049 automatic Inspiration; isolate its shared GreatWorkFacts notifications (P13a-F04) and combine native acceptance.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Current authorization/evidence/source versus live",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "kind": "section",
+      "reason": "Complete current slice; old prototype history excluded",
+      "selector": "## 当前切片与停止点"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Accepted ability and qualification",
+      "selector": "/abilities/4",
+      "expected_id": "CUL_L4_INSPIRE"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Complete current percentage semantics and unknowns",
+      "selector": "/contracts/inspiration"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Full eligible work pool / exclusions",
+      "selector": "/contracts/work_pool"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0049.json",
+      "kind": "json",
+      "reason": "Accepted coefficient and range",
+      "selector": "/parameters/inspiration_percent_per_era"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+      "kind": "full",
+      "reason": "Current repair evidence, inherited B172 gate and combined stopping boundary"
+    },
+    {
+      "path": "Mod/CultureInspirationModel.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/CultureInspiration.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/Data/CultureInspiration.sql",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/CultureInspirationProbe.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/GreatWorkFacts.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/InspirationReadout.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/CultureAesthetic.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/CultureMeaning.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/Text/TestText.sql",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_inspiration_automatic.py",
+      "kind": "full",
+      "reason": "Direct implementation/ownership/callback/test dependency; read only for affected action, not every status question"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md",
+      "kind": "section",
+      "selector": "## 馆藏消费者通知（B173）",
+      "reason": "Complete changed callback/ACK/session/retry contract"
+    },
+    {
+      "path": "DevelopmentTests/test_great_work_notifications.py",
+      "kind": "full",
+      "reason": "Actual receiver, all affected subscribers, transport and scoped regressions"
+    }
+  ],
+  "dependencies": [
+    "CurrentSpecializationFacts qualification, NetworkInput reference and confirmed K Summary; named per-consumer current-city notifications with bounded failed-delivery retry.",
+    "CityProgressionStore exact owned loss withdrawal and current-facts return; existing save schema unchanged.",
+    "Old B168 four IDs are cleared by the retired owner; Aesthetic/Meaning ignore only the seven new known internal carriers."
+  ],
+  "old_writers": [
+    "CultureInspirationProbe retired in normal Gameplay; all INSPIRE controls read only. Old SQL/diagnostic evidence preserved, no source of old fractional writes."
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityProgressionStore.lua",
+        "Mod/EffectiveFacts.lua",
+        "Mod/GreatWorkCatalog.lua",
+        "Mod/UI/DialogueRefresh.lua"
+      ],
+      "trigger": "Actual ownership, qualification, rejected sample or lifecycle anomaly: follow exact call points; no all-module reread."
+    },
+    {
+      "paths": [
+        "Specialization/Design/Content/Shared_D0045.json",
+        "DevelopmentTests/test_culture_aesthetic.py",
+        "DevelopmentTests/test_culture_meaning_automatic.py",
+        "DevelopmentTests/test_culture_meaning_probe.py",
+        "DevelopmentTests/test_culture_inspiration_probe.py",
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md"
+      ],
+      "trigger": "Shared semantic/fixture or safe deployment check; inherited rules are not reauthorized by hashes."
+    }
+  ],
+  "non_scope": [
+    "No Design/other abilities/permanent schema/SQL/collector/AI/GC/main changes; only P13a-F04 and direct readiness fallback; no investment propagation or other audit repair."
+  ],
+  "validation": {
+    "depth": "L3 scoped shared notification/session/ref/reentrant path; no unrelated full historical/stress suite",
+    "local": "81 methods44 subTests PASS; actual three consumers and K ingress/producer. Lua/package/context/links/diff. Dispatch success is not business/native success.",
+    "user": "Observed Inspiration percentage response/fractional accumulation accepted by user (General/Prophet scope). Exact Scientist/Merchant attribution and engine ordering are non-blocking UNKNOWN; no extra numerical/save-load test. B173 adjacent AE/Meaning native observations not separately confirmed; local coverage and inherited evidence retain their original scope."
+  },
+  "full_audit_triggers": [
+    "Need to change accepted semantics, shared persistence or collector ownership, or cannot isolate old/new carriers: stop affected path."
+  ],
+  "result": {
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
+    "native": "SCOPED USER_GAME_TEST_PASS: user accepts observed General/Prophet response as sufficient for the reused city-GPP percentage API. Prior numerical reports remain unchanged; exact Scientist/Merchant source/stacking/rounding unknowns are non-blocking. B173 adjacent-consumer native observations are not independently confirmed, not promoted to PASS. See Status S0461/current L3 acceptance boundary.",
+    "deployment": "B173.200 DEVELOP_ACTIVE; B173.200-bc54482-playtest.json;189/189 MATCH;B172/stable recovery verified;no pending transaction.",
+    "stop": "Stop and await the next user-selected scope. Do not require full national GPP reconciliation, add tests solely for unknown engine order, or auto-start diagnostics/repair/next ability. Overall manifest remains awaiting user for any broader joint closeout, not because the Inspiration API is unaccepted.",
+    "source_commit": "bc5448268929c2625f06d6d39bf89778dd70147d"
+  }
+}

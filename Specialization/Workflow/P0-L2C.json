@@ -1,0 +1,376 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
+    "current_player_scope": "Current plan dedicated blank civilization; single-player local human only. AI/free-city owners dormant, no investment; AI/MP/other carrier future separately authorized, no dependency expansion."
+  },
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityProgressionStore.lua",
+        "Mod/EffectiveFacts.lua"
+      ],
+      "trigger": "Before modifying exit/qualification: inspect complete exact IsExitTarget/RemoveOwned/RegisterExit/current reference API and callers; unchanged prior review hashes reusable, no all E2 history default"
+    },
+    {
+      "paths": [
+        "Mod/OrdinaryBuildingCatalog.lua"
+      ],
+      "trigger": "Catalog/ontology questions or changed/missing Tier evidence; immutable current registry is reused, not reinterpreted"
+    },
+    {
+      "paths": [
+        "Mod/UI/P0Panel.lua",
+        "Mod/UI/P0Panel.xml",
+        "Mod/UI/BoostGreatWorkRead.lua",
+        "Mod/Text/TestText.sql",
+        "Mod/Probe.lua",
+        "Mod/SpecializationP0.modinfo"
+      ],
+      "trigger": "Mandatory for probe action/ACK/native observation/localization/registration changes"
+    },
+    {
+      "paths": [
+        "Mod/UI/DialogueRefresh.lua",
+        "Mod/Dialogue.lua",
+        "Mod/DialogueModel.lua",
+        "DevelopmentTests/test_p0_k.py",
+        "DevelopmentTests/test_culture_aesthetic.py",
+        "DevelopmentTests/test_b138_update_contract.py"
+      ],
+      "trigger": "Bridge/callback or dirty-dispatch changes: affected assertions/producer and exact sample paths; no full historical regression"
+    },
+    {
+      "paths": [
+        "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md",
+        "Specialization/Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md",
+        "Mod/Data/GreatWorkAdjacency.sql"
+      ],
+      "trigger": "Synchronous/no-recursion/native evidence or exact legacy attachment mismatch; expand direct relevant section/definitions only"
+    },
+    {
+      "paths": [
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md",
+        "tools/temporary_playtest.py"
+      ],
+      "trigger": "Actual deployment/recovery action only: verify clean committed source, game exit and exact prior receipt/package; no guessed runtime from HEAD"
+    },
+    {
+      "paths": [
+        "Specialization/Reports/Technical/Specialization_B155_Meaning_Culture_Path.md"
+      ],
+      "trigger": "Current authorized Culture restoration: retained single-carrier Culture negative evidence and HD coexistence boundary; read before changing host/native assumptions, not a claim that Production non-stacking explains Culture"
+    },
+    {
+      "paths": [
+        "Specialization/Status/Validation/Results/Specialization_B155_P0L2B_Flat_Theming_Prototype.md",
+        "Specialization/Status/Validation/Results/Specialization_B157_Modifier_Mapping_Local.md"
+      ],
+      "trigger": "Only if exact legacy cleanup or existing reader/mapping regression requires its prior local evidence; old Culture candidates are not current instructions"
+    },
+    {
+      "paths": [
+        "Mod/CultureMeaningProbe.lua",
+        "DevelopmentTests/test_culture_meaning_probe.py",
+        "DevelopmentTests/test_culture_aesthetic.py",
+        "DevelopmentTests/test_p0_k.py",
+        "Mod/Data/CultureMeaningProbe.sql"
+      ],
+      "trigger": "Current fixture/regression, retained primitive/owned directory or DEV-guard change; direct source/selected inherited tests reviewed in B166. Previous probe/diagnostic/native-result full texts are no longer default automatic-writer implementation context; frozen provenance follows current evidence links."
+    }
+  ],
+  "full_audit_triggers": [
+    "Cannot confirm exact old/new withdrawal; do not mix writers",
+    "Unexpected permanent-state write/reference ambiguity; stop scoped path",
+    "Native precision cannot implement current contract; no gameplay workaround without user decision"
+  ],
+  "batch": "P0-L2C",
+  "status": "COMPLETE",
+  "authority_versions": {
+    "design": "D0048",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0048",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0438",
+    "runtime": "B166.193 / modinfo193",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_L2_Meaning.md#b166已授权--意义延展自动接入",
+  "goal": "B166 automatic Meaning for supported Culture ACTIVE4 cities: current Shared D/K inputs, five final yields, exact global legacy GWA retirement and normal current-fact load reconstruction; read-only diagnostics, Culture quarantine and old AUTO Dialogue retained.",
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Recover current authorization/source-live/native gate only",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
+      "kind": "section",
+      "reason": "Current authorized diagnostic/native stop and evidence, not historical dispatch",
+      "selector": "## 当前切片与停止点"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
+      "kind": "section",
+      "selector": "## B166已授权 — 意义延展自动接入",
+      "reason": "Complete current authorized normal writer/cutover, UNKNOWN/load/exit/current facts and native delta/stop contract."
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "reason": "Current Culture accepted scope/supersession",
+      "selector": "## 6. Culture / Theater Square — CUL"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0048.json",
+      "kind": "json",
+      "reason": "Complete Meaning qualifications/formula/exceptions",
+      "selector": "/abilities/3",
+      "expected_id": "CUL_L4_MEANING"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0048.json",
+      "kind": "json",
+      "reason": "Initial0.5 parameter, not final balance",
+      "selector": "/parameters/meaning_K"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0048.json",
+      "kind": "json",
+      "reason": "Explicit eligible work pool/era/exclusions",
+      "selector": "/contracts/work_pool"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0048.json",
+      "kind": "json",
+      "reason": "Shared full domain/share vocabulary; current Meaning-specific included/excluded scope is in meaning_domains, not the nine-domain vocabulary",
+      "selector": "/contracts/domains"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0048.json",
+      "kind": "json",
+      "selector": "/contracts/meaning_domains",
+      "reason": "User D0046 nine-domain/six-yield restoration and retained native coexistence gate"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0048.json",
+      "kind": "json",
+      "selector": "/contracts/dialogue",
+      "reason": "Complete native-only target/fallback and lifecycle; shared YieldType not eligibility"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0048.json",
+      "kind": "json",
+      "selector": "/contracts/meaning_multipliers",
+      "reason": "D0048 permits native theming provisionally; Dialogue never amplifies Meaning; same pre-theming K/share/domain Floor/W, Balance pending and other stacking unknown."
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "reason": "Complete direct shared input/unknown/exclusion contract",
+      "selector": "/concepts/ORDINARY_INFRASTRUCTURE"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "reason": "Complete direct shared input/unknown/exclusion contract",
+      "selector": "/concepts/BUILDING_CURRENT_ELIGIBILITY"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "reason": "Complete direct shared input/unknown/exclusion contract",
+      "selector": "/concepts/DISTRICT_DEVELOPMENT"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0045.json",
+      "kind": "json",
+      "reason": "Complete direct shared input/unknown/exclusion contract",
+      "selector": "/concepts/YIELD_SHARE"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "reason": "Existing scoped updates/facts/lifecycle/accepted GC constraints",
+      "selector": "### 公共更新与临时状态接入约束"
+    },
+    {
+      "path": "Mod/CultureMeaningModel.lua",
+      "kind": "full",
+      "reason": "Complete nine-domain/per-domain Floor and finite six final values/exact cleanup metadata"
+    },
+    {
+      "path": "Mod/GreatWorkFacts.lua",
+      "kind": "full",
+      "reason": "Count/eligibility confirmation, UNKNOWN/current-reference and original bridge preservation"
+    },
+    {
+      "path": "Mod/GreatWorkAdjacency.lua",
+      "kind": "full",
+      "reason": "Exact156 owned hold/release and normal scoped restore; no player-wide off"
+    },
+    {
+      "path": "Mod/GreatWorkAdjacencyModel.lua",
+      "kind": "full",
+      "reason": "Original six signed directory/BASE contract retained"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Current fact facade, not new identity authority"
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "Authoritative D/current availability/max-single/Tier projection consumed unchanged"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Current reference semantics reused; no cityKey"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Exact request/facts/consumer initialization/call sites"
+    },
+    {
+      "path": "Mod/CultureAesthetic.lua",
+      "kind": "full",
+      "reason": "Unchanged consumer self-event exclusion uses probe.IsOwnedCarrier; enlarged exact directory automatically excluded; no new formulas/callsite"
+    },
+    {
+      "path": "Mod/Data/GreatWorkAdjacency.sql",
+      "kind": "head",
+      "reason": "Unchanged inherited full-family review hash; first exact attachment schema representative,156/1092 family mechanically checked; expand only on mismatch",
+      "selector": 24
+    },
+    {
+      "path": "Mod/Dialogue.lua",
+      "kind": "full",
+      "reason": "Complete directly affected native Culture percent/control/observation dependencies"
+    },
+    {
+      "path": "Mod/DialogueModel.lua",
+      "kind": "full",
+      "reason": "Complete directly affected native Culture percent/control/observation dependencies"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L2_Meaning.md",
+      "kind": "section",
+      "selector": "## 范围与完整规则",
+      "reason": "Complete current formula/mapping/qualification and exceptions, not old chronological prototype history"
+    },
+    {
+      "path": "Mod/GreatWorkCatalog.lua",
+      "kind": "full",
+      "reason": "Direct loaded-recipient equality uses complete resolver/category/era/current definition contract, no new admission rules"
+    },
+    {
+      "path": "Mod/CultureMeaning.lua",
+      "kind": "full",
+      "reason": "Direct B166 writer/producer/registration/readonly UI or current scoped evidence; no unrelated historical full envelope."
+    },
+    {
+      "path": "Mod/UI/DialogueRefresh.lua",
+      "kind": "full",
+      "reason": "Direct B166 writer/producer/registration/readonly UI or current scoped evidence; no unrelated historical full envelope."
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "Direct B166 writer/producer/registration/readonly UI or current scoped evidence; no unrelated historical full envelope."
+    },
+    {
+      "path": "Mod/Probe.lua",
+      "kind": "full",
+      "reason": "Direct B166 writer/producer/registration/readonly UI or current scoped evidence; no unrelated historical full envelope."
+    },
+    {
+      "path": "Mod/Text/TestText.sql",
+      "kind": "full",
+      "reason": "Direct B166 writer/producer/registration/readonly UI or current scoped evidence; no unrelated historical full envelope."
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Direct B166 writer/producer/registration/readonly UI or current scoped evidence; no unrelated historical full envelope."
+    },
+    {
+      "path": "DevelopmentTests/test_culture_meaning_automatic.py",
+      "kind": "full",
+      "reason": "Direct B166 writer/producer/registration/readonly UI or current scoped evidence; no unrelated historical full envelope."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+      "kind": "full",
+      "reason": "Direct B166 writer/producer/registration/readonly UI or current scoped evidence; no unrelated historical full envelope."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B165_Positive_Auto_Production_Native.md",
+      "kind": "full",
+      "reason": "Direct B166 writer/producer/registration/readonly UI or current scoped evidence; no unrelated historical full envelope."
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "section",
+      "selector": "## 明确的旧效果切换责任",
+      "reason": "Complete direct old GWA cutover responsibility; Dialogue/new M and other writers remain separate."
+    }
+  ],
+  "dependencies": [
+    "D0046 restores Government/Diplomatic Culture only; per-domain Floor/share/W, other qualifications and Shared D0045 unchanged. Native Culture coexistence not inferred from Production.",
+    "Existing K confirmed current-reference bridge and local ACTIVE facade",
+    "B157 named S/G/same-session owned exit evidence only; B161 Writing Production3→5/W2=10 native PASS, original post-restart withdrawal FAIL preserved; B162 scoped cold-load/END cleanup PASS closes that delta. Food/Faith/other objects and full Meaning remain unresolved.",
+    "Existing module-owned loss/load/UNKNOWN contracts; no permanent schema or AI",
+    "B163 scoped five-yield Writing PASS / Culture FAIL remains evidence; B164 quarantines own Culture, three reviewed Neighborhood entries repaired locally. Accepted D0046 retained, no HD takeover; Community native joins later authorized session."
+  ],
+  "old_writers": [
+    "GWA exact156 owned IDs withdrawn by legacy module itself; normal retired Start blocks Init/Audit/Receive/manual positive restoration; definitions kept.",
+    "Meaning exact92/644 family retained; startup/load removes old experiment snapshots then current five finals, one per yield. Probe does not Start; old controls read only/rejected.",
+    "Old AUTO Dialogue stays normal; no experimental0/100 override, no new M project or native-only cumulative ledger."
+  ],
+  "non_scope": [
+    "No new L3/M/N/U2, Culture restoration/HD takeover, AI/MP, permanent schema, catalog expansion, GC/main/promotion.",
+    "No repeat exact cross-turn progress attribution gate; original evidence remains limited, not upgraded."
+  ],
+  "validation": {
+    "depth": "W0004 L2 plus directly changed initialization/owned exit L3 targeted; no full historical regression/stress.",
+    "local": [
+      "test_culture_meaning_automatic.py:30 methods; selected seven AE and seven K direct regressions, 44 methods total; historical DB fixture adapted exactly in memory, no changed assertions.",
+      "Current193 registration/syntax; same92/644 SQL byte-equal to fffecc7; context/schema/hash/link/diff review."
+    ],
+    "user": "After deployment: direct automatic yield before opening P0; one D or W change; Governor ACTIVE loss/restore; one normal save/cold-load rederivation. No Probe ON-save/OFF ritual, repeated five-yield/END or exact progress comparison."
+  },
+  "result": {
+    "plan": "Authorized automatic integration proposal; B165 exact cross-turn attribution nonblocking observation, no repeat test.",
+    "implementation": "B166.193 LOCAL_COMPLETE: normal module, current facts/one-final projected effects, exact GWA retired routes/old producer, read-only P0; current seven-domain/five-yield quarantine.",
+    "native": "USER_GAME_TEST_PASS: user accepts B166 integration and explicitly confirms cold-restart automatic reconstruction. No screenshots; no invented independent observations or measurements.",
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
+    "local_test_entry": "test_culture_meaning_automatic.py plus explicit seven AE/seven K methods recorded in B166 result; no historical wrappers.",
+    "stop": "B166 accepted; wait for separate L3-A authorization. No new implementation/deployment.",
+    "deployment": "B166.193 / modinfo193 DEVELOP_ACTIVE; source f24ae403a32adcd613d194013169a6759808b040; receipt B166.193-f24ae40-playtest.json;183/183 MATCH. Exact B165 and stable recovery verified/retained; no pending marker/game launch.44 local checks PASS; B166 integration accepted by user, including cold-restart automatic reconstruction; no screenshots. Deployment not repeated this turn.",
+    "authority_revalidation": "D0048 ability/multiplier/work-pool and full Culture Spec/Shared D contract reused unchanged. Exact GWA/Meaning writer paths/callers and Store confirmed exit API reviewed. No Design or permanent-state change.",
+    "next_proposal": "L3-A one-city one-class fractional base GPP primitive, normal multiplier and reversible withdrawal; planned only.",
+    "user_evidence": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_User_Pass.md"
+  },
+  "implementation_authorized": false
+}

@@ -122,7 +122,7 @@ function SPCTradeRouteProbe.Start(P,shared)
   end
   -- Event payloads are never route facts. No assumption about start/end semantics.
   for _,name in ipairs({"TradeRouteActivityChanged","TradeRouteRemovedFromMap","UnitRemovedFromMap",
-      "UnitOperationDeactivated","UnitOperationStarted","UnitOperationsCleared","CityRemovedFromMap","CityAddedToMap","DiplomacyDeclareWar"}) do
+      "UnitOperationDeactivated","UnitOperationStarted","UnitOperationsCleared","CityRemovedFromMap","CityAddedToMap","CityTransfered","DiplomacyDeclareWar"}) do
     local eventName=name;listen(Events,eventName,function(pid,id)
       if eventName:find('^Unit') then
         P.Count('unit_cb');if not P.RouteUnitRelevant(pid,id) then P.Count('unit_ignored');return end

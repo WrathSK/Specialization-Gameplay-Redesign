@@ -1,0 +1,98 @@
+{
+  "scope": "LOCAL_STRUCTURAL_REPRODUCTION, real filesystem temp-only; not real deployment, signal-frequency or power-loss evidence",
+  "source": {
+    "tools/deploy.py": "4f8336360e5951a46bac41dabe8001a0825b18ce57cbec3d45f9b71b08aca478",
+    "tools/temporary_playtest.py": "f4d59b51608618166101f86f8be608ce031349ed870f1cf4b3c9ffdae935b4c0"
+  },
+  "script_sha256": "967b834e1ca6c839cc63be7993dd3dbcb288398340b32d035df8c082e6aead4f",
+  "stub_boundary": "stable_gate and git_root assert fixture paths and authorization but skip Git; Path.rename delegates actual rename then injects KeyboardInterrupt. All package paths are under disposable /private/tmp fixtures. No current config/runtime read.",
+  "cases": [
+    {
+      "path": "stable",
+      "injection": "normal_failpoint",
+      "exception": "RuntimeError",
+      "target_exists": true,
+      "target_matches_previous": true,
+      "marker_exists": false,
+      "receipt_phase": null,
+      "backups": [],
+      "unrelated_untouched": true,
+      "renames": [
+        [
+          "Game/Mods/SpecializationP0",
+          "Game/SpecializationDeploymentBackups/.SpecializationP0-backup-1s0bumt5"
+        ],
+        [
+          "Game/SpecializationDeploymentBackups/.SpecializationP0-backup-1s0bumt5",
+          "Game/Mods/SpecializationP0"
+        ]
+      ]
+    },
+    {
+      "path": "stable",
+      "injection": "post_rename_interrupt",
+      "exception": "KeyboardInterrupt",
+      "target_exists": false,
+      "target_matches_previous": false,
+      "marker_exists": false,
+      "receipt_phase": null,
+      "backups": [
+        {
+          "name": ".SpecializationP0-backup-m3lotlck",
+          "matches_previous": true
+        }
+      ],
+      "unrelated_untouched": true,
+      "renames": [
+        [
+          "Game/Mods/SpecializationP0",
+          "Game/SpecializationDeploymentBackups/.SpecializationP0-backup-m3lotlck"
+        ]
+      ]
+    },
+    {
+      "path": "temporary",
+      "injection": "normal_failpoint",
+      "exception": "RuntimeError",
+      "target_exists": true,
+      "target_matches_previous": true,
+      "marker_exists": false,
+      "receipt_phase": "FAILED_ROLLED_BACK",
+      "backups": [],
+      "unrelated_untouched": true,
+      "renames": [
+        [
+          "Game/Mods/SpecializationP0",
+          "Game/SpecializationDeploymentBackups/.temporary-stable-backup-uorpir3m"
+        ],
+        [
+          "Game/SpecializationDeploymentBackups/.temporary-stable-backup-uorpir3m",
+          "Game/Mods/SpecializationP0"
+        ]
+      ]
+    },
+    {
+      "path": "temporary",
+      "injection": "post_rename_interrupt",
+      "exception": "ValueError",
+      "target_exists": false,
+      "target_matches_previous": false,
+      "marker_exists": true,
+      "receipt_phase": "SWITCH_PENDING",
+      "backups": [
+        {
+          "name": ".temporary-stable-backup-f3535fav",
+          "matches_previous": true
+        }
+      ],
+      "unrelated_untouched": true,
+      "renames": [
+        [
+          "Game/Mods/SpecializationP0",
+          "Game/SpecializationDeploymentBackups/.temporary-stable-backup-f3535fav"
+        ]
+      ]
+    }
+  ],
+  "limits": "Injected post-rename outcome window; not observed incident, asynchronous OS-signal timing, concurrency or power-loss simulation. Old whole package preserved in both interrupted cases. Temporary marker/receipt preserve recovery, unlike stable marker removal."
+}

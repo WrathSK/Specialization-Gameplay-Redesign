@@ -2,7 +2,7 @@ include('Probe')
 local P=SPCP0
 local parent,pending,elapsed,timer,unitKey,feedback
 local view,viewToken,viewRequestedAt,viewReceivedAt
-local clock=0;local nextView=0
+local clock=0;local nextView=0;local dirty=true;local hooks={};local renderKey;local revision
 local function current()
  local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid) then return nil end
  local u=UI.GetHeadSelectedUnit();if not u or u:GetOwner()~=pid then return nil end
@@ -16,7 +16,7 @@ local function preview(u)
 end
 -- Raw responses remain in SPC_UnitPanelStatus/log; tooltips use structured views.
 local function crewView(u)
- if view and clock-(viewReceivedAt or 0)<1.5 and view.owner==u:GetOwner() and view.unitID==u:GetID()
+ if view and view.owner==u:GetOwner() and view.unitID==u:GetID()
   and view.turn==Game.GetCurrentGameTurn() and view.x==u:GetX() and view.y==u:GetY() then return view end
 end
 local function readView(u)
@@ -25,7 +25,8 @@ local function readView(u)
   local v=(ExposedMembers.SPC_P0 or {}).UnitActionView
   if v and v.token==viewToken then view=v;viewReceivedAt=clock;viewToken=nil end
  end
- if not viewToken and clock>=nextView and not pending then
+ if not viewToken and dirty and not pending then
+  dirty=false
   ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
   viewToken=P.VERSION..':VIEW:'..ExposedMembers.SPC_P0_UISequence;viewRequestedAt=clock;nextView=clock+0.5
   local ok=pcall(UI.RequestPlayerOperation,u:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,
@@ -38,26 +39,25 @@ local function crewTips(v)
  if v and v.prepared then
   local name=Locale.Lookup(v.targetName)
   return '施工预览[NEWLINE]当前目标：'..name..'[NEWLINE]当前进度：'..number(v.progress)..' / '..number(v.cost)
-   ..'[NEWLINE]本次投入：'..number(v.amount)..'点生产力[NEWLINE]施工后：'..number(v.after)..' / '..number(v.cost)
-   ..'[NEWLINE]浪费：'..number(v.waste)..'点生产力',
-   '确认施工[NEWLINE]消耗此施工队，在当前建造项目上投入'..number(v.amount)..'点生产力。[NEWLINE]此操作无法撤销。'
+   ..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_BASE_PREVIEW',v.amount,v.baseInput,v.baseUnused),
+   '确认施工[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_BASE_CONFIRM',v.baseInput)
  end
- if v and v.legal then return '施工[NEWLINE]准备在当前建造项目上投入'..number(v.amount)..'点生产力。[NEWLINE]点击后可预览施工结果并进行确认。' end
- return '施工[NEWLINE]将施工队移动至正在建造区域、建筑或奇观的单元格，即可进行施工。'
+ if v and v.legal then return '施工[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_BASE_READY',v.amount) end
+ return '施工[NEWLINE]将施工队移动至正在建造奇观的单元格，即可进行施工。'
 end
 local function investmentTips(v)
  local names={RESEARCH='科研',CULTURE='文化',COMMERCE='商业',INDUSTRY='工业',GOVERNMENT='政府',MILITARY='军事'}
  if v and v.prepared then
-  return '投资预览[NEWLINE]当前专业：'..(names[v.specialization] or v.specialization)
+  return '专业投资预览[NEWLINE]当前专业：'..(names[v.specialization] or v.specialization)
    ..'[NEWLINE]当前潜力：'..v.potential..'级[NEWLINE]投资后潜力：'..v.nextPotential..'级'
-   ..'[NEWLINE]消耗：1名移民[NEWLINE][NEWLINE]高级专业能力仍需满足对应的总督条件。',
-   '确认投资[NEWLINE]消耗此移民，使本城专业潜力永久提高至'..v.nextPotential..'级。[NEWLINE]此操作无法撤销。'
+   ..'[NEWLINE]本次消耗：1 名移民[NEWLINE][NEWLINE]提示：更高阶的专业能力仍需满足对应的总督就职与晋升条件方可启用。',
+   '确认专业投资[NEWLINE]消耗此移民，使本城的专业潜力永久提升至 '..v.nextPotential..' 级。[NEWLINE]此操作一旦确认无法撤销。'
  end
- if v and v.legal then return '投资专业化[NEWLINE]消耗1名移民，使本城专业潜力永久提高1级。'
-  ..'[NEWLINE]当前潜力：'..v.potential..'级 → '..v.nextPotential..'级[NEWLINE]点击后可预览投资结果并进行确认。' end
+ if v and v.legal then return '投资专业化[NEWLINE]消耗 1 名移民，使本城的专业潜力永久提升 1 级。'
+  ..'[NEWLINE]潜力变化：'..v.potential..' 级 → '..v.nextPotential..' 级[NEWLINE]点击以预览投资结果并进行最终确认。' end
  if v and v.reason and v.reason:find('POTENTIAL_CAP_4',1,true) then return '投资专业化[NEWLINE]专业潜力已达到4级，无法继续投资。' end
  if v and v.reason and (v.reason:find('HELD',1,true) or v.reason:find('PENDING',1,true) or v.reason:find('RESERVED',1,true)) then
-  return '投资专业化[NEWLINE]此前投资尚未确认，暂时无法投资。'
+  return '投资专业化[NEWLINE]此前专业投资的结果尚待确认，暂时无法再次投资。'
  end
  return '投资专业化[NEWLINE]将移民移动至本城的专业区域，即可投资城市专业化。'
 end
@@ -92,23 +92,35 @@ local function update(dt)
   elapsed=elapsed+step;local s=ExposedMembers.SPC_P0 or {}
   if s.Version==P.VERSION and s.LastToken==pending then
    feedback=tostring(s.Snapshot);ExposedMembers.SPC_UnitPanelStatus=feedback
-   print('[SPC][B045][PANEL_RESULT] '..feedback);pending=nil;view=nil;viewToken=nil;nextView=0
+   print('[SPC][B045][PANEL_RESULT] '..feedback);pending=nil;view=nil;viewToken=nil;nextView=0;dirty=true
   elseif elapsed>10 then pending=nil;feedback='等待结果超时；请查看专业化诊断中的移民 / 施工队，不要重复确认。';ExposedMembers.SPC_UnitPanelStatus=feedback end
  end
- local u,kind=current();local key=u and (u:GetOwner()..':'..u:GetID())
- if unitKey~=key then unitKey=key;feedback=nil;view=nil;viewToken=nil;nextView=0 end
+ local u,kind=current();local key=u and (u:GetOwner()..':'..u:GetID()..':'..u:GetX()..':'..u:GetY()..':'..Game.GetCurrentGameTurn())
+ if unitKey~=key then unitKey=key;feedback=nil;view=nil;viewToken=nil;nextView=0;dirty=true end
+ local r=ExposedMembers.SPC_RuntimeUIRevision or 0;if r~=revision then revision=r;dirty=true end
  local visible=u~=nil and UI.GetInterfaceMode()==InterfaceModeTypes.SELECTION
- Controls.ActionGroup:SetHide(not visible)
+ if not visible then
+  if renderKey~=false then Controls.ActionGroup:SetHide(true);renderKey=false;parent:CalculateSize();parent:ReprocessAnchoring() end
+  return
+ end
+ if renderKey==false or renderKey==nil then Controls.ActionGroup:SetHide(false) end
  if visible then
-  local invest=kind=='UNIT_SETTLER';local icon=invest and 'ICON_UNITOPERATION_FOUND_CITY' or 'ICON_UNITOPERATION_BUILD_IMPROVEMENT'
-  Controls.PrepareIcon:SetIcon(icon);Controls.ConfirmIcon:SetIcon(icon)
+  local invest=kind=='UNIT_SETTLER';local icon=invest and 'ICON_SPC_RAW_INVEST_PREPARE' or 'ICON_SPC_RAW_CREW_PREPARE'
+  local confirmIcon=invest and 'ICON_SPC_RAW_INVEST_CONFIRM' or 'ICON_SPC_RAW_CREW_CONFIRM'
+
   readView(u);local v=crewView(u);local a,b
   if invest then a,b=investmentTips(v) else a,b=crewTips(v) end
-  -- Reserve both positions in both states. Confirm never replaces the first click.
-  Controls.ActionGroup:SetSizeX(90)
-  Controls.PrepareButton:SetOffsetX(46);Controls.ConfirmButton:SetOffsetX(0)
+  local confirmed=v and v.prepared and preview(u) and preview(u).token==v.planToken
+  local newKey=icon..'|'..a..'|'..tostring(b)..'|'..tostring(confirmed)..'|'..tostring(pending~=nil)
+  if newKey==renderKey then return end;renderKey=newKey
+  Controls.PrepareIcon:SetIcon(icon,38);Controls.ConfirmIcon:SetIcon(confirmIcon,38)
+  -- The group grows to the left only when a matching confirmation exists.
+  -- Keep Prepare at the right edge; Confirm never replaces the first-click hitbox.
+  Controls.ActionGroup:SetSizeX(confirmed and 90 or 44)
+  Controls.ActionSlot:SetSizeX(confirmed and 93 or 47)
+  Controls.PrepareButton:SetOffsetX(confirmed and 46 or 0);Controls.ConfirmButton:SetOffsetX(0)
   Controls.PrepareButton:SetToolTipString(a);Controls.ConfirmButton:SetToolTipString(b or (invest and '确认投资' or '确认施工'))
-  Controls.ConfirmButton:SetHide(not (v and v.prepared and preview(u) and preview(u).token==v.planToken))
+  Controls.ConfirmButton:SetHide(not confirmed)
   Controls.PrepareButton:SetDisabled(pending~=nil)
   Controls.ConfirmButton:SetDisabled(pending~=nil)
  end
@@ -116,8 +128,12 @@ local function update(dt)
 end
 ContextPtr:SetInitHandler(function()
  timer=0;ContextPtr:SetHide(false)
+ for _,name in ipairs({'CityProductionChanged','CityProductionUpdated','CityProductionCompleted','CityBuildQueueChanged',
+  'BuildingAddedToMap','BuildingRemovedFromMap','DistrictBuildProgressChanged','DistrictRemovedFromMap','CityTransfered','InterfaceModeChanged'}) do
+  local e=P.Field(Events,name);if e and e.Add then local f=function() dirty=true end;e.Add(f);hooks[#hooks+1]={e,f} end
+ end
  Controls.PrepareButton:RegisterCallback(Mouse.eLClick,function() dispatch(false) end)
  Controls.ConfirmButton:RegisterCallback(Mouse.eLClick,function() dispatch(true) end)
  ContextPtr:SetUpdate(update)
 end)
-ContextPtr:SetShutdown(function() ContextPtr:ClearUpdate();Controls.ActionGroup:SetHide(true) end)
+ContextPtr:SetShutdown(function() ContextPtr:ClearUpdate();Controls.ActionGroup:SetHide(true);for _,h in ipairs(hooks) do h[1].Remove(h[2]) end end)

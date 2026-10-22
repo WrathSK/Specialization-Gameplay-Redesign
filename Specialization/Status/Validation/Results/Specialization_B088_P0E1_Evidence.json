@@ -1,0 +1,28 @@
+{
+  "batch": "B088.115 P0-E1",
+  "review": "Three screenshots visually reviewed; moved originals with exact SHA256 verification",
+  "user_context": "Tests1/2 capital; capital could not be converted to Free City, test3 used another city. Never merge two cities into one continuity chain.",
+  "files": [
+    {
+      "original_name": "Screenshot 2026-09-20 at 12.27.36 PM.png",
+      "archived_path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B088_P0E1_Native_20260920/Screenshot 2026-09-20 at 12.27.36 PM.png",
+      "sha256": "0d56a757173033377327295c2d88dbcdb87a30f361dfc5b7dc43f3c6bf49b10e",
+      "bytes": 10709384,
+      "observation": "首都Stirling TEST；T8；0/65536 @31,32；DEV-B013-P0-1；TOKEN/JOURNAL/FLOW/INVEST原有现有一致，TEMPLATES原无现无。原范围迁移候选。"
+    },
+    {
+      "original_name": "Screenshot 2026-09-20 at 12.28.51 PM.png",
+      "archived_path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B088_P0E1_Native_20260920/Screenshot 2026-09-20 at 12.28.51 PM.png",
+      "sha256": "0264d44b093e1243c3cf5d67d6287d252d788aec3d5b05e79ee3274565403e30",
+      "bytes": 10719763,
+      "observation": "用户说明为首都读档后；相同引用/token及记录有无。每张一致是本次加载基线对照，截图不包含跨load完整payload逐值比较。"
+    },
+    {
+      "original_name": "Screenshot 2026-09-20 at 12.31.35 PM.png",
+      "archived_path": "/Users/xutingzheng/Library/Application Support/Sid Meier's Civilization VI/Specialization/Status/Validation/Evidence/B088_P0E1_Native_20260920/Screenshot 2026-09-20 at 12.31.35 PM.png",
+      "sha256": "c77d5b7244d24bce9a7220e7df50453786f0d4b103dfde6da2cf1265307db33e",
+      "bytes": 10929462,
+      "observation": "分城Edinburgh TEST转自由城市；0/131073→62/65536 @28,29；DEV-B013-P0-2→nil；TOKEN/JOURNAL/FLOW/INVEST/TEMPLATES全部原有现无；UNKNOWN_TOKEN_MISSING。"
+    }
+  ]
+}

@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "design_revision": "D0047",
+  "specialization": "GOVERNMENT",
+  "document_state": "ACCEPTED",
+  "freeze_status": "ACCEPTED_CURRENT_BASELINE_WITH_PLACEHOLDERS_AND_OPEN_DETAILS",
+  "implementation_status": "NOT_IMPLEMENTED",
+  "implementation_scope": "FUTURE_ONLY / OUT_OF_V0.1",
+  "authority": "User-approved Government Design Talk; Codex records decisions only. Current Spec references this content; reading Markdown is not independent authority.",
+  "shared_contract_ref": "Shared_D0045.json",
+  "philosophy": {
+    "identity": "国家治理中枢 / Meta-specialization",
+    "growth": [
+      "基础行政",
+      "常设内政体系",
+      "制度整合",
+      "国家政策中枢"
+    ],
+    "focus": [
+      "基础行政支持",
+      "降低政策调整摩擦",
+      "制度学习与整合",
+      "专业多样化转化为当前政策容量",
+      "政策机动性与整体治理效能"
+    ],
+    "single_yield_specialization": false,
+    "lv2_note": "轻量设计可承担进入III／IV的机会成本，不补第二能力。"
+  },
+  "ability_structure": {
+    "1": 1,
+    "2": 1,
+    "3": 2,
+    "4": 3
+  },
+  "institutions": [
+    {
+      "institution_id": "GOV_INST_1",
+      "level": 1,
+      "name": {
+        "zh_CN": "治所"
+      },
+      "name_status": "USER_CONFIRMED",
+      "potential_requirement": 1,
+      "ability_ids": [
+        "GOV_L1_BASIC_SUPPORT"
+      ],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "GOV_INST_2",
+      "level": 2,
+      "name": {
+        "zh_CN": "内政司"
+      },
+      "name_status": "PLACEHOLDER",
+      "potential_requirement": 2,
+      "ability_ids": [
+        "GOV_L2_POLICY_COST"
+      ],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "GOV_INST_3",
+      "level": 3,
+      "name": {
+        "zh_CN": "典制院"
+      },
+      "name_status": "USER_CONFIRMED",
+      "potential_requirement": 3,
+      "ability_ids": [
+        "GOV_L3_INSTITUTION_STUDY",
+        "GOV_L3_LEGACY_SELECTION"
+      ],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "GOV_INST_4",
+      "level": 4,
+      "name": {
+        "zh_CN": "国策府"
+      },
+      "name_status": "USER_CONFIRMED",
+      "potential_requirement": 4,
+      "ability_ids": [
+        "GOV_L4_DIVERSITY_SLOTS",
+        "GOV_L4_FIRST_POLICY_FREE",
+        "GOV_L4_GOVERNANCE_YIELDS"
+      ],
+      "presentation_only": true
+    }
+  ],
+  "abilities": [
+    {
+      "ability_id": "GOV_L1_BASIC_SUPPORT",
+      "institution_id": "GOV_INST_1",
+      "name": {
+        "zh_CN": "基础市政支持"
+      },
+      "name_status": "USER_CONFIRMED",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 1,
+      "contract_ref": "contracts.basic_support"
+    },
+    {
+      "ability_id": "GOV_L2_POLICY_COST",
+      "institution_id": "GOV_INST_2",
+      "name": {
+        "zh_CN": "政令通达"
+      },
+      "name_status": "USER_CONFIRMED",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 2,
+      "contract_ref": "contracts.policy_cost"
+    },
+    {
+      "ability_id": "GOV_L3_INSTITUTION_STUDY",
+      "institution_id": "GOV_INST_3",
+      "name": {
+        "zh_CN": "兼采诸制"
+      },
+      "name_status": "USER_CONFIRMED",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 3,
+      "contract_ref": "contracts.institution_study"
+    },
+    {
+      "ability_id": "GOV_L3_LEGACY_SELECTION",
+      "institution_id": "GOV_INST_3",
+      "name": {
+        "zh_CN": "政制取鉴"
+      },
+      "name_status": "USER_CONFIRMED",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 3,
+      "contract_ref": "contracts.legacy_selection"
+    },
+    {
+      "ability_id": "GOV_L4_DIVERSITY_SLOTS",
+      "institution_id": "GOV_INST_4",
+      "name": {
+        "zh_CN": "多元统筹"
+      },
+      "name_status": "USER_CONFIRMED",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 4,
+      "contract_ref": "contracts.diversity_slots"
+    },
+    {
+      "ability_id": "GOV_L4_FIRST_POLICY_FREE",
+      "institution_id": "GOV_INST_4",
+      "name": {
+        "zh_CN": "因时制宜"
+      },
+      "name_status": "USER_CONFIRMED",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 4,
+      "contract_ref": "contracts.first_policy_free"
+    },
+    {
+      "ability_id": "GOV_L4_GOVERNANCE_YIELDS",
+      "institution_id": "GOV_INST_4",
+      "name": {
+        "zh_CN": "治理效能"
+      },
+      "name_status": "USER_CONFIRMED",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 4,
+      "contract_ref": "contracts.governance_yields"
+    }
+  ],
+  "base_effects": [],
+  "contracts": {
+    "basic_support": {
+      "rule_id": "GOV-L1-SUPPORT",
+      "scope": "本城市政合格建筑",
+      "G": "current Government Tier, not building Tier or Shared D",
+      "per_eligible_building": {
+        "FOOD": "G",
+        "PRODUCTION": "G"
+      },
+      "government_tier_examples": {
+        "I": [
+          1,
+          1
+        ],
+        "II": [
+          2,
+          2
+        ],
+        "III": [
+          3,
+          3
+        ],
+        "IV": [
+          4,
+          4
+        ]
+      },
+      "eligible_building_catalog": "TECHNICAL_INVESTIGATION_REQUIRED; use Government Plaza / government-building facts, no compatibility catalog in this revision",
+      "intent": "政体成熟带来更稳定、更高规格的供给、组织与建设保障。"
+    },
+    "policy_cost": {
+      "rule_id": "GOV-L2-POLICY-COST",
+      "transaction": "player-initiated complete Policy Cards reconfiguration",
+      "effect": "significant Gold cost reduction",
+      "discount_parameter": "parameters.policy_gold_discount",
+      "second_ability": false,
+      "intent": "常设官僚体系降低行政摩擦。"
+    },
+    "institution_study": {
+      "rule_id": "GOV-L3-INSTITUTION-STUDY",
+      "project": {
+        "zh_CN": "建制考论",
+        "name_status": "USER_CONFIRMED"
+      },
+      "qualification": "already owns one Government Plaza building in the corresponding building Tier",
+      "targets": "other buildings of that same Tier, each studied separately",
+      "standard_speed_full_production_turns_per_building": {
+        "I": 1,
+        "II": 2,
+        "III": 3
+      },
+      "standard_speed_other_two_turns": {
+        "I": 2,
+        "II": 4,
+        "III": 6
+      },
+      "standard_speed_all_three_tiers_total": 12,
+      "cost_semantics": "完整生产回合的制度时间／机会成本；不是重新施工，不是固定Production cost，不可被高Production压缩",
+      "game_speed": "scale normally; exact multiplier and integer rounding remain TECHNICAL / DESIGN DETAIL REQUIRED",
+      "granted_effects": "building long-term / continuous effects",
+      "one_shot_rewards": "must not duplicate; Governor Title is an example requiring separate audit",
+      "physical_building_completion": "not required by Design; no automatic free completion of mutually exclusive buildings",
+      "history": "completed learning is city historical / institutional accumulation; temporary Governor or ACTIVE loss must not erase it",
+      "intent": "研究、论证、吸收并制度化其它治理路线。"
+    },
+    "legacy_selection": {
+      "rule_id": "GOV-L3-LEGACY-SELECTION",
+      "project": {
+        "zh_CN": "政制择用",
+        "name_status": "PLACEHOLDER"
+      },
+      "active_requirement": 3,
+      "full_production_turns": 1,
+      "eligible_choice": "one Legacy Effect of another government at current Government Tier or below",
+      "simultaneous_maximum": 1,
+      "uses_policy_slot": false,
+      "application": "direct effect",
+      "reselection": "repeat project to choose again",
+      "current_government_same_legacy_stacks": false,
+      "government_change": "selected Legacy that becomes current government self-Legacy or exceeds current Tier must not apply illegally or duplicate",
+      "configuration_retention_or_pause": "TBD; no choice between retaining-and-pausing or deleting in this handoff",
+      "asset_kind": "current institutional configuration, not permanent historical achievement",
+      "intent": "比较、取鉴其它治理制度并吸收一种经验。"
+    },
+    "diversity_slots": {
+      "rule_id": "GOV-L4-DIVERSITY-SLOTS",
+      "active_requirement": 4,
+      "N": "count of distinct non-Government specialization types currently ACTIVE IV",
+      "extra_wildcard_slots": "N",
+      "same_type_multiple_cities_count": 1,
+      "potential_iv_without_active_iv_counts": false,
+      "history_counts": false,
+      "loss": "corresponding qualifying type disappears -> remove its slot; restoration recomputes",
+      "persist_historical_slot_count": false,
+      "governor_rotation_permanent_farming": false,
+      "balance_observations": [
+        "marginal value of extra slot 1 / 2 / 3 / 4",
+        "unneeded profession leveling solely for slots"
+      ],
+      "intent": "当前真正成熟并运作的专业分工提高国家政策承载容量。"
+    },
+    "first_policy_free": {
+      "rule_id": "GOV-L4-FIRST-POLICY-FREE",
+      "active_requirement": 4,
+      "scope": "each turn first player-initiated complete policy configuration is free",
+      "per_card": false,
+      "native_free_opportunities": "Civic completion, Government change and other native rules preserved",
+      "extra_cooldown": false,
+      "balance_observation": "only investigate specific HD policies with high immediate realization value later; no generic anti-micro restriction",
+      "intent": "成熟国家机器按时势快速调整政策。",
+      "free_full_configuration_transactions_per_turn": 1,
+      "unlimited_free_reconfiguration": false
+    },
+    "governance_yields": {
+      "rule_id": "GOV-L4-GOVERNANCE-YIELDS",
+      "active_requirement": 4,
+      "scope": "nationwide All Yields",
+      "G": "current Government Tier",
+      "formula": "bonus percentage points = k_pp * G",
+      "parameter_ref": "parameters.governance_k_pp_per_tier",
+      "initial_candidate_tier_percentages": {
+        "I": 1,
+        "II": 2,
+        "III": 3,
+        "IV": 4
+      },
+      "yield_set": "All Yields as stated; exact included yield set is DESIGN_DETAIL_REQUIRED, do not silently assume six / Tourism / GPP",
+      "intent": "更成熟政体的组织效率；背景型收益，不增加独立系统。"
+    },
+    "lifecycle": {
+      "institution_learning": {
+        "completed_results": "city historical / institutional accumulation direction accepted; do not erase for temporary Governor / ACTIVE loss",
+        "current_effect_activation": "not fully specified beyond normal Shared ACTIVE ability gates",
+        "identity_exit_owner_change_recapture": "TBD; do not borrow other profession inheritance",
+        "unfinished_project_interruption_and_save": "TBD; no automatic Dialogue contract adoption"
+      },
+      "selected_legacy": {
+        "kind": "current configuration",
+        "save_pause_identity_exit_owner_change": "TBD",
+        "invalid_current_government_effect": "must not apply; exact config retention not selected"
+      },
+      "wildcard_slots": "current derived state only, recompute from current distinct ACTIVE IV types",
+      "policy_free_and_all_yields": "current ability-derived state",
+      "generic_lifecycle_system": false
+    },
+    "scope": {
+      "implementation": "future only; v0.1 remains Research/Culture/Commerce/Industry",
+      "player_carrier": "current plan dedicated blank civilization only, explicit opt-in; no default original/Mod Civ and Leader bonus compatibility obligation",
+      "current_runtime_scope": "single-player local human only; no AI or multiplayer implementation",
+      "future_reuse": "not permanently forbidden; separately authorized future scope, no support guarantee",
+      "localization": "Chinese idiomatic names permitted; future functional English need not translate word-for-word; no English names frozen here"
+    },
+    "cross_profession_refs": {
+      "canal": "existing CAN-001 Government adjacency Food direction unchanged",
+      "state_visit": "existing DIP-MISSION-014 future framework unchanged; not a Diplomatic redesign"
+    }
+  },
+  "parameters": {
+    "policy_gold_discount": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "meaning": "significant reduction of player-initiated policy Gold cost; no -50%/-75% chosen"
+    },
+    "governance_k_pp_per_tier": {
+      "value": 1,
+      "unit": "percentage point per Government Tier",
+      "status": "INITIAL_TEST_CANDIDATE / NOT_FINAL_BALANCE",
+      "alternative": "2 percentage points per Tier may be explored later, not adopted here"
+    }
+  },
+  "open_details": [
+    {
+      "id": "GOV-NAME-001",
+      "category": "PLACEHOLDER",
+      "detail": "内政司机构名与政制择用项目名；不扩命名讨论。"
+    },
+    {
+      "id": "GOV-BALANCE-001",
+      "category": "BALANCE_REQUIRED",
+      "detail": "政令通达折扣、治理效能k、额外Wildcard边际价值和强升IV倾向。"
+    },
+    {
+      "id": "GOV-LIFECYCLE-001",
+      "category": "DESIGN_DETAIL_REQUIRED",
+      "detail": "制度学习Identity退出、易主、夺回、当前效力、未完成多回合项目中断／保存；Legacy配置保存／暂停／身份退出／易主及失格后的保留表现。"
+    },
+    {
+      "id": "GOV-TECH-001",
+      "category": "TECHNICAL_INVESTIGATION_REQUIRED",
+      "detail": "合格市政建筑、长期效果承载与互斥、一次性奖励分离；不展开全兼容表。"
+    },
+    {
+      "id": "GOV-TECH-002",
+      "category": "TECHNICAL / DESIGN DETAIL REQUIRED",
+      "detail": "完整多回合制度项目、游戏速度缩放／整数回合；Legacy效果目录与无槽直接承载。"
+    },
+    {
+      "id": "GOV-TECH-003",
+      "category": "TECHNICAL / DESIGN DETAIL REQUIRED",
+      "detail": "动态槽位、完整政策配置与原生免费机会区分、All Yields精确范围与全国百分比承载。"
+    },
+    {
+      "id": "GOV-DETAIL-001",
+      "category": "DESIGN_DETAIL_REQUIRED",
+      "detail": "多个市政来源并存时的全国能力组合、每回合首次主动配置的免费机会与原生免费机会计数关系、未声明Government Tier值；不自行添加cap／公式。"
+    },
+    {
+      "id": "GOV-BALANCE-002",
+      "category": "FUTURE_BALANCE_OBSERVATION",
+      "detail": "少数具体HD即时政策套利；不因此在当前规则添加cooldown。"
+    }
+  ],
+  "supersession": [
+    {
+      "old_rule": "GOV-001",
+      "old": "automatic free completion of other two same-Tier Government buildings",
+      "replacement": "institution_study; separately earned continuous effects, no repeated one-shots"
+    },
+    {
+      "old_rule": "GOV-002",
+      "old": "permanent Governor Title per Potential level (up to four)",
+      "replacement": "OBSOLETE; no retained bonus"
+    },
+    {
+      "old_rule": "GOV-003",
+      "old": "W=min(ACTIVE,Government Tier)",
+      "replacement": "diversity_slots; distinct current non-Government ACTIVE IV types"
+    },
+    {
+      "old_rule": "GOV-004 / OPEN-03 old Loyalty",
+      "old": "weak Loyalty Network and its pending value",
+      "replacement": "OBSOLETE; no added independent Government Network Ability"
+    },
+    {
+      "old_rule": "ELIG-001/002/006, ID-001, COMPAT-001 previous carrier scope",
+      "old": "current carrier could other Civ; default Civ/Leader coexistence and prohibition of blank-only scope",
+      "replacement": "current dedicated blank civilization; future reuse only separately authorized"
+    }
+  ],
+  "implementation_gate": "Design acceptance only, no Government implementation authorization or native evidence; current B163 Culture probe remains pending."
+}

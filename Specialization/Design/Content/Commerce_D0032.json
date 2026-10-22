@@ -1,0 +1,559 @@
+{
+  "schema_version": 1,
+  "design_revision": "D0032",
+  "specialization": "COMMERCE",
+  "document_state": "ACCEPTED",
+  "freeze_status": "DESIGN_FROZEN",
+  "implementation_status": "NOT_IMPLEMENTED",
+  "balance_validation": "PENDING",
+  "authority": "User Commerce freeze brief and explicit follow-up decisions; external review is not authority. Freeze covers confirmed core contracts, not unresolved mapping/balance/legacy or technical feasibility.",
+  "shared_contract_ref": "Shared_D0028.json",
+  "supported_locales": [
+    "zh_CN"
+  ],
+  "reference_locales": [
+    "en_US"
+  ],
+  "philosophy": "交换 → 价值发现 → 资本形成 → 时间与风险 → 发展投资 → 资产重组 → 商业信誉。Gold是重要媒介，不是设计终点。",
+  "ability_structure": {
+    "counts": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "status": "USER_CONFIRMED_FOR_COMMERCE",
+    "shared_boundary": "Design target, not mandatory schema for every future specialization."
+  },
+  "institutions": [
+    {
+      "institution_id": "COM_INST_1",
+      "level": 1,
+      "name": {
+        "zh_CN": "商贾聚落"
+      },
+      "name_status": "LOCKED_USER_CONFIRMED",
+      "description": {
+        "zh_CN": "零散商人与经营活动在此稳定聚集，形成自发的商业共同体。"
+      },
+      "potential_requirement": 1,
+      "existence_active_requirement": null,
+      "ability_ids": []
+    },
+    {
+      "institution_id": "COM_INST_2",
+      "level": 2,
+      "name": {
+        "zh_CN": "同业公会"
+      },
+      "name_status": "LOCKED_USER_CONFIRMED",
+      "description": {
+        "zh_CN": "同业制度形成稳定职业共同体与商业人才体系。"
+      },
+      "potential_requirement": 2,
+      "existence_active_requirement": null,
+      "ability_ids": [
+        "COM_L2_GUILD"
+      ]
+    },
+    {
+      "institution_id": "COM_INST_3",
+      "level": 3,
+      "name": {
+        "zh_CN": "交易所"
+      },
+      "name_status": "LOCKED_USER_CONFIRMED",
+      "description": {
+        "zh_CN": "商业组织发现不同领域的价值，并经营资本的时间与风险。"
+      },
+      "potential_requirement": 3,
+      "existence_active_requirement": null,
+      "ability_ids": [
+        "COM_L3_COMMERCIALIZE",
+        "COM_L3_INVEST"
+      ]
+    },
+    {
+      "institution_id": "COM_INST_4",
+      "level": 4,
+      "name": {
+        "zh_CN": "资本信托"
+      },
+      "name_status": "LOCKED_USER_CONFIRMED",
+      "description": {
+        "zh_CN": "成熟商业组织配置发展资本、重组既有资产，以长期稳定经营积累信誉。"
+      },
+      "potential_requirement": 4,
+      "existence_active_requirement": null,
+      "ability_ids": [
+        "COM_L4_DEVELOP",
+        "COM_L4_RESTRUCTURE",
+        "COM_L4_REPUTATION"
+      ]
+    }
+  ],
+  "base_effects": [
+    {
+      "effect_id": "COM_BASE_SUPPORT",
+      "institution_id": "COM_INST_1",
+      "active_requirement": 1,
+      "name": null,
+      "mechanical_contract": "Each working Commercial Hub specialist receives additional3Food+3Production at all ACTIVE levels1–4; no old Lv3 upgrade. Native yields remain separate.",
+      "authority": "Legacy COM-001 retained; user explicitly cancelled COM-003 support upgrade in freeze review."
+    }
+  ],
+  "abilities": [
+    {
+      "ability_id": "COM_L2_GUILD",
+      "institution_id": "COM_INST_2",
+      "level": 2,
+      "name": {
+        "zh_CN": "同业制度"
+      },
+      "name_status": "LOCKED_USER_CONFIRMED",
+      "active_requirement": 2,
+      "mechanical_contract": "Retain Commerce branch SHARED-001/002; district and each building tier +1Housing; each working Commerce specialist +2 base Merchant GPP with normal percent modifiers. Shared current building/pillage qualification applies.",
+      "input_facts": [
+        "working Commerce specialists",
+        "eligible district/building tiers",
+        "ACTIVE"
+      ],
+      "output_effects": [
+        "Housing",
+        "base Merchant GPP"
+      ],
+      "status": "DESIGN_FROZEN_WITH_EXPLICIT_REGISTERS_NOT_IMPLEMENTED"
+    },
+    {
+      "ability_id": "COM_L3_COMMERCIALIZE",
+      "institution_id": "COM_INST_3",
+      "level": 3,
+      "name": {
+        "zh_CN": "商业化"
+      },
+      "name_status": "LOCKED_USER_CONFIRMED",
+      "active_requirement": 3,
+      "mechanical_contract": "contracts.commercialization",
+      "input_facts": [
+        "specialists",
+        "local district development",
+        "enabled domains/order",
+        "direct domestic routes",
+        "domain source values"
+      ],
+      "output_effects": [
+        "additional Gold"
+      ],
+      "status": "DESIGN_FROZEN_WITH_EXPLICIT_REGISTERS_NOT_IMPLEMENTED"
+    },
+    {
+      "ability_id": "COM_L3_INVEST",
+      "institution_id": "COM_INST_3",
+      "level": 3,
+      "name": {
+        "zh_CN": "资本投资"
+      },
+      "name_status": "LOCKED_USER_CONFIRMED",
+      "active_requirement": 3,
+      "mechanical_contract": "contracts.capital_investment; stable/venture are two modes of ONE named ability.",
+      "input_facts": [
+        "domain fundamentals",
+        "Gold principal",
+        "quote",
+        "hidden pity",
+        "confirmation"
+      ],
+      "output_effects": [
+        "locked contract",
+        "Gold at maturity"
+      ],
+      "status": "DESIGN_FROZEN_WITH_EXPLICIT_REGISTERS_NOT_IMPLEMENTED"
+    },
+    {
+      "ability_id": "COM_L4_DEVELOP",
+      "institution_id": "COM_INST_4",
+      "level": 4,
+      "name": {
+        "zh_CN": "发展投资"
+      },
+      "name_status": "LOCKED_USER_CONFIRMED",
+      "active_requirement": 4,
+      "mechanical_contract": "contracts.development_investment",
+      "input_facts": [
+        "Gold",
+        "outgoing domestic route",
+        "target district",
+        "contract"
+      ],
+      "output_effects": [
+        "eligible ordinary building construction Production bonus"
+      ],
+      "status": "DESIGN_FROZEN_WITH_EXPLICIT_REGISTERS_NOT_IMPLEMENTED"
+    },
+    {
+      "ability_id": "COM_L4_RESTRUCTURE",
+      "institution_id": "COM_INST_4",
+      "level": 4,
+      "name": {
+        "zh_CN": "资产重组"
+      },
+      "name_status": "LOCKED_USER_CONFIRMED",
+      "active_requirement": 4,
+      "mechanical_contract": "contracts.restructuring",
+      "input_facts": [
+        "production-only Team",
+        "target current Identity/Potential",
+        "two legal district positions",
+        "elapsed transition turns"
+      ],
+      "output_effects": [
+        "REALLOCATING disruption",
+        "new Identity and Potential=P-1"
+      ],
+      "status": "DESIGN_FROZEN_WITH_EXPLICIT_REGISTERS_NOT_IMPLEMENTED"
+    },
+    {
+      "ability_id": "COM_L4_REPUTATION",
+      "institution_id": "COM_INST_4",
+      "level": 4,
+      "name": {
+        "zh_CN": "商业信誉"
+      },
+      "name_status": "LOCKED_USER_CONFIRMED",
+      "active_requirement": 4,
+      "mechanical_contract": "contracts.reputation",
+      "input_facts": [
+        "time as mature Commerce IV system",
+        "future independent balance schedule"
+      ],
+      "output_effects": [
+        "restrained improvements to designated Commerce activities, exact effects unresolved"
+      ],
+      "status": "DESIGN_FROZEN_WITH_EXPLICIT_REGISTERS_NOT_IMPLEMENTED"
+    }
+  ],
+  "presentation_contract": {
+    "existence": "Current Identity + permanent Potential defines cumulative current institutions; ACTIVE only controls abilities. Historical State holds former institutions separately; no old ability revival.",
+    "representation": "Presentation-only entries in Commercial Hub UI, not engine Buildings; excluded ordinary building counts, HD tiers, Standardization, District Development and default infrastructure value.",
+    "tooltips": "RP introduction, own-stage named abilities, necessary current status; technical bits/carriers hidden.",
+    "performance": "Event-driven cached state and on-demand rendering. Preserve av2-runtime-b076.103; no periodic scans, per-frame audits or hover requests."
+  },
+  "contracts": {
+    "commercialization": {
+      "capacity": "One working Commerce specialist permits one distinct simultaneously commercialized domain; a domain cannot be duplicated by more specialists. No experience/working-duration/continuous-work mechanic.",
+      "activation": "Per-domain toggle; repeat changes allowed in same turn. On capacity reduction, Gameplay cancels most recently enabled domains first (LIFO) until legal. Persist activation order independently of UI sort.",
+      "local": "Commerce city must have corresponding domain district. District Development uses Shared_D0028: maximum single district D=min(10,sum ordinary eligible tiers), completed/nonpillaged buildings, unique replacement normalization; no institution/carrier contribution.",
+      "source_pool": "Self plus other own cities with at least one valid direct domestic Trade Route in EITHER direction between city and Commerce source. Distribution reachability alone does not create this direct-route qualification.",
+      "selection": "For each enabled domain select current strongest legal candidate domain value source. Do not debit source yields; realize additional commercial value as Gold, not copy S/P/C to recipient.",
+      "deleted": "No50/100 directional premium, two-way requirement, deep cooperation or historical partnership.",
+      "mapping": {
+        "status": "DESIGN_DECISION_REQUIRED_MAPPING_DEFERRED_BY_USER",
+        "domain_source_value_to_gold": null,
+        "notes": "Legacy20% S/C/P actual-city copy is not authority for new mapping. Shared domain vocabulary may be reused, but its yield/share/GPP mapping does not define Commerce source values. Government/Diplomatic and future domains remain open; no HD mapping import."
+      },
+      "formula": "Local development participates; exact combination, coefficients, use of shares, cap/floor not fixed. No default rounding."
+    },
+    "capital_investment": {
+      "domain": "Player chooses one domain; limited meaningful fundamentals influence quote. Local development, active commercialization and Network/value-source state are candidates, not all mandatory inputs or a frozen formula.",
+      "stable": {
+        "name": "稳健投资",
+        "name_status": "LOCKED_USER_CONFIRMED",
+        "rule": "Gold now locked until maturity, certain Gold return later; sacrifice liquidity for time value."
+      },
+      "venture": {
+        "name": "风险投资",
+        "name_status": "LOCKED_USER_CONFIRMED",
+        "failure": "0 < returned Gold < principal, never total principal loss.",
+        "success": "Clearly above stable return.",
+        "risk": "Genuine failure chance even with best fundamentals; hard success-probability cap; not strict superior replacement of stable mode."
+      },
+      "confirmation_order": [
+        "Read current hidden one-sided protection",
+        "Compute effective probability within success hard cap",
+        "Roll immediately and lock outcome",
+        "Update hidden protection according to locked outcome immediately",
+        "Persist unique contract, locked outcome, maturity, quote/state version and protection state"
+      ],
+      "protection": "Failures improve future actual probability; success reduces or resets protection. Good luck never creates negative punishment. Same-turn later contracts read already updated state; never wait for maturity to update pity.",
+      "protection_scope": "Per Commerce source city. All venture investment domains of the same source share one hidden protection state; different source cities are independent. Not player-wide and not source-city x domain.",
+      "save_load": "During investment UI hides outcome; maturity only reveals and settles locked outcome. Ordinary reload before maturity cannot reroll. No claim to prevent reloading before original confirmation.",
+      "quote": "Gameplay computes principal/term/returns/probability and breakdown; UI displays confirmed snapshot, not player arithmetic or independent formula."
+    },
+    "development_investment": {
+      "qualification": "At contract establishment, Commerce source pays Gold and chooses a currently valid OUTGOING domestic Trade Route target city, then an existing eligible domain district in that city. Reverse-only route does not qualify. Post-confirmation route continuity is governed by route_interruption.",
+      "identity": "Target domain need not match target current Specialization Identity.",
+      "effect": "During investment, eligible ordinary buildings in target domain district receive Production construction bonus. Strict ordinary/unique taxonomy and native modifier stacking require prototype.",
+      "route_interruption": "Outgoing Commerce Source -> Target domestic route is qualification ONLY at contract establishment. After confirmation, route interruption, expiry or removal does not pause, terminate, extend or change the existing contract: original duration and effects continue. Without a currently qualified outgoing route, no new contract may be established. City ownership/conquest/source Identity loss remain separate deferred Legacy/Ownership decisions; no inference from route-only continuity.",
+      "exclusions": [
+        "Building cost change",
+        "Gold/Faith purchase price change",
+        "purchase permission",
+        "instant completion",
+        "direct domain yield",
+        "required Industry template",
+        "required previous completion elsewhere"
+      ],
+      "relationship": "Independent of Industry Standardization: proactive Gold/route capital allocation versus learned repeatable construction knowledge. May coexist; exact stacking reserved.",
+      "economics": "Reasonable sustained use should produce clearly more long-term construction value than immediate consumption/purchase, compensating liquidity, time, route/domain/capacity commitments. Underuse/strategy change may waste opportunity; no extra reward invented."
+    },
+    "restructuring": {
+      "unit": "Commerce ACTIVE4 unlocks special Team, Production only. No Gold/Faith purchase, Great Merchant exchange/sacrifice/recruitment gift or other instant acquisition. Production cost pending.",
+      "eligibility": "Target city must have Current Identity and Potential>=2. Team binds one target city; no intercity capital transfer.",
+      "liquidation": "At target current specialty district execute 资产清算; snapshot P and permanently lose1Potential, reallocatable capital=P-1. Enter REALLOCATING, close old abilities and current source qualification; preserve history.",
+      "configuration": "Move same Team to a new legal specialty district of same target city, execute 资产配置 only after minimum full disruption turns and all valid conditions. New Identity established, Potential=P-1, ACTIVE recomputed under own normal rules; consume Team on successful configuration.",
+      "disruption": {
+        "minimum_full_turns": 5,
+        "game_speed_scaling": null,
+        "non_food_city_yield_percent": -75,
+        "food_surplus_percent": -75,
+        "food_total": "Do not reduce total Food directly or change consumption, add starvation damage or remove population. Affect net surplus/growth, not total Food before maintenance.",
+        "end": "Timer alone never restores city. Remain REALLOCATING and disrupted until successful configuration; team can move into position earlier."
+      },
+      "state": "REALLOCATING is legal distinct transaction state, never NONE/virgin city/first-completion/Legacy Claim. Historical identity does not supply current ACTIVE or source qualification.",
+      "limits": "No nationwide/per-era/per-city hard usage cap. Cost=source production opportunity+permanent targetPotential loss+target disruption. No additional dynamic population/building/yield Gold fee.",
+      "history": "Former institutions remain independent presentation-only history; no old abilities revived. Per-profession Legacy decides permanent achievements. Research tradition pauses outside Research Identity, retained age resumes on return without catch-up; no inference for other professions.",
+      "lost_team": "DESIGN_DECISION_REQUIRED_DEFERRED_BY_USER: Team killed/deleted after liquidation; replacement/recovery not decided. Persistent transaction must retain assets/evidence independently of unit; no auto recovery/rollback/consumption rule invented."
+    },
+    "reputation": {
+      "accumulation": "Longstanding Commerce IV automatically, slowly and discretely accumulates commercial reputation; no points resource, active project or Gold purchase.",
+      "effects": "Restrained improvements to existing activities; commercialization and capital investment are candidates. Exact targets among stable/venture efficiency, probability, success/failure return, development remain unresolved; not blanket All Commerce +X%.",
+      "restructuring": "Do not infer reputation removes Potential-1 or disruption; no such reward authorized.",
+      "balance": "Independent thresholds/speed/effects/cap; do not copy Research tradition numbers or formula.",
+      "legacy": "LEGACY_REVIEW_REQUIRED: age retained/paused/resumed/reset on leaving Commerce not decided."
+    },
+    "network": "Network outside named ability count. Retain common Trade Center infrastructure; commercialization direct domestic qualification undirected, development direct outgoing directed. No old20% convergence or connected-kind support payload added.",
+    "ui": {
+      "entry": "Project list action entries are not ordinary Production Projects. Intercept before native production request to toggle/open panel; never enqueue→FinishProgress→restore queue.",
+      "commercialization": "One relevant/legal domain toggle, Dashboard fields ON/OFF, working specialists, capacity, localD, highest source, current value, breakdown, unavailable reason; no two-way potential best field.",
+      "capital": "One 资本投资 entry, one-layer panel: domain, mode, principal, term, stable return, venture probability/success/failure return, fundamentals, breakdown, confirm/cancel together. No wizard.",
+      "development": "One 发展投资 entry, one-layer target/domain/contract panel: targets, outgoing qualification, district state/D, cost/duration/bonus, contracts/capacity, confirm/cancel.",
+      "restructuring": "Unit + map/district action; no Commerce project action-entry budget.",
+      "data": "On panel open acquire one combined quote/qualification snapshot; local selection uses cache, hover zero requests. Confirm one Action request with Gameplay revalidation. No periodic polling.",
+      "status": "USER_CONFIRMED_DIRECTION / UI_PROTOTYPE_REQUIRED"
+    }
+  },
+  "parameters": {
+    "commercialization": {
+      "local_completeness_coefficient": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "source_value_to_gold_coefficient": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "domain_numeric_values": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "possible_cap_floor": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "share_usage": {
+        "value": null,
+        "status": "DESIGN_DECISION_REQUIRED_DEFERRED_BY_USER"
+      }
+    },
+    "capital": {
+      "principal": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "duration": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "stable_return": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "venture_probability": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "venture_probability_hard_cap": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "success_return": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "failure_return": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "pity_increment_reset": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      }
+    },
+    "development": {
+      "gold_cost": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "duration": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "production_bonus": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "parallel_capacity": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "stacking": {
+        "value": null,
+        "status": "DESIGN_DECISION_REQUIRED_DEFERRED_BY_USER"
+      }
+    },
+    "restructuring": {
+      "team_production_cost": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "final_disruption_duration": {
+        "value": null,
+        "status": "BALANCE_REQUIRED",
+        "initial_minimum": 5,
+        "unit": "full turns"
+      },
+      "final_non_food_penalty": {
+        "value": null,
+        "status": "BALANCE_REQUIRED",
+        "initial_value": -75
+      },
+      "final_food_surplus_penalty": {
+        "value": null,
+        "status": "BALANCE_REQUIRED",
+        "initial_value": -75
+      },
+      "game_speed_scaling": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      }
+    },
+    "reputation": {
+      "accumulation_thresholds": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "game_speed_scaling": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "effect_coefficients": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      },
+      "exact_affected_mechanics": {
+        "value": null,
+        "status": "DESIGN_DECISION_REQUIRED_DEFERRED_BY_USER"
+      },
+      "cap": {
+        "value": null,
+        "status": "BALANCE_REQUIRED"
+      }
+    }
+  },
+  "review_markers": [
+    {
+      "id": "COM-BLOCK-01",
+      "status": "RESOLVED_USER_CONFIRMED",
+      "topic": "Hidden protection per source city, shared across its venture domains; independent across cities."
+    },
+    {
+      "id": "COM-BLOCK-02",
+      "status": "RESOLVED_USER_CONFIRMED",
+      "topic": "Outgoing route checked only at contract establishment; later route loss leaves existing term/effects unchanged; no new contract without qualifying route."
+    },
+    {
+      "id": "COM-DEFER-TEAM-LOSS",
+      "status": "USER_EXPLICITLY_DEFERRED",
+      "topic": "Team deletion/death after liquidation: recovery/replacement not decided."
+    }
+  ],
+  "supersession": {
+    "RETAINED": [
+      "COM-001 working Commerce specialist +3Food/+3Production",
+      "COM-001 Commerce Identity Trade Center infrastructure; NET-001–004 common direct reception/distribution and capital semantics",
+      "SHARED-001 Commerce district and each building tier +1Housing at ACTIVE>=2",
+      "SHARED-002 each working Commerce specialist +2 base Merchant GPP at ACTIVE>=2, affected by normal GPP modifiers",
+      "Shared eligibility, Potential and ACTIVE except explicit restructuring transaction exception"
+    ],
+    "SUPERSEDED": [
+      "COM-003 +5Food/+5Production upgrade: user explicitly cancelled; support3/3 at all levels",
+      "COM-003 connected-kind specialist +2Science/+2Culture/+2Production: replaced by new Lv3 packages",
+      "COM-004–009 old IV Convergence,20% source-city S/C/P copy, actual-total fallback, finalfloor and incoming-only Convergence qualification; do not add these to commercialization",
+      "Old IV-exclusive free self-reception was already superseded by D0009; no revival",
+      "Any old Commerce-specific payload conflicting with new contracts; no new generic Commerce payload invented"
+    ],
+    "NOT_ADOPTED": [
+      "bidirectional50/100 commercial premium",
+      "deep cooperation",
+      "specific Great Merchant sacrifice or free Team award",
+      "Development Investment extra Network/Potential/yield rewards",
+      "restructuring hard usage cap or dynamic population/building/yield fee",
+      "Credit Points / Company Points",
+      "external red-team gameplay changes not explicitly accepted"
+    ],
+    "boundary": "Retained common Trade Center infrastructure is not a retained old Commerce ability or20% payload. New commercialization/development route predicates are ability-specific."
+  },
+  "legacy_review_required": [
+    "Commercialization historical state, if any",
+    "Capital contracts after source respecialization",
+    "Commercial Reputation after Identity loss/return",
+    "Development contracts after source Commerce Identity loss",
+    "Existing restructuring Teams after training source leaves Commerce",
+    "Former Institution detailed UI",
+    "Conquest/ownership and original owner disappearance; no automatic reuse of Culture or Research ownership rules"
+  ],
+  "architecture_requirements": {
+    "identity": "Separate Current Identity, Historical State and REALLOCATING; latter excluded first-completion and Legacy Claim.",
+    "history": "Per-city/per-specialization historical maximum/former institution state; only presentation and explicit Legacy, never current ACTIVE.",
+    "contracts": [
+      "unique contract ID",
+      "source",
+      "target if applicable",
+      "domain/mode",
+      "principal",
+      "start/maturity",
+      "locked outcome",
+      "quote/state version",
+      "effect lifecycle",
+      "save/load",
+      "duplicate-action protection"
+    ],
+    "persistent_state": [
+      "Commercial reputation age/stage",
+      "hidden venture protection",
+      "commercialization enabled domains and activation order"
+    ],
+    "routes": "Retain endpoint directions; separate direct undirected candidate qualification from directed outgoing investment channel. Shared network bool alone insufficient.",
+    "restructuring_transaction": [
+      "unique transaction ID",
+      "Commerce training source",
+      "Team reference",
+      "target city",
+      "original Identity/Potential",
+      "reallocatable Potential",
+      "liquidation completed",
+      "disruption start",
+      "minimum completion",
+      "target new specialization",
+      "configuration completed"
+    ],
+    "authority": "Unit is not sole asset store. Persist transaction record across load/unit deletion/city changes. Concrete fields/migration implementation deferred.",
+    "performance": "Direct event ownership, changed-state publication, bounded caches/reconciliation; no gameplay requests on hover or periodic city-wide audits."
+  },
+  "freeze_review": {
+    "blocking_decisions": [],
+    "deferred": "Explicit user-deferred mapping, formulas, reputation targets, stacking, speed, lost-Team recovery and Legacy are not silently fixed by DESIGN_FROZEN. Required before implementing corresponding path.",
+    "technical": "No static precedent is implementation or game PASS."
+  },
+  "previous_authority": "D0031 Spec Commerce; preceding Commerce_Freeze_Candidate.json retained as historical noncanonical review."
+}

@@ -1,0 +1,502 @@
+{
+  "schema_version": 1,
+  "design_revision": "D0037",
+  "specialization": "HARBOR",
+  "document_state": "ACCEPTED",
+  "freeze_status": "ACCEPTED_CURRENT_BASELINE_WITH_PROVISIONAL_NAMES_AND_OPEN_DETAILS",
+  "implementation_status": "NOT_IMPLEMENTED",
+  "implementation_scope": "FUTURE_ONLY / OUT_OF_V0.1",
+  "authority": "2026-10-02 user Harbor Design Talk Handoff, expressly accepted as new Harbor baseline. Supersedes old HARB naval/export contracts; Military D0034 mechanisms mirrored with D0037 names and explicit Harbor overrides. No numerical or technical gap is filled by Codex.",
+  "shared_contract_ref": "Shared_D0035.json",
+  "military_contract_ref": "Military_D0037.json",
+  "philosophy": {
+    "identity": "100% Maritime Commerce + 100% Naval Military, simultaneous full growth; not a choice or two half-strength branches.",
+    "theme": "利用海洋连接组织船舶、货物、市场与舰队。",
+    "commerce": "国内价值进入海外市场，开拓不同市场，并引入各文明当前最具代表性的产品。",
+    "naval": "正式人员、综合训练、远洋保障、经验传授与本地海军传统。"
+  },
+  "ability_structure": {
+    "levels_1_2": "Shared common institutions",
+    "levels_3_4": "Two simultaneous sibling institutions at each level: COMMERCIAL and NAVAL. Not mutually exclusive.",
+    "separate_network_ability": false,
+    "naval_mobilization": "NOT_ADOPTED; no Commander City or national naval command mirror."
+  },
+  "institutions": [
+    {
+      "institution_id": "HARB_INST_1_COMMON",
+      "level": 1,
+      "branch": "COMMON",
+      "name": {
+        "zh_CN": "码头同业公会"
+      },
+      "name_status": "PLACEHOLDER",
+      "potential_requirement": 1,
+      "ability_ids": [],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "HARB_INST_2_COMMON",
+      "level": 2,
+      "branch": "COMMON",
+      "name": {
+        "zh_CN": "船政局"
+      },
+      "name_status": "STRONG_FREEZE_CANDIDATE",
+      "potential_requirement": 2,
+      "ability_ids": [
+        "HARB_L2_CREW"
+      ],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "HARB_INST_3_COMMERCIAL",
+      "level": 3,
+      "branch": "COMMERCIAL",
+      "name": {
+        "zh_CN": "远洋海贸局"
+      },
+      "name_status": "PLACEHOLDER",
+      "potential_requirement": 3,
+      "ability_ids": [
+        "HARB_L3_PORT_LINK",
+        "HARB_L3_MARKETS"
+      ],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "HARB_INST_3_NAVAL",
+      "level": 3,
+      "branch": "NAVAL",
+      "name": {
+        "zh_CN": "远洋防务局"
+      },
+      "name_status": "PLACEHOLDER",
+      "potential_requirement": 3,
+      "ability_ids": [
+        "HARB_L3_TRAINING",
+        "HARB_L3_LOGISTICS"
+      ],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "HARB_INST_4_COMMERCIAL",
+      "level": 4,
+      "branch": "COMMERCIAL",
+      "name": {
+        "zh_CN": "跨洋通商枢纽"
+      },
+      "name_status": "PLACEHOLDER",
+      "potential_requirement": 4,
+      "ability_ids": [
+        "HARB_L4_EXPORT",
+        "HARB_L4_IMPORT",
+        "HARB_L4_OPERATING"
+      ],
+      "presentation_only": true
+    },
+    {
+      "institution_id": "HARB_INST_4_NAVAL",
+      "level": 4,
+      "branch": "NAVAL",
+      "name": {
+        "zh_CN": "战略海军枢纽"
+      },
+      "name_status": "PLACEHOLDER",
+      "potential_requirement": 4,
+      "ability_ids": [
+        "HARB_L4_MENTORSHIP",
+        "HARB_L4_INSIGHT",
+        "HARB_L4_TRADITION"
+      ],
+      "presentation_only": true
+    }
+  ],
+  "abilities": [
+    {
+      "ability_id": "HARB_L2_CREW",
+      "institution_id": "HARB_INST_2_COMMON",
+      "name": {
+        "zh_CN": "船员编制"
+      },
+      "name_status": "READY_TO_FREEZE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 2,
+      "contract_ref": "contracts.crew"
+    },
+    {
+      "ability_id": "HARB_L3_PORT_LINK",
+      "institution_id": "HARB_INST_3_COMMERCIAL",
+      "name": {
+        "zh_CN": "港际联运"
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 3,
+      "contract_ref": "contracts.port_link"
+    },
+    {
+      "ability_id": "HARB_L3_MARKETS",
+      "institution_id": "HARB_INST_3_COMMERCIAL",
+      "name": {
+        "zh_CN": "通商万邦"
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 3,
+      "contract_ref": "contracts.markets"
+    },
+    {
+      "ability_id": "HARB_L3_TRAINING",
+      "institution_id": "HARB_INST_3_NAVAL",
+      "name": {
+        "zh_CN": "综合训练"
+      },
+      "name_status": "READY_TO_FREEZE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 3,
+      "contract_ref": "contracts.training"
+    },
+    {
+      "ability_id": "HARB_L3_LOGISTICS",
+      "institution_id": "HARB_INST_3_NAVAL",
+      "name": {
+        "zh_CN": "远洋勤务"
+      },
+      "name_status": "READY_TO_FREEZE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 3,
+      "contract_ref": "contracts.logistics"
+    },
+    {
+      "ability_id": "HARB_L4_EXPORT",
+      "institution_id": "HARB_INST_4_COMMERCIAL",
+      "name": {
+        "zh_CN": "集货出洋"
+      },
+      "name_status": "TENTATIVE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 4,
+      "contract_ref": "contracts.export"
+    },
+    {
+      "ability_id": "HARB_L4_IMPORT",
+      "institution_id": "HARB_INST_4_COMMERCIAL",
+      "name": {
+        "zh_CN": "舶来采长"
+      },
+      "name_status": "TENTATIVE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 4,
+      "contract_ref": "contracts.import"
+    },
+    {
+      "ability_id": "HARB_L4_OPERATING",
+      "institution_id": "HARB_INST_4_COMMERCIAL",
+      "name": {
+        "zh_CN": "久航成业"
+      },
+      "name_status": "TENTATIVE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 4,
+      "contract_ref": "contracts.operating"
+    },
+    {
+      "ability_id": "HARB_L4_MENTORSHIP",
+      "institution_id": "HARB_INST_4_NAVAL",
+      "name": {
+        "zh_CN": "舰阵传授"
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 4,
+      "contract_ref": "contracts.mentorship"
+    },
+    {
+      "ability_id": "HARB_L4_INSIGHT",
+      "institution_id": "HARB_INST_4_NAVAL",
+      "name": {
+        "zh_CN": "怒海真知"
+      },
+      "name_status": "READY_TO_FREEZE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 4,
+      "contract_ref": "contracts.insight"
+    },
+    {
+      "ability_id": "HARB_L4_TRADITION",
+      "institution_id": "HARB_INST_4_NAVAL",
+      "name": {
+        "zh_CN": "海略传承"
+      },
+      "name_status": "STRONG_CANDIDATE",
+      "mechanism_status": "ACCEPTED_WITH_EXPLICIT_OPEN_DETAILS",
+      "active_requirement": 4,
+      "contract_ref": "contracts.tradition"
+    }
+  ],
+  "base_effects": {
+    "level_1": "Existing basic Harbor professional support; no independent named ability forced. This handoff does not specify a new support formula.",
+    "scope": "Actual working Harbor specialists where expressly required; empty slots are not working people.",
+    "legacy_boundary": "Old unspecified Great Merchant GPP / marine-improvement-yield wording does not supply a configured bonus or numerical default; see open_details.",
+    "presentation": "Shared Current Identity/Potential institutional presence and ACTIVE ability gating; sibling rows are simultaneous institutions, not a choice."
+  },
+  "contracts": {
+    "crew": {
+      "mirror": "Military contracts / MIL_L2_INSTITUTION, Military name 行伍编制",
+      "housing": "Qualified Harbor district and ordinary buildings provide Housing; Tier-existence mirror, not weighted D. Harbor numerical amounts remain Balance TBD.",
+      "gpp": "Actual working Harbor specialists provide base Great Admiral Points, not old +15% normal combat XP. Amount follows later mirror balance; no invented Merchant GPP."
+    },
+    "port_link": {
+      "beneficiary": "Own Harbor specialization city ACTIVE>=3",
+      "providers": "Other own cities with qualified Harbor in the same maritime connectivity network; provider specialization not required.",
+      "local": "Retain normal Harbor resource Base adjacency for own-city marine resources; inherited HARB-003 all-city coverage is not silently narrowed to adjacent tiles. Ownership/improvement qualification remains open.",
+      "remote": "Raw marine resource facts owned by qualifying providers; first balance test prefers +1 per eligible remote resource, not a frozen value.",
+      "non_recursion": "Never read adjacency/yields generated by this Harbor network as new resource input.",
+      "story": "Ordinary feeder ports and specialized hub ports bring dispersed marine products into a common port economy."
+    },
+    "markets": {
+      "beneficiary": "This Harbor ACTIVE>=3; qualified international maritime routes originating here",
+      "N": "Number of distinct foreign civilizations maintaining at least one effective qualifying international maritime relation with this port; repeated routes to same civilization count once.",
+      "formula": "Multiplier = 1 + K * N",
+      "curve": "LINEAR; no preset diminishing returns",
+      "tradeoff": "Using a weaker route to open a new market is allowed; only excessive numerical dominance calls for K balancing.",
+      "qualification_boundary": "Outgoing direction is fixed for rewarded routes. Direction of the relation counted in N and exact foreign-civilization classes require explicit qualification, not an inferred common-network formula."
+    },
+    "export": {
+      "active": 4,
+      "automatic_hinterland": "Own city with qualified Harbor and sea reachability to this Lv4 Harbor.",
+      "domestic_hinterland": "Other own city unable to auto-connect must have an effective domestic Trade Route connecting it to this Lv4 Harbor; direction not specified.",
+      "input": "Base Adjacency of eligible districts in connected cities. Eligible domains/yield mapping and exact aggregation remain open.",
+      "excluded": [
+        "City total yields",
+        "Actual Yield",
+        "Percentage modifiers",
+        "Own export output",
+        "Harbor network-generated derived yields",
+        "Other recursive derived values"
+      ],
+      "dependency": "Base Adjacency → Export Value → International Maritime Trade Route",
+      "formula": "ExportValue = f(sum BaseAdjacency)",
+      "prototype_only": "K_E * sum BaseAdjacency is a candidate, not a frozen curve; low-rate linear, piecewise diminishing and sublinear may be compared.",
+      "application": "Add Export Value to each qualified international maritime route from this port, then combine with Lv3 market diversity multiplier. Yield allocation remains TBD.",
+      "design_intent": "Destination Value describes the foreign city; Export Value describes goods the port needs to sell. Export may exceed native Destination Value; large export-led or dumping-like expansion is allowed, not automatically a design defect.",
+      "replaced": "Old higher-rate own-city Actual/local branch is superseded; no implicit self Actual Yield exception."
+    },
+    "import": {
+      "active": 4,
+      "scope": "At most one special import supply per connected foreign civilization per port; multiple routes to that civilization do not multiply supplies. Not fixed Luxury.",
+      "candidate_metrics": [
+        "Science",
+        "Culture",
+        "Gold",
+        "Faith",
+        "Diplomatic Favor",
+        "Military Strength"
+      ],
+      "production": "Not included: no clean comparable civilization-level total Production interface assumed. This is not a proven engine impossibility.",
+      "relation_0_to_1": "Read partner metrics and current other major-civilization comparison context; classify its most outstanding relative domain and lock this supply type.",
+      "relation_positive": "Supply type stays locked while at least one qualifying international maritime relation remains.",
+      "relation_1_to_0": "Remove the supply. A future 0→1 classifies anew using the new world situation.",
+      "anti_reroll": "NOT_ADOPTED: no era lock or extra protection. Design rationale assumes no ordinary zero-cost freely cancelable running route; natural expiry/nonrenewal, war, pillage, trader loss/capacity changes bear actual costs.",
+      "classifier": "UNFROZEN; candidate Score_y = AI_y / Median_y. Median is relatively robust to outliers and preserves lead magnitude beyond rank; metric comparability and zero/tie/world-pool rules require investigation.",
+      "effects": "Each supply type effect remains Balance TBD.",
+      "story": "万国所长，由海而来：商品、器物、技术产品、文化产品、宗教用品、军需等，而不是不同颜色的同一种奢侈品。"
+    },
+    "operating": {
+      "active_for_growth": 4,
+      "eligible_turn": "This port ACTIVE IV and at least one effective maritime Trade Route running for the city that turn; domestic and international both qualify.",
+      "increment_per_eligible_turn": 1,
+      "route_count": "1 or 8 routes still yield exactly +1 time; large empires cannot buy history instantly with many Traders.",
+      "rejected": "Completed-route count: favors short trips and penalizes genuinely distant routes.",
+      "milestones": "Increasing discrete accumulated operating-time thresholds; each reached milestone permanently awards +1 Trade Route Capacity.",
+      "curve": "UNFROZEN; prototype candidate T_n = C*n*(n+1)/2, C=6 gives 6/18/36/60/90/126. Neither curve nor C is frozen; later milestones may be too slow.",
+      "pause": "Loss of ACTIVE IV pauses operating progress, never resets it.",
+      "earned_capacity": "Permanent once earned; Governor movement or temporary ACTIVE IV loss does not revoke it.",
+      "intent": "Settler/Potential investment sacrifices horizontal expansion while maritime markets/hinterland/import/export consume route capacity. Long-running ports grow their own shipping industry, personnel, families, credit, agencies, insurance, storage and fleet institutions. Moving a Governor to develop a new port is allowed institutional diffusion.",
+      "boundary": "Route direction for the running-route predicate and ownership/respecialization/destruction Legacy are not silently resolved."
+    },
+    "naval_mirror": {
+      "source": "Military_D0037.json contracts, unchanged Military D0034 mechanics",
+      "included": [
+        "unit_eligibility adapted from land to qualified naval combat units",
+        "unit_training_snapshot",
+        "comprehensive_training with Harbor numerical balance explicitly TBD",
+        "logistics with naval support mapping TBD",
+        "mentorship",
+        "insight",
+        "military_tradition with Great Admiral and local Naval Tradition"
+      ],
+      "excluded": [
+        "unified_mobilization",
+        "Commander City",
+        "Old II +15% normal Combat XP",
+        "Old III Insight",
+        "Old garrison training",
+        "Old dynamically linked source-city specialists"
+      ],
+      "unit_eligibility": "Naval combat scope; production and Gold/Faith acquisition mirror current Military. Free/levied/duplicated/captured only with reliably confirmed training-city origin; otherwise excluded. Exact naval type coverage/attribution remains investigation; no civilian naval expansion.",
+      "unit_snapshot": "At eligible grant, freeze current ACTIVE entitlement, actual working Harbor specialists E_birth and applicable local Tradition enhancement. Later city ACTIVE/specialist/Tradition changes do not retroactively revalue the unit. P and nearby mentors remain current combat facts; merged units retain maximum same-ability effect, never sum/average; distinct abilities remain separate. Upgrade/formation implementation and unit ownership Legacy are unconfirmed.",
+      "efficiency_exception": "City training efficiency is a local effect, not a permanent unit-held birth buff."
+    },
+    "training": {
+      "active": 3,
+      "mirror": "Military comprehensive_training",
+      "domains": [
+        "DISTRICT_CAMPUS",
+        "DISTRICT_THEATER",
+        "DISTRICT_INDUSTRIAL_ZONE",
+        "DISTRICT_COMMERCIAL_HUB",
+        "DISTRICT_HOLY_SITE"
+      ],
+      "breadth": "Eligible completed/unpillaged ordinary T1 presence provides new naval unit quality. Bare district / D>0 / higher-tier-only cannot substitute for T1. Harbor conversion amounts explicitly remain TBD in this handoff; no automatic final +1/+5 parameter transplant.",
+      "depth": "Same domains use Absolute Infrastructure Depth D to improve local training efficiency; T1-only no efficiency, T2-stage begins; no 100% completion or D10 gate. Current Military unresolved precise onset/aggregation/curve/cap/speed/purchase applicability retained.",
+      "qualification": "Shared ordinary ontology, replacements/free buildings and highest-single-district D per domain; no Harbor/other-domain addition.",
+      "interaction": "Existing eligible infrastructure can qualify; city breadth versus depth remains a meaningful investment choice."
+    },
+    "logistics": {
+      "active": 3,
+      "mirror": "Military logistics / 战地勤务",
+      "effect": "Formal naval support/supply; certain ongoing strategic resource maintenance may be replaced with Gold maintenance; upfront production/purchase/upgrade resource costs unchanged.",
+      "direction": "Mirror the physical paid support and visible 1:1 escort direction, not an adopted abstract fallback. Exact naval support ship/coverage/unlocks/linkage require investigation; uranium and costs retain unresolved status.",
+      "not_inferred": "No extra tile occupancy, new resupply mechanics or support-ship design supplied by this handoff."
+    },
+    "mentorship": {
+      "active_at_grant": 4,
+      "mirror": "Military mentorship",
+      "fighter": "Own eligible naval combat unit with entitlement; not restricted to zero promotions.",
+      "mentor": "Adjacent one-hex own eligible naval combat unit of same PromotionClass with more actual promotions; choose maximum P, not sum; flagship not required.",
+      "formula": "max(0, floor((P_mentor - P_fighter)/2))",
+      "xp": "Independent bonus at qualifying real combat, no normal Combat XP multiplier, no E cap or extra artificial cap. Local Tradition enhancements snapshot at grant; values unresolved.",
+      "technical_boundary": "Combat timing/exceptional combat/upgrade/formation remain investigated separately."
+    },
+    "insight": {
+      "active_at_grant": 4,
+      "mirror": "Military insight",
+      "formula": "min(E_birth, floor(P_current/2))",
+      "E": "Actual working Harbor specialist count fixed in unit training snapshot at eligible acquisition, not empty slots or later source-city count.",
+      "P": "Current actual promotions, including lawful formation inheritance, not XP level.",
+      "xp": "Independent extra combat XP; no override of native ordinary XP cap and no inherited universal cap8/E<=4. Not immediate XP payout at birth; naval balance remains pending."
+    },
+    "tradition": {
+      "active": 4,
+      "mirror": "Military military_tradition",
+      "action": "Great Admiral may be consumed in this Harbor city to institutionalize local Naval Tradition, foregoing its native one-time retirement effect; no simultaneous native retirement reward.",
+      "ownership": "Local city historical asset, not national or automatic Network payload.",
+      "application": "Future eligible naval units inherit snapshotted birth-CS / Mentorship / Insight enhancements; no retroactive aura.",
+      "tiers": "Mirror finite discrete tiers, each strengthens one of these three; approximately six is Military design direction, not locked Harbor count; thresholds/order/increments remain TBD.",
+      "era": "No new different-era Admiral requirement imposed by the mirror.",
+      "legacy": "Respecialization/owner change boundaries remain separate; no universal permanent-asset inheritance rule."
+    }
+  },
+  "parameters": {
+    "crew_housing": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "Military-mirror direction, no fixed Harbor amount"
+    },
+    "crew_admiral_gpp": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "Base GPP per working specialist, amount unset"
+    },
+    "remote_resource_contribution": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "+1 preferred for first balance test"
+    },
+    "market_K": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "Linear coefficient"
+    },
+    "export_function": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "K_E * sum BaseAdjacency is only a simplest prototype"
+    },
+    "export_yield_mapping": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "Unspecified yields/distribution"
+    },
+    "import_type_effects": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "Unspecified per-domain supplies"
+    },
+    "operating_milestones": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "T_n=C*n*(n+1)/2; C6 sequence6/18/36/60/90/126 is illustrative, not default"
+    },
+    "naval_quality": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "Military mechanism mirror; Harbor values TBD"
+    },
+    "naval_efficiency": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "Same unresolved structure as current Military"
+    },
+    "naval_logistics_costs": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "Gold/resource mapping/unlocks and costs TBD"
+    },
+    "naval_tradition": {
+      "value": null,
+      "status": "BALANCE_REQUIRED",
+      "candidate": "Finite-tier count/order/thresholds/increments TBD"
+    }
+  },
+  "open_details": {
+    "design_qualification": [
+      "Qualified Harbor and precise marine-resource ownership/improvement predicates",
+      "Direction and civilization classes for foreign relation counts; direction of domestic hinterland connection and maritime operating-time eligibility",
+      "Eligible export districts, port self-contribution, heterogeneous/negative Base Adjacency aggregation and yield distribution",
+      "Old HARB-002 unspecified Great Merchant points/marine-improvement yield language has no new assigned level/formula; do not invent or declare a separate confirmed ability from it",
+      "Supply classifier tie/zero/missing values and precise comparison population; preserve locked type lifecycle without inventing classification"
+    ],
+    "technical_investigation": [
+      "Reliable maritime Trade Route classification",
+      "Actual sea-connected topology/cache and Canal treatment",
+      "Read interfaces for six civilization-wide metrics; Median/alternative algorithm",
+      "0→1 / 1→0 maritime relation lifecycle",
+      "Permanent Trade Route Capacity interface",
+      "Naval support/logistics implementation and current Military unit snapshot/merge/combat interfaces"
+    ],
+    "name_maturity": "READY_TO_FREEZE means user label 可冻结, not an automatic LOCKED name; STRONG_CANDIDATE/TENTATIVE/PLACEHOLDER remain separate from accepted mechanism. 船政局 remains STRONG_FREEZE_CANDIDATE."
+  },
+  "legacy_review_required": [
+    "Operating progress and earned capacity on identity replacement, owner transfer, city destruction; ACTIVE/Governor pause and retention alone are confirmed",
+    "Local Naval Tradition on identity/owner changes; awarded unit buffs follow explicit snapshot contract",
+    "Unit ownership/capture beyond confirmed acquisition attribution; support ships after source changes",
+    "Institution historical presentation follows Shared/per-specialization Legacy, not carrier ownership"
+  ],
+  "supersession": {
+    "retained": [
+      "HARB-001 full dual identity",
+      "HARB-003 local city marine resource normal Base adjacency, not reduced to adjacent-only",
+      "Baseline support without fabricated coefficients"
+    ],
+    "superseded": [
+      "HARB-004 export own-city higher Actual/local branch replaced by Base-only input",
+      "HARB-005 old Military mirror and Naval Mobilization direction replaced by current mirror without mobilization",
+      "HARB-006 II +15% normal XP replaced by crew Housing/Admiral GPP",
+      "HARB-007 III dynamically read E Insight replaced by IV E_birth mirror",
+      "HARB-008 garrison training retired",
+      "HARB-009 old unrestricted-class mentorship replaced by current same-PromotionClass snapshot mirror"
+    ],
+    "not_adopted": [
+      "Extra independent Harbor Network ability",
+      "Naval Commander City/unified mobilization",
+      "Operating progress per completed trade route",
+      "Automatic diminishing returns for market diversity",
+      "Import era lock/anti-reroll",
+      "Retraction of earned route capacity on Governor move/temporary ACTIVE IV loss"
+    ],
+    "numbering_note": "Handoff calls old Export HARB-003; actual D0036 Spec places Export in HARB-004. Supersession follows content, not the mistaken number."
+  },
+  "implementation_gate": "Future Design record only. No Harbor/Military runtime, AI, multiplayer, v0.1 scope expansion, prototype or deployment authorized. Open details must be resolved only before dependent future work."
+}

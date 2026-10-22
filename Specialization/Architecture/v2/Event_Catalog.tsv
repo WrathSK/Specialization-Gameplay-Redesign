@@ -1,0 +1,299 @@
+Event	Module	SourceLine	Class	Direct fact changed?	Indirect notification?	Work performed	Scan scope	Write possible?
+GameEvents.SPC_P0_Request	Gameplay.lua	348	DIRECT	yes	no	Action dispatcher; classify read/control/sample separately in Bridge map	action dependent	yes for mutation/sample Audit; reads mostly no
+Events.TradeRouteActivityChanged	Gameplay.lua	367	DIAGNOSTIC	no	no	retain recent32 raw lines	event only	no
+Events.TradeRouteActivityChanged	TradeRouteProbe.lua	124	DIRECT	yes	no	mark pending+RouteSignalRevision; no immediate route fact write	scalar	memory dirty only
+Events.TradeRouteRemovedFromMap	TradeRouteProbe.lua	124	DIRECT	yes	no	mark pending+RouteSignalRevision; no immediate route fact write	scalar	memory dirty only
+Events.UnitRemovedFromMap	TradeRouteProbe.lua	124	INDIRECT	no	yes	unit negative filter; unknown may request revalidation	scalar	memory dirty only
+Events.UnitOperationDeactivated	TradeRouteProbe.lua	125	INDIRECT	no	yes	unit negative filter; unknown may request revalidation	scalar	memory dirty only
+Events.UnitOperationStarted	TradeRouteProbe.lua	125	INDIRECT	no	yes	unit negative filter; unknown may request revalidation	scalar	memory dirty only
+Events.UnitOperationsCleared	TradeRouteProbe.lua	125	INDIRECT	no	yes	unit negative filter; unknown may request revalidation	scalar	memory dirty only
+Events.CityRemovedFromMap	TradeRouteProbe.lua	125	INDIRECT	no	yes	unfiltered pending + RouteSignalRevision; no endpoint facts inferred	scalar	memory dirty only
+Events.CityAddedToMap	TradeRouteProbe.lua	125	INDIRECT	no	yes	unfiltered pending + RouteSignalRevision; no endpoint facts inferred	scalar	memory dirty only
+Events.DiplomacyDeclareWar	TradeRouteProbe.lua	125	INDIRECT	no	yes	unfiltered pending + RouteSignalRevision; no endpoint facts inferred	scalar	memory dirty only
+GameEvents.CityConquered	TradeRouteProbe.lua	133	INDIRECT	no	yes	pending+RouteSignalRevision, endpoints never inferred	scalar	memory dirty only
+GameEvents.TradeRoutePlundered	TradeRouteProbe.lua	133	INDIRECT	no	yes	pending+RouteSignalRevision, endpoints never inferred	scalar	memory dirty only
+Events.LoadScreenClose	TradeRouteProbe.lua	136	DIAGNOSTIC	no	no	refresh current trader operation candidates	enabled players/units	no permanent writes
+Events.PlayerTurnActivated	TradeRouteProbe.lua	137	DIAGNOSTIC	no	no	refresh current trader operation candidates	enabled players/units	no permanent writes
+Events.PlayerTurnDeactivated	TradeRouteProbe.lua	140	DIAGNOSTIC	no	no	refresh current trader operation candidates	enabled players/units	no permanent writes
+GameEvents.CityBuilt	CompletionProbe.lua	89	DIAGNOSTIC	no	no	bounded64 observed completion log	event object	memory/log
+GameEvents.OnDistrictConstructed	CompletionProbe.lua	90	DIAGNOSTIC	no	no	bounded64 observed completion log	event object	memory/log
+Events.DistrictAddedToMap	CompletionProbe.lua	92	DIAGNOSTIC	no	no	observe object / set phase	event object	memory/log
+Events.LoadScreenClose	CompletionProbe.lua	93	DIAGNOSTIC	no	no	observe object / set phase	event object	memory/log
+GameEvents.CityBuilt	BindingProbe.lua	68	DIRECT	yes	no	allocate binding then Fresh hook chain	event city; bootstrap player cities	Game+City properties
+Events.LoadScreenClose	BindingProbe.lua	68	RECONCILIATION	no	yes	read binding audit; no allocation	enabled player cities	no
+GameEvents.OnDistrictConstructed	CityJournalProbe.lua	86	DIRECT	yes	no	first complete journal; preserve lock	event city/family DB	City property
+Events.LoadScreenClose	CityJournalProbe.lua	86	RECONCILIATION	no	yes	read audit/phase/halt	enabled cities	no normal path
+GameEvents.OnDistrictConstructed	CompletionRecordProbe.lua	51	DIAGNOSTIC	no	no	first observed record alongside true journal	event city	City diagnostic property
+Events.LoadScreenClose	CompletionRecordProbe.lua	51	DIAGNOSTIC	no	no	phase only	scalar	no
+GameEvents.OnDistrictConstructed	CityFlowProbe.lua	132	DIRECT	yes	no	validate prior journal listener result then three-stage commit	event city	City property
+Events.LoadScreenClose	CityFlowProbe.lua	163	RECONCILIATION	no	yes	resume DONE matching records; no missing-history adoption	enabled cities; unassigned city player districts	no normal writes
+Events.LoadScreenClose	EligibilityProbe.lua	46	DIAGNOSTIC	no	no	roster/permission/fixture read checks	roster or synthetic Game data	no load writes
+Events.LoadScreenClose	QualificationProbe.lua	199	DIAGNOSTIC	no	no	roster/permission/fixture read checks	roster or synthetic Game data	no load writes
+Events.LoadScreenClose	EnvelopeProbe.lua	83	DIAGNOSTIC	no	no	roster/permission/fixture read checks	roster or synthetic Game data	no load writes
+Events.UnitRemovedFromMap	InvestmentAction.lua	130	DIRECT	yes	no	cancel matching in-memory preview	single pid/unit	memory only
+Events.LoadScreenClose	InvestmentAction.lua	134	RECONCILIATION	no	yes	finish only confirmed debit pending	enabled cities	City receipt possible
+Events.UnitRemovedFromMap	UnitActions.lua	163	DIRECT	yes	no	cancel matching plan	single pid/unit	memory only
+Events.LoadScreenClose	ResearchSupport.lua	116	RECONCILIATION	no	yes	identity completion / world carrier audit	world cities; enabled city player districts	Building writes if diff; errors may remove
+Events.PlayerTurnActivated	ResearchSupport.lua	118	RECONCILIATION	no	yes	identity completion / world carrier audit	world cities; enabled city player districts	Building writes if diff; errors may remove
+Events.CityTransfered	ResearchSupport.lua	118	DIRECT	yes	no	identity completion / world carrier audit	world cities; enabled city player districts	Building writes if diff; errors may remove
+GameEvents.OnDistrictConstructed	ResearchSupport.lua	122	DIRECT	yes	no	identity completion / world carrier audit	world cities; enabled city player districts	Building writes if diff; errors may remove
+GameEvents.CityBuilt	ResearchSupport.lua	124	DIRECT	yes	no	identity completion / world carrier audit	world cities; enabled city player districts	Building writes if diff; errors may remove
+Events.LoadScreenClose	IndustrySupport.lua	87	RECONCILIATION	no	yes	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.PlayerTurnActivated	IndustrySupport.lua	88	RECONCILIATION	no	yes	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.PlayerTurnDeactivated	IndustrySupport.lua	88	RECONCILIATION	no	yes	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.CityTransfered	IndustrySupport.lua	88	DIRECT	yes	no	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.DistrictAddedToMap	IndustrySupport.lua	88	DIRECT	yes	no	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.DistrictRemovedFromMap	IndustrySupport.lua	88	DIRECT	yes	no	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.DistrictBuildProgressChanged	IndustrySupport.lua	88	INDIRECT	no	yes	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.ImprovementAddedToMap	IndustrySupport.lua	88	DIRECT	yes	no	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.ImprovementRemovedFromMap	IndustrySupport.lua	88	DIRECT	yes	no	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.FeatureRemovedFromMap	IndustrySupport.lua	88	DIRECT	yes	no	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.CityWorkerChanged	IndustrySupport.lua	88	INDIRECT	no	yes	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.OnDistrictConstructed	IndustrySupport.lua	89	DIRECT	yes	no	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.OnBuildingConstructed	IndustrySupport.lua	89	INDIRECT	no	yes	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.CityBuilt	IndustrySupport.lua	89	DIRECT	yes	no	BASE/facts projection; then Lv3Support and CrewAccess	world cities + repeated districts	Building writes if diff; errors may remove
+Events.LoadScreenClose	Lv2Housing.lua	98	RECONCILIATION	no	yes	facts/building tiers to housing projection	world cities + repeated districts/tiers	Building writes if diff; errors may remove
+Events.GovernorAssigned	Lv2Housing.lua	99	DIRECT	yes	no	facts/building tiers to housing projection	world cities + repeated districts/tiers	Building writes if diff; errors may remove
+Events.GovernorEstablished	Lv2Housing.lua	99	DIRECT	yes	no	facts/building tiers to housing projection	world cities + repeated districts/tiers	Building writes if diff; errors may remove
+Events.GovernorChanged	Lv2Housing.lua	99	DIRECT	yes	no	facts/building tiers to housing projection	world cities + repeated districts/tiers	Building writes if diff; errors may remove
+Events.PlayerTurnActivated	Lv2Housing.lua	99	RECONCILIATION	no	yes	facts/building tiers to housing projection	world cities + repeated districts/tiers	Building writes if diff; errors may remove
+Events.CityTransfered	Lv2Housing.lua	99	DIRECT	yes	no	facts/building tiers to housing projection	world cities + repeated districts/tiers	Building writes if diff; errors may remove
+Events.CityBuildingsChanged	Lv2Housing.lua	99	DIRECT	yes	no	facts/building tiers to housing projection	world cities + repeated districts/tiers	Building writes if diff; errors may remove
+GameEvents.BuildingConstructed	Lv2Housing.lua	100	DIRECT	yes	no	facts/building tiers to housing projection	world cities + repeated districts/tiers	Building writes if diff; errors may remove
+GameEvents.OnDistrictConstructed	Lv2Housing.lua	100	DIRECT	yes	no	facts/building tiers to housing projection	world cities + repeated districts/tiers	Building writes if diff; errors may remove
+GameEvents.CityBuilt	Lv2Housing.lua	100	DIRECT	yes	no	facts/building tiers to housing projection	world cities + repeated districts/tiers	Building writes if diff; errors may remove
+Events.LoadScreenClose	Lv2GPP.lua	113	RECONCILIATION	no	yes	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.CityWorkerChanged	Lv2GPP.lua	114	DIRECT	yes	no	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.CityFocusChanged	Lv2GPP.lua	114	INDIRECT	no	yes	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorAssigned	Lv2GPP.lua	114	DIRECT	yes	no	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorEstablished	Lv2GPP.lua	114	DIRECT	yes	no	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorChanged	Lv2GPP.lua	114	DIRECT	yes	no	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.PlayerTurnActivated	Lv2GPP.lua	114	RECONCILIATION	no	yes	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.PlayerTurnDeactivated	Lv2GPP.lua	114	RECONCILIATION	no	yes	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.CityTransfered	Lv2GPP.lua	114	DIRECT	yes	no	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.OnDistrictConstructed	Lv2GPP.lua	115	DIRECT	yes	no	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.BuildingConstructed	Lv2GPP.lua	115	INDIRECT	no	yes	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.CityBuilt	Lv2GPP.lua	115	DIRECT	yes	no	facts/workers to base-GPP projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.LoadScreenClose	Lv3Support.lua	76	RECONCILIATION	no	yes	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.PlayerTurnActivated	Lv3Support.lua	77	RECONCILIATION	no	yes	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.PlayerTurnDeactivated	Lv3Support.lua	77	RECONCILIATION	no	yes	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorAssigned	Lv3Support.lua	77	DIRECT	yes	no	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorEstablished	Lv3Support.lua	77	DIRECT	yes	no	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorChanged	Lv3Support.lua	77	DIRECT	yes	no	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorPromoted	Lv3Support.lua	77	DIRECT	yes	no	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.CityTransfered	Lv3Support.lua	77	DIRECT	yes	no	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.OnDistrictConstructed	Lv3Support.lua	78	DIRECT	yes	no	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.OnBuildingConstructed	Lv3Support.lua	78	INDIRECT	no	yes	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.CityBuilt	Lv3Support.lua	78	DIRECT	yes	no	facts/BASE to top-up projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.LoadScreenClose	Lv3Effects.lua	114	RECONCILIATION	no	yes	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.PlayerTurnActivated	Lv3Effects.lua	115	RECONCILIATION	no	yes	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.PlayerTurnDeactivated	Lv3Effects.lua	115	RECONCILIATION	no	yes	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.GovernorAssigned	Lv3Effects.lua	115	DIRECT	yes	no	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.GovernorEstablished	Lv3Effects.lua	115	DIRECT	yes	no	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.GovernorChanged	Lv3Effects.lua	115	DIRECT	yes	no	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.GovernorPromoted	Lv3Effects.lua	115	DIRECT	yes	no	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.CityTransfered	Lv3Effects.lua	115	DIRECT	yes	no	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.CityWorkerChanged	Lv3Effects.lua	115	DIRECT	yes	no	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.CityFocusChanged	Lv3Effects.lua	115	INDIRECT	no	yes	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.CityPopulationChanged	Lv3Effects.lua	115	DIRECT	yes	no	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+GameEvents.OnDistrictConstructed	Lv3Effects.lua	116	DIRECT	yes	no	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+GameEvents.OnBuildingConstructed	Lv3Effects.lua	116	INDIRECT	no	yes	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+GameEvents.CityBuilt	Lv3Effects.lua	116	DIRECT	yes	no	workers/network to projection; always Lv4Percent and CopyAudit	world cities + repeated districts/network	Building writes if diff; errors may remove
+Events.LoadScreenClose	Lv4Percent.lua	72	RECONCILIATION	no	yes	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.PlayerTurnActivated	Lv4Percent.lua	73	RECONCILIATION	no	yes	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.PlayerTurnDeactivated	Lv4Percent.lua	73	RECONCILIATION	no	yes	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorAssigned	Lv4Percent.lua	73	DIRECT	yes	no	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorEstablished	Lv4Percent.lua	73	DIRECT	yes	no	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorChanged	Lv4Percent.lua	73	DIRECT	yes	no	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.GovernorPromoted	Lv4Percent.lua	73	DIRECT	yes	no	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.CityTransfered	Lv4Percent.lua	73	DIRECT	yes	no	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.CityWorkerChanged	Lv4Percent.lua	73	DIRECT	yes	no	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.CityFocusChanged	Lv4Percent.lua	73	INDIRECT	no	yes	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.CityPopulationChanged	Lv4Percent.lua	73	DIRECT	yes	no	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.DistrictRemovedFromMap	Lv4Percent.lua	73	DIRECT	yes	no	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.OnDistrictConstructed	Lv4Percent.lua	74	DIRECT	yes	no	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.OnBuildingConstructed	Lv4Percent.lua	74	INDIRECT	no	yes	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+GameEvents.CityBuilt	Lv4Percent.lua	74	DIRECT	yes	no	facts/workers to percentage projection	world cities + repeated districts	Building writes if diff; errors may remove
+Events.LoadScreenClose	CrewProjects.lua	45	RECONCILIATION	no	yes	identity industrial anchor to access projection	world cities; enabled districts	Building writes if diff; errors may remove
+Events.PlayerTurnActivated	CrewProjects.lua	46	RECONCILIATION	no	yes	identity industrial anchor to access projection	world cities; enabled districts	Building writes if diff; errors may remove
+Events.CityTransfered	CrewProjects.lua	46	DIRECT	yes	no	identity industrial anchor to access projection	world cities; enabled districts	Building writes if diff; errors may remove
+Events.DistrictBuildProgressChanged	CrewProjects.lua	46	INDIRECT	no	yes	identity industrial anchor to access projection	world cities; enabled districts	Building writes if diff; errors may remove
+Events.DistrictRemovedFromMap	CrewProjects.lua	46	DIRECT	yes	no	identity industrial anchor to access projection	world cities; enabled districts	Building writes if diff; errors may remove
+Events.CityProductionCompleted	CrewProjects.lua	46	INDIRECT	no	yes	identity industrial anchor to access projection	world cities; enabled districts	Building writes if diff; errors may remove
+GameEvents.OnDistrictConstructed	CrewProjects.lua	47	DIRECT	yes	no	identity industrial anchor to access projection	world cities; enabled districts	Building writes if diff; errors may remove
+GameEvents.OnBuildingConstructed	CrewProjects.lua	47	INDIRECT	no	yes	identity industrial anchor to access projection	world cities; enabled districts	Building writes if diff; errors may remove
+GameEvents.CityBuilt	CrewProjects.lua	47	DIRECT	yes	no	identity industrial anchor to access projection	world cities; enabled districts	Building writes if diff; errors may remove
+Events.LoadScreenClose	CommerceConvergence.lua	103	RECONCILIATION	no	yes	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+Events.PlayerTurnActivated	CommerceConvergence.lua	103	RECONCILIATION	no	yes	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+Events.PlayerTurnDeactivated	CommerceConvergence.lua	103	RECONCILIATION	no	yes	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+Events.GovernorAssigned	CommerceConvergence.lua	103	DIRECT	yes	no	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+Events.GovernorEstablished	CommerceConvergence.lua	103	DIRECT	yes	no	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+Events.GovernorChanged	CommerceConvergence.lua	103	DIRECT	yes	no	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+Events.GovernorPromoted	CommerceConvergence.lua	103	DIRECT	yes	no	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+Events.CityWorkerChanged	CommerceConvergence.lua	103	DIRECT	yes	no	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+Events.CityPopulationChanged	CommerceConvergence.lua	103	DIRECT	yes	no	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+Events.CityFocusChanged	CommerceConvergence.lua	103	INDIRECT	no	yes	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+Events.CityTransfered	CommerceConvergence.lua	103	DIRECT	yes	no	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+GameEvents.CityBuilt	CommerceConvergence.lua	104	DIRECT	yes	no	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+GameEvents.OnBuildingConstructed	CommerceConvergence.lua	104	DIRECT	yes	no	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+GameEvents.OnDistrictConstructed	CommerceConvergence.lua	104	DIRECT	yes	no	plan all cities then apply absolute bits	world cities; each eligible city routes/facts/source yield	Building writes if diff; errors may remove
+GameEvents.OnDistrictConstructed	NetworkBridge.lua	247	DIRECT	yes	no	Rebuild derive then notify ALL consumers even unchanged	each active player city network	downstream Building possible
+GameEvents.CityBuilt	NetworkBridge.lua	247	DIRECT	yes	no	Rebuild derive then notify ALL consumers even unchanged	each active player city network	downstream Building possible
+Events.TradeRouteActivityChanged	NetworkBridge.lua	255	INDIRECT	no	yes	CheckEvidence(false): only concrete native invalidity clears whole snapshot	stored routes/endpoints	notify downstream if cleared
+Events.TradeRouteRemovedFromMap	NetworkBridge.lua	255	INDIRECT	no	yes	CheckEvidence(false): only concrete native invalidity clears whole snapshot	stored routes/endpoints	notify downstream if cleared
+Events.UnitRemovedFromMap	NetworkBridge.lua	255	INDIRECT	no	yes	CheckEvidence(false): only concrete native invalidity clears whole snapshot	stored routes/endpoints	notify downstream if cleared
+Events.CityRemovedFromMap	NetworkBridge.lua	255	INDIRECT	no	yes	CheckEvidence(false): only concrete native invalidity clears whole snapshot	stored routes/endpoints	notify downstream if cleared
+Events.CityTransfered	NetworkBridge.lua	255	INDIRECT	no	yes	CheckEvidence(false): only concrete native invalidity clears whole snapshot	stored routes/endpoints	notify downstream if cleared
+Events.DiplomacyDeclareWar	NetworkBridge.lua	255	INDIRECT	no	yes	CheckEvidence(false): only concrete native invalidity clears whole snapshot	stored routes/endpoints	notify downstream if cleared
+Events.PlayerTurnActivated	NetworkBridge.lua	258	RECONCILIATION	no	yes	Rebuild every stored player network; notify	all stored players/cities	downstream Building possible
+Events.LoadScreenClose	NetworkBridge.lua	259	RECONCILIATION	no	yes	ready=true only	scalar	no
+Events.LoadScreenClose	CopyYields.lua	154	RECONCILIATION	no	yes	reset samples/generation; cleanup dormant; audit	world cleanup then enabled cities	Building possible
+Events.PlayerTurnActivated	CopyYields.lua	156	RECONCILIATION	no	yes	audit	enabled cities + repeated districts/network	Building possible
+Events.CityPopulationChanged	CopyYields.lua	156	DIRECT	yes	no	audit targets/correction bits	enabled cities + repeated districts/network	Building possible
+Events.GovernorAssigned	CopyYields.lua	156	DIRECT	yes	no	audit targets/correction bits	enabled cities + repeated districts/network	Building possible
+Events.GovernorEstablished	CopyYields.lua	156	DIRECT	yes	no	audit targets/correction bits	enabled cities + repeated districts/network	Building possible
+Events.GovernorChanged	CopyYields.lua	156	DIRECT	yes	no	audit targets/correction bits	enabled cities + repeated districts/network	Building possible
+Events.GovernorPromoted	CopyYields.lua	156	DIRECT	yes	no	audit targets/correction bits	enabled cities + repeated districts/network	Building possible
+Events.DistrictRemovedFromMap	CopyYields.lua	156	DIRECT	yes	no	audit targets/correction bits	enabled cities + repeated districts/network	Building possible
+Events.CityTransfered	CopyYields.lua	155	DIRECT	yes	no	two registrations: cleanup dormant and Audit	world cleanup / enabled cities	Building possible
+Events.LoadScreenClose	Standardization.lua	155	RECONCILIATION	no	yes	Discover missing ledgers; Flush pending	enabled cities; backfill only first initialization	City properties if new knowledge
+Events.PlayerTurnActivated	Standardization.lua	156	RECONCILIATION	no	yes	Discover missing ledgers; Flush pending	enabled cities; backfill only first initialization	City properties if new knowledge
+GameEvents.OnDistrictConstructed	Standardization.lua	157	DIRECT	yes	no	Discover(pid); Flush	pid cities; first Industry backfill	City properties
+GameEvents.BuildingConstructed	Standardization.lua	158	DIRECT	yes	no	Queue building id then Flush	event city/catalog; dedup	City properties if new
+GameEvents.OnBuildingConstructed	Standardization.lua	158	DIRECT	yes	no	Queue building id then Flush	event city/catalog; dedup	City properties if new
+Events.BuildingAddedToMap	Standardization.lua	162	DIRECT	yes	no	Queue same id across owner cities then Flush	owner cities; one building recheck each	City properties if new
+Events.GameCoreEventPublishComplete	Standardization.lua	170	INDIRECT	no	yes	drain pending only	pending city/building IDs	City properties if new
+Events.LoadScreenClose	StandardizationDiscount.lua	119	RECONCILIATION	no	yes	reset generation/cache; other owner cleanup then Audit	world cleanup; enabled cities x source queries	Building possible
+Events.CityTransfered	StandardizationDiscount.lua	120	DIRECT	yes	no	clear applied; cleanup; Audit	world cleanup; enabled cities	Building possible
+Events.GameCoreEventPublishComplete	StandardizationDiscount.lua	121	INDIRECT	no	yes	Audit unconditionally (except ready/busy)	enabled cities x derive/catalog	Building possible
+Events.PlayerTurnActivated	StandardizationDiscount.lua	121	RECONCILIATION	no	yes	Audit (turn-invalid sample removes until resampled)	enabled cities x derive/catalog	Building possible
+Events.GovernorAssigned	StandardizationDiscount.lua	121	DIRECT	yes	no	Audit	enabled cities x derive/catalog	Building possible
+Events.GovernorEstablished	StandardizationDiscount.lua	121	DIRECT	yes	no	Audit	enabled cities x derive/catalog	Building possible
+Events.GovernorChanged	StandardizationDiscount.lua	121	DIRECT	yes	no	Audit	enabled cities x derive/catalog	Building possible
+Events.GovernorPromoted	StandardizationDiscount.lua	121	DIRECT	yes	no	Audit	enabled cities x derive/catalog	Building possible
+Events.GovernorAssigned	NetworkBoost.lua	124	DIRECT	yes	no	Audit national strength	enabled/tracked players x derive	Building possible
+Events.GovernorEstablished	NetworkBoost.lua	124	DIRECT	yes	no	Audit national strength	enabled/tracked players x derive	Building possible
+Events.GovernorChanged	NetworkBoost.lua	124	DIRECT	yes	no	Audit national strength	enabled/tracked players x derive	Building possible
+Events.GovernorPromoted	NetworkBoost.lua	124	DIRECT	yes	no	Audit national strength	enabled/tracked players x derive	Building possible
+Events.PlayerTurnActivated	NetworkBoost.lua	124	RECONCILIATION	no	yes	Audit	enabled/tracked players x derive	Building possible
+Events.PlayerTurnDeactivated	NetworkBoost.lua	124	RECONCILIATION	no	yes	Audit	enabled/tracked players x derive	Building possible
+Events.CityTransfered	NetworkBoost.lua	125	DIRECT	yes	no	Clean world carriers; Audit	world cleanup then players	Building possible
+Events.GovernorAssigned	Dialogue.lua	107	DIRECT	yes	no	auditAll, including GWA audit	enabled cities	Building possible
+Events.GovernorEstablished	Dialogue.lua	107	DIRECT	yes	no	auditAll, including GWA audit	enabled cities	Building possible
+Events.GovernorChanged	Dialogue.lua	107	DIRECT	yes	no	auditAll, including GWA audit	enabled cities	Building possible
+Events.GovernorPromoted	Dialogue.lua	107	DIRECT	yes	no	auditAll, including GWA audit	enabled cities	Building possible
+Events.PlayerTurnActivated	Dialogue.lua	107	RECONCILIATION	no	yes	auditAll same-turn collection required	enabled cities	Building possible
+Events.PlayerTurnDeactivated	Dialogue.lua	107	RECONCILIATION	no	yes	auditAll same-turn collection required	enabled cities	Building possible
+Events.CityTransfered	Dialogue.lua	110	DIRECT	yes	no	clear samples/last; Init global clean; auditAll	world cleanup then enabled cities	Building possible
+Events.LoadScreenClose	HalfYieldProbe.lua	74	DIAGNOSTIC	no	no	Audit persisted test-enabled cities	world city flags; enabled experiment carriers	Building possible if saved experiment ON
+Events.PlayerTurnActivated	HalfYieldProbe.lua	75	DIAGNOSTIC	no	no	Audit persisted test-enabled cities	world city flags; enabled experiment carriers	Building possible if saved experiment ON
+Events.CityPopulationChanged	HalfYieldProbe.lua	75	DIAGNOSTIC	no	no	Audit persisted experiments	world city flags	Building possible
+Events.CityTransfered	HalfYieldProbe.lua	75	DIAGNOSTIC	no	no	Audit persisted experiments	world city flags	Building possible
+Events.LoadScreenClose	PurchaseProbe.lua	27	DIAGNOSTIC	no	no	clear test fixture/discount	world cities	Building removals if present
+Events.CityTransfered	GreatWorkProbe.lua	37	DIAGNOSTIC	no	no	if ready Clean	world cities	test Building removals
+Events.LoadScreenClose	UI/BackgroundRoutes.lua	167	RECONCILIATION	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.TradeRouteActivityChanged	UI/BackgroundRoutes.lua	167	DIRECT	yes	no	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.TradeRouteAddedToMap	UI/BackgroundRoutes.lua	167	DIRECT	yes	no	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.TradeRouteRemovedFromMap	UI/BackgroundRoutes.lua	167	DIRECT	yes	no	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.UnitOperationStarted	UI/BackgroundRoutes.lua	168	INDIRECT	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.UnitOperationsCleared	UI/BackgroundRoutes.lua	168	INDIRECT	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.UnitOperationDeactivated	UI/BackgroundRoutes.lua	168	INDIRECT	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.UnitRemovedFromMap	UI/BackgroundRoutes.lua	168	INDIRECT	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.CityAddedToMap	UI/BackgroundRoutes.lua	169	INDIRECT	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.CityRemovedFromMap	UI/BackgroundRoutes.lua	169	INDIRECT	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.CityTransfered	UI/BackgroundRoutes.lua	169	INDIRECT	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.DiplomacyDeclareWar	UI/BackgroundRoutes.lua	169	INDIRECT	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.PlayerTurnActivated	UI/BackgroundRoutes.lua	169	RECONCILIATION	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.PlayerTurnDeactivated	UI/BackgroundRoutes.lua	169	RECONCILIATION	no	yes	mark revalidation; unit filter; local-turn/load immediately flush	dirty only then local cities/routes	request, no direct permanent write
+Events.GameCoreEventPublishComplete	UI/BackgroundRoutes.lua	180	INDIRECT	no	yes	flush only dirty/retry or waiting ACK	zero fullscan when idle	request possible
+Events.GameCoreEventPlaybackComplete	UI/BackgroundRoutes.lua	180	INDIRECT	no	yes	flush only dirty/retry or waiting ACK	zero fullscan when idle	request possible
+Events.SystemUpdateUI	UI/BackgroundRoutes.lua	180	INDIRECT	no	yes	flush only dirty/retry or waiting ACK	zero fullscan when idle	request possible
+Events.GameCoreEventPublishComplete	UI/CopyYieldRefresh.lua	57	INDIRECT	no	yes	refresh scans BEFORE sent equality	local districts or discount candidates	request may cause consumer writes
+Events.GameCoreEventPlaybackComplete	UI/CopyYieldRefresh.lua	57	INDIRECT	no	yes	refresh scans BEFORE sent equality	local districts or discount candidates	request may cause consumer writes
+Events.LoadScreenClose	UI/CopyYieldRefresh.lua	58	RECONCILIATION	no	yes	refresh/init reset as applicable	local districts/candidates	request possible
+Events.PlayerTurnActivated	UI/CopyYieldRefresh.lua	57	RECONCILIATION	no	yes	refresh/init reset as applicable	local districts/candidates	request possible
+Events.SystemUpdateUI	UI/CopyYieldRefresh.lua	59	RECONCILIATION	no	yes	initialization/generation retry only	local districts/candidates if not initialized	request possible
+Events.GameCoreEventPublishComplete	UI/IndustryRefresh.lua	46	INDIRECT	no	yes	refresh scans BEFORE sent equality	local districts or discount candidates	request may cause consumer writes
+Events.GameCoreEventPlaybackComplete	UI/IndustryRefresh.lua	46	INDIRECT	no	yes	refresh scans BEFORE sent equality	local districts or discount candidates	request may cause consumer writes
+Events.LoadScreenClose	UI/IndustryRefresh.lua	46	RECONCILIATION	no	yes	refresh/init reset as applicable	local districts/candidates	request possible
+Events.PlayerTurnActivated	UI/IndustryRefresh.lua	46	RECONCILIATION	no	yes	refresh/init reset as applicable	local districts/candidates	request possible
+Events.SystemUpdateUI	UI/IndustryRefresh.lua	48	RECONCILIATION	no	yes	initialization/generation retry only	local districts/candidates if not initialized	request possible
+Events.GameCoreEventPublishComplete	UI/DiscountEligibility.lua	53	INDIRECT	no	yes	refresh scans BEFORE sent equality	local districts or discount candidates	request may cause consumer writes
+Events.GameCoreEventPlaybackComplete	UI/DiscountEligibility.lua	53	INDIRECT	no	yes	refresh scans BEFORE sent equality	local districts or discount candidates	request may cause consumer writes
+Events.LoadScreenClose	UI/DiscountEligibility.lua	54	RECONCILIATION	no	yes	refresh/init reset as applicable	local districts/candidates	request possible
+Events.PlayerTurnActivated	UI/DiscountEligibility.lua	53	RECONCILIATION	no	yes	refresh/init reset as applicable	local districts/candidates	request possible
+Events.SystemUpdateUI	UI/DiscountEligibility.lua	55	RECONCILIATION	no	yes	initialization/generation retry only	local districts/candidates if not initialized	request possible
+Events.CityWorkerChanged	UI/GPPRefresh.lua	29	DIRECT	yes	no	dirty=true	scalar	no direct write
+Events.GovernorAssigned	UI/GPPRefresh.lua	29	DIRECT	yes	no	dirty=true	scalar	no direct write
+Events.GovernorEstablished	UI/GPPRefresh.lua	29	DIRECT	yes	no	dirty=true	scalar	no direct write
+Events.GovernorChanged	UI/GPPRefresh.lua	29	DIRECT	yes	no	dirty=true	scalar	no direct write
+Events.GovernorPromoted	UI/GPPRefresh.lua	29	DIRECT	yes	no	dirty=true	scalar	no direct write
+Events.CityFocusChanged	UI/GPPRefresh.lua	29	INDIRECT	no	yes	dirty=true; actual worker change not proven by event alone	scalar	no direct write
+Events.LoadScreenClose	UI/GPPRefresh.lua	30	RECONCILIATION	no	yes	mark then flush dirty request	scalar; receiver multi-Audit	request
+Events.PlayerTurnActivated	UI/GPPRefresh.lua	30	RECONCILIATION	no	yes	mark then flush dirty request	scalar; receiver multi-Audit	request
+Events.PlayerTurnDeactivated	UI/GPPRefresh.lua	30	RECONCILIATION	no	yes	mark then flush dirty request	scalar; receiver multi-Audit	request
+Events.GameCoreEventPublishComplete	UI/GPPRefresh.lua	31	INDIRECT	no	yes	flush if dirty only	scalar; receiver multi-Audit	request
+Events.GameCoreEventPlaybackComplete	UI/GPPRefresh.lua	31	INDIRECT	no	yes	flush if dirty only	scalar; receiver multi-Audit	request
+Events.SystemUpdateUI	UI/GPPRefresh.lua	31	INDIRECT	no	yes	flush if dirty only	scalar; receiver multi-Audit	request
+Events.GreatWorkCreated	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.GreatWorkMoved	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.CityAddedToMap	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.CityRemovedFromMap	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.CityTransfered	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.GovernorAssigned	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.GovernorEstablished	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.GovernorChanged	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.GovernorPromoted	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.DistrictAddedToMap	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.DistrictRemovedFromMap	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.ImprovementAddedToMap	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.ImprovementRemovedFromMap	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.FeatureRemovedFromMap	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.FeatureAddedToMap	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.CityTileOwnershipChanged	UI/DialogueRefresh.lua	84	DIRECT	yes	no	mark dirty collection/eligibility/BASE vector	scalar then later full local collection	request later
+Events.DistrictBuildProgressChanged	UI/DialogueRefresh.lua	84	INDIRECT	no	yes	mark (completion/adjacency may change)	scalar	request later
+Events.PlayerTurnActivated	UI/DialogueRefresh.lua	84	RECONCILIATION	no	yes	mark; load flush	local cities/buildings/slots/districts	request
+Events.LoadScreenClose	UI/DialogueRefresh.lua	87	RECONCILIATION	no	yes	mark; load flush	local cities/buildings/slots/districts	request
+Events.SystemUpdateUI	UI/DialogueRefresh.lua	88	INDIRECT	no	yes	drain ACK/retry then dirty only collection	idle no scan; dirty full local	request possible
+Events.GameCoreEventPublishComplete	UI/DialogueRefresh.lua	88	INDIRECT	no	yes	drain ACK/retry then dirty only collection	idle no scan; dirty full local	request possible
+Events.GameCoreEventPlaybackComplete	UI/DialogueRefresh.lua	88	INDIRECT	no	yes	drain ACK/retry then dirty only collection	idle no scan; dirty full local	request possible
+Events.SystemUpdateUI	UI/BoostRefresh.lua	15	RECONCILIATION	no	yes	only until both ready; request initialization	scalar UI; receiver world cleanup	request possible
+Events.LoadScreenClose	UI/BoostRefresh.lua	15	RECONCILIATION	no	yes	only until both ready; request initialization	scalar UI; receiver world cleanup	request possible
+Events.GameCoreEventPlaybackComplete	UI/BoostRefresh.lua	15	RECONCILIATION	no	yes	only until both ready; request initialization	scalar UI; receiver world cleanup	request possible
+Events.UnitSelectionChanged	UI/UnitTargetMarkers.lua	90	DIRECT	yes	no	clear selection/lens; next update requery	selected unit / native lens	UI only plus later read request
+Events.InterfaceModeChanged	UI/UnitTargetMarkers.lua	90	DIRECT	yes	no	clear selection/lens; next update requery	selected unit / native lens	UI only plus later read request
+Events.LoadScreenClose	UI/UnitTargetMarkers.lua	90	RECONCILIATION	no	yes	clear selection/lens	UI	no permanent
+LuaEvents.SPC_ToggleBuilderTargets	UI/UnitTargetMarkers.lua	89	DIAGNOSTIC	no	no	toggle builder preview then clear	UI	no permanent
+Events.LoadScreenClose	UI/UnitSites.lua	98	DIAGNOSTIC	no	no	showRoot but hidden HUD entry	UI	no
+Events.LoadScreenClose	UI/P0Panel.lua	230	DIAGNOSTIC	no	no	showRoot	UI	no
+Events.SystemUpdateUI	UI/P0Panel.lua	459	DIAGNOSTIC	no	no	two listeners gwaPulse bounded manual retry + placeEntry	UI/one pending read	read request possible
+ContextPtr.SetInitHandler	UI/BackgroundRoutes.lua	184	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/BackgroundRoutes.lua	185	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/CopyYieldRefresh.lua	55	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/CopyYieldRefresh.lua	69	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/IndustryRefresh.lua	44	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/IndustryRefresh.lua	51	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/GPPRefresh.lua	27	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/GPPRefresh.lua	34	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/DiscountEligibility.lua	52	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/DiscountEligibility.lua	61	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/DialogueRefresh.lua	82	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/DialogueRefresh.lua	91	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/BoostRefresh.lua	14	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/BoostRefresh.lua	20	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/CityPotential.lua	53	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/CityPotential.lua	54	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/UnitTargetMarkers.lua	94	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/UnitTargetMarkers.lua	95	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/UnitPanelActions.lua	117	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/UnitPanelActions.lua	123	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/P0Panel.lua	457	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/P0Panel.lua	461	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetInitHandler	UI/UnitSites.lua	97	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetShutdown	UI/UnitSites.lua	99	RECONCILIATION	no	yes	register/initialize; shutdown clear updates/listeners according to source	context lifetime	some init samples/requests
+ContextPtr.SetUpdate	UI/CopyYieldRefresh.lua	64	RECONCILIATION	no	yes	SetUpdate 1s refresh if callback runs; full scan regardless dirty	local districts x6	no direct business write; receiver dependent
+ContextPtr.SetUpdate	UI/CityPotential.lua	53	RECONCILIATION	no	yes	SetUpdate 0.5s UI tick, 2s selected-city read, 5s timeout	selected city EffectiveFacts	no direct business write; receiver dependent
+ContextPtr.SetUpdate	UI/UnitTargetMarkers.lua	88	RECONCILIATION	no	yes	SetUpdate 0.25s tick; changed selection or >5s requery, 10s timeout	request scans player cities/districts	no direct business write; receiver dependent
+ContextPtr.SetUpdate	UI/UnitPanelActions.lua	121	RECONCILIATION	no	yes	SetUpdate 0.2s tick; VIEW cadence0.5s, 2s view timeout,10s action timeout	selected action read may enumerate targets	no direct business write; receiver dependent
+ContextPtr.SetUpdate	UI/UnitSites.lua	81	DIAGNOSTIC	no	no	SetUpdate 0.2s selection/ACK only; hidden tool	selected unit / manual pending	no direct business write; receiver dependent
+ContextPtr.SetUpdate	UI/P0Panel.lua	106	DIAGNOSTIC	no	no	SetUpdate only while waiting manual response,10s timeout; clear on ACK	single manual request	no direct business write; receiver dependent

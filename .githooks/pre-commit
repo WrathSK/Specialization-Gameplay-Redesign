@@ -1,0 +1,14 @@
+#!/bin/sh
+# Git shares hook configuration across worktrees. Do nothing outside develop.
+branch=$(git symbolic-ref --quiet --short HEAD) || exit 0
+[ "$branch" = "develop" ] || exit 0
+root=$(git rev-parse --show-toplevel) || exit 2
+if ! command -v python3 >/dev/null 2>&1; then
+    printf '%s\n' 'PUBLICATION_CHECK NOT_RUN: python3 is missing' >&2
+    exit 2
+fi
+if [ ! -f "$root/tools/check_publication.py" ] || [ -L "$root/tools/check_publication.py" ]; then
+    printf '%s\n' 'PUBLICATION_CHECK NOT_RUN: checker is missing or is a symlink' >&2
+    exit 2
+fi
+PYTHONDONTWRITEBYTECODE=1 exec python3 "$root/tools/check_publication.py"

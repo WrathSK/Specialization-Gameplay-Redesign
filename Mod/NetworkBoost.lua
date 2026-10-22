@@ -1,3 +1,4 @@
+include('RuntimeWork')
 -- One current native player boost per kind, carried by the capital. Never grants progress.
 include('BoostConfig')
 include('BoostIntegerConfig')
@@ -11,9 +12,11 @@ local testRows={}
 for _,kind in ipairs({'RESEARCH','CULTURE'}) do for _,amount in ipairs({2,4}) do
  testRows[#testRows+1]='BUILDING_SPC_B057_'..kind..'_'..amount
 end end
-function SPCNetworkBoost.Start(P,shared)
+function SPCNetworkBoost.Start(P,shared,options)
  local d={ready=false,busy=false,applied={},plans={},errors={},changes=0,testRaw={}};shared.NetworkBoost=d
- local kinds={'RESEARCH','CULTURE'}
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
+ d.retired=options and options.retired==true or false
+ local kinds=d.retired and {} or {'RESEARCH'} -- B234: v0.1 Research effect isolated; shared topology remains.
  local function row(id) return assert(P.Info('Buildings',id),'B055_DATABASE_MISSING') end
  local function set(c,id,want)
   local r=row(id);local b=c:GetBuildings();local present=P.HasBuilding(b,r.Index)
@@ -33,6 +36,8 @@ function SPCNetworkBoost.Start(P,shared)
   d.applied={}
  end
  function d.Plan(pid)
+  if d.retired then return {}end
+  if isolated(pid) then return {} end
   local result={}
   if d.testRaw[pid]~=nil then
    local raw=d.testRaw[pid];local applied=SPCNetworkBoost.Quantize(raw)
@@ -43,7 +48,7 @@ function SPCNetworkBoost.Start(P,shared)
    end
    return result
   end
-  local network=shared.NetworkBridge.National(pid)
+  local network=(shared.NetworkBridge.CurrentNational or shared.NetworkBridge.National)(pid)
   for _,kind in ipairs(kinds) do
    local source=network[kind];local n=source.n;local level=source.level
    assert(n<=SPCBoostConfig.maxRecipients,'B055_RECIPIENT_LIMIT')
@@ -58,10 +63,14 @@ function SPCNetworkBoost.Start(P,shared)
   end
   return result
  end
- function d.Audit() P.Count('audit_boost');
+ function d.Audit(scope)
+  if d.retired then return end
+  if isolated() then return end
+  P.Count('audit_boost');
+  if P.Observe then P.Observe('audit','NetworkBoost') end
   if not d.ready or d.busy then P.Count('busy_skip');return end;d.busy=true
   for pid,player in pairs(Players) do
-   if P.IsTestPlayer(pid) or d.applied[pid] then
+   if SPCRuntimeWork.Player(scope,pid) and (P.IsTestPlayer(pid) or d.applied[pid]) then
     local ok,plan=pcall(function() if P.IsTestPlayer(pid) then return d.Plan(pid) end return {} end)
     d.errors[pid]=not ok and tostring(plan) or nil
     if not ok then plan={} end
@@ -88,15 +97,22 @@ function SPCNetworkBoost.Start(P,shared)
   d.busy=false
  end
  function d.EnsureReady(pid)
+  if isolated(pid) then return end
   if not P.IsTestPlayer(pid) or d.busy then P.Count('busy_skip');return end
   if not d.ready then
    d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
    if not ok then d.errors[pid]=tostring(err);return end
    d.ready=true
+   if d.retired and SPCExpeditionTrainingDiagnostics then
+    local trace=SPCExpeditionTrainingDiagnostics.New(P,'RESEARCH_NETWORK_EXIT')
+    trace.Record('NETWORK_EFFECT_RETIRED',{owner=pid,networkKind='RESEARCH',readStatus='VERIFIED',count=d.changes,reason='DEFERRED_V01'})
+   end
   end
   d.Audit()
  end
  function d.Test(pid,raw)
+  assert(not d.retired,'RESEARCH_NETWORK_DEFERRED_V01')
+  assert(not isolated(pid),'NETWORK_ISOLATION_ACTIVE')
   assert(P.IsTestPlayer(pid),'B057_TEST_PLAYER_REQUIRED')
   if raw~=nil then
    local applied=SPCNetworkBoost.Quantize(raw)
@@ -107,8 +123,37 @@ function SPCNetworkBoost.Start(P,shared)
   d.testRaw[pid]=raw;d.Audit()
   return d.Describe(pid)
  end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function d.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not d.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  d.busy=true
+  local ok,why=pcall(function()
+   local ids={};for _,r in pairs(SPCBoostConfig.rows) do ids[#ids+1]=r.building end;for _,id in pairs(SPCBoostIntegerConfig.rows) do ids[#ids+1]=id end;for _,id in ipairs(testRows) do ids[#ids+1]=id end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
+   end
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);d.changes=d.changes+1 end
+    end
+   end
+   d.applied[pid]=nil;d.plans[pid]=nil;d.testRaw[pid]=nil;d.errors[pid]=nil
+  end)
+  d.busy=false;d.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
+ end
  function d.Describe(pid)
-  local out={d.testRaw[pid]~=nil and 'B057 整数接口实验：替换本Mod网络Boost（两种类型）' or 'B058 自动网络：全部浮点计算后一次四舍五入'}
+  if d.retired then return '科研网络鼓舞已按用户决定在 v0.1 隔离，重做留待后续。\n公共网络和科研本城能力保留。\n旧载体清理：'..(d.ready and '已确认' or '待完成') end
+  local out={d.testRaw[pid]~=nil and 'B057 整数接口实验：仅替换科研网络鼓舞' or 'B058 自动网络：全部浮点计算后一次四舍五入'}
   for _,kind in ipairs(kinds) do
    local p=d.plans[pid] and d.plans[pid][kind];local a=d.applied[pid] and d.applied[pid][kind]
    out[#out+1]=(kind=='RESEARCH' and '科研→鼓舞' or '文化→尤里卡')..(p and string.format(' | ACTIVE=%d N=%d | 预期+%.6f百分点',p.level,p.n,p.amount) or ' | 待后台刷新')
@@ -117,13 +162,32 @@ function SPCNetworkBoost.Start(P,shared)
   end
   if d.testRaw[pid]~=nil then out[#out+1]=string.format('FinalRaw=%.6f → floor(raw+0.5)=%d；重载退出实验',d.testRaw[pid],SPCNetworkBoost.Quantize(d.testRaw[pid])) end
   out[#out+1]='状态='..tostring(d.errors[pid] or (d.ready and 'READY' or 'PENDING'))
-  out[#out+1]='配置≠实测；读取基线后同回合触发一次未触发的尤里卡/鼓舞，再读取。'
+  out[#out+1]='文化旧尤里卡已退出；此处仅显示科研鼓舞。配置不等于原生实测。'
   return table.concat(out,'\n')
  end
  local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
- for _,n in ipairs({'GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','PlayerTurnActivated','PlayerTurnDeactivated'}) do hook(Events,n,d.Audit) end
- hook(Events,'CityTransfered',function() if d.ready and not d.busy then
+ if d.retired then
+  -- Exact removal once per Gameplay context; failures retry only on a real turn.
+  local attempted=false
+  local function initialize()
+   if d.ready or d.busy then return end
+   local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid)then return end
+   attempted=true;d.EnsureReady(pid)
+  end
+  hook(Events,'LoadScreenClose',initialize)
+  hook(Events,'GameCoreEventPublishComplete',function()if not attempted then initialize()end end)
+  hook(Events,'PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then initialize()end end)
+ else
+  SPCRuntimeWork.Hook(P,Events,'PlayerTurnActivated',d.Audit)
+ end
+ hook(Events,'CityTransfered',function() if isolated() then return end;if d.ready and not d.busy then
   d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
   if not ok then print('[SPC][B055][CLEAN] '..tostring(err));d.ready=false;return end;d.Audit()
  end end)
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('NetworkBoost',function(c,loss)
+   local ids={};for _,r in pairs(SPCBoostConfig.rows)do ids[#ids+1]=r.building end;for _,id in pairs(SPCBoostIntegerConfig.rows)do if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,id in ipairs(testRows)do if P.Info('Buildings',id)then ids[#ids+1]=id end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

@@ -3,8 +3,484 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0025
+Latest Accepted Design Revision: D0057
 Document State: ACCEPTED
+
+## Accepted D0057 — 2026-10-18
+
+用户在B246实施中明确选择：**取合格候选中的最低理论购买价，界面明确列出报价依据。** 同一区域多个当前合格下一阶建筑不再假设同价；合同仍只绑定目标城市＋区域，完成下一座合格建筑即结束，不绑定报价建筑。
+
+[Commerce D0057](Content/Commerce_D0057.json)、[商业阅读版](Commerce.md)及当前Spec同步。其它资格、15%费用、+50%加速、名额、完成／易主与暂缓边界保持。B246实现／部署／实机证据分别记录；本条不宣称原生报价或加成已验收。D0056结构化正文及本次冻结的[D0056 Spec](Revisions/Specialization_Design_Spec_D0056.md)保留原字节。
+
+Accepted Spec SHA256: `f5a1f82d9bf7207e50672e3ea3ea108ddbd6527116d99259c81235109239dd1d`
+Commerce D0057 SHA256: `3729ed2a0c81eb5b20982a056f81f06d4e36e980d1358acc35ada4bf6967df19`
+Frozen D0056 Spec SHA256: `7b0b1fe6bc8e19d8983201ef0799011636313261489cf1bbeb2c211f18e2c366`
+
+## Accepted D0056 — 2026-10-18
+
+用户明确确认：资本投资S仍使用最高当前有效ACTIVE；多个最高S同级时，优先选择最早建立对应永久机构等级的城市，不按ACTIVE首次达到／总督就任排序；再按稳定City ID／stable key。其它规则全部保留，包括锁定具体S来源、普通资格下降继续、关键合同城市易主异常终止。此澄清不取消来源绑定，不改变收益公式、期限、保护或其它专业。用户另明确授权B241实施；Design接受与本地／实机证据分别记录。
+
+[Commerce D0056](Content/Commerce_D0056.json)、[商业阅读版](Commerce.md)与当前Spec已同步。D0055结构化原件及本次冻结的[D0055 Spec](Revisions/Specialization_Design_Spec_D0055.md)保持原字节。
+
+Accepted Spec SHA256: `7b0b1fe6bc8e19d8983201ef0799011636313261489cf1bbeb2c211f18e2c366`
+Commerce D0056 SHA256: `8c56fdc71927359443e4a8cf5b423f7d1fec049046380010bf0f544fce39b6da`
+Frozen D0055 Spec SHA256: `8548e2c69595a3e49058979968d35c506b2754e2f409ca7fd7fe14299ee4bbaf`
+
+## Accepted D0055 — 2026-10-18
+
+用户确认并授权正式同步附件“Commerce Design Handoff — Commercialization Source Eligibility & Harbor Yield”的两项决定：
+
+1. 商业化来源为本城及任意方向有效直接国内商路连接、持有对应专业身份的其它己方城市。本城免身份要求但仍需本地区域；外部不要求最低ACTIVE、总督、Potential或对应区域，间接网络不算。取对应城市总产出最高者，不求和、不扣来源。
+2. 港口商业化输入由Gold改为Food：城市总粮食、非余粮，输出仍为金币。本城港口仍可供源；不修改港口专业既有国际化机制与身份。
+
+明确取代旧“外部来源无对应身份限制”和“Harbor→Gold”。ACTIVE III、专家名额、本地D、0.05系数、有效信誉及逐领域Floor后相加不变；其它商业合同保持。后续实现不应为旧金币输入保留循环拆装carrier、历史采样或通用递归求解；实现与性能验证须另行授权。
+
+[Commerce D0055](Content/Commerce_D0055.json)、[商业阅读版](Commerce.md)与当前Spec已同步。[Commerce D0054](Content/Commerce_D0054.json)及[D0054 Spec冻结原文](Revisions/Specialization_Design_Spec_D0054.md)保持原始字节。B239仍为旧实现，本轮不改代码、SQL、测试或部署；不宣称新规则实机通过。
+
+Accepted Spec SHA256: `8548e2c69595a3e49058979968d35c506b2754e2f409ca7fd7fe14299ee4bbaf`
+Commerce D0055 SHA256: `c2d772724b9efb779ab0fc3bef9b580ba5b97af869ea94a6c1f8dad06300681d`
+Frozen D0054 Spec SHA256: `bb55a137c2974cfdc38abb7bdef63a934ef9570935c5c78d135cb7f379310859`
+
+## Accepted D0054 — 2026-10-18
+
+用户明确选择：**商业化每个领域分别Floor，再相加。** 每领域先计算0.05×本地D×最高合法城市总产出X×(1+0.005×有效信誉)，对该领域取Floor，最后合计金币。两个领域各原始2.7时结果为4，而非合计后Floor的5。保留各领域原始值以供解释；不改变D／X／来源／专家容量／信誉／生命周期，不新增额外上限，不将取整外推到资本本金、回款、发展投资报价或其它专业。
+
+[Commerce D0054](Content/Commerce_D0054.json)、[商业阅读版](Commerce.md)和当前Spec同步；Commerce D0050及[D0053 Spec冻结原文](Revisions/Specialization_Design_Spec_D0053.md)保持原样。该Design决定解决B239金币精度边界，不等于原生金币、来源排除或其它商业能力已通过实机。
+
+Accepted Spec SHA256: `bb55a137c2974cfdc38abb7bdef63a934ef9570935c5c78d135cb7f379310859`
+Commerce D0054 SHA256: `8da4f16d70a6a47441cfcdefcbe7d169254c08a6f33360c10c54e6e1b917a7b8`
+Frozen D0053 Spec SHA256: `d5bdaab7e47155a66b7124cb145144aa25dc9f2233cbeca0fe66c98fd30c95f3`
+
+## Accepted D0053 — 2026-10-18
+
+用户暂行接受：**施工队的基础施工力可以受到适用的原生Production加成，不再要求隔离巨构工程学、奇观政策等倍率，不再阻碍开发。** 锁定的是基础施工力；原生实际进度不必等于该基础值。本次不确定新的叠加公式、不调数值。一级260、其它档位与组建成本、开工锁价、目标、来源／容量／生命周期及余量不结转规则不变。
+
+综合倍率下的投入／产出强度作为未来需要实测的非阻塞平衡点；**未来平衡待办不进入游戏内UI**。界面只说明基础施工力可受适用加成，不再承诺固定最终进度。用户另明确：区域本体的模板购买折扣难以遇到，v0.1不以其实现／验收为门禁；保留Design规则，技术状态在Status记录，不扩大本次实现。
+
+[Industry D0053](Content/Industry_D0053.json)、[工业阅读版](Industry.md)与当前Spec同步；旧Industry D0052、[D0052 Spec](Revisions/Specialization_Design_Spec_D0052.md)及B236/B237原始结果保持原样。Design接受不改写以前的实机结果或宣称新包通过。
+
+Accepted Spec SHA256: `d5bdaab7e47155a66b7124cb145144aa25dc9f2233cbeca0fe66c98fd30c95f3`
+Industry D0053 SHA256: `7acc70dec753de348653c6ccfa918fb9596070f38dd3f5ff5f8e9e5b70eeac77`
+Frozen D0052 Spec SHA256: `fee5f82512a7f37c6bf0d5b86173bcac8bf41bf63203bfe3e0bc1e8092f7602c`
+
+## Accepted D0052 — 2026-10-18
+
+用户批准B237并明确：**一级施工队基础施工力260，不是250；其它相关数值对应更新。** 标准速度150%／140%／130%／120%组建成本为390／364／338／312。II–V施工力420／750／1000／1360及其成本不变；开工锁价、速度／Floor、固定注入不受普通Production倍率放大、来源／容量／生命周期、名字与成熟度不变。
+
+[Industry D0052](Content/Industry_D0052.json)、[工业阅读版](Industry.md)与当前Spec同步。旧[Industry D0045](Content/Industry_D0045.json)和[D0051 Spec](Revisions/Specialization_Design_Spec_D0051.md)保持字节原样。B237实现结果和未解决的原生注入接口限制另见Status；不把技术阻塞写成新Gameplay规则。
+
+Accepted Spec SHA256: `fee5f82512a7f37c6bf0d5b86173bcac8bf41bf63203bfe3e0bc1e8092f7602c`
+Industry D0052 SHA256: `9f89e0a0ccaca6af88560e1e3ce3186baa495a951be9371790fe2572f8f55f44`
+Frozen D0051 Spec SHA256: `01020901195455d07918b7d3f2ca0c3eb517ad051729640527b8322376db9f3e`
+
+## Accepted Industry formation price clarification — 2026-10-17
+
+用户明确选择：**开工时锁定本次成本，下一队使用新价。** 施工队组建期间N或ACTIVE改变，不重算这一队的成本。仅补齐成本取样时点，不改变D0045既定倍率／施工力／容量／归属，不新增Design版本；当前[Industry D0045](Content/Industry_D0045.json)、[工业阅读版](Industry.md)和Spec同步，旧冻结原件与历史hash不改。
+
+本条是用户Design决定；B236实现和实机验证仍分别记录于Status。当前Industry Content SHA256：`3fdf0536e2c1d8b124834758f38534c7ce863e630dfd83033e5f7496b1f1375a`；当前Spec SHA256：`01020901195455d07918b7d3f2ca0c3eb517ad051729640527b8322376db9f3e`。
+
+## Accepted D0051 — 2026-10-17
+
+用户在B224实机反馈中明确接受：v0.1艺文采撷只要求目标城市当前仍有至少1件合格文化巨作；不再锁定某一件巨作、槽位、建筑或地块。原作品移动／出售／替换但城内仍有其它合格作品，任务继续；可靠确认全城没有合格作品时取消，不给见闻、不消耗成功机会。UNKNOWN不当作空城。
+
+本条只取代下方2026-10-16具体对象锁定中的**艺文采撷**部分；奇观巡礼仍锁定选定奇观。作品池、任务时长、容量、来源绑定、奖励去重、其它外交失效与生命周期规则不变。已完成类别不应使整个任务面板不可打开；具体已完成条目继续受成功额度保护。
+
+[Culture D0051](Content/Culture_D0051.json)、当前Spec及中文阅读版同步；[D0050 Spec冻结原文](Revisions/Specialization_Design_Spec_D0050.md)和Culture D0049原文保留。本次接受不代表B224已实现新规则，也不授权下一Gameplay批次。
+
+## Accepted target clarification and wording alignment — 2026-10-16
+
+User authorized audit findings1–7 and explicitly selected cancellation when the concrete Expedition mission target becomes invalid. Current Culture D0049 now states: the selected work/wonder is not automatically replaced by another eligible object in the city; confirmed loss cancels without reward/quota, while unavailable evidence is not confirmed invalidation. The Culture reading page is synchronized. No other mission, cost, capacity or lifetime rule changes.
+
+Commerce D0050 maintenance aligns secondary wording with already-accepted rules: lock a concrete S-source only when one exists; absent source remains explicit with S=1. Owner-scoped consecutive-failure protection is resolved, not TBD. No formula, number, maturity or contract-lifetime decision changes. No Commerce implementation authorization.
+
+Current Culture Content SHA256: c8919270580fc785a39661f141d73f0664375c88deb3593377998cb2487a6a74
+Current Commerce Content SHA256: 275d97483d96f6893275ce12472ff844343555f7c3071832d1f3467939a17691
+Unchanged current Spec SHA256: dbe69006e1243ed6b1316f11faf4f358e4c899332111a2449c4b1148dc1b924e
+
+Earlier acceptance entries/hashes and frozen revisions remain unchanged. This is a clarification and consistency repair, not a new complete Design revision or native acceptance.
+
+## Accepted D0050 clarification — 2026-10-16
+
+用户对D0050交接的四处解读作出确认：
+- **资本投资可投领域不包括商业领域本身**；v0.1为科研、文化、工业，未来其它专业一旦实施即自动纳入（规则有意留出空间），未实施前不可投。
+- **专业网络**即当前由商路连接形成的国内网络拓扑。
+- 发展投资沿用D0045的出发商路、商业ACTIVE IV签约资格与每工作专家1名额，确认无误。
+- 发展投资15%费用的**取整方式先标记，实施时决定**。
+
+Current clarified Spec SHA256: dbe69006e1243ed6b1316f11faf4f358e4c899332111a2449c4b1148dc1b924e
+Current clarified Commerce Content SHA256: 41bacacd5c8c7893c57526ca67a87ab8d617ba632ed431aa447b575ba07f8c4b
+
+下方同日原接受记录及其hash保持原样，代表澄清前的接受证据；本条只澄清解读，不是新修订，不授权实现。
+
+## Accepted D0050 — 2026-10-16
+
+Acceptance: ACCEPTED / Commerce Design Talk handoff synchronization; implementation not authorized
+Acceptance Evidence: 用户提交Commerce Design Handoff（D0045基础上的七项决定）及“发展投资使用理论金币购买价”补充说明，授权正式Design／阅读版／metadata同步及commit/push；不授权Gameplay、SQL、Lua、测试修改、部署或新实机测试。
+Accepted Spec SHA256: a4b0bf6a3956723338bfcae4a475a2fc32448df31d6b9546b30eac4aee17643c
+Canonical Commerce Content SHA256: a3da62da67e379ef44d3e8d767ef2263f67057ec5290420ac6917ae16d508eda
+Previous Accepted Revision: D0049
+Frozen D0049: [原文](Revisions/Specialization_Design_Spec_D0049.md)
+Frozen D0049 SHA256: 22a7d50b6539c4e3b7762f1a7d4287e64712b6d382b9cd14b5a14ba6b9ca25d6
+Content: [Commerce D0050](Content/Commerce_D0050.json) / [商业阅读版](Commerce.md)
+
+- **商业化：** 系数0.1→0.05，`G=0.05×D×X×M`；X为合法候选（本城及任意方向直接国内商路的本国城市）中该领域**城市总产出**最高者，各领域独立择优；不做区域／建筑／专家／改良／修正归因；商业化金币不递归进入X；与未来港口的相互作用暂缓，不建假想跨专业防御系统。
+- **资本投资：** 可投领域为有对应已实施专业的领域（v0.1：科研、文化、商业、工业），不自动纳入宗教、港口等；来源城不需该领域区域；S读同一既有专业网络中该领域当前有效ACTIVE最高等级（非Potential），不新建连通模型；`D_eff=max(1,D)`、`S_eff=max(1,S)`，无来源时S=1，最低值不使未实施领域合格；同最高S的决胜规则保持；并发限制为每商业来源城每投资领域1笔，不同来源城可同域并存，无全国总数上限；本金、期限、收益与结算不变。
+- **风险投资失败保护：** 只存连续失败次数n，`P=0.8−(0.8−P_base)×0.75^n`；失败n+1、成功清零、换领域或D／S变化保留n并按新基本面重算、同来源城各领域共享、离开商业身份清零；保护属于来源城及其主人，新主人不继承，原主人夺回时恢复（未因身份退出失效）；与运行合同分开，关键城易主终止合同时不制造失败。
+- **发展投资（重大替换）：** 删除固定10回合、P_low／P_high／P_ref、劳动力优化、粮食供养定价模拟、历史生产记录与按生产力报价（仅在D0045追溯）；新机制为比直接购买更省金币但需等待的选择：目标城须有合格区域且下一级建筑当前可建；费用=15%×该建筑**理论金币购买价**（不要求可用金币购买，不以生产力成本替代；取整按现有规则或标出）；生效期间该区域类型建筑+50%建造生产力，持续到完成下一座合格建筑，无固定期限、无退款补偿；绑定目标城＋区域类型＋生效状态；每目标城最多1份（不分领域／来源）；来源每工作专家1名额、出发商路签约资格、与标准化加算、易主终止均保留。剧院广场（HD＋District Expansion）与社区建筑链为实施时检查。平衡说明`f=0.5/(1+b+0.5)`及示例表只作参考。
+- **游戏速度：** 受影响的投资机制v0.1只支持标准速度；资本期限、发展定价、重组与信誉积累的其它速度缩放暂缓，不套用科研传承速度规则。
+- **暂缓的生命周期边界：** 关键城市摧毁／永久移除；原主人在无可靠关键城转移证据时被消灭；发展投资签约后目标区域／建筑失效。暂缓到v0.1之后，运行时防损坏的保守处理只是技术保护。
+- 交接未提及的商业机制、名称与参数全部保留（含资产重组、商业信誉、商业化配置生命周期、资本收益与确认顺序）。
+
+## Accepted D0049 clarification — 2026-10-11
+
+用户对人文考察团训练成本明确选择：**Use the same formula, counting Expeditions separately**。沿用加载规则中的间谍生产基础成本／递增公式，但普通间谍生产次数不计入考察团递增次数。该澄清取代“当前间谍成本”可能被误读为普通间谍下一份报价的解释，不另定固定数值／速度表，也不授权Gold/Faith购买。只澄清原有训练成本条款；其它能力、任务及生命周期规则不变。
+
+Current clarified Spec SHA256: 22a7d50b6539c4e3b7762f1a7d4287e64712b6d382b9cd14b5a14ba6b9ca25d6
+Current clarified Culture Content SHA256: 2c8ceaf48909de9e374178b4fbef5985ef8a546e449ee22be5f39806f6e218e0
+
+下方2026-10-08原接受记录及其hash保持原样，代表澄清前的接受证据；本条不是重写旧冻结结果，也不宣称技术实现已通过实机。
+
+## Accepted D0049 — 2026-10-08
+
+Acceptance: ACCEPTED / Great Works Inspiration current-era city-wide GPP percentage; implementation/native validation pending
+Acceptance Evidence: 用户本轮Design Handoff明确接受完整新机制，授权正式Design／阅读版／metadata同步及commit/push；不授权实现、原型、测试或部署。
+Accepted Spec SHA256: b3feaf64de02bfd9310b60a91544d998c147a041f5e32515bac8a183e29cd22a
+Canonical Culture Content SHA256: 3515cdb4c5639407222ebc09eb2271b8f5704893cfd356129a627f4440186ad1
+Previous Accepted Revision: D0048
+Frozen D0048: [原文](Revisions/Specialization_Design_Spec_D0048.md)
+Frozen D0048 SHA256: 2edf9900e847e36968b8bfb4ac7e5237718ea2c679bcd122913f7239ad8254e0
+Content: [Culture D0049](Content/Culture_D0049.json) / [文化阅读版](Culture.md#巨作启迪)
+
+- 本城当前不同合格巨作时代E=0–7，所有伟人类别+3%×E，0至21%；大作家／艺术家／音乐家不再排除。既有ACTIVE IV与作品池／时代定义保留，不按D／作品总量，不增加独立项目／计时器／永久积累或历史最高覆盖。
+- 明确取代旧CUL_L4_INSPIRE、GPP_K0.1及其非文艺映射；旧方案的Floor备选不迁入新设计。既有调查及原生反证保留，小数基础写入不等于有效收益；新百分比也未获得技术PASS。
+- 本城全类别承载、各类别覆盖、小数累计、现有倍率叠加、馆藏更新和失城／夺回／读档仍待验证；不假定同一加成池。+21%为用户有意选值，不擅改1%／2%或额外cap。
+- 时代对话、风雅熏陶、意义延展、人文考察团及其它专业规则不改；v0.1优先级不变，投资提交更新传播计划仍未授权。旧D0048 Content及Spec原文保留；没有代码／测试／运行包／main／部署变更。
+
+## Accepted D0048 — 2026-10-05
+
+Acceptance: ACCEPTED / Meaning native theming provisionally allowed for v0.1; Balance pending
+Acceptance Evidence: 用户B165反馈“主题化可以接受，先Mark，需实机Balance”，确认图5重新启用Meaning后拍摄，并明确“授权实施第一批”合同同步与证据收口。
+Accepted Spec SHA256: 2edf9900e847e36968b8bfb4ac7e5237718ea2c679bcd122913f7239ad8254e0
+Canonical Culture Content SHA256: 8df7841e42a686ab4ba737e17cb32dd00e3db2dbd9fc83d535ba7c579a9bbe9b
+Previous Accepted Revision: D0047
+Frozen D0047: [原文](Revisions/Specialization_Design_Spec_D0047.md)
+Frozen D0047 SHA256: 8b38c4f5d81a1b6d219fecc2e43e8dd6da6ed314d064953532447448f95d149c
+Content: [Culture D0048](Content/Culture_D0048.json) / [文化阅读版](Culture.md)
+
+只取代D0041／D0046中Meaning主题化排除：追加按原生主题化规则作用，v0.1暂行许可，Balance待实测。Dialogue仍只放大作品原生产出、不放大Meaning；K0.5、逐域Floor→同yield和→W作为主题化前基值，份额、九域六产出Design、作品资格、ACTIVE IV及城市历史不改。没有新倍率、cap、补偿或其它公共倍率豁免；B165所测×2不是普适固定公式。
+
+原生文化平加运行隔离保持、Shared／其它专业Content不改，旧D0046与D0047 Spec原件冻结。同期B165第一批只复核生产读数与真实进度、不从110×1.2猜20%来源；剩余正旧AUTO／精确追加结算用既有包一次最小对照。没有Mod／tests／GC／main／部署或自动writer／M实施；新Design接受不提升未测native门禁。
+
+## Accepted D0047 — 2026-10-04
+
+Acceptance: ACCEPTED / Government current baseline and dedicated-blank-civilization scope
+Acceptance Evidence: 用户完整市政Design Talk明确要求将本轮规则同步为当前Design Authority，替换旧Government，不实现／不扩展其它专业。
+Accepted Spec SHA256: 8b38c4f5d81a1b6d219fecc2e43e8dd6da6ed314d064953532447448f95d149c
+Canonical Government Content SHA256: d915e2d0c43f8c73e6d4a47f327d58df6ea68308efb3a7686b65a52296852fa4
+Previous Accepted Revision: D0046
+Frozen D0046: [原文](Revisions/Specialization_Design_Spec_D0046.md)
+Frozen D0046 SHA256: 3ed49ed7f047e7e02fd35d0bf1451fd6d75a41878349d4517c8c3cd10770cc09
+Content: [Government D0047](Content/Government_D0047.json) / [市政完整阅读版](Government.md)
+
+- 接受国家治理中枢定位，治所／内政司／典制院／国策府，基础市政支持／政令通达／兼采诸制／政制取鉴／多元统筹／因时制宜／治理效能七项能力。逐栋完整生产回合研习标准速度1／2／3T（补两栋2／4／6T、总12T），只吸收持续效果、不重复一次性奖励；Legacy最多1项，无槽、可重选、同政体／超Tier失效。
+- 明确取代旧GOV-001自动免费同Tier另外两栋、GOV-002 Potential永久头衔、GOV-003 `W=min(ACTIVE,Government Tier)`、GOV-004 Loyalty网络及旧OPEN-03值。新槽位按当前不同非市政ACTIVE IV类型N；免费重配每回合首个主动完整配置一次，原生免费机会保持。
+- 内政司／政制择用仍Placeholder；折扣未定，治理效能每Tier1个百分点为初测候选、非最终平衡。已完成制度学习不因临时Governor／ACTIVE清除；精确Identity／Owner／当前效力／未提交项目及Legacy配置生命周期保留TBD，不统一所有资产。All Yields精确范围及多市政来源组合等未声明处不猜。
+- 与现行ELIG-001/002/006、ID-001、COMPAT-001的旧载体描述存在实质冲突，按本轮最新用户决定取代：**当前计划只向专用白板文明开放**，无需默认兼容所有原版／Mod文明与领袖能力叠加；未来AI／其它载体／多人可能性仍需单独授权，不构成当前支持承诺。enabled过滤与非支持Owner休眠不变。
+- Government仍FUTURE／OUT_OF_V0.1；Research／Culture／Industry／Commerce当前实施范围不扩。独立Canal与国事访问未来交互不改，社区D／娱乐文化网络／海空军衔接未决不动。Culture D0046与其反证／技术门禁保留；导航原先残留D0045／七域文字纠正为已接受D0046，非再改Culture Gameplay。
+- D0046 Spec逐字节冻结；其它Content与历史原件不改。只维护当前Authority／Status／manifest元数据及已审阅文档hash，不加入Government正文到文化任务默认context；B163.190原生待验／当前receipt／GC保持，无Implementation、部署或下一专业设计。
+
+## Accepted D0046 — 2026-10-04
+
+Acceptance: ACCEPTED / Meaning-only Culture domain restoration
+Acceptance Evidence: 用户“把文化再加回来，然后授权实施”。仅恢复Government Plaza／Diplomatic Quarter→Culture；当前九域六产出，取代D0043暂排。
+Accepted Spec SHA256: 3ed49ed7f047e7e02fd35d0bf1451fd6d75a41878349d4517c8c3cd10770cc09
+Canonical Culture Content SHA256: ce8a1ec8b6cbef511d2ae88988bfa0c772f76d9c646ea1d6f32f02a9d279d4cc
+Previous Accepted Revision: D0045
+Frozen D0045: [原文](Revisions/Specialization_Design_Spec_D0045.md)
+Content: [Culture D0046](Content/Culture_D0046.json) / [文化阅读版](Culture.md)；其它专业、Shared原件不变。
+
+K0.5首测、逐领域Floor→同yield相加→W、份额、作品资格、ACTIVE IV、Dialogue／主题化不放大追加均保持。用户同时授权单城六产出最终值原型；不等于正式全城cutover或原生收益已通过。[B155/B157文化反证](../Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)保留；多片Production失败不能证明Culture单片共存已解决，技术门禁独立记录于[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)。没有新名称、数值或其它玩法变化。
+
+## Accepted D0045 — 2026-10-03
+
+Acceptance: ACCEPTED / Industry source-bound efficiency and Culture first-test closure; original-capital reform Future only
+Acceptance Evidence: 用户完整Industry／Culture／原始首都未来改制Design Talk，明确授权正式同步；D0044已应用职责保留，不Implementation、不部署、不修改main或冻结原件。
+Accepted Spec SHA256: 667faae6365637e91211009fae42ba51149de0856ace74568425b28b42f2db00
+Canonical Industry Content SHA256: 5619165405b68c84f19ee7d141d4b7eb967201c0be0fd86293778eec49b45e3b
+Canonical Culture Content SHA256: 1ddff9df63abddccbbced9a30c326b5d1af9c29a7e02992fd1a22e9c73943a9c
+Canonical Shared Content SHA256: 104f28e604d45330e676549e4ce8c54c75ab7ee7625c3802629a95c639775516
+Canonical Commerce Content SHA256: 5f4857256c381212dbec391665ee0f200e9389f385c4821073e98230cb7d366f
+Previous Accepted Revision: D0044
+Frozen D0044: [原文](Revisions/Specialization_Design_Spec_D0044.md)
+Content: [Industry D0045](Content/Industry_D0045.json) / [Culture D0045](Content/Culture_D0045.json) / [Shared D0045](Content/Shared_D0045.json) / [Commerce D0045](Content/Commerce_D0045.json)
+Review: [覆盖、六项旧规则取代与真实剩余](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)
+
+工业每模板只在实际持有它的有效来源中分别择最高建造／合法购买效率；Faith与Gold正式同等合法渠道，不新增购买权。研习明确与Dialogue同完整1T事务、以IV资格取消／重做，不清成功L；最终整数Production／Gold／Cost使用Floor，不外推Commerce或GPP。D0044全部职责与首测值保留：III10%／0、IV每L两项+2个百分点，III150%、IV按N1／3／6为140／130／120%；III I–III／IV IV–V无E门槛，巨构仅正常城市Production，固定施工力注入不受buff且不溢出。专业单位不可捕获／转Owner，保护回归原生接口仍Technical；专属事务退出优先。
+
+文化对话无额外cap；考察成本等于当前Spy Production cost、全国现存最多1支，K_T=2个百分点／份仅来源城市整城Tourism；风雅1、Meaning0.5及Gold份额3、启迪0.1基础GPP（无Design逐项Floor）、标准任务2T／部署另算、K_C1保持。D0042城市见闻／有效自身文明过滤／任务取消及重挂靠完整保留；首测不等于最终平衡。
+
+原始首都实体一次权利、三阶段各完整1T、第二阶段锁候选／第三阶段重验切Identity保留Potential并消费、普通中断前置保留与完成前易主全清，完整保存为FUTURE／DESIGN_RECORDED／NOT_V0.1_IMPLEMENTATION；外交暂排复审、Civic允许、名字占位。没有当前计划、milestone或runtime任务。
+
+旧D0044／D0043／D0042 Content与Review原件不改，Research／Military／Harbor及其它未来未列规则不变。Authority／当前P0-L2C仅直接对象revalidation：Meaning能力／K／作品池／七域／倍率及四个Shared输入对象相等；Dialogue只改变accumulation无cap，B159固定诊断不消费新规则。B159.186／modinfo186及待验停止点保持，无新本地玩法／原生PASS，不部署、不授予下一Implementation。
+
+## Accepted D0044 — 2026-10-03
+
+Acceptance: ACCEPTED / Industry v0.1 responsibilities and initial test values; Design sync only
+Acceptance Evidence: 用户Industry Design Talk及明确确认“保留四级门槛：三级150%，四级按奇观数折减”；要求同步当前Authority／阅读版，不实现。
+Accepted Spec SHA256: c5e44a10015af9d0f390953479d376b1ffd5d9bcd01ed3821ccb83d6bd439010
+Canonical Industry Content SHA256: 4381a35bc545d316a83fc62145d68c0e9d4859442e1da55a7cb4a6d7e9c15557
+Canonical Shared Content SHA256: a39e938d128d6ef3531487902bdf213fd38696a52a3431f33218a3524a9089f7
+Previous Accepted Revision: D0043
+Frozen D0043: [原文](Revisions/Specialization_Design_Spec_D0043.md)
+Content: [Industry D0044](Content/Industry_D0044.json) / [Shared D0044](Content/Shared_D0044.json) / [工业阅读版](Industry.md)
+Review: [覆盖、取代、保留与真实剩余](../Historical/Design/Reviews/Industry_D0044_Review.md)
+
+三级标准化基础建造10%／Gold0%；四级文明工程传统E供本城完整1 Production Turn研习L，成功每层两项输出各增2个百分点。L属A城市历史，III保留但只输出基础，IV恢复全L，跨Owner E<L不回退，E只限制新增。工程实践仍IV，以N1／3／6降低组建成本倍率150／140／130／120%，不强化标准化；III I–III、IV额外IV–V，无E门槛。巨构只加速自行生产旧时代奇观，时代差1／2／3+首测10／20／30%封顶；施工队固定min(锁定施工力,剩余Production)，不受任何普通生产buff放大，余量不溢出。全部新数值为v0.1首测，名称候选／未提交研习／技术边界分开保留。
+
+模板、网络并集与最高来源、容量2及来源易主／夺回、原速度／基础施工力Floor、商业发展投资百分比加算不变。Culture D0043／Commerce D0042／Research D0040／Military与Harbor D0037原件不变；当前B158.185及P0-L2C原生待验不变。本轮不Implementation、无Mod／GC／main／部署或玩法测试，不授予下一能力。
+
+## Accepted D0043 — 2026-10-03
+
+Acceptance: ACCEPTED / v0.1 Meaning-only scope deferral; Design sync and next-batch plan, no runtime implementation
+Acceptance Evidence: 用户明确“暂时采用忽略市政/外交的方案，这些技术留着后面再实现，不阻碍v0.1”，要求记录并给下一步计划。
+Accepted Spec SHA256: 46d1e7f17ade47da5f394e1cb0400a87ff22baf8ce225e29616517dddd4705cb
+Canonical Culture Content SHA256: 748c816685e6258e025ea1dd0c31b16cef9eae7a84b37afa3ce52aaa347c1c37
+Previous Accepted Revision: D0042
+Frozen D0042: [原文](Revisions/Specialization_Design_Spec_D0042.md)
+Content: [Culture D0043](Content/Culture_D0043.json) / [文化阅读版](Culture.md)；Shared／Research／Industry／Commerce原件及其当前revision不变
+
+意义延展仅暂排Government Plaza／Diplomatic Quarter，当前七域输出Science／Production／Gold／Faith／Food，无Culture或Tourism追加。Shared完整映射与其它consumer／专业规则不删；K0.5首版值、金币份额3、逐域换算后Floor→同yield相加→乘W、作品资格、ACTIVE IV、独立追加和D0042生命周期保持。
+
+[B154/B155文化技术档案](../Reports/Technical/Specialization_B155_Meaning_Culture_Path.md)、[B157实例进入／退出PASS与Culture增量FAIL](../Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)保留原件。未来可靠路径再经用户确认恢复，不宣称Culture永久不可行，也不把排除两域当作其它五yield／recipient／倍率／结算已通过。只同步Design与[P0-L2C下一最小计划](../Architecture/v2/P0_L2_Meaning.md#下一批计划--p0-l2c-七域五产出门禁)，该计划仍PLANNED_NOT_AUTHORIZED；source/live B157不变、无Mod/GC/main/部署变化。
+
+## Accepted D0042 — 2026-10-03
+
+Acceptance: ACCEPTED / Named A–G lifecycle closure; Design sync only
+Acceptance Evidence: 用户本轮E/F/G及A–D补充handoff，要求同步正式来源，不实现；用户继续B155实机测试。
+Accepted Spec SHA256: 1bcb4310381236055a465b79d1344616c1306cebf53899694a12c396f8527311
+Canonical Shared Content SHA256: f5250c5d160e992ec8049d99b70f67ed1e9e1cc09f04512ad086da3b6fc66ee1
+Canonical Industry Content SHA256: 9548e7c079704f8f749f6f02863f074a1955befc217fb75a95e5e327e8f41845
+Canonical Culture Content SHA256: 62351cb7ec167ff5b70ab6c1a637d616a41e58a267648320243c5bc3d3f3278f
+Canonical Commerce Content SHA256: 8af0f3f8f774b6ba1aee3d270938bfe12b1f4c0d0bc8b51525cfe57cce664e1a
+Previous Accepted Revision: D0041
+Frozen D0041: [原文](Revisions/Specialization_Design_Spec_D0041.md)
+Content: [Shared](Content/Shared_D0042.json) / [Culture](Content/Culture_D0042.json) / [Industry](Content/Industry_D0042.json) / [Commerce](Content/Commerce_D0042.json)；Research D0040不变
+Review: [接受、替代、T1–T11及真实剩余](../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)
+
+未提交Dialogue取消无历史／成功额度／半进度；考察团来源易主中止任务、原Owner保留并免费重挂靠。商业化选择栈容量不足暂停不删、恢复按顺序，身份退出或易主清空；纯派生当前重算。工业队来源易主存续、当前Owner容量2与夺回复计明确；重组队生命周期随目标事务，训练来源易主不终止。Settler确认视为原子完成，中间窗口是技术而非Gameplay TBD。
+
+A–D重申、D0041固定追加与现有参数／名称成熟度保留。hidden protection本身跨Owner与基本面组合等真实剩余不类推。旧Content及D0041 Spec冻结原样；无Mod／runtime／GC／main／部署变化，不授予新实施，B155测试不扩成生命周期验收。
+
+## Accepted D0041 — 2026-10-03
+
+Acceptance: ACCEPTED / fixed Meaning additions; minimal technical prototype first
+Acceptance Evidence: 用户最新明确“先测出技术原型，然后先按照都不放大来实施，但是保留技术档案供未来如果设计变化更改”；覆盖本轮较早主题化包含追加的建议。
+Accepted Spec SHA256: c0f65456ccee1ed36f0f42a031652fbb6d931e2fdf0fd0df2a80a718a5492838
+Canonical Culture Content SHA256: 6f93bce9213f854f89d234ae936c1e8809b167a62c1a72f9ebcf567d636ced64
+Previous Accepted Revision: D0040
+Frozen D0040: [原文](Revisions/Specialization_Design_Spec_D0040.md)
+Content: [Culture D0041](Content/Culture_D0041.json) / [文化阅读版](Culture.md)
+
+意义延展追加按既有逐领域Floor／同yield相加／乘W固定计算，Dialogue与theming均不放大；市政／外交追加Culture也不是native来源。作品原生产出照常使用自身倍率。用户较早主题化包含追加的设想保留为未来选项，不与当前规则并存。其它公共倍率的豁免不自行推断。
+
+不改系数／份额／领域／作品资格、D0040生命周期或其它专业。D0040原文与Culture原件冻结；授权先完成可撤销单城技术原型，native门禁仍独立，正式六yield／all-city／global旧GWA cutover未授权。[调查、原型及未来参考](../Architecture/v2/P0_L2_Meaning.md#平加共存与主题化技术原型)记录静态与实机边界，不以Design接受替代接口证据。
+
+## Accepted D0040 — 2026-10-03
+
+Acceptance: ACCEPTED / Long-term state lifecycle A–D; Design sync only
+Acceptance Evidence: 用户确认附件Commerce / Long-Term State Lifecycle A–D Design Talk，要求正式同步具名城市／文明历史、信誉及合同主体断裂，不实施，不补E/F/G。
+Accepted Spec SHA256: 596a96ed6d6cd103c68d4216bb4e0c01c0ff41942366bffe8228ea55f7dd066a
+Canonical Shared Content SHA256: cee0bb6d4876ae9ddba5769bf1e23a8b3ef696ab059ff0427887c60d33c7fa4b
+Canonical Research Content SHA256: 8eff5187204612bdc36f0294098bfa12f73b774b2c87e91133342bcd22f0c138
+Canonical Industry Content SHA256: fac58b6ff3d5c6c3354a1345ecffcd7956d014a0583758d59504d192eab47d64
+Canonical Culture Content SHA256: a3f58f2b2ca7e37e030a7cc6d014e15c3b058d4fedab8b010c3e0e08a2eb0b44
+Canonical Commerce Content SHA256: 44f6ee424bb6454cf1fb06a540d6ee4a20067bf01923592138fcfeda71b70f8d
+Previous Accepted Revision: D0039
+Frozen D0039: [原文](Revisions/Specialization_Design_Spec_D0039.md)
+Content: [Shared](Content/Shared_D0040.json) / [Research](Content/Research_D0040.json) / [Industry](Content/Industry_D0040.json) / [Culture](Content/Culture_D0040.json) / [Commerce](Content/Commerce_D0040.json)
+Review: [关闭项、替代与未讨论边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)
+
+明确A城市历史随城、B实际完成文明信用不转移、C信誉依持续Commerce Identity且Owner无关、D合同关键城市易主异常终止。取代文化见闻原Owner分账及工程实践完成Owner限制；资本锁具体S来源、同S最早达级／稳定tie及UI。学术传统跨Owner随城决策关闭，D0036模板四分保护及D0039重组征服例外保留。
+
+现有公式、数值、名称及未变对象保持原成熟度；城市消失／发展目标非法等本轮未讨论情况与E/F/G剩余边界不补。Military／Harbor、三处未衔接设计及当前四专业／单人范围保持。B154直接Meaning／Shared8个选中对象逐对象相同，当前原生待验与停止点不变；不改Mod、部署、GC或永久账本，不授予下一批实施。
+
+## Accepted D0039 — 2026-10-02
+
+Acceptance: ACCEPTED / Commerce v0.1 formula, initial balance and scoped Legacy closure; no implementation
+Acceptance Evidence: 用户明确附件商业Design Talk收口作为新的Design Authority，要求沿用机构/能力与主体，只关闭本轮决定项，不补未定值、不倒改历史。
+Accepted Spec SHA256: edf0d66fd0bb58ea5e6d51c2dc391ae0c5e32367c7795b98706a18dae5a43311
+Canonical Commerce Content SHA256: 77f4206158e07d0c0df0444cc4cdc6f1289bc4ccb9b58207fe34ed580a105f92
+Previous Accepted Revision: D0038
+Frozen D0038: [原文](Revisions/Specialization_Design_Spec_D0038.md)
+Content: [Commerce D0039](Content/Commerce_D0039.json) / [商业阅读版](Commerce.md)
+Review: [关闭与精确剩余边界](../Historical/Design/Reviews/Commerce_D0039_Review.md)
+
+五领域商业化与0.1DX/信誉公式、资本本金25%/标准10T/DSC回报/风险概率及失败递推、信誉R0–40/身份消失清零、发展10T/+50%/地块参考报价/专家容量/目标域唯一/标准化加算、已签合同source资格下降连续执行、500P团队/保护败退/无删除与REALLOCATING征服半成品销毁已接受。首版数值可Balance调整，不等于最终平衡或原生接口通过。
+
+Shared D0035、Research D0031、Culture D0038、Industry D0036、Military/Harbor D0037机制不改；Spec PROG-011只加入用户已确认的商业重组征服例外及正常继承引用。资本/S精确资格、同域并发作用域、变化基本面保护、X聚合、发展参考态与无解、其它速度及一般Ownership仍按content精确登记，不重新打开已定公式。当前B152文化L2B等待native不变；无运行代码、部署、main或后续Gameplay授权变化。
+
+## Accepted D0038 — 2026-10-02
+
+Acceptance: ACCEPTED / Culture Meaning Extension per-domain Floor amendment; implementation and balance validation pending
+Acceptance Evidence: 用户明确“每领域分别floor，之后同yield相加，最后W”；仅意义延展采用此取整例外。
+Accepted Spec SHA256: 128af123ee3c1ae0faf9a24d789fd602e886973868605f865afdd13de29bd8ab
+Canonical Culture Content SHA256: 3296ddf8037f250fd46a51e00bf51f8d98e41cb7073db69fb2269e8faac4383e
+Previous Accepted Revision: D0037
+Frozen D0037: [原文](Revisions/Specialization_Design_Spec_D0037.md)
+Content: [Culture D0038](Content/Culture_D0038.json) / [文化阅读版](Culture.md)
+
+每个合格领域先floor(0.5×D×该yield份额)，再合并同yield的每件追加量，最后乘合格巨作件数W。意义延展K0.5、金币份额3、领域/D/作品资格及原生产出倍率不放大追加值的合同保持；GPP与其它能力不继承此例外。D0029与D0037原件冻结保留，旧Shared引用不顺便改。没有接受其它primitive或宣称两个接口门禁通过；本记录不扩大已授权P0-L2B单城门禁原型，正式六yield/全局旧GWA切换仍未授权。
+
+## Accepted D0037 — 2026-10-02
+
+Acceptance: ACCEPTED / Harbor future baseline and Military naming-only amendment
+Acceptance Evidence: 用户明确将完整Harbor Design Talk作为当前基线，要求替换旧条款并同步行伍编制/战地勤务；候选命名、Balance与Technical不擅自冻结。
+Accepted Spec SHA256: 2108535871d901179fd82c1c296b66b93ec8f3f784617add4cc41057b7c8b1b9
+Canonical Harbor Content SHA256: bb7e02bf42efd156a8f8f214e73f593ff72fe1a1ae09fbfed59fcdf750bab7d0
+Canonical Military Content SHA256: 760c3a1cabd7d333a7a3d3c445695c8843eb175fcca01a7031736368eb2f98a7
+Previous Accepted Revision: D0036
+Frozen D0036: [原文](Revisions/Specialization_Design_Spec_D0036.md)
+Review: [接受、取代与未决边界](../Historical/Design/Reviews/Harbor_D0037_Review.md)
+
+接受完整海运商业/海军双线及同级双机构、当前Military镜像；旧Actual出口、+15%XP、III领悟、驻扎和海军动员退出。不额外设Network；经营进度暂停而已得容量不因Governor/暂失ACTIVE撤回，其它Legacy不推断。Military仅两处正式改名，原D0034机制保持。当前v0.1仍仅四专业，B148文化待验及计划权限不变；未实现Harbor、未改运行包、未部署，未改写旧冻结原件。
+
+## Accepted D0036 — 2026-09-30
+
+Acceptance: ACCEPTED / Industry template city-experience reconciliation
+Acceptance Evidence: 用户明确“可靠保存模板历史∪当前存在的合格建筑”，随后授权模板生命周期补齐；Codex记录，无自主Gameplay补全。
+Accepted Spec SHA256: 8e2bbe116f4ce83583b456c61f0def2e3960abf0eb6f52c61926d08e7ecabb4c
+Canonical Industry Content SHA256: a9b95d484528136bea8673d5ebc1236ab04634547b6521c61d5774f871d4bdac
+Previous Accepted Revision: D0035
+Frozen D0035: [原文](Revisions/Specialization_Design_Spec_D0035.md)
+
+新增IND-TEMPLATE-006：合法首次工业身份、确认同城夺回时局部同步；外方新增现存建筑可补录；可靠历史不反向删除；空账本≠缺失账本，缺失/损坏历史不得伪装首次初始化。不追溯未观察且已消失的外方建筑，不扩大AI职责、目录或效率参数。其它专业与Shared不变；D0032工业原件保留。实现/实机状态另见Status，Design接受不等于游戏验收。
+
+## Accepted D0035 — 2026-09-20
+
+Acceptance: ACCEPTED / Shared semantic clarification and consumer confirmation; no new Gameplay formula
+Acceptance Evidence: 用户以D0034为基线确认Absolute Infrastructure Depth、不引入Relative Completeness、consumer矩阵与catalog分离，授权最小术语修订。
+Accepted Spec SHA256: be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5
+Canonical Shared Content SHA256: f690053a45d54f702468180d0d957444b411c5f7ab7bd3656800e875c91b19a1
+Previous Accepted Revision: D0034
+Frozen D0034: [原文](Revisions/Specialization_Design_Spec_D0034.md)
+Review: [Shared语义与consumer审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)
+
+正式中文“区域基础设施深度”；公式min(10,ΣTier1/2/3/4)不变，三层D6与四层D10均为有意允许的结果。旧profession Shared_D0028引用按当前Spec语义覆盖，原文件及Military_D0034不改。Catalog缺口独立登记，既有P0-A PASS不扩展。未实现、未改runtime/main、未部署；不进入P0-B2。
+
+## Accepted D0034 — 2026-09-20
+
+Acceptance: ACCEPTED / Military comprehensive-training structural amendment; conversion details deferred
+Acceptance Evidence: 用户F–F8确认Breadth→Quality和Depth→Training Efficiency，绝对D而非相对完成度；具体Production转换、汇总、cap、速度、兵种与购买适用未定。
+Accepted Spec SHA256: 3554bb9b6ad956580db01e399f34bc9eb8992b754ad1dd5be2e58f1ee9d44fae
+Canonical Military Content SHA256: 0c5ea293621f8cd22f6b3e14969801a65a65548bae49bd073a2d747bb0a845ad
+Previous Accepted Revision: D0033
+Frozen D0033: [原文](Revisions/Specialization_Design_Spec_D0033.md)
+Review: [综合训练双层结构](../Historical/Design/Reviews/Military_D0034_Review.md)
+
+T1永久+1CS/领域且最多5不变；相同五领域的基础设施深度增加本城训练效率，T1-only无深度收益、T2阶段开始，三层D6和四层D10差异为预期。不新建Ability或Shared指标，不自动推导D>=3精确门槛/线性公式/购买折扣。其它Military规则、Shared、四专业及runtime不改。历史D0033保留。
+
+## Accepted D0033 — 2026-09-20
+
+Acceptance: ACCEPTED / Military DESIGN_FROZEN; Balance/Technical/Legacy pending
+Acceptance Evidence: Military redesign brief and five user replies: land/provenance eligibility; permanent birth buffs and same-ability max; whole upgrade line; per-disconnected-network command; ACTIVE takeover events.
+Accepted Spec SHA256: 5ea3f31eeaddbfdb9d14f1c063b6ed44362ad34eecf661182230b7d62aeeeb8f
+Canonical Military Content SHA256: 8956f9230f20610cb7cc5953fbb90fefad132cb659e8f84437dbabc6105aff3d
+Previous Accepted Revision: D0032
+Frozen D0032: [原文](Revisions/Specialization_Design_Spec_D0032.md)
+Review: [Military freeze](../Historical/Design/Reviews/Military_D0033_Review.md)
+
+旧II15%XP、III5F5P、驻扎训练与全国自动送兵pool退出当前Military；Insight旧算式保留但E改出生锁定，不再持续读取来源城。其它四专业、Shared与历史内容不改；不实现、不部署、不扩展P0。A0161尚未适配Military新设计；旧P0上下文显式标记待复核，不伪刷新hash。
+
+## Accepted D0032 — 2026-09-18
+
+Acceptance: ACCEPTED / Commerce DESIGN_FROZEN; explicit deferred items retained
+Acceptance Evidence: 用户Commerce冻结正文及明确边界回复；Industry来源容量2、Culture Hybrid D批准。非用户接受的Red Team意见未采用。
+Accepted Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
+Canonical Commerce Content SHA256: deef125d3c12b25830fb6b1e9ce9c0a6ae510b7e5c143f03cf8b8c70c4d1ba75
+Canonical Industry Content SHA256: 89c999ba46cbaea5282da6926ba9e83d4c7aabc4517d4ab3f404c63e19ae8510
+Confirmed closures: 隐藏失败保护按Commerce来源城独立、同城所有风险领域共享；发展投资仅签约检查出发路线，之后断路不改变原期限/效果，无合格路线不能新签；易主/征服/Identity丧失仍后置。
+Previous Accepted Revision: D0031
+Frozen D0031: [原文](Revisions/Specialization_Design_Spec_D0031.md)
+Review: [Commerce freeze / cross-design review](../Historical/Design/Reviews/Commerce_D0032_Review.md)
+Presentation: [Hybrid D approved](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)
+
+旧Commerce20%汇聚及III网络支持/5F5P退出，Trade Center及Lv1/Lv2基础保留。新能力合同、两种路线方向、锁定结果/pity、Production-only重组及REALLOCATING明确；未定数值/mapping/信誉细项/Legacy不擅填。Research_D0031、Culture_D0029、Shared_D0028、旧Industry_D0031及既有历史文件不改。Industry capacity open关闭但易主边界保留；Culture展示方向确认不改变Gameplay。源码、运行包、main、Architecture/Status均未修改；不tag、不部署。
+
+## Accepted D0031 — 2026-09-17
+
+Acceptance: ACCEPTED boundaries / implementation pending; UI direction recommendation unapproved
+Acceptance Evidence: 用户复审仅确认有限施工队库存、Research身份离开暂停传统及Culture时代覆盖展示需求。
+Accepted Spec SHA256: 48845fe2ccc53c57d8aca4439b6a3ad70ac22ac90b8c485e140d3d12bfb2b830
+Canonical Research Content SHA256: 6253c4eff548394fd3ee351e6f02abd2665b468e6c46f30865352351177b6dc1
+Canonical Industry Content SHA256: 4660d2146caff847979281f094c51a01175758a9b55dd65e41ff37555bb9a11a
+Previous Accepted Revision: D0030
+Frozen D0030: [原文](Revisions/Specialization_Design_Spec_D0030.md)
+Review: [边界审阅](../Historical/Design/Reviews/Boundary_D0031_Review.md)
+Presentation: [需求及UI调查](../Historical/Design/Records/Culture_Era_Presentation_D0031.md)
+
+Culture_D0029与Shared_D0028不变。容量具体规则仍待决；其它外部Reviewer意见不导入。UI建议非已批准Architecture；源码/运行包不变。
+
+## Accepted D0030 — 2026-09-17
+
+Acceptance: ACCEPTED / Research DESIGN_FROZEN; implementation and balance validation pending
+Acceptance Evidence: 用户明确学以致用采用区域完善度，K暂定0.5，并要求审查科研/文化/工业其它类似机制。
+Accepted Spec SHA256: 85ed1e4b8cf4a148dd06abbe69f6a358a0db5e966a59820b6ec17168c976c050
+Canonical Research Content SHA256: 646abdbb4dcdc16a5f4a061ba6ac58184f0c663428dee157db7aa9f2c05e9e3e
+Previous Accepted Revision: D0029
+Frozen D0029: [原文](Revisions/Specialization_Design_Spec_D0029.md)
+Content: [Research D0030](Content/Research_D0030.json) / [三专业审查](../Historical/Design/Reviews/Research_D0030_Review.md)
+
+仅RES_L3_APPLY从不同类型数X改各领域D，沿用既有领域/yield与Shared份额，K显式0.5；其余能力只审查不修改。Shared、Culture D0029、Industry D0027、源码/运行包不变；历史Research保留，不自行改精度。
+
+## Accepted D0029 — 2026-09-17
+
+Acceptance: ACCEPTED / Culture DESIGN_FROZEN; implementation and balance validation pending
+Acceptance Evidence: 用户明确三组Culture边界及CUL-REVIEW-01至04状态；本轮不实现。
+Accepted Spec SHA256: 89c3f72484555610512a932d7006cb6cf53946b5bf0a4d344aa983150941cc94
+Canonical Culture Content SHA256: 00cd612e6765487c003083124b18d9429896f9c9568f01db5ffb4feec520541b
+Previous Accepted Revision: D0028
+Frozen D0028: [原文](Revisions/Specialization_Design_Spec_D0028.md)
+Content: [Culture D0029](Content/Culture_D0029.json) / [Review](../Historical/Design/Reviews/Culture_D0029_Review.md)
+
+见闻original-owner/source-city scope正式确认且收回城市可恢复；Dialogue city scope保留倍率/启动时代额度；来源独立3/3集合先成立再并集；Major资格与战争不中断正式明确，City-State独立Future Candidate。旧D0028条文冻结，Shared/Research/Industry不改；没有数值、能力、Mission或实现变更。
+
+## Accepted D0028 — 2026-09-16
+
+Acceptance: ACCEPTED / Culture body DESIGN_FROZEN; Network merge explicitly deferred; implementation and balance validation pending
+Acceptance Evidence: 用户逐项回答13组边界，明确Research改区域完善度，并确认考察成功保留单位继续考察。
+Accepted Spec SHA256: 5490ac7ec699fe3ed9adc0f3850b8ab8268a0903c4a5dd850bcb0803de1ba5d2
+Canonical Culture Content SHA256: ed16ada45442037207bd736f90b7ec00b293d29316f02382eab7662e4debabf2
+Canonical Shared Content SHA256: 9ce20c5047d525321d5efc025f0578afac25a63f91b75acddefd631cc1f5d05a
+Canonical Research Content SHA256: 372fdd5f6d6687935f8ddf906b6dd365ac7b1f79c72ebee21ba3e04401f4f2e4
+Previous Accepted Revision: D0027
+Frozen D0027: [原文](Revisions/Specialization_Design_Spec_D0027.md)
+Review: [Culture D0028](../Historical/Design/Reviews/Culture_D0028_Review.md)
+
+Culture项目累积/建筑审美/完善度巨作产出与GPP/非敌对考察及国内见闻网络；原Owner记录等暂定标记保留。旧Culture Eureka退出，Research网络待重设计。Shared建筑掠夺默认排除、区域完善度cap10、产出份额独立权威；Research基础设施输入按用户新指令迁入cap10，历史D0026与Industry D0027内容不改。Architecture尚未sync、Mod不变，不将技术接口或多源合并宣称完成。
+
+## Accepted D0027 — 2026-09-15
+
+Acceptance: ACCEPTED / Industry DESIGN_FROZEN; implementation and balance validation pending
+Acceptance Evidence: 用户Industry冻结授权及七项边界明确回复；指定暂沿用规则保持review markers，1360为第五档正确参考。
+Accepted Spec SHA256: 8dc189f80c33c4edbf946869b7835c6473ff6a0be67ee6a01be620fa477c2746
+Canonical Industry Content SHA256: 762648eb6e21edffb179b700451a15bbf25e6e7712d83ab1c616196c509387d0
+Previous Accepted Revision: D0026
+Frozen D0026: [原文](Revisions/Specialization_Design_Spec_D0026.md)
+Content: [Industry](Content/Industry_D0027.json) / [review](../Historical/Design/Reviews/Industry_D0027_Review.md)
+
+Industry机构累计、Lv3标准化/工程动员、Lv4巨构工程学/实践/传统；旧低级网络折扣和IV直接产出、旧施工队范围/解锁被替代。两种效率与曲线/cap/传统门槛BALANCE_REQUIRED，未擅定数值；命名候选不升级。Research D0026原content保持不变，Architecture尚未sync，源码/运行包未改。
+
+## Accepted D0026 — 2026-09-15
+
+Acceptance: ACCEPTED / Research DESIGN_FROZEN; implementation and balance validation pending
+Acceptance Evidence: 用户本轮冻结授权，并确认特色归一/完成未掠夺/未知类型默认排除、同yield相加、逐建筑计值、传统按速度缩放floor、全等级3F3P。
+Accepted Spec SHA256: 1265719810ce087cca1c6ceb28cf7ad4bf2a5ae153c0c358b86af5a90c30996b
+Canonical Research Content SHA256: 14cad8a62621baea8bcf6b5813f83d683aba2d4d18503606196cda2a99a952ff
+Previous Accepted Revision: D0025
+Frozen D0025: [原文](Revisions/Specialization_Design_Spec_D0025.md)
+Content: [Research](Content/Research_D0026.json) / [schema](Content/README.md) / [review](../Historical/Design/Reviews/Research_D0026_Review.md)
+
+仅Research本地等级更新；Network及其它专业不变。机构累计、6个阶段能力与统一领域映射；旧三级人口Science/5F5P与四级旧效果被替换。五组待决已关闭；英文TBD和社区Food候选不阻塞。Architecture仍synced D0025，需后续设计适配审查；本轮未实现、未部署，不升级任何游戏验证状态。
 
 ## Accepted D0025 — 2026-09-13
 

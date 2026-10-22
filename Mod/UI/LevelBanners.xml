@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context>
+<Instance Name="SPCClaimIconInstance">
+ <Container ID="Root" Anchor="R,B" Size="16,16" Hidden="1">
+  <Image ID="Mark" Anchor="C,C" Size="16,16" />
+ </Container>
+</Instance>
+<Instance Name="SPCLevelBannerInstance">
+ <Container ID="Root" Anchor="L,B" AnchorSide="O,I" Offset="4,4" Size="32,37" Hidden="1">
+  <!-- Main badge matches the city-name strip; status segments sit above it. -->
+  <Image ID="Badge" Anchor="C,T" Offset="0,5" Size="32,32" IconSize="32"/>
+  <Container Anchor="L,T" Offset="0,0" Size="7,4">
+   <Box ID="Rim1" Size="7,4" Color="139,221,233,255"/>
+   <Box ID="Fill1" Anchor="C,C" Size="5,2" Color="19,35,55,255"/>
+  </Container>
+  <Container Anchor="L,T" Offset="8,0" Size="7,4">
+   <Box ID="Rim2" Size="7,4" Color="139,221,233,255"/>
+   <Box ID="Fill2" Anchor="C,C" Size="5,2" Color="19,35,55,255"/>
+  </Container>
+  <Container Anchor="L,T" Offset="16,0" Size="7,4">
+   <Box ID="Rim3" Size="7,4" Color="139,221,233,255"/>
+   <Box ID="Fill3" Anchor="C,C" Size="5,2" Color="19,35,55,255"/>
+  </Container>
+  <Container Anchor="L,T" Offset="24,0" Size="7,4">
+   <Box ID="Rim4" Size="7,4" Color="139,221,233,255"/>
+   <Box ID="Fill4" Anchor="C,C" Size="5,2" Color="19,35,55,255"/>
+  </Container>
+ </Container>
+</Instance>
+</Context>

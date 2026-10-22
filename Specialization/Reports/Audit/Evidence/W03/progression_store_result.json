@@ -1,0 +1,85 @@
+{
+  "evidence": "LOCAL_STRUCTURAL_REPRODUCTION",
+  "store_sha256": "d629655cd709d351e4544e721d9bf6b27256120ec4a5a64a4c9866a9c9ed4e6f",
+  "limits": [
+    "Native API/events mocked; no game/save/runtime accessed.",
+    "No engine latency, allocation or memory inference.",
+    "Existing fixture declarations reused; historical test cases not executed."
+  ],
+  "scaling": [
+    {
+      "other_reference_comparisons": 56,
+      "record_visits": 64,
+      "duplicate_turn_extra_uniqueness_scans": 0,
+      "active_ceiling": 1,
+      "duplicate_turn_extra_writes": 0,
+      "records": 8,
+      "tradition_records": 8,
+      "age": 1,
+      "record_writes": 8,
+      "uniqueness_sweeps": 8
+    },
+    {
+      "other_reference_comparisons": 380,
+      "record_visits": 400,
+      "duplicate_turn_extra_uniqueness_scans": 0,
+      "active_ceiling": 1,
+      "duplicate_turn_extra_writes": 0,
+      "records": 20,
+      "tradition_records": 20,
+      "age": 1,
+      "record_writes": 20,
+      "uniqueness_sweeps": 20
+    },
+    {
+      "other_reference_comparisons": 1560,
+      "record_visits": 1600,
+      "duplicate_turn_extra_uniqueness_scans": 0,
+      "active_ceiling": 1,
+      "duplicate_turn_extra_writes": 0,
+      "records": 40,
+      "tradition_records": 40,
+      "age": 1,
+      "record_writes": 40,
+      "uniqueness_sweeps": 40
+    },
+    {
+      "other_reference_comparisons": 39,
+      "record_visits": 40,
+      "duplicate_turn_extra_uniqueness_scans": 0,
+      "active_ceiling": 1,
+      "duplicate_turn_extra_writes": 0,
+      "records": 40,
+      "tradition_records": 1,
+      "age": 1,
+      "record_writes": 1,
+      "uniqueness_sweeps": 1
+    }
+  ],
+  "corruption": [
+    {
+      "load_writes": 0,
+      "control_city_readable": true,
+      "collection_fault": false,
+      "mode": "revision",
+      "control_mock_record_unchanged": true,
+      "broken_city_readable": false
+    },
+    {
+      "load_writes": 0,
+      "control_city_readable": false,
+      "collection_fault": true,
+      "mode": "current_boolean",
+      "control_mock_record_unchanged": true,
+      "broken_city_readable": false
+    }
+  ],
+  "reentrant": {
+    "write_confirmed": false,
+    "callback_readable": true,
+    "persisted_template_during_callback": false,
+    "native_setter_callback_reachability": "NOT_ESTABLISHED",
+    "callback_saw_proposed_template": true,
+    "post_failure_readable": false
+  }
+}

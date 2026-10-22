@@ -2,8 +2,12 @@
 
 Document Owner: Codex
 Work branch: develop
-State: PLANNED — no refactor implemented
+State: A/B/C1/D1 accepted; C2 locally complete; D2 pending; E deferred
 Stable runtime: B069.96 untouched
+
+## Current implementation mainline
+
+A → B → C1 → D1 → C2 → D2 → E. C1/C2 split original C; D1/D2 split original D. [C1 contract](v2/Batch_C1_Discount_Lifecycle.md): Discount request/sample lifecycle only, local regression passed, no deployment. [D1 scan/dirty optimization](v2/Batch_D1_Discount_Propagation.md) is accepted. [C2 Copy/Industry lifecycle](v2/Batch_C2_Copy_Industry_Lifecycle.md) is locally complete, awaiting review. D2 is the next recommendation, not automatically started. Runtime incident evidence remains evidence, not a parallel repair roadmap.
 
 ## Ordered deliverables
 
@@ -25,3 +29,15 @@ High-frequency paths only update fixed-size integer counters. No per-event disk 
 ## Gate
 
 Research identifies measurable batches and tests. Implement on develop only after scope is authorized; coherent local-verification commit and matching branch push even when user test pending. Live develop test needs explicit temporary-switch/restore agreement. No ownership reactivation, balance or speculative optimization in this infrastructure phase.
+
+## 第一轮交付
+
+[AV2-I001当前源码地图与候选批次](v2/README.md)覆盖上述1–3项。4仅记录当前revision/扫描证据以解释依赖；不构建缓存或预算实现。5/6未展开。
+
+## Batch A implementation
+
+[B070.97合同及本地验证](v2/Batch_A_Input_Contract.md)。只实施用户批准的事实版本/发布/撤销；不含shared cache或其它后续批次。未部署；等待用户审核。
+
+## Batch B implementation
+
+[B071.98共享视图与本地回归](v2/Batch_B_Shared_Network.md)。只执行授权Batch B，不部署。下一步等待用户审阅，不自动推进C/D或stable修复。

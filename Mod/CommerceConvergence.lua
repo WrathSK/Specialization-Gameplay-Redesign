@@ -1,13 +1,50 @@
+include('RuntimeWork')
 -- D0024: independently planned, absolute city-layer integer grants.
 SPCCommerceConvergence={}
-function SPCCommerceConvergence.Start(P,shared)
+function SPCCommerceConvergence.Start(P,shared,options)
+ if options and options.retired then
+  local d={retired=true,ready=false,busy=false,errors={},writes=0};shared.CommerceConvergence=d
+  local ids={};for _,y in ipairs({'SCIENCE','CULTURE','PRODUCTION'})do for bit=0,15 do ids[#ids+1]='BUILDING_SPC_B061_'..y..'_'..bit end end
+  function d.Withdraw(c)
+   assert(c and P.IsTestPlayer(c:GetOwner()),'COM_LEGACY_OWNER_UNSUPPORTED')
+   assert(shared.CityProgressionStore.HistoricalReference(c),'COM_LEGACY_REFERENCE_UNKNOWN')
+   local rows={}
+   for _,id in ipairs(ids)do
+    local row=assert(P.Info('Buildings',id),'COM_LEGACY_DEFINITION_UNKNOWN')
+    local has=P.HasBuilding(c:GetBuildings(),row.Index);assert(type(has)=='boolean','COM_LEGACY_PRESENCE_UNKNOWN')
+    rows[#rows+1]={id=row.Index,has=has}
+   end
+   for _,v in ipairs(rows)do if v.has then P.RemoveBuilding(c:GetBuildings(),v.id);assert(P.HasBuilding(c:GetBuildings(),v.id)==false,'COM_LEGACY_REMOVE_UNCONFIRMED');d.writes=d.writes+1 end end
+   return true
+  end
+  function d.Audit(scope)
+   if d.busy then return end;d.busy=true
+   for pid,p in pairs(Players)do if P.IsTestPlayer(pid) and SPCRuntimeWork.Player(scope,pid)then
+    local cs=p:GetCities();if cs then for _,c in cs:Members()do
+     local ok,err=pcall(d.Withdraw,c);d.errors[pid..':'..c:GetID()]=not ok and tostring(err) or nil
+    end end
+   end end
+   d.ready=true;d.busy=false
+  end
+  function d.Control(_,_,action)assert(action=='READ','COM_LEGACY_RETIRED')end
+  function d.Describe()return '旧商业汇聚已退出；当前商业化与商业信誉请查看商业化面板。'end
+  function d.ExperimentalNetworkWithdraw(pid)d.Audit({player=pid});for _,e in pairs(d.errors)do assert(not e,'COM_LEGACY_REMOVE_UNCONFIRMED')end;return true end
+  local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(function()d.Audit()end)end
+  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('CommerceConvergence',function(c,loss)shared.CityProgressionStore.RemoveOwned(c,loss,ids)end)end
+  return
+ end
  local d={busy=false,ready=false,last={},errors={},mode={},testCity={},baseline={},writes=0};shared.CommerceConvergence=d
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
+ local batch
  local ys={'SCIENCE','CULTURE','PRODUCTION'};local map={RESEARCH='SCIENCE',CULTURE='CULTURE',INDUSTRY='PRODUCTION'}
- local function yield(c,y) local n=c:GetYield(P.Info('Yields','YIELD_'..y).Index);assert(type(n)=='number' and n==n and math.abs(n)<math.huge,'CITY_YIELD_INVALID');return n end
- local function facts(pid,c) assert(c and c:GetOwner()==pid,'CITY_OWNER');return shared.EffectiveFacts.Read(pid,c) end
+ local function yield(c,y)
+  local key=c:GetOwner()..':'..c:GetID()..':'..y
+  if batch and batch.yields[key]~=nil then return batch.yields[key] end
+  local n=c:GetYield(P.Info('Yields','YIELD_'..y).Index);assert(type(n)=='number' and n==n and math.abs(n)<math.huge,'CITY_YIELD_INVALID');if batch then batch.yields[key]=n end;return n end
+ local function facts(pid,c) assert(c and c:GetOwner()==pid,'CITY_OWNER');return batch and batch.facts.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
  local function eligible(pid,c) local f=facts(pid,c);return P.IsTestPlayer(pid) and f.specialization=='COMMERCE' and f.active==4 end
  function d.Plan(pid,c)
-  local out={amount={},raw={},source={},basis={},eligible=eligible(pid,c)}
+  local out={amount={},raw={},source={},basis={},eligible=not isolated(pid) and eligible(pid,c)}
   for _,y in ipairs(ys) do out.amount[y]=0;out.raw[y]=0;out.basis[y]=0 end
   if not out.eligible or d.mode[pid]=='OFF' then return out end
   if d.mode[pid]=='TEST5' then
@@ -16,10 +53,25 @@ function SPCCommerceConvergence.Start(P,shared)
   end
   local bridge=shared.NetworkBridge;local b=bridge and bridge.players[pid]
   assert(bridge and bridge.ready and b and b.routes and b.reason=='READY_BACKGROUND_UI','NETWORK_UNAVAILABLE')
-  assert(bridge.Verified(pid),'NETWORK_PENDING')
+  if bridge.Input then assert(bridge.Input(pid).validity=='VERIFIED','NETWORK_PENDING')
+  else assert(bridge.Verified(pid),'NETWORK_PENDING') end
   -- Retain verified topology while a possible addition is revalidated.
+  local routes=b.routes
+  if batch then
+   if not batch.routes[pid] then
+    local index={}
+    for _,r in ipairs(routes) do
+     local op,dp=Players[r.op],Players[r.dp]
+     local a=op and op:GetCities():FindID(r.oc);local z=dp and dp:GetCities():FindID(r.dc)
+     assert(a and z and a:GetOwner()==r.op and z:GetOwner()==r.dp,'ROUTE_ENDPOINT_CHANGED')
+     if r.op==pid and r.dp==pid then index[r.dc]=index[r.dc] or {};index[r.dc][#index[r.dc]+1]=r end
+    end
+    batch.routes[pid]=index
+   end
+   routes=batch.routes[pid][c:GetID()] or {}
+  end
   local seen={}
-  for _,route in ipairs(b.routes) do
+  for _,route in ipairs(routes) do
    assert(Players[route.op] and Players[route.dp],'ROUTE_OWNER_MISSING')
    local origin=Players[route.op]:GetCities():FindID(route.oc);local destination=Players[route.dp]:GetCities():FindID(route.dc)
    assert(origin and destination and origin:GetOwner()==route.op and destination:GetOwner()==route.dp,'ROUTE_ENDPOINT_CHANGED')
@@ -53,15 +105,18 @@ function SPCCommerceConvergence.Start(P,shared)
   end end
   for _,y in ipairs(ys) do assert(observed(c,y)==(amount[y] or 0),'CARRIER_VERIFY_FAILED') end
  end
- function d.Audit() P.Count('audit_commerce');
-  if d.busy then P.Count('busy_skip');return end;d.busy=true
+ function d.Audit(scope)
+  if isolated() then return end
+  P.Count('audit_commerce');
+  if P.Observe then P.Observe('audit','CommerceConvergence') end
+  if d.busy then P.Count('busy_skip');return end;d.busy=true;batch={facts=SPCRuntimeWork.New(P,shared),yields={},routes={}}
   local ok,err=pcall(function()
    if not d.ready then
     for _,p in pairs(Players) do local cs=p:GetCities();if cs then for _,c in cs:Members() do P.Count('city_scan'); apply(c,{}) end end end
     d.ready=true
    end
    local plans={}
-   for pid,p in pairs(Players) do local cs=p:GetCities();if cs then for _,c in cs:Members() do P.Count('city_scan');
+   for pid,p in pairs(Players) do local cs=SPCRuntimeWork.Player(scope,pid) and p:GetCities();if cs then for _,c in cs:Members() do P.Count('city_scan');
     local key=pid..':'..c:GetID();local good,plan=pcall(d.Plan,pid,c)
     plans[#plans+1]={key=key,c=c,plan=good and plan or {amount={}},error=not good and tostring(plan) or nil}
    end end end
@@ -71,16 +126,46 @@ function SPCCommerceConvergence.Start(P,shared)
     d.last[x.key]=good and x.plan or nil
    end
   end)
-  d.busy=false;d.error=not ok and tostring(err) or nil
+  d.busy=false;batch=nil;d.error=not ok and tostring(err) or nil
   if not ok then print('[SPC][B062] '..tostring(err)) end
  end
  function d.Control(pid,c,action)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'CONTROL_OWNER')
   if action=='READ' then return end
+  assert(not isolated(pid),'NETWORK_ISOLATION_ACTIVE')
   assert(action=='OFF' or action=='AUTO' or action=='TEST5','CONTROL_ACTION')
   d.mode[pid]=action;d.testCity[pid]=action=='TEST5' and c:GetID() or nil
   d.Audit()
   if action=='OFF' then local base={};for _,y in ipairs(ys) do base[y]=yield(c,y) end;d.baseline[pid..':'..c:GetID()]=base end
+ end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function d.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not d.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  d.busy=true
+  local ok,why=pcall(function()
+   local ids={};for _,y in ipairs(ys) do for bit=0,15 do ids[#ids+1]='BUILDING_SPC_B061_'..y..'_'..bit end end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
+   end
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);d.writes=d.writes+1 end
+    end
+   end
+   for _,c in cities:Members() do local key=pid..':'..c:GetID();d.last[key]=nil;d.errors[key]=nil;d.baseline[key]=nil end
+   d.mode[pid]=nil;d.testCity[pid]=nil
+  end)
+  d.busy=false;d.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
  end
  function d.Describe(pid,c)
   local key=pid..':'..c:GetID();local old=d.last[key];local good,current=pcall(d.Plan,pid,c)
@@ -99,7 +184,24 @@ function SPCCommerceConvergence.Start(P,shared)
   rows[#rows+1]='网络：'..tostring(b and b.reason)..' | 当前/样本回合='..Game.GetCurrentGameTurn()..'/'..tostring(b and b.turn)
   return table.concat(rows,'\n')
  end
- local function hook(t,name) local e=P.Field(t,name);if e and e.Add then e.Add(d.Audit) end end
- for _,name in ipairs({'LoadScreenClose','PlayerTurnActivated','PlayerTurnDeactivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','CityWorkerChanged','CityPopulationChanged','CityFocusChanged','CityTransfered'}) do hook(Events,name) end
+ -- Native city yield can change when another specialization actually writes a carrier.
+ -- Generic pulse reads one scalar; no output change means no Audit or native read.
+ local seenOutput=ExposedMembers.SPC_RuntimeUIRevision or 0
+ local function outputChanged()
+  local now=ExposedMembers.SPC_RuntimeUIRevision or 0
+  if now==seenOutput then return end
+  seenOutput=now;d.Audit();seenOutput=ExposedMembers.SPC_RuntimeUIRevision or 0
+ end
+ for _,n in ipairs({'GameCoreEventPublishComplete','GameCoreEventPlaybackComplete'}) do
+  local e=P.Field(Events,n);if e and e.Add then e.Add(outputChanged) end
+ end
+ local function hook(t,name) local e=P.Field(t,name);if e and e.Add then SPCRuntimeWork.Hook(P,t,name,d.Audit) end end
+ for _,name in ipairs({'LoadScreenClose','PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','CityWorkerChanged','CityPopulationChanged','CityFocusChanged','CityTransfered','BuildingAddedToMap','BuildingRemovedFromMap','CityProductionCompleted','CityTileOwnershipChanged','GovernmentPolicyChanged','GovernmentChanged','ResearchCompleted','CivicCompleted'}) do hook(Events,name) end
  for _,name in ipairs({'CityBuilt','OnBuildingConstructed','OnDistrictConstructed'}) do hook(GameEvents,name) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('CommerceConvergence',function(c,loss)
+   local ids={};for _,y in ipairs(ys)do for bit=0,15 do ids[#ids+1]='BUILDING_SPC_B061_'..y..'_'..bit end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

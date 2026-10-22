@@ -1,0 +1,83 @@
+{
+  "evidence": "LOCAL_STRUCTURAL_REPRODUCTION",
+  "scope": "Actual unchanged Store and named native event handlers; no native game/runtime/saves accessed.",
+  "source": {
+    "Mod/CityProgressionStore.lua": "d629655cd709d351e4544e721d9bf6b27256120ec4a5a64a4c9866a9c9ed4e6f",
+    "Mod/CityIdentityRead.lua": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",
+    "Mod/Probe.lua": "6474606f9541247b3677ed531ef964138133acdcdf5562be03984455ec415846",
+    "DevelopmentTests/test_p0_e1.py": "d80735ad2b70ae5566265a0a95f6721a501e120935569bca4aa054bbc0979439",
+    "DevelopmentTests/test_p0_e2.py": "17434ac28743492833dbe610ba787fa2d5b8d9d543256dd6ff79e7597c28877b",
+    "DevelopmentTests/test_b108_e2_multicity.py": "3145a295b1035f9a1ee500a251437e3b917b5cb08f4c86e4ff9cea0840a25111",
+    "Specialization/Reports/Audit/Evidence/W03/progression_store_reproduction.py": "d8585de5beb42fad71ab26c792d8f370694d1a601b77312c3f9fa2aaf3e8eba5"
+  },
+  "script_sha256": "7d37b8edee26b7a206cd4d48b3759eaf1c3282120e854048a1420bb23d656d17",
+  "scale": [
+    {
+      "permanent_writes": 0,
+      "limits": "Counts native function entries only; mocked lookup implementation cost excluded.",
+      "unrelated_foreign_transfer_city_lookups": 1,
+      "registered_records": 1
+    },
+    {
+      "permanent_writes": 0,
+      "limits": "Counts native function entries only; mocked lookup implementation cost excluded.",
+      "unrelated_foreign_transfer_city_lookups": 4,
+      "registered_records": 4
+    },
+    {
+      "permanent_writes": 0,
+      "limits": "Counts native function entries only; mocked lookup implementation cost excluded.",
+      "unrelated_foreign_transfer_city_lookups": 20,
+      "registered_records": 20
+    },
+    {
+      "permanent_writes": 0,
+      "limits": "Counts native function entries only; mocked lookup implementation cost excluded.",
+      "unrelated_foreign_transfer_city_lookups": 40,
+      "registered_records": 40
+    }
+  ],
+  "unknown": [
+    {
+      "load_does_not_reconstruct_loss": true,
+      "limits": "AuditExit callback is a stub; no actual effect residual or native incident measured.",
+      "native_timing_reachability": "NOT_ESTABLISHED",
+      "current_facts_readable": false,
+      "saved_loss_after_initialized": false,
+      "exit_calls_before_repeat": 0,
+      "stage_after_later_initialized": "ACTIVE",
+      "mode": "NIL_LOOKUP",
+      "repeated_matching_transfer_recovers": true,
+      "exit_calls_after_repeat": 1
+    },
+    {
+      "load_does_not_reconstruct_loss": true,
+      "limits": "AuditExit callback is a stub; no actual effect residual or native incident measured.",
+      "native_timing_reachability": "NOT_ESTABLISHED",
+      "current_facts_readable": false,
+      "saved_loss_after_initialized": false,
+      "exit_calls_before_repeat": 0,
+      "stage_after_later_initialized": "ACTIVE",
+      "mode": "THROW_LOOKUP",
+      "repeated_matching_transfer_recovers": true,
+      "exit_calls_after_repeat": 1
+    },
+    {
+      "load_does_not_reconstruct_loss": true,
+      "limits": "AuditExit callback is a stub; no actual effect residual or native incident measured.",
+      "native_timing_reachability": "NOT_ESTABLISHED",
+      "current_facts_readable": false,
+      "saved_loss_after_initialized": false,
+      "exit_calls_before_repeat": 0,
+      "stage_after_later_initialized": "ACTIVE",
+      "mode": "OLD_REFERENCE",
+      "repeated_matching_transfer_recovers": true,
+      "exit_calls_after_repeat": 1
+    }
+  ],
+  "limits": [
+    "Native events/Property/objects are explicit mocks; loops do not establish engine frequency/latency or allocation.",
+    "The fixture GetCityAt internally scans mocked cities; that fixture cost is not a production complexity measurement.",
+    "Delayed readable and replayed Transfer are injected; no assumption that engine delivers either sequence."
+  ]
+}

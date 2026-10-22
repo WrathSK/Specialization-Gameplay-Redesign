@@ -1,0 +1,37 @@
+-- B263: Chinese primary shell copy in both supported display languages.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text)
+SELECT Language,Tag,Text FROM
+ (SELECT 'zh_Hans_CN' AS Language UNION ALL SELECT 'en_US') CROSS JOIN
+ (SELECT 'LOC_SPC_AMERICA_NAME' AS Tag,'美国（专业测试）' AS Text
+ UNION ALL SELECT 'LOC_SPC_AMERICA_DESCRIPTION','美国（专业测试）'
+ UNION ALL SELECT 'LOC_SPC_AMERICA_ADJECTIVE','美国'
+ UNION ALL SELECT 'LOC_SPC_ROOSEVELT_NAME','罗斯福（进步党·专业测试）'
+ UNION ALL SELECT 'LOC_SPC_SYSTEM_NAME','城市专业化'
+ UNION ALL SELECT 'LOC_SPC_SYSTEM_DESCRIPTION','可使用科研、文化、商业和工业专业系统。各专业的机构、投资与网络能力按专业规则启用。'
+ UNION ALL SELECT 'LOC_SPC_BLANK_LEADER_NAME','专业测试领袖'
+ UNION ALL SELECT 'LOC_SPC_BLANK_LEADER_DESCRIPTION','采用罗斯福（进步党）的外观与人物介绍，不拥有美国或罗斯福的特色能力、特色单位和特色建筑。'
+ UNION ALL SELECT 'LOC_SPC_ABILITY_NAME','城市专业化'
+ UNION ALL SELECT 'LOC_SPC_ABILITY_DESCRIPTION','可使用科研、文化、商业和工业专业系统。各专业的机构、投资与网络能力按专业规则启用。');
+-- Clone only localized historical biography, not strategy text claiming native powers.
+-- Runtime localization references reuse the installed Chinese text without publishing it.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text)
+SELECT Language,REPLACE(Tag,'LEADER_T_ROOSEVELT','LEADER_SPC_T_ROOSEVELT'),Text
+FROM LocalizedText
+WHERE Language='zh_Hans_CN'
+ AND Tag GLOB 'LOC_PEDIA_LEADERS_PAGE_LEADER_T_ROOSEVELT_CHAPTER_HISTORY_*';
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text)
+SELECT Language,REPLACE(Tag,'CIVILIZATION_AMERICA','CIVILIZATION_SPC_AMERICA'),Text
+FROM LocalizedText
+WHERE Language='zh_Hans_CN'
+ AND Tag GLOB 'LOC_PEDIA_CIVILIZATIONS_PAGE_CIVILIZATION_AMERICA_CHAPTER_HISTORY_*';
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text)
+SELECT 'en_US',Tag,Text FROM LocalizedText WHERE Language='zh_Hans_CN'
+ AND (Tag GLOB 'LOC_PEDIA_LEADERS_PAGE_LEADER_SPC_T_ROOSEVELT_CHAPTER_HISTORY_*'
+ OR Tag GLOB 'LOC_PEDIA_CIVILIZATIONS_PAGE_CIVILIZATION_SPC_AMERICA_CHAPTER_HISTORY_*');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text)
+SELECT Language,Tag,Text FROM
+ (SELECT 'zh_Hans_CN' AS Language UNION ALL SELECT 'en_US') CROSS JOIN
+ (SELECT 'LOC_PEDIA_LEADERS_PAGE_LEADER_SPC_T_ROOSEVELT_TITLE' AS Tag,'罗斯福（进步党·专业测试）' AS Text
+ UNION ALL SELECT 'LOC_PEDIA_LEADERS_PAGE_LEADER_SPC_T_ROOSEVELT_CHAPTER_CAPSULE_BODY','罗斯福（进步党）的专业测试版本。'
+ UNION ALL SELECT 'LOC_PEDIA_LEADERS_PAGE_LEADER_SPC_T_ROOSEVELT_CHAPTER_DETAILED_BODY','本领袖不拥有美国或罗斯福的特色能力、特色单位和特色建筑。可通过城市专业化使用科研、文化、商业和工业专业系统。'
+ UNION ALL SELECT 'LOC_PEDIA_CIVILIZATIONS_PAGE_CIVILIZATION_SPC_AMERICA_TITLE','美国（专业测试）');

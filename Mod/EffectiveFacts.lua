@@ -14,20 +14,23 @@ function SPCEffectiveFacts.Start(P,shared)
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
   local f=shared.CityFlowProbe.SupportFacts(pid,city)
   assert(f.owner==pid and f.cityID==city:GetID() and type(f.token)=='string','EFFECTIVE_FOUNDATION_IDENTITY')
-  local ledger=city:GetProperty(KEY)
+  local store=shared.CityProgressionStore
+  local ledger
+  if store and store.Owns(city) then ledger=store.Investment(pid,city) else ledger=city:GetProperty(KEY) end
   local n=0
   if f.specialization=='NONE' then
-   assert(f.potential==0 and ledger==nil,'UNASSIGNED_INVESTMENT_CONFLICT')
+   assert(ledger==nil and (f.potential==0 or f.restructuring and (f.progression=='REALLOCATING' or f.progression=='CONSUMING') and f.potential>=1 and f.potential<=3),'UNASSIGNED_INVESTMENT_CONFLICT')
   else
-   assert(kinds[f.specialization] and f.potential==1 and type(f.first)=='table','EFFECTIVE_FOUNDATION_INVALID')
+   assert(kinds[f.specialization] and (f.potential==1 or f.restructuring and f.potential>=1 and f.potential<=3) and type(f.first)=='table','EFFECTIVE_FOUNDATION_INVALID')
    if ledger~=nil then
-    local anchor={owner=pid,cityID=f.cityID,token=f.token,first=clone(f.first),specialization=f.specialization}
+    -- Comparison only: borrow first here; the returned facts below still deep-copy it.
+    local anchor={owner=pid,cityID=f.cityID,token=f.token,first=f.first,specialization=f.specialization}
     assert(type(ledger)=='table' and ledger.schema==1 and same(ledger.anchor,anchor),'INVESTMENT_ANCHOR_CHANGED')
     assert(type(ledger.investments)=='table','INVESTMENT_LEDGER_INVALID')
     local units={}
     for receipt,unit in pairs(ledger.investments) do
      assert(type(receipt)=='string' and #receipt>0 and type(unit)=='string' and #unit>0 and not units[unit],'INVESTMENT_RECEIPT_INVALID')
-     units[unit]=true;n=n+1;assert(n<=3,'INVESTMENT_CAP_EXCEEDED')
+     units[unit]=true;n=n+1;assert(n+f.potential<=4,'INVESTMENT_CAP_EXCEEDED')
     end
     assert(ledger.revision==1+n,'INVESTMENT_REVISION_INVALID')
     if ledger.pending~=nil then
@@ -36,7 +39,7 @@ function SPCEffectiveFacts.Start(P,shared)
       and type(op.unitID)=='number' and op.unitID>=0 and op.unitID%1==0
       and op.owner==pid and op.cityUID==f.token and op.expectedRevision==ledger.revision
       and type(op.receipt)=='string' and #op.receipt>0 and type(op.unitUID)=='string' and #op.unitUID>0
-      and not ledger.investments[op.receipt] and not units[op.unitUID] and n<3,'INVESTMENT_PENDING_INVALID')
+      and not ledger.investments[op.receipt] and not units[op.unitUID] and n+f.potential<4,'INVESTMENT_PENDING_INVALID')
     end
    end
   end
@@ -44,17 +47,21 @@ function SPCEffectiveFacts.Start(P,shared)
   out.investmentCount=n;out.investmentPending=ledger and ledger.pending~=nil or false
   out.ledgerStatus=ledger and 'PRESENT' or 'ABSENT_NO_WRITES'
   out.active=out.potential;out.activeStatus='KNOWN'
-  if out.potential>1 then
-   local gate=P.CityRoleFacts(city)
-   if gate.owner==pid and gate.cityID==f.cityID and gate.governorGateStatus=='KNOWN'
-    and type(gate.governorLevelCeiling)=='number' and gate.governorLevelCeiling%1==0
-    and gate.governorLevelCeiling>=1 and gate.governorLevelCeiling<=4 then
-    out.active=math.min(out.potential,gate.governorLevelCeiling)
+  if f.specialization=='NONE' then out.active=0
+  elseif out.potential>1 then
+   local gateOwner,gateCityID,gateStatus,ceiling=P.GovernorGate(city)
+   if gateOwner==pid and gateCityID==f.cityID and gateStatus=='KNOWN'
+    and type(ceiling)=='number' and ceiling%1==0 and ceiling>=1 and ceiling<=4 then
+    out.active=math.min(out.potential,ceiling)
    else out.active=nil;out.activeStatus='UNKNOWN_GOVERNOR' end
   end
   return out
  end
  function data.Describe(pid,city)
+  local store=shared.CityProgressionStore
+  local failure=store and store.FailureReport and store.FailureReport()
+  if failure then return failure end
+  if store and city and store.Owns and not store.Owns(city) then return store.Describe(pid,city) end
   local ok,result=pcall(function()
    local f=data.Read(pid,city)
    return 'B033 city='..f.cityID..' | '..f.specialization
@@ -63,6 +70,8 @@ function SPCEffectiveFacts.Start(P,shared)
     ..'\nLedger='..f.ledgerStatus
     ..'\nRead only. Lv2 housing/GPP automatic; inspect native city and Great People UI.'
   end)
-  return ok and result or ('B033 progression UNKNOWN: '..tostring(result))
+  if ok then return result end
+  local reason=tostring(result):match('[^\r\n]+') or 'UNKNOWN';reason=reason:gsub('^.-:%d+: ','')
+  return '城市专业暂不可读\n原因：'..reason..'\n未推断或重建专业历史；请保留报告。'
  end
 end

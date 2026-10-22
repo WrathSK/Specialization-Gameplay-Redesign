@@ -1,0 +1,52 @@
+{
+  "evidence": "LOCAL_STRUCTURAL_REPRODUCTION",
+  "limits": [
+    "Actual unchanged Store/Standardization; one explicitly stubbed catalog and native presence/Property/event objects.",
+    "NIL/throw are controlled faults, not observed native behavior; reliable-empty versus uninitialized tested, no whole catalog coverage."
+  ],
+  "source": {
+    "Mod/Standardization.lua": "b1e6c7684f50839761c4a03a0056a57dc65fc26e2e9b3d99cf700b13ee59c921",
+    "Mod/CityProgressionStore.lua": "d629655cd709d351e4544e721d9bf6b27256120ec4a5a64a4c9866a9c9ed4e6f",
+    "Mod/CityIdentityRead.lua": "44bf458b0a700f0f198bdb1b1d5d93842e39738c1a31c82475631fc4893fc3c1",
+    "Specialization/Reports/Audit/Evidence/W03/progression_store_reproduction.py": "d8585de5beb42fad71ab26c792d8f370694d1a601b77312c3f9fa2aaf3e8eba5"
+  },
+  "script_sha256": "7cab98b303e391a6ff930a5ddcb5f7c87eec7327981f35349141d0aea5dd411b",
+  "cases": [
+    {
+      "total_presence_reads": 1,
+      "initial_reconcile_pending": false,
+      "native_nil_reachability": "NOT_ESTABLISHED",
+      "mode": "KNOWN_TRUE",
+      "coldboot_count": 1,
+      "initial_ledger_count": 1,
+      "coldboot_extra_writes": 0,
+      "initial_lifecycle": "INITIALIZED",
+      "coldboot_scans": 0,
+      "after_readable_discover_count": 1
+    },
+    {
+      "total_presence_reads": 1,
+      "initial_reconcile_pending": false,
+      "native_nil_reachability": "NOT_ESTABLISHED",
+      "mode": "NIL_PRESENCE",
+      "coldboot_count": 0,
+      "initial_ledger_count": 0,
+      "coldboot_extra_writes": 0,
+      "initial_lifecycle": "INITIALIZED",
+      "coldboot_scans": 0,
+      "after_readable_discover_count": 0
+    },
+    {
+      "total_presence_reads": 2,
+      "initial_reconcile_pending": true,
+      "native_nil_reachability": "NOT_ESTABLISHED",
+      "mode": "THROW_PRESENCE",
+      "coldboot_count": 1,
+      "initial_ledger_count": -1,
+      "coldboot_extra_writes": 0,
+      "initial_lifecycle": "UNINITIALIZED",
+      "coldboot_scans": 0,
+      "after_readable_discover_count": 1
+    }
+  ]
+}

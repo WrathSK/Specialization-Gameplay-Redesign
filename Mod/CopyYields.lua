@@ -1,3 +1,5 @@
+include('RuntimeWork')
+include('SampleLifecycle')
 -- B051: absolute city-layer copy yields. No permanent design facts or history-derived routes.
 SPCCopyYields={}
 function SPCCopyYields.Plan(amount,pop)
@@ -10,57 +12,80 @@ function SPCCopyYields.Plan(amount,pop)
  end
  return {integer=integer,bit=bit,coefficient=coefficient,amount=amount}
 end
-function SPCCopyYields.Start(P,shared)
- local data={ready=false,busy=false,generation=0,samples={},seq={},receiveErrors={},errors={},last={},changes=0};shared.CopyYields=data
- local function integer(n) return type(n)=='number' and n>=0 and n%1==0 end
- local function city(pid,id) local c=Players[pid]:GetCities():FindID(id);assert(c and c:GetOwner()==pid,'COPY_CITY_OWNER');return c end
- local function currentDistricts(pid)
-  local out={}
-  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
-   local c=d:GetCity();local row=P.Info('Districts',d:GetType())
-   if c and c:GetOwner()==pid and d:IsComplete() and row then
-    out[c:GetID()..':'..d:GetID()]={cityID=c:GetID(),id=d:GetID(),type=row.DistrictType}
+function SPCCopyYields.Start(P,shared,options)
+ if options and options.retired then
+  local d={retired=true,ready=false,errors={},changes=0};shared.CopyYields=d
+  local rows
+  function d.Withdraw(c)
+   if not rows then
+    rows={};for _,part in ipairs({'POS','NEG','POP'})do
+     for bit=0,(part=='POP' and 7 or 15)do
+      local r=assert(P.Info('Buildings','BUILDING_SPC_B051_PRODUCTION_'..part..'_'..bit),'STD_OLD_COPY_ROW')
+      assert(r.InternalOnly==1 or r.InternalOnly==true,'STD_OLD_COPY_NOT_INTERNAL');rows[#rows+1]=r.Index
+     end
+    end
    end
+   local b=c:GetBuildings()
+   for _,id in ipairs(rows)do
+    local has=P.HasBuilding(b,id);assert(type(has)=='boolean','STD_OLD_COPY_UNKNOWN')
+    if has then P.RemoveBuilding(b,id);assert(P.HasBuilding(b,id)==false,'STD_OLD_COPY_REMOVE');d.changes=d.changes+1 end
+   end
+   return true
   end
-  return out
+  function d.Audit()return false,'STD_LEGACY_RETIRED'end
+  d.Receive=d.Audit
+  function d.Describe()return '旧工业区域生产力复制已退出。基础专家支持和公共网络保留。'end
+  return
  end
+ local batch
+ local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
+ local data={ready=false,busy=false,generation=0,samples={},seq={},receiveErrors={},errors={},last={},changes=0};shared.CopyYields=data
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
+ SPCSampleLifecycle.Reset(data,'copy')
+ local function currentDistricts(pid) return batch and batch.Live(pid,false) or SPCSampleLifecycle.Live(P,pid,false) end
  local function sample(pid)
-  local s=data.samples[pid];assert(s and s.turn==Game.GetCurrentGameTurn(),'COPY_BACKGROUND_PENDING')
-  local live=currentDistricts(pid)
-  for key,d in pairs(live) do assert(s.rows[key] and s.rows[key].type==d.type,'COPY_DISTRICT_SET_CHANGED') end
-  for key in pairs(s.rows) do assert(live[key],'COPY_DISTRICT_SET_CHANGED') end
-  return s.rows
+  if batch and batch.copyRows and batch.copyRows[pid] then return batch.copyRows[pid] end
+  local s=data.samples[pid];assert(s,'COPY_BACKGROUND_PENDING')
+  local live=currentDistricts(pid);local rows={}
+  local retired=false
+  for key,r in pairs(s.rows) do if not live[key] or live[key].reference~=r.reference then retired=true end end
+  for key,d in pairs(live) do
+   local r=s.rows[key];assert(r or retired,'COPY_BACKGROUND_PENDING')
+   -- Changed reference is confirmed loss of that old observation, not a reusable value.
+   if r and r.reference==d.reference then rows[key]=r end
+  end
+  if batch then batch.copyRows=batch.copyRows or {};batch.copyRows[pid]=rows end
+  return rows
  end
  local function target(pid,c,y)
+  if isolated(pid) then return 0 end
   if not P.IsTestPlayer(pid) or c:GetOwner()~=pid then return 0 end
-  local f=shared.EffectiveFacts.Read(pid,c)
-  if y=='SCIENCE' then
-   if f.specialization~='RESEARCH' or f.active~=4 then return 0 end
-   local rows=sample(pid);local sum=0;local anchor=false
-   for _,d in pairs(rows) do if d.cityID==c:GetID() then
-    if d.id==f.first.districtID and d.type==f.first.type and d.type=='DISTRICT_CAMPUS' then anchor=true end
-    if d.type~='DISTRICT_CAMPUS' then
-     sum=sum+d.total
-    end
-   end end
-   assert(anchor,'COPY_RESEARCH_ANCHOR');return sum*0.5
+  local f=readFacts(pid,c)
+  assert(type(f.specialization)=='string' and type(f.active)=='number','COPY_FACTS_UNAVAILABLE')
+  local ok,ids=pcall(shared.NetworkBridge.CurrentRecipientSources or shared.NetworkBridge.RecipientSources,pid,c,'INDUSTRY')
+  if not ok then
+   local b=shared.NetworkBridge.players and shared.NetworkBridge.players[pid]
+   if b and b.validity=='CONFIRMED_INVALID' then return 0 end
+   error(ids)
   end
-  local ids=shared.NetworkBridge.RecipientSources(pid,c,'INDUSTRY')
   if #ids==0 then return 0 end
   local best=0;local rows
   for _,id in ipairs(ids) do
-   local source=city(pid,id);local sf=shared.EffectiveFacts.Read(pid,source)
+   local source=Players[pid]:GetCities():FindID(id)
+   if source and source:GetOwner()==pid then
+   local sf=readFacts(pid,source)
+   assert(type(sf.specialization)=='string' and type(sf.active)=='number','COPY_FACTS_UNAVAILABLE')
    if sf.specialization=='INDUSTRY' and sf.active==4 then
     rows=rows or sample(pid);local d=rows[id..':'..sf.first.districtID]
-    assert(d and d.type=='DISTRICT_INDUSTRIAL_ZONE' and sf.first.type==d.type,'COPY_INDUSTRY_ANCHOR')
-    best=math.max(best,d.production*0.5)
+    if d and d.type=='DISTRICT_INDUSTRIAL_ZONE' and sf.first.type==d.type then best=math.max(best,d.production*0.5) end
+   end
    end
   end
   return best
  end
  local function row(y,mode,bit) return assert(P.Info('Buildings','BUILDING_SPC_B051_'..y..'_'..mode..'_'..bit),'B051_DATABASE_MISSING') end
- local function reconcile(c,y,plan)
-  local b=c:GetBuildings()
+ local function reconcile(c,y,plan,confirmed)
+  local b=c:GetBuildings();local removed=false
   for _,add in ipairs({false,true}) do for _,mode in ipairs({'POS','NEG','POP'}) do
    for bit=0,(mode=='POP' and 7 or 15) do
     local n=plan.integer;local want=mode=='POP' and plan.bit==bit or
@@ -70,61 +95,79 @@ function SPCCopyYields.Start(P,shared)
     if want==add then
      local id=row(y,mode,bit).Index;local has=P.HasBuilding(b,id);assert(type(has)=='boolean','COPY_CARRIER_UNKNOWN')
      if has~=want then
-      if want then P.CreateBuilding(c:GetBuildQueue(),id) else P.RemoveBuilding(b,id) end
+      if want then P.CreateBuilding(c:GetBuildQueue(),id) else P.RemoveBuilding(b,id);removed=true end
       assert(P.HasBuilding(b,id)==want,'COPY_WRITE_UNCONFIRMED');data.changes=data.changes+1
      end
     end
    end
   end end
+  if removed and plan.amount==0 and confirmed then P.Count('copy_withdraw') end
  end
- function data.Audit() P.Count('audit_copy');
-  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true
-  for pid,p in pairs(Players) do if P.IsTestPlayer(pid) then
+ function data.Audit(scope)
+  if isolated() then return end
+  P.Count('audit_copy');
+  if P.Observe then P.Observe('audit','CopyYields') end
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  for pid,p in pairs(Players) do if P.IsTestPlayer(pid) and SPCRuntimeWork.Player(scope,pid) then
    local ok,why=pcall(function()
-    for _,c in p:GetCities():Members() do P.Count('city_scan'); for _,y in ipairs({'SCIENCE','PRODUCTION'}) do
+    for _,c in p:GetCities():Members() do P.Count('city_scan'); for _,y in ipairs({'PRODUCTION'}) do
      local key=pid..':'..c:GetID()..':'..y
      local good,plan=pcall(function() return SPCCopyYields.Plan(target(pid,c,y),c:GetPopulation()) end)
      local reason=not good and tostring(plan) or nil
-     if not good then plan=SPCCopyYields.Plan(0,1) end
-     local wrote,err=pcall(reconcile,c,y,plan)
+     local precision=reason and (reason:find('COPY_PRECISION_UNSUPPORTED',1,true) or reason:find('COPY_POPULATION_UNSUPPORTED',1,true))
+     if not good and precision then plan=SPCCopyYields.Plan(0,1) end
+     local wrote,err=false,nil
+     if good or precision then wrote,err=pcall(reconcile,c,y,plan,good) end
      data.errors[key]=reason or (not wrote and tostring(err) or nil)
-     data.last[key]=wrote and plan or nil
+     if wrote then data.last[key]=plan end
     end end
    end)
    if not ok then print('[SPC][B051][AUDIT_ERROR] '..tostring(why)) end
   end end
-  data.busy=false
+  data.busy=false;batch=nil
  end
  function data.Receive(pid,p)
-  if not data.ready or p.Generation~=data.generation or not P.IsTestPlayer(pid) or not integer(p.Seq) or p.Seq<=(data.seq[pid] or -1) then return end
-  data.seq[pid]=p.Seq;data.samples[pid]=nil
-  local ok,err=pcall(function()
-   assert(p.Turn==Game.GetCurrentGameTurn() and p.Valid==1,'COPY_SAMPLE_INVALID')
-   assert(type(p.Data)=='string' and #p.Data<=60000,'COPY_SAMPLE_SIZE')
-   local live=currentDistricts(pid);local rows={};local count=0
-   for line in p.Data:gmatch('[^;]+') do
-    local a,b,total,prod=line:match('^(%d+),(%d+),([^,]+),([^,]+)$');a=tonumber(a);b=tonumber(b);total=tonumber(total);prod=tonumber(prod)
-    assert(a and b and type(total)=='number' and type(prod)=='number' and total==total and prod==prod and math.abs(total)<1e8 and math.abs(prod)<1e8,'COPY_ROW_INVALID')
-    local key=a..':'..b;local d=assert(live[key],'COPY_STALE_DISTRICT');assert(not rows[key],'COPY_DUPLICATE')
-    rows[key]={cityID=a,id=b,type=d.type,total=total,production=prod};count=count+1;assert(count<=512,'COPY_ROW_LIMIT')
+  if isolated(pid) then return end
+  if SPCSampleLifecycle.Receive(P,data,'copy',pid,p,false) then data.Audit({player=pid}) end
+ end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function data.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not data.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  data.busy=true
+  local ok,why=pcall(function()
+   local ids={};for _,mode in ipairs({'POS','NEG','POP'}) do for bit=0,(mode=='POP' and 7 or 15) do ids[#ids+1]='BUILDING_SPC_B051_PRODUCTION_'..mode..'_'..bit end end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
    end
-   assert(count==p.Count,'COPY_PARTIAL_BATCH')
-   for key in pairs(live) do assert(rows[key],'COPY_PARTIAL_BATCH') end
-   data.samples[pid]={turn=p.Turn,rows=rows}
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);data.changes=data.changes+1 end
+    end
+   end
+   data.samples[pid]=nil;data.seq[pid]=nil;data.responses[pid]=nil;data.receiveErrors[pid]=nil
+   for _,c in cities:Members() do local key=pid..':'..c:GetID()..':PRODUCTION';data.last[key]=nil;data.errors[key]=nil end
   end)
-  data.receiveErrors[pid]=not ok and tostring(err) or nil
-  if not ok then print('[SPC][B051][SAMPLE_ERROR] '..tostring(err)) end
-  data.Audit()
+  data.busy=false;data.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
  end
  function data.Describe(pid,c)
   local lines={'B051.67自动复制 | city='..c:GetID()..' | 人口='..c:GetPopulation()}
-  local function code(err) return tostring(err):match('COPY_[A-Z_]+') or tostring(err):match('B051_[A-Z_]+') or tostring(err):match('NETWORK_[A-Z_]+') or 'COPY_GAMEPLAY_EXCEPTION' end
+  local function code(err) return tostring(err):match('COPY_[A-Z_]+') or tostring(err):match('SAMPLE_[A-Z_]+') or tostring(err):match('B051_[A-Z_]+') or tostring(err):match('NETWORK_[A-Z_]+') or 'COPY_GAMEPLAY_EXCEPTION' end
   local bg=ExposedMembers.SPC_CopyBackground
   local s=data.samples[pid]
   lines[#lines+1]='后台='..(bg and tostring(bg.state) or '未启动')..' | 请求='..(bg and tostring(bg.requests) or '0')..' | 接收序号='..tostring(data.seq[pid] or '无')..' | 有效批次='..(s and tostring(s.turn) or '无')
   if bg and bg.error then lines[#lines+1]='后台原因：'..bg.error end
   if data.receiveErrors[pid] then lines[#lines+1]='接收原因：'..code(data.receiveErrors[pid]) end
-  for _,y in ipairs({'SCIENCE','PRODUCTION'}) do
+  for _,y in ipairs({'PRODUCTION'}) do
    local key=pid..':'..c:GetID()..':'..y;local plan=data.last[key];local err=data.errors[key]
    local good,n=pcall(target,pid,c,y)
    lines[#lines+1]=y..' 本项预期='..(good and tostring(n) or '暂不可判断')..' | 已配置='..(plan and tostring(plan.amount) or '未知')
@@ -132,7 +175,7 @@ function SPCCopyYields.Start(P,shared)
     print('[SPC][B051][DETAIL] '..err)
     lines[#lines+1]='本项原因：'..code(err)
     local message=err:find('PRECISION_UNSUPPORTED',1,true) and '数值不是支持的半点倍数/超出范围，未取整。' or
-     (err:find('SCOPE_UNRESOLVED',1,true) and '存在范围未确认区域，未发放部分结果。' or '当前数据/资格未就绪，本项已尝试撤销；详情见日志。')
+     (err:find('SCOPE_UNRESOLVED',1,true) and '存在范围未确认区域，未发放部分结果。' or '当前数据暂不可用时保留已验证收益；确认失效才撤销，详情见日志。')
     lines[#lines+1]=message
    end
   end
@@ -144,14 +187,23 @@ function SPCCopyYields.Start(P,shared)
  local function hook(source,n,f) local e=P.Field(source,n);if e and e.Add then e.Add(f) end end
  -- Only lifecycle cleanup visits ineligible owners; no periodic specialization work for them.
  local function cleanupDormant()
+  if isolated() then return end
   for pid,p in pairs(Players) do if not P.IsTestPlayer(pid) then
    local ok,err=pcall(function() for _,c in p:GetCities():Members() do P.Count('city_scan');
-    for _,y in ipairs({'SCIENCE','PRODUCTION'}) do reconcile(c,y,SPCCopyYields.Plan(0,1)) end
+    for _,y in ipairs({'PRODUCTION'}) do reconcile(c,y,SPCCopyYields.Plan(0,1),true) end
    end end)
    if not ok then print('[SPC][B051][CLEANUP_ERROR] '..tostring(err)) end
   end end
  end
- hook(Events,'LoadScreenClose',function() data.ready=true;data.generation=data.generation+1;data.samples={};data.seq={};data.receiveErrors={};cleanupDormant();data.Audit() end)
+ hook(Events,'LoadScreenClose',function() data.ready=true;SPCSampleLifecycle.Reset(data,'copy');data.receiveErrors={};cleanupDormant();data.Audit() end)
  hook(Events,'CityTransfered',cleanupDormant)
- for _,n in ipairs({'PlayerTurnActivated','CityPopulationChanged','GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged','CityTransfered','DistrictRemovedFromMap'}) do hook(Events,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','CityPopulationChanged','GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged','CityTransfered','DistrictRemovedFromMap'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('CopyYields',function(c,loss)
+   local ids={};for _,mode in ipairs({'POS','NEG','POP'})do for bit=0,(mode=='POP' and 7 or 15)do ids[#ids+1]='BUILDING_SPC_B051_PRODUCTION_'..mode..'_'..bit end end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('CopyYields',function(pid)SPCSampleLifecycle.Reset(data,'copy');data.last={} end)end
+
 end

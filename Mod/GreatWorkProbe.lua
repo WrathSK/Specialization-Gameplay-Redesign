@@ -35,4 +35,10 @@ function SPCGreatWorkProbe.Start(P,shared)
    ..'\n这是手动实验，不是已完成的时代补贴/50%基础相邻能力。'
  end
  local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() if d.ready then d.Clean() end end) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('GreatWorkProbe',function(c,loss)
+   local ids={};ids={'BUILDING_SPC_B055_GW_CITY','BUILDING_SPC_B055_GW_OBJECT'}
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ end)end
+
 end

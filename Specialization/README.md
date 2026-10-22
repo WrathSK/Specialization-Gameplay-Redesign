@@ -1,6 +1,6 @@
 # Specialization：main 配套知识导航
 
-本页导航 **main 稳定源码所配套的资料**。本分支为 B069.96 / modinfo96 Playtest Baseline，配套Design为D0025；不是最新开发设计，也不是完整v0.1发布。基线身份由本分支Status、部署合同和源码共同确认，不能用来推断外部游戏当前运行包。
+本页保留 **main 测试基线所配套的资料导航**。当前晋升候选为 B268.295 / modinfo295，配套Design为D0057，拟定版本v0.1.0-alpha.1；不是完整v0.1发布。合并、标签及稳定部署仍待批准，见[晋升更正与处理记录](Status/Validation/Results/Specialization_V01_Alpha1_Readme_Resolution.md)。基线身份以Status、部署合同和源码共同确认，不能用本页推断外部游戏运行包。
 
 ## 阅读本分支资料
 

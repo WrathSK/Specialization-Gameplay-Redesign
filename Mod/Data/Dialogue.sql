@@ -83,3 +83,10 @@ INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,Citizen
 INSERT INTO Modifiers(ModifierId,ModifierType) SELECT REPLACE(ModifierId,'_D2','_TEST100'),ModifierType FROM Modifiers WHERE ModifierId LIKE 'SPC_B059_%_D2';
 INSERT INTO ModifierArguments(ModifierId,Name,Value) SELECT REPLACE(ModifierId,'_D2','_TEST100'),Name,CASE WHEN Name='ScalingFactor' THEN '200' ELSE Value END FROM ModifierArguments WHERE ModifierId LIKE 'SPC_B059_%_D2';
 INSERT INTO BuildingModifiers(BuildingType,ModifierId) SELECT 'BUILDING_SPC_B059_TEST100',REPLACE(ModifierId,'_D2','_TEST100') FROM BuildingModifiers WHERE BuildingType='BUILDING_SPC_B059_D2';
+
+-- B176 temporary +200% comparison; ScalingFactor is 100 + bonus.
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_B059_TEST200','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_B059_TEST200','Dialogue test 200',1,'DISTRICT_CITY_CENTER',1,0,0);
+INSERT INTO Modifiers(ModifierId,ModifierType) SELECT REPLACE(ModifierId,'_D2','_TEST200'),ModifierType FROM Modifiers WHERE ModifierId LIKE 'SPC_B059_%_D2';
+INSERT INTO ModifierArguments(ModifierId,Name,Value) SELECT REPLACE(ModifierId,'_D2','_TEST200'),Name,CASE WHEN Name='ScalingFactor' THEN '300' ELSE Value END FROM ModifierArguments WHERE ModifierId LIKE 'SPC_B059_%_D2';
+INSERT INTO BuildingModifiers(BuildingType,ModifierId) SELECT 'BUILDING_SPC_B059_TEST200',REPLACE(ModifierId,'_D2','_TEST200') FROM BuildingModifiers WHERE BuildingType='BUILDING_SPC_B059_D2';

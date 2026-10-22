@@ -1,0 +1,61 @@
+{
+  "evidence": "LOCAL_STRUCTURAL_REPRODUCTION",
+  "scope": "Real unchanged Claim/Store; native queues/events/Properties are mocks. No gameplay regression or runtime operation.",
+  "source": {
+    "Mod/ClaimProjects.lua": "91e1f241e10a80ebe05483c0ad023d44c2d61647c8107b934e8511517d2fccee",
+    "Mod/CityProgressionStore.lua": "d629655cd709d351e4544e721d9bf6b27256120ec4a5a64a4c9866a9c9ed4e6f",
+    "Mod/TimedProject.lua": "5fd1eda331046746024664c65030114505988ef9b305884b3373f90ef17f5779",
+    "Mod/UI/ClaimProjectUI.lua": "7339d909e206a181c06564ac0b1031278ff1bafe5216262bae45864a1e2b29d8",
+    "DevelopmentTests/test_b111_district_snapshot.py": "62f452002b7ca89cf34c34f4b9bfbca2461ee02f41da94eb22fb9076e9b84017",
+    "DevelopmentTests/test_b124_claim.py": "dafcc96691ab1ace90a6449ea84fdcdb4a2329a2d0aeadc38996cf694ced80b1",
+    "Specialization/Reports/Audit/Evidence/W03/progression_store_reproduction.py": "d8585de5beb42fad71ab26c792d8f370694d1a601b77312c3f9fa2aaf3e8eba5"
+  },
+  "script_sha256": "15d56dd36769fb69492dc65f060257076ed33e1103f9953f0d92d20440a21322",
+  "cases": [
+    {
+      "native_calls_before_boot": 1,
+      "stage_after_boot": "COMPLETED",
+      "identity_after_boot": "RESEARCH",
+      "queue_target": "NONE",
+      "duplicate_call_count": 0,
+      "native_reachability": "NOT_ESTABLISHED",
+      "mode": "NORMAL",
+      "native_calls_after_boot": 1
+    },
+    {
+      "native_calls_before_boot": 0,
+      "stage_after_boot": "COMPLETED",
+      "identity_after_boot": "RESEARCH",
+      "queue_target": "NONE",
+      "duplicate_call_count": 0,
+      "native_reachability": "NOT_ESTABLISHED",
+      "mode": "LATCH_WRITE_FAIL",
+      "native_calls_after_boot": 1
+    },
+    {
+      "fresh_valid_completion_event_recovers": true,
+      "native_reachability": "NOT_ESTABLISHED",
+      "native_calls_before_boot": 1,
+      "stage_after_boot": "CALLING",
+      "identity_after_boot": "NONE",
+      "queue_target": "NONE",
+      "duplicate_call_count": 0,
+      "mode": "FINAL_WRITE_FAIL",
+      "native_calls_after_boot": 1
+    }
+  ],
+  "loss_scope": {
+    "persisted_timer_after_loss": "NONE",
+    "post_prune_activation_lookups": 0,
+    "prior_current_city_id": 500,
+    "origin_city_id": 1101,
+    "markers_after_loss": 0,
+    "limits": "debug upvalues only observe session ownership; native timing/latency not measured",
+    "extra_native_completions": 0,
+    "extra_store_writes": 0,
+    "failed_city_lookups": 3,
+    "explicit_dirty_prunes": true,
+    "mode": "RECAPTURE_SECOND_LOSS",
+    "stale_active_entries": 1
+  }
+}

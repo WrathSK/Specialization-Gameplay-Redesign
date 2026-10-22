@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "batch": "P0-L3A",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "authority_versions": {
+    "design": "D0048",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0048",
+    "commerce": "D0045",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0444",
+    "runtime": "B168.195 / modinfo195",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_L3_Inspiration.md#b168当前修复合同",
+  "goal": "Authorized final-stage exit and bounded native instance/percent-source diagnostics; fixed Scientist probe only.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "reason": "Current slice, acceptance and source/live",
+      "selector": "## CURRENT AUTHORITATIVE STATE"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "kind": "section",
+      "reason": "Current authorization and native stop",
+      "selector": "## 当前切片与停止点"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "kind": "section",
+      "reason": "Complete bounded primitive/lifecycle/readout contract",
+      "selector": "## B167当前原型合同"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
+      "kind": "section",
+      "reason": "Current authorized diagnostic/exit delta",
+      "selector": "## B168当前修复合同"
+    },
+    {
+      "path": "Specialization/Design/Content/Culture_D0048.json",
+      "kind": "json",
+      "reason": "Current Inspire full ability; verify stable id",
+      "selector": "/abilities/4"
+    },
+    {
+      "path": "Mod/CultureInspirationProbe.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/InspirationReadout.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/Data/CultureInspirationProbe.sql",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/NetworkInput.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/UI/P0Panel.lua",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/UI/P0Panel.xml",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/Text/TestText.sql",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "DevelopmentTests/test_culture_inspiration_probe.py",
+      "kind": "full",
+      "reason": "Direct L3-A dependency"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B167_Inspiration_Native_Feedback.md",
+      "kind": "section",
+      "reason": "Current native counterexample only; old full test instructions are not current task",
+      "selector": "## 原生观察"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md",
+      "kind": "full",
+      "reason": "Current repair evidence and minimal native stop"
+    }
+  ],
+  "dependencies": [
+    "Existing supported-player/current facts/reference and module-owned confirmed-loss API; no new persistence.",
+    "Existing native GPP current-load definitions and exact4 attachments; configuration is not native proof.",
+    "B166 normal Meaning retained; six direct regressions only."
+  ],
+  "old_writers": [
+    "No old Inspire writer. Preserve existing Lv2 GPP/HD/base sources and B166 normal Meaning; probe owns exact4 new carriers only."
+  ],
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityProgressionStore.lua",
+        "Mod/Lv2GPP.lua"
+      ],
+      "trigger": "Changing ownership cleanup/API or interpreting native source; inspect exact direct calls, no full E2 history."
+    },
+    {
+      "paths": [
+        "DevelopmentTests/test_culture_meaning_automatic.py",
+        "DevelopmentTests/test_culture_meaning_probe.py",
+        "DevelopmentTests/test_culture_aesthetic.py"
+      ],
+      "trigger": "Direct fixture and selected regression implementation; no all historical wrappers."
+    },
+    {
+      "paths": [
+        "Specialization/Architecture/Playtest_Workflow.md",
+        "tools/README.md",
+        "tools/temporary_playtest.py"
+      ],
+      "trigger": "Actual deployment only, strict existing transaction gates."
+    },
+    {
+      "paths": [
+        "Mod/UI/BoostGreatWorkRead.lua"
+      ],
+      "trigger": "Native GameEffects API provenance; inspect existing bounded collector only, no full GreatWork/HD history."
+    }
+  ],
+  "non_scope": [
+    "No full L3/D-W automatic writer/Floor activation/new ledger/AI/GC/M/N or Design revision."
+  ],
+  "validation": {
+    "depth": "L2 targeted; only changed cleanup/load behavior locally covered.",
+    "local": "39 methods PASS: existing29 plus10 scoped repair cases; source/SQL/XML/docs/context.",
+    "user": "One continuous session 0→integer1→END, native arguments/instance exit/percent sources; allow observed refresh delay. User self-chosen reloads are optional evidence, not steps or gate."
+  },
+  "full_audit_triggers": [
+    "Unexpected old writer ownership or saved-state write",
+    "Unknown native precision/multiplier cannot be guessed"
+  ],
+  "result": {
+    "local_evidence": "Specialization/Status/Validation/Results/Specialization_B168_Inspiration_Diagnostics_Local.md",
+    "native": "PARTIAL / NATIVE_GATE_UNRESOLVED",
+    "stop": "Repair only; authorized W0003 safety and minimal native gate, no Floor/full automatic ability.",
+    "fallback": "User allows per-city per-class floor(0.1*D*W) after fractional gate; not enabled in this batch.",
+    "deployment": "B168.195 / modinfo195 DEVELOP_ACTIVE; sourcec3de1140ea4504d8fe4d247211b8af5a4527975e;receipt B168.195-c3de114-playtest.json;186/186 MATCH. B167/stable recovery retained, no pending transaction/game launch;39 local checks PASS, primitive/multiplier/exit native pending.",
+    "native_feedback": "Specialization/Status/Validation/Results/Specialization_B168_Zero_Control.md",
+    "native_gate": "2026-10-08 zero control: T69 0/0.1/0.3/0.6 all51.199, integer1 52.199. Measured integer delta+1, fractions no visible rate delta; internal precision/accumulation/percent path and END unresolved. No repeated four-stage test; read-only investigation only."
+  }
+}

@@ -2,18 +2,36 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0025
+Design Revision: D0057
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-09-13
-Acceptance Evidence: 用户明确要求时代对话系数由15%调整到25%，无需新增实机验证。
-Previous Accepted Revision: [D0024冻结原文](Revisions/Specialization_Design_Spec_D0024.md)
-Latest Accepted Design Revision: D0025
+Acceptance Date: 2026-10-18
+Acceptance Evidence: 用户明确确认发展投资同一区域多个合格下一阶候选取最低理论购买价，界面列明报价依据，合同仍绑定城市＋区域而非具体报价建筑；授权B246。
+Previous Accepted Revision: [D0056冻结原文](Revisions/Specialization_Design_Spec_D0056.md)
+Latest Accepted Design Revision: D0057
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
 
-**SCOPE-001** D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
+**SCOPE-001（D0057）** 发展投资对同一区域多个合格下一阶建筑取最低理论金币购买价，并在界面明确列出报价依据。合同仍绑定城市＋区域，完成下一座合格建筑即结束，不绑定报价建筑。取代同阶HD建筑成本必然相同的旧假设，其它规则不变。[接受记录](Design_ChangeLog.md#accepted-d0057--2026-10-18)。
+
+**SCOPE-001（D0056）** 资本投资仍取当前有效ACTIVE最高的S；同级时按最早建立对应永久机构等级的城市优先，再以稳定City ID／stable key决定。不按ACTIVE首次达到、总督就任或读档观察时间排序；来源绑定与易主终止等其它合同保留。[接受记录](Design_ChangeLog.md#accepted-d0056--2026-10-18)。
+
+**SCOPE-001（D0055）** 商业化外部来源须持有对应专业身份；本城免身份要求，但仍需对应区域。外部来源不要求ACTIVE／总督／Potential／对应区域，直接国内商路资格不变。港口输入由金币改为城市总粮食（非余粮），输出仍为金币；港口专业本身不变。两项旧规则被取代，代码和原生验证未同步。[接受记录](Design_ChangeLog.md#accepted-d0055--2026-10-18)。
+
+**SCOPE-001（D0054，取整保留）** 商业化每个领域先独立计算0.05×D×X×(1+0.005×有效信誉)，分别向下取整后相加；不先合并同种金币，不将此规则用于资本／发展投资等其它金币数值。其余D0050合同保留。[接受记录](Design_ChangeLog.md#accepted-d0054--2026-10-18)。
+
+**SCOPE-001（D0053）** 施工队投入锁定基础施工力，可接受适用的原生Production加成（含巨构工程学／奇观政策等），实际进度不要求等于基础投入。未来通过实测检查综合倍率下的强度，作为非阻塞平衡点；不在游戏内UI加入未来平衡说明。不改变基础施工力、锁价、目标、来源／容量、一次消费及余量不结转规则。[接受记录](Design_ChangeLog.md#accepted-d0053--2026-10-18)。
+
+**SCOPE-001（D0052，数值保留）** 一级施工队标准速度基础施工力为260；150%／140%／130%／120%成本对应390／364／338／312。II–V档420／750／1000／1360、开工锁价及其它规则保留；倍率隔离由D0053取代。[接受记录](Design_ChangeLog.md#accepted-d0052--2026-10-18)。
+
+**SCOPE-001（D0051）** v0.1艺文采撷按目标城市当前至少1件合格文化巨作维持任务，不锁定具体巨作／槽位／建筑；移动、出售或替换原作品但仍有其它合格作品时继续，可靠确认全城无合格作品时取消，UNKNOWN不当作空。只取代2026-10-16的艺文采撷具体对象锁定；奇观巡礼仍锁定具体奇观，其它规则与D0050商业设计保持。接受记录见[ChangeLog](Design_ChangeLog.md#accepted-d0051--2026-10-17)。
+
+2026-10-11用户澄清：人文考察团沿用当前间谍的生产成本公式，但已生产考察团次数独立累计；普通间谍次数不影响该成本。只澄清成本读取口径，其余当前D0049规则保持；接受依据见[ChangeLog](Design_ChangeLog.md#accepted-d0049-clarification--2026-10-11)。
+
+**SCOPE-001（D0050）** D0050只修订商业：商业化系数0.05、X取城市该领域总产出；资本投资可投领域为已实施专业领域（不含商业）、S取商路国内网络当前ACTIVE且D／S最低1、每来源城每领域1笔；风险投资失败保护改存连续失败次数n并按主人归属；发展投资整体替换为理论购买价15%、所选区域建筑+50%生产力、到下一座合格建筑完成为止、每目标城1份；v0.1只支持标准速度；三类生命周期边界暂缓。其它专业与共同规则不变。
+
+**SCOPE-001（D0049，保留）** D0049仅重构巨作启迪：本城当前不同合格馆藏时代E=0–7，全类别GPP+3%×E（0至21%），含三类文艺伟人；保留ACTIVE IV与作品池，不使用D／作品总量，不增加项目／计时器／永久历史。取代旧0.1D×W，原生百分比与生命周期仍待验证，不改变实施优先级或授权投资传播修复。以下为历史修订背景：D0048仅将Meaning追加受到原生主题化作为v0.1暂行首测规则接受，Balance待实测；仍不得被Dialogue放大。K0.5、逐域Floor、份额／W、九域六产出Design、资格／城市历史及其它能力不改，Culture运行隔离保持。未决定新倍率／cap／补偿，不授权全城writer、M或部署。以下为历史修订背景：D0047接受市政／Government国家治理中枢的新基线：四机构、七项具名能力及逐项未决，取代旧GOV-001至004；当前计划只向专用白板文明开放，不承诺普通Civilization/Leader能力叠加兼容。Government仍FUTURE／OUT_OF_V0.1，不扩大当前四专业、单人本地人类实施范围；本轮不实现、不部署。其它专业、Shared结构化正文、当前B163原生待验保持。以下为历史修订背景：D0046按用户决定恢复意义延展Government Plaza／Diplomatic Quarter→Culture；当前九域六产出，D0043暂排已被取代。逐域Floor、K0.5、份额、作品资格、倍率隔离、其它能力与Shared保持；恢复Design不等于Culture原生共存已通过，旧失败证据保留。以下为历史修订背景：D0045增量同步工业每模板实际持有来源择优、合法Gold/Faith渠道、完整1T研习中断和最终整数Floor；文化收口无额外对话cap、Spy等价训练成本／全国现存1团、见闻每份本城Tourism+2个百分点，既定系数与D0042归属不变。Shared具名专业单位不可捕获／转Owner、保护回归，特殊事务退出优先；原始首都三阶段改制仅FUTURE／DESIGN_RECORDED／NOT_V0.1_IMPLEMENTATION。D0044三项工业职责与首测值不重复改变；不扩当前四专业／单人范围。B159诊断与其待验边界不变，本轮不实现／部署，不向当前计划加入未来改制。以下为历史修订背景：D0044只同步Industry v0.1职责与首测值：三级标准化10%／Gold0%，四级本城研习L每层强化两项各2个百分点；工程实践仅四级降低施工队组建损耗，三级固定150%；III开放I–III、IV额外IV–V，不再有E门槛；巨构工程只加速自行生产旧时代奇观，不放大任何施工队注入。Shared仅新增具名城市历史L，不改D／普通建筑／其它A–G合同。首测值不等于最终平衡或运行实现，当前B158原生待验与四专业范围不变。本轮不实现、不部署。以下为历史修订背景：D0043只将意义延展的政府广场／外交区文化来源暂排，当前为七域五产出；不修改Shared完整领域映射、其它能力、系数、逐领域Floor、作品资格、倍率隔离或A–G生命周期。文化追加技术及负面证据留作未来恢复，不再阻塞本版v0.1；新Design不等于运行包已适配，也不授予下一批实施。以下为历史修订背景：D0042接受具名A–G生命周期与Settler确认原子性：未提交Dialogue取消、考察团归档重挂靠、商业化配置暂停／恢复及退出清除、施工队当前Owner容量与重组目标绑定。A–D已定归属保留，不统一所有永久资产，不扩大单人四专业范围；当前B155测试不变，只有Design同步。以下为历史修订背景：D0041按用户最新决定明确意义延展追加独立计算，时代对话／主题化均不放大，同yield的市政／外交追加文化亦排除。较早主题化包含追加的建议保留技术档案，非现行规则。逐领域Floor、系数／份额／资格与D0040生命周期及其它专业不变；先验证单城技术原型，不假装接口已实现隔离。以下为历史修订背景：D0040同步用户已确认的长期状态A–D语法及精确资产生命周期，Shared／Research／Industry／Culture／Commerce正文按其条款增量更新。城市历史随城、文明信用不转移、信誉随Commerce Identity、已成立资本／发展关键城市易主异常终止；S具体来源与稳定选择／UI锁定补齐。只关闭本轮决定项，E/F/G未讨论部分不补，单人本地人类范围与当前B154测试不变，不实现、不部署。以下为历史修订背景：D0039仅同步用户本轮Commerce v0.1公式、首版Balance及明确Legacy决定，商业机构/能力名称和主体结构保持。商业化五领域与收益、资本本金/回报/风险、信誉、发展报价/容量/加算及重组团队/征服退出已定；精确剩余资格、口径、其它速度与一般Ownership边界单列，不擅自补值。不实现、不部署，不扩大四专业或当前文化测试授权。以下为历史修订背景：D0038仅明确意义延展的取整位置：每领域换算为实际产出后分别Floor，之后同yield相加，最后乘合格巨作件数W。仅本能力适用，其它能力、Shared、作品资格及原生产出倍率隔离合同不变；不接受其它primitive或扩大实施范围。以下为历史修订背景：D0037接受Harbor完整双线新基线；同级双机构不是二选一，新海军镜像Military D0034机制，Military仅改名为行伍编制/战地勤务。商业参数、候选名称、技术与Legacy未决保持；不新增独立Harbor Network，不扩大四专业v0.1。以下为历史修订背景：D0036只修订工业模板首次初始化/恢复/当前事实同步与历史损坏边界；可靠历史∪当前合格建筑，不扩展目录或AI运行范围。其它专业、Shared、参数及未决项不变。以下为历史修订背景：D0035为Shared semantic clarification / consumer confirmation：D为区域基础设施深度，不是相对完成百分比，不归一化不同环境；公式/consumer机制不变。Military保持D0034。以下为历史修订背景：D0034仅为综合训练补充绝对基础设施深度→本城训练效率层，同一能力内不新增slot；具体转换/汇总/购买适用等后置，Shared与其它专业不变。以下为历史修订背景：D0033冻结Military候选，见Military_D0034及review；不扩大当前四专业v0.1 implementation范围。其它专业与Shared正文不变。以下为历史修订背景：D0032冻结Commerce主体及0/1/2/3能力结构，明确旧规则取代关系；确认Industry每来源容量2和Culture Hybrid D展示方向。公式/mapping/Balance/Legacy及技术原型未决见Commerce content与Review，不等于已实现。Research_D0031、Culture_D0029、Shared_D0028正文不改。以下为历史修订背景：D0031只新增Industry有限施工队库存（范围/数值待决）、Research学术传统身份暂停合同及Culture展示需求。Culture Gameplay与其它机制不改；UI调查建议不是已批准架构。以下为历史修订背景：D0030仅将Research III学以致用输入替换为各领域区域完善度、K暂定0.5；其它机制不改。以下为历史修订背景：D0029仅补充Culture永久记录归属、多源Network并集与外交资格，见CUL节；Shared、Research、Industry不变。以下为历史修订背景，不覆盖当前CUL：D0028冻结Culture本体、Shared区域完善度/产出份额/建筑当前资格，并按用户明确要求将Research基础设施输入改为区域完善度；Culture旧Eureka网络退出，新网络多源合并后置，Research网络标记需要重设计但本轮不修改。以下为历史背景：D0027仅冻结Industry新机构/能力合同及关联标准化/施工队规则，见IND节；数值BALANCE_REQUIRED、候选命名和暂沿用复审标记不升级为最终定值。以下为历史修订背景：D0026仅替换Research本地等级设计并冻结规范化机构/能力/Tooltip内容，详见RES节；Research Network及其它专业不变，implementation/balance validation pending。以下为修订历史背景（旧RES描述由当前RES节取代）：D0025仅将GW-001时代对话系数从15%提高到25%，其余机制与范围不变。本文为Specialization Gameplay Redesign的WHAT。D0023确定GW002作品/专业区域范围及保留原yield的50%基础相邻复制。D0022时代对话采用创作者时代多样性百分比15%×max(0,D−1)，取代D0021固定yield；明确文物历史时代例外。旧最高基础值逐件保值已退出当前设计，沿用D0020合格分类与原生theming行为。D0018以NET-RC-005的最终一次显式量化取代D0017接受原生截断；当时的GW本城最高基础值方案现已被D0022完全取代。公式/topology及其它未决边界不变。D0016新增IND-NET-002货币隔离困难时允许Faith同步折扣的条件授权，不扩大建筑或购买资格范围。D0015确认标准化永久记录与当前折扣开放范围分离，详见IND-NET-004/005；不改变D0014科研复制范围或其它专业机制。D0014明确RES-004不区分区域类型，所有非Campus区域的Actual复制基数均纳入，不要求其为专业化区域或消耗人口名额。D0013明确IND-NET-004标准化模板获取与一次初始化，其余继承D0012。D0012明确施工队生产力按游戏速度缩放后向下取整，并以同一整数显示与执行；项目成本仍由原生引擎按游戏速度计算。其余继承D0011（五档从工业Lv1全部开放）。D0010正式确定征服无Identity城市的一次snapshot及互斥初始化模式，直接影响当前v0.1 Development与Conquest测试；更新后交Development正常sync评估Architecture/Status/Tests，旧统一first-completion假设不得继续沿用。其它设计与成熟度继承D0009，Design本轮不调查或修改实现。
 
 **SCOPE-002 — CURRENT IMPLEMENTATION SCOPE — v0.1** Research/Campus、Culture/Theater Square、Industry/Industrial Zone、Commerce/Commercial Hub，以及共同成长、Trade Center、网络核心、Construction Crew和这些专业的跨系统规则。范围不等于实际完成度。
 
@@ -21,15 +39,15 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **SCOPE-004** 用户是最终Design Authority。Codex负责整理落盘；外部设计顾问内容在用户接受前仅是proposal/review。没有用户明确确认，不得把后续修订或候选数值升级为ACCEPTED。
 
-### Universal System + Opt-in Player Eligibility — ELIG
+### System Scope + Opt-in Player Eligibility — ELIG
 
-**ELIG-001 — Specialization-enabled Player / ACCEPTED** Specialization Gameplay Redesign是player/civilization-agnostic通用系统，只对被明确赋予Specialization-enabled资格的Player启用。资格不是Human身份，也不永久绑定某文明、领袖或测试Trait。全文涉及建立或运行Specialization的“玩家／己方／本城／首都”等，均受本节资格前提约束；未启用玩家完全不参与系统，但可按ELIG-005持有此前已存在、当前休眠的永久城市成果。
+**ELIG-001 — Specialization-enabled Player / ACCEPTED** 当前计划只向专门的白板文明开放Specialization，并须明确赋予Player启用资格；不默认适配所有原版／HD／其它Mod Civilization与Leader Ability叠加。专业间系统平衡以无额外传统文明／领袖Gameplay bonuses为基准，现行单人本地人类范围不变。资格载体的内部技术标识不等于永久玩法身份，也不授权未来AI／多人配置。全文“玩家／己方／本城／首都”均受本节资格前提约束；未启用者不参与运行，但可按ELIG-005保留休眠的永久城市成果。
 
 只有Specialization-enabled Player建立城市Identity和Potential、使用Settler specialization investment、计算ACTIVE、建立Trade Center及专业网络、获得Local及Network效果、运行Community Immigration、Military体系、其它Specialization及Auxiliary机制。资格只决定谁参与，不修改既有投资、总督、专业等级、网络公式、多来源、专业及辅助区域规则。
 
-**ELIG-002 — 当前载体与未来复用 / ACCEPTED** 当前测试／首个玩法载体可以是白板测试文明、对应Trait或Development最终选择的其它明确eligibility carrier；载体不是系统本体。当前仅启用一个玩家属于当前scope/configuration，不是永久限制。核心设计不得写成Human-only、固定LEADER_SPC_TEST、只有白板文明可用或AI永不可用。
+**ELIG-002 — 当前白板载体与未来边界 / ACCEPTED** 当前计划的玩法载体为专用白板文明，不是任意既有文明＋专业系统；具体文明／领袖／Trait技术ID不作为永久语义。此前“当前载体可任意选择其它文明”“不得写成只有白板文明可用”及默认原文明／领袖能力共存的承诺，由D0047明确取代。无需为了所有历史文明的独特能力改写专业规则或承担叠加平衡。
 
-保留未来给原版、Harmony in Diversity、Mod文明／领袖启用，以及多个玩家同时启用、多人参与、进一步抽离为通用Gameplay System/Gameplay Mode的可能性。本轮不承诺实现这些配置，不要求兼容性验证，也不在Design硬编码排除。未来已有文明原Civilization/Leader abilities原则上可与Specialization共存；叠加后的强度属于未来balance/configuration问题。
+未来另行复用到其它文明、启用AI或多个玩家的可能性未永久禁止，但须单独获用户范围授权并处理对应Design／兼容边界；本轮不实现、不保证这些配置。中文机构名可遵循中文语言习惯，未来英文可用朴实、普适的功能性译名，不要求逐字对应，也不自动生成或锁定英文名。
 
 **ELIG-003 — AI资格与行为边界 / ACCEPTED** AI不是特殊禁止对象；被明确启用的AI允许使用同一套规则。当前不要求额外AI planner或AI行为重写，不因AI可能不善使用Settler、商路、总督或人口政策而削弱投资、改变网络／ACTIVE或简化Community，不增加隐藏AI bonus/penalty。未来启用AI实际表现过差或过强时，另立AI/balance问题，不提前解决。
 
@@ -37,7 +55,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 这是Design scope requirement，不指定过滤API、缓存、事件或其它实现。Eligibility carrier及有效过滤标记`IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT`。若Development发现所有AI承担明显周期成本，应依据本规则限定到eligible players，而非反向把系统永久改为Human-only。本轮不进行API／性能调查或benchmark。
 
-**ELIG-005 — Conquest × Eligibility / ACCEPTED** 保持PROG-004的城市永久发展成果定义，以当前Owner是否启用决定运行或休眠：
+**ELIG-005 — Conquest × Eligibility / ACCEPTED** 正常非重组城市保持PROG-004的永久发展成果定义，以当前Owner是否启用决定运行或休眠；进行中商业重组目标被征服的事务销毁与后续分流例外见PROG-011：
 
 | 征服／取得情形 | 永久成果 | 当前运行规则 |
 |---|---|---|
@@ -48,11 +66,11 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 正常未专业化征服城与旧档缺失历史是不同问题；本规则不解决旧档首次加载的迁移初始化，也不删除此前已形成、虽由未启用Owner持有的休眠成果。当前Owner资格门槛适用于所有专业运行，永久成果本身不因此改变。
 
-**ELIG-006 — Development / Future Compatibility边界** Human-only、AI是否可参与、测试文明是否是永久唯一载体、无专业历史AI城是否自动生成专业均已明确，不再作为核心玩法未决。Old-save initialization保留为Implementation/Future Compatibility事项；多个enabled玩家的multiplayer determinism、AI实际行为质量、carrier技术实现与参与者成本过滤也留给Development／未来兼容工作，不承诺本轮解决。跨Owner城市识别继续沿用PROG-004的技术审查标记，不据此修改玩法。本轮不修改测试文明或Architecture/Status/Source/Tests，不恢复Development，不进行实现、性能测试、P0测试或游戏验证。
+**ELIG-006 — Development / Future Compatibility边界** 当前专用白板文明、单人本地人类实施范围与征服休眠语义已经明确。AI未来可另行启用但不要求行为重写；原版／Mod文明叠加、多enabled玩家及多人仍非当前支持承诺。Old-save initialization、carrier技术实现、参与者成本过滤及跨Owner可靠识别保留既有Development／Future Compatibility边界，不据此修改Gameplay。本轮只同步设计与必要导航／状态元数据，不修改测试文明、源码、测试、部署或GC。
 
 ## 2. 测试文明与基本术语 — ID / TERMS
 
-**ID-001** 以独立新文明和独立领袖承载测试，不修改或覆盖原版Scotland。暂时复用Scotland的文明/领袖视觉、名称风格和可用展示资产，不复制其原有游戏能力。玩家可见名称采用Scotland (Specialization Test)、Robert the Bruce (Test)等明确测试标记。暂不制作原创美术与历史设定。 当前白板载体没有额外传统Civilization/Leader gameplay bonuses，以Specialization作为主要玩法和平衡基准；这是当前载体配置，不是通用系统的永久身份定义，资格与未来复用遵循ELIG。
+**ID-001** 以独立新文明和独立领袖承载测试，不修改或覆盖原版Scotland。暂时复用Scotland的文明/领袖视觉、名称风格和可用展示资产，不复制其原有游戏能力。玩家可见名称采用Scotland (Specialization Test)、Robert the Bruce (Test)等明确测试标记。暂不制作原创美术与历史设定。当前计划只向专用白板文明开放，以Specialization为主要玩法和平衡基准；不默认兼容普通文明／领袖Gameplay bonuses叠加。未来复用须另行授权，遵循ELIG。
 
 **ID-002** Industrial Zone保持正常科技位置，不作为提前解锁的特色区域。
 
@@ -66,11 +84,11 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **PROG-001** 普通First Completion模式城市在第一个符合条件的专业区域完成建造后锁定专业，不在放置时锁定。v0.1四专业及正式认定replacement family适用；征服无Identity城市先按PROG-006分流，Legacy Claim模式不适用后续first-completion。未来Community候选仍见COMM-001，不提前改变v0.1规则。
 
-**PROG-002** 专业确定后默认Potential Lv1。在己方城市消耗一个Settler，永久Potential +1，最高Lv4。Potential不由source数量、网络强度或网络积累产生。不凭空给没有专业的城市发专业能力。
+**PROG-002** 专业确定后默认Potential Lv1。在己方城市消耗一个Settler，永久Potential +1，最高Lv4。Potential不由source数量、网络强度或网络积累产生。不凭空给没有专业的城市发专业能力。 D0042确认前只有查看／准备，无消费／潜力增加／待继承投资资产；确认后Settler消费、receipt成立和Potential更新视为原子完成。内部事件交错由技术原子性／可靠恢复解决，不存在Gameplay半份receipt、部分退款或跨Owner pending继承。
 
 **PROG-003** Lv2/3/4分别要求Potential至少2/3/4，并有已建立的总督满足2/3/4头衔门槛。ACTIVE取当前满足全部条件的最高等级；无已建立总督或总督调离时，已有专业仅保留Lv1，Potential投资不丢失。门槛不是要求额外消耗同样数量的Settler或额外重复支付头衔。
 
-**PROG-004 — Conquest Inheritance / ACCEPTED** 已有Specialization Identity/Potential的城市被征服后不进入Legacy Claim初始化，Specialization Identity、Potential、Settler investment history或等价永久投资事实，以及source城市自身永久掌握的标准化模板等明确城市成果保留。这些是城市长期发展成果，不是旧Owner临时全国buff。Potential Lv4 Research城被征服后仍为Research / Potential Lv4，不重置身份或潜力，不要求重新消耗Settler。
+**PROG-004 — Conquest Inheritance / ACCEPTED** 适用于正常非重组城市；进行中资产重组被征服的显式例外见PROG-011。已有Specialization Identity/Potential的城市被征服后不进入Legacy Claim初始化，Specialization Identity、Potential、Settler investment history或等价永久投资事实，以及source城市自身永久掌握的标准化模板等明确城市成果保留。这些是城市长期发展成果，不是旧Owner临时全国buff。Potential Lv4 Research城被征服后仍为Research / Potential Lv4，不重置身份或潜力，不要求重新消耗Settler。
 
 当新Owner为Specialization-enabled Player时，ACTIVE不继承旧Owner状态，按新Owner的总督任命、established状态、头衔要求及共同等级条件重新计算；无新Owner合格已就职总督时，已有专业按共同规则仅保留ACTIVE Lv1，Potential Lv4不丢失。
 
@@ -105,6 +123,10 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 技术问题统一标记`IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT`：ownership transition完成时可靠读取已完成区域、一次冻结LegacySet的保存、Claim Projects提供/移除、Legacy模式屏蔽first-completion、只在空集合模式启用普通完成处理、已有Identity不误入初始化。Design仅登记规则和预期，不调查API或修改Architecture/Status/Source/Tests。
 
+**PROG-011 — D0039资产重组例外 / ACCEPTED** Commerce资产重组付出Potential损失，完整合同见Commerce_D0039.contracts.restructuring。事务存在时REALLOCATING不是NONE，不可再次触发PROG-001/002首次建立或PROG-006至009 Claim；不得通过Settler首次流程绕过配置，历史机构不提供Current Identity。
+
+**明确征服例外：** REALLOCATING目标在配置前被其它玩家取得，立即销毁本次重组状态与未完成资产账本、清除旧Current Identity、解散绑定团队，城市无专业身份，双方均不能继续半成品。原玩家以后重新取得，按PROG-006至009无自身专业历史AI城snapshot/Claim分流，不按PROG-004恢复半成品；此时原REALLOCATING事务已经消失，原禁止Claim不再适用。销毁范围不是所有专业永久历史，未授权清空其它成果或补定其Potential/Legacy；非重组城市仍按正常继承。具名A–G状态按SHARED-LIFECYCLE-001及对应Content；其它未讨论资产边界不能类推。
+
 ## 4. v0.1共同Lv2规则 — SHARED
 
 **SHARED-001** ACTIVE Lv2起，对应专业区域本体及该区域每一级建筑各+1 Housing。
@@ -113,115 +135,128 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **SHARED-003** 下列Lv3“提升至”取代低等级对应专家食物/生产力档位，不把3F3P与5F5P重复叠加。Housing、GPP及其它独立已解锁能力继续保留。
 
+### Shared Mechanical Vocabulary — D0028
+
+唯一当前共享定义：[Shared_D0045](Content/Shared_D0045.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
+
+**D0035语义及引用覆盖：** D正式中文名“区域基础设施深度”，即Absolute Infrastructure Depth。不是完成百分比，不要求建满=10；三层链D6、四层链D10均为允许的额外投资差异。当前不引入Relative Completeness。已有专业冻结文件中Shared_D0028引用及“区域完善度”用语，当前解释统一遵从Shared_D0045保留的D0035语义澄清；旧文件字节不变、历史解释保留。公式、稳定concept ID及其它Shared合同不变。[Consumer/目录/术语审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)。
+
+被掠夺建筑默认不贡献也不接受收益；这是当前效果资格，不删除明确永久的模板/历史记录。免费取得不改变普通建筑性质。区域基础设施深度有硬上限10，同领域多区域取最高单区域；不追补缺失Tier。Network独立于Ability slots，不统一专业公式或强制0/1/2/3结构。
+
+**SHARED-LIFECYCLE-001 — ACCEPTED D0042／D0044／D0045具名增量** A城市历史、B文明历史、C持续机构关系、D已成立合同、E进行中事务、F配置／派生、G专业单位／来源绑定，彼此不混同，不设统一继承。Shared_D0045.LONG_TERM_STATE_LIFECYCLE保留[D0042具名合同](../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)及D0044已完成研习L；本轮明确研习以IV资格采用完整1T取消／重做合同，历史L不清零。施工队／考察团／重组团队不能被捕获或转Owner，敌方原可能捕获／消灭的交互保护撤退／安全回归；重组目标易主解散与考察来源易主取消任务／保留原Owner单位／重挂靠的专属规则优先。原生接口属Technical，不再有捕获Owner Gameplay TBD。纯派生ACTIVE／Network／carrier按当前事实重算；不扩AI／多人。首都未来例外单列，不纳入当前A–G runtime。
+
 ## 5. Research / Campus — RES
 
-| Rule ID | ACTIVE等级 | 当前设计 |
-|---|---|---|
-| RES-001 | Lv1 | 每名Campus工作专家额外+3F、+3P |
-| RES-002 | Lv2 | 获得SHARED-001住房及SHARED-002 Scientist基础GPP |
-| RES-003 | Lv3 | 专家支持提升至+5F、+5P；本城增加`0.5 × Population × working Campus specialist count`基础Science |
-| RES-004 | Lv4 | 每名Campus工作专家使本城Science增加5个百分点；本城所有非Campus区域的Actual复制基数各类产出总和的50%转为Science；不按专业类型或人口名额筛选，包含军营、圣地、政府区及社区、娱乐中心等区域通过行业等获得的实际产出；不把住房、宜居度或城市总产出计入该基数 |
+**D0040 Research增量：DESIGN_FROZEN — implementation / balance validation pending.**
 
-**RES-005** Research Network增加Inspiration完成比例的额外百分点；强度统一按NET-RC规则，不按路线线性叠加。
+唯一新规则与文案正文：[Research当前Content](Content/Research_D0040.json)。[Schema](Content/README.md)；[当前边界审阅](../Historical/Design/Reviews/Boundary_D0031_Review.md)；[D0030历史审查](../Historical/Design/Reviews/Research_D0030_Review.md)。机构永久随Potential累积，ACTIVE仅控制对应阶段能力；机构为presentation-only，不进入普通建筑体系。
+
+| Rule ID | 当前权威content条目 |
+|---|---|
+| RES-001 | RES_BASE_SUPPORT：各等级基础专家支持；RES_INST_1学者结社，无named ability |
+| RES-002 | RES_L2_TRAIN：RES_INST_2研修院的人才培养，引用SHARED住房/GPP合同 |
+| RES-003 | RES_L3_CROSS / RES_L3_APPLY：RES_INST_3学术联合会的跨学科研究/学以致用；替换旧人口Science与旧支持提升 |
+| RES-004 | RES_L4_INFRA / RES_L4_CHAIR / RES_L4_TRADITION：RES_INST_4学术总署；替换旧专家百分比和全区域Actual复制 |
+
+SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPORT；其它专业的SHARED与Local规则不变。具体公式、映射及第一版Tooltip只在content维护，旧D0025正文见冻结快照，不将新设计视为B076.103已实现。
+
+**RES-LIFECYCLE-001 — ACCEPTED D0040** 学术传统合格年龄为城市历史，无原Owner分账；原起算／速度门槛保持。支持Owner且仍有科研身份时ACTIVE下降不暂停年龄；身份退出暂停保留；未支持Owner冻结且不补失城年龄。任何enabled Owner重新满足科研ACTIVE IV按同一保留账本利用；不推导其它科研长期记录。
+
+**RES-005** Research Network仍按NET-RC增加Inspiration，当前数值与公式不变；标记NETWORK_REDESIGN_REQUIRED，不在本轮重做。D0028仅将RES_L4_INFRA输入替换为Shared区域完善度及其10上限；主持仍逐普通建筑生效，遵守共享被掠夺资格，不反向增加完善度。D0026 content作为历史冻结保留。
 
 ## 6. Culture / Theater Square — CUL
 
-| Rule ID | ACTIVE等级 | 当前设计 |
-|---|---|---|
-| CUL-001 | Lv1 | 每名Theater工作专家额外+3F、+3P |
-| CUL-002 | Lv2 | 获得SHARED-001住房；每名专家同时获得三种文化伟人基础GPP |
-| CUL-003 | Lv3 | 专家支持提升至+5F、+5P；本城增加`0.5 × Population × working Theater specialist count`基础Culture |
-| CUL-004 | Lv4 | 每名Theater工作专家使本城Culture增加5个百分点；获得GW-001时代对话及GW-002巨作基础相邻能力 |
+**D0049当前适用范围：** 巨作启迪改为本城全类别GPP +3%×当前不同合格馆藏时代E，E=0–7；含文艺伟人，动态派生，无历史最高／永久积累／项目，ACTIVE IV与作品池保持。旧0.1D×W及排除文艺伟人已被取代，百分比技术仍未验证。其它文化能力不变： Meaning追加允许原生主题化，作为v0.1暂行首测规则、Balance待实测；只取代D0041的主题化排除，Dialogue仍不得放大本项。D0046九领域／六产出恢复、D0045参数、D0042城市历史及逐域Floor保持；原生文化共存与实际自动接入各自待验证。
 
-**CUL-005** Culture Network增加Eureka完成比例的额外百分点；使用NET-RC，不交换Research/Culture对应的Boost种类。
+**D0048: DESIGN_FROZEN主体保持；主题化许可为USER_ACCEPTED_V0.1_PROVISIONAL／BALANCE_REQUIRED。保留九域六产出、D0045参数、D0042生命周期、Dialogue隔离与D0038逐域Floor；implementation / balance validation pending.**
 
-### Great Works — GW
+唯一规则、公式、首版Tooltip与Mission内容：[Culture_D0051](Content/Culture_D0051.json)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
 
-**GW-001 — 时代对话 / Dialogue Across Eras** Culture Lv4以跨创作者时代收藏为主题。`D`为本城合格Great Works覆盖的不同巨作创作者时代数量；普通合格作品使用其关联伟人的EraType，文物没有伟人创作者，按用户明确例外使用文物自身原生历史时代。合并后统一按时代去重，不区分“文物时代”与同名“伟人时代”另计两次。不是当前游戏/城市时代、作品获得/激活时代或建筑时代。`BonusPercent = 25% × max(0,D−1)`，本城全部合格作品的Culture与Tourism统一提高此百分比。D=1/2/3/4/5/6/7分别+0%/+25%/+50%/+75%/+100%/+125%/+150%；12件覆盖6时代，每件均+125%，件数不直接进入百分比公式。25%为D0025当前正式系数（取代原15%）；不新增cap、不把7时代当上限、不添加复杂曲线。著作、音乐、艺术、文物保持合格，Product/Relic排除，未知自定义类别不自行扩大。此规则取代D0021固定每件+Culture/+Tourism，以及更早最高基础值/逐件差额保值；不再开发单件setter或补差模拟。关联缺失/时代未知或运行创作者与数据库关联冲突须报告，不擅自代入玩家时代。
+| Rule ID | 当前content条目 |
+|---|---|
+| CUL-001 | CUL_BASE_SUPPORT / 文艺同好会；无named ability |
+| CUL-002 | CUL_L2_PATRONAGE / 赞助人行会 |
+| CUL-003 | CUL_L3_DIALOGUE、CUL_L3_AESTHETIC / 人文联合会 |
+| CUL-004 | CUL_L4_MEANING、CUL_L4_INSPIRE、CUL_L4_EXPEDITION / 博雅总院 |
+| CUL-005 | contracts.network_effect；新见闻传播取代旧Eureka；不继承NET-RC公式，多源按各来源独立完整考察文明集合并集 |
+| GW-001 | contracts.dialogue；同名项目替换旧动态时代多样性百分比 |
+| GW-002 | CUL_L4_MEANING；区域完善度产出份额替换旧基础相邻；D0038明确逐领域换算后Floor，再同yield相加，最后乘W |
+| GW-002A / GW-003 | contracts.work_pool与dialogue.precision/target/fallback；意义延展仅采用D0038明确Floor例外，旧逐件固定yield截断许可不自动迁入其它能力 |
 
-**GW-002** Culture ACTIVE Lv4每件合格文化Great Work额外获得本城全部已完成专业区域Base Adjacency Yields的50%。包含剧院广场及特色替代区域；专业区域按本机Districts.RequiresPopulation分类。作品采用Writing/Music/Sculpture/Portrait/Landscape/Religious art/Artifact七类，排除Relic、Product及未知自定义类别。各yield保留原种类：学院Science、工业Production、商业Gold等，不统一转Culture。明确使用BASE，不使用Actual复制基数，不将政策翻倍或建筑非相邻产出算入；每件按本城对应基础相邻合计的50%取得，作品数量不再乘入单件Modifier。
+中文机构、能力、Mission名称CONFIRMED。时期次数、记录归属、源城绑定、目标合法性、战争及成功后保留单位详见content。CUL-REVIEW-01至04已正式确认：D0040明确取代见闻原Owner归属：见闻及Dialogue累计倍率／启动时代额度均为独立城市历史，Owner不是见闻归属或去重键；当前Owner自身文明记录只从有效见闻及完整3/3来源集合排除，不删历史／额度。当前能力按各自Culture Identity/ACTIVE门槛利用，非支持Owner冻结，多源完整考察文明集合并集，外国已遇见存活Major允许且战争本身不中断。城邦排除并列Future Candidate，自由城市排除；不新增外交许可或商路要求。未知Mod作品默认排除。意义延展追加基值独立计算，时代对话不得放大；D0048允许原生主题化作用于追加，作为v0.1暂行首测规则，Balance仍待实测，不把观测×2写成普适固定倍率。D0046九域及政府广场／外交区追加文化保持。Shared与其它consumer不改，同yield仍不能让Dialogue把追加视为作品原生产出。较早主题化候选仅在本次许可范围成为暂行规则。实际原生组合仍需验证，不自行扩展为其它城市／文明公共倍率豁免。本轮已关闭的cap／成本／K_T待决由D0045取代；真实Balance Validation和Technical flags继续保留，不把冻结当实现。
 
-**GW-002A — Native fractional behavior / ACCEPTED D0024** 用户已实机确认巨作基础相邻效果，并接受原生逐件小数截断：例如基础Production 3，理论每件1.5，实际每件1。当前不补偿、不改城市补贴、不把余数跨作品合并；此许可仅针对GW002，不外推其它接口。
+D0032批准[Culture时代馆藏Hybrid D方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)；当次Culture_D0029玩法正文不变，D0038加入意义延展逐领域Floor例外，D0040新增城市历史生命周期，D0041澄清追加倍率隔离；D0048仅取代主题化排除，保留Dialogue隔离并登记Balance。布局/HD hook/缓存事件仍需原型，UI实施未授权；D0031调查保留历史。
 
-**GW-003** GW-001沿用D0020合格文化分类：Product、Relic排除；Artifact保留，宗教题材艺术不等于Relic；未知自定义类别不自行纳入。时代对话不再以精确恢复单件补差及所有作品专属倍率/主题化为前提。优先采用整类/城市Great Work百分比Modifier，按正常Modifier体系与theming自然叠加即采用。若发现意外结算顺序，报告实际表现，不自行设计补偿层或逐件模拟。Culture/Tourism各自的原生结算关系需实测，不假定一致。GW-002基础相邻能力与其它Culture IV能力不因本变更而改变，其范围已由D0023明确。
+**CUL-LIFECYCLE-002 — ACCEPTED D0042** Dialogue完整生产回合且永久成功提交前，文化ACTIVE<III／身份退出／REALLOCATING／易主／正常生产中断取消，无倍率、无START Era成功额度、无半进度；再合法须完整重做。已训练考察团不因来源总督／ACTIVE／Identity／重组变化而退出；来源易主中止未完成任务、不转交或删除单位，旧归档失效，免费不限次重挂靠任意己方Culture Identity城，无高ACTIVE要求；无合法归档城则存续但不能开新任务。新报告只进当前有效归档城，已成功历史不迁移或删除。 D0045专业单位不可捕获／转Owner保护适用，特殊来源生命周期优先。
+
+**CUL-FIRST-TEST-001 — ACCEPTED D0045** 对话每次+5%×X加算，无额外累计cap；风雅每时代每合格普通建筑1Tourism；Meaning0.5D及Gold份额3／其它1、逐领域Floor保持，领域范围由D0046恢复为九域；巨作启迪原0.1D×合格作品数基础GPP已由D0049替换为本城全类别+3%×E，E为当前不同馆藏时代0–7；不是永久累计，不假设与其它百分比同池。考察训练沿用当前Spy Production cost公式，已生产考察团次数独立累计、不受普通间谍生产次数影响（2026-10-11用户明确澄清），当前玩家全国现存最多1支（含待重挂靠／退出来源的存活单位），不是每source／城／任务1支，不授权删除既有多团；标准每任务2T，部署另算。K_T=2个百分点／份，仅来源文化城市整城Tourism，33有效见闻为该城+66%，非全国乘1.66；K_C=1，receiver自身单一身份工作专家按独立完整文明来源集合并集获得文化，不拼不完整记录、不递归。全部为首测，非最终平衡或已实现证据。
 
 ## 7. Industry / Industrial Zone — IND
 
-| Rule ID | ACTIVE等级 | 当前设计 |
-|---|---|---|
-| IND-001 | Lv1 | 每名IZ工作专家+3F，并增加相当于本城IZ Base Production adjacency的Production；从Lv1固有可用Construction Crew |
-| IND-002 | Lv2 | 获得SHARED-001住房与Engineer基础GPP |
-| IND-003 | Lv3 | 专家Food提升至+5F，保留100% Base Production adjacency的Production，并增加其2倍的Gold；不改为通用固定5P |
-| IND-004 | Lv4 | 本城IZ Production的Actual复制基数50%经工业网络输出；同一接收城市取当前有效来源实际可提供的最高Industry IV Production output，不叠加；见IND-NET-003 |
+**D0053: DESIGN_FROZEN — D0052一级260及成本保留，施工接受适用Production加成并留待未来实测平衡； 在D0044职责／首测值上追加每模板来源绑定、正式Gold/Faith、研习中断、专业单位保护与最终Floor；模板可靠性及历史合同保留，implementation / balance validation pending.**
 
-### Industrial Network / Standardization — IND-NET
+唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0053.json)。[本轮接受与取代](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)／[D0044既定职责](../Historical/Design/Reviews/Industry_D0044_Review.md)、[早期冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
 
-**IND-NET-001** 接收Industrial Network的城市可获得建筑Gold购买折扣：Industry I/II/III/IV为10%/20%/30%/40%。目标建筑模板须在当前有效工业来源模板并集中；模板提供者与最高折扣提供者可以不是同一城市。优先按相同District和Building Tier匹配；若需固定同Tier建筑组，必须明确范围，不暗中扩大适用对象。
+| Rule ID | 当前权威content条目 |
+|---|---|
+| IND-001 | IND_BASE_SUPPORT / IND_INST_1匠作坊；无named ability |
+| IND-002 | IND_L2_DIVISION / IND_INST_2百工会馆 |
+| IND-003 | IND_L3_STANDARD、IND_L3_MOBILIZE / IND_INST_3工程局 |
+| IND-004 | IND_L4_MACRO、IND_L4_PRACTICE、IND_L4_TRADITION / IND_INST_4土木工程总局 |
+| IND-NET-001至005 | contracts.template_knowledge / standardization_scope / network，保留目录及已有合法Gold／Faith购买渠道；旧等级折扣数值、旧IV直接生产力输出被替代 |
+| CREW-001至004 | contracts.teams及parameters；取代旧Lv1全档开放和普通区域/建筑施工目标，其余未推翻合同保留 |
 
-**IND-NET-002** 优先仅影响Gold购买；若技术上排除Faith折扣较难实现，用户已授权同一合格建筑的既有合法Faith购买也可享受折扣。采用时须报告实际货币行为，不再为这一兼容选择重复请求授权；不因此扩大到其它未启用/仅可Faith购买的建筑。不得以退款、放宽解锁或改变购买资格等方式默默改变实际玩法语义。标准化账本保持，但断开/消失的源不再提供当前资格。
+**IND-TEMPLATE-006 — City Experience Reconciliation / ACCEPTED D0036** 模板属于这座城市可可靠确认的建设经验，不是当前玩家个人建造记录。合法首次取得工业身份，或已有工业城市进入／回到任意受支持Owner并恢复工业身份时，局部同步“可靠保存模板历史 ∪ 当前存在的合格建筑”。AI/非支持Owner时期建成但此时仍存在的合格建筑可补入；可靠历史不因当前缺失、拆除、掠夺或临时失效删除。明确区分首次初始化、已有历史恢复、当前事实同步与历史缺失/损坏：曾有历史但缺失/不可读时，不得把当前扫描伪装成首次初始化或完整恢复；保护继续生效。非支持Owner期间建成又消失、系统从未可靠记录的对象不追溯、不猜测，不要求AI监听或新全局建筑历史。目录、折扣、建造数值与其它专业Legacy不变。
 
-**IND-NET-003 — Industry多来源 / ACCEPTED** 对同一接收城市，以下三项分别按当前有效工业网络来源计算，不以历史连接代替当前资格：
+**IND-HISTORY-001 — ACCEPTED D0040** 模板与工程实践的本城真实Wonder completion属于A城市历史，随城、与实际完成Owner无关；当前利用依Industry资格，工程实践需IV，Identity退出保留／暂停。本城实践可并入当前可证明完成事实，不猜历史。全国工程传统属于B实际完成文明历史，城市转移不转移信用；同一完成分别记录城市经验和文明信用。D0044工程实践仍IV门槛，N只降低施工队成本，不再强化标准化；全国E供本城L研习，不再解锁高档队。历史技术保护保留；Teams来源／容量生命周期见IND-TEAM-LIFECYCLE-001。
 
-1. **Industry IV Production Output**：`Received Industry IV Production = max(valid source Industry IV Production outputs)`。比较各有效Lv4来源实际能提供的产出，不求和、不按来源数量增加倍率，不套Research/Culture的`L=max(...)`后生成虚构来源。保留建设更强工业核心的价值，避免多个高级工业城令输出线性爆炸。
-2. **Standardization Template Set**：`Available Template Set = union(all templates from valid connected Industry sources)`。当前网络共享有效工业来源掌握模板的并集；不同中心可贡献不同合法模板。来源断网、摧毁、征服或失去source资格即停止贡献旧网络当前集合；不是曾接通过就永久全国解锁。来源城市自身已掌握的永久模板记录仍保留，征服后依PROG-004归新Owner并按真实网络重新判断资格。
-3. **Standardization Discount**：`Discount = max(valid Industry source discounts)`。目标建筑存在于当前模板并集时，可使用当前最高有效等级的Gold折扣，即10%/20%/30%/40%；模板资格与折扣不要求同源，不逐模板限定独立折扣提供者。全国共享成熟模板，最先进的工业专家体系指导最高水平的标准化生产。货币适用遵循IND-NET-002的条件授权，不改变其它购买资格。
+IND-REVIEW-01/02保留已接受暂行复审状态；03“模板与全局最高效率完全分离”由D0045正式取代。机构／能力候选名、五档队名和研习项目名保持成熟度。D0044既定首测值、III150%／IV按N折减、高档队按ACTIVE开放保持，施工倍率按D0053新决定，不再把已给值标成公式TBD；实际强度待Balance Validation。
 
-多个工业中心仍有模板并集价值；来源失效时三项按剩余有效来源重新计算，不保留旧来源贡献。
+Research及其它未列条款不变；本轮Culture首测值和Commerce专业单位保护增量见其当前Content；共同Network topology保留。旧Industry条文在D0026冻结原文，不能与新能力叠加。其它段落若仍描述旧Industry向外直接输出，以本节新content取代该Industry含义；不据此自行重做Commerce收益。当前实现和实机证据以Status为准，本节不维护另一份进度表。
 
-**IND-NET-004 — Template Acquisition / ACCEPTED D0015** Industry专业城以任何方式合法获得或完成建筑时，记录所有合格建筑的标准化模板，不以当前是否开放折扣作为记录条件。这里承接HD明确分类的真实建筑目录（包括特色、宗教、当前不可金币购买和当前未开放折扣的建筑）；不把奇观、内部/HD虚拟建筑或缺失/不明确HD分类自动视为合格。首次成为Industry专业时，对本城已经存在的合格建筑做一次初始化补录；此后使用事件式增量记录，不持续进行全城扫描。具体BuildingType及其分类证据永久保留，记录与当前网络贡献仍遵循IND-NET-002/003和PROG-004。未开放建筑的模板不丢弃，未来经用户批准可开启其标准化折扣资格，无需因当前禁用而重新获得建筑。
+D0031有限库存问题已关闭：每具备工程动员资格的Industry来源城容量2，各档已完成队伍占1，四级不加；来源绑定、消耗/合法移除释放名额，离开Industry后已有队伍保留但不能补充。D0042已关闭来源易主／夺回计槽；单位本体不可捕获／转换Owner、保护回归原生接口待查，原Owner完全消失仍未定义。完整规则以content为准。
 
-**IND-NET-005 — v0.1 Discount Activation / ACCEPTED D0015** 模板记录范围与当前折扣启用范围独立维护。v0.1开启学院、剧院广场、工业区、商业中心、军营、港口、圣地、航空港、水渠、堤坝、社区、娱乐中心、水上乐园、保护区、外交区的建筑，包含特色建筑；只有目标建筑在当前游戏状态下本来就可合法使用Gold购买时，才可在满足有效工业网络与模板条件后使用Gold折扣。仍按相同区域+HD Tier匹配，除下述明确市中心分组。记录模板或开启折扣都不会新增Gold购买资格、解锁特色/宗教建筑、改变科技/市政/互斥条件；Faith价格适用IND-NET-002的条件授权。当前不能合法Gold购买的建筑仍可记录，当前不获得金币折扣；不以Faith字段推导放宽购买权限。
+**IND-TRADITION-STUDY-001 — ACCEPTED D0044 / D0045中断增量** 全国E为B文明实际完成奇观自身时代去重历史，从游戏开始计、不要求工业；本城成功研习L为A城市历史。Industry ACTIVE IV且L<E可做完整1 Production Turn，成功提交L+1。IV来源输出建造10%＋2%×L、已有合法Gold／Faith购买折扣2%×L；III保留L／不研习，只输出基础10%／0%；低III或退出身份不输出；恢复IV直接恢复全部L。易主E<L不删除／降级／截断L，E只限制新增，不设五层／人工cap。明确采用与Dialogue相同完整1T事务、以Industry IV资格：ACTIVE不足IV（含总督离开）、Identity退出、REALLOCATING、Owner变化或正常生产中断取消本轮，无L、无半进度；重新合格且L<E重做完整1T，已提交历史L不变。不导入Dialogue时代额度／倍率。
 
-市中心不直接按整个HD Tier0共享。v0.1只开放以下三个模板匹配组：
+**IND-PRACTICE-COST-001 — ACCEPTED D0044** 工程实践仍为当前ACTIVE IV能力，N为本城真实历史奇观数、不看完成Owner／Identity／ACTIVE／Governor。III成本统一150%；IV N0／1–2／3–5／6+为150／140／130／120%×锁定基础施工力，累计门槛1／3／6。只改组建投入，不强化标准化或队伍施工力。III开放I–III、IV额外IV–V，不要求E4／5或其它传统门槛。五档施工力260／420／750／1000／1360（一级按D0052修正），标准速度首测成本完整表见content。
 
-| 组 | 具体建筑 | 共享规则 |
-|---|---|---|
-| 市中心基础组 | 纪念碑 BUILDING_MONUMENT、粮仓 BUILDING_GRANARY、磨坊 BUILDING_WATER_MILL、测量仪 BUILDING_NILOMETER_HD、法表 BUILDING_HD_TABLES_OF_LAW | 五者视为同一标准化Tier，相互匹配 |
-| 会展中心独立组 | BUILDING_EXHIBITION | 仅自身匹配 |
-| 警署独立组 | BUILDING_HD_POLICE_STATION | 仅自身匹配 |
+**IND-PRACTICE-COST-002 — ACCEPTED clarification 2026-10-17** 开工时锁定本次施工队组建成本。训练中本城N或ACTIVE改变不重算已开工队伍的成本；下一队按新开工时的资格与价格计算。不改变施工力、既定倍率、来源／容量或其它生命周期合同。
 
-这些是本项目标准化分组，不改写HD原始Tier表。市政广场与上述七栋以外的市中心建筑，当前仅记录而不开放标准化折扣；明确列名的市中心组不自动扩充未列出的特色替代建筑。以后可以由用户批准增加开放范围或组成员，不删除既有模板、不自动将未来范围提前启用。
+**IND-MACRO-INJECTION-001 — ACCEPTED D0053** 工业IV自行生产旧时代奇观：文明当前时代与奇观自身时代差1／2／3+对应+10／20／30%封顶，当前时代无加成。施工队基础投入为min(锁定基础施工力,目标剩余Production)，允许适用的原生Production加成（包括巨构工程学与奇观政策等）；不要求最终进度严格等于基础投入，不预先断言各倍率的叠加公式。余量浪费、不溢出或保存。原有劳动力／目标／容量／来源生命周期不变。该放大行为暂行接受，未来实测其平衡强度，不阻碍开发；平衡待办不进入游戏内UI。
 
-### Construction Crew — CREW
+**IND-TEAM-LIFECYCLE-001 — ACCEPTED D0042** 完成施工队为独立原Owner资产，来源总督／ACTIVE／Industry Identity／Owner变化不删除或停止使用；永久训练来源只承担provenance与容量。合法来源当前Owner的存活本城出身队伍占2槽，消费／合法移除释放，存活撤退不释放；易主后旧Owner队伍不占新Owner容量，原Owner夺回重新计入其旧存活队伍。直接单位捕获／Owner转换明确禁止，敌方相关交互用保护撤退／安全回归；原生接口为Technical，非归属TBD。
 
-**CREW-001** Industry Lv1起的默认固有能力。固定成本城市项目产生固定Production施工队；以下五档是项目/施工队规格，**不是专业Lv1–Lv5**。
+**IND-STANDARD-SOURCE-001 — ACCEPTED D0045** 不同模板仍取并集；针对模板T，只从当前有效且实际掌握T的工业来源中，分别取最高建造效率与最高合法购买折扣，不跨无模板来源取全局max。A L7持大学／研究所、B L2持大学／银行、C L5持工厂，分别大学24%、研究所24%、银行14%、工厂20%；C不能放大银行。Gold或Faith都只作用于目标本来合法的购买价格，不增加许可、不绕过资格、价格字段不等于合法渠道。
 
-| 项目Production成本 | Crew可转移Production |
-|---:|---:|
-| 280 | 250 |
-| 460 | 420 |
-| 820 | 750 |
-| 1100 | 1000 |
-| 1500 | 1360 |
-
-**CREW-002** 效率约为110投入换100可转移生产力，现档位为适应奇观成本而整数调整；不增加1800/2000档，避免单个最高级施工队直接完成后期大型奇观。
-
-**CREW-003** 施工队移动到目标己方城市并消耗，向当前合法在建District、Building或Wonder注入该队固定Production。只应用目标所需部分，多余施工力直接浪费，不流入下一队列，不递归overflow。750施工力、剩余300的目标：完成目标，450消失，下一项获得0。
-
-**CREW-004** 空队列或非法目标拒绝动作，不消耗单位。五档项目从Industry Lv1全部开放，不新增科技/市政/专业等级档位门槛。项目Production成本和Crew可转移Production均按游戏速度缩放，设计表数值作为基准；项目成本保留原生引擎计算，不修改基础Cost。Crew可转移Production = floor(基准Production × 游戏速度CostMultiplier / 100)，即缩放后向下取整。施工按钮、预览及确认提示显示同一整数金额。明确接受每支队伍相较精确比例舍弃不足1点Production；不得四舍五入或向上取整。五档标准速度数值、1点劳动力、合法目标与超额浪费规则不变。
+**IND-PRECISION-001 — ACCEPTED D0045** 需要最终落整数的Industry Production／Gold／Cost使用Floor；不四舍五入／ceiling／补差，避免不必要中间Floor，不外推未授权的Commerce或GPP精度。
 
 ## 8. Commerce / Commercial Hub — COM
 
-| Rule ID | ACTIVE等级 | 当前设计 |
-|---|---|---|
-| COM-001 | Lv1 | 每名Commercial Hub工作专家+3F、+3P；该商业专业城市具有Trade Center身份 |
-| COM-002 | Lv2 | 获得SHARED-001住房与Merchant基础GPP |
-| COM-003 | Lv3 | 专家支持提升至+5F、+5P；每接入Research/Culture/Industry网络类型，专家分别额外+2S/+2C/+2P。同类型多源不重复提供该类型奖励 |
-| COM-004 | Lv4 | Convergence／专业汇聚：对直接接入本中心的Research、Culture、Industry分别选Actual Source City Yield Basis最高的有效source，获得其对应Science／Culture／Production的20%；同类型不求和，不跨yield转换；见COM-005至008 |
+**D0057: DESIGN_FROZEN；发展投资同阶合格候选取最低理论购买价并列明依据、不绑定报价建筑；最高S同级按最早建立对应机构等级优先，其它合同保留；外部来源身份过滤与Harbor→Food已接受，D0054逐领域Floor保留；在D0045基础上按2026-10-16用户交接修订商业化、资本投资资格、风险保护与发展投资，其余D0039–D0045合同保持；不等于实现／平衡验收／技术通过。**
 
-**COM-005 — Convergence / ACCEPTED** Commerce IV向内汇聚帝国最强专业核心，与Industry向外输出形成不同主题。当前v0.1分别处理Research→Science、Culture→Culture、Industry→Production，三个类型独立选择最高有效direct source，不跨yield转Gold。`Convergence_Y = 20% × max(actual city Y basis of valid direct sources of corresponding specialization)`；没有该类型有效direct source则无对应汇聚收益。20%是正式初始Design/balance value，未来调整须新Design Revision，不是未接受候选。
+唯一机械合同：[Commerce D0057](Content/Commerce_D0057.json)（[D0056](Content/Commerce_D0056.json)为历史）（[D0055](Content/Commerce_D0055.json)为历史）（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
 
-最高source按对应eligible yield比较，不按最高ACTIVE选择或虚构来源，不把多来源求和。例如直接接入的科研源为2000/900/700 eligible Science时，选择2000，额外获得400 Science，而非三者相加后乘20%。保留多source冗余和其它网络价值，避免同类铺城线性放大；Research/Culture/Industry分别选择自己的最高source。
+| Rule ID | 当前权威content |
+|---|---|
+| COM-001 | COM_BASE_SUPPORT：各级每工作专家额外3F3P；共同Trade Center保留 |
+| COM-002 | COM_L2_GUILD：同业制度，沿用SHARED-001/002 |
+| COM-003 | COM_L3_COMMERCIALIZE + COM_L3_INVEST |
+| COM-004 | COM_L4_DEVELOP + COM_L4_RESTRUCTURE + COM_L4_REPUTATION |
+| COM-005至009 | SUPERSEDED：旧Convergence20%/Actual/floor/incoming-only不叠加 |
 
-**COM-006 — Actual Source City Yield Basis / ACCEPTED D0024** v0.1采用用户此前有条件授权的来源城市实际总产出备选：目前未找到可靠的精确本地/外来收益分解接口，故读取对应来源城市实际Science/Culture/Production总产出，允许包含外来输入。取代此前要求剥离全部Specialization transfer的纯本地产出基数。仅直接有效Research/Culture/Industry源可参与，Commerce不得作为汇聚源；汇聚输出施加在城市层，不加入区域复制基数；不按各源分别求和。该选择不证明任意第三方Mod的跨城反馈均无环；出现实际回边需独立调查，不靠反复累加或未知来源保留旧值。
+商业化五域Campus→Science、Theater→Culture、Industrial→Production、Holy Site→Faith、Harbor→Food；排除Commercial Hub。商业城仍需对应本地区域；来源为本城及任意方向有效直接国内商路连接、持有对应专业身份的其它己方城市。外部不另要求ACTIVE／总督／Potential／对应区域，间接网络不算。X为合法来源该类型城市总产出最高值；港口为总粮食而非余粮。本地D、每域Floor(0.05×D×X×(1+0.005×有效信誉))后相加及信誉ACTIVE IV门槛不变。输出仍为金币，不扣来源产出。D0055消除旧金币输入的直接反馈，不保留为旧机制拆装carrier的路线，不改港口专业。
 
-**COM-009 — Final integer grant / ACCEPTED D0024** 每yield分别计算`Raw = 0.20 × max(valid direct source actual city yield)`，仅在最终城市基础追加接口执行`Applied = floor(Raw)`。三类独立取整、不先截断来源基数，不将各来源分别取整相加。之后正常受接收城原生倍率影响。刷新绝对替换旧Applied，不累加；无有效来源或商业ACTIVE低于4时撤销。
+资本投资仍一项两模式；可投领域为已实施专业领域但不含商业本身（v0.1：科研、文化、工业；未来专业实施后自动纳入），来源城不需该领域区域；D取max(1,D)，S取当前由商路连接形成的国内网络中该领域当前有效ACTIVE最高等级并取max(1,S)、无来源时S=1（D0050）。每次本金=确认瞬间剩余国库25%，标准速度10回合，r=0.01DSC（C为商业化时1.25，否则1）。稳健P(1+r)、风险成功P(1+3r)，失败P(0.5+0.005×有效信誉)；p_base=min(0.8,0.4+0.01DS)，C不改概率。失败保护同来源城跨域共享，只保存连续失败次数n，实际成功率P=0.8−(0.8−p_base)×0.75^n，换域或D／S变化保留n并按新p_base重算，成功或Commerce Identity消失清零；保护属于来源城及其主人，新主人不继承，原主人夺回时恢复（D0050）；确认时抽取/锁定/更新保护，到期只揭晓结算。UI显示总预期返还及扣本金后预期净收益，负净收益提示预期亏损但允许选择。每来源城每领域最多一笔未结算（D0050），不同来源城可各自持有同领域合同，不另设全国总数上限。D0040确认锁定具体S来源城与双方Owner关系；最高S相同选最早达到该等级，再稳定ID/key，存读档不随机换源。报价必须显示S城名／等级，保存P/D/S/C/r、mode/probability/outcome、maturity及settlement。
 
-**COM-007 — Direct sources only / ACCEPTED** Convergence只看直接接入本Trade Center的有效专业sources。A科研源→B商业IV→C贸易中心时，B接收A网络、汇聚A实际城市产出并可向C分发；C仅接收网络，不因此将A视为自己的direct source，即使C是Commerce IV也不能仅凭该distribution再次汇聚A。来源/连接失效不继续贡献；动态更新/撤销的具体处理留Development，不改变有效来源限定。
+发展投资（D0050重构）：签约仍要求ACTIVE IV来源→目标直接国内出发路线，之后断路不改投资；目标城须有所选类型合格区域且其下一级建筑当前可建。费用=15%×合格下一阶候选中的**最低理论金币购买价**（D0057：界面列明报价建筑和价格；不要求可用金币购买，不以生产力成本替代，不绑定报价建筑）；生效期间目标城该区域类型建筑+50%建造生产力，持续到完成该区域类型下一座合格建筑为止，无固定期限、无退款补偿；绑定目标城＋区域类型。每工作商业专家1名额，降容量不撤已生效投资；**每座目标城最多1份**，不分领域与来源。旧10回合、P_low／P_high／P_ref及按生产力报价退为历史。剧院广场（HD＋District Expansion）与社区建筑链为实施时检查。与标准化Production百分比加算。已签资本合同与生效中的发展投资不因Governor/ACTIVE/Identity、商路或专家容量等普通变化取消；发展目标Identity变而目标仍合法亦继续。D0040关键城市Owner变化异常终止：资本Commerce城或锁S城任一换主，不返本金／不maturity／不走风险失败或修改保护；发展Commerce城或目标任一换主，不退款、撤+50%、立刻释放slot，不转交新Owner。
 
-**COM-008 — 首都战略与继承能力 / ACCEPTED** Commerce IV首都可由其它科研/文化/工业核心通过direct routes接入，自己接收网络、保留Commerce III对应专家+2S/+2C/+2P、分别汇聚各类最高有效来源的20%，并继续分发，无须Capital→Capital路线。Research IV首都则天然direct self-connect、自身接收并可分发；其它Commerce IV城市若要汇聚该科研首都，仍须合法Research Capital→该商业中心direct connection。科研首都偏本地专业核心，商业首都偏全国汇聚与组织，不要求数学等价。Commerce I–III不变，Lv4为追加能力。
+首次Commerce IV长期机构开始信誉计龄，标准速度保有Commerce Identity每完整回合+1，cap40；ACTIVE下降不暂停年龄，但当前两项信誉效果需ACTIVE IV。商业化每点+0.5%，风险失败本金返还每点+0.5个百分点；不影响稳健、成功利润、成功率、保护公式、发展投资或重组。信誉为持续Commerce机构关系，Owner变化不清零／分账／重置，非支持者冻结使用。失去Commerce Identity立即清零，重新建立从0，不机械套Research暂停保留规则。
 
-20%参考之一为用户提供的后期样本：最强科研首都约2000 Science、全国约8000，汇聚400约占全国5%；再考虑文化和工业可同时汇聚，作为相对保守的起测值。样本不是游戏规则，也不声明本轮验证。旧COM-004“免费成为已接入网络recipient”已由D0009废弃，接收现在是所有directly connected Trade Center的基础网络资格。
+重组团队首版500Production、仅生产训练，明确不可捕获／转Owner，敌方原可捕获／消灭的交互保护撤回且无主动删除；沿用P→P−1及至少5完整混乱回合（v0.1只支持标准速度）、非Food产出/净余粮各−75%。配置前目标被征服立即销毁本次事务/未完成账本/旧当前身份并解散团队；原玩家后续夺回按PROG-011例外重新snapshot/Claim，不恢复半成品。
+
+五域及主要公式/初值已定，不再沿用D0032对应TBD；初值仍可Balance调整。D0050已关闭资本领域/S候选与等级/空池、同域并发作用域、保护组合与跨Owner、X聚合与发展参考态等剩余项；v0.1只支持标准速度。关键城市摧毁／移除、原主人在无可靠关键城转移证据时被消灭、发展投资签约后目标失效三项**暂缓到v0.1之后**，运行时保守处理只是技术保护。D0055仅增加来源身份过滤及港口总粮食映射；D0054逐领域Floor保留，无其它新增floor或上限。旧5F5P、网络类型专家加成、20%汇聚、单双向50/100等持续退出；共同中心接收分发不变。
+
+**COM-LIFECYCLE-002 — ACCEPTED D0042** 商业化选择域及activation order是持久配置：容量减少LIFO暂停而非删除，容量恢复按原顺序前N项自动恢复；主动关闭删除，重开最新。保有Commerce Identity时总督／ACTIVE下降保留配置；Identity退出或易主清空；同Owner同身份读档先恢复配置、再按当前事实派生效果，信誉Owner保留规则独立。已训练重组团队不因训练来源总督／ACTIVE／Identity／Owner变化删除或转交；绑定后随目标REALLOCATING事务，训练来源仅provenance，其易主不能取消另一目标事务。目标易主仍执行既定销毁。
 
 ## 9. Trade Center与Network核心 — NET
 
@@ -233,7 +268,9 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **NET-004** 路线结束、取消、战争/征服/端点失效等使路线不再有效时，相关接入/接收资格撤销，不能仅因过去曾建立过路线而继续享受网络。读档后应反映当前真实集合，无需玩家打开贸易界面恢复网络。
 
-### Research / Culture共享强度 — NET-RC
+### Research当前网络 / Culture旧网络历史 — NET-RC
+
+**D0028适用范围覆盖声明：** 下列NET-RC条款继续用于Research；其中Culture/Eureka、k_C等描述只保留旧合同审计，不再是当前Culture规则。Culture以CUL-005为准，新网络按CUL-005合并完整考察文明集合；不得叠加旧Eureka奖励。Research标记NETWORK_REDESIGN_REQUIRED而未改公式。
 
 **NET-RC-001** `Network Strength = k × L × sqrt(N)`。Research使用独立可调k_R，Culture使用k_C，初始测试均为1。结果是Research额外Inspiration百分点、Culture额外Eureka百分点。
 
@@ -241,13 +278,17 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **NET-RC-003** 多个当前有效接入的同类型来源，`L = max(all valid source ACTIVE specialization levels)`；使用ACTIVE而非Potential。来源数量本身不增加N。统一选L后只计算一次强度，禁止分别按来源求强度后相加，禁止`Σ(k × L_i × sqrt(N))`或逐中心求和。
 
-**NET-RC-004** 最高等级源失效后立即回退到剩余有效源的最高ACTIVE。无有效来源时Strength归零，不保留stale Strength；N=0时Strength也为零。Research/Culture规则不自动扩展到其它机制：Military共享pool另按MIL-004的PROVISIONAL模型；Industry按实际source output取最大及模板并集；Community国内网络只分发人口。
+**NET-RC-004** 最高等级源失效后立即回退到剩余有效源的最高ACTIVE。无有效来源时Strength归零，不保留stale Strength；N=0时Strength也为零。Research/Culture规则不自动扩展到其它机制：Military统一动员按Military_D0037分网络司令与当前生产兵种线规则；Industry按D0045不同模板并集、每模板仅在实际持有它的有效来源内择优；Community国内网络只分发人口。
 
 **NET-RC-005** Research/Culture内部保持完整浮点：RawStrength=k_R或k_C×L×sqrt(N)，所有合法Network modifiers与未来Entertainment效率修正均在浮点上执行。仅在最终整数Boost接口边界量化一次：`AppliedBoost = floor(FinalRawBoost + 0.5)`（Boost非负）；显式使用此式，不使用默认round/banker's rounding，不提前量化、不重复量化。1.49→1、1.50→2、3.50→4；L4/N2原值约5.657→6个百分点。不同Raw值映射同整数时仅保持该AppliedBoost，不重复叠加；网络失效回零。正式权重1/2/3/4、独立k_R/k_C=1、L为有效来源最高ACTIVE、N为recipient UID去重不变。此规则取代D0017“浮点原样交引擎并接受截断不修复”。正式集成前以Raw1.5→接口2、Raw3.8→接口4最小原生测试确认；不再尝试让引擎保留fractional percentage points。不改变原生基础Boost规则，不假定固定40%；已触发Boost不补发、额外进度不得溢入下一科技/市政；最终封顶仍待确认。Entertainment具体效率参数未由本决定设定。
 
 ## 10. Future专业 — OUT_OF_V0.1
 
 本章记录已确认未来范围及本次明确提供的机制；不因为记录进Spec就纳入v0.1实现。
+
+### 原始首都一次性特殊改制 — CAPITAL-REFORM
+
+**CAPITAL-REFORM-001 — FUTURE / DESIGN_RECORDED / NOT_V0.1_IMPLEMENTATION** 完整共同正式合同见Shared_D0045.concepts.ORIGINAL_CAPITAL_SPECIAL_REFORM及[阅读正文](Shared.md#未来记录原始首都一次性特殊改制)。原始首都城市实体每局一次，迁都不转移；保留Potential，无普通P−1／REALLOCATING5T／Team。三阶段各完整1T，前两阶段纯RP无奖励；第二阶段成功锁当前合法候选，后建区域不追加；第三阶段选目标、成功再核验真实合法区域后切Identity／保留Potential／重算ACTIVE／消耗一次权利。普通中断仅当前阶段重做，已成功前置保留；完成前Owner变化清空全部阶段／候选／事务但未成功第三阶段不消费权利。目标真正消失／非法时第三阶段失败，不切身份、不消费权利且保留前两阶段；掠夺／暂损不等于消失。默认所有合法专业，Civic／市政允许，Diplomatic暂排待未来重构复审；名称占位。无P0/P1／milestone／runtime任务／当前测试，不扩大四专业实施。
 
 ### Landscape / Preserve — LAND
 
@@ -279,127 +320,49 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ### Military / Encampment — MIL
 
-**MIL-001** Lv1每名working Encampment specialist获得+3F/+3P基础支持。Lv2军营及对应建筑继承SHARED-001住房；每名working Encampment specialist提供**+2 base Great General GPP**，之后正常接受GPP百分比加成；每名实际工作专家另外提供正式接受的**+15% Combat XP**，完整定义见MIL-005。
+**MIL-D0037 — DESIGN_FROZEN / NAMING_ONLY_AMENDMENT** 唯一当前内容正文：[Military D0037](Content/Military_D0037.json)。仅行伍制度→行伍编制、后勤编制→战地勤务，玩法合同保持D0034；[冻结机制审阅](../Historical/Design/Reviews/Military_D0034_Review.md)、[本轮接受与冲突登记](../Historical/Design/Reviews/Harbor_D0037_Review.md)。旧MIL-001至013原文保留于D0032及更早snapshot，不与新能力叠加。
 
-**MIL-002 — Military III / Advanced Experience / Insight XP — ACCEPTED** Lv3专家支持提升至5F5P；不继续增加统一Combat XP百分比。高级单位根据已经掌握的Promotions，从每次符合条件的战斗中获得少量独立Bonus XP。
+| Historical rule | Current authority |
+|---|---|
+| MIL-001/005 | 全级3F3P、II住房和+2baseGeneralGPP保留；+15%CombatXP退出 |
+| MIL-002/007 | III5F5P退出；Insight公式移至IV，E改为出生时锁定，P仍读取当前实际晋升 |
+| MIL-003/009 | 旧驻扎训练退出，IV仅战阵传授/沙场领悟/军略传承 |
+| MIL-010–013 | 旧Mentorship公式重用并限同PromotionClass；单位永久出生buff/合并同能力max取代动态来源城依赖 |
+| MIL-004 | 旧全国pool/自动送兵退出；统一动员按每个不相连网络选司令，匹配整个归一化升级兵种线 |
 
-用户确认公式：`Insight XP = min(E, floor(P / 2))`。
+综合训练同一能力内：五领域合格T1各提供永久出生+1CS（最多5）；相同五领域的Shared绝对D还支持本城训练效率，T1-only不提供深度收益、T2阶段开始贡献，转换公式/汇总/精确门槛/购买适用后置。不以区域100%完成或D10为启动条件，不新增相对完善度指标。
 
-- `E` = 本城当前实际工作的Encampment specialist数量；只计算真实工作专家，空槽不计算。Military Academy不增加E。
-- `P` = 单位在战斗发生时实际拥有的Promotion数量；不使用XP level、总累计XP或由XP反推的理论晋升等级。
-- Corps/Army合并继承的实际Promotions合法计入P。XP与实际Promotions可能脱钩；合并获得的真实战术知识属于预期互动，不是需要阻止的技巧。
-
-用户确认的晋升档位表：
-
-| 实际拥有Promotions（P） | 理论Insight上限（实际仍受E限制） |
-|---:|---:|
-| 0–1 | +0 |
-| 2–3 | +1 |
-| 4–5 | +2 |
-| 6–7 | +3 |
-| 8–9 | +4 |
-| 更高P | 按floor(P / 2)继续增加，实际仍受E限制 |
-
-**D0002边界澄清 — ACCEPTED** 保持原公式，不增加额外+3或其它人工硬上限。当前Encampment实际工作专家槽最多4个，即`E <= 4`，因此当前设计结构下Insight XP实际最高天然为+4；这是实际专家数量的约束，不是独立固定奖励上限。
-
-P为6–7时，E为1/2/3/4分别奖励+1/+2/+3/+3；P至少8且E为4时奖励+4。第四名实际工作专家在极端高级单位上仍有Military III价值。普通6–7 Promotion老兵仍最多+3，此前正常晋升树的平衡结论不变。P仍计战斗时实际拥有的Promotions，包括合法军团/军队合并继承；E仍只计真实工作军营专家，Military Academy不提供额外虚拟专家。
-
-**MIL-003 — Military IV / Professional Standing Army / 职业常备军体系 — ACCEPTED** 包含两个相互独立的能力：后方和平Garrison Training与前线实战Frontline Mentorship。Mentorship不绑定后方训练，不要求返回Military IV城市或驻扎城市中心／军营。Military II负责正常Combat XP效率；Military III按单位自身Promotions提供Insight XP；Military IV负责正规训练与老兵传帮带。详细规则见MIL-009至MIL-013。
-
-**MIL-004 — Military Network Mobilization / PROVISIONAL BALANCE MODEL** 每个参与玩家全国共享一个Military Mobilization Progress pool，多Military sources不各自建立独立免费单位生产线。
-
-- 第一版每回合进度：`Mobilization Progress per turn = L * sqrt(N)`。L为当前所有有效Military sources的最高ACTIVE；N为实际接收Military Network的己方城市UID去重数。全国计算一次，不逐source求和。
-- 第一版阈值：`Mobilization Threshold = 100`，为PROVISIONAL BALANCE VALUE。达到阈值生成一个合格动员单位、Progress减100并保留overflow；不是最终locked参数。目标为成熟Military IV网络约6–10个recipient时，大约8–10回合一单位。
-- 单位为当前玩家可以合法动员的最高级Melee Land Combat Unit，不随机军种。编制同时受所选Military source城军营建筑tier与当前正常游戏合法解锁限制：tier1最多single、tier2最多Corps、tier3最多Army；`Formation = min(building-supported formation, currently legally unlocked formation)`，不提前解锁编制。Military Academy与Military Political Department只按building tier判断。
-- 生成于最高ACTIVE的有效Military source city，优先Encampment，必要时City Center；多个同级最高source的稳定tie-break仍TBD。无合法放置位置不得丢失已完成进度，具体处理为IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT。无对应建筑层级等未明确资格边界仍TBD，不自行补规则。
-- 平衡时间轴仅为建模假设：Lv4理论上较早可达、约T70；军营/港口tier1/2/3约T50/T80/T110，不是硬性解锁回合。
-
-本模型替代此前Military多源归属、阈值和生成位置整体未定的骨架，保持PROVISIONAL；不自动决定Naval Mobilization。
-
-**MIL-005 — Military II / Combat XP — ACCEPTED** 每名实际工作的Encampment specialist提供**+15% Combat XP**，适用于本Military专业城市训练出的对应陆地军事单位。空专家槽不计算。这是正常Combat XP modifier，与HD现有Barracks/Stable、Military Academy及其它正常经验modifier正常叠加，与经验政策卡按游戏正常规则互动。不修改单次8 XP Combat XP cap，不通过额外奖励绕过该cap。
-
-设计目标是允许玩家以人口/专家投入购买训练质量。Military Academy、更多working specialists、XP policy分别代表建筑选择、人口投入和政策槽投入。主要按不装备额外XP政策卡的环境平衡；允许玩家付出军事政策槽机会成本，将正常Combat XP更快推向8 XP cap，不为政策卡环境反向削弱Military II。
-
-**MIL-006 — 三级建筑与平衡原则** 已确认槽位设计背景：军营区域基础1槽，tier3建筑后合计最多4槽。Barracks/Stable、Military Academy及XP政策仍按HD/游戏原有规则提供收益。本系统不重新平衡Military Academy与Military Political Department本身的生产、编制、战斗力、经验差异，不要求两条路线严格数学等价或50/50选率。
-
-Military Academy已有经验训练、直接训练更高级编制及其它质量路线价值；Military Political Department具有数量路线价值。明确不采用“Military Academy额外virtual instructors / virtual specialists”方案。玩家可以选择Military Academy+较少专家、Political Department+更多专家、Military Academy+大量专家、使用XP policy，或Political Department配合单位合并培养部队。Specialization提供相对中立的专家体系，目标是有意义的资源配置选择。
-
-**MIL-007 — Insight XP与正常Combat XP的边界 — ACCEPTED** 正常Combat XP完全遵守游戏正常计算与单次8 XP cap。Military III的Insight XP在正常Combat XP结算之外独立追加；例如8 normal Combat XP + 3 Insight XP = 11 total XP gained，不是把Combat XP cap改为11，不修改或移除8 XP cap。当前极端情况P≥8且E=4时，可获得8 normal Combat XP + 4 Insight XP = 12 total XP gained，这是已接受的高级军事教育收益，正常Combat XP cap仍为8。普通新兵P=0或1时Insight为0；真正拥有高级战术知识的单位可从同一场实战额外获得少量经验理解。实现可行性状态：`IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT`；本设计修订不进行技术调查或实现承诺。
-
-**MIL-008 — 有效专家范围与修订边界** 当前Military II/III仅计实际工作军营专家；Entertainment Local Support未来形成的Effective/Virtual Specialists是否参与两者，仍属于ENT有效专家适用范围的独立Design Decision，本轮不决定。Military IV按D0006的MIL-003/009至013更新；Military I、Military II/III及5F5P、Mobilization、Harbor naval mirror和Aerodrome扩展保持既有设计状态，不因本次接受而补全其它未来模块的未定参数。Military继续属于OUT_OF_V0.1。
-
-**MIL-009 — Military IV-A / Garrison Training — ACCEPTED** Military IV城市提供City Center与Encampment两个正规训练位置。符合条件的己方陆地战斗单位连续驻扎满一个完整回合后，每个有效训练回合获得`+1 Training XP`。
-
-完整驻扎周期定义：单位在一个回合结束时已位于合格训练位置，下一次训练结算时仍连续位于同一合格位置，才获得经验。刚移动进入、移动力耗尽停留或仅于回合结束时路过均不立即奖励；离开训练位置即清除连续状态，返回后重新完成完整周期。不能只凭两次结算位置相同而忽略中途离开，也不能在City Center与Encampment之间移动却沿用原连续状态。
-
-Training XP是直接增加单位经验的独立训练奖励，不属于Combat XP，不受Military II、Barracks/Stable/Military Academy等建筑Combat XP modifiers或XP policy放大，不修改正常8 XP Combat cap。单靠训练，第一次15 XP晋升约需15个有效训练回合，后续晋升越来越慢，不能替代实战。不自行添加用户未指定的训练晋升等级上限。
-
-**MIL-010 — Military IV-B / Frontline Mentorship — ACCEPTED** 属于该Military IV体系的己方陆地战斗单位完成一次符合条件的实际战斗时，只检查fighter周围1格的相邻己方合格陆地战斗单位，选择实际Promotion数量最高者作为潜在mentor。多mentor不叠加、不求和；无合格mentor时无Mentorship XP。fighter与mentor无需驻扎训练位置，mentor无需回到Military IV城市。
-
-`P_fighter`为本次战斗单位当前实际Promotion数量；`P_mentor`为相邻合格己方单位中的最高实际Promotion数量。
-
-`DeltaP = P_mentor - P_fighter`
-
-`Mentorship XP = max(0, floor(DeltaP / 2))`
-
-| Promotion差值DeltaP | Mentorship XP |
-|---:|---:|
-| 负数或0–1 | 0 |
-| 2–3 | +1 |
-| 4–5 | +2 |
-| 6–7 | +3 |
-| 8–9 | +4 |
-| 更高差值 | 继续按公式，自然受实际Promotion数量限制 |
-
-不增加额外hard cap；不以专家数E限制Mentorship。Mentorship XP是正常Combat XP之外独立追加的Bonus XP，不提高正常8 XP cap，不受Military II、建筑Combat XP modifiers或XP policy放大。
-
-P始终是战斗时单位实际拥有的Promotions，不是XP Level、accumulated XP或据经验值推算的理论等级。合法Corps/Army合并、成员Promotion继承及其它实际授予Promotion的机制均参与比较，延续Military III定义。
-
-**MIL-011 — Insight与Mentorship互补 / ACCEPTED** 新兵自身Insight少或为0，但可从相邻高级mentor获得较强Mentorship；中级单位同时获得自身Insight及与更高级mentor之间的部分Mentorship；高级老兵Insight较强、难以找到晋升差足够大的mentor，Mentorship自然趋近0。正式成长意图：`新兵主要靠老兵教 → 中级单位两者兼有 → 高级老兵主要靠自己的Insight`。
-
-- 0 Promotion新兵相邻6 Promotion老兵：DeltaP=6，Mentorship=3；若normal Combat XP=6、Insight=0，总经验为9，但normal Combat XP仍为6，正常cap仍为8。
-- 4 Promotion单位相邻6 Promotion老兵：Mentorship=1，同时可按军营真实专家数获得自己的Military III Insight。
-- 6 Promotion老兵没有更高级邻近单位：Mentorship=0，主要依靠自身Insight继续成长。
-
-**MIL-012 — 触发作用域与建筑中立 / ACCEPTED** Mentorship只在符合条件的实际战斗发生／结算时进行一次局部判定：当前fighter、周围1格、相邻己方合格陆军及最高实际Promotion count。Design不要求每回合扫描全国单位或所有单位周围六格，不要求持续维护全国mentor关系或所有单位间晋升差。这是玩法作用域要求，不规定具体代码或事件实现。
-
-Military IV不给Military Academy额外virtual mentor、virtual specialist、bonus Mentorship或bonus Training XP，也不额外修改Military Political Department。HD两栋建筑已有的数量、直接训练Corps/Army、战斗力、XP、Production等差异继续由HD负责，Specialization不重新平衡两栋建筑选率。
-
-**MIL-013 — Future镜像与剩余边界** Harbor Naval Military branch的默认平移已由D0008登记为ACCEPTED DIRECTION，位置与规则见HARB-005至009；具体Naval eligibility、特殊建筑额外互动与Naval Mobilization仍独立细化。Aerodrome既有扩展不变。
-
-Military IV尚未明确的细节继续TBD：单位“属于该Military IV体系”的取得与保持资格（如来源城ACTIVE变化后如何处理）、fighter/mentor及训练单位的精确合格陆军分类、合格实际战斗范围，以及战斗发生／结算之间位置和Promotion快照的精确玩法口径。训练+1/有效回合、完整连续驻扎规则、Mentorship公式与无额外hard cap均已确定，不再列为待定。技术问题仅标记`IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT`；本轮不调查Combat event、Promotion读取、邻近判定性能或实现方式，不写代码、不修改Architecture/Status/Source/Tests、不启动游戏或P0工作。
+Military设计冻结不等于implemented/balance complete/实机通过；当前P0计划未授权实现Military。命名占位、后勤资源覆盖、Balance、Technical与Legacy见content登记。Harbor经D0037明确授权镜像当前Military机制，排除统一动员；Harbor数值TBD不由Military数值自动补齐。Aerodrome旧扩展仍未自动适配。
 
 ### Harbor：完整双线 — HARB
 
-**HARB-001** Harbor定位为**100% maritime commerce + 100% naval military**，不是各半的两套能力。
+**HARB-D0037 — ACCEPTED FUTURE BASELINE** 唯一当前完整内容：[Harbor D0037](Content/Harbor_D0037.json)；[中文阅读版](Harbor.md)；[接受、取代及未决审阅](../Historical/Design/Reviews/Harbor_D0037_Review.md)。机制接受不升级候选名称、Balance、技术或Legacy，不代表已实现。
 
-**HARB-002** 商业线包括Great Merchant与Great Admiral、marine improvement/resource收益。未指明的等级分配、GPP及改良产出系数TBD，不截掉任一条线。
+100%海运商业＋100%海军同时成长；Lv1/II共用机构，Lv3/IV商业与海军同级并存，非二选一。Lv1保留基础支持；II船员编制；III港际联运、通商万邦、综合训练、远洋勤务；IV集货出洋、舶来采长、久航成业、舰阵传授、怒海真知、海略传承。名称成熟度见content；不按其它专业0/1/2/3排列强行删减。
 
-**HARB-003** Lv3：本城全部海洋资源，无论是否紧邻Harbor，都提供Harbor正常资源Base adjacency，以减少沿海奇观覆盖资源导致的港口相邻崩坏。“本城海洋资源”归属范围及改良资格等细节TBD，不自行改为只邻接资源。
+出口只读Base Adjacency，先加入路线价值再组合市场广度倍率；进口按每外国文明关系0→1锁类型、1→0消失；经营时间仅ACTIVE IV且有有效海上路线时每回合+1，不按路线数或完成次数。失去ACTIVE IV只暂停经营进度；已得航线容量不因调走总督或暂失ACTIVE IV撤销。其他owner/身份/城市摧毁Legacy未定。
 
-**HARB-004** Lv4：Export Value。接入城市其它专业区域的Base/相关adjacency进入出口价值；本城自身Export Value采用更高效率的Actual/local比例；国际路线将Export Value转成收益。接入方向/资格、纳入哪些相关adjacency、具体比例、收益类型与去重规则TBD，不能擅自统一成本地或远端同系数。
-
-**HARB-005 — Naval Military branch / ACCEPTED DIRECTION** Harbor保持完整Maritime Commerce + 完整Naval Military双线；Military II–IV默认平移至海军，规则见HARB-006至009。既有Harbor商业、专家/GPP及海洋资源、Export Value设计保留，不由本次平移覆盖。具体Naval unit eligibility、Harbor特殊建筑与Military建筑额外互动仍TBD。Naval Mobilization仍以最高级合法naval melee为方向，模型/阈值/生成细节另行细化，不自动采用MIL-004的陆军pool与编制方案。
-
-**HARB-006 — Harbor II / ACCEPTED DIRECTION（默认平移）** 每名实际工作Harbor专家为本城训练的合格Naval combat units提供+15%正常Combat XP，遵守正常modifier互动与正常Combat XP cap；空槽不算。不添加或替换尚未明确的Harbor GPP数值。
-
-**HARB-007 — Harbor III / ACCEPTED DIRECTION（默认平移）** `Naval Insight XP = min(E, floor(P / 2))`；E仅实际工作Harbor specialists，P为Naval unit实际拥有的Promotions（沿用Military实际晋升/合法合并继承口径，不用XP Level）。正常Combat XP之外独立追加，不修改正常8 XP cap，不擅自套用军营E≤4为港口槽位上限。
-
-**HARB-008 — Harbor IV Naval Garrison Training / ACCEPTED DIRECTION（默认平移）** 合法训练位置为Harbor district，以及该Harbor城市中Naval unit可合法进入的City Center。Canal即使可通航也不是额外训练位置，不增加训练槽。沿用完整连续驻扎周期、初次进入不奖励、离开清除后重新计周期；每有效回合+1独立Training XP，按Military IV训练经验性质处理，不受正常Combat XP倍率放大。
-
-**HARB-009 — Harbor IV Naval Frontline Mentorship / ACCEPTED DIRECTION（默认平移）** 合格海军战斗单位发生符合条件的战斗时，只检查相邻1格己方合格Naval combat units，取实际Promotion数量最高者。`DeltaP = P_mentor - P_fighter`；`Mentorship XP = max(0, floor(DeltaP / 2))`，多mentor不叠加，沿用Military IV独立奖励、非后方驻扎绑定、无额外hard cap及正常8 XP Combat cap不变的性质。仅记录设计，不调查技术可行性。
+旧HARB-001双线及HARB-003本城海洋资源基础相邻范围保留；HARB-004自身Actual高比例出口退出。旧HARB-005至009的海军动员、II+15%XP、III动态E领悟、驻扎训练和旧传授由当前Military镜像替换；历史原文见D0036快照，不叠加。不设额外Harbor Network Ability，也不镜像统一动员/司令城。旧HARB-002未定大商人点数/改良产出措辞未被补成新能力，待明确范围，不作为暗含收益。
 
 ### Government Plaza — GOV
 
-Government是特殊国家治理专业，不采用普通“专家→胜利yield”逻辑。Government Plaza建筑Tier 1/2/3主题分别为建立帝国、发展帝国、支持最终胜利路线。属于Future；Canal与外交state visit联动分别见CAN-001、DIP-MISSION。
+**GOV-CONTENT-001 — ACCEPTED FUTURE BASELINE / OUT_OF_V0.1** 市政／Government是国家治理中枢（Meta-specialization），成长为基础行政→常设内政体系→制度整合→国家政策中枢。完整机械内容、参数与逐项未决以[Government D0047](Content/Government_D0047.json)为本专业结构化权威；中文完整阅读见[市政](Government.md)。不进入当前四专业实施范围；共同Identity/Potential/ACTIVE与机构展示遵循Shared，不强制其它专业的无名Lv1结构。
 
-**GOV-001 — Government building completion** Government专业城市完成某一Tier的一栋Government Plaza building后，自动完成/获得同Tier另外两栋。以专业的前期机会成本换取完整制度学习，而不局限于三选一。建筑互斥、免费完成时事件及一次性效果如何处理属于implementation feasibility，不改变此WHAT。
+| 等级／机构 | 本级能力 | 已接受机制与参数成熟度 |
+|---|---|---|
+| I 治所 | 基础市政支持 | 每个合格本城市政建筑＋G Food／＋G Production；G为当前Government Tier，I–IV对应1／2／3／4 |
+| II 内政司（Placeholder） | 政令通达 | 显著减免主动政策重新配置的Gold费用，折扣TBD；不增第二能力 |
+| III 典制院 | 兼采诸制 | 先拥有同Tier一栋Government Plaza建筑，逐栋项目「建制考论」学习其它制度；标准速度每栋I／II／III为完整1／2／3生产回合，补全另外两栋共2／4／6T，总12T；其它速度缩放，不被高Production压缩；只获长期／持续效果，不重复一次性奖励 |
+| III 典制院 | 政制取鉴 | ACTIVE III完整1T「政制择用」（项目名Placeholder），选择当前Tier及以下其它政体的一项Legacy；同时最多1、不占槽、直接生效、可重选，不与当前政体自身Legacy重复；政体变化后非法／自身重复效果不得生效 |
+| IV 国策府 | 多元统筹 | ＋N Wildcard Slots，N为当前不同非市政ACTIVE IV专业类型数；同类多城只算1，Potential IV不足；资格消失撤销、恢复重算，不保存历史槽位 |
+| IV 国策府 | 因时制宜 | 每回合第一次玩家主动完整政策重新配置免费；非每卡／无限重配，不影响原生Civic完成／政体变化等免费机会，不自行加cooldown |
+| IV 国策府 | 治理效能 | 全国All Yields按当前Government Tier G增加k×G；k初测候选每Tier1个百分点（I–IV为1／2／3／4%），非永久冻结值；All Yields精确集合另行明确 |
 
-**GOV-002 — Governor Titles** Governor Titles绑定Government specialization的永久Potential投资，不绑定ACTIVE。建立Government专业、Potential Lv1时永久获得+1 Governor Title；Potential首次提升至Lv2、Lv3、Lv4时各再永久获得+1，累计最多+4。已经获得的头衔永久保留；Governor调离、未established或ACTIVE下降均不收回，也不会因重新激活而重复授予。永久投资代表帝国已经建立的治理能力，当前驻扎只决定高级Local能力是否ACTIVE；不能撤销已经获得并可能已经花费的全国头衔。本规则与GOV-003按ACTIVE计算的Wildcard slots是两个不同机制。
+**GOV-STATE-001 — 具名状态与未决边界** 已完成制度学习属于城市长期制度积累，临时Governor／ACTIVE失效不得清除成果；具体Identity退出、Owner变化／夺回、当前效果启用及未完成多回合项目处置未冻结，不套用其它专业。当前吸收Legacy属于制度配置，保存／暂停／Identity退出／易主等生命周期仍TBD；政体变化后保留配置暂停或其它表现未选定。Wildcard、免费重配与全国产出均为当前派生能力，不是历史资产；各自资格按本级及Shared规则。
 
-**GOV-003 — Government policy capacity** 额外Wildcard slots为`W = min(L, Government Tier)`，L为Government专业ACTIVE level，Government Tier为当前政府等级。Government IV在Tier 1/2/3/4政府分别增加1/2/3/4槽，不是在Tier 1直接+4。专业代表治理准备程度，政府等级限制制度当前能利用的能力。
+**GOV-SUPERSESSION-001 — obsolete** 旧GOV-001自动免费补齐其它同Tier建筑→逐栋制度学习；旧GOV-002按Potential累计永久＋4 Governor Titles取消；旧GOV-003 `W=min(ACTIVE,Government Tier)`→当前非市政ACTIVE IV专业多样性N；旧GOV-004忠诚度Network及其数值待决退出。旧原件仅历史，不作为附加效果保留。本轮不新增市政独立Network Ability；Canal与国事访问既有独立未来交互仍见CAN-001／DIP-MISSION，不借本轮重构它们。
 
-**GOV-004 — Network** 向接收城市提供弱/辅助Loyalty支持，具体数值TBD；不是本专业核心，不额外发明大型网络能力。
+**GOV-OPEN-001 — 分层未决** 内政司／政制择用保留Placeholder；政令通达折扣未定、k仅首测候选。建筑资格／长期效果承载／一次性奖励分离、完整多回合项目与速度缩放、Legacy目录／无槽直接作用、动态政策槽／完整配置交易与原生免费机会区分、All Yields精确范围及承载均待Technical／Design detail；不展开兼容表、不补公式。Wildcard边际价值及少量具体HD即时政策套利留后续实测，不据此增加机制限制。
 
 ### Diplomatic Quarter — DIP
 
@@ -592,13 +555,13 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 |---|---|---|
 | OPEN-01 | TBD | Landscape资源补偿、改良资格/Appeal、提前可用时点、Gold→Tourism系数、公园强化、Amenities/网络效率参数；LAND-002至006 |
 | OPEN-02 | TBD / DESIGN_DECISION_REQUIRED | 神学战斗力数值、本城宗教锁定边界、foreign pressure公式/多源、belief吸收资格/数量/类别/冲突、贸易宗教压力规模公式；REL-003至006 |
-| OPEN-03 | TBD | Government Network Loyalty具体数值；GOV-004 |
+| OPEN-03 | BALANCE / DESIGN DETAIL / TECHNICAL REQUIRED | Government D0047折扣／k平衡、具名生命周期、All Yields精确范围、项目速度与直接效果技术；GOV-OPEN-001，旧Loyalty未决已退出 |
 | OPEN-04 | IMPLEMENTATION / FUTURE_COMPATIBILITY / TBD | 旧档初始化仍独立OPEN，不自动沿用Conquest snapshot；永久UID及LegacySet冻结保存、Claim提供/移除、模式互斥与完成事件隔离留Development审查；Claim精确成本待定但受极低/短确认约束。无Identity征服城分流已由PROG-006至010正式解决，已有Identity继承不变 |
 | OPEN-06 | TBD / DESIGN_DECISION_REQUIRED | Boost最终封顶等细节；最终一次floor(x+0.5)量化契约已按D0018确认；整数写入的实机验证属于Implementation，不是未决设计；不更改已定max规则 |
-| OPEN-08 | IMPLEMENTATION_VALIDATION / TBD | GW-001百分比公式/创作者时代及文物历史时代例外已由D0022确定；固定yield与旧逐件补差路线均退出。百分比Modifier与theming结算待实机验证；异常创作者关联、未知自定义类别独立保留；GW002范围已由D0023确认 |
-| OPEN-09 | RESOLVED / D0012 | 五档从工业Lv1全部开放；两侧按速度缩放，Crew生产力缩放后向下取整并显示整数，项目成本保留原生计算。 |
-| OPEN-10 | PROVISIONAL BALANCE MODEL / TBD | Military IV归属/持续资格、合格陆军/战斗及快照口径见MIL-013；Mobilization已形成共享pool、L最高ACTIVE、N接收城去重、L√N/回合与阈值100的暂定模型，tier/合法编制双限制及最高ACTIVE源生成方向已记录；最终平衡、同级source tie-break、未明示资格及无位置处理待定；ENT适用范围仍独立；MIL-004 |
-| OPEN-11 | ACCEPTED DIRECTION / TBD | Harbor商业等级/GPP与收益系数、Export接入/收益；Naval II–IV默认平移已登记（Harbor/合法City Center训练，排除Canal），具体Naval eligibility、特殊建筑额外互动和Naval Mobilization独立细化；HARB-005至009 |
+| OPEN-08 | SUPERSEDED_BY_D0028 / HISTORICAL | GW-001百分比公式/创作者时代及文物历史时代例外已由D0022确定；固定yield与旧逐件补差路线均退出。百分比Modifier与theming结算待实机验证；异常创作者关联、未知自定义类别独立保留；GW002范围已由D0023确认 |
+| OPEN-09 | CURRENT AUTHORITY: D0045 / INITIAL_BALANCE_TECHNICAL_PENDING | D0044首测职责保留；每模板实际有效持有来源max、正式合法Gold/Faith、研习完整1T取消／重做、单位不可捕获／Owner转换及最终Floor已定。原单位Owner完全消失等未覆盖边界未定义；原生承载／安全回归／可靠保存仍Technical。 |
+| OPEN-10 | DESIGN_FROZEN / BALANCE_TECHNICAL_LEGACY_PENDING | Military_D0037（机制沿D0034）五项阻塞已关闭；单位出生锁定buff、同能力合并max、分网络司令、升级兵种线、ACTIVE更新已定。后勤资源覆盖/数值/技术/Legacy后置；不实现Military。 |
+| OPEN-11 | ACCEPTED FUTURE / NAMES_BALANCE_TECHNICAL_LEGACY_PENDING | Harbor_D0037双线基线已接受；船政局强冻结候选，其余机构占位；能力名按可冻结/强候选/暂定分别保留。海上资格、出口/进口/经营参数及Legacy见content；无独立Network或Naval Mobilization。 |
 | OPEN-12 | DESIGN_DECISION_REQUIRED / TBD | 永久保护国额度作用域/降级、多个外交来源、Spy经验/周转/死亡减幅；DIP |
 | OPEN-13 | MIXED: PROVISIONAL / PREFERRED DESIGN CANDIDATE / THEME CANDIDATE ONLY / TBD | 外交/联盟等级解锁、任务周期/奖励/晋升适用；交流概率与未来fallback、Import Fair duration/selection/repeat、Migration Agreement duration/multiplier、军演函数/k、Pilgrimage资格/X等见DIP-MISSION-003至014；Infrastructure Coordination仅首选候选，Civilian Conversion仅主题候选，公共外交奖励暂定，外交区/市政广场仍Future骨架；不统一升级 |
 | OPEN-14 | PROVISIONAL BUT ACCEPTED FRAMEWORK / TBD | Community Local Lv2/IV细节、资格锁定、专家槽cap/递减、Attractiveness权重及建筑分类、国际移民系数/C_map边界/结算细节、国内分发频率/等级边界/recipient资格和排序、Protected Floor依据和数值、人口政策项目细节、Lv4 Settler阈值（暂定8）及计数边界；详见COMM-001至011；旧国内Migration进度公式已被分发机制取代 |
@@ -607,16 +570,27 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 | OPEN-17 | TBD | Canal叠加/归属/Community分支；CAN |
 | OPEN-18 | TBD | Air训练未定参数、Airport Gold/Tourism系数及重复范围；AIR |
 
+### 当前未决与技术适配
+
+- Commerce D0045保留D0039公式／首版值、D0040信誉／合同及D0042配置／来源，只同步单位保护；精确design_detail_required、城市消失／目标非法、hidden protection跨Owner仍未定，不重开已定Owner政策。
+- Industry D0045保留D0044首测职责，关闭独立全局效率／Faith fallback／研习中断／单位捕获Owner Gameplay TBD。原Owner完全消失、城市彻底毁灭的未覆盖处置与候选命名保留；逐模板价格承载、完整1T、可受加成的基础施工、不溢出及普通Production modifier、保护回归、最终Floor／速度／保存为技术验证。Culture Hybrid D方向已确认，实机状态见Status。
+
+- D0040取代CUL-REVIEW-01/03原Owner见闻键／不继承；见闻与Dialogue均城市历史、独立资格与有效Owner过滤。CUL-REVIEW-02外交／城邦及04独立完整集合并集保留。City-State inclusion仍Future Candidate。
+- Research Network：NETWORK_REDESIGN_REQUIRED，现有Research规则保留；Culture已替代旧Eureka。
+- 意义延展政府广场／外交区Culture输入已按D0046恢复至九域六产出；当前六产出单城候选仍待原生共存验收。B155/B157负面证据保留，不能由Production多片反证推定文化根因已关闭。其它yield精度、recipient、倍率／结算门禁仍按各自实际证据，不因Design恢复而自动通过。
+- 固定完整生产回合、native-only巨作倍率、巨作启迪本城全类别GPP百分比及小数累计／叠加／状态更新、城市整体Tourism及非敌对独立Spy-style流程：TECHNICAL_INVESTIGATION_REQUIRED，不能因此自行降级Design。
+- Dialogue无额外累计cap、考察成本沿用当前Spy公式且考察团次数独立累计、全国现存cap1、K_T=2百分点、K_C=1及标准任务2T已定首测，不再是这些数值Gameplay TBD；真实平衡／原生验证仍开放。
+
 ### 已确定作用域的后续兼容事项（非核心玩法未决）
 
-**COMPAT-001 — IMPLEMENTATION / FUTURE_COMPATIBILITY** 旧档初始化见OPEN-04；多enabled玩家的多人确定性、AI实际行为质量、eligibility carrier和只对参与者运行的过滤方式留待Development／未来兼容处理。技术问题标记`IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT`，不能把通用资格设计、AI可参与、白板非永久唯一载体或征服休眠语义重新列为未决。
+**COMPAT-001 — IMPLEMENTATION / FUTURE_COMPATIBILITY** 当前专用白板文明、单人本地人类与非支持Owner休眠范围以ELIG为准，不要求全原版／Mod文明及领袖叠加兼容。未来原文明复用／AI／多人需独立授权；既有旧档初始化、成本过滤与城市识别技术边界保持。技术问题标记`IMPLEMENTATION_FEASIBILITY_TO_BE_REVIEWED_BY_DEVELOPMENT`，不得反向改写已接受玩法或征服休眠语义。
 
-**COMPAT-002 — Commerce IV / IMPLEMENTATION_VALIDATION** D0024采用来源实际总产出与最终floor。动态择优/撤销、同回合刷新和第三方间接反馈仍需实测；不是任意Mod无环保证。
+**COMPAT-002 — Commerce D0045 / ARCHITECTURE_REQUIRED** 旧Convergence的D0024总产出/floor规则已退出当前Commerce Design。新合同持久化、锁定随机结果、REALLOCATING、源城容量绑定、Production-only、防止余粮惩罚变总Food惩罚及UI拦截见Commerce D0045与A–G Review；本轮没有实现或部署。
 
 ## 13. 设计审阅边界
 
 本文保留当前可获得的v0.1等级规则及Future具体机制。Landscape、Religion、Government既有设计已按用户本次补充恢复；OPEN-01至03只记录剩余参数和规则边界，不再表示缺少整套专业设计。Future的TBD和PROVISIONAL不因整份文档将来被接受而自动成为确定数值。
 
-Research/Culture共享强度、MIL-004暂定全国动员pool、Industry实际输出max和Community人口分发各按自身规则处理，不能互相覆盖。永久保护国与ACTIVE下降、Community资格与首次完成锁定、Virtual Specialists与实际工作专家等相互作用已列为显式审阅问题，不为实现便利默选答案。
+Research/Culture共享强度、Military_D0037分网络统一动员、Industry逐模板有效持有来源max和Community人口分发各按自身规则处理，不能互相覆盖。永久保护国与ACTIVE下降、Community资格与首次完成锁定、Virtual Specialists与实际工作专家等相互作用已列为显式审阅问题，不为实现便利默选答案。
 
-本文件为D0010当前游戏设计意图权威，正式区分征服城市Legacy Claim、空候选Normal First Completion和已有Identity永久继承；其它设计继承D0009，历史冻结保留。Design仅维护WHAT，随后交Development自行sync并检查Conquest实现/测试，不在本对话修改Architecture/Status/Source/Tests或调查API。
+本文件为D0055当前Design入口；各专业content revision见对应章节。历史修订不覆盖新canonical规则。Design接受不等于Architecture已sync或Mod已实现；文档接受本身不授权实现、部署或promotion；实际实施与验证范围另见Status。

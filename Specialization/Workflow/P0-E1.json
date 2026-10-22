@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "implementation_scope": {
+    "v0_1": [
+      "RESEARCH",
+      "CULTURE",
+      "COMMERCE",
+      "INDUSTRY"
+    ],
+    "future_only": [
+      "MILITARY",
+      "other future specializations"
+    ],
+    "boundary": "Design presence is not implementation authorization or dependency expansion. Military remains future metadata, not required context for four-profession P0 batches."
+  },
+  "batch": "P0-E1",
+  "status": "COMPLETE",
+  "authority_versions": {
+    "design": "D0035",
+    "research": "D0031",
+    "industry": "D0032",
+    "culture": "D0029",
+    "commerce": "D0032",
+    "shared": "D0035",
+    "presentation": "D0032",
+    "architecture": "A0161",
+    "status": "S0248",
+    "runtime": "B094.121 / modinfo121",
+    "military": "D0034"
+  },
+  "goal_reference": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
+  "context": [
+    {
+      "path": "Specialization/Architecture/v2/P0_E1_Plan.md",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Adaptation.md",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/D0032_Implementation_Plan.md",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Mod/BindingProbe.lua",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Mod/CityInheritanceRead.lua",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Mod/CurrentSpecializationFacts.lua",
+      "kind": "full",
+      "reason": "E1 identity/migration contract or current read boundary"
+    },
+    {
+      "path": "Specialization/Design/Content/Research_D0031.json",
+      "kind": "json",
+      "selector": "/abilities/5",
+      "expected_id": "RES_L4_TRADITION",
+      "reason": "Future dependent ability; not E1 implementation"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E1_Identity_Evidence.md",
+      "kind": "full",
+      "reason": "Actual evidence limits, native gate and readonly contract"
+    },
+    {
+      "path": "Mod/CityIdentityRead.lua",
+      "kind": "full",
+      "reason": "Actual readonly resolver/observer"
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B088_P0E1_Native_Review.md",
+      "kind": "full",
+      "reason": "Native negative persistence evidence and exact two-city test boundary"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
+      "kind": "full",
+      "reason": "Authorized isolated persistence spike contract"
+    },
+    {
+      "path": "Mod/CityIdentityExperiment.lua",
+      "kind": "full",
+      "reason": "Only new test-key writer"
+    },
+    {
+      "path": "Mod/UI/CityIdentityEvidence.lua",
+      "kind": "full",
+      "reason": "Authorized on-demand UI-only transfer evidence"
+    },
+    {
+      "path": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
+      "kind": "full",
+      "reason": "Next scoped persistent-mapping experiment, implementation requires authorization"
+    },
+    {
+      "path": "Mod/CityIdentityMapping.lua",
+      "kind": "full",
+      "reason": "Authorized V2 experimental mapping authority only"
+    }
+  ],
+  "dependencies": [
+    "P0-A current facts",
+    "D3 accepted baseline",
+    "native city continuity evidence gate"
+  ],
+  "old_writers": {
+    "retire": [],
+    "preserve": [
+      "Binding/Journal/Flow/Investment",
+      "all ability carriers/writers"
+    ],
+    "keep_isolated": [
+      "CityInheritance",
+      "InheritanceShadow"
+    ]
+  },
+  "conditional_context": [
+    {
+      "paths": [
+        "Mod/CityJournalProbe.lua",
+        "Mod/CityFlowProbe.lua",
+        "Mod/InvestmentAction.lua",
+        "Mod/CityInheritance.lua",
+        "Mod/InheritanceShadow.lua",
+        "Mod/Gameplay.lua"
+      ],
+      "trigger": "Read full exact property/writer/event contracts before implementation"
+    }
+  ],
+  "non_scope": [
+    "formal migration/E2",
+    "Academic Tradition/F",
+    "per-specialization conquest policies",
+    "new persistent markers without explicit spike review",
+    "UI polish/full U1",
+    "Design/deployment in planning"
+  ],
+  "validation": {
+    "local": [
+      "test_p0_e1_mapping.py actual Lua targeted L3",
+      "Legacy experiment/UI/shared shadow functional cases; current syntax/modinfo120",
+      "temporary_playtest safety fixtures; W0001 context"
+    ],
+    "user": "After separately authorized implementation: enable one branch city, Free City transfer, save/load BEFORE diagnostic, one result screenshot"
+  },
+  "full_audit_triggers": [
+    "new persistent writes",
+    "ambiguous engine city continuity",
+    "old writer activation/change"
+  ],
+  "result": {
+    "local": "B094 targeted actual Lua regression PASS including missing unpack",
+    "native_gate": "USER_GAME_TEST_PASS_SINGLE_FREE_CITY_MAPPING_ONLY",
+    "migration": "No profession migration. New opt-in experiment Game key only; old preview migrationAllowed=false",
+    "next": "E1 support boundary and E2 plan review; implementation separately authorized",
+    "native_observation": "B094 restored E1V2:DEV-B013-P0-2, owner0→62, revision3, current object matches; no formal ledger migration",
+    "completion_scope": "Single-city persistent mapping experiment complete; universal city continuity and profession migration are not certified"
+  },
+  "authorized_supplement": "User authorized single-city persistent mapping V2; no profession migration"
+}

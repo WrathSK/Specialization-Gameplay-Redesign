@@ -1,0 +1,204 @@
+{
+  "build": "B268.295",
+  "role": "Approved raw artwork reference hashes; source PNGs remain local and untracked. Derived DDS files require fixed-file publication review.",
+  "sizes": [
+    12,
+    16,
+    20,
+    22,
+    24,
+    30,
+    32,
+    38,
+    40,
+    48,
+    50,
+    64,
+    70,
+    80,
+    95,
+    128,
+    200,
+    256
+  ],
+  "columns": 5,
+  "rows": 4,
+  "items": [
+    {
+      "id": "01-06",
+      "name": "人文考察团",
+      "file": "01-06_人文考察团.png",
+      "sha256": "64872b1c53f80d96863e4ca784b17a527580141832e6f6631b1e324665fa25fb",
+      "index": 0,
+      "key": "EXPEDITION",
+      "icon": "ICON_SPC_RAW_EXPEDITION"
+    },
+    {
+      "id": "02-02",
+      "name": "资产重组团队",
+      "file": "02-02_资产重组团队.png",
+      "sha256": "5650c380596c1807135011d866acc0e92f85f9a0bf81f14befffff8b277c36f3",
+      "index": 1,
+      "key": "RESTRUCTURING",
+      "icon": "ICON_SPC_RAW_RESTRUCTURING"
+    },
+    {
+      "id": "03-09",
+      "name": "施工队",
+      "file": "03-09_施工队.png",
+      "sha256": "3b4cce018e9ab0c76e5f7008aa1e155aa4adab01c2ab981ea3557ab9888f6cd2",
+      "index": 2,
+      "key": "CREW",
+      "icon": "ICON_SPC_RAW_CREW"
+    },
+    {
+      "id": "04-01",
+      "name": "开启任务",
+      "file": "04-01_开启任务.png",
+      "sha256": "3cdeaedcc6b00245cece6dd9477c10efa6a590adcf43279b9fe5413028f591f2",
+      "index": 3,
+      "key": "TASK",
+      "icon": "ICON_SPC_RAW_TASK"
+    },
+    {
+      "id": "05-01",
+      "name": "艺文采撷",
+      "file": "05-01_艺文采撷.png",
+      "sha256": "f38d8c5efefd4d039d3437e245ad4ab0b2f06e56b710e02a7d7b5257b0293a68",
+      "index": 4,
+      "key": "WORKS",
+      "icon": "ICON_SPC_RAW_WORKS"
+    },
+    {
+      "id": "06-01",
+      "name": "施工预备",
+      "file": "06-01_施工预备.png",
+      "sha256": "da27cb9f0a423cb69223095fdc6e3a7b611ef1f6f1d71fca1ad4e64978696f17",
+      "index": 5,
+      "key": "CREW_PREPARE",
+      "icon": "ICON_SPC_RAW_CREW_PREPARE"
+    },
+    {
+      "id": "07-02",
+      "name": "施工确认",
+      "file": "07-02_施工确认.png",
+      "sha256": "58bb08a4033dbdecd65b1dab09e989b7a6762c45462470c385bc8562f9ef9ec1",
+      "index": 6,
+      "key": "CREW_CONFIRM",
+      "icon": "ICON_SPC_RAW_CREW_CONFIRM"
+    },
+    {
+      "id": "08-01",
+      "name": "资产清算",
+      "file": "08-01_资产清算.png",
+      "sha256": "33c2ce2b4062f7b6146e180c32dc3ae64c815ed61c5fbc21802545e9dee0c181",
+      "index": 7,
+      "key": "LIQUIDATE",
+      "icon": "ICON_SPC_RAW_LIQUIDATE"
+    },
+    {
+      "id": "09-02",
+      "name": "资产配置",
+      "file": "09-02_资产配置.png",
+      "sha256": "65e3853dba666987e0bb7e90e814a05a78a2f58e43792b13dfd0568363040443",
+      "index": 8,
+      "key": "CONFIGURE",
+      "icon": "ICON_SPC_RAW_CONFIGURE"
+    },
+    {
+      "id": "10-05",
+      "name": "移民投资预备",
+      "file": "10-05_移民投资预备.png",
+      "sha256": "7795b21a8dbfbf3c9f322682c50341bb4bf039d81ddd4a1796fd790426b05d19",
+      "index": 9,
+      "key": "INVEST_PREPARE",
+      "icon": "ICON_SPC_RAW_INVEST_PREPARE"
+    },
+    {
+      "id": "11-05",
+      "name": "移民投资确认",
+      "file": "11-05_移民投资确认.png",
+      "sha256": "6f02820a57ea9b70e24dc7330c685b327e5dfec77a39be506697a7fab98b6b04",
+      "index": 10,
+      "key": "INVEST_CONFIRM",
+      "icon": "ICON_SPC_RAW_INVEST_CONFIRM"
+    },
+    {
+      "id": "12-02",
+      "name": "商业化",
+      "file": "12-02_商业化.png",
+      "sha256": "bf5243f8dc6e1b697667d49f22ebde7d8c2f4408bc0bade67661d2027399dd24",
+      "index": 11,
+      "key": "COMMERCE",
+      "icon": "ICON_SPC_RAW_COMMERCE"
+    },
+    {
+      "id": "13-05",
+      "name": "资本投资",
+      "file": "13-05_资本投资.png",
+      "sha256": "a1decd4dbbf8be0005da747ae0f0cc670f7a5911ab4e94afe655cd2b05322a5d",
+      "index": 12,
+      "key": "CAPITAL",
+      "icon": "ICON_SPC_RAW_CAPITAL"
+    },
+    {
+      "id": "14-08",
+      "name": "发展投资",
+      "file": "14-08_发展投资.png",
+      "sha256": "5ee69af7d945f2c3c2cc4415275afdef8a42b4dd980085bb293217d42acc1363",
+      "index": 13,
+      "key": "DEVELOPMENT",
+      "icon": "ICON_SPC_RAW_DEVELOPMENT"
+    },
+    {
+      "id": "15-02",
+      "name": "时代对话",
+      "file": "15-02_时代对话.png",
+      "sha256": "4593c8abdbc459d8099b8689da92815f2a8f6c278ad3685e68d3155f0eec001c",
+      "index": 14,
+      "key": "DIALOGUE",
+      "icon": "ICON_SPC_RAW_DIALOGUE"
+    },
+    {
+      "id": "16-02",
+      "name": "工程研习",
+      "file": "16-02_工程研习.png",
+      "sha256": "076fb7811aa94c539527e7e438779e506b7e440a321673b3dd840b35b1468640",
+      "index": 15,
+      "key": "ENGINEERING",
+      "icon": "ICON_SPC_RAW_ENGINEERING"
+    },
+    {
+      "id": "17-01",
+      "name": "通用认领",
+      "file": "17-01_通用认领.png",
+      "sha256": "e78cd771121bcd9a918e66b53b4043b444319fafd291e8106c54ab682f6e081e",
+      "index": 16,
+      "key": "CLAIM_MARK",
+      "icon": "ICON_SPC_RAW_CLAIM_MARK"
+    }
+  ],
+  "claims": [
+    {
+      "key": "RESEARCH",
+      "district": "CAMPUS",
+      "native_index": 2
+    },
+    {
+      "key": "CULTURE",
+      "district": "THEATER",
+      "native_index": 8
+    },
+    {
+      "key": "INDUSTRY",
+      "district": "INDUSTRIAL_ZONE",
+      "native_index": 9
+    },
+    {
+      "key": "COMMERCE",
+      "district": "COMMERCIAL_HUB",
+      "native_index": 6
+    }
+  ],
+  "claim_presentation": "Native district icon aliases plus approved mark in runtime UI; no extracted/repainted native pixels. Civilopedia keeps the native district base."
+}

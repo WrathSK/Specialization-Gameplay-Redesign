@@ -1,0 +1,22 @@
+-- B247: fixed Production-only training; no population debit or copy escalation.
+INSERT INTO Types(Type,Kind) VALUES ('UNIT_SPC_RESTRUCTURING_TEAM','KIND_UNIT'),
+ ('BUILDING_SPC_RESTRUCTURING_ACCESS','KIND_BUILDING'),('BUILDING_SPC_REALLOCATING','KIND_BUILDING');
+INSERT INTO Units(UnitType,Name,Description,BaseSightRange,BaseMoves,Domain,FormationClass,Cost,PopulationCost,
+ CanTrain,CanCapture,CanRetreatWhenCaptured,CanEarnExperience,CostProgressionModel)
+ VALUES ('UNIT_SPC_RESTRUCTURING_TEAM','LOC_SPC_REST_TEAM','LOC_SPC_REST_TEAM_HELP',2,2,'DOMAIN_LAND','FORMATION_CLASS_CIVILIAN',500,0,
+ 1,0,1,0,'NO_COST_PROGRESSION');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing)
+ VALUES ('BUILDING_SPC_RESTRUCTURING_ACCESS','LOC_SPC_REST_TEAM',1,'DISTRICT_CITY_CENTER',1,0,0),
+ ('BUILDING_SPC_REALLOCATING','LOC_SPC_REST_PHASE',1,'DISTRICT_CITY_CENTER',1,0,0);
+INSERT INTO Unit_BuildingPrereqs(Unit,PrereqBuilding) VALUES ('UNIT_SPC_RESTRUCTURING_TEAM','BUILDING_SPC_RESTRUCTURING_ACCESS');
+INSERT INTO Modifiers(ModifierId,ModifierType)
+ SELECT 'SPC_REALLOCATING_'||YieldType,'MODIFIER_SINGLE_CITY_ADJUST_CITY_YIELD_MODIFIER' FROM Yields WHERE YieldType<>'YIELD_FOOD';
+INSERT INTO ModifierArguments(ModifierId,Name,Value)
+ SELECT 'SPC_REALLOCATING_'||YieldType,'YieldType',YieldType FROM Yields WHERE YieldType<>'YIELD_FOOD';
+INSERT INTO ModifierArguments(ModifierId,Name,Value)
+ SELECT 'SPC_REALLOCATING_'||YieldType,'Amount',-75 FROM Yields WHERE YieldType<>'YIELD_FOOD';
+INSERT INTO BuildingModifiers(BuildingType,ModifierId)
+ SELECT 'BUILDING_SPC_REALLOCATING','SPC_REALLOCATING_'||YieldType FROM Yields WHERE YieldType<>'YIELD_FOOD';
+INSERT INTO Modifiers(ModifierId,ModifierType) VALUES ('SPC_REALLOCATING_GROWTH','MODIFIER_SINGLE_CITY_ADJUST_CITY_GROWTH');
+INSERT INTO ModifierArguments(ModifierId,Name,Value) VALUES ('SPC_REALLOCATING_GROWTH','Amount',-75);
+INSERT INTO BuildingModifiers(BuildingType,ModifierId) VALUES ('BUILDING_SPC_REALLOCATING','SPC_REALLOCATING_GROWTH');

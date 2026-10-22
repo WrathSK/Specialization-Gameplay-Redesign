@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Context Name="SPCUnitPanelActions">
- <!-- Fixed width for Crew: confirmation never grows/reflows the parent action bar. -->
- <Grid ID="ActionGroup" Size="90,53" Hidden="1">
-  <Button ID="PrepareButton" Anchor="L,T" Offset="46,0" Size="44,53" Texture="UnitPanel_ActionButton">
+ <!-- Native recessed backing; one slot until a separate confirmation is available. -->
+ <Grid ID="ActionGroup" Size="44,53" Hidden="1">
+  <Grid ID="ActionSlot" Anchor="C,B" Offset="1,2" Size="47,41" Texture="UnitPanel_ActionGroupSlot" SliceCorner="5,19" SliceSize="1,1">
+   <Image Anchor="C,B" Texture="UnitPanel_ActionGroupGlow" />
+  </Grid>
+  <Button ID="PrepareButton" Anchor="L,T" Offset="0,0" Size="44,53" Texture="UnitPanel_ActionButton">
    <Image ID="PrepareIcon" Anchor="C,C" Offset="0,-2" Size="38,38" />
   </Button>
   <Button ID="ConfirmButton" Anchor="L,T" Offset="0,0" Size="44,53" Texture="UnitPanel_ActionButton" Hidden="1">

@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "batch": "P0-GH1",
+  "status": "COMPLETE",
+  "authority_versions": {
+    "design": "D0051",
+    "research": "D0040",
+    "industry": "D0045",
+    "culture": "D0051",
+    "commerce": "D0050",
+    "shared": "D0045",
+    "presentation": "D0032",
+    "architecture": "A0163",
+    "status": "S0622",
+    "runtime": "B233.260 / modinfo260",
+    "military": "D0037",
+    "harbor": "D0037",
+    "government": "D0047"
+  },
+  "goal_reference": "Specialization/Architecture/v2/Industry_Preparation.md#b233-implementation-contract",
+  "goal": "B233.260 / IND-1: completion history N/E and typed District knowledge only. User approved implementation and a new save for Industry testing.",
+  "implementation_authorized": true,
+  "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "## CURRENT AUTHORITATIVE STATE",
+      "reason": "Current authorization, source/live split, native gate and stop."
+    },
+    {
+      "path": "Specialization/Architecture/v2/Industry_Preparation.md",
+      "kind": "section",
+      "selector": "## B233 implementation contract",
+      "reason": "Exact approved facts/knowledge scope and ownership/unknown boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B233_Native_Review.md",
+      "kind": "full",
+      "reason": "B233 scoped native acceptance, original evidence hashes, adjacent support-delay investigation and next-batch stop. Prior local result is linked and retained."
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0045.json",
+      "kind": "json",
+      "selector": "/contracts/historical_credit",
+      "reason": "City N versus completing-civilization E ownership; no inferred credit."
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0045.json",
+      "kind": "json",
+      "selector": "/contracts/template_knowledge",
+      "reason": "Accepted template initialize/restore/reconcile and historical retention."
+    },
+    {
+      "path": "Specialization/Design/Content/Industry_D0045.json",
+      "kind": "json",
+      "selector": "/contracts/standardization_scope",
+      "reason": "Accepted District types and separation of knowledge/effect eligibility."
+    },
+    {
+      "path": "Mod/IndustryHistory.lua",
+      "kind": "full",
+      "reason": "Direct B233 history/knowledge/persistence implementation or targeted validation; no all-profession history loading."
+    },
+    {
+      "path": "Mod/Standardization.lua",
+      "kind": "full",
+      "reason": "Direct B233 history/knowledge/persistence implementation or targeted validation; no all-profession history loading."
+    },
+    {
+      "path": "Mod/StandardizationCatalog.lua",
+      "kind": "full",
+      "reason": "Direct B233 history/knowledge/persistence implementation or targeted validation; no all-profession history loading."
+    },
+    {
+      "path": "Mod/CityIdentityRead.lua",
+      "kind": "full",
+      "reason": "Direct B233 history/knowledge/persistence implementation or targeted validation; no all-profession history loading."
+    },
+    {
+      "path": "Mod/CityProgressionStore.lua",
+      "kind": "full",
+      "reason": "Direct B233 history/knowledge/persistence implementation or targeted validation; no all-profession history loading."
+    },
+    {
+      "path": "DevelopmentTests/test_industry_history.py",
+      "kind": "full",
+      "reason": "Direct B233 history/knowledge/persistence implementation or targeted validation; no all-profession history loading."
+    },
+    {
+      "path": "DevelopmentTests/test_industry_catalog.py",
+      "kind": "full",
+      "reason": "Direct B233 history/knowledge/persistence implementation or targeted validation; no all-profession history loading."
+    }
+  ],
+  "dependencies": [
+    "Native WonderCompleted and own-era metadata for supported players only; existing Store city identity and lawful Industry-entry reconciliation for present-Wonder N, never conquest E credit.",
+    "Existing per-city template transaction, actual indexed District collection and DistrictReplaces mapping; current eligibility never rewrites history.",
+    "Existing bounded diagnostic trace and P0 request route; no report-dependent collection."
+  ],
+  "old_writers": [
+    "Retain existing building-only StandardizationDiscount and Industry Copy/effects unchanged; new District rows never enter the building map. Exact retirement belongs to separately approved IND-2.",
+    "Do not import DWR/other Mod Properties or frozen evidence as runtime history."
+  ],
+  "conditional_context": [
+    {
+      "trigger": "Review a native callback, failure or package/report mismatch",
+      "paths": [
+        "Mod/Gameplay.lua",
+        "Mod/UI/P0Panel.lua",
+        "Mod/UI/P0Panel.xml",
+        "Mod/ExpeditionTrainingDiagnostics.lua",
+        "tools/read_expedition_trace.py",
+        "tools/collect_expedition_trace.py"
+      ]
+    },
+    {
+      "trigger": "Review retained template/claim/return or write-isolation regression",
+      "paths": [
+        "DevelopmentTests/test_b140_templates.py",
+        "DevelopmentTests/test_b142_templates.py",
+        "DevelopmentTests/test_store_write_boundaries.py",
+        "Specialization/Architecture/v2/P0_E2_Plan.md"
+      ]
+    },
+    {
+      "trigger": "Investigate a specifically changed audit boundary before later Industry effects/Teams",
+      "paths": [
+        "Specialization/Reports/Advisory/Architecture_Engineering_Audit/Architecture_Findings.md",
+        "Specialization/Reports/Audit/P07c_Crew_Transaction_Boundaries.md"
+      ]
+    }
+  ],
+  "non_scope": [
+    "Design/Balance/catalog expansion",
+    "L study, III/IV effect cutover, Crew projects/injection",
+    "New city-key/AI specialization/global building-history framework",
+    "Culture HOLD items, timers/frame polling, GC changes",
+    "Main/promotion, other Mods/game configuration or game launch"
+  ],
+  "validation": {
+    "depth": "Scoped L3 new history/typed persistence + inherited Store/claim/return and L1 UI/reference checks",
+    "local": "104 offline tests PASS; actual-source history25, current DB/B1422, Store18, reader/collector59. Original historical assertions preserved through explicit fixture-only adapters; context-helper fixtures3 PASS separately.",
+    "user": "USER_GAME_TEST_PASS for tested completion N/E, typed building/District knowledge and cold restart; adjacent first-turn Industry I support delay awaits next-batch repair, not folded into history acceptance.",
+    "review": "Contiguous native scalar sequences27/18 and original hashes reviewed. Actual-source support-readiness reproduction2 scenarios plus successful normal-event control; mocked ordering is not the recorded native timeline. No gameplay tests changed."
+  },
+  "full_audit_triggers": [
+    "Unprovable city continuity or missing/corrupt history: hold only affected facts, no coordinate reconstruction or broad audit by default.",
+    "Implementation would require a new gameplay rule or broaden the approved batch: DESIGN_DECISION_REQUIRED and stop that path."
+  ],
+  "result": {
+    "report": "Specialization/Status/Validation/Results/Specialization_B233_Native_Review.md",
+    "source": "B233.260/modinfo260 DEVELOP_ACTIVE; source b82eabf216810017d56c350e03ccf631bde505ea; receipt B233.260-b82eabf-playtest.json;227/227 MATCH, digest 0530efdf3e1b3da3f153ed45aac8642a39c9e05a9356c5b12fae6c52eb3662e1. Automatic game-exit checks before both guarded switches; B232/stable recovery retained, no pending transaction.",
+    "native": "USER_GAME_TEST_PASS_SCOPED_HISTORY_TEMPLATES_COLD_RESTART",
+    "stop": "B233 history gate complete. B234 proposal records requested support repair with III standardization/cutover; new feature implementation requires approval. No code/deployment this review.",
+    "local_report": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md"
+  }
+}
