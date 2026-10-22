@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0710
-Implementation Build: B268.295 / modinfo295; live B267.294; stable B069.96
+Status Revision: S0711
+Implementation Build: B268.295 / modinfo295; stable B069.96
 Architecture Revision Reviewed: A0178
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B268_IMPLEMENTED_AWAITING_DEPLOYMENT
+Work State: B268_DEPLOYED_AWAITING_NATIVE_ART_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B268 raw-art replacement implemented and locally checked; separate fixed DDS review complete; deployment pending.** [Selection, implementation and native boundary](Validation/Results/Specialization_B268_Raw_Icons.md).
+**B268 raw-art replacement deployed; native visual acceptance pending.** [Selection, implementation and native boundary](Validation/Results/Specialization_B268_Raw_Icons.md).
 
 - The user selected01-06/02-02/07-02/14-08 and the thirteen remaining listed uses, and authorized direct replacement. Seventeen unchanged source PNGs remain local/untracked; eighteen derived DDS atlases and scoped self-owned UI/icon references are prepared.
 -28 selected tests PASS;188 Lua5.1 and32 XML-family files check. Cell/control sizes match; native claim district art is layered with the approved mark in runtime production surfaces. Civilopedia retains the native district base; gameplay/state/requests remain unchanged.
 - B267 quick acceptance confirms four professions at Potential4/ACTIVE4 with institution facts applied. Ability/yield/load/pillage and long-campaign coverage remain open. The agreed v0.1 roadmap continues.
-- Live remains B267.294 under the exact existing receipt. The24 text paths passed the publication gate;18 fixed DDS files passed separate narrow content/pixel review under the explicit replacement authorization. Guarded deployment follows clean committed source and game-exit checks. No game/configuration/main/PR/tag change.
+- Live is B268.295 from5091059;310/310 source/live MATCH with stable/outgoing recovery verified. The24 text paths passed the publication gate;18 fixed DDS files passed separate narrow content/pixel review. No game launch/configuration/main/PR/tag change.
+
+## S0711 — B268 raw artwork activated
+
+B268.295/modinfo295 DEVELOP_ACTIVE; source `50910590270286cb01abc5498ed0f550de93deb2`; receipt `B268.295-5091059-playtest.json`;310/310 source/live MATCH; digest `9c5c1b64a8b4a10c39c2f9bc975c3a59a6ecee08c650e77ac1e5455b2747d6da`. Fresh process checks confirmed game exit before exact B267 restoration and B268 activation. Stable and outgoing B267 recovery MATCH; no pending transaction marker. Native raw-art acceptance remains pending. The agreed integrated-campaign roadmap and deferred gameplay findings remain.
 
 ## S0710 — B268 approved raw-art replacement prepared
 

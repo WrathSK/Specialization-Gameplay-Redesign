@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0178",
-    "status": "S0710",
+    "status": "S0711",
     "runtime": "B268.295 / modinfo295",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-  "runtime_commit": "f385c48eb86ffde66f15029b9c16fdfa2c3d5fed",
-  "current_batch": "B268_IMPLEMENTED_AWAITING_DEPLOYMENT",
-  "next_batch": "Commit/push exact42-file batch with24 text gate PASS and18 separately reviewed fixed DDS files, then guarded temporary activation if game exited. Native raw-art acceptance follows. No PR/main promotion or release tag.",
+  "runtime_commit": "50910590270286cb01abc5498ed0f550de93deb2",
+  "current_batch": "B268_DEPLOYED_AWAITING_NATIVE_ART_REVIEW",
+  "next_batch": "User native raw-art acceptance and agreed integrated campaign. Primary awaits observations. No art redesign, gameplay repair, PR/main promotion or release tag dispatched.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B267.294/modinfo294 DEVELOP_ACTIVE; source f385c48eb86ffde66f15029b9c16fdfa2c3d5fed; receipt B267.294-f385c48-playtest.json; 290/290 MATCH; digest af5ef23f6c1f9a368ec8b2e381e982dd05d01fb503736369d8aed65b5662ea01. Explicit user deployment approval, fresh game-exit checks, exact B266 restoration and B267 activation verified. Stable/outgoing recovery MATCH, no pending marker; no game launch/configuration/main/art change.",
+  "live": "B268.295/modinfo295 DEVELOP_ACTIVE; source 50910590270286cb01abc5498ed0f550de93deb2; receipt B268.295-5091059-playtest.json;310/310 MATCH; digest 9c5c1b64a8b4a10c39c2f9bc975c3a59a6ecee08c650e77ac1e5455b2747d6da. Game exit and stable/outgoing recovery verified, no pending marker. Original PNGs remain ignored/untracked; no game launch/configuration/main change.",
   "stable": "main B069.96 / modinfo96",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 ACTIVE: user-authorized automatic develop test deployments until user-declared long-play node; game-exit/hash/backup gates remain",
-  "context_review_status": "S0710: B268 raw-art replacement locally verified;24 texts passed staged publication gate and18 fixed DDS files separately reviewed under explicit selected-art replacement authority. Live remains B267.294 pending guarded activation; original PNGs remain untracked.",
+  "context_review_status": "S0711: B268 exact selected raw art deployed after text gate and separate fixed-DDS review.310-file source/live and stable/outgoing recovery MATCH; native rendering remains pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

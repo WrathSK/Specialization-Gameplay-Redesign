@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0178",
-    "status": "S0710",
+    "status": "S0711",
     "runtime": "B268.295 / modinfo295",
     "military": "D0037",
     "harbor": "D0037",
@@ -76,6 +76,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "PENDING_GUARDED_ACTIVATION; fixed binary review complete; live B267.294 unchanged"
+    "deployment": "B268.295 DEVELOP_ACTIVE; B268.295-5091059-playtest.json;310/310 MATCH; stable/outgoing recovery verified"
   }
 }
