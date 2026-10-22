@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0711
-Implementation Build: B268.295 / modinfo295; stable B069.96
+Status Revision: S0712
+Implementation Build: B268.295 / modinfo295; stable B268.295
 Architecture Revision Reviewed: A0178
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B268_DEPLOYED_AWAITING_NATIVE_ART_REVIEW
+Work State: B268_MAIN_PROMOTED_STABLE_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
-**B268 raw-art replacement deployed; native visual acceptance pending.** [Selection, implementation and native boundary](Validation/Results/Specialization_B268_Raw_Icons.md).
+**用户审阅批准PR #2后，B268.295已晋升main并完成稳定部署。** [晋升与部署记录](Validation/Results/Specialization_V01_Alpha1_Merged.md)。
 
-- The user selected01-06/02-02/07-02/14-08 and the thirteen remaining listed uses, and authorized direct replacement. Seventeen unchanged source PNGs remain local/untracked; eighteen derived DDS atlases and scoped self-owned UI/icon references are prepared.
--28 selected tests PASS;188 Lua5.1 and32 XML-family files check. Cell/control sizes match; native claim district art is layered with the approved mark in runtime production surfaces. Civilopedia retains the native district base; gameplay/state/requests remain unchanged.
-- B267 quick acceptance confirms four professions at Potential4/ACTIVE4 with institution facts applied. Ability/yield/load/pillage and long-campaign coverage remain open. The agreed v0.1 roadmap continues.
-- Live is B268.295 from5091059;310/310 source/live MATCH with stable/outgoing recovery verified. The24 text paths passed the publication gate;18 fixed DDS files passed separate narrow content/pixel review. No game launch/configuration/main/PR/tag change.
+- main合并提交852b04c；310/310源文件与live一致，运行字节与此前B268测试包完全相同。
+- main/develop保留各自README；临时B268凭据已恢复收尾，旧包/恢复资料保留。
+- 原243+28项本地检查和已记录实机范围保持；图标截图仅归档，综合测试、已知待办及最终v0.1冻结未完成。
+- 未创建版本标签或GitHub Release。W0003临时自动切换阶段结束，后续部署需明确批准。
+
+## S0712 — main晋升与稳定部署
+
+用户授权普通merge PR #2；main由B069.96推进至B268.295，独立工作区已同步。游戏退出、旧凭据恢复与新稳定部署检查通过。详见上述记录；无玩法、运行字节或native验收范围变化。
 
 ## S0711 — B268 raw artwork activated
 
