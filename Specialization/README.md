@@ -1,25 +1,33 @@
-# Specialization：项目导航
+# Specialization：main 配套知识导航
 
-Civ VI / Harmony in Diversity城市专业化与国内商路网络Mod。当前v0.1只实施科研、文化、商业、工业；其它专业的Design不扩大实施范围。Design冻结不等于当前运行包已实现。
+本页保留 **main 测试基线所配套的资料导航**。当前晋升候选为 B268.295 / modinfo295，配套Design为D0057，拟定版本v0.1.0-alpha.1；不是完整v0.1发布。合并、标签及稳定部署仍待批准，见[晋升更正与处理记录](Status/Validation/Results/Specialization_V01_Alpha1_Readme_Resolution.md)。基线身份以Status、部署合同和源码共同确认，不能用本页推断外部游戏运行包。
 
-直接阅读玩法：[Design中文阅读导航](Design/README.md)，按共同规则、专业及未来区域查阅。
+## 阅读本分支资料
 
-## 从哪里开始
-
-先读[根AGENTS](../AGENTS.md)与[本目录约定](AGENTS.md)，再按[W0001](Workflow/README.md)进行task-scoped读取。Gameplay Design由用户最终决定；权限与决策边界集中在[W0005](Workflow/README.md#w0005--authority-and-repository-knowledge)。
-
-| Question | Entry |
+| 问题 | main 内的配套入口 |
 |---|---|
-| 游戏应当怎样运行？ | [Design Spec](Design/Specialization_v0.1_Design_Spec.md) → [各专业/Shared内容索引](Design/Content/README.md)；接受与修订见[ChangeLog](Design/Design_ChangeLog.md) |
-| 技术上如何实现？ | [技术阅读入口](Architecture/README.md) → 系统说明、合同与相关证据; Primary follows task-scoped reading |
-| 当前做到哪里、还缺什么、下一步允许什么？ | [Status CURRENT块](Status/Specialization_P0_Status.md)与[Authority所指manifest](Workflow/Authority.json)；计划建议不等于授权 |
-| 哪些结论已被证明？ | Status引用的[Validation Results](Status/Validation/Results/)；STATIC / LOCAL / USER_GAME_TEST分别保留范围 |
-| 哪些调查不应重复？ | [技术索引](Reports/Technical/README.md)及当前计划引用的技术约束；只读与本任务有关的报告 |
-| Where are non-authoritative reviews? | [Advisory](Reports/Advisory/README.md) for scoped reviews; [Investigation](Reports/Technical/Investigations/README.md) for authorized ongoing research |
-| 源码、测试、部署在哪里？ | [Mod](../Mod/)、[测试](../DevelopmentTests/README.md)、[部署工具](../tools/README.md)、[Playtest Workflow](Architecture/Playtest_Workflow.md) |
+| 本基线的游戏规则是什么？ | [Accepted Design Spec](Design/Specialization_v0.1_Design_Spec.md)、[接受与修订记录](Design/Design_ChangeLog.md) |
+| 本基线技术上如何构成？ | [Architecture](Architecture/Specialization_v0.1_Architecture.md) |
+| 本基线有哪些验证与未解决问题？ | [Status](Status/Specialization_P0_Status.md)、[长局问题清单](Status/Playtest_Backlog.md)、[验证结果](Status/Validation/Results/) |
+| 调查依据在哪里？ | [技术索引](Reports/Technical/README.md)；报告中的“当前/下一步”须按其版本语境阅读 |
+| 如何维护、测试和部署？ | [根AGENTS](../AGENTS.md)、[项目约定](AGENTS.md)、[测试说明](../DevelopmentTests/README.md)、[部署与Git合同](Architecture/Playtest_Workflow.md)、[部署工具](../tools/README.md) |
+| 源码与外部证据在哪里？ | [Mod](../Mod/)是本分支源码；[当前原图归档与历史路径映射](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md)定位已迁出的证据；[Phase 1记录](Reports/Proposals/Phase1_External_Materials.md)保留当时的材料边界 |
 
-main为最后明确promote的可信源码；develop为独立worktree中的当前开发源码。外部SpecializationP0是部署副本。当前build、live/stable关系、待验状态只查Status/Authority，本文不复制版本账本。
+本分支内的架构调查、旧交接与Historical用于追溯，不派发develop下一任务，不把局部本地/实机证据扩大为整个系统通过。用户是最终设计权威；Codex按授权维护文件，技术限制不能成为自行改玩法的理由。
 
-新截图请投递到develop根目录`ScreenShots/`（整个目录不进Git）。阅读后归档到`local/legacy-workspace/Specialization/Status/Validation/Evidence/<Batch>/`；旧游戏目录Specialization已完整迁出，旧文档不再作为当前入口。
+## 阅读最新设计与开发进度
 
-[当前归档位置与历史路径映射](Reports/Proposals/Legacy_Workspace_Relocation.md)说明旧路径如何定位原件。[Phase 1外部材料记录](Reports/Proposals/Phase1_External_Materials.md)保留迁移时的历史事实；其旧收件箱/证据位置不再是活动路径。其它日志、备份、DB仍在原位置。历史报告用于追溯，不重新派发任务。新任务/压缩后恢复使用以上入口，不要求读取旧交接全文。
+普通开发在独立的 [develop 分支](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/develop)。最新资料请直接使用以下跨分支链接：
+
+- [Design 中文阅读导航](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Design/README.md)
+- [Architecture 技术阅读入口](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Architecture/README.md)
+- [当前 Status](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Status/Specialization_P0_Status.md)
+- [技术证据索引](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/develop/Specialization/Reports/Technical/README.md)
+
+这些页面不替换本分支源码的配套设计，也不表示新设计已经在main落地。main/develop保持隔离；文档更新和正常commit/push不构成promotion、合并或部署授权。
+
+## 外部运行包边界
+
+外部游戏SpecializationP0仅为部署副本，机器路径见忽略的 `local/config.json`。临时develop测试可能使运行包不同于main；实际状态以既有部署记录/receipt和必要核验为准。本页不声称已检查当前运行包。
+
+保持稳定分支、明确授权、目标校验、安全替换和恢复边界；不编辑外部运行包或无关Mod，不自动启动游戏，不删除历史证据或备份。
