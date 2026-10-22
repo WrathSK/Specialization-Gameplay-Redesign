@@ -25,8 +25,14 @@ import signal
 import sys
 import time
 
+
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
+_memory_spec = importlib.util.spec_from_file_location('spc_memory_evidence', HERE / 'memory_evidence.py')
+_memory = importlib.util.module_from_spec(_memory_spec)
+_memory_spec.loader.exec_module(_memory)
+MemoryEvidence = _memory.MemoryEvidence
 _spec = importlib.util.spec_from_file_location('spc_trace_reader', HERE / 'read_expedition_trace.py')
 reader = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(reader)
@@ -78,6 +84,7 @@ class Session:
         self.record_total = 0
         self.trace_epoch = None
         self.highest_sequence = 0
+        self.memory = MemoryEvidence(self.directory, self.event)
 
     def event(self, kind, **values):
         self.events.write(json.dumps({'time_utc': datetime.now(timezone.utc).isoformat(),
@@ -205,6 +212,7 @@ class Session:
                  'observer_contexts: %d' % len(self.contexts),
                  'stages: ' + ', '.join('%s=%d' % kv for kv in sorted(self.stages.items()))]
         lines.append('hd_prints: %d (dropped by reader: %d)' % (self.hd_total, self.hd_dropped))
+        lines.extend(self.memory.summary())
         lines.append('gate_prints: %d' % self.gate_total)
         lines += ['gate: %s x%d' % kv for kv in sorted(self.gate.items())]
         lines += ['hd: %s x%d' % kv for kv in sorted(self.hd.items())]
@@ -215,6 +223,7 @@ class Session:
         return text
 
     def close(self):
+        self.memory.close()
         self.events.close()
         self.records.close()
 
@@ -231,6 +240,8 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
         now = clock()
         if now - start >= max_seconds:
             return 'MAX_DURATION'
+        if connected_once:
+            session.memory.sample_process()
         trace_errors = []
         listening = False
         try:
@@ -241,6 +252,14 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
                     shown = session.add(record, 'snap' if 'ENTRY ' in line else 'live')
                     if shown:
                         out(shown)
+                elif line.startswith(reader.PREFIX + 'MEM_META '):
+                    session.memory.add(fields(line), meta=True)
+                elif line.startswith(reader.PREFIX + 'MEM '):
+                    session.memory.add(fields(line))
+                elif line.startswith(reader.PREFIX + 'MEM_UNAVAILABLE'):
+                    session.memory.write('game_unavailable')
+                elif line.startswith('[SPC][GC_TRIAL]'):
+                    session.memory.write('gc_print', text=line)
                 elif line.startswith(reader.PREFIX + 'META '):
                     session.add_meta(line)
                 elif line.startswith(reader.GATE_PREFIX):
@@ -251,7 +270,10 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
                     shown = session.add_hd(line)
                     if shown:
                         out(shown)
+                elif line.startswith(reader.PREFIX + 'TRANSPORT '):
+                    session.event('transport_window', **fields(line))
                 elif line.startswith(reader.PREFIX + 'WINDOW_COMPLETE '):
+                    session.event('capture_window', **fields(line))
                     dropped = fields(line).get('hd_dropped', '0')
                     session.hd_dropped += int(dropped) if dropped.isdigit() else 0
                 elif line.startswith(reader.PREFIX + 'ERROR '):
@@ -265,7 +287,7 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
                         out('Connected to the game; collecting. Press Ctrl-C to stop.')
                         session.event('connected')
                     connected_once, last_ok, waiting_reported, last_wait = True, clock(), False, None
-            capture('record', on_record=on_record, record_seconds=window)
+            capture('record', on_record=on_record, record_seconds=min(window, 30))
             invalid = next((code for code in trace_errors if code != 'TRACE_UNAVAILABLE'), None)
             if invalid:
                 out('Trace snapshot invalid (%s); collection stopped.' % invalid)

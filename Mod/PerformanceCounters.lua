@@ -115,6 +115,41 @@ function M.StartMemory(P,shared)
  local policy={growthMiB=128,minTurns=2,maxSeconds=2,rows=8,logRows=24}
  local a={enabled=true,collections=0,reason='WAIT_LOAD',rows={}}
  d.AutoGC=a -- scalar/read-only UI status plus a bounded result ring
+ -- B269: bounded, scalar-only evidence; not saved and not a GC policy input.
+ local evidence={schema=1,epoch=tostring({}):gsub('[^%w]',''),sequence=0,rows={}}
+ shared.MemoryEvidence=evidence
+ local function record(kind,reason,extra)
+  if shared.MemoryObservation~=d then return end
+  pcall(function()
+   evidence.sequence=evidence.sequence+1
+   local function safe(v)return tostring(v or 'NONE'):match('^[%w_:]+') or 'UNKNOWN' end
+   local row={seq=evidence.sequence,turn=Game.GetCurrentGameTurn(),kind=kind,reason=safe(reason),
+    heapMiB=M.Heap(),gcEnabled=a.enabled,gcFailure=safe(a.failure),gcCollections=a.collections}
+   for k,v in pairs(extra or {})do if type(v)=='number' or type(v)=='boolean' then row[k]=v end end
+   evidence.rows[#evidence.rows+1]=row
+   if #evidence.rows>128 then table.remove(evidence.rows,1)end
+  end)
+ end
+ local boundaries={}
+ local function boundary(kind,pid)
+  local ok,id=pcall(Game.GetLocalPlayer)
+  if not ok or (pid~=nil and pid~=id) or not P.IsTestPlayer(id) then return end
+  local t=Game.GetCurrentGameTurn()
+  if boundaries[kind]==t then return end
+  boundaries[kind]=t
+  local values={};local counters=ExposedMembers.SPC_Performance
+  for _,k in ipairs({'city_scan','district_scan','building_check','building_create','building_remove','property_write','net_send','net_receive','derive_executed','dc_read','dc_capture','dc_hit'})do
+   local e=counters and counters.entries and counters.entries[k]
+   if e then values['work_'..k]=e.total end
+  end
+  record(kind,'BOUNDARY',values)
+ end
+ for _,item in ipairs({{'LoadScreenClose','LOAD'},{'PlayerTurnActivated','TURN_BEGIN'},{'PlayerTurnDeactivated','TURN_END'}})do
+  local event=P.Field(Events,item[1]);local kind=item[2]
+  if event and type(event.Add)=='function' then
+   pcall(event.Add,function(pid) if shared.MemoryObservation==d then pcall(boundary,kind,kind=='LOAD' and nil or pid) end end)
+  end
+ end
  local loaded=false;local anchor;local lastTurn;local pendingTurn;local assessedTurn
  local gcBusy=false;local lastToken;local switchToken;local logRows=0
  local function current()return shared.MemoryObservation==d end
@@ -134,6 +169,7 @@ function M.StartMemory(P,shared)
  local function number(v)return v and string.format('%.2f',v) or '?' end
  local function log(reason,row)
   a.reason=reason
+  record('GC',reason,row) -- retained even after the human-readable print budget
   if logRows>=policy.logRows then return end
   logRows=logRows+1
   local line='[SPC][GC_TRIAL] T'..Game.GetCurrentGameTurn()..' '..reason
