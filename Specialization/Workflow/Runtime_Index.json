@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "runtime_commit": "50910590270286cb01abc5498ed0f550de93deb2",
+  "runtime_commit": "852b04c9af9d69b41ea3bc9d4a791f61dcd94202",
   "runtime": "B268.295 / modinfo295",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
@@ -1556,5 +1556,5 @@
       "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     }
   },
-  "source_review": "B268.295 selected raw-art delta,24 text gate PASS,18 fixed DDS separately reviewed. Guarded activation from5091059 verified310 source/live files and stable/outgoing recovery. Native rendering remains pending."
+  "source_review": "Approved PR #2 promoted unchanged B268 Mod tree to main852b04c; stable deployment310/310 MATCH, original temporary receipt restored before merge. No new runtime delta or native rendering acceptance."
 }
