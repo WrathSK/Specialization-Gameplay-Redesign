@@ -343,3 +343,7 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B200 — automatic page opening and card layout
 
 **DEFERRED_BY_USER, 2026-10-11:** no standalone UI test. Fold the [B200 UI delta](Validation/Results/Specialization_B200_Expedition_UI_Local.md#one-minimal-native-ui-session) into the next approved functional batch. The [proposed team/source persistence slice](../Architecture/v2/P0_N_Expedition.md#next-proposed-slice--persistent-team-and-source-recovery) is awaiting approval. Planned combined UI observations: idle team at home opens relocation without a destination → arrived team abroad opens tasks without a selection → selected card fits header/frame → Start closes and task-controlled selection stays quiet.209 local tests PASS. No repeated B200-only lifecycle campaign; the proposed persistence batch separately justifies its one new travel/cold-load boundary. Current source/runtime distinction comes from Status/receipt. Formal N1/repeat missions/N2/N3/U2/rewards remain held.
+
+## B268 T5–T35内存增长（2026-10-21实机；2026-10-22诊断实施）
+
+同PID23529，Activity Monitor10.82→14.36GB，+3.54GB；T5→T28专业确立前已+1.90GB，T35首次科研P1/A1。644条诊断无断号，但无同窗口Lua/GC/分类内存。根因UNKNOWN，继续v0.1正常游玩。[B269](Validation/Results/Specialization_B269_Memory_Diagnostics.md)增加随行证据，尚未部署。原8图/日志及SHA清单保存在ignored证据批B268_Memory_T5_T35_20261021。测试项目缺失图标82次是单独维护项，尚无GB级因果证据。

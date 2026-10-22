@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="295">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="296">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B268.295：接入已选定的单位、项目与行动图标初版。</Description>
+    <Description>B269.296：正常游玩期间的有界内存、GC与工作量诊断。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

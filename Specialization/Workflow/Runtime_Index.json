@@ -781,14 +781,14 @@
       "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "2047dea377cd9a9929bc969dee5a91c37a1ee2eb3baac2d82666eb09849d5313",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B139 WAIT_LOAD count-only baseline fallback; actual module targeted tests LOCAL_SIMULATION_PASS; native pending. Probe/modinfo version only."
+      "sha256": "17da922074b1995aa92f90e1c9d32e115c4a69e24f4a2aaa8c20c5e56488c224",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
+      "provenance": "B269 approved diagnostics only; live unchanged."
     },
     "Mod/Probe.lua": {
-      "sha256": "55e79b21e966657c1755244ddb2b21f10b7f63812f688a9bc3d2c549677ef4c3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "sha256": "908639cfbad2c9213975722bba348340f7e1ffec73404032fc4191553be3465f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
+      "provenance": "B269 approved diagnostics only; live unchanged."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "91be7b31c05cfae39b806d018052ae573635957562d3793f6277548a0ec2426f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "sha256": "420ee752f410325e9e89b09c9d093aef35cf5348c6f224ad31cc35bc68f92bdc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
+      "provenance": "B269 approved diagnostics only; live unchanged."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1556,5 +1556,5 @@
       "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     }
   },
-  "source_review": "Approved PR #2 promoted unchanged B268 Mod tree to main852b04c; stable deployment310/310 MATCH, original temporary receipt restored before merge. No new runtime delta or native rendering acceptance."
+  "source_review": "B269 scoped diagnostics source reviewed; runtime/runtime_commit still identify live B268.295. No deployment."
 }
