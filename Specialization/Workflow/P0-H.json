@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0179",
-    "status": "S0713",
+    "status": "S0714",
     "runtime": "B269.296 / modinfo296",
     "military": "D0037",
     "harbor": "D0037",
@@ -62,6 +62,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "NOT_DEPLOYED; live B268.295"
+    "deployment": "B269.296 stable DEPLOYED from main df70a88;310/310 MATCH; backups retained"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "852b04c9af9d69b41ea3bc9d4a791f61dcd94202",
-  "runtime": "B268.295 / modinfo295",
+  "runtime_commit": "df70a88a0feca951243e4686df112810b564d85b",
+  "runtime": "B269.296 / modinfo296",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1556,5 +1556,5 @@
       "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     }
   },
-  "source_review": "B269 scoped diagnostics source reviewed; runtime/runtime_commit still identify live B268.295. No deployment."
+  "source_review": "B269 approved PR #3 merged and stable deployment verified310/310 MATCH; native diagnostics acceptance pending."
 }
