@@ -36,7 +36,7 @@
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
   "runtime_commit": "50910590270286cb01abc5498ed0f550de93deb2",
   "current_batch": "B268_DEPLOYED_AWAITING_NATIVE_ART_REVIEW",
-  "next_batch": "User native raw-art acceptance and agreed integrated campaign. Primary awaits observations. No art redesign, gameplay repair, PR/main promotion or release tag dispatched.",
+  "next_batch": "User authorized alpha.1 promotion preflight and develop-to-main PR preparation. See Specialization/Status/Validation/Results/Specialization_V01_Alpha1_Promotion.md. Await PR review before merge, stable deployment or tag; runtime and outstanding native scope unchanged.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B268.295/modinfo295 DEVELOP_ACTIVE; source 50910590270286cb01abc5498ed0f550de93deb2; receipt B268.295-5091059-playtest.json;310/310 MATCH; digest 9c5c1b64a8b4a10c39c2f9bc975c3a59a6ecee08c650e77ac1e5455b2747d6da. Game exit and stable/outgoing recovery verified, no pending marker. Original PNGs remain ignored/untracked; no game launch/configuration/main change.",
   "stable": "main B069.96 / modinfo96",
