@@ -11,7 +11,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0180",
-    "status": "S0715",
+    "status": "S0716",
     "runtime": "B270.297 / modinfo297",
     "military": "D0037",
     "harbor": "D0037",
@@ -70,7 +70,7 @@
   "validation": {
     "depth": "Actual Lua5.1, current Lua/SQL positive-effect matrices, offline collector/network/process doubles, affected regression and static package checks",
     "local": "18 new + 13 memory + 243 existing; B138 six groups PASS; scoped positive-effect validation, native untested",
-    "user": "Normal play after separate deployment approval: event delivery, exact cleanup recovery, one network-clear GC reassessment and actual memory trend"
+    "user": "Continue normal v0.1 play on deployed B270; event delivery, exact cleanup recovery, GC reassessment and actual memory trend remain native tests."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
@@ -80,6 +80,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "NOT_DEPLOYED; stable/live remain B269.296 from main df70a88"
+    "deployment": "B270.297 stable DEPLOYED from main 3eb1aed;310/310 MATCH; B269 backup retained; receipt B270.297-3eb1aed-stable-deploy.json"
   }
 }
