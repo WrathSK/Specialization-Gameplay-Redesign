@@ -38,7 +38,7 @@ Current authorization is ACTIVE. This changes deployment permission only, not Ga
 
 ## Git-era source recovery / records — W0004 v2
 
-Main is the last explicitly promoted trusted source, currently B069.96; develop holds current work including implementations awaiting USER_GAME_TEST. Existing promotion approval remains; no merge/promotion is implied. Recover source from main/known-good Git commits using non-destructive Git operations; ordinary source history no longer requires permanent batch copies or “before” snapshots. GitHub push supplies off-machine source backup. Preserve existing historical backups, accepted Design artifacts, frozen evidence and user saves.
+Main is the last explicitly promoted trusted source; its current build is recorded in Status/Authority; develop holds current work including implementations awaiting USER_GAME_TEST. Existing promotion approval remains; no merge/promotion is implied. Recover source from main/known-good Git commits using non-destructive Git operations; ordinary source history no longer requires permanent batch copies or “before” snapshots. GitHub push supplies off-machine source backup. Preserve existing historical backups, accepted Design artifacts, frozen evidence and user saves.
 
 Deployment staging/backup/receipt protects an external directory, not canonical source history. Do not create additional manual source/runtime copies for ordinary batches beyond the existing tool-required recovery package. Current tools still retain complete packages and restore depends on receipt-bound paths; **bounded/previous-runtime-only retention is not implemented by W0004 v2**. No backup is pruned here, and no recovery guarantee is replaced by assuming Git owns unexpected runtime files.
 
@@ -71,3 +71,13 @@ Restore uses action `restore`, the same receipt and stable-root/config, expected
 Temporary test is tracked by the external receipt phase `DEVELOP_ACTIVE`; stable restoration is only complete at `STABLE_RESTORED` plus exact package hash verification. Git main remains B069.96 throughout. User should use a separate test save slot; no promise that a save rewritten by develop can be safely continued with stable. Normal future develop work still cannot deploy without separate authorization.
 
 Local regression: `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/test_temporary_playtest.py` (temporary directories only).
+
+## Branch and documentation lifecycle — approved 2026-10-23
+
+This decision supersedes the earlier alpha.1 convention of permanently different README contents at the same paths. Both branches share the root overview and project map; [stable playtest guidance](../Stable_Playtest.md) and [development guidance](../Development_Guide.md) remain separate audience documents. Status/Authority and deployment receipts retain build identity; README files do not freeze a candidate version or approval state.
+
+For an approved whole-batch promotion, default to a develop → main PR using a normal merge commit. After promotion and any main-only records, merge main back into develop with scoped conflict review, preserving unrelated ongoing development. Do not independently duplicate the same deployment record on both branches. This does not authorize a bulk promotion for a narrow hotfix, change approval requirements, or rewrite published history.
+
+Create a temporary release branch only when candidate isolation is required. After merge, verify that its tip is reachable from main and that no unmerged work remains; delete local/remote references within user authorization. Keep main and develop. Do not enable global automatic branch deletion without ensuring long-lived branches are protected.
+
+The user approved consolidating the documentation, reconciling the existing ancestry, and removing the three already-merged promotion branches (alpha.1, B269, B270). Runtime code and the deployed package are outside this maintenance change.
