@@ -23,6 +23,9 @@ class MemoryEvidence:
         self.first_heap = self.last_heap = None
         self.first_process = self.last_process = None
         self.work = {}
+        self.latest_work = {}
+        self.work_phase = self.work_turn = None
+        self.heap_quality = 'OK'
         self.gc_rows = self.rows = 0
         self.gc_completed = 0
         self.gc_freed = self.gc_max_cpu = 0.0
@@ -66,7 +69,8 @@ class MemoryEvidence:
                 if self.first_process is None:
                     self.first_process = footprint
                 self.last_process = footprint
-            self.write('process', identity=self.identity, **values)
+            self.write('process', identity=self.identity, load_epoch=self.epoch,
+                       sampling_scope='CONNECTED_WINDOW', **values)
         except Exception as exc:
             # No retry storm or automatic escalation. Trace collection continues.
             self.os_disabled = True
@@ -86,6 +90,8 @@ class MemoryEvidence:
                 return
             self.epoch, self.highest, self.work = epoch, 0, {}
             self.first_heap = self.last_heap = None
+            self.latest_work = {}; self.work_phase = self.work_turn = None
+            self.heap_quality = 'OK'
             self.write('load_segment', epoch=epoch)
         if meta:
             first = fields.get('first', '')
@@ -101,6 +107,9 @@ class MemoryEvidence:
         self.highest = seq
         self.rows += 1
         deltas = {}
+        if fields.get('kind') in ('TURN_BEGIN', 'TURN_END', 'LOAD'):
+            self.latest_work = {k: int(v) for k, v in fields.items() if k.startswith('work_') and v.isdigit()}
+            self.work_phase, self.work_turn = fields.get('kind'), fields.get('turn')
         if fields.get('kind') == 'TURN_END':
             for key, value in fields.items():
                 if key.startswith('work_') and value.isdigit():
@@ -108,9 +117,12 @@ class MemoryEvidence:
                     if key in self.work and n >= self.work[key]:
                         deltas[key] = n - self.work[key]
                     self.work[key] = n
+        status = fields.get('heapStatus', 'LEGACY')
+        if status not in ('OK', 'LEGACY') or fields.get('heapMiB') == 'UNKNOWN':
+            self.heap_quality = 'UNTRUSTED:' + status
         try:
             heap = float(fields.get('heapMiB', ''))
-            if 0 <= heap < float('inf'):
+            if self.heap_quality == 'OK' and 0 <= heap < float('inf'):
                 if self.first_heap is None:
                     self.first_heap = heap
                 self.last_heap = heap
@@ -136,9 +148,12 @@ class MemoryEvidence:
         delta = None if self.first_process is None else self.last_process-self.first_process
         return ['memory_rows: %d; gc_records: %d; load_segments: %d' % (self.rows, self.gc_rows, self.segments),
                 'process_footprint_delta_bytes_same_identity: %s' % delta,
-                'last_load_gameplay_heap_MiB_first_last: %s / %s' % (self.first_heap, self.last_heap),
+                'last_load_gameplay_heap_MiB_first_last: %s / %s' % (self.first_heap, self.last_heap if self.heap_quality == 'OK' else 'UNTRUSTED'),
+                'last_load_gameplay_heap_quality: %s; raw/status retained; positive count alone cannot exclude native wrap' % self.heap_quality,
+                'process_sampling_scope: confirmed connected windows only; load/unload transitions may still be present',
                 'observed_gc_results: %d; net_freed_MiB: %.2f; max_cpu_seconds: %.3f; last_reason: %s' % (self.gc_completed, self.gc_freed, self.gc_max_cpu, self.gc_last_reason),
-                'last_load_observed_work_totals: %s' % self.work,
+                'last_load_observed_work_totals: %s' % self.latest_work,
+                'last_load_observed_work_boundary: T%s %s' % (self.work_turn, self.work_phase),
                 'memory_scope: Gameplay call-site, not Mod-exclusive/all Lua; process correlation uses receipt time only',
                 'memory_root_cause: UNKNOWN; native validation required']
 

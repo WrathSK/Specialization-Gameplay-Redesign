@@ -10,58 +10,76 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0179",
-    "status": "S0714",
-    "runtime": "B269.296 / modinfo296",
+    "architecture": "A0180",
+    "status": "S0715",
+    "runtime": "B270.297 / modinfo297",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
-  "goal": "Add approved bounded memory/GC/work evidence during normal v0.1 play, without gameplay or GC-policy change.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+  "goal": "Implement the four approved B270 repairs: count-quality/summary, one post-network GC retry, participant/exact recovery scopes and overflow-test icon alias; preserve gameplay and ownership proofs.",
   "implementation_authorized": true,
   "context": [
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
       "kind": "full",
-      "reason": "Approved diagnostic scope, verification and deployment boundary."
+      "reason": "Explicitly approved four-item scope, investigation and validation boundaries."
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "selector": "## A0180 — B270定域工作与内存证据质量",
+      "reason": "Opt-in scope, UNKNOWN recovery and bounded evidence/GC contract."
+    },
+    {
+      "path": "Mod/RuntimeWork.lua",
+      "kind": "full",
+      "reason": "Opt-in exact target owner and original Hook/batch compatibility."
     },
     {
       "path": "Mod/PerformanceCounters.lua",
       "kind": "full",
-      "reason": "Existing GC owner and scalar counters."
+      "reason": "Sole GC coordinator and count quality."
     },
     {
       "path": "tools/memory_evidence.py",
       "kind": "full",
-      "reason": "Bounded external OS sampling and evidence segments."
+      "reason": "Bounded process sampling and summaries."
+    },
+    {
+      "path": "Mod/CityProgressionStore.lua",
+      "kind": "full",
+      "reason": "Unmodified original loss proof and RemoveOwned authority."
     }
   ],
   "dependencies": [
-    "Existing PerformanceCounters GC coordinator and scalar counters.",
-    "Fixed B205 read-only collector and external_monitor process identity/statistics API."
+    "Original Store.RemoveOwned loss proofs; current-reference, UNKNOWN and failure isolation contracts.",
+    "Existing participant eligibility, per-Audit facts/district indexes and current carrier writers.",
+    "Fixed B205 read-only collector and external_monitor process identity API."
   ],
   "old_writers": [
-    "Existing GC coordinator remains the sole full collection executor.",
-    "Diagnostics never write authoritative gameplay state."
+    "Existing effect writers retain amount/qualification authority and exact owned exits; the helper only schedules targets.",
+    "Only the existing GC coordinator executes full collection; no gameplay persistence changes.",
+    "Inert retired ID definitions remain for old-save cleanup; no historical reward reconstruction."
   ],
   "conditional_context": [],
   "non_scope": [
-    "Gameplay, save properties, GC policy, main promotion, deployment and automatic native profiling."
+    "Gameplay rules, permanent Property/save schema, broad consumer migration, external Mod edits, new binary artwork, automatic profiling, main promotion and deployment."
   ],
   "validation": {
-    "depth": "Actual Lua, offline collector and OS doubles, affected regressions",
-    "local": "13 new and243 existing PASS; native untested",
-    "user": "Normal campaign evidence delivery and overhead after authorized deployment"
+    "depth": "Actual Lua5.1, current Lua/SQL positive-effect matrices, offline collector/network/process doubles, affected regression and static package checks",
+    "local": "18 new + 13 memory + 243 existing; B138 six groups PASS; scoped positive-effect validation, native untested",
+    "user": "Normal play after separate deployment approval: event delivery, exact cleanup recovery, one network-clear GC reassessment and actual memory trend"
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "B269.296 stable DEPLOYED from main df70a88;310/310 MATCH; backups retained"
+    "deployment": "NOT_DEPLOYED; stable/live remain B269.296 from main df70a88"
   }
 }

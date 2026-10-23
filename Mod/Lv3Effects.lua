@@ -56,9 +56,25 @@ function SPCLv3Effects.Start(P,shared,options)
   end
   return true
  end
+ local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
+  return SPCRuntimeWork.RetireOnce(P,shared,c,'Lv3Effects',function()
+   -- All current outputs are retired; preserve isolation-owned experiment bits.
+   for _,name in ipairs(names)do
+    if not (isolated(pid) and name:find('_COM_',1,true))then
+     local id=assert(P.Info('Buildings',name),'B038_DATABASE_MISSING').Index
+     local present=P.HasBuilding(c:GetBuildings(),id);assert(type(present)=='boolean','LV3_CARRIER_UNKNOWN')
+     if present then P.RemoveBuilding(c:GetBuildings(),id);assert(P.HasBuilding(c:GetBuildings(),id)==false,'LV3_WRITE_UNCONFIRMED');data.changes=data.changes+1 end
+    end
+   end
+   return 0
+  end)
+ end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
  function data.Audit(scope) P.Count('audit_lv3');
   if P.Observe then P.Observe('audit','Lv3Effects') end
   if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  if options and options.retireCommerce then
+   if type(scope)=='table' and scope.load then targets.Run(scope)else targets.Retry(scope)end
+  else
   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
    local ok,err=pcall(function()
     local cities=player:GetCities();if not cities then return end
@@ -85,6 +101,7 @@ function SPCLv3Effects.Start(P,shared,options)
    end)
    if not ok then print('[SPC][B038][SCAN_ERROR] '..tostring(err)) end
   end end
+  end
   data.busy=false;batch=nil
  end
  -- B137 session-only isolation: this module owns the exact list and native withdrawal.
@@ -132,13 +149,13 @@ function SPCLv3Effects.Start(P,shared,options)
   return (ok and out or ('\nLv3 effects ERROR '..tostring(out)))..'\nLv3 effects status: '..tostring(data.errors[pid..':'..c:GetID()] or (data.ready and 'READY' or 'PENDING'))
  end
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
- hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit() end)
- for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','CityWorkerChanged','CityFocusChanged','CityPopulationChanged'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
- for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do hook(GameEvents,n,data.Audit) end
+ hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit({load=true}) end)
+ for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','CityWorkerChanged','CityFocusChanged','CityPopulationChanged'}) do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit) end
+ for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Effects',function(c,loss)
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Effects',targets.Exit(function(c,loss)
    local ids={};for _,id in ipairs(names)do ids[#ids+1]=id end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end)end
+ end))end
 
 end

@@ -80,3 +80,189 @@ function SPCRuntimeWork.Hook(P,source,name,fn)
   fn()
  end)
 end
+
+-- B270 opt-in target owner. Existing Player/Hook contracts stay unchanged for
+-- other consumers. Only scalar references survive a synchronous audit.
+function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
+ local t={pending={},exits={},known={},transfers={}}
+ local function report(pid,cid,err)
+  local ok,why=pcall(onError,pid,cid,err)
+  if not ok then t.error=tostring(why)end
+ end
+ local function reference(c)
+  local r={owner=c:GetOwner(),city=c:GetID()}
+  if c.GetX and c.GetY then r.x=c:GetX();r.y=c:GetY() end
+  return r
+ end
+ local function key(r)return tostring(r.owner)..':'..tostring(r.city)end
+ local function matches(c,r)
+  return c and c:GetOwner()==r.owner and c:GetID()==r.city
+   and (r.x==nil or (c:GetX()==r.x and c:GetY()==r.y))
+ end
+ local function selected(scope,r)
+  if type(scope)~='table' then return true end
+  return (scope.player==nil or scope.player==r.owner) and (scope.city==nil or scope.city==r.city)
+ end
+ local function lookup(cs,id)
+  if not cs then return end
+  if cs.FindID then return cs:FindID(id)end
+  for _,c in cs:Members()do if c:GetID()==id then return c end end
+ end
+ local function resolve(r)
+  local p=Players[r.owner];local cs=p and p:GetCities()
+  local c=lookup(cs,r.city)
+  if matches(c,r)then return c end
+ end
+ local function put(dst,k,value)
+  if dst[k]==nil then local n=0;for _ in pairs(dst)do n=n+1 end;assert(n<2048,'RUNTIME_TARGET_LIMIT')end
+  dst[k]=value
+ end
+ local function run(pid,c)
+  local r=reference(c);local k=key(r);P.Count('city_scan')
+  if P.IsTestPlayer(pid)then put(t.known,k,r)end
+  local ok,err=pcall(visit,pid,c)
+  if ok then t.pending[k]=nil else put(t.pending,k,r)end
+  report(pid,r.city,not ok and tostring(err) or nil)
+  return k
+ end
+ local transfers
+ function t.Retry(scope)
+  if transfers then transfers(scope)end
+  local seen={}
+  for k,e in pairs(t.exits)do if selected(scope,e.ref)then
+   local ok,c=pcall(resolve,e.ref)
+   -- Keep UNKNOWN/reference changes; only the store's original loss proof can
+   -- authorize withdrawal. Never follow a reused ID or coordinate to a new city.
+   if ok and c then
+    local good,err=pcall(e.fn,c,e.loss)
+    report(e.ref.owner,e.ref.city,not good and tostring(err) or nil)
+    if good then t.exits[k]=nil;t.pending[k]=nil end
+    seen[k]=true
+   end
+  end end
+  for k,r in pairs(t.pending)do if not seen[k] and selected(scope,r)then
+   local ok,c=pcall(resolve,r);if ok and c then run(r.owner,c);seen[k]=true end
+  end end
+  return seen
+ end
+ transfers=function(scope)
+  for k,v in pairs(t.transfers)do if selected(scope,{owner=v.owner,city=v.city})then
+   local ok,done=pcall(function()
+    local p=Players[v.owner];local cs=p and p:GetCities();local c=lookup(cs,v.city)
+    if not c or c:GetOwner()~=v.owner then return false end
+    local r=reference(c)
+    local candidates={};for k,r in pairs(t.known)do candidates[k]=r end;for k,r in pairs(t.pending)do candidates[k]=r end
+    for oldKey,old in pairs(candidates)do
+     local samePlace=old.x~=nil and r.x~=nil and old.x==r.x and old.y==r.y
+     if old.owner==v.oldOwner and (samePlace or (old.x==nil and old.city==r.city))then
+      put(t.pending,key(r),r);t.known[oldKey]=nil;t.pending[oldKey]=nil;break
+     end
+    end
+    return true
+   end)
+   if ok and done then t.transfers[k]=nil
+   elseif not ok then report(v.owner,v.city,tostring(done))end
+  end end
+ end
+ function t.Run(scope)
+  local seen=t.Retry(scope)
+  for pid,p in pairs(Players)do
+   if SPCRuntimeWork.Player(scope,pid) and (type(scope)=='table' and scope.load or P.IsTestPlayer(pid))then
+    local ok,err=pcall(function()
+     local cs=p:GetCities();if not cs then return end
+     if type(scope)=='table' and scope.city~=nil then
+      local c=lookup(cs,scope.city);if c and not seen[key(reference(c))]then run(pid,c)end
+     else
+      for _,c in cs:Members()do
+       if not seen[key(reference(c))]then
+        run(pid,c) -- plot/unknown metadata falls back only to participants, never guessed radii
+       end
+      end
+     end
+    end)
+    if not ok then report(pid,'player',tostring(err))end
+   end
+  end
+ end
+ local runImpl,retryImpl=t.Run,t.Retry
+ function t.Run(scope)
+  local ok,err=pcall(runImpl,scope)
+  if not ok then t.error=tostring(err);report(type(scope)=='table' and scope.player or 'runtime','player',t.error)end
+ end
+ function t.Retry(scope)
+  local ok,out=pcall(function()
+   if type(scope)=='table' and scope.transfer then
+    local v=scope.transfer;put(t.transfers,tostring(v.owner)..':'..tostring(v.city),v)
+   end
+   return retryImpl(scope)
+  end)
+  if not ok then t.error=tostring(out);report(type(scope)=='table' and scope.player or 'runtime','player',t.error);return {}end
+  return out
+ end
+ function t.Exit(fn)
+  return function(c,loss)
+   local r=reference(c);local k=key(r)
+   put(t.exits,k,{ref=r,loss=loss,fn=fn}) -- retain before the first possibly failing read
+   local ok,err=pcall(fn,c,loss)
+   if ok then t.exits[k]=nil;t.pending[k]=nil else error(err)end
+  end
+ end
+ function t.Forget(pid,cid)
+  local k=tostring(pid)..':'..tostring(cid);t.pending[k]=nil;t.exits[k]=nil;t.known[k]=nil
+ end
+ -- Shared reset is registered before the first consumer load callback.
+ if not shared.RuntimeRetirementHook then
+  shared.RuntimeRetirementHook=true
+  local e=P.Field(Events,'LoadScreenClose')
+  if e and e.Add then e.Add(function()shared.RuntimeRetirementCache={}end)end
+ end
+ local removed=P.Field(Events,'CityRemovedFromMap')
+ if removed and removed.Add then removed.Add(function(pid,cid)
+  -- Removal is also emitted during transfers. Invalidate clean stamps only;
+  -- exact pending/exit proofs are retained until confirmed cleanup succeeds.
+  local all=shared.RuntimeRetirementCache or {};local prefix=tostring(pid)..':'..tostring(cid)..':'
+  for _,cache in pairs(all)do for k,stamp in pairs(cache)do
+   if stamp:sub(1,#prefix)==prefix then cache[k]=nil end
+  end end
+ end)end
+ return t
+end
+
+-- Exact inert tombstones are verified once per current city reference/load.
+-- Failure never publishes a clean marker; positive effects remain blocked.
+function SPCRuntimeWork.RetireOnce(P,shared,c,tag,fn)
+ shared.RuntimeRetirementCache=shared.RuntimeRetirementCache or {}
+ local all=shared.RuntimeRetirementCache;all[tag]=all[tag] or {};local cache=all[tag]
+ local x,y=c.GetX and c:GetX(),c.GetY and c:GetY()
+ local k=x~=nil and (x..':'..y) or (c:GetOwner()..':'..c:GetID())
+ local token=c.GetProperty and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN') or ''
+ local stamp=table.concat({c:GetOwner(),c:GetID(),tostring(x),tostring(y),tostring(token)},':')
+ if cache[k]==stamp then return 0 end
+ local n=fn()
+ if cache[k]==nil then local count=0;for _ in pairs(cache)do count=count+1 end;assert(count<2048,'RETIREMENT_CACHE_LIMIT')end
+ cache[k]=stamp;return n
+end
+
+function SPCRuntimeWork.TargetHook(P,source,name,fn)
+ local e=P.Field(source,name);if not e or not e.Add then return end
+ -- These signatures are verified in native CityBannerManager/ObserverCamera
+ -- and the existing progression completion owner; unknown forms stay bounded.
+ if name=='DistrictBuildProgressChanged' or name=='DistrictAddedToMap'
+  or name=='DistrictPillaged' or name=='DistrictRepaired' then
+  e.Add(function(pid,did,cid)
+   fn({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})
+  end)
+ elseif name=='CityTransfered' then
+  e.Add(function(owner,cid,oldOwner)
+   if type(owner)=='number' and type(cid)=='number' and type(oldOwner)=='number'then
+    fn({transfer={owner=owner,city=cid,oldOwner=oldOwner}})
+   else fn({})end
+  end)
+ elseif name=='ImprovementAddedToMap' or name=='ImprovementRemovedFromMap' or name=='FeatureRemovedFromMap' then
+  e.Add(function(x,y)fn(type(x)=='number' and type(y)=='number' and {plot={x,y}} or {})end)
+ elseif name=='CityWorkerChanged' or name=='CityFocusChanged' or name=='CityPopulationChanged' then
+  e.Add(function(pid,cid)fn({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})end)
+ elseif source==GameEvents and name=='OnDistrictConstructed' then
+  e.Add(function(pid)fn({player=type(pid)=='number' and pid or nil})end)
+ else SPCRuntimeWork.Hook(P,source,name,fn)end
+end

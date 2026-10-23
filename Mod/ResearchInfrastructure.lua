@@ -55,9 +55,9 @@ function M.Start(P,shared)
   p.status='READY';p.d=plan.d;p.workers=plan.workers;p.science=plan.science;p.plot=campus.plot;p.district=campus.id
   return p
  end
- local function installed(c)
+ local function installed(c,skipOld)
   local b=c:GetBuildings();local out={old={},bits={},oldCount=0,coefficient=0}
-  for _,n in ipairs(M.Retired) do
+  for _,n in ipairs(skipOld and {} or M.Retired) do
    local id=P.Info('Buildings',n).Index;local yes=P.HasBuilding(b,id)
    assert(type(yes)=='boolean','RI_CARRIER_READ_UNKNOWN');out.old[#out.old+1]={id=id,yes=yes}
    if yes then out.oldCount=out.oldCount+1 end
@@ -81,9 +81,16 @@ function M.Start(P,shared)
  end
  local function reconcile(pid,c)
   validate()
-  local p=inspect(pid,c);local state=installed(c) -- complete read before any writes
-  -- Old definitions are inert SQL tombstones; this is their sole cleanup owner.
-  for _,r in ipairs(state.old) do if r.yes then remove(c,r.id) end end
+  local p=inspect(pid,c)
+  SPCRuntimeWork.RetireOnce(P,shared,c,'ResearchInfrastructure',function()
+   local rows={};for _,n in ipairs(M.Retired)do
+    local id=P.Info('Buildings',n).Index;local yes=P.HasBuilding(c:GetBuildings(),id)
+    assert(type(yes)=='boolean','RI_CARRIER_READ_UNKNOWN');rows[#rows+1]={id=id,yes=yes}
+   end
+   for _,r in ipairs(rows)do if r.yes then remove(c,r.id)end end
+   return 0
+  end)
+  local state=installed(c,true) -- current bits are always fresh before any write
   local amount=p.workers>0 and p.d or 0
   for i=0,3 do
    local r=state.bits[i];local wanted=math.floor(amount/2^i)%2==1
@@ -99,21 +106,14 @@ function M.Start(P,shared)
    end
   end
  end
+ local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
+  reconcile(pid,c)
+ end,function(pid,cid,why)data.errors[pid]=data.errors[pid] or {};data.errors[pid][cid]=why end)
  function data.Audit(scope)
   if P.Observe then P.Observe('audit','ResearchInfrastructure') end
   if not data.ready or data.busy then return end
   data.busy=true
-  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
-   data.errors[pid]={}
-   local ok,err=pcall(function()
-    local cities=player:GetCities();if not cities then return end
-    for _,c in cities:Members() do
-     P.Count('city_scan');local good,why=pcall(reconcile,pid,c)
-     if not good then data.errors[pid][c:GetID()]=tostring(why) end
-    end
-   end)
-   if not ok then data.errors[pid].player=tostring(err) end
-  end end
+  targets.Run(scope)
   data.busy=false
  end
  function data.Describe(pid,c,detail)
@@ -153,17 +153,17 @@ function M.Start(P,shared)
   return ok and text or (P.VERSION..' | 科研基础设施：暂不可确认\n未把未知当作0；保留上次配置。\n原因：'..tostring(text))
  end
  local function bind(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
- bind(Events,'LoadScreenClose',function() data.ready=true;data.errors={};definitions=nil;data.Audit() end)
+ bind(Events,'LoadScreenClose',function() data.ready=true;data.errors={};definitions=nil;data.Audit({load=true}) end)
  -- Shared producer registers first and owns depth invalidation; consumers only read.
  for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap'}) do
-  SPCRuntimeWork.Hook(P,Events,n,data.Audit)
+  SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)
  end
- for _,n in ipairs({'CityWorkerChanged','CityFocusChanged','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'}) do SPCRuntimeWork.Hook(P,Events,n,data.Audit) end
- for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,function() data.Audit() end) end
+ for _,n in ipairs({'CityWorkerChanged','CityFocusChanged','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'}) do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit) end
+ for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchInfrastructure',function(c,loss)
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchInfrastructure',targets.Exit(function(c,loss)
    local ids={};for bit=0,3 do ids[#ids+1]=name(bit)end;for _,id in ipairs(M.Retired)do ids[#ids+1]=id end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end)end
+ end))end
 
 end

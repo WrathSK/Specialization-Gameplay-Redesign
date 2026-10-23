@@ -9,7 +9,8 @@ S.Retired={
  'BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_2','BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_3',
  'BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_4','BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_5',
  'BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_6','BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_7'}
-function S.Retire(P,c)
+function S.Retire(P,c,shared)
+ if shared then return SPCRuntimeWork.RetireOnce(P,shared,c,'SpecialistSupport',function()return S.Retire(P,c)end)end
  local removed=0;local b=c:GetBuildings()
  for _,name in ipairs(S.Retired) do
   local row=assert(P.Info('Buildings',name),'B1_RETIRED_DEFINITION_MISSING')
