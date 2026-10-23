@@ -68,6 +68,9 @@ function SPCLv2GPP.Start(P,shared)
    local key=name(k,bit);if wanted[key] and not present[key] then set(city,P.Info("Buildings",key).Index,true) end
   end end
  end
+ local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
+  reconcile(pid,c)
+ end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
  function data.Audit(scope)
   if P.Observe then P.Observe('audit','Lv2GPP') end
   if not data.ready or data.busy then P.Count('busy_skip');return end
@@ -83,17 +86,7 @@ function SPCLv2GPP.Start(P,shared)
    data.busy=false;batch=nil;return
   end
   if type(scope)~='table' or scope.player==nil then data.errors={} end
-  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
-   local good,err=pcall(function()
-    local cities=player:GetCities()
-    if cities then for _,city in cities:Members() do P.Count('city_scan');
-     local key=pid..":"..city:GetID();local ok,e=pcall(reconcile,pid,city)
-     data.errors[key]=not ok and tostring(e) or nil
-
-    end end
-   end)
-   data.errors['player:'..pid]=not good and tostring(err) or nil
-  end end
+  targets.Run(scope)
   data.busy=false;batch=nil
  end
  function data.Describe(pid,city)
@@ -123,13 +116,13 @@ function SPCLv2GPP.Start(P,shared)
   local out="P0-B2 Lv2 GPP | "..(ok and result or "ERROR "..tostring(result));print("[SPC][B035] "..out);return out
  end
  local function bind(events,event,fn) local e=P.Field(events,event);if e and e.Add then e.Add(fn) end end
- bind(Events,"LoadScreenClose",function() data.ready=true;data.errors={};data.Audit() end)
- for _,event in ipairs({"CityWorkerChanged","CityFocusChanged","GovernorAssigned","GovernorEstablished","GovernorChanged","GovernorPromoted","PlayerTurnActivated","CityTransfered","CityRemovedFromMap","DistrictRemovedFromMap","DistrictBuildProgressChanged","DistrictPillaged","DistrictRepaired","BuildingAddedToMap","BuildingRemovedFromMap","BuildingPillaged","BuildingRepaired"}) do SPCRuntimeWork.Hook(P,Events,event,data.Audit) end
- for _,event in ipairs({"OnDistrictConstructed","BuildingConstructed","CityBuilt","OnPillage"}) do bind(GameEvents,event,data.Audit) end
+ bind(Events,"LoadScreenClose",function() data.ready=true;data.errors={};data.Audit({load=true}) end)
+ for _,event in ipairs({"CityWorkerChanged","CityFocusChanged","GovernorAssigned","GovernorEstablished","GovernorChanged","GovernorPromoted","PlayerTurnActivated","CityTransfered","CityRemovedFromMap","DistrictRemovedFromMap","DistrictBuildProgressChanged","DistrictPillaged","DistrictRepaired","BuildingAddedToMap","BuildingRemovedFromMap","BuildingPillaged","BuildingRepaired"}) do SPCRuntimeWork.TargetHook(P,Events,event,data.Audit) end
+ for _,event in ipairs({"OnDistrictConstructed","BuildingConstructed","CityBuilt","OnPillage"}) do SPCRuntimeWork.TargetHook(P,GameEvents,event,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2GPP',function(c,loss)
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2GPP',targets.Exit(function(c,loss)
    local ids={};for _,k in ipairs(kinds)do for bit=0,7 do ids[#ids+1]=name(k,bit)end end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end)end
+ end))end
 
 end

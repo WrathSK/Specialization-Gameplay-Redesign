@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0179
+# Specialization v0.1 Architecture — A0180
 
 Document Owner: Codex
-Architecture Revision: A0179
+Architecture Revision: A0180
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -571,3 +571,10 @@ StandardizationDiscount独立于永久账本；当前来源并集和最高ACTIVE
 ## A0179 — 正常实机随行内存证据
 
 B269仅增加有界Gameplay内存/GC/已有工作量记录，由固定只读采集器转存；128条加载内环，不写存档、不扩大城市扫描、不改变GC策略。外部复用OS统计，不自动分类采样。关联仅用接收时间并标注采样年龄，加载/进程身份分段，缺失保留UNKNOWN。容量/故障显式记录，诊断不成为玩法或v0.1长测的新门禁。精确范围、测试及部署边界见[本批结果](../Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md)。
+
+
+## A0180 — B270定域工作与内存证据质量
+
+事件驱动不等于一次事件自动具有正确范围。B270为住房/GPP、专家支持、科研基建及退休入口增加opt-in目标协调器：核实的原生元数据缩小到参与player/city；未知plot/event仅回退参与者。旧Hook/Player合同保留给其它consumer，不能将所有foreign事件丢弃。冷加载仍清理外国城，随后原Store退出证明、当前引用与失败候选驱动精确恢复；原生异常不把busy锁死，城市移除不删除尚未确认完成的退出证明。每类队列/退休标记≤2048；不跨Audit缓存原生城市/当前事实。退休标记只对已确认无用的固定ID列表生效，当前载体、UNKNOWN保留与收益算法不变。
+
+GC只有NETWORK_INFLIGHT跳过获得同回合一次后续Publish补评估；标量等待、全部busy门禁、冷却/阈值/失败锁保持，外国activation和deactivation取消，不在ACK栈调用GC。Mac原生低32位有符号计数可能负值/回绕：保存raw/status，观测负值后本上下文不再信任低正值，不补算失去的高位，不据失真值强制GC。采集器仅连接窗口采样进程，latest工作边界与逐END差值分开，加载过渡仍需说明。完整范围、反例与原生待验见[B270结果](../Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md)。

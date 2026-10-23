@@ -102,12 +102,23 @@ local function top(counts,labels,limit)
 end
 
 -- Opt-in count observation and B138 session-only controlled GC trial; no save state.
- function M.Heap()
-  if type(collectgarbage)~='function' then return nil end
-  local ok,n=pcall(collectgarbage,'count')
-  if ok and type(n)=='number' and n==n and n>=0 and n<math.huge then return n/1024 end -- MiB reported at this call site; engine heap sharing is unproven
- end
+-- B270: native count uses a signed low-32-bit byte counter on the observed Mac.
+-- Preserve raw KB/status; a negative observation invalidates this context's later
+-- low positive values. Never infer missing 4-GiB multiples or force a collection.
+local heapRangeUnsafe=false
+function M.ReadHeap()
+ if type(collectgarbage)~='function' then return nil,'UNAVAILABLE' end
+ local ok,n=pcall(collectgarbage,'count')
+ if not ok then return nil,'CALL_FAILED' end
+ if type(n)~='number' then return nil,'NON_NUMERIC' end
+ if n~=n or n==math.huge or n==-math.huge then return nil,'NONFINITE' end
+ if n<0 then heapRangeUnsafe=true;return nil,'NATIVE_NEGATIVE',n end
+ if heapRangeUnsafe then return nil,'RANGE_UNTRUSTED',n end
+ return n/1024,'OK',n -- calling Gameplay heap, not Mod-exclusive/all Lua
+end
+function M.Heap() local n=M.ReadHeap();return n end
 function M.StartMemory(P,shared)
+ heapRangeUnsafe=false -- a fresh Gameplay observer; no saved/readback value restores trust
  local d={};shared.MemoryObservation=d
  ExposedMembers.SPC_MemoryAttribution=nil -- new observer/session; never restore old samples
 
@@ -123,8 +134,9 @@ function M.StartMemory(P,shared)
   pcall(function()
    evidence.sequence=evidence.sequence+1
    local function safe(v)return tostring(v or 'NONE'):match('^[%w_:]+') or 'UNKNOWN' end
+   local heap,status,raw=M.ReadHeap()
    local row={seq=evidence.sequence,turn=Game.GetCurrentGameTurn(),kind=kind,reason=safe(reason),
-    heapMiB=M.Heap(),gcEnabled=a.enabled,gcFailure=safe(a.failure),gcCollections=a.collections}
+    heapMiB=heap,heapStatus=status,heapRawKB=raw,gcEnabled=a.enabled,gcFailure=safe(a.failure),gcCollections=a.collections}
    for k,v in pairs(extra or {})do if type(v)=='number' or type(v)=='boolean' then row[k]=v end end
    evidence.rows[#evidence.rows+1]=row
    if #evidence.rows>128 then table.remove(evidence.rows,1)end
@@ -152,6 +164,7 @@ function M.StartMemory(P,shared)
  end
  local loaded=false;local anchor;local lastTurn;local pendingTurn;local assessedTurn
  local gcBusy=false;local lastToken;local switchToken;local logRows=0
+ local waitingNetwork=false;local retryUsed=false
  local function current()return shared.MemoryObservation==d end
  local function localHuman(pid)
   local ok,id=pcall(Game.GetLocalPlayer)
@@ -233,7 +246,7 @@ function M.StartMemory(P,shared)
  function d.ReadGC(pid)
   if not localHuman(pid)then return '仅本地人类玩家可诊断' end
   local lines={'GC试运行｜'..(a.failure and '已停用：'..a.failure or a.enabled and '自动开启' or '手动关闭'),
-   '增长128 MiB + 间隔2回合；本地回合进入后发布边界评估。',
+   '增长128 MiB + 间隔2回合；发布边界评估，网络确认后最多补评估一次。',
    '最近状态 '..a.reason..'｜本次加载调用 '..a.collections..' 次｜Lua '..tostring(_VERSION)}
   lines[#lines+1]='起点 '..tostring(a.baselineSource or '尚未取得')..' / T'..tostring(a.baselineTurn or '?')
   for _,v in ipairs(a.rows)do
@@ -277,22 +290,33 @@ function M.StartMemory(P,shared)
   end,
   function(pid)
    if not current()then return end
-   pendingTurn=nil
+   if not localHuman(pid)then pendingTurn=nil;waitingNetwork=false;return end
+   -- Repeated local activation must not create another attempt in this same turn.
+   if assessedTurn==Game.GetCurrentGameTurn() then return end
+   pendingTurn=nil;waitingNetwork=false;retryUsed=false
    if a.enabled and not a.failure and localHuman(pid)then
     if not loaded then baseline('LOCAL_TURN');return end
     pendingTurn=Game.GetCurrentGameTurn()
    end
   end,
-  function()if current()then pendingTurn=nil end end,
+  function()if current()then pendingTurn=nil;waitingNetwork=false end end,
   function()
    if not current() or not pendingTurn or gcBusy then return end
-   local t=pendingTurn;pendingTurn=nil -- no retry loop / reentrant publish / repeated sampling
-   if t~=Game.GetCurrentGameTurn() or assessedTurn==t or not a.enabled or a.failure then return end
-   assessedTurn=t
+   local t=pendingTurn
+   if t~=Game.GetCurrentGameTurn() or not a.enabled or a.failure then pendingTurn=nil;return end
+   if waitingNetwork then
+    local counters=ExposedMembers.SPC_Performance
+    if counters and (counters.inflight or 0)>0 then return end -- scalar-only wait, no heap/log spam
+    waitingNetwork=false;retryUsed=true
+   elseif assessedTurn==t then pendingTurn=nil;return end
+   assessedTurn=t;pendingTurn=nil -- consume this attempt before idle/native reentry
    local ok,pid=pcall(Game.GetLocalPlayer)
    if not ok or not localHuman(pid)then return end
    local safe,why=idle(pid)
-   if not safe then log('SKIP:'..why);return end
+   if not safe then
+    if why=='NETWORK_INFLIGHT' and not retryUsed then waitingNetwork=true;pendingTurn=t end
+    log('SKIP:'..why);return
+   end
    if t-lastTurn<policy.minTurns then log('INTERVAL');return end
    local now=M.Heap()
    if not now then fail('COUNT_UNAVAILABLE');return end

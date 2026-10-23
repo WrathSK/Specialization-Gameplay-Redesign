@@ -240,8 +240,6 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
         now = clock()
         if now - start >= max_seconds:
             return 'MAX_DURATION'
-        if connected_once:
-            session.memory.sample_process()
         trace_errors = []
         listening = False
         try:
@@ -287,6 +285,9 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
                         out('Connected to the game; collecting. Press Ctrl-C to stop.')
                         session.event('connected')
                     connected_once, last_ok, waiting_reported, last_wait = True, clock(), False, None
+                    # Only confirmed live windows contribute OS samples; disconnected
+                    # exit/unload tails must not masquerade as gameplay recovery.
+                    session.memory.sample_process()
             capture('record', on_record=on_record, record_seconds=min(window, 30))
             invalid = next((code for code in trace_errors if code != 'TRACE_UNAVAILABLE'), None)
             if invalid:

@@ -9,9 +9,9 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0179",
-    "status": "S0714",
-    "runtime": "B269.296 / modinfo296",
+    "architecture": "A0180",
+    "status": "S0715",
+    "runtime": "B270.297 / modinfo297",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
   "runtime_commit": "df70a88a0feca951243e4686df112810b564d85b",
-  "current_batch": "B269_MAIN_MERGED_STABLE_DEPLOYED",
-  "next_batch": "Await normal v0.1 playtest feedback. No new repair or deployment authorized.",
+  "current_batch": "B270_IMPLEMENTED_AWAITING_USER",
+  "next_batch": "Await B270 review and explicit PR/promotion/deployment authorization; normal v0.1 evidence continues on B269 stable.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B269.296 stable from main df70a88;310/310 MATCH; SHA2567a407a7259e9555aa2319ef9b49083c72927c8edcf1ae1d105343bf509190caa; B268 backup retained, no pending transaction.",
   "stable": "main B269.296 / modinfo296; approved PR #3 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 temporary auto-switch phase ended at user-approved main playtest milestone. Future runtime changes require explicit approval and existing transaction safeguards.",
-  "context_review_status": "S0714: explicit merge/deployment approved and verified; native diagnostics acceptance remains pending.",
+  "context_review_status": "S0715: user approved all four scoped repairs; local verification complete, native effect and memory trend pending; stable/live B269 unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md"
 }
