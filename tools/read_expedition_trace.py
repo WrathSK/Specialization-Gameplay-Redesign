@@ -154,8 +154,8 @@ if type(m)=='table' and m.schema==1 and type(m.rows)=='table' then
   local r=m.rows[i];if r==nil then break end;
   if type(r)=='table' then
    local parts={'MEM epoch='..scalar(m.epoch)};
-   for _,k in ipairs({'seq','turn','kind','reason','heapMiB','gcEnabled','gcFailure','gcCollections','before','after','cpu','wall','work_city_scan','work_district_scan','work_building_check','work_building_create','work_building_remove','work_property_write','work_net_send','work_net_receive','work_derive_executed','work_dc_read','work_dc_capture','work_dc_hit'})do
-    parts[#parts+1]=k..'='..scalar(r[k]);
+   for _,k in ipairs({'seq','turn','kind','reason','heapMiB','heapStatus','heapRawKB','gcEnabled','gcFailure','gcCollections','before','after','cpu','wall','work_city_scan','work_district_scan','work_building_check','work_building_create','work_building_remove','work_property_write','work_net_send','work_net_receive','work_derive_executed','work_dc_read','work_dc_capture','work_dc_hit'})do
+    parts[#parts+1]=k..'='..(k=='heapStatus' and r[k]==nil and 'LEGACY' or scalar(r[k]));
    end;
    out(table.concat(parts,' '));
   end;

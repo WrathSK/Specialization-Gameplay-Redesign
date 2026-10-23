@@ -3,6 +3,7 @@ include('SpecialistSupport')
 -- P0-B1: existing native +3F/+3P carriers at all ACTIVE levels; no III top-up.
 SPCResearchSupport={}
 function SPCResearchSupport.Start(P,shared)
+ local batch
  local data={ready=false,busy=false,changes=0,errors={},ruleset=SPCSpecialistSupport.RULESET};shared.ResearchSupport=data
  local kinds={'RESEARCH','CULTURE','COMMERCE'}
  local function desired(pid,c,batch)
@@ -30,25 +31,15 @@ function SPCResearchSupport.Start(P,shared)
   for _,v in ipairs(plan) do if v.present then have[#have+1]=v.kind end end
   return table.concat(have,',')
  end
+ local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
+  SPCSpecialistSupport.Retire(P,c,shared);local kind=desired(pid,c,batch);carriers(c,kind,true)
+ end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
  function data.Audit(scope)
   if P.Observe then P.Observe('audit','ResearchSupport') end
   if not data.ready or data.busy then P.Count('busy_skip');return end
-  data.busy=true;local batch=SPCRuntimeWork.New(P,shared)
-  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
-   local ok,err=pcall(function()
-    for _,c in player:GetCities():Members() do
-     P.Count('city_scan');local k=pid..':'..c:GetID()
-     local good,why=pcall(function()
-      SPCSpecialistSupport.Retire(P,c) -- no new support before obsolete IDs cleared
-      local kind=desired(pid,c,batch)
-      carriers(c,kind,true)
-     end)
-     data.errors[k]=not good and tostring(why) or nil
-    end
-   end)
-   data.errors['player:'..pid]=not ok and tostring(err) or nil
-  end end
-  data.busy=false
+  data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  targets.Run(scope)
+  data.busy=false;batch=nil
  end
  function data.Run(pid,c,action)
   local ok,kind,d=pcall(desired,pid,c,SPCRuntimeWork.New(P,shared))
@@ -61,16 +52,16 @@ function SPCResearchSupport.Start(P,shared)
    ..'\nRead only; ON/OFF aliases cannot enable the retired III upgrade.'
  end
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
- hook(Events,'LoadScreenClose',function() data.ready=true;data.errors={};data.Audit() end)
+ hook(Events,'LoadScreenClose',function() data.ready=true;data.errors={};data.Audit({load=true}) end)
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictRemovedFromMap','DistrictBuildProgressChanged',
   'GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','DistrictPillaged','DistrictRepaired'}) do
-  SPCRuntimeWork.Hook(P,Events,n,data.Audit)
+  SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)
  end
- for _,n in ipairs({'OnDistrictConstructed','CityBuilt','OnPillage'}) do hook(GameEvents,n,data.Audit) end
+ for _,n in ipairs({'OnDistrictConstructed','CityBuilt','OnPillage'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchSupport',function(c,loss)
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchSupport',targets.Exit(function(c,loss)
    local ids={};for _,k in ipairs(kinds)do ids[#ids+1]='BUILDING_SPC_DEV_'..k..'_SUPPORT'end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end)end
+ end))end
 
 end

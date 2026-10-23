@@ -371,9 +371,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "55a2c7980c686d3a5f46d328dd94645140883a282096e2209af9cc08ffff25e9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+      "sha256": "7b690c0989addeecb92ee640a92e857871043f59bf8d579f279b5de28089754b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -681,9 +681,9 @@
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "9e6a04238ab8cf73434b813bfaa9d1fd05113e463b2e5dd37c531dd68c89f8d2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "967da28727893fea06c87083cde9962fd3803fe6d00346d6933f24301401bca5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "eed229b2e765cdd7ffc43404413b9c347f642e1041ee2fb280a66e4abc16a7b9",
@@ -716,24 +716,24 @@
       "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "66c61e4b84b625d1f6c6baa27a88288a3e7bf6dd3d034dae11e2a4d2dd0f4b5e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
-      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+      "sha256": "4d98dee16e11779c88ee05d846b77069cc082544e57766e76e7bd005b4714513",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "bea3d3c8519a2da29ab280e2945570bb770e44282926dd91e289a27bcb5d8300",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
-      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+      "sha256": "e2f6b81d7334970f9a5ca5e6efe2f925d1213dbf66cc1c51e2e86fffd89482c3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/Lv3Effects.lua": {
-      "sha256": "1eaf445b563091c5337865f5f4210d8460bf24a812fa287f87bb2269169bd438",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "14e77e6a4f3d98a9f431ea1768a535417a788421a31d67bc7e93f372aeb9ba0e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/Lv3Support.lua": {
-      "sha256": "13967ab958dc17bef5e9f3e700f9bfa6d0ffb510a51ee4a711835a4dc9599562",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "f53410b255aa46bbe7979a4070bc576cd75de780c34ffc03edfe5bb870612f95",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/Lv4CopyRead.lua": {
       "sha256": "964d15c56466bccb58bb832e21924f891fa25c7a548ac8ec8ddab11ea44cc05f",
@@ -781,14 +781,14 @@
       "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "17da922074b1995aa92f90e1c9d32e115c4a69e24f4a2aaa8c20c5e56488c224",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
-      "provenance": "B269 approved diagnostics only; live unchanged."
+      "sha256": "5cf253368bdfa73a0e4e65e51e5ec11eb2f8244a8afe65e6c13ed45fc5415436",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/Probe.lua": {
-      "sha256": "908639cfbad2c9213975722bba348340f7e1ffec73404032fc4191553be3465f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
-      "provenance": "B269 approved diagnostics only; live unchanged."
+      "sha256": "79d1c5072e59409d118ada6be0b4aebaa281f8a5eafc1ec2b8d01691efb7f641",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -851,9 +851,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "12d2c77d6419e07d95de46bbf9f34ec689495d4bc419fa48bf2544cdb2117019",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
-      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
+      "sha256": "1f288d0fd59c3dc67616b76370ecc9f79548ff754bf385ce8aae1f611cf7c3c3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
       "sha256": "8ad23bec61981d670c6c8a0b67c35e1c66e0c697a6abd6075e197656aec37b3f",
@@ -861,9 +861,9 @@
       "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/ResearchSupport.lua": {
-      "sha256": "3f82c7e60465ffc601328d551182d4116611d39fcc2ab3dc46341f0dd6efe724",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "sha256": "c842565566fd6a3ac4a89761a32942d906c94bdc1e57c4df1b35886f8fe5d004",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/ResearchTradition.lua": {
       "sha256": "bfd4e3437c873c97349216f876c86e80ba1b97cc4c847821f4990c2ab9d062c7",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "104ee9271c93bc5b40bf533003c1b86da016d47c487ef110fe0ed378da38a3e3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
-      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+      "sha256": "c8f75705d86d5637fe825ff74a6571dc851b3f1ef8a88545fab5158b8aec6f17",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "2aef4ce1073e63d32371f2896fe51273b4b212884201fd571103bf1f44aad3a2",
@@ -916,9 +916,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecialistSupport.lua": {
-      "sha256": "54644c351b7ce4802857e57e77f8c2d83bf674cd1c0dc6273858547dcddc6a7f",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "ba0e1ee5eb6fa2991319aedc13add43ddbfe93242df5d4801b7755a2f353d302",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/Specialization.dep": {
       "sha256": "33e4ab62dfc52efc143b9d56a77f6538cc6a25c986754984436e1aca10ab0e0d",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "420ee752f410325e9e89b09c9d093aef35cf5348c6f224ad31cc35bc68f92bdc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md",
-      "provenance": "B269 approved diagnostics only; live unchanged."
+      "sha256": "dcf6457711274e455c8041e7c9c10c59749aeff2e6bcb2d5561366d9a4112e60",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1556,5 +1556,5 @@
       "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     }
   },
-  "source_review": "B269 approved PR #3 merged and stable deployment verified310/310 MATCH; native diagnostics acceptance pending."
+  "source_review": "B270.297 approved four-item repair reviewed locally; changed Mod hashes reflect prepared develop source. runtime/runtime_commit still identify deployed B269; no native PASS or deployment."
 }

@@ -1,21 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0714
-Implementation Build: B269.296 / modinfo296; stable/live B269.296
-Architecture Revision Reviewed: A0179
+Status Revision: S0715
+Implementation Build: B270.297 / modinfo297 prepared; stable/live B269.296
+Architecture Revision Reviewed: A0180
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B269_MAIN_MERGED_STABLE_DEPLOYED
+Work State: B270_IMPLEMENTED_AWAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-用户批准PR #3合并并部署，B269.296已成为main/live稳定包；[结果与使用方式](Validation/Results/Specialization_B269_Memory_Diagnostics.md)。
+用户在只读调查及四项方案后明确“全部授权”。B270.297已完成定域实施与离线验证；[结果、调查证据及待验范围](Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md)。
 
-- 合并提交df70a88；310/310文件与live一致，B268备份保留，无待完成事务。
-- 13项新增测试与243项既有回归PASS；新增诊断的原生交付、读取权限和开销待正常游玩确认。
-- 不改变GC策略或玩法，不启动游戏；继续v0.1测试。后续新变更/部署仍需授权。
+- 修复内存原值/质量与摘要、网络标志退休后的GC一次补评估、普通事件的参与城市范围与退休清理，以及自有测试项目缺图别名；不改玩法、永久状态或收益算法。
+- 新增18项、B269原13项、既有243项范围回归与B138六组合同通过。正向收益及最终静态核对另见结果；静态/本地通过不扩为原生验收。
+- main/stable/live仍B269.296（df70a88；原310/310部署记录保持）。本批未PR、未合并、未部署、未启动游戏或修改配置。
+- 正常v0.1测试继续；本批部署另需明确批准，实际内存改善与事件交付待实机。
+
+## S0715 — B270范围与证据修复
+
+四项修复按已批准边界完成。保留外国城UNKNOWN、退出证明和精确恢复；不把“事件驱动”误当全世界扫描的理由。Mac原生计数失真保留原值，不凭低正数宣称回收。后续只在批准的推广/部署边界继续。
 
 ## S0714 — B269 main合并与稳定部署
 

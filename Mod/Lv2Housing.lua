@@ -4,6 +4,7 @@ include('SpecialistSupport')
 -- D's weighted sum/highest-domain choice is deliberately not a housing input.
 SPCLv2Housing={}
 function SPCLv2Housing.Start(P,shared)
+ local batch
  local data={ready=false,busy=false,changes=0,errors={},events=0};shared.Lv2Housing=data
  local kinds={RESEARCH=true,CULTURE=true,COMMERCE=true,INDUSTRY=true}
  local function carrier(i)
@@ -54,10 +55,13 @@ function SPCLv2Housing.Start(P,shared)
    end
   end end
  end
+ local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
+  process(pid,c,batch)
+ end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
  function data.Audit(scope)
   if P.Observe then P.Observe('audit','Lv2Housing') end
   if not data.ready or data.busy then P.Count('busy_skip');return end
-  data.busy=true;data.events=data.events+1;local batch=SPCRuntimeWork.New(P,shared)
+  data.busy=true;data.events=data.events+1;batch=SPCRuntimeWork.New(P,shared)
   if type(scope)=='table' and scope.investment~=nil then
    local pid=scope.player;local key='investment:'..tostring(pid)
    local ok,city=pcall(SPCRuntimeWork.InvestmentCity,P,shared,scope,batch)
@@ -66,20 +70,11 @@ function SPCLv2Housing.Start(P,shared)
     P.Count('city_scan');local good,why=pcall(function() process(pid,city,batch) end)
     data.errors[pid..':'..city:GetID()]=not good and tostring(why) or nil
    end
-   data.busy=false;return
+   data.busy=false;batch=nil;return
   end
   if type(scope)~='table' or scope.player==nil then data.errors={} end
-  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
-   local ok,err=pcall(function()
-    for _,city in player:GetCities():Members() do
-     P.Count('city_scan');local k=pid..':'..city:GetID()
-     local good,why=pcall(process,pid,city,batch)
-     data.errors[k]=not good and tostring(why) or nil
-    end
-   end)
-   data.errors['player:'..pid]=not ok and tostring(err) or nil
-  end end
-  data.busy=false
+  targets.Run(scope)
+  data.busy=false;batch=nil
  end
  function data.Describe(pid,city)
   local ok,out=pcall(function()
@@ -100,19 +95,19 @@ function SPCLv2Housing.Start(P,shared)
   return 'P0-B2 Lv2 Housing | '..(ok and out or ('UNKNOWN / installed housing retained: '..tostring(out)))
  end
  local function bind(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
- bind(Events,'LoadScreenClose',function() data.ready=true;data.errors={};data.Audit() end)
+ bind(Events,'LoadScreenClose',function() data.ready=true;data.errors={};data.Audit({load=true}) end)
  for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted',
   'CityTransfered','CityRemovedFromMap','BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
   'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'}) do
-  SPCRuntimeWork.Hook(P,Events,n,data.Audit)
+  SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)
  end
  -- CityBuildingsChanged can be raised by our own carriers. Structural events
  -- above + once/player/turn reconciliation cover it without a feedback loop.
- for _,n in ipairs({'BuildingConstructed','OnDistrictConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,data.Audit) end
+ for _,n in ipairs({'BuildingConstructed','OnDistrictConstructed','CityBuilt','OnPillage'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2Housing',function(c,loss)
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2Housing',targets.Exit(function(c,loss)
    local ids={};for bit=0,8 do ids[#ids+1]='BUILDING_SPC_DEV_LV2_HOUSING_'..bit end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end)end
+ end))end
 
 end

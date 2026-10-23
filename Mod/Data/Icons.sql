@@ -41,6 +41,9 @@ INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_CLAIM_COMMERCE',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_COMMERCIAL_HUB';
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_ERA_DIALOGUE',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_THEATER';
 
+-- B270: disabled test projects are still enumerated by the production UI.
+INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_OVERFLOW_SINK_TEST',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_INDUSTRIAL_ZONE';
+
 -- B235: study uses the native Industrial Zone project artwork.
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_ENGINEERING_STUDY',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_INDUSTRIAL_ZONE';
 

@@ -95,31 +95,27 @@ end
 include('SpecialistSupport')
 function SPCLv3Support.Start(P,shared)
  local data={ready=false,busy=false,errors={},changes=0,ruleset='RETIRED_D0032_P0B1'};shared.Lv3Support=data
+ local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
+  data.changes=data.changes+SPCSpecialistSupport.Retire(P,c,shared)
+ end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
  function data.Audit(scope)
   if not data.ready or data.busy then return end
   data.busy=true
-  for pid,p in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) then
-   local ok,err=pcall(function()
-    for _,c in p:GetCities():Members() do
-     P.Count('city_scan');local good,n=pcall(SPCSpecialistSupport.Retire,P,c)
-     data.errors[pid..':'..c:GetID()]=not good and tostring(n) or nil
-     if good then data.changes=data.changes+n end
-    end
-   end)
-   data.errors['player:'..pid]=not ok and tostring(err) or nil
-  end end
+  if type(scope)=='table' and scope.load then targets.Run(scope)else targets.Retry(scope)end
   data.busy=false
  end
  function data.Describe(pid,c)
   return '\n旧三级专家升级：RETIRED（额外2F/2P、工业Gold不再生效）'
    ..'\nretiredRemoved='..data.changes..' error='..tostring(data.errors[pid..':'..c:GetID()] or 'NONE')
  end
- local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(function() data.ready=true;data.Audit() end) end
- SPCRuntimeWork.Hook(P,Events,'CityTransfered',data.Audit)
+ local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(function() data.ready=true;data.Audit({load=true}) end) end
+ SPCRuntimeWork.TargetHook(P,Events,'CityTransfered',data.Audit)
+ -- No ordinary scan: only exact failed retirement/exit candidates are retried.
+ SPCRuntimeWork.TargetHook(P,Events,'PlayerTurnActivated',data.Audit)
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Support',function(c,loss)
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Support',targets.Exit(function(c,loss)
    local ids={};for _,id in ipairs(SPCSpecialistSupport.Retired)do ids[#ids+1]=id end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end)end
+ end))end
 
 end
