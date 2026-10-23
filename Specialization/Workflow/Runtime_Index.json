@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "df70a88a0feca951243e4686df112810b564d85b",
-  "runtime": "B269.296 / modinfo296",
+  "runtime_commit": "3eb1aede3ff60c0273c821c7df0051d82211184f",
+  "runtime": "B270.297 / modinfo297",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -373,7 +373,7 @@
     "Mod/Data/Icons.sql": {
       "sha256": "7b690c0989addeecb92ee640a92e857871043f59bf8d579f279b5de28089754b",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -683,7 +683,7 @@
     "Mod/IndustrySupport.lua": {
       "sha256": "967da28727893fea06c87083cde9962fd3803fe6d00346d6933f24301401bca5",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "eed229b2e765cdd7ffc43404413b9c347f642e1041ee2fb280a66e4abc16a7b9",
@@ -718,22 +718,22 @@
     "Mod/Lv2GPP.lua": {
       "sha256": "4d98dee16e11779c88ee05d846b77069cc082544e57766e76e7bd005b4714513",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/Lv2Housing.lua": {
       "sha256": "e2f6b81d7334970f9a5ca5e6efe2f925d1213dbf66cc1c51e2e86fffd89482c3",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/Lv3Effects.lua": {
       "sha256": "14e77e6a4f3d98a9f431ea1768a535417a788421a31d67bc7e93f372aeb9ba0e",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/Lv3Support.lua": {
       "sha256": "f53410b255aa46bbe7979a4070bc576cd75de780c34ffc03edfe5bb870612f95",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/Lv4CopyRead.lua": {
       "sha256": "964d15c56466bccb58bb832e21924f891fa25c7a548ac8ec8ddab11ea44cc05f",
@@ -783,12 +783,12 @@
     "Mod/PerformanceCounters.lua": {
       "sha256": "5cf253368bdfa73a0e4e65e51e5ec11eb2f8244a8afe65e6c13ed45fc5415436",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/Probe.lua": {
       "sha256": "79d1c5072e59409d118ada6be0b4aebaa281f8a5eafc1ec2b8d01691efb7f641",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -853,7 +853,7 @@
     "Mod/ResearchInfrastructure.lua": {
       "sha256": "1f288d0fd59c3dc67616b76370ecc9f79548ff754bf385ce8aae1f611cf7c3c3",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
       "sha256": "8ad23bec61981d670c6c8a0b67c35e1c66e0c697a6abd6075e197656aec37b3f",
@@ -863,7 +863,7 @@
     "Mod/ResearchSupport.lua": {
       "sha256": "c842565566fd6a3ac4a89761a32942d906c94bdc1e57c4df1b35886f8fe5d004",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/ResearchTradition.lua": {
       "sha256": "bfd4e3437c873c97349216f876c86e80ba1b97cc4c847821f4990c2ab9d062c7",
@@ -898,7 +898,7 @@
     "Mod/RuntimeWork.lua": {
       "sha256": "c8f75705d86d5637fe825ff74a6571dc851b3f1ef8a88545fab5158b8aec6f17",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "2aef4ce1073e63d32371f2896fe51273b4b212884201fd571103bf1f44aad3a2",
@@ -918,7 +918,7 @@
     "Mod/SpecialistSupport.lua": {
       "sha256": "ba0e1ee5eb6fa2991319aedc13add43ddbfe93242df5d4801b7755a2f353d302",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/Specialization.dep": {
       "sha256": "33e4ab62dfc52efc143b9d56a77f6538cc6a25c986754984436e1aca10ab0e0d",
@@ -928,7 +928,7 @@
     "Mod/SpecializationP0.modinfo": {
       "sha256": "dcf6457711274e455c8041e7c9c10c59749aeff2e6bcb2d5561366d9a4112e60",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 user-authorized scoped repair; local simulation reviewed; source only, stable/live remain B269."
+      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1556,5 +1556,5 @@
       "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     }
   },
-  "source_review": "B270.297 approved four-item repair reviewed locally; changed Mod hashes reflect prepared develop source. runtime/runtime_commit still identify deployed B269; no native PASS or deployment."
+  "source_review": "B270 PR #4 merged; stable deployment from main3eb1aed verified310/310 MATCH. Mod tree equals reviewed develop1ea33f8; native event/memory acceptance pending."
 }

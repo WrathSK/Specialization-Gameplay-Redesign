@@ -1,22 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0715
-Implementation Build: B270.297 / modinfo297 prepared; stable/live B269.296
+Status Revision: S0716
+Implementation Build: B270.297 / modinfo297; stable/live B270.297
 Architecture Revision Reviewed: A0180
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B270_IMPLEMENTED_AWAITING_USER
+Work State: B270_MAIN_MERGED_STABLE_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
-用户在只读调查及四项方案后明确“全部授权”。B270.297已完成定域实施与离线验证；[结果、调查证据及待验范围](Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md)。
+用户授权“PR然后部署”，B270.297已通过PR #4合并至main并完成稳定部署；[结果与原生待验范围](Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md)。
 
-- 修复内存原值/质量与摘要、网络标志退休后的GC一次补评估、普通事件的参与城市范围与退休清理，以及自有测试项目缺图别名；不改玩法、永久状态或收益算法。
-- 新增18项、B269原13项、既有243项范围回归与B138六组合同通过。正向收益及最终静态核对另见结果；静态/本地通过不扩为原生验收。
-- main/stable/live仍B269.296（df70a88；原310/310部署记录保持）。本批未PR、未合并、未部署、未启动游戏或修改配置。
-- 正常v0.1测试继续；本批部署另需明确批准，实际内存改善与事件交付待实机。
+- 实际合并提交3eb1aed；保留两份main README，Mod树与已验证develop1ea33f8一致。
+- 部署前再次确认游戏退出、main干净、旧B269与已记录哈希一致。310/310源码/运行文件MATCH，B269恢复包保留，无待完成事务；本地凭据B270.297-3eb1aed-stable-deploy.json。
+- 原18项新增、13项内存、243项回归、B138六组合同与532组收益配置通过范围保持；无新增实机PASS。
+- 可继续正常v0.1游玩，沿用tuner采集入口。实际内存趋势及原生事件/清理/GC时机待新日志验证；不启动游戏、不新增长测门槛。
+
+## S0716 — B270 PR与稳定部署
+
+用户授权PR后部署。固定候选与main普通merge已核对，按既有事务工具完成B269→B270更新；部署记录和两个分支当前状态同步。后续变更仍需其各自授权。
 
 ## S0715 — B270范围与证据修复
 
