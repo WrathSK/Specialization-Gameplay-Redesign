@@ -4,6 +4,8 @@ Civ VI / Harmony in Diversity城市专业化与国内商路网络Mod。当前v0.
 
 直接阅读玩法：[Design中文阅读导航](Design/README.md)，按共同规则、专业及未来区域查阅。
 
+面向测试玩家：[稳定测试说明](Stable_Playtest.md)。面向开发维护：[开发指南](Development_Guide.md)。两份说明在main/develop使用相同结构，具体状态随所在分支的Status记录。
+
 ## 从哪里开始
 
 先读[根AGENTS](../AGENTS.md)与[本目录约定](AGENTS.md)，再按[W0001](Workflow/README.md)进行task-scoped读取。Gameplay Design由用户最终决定；权限与决策边界集中在[W0005](Workflow/README.md#w0005--authority-and-repository-knowledge)。

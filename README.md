@@ -29,7 +29,7 @@ I am **Xuting Zheng**. I lead gameplay design, define requirements and developme
 
 **v0.1 is in development.** City progression, specialization claims and selected abilities have implementations with scoped in-game test records. Advanced systems and validation remain incomplete. Current runtime support is limited to the local human player in single-player; AI-player participation, multiplayer and other recorded specializations are outside the current implementation scope.
 
-You are viewing **develop**, the active development branch, which may include changes awaiting in-game validation. [main](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/main) retains the last approved stable playtest source baseline; development changes are promoted separately. The [project map](Specialization/README.md) provides the documentation for this branch.
+[main](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/main) holds the approved playtest source; [develop](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/develop) holds ongoing development. Read the [stable playtest guide](Specialization/Stable_Playtest.md) or [development guide](Specialization/Development_Guide.md). Relative documentation links describe the branch you are viewing; current build and deployment identities belong in Status and deployment records.
 
 [Current progress and open issues](Specialization/Status/Specialization_P0_Status.md#current-authoritative-state) are tracked separately from design decisions. Validation records distinguish local checks from game-tested scenarios and document the scope of each result.
 
@@ -91,7 +91,7 @@ v0.1 的设计围绕四个专业展开：
 
 **v0.1 仍在开发中。** 城市成长、专业认领及部分能力已有实现，并有明确场景范围的实机测试记录；高级系统和验证尚未全部完成。当前运行支持限于单人游戏中的本地人类玩家，AI 参与、多人游戏及其它已记录专业不在当前实施范围内。
 
-你正在查看 **develop**，即当前开发分支，其中可能包含尚待实机验证的修改。[main](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/main) 保留上一次获准的稳定游玩源码基线，开发变更需另行批准推广。本分支的资料入口见[项目导航](Specialization/README.md)。
+[main](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/main) 保存获准的实机测试源码，[develop](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/develop) 保存持续开发内容。请按用途阅读[稳定测试说明](Specialization/Stable_Playtest.md)或[开发指南](Specialization/Development_Guide.md)。相对链接对应正在查看的分支；当前构建与部署身份以Status和部署记录为准。
 
 [当前进度与待处理问题](Specialization/Status/Specialization_P0_Status.md#current-authoritative-state) 与设计决定分别记录。验证资料区分本地检查和游戏内测试，并说明各项结果的适用范围。
 
