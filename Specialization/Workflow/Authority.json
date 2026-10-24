@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0731",
-    "runtime": "B282.309 / modinfo309",
+    "status": "S0732",
+    "runtime": "B283.310 / modinfo310",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "current_batch": "REFACTOR_S5C1_COMPLETE_S5C2_AUTHORIZED",
-  "next_batch": "S5c2 bounded busy/evidence merge→S5d native consumer/hook locality→S6→S7/S8→S9/S10. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S5C_COMPLETE_S5D_AUTHORIZED",
+  "next_batch": "S5d scoped consumers, independent Dialogue recovery and namespaced live hooks→S6→S7/S8→S9/S10. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B271.298 stable from main cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; SHA256 102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993; B270 backup verified, no pending transaction; receipt B271.298-cc71f9b-stable-deploy.json.",
   "stable": "main B271.298 / modinfo298; approved PR #6 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "No automatic deployment granted by U1 D13. Runtime replacement needs explicit approval and existing transaction/game-exit/hash/receipt safeguards. No main promotion before separately approved post-U5 action.",
-  "context_review_status": "S0731 S5c1 complete:14 new Lua51 cases;179 properties PASS/2 laterOPEN. Strict unchanged T02 passes; known district scope invalidates one city with zero native mark work, provider registration shares the existing bounded collector, and Bridge solely owns route signals. Busy merge and legacy-native overlap remain explicit S5c2/S5d work. No native/deployment PASS.",
+  "context_review_status": "S0732 S5c complete:20 new actual Bridge/Commerce/Sender cases PASS; full201 selected cases have199 properties PASS/2 later OPEN. Busy work retains the newest bounded detached wire and independent negative proof, never advances ACK on enqueue, and drains only actual causes. Failed negative projection holds the whole batch dormant until new evidence. S5d consumer scopes/live-hook migration remains open. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B283_Refactor_S5c2.md"
 }

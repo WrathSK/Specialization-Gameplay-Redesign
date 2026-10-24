@@ -201,11 +201,12 @@ function M.Start(P,shared)
  end)
  for _,name in ipairs({'BuildingPillaged','BuildingRepaired'})do hook(Events,name,function()data.MarkDirty()end)end
  hook(Events,'DistrictRemovedFromMap',function()data.MarkDirty()end) -- unresolved native signature: bounded fallback
- for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage','CityBuilt'})do
+ for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','CityBuilt'})do
   hook(GameEvents,name,function(pid)
    data.MarkDirty(type(pid)=='number' and pid>=0 and pid or nil)
   end)
  end
+ hook(GameEvents,'OnPillage',function()data.MarkDirty()end) -- first player is the actor, not necessarily the affected owner
  hook(Events,'LoadScreenClose',function() cache={};catalog=nil;buildingOrder=nil;epoch=epoch+1 end)
  for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'}) do
   hook(Events,name,function(x,y,id,owner)

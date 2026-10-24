@@ -546,9 +546,9 @@
       "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "674e879872151262f7c48db01562a5f5f6a8e75fa240e35d97ae8c871fd103bb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
-      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
+      "sha256": "84b70a498f09fb7f4a0ac70cd81468ac712264b1227bef5b7609da2292eeed77",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B283_Refactor_S5c2.md",
+      "provenance": "B283.310 bounded Bridge busy work and negative recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DistrictPrecisionProbe.lua": {
       "sha256": "12a6b244c9694f8303400b544cd747e554ce56c88e9d2bf302a31c22f67aed6c",
@@ -751,9 +751,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "0cb463b8838450dbf6f26a7d28640453623b6d3fdd93e46b58cc882158f16b97",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
-      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
+      "sha256": "d6a77fcb00e3eaede9abfe0bd3acad7132066a7cb1aed2c146eeac197c85f25b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B283_Refactor_S5c2.md",
+      "provenance": "B283.310 bounded Bridge busy work and negative recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "fa1e16ae91b376d0f254f09f23337de8877c3a4bee8e7b30f01fb601f10f79b4",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "a6a865899668d82e3a3c63279428b27fff5511bcf015548ecf1dc08bbe04f5c9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
-      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
+      "sha256": "4c09b997033feb6cae13e16894acb3b0060e830948e09fec63d9a5f53b9a8505",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B283_Refactor_S5c2.md",
+      "provenance": "B283.310 bounded Bridge busy work and negative recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "ce9b8bbb13a7d43e2a548caa247e0fc257d16930cf232ab2fe5a4eb69eb12669",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
-      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
+      "sha256": "c9c6a66923dea5330198095213419ff3c5bd193b638ec0ad5422070e7cf4f4f5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B283_Refactor_S5c2.md",
+      "provenance": "B283.310 bounded Bridge busy work and negative recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

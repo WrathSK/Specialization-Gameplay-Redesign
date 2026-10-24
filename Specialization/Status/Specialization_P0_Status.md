@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0731
-Implementation Build: B282.309 / modinfo309; stable/live B271.298
+Status Revision: S0732
+Implementation Build: B283.310 / modinfo310; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5C1_COMPLETE_S5C2_AUTHORIZED
+Work State: REFACTOR_S5C_COMPLETE_S5D_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5c1 complete:14 new Lua51 cases;179 properties PASS/2 laterOPEN. Strict unchanged T02 passes; known district scope invalidates one city with zero native mark work, provider registration shares the existing bounded collector, and Bridge solely owns route signals. Busy merge and legacy-native overlap remain explicit S5c2/S5d work. [Result](Validation/Results/Specialization_B282_Refactor_S5c1.md). Stable/live/main B271.298; no deployment/native PASS.
+S5c complete:20 new actual Bridge/Commerce/Sender cases PASS; full201 selected cases have199 properties PASS/2 later OPEN. Busy work retains the newest bounded detached wire and independent negative proof, never advances ACK on enqueue, and drains only actual causes. Failed negative projection holds the whole batch dormant until new evidence. S5d consumer scopes/live-hook migration remains open. [Result](Validation/Results/Specialization_B283_Refactor_S5c2.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: S5c2 bounded busy/evidence merge→S5d native consumer/hook locality→S6→S7/S8→S9/S10.
+- Primary next: S5d scoped consumers, independent Dialogue recovery and namespaced live hooks→S6→S7/S8→S9/S10.
+
+## S0732 — B283.310 bounded Bridge busy work and negative recovery
+
+S5c complete:20 new actual Bridge/Commerce/Sender cases PASS; full201 selected cases have199 properties PASS/2 later OPEN. Busy work retains the newest bounded detached wire and independent negative proof, never advances ACK on enqueue, and drains only actual causes. Failed negative projection holds the whole batch dormant until new evidence. S5d consumer scopes/live-hook migration remains open.
 
 ## S0731 — B282.309 scoped D providers and official network signals
 

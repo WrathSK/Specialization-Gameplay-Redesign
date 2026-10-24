@@ -111,6 +111,21 @@
       "test_refactor_s5propagation",
       "test_refactor_s5b",
       "test_refactor_s5c1"
+    ],
+    "S5c2": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_s5a",
+      "test_refactor_s5a2",
+      "test_refactor_s5history",
+      "test_refactor_s5propagation",
+      "test_refactor_s5b",
+      "test_refactor_s5c1",
+      "test_refactor_s5c2"
     ]
   },
   "counterexamples": {
@@ -166,7 +181,9 @@
     ],
     "Mod/NetworkBridge.lua": [
       "test_refactor_defects.Defects",
-      "test_refactor_s4b"
+      "test_refactor_s4b",
+      "test_refactor_s5c1",
+      "test_refactor_s5c2"
     ],
     "Mod/CityProgressionStore.lua": [
       "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity"
@@ -320,7 +337,8 @@
     "Mod/UI/UnitPanelActions.lua|MEASURED_MISSING_EVENT": 1,
     "Mod/UI/UnitTargetMarkers.lua|MEASURED_MISSING_EVENT": 1,
     "Mod/UnitActions.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
-    "Mod/YieldCarrierProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1
+    "Mod/YieldCarrierProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/NetworkBridge.lua|MEASURED_MISSING_EVENT": 2
   },
   "static_review_boundary": "S2 reviewed current runtime debt; counts are heuristic alarms, not compliance. New/widened alarms block pending human review; later removal of old debt is allowed.",
   "resolved_counterexamples": {
@@ -334,5 +352,19 @@
       "owner_stage": "S5c",
       "resolution": "Unchanged strict T02 passes and independent12 provider/scope/signal cases pass; known district signature retains owner/city for both invalidation and scheduling. Frozen B272 before evidence unchanged."
     }
-  }
+  },
+  "reviewed_alarm_changes": [
+    {
+      "stage": "S5c2",
+      "key": "Mod/NetworkBridge.lua|MEASURED_MISSING_EVENT",
+      "before": 0,
+      "after": 2,
+      "events": [
+        "GameEvents.CityConquered",
+        "GameEvents.TradeRoutePlundered"
+      ],
+      "reason": "Restore original optional route signal hooks moved from TradeRouteProbe; B282 incorrectly conflated absent Events names with GameEvents. HD Misc.lua767-770 verifies GameEvents.CityConquered signature; GameEvents.TradeRoutePlundered availability remains UNKNOWN, preserving guarded original hook. Scanner is a bare-name heuristic. No new native dependency/delivery assertion. Frozen B282 evidence not rewritten.",
+      "evidence": "20 independent S5c2 actual Bridge/Commerce/Sender cases PASS including Namespaces.test_existing_gameevent_route_signals_are_not_events_namespace_absence and no doubled diagnostic signals in inherited S5c1."
+    }
+  ]
 }

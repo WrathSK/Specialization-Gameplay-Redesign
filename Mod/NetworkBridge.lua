@@ -14,11 +14,12 @@ function SPCNetworkBridge.Start(P,shared)
  local function currentGeneration(pid,b)return (b.factGeneration or 0)==generation(pid)end
  local function isolatedForProof(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local notify
+ local pending,dormant={},{};local draining=false
  function d.ProofRevision(pid)return d.proofRevisions[pid] or 0 end
  function d.TransactionCurrent(pid)
   local b=d.players[pid]
   return b~=nil and b.availability=='AVAILABLE' and b.revalidation=='VERIFIED'
-   and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b) and not isolatedForProof(pid)
+   and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b) and not b.queuedWork and not b.negativeHeld and not isolatedForProof(pid)
  end
  ExposedMembers.SPCNetworkEpoch=(ExposedMembers.SPCNetworkEpoch or 0)+1
  d.epoch=ExposedMembers.SPCNetworkEpoch
@@ -111,14 +112,14 @@ function SPCNetworkBridge.Start(P,shared)
  function d.Input(pid)
   local b=bucket(pid)
   return {contract=1,epoch=d.epoch,player=pid,inputVersion=b.inputRevision,signature=b.inputSignature,
-   validity=b.validity,availability=b.availability,routeRevision=b.revision,routeValidity=b.routes and 'VERIFIED' or b.validity,revalidation=b.revalidation,
+   validity=b.validity,availability=(b.queuedWork or b.negativeHeld) and 'NEEDS_REVALIDATION' or b.availability,routeRevision=b.revision,routeValidity=b.routes and 'VERIFIED' or b.validity,revalidation=b.revalidation,
    derivedRevision=b.derivedRevision,derivedFor=b.derivedFor,withdrawal=b.withdrawal==true,transportFailure=b.transportFailure,
    factAvailability=b.input and b.input.factAvailability or 'UNKNOWN',provenance=b.input and copy(b.input.provenance),
-   effectAvailability=b.effectAvailability,continuityOnly=b.continuityOnly==true}
+   effectAvailability=(b.queuedWork or b.negativeHeld) and 'PENDING' or b.effectAvailability,continuityOnly=b.continuityOnly==true}
  end
  local function proofSignature(b)
   local parts={tostring(b.inputRevision),tostring(b.validity),tostring(b.withdrawal),tostring(b.availability),tostring(b.effectAvailability),tostring(b.revalidation),
-   tostring(b.signal),tostring(shared.RouteSignalRevision or 0),tostring(b.transportFailure),tostring(b.continuityOnly),tostring(b.factGeneration or 0)}
+   tostring(b.signal),tostring(shared.RouteSignalRevision or 0),tostring(b.transportFailure),tostring(b.continuityOnly),tostring(b.factGeneration or 0),tostring(b.queuedWork==true),tostring(b.negativeHeld==true)}
   local ids={};for id in pairs(b.input and b.input.provenance or {})do ids[#ids+1]=id end;table.sort(ids)
   for _,id in ipairs(ids)do local f=b.input.provenance[id];parts[#parts+1]=id..':'..f.reference..':'..f.status end
   return table.concat(parts,'|')
@@ -131,10 +132,50 @@ function SPCNetworkBridge.Start(P,shared)
   if shared.FactChanges then
    local ok,err=pcall(shared.FactChanges.EmitDerived,{owner=pid,kinds={'NETWORK'},cause='NETWORK_PROOF_PUBLISHED',revision=d.proofRevisions[pid],
     evidence={epoch=d.epoch,inputVersion=b.inputRevision,proofRevision=d.proofRevisions[pid],validity=b.validity,
-     availability=b.availability,effectAvailability=b.effectAvailability,revalidation=b.revalidation,continuityOnly=b.continuityOnly==true}})
+     availability=(b.queuedWork or b.negativeHeld) and 'NEEDS_REVALIDATION' or b.availability,effectAvailability=(b.queuedWork or b.negativeHeld) and 'PENDING' or b.effectAvailability,revalidation=b.revalidation,continuityOnly=b.continuityOnly==true}})
    b.consumerError=not ok and short(err) or nil
   end
   return true
+ end
+ local function mergeWork(dst,src)
+  dst.losses=dst.losses or {};dst.drops=dst.drops or {}
+  for id,refs in pairs(src.losses or {})do dst.losses[id]=dst.losses[id] or {};for ref in pairs(refs)do dst.losses[id][ref]=true end end
+  for ref in pairs(src.drops or {})do dst.drops[ref]=true end
+  local n=0;for _,refs in pairs(dst.losses)do for _ in pairs(refs)do n=n+1 end end;for _ in pairs(dst.drops)do n=n+1 end
+  assert(n<=2048,'NETWORK_PENDING_NEGATIVE_LIMIT')
+  if src.packet and (not dst.packet or src.packet.Seq>dst.packet.Seq)then dst.packet=src.packet end
+  dst.refresh=dst.refresh or src.refresh
+  if src.evidence=='NATIVE' or dst.evidence~='NATIVE'then dst.evidence=src.evidence or dst.evidence end
+  return dst
+ end
+ -- Only real reentrant causes arm this scalar work. UNKNOWN/idle publication never does.
+ local function enqueue(pid,kind,value)
+  local q=pending[pid]
+  if not q then
+   local n=0;for _ in pairs(pending)do n=n+1 end;assert(n<2048,'NETWORK_PENDING_OWNER_LIMIT')
+   q={losses={},drops={},version=0};pending[pid]=q
+  end
+  if dormant[pid]then mergeWork(q,dormant[pid]);dormant[pid]=nil end
+  if kind=='packet'then
+   if not q.packet or value.Seq>q.packet.Seq then q.packet=value end
+  elseif kind=='loss'then
+   assert(integer(value.city) and type(value.reference)=='string' and #value.reference<=512,'NETWORK_PENDING_LOSS_SHAPE')
+   mergeWork(q,{losses={[value.city]={[value.reference]=true}}})
+  elseif kind=='negative'then mergeWork(q,value)
+  elseif kind=='evidence'then if value=='NATIVE' or q.evidence~='NATIVE'then q.evidence=value end
+  else q[kind]=true end
+  q.version=q.version+1
+  local b=bucket(pid);b.queuedWork=true;notify(pid);return q
+ end
+ local function wire(p)
+  local out={}
+  for _,key in ipairs({'Epoch','Seq','Turn','Signal','Valid','Count','WireCount'})do
+   local v=p[key];assert(v==nil or type(v)=='number','NETWORK_BUSY_PACKET_SHAPE');out[key]=v
+  end
+  for key,limit in pairs({Failure=64,Data=16384})do
+   local v=p[key];assert(v==nil or type(v)=='string' and #v<=limit,'NETWORK_BUSY_PACKET_LIMIT');out[key]=v
+  end
+  return out
  end
  local function publish(pid,b,input,view,withdrawal)
   if b.inputSignature==input.signature then P.Count('input_duplicate');return false end
@@ -187,6 +228,32 @@ function SPCNetworkBridge.Start(P,shared)
   b.revalidation='NEEDS_REVALIDATION';b.availability='NEEDS_REVALIDATION';b.error=reason
   return publish(pid,b,input,view,true)
  end
+ local function routeKey(b,r)
+  local refs=b.routeReferences and b.routeReferences[r.trader] or {}
+  local origin,destination=tostring(refs.origin),tostring(refs.destination)
+  return table.concat({r.op,r.oc,r.dp,r.dc,r.trader,#origin,origin,#destination,destination},':')
+ end
+ local function losses(pid,q)
+  local b=bucket(pid);local lost={};local work={losses=q.losses,drops=q.drops};local ticket=q.version
+  q.losses={};q.drops={}
+  for id,refs in pairs(work.losses)do local f=b.input and b.input.cities[id];if f and refs[f.reference]then lost[id]=true end end
+  local kept={};local dropped=false
+  for _,r in ipairs(b.routes or {})do if work.drops[routeKey(b,r)]then dropped=true else kept[#kept+1]=r end end
+  if next(lost) or dropped then
+   b.refreshing=true;local ok,err=pcall(prune,pid,b,lost,dropped and kept or nil,'CONFIRMED_LOSS_DEFERRED');b.refreshing=false
+   local remaining=false
+   for id in pairs(lost)do if b.input and b.input.cities[id] and work.losses[id][b.input.cities[id].reference]then remaining=true end end
+   for _,r in ipairs(b.routes or {})do if work.drops[routeKey(b,r)]then remaining=true end end
+   if not ok or remaining then
+    mergeWork(q,work);dormant[pid]=q;b.negativeHeld=true
+    b.operationError=not ok and short(err) or b.error or 'NETWORK_NEGATIVE_PROJECTION_UNCONFIRMED'
+    if pending[pid]==q and q.version==ticket then pending[pid]=nil
+    elseif pending[pid]then mergeWork(pending[pid],q);dormant[pid]=nil end
+    return false
+   end
+  end
+  b.negativeHeld=nil;dormant[pid]=nil;return true
+ end
  -- Concrete native evidence only. Unknown getters preserve the accepted snapshot.
  function d.Verified(pid,failedFullRead)
   if isolated(pid) then return false end
@@ -215,13 +282,20 @@ function SPCNetworkBridge.Start(P,shared)
   -- A count drop alone does not identify which route disappeared. Hold and request
   -- a complete sample; never erase unrelated routes by guessing from the delta.
   if #kept<#b.routes then
-   b.refreshing=true;prune(pid,b,lost,kept,'NATIVE_ROUTE_INVALID');b.refreshing=false
+   local negative={losses={},drops={}};local present={}
+   for _,r in ipairs(kept)do present[routeKey(b,r)]=true end
+   for _,r in ipairs(b.routes)do local key=routeKey(b,r);if not present[key]then negative.drops[key]=true end end
+   for id in pairs(lost)do local f=b.input and b.input.cities[id];if f then negative.losses[id]={[f.reference]=true}end end
+   local q=enqueue(pid,'negative',negative);losses(pid,q)
+   if uncertain then pendingProof(pid,b,not failedFullRead)end
+   return true,true -- native negative attempt made; no second urgent attempt in this call
+
   end
-  if uncertain then pendingProof(pid,b)end
+  if uncertain then pendingProof(pid,b,not failedFullRead)end
   return true
  end
  -- Capture a coherent complete input before changing any officially published input.
- function d.Refresh(pid)
+ local function refresh(pid)
   if isolated(pid) then return false end
   if not P.IsTestPlayer(pid) or not d.ready then return false end
   local b=bucket(pid)
@@ -302,13 +376,46 @@ function SPCNetworkBridge.Start(P,shared)
   end
   notify(pid);b.refreshing=false;return changed
  end
- function d.Receive(pid,p)
+ function d.Refresh(pid,fromReceive)
+  local b=d.players[pid]
+  if b and (b.refreshing or b.receiving and not fromReceive)then P.Count('busy_skip');enqueue(pid,'refresh');return false end
+  if dormant[pid]then enqueue(pid,'refresh')end
+  local ok,value=pcall(refresh,pid)
+  b=d.players[pid];if b then b.refreshing=false end
+  -- One bounded urgent negative catch-up; no positive resample or recursive retry loop.
+  local q=pending[pid]
+  if b and q then
+   local attempted=false
+   if q.evidence then
+    local evidence=q.evidence;q.evidence=nil
+    pendingProof(pid,b,evidence=='NATIVE','DEFERRED_NATIVE_EVIDENCE')
+    local good,_,projected=pcall(d.Verified,pid,evidence=='FAILED');b.refreshing=false
+    attempted=good and projected==true
+    if not good then b.operationError='NETWORK_DEFERRED_VERIFICATION_FAILED' end
+   end
+   q=pending[pid]
+   if q and not attempted and (next(q.losses) or next(q.drops))then losses(pid,q)end
+   q=pending[pid]
+   if q and not q.packet and not q.refresh and not q.evidence and not next(q.losses) and not next(q.drops)then pending[pid]=nil end
+   b.queuedWork=pending[pid]~=nil;notify(pid)
+  end
+  if not ok then if b then b.operationError=short(value)end;error(value,0)end
+  return value
+ end
+ local function receiveImpl(pid,p,deferred)
+
   if isolated(pid) then state('NETWORK_RECEIVE_DROP',pid,nil,'ISOLATED',p);return end -- includes delayed pre-experiment packets
-  P.Count('net_receive')
+  if not deferred then P.Count('net_receive')end
   if not P.IsTestPlayer(pid) or p.Epoch~=d.epoch or not integer(p.Seq) then P.Count('stale_input');state('NETWORK_RECEIVE_DROP',pid,nil,'OWNER_EPOCH_OR_SEQUENCE',p);return end
   local b=bucket(pid)
-  if b.refreshing then P.Count('busy_skip');state('NETWORK_RECEIVE_DROP',pid,b,'BUSY',p);return end
+  if b.refreshing or b.receiving then
+   if p.Seq<=b.seq then P.Count('send_duplicate');P.Count('stale_input');return end
+   local ok,value=pcall(wire,p)
+   if ok then enqueue(pid,'packet',value)else P.Count('stale_input');state('NETWORK_RECEIVE_DROP',pid,b,'BUSY_PACKET_REJECT',p)end
+   P.Count('busy_skip');return -- seq/acceptedSeq are untouched until the normal processing path
+  end
   if p.Seq<=b.seq then P.Count('send_duplicate');P.Count('stale_input');state('NETWORK_RECEIVE_DROP',pid,b,'REPLAY',p);return end
+  b.receiving=true
   b.seq=p.Seq;b.candidate=nil -- a newer packet supersedes any unpublished older candidate
   local ok,err=pcall(function()
    assert(d.ready,'LOAD_NOT_READY')
@@ -356,8 +463,41 @@ function SPCNetworkBridge.Start(P,shared)
    b.candidate={routes=rows,references=references,fingerprint=fingerprint,turn=p.Turn,signal=p.Signal,seq=p.Seq}
   end)
   if not ok then pendingProof(pid,b,false,'RECEIVE_REJECT');b.error=short(err);state('NETWORK_RECEIVE_REJECT',pid,b,b.error,p);P.Count('route_failure');P.Count('stale_input')end
-  if ok and p.Valid==1 then d.Refresh(pid) else d.Verified(pid) end
+  if ok and p.Valid==1 then d.Refresh(pid,true) else d.Verified(pid) end
  end
+ local function receive(pid,p,deferred)
+  local b=d.players[pid];local nested=b and b.receiving
+  local ok,err=pcall(receiveImpl,pid,p,deferred)
+  b=d.players[pid];if b and not nested then b.receiving=false end
+  if not ok then if b then b.operationError=short(err)end;error(err,0)end
+ end
+ function d.Receive(pid,p)return receive(pid,p,false)end
+ function d.FlushPending()
+  if draining or not next(pending)then return false end;draining=true
+  local work=pending;pending={}
+  for pid,q in pairs(work)do
+   local b=bucket(pid)
+   if b.refreshing or b.receiving then
+    local fresh=pending[pid]
+    if not fresh then pending[pid]=q
+    else
+     mergeWork(fresh,q)
+    end
+   else
+    local ok,err=pcall(function()
+     if not losses(pid,q)then return end
+     if q.evidence then pendingProof(pid,b,q.evidence=='NATIVE','DEFERRED_NATIVE_EVIDENCE');d.Verified(pid,q.evidence=='FAILED');if b.negativeHeld then mergeWork(dormant[pid],q);return end end
+     if q.packet then receive(pid,q.packet,true)
+     elseif q.refresh or q.evidence then d.Refresh(pid)end
+    end)
+    if not ok then b.operationError=short(err)end
+    b.refreshing=false;b.queuedWork=pending[pid]~=nil;notify(pid)
+   end
+  end
+  draining=false;return true
+ end
+ local publishEvent=P.Field(Events,'GameCoreEventPublishComplete')
+ if publishEvent and publishEvent.Add then publishEvent.Add(d.FlushPending)end
  derive=function(pid,rows,input)
   P.Count("derive");P.Count("derive_executed")
   local sources,centers,recipients={},{},{}
@@ -436,6 +576,7 @@ function SPCNetworkBridge.Start(P,shared)
   if not d.ready or not P.IsTestPlayer(pid) then out.reason='NETWORK_NOT_READY_OR_OWNER';return out end
   if not b then return out end
   if not currentGeneration(pid,b)then out.reason='NETWORK_FACTS_PENDING';return out end
+  if (b.queuedWork or b.negativeHeld) and (not effects or not b.continuityOnly)then out.reason='NETWORK_EVIDENCE_QUEUED';return out end
   if b.validity=='CONFIRMED_INVALID' then out.validity='CONFIRMED_INVALID';out.reason=b.error or 'NETWORK_CONFIRMED_INVALID';return out end
   local matches=b.validity=='VERIFIED' and v and v.contract==1 and v.epoch==d.epoch and v.player==pid
    and v.validity=='VERIFIED' and v.inputVersion==b.inputRevision and v.derivedFor==b.inputRevision
@@ -470,8 +611,7 @@ function SPCNetworkBridge.Start(P,shared)
  -- direct-pair Commercialization pool. Require current proof before selecting S.
  function d.CurrentCapitalSources(pid,selected,kind)
   local b=d.players[pid]
-  assert(b and b.availability=='AVAILABLE' and b.revalidation=='VERIFIED'
-   and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b),'CAPITAL_NETWORK_PENDING')
+  assert(d.TransactionCurrent(pid),'CAPITAL_NETWORK_PENDING')
   local v=currentView(pid,true);local id=selected:GetID()
   assert(selected:GetOwner()==pid and v.references[id]==SPCNetworkInput.Reference(city(pid,id)),'CAPITAL_REFERENCE_CHANGED')
   local out={};for sid in pairs((v.recipients[kind] or {})[id] or {})do
@@ -662,7 +802,7 @@ function SPCNetworkBridge.Start(P,shared)
  function d.ExperimentalStop(pid)
   assert(isolated(pid),'NETWORK_EXPERIMENT_NOT_ARMED')
   local b=bucket(pid);assert(not b.refreshing,'NETWORK_EXPERIMENT_BUSY')
-  views[pid]=nil
+  views[pid]=nil;pending[pid]=nil;dormant[pid]=nil;b.queuedWork=nil;b.negativeHeld=nil
   b.routes=nil;b.fingerprint=nil;b.routeReferences=nil;b.candidate=nil;b.input=nil;b.inputSignature=nil
   b.sources=nil;b.centers=nil;b.recipients=nil;b.derivedFor=nil
   b.validity='EXPERIMENT_ISOLATED';b.availability='EXPERIMENT_ISOLATED';b.reason='EXPERIMENT_ISOLATED'
@@ -683,8 +823,8 @@ function SPCNetworkBridge.Start(P,shared)
   end)
  end
  for _,name in ipairs({'TradeRouteActivityChanged','TradeRouteRemovedFromMap','UnitRemovedFromMap','UnitOperationDeactivated','UnitOperationStarted','UnitOperationsCleared','CityRemovedFromMap','CityAddedToMap','CityTransfered','DiplomacyDeclareWar'})do signal(Events,name,name:find('^Unit')~=nil)end
- -- B271 observed these GameEvents absent: CityConquered/TradeRoutePlundered.
- -- Existing live CityTransfered/TradeRouteRemovedFromMap signals cover the transitions.
+ -- Preserve optional GameEvents namespace: B271's absent Events names do not establish these absent.
+ for _,name in ipairs({'CityConquered','TradeRoutePlundered'})do signal(GameEvents,name,false)end
  function d.Rebuild()
   if isolated() then return end
   for pid in pairs(d.players) do d.Refresh(pid) end
@@ -695,8 +835,11 @@ function SPCNetworkBridge.Start(P,shared)
  function d.CheckEvidence(failedFullRead,cause)
   if isolated() then return end
   for pid,b in pairs(d.players) do
-   if b.routes then pendingProof(pid,b,not failedFullRead,cause);d.Verified(pid,failedFullRead) end
-   d.Refresh(pid)
+   if b.refreshing then enqueue(pid,'evidence',failedFullRead and 'FAILED' or 'NATIVE')
+   else
+    if b.routes then pendingProof(pid,b,not failedFullRead,cause);d.Verified(pid,failedFullRead) end
+    d.Refresh(pid)
+   end
   end
  end
  for _,name in ipairs({'TradeRouteActivityChanged','TradeRouteRemovedFromMap','UnitRemovedFromMap','CityRemovedFromMap','CityTransfered','DiplomacyDeclareWar'}) do
@@ -729,7 +872,11 @@ function SPCNetworkBridge.Start(P,shared)
   assert(shared.CityProgressionStore.IsExitTarget(c,loss),'EXIT_NOT_CONFIRMED')
   local pid=loss.origin.owner;local b=d.players[pid]
   if b then
-   assert(not b.refreshing,'EXIT_NETWORK_BUSY')
+   if b.refreshing then
+    local source=b.input and b.input.cities[loss.origin.cityID]
+    if source then enqueue(pid,'loss',{city=loss.origin.cityID,reference=source.reference})end
+    error('EXIT_NETWORK_QUEUED',0) -- preserve Store's unconfirmed-exit guard until its ordinary retry
+   end
    b.refreshing=true
    local ok,err=pcall(prune,pid,b,{[loss.origin.cityID]=true},nil,'E2_CONFIRMED_OWNER_LOSS')
    b.refreshing=false;assert(ok,err)
