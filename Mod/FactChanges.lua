@@ -29,6 +29,20 @@ local function clone(value,seen,depth,budget)
  end
  seen[value]=nil;return out
 end
+-- Typed native transfer scope is independent of generic last-writer evidence.
+-- It is a routing hint only, never Store ownership/loss or transaction proof.
+local function transfer(value,owner,city)
+ if value==nil then return end
+ assert(type(value)=='table' and getmetatable(value)==nil,'FACT_TRANSFER_STRUCTURE')
+ local allowed={owner=true,city=true,oldOwner=true};local n=0
+ for k,v in pairs(value)do
+  n=n+1;assert(allowed[k] and integer(v) and v<2147483648,'FACT_TRANSFER_FIELD')
+ end
+ assert(n==3 and value.owner~=nil and value.city~=nil and value.oldOwner~=nil,'FACT_TRANSFER_FIELDS')
+ assert(owner==nil or owner==value.owner or owner==value.oldOwner,'FACT_TRANSFER_OWNER')
+ assert(city==nil or owner==value.owner and city==value.city,'FACT_TRANSFER_CITY')
+ return {owner=value.owner,city=value.city,oldOwner=value.oldOwner}
+end
 function M.New(shared)
  local previous=shared.FactChanges
  if previous and type(previous.Close)=='function'then previous.Close()end
@@ -97,6 +111,7 @@ function M.New(shared)
   assert(next(kinds),'FACT_KINDS_REQUIRED')
   -- Validate the whole payload before changing queue state; native objects fail closed.
   local evidence=clone(event.evidence,nil,1,{n=0,limit=256});local investment=clone(event.investment,nil,1,{n=0,limit=256})
+  local moved=transfer(event.transfer,event.owner,event.cityID)
   local key=atom(event.owner)..atom(event.cityID)..atom(event.reference)
   local previous=queue[key]
   assert(previous or #keys<2048,'FACT_QUEUE_LIMIT')
@@ -104,6 +119,18 @@ function M.New(shared)
   if previous then
    for _,field in ipairs({'kinds','causes','topics','revisions'})do for k,v in pairs(previous[field])do row[field][k]=v end end
    row.evidence=previous.evidence;row.investment=previous.investment
+  end
+  if moved or previous and previous.transfers then
+   local transfers={};local n=0
+   for k,v in pairs(previous and previous.transfers or {})do
+    n=n+1;transfers[k]={owner=v.owner,city=v.city,oldOwner=v.oldOwner}
+   end
+   if moved then
+    local k=atom(moved.owner)..atom(moved.city)..atom(moved.oldOwner)
+    if not transfers[k]then n=n+1 end
+    assert(n<=32,'FACT_TRANSFER_LIMIT');transfers[k]=moved
+   end
+   row.transfers=transfers
   end
   row.cause=event.cause;row.revision=event.revision;row.sequence=d.sequence+1
   row.causes[event.cause]=true;if event.topic then row.topics[event.topic]=true end

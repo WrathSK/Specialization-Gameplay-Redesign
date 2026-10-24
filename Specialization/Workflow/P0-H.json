@@ -11,8 +11,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0749",
-    "runtime": "B300.327 / modinfo327",
+    "status": "S0750",
+    "runtime": "B301.328 / modinfo328",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -189,6 +189,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B300_Refactor_S5d4c11.md",
       "kind": "full",
       "reason": "Standardization exact health tickets preserve pending aggregates actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B301_Refactor_S5d4d1.md",
+      "kind": "full",
+      "reason": "Detached bounded native transfer metadata transport actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -215,8 +220,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B300_Refactor_S5d4c11.md",
-    "local": "458 properties PASS/1 registered S6 OPEN",
+    "report": "Specialization/Status/Validation/Results/Specialization_B301_Refactor_S5d4d1.md",
+    "local": "467 properties PASS/1 registered S6 OPEN",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }

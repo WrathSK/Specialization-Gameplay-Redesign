@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0749
-Implementation Build: B300.327 / modinfo327; stable/live B271.298
+Status Revision: S0750
+Implementation Build: B301.328 / modinfo328; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D4C11_COMPLETE_CONTINUING
+Work State: REFACTOR_S5D4D1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d4c11 complete:Standardization exact native health uses existing-record tickets and preflights only current wanted level IDs; original presence-only, partial-write and cold OptionA aggregate rules remain.15 new/full459 cases have458 properties PASS/1 registered S6 capacity counterexample OPEN. Current loaded catalog health repair takes7 presence reads for5 wanted targets rather than1750 definitions; idle/equal-normal plans add0. Full transfer and remaining S5d closure precede S6–S10. [Result](Validation/Results/Specialization_B300_Refactor_S5d4c11.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d4d1 complete:FactChanges optional typed native transfer metadata is detached, complete-triplet deduplicated and bounded32 per coalesced row without altering generic evidence semantics.9 new/full468 cases have467 properties PASS/1 registered S6 capacity counterexample OPEN. Overflow/invalid aliases reject atomically and max existing payload fits original delivery envelope. Producer/binding/NewTargets adoption is next; original native transfer hooks remain until complete closure. Then remaining S5d and S6–S10. [Result](Validation/Results/Specialization_B301_Refactor_S5d4d1.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
 - Primary next: S5d remaining effect-owner health/structural and transfer closure, then S6–S10 under continuing authorization.
+
+## S0750 — B301.328 Detached bounded native transfer metadata transport
+
+S5d4d1 complete:FactChanges optional typed native transfer metadata is detached, complete-triplet deduplicated and bounded32 per coalesced row without altering generic evidence semantics.9 new/full468 cases have467 properties PASS/1 registered S6 capacity counterexample OPEN. Overflow/invalid aliases reject atomically and max existing payload fits original delivery envelope. Producer/binding/NewTargets adoption is next; original native transfer hooks remain until complete closure. Then remaining S5d and S6–S10.
 
 ## S0749 — B300.327 Standardization exact health tickets preserve pending aggregates
 
