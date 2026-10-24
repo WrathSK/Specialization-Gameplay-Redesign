@@ -116,9 +116,9 @@
       "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
-      "sha256": "f649adc4a5d88b07e6544fa65dc331a6902cc3db85701c802418ada2eece15d4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B280_Refactor_S5a.md",
-      "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
+      "sha256": "ce1a10fd427d6865c938c6e29c7c862cbbe6096ce620616b265536b4e2031057",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
+      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -181,9 +181,9 @@
       "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/CultureAesthetic.lua": {
-      "sha256": "e035ce2b7225120daf3723344bfdde4d823631c0936ab8370153ec0833aacd67",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B173_Great_Work_Notifications_Local.md",
-      "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
+      "sha256": "7d7b4fa5e55603ea69b7d2b98841d2a051d00cb0eb96509d6fb0bb516ccb3985",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
+      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureAestheticModel.lua": {
       "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "4c09b997033feb6cae13e16894acb3b0060e830948e09fec63d9a5f53b9a8505",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B283_Refactor_S5c2.md",
-      "provenance": "B283.310 bounded Bridge busy work and negative recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "aea917228c70326c4376f8febe3c145bbb9d2677a8114ff223b9a44965913ac4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
+      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -816,9 +816,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "d3e6fcc57de82f52a80bda2a3002f3a295a7e563b68c29665968c1e55d9fb28e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "d70f9a2d39a1948336bdedab326c0af00c18fe35041cec168243ea2231d7729a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
+      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -826,9 +826,9 @@
       "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "d2dfd85e8b38a170c31850580b71dcfdd1628c206142d1ed275c392765d043f9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "9dd9c58714daea465068a99793b1c3b7f3d8ea36dce8760f0b4d88c0d853f109",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
+      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchChairModel.lua": {
       "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
@@ -836,9 +836,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "3104da7ba61a7098b6f58a2f8d05f31a7526d5d44d4206231b6a7ad38128a4a5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "d47bdb38bdbbdec290f499118df6a426114927e5ee1529e6495b5f8da55ebea4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
+      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchCrossModel.lua": {
       "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "40d123772c6bd51ab8584f3e0c1ce06ccabe1ad46db21430d48f9c1859f9bd09",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
-      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
+      "sha256": "2e837152705881d372d10cbc2e7293464ba0a0a63a1da7300c13f7daeb3a1109",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
+      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "7bc6223f321bccf3cd2e419718a8cc3265833737233838f6eebf665a109caac2",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c9c6a66923dea5330198095213419ff3c5bd193b638ec0ad5422070e7cf4f4f5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B283_Refactor_S5c2.md",
-      "provenance": "B283.310 bounded Bridge busy work and negative recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "8c78a1a07b25b88a9e03d6428b56732b70ce89660dc58f49e35d1f770336ac6d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
+      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

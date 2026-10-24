@@ -77,24 +77,22 @@ function M.Start(P,shared)
   if state.amount~=0 and amount==0 then P.Count('cross_withdraw') end
   return plan
  end
- function data.Audit(scope)
-  if P.Observe then P.Observe('audit','ResearchCross') end
-  if not data.ready or data.busy then P.Count('busy_skip');return end
-  data.busy=true
+ local function audit(scope)
   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) and P.IsTestPlayer(pid) then
-   data.errors[pid]={};local nextPlans={}
+   local single=scope and scope.city~=nil
+   if not single then data.errors[pid]={};data.plans[pid]={}end
+   data.errors[pid]=data.errors[pid] or {};data.plans[pid]=data.plans[pid] or {}
    local ok,err=pcall(function()
     local cities=player:GetCities();if not cities then return end
-    for _,c in cities:Members() do P.Count('city_scan')
-     local good,p=pcall(reconcile,pid,c)
-     if good then nextPlans[c:GetID()]=p else data.errors[pid][c:GetID()]=tostring(p) end
+    for _,c in SPCRuntimeWork.Cities(cities,scope) do
+     local good,p=pcall(function()if c:GetOwner()==pid then P.Count('city_scan');return reconcile(pid,c)end end);local cid=c:GetID()
+     data.plans[pid][cid]=good and p or nil;data.errors[pid][cid]=not good and tostring(p) or nil
     end
    end)
-   data.plans[pid]=nextPlans
    if not ok then data.errors[pid].player=tostring(err) end
   end end
-  data.busy=false
  end
+ data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchCross',audit)
  function data.Receive(pid,p)
   if SPCResearchCrossSample.Receive(P,data,pid,p) then data.Audit({player=pid}) end
  end

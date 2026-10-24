@@ -283,7 +283,11 @@ function M.Start(P,shared)
  end
  function d.Audit(scope)
   if scope and scope.player~=nil and (not P.IsTestPlayer(scope.player) or isolated(scope.player))then return end
-  if busy then d.Mark(scope and scope.player,scope and scope.city);return end
+  if busy then
+   if scope and scope.changed then for cid in pairs(scope.changed)do d.Mark(scope.player,cid)end
+   else d.Mark(scope and scope.player,scope and scope.city)end
+   return
+  end
   busy=true;d.busy=true;d.error=nil
   local ok,why=pcall(function()
    if not initialize()then return end

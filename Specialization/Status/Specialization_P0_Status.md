@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0732
-Implementation Build: B283.310 / modinfo310; stable/live B271.298
+Status Revision: S0733
+Implementation Build: B284.311 / modinfo311; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5C_COMPLETE_S5D_AUTHORIZED
+Work State: REFACTOR_S5D1_COMPLETE_S5D2_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5c complete:20 new actual Bridge/Commerce/Sender cases PASS; full201 selected cases have199 properties PASS/2 later OPEN. Busy work retains the newest bounded detached wire and independent negative proof, never advances ACK on enqueue, and drains only actual causes. Failed negative projection holds the whole batch dormant until new evidence. S5d consumer scopes/live-hook migration remains open. [Result](Validation/Results/Specialization_B283_Refactor_S5c2.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d1 complete:16 new scoped/busy kernel and actual writer cases PASS. Strict original T01 now passes unchanged; full217 cases have216 properties PASS/1 S6 capacity counterexample OPEN. Apply/Chair/Cross directly look up the known city, retain sibling diagnostics/plans, and merge real busy causes; Aesthetic shares that finite kernel and Commerce preserves changed-source unions. Native hook migration is next, not yet one Audit per native cause. [Result](Validation/Results/Specialization_B284_Refactor_S5d1.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: S5d scoped consumers, independent Dialogue recovery and namespaced live hooks→S6→S7/S8→S9/S10.
+- Primary next: S5d2 namespaced native adapters/indexed retirement and independent Dialogue→S5d live trigger coalescing→S6→S7/S8→S9/S10.
+
+## S0733 — B284.311 scoped consumer audit kernel
+
+S5d1 complete:16 new scoped/busy kernel and actual writer cases PASS. Strict original T01 now passes unchanged; full217 cases have216 properties PASS/1 S6 capacity counterexample OPEN. Apply/Chair/Cross directly look up the known city, retain sibling diagnostics/plans, and merge real busy causes; Aesthetic shares that finite kernel and Commerce preserves changed-source unions. Native hook migration is next, not yet one Audit per native cause.
 
 ## S0732 — B283.310 bounded Bridge busy work and negative recovery
 

@@ -73,23 +73,21 @@ function M.Start(P,shared)
    assert(P.HasBuilding(b,r.id)==true and b:GetBuildingLocation(r.id)==p.plot and b:IsPillaged(r.id)==false,'CHAIR_CREATE_FAILED');data.changes=data.changes+1
   end end
  end
- function data.Audit(scope)
-  if P.Observe then P.Observe('audit','ResearchChair') end
-  if not data.ready or data.busy then return end
-  data.busy=true
+ local function audit(scope)
   local ok,err=pcall(function()
    validate();data.definitionError=nil
    for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) and P.IsTestPlayer(pid) then
-    data.errors[pid]={};local cities=player:GetCities()
-    if cities then for _,c in cities:Members() do
-     P.Count('city_scan');local good,why=pcall(reconcile,pid,c)
-     if not good then data.errors[pid][c:GetID()]=tostring(why) end
+    if not (scope and scope.city~=nil)then data.errors[pid]={}end
+    data.errors[pid]=data.errors[pid] or {};local cities=player:GetCities()
+    if cities then for _,c in SPCRuntimeWork.Cities(cities,scope) do
+     local good,why=pcall(function()if c:GetOwner()==pid then P.Count('city_scan');reconcile(pid,c)end end)
+     data.errors[pid][c:GetID()]=not good and tostring(why) or nil
     end end
    end end
   end)
   if not ok then data.definitionError=tostring(err) end
-  data.busy=false
  end
+ data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchChair',audit)
  function data.Describe(pid,c,detail)
   local ok,text=pcall(function()
    assert(data.ready,'CHAIR_NOT_READY');validate();local p=inspect(pid,c,true);local rows,amounts=installed(c)

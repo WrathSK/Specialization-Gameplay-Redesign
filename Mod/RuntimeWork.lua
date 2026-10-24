@@ -30,6 +30,64 @@ end
 function SPCRuntimeWork.Player(scope,pid)
  return type(scope)~='table' or scope.player==nil or scope.player==pid
 end
+-- Known-city traversal performs no all-city enumeration. Native owner/reference
+-- checks remain the individual writer's responsibility.
+function SPCRuntimeWork.Cities(collection,scope)
+ if type(scope)=='table' and scope.city~=nil then
+  local done=false
+  return function()
+   if done then return end;done=true
+   local c
+   if collection.FindID then c=collection:FindID(scope.city)
+   else for _,candidate in collection:Members()do if candidate:GetID()==scope.city then c=candidate;break end end end
+   if c then return 1,c end
+  end
+ end
+ return collection:Members()
+end
+-- Scope-only busy work: no native objects, automatic retry, timers or UNKNOWN
+-- recovery. A real reentrant cause arms one later existing publish snapshot.
+function SPCRuntimeWork.NewAudit(P,shared,data,label,run)
+ local pending={};local total=0;local draining=false
+ local function mark(scope)
+  local pid=type(scope)=='table' and scope.player or nil
+  if pid~=nil and not P.IsTestPlayer(pid)then return false end
+  local key=pid==nil and '*' or pid;local q=pending[key]
+  if not q then assert(total<2048,'RUNTIME_AUDIT_SCOPE_LIMIT');q={player=pid,cities={}};pending[key]=q;total=total+1 end
+  local cid=type(scope)=='table' and scope.city or nil
+  if pid==nil or cid==nil then q.all=true;q.cities={}
+  elseif not q.all and not q.cities[cid]then
+   assert(type(cid)=='number' and cid>=0 and cid%1==0 and total<2048,'RUNTIME_AUDIT_SCOPE_LIMIT')
+   q.cities[cid]=true;total=total+1
+  end
+  return true
+ end
+ local function audit(scope)
+  if type(scope)~='table'then scope=nil end
+  if not data.ready then return false end
+  if type(scope)=='table' and scope.player~=nil and not P.IsTestPlayer(scope.player)then return false end
+  if data.busy then if P.Count then P.Count('busy_skip')end;mark(scope);return false end
+  data.busy=true;if P.Observe then pcall(P.Observe,'audit',label)end
+  local ok,why=pcall(run,scope);data.busy=false
+  local safe,text=pcall(tostring,why)
+  data.auditError=not ok and (safe and text:sub(1,180) or 'RUNTIME_AUDIT_FAILED') or nil
+  return ok
+ end
+ local function flush()
+  if draining or data.busy or not data.ready or not next(pending)then return false end
+  draining=true;local work=pending;pending={};total=0
+  if work['*']then audit()else
+   for _,q in pairs(work)do
+    if q.all then audit({player=q.player})
+    else for cid in pairs(q.cities)do audit({player=q.player,city=cid})end end
+   end
+  end
+  draining=false;return true
+ end
+ local e=P.Field(Events,'GameCoreEventPublishComplete');if e and e.Add then e.Add(flush)end
+ local load=P.Field(Events,'LoadScreenClose');if load and load.Add then load.Add(function()pending={};total=0 end)end
+ return audit,mark,flush
+end
 -- Only the named, synchronous investment result may narrow these two writers.
 -- Native hooks/player scopes remain unchanged. Facts belong to this writer's
 -- batch; the next writer must revalidate rather than reuse post-write inputs.

@@ -126,16 +126,28 @@
       "test_refactor_s5b",
       "test_refactor_s5c1",
       "test_refactor_s5c2"
+    ],
+    "S5d1": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_s5a",
+      "test_refactor_s5a2",
+      "test_refactor_s5history",
+      "test_refactor_s5propagation",
+      "test_refactor_s5b",
+      "test_refactor_s5c1",
+      "test_refactor_s5c2",
+      "test_refactor_s5d1"
     ]
   },
   "counterexamples": {
     "test_refactor_baseline.WorkScope.test_T03_warm_capacity_boundaries": {
       "code": "S6_D_CACHE_THRASH",
       "owner_stage": "S6"
-    },
-    "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope": {
-      "code": "S5_CONSUMER_SCOPE_DISCARDED",
-      "owner_stage": "S5d"
     }
   },
   "module_to_tests": {
@@ -151,7 +163,8 @@
       "test_refactor_s4a"
     ],
     "Mod/RuntimeWork.lua": [
-      "test_refactor_baseline.RealConsumers"
+      "test_refactor_baseline.RealConsumers",
+      "test_refactor_s5d1"
     ],
     "Mod/Lv2Housing.lua": [
       "test_refactor_baseline.RealConsumers",
@@ -177,7 +190,8 @@
     ],
     "Mod/Commerce.lua": [
       "test_refactor_defects.Defects",
-      "test_refactor_s4b"
+      "test_refactor_s4b",
+      "test_refactor_s5d1"
     ],
     "Mod/NetworkBridge.lua": [
       "test_refactor_defects.Defects",
@@ -189,7 +203,8 @@
       "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity"
     ],
     "Mod/ResearchChair.lua": [
-      "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope"
+      "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope",
+      "test_refactor_s5d1"
     ],
     "Mod/CarrierHealthTrace.lua": [
       "test_refactor_attribution"
@@ -260,6 +275,15 @@
     ],
     "Mod/FactChanges.lua": [
       "test_refactor_s5a"
+    ],
+    "Mod/ResearchApply.lua": [
+      "test_refactor_s5d1"
+    ],
+    "Mod/ResearchCross.lua": [
+      "test_refactor_s5d1"
+    ],
+    "Mod/CultureAesthetic.lua": [
+      "test_refactor_s5d1"
     ]
   },
   "exclusions": {
@@ -271,7 +295,8 @@
     "B270 seven real writers with native doubles"
   ],
   "external_prerequisites": [
-    "A8 only: explicit SPC_DEBUG_GAMEPLAY_DB or local debug_gameplay_db path; read-only source copied to memory, no silent prerequisite skip."
+    "A8 only: explicit SPC_DEBUG_GAMEPLAY_DB or local debug_gameplay_db path; read-only source copied to memory, no silent prerequisite skip.",
+    "S5d1 Aesthetic: explicit read-only source database, only exact fixture-owned definitions rebuilt in memory; no native engine execution."
   ],
   "static_alarm_baseline": {
     "Mod/BindingProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
@@ -351,6 +376,11 @@
       "code": "S5_D_INVALIDATION_SCOPE",
       "owner_stage": "S5c",
       "resolution": "Unchanged strict T02 passes and independent12 provider/scope/signal cases pass; known district signature retains owner/city for both invalidation and scheduling. Frozen B272 before evidence unchanged."
+    },
+    "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope": {
+      "code": "S5_CONSUMER_SCOPE_DISCARDED",
+      "owner_stage": "S5d",
+      "resolution": "Existing strict exact-one-city assertion passes unchanged; independent13 new actual Apply/Chair/Cross/Aesthetic/Commerce and bounded-kernel cases PASS, including sibling plan/error/carrier retention and busy new causes. B272 before evidence remains frozen."
     }
   },
   "reviewed_alarm_changes": [

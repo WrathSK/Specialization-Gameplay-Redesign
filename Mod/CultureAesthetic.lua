@@ -1,3 +1,4 @@
+include('RuntimeWork')
 include('CultureAestheticModel')
 include('CurrentSpecializationFacts')
 include('NetworkInput')
@@ -138,9 +139,7 @@ function M.Start(P,shared)
   end
   d.records[key]=p.status=='READY' and {reference=nativeRef,token=f.token,amounts=p.amounts,total=p.total,owner=pid,x=c:GetX(),y=c:GetY()} or nil
  end
- function d.Audit(scope)
-  if not d.ready or d.busy then return end;d.busy=true
-  if P.Observe then P.Observe('audit','CultureAesthetic')end
+ local function audit(scope)
   local live={}
   for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or not scope.player or scope.player==pid)then
    local ok,why=pcall(function()
@@ -159,8 +158,8 @@ function M.Start(P,shared)
    end)
    d.error=not ok and tostring(why) or nil
   end end
-  d.busy=false
  end
+ d.Audit,d.MarkAudit,d.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,d,'CultureAesthetic',audit)
  local reasons={PALACE='宫殿',WONDER='奇观',INTERNAL_OR_TECHNICAL='内部载体',UNREVIEWED_BUILDING='未审对象',
   UNDER_CONSTRUCTION='未完成',BUILDING_PILLAGED='已掠夺',DISTRICT_PILLAGED='区域已掠夺',DISTRICT_UNFINISHED='区域未完成'}
  function d.Describe(pid,c,detail,page)
