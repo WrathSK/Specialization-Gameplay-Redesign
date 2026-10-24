@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0717
-Implementation Build: B271.298 / modinfo298; stable/live B270.297
+Status Revision: S0718
+Implementation Build: B271.298 / modinfo298; stable/live B271.298
 Architecture Revision Reviewed: A0181
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B271_IMPLEMENTED_AWAITING_DEPLOYMENT_APPROVAL
+Work State: B271_STABLE_DEPLOYED_USER_TEST_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
 B271.298按用户批准完成：[诊断、D4决定与本地验证](Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md)。A/B默认开启、每次加载前6个观察本地回合；C独立默认关闭、右键专业化诊断入口开关。内部载体不可掠夺为用户2026-10-23明确决定，实际数据库副本4557行通过；非目标不变。详细能力依赖、历史测试限制见结果。
 
-- User decision：等待B271另行部署批准；未部署、未创建main PR。
+- User decision：用户已批准两份README提交推送、随B271推广至main并部署；PR #6普通合并完成。
 - User testing：部署后2–3回合入账/事件证据及实际掠夺场景；USER_GAME_TEST_REQUIRED，不把离线结果当引擎事实。
-- Primary next：停在审批边界。当前main/live仍为B270.297，既有3eb1aed部署凭据不变。两份README为用户未提交预览稿，排除在本批提交之外。
+- Primary next：等待用户2–3回合日志，分析引擎事实；不提前裁定时机或展开后续重构。main/live为B271.298，README已接受并提交。
+
+## S0718 — B271 PR与稳定部署
+
+2026-10-24用户授权推广与部署。PR #6普通合并，源码`cc71f9be40051c0be4c2657e271f6b56bf83e3f0`；游戏退出已核对，312/312 source/live MATCH，SHA256 `102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993`。凭据`B271.298-cc71f9b-stable-deploy.json`，B270完整备份校验通过，事务标记已清除。没有新增实机PASS；A/B默认开启且限前6个观察回合，C默认关闭，右键专业化诊断入口启用。
 
 ## S0717 — B271批准范围实施完成
 

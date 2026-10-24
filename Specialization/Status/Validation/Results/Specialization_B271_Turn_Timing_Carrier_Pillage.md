@@ -54,3 +54,7 @@ User decision：确认是否另行部署B271；本轮不部署、不创建main P
 User testing：部署获批后，新版本支持的新开存档；右键“专业化诊断”开启C，保持采集器运行，打2–3个本地回合，提供日志；如遇洪水/掠夺，检查真实状态及载体追踪。余额相等不是未入账的充分证明，缺失事件保持UNKNOWN。
 
 Primary next：在部署审批边界停止；获批后按原有事务工具与游戏退出检查部署，再依据日志交由Advisor分析。当前live/main仍为B270.297。
+
+## S0718 — Approved promotion and deployment (2026-10-24)
+
+The user accepted both README previews and authorized commit/push, promotion with B271 and deployment. This supersedes the earlier delivery stop above. PR #6 merged normally; runtime source `cc71f9be40051c0be4c2657e271f6b56bf83e3f0`. Fresh game-exit check and clean-main gate passed. Existing transaction tool verified 312/312 source/live files, digest `102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993`; outgoing B270 backup verified and pending marker absent. External receipt: `B271.298-cc71f9b-stable-deploy.json`. Native timing/order/pillage evidence remains USER_GAME_TEST_REQUIRED; no new gameplay or acceptance conclusion.

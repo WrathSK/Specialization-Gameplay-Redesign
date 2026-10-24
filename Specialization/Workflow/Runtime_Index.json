@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "3eb1aede3ff60c0273c821c7df0051d82211184f",
-  "runtime": "B270.297 / modinfo297",
+  "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
+  "runtime": "B271.298 / modinfo298",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1566,5 +1566,5 @@
       "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     }
   },
-  "source_review": "B271.298 source prepared; deployed runtime/runtime_commit remain B270.297. Source review hashes are not deployment evidence. B271 report scopes local validation and pending native acceptance."
+  "source_review": "B271 approved source promoted through PR6 and deployed;312/312 source/live MATCH. Scoped local validation inherited; native acceptance pending."
 }

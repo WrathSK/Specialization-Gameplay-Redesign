@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_DEPLOYMENT_APPROVAL",
+  "status": "STABLE_DEPLOYED_USER_TEST_REQUIRED",
   "authority_versions": {
     "design": "D0057",
     "research": "D0040",
@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0181",
-    "status": "S0717",
+    "status": "S0718",
     "runtime": "B271.298 / modinfo298",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-  "goal": "B271: bounded read-only treasury/event observations (A/B default on, C default off), collector summaries, and explicitly decided internal-carrier Pillage=0; no deployment.",
+  "goal": "B271: bounded read-only treasury/event observations (A/B default on, C default off), collector summaries, and explicitly decided internal-carrier Pillage=0; user-approved PR6 promotion and deployment completed.",
   "implementation_authorized": true,
   "context": [
     {
@@ -43,12 +43,12 @@
   ],
   "conditional_context": [],
   "non_scope": [
-    "Gameplay amounts/eligibility/Property schema/Design changes, GC changes, timers/frame listeners, save migration, main PR and deployment; two uncommitted README preview drafts."
+    "Gameplay amounts/eligibility/Property schema/Design changes, GC changes, timers/frame listeners and save migration."
   ],
   "validation": {
     "depth": "Lua5.1 bounded diagnostics, copied actual engine DB, current native-input models, selected existing regressions and static package checks",
     "local": "LOCAL_SIMULATION_PASS within B271 report scope; historical culture fixture failures reproduced on unchanged HEAD are explicitly excluded from PASS",
-    "user": "USER_GAME_TEST_REQUIRED after separate deployment approval: 2-3 local turns, C enabled, collector active; pillage/disaster if observed."
+    "user": "USER_GAME_TEST_REQUIRED: 2-3 local turns, C enabled, collector active; pillage/disaster if observed."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
@@ -58,6 +58,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "NOT_DEPLOYED; explicit approval required; live B270.297 unchanged"
+    "deployment": "B271.298 DEPLOYED from cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; receipt B271.298-cc71f9b-stable-deploy.json"
   }
 }
