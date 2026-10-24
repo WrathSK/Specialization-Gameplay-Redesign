@@ -5,7 +5,7 @@ Document Owner: Codex
 ## Select tests by task
 
 1. Read [Authority](../Specialization/Workflow/Authority.json) → its current manifest → current slice's validation/exit contract. This is the maintained task-specific test entry; this README does not duplicate a changing build/test queue.
-2. Prepare Python 3 and only the dependencies required by those tests. Use `PYTHONDONTWRITEBYTECODE=1`. Lua simulations require `lupa.lua55.LuaRuntime`; workflow helper checks use standard library only.
+2. Prepare Python 3 and only the dependencies required by those tests. Use `PYTHONDONTWRITEBYTECODE=1`. New refactor simulations use `lupa.lua51.LuaRuntime`; retained historical suites may require `lupa.lua55.LuaRuntime`; workflow helper checks use standard library only.
 3. Run targeted tests and relevant subsystem regressions at [W0004 risk depth](../Specialization/Workflow/README.md#w0004-v1--quota-efficient-validation-policy). Old broad wrappers are optional scoped regression, not the default suite.
 4. [Test_Catalog.json](Test_Catalog.json) classifies retained legacy entry/support roles; it is not an exhaustive dynamic inventory. Current task manifests remain the test selection authority.
 
@@ -13,13 +13,17 @@ For context-helper maintenance: `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTe
 
 For deployment-tool changes only, `test_deployment.py` exercises temporary directories, never live runtime. Deployment itself follows the separate authorized workflow.
 
+## Refactor program runner
+
+`PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/run_refactor.py --stage S2 --output local/refactor-S2.json` runs the explicitly selected current program cases. `refactor_selection.json` contains the test selection, module reverse index, reviewed static-alarm baseline and stage-owned pre-refactor counterexamples. A confirmed counterexample is an OPEN gate, not a passing architectural property. Unexpected failures, widened alarms or a counterexample that now passes without its entry being retired fail the runner. The result records backend, exact source/fixture/test hashes, actual per-test execution versus read-only source observation, mocks, prerequisites and exclusions. Do not auto-refresh the baseline to hide a failure. Current progress/results remain in Status.
+
 ## B234 Industry baseline and retirement
 
 `test_b234_standardization.py` uses actual Lua and the configured read-only HD database copied into memory. It covers support readiness, self/network holders, typed targets, UNKNOWN/reference/exit, exact old-writer removal and failure isolation. Current inherited suites and the two excluded historical package-stamp checks are listed in the [B234 result](../Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md). No whole-history runner or game launch; native construction remains a separate user gate. `context.py` registers `P0-H` as a task choice without changing selector/schema/check behavior.
 
 ## Environment and dependencies
 
-Provide the external Civ VI/HD-generated database through `SPC_DEBUG_GAMEPLAY_DB` or ignored `local/config.json` (see root template). It is opened mode=ro and backed up into memory; never edited or copied into this repository. SQL integration checks require this external database; Lua-only model tests and deployment tests do not. Install Lupa into a local environment as needed; no game assets or Python environment is vendored. `requirements-test.txt` records the expected distribution (2.8 from the existing installation directory); existing package metadata is incomplete, so fresh installation is not claimed validated. The tested backend is lua55.
+Provide the external Civ VI/HD-generated database through `SPC_DEBUG_GAMEPLAY_DB` or ignored `local/config.json` (see root template). It is opened mode=ro and backed up into memory; never edited or copied into this repository. SQL integration checks require this external database; Lua-only model tests and deployment tests do not. Install Lupa into a local environment as needed; no game assets or Python environment is vendored. `requirements-test.txt` records the expected distribution (2.8 from the existing installation directory); existing package metadata is incomplete, so fresh installation is not claimed validated. Historical suites use lua55; the refactor profile verifies Lua5.1. A fresh temporary Lupa2.8 installation was verified for B272; no environment is vendored.
 
 ## Historical tests and models
 

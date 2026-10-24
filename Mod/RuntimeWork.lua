@@ -56,6 +56,14 @@ function SPCRuntimeWork.InvestmentCity(P,shared,scope,batch)
  assert(same(e.reference,{owner=city:GetOwner(),cityID=city:GetID(),x=city:GetX(),y=city:GetY()}),'INVESTMENT_CHANGED_DURING_READ')
  return city
 end
+-- Fixed scalar attribution only. No native lookup, retained scope or event history.
+function SPCRuntimeWork.NoteScope(P,source,scope)
+ if not P.Count then return end
+ P.Count('scope_dispatch');P.Count(source==GameEvents and 'scope_gameevents' or 'scope_events')
+ local kind=type(scope)=='table' and (scope.transfer and 'transfer' or scope.plot and 'plot' or scope.city~=nil and 'city' or scope.player~=nil and 'player')
+ P.Count(kind and ('scope_'..kind) or 'scope_fallback')
+ if not kind then P.Count('scope_unknown_signature')elseif kind=='player'then P.Count('scope_player_signature')end
+end
 function SPCRuntimeWork.Hook(P,source,name,fn)
  local e=P.Field(source,name);if not e or not e.Add then return end
  local lastTurn={}
@@ -65,19 +73,19 @@ function SPCRuntimeWork.Hook(P,source,name,fn)
    local row=P.Info('Buildings',building)
    if row and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_') then return end
    if P.Observe then P.Observe('dispatch',name) end
-   fn({player=type(owner)=='number' and owner or nil});return
+   local scope={player=type(owner)=='number' and owner or nil};SPCRuntimeWork.NoteScope(P,source,scope);fn(scope);return
   end
   if name=='PlayerTurnActivated' then
    if type(pid)~='number' then return end
    local turn=Game.GetCurrentGameTurn();if lastTurn[pid]==turn then return end
-   lastTurn[pid]=turn;if P.Observe then P.Observe('dispatch',name) end;fn({player=pid});return
+   lastTurn[pid]=turn;if P.Observe then P.Observe('dispatch',name) end;local scope={player=pid};SPCRuntimeWork.NoteScope(P,source,scope);fn(scope);return
   end
   -- Civ VI native city/worker/governor events start with player ID. Events with
   -- plot-first or transfer signatures intentionally retain a full safety scope.
   if P.Observe then P.Observe('dispatch',name) end
   if name:match('^Governor') or name=='CityWorkerChanged' or name=='CityFocusChanged'
-   or name=='CityPopulationChanged' then fn({player=pid});return end
-  fn()
+   or name=='CityPopulationChanged' then local scope={player=pid};SPCRuntimeWork.NoteScope(P,source,scope);fn(scope);return end
+  SPCRuntimeWork.NoteScope(P,source,nil);fn()
  end)
 end
 
@@ -245,24 +253,25 @@ end
 
 function SPCRuntimeWork.TargetHook(P,source,name,fn)
  local e=P.Field(source,name);if not e or not e.Add then return end
+ local function scoped(scope)SPCRuntimeWork.NoteScope(P,source,scope);return fn(scope)end
  -- These signatures are verified in native CityBannerManager/ObserverCamera
  -- and the existing progression completion owner; unknown forms stay bounded.
  if name=='DistrictBuildProgressChanged' or name=='DistrictAddedToMap'
   or name=='DistrictPillaged' or name=='DistrictRepaired' then
   e.Add(function(pid,did,cid)
-   fn({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})
+   scoped({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})
   end)
  elseif name=='CityTransfered' then
   e.Add(function(owner,cid,oldOwner)
    if type(owner)=='number' and type(cid)=='number' and type(oldOwner)=='number'then
-    fn({transfer={owner=owner,city=cid,oldOwner=oldOwner}})
-   else fn({})end
+    scoped({transfer={owner=owner,city=cid,oldOwner=oldOwner}})
+   else scoped({})end
   end)
  elseif name=='ImprovementAddedToMap' or name=='ImprovementRemovedFromMap' or name=='FeatureRemovedFromMap' then
-  e.Add(function(x,y)fn(type(x)=='number' and type(y)=='number' and {plot={x,y}} or {})end)
+  e.Add(function(x,y)scoped(type(x)=='number' and type(y)=='number' and {plot={x,y}} or {})end)
  elseif name=='CityWorkerChanged' or name=='CityFocusChanged' or name=='CityPopulationChanged' then
-  e.Add(function(pid,cid)fn({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})end)
+  e.Add(function(pid,cid)scoped({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})end)
  elseif source==GameEvents and name=='OnDistrictConstructed' then
-  e.Add(function(pid)fn({player=type(pid)=='number' and pid or nil})end)
+  e.Add(function(pid)scoped({player=type(pid)=='number' and pid or nil})end)
  else SPCRuntimeWork.Hook(P,source,name,fn)end
 end

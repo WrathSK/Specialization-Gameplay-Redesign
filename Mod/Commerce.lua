@@ -72,9 +72,12 @@ function M.Start(P,shared)
   end)
   writing=false;assert(ok,err)
  end
- local function observed(c)
+ local function observed(c,observer)
   local total=0
-  for bit=0,30 do if present(c,definitions[bit+2].id)then total=total+2^bit end end
+  for bit=0,30 do
+   if observer then P.Count('observer_native_attempt');P.Count('observer_commerce_attempt')end
+   if present(c,definitions[bit+2].id)then total=total+2^bit end
+  end
   return total
  end
  local function applyGold(c,n)
@@ -345,18 +348,19 @@ function M.Start(P,shared)
  local turnTrace=SPCExpeditionTrainingDiagnostics.New(P,'COMMERCE_TURN')
  local turnStates={}
  local function diagnosticRead(object,method)
-  local ok,v=pcall(function()local fn=object and object[method];if type(fn)~='function'then return 'UNAVAILABLE'end;return fn(object)end)
+  local ok,v=pcall(function()local fn=object and object[method];if type(fn)~='function'then return 'UNAVAILABLE'end;P.Count('observer_native_attempt');P.Count('observer_commerce_attempt');return fn(object)end)
   if not ok then return 'READ_ERROR'end
   if type(v)=='number' or type(v)=='boolean' or v=='UNAVAILABLE'then return v end;return 'UNKNOWN'
  end
  local function turnSample(stage,pid)
   if not SPCExpeditionTrainingDiagnostics.ENABLED then return end
   if not P.IsTestPlayer(pid)then return end
-  local player=Players[pid];local treasuryOK,treasury=pcall(function()return player:GetTreasury()end)
+  local player=Players[pid];local treasuryOK,treasury=pcall(function()P.Count('observer_native_attempt');P.Count('observer_commerce_attempt');return player:GetTreasury()end)
   if not treasuryOK then treasury=nil end
   local expected,actual,held,unknown=0,0,0,0;local firstReason
   for _,c in player:GetCities():Members()do
-   local id=c:GetID();local v=views[key(pid,id)];local good,n=pcall(observed,c)
+   P.Count('observer_city_scan')
+   local id=c:GetID();local v=views[key(pid,id)];local good,n=pcall(observed,c,true)
    local want=v and v.totalGold or 0
    expected=expected+want;if good then actual=actual+n else unknown=unknown+1 end
    if v and v.stage=='HELD'then held=held+1;firstReason=firstReason or v.reason end

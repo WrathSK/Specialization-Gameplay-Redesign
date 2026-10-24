@@ -1,5 +1,7 @@
 # 工业后续模块：调查与实施准备
 
+Current A0182/D0058 qualifier: when Standardization local/network contributions share one physical carrier set, topology PENDING holds the whole last-applied set. Older self-availability wording below does not authorize rewriting its local half; accepted cold-load exception A and confirmed receiver exits apply. See [current network contract](../Specialization_v0.1_Architecture.md#network-pending-hold-and-confirmation-recovery).
+
 State: B239_PAUSED_OCCUPANCY_LOCAL_COMPLETE / COMBINED_NATIVE_PENDING.
 Review baseline: B238.265 / develop `519dbac`; D0053 accepts native modifiers. The B238 user test confirms retained price/progress and cold-load continuation but exposes paused admission occupancy. [Native review](../../Status/Validation/Results/Specialization_B238_Native_Review.md) and [proposed combined Commerce batch](Commerce_Preparation.md#proposed-b239-combined-slice) govern this next step; the approved B239 repair is now locally complete below, with combined native acceptance pending. Deployment provenance remains in Status.
 

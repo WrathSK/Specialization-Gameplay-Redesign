@@ -32,6 +32,8 @@ Native sources above are the two reviewed reports under `Reports/Advisory/V01_Pl
 
 #### S2 — Test and observability prerequisites
 
+B272 S2 complete: [actual results and execution closure](../../Status/Validation/Results/Specialization_B272_Refactor_S2.md). The rows below retain their original source basis;13 strict before-counterexamples now reproduce the named later-stage gaps. Harness/attribution/alarms are implemented, not proof that those later repairs are complete.
+
 | Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
 |---|---|---|
 | Native-faithful common harness / C061 | CHANGED: B270/B271 already use Lua5.1 and ordered multiple listeners (`DevelopmentTests/test_b270_event_scope.py:3,13–19`; `test_b271_diagnostics.py:8,21–30`). Old `test_runtime_audit.py:4,38` remains lua55/single-slot; `refresh_fixture.py:21–25` defaults to frame draining. | Integrate common order control, separate contexts, explicit missing events and no-frame default; do not claim these improvements never existed. |

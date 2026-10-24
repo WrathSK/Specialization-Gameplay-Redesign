@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0720",
-    "runtime": "B271.298 / modinfo298",
+    "status": "S0721",
+    "runtime": "B272.299 / modinfo299",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "User-accepted S2–S10 refactor; first formal D0058/A0182 synchronization, then faithful S2 harness/baselines and dependency-ordered implementation. U2/U3/U4 engineering checkpoints; U5 native acceptance; no automatic deployment/main.",
+  "goal": "S2 complete; continue user-authorized S3 composition isolation then dependency-ordered S4/A8/S5–S10. No routine stage approvals or deployment.",
   "implementation_authorized": true,
   "context": [
     {
@@ -44,6 +44,11 @@
       "kind": "section",
       "selector": "### Runtime integration contract — P01–P10",
       "reason": "Accepted integration constraints and scoped exceptions."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
+      "kind": "full",
+      "reason": "Actual S2 baseline and next S3 obligations; no native acceptance."
     }
   ],
   "dependencies": [
@@ -70,9 +75,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-    "local": "FORMAL_DOCUMENT_CHECKS_PASS; STATIC_CONFIRMED, no gameplay simulation",
+    "report": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
+    "local": "S2_BASELINE_RECORDED:14 controls PASS,13 OPEN counterexamples;43 inherited methods PASS",
     "native": "NO_NEW_NATIVE_TEST",
-    "deployment": "UNCHANGED_B271_STABLE; explicit replacement approval required"
+    "deployment": "UNCHANGED_B271_STABLE"
   }
 }

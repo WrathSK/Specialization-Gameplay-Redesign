@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0720
-Implementation Build: B271.298 / modinfo298; stable/live B271.298
+Status Revision: S0721
+Implementation Build: B272.299 / modinfo299; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_U1_ACCEPTED_S2_AUTHORIZED
+Work State: REFACTOR_S2_COMPLETE_S3_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-U1 is accepted with the user's D-1–D-15 amendments. D0058 and A0182 formally record the network hold/partial-source provenance/cold-load exception A, fault recovery and engineering contracts. S2–S10 are authorized in dependency order, with independent commits and local results. U2/U3/U4 are engineering checkpoints; request a minimal native test only when a specific engine uncertainty blocks dependent work. No automatic deployment or main promotion. Stable/live remain B271.298 at the recorded receipt.
+S2 completed in B272.299: [harness, baseline, attribution and static alarms](Validation/Results/Specialization_B272_Refactor_S2.md).27 program cases record14 passing controls and13 stage-owned open counterexamples; this is before evidence, not whole-architecture PASS.43 selected inherited methods pass. S3 is authorized next. D0058/A0182 and the accepted U1 amendments govern S2–S10; the eight-era correction is an explicitly accepted separate batch after S4. Stable/live/main remain B271.298; no deployment performed.
 
-- User decision: none for routine continuation. D7 requires safe ability-specific criteria before implementation; A8’s eight-era correction is explicitly approved after assessment and will be a separate implementation batch.
-- User testing: U5 final integration; earlier only for a concrete blocking native fact. No new native PASS.
-- Primary next: finish U1 docs-only checks/commit, then S2 harness, baseline counters, attribution and static alarms; continue S3–S10 under the amended stops.
+- User decision: none for routine continuation. New genuine ambiguities stop only their affected paths.
+- User testing: final U5, earlier only for a specific blocking native fact. No automatic deployment or new native PASS.
+- Primary next: S3 startup/observer/UI isolation and readiness, then S4 and the authorized sequence. U2/U3/U4 are engineering checkpoints.
+
+## S0721 — B272.299 S2 local foundation
+
+Lua5.1 hidden/no-frame harness, source-execution closure and reverse-test selection, T01–T08 baseline cases and bounded scope/observer scalar attribution complete.13 strict counterexamples reproduce current S3/S4/S5/S6 gaps; assertions remain unchanged for their fixes.189 Lua/25 XML/exact311-file modinfo checks pass. Save shape, gameplay, retry and GC policies unchanged. Details and fixture limits in the result; no native PASS or deployment.
 
 ## S0720 — U1 accepted, formal D0058 / A0182 synchronization
 

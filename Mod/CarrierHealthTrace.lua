@@ -8,6 +8,7 @@ function SPCCarrierHealthTrace.Start(P,shared)
  local d={};shared.CarrierHealthTrace=d
  local previous={};local loaded=false;local firstTurn=true;local lastTurn;local transitions=0
  local function read(b,method,index)
+  if P.Count then P.Count('observer_native_attempt');P.Count('observer_carrier_attempt')end
   local ok,v=pcall(function()return b[method](b,index)end)
   return ok and type(v)=='boolean' and (v and 'YES' or 'NO') or 'UNKNOWN'
  end
@@ -16,6 +17,7 @@ function SPCCarrierHealthTrace.Start(P,shared)
   local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid)then return end
   local cs=Players[pid]:GetCities();local nextState={};local presentCount,unknown=0,0
   for _,c in cs:Members()do
+   if P.Count then P.Count('observer_city_scan')end
    local id=c:GetID();local ref=table.concat({pid,id,c:GetX(),c:GetY()},':');local b=c:GetBuildings()
    for _,name in ipairs(names)do
     local row=P.Info('Buildings',name);local index=row and row.Index

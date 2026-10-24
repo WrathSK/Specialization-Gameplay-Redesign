@@ -61,9 +61,9 @@
       "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
     },
     "Mod/CarrierHealthTrace.lua": {
-      "sha256": "263da102604f39e91beb0a156ade8d9f4f21429a02e6e290a9c46dfdf944f35c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
-      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+      "sha256": "819e8b4745f0a8f3e1e426daf693d579718f1a6d038382de09ae48d5bd2e7b78",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
+      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
     },
     "Mod/CityFlowProbe.lua": {
       "sha256": "fafc371fb55c64763025a43ffcf46b91d4c76b44f831eff0092faa57d9961a99",
@@ -116,9 +116,9 @@
       "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
     },
     "Mod/Commerce.lua": {
-      "sha256": "a7d46ebd45101f11a52c6fcdeb8f2d6be900bfe99f94fa79a013dc1e4d29eda0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
-      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+      "sha256": "9da27c8424c371bcd62744e6319a30aef8b8fb07820d7479789472a79ae378cb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
+      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -781,14 +781,14 @@
       "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "3f558e223072f4ac460ac0cd984564cd2edb98cc159255543cf8cb0463d77963",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "b587734c6b6eb1cd1b480344948c460c268729ff30803490ef77f03dd0b24e3a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
+      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
     },
     "Mod/Probe.lua": {
-      "sha256": "4e510b3d2445efb032336b5d04570e8cb34ba089e1c14d516c370f0b8998c9d7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "ea3fa7f8c47f5a8adf3327ea9c97a22b7dce282d678b4210b75302661deb86d0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
+      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "c8f75705d86d5637fe825ff74a6571dc851b3f1ef8a88545fab5158b8aec6f17",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "5dc23f5fec25806ee1ab666100745872f0db35833513de5b8564892f48b0223e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
+      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "2aef4ce1073e63d32371f2896fe51273b4b212884201fd571103bf1f44aad3a2",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "76b1678edca5992a25ddff7bbeb48daa1b8282cfde7b73581aae73d770a59559",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "b7f24c73f6149e8c8368b0b5235b5e9a46682399cf14ab74196ff785929b0089",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
+      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",

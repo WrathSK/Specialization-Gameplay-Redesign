@@ -154,7 +154,7 @@ if type(m)=='table' and m.schema==1 and type(m.rows)=='table' then
   local r=m.rows[i];if r==nil then break end;
   if type(r)=='table' then
    local parts={'MEM epoch='..scalar(m.epoch)};
-   for _,k in ipairs({'seq','turn','kind','reason','heapMiB','heapStatus','heapRawKB','gcEnabled','gcFailure','gcCollections','before','after','cpu','wall','work_city_scan','work_district_scan','work_building_check','work_building_create','work_building_remove','work_property_write','work_net_send','work_net_receive','work_derive_executed','work_dc_read','work_dc_capture','work_dc_hit'})do
+   for _,k in ipairs({'seq','turn','kind','reason','heapMiB','heapStatus','heapRawKB','gcEnabled','gcFailure','gcCollections','before','after','cpu','wall','work_city_scan','work_district_scan','work_building_check','work_building_create','work_building_remove','work_property_write','work_net_send','work_net_receive','work_derive_executed','work_dc_read','work_dc_capture','work_dc_hit','work_scope_dispatch','work_scope_city','work_scope_player','work_scope_plot','work_scope_transfer','work_scope_fallback','work_scope_unknown_signature','work_scope_player_signature','work_scope_events','work_scope_gameevents','work_observer_native_attempt','work_observer_carrier_attempt','work_observer_commerce_attempt','work_observer_city_scan'})do
     parts[#parts+1]=k..'='..(k=='heapStatus' and r[k]==nil and 'LEGACY' or scalar(r[k]));
    end;
    out(table.concat(parts,' '));

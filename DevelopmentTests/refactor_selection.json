@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "profile": "Lua 5.1; explicit events; no-frame default",
+  "stages": {
+    "S2a": [
+      "test_refactor_baseline"
+    ],
+    "S2": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution"
+    ],
+    "S2b": [
+      "test_refactor_defects"
+    ]
+  },
+  "counterexamples": {
+    "test_refactor_baseline.WorkScope.test_T02_unrelated_city_keeps_confirmed_D_capture": {
+      "code": "S5_D_INVALIDATION_SCOPE",
+      "owner_stage": "S5c"
+    },
+    "test_refactor_baseline.WorkScope.test_T03_warm_capacity_boundaries": {
+      "code": "S6_D_CACHE_THRASH",
+      "owner_stage": "S6"
+    },
+    "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample": {
+      "code": "S5_FACT_CAPTURE_NOT_SHARED",
+      "owner_stage": "S5b"
+    },
+    "test_refactor_baseline.RealConsumers.test_T05_unchanged_pending_has_attempt_budget": {
+      "code": "S4_PENDING_RETRY_STORM",
+      "owner_stage": "S4"
+    },
+    "test_refactor_defects.Defects.test_investment_commit_ack_and_sibling_survive_observer_failure": {
+      "code": "S3_COMMIT_ACK_LOST",
+      "owner_stage": "S3"
+    },
+    "test_refactor_defects.Defects.test_late_start_failure_does_not_abort_siblings_or_seal": {
+      "code": "S3_START_CHAIN_ABORTED",
+      "owner_stage": "S3"
+    },
+    "test_refactor_defects.Defects.test_adapter_failure_preserves_native_rows_and_siblings": {
+      "code": "S3_ADAPTER_ABORTED_NATIVE_LIST",
+      "owner_stage": "S3"
+    },
+    "test_refactor_defects.Defects.test_greatwork_nil_active_does_not_invalidate_other_city_facts": {
+      "code": "S4_GW_NIL_ACTIVE_ABORT",
+      "owner_stage": "S4"
+    },
+    "test_refactor_defects.Defects.test_UI_pending_gc_recovers_in_eligible_window": {
+      "code": "S4_UI_PENDING_GC_STUCK",
+      "owner_stage": "S4"
+    },
+    "test_refactor_defects.Defects.test_commerce_carrier_present_across_network_pending": {
+      "code": "S4_COMMERCE_PENDING_WITHDRAWAL",
+      "owner_stage": "S4"
+    },
+    "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity": {
+      "code": "S3_POST_COMMIT_OBSERVER_FAILURE",
+      "owner_stage": "S3"
+    },
+    "test_refactor_defects.Defects.test_equal_value_proof_recovery_notifies_consumers": {
+      "code": "S4_RECOVERY_NOT_NOTIFIED",
+      "owner_stage": "S4"
+    },
+    "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope": {
+      "code": "S5_CONSUMER_SCOPE_DISCARDED",
+      "owner_stage": "S5d"
+    }
+  },
+  "module_to_tests": {
+    "Mod/DistrictCompleteness.lua": [
+      "test_refactor_baseline.WorkScope"
+    ],
+    "Mod/EffectiveFacts.lua": [
+      "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample"
+    ],
+    "Mod/IndustrySupport.lua": [
+      "test_refactor_baseline.RealConsumers.test_T05_unchanged_pending_has_attempt_budget"
+    ],
+    "Mod/RuntimeWork.lua": [
+      "test_refactor_baseline.RealConsumers"
+    ],
+    "Mod/Lv2Housing.lua": [
+      "test_refactor_baseline.RealConsumers"
+    ],
+    "Mod/Lv2GPP.lua": [
+      "test_refactor_baseline.RealConsumers"
+    ],
+    "Mod/Gameplay.lua": [
+      "test_refactor_defects.Defects"
+    ],
+    "Mod/UI/CrewProjectOrder.lua": [
+      "test_refactor_defects.Defects"
+    ],
+    "Mod/UI/DialogueRefresh.lua": [
+      "test_refactor_defects.Defects"
+    ],
+    "Mod/PerformanceCounters.lua": [
+      "test_refactor_defects",
+      "test_refactor_attribution"
+    ],
+    "Mod/Commerce.lua": [
+      "test_refactor_defects.Defects"
+    ],
+    "Mod/NetworkBridge.lua": [
+      "test_refactor_defects.Defects"
+    ],
+    "Mod/CityProgressionStore.lua": [
+      "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity"
+    ],
+    "Mod/ResearchChair.lua": [
+      "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope"
+    ],
+    "Mod/CarrierHealthTrace.lua": [
+      "test_refactor_attribution"
+    ]
+  },
+  "exclusions": {
+    "historical_unrelated_suites": "Selected program scenarios only; inherited stage regressions are named when selected. No old assertions modified."
+  },
+  "native_mocks": [
+    "synthetic owner/city/district/building methods",
+    "explicit catalogue stub for D workload fixtures",
+    "B270 seven real writers with native doubles"
+  ],
+  "external_prerequisites": [],
+  "static_alarm_baseline": {
+    "Mod/BindingProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/CityFlowProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/CityIdentityExperiment.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/CityIdentityExperiment.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/CityIdentityMapping.lua|MEASURED_MISSING_EVENT": 3,
+    "Mod/CityIdentityMapping.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/CityIdentityRead.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/CityInheritance.lua|MEASURED_MISSING_EVENT": 2,
+    "Mod/CityInheritance.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/CityJournalProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/CityProgressionStore.lua|MEASURED_MISSING_EVENT": 2,
+    "Mod/CityProgressionStore.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/CitySequenceProbe.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/Commerce.lua|MEASURED_MISSING_EVENT": 6,
+    "Mod/CompletionRecordProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/CopyYields.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1,
+    "Mod/CultureAesthetic.lua|MEASURED_MISSING_EVENT": 4,
+    "Mod/CultureAesthetic.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/CultureInspiration.lua|MEASURED_MISSING_EVENT": 2,
+    "Mod/CultureMeaning.lua|MEASURED_MISSING_EVENT": 3,
+    "Mod/CultureMeaningProbe.lua|DETAIL_READER_BUSINESS": 1,
+    "Mod/CultureMeaningProbe.lua|MEASURED_MISSING_EVENT": 4,
+    "Mod/CultureNetwork.lua|MEASURED_MISSING_EVENT": 2,
+    "Mod/DialogueEffects.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/DistrictCompleteness.lua|MEASURED_MISSING_EVENT": 4,
+    "Mod/EnvelopeProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/ExpeditionSpyStore.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/Gameplay.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/HalfYieldProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/IndustryHistory.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/IndustrySupport.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/IndustrySupport.lua|PUBLISH_PENDING_BUDGET": 1,
+    "Mod/InheritanceShadow.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/InheritanceShadow.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/InvestmentAction.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/Lv2GPP.lua|MEASURED_MISSING_EVENT": 3,
+    "Mod/Lv2Housing.lua|MEASURED_MISSING_EVENT": 3,
+    "Mod/Lv3Effects.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1,
+    "Mod/Lv3Support.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1,
+    "Mod/Probe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/ProjectTurnObservation.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/ResearchApply.lua|MEASURED_MISSING_EVENT": 3,
+    "Mod/ResearchApply.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1,
+    "Mod/ResearchChair.lua|MEASURED_MISSING_EVENT": 3,
+    "Mod/ResearchChair.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1,
+    "Mod/ResearchCross.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/ResearchCross.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1,
+    "Mod/ResearchInfrastructure.lua|DETAIL_READER_BUSINESS": 1,
+    "Mod/ResearchInfrastructure.lua|MEASURED_MISSING_EVENT": 3,
+    "Mod/ResearchInfrastructureShadow.lua|DETAIL_READER_BUSINESS": 1,
+    "Mod/ResearchSupport.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/Restructuring.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/RuntimeWork.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/Standardization.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/StorageProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/TradeRouteProbe.lua|MEASURED_MISSING_EVENT": 2,
+    "Mod/UI/CrewProjectOrder.lua|PUBLISH_PENDING_BUDGET": 4,
+    "Mod/UI/IndustryRefresh.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/UI/P0Panel.lua|PUBLISH_PENDING_BUDGET": 3,
+    "Mod/UI/ResearchCrossRefresh.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/UI/UnitPanelActions.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/UI/UnitTargetMarkers.lua|MEASURED_MISSING_EVENT": 1,
+    "Mod/UnitActions.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/YieldCarrierProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1
+  },
+  "static_review_boundary": "S2 reviewed current runtime debt; counts are heuristic alarms, not compliance. New/widened alarms block pending human review; later removal of old debt is allowed."
+}
