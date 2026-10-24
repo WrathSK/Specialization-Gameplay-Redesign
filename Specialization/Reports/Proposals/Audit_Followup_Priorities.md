@@ -65,6 +65,8 @@ B273 S3 complete: [actual scope, results and execution closure](../../Status/Val
 
 #### S4 — Native defects and the accepted hold direction; stop U2
 
+B275 S4b and revised internal U2 complete: [actual bridge/writer results](../../Status/Validation/Results/Specialization_B275_Refactor_S4b.md).28 new cases +2 original gates PASS; full program87PASS/4 laterOPEN;92 inherited methods PASS. Network pending/partial-source/negative/cold-A rules and Development per-city startup/index containment implemented; no native/deployment PASS. Next separate approved A8, then S5.
+
 B274 S4a local recovery subset complete: [actual result/closure](../../Status/Validation/Results/Specialization_B274_Refactor_S4a.md). Industry budget/reentry, GreatWork signature, GC UI deferral and compact Housing pass; network hold/provenance/cold-load and Development startup containment remain S4b. Revised U1 D13 makes U2 an internal checkpoint, no automatic native stop/deployment.
 
 | Planned item / original IDs | HEAD status and source evidence | Next action / boundary |

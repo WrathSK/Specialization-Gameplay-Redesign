@@ -25,6 +25,14 @@
       "test_refactor_attribution",
       "test_refactor_s3",
       "test_refactor_s4a"
+    ],
+    "S4b": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b"
     ]
   },
   "counterexamples": {
@@ -39,14 +47,6 @@
     "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample": {
       "code": "S5_FACT_CAPTURE_NOT_SHARED",
       "owner_stage": "S5b"
-    },
-    "test_refactor_defects.Defects.test_commerce_carrier_present_across_network_pending": {
-      "code": "S4_COMMERCE_PENDING_WITHDRAWAL",
-      "owner_stage": "S4"
-    },
-    "test_refactor_defects.Defects.test_equal_value_proof_recovery_notifies_consumers": {
-      "code": "S4_RECOVERY_NOT_NOTIFIED",
-      "owner_stage": "S4"
     },
     "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope": {
       "code": "S5_CONSUMER_SCOPE_DISCARDED",
@@ -90,10 +90,12 @@
       "test_refactor_s4a"
     ],
     "Mod/Commerce.lua": [
-      "test_refactor_defects.Defects"
+      "test_refactor_defects.Defects",
+      "test_refactor_s4b"
     ],
     "Mod/NetworkBridge.lua": [
-      "test_refactor_defects.Defects"
+      "test_refactor_defects.Defects",
+      "test_refactor_s4b"
     ],
     "Mod/CityProgressionStore.lua": [
       "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity"
@@ -124,6 +126,24 @@
     ],
     "Mod/UI/IndustryRefresh.lua": [
       "test_refactor_s4a"
+    ],
+    "Mod/NetworkInput.lua": [
+      "test_refactor_s4b"
+    ],
+    "Mod/CultureNetwork.lua": [
+      "test_refactor_s4b"
+    ],
+    "Mod/StandardizationEffects.lua": [
+      "test_refactor_s4b"
+    ],
+    "Mod/DevelopmentInvestment.lua": [
+      "test_refactor_s4b"
+    ],
+    "Mod/TradeRouteProbe.lua": [
+      "test_refactor_s4b"
+    ],
+    "Mod/UI/BackgroundRoutes.lua": [
+      "test_refactor_s4b"
     ]
   },
   "exclusions": {

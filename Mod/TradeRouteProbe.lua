@@ -125,6 +125,7 @@ function SPCTradeRouteProbe.Start(P,shared)
       "UnitOperationDeactivated","UnitOperationStarted","UnitOperationsCleared","CityRemovedFromMap","CityAddedToMap","CityTransfered","DiplomacyDeclareWar"}) do
     local eventName=name;listen(Events,eventName,function(pid,id)
       if eventName:find('^Unit') then
+        if type(pid)=='number' and not P.IsTestPlayer(pid)then return end
         P.Count('unit_cb');if not P.RouteUnitRelevant(pid,id) then P.Count('unit_ignored');return end
       end
       pending[eventName]=true;shared.RouteSignalRevision=shared.RouteSignalRevision+1

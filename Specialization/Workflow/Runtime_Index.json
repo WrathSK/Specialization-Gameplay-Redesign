@@ -116,9 +116,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/Commerce.lua": {
-      "sha256": "d3dfd4384ef793455711d8b9ad31a560a5d2e4e2da9ffb8ff100f7bc60b58f43",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "b5c04c4fb7f9e9d286a5860393e7c25d1959b363692b00667e4be22af2db514d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
+      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -226,9 +226,9 @@
       "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "f9481b44dc667c21a60eb98789e96bd848395446a544c3b56bfe2399d202703a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
-      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
+      "sha256": "93fe4a26fbb7e3237a6e74f03cb26ec4efd607e34154ccee6ff0bbd805406c18",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
+      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
@@ -501,9 +501,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "1325af4363b0094e726abf76ef12ed79d27302b9d122e31c49bfabc592b39fda",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "414b8c6948455ab1fad14bf32d273b7e8db7543771a54212fe0551c4b176a68e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
+      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "4f4df0ed1eee502d9ee19ad8e053c6070b9f17d74b0e33eaba26f33ab13e256a",
@@ -751,14 +751,14 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "877986fe800479520222bc8f20df68d8e55d79d226a69efb0b53f6da6a14f9f9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "511231eeb9d04798e2eec5f8555660c328c071a0e9c1fb5b68df97c640c1889c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
+      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
     },
     "Mod/NetworkInput.lua": {
-      "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
+      "sha256": "fa1e16ae91b376d0f254f09f23337de8877c3a4bee8e7b30f01fb601f10f79b4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
+      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
     },
     "Mod/NetworkIsolation.lua": {
       "sha256": "3b1ac34bd4dc421437e0cfa3968180114959bf98524b5179c148ab8a85bed8d2",
@@ -786,9 +786,9 @@
       "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/Probe.lua": {
-      "sha256": "46bc21105bb97ecb434303471468ed37ab92a5769072e521f558d243acc39786",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
-      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
+      "sha256": "7481d96c9f8b1a921d54c104834d1a8f0343175560c4cc46095e782af143c2b5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
+      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "12cd2b1aea16cf9b7e6f84cd57a5e390e9c344083a6add8cf7ffdba5f508de82",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
-      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
+      "sha256": "c1b1213d1cbdd412dd32ba649bf869358d3426a05198bd386a80fa908d35ea5c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
+      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -946,9 +946,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/StandardizationEffects.lua": {
-      "sha256": "e17ea4b28fc527be90e9b6c5116e73d438df859d7871220e7c8d106c1115ba46",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "0d0681abf5584acf1bbf33ee7ae0620e797a307b793256783b8d030609ca3779",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
+      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
     },
     "Mod/StorageProbe.lua": {
       "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
@@ -1146,14 +1146,14 @@
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/TradeRouteProbe.lua": {
-      "sha256": "c35697cbafaad230d5e901b2a2ce259b23c2f43b54a122a888d587b1c432af2e",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
+      "sha256": "8dbdb8d31b607d1951ee7f518ed8221cd620cf5a04c28ecbd1a364a294bda2a4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
+      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
     },
     "Mod/UI/BackgroundRoutes.lua": {
-      "sha256": "be54e3708d8ef7b1c69b19c93bec6e8e991c6325a24b784896ad91469e47bd66",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "04584fc34eda768be333e09b56bb48bc660c46f423db22183fdf19c97e3d68e7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
+      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
     },
     "Mod/UI/BackgroundRoutes.xml": {
       "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0723
-Implementation Build: B274.301 / modinfo301; stable/live B271.298
+Status Revision: S0724
+Implementation Build: B275.302 / modinfo302; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S4A_COMPLETE_S4B_AUTHORIZED
+Work State: REFACTOR_S4_COMPLETE_A8_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S4a completed in B274.301: [local recovery and work-budget results](Validation/Results/Specialization_B274_Refactor_S4a.md). Industry no-progress publish attempts20→0; per-city work signatures, UI-pending GC deferral and compact Housing pass their original gates plus13 new cases. Full program57 passing properties/6 later OPEN;44 inherited methods and real positive matrices pass. S4b network hold/provenance/cold-load work remains next. D0058/A0182 unchanged; approved eight-era correction follows S4 separately. Stable/live/main remain B271.298; no deployment/native PASS.
+S4 completed in B275.302: [network continuity / internal U2](Validation/Results/Specialization_B275_Refactor_S4b.md). Two original network gates plus28 new actual bridge/writer cases pass; full program87PASS/4 laterOPEN;92 inherited methods PASS. Topology pending freezes installed effects; reliable partial-source updates carry provenance; confirmed negatives remain scoped; strict new transactions remain fresh-proof-only. Development per-city startup failure is isolated from incomplete global occupancy. No blocking native fact prevents continuation. Stable/live/main remain B271.298; no deployment/native PASS.
 
-- User decision: none for normal S4b continuation.
-- User testing: U5 final integration, earlier only a concrete blocking native fact. No automatic deployment.
-- Primary next: S4b→internal U2→approved A8→S5a/b/c/d→S6→S7/S8→S9/S10.
+- User decision: none; A8 explicitly approved for8 collection eras,24% Inspiration and40-point Dialogue round maximum.
+- User testing: U5 final integration only unless a concrete blocking native fact appears. No automatic deployment.
+- Primary next: separate A8 batch→S5a/b/c/d→S6→S7/S8→S9/S10.
+
+## S0724 — B275.302 S4b and internal U2
+
+All three active network writers use retained/confirmed/unknown source evidence without inventing first contributions or admitting new irreversible transactions on old proof. Negative-only pruning preserves unrelated relationships, real qualification loss beats UNKNOWN, same-value recovery notifies once. Cold Standardization follows final exception A. Per-city Development startup/target failures do not poison a complete occupancy index; incomplete index still blocks signing and recovers on actual evidence. Source/local/static evidence only. S5/S6 original gates remain OPEN and native treasury/effect behavior remains U5-required.
 
 ## S0723 — B274.301 S4a diagnosed local recovery
 

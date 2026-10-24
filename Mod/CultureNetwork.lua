@@ -31,7 +31,7 @@ end
 function M.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'CN_STORE_REQUIRED')
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.CultureNetwork=d
- local definitions,dirty={},{};local initialized=false
+ local definitions,dirty,sourceSamples,sourceCounts={},{},{},{};local initialized=false
  local trace;local lastWait;local lastHealth;local observe
  if SPCExpeditionTrainingDiagnostics then
   local ok,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'CULTURE_NETWORK')
@@ -52,6 +52,9 @@ function M.Start(P,shared)
  end
  local function key(pid,id)return tostring(pid)..':'..tostring(id)end
  local function ref(c)return SPCNetworkInput.Reference(c)end
+ local function forgetSource(pid,id)
+  local k=key(pid,id);if sourceSamples[k]then sourceSamples[k]=nil;sourceCounts[pid]=math.max(0,(sourceCounts[pid] or 1)-1)end
+ end
  local function isolated(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local function validate()
   if definitions[1]then return end
@@ -124,24 +127,41 @@ function M.Start(P,shared)
  end
  local function source(batch,pid,id)
   if batch.sources[id]then return batch.sources[id]end
-  local out={set={}};batch.sources[id]=out
+  local out={set={},eligible=false,provenance='CONFIRMED'};batch.sources[id]=out
   local ok,err=pcall(function()
    local c=Players[pid]:GetCities():FindID(id)
-   if not c or c:GetOwner()~=pid then return end
+   if c then assert(type(c:GetOwner())=='number','CN_SOURCE_OWNER_UNKNOWN')end
+   if not c or c:GetOwner()~=pid then out.confirmedLoss=true;return end
    out.reference=ref(c);local f=facts(batch,pid,c)
    assert(f.validity=='VERIFIED' and type(f.identity)=='string','CN_SOURCE_UNKNOWN')
    if f.identity~='CULTURE' then return end
    assert(int(f.potential),'CN_SOURCE_UNKNOWN');if f.potential<4 then return end
    assert(f.activeStatus=='KNOWN' and int(f.active),'CN_SOURCE_ACTIVE_UNKNOWN')
    if f.active<4 then return end
-   assert(f.active==4 and f.potential==4,'CN_SOURCE_LEVEL_INVALID')
+   assert(f.active==4 and f.potential==4,'CN_SOURCE_LEVEL_INVALID');out.eligible=true
    local config=PlayerConfigurations and PlayerConfigurations[pid]
    local own=config and config:GetCivilizationTypeName();assert(d.allowedCivilizations[own],'CN_OWNER_CIV_UNKNOWN')
    out.set=M.Source(store.ExpeditionInsights(pid,c),own)
    for civ in pairs(out.set)do assert(d.allowedCivilizations[civ],'CN_HISTORY_CIV_UNKNOWN')end
    assert(c:GetOwner()==pid and ref(c)==out.reference,'CN_SOURCE_CHANGED')
   end)
-  if not ok then out.error=tostring(err)end
+  local k=key(pid,id);local old=sourceSamples[k]
+  if old and out.reference and old.reference~=out.reference then forgetSource(pid,id);old=nil end
+  if not ok then
+   out.error=tostring(err)
+   if old and not out.confirmedLoss and (out.reference==nil or old.reference==out.reference)then
+    out.reference=out.reference or old.reference
+    out.set={};for civ in pairs(old.set)do out.set[civ]=true end
+    out.eligible=old.eligible;out.provenance='RETAINED'
+   else out.set={};out.provenance='UNKNOWN' end
+  else
+   local saved={reference=out.reference,eligible=out.eligible,set={}}
+   for civ in pairs(out.set)do saved.set[civ]=true end
+   if old or (sourceCounts[pid] or 0)<512 then
+    if not old then sourceCounts[pid]=(sourceCounts[pid] or 0)+1 end
+    sourceSamples[k]=saved
+   end
+  end
   return out
  end
  local function network(batch,pid)
@@ -150,15 +170,23 @@ function M.Start(P,shared)
   local bridge=assert(shared.NetworkBridge,'CN_NETWORK_UNAVAILABLE');local input=bridge.Input(pid)
   if input.validity=='CONFIRMED_INVALID' then batch.network={input=input,recipients={}};return batch.network end
   local current=bridge.CurrentCultureBatch(pid)
-  assert(current.input.validity=='VERIFIED' and current.input.availability=='AVAILABLE','CN_NETWORK_PENDING')
+  assert(current.input.validity=='VERIFIED' and (current.input.effectAvailability=='AVAILABLE' or current.input.effectAvailability==nil and current.input.availability=='AVAILABLE' or current.input.continuityOnly),'CN_NETWORK_PENDING')
   batch.network=current;return current
  end
- local function plan(batch,pid,c)
-  local kind,plot=anchor(batch,pid,c);local p={kind=kind,plot=plot,n=0,set={},sources={},contributors={}}
+ local function plan(batch,pid,c,old)
+  local kind,plot=anchor(batch,pid,c);local p={kind=kind,plot=plot,n=0,set={},sources={},contributors={},contributions={},provenance={}}
   if not kind then return p end
   local view=network(batch,pid)
   for id in pairs(view.recipients[c:GetID()] or {})do
-   local s=source(batch,pid,id);assert(not s.error,s.error)
+   local s=source(batch,pid,id)
+   if view.input.continuityOnly and s.eligible then
+    local prior=old and old.contributions and old.contributions[id]
+    if prior and prior.reference==s.reference then s={reference=prior.reference,set=prior.set,eligible=prior.eligible,provenance='RETAINED'} else s={set={},reference=s.reference,provenance='UNKNOWN'}end
+    p.reason='CN_RETAINED_TOPOLOGY'
+   end
+   if s.provenance~='CONFIRMED' then p.reason=s.error or 'CN_MIXED_FACTS' end
+   p.provenance[id]={reference=s.reference,status=s.provenance}
+   p.contributions[id]={reference=s.reference,set=s.set,eligible=s.eligible,provenance=s.provenance}
    p.sources[id]=s.reference or false
    if next(s.set)then p.contributors[id]=s.reference end
    for civ in pairs(s.set)do p.set[civ]=true end
@@ -166,29 +194,44 @@ function M.Start(P,shared)
   for _ in pairs(p.set)do p.n=p.n+1 end
   assert(p.n<2^M.Bits,'CN_UNION_ENCODING_RANGE');return p
  end
- local function confirmedSourceLoss(pid,old)
-  if not old then return false end
-  for id,reference in pairs(old.contributors or {})do
-   if reference then
-    local ok,lost=pcall(function()
-     local c=Players[pid]:GetCities():FindID(id)
-     if not c or c:GetOwner()~=pid or ref(c)~=reference then return true end
-     local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
-     return f.validity=='VERIFIED' and (f.identity~='CULTURE' or type(f.potential)=='number' and f.potential<4
-      or f.activeStatus=='KNOWN' and type(f.active)=='number' and f.active<4)
-    end)
-    if ok and lost then return true end
+ local function negativePlan(batch,pid,c,old)
+  if not old or not next(old.contributions or {})then return nil end
+  local p={kind=old.kind,plot=old.plot,n=0,set={},sources={},contributors={},contributions={},provenance={},reason='CN_RETAINED_TOPOLOGY'}
+  local changed=false
+  for id,prior in pairs(old.contributions)do
+   local found,live=pcall(function()return Players[pid]:GetCities():FindID(id)end)
+   local ownerOK,owner=pcall(function()return live and live:GetOwner()end)
+   local lost=found and (not live or ownerOK and type(owner)=='number' and owner~=pid)
+   local check,reference=pcall(function()return live and ref(live)end)
+   if check and reference~=prior.reference then lost=true end
+   if not lost and live then
+    local ok,f=pcall(facts,batch,pid,live)
+    if ok and f.validity=='VERIFIED' and (f.identity~='CULTURE' or int(f.potential) and f.potential<4
+     or f.activeStatus=='KNOWN' and int(f.active) and f.active<4)then lost=true end
+   end
+   if lost then forgetSource(pid,id);changed=true else
+    p.sources[id]=prior.reference;p.contributions[id]=prior;p.provenance[id]={reference=prior.reference,status='RETAINED'}
+    if next(prior.set)then p.contributors[id]=prior.reference end
+    for civ in pairs(prior.set)do p.set[civ]=true end
    end
   end
-  return false
+  if not changed then return nil end
+  for _ in pairs(p.set)do p.n=p.n+1 end;return p
  end
  local function reconcile(batch,pid,c)
   local k=key(pid,c:GetID());local reference=ref(c);local old=d.records[k]
   if old and old.reference~=reference then clear(c);d.records[k]=nil;old=nil end
-  local ok,p=pcall(plan,batch,pid,c)
+  local ok,p=pcall(plan,batch,pid,c,old)
   if not ok then
-   if confirmedSourceLoss(pid,old)then clear(c);d.records[k]=nil end
-   error(p)
+   local reason=p;p=negativePlan(batch,pid,c,old)
+   if not p then
+    if old then
+     old.retained=true;old.reason=tostring(reason);local provenance={}
+     for id,f in pairs(old.provenance or {})do provenance[id]={reference=f.reference,status=f.status=='UNKNOWN' and 'UNKNOWN' or 'RETAINED'}end
+     old.provenance=provenance
+    end
+    error(reason)
+   end
   end
   assert(c:GetOwner()==pid and ref(c)==reference,'CN_RECEIVER_CHANGED')
   d.writing=k
@@ -218,7 +261,7 @@ function M.Start(P,shared)
    if mutating then d.records[k]=nil;pcall(clear,c)end
    error(why)
   end
-  p.reference=reference;p.owner=pid;p.id=c:GetID();p.x=c:GetX();p.y=c:GetY();d.records[k]=p;d.errors[k]=nil
+  p.reference=reference;p.owner=pid;p.id=c:GetID();p.x=c:GetX();p.y=c:GetY();d.records[k]=p;d.errors[k]=p.reason
  end
  function d.Mark(pid,cid)
   if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then d.Mark(owner,cid)end end;return end
@@ -235,16 +278,28 @@ function M.Start(P,shared)
   local good,why=pcall(function()
    validate()
    if not initialized then
-    -- Saved derived carriers may exist under unsupported owners. Once-per-context exact cleanup.
+    -- Preserve current owned installed values until reliable topology/source facts.
+    -- Foreign exact-owned cleanup remains separate from this cold-load continuity.
     for owner,player in pairs(Players)do
      phase='INITIAL_CITY_COLLECTION';failureOwner=owner;failureCity=nil
      local cities=player:GetCities()
-     -- Non-city-owning player slots can legitimately have no city collection.
      if cities then for _,c in cities:Members()do
-      phase='INITIAL_CARRIER_CLEANUP';failureCity=c:GetID();clear(c)
+      failureCity=c:GetID()
+      if not P.IsTestPlayer(owner)then clear(c)
+      else
+       local success,err=pcall(function()
+        local r={owner=owner,id=c:GetID(),x=c:GetX(),y=c:GetY(),reference=ref(c),n=0,sources={},contributors={},contributions={},provenance={},loaded=true}
+        for _,row in ipairs(definitions)do
+         local has=P.HasBuilding(c:GetBuildings(),row.id);assert(type(has)=='boolean','CN_PRESENCE_UNKNOWN')
+         if has then assert(not r.kind or r.kind==row.kind,'CN_MULTIPLE_INSTALLED_KINDS');r.kind=row.kind;r.n=r.n+2^row.bit end
+        end
+        d.records[key(owner,c:GetID())]=r
+       end)
+       if not success then d.errors[key(owner,c:GetID())]=tostring(err)end
+      end
      end end
     end
-    d.records={};d.errors={};initialized=true;d.ready=true
+    initialized=true;d.ready=true
    end
    for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and not isolated(pid) and (not scope or scope.player==nil or pid==scope.player)then
     phase='PLAYER_RECONCILIATION';failureOwner=pid;failureCity=nil
@@ -266,7 +321,7 @@ function M.Start(P,shared)
        local previous=old and old.diagnosticSignature
        local ok,err=pcall(reconcile,batch,pid,c);if not ok then d.errors[k]=tostring(err):sub(1,180)end
        if observe then pcall(observe,pid,c,previous)end
-      else d.records[k]=nil;d.errors[k]=nil end
+      else d.records[k]=nil;d.errors[k]=nil;forgetSource(pid,cid)end
      end
     end
     health(pid,not viewOk and diagnosticCode(view) or 'CN_READY')
@@ -399,6 +454,7 @@ function M.Start(P,shared)
  -- Working specialists scale through the native carrier, not a stored/count ledger.
  store.RegisterExit('CultureNetwork',function(c,loss)
   assert(store.IsExitTarget(c,loss),'CN_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,M.Owned)
+  forgetSource(loss.origin.owner,loss.origin.cityID)
   for k,p in pairs(d.records)do if p.owner==loss.origin.owner and p.x==c:GetX() and p.y==c:GetY()then d.records[k]=nil;d.errors[k]=nil end end
   d.Mark(loss.origin.owner)
  end)

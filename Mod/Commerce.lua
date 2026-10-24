@@ -12,7 +12,7 @@ function M.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'COMMERCE_STORE_REQUIRED')
  local C=SPCCommerceCalculation;local model=SPCCommerceModel;local cp=model.Copy
  local d={views={},revision=0,ready=false,writes=0};shared.Commerce=d
- local views,dependencies,byTarget,dirty,known={},{},{},{},{}
+ local views,dependencies,byTarget,dirty,known,samples={},{},{},{},{},{}
  local definitions,legacy,sourceKinds={},{},{};local initialized=false;local busy=false;local writing=false;local permanentBound=false
  local ownNames={};for _,id in ipairs(M.Owned)do ownNames[id]=true end
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'COMMERCE')
@@ -98,7 +98,7 @@ function M.Start(P,shared)
   -- Confirmed owner-loss cleanup is Store's separate exact-owned exit callback.
   for pid,p in pairs(Players)do if P.IsTestPlayer(pid)then local cs=p:GetCities();if cs then for _,c in cs:Members()do
    local ok,h=pcall(store.HistoricalReference,c)
-   if ok and h.owner==pid and h.cityID==c:GetID()then clear(c);known[key(pid,c:GetID())]={pid,c:GetID()}end
+   if ok and h.owner==pid and h.cityID==c:GetID()then known[key(pid,c:GetID())]={pid,c:GetID()}end
   end end end end
   initialized=true;d.ready=true;return true
  end
@@ -152,11 +152,30 @@ function M.Start(P,shared)
   if f.active<3 then v.reason='COMMERCE_ACTIVE_III_REQUIRED';return out end
   if shared.CommerceConvergence and shared.CommerceConvergence.Withdraw then shared.CommerceConvergence.Withdraw(c)end
   for _,index in ipairs(legacy)do assert(not present(c,index),'COMMERCE_LEGACY_REMAINS')end
-  local network=shared.NetworkBridge.CurrentDomesticPartners(pid,c)
-  assert(network.validity=='VERIFIED',network.reason or 'COMMERCE_NETWORK_UNKNOWN')
+  local bridge=shared.NetworkBridge
+  local network=(bridge.CurrentEffectPartners or bridge.CurrentDomesticPartners)(pid,c)
+  if network.validity~='VERIFIED' then
+   local previous=views[key(pid,id)];local retained=samples[key(pid,id)]
+   assert(previous and retained and retained.reference==v.reference and retained.token==v.token,network.reason or 'COMMERCE_NETWORK_UNKNOWN')
+   -- No positive recalculation while topology is pending. A confirmed local
+   -- qualification/capacity/reputation reduction still withdraws its own share.
+   network={continuityOnly=true,partners={},references={},provenance=cp(previous.networkProvenance)}
+   local ids={}
+   for _,domain in pairs(retained.domains)do for sid,sample in pairs(domain)do
+    if sid~=id then ids[sid]=true;network.references[sid]=sample.reference end
+   end end
+   for sid in pairs(ids)do network.partners[#network.partners+1]=sid end
+   for _,r in ipairs(v.domains)do
+    local prior;for _,row in ipairs(previous.domains or {})do if row.id==r.id then prior=row;break end end
+    if not prior or not prior.effective then r.effective=false;r.suspended=r.selected
+    else r.localD=math.min(r.localD or 0,prior.localD or 0)end
+   end
+   v.reputation.effective=math.min(v.reputation.effective,previous.reputation and previous.reputation.effective or 0)
+  end
   out.network=network
   for _,sid in ipairs(network.partners)do out.sources[sid]=true end
-  v.stage='READY';v.reason='COMMERCE_READY'
+  v.stage='READY';v.reason='COMMERCE_READY';v.networkProvenance=cp(network.provenance)
+  if network.input and network.input.factAvailability=='MIXED' or network.continuityOnly then v.stage='RETAINED';v.reason='COMMERCE_MIXED_FACTS';v.canConfigure=false end
   for _,r in ipairs(v.domains)do if r.effective then v.effective[#v.effective+1]=r.id end end
   out.rows=v.domains;return out
  end
@@ -185,21 +204,56 @@ function M.Start(P,shared)
  end
  local function resolve(batch,x)
   if not x.rows then return end
-  local values={}
+  local k=key(x.pid,x.id);local previous=samples[k]
+  if not previous or previous.reference~=x.v.reference or previous.token~=x.v.token then previous={reference=x.v.reference,token=x.v.token,domains={}}end
+  local nextSamples={reference=x.v.reference,token=x.v.token,domains={}};local values={};local mixed=x.v.stage=='RETAINED'
+  x.v.sourceProvenance={}
   for _,r in ipairs(x.rows)do if r.effective then
-   local best
+   local best;local prior=previous.domains[r.id] or {};local current={};nextSamples.domains[r.id]=current
    for sid in pairs(x.sources)do
-    local c=assert(city(x.pid,sid),'COMMERCE_SOURCE_UNKNOWN');assert(c:GetOwner()==x.pid,'COMMERCE_SOURCE_OWNER_CHANGED')
-    if sid~=x.id then assert(SPCNetworkInput.Reference(c)==x.network.references[sid],'COMMERCE_SOURCE_REFERENCE_CHANGED')end
-    if sid==x.id or sourceKinds[r.id] and sourceIdentity(batch,x.pid,c)==sourceKinds[r.id]then
-     local n=sourceYield(batch,x.pid,c,r.yield)
-     if not best or n>best.X or n==best.X and sid<best.city then best={city=sid,owner=x.pid,name=title(c),X=n}end
-    end
+    local old=prior[sid];local reference;local confirmedLoss=false
+    local status='CONFIRMED';local sample
+    local ok,value=pcall(function()
+     local c=city(x.pid,sid)
+     if c then assert(type(c:GetOwner())=='number','COMMERCE_SOURCE_OWNER_UNKNOWN')end
+     if not c or c:GetOwner()~=x.pid then confirmedLoss=true;return {eligible=false}end
+     reference=SPCNetworkInput.Reference(c)
+     if sid~=x.id then assert(reference==x.network.references[sid],'COMMERCE_SOURCE_REFERENCE_CHANGED')end
+     local kind=sid==x.id and 'SELF' or sourceIdentity(batch,x.pid,c)
+     local qualifies=sid==x.id or sourceKinds[r.id] and kind==sourceKinds[r.id]
+     -- During a confirmed-negative continuity pass, only remove proven lost
+     -- qualifications. Other inputs remain their last actually applied samples.
+     if x.network.continuityOnly then
+      if not qualifies then return {reference=reference,eligible=false}end
+      error('COMMERCE_CONTINUITY_ONLY')
+     end
+     return {reference=reference,eligible=qualifies==true,city=sid,owner=x.pid,name=title(c),
+      X=qualifies and sourceYield(batch,x.pid,c,r.yield) or nil}
+    end)
+    if ok then sample=value
+    elseif old and not confirmedLoss and (reference==nil or old.reference==reference)then sample=cp(old);reference=reference or old.reference;status='RETAINED';mixed=true
+    else status='UNKNOWN';mixed=true end
+    current[sid]=sample
+    x.v.sourceProvenance[r.id]=x.v.sourceProvenance[r.id] or {}
+    x.v.sourceProvenance[r.id][sid]={status=status,reference=reference}
+    if sample and sample.eligible and (not best or sample.X>best.X or sample.X==best.X and sid<best.city)then best=sample end
    end
    values[r.id]=assert(best,'COMMERCE_SOURCE_UNKNOWN')
   end end
   local result=C.Finish(x.rows,values,x.v.reputation.effective)
   x.v.domains=result.domains;x.v.totalRaw=result.totalRaw;x.v.totalGold=result.totalGold
+  x.samples=nextSamples
+  if mixed then x.v.stage='RETAINED';x.v.reason='COMMERCE_MIXED_FACTS';x.v.canConfigure=false end
+ end
+ local function hold(x,old,reason)
+  -- Keep the exact installed result, including a cold-load value whose source
+  -- decomposition is unavailable. Never make this a new-transaction credential.
+  local value=old and old.reference==ref(x.c) and old.token==x.v.token and cp(old) or x.v
+  value.totalGold=observed(x.c);value.stage='HELD';value.reason=reason;value.canConfigure=false
+  value.appliedRetained=true;value.sourceProvenance=value.sourceProvenance or {}
+  for _,domain in pairs(value.sourceProvenance)do for _,f in pairs(domain)do if f.status=='CONFIRMED'then f.status='RETAINED'end end end
+  for _,f in pairs(value.networkProvenance or {})do if f.status=='CONFIRMED'then f.status='RETAINED'end end
+  x.v=value;x.hold=true;x.rows=nil
  end
  local function addTargets(ids,pid,cid)
   if cid~=nil then ids[key(pid,cid)]={pid,cid};for k,v in pairs(dependencies[key(pid,cid)] or {})do ids[k]=v end
@@ -234,16 +288,17 @@ function M.Start(P,shared)
        activeStatus=f and f.activeStatus,selected=old and cp(old.selected) or {},effective={},domains=old and cp(old.domains) or {},
        workers=0,reputation=old and cp(old.reputation) or {age=0,effective=0},totalRaw=0,totalGold=0,
        stage='HELD',reason=code(x),canConfigure=false}}
-      for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
+      local reason=x.v.reason
+      if reason:match('NETWORK_') or reason=='COMMERCE_QUALIFICATION_UNKNOWN' or reason=='COMMERCE_SOURCE_UNKNOWN' or reason=='COMMERCE_STATE_UNKNOWN' or reason=='COMMERCE_ANCHOR_UNKNOWN' or reason=='COMMERCE_DISTRICT_FACTS_UNKNOWN' then hold(x,old,reason)
+      else for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=reason;r.raw=0;r.gold=0;r.floor=0 end end
      else setDependencies(pid,id,x.v.identity=='COMMERCE' and x.sources or {})end
+     if not x.hold and (x.v.identity~='COMMERCE' or type(x.v.active)=='number' and x.v.active<3)then samples[k]=nil end
      plans[k]=x;known[k]=(x.v.identity=='COMMERCE' or x.v.stage=='HELD') and {pid,id} or nil
-    else publish(pid,id,nil);setDependencies(pid,id,{});known[k]=nil end
+    else publish(pid,id,nil);setDependencies(pid,id,{});known[k]=nil;samples[k]=nil end
    end
    for _,x in pairs(plans)do
     local good,err=pcall(resolve,batch,x)
-    if not good then x.v.stage='HELD';x.v.reason=code(err);x.v.totalGold=0;x.v.totalRaw=0;x.v.canConfigure=false
-     x.v.effective={};for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
-    end
+    if not good then hold(x,views[key(x.pid,x.id)],code(err))end
    end
    -- D0055 inputs exclude Gold. Apply only differences; unchanged reads never
    -- dismantle effects or write to a remote source merely to sample its yield.
@@ -254,10 +309,13 @@ function M.Start(P,shared)
      assert(h.owner==x.pid and h.cityID==x.id and h.token==x.v.token,'COMMERCE_BINDING_UNAVAILABLE')
      binding=true
      assert(ref(x.c)==x.v.reference,'COMMERCE_REFERENCE_CHANGED')
-     applyGold(x.c,x.v.totalGold);set(x.c,definitions[1].id,x.v.stage=='READY' and x.v.canConfigure)
+     if not x.hold then
+      applyGold(x.c,x.v.totalGold);set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)
+      samples[k]=x.samples
+     end
     end)
     if not good then
-     if binding then pcall(clear,x.c)end
+     if binding and not x.hold then pcall(clear,x.c)end
      local read,remaining=pcall(observed,x.c)
      x.v.cleanupConfirmed=read and remaining==0;x.v.remainingCarrierGold=read and remaining or nil
      x.v.stage='HELD';x.v.reason=code(err);x.v.totalGold=0;x.v.totalRaw=0;x.v.canConfigure=false;x.v.effective={}
@@ -421,7 +479,7 @@ function M.Start(P,shared)
   assert(store.IsExitTarget(c,loss),'COMMERCE_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,M.Owned)
   for k,pair in pairs(known)do if pair[1]==loss.origin.owner then
    local v=views[k]
-   if v and v.reference==loss.origin.owner..':'..pair[2]..':'..c:GetX()..':'..c:GetY()then publish(pair[1],pair[2],nil);setDependencies(pair[1],pair[2],{});known[k]=nil end
+   if v and v.reference==loss.origin.owner..':'..pair[2]..':'..c:GetX()..':'..c:GetY()then publish(pair[1],pair[2],nil);setDependencies(pair[1],pair[2],{});known[k]=nil;samples[k]=nil end
   end end
   d.Mark(loss.origin.owner)
  end)

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="301">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="302">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B274.301：重构前工作量基线与有界观察者成本计数。</Description>
+    <Description>B275.302：网络效果连续性、逐来源事实保护与发展投资启动隔离。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

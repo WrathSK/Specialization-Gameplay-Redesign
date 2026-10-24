@@ -207,6 +207,7 @@ local function initialize()
   bind(name,function(pid,id)
    if networkBlocked() then return end
    if eventName:find('^Unit') then
+    if type(pid)=='number' and pid~=Game.GetLocalPlayer()then return end
     P.Count('unit_cb');if not P.RouteUnitRelevant(pid,id) then P.Count('unit_ignored');return end
    end
    if eventName:find('^PlayerTurn') and pid~=Game.GetLocalPlayer() then return end

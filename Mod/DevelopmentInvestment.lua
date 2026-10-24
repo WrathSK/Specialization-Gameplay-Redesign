@@ -29,7 +29,8 @@ function SPCDevelopmentInvestment.Start(P,shared)
  end
  table.sort(names)
  local records,occupancy,reservations,dirty,quotes={},{},{},{},{}
- local loaded=false;local indexError;local busy=false;local openViews={}
+ local loaded=false;local indexError;local indexErrors={};local indexArmed={};local startupPending={};local startupArmed={};local busy=false;local openViews={}
+ d.startupErrors={}
  local function rebuild()
   occupancy={}
   for token,r in pairs(records)do for target,c in pairs(r.value.contracts)do if M.Open(c)then
@@ -72,7 +73,11 @@ function SPCDevelopmentInvestment.Start(P,shared)
    for k,x in pairs(quotes)do if x.owner==pid then quotes[k]=nil end end;d.Mark(pid)
   end
  end
- function d.SourceChanged(pid,id)invalidate(pid,id)end
+ function d.SourceChanged(pid,id)
+  if indexErrors[pid]then indexArmed[pid]=true end
+  if id and startupPending[key(pid,id)]then startupArmed[key(pid,id)]={pid,id}end
+  invalidate(pid,id)
+ end
  local function money(pid)
   local t=assert(Players[pid] and Players[pid]:GetTreasury(),'DEVELOPMENT_TREASURY_UNKNOWN')
   local n=t:GetGoldBalance();assert(M.Finite(n),'DEVELOPMENT_TREASURY_UNKNOWN');return n,t
@@ -153,24 +158,42 @@ function SPCDevelopmentInvestment.Start(P,shared)
   end end
   busy=false
  end
+ local function readIndex(pid)
+  local ok,err=pcall(store.VisitDevelopment,pid,function(value,r)remember(value,r)end)
+  indexErrors[pid]=not ok and code(err) or nil;indexError=nil
+  for _,reason in pairs(indexErrors)do indexError=reason;break end
+  if not ok then d.error=failure(err,pid,nil,'LOAD_INDEX')end
+ end
+ local function startupCity(pid,c)
+  local k=key(pid,c:GetID())
+  local ok,err=pcall(function()
+   if store.Owns(c)then ref(c);effect(c,nil)end
+  end)
+  if ok then startupPending[k]=nil;d.startupErrors[k]=nil;d.Mark(pid,c:GetID())
+  else startupPending[k]={pid,c:GetID()};d.startupErrors[k]=failure(err,pid,c:GetID(),'LOAD_CITY')end
+  return ok
+ end
+ local function recoverCity(pid,id)
+  local k=key(pid,id);if not startupPending[k]then return end
+  local c=city(pid,id)
+  if c and c:GetOwner()==pid then if startupCity(pid,c)then d.Reconcile(pid,id)end
+  else startupPending[k]=nil;d.startupErrors[k]=nil end
+ end
  local function initialize()
   if loaded then return true end
   if store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return false end
-  local ok,err=pcall(function()
-   for pid,p in pairs(Players)do if P.IsTestPlayer(pid)then
-    store.VisitDevelopment(pid,function(value,r)remember(value,r)end)
-    -- Once per context: retire only this module's derived effects, then rebuild.
-    for _,c in p:GetCities():Members()do if store.Owns(c)then
-     ref(c);effect(c,nil);d.Mark(pid,c:GetID())
-    end end
-   end end
-  end)
-  loaded=true;indexError=not ok and code(err) or nil
-  if indexError then d.error=failure(err,nil,nil,'LOAD_INDEX')end
+  for pid,p in pairs(Players)do if P.IsTestPlayer(pid)then
+   -- Index completeness protects global target occupancy. A carrier/read failure
+   -- in one city is a separate local problem and cannot poison that index.
+   readIndex(pid)
+   for _,c in p:GetCities():Members()do startupCity(pid,c)end
+  end end
+  loaded=true
   for pid in pairs(Players)do if P.IsTestPlayer(pid)then d.Reconcile(pid)end end
   return true
  end
  local function sourceFacts(pid,c)
+  assert(not startupPending[key(pid,c:GetID())],'DEVELOPMENT_CITY_STARTUP_PENDING')
   local f=shared.EffectiveFacts.Read(pid,c);local r=ref(c);local old=state(pid,c)
   local v={reference=r,token=r.token,identity=f.specialization,potential=f.potential,stage='READY',workers=0,
    available=(f.specialization=='COMMERCE' and f.potential>=4) or old~=nil,contracts=cp(old and old.contracts or {}),used=count(old),canSign=false}
@@ -209,6 +232,7 @@ function SPCDevelopmentInvestment.Start(P,shared)
   for _,id in ipairs(routes.partners)do if onlyTarget==nil or id==onlyTarget then
    local target=assert(city(pid,id),'DEVELOPMENT_CITY_UNKNOWN')
    local okay,result=pcall(function()
+    assert(not startupPending[key(pid,id)],'DEVELOPMENT_TARGET_STARTUP_PENDING')
     local tr=ref(target)
     if occupancy[tr.token] or reservations[tr.token]then return {{targetCity=id,targetName=title(target),reason='DEVELOPMENT_TARGET_OCCUPIED',canSign=false}}end
     local facts=nativeTarget(pid,target);local options={}
@@ -254,6 +278,11 @@ function SPCDevelopmentInvestment.Start(P,shared)
    assert(P.IsTestPlayer(pid) and type(p)=='table' and type(p.CityID)=='number' and type(p.Token)=='string' and #p.Token<=100,'DEVELOPMENT_REQUEST_INVALID')
    assert(not busy,'DEVELOPMENT_BUSY');assert(initialize(),'DEVELOPMENT_LOADING')
    local c=assert(city(pid,p.CityID),'DEVELOPMENT_CITY_UNKNOWN')
+   if indexErrors[pid]then readIndex(pid)end
+   recoverCity(pid,p.CityID)
+   for _,tracked in pairs(records)do if tracked.reference.owner==pid and tracked.reference.cityID==p.CityID then
+    for _,contract in pairs(tracked.value.contracts)do if M.Open(contract)then recoverCity(pid,contract.target.cityID)end end
+   end end
    if p.Action=='DEVELOPMENT_OPEN' or p.Action=='DEVELOPMENT_REFRESH'then response=d.Refresh(pid,p.CityID,true);return end
    assert(p.Action=='DEVELOPMENT_CONFIRM' and type(p.TargetCity)=='number' and type(p.Domain)=='string','DEVELOPMENT_REQUEST_INVALID')
    local k=key(pid,p.CityID);local view=d.views[k];local cached=quotes[k]
@@ -304,6 +333,10 @@ function SPCDevelopmentInvestment.Start(P,shared)
  end
  local function flush()
   if busy or not initialize()then return end
+  local retryIndex=indexArmed;indexArmed={}
+  for pid in pairs(retryIndex)do readIndex(pid);d.Reconcile(pid)end
+  local armed=startupArmed;startupArmed={}
+  for _,pair in pairs(armed)do recoverCity(pair[1],pair[2])end
   local todo=dirty;dirty={}
   for pid,changes in pairs(todo)do
    local ids={};for k,v in pairs(shared.Commerce and shared.Commerce.views or {})do local id=tonumber(k:match(':(%d+)$'))
@@ -336,9 +369,11 @@ function SPCDevelopmentInvestment.Start(P,shared)
  end)
  for _,n in ipairs({'TreasuryChanged','PlayerTreasuryChanged','PlayerGoldChanged'})do hook(Events,n,function(pid)d.Audit({player=pid})end)end
  store.RegisterExit('DevelopmentInvestment',function(c,loss)
-  store.RemoveOwned(c,loss,names);d.Mark(loss.origin.owner)
+  store.RemoveOwned(c,loss,names)
+  local k=key(loss.origin.owner,loss.origin.cityID);startupPending[k]=nil;startupArmed[k]=nil;d.startupErrors[k]=nil
+  d.Mark(loss.origin.owner)
  end)
- store.RegisterReturn('DevelopmentInvestment',function(pid,c)invalidate(pid,c:GetID())end)
- SPCSafeCallbacks.Chain(shared,'DevelopmentInvestment',function(c,reason)if c then invalidate(c:GetOwner(),c:GetID())end end)
+ store.RegisterReturn('DevelopmentInvestment',function(pid,c)d.SourceChanged(pid,c:GetID())end)
+ SPCSafeCallbacks.Chain(shared,'DevelopmentInvestment',function(c,reason)if c then d.SourceChanged(c:GetOwner(),c:GetID())end end)
  return d
 end

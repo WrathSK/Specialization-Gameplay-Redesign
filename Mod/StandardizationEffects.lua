@@ -79,22 +79,25 @@ function SPCStandardizationEffects.Start(P,shared)
  end
  local function source(batch,pid,id)
   if batch.sources[id]then return batch.sources[id]end
-  local result={targets={}};batch.sources[id]=result
+  local result={targets={},eligible=false,provenance='CONFIRMED'};batch.sources[id]=result
   local ok,why=pcall(function()
    local c=Players[pid]:GetCities():FindID(id)
-   if not c or c:GetOwner()~=pid then return end
+   if c then assert(type(c:GetOwner())=='number','STD_SOURCE_OWNER_UNKNOWN')end
+   if not c or c:GetOwner()~=pid then result.confirmedLoss=true;return end
    result.reference=ref(c)
    local f=shared.EffectiveFacts.Read(pid,c)
    assert(type(f.specialization)=='string','STD_SOURCE_UNKNOWN')
    if f.specialization~='INDUSTRY'then return end
    assert(type(f.active)=='number' and f.active%1==0 and f.active>=0 and f.active<=4,'STD_ACTIVE_UNKNOWN')
    if f.active<3 then return end
+   result.eligible=true
    local amount=10
    if f.active==4 then
     local state=shared.CityProgressionStore.EngineeringState(pid,c)
     assert(state.token==f.token,'STD_SOURCE_REFERENCE_CHANGED')
     amount=10+2*(state.value and state.value.L or 0)
    end
+   result.ceiling=amount
    local ledger=shared.Standardization.ReadKnowledge(pid,c)
    local groups,bases={},{}
    for id,row in pairs(ledger.learned)do
@@ -125,33 +128,52 @@ function SPCStandardizationEffects.Start(P,shared)
   local input=bridge.Input(pid)
   if input.validity=='CONFIRMED_INVALID'then return {input=input,recipients={}}end
   local view=bridge.CurrentIndustryBatch(pid)
-  assert(view.input.validity=='VERIFIED' and view.input.availability=='AVAILABLE','STD_NETWORK_PENDING')
+  assert(view.input.validity=='VERIFIED' and (view.input.effectAvailability=='AVAILABLE' or view.input.effectAvailability==nil and view.input.availability=='AVAILABLE' or view.input.continuityOnly),'STD_NETWORK_PENDING')
   return view
  end
  local function plan(batch,pid,c,old)
   local wanted,sources,ids={}, {},{[c:GetID()]=true};local reason=batch.networkError
+  local continuity=batch.networkError~=nil or batch.view and batch.view.input.continuityOnly
   if batch.view then for id in pairs(batch.view.recipients[c:GetID()] or {})do ids[id]=true end
-  else for id in pairs(old and old.sources or {})do ids[id]=true end end
+  else for id in pairs(old.sources or {})do ids[id]=true end end
+  local removed=false
   for id in pairs(ids)do
-   local s=source(batch,pid,id);local prior=old and old.sources and old.sources[id]
-   local targets=s.targets
+   local s=source(batch,pid,id);local prior=old.sources[id];local targets=s.targets;local status='CONFIRMED'
    if s.error then
-    reason=s.error
-    -- UNKNOWN can retain only a previously confirmed, same-reference contribution.
+    reason=s.error;local retain=prior and not s.confirmedLoss and (s.reference==nil or prior.reference==s.reference)
+    targets=retain and prior.targets or {}
+    status=retain and 'RETAINED' or 'UNKNOWN'
+    if retain and s.reference==nil then s.reference=prior.reference end
+   elseif continuity and s.eligible then
     targets=prior and prior.reference==s.reference and prior.targets or {}
+    status=prior and prior.reference==s.reference and 'RETAINED' or 'UNKNOWN'
    elseif s.warning then reason=s.warning end
-   if next(targets)then
-    sources[id]={reference=s.reference,targets=targets}
-    for t,amount in pairs(targets)do wanted[t]=math.max(wanted[t] or 0,amount)end
+   if prior and s.ceiling then
+    local limited={}
+    for t,amount in pairs(targets)do limited[t]=math.min(amount,s.ceiling);if limited[t]<amount then removed=true end end
+    targets=limited
+   end
+   if prior and next(prior.targets) and (s.confirmedLoss or not s.error and not s.eligible or s.reference and prior.reference~=s.reference)then removed=true end
+   sources[id]={reference=s.reference,targets=targets,provenance=status,reason=s.error}
+   for t,amount in pairs(targets)do wanted[t]=math.max(wanted[t] or 0,amount)end
+  end
+  if continuity then
+   reason=reason or 'STD_RETAINED_TOPOLOGY'
+   for id in pairs(old.sources)do if not ids[id]then removed=true end end
+   -- The local/network physical result is inseparable. Pending topology never
+   -- adds newly calculated self values; only a confirmed negative may withdraw
+   -- decomposed contributions. A cold installed aggregate uses exception A.
+   if old.loaded or not removed then
+    local retained={}
+    for id,prior in pairs(old.sources)do
+     local targets={};for t,amount in pairs(prior.targets)do targets[t]=amount end
+     retained[id]={reference=prior.reference,targets=targets,provenance=prior.provenance=='UNKNOWN' and 'UNKNOWN' or 'RETAINED',reason=reason}
+    end
+    return old.applied,retained,reason,old.loaded,true
    end
   end
-  -- At load, installed carriers are not source authority. Keep the projection
-  -- only until the first complete proof, then reconcile from current sources.
-  if old and old.loaded and reason then
-   local held={};for t,a in pairs(old.applied)do held[t]=a end;for t,a in pairs(wanted)do held[t]=a end
-   return held,sources,reason,true
-  end
-  return wanted,sources,reason,false
+  if old.loaded and reason then return old.applied,sources,'STD_COLD_AGGREGATE_RETAINED',true,true end
+  return wanted,sources,reason,false,false
  end
  local function observe(pid,c,r,reason,force)
   local b,n,src,maxAmount=0,0,0,0
@@ -178,9 +200,10 @@ function SPCStandardizationEffects.Start(P,shared)
    local installed=present(c)
    old={owner=pid,city=c:GetID(),reference=reference,applied=installed,sources={},loaded=next(installed)~=nil};d.records[k]=old
   end
-  local wanted,sources,reason,held=plan(batch,pid,c,old)
+  local wanted,sources,reason,loaded,held=plan(batch,pid,c,old)
   assert(c:GetOwner()==pid and ref(c)==reference,'STD_RECEIVER_CHANGED')
-  write(c,old.applied,wanted);old.sources=sources;old.loaded=held;d.errors[k]=reason
+  if not held then write(c,old.applied,wanted)end
+  old.sources=sources;old.loaded=loaded;old.retained=held;d.errors[k]=reason
   observe(pid,c,old,reason)
  end
  function d.Audit(scope)
