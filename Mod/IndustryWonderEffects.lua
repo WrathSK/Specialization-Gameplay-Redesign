@@ -1,4 +1,5 @@
 include('NetworkInput')
+include('RuntimeWork')
 include('ExpeditionTrainingDiagnostics')
 -- Derived ordinary-production effects only. No progress injection, N/E/L ledger
 -- reads, topology or Crew writes. Native effect filters each Wonder's own era.
@@ -9,17 +10,21 @@ function SPCIndustryWonderEffects.Start(P,shared)
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'INDUSTRY_WONDER_EFFECT')
  local function key(pid,id)return pid..':'..id end
  local function mark(pid,id)if P.IsTestPlayer(pid)then local q=dirty[pid] or {};dirty[pid]=q;if id==nil then q.all=true else q[id]=true end end end
+ local ownedIndex={}
+ local health=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)
+  for pid in pairs(Players)do if SPCRuntimeWork.Player(scope,pid)then mark(pid,scope and scope.city)end end
+ end)
  local function validate()
   if definitions then return end
-  local list,byEra={},{}
+  local list,byEra,nextOwned={},{},{}
   for _,r in ipairs(P.Rows('SPC_IndustryWonderEffects'))do
    local e=assert(P.Info('Eras',r.EraType),'IW_ERA_MISSING');local b=assert(P.Info('Buildings',r.CarrierType),'IW_CARRIER_MISSING')
    assert(type(e.ChronologyIndex)=='number' and (b.InternalOnly==true or b.InternalOnly==1) and b.CitizenSlots==0 and b.Housing==0,'IW_DEFINITION_INVALID')
    local row={id=r.CarrierType,index=b.Index,era=r.EraType,chronology=e.ChronologyIndex,amount=r.Amount}
    assert(row.amount==10 or row.amount==20 or row.amount==30,'IW_AMOUNT_INVALID')
-   list[#list+1]=row;byEra[r.EraType]=byEra[r.EraType] or {};byEra[r.EraType][r.Amount]=row
+   list[#list+1]=row;nextOwned[row.index]=true;byEra[r.EraType]=byEra[r.EraType] or {};byEra[r.EraType][r.Amount]=row
   end
-  assert(#list>0,'IW_DEFINITION_EMPTY');definitions,eras=list,byEra
+  assert(#list>0,'IW_DEFINITION_EMPTY');definitions,eras,ownedIndex=list,byEra,nextOwned
  end
  local function current(pid)
   local ok,e=P.Call(Players[pid],'GetEra');assert(ok,'IW_CIVILIZATION_ERA_UNKNOWN')
@@ -32,12 +37,12 @@ function SPCIndustryWonderEffects.Start(P,shared)
  local function write(c,old,want)
   local b=c:GetBuildings()
   for _,r in ipairs(definitions)do if old[r.id] and not want[r.id]then
-   if P.HasBuilding(b,r.index)then P.RemoveBuilding(b,r.index)end
+   if P.HasBuilding(b,r.index)then health.Remove(c,r.index)end
    assert(P.HasBuilding(b,r.index)==false,'IW_REMOVE_UNCONFIRMED');old[r.id]=nil
   end end
   for _,r in ipairs(definitions)do if want[r.id] and not old[r.id]then
    local has=P.HasBuilding(b,r.index);assert(type(has)=='boolean','IW_PRESENCE_UNKNOWN')
-   if not has then P.CreateBuilding(c:GetBuildQueue(),r.index)end
+   if not has then health.Create(c,r.index)end
    assert(P.HasBuilding(b,r.index)==true,'IW_ADD_UNCONFIRMED');old[r.id]=true
   end end
  end
@@ -57,6 +62,12 @@ function SPCIndustryWonderEffects.Start(P,shared)
    end
   end
   assert(reference==SPCNetworkInput.Reference(c) and c:GetOwner()==pid,'IW_REFERENCE_CHANGED')
+  -- The session plan is not proof that the native projection still exists.
+  -- Refresh only after all current qualification/era inputs are reliable.
+  local physical=present(c)
+  assert(reference==SPCNetworkInput.Reference(c) and c:GetOwner()==pid,'IW_REFERENCE_CHANGED')
+  for id in pairs(r.applied)do r.applied[id]=nil end
+  for id in pairs(physical)do r.applied[id]=true end
   write(c,r.applied,want);r.era=era;r.active=f.active;d.errors[k]=nil
   local sig=tostring(era)..':'..tostring(f.active)
   if sig~=r.observed then r.observed=sig;trace.Record('INDUSTRY_WONDER_EFFECT',{owner=pid,city=c:GetID(),count=f.active,eraCount=era,readStatus='VERIFIED',reason='IW_ERA_SCOPED'})end
@@ -72,15 +83,23 @@ function SPCIndustryWonderEffects.Start(P,shared)
    end
    local work=dirty;dirty={}
    for pid,q in pairs(work)do
-    local live={}
-    for _,c in Players[pid]:GetCities():Members()do
-     local k=key(pid,c:GetID());live[k]=true
-     if q.all or q[c:GetID()]then
-      local good,why=pcall(reconcile,pid,c)
-      if not good then d.errors[k]=tostring(why):match('IW_[A-Z_]+') or 'IW_READ_PENDING';trace.Record('INDUSTRY_WONDER_EFFECT',{owner=pid,city=c:GetID(),readStatus='PENDING',reason=d.errors[k]})end
-     end
+    local function visit(c)
+     local k=key(pid,c:GetID())
+     local good,why=pcall(reconcile,pid,c)
+     if not good then d.errors[k]=tostring(why):match('IW_[A-Z_]+') or 'IW_READ_PENDING';trace.Record('INDUSTRY_WONDER_EFFECT',{owner=pid,city=c:GetID(),readStatus='PENDING',reason=d.errors[k]})end
     end
-    for k in pairs(d.records)do if k:match('^'..pid..':') and not live[k]then d.records[k]=nil;d.errors[k]=nil end end
+    if not q.all then
+     for id in pairs(q)do
+      local c=Players[pid]:GetCities():FindID(id)
+      if c and c:GetOwner()==pid then P.Count('city_scan');visit(c)end
+     end
+    else
+     local live={}
+     for _,c in Players[pid]:GetCities():Members()do
+      local k=key(pid,c:GetID());live[k]=true;P.Count('city_scan');visit(c)
+     end
+     for k in pairs(d.records)do if k:match('^'..pid..':') and not live[k]then d.records[k]=nil;d.errors[k]=nil end end
+    end
    end
   end)
   d.error=not ok and (tostring(err):match('IW_[A-Z_]+') or 'IW_READ_PENDING') or nil;busy=false
@@ -96,7 +115,7 @@ function SPCIndustryWonderEffects.Start(P,shared)
  hook('CityRemovedFromMap',function(pid)mark(pid)end)
  hook('GameCoreEventPublishComplete',d.Flush)
  hook('LoadScreenClose',function()for pid in pairs(Players)do mark(pid)end;d.Flush()end)
- for _,n in ipairs({'GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged','PlayerEraChanged'})do hook(n,function(pid)mark(pid);d.Flush()end)end
+ hook('PlayerEraChanged',function(pid)mark(pid);d.Flush()end)
  hook('PlayerTurnActivated',function(pid)
   if not P.IsTestPlayer(pid)then return end
   local ok,era=pcall(current,pid)

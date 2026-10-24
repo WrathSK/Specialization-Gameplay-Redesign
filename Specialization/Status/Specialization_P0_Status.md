@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0745
-Implementation Build: B296.323 / modinfo323; stable/live B271.298
+Status Revision: S0746
+Implementation Build: B297.324 / modinfo324; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D4C7_COMPLETE_CONTINUING
+Work State: REFACTOR_S5D4C8_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d4c7 complete:Tradition five exact projection carriers use bounded health causes while authoritative Store age/cursor/history and original turn ordering remain unchanged.11 new/full402 cases have401 properties PASS/1 registered S6 capacity counterexample OPEN. Synchronous publish across private busy and queue busy retains sibling recovery. Remaining effect/network health and transfer closure continue before S6–S10. [Result](Validation/Results/Specialization_B296_Refactor_S5d4c7.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d4c8 complete:IndustryWonderEffects validates actual projection after reliable qualification/era, uses exact native health and existing ROLE consumer with explicit NativeFacts dependency.14 new/full416 cases have415 properties PASS/1 registered S6 capacity counterexample OPEN. Known-city work avoids census and sibling pruning; original presence-only/era/turn/exit boundaries remain. Remaining network effect health and transfer closure continue before S6–S10. [Result](Validation/Results/Specialization_B297_Refactor_S5d4c8.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
 - Primary next: S5d remaining effect-owner health/structural and transfer closure, then S6–S10 under continuing authorization.
+
+## S0746 — B297.324 Industry Wonder exact health and native ROLE closure
+
+S5d4c8 complete:IndustryWonderEffects validates actual projection after reliable qualification/era, uses exact native health and existing ROLE consumer with explicit NativeFacts dependency.14 new/full416 cases have415 properties PASS/1 registered S6 capacity counterexample OPEN. Known-city work avoids census and sibling pruning; original presence-only/era/turn/exit boundaries remain. Remaining network effect health and transfer closure continue before S6–S10.
 
 ## S0745 — B296.323 Tradition projection health preserves authoritative age
 

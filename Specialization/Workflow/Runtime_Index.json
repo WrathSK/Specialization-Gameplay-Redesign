@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "961dde34a6074af46b8fb4ad36861492fd201c1a682bbc9434cd69dff2c51249",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "2ee54c10ad76843f38c5f72f943efc116905f8659a7f11cfca8904701dd28d8a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B297_Refactor_S5d4c8.md",
+      "provenance": "B297.324 Industry Wonder exact health and native ROLE closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -686,9 +686,9 @@
       "provenance": "B292.319 trusted Industry D scope and exact carrier health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustryWonderEffects.lua": {
-      "sha256": "616fd926e481b452729cdab8be6e7944b36ade557c30eb4888e950ed36299211",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
-      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
+      "sha256": "b324ed219e50575e2d10cbe50477c66694cfbc9899c8d2a8f13e58d3686e71d0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B297_Refactor_S5d4c8.md",
+      "provenance": "B297.324 Industry Wonder exact health and native ROLE closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/InheritanceShadow.lua": {
       "sha256": "a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "e20dd78eadcc897d6dac26318f65dcbc0bbdb65572df8f41d8fecb6762bcc6bf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B296_Refactor_S5d4c7.md",
-      "provenance": "B296.323 Tradition projection health preserves authoritative age; local/static evidence only; no deployment/native PASS."
+      "sha256": "9cd8eb41944c3473a479da79517d0567a8d8271fd952576e28b7ef82bc36e98b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B297_Refactor_S5d4c8.md",
+      "provenance": "B297.324 Industry Wonder exact health and native ROLE closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "dafebe71b1458b26af153b78e7782b43180903697549cc96a8c37ae558767e15",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B296_Refactor_S5d4c7.md",
-      "provenance": "B296.323 Tradition projection health preserves authoritative age; local/static evidence only; no deployment/native PASS."
+      "sha256": "efdcf7f06c268af71eec5cf386a1053a9753cde4bf9777bb30e0d02dd67dbf9d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B297_Refactor_S5d4c8.md",
+      "provenance": "B297.324 Industry Wonder exact health and native ROLE closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

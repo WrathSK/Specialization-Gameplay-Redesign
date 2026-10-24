@@ -883,7 +883,7 @@ composition.Run('IndustrySupportBind',{'IndustrySupport'},{},function() shared.I
 
 composition.Run('EngineeringStudyProjects',{'CityProgressionStore','EffectiveFacts','IndustryHistory'},{'EngineeringStudy'},function() include('EngineeringStudyProjects');SPCEngineeringStudyProjects.Start(P,shared) end)
 
-composition.Run('IndustryWonderEffects',{'CityProgressionStore','EffectiveFacts'},{'IndustryWonderEffects'},function() include('IndustryWonderEffects');SPCIndustryWonderEffects.Start(P,shared) end)
+composition.Run('IndustryWonderEffects',{'CityProgressionStore','EffectiveFacts','NativeFacts'},{'IndustryWonderEffects'},function() include('IndustryWonderEffects');SPCIndustryWonderEffects.Start(P,shared) end)
 
 composition.Run('CrewProjectsBind',{'CrewProjects'},{},function() shared.CrewProjects.BindPermanentWrites() end)
 
