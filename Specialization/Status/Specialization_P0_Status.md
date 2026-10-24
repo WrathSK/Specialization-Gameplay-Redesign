@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0752
-Implementation Build: B302.329 / modinfo329; stable/live B271.298
+Status Revision: S0753
+Implementation Build: B303.330 / modinfo330; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_EVIDENCE_POLICY_COMPLETE_CONTINUING
+Work State: REFACTOR_S6A_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-B302.329 runtime unchanged. User-approved Closure storage correction:31 expanded JSON outputs removed from current tree with original published history, exact hash/retrieval index and frozen reports preserved. Future full artifacts default to ignored local storage; Git retains compact review evidence. [Checkpoint](Validation/Results/Refactor_Closure_Storage_2026-10-24.md). Latest runtime simulation remains B302:478 properties PASS/1 registered S6 capacity counterexample OPEN; no new native/deployment PASS. Stable/live/main B271.298.
+S6a separates lazy compact D business facts (bounded2048) from unchanged8-entry raw/detail retention. Strict T03 warm8/9/16/32 now passes without changing its assertion.15 new capacity/report/UNKNOWN/reentry/lifecycle cases and176 impact-selected scenarios PASS; no registered counterexample remains, with later stage obligations still open; overflow reads do not evict the warm business set. Epoch/reference/dirty/write proof and source sample pins prevent stale certification. No save/gameplay/qualification changes; other S6 work continues. [Result](Validation/Results/Specialization_B303_Refactor_S6a.md). Stable/live/main B271.298; no deployment/native PASS.
 
-- User decision:2026-10-24 evidence policy and exact31 tree removals accepted; no history rewriting.
-- User testing: final U5 unless a concrete blocking native fact appears.
-- Primary next: preserve required synchronous NewTargets transfers; continue scoped S5 disposition/S6 shared fact/cache work, then S7–S10 under existing authority.
+- User decision: none.
+- User testing: final U5 unless a specific blocking native fact appears.
+- Primary next: S6 shared anchor/worker facts and remaining dependent hot paths, then S7–S10; no automatic deployment/main/native launch.
+
+## S0753 — B303.330 Separate bounded D business facts from eight report samples
+
+S6a separates lazy compact D business facts (bounded2048) from unchanged8-entry raw/detail retention. Strict T03 warm8/9/16/32 now passes without changing its assertion.15 new capacity/report/UNKNOWN/reentry/lifecycle cases and176 impact-selected scenarios PASS; no registered counterexample remains, with later stage obligations still open; overflow reads do not evict the warm business set. Epoch/reference/dirty/write proof and source sample pins prevent stale certification. No save/gameplay/qualification changes; other S6 work continues.
 
 ## S0752 — Evidence storage correction; runtime unchanged
 

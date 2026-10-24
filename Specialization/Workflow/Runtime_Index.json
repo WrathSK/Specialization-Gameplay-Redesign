@@ -546,9 +546,9 @@
       "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "c92f8c997ac6e8b6b609ac6bb6c07615c6c69683279f32042d40d17fc2b8dcb7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B302_Refactor_S5d4d2.md",
-      "provenance": "B302.329 Native D transfer metadata and detached target recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "dc7d30c4e04c156b90faa9dfeb262f03e068b09023e536ebc180621da4c404f6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B303_Refactor_S6a.md",
+      "provenance": "B303.330 Separate bounded D business facts from eight report samples; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DistrictPrecisionProbe.lua": {
       "sha256": "12a6b244c9694f8303400b544cd747e554ce56c88e9d2bf302a31c22f67aed6c",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "775051f6d00c145145a8af31c20a1476fac0eed70063e003c5d7b0f55c305467",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B302_Refactor_S5d4d2.md",
-      "provenance": "B302.329 Native D transfer metadata and detached target recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "3beac9250455e9e5b638532aec9661a9956b8c8d805dde03b64a07e3160da1e8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B303_Refactor_S6a.md",
+      "provenance": "B303.330 Separate bounded D business facts from eight report samples; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "146b408d76d25456f4f482be9c25f539b9d0d6c67f1aad110eb1a3011caf8d4b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B302_Refactor_S5d4d2.md",
-      "provenance": "B302.329 Native D transfer metadata and detached target recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "f3ef6d3589a2161376306df361ba3e22cde355af2345ff1e8e46a3cc16e42a84",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B303_Refactor_S6a.md",
+      "provenance": "B303.330 Separate bounded D business facts from eight report samples; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

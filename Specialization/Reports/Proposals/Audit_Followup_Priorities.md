@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B303.330 S6a separates lazy compact D business facts (bounded2048) from unchanged8-entry raw/detail retention. Strict T03 warm8/9/16/32 now passes without changing its assertion.15 new capacity/report/UNKNOWN/reentry/lifecycle cases and176 impact-selected scenarios PASS; no registered counterexample remains, with later stage obligations still open; overflow reads do not evict the warm business set. Epoch/reference/dirty/write proof and source sample pins prevent stale certification. No save/gameplay/qualification changes; other S6 work continues. [Result](../../Status/Validation/Results/Specialization_B303_Refactor_S6a.md).
+
 This section is the current scheduling checkpoint and supersedes conflicting timing in the historical sections below. The user explicitly assigned Primary and authorized S0–S10 of the reviewed refactor program, with **U1 after S0/S1**. Current source basis: `25327e7808f39da692b0270727047d1a3988e958`, B271.298 / S0718. The [U1 decisions](Refactor_Program_U1.md#accepted-u1--2026-10-24) are accepted with the user's revisions. D0058/A0182 formalize them before S2; no deployment is authorized. The Advisor originals remain read-only, local review inputs. This existing scheduling record is the only intake map; original finding IDs are retained rather than creating a second registry.
 
 ### Explicit user decisions

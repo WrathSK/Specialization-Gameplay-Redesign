@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="329">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="330">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B302.329：原生D易主元数据与待处理引用隔离。</Description>
+    <Description>B303.330：D业务事实与8条报告缓存解耦，保留UNKNOWN与失效证明</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

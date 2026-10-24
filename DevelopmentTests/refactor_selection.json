@@ -618,20 +618,31 @@
       "test_refactor_s5d4c11",
       "test_refactor_s5d4d1",
       "test_refactor_s5d4d2"
+    ],
+    "S6a": [
+      "test_refactor_baseline.WorkScope",
+      "test_refactor_s6a",
+      "test_refactor_s4a",
+      "test_refactor_s5c1.Districts",
+      "test_refactor_s5d4a",
+      "test_refactor_s5d1.Writers",
+      "test_refactor_s5d4c1.ResearchHealth",
+      "test_refactor_s5d4c2",
+      "test_refactor_s5d4c3",
+      "test_refactor_s5d4c9",
+      "test_refactor_s5d4c10",
+      "test_refactor_s5d4c11",
+      "test_refactor_s4b"
     ]
   },
-  "counterexamples": {
-    "test_refactor_baseline.WorkScope.test_T03_warm_capacity_boundaries": {
-      "code": "S6_D_CACHE_THRASH",
-      "owner_stage": "S6"
-    }
-  },
+  "counterexamples": {},
   "module_to_tests": {
     "Mod/DistrictCompleteness.lua": [
       "test_refactor_baseline.WorkScope",
       "test_refactor_s5c1",
       "test_refactor_s5d4a",
-      "test_refactor_s5d4c3"
+      "test_refactor_s5d4c3",
+      "test_refactor_s6a"
     ],
     "Mod/EffectiveFacts.lua": [
       "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample",
@@ -918,6 +929,11 @@
       "code": "S5_CONSUMER_SCOPE_DISCARDED",
       "owner_stage": "S5d",
       "resolution": "Existing strict exact-one-city assertion passes unchanged; independent13 new actual Apply/Chair/Cross/Aesthetic/Commerce and bounded-kernel cases PASS, including sibling plan/error/carrier retention and busy new causes. B272 before evidence remains frozen."
+    },
+    "test_refactor_baseline.WorkScope.test_T03_warm_capacity_boundaries": {
+      "code": "S6_D_CACHE_THRASH",
+      "owner_stage": "S6",
+      "resolution": "S6a preserves frozen strict zero-capture expectation at8/9/16/32 and adds15 independent cache/UNKNOWN/lifecycle tests; business2048 separated from raw/detail8, overflow degrades only uncached target. Original B272 evidence remains in published history via Refactor_Closure_History.md."
     }
   },
   "reviewed_alarm_changes": [

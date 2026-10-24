@@ -66,8 +66,11 @@ function M.Calculate(catalog,raw,detail)
  return out
 end
 function M.Start(P,shared)
- local cache,catalog,buildingOrder={},nil,nil
- local clock,revision,epoch=0,0,1
+ local cache,reports,catalog,buildingOrder={},{},nil,nil
+ local businessCount,reportCount=0,0
+ local clock,revision,epoch,sampleSerial=0,0,1,0
+ local inFlight={}
+ local BUSINESS_LIMIT,REPORT_LIMIT,CAPTURE_LIMIT=2048,8,8
  local data={};shared.DistrictCompleteness=data
  function data.RegisterConsumer(name,fn)
   assert(shared.FactChanges,'DC_FACT_REGISTRY_UNAVAILABLE')
@@ -140,47 +143,107 @@ function M.Start(P,shared)
  function data.MarkDirty(pid,cid,cause,transfer)
   if not valid(pid)then pid=nil;cid=nil elseif not valid(cid)then cid=nil end
   if pid~=nil and not P.IsTestPlayer(pid)then return end
-  local function mark(e)if e then e.invalidation=(e.invalidation or 0)+1;if not e.dirty then e.dirty=true;count('dirty')end end end
+  local marked={}
+  local function mark(e)if e and not marked[e]then marked[e]=true;e.invalidation=(e.invalidation or 0)+1;if not e.dirty then e.dirty=true;count('dirty')end end end
   if pid~=nil and cid~=nil then mark(cache[key(pid,cid)])
   else for _,e in pairs(cache)do if pid==nil or e.ref.owner==pid then mark(e)end end end
+  -- Uncached overflow reads still need the same synchronous invalidation proof.
+  for _,e in ipairs(inFlight)do
+   if (pid==nil or e.ref.owner==pid)and(cid==nil or e.ref.id==cid)then mark(e)end
+  end
   if shared.FactChanges then
    shared.FactChanges.Emit({owner=pid,cityID=cid,kinds={'D'},cause=cause or 'DISTRICT_FACTS_DIRTY',transfer=transfer})
   end
  end
+ local function forget(k)
+  if cache[k]then cache[k]=nil;businessCount=businessCount-1 end
+  if reports[k]then reports[k]=nil;reportCount=reportCount-1 end
+ end
+ local function reportFor(k,e)
+  local row=reports[k]
+  if row and row.sample==e.sample and same(row.ref,e.ref)then return row end
+ end
+ local function retainRaw(k,e,raw)
+  clock=clock+1
+  if not reports[k]then reportCount=reportCount+1 end
+  reports[k]={ref=clone(e.ref),sample=e.sample,raw=raw,used=clock}
+  if reportCount>REPORT_LIMIT then
+   local oldest,oldKey
+   for rk,row in pairs(reports)do
+    if rk~=k and(not oldest or row.used<oldest)then oldest=row.used;oldKey=rk end
+   end
+   reports[oldKey]=nil;reportCount=reportCount-1
+  end
+ end
+ local function writeVersion()
+  local facts=shared.EffectiveFacts
+  return facts and facts.Version and facts.Version()or nil
+ end
  local function read(pid,c,token,detail)
   count('read');assert(P.IsTestPlayer(pid),'DC_OWNER_NOT_ENABLED')
   local current=ref(pid,c,token);local k=key(pid,current.id);local turn=Game.GetCurrentGameTurn()
+  for _,active in ipairs(inFlight)do if same(active.ref,current)then
+   -- A getter may reenter a consumer before the outer sample is certified.
+   -- Return the last complete value as unavailable, never a false fresh hit.
+   return {schema=1,epoch=epoch,reference=clone(current),validity=active.value and 'VERIFIED'or 'UNKNOWN',
+    availability='TEMPORARILY_UNAVAILABLE',error='DC_CAPTURE_IN_PROGRESS',revision=active.revision,
+    value=not detail and active.value and clone(active.value)or nil}
+  end end
   local e=cache[k]
-  if not e or not same(e.ref,current) then
-   e={ref=current,dirty=true};cache[k]=e
+  if not e or not same(e.ref,current)then
+   if e then forget(k)end
+   e={ref=current,dirty=true}
+   -- Overflow remains readable; do not evict the supported warm business set.
+   if businessCount<BUSINESS_LIMIT then cache[k]=e;businessCount=businessCount+1 end
   end
-  clock=clock+1;e.used=clock
-  local n=0;local oldest,oldKey
-  for ck,ce in pairs(cache) do n=n+1;if ck~=k and (not oldest or ce.used<oldest) then oldest=ce.used;oldKey=ck end end
-  if n>8 then cache[oldKey]=nil end
-  if e.dirty or e.turn~=turn then
+  local retained=cache[k]==e
+  local row=reportFor(k,e)
+  -- A report miss may explicitly reacquire raw facts, but cannot turn a failed
+  -- sample into an idle retry. Normal compact reads never materialize reports.
+  local needsReport=detail and not row and not e.error
+  if e.dirty or e.turn~=turn or needsReport then
    e.dirty=false;e.turn=turn;local ticket=e.invalidation or 0
-   local ok,value,raw=pcall(capture,pid,c)
-   local refOK,finalRef=pcall(ref,pid,c,token)
-   if ok and refOK and same(current,finalRef) and ticket==(e.invalidation or 0) then
-    if not e.value or not same(e.value,value) then revision=revision+1;e.revision=revision;count('publish') end
-    e.value=value;e.raw=raw;e.detail=nil;e.error=nil
-   else e.error=ok and (ticket~=(e.invalidation or 0) and 'DC_CHANGED_DURING_CAPTURE' or 'DC_REFERENCE_CHANGED') or tostring(value);count('failure') end
-  else count('hit') end
+   local readEpoch=epoch;local before=writeVersion()
+   local ok,value,raw
+   if #inFlight<CAPTURE_LIMIT then
+    inFlight[#inFlight+1]=e
+    ok,value,raw=pcall(capture,pid,c)
+    local refOK,finalRef=pcall(ref,pid,c,token)
+    local versionOK,after=pcall(writeVersion)
+    inFlight[#inFlight]=nil
+    local unchanged=ticket==(e.invalidation or 0)and readEpoch==epoch and(not retained or cache[k]==e)
+    if ok and refOK and versionOK and same(current,finalRef)and unchanged and before==after then
+     if not e.value or not same(e.value,value)then revision=revision+1;e.revision=revision;count('publish')end
+     sampleSerial=sampleSerial+1;e.sample=sampleSerial;e.value=value;e.error=nil
+     retainRaw(k,e,raw)
+    else
+     if not ok then
+      local printable,message=pcall(tostring,value);e.error=printable and message:sub(1,180)or 'DC_CAPTURE_FAILED'
+     elseif not unchanged then e.error='DC_CHANGED_DURING_CAPTURE'
+     elseif not versionOK or before~=after then e.error='DC_WRITE_DURING_CAPTURE'
+     else e.error='DC_REFERENCE_CHANGED'end
+     count('failure')
+    end
+   else e.error='DC_CAPTURE_REENTRY_LIMIT';count('failure')end
+  else count('hit')end
   local value=e.value
-  if detail and e.raw then
-   if not e.detail then e.detail=M.Calculate(catalog,e.raw) end
-   value=e.detail
+  if detail then
+   row=reportFor(k,e);value=nil
+   if row then
+    clock=clock+1;row.used=clock
+    if not row.detail then row.detail=M.Calculate(catalog,row.raw)end
+    value=row.detail
+   end
   end
-  return {schema=1,epoch=epoch,reference=clone(current),validity=e.value and 'VERIFIED' or 'UNKNOWN',
-   availability=e.error and 'TEMPORARILY_UNAVAILABLE' or 'READY',error=e.error,
-   revision=e.revision,value=value and clone(value) or nil}
+  return {schema=1,epoch=epoch,reference=clone(current),validity=e.value and 'VERIFIED'or 'UNKNOWN',
+   availability=e.error and 'TEMPORARILY_UNAVAILABLE'or 'READY',error=e.error,
+   revision=e.revision,value=value and clone(value)or nil}
  end
- -- Both projections share one confirmed sample/error/ref/revision owner. The
- -- compact copy keeps all eligibility guards; neither returns mutable cache.
- function data.ReadFacts(pid,c,token)return read(pid,c,token,false) end
- function data.Read(pid,c,token)return read(pid,c,token,true) end
- function data.CacheSize() local n=0;for _ in pairs(cache) do n=n+1 end;return n end
+ -- One fact/error/reference owner, independent bounded report retention.
+ function data.ReadFacts(pid,c,token)return read(pid,c,token,false)end
+ function data.Read(pid,c,token)return read(pid,c,token,true)end
+ function data.CacheSize()return reportCount end -- compatibility: raw/detail LRU remains eight
+ function data.BusinessCacheSize()return businessCount end
  local function hook(source,name,fn)
   local event=P.Field(source,name);if event and event.Add then event.Add(fn) end
  end
@@ -202,7 +265,10 @@ function M.Start(P,shared)
  for _,name in ipairs({'DistrictAddedToMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRemovedFromMap'})do
   hook(Events,name,function(pid,did,cid)dirty({player=pid,city=cid})end)
  end
- hook(Events,'CityRemovedFromMap',function(pid,cid)data.MarkDirty(pid,cid)end)
+ hook(Events,'CityRemovedFromMap',function(pid,cid)
+  if valid(pid)and valid(cid)and P.IsTestPlayer(pid)then forget(key(pid,cid))end
+  data.MarkDirty(pid,cid)
+ end)
  hook(Events,'CityTransfered',function(owner,cid,oldOwner)
   if valid(owner) and valid(cid) and valid(oldOwner)then dirty({transfer={owner=owner,city=cid,oldOwner=oldOwner}})else dirty({})end
  end)
@@ -221,7 +287,7 @@ function M.Start(P,shared)
   local ok,owner=pcall(function()return Map.GetPlotByIndex(plotId):GetOwner()end)
   data.MarkDirty(ok and owner or nil) -- actor may be a foreign raider
  end)
- hook(Events,'LoadScreenClose',function() cache={};catalog=nil;buildingOrder=nil;epoch=epoch+1 end)
+ hook(Events,'LoadScreenClose',function()cache={};reports={};businessCount=0;reportCount=0;catalog=nil;buildingOrder=nil;epoch=epoch+1 end)
  for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'}) do
   hook(Events,name,function(x,y,id,owner)
    if internal(id)then return end
@@ -241,7 +307,18 @@ function M.Start(P,shared)
   end)
  end
  -- Missed native events: next explicit read in a new turn reconciles once.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('DistrictCompleteness',function(pid,c)data.MarkDirty(pid,c and c:GetID() or nil) end)end
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('DistrictCompleteness',function(pid,c)
+  -- Store confirmed a return. The old ID may differ; only the same physical
+  -- location under the original owner identifies stale compact cache entries.
+  if c then
+   local ok,x,y=pcall(function()return c:GetX(),c:GetY()end)
+   if ok then
+    local stale={};for k,e in pairs(cache)do if e.ref.owner==pid and e.ref.x==x and e.ref.y==y then stale[#stale+1]=k end end
+    for _,k in ipairs(stale)do forget(k)end
+   end
+  end
+  data.MarkDirty(pid,c and c:GetID()or nil)
+ end)end
 
 end
 M.Clone=clone
