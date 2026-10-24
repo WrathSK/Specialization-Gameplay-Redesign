@@ -116,9 +116,9 @@
       "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
-      "sha256": "eee3166092cc7219d5a6f770c0e0b905fd9935e5f5b4f255f29730bd3da39dbd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "473f4a033d039639132d20c4bd9f1d76bc0e5f588208b0fed46d16b873d4421f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B299_Refactor_S5d4c10.md",
+      "provenance": "B299.326 Commerce exact health and output dependency closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "9197691ce7c2147a742f06abdd7bbfdf69a8f792ad55fbbe8cffca2537bdbef7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B298_Refactor_S5d4c9.md",
-      "provenance": "B298.325 Culture Network exact health and D closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "f192082254b6d409446b5a9e90bf6b05c354910801c914389163e6175c9d7944",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B299_Refactor_S5d4c10.md",
+      "provenance": "B299.326 Commerce exact health and output dependency closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c2465c546e005fd0c0a09382c5db03516f43dfa4ce199007eb3429f6a90652a7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B298_Refactor_S5d4c9.md",
-      "provenance": "B298.325 Culture Network exact health and D closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "e604e37534ae12d0a9044aeb6843e07ca4fcd7256590bca6ff4db9d8b02867bc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B299_Refactor_S5d4c10.md",
+      "provenance": "B299.326 Commerce exact health and output dependency closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

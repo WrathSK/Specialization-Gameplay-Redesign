@@ -1,4 +1,5 @@
 include('SafeCallbacks')
+include('RuntimeWork')
 include('CommerceModel')
 include('CommerceCalculation')
 include('NetworkInput')
@@ -13,7 +14,9 @@ function M.Start(P,shared)
  local C=SPCCommerceCalculation;local model=SPCCommerceModel;local cp=model.Copy
  local d={views={},revision=0,ready=false,writes=0};shared.Commerce=d
  local views,dependencies,byTarget,dirty,known,samples={},{},{},{},{},{}
- local definitions,legacy,sourceKinds={},{},{};local initialized=false;local busy=false;local writing=false;local permanentBound=false
+ local definitions,legacy,sourceKinds={},{},{};local initialized=false;local busy=false;local permanentBound=false
+ local ownedIndex={}
+ local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.Mark(scope.player,scope.city)end)
  local ownNames={};for _,id in ipairs(M.Owned)do ownNames[id]=true end
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'COMMERCE')
  local function key(pid,id)return pid..':'..id end
@@ -61,27 +64,26 @@ function M.Start(P,shared)
  end
  local function validate()
   if definitions[1]then return end
-  local nextDefinitions,nextLegacy={},{}
-  for _,id in ipairs(M.Owned)do local r=assert(P.Info('Buildings',id),'COMMERCE_DEFINITION_MISSING');nextDefinitions[#nextDefinitions+1]={name=id,id=r.Index}end
+  local nextDefinitions,nextLegacy,nextOwned={},{},{}
+  for _,id in ipairs(M.Owned)do local r=assert(P.Info('Buildings',id),'COMMERCE_DEFINITION_MISSING');nextDefinitions[#nextDefinitions+1]={name=id,id=r.Index};nextOwned[r.Index]=true end
   for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY'})do
    nextLegacy[#nextLegacy+1]=assert(P.Info('Buildings','BUILDING_SPC_DEV_LV3_COM_'..kind),'COMMERCE_LEGACY_DEFINITION_MISSING').Index
   end
   for _,y in ipairs({'SCIENCE','CULTURE','PRODUCTION'})do for bit=0,15 do
    nextLegacy[#nextLegacy+1]=assert(P.Info('Buildings','BUILDING_SPC_B061_'..y..'_'..bit),'COMMERCE_LEGACY_DEFINITION_MISSING').Index
   end end
-  definitions=nextDefinitions;legacy=nextLegacy
+  definitions=nextDefinitions;legacy=nextLegacy;ownedIndex=nextOwned
   -- Reuse implemented identity mapping; future professions are not enabled here.
   for _,domain in ipairs(C.Domains)do sourceKinds[domain.id]=P.Family(domain.id) or false end
  end
  local function present(c,id)local yes=P.HasBuilding(c:GetBuildings(),id);assert(type(yes)=='boolean','COMMERCE_CARRIER_UNKNOWN');return yes end
  local function set(c,id,want)
   if present(c,id)==want then return end
-  writing=true
   local ok,err=pcall(function()
-   if want then P.CreateBuilding(c:GetBuildQueue(),id)else P.RemoveBuilding(c:GetBuildings(),id)end
+   if want then carrierHealth.Create(c,id)else carrierHealth.Remove(c,id)end
    assert(present(c,id)==want,'COMMERCE_WRITE_UNCONFIRMED');d.writes=d.writes+1
   end)
-  writing=false;assert(ok,err)
+  assert(ok,err)
  end
  local function observed(c,observer)
   local total=0
@@ -331,7 +333,12 @@ function M.Start(P,shared)
      binding=true
      assert(ref(x.c)==x.v.reference,'COMMERCE_REFERENCE_CHANGED')
      if not x.hold then
-      applyGold(x.c,x.v.totalGold);set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)
+      -- Retained topology is not a positive reconstruction credential. A
+      -- confirmed reduction still replaces its encoding through the normal path.
+      local previous=views[k]
+      local held=x.network and x.network.continuityOnly and previous and previous.reference==x.v.reference
+       and previous.token==x.v.token and x.v.totalGold>=previous.totalGold
+      if not held then applyGold(x.c,x.v.totalGold);set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)end
       samples[k]=x.samples
      end
     end)
@@ -475,28 +482,65 @@ function M.Start(P,shared)
  hook(GameEvents,'PlayerTurnStarted',function(pid)diagnosticTurn('COMMERCE_TURN_STARTED',pid)end)
  hook(Events,'GameCoreEventPublishComplete',flush)
  hook(Events,'PlayerTurnActivated',function(pid)d.Mark(pid)end)
- for _,event in ipairs({'CityPopulationChanged','CityBuildingsChanged','CityYieldChanged','CityYieldsChanged'})do
-  hook(Events,event,function(pid,id)if not writing then d.Mark(pid,type(id)=='number' and id or nil)end end)
- end
+ SPCRuntimeWork.TargetHook(P,Events,'CityPopulationChanged',function(scope)d.Mark(scope.player,scope.city)end)
  for _,event in ipairs({'GovernmentPolicyChanged','GovernmentChanged','ResearchCompleted','CivicCompleted'})do
-  hook(Events,event,function(pid)if not writing then d.Mark(type(pid)=='number' and pid or nil)end end)
+  hook(Events,event,function(pid)d.Mark(type(pid)=='number' and pid or nil)end)
  end
- for _,event in ipairs({'CityTransfered','CityRemovedFromMap','DistrictAddedToMap','DistrictRemovedFromMap','DistrictPillaged','DistrictRepaired','BuildingPillaged','BuildingRepaired','CityTileOwnershipChanged'})do
-  hook(Events,event,function()if not writing then d.Mark()end end)
+ -- Transfer/loss ownership semantics remain with the existing owner census.
+ hook(Events,'CityTransfered',function()d.Mark()end)
+ SPCRuntimeWork.TargetHook(P,Events,'CityRemovedFromMap',function(scope)d.Mark(scope.player)end)
+ SPCRuntimeWork.TargetHook(P,Events,'CityTileOwnershipChanged',function(scope)d.Mark(scope.player,scope.city)end)
+ local hasD=shared.DistrictCompleteness and type(shared.DistrictCompleteness.RegisterConsumer)=='function'
+ if not hasD then
+  for _,event in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictPillaged'})do
+   SPCRuntimeWork.TargetHook(P,Events,event,function(scope)d.Mark(scope.player,scope.city)end)
+  end
+ end
+ -- Other specialties change the total native yields used as Commerce inputs.
+ -- D deliberately filters all internal carriers, so keep this explicit edge.
+ local function outputRow(index)
+  local ok,row=pcall(P.Info,'Buildings',index)
+  return ok and row or nil
+ end
+ local function outputRelevant(row)
+  if row and ownNames[row.BuildingType]then return false end
+  if hasD and row and type(row.BuildingType)=='string' and not row.BuildingType:match('^BUILDING_SPC_')then return false end
+  return true -- unknown metadata remains conservative, never a guessed city
+ end
+ local function outputAt(x,y,index,owner)
+  if ownedIndex[index]then return end
+  if type(owner)=='number' and owner>=0 and not P.IsTestPlayer(owner)then return end
+  if not outputRelevant(outputRow(index))then return end
+  local ok,c=pcall(function()
+   local district=CityManager and CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)
+   return district and district:GetCity() or CityManager and CityManager.GetCityAt and CityManager.GetCityAt(x,y)
+  end)
+  if ok and c then
+   local good,pid,cid=pcall(function()return c:GetOwner(),c:GetID()end)
+   if good and type(pid)=='number' and type(cid)=='number' and (type(owner)~='number' or owner<0 or owner==pid)then d.Mark(pid,cid);return end
+  end
+  d.Mark(type(owner)=='number' and owner>=0 and owner or nil)
+ end
+ local function guardedOutput(fn,...)
+  local ok,err=pcall(fn,...)
+  if not ok then local good,text=pcall(tostring,err);d.sourceError=good and text:sub(1,180) or 'COMMERCE_OUTPUT_MARK_FAILED'end
  end
  for _,event in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'})do
-  hook(Events,event,function(x,y,index,owner)
-   local row=P.Info('Buildings',index)
-   if writing or row and ownNames[row.BuildingType]then return end
-   local ok,c=pcall(function()return CityManager and CityManager.GetCityAt(x,y)end)
-   if ok and c then d.Mark(c:GetOwner(),c:GetID());return end
-   d.Mark(type(owner)=='number' and owner or nil)
-  end)
+  hook(Events,event,function(...)guardedOutput(outputAt,...)end)
  end
+ hook(GameEvents,'BuildingPillageStateChanged',function(pid,cid,index)
+  if ownedIndex[index]then return end
+  guardedOutput(function()
+   if outputRelevant(outputRow(index))then
+    local valid=type(pid)=='number' and pid>=0 and pid%1==0
+    d.Mark(valid and pid or nil,valid and type(cid)=='number' and cid>=0 and cid%1==0 and cid or nil)
+   end
+  end)
+ end)
  for _,event in ipairs({'CityBuilt','OnBuildingConstructed','OnDistrictConstructed'})do
-  -- Construction events are not uniformly (owner,cityID). In particular
-  -- OnDistrictConstructed is (owner,districtType,x,y); do not route its type as a city.
-  hook(GameEvents,event,function(pid)if not writing then d.Mark(type(pid)=='number' and pid or nil)end end)
+  -- Retain guarded original optional construction sources until their own
+  -- signature/producer closure is reviewed; never route district type as cityID.
+  hook(GameEvents,event,function(pid)d.Mark(type(pid)=='number' and pid or nil)end)
  end
  store.RegisterExit('Commerce',function(c,loss)
   assert(store.IsExitTarget(c,loss),'COMMERCE_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,M.Owned)

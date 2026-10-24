@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="325">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="326">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B298.325：文化网络精确健康、D传播和待确认保持。</Description>
+    <Description>B299.326：商业化精确健康与跨专业收益通知。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

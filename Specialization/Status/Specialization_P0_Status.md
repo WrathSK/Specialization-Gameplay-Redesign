@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0747
-Implementation Build: B298.325 / modinfo325; stable/live B271.298
+Status Revision: S0748
+Implementation Build: B299.326 / modinfo326; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D4C9_COMPLETE_CONTINUING
+Work State: REFACTOR_S5D4C10_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d4c9 complete:CultureNetwork exact32-ID health and D source-aware bindings retain reverse scope and independent receiver qualification.14 new/full430 cases have429 properties PASS/1 registered S6 capacity counterexample OPEN. D1 pending/continuityOnly cannot physically replay unchanged retained positives; confirmed logical exits still reconcile. Commerce/Standardization and transfer closure continue before S6–S10. [Result](Validation/Results/Specialization_B298_Refactor_S5d4c9.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d4c10 complete:Commerce exact32-ID health/witness replaces blanket writing suppression while preserving nonown-SPC output dependencies and D structural closure.14 new/full444 cases have443 properties PASS/1 registered S6 capacity counterexample OPEN. Pending/continuityOnly cannot reconstruct retained positives; confirmed reductions and exits remain. Standardization and transfer closure continue before S6–S10. [Result](Validation/Results/Specialization_B299_Refactor_S5d4c10.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
 - Primary next: S5d remaining effect-owner health/structural and transfer closure, then S6–S10 under continuing authorization.
+
+## S0748 — B299.326 Commerce exact health and output dependency closure
+
+S5d4c10 complete:Commerce exact32-ID health/witness replaces blanket writing suppression while preserving nonown-SPC output dependencies and D structural closure.14 new/full444 cases have443 properties PASS/1 registered S6 capacity counterexample OPEN. Pending/continuityOnly cannot reconstruct retained positives; confirmed reductions and exits remain. Standardization and transfer closure continue before S6–S10.
 
 ## S0747 — B298.325 Culture Network exact health and D closure
 
