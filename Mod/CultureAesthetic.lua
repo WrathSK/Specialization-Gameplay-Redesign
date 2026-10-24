@@ -217,7 +217,7 @@ function M.Start(P,shared)
   end)
  end
  for _,name in ipairs({'BuildingPillaged','BuildingRepaired','DistrictRemovedFromMap','DistrictBuildProgressChanged',
-  'DistrictPillaged','DistrictRepaired','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','CityTransfered','CityRemovedFromMap'})do
+  'DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap'})do
   bind(Events,name,function()d.Audit()end)
  end
  local lastTurn

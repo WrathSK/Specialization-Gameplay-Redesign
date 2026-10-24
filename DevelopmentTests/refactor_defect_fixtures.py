@@ -11,7 +11,7 @@ def commerce():
 
 def fact_publication_profile(l, automatic=True):
     l.execute((ROOT/'Mod/FactChanges.lua').read_text());l.execute((ROOT/'Mod/FactConsumerBindings.lua').read_text())
-    l.execute("SPCFactChanges.New(shared);SPCFactConsumerBindings.New(shared)")
+    l.execute((ROOT/'Mod/NativeFacts.lua').read_text());l.execute("SPCFactChanges.New(shared);if not shared.NativeFacts then SPCNativeFacts.New(P,shared)end;SPCFactConsumerBindings.New(shared)")
     if automatic:
         l.execute("""
         fixtureDrain=false
@@ -20,6 +20,10 @@ def fact_publication_profile(l, automatic=True):
          shared.FactChanges.Flush();shared.FactBindings.Flush()
          -- Existing dirty consumers drain at their real publish hook.
          Events.GameCoreEventPublishComplete.Fire();fixtureDrain=false
+        end
+        if fire and not fixtureNativeFire then
+         fixtureNativeFire=fire
+         fire=function(...)fixtureNativeFire(...);fixturePublication()end
         end
         for _,name in ipairs({'Refresh','CheckEvidence','Receive'})do
          local original=net[name]
@@ -70,7 +74,7 @@ end
         c.execute('_G[...]=module(select(2,...))',symbol,symbol[3:])
     # Includes are isolated module doubles except the composition helper introduced by S3.
     def include(name):
-        if name in ('RuntimeComposition','SafeCallbacks','ReadinessLatch','FactChanges','FactConsumerBindings','EffectiveFacts','RuntimeWork') and (ROOT/'Mod'/f'{name}.lua').exists():return c.load(name)
+        if name in ('RuntimeComposition','SafeCallbacks','ReadinessLatch','FactChanges','FactConsumerBindings','EffectiveFacts','RuntimeWork','NativeFacts') and (ROOT/'Mod'/f'{name}.lua').exists():return c.load(name)
         if name=='Probe':return
         if name=='ReadinessSummary':
             c.execute('SPCReadinessSummary={Start=function()return {Seal=function()sealed=true end}end}')

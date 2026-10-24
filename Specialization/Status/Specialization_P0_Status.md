@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0736
-Implementation Build: B287.314 / modinfo314; stable/live B271.298
+Status Revision: S0737
+Implementation Build: B288.315 / modinfo315; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_PAUSED_FOR_CLIENT_RESTART
+Work State: REFACTOR_S5D4B1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d4a complete:13 new live D/scope and actual consumer cases PASS; full273 cases have272 passing properties/1 previously registered S6 capacity counterexample OPEN. DistrictCompleteness uses verified live structural events and exact city scope; reliable event owner wins on coordinate-transfer conflict. ResearchSupport/Housing receive D. Remaining native-owner/exact-health migration and GPP relay retirement are not complete. User requested a safe stop for client restart; current batch committed/pushed before pause, no next batch begun. [Result](Validation/Results/Specialization_B287_Refactor_S5d4a.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d4b1 governor-only migration complete:NativeFacts normalizes four governor Events into ACTIVE, validates supported owners and preserves cross-owner/UNKNOWN scopes.19 declared consumer/Bridge entries depend on it; IndustrySupport retains native owner-wide recovery without reopening unrelated UI retries.288 selected cases:287 passing properties/1 registered S6 capacity counterexample OPEN. Worker/UI relay, exact carrier health, transfer and turn duties remain subsequent S5d slices. User resumed after client restart; continuing already-authorized work without deployment/main. [Result](Validation/Results/Specialization_B288_Refactor_S5d4b1.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Paused at user request for client restart. On user continuation resume already-authorized S5d4b native fact owner/exact health coverage and GPP relay retirement, then S6–S10; no new routine authorization required.
+- Primary next: S5d4b2 worker/UI normalization and governor relay removal, then exact health/structural and transfer closure→S6–S10 under continuing authorization.
+
+## S0737 — B288.315 declared governor fact owner
+
+S5d4b1 governor-only migration complete:NativeFacts normalizes four governor Events into ACTIVE, validates supported owners and preserves cross-owner/UNKNOWN scopes.19 declared consumer/Bridge entries depend on it; IndustrySupport retains native owner-wide recovery without reopening unrelated UI retries.288 selected cases:287 passing properties/1 registered S6 capacity counterexample OPEN. Worker/UI relay, exact carrier health, transfer and turn duties remain subsequent S5d slices. User resumed after client restart; continuing already-authorized work without deployment/main.
 
 ## S0736 — B287.314 live D structural signals and safe restart checkpoint
 

@@ -88,7 +88,7 @@ function M.Start(P,shared)
   data.Flush()
  end)
  -- Age is settled by Store's earlier listener. No new world/district scan.
- for _,event in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted'})do hook(event,data.Mark)end
+ hook('PlayerTurnActivated',data.Mark)
  hook('GameCoreEventPublishComplete',data.Flush)
  store.RegisterExit('ResearchTradition',function(c,loss)
   local ids={};for _,n in ipairs(amounts)do ids[#ids+1]=name(n)end

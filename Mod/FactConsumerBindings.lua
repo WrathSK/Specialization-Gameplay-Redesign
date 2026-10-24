@@ -40,7 +40,7 @@ function SPCFactConsumerBindings.New(shared)
   {target='CultureNetwork',method='Audit',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'INSIGHTS'}},
   {target='EngineeringStudy',method='CreditChanged',kinds={'HISTORY'},topics={'WONDER_CREDIT'}},
   {target='DialogueProjects',method='RefreshAccess',cityOnly=true,kinds=role},
-  {target='Commerce',method='Mark',kinds={'NETWORK'}},
+  {target='Commerce',method='Mark',kinds={'ACTIVE','NETWORK'}},
   {target='CapitalInvestment',method='Mark',kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK'}},
   {target='DevelopmentInvestment',method='Audit',kinds={'NETWORK'}},
  }

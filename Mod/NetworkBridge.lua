@@ -857,12 +857,12 @@ function SPCNetworkBridge.Start(P,shared)
  local function rebuildPlayer(pid)
   if integer(pid) then d.Refresh(pid) else d.Rebuild() end
  end
- for _,name in ipairs({'PlayerTurnActivated','GovernorChanged','GovernorPromoted'}) do
+ for _,name in ipairs({'PlayerTurnActivated'}) do
   local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(rebuildPlayer) end
  end
- -- Assignment/establishment carry both city owner and governor owner; retain the
- -- existing full safety scope, including cross-owner governor assignments.
- for _,name in ipairs({'GovernorAssigned','GovernorEstablished','CapitalCityChanged','CityAddedToMap'}) do
+ -- Governor changes arrive through NativeFacts/ACTIVE. Independent capital
+ -- and city-membership causes retain their existing full safety scope.
+ for _,name in ipairs({'CapitalCityChanged','CityAddedToMap'}) do
   local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(d.Rebuild) end
  end
  SPCRuntimeWork.StartReady(P,shared,'NetworkBridge',function()d.ready=true;d.Rebuild()end)

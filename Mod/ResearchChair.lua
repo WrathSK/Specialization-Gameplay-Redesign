@@ -115,7 +115,7 @@ function M.Start(P,shared)
  -- Shared D/P0-C owns invalidation and registers first; reuse its confirmed view.
  for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
   'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap',
-  'CityWorkerChanged','CityFocusChanged','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'}) do
+  'CityWorkerChanged','CityFocusChanged','PlayerTurnActivated'}) do
   SPCRuntimeWork.Hook(P,Events,n,data.Audit)
  end
  for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,data.Audit) end

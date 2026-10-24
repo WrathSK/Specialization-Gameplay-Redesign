@@ -198,11 +198,7 @@ function SPCDialogueEffects.Start(P,shared)
  end
  local function hook(name,fn)local e=P.Field(Events,name);if e and e.Add then e.Add(fn)end end
  hook('LoadScreenClose',function()d.Audit()end)
- -- Native qualification changes mark only: read after the engine's existing
- -- publish boundary, independent of the retired writer and the GPP UI relay.
- for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted'})do
-  SPCRuntimeWork.TargetHook(P,Events,name,mark)
- end
+ -- NativeFacts owns governor qualification causes; declared ACTIVE delivery is deferred.
  hook('CityTransfered',function(owner,cid,oldOwner)
   if type(owner)=='number' and owner>=0 then mark({player=owner,city=type(cid)=='number' and cid or nil})else mark()end
   if type(oldOwner)=='number' and oldOwner>=0 and oldOwner~=owner then mark({player=oldOwner})end

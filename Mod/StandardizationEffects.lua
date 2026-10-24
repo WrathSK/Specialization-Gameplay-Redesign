@@ -297,9 +297,7 @@ function SPCStandardizationEffects.Start(P,shared)
   if not initialized then all()end;flush()
  end)
  hook(Events,'PlayerTurnActivated',function(pid)mark(pid);flush()end)
- for _,name in ipairs({'GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted'})do
-  hook(Events,name,function(pid)mark(pid);flush()end)
- end
+ -- NativeFacts owns governor qualification causes; declared ACTIVE delivery is deferred.
  hook(Events,'CityTransfered',function()initialized=false;cleaned={};all();flush()end)
  -- Store confirmed loss owns destination reference proof; no guessed coordinates.
  local store=shared.CityProgressionStore

@@ -96,7 +96,7 @@ function SPCLv2Housing.Start(P,shared)
  end
  local function bind(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
  SPCRuntimeWork.StartReady(P,shared,'Lv2Housing',function() data.ready=true;data.errors={};data.Audit({load=true})end)
- for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted',
+ for _,n in ipairs({'PlayerTurnActivated',
   'CityTransfered','CityRemovedFromMap','BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
   'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'}) do
   SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)

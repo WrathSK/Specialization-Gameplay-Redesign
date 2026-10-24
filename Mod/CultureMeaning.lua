@@ -210,15 +210,7 @@ function SPCCultureMeaning.Start(P,shared)
   if ok and c and (owner==nil or c:GetOwner()==owner)then d.Audit({player=c:GetOwner(),city=c:GetID()})
   else d.Audit({player=owner})end
  end)end
- -- Only signatures already verified by the current UI/Gameplay paths are scoped.
- for _,name in ipairs({'GovernorAssigned','GovernorEstablished'})do bind(Events,name,function(owner,cid,governorOwner)
-  if type(owner)=='number' and type(cid)=='number'then
-   -- Assignment can also deactivate the former city; that ID is absent here.
-   d.Audit({player=owner,city=name=='GovernorEstablished' and cid or nil})
-   if type(governorOwner)=='number' and governorOwner~=owner then d.Audit({player=governorOwner})end
-  else d.Audit()end
- end)end
- for _,name in ipairs({'GovernorPromoted','GovernorChanged'})do bind(Events,name,function(pid)d.Audit({player=type(pid)=='number' and pid or nil})end)end
+ -- NativeFacts owns governor qualification causes; declared ACTIVE delivery is deferred.
  for _,name in ipairs({'DistrictRemovedFromMap','DistrictBuildProgressChanged'})do bind(Events,name,function(pid,districtID,cid)
   d.Audit({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})
  end)end

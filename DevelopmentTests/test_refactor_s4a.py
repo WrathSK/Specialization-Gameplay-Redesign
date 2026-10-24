@@ -1,14 +1,22 @@
 """S4a actual recovery producers/consumers. No live/native acceptance."""
+import ast
 import unittest
-from refactor_harness import Context,ROOT,TrackedLua51,legacy_source_observation
+from refactor_harness import Context,ROOT,TrackedLua51,legacy_source_observation,separate_legacy_event_namespaces
 from refactor_defect_fixtures import greatworks,gc
 
 def industry():
-    import test_b234_standardization as old
-    old.LuaRuntime=TrackedLua51
-    case=old.Support()
-    with legacy_source_observation():case.setUp()
-    return case.l
+    tree=ast.parse((ROOT/'DevelopmentTests/test_arch_v2_c2.py').read_text())
+    fix=next(ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='FIX' for t in n.targets))
+    l=TrackedLua51(unpack_returned_tuples=True)
+    l.globals().include=lambda n:l.execute((ROOT/'Mod'/f'{n}.lua').read_text()) if n!='Probe' else None
+    with legacy_source_observation():
+        l.execute(separate_legacy_event_namespaces(fix))
+        l.execute("P.Count=function()end;P.Families={DISTRICT_CAMPUS='RESEARCH',DISTRICT_INDUSTRIAL_ZONE='INDUSTRY'};P.Family=function(t)return P.Families[t]end;for _,v in pairs(districts)do v.IsPillaged=function()return false end end")
+        for name in ('FactChanges','NativeFacts','FactConsumerBindings'):l.execute((ROOT/'Mod'/f'{name}.lua').read_text())
+        l.execute("SPCFactChanges.New(shared);SPCNativeFacts.New(P,shared);SPCFactConsumerBindings.New(shared);Events.GameCoreEventPublishComplete.Add(function()shared.FactChanges.Flush();shared.FactBindings.Flush()end)")
+        l.execute((ROOT/'Mod/IndustrySupport.lua').read_text())
+        l.execute("SPCIndustrySupport.Start(P,shared);d=shared.IndustrySupport;d.BindPermanentWrites();sync=true")
+    return l
 
 def load_industry_ui(l):
     with legacy_source_observation():l.execute((ROOT/'Mod/UI/IndustryRefresh.lua').read_text())

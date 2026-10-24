@@ -137,9 +137,7 @@ function M.Start(P,shared)
  end
  local function bind(name,fn)local e=P.Field(Events,name);if e and e.Add then e.Add(fn)end end
  bind('LoadScreenClose',function()d.ready=false;d.records={};d.errors={};ids={};d.Audit()end)
- for _,name in ipairs({'GovernorAssigned','GovernorChanged','GovernorPromoted','GovernorEstablished'})do
-  bind(name,function(pid) d.Audit({player=type(pid)=='number' and pid or nil})end)
- end
+ -- NativeFacts owns governor qualification causes; declared ACTIVE delivery is deferred.
  bind('PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then d.Audit({player=pid})end end)
  bind('CityBuildingsChanged',function(pid,cid)if d.writing~=tostring(pid)..':'..tostring(cid)then d.Audit({player=pid,city=cid})end end)
  store.RegisterExit('CultureInsightsTourism',function(c,loss)

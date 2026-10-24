@@ -441,7 +441,6 @@ function M.Start(P,shared)
  local function bind(name,fn)local e=P.Field(Events,name);if e and e.Add then e.Add(fn)end end
  bind('LoadScreenClose',function()d.Audit()end) -- duplicate notifications do not erase rebuilt effects
  bind('GameCoreEventPublishComplete',flush)
- for _,event in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted'})do bind(event,function(pid)d.Mark(type(pid)=='number' and pid or nil)end)end
  for _,event in ipairs({'CityBuildingsChanged','DistrictPillaged','DistrictRepaired','DistrictRemovedFromMap','DistrictBuildProgressChanged'})do
   local eventName=event
   bind(event,function(pid,id,cid)

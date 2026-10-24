@@ -114,6 +114,11 @@ function SPCIndustrySupport.Start(P,shared)
  end
  function data.BindPermanentWrites()
   if shared.FactChanges then shared.FactChanges.RegisterConsumer('IndustrySupport',function(e)
+   local causes=e.causes or {}
+   if causes.NATIVE_GOVERNOR_ASSIGNED or causes.NATIVE_GOVERNOR_ESTABLISHED
+    or causes.NATIVE_GOVERNOR_CHANGED or causes.NATIVE_GOVERNOR_PROMOTED then
+    defer({player=e.player,city=e.city});return
+   end
    if type(e.city)~='number'then return end
    local player=Players[e.player];local c=player and player:GetCities():FindID(e.city)
    if c and c:GetOwner()==e.player then data.MarkCity(c)end
@@ -149,7 +154,7 @@ function SPCIndustrySupport.Start(P,shared)
   local district=CityManager.GetDistrictAt(x,y);local c=district and district:GetCity()
   if c and c:GetOwner()==pid and district:GetType()==index then data.MarkCity(c);data.FlushPending(pid)end
  end)
- for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','DistrictPillaged','DistrictRepaired'}) do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap','DistrictPillaged','DistrictRepaired'}) do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt','OnPillage'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('IndustrySupport',targets.Exit(function(c,loss)

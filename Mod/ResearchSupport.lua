@@ -54,7 +54,7 @@ function SPCResearchSupport.Start(P,shared)
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
  SPCRuntimeWork.StartReady(P,shared,'ResearchSupport',function() data.ready=true;data.errors={};data.Audit({load=true})end)
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictRemovedFromMap','DistrictBuildProgressChanged',
-  'GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','DistrictPillaged','DistrictRepaired'}) do
+  'DistrictPillaged','DistrictRepaired'}) do
   SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)
  end
  for _,n in ipairs({'OnDistrictConstructed','CityBuilt','OnPillage'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end

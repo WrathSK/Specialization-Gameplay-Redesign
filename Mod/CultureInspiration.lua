@@ -177,12 +177,7 @@ function SPCCultureInspiration.Start(P,shared)
  bind('LoadScreenClose',function()
   d.ready=false;d.startupFailed=nil;d.startupError=nil;d.records={};d.errors={};d.pending=nil;pendingCleanup={};ids=nil;d.Audit()
  end)
- for _,name in ipairs({'GovernorAssigned','GovernorEstablished'})do bind(name,function(pid,cid,governorOwner)
-  if type(pid)=='number' and type(cid)=='number'then d.Audit({player=pid,city=name=='GovernorEstablished' and cid or nil})
-   if type(governorOwner)=='number' and governorOwner~=pid then d.Audit({player=governorOwner})end
-  else d.Audit()end
- end)end
- for _,name in ipairs({'GovernorChanged','GovernorPromoted'})do bind(name,function(pid)d.Audit({player=type(pid)=='number' and pid or nil})end)end
+ -- NativeFacts owns governor qualification causes; declared ACTIVE delivery is deferred.
  bind('CityBuildingsChanged',function(pid,cid)
   if d.writing~=key(pid,cid)then d.Audit({player=pid,city=cid})end
  end) -- id-only native event: also repairs a removed/pillaged owned carrier.

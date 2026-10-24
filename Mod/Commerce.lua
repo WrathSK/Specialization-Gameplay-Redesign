@@ -478,7 +478,7 @@ function M.Start(P,shared)
  for _,event in ipairs({'CityWorkerChanged','CityPopulationChanged','CityFocusChanged','CityBuildingsChanged','CityYieldChanged','CityYieldsChanged'})do
   hook(Events,event,function(pid,id)if not writing then d.Mark(pid,type(id)=='number' and id or nil)end end)
  end
- for _,event in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','GovernmentPolicyChanged','GovernmentChanged','ResearchCompleted','CivicCompleted'})do
+ for _,event in ipairs({'GovernmentPolicyChanged','GovernmentChanged','ResearchCompleted','CivicCompleted'})do
   hook(Events,event,function(pid)if not writing then d.Mark(type(pid)=='number' and pid or nil)end end)
  end
  for _,event in ipairs({'CityTransfered','CityRemovedFromMap','DistrictAddedToMap','DistrictRemovedFromMap','DistrictPillaged','DistrictRepaired','BuildingPillaged','BuildingRepaired','CityTileOwnershipChanged'})do

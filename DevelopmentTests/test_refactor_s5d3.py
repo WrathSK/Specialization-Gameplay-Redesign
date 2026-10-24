@@ -22,7 +22,9 @@ class Dialogue(unittest.TestCase):
         helper=Effects();helper.sql=self.sql
         extra="\nEvents.GameCoreEventPublishComplete={list={}};Events.GameCoreEventPublishComplete.Add=function(f)table.insert(Events.GameCoreEventPublishComplete.list,f)end;GameEvents.BuildingPillageStateChanged={list={}};GameEvents.BuildingPillageStateChanged.Add=function(f)table.insert(GameEvents.BuildingPillageStateChanged.list,f)end"
         with legacy_source_observation(),patch.object(ae,'FIX',ae.FIX+extra):l=helper.runtime(real=real,boot=boot)
-        l.execute("legacyCalls=0;dialogue.Audit=function()legacyCalls=legacyCalls+1;error('RETIRED_RELAY_FORBIDDEN')end;function publish()fire('GameCoreEventPublishComplete')end;function pillage(pid,cid,id,state)for _,f in ipairs(GameEvents.BuildingPillageStateChanged.list)do f(pid,cid,id,state)end end")
+        from refactor_defect_fixtures import fact_publication_profile
+        with legacy_source_observation():fact_publication_profile(l,False)
+        l.execute("legacyCalls=0;dialogue.Audit=function()legacyCalls=legacyCalls+1;error('RETIRED_RELAY_FORBIDDEN')end;function publish()shared.FactChanges.Flush();shared.FactBindings.Flush();fire('GameCoreEventPublishComplete')end;function pillage(pid,cid,id,state)for _,f in ipairs(GameEvents.BuildingPillageStateChanged.list)do f(pid,cid,id,state)end end")
         return l
     def test_governor_independent_read_at_publish_without_ui_or_legacy_relay(self):
         l=self.fixture();l.execute("assert(total(a)==5 and total(b)==10);a.active=1;fire('GovernorAssigned',0,1,0);assert(total(a)==5);publish();assert(total(a)==0 and total(b)==10 and legacyCalls==0);a.active=3;fire('GovernorEstablished',0,1,0);publish();assert(total(a)==5 and a.history.total==5 and legacyCalls==0)")
