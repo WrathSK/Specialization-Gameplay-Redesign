@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "STABLE_DEPLOYED_USER_TEST_REQUIRED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0057",
     "research": "D0040",
@@ -11,53 +11,46 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0181",
-    "status": "S0718",
-    "runtime": "B271.298 / modinfo298",
+    "status": "S0757",
+    "runtime": "B307.334 / modinfo334",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-  "goal": "B271: bounded read-only treasury/event observations (A/B default on, C default off), collector summaries, and explicitly decided internal-carrier Pillage=0; user-approved PR6 promotion and deployment completed.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
+  "goal": "Disable only B271 A/B/C timing probes in a main-based candidate; preserve D4 and all gameplay. No main promotion/deployment yet.",
   "implementation_authorized": true,
   "context": [
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
       "kind": "full",
-      "reason": "Approved batch, evidence and deployment boundary."
-    },
-    {
-      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-      "kind": "section",
-      "selector": "## A0181 — B271有界观察与内部载体数据策略",
-      "reason": "Read-only diagnostic contract and user D4 decision."
+      "reason": "User-approved narrow probe withdrawal, validation and independent deployment boundary."
     }
   ],
   "dependencies": [
-    "Existing TRAIN protocol/bounds; PerformanceCounters scalar callback counters; NetworkBridge confirmation outlet.",
-    "Buildings_XP2 engine schema and post-SPC-definition load order; original actual building/district predicates."
+    "Existing Gameplay/UI EventTimingDiagnostics Start calls and guarded NetworkBridge timing observer.",
+    "Existing B271 internal-carrier policy, original PerformanceCounters/memory diagnostics and TRAIN collector retained."
   ],
   "old_writers": [
-    "All gameplay writers, exact exits and save contracts retained; ResearchApply/Infrastructure/Chair pillage repair kept.",
-    "No GC coordinator or policy changes; legacy definitions remain inactive/isolated as before."
+    "All business writers and persistence remain byte-identical to B271 except the disabled diagnostic request response."
   ],
   "conditional_context": [],
   "non_scope": [
     "Gameplay amounts/eligibility/Property schema/Design changes, GC changes, timers/frame listeners and save migration."
   ],
   "validation": {
-    "depth": "Lua5.1 bounded diagnostics, copied actual engine DB, current native-input models, selected existing regressions and static package checks",
-    "local": "LOCAL_SIMULATION_PASS within B271 report scope; historical culture fixture failures reproduced on unchanged HEAD are explicitly excluded from PASS",
-    "user": "USER_GAME_TEST_REQUIRED: 2-3 local turns, C enabled, collector active; pillage/disaster if observed."
+    "depth": "Default-off Lua5.1 tests plus retained B271, B269 memory/B270 scope and unchanged SQL on readonly engine DB memory copy.",
+    "local": "43 selected PASS; one unchanged historical SQL precondition FAIL explicitly excluded and covered by independent current DB test.",
+    "user": "USER_GAME_TEST_REQUIRED: same-campaign bounded performance comparison after approved activation."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "B271.298 DEPLOYED from cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; receipt B271.298-cc71f9b-stable-deploy.json"
+    "deployment": "UNCHANGED_B271_STABLE"
   }
 }

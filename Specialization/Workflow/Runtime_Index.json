@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "fac105c978eb15020c8308210259fb2b69b487b3f2f9b9e3282d2cce841091a9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "5e0bb02ec8184bee3e150d75c31346c4767829219f4f7e861b3588cd2e41ba5a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
+      "provenance": "B307.334 approved diagnostic disable; original gameplay and D4 retained; candidate not deployed."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -786,9 +786,9 @@
       "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/Probe.lua": {
-      "sha256": "4e510b3d2445efb032336b5d04570e8cb34ba089e1c14d516c370f0b8998c9d7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "457b1de53ec47165bf81253b51c3bc4857aaf2a2d36afc2ffbd69b8cdb1d98b7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
+      "provenance": "B307.334 approved diagnostic disable; original gameplay and D4 retained; candidate not deployed."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "76b1678edca5992a25ddff7bbeb48daa1b8282cfde7b73581aae73d770a59559",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "3ad9e78eff64692a66a08b55283d41798f7284bc78c991b2b6a9900ec3578d5c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
+      "provenance": "B307.334 approved diagnostic disable; original gameplay and D4 retained; candidate not deployed."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1556,9 +1556,9 @@
       "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/EventTimingDiagnostics.lua": {
-      "sha256": "dcb732f80365b06d70fa5f28df5febcb99001d731b22d68071b3a76093d5e16b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "5ff154ee0aa59d206a0c2e9d1eab161fb28d00bc6883815c6862c8409dd59662",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
+      "provenance": "B307.334 approved diagnostic disable; original gameplay and D4 retained; candidate not deployed."
     },
     "Mod/Data/InternalCarrierPillage.sql": {
       "sha256": "9e1fd53c44eb32f37d9ba0dc5efb1d0e3a9233b565eca8af94fd2f0a19b5ba72",
@@ -1566,5 +1566,5 @@
       "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     }
   },
-  "source_review": "B271 approved source promoted through PR6 and deployed;312/312 source/live MATCH. Scoped local validation inherited; native acceptance pending."
+  "source_review": "B307.334 narrow stable candidate only; no deployment or native performance claim."
 }
