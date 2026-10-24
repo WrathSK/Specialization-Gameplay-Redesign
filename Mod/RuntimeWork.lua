@@ -277,22 +277,39 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
  function t.Forget(pid,cid)
   local k=tostring(pid)..':'..tostring(cid);t.pending[k]=nil;t.exits[k]=nil;t.known[k]=nil
  end
- -- Shared reset is registered before the first consumer load callback.
- if not shared.RuntimeRetirementHook then
-  shared.RuntimeRetirementHook=true
-  local e=P.Field(Events,'LoadScreenClose')
-  if e and e.Add then e.Add(function()shared.RuntimeRetirementCache={}end)end
+ return t
+end
+
+-- Composition-owned; never installed lazily under a possibly failed consumer.
+function SPCRuntimeWork.StartRetirement(P,shared)
+ local d={index={},slots={},count=0};shared.RuntimeRetirement=d
+ local function ownerKey(pid,cid)return tostring(pid)..':'..tostring(cid)end
+ local function drop(slot)
+  local rows=d.index[slot.owner];if rows then rows[slot.key]=nil;if not next(rows)then d.index[slot.owner]=nil end end
  end
+ function d.Remember(tag,location,stamp,pid,cid)
+  local byTag=d.slots[tag];if not byTag then byTag={};d.slots[tag]=byTag end
+  local old=byTag[location]
+  if old then drop(old)else assert(d.count<8192,'RETIREMENT_INDEX_LIMIT');d.count=d.count+1 end
+  local owner=ownerKey(pid,cid);local slot={tag=tag,location=location,stamp=stamp,owner=owner,key=tag..'|'..location}
+  d.index[owner]=d.index[owner] or {};d.index[owner][slot.key]=slot;byTag[location]=slot
+ end
+ local function clear()
+  shared.RuntimeRetirementCache={};d.index={};d.slots={};d.count=0
+ end
+ local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(clear)end
  local removed=P.Field(Events,'CityRemovedFromMap')
  if removed and removed.Add then removed.Add(function(pid,cid)
-  -- Removal is also emitted during transfers. Invalidate clean stamps only;
-  -- exact pending/exit proofs are retained until confirmed cleanup succeeds.
-  local all=shared.RuntimeRetirementCache or {};local prefix=tostring(pid)..':'..tostring(cid)..':'
-  for _,cache in pairs(all)do for k,stamp in pairs(cache)do
-   if stamp:sub(1,#prefix)==prefix then cache[k]=nil end
-  end end
+  local k=ownerKey(pid,cid);local rows=d.index[k];if not rows then return end
+  d.index[k]=nil
+  for _,slot in pairs(rows)do
+   local cache=shared.RuntimeRetirementCache and shared.RuntimeRetirementCache[slot.tag]
+   if cache and cache[slot.location]==slot.stamp then cache[slot.location]=nil end
+   local byTag=d.slots[slot.tag]
+   if byTag and byTag[slot.location]==slot then byTag[slot.location]=nil;d.count=d.count-1 end
+  end
  end)end
- return t
+ return d
 end
 
 -- Exact inert tombstones are verified once per current city reference/load.
@@ -303,35 +320,73 @@ function SPCRuntimeWork.RetireOnce(P,shared,c,tag,fn)
  local x,y=c.GetX and c:GetX(),c.GetY and c:GetY()
  local k=x~=nil and (x..':'..y) or (c:GetOwner()..':'..c:GetID())
  local token=c.GetProperty and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN') or ''
- local stamp=table.concat({c:GetOwner(),c:GetID(),tostring(x),tostring(y),tostring(token)},':')
+ local owner,cid=c:GetOwner(),c:GetID()
+ local stamp=table.concat({owner,cid,tostring(x),tostring(y),tostring(token)},':')
  if cache[k]==stamp then return 0 end
  local n=fn()
  if cache[k]==nil then local count=0;for _ in pairs(cache)do count=count+1 end;assert(count<2048,'RETIREMENT_CACHE_LIMIT')end
+ if shared.RuntimeRetirement then shared.RuntimeRetirement.Remember(tag,k,stamp,owner,cid)end
  cache[k]=stamp;return n
 end
 
 function SPCRuntimeWork.TargetHook(P,source,name,fn)
  local e=P.Field(source,name);if not e or not e.Add then return end
- local function scoped(scope)SPCRuntimeWork.NoteScope(P,source,scope);return fn(scope)end
- -- These signatures are verified in native CityBannerManager/ObserverCamera
- -- and the existing progression completion owner; unknown forms stay bounded.
- if name=='DistrictBuildProgressChanged' or name=='DistrictAddedToMap'
-  or name=='DistrictPillaged' or name=='DistrictRepaired' then
-  e.Add(function(pid,did,cid)
-   scoped({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})
-  end)
+ local function native(v)return SPCRuntimeComposition and SPCRuntimeComposition.Native(v) or v end
+ local gameplay=native(source)==native(GameEvents)
+ local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
+ local function scope(pid,cid)
+  return {player=valid(pid) and pid or nil,city=valid(pid) and valid(cid) and cid or nil}
+ end
+ local function scoped(value)if P.Observe then pcall(P.Observe,'dispatch',name)end;pcall(SPCRuntimeWork.NoteScope,P,source,value);return fn(value)end
+ if gameplay then
+  if name=='BuildingConstructed' or name=='BuildingPillageStateChanged' or name=='CityBuilt'then
+   e.Add(function(pid,cid)scoped(scope(pid,cid))end)
+  elseif name=='OnDistrictConstructed'then
+   e.Add(function(pid)scoped(scope(pid))end) -- district type is NOT cityID
+  elseif name=='OnPillage'then
+   e.Add(function(actor,unit,improvement,building,district,plotId)
+    local ok,owner=pcall(function()return Map.GetPlotByIndex(plotId):GetOwner()end)
+    scoped(scope(ok and owner or nil)) -- acting player is not the damaged city owner
+   end)
+  else e.Add(function()scoped(nil)end)end -- no Events-name inference across namespaces
+ elseif name=='DistrictBuildProgressChanged' or name=='DistrictAddedToMap'
+  or name=='DistrictPillaged' or name=='DistrictRemovedFromMap' or name=='DistrictRepaired' then
+  e.Add(function(pid,did,cid)scoped(scope(pid,cid))end)
  elseif name=='CityTransfered' then
   e.Add(function(owner,cid,oldOwner)
-   if type(owner)=='number' and type(cid)=='number' and type(oldOwner)=='number'then
-    scoped({transfer={owner=owner,city=cid,oldOwner=oldOwner}})
+   if valid(owner) and valid(cid) and valid(oldOwner)then scoped({transfer={owner=owner,city=cid,oldOwner=oldOwner}})
    else scoped({})end
   end)
+ elseif name=='GovernorAssigned' or name=='GovernorEstablished'then
+  e.Add(function(owner,cid,governorOwner)
+   local ok,err=pcall(scoped,scope(owner,name=='GovernorEstablished' and cid or nil))
+   if valid(governorOwner) and governorOwner~=owner then
+    local good,why=pcall(scoped,scope(governorOwner));if not good and ok then ok=false;err=why end
+   end
+   if not ok then error(err,0)end
+  end)
+ elseif name=='GovernorChanged' or name=='GovernorPromoted'then
+  e.Add(function(pid)scoped(scope(pid))end)
+ elseif name=='PlayerTurnActivated'then SPCRuntimeWork.Hook(P,source,name,fn)
  elseif name=='ImprovementAddedToMap' or name=='ImprovementRemovedFromMap' or name=='FeatureRemovedFromMap' then
   e.Add(function(x,y)scoped(type(x)=='number' and type(y)=='number' and {plot={x,y}} or {})end)
- elseif name=='CityWorkerChanged' or name=='CityFocusChanged' or name=='CityPopulationChanged' then
-  e.Add(function(pid,cid)scoped({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})end)
- elseif source==GameEvents and name=='OnDistrictConstructed' then
-  e.Add(function(pid)scoped({player=type(pid)=='number' and pid or nil})end)
+ elseif name=='CityWorkerChanged' or name=='CityFocusChanged' or name=='CityPopulationChanged'
+  or name=='CityRemovedFromMap' or name=='CityTileOwnershipChanged'then
+  e.Add(function(pid,cid)scoped(scope(pid,cid))end)
+ elseif name=='BuildingAddedToMap' or name=='BuildingRemovedFromMap'then
+  e.Add(function(x,y,index,owner)
+   local ok,row=pcall(P.Info,'Buildings',index)
+   if ok and row and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_')then return end
+   local found,c=pcall(function()
+    local d=CityManager and CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)
+    return d and d:GetCity() or CityManager and CityManager.GetCityAt and CityManager.GetCityAt(x,y)
+   end)
+   if found and c then
+    local good,pid,cid=pcall(function()return c:GetOwner(),c:GetID()end)
+    if good then scoped(scope(pid,cid));return end
+   end
+   scoped(scope(owner))
+  end)
  else SPCRuntimeWork.Hook(P,source,name,fn)end
 end
 

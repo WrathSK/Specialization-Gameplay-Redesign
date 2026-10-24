@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0733
-Implementation Build: B284.311 / modinfo311; stable/live B271.298
+Status Revision: S0734
+Implementation Build: B285.312 / modinfo312; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D1_COMPLETE_S5D2_AUTHORIZED
+Work State: REFACTOR_S5D2_COMPLETE_S5D3_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d1 complete:16 new scoped/busy kernel and actual writer cases PASS. Strict original T01 now passes unchanged; full217 cases have216 properties PASS/1 S6 capacity counterexample OPEN. Apply/Chair/Cross directly look up the known city, retain sibling diagnostics/plans, and merge real busy causes; Aesthetic shares that finite kernel and Commerce preserves changed-source unions. Native hook migration is next, not yet one Audit per native cause. [Result](Validation/Results/Specialization_B284_Refactor_S5d1.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d2 complete:15 new namespace/index/startup cases PASS, full232 selected cases have231 passing properties/1 S6 capacity counterexample OPEN. TargetHook respects Events versus GameEvents, verified city/dual-owner signatures and actor/victim separation. A composition-owned indexed retirement invalidator replaces per-consumer all-cache listeners. Dialogue and native consumer migration remain next; no deployment/native PASS. [Result](Validation/Results/Specialization_B285_Refactor_S5d2.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: S5d2 namespaced native adapters/indexed retirement and independent Dialogue→S5d live trigger coalescing→S6→S7/S8→S9/S10.
+- Primary next: S5d3 independent Dialogue native/GW recovery before old relay retirement→S5d live consumer trigger coalescing→S6→S7/S8→S9/S10.
+
+## S0734 — B285.312 namespaced adapters and indexed retirement
+
+S5d2 complete:15 new namespace/index/startup cases PASS, full232 selected cases have231 passing properties/1 S6 capacity counterexample OPEN. TargetHook respects Events versus GameEvents, verified city/dual-owner signatures and actor/victim separation. A composition-owned indexed retirement invalidator replaces per-consumer all-cache listeners. Dialogue and native consumer migration remain next; no deployment/native PASS.
 
 ## S0733 — B284.311 scoped consumer audit kernel
 

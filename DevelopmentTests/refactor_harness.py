@@ -117,3 +117,12 @@ class TrackedLua51:
             raise
         if key:completion(key,True)
         return result
+
+
+def separate_legacy_event_namespaces(source):
+    """Explicit native-double profile only; real Events/GameEvents are distinct.
+    Frozen fixture source and every property assertion remain unchanged.
+    """
+    assert source.count('GameEvents=Events')==1,'FIXTURE_NAMESPACE_PROFILE_CHANGED'
+    RUN.setdefault('fixture_profiles',{})['separate_legacy_event_namespaces']='Replace historical alias with distinct GameEvents callback storage; no assertion/runtime-source changes.'
+    return source.replace('GameEvents=Events',"GameEvents=setmetatable({},{__index=function(t,k)local e={Add=function(f)local key='GameEvents.'..k;hooks[key]=hooks[key]or{};table.insert(hooks[key],f)end};rawset(t,k,e);return e end})")

@@ -1,6 +1,6 @@
 """S5a complete production dispatch boundaries: Lua51, bounded explicit publish, no game PASS."""
 import unittest
-from refactor_harness import Context,ROOT,TrackedLua51,legacy_source_observation
+from refactor_harness import Context,ROOT,TrackedLua51,legacy_source_observation,separate_legacy_event_namespaces
 from refactor_defect_fixtures import commerce,fact_publication_profile
 
 
@@ -14,6 +14,7 @@ def investment():
     text=source.prefix('DevelopmentTests/test_investment_update_propagation.py','class InvestmentPropagation(')
     with legacy_source_observation():exec(compile(text,'S5a investment fixture prefix','exec'),namespace)
     namespace['NS']['LuaRuntime']=TrackedLua51;namespace['NS']['ns']['LuaRuntime']=TrackedLua51
+    namespace['NS']['ns']['FIX']=separate_legacy_event_namespaces(namespace['NS']['ns']['FIX'])
     with legacy_source_observation():l=namespace['fixture'](3)
     l.execute((ROOT/'Mod/SafeCallbacks.lua').read_text());l.execute((ROOT/'Mod/FactChanges.lua').read_text());l.execute((ROOT/'Mod/FactConsumerBindings.lua').read_text())
     l.execute('SPCFactChanges.New(shared);SPCFactConsumerBindings.New(shared);function drain()shared.FactChanges.Flush();shared.FactBindings.Flush()end')

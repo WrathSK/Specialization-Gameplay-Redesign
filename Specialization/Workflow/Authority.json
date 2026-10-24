@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0733",
-    "runtime": "B284.311 / modinfo311",
+    "status": "S0734",
+    "runtime": "B285.312 / modinfo312",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "current_batch": "REFACTOR_S5D1_COMPLETE_S5D2_AUTHORIZED",
-  "next_batch": "S5d2 namespaced native adapters/indexed retirement and independent Dialogue→S5d live trigger coalescing→S6→S7/S8→S9/S10. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S5D2_COMPLETE_S5D3_AUTHORIZED",
+  "next_batch": "S5d3 independent Dialogue native/GW recovery before old relay retirement→S5d live consumer trigger coalescing→S6→S7/S8→S9/S10. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B271.298 stable from main cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; SHA256 102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993; B270 backup verified, no pending transaction; receipt B271.298-cc71f9b-stable-deploy.json.",
   "stable": "main B271.298 / modinfo298; approved PR #6 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "No automatic deployment granted by U1 D13. Runtime replacement needs explicit approval and existing transaction/game-exit/hash/receipt safeguards. No main promotion before separately approved post-U5 action.",
-  "context_review_status": "S0733 S5d1 complete:16 new scoped/busy kernel and actual writer cases PASS. Strict original T01 now passes unchanged; full217 cases have216 properties PASS/1 S6 capacity counterexample OPEN. Apply/Chair/Cross directly look up the known city, retain sibling diagnostics/plans, and merge real busy causes; Aesthetic shares that finite kernel and Commerce preserves changed-source unions. Native hook migration is next, not yet one Audit per native cause. No native/deployment PASS.",
+  "context_review_status": "S0734 S5d2 complete:15 new namespace/index/startup cases PASS, full232 selected cases have231 passing properties/1 S6 capacity counterexample OPEN. TargetHook respects Events versus GameEvents, verified city/dual-owner signatures and actor/victim separation. A composition-owned indexed retirement invalidator replaces per-consumer all-cache listeners. Dialogue and native consumer migration remain next; no deployment/native PASS. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B285_Refactor_S5d2.md"
 }

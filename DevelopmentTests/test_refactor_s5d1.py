@@ -1,6 +1,6 @@
 """S5d1 actual consumer scope/busy proofs, distinct from later native-hook migration."""
 import unittest
-from refactor_harness import Context,ROOT,TrackedLua51,legacy_source_observation,measure
+from refactor_harness import Context,ROOT,TrackedLua51,legacy_source_observation,measure,separate_legacy_event_namespaces
 from refactor_defect_fixtures import commerce
 
 
@@ -11,6 +11,7 @@ def research():
     with legacy_source_observation():
         exec(compile(c.prefix('DevelopmentTests/test_research_chair.py','\nchains=[[],'),'chair fixture prefix','exec'),ns)
         ns['LuaRuntime']=TrackedLua51;ns['ns']['LuaRuntime']=TrackedLua51;ns['ns']['ns']['LuaRuntime']=TrackedLua51
+        ns['ns']['ns']['FIX']=separate_legacy_event_namespaces(ns['ns']['ns']['FIX'])
         l=ns['runtime'](2)
     l.execute("for _,c in pairs(cities)do setBuildings(c.ds[1],{'BUILDING_LIBRARY','BUILDING_UNIVERSITY'});c.ds[1].workers=3 end;shared.ResearchApply.Audit();chair.Audit();counters={}")
     return l
@@ -20,7 +21,7 @@ def cross():
     c=Context();ns={'__file__':str(ROOT/'DevelopmentTests/test_research_cross.py')}
     with legacy_source_observation():
         exec(compile(c.prefix('DevelopmentTests/test_research_cross.py','\nl=runtime();l.execute(r"""\ninitUI();'),'cross fixture prefix','exec'),ns)
-        ns['LuaRuntime']=TrackedLua51;l=ns['runtime']()
+        ns['LuaRuntime']=TrackedLua51;ns['FIX']=separate_legacy_event_namespaces(ns['FIX']);l=ns['runtime']()
     l.execute("sync=true;initUI();pulse();assert(d.plans[0][1] and not d.errors[0][1]);function fire(n,...)for _,f in ipairs(hooks[n] or {})do f(...)end end")
     return l
 

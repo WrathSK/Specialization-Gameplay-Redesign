@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "09de3c1fbfccfbb14f24632834bebce3a8eec012efca4522737081712faca10f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
-      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
+      "sha256": "9146cb5a7aca1a05e9a78411e5dca349063f6402f25d6311a7a2a2ee17aae9d6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B285_Refactor_S5d2.md",
+      "provenance": "B285.312 namespaced adapters and indexed retirement; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "aea917228c70326c4376f8febe3c145bbb9d2677a8114ff223b9a44965913ac4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
-      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
+      "sha256": "d53790eef8638834b5681fc72f69e9efaf441c09eac60f7fdb9160df9a9bb1b2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B285_Refactor_S5d2.md",
+      "provenance": "B285.312 namespaced adapters and indexed retirement; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "2e837152705881d372d10cbc2e7293464ba0a0a63a1da7300c13f7daeb3a1109",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
-      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
+      "sha256": "82aca29f63c316494eeea2580aaa3c0cfdbe74eb159910283ca13519a3239f2d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B285_Refactor_S5d2.md",
+      "provenance": "B285.312 namespaced adapters and indexed retirement; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "7bc6223f321bccf3cd2e419718a8cc3265833737233838f6eebf665a109caac2",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8c78a1a07b25b88a9e03d6428b56732b70ce89660dc58f49e35d1f770336ac6d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
-      "provenance": "B284.311 scoped consumer audit kernel; local/static evidence only; no deployment/native PASS."
+      "sha256": "d093c09e75ab27d37c7876fe5717771377be33f1e9cf391017ac92c1b3f39e44",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B285_Refactor_S5d2.md",
+      "provenance": "B285.312 namespaced adapters and indexed retirement; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

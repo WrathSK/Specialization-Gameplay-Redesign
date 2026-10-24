@@ -784,21 +784,23 @@ composition.Run('DistrictCompleteness',{},{'DistrictCompleteness'},function() in
 
 composition.Run('InvestmentAction',{'CityProgressionStore','EffectiveFacts'},{'InvestmentAction'},function() include('InvestmentAction');SPCInvestmentAction.Start(P,shared) end)
 
-composition.Run('ResearchSupport',{'EffectiveFacts'},{'ResearchSupport'},function() include('ResearchSupport');SPCResearchSupport.Start(P,shared) end)
+composition.Run('RuntimeRetirement',{}, {'RuntimeRetirement'},function()include('RuntimeWork');SPCRuntimeWork.StartRetirement(P,shared)end)
 
-composition.Run('Lv2Housing',{'EffectiveFacts','DistrictCompleteness'},{'Lv2Housing'},function() include('Lv2Housing');SPCLv2Housing.Start(P,shared) end)
+composition.Run('ResearchSupport',{'RuntimeRetirement','EffectiveFacts'},{'ResearchSupport'},function() include('ResearchSupport');SPCResearchSupport.Start(P,shared) end)
 
-composition.Run('Lv2GPP',{'EffectiveFacts'},{'Lv2GPP'},function() include('Lv2GPP');SPCLv2GPP.Start(P,shared) end)
+composition.Run('Lv2Housing',{'RuntimeRetirement','EffectiveFacts','DistrictCompleteness'},{'Lv2Housing'},function() include('Lv2Housing');SPCLv2Housing.Start(P,shared) end)
+
+composition.Run('Lv2GPP',{'RuntimeRetirement','EffectiveFacts'},{'Lv2GPP'},function() include('Lv2GPP');SPCLv2GPP.Start(P,shared) end)
 
 composition.Run('CarrierHealthTrace',{},{'CarrierHealthTrace'},function() include('CarrierHealthTrace');SPCCarrierHealthTrace.Start(P,shared) end)
 
 composition.Run('NetworkBridge',{'EffectiveFacts'},{'NetworkBridge','RouteSignalRevision'},function() include('NetworkBridge');SPCNetworkBridge.Start(P,shared) end)
 
-composition.Run('IndustrySupport',{'EffectiveFacts','CityProgressionStore'},{'IndustrySupport'},function() include('IndustrySupport');SPCIndustrySupport.Start(P,shared) end)
+composition.Run('IndustrySupport',{'RuntimeRetirement','EffectiveFacts','CityProgressionStore'},{'IndustrySupport'},function() include('IndustrySupport');SPCIndustrySupport.Start(P,shared) end)
 
-composition.Run('Lv3Support',{'EffectiveFacts'},{'Lv3Support'},function() include('Lv3Support');SPCLv3Support.Start(P,shared) end)
+composition.Run('Lv3Support',{'RuntimeRetirement','EffectiveFacts'},{'Lv3Support'},function() include('Lv3Support');SPCLv3Support.Start(P,shared) end)
 
-composition.Run('Lv3Effects',{'EffectiveFacts'},{'Lv3Effects'},function() include('Lv3Effects');SPCLv3Effects.Start(P,shared,{retireCommerce=true}) end)
+composition.Run('Lv3Effects',{'RuntimeRetirement','EffectiveFacts'},{'Lv3Effects'},function() include('Lv3Effects');SPCLv3Effects.Start(P,shared,{retireCommerce=true}) end)
 
 composition.Run('ConstructionProbe',{},{'ConstructionProbe'},function() include('ConstructionProbe');SPCConstructionProbe.Start(P,shared) end)
 
@@ -814,7 +816,7 @@ composition.Run('CrewPrecision',{'UnitActions','UnitTargets','CrewProjects','Con
 
 composition.Run('Lv4Percent',{'EffectiveFacts'},{'Lv4Percent'},function() include('Lv4Percent');SPCLv4Percent.Start(P,shared) end)
 
-composition.Run('ResearchInfrastructure',{'EffectiveFacts','DistrictCompleteness'},{'ResearchInfrastructure'},function() include('ResearchInfrastructure');SPCResearchInfrastructure.Start(P,shared) end)
+composition.Run('ResearchInfrastructure',{'RuntimeRetirement','EffectiveFacts','DistrictCompleteness'},{'ResearchInfrastructure'},function() include('ResearchInfrastructure');SPCResearchInfrastructure.Start(P,shared) end)
 
 composition.Run('ResearchCross',{'EffectiveFacts'},{'ResearchCross'},function() include('ResearchCross');SPCResearchCross.Start(P,shared) end)
 
