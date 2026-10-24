@@ -111,7 +111,11 @@ function SPCIndustryHistory.Start(P,shared)
   local r=receipt(q);local nextValue=copy(root)
   nextValue.records[id]=r;nextValue.revision=nextValue.revision+1
   commit(root,nextValue)
-  if shared.EngineeringStudy then shared.EngineeringStudy.CreditChanged(r.city.owner)end
+  if shared.FactChanges then
+   local ok,err=pcall(shared.FactChanges.Emit,{owner=r.city.owner,cityID=r.city.cityID,kinds={'HISTORY'},
+    topic='WONDER_CREDIT',cause='WONDER_CREDIT_COMMITTED',revision=nextValue.revision})
+   if not ok then d.observerError=tostring(err)end
+  end
   log('INDUSTRY_WONDER_RECORDED',{owner=r.city.owner,city=r.city.cityID,wonderType=id,wonderEra=r.era,
    readStatus=r.token and 'BOUND' or 'CITY_CONTINUITY_UNKNOWN'})
   return true

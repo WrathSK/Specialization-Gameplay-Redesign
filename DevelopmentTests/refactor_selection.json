@@ -61,6 +61,17 @@
       "test_refactor_s4b",
       "test_refactor_s5a",
       "test_refactor_s5a2"
+    ],
+    "S5history": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_s5a",
+      "test_refactor_s5a2",
+      "test_refactor_s5history"
     ]
   },
   "counterexamples": {

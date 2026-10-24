@@ -972,6 +972,8 @@ composition.Run('Restructuring',{'CityProgressionStore','EffectiveFacts'},{'Rest
 composition.Run('LevelBannerState',{'CityProgressionStore','EffectiveFacts'},{'LevelBanners'},function() include('LevelBannerState');SPCLevelBannerState.Start(P,shared) end)
 
 
+composition.Run('FactConsumerBindings',{'FactChanges'},{'FactBindings'},function()include('FactConsumerBindings');SPCFactConsumerBindings.New(shared)end)
+
 -- Composition completion is diagnostic; it does not assert Store/effects readiness.
 local startupFailures=composition.Complete()
 pcall(stage,startupFailures==0 and 'INITIALIZED ISOLATED_PROBES USER_GAME_TEST_REQUIRED'

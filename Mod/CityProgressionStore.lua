@@ -7,14 +7,15 @@ if not SPCCapitalInvestmentModel then include('CapitalInvestmentModel') end
 if not SPCDevelopmentInvestmentModel then include('DevelopmentInvestmentModel') end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
-local function publishFact(shared,c,cause,r,investment)
+local function publishFact(shared,c,cause,r,investment,topic)
  if not shared.FactChanges then return end -- isolated legacy import/tests have no automatic consumers
  local ok,err=pcall(function()
   local a=r and (r.current or r.origin) or {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}
-  shared.FactChanges.InvalidateCommitted(a.owner,a.cityID,{'IDENTITY','POTENTIAL','ACTIVE'})
+  local kinds=topic and {'HISTORY'} or {'IDENTITY','POTENTIAL','ACTIVE'}
+  shared.FactChanges.InvalidateCommitted(a.owner,a.cityID,kinds,topic)
   shared.FactChanges.Emit({owner=a.owner,cityID=a.cityID,
    reference=table.concat({a.owner,a.cityID,a.x,a.y,r and r.base.token or ''},':'),
-   revision=r and r.revision,cause=cause,kinds={'IDENTITY','POTENTIAL','ACTIVE'},
+   revision=r and r.revision,cause=cause,kinds=kinds,topic=topic,
    investment=type(investment)=='function' and investment(a) or investment})
  end)
  if not ok then shared.PermanentWriteObserverError=tostring(err)end
@@ -253,6 +254,9 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(value~=nil,'DIALOGUE_HISTORY_CANNOT_DELETE');SPCDialogueProjectModel.Validate(value,r)
   if same(old,value)then return end
   local n=cp(r);n.dialogueKnown=true;n.dialogue=cp(value);n.revision=n.revision+1;save(n)
+  for era in pairs(value.used or {})do if not (old and old.used and old.used[era])then
+   publishFact(shared,c,'DIALOGUE_COMMITTED',n,nil,'DIALOGUE');break
+  end end
  end
  -- B241 APIs never expose an optimistic candidate during a native setter.
  function d.CapitalState(pid,c)
@@ -314,6 +318,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(value~=nil,'EST_HISTORY_CANNOT_DELETE');SPCEngineeringStudyModel.Validate(value,r)
   if same(old,value)then return end
   local n=cp(r);n.engineeringKnown=true;n.engineering=cp(value);n.revision=n.revision+1;save(n)
+  if value.L>(old and old.L or 0)then publishFact(shared,c,'ENGINEERING_COMMITTED',n,nil,'ENGINEERING')end
  end
  -- Commerce configuration shares the existing per-record failure boundary.
  -- Reputation is written only by proven P4 admission/turn/ownership transitions.
@@ -330,6 +335,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(same(old and old.reputation,value.reputation),'COMMERCE_REPUTATION_STORE_OWNED')
   if same(old,value)then return end
   local n=cp(r);n.commerceKnown=true;n.commerce=cp(value);n.revision=n.revision+1;save(n)
+  publishFact(shared,c,'COMMERCE_COMMITTED',n,nil,'COMMERCE')
  end
  function d.TickCommerce(pid,turn)
   if not ready or fault or not root or root.origin.owner~=pid or not root.commerce or root.stage~='ACTIVE' then return end
@@ -340,7 +346,7 @@ local function CreateProgressionRecord(P,shared,storage)
    local a=root.current or root.origin
    local c=assert(CityManager.GetCityAt(a.x,a.y),'COMMERCE_CITY_UNKNOWN')
    local r=active(pid,c);local value=SPCCommerceModel.Advance(r.commerce,turn,R.Current(r).specialization)
-   if not same(value,r.commerce)then local n=cp(r);n.commerce=value;n.revision=n.revision+1;save(n)end
+   if not same(value,r.commerce)then local n=cp(r);n.commerce=value;n.revision=n.revision+1;save(n);publishFact(shared,c,'REPUTATION_COMMITTED',n,nil,'COMMERCE')end
   end)
   d.commerceError=not ok and tostring(err) or nil
  end
@@ -354,6 +360,7 @@ local function CreateProgressionRecord(P,shared,storage)
   if e and e.records[key] then return false end -- first success only; repeat is idempotent
   local n=cp(r);n.expeditionInsights=n.expeditionInsights or {version=1,records={}}
   n.expeditionInsights.records[key]={civ=civ,category=category,turn=turn};n.revision=n.revision+1;save(n)
+  publishFact(shared,c,'INSIGHTS_COMMITTED',n,nil,'INSIGHTS')
   return true
  end
  function d.ReadTradition(pid,c)return cp(active(pid,c).researchTradition)end
@@ -374,6 +381,7 @@ local function CreateProgressionRecord(P,shared,storage)
    local value=SPCResearchTradition.Advance(r.researchTradition,turn,R.Current(r).specialization)
    if not same(value,r.researchTradition) then
     local n=cp(r);n.researchTradition=value;n.revision=n.revision+1;save(n)
+    publishFact(shared,c,'TRADITION_COMMITTED',n,nil,'TRADITION')
    end
   end)
   d.traditionError=not ok and tostring(err) or nil
@@ -577,6 +585,7 @@ local function CreateProgressionRecord(P,shared,storage)
   local n=cp(root);n.templates=cp(value)
   n.templateLifecycle={version=1,state='INITIALIZED',reconcilePending=false};if value.districts then n.templateLifecycle.districtsKnown=true end
   n.revision=n.revision+1;save(n) -- ledger and initialization acknowledgement share one city-record write
+  publishFact(shared,c,'TEMPLATES_COMMITTED',n,nil,'TEMPLATES')
  end
  -- Fresh records use the same fact shape but never create legacy City journals.
  function d.Found(c,proof,binding)

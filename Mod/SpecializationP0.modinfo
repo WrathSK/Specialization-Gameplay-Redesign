@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="305">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="306">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B278.305：永久提交的声明式通知与交易证明即时失效保护。</Description>
+    <Description>B279.306：已确认历史成果的定向通知；保留原有项目结算与单位操作。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -305,6 +305,7 @@
       <File>RuntimeComposition.lua</File>
       <File>UI/SafeAdapters.lua</File>
       <File>FactChanges.lua</File>
+      <File>FactConsumerBindings.lua</File>
     </ImportFiles>
     <UpdateDatabase id="SPC_B029_Carrier">
       <Properties>
@@ -798,6 +799,7 @@
     <File>Textures/SPC_Raw_Icons_24.dds</File>
     <File>Textures/SPC_Raw_Icons_48.dds</File>
     <File>FactChanges.lua</File>
+      <File>FactConsumerBindings.lua</File>
     <File>SafeCallbacks.lua</File>
     <File>RuntimeComposition.lua</File>
     <File>UI/SafeAdapters.lua</File>

@@ -48,12 +48,10 @@ function SPCStandardization.Start(P,shared)
   local store=shared.CityProgressionStore
   if store and (store.UsesNewAuthority or store.Owns(c))then store.WriteTemplates(c,old,nextValue)else P.SetProperty(c,KEY,nextValue)end
   assert(same(read(c),nextValue),'STD_WRITE_UNCONFIRMED')
-  if not same(old,nextValue) and shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Standardization.lua') end
   data.writes=data.writes+1
   if not same(old,nextValue) then
    log('INDUSTRY_TEMPLATES_COMMITTED',c,nextValue)
-   if shared.StandardizationEffects then shared.StandardizationEffects.SourceChanged(c:GetOwner(),c:GetID())
-   elseif shared.StandardizationDiscount and not same(old and old.learned,nextValue.learned) then shared.StandardizationDiscount.MarkDirty(c:GetOwner(),'template') end
+   -- Store publishes TEMPLATES after the confirmed write, including availability recovery.
   end
  end
  local function facts(pid,c)

@@ -131,7 +131,7 @@ function SPCEngineeringStudyProjects.Start(P,shared)
    if p.stage=='ACTIVE'then local _,matches=queue(c);assert(not matches,'EST_COMPLETION_NOT_EXITED')end
    armed[k]=nil -- no replay after ambiguous Store commit or native reentry
    write(pid,c,s,M.Complete(s.value,p.id,now));active[k]=nil;interrupted[k]=nil;mark(pid,id)
-   if shared.StandardizationEffects then shared.StandardizationEffects.SourceChanged(pid,id)end
+   -- Confirmed Store history publishes the ENGINEERING topic after readback.
   end)
   settling[k]=nil
  end

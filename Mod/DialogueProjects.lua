@@ -156,7 +156,7 @@ function SPCDialogueProjects.Start(P,shared)
     write(pid,c,s,M.Hold(v,'完成时事实未确认；不以之后的馆藏补算'));mark(pid,id);return
    end
    write(pid,c,s,M.Complete(v,p.id,sample.x,sample.turn));active[k]=nil;interrupted[k]=nil;mark(pid,id)
-   if shared.DialogueEffects then shared.DialogueEffects.Audit({player=pid,city=id})end
+   -- Confirmed Store receipt publishes DIALOGUE, including a zero-X success.
   end)
   settling[k]=nil
  end

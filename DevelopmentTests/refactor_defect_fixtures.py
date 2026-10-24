@@ -46,7 +46,7 @@ end
         c.execute('_G[...]=module(select(2,...))',symbol,symbol[3:])
     # Includes are isolated module doubles except the composition helper introduced by S3.
     def include(name):
-        if name in ('RuntimeComposition','SafeCallbacks','ReadinessLatch','FactChanges') and (ROOT/'Mod'/f'{name}.lua').exists():return c.load(name)
+        if name in ('RuntimeComposition','SafeCallbacks','ReadinessLatch','FactChanges','FactConsumerBindings') and (ROOT/'Mod'/f'{name}.lua').exists():return c.load(name)
         if name=='Probe':return
         if name=='ReadinessSummary':
             c.execute('SPCReadinessSummary={Start=function()return {Seal=function()sealed=true end}end}')

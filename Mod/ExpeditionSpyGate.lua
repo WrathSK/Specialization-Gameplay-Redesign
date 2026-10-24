@@ -502,8 +502,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
     state.taskCount=(state.taskCount or 0)+1 -- Successful tasks only; never used as an attempt identifier.
     releaseActivity();if state.activityMode=='NONE' then returnToCentre()end;save()
     print('[SPC][B191][N1_TASK] mission='..m.category..' outcome=SUCCESS civ='..civ..' insight='..(added and 'NEW' or 'EXISTING'))
-    if shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=state.owner,city=archive:GetID()})end
-    if shared.CultureNetwork then shared.CultureNetwork.SourceChanged(state.owner,archive:GetID())end
+    -- Only a new confirmed Store insight emits INSIGHTS; task release/ACK is independent.
    end
   end
  end

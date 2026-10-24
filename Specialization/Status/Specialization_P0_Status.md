@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0727
-Implementation Build: B278.305 / modinfo305; stable/live B271.298
+Status Revision: S0728
+Implementation Build: B279.306 / modinfo306; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5A2A_COMPLETE_S5A2B_AUTHORIZED
+Work State: REFACTOR_S5_HISTORY_COMPLETE_S5A_REMAINDER_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5a2a production Store migration complete in B278.305: [declared commits/freshness](Validation/Results/Specialization_B278_Refactor_S5a2a.md). Eight permanent-chain subscribers now declare scoped inputs; opaque scalar barriers invalidate old transaction authority before fallible notification.16 new actual Lua51 cases PASS; selected118PASS/4 laterOPEN. Remaining request/history/network manual lists are explicitly next S5a2b, not claimed complete. Stable/live/main remain B271.298; no deployment/native PASS.
+B279.306 history propagation complete: [typed confirmed histories](Validation/Results/Specialization_B279_Refactor_S5_History.md). Real Store publishes confirmed templates, Engineering/Dialogue results, insights and age/selection changes; six isolated declared adapters replace direct result fanouts.14 new Lua51 cases PASS; selected132PASS/4 laterOPEN. Request/Claim/Restructuring/network manual lists remain the next S5a work. Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
-- User testing: final U5 unless a concrete blocking native fact appears; no automatic deployment.
-- Primary next: S5a2b remaining propagation→S5b/c/d→S6→S7/S8→S9/S10.
+- User testing: final U5 unless a concrete blocking native fact appears.
+- Primary next: remaining S5a request/network migration→S5b/c/d→S6→S7/S8→S9/S10.
+
+## S0728 — B279.306 confirmed history topics
+
+Template reconciliation availability, project completed receipts (including Dialogue zero-X), first insights, unique Wonder credit and changed age/selection use their real confirmed persistence boundaries. Pending/timer writes are not successful results. Sibling callbacks and late failed binding registrations are isolated;14 new cases/132 selected properties PASS,4 laterOPEN. No gameplay/persistence schema or native-operation change; no deployment/native PASS.
 
 ## S0727 — B278.305 S5a2a committed Store propagation
 
