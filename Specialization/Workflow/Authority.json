@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0181",
-    "status": "S0718",
+    "status": "S0719",
     "runtime": "B271.298 / modinfo298",
     "military": "D0037",
     "harbor": "D0037",
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+  "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "current_batch": "B271_STABLE_DEPLOYED_USER_TEST_REQUIRED",
-  "next_batch": "Await user 2-3 local-turn evidence; no further implementation authorized.",
+  "current_batch": "REFACTOR_S0_S1_COMPLETE_U1_REVIEW_REQUIRED",
+  "next_batch": "Stop at U1. User confirms D-1–D-15 and draft text; formalize accepted constraints before S2. S0–S10 authorized in order subject to U1/U2/U3/U4 and plan stop conditions; no main promotion before separately approved post-U5 action.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B271.298 stable from main cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; SHA256 102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993; B270 backup verified, no pending transaction; receipt B271.298-cc71f9b-stable-deploy.json.",
   "stable": "main B271.298 / modinfo298; approved PR #6 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 temporary auto-switch phase ended at user-approved main playtest milestone. Future runtime changes require explicit approval and existing transaction safeguards.",
-  "context_review_status": "S0718: accepted README previews committed; user-approved PR6 promotion and stable deployment verified. Native timing/order/pillage testing remains required.",
+  "context_review_status": "S0719: requested Advisory reading and current-HEAD intake completed; S0/S1 proposal/diff await U1. Accepted A0181/D0057 and B271 runtime unchanged; Advisor files read-only. No new gameplay/native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md"
+  "context_revalidation_report": "Specialization/Reports/Proposals/Refactor_Program_U1.md"
 }

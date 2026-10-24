@@ -1,11 +1,181 @@
 # Audit follow-up priorities and Advisory publication review
 
+## Refactor program intake — 2026-10-24
+
+This section is the current scheduling checkpoint and supersedes conflicting timing in the historical sections below. The user explicitly assigned Primary and authorized S0–S10 of the reviewed refactor program, with **U1 after S0/S1**. Current source basis: `25327e7808f39da692b0270727047d1a3988e958`, B271.298 / S0718. The [U1 decision sheet and draft differences](Refactor_Program_U1.md) await acceptance; no runtime work or deployment is performed here. The Advisor originals remain read-only, local review inputs. This existing scheduling record is the only intake map; original finding IDs are retained rather than creating a second registry.
+
+### Explicit user decisions
+
+| Date | Recorded decision | Boundary |
+|---|---|---|
+| 2026-10-23 | Internal SPC InternalOnly carriers are non-pillageable. | Already implemented in B271. Do not reopen as a policy question; actual pillage-event acceptance remains unobserved. |
+| 2026-10-23 | Write the constraints before refactoring. | S0/S1 text review at U1 before S2 code/tests. |
+| 2026-10-24 | Fold Commercialization accrual loss, IndustrySupport retry storm and GC UI_PENDING starvation into the refactor. | S4, no separate hotfix. |
+| 2026-10-24 | “网络待确认之后，新的事实被更新之前，先保持之前的数值（即不更新载体）（只有新的事实会更新载体）”. | Direction accepted; D-1/D-2 exact scope, cold-load and qualification precedence require U1. No runtime hold is implemented by this record. |
+| 2026-10-24 handoff | A8 eight-era unification and city-ownership gameplay semantics are outside this program. | Keep the section-6 exclusions. Technical lifecycle prerequisites are not permission to decide new ownership outcomes. |
+
+### Before evidence and interpretation
+
+| Evidence | Recorded observation | Limits |
+|---|---|---|
+| B270 T58–69 | Approximately 7,800 city visits and 169,000 building checks per local turn; footprint about +0.10 GB/turn; Gameplay Lua roughly 350–790 MiB sawtooth. | Advisor `B269_B270_Log_Review.md:52–58`, LOG_OBSERVED. These are whole-turn figures, **not per-AI-phase figures**; the plan's mixed phrasing is corrected here without editing the Advisor original. |
+| B271 T69–74 | Commercialization carrier value absent at the observed accrual point in 2 of 3 eligible turns; IndustrySupport LOCAL_END audit counts 618 / 3,263 / 11,802 / 5,507 / 9,855. | Advisor `B271_Log_Review.md:27–39`. First observed treasury difference bounds an interval, not the exact engine commit instruction. |
+| B271 GC/memory | UI_PENDING and NETWORK_INFLIGHT skips; Gameplay heap reached 1,214 MiB before a collection; footprint about +0.32 GB/turn. | `B271_Log_Review.md:39–40,60–72`; C was enabled and Commerce/workload changed. Not controlled SPC attribution. Older Memory_Growth §1's “never above ~1 GiB” statement is superseded by later logs, not copied as current fact. |
+| B271 event delivery | Ten names unavailable in the observed Gameplay/UI build; C windows T71–73 capped at 400. ~390 GovernorChanged callbacks per AI phase. | `B271_Log_Review.md:42–56`. Callback count multiplies subscriptions; it is not a distinct native-event count. No general all-version API claim or complete uncapped order inferred. |
+| B271 D4 | 4,557 intended XP2 rows passed the recorded copied-engine-DB check; no pillage occurred in the later session. | Existing [B271 result](../../Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md), STATIC/LOCAL evidence only; not rerun here and not new native PASS. |
+
+Native sources above are the two reviewed reports under `Reports/Advisory/V01_Playtest_Evidence/`, with their hashes in U1. Raw evidence stays local. Work/heap/footprint remain distinct. A different-save or workload difference is not a causal subtraction establishing SPC-attributable growth. Later checkpoints must retain UNKNOWN where attribution is not measured.
+
+### Current-HEAD disposition
+
+**FIXED** means the named subset is already implemented; **CHANGED** means partial implementation or materially changed evidence; **OPEN** means the planned gap is still present. These are static dispositions, not blanket native acceptance. Unless a DevelopmentTests/tools prefix is given, source files below are under `Mod/` (including `UI/`). All source references below were checked at the pinned HEAD; no historical source line is adopted unchecked. Compound rows share one planned work item; no claim is made to re-audit every unselected entry in the 191-item advisory register. Recheck touched lines again before each implementation stage.
+
+#### S2 — Test and observability prerequisites
+
+| Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
+|---|---|---|
+| Native-faithful common harness / C061 | CHANGED: B270/B271 already use Lua5.1 and ordered multiple listeners (`DevelopmentTests/test_b270_event_scope.py:3,13–19`; `test_b271_diagnostics.py:8,21–30`). Old `test_runtime_audit.py:4,38` remains lua55/single-slot; `refresh_fixture.py:21–25` defaults to frame draining. | Integrate common order control, separate contexts, explicit missing events and no-frame default; do not claim these improvements never existed. |
+| Executed closure, reverse index, cold load / C067–C069 | CHANGED: `test_b267_regression.py:8–30` already has a versioned runner and explicit exclusions. `project_paths.py:5–15` configures external DB, not environment identity; B271 doubles share a VM. No common module→test/executed-closure facility found in the scoped inventory. | Build on existing machinery; preserve explicit exclusions and frozen failures. |
+| T01 locality baseline / F01, Ext-F01 | OPEN: `ResearchChair.lua:76–87` ignores city scope in its real loop. | Two local cities, foreign/UNKNOWN/former-holder cases, actual consumer work counts. |
+| T02 invalidation closure / Ext-F02 | OPEN: `DistrictCompleteness.lua:135–142,180–198` has broad invalidation with partial owner filtering. | Exercise producer and downstream scheduling together. |
+| T03 cache boundary / F38,C025 | OPEN structural risk: `DistrictCompleteness.lua:147–153` fixed eight entries. | Warm 8/9/16/32 plus K boundary. Actual legal >8 hot set is not established by source alone. |
+| T04 real shared capture / F02 | OPEN: `EffectiveFacts.lua:13–58` rereads; `RuntimeWork.lua:3–26` currently shares only inside an Audit. | Baseline and repaired real multi-consumer closure; preserve write barriers and copies. |
+| T05 recovery budget / F27 | OPEN: `IndustrySupport.lua:68–75,105`; GC partial defer `PerformanceCounters.lua:313–324`. | No-progress budgets, same-value availability recovery and successful siblings. |
+| T06 exact retirement / F08,F20 | CHANGED: `RuntimeWork.lua:233–243` RetireOnce exists; Store `831–845` has partial exit tracking. | Former holders, missing old definitions, failures, retry and completion. |
+| T07 catalogue/report cost / Ext-F03,F12 | CHANGED: compact `DistrictCompleteness.lua:173–174` exists; `Lv2Housing.lua:23` still detailed. | Count catalogue, presence/location/report and diagnostic work separately. |
+| T08 freshness / hold rule | OPEN: `Commerce.lua:225–253` clears on unavailable input; `NetworkBridge.lua:220–224` only partial recovery notify. | Baseline failure, accepted pending-hold/confirmed-loss tests, two real same-turn changes and fresh confirmations. |
+| Defect fixtures / F03,F05,F08,F16,B271 | OPEN: `UI/DialogueRefresh.lua:72`, `Gameplay.lua:793–974`, Store `818,831–845`, `UI/CrewProjectOrder.lua:33–41`. | Nil ACTIVE, throwing Start/adapter, failed-once exit, recovery notify and turn-boundary Gold; no assertion weakening. |
+| Callback/audit labels and collector / TOOL-02, Ext-F12 | FIXED subset in B271: `PerformanceCounters.lua:58–64,85–94`; `EventTimingDiagnostics.lua:55–69`; `tools/turn_timing_evidence.py:10,29–59`. | Retain OTHER and bounded per-turn collection. S2 does not rebuild already working diagnostics. |
+| Scope/fallback and observer native-read attribution / Ext-A0,F12 | OPEN: `CarrierHealthTrace.lua:10–23`, `Commerce.lua:350–378` native reads lack diagnostic-specific accounting. | Add bounded attribution, not a second always-on sampler or inference from output counts. |
+| Static alarms / PROP-N2,CR-2 | OPEN/CHANGED evidence: B271 lists observed-unavailable names; `DistrictCompleteness.lua:180` still registers one; `ResearchChair.lua:76–87` proves scope discard. | Add missing-event/scope/detail-reader/retry/producer-owner checks with reviewed exceptions and live replacement coverage. |
+
+#### S3 — Composition and readiness
+
+| Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
+|---|---|---|
+| Startup isolation / F05,C052 | CHANGED: a few protected starts exist, but `Gameplay.lua:768` announces INITIALIZED before mostly unprotected `793–974`; seal `1034` can be skipped. | Preserve TradeRouteProbe793→NetworkBridge858, InspirationProbe938→Inspiration940, Dialogue931→retired984; D-3 skip dependents, protected epilogue. |
+| Post-commit fan-out / F35 | OPEN: investment commit `Gameplay.lua:655`, fanout657–669, token670. UNIT_ACTION already sets token572 before fanout573–587. | Per-consumer isolation and reliable response receipt; do not “fix” already early-token branches by adding duplicates. |
+| Permanent-write observer / LC-01,F18 | OPEN: Store `605–606` saves then invokes observer; outer catch `1554–1557` can HoldCompletion. | Observer failure cannot turn a committed transaction into a failed transaction. |
+| Adapter isolation / F16 slice,C055 | OPEN: `UI/CrewProjectOrder.lua:33–41,90–98` unprotected adapter chain. | Native items fail open, SPC items fail closed, shutdown exports clear; registry follows S9. |
+| Readiness fallback / F19,C170 | OPEN: e.g. ResearchApply129, Infrastructure156, Chair116, Cross124, TraditionEffects84, Support55, Lv2GPP119, Housing98, NetworkBridge646 only set ready at load event. ReadinessSummary8–12 is a hand-list. | Store-ready latch via load OR first publish/turn; self-registration; diagnostics do not substitute for writer readiness. |
+
+#### S4 — Native defects and the accepted hold direction; stop U2
+
+| Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
+|---|---|---|
+| Great Work city containment / F03,C011 | OPEN: `UI/DialogueRefresh.lua:54–81` whole-loop pcall, nil ACTIVE concatenation72. | Per-city failure/token; preserve signature until S5 hook migration. |
+| Network capture city containment / C011,C176,D-2 | CHANGED: `NetworkInput.lua:30–41` already reuses same-reference old facts; `43–44` asserts for first unreadable/nil ACTIVE; Bridge185–188 catches whole capture. | Per-city retained/unknown provenance, not false all-fresh or zero; D-2 approval first. |
+| Development startup containment / C176 | OPEN: `DevelopmentInvestment.lua:155–169` all-city pcall then loaded=true. | Isolate failed city and preserve recovery, no transaction-policy change. |
+| Removed-unit relevance / F04,Ext-F07 | OPEN: `NetworkBridge.lua:622–630` ignores payload and refreshes all tracked players. TradeRouteProbe124–130 filtering does not protect it. | Check confirmed snapshot trader IDs; unknown cases retain explicit conservative path. |
+| Confirmation recovery / B271 §1.1 | CHANGED: `NetworkBridge.lua:174,220–224` already handles AVAILABLE recovery, not equal-value revalidation/signal catch-up; `387–389` rejects stale signal. | Notify coherent availability even without new value revision. |
+| D-1 Commerce warm/cold hold | OPEN: `Commerce.lua:89–99` cold cleanup; `225–253` clears on prepare failure. Eligibility precedes network at124,148; owner exit419–425. | Hold only network-derived output, preserve confirmed eligibility/access-marker exits and transaction exclusions. |
+| D-1 Culture warm/cold hold | CHANGED: `CultureNetwork.lua:185–191` normally holds warm failure; `237–247` clears installed carriers on first audit. Receiver Identity-only policy100–104 differs from source ACTIVE169–182. | Fix cold path; do not impose a new receiver ACTIVE requirement. |
+| D-1 Standardization exact hold | CHANGED: `StandardizationEffects.lua:131–154` retains old sources/merges load values, then writes at181–183. | Retained source set is not “no carrier updates”; hold the combined physical output under D-1. Undecomposable cold-load aggregate plus mixed confirmed source loss/unknown source is a U1 exception decision; stop that affected S4 path until selected. Existing Development contracts are outside this hold. |
+| Pending retries / F27,Ext-F06 | OPEN: `IndustrySupport.lua:50–61,68–75,105` repeats pending every publish. | Sample generation, availability/lifecycle wakes and attempt budget, not only bounded queue length. |
+| UI_PENDING GC starvation | CHANGED: `PerformanceCounters.lua:217–220,313–324` detects UI pending, deferred reevaluation only for network. | Extend eligible reevaluation; no frequency/threshold increase to mask work. |
+| Housing compact facts / Ext-F11 | OPEN: `Lv2Housing.lua:23`; compact fields `DistrictCompleteness.lua:26–32,173` suffice. | Use ReadFacts without eligibility change. |
+
+#### S5 — Propagation foundation, in a→b→c→d order
+
+| Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
+|---|---|---|
+| S5a declared fact-change registry / F02,C027 | OPEN: separate fan-outs `Gameplay.lua:24–53,569–587,598–617,650–670`. | Declared kinds/cause/owner/city/reference/revision; Mark-only, per-consumer pcall; no autodiscovery bus. |
+| S5a permanent commit propagation / F18 | OPEN: `IndustrySupport.lua:78–82` filename-filtered wrapper; `InvestmentAction.lua:43–49` Store path skips notifier. | Include investment commits and replace hand-wired chains without losing receipts. |
+| S5b typed current identity facts / F02,C133 | OPEN: `EffectiveFacts.lua:13–58` no published revision; native GovernorGate and copies every read. | Property-signature/turn expiry, reference/version and D-15 barriers; UNKNOWN not cached success. |
+| S5c D consumer registry/invalidation / C018,Ext-F02 | OPEN: `DistrictCompleteness.lua:135–142,180–198` no registered-consumer API. | Scope producer invalidation and consumer delivery together. |
+| S5c network registry/busy merge | OPEN: `NetworkBridge.lua:101–109` fixed list; `254` drops Receive while busy. | Merge pending causes/packets coherently, not duplicate broadcasts. |
+| S5c route-signal owner / F10 | OPEN: `TradeRouteProbe.lua:6,130,134` owns signal. | Transfer to NetworkBridge before removing Probe. |
+| S5d real consumer locality / F01 | CHANGED: Chair76–87 ignores city; Meaning129–158 and Inspiration120–147 already honor it/merge pending, but broad fallbacks remain225–228/185–190. | Migrate only remaining gaps; verified GameEvents signatures in TargetHook246–268. |
+| S5d Dialogue relay / F09 | OPEN: `UI/GPPRefresh.lua:31–41,65–74`; `DialogueEffects.lua:194–206` depends on old dispatch. | **Own hooks first**, then remove relay/retired hooks. Q7 transport remains until S10 duty migration. |
+| S5d live native triggers / PROP-N2,CR-2 | CHANGED native evidence: ten unavailable names in B271 §1.5. | Remove/replace each reliance with verified trigger coverage; investigate callback multiplication, not assume 390 native governor changes. |
+| S5d indexed invalidator / F30 | OPEN: `RuntimeWork.lua:219–227` installs CityRemoved per NewTargets, scans shared retired caches. | One owner:city index, retaining exact former-holder cleanup. |
+| S5d foreign UI marks / F21 | CHANGED: `UI/DialogueRefresh.lua:121–144` has selective work triggers but foreign CityAdded/Removed broad marks135–139. | Gate unrelated marks, preserve legitimate cross-owner exits. |
+
+#### S6 — Shared facts and work; stop U3
+
+| Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
+|---|---|---|
+| AnchorFacts/WorkerFacts / F14,Ext-F05,D-8 | CHANGED: SpecialistSupport23–44 helper exists; separate worker/anchor reads in Lv2GPP30–36, Commerce138–145, Development183–190. | One sample, separate per-ability qualification/pillage policy. |
+| Compact business D cache / F38,C025,Ext-F03 | OPEN capacity: `DistrictCompleteness.lua:147–174` eight shared entries for compact and lazy detail. | Size business cache to relevant cities and separate report cache, prove T03/T07. |
+| Reverse dependency helper / Ext-F09 | OPEN: `StandardizationEffects.lua:208–220`, `CultureNetwork.lua:253–268` enumerate receivers; Commerce200–202 has direct reverse lookup. | Share mechanism without changing source/recipient rules. |
+| Capital source read-phase reuse / Ext-F11 | OPEN: `CapitalInvestment.lua:133–148` allocates cache per prepare/destination. | Share only valid phase; keep confirmation's fresh prepare296–298 and current funds/contract checks. |
+| Lazy investment quotes / F28 | CHANGED: Development already guards withQuotes237–245 and dirty flush304–314 passes false. Capital Refresh173–186 still prepares all quotes, treasury380 marks all. | Preserve Development's completed improvement; defer Capital expensive quotes while keeping access/confirmation correct. |
+| Unit-panel publish replies / F29 | OPEN: `UI/UnitPanelActions.lua:82–100,137`, `UnitTargetMarkers.lua:42–51,89` polling remains. | Event/publish replies with stale-token rejection; shared transport follows S9. |
+| UnitTargets scope / F33 | OPEN: `UnitTargets.lua:17–31` whole-owner city/district enumeration. | Scope known deltas while preserving full legitimate target discovery and authoritative consume-site checks39–70. |
+| HalfYield normal hot path / F36 | OPEN: `HalfYieldProbe.lua:31–45,74–75` scans outer world before enabled checks. | Move to DEV in S6 or S10; preserve any exact cleanup duty before removal. |
+| Carrier feedback recheck / F32 | CHANGED: `DistrictCompleteness.lua:180` CityBuildingsChanged was unavailable in B271. | Do not attribute a native storm to that dead path. Re-evaluate live BuildingAdded/Removed dependencies; no blanket prefix suppression. |
+| Network input increments / Ext-F07 | OPEN: `NetworkBridge.lua:185–188` captures before content comparison. | Determine affected references before capture where the protocol proves scope; retain coherent transaction proof. |
+
+#### S7 — Mechanism extraction; approved DDR changes isolated
+
+| Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
+|---|---|---|
+| S7a owned carrier kernel / F11,F34,C019 | OPEN: independent kernels ResearchApply48–76, Infrastructure78–105, Chair62–74, IndustrySupport27–37, IndustryWonderEffects28–42. | Define/Apply/Observe/Exit and owned-ID registry, preserving actual native/readback/qualification behavior. |
+| D4 immunity + redundant rebuild | FIXED configuration: `Data/InternalCarrierPillage.sql:2–5`, modinfo481. OPEN cleanup: ResearchApply71, Infrastructure97, Chair66, Cross71. | Clean redundant internal-carrier pillage handling in S7a; retain real-building/anchor pillage effects and native-pending label. |
+| S7b property cell / F26,C073,ST-02 | OPEN: Store1089–1099 vs ExpeditionSpyStore135–145 vs CrewProjects45–47 differ on setter-error outcomes. | Share readback mechanism with explicit existing caller policies; binary32 handling does not replace Capital's decimal codec. A semantic unification needs a new DDR. |
+| S7c turn ledger / F23,ST-01,EXT-01/02 | OPEN: ResearchTradition28–30 and CommerceModel79–81 absorb UNKNOWN_INTERVAL; Commerce133–136 rejects unknown Reputation. | D-6 pause/no-credit/resume and no-bonus policy only after acceptance. |
+| S7d three 1T projects / F07,C014,C168,LC-02,TX-N4 | OPEN: ClaimProjects38–49 and DialogueProjects71–80 withdraw UNKNOWN access; EngineeringStudyProjects70–75 preserves it. | Common pure model/controller/UI; divergent outcomes are D-4, not a mechanical refactor. |
+| S7d Crew completion/recovery / C167,CR-1 | OPEN: CrewProjects120–131 CALLING/HELD;262–282 shared +1 receipt and init/bind. | D-5 proof-based multi-completion/reobservation; do not invent source attribution or replay uncertain outcomes. |
+| S7d Crew consume ownership / F12,C080 | OPEN: `UnitActions.lua:108–127,137–138,154–156` owns consume/add-progress and string classification. | Move to CrewProjects with typed outcomes and existing irreversible receipt guarantees. |
+| S7e tombstones / F20 | CHANGED: RuntimeWork233–243 RetireOnce already used by Infrastructure85–92; Cross64–67 and CommerceConvergence8–25 still recurring scans. | Data registry and exact RetireOnce where applicable, not deletion of live exits. |
+| S7f common city reference / F31 | OPEN: RuntimeWork238–239 and IndustrySupport14 construct raw token keys. | Store token plus native owner/target checks; do not drop ConstructionProbe19–24 safeguards. |
+
+#### S8 — Store technical lifecycle, not ownership gameplay
+
+| Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
+|---|---|---|
+| Declared sub-record hooks / F06,C003,D-7 | OPEN: Store93–152 inlines profession validation into one validator. | Registry key/validate/exit/loss/return/P4/tick; Store orders commits. D-7 applies to ability records, not corrupt base identity/envelope. |
+| Exit receipts and HELD retry / F08,C009 technical | CHANGED: Store831–845 has per-exit pcall/attempts/in-memory finished;818 rejects missing old definitions;1273–1284 turn ticks lack held-exit retry. | ExitCompleted and bounded turn retry; consolidate legacy exits, missing definition is absent for that retired cleanup only. |
+| Deterministic return / C005 | OPEN: Store919 uses pairs without ordered per-observer isolation. | Preserve current gameplay outcomes; missed-loss inference, multi-hop, reservations, tombstones/raze and acquisition remain excluded. |
+
+#### S9 — UI boundary; stop U4
+
+| Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
+|---|---|---|
+| Adapter registry / F16 rest,PROP-N3 | OPEN: `UI/CrewProjectOrder.lua:30–41,89–108` lists adapters directly. | Registry and owner-specific revisions after S3 isolation; native base behavior preserved. |
+| Gameplay-owned rules / F15,D-10 | OPEN: `UI/DevelopmentInvestmentRead.lua:22–46`, `UI/DialogueProjectUI.lua:27–41`, `ExpeditionSpyRead.lua:76–89` (UI includes: `UI/ExpeditionSpyWindow.lua:2`, `UI/ExpeditionSpyActivity.lua:5`). | Move target/era/entry decisions, UI returns raw facts; no A8 count change or Expedition repair. |
+| Token-keyed request channel / F25 | OPEN: shared Snapshot/LastToken Gameplay572/670, UnitTargetSnapshot80, polling consumers and UI closures. | Separate player-action/DEV channels; reuse appropriate bounded lifecycle, no protocol weakening. |
+| Applied display projection / F17,D-11 | OPEN: InstitutionPresentation74–98 recomputes Reputation/Standardization; actual Commerce gate133–136 can reject those values. | Owners publish applied values/reasons to InstitutionView; retain uncertainty and held effects honestly. |
+| One adjacency sampler / F22 | OPEN: `UI/IndustryRefresh.lua:18–23`, `UI/ResearchCrossRefresh.lua:20–31`. | One raw owner/sample with distinct consumer policies. |
+
+#### S10 — Move duties first, then reviewed removal
+
+| Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
+|---|---|---|
+| Binding/CityFlow/Construction / F10 | OPEN load-bearing chain: EffectiveFacts15→CityFlowProbe18→BindingProbe; Store1490–1491 AllocateFoundation; UnitActions25/121→ConstructionProbe7–26. | Move production readers/actions before quarantine. RouteSignal migration is already S5c. |
+| Q1 CultureInspirationProbe | OPEN duty: CultureInspiration7,67,208 depends on retired Probe Withdraw; Probe62–65 returns before its own exit registration149. | Transfer exact withdrawal dependency, not just remove Start. |
+| Q2 timing stack | OPEN: CrewProjectOrder67–72 includes ProjectTurnRead/TimedProjectSelection; TimedProjectDisplay8/42/51 references overflow sink while serving formal projects. | Separate production timing/display before Probe retirement. |
+| Q3 CrewPrecision | OPEN: CrewPrecision22–27 wraps UnitActions.Run;42–46 records precision and returns original receipt. | Move decorator/observation, preserve receipt. |
+| Q4 MeaningProbe / Q5 ExpeditionGate | CHANGED: not Started in current Gameplay; nil-guarded Meaning call613 and modinfo123–125/259/534–549 package references remain. | Remove only reviewed dormant code; retain required SQL unit rows to clean break. |
+| Q6 inheritance experiment / CityIdentityMapping | OPEN: Gameplay947–951 isolates inheritance modules, but995–997 starts CityIdentityMapping; latter147–150 listeners,41 writes property. | Remove actual DEV paths/duties as a unit, not claim all inactive. |
+| Q7 Dialogue transport | OPEN: Dialogue298–328 ACK/sample; UI/DialogueRefresh25/30–32/41/87/106–107 generation/ready; Gameplay397 paired confirmation; Dialogue30 owned-carrier delegation. | All duties move before file removal, independently of S5d hook replacement. |
+| Q8 HalfYield/GreatWorkProbe | OPEN: HalfYield31–45 world loop; GreatWorkProbe14–16 cleanup and37 conditional ready transfer work. | Move to DEV/exact cleanup owner; do not generalize GreatWork as an unarmed every-turn sweep. |
+| Other quarantine files | OPEN package entries: modinfo172–173 DiscountEligibility,198–199 CopyYieldRefresh,224 NetworkIsolation,252–253/470 BoostRefresh. Gameplay1010–1011 still starts NetworkIsolation. | Review remaining callers/exports/withdrawal duties before removal; filename alone is not proof of dead code. |
+| C075 ActionPanel replacement | OPEN: modinfo50 replacement; UI/TimedTurnProbe2/4–5 original handler capture. | Remove full dead replacement after production timing duties migrate. |
+| TOOL-04 removal safety | OPEN: `tools/deploy.py:51–53` rejects runtime-only files; `temporary_playtest.py:37–62` uses a separate receipt transaction. | Review exact deletion allowlist, both deployment paths and complete rollback before removal ships. No unknown-file deletion relaxation. |
+
+### Authorization, dependency triggers and exclusions
+
+The [U1 sheet](Refactor_Program_U1.md) holds D-1–D-15 defaults, all pending. The current code stage remains **not started**. Only after U1 acceptance may Primary install the accepted text and progress S2→S10, with separate stage/batch commits and result evidence. Stop U2 after S4, U3 after S6, U4 after S9, or for the plan's specific stop conditions. U5 is final user native acceptance; main promotion is never implicit.
+
+Re-review is triggered by a new consumer, manual-to-automatic use, wider work set/frequency, new recovery path, longer reference lifetime or relevant observed failure, not merely the next profession. This applies now to the four current professions. Report B's P1 timing is read as **before the next dependent use**, with a scoped disposition; it does not revive every historical issue or authorize unrelated fixes.
+
+The following remain outside the program: ownership semantic DDRs (missed loss, multi-hop returns, AF-13, tombstones/raze/acquisitions, Crew/Expedition training and Restructuring outcomes); Expedition functional repairs/reattachment; Meaning GP/DQ, exact District purchase discount, Research network redesign and era UI; A8; fifth-profession vocabulary/ordinary ontology and broader unit framework; promotion-policy/HD dependency declaration/carrier-ID pruning. F24/F37 or other unselected report items do not enter by proximity. If an implementation encounters them as a prerequisite, stop the affected path rather than silently expanding scope.
+
+Existing temporary develop deployment capability is present (`tools/temporary_playtest.py:37–62,111`), independent of main-only stable_gate. D-13 permission is pending; activation requires stable runtime first, and later switches require exact-receipt restore→activate. Do not invent a new deployment framework or bypass the existing transaction. The old W0003 ACTIVE prose versus Authority-ended state is addressed in the U1 draft only.
+
+User decision: U1 answers and draft text review. User testing: none until U2. Primary next: stop at U1; runtime/main/live remain B271.298.
+
+---
+
+## Historical record header — 2026-10-21
+
 Date: 2026-10-21
 Maintainer: Primary (user-authorized main task)
 Basis: develop `718c49b`; accepted source/runtime B266.293 / modinfo293 from `0c2c4ae`. Earlier checkpoints retain their own B249/B204 evidence bases.
 Scope: record the user-approved v0.1 roadmap and bounded pre-playtest list after the latest Advisor review. Documentation only; no repair, Design revision, test dispatch, deployment, release designation, PR or main promotion.
 
-## v0.1 approved roadmap — 2026-10-21
+## Historical v0.1 approved roadmap — 2026-10-21
 
 This checkpoint governs current scheduling and supersedes conflicting timing in the historical checkpoints below. It does not close findings, expand native acceptance or authorize the complete Advisor implementation roadmap. The user approved recording this plan; implementation stops at separately approved batch boundaries.
 

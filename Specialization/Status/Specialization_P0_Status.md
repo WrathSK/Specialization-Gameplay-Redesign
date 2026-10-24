@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0718
+Status Revision: S0719
 Implementation Build: B271.298 / modinfo298; stable/live B271.298
 Architecture Revision Reviewed: A0181
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B271_STABLE_DEPLOYED_USER_TEST_REQUIRED
+Work State: REFACTOR_S0_S1_COMPLETE_U1_REVIEW_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B271.298按用户批准完成：[诊断、D4决定与本地验证](Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md)。A/B默认开启、每次加载前6个观察本地回合；C独立默认关闭、右键专业化诊断入口开关。内部载体不可掠夺为用户2026-10-23明确决定，实际数据库副本4557行通过；非目标不变。详细能力依赖、历史测试限制见结果。
+The user has assigned Primary and authorized the staged S0–S10 refactor program. S0/S1 are delivered for **U1 review**: [current-HEAD intake](../Reports/Proposals/Audit_Followup_Priorities.md#refactor-program-intake--2026-10-24), [D-1–D-15 decisions and text diff](../Reports/Proposals/Refactor_Program_U1.md). These are proposals, not enacted governance/Design or runtime changes. B271.298 remains stable/live at the last verified receipt; A0181/D0057 remain accepted. No S2 code, deployment or main promotion in this checkpoint.
 
-- User decision：用户已批准两份README提交推送、随B271推广至main并部署；PR #6普通合并完成。
-- User testing：部署后2–3回合入账/事件证据及实际掠夺场景；USER_GAME_TEST_REQUIRED，不把离线结果当引擎事实。
-- Primary next：等待用户2–3回合日志，分析引擎事实；不提前裁定时机或展开后续重构。main/live为B271.298，README已接受并提交。
+- User decision: confirm or amend the U1 defaults and draft governance/network text. The hold direction is already decided; exact D-1/D-2 semantics and D-13 deployment permission are still pending.
+- User testing: none at U1. Existing B271 log findings are attributed evidence, not new acceptance. Next smoke is U2 after S4 and the applicable deployment approval.
+- Primary next: stop at U1; after acceptance, formalize the approved D/A/governance text, then proceed S2→S10 between the specified stops. Main promotion requires a separate post-U5 decision.
+
+## S0719 — Refactor S0/S1, awaiting U1
+
+Recorded user decisions: 2026-10-23 internal SPC carriers non-pillageable (B271 already implements D4); 2026-10-23 constraints before refactor; 2026-10-24 treasury/IndustrySupport/GC defects folded into S4, no hotfix; 2026-10-24 “网络待确认之后，新的事实被更新之前，先保持之前的数值（即不更新载体）（只有新的事实会更新载体）”, exact semantics at U1; A8 and ownership gameplay semantics excluded unless separately assigned. The approved program order and its original finding IDs are integrated into the existing scheduling record. Advisor inputs were read in the requested order and remain unchanged/unpublished. Current-source qualifications distinguish B271 completed fixes, partial migrations and remaining gaps. No runtime tests or new native PASS; no Mod/tools/tests/accepted Design/Architecture/AGENTS/README changes. The existing manifest enum mismatch is corrected using an already valid S0/S1 review state; no schema relaxation. Validation/provenance and the user stop are in the U1 package.
 
 ## S0718 — B271 PR与稳定部署
 

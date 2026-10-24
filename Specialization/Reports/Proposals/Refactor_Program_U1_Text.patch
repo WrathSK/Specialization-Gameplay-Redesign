@@ -1,0 +1,209 @@
+--- a/Specialization/Architecture/Specialization_v0.1_Architecture.md
++++ b/Specialization/Architecture/Specialization_v0.1_Architecture.md
+@@ -122,6 +122,18 @@
+ 
+ [版本发布](v2/Batch_A_Input_Contract.md)、[共享视图](v2/Batch_B_Shared_Network.md)、[请求/撤销生命周期](v2/Batch_C2_Copy_Industry_Lifecycle.md)、[事件传播](v2/Batch_D2_Runtime_Propagation.md)是可复用技术合同。不同专业payload不强制套同一公式。当前仍保留部分旧专业consumer。B226已接入[文化完整文明集合并集与专家投影](v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出)，并精确退出旧文化尤里卡。B234按用户决定隔离旧科研网络鼓舞至v0.1之后；共同拓扑与科研本城能力保留，原生验收见Status。Commerce不同方向资格仍不能仅凭共同拓扑存在就宣称已接入。
+ 
++### Network pending hold and confirmation recovery
++
++This contract supersedes the earlier B240 Commerce unavailable-network withdrawal behavior and conflicting withdrawal interpretations in older network/Commerce records. Accepted formulas, source qualification and transaction receipts remain owned by their existing modules. The accepted [network waiting rule](../Design/Network.md#未确认不等于失效) is the gameplay basis; implementation and native acceptance remain separate in Status.
++
++- Pending/unknown route-topology confirmation does not mean an empty network. While that topology is pending, every active network-derived carrier writer preserves its last applied set without create/remove/reconfigure operations until relevant new confirmed facts are available. Standardization combines local and remote contributions into the same maximum-valued carriers: hold the entire combined set in this state, rather than rewriting its supposedly separate local half; confirmed eligibility exits still take precedence. This includes Commerce, CultureNetwork and StandardizationEffects; neither warm holding nor retaining source references alone proves cold-load/no-write compliance.
++- Confirmed eligibility-removing facts take precedence: existing identity/ACTIVE/owner/REALLOCATING exits and ability-specific qualification apply to their actual scope. Unknown eligibility is not confirmed loss. Do not withdraw unrelated contributions or relax an ability's existing source gate. A pending hold is never permission to carry an effect to a new owner/reference.
++- At cold load, saved installed carriers may serve only as temporary last-applied effects while the first view is pending, with authoritative owner/reference checks and priority handling of confirmed eligibility loss; unknown eligibility alone does not authorize cleanup. They do not reconstruct permanent history, prove topology or authorize a transaction; no synthetic value is created if no carrier was present.
++- Per-city unreadability is isolated under D-2: retain only a reference-valid last-known contribution, or explicit unavailable/no contribution if none was known. This is distinct from unconfirmed route topology: once topology is confirmed, readable nodes may publish new facts and update effects using the retained contribution for an unreadable node. Retained/unknown nodes keep provenance and availability distinct from newly confirmed nodes; do not label an incomplete capture globally fresh to satisfy transaction checks. If a saved aggregate cannot yet be safely decomposed into node contributions, hold that aggregate until the required facts exist instead of inventing a decomposition. Confirmed loss invalidates retained contributions when their affected output can be identified. **Unresolved U1 D-1/D-2 exception:** a cold-load aggregate with no reliable per-source decomposition, one confirmed lost source and another unreadable source cannot simultaneously guarantee immediate partial withdrawal and preservation of unrelated contributions. The ordinary rules above do not choose that fallback. U1 must choose temporary aggregate retention or conservative whole-aggregate withdrawal (and accept its stated cost), or keep this affected S4 path stopped. Receiver owner/reference/qualification loss still exits immediately under either choice; never guess a decomposition. This distinction is the explicit U1 D-1/D-2 clarification, not permission to guess partial topology.
++- Publish coherent availability before notification. A return to VERIFIED or signal catch-up must wake affected consumers even when logical values/inputVersion are unchanged. Use availability/revalidation generation separately from value revision. Recompute against the accepted snapshot, preserve same-turn changes, and withdraw on confirmed route/source loss.
++- Capital/Development quote, confirmation and settlement paths preserve their existing confirmed-input/readback/no-replay contracts. Holding output carriers does not approve stale quotes or debits. Conversely it does not add a new network prerequisite to an already signed contract whose existing terms survive route/ACTIVE loss.
++- Keep work bounded by affected references and meaningful generation/availability/lifecycle changes. Public getters and UI display remain read-only; no timer/frame polling, stale-history synthesis or GC-frequency increase is implied.
++
+ ### 收益应用与玩家呈现
+ 
+ 科研基础设施、跨学科研究、学以致用、学术主持已有正式consumer和各自cutover合同，见[v2收益应用导航](v2/README.md#收益应用与精度)。原生效果通过精确SQL定义和模块自有写入/撤销落地；旧效果按所属切片退出，不按BUILDING前缀全城删除。Legacy file presence does not prove a live writer: B234 starts CopyYields and StandardizationDiscount only as exact-withdrawal facades and disables normal NetworkBoost output. Remaining legacy consumers must be checked through their actual Start/guards, not mistaken for the whole accepted design. See [迁移矩阵](v2/D0032_Implementation_Plan.md#明确的旧效果切换责任)。
+@@ -131,6 +143,25 @@
+ Institution/Ability/Carrier的[分层目标](v2/Presentation_Institution_Carrier_Model.md)与[科研显示原型](v2/U1_Presentation_Prototype.md)分开：原型挂接HD城市详情、追加累计机构展示、过滤该surface已确认科研城的技术载体显示；不删除实际Building，也未完成所有专业、历史机构或所有Tooltip界面。hover使用展示内容，不建立新的Gameplay扫描请求。已有其他UI路径的轮询不能据此宣称全部消除。
+ 
+ B251 extends the selected-city institution surface: all configured levels of the **current** profession are visible, with unestablished rows explicitly treated as previews rather than persisted institutions. Historical other-profession rows retain actual established levels. A guarded Store scalar projection supplies retained history/counts to the existing presentation request, without lazy template initialization, native fact scans or writes; UI summaries and signatures remain disposable mirrors. Unknown reads do not become zero, and Standardization distinguishes this city's source offer from recipient effects. No new update scheduler or save schema. See [B251 contract and checks](../Status/Validation/Results/Specialization_B251_Institution_UI.md#read-and-lifetime-contract).
++
++### Runtime integration contract — P01–P10
++
++This contract supplements the existing event-driven, ownership and exact-exit obligations. It governs new or widened automatic paths and scoped repairs; it does not declare the legacy implementation compliant or authorize unrelated migration. Use the [Runtime Impact Contract and T gates](../Workflow/README.md#runtime-impact-contract-and-targeted-gates) in the existing batch plan.
++
++| Rule | Required contract |
++|---|---|
++| P01 — One owner | Declare one authoritative owner for each fact and effect. Reuse its public projection; distinguish semantic reuse, collection reuse, snapshots and caches. Shared sampling does not unify ability eligibility or pillage policies. |
++| P02 — Cause and scope | Preserve verified cause, owner, city/reference and fact domain through the actual consumer. Reject irrelevant work before deep reads. Explicitly bound UNKNOWN fallback; retain foreign former-holder exits and cross-city dependencies. A scoped wrapper around a whole-player implementation does not satisfy this rule. |
++| P03 — Invalidation and delivery | Review producer mutation/invalidation together with every affected consumer's scheduling and exit. Coalesce redundant recomputation, not ordered transactions or real same-turn changes. Internal-carrier prefix filters alone do not prove that all resulting native notifications are harmless. |
++| P04 — Usage compatibility | Re-review on a new consumer, manual-to-automatic use, wider working set/frequency, a new recovery path or longer reference lifetime, even if shared bytes are unchanged. Bound the affected closure; do not require an unrelated platform rewrite. |
++| P05 — Work and retention | State bounds for retained state AND executions: dispatches, audits, city visits, captures, native reads, allocations/report trees, effect writes and diagnostics. Test warm working sets around capacity boundaries; an eviction bound alone is not a work bound. |
++| P06 — Recovery | Give pending work an owner, reference/generation, size and attempt budget, meaningful wake conditions and success/failure/load/exit disposal. Availability recovery may wake work even when values do not change. Publish drains eligible pending work; it does not create endless retries. Successful siblings do not rerun without a new cause. Irreversible transactions retain their own readback/no-replay rules. |
++| P07 — Consistent sharing | The existing default remains one synchronous Audit with isolated return copies and no native-object retention. Cross-consumer reuse requires an explicitly accepted read-phase/write-barrier contract: reference/epoch, value and availability versions, relevant invalidation and post-write freshness. Do not cache partial/UNKNOWN reads as success or cross mutation boundaries silently. The exact S5 contract is reviewed under U1 D-15. |
++| P08 — Retire responsibilities | Review writers, readers, collectors, transport/ACKs, diagnostics and cleanup independently. Move production duties before removing a Probe/retired module; retain exact owned-ID/former-holder cleanup and uncertain native readback. File names and disabled positive effects do not prove a module dispensable. |
++| P09 — Observer cost | Include diagnostic native reads, copying and formatting in the work model. Normal reports consume published results; deeper inspection is separately bounded. Log deduplication does not eliminate the reads used to produce identical logs. |
++| P10 — Executed proof | Inspect direct, aliased and forwarding callers and execute real producers plus representative real consumers. Preserve same-turn changes, UNKNOWN, recovery and exits. A stub that accepts a scope parameter is not proof of locality, and local work counts are not native memory attribution. |
++
++**Scoped exception, in the existing batch record:** rule and exact path; reason/accepted precedent; allowed cause and owner/city scope; work and retention bounds; safety and targeted test evidence; dependency/lifecycle re-review trigger; disposition and authority. An exception does not transfer automatically to new consumers. Primary resolves ordinary implementation choices within the approved contract; widening a contract, exception or gameplay/persistence rule requires the applicable user decision.
+ 
+ ### 公共更新与临时状态接入约束
+ 
+--- a/Specialization/Architecture/v2/Commerce_Preparation.md
++++ b/Specialization/Architecture/v2/Commerce_Preparation.md
+@@ -161,6 +161,10 @@
+ The current speed must reliably resolve to Standard by GameSpeedType. Other/unknown speeds hold Commerce effects and do not start/tick Reputation, without blocking ordinary investment commits or erasing existing business history. No guessed speed scaling.
+ 
+ 
++## Network pending rule supersession
++
++The accepted [network pending/confirmation contract](../Specialization_v0.1_Architecture.md#network-pending-hold-and-confirmation-recovery) supersedes B240's implemented withdrawal of Commercialization Gold when network inputs are temporarily unavailable. The B240 table distinguishes source-Identity UNKNOWN but did not specify the broader pending-network branch precisely; the old native/local reports remain frozen evidence, not the new rule. Keep last-applied network-derived carriers while pending, including cold load; confirmed eligibility loss and confirmed route loss retain their respective exact exits. Capital/Development transaction requirements and signed-contract survival rules remain unchanged. See [Design waiting rule](../../Design/Network.md#未确认不等于失效). Runtime adoption and native evidence are recorded by stage in Status.
++
+ ## B240 implementation and validation
+ 
+ D0055 is implemented in the existing Commerce consumer. The [B240 native review](../../Status/Validation/Results/Specialization_B240_Native_Review.md) closes the tested scope; the former test flow below is retained as the implementation record, not a repeated assignment. [Local result and minimal native flow](../../Status/Validation/Results/Specialization_B240_Commercialization_Local.md).109 distinct targeted tests pass. This is LOCAL_SIMULATION_PASS, not native Gold, animation, CPU or memory acceptance.
+--- a/Specialization/Workflow/README.md
++++ b/Specialization/Workflow/README.md
+@@ -179,6 +179,36 @@
+ 
+ `GAME_TEST_LOCAL` = static/mock, never engine PASS. `GAME_TEST_COMPUTER_USE` = UNRESOLVED / DEFERRED; requires reliable capability and explicit game/test authorization, does not override prohibition. `GAME_TEST_USER` covers remaining native behavior only; compress assertions into one minimal test after local verification. No game test for W0001.
+ 
++### Runtime Impact Contract and targeted gates
++
++For a new or widened automatic runtime dependency, add this compact statement to the existing batch plan/result; reference unchanged accepted contracts instead of creating a parallel per-module manifest. Select L1/L2/L3 above and the relevant gates below before implementation. Changed usage assumptions require review even when a shared file's hash is unchanged.
++
++**Runtime Impact Contract (normally one page):**
++
++1. **Path and owner:** entrypoints, actual producer/consumer closure, authoritative inputs and availability; current versus permanent state; observable behavior that must remain identical and any separately approved DDR.
++2. **Cause → scope → dependencies:** verified native signature/context, owner/city/reference/domain, cross-city/former-holder propagation, UNKNOWN fallback and its bound. List obsolete or unverified event names rather than silently relying on them.
++3. **Read/write phases:** capture and reuse boundary, lifetime, invalidation/write barriers, copied returns and confirmation-time fresh reads; no retained native objects.
++4. **Work and recovery:** relevant dimensions (cities, districts, buildings, D-needing cities, edges, former holders, reports); retained-state AND execution/attempt bounds; meaningful wake, deduplication, success/failure/load/exit; observer cost and residual uncertainty.
++5. **Exceptions and compatibility:** inherited scoped exceptions with re-review triggers, save-shape/new-campaign requirement, affected dependent features, allowed fallback and stop condition. Unrelated historical debt stays deferred.
++6. **Proof and native delta:** chosen T gates, actual modules versus stubs, before counterexample and after result, executed source/fixture closure and command; applicable inherited evidence, remaining user-game uncertainty and pass criteria fixed before testing.
++
++| Gate | Select when | Required discrimination |
++|---|---|---|
++| T01 — Scope locality | Changing event routing/automatic consumers | Actual producer and real consumers, two local cities plus foreign/UNKNOWN/former-holder cases. Local-only irrelevant events do zero local city visits; necessary exits/cross-city propagation remain. |
++| T02 — Invalidation closure | Changing facts, mutation or scheduling | A relevant mutation both invalidates the producer and reaches affected consumers; an unrelated mutation does neither expensive capture nor unrelated audit. |
++| T03 — Capacity boundary | Changing bounded caches/working sets | Warm K−1/K/K+1 and the relevant 8/9/16/32-city D cases. Separate supported workloads from structural eviction risk and count native reads/allocations, not merely cache length. |
++| T04 — Shared capture | Adding consumers or read-phase reuse | One cause through the real producer and 2–3 real consumers shares only a legal snapshot; mutation forces fresh post-barrier reads and return-copy isolation holds. |
++| T05 — Recovery budget | Changing pending/retry/GC scheduling | No-progress repetition exhausts a bounded attempt budget; availability recovery with identical values and real same-turn changes wake the right work; successful siblings stay idle; no busy latch remains after exceptions. |
++| T06 — Retirement and exits | Moving/removing ownership or cleanup | Exact owned IDs, former/ineligible/foreign/reused references, failures before/after native write, retained UNKNOWN and eventual exact withdrawal. Do not grant positive effects while a required withdrawal remains unconfirmed; preserve permanent history and irreversible-action receipts. |
++| T07 — Catalogue/report cost | Changing building/catalogue/detail readers | Vary catalogue size independently from owned cities/present buildings; separate enumeration, presence, location, report allocations and diagnostic work. Prove the claimed reduction while documenting safety-required full checks and residual catalogue dependence; do not assume total work is catalogue-independent. Local counts alone do not establish CPU/heap/footprint benefit. |
++| T08 — Freshness and ordered changes | Changing snapshots, confirmations or lifecycle | Two real changes in one turn, stale references/epochs, pending hold→confirmed loss, mutation invalidation, and fresh money/unit/project checks at confirmation. No one-update-per-city-per-turn shortcut. |
++
++Use a faithful Lua 5.1 profile, ordered multi-listener events, hidden contexts without frames by default and explicit cold-load behavior where relevant. Each real defect needs a baseline counterexample that fails before and passes after; gates already satisfied at baseline are retained positive evidence, not forced failures. Frozen assertions are not weakened to accommodate a refactor. Record actual executed closure, not merely every imported filename. Risk-matched regression follows W0004; these gates are not a mandatory all-history suite for every edit.
++
++**Static alarms, reviewed with the actual caller:** unavailable native event names in the measured build/context; scope accepted then discarded by a player scan; business calls through aliases into detailed/diagnostic readers; publish/frame retries without a progress budget; producer writes missing declared invalidation/exit ownership; uncounted observer reads/new labels. Mechanically provable violations can fail a check; ambiguous patterns require human review and scoped exceptions. Do not ban every city enumeration or silently rewrite an unverified native signature. Missing-event fallbacks need live-trigger coverage tests.
++
++**Dependency-triggered re-review:** new consumer; manual-to-automatic transition; enlarged working set or frequency; new recovery path; longer retained-reference lifetime; changed native availability/lifecycle; observed regression. "Before the next profession" is only one possible trigger, not a grace period for widening current four-profession usage. Use the existing scheduling record for disposition; Report B's P1 means before the next dependent use, not automatically before every feature or completion of the whole backlog.
++
+ ### Native delta and inherited evidence
+ 
+ USER_GAME_TEST targets the batch's new or changed native uncertainty, not every theoretical lifecycle risk. In the existing plan, distinguish (A) changed native behavior, (B) unchanged shared paths with applicable evidence, and (C) genuinely uncovered boundaries. Do not create a separate policy manifest/report. Every requested step must briefly identify what its PASS/FAIL would newly distinguish; repeat confirmation of unchanged, already-covered infrastructure is not sufficient information value.
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -10,6 +10,8 @@
+ - `Mod/` in the canonical repository is the sole editable runtime source. External `Mods/SpecializationP0` is a deployment copy. Filesystem access is not project ownership: do not modify other Mods, HD, Workshop, game assets/configuration or launch Civilization VI. The user performs game tests.
+ - Plan → user review → explicit implementation authorization; stop at the approved batch boundary. Design presence does not authorize implementation. Tests use repository fixtures and explicit read-only external DB configuration; never weaken assertions for portability.
+ 
++Before adding or widening an automatic runtime dependency, follow the [Architecture integration contract](Specialization/Architecture/Specialization_v0.1_Architecture.md#runtime-integration-contract--p01p10) and include a short [Runtime Impact Contract](Specialization/Workflow/README.md#runtime-impact-contract-and-targeted-gates) in the existing batch plan; review the affected producer/consumer closure, inherited exceptions and targeted correctness/work-scope gates even when shared source is unchanged, without silently widening exceptions or initiating unrelated refactoring.
++
+ ## Validation, Git and deployment
+ 
+ - Follow [W0004 v1](Specialization/Workflow/README.md#w0004-v1--quota-efficient-validation-policy): normal Medium/Fast mode, minimum sufficient L1/L2/L3 risk-matched checks. Local simulation is not user-game PASS. Preserve frozen evidence and accepted revision provenance.
+--- a/Specialization/Architecture/Playtest_Workflow.md
++++ b/Specialization/Architecture/Playtest_Workflow.md
+@@ -16,7 +16,13 @@
+ 
+ [W0004 v1 validation policy](../Workflow/README.md#w0004-v1--quota-efficient-validation-policy) defines risk-matched L1/L2/L3 local checks; “passes local checks” below means that minimum sufficient scope, not automatic full historical regression. W0003 deployment authorization and every exit/hash/manifest/backup/rollback/clean-source safeguard remain unchanged. Tools perform deterministic verification; consume their summary unless a mismatch needs investigation. Local PASS never substitutes for USER_GAME_TEST_PASS. Native acceptance follows the [delta/inherited-evidence policy](../Workflow/README.md#native-delta-and-inherited-evidence): test new uncertainty, inherit unchanged covered lifecycle paths, and justify any scoped save/load or cleanup retest.
+ 
+-## Current temporary development-test mode — W0003
++## Refactor program deployment and smoke scope — U1 D-13
++
++The earlier W0003 automatic-switch phase ended at the main playtest milestone, as recorded in current Authority. For this approved refactor program only, standing develop-test deployment permission applies at U2 (after S4), U3 (after S6), and U4 (after S9). It does not authorize intermediate deployment, U5 deployment, main promotion or game launch. U5 deployment and post-U5 promotion each need the user's separate explicit approval. Existing clean committed source, game-exit, target/UUID, exact receipt/hash, staging/backup/recovery and source/live equality safeguards remain mandatory. Before any S10 removal ships, the reviewed deletion path must exist and pass its recovery checks.
++
++U2/U3 may use the specified B271 campaign only for bounded before/after diagnostics and smoke comparison, and only if no persisted-shape incompatibility is introduced. This program-specific comparison does not expand general supported-save or migration promises. A change that makes that campaign unusable before its checkpoint triggers the program's stop condition. U4 starts a new campaign if S7/S8 changed a persisted shape; U5 always starts a new campaign. Every batch records compatibility and evidence scope. No automatic migration or repair of old saves is implied.
++
++## Historical temporary development-test mode — W0003
+ 
+ 2026-09-18 user explicitly authorizes B078.105 deployment and standing deployment of completed develop testing batches until the user declares a node ready for long-play testing. This section overrides older per-switch authorization prose below for this phase only; historical W0002 receipts remain valid.
+ 
+@@ -28,7 +34,7 @@
+ - No new implementation is authorized by automatic deployment. Known unresolved evidence, such as idle sounds, must still be reported honestly.
+ - Stop this temporary mode when the USER identifies a long-play-ready milestone or revokes it. Resume explicit deployment approvals / development-runtime separation; do not silently restore a different package or promote main without user direction.
+ 
+-Current authorization is ACTIVE. This changes deployment permission only, not Gameplay, Design or A0161 state contracts.
++This earlier standing authorization has ended. Current permission is limited to the refactor checkpoints above and current Authority; historical receipts and safeguards remain valid.
+ 
+ ## Save scope and test base (user decision 2026-10-16)
+ 
+--- a/Specialization/Design/Network.md
++++ b/Specialization/Design/Network.md
+@@ -40,9 +40,23 @@
+ 
+ 共同接入及分发依赖当前有效的国内路线。外贸、普通道路或贸易站本身不等于己方专业网络的直接接入；方向也不能省略成一个无向“已连接”。
+ 
+-路线结束、取消，或战争、征服、端点失效等导致路线不再有效时，撤销它提供的当前接入／接收资格。不能因为历史上曾经连接而永久保留效果；仍有其它有效资格的城市按当前事实继续接收。
++确认路线结束、取消，或战争、征服、端点失效等导致路线不再有效时，撤销它提供的当前接入／接收资格。不能因为历史上曾经连接而永久保留效果；仍有其它有效资格的城市按当前事实继续接收。
+ 
+ 读档后应反映真实的当前路线与来源／接收集合，不重放旧网络快照，也不要求玩家先打开贸易界面才能恢复网络。永久城市成果与当前网络资格分别处理，详见[城市易主](Shared.md#参与资格与城市易主)。
++
++## 未确认不等于失效
++
++路线拓扑正在等待确认或暂时无法读取时，**保持上一次实际生效的网络收益载体，不撤销、不改写**。等待本身不是“网络已空”或“路线已断”。需要网络才能重算的其它输入变化，等待相关新事实确认后一起处理；不能把旧载体当成新的永久成果或有效商路证明。工业标准化的本城与远程贡献共用取最大值后的载体，因此该状态下保持整个组合值，不能以“本城部分已知”为由改写同一载体；已确认资格退出仍优先。
++
++**已确认的资格退出优先处理。** 身份退出、ACTIVE低于该能力门槛、Owner改变、进入REALLOCATING等，继续按各能力已有规则及时撤销受影响的资格和效果；未知读数不当作确认退出。这里不新增来源等级门槛，也不取消不受该变化影响的其它合法来源。确认路线／来源失效后，按当前其它合法来源重新计算；没有合法来源时撤销相应效果。
++
++同一Owner／城市引用冷加载时，存档中仍存在的载体可暂作“上次实际生效值”，在首份网络事实待确认时保留；已确认的退出仍优先。没有旧载体不凭空补造数值。重新确认后按当前事实更新，不把旧主人的载体、路线或临时收益恢复给新主人。
++
++单座城市的网络事实读不出时，隔离该城市：在引用和资格未确认失效的前提下，暂留其上次已知贡献；从未取得可靠贡献的城市，在读取恢复前暂不参与。这与路线拓扑本身待确认不同：**拓扑已确认、只有个别城市事实未知时**，其它可读取城市的新事实继续处理，并可结合该城保留贡献更新效果。保留值与新确认值的状态必须区分，不能把整份混合快照冒称为全部已确认；确认的易主／失效不得被保留策略遮盖。冷加载只有旧组合载体、尚无法可靠分解各城贡献时，暂保留该组合值直到必要事实可用，不凭空分解或把未知部分归零。
++
++**U1待裁定例外：** 若只有不可分解的冷加载组合值，一个来源已确认失效而另一个来源仍未知，则无法同时保证立即撤销失效贡献与保留其余贡献。此时尚未选定继续暂留组合值（可能暂留失效贡献），还是整体撤下（可能暂失合法贡献）；这不是已接受规则，须用户裁定后才能实现该S4路径。无论选哪种，接收城自身易主／引用失效／资格退出都仍按原规则立即撤销，不猜测各来源分量。
++
++本规则覆盖当前所有依赖网络的效果载体，包括商业化、文化网络和工业标准化的网络部分。**资本／发展投资等交易沿用原有确认事实、即时余额与收据要求**，不能用保留效果批准旧报价或不确定扣款；也不额外要求本来可在断路后继续的已签合同重新取得网络资格。非网络本城能力和永久历史不因此改变。
+ 
+ ## 共同连接与专业独有用途
+ 
+--- a/Specialization/Design/Commerce.md
++++ b/Specialization/Design/Commerce.md
+@@ -103,7 +103,7 @@
+ 
+ D0050已确定聚合口径：X取对应城市该领域的**城市总产出**，不重建区域级产出，也不枚举修正来源；D0055沿用此聚合口径，增加外部对应身份要求，并将港口改读总粮食。
+ 
+-路线失效时，不再由该路线提供候选资格，仍合法的候选继续择优。当前合法来源／最高来源随路线事实重新派生；已确认的配置生命周期见上，不把旧来源快照当保存权威。
++确认路线失效时，不再由该路线提供候选资格，仍合法的候选继续择优。暂时待确认时，商业化按[网络保持规则](Network.md#未确认不等于失效)保持上次实际金币载体；身份／等级等已确认资格退出仍按本能力规则处理。当前合法来源／最高来源随确认事实重新派生，不把旧来源快照当保存权威；资本／发展投资的交易与已签合同规则不由此改变。
+ 
+ ## 三级：资本投资
+ 
+--- a/Specialization/Design/Culture.md
++++ b/Specialization/Design/Culture.md
+@@ -171,6 +171,8 @@
+ 
+ 接收城不获得见闻所有权，不能把收到的成果当自己的新来源继续递归传播；合法贸易中心分发仍保留。文化旧尤里卡效果已退出，不与这套网络叠加，也不套科研L×√N。
+ 
++待确认／冷加载时的当前效果按[网络保持规则](Network.md#未确认不等于失效)处理；来源四级、接收专家等既有资格的确认退出仍及时生效。保留临时效果不创建见闻、不合并不完整考察，也不改变当前文明并集公式。
++
+ ## 玩家看到的信息
+ 
+ 机构按[Shared](Shared.md#机构与能力如何呈现)累计展示，各自解释本阶段能力。首次说明应区分“时代种类数”“作品件数”“见闻数”“完整考察文明数”，不把它们统称层数。
+--- a/Specialization/Design/Shared.md
++++ b/Specialization/Design/Shared.md
+@@ -94,7 +94,7 @@
+ 
+ 资本锁定具体Commerce来源城和S来源城，任一易主立即终止、不返本金、不走到期或风险失败／保护逻辑；发展锁定Commerce来源城和目标城，任一易主不退款、立即撤建设加成并释放名额。普通资格连续执行不意味着合同在易主后仍成立。
+ 
+-ACTIVE、Network来源／接收／并集、当前合法及最高来源、收益carrier、发展投资当前容量和资本签约资格都属于纯派生状态。总督、路线、专家、身份、Owner或读档改变相关事实时重新计算，不能把旧生效快照当永久恢复权威。
++ACTIVE、Network来源／接收／并集、当前合法及最高来源、收益carrier、发展投资当前容量和资本签约资格都属于纯派生状态。总督、路线、专家、身份、Owner或读档改变相关事实时重新计算，不能把旧生效快照当永久恢复权威。网络暂时待确认期间，按[网络保持规则](Network.md#未确认不等于失效)保留已有载体作为临时输出；确认资格退出、引用变化与易主仍优先，不能借此恢复旧主人效果。交易资格与永久历史不从保留值反推。
+ 
+ 这里只确认具名A–G状态，不统一所有结果。历史存在、当前效果、能否新增记录、配置保留、单位存续和合同成立须分别判断。城市彻底消失、发展目标区域变得不合法等未讨论情况不能从表格推导。当前只运行单人本地人类系统，不建设未来AI／多人分账。
+ 
+--- a/Specialization/Design/Specialization_v0.1_Design_Spec.md
++++ b/Specialization/Design/Specialization_v0.1_Design_Spec.md
+@@ -266,7 +266,9 @@
+ 
+ **NET-003 — Distribution reception = receive only / ACCEPTED** 一条distribution route可同时使目的城进入Research/Culture/Industry等接收集合；外贸、道路或贸易站本身不等于这种己方direct接入。目的城即使也是Trade Center，也不会仅因收到distribution取得原source的direct connection、继续转发该网络或对原source进行Convergence，保持non-recursive relay。Direct接入、distribution接收及其它明确合法资格共存；失去一种而仍有其它有效资格时保留接收，但不会据接收资格反推直接来源。
+ 
+-**NET-004** 路线结束、取消、战争/征服/端点失效等使路线不再有效时，相关接入/接收资格撤销，不能仅因过去曾建立过路线而继续享受网络。读档后应反映当前真实集合，无需玩家打开贸易界面恢复网络。
++**NET-004** 确认路线结束、取消、战争/征服/端点失效等使路线不再有效时，相关接入/接收资格撤销，不能仅因过去曾建立过路线而继续享受网络。读档后应反映当前真实集合，无需玩家打开贸易界面恢复网络；待确认期间的临时载体处理依NET-005，不把未知当确认空网。
++
++**NET-005 — 待确认保持与逐城隔离（U1 D-1/D-2）** 路线拓扑待确认／UNKNOWN时，所有网络派生载体保持上次实际生效值，不撤销、不改写；标准化本城与网络贡献共用的组合载体整体保持，依赖网络的其它输入变化等相关新事实确认后重算。已确认的身份、ACTIVE门槛、Owner、REALLOCATING等资格退出按各能力规则即时处理，UNKNOWN不等于确认失效，不新增专业门槛。新确认事实到达后，按当前合法来源更新，含确认断路／失效时的精确撤销；即使数值未变，确认状态恢复也必须传播。冷加载中引用和资格未确认失效的已有载体暂作上次实际值，无载体不补造；这不是永久历史／旧主收益恢复。拓扑已确认但单城事实不可读时，保持其引用有效的上次已知贡献；无可靠旧贡献者暂不参与，其它可读城市的新事实可结合保留贡献更新效果，保留／未知状态不得冒充全新确认。冷加载旧组合值尚不能可靠分解时继续整体保持直到必要事实可用；若同时存在已确认来源失效和其它来源未知，须先裁定Network所列的U1例外，本稿不授权选择暂留或整体撤下。商业化、文化网络及工业标准化网络部分均适用；资本／发展交易保持原有确认事实、余额、收据和已签合同存续规则。完整解释见[Network](Network.md#未确认不等于失效)。
+ 
+ ### Research当前网络 / Culture旧网络历史 — NET-RC
+ 

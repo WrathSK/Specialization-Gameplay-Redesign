@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "STABLE_DEPLOYED_USER_TEST_REQUIRED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0057",
     "research": "D0040",
@@ -11,53 +11,68 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0181",
-    "status": "S0718",
+    "status": "S0719",
     "runtime": "B271.298 / modinfo298",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-  "goal": "B271: bounded read-only treasury/event observations (A/B default on, C default off), collector summaries, and explicitly decided internal-carrier Pillage=0; user-approved PR6 promotion and deployment completed.",
+  "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
+  "goal": "Authorized S0/S1 intake, U1 decision sheet and review-only governance/network text differences; stop for U1 acceptance before formal text adoption and S2.",
   "implementation_authorized": true,
   "context": [
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "path": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
       "kind": "full",
-      "reason": "Approved batch, evidence and deployment boundary."
+      "reason": "U1 review artifact, stage scope and unresolved decisions; not accepted gameplay authority."
+    },
+    {
+      "path": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md",
+      "kind": "section",
+      "selector": "## Refactor program intake — 2026-10-24",
+      "reason": "Existing scheduling record with current-source intake, recorded decisions and exclusions."
+    },
+    {
+      "path": "Specialization/Workflow/README.md",
+      "kind": "section",
+      "selector": "## W0004 v1 — Quota-Efficient Validation Policy",
+      "reason": "Docs-only verification and evidence boundaries remain current."
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "## A0181 — B271有界观察与内部载体数据策略",
-      "reason": "Read-only diagnostic contract and user D4 decision."
+      "selector": "### 公共更新与临时状态接入约束",
+      "reason": "Current safety and sharing contract stays in force until proposed text is accepted."
     }
   ],
   "dependencies": [
-    "Existing TRAIN protocol/bounds; PerformanceCounters scalar callback counters; NetworkBridge confirmation outlet.",
-    "Buildings_XP2 engine schema and post-SPC-definition load order; original actual building/district predicates."
+    "User-assigned Primary; requested read-only Advisory inputs pinned by hashes in U1, existing accepted A0181/D0057.",
+    "Current HEAD25327e7 source verification; current live B271 receipt remains the deployment basis."
   ],
   "old_writers": [
-    "All gameplay writers, exact exits and save contracts retained; ResearchApply/Infrastructure/Chair pillage repair kept.",
-    "No GC coordinator or policy changes; legacy definitions remain inactive/isolated as before."
+    "All current runtime writers, Store/transaction/exit/native protection remain byte-identical in S0/S1.",
+    "Pending-hold/DDR behavior is not implemented by publishing a review artifact."
   ],
   "conditional_context": [],
   "non_scope": [
-    "Gameplay amounts/eligibility/Property schema/Design changes, GC changes, timers/frame listeners and save migration."
+    "S2 or later runtime/test/tool implementation before U1 acceptance.",
+    "Advisory edits, enactment of AGENTS/README/Design/Architecture drafts before U1, deployment/main promotion/game launch.",
+    "Ownership gameplay semantics, Expedition functional repairs, A8 and section-6 follow-on programs."
   ],
   "validation": {
-    "depth": "Lua5.1 bounded diagnostics, copied actual engine DB, current native-input models, selected existing regressions and static package checks",
-    "local": "LOCAL_SIMULATION_PASS within B271 report scope; historical culture fixture failures reproduced on unchanged HEAD are explicitly excluded from PASS",
-    "user": "USER_GAME_TEST_REQUIRED: 2-3 local turns, C enabled, collector active; pillage/disaster if observed."
+    "depth": "Documentation-only: current-source references, draft applicability, links/JSON/selectors, scoped Context_Lock, staged publication gate and unchanged runtime/Advisor checks.",
+    "local": "STATIC_CONFIRMED for current-source/configuration review; no gameplay tests executed.",
+    "user": "U1_REVIEW_REQUIRED. No native test now; U2 after S4 and applicable deployment approval."
   },
   "full_audit_triggers": [
-    "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
-    "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
+    "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
+    "Stop for smoke failure/missing confirmation/unexpected work increase, excluded scope, early campaign incompatibility, unclear ownership/concurrent edits.",
+    "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-    "local": "LOCAL_SIMULATION_PASS",
-    "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "B271.298 DEPLOYED from cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; receipt B271.298-cc71f9b-stable-deploy.json"
+    "report": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
+    "local": "DOCUMENT_CHECKS_PASS; STATIC_CONFIRMED source review; no gameplay simulation",
+    "native": "NO_NEW_NATIVE_TEST",
+    "deployment": "UNCHANGED_B271_STABLE; D-13 pending U1"
   }
 }
