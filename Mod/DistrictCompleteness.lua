@@ -69,6 +69,10 @@ function M.Start(P,shared)
  local cache,catalog,buildingOrder={},nil,nil
  local clock,revision,epoch=0,0,1
  local data={};shared.DistrictCompleteness=data
+ function data.RegisterConsumer(name,fn)
+  assert(shared.FactChanges,'DC_FACT_REGISTRY_UNAVAILABLE')
+  return shared.FactChanges.RegisterConsumer('DC_'..name,fn,{kinds={'D'}})
+ end
  local function count(n) P.Count('dc_'..n) end
  local function key(pid,cid) return tostring(pid)..':'..tostring(cid) end
  local function ref(pid,c,token)
@@ -132,12 +136,15 @@ function M.Start(P,shared)
   assert(c:GetOwner()==pid,'DC_OWNER_CHANGED_DURING_READ')
   return M.Calculate(catalog,raw,false),raw
  end
- function data.MarkDirty(pid,cid)
-  -- At most eight cached city entries, no native reads, strings or event history.
-  for _,e in pairs(cache) do
-   if (pid==nil or e.ref.owner==pid) and (cid==nil or e.ref.id==cid) and not e.dirty then
-    e.dirty=true;count('dirty')
-   end
+ function data.MarkDirty(pid,cid,cause)
+  local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
+  if not valid(pid)then pid=nil;cid=nil elseif not valid(cid)then cid=nil end
+  if pid~=nil and not P.IsTestPlayer(pid)then return end
+  local function mark(e)if e then e.invalidation=(e.invalidation or 0)+1;if not e.dirty then e.dirty=true;count('dirty')end end end
+  if pid~=nil and cid~=nil then mark(cache[key(pid,cid)])
+  else for _,e in pairs(cache)do if pid==nil or e.ref.owner==pid then mark(e)end end end
+  if shared.FactChanges then
+   shared.FactChanges.Emit({owner=pid,cityID=cid,kinds={'D'},cause=cause or 'DISTRICT_FACTS_DIRTY'})
   end
  end
  local function read(pid,c,token,detail)
@@ -152,12 +159,13 @@ function M.Start(P,shared)
   for ck,ce in pairs(cache) do n=n+1;if ck~=k and (not oldest or ce.used<oldest) then oldest=ce.used;oldKey=ck end end
   if n>8 then cache[oldKey]=nil end
   if e.dirty or e.turn~=turn then
-   e.dirty=false;e.turn=turn
+   e.dirty=false;e.turn=turn;local ticket=e.invalidation or 0
    local ok,value,raw=pcall(capture,pid,c)
-   if ok and same(current,ref(pid,c,token)) then
+   local refOK,finalRef=pcall(ref,pid,c,token)
+   if ok and refOK and same(current,finalRef) and ticket==(e.invalidation or 0) then
     if not e.value or not same(e.value,value) then revision=revision+1;e.revision=revision;count('publish') end
     e.value=value;e.raw=raw;e.detail=nil;e.error=nil
-   else e.error=ok and 'DC_REFERENCE_CHANGED' or tostring(value);count('failure') end
+   else e.error=ok and (ticket~=(e.invalidation or 0) and 'DC_CHANGED_DURING_CAPTURE' or 'DC_REFERENCE_CHANGED') or tostring(value);count('failure') end
   else count('hit') end
   local value=e.value
   if detail and e.raw then
@@ -176,13 +184,27 @@ function M.Start(P,shared)
  local function hook(source,name,fn)
   local event=P.Field(source,name);if event and event.Add then event.Add(fn) end
  end
- -- Generic Publish/Playback/UI ticks and unit movement are deliberately absent.
- for _,name in ipairs({'CityBuildingsChanged'}) do hook(Events,name,function(pid,cid) data.MarkDirty(pid,cid) end) end
- for _,name in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','BuildingPillaged','BuildingRepaired','CityTransfered','CityRemovedFromMap'}) do
-  hook(Events,name,function() data.MarkDirty() end) -- signatures vary; bounded dirty marks only
+ -- Verified player/district/city forms; one normalized scope drives cache and consumers.
+ local function dirty(scope)
+  scope=scope or {}
+  if scope.transfer then
+   local t=scope.transfer;data.MarkDirty(t.owner,t.city);data.MarkDirty(t.oldOwner)
+  else data.MarkDirty(scope.player,scope.city)end
  end
- for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage','CityBuilt'}) do
-  hook(GameEvents,name,function() data.MarkDirty() end)
+ for _,name in ipairs({'DistrictAddedToMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'})do
+  hook(Events,name,function(pid,did,cid)dirty({player=pid,city=cid})end)
+ end
+ hook(Events,'CityBuildingsChanged',function(pid,cid)data.MarkDirty(pid,cid)end)
+ hook(Events,'CityRemovedFromMap',function(pid,cid)data.MarkDirty(pid,cid)end)
+ hook(Events,'CityTransfered',function(owner,cid,oldOwner)
+  if type(owner)=='number' and type(cid)=='number' and type(oldOwner)=='number'then dirty({transfer={owner=owner,city=cid,oldOwner=oldOwner}})else dirty({})end
+ end)
+ for _,name in ipairs({'BuildingPillaged','BuildingRepaired'})do hook(Events,name,function()data.MarkDirty()end)end
+ hook(Events,'DistrictRemovedFromMap',function()data.MarkDirty()end) -- unresolved native signature: bounded fallback
+ for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage','CityBuilt'})do
+  hook(GameEvents,name,function(pid)
+   data.MarkDirty(type(pid)=='number' and pid>=0 and pid or nil)
+  end)
  end
  hook(Events,'LoadScreenClose',function() cache={};catalog=nil;buildingOrder=nil;epoch=epoch+1 end)
  for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'}) do
@@ -198,7 +220,7 @@ function M.Start(P,shared)
   end)
  end
  -- Missed native events: next explicit read in a new turn reconciles once.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('DistrictCompleteness',function(pid)data.MarkDirty() end)end
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('DistrictCompleteness',function(pid,c)data.MarkDirty(pid,c and c:GetID() or nil) end)end
 
 end
 M.Clone=clone

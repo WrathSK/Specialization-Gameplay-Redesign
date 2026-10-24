@@ -3,7 +3,6 @@
 SPCTradeRouteProbe={}
 function SPCTradeRouteProbe.Start(P,shared)
   shared.AutoRouteProbe={}
-  shared.RouteSignalRevision=0
   local busy=false
   local seq=0
   local pending={}
@@ -128,11 +127,11 @@ function SPCTradeRouteProbe.Start(P,shared)
         if type(pid)=='number' and not P.IsTestPlayer(pid)then return end
         P.Count('unit_cb');if not P.RouteUnitRelevant(pid,id) then P.Count('unit_ignored');return end
       end
-      pending[eventName]=true;shared.RouteSignalRevision=shared.RouteSignalRevision+1
+      pending[eventName]=true
     end)
   end
   for _,name in ipairs({"CityConquered","TradeRoutePlundered"}) do
-    local eventName=name;listen(GameEvents,eventName,function() pending[eventName]=true;shared.RouteSignalRevision=shared.RouteSignalRevision+1 end)
+    local eventName=name;listen(GameEvents,eventName,function() pending[eventName]=true end)
   end
   listen(Events,"LoadScreenClose",function() refresh("LoadScreenClose") end)
   listen(Events,"PlayerTurnActivated",function(pid)

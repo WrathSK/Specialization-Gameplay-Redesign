@@ -58,6 +58,8 @@ function M.New(shared)
   registration(shared.CityProgressionStore,'RegisterReturn')
   registration(shared.GreatWorkFacts,'RegisterConsumer')
   registration(shared.FactChanges,'RegisterConsumer')
+  registration(shared.DistrictCompleteness,'RegisterConsumer')
+  registration(shared.NetworkBridge,'RegisterConsumer')
   Events=facade(original.Events);GameEvents=facade(original.GameEvents);LuaEvents=facade(original.LuaEvents)
   local ok,err=pcall(fn)
   Events=original.Events;GameEvents=original.GameEvents;LuaEvents=original.LuaEvents

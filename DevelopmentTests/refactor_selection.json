@@ -97,13 +97,23 @@
       "test_refactor_s5history",
       "test_refactor_s5propagation",
       "test_refactor_s5b"
+    ],
+    "S5c1": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_s5a",
+      "test_refactor_s5a2",
+      "test_refactor_s5history",
+      "test_refactor_s5propagation",
+      "test_refactor_s5b",
+      "test_refactor_s5c1"
     ]
   },
   "counterexamples": {
-    "test_refactor_baseline.WorkScope.test_T02_unrelated_city_keeps_confirmed_D_capture": {
-      "code": "S5_D_INVALIDATION_SCOPE",
-      "owner_stage": "S5c"
-    },
     "test_refactor_baseline.WorkScope.test_T03_warm_capacity_boundaries": {
       "code": "S6_D_CACHE_THRASH",
       "owner_stage": "S6"
@@ -318,6 +328,11 @@
       "code": "S5_FACT_CAPTURE_NOT_SHARED",
       "owner_stage": "S5b",
       "resolution": "S5b independent13 real authority/writer cases PASS, then unchanged exact-one assertion passes within explicit WithPhase; outside-phase reads remain fresh. Historical before result retained in B272 evidence."
+    },
+    "test_refactor_baseline.WorkScope.test_T02_unrelated_city_keeps_confirmed_D_capture": {
+      "code": "S5_D_INVALIDATION_SCOPE",
+      "owner_stage": "S5c",
+      "resolution": "Unchanged strict T02 passes and independent12 provider/scope/signal cases pass; known district signature retains owner/city for both invalidation and scheduling. Frozen B272 before evidence unchanged."
     }
   }
 }

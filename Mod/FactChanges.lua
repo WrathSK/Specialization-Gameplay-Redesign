@@ -38,17 +38,21 @@ function M.New(shared)
  d.flushRevision=0
  -- Session-local authority stamps, not fact values. Owner scope covers pool membership:
  -- a newly qualifying source may be absent from every old per-city dependency list.
- local generations={};local owners=0
+ local generations={};local owners=0;local global={NETWORK=0,COMMERCE=0}
  function d.Generation(owner,domain,cityID)
   local row=generations[owner]
-  if domain=='COMMERCE' and cityID~=nil then return row and row.cities and row.cities[cityID] or 0 end
-  return row and row[domain] or 0
+  if domain=='COMMERCE' and cityID~=nil then return global.COMMERCE+(row and row.cities and row.cities[cityID] or 0) end
+  return (global[domain] or 0)+(row and row[domain] or 0)
  end
  local function invalidate(owner,cityID,kinds,topic)
-  if owner==nil then return end
   local network=kinds.IDENTITY or kinds.POTENTIAL or kinds.ACTIVE
   local commerce=network or kinds.D or kinds.WORKERS or kinds.HISTORY and topic=='COMMERCE'
   if not network and not commerce then return end
+  if owner==nil then
+   if network then global.NETWORK=global.NETWORK+1 end
+   if commerce then global.COMMERCE=global.COMMERCE+1 end
+   return
+  end
   local row=generations[owner]
   if not row then assert(owners<2048,'FACT_OWNER_LIMIT');owners=owners+1;row={};generations[owner]=row end
   if network then row.NETWORK=(row.NETWORK or 0)+1 end

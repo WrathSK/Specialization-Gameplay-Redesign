@@ -58,7 +58,13 @@ function SPCFactConsumerBindings.New(shared)
  end
  for _,declaration in ipairs(declarations)do
   local row=declaration
-  shared.FactChanges.RegisterConsumer('Binding_'..row.target,function(e)collect(row,e)end,{kinds=row.kinds,topics=row.topics})
+  local remaining={};local callback=function(e)collect(row,e)end
+  for _,kind in ipairs(row.kinds)do
+   local provider=kind=='D' and shared.DistrictCompleteness or kind=='NETWORK' and shared.NetworkBridge
+   if provider and type(provider.RegisterConsumer)=='function'then provider.RegisterConsumer('Binding_'..row.target,callback)
+   else remaining[#remaining+1]=kind end
+  end
+  if #remaining>0 then shared.FactChanges.RegisterConsumer('Binding_'..row.target,callback,{kinds=remaining,topics=row.topics})end
  end
  local function invoke(row,q)
   local value=target(row.target);if not value or type(value[row.method])~='function'then return end
@@ -92,10 +98,16 @@ function SPCFactConsumerBindings.New(shared)
  function d.Flush()
   if d.busy then return false end;d.busy=true
   local work=pending;pending={}
-  for _,row in ipairs(declarations)do for _,q in pairs(work[row.target] or {})do
-   local ok,err=pcall(invoke,row,q)
-   if ok then d.errors[row.target]=nil else local safe,value=pcall(tostring,err);d.errors[row.target]=safe and value:sub(1,180) or 'FACT_BINDING_FAILED'end
-  end end
+  for _,row in ipairs(declarations)do
+   local owners=work[row.target] or {};local global=owners['nil']
+   -- A real all-player Audit already contains the known owner/city scopes.
+   -- City-only methods deliberately ignore global fallback and keep their narrow work.
+   if global and not row.cityOnly and (row.method=='Audit' or row.source)then owners={global=global}end
+   for _,q in pairs(owners)do
+    local ok,err=pcall(invoke,row,q)
+    if ok then d.errors[row.target]=nil else local safe,value=pcall(tostring,err);d.errors[row.target]=safe and value:sub(1,180) or 'FACT_BINDING_FAILED'end
+   end
+  end
   d.busy=false;return true
  end
  return d

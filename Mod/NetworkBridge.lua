@@ -5,6 +5,11 @@ include("ExpeditionTrainingDiagnostics")
 SPCNetworkBridge={}
 function SPCNetworkBridge.Start(P,shared)
  local d={ready=false,players={},proofRevisions={}};shared.NetworkBridge=d
+ shared.RouteSignalRevision=0 -- compatibility projection; Bridge is the sole production writer
+ function d.RegisterConsumer(name,fn)
+  assert(shared.FactChanges,'NETWORK_FACT_REGISTRY_UNAVAILABLE')
+  return shared.FactChanges.RegisterConsumer('NET_'..name,fn,{kinds={'NETWORK'}})
+ end
  local function generation(pid)return shared.FactChanges and shared.FactChanges.Generation(pid,'NETWORK') or 0 end
  local function currentGeneration(pid,b)return (b.factGeneration or 0)==generation(pid)end
  local function isolatedForProof(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
@@ -666,6 +671,20 @@ function SPCNetworkBridge.Start(P,shared)
   local perf=ExposedMembers.SPC_Performance;if perf then perf.routes=0 end
   return true -- no Capture/derive/publication/consumer dispatch
  end
+ -- Event payloads only invalidate proof; they never become route facts.
+ local function signal(namespace,name,unit)
+  local event=P.Field(namespace,name);if not event or not event.Add then return end
+  event.Add(function(pid,id)
+   if unit then
+    if type(pid)=='number' and not P.IsTestPlayer(pid)then return end
+    if P.RouteUnitRelevant and not P.RouteUnitRelevant(pid,id)then return end
+   end
+   shared.RouteSignalRevision=shared.RouteSignalRevision+1
+  end)
+ end
+ for _,name in ipairs({'TradeRouteActivityChanged','TradeRouteRemovedFromMap','UnitRemovedFromMap','UnitOperationDeactivated','UnitOperationStarted','UnitOperationsCleared','CityRemovedFromMap','CityAddedToMap','CityTransfered','DiplomacyDeclareWar'})do signal(Events,name,name:find('^Unit')~=nil)end
+ -- B271 observed these GameEvents absent: CityConquered/TradeRoutePlundered.
+ -- Existing live CityTransfered/TradeRouteRemovedFromMap signals cover the transitions.
  function d.Rebuild()
   if isolated() then return end
   for pid in pairs(d.players) do d.Refresh(pid) end

@@ -732,7 +732,7 @@ if tradeEvent and type(tradeEvent.Add)=="function" then
 else stage("TRADE_ACTIVITY_EVENT_ABSENT") end
 
 -- Explicit ordered startup entries. Failure containment does not reorder dependencies.
-composition.Run('TradeRouteProbe',{},{'AutoRouteProbe','RouteSignalRevision'},function() include('TradeRouteProbe');SPCTradeRouteProbe.Start(P,shared) end)
+composition.Run('TradeRouteProbe',{},{'AutoRouteProbe'},function() include('TradeRouteProbe');SPCTradeRouteProbe.Start(P,shared) end)
 
 composition.Run('CompletionProbe',{},{'CompletionProbe'},function() include('CompletionProbe');SPCCompletionProbe.Start(P,shared) end)
 
@@ -792,7 +792,7 @@ composition.Run('Lv2GPP',{'EffectiveFacts'},{'Lv2GPP'},function() include('Lv2GP
 
 composition.Run('CarrierHealthTrace',{},{'CarrierHealthTrace'},function() include('CarrierHealthTrace');SPCCarrierHealthTrace.Start(P,shared) end)
 
-composition.Run('NetworkBridge',{'TradeRouteProbe','EffectiveFacts'},{'NetworkBridge'},function() include('NetworkBridge');SPCNetworkBridge.Start(P,shared) end)
+composition.Run('NetworkBridge',{'EffectiveFacts'},{'NetworkBridge','RouteSignalRevision'},function() include('NetworkBridge');SPCNetworkBridge.Start(P,shared) end)
 
 composition.Run('IndustrySupport',{'EffectiveFacts','CityProgressionStore'},{'IndustrySupport'},function() include('IndustrySupport');SPCIndustrySupport.Start(P,shared) end)
 

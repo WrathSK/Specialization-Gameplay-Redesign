@@ -546,9 +546,9 @@
       "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "3399091abca7023c9744a480d1705fe85e4b98ab1d02c34b2929d942909f1813",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
-      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
+      "sha256": "674e879872151262f7c48db01562a5f5f6a8e75fa240e35d97ae8c871fd103bb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
+      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DistrictPrecisionProbe.lua": {
       "sha256": "12a6b244c9694f8303400b544cd747e554ce56c88e9d2bf302a31c22f67aed6c",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "45eb8074d91d74f942cbde3878b784271af0c89b86c0820d801ca8558c19de1c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
-      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
+      "sha256": "09de3c1fbfccfbb14f24632834bebce3a8eec012efca4522737081712faca10f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
+      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -751,9 +751,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "f31f69a37406016d03f1037bfcd9cbfdf4e4244f5914109e65777820e3229c51",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B280_Refactor_S5a.md",
-      "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
+      "sha256": "0cb463b8838450dbf6f26a7d28640453623b6d3fdd93e46b58cc882158f16b97",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
+      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "fa1e16ae91b376d0f254f09f23337de8877c3a4bee8e7b30f01fb601f10f79b4",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "6c71c8d7a49f8851fb5c77584da8ad4838a22c867cd2d7b57acddc0262bc4ed9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
-      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
+      "sha256": "a6a865899668d82e3a3c63279428b27fff5511bcf015548ecf1dc08bbe04f5c9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
+      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d5b40be83950639156d9cc535d5f2b2146e0de6bac3dc063e0c03c28256c284b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
-      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
+      "sha256": "ce9b8bbb13a7d43e2a548caa247e0fc257d16930cf232ab2fe5a4eb69eb12669",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
+      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1146,9 +1146,9 @@
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/TradeRouteProbe.lua": {
-      "sha256": "8dbdb8d31b607d1951ee7f518ed8221cd620cf5a04c28ecbd1a364a294bda2a4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
-      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
+      "sha256": "24f2be90fa89b954dc4ddbadde94ccca9ff15799e28d5f80f5c3fe65f81d5f67",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
+      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/BackgroundRoutes.lua": {
       "sha256": "04584fc34eda768be333e09b56bb48bc660c46f423db22183fdf19c97e3d68e7",
@@ -1566,9 +1566,9 @@
       "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/RuntimeComposition.lua": {
-      "sha256": "f4cbad396acfac0d07fec59eb809d81468c248a520811f8e928483296b3152b1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B277_Refactor_S5a1.md",
-      "provenance": "B277 S5a1 pure inactive declared propagation precursor, S3 registration quarantine and explicit helper VFS imports. Production wiring deferred to S5a2; local/static only, no deployment/native PASS."
+      "sha256": "162849f5f8dfde457f15fbe3eb375b4bf661aba15160e838e7151be77fde71c9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
+      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SafeCallbacks.lua": {
       "sha256": "59f119acc1a5c0171607de9be6d94e05f230b34b4cb316af545ef4a74b87c321",
@@ -1581,14 +1581,14 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/FactChanges.lua": {
-      "sha256": "cee986a4b55796ed7e701e0fe490da6f809fec00e87aa5657d5205521771d3b4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B280_Refactor_S5a.md",
-      "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
+      "sha256": "d5112b1d72a6733f834cbb324afbd788bdb3bfee6e9e894c9b20297d95a81d23",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
+      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "90d9fce364cdcb35c0d3418774ca0ae45020c33386a72757673192a07e579547",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B280_Refactor_S5a.md",
-      "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
+      "sha256": "b3af10d1f222c6be978bb98b4b4d8330fdbc4c3156d87b18392d1eeca5375640",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
+      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "B271 approved source promoted through PR6 and deployed;312/312 source/live MATCH. Scoped local validation inherited; native acceptance pending."
