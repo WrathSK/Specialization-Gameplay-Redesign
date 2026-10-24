@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0754
-Implementation Build: B304.331 / modinfo331; stable/live B271.298
+Status Revision: S0755
+Implementation Build: B305.332 / modinfo332; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S6B_COMPLETE_CONTINUING
+Work State: REFACTOR_S6C_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S6b adds read-only EffectiveFacts projections with private phase-scoped raw worker reuse for actual Infrastructure/Apply/Chair. Three same-city no-write consumers read workers once rather than3, with identical carriers; actual Store proof retains7 full stamps and removes4 measured native leaf calls (plot/worker pairs), no extra diagnostic native reads.135 impact-selected scenarios including20 independent scope/capacity/UNKNOWN/exception/reentry/service-replacement/governor/write-barrier cases pass; no gameplay/save/qualification change. Anchor sharing and other S6 obligations remain. [Result](Validation/Results/Specialization_B304_Refactor_S6b.md). Stable/live/main B271.298; no deployment/native PASS.
+S6c shares detached anchor state and lazily requested geometry inside the existing guarded EF phase. Support/Housing/GPP keep independent policy and installed effects; three no-write consumers reduce anchor state samples3→1 and city-local indexed lookups4→2, with no owner-wide district enumeration. Geometry lookup is counted separately and never forces a D building census. Existing mismatch/state/ACTIVE priority and Industry reference bytes remain; GPP shares raw workers but retains its own255 bound.16 independent tests pass; reverse dependencies, capital/UI/target/network hot paths and remaining worker consumers continue under S6. [Result](Validation/Results/Specialization_B305_Refactor_S6c.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: S6 minimal raw anchor sharing and dependent hot paths, then S7–S10.
+- Primary next: Continue S6 reverse dependencies, remaining worker consumers and capital/UI/target/network hot paths, then S7–S10.
+
+## S0755 — B305.332 Share minimal anchor state without a building census
+
+S6c shares detached anchor state and lazily requested geometry inside the existing guarded EF phase. Support/Housing/GPP keep independent policy and installed effects; three no-write consumers reduce anchor state samples3→1 and city-local indexed lookups4→2, with no owner-wide district enumeration. Geometry lookup is counted separately and never forces a D building census. Existing mismatch/state/ACTIVE priority and Industry reference bytes remain; GPP shares raw workers but retains its own255 bound.16 independent tests pass; reverse dependencies, capital/UI/target/network hot paths and remaining worker consumers continue under S6.
 
 ## S0754 — B304.331 Share raw worker samples within existing fact authority
 

@@ -2,10 +2,14 @@
 SPCRuntimeWork={}
 function SPCRuntimeWork.New(P,shared)
  local b={};local byPlayer,live={}, {}
- local effective=shared.EffectiveFacts;local read=effective.NewReader and effective.NewReader() or effective.Read
+ local effective=shared.EffectiveFacts;local scoped=effective.NewReader and effective.NewReader();local read=scoped or effective.Read
  function b.Facts(pid,c)
   -- Every lookup revalidates the shared phase's authority/governor/write witness.
   return read(pid,c)
+ end
+ function b.Inspect(pid,c,project)
+  if effective.Inspect then return (scoped or effective.Inspect)(pid,c,project)end
+  return project(b.Facts(pid,c),function(_,fn)return fn()end,function(_,fn)return fn()end)
  end
  function b.Districts(pid,c)
   if not byPlayer[pid] then

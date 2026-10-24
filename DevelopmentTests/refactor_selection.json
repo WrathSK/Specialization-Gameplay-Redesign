@@ -646,6 +646,22 @@
       "test_refactor_s5c1.Districts",
       "test_refactor_baseline.RealConsumers",
       "test_refactor_baseline.WorkScope"
+    ],
+    "S6c": [
+      "test_refactor_s6b",
+      "test_refactor_s5b",
+      "test_refactor_s6a",
+      "test_refactor_s5d1.Writers",
+      "test_refactor_s5d4c1.ResearchHealth",
+      "test_refactor_s5d4c2",
+      "test_refactor_s5d4b1",
+      "test_refactor_s5d4b2",
+      "test_refactor_s5c1.Districts",
+      "test_refactor_baseline.RealConsumers",
+      "test_refactor_baseline.WorkScope",
+      "test_refactor_s6c",
+      "test_refactor_s4a",
+      "test_refactor_s5d4a"
     ]
   },
   "counterexamples": {},
@@ -660,30 +676,35 @@
     "Mod/EffectiveFacts.lua": [
       "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample",
       "test_refactor_s5b",
-      "test_refactor_s6b"
+      "test_refactor_s6b",
+      "test_refactor_s6c"
     ],
     "Mod/IndustrySupport.lua": [
       "test_refactor_baseline.RealConsumers.test_T05_unchanged_pending_has_attempt_budget",
       "test_refactor_s4a",
       "test_refactor_s5d4b1",
-      "test_refactor_s5d4c3"
+      "test_refactor_s5d4c3",
+      "test_refactor_s6c"
     ],
     "Mod/RuntimeWork.lua": [
       "test_refactor_baseline.RealConsumers",
       "test_refactor_s5d1",
       "test_refactor_s5d2",
       "test_refactor_s5d4c1",
-      "test_refactor_s5d4c2"
+      "test_refactor_s5d4c2",
+      "test_refactor_s6c"
     ],
     "Mod/Lv2Housing.lua": [
       "test_refactor_baseline.RealConsumers",
       "test_refactor_s4a",
-      "test_refactor_s5d4c2"
+      "test_refactor_s5d4c2",
+      "test_refactor_s6c"
     ],
     "Mod/Lv2GPP.lua": [
       "test_refactor_baseline.RealConsumers",
       "test_refactor_s5d4b2",
-      "test_refactor_s5d4c2"
+      "test_refactor_s5d4c2",
+      "test_refactor_s6c"
     ],
     "Mod/Gameplay.lua": [
       "test_refactor_defects.Defects",
@@ -747,7 +768,8 @@
       "test_refactor_s3"
     ],
     "Mod/SampleLifecycle.lua": [
-      "test_refactor_s4a"
+      "test_refactor_s4a",
+      "test_refactor_s6c"
     ],
     "Mod/UI/IndustryRefresh.lua": [
       "test_refactor_s4a"
@@ -854,6 +876,9 @@
     ],
     "Mod/ResearchInfrastructureShadow.lua": [
       "test_refactor_s6b"
+    ],
+    "Mod/SpecialistSupport.lua": [
+      "test_refactor_s6c"
     ]
   },
   "exclusions": {

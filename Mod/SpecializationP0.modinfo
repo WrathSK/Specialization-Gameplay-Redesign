@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="331">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="332">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B304.331：科研专家人数按安全读取阶段复用，保留独立资格与完整权威校验</Description>
+    <Description>B305.332：锚点状态与按需坐标分层共享，保留独立专业判断</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

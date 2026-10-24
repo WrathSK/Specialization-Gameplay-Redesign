@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0754",
-    "runtime": "B304.331 / modinfo331",
+    "status": "S0755",
+    "runtime": "B305.332 / modinfo332",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "S6 minimal raw anchor sharing and dependent hot paths, then S7–S10. No automatic deployment/main/native launch.",
+  "goal": "Continue S6 reverse dependencies, remaining worker consumers and capital/UI/target/network hot paths, then S7–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -214,6 +214,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
       "kind": "full",
       "reason": "Share raw worker samples within existing fact authority actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+      "kind": "full",
+      "reason": "Share minimal anchor state without a building census actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -240,8 +245,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
-    "local": "135 impact-selected Lua51 scenarios PASS, including20 independent shared-worker/actual-Store/three-writer proofs.",
+    "report": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+    "local": "177 impact-selected Lua51 scenarios PASS, including16 independent anchor/geometry/actual-consumer cases.",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }

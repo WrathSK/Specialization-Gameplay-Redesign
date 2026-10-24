@@ -30,12 +30,16 @@ function SPCLv2GPP.Start(P,shared)
   ownedIndex=nextOwned;definitions=true
  end
  local function inspect(pid,city)
-  local kind,d,f=SPCSpecialistSupport.Anchor(P,shared,pid,city,batch or SPCRuntimeWork.New(P,shared))
+  return SPCSpecialistSupport.Inspect(P,shared,pid,city,batch or SPCRuntimeWork.New(P,shared),function(kind,d,f,workers,geometry)
   if not classes[kind] then return {workers=0,enabled=false,reason='CONFIRMED_INELIGIBLE'} end
   if f.active<2 then return {kind=kind,active=f.active,workers=0,enabled=false,reason='ACTIVE_BELOW_II'} end
-  local plot=assert(Map.GetPlot(d:GetX(),d:GetY()),'B2_GPP_PLOT_UNAVAILABLE')
-  local n=plot:GetWorkerCount();assert(int(n) and n<=255,'WORKER_COUNT_UNKNOWN_OR_UNSUPPORTED')
-  return {kind=kind,workers=n,active=f.active,enabled=true,reason='VERIFIED anchor='..d:GetID()}
+  local g=geometry();local plot=assert(Map.GetPlot(g.x,g.y),'B2_GPP_PLOT_UNAVAILABLE')
+  local function read()local n=plot:GetWorkerCount();assert(int(n)and n<=255,'WORKER_COUNT_UNKNOWN_OR_UNSUPPORTED');return n end
+  local n
+  if type(plot.GetIndex)=='function'then n=workers({id=d.id,type=d.type,plot=plot:GetIndex()},read)else n=read()end
+  assert(int(n)and n<=255,'WORKER_COUNT_UNKNOWN_OR_UNSUPPORTED')
+  return {kind=kind,workers=n,active=f.active,enabled=true,reason='VERIFIED anchor='..d.id}
+  end)
  end
 
  local function set(city,id,wanted)

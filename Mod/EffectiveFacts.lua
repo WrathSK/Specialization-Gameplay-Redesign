@@ -19,7 +19,7 @@ function SPCEffectiveFacts.Start(P,shared)
  end
  function data.Version()return generation end
  function data.Invalidate()
-  generation=generation+1;if phase then phase.values={};phase.count=0;phase.workers={};phase.workerCount=0 end
+  generation=generation+1;if phase then phase.values={};phase.count=0;phase.workers={};phase.workerCount=0;phase.anchors={};phase.anchorCount=0 end
  end
  function data.BeginWrite()
   data.Invalidate();writes=writes+1;local ticket={};tickets[ticket]=true;return ticket
@@ -132,7 +132,33 @@ function SPCEffectiveFacts.Start(P,shared)
    end
    return count
   end
-  local result=pack(pcall(project,clone(value),workers));active=false
+  local function anchor(first,readNative,geometry)
+   assert(active and type(readNative)=='function','ANCHOR_READER_EXPIRED')
+   assert(type(first)=='table'and type(first.districtID)=='number'and first.districtID>=0 and first.districtID%1==0 and type(first.type)=='string','ANCHOR_REFERENCE_INVALID')
+   if not(window and parent and changes and changes.Generation)or writes>0 then return readNative()end
+   assert(unchanged(),'ANCHOR_FACTS_CHANGED_DURING_READ')
+   window.anchors=window.anchors or {};window.anchorCount=window.anchorCount or 0
+   local key=tostring(value.owner)..':'..tostring(value.cityID)..':'..tostring(geometry==true)
+   local cached=window.anchors[key]
+   if cached and cached.parent==parent and cached.changes==changes and cached.id==first.districtID and cached.kind==first.type and cached.ownerEpoch==ownerEpoch and cached.cityEpoch==cityEpoch then return clone(cached.value)end
+   if cached then window.anchors[key]=nil;window.anchorCount=window.anchorCount-1 end
+   local busyKey='ANCHOR:'..key
+   assert(not workerBusy[busyKey]and workerBusyCount<8,'ANCHOR_CAPTURE_IN_PROGRESS')
+   workerBusy[busyKey]=true;workerBusyCount=workerBusyCount+1
+   local result=pack(pcall(readNative));workerBusy[busyKey]=nil;workerBusyCount=workerBusyCount-1
+   local raw=finish(result)
+   assert(type(raw)=='table'and getmetatable(raw)==nil,'ANCHOR_SAMPLE_INVALID')
+   local allowed=geometry and {x=true,y=true}or {present=true,id=true,owner=true,cityID=true,type=true,typeIndex=true,complete=true,pillaged=true}
+   for k,v in pairs(raw)do assert(allowed[k]and(type(v)=='boolean'or type(v)=='string'or type(v)=='number'and v==v and math.abs(v)<math.huge),'ANCHOR_SAMPLE_INVALID')end
+   if geometry then assert(type(raw.x)=='number'and type(raw.y)=='number','ANCHOR_GEOMETRY_UNKNOWN')
+   else assert(type(raw.present)=='boolean','ANCHOR_SAMPLE_INVALID')end
+   assert(unchanged()and writes==0,'ANCHOR_FACTS_CHANGED_DURING_READ')
+   if window.anchorCount<2048 then window.anchorCount=window.anchorCount+1
+    window.anchors[key]={parent=parent,changes=changes,id=first.districtID,kind=first.type,value=clone(raw),ownerEpoch=ownerEpoch,cityEpoch=cityEpoch}
+   end
+   return clone(raw)
+  end
+  local result=pack(pcall(project,clone(value),workers,anchor));active=false
   -- A typed mutation during any part of the read-only projection cannot certify
   -- its old plan. This is separate from the base fact's own full Store witness.
   if window and not unchanged()then return pack(false,'WORKER_FACTS_CHANGED_DURING_READ')end
@@ -198,10 +224,11 @@ function SPCEffectiveFacts.Start(P,shared)
  -- Detached scope is owned only by that short-lived batch; no registry retains it.
  function data.NewReader()
   local scope={values={},count=0,version=generation}
-  return function(pid,city)
-   if phase then return data.Read(pid,city)end
-   if scope.version~=generation then scope.values={};scope.count=0;scope.workers={};scope.workerCount=0 end
-   phase=scope;local result=pack(pcall(data.Read,pid,city));phase=nil;scope.version=generation
+  return function(pid,city,project)
+   local reader=project and data.Inspect or data.Read
+   if phase then return reader(pid,city,project)end
+   if scope.version~=generation then scope.values={};scope.count=0;scope.workers={};scope.workerCount=0;scope.anchors={};scope.anchorCount=0 end
+   phase=scope;local result=pack(pcall(reader,pid,city,project));phase=nil;scope.version=generation
    return finish(result)
   end
  end

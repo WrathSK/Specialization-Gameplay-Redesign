@@ -19,27 +19,56 @@ function S.Retire(P,c,shared)
  end
  return removed
 end
--- Nil = confirmed ineligible; thrown read = UNKNOWN, retain existing projection.
-function S.Anchor(P,shared,pid,c,batch)
- if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return nil end
- local f=batch.Facts(pid,c)
- if f.specialization=='NONE' then return nil end
- assert(P.Families and type(f.specialization)=='string','B1_IDENTITY_UNKNOWN')
- assert(f.first and type(f.potential)=='number' and f.potential>=1,'B1_FOUNDATION_UNKNOWN')
- for _,d in batch.Districts(pid,c) do
-  if d:GetID()==f.first.districtID then
-   local owner=d:GetCity();assert(owner,'B1_CITY_UNKNOWN')
-   if owner:GetOwner()~=pid or owner:GetID()~=c:GetID() then return nil end
-   local row=assert(P.Info('Districts',d:GetType()),'B1_DISTRICT_UNKNOWN')
-   if row.DistrictType~=f.first.type or P.Family(row.DistrictType)~=f.specialization then return nil end
-   local complete,pillaged=d:IsComplete(),d:IsPillaged()
-   assert(type(complete)=='boolean' and type(pillaged)=='boolean','B1_DISTRICT_STATE_UNKNOWN')
-   if not complete or pillaged then return nil end
-   assert(type(f.active)=='number','B1_ACTIVE_UNKNOWN')
-   if f.active<1 then return nil end
-   assert(f.active%1==0 and f.active<=4 and f.active<=f.potential,'B1_ACTIVE_INVALID')
-   return f.specialization,d,f
+-- Sampling is raw, city-scoped and read-only. Each caller retains its policy.
+local function find(P,pid,c,first,batch)
+ if type(c.GetDistricts)=='function'then
+  local districts=c:GetDistricts();local n=districts:GetNumDistricts()
+  assert(type(n)=='number'and n>=0 and n%1==0,'B1_DISTRICT_COUNT_UNKNOWN')
+  for i=0,n-1 do
+   local d=assert(districts:GetDistrictByIndex(i),'B1_DISTRICT_ENTRY_UNKNOWN');P.Count('district_scan')
+   if d:GetID()==first.districtID then return d end
   end
+ else
+  -- Isolated legacy profiles without indexed native CityDistricts.
+  for _,d in batch.Districts(pid,c)do if d:GetID()==first.districtID then return d end end
  end
- return nil
+end
+local function sample(P,pid,c,f,batch)
+ local d=find(P,pid,c,f.first,batch)
+ if not d then return {present=false}end
+ local owner=assert(d:GetCity(),'B1_CITY_UNKNOWN')
+ local raw={present=true,id=f.first.districtID,owner=owner:GetOwner(),cityID=owner:GetID()}
+ -- Confirmed mismatches win before getters that the old policy never needed.
+ if raw.owner~=pid or raw.cityID~=c:GetID()then return raw end
+ raw.typeIndex=d:GetType();local row=assert(P.Info('Districts',raw.typeIndex),'B1_DISTRICT_UNKNOWN');raw.type=row.DistrictType
+ if raw.type~=f.first.type or P.Family(raw.type)~=f.specialization then return raw end
+ raw.complete,raw.pillaged=d:IsComplete(),d:IsPillaged()
+ assert(type(raw.complete)=='boolean'and type(raw.pillaged)=='boolean','B1_DISTRICT_STATE_UNKNOWN')
+ return raw
+end
+-- Nil = confirmed ineligible; thrown read = UNKNOWN, retain existing projection.
+function S.Inspect(P,shared,pid,c,batch,project)
+ if c:GetOwner()~=pid or not P.IsTestPlayer(pid)then return project(nil)end
+ local function inspect(f,workers,anchors)
+  if f.specialization=='NONE'then return project(nil)end
+  assert(P.Families and type(f.specialization)=='string','B1_IDENTITY_UNKNOWN')
+  assert(f.first and type(f.potential)=='number'and f.potential>=1,'B1_FOUNDATION_UNKNOWN')
+  local raw=anchors(f.first,function()return sample(P,pid,c,f,batch)end)
+  if not raw.present or raw.owner~=pid or raw.cityID~=c:GetID() or raw.type~=f.first.type or P.Family(raw.type)~=f.specialization then return project(nil)end
+  if not raw.complete or raw.pillaged then return project(nil)end
+  assert(type(f.active)=='number','B1_ACTIVE_UNKNOWN')
+  if f.active<1 then return project(nil)end
+  assert(f.active%1==0 and f.active<=4 and f.active<=f.potential,'B1_ACTIVE_INVALID')
+  local function geometry()
+   return anchors(f.first,function()
+    local d=assert(find(P,pid,c,f.first,batch),'B1_ANCHOR_GEOMETRY_UNKNOWN')
+    return {x=d:GetX(),y=d:GetY()}
+   end,true)
+  end
+  return project(f.specialization,raw,f,workers,geometry)
+ end
+ return batch.Inspect(pid,c,inspect)
+end
+function S.Anchor(P,shared,pid,c,batch)
+ return S.Inspect(P,shared,pid,c,batch,function(kind,raw,f)return kind,raw,f end)
 end

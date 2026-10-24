@@ -26,15 +26,16 @@ function SPCIndustrySupport.Start(P,shared)
   definitions=rows;ownedIndex=nextOwned;return rows
  end
  local function inspect(pid,city,externalBatch)
-  local kind,d=SPCSpecialistSupport.Anchor(P,shared,pid,city,externalBatch or batch or SPCRuntimeWork.New(P,shared))
+  return SPCSpecialistSupport.Inspect(P,shared,pid,city,externalBatch or batch or SPCRuntimeWork.New(P,shared),function(kind,d,f,workers,geometry)
   if kind~='INDUSTRY' then return nil end
-  local row=assert(P.Info('Districts',d:GetType()),'INDUSTRY_FACT_INVALID')
-  local batch=data.samples[pid];local sample=batch and batch.rows[city:GetID()..':'..d:GetID()]
+  local row=assert(P.Info('Districts',d.typeIndex),'INDUSTRY_FACT_INVALID')
+  local batch=data.samples[pid];local sample=batch and batch.rows[city:GetID()..':'..d.id]
   assert(sample,'BASE_BACKGROUND_SAMPLE_PENDING')
-  assert(sample.reference==SPCSampleLifecycle.Reference(city,d,row),'BASE_BACKGROUND_REFERENCE_PENDING')
+  assert(sample.reference==SPCSampleLifecycle.AnchorReference(city,d,geometry()),'BASE_BACKGROUND_REFERENCE_PENDING')
   local n=sample.value
   assert(type(n)=='number' and n>=0 and n<=255 and n%1==0,'BASE_ADJACENCY_UNKNOWN_FRACTIONAL_OR_OUT_OF_RANGE')
   return n
+  end)
  end
  local function carriers(city,n,write)
   local total,food=0,0;local removed=false

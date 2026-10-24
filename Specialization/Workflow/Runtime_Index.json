@@ -561,9 +561,9 @@
       "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "9f2e1517d26efab720b87b465f51f345526830da7fc5bf7708aa7d0c9300b89b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
-      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "d5139635fd19e8105f7dc20c939a36d6dfd86fa09bbe8019bb2ddf5a2cd17775",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
     },
     "Mod/EligibilityProbe.lua": {
       "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
@@ -681,9 +681,9 @@
       "provenance": "B279 confirmed historical result topics and explicit isolated adapters; project/native/persistence semantics retained. Local/static only; remaining manual lists next; no deployment/native PASS."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "a9e9d1fe2c066f1bfdcefbdea4ded9269fa7a9ddd0c4faa46927ca8730be9111",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B292_Refactor_S5d4c3.md",
-      "provenance": "B292.319 trusted Industry D scope and exact carrier health; local/static evidence only; no deployment/native PASS."
+      "sha256": "63e46e4e523fdc4eac03fdb085aa7e67c1e5ab1a9e99f76f8de7c621c2093445",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "b324ed219e50575e2d10cbe50477c66694cfbc9899c8d2a8f13e58d3686e71d0",
@@ -716,14 +716,14 @@
       "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "233d314c12ba5c5add1ae05ed331e87883c72e67fb2f401e26e21063ccffb164",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
-      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
+      "sha256": "76e1698fbf5d0321f4fbeede9e33e2f443793ef52e27dd0941ab44cd8ee96bf9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "e42ebce8156b74eb53b0a2cde7261b6ca89123b478b661948be54e314913877d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
-      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
+      "sha256": "0db5d74d289f8a4137497024f4b61e13d436e38df57d303bf697a52e107bc8cf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv3Effects.lua": {
       "sha256": "42429e6bf83f16ab007b7477b04102f82e3916bda847d6a20bf151892bfd9d50",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "34677a1302246179f704e78710dc5ec89e4b8d471b037eec254f8d9cf0e0b1e2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
-      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "918aebfcd0e871c7e7fcedc202bef16733945935571aa86f2ed9415b6499d87d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -896,14 +896,14 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "60fb44950019e6d74655dac499e5396d0604cdadfe5a5761d3681920ae211ae8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B302_Refactor_S5d4d2.md",
-      "provenance": "B302.329 Native D transfer metadata and detached target recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "4ad30e883050e9e5bcd0a22ac0b10da393016ce2a14614ecc820dbe7a8380c98",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
-      "sha256": "7bc6223f321bccf3cd2e419718a8cc3265833737233838f6eebf665a109caac2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
-      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
+      "sha256": "86d5a2dd3addf5eb9d30dcafdf12e141618037194da4ae0f0496b5b3ea6609f9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ShadowRouteState.lua": {
       "sha256": "6f35992fd9e5b8d2429061acbaf83e3f7747300592bf050dbb23e1e5fe9163e6",
@@ -916,9 +916,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecialistSupport.lua": {
-      "sha256": "ba0e1ee5eb6fa2991319aedc13add43ddbfe93242df5d4801b7755a2f353d302",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "c33e795dd52bd1f1fddb20af5ba9327d8e497803ff1a4a1cd99c435d4ec895a0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Specialization.dep": {
       "sha256": "33e4ab62dfc52efc143b9d56a77f6538cc6a25c986754984436e1aca10ab0e0d",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3947e2baaab0401b40a3a4739a5569f34d8a48b8e0040ace3357d74fe6b26e07",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
-      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "5bb6701f86858e3baf81e263758141784d90223b8d63f1f8be6a0aacb983af12",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
+      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

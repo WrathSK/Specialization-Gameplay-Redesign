@@ -31,7 +31,7 @@ function SPCLv2Housing.Start(P,shared)
   local sample=svc.ReadFacts(pid,city,f.token)
   assert(sample.validity=='VERIFIED' and sample.availability=='READY',sample.error or 'B2_BUILDINGS_UNAVAILABLE')
   local anchor
-  for _,r in ipairs(sample.value.districts) do if r.id==d:GetID() then anchor=r;break end end
+  for _,r in ipairs(sample.value.districts) do if r.id==d.id then anchor=r;break end end
   assert(anchor and anchor.type==f.first.type,'B2_ANCHOR_SAMPLE_MISMATCH')
   assert(anchor.complete and not anchor.pillaged,'B2_ANCHOR_CHANGED_DURING_READ')
   wanted[0]=true
@@ -42,7 +42,7 @@ function SPCLv2Housing.Start(P,shared)
     if b.tier>0 then wanted[b.tier]=true end
    end
   end
-  return wanted,kind..' ACTIVE='..f.active..' anchor='..d:GetID(),anchor.buildings
+  return wanted,kind..' ACTIVE='..f.active..' anchor='..d.id,anchor.buildings
  end
  local function plan(city,wanted)
   local result={}

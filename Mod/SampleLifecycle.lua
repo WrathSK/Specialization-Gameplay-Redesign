@@ -3,11 +3,13 @@ SPCSampleLifecycle={}
 local L=SPCSampleLifecycle
 local function count(P,k,n) if P.Count then P.Count(k..'_'..n) end end
 local function integer(n) return type(n)=='number' and n>=0 and n%1==0 end
-function L.Reference(c,d,row)
+local function reference(c,id,x,y,kind)
  local function a(v) local s=type(v)..':'..tostring(v);return (#s..':'..s):gsub('[%%,;]',function(x) return string.format('%%%02X',string.byte(x)) end) end
  return a(c:GetOwner())..a(c:GetID())..a(c:GetX())..a(c:GetY())..a(c:GetProperty('SPC_DEV_BINDING_B013_TOKEN'))
-  ..a(d:GetID())..a(d:GetX())..a(d:GetY())..a(row.DistrictType)
+  ..a(id)..a(x)..a(y)..a(kind)
 end
+function L.Reference(c,d,row)return reference(c,d:GetID(),d:GetX(),d:GetY(),row.DistrictType)end
+function L.AnchorReference(c,d,g)return reference(c,d.id,g.x,g.y,d.type)end
 function L.Live(P,pid,industry)
  local out={};local n=0
  for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan')
