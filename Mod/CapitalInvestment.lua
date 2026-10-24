@@ -126,7 +126,7 @@ function SPCCapitalInvestment.Start(P,shared)
   end
   local standard,why=SPCCommerceModel.IsStandardSpeed();assert(standard,why or 'CAPITAL_STANDARD_SPEED_ONLY')
   local cv=shared.Commerce and shared.Commerce.views[key(pid,c:GetID())]
-  assert(cv and cv.token==r.token and cv.stage=='READY','CAPITAL_COMMERCE_PENDING')
+  assert(cv and cv.token==r.token and cv.stage=='READY' and (not shared.Commerce.TransactionCurrent or shared.Commerce.TransactionCurrent(pid,c:GetID())),'CAPITAL_COMMERCE_PENDING')
   local dc=shared.DistrictCompleteness.ReadFacts(pid,c,f.token)
   assert(dc.validity=='VERIFIED' and dc.availability=='READY' and dc.value,'CAPITAL_DISTRICT_UNKNOWN')
   local balance=money(pid);v.balance=balance;local currentTurn=Game.GetCurrentGameTurn();local internal={}

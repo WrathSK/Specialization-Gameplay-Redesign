@@ -34,7 +34,40 @@ function M.New(shared)
  if previous and type(previous.Close)=='function'then previous.Close()end
  local d={sequence=0,emitted=0,delivered=0,pending=0,errors={},closed=false}
  local consumers,order,queue,keys={},{},{},{};local busy=false
+ -- Session-local authority stamps, not fact values. Owner scope covers pool membership:
+ -- a newly qualifying source may be absent from every old per-city dependency list.
+ local generations={};local owners=0
+ function d.Generation(owner,domain,cityID)
+  local row=generations[owner]
+  if domain=='COMMERCE' and cityID~=nil then return row and row.cities and row.cities[cityID] or 0 end
+  return row and row[domain] or 0
+ end
+ local function invalidate(owner,cityID,kinds,topic)
+  if owner==nil then return end
+  local network=kinds.IDENTITY or kinds.POTENTIAL or kinds.ACTIVE
+  local commerce=network or kinds.D or kinds.WORKERS or kinds.HISTORY and topic=='COMMERCE'
+  if not network and not commerce then return end
+  local row=generations[owner]
+  if not row then assert(owners<2048,'FACT_OWNER_LIMIT');owners=owners+1;row={};generations[owner]=row end
+  if network then row.NETWORK=(row.NETWORK or 0)+1 end
+  if commerce then
+   if network or cityID==nil then row.COMMERCE=(row.COMMERCE or 0)+1
+   else
+    row.cities=row.cities or {};row.cityCount=row.cityCount or 0
+    if row.cities[cityID]==nil then assert(row.cityCount<2048,'FACT_CITY_LIMIT');row.cityCount=row.cityCount+1 end
+    row.cities[cityID]=(row.cities[cityID] or 0)+1
+   end
+  end
+ end
  shared.FactChanges=d
+ -- Committed producers invalidate authority before fallible evidence construction.
+ -- Emit also invalidates independently; repeated stamps are harmless opaque versions.
+ function d.InvalidateCommitted(owner,cityID,kinds,topic)
+  assert(not d.closed and integer(owner) and (cityID==nil or integer(cityID)),'FACT_COMMIT_SCOPE')
+  local set={};entries(kinds,7,function(kind)assert(K[kind],'FACT_KIND_UNKNOWN');set[kind]=true end)
+  assert(next(set) and (topic==nil or token(topic)),'FACT_COMMIT_KINDS')
+  invalidate(owner,cityID,set,topic)
+ end
  function d.RegisterConsumer(name,callback,options)
   assert(not d.closed and token(name) and not consumers[name] and type(callback)=='function','FACT_CONSUMER_INVALID')
   assert(#order<128,'FACT_CONSUMER_LIMIT');options=options or {}
@@ -74,6 +107,7 @@ function M.New(shared)
   -- Cause/topic names are detached bounded tokens, never raw filenames/errors.
   local n=0;for _ in pairs(row.causes)do n=n+1 end;assert(n<=32,'FACT_CAUSE_LIMIT')
   n=0;for _ in pairs(row.topics)do n=n+1 end;assert(n<=32,'FACT_TOPIC_LIMIT')
+  invalidate(event.owner,event.cityID,kinds,event.topic) -- zero native calls; visible before deferred delivery
   d.sequence=row.sequence;d.emitted=d.emitted+1
   if not previous then keys[#keys+1]=key;d.pending=#keys end
   queue[key]=row;return row.sequence

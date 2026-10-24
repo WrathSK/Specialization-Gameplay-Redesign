@@ -17,6 +17,13 @@ function M.Start(P,shared)
  local ownNames={};for _,id in ipairs(M.Owned)do ownNames[id]=true end
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'COMMERCE')
  local function key(pid,id)return pid..':'..id end
+ local function generation(pid,id)return shared.FactChanges and shared.FactChanges.Generation(pid,'COMMERCE',id) or 0 end
+ function d.TransactionCurrent(pid,id)
+  local v=views[key(pid,id)]
+  if not v or v.stage~='READY' or (v.factGeneration or 0)~=generation(pid)then return false end
+  for source,epoch in pairs(v.sourceGenerations or {})do if epoch~=generation(pid,source)then return false end end
+  return true
+ end
  local function city(pid,id)local p=Players[pid];return p and p:GetCities() and p:GetCities():FindID(id)end
  local function ref(c)return c:GetOwner()..':'..c:GetID()..':'..c:GetX()..':'..c:GetY()end
  local function same(a,b)
@@ -102,6 +109,11 @@ function M.Start(P,shared)
   end end end end
   initialized=true;d.ready=true;return true
  end
+ local function stamp(batch,pid,id)
+  local k=key(pid,id);batch.epochs=batch.epochs or {}
+  if batch.epochs[k]==nil then batch.epochs[k]=generation(pid,id)end
+  return batch.epochs[k]
+ end
  local function facts(batch,pid,c)
   local k=key(pid,c:GetID());if not batch.facts[k]then batch.facts[k]=shared.EffectiveFacts.Read(pid,c)end
   return batch.facts[k]
@@ -120,6 +132,7 @@ function M.Start(P,shared)
   return tostring(n):gsub('[\r\n]',' ')
  end
  local function prepare(batch,pid,id)
+  stamp(batch,pid,id)
   local c=assert(city(pid,id),'COMMERCE_CITY_UNKNOWN');assert(c:GetOwner()==pid,'COMMERCE_OWNER_CHANGED')
   local f=facts(batch,pid,c);local v={reference=ref(c),token=f.token,identity=f.specialization,potential=f.potential,
    active=f.active,activeStatus=f.activeStatus,workers=0,selected={},effective={},domains={},totalRaw=0,totalGold=0,
@@ -173,7 +186,7 @@ function M.Start(P,shared)
    v.reputation.effective=math.min(v.reputation.effective,previous.reputation and previous.reputation.effective or 0)
   end
   out.network=network
-  for _,sid in ipairs(network.partners)do out.sources[sid]=true end
+  for _,sid in ipairs(network.partners)do out.sources[sid]=true;stamp(batch,pid,sid)end
   v.stage='READY';v.reason='COMMERCE_READY';v.networkProvenance=cp(network.provenance)
   if network.input and network.input.factAvailability=='MIXED' or network.continuityOnly then v.stage='RETAINED';v.reason='COMMERCE_MIXED_FACTS';v.canConfigure=false end
   for _,r in ipairs(v.domains)do if r.effective then v.effective[#v.effective+1]=r.id end end
@@ -276,7 +289,8 @@ function M.Start(P,shared)
     local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true})
     if changed then for cid in pairs(changed)do addTargets(ids,pid,cid)end else addTargets(ids,pid)end
    end end
-   local batch={facts={},depth={},yields={},identities={}};local plans={}
+   local batch={facts={},depth={},yields={},identities={}};local plans={};local sampledGenerations={}
+   for _,pair in pairs(ids)do sampledGenerations[pair[1]]=generation(pair[1])end
    for k,pair in pairs(ids)do
     local pid,id=pair[1],pair[2];local c=city(pid,id)
     if c and c:GetOwner()==pid then
@@ -321,6 +335,8 @@ function M.Start(P,shared)
      x.v.stage='HELD';x.v.reason=code(err);x.v.totalGold=0;x.v.totalRaw=0;x.v.canConfigure=false;x.v.effective={}
      for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
     end
+    x.v.factGeneration=sampledGenerations[x.pid];x.v.sourceGenerations={}
+    for sid in pairs(x.sources or {[x.id]=true})do x.v.sourceGenerations[sid]=batch.epochs and batch.epochs[key(x.pid,sid)] or generation(x.pid,sid)end
     publish(x.pid,x.id,x.v)
    end
 
@@ -332,7 +348,7 @@ function M.Start(P,shared)
  function d.SourceChanged(pid,id)d.Audit({player=pid,changed={[id]=true}})end
  function d.BindPermanentWrites()
   if permanentBound then return end
-  SPCSafeCallbacks.Chain(shared,'Commerce',function(c,reason)if c then d.Mark(c:GetOwner(),c:GetID())end end)
+  if shared.FactChanges then shared.FactChanges.RegisterConsumer('Commerce',function(e)d.Mark(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','HISTORY'},topics={'COMMERCE'}})end
   permanentBound=true
  end
  function d.ExperimentalNetworkWithdraw(pid)

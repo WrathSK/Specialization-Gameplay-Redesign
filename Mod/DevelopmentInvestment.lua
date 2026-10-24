@@ -374,6 +374,6 @@ function SPCDevelopmentInvestment.Start(P,shared)
   d.Mark(loss.origin.owner)
  end)
  store.RegisterReturn('DevelopmentInvestment',function(pid,c)d.SourceChanged(pid,c:GetID())end)
- SPCSafeCallbacks.Chain(shared,'DevelopmentInvestment',function(c,reason)if c then d.SourceChanged(c:GetOwner(),c:GetID())end end)
+ if shared.FactChanges then shared.FactChanges.RegisterConsumer('DevelopmentInvestment',function(e)d.SourceChanged(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
  return d
 end

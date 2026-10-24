@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="304">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="305">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B277.304：有界事实传播前置组件；生产通知迁移尚未接管。</Description>
+    <Description>B278.305：永久提交的声明式通知与交易证明即时失效保护。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

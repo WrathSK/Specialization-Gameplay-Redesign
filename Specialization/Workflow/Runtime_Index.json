@@ -46,9 +46,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CapitalInvestment.lua": {
-      "sha256": "584456fc371760e6f27376f816e9b9f39015e33178de646bdd69dfbe1115f288",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
-      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
+      "sha256": "b1c6c793e4a2207040e8aba2747497f70b90d57b92270ff2403f50f29e912d37",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/CapitalInvestmentDiagnostics.lua": {
       "sha256": "0ab8a511f180736f2d3d4a129d8fc9a15174e381a4ceaae1da6f78c7720542f9",
@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "fabf3c8aa0c3d6d0042026041364a0cf8bbb42a9daaac78ab8745efec8c303cf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "c9fb55769afcab08f8bde0a91ef207dc18fce94666d8753f393dc69e43109fc8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -111,14 +111,14 @@
       "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/ClaimProjects.lua": {
-      "sha256": "29b8e89464dddb19f2aef8d2afcd056600d49e7a486abf6d5bd8560c381ef3e3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "5d4209b0a0003c3f342105915f278f003cc7bf0a4f01f19cf5a0514d01efbf14",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
-      "sha256": "b5c04c4fb7f9e9d286a5860393e7c25d1959b363692b00667e4be22af2db514d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
-      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
+      "sha256": "ba61068b1e355fe9bcea7a70b014a66cd999879b550d577e27006d92caddd5bb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -176,9 +176,9 @@
       "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "d4fb42239d84730c4d88740f022b3ff8ca8bf7f58d09c9ced05c71d220a1d90a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "73db9b7c6b1d9f67059cfd51c4772b2531cde467534477412001741be08b6581",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "e035ce2b7225120daf3723344bfdde4d823631c0936ab8370153ec0833aacd67",
@@ -501,9 +501,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "414b8c6948455ab1fad14bf32d273b7e8db7543771a54212fe0551c4b176a68e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
-      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
+      "sha256": "bb2daddd025d607770cd81f3ae8a2507f67da5c7557baa383d50ec8ac047bcf7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "4f4df0ed1eee502d9ee19ad8e053c6070b9f17d74b0e33eaba26f33ab13e256a",
@@ -576,9 +576,9 @@
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/EngineeringStudyProjects.lua": {
-      "sha256": "f44cf14aa7f5dd45f3ea9c7bfd5398f84184c4feb4f0452062b494bef74bc96d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "08c613b201f67580140a51ac5ec1ec1bc2e7645bacf5d8de7207c874cca28203",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/EnvelopeProbe.lua": {
       "sha256": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "327d1434dad641f9f30029aa43077e5c194fd8057967008070e2c307b3e3812b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "41ab0bee80b302438781543e3f0a14e47298ca39963df6320b054aee8996cf05",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -681,14 +681,14 @@
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "e491c00c87bc17cb6a854d233ee4791124a846717babca812ff9f533cb7abe91",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
-      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
+      "sha256": "fc1a739510728469a904e6e2792ca11f8129603d2db7257f9057d9e4a20c6ddc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/IndustryWonderEffects.lua": {
-      "sha256": "eed229b2e765cdd7ffc43404413b9c347f642e1041ee2fb280a66e4abc16a7b9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+      "sha256": "616fd926e481b452729cdab8be6e7944b36ade557c30eb4888e950ed36299211",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/InheritanceShadow.lua": {
       "sha256": "a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1",
@@ -711,9 +711,9 @@
       "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/LevelBannerState.lua": {
-      "sha256": "0403b45a18a5559bdedd69e36ee0e4246dc3361ff91b8ba2717cd864303b6eee",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "4929677c51ba8b923fd3ca86535e722ff252fe82081b52d3f0058aee01fda33a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/Lv2GPP.lua": {
       "sha256": "6d92fadee6760a92872ccee1caeb0182d55542971ff12dffdf1d78ad3b73aa3f",
@@ -751,9 +751,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "511231eeb9d04798e2eec5f8555660c328c071a0e9c1fb5b68df97c640c1889c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
-      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
+      "sha256": "cfd86988a65dbde14470b226ae2ae9fdd27364d10963d7f69df5112111aa0d55",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "fa1e16ae91b376d0f254f09f23337de8877c3a4bee8e7b30f01fb601f10f79b4",
@@ -786,9 +786,9 @@
       "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/Probe.lua": {
-      "sha256": "98049abbc989b1695deb00d3b4d1d9d6eae32dc6d075f32babc138d0ed25b7d1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B277_Refactor_S5a1.md",
-      "provenance": "B277 S5a1 pure inactive declared propagation precursor, S3 registration quarantine and explicit helper VFS imports. Production wiring deferred to S5a2; local/static only, no deployment/native PASS."
+      "sha256": "85dedaa2e8f1e2feb534d7694c86173bb766d481a5fe7d56870d8aece513263f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -876,9 +876,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/Restructuring.lua": {
-      "sha256": "db57e28a994299f903cee50191cd7c322dd52627dae79e7b95a78a1881f8e227",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "af074ed573dc92b9ea8e536cdd01fac63fe4479fb9206326b42271a543ce4608",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/RestructuringModel.lua": {
       "sha256": "5d0893c5a2e8c717a8e8677428c7c82a1c1166f061facf51a16e9162e32b22b3",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a6931f0ce4ec112451b847b6fbe466e9869569834a779652eade93f26cdd1318",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B277_Refactor_S5a1.md",
-      "provenance": "B277 S5a1 pure inactive declared propagation precursor, S3 registration quarantine and explicit helper VFS imports. Production wiring deferred to S5a2; local/static only, no deployment/native PASS."
+      "sha256": "3e158df64b60e892e644d26872b1d28f438a8fe4d02f7b24b9ac49ddc6d40ced",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1581,9 +1581,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/FactChanges.lua": {
-      "sha256": "98b4cc167b5fac00dbc016489ea04cb6b1b83f8127a2002aac19fb7c5dad8b14",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B277_Refactor_S5a1.md",
-      "provenance": "B277 S5a1 pure inactive declared propagation precursor, S3 registration quarantine and explicit helper VFS imports. Production wiring deferred to S5a2; local/static only, no deployment/native PASS."
+      "sha256": "3c410978ead65a1f003d6b60970170f9939a310188ac8f275a158445abd0fe4a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     }
   },
   "source_review": "B271 approved source promoted through PR6 and deployed;312/312 source/live MATCH. Scoped local validation inherited; native acceptance pending."

@@ -7,6 +7,18 @@ if not SPCCapitalInvestmentModel then include('CapitalInvestmentModel') end
 if not SPCDevelopmentInvestmentModel then include('DevelopmentInvestmentModel') end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
+local function publishFact(shared,c,cause,r,investment)
+ if not shared.FactChanges then return end -- isolated legacy import/tests have no automatic consumers
+ local ok,err=pcall(function()
+  local a=r and (r.current or r.origin) or {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}
+  shared.FactChanges.InvalidateCommitted(a.owner,a.cityID,{'IDENTITY','POTENTIAL','ACTIVE'})
+  shared.FactChanges.Emit({owner=a.owner,cityID=a.cityID,
+   reference=table.concat({a.owner,a.cityID,a.x,a.y,r and r.base.token or ''},':'),
+   revision=r and r.revision,cause=cause,kinds={'IDENTITY','POTENTIAL','ACTIVE'},
+   investment=type(investment)=='function' and investment(a) or investment})
+ end)
+ if not ok then shared.PermanentWriteObserverError=tostring(err)end
+end
 local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
@@ -454,6 +466,12 @@ local function CreateProgressionRecord(P,shared,storage)
    end
   end
   n.revision=n.revision+1;save(n)
+  if R.Count(nextValue)==R.Count(old)+1 then
+   publishFact(shared,c,'INVESTMENT_COMMITTED',n,function(a)
+    local op=old.pending;return {status='COMMITTED',cause='INVESTMENT_COMMITTED',player=pid,city=a.cityID,
+     anchor=cp(nextValue.anchor),receipt=op.receipt,unitUID=op.unitUID,revision=nextValue.revision,reference=cp(a)}
+   end)
+  end
   if n.researchTradition and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(pid)end
  end
  -- The record owns current Identity, the one-time Potential debit and the native
@@ -491,10 +509,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c);return r.restructuring and cp(r.restructuring.established) or nil
  end
  local function publishIdentity(c)
-  if shared.OnPermanentCityWrite then
-   local notified,why=pcall(shared.OnPermanentCityWrite,c,'Restructuring')
-   if not notified then shared.PermanentWriteObserverError=tostring(why)end
-  end
+  publishFact(shared,c,'RESTRUCTURING_COMMITTED',root)
  end
  function d.BeginRestructuring(pid,c,team,receipt)
   assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c)
@@ -606,10 +621,7 @@ local function CreateProgressionRecord(P,shared,storage)
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
   if n.current then n.currentFirst=cp(n.base.first)end
   n.revision=n.revision+1;save(n)
-  if shared.OnPermanentCityWrite then
-   local notified,why=pcall(shared.OnPermanentCityWrite,c,'CityProgressionStore.lua')
-   if not notified then shared.PermanentWriteObserverError=tostring(why)end
-  end
+  publishFact(shared,c,'IDENTITY_COMMITTED',n)
  end
  -- Claim state belongs to the existing city record, not UI or a second property.
  function d.ClaimState(pid,c)
@@ -655,10 +667,7 @@ local function CreateProgressionRecord(P,shared,storage)
   -- Receipt retains the historical record anchor; active requests use current reference.
   n.claim={version=1,token=e.token,reference=cp(r.origin),kind=e.kind,project=e.project,turn=e.turn}
   n.claimTimer=nil;n.revision=n.revision+1;save(n)
-  if shared.OnPermanentCityWrite then
-   local notified,why=pcall(shared.OnPermanentCityWrite,c,'ClaimProjects.lua')
-   if not notified then shared.PermanentWriteObserverError=tostring(why)end
-  end
+  publishFact(shared,c,'CLAIM_COMMITTED',n)
   return true
  end
  local function activate(c)
@@ -1512,10 +1521,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     break -- all buffered rows were qualified at delivery; only the first can lock
    end
    assert(not q.error,q.error)
-   if shared.OnPermanentCityWrite then
-   local notified,why=pcall(shared.OnPermanentCityWrite,c,'CityProgressionStore.lua')
-   if not notified then shared.PermanentWriteObserverError=tostring(why)end
-  end
+   publishFact(shared,c,'CITY_ADMITTED',envelope.records[token])
   end)
   q.committing=false
   if not ok then

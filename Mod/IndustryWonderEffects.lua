@@ -86,6 +86,7 @@ function SPCIndustryWonderEffects.Start(P,shared)
   d.error=not ok and (tostring(err):match('IW_[A-Z_]+') or 'IW_READ_PENDING') or nil;busy=false
  end
  function d.Refresh(pid,id)mark(pid,id);d.Flush()end
+ if shared.FactChanges then shared.FactChanges.RegisterConsumer('IndustryWonderEffects',function(e)mark(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
  function d.Describe(pid,c)
   local k=key(pid,c:GetID());local r=d.records[k];local reason=d.errors[k] or d.error
   return '巨构工程学：'..(reason and '等待 '..reason or r and r.active==4 and '本城自行生产旧时代奇观：时代差 1 / 2 / 3+ → +10% / +20% / +30%' or '未生效（需要工业 ACTIVE IV）')

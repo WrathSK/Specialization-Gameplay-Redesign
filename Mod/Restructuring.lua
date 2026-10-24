@@ -204,7 +204,14 @@ function SPCRestructuring.Start(P,shared)
   end
   busy=false
   local changed=publication;publication={}
-  for _,c in pairs(changed)do if c:GetOwner()>=0 and P.IsTestPlayer(c:GetOwner())then d.Publish(c:GetOwner(),c)end end
+  for _,a in pairs(changed)do
+   local c=city(a.owner,a.cityID)
+   if c and c:GetOwner()==a.owner and P.IsTestPlayer(a.owner)then
+    local ok,f=pcall(shared.EffectiveFacts.Read,a.owner,c)
+    local identity=ok and table.concat({a.owner,a.cityID,c:GetX(),c:GetY(),f.token or ''},':')
+    if identity==a.reference then d.Publish(a.owner,c)end
+   end
+  end
  end
  -- Investment completion already proves the changed city. Reuse the normal
  -- derived-marker writer; no player scan, retained fact packet or timer.
@@ -309,9 +316,10 @@ function SPCRestructuring.Start(P,shared)
   for pid in pairs(Players)do if P.IsTestPlayer(pid)then mark(pid)end end;d.Flush('LOAD_EVENT')
   log('REST_LOAD_RETURNED')
  end)
- SPCSafeCallbacks.Chain(shared,'Restructuring',function(c,reason)
-  if c then mark(c:GetOwner(),c:GetID());if reason=='Restructuring' then publication[key(c:GetOwner(),c:GetID())]=c end end
- end)
+ if shared.FactChanges then shared.FactChanges.RegisterConsumer('Restructuring',function(e)
+  mark(e.player,e.city)
+  if e.causes.RESTRUCTURING_COMMITTED then publication[key(e.player,e.city)]={owner=e.player,cityID=e.city,reference=e.reference}end
+ end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
  store.RegisterExit('Restructuring',function(c,loss)
   for k,r in pairs(recovery)do if r.x==c:GetX() and r.y==c:GetY()then recovery[k]=nil end end
   store.RemoveOwned(c,loss,{S.ACCESS,S.DISRUPTION})

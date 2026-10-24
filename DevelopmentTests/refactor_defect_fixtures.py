@@ -46,7 +46,7 @@ end
         c.execute('_G[...]=module(select(2,...))',symbol,symbol[3:])
     # Includes are isolated module doubles except the composition helper introduced by S3.
     def include(name):
-        if name in ('RuntimeComposition','SafeCallbacks','ReadinessLatch') and (ROOT/'Mod'/f'{name}.lua').exists():return c.load(name)
+        if name in ('RuntimeComposition','SafeCallbacks','ReadinessLatch','FactChanges') and (ROOT/'Mod'/f'{name}.lua').exists():return c.load(name)
         if name=='Probe':return
         if name=='ReadinessSummary':
             c.execute('SPCReadinessSummary={Start=function()return {Seal=function()sealed=true end}end}')
@@ -110,7 +110,8 @@ def store_completion():
 d={};writes=0;root={schema=2,stage='ACTIVE',progression='UNASSIGNED',base={revision=1},revision=1,origin={owner=0,cityID=1}}
 function cp(t)if type(t)~='table'then return t end;local o={};for k,v in pairs(t)do o[k]=cp(v)end;return o end
 same=function(a,b)return a==b end;active=function()return root end;save=function(n)root=n;writes=writes+1 end
-shared.OnPermanentCityWrite=function()error('FIXTURE_POST_COMMIT_OBSERVER')end
+shared.FactChanges={InvalidateCommitted=function()end,Emit=function()error('FIXTURE_POST_COMMIT_OBSERVER')end}
 """)
+    c.execute(c.fragment('Mod/CityProgressionStore.lua','local function publishFact(', 'local function CreateProgressionRecord(')+'\n_G.publishFact=publishFact')
     c.execute(c.fragment('Mod/CityProgressionStore.lua',' function d.Complete(pid,c,e)',' -- Claim state belongs'))
     return c

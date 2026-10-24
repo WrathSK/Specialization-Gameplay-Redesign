@@ -5,6 +5,9 @@ include("ExpeditionTrainingDiagnostics")
 SPCNetworkBridge={}
 function SPCNetworkBridge.Start(P,shared)
  local d={ready=false,players={}};shared.NetworkBridge=d
+ local function generation(pid)return shared.FactChanges and shared.FactChanges.Generation(pid,'NETWORK') or 0 end
+ local function currentGeneration(pid,b)return (b.factGeneration or 0)==generation(pid)end
+ if shared.FactChanges then shared.FactChanges.RegisterConsumer('NetworkBridge',function(e)d.Refresh(e.player)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'},phase=0})end
  ExposedMembers.SPCNetworkEpoch=(ExposedMembers.SPCNetworkEpoch or 0)+1
  d.epoch=ExposedMembers.SPCNetworkEpoch
  local function integer(n) return type(n)=="number" and n>=0 and n%1==0 and n<2147483648 end
@@ -103,7 +106,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  local function proofSignature(b)
   local parts={tostring(b.availability),tostring(b.effectAvailability),tostring(b.revalidation),
-   tostring(b.signal),tostring(shared.RouteSignalRevision or 0),tostring(b.transportFailure),tostring(b.continuityOnly)}
+   tostring(b.signal),tostring(shared.RouteSignalRevision or 0),tostring(b.transportFailure),tostring(b.continuityOnly),tostring(b.factGeneration or 0)}
   local ids={};for id in pairs(b.input and b.input.provenance or {})do ids[#ids+1]=id end;table.sort(ids)
   for _,id in ipairs(ids)do local f=b.input.provenance[id];parts[#parts+1]=id..':'..f.reference..':'..f.status end
   return table.concat(parts,'|')
@@ -212,6 +215,7 @@ function SPCNetworkBridge.Start(P,shared)
   if b.refreshing then P.Count('busy_skip');return false end
   if not b.candidate and not d.Verified(pid) then return false end
   b.refreshing=true
+  local sampledGeneration=generation(pid)
   local candidate=b.candidate
   if candidate and (candidate.turn~=Game.GetCurrentGameTurn() or candidate.signal~=(shared.RouteSignalRevision or 0)) then
    b.candidate=nil;candidate=nil;P.Count('stale_input')
@@ -253,8 +257,9 @@ function SPCNetworkBridge.Start(P,shared)
     end
     -- Commit current proof BEFORE exposing availability or notifying a consumer.
     -- A proved route set does not resolve unreadable city facts.
+    b.factGeneration=sampledGeneration
     b.continuityOnly=not candidate and b.continuityOnly==true or withdrawal and (input.roleUnknown or b.revalidation=='NEEDS_REVALIDATION') or false
-    local fresh=b.revalidation=='VERIFIED' and b.signal==(shared.RouteSignalRevision or 0)
+    local fresh=b.revalidation=='VERIFIED' and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b)
     b.effectAvailability=b.continuityOnly and 'RETAINED_NEGATIVE' or fresh and not input.roleUnknown and 'AVAILABLE' or 'PENDING'
     b.availability=(input.pending or not fresh) and 'NEEDS_REVALIDATION' or 'AVAILABLE';b.error=b.transportFailure
     if duplicate then
@@ -381,6 +386,7 @@ function SPCNetworkBridge.Start(P,shared)
   if not confirmedOnly then d.Refresh(pid) end
   local b=d.players[pid]
   assert(b and b.input and b.validity=='VERIFIED' and (confirmedOnly or d.Verified(pid)),'NETWORK_REFRESH_PENDING')
+  assert(currentGeneration(pid,b),'NETWORK_FACTS_PENDING')
   local v=views[pid]
   local matches=v and v.contract==1 and v.epoch==d.epoch and v.player==pid
    and v.validity=='VERIFIED' and v.inputVersion==b.inputRevision and v.derivedFor==b.inputRevision
@@ -416,6 +422,7 @@ function SPCNetworkBridge.Start(P,shared)
   if isolated(pid) then out.reason='NETWORK_EXPERIMENT_ISOLATED';return out end
   if not d.ready or not P.IsTestPlayer(pid) then out.reason='NETWORK_NOT_READY_OR_OWNER';return out end
   if not b then return out end
+  if not currentGeneration(pid,b)then out.reason='NETWORK_FACTS_PENDING';return out end
   if b.validity=='CONFIRMED_INVALID' then out.validity='CONFIRMED_INVALID';out.reason=b.error or 'NETWORK_CONFIRMED_INVALID';return out end
   local matches=b.validity=='VERIFIED' and v and v.contract==1 and v.epoch==d.epoch and v.player==pid
    and v.validity=='VERIFIED' and v.inputVersion==b.inputRevision and v.derivedFor==b.inputRevision
@@ -451,7 +458,7 @@ function SPCNetworkBridge.Start(P,shared)
  function d.CurrentCapitalSources(pid,selected,kind)
   local b=d.players[pid]
   assert(b and b.availability=='AVAILABLE' and b.revalidation=='VERIFIED'
-   and b.signal==(shared.RouteSignalRevision or 0),'CAPITAL_NETWORK_PENDING')
+   and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b),'CAPITAL_NETWORK_PENDING')
   local v=currentView(pid,true);local id=selected:GetID()
   assert(selected:GetOwner()==pid and v.references[id]==SPCNetworkInput.Reference(city(pid,id)),'CAPITAL_REFERENCE_CHANGED')
   local out={};for sid in pairs((v.recipients[kind] or {})[id] or {})do

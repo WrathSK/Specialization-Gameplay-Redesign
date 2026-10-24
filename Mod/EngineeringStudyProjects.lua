@@ -203,10 +203,5 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   end end
  end)
  store.RegisterReturn('EngineeringStudy',function(pid,c)mark(pid,c:GetID())end)
- SPCSafeCallbacks.Chain(shared,'EngineeringStudy',function(c,reason)
-  if c then
-   SPCSafeCallbacks.Call(shared,'EngineeringStudy:Refresh',d.Refresh,c:GetOwner(),c:GetID())
-   SPCSafeCallbacks.Notify(shared,'IndustryWonderEffects','Refresh',c:GetOwner(),c:GetID())
-  end
- end)
+ if shared.FactChanges then shared.FactChanges.RegisterConsumer('EngineeringStudy',function(e)mark(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
 end

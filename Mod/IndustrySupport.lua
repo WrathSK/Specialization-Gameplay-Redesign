@@ -113,9 +113,10 @@ function SPCIndustrySupport.Start(P,shared)
   for _,tag in ipairs(order)do data.Audit(work[tag])end
  end
  function data.BindPermanentWrites()
-  SPCSafeCallbacks.Chain(shared,'IndustrySupport',function(c,reason)
-   if reason=='CityProgressionStore.lua' or reason=='ClaimProjects.lua'then data.MarkCity(c)end
-  end)
+  if shared.FactChanges then shared.FactChanges.RegisterConsumer('IndustrySupport',function(e)
+   local player=Players[e.player];local c=player and player:GetCities():FindID(e.city)
+   if c and c:GetOwner()==e.player then data.MarkCity(c)end
+  end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
  end
  data.ReadBase=inspect
  function data.Receive(pid,params)

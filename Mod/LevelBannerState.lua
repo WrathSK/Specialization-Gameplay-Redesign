@@ -37,7 +37,7 @@ function SPCLevelBannerState.Start(P,shared)
  function d.Refresh(pid,id)
   mark(pid,id);d.Flush()
  end
- SPCSafeCallbacks.Chain(shared,'LevelBanners',function(c,reason)if c then mark(c:GetOwner(),c:GetID())end end)
+ if shared.FactChanges then shared.FactChanges.RegisterConsumer('LevelBanners',function(e)mark(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
  local function hook(name,fn)local e=P.Field(Events,name);if e and e.Add then e.Add(fn)end end
  for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'})do hook(name,function(pid)mark(pid)end)end
  for _,name in ipairs({'CityAddedToMap','CityRemovedFromMap'})do hook(name,mark)end

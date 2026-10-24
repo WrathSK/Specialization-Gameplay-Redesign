@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0726",
-    "runtime": "B277.304 / modinfo304",
+    "status": "S0727",
+    "runtime": "B278.305 / modinfo305",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "S5a1 inactive precursor verified; continue S5a2 actual producer/consumer/freshness integration, then S5b/c/d and S6–S10. No routine native stop or deployment.",
+  "goal": "Continue S5a2b remaining committed propagation/manual lists, then S5b/c/d and S6–S10 under accepted U1. No routine native stop or automatic deployment/main.",
   "implementation_authorized": true,
   "context": [
     {
@@ -74,6 +74,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B277_Refactor_S5a1.md",
       "kind": "full",
       "reason": "Current precursor contract, exact no-production-wiring boundary and next integration gates."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+      "kind": "full",
+      "reason": "Actual Store migration, explicit transaction freshness contract and remaining manual lists."
     }
   ],
   "dependencies": [
@@ -100,8 +105,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B277_Refactor_S5a1.md",
-    "local": "S5a1_TARGETS_PASS:102 properties PASS/4 laterOPEN; no production migration claimed",
+    "report": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
+    "local": "S5a2a_TARGETS_PASS:118 properties PASS/4 laterOPEN",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }

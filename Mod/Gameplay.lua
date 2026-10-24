@@ -803,7 +803,13 @@ composition.Run('CityIdentityDefinition',{}, {},function()include('CityIdentityR
 
 composition.Run('CitySequenceProbe',{},{'CitySequenceProbe'},function() include('CitySequenceProbe');SPCCitySequenceProbe.Start(P,shared) end)
 
-composition.Run('CityProgressionStore',{'CityIdentityDefinition'},{'CityProgressionStore'},function() include('CityProgressionStore');SPCCityProgressionStore.Start(P,shared) end)
+composition.Run('FactChanges',{}, {'FactChanges'},function()
+ include('FactChanges');local changes=SPCFactChanges.New(shared)
+ local function drain()if composition.sealed then changes.Flush()end end
+ local event=P.Field(Events,'GameCoreEventPublishComplete');if event and event.Add then event.Add(drain)end
+end)
+
+composition.Run('CityProgressionStore',{'CityIdentityDefinition','FactChanges'},{'CityProgressionStore'},function() include('CityProgressionStore');SPCCityProgressionStore.Start(P,shared) end)
 
 composition.Run('YieldCarrierExit',{'CityProgressionStore'},{},function() SPCYieldCarrierProbe.RegisterExit(shared) end)
 

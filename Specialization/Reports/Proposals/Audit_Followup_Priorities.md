@@ -91,6 +91,8 @@ A8 is no longer excluded: the user explicitly approved eight collection eras aft
 
 #### S5 — Propagation foundation, in a→b→c→d order
 
+B278 S5a2a complete: [committed Store migration/freshness](../../Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md),16 new Lua51 cases/118 program properties PASS,4 laterOPEN. Eight permanent subscribers migrated; remaining request/history/network/manual lists are S5a2b. Transaction barriers are immediate scalar marks, effects retain applied values.
+
 B277 S5a1 precursor complete: [bounded registry/isolation](../../Status/Validation/Results/Specialization_B277_Refactor_S5a1.md),15 new cases and102 program properties PASS/4 laterOPEN. No production migration yet; S5a2 must replace actual dispatch/permanent chains and preserve transaction freshness, then proceed b→c→d.
 
 | Planned item / original IDs | HEAD status and source evidence | Next action / boundary |

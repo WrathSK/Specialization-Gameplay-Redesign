@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0726
-Implementation Build: B277.304 / modinfo304; stable/live B271.298
+Status Revision: S0727
+Implementation Build: B278.305 / modinfo305; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5A1_COMPLETE_S5A2_AUTHORIZED
+Work State: REFACTOR_S5A2A_COMPLETE_S5A2B_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5a1 precursor completed in B277.304: [bounded registry and isolation](Validation/Results/Specialization_B277_Refactor_S5a1.md).15 new Lua5.1 cases PASS; program102PASS/4 laterOPEN. Production producers/consumers are not wired to it yet; S5a2 remains required before claiming propagation migration. S3 helper VFS import entries are explicit in addition to package inventory. S4 and approved A8 remain complete within their local scope. Stable/live/main remain B271.298; no deployment/native PASS.
+S5a2a production Store migration complete in B278.305: [declared commits/freshness](Validation/Results/Specialization_B278_Refactor_S5a2a.md). Eight permanent-chain subscribers now declare scoped inputs; opaque scalar barriers invalidate old transaction authority before fallible notification.16 new actual Lua51 cases PASS; selected118PASS/4 laterOPEN. Remaining request/history/network manual lists are explicitly next S5a2b, not claimed complete. Stable/live/main remain B271.298; no deployment/native PASS.
 
 - User decision: none.
-- User testing: U5 unless a concrete blocking native fact arises; no automatic deployment.
-- Primary next: S5a2 production wiring/freshness→S5b→S5c→S5d→S6→S7/S8→S9/S10.
+- User testing: final U5 unless a concrete blocking native fact appears; no automatic deployment.
+- Primary next: S5a2b remaining propagation→S5b/c/d→S6→S7/S8→S9/S10.
+
+## S0727 — B278.305 S5a2a committed Store propagation
+
+Real Store confirmed commits enqueue scoped scalar facts after save; full final investment proof retained and intermediate reservations excluded. Restructuring latch resolves scalar reference at drain. Bridge/Commerce sampled generations prevent old/new pool or reentrant facts from certifying transactions; local source epochs avoid unrelated-city blocking. Failure after committed save leaves ACK/receipt intact and old authority invalid.16 new tests/118 selected properties PASS,4 laterOPEN. Existing manual lists remain next. No deployment/native PASS.
 
 ## S0726 — B277.304 S5a1 precursor
 

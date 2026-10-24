@@ -200,7 +200,7 @@ function SPCClaimProjects.Start(P,shared)
   mark(pid,id)
  end)end
  for _,name in ipairs({'CityProductionUpdated','CityTransfered','CityInitialized'})do hook(name,mark)end
- SPCSafeCallbacks.Chain(shared,'ClaimProjects',function(c,reason)mark(c:GetOwner(),c:GetID())end)
+ if shared.FactChanges then shared.FactChanges.RegisterConsumer('ClaimProjects',function(e)mark(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
  store.RegisterExit('ClaimProjects',function(c,loss)
   store.RemoveOwned(c,loss,markers)
   local k=key(loss.origin.owner,loss.origin.cityID);active[k]=nil;dirty[k]=nil;publish(loss.origin.owner,loss.origin.cityID,nil)

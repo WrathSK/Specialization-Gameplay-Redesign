@@ -51,6 +51,16 @@
       "test_refactor_s4a",
       "test_refactor_s4b",
       "test_refactor_s5a"
+    ],
+    "S5a2a": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_s5a",
+      "test_refactor_s5a2"
     ]
   },
   "counterexamples": {
