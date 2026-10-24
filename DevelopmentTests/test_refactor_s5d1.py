@@ -13,6 +13,17 @@ def research():
         ns['LuaRuntime']=TrackedLua51;ns['ns']['LuaRuntime']=TrackedLua51;ns['ns']['ns']['LuaRuntime']=TrackedLua51
         ns['ns']['ns']['FIX']=separate_legacy_event_namespaces(ns['ns']['ns']['FIX'])
         l=ns['runtime'](2)
+    # Explicit native-double profile: historical P0-C emitted (0,0) for every
+    # removal. Real engine removal uses the previous building plot, before erase.
+    l.execute("""
+    local districtByPlot={};for _,city in pairs(cities)do for _,district in ipairs(city.ds)do districtByPlot[district.plot]=district end end
+    CityManager={GetDistrictAt=function(x,y)return districtByPlot[x]end,GetCityAt=function()end}
+    P.RemoveBuilding=function(b,id)
+     if failRemove then error('INTENTIONAL_REMOVE_FAILURE')end
+     local location=b.city.locations[id];assert(b.city.carriers[id]);b.city.carriers[id]=nil;b.city.locations[id]=nil;writes=writes+1
+     fire('BuildingRemovedFromMap',location,0,id,b.city.owner)
+    end
+    """)
     l.execute("for _,c in pairs(cities)do setBuildings(c.ds[1],{'BUILDING_LIBRARY','BUILDING_UNIVERSITY'});c.ds[1].workers=3 end;shared.ResearchApply.Audit();chair.Audit();counters={}")
     return l
 

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="316">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="317">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B289.316：统一工人通知，撤除GPP总督中继，保留晚到恢复。</Description>
+    <Description>B290.317：精确科研载体恢复与共享结构通知闭包。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

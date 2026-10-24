@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "78e74331756cd7743a8b0eafd70276348611898df69cc375c756f99beb50c16c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "7e7e44a3370b22a0bf2b58c53a290e317f7248b48752edaf549c881de17e6d50",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
+      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -816,9 +816,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "808f22f41fffa9d6fa324d25f0add95b94431b4e27bed09fb7b10d48e50d534a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "6266cdf9ebec41de9e571e4982ccfcdc56ee2814ed7c3fcb7534701dfb7a99e6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
+      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -826,9 +826,9 @@
       "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "dcc2375489df74b71b31aad44662c062882a5a844caae072cca4e9f0e56ce3ae",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "a2c14742e709c587ba64497b5011e32893e5a1045f167aa4b5177bc512808db0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
+      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchChairModel.lua": {
       "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
@@ -836,9 +836,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "190561da5dfed047e0183a69c2d83ef4c651360e503894f77a8eb46a2fa599b3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "6b242f9c3d63789a35204040ddb5280f0b52c16f784c32dcf44649c9105adb13",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
+      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchCrossModel.lua": {
       "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "82aca29f63c316494eeea2580aaa3c0cfdbe74eb159910283ca13519a3239f2d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B285_Refactor_S5d2.md",
-      "provenance": "B285.312 namespaced adapters and indexed retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "8d287fb3b91431fcfc5cd1ab88add8252ec592b4dbf6d9ff417934e5b5984624",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
+      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "7bc6223f321bccf3cd2e419718a8cc3265833737233838f6eebf665a109caac2",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "431f14d202c73994f8db0905e7af944ba8b1499f54a493afda3123d99712ab6b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "d632a4a6ac61333f6e3bea92a2f082550d9fe73607c0e4a684fac398c9fa23a9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
+      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

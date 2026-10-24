@@ -410,3 +410,67 @@ function SPCRuntimeWork.StartReady(P,shared,name,start)
  if shared.ReadinessSummary and shared.ReadinessSummary.Register then pcall(shared.ReadinessSummary.Register,name)end
  return function()return latched end
 end
+
+-- Exact live carrier health only. No policy, prefix ownership or periodic audit.
+function SPCRuntimeWork.NativeHealth(P,shared,data,owns,mark)
+ local h={};local removing,creating
+ local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
+ local function guarded(fn,...)
+  local ok,err=pcall(fn,...)
+  if not ok then local safe,text=pcall(tostring,err);data.healthError=safe and text:sub(1,180) or 'CARRIER_HEALTH_MARK_FAILED'end
+ end
+ local function scoped(pid,cid)
+  if not valid(pid)then pid=nil;cid=nil elseif not valid(cid)then cid=nil end
+  if pid~=nil and not P.IsTestPlayer(pid)then return end
+  mark({player=pid,city=cid})
+ end
+ local function coordinate(x,y)
+  if Map.GetPlotIndex then return Map.GetPlotIndex(x,y)end
+  return Map.GetPlot(x,y):GetIndex()
+ end
+ local function removed(x,y,index,owner)
+  if not owns(index) or valid(owner) and not P.IsTestPlayer(owner)then return end
+  local w=removing
+  if w and w.owner==owner and w.index==index and valid(w.plot)then
+   local ok,plot=pcall(coordinate,x,y);if ok and plot==w.plot then return end
+  end
+  local ok,c=pcall(function()
+   local d=CityManager and CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)
+   return d and d:GetCity() or CityManager and CityManager.GetCityAt and CityManager.GetCityAt(x,y)
+  end)
+  if ok and c then
+   local good,pid,cid=pcall(function()return c:GetOwner(),c:GetID()end)
+   if good and valid(pid) and valid(cid) and (not valid(owner) or owner==pid)then scoped(pid,cid);return end
+  end
+  scoped(owner) -- identity/location UNKNOWN never means harmless or city zero
+ end
+ local e=P.Field(Events,'BuildingRemovedFromMap')
+ if e and e.Add then e.Add(function(...)guarded(removed,...)end)end
+ e=P.Field(GameEvents,'BuildingPillageStateChanged')
+ if e and e.Add then e.Add(function(pid,cid,index,state)
+  guarded(function()
+   if not owns(index)then return end
+   local w=creating
+   if state==false and w and w.owner==pid and w.city==cid and w.index==index then return end
+   scoped(pid,cid) -- confirmed true/UNKNOWN state is never hidden by a busy flag
+  end)
+ end)end
+ local function witness(c,index,plot)
+  return {owner=c:GetOwner(),city=c:GetID(),index=index,plot=plot}
+ end
+ function h.Remove(c,index,plot)
+  if plot==nil then
+   local ok,value=pcall(function()return c:GetBuildings():GetBuildingLocation(index)end)
+   if ok then plot=value end -- optional proof; do not add a new qualification failure
+  end
+  local prior=removing;removing=witness(c,index,plot)
+  local ok,value=pcall(function()return P.RemoveBuilding(c:GetBuildings(),index)end);removing=prior
+  if not ok then error(value,0)end;return value
+ end
+ function h.Create(c,index,plot)
+  local prior=creating;creating=witness(c,index,plot)
+  local ok,value=pcall(function()return P.CreateBuilding(c:GetBuildQueue(),index)end);creating=prior
+  if not ok then error(value,0)end;return value
+ end
+ return h
+end

@@ -13,20 +13,22 @@ local errors={CHAIR_WORKERS_UNKNOWN='工作专家数暂不可读',CHAIR_BUILDING
 local function explain(err) local code=tostring(err):match('CHAIR_[A-Z_]+');return errors[code] or code or '接口未就绪' end
 function M.Start(P,shared)
  local data={ready=false,busy=false,errors={},changes=0};shared.ResearchChair=data
+ local ownedIndex={}
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(index)return ownedIndex[index]==true end,function(scope)data.MarkAudit(scope)end)
  local definitions,targets
  local function validate()
   if definitions then return end
   local rows=assert(P.Rows('SPC_ResearchChairTargets'),'CHAIR_TARGET_TABLE_UNKNOWN')
-  local defs,ts={},{}
+  local defs,ts,nextOwned={},{},{}
   for _,v in ipairs(rows) do
    assert(not ts[v.BuildingType],'CHAIR_TARGET_DUPLICATE');ts[v.BuildingType]=true
    for i=0,M.Bits-1 do
     local r=assert(P.Info('Buildings',name(v.BuildingType,i)),'CHAIR_CARRIER_MISSING')
     assert(r.PrereqDistrict=='DISTRICT_CAMPUS' and r.CitizenSlots==0 and r.Housing==0,'CHAIR_CARRIER_INVALID')
-    defs[#defs+1]={target=v.BuildingType,bit=i,id=r.Index}
+    defs[#defs+1]={target=v.BuildingType,bit=i,id=r.Index};nextOwned[r.Index]=true
    end
   end
-  assert(#defs>0,'CHAIR_TARGET_TABLE_EMPTY');definitions=defs;targets=ts
+  assert(#defs>0,'CHAIR_TARGET_TABLE_EMPTY');definitions=defs;targets=ts;ownedIndex=nextOwned
  end
  local function inspect(pid,c,detail)
   assert(c:GetOwner()==pid,'CHAIR_OWNER_CHANGED')
@@ -64,12 +66,12 @@ function M.Start(P,shared)
   for _,r in ipairs(rows) do
    r.want=math.floor((p.amounts[r.target] or 0)/2^r.bit)%2==1
    if r.yes and (not r.want or r.plot~=p.plot or r.pillaged) then
-    P.RemoveBuilding(c:GetBuildings(),r.id);assert(P.HasBuilding(c:GetBuildings(),r.id)==false,'CHAIR_REMOVE_FAILED')
+    health.Remove(c,r.id,r.plot);assert(P.HasBuilding(c:GetBuildings(),r.id)==false,'CHAIR_REMOVE_FAILED')
     r.yes=false;data.changes=data.changes+1
    end
   end
   for _,r in ipairs(rows) do if r.want and not r.yes then
-   P.CreateBuilding(c:GetBuildQueue(),r.id);local b=c:GetBuildings()
+   health.Create(c,r.id,p.plot);local b=c:GetBuildings()
    assert(P.HasBuilding(b,r.id)==true and b:GetBuildingLocation(r.id)==p.plot and b:IsPillaged(r.id)==false,'CHAIR_CREATE_FAILED');data.changes=data.changes+1
   end end
  end
@@ -113,12 +115,8 @@ function M.Start(P,shared)
  local function bind(src,n,f) local e=P.Field(src,n);if e and e.Add then e.Add(f) end end
  SPCRuntimeWork.StartReady(P,shared,'ResearchChair',function()definitions=nil;targets=nil;data.ready=true;data.errors={};data.Audit()end)
  -- Shared D/P0-C owns invalidation and registers first; reuse its confirmed view.
- for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
-  'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap',
-  'PlayerTurnActivated'}) do
-  SPCRuntimeWork.Hook(P,Events,n,data.Audit)
- end
- for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,data.Audit) end
+ -- Ordinary structural input is owned by scoped DC D; health is exact above.
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.Hook(P,Events,n,data.Audit)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchChair',function(c,loss)
    local ids={};for _,v in ipairs(assert(P.Rows('SPC_ResearchChairTargets'),'EXIT_CHAIR_TARGETS_UNKNOWN'))do for bit=0,M.Bits-1 do ids[#ids+1]=name(v.BuildingType,bit)end end

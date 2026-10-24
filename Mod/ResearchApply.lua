@@ -7,17 +7,20 @@ M.Bits=5 -- max current Gold coefficient30; rejects overflow, never clamps
 local function name(y,i) return 'BUILDING_SPC_RESEARCH_APPLY_'..y..'_'..i end
 function M.Start(P,shared)
  local data={ready=false,busy=false,errors={},changes=0};shared.ResearchApply=data
+ local ownedIndex={}
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(index)return ownedIndex[index]==true end,function(scope)data.MarkAudit(scope)end)
  local definitions
  local function validate()
   if definitions then return end
-  local rows=assert(P.Rows('Building_CitizenYieldChanges'),'AP_DATABASE_UNKNOWN')
+  local rows=assert(P.Rows('Building_CitizenYieldChanges'),'AP_DATABASE_UNKNOWN');local nextOwned={}
   for _,y in ipairs(SPCResearchApplyModel.Yields) do for i=0,M.Bits-1 do
    local r=assert(P.Info('Buildings',name(y,i)),'AP_BUILDING_MISSING')
+   nextOwned[r.Index]=true
    assert(r.PrereqDistrict=='DISTRICT_CAMPUS' and r.CitizenSlots==0 and r.Housing==0,'AP_BUILDING_MISMATCH')
    local n=0;for _,v in ipairs(rows) do if v.BuildingType==name(y,i) then
     assert(v.YieldType=='YIELD_'..y and v.YieldChange==2^i,'AP_YIELD_MISMATCH');n=n+1
    end end;assert(n==1,'AP_YIELD_MISSING')
-  end end;definitions=true
+  end end;ownedIndex=nextOwned;definitions=true
  end
  local function inspect(pid,c,detail)
   local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
@@ -62,7 +65,7 @@ function M.Start(P,shared)
   return rows,amounts
  end
  local function remove(c,row)
-  P.RemoveBuilding(c:GetBuildings(),row.id);assert(P.HasBuilding(c:GetBuildings(),row.id)==false,'AP_REMOVE_FAILED');row.yes=false;data.changes=data.changes+1
+  health.Remove(c,row.id,row.plot);assert(P.HasBuilding(c:GetBuildings(),row.id)==false,'AP_REMOVE_FAILED');row.yes=false;data.changes=data.changes+1
  end
  local function reconcile(pid,c)
   local p=inspect(pid,c);local rows=installed(c)
@@ -71,7 +74,7 @@ function M.Start(P,shared)
    if v.yes and (not v.want or v.plot~=p.plot or v.pillaged) then remove(c,v) end
   end
   for _,v in ipairs(rows) do if v.want and not v.yes then
-   P.CreateBuilding(c:GetBuildQueue(),v.id)
+   health.Create(c,v.id,p.plot)
    local b=c:GetBuildings();assert(P.HasBuilding(b,v.id)==true and b:GetBuildingLocation(v.id)==p.plot and b:IsPillaged(v.id)==false,'AP_CREATE_LOCATION_FAILED');data.changes=data.changes+1
   end end
  end
@@ -127,12 +130,8 @@ function M.Start(P,shared)
  SPCRuntimeWork.StartReady(P,shared,'ResearchApply',function()definitions=nil;data.ready=true;data.errors={};data.Audit()end)
  -- Shared D/P0-C registers first and owns depth invalidation. Do not re-dirty a
  -- fresh snapshot here: both consumers reuse it during the same native event.
- for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
-  'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap',
-  'PlayerTurnActivated'}) do
-  SPCRuntimeWork.Hook(P,Events,n,data.Audit)
- end
- for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,data.Audit) end
+ -- Ordinary structural input is owned by scoped DC D; health is exact above.
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.Hook(P,Events,n,data.Audit)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchApply',function(c,loss)
    local ids={};for _,y in ipairs(SPCResearchApplyModel.Yields)do for bit=0,M.Bits-1 do ids[#ids+1]=name(y,bit)end end

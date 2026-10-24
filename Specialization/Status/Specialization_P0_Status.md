@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0738
-Implementation Build: B289.316 / modinfo316; stable/live B271.298
+Status Revision: S0739
+Implementation Build: B290.317 / modinfo317; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D4B2_COMPLETE_CONTINUING
+Work State: REFACTOR_S5D4C1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d4b2 worker migration complete:Gameplay and existing late UI worker recovery feed NativeFacts WORKERS; conservative UI D calls the actual DC invalidator, never UI ACTIVE. GPP governor relay removed; required worker/load/turn/transport sources retained.14 new cases/full302 have301 passing properties/1 registered S6 capacity counterexample OPEN. Exact carrier health, structural overlap and transfer closure remain next; continue authorized S5–S10 without deployment/main. [Result](Validation/Results/Specialization_B289_Refactor_S5d4b2.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d4c1 complete:Apply/Chair/Cross own exact live carrier-health recovery, replacing duplicated normal structural hooks with scoped D; Cross preserves its DC-independent fallback.18 new cases/full320 have319 passing properties/1 registered S6 capacity counterexample OPEN. Sibling loss during writes and confirmed damage are retained; UNKNOWN never creates idle retries. Remaining owner/transfer closure and S6–S10 continue without deployment/main. [Result](Validation/Results/Specialization_B290_Refactor_S5d4c1.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: S5d exact carrier health and scoped structural closure, then transfer recovery metadata→S6–S10 under continuing authorization.
+- Primary next: S5d remaining effect-owner health/structural and transfer closure, then S6–S10 under continuing authorization.
+
+## S0739 — B290.317 exact research carrier health and scoped structural closure
+
+S5d4c1 complete:Apply/Chair/Cross own exact live carrier-health recovery, replacing duplicated normal structural hooks with scoped D; Cross preserves its DC-independent fallback.18 new cases/full320 have319 passing properties/1 registered S6 capacity counterexample OPEN. Sibling loss during writes and confirmed damage are retained; UNKNOWN never creates idle retries. Remaining owner/transfer closure and S6–S10 continue without deployment/main.
 
 ## S0738 — B289.316 worker input normalization and GPP governor relay retirement
 

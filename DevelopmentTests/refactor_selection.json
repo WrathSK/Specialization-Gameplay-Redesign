@@ -241,6 +241,29 @@
       "test_refactor_s5d4a",
       "test_refactor_s5d4b1",
       "test_refactor_s5d4b2"
+    ],
+    "S5d4c1": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_s5a",
+      "test_refactor_s5a2",
+      "test_refactor_s5history",
+      "test_refactor_s5propagation",
+      "test_refactor_s5b",
+      "test_refactor_s5c1",
+      "test_refactor_s5c2",
+      "test_refactor_s5d1",
+      "test_refactor_s5d2",
+      "test_refactor_a8",
+      "test_refactor_s5d3",
+      "test_refactor_s5d4a",
+      "test_refactor_s5d4b1",
+      "test_refactor_s5d4b2",
+      "test_refactor_s5d4c1"
     ]
   },
   "counterexamples": {
@@ -267,7 +290,8 @@
     "Mod/RuntimeWork.lua": [
       "test_refactor_baseline.RealConsumers",
       "test_refactor_s5d1",
-      "test_refactor_s5d2"
+      "test_refactor_s5d2",
+      "test_refactor_s5d4c1"
     ],
     "Mod/Lv2Housing.lua": [
       "test_refactor_baseline.RealConsumers",
@@ -315,7 +339,8 @@
     "Mod/ResearchChair.lua": [
       "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope",
       "test_refactor_s5d1",
-      "test_refactor_s5d4b2"
+      "test_refactor_s5d4b2",
+      "test_refactor_s5d4c1"
     ],
     "Mod/CarrierHealthTrace.lua": [
       "test_refactor_attribution"
@@ -389,10 +414,12 @@
       "test_refactor_s5a"
     ],
     "Mod/ResearchApply.lua": [
-      "test_refactor_s5d1"
+      "test_refactor_s5d1",
+      "test_refactor_s5d4c1"
     ],
     "Mod/ResearchCross.lua": [
-      "test_refactor_s5d1"
+      "test_refactor_s5d1",
+      "test_refactor_s5d4c1"
     ],
     "Mod/CultureAesthetic.lua": [
       "test_refactor_s5d1"

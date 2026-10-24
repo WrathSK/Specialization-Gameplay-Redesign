@@ -10,25 +10,39 @@ for _,s in ipairs({'03','05','1'}) do M.Retired[#M.Retired+1]='BUILDING_SPC_B082
 local function name(sign,i) return 'BUILDING_SPC_RESEARCH_CROSS_'..sign..'_'..i end
 function M.Start(P,shared)
  local data={ready=false,busy=false,errors={},plans={},changes=0};shared.ResearchCross=data
+ local ownedIndex={}
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(index)return ownedIndex[index]==true end,function(scope)data.MarkAudit(scope)end)
  SPCSampleLifecycle.Reset(data,'cross')
+ local healthDefinitions
+ local function defineHealth()
+  if healthDefinitions then return healthDefinitions end
+  local rows,nextOwned={},{}
+  for _,sign in ipairs({'POS','NEG'})do for i=0,M.Bits-1 do
+   local id=assert(P.Info('Buildings',name(sign,i)),'CROSS_DEFINITION_MISSING').Index
+   rows[#rows+1]={id=id,sign=sign,bit=i};nextOwned[id]=true
+  end end
+  -- Immutable definitions publish atomically, independently of transient presence.
+  ownedIndex=nextOwned;healthDefinitions=rows;return rows
+ end
  local function installed(c)
+  local defs=defineHealth()
   local out={old={},bits={},amount=0,oldCount=0};local b=c:GetBuildings()
   for _,n in ipairs(M.Retired) do
    local id=assert(P.Info('Buildings',n),'CROSS_OLD_DEFINITION_MISSING').Index
    local yes=P.HasBuilding(b,id);assert(type(yes)=='boolean','CROSS_CARRIER_UNKNOWN')
    out.old[#out.old+1]={id=id,yes=yes};if yes then out.oldCount=out.oldCount+1 end
   end
-  for _,sign in ipairs({'POS','NEG'}) do for i=0,M.Bits-1 do
-   local id=assert(P.Info('Buildings',name(sign,i)),'CROSS_DEFINITION_MISSING').Index
+  for _,definition in ipairs(defs)do
+   local id,sign,i=definition.id,definition.sign,definition.bit
    local yes=P.HasBuilding(b,id);assert(type(yes)=='boolean','CROSS_CARRIER_UNKNOWN')
    local pillaged=yes and b:IsPillaged(id) or false;assert(type(pillaged)=='boolean','CROSS_CARRIER_PILLAGE_UNKNOWN')
    out.bits[#out.bits+1]={id=id,yes=yes,pillaged=pillaged,sign=sign,bit=i}
    if yes and not pillaged then out.amount=out.amount+(sign=='POS' and 1 or -1)*2^i end
-  end end
+  end
   return out
  end
  local function remove(c,r)
-  P.RemoveBuilding(c:GetBuildings(),r.id);assert(P.HasBuilding(c:GetBuildings(),r.id)==false,'CROSS_REMOVE_UNCONFIRMED');r.yes=false;data.changes=data.changes+1
+  health.Remove(c,r.id);assert(P.HasBuilding(c:GetBuildings(),r.id)==false,'CROSS_REMOVE_UNCONFIRMED');r.yes=false;data.changes=data.changes+1
  end
  local function inspect(pid,c)
   local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
@@ -71,7 +85,7 @@ function M.Start(P,shared)
    if r.yes and (not r.want or r.pillaged) then remove(c,r) end
   end
   for _,r in ipairs(state.bits) do if r.want and not r.yes then
-   P.CreateBuilding(c:GetBuildQueue(),r.id)
+   health.Create(c,r.id)
    assert(P.HasBuilding(c:GetBuildings(),r.id)==true and c:GetBuildings():IsPillaged(r.id)==false,'CROSS_CREATE_UNCONFIRMED');data.changes=data.changes+1
   end end
   if state.amount~=0 and amount==0 then P.Count('cross_withdraw') end
@@ -120,11 +134,14 @@ function M.Start(P,shared)
  end
  local function bind(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
  SPCRuntimeWork.StartReady(P,shared,'ResearchCross',function()data.ready=true;SPCSampleLifecycle.Reset(data,'cross');data.plans={};data.errors={};data.Audit()end)
- for _,n in ipairs({'PlayerTurnActivated',
-  'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap'}) do
-  SPCRuntimeWork.Hook(P,Events,n,data.Audit)
+ -- Ordinary structural input is owned by scoped DC D; health is exact above.
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.Hook(P,Events,n,data.Audit)end
+ -- D is a notification shortcut, not a business input. Preserve this writer's
+ -- established independence when the optional structural provider failed startup.
+ if not shared.DistrictCompleteness then
+  for _,n in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'})do SPCRuntimeWork.TargetHook(P,Events,n,data.MarkAudit)end
+  for _,n in ipairs({'OnDistrictConstructed','CityBuilt'})do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.MarkAudit)end
  end
- for _,n in ipairs({'OnDistrictConstructed','CityBuilt'}) do bind(GameEvents,n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchCross',function(c,loss)
    local ids={};for _,sign in ipairs({'POS','NEG'})do for bit=0,M.Bits-1 do ids[#ids+1]=name(sign,bit)end end;for _,id in ipairs(M.Retired)do ids[#ids+1]=id end
