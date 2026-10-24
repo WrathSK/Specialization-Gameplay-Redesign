@@ -2,7 +2,7 @@
 
 ## Refactor program intake — 2026-10-24
 
-This section is the current scheduling checkpoint and supersedes conflicting timing in the historical sections below. The user explicitly assigned Primary and authorized S0–S10 of the reviewed refactor program, with **U1 after S0/S1**. Current source basis: `25327e7808f39da692b0270727047d1a3988e958`, B271.298 / S0718. The [U1 decision sheet and draft differences](Refactor_Program_U1.md) await acceptance; no runtime work or deployment is performed here. The Advisor originals remain read-only, local review inputs. This existing scheduling record is the only intake map; original finding IDs are retained rather than creating a second registry.
+This section is the current scheduling checkpoint and supersedes conflicting timing in the historical sections below. The user explicitly assigned Primary and authorized S0–S10 of the reviewed refactor program, with **U1 after S0/S1**. Current source basis: `25327e7808f39da692b0270727047d1a3988e958`, B271.298 / S0718. The [U1 decisions](Refactor_Program_U1.md#accepted-u1--2026-10-24) are accepted with the user's revisions. D0058/A0182 formalize them before S2; no deployment is authorized. The Advisor originals remain read-only, local review inputs. This existing scheduling record is the only intake map; original finding IDs are retained rather than creating a second registry.
 
 ### Explicit user decisions
 
@@ -12,7 +12,7 @@ This section is the current scheduling checkpoint and supersedes conflicting tim
 | 2026-10-23 | Write the constraints before refactoring. | S0/S1 text review at U1 before S2 code/tests. |
 | 2026-10-24 | Fold Commercialization accrual loss, IndustrySupport retry storm and GC UI_PENDING starvation into the refactor. | S4, no separate hotfix. |
 | 2026-10-24 | “网络待确认之后，新的事实被更新之前，先保持之前的数值（即不更新载体）（只有新的事实会更新载体）”. | Direction accepted; D-1/D-2 exact scope, cold-load and qualification precedence require U1. No runtime hold is implemented by this record. |
-| 2026-10-24 handoff | A8 eight-era unification and city-ownership gameplay semantics are outside this program. | Keep the section-6 exclusions. Technical lifecycle prerequisites are not permission to decide new ownership outcomes. |
+| 2026-10-24 handoff | City-ownership gameplay remains excluded; A8 was assessed and the user explicitly approved the eight-era correction. | Keep the section-6 exclusions. Technical lifecycle prerequisites are not permission to decide new ownership outcomes. |
 
 ### Before evidence and interpretation
 
@@ -28,7 +28,7 @@ Native sources above are the two reviewed reports under `Reports/Advisory/V01_Pl
 
 ### Current-HEAD disposition
 
-**FIXED** means the named subset is already implemented; **CHANGED** means partial implementation or materially changed evidence; **OPEN** means the planned gap is still present. These are static dispositions, not blanket native acceptance. Unless a DevelopmentTests/tools prefix is given, source files below are under `Mod/` (including `UI/`). All source references below were checked at the pinned HEAD; no historical source line is adopted unchecked. Compound rows share one planned work item; no claim is made to re-audit every unselected entry in the 191-item advisory register. Recheck touched lines again before each implementation stage.
+**FIXED** means the named subset is already implemented; **CHANGED** means partial implementation or materially changed evidence; **OPEN** means the planned gap is still present. These are static dispositions, not blanket native acceptance. Unless a DevelopmentTests/tools prefix is given, source files below are under `Mod/` (including `UI/`). All source references below were checked at the pinned source-review HEAD; no historical source line is adopted unchecked. Compound rows share one planned work item; no claim is made to re-audit every unselected entry in the 191-item advisory register. Recheck touched lines again before each implementation stage.
 
 #### S2 — Test and observability prerequisites
 
@@ -70,10 +70,14 @@ Native sources above are the two reviewed reports under `Reports/Advisory/V01_Pl
 | Confirmation recovery / B271 §1.1 | CHANGED: `NetworkBridge.lua:174,220–224` already handles AVAILABLE recovery, not equal-value revalidation/signal catch-up; `387–389` rejects stale signal. | Notify coherent availability even without new value revision. |
 | D-1 Commerce warm/cold hold | OPEN: `Commerce.lua:89–99` cold cleanup; `225–253` clears on prepare failure. Eligibility precedes network at124,148; owner exit419–425. | Hold only network-derived output, preserve confirmed eligibility/access-marker exits and transaction exclusions. |
 | D-1 Culture warm/cold hold | CHANGED: `CultureNetwork.lua:185–191` normally holds warm failure; `237–247` clears installed carriers on first audit. Receiver Identity-only policy100–104 differs from source ACTIVE169–182. | Fix cold path; do not impose a new receiver ACTIVE requirement. |
-| D-1 Standardization exact hold | CHANGED: `StandardizationEffects.lua:131–154` retains old sources/merges load values, then writes at181–183. | Retained source set is not “no carrier updates”; hold the combined physical output under D-1. Undecomposable cold-load aggregate plus mixed confirmed source loss/unknown source is a U1 exception decision; stop that affected S4 path until selected. Existing Development contracts are outside this hold. |
+| D-1 Standardization exact hold | CHANGED: `StandardizationEffects.lua:131–154` retains old sources/merges load values, then writes at181–183. | Retained source set is not “no carrier updates”; hold the combined physical output under D-1. Undecomposable cold-load aggregate plus mixed confirmed source loss/unknown source uses accepted exception A: hold temporarily, recover from relevant facts/availability, never periodic scan. Existing Development contracts are outside this hold. |
 | Pending retries / F27,Ext-F06 | OPEN: `IndustrySupport.lua:50–61,68–75,105` repeats pending every publish. | Sample generation, availability/lifecycle wakes and attempt budget, not only bounded queue length. |
 | UI_PENDING GC starvation | CHANGED: `PerformanceCounters.lua:217–220,313–324` detects UI pending, deferred reevaluation only for network. | Extend eligible reevaluation; no frequency/threshold increase to mask work. |
 | Housing compact facts / Ext-F11 | OPEN: `Lv2Housing.lua:23`; compact fields `DistrictCompleteness.lua:26–32,173` suffice. | Use ReadFacts without eligibility change. |
+
+#### Approved A8 correction — after S4, before dependent propagation work
+
+A8 is no longer excluded: the user explicitly approved eight collection eras after the bounded assessment, correcting the original mistaken count. Extend Inspiration to E0–8/max24%, Dialogue X0–8/max40 per round, valid receipts and total carrier coverage; preserve pool/work-own-era/quota/history. Source: CultureInspirationModel, DialogueProjectModel/Projects/Effects and their SQL; catalogue already spans8. Keep baseline seven-era tests as before evidence and add the explicitly accepted successor tests, not assertion weakening.
 
 #### S5 — Propagation foundation, in a→b→c→d order
 
@@ -156,15 +160,15 @@ Native sources above are the two reviewed reports under `Reports/Advisory/V01_Pl
 
 ### Authorization, dependency triggers and exclusions
 
-The [U1 sheet](Refactor_Program_U1.md) holds D-1–D-15 defaults, all pending. The current code stage remains **not started**. Only after U1 acceptance may Primary install the accepted text and progress S2→S10, with separate stage/batch commits and result evidence. Stop U2 after S4, U3 after S6, U4 after S9, or for the plan's specific stop conditions. U5 is final user native acceptance; main promotion is never implicit.
+The [accepted U1 record](Refactor_Program_U1.md#accepted-u1--2026-10-24) supersedes pending defaults. S2–S10 are authorized after D0058/A0182 synchronization. U2 after S4, U3 after S6 and U4 after S9 are internal engineering checkpoints, not routine native/deployment stops. A concrete blocking native uncertainty requires a minimal user test; ordinary stages continue after local gates. No automatic deployment. U5 is final native integration; main promotion needs a separate decision. D4/D5/D7/D13/D14 revisions apply exactly as recorded, not the original Advisor defaults.
 
 Re-review is triggered by a new consumer, manual-to-automatic use, wider work set/frequency, new recovery path, longer reference lifetime or relevant observed failure, not merely the next profession. This applies now to the four current professions. Report B's P1 timing is read as **before the next dependent use**, with a scoped disposition; it does not revive every historical issue or authorize unrelated fixes.
 
-The following remain outside the program: ownership semantic DDRs (missed loss, multi-hop returns, AF-13, tombstones/raze/acquisitions, Crew/Expedition training and Restructuring outcomes); Expedition functional repairs/reattachment; Meaning GP/DQ, exact District purchase discount, Research network redesign and era UI; A8; fifth-profession vocabulary/ordinary ontology and broader unit framework; promotion-policy/HD dependency declaration/carrier-ID pruning. F24/F37 or other unselected report items do not enter by proximity. If an implementation encounters them as a prerequisite, stop the affected path rather than silently expanding scope.
+The following remain outside the program: ownership semantic DDRs (missed loss, multi-hop returns, AF-13, tombstones/raze/acquisitions, Crew/Expedition training and Restructuring outcomes); Expedition functional repairs/reattachment; Meaning GP/DQ, exact District purchase discount, Research network redesign and era UI; fifth-profession vocabulary/ordinary ontology and broader unit framework; promotion-policy/HD dependency declaration/carrier-ID pruning. A8 assessment identified current E/X0–7 versus eight catalogue eras. The user explicitly approved E/X0–8, Inspiration max24%, Dialogue max40 per round and corresponding validation/carriers; pool/own-era/quota/history unchanged. A separate implementation batch follows S4. F24/F37 or other unselected report items do not enter by proximity. If an implementation encounters them as a prerequisite, stop the affected path rather than silently expanding scope.
 
-Existing temporary develop deployment capability is present (`tools/temporary_playtest.py:37–62,111`), independent of main-only stable_gate. D-13 permission is pending; activation requires stable runtime first, and later switches require exact-receipt restore→activate. Do not invent a new deployment framework or bypass the existing transaction. The old W0003 ACTIVE prose versus Authority-ended state is addressed in the U1 draft only.
+Existing temporary develop deployment capability is present (`tools/temporary_playtest.py:37–62,111`), independent of main-only stable_gate. No automatic D-13 deployment permission was granted; an approved activation requires stable runtime first, and later switches require exact-receipt restore→activate. Do not invent a new deployment framework or bypass the existing transaction. The old W0003 ACTIVE prose versus Authority-ended state is addressed in the U1 draft only.
 
-User decision: U1 answers and draft text review. User testing: none until U2. Primary next: stop at U1; runtime/main/live remain B271.298.
+User decision: U1 accepted. User testing: final U5, earlier only for a blocking native fact. Primary next: S2→S10 with internal checkpoints; main/live remain B271.298 until separately approved replacement.
 
 ---
 

@@ -3,8 +3,26 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0057
+Latest Accepted Design Revision: D0058
 Document State: ACCEPTED
+
+## Accepted D0058 — 2026-10-24
+
+用户U1 handoff明确接受D-1至D-15并修订原推荐值。网络PENDING／UNKNOWN保持已有物理载体，确认资格退出优先；拓扑确认后逐来源confirmed／retained／unknown，不能以旧输出批准新不可逆交易。标准化合并载体整体保持；冷加载不可拆分、部分来源失效而其它必要事实未知时，明确选择**例外A：暂留旧组合值，事实恢复后事件驱动重算／撤除**，接收城自身失效仍立即退出，不永久保留。
+
+D-4保留三项目独立玩法，只抽公共技术机制；UNKNOWN不是取消／完成，不增加周期轮询、全城回合兜底或无变化重试。D-5施工队每次结算需唯一请求／单位／来源／完成凭据，累计差值仅发现遗漏。D-6未知间隔不补计、恢复续计；未知信誉只取消加成，不取消其它合法商业化。D-7单能力隔离，可靠事实确定性重建；已确认永久不可恢复且无其它可靠证据时回合法初始基线，不永久停用／要求玩家处理。实现前须有能力级判据，不凭UNKNOWN、一次异常、次数或时间覆盖原记录。
+
+D-8至D-12及D-15按用户范围记录于A0182／Workflow。D-13改为本地工程检查点、必要原生问题才请求最小实机；无自动部署／main晋升。D-14先新增A8定域评估；评估后用户明确确认全部按8时代统一，原7为用户计数遗漏。启迪E0–8／最高24%，对话X0–8／单次最高40个百分点；扩对应校验／载体，作品池／自身时代／游戏时代额度／城市历史归属不变。城市易主玩法、考察团功能修复及其它排除项保持。S2–S10已授权按依赖顺序推进；Design接受不构成新实机PASS。
+
+[Shared D0058](Content/Shared_D0058.json)、[Research D0058](Content/Research_D0058.json)、[Industry D0058](Content/Industry_D0058.json)、[Culture D0058](Content/Culture_D0058.json)、[Commerce D0058](Content/Commerce_D0058.json)与当前Spec／实际受影响阅读页同步。旧Content原字节及[D0057 Spec](Revisions/Specialization_Design_Spec_D0057.md)保留；未列公式、数值、资格、A–G归属与未来范围不变。
+
+Accepted Spec SHA256: `da691d7797733f6b689012f0cf2e4721fd3fcf34580b44c1bede396ba0d7cc77`
+Frozen D0057 Spec SHA256: `f5a1f82d9bf7207e50672e3ea3ea108ddbd6527116d99259c81235109239dd1d`
+Shared D0058 SHA256: `9423be2a2afd362d96e53c4820a8d0e7aa4fae9d9dd7db01b3bf50c6fe8ff865`
+Research D0058 SHA256: `0638d016d3d7a58a8c5665137c118c738a69022ee71c7884ec3ca76a914eed90`
+Industry D0058 SHA256: `0f951fb4782f0f1c0805d0abef5305bfd61593db31526c2d291ddc79482ff800`
+Culture D0058 SHA256: `767b0ae62b9da92009bd7be9474d5d590f99f20e8ad90cddce6fa7208fdfd07e`
+Commerce D0058 SHA256: `7a1bdee459a31910b5540f835069853eda1f435759d06a37c89dbd4fac545d66`
 
 ## Accepted D0057 — 2026-10-18
 

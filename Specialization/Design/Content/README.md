@@ -5,6 +5,10 @@ Design Authority: User
 
 Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-and-repository-knowledge)。本索引只导航内容权威，不授予新玩法决定或实施权限。
 
+## D0058 — U1网络连续性与异常恢复
+
+当前结构化正文为 [Shared D0058](Shared_D0058.json)、[Research D0058](Research_D0058.json)、[Industry D0058](Industry_D0058.json)、[Culture D0058](Culture_D0058.json)、[Commerce D0058](Commerce_D0058.json)。正式同步网络保持／逐来源provenance／冷加载例外A、计龄恢复、未知信誉无加成、单能力安全恢复及项目／施工队凭据边界；其余数值、资格和归属保持。A8评估后用户明确确认全部按8时代统一，启迪最高24%／对话单次40个百分点，其它作品池、归属和额度保持。[接受记录](../Design_ChangeLog.md#accepted-d0058--2026-10-24)。以下修订段为既有接受来源，不覆盖本段当前入口；旧Content与Spec冻结原字节。
+
 [Research D0040](Research_D0040.json)是当前Research Lv1–Lv4的唯一结构化内容正文（D0026/D0028原表冻结为历史），保存已冻结的机械合同、第一版中文Tooltip及领域映射。状态为 **DESIGN_FROZEN / implementation and balance validation pending**。Accepted Spec的RES节引用此表，不复制另一套新公式。仅Design冻结，不代表运行包实现。
 
 [Industry D0053](Industry_D0053.json)沿同一结构扩展`parameters`（值与BALANCE_REQUIRED分离）、`contracts`（模板/历史/施工队范围）、`review_markers`（已确认但以后复审）、`superseded_old_rules`。Industry为DESIGN_FROZEN，候选命名和待平衡参数保留独立成熟度。

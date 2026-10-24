@@ -16,7 +16,15 @@ The original unchanged source/document checkpoint is `ca54045`. A following infr
 
 [W0004 v1 validation policy](../Workflow/README.md#w0004-v1--quota-efficient-validation-policy) defines risk-matched L1/L2/L3 local checks; “passes local checks” below means that minimum sufficient scope, not automatic full historical regression. W0003 deployment authorization and every exit/hash/manifest/backup/rollback/clean-source safeguard remain unchanged. Tools perform deterministic verification; consume their summary unless a mismatch needs investigation. Local PASS never substitutes for USER_GAME_TEST_PASS. Native acceptance follows the [delta/inherited-evidence policy](../Workflow/README.md#native-delta-and-inherited-evidence): test new uncertainty, inherit unchanged covered lifecycle paths, and justify any scoped save/load or cleanup retest.
 
-## Current temporary development-test mode — W0003
+## Refactor program checkpoints and deployment — accepted U1 D-13
+
+U2 (after S4), U3 (after S6) and U4 (after S9) are internal engineering checkpoints, not mandatory user game sessions or automatic deployment stops. Primary continues after the local correctness, real-module integration and static gates pass. A concrete native fact that local tests cannot answer and that blocks dependent development requires the smallest discriminating user test, with exact operations and pass conditions. Keep evidence UNKNOWN/USER_GAME_TEST_REQUIRED until observed; local tests do not imply native PASS.
+
+The user granted no automatic deployment permission. Every proposed runtime replacement still needs explicit approval and existing clean committed source, game-exit, target/UUID, exact receipt/hash, staging/backup/recovery and equality safeguards. U5 is final user native integration acceptance; promotion to main is a separate approval after U5. Before S10 removal ships, reviewed deletion/rollback paths must exist for stable and temporary transactions.
+
+The current B271 campaign may be used only for bounded comparisons if compatible; this does not add general old-save support or migration. Each batch records persistence compatibility. A new persisted shape requires a new campaign for its affected acceptance scope, and U5 always uses a new campaign. If a specifically required native comparison cannot safely continue after a shape change, report that concrete boundary before destroying the comparison evidence. No automatic migration is implied.
+
+## Historical temporary development-test mode — W0003
 
 2026-09-18 user explicitly authorizes B078.105 deployment and standing deployment of completed develop testing batches until the user declares a node ready for long-play testing. This section overrides older per-switch authorization prose below for this phase only; historical W0002 receipts remain valid.
 
@@ -28,7 +36,7 @@ The original unchanged source/document checkpoint is `ca54045`. A following infr
 - No new implementation is authorized by automatic deployment. Known unresolved evidence, such as idle sounds, must still be reported honestly.
 - Stop this temporary mode when the USER identifies a long-play-ready milestone or revokes it. Resume explicit deployment approvals / development-runtime separation; do not silently restore a different package or promote main without user direction.
 
-Current authorization is ACTIVE. This changes deployment permission only, not Gameplay, Design or A0161 state contracts.
+This earlier standing authorization has ended. Current replacements require explicit approval under the accepted U1 boundary and Authority; historical receipts and safeguards remain valid.
 
 ## Save scope and test base (user decision 2026-10-16)
 

@@ -1,68 +1,68 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "AUTHORIZED",
   "authority_versions": {
-    "design": "D0057",
-    "research": "D0040",
-    "industry": "D0053",
-    "culture": "D0051",
-    "commerce": "D0057",
-    "shared": "D0045",
+    "design": "D0058",
+    "research": "D0058",
+    "industry": "D0058",
+    "culture": "D0058",
+    "commerce": "D0058",
+    "shared": "D0058",
     "presentation": "D0032",
-    "architecture": "A0181",
-    "status": "S0719",
+    "architecture": "A0182",
+    "status": "S0720",
     "runtime": "B271.298 / modinfo298",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Authorized S0/S1 intake, U1 decision sheet and review-only governance/network text differences; stop for U1 acceptance before formal text adoption and S2.",
+  "goal": "User-accepted S2–S10 refactor; first formal D0058/A0182 synchronization, then faithful S2 harness/baselines and dependency-ordered implementation. U2/U3/U4 engineering checkpoints; U5 native acceptance; no automatic deployment/main.",
   "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-      "kind": "full",
-      "reason": "U1 review artifact, stage scope and unresolved decisions; not accepted gameplay authority."
+      "kind": "section",
+      "selector": "## Accepted U1 — 2026-10-24",
+      "reason": "Explicit accepted D1–D15 amendments and continuing authority."
     },
     {
       "path": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md",
       "kind": "section",
       "selector": "## Refactor program intake — 2026-10-24",
-      "reason": "Existing scheduling record with current-source intake, recorded decisions and exclusions."
+      "reason": "Single current intake/stage map; original IDs and before evidence."
     },
     {
       "path": "Specialization/Workflow/README.md",
       "kind": "section",
-      "selector": "## W0004 v1 — Quota-Efficient Validation Policy",
-      "reason": "Docs-only verification and evidence boundaries remain current."
+      "selector": "### Runtime Impact Contract and targeted gates",
+      "reason": "Internal impact/gate selection and proof obligations."
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "### 公共更新与临时状态接入约束",
-      "reason": "Current safety and sharing contract stays in force until proposed text is accepted."
+      "selector": "### Runtime integration contract — P01–P10",
+      "reason": "Accepted integration constraints and scoped exceptions."
     }
   ],
   "dependencies": [
-    "User-assigned Primary; requested read-only Advisory inputs pinned by hashes in U1, existing accepted A0181/D0057.",
-    "Current HEAD25327e7 source verification; current live B271 receipt remains the deployment basis."
+    "User-assigned Primary and U1 acceptance authorize S2–S10 in order; current D0058/A0182 govern changed semantics.",
+    "Current live B271 receipt remains unchanged; no automatic deployment."
   ],
   "old_writers": [
-    "All current runtime writers, Store/transaction/exit/native protection remain byte-identical in S0/S1.",
-    "Pending-hold/DDR behavior is not implemented by publishing a review artifact."
+    "Current B271 runtime unchanged in the U1 documentation commit; each later cutover audits actual writer/observer/exit closures."
   ],
   "conditional_context": [],
   "non_scope": [
-    "S2 or later runtime/test/tool implementation before U1 acceptance.",
-    "Advisory edits, enactment of AGENTS/README/Design/Architecture drafts before U1, deployment/main promotion/game launch.",
-    "Ownership gameplay semantics, Expedition functional repairs, A8 and section-6 follow-on programs."
+    "Automatic deployment/main promotion/game launch, Advisory edits, unrelated features/ownership semantics/Expedition functional repairs.",
+    "A8 scope beyond explicitly approved eight-era count/validation/carriers; keep work pool, own-era, quota and history unchanged.",
+    "D7 destructive baseline without safe ability-specific irrecoverability proof."
   ],
   "validation": {
-    "depth": "Documentation-only: current-source references, draft applicability, links/JSON/selectors, scoped Context_Lock, staged publication gate and unchanged runtime/Advisor checks.",
-    "local": "STATIC_CONFIRMED for current-source/configuration review; no gameplay tests executed.",
-    "user": "U1_REVIEW_REQUIRED. No native test now; U2 after S4 and applicable deployment approval."
+    "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
+    "local": "Document/reference/acceptance/hash checks pass; no gameplay simulation in this docs-only batch.",
+    "user": "U5 final native integration; earlier minimal test only when a concrete engine fact blocks dependent development. No automatic deployment."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -71,8 +71,8 @@
   ],
   "result": {
     "report": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-    "local": "DOCUMENT_CHECKS_PASS; STATIC_CONFIRMED source review; no gameplay simulation",
+    "local": "FORMAL_DOCUMENT_CHECKS_PASS; STATIC_CONFIRMED, no gameplay simulation",
     "native": "NO_NEW_NATIVE_TEST",
-    "deployment": "UNCHANGED_B271_STABLE; D-13 pending U1"
+    "deployment": "UNCHANGED_B271_STABLE; explicit replacement approval required"
   }
 }

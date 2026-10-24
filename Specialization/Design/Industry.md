@@ -205,8 +205,8 @@ L属于**A类城市历史账本**，与文明历史B的E、城市真实完成数
 
 [返回Design导航](README.md)。正文是阅读呈现，正式来源保持原权威。
 
-- [工业当前内容](Content/Industry_D0053.json)：全部本地效果、目录、历史、网络、队伍与容量。
-- [当前Spec](Specialization_v0.1_Design_Spec.md)：IND引用与取代边界；[Shared](Content/Shared_D0045.json)。
+- [工业当前内容](Content/Industry_D0058.json)：全部本地效果、目录、历史、网络、队伍与容量。
+- [当前Spec](Specialization_v0.1_Design_Spec.md)：IND引用与取代边界；[Shared](Content/Shared_D0058.json)。
 - [A–D生命周期接受](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：模板与工程实践随城，工程传统属实际完成文明。
 - [冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)、[容量接受记录](Design_ChangeLog.md)：D0032关闭容量2，旧D0031未决描述不覆盖它。
 - [旧施工合同](Revisions/Specialization_Design_Spec_D0026.md)：只用当前内容明确保留的成本／速度／劳动力／拒绝与溢出规则，不恢复旧解锁和目标。
@@ -216,3 +216,5 @@ L属于**A类城市历史账本**，与文明历史B的E、城市真实完成数
 [D0044职责与首测值接受记录](../Historical/Design/Reviews/Industry_D0044_Review.md)：旧实践强化标准化、传统解锁高档队已退出；工程实践四级门槛保留。当时对施工注入倍率的排除已由[D0053](Design_ChangeLog.md#accepted-d0053--2026-10-18)取代。
 
 [D0045正式同步审阅](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)：记录模板效率归属、合法Gold／Faith渠道、研习中断、专业单位保护与最终floor；D0044首测职责和数值保持。
+
+D0058：支持同回合多城合法施工队完成，正常路径优先可靠独立完成事件。累计差值仅发现遗漏，不能单独证明发放数量；每次发放必须具备唯一且可验证的请求、单位、来源及完成凭据。HELD／CALLING只凭新证据恢复，不重放不可逆操作，无法归属的结果保留诊断待确认。 研习的技术恢复遵循[Shared项目边界](Shared.md#能力记录异常与项目机制边界)，不增加轮询或统一取消玩法；标准化待确认与冷加载例外见[Network](Network.md#未确认不等于失效)。

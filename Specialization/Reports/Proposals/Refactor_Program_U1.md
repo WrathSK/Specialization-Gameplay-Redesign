@@ -1,114 +1,37 @@
-# Refactor program — S0/S1 review at U1
+# Refactor program — accepted U1 decisions
 
 Date: 2026-10-24
 Maintainer: Primary, explicitly assigned by the user under W0005
-Review basis: develop `25327e7808f39da692b0270727047d1a3988e958`; runtime B271.298; Status S0718; accepted A0181 / D0057
-State: **U1_REVIEW_REQUIRED — S0/S1 delivered; S2 not started**
+Review basis: develop `a6a51be`; original source review `25327e7`; runtime B271.298
+State: **U1_ACCEPTED — formal D0058 / A0182 synchronization before S2**
 
-## 1. Scope and status
+## Accepted U1 — 2026-10-24
 
-The user's handoff authorizes S0–S10 in the order of the [Advisor plan](../Advisory/Refactor_Program/Refactor_Program_Plan.md), with U1/U2/U3/U4 and the plan's six stop conditions. The handoff does not accept the recommended D-1–D-15 answers. S11/U5 is user native acceptance; main promotion remains a separate decision after U5.
+This record replaces the earlier pending decision sheet. The user explicitly approved S2–S10 after formal synchronization, without routine stage authorization. The accepted Design/Architecture/Workflow own their rules; the original [review diff](Refactor_Program_U1_Text.patch) is frozen proposal evidence, not an apply instruction. The [existing intake](Audit_Followup_Priorities.md#refactor-program-intake--2026-10-24) remains the sole stage/finding schedule. Advisor originals stay read-only and unpublished.
 
-This checkpoint records the already explicit decisions in Status and the existing [follow-up scheduling record](Audit_Followup_Priorities.md#refactor-program-intake--2026-10-24). That record contains the current-HEAD intake, not a second finding registry. The decision sheet below and the [text diff](Refactor_Program_U1_Text.patch) are review artifacts only. No patch has been applied to AGENTS, README, Design or Architecture. No runtime, tests, tools, deployment, main or Advisor files change in S0/S1. Publishing these review artifacts is not acceptance of their proposed rules.
-
-The user's five explicit decisions are recorded there: D4 already implemented; constraints before refactor; B271's treasury/retry/GC defects folded into S4 rather than hotfixed; pending-network hold direction accepted with exact semantics awaiting U1; A8 and ownership gameplay semantics excluded. All other stages remain behavior-neutral except the DDR choices explicitly confirmed at U1.
-
-## 2. U1 decision sheet
-
-Every answer is **PENDING_USER_CONFIRMATION**. The following prefilled answers reproduce the Advisor's recommended defaults, with current-source qualifications made explicit. The user may accept all defaults together or replace individual numbered answers, but the cold-load partial-loss exception below still requires an explicit choice; it has no implied default. Qualifications that preserve existing contracts are not new gameplay choices.
-
-| Decision | Recommended answer for approval | Player-visible consequence / guard |
-|---|---|---|
-| **D-1 — Pending network** | Hold the last actually applied network-derived carriers, without withdrawal or rewrite, during route-topology pending/UNKNOWN. The combined local/network Standardization carrier is held as a whole in this state. Recompute on new confirmed facts, including confirmed route loss. Existing confirmed identity, ability-specific ACTIVE, owner and REALLOCATING exits take precedence. Network-dependent input changes wait. At cold load, valid saved carriers are the temporary last-applied output. Apply to every live network-dependent carrier writer, including Commerce, CultureNetwork and StandardizationEffects. | Commercialization does not disappear during transient revalidation. Unknown does not mean empty, but confirmed ineligibility does not gain an indefinite hold. No new ACTIVE/source gate is imposed. Transactions keep their existing confirmed-input and receipt requirements; already signed contracts do not gain a new route prerequisite. |
-| **D-2 — One unreadable city** | Isolate its capture failure; retain its reference-valid last-known contribution, or no contribution if never reliably known, while other readable cities proceed once route topology is confirmed. New confirmed node contributions may update effects alongside that retained contribution. Preserve explicit per-node unknown/retained provenance; hold an undecomposable saved aggregate until needed facts are available. | One city no longer freezes the entire network. Confirmed owner/reference/qualification loss overrides retention. Mixed retained/new data must not masquerade as wholly fresh evidence for transactions. |
-| D-3 — Failed startup dependency | Record FAILED; skip actual dependents as SKIPPED_DEPENDENCY and report. No degraded running; preserve current startup order. | Normal behavior unchanged; failures are contained and visible. |
-| D-4 — Three full-turn projects | Preserve common behavior; for differing paths use the conservative existing policy: UNKNOWN retains access markers, queues with more than one item give an explicit reason without auto-start, and a project no longer current is abandoned as the existing Dialogue/Engineering paths do. | Clearer blocked-state messages. This does not erase ambiguous CALLING/native-outcome receipts or authorize replay; unexpected irreversible-state conflicts stop the affected work. |
-| D-5 — Crew completions | Grant every completion proved by the aggregate counter. Exit stale HELD only after proving no unbound Crew; resolve CALLING by re-observing one unbound Crew. | Prevent loss of paid Crews. Aggregate evidence must still attribute each unit/order/source uniquely; ambiguity remains held, not guessed or duplicated. |
-| **D-6 — Missed ticks / unknown Reputation** | Pause without credit for the unreadable gap, then resume Tradition/Reputation. Unknown Reputation at ACTIVE IV means no Reputation bonus, not withholding all otherwise valid Commercialization Gold. | A transient fault does not permanently disable growth or all Commercialization. This is an explicit DDR to record in accepted Design, not a claim that the present missed-gap code already resumes. |
-| D-7 — Invalid profession sub-record | Hold only that ability; identity and other valid abilities continue. Envelope/reference/identity corruption retains its existing wider safety boundary. | Ability-level fault isolation; no fabricated historical data or silent repair of invalid fields. |
-| D-8 — Anchors and pillage | Share the sample once; retain each ability's current eligibility and pillage policy. | No unified new gameplay rule. |
-| D-9 — Ordinary-building ontology | Defer unification to the fifth-profession program. | Existing eligibility remains. |
-| D-10 — Development target rules | Move UI target selection rules to Gameplay without changing their results; revise the B246 responsibility split. | No intended player-visible behavior change. |
-| D-11 — Institution display | Read applied values, gates and reasons published by effect owners. | Tooltips distinguish retained/applied effects from candidate calculations. |
-| D-12 — Retirement and package deletion | Permit S10 quarantine/removal only after Q1–Q8 duties migrate. Add and validate the reviewed package deletion path before any removal ships; retain SQL IDs until a separately approved clean break. | No intended behavior change; no raw-copy/delete bypass. |
-| **D-13 — Touchpoints and deployments** | Continue between touchpoints; grant standing develop-test deployment permission at U2/U3/U4 only, with all existing exit/hash/receipt safeguards. U5 deployment and post-U5 main promotion need separate explicit approval. | Includes the plan's bounded current-campaign U2/U3 comparison where save shapes remain compatible; general old-save support and migration remain excluded. U4 uses a new campaign if S7/S8 changes persistence; U5 always new. The draft makes this limited exception explicit instead of relying on stale W0003 ACTIVE prose. |
-| D-14 — Exclusions | Keep ownership gameplay semantics, Expedition repairs, new features, A8, fifth-profession vocabulary/ontology, and promotion-policy expansion outside this program. | Technical prerequisites may move; deferred gameplay is not implemented by analogy. |
-| D-15 — Shared consistency contract | Approve declared change registration and the direction of an explicit read-phase/write-barrier snapshot contract. Primary specifies exact fields/lifetime in S5; Advisor review at U3 when requested by the user. | No automatic discovery bus or global permanent cache. The current per-Audit safety contract remains the default until its narrower replacement is specified and verified. |
-
-### Primary clarification to approve with D-1/D-2
-
-The original defaults leave the boundary between global pending and per-city isolation implicit. The proposed text resolves it as follows; this clarification is **also pending user approval**, not an implementation choice made on the user's behalf.
-
-| State | Proposed carrier behavior |
+| Decision | Accepted disposition |
 |---|---|
-| Route topology pending/unknown | Hold the entire network-dependent carrier set; confirmed eligibility exits still act. Standardization's combined local/remote maximum is one physical result and is held as a whole. |
-| Route topology confirmed; one node's facts unreadable | Hold that node's last reliable contribution; recompute readable nodes from their confirmed new facts and combine with the retained contribution. Keep uncertainty visible; it is not fresh transaction evidence. |
-| Cold-load installed aggregate cannot yet be decomposed safely | Hold while required facts are unknown and no confirmed source loss conflicts with retention; never invent a decomposition. Confirmed receiver owner/reference/qualification loss still exits. Mixed confirmed source loss plus another unreadable source requires the explicit exception decision below. |
-| Confirmed topology and required facts available | Recompute normally, including exact withdrawal on confirmed loss and updates on same-turn facts. |
+| D-1 | Last-applied network carrier hold; reliable facts alone update. Existing confirmed eligibility/owner/reference exits take priority. Standardization's inseparable local/network physical set holds as a whole. Transactions require their own confirmed proof. |
+| D-2 | Topology confirmed: new readable source facts plus valid retained contributions; no invented first contribution. Keep source provenance, not a false all-fresh snapshot. **Cold-load exception A is explicitly final:** temporarily retain Standardization’s reviewed inseparable aggregate under the same eligible receiver, including possible lost-source contribution, then event-driven recompute/withdraw on necessary fact recovery. No further confirmation needed. |
+| D-3 | FAILED / SKIPPED_DEPENDENCY with current startup order; no false readiness. |
+| D-4 | Claim/Dialogue/Engineering Study keep separate policy. Share only repeated technical mechanisms. Distinguish known other project, known empty and UNKNOWN; no time/poll/turn-sweep/irrelevant-event recovery. Verify actual native hooks and historical fallback before S7d; a missing reliable trigger is a scoped gap. |
+| D-5 | Multi-city same-tier completions supported; every grant requires unique attributable request/unit/source/completion evidence. Counters find omissions only. HELD/CALLING await new proof, never blind replay. |
+| D-6 | New accepted Design: no credit for unprovable intervals, resume after reliable facts; unknown Reputation gives no bonus but preserves otherwise valid Commercialization. Persistent UNKNOWN_INTERVAL in normal play requires root-cause investigation. |
+| D-7 | Revised accepted Design: strict base protection, isolate ability, deterministic rebuild; proved permanent irrecoverability with no other reliable recovery evidence permits a schema-valid initial baseline. No permanent HELD/player repair as normal final outcome. Define safe ability-specific criteria before implementation; transient unknown/one exception/time/retry count is insufficient. Report only unresolvable affected boundaries. |
+| D-8 / D-9 | Share anchor/worker sampling, retain distinct policies; defer ontology unification until a real dependent extension. |
+| D-10 / D-11 | Gameplay owns target rules, unchanged results; UI reads applied owner-published values/gates/reasons. |
+| D-12 | Move Q1–Q8 duties before deletion; reviewed transaction deletion/rollback before shipping; retain needed SQL/save references. |
+| D-13 | **Revised:** U2/U3/U4 are engineering checkpoints. Continue on local/static/real-module gates. Minimal native test only for a specific blocking engine question. No automatic deployment/main promotion; existing safety gates remain. U5 final native integration. |
+| D-14 | **Revised:** A8 assessment completed; user explicitly approves all counts on eight eras (the old seven was a counting mistake): Inspiration max24%, Dialogue max40 per round, corresponding validation/carriers. Pool/own-era/GameEra quota/history stay unchanged. Implement in a separate batch after S4 so it remains distinguishable from neutral refactoring. Other exclusions stay. |
+| D-15 | Declared changes and read-phase/write-barrier consistency; real production combinations prove reuse/freshness. Runtime Impact Contract is Primary's internal responsibility, not a new routine approval. New Design/major tradeoff/scope changes still require decision. |
 
-### D-1/D-2 unresolved exception — cold-load partial source loss
+## Execution and evidence boundary
 
-**DESIGN_DECISION_REQUIRED.** Current Standardization cold load has installed aggregate values but `sources={}` (`Mod/StandardizationEffects.lua:175–179`). If one source is confirmed lost while another remains unreadable, those aggregate values do not prove the remaining legal contribution. “Withdraw the lost part immediately”, “retain the legitimate part” and “do not invent a decomposition” cannot all be guaranteed from that evidence. This is a specific gap in the combined defaults, not a new ownership policy.
+Formal synchronization is docs-only: D0057 Spec is frozen byte-for-byte, five D0058 Content successors preserve prior originals, affected reading pages/acceptance/pointers are synchronized, A0182 records integration and recovery contracts, Workflow carries P/T routing and amended D13. The literal old patch remains unapplied as an artifact; its selected text was integrated after current review and the user's revisions. Runtime remains B271 until separately committed implementation batches. A8’s approved correction is separately traceable, not a behavior-neutral claim. Document/static validation is not gameplay or native acceptance.
 
-Choose one fallback for this case, or explicitly defer it and keep the affected S4 path stopped:
+Proceed S2 harness/closure/baselines/attribution/alarms, then S3/S4, then S5a→b→c→d and S6; S7–S10 follow dependencies. Each batch records impact, selected gates, actual closure/results, save compatibility and a separate develop commit/push. U2/U3/U4 retain result/smoke plans but do not automatically interrupt progress. Stop only affected work for unapproved semantics/major tradeoffs, unexplained failure/assertion weakening, a blocking native unknown, excluded scope, unsafe technical limits or unclear ownership. No automatic external messages or game launch.
 
-| Choice | Consequence |
-|---|---|
-| A — Temporarily retain the aggregate until necessary facts recover | Keeps the intended continuity, but may temporarily retain a confirmed-lost **source** contribution. This is a narrow exception to source-loss withdrawal precedence, only while the same receiver/reference remains eligible. |
-| B — Withdraw the undecomposable aggregate until necessary facts recover | Guarantees the lost source supplies no effect, but may temporarily remove another legitimate source's contribution. This is a narrow exception to preserving unrelated contributions. |
-
-Neither choice is assumed. Receiver owner/reference/qualification loss always follows its existing immediate exit under either choice. Retention never proves transaction eligibility, and this review does not propose new persistent per-source history to avoid the decision. S4 must exercise whichever fallback the user selects in cold-load tests; unresolved means stop this affected path, not silently selecting zero, hold or guessed reconstruction.
-
-### Current-source qualifications for this review
-
-- **The network change is broader than Commerce.** CultureNetwork's first audit clears installed carriers before capturing a first confirmed view (`Mod/CultureNetwork.lua:237–247`). StandardizationEffects holds source references but may still rewrite effects while pending (`Mod/StandardizationEffects.lua:131–183`). Both need D-1 cold-load/no-write coverage.
-- **Recovery notification exists but is incomplete.** `Mod/NetworkBridge.lua:220–224` already handles an AVAILABLE transition on a duplicate snapshot. Revalidation/signal catch-up with unchanged values is the missing coverage; S4 must not replace working notification with a second unrelated mechanism.
-- **Shared mechanisms must preserve policy differences.** Store requires successful setter execution plus matching readback (`Mod/CityProgressionStore.lua:1089–1099`); ExpeditionSpyStore accepts matching validated readback after a throwing setter (`Mod/ExpeditionSpyStore.lua:135–145`). S7b must make these caller policies explicit rather than silently selecting one. Binary32 numeric handling likewise cannot replace Capital's existing DECIMAL17_V1 codec.
-- **B240 citation correction.** `Commerce_Preparation.md:170` says unreadable source Identity holds; it does not precisely state the separate pending-network Gold withdrawal branch. The actual conflicting behavior is `Mod/Commerce.lua:225–253`. The proposed supersession distinguishes those cases and leaves frozen B240 evidence unchanged.
-- **No premature performance conclusion.** B270/B271 logs are before evidence with different workloads and C settings. Their difference is not a controlled measurement of SPC-attributable memory, and different saves cannot be subtracted to prove causation. U2–U5 report work/heap/footprint with those limits; attribution stays UNKNOWN where the evidence cannot separate engine/HD/SPC. Extra attribution experiments remain optional/user-directed, not an automatic new gate.
-
-## 3. Reviewable text differences
-
-[Refactor_Program_U1_Text.patch](Refactor_Program_U1_Text.patch) contains exact context diffs against the reviewed HEAD. It is **not an apply instruction or an accepted revision artifact**. It deliberately leaves revision/acceptance metadata unchanged until the user's decision; acceptance must use the ordinary D/A process below rather than applying this patch alone.
-
-| Target | Proposed change |
-|---|---|
-| `AGENTS.md` | One navigation paragraph to the Architecture integration contract and Workflow Runtime Impact Contract. No extra task registry or mandatory historical reading. |
-| `Specialization/Architecture/Specialization_v0.1_Architecture.md` | Compact P01–P10, scoped exceptions, and the precise network pending/confirmation contract. Existing per-Audit isolation remains the default; future S5 sharing must specify the barrier. |
-| `Specialization/Workflow/README.md` | One-page runtime impact template; trigger-selected T01–T08; baseline counterexamples and static alarms; dependency-based re-review. No blanket all-history regression requirement. |
-| `Specialization/Architecture/Playtest_Workflow.md` | Replace stale general ACTIVE wording with explicit U2/U3/U4-only D-13 authorization, U5/main approval boundary, and bounded current-campaign smoke scope. |
-| `Specialization/Design/Network.md` | Distinguish temporary unreadability from confirmed loss; hold cold-load effects, immediate confirmed eligibility exits, D-2 isolation and transaction exclusions. |
-| `Specialization/Design/Specialization_v0.1_Design_Spec.md` | Clarify NET-004 confirmed loss and introduce proposed NET-005 as the authoritative common rule. |
-| `Specialization/Design/Commerce.md`, `Culture.md`, `Shared.md` | Cross-reference that rule at the affected current-effect descriptions; do not duplicate formulas or turn retained output into permanent history. |
-| `Specialization/Architecture/v2/Commerce_Preparation.md` | Explicitly supersede the B240 implemented pending withdrawal, preserving source-Identity UNKNOWN and signed-contract rules. |
-
-The scheduling record now uses the user's authorized dependency sequence. Report B P1 is interpreted as **before the next dependent use**: new consumer, automatic invocation, frequency/work-set expansion, recovery path or reference lifetime. It is not merely “before the next profession” and not permission to rewrite unrelated modules. Historical scheduling sections remain intact below the new current section.
-
-### Formal Design acceptance work after U1
-
-Do not overwrite accepted `Shared_D0045.json` or earlier Content/Spec snapshots. On acceptance, freeze the current D0057 Spec byte-for-byte, allocate the next available D revision (expected D0058; verify then), and record the user's exact D-1/D-2 and any accepted D-4/D-5/D-6/D-7 choices in Design_ChangeLog/Spec and affected successor Content objects. Declined or altered defaults are excluded. Update reading pages, Content navigation, Authority versions, reviewed hashes and the accepted A revision as one coherent docs batch before S2.
-
-For Shared's successor, replace `/concepts/LONG_TERM_STATE_LIFECYCLE/F_CONFIGURATION_AND_DERIVED_STATE/recompute` at the verified current path. Proposed value:
-
-> Recompute derived state from current authoritative facts after relevant changes. Pending/unknown route topology retains last-applied network-derived carriers without rewriting (including inseparable local/network combinations); confirmed qualification/reference/owner exits override retention. Cold-load installed carriers may temporarily represent last-applied output, not permanent history or confirmed topology. Per-city unreadability retains only a valid prior contribution, or unavailable/no contribution when never known, while readable cities proceed once topology is confirmed, combining new confirmed contributions with retained ones and preserving provenance; an undecomposable cold-load aggregate is held until necessary facts exist. For the cold-load mixed confirmed-loss/unknown-source case, insert only the expressly selected U1 exception; no default is implied here. Apply the accepted NET-005 rule; do not infer transaction eligibility from retained effects or add network requirements to already signed contracts.
-
-The Shared successor may add an explicit NET-005 reference at the same configuration contract; formulas, categories A–G and ordinary-building vocabulary are copied unchanged. D-6 also requires the accepted gap/no-bonus wording in Research/Commerce's successor contracts; D-4/D-5/D-7 record only the chosen fault policies, without changing ownership outcomes or native no-replay protections. This list is a synchronization obligation, not acceptance or permission to resolve new semantic conflicts silently.
-
-## 4. Stage and stop handoff
-
-S2 builds the faithful harness and baseline counterexamples first. S3 preserves startup order while isolating failures. S4 applies only confirmed D-1/D-2 and its listed repairs, then stops at U2. S5a→S5b→S5c→S5d precedes S6/U3. DialogueEffects receives its own hooks **before** GPPRefresh's relay and old Dialogue hooks retire; later Q7 transport/ACK/generation duties must also move before file removal. S7 mechanism extraction separates behavior-neutral batches from accepted DDR changes. S8 delivers technical lifecycle prerequisites only. S9 stops at U4. S10 moves Q1–Q8 duties and validates package deletion before removing files. S11/U5 remains user acceptance.
-
-Each code batch must include runtime impact, selected T gates, executed closure/results, save compatibility, commit/push to develop and actual evidence labels. Stop the affected work for a new unapproved behavior change, unexplained failure/assertion weakening, smoke failure/missing confirmation/unexpected work increase, out-of-scope work, early campaign incompatibility, or ownership/concurrent-edit uncertainty. No promotion before U5; no automatic request to Advisor or game launch.
-
-At each native checkpoint the stage result must provide exact Chinese UI operations and fixed pass conditions before deployment. U2 focuses on nonzero Commercialization at sampled accrual, retry budget, readiness and eligible GC; U3 on real consumer locality/shared work and unchanged effects; U4 on multi-city same-type Crew completions, all three full-turn projects/nonempty queue, investment panels and adapter coexistence. New evidence cannot retrospectively turn S0 static review into native PASS.
-
-## 5. S0/S1 validation and evidence
-
-**STATIC_CONFIRMED** means current source/configuration review; **LOG_OBSERVED (Advisor)** means the cited analysis of the captured session, not a new native run by Primary. No gameplay simulation was executed for this documentation batch and no new USER_GAME_TEST_PASS is asserted. Source references in the intake were rechecked at the pinned HEAD, including changed B271 files. Raw logs remain local and unpublished.
-
-The initial context check failed because the pre-existing P0-H status `STABLE_DEPLOYED_USER_TEST_REQUIRED` is outside Batch.schema's enum. A read-only in-memory check using an allowed status passed all 312 runtime and 975 existing context hashes. This checkpoint updates P0-H to the valid `IMPLEMENTATION_COMPLETE_AWAITING_USER` state for S0/S1; it does not relax the schema or refresh unrelated hashes. Only this checkpoint's reviewed documentation entries are added/refreshed in Context_Lock.
-
-Document checks: **PASS** for the exact seven-path documentation scope, all 14 reviewed Advisory input hashes unchanged, 17 current review/proposed-text links and virtual target anchors, JSON parsing, document whitespace (excluding literal unified-diff context markers), and review-only patch applicability/content whitespace (`git apply --check --whitespace=error`, not applied). `context.py check P0-H` passes **312 runtime / 977 guarded context entries** after the scoped update. Mod, tools, tests, accepted Design/Architecture, AGENTS and README are unchanged. These checks establish document/integrity correctness only. The staged publication gate passed for the seven owned files (secret and added-content privacy checks), and must be rerun after final edits; final text acceptance still needs the revision/synchronization step above.
+D7 criteria remain engineering assessment work; A8 now has the explicit eight-era decision. Neither permits unrelated rule changes. No claim of new USER_GAME_TEST_PASS. Independent work continues while a bounded user question remains pending.
 
 ### Reviewed input provenance
 
@@ -133,8 +56,12 @@ Paths below are relative to `Specialization/Reports/Advisory/`. Hashes identify 
 | `Memory_Growth/Memory_Growth_Audit.md` | `d05d5986dca7032fb0641814e7ef9bcd3825118428cd1fdb544986c3a3c2eead` |
 | `Refactor_Program/Refactor_Program_Plan.md` | `7bba9becb33523d73acad19b730a01d32423c6ce9587973659be5c6e67151c10` |
 
-## 6. Handoff
+## Formal synchronization validation
 
-- **User decision:** approve or amend D-1–D-15 and the proposed text differences together at U1, explicitly selecting or deferring the D-1/D-2 cold-load partial-loss exception. D-13 is the only proposed standing deployment permission; it is not active yet.
-- **User testing:** none at U1. The next native smoke is U2 after S4 and the applicable deployment approval.
-- **Primary next:** stop here. After U1 acceptance, formalize only the accepted text/revisions, then proceed S2→S10 within the approved boundaries. No S2 implementation, deployment or main promotion before this review.
+**STATIC_CONFIRMED / document checks PASS:** exact27 owned documentation paths;14 reviewed Advisor inputs unchanged; five previous Content originals unchanged; D0057 Spec frozen byte-for-byte; current Authority paths, JSON,75 added links/anchors, Spec/Content acceptance hashes and scoped Architecture hash consistent. Numeric balance parameters copied unchanged; the explicit A8 range/cap correction is recorded separately. `context.py check P0-H` passes312 runtime /983 guarded context entries. Runtime, tools and tests unchanged in this commit. No gameplay simulation or new native PASS. Publication safety is checked on the final staged batch before commit.
+
+## Handoff
+
+- **User decision:** U1 accepted; no further stage approval required within scope. New genuine decisions are reported only for their affected paths.
+- **User testing:** U5 final integration; earlier only if a concrete unresolved native fact blocks continued development. No deployment authorized.
+- **Primary next:** complete formal document checks/commit, then S2 and the authorized sequence.

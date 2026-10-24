@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0719
+Status Revision: S0720
 Implementation Build: B271.298 / modinfo298; stable/live B271.298
-Architecture Revision Reviewed: A0181
-Design Revision Reviewed: D0057
-Latest Accepted Design Revision: D0057
-Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: REFACTOR_S0_S1_COMPLETE_U1_REVIEW_REQUIRED
+Architecture Revision Reviewed: A0182
+Design Revision Reviewed: D0058
+Latest Accepted Design Revision: D0058
+Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
+Work State: REFACTOR_U1_ACCEPTED_S2_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-The user has assigned Primary and authorized the staged S0–S10 refactor program. S0/S1 are delivered for **U1 review**: [current-HEAD intake](../Reports/Proposals/Audit_Followup_Priorities.md#refactor-program-intake--2026-10-24), [D-1–D-15 decisions and text diff](../Reports/Proposals/Refactor_Program_U1.md). These are proposals, not enacted governance/Design or runtime changes. B271.298 remains stable/live at the last verified receipt; A0181/D0057 remain accepted. No S2 code, deployment or main promotion in this checkpoint.
+U1 is accepted with the user's D-1–D-15 amendments. D0058 and A0182 formally record the network hold/partial-source provenance/cold-load exception A, fault recovery and engineering contracts. S2–S10 are authorized in dependency order, with independent commits and local results. U2/U3/U4 are engineering checkpoints; request a minimal native test only when a specific engine uncertainty blocks dependent work. No automatic deployment or main promotion. Stable/live remain B271.298 at the recorded receipt.
 
-- User decision: confirm or amend the U1 defaults and draft governance/network text. The hold direction is already decided; exact D-1/D-2 semantics and D-13 deployment permission are still pending.
-- User testing: none at U1. Existing B271 log findings are attributed evidence, not new acceptance. Next smoke is U2 after S4 and the applicable deployment approval.
-- Primary next: stop at U1; after acceptance, formalize the approved D/A/governance text, then proceed S2→S10 between the specified stops. Main promotion requires a separate post-U5 decision.
+- User decision: none for routine continuation. D7 requires safe ability-specific criteria before implementation; A8’s eight-era correction is explicitly approved after assessment and will be a separate implementation batch.
+- User testing: U5 final integration; earlier only for a concrete blocking native fact. No new native PASS.
+- Primary next: finish U1 docs-only checks/commit, then S2 harness, baseline counters, attribution and static alarms; continue S3–S10 under the amended stops.
+
+## S0720 — U1 accepted, formal D0058 / A0182 synchronization
+
+The user explicitly selects exception A (no further confirmation), strict event-driven independent project policies, uniquely proved Crew grants, gap pause/resume/no Reputation bonus, and safe ability sub-record recovery including a lawful initial baseline only after permanent irrecoverability is proved. D13 removes mandatory U2/U3/U4 native stops and grants no automatic deployment; D14 included A8 assessment; after its result the user explicitly approved all collection-era counts on8 (old7 was a counting mistake), Inspiration max24%/Dialogue max40, with pool/own-era/quota/history unchanged. Five successor Content files and byte-exact D0057 Spec freeze preserve accepted history; current reading pages, acceptance, Workflow and AGENTS routing are synchronized. Advisor originals and runtime remain unchanged. Source/static evidence only; implementation and local/native results follow in separate batches.
 
 ## S0719 — Refactor S0/S1, awaiting U1
 
