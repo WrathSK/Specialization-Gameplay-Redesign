@@ -626,9 +626,9 @@
       "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "0bed155d44ba1eca22faafca14c9d4bfb55d2e8f68c97256469e054f766f572e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
-      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+      "sha256": "ef9d5c9bbed018a0285913a28fa191790cf551b2d7ec62edd7280e0e4a870af2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/FreshBindingHook.lua": {
       "sha256": "03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "f90f12d6438e302da6a8d6b1eb7d50d56bffeed445c40e4317aa1c9919a04701",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
-      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+      "sha256": "fac105c978eb15020c8308210259fb2b69b487b3f2f9b9e3282d2cce841091a9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -751,9 +751,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "5ba24bc278f4ebce71ee8132e86ae212c3b7db1ac5b9cfb684e93936ae2d8d98",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
-      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+      "sha256": "f9e70ed1489a6b908a276679232db3f41528a5e4bade55b332e8d28f68228b88",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
@@ -781,14 +781,14 @@
       "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "5cf253368bdfa73a0e4e65e51e5ec11eb2f8244a8afe65e6c13ed45fc5415436",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "3f558e223072f4ac460ac0cd984564cd2edb98cc159255543cf8cb0463d77963",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/Probe.lua": {
-      "sha256": "79d1c5072e59409d118ada6be0b4aebaa281f8a5eafc1ec2b8d01691efb7f641",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "4e510b3d2445efb032336b5d04570e8cb34ba089e1c14d516c370f0b8998c9d7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "dcf6457711274e455c8041e7c9c10c59749aeff2e6bcb2d5561366d9a4112e60",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "76b1678edca5992a25ddff7bbeb48daa1b8282cfde7b73581aae73d770a59559",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1151,9 +1151,9 @@
       "provenance": "B097 scoped original-owner return; current facts recomputed, no deployment"
     },
     "Mod/UI/BackgroundRoutes.lua": {
-      "sha256": "bdb9a4ff62c99389695b12e655d7832c649040687b01dbeefb167318eb54fae5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B232_Network_Revalidation.md",
-      "provenance": "B232 approved event-driven proof revalidation, coherent availability and recovery notification with active Insight propagation;163 scoped local tests and B134 scope regression PASS. Native pending; no persistent/Design/Expedition/GC change."
+      "sha256": "be54e3708d8ef7b1c69b19c93bec6e8e991c6325a24b784896ad91469e47bd66",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/UI/BackgroundRoutes.xml": {
       "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",
@@ -1441,9 +1441,9 @@
       "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "14580e747caf44c7a9927e2d2421b8a791eb57bdc66a87c9d614eac052a2e02a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "e55f82a9eff719fadf48e05e1e07510117ce1eae6ac99945e91d0d006d97f13f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "c34df627a8d1f42f1b536b12347d930689344fc4b3b2f1c88b40e716a5e33f89",
@@ -1554,7 +1554,17 @@
       "sha256": "df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
       "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+    },
+    "Mod/EventTimingDiagnostics.lua": {
+      "sha256": "dcb732f80365b06d70fa5f28df5febcb99001d731b22d68071b3a76093d5e16b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+    },
+    "Mod/Data/InternalCarrierPillage.sql": {
+      "sha256": "9e1fd53c44eb32f37d9ba0dc5efb1d0e3a9233b565eca8af94fd2f0a19b5ba72",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     }
   },
-  "source_review": "B270 PR #4 merged; stable deployment from main3eb1aed verified310/310 MATCH. Mod tree equals reviewed develop1ea33f8; native event/memory acceptance pending."
+  "source_review": "B271.298 source prepared; deployed runtime/runtime_commit remain B270.297. Source review hashes are not deployment evidence. B271 report scopes local validation and pending native acceptance."
 }

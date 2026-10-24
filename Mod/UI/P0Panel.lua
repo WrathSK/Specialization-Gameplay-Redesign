@@ -166,7 +166,7 @@ request=function(action,advance)
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
-  local storageAction=action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=='EVENT_ORDER_TOGGLE' or action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
   if action=='CITY_SEQUENCE_BEGIN' then
@@ -392,6 +392,8 @@ local function initialize()
   showRoot();Controls.Window:SetHide(true)
   Controls.Title:SetText("SPC "..P.VERSION.." | Specialization diagnostics")
   Controls.OpenButton:RegisterCallback(Mouse.eLClick,function() Controls.Window:SetHide(false) end)
+  Controls.OpenButton:RegisterCallback(Mouse.eRClick,function() Controls.Window:SetHide(false);request('EVENT_ORDER_TOGGLE') end)
+  Controls.OpenButton:SetToolTipString('左键打开专业化诊断；右键独立开关事件顺序记录（每次加载默认关闭，前6个本地回合有效）。')
   Controls.CloseButton:RegisterCallback(Mouse.eLClick,closeWindow)
   Controls.CultureInsightsButtonCaption:SetText(Locale.Lookup('LOC_SPC_CULTURE_INSIGHTS_BUTTON'))
   Controls.CultureInsightsButton:SetToolTipString(Locale.Lookup('LOC_SPC_CULTURE_INSIGHTS_TOOLTIP'))

@@ -87,5 +87,6 @@
   "test_background_routes.py": "HISTORICAL_OR_MODEL_NOT_CURRENT_ENTRY",
   "test_completion_history_boundary.py": "HISTORICAL_OR_MODEL_NOT_CURRENT_ENTRY",
   "test_research_support.py": "HISTORICAL_OR_MODEL_NOT_CURRENT_ENTRY",
-  "test_context_helper.py": "WORKFLOW_HELPER_TARGETED_STDLIB"
+  "test_context_helper.py": "WORKFLOW_HELPER_TARGETED_STDLIB",
+  "test_b271_diagnostics.py": "CURRENT_B271_SCOPED_READONLY_DIAGNOSTICS_AND_COPIED_ENGINE_PILLAGE_POLICY"
 }

@@ -89,6 +89,10 @@ local function request(playerID,params)
     end)
     shared.Snapshot=ok and out or ('GC诊断不可用；停止本次测试：'..P.Scalar(out));shared.LastToken=params.Token;return
   end
+  if params.Action=='EVENT_ORDER_TOGGLE' then
+    local ok,out=pcall(function()return shared.EventTiming.Toggle(playerID)end)
+    shared.Snapshot=ok and out or '事件诊断不可用';shared.LastToken=params.Token;return
+  end
   if params.Action=='MEMORY_BEGIN' or params.Action=='MEMORY_READ' then
     local ok,out=pcall(shared.MemoryObservation.Read,playerID,params.Action=='MEMORY_BEGIN')
     shared.Snapshot=ok and out or ('内存观测不可用：'..tostring(out));shared.LastToken=params.Token;return
@@ -1028,3 +1032,6 @@ include('LevelBannerState')
 SPCLevelBannerState.Start(P,shared)
 
 if readiness then pcall(readiness.Seal)end
+
+-- Install after original listeners; observational append only.
+pcall(function()include('EventTimingDiagnostics');SPCEventTimingDiagnostics.Start(P,shared,'GAMEPLAY')end)
