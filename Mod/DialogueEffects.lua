@@ -1,3 +1,4 @@
+include('RuntimeWork')
 -- B177: saved city history -> current Tourism-only technical fallback.
 -- No new persistence. One final-value carrier; no stacked bit multipliers.
 include('DialogueProjectModel')
@@ -10,7 +11,7 @@ function SPCDialogueEffects.Start(P,shared)
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.DialogueEffects=d
  legacy.retired=true -- Disable old/manual writers even if new initialization fails.
  legacy.off={};legacy.test={};legacy.carrierTest=nil;legacy.meaningOverride=nil;legacy.meaningQualification=nil
- local owned,ids,eras={},{},{};local coverage;local max=0
+ local owned,ids,eras,ownedIndex={},{},{},{};local coverage;local max=0
  for row in GameInfo.Eras()do eras[row.EraType]=true;max=max+40 end
  -- At most one receipt per loaded Game Era, each adds 5*X with X<=8.
  -- This enumerates every reachable total, not an added gameplay cap.
@@ -40,7 +41,11 @@ function SPCDialogueEffects.Start(P,shared)
      local damaged=false
      if has and name==want then damaged=b:IsPillaged(ids[name]);assert(type(damaged)=='boolean','DIALOGUE_CARRIER_HEALTH_UNKNOWN')end
      if has and (name~=want or damaged)then
-      check();P.RemoveBuilding(b,ids[name]);assert(P.HasBuilding(b,ids[name])==false,'DIALOGUE_REMOVE_UNCONFIRMED');d.changes=d.changes+1
+      check()
+      local ok,plot=pcall(function()return b:GetBuildingLocation(ids[name])end)
+      d.removing={owner=c:GetOwner(),index=ids[name],plot=ok and plot or nil}
+      local removed,err=pcall(P.RemoveBuilding,b,ids[name]);d.removing=nil;assert(removed,err)
+      assert(P.HasBuilding(b,ids[name])==false,'DIALOGUE_REMOVE_UNCONFIRMED');d.changes=d.changes+1
      end
     end)
     if not good then failure=failure or err end
@@ -52,18 +57,19 @@ function SPCDialogueEffects.Start(P,shared)
     assert(P.HasBuilding(c:GetBuildings(),ids[want])==true,'DIALOGUE_CREATE_UNCONFIRMED');d.changes=d.changes+1
    end
   end)
-  d.writing=nil;assert(ok,why)
+  d.writing=nil;d.removing=nil;assert(ok,why)
  end
  local function ready()
   if d.ready then return true end
-  if d.startupError then return false end
+  if d.startupError or d.initializing then return false end
   local supported=false;for pid in pairs(Players)do if P.IsTestPlayer(pid)then supported=true end end
   if not supported then return false end
+  d.initializing=true
   local ok,why=pcall(function()
    for _,name in ipairs(owned)do
     local row=assert(P.Info('Buildings',name),'DIALOGUE_DEFINITION_MISSING')
     assert((row.InternalOnly==1 or row.InternalOnly==true) and row.PrereqDistrict=='DISTRICT_CITY_CENTER' and row.CitizenSlots==0 and row.Housing==0,'DIALOGUE_DEFINITION_INVALID')
-    ids[name]=row.Index
+    ids[name]=row.Index;ownedIndex[row.Index]=true
    end
    legacy.ready=false;legacy.Init() -- Exact legacy IDs; never infer history from those buildings.
    local n=0
@@ -75,6 +81,7 @@ function SPCDialogueEffects.Start(P,shared)
    coverage=SPCCultureMeaningModel.RecipientCoverage(P)
    d.ready=true
   end)
+  d.initializing=false
   if not ok then d.startupError=tostring(why):sub(1,180)end
   return ok
  end
@@ -144,17 +151,7 @@ function SPCDialogueEffects.Start(P,shared)
   d.records[k]={owner=pid,cityID=c:GetID(),x=c:GetX(),y=c:GetY(),reference=reference,total=total,applied=value,state=state}
   d.errors[k]=nil
  end
- function d.Audit(scope)
-  if scope and scope.player~=nil and not P.IsTestPlayer(scope.player)then return false end
-  if d.busy then
-   local s={player=scope and scope.player,city=scope and scope.city}
-   if d.pending then
-    if d.pending.player~=s.player then s.player=nil;s.city=nil
-    elseif d.pending.city~=s.city then s.city=nil end
-   end
-   d.pending=s;return false
-  end
-  d.busy=true
+ local function audit(scope)
   local ok,why=pcall(function()
    assert(ready(),d.startupError or 'DIALOGUE_NOT_READY')
    for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or scope.player==nil or scope.player==pid)then
@@ -165,18 +162,26 @@ function SPCDialogueEffects.Start(P,shared)
     end
     if scope and scope.city~=nil then local c=cities:FindID(scope.city);if c and c:GetOwner()==pid then visit(c)end
     else
-     for _,c in cities:Members()do if c:GetOwner()==pid then visit(c)end end
+     for _,c in cities:Members()do visit(c)end
      local prefix=pid..':'
      for k in pairs(d.records)do if k:sub(1,#prefix)==prefix and not present[k]then d.records[k]=nil end end
      for k in pairs(d.errors)do if k:sub(1,#prefix)==prefix and not present[k]then d.errors[k]=nil end end
     end
    end end
   end)
-  d.busy=false;d.error=not ok and tostring(why):sub(1,180) or nil
-  if d.pending and not d.draining then
-   local pending=d.pending;d.pending=nil;d.draining=true;d.Audit(pending);d.draining=false
-  end
+  d.error=not ok and tostring(why):sub(1,180) or nil
   return ok
+ end
+ local direct,mark,flush=SPCRuntimeWork.NewAudit(P,shared,d,'DialogueEffects',audit)
+ d.MarkAudit=mark;d.FlushAudit=flush
+ function d.Audit(scope)
+  if d.initializing then mark(scope);return false end
+  if scope and scope.player~=nil and not P.IsTestPlayer(scope.player)then return false end
+  if not d.ready then
+   local ok,why=pcall(ready)
+   if not ok or not why then d.error=not ok and tostring(why):sub(1,180) or d.startupError or 'DIALOGUE_NOT_READY';return false end
+  end
+  return direct(scope)
  end
  function d.Describe(pid,c)
   local k=key(pid,c:GetID());local p=d.records[k];local err=d.errors[k] or d.startupError or d.error
@@ -193,16 +198,51 @@ function SPCDialogueEffects.Start(P,shared)
  end
  local function hook(name,fn)local e=P.Field(Events,name);if e and e.Add then e.Add(fn)end end
  hook('LoadScreenClose',function()d.Audit()end)
- -- Existing Dialogue governor dispatch and accepted collection dispatch delegate
- -- here. Other consumers' building/worker changes are not inputs to this effect.
- hook('CityBuildingsChanged',function(pid,cid)
-  if not d.ready or not P.IsTestPlayer(pid) or d.writing==key(pid,cid)then return end
-  local p=d.records[key(pid,cid)];if not p or p.applied==0 then return end
-  local c=Players[pid]:GetCities():FindID(cid);if not c then return end
-  -- Ordinary construction is not a Dialogue input. Repair only our projection.
-  local id=ids['BUILDING_SPC_DIALOGUE_TOTAL_'..p.applied]
-  local ok,healthy=pcall(function()return P.HasBuilding(c:GetBuildings(),id)==true and c:GetBuildings():IsPillaged(id)==false end)
-  if not ok or not healthy then d.Audit({player=pid,city=cid})end
+ -- Native qualification changes mark only: read after the engine's existing
+ -- publish boundary, independent of the retired writer and the GPP UI relay.
+ for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted'})do
+  SPCRuntimeWork.TargetHook(P,Events,name,mark)
+ end
+ hook('CityTransfered',function(owner,cid,oldOwner)
+  if type(owner)=='number' and owner>=0 then mark({player=owner,city=type(cid)=='number' and cid or nil})else mark()end
+  if type(oldOwner)=='number' and oldOwner>=0 and oldOwner~=owner then mark({player=oldOwner})end
+ end)
+ shared.GreatWorkFacts.RegisterConsumer('DialogueEffects',function(pid,changed)
+  if not P.IsTestPlayer(pid)then return end
+  local failure
+  for _,cid in ipairs(changed)do
+   local ok=d.Audit({player=pid,city=cid})
+   if not ok or d.errors[key(pid,cid)] or d.error or d.auditError then failure='DIALOGUE_COLLECTION_DELIVERY_PENDING'end
+  end
+  -- The real provider retries only on a new accepted sample, including equal facts.
+  -- A queued/broken projection must not acknowledge successful consumer delivery.
+  assert(not failure,failure)
+ end)
+ local function owns(index)return ownedIndex[index]==true end -- loaded definitions already validated once
+ -- DC deliberately excludes internal carriers. This writer owns health recovery.
+ local e=P.Field(GameEvents,'BuildingPillageStateChanged')
+ if e and e.Add then e.Add(function(pid,cid,index,state)
+  if P.IsTestPlayer(pid) and owns(index) and (state~=false or d.writing~=key(pid,cid))then mark({player=pid,city=cid})end
+ end)end
+ hook('BuildingRemovedFromMap',function(x,y,index,owner)
+  if not owns(index)then return end
+  local w=d.removing
+  if w and w.owner==owner and w.index==index and type(w.plot)=='number' and w.plot>=0 then
+   local ok,plot=pcall(function()
+    if Map.GetPlotIndex then return Map.GetPlotIndex(x,y)end
+    return Map.GetPlot(x,y):GetIndex()
+   end)
+   if ok and plot==w.plot then return end -- exact synchronous own removal only
+  end
+  local ok,c=pcall(function()
+   local district=CityManager and CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)
+   return district and district:GetCity() or CityManager and CityManager.GetCityAt and CityManager.GetCityAt(x,y)
+  end)
+  if ok and c then
+   local good,pid,cid=pcall(function()return c:GetOwner(),c:GetID()end)
+   if good then if P.IsTestPlayer(pid)then mark({player=pid,city=cid})end;return end
+  end
+  mark({player=type(owner)=='number' and owner or nil}) -- unresolved external target is never suppressed by another city's write
  end)
  store.RegisterExit('DialogueEffects',function(c,loss)
   assert(store.IsExitTarget(c,loss),'DIALOGUE_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,owned)

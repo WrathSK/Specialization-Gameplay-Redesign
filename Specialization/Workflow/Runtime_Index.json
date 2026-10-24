@@ -521,14 +521,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Dialogue.lua": {
-      "sha256": "68247e0af6e33c4372da77d484ff13791673a65d105a8fc7a8f5b3b7039d5d58",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
-      "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
+      "sha256": "4f8abd47935c52c7d8d7684ae382a4391330245afae3e56c033fef8d6069f37e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
+      "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DialogueEffects.lua": {
-      "sha256": "36d73bb241e4aab03818fa55db092f5ba7edb62fb9faa4f4e55c7ea868c3bb0e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
-      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
+      "sha256": "9901569d34325c2d9aebc48f33695364bf8d0f1a7afa0006ce2d34b125c3fb37",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
+      "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DialogueModel.lua": {
       "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "9146cb5a7aca1a05e9a78411e5dca349063f6402f25d6311a7a2a2ee17aae9d6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B285_Refactor_S5d2.md",
-      "provenance": "B285.312 namespaced adapters and indexed retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "ce514121649a51b1efddff723fab7e2f379cc1f05fbe059638418da77dd5ab19",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
+      "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "d53790eef8638834b5681fc72f69e9efaf441c09eac60f7fdb9160df9a9bb1b2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B285_Refactor_S5d2.md",
-      "provenance": "B285.312 namespaced adapters and indexed retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "06367ae9230e9d9cab66cea11f7183cc560121c57b9f55a8fa9443927f5dd7f5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
+      "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d093c09e75ab27d37c7876fe5717771377be33f1e9cf391017ac92c1b3f39e44",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B285_Refactor_S5d2.md",
-      "provenance": "B285.312 namespaced adapters and indexed retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "3960538d46f76e20f188f753132d35dd38aa9be3cc4fcb27e789f02843ab12da",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
+      "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1286,9 +1286,9 @@
       "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/DialogueRefresh.lua": {
-      "sha256": "5bd140e7ae502e66ce652e48ed391a167f186f8951f0906d7a55a9ed1a950373",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
-      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
+      "sha256": "274d7491240789affb0ac7d47e222c0180c1b7489a700afa745dc0f3e5ba5876",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
+      "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DialogueRefresh.xml": {
       "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",

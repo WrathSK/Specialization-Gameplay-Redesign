@@ -11,6 +11,8 @@ local hooks,cache,workDirty={}, {}, {}
 local allWorks=true;local collect
 local public={scans=0,slotReads=0,sends=0,retries=0,state='STARTUP',reason='INITIALIZATION'}
 ExposedMembers.SPC_DialogueBackground=public
+local function validOwner(pid)return type(pid)=='number' and pid>=0 and pid%1==0 end
+local function foreign(pid)return validOwner(pid) and pid~=Game.GetLocalPlayer()end
 local function mark(reason,cid,works)
  dirty=true;revision=revision+1;public.reason=reason
  if works then if cid~=nil then workDirty[cid]=true else allWorks=true end end
@@ -138,21 +140,22 @@ ContextPtr:SetInitHandler(function()
   if dp==pid then mark('GreatWorkMoved',type(dc)=='number' and dc or nil,true) end
  end)
  for _,name in ipairs({'CityAddedToMap','CityRemovedFromMap'})do
-  local reason=name;bind(name,function(pid,cid)if pid==Game.GetLocalPlayer()then if cid~=nil then cache[cid]=nil end;mark(reason,type(cid)=='number' and cid or nil,true)else mark(reason,nil,false)end end)
+  local reason=name;bind(name,function(pid,cid)if foreign(pid)then return end;if pid==Game.GetLocalPlayer()then if cid~=nil then cache[cid]=nil end;mark(reason,type(cid)=='number' and cid or nil,true)else mark(reason,nil,false)end end)
  end
  -- Transfer signature/object availability can be ambiguous: one bounded local scope.
- bind('CityTransfered',function()mark('CityTransfered',nil,true)end)
+ bind('CityTransfered',function(owner,cid,oldOwner)if foreign(owner) and foreign(oldOwner)then return end;mark('CityTransfered',nil,true)end)
  bind('PlayerTurnActivated',function(pid)if pid==Game.GetLocalPlayer()then mark('PlayerTurnActivated',nil,true)end end)
  for _,name in ipairs({'GovernorAssigned','GovernorEstablished'})do
   local reason=name;bind(name,function(cityOwner,cid,governorOwner)
-   local pid=Game.GetLocalPlayer();if cityOwner==pid or governorOwner==pid then mark(reason,nil,false)end
+   if not (foreign(cityOwner) and foreign(governorOwner))then mark(reason,nil,false)end
   end)
  end
  for _,name in ipairs({'GovernorPromoted','GovernorChanged'})do
-  local reason=name;bind(name,function(pid)if pid==Game.GetLocalPlayer()then mark(reason,nil,false)end end)
+  local reason=name;bind(name,function(pid)if not foreign(pid)then mark(reason,nil,false)end end)
  end
  for _,name in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged'})do
   local reason=name;bind(name,function(pid,districtID,cid)
+   if foreign(pid)then return end
    if pid==Game.GetLocalPlayer()then mark(reason,type(cid)=='number' and cid or nil,true)else mark(reason,nil,false)end
   end)
  end

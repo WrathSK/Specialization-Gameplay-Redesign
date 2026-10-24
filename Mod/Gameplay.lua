@@ -890,7 +890,7 @@ composition.Run('DialogueProjects',{'CityProgressionStore','EffectiveFacts','Gre
 -- New effect failure never reactivates the retired Dialogue writer.
 if shared.Dialogue then shared.Dialogue.retired=true end
 
-composition.Run('DialogueEffects',{'CityProgressionStore','Dialogue'},{'DialogueEffects'},function() include('DialogueEffects');SPCDialogueEffects.Start(P,shared) end)
+composition.Run('DialogueEffects',{'CityProgressionStore','Dialogue','EffectiveFacts','GreatWorkFacts'},{'DialogueEffects'},function() include('DialogueEffects');SPCDialogueEffects.Start(P,shared) end)
 
 composition.Run('CityIdentityRead',{},{'CityIdentityRead'},function() SPCCityIdentityRead.Start(P,shared) end)
 

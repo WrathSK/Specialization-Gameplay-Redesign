@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0734
-Implementation Build: B285.312 / modinfo312; stable/live B271.298
+Status Revision: S0735
+Implementation Build: B286.313 / modinfo313; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D2_COMPLETE_S5D3_AUTHORIZED
+Work State: REFACTOR_S5D3_COMPLETE_S5D4_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d2 complete:15 new namespace/index/startup cases PASS, full232 selected cases have231 passing properties/1 S6 capacity counterexample OPEN. TargetHook respects Events versus GameEvents, verified city/dual-owner signatures and actor/victim separation. A composition-owned indexed retirement invalidator replaces per-consumer all-cache listeners. Dialogue and native consumer migration remain next; no deployment/native PASS. [Result](Validation/Results/Specialization_B285_Refactor_S5d2.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d3 complete:20 new independent Dialogue/real work transport/UI gate cases PASS plus affected eight-era regressions. Full260 cases have259 passing properties/1 S6 capacity counterexample OPEN. Effects owns governor/transfer/GW and exact live carrier recovery; retired Dialogue no longer forwards effects, while Q7 transport/pairing/history duties remain. GPP relay stays until other consumers have the next native owner; S5d is not yet complete. [Result](Validation/Results/Specialization_B286_Refactor_S5d3.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: S5d3 independent Dialogue native/GW recovery before old relay retirement→S5d live consumer trigger coalescing→S6→S7/S8→S9/S10.
+- Primary next: S5d4 one native fact owner/live D and exact health coverage before retiring GPP UI relay→S6→S7/S8→S9/S10.
+
+## S0735 — B286.313 independent Dialogue recovery and bounded UI marks
+
+S5d3 complete:20 new independent Dialogue/real work transport/UI gate cases PASS plus affected eight-era regressions. Full260 cases have259 passing properties/1 S6 capacity counterexample OPEN. Effects owns governor/transfer/GW and exact live carrier recovery; retired Dialogue no longer forwards effects, while Q7 transport/pairing/history duties remain. GPP relay stays until other consumers have the next native owner; S5d is not yet complete.
 
 ## S0734 — B285.312 namespaced adapters and indexed retirement
 
