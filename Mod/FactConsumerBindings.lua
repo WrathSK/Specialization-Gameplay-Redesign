@@ -37,7 +37,7 @@ function SPCFactConsumerBindings.New(shared)
   {target='DialogueEffects',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'DIALOGUE'}},
   {target='ResearchTraditionEffects',method='Mark',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'TRADITION'}},
   {target='StandardizationEffects',method='Audit',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'TEMPLATES','ENGINEERING'}},
-  {target='CultureNetwork',method='Audit',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'INSIGHTS'}},
+  {target='CultureNetwork',method='Audit',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D','NETWORK','HISTORY'},topics={'INSIGHTS'}},
   {target='EngineeringStudy',method='CreditChanged',kinds={'HISTORY'},topics={'WONDER_CREDIT'}},
   {target='DialogueProjects',method='RefreshAccess',cityOnly=true,kinds=role},
   {target='Commerce',method='Mark',kinds={'ACTIVE','WORKERS','NETWORK'}},

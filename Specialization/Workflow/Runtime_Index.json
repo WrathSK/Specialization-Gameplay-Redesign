@@ -226,9 +226,9 @@
       "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "8f04a8c47d87bdb807c43329417bb3d5b1d246078c0e8dffe7ea4636215cd39f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "abf23986fedf193eb11b71f5949124fb6aedfc30c8da2d35885fbba4b7b3a8dd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B298_Refactor_S5d4c9.md",
+      "provenance": "B298.325 Culture Network exact health and D closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "9cd8eb41944c3473a479da79517d0567a8d8271fd952576e28b7ef82bc36e98b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B297_Refactor_S5d4c8.md",
-      "provenance": "B297.324 Industry Wonder exact health and native ROLE closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "9197691ce7c2147a742f06abdd7bbfdf69a8f792ad55fbbe8cffca2537bdbef7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B298_Refactor_S5d4c9.md",
+      "provenance": "B298.325 Culture Network exact health and D closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "efdcf7f06c268af71eec5cf386a1053a9753cde4bf9777bb30e0d02dd67dbf9d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B297_Refactor_S5d4c8.md",
-      "provenance": "B297.324 Industry Wonder exact health and native ROLE closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "c2465c546e005fd0c0a09382c5db03516f43dfa4ce199007eb3429f6a90652a7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B298_Refactor_S5d4c9.md",
+      "provenance": "B298.325 Culture Network exact health and D closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1586,9 +1586,9 @@
       "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "352a3a14529580def74eace01cca7aead7c78c6767165f8492377b09bb70e24a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B292_Refactor_S5d4c3.md",
-      "provenance": "B292.319 trusted Industry D scope and exact carrier health; local/static evidence only; no deployment/native PASS."
+      "sha256": "e426e090716e783aa6fc8336cbaebe222d4ad50da4886674d500d1ca7d541ef8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B298_Refactor_S5d4c9.md",
+      "provenance": "B298.325 Culture Network exact health and D closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "66b5f5bf68274e54ec9495802f9a7ade09eaa5a89ecda22518b2ea787f84bec9",

@@ -1,4 +1,5 @@
 include('CurrentSpecializationFacts')
+include('RuntimeWork')
 include('NetworkInput')
 include('ExpeditionTrainingDiagnostics')
 -- B226: current network projection only. Store owns history; Bridge owns topology;
@@ -32,6 +33,8 @@ function M.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'CN_STORE_REQUIRED')
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.CultureNetwork=d
  local definitions,dirty,sourceSamples,sourceCounts={},{},{},{};local initialized=false
+ local ownedIndex={}
+ local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.Mark(scope.player,scope.city)end)
  local trace;local lastWait;local lastHealth;local observe
  if SPCExpeditionTrainingDiagnostics then
   local ok,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'CULTURE_NETWORK')
@@ -68,18 +71,18 @@ function M.Start(P,shared)
   for _,row in ipairs(assert(P.Rows('Building_CitizenYieldChanges'),'CN_YIELD_DATABASE_UNKNOWN'))do
    yields[row.BuildingType]=yields[row.BuildingType] or {};table.insert(yields[row.BuildingType],row)
   end
-  local rows={}
+  local rows,nextOwned={},{}
   for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do for bit=0,M.Bits-1 do
    local id=name(kind,bit);local r=assert(P.Info('Buildings',id),'CN_CARRIER_MISSING');local ys=yields[id]
    assert(r.PrereqDistrict==M.Districts[kind] and (r.InternalOnly==1 or r.InternalOnly==true)
     and r.CitizenSlots==0 and r.Housing==0,'CN_CARRIER_INVALID')
    assert(ys and #ys==1 and ys[1].YieldType=='YIELD_CULTURE' and ys[1].YieldChange==2^bit,'CN_YIELD_INVALID')
-   rows[#rows+1]={id=r.Index,kind=kind,bit=bit}
+   rows[#rows+1]={id=r.Index,kind=kind,bit=bit};nextOwned[r.Index]=true
   end end
-  definitions=rows;d.allowedCivilizations=allowed
+  definitions=rows;ownedIndex=nextOwned;d.allowedCivilizations=allowed
  end
  local function remove(c,row)
-  P.RemoveBuilding(c:GetBuildings(),row.id)
+  carrierHealth.Remove(c,row.id)
   assert(P.HasBuilding(c:GetBuildings(),row.id)==false,'CN_REMOVE_UNCONFIRMED');d.changes=d.changes+1
  end
  local function clear(c)
@@ -235,8 +238,13 @@ function M.Start(P,shared)
   end
   assert(c:GetOwner()==pid and ref(c)==reference,'CN_RECEIVER_CHANGED')
   d.writing=k
+  -- A health cause cannot turn retained topology into a new positive fact.
+  -- Confirmed logical changes (including anchor/source loss) still reconcile.
+  local pending=batch.networkFailed or batch.network and batch.network.input.continuityOnly
+  local held=pending and old and p.kind~=nil and old.kind==p.kind and old.plot==p.plot and old.n==p.n
   local mutating=false
   local wrote,why=pcall(function()
+   if held then return end
    local rows={};local b=c:GetBuildings()
    for _,def in ipairs(definitions)do
     local yes=P.HasBuilding(b,def.id);assert(type(yes)=='boolean','CN_PRESENCE_UNKNOWN')
@@ -250,7 +258,7 @@ function M.Start(P,shared)
    end
    for _,row in ipairs(rows)do if row.remove then mutating=true;remove(c,row);row.yes=false end end
    for _,row in ipairs(rows)do if row.want and not row.yes then
-    mutating=true;P.CreateBuilding(c:GetBuildQueue(),row.id)
+    mutating=true;carrierHealth.Create(c,row.id)
     assert(P.HasBuilding(b,row.id)==true and b:GetBuildingLocation(row.id)==p.plot and b:IsPillaged(row.id)==false,'CN_CREATE_UNCONFIRMED')
     d.changes=d.changes+1
    end end
@@ -261,7 +269,7 @@ function M.Start(P,shared)
    if mutating then d.records[k]=nil;pcall(clear,c)end
    error(why)
   end
-  p.reference=reference;p.owner=pid;p.id=c:GetID();p.x=c:GetX();p.y=c:GetY();d.records[k]=p;d.errors[k]=p.reason
+  p.retained=held or nil;p.reference=reference;p.owner=pid;p.id=c:GetID();p.x=c:GetX();p.y=c:GetY();d.records[k]=p;d.errors[k]=p.reason
  end
  function d.Mark(pid,cid)
   if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then d.Mark(owner,cid)end end;return end
@@ -272,7 +280,11 @@ function M.Start(P,shared)
  function d.Audit(scope)
   -- Real gameplay events/publications can initialize after a missed UI load event.
   if scope and scope.player~=nil and (not P.IsTestPlayer(scope.player) or isolated(scope.player))then return end
-  if d.busy then d.Mark(scope and scope.player,scope and scope.city);return end
+  if d.busy then
+   if scope and scope.changed then for cid in pairs(scope.changed)do d.Mark(scope.player,cid)end
+   else d.Mark(scope and scope.player,scope and scope.city)end
+   return
+  end
   d.busy=true;d.error=nil;d.failure=nil
   local phase='DEFINITION_VALIDATION';local failureOwner,failureCity
   local good,why=pcall(function()
@@ -441,12 +453,12 @@ function M.Start(P,shared)
  local function bind(name,fn)local e=P.Field(Events,name);if e and e.Add then e.Add(fn)end end
  bind('LoadScreenClose',function()d.Audit()end) -- duplicate notifications do not erase rebuilt effects
  bind('GameCoreEventPublishComplete',flush)
- for _,event in ipairs({'CityBuildingsChanged','DistrictPillaged','DistrictRepaired','DistrictRemovedFromMap','DistrictBuildProgressChanged'})do
-  local eventName=event
-  bind(event,function(pid,id,cid)
-   if eventName=='CityBuildingsChanged' then cid=id end
-   if d.writing~=key(pid,cid)then d.Mark(type(pid)=='number' and pid or nil,cid)end
-  end)
+ -- D owns ordinary district/building inputs when available. The optional
+ -- dependency fallback retains the original district signals, with verified scope.
+ if not shared.DistrictCompleteness then
+  for _,event in ipairs({'DistrictPillaged','DistrictRepaired','DistrictRemovedFromMap','DistrictBuildProgressChanged'})do
+   SPCRuntimeWork.TargetHook(P,Events,event,function(scope)d.Mark(scope.player,scope.city)end)
+  end
  end
  bind('CityTransfered',function()d.Mark()end)
  bind('PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then d.Mark(pid)end end)
