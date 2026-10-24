@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0721
-Implementation Build: B272.299 / modinfo299; stable/live B271.298
+Status Revision: S0722
+Implementation Build: B273.300 / modinfo300; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S2_COMPLETE_S3_AUTHORIZED
+Work State: REFACTOR_S3_COMPLETE_S4_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S2 completed in B272.299: [harness, baseline, attribution and static alarms](Validation/Results/Specialization_B272_Refactor_S2.md).27 program cases record14 passing controls and13 stage-owned open counterexamples; this is before evidence, not whole-architecture PASS.43 selected inherited methods pass. S3 is authorized next. D0058/A0182 and the accepted U1 amendments govern S2–S10; the eight-era correction is an explicitly accepted separate batch after S4. Stable/live/main remain B271.298; no deployment performed.
+S3 completed in B273.300: [composition isolation, committed observers, UI containment and readiness](Validation/Results/Specialization_B273_Refactor_S3.md). Four S2 S3 target properties and23 new S3 cases pass. Full program:41 passing properties/9 named later-stage open gates;40 selected inherited methods and positive-effect fixture bodies pass. Current fixture setup corrections preserve assertions and frozen sources. D0058/A0182 unchanged. S4 is authorized next; eight-era correction follows S4 separately before S5. Stable/live/main remain B271.298; no deployment/native PASS.
 
-- User decision: none for routine continuation. New genuine ambiguities stop only their affected paths.
-- User testing: final U5, earlier only for a specific blocking native fact. No automatic deployment or new native PASS.
-- Primary next: S3 startup/observer/UI isolation and readiness, then S4 and the authorized sequence. U2/U3/U4 are engineering checkpoints.
+- User decision: none for normal S4 continuation. Stop only affected paths for accepted conditions.
+- User testing: U5 final integration; earlier only a concrete blocking native fact. No automatic deployment.
+- Primary next: S4→approved A8→S5a/b/c/d→S6→S7/S8→S9/S10. U2/U3/U4 are engineering checkpoints.
+
+## S0722 — B273.300 S3 composition and readiness
+
+Ordered startup includes explicit actual dependency and cleanup/mode guards; partial hooks/exports are quarantined without native rollback or blind restart. Per-consumer notifications preserve commit ACK and sibling work. Native panel behavior survives adapter failure; exact SPC actions fail closed and owned readers close safely. Nine writers self-register and latch actual Store readiness on load/existing publish/turn. Source/scope/local evidence in the result; no deployment or native acceptance.
 
 ## S0721 — B272.299 S2 local foundation
 

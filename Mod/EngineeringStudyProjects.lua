@@ -1,3 +1,4 @@
+include('SafeCallbacks')
 include('EngineeringStudyModel')
 include('ExpeditionTrainingDiagnostics')
 -- B235: one owner for city study attempts. Reuses Store transaction boundaries
@@ -202,9 +203,10 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   end end
  end)
  store.RegisterReturn('EngineeringStudy',function(pid,c)mark(pid,c:GetID())end)
- local prior=shared.OnPermanentCityWrite
- shared.OnPermanentCityWrite=function(c,reason)
-  if prior then prior(c,reason)end
-  if c then d.Refresh(c:GetOwner(),c:GetID());if shared.IndustryWonderEffects then shared.IndustryWonderEffects.Refresh(c:GetOwner(),c:GetID())end end
- end
+ SPCSafeCallbacks.Chain(shared,'EngineeringStudy',function(c,reason)
+  if c then
+   SPCSafeCallbacks.Call(shared,'EngineeringStudy:Refresh',d.Refresh,c:GetOwner(),c:GetID())
+   SPCSafeCallbacks.Notify(shared,'IndustryWonderEffects','Refresh',c:GetOwner(),c:GetID())
+  end
+ end)
 end

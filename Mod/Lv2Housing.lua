@@ -95,7 +95,7 @@ function SPCLv2Housing.Start(P,shared)
   return 'P0-B2 Lv2 Housing | '..(ok and out or ('UNKNOWN / installed housing retained: '..tostring(out)))
  end
  local function bind(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
- bind(Events,'LoadScreenClose',function() data.ready=true;data.errors={};data.Audit({load=true}) end)
+ SPCRuntimeWork.StartReady(P,shared,'Lv2Housing',function() data.ready=true;data.errors={};data.Audit({load=true})end)
  for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted',
   'CityTransfered','CityRemovedFromMap','BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
   'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'}) do

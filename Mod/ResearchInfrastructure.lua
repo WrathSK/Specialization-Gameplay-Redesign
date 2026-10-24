@@ -153,7 +153,7 @@ function M.Start(P,shared)
   return ok and text or (P.VERSION..' | 科研基础设施：暂不可确认\n未把未知当作0；保留上次配置。\n原因：'..tostring(text))
  end
  local function bind(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
- bind(Events,'LoadScreenClose',function() data.ready=true;data.errors={};definitions=nil;data.Audit({load=true}) end)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchInfrastructure',function()data.ready=true;data.errors={};definitions=nil;data.Audit({load=true})end)
  -- Shared producer registers first and owns depth invalidation; consumers only read.
  for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap'}) do
   SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)

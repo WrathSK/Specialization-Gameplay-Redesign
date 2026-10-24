@@ -1,48 +1,51 @@
 -- Narrow HD adapter: retain its production panel and all original item data.
 include('DL_ProductionPanel')
-include('TimedProjectDisplay')
-include('RestructuringUI')
+include('SafeAdapters')
+local adapters=SPCSafeAdapters.New()
+pcall(include,'TimedProjectDisplay')
+pcall(include,'RestructuringUI')
 -- Decorate only this Mod's claim projects after native rendering; recycled
 -- rows receive a hide request for every non-claim item.
 local baseGenericItem=PopulateGenericItemData
 function PopulateGenericItemData(instance,item)
  local result=baseGenericItem(instance,item)
- LuaEvents.SPC_ClaimIconDecorate(instance.Icon,'ICON_'..item.Type)
+ pcall(function()LuaEvents.SPC_ClaimIconDecorate(instance.Icon,'ICON_'..item.Type)end)
  return result
 end
 local baseQueueInstance=CreateQueueInstance
 function CreateQueueInstance(...)
  local instance=baseQueueInstance(...)
- if instance then LuaEvents.SPC_ClaimIconDecorate(instance.ProductionIcon,instance.iconTexture)end
+ if instance then pcall(function()LuaEvents.SPC_ClaimIconDecorate(instance.ProductionIcon,instance.iconTexture)end)end
  return instance
 end
 local claimSelection,dialogueSelection,trainingSelection,engineeringSelection,crewSelection,commerceSelection,capitalSelection,developmentSelection
+local displaySelection=adapters.Add('TimedDisplay',function()return false end,{},function()return SPCTimedProjectDisplay end)
 local baseCurrent=RefreshCurrentProduction
 function RefreshCurrentProduction(parent,pid,id)
  local result=baseCurrent(parent,pid,id)
- LuaEvents.SPC_ClaimIconDecorate(parent.ProductionIcon,result and parent.iconTexture or nil)
- SPCTimedProjectDisplay.Current(parent,pid,id)
+ pcall(function()LuaEvents.SPC_ClaimIconDecorate(parent.ProductionIcon,result and parent.iconTexture or nil)end)
+ pcall(function()SPCTimedProjectDisplay.Current(parent,pid,id)end)
  return result
 end
-include('CrewModel')
-local ranks=setmetatable({},{__index=function(_,id)return SPCCrewModel.Parse(id)end})
+pcall(include,'CrewModel')
+local ranks=setmetatable({},{__index=function(_,id)if SPCCrewModel and SPCCrewModel.Parse then return SPCCrewModel.Parse(id)end end})
 local baseGetData=GetDataHelper
 function GetDataHelper(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
- if trainingSelection then trainingSelection.Items(data)end
- pcall(SPCRestructuringUI.ObserveTraining,SPCP0,data)
- if crewSelection then crewSelection.Items(data)end
- if capitalSelection then capitalSelection.Items(data)end
- if developmentSelection then developmentSelection.Items(data)end
- if commerceSelection then commerceSelection.Items(data)end
- if claimSelection then claimSelection.Sync(data.City)end
- if dialogueSelection then dialogueSelection.Sync(data.City)end
- SPCTimedProjectDisplay.Items(data)
+ adapters.Items(trainingSelection,data)
+ pcall(function()SPCRestructuringUI.ObserveTraining(SPCP0,data)end)
+ adapters.Items(crewSelection,data)
+ adapters.Items(capitalSelection,data)
+ adapters.Items(developmentSelection,data)
+ adapters.Items(commerceSelection,data)
+ adapters.Call(claimSelection,'Sync',data.City)
+ adapters.Call(dialogueSelection,'Sync',data.City)
+ adapters.Items(displaySelection,data)
  -- HD exposes Disabled from native CanProduce. Filter only our exact project IDs.
  local items={}
  for _,item in ipairs(data.ProjectItems)do
-  local owned=ranks[item.Type] or SPCClaimProjectUI.IsProject(item.Type) or item.Type==SPCDialogueProjectUI.PROJECT or item.Type==SPCEngineeringStudyUI.PROJECT
+  local owned=ranks[item.Type] or (item.Type=='PROJECT_SPC_CLAIM_RESEARCH' or item.Type=='PROJECT_SPC_CLAIM_CULTURE' or item.Type=='PROJECT_SPC_CLAIM_INDUSTRY' or item.Type=='PROJECT_SPC_CLAIM_COMMERCE') or item.Type=='PROJECT_SPC_ERA_DIALOGUE' or item.Type=='PROJECT_SPC_ENGINEERING_STUDY'
   if not owned or item.Disabled~=true or item.IsCurrentProduction==true or item.SPC_CrewRetained==true then items[#items+1]=item end
  end
  data.ProjectItems=items
@@ -64,73 +67,89 @@ end
 
 -- Normal native project operation is retained; start only after the selected target is readable.
 include('Probe')
-include('ProjectTurnRead')
-include('TimedProjectSelection')
-include('ClaimProjectUI')
-SPCProjectTurnRead.New(SPCP0,function()end,function()end)
-local projectSelection=SPCTimedProjectSelection.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
- function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
-claimSelection=SPCClaimProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
- function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
-dialogueSelection=SPCDialogueProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
- function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
-engineeringSelection=SPCEngineeringStudyUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
- function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
+local function send(...)return UI.RequestPlayerOperation(...)end
+local function notify(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end
+local function one(name)return function(item)return item and item.Type==name end end
+local function claim(item)
+ local t=item and item.Type
+ return t=='PROJECT_SPC_CLAIM_RESEARCH' or t=='PROJECT_SPC_CLAIM_CULTURE' or t=='PROJECT_SPC_CLAIM_COMMERCE' or t=='PROJECT_SPC_CLAIM_INDUSTRY'
+end
+local crewTypes={['PROJECT_SPC_CREW_1000']=true,['PROJECT_SPC_CREW_1000_P120']=true,['PROJECT_SPC_CREW_1000_P130']=true,['PROJECT_SPC_CREW_1000_P140']=true,['PROJECT_SPC_CREW_1360']=true,['PROJECT_SPC_CREW_1360_P120']=true,['PROJECT_SPC_CREW_1360_P130']=true,['PROJECT_SPC_CREW_1360_P140']=true,['PROJECT_SPC_CREW_250']=true,['PROJECT_SPC_CREW_250_P120']=true,['PROJECT_SPC_CREW_250_P130']=true,['PROJECT_SPC_CREW_250_P140']=true,['PROJECT_SPC_CREW_420']=true,['PROJECT_SPC_CREW_420_P120']=true,['PROJECT_SPC_CREW_420_P130']=true,['PROJECT_SPC_CREW_420_P140']=true,['PROJECT_SPC_CREW_750']=true,['PROJECT_SPC_CREW_750_P120']=true,['PROJECT_SPC_CREW_750_P130']=true,['PROJECT_SPC_CREW_750_P140']=true}
+local function crew(item)
+ if not item or type(item.Type)~='string'then return false end
+ if crewTypes[item.Type]then return true end
+ local base,speed=item.Type:match('^(PROJECT_SPC_CREW_[%d_P]+)_S(%d+)$')
+ -- Generated speed variants exist only for the exact packaged base IDs.
+ return base~=nil and crewTypes[base]==true and GameInfo and GameInfo.Projects and GameInfo.Projects[item.Type]~=nil or false
+end
+adapters.Add('ProjectTurnRead',function()return false end,{'SPC_ProjectTurnRead'},function()
+ include('ProjectTurnRead');return SPCProjectTurnRead.New(SPCP0,function()end,function()end)
+end)
+local projectSelection=adapters.Add('TimedProjectSelection',one('PROJECT_SPC_OVERFLOW_SINK_TEST'),{'SPC_TimedProjectSelection'},function()
+ include('TimedProjectSelection');return SPCTimedProjectSelection.New(SPCP0,send,notify)
+end)
+claimSelection=adapters.Add('ClaimProjectUI',claim,{'SPC_ClaimQueueRead','SPC_ClaimSelection','SPC_ClaimSync'},function()
+ include('ClaimProjectUI');return SPCClaimProjectUI.New(SPCP0,send,notify)
+end)
+dialogueSelection=adapters.Add('DialogueProjectUI',one('PROJECT_SPC_ERA_DIALOGUE'),{'SPC_DialogueGameEra','SPC_DialogueProjectRead'},function()
+ include('DialogueProjectUI');return SPCDialogueProjectUI.New(SPCP0,send,notify)
+end)
+engineeringSelection=adapters.Add('EngineeringStudyUI',one('PROJECT_SPC_ENGINEERING_STUDY'),{'SPC_EngineeringStudyRead'},function()
+ include('EngineeringStudyUI');return SPCEngineeringStudyUI.New(SPCP0,send,notify)
+end)
 local baseAdvance=AdvanceProject
-include('CapitalInvestmentUI')
-capitalSelection=SPCCapitalInvestmentUI.New(SPCP0,function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
-include('DevelopmentInvestmentUI')
-developmentSelection=SPCDevelopmentInvestmentUI.New(SPCP0,function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
-include('CommerceUI')
-commerceSelection=SPCCommerceUI.New(SPCP0,function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end)
-include('CrewProjectUI')
-crewSelection=SPCCrewProjectUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
- function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end,baseAdvance)
+capitalSelection=adapters.Add('CapitalInvestmentUI',one('PROJECT_SPC_CAPITAL_INVESTMENT'),{},function()
+ include('CapitalInvestmentUI');return SPCCapitalInvestmentUI.New(SPCP0,notify)
+end)
+developmentSelection=adapters.Add('DevelopmentInvestmentUI',one('PROJECT_SPC_DEVELOPMENT_INVESTMENT'),{'SPC_DevelopmentRead'},function()
+ include('DevelopmentInvestmentUI');return SPCDevelopmentInvestmentUI.New(SPCP0,notify)
+end)
+commerceSelection=adapters.Add('CommerceUI',one('PROJECT_SPC_COMMERCIALIZATION'),{},function()
+ include('CommerceUI');return SPCCommerceUI.New(SPCP0,notify)
+end)
+crewSelection=adapters.Add('CrewProjectUI',crew,{'SPC_CrewNativeRead'},function()
+ include('CrewProjectUI');return SPCCrewProjectUI.New(SPCP0,send,notify,baseAdvance)
+end)
 function AdvanceProject(c,item)
- if not capitalSelection.Before(c,item,CheckQueueItemSelected())then return end
- if not developmentSelection.Before(c,item,CheckQueueItemSelected())then return end
- if not commerceSelection.Before(c,item,CheckQueueItemSelected())then return end
- if not crewSelection.Before(c,item,CheckQueueItemSelected())then return end
- if not engineeringSelection.Before(c,item,CheckQueueItemSelected())then return end
- if not dialogueSelection.Before(c,item,CheckQueueItemSelected())then return end
- if not claimSelection.Before(c,item,CheckQueueItemSelected()) then return end
+ if not adapters.Before(capitalSelection,c,item,CheckQueueItemSelected())then return end
+ if not adapters.Before(developmentSelection,c,item,CheckQueueItemSelected())then return end
+ if not adapters.Before(commerceSelection,c,item,CheckQueueItemSelected())then return end
+ if not adapters.Before(crewSelection,c,item,CheckQueueItemSelected())then return end
+ if not adapters.Before(engineeringSelection,c,item,CheckQueueItemSelected())then return end
+ if not adapters.Before(dialogueSelection,c,item,CheckQueueItemSelected())then return end
+ if not adapters.Before(claimSelection,c,item,CheckQueueItemSelected()) then return end
  if item.Type=="PROJECT_SPC_OVERFLOW_SINK_TEST" and CheckQueueItemSelected() then return end
- if not projectSelection.Before(c,item) then return end
+ if not adapters.Before(projectSelection,c,item) then return end
  return baseAdvance(c,item)
 end
-Events.GameCoreEventPublishComplete.Add(capitalSelection.Publish)
-Events.GameCoreEventPublishComplete.Add(developmentSelection.Publish)
-Events.GameCoreEventPublishComplete.Add(commerceSelection.Publish)
-Events.GameCoreEventPublishComplete.Add(crewSelection.Publish)
-Events.GameCoreEventPublishComplete.Add(engineeringSelection.Publish)
-Events.GameCoreEventPublishComplete.Add(projectSelection.Pulse)
-Events.GameCoreEventPublishComplete.Add(claimSelection.Pulse)
-Events.GameCoreEventPublishComplete.Add(dialogueSelection.Pulse)
-Events.LoadScreenClose.Add(dialogueSelection.WarmStart)
-Events.LoadScreenClose.Add(claimSelection.WarmStart)
-LuaEvents.SPC_TimedProjectDisplayChanged.Add(function(pid,id)
+for _,e in ipairs({capitalSelection,developmentSelection,commerceSelection,crewSelection,engineeringSelection})do
+ adapters.Hook(Events,'GameCoreEventPublishComplete',e,'Publish')
+end
+for _,e in ipairs({projectSelection,claimSelection,dialogueSelection})do adapters.Hook(Events,'GameCoreEventPublishComplete',e,'Pulse')end
+for _,e in ipairs({dialogueSelection,claimSelection})do adapters.Hook(Events,'LoadScreenClose',e,'WarmStart')end
+adapters.Hook(LuaEvents,'SPC_TimedProjectDisplayChanged',nil,nil,function(pid,id)
  local c=UI.GetHeadSelectedCity()
- if c and c:GetOwner()==pid and c:GetID()==id and not ContextPtr:IsHidden() then Refresh()end
+ if c and c:GetOwner()==pid and c:GetID()==id and not ContextPtr:IsHidden()then Refresh()end
 end)
 
 -- B202 exact normal-unit queue admission, preserving the native insert mode.
-include('ExpeditionTrainingUI')
 local baseBuildUnit=BuildUnit
-trainingSelection=SPCExpeditionTrainingUI.New(SPCP0,function(...)return UI.RequestPlayerOperation(...)end,
- function(pid,id)LuaEvents.SPC_TimedProjectDisplayChanged(pid,id)end,baseBuildUnit)
+trainingSelection=adapters.Add('ExpeditionTrainingUI',one('UNIT_SPC_EXPEDITION_SPY'),{'SPC_ExpeditionQueueRead'},function()
+ include('ExpeditionTrainingUI');return SPCExpeditionTrainingUI.New(SPCP0,send,notify,baseBuildUnit)
+end)
 function BuildUnit(c,item)
- if item.Type~=SPCExpeditionTrainingUI.KIND then return baseBuildUnit(c,item)end
- if trainingSelection.Before(c,item,CheckQueueItemSelected())then return baseBuildUnit(c,item)end
+ if item.Type~='UNIT_SPC_EXPEDITION_SPY' then return baseBuildUnit(c,item)end
+ if adapters.Before(trainingSelection,c,item,CheckQueueItemSelected())then return baseBuildUnit(c,item)end
 end
 local baseRemoveQueueItem=RemoveQueueItem
 function RemoveQueueItem(index)
- trainingSelection.CancelQueue(UI.GetHeadSelectedCity(),index)
+ adapters.Call(trainingSelection,'CancelQueue',UI.GetHeadSelectedCity(),index)
  return baseRemoveQueueItem(index)
 end
-Events.GameCoreEventPublishComplete.Add(trainingSelection.Pulse)
-Events.GameCoreEventPlaybackComplete.Add(trainingSelection.RefreshFacts)
+adapters.Hook(Events,'GameCoreEventPublishComplete',trainingSelection,'Pulse')
+adapters.Hook(Events,'GameCoreEventPlaybackComplete',trainingSelection,'RefreshFacts')
 for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'})do
- local e=Events[name];if e then e.Add(trainingSelection.Invalidate)end
+ adapters.Hook(Events,name,trainingSelection,'Invalidate')
 end
 
 -- Observe native replacement intent without changing its parameters. This also
@@ -139,7 +158,14 @@ local baseGetBuildInsertMode=GetBuildInsertMode
 function GetBuildInsertMode(parameters)
  local result=baseGetBuildInsertMode(parameters)
  if parameters[CityOperationTypes.PARAM_INSERT_MODE]==CityOperationTypes.VALUE_REPLACE_AT then
-  trainingSelection.CancelQueue(UI.GetHeadSelectedCity(),parameters[CityOperationTypes.PARAM_QUEUE_DESTINATION_LOCATION])
+  adapters.Call(trainingSelection,'CancelQueue',UI.GetHeadSelectedCity(),parameters[CityOperationTypes.PARAM_QUEUE_DESTINATION_LOCATION])
  end
  return result
 end
+
+-- The verified native/HD base installs global OnShutdown. Preserve that callback.
+local nativeShutdown=OnShutdown
+ContextPtr:SetShutdown(function()
+ adapters.Close()
+ if nativeShutdown then nativeShutdown()end
+end)

@@ -1,3 +1,4 @@
+include('RuntimeWork')
 -- F2: transient, module-owned Science percentage. Store remains the age authority.
 SPCResearchTraditionEffects={}
 local M=SPCResearchTraditionEffects
@@ -81,7 +82,7 @@ function M.Start(P,shared)
   end
  end
  local function hook(n,fn)local e=P.Field(Events,n);if e and e.Add then e.Add(fn)end end
- hook('LoadScreenClose',function()
+ SPCRuntimeWork.StartReady(P,shared,'ResearchTraditionEffects',function()
   definitions=nil;pending={};data.lastError=nil;data.ready=true
   for pid in pairs(Players)do data.Mark(pid)end
   data.Flush()

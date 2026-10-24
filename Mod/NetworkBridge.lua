@@ -1,3 +1,4 @@
+include('RuntimeWork')
 -- AV2-B: one private derived view per accepted complete input; no consumer-yield cache.
 include("NetworkInput")
 include("ExpeditionTrainingDiagnostics")
@@ -643,7 +644,7 @@ function SPCNetworkBridge.Start(P,shared)
  for _,name in ipairs({'GovernorAssigned','GovernorEstablished','CapitalCityChanged','CityAddedToMap'}) do
   local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(d.Rebuild) end
  end
- local e=P.Field(Events,"LoadScreenClose");if e and e.Add then e.Add(function() d.ready=true;d.Rebuild() end) end
+ SPCRuntimeWork.StartReady(P,shared,'NetworkBridge',function()d.ready=true;d.Rebuild()end)
  -- The shared view is an indivisible verified snapshot. Known ownership loss
  -- invalidates the former participant's snapshot via its existing publication contract.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('NetworkBridge',function(c,loss)

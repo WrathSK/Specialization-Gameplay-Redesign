@@ -1,3 +1,4 @@
+include('SafeCallbacks')
 include('CommerceModel')
 include('CommerceCalculation')
 include('NetworkInput')
@@ -273,11 +274,7 @@ function M.Start(P,shared)
  function d.SourceChanged(pid,id)d.Audit({player=pid,changed={[id]=true}})end
  function d.BindPermanentWrites()
   if permanentBound then return end
-  local prior=shared.OnPermanentCityWrite
-  shared.OnPermanentCityWrite=function(c,reason)
-   if prior then prior(c,reason)end
-   if c then d.Mark(c:GetOwner(),c:GetID())end
-  end
+  SPCSafeCallbacks.Chain(shared,'Commerce',function(c,reason)if c then d.Mark(c:GetOwner(),c:GetID())end end)
   permanentBound=true
  end
  function d.ExperimentalNetworkWithdraw(pid)

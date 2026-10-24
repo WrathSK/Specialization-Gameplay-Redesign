@@ -1,3 +1,4 @@
+include('SafeCallbacks')
 include('CrewModel')
 include('ExpeditionTrainingDiagnostics')
 -- B239: paid native projects retain one capacity admission while paused; actual queue entries stay separate.
@@ -304,8 +305,7 @@ function SPCCrewProjects.Start(P,shared)
    ..'\n施工仅用于在建奇观；基础施工力可受适用生产力加成，余量不结转。'..(v.held and '\n存在未确认发放，停止本城新组建并回传日志。' or '')
  end
  function d.BindPermanentWrites()
-  local prior=shared.OnPermanentCityWrite
-  shared.OnPermanentCityWrite=function(c,reason)if prior then prior(c,reason)end;if c then d.Refresh(c:GetOwner(),c:GetID())end end
+  SPCSafeCallbacks.Chain(shared,'CrewProjects',function(c,reason)if c then d.Refresh(c:GetOwner(),c:GetID())end end)
  end
  local function hook(n,fn)local e=P.Field(Events,n);if e and e.Add then e.Add(fn)end end
  hook('CityProjectCompleted',completion)

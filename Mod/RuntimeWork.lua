@@ -59,7 +59,8 @@ end
 -- Fixed scalar attribution only. No native lookup, retained scope or event history.
 function SPCRuntimeWork.NoteScope(P,source,scope)
  if not P.Count then return end
- P.Count('scope_dispatch');P.Count(source==GameEvents and 'scope_gameevents' or 'scope_events')
+ local native=SPCRuntimeComposition and SPCRuntimeComposition.Native(source) or source
+ P.Count('scope_dispatch');P.Count(native==(SPCRuntimeComposition and SPCRuntimeComposition.Native(GameEvents) or GameEvents) and 'scope_gameevents' or 'scope_events')
  local kind=type(scope)=='table' and (scope.transfer and 'transfer' or scope.plot and 'plot' or scope.city~=nil and 'city' or scope.player~=nil and 'player')
  P.Count(kind and ('scope_'..kind) or 'scope_fallback')
  if not kind then P.Count('scope_unknown_signature')elseif kind=='player'then P.Count('scope_player_signature')end
@@ -274,4 +275,25 @@ function SPCRuntimeWork.TargetHook(P,source,name,fn)
  elseif source==GameEvents and name=='OnDistrictConstructed' then
   e.Add(function(pid)scoped({player=type(pid)=='number' and pid or nil})end)
  else SPCRuntimeWork.Hook(P,source,name,fn)end
+end
+
+-- One initialization latch. Fallback checks only the Store's scalar lifecycle state.
+function SPCRuntimeWork.StartReady(P,shared,name,start)
+ local latched=false
+ local function attempt(fromLoad)
+  if latched then return end
+  local store=shared.CityProgressionStore
+  if store and type(store.HistoryStartStatus)=='function'then
+   local ok,state=pcall(store.HistoryStartStatus)
+   if not ok or state=='WAITING'then return end
+  elseif not fromLoad then return end
+  latched=true -- never repeat initialization/Audit after a callback exception
+  start()
+ end
+ local function bind(event,fn)local e=P.Field(Events,event);if e and e.Add then e.Add(fn)end end
+ bind('LoadScreenClose',function()attempt(true)end)
+ bind('GameCoreEventPublishComplete',function()attempt(false)end)
+ bind('PlayerTurnActivated',function()attempt(false)end)
+ if shared.ReadinessSummary and shared.ReadinessSummary.Register then pcall(shared.ReadinessSummary.Register,name)end
+ return function()return latched end
 end

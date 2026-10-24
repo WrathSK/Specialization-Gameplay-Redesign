@@ -121,7 +121,7 @@ function M.Start(P,shared)
   return ok and text or ('跨学科研究：暂不可确认，未将未知当0。\n'..(tostring(text):match('CROSS_[A-Z_]+') or '接口未就绪'))
  end
  local function bind(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
- bind(Events,'LoadScreenClose',function() data.ready=true;SPCSampleLifecycle.Reset(data,'cross');data.plans={};data.errors={};data.Audit() end)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchCross',function()data.ready=true;SPCSampleLifecycle.Reset(data,'cross');data.plans={};data.errors={};data.Audit()end)
  for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted',
   'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap'}) do
   SPCRuntimeWork.Hook(P,Events,n,data.Audit)

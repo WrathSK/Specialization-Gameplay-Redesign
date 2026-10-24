@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0721",
-    "runtime": "B272.299 / modinfo299",
+    "status": "S0722",
+    "runtime": "B273.300 / modinfo300",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "S2 complete; continue user-authorized S3 composition isolation then dependency-ordered S4/A8/S5–S10. No routine stage approvals or deployment.",
+  "goal": "S3 complete; continue user-authorized S4 then approved A8 and dependency-ordered S5–S10. No routine stage approvals/deployment.",
   "implementation_authorized": true,
   "context": [
     {
@@ -49,6 +49,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
       "kind": "full",
       "reason": "Actual S2 baseline and next S3 obligations; no native acceptance."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "kind": "full",
+      "reason": "Actual S3 closure and S4 handoff; local evidence only."
     }
   ],
   "dependencies": [
@@ -75,8 +80,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
-    "local": "S2_BASELINE_RECORDED:14 controls PASS,13 OPEN counterexamples;43 inherited methods PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+    "local": "S3_TARGETS_PASS;41 properties PASS/9 later OPEN;40 inherited methods PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }

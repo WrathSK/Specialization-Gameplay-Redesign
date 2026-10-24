@@ -1,3 +1,4 @@
+include('SafeCallbacks')
 -- B254: disposable, detached UI projection of canonical facts. No persistent writes.
 SPCLevelBannerState={}
 function SPCLevelBannerState.Start(P,shared)
@@ -36,11 +37,7 @@ function SPCLevelBannerState.Start(P,shared)
  function d.Refresh(pid,id)
   mark(pid,id);d.Flush()
  end
- local prior=shared.OnPermanentCityWrite
- shared.OnPermanentCityWrite=function(c,reason)
-  if prior then prior(c,reason)end
-  if c then mark(c:GetOwner(),c:GetID())end
- end
+ SPCSafeCallbacks.Chain(shared,'LevelBanners',function(c,reason)if c then mark(c:GetOwner(),c:GetID())end end)
  local function hook(name,fn)local e=P.Field(Events,name);if e and e.Add then e.Add(fn)end end
  for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'})do hook(name,function(pid)mark(pid)end)end
  for _,name in ipairs({'CityAddedToMap','CityRemovedFromMap'})do hook(name,mark)end

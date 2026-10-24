@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "231fb33ee42172a8b17560abb5518f82d0027411a0d9592b6985f63718ff2791",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
-      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+      "sha256": "fabf3c8aa0c3d6d0042026041364a0cf8bbb42a9daaac78ab8745efec8c303cf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -111,14 +111,14 @@
       "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/ClaimProjects.lua": {
-      "sha256": "91e1f241e10a80ebe05483c0ad023d44c2d61647c8107b934e8511517d2fccee",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B138 controlled automatic GC trial; exact request/Claim read-only guards only, no business algorithm/permanent data change. Targeted static/local tests; native pending."
+      "sha256": "29b8e89464dddb19f2aef8d2afcd056600d49e7a486abf6d5bd8560c381ef3e3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/Commerce.lua": {
-      "sha256": "9da27c8424c371bcd62744e6319a30aef8b8fb07820d7479789472a79ae378cb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
-      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
+      "sha256": "d3dfd4384ef793455711d8b9ad31a560a5d2e4e2da9ffb8ff100f7bc60b58f43",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -176,9 +176,9 @@
       "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "494baacf1841aeec32ffd5079c002142798a79d9b2c655530d8fe4ab1f345b37",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "d4fb42239d84730c4d88740f022b3ff8ca8bf7f58d09c9ced05c71d220a1d90a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "e035ce2b7225120daf3723344bfdde4d823631c0936ab8370153ec0833aacd67",
@@ -501,9 +501,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "16e2e001fba28ff71da366655f1cadb159e8ae4fffff88f0c151961ef89ecf2d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "1325af4363b0094e726abf76ef12ed79d27302b9d122e31c49bfabc592b39fda",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "4f4df0ed1eee502d9ee19ad8e053c6070b9f17d74b0e33eaba26f33ab13e256a",
@@ -576,9 +576,9 @@
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/EngineeringStudyProjects.lua": {
-      "sha256": "6a0c35b9dcd38e7842b3bb09ad975b7d6301885f02cb2530dc21b58d064f4456",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "f44cf14aa7f5dd45f3ea9c7bfd5398f84184c4feb4f0452062b494bef74bc96d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/EnvelopeProbe.lua": {
       "sha256": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "fac105c978eb15020c8308210259fb2b69b487b3f2f9b9e3282d2cce841091a9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "327d1434dad641f9f30029aa43077e5c194fd8057967008070e2c307b3e3812b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -681,9 +681,9 @@
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "967da28727893fea06c87083cde9962fd3803fe6d00346d6933f24301401bca5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "c34fdae591c5bde66699c2322b3dd3f390e7e15cef40fe20fa4c8cc41f1a5082",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "eed229b2e765cdd7ffc43404413b9c347f642e1041ee2fb280a66e4abc16a7b9",
@@ -711,19 +711,19 @@
       "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
     },
     "Mod/LevelBannerState.lua": {
-      "sha256": "a0e8e70cbdd183e750fb700d71d2cdda10a87c9a205a67e46311b5e3cfbea1a3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B257_Banner_Update_Layout.md",
-      "provenance": "B257 committed target-city presentation refresh and reversible Grid layout;41 scoped local checks PASS; native pending."
+      "sha256": "0403b45a18a5559bdedd69e36ee0e4246dc3361ff91b8ba2717cd864303b6eee",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "4d98dee16e11779c88ee05d846b77069cc082544e57766e76e7bd005b4714513",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "6d92fadee6760a92872ccee1caeb0182d55542971ff12dffdf1d78ad3b73aa3f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "e2f6b81d7334970f9a5ca5e6efe2f925d1213dbf66cc1c51e2e86fffd89482c3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "4fc334ff38f257796d3a8cd91023e72f0983443a43657c79070fd66774ff779b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/Lv3Effects.lua": {
       "sha256": "14e77e6a4f3d98a9f431ea1768a535417a788421a31d67bc7e93f372aeb9ba0e",
@@ -751,9 +751,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "f9e70ed1489a6b908a276679232db3f41528a5e4bade55b332e8d28f68228b88",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "877986fe800479520222bc8f20df68d8e55d79d226a69efb0b53f6da6a14f9f9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "e58e71de37a464e1d14a1a0facd00248054037bd908305d8f5f27ec02690379a",
@@ -786,9 +786,9 @@
       "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
     },
     "Mod/Probe.lua": {
-      "sha256": "ea3fa7f8c47f5a8adf3327ea9c97a22b7dce282d678b4210b75302661deb86d0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
-      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
+      "sha256": "8084bc8a62403986a5a25d2a436c251aecbb0923d83d099535d19e69cc80f2e2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -811,14 +811,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/ReadinessSummary.lua": {
-      "sha256": "884a26e5b6da3ef00f22951c6769fa2e200efba267f689a49d8ed9b348059ad2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
-      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+      "sha256": "0d9205f3f4543c200c3fb3787384e8f1d580fe2834831829822546c641356458",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "b14ccc3d7fc768500b7569057a45c1b865b0a7ce5029ee3c66a35e73b776d904",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
-      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
+      "sha256": "d3e6fcc57de82f52a80bda2a3002f3a295a7e563b68c29665968c1e55d9fb28e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -826,9 +826,9 @@
       "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "6e598c5da206177880c09e3bd65767dcbec1fdc0bc5fe27e3f5f2fe2a880c896",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B170_Shared_D_Fact_Read_Local.md",
-      "provenance": "B170 authorized fact/diagnostic split; local differential PASS, native pending; no new save/GC rules"
+      "sha256": "d2dfd85e8b38a170c31850580b71dcfdd1628c206142d1ed275c392765d043f9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchChairModel.lua": {
       "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
@@ -836,9 +836,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "fd823d7657eb72d8816478829e4b9e8e738d6009d86d0457ecd408c6eabb0cef",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B131 bounded diagnostic attribution only; local targeted PASS, native pending"
+      "sha256": "3104da7ba61a7098b6f58a2f8d05f31a7526d5d44d4206231b6a7ad38128a4a5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchCrossModel.lua": {
       "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
@@ -851,9 +851,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "1f288d0fd59c3dc67616b76370ecc9f79548ff754bf385ce8aae1f611cf7c3c3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "e38c0544b128b5efcec5d90205387905564c8bcc537cb2248175cac1cdeed45d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
       "sha256": "8ad23bec61981d670c6c8a0b67c35e1c66e0c697a6abd6075e197656aec37b3f",
@@ -861,9 +861,9 @@
       "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/ResearchSupport.lua": {
-      "sha256": "c842565566fd6a3ac4a89761a32942d906c94bdc1e57c4df1b35886f8fe5d004",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "0d8a50da9e2e854ec1bb8c3d8e469142f15a4a5cbfb43c1eafc2d8d83e8f0d33",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchTradition.lua": {
       "sha256": "bfd4e3437c873c97349216f876c86e80ba1b97cc4c847821f4990c2ab9d062c7",
@@ -871,14 +871,14 @@
       "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/ResearchTraditionEffects.lua": {
-      "sha256": "55aa2d441a565fe73f2029dd795273833e58b1d333d392436742aac99feb7447",
-      "review_source": "Specialization/Architecture/v2/P0_F_Research_Tradition.md",
-      "provenance": "B144 authorized F2 exact Science effect owner; targeted local pass; native pending"
+      "sha256": "8dfb83499ddbffac5421b0dcf320ecf76c703550db8499ab4838007cfe9f2f44",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/Restructuring.lua": {
-      "sha256": "b9a2019d21967b8bb8012408b465755be02360a4be561aa3421f2183fe0c03a6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B249_Native_Review.md",
-      "provenance": "Unchanged B249 source;80 targeted local methods inherited. S0668 native evidence accepts same-turn access and continuous liquidation/wait/configuration, with manual disruption/refusal/effect confirmation. REALLOCATING cold-load remains pending; no expanded ownership or retreat PASS."
+      "sha256": "db57e28a994299f903cee50191cd7c322dd52627dae79e7b95a78a1881f8e227",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/RestructuringModel.lua": {
       "sha256": "5d0893c5a2e8c717a8e8677428c7c82a1c1166f061facf51a16e9162e32b22b3",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "5dc23f5fec25806ee1ab666100745872f0db35833513de5b8564892f48b0223e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
-      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
+      "sha256": "90b40ff7d4f3c343752208af212589152d5076a95995a9ea83eaf0821a4936d8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "2aef4ce1073e63d32371f2896fe51273b4b212884201fd571103bf1f44aad3a2",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b7f24c73f6149e8c8368b0b5235b5e9a46682399cf14ab74196ff785929b0089",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
-      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
+      "sha256": "29aaacfdea45ffb899ccf1170f3833eeb7f280a09b511fb77444573b23a02f64",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1251,9 +1251,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "f81b17dfe1f51c776bc71c7d0063eb78705bbba744e69ee6ce0735ccfdc2b08c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "sha256": "e0851f53f43b69a49cc607569fa785d02855be094ee32cf5c125c6a688d190ad",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "b07ea80a0db7f1fb10bcc259dd711afacab49fd6edafb2b5d097e19a1abdc64b",
@@ -1491,9 +1491,9 @@
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/UI/TimedProjectSelection.lua": {
-      "sha256": "cad579bd9b2b6f7459edd32378e22c52ac974a04af754887cd8b43812fdb4a09",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
+      "sha256": "84a55612bc7f7752e3e2b158785556e2e9ce56f402c689d22ba8e80f3c96ae9f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/UI/TimedTurnProbe.lua": {
       "sha256": "c95456d666bf3636494d2f99460121cb19193d97f271d1292ac170ce62ef8245",
@@ -1564,6 +1564,21 @@
       "sha256": "9e1fd53c44eb32f37d9ba0dc5efb1d0e3a9233b565eca8af94fd2f0a19b5ba72",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
       "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+    },
+    "Mod/RuntimeComposition.lua": {
+      "sha256": "0a8bbb92eb304b2df2584ebb04dcd19658e4f8475fd652975cb535ef5b091c67",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+    },
+    "Mod/SafeCallbacks.lua": {
+      "sha256": "59f119acc1a5c0171607de9be6d94e05f230b34b4cb316af545ef4a74b87c321",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+    },
+    "Mod/UI/SafeAdapters.lua": {
+      "sha256": "d4095f7e5a9084e2ea61a71df4ababce09f24310619bfa3b6237ca522ccb4e04",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
+      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     }
   },
   "source_review": "B271 approved source promoted through PR6 and deployed;312/312 source/live MATCH. Scoped local validation inherited; native acceptance pending."

@@ -1,12 +1,15 @@
 include("Probe")
+include("SafeCallbacks")
+include("RuntimeComposition")
 include("SourceYieldProbe")
 include("Lv4CopyRead")
 include("YieldCarrierProbe")
 local P=SPCP0
 -- Legacy requests remain isolated: no broad snapshot, district history, or engine-object encoding.
 -- B004 adds bounded automatic trader-operation diagnostics at the bottom.
-ExposedMembers.SPC_P0={Version=P.VERSION,Stage="INITIALIZED",Events={}}
+ExposedMembers.SPC_P0={Version=P.VERSION,Stage="STARTING",Events={}}
 local shared=ExposedMembers.SPC_P0
+local composition=SPCRuntimeComposition.New(shared)
 -- Diagnostic observers are protected and never control startup or reconciliation.
 local readiness
 pcall(function()include('ExpeditionTrainingDiagnostics');include('ReadinessSummary');readiness=SPCReadinessSummary.Start(P,shared)end)
@@ -570,21 +573,21 @@ local function request(playerID,params)
     if not P.IsTestPlayer(playerID) then return end
     local result
     shared.Snapshot,result=shared.UnitActions.Run(playerID,params);shared.LastToken=params.Token
-    if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    refreshInvestmentSupport(playerID,result)
-    if shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
-    if shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
-    if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
-    if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
-    if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
-    if shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
-    if shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID,city=params.CityID})end
-    if shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=playerID,city=params.CityID})end
-    if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
-    if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
-    if shared.Lv3Effects then shared.Lv3Effects.Audit() end
-    if shared.NetworkBoost then shared.NetworkBoost.Audit() end
-    if shared.Dialogue then shared.Dialogue.Audit(playerID) end
+    if shared.NetworkBridge then SPCSafeCallbacks.Notify(shared,'NetworkBridge','Refresh',playerID) end
+    SPCSafeCallbacks.Call(shared,'investment-support',refreshInvestmentSupport,playerID,result)
+    if shared.ResearchInfrastructure then SPCSafeCallbacks.Notify(shared,'ResearchInfrastructure','Audit',{player=playerID}) end
+    if shared.ResearchCross then SPCSafeCallbacks.Notify(shared,'ResearchCross','Audit',{player=playerID}) end
+    if shared.ResearchApply then SPCSafeCallbacks.Notify(shared,'ResearchApply','Audit',{player=playerID}) end
+    if shared.ResearchChair then SPCSafeCallbacks.Notify(shared,'ResearchChair','Audit',{player=playerID}) end
+    if shared.CultureAesthetic then SPCSafeCallbacks.Notify(shared,'CultureAesthetic','Audit',{player=playerID}) end
+    if shared.CultureMeaning then SPCSafeCallbacks.Notify(shared,'CultureMeaning','Audit',{player=playerID})end
+    if shared.CultureInspiration then SPCSafeCallbacks.Notify(shared,'CultureInspiration','Audit',{player=playerID,city=params.CityID})end
+    if shared.CultureInsightsTourism then SPCSafeCallbacks.Notify(shared,'CultureInsightsTourism','Audit',{player=playerID,city=params.CityID})end
+    if shared.ResearchSupport then SPCSafeCallbacks.Notify(shared,'ResearchSupport','Audit',{player=playerID}) end
+    if shared.IndustrySupport then SPCSafeCallbacks.Notify(shared,'IndustrySupport','Audit',{player=playerID}) end
+    if shared.Lv3Effects then SPCSafeCallbacks.Notify(shared,'Lv3Effects','Audit') end
+    if shared.NetworkBoost then SPCSafeCallbacks.Notify(shared,'NetworkBoost','Audit') end
+    if shared.Dialogue then SPCSafeCallbacks.Notify(shared,'Dialogue','Audit',playerID) end
     return
   end
   if params.Action=="UNIT_TARGETS_READ" then
@@ -597,24 +600,24 @@ local function request(playerID,params)
   end
   if params.Action=="LV2_GPP_DIRTY" then
     P.Observe('ui','received')
-    if params.FactsChanged and shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
-    if params.FactsChanged and shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID})end
-    if params.FactsChanged and shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=playerID})end
-    if params.FactsChanged and shared.DialogueEffects then shared.DialogueEffects.Audit({player=playerID})end
-    if params.FactsChanged and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(playerID)end
-    if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    if params.FactsChanged and shared.CultureNetwork then shared.CultureNetwork.Mark(playerID)end
-    if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.Lv4Percent then shared.Lv4Percent.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
-    if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
-    if not (params.WorkerOnly==true and params.FactsChanged==false) and shared.CultureMeaningProbe then shared.CultureMeaningProbe.Audit({player=playerID})end
+    if params.FactsChanged and shared.CultureMeaning then SPCSafeCallbacks.Notify(shared,'CultureMeaning','Audit',{player=playerID})end
+    if params.FactsChanged and shared.CultureInspiration then SPCSafeCallbacks.Notify(shared,'CultureInspiration','Audit',{player=playerID})end
+    if params.FactsChanged and shared.CultureInsightsTourism then SPCSafeCallbacks.Notify(shared,'CultureInsightsTourism','Audit',{player=playerID})end
+    if params.FactsChanged and shared.DialogueEffects then SPCSafeCallbacks.Notify(shared,'DialogueEffects','Audit',{player=playerID})end
+    if params.FactsChanged and shared.ResearchTraditionEffects then SPCSafeCallbacks.Notify(shared,'ResearchTraditionEffects','Mark',playerID)end
+    if params.FactsChanged and shared.NetworkBridge then SPCSafeCallbacks.Notify(shared,'NetworkBridge','Refresh',playerID) end
+    if params.FactsChanged and shared.CultureNetwork then SPCSafeCallbacks.Notify(shared,'CultureNetwork','Mark',playerID)end
+    if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then SPCSafeCallbacks.Notify(shared,'Lv2Housing','Audit',{player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.Lv2GPP then SPCSafeCallbacks.Notify(shared,'Lv2GPP','Audit',{player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.Lv3Effects then SPCSafeCallbacks.Notify(shared,'Lv3Effects','Audit',{player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.Lv4Percent then SPCSafeCallbacks.Notify(shared,'Lv4Percent','Audit',{player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.ResearchInfrastructure then SPCSafeCallbacks.Notify(shared,'ResearchInfrastructure','Audit',{player=playerID}) end
+    if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.CultureAesthetic then SPCSafeCallbacks.Notify(shared,'CultureAesthetic','Audit',{player=playerID}) end
+    if not (params.WorkerOnly==true and params.FactsChanged==false) and shared.CultureMeaningProbe then SPCSafeCallbacks.Notify(shared,'CultureMeaningProbe','Audit',{player=playerID})end
     -- Cross has no worker/focus input. Missing/mixed/contradictory provenance retains the fallback.
-    if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
+    if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.ResearchCross then SPCSafeCallbacks.Notify(shared,'ResearchCross','Audit',{player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.ResearchApply then SPCSafeCallbacks.Notify(shared,'ResearchApply','Audit',{player=playerID}) end
+    if P.IsTestPlayer(playerID) and shared.ResearchChair then SPCSafeCallbacks.Notify(shared,'ResearchChair','Audit',{player=playerID}) end
     return
   end
   if params.Action=="NETWORK_PUSH" then
@@ -654,19 +657,20 @@ local function request(playerID,params)
     elseif type(params.PlanToken)=="string" and #params.PlanToken<=400 then
       shared.Snapshot,result=shared.InvestmentAction.Confirm(playerID,city,params.PlanToken)
     else shared.Snapshot="B033 REJECTED: PREPARE_FIRST" end
-    if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    refreshInvestmentSupport(playerID,result)
-    if shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
-    if shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
-    if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
-    if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
-    if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
-    if shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
-    if shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID,city=params.CityID})end
-    if shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=playerID,city=params.CityID})end
-    if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
-    if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
-    if shared.Lv3Effects then shared.Lv3Effects.Audit() end
+    shared.LastToken=params.Token -- primary result already returned; observers cannot revoke ACK
+    if shared.NetworkBridge then SPCSafeCallbacks.Notify(shared,'NetworkBridge','Refresh',playerID) end
+    SPCSafeCallbacks.Call(shared,'investment-support',refreshInvestmentSupport,playerID,result)
+    if shared.ResearchInfrastructure then SPCSafeCallbacks.Notify(shared,'ResearchInfrastructure','Audit',{player=playerID}) end
+    if shared.ResearchCross then SPCSafeCallbacks.Notify(shared,'ResearchCross','Audit',{player=playerID}) end
+    if shared.ResearchApply then SPCSafeCallbacks.Notify(shared,'ResearchApply','Audit',{player=playerID}) end
+    if shared.ResearchChair then SPCSafeCallbacks.Notify(shared,'ResearchChair','Audit',{player=playerID}) end
+    if shared.CultureAesthetic then SPCSafeCallbacks.Notify(shared,'CultureAesthetic','Audit',{player=playerID}) end
+    if shared.CultureMeaning then SPCSafeCallbacks.Notify(shared,'CultureMeaning','Audit',{player=playerID})end
+    if shared.CultureInspiration then SPCSafeCallbacks.Notify(shared,'CultureInspiration','Audit',{player=playerID,city=params.CityID})end
+    if shared.CultureInsightsTourism then SPCSafeCallbacks.Notify(shared,'CultureInsightsTourism','Audit',{player=playerID,city=params.CityID})end
+    if shared.ResearchSupport then SPCSafeCallbacks.Notify(shared,'ResearchSupport','Audit',{player=playerID}) end
+    if shared.IndustrySupport then SPCSafeCallbacks.Notify(shared,'IndustrySupport','Audit',{player=playerID}) end
+    if shared.Lv3Effects then SPCSafeCallbacks.Notify(shared,'Lv3Effects','Audit') end
     shared.LastToken=params.Token;stage("ACK INVESTMENT");return
   end
   if params.Action=="LV2_GPP_READ" then
@@ -765,7 +769,7 @@ GameEvents.SPC_P0_Request.Add(function(...)
   shared.RequestDepth=shared.RequestDepth-1
   if not ok then shared.FailureAt=shared.Stage;stage("ERROR "..P.Scalar(err)) end
 end)
-stage("INITIALIZED ISOLATED_PROBES USER_GAME_TEST_REQUIRED")
+-- Completion status is reported by the protected startup epilogue.
 
 -- Installed HD Gameplay/Buildings.lua:147 uses these first five parameters.
 -- Preserve evidence only; do not infer creation/destruction from activity callbacks.
@@ -788,249 +792,184 @@ if tradeEvent and type(tradeEvent.Add)=="function" then
   end)
 else stage("TRADE_ACTIVITY_EVENT_ABSENT") end
 
--- B004: automatic, read-only operation candidate diagnostics. No route authority.
-include("TradeRouteProbe")
-SPCTradeRouteProbe.Start(P,shared)
+-- Explicit ordered startup entries. Failure containment does not reorder dependencies.
+composition.Run('TradeRouteProbe',{},{'AutoRouteProbe','RouteSignalRevision'},function() include('TradeRouteProbe');SPCTradeRouteProbe.Start(P,shared) end)
 
--- B011 read-only completion lifecycle evidence. No state transitions.
-include("CompletionProbe")
-SPCCompletionProbe.Start(P,shared)
+composition.Run('CompletionProbe',{},{'CompletionProbe'},function() include('CompletionProbe');SPCCompletionProbe.Start(P,shared) end)
 
-include("StorageProbe")
-SPCStorageProbe.Start(P,shared)
+composition.Run('StorageProbe',{},{'StorageProbe'},function() include('StorageProbe');SPCStorageProbe.Start(P,shared) end)
 
-include("CityIdentityRead")
-include("CitySequenceProbe")
-SPCCitySequenceProbe.Start(P,shared)
+composition.Run('CityIdentityDefinition',{}, {},function()include('CityIdentityRead')end)
 
-include("CityProgressionStore")
-SPCCityProgressionStore.Start(P,shared)
-SPCYieldCarrierProbe.RegisterExit(shared)
+composition.Run('CitySequenceProbe',{},{'CitySequenceProbe'},function() include('CitySequenceProbe');SPCCitySequenceProbe.Start(P,shared) end)
 
-include("BindingProbe")
-SPCBindingProbe.Start(P,shared)
+composition.Run('CityProgressionStore',{'CityIdentityDefinition'},{'CityProgressionStore'},function() include('CityProgressionStore');SPCCityProgressionStore.Start(P,shared) end)
 
-include("CompletionRecordProbe")
-SPCCompletionRecordProbe.Start(P,shared)
+composition.Run('YieldCarrierExit',{'CityProgressionStore'},{},function() SPCYieldCarrierProbe.RegisterExit(shared) end)
 
-include("CityJournalProbe")
-SPCCityJournalProbe.Start(P,shared)
+composition.Run('BindingProbe',{'CityProgressionStore'},{'BindingProbe'},function() include('BindingProbe');SPCBindingProbe.Start(P,shared) end)
 
--- B016: automatic read-only qualification evidence; does not replace legacy gates.
-include("EligibilityProbe")
-SPCEligibilityProbe.Start(P,shared)
+composition.Run('CompletionRecordProbe',{'CityProgressionStore'},{'CompletionRecordProbe'},function() include('CompletionRecordProbe');SPCCompletionRecordProbe.Start(P,shared) end)
 
-include("QualificationProbe")
-SPCQualificationProbe.Start(P,shared)
+composition.Run('CityJournalProbe',{'CityProgressionStore'},{'CityJournalProbe'},function() include('CityJournalProbe');SPCCityJournalProbe.Start(P,shared) end)
 
-include("EnvelopeProbe")
-SPCEnvelopeProbe.Start(P,shared)
+composition.Run('EligibilityProbe',{},{'EligibilityProbe'},function() include('EligibilityProbe');SPCEligibilityProbe.Start(P,shared) end)
 
-include("FreshBindingHook")
-include("CityFlowProbe")
-SPCCityFlowProbe.Start(P,shared)
+composition.Run('QualificationProbe',{},{'QualificationProbe'},function() include('QualificationProbe');SPCQualificationProbe.Start(P,shared) end)
 
-include("EffectiveFacts")
-SPCEffectiveFacts.Start(P,shared)
-SPCResearchTradition.Start(P,shared)
-include('ResearchTraditionEffects')
-SPCResearchTraditionEffects.Start(P,shared)
+composition.Run('EnvelopeProbe',{},{'EnvelopeProbe'},function() include('EnvelopeProbe');SPCEnvelopeProbe.Start(P,shared) end)
 
--- P0-A shared facts and pure shadow consumer; no old writer is replaced.
-include("OrdinaryBuildingCatalog")
-include("DistrictCompleteness")
-include("CurrentSpecializationFacts")
-include("ResearchInfrastructureShadow")
-SPCDistrictCompleteness.Start(P,shared)
+composition.Run('CityFlowProbe',{'CityProgressionStore'},{'CityFlowProbe'},function() include('FreshBindingHook');include('CityFlowProbe');SPCCityFlowProbe.Start(P,shared) end)
 
-include("InvestmentAction")
-SPCInvestmentAction.Start(P,shared)
+composition.Run('EffectiveFacts',{'CityFlowProbe','CityProgressionStore'},{'EffectiveFacts'},function() include('EffectiveFacts');SPCEffectiveFacts.Start(P,shared) end)
 
-include("ResearchSupport")
-SPCResearchSupport.Start(P,shared)
-include("Lv2Housing")
-SPCLv2Housing.Start(P,shared)
-include("Lv2GPP")
-SPCLv2GPP.Start(P,shared)
-pcall(function()include('CarrierHealthTrace');SPCCarrierHealthTrace.Start(P,shared)end)
+composition.Run('ResearchTradition',{'CityProgressionStore'},{'ResearchTradition'},function() SPCResearchTradition.Start(P,shared) end)
 
-include("NetworkBridge")
-SPCNetworkBridge.Start(P,shared)
+composition.Run('ResearchTraditionEffects',{'CityProgressionStore','ResearchTradition','EffectiveFacts'},{'ResearchTraditionEffects'},function() include('ResearchTraditionEffects');SPCResearchTraditionEffects.Start(P,shared) end)
 
-include("IndustrySupport")
-SPCIndustrySupport.Start(P,shared)
+composition.Run('DistrictCompleteness',{},{'DistrictCompleteness'},function() include('OrdinaryBuildingCatalog');include('DistrictCompleteness');include('CurrentSpecializationFacts');include('ResearchInfrastructureShadow');SPCDistrictCompleteness.Start(P,shared) end)
 
-include("Lv3Support")
-SPCLv3Support.Start(P,shared)
+composition.Run('InvestmentAction',{'CityProgressionStore','EffectiveFacts'},{'InvestmentAction'},function() include('InvestmentAction');SPCInvestmentAction.Start(P,shared) end)
 
-include("Lv3Effects")
-SPCLv3Effects.Start(P,shared,{retireCommerce=true})
+composition.Run('ResearchSupport',{'EffectiveFacts'},{'ResearchSupport'},function() include('ResearchSupport');SPCResearchSupport.Start(P,shared) end)
 
-include("ConstructionProbe")
-SPCConstructionProbe.Start(P,shared)
+composition.Run('Lv2Housing',{'EffectiveFacts','DistrictCompleteness'},{'Lv2Housing'},function() include('Lv2Housing');SPCLv2Housing.Start(P,shared) end)
 
-include("UnitActionSitePolicy")
-include("UnitSiteProbe")
-SPCUnitSiteProbe.Start(P,shared)
+composition.Run('Lv2GPP',{'EffectiveFacts'},{'Lv2GPP'},function() include('Lv2GPP');SPCLv2GPP.Start(P,shared) end)
 
-include("UnitTargets")
-SPCUnitTargets.Start(P,shared)
+composition.Run('CarrierHealthTrace',{},{'CarrierHealthTrace'},function() include('CarrierHealthTrace');SPCCarrierHealthTrace.Start(P,shared) end)
 
-include("UnitActions")
-SPCUnitActions.Start(P,shared)
+composition.Run('NetworkBridge',{'TradeRouteProbe','EffectiveFacts'},{'NetworkBridge'},function() include('NetworkBridge');SPCNetworkBridge.Start(P,shared) end)
 
-include("CrewProjects")
-SPCCrewProjects.Start(P,shared)
+composition.Run('IndustrySupport',{'EffectiveFacts','CityProgressionStore'},{'IndustrySupport'},function() include('IndustrySupport');SPCIndustrySupport.Start(P,shared) end)
 
-include("CrewPrecision")
-SPCCrewPrecision.Start(P,shared)
+composition.Run('Lv3Support',{'EffectiveFacts'},{'Lv3Support'},function() include('Lv3Support');SPCLv3Support.Start(P,shared) end)
 
-include("Lv4Percent")
-SPCLv4Percent.Start(P,shared)
-include("ResearchInfrastructure")
-SPCResearchInfrastructure.Start(P,shared)
+composition.Run('Lv3Effects',{'EffectiveFacts'},{'Lv3Effects'},function() include('Lv3Effects');SPCLv3Effects.Start(P,shared,{retireCommerce=true}) end)
 
-include("ResearchCross")
-SPCResearchCross.Start(P,shared)
-include("ResearchApply")
-SPCResearchApply.Start(P,shared)
-include("ResearchChair")
-SPCResearchChair.Start(P,shared)
-include("HalfYieldProbe")
-SPCHalfYieldProbe.Start(P,shared)
+composition.Run('ConstructionProbe',{},{'ConstructionProbe'},function() include('ConstructionProbe');SPCConstructionProbe.Start(P,shared) end)
 
-include("CopyYields")
-SPCCopyYields.Start(P,shared,{retired=true})
+composition.Run('UnitSiteProbe',{},{'UnitSiteProbe'},function() include('UnitActionSitePolicy');include('UnitSiteProbe');SPCUnitSiteProbe.Start(P,shared) end)
 
-include("IndustryHistory")
-SPCIndustryHistory.Start(P,shared)
+composition.Run('UnitTargets',{'EffectiveFacts','UnitSiteProbe'},{'UnitTargets'},function() include('UnitTargets');SPCUnitTargets.Start(P,shared) end)
 
-include("StandardizationCatalog")
-include("Standardization")
-SPCStandardization.Start(P,shared)
+composition.Run('UnitActions',{'CityProgressionStore','InvestmentAction','ConstructionProbe','UnitTargets'},{'UnitActions'},function() include('UnitActions');SPCUnitActions.Start(P,shared) end)
 
-include("PurchaseProbe")
-SPCPurchaseProbe.Start(P,shared)
+composition.Run('CrewProjects',{'CityProgressionStore','EffectiveFacts'},{'CrewProjects'},function() include('CrewProjects');SPCCrewProjects.Start(P,shared) end)
 
-include("StandardizationDiscount")
-SPCStandardizationDiscount.Start(P,shared,{retired=true})
-include("StandardizationEffects")
-SPCStandardizationEffects.Start(P,shared)
+composition.Run('CrewPrecision',{'UnitActions','UnitTargets','CrewProjects','ConstructionProbe'},{'CrewPrecision'},function() include('CrewPrecision');SPCCrewPrecision.Start(P,shared) end,{{shared.UnitActions,'Run'}})
 
-include("NetworkBoost")
-SPCNetworkBoost.Start(P,shared,{retired=true})
-include("GreatWorkProbe")
-SPCGreatWorkProbe.Start(P,shared)
+composition.Run('Lv4Percent',{'EffectiveFacts'},{'Lv4Percent'},function() include('Lv4Percent');SPCLv4Percent.Start(P,shared) end)
 
-include("GreatWorkFacts")
-SPCGreatWorkFacts.Start(P,shared)
-include('CultureAesthetic')
-SPCCultureAesthetic.Start(P,shared)
+composition.Run('ResearchInfrastructure',{'EffectiveFacts','DistrictCompleteness'},{'ResearchInfrastructure'},function() include('ResearchInfrastructure');SPCResearchInfrastructure.Start(P,shared) end)
 
-include("Dialogue")
-SPCDialogue.Start(P,shared)
+composition.Run('ResearchCross',{'EffectiveFacts'},{'ResearchCross'},function() include('ResearchCross');SPCResearchCross.Start(P,shared) end)
 
-include("GreatWorkAdjacency")
-SPCGWAdjacency.Start(P,shared,{retired=true})
-include('CultureMeaning')
-SPCCultureMeaning.Start(P,shared)
-include('CultureInspirationProbe')
-SPCCultureInspirationProbe.Start(P,shared,{retired=true})
-include('CultureInspiration')
-SPCCultureInspiration.Start(P,shared)
+composition.Run('ResearchApply',{'EffectiveFacts','DistrictCompleteness'},{'ResearchApply'},function() include('ResearchApply');SPCResearchApply.Start(P,shared) end)
 
-include("CommerceConvergence")
-SPCCommerceConvergence.Start(P,shared,{retired=true})
+composition.Run('ResearchChair',{'EffectiveFacts','DistrictCompleteness'},{'ResearchChair'},function() include('ResearchChair');SPCResearchChair.Start(P,shared) end)
 
--- B067: ownership work is isolated for the self-founded-city playable scope.
--- Keep source and saved ledgers intact; no inheritance/backup listeners are installed.
+composition.Run('HalfYieldProbe',{},{'HalfYieldProbe'},function() include('HalfYieldProbe');SPCHalfYieldProbe.Start(P,shared) end)
+
+composition.Run('CopyYields',{},{'CopyYields'},function() include('CopyYields');SPCCopyYields.Start(P,shared,{retired=true}) end)
+
+composition.Run('IndustryHistory',{'CityProgressionStore'},{'IndustryHistory'},function() include('IndustryHistory');SPCIndustryHistory.Start(P,shared) end)
+
+composition.Run('Standardization',{'CityProgressionStore','EffectiveFacts'},{'Standardization'},function() include('StandardizationCatalog');include('Standardization');SPCStandardization.Start(P,shared) end)
+
+composition.Run('PurchaseProbe',{},{'PurchaseProbe'},function() include('PurchaseProbe');SPCPurchaseProbe.Start(P,shared) end)
+
+composition.Run('StandardizationDiscount',{},{'StandardizationDiscount'},function() include('StandardizationDiscount');SPCStandardizationDiscount.Start(P,shared,{retired=true}) end)
+
+composition.Run('StandardizationEffects',{'CityProgressionStore','Standardization','NetworkBridge','EffectiveFacts','CopyYields','StandardizationDiscount'},{'StandardizationEffects'},function() include('StandardizationEffects');SPCStandardizationEffects.Start(P,shared) end)
+
+composition.Run('NetworkBoost',{},{'NetworkBoost'},function() include('NetworkBoost');SPCNetworkBoost.Start(P,shared,{retired=true}) end)
+
+composition.Run('GreatWorkProbe',{},{'GreatWorkProbe'},function() include('GreatWorkProbe');SPCGreatWorkProbe.Start(P,shared) end)
+
+composition.Run('GreatWorkFacts',{},{'GreatWorkFacts'},function() include('GreatWorkFacts');SPCGreatWorkFacts.Start(P,shared) end)
+
+composition.Run('CultureAesthetic',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Lv3Effects','Lv4Percent'},{'CultureAesthetic'},function() include('CultureAesthetic');SPCCultureAesthetic.Start(P,shared) end)
+
+composition.Run('Dialogue',{'GreatWorkFacts'},{'Dialogue'},function() include('Dialogue');SPCDialogue.Start(P,shared) end)
+
+composition.Run('GreatWorkAdjacency',{},{'GreatWorkAdjacency'},function() include('GreatWorkAdjacency');SPCGWAdjacency.Start(P,shared,{retired=true}) end)
+
+composition.Run('CultureMeaning',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','GreatWorkAdjacency','Dialogue'},{'CultureMeaning'},function() include('CultureMeaning');SPCCultureMeaning.Start(P,shared) end)
+
+composition.Run('CultureInspirationProbe',{},{'CultureInspirationProbe'},function() include('CultureInspirationProbe');SPCCultureInspirationProbe.Start(P,shared,{retired=true}) end)
+
+composition.Run('CultureInspiration',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','CultureInspirationProbe'},{'CultureInspiration'},function() include('CultureInspiration');SPCCultureInspiration.Start(P,shared) end)
+
+composition.Run('CommerceConvergence',{},{'CommerceConvergence'},function() include('CommerceConvergence');SPCCommerceConvergence.Start(P,shared,{retired=true}) end)
+
+
+-- Preserve the deliberate legacy-inheritance isolation boundary and observer order.
 shared.CityInheritanceRead=nil
 shared.InheritanceShadow=nil
 shared.CityInheritance=nil
 shared.OnPermanentCityWrite=nil
 shared.InheritanceIsolation=true
 
--- Formal Claim must not depend on initialization of optional historical experiments.
-local claimOK,claimError=pcall(function()include("ClaimProjects");SPCClaimProjects.Start(P,shared)end)
-if not claimOK then
- shared.ClaimProjects=shared.ClaimProjects or {views={},revision=0}
- shared.ClaimProjects.startupError=tostring(claimError):gsub('^.-:%d+: ',''):match('[^\r\n]+')
- print('[SPC][Claim startup] '..tostring(claimError))
-end
 
--- Register after the explicit legacy-inheritance reset and Claim's wrapper.
-shared.IndustrySupport.BindPermanentWrites()
-include('EngineeringStudyProjects')
-SPCEngineeringStudyProjects.Start(P,shared)
-include('IndustryWonderEffects')
-SPCIndustryWonderEffects.Start(P,shared)
-shared.CrewProjects.BindPermanentWrites()
-include('Commerce')
-SPCCommerce.Start(P,shared)
-shared.Commerce.BindPermanentWrites()
-include('CapitalInvestment')
-SPCCapitalInvestment.Start(P,shared)
-include('DevelopmentInvestment')
-SPCDevelopmentInvestment.Start(P,shared)
+composition.Run('ClaimProjects',{'CityProgressionStore'},{'ClaimProjects'},function() include('ClaimProjects');SPCClaimProjects.Start(P,shared) end)
 
-local dialogueOK,dialogueError=pcall(function()include('DialogueProjects');SPCDialogueProjects.Start(P,shared)end)
-if not dialogueOK then
- shared.DialogueProjects=shared.DialogueProjects or {views={},syncAck={},revision=0}
- shared.DialogueProjects.startupError=tostring(dialogueError)
- print('[SPC][Dialogue project startup] '..tostring(dialogueError))
-end
+composition.Run('IndustrySupportBind',{'IndustrySupport'},{},function() shared.IndustrySupport.BindPermanentWrites() end)
 
--- New effect failure must not restore the retired dynamic writer.
-shared.Dialogue.retired=true
-local effectOK,effectError=pcall(function()include('DialogueEffects');SPCDialogueEffects.Start(P,shared)end)
-if not effectOK then
- shared.DialogueEffects=shared.DialogueEffects or {}
- shared.DialogueEffects.startupError=tostring(effectError)
- print('[SPC][Dialogue effect startup] '..tostring(effectError))
-end
+composition.Run('EngineeringStudyProjects',{'CityProgressionStore','EffectiveFacts','IndustryHistory'},{'EngineeringStudy'},function() include('EngineeringStudyProjects');SPCEngineeringStudyProjects.Start(P,shared) end)
 
--- Independent read-only evidence; never start the isolated inheritance writers.
-SPCCityIdentityRead.Start(P,shared)
+composition.Run('IndustryWonderEffects',{'CityProgressionStore','EffectiveFacts'},{'IndustryWonderEffects'},function() include('IndustryWonderEffects');SPCIndustryWonderEffects.Start(P,shared) end)
 
-include("CityIdentityExperiment")
-include("CityIdentityMapping")
-SPCCityIdentityMapping.Start(P,shared)
+composition.Run('CrewProjectsBind',{'CrewProjects'},{},function() shared.CrewProjects.BindPermanentWrites() end)
 
-include("TimedProductionProbe")
-SPCTimedProductionProbe.Start(P,shared)
+composition.Run('Commerce',{'CityProgressionStore','EffectiveFacts','NetworkBridge','CommerceConvergence'},{'Commerce'},function() include('Commerce');SPCCommerce.Start(P,shared) end)
 
-include("OverflowStorageProbe")
-SPCOverflowStorageProbe.Start(P,shared)
+composition.Run('CommerceBind',{'Commerce'},{},function() shared.Commerce.BindPermanentWrites() end)
 
-include("ProjectTurnObservation")
-SPCProjectTurnObservation.Start(P,shared)
-include("TimedProject")
-SPCTimedProject.Start(P,shared)
+composition.Run('CapitalInvestment',{'CityProgressionStore','EffectiveFacts','Commerce','NetworkBridge'},{'CapitalInvestment'},function() include('CapitalInvestment');SPCCapitalInvestment.Start(P,shared) end)
 
-include("NetworkIsolation")
-SPCNetworkIsolation.Start(P,shared)
-SPCPerformance.StartMemory(P,shared)
+composition.Run('DevelopmentInvestment',{'CityProgressionStore','EffectiveFacts','NetworkBridge'},{'DevelopmentInvestment'},function() include('DevelopmentInvestment');SPCDevelopmentInvestment.Start(P,shared) end)
 
--- N2 derived local Tourism; permanent Insight history stays in CityProgressionStore.
-include('CultureInsightsTourism')
-SPCCultureInsightsTourism.Start(P,shared)
-include('CultureNetwork')
-SPCCultureNetwork.Start(P,shared)
--- Existing Expedition request/task lifecycle; no automatic mission dispatch.
-include('ExpeditionSpyStore')
-include('ExpeditionSpyGate')
-SPCExpeditionSpyGate.Start(P,shared)
--- B220: B219 movement experiment retained as inactive research; no request handler.
-include('ExpeditionTraining')
-SPCExpeditionTraining.Start(P,shared)
+composition.Run('DialogueProjects',{'CityProgressionStore','EffectiveFacts','GreatWorkFacts'},{'DialogueProjects'},function() include('DialogueProjects');SPCDialogueProjects.Start(P,shared) end)
 
-include("Restructuring")
-SPCRestructuring.Start(P,shared)
+-- New effect failure never reactivates the retired Dialogue writer.
+if shared.Dialogue then shared.Dialogue.retired=true end
 
--- B254 read-only banner projection, installed after existing permanent-write observers.
-include('LevelBannerState')
-SPCLevelBannerState.Start(P,shared)
+composition.Run('DialogueEffects',{'CityProgressionStore','Dialogue'},{'DialogueEffects'},function() include('DialogueEffects');SPCDialogueEffects.Start(P,shared) end)
 
+composition.Run('CityIdentityRead',{},{'CityIdentityRead'},function() SPCCityIdentityRead.Start(P,shared) end)
+
+composition.Run('CityIdentityMapping',{},{'CityIdentityExperiment'},function() include('CityIdentityExperiment');include('CityIdentityMapping');SPCCityIdentityMapping.Start(P,shared) end)
+
+composition.Run('TimedProductionProbe',{},{'TimedProductionProbe'},function() include('TimedProductionProbe');SPCTimedProductionProbe.Start(P,shared) end)
+
+composition.Run('OverflowStorageProbe',{},{'OverflowStorageProbe'},function() include('OverflowStorageProbe');SPCOverflowStorageProbe.Start(P,shared) end)
+
+composition.Run('ProjectTurnObservation',{},{'ProjectTurnObservation'},function() include('ProjectTurnObservation');SPCProjectTurnObservation.Start(P,shared) end)
+
+composition.Run('TimedProject',{},{'TimedProject'},function() include('TimedProject');SPCTimedProject.Start(P,shared) end)
+
+composition.Run('NetworkIsolation',{'NetworkBridge'},{'NetworkIsolation'},function() include('NetworkIsolation');SPCNetworkIsolation.Start(P,shared) end)
+
+composition.Run('MemoryObservation',{},{'MemoryObservation','MemoryEvidence'},function() SPCPerformance.StartMemory(P,shared) end)
+
+composition.Run('CultureInsightsTourism',{'CityProgressionStore','EffectiveFacts'},{'CultureInsightsTourism'},function() include('CultureInsightsTourism');SPCCultureInsightsTourism.Start(P,shared) end)
+
+composition.Run('CultureNetwork',{'CityProgressionStore','EffectiveFacts','NetworkBridge'},{'CultureNetwork'},function() include('CultureNetwork');SPCCultureNetwork.Start(P,shared) end)
+
+composition.Run('ExpeditionSpyGate',{'CityProgressionStore','EffectiveFacts'},{'ExpeditionGate'},function() include('ExpeditionSpyStore');include('ExpeditionSpyGate');SPCExpeditionSpyGate.Start(P,shared) end)
+
+composition.Run('ExpeditionTraining',{'ExpeditionSpyGate','CityProgressionStore','EffectiveFacts'},{'ExpeditionTraining'},function() include('ExpeditionTraining');SPCExpeditionTraining.Start(P,shared) end)
+
+composition.Run('Restructuring',{'CityProgressionStore','EffectiveFacts'},{'Restructuring'},function() include('Restructuring');SPCRestructuring.Start(P,shared) end,{{ExposedMembers,'SPC_RestructuringViews'}})
+
+composition.Run('LevelBannerState',{'CityProgressionStore','EffectiveFacts'},{'LevelBanners'},function() include('LevelBannerState');SPCLevelBannerState.Start(P,shared) end)
+
+
+-- Composition completion is diagnostic; it does not assert Store/effects readiness.
+local startupFailures=composition.Complete()
+pcall(stage,startupFailures==0 and 'INITIALIZED ISOLATED_PROBES USER_GAME_TEST_REQUIRED'
+ or ('INITIALIZED_PARTIAL STARTUP_FAILURES='..startupFailures..' USER_GAME_TEST_REQUIRED'))
 if readiness then pcall(readiness.Seal)end
 
 -- Install after original listeners; observational append only.

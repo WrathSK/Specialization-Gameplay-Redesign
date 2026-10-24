@@ -126,7 +126,7 @@ function M.Start(P,shared)
   return ok and text or ('学以致用：暂不可确认，保留上次配置。\n'..(tostring(text):match('AP_[A-Z_]+') or '接口未就绪'))
  end
  local function bind(src,n,f) local e=P.Field(src,n);if e and e.Add then e.Add(f) end end
- bind(Events,'LoadScreenClose',function() definitions=nil;data.ready=true;data.errors={};data.Audit() end)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchApply',function()definitions=nil;data.ready=true;data.errors={};data.Audit()end)
  -- Shared D/P0-C registers first and owns depth invalidation. Do not re-dirty a
  -- fresh snapshot here: both consumers reuse it during the same native event.
  for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',

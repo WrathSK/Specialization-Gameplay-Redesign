@@ -1,13 +1,14 @@
 -- Explicit production-list selection -> one confirmed begin request. No load/hover activation.
 SPCTimedProjectSelection={}
 function SPCTimedProjectSelection.New(P,send,notify)
- local api={};local pending=nil;local seen=nil;local shownPending=nil
+ local api={};local pending=nil;local seen=nil;local shownPending=nil;local ownedPublication
+ local function publish(value)ownedPublication=value;ExposedMembers.SPC_TimedProjectSelection=value end
  -- This field is UI presentation, not a timer authority. A new UI context must
  -- not inherit an earlier session's rejection or pending click.
- ExposedMembers.SPC_TimedProjectSelection=nil
+ publish(nil)
  local function expose(status,reason)
   if not pending then return end
-  ExposedMembers.SPC_TimedProjectSelection={owner=pending.owner,id=pending.id,token=pending.token,status=status,reason=reason,queueSize=pending.queueSize}
+  publish({owner=pending.owner,id=pending.id,token=pending.token,status=status,reason=reason,queueSize=pending.queueSize})
  end
  function api.Before(c,item)
   if not item or item.Type~="PROJECT_SPC_OVERFLOW_SINK_TEST" then
@@ -21,7 +22,7 @@ function SPCTimedProjectSelection.New(P,send,notify)
   if pending then return false end
   if g and (g.status=="ACTIVE" or g.status=="CONFIRMING") then
    -- This batch retains the single-city boundary. Never silently replace its timer.
-   ExposedMembers.SPC_TimedProjectSelection={owner=c:GetOwner(),id=c:GetID(),status="ERROR",reason="当前已有一个项目计时；本批仅支持单城实验"}
+   publish({owner=c:GetOwner(),id=c:GetID(),status="ERROR",reason="当前已有一个项目计时；本批仅支持单城实验"})
    notify(c:GetOwner(),c:GetID());return false
   end
   ExposedMembers.SPC_TimedProjectSerial=(ExposedMembers.SPC_TimedProjectSerial or 0)+1
@@ -70,6 +71,10 @@ function SPCTimedProjectSelection.New(P,send,notify)
    local signature=g.token..":"..g.status..":"..tostring(g.deactivated)
    if signature~=seen then seen=signature;notify(g.owner,g.id)end
   end
+ end
+ function api.Close()
+  if ownedPublication~=nil and ExposedMembers.SPC_TimedProjectSelection==ownedPublication then ExposedMembers.SPC_TimedProjectSelection=nil end
+  pending=nil;ownedPublication=nil
  end
  return api
 end

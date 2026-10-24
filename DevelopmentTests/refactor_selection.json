@@ -12,6 +12,12 @@
     ],
     "S2b": [
       "test_refactor_defects"
+    ],
+    "S3": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3"
     ]
   },
   "counterexamples": {
@@ -31,18 +37,6 @@
       "code": "S4_PENDING_RETRY_STORM",
       "owner_stage": "S4"
     },
-    "test_refactor_defects.Defects.test_investment_commit_ack_and_sibling_survive_observer_failure": {
-      "code": "S3_COMMIT_ACK_LOST",
-      "owner_stage": "S3"
-    },
-    "test_refactor_defects.Defects.test_late_start_failure_does_not_abort_siblings_or_seal": {
-      "code": "S3_START_CHAIN_ABORTED",
-      "owner_stage": "S3"
-    },
-    "test_refactor_defects.Defects.test_adapter_failure_preserves_native_rows_and_siblings": {
-      "code": "S3_ADAPTER_ABORTED_NATIVE_LIST",
-      "owner_stage": "S3"
-    },
     "test_refactor_defects.Defects.test_greatwork_nil_active_does_not_invalidate_other_city_facts": {
       "code": "S4_GW_NIL_ACTIVE_ABORT",
       "owner_stage": "S4"
@@ -54,10 +48,6 @@
     "test_refactor_defects.Defects.test_commerce_carrier_present_across_network_pending": {
       "code": "S4_COMMERCE_PENDING_WITHDRAWAL",
       "owner_stage": "S4"
-    },
-    "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity": {
-      "code": "S3_POST_COMMIT_OBSERVER_FAILURE",
-      "owner_stage": "S3"
     },
     "test_refactor_defects.Defects.test_equal_value_proof_recovery_notifies_consumers": {
       "code": "S4_RECOVERY_NOT_NOTIFIED",
@@ -114,6 +104,21 @@
     ],
     "Mod/CarrierHealthTrace.lua": [
       "test_refactor_attribution"
+    ],
+    "Mod/RuntimeComposition.lua": [
+      "test_refactor_s3"
+    ],
+    "Mod/SafeCallbacks.lua": [
+      "test_refactor_s3"
+    ],
+    "Mod/ReadinessSummary.lua": [
+      "test_refactor_s3"
+    ],
+    "Mod/UI/SafeAdapters.lua": [
+      "test_refactor_s3"
+    ],
+    "Mod/UI/TimedProjectSelection.lua": [
+      "test_refactor_s3"
     ]
   },
   "exclusions": {

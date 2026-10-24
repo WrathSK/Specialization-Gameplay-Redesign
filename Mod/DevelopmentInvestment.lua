@@ -1,3 +1,4 @@
+include('SafeCallbacks')
 include('DevelopmentInvestmentModel')
 include('DevelopmentInvestmentCatalog')
 include('CommerceModel')
@@ -338,7 +339,6 @@ function SPCDevelopmentInvestment.Start(P,shared)
   store.RemoveOwned(c,loss,names);d.Mark(loss.origin.owner)
  end)
  store.RegisterReturn('DevelopmentInvestment',function(pid,c)invalidate(pid,c:GetID())end)
- local previous=shared.OnPermanentCityWrite
- shared.OnPermanentCityWrite=function(c,reason)if previous then previous(c,reason)end;if c then invalidate(c:GetOwner(),c:GetID())end end
+ SPCSafeCallbacks.Chain(shared,'DevelopmentInvestment',function(c,reason)if c then invalidate(c:GetOwner(),c:GetID())end end)
  return d
 end

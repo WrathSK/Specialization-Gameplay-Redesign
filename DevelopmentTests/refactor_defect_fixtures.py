@@ -17,7 +17,7 @@ def gc():
     return case.l
 
 def request_context():
-    c=Context();c.execute("P={Scalar=tostring,IsTestPlayer=function(pid)return pid==0 end};shared={};stage=function()end;refreshInvestmentSupport=function()end;city={GetOwner=function()return 0 end};Players={[0]={GetCities=function()return {FindID=function()return city end}end}}")
+    c=Context();c.load('SafeCallbacks');c.execute("P={Scalar=tostring,IsTestPlayer=function(pid)return pid==0 end};shared={};stage=function()end;refreshInvestmentSupport=function()end;city={GetOwner=function()return 0 end};Players={[0]={GetCities=function()return {FindID=function()return city end}end}}")
     c.execute(c.fragment('Mod/Gameplay.lua','local function request(playerID,params)','GameEvents.SPC_P0_Request.Add')+'\nrunRequest=request')
     return c
 
@@ -79,7 +79,7 @@ PlayerOperations={EXECUTE_SCRIPT=1};UI={RequestPlayerOperation=function(pid,op,p
     c.load('UI/DialogueRefresh');c.execute('init()')
     return c
 
-def panel():
+def panel(extra=""):
     c=Context('UI');c.execute(r"""
 SPCP0={};SPCRestructuringUI={ObserveTraining=function()end};PlayerOperations={};UI={RequestPlayerOperation=function()end,GetHeadSelectedCity=function()end}
 nativeAdvances=0;siblings=0
@@ -100,7 +100,8 @@ end
     symbols=['TimedProjectSelection','ClaimProjectUI','DialogueProjectUI','EngineeringStudyUI','CapitalInvestmentUI','DevelopmentInvestmentUI','CommerceUI','CrewProjectUI','ExpeditionTrainingUI']
     for name in symbols:c.execute('_G[...]=adapter(select(2,...))','SPC'+name,name)
     def include(name):
-        if name in ('SafeAdapters','UI/SafeAdapters') and (ROOT/'Mod'/(name+'.lua')).exists():return c.load(name)
+        if name in ('SafeAdapters','UI/SafeAdapters'):return c.load('UI/SafeAdapters')
+    if extra:c.execute(extra)
     c.globals().include=include;c.load('UI/CrewProjectOrder');return c
 
 def store_completion():

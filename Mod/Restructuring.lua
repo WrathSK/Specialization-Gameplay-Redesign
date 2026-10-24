@@ -1,3 +1,4 @@
+include('SafeCallbacks')
 -- B249 event-driven startup; B247 team admission and transaction rules retained.
 include('RestructuringModel')
 SPCRestructuring={ACCESS='BUILDING_SPC_RESTRUCTURING_ACCESS',DISRUPTION='BUILDING_SPC_REALLOCATING'}
@@ -308,11 +309,9 @@ function SPCRestructuring.Start(P,shared)
   for pid in pairs(Players)do if P.IsTestPlayer(pid)then mark(pid)end end;d.Flush('LOAD_EVENT')
   log('REST_LOAD_RETURNED')
  end)
- local prior=shared.OnPermanentCityWrite
- shared.OnPermanentCityWrite=function(c,reason)
-  if prior then prior(c,reason)end
+ SPCSafeCallbacks.Chain(shared,'Restructuring',function(c,reason)
   if c then mark(c:GetOwner(),c:GetID());if reason=='Restructuring' then publication[key(c:GetOwner(),c:GetID())]=c end end
- end
+ end)
  store.RegisterExit('Restructuring',function(c,loss)
   for k,r in pairs(recovery)do if r.x==c:GetX() and r.y==c:GetY()then recovery[k]=nil end end
   store.RemoveOwned(c,loss,{S.ACCESS,S.DISRUPTION})

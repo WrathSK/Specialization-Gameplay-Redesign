@@ -1,3 +1,4 @@
+include('SafeCallbacks')
 -- Four concrete Claim projects. The city progression record owns all saved state.
 SPCClaimProjects={}
 function SPCClaimProjects.Start(P,shared)
@@ -199,8 +200,7 @@ function SPCClaimProjects.Start(P,shared)
   mark(pid,id)
  end)end
  for _,name in ipairs({'CityProductionUpdated','CityTransfered','CityInitialized'})do hook(name,mark)end
- local previous=shared.OnPermanentCityWrite
- shared.OnPermanentCityWrite=function(c,reason)if previous then previous(c,reason)end;mark(c:GetOwner(),c:GetID())end
+ SPCSafeCallbacks.Chain(shared,'ClaimProjects',function(c,reason)mark(c:GetOwner(),c:GetID())end)
  store.RegisterExit('ClaimProjects',function(c,loss)
   store.RemoveOwned(c,loss,markers)
   local k=key(loss.origin.owner,loss.origin.cityID);active[k]=nil;dirty[k]=nil;publish(loss.origin.owner,loss.origin.cityID,nil)

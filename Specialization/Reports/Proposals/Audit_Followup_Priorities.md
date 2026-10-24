@@ -53,6 +53,8 @@ B272 S2 complete: [actual results and execution closure](../../Status/Validation
 
 #### S3 — Composition and readiness
 
+B273 S3 complete: [actual scope, results and execution closure](../../Status/Validation/Results/Specialization_B273_Refactor_S3.md). Four S2 S3 gates now pass unchanged,23 additional cases pass. Original rows below retain their before basis; no global-audit or native-PASS claim.
+
 | Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
 |---|---|---|
 | Startup isolation / F05,C052 | CHANGED: a few protected starts exist, but `Gameplay.lua:768` announces INITIALIZED before mostly unprotected `793–974`; seal `1034` can be skipped. | Preserve TradeRouteProbe793→NetworkBridge858, InspirationProbe938→Inspiration940, Dialogue931→retired984; D-3 skip dependents, protected epilogue. |

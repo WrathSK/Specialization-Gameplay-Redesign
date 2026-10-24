@@ -491,7 +491,10 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c);return r.restructuring and cp(r.restructuring.established) or nil
  end
  local function publishIdentity(c)
-  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Restructuring')end
+  if shared.OnPermanentCityWrite then
+   local notified,why=pcall(shared.OnPermanentCityWrite,c,'Restructuring')
+   if not notified then shared.PermanentWriteObserverError=tostring(why)end
+  end
  end
  function d.BeginRestructuring(pid,c,team,receipt)
   assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c)
@@ -603,7 +606,10 @@ local function CreateProgressionRecord(P,shared,storage)
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
   if n.current then n.currentFirst=cp(n.base.first)end
   n.revision=n.revision+1;save(n)
-  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'CityProgressionStore.lua')end
+  if shared.OnPermanentCityWrite then
+   local notified,why=pcall(shared.OnPermanentCityWrite,c,'CityProgressionStore.lua')
+   if not notified then shared.PermanentWriteObserverError=tostring(why)end
+  end
  end
  -- Claim state belongs to the existing city record, not UI or a second property.
  function d.ClaimState(pid,c)
@@ -649,7 +655,10 @@ local function CreateProgressionRecord(P,shared,storage)
   -- Receipt retains the historical record anchor; active requests use current reference.
   n.claim={version=1,token=e.token,reference=cp(r.origin),kind=e.kind,project=e.project,turn=e.turn}
   n.claimTimer=nil;n.revision=n.revision+1;save(n)
-  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'ClaimProjects.lua')end
+  if shared.OnPermanentCityWrite then
+   local notified,why=pcall(shared.OnPermanentCityWrite,c,'ClaimProjects.lua')
+   if not notified then shared.PermanentWriteObserverError=tostring(why)end
+  end
   return true
  end
  local function activate(c)
@@ -1503,7 +1512,10 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     break -- all buffered rows were qualified at delivery; only the first can lock
    end
    assert(not q.error,q.error)
-   if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'CityProgressionStore.lua')end
+   if shared.OnPermanentCityWrite then
+   local notified,why=pcall(shared.OnPermanentCityWrite,c,'CityProgressionStore.lua')
+   if not notified then shared.PermanentWriteObserverError=tostring(why)end
+  end
   end)
   q.committing=false
   if not ok then

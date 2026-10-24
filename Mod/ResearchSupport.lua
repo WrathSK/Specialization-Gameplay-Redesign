@@ -52,7 +52,7 @@ function SPCResearchSupport.Start(P,shared)
    ..'\nRead only; ON/OFF aliases cannot enable the retired III upgrade.'
  end
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
- hook(Events,'LoadScreenClose',function() data.ready=true;data.errors={};data.Audit({load=true}) end)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchSupport',function() data.ready=true;data.errors={};data.Audit({load=true})end)
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictRemovedFromMap','DistrictBuildProgressChanged',
   'GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','DistrictPillaged','DistrictRepaired'}) do
   SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)

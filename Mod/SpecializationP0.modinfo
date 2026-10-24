@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="299">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="300">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B272.299：重构前工作量基线与有界观察者成本计数。</Description>
+    <Description>B273.300：重构前工作量基线与有界观察者成本计数。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -793,6 +793,9 @@
     <File>Textures/SPC_Raw_Icons_16.dds</File>
     <File>Textures/SPC_Raw_Icons_24.dds</File>
     <File>Textures/SPC_Raw_Icons_48.dds</File>
+    <File>SafeCallbacks.lua</File>
+    <File>RuntimeComposition.lua</File>
+    <File>UI/SafeAdapters.lua</File>
   </Files>
   <Dependencies>
     <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />

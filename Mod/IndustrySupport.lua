@@ -1,3 +1,4 @@
+include('SafeCallbacks')
 include('RuntimeWork')
 include('SampleLifecycle')
 include('SpecialistSupport')
@@ -75,11 +76,9 @@ function SPCIndustrySupport.Start(P,shared)
   end
  end
  function data.BindPermanentWrites()
-  local previous=shared.OnPermanentCityWrite
-  shared.OnPermanentCityWrite=function(c,reason)
-   if previous then previous(c,reason)end
+  SPCSafeCallbacks.Chain(shared,'IndustrySupport',function(c,reason)
    if reason=='CityProgressionStore.lua' or reason=='ClaimProjects.lua'then data.MarkCity(c)end
-  end
+  end)
  end
  data.ReadBase=inspect
  function data.Receive(pid,params)

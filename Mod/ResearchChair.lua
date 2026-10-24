@@ -113,7 +113,7 @@ function M.Start(P,shared)
   return ok and text or ('学术主持：暂不可确认，保留上次配置。\n'..explain(text))
  end
  local function bind(src,n,f) local e=P.Field(src,n);if e and e.Add then e.Add(f) end end
- bind(Events,'LoadScreenClose',function() definitions=nil;targets=nil;data.ready=true;data.errors={};data.Audit() end)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchChair',function()definitions=nil;targets=nil;data.ready=true;data.errors={};data.Audit()end)
  -- Shared D/P0-C owns invalidation and registers first; reuse its confirmed view.
  for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
   'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap',
