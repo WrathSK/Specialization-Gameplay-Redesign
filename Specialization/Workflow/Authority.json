@@ -10,7 +10,7 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0758",
+    "status": "S0760",
     "runtime": "B308.335 / modinfo335",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,12 +34,12 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "current_batch": "PROBE_DISABLE_FORWARDED_REFACTOR_S6D_CONTINUING",
-  "next_batch": "Continue S6 scoped receiver discovery, remaining worker consumers and capital/UI/target/network hot paths, then S7–S10. No automatic deployment/main/native launch.",
+  "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
+  "current_batch": "MAIN_SYNC_COMPLETE_STOPPED_BY_USER",
+  "next_batch": "None: finish the explicitly authorized temporary hotfix branch cleanup, then stop. Completed S6d and remaining S6–S10 authorization are preserved for later continuation.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B271.298 stable from main cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; SHA256 102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993; B270 backup verified, no pending transaction; receipt B271.298-cc71f9b-stable-deploy.json.",
-  "stable": "main B271.298 / modinfo298; approved PR #6 merged and deployed",
+  "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
+  "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
     "Specialization/Architecture/v2/State_Ownership_Save.md",
@@ -48,8 +48,8 @@
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
-  "deployment_authorization": "No automatic deployment granted by U1 D13. Runtime replacement needs explicit approval and existing transaction/game-exit/hash/receipt safeguards. No main promotion before separately approved post-U5 action.",
-  "context_review_status": "S0758 Forward-ported only main-based B307 probe-disable implementation `95310ac` as `988e94d` through Git. B271 A/B/C are disabled before Gameplay/UI observer startup; D4, gameplay and all completed refactor work remain. S6d is still the last completed program slice; remaining S6 and S7–S10 continue. This does not promote or deploy develop. No new native/deployment PASS.",
+  "deployment_authorization": "B307 main deployment completed under explicit user approval. This handoff authorizes main record synchronization and safe temporary branch deletion only; no new deployment or automatic main promotion.",
+  "context_review_status": "S0760: User-authorized main-to-develop record synchronization completed after the B307 stable deployment. Main deployment evidence is imported through the merge; develop keeps B308.335, D0058/A0182 and all completed S6d source unchanged. Live/stable is B307.334 from PR7. The temporary hotfix tip is already reachable from main; only its local/remote references may be removed after this merge is verified and pushed. No deployment, gameplay change or further refactor work in this synchronization; stop afterward.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md"
 }

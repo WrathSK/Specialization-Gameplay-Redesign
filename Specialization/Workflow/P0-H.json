@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0758",
+    "status": "S0760",
     "runtime": "B308.335 / modinfo335",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S6 scoped receiver discovery, remaining worker consumers and capital/UI/target/network hot paths, then S7–S10. No automatic deployment/main/native launch.",
+  "goal": "Preserve current B308/S6d refactor work, import approved B307 main deployment records, verify and remove the fully merged temporary hotfix branch, then stop. Original refactor plan remains authorized for later continuation.",
   "implementation_authorized": true,
   "context": [
     {
@@ -229,6 +229,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
       "kind": "full",
       "reason": "Isolated stable probe-disable forward-port; no program-stage advance."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
+      "kind": "full",
+      "reason": "Approved stable B307 deployment imported from main through Git merge; independent develop source remains B308."
     }
   ],
   "dependencies": [
@@ -258,6 +263,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
     "local": "LOCAL_SIMULATION_PASS:20 probe/current B271 tests plus109 current S6d regressions.",
     "native": "NO_NEW_NATIVE_TEST",
-    "deployment": "UNCHANGED_B271_STABLE"
+    "deployment": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json."
   }
 }

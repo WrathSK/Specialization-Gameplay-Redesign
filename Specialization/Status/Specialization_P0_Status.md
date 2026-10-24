@@ -1,25 +1,39 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0758
-Implementation Build: B308.335 / modinfo335; stable/live B271.298
+Status Revision: S0760
+Implementation Build: B308.335 / modinfo335; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: PROBE_DISABLE_FORWARDED_REFACTOR_S6D_CONTINUING
+Work State: MAIN_SYNC_COMPLETE_STOPPED_BY_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-Forward-ported only main-based B307 probe-disable implementation `95310ac` as `988e94d` through Git. B271 A/B/C are disabled before Gameplay/UI observer startup; D4, gameplay and all completed refactor work remain. S6d is still the last completed program slice; remaining S6 and S7–S10 continue. This does not promote or deploy develop. [Result](Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md). Stable/live/main B271.298; B307.334 is an unmerged stable candidate. No new deployment/native PASS.
+User-authorized main-to-develop record synchronization completed after the B307 stable deployment. Main deployment evidence is imported through the merge; develop keeps B308.335, D0058/A0182 and all completed S6d source unchanged. Live/stable is B307.334 from PR7. The temporary hotfix tip is already reachable from main; only its local/remote references may be removed after this merge is verified and pushed. No deployment, gameplay change or further refactor work in this synchronization; stop afterward. [Main deployment record](Validation/Results/Specialization_B307_Disable_Timing_Probes.md); [develop validation](Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md).
 
-- User decision: main candidate merge and deployment await separate approval.
-- User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S6 scoped receiver discovery, remaining worker consumers and capital/UI/target/network hot paths, then S7–S10.
+- User decision: none; synchronization and temporary branch deletion explicitly authorized.
+- User testing: B307 responsiveness comparison remains USER_GAME_TEST_REQUIRED; final U5 is unchanged.
+- Primary next: finish verified branch-reference cleanup, then stop. Remaining S6–S10 work is retained for a later continuation.
+
+## S0760 — Main record synchronization and bounded hotfix cleanup
+
+User-authorized main-to-develop record synchronization completed after the B307 stable deployment. Main deployment evidence is imported through the merge; develop keeps B308.335, D0058/A0182 and all completed S6d source unchanged. Live/stable is B307.334 from PR7. The temporary hotfix tip is already reachable from main; only its local/remote references may be removed after this merge is verified and pushed. No deployment, gameplay change or further refactor work in this synchronization; stop afterward.
+
+## S0759 — B307 approved main deployment and stop
+
+User approved PR7 merge followed by stable deployment and stop. PR7 merged normally; B307.334 from main19d51bd is deployed with312/312 source/live MATCH. B271.298 recovery package verified; no pending transaction. B271 A/B/C are disabled for the next game load; D4 and original gameplay/diagnostics remain. Actual lag improvement is USER_GAME_TEST_REQUIRED. No game launch or further refactor work.
+
 
 ## S0758 — B308.335 isolated probe-disable forward-port
 
 Forward-ported only main-based B307 probe-disable implementation `95310ac` as `988e94d` through Git. B271 A/B/C are disabled before Gameplay/UI observer startup; D4, gameplay and all completed refactor work remain. S6d is still the last completed program slice; remaining S6 and S7–S10 continue. This does not promote or deploy develop.
+
+## S0757 — B307.334 narrow probe-disable candidate
+
+User-approved narrow main-based hotfix disables B271 A/B/C before trace allocation and native observer registration in both Gameplay and UI. No automatic timing counters or NETWORK_VERIFIED observer remains; the right-click action reports that timing probes are disabled. The internal-carrier Pillage=0 SQL, all gameplay/save data, original counters, memory/GC diagnostics and collector protocol remain unchanged. Develop refactoring is excluded. Local validation only; main/live remain B271.298 until separate approval.
+
 
 ## S0756 — B306.333 Index retained source dependencies without changing receiver discovery
 
