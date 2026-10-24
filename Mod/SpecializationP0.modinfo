@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="298">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="334">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B271.298：有界回合时序诊断与内部载体不可掠夺。</Description>
+    <Description>B307.334：停用B271时序探针，保留内部载体不可掠夺。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

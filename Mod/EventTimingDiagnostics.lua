@@ -1,5 +1,5 @@
 -- B271 observational only. Bounded plain scalar state, never persisted.
-SPCEventTimingDiagnostics={TURN_LIMIT=6,EVENT_LIMIT=400,SEQUENCE_ENABLED=false}
+SPCEventTimingDiagnostics={ENABLED=false,TURN_LIMIT=6,EVENT_LIMIT=400,SEQUENCE_ENABLED=false}
 local M=SPCEventTimingDiagnostics
 -- Union of current native subscriptions, including guarded optional names.
 -- SystemUpdateUI is deliberately excluded: no new frame listener.
@@ -20,6 +20,13 @@ local function emit(trace,s,stage,data)
  s.emitting=true;pcall(trace.Record,stage,data);s.emitting=false
 end
 function M.Start(P,shared,side)
+ -- B307: stop A/B/C before allocating trace state or registering any observer.
+ -- This is a load-time switch; the UI sequence toggle cannot enable the probe.
+ if not M.ENABLED then
+  ExposedMembers.SPC_EventTiming=nil
+  if shared then shared.EventTiming=nil end
+  return nil
+ end
  if side=='GAMEPLAY'then
   ExposedMembers.SPC_EventTiming={epoch=tostring({}):gsub('[^%w]',''),seq=0,cycle=0,turns={},turnCount=0,
    accepting=true,sequenceEnabled=M.SEQUENCE_ENABLED,lastVerified=0,counts={audit={},dispatch={}},sides={}}

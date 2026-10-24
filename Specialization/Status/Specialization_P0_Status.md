@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0718
-Implementation Build: B271.298 / modinfo298; stable/live B271.298
+Status Revision: S0757
+Implementation Build: B307.334 / modinfo334 candidate; stable/live B271.298
 Architecture Revision Reviewed: A0181
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B271_STABLE_DEPLOYED_USER_TEST_REQUIRED
+Work State: B307_PROBE_DISABLE_CANDIDATE_AWAITING_PROMOTION
 
 ## CURRENT AUTHORITATIVE STATE
 
-B271.298按用户批准完成：[诊断、D4决定与本地验证](Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md)。A/B默认开启、每次加载前6个观察本地回合；C独立默认关闭、右键专业化诊断入口开关。内部载体不可掠夺为用户2026-10-23明确决定，实际数据库副本4557行通过；非目标不变。详细能力依赖、历史测试限制见结果。
+User-approved narrow main-based hotfix disables B271 A/B/C before trace allocation and native observer registration in both Gameplay and UI. No automatic timing counters or NETWORK_VERIFIED observer remains; the right-click action reports that timing probes are disabled. The internal-carrier Pillage=0 SQL, all gameplay/save data, original counters, memory/GC diagnostics and collector protocol remain unchanged. Develop refactoring is excluded. Local validation only; main/live remain B271.298 until separate approval. [Result](Validation/Results/Specialization_B307_Disable_Timing_Probes.md).
 
-- User decision：用户已批准两份README提交推送、随B271推广至main并部署；PR #6普通合并完成。
-- User testing：部署后2–3回合入账/事件证据及实际掠夺场景；USER_GAME_TEST_REQUIRED，不把离线结果当引擎事实。
-- Primary next：等待用户2–3回合日志，分析引擎事实；不提前裁定时机或展开后续重构。main/live为B271.298，README已接受并提交。
+- User decision: approve main merge and deployment separately.
+- User testing: compare the same campaign/turn after approved activation; performance effect remains USER_GAME_TEST_REQUIRED.
+- Primary next: forward-port the isolated implementation to develop; preserve the authorized S6–S10 refactor.
+
+## S0757 — B307.334 narrow probe-disable candidate
+
+User-approved narrow main-based hotfix disables B271 A/B/C before trace allocation and native observer registration in both Gameplay and UI. No automatic timing counters or NETWORK_VERIFIED observer remains; the right-click action reports that timing probes are disabled. The internal-carrier Pillage=0 SQL, all gameplay/save data, original counters, memory/GC diagnostics and collector protocol remain unchanged. Develop refactoring is excluded. Local validation only; main/live remain B271.298 until separate approval.
 
 ## S0718 — B271 PR与稳定部署
 
