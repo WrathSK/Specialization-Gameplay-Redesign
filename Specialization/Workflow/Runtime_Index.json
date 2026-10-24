@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "c97caa919824629e4736ff7ab3cf790bbc6a484113eb8167f2e05eb54d24f00b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B279_Refactor_S5_History.md",
-      "provenance": "B279 confirmed historical result topics and explicit isolated adapters; project/native/persistence semantics retained. Local/static only; remaining manual lists next; no deployment/native PASS."
+      "sha256": "d0ffe93e76271f2516d958f454ea9639bbd3162a19dc59d32da8a6039c5895ee",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
+      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -561,9 +561,9 @@
       "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "5ef1f6ed384c43b3932cb3de435aea55a734f9d257920b9ecc1d6dfc81d8d563",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "688cb543faf7360026ac3d993866df867ba8151b22863dcb906968724ad82b0d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
+      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/EligibilityProbe.lua": {
       "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "710c4a405e014135d49ee328fc8e07ce9f1ec95efcd3badaa4805be60d69c1c3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B280_Refactor_S5a.md",
-      "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
+      "sha256": "45eb8074d91d74f942cbde3878b784271af0c89b86c0820d801ca8558c19de1c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
+      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -781,14 +781,14 @@
       "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "8e514fb8b493b1c9235d0bf1d6815e39c52077dde2dbfa752fa662ae4abdfbaf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
-      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
+      "sha256": "7106072d5161098caad6aee2603858ed6e176280943aaddf99ad1ef4de400a6e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
+      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "b0693f4cee70dcb739044d7888d77b717012bc42e39a31307be328d3997e6ad1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B280_Refactor_S5a.md",
-      "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
+      "sha256": "6c71c8d7a49f8851fb5c77584da8ad4838a22c867cd2d7b57acddc0262bc4ed9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
+      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "90b40ff7d4f3c343752208af212589152d5076a95995a9ea83eaf0821a4936d8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "40d123772c6bd51ab8584f3e0c1ce06ccabe1ad46db21430d48f9c1859f9bd09",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
+      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "7bc6223f321bccf3cd2e419718a8cc3265833737233838f6eebf665a109caac2",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a7d97fafcd268d2c93124f02017c5b9887549cc0a7e3e90bff33076176915369",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B280_Refactor_S5a.md",
-      "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
+      "sha256": "d5b40be83950639156d9cc535d5f2b2146e0de6bac3dc063e0c03c28256c284b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
+      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

@@ -52,9 +52,10 @@ class RealConsumers(unittest.TestCase):
     def test_T04_real_writers_share_one_effective_fact_sample(self):
         from test_b270_event_scope import make_fixture
         with legacy_source_observation():lua,reset,count=make_fixture(0,True)
-        # Both actual effect owners read the real EffectiveFacts. Only native admission is a stub.
+        # Both actual writers use the real shared phase. Native authority stamp/admission are doubles;
+        # independent test_refactor_s5b.ActualWriters additionally proves the same count using the real Store.
         with legacy_source_observation():lua.execute((__import__('pathlib').Path(__file__).resolve().parents[1]/'Mod/EffectiveFacts.lua').read_text())
-        lua.execute("foundationReads=0;shared.CityFlowProbe={SupportFacts=function(pid,c)foundationReads=foundationReads+1;return {owner=pid,cityID=c:GetID(),token='REF',specialization='NONE',potential=0}end};SPCEffectiveFacts.Start(P,shared);resetCounts();shared.Lv2Housing.Audit({player=0,city=0});shared.Lv2GPP.Audit({player=0,city=0})")
+        lua.execute("foundationReads=0;shared.CityFlowProbe={SupportFacts=function(pid,c)foundationReads=foundationReads+1;return {owner=pid,cityID=c:GetID(),token='REF',specialization='NONE',potential=0}end};shared.CityProgressionStore={FactStamp=function()return 'FIXTURE_AUTHORITY_1'end,Owns=function()return false end};SPCEffectiveFacts.Start(P,shared);resetCounts();shared.EffectiveFacts.WithPhase('REAL_WRITER_TEST',function()shared.Lv2Housing.Audit({player=0,city=0});shared.Lv2GPP.Audit({player=0,city=0})end)")
         n=lua.eval('foundationReads');measure('T04_effective_captures_two_writers',n)
         self.assertEqual(n,1,'S5_FACT_CAPTURE_NOT_SHARED')
     def test_T05_unchanged_pending_has_attempt_budget(self):

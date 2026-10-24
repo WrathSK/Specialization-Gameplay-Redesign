@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0729
-Implementation Build: B280.307 / modinfo307; stable/live B271.298
+Status Revision: S0730
+Implementation Build: B281.308 / modinfo308; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5A_COMPLETE_S5B_AUTHORIZED
+Work State: REFACTOR_S5B_COMPLETE_S5C_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B280.307 S5a complete: [declared request/network propagation](Validation/Results/Specialization_B280_Refactor_S5a.md). Own-sync→one owner network capture→coalesced effects; network proof immediately stales transaction authority; true reentry waits for next publication.15 new Lua51 cases;147 properties PASS/4 laterOPEN. Existing native operation/ACK/persistence rules retained; no new native/deployment PASS. Stable/live/main B271.298.
+S5b complete:16 new Lua51 tests;164 selected properties PASS/3 laterOPEN. Actual Store/Flow/Housing/GPP share one unchanged capture, recapture after actual removal; before/after mutation barriers preserve commit/fault/reference/governor guards. No new event/timer/polling or persistent schema. [Result](Validation/Results/Specialization_B281_Refactor_S5b.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
-- User testing: final U5 unless a concrete blocking native fact appears.
-- Primary next: S5b safe shared facts/barriers→S5c→S5d→S6→S7/S8→S9/S10.
+- User testing: final U5 unless a specific blocking native fact appears.
+- Primary next: S5c scoped invalidation/network busy merge→S5d consumer/hook locality→S6→S7/S8→S9/S10.
+
+## S0730 — B281.308 guarded synchronous fact reuse
+
+S5b complete:16 new Lua51 tests;164 selected properties PASS/3 laterOPEN. Actual Store/Flow/Housing/GPP share one unchanged capture, recapture after actual removal; before/after mutation barriers preserve commit/fault/reference/governor guards. No new event/timer/polling or persistent schema.
 
 ## S0729 — B280.307 S5a complete
 

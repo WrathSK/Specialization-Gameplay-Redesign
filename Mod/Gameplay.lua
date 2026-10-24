@@ -747,7 +747,9 @@ composition.Run('FactChanges',{}, {'FactChanges'},function()
  local draining=false
  local function drain()
   if not composition.sealed or draining then return end;draining=true
-  local ok,err=pcall(function()changes.Flush();if shared.FactBindings then shared.FactBindings.Flush()end end)
+  local function run()changes.Flush();if shared.FactBindings then shared.FactBindings.Flush()end end
+  local facts=shared.EffectiveFacts
+  local ok,err=pcall(function()if facts and facts.WithPhase then facts.WithPhase('FACT_PROPAGATION',run)else run()end end)
   draining=false
   if not ok then local safe,text=pcall(tostring,err);shared.FactPropagationError=safe and text:sub(1,180) or 'FACT_PROPAGATION_FAILED'end
  end

@@ -91,6 +91,10 @@ A8 is no longer excluded: the user explicitly approved eight collection eras aft
 
 #### S5 — Propagation foundation, in a→b→c→d order
 
+B281.308 S5b complete:16 new Lua51 tests;164 selected properties PASS/3 laterOPEN. Actual Store/Flow/Housing/GPP share one unchanged capture, recapture after actual removal; before/after mutation barriers preserve commit/fault/reference/governor guards. No new event/timer/polling or persistent schema. [Result](../../Status/Validation/Results/Specialization_B281_Refactor_S5b.md).
+
+S5b Runtime Impact Contract (planned before implementation validation): reuse only within the existing synchronous FactChanges/Bindings drain. EffectiveFacts owns detached copies,≤2048owner/city entries per window; close/failure discards all. Each hit still verifies actual Store commit/fault/reference/revision and fresh six-property governor semantics when ACTIVE depends on them. Legacy Flow stays fresh. Probe owned mutation attempts and Store root replacement invalidate before/after including throw/reentry; RuntimeWork cannot bypass the common guard. No native event/timer/scan/retry is added. At capacity, fresh-read fallback; only known/non-pending results cache. Tests use actual Store/Flow/EffectiveFacts, actual Housing/GPP, actual Probe write wrappers, UNKNOWN/recovery, same-turn changes, mutate-then-throw, exception cleanup and copy/ref/load boundaries. District/native-object batch sharing is explicitly out of this slice.
+
 B280 S5a complete: [remaining request/network lists](../../Status/Validation/Results/Specialization_B280_Refactor_S5a.md),15 new Lua51 cases/147 program properties PASS,4 laterOPEN. Typed own-sync→one owner capture→coalesced effects replaces the actual lists; network proof and input generation are separate. Continue b→c→d; this does not close their existing counterexamples.
 
 B279 history producer migration complete: [confirmed Store topics/adapters](../../Status/Validation/Results/Specialization_B279_Refactor_S5_History.md),14 new Lua51 cases/132 program properties PASS,4 laterOPEN. Remaining Gameplay/Claim/Restructuring/network lists are still next; this does not close full S5a.

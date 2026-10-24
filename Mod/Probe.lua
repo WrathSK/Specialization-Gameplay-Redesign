@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-280.307"
+P.VERSION = "P0-B-281.308"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -554,9 +554,19 @@ include('PerformanceCounters')
 P.Count=SPCPerformance.Count
 P.Observe=SPCPerformance.Observe
 function P.HasBuilding(object,id) P.Count('building_check');return object:HasBuilding(id) end
-function P.CreateBuilding(object,id) P.Count('building_create');local r=object:CreateBuilding(id);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end
-function P.RemoveBuilding(object,id) P.Count('building_remove');local r=object:RemoveBuilding(id);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end
-function P.SetProperty(object,key,value) P.Count('property_write');local r=object:SetProperty(key,value);ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1;return r end
+-- Native mutations can reenter or apply and then throw. Both boundaries invalidate read windows.
+local function factWrite(fn,...)
+ local service=P.FactReadService;local ticket=service and service.BeginWrite('NATIVE_MUTATION')
+ local function pack(...)return {n=select('#',...),...}end
+ local result=pack(pcall(fn,...))
+ if ticket then service.EndWrite(ticket)end
+ if not result[1]then error(result[2],0)end
+ ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1
+ return unpack(result,2,result.n)
+end
+function P.CreateBuilding(object,id) P.Count('building_create');return factWrite(object.CreateBuilding,object,id)end
+function P.RemoveBuilding(object,id) P.Count('building_remove');return factWrite(object.RemoveBuilding,object,id)end
+function P.SetProperty(object,key,value) P.Count('property_write');return factWrite(object.SetProperty,object,key,value)end
 -- A live non-trader is a reliable negative. Missing/removed/unknown unit is not.
 function P.RouteUnitRelevant(pid,id)
  if type(pid)~='number' or type(id)~='number' then return true end

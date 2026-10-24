@@ -235,14 +235,22 @@ local function CreateProgressionRecord(P,shared,storage)
    founded=root.schema==2,owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}
  end
  function d.Base(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local b=R.Current(r);return projected(r,b,false)end
+ function d.FactStamp(pid,c)
+  assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  return table.concat({r.base.token,r.revision},':')
+ end
  function d.Investment(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local _,i=R.Current(r);return projected(r,i,true)end
  local function save(nextValue,observeFailure)
   assert(not fault,'STORE_WRITE_HELD');validate(nextValue)
-  local previous=root;root=cp(nextValue) -- protect target before engine callbacks
+  local previous=root;local nextRoot=cp(nextValue)
+  local facts=shared.EffectiveFacts;local ticket=facts and facts.BeginWrite and facts.BeginWrite('STORE_COMMIT')
+  root=nextRoot -- protect target before engine callbacks, after the read barrier
   committing=true
   local ok,err=pcall(storage.Write,previous,nextValue,observeFailure)
   committing=false
-  if not ok then fault=tostring(err);error(fault)end
+  if not ok then fault=tostring(err)end
+  if ticket then facts.EndWrite(ticket)end
+  if not ok then error(fault)end
  end
  -- Dialogue history shares the existing record's commit/readback and failure boundary.
  function d.DialogueState(pid,c)
@@ -1259,6 +1267,10 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.BeginRestructuring(pid,c,team,receipt)return requireCity(c).BeginRestructuring(pid,c,team,receipt)end
  function store.ConfigureRestructuring(pid,c,team,kind,first)return requireCity(c).ConfigureRestructuring(pid,c,team,kind,first)end
  function store.FinishRestructuring(pid,c,team)return requireCity(c).FinishRestructuring(pid,c,team)end
+ function store.FactStamp(pid,c)
+  if not store.Owns(c)then return nil end
+  return requireCity(c).FactStamp(pid,c)
+ end
  function store.Base(pid,c)return requireCity(c).Base(pid,c)end
  function store.Investment(pid,c)return requireCity(c).Investment(pid,c)end
  function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end

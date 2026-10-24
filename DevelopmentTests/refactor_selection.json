@@ -84,6 +84,19 @@
       "test_refactor_s5a2",
       "test_refactor_s5history",
       "test_refactor_s5propagation"
+    ],
+    "S5b": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_s5a",
+      "test_refactor_s5a2",
+      "test_refactor_s5history",
+      "test_refactor_s5propagation",
+      "test_refactor_s5b"
     ]
   },
   "counterexamples": {
@@ -95,10 +108,6 @@
       "code": "S6_D_CACHE_THRASH",
       "owner_stage": "S6"
     },
-    "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample": {
-      "code": "S5_FACT_CAPTURE_NOT_SHARED",
-      "owner_stage": "S5b"
-    },
     "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope": {
       "code": "S5_CONSUMER_SCOPE_DISCARDED",
       "owner_stage": "S5d"
@@ -109,7 +118,8 @@
       "test_refactor_baseline.WorkScope"
     ],
     "Mod/EffectiveFacts.lua": [
-      "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample"
+      "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample",
+      "test_refactor_s5b"
     ],
     "Mod/IndustrySupport.lua": [
       "test_refactor_baseline.RealConsumers.test_T05_unchanged_pending_has_attempt_budget",
@@ -302,5 +312,12 @@
     "Mod/UnitActions.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/YieldCarrierProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1
   },
-  "static_review_boundary": "S2 reviewed current runtime debt; counts are heuristic alarms, not compliance. New/widened alarms block pending human review; later removal of old debt is allowed."
+  "static_review_boundary": "S2 reviewed current runtime debt; counts are heuristic alarms, not compliance. New/widened alarms block pending human review; later removal of old debt is allowed.",
+  "resolved_counterexamples": {
+    "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample": {
+      "code": "S5_FACT_CAPTURE_NOT_SHARED",
+      "owner_stage": "S5b",
+      "resolution": "S5b independent13 real authority/writer cases PASS, then unchanged exact-one assertion passes within explicit WithPhase; outside-phase reads remain fresh. Historical before result retained in B272 evidence."
+    }
+  }
 }

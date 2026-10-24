@@ -1,7 +1,7 @@
 -- B069: fixed schema, scalar counters only. No automatic disk/print sink.
 SPCPerformance={}
 local M=SPCPerformance
-local names={'unit_cb','unit_ignored','revalidate','route_scan','publication','same_snapshot','derive','facts','city_scan','district_scan','building_check','building_create','building_remove','property_write','net_send','net_receive','audit_lv3','audit_boost','audit_standard','audit_commerce','audit_copy','busy_skip','send_duplicate','send_inflight','send_timeout','route_failure','confirmed_invalid','manual_snapshot','fact_change','input_duplicate','input_publication','withdrawal','revalidate_same','stale_input','derive_requested','derive_executed','derived_cache_hit','derived_cache_miss','input_version_change','derived_invalidation','discount_attempt','discount_send','discount_pending','discount_ack','discount_retry','discount_timeout','discount_receive','discount_duplicate','discount_stale','discount_apply','discount_withdraw','discount_dirty_mark','discount_direct_refresh','discount_reconcile','discount_skipped_clean','discount_fact_capture','discount_city_processed','discount_ui_scan'}
+local names={'unit_cb','unit_ignored','revalidate','route_scan','publication','same_snapshot','derive','facts','facts_reuse','city_scan','district_scan','building_check','building_create','building_remove','property_write','net_send','net_receive','audit_lv3','audit_boost','audit_standard','audit_commerce','audit_copy','busy_skip','send_duplicate','send_inflight','send_timeout','route_failure','confirmed_invalid','manual_snapshot','fact_change','input_duplicate','input_publication','withdrawal','revalidate_same','stale_input','derive_requested','derive_executed','derived_cache_hit','derived_cache_miss','input_version_change','derived_invalidation','discount_attempt','discount_send','discount_pending','discount_ack','discount_retry','discount_timeout','discount_receive','discount_duplicate','discount_stale','discount_apply','discount_withdraw','discount_dirty_mark','discount_direct_refresh','discount_reconcile','discount_skipped_clean','discount_fact_capture','discount_city_processed','discount_ui_scan'}
 for _,n in ipairs({'scope_dispatch','scope_city','scope_player','scope_plot','scope_transfer','scope_fallback','scope_unknown_signature','scope_player_signature','scope_events','scope_gameevents','observer_native_attempt','observer_carrier_attempt','observer_commerce_attempt','observer_city_scan'})do names[#names+1]=n end
 for _,k in ipairs({'copy','industry','cross'}) do
  for _,n in ipairs({'attempt','send','receive','pending','retry','stale','apply','withdraw','duplicate','timeout'}) do names[#names+1]=k..'_'..n end
@@ -35,7 +35,7 @@ function M.Describe(detailed)
   'Current / Total (direct Lua engine calls; native Modifier Property writes not observable)',
   'revision='..s.revision..' routes='..s.routes..' inflight='..s.inflight..' peak='..s.peakInflight}
  local groups={{'unit_cb','unit_ignored'},{'revalidate','route_scan'},{'publication','same_snapshot'},
- {'derive','facts'},{'city_scan','district_scan'},{'building_check','building_create','building_remove'},
+ {'derive','facts','facts_reuse'},{'city_scan','district_scan'},{'building_check','building_create','building_remove'},
  {'property_write','net_send','net_receive'},{'audit_lv3','audit_boost','audit_standard'},
  {'audit_commerce','audit_copy'},{'busy_skip','send_duplicate','send_inflight','send_timeout'},
  {'route_failure','confirmed_invalid'},{'fact_change','input_duplicate','input_publication'},{'withdrawal','revalidate_same','stale_input'},{'derive_requested','derive_executed'},{'derived_cache_hit','derived_cache_miss'},{'input_version_change','derived_invalidation'},{'discount_attempt','discount_send','discount_pending'},{'discount_ack','discount_retry','discount_timeout'},{'discount_receive','discount_duplicate','discount_stale'},{'discount_apply','discount_withdraw'},{'discount_dirty_mark','discount_direct_refresh','discount_reconcile'},{'discount_skipped_clean','discount_fact_capture','discount_city_processed','discount_ui_scan'}}
@@ -157,7 +157,7 @@ function M.StartMemory(P,shared)
   if boundaries[kind]==t then return end
   boundaries[kind]=t
   local values={};local counters=ExposedMembers.SPC_Performance
-  for _,k in ipairs({'city_scan','district_scan','building_check','building_create','building_remove','property_write','net_send','net_receive','derive_executed','dc_read','dc_capture','dc_hit','scope_dispatch','scope_city','scope_player','scope_plot','scope_transfer','scope_fallback','scope_unknown_signature','scope_player_signature','scope_events','scope_gameevents','observer_native_attempt','observer_carrier_attempt','observer_commerce_attempt','observer_city_scan'})do
+  for _,k in ipairs({'facts','facts_reuse','city_scan','district_scan','building_check','building_create','building_remove','property_write','net_send','net_receive','derive_executed','dc_read','dc_capture','dc_hit','scope_dispatch','scope_city','scope_player','scope_plot','scope_transfer','scope_fallback','scope_unknown_signature','scope_player_signature','scope_events','scope_gameevents','observer_native_attempt','observer_carrier_attempt','observer_commerce_attempt','observer_city_scan'})do
    local e=counters and counters.entries and counters.entries[k]
    if e then values['work_'..k]=e.total end
   end

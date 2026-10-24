@@ -1,11 +1,11 @@
 -- D2: ephemeral batch indexes, never persisted or shared across writes/batches.
 SPCRuntimeWork={}
 function SPCRuntimeWork.New(P,shared)
- local b={};local facts,byPlayer,live={}, {}, {}
+ local b={};local byPlayer,live={}, {}
+ local effective=shared.EffectiveFacts;local read=effective.NewReader and effective.NewReader() or effective.Read
  function b.Facts(pid,c)
-  facts[pid]=facts[pid] or {};local t=facts[pid];local id=c:GetID()
-  if not t[id] then t[id]=shared.EffectiveFacts.Read(pid,c) end
-  return t[id]
+  -- Every lookup revalidates the shared phase's authority/governor/write witness.
+  return read(pid,c)
  end
  function b.Districts(pid,c)
   if not byPlayer[pid] then

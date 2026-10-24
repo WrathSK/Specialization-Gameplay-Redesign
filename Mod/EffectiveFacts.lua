@@ -10,7 +10,38 @@ function SPCEffectiveFacts.Start(P,shared)
   for k in pairs(b) do if a[k]==nil then return false end end;return true
  end
  local data={};shared.EffectiveFacts=data
- function data.Read(pid,city) P.Count('facts');
+ -- One synchronous declared read window, never a turn/global native-object cache.
+ local phase;local generation=0;local writes=0;local tickets={}
+ local function pack(...)return {n=select('#',...),...}end
+ local function finish(result)
+  if not result[1]then error(result[2],0)end
+  return unpack(result,2,result.n)
+ end
+ function data.Version()return generation end
+ function data.Invalidate()
+  generation=generation+1;if phase then phase.values={};phase.count=0 end
+ end
+ function data.BeginWrite()
+  data.Invalidate();writes=writes+1;local ticket={};tickets[ticket]=true;return ticket
+ end
+ function data.EndWrite(ticket)
+  assert(tickets[ticket],'FACT_WRITE_TICKET_INVALID');tickets[ticket]=nil;writes=writes-1;data.Invalidate()
+ end
+ function data.WithPhase(label,fn,...)
+  assert(type(fn)=='function','FACT_PHASE_CALLBACK_INVALID')
+  if phase then return fn(...)end
+  phase={values={},count=0,label=label};local result=pack(pcall(fn,...));phase=nil
+  return finish(result)
+ end
+ local function stamp(pid,city)
+  local store=shared.CityProgressionStore
+  -- The isolated legacy Flow authority has different recovery guards; do not cache it.
+  if not (store and store.FactStamp)then return nil end
+  local value=store.FactStamp(pid,city);if value==nil then return nil end
+  return table.concat({city:GetOwner(),city:GetID(),city:GetX(),city:GetY(),Game.GetCurrentGameTurn(),value},':')
+ end
+ local function gate(city)return {P.GovernorGate(city)}end
+ local function capture(pid,city) P.Count('facts');
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
   local f=shared.CityFlowProbe.SupportFacts(pid,city)
   assert(f.owner==pid and f.cityID==city:GetID() and type(f.token)=='string','EFFECTIVE_FOUNDATION_IDENTITY')
@@ -57,6 +88,54 @@ function SPCEffectiveFacts.Start(P,shared)
   end
   return out
  end
+ local function phasedRead(pid,city)
+  if not phase or writes>0 then return capture(pid,city)end
+  assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
+  local before=generation;local identity=stamp(pid,city)
+  if not identity then return capture(pid,city)end
+  local key=tostring(pid)..':'..tostring(city:GetID());local cached=phase.values[key]
+  if cached and cached.identity==identity then
+   local current=cached.gate and gate(city) or nil
+   if (not cached.gate or same(current,cached.gate)) and stamp(pid,city)==identity and generation==before and writes==0 then
+    P.Count('facts_reuse');return clone(cached.value)
+   end
+  end
+  if cached then phase.values[key]=nil;phase.count=phase.count-1 end
+  local value=capture(pid,city)
+  -- A getter may reenter native code. Never publish old confirmed facts across a write/reference boundary.
+  assert(stamp(pid,city)==identity and generation==before and writes==0,'EFFECTIVE_FACTS_CHANGED_DURING_READ')
+  if value.activeStatus=='KNOWN' and not value.investmentPending then
+   local witness
+   if value.specialization~='NONE' and value.potential>1 then
+    witness=gate(city)
+    assert(witness[1]==pid and witness[2]==value.cityID and witness[3]=='KNOWN'
+     and value.active==math.min(value.potential,witness[4]),'EFFECTIVE_GOVERNOR_CHANGED_DURING_READ')
+   end
+   assert(stamp(pid,city)==identity and generation==before and writes==0,'EFFECTIVE_FACTS_CHANGED_DURING_READ')
+   if phase.count<2048 then
+    phase.count=phase.count+1
+    phase.values[key]={identity=identity,value=clone(value),gate=witness}
+   end
+  end
+  return clone(value)
+ end
+ function data.Read(pid,city)
+  local result=pack(pcall(phasedRead,pid,city))
+  if not result[1]then data.Invalidate()end
+  return finish(result)
+ end
+ -- A RuntimeWork audit keeps its existing local reuse, but every lookup now revalidates.
+ -- Detached scope is owned only by that short-lived batch; no registry retains it.
+ function data.NewReader()
+  local scope={values={},count=0,version=generation}
+  return function(pid,city)
+   if phase then return data.Read(pid,city)end
+   if scope.version~=generation then scope.values={};scope.count=0 end
+   phase=scope;local result=pack(pcall(data.Read,pid,city));phase=nil;scope.version=generation
+   return finish(result)
+  end
+ end
+ P.FactReadService=data
  function data.Describe(pid,city)
   local store=shared.CityProgressionStore
   local failure=store and store.FailureReport and store.FailureReport()
