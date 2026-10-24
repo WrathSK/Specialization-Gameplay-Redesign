@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0743
-Implementation Build: B294.321 / modinfo321; stable/live B271.298
+Status Revision: S0744
+Implementation Build: B295.322 / modinfo322; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D4C5_COMPLETE_CONTINUING
+Work State: REFACTOR_S5D4C6_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d4c5 complete:Meaning/Inspiration preserve independent cold cleanup with initializing latch, exact health and bounded scoped queue; failed/queued work delivery remains pending.17 new/full379 cases have378 properties PASS/1 registered S6 capacity counterexample OPEN. Existing8-era/qualification/legacy policies and Inspiration DC-independent startup remain. History/network effect health and transfer closure continue before S6–S10. [Result](Validation/Results/Specialization_B294_Refactor_S5d4c5.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d4c6 complete:InsightsTourism exact192-ID live health and bounded kernel preserve independent cold cleanup and read-only permanent history.12 new/full391 cases have390 properties PASS/1 registered S6 capacity counterexample OPEN. Initialization reentry, new-reference UNKNOWN, sibling loss/damage and dormant failure recovery are covered. Tradition/network effect health and transfer closure continue before S6–S10. [Result](Validation/Results/Specialization_B295_Refactor_S5d4c6.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
 - Primary next: S5d remaining effect-owner health/structural and transfer closure, then S6–S10 under continuing authorization.
+
+## S0744 — B295.322 Insights historical projection exact health
+
+S5d4c6 complete:InsightsTourism exact192-ID live health and bounded kernel preserve independent cold cleanup and read-only permanent history.12 new/full391 cases have390 properties PASS/1 registered S6 capacity counterexample OPEN. Initialization reentry, new-reference UNKNOWN, sibling loss/damage and dormant failure recovery are covered. Tradition/network effect health and transfer closure continue before S6–S10.
 
 ## S0743 — B294.321 Meaning Inspiration initialization and exact health
 

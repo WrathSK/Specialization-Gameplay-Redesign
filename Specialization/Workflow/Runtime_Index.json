@@ -191,9 +191,9 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureInsightsTourism.lua": {
-      "sha256": "2fa64c76aa4af30022567fe17cce1c67207b60613c257b4b430854a3b2e91ebf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "f8379d9f2d2f6c3d24339caf11e70028b084f8e0cfdd4fa325464414e055b294",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B295_Refactor_S5d4c6.md",
+      "provenance": "B295.322 Insights historical projection exact health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureInspiration.lua": {
       "sha256": "17b3f8cb62c919c88982db2e5b11ece667101ee09ce49a99fc7b2447ddfa4074",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "cd158cdf266d94953eb822a406b607719773e186fe47dddd90f08d58e954cd4b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B294_Refactor_S5d4c5.md",
-      "provenance": "B294.321 Meaning Inspiration initialization and exact health; local/static evidence only; no deployment/native PASS."
+      "sha256": "229f8347e7dc27bae44942aed2be4992d16f0c4fc7ca25e6bf6a571c7851773a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B295_Refactor_S5d4c6.md",
+      "provenance": "B295.322 Insights historical projection exact health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "5de737c5b47be76c5fbd9d11dd9dd2a41bca5cc3900924545a4a2c375f6871e4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B294_Refactor_S5d4c5.md",
-      "provenance": "B294.321 Meaning Inspiration initialization and exact health; local/static evidence only; no deployment/native PASS."
+      "sha256": "778e5ffa250d35aeec0846b486d0d079602b692fd37a1049f0d36f2573657e4b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B295_Refactor_S5d4c6.md",
+      "provenance": "B295.322 Insights historical projection exact health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
