@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0737
-Implementation Build: B288.315 / modinfo315; stable/live B271.298
+Status Revision: S0738
+Implementation Build: B289.316 / modinfo316; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D4B1_COMPLETE_CONTINUING
+Work State: REFACTOR_S5D4B2_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d4b1 governor-only migration complete:NativeFacts normalizes four governor Events into ACTIVE, validates supported owners and preserves cross-owner/UNKNOWN scopes.19 declared consumer/Bridge entries depend on it; IndustrySupport retains native owner-wide recovery without reopening unrelated UI retries.288 selected cases:287 passing properties/1 registered S6 capacity counterexample OPEN. Worker/UI relay, exact carrier health, transfer and turn duties remain subsequent S5d slices. User resumed after client restart; continuing already-authorized work without deployment/main. [Result](Validation/Results/Specialization_B288_Refactor_S5d4b1.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d4b2 worker migration complete:Gameplay and existing late UI worker recovery feed NativeFacts WORKERS; conservative UI D calls the actual DC invalidator, never UI ACTIVE. GPP governor relay removed; required worker/load/turn/transport sources retained.14 new cases/full302 have301 passing properties/1 registered S6 capacity counterexample OPEN. Exact carrier health, structural overlap and transfer closure remain next; continue authorized S5–S10 without deployment/main. [Result](Validation/Results/Specialization_B289_Refactor_S5d4b2.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: S5d4b2 worker/UI normalization and governor relay removal, then exact health/structural and transfer closure→S6–S10 under continuing authorization.
+- Primary next: S5d exact carrier health and scoped structural closure, then transfer recovery metadata→S6–S10 under continuing authorization.
+
+## S0738 — B289.316 worker input normalization and GPP governor relay retirement
+
+S5d4b2 worker migration complete:Gameplay and existing late UI worker recovery feed NativeFacts WORKERS; conservative UI D calls the actual DC invalidator, never UI ACTIVE. GPP governor relay removed; required worker/load/turn/transport sources retained.14 new cases/full302 have301 passing properties/1 registered S6 capacity counterexample OPEN. Exact carrier health, structural overlap and transfer closure remain next; continue authorized S5–S10 without deployment/main.
 
 ## S0737 — B288.315 declared governor fact owner
 

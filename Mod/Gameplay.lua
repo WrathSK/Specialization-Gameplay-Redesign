@@ -564,10 +564,18 @@ local function request(playerID,params)
   end
   if params.Action=="LV2_GPP_DIRTY" then
     P.Observe('ui','received')
-    if shared.FactChanges then
+    if shared.NativeFacts then
      local workerOnly=params.WorkerOnly==true and params.FactsChanged==false
-     local kinds=workerOnly and {'WORKERS'} or params.FactsChanged and {'ACTIVE','D','WORKERS'} or {'D','WORKERS'}
-     shared.FactChanges.Emit({owner=playerID,kinds=kinds,cause=workerOnly and 'UI_WORKERS_DIRTY' or 'UI_FACTS_DIRTY'})
+     if not workerOnly then
+      local ok,err=pcall(function()
+       local depth=assert(shared.DistrictCompleteness,'UI_DEPTH_PROVIDER_UNAVAILABLE')
+       depth.MarkDirty(playerID,nil,'UI_FACTS_DIRTY')
+      end)
+      shared.ObserverErrors=shared.ObserverErrors or {}
+      local safe,text=pcall(tostring,err)
+      shared.ObserverErrors.UI_DEPTH_FACTS=not ok and (safe and text:sub(1,180) or 'UI_DEPTH_MARK_FAILED') or nil
+     end
+     shared.NativeFacts.Workers({player=playerID},workerOnly and 'UI_WORKERS_DIRTY' or 'UI_FACTS_DIRTY')
     end
     return
   end

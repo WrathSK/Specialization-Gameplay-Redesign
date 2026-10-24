@@ -129,7 +129,7 @@ function M.Start(P,shared)
  -- fresh snapshot here: both consumers reuse it during the same native event.
  for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
   'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap',
-  'CityWorkerChanged','CityFocusChanged','PlayerTurnActivated'}) do
+  'PlayerTurnActivated'}) do
   SPCRuntimeWork.Hook(P,Events,n,data.Audit)
  end
  for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,data.Audit) end

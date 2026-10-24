@@ -158,7 +158,7 @@ function M.Start(P,shared)
  for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap'}) do
   SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)
  end
- for _,n in ipairs({'CityWorkerChanged','CityFocusChanged','PlayerTurnActivated'}) do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated'}) do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchInfrastructure',targets.Exit(function(c,loss)

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="315">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="316">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B288.315：集中总督资格通知，保留独立恢复。</Description>
+    <Description>B289.316：统一工人通知，撤除GPP总督中继，保留晚到恢复。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

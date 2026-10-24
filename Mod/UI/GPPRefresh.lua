@@ -53,12 +53,11 @@ local function bind(name,fn)
 end
 ContextPtr:SetInitHandler(function()
  if active then return end;active=true
- for _,name in ipairs({"CityWorkerChanged","CityFocusChanged","GovernorAssigned","GovernorChanged","GovernorEstablished","GovernorPromoted"}) do
+ for _,name in ipairs({"CityWorkerChanged","CityFocusChanged"}) do
   bind(name,function(pid)
    local worker=name=='CityWorkerChanged' or name=='CityFocusChanged'
-   source(worker and (name=='CityWorkerChanged' and 'worker' or 'focus') or 'governor',pid)
+   source(name=='CityWorkerChanged' and 'worker' or 'focus',pid)
    if foreign(pid) then return end
-   if not worker then factsDirty=true end
    mark(worker and validPlayer(pid) and pid==Game.GetLocalPlayer())
   end)
  end

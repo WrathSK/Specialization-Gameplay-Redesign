@@ -219,6 +219,28 @@
       "test_refactor_s5d3",
       "test_refactor_s5d4a",
       "test_refactor_s5d4b1"
+    ],
+    "S5d4b2": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_s5a",
+      "test_refactor_s5a2",
+      "test_refactor_s5history",
+      "test_refactor_s5propagation",
+      "test_refactor_s5b",
+      "test_refactor_s5c1",
+      "test_refactor_s5c2",
+      "test_refactor_s5d1",
+      "test_refactor_s5d2",
+      "test_refactor_a8",
+      "test_refactor_s5d3",
+      "test_refactor_s5d4a",
+      "test_refactor_s5d4b1",
+      "test_refactor_s5d4b2"
     ]
   },
   "counterexamples": {
@@ -252,13 +274,15 @@
       "test_refactor_s4a"
     ],
     "Mod/Lv2GPP.lua": [
-      "test_refactor_baseline.RealConsumers"
+      "test_refactor_baseline.RealConsumers",
+      "test_refactor_s5d4b2"
     ],
     "Mod/Gameplay.lua": [
       "test_refactor_defects.Defects",
       "test_refactor_s5d2",
       "test_refactor_s5d3",
-      "test_refactor_s5d4b1"
+      "test_refactor_s5d4b1",
+      "test_refactor_s5d4b2"
     ],
     "Mod/UI/CrewProjectOrder.lua": [
       "test_refactor_defects.Defects"
@@ -290,7 +314,8 @@
     ],
     "Mod/ResearchChair.lua": [
       "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope",
-      "test_refactor_s5d1"
+      "test_refactor_s5d1",
+      "test_refactor_s5d4b2"
     ],
     "Mod/CarrierHealthTrace.lua": [
       "test_refactor_attribution"
@@ -378,10 +403,15 @@
     "Mod/FactConsumerBindings.lua": [
       "test_refactor_s5propagation",
       "test_refactor_s5d4a",
-      "test_refactor_s5d4b1"
+      "test_refactor_s5d4b1",
+      "test_refactor_s5d4b2"
     ],
     "Mod/NativeFacts.lua": [
-      "test_refactor_s5d4b1"
+      "test_refactor_s5d4b1",
+      "test_refactor_s5d4b2"
+    ],
+    "Mod/UI/GPPRefresh.lua": [
+      "test_refactor_s5d4b2"
     ]
   },
   "exclusions": {

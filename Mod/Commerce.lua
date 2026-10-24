@@ -475,7 +475,7 @@ function M.Start(P,shared)
  hook(GameEvents,'PlayerTurnStarted',function(pid)diagnosticTurn('COMMERCE_TURN_STARTED',pid)end)
  hook(Events,'GameCoreEventPublishComplete',flush)
  hook(Events,'PlayerTurnActivated',function(pid)d.Mark(pid)end)
- for _,event in ipairs({'CityWorkerChanged','CityPopulationChanged','CityFocusChanged','CityBuildingsChanged','CityYieldChanged','CityYieldsChanged'})do
+ for _,event in ipairs({'CityPopulationChanged','CityBuildingsChanged','CityYieldChanged','CityYieldsChanged'})do
   hook(Events,event,function(pid,id)if not writing then d.Mark(pid,type(id)=='number' and id or nil)end end)
  end
  for _,event in ipairs({'GovernmentPolicyChanged','GovernmentChanged','ResearchCompleted','CivicCompleted'})do

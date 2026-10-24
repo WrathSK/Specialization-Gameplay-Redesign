@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0737",
-    "runtime": "B288.315 / modinfo315",
+    "status": "S0738",
+    "runtime": "B289.316 / modinfo316",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "current_batch": "REFACTOR_S5D4B1_COMPLETE_CONTINUING",
-  "next_batch": "S5d4b2 worker/UI normalization and governor relay removal, then exact health/structural and transfer closure→S6–S10 under continuing authorization. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S5D4B2_COMPLETE_CONTINUING",
+  "next_batch": "S5d exact carrier health and scoped structural closure, then transfer recovery metadata→S6–S10 under continuing authorization. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B271.298 stable from main cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; SHA256 102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993; B270 backup verified, no pending transaction; receipt B271.298-cc71f9b-stable-deploy.json.",
   "stable": "main B271.298 / modinfo298; approved PR #6 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "No automatic deployment granted by U1 D13. Runtime replacement needs explicit approval and existing transaction/game-exit/hash/receipt safeguards. No main promotion before separately approved post-U5 action.",
-  "context_review_status": "S0737 S5d4b1 governor-only migration complete:NativeFacts normalizes four governor Events into ACTIVE, validates supported owners and preserves cross-owner/UNKNOWN scopes.19 declared consumer/Bridge entries depend on it; IndustrySupport retains native owner-wide recovery without reopening unrelated UI retries.288 selected cases:287 passing properties/1 registered S6 capacity counterexample OPEN. Worker/UI relay, exact carrier health, transfer and turn duties remain subsequent S5d slices. User resumed after client restart; continuing already-authorized work without deployment/main. No native/deployment PASS.",
+  "context_review_status": "S0738 S5d4b2 worker migration complete:Gameplay and existing late UI worker recovery feed NativeFacts WORKERS; conservative UI D calls the actual DC invalidator, never UI ACTIVE. GPP governor relay removed; required worker/load/turn/transport sources retained.14 new cases/full302 have301 passing properties/1 registered S6 capacity counterexample OPEN. Exact carrier health, structural overlap and transfer closure remain next; continue authorized S5–S10 without deployment/main. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md"
 }

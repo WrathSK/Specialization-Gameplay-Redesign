@@ -41,8 +41,8 @@ def gc():
     return case.l
 
 def request_context():
-    c=Context();c.load('SafeCallbacks');c.load('FactChanges');c.load('FactConsumerBindings')
-    c.execute("P={Scalar=tostring,IsTestPlayer=function(pid)return pid==0 end};shared={};stage=function()end;city={GetOwner=function()return 0 end};Players={[0]={GetCities=function()return {FindID=function()return city end}end}};SPCFactChanges.New(shared);SPCFactConsumerBindings.New(shared)")
+    c=Context();c.load('SafeCallbacks');c.load('FactChanges');c.load('FactConsumerBindings');c.load('NativeFacts');c.load('DistrictCompleteness')
+    c.execute("P={Scalar=tostring,IsTestPlayer=function(pid)return pid==0 end,Field=function(t,k)return t and t[k]end,Count=function()end};shared={};stage=function()end;city={GetOwner=function()return 0 end};Players={[0]={GetCities=function()return {FindID=function()return city end}end}};SPCFactChanges.New(shared);SPCNativeFacts.New(P,shared);SPCDistrictCompleteness.Start(P,shared);SPCFactConsumerBindings.New(shared)")
     c.execute(c.fragment('Mod/Gameplay.lua','local function refreshInvestmentSupport(', 'local function request(playerID,params)')+'\n_G.refreshInvestmentSupport=refreshInvestmentSupport')
     # Maintained synchronous fixture explicitly closes one publication boundary
     # after the request; production request remains deferred and ACK is independent.

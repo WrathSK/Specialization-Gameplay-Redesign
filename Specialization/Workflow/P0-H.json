@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0737",
-    "runtime": "B288.315 / modinfo315",
+    "status": "S0738",
+    "runtime": "B289.316 / modinfo316",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "S5d4b2 worker/UI normalization and governor relay removal, then exact health/structural and transfer closure→S6–S10 under continuing authorization. No automatic deployment/main/native launch.",
+  "goal": "S5d exact carrier health and scoped structural closure, then transfer recovery metadata→S6–S10 under continuing authorization. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -129,6 +129,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
       "kind": "full",
       "reason": "declared governor fact owner actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
+      "kind": "full",
+      "reason": "worker input normalization and GPP governor relay retirement actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -155,8 +160,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-    "local": "287 properties PASS/1 registered S6 OPEN",
+    "report": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
+    "local": "301 properties PASS/1 registered S6 OPEN",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }
