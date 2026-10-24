@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0751
+Status Revision: S0752
 Implementation Build: B302.329 / modinfo329; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D4D2_COMPLETE_CONTINUING
+Work State: REFACTOR_EVIDENCE_POLICY_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d4d2 complete:actual D native producer retains both safe scopes with original typed triplet and isolated failures; NewTargets pending transfers detach scalars and deduplicate full origin/destination key.11 new/full479 cases have478 properties PASS/1 registered S6 capacity counterexample OPEN. Original reference/coordinate cleanup and2048 bound remain. Binding adoption and gated native replacement are next; S5d then S6–S10 continue. [Result](Validation/Results/Specialization_B302_Refactor_S5d4d2.md). Stable/live/main B271.298; no deployment/native PASS.
+B302.329 runtime unchanged. User-approved Closure storage correction:31 expanded JSON outputs removed from current tree with original published history, exact hash/retrieval index and frozen reports preserved. Future full artifacts default to ignored local storage; Git retains compact review evidence. [Checkpoint](Validation/Results/Refactor_Closure_Storage_2026-10-24.md). Latest runtime simulation remains B302:478 properties PASS/1 registered S6 capacity counterexample OPEN; no new native/deployment PASS. Stable/live/main B271.298.
 
-- User decision: none.
-- User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: S5d remaining effect-owner health/structural and transfer closure, then S6–S10 under continuing authorization.
+- User decision:2026-10-24 evidence policy and exact31 tree removals accepted; no history rewriting.
+- User testing: final U5 unless a concrete blocking native fact appears.
+- Primary next: preserve required synchronous NewTargets transfers; continue scoped S5 disposition/S6 shared fact/cache work, then S7–S10 under existing authority.
+
+## S0752 — Evidence storage correction; runtime unchanged
+
+New history index verifies31 originals; current lock/nav/rules/tooling synchronized. No frozen result body rewritten, no gameplay regression rerun, no runtime/package change. Necessary native transfer hooks remain; B301–302 typed metadata is not a replacement proof.
 
 ## S0751 — B302.329 Native D transfer metadata and detached target recovery
 

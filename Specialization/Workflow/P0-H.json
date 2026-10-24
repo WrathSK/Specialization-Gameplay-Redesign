@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0751",
+    "status": "S0752",
     "runtime": "B302.329 / modinfo329",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "S5d remaining effect-owner health/structural and transfer closure, then S6–S10 under continuing authorization. No automatic deployment/main/native launch.",
+  "goal": "Preserve necessary synchronous NewTargets transfer paths; continue scoped S5 disposition/S6 shared facts and caches, then S7–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -199,6 +199,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B302_Refactor_S5d4d2.md",
       "kind": "full",
       "reason": "Native D transfer metadata and detached target recovery actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Refactor_Closure_Storage_2026-10-24.md",
+      "kind": "full",
+      "reason": "Accepted evidence preservation rule, exact historical retrieval and continued refactor boundaries."
     }
   ],
   "dependencies": [
@@ -225,8 +230,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B302_Refactor_S5d4d2.md",
-    "local": "478 properties PASS/1 registered S6 OPEN",
+    "report": "Specialization/Status/Validation/Results/Refactor_Closure_Storage_2026-10-24.md",
+    "local": "Evidence-tool/document/context checks; B302478 PASS/1 S6 OPEN inherited, not rerun.",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }

@@ -16,7 +16,7 @@
 | **游戏规则应当怎样运行？** | [Design 阅读导航](Design/README.md) · [Design Spec](Design/Specialization_v0.1_Design_Spec.md) → [Content 索引](Design/Content/README.md) | 人类读者建议从阅读导航进入；接受与取代追溯见 [Design ChangeLog](Design/Design_ChangeLog.md) |
 | **系统在技术上如何组织与实现？** | [技术架构阅读入口](Architecture/README.md) → [架构总说明](Architecture/Specialization_v0.1_Architecture.md) | 导航系统分层、跨 context 传播、保存与呈现合同；AI 会话按任务范围读取 |
 | **当前做到哪里、还缺什么、下一步允许做什么？** | [Status CURRENT 块](Status/Specialization_P0_Status.md#current-authoritative-state) · [Authority.json](Workflow/Authority.json) | 唯一当前状态与任务路由；历史计划或建议不等于实施授权 |
-| **哪些结论已经过验证？适用范围是什么？** | [Validation Results](Status/Validation/Results/) · [Playtest Backlog](Status/Playtest_Backlog.md) | 严格区分 `STATIC_CONFIRMED`、`LOCAL_SIMULATION_PASS` 与 `USER_GAME_TEST_PASS`，不跨场景外推 |
+| **哪些结论已经过验证？适用范围是什么？** | [Validation Results](Status/Validation/Results/) · [历史 Closure 取回](Status/Validation/Results/Refactor_Closure_History.md) · [Playtest Backlog](Status/Playtest_Backlog.md) | 严格区分 `STATIC_CONFIRMED`、`LOCAL_SIMULATION_PASS` 与 `USER_GAME_TEST_PASS`，不跨场景外推 |
 | **哪些底层限制与技术调查不应重复踩坑？** | [技术证据索引](Reports/Technical/README.md) | 按城市生命周期、商路桥接、内存性能、原生精度等问题检索反证与实测记录 |
 | **非权威的审阅报告与专项调查在哪里？** | [Advisory 审阅区](Reports/Advisory/README.md) · [Investigation 调查区](Reports/Technical/Investigations/README.md) | 供用户决策参考的限定范围审阅与长期调研，不构成独立设计或实施权威 |
 | **源码、本地测试与部署工具在哪里？** | [Mod 源码](../Mod/) · [本地测试](../DevelopmentTests/README.md) · [部署与诊断工具](../tools/README.md) | 实机替换与分支维护须遵循 [Playtest Workflow](Architecture/Playtest_Workflow.md) |
