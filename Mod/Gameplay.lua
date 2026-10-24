@@ -71,7 +71,10 @@ local function request(playerID,params)
     shared.Snapshot=ok and out or ('GC诊断不可用；停止本次测试：'..P.Scalar(out));shared.LastToken=params.Token;return
   end
   if params.Action=='EVENT_ORDER_TOGGLE' then
-    local ok,out=pcall(function()return shared.EventTiming.Toggle(playerID)end)
+    local ok,out=pcall(function()
+      if not shared.EventTiming then return 'B271时序探针已停用。'end
+      return shared.EventTiming.Toggle(playerID)
+    end)
     shared.Snapshot=ok and out or '事件诊断不可用';shared.LastToken=params.Token;return
   end
   if params.Action=='MEMORY_BEGIN' or params.Action=='MEMORY_READ' then

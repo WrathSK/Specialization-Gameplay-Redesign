@@ -27,7 +27,8 @@ class Diagnostics(unittest.TestCase):
   ''')
   for name in ['PerformanceCounters','ExpeditionTrainingDiagnostics','EventTimingDiagnostics']:
    self.l.execute((R/f'Mod/{name}.lua').read_text())
-  self.l.execute("ExposedMembers.SPC_Performance=SPCPerformance.New();gp=SPCEventTimingDiagnostics.Start(P,shared,'GAMEPLAY');ui=SPCEventTimingDiagnostics.Start(P,nil,'UI')")
+  # B307 production default is off; retain all B271 assertions under explicit opt-in.
+  self.l.execute("SPCEventTimingDiagnostics.ENABLED=true;ExposedMembers.SPC_Performance=SPCPerformance.New();gp=SPCEventTimingDiagnostics.Start(P,shared,'GAMEPLAY');ui=SPCEventTimingDiagnostics.Start(P,nil,'UI')")
  def rows(self,stage=None):
   rows=[dict(v.items()) for v in self.l.eval('ExposedMembers.SPC_B205TrainingTrace.entries').values()]
   return [v for v in rows if not stage or v.get('stage')==stage]
