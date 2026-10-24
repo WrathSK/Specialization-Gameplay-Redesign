@@ -4,7 +4,7 @@ import unittest
 from refactor_harness import Context,ROOT,TrackedLua51,legacy_source_observation,separate_legacy_event_namespaces
 from refactor_defect_fixtures import greatworks,gc
 
-def industry():
+def industry(with_depth=False):
     tree=ast.parse((ROOT/'DevelopmentTests/test_arch_v2_c2.py').read_text())
     fix=next(ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='FIX' for t in n.targets))
     l=TrackedLua51(unpack_returned_tuples=True)
@@ -13,7 +13,11 @@ def industry():
         l.execute(separate_legacy_event_namespaces(fix))
         l.execute("P.Count=function()end;P.Families={DISTRICT_CAMPUS='RESEARCH',DISTRICT_INDUSTRIAL_ZONE='INDUSTRY'};P.Family=function(t)return P.Families[t]end;for _,v in pairs(districts)do v.IsPillaged=function()return false end end")
         for name in ('FactChanges','NativeFacts','FactConsumerBindings'):l.execute((ROOT/'Mod'/f'{name}.lua').read_text())
-        l.execute("SPCFactChanges.New(shared);SPCNativeFacts.New(P,shared);SPCFactConsumerBindings.New(shared);Events.GameCoreEventPublishComplete.Add(function()shared.FactChanges.Flush();shared.FactBindings.Flush()end)")
+        l.execute("SPCFactChanges.New(shared);SPCNativeFacts.New(P,shared)")
+        if with_depth:
+            l.execute("local info=P.Info;P.Info=function(t,k)local row=info(t,k);if t=='Buildings'then row.BuildingType=k end;return row end")
+            l.execute((ROOT/'Mod/DistrictCompleteness.lua').read_text());l.execute("SPCDistrictCompleteness.Start(P,shared)")
+        l.execute("SPCFactConsumerBindings.New(shared);Events.GameCoreEventPublishComplete.Add(function()shared.FactChanges.Flush();shared.FactBindings.Flush()end)")
         l.execute((ROOT/'Mod/IndustrySupport.lua').read_text())
         l.execute("SPCIndustrySupport.Start(P,shared);d=shared.IndustrySupport;d.BindPermanentWrites();sync=true")
     return l

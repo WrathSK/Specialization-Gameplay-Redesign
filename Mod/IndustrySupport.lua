@@ -6,7 +6,7 @@ include('SpecialistSupport')
 -- No actual-adjacency fallback, rounding or city-wide multiplication. Crew access is independently audited.
 SPCIndustrySupport={}
 function SPCIndustrySupport.Start(P,shared)
- local batch
+ local batch;local defer
  local pending,armed={},{} -- one current reference per affected city, cleared on success/loss/load
  local data={ready=false,busy=false,changes=0,errors={}};shared.IndustrySupport=data
  SPCSampleLifecycle.Reset(data,'industry')
@@ -14,6 +14,17 @@ function SPCIndustrySupport.Start(P,shared)
  local function key(pid,cid)return tostring(pid)..':'..tostring(cid)end
  local function reference(c)return table.concat({c:GetOwner(),c:GetID(),c:GetX(),c:GetY(),tostring(c:GetProperty('SPC_DEV_BINDING_B013_TOKEN'))},':')end
  local function name(bit) return 'BUILDING_SPC_DEV_INDUSTRY_LV1_'..bit end
+ local definitions;local ownedIndex={}
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)defer(scope)end)
+ local function validate()
+  if definitions then return definitions end
+  local rows,nextOwned={},{}
+  for bit=-1,7 do
+   local row=P.Info('Buildings',name(bit));assert(row and row.Index,'B036_DATABASE_MISSING: restart/new test game required')
+   rows[bit]=row.Index;nextOwned[row.Index]=true
+  end
+  definitions=rows;ownedIndex=nextOwned;return rows
+ end
  local function inspect(pid,city,externalBatch)
   local kind,d=SPCSpecialistSupport.Anchor(P,shared,pid,city,externalBatch or batch or SPCRuntimeWork.New(P,shared))
   if kind~='INDUSTRY' then return nil end
@@ -28,13 +39,13 @@ function SPCIndustrySupport.Start(P,shared)
  local function carriers(city,n,write)
   local total,food=0,0;local removed=false
   for bit=-1,7 do
-   local row=P.Info('Buildings',name(bit));assert(row and row.Index,'B036_DATABASE_MISSING: restart/new test game required')
+   local id=validate()[bit]
    local wanted=n~=nil and (bit==-1 or math.floor(n/2^bit)%2==1)
-   local b=city:GetBuildings();local present=P.HasBuilding(b,row.Index)
+   local b=city:GetBuildings();local present=P.HasBuilding(b,id)
    assert(type(present)=='boolean','CARRIER_READ_UNKNOWN')
    if write and present~=wanted then
-    if wanted then P.CreateBuilding(city:GetBuildQueue(),row.Index) else P.RemoveBuilding(b,row.Index);removed=true end
-    assert(P.HasBuilding(b,row.Index)==wanted,'CARRIER_WRITE_UNCONFIRMED')
+    if wanted then health.Create(city,id) else health.Remove(city,id);removed=true end
+    assert(P.HasBuilding(b,id)==wanted,'CARRIER_WRITE_UNCONFIRMED')
     data.changes=data.changes+1;present=wanted
    end
    if present then if bit==-1 then food=3 else total=total+2^bit end end
@@ -57,7 +68,7 @@ function SPCIndustrySupport.Start(P,shared)
  function data.MarkCity(c)queue(c,true)end
  -- Only real incoming causes are retained while a visit is busy. Never retain cities/native handles.
  local deferred,deferredOrder,sampleWork={},{},{}
- local function defer(scope)
+ defer=function(scope)
   local s=type(scope)=='table' and scope or {};local out={player=s.player,city=s.city,load=s.load==true or nil}
   local tag=tostring(out.player)..':'..tostring(out.city)..':'..tostring(out.load)
   if type(s.transfer)=='table'then
@@ -83,6 +94,7 @@ function SPCIndustrySupport.Start(P,shared)
   if P.Observe then P.Observe('audit','IndustrySupport') end
   if data.busy then defer(scope);P.Count('busy_skip');return end
   if not startReady()then P.Count('busy_skip');return end
+  local ok,err=pcall(validate);data.errors.definitions=not ok and tostring(err) or nil;if not ok then return end
   data.busy=true;batch=SPCRuntimeWork.New(P,shared)
   targets.Run(scope)
   data.busy=false;batch=nil
@@ -148,14 +160,19 @@ function SPCIndustrySupport.Start(P,shared)
  local function hook(source,name,fn) local e=P.Field(source,name);if e and e.Add then e.Add(fn) end end
  hook(Events,'LoadScreenClose',function() pending={};armed={};deferred={};deferredOrder={};sampleWork={};data.ready=true;SPCSampleLifecycle.Reset(data,'industry');data.Audit({load=true}) end)
  hook(Events,'GameCoreEventPublishComplete',function()drainCauses();data.FlushPending()end)
+ -- Shared D replaces only ordinary structural causes. Preserve independent
+ -- raw-adjacency plot notifications and the no-provider startup fallback.
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
+ if not shared.DistrictCompleteness then
  hook(GameEvents,'OnDistrictConstructed',function(pid,index,x,y)
   local r=P.Info('Districts',index)
   if not r or P.Family(r.DistrictType)~='INDUSTRY' or not P.IsTestPlayer(pid)then return end
   local district=CityManager.GetDistrictAt(x,y);local c=district and district:GetCity()
   if c and c:GetOwner()==pid and district:GetType()==index then data.MarkCity(c);data.FlushPending(pid)end
  end)
- for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap','DistrictPillaged','DistrictRepaired'}) do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit) end
- for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt','OnPillage'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
+ for _,n in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
+ for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt','OnPillage'})do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit)end
+ end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('IndustrySupport',targets.Exit(function(c,loss)
    local ids={};for bit=-1,7 do ids[#ids+1]=name(bit)end

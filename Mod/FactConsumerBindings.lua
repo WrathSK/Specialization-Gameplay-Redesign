@@ -21,7 +21,7 @@ function SPCFactConsumerBindings.New(shared)
   {target='ResearchSupport',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='Lv2Housing',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='Lv2GPP',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
-  {target='IndustrySupport',method='Audit',cityOnly=true,allowOwnerCause='REQUEST_FACTS_DIRTY',kinds={'D'}},
+  {target='IndustrySupport',method='Audit',cityOnly=true,ownerCauses={REQUEST_FACTS_DIRTY=true,DISTRICT_FACTS_DIRTY=true},kinds={'D'}},
   {target='Lv3Support',method='Audit',kinds=role},
   {target='Lv3Effects',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','NETWORK'}},
   {target='Lv4Percent',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
@@ -44,7 +44,13 @@ function SPCFactConsumerBindings.New(shared)
   {target='CapitalInvestment',method='Mark',kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK'}},
   {target='DevelopmentInvestment',method='Audit',kinds={'NETWORK'}},
  }
+ local function ownerAllowed(row,e)
+  if not row.ownerCauses then return false end
+  for cause in pairs(row.ownerCauses)do if e.causes[cause]then return true end end
+  return false
+ end
  local function collect(row,e)
+  if row.ownerCauses and e.city==nil and not ownerAllowed(row,e)then return end
   local owners=pending[row.target] or {};pending[row.target]=owners
   local key=tostring(e.player);local q=owners[key]
   if not q then q={player=e.player,cities={},order={},proofs={},references={},topics={},causes={}};owners[key]=q end
@@ -73,7 +79,7 @@ function SPCFactConsumerBindings.New(shared)
    local ok,err=pcall(fn,...)
    if not ok then local safe,text=pcall(tostring,err);failure=safe and text:sub(1,180) or 'FACT_BINDING_FAILED'end
   end
-  if row.cityOnly and q.all and not (row.allowOwnerCause and q.causes[row.allowOwnerCause])then
+  if row.cityOnly and q.all and not ownerAllowed(row,q)then
    for _,id in ipairs(q.order)do
     if row.method=='Audit'then call({player=q.player,city=id})else call(q.player,id)end
    end
@@ -102,7 +108,7 @@ function SPCFactConsumerBindings.New(shared)
    local owners=work[row.target] or {};local global=owners['nil']
    -- A real all-player Audit already contains the known owner/city scopes.
    -- City-only methods deliberately ignore global fallback and keep their narrow work.
-   if global and not row.cityOnly and (row.method=='Audit' or row.source)then owners={global=global}end
+   if global and (not row.cityOnly or ownerAllowed(row,global)) and (row.method=='Audit' or row.source)then owners={global=global}end
    for _,q in pairs(owners)do
     local ok,err=pcall(invoke,row,q)
     if ok then d.errors[row.target]=nil else local safe,value=pcall(tostring,err);d.errors[row.target]=safe and value:sub(1,180) or 'FACT_BINDING_FAILED'end

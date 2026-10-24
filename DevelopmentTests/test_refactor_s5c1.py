@@ -36,7 +36,7 @@ class Districts(unittest.TestCase):
     def test_provider_registration_failed_start_cannot_escape_quarantine(self):
         c=depth();c.load('RuntimeComposition');c.execute("local startup=SPCRuntimeComposition.New(shared);writes=0;assert(not startup.Run('Broken',{}, {},function()d.RegisterConsumer('broken',function()writes=writes+1 end);error('LATE_FAILURE')end));d.MarkDirty(0,1);fc.Flush();assert(writes==0 and fc.errors.DC_broken)")
     def test_global_fallback_dominates_full_audit_without_losing_city_only_work(self):
-        c=depth();c.load('FactConsumerBindings');c.execute("SPCFactConsumerBindings.New(shared);all=0;narrow=0;shared.Lv2GPP={Audit=function(s)assert(s.player==nil and s.city==nil);all=all+1 end};shared.IndustrySupport={Audit=function(s)assert(s.player==0 and s.city==1);narrow=narrow+1 end};d.MarkDirty(0,1);d.MarkDirty();fc.Flush();shared.FactBindings.Flush();assert(all==1 and narrow==1)")
+        c=depth();c.load('FactConsumerBindings');c.execute("SPCFactConsumerBindings.New(shared);all=0;narrow=0;shared.Lv2GPP={Audit=function(s)assert(s.player==nil and s.city==nil);all=all+1 end};shared.IndustrySupport={Audit=function(s)assert(s.player==0 and s.city==1);narrow=narrow+1 end};d.MarkDirty(0,1);d.MarkDirty(nil,nil,'UI_FACTS_DIRTY');fc.Flush();shared.FactBindings.Flush();assert(all==1 and narrow==1)")
     def test_unknown_scope_immediately_stales_scalar_transaction_epochs(self):
         c=depth();c.execute("local a=fc.Generation(0,'COMMERCE');local b=fc.Generation(0,'COMMERCE',7);local n=fc.Generation(0,'NETWORK');d.MarkDirty();assert(fc.Generation(0,'COMMERCE')>a and fc.Generation(0,'COMMERCE',7)>b and fc.Generation(0,'NETWORK')==n)")
 

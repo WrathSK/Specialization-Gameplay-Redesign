@@ -288,6 +288,31 @@
       "test_refactor_s5d4b2",
       "test_refactor_s5d4c1",
       "test_refactor_s5d4c2"
+    ],
+    "S5d4c3": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_s5a",
+      "test_refactor_s5a2",
+      "test_refactor_s5history",
+      "test_refactor_s5propagation",
+      "test_refactor_s5b",
+      "test_refactor_s5c1",
+      "test_refactor_s5c2",
+      "test_refactor_s5d1",
+      "test_refactor_s5d2",
+      "test_refactor_a8",
+      "test_refactor_s5d3",
+      "test_refactor_s5d4a",
+      "test_refactor_s5d4b1",
+      "test_refactor_s5d4b2",
+      "test_refactor_s5d4c1",
+      "test_refactor_s5d4c2",
+      "test_refactor_s5d4c3"
     ]
   },
   "counterexamples": {
@@ -300,7 +325,8 @@
     "Mod/DistrictCompleteness.lua": [
       "test_refactor_baseline.WorkScope",
       "test_refactor_s5c1",
-      "test_refactor_s5d4a"
+      "test_refactor_s5d4a",
+      "test_refactor_s5d4c3"
     ],
     "Mod/EffectiveFacts.lua": [
       "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample",
@@ -309,7 +335,8 @@
     "Mod/IndustrySupport.lua": [
       "test_refactor_baseline.RealConsumers.test_T05_unchanged_pending_has_attempt_budget",
       "test_refactor_s4a",
-      "test_refactor_s5d4b1"
+      "test_refactor_s5d4b1",
+      "test_refactor_s5d4c3"
     ],
     "Mod/RuntimeWork.lua": [
       "test_refactor_baseline.RealConsumers",
@@ -458,7 +485,8 @@
       "test_refactor_s5propagation",
       "test_refactor_s5d4a",
       "test_refactor_s5d4b1",
-      "test_refactor_s5d4b2"
+      "test_refactor_s5d4b2",
+      "test_refactor_s5d4c3"
     ],
     "Mod/NativeFacts.lua": [
       "test_refactor_s5d4b1",

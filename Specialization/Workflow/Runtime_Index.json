@@ -681,9 +681,9 @@
       "provenance": "B279 confirmed historical result topics and explicit isolated adapters; project/native/persistence semantics retained. Local/static only; remaining manual lists next; no deployment/native PASS."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "72b8c8f30b4c4f8af63b0f6dec1fcb533400516143f4c6fcf2f27f27847d5564",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "a9e9d1fe2c066f1bfdcefbdea4ded9269fa7a9ddd0c4faa46927ca8730be9111",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B292_Refactor_S5d4c3.md",
+      "provenance": "B292.319 trusted Industry D scope and exact carrier health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "616fd926e481b452729cdab8be6e7944b36ade557c30eb4888e950ed36299211",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "bca445142eab62931fc154f569afa3321124852a99efd83785a1b400111f5288",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
-      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
+      "sha256": "b9fe44cfe0f84e6a414e99cbf46c8b842a57c47da9831c88c4f4741d22ba1bb3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B292_Refactor_S5d4c3.md",
+      "provenance": "B292.319 trusted Industry D scope and exact carrier health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a71619bcfabc66d74d17f346f47646c8afd8b60a3d2e2341e833633a96389b17",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
-      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
+      "sha256": "8c5a74e54837e30ab57ac8bd1a3d057e39ba337108d1ec77e3aa99b5f295cd2d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B292_Refactor_S5d4c3.md",
+      "provenance": "B292.319 trusted Industry D scope and exact carrier health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1586,9 +1586,9 @@
       "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "5662c57d747d526458c3e0eddd3945c6875b218ff623f67982d0cf3272da7433",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "352a3a14529580def74eace01cca7aead7c78c6767165f8492377b09bb70e24a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B292_Refactor_S5d4c3.md",
+      "provenance": "B292.319 trusted Industry D scope and exact carrier health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "66b5f5bf68274e54ec9495802f9a7ade09eaa5a89ecda22518b2ea787f84bec9",

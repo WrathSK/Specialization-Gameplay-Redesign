@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0740
-Implementation Build: B291.318 / modinfo318; stable/live B271.298
+Status Revision: S0741
+Implementation Build: B292.319 / modinfo319; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D4C2_COMPLETE_CONTINUING
+Work State: REFACTOR_S5D4C3_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d4c2 complete:Infrastructure/Support/Housing/GPP use bounded exact health queues and shared D ordinary structural input, preserving optional-provider fallback, presence-only policy and target-owned foreign cleanup.16 new cases/full336 have335 passing properties/1 registered S6 capacity counterexample OPEN. Independent static membership survives cold UNKNOWN; detached transfer metadata survives busy. Industry and remaining effect/transfer closure continue before S6–S10. [Result](Validation/Results/Specialization_B291_Refactor_S5d4c2.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d4c3 complete:Industry exact health uses existing deferred/sample recovery; real structural owner/global D is admitted while UI-only wide rows cannot widen native city work. DC-present duplicate/special construction hooks retire, independent fallback remains.14 new/full350 cases have349 properties PASS/1 registered S6 capacity counterexample OPEN. Remaining cultural/history/network writer health and transfer closure continue before S6–S10. [Result](Validation/Results/Specialization_B292_Refactor_S5d4c3.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
 - Primary next: S5d remaining effect-owner health/structural and transfer closure, then S6–S10 under continuing authorization.
+
+## S0741 — B292.319 trusted Industry D scope and exact carrier health
+
+S5d4c3 complete:Industry exact health uses existing deferred/sample recovery; real structural owner/global D is admitted while UI-only wide rows cannot widen native city work. DC-present duplicate/special construction hooks retire, independent fallback remains.14 new/full350 cases have349 properties PASS/1 registered S6 capacity counterexample OPEN. Remaining cultural/history/network writer health and transfer closure continue before S6–S10.
 
 ## S0740 — B291.318 scoped support housing GPP and infrastructure health
 
