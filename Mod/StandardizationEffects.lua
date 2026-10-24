@@ -1,4 +1,5 @@
 include('NetworkInput')
+include('RuntimeWork')
 include('ExpeditionTrainingDiagnostics')
 -- B235: template-holder-specific III/IV projection. Store owns knowledge/L;
 -- Bridge owns topology. One final-value carrier per target, no purchase unlock.
@@ -6,18 +7,31 @@ SPCStandardizationEffects={}
 function SPCStandardizationEffects.Start(P,shared)
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.StandardizationEffects=d
  local catalog,definitions,byTarget;local dirty={};local initialized=false;local cleaned={}
+ local ownedIndex={};local healthSequence=0
  local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'INDUSTRY_STANDARDIZATION')
  local function key(pid,cid)return tostring(pid)..':'..tostring(cid)end
  local function ref(c)return SPCNetworkInput.Reference(c)end
  local function code(s)return type(s)=='string' and (s:match('(STD_[A-Z_]+)') or s:match('(NETWORK_[A-Z_]+)') or s:match('(STORE_[A-Z_]+)') or s:match('(EST_[A-Z_]+)')) or 'STD_READ_PENDING'end
  local function mark(pid,cid)
+  if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then mark(owner,cid)end end;return end
   if not P.IsTestPlayer(pid)then return end
   local q=dirty[pid] or {cities={}};dirty[pid]=q
   if cid==nil then q.all=true else q.cities[cid]=true end
  end
+ local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)
+  healthSequence=healthSequence+1
+  local function owner(pid)
+   if not P.IsTestPlayer(pid)then return end
+   if scope.city~=nil then
+    local r=d.records[key(pid,scope.city)];if r then r.healthTicket=healthSequence end
+   else for _,r in pairs(d.records)do if r.owner==pid then r.healthTicket=healthSequence end end end
+   mark(pid,scope.city)
+  end
+  if scope.player~=nil then owner(scope.player)else for pid in pairs(Players)do owner(pid)end end
+ end)
  local function validate()
   if definitions then return end
-  local cat=SPCStandardizationCatalog.Build(P);local rows,map={},{}
+  local cat=SPCStandardizationCatalog.Build(P);local rows,map,nextOwned={},{},{}
   for _,r in ipairs(P.Rows('SPC_StandardizationTargets'))do
    assert(r.Kind=='BUILDING' or r.Kind=='DISTRICT','STD_TARGET_KIND')
    local t=r.Kind..':'..r.TargetType;assert(not map[t],'STD_TARGET_DUPLICATE')
@@ -27,7 +41,7 @@ function SPCStandardizationEffects.Start(P,shared)
    assert((b.InternalOnly==true or b.InternalOnly==1) and b.PrereqDistrict=='DISTRICT_CITY_CENTER'
     and b.CitizenSlots==0 and b.Housing==0,'STD_CARRIER_INVALID')
    local row={index=b.Index,id=r.CarrierType,kind=r.Kind,target=r.TargetType,key=t,name=entry.name}
-   row.amount=10;row.levels={[10]=row};rows[#rows+1]=row;map[t]=row
+   nextOwned[row.index]=true;row.amount=10;row.levels={[10]=row};rows[#rows+1]=row;map[t]=row
   end
   for id,b in pairs(cat.buildings)do if b.enabled then assert(map['BUILDING:'..id],'STD_BUILDING_TARGET_MISSING')end end
   for id in pairs(cat.districts)do assert(map['DISTRICT:'..id],'STD_DISTRICT_TARGET_MISSING')end
@@ -38,9 +52,9 @@ function SPCStandardizationEffects.Start(P,shared)
    assert((b.InternalOnly==true or b.InternalOnly==1) and b.PrereqDistrict=='DISTRICT_CITY_CENTER'
     and b.CitizenSlots==0 and b.Housing==0 and not base.levels[amount],'STD_LEVEL_INVALID')
    local row={index=b.Index,id=r.CarrierType,kind=r.Kind,target=r.TargetType,key=t,name=base.name,amount=amount}
-   base.levels[amount]=row;rows[#rows+1]=row
+   base.levels[amount]=row;rows[#rows+1]=row;nextOwned[row.index]=true
   end
-  assert(#rows>0,'STD_TARGETS_EMPTY');catalog,definitions,byTarget=cat,rows,map
+  assert(#rows>0,'STD_TARGETS_EMPTY');catalog,definitions,byTarget,ownedIndex=cat,rows,map,nextOwned
  end
  local function present(c)
   local out={};local b=c:GetBuildings()
@@ -50,19 +64,30 @@ function SPCStandardizationEffects.Start(P,shared)
   end
   return out
  end
- local function write(c,old,want)
+ local function missingWanted(c,old,want)
+  local missing={};local b=c:GetBuildings()
+  -- Sample every requested equal-value slot before any native mutation. This is
+  -- proportional to wanted targets, never all level definitions.
+  for t,amount in pairs(want)do if old[t]==amount then
+   local row=assert(byTarget[t] and byTarget[t].levels[amount],'STD_LEVEL_DEFINITION_MISSING')
+   local has=P.HasBuilding(b,row.index);assert(type(has)=='boolean','STD_HEALTH_PRESENCE_UNKNOWN')
+   if not has then missing[t]=true end
+  end end
+  return missing
+ end
+ local function write(c,old,want,missing)
   -- Remove before adding; changed entries only after initial ownership read.
   local b=c:GetBuildings()
   for t,amount in pairs(old)do if want[t]~=amount then
    local r=assert(byTarget[t] and byTarget[t].levels[amount],'STD_OWNED_TARGET_UNKNOWN')
    local has=P.HasBuilding(b,r.index);assert(type(has)=='boolean','STD_REMOVE_PRESENCE_UNKNOWN')
-   if has then P.RemoveBuilding(b,r.index);assert(P.HasBuilding(b,r.index)==false,'STD_REMOVE_UNCONFIRMED')end
+   if has then carrierHealth.Remove(c,r.index);assert(P.HasBuilding(b,r.index)==false,'STD_REMOVE_UNCONFIRMED')end
    old[t]=nil;d.changes=d.changes+1
   end end
-  for t,amount in pairs(want)do if old[t]~=amount then
+  for t,amount in pairs(want)do if old[t]~=amount or missing and missing[t]then
    local r=assert(byTarget[t] and byTarget[t].levels[amount],'STD_LEVEL_DEFINITION_MISSING')
    local has=P.HasBuilding(b,r.index);assert(type(has)=='boolean','STD_ADD_PRESENCE_UNKNOWN')
-   if not has then P.CreateBuilding(c:GetBuildQueue(),r.index);assert(P.HasBuilding(b,r.index)==true,'STD_ADD_UNCONFIRMED')end
+   if not has then carrierHealth.Create(c,r.index);assert(P.HasBuilding(b,r.index)==true,'STD_ADD_UNCONFIRMED')end
    old[t]=amount;d.changes=d.changes+1
   end end
  end
@@ -202,14 +227,25 @@ function SPCStandardizationEffects.Start(P,shared)
   end
   local wanted,sources,reason,loaded,held=plan(batch,pid,c,old)
   assert(c:GetOwner()==pid and ref(c)==reference,'STD_RECEIVER_CHANGED')
-  if not held then write(c,old.applied,wanted)end
+  local ticket=old.healthTicket
+  local repair=ticket and not held and not reason and not batch.networkError
+   and batch.view and not batch.view.input.continuityOnly
+  local missing=repair and missingWanted(c,old.applied,wanted) or nil
+  assert(c:GetOwner()==pid and ref(c)==reference,'STD_RECEIVER_CHANGED')
+  if not held then write(c,old.applied,wanted,missing)end
+  -- A native callback during the write owns a later ticket and cannot be ACKed.
+  if repair and old.healthTicket==ticket then old.healthTicket=nil end
   old.sources=sources;old.loaded=loaded;old.retained=held;d.errors[k]=reason
   observe(pid,c,old,reason)
  end
  function d.Audit(scope)
   local store=shared.CityProgressionStore
   if store and store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return end
-  if d.busy then if scope and scope.player~=nil then mark(scope.player,scope.city)end;return end
+  if d.busy then
+   if scope and scope.changed then for cid in pairs(scope.changed)do mark(scope.player,cid)end
+   else mark(scope and scope.player,scope and scope.city)end
+   return
+  end
   d.busy=true
   local good,why=pcall(function()
    validate()
@@ -227,7 +263,7 @@ function SPCStandardizationEffects.Start(P,shared)
    for pid,p in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or scope.player==nil or scope.player==pid)then
     local batch={sources={}};local ok,view=pcall(network,batch,pid)
     if ok then batch.view=view else batch.networkError=code(view)end
-    local changed=scope and scope.changed;local live={}
+    local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true});local live={}
     for _,c in p:GetCities():Members()do
      local cid=c:GetID();local k=key(pid,cid);live[k]=true;local old=d.records[k]
      local visit=not changed or changed[cid] or not old
