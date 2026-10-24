@@ -11,8 +11,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0750",
-    "runtime": "B301.328 / modinfo328",
+    "status": "S0751",
+    "runtime": "B302.329 / modinfo329",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -194,6 +194,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B301_Refactor_S5d4d1.md",
       "kind": "full",
       "reason": "Detached bounded native transfer metadata transport actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B302_Refactor_S5d4d2.md",
+      "kind": "full",
+      "reason": "Native D transfer metadata and detached target recovery actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -220,8 +225,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B301_Refactor_S5d4d1.md",
-    "local": "467 properties PASS/1 registered S6 OPEN",
+    "report": "Specialization/Status/Validation/Results/Specialization_B302_Refactor_S5d4d2.md",
+    "local": "478 properties PASS/1 registered S6 OPEN",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }

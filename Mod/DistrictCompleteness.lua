@@ -137,14 +137,14 @@ function M.Start(P,shared)
   return M.Calculate(catalog,raw,false),raw
  end
  local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
- function data.MarkDirty(pid,cid,cause)
+ function data.MarkDirty(pid,cid,cause,transfer)
   if not valid(pid)then pid=nil;cid=nil elseif not valid(cid)then cid=nil end
   if pid~=nil and not P.IsTestPlayer(pid)then return end
   local function mark(e)if e then e.invalidation=(e.invalidation or 0)+1;if not e.dirty then e.dirty=true;count('dirty')end end end
   if pid~=nil and cid~=nil then mark(cache[key(pid,cid)])
   else for _,e in pairs(cache)do if pid==nil or e.ref.owner==pid then mark(e)end end end
   if shared.FactChanges then
-   shared.FactChanges.Emit({owner=pid,cityID=cid,kinds={'D'},cause=cause or 'DISTRICT_FACTS_DIRTY'})
+   shared.FactChanges.Emit({owner=pid,cityID=cid,kinds={'D'},cause=cause or 'DISTRICT_FACTS_DIRTY',transfer=transfer})
   end
  end
  local function read(pid,c,token,detail)
@@ -188,7 +188,15 @@ function M.Start(P,shared)
  local function dirty(scope)
   scope=scope or {}
   if scope.transfer then
-   local t=scope.transfer;data.MarkDirty(t.owner,t.city);data.MarkDirty(t.oldOwner)
+   local t=scope.transfer
+   -- Both sides carry the original detached routing hint. A foreign destination
+   -- is still meaningful to the supported former owner's cleanup candidates.
+   local ok,why=pcall(data.MarkDirty,t.owner,t.city,'NATIVE_CITY_TRANSFERRED',t)
+   local good,err=pcall(data.MarkDirty,t.oldOwner,nil,'NATIVE_CITY_TRANSFERRED',t)
+   if not ok or not good then
+    local safe,text=pcall(tostring,not ok and why or err)
+    data.transferError=safe and text:sub(1,180) or 'DISTRICT_TRANSFER_MARK_FAILED'
+   end
   else data.MarkDirty(scope.player,scope.city)end
  end
  for _,name in ipairs({'DistrictAddedToMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRemovedFromMap'})do
@@ -196,7 +204,7 @@ function M.Start(P,shared)
  end
  hook(Events,'CityRemovedFromMap',function(pid,cid)data.MarkDirty(pid,cid)end)
  hook(Events,'CityTransfered',function(owner,cid,oldOwner)
-  if type(owner)=='number' and type(cid)=='number' and type(oldOwner)=='number'then dirty({transfer={owner=owner,city=cid,oldOwner=oldOwner}})else dirty({})end
+  if valid(owner) and valid(cid) and valid(oldOwner)then dirty({transfer={owner=owner,city=cid,oldOwner=oldOwner}})else dirty({})end
  end)
  local function internal(index)
   local ok,row=pcall(P.Info,'Buildings',index)

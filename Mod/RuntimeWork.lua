@@ -268,7 +268,15 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
  function t.Retry(scope)
   local ok,out=pcall(function()
    if type(scope)=='table' and scope.transfer then
-    local v=scope.transfer;put(t.transfers,tostring(v.owner)..':'..tostring(v.city),v)
+    local v=scope.transfer
+    assert(type(v)=='table' and getmetatable(v)==nil,'RUNTIME_TRANSFER_STRUCTURE')
+    local fields={owner=true,city=true,oldOwner=true};local n=0
+    for field,value in pairs(v)do
+     n=n+1;assert(fields[field] and type(value)=='number' and value>=0 and value<2147483648 and value%1==0,'RUNTIME_TRANSFER_FIELD')
+    end
+    assert(n==3 and v.owner~=nil and v.city~=nil and v.oldOwner~=nil,'RUNTIME_TRANSFER_FIELDS')
+    local detached={owner=v.owner,city=v.city,oldOwner=v.oldOwner}
+    put(t.transfers,tostring(v.owner)..':'..tostring(v.city)..':'..tostring(v.oldOwner),detached)
    end
    return retryImpl(scope)
   end)
