@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "2ee54c10ad76843f38c5f72f943efc116905f8659a7f11cfca8904701dd28d8a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B297_Refactor_S5d4c8.md",
-      "provenance": "B297.324 Industry Wonder exact health and native ROLE closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "01a95781bf54f534cf41e30a79994c13e7400a2b1559c3e8d144cac5742ab15f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
+      "provenance": "B308.335 Git forward-port of B307 probe disable; local/static only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "36e9021f51988bfdf61c7ed0dd45bebd4a3f51bd79d795823aac17f86574a27d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
-      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "1c9af2bebef1f5501a71a17f069203df2f72062cf6786d330d94b184e24f80af",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
+      "provenance": "B308.335 Git forward-port of B307 probe disable; local/static only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "48f36a9175d6d74d9191aad2880ec3a0ee2eb0fc8997ff5bda6533827c08aba8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
-      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "6f3aa900b7ce02051ea272f54c8da0c1e96ac486aa97320c6e3f131244b5c813",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
+      "provenance": "B308.335 Git forward-port of B307 probe disable; local/static only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1556,9 +1556,9 @@
       "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/EventTimingDiagnostics.lua": {
-      "sha256": "dcb732f80365b06d70fa5f28df5febcb99001d731b22d68071b3a76093d5e16b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "5ff154ee0aa59d206a0c2e9d1eab161fb28d00bc6883815c6862c8409dd59662",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
+      "provenance": "B308.335 Git forward-port of B307 probe disable; local/static only; no deployment/native PASS."
     },
     "Mod/Data/InternalCarrierPillage.sql": {
       "sha256": "9e1fd53c44eb32f37d9ba0dc5efb1d0e3a9233b565eca8af94fd2f0a19b5ba72",
@@ -1601,5 +1601,5 @@
       "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
     }
   },
-  "source_review": "B271 approved source promoted through PR6 and deployed;312/312 source/live MATCH. Scoped local validation inherited; native acceptance pending."
+  "source_review": "B308.335 narrow probe-disable forward-port; S6d completion and remaining work unchanged."
 }

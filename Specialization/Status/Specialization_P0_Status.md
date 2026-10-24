@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0756
-Implementation Build: B306.333 / modinfo333; stable/live B271.298
+Status Revision: S0758
+Implementation Build: B308.335 / modinfo335; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S6D_COMPLETE_CONTINUING
+Work State: PROBE_DISABLE_FORWARDED_REFACTOR_S6D_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S6d adds a private bounded scalar reverse-dependency helper to CultureNetwork and StandardizationEffects; Commerce keeps its existing equivalent mechanism. Edges include all source keys (false/empty/UNKNOWN/retained), not only positive/max contributors, and follow each writer record commit/clear timing. Changed receivers are old dependency snapshot union current topology union changed self; existing candidate discovery and Std cold/unrecorded recovery stay. Capacity/input failure preserves old graph but marks index UNAVAILABLE with scalar reason and original scan fallback; no added retry/native reads.15 independent cases pass; later S6 discovery/worker/capital/UI/network work remains. [Result](Validation/Results/Specialization_B306_Refactor_S6d.md). Stable/live/main B271.298; no deployment/native PASS.
+Forward-ported only main-based B307 probe-disable implementation `95310ac` as `988e94d` through Git. B271 A/B/C are disabled before Gameplay/UI observer startup; D4, gameplay and all completed refactor work remain. S6d is still the last completed program slice; remaining S6 and S7–S10 continue. This does not promote or deploy develop. [Result](Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md). Stable/live/main B271.298; B307.334 is an unmerged stable candidate. No new deployment/native PASS.
 
-- User decision: none.
+- User decision: main candidate merge and deployment await separate approval.
 - User testing: final U5 unless a specific blocking native fact appears.
 - Primary next: Continue S6 scoped receiver discovery, remaining worker consumers and capital/UI/target/network hot paths, then S7–S10.
+
+## S0758 — B308.335 isolated probe-disable forward-port
+
+Forward-ported only main-based B307 probe-disable implementation `95310ac` as `988e94d` through Git. B271 A/B/C are disabled before Gameplay/UI observer startup; D4, gameplay and all completed refactor work remain. S6d is still the last completed program slice; remaining S6 and S7–S10 continue. This does not promote or deploy develop.
 
 ## S0756 — B306.333 Index retained source dependencies without changing receiver discovery
 

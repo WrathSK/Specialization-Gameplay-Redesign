@@ -11,8 +11,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0756",
-    "runtime": "B306.333 / modinfo333",
+    "status": "S0758",
+    "runtime": "B308.335 / modinfo335",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -224,6 +224,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
       "kind": "full",
       "reason": "Index retained source dependencies without changing receiver discovery actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
+      "kind": "full",
+      "reason": "Isolated stable probe-disable forward-port; no program-stage advance."
     }
   ],
   "dependencies": [
@@ -250,8 +255,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
-    "local": "109 impact-selected Lua51 scenarios PASS, including15 independent reverse-index/actual-CN/Std cases.",
+    "report": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
+    "local": "LOCAL_SIMULATION_PASS:20 probe/current B271 tests plus109 current S6d regressions.",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }
