@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0724
-Implementation Build: B275.302 / modinfo302; stable/live B271.298
+Status Revision: S0725
+Implementation Build: B276.303 / modinfo303; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S4_COMPLETE_A8_AUTHORIZED
+Work State: REFACTOR_A8_COMPLETE_S5A_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S4 completed in B275.302: [network continuity / internal U2](Validation/Results/Specialization_B275_Refactor_S4b.md). Two original network gates plus28 new actual bridge/writer cases pass; full program87PASS/4 laterOPEN;92 inherited methods PASS. Topology pending freezes installed effects; reliable partial-source updates carry provenance; confirmed negatives remain scoped; strict new transactions remain fresh-proof-only. Development per-city startup failure is isolated from incomplete global occupancy. No blocking native fact prevents continuation. Stable/live/main remain B271.298; no deployment/native PASS.
+Approved eight-era correction complete in B276.303: [A8 actual model/writer/Store/SQL evidence](Validation/Results/Specialization_B276_Eight_Eras.md). E/X0–8, Inspiration max24%, Dialogue round max40; pool/own-era/GameEra quota/history unchanged.95 program properties PASS/4 laterOPEN;64 selected inherited methods PASS. Loaded9-GameEra SQL covers totals5–360, seven unchanged categories and new Pillage0 carriers. S4/internal U2 remains locally complete. Stable/live/main remain B271.298; no deployment/native PASS.
 
-- User decision: none; A8 explicitly approved for8 collection eras,24% Inspiration and40-point Dialogue round maximum.
-- User testing: U5 final integration only unless a concrete blocking native fact appears. No automatic deployment.
-- Primary next: separate A8 batch→S5a/b/c/d→S6→S7/S8→S9/S10.
+- User decision: none.
+- User testing: final U5 unless a concrete blocking native fact appears; no automatic deployment.
+- Primary next: S5a→S5b→S5c→S5d→S6→S7/S8→S9/S10.
+
+## S0725 — B276.303 approved A8 implemented
+
+The user's corrected eight-era count is implemented across Inspiration, Dialogue completion/history validation, reachable carrier enumeration and both current tooltip rows. Eight targeted Lua5.1 cases and64 inherited cases pass; configured engine database read-only copy confirms9 GameEras and72 legal totals through360, not a new cumulative cap. Old≤7 receipts remain valid. Catalogue/pool and permanent schema stay unchanged; actual native yields/completion remain U5-required.
 
 ## S0724 — B275.302 S4b and internal U2
 

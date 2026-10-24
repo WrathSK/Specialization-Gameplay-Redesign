@@ -201,9 +201,9 @@
       "provenance": "B173 authorized P13a-F04 only: named subscribers, per-consumer reference-scoped retry and readiness isolation;81 methods44 subTests LOCAL. No formula/SQL/schema/collector/GC change; native combined with B172 pending."
     },
     "Mod/CultureInspirationModel.lua": {
-      "sha256": "23f8b218c1a5a556bbe330a54b733f5ae7d5c518c18f2d8d4abdaafd10e9e115",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "514fa59c5e95d9cd970b002892496f06f838b06706ee4b8ebf9d4e0018f59180",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/CultureInspirationProbe.lua": {
       "sha256": "436bf4290966cddd03f084718c17c13aed282b62ad4423b8368a6b9c4f3fee31",
@@ -291,9 +291,9 @@
       "provenance": "B216 approved city-owned Insight Tourism final-value projection;123 targeted local tests PASS; native pressure pending."
     },
     "Mod/Data/CultureInspiration.sql": {
-      "sha256": "b72705f4be2a464ae3187eb34e572da95a77e3c282f41b8a1270b02ac7655fa8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "sha256": "3b3224b84560cbcb586761d2f08920e7555b24f93a38e0ff8e20363bf149b817",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/Data/CultureInspirationProbe.sql": {
       "sha256": "c0814c30d8cf913d36228a6528dc46aa8e8120327e0506e4112372fdcc33c552",
@@ -321,9 +321,9 @@
       "provenance": "B176 authorized local carrier test; current exact source/caller review, native pending; no history change"
     },
     "Mod/Data/DialogueEffects.sql": {
-      "sha256": "ce0448f7a24cebd8fcec2ce0d83218bb54b2f02eda10c13c8bd3cef1b15ef0dd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
-      "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
+      "sha256": "26ab1f5bec90465bc3daf54c59a4ba3e474048e71203ee122d455cb18b9c9709",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/Data/DialogueProjects.sql": {
       "sha256": "9a4ab6028432f366b8b2b98fc1c2477b79d40b624f243b7343231560fb797a93",
@@ -526,9 +526,9 @@
       "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
     },
     "Mod/DialogueEffects.lua": {
-      "sha256": "5d50062c5296e7fec751e58c59d00bf8e7584f6a2f33bd1ae20d34a46ac9ea8b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
-      "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
+      "sha256": "36d73bb241e4aab03818fa55db092f5ba7edb62fb9faa4f4e55c7ea868c3bb0e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/DialogueModel.lua": {
       "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
@@ -536,14 +536,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DialogueProjectModel.lua": {
-      "sha256": "cc042bb1f281989edc3837307f27ca59ce5bb5c2117b67e064c35f49f897d8ed",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B175_Dialogue_Project_Local.md",
-      "provenance": "B175 first Dialogue project/history gate; exact new Store/entry/UI dependency changes and local failure/lifecycle tests reviewed. No cumulative yield cutover or native PASS."
+      "sha256": "26fa24d6d4a0bf669fb61c9c07d2952880290ff2ed253fac0cb8e7d62705d706",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/DialogueProjects.lua": {
-      "sha256": "afb449b2bd32d3878af49ce0cad010bcd70df6703cdba0629152df2247c6cb4c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Local.md",
-      "provenance": "B177 user-authorized cumulative Dialogue cutover, reviewed direct source and local tests"
+      "sha256": "a756230e036e76f4011046b6abf7b689f3fdb7911a34bbbc32bec1dc8b79f1cf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/DistrictCompleteness.lua": {
       "sha256": "3399091abca7023c9744a480d1705fe85e4b98ab1d02c34b2929d942909f1813",
@@ -786,9 +786,9 @@
       "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/Probe.lua": {
-      "sha256": "7481d96c9f8b1a921d54c104834d1a8f0343175560c4cc46095e782af143c2b5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
-      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
+      "sha256": "4e41bb699f8fe0098c8cf33aac4922329e58de021d9f6bde4346f7c1e03366f1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c1b1213d1cbdd412dd32ba649bf869358d3426a05198bd386a80fa908d35ea5c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
-      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
+      "sha256": "b45e64c0da74b6b9b3f1b69b92f7d3b5e7e31038a71f07bf0cdc74af2c0a80b7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1001,9 +1001,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "e395aafd1f5508903adcd5edaf9d0529da0d75ba8a488fa75b61a29a145b9300",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "sha256": "875bda6ff408d6a53bc94786425d92fcc1d1c48f3e32901108285327603f23e9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",

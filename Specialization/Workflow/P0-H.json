@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0724",
-    "runtime": "B275.302 / modinfo302",
+    "status": "S0725",
+    "runtime": "B276.303 / modinfo303",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "S4/internal U2 complete; implement already approved eight-era correction then authorized S5a/b/c/d→S6→S7/S8→S9/S10. No routine native/deploy stop.",
+  "goal": "S4 and approved A8 complete; continue S5a/b/c/d then S6–S10 autonomously within accepted U1. No deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -64,6 +64,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
       "kind": "full",
       "reason": "Current S4b/internal U2 scope, Runtime Impact Contract, actual integration evidence and remaining gates."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+      "kind": "full",
+      "reason": "Approved A8 actual implementation, finite working-set delta, exact local/SQL/native boundary."
     }
   ],
   "dependencies": [
@@ -90,8 +95,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
-    "local": "S4_TARGETS_PASS:87 properties PASS/4 laterOPEN;92 inherited methods PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
+    "local": "A8_TARGETS_PASS:95 properties PASS/4 laterOPEN;64 inherited methods PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }

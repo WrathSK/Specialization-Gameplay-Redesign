@@ -1,5 +1,5 @@
 -- D0049: current collection diversity, never historical accumulation.
-SPCCultureInspirationModel={PercentPerEra=3,MaxEras=7,Owned={}}
+SPCCultureInspirationModel={PercentPerEra=3,MaxEras=8,Owned={}}
 local M=SPCCultureInspirationModel
 for e=1,M.MaxEras do M.Owned[e]='BUILDING_SPC_INSPIRATION_ERA_'..e end
 local function integer(v)return type(v)=='number' and v>=0 and v<math.huge and v%1==0 end

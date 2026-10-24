@@ -147,7 +147,7 @@ function SPCDialogueProjects.Start(P,shared)
     assert(known,'完成时资格未知')
     local value=assert(ExposedMembers.SPC_DialogueProjectRead,'完成时馆藏读取未就绪')(pid,id,true)
     assert(same(value.reference,s.reference) and value.turn==Game.GetCurrentGameTurn(),'完成时馆藏引用不一致')
-    assert(type(value.x)=='number' and value.x%1==0 and value.x>=0 and value.x<=7,'完成时馆藏时代未知')
+    assert(type(value.x)=='number' and value.x%1==0 and value.x>=0 and value.x<=8,'完成时馆藏时代未知')
     local after,_,currentKnown,currentEligible=read(pid,c)
     assert(currentKnown and currentEligible and same(after,s),'完成取样期间状态已变化')
     return value

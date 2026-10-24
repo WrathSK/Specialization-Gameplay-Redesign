@@ -85,6 +85,8 @@ B274 S4a local recovery subset complete: [actual result/closure](../../Status/Va
 
 #### Approved A8 correction — after S4, before dependent propagation work
 
+B276 approved A8 complete: [actual results](../../Status/Validation/Results/Specialization_B276_Eight_Eras.md). E/X0–8,24% Inspiration,40-point Dialogue round, loaded9-era total coverage360;8 new cases/64 inherited PASS. Pool/own-era/GameEra quota/history unchanged. Native integration U5; next S5a.
+
 A8 is no longer excluded: the user explicitly approved eight collection eras after the bounded assessment, correcting the original mistaken count. Extend Inspiration to E0–8/max24%, Dialogue X0–8/max40 per round, valid receipts and total carrier coverage; preserve pool/work-own-era/quota/history. Source: CultureInspirationModel, DialogueProjectModel/Projects/Effects and their SQL; catalogue already spans8. Keep baseline seven-era tests as before evidence and add the explicitly accepted successor tests, not assertion weakening.
 
 #### S5 — Propagation foundation, in a→b→c→d order

@@ -11,8 +11,8 @@ function SPCDialogueEffects.Start(P,shared)
  legacy.retired=true -- Disable old/manual writers even if new initialization fails.
  legacy.off={};legacy.test={};legacy.carrierTest=nil;legacy.meaningOverride=nil;legacy.meaningQualification=nil
  local owned,ids,eras={},{},{};local coverage;local max=0
- for row in GameInfo.Eras()do eras[row.EraType]=true;max=max+35 end
- -- At most one receipt per loaded Game Era, each adds 5*X with X<=7.
+ for row in GameInfo.Eras()do eras[row.EraType]=true;max=max+40 end
+ -- At most one receipt per loaded Game Era, each adds 5*X with X<=8.
  -- This enumerates every reachable total, not an added gameplay cap.
  for value=5,max,5 do owned[#owned+1]='BUILDING_SPC_DIALOGUE_TOTAL_'..value end
  local ownedSet={};for _,name in ipairs(owned)do ownedSet[name]=true end

@@ -33,6 +33,15 @@
       "test_refactor_s3",
       "test_refactor_s4a",
       "test_refactor_s4b"
+    ],
+    "A8": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_a8"
     ]
   },
   "counterexamples": {
@@ -144,6 +153,30 @@
     ],
     "Mod/UI/BackgroundRoutes.lua": [
       "test_refactor_s4b"
+    ],
+    "Mod/CultureInspirationModel.lua": [
+      "test_refactor_a8"
+    ],
+    "Mod/CultureInspiration.lua": [
+      "test_refactor_a8"
+    ],
+    "Mod/Data/CultureInspiration.sql": [
+      "test_refactor_a8"
+    ],
+    "Mod/DialogueProjectModel.lua": [
+      "test_refactor_a8"
+    ],
+    "Mod/DialogueProjects.lua": [
+      "test_refactor_a8"
+    ],
+    "Mod/DialogueEffects.lua": [
+      "test_refactor_a8"
+    ],
+    "Mod/Data/DialogueEffects.sql": [
+      "test_refactor_a8"
+    ],
+    "Mod/Text/TestText.sql": [
+      "test_refactor_a8"
     ]
   },
   "exclusions": {
@@ -154,7 +187,9 @@
     "explicit catalogue stub for D workload fixtures",
     "B270 seven real writers with native doubles"
   ],
-  "external_prerequisites": [],
+  "external_prerequisites": [
+    "A8 only: explicit SPC_DEBUG_GAMEPLAY_DB or local debug_gameplay_db path; read-only source copied to memory, no silent prerequisite skip."
+  ],
   "static_alarm_baseline": {
     "Mod/BindingProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/CityFlowProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,

@@ -17,7 +17,7 @@ function M.Validate(v,record)
  local sum=0;local ids={}
  for e,r in pairs(v.used)do
   assert(era(e) and type(r)=='table' and integer(r.id) and r.id>0 and r.id<=v.serial and not ids[r.id]
-   and integer(r.start) and integer(r.completed) and r.completed>=r.start and integer(r.x) and r.x<=7
+   and integer(r.start) and integer(r.completed) and r.completed>=r.start and integer(r.x) and r.x<=8
    and r.gain==5*r.x and type(r.forced)=='boolean','DIALOGUE_RECEIPT_INVALID')
   ids[r.id]=true;sum=sum+r.gain
  end
@@ -67,7 +67,7 @@ function M.Calling(v,turn)
 end
 function M.Complete(v,id,x,turn)
  v=copy(v);M.Validate(v);local p=assert(v.pending,'DIALOGUE_NO_PENDING')
- assert(p.id==id and (p.stage=='ACTIVE' or p.stage=='CALLING') and integer(x) and x<=7
+ assert(p.id==id and (p.stage=='ACTIVE' or p.stage=='CALLING') and integer(x) and x<=8
   and integer(turn) and turn>=p.start and not v.used[p.era],'DIALOGUE_COMPLETION_REJECTED')
  -- A native forced completion is the existing accepted exception, not proof of 1T.
  local forced=not (p.ended and turn==p.start+1)
