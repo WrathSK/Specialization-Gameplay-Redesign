@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0755
-Implementation Build: B305.332 / modinfo332; stable/live B271.298
+Status Revision: S0756
+Implementation Build: B306.333 / modinfo333; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S6C_COMPLETE_CONTINUING
+Work State: REFACTOR_S6D_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S6c shares detached anchor state and lazily requested geometry inside the existing guarded EF phase. Support/Housing/GPP keep independent policy and installed effects; three no-write consumers reduce anchor state samples3→1 and city-local indexed lookups4→2, with no owner-wide district enumeration. Geometry lookup is counted separately and never forces a D building census. Existing mismatch/state/ACTIVE priority and Industry reference bytes remain; GPP shares raw workers but retains its own255 bound.16 independent tests pass; reverse dependencies, capital/UI/target/network hot paths and remaining worker consumers continue under S6. [Result](Validation/Results/Specialization_B305_Refactor_S6c.md). Stable/live/main B271.298; no deployment/native PASS.
+S6d adds a private bounded scalar reverse-dependency helper to CultureNetwork and StandardizationEffects; Commerce keeps its existing equivalent mechanism. Edges include all source keys (false/empty/UNKNOWN/retained), not only positive/max contributors, and follow each writer record commit/clear timing. Changed receivers are old dependency snapshot union current topology union changed self; existing candidate discovery and Std cold/unrecorded recovery stay. Capacity/input failure preserves old graph but marks index UNAVAILABLE with scalar reason and original scan fallback; no added retry/native reads.15 independent cases pass; later S6 discovery/worker/capital/UI/network work remains. [Result](Validation/Results/Specialization_B306_Refactor_S6d.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S6 reverse dependencies, remaining worker consumers and capital/UI/target/network hot paths, then S7–S10.
+- Primary next: Continue S6 scoped receiver discovery, remaining worker consumers and capital/UI/target/network hot paths, then S7–S10.
+
+## S0756 — B306.333 Index retained source dependencies without changing receiver discovery
+
+S6d adds a private bounded scalar reverse-dependency helper to CultureNetwork and StandardizationEffects; Commerce keeps its existing equivalent mechanism. Edges include all source keys (false/empty/UNKNOWN/retained), not only positive/max contributors, and follow each writer record commit/clear timing. Changed receivers are old dependency snapshot union current topology union changed self; existing candidate discovery and Std cold/unrecorded recovery stay. Capacity/input failure preserves old graph but marks index UNAVAILABLE with scalar reason and original scan fallback; no added retry/native reads.15 independent cases pass; later S6 discovery/worker/capital/UI/network work remains.
 
 ## S0755 — B305.332 Share minimal anchor state without a building census
 

@@ -1,4 +1,5 @@
 include('NetworkInput')
+include('ReverseDependencies')
 include('RuntimeWork')
 include('ExpeditionTrainingDiagnostics')
 -- B235: template-holder-specific III/IV projection. Store owns knowledge/L;
@@ -6,6 +7,11 @@ include('ExpeditionTrainingDiagnostics')
 SPCStandardizationEffects={}
 function SPCStandardizationEffects.Start(P,shared)
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.StandardizationEffects=d
+ local dependents=SPCReverseDependencies.New()
+ local function replaceDependencies(pid,cid,sources)
+  local ok,why=dependents.Replace(pid,cid,sources)
+  if not ok then d.dependencyIndexError=why end -- scalar cache degradation, not a business failure
+ end
  local catalog,definitions,byTarget;local dirty={};local initialized=false;local cleaned={}
  local ownedIndex={};local healthSequence=0
  local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'INDUSTRY_STANDARDIZATION')
@@ -223,7 +229,7 @@ function SPCStandardizationEffects.Start(P,shared)
   if not old or old.reference~=reference then
    retire(c) -- A failed exact withdrawal prevents the replacement writer.
    local installed=present(c)
-   old={owner=pid,city=c:GetID(),reference=reference,applied=installed,sources={},loaded=next(installed)~=nil};d.records[k]=old
+   old={owner=pid,city=c:GetID(),reference=reference,applied=installed,sources={},loaded=next(installed)~=nil};d.records[k]=old;dependents.Remove(pid,c:GetID())
   end
   local wanted,sources,reason,loaded,held=plan(batch,pid,c,old)
   assert(c:GetOwner()==pid and ref(c)==reference,'STD_RECEIVER_CHANGED')
@@ -235,7 +241,7 @@ function SPCStandardizationEffects.Start(P,shared)
   if not held then write(c,old.applied,wanted,missing)end
   -- A native callback during the write owns a later ticket and cannot be ACKed.
   if repair and old.healthTicket==ticket then old.healthTicket=nil end
-  old.sources=sources;old.loaded=loaded;old.retained=held;d.errors[k]=reason
+  old.sources=sources;replaceDependencies(pid,c:GetID(),sources);old.loaded=loaded;old.retained=held;d.errors[k]=reason
   observe(pid,c,old,reason)
  end
  function d.Audit(scope)
@@ -264,10 +270,18 @@ function SPCStandardizationEffects.Start(P,shared)
     local batch={sources={}};local ok,view=pcall(network,batch,pid)
     if ok then batch.view=view else batch.networkError=code(view)end
     local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true});local live={}
+    local affected={};local indexed=true
+    if changed then
+     for source,isChanged in pairs(changed)do if isChanged then
+      affected[source]=true;local prior=dependents.Dependents(pid,source)
+      if prior then for cid in pairs(prior)do affected[cid]=true end else indexed=false end
+     end end
+     if ok and indexed then for cid,sources in pairs(view.recipients)do for source in pairs(sources)do if changed[source]then affected[cid]=true;break end end end end
+    end
     for _,c in p:GetCities():Members()do
      local cid=c:GetID();local k=key(pid,cid);live[k]=true;local old=d.records[k]
-     local visit=not changed or changed[cid] or not old
-     if changed then
+     local visit=not changed or affected[cid] or not old
+     if changed and not indexed then
       for id in pairs(ok and view.recipients[cid] or {})do if changed[id]then visit=true end end
       for id in pairs(old and old.sources or {})do if changed[id]then visit=true end end
      end
@@ -278,7 +292,7 @@ function SPCStandardizationEffects.Start(P,shared)
       end
      end
     end
-    for k,r in pairs(d.records)do if r.owner==pid and not live[k]then d.records[k]=nil;d.errors[k]=nil;cleaned[k]=nil end end
+    for k,r in pairs(d.records)do if r.owner==pid and not live[k]then d.records[k]=nil;dependents.Remove(pid,r.city);d.errors[k]=nil;cleaned[k]=nil end end
    end end
   end)
   d.error=not good and code(why) or nil;d.busy=false
@@ -341,7 +355,7 @@ function SPCStandardizationEffects.Start(P,shared)
   store.RegisterExit('StandardizationEffects',function(c,loss)
    validate();cleaned[key(c:GetOwner(),c:GetID())]=nil;retire(c);local ids={};for _,r in ipairs(definitions)do ids[#ids+1]=r.id end
    store.RemoveOwned(c,loss,ids)
-   d.records[key(loss.origin.owner,loss.origin.cityID)]=nil;d.errors[key(loss.origin.owner,loss.origin.cityID)]=nil
+   d.records[key(loss.origin.owner,loss.origin.cityID)]=nil;dependents.Remove(loss.origin.owner,loss.origin.cityID);d.errors[key(loss.origin.owner,loss.origin.cityID)]=nil
    cleaned[key(loss.origin.owner,loss.origin.cityID)]=nil
    mark(loss.origin.owner);mark(c:GetOwner())
   end)

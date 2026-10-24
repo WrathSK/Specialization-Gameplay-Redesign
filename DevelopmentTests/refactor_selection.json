@@ -662,6 +662,14 @@
       "test_refactor_s6c",
       "test_refactor_s4a",
       "test_refactor_s5d4a"
+    ],
+    "S6d": [
+      "test_refactor_s6d",
+      "test_refactor_s4b",
+      "test_refactor_s5d4c9",
+      "test_refactor_s5d4c10",
+      "test_refactor_s5d4c11",
+      "test_refactor_s3"
     ]
   },
   "counterexamples": {},
@@ -778,10 +786,12 @@
       "test_refactor_s4b"
     ],
     "Mod/CultureNetwork.lua": [
-      "test_refactor_s4b"
+      "test_refactor_s4b",
+      "test_refactor_s6d"
     ],
     "Mod/StandardizationEffects.lua": [
-      "test_refactor_s4b"
+      "test_refactor_s4b",
+      "test_refactor_s6d"
     ],
     "Mod/DevelopmentInvestment.lua": [
       "test_refactor_s4b"
@@ -879,6 +889,9 @@
     ],
     "Mod/SpecialistSupport.lua": [
       "test_refactor_s6c"
+    ],
+    "Mod/ReverseDependencies.lua": [
+      "test_refactor_s6d"
     ]
   },
   "exclusions": {

@@ -226,9 +226,9 @@
       "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "abf23986fedf193eb11b71f5949124fb6aedfc30c8da2d35885fbba4b7b3a8dd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B298_Refactor_S5d4c9.md",
-      "provenance": "B298.325 Culture Network exact health and D closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "26d72859824f31c35f78ef4e1d8d5fe3369f0d7871e9edbc106c2e719a6b0c57",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
+      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "045a1ea1f23191ec4e0da3cdeb10e3182af58186b121a625dce4c65256e7ddfc",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "918aebfcd0e871c7e7fcedc202bef16733945935571aa86f2ed9415b6499d87d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
-      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
+      "sha256": "36e9021f51988bfdf61c7ed0dd45bebd4a3f51bd79d795823aac17f86574a27d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
+      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "5bb6701f86858e3baf81e263758141784d90223b8d63f1f8be6a0aacb983af12",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
-      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
+      "sha256": "48f36a9175d6d74d9191aad2880ec3a0ee2eb0fc8997ff5bda6533827c08aba8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
+      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -946,9 +946,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/StandardizationEffects.lua": {
-      "sha256": "8f5cd25398ed355ae171a3869a038a86eae2c2ce89f1571aa5992c10eee974e5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B300_Refactor_S5d4c11.md",
-      "provenance": "B300.327 Standardization exact health tickets preserve pending aggregates; local/static evidence only; no deployment/native PASS."
+      "sha256": "7a4433bf563d593d925877ec0aa752392c4f5ea389f175828054439f1e95c6f7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
+      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/StorageProbe.lua": {
       "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
@@ -1594,6 +1594,11 @@
       "sha256": "66b5f5bf68274e54ec9495802f9a7ade09eaa5a89ecda22518b2ea787f84bec9",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
       "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/ReverseDependencies.lua": {
+      "sha256": "a9c9f2bc4bba3b60b5eeab0313d5600c55f155f568a3d0e2cc6669bf54ea7c8a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
+      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "B271 approved source promoted through PR6 and deployed;312/312 source/live MATCH. Scoped local validation inherited; native acceptance pending."

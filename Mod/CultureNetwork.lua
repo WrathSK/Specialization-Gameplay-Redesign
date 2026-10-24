@@ -1,6 +1,7 @@
 include('CurrentSpecializationFacts')
 include('RuntimeWork')
 include('NetworkInput')
+include('ReverseDependencies')
 include('ExpeditionTrainingDiagnostics')
 -- B226: current network projection only. Store owns history; Bridge owns topology;
 -- native district workers own the yield count. No received history or timer.
@@ -32,6 +33,11 @@ end
 function M.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'CN_STORE_REQUIRED')
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.CultureNetwork=d
+ local dependents=SPCReverseDependencies.New()
+ local function replaceDependencies(pid,cid,sources)
+  local ok,why=dependents.Replace(pid,cid,sources)
+  if not ok then d.dependencyIndexError=why end -- scalar cache degradation, not a business failure
+ end
  local definitions,dirty,sourceSamples,sourceCounts={},{},{},{};local initialized=false
  local ownedIndex={}
  local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.Mark(scope.player,scope.city)end)
@@ -223,7 +229,7 @@ function M.Start(P,shared)
  end
  local function reconcile(batch,pid,c)
   local k=key(pid,c:GetID());local reference=ref(c);local old=d.records[k]
-  if old and old.reference~=reference then clear(c);d.records[k]=nil;old=nil end
+  if old and old.reference~=reference then clear(c);d.records[k]=nil;dependents.Remove(pid,c:GetID());old=nil end
   local ok,p=pcall(plan,batch,pid,c,old)
   if not ok then
    local reason=p;p=negativePlan(batch,pid,c,old)
@@ -266,10 +272,10 @@ function M.Start(P,shared)
   end)
   d.writing=nil
   if not wrote then
-   if mutating then d.records[k]=nil;pcall(clear,c)end
+   if mutating then d.records[k]=nil;dependents.Remove(pid,c:GetID());pcall(clear,c)end
    error(why)
   end
-  p.retained=held or nil;p.reference=reference;p.owner=pid;p.id=c:GetID();p.x=c:GetX();p.y=c:GetY();d.records[k]=p;d.errors[k]=p.reason
+  p.retained=held or nil;p.reference=reference;p.owner=pid;p.id=c:GetID();p.x=c:GetX();p.y=c:GetY();d.records[k]=p;replaceDependencies(pid,c:GetID(),p.sources);d.errors[k]=p.reason
  end
  function d.Mark(pid,cid)
   if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then d.Mark(owner,cid)end end;return end
@@ -321,9 +327,18 @@ function M.Start(P,shared)
     for _,r in pairs(d.records)do if r.owner==pid then ids[r.id]=true end end
     if scope and scope.city~=nil then ids[scope.city]=true end
     local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true})
+    local affected={};local indexed=true
+    if changed then
+     for source,isChanged in pairs(changed)do if isChanged then
+      affected[source]=true;local prior=dependents.Dependents(pid,source)
+      if prior then for cid in pairs(prior)do affected[cid]=true end else indexed=false end
+     end end
+     -- Current topology includes newly connected receivers absent from old edges.
+     if viewOk and indexed then for cid,sources in pairs(view.recipients)do for source in pairs(sources)do if changed[source]then affected[cid]=true;break end end end end
+    end
     for cid in pairs(ids)do
-     local old=d.records[key(pid,cid)];local visit=not changed or changed[cid]
-     if changed then
+     local old=d.records[key(pid,cid)];local visit=not changed or affected[cid]
+     if changed and not indexed then
       for src in pairs(viewOk and view.recipients[cid] or {})do if changed[src]then visit=true end end
       for src in pairs(old and old.sources or {})do if changed[src]then visit=true end end
      end
@@ -333,7 +348,7 @@ function M.Start(P,shared)
        local previous=old and old.diagnosticSignature
        local ok,err=pcall(reconcile,batch,pid,c);if not ok then d.errors[k]=tostring(err):sub(1,180)end
        if observe then pcall(observe,pid,c,previous)end
-      else d.records[k]=nil;d.errors[k]=nil;forgetSource(pid,cid)end
+      else d.records[k]=nil;dependents.Remove(pid,cid);d.errors[k]=nil;forgetSource(pid,cid)end
      end
     end
     health(pid,not viewOk and diagnosticCode(view) or 'CN_READY')
@@ -447,7 +462,7 @@ function M.Start(P,shared)
  end
  function d.ExperimentalNetworkWithdraw(pid)
   assert(isolated(pid) and not d.busy,'CN_ISOLATION_REQUIRED');validate()
-  for _,c in Players[pid]:GetCities():Members()do clear(c);d.records[key(pid,c:GetID())]=nil;d.errors[key(pid,c:GetID())]=nil end
+  for _,c in Players[pid]:GetCities():Members()do clear(c);d.records[key(pid,c:GetID())]=nil;dependents.Remove(pid,c:GetID());d.errors[key(pid,c:GetID())]=nil end
   dirty[pid]=nil;return true
  end
  local function bind(name,fn)local e=P.Field(Events,name);if e and e.Add then e.Add(fn)end end
@@ -466,7 +481,7 @@ function M.Start(P,shared)
  store.RegisterExit('CultureNetwork',function(c,loss)
   assert(store.IsExitTarget(c,loss),'CN_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,M.Owned)
   forgetSource(loss.origin.owner,loss.origin.cityID)
-  for k,p in pairs(d.records)do if p.owner==loss.origin.owner and p.x==c:GetX() and p.y==c:GetY()then d.records[k]=nil;d.errors[k]=nil end end
+  for k,p in pairs(d.records)do if p.owner==loss.origin.owner and p.x==c:GetX() and p.y==c:GetY()then d.records[k]=nil;dependents.Remove(p.owner,p.id);d.errors[k]=nil end end
   d.Mark(loss.origin.owner)
  end)
  store.RegisterReturn('CultureNetwork',function(pid,c)d.Mark(pid,c:GetID())end) -- facts commit later

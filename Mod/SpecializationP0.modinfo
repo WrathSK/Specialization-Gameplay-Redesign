@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="332">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="333">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B305.332：锚点状态与按需坐标分层共享，保留独立专业判断</Description>
+    <Description>B306.333：文化网络与标准化使用有界反向依赖，保留冷恢复与容量退化</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -180,6 +180,7 @@
       <File>CopyYields.lua</File>
       <File>SampleLifecycle.lua</File>
       <File>RuntimeWork.lua</File>
+      <File>ReverseDependencies.lua</File>
       <File>NativeFacts.lua</File>
       <File>OrdinaryBuildingCatalog.lua</File>
       <File>DistrictCompleteness.lua</File>
@@ -622,6 +623,7 @@
     <File>CopyYields.lua</File>
     <File>SampleLifecycle.lua</File>
     <File>RuntimeWork.lua</File>
+    <File>ReverseDependencies.lua</File>
     <File>NativeFacts.lua</File>
     <File>OrdinaryBuildingCatalog.lua</File>
     <File>DistrictCompleteness.lua</File>

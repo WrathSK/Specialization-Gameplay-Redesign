@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0755",
-    "runtime": "B305.332 / modinfo332",
+    "status": "S0756",
+    "runtime": "B306.333 / modinfo333",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "current_batch": "REFACTOR_S6C_COMPLETE_CONTINUING",
-  "next_batch": "Continue S6 reverse dependencies, remaining worker consumers and capital/UI/target/network hot paths, then S7–S10. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S6D_COMPLETE_CONTINUING",
+  "next_batch": "Continue S6 scoped receiver discovery, remaining worker consumers and capital/UI/target/network hot paths, then S7–S10. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B271.298 stable from main cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; SHA256 102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993; B270 backup verified, no pending transaction; receipt B271.298-cc71f9b-stable-deploy.json.",
   "stable": "main B271.298 / modinfo298; approved PR #6 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "No automatic deployment granted by U1 D13. Runtime replacement needs explicit approval and existing transaction/game-exit/hash/receipt safeguards. No main promotion before separately approved post-U5 action.",
-  "context_review_status": "S0755 S6c shares detached anchor state and lazily requested geometry inside the existing guarded EF phase. Support/Housing/GPP keep independent policy and installed effects; three no-write consumers reduce anchor state samples3→1 and city-local indexed lookups4→2, with no owner-wide district enumeration. Geometry lookup is counted separately and never forces a D building census. Existing mismatch/state/ACTIVE priority and Industry reference bytes remain; GPP shares raw workers but retains its own255 bound.16 independent tests pass; reverse dependencies, capital/UI/target/network hot paths and remaining worker consumers continue under S6. No native/deployment PASS.",
+  "context_review_status": "S0756 S6d adds a private bounded scalar reverse-dependency helper to CultureNetwork and StandardizationEffects; Commerce keeps its existing equivalent mechanism. Edges include all source keys (false/empty/UNKNOWN/retained), not only positive/max contributors, and follow each writer record commit/clear timing. Changed receivers are old dependency snapshot union current topology union changed self; existing candidate discovery and Std cold/unrecorded recovery stay. Capacity/input failure preserves old graph but marks index UNAVAILABLE with scalar reason and original scan fallback; no added retry/native reads.15 independent cases pass; later S6 discovery/worker/capital/UI/network work remains. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md"
 }
