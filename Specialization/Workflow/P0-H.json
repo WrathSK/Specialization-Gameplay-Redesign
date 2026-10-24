@@ -11,8 +11,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0739",
-    "runtime": "B290.317 / modinfo317",
+    "status": "S0740",
+    "runtime": "B291.318 / modinfo318",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -139,6 +139,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
       "kind": "full",
       "reason": "exact research carrier health and scoped structural closure actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
+      "kind": "full",
+      "reason": "scoped support housing GPP and infrastructure health actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -165,8 +170,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
-    "local": "319 properties PASS/1 registered S6 OPEN",
+    "report": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
+    "local": "335 properties PASS/1 registered S6 OPEN",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }

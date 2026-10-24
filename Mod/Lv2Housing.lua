@@ -7,11 +7,19 @@ function SPCLv2Housing.Start(P,shared)
  local batch
  local data={ready=false,busy=false,changes=0,errors={},events=0};shared.Lv2Housing=data
  local kinds={RESEARCH=true,CULTURE=true,COMMERCE=true,INDUSTRY=true}
- local function carrier(i)
-  local row=P.Info('Buildings','BUILDING_SPC_DEV_LV2_HOUSING_'..i)
-  assert(row and type(row.Index)=='number' and row.Housing==1,'B2_HOUSING_DATABASE_MISMATCH')
-  return row.Index
+ local definitions;local ownedIndex={}
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)data.MarkAudit(scope)end)
+ local function validate()
+  if definitions then return definitions end
+  local rows,nextOwned={},{}
+  for i=0,8 do
+   local row=P.Info('Buildings','BUILDING_SPC_DEV_LV2_HOUSING_'..i)
+   assert(row and type(row.Index)=='number' and row.Housing==1,'B2_HOUSING_DATABASE_MISMATCH')
+   rows[i]=row.Index;nextOwned[row.Index]=true
+  end
+  definitions=rows;ownedIndex=nextOwned;return rows
  end
+ local function carrier(i)return validate()[i]end
  local function expected(pid,city,batch)
   local wanted={}
   local kind,d,f=SPCSpecialistSupport.Anchor(P,shared,pid,city,batch)
@@ -49,7 +57,7 @@ function SPCLv2Housing.Start(P,shared)
   local wanted=expected(pid,city,batch);local changes=plan(city,wanted)
   for _,adding in ipairs({false,true}) do for _,v in ipairs(changes) do
    if v.wanted==adding and v.present~=v.wanted then
-    if adding then P.CreateBuilding(city:GetBuildQueue(),v.id) else P.RemoveBuilding(city:GetBuildings(),v.id) end
+    if adding then health.Create(city,v.id) else health.Remove(city,v.id) end
     assert(P.HasBuilding(city:GetBuildings(),v.id)==v.wanted,'B2_HOUSING_WRITE_UNCONFIRMED')
     data.changes=data.changes+1
    end
@@ -58,10 +66,9 @@ function SPCLv2Housing.Start(P,shared)
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   process(pid,c,batch)
  end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
- function data.Audit(scope)
-  if P.Observe then P.Observe('audit','Lv2Housing') end
-  if not data.ready or data.busy then P.Count('busy_skip');return end
-  data.busy=true;data.events=data.events+1;batch=SPCRuntimeWork.New(P,shared)
+ local function runAudit(scope)
+  validate()
+  data.events=data.events+1;batch=SPCRuntimeWork.New(P,shared)
   if type(scope)=='table' and scope.investment~=nil then
    local pid=scope.player;local key='investment:'..tostring(pid)
    local ok,city=pcall(SPCRuntimeWork.InvestmentCity,P,shared,scope,batch)
@@ -70,12 +77,15 @@ function SPCLv2Housing.Start(P,shared)
     P.Count('city_scan');local good,why=pcall(function() process(pid,city,batch) end)
     data.errors[pid..':'..city:GetID()]=not good and tostring(why) or nil
    end
-   data.busy=false;batch=nil;return
+   return
   end
   if type(scope)~='table' or scope.player==nil then data.errors={} end
   targets.Run(scope)
-  data.busy=false;batch=nil
  end
+ local function audit(scope)
+  local ok,err=pcall(runAudit,scope);batch=nil;if not ok then error(err,0)end
+ end
+ data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'Lv2Housing',audit,{targets=true})
  function data.Describe(pid,city)
   local ok,out=pcall(function()
    assert(data.ready,'B2_HOUSING_NOT_READY')
@@ -96,14 +106,7 @@ function SPCLv2Housing.Start(P,shared)
  end
  local function bind(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
  SPCRuntimeWork.StartReady(P,shared,'Lv2Housing',function() data.ready=true;data.errors={};data.Audit({load=true})end)
- for _,n in ipairs({'PlayerTurnActivated',
-  'CityTransfered','CityRemovedFromMap','BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
-  'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'}) do
-  SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)
- end
- -- CityBuildingsChanged can be raised by our own carriers. Structural events
- -- above + once/player/turn reconciliation cover it without a feedback loop.
- for _,n in ipairs({'BuildingConstructed','OnDistrictConstructed','CityBuilt','OnPillage'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2Housing',targets.Exit(function(c,loss)
    local ids={};for bit=0,8 do ids[#ids+1]='BUILDING_SPC_DEV_LV2_HOUSING_'..bit end

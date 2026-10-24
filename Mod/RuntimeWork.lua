@@ -47,11 +47,19 @@ function SPCRuntimeWork.Cities(collection,scope)
 end
 -- Scope-only busy work: no native objects, automatic retry, timers or UNKNOWN
 -- recovery. A real reentrant cause arms one later existing publish snapshot.
-function SPCRuntimeWork.NewAudit(P,shared,data,label,run)
- local pending={};local total=0;local draining=false
+function SPCRuntimeWork.NewAudit(P,shared,data,label,run,options)
+ local pending,transfers={},{};local total=0;local draining=false
+ local targetOwner=options and options.targets==true
+ local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
  local function mark(scope)
+  local transfer=type(scope)=='table' and scope.transfer
+  if type(transfer)=='table' and valid(transfer.owner) and valid(transfer.city) and valid(transfer.oldOwner)then
+   local k=transfer.owner..':'..transfer.city..':'..transfer.oldOwner
+   if not transfers[k]then assert(total<2048,'RUNTIME_AUDIT_SCOPE_LIMIT');total=total+1 end
+   transfers[k]={owner=transfer.owner,city=transfer.city,oldOwner=transfer.oldOwner};return true
+  end
   local pid=type(scope)=='table' and scope.player or nil
-  if pid~=nil and not P.IsTestPlayer(pid)then return false end
+  if pid~=nil and not targetOwner and not P.IsTestPlayer(pid)then return false end
   local key=pid==nil and '*' or pid;local q=pending[key]
   if not q then assert(total<2048,'RUNTIME_AUDIT_SCOPE_LIMIT');q={player=pid,cities={}};pending[key]=q;total=total+1 end
   local cid=type(scope)=='table' and scope.city or nil
@@ -65,7 +73,7 @@ function SPCRuntimeWork.NewAudit(P,shared,data,label,run)
  local function audit(scope)
   if type(scope)~='table'then scope=nil end
   if not data.ready then return false end
-  if type(scope)=='table' and scope.player~=nil and not P.IsTestPlayer(scope.player)then return false end
+  if type(scope)=='table' and scope.player~=nil and not targetOwner and not P.IsTestPlayer(scope.player)then return false end
   if data.busy then if P.Count then P.Count('busy_skip')end;mark(scope);return false end
   data.busy=true;if P.Observe then pcall(P.Observe,'audit',label)end
   local ok,why=pcall(run,scope);data.busy=false
@@ -74,8 +82,9 @@ function SPCRuntimeWork.NewAudit(P,shared,data,label,run)
   return ok
  end
  local function flush()
-  if draining or data.busy or not data.ready or not next(pending)then return false end
-  draining=true;local work=pending;pending={};total=0
+  if draining or data.busy or not data.ready or not next(pending) and not next(transfers)then return false end
+  draining=true;local work,moved=pending,transfers;pending={};transfers={};total=0
+  for _,v in pairs(moved)do audit({transfer=v})end
   if work['*']then audit()else
    for _,q in pairs(work)do
     if q.all then audit({player=q.player})
@@ -85,7 +94,7 @@ function SPCRuntimeWork.NewAudit(P,shared,data,label,run)
   draining=false;return true
  end
  local e=P.Field(Events,'GameCoreEventPublishComplete');if e and e.Add then e.Add(flush)end
- local load=P.Field(Events,'LoadScreenClose');if load and load.Add then load.Add(function()pending={};total=0 end)end
+ local load=P.Field(Events,'LoadScreenClose');if load and load.Add then load.Add(function()pending={};transfers={};total=0 end)end
  return audit,mark,flush
 end
 -- Only the named, synchronous investment result may narrow these two writers.

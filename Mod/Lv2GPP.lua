@@ -8,15 +8,17 @@ function SPCLv2GPP.Start(P,shared)
  local kinds={"RESEARCH","CULTURE","INDUSTRY","COMMERCE"}
  local districts={RESEARCH="DISTRICT_CAMPUS",CULTURE="DISTRICT_THEATER",INDUSTRY="DISTRICT_INDUSTRIAL_ZONE",COMMERCE="DISTRICT_COMMERCIAL_HUB"}
  local classes={RESEARCH={"SCIENTIST"},CULTURE={"WRITER","ARTIST","MUSICIAN"},INDUSTRY={"ENGINEER"},COMMERCE={"MERCHANT"}}
- local definitions
+ local definitions;local ownedIndex={}
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)data.MarkAudit(scope)end)
  local function int(v) return type(v)=="number" and v>=0 and v%1==0 and v<math.huge end
  local function name(kind,bit) return "BUILDING_SPC_DEV_GPP_"..kind.."_"..bit end
  local function validateDefinitions()
   if definitions then return end
-  local rows=P.Rows("Building_GreatPersonPoints");assert(rows,"GPP_DATABASE_UNAVAILABLE")
+  local rows=P.Rows("Building_GreatPersonPoints");assert(rows,"GPP_DATABASE_UNAVAILABLE");local nextOwned={}
   for _,kind in ipairs(kinds) do for bit=0,7 do
    local building=name(kind,bit);local b=P.Info("Buildings",building)
    assert(b and type(b.Index)=="number" and b.PrereqDistrict==districts[kind] and b.Housing==0 and b.CitizenSlots==0,"B035_BUILDING_DATABASE_MISMATCH "..building)
+   nextOwned[b.Index]=true
    local expected={};for _,cl in ipairs(classes[kind]) do expected["GREAT_PERSON_CLASS_"..cl]=true end
    local seen={}
    for _,r in ipairs(rows) do if r.BuildingType==building then
@@ -25,7 +27,7 @@ function SPCLv2GPP.Start(P,shared)
    end end
    for cl in pairs(expected) do assert(seen[cl],"B035_GPP_DEFINITION_MISSING "..building) end
   end end
-  definitions=true
+  ownedIndex=nextOwned;definitions=true
  end
  local function inspect(pid,city)
   local kind,d,f=SPCSpecialistSupport.Anchor(P,shared,pid,city,batch or SPCRuntimeWork.New(P,shared))
@@ -39,7 +41,7 @@ function SPCLv2GPP.Start(P,shared)
  local function set(city,id,wanted)
   local b=city:GetBuildings();local present=P.HasBuilding(b,id);assert(type(present)=="boolean","GPP_CARRIER_READ_UNKNOWN")
   if present==wanted then return end
-  if wanted then P.CreateBuilding(city:GetBuildQueue(),id) else P.RemoveBuilding(b,id) end
+  if wanted then health.Create(city,id) else health.Remove(city,id) end
   assert(P.HasBuilding(b,id)==wanted,"GPP_CARRIER_CHANGE_UNCONFIRMED");data.changes=data.changes+1
  end
  local function reconcile(pid,city)
@@ -71,10 +73,9 @@ function SPCLv2GPP.Start(P,shared)
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   reconcile(pid,c)
  end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
- function data.Audit(scope)
-  if P.Observe then P.Observe('audit','Lv2GPP') end
-  if not data.ready or data.busy then P.Count('busy_skip');return end
-  data.busy=true;batch=SPCRuntimeWork.New(P,shared);data.refreshes=data.refreshes+1
+ local function runAudit(scope)
+  validateDefinitions()
+  batch=SPCRuntimeWork.New(P,shared);data.refreshes=data.refreshes+1
   if type(scope)=='table' and scope.investment~=nil then
    local pid=scope.player;local key='investment:'..tostring(pid)
    local ok,city=pcall(SPCRuntimeWork.InvestmentCity,P,shared,scope,batch)
@@ -83,12 +84,15 @@ function SPCLv2GPP.Start(P,shared)
     P.Count('city_scan');local good,why=pcall(function() reconcile(pid,city) end)
     data.errors[pid..':'..city:GetID()]=not good and tostring(why) or nil
    end
-   data.busy=false;batch=nil;return
+   return
   end
   if type(scope)~='table' or scope.player==nil then data.errors={} end
   targets.Run(scope)
-  data.busy=false;batch=nil
  end
+ local function audit(scope)
+  local ok,err=pcall(runAudit,scope);batch=nil;if not ok then error(err,0)end
+ end
+ data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'Lv2GPP',audit,{targets=true})
  function data.Describe(pid,city)
   local ok,result=pcall(function()
    assert(data.ready,"GPP_NOT_READY");validateDefinitions()
@@ -117,8 +121,11 @@ function SPCLv2GPP.Start(P,shared)
  end
  local function bind(events,event,fn) local e=P.Field(events,event);if e and e.Add then e.Add(fn) end end
  SPCRuntimeWork.StartReady(P,shared,'Lv2GPP',function() data.ready=true;data.errors={};data.Audit({load=true})end)
- for _,event in ipairs({"PlayerTurnActivated","CityTransfered","CityRemovedFromMap","DistrictRemovedFromMap","DistrictBuildProgressChanged","DistrictPillaged","DistrictRepaired","BuildingAddedToMap","BuildingRemovedFromMap","BuildingPillaged","BuildingRepaired"}) do SPCRuntimeWork.TargetHook(P,Events,event,data.Audit) end
- for _,event in ipairs({"OnDistrictConstructed","BuildingConstructed","CityBuilt","OnPillage"}) do SPCRuntimeWork.TargetHook(P,GameEvents,event,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
+ if not shared.DistrictCompleteness then
+  for _,n in ipairs({'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
+  for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'})do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit)end
+ end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2GPP',targets.Exit(function(c,loss)
    local ids={};for _,k in ipairs(kinds)do for bit=0,7 do ids[#ids+1]=name(k,bit)end end

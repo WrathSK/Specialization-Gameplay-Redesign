@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0739
-Implementation Build: B290.317 / modinfo317; stable/live B271.298
+Status Revision: S0740
+Implementation Build: B291.318 / modinfo318; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D4C1_COMPLETE_CONTINUING
+Work State: REFACTOR_S5D4C2_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d4c1 complete:Apply/Chair/Cross own exact live carrier-health recovery, replacing duplicated normal structural hooks with scoped D; Cross preserves its DC-independent fallback.18 new cases/full320 have319 passing properties/1 registered S6 capacity counterexample OPEN. Sibling loss during writes and confirmed damage are retained; UNKNOWN never creates idle retries. Remaining owner/transfer closure and S6–S10 continue without deployment/main. [Result](Validation/Results/Specialization_B290_Refactor_S5d4c1.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d4c2 complete:Infrastructure/Support/Housing/GPP use bounded exact health queues and shared D ordinary structural input, preserving optional-provider fallback, presence-only policy and target-owned foreign cleanup.16 new cases/full336 have335 passing properties/1 registered S6 capacity counterexample OPEN. Independent static membership survives cold UNKNOWN; detached transfer metadata survives busy. Industry and remaining effect/transfer closure continue before S6–S10. [Result](Validation/Results/Specialization_B291_Refactor_S5d4c2.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
 - Primary next: S5d remaining effect-owner health/structural and transfer closure, then S6–S10 under continuing authorization.
+
+## S0740 — B291.318 scoped support housing GPP and infrastructure health
+
+S5d4c2 complete:Infrastructure/Support/Housing/GPP use bounded exact health queues and shared D ordinary structural input, preserving optional-provider fallback, presence-only policy and target-owned foreign cleanup.16 new cases/full336 have335 passing properties/1 registered S6 capacity counterexample OPEN. Independent static membership survives cold UNKNOWN; detached transfer metadata survives busy. Industry and remaining effect/transfer closure continue before S6–S10.
 
 ## S0739 — B290.317 exact research carrier health and scoped structural closure
 

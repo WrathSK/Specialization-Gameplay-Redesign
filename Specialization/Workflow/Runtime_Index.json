@@ -716,14 +716,14 @@
       "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "cbc52676cd82d8d685a7a14e6a91da90ebaeb74b152df3056f274a3e9b269d36",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "233d314c12ba5c5add1ae05ed331e87883c72e67fb2f401e26e21063ccffb164",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
+      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "cab6559880fb8e732ada44b1b80dfa748f40609a18b4a1d5c59ac6bee2296291",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "e42ebce8156b74eb53b0a2cde7261b6ca89123b478b661948be54e314913877d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
+      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv3Effects.lua": {
       "sha256": "42429e6bf83f16ab007b7477b04102f82e3916bda847d6a20bf151892bfd9d50",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "7e7e44a3370b22a0bf2b58c53a290e317f7248b48752edaf549c881de17e6d50",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
-      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "bca445142eab62931fc154f569afa3321124852a99efd83785a1b400111f5288",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
+      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -851,9 +851,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "2b27b8e86722dc4230f90a03267115c5bf11ddea54e8905d3c11e61513228e59",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "0939f7fdc4188e73414b5b7198278c57e61fe73f16dd4b794391db0f40df1aac",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
+      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
       "sha256": "8ad23bec61981d670c6c8a0b67c35e1c66e0c697a6abd6075e197656aec37b3f",
@@ -861,9 +861,9 @@
       "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
     },
     "Mod/ResearchSupport.lua": {
-      "sha256": "003f485dce9c7b18076ddb756e738a59ff8e9123d73e96b257b9e767607a562e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "61834ddc729c35e607ec2d4c36a94565072b43797e35d21ae193da11e6424f2b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
+      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchTradition.lua": {
       "sha256": "bfd4e3437c873c97349216f876c86e80ba1b97cc4c847821f4990c2ab9d062c7",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "8d287fb3b91431fcfc5cd1ab88add8252ec592b4dbf6d9ff417934e5b5984624",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
-      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "1bac659f6fae5e8019a41d2f5b99735854b6011aa21b0cfc2af403aa6422ca4c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
+      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "7bc6223f321bccf3cd2e419718a8cc3265833737233838f6eebf665a109caac2",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d632a4a6ac61333f6e3bea92a2f082550d9fe73607c0e4a684fac398c9fa23a9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
-      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "a71619bcfabc66d74d17f346f47646c8afd8b60a3d2e2341e833633a96389b17",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
+      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
