@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0753",
-    "runtime": "B303.330 / modinfo330",
+    "status": "S0754",
+    "runtime": "B304.331 / modinfo331",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "current_batch": "REFACTOR_S6A_COMPLETE_CONTINUING",
-  "next_batch": "S6 shared anchor/worker facts and remaining dependent hot paths, then S7–S10; no automatic deployment/main/native launch. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S6B_COMPLETE_CONTINUING",
+  "next_batch": "S6 minimal raw anchor sharing and dependent hot paths, then S7–S10. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B271.298 stable from main cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; SHA256 102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993; B270 backup verified, no pending transaction; receipt B271.298-cc71f9b-stable-deploy.json.",
   "stable": "main B271.298 / modinfo298; approved PR #6 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "No automatic deployment granted by U1 D13. Runtime replacement needs explicit approval and existing transaction/game-exit/hash/receipt safeguards. No main promotion before separately approved post-U5 action.",
-  "context_review_status": "S0753 S6a separates lazy compact D business facts (bounded2048) from unchanged8-entry raw/detail retention. Strict T03 warm8/9/16/32 now passes without changing its assertion.15 new capacity/report/UNKNOWN/reentry/lifecycle cases and176 impact-selected scenarios PASS; no registered counterexample remains, with later stage obligations still open; overflow reads do not evict the warm business set. Epoch/reference/dirty/write proof and source sample pins prevent stale certification. No save/gameplay/qualification changes; other S6 work continues. No native/deployment PASS.",
+  "context_review_status": "S0754 S6b adds read-only EffectiveFacts projections with private phase-scoped raw worker reuse for actual Infrastructure/Apply/Chair. Three same-city no-write consumers read workers once rather than3, with identical carriers; actual Store proof retains7 full stamps and removes4 measured native leaf calls (plot/worker pairs), no extra diagnostic native reads.135 impact-selected scenarios including20 independent scope/capacity/UNKNOWN/exception/reentry/service-replacement/governor/write-barrier cases pass; no gameplay/save/qualification change. Anchor sharing and other S6 obligations remain. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B303_Refactor_S6a.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md"
 }

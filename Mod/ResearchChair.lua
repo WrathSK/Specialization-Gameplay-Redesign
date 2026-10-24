@@ -32,20 +32,22 @@ function M.Start(P,shared)
  end
  local function inspect(pid,c,detail)
   assert(c:GetOwner()==pid,'CHAIR_OWNER_CHANGED')
-  local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
+  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers)
   local p=SPCResearchChairModel.Plan(f,nil,nil,targets)
   if p.status~='NEEDS_BUILDINGS' then return p end
   local reader=detail and shared.DistrictCompleteness.Read or shared.DistrictCompleteness.ReadFacts
   local v=reader(pid,c,f.token)
   p=SPCResearchChairModel.Plan(f,v,nil,targets)
   if p.status~='NEEDS_WORKERS' then return p end
-  local plot=assert(Map.GetPlotByIndex(p.plot),'CHAIR_PLOT_UNKNOWN')
-  local workers=plot:GetWorkerCount()
-  assert(type(workers)=='number' and workers>=0 and workers<math.huge and workers%1==0,'CHAIR_WORKERS_UNKNOWN')
+  local workers=readWorkers({id=f.first.districtID,type=f.first.type,plot=p.plot},function()
+   local n=assert(Map.GetPlotByIndex(p.plot),'CHAIR_PLOT_UNKNOWN'):GetWorkerCount()
+   assert(type(n)=='number'and n>=0 and n<math.huge and n%1==0,'CHAIR_WORKERS_UNKNOWN');return n
+  end)
   p=SPCResearchChairModel.Plan(f,v,workers,targets)
   -- Technical encoding bound, not gameplay cap; fail visibly, never truncate.
   assert(p.workers<2^M.Bits,'CHAIR_ENCODING_RANGE')
   return p
+  end)
  end
  local function installed(c)
   local b=c:GetBuildings();local rows,amounts={},{}

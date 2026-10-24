@@ -633,6 +633,19 @@
       "test_refactor_s5d4c10",
       "test_refactor_s5d4c11",
       "test_refactor_s4b"
+    ],
+    "S6b": [
+      "test_refactor_s6b",
+      "test_refactor_s5b",
+      "test_refactor_s6a",
+      "test_refactor_s5d1.Writers",
+      "test_refactor_s5d4c1.ResearchHealth",
+      "test_refactor_s5d4c2",
+      "test_refactor_s5d4b1",
+      "test_refactor_s5d4b2",
+      "test_refactor_s5c1.Districts",
+      "test_refactor_baseline.RealConsumers",
+      "test_refactor_baseline.WorkScope"
     ]
   },
   "counterexamples": {},
@@ -646,7 +659,8 @@
     ],
     "Mod/EffectiveFacts.lua": [
       "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample",
-      "test_refactor_s5b"
+      "test_refactor_s5b",
+      "test_refactor_s6b"
     ],
     "Mod/IndustrySupport.lua": [
       "test_refactor_baseline.RealConsumers.test_T05_unchanged_pending_has_attempt_budget",
@@ -710,7 +724,8 @@
       "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope",
       "test_refactor_s5d1",
       "test_refactor_s5d4b2",
-      "test_refactor_s5d4c1"
+      "test_refactor_s5d4c1",
+      "test_refactor_s6b"
     ],
     "Mod/CarrierHealthTrace.lua": [
       "test_refactor_attribution"
@@ -786,7 +801,8 @@
     ],
     "Mod/ResearchApply.lua": [
       "test_refactor_s5d1",
-      "test_refactor_s5d4c1"
+      "test_refactor_s5d4c1",
+      "test_refactor_s6b"
     ],
     "Mod/ResearchCross.lua": [
       "test_refactor_s5d1",
@@ -814,7 +830,8 @@
       "test_refactor_s5d4b2"
     ],
     "Mod/ResearchInfrastructure.lua": [
-      "test_refactor_s5d4c2"
+      "test_refactor_s5d4c2",
+      "test_refactor_s6b"
     ],
     "Mod/ResearchSupport.lua": [
       "test_refactor_s5d4c2"
@@ -831,6 +848,12 @@
     ],
     "Mod/ResearchTraditionEffects.lua": [
       "test_refactor_s5d4c7"
+    ],
+    "Mod/CurrentSpecializationFacts.lua": [
+      "test_refactor_s6b"
+    ],
+    "Mod/ResearchInfrastructureShadow.lua": [
+      "test_refactor_s6b"
     ]
   },
   "exclusions": {

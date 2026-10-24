@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0753",
-    "runtime": "B303.330 / modinfo330",
+    "status": "S0754",
+    "runtime": "B304.331 / modinfo331",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "S6 shared anchor/worker facts and remaining dependent hot paths, then S7–S10; no automatic deployment/main/native launch. No automatic deployment/main/native launch.",
+  "goal": "S6 minimal raw anchor sharing and dependent hot paths, then S7–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -209,6 +209,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B303_Refactor_S6a.md",
       "kind": "full",
       "reason": "Separate bounded D business facts from eight report samples actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
+      "kind": "full",
+      "reason": "Share raw worker samples within existing fact authority actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -235,8 +240,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B303_Refactor_S6a.md",
-    "local": "176 impact-selected scenarios PASS, including15 independent new cache cases; frozen T03/T07 unchanged.",
+    "report": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
+    "local": "135 impact-selected Lua51 scenarios PASS, including20 independent shared-worker/actual-Store/three-writer proofs.",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }

@@ -32,7 +32,7 @@ function M.Start(P,shared)
  end
  local function inspect(pid,c)
   if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return {d=0,workers=0,science=0,status='INACTIVE'} end
-  local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
+  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers)
   assert(f.validity=='VERIFIED' and type(f.identity)=='string','RI_FACTS_UNKNOWN')
   local p={identity=f.identity,potential=f.potential,active=f.active,d=0,workers=0,science=0,status='INACTIVE'}
   if f.identity~='RESEARCH' then return p end
@@ -51,11 +51,12 @@ function M.Start(P,shared)
   for _,b in ipairs(campus.buildings) do
    assert(not (b.ordinary and b.complete and not b.pillaged and (b.tier==nil or b.reason=='BUILDING_LOCATION_DOMAIN_CONFLICT')),'RI_ORDINARY_TIER_UNKNOWN')
   end
-  local input=SPCResearchInfrastructureShadow.WithWorkers(f,v)
+  local input=SPCResearchInfrastructureShadow.WithWorkers(f,v,readWorkers)
   local plan=SPCResearchInfrastructureShadow.Plan(input,v)
   assert(plan.status=='READY' and integer(plan.d) and plan.d<=10 and integer(plan.workers),'RI_WORKERS_OR_DEPTH_UNKNOWN')
   p.status='READY';p.d=plan.d;p.workers=plan.workers;p.science=plan.science;p.plot=campus.plot;p.district=campus.id
   return p
+  end)
  end
  local function installed(c,skipOld)
   local b=c:GetBuildings();local out={old={},bits={},oldCount=0,coefficient=0}

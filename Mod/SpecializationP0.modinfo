@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="330">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="331">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B303.330：D业务事实与8条报告缓存解耦，保留UNKNOWN与失效证明</Description>
+    <Description>B304.331：科研专家人数按安全读取阶段复用，保留独立资格与完整权威校验</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

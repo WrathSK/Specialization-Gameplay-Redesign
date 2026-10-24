@@ -231,9 +231,9 @@
       "provenance": "B298.325 Culture Network exact health and D closure; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CurrentSpecializationFacts.lua": {
-      "sha256": "45b0ad25ad4238a24b79e30c4d145b8f7f0e6a366a8d7edf60d38b5b6efab18f",
-      "review_source": "Specialization/Architecture/v2/P0_A_District_Completeness.md",
-      "provenance": "P0-A delta; LOCAL_SIMULATION_PASS not engine PASS"
+      "sha256": "045a1ea1f23191ec4e0da3cdeb10e3182af58186b121a625dce4c65256e7ddfc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
+      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Data/BoostIntegerTest.sql": {
       "sha256": "78fe221ecc883eeb0948001dc98638ff12111491baa7e254339c853d398f1f1b",
@@ -561,9 +561,9 @@
       "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "688cb543faf7360026ac3d993866df867ba8151b22863dcb906968724ad82b0d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
-      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
+      "sha256": "9f2e1517d26efab720b87b465f51f345526830da7fc5bf7708aa7d0c9300b89b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
+      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/EligibilityProbe.lua": {
       "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "3beac9250455e9e5b638532aec9661a9956b8c8d805dde03b64a07e3160da1e8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B303_Refactor_S6a.md",
-      "provenance": "B303.330 Separate bounded D business facts from eight report samples; local/static evidence only; no deployment/native PASS."
+      "sha256": "34677a1302246179f704e78710dc5ec89e4b8d471b037eec254f8d9cf0e0b1e2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
+      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -816,9 +816,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "6266cdf9ebec41de9e571e4982ccfcdc56ee2814ed7c3fcb7534701dfb7a99e6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
-      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "a4c93a57ac9d4dd26424e818369b8571e8c3c66ee11f8b58916fa525033b40f3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
+      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -826,9 +826,9 @@
       "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "a2c14742e709c587ba64497b5011e32893e5a1045f167aa4b5177bc512808db0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
-      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "5d87d45a17844fdde8e941201e678946b279d37f18a1fa57a501646b6e3570e9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
+      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchChairModel.lua": {
       "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
@@ -851,14 +851,14 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "0939f7fdc4188e73414b5b7198278c57e61fe73f16dd4b794391db0f40df1aac",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
-      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
+      "sha256": "943d458465805e09a143a6453cc4580fd49cf166cc2fc8cc76d6d8c4e1209133",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
+      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
-      "sha256": "8ad23bec61981d670c6c8a0b67c35e1c66e0c697a6abd6075e197656aec37b3f",
-      "review_source": "Specialization/Architecture/v2/P0_A_Native_Read_Fix_B078.md",
-      "provenance": "B078 P0-A native read fix or build stamp; unchanged effect contract"
+      "sha256": "3fe47c1a8bc1d8bbb3efdf1659c6d8e3c631fd06f422f676628faf69075c1939",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
+      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchSupport.lua": {
       "sha256": "61834ddc729c35e607ec2d4c36a94565072b43797e35d21ae193da11e6424f2b",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f3ef6d3589a2161376306df361ba3e22cde355af2345ff1e8e46a3cc16e42a84",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B303_Refactor_S6a.md",
-      "provenance": "B303.330 Separate bounded D business facts from eight report samples; local/static evidence only; no deployment/native PASS."
+      "sha256": "3947e2baaab0401b40a3a4739a5569f34d8a48b8e0040ace3357d74fe6b26e07",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
+      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

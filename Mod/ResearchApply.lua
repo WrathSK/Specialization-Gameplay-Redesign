@@ -23,7 +23,7 @@ function M.Start(P,shared)
   end end;ownedIndex=nextOwned;definitions=true
  end
  local function inspect(pid,c,detail)
-  local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
+  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers)
   local inactive=SPCResearchApplyModel.Plan(f,nil,nil)
   if inactive.status~='NEEDS_DEPTH' then return inactive end
   local reader=detail and shared.DistrictCompleteness.Read or shared.DistrictCompleteness.ReadFacts
@@ -42,11 +42,15 @@ function M.Start(P,shared)
    local p=SPCResearchApplyModel.Plan({validity='VERIFIED',identity='NONE'},nil,nil);p.reason='学院不可用';return p
   end
   assert(f.first and f.first.districtID==campus.id and f.first.type==campus.type,'AP_REFERENCE_UNKNOWN')
-  local workers=assert(Map.GetPlotByIndex(campus.plot),'AP_PLOT_UNKNOWN'):GetWorkerCount()
+  local workers=readWorkers({id=campus.id,type=campus.type,plot=campus.plot},function()
+   local n=assert(Map.GetPlotByIndex(campus.plot),'AP_PLOT_UNKNOWN'):GetWorkerCount()
+   assert(type(n)=='number'and n>=0 and n<math.huge and n%1==0,'AP_WORKERS_UNKNOWN');return n
+  end)
   local p=SPCResearchApplyModel.Plan(f,v,workers)
   p.depth=v;p.plot=campus.plot;p.district=campus.id;p.active=f.active;p.warnings=warnings
   for _,y in ipairs(SPCResearchApplyModel.Yields) do assert(p.per[y]>=0 and p.per[y]<2^M.Bits,'AP_ENCODING_RANGE') end
   return p
+  end)
  end
  local function installed(c)
   local b=c:GetBuildings();local rows={};local amounts={}

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0753
-Implementation Build: B303.330 / modinfo330; stable/live B271.298
+Status Revision: S0754
+Implementation Build: B304.331 / modinfo331; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S6A_COMPLETE_CONTINUING
+Work State: REFACTOR_S6B_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S6a separates lazy compact D business facts (bounded2048) from unchanged8-entry raw/detail retention. Strict T03 warm8/9/16/32 now passes without changing its assertion.15 new capacity/report/UNKNOWN/reentry/lifecycle cases and176 impact-selected scenarios PASS; no registered counterexample remains, with later stage obligations still open; overflow reads do not evict the warm business set. Epoch/reference/dirty/write proof and source sample pins prevent stale certification. No save/gameplay/qualification changes; other S6 work continues. [Result](Validation/Results/Specialization_B303_Refactor_S6a.md). Stable/live/main B271.298; no deployment/native PASS.
+S6b adds read-only EffectiveFacts projections with private phase-scoped raw worker reuse for actual Infrastructure/Apply/Chair. Three same-city no-write consumers read workers once rather than3, with identical carriers; actual Store proof retains7 full stamps and removes4 measured native leaf calls (plot/worker pairs), no extra diagnostic native reads.135 impact-selected scenarios including20 independent scope/capacity/UNKNOWN/exception/reentry/service-replacement/governor/write-barrier cases pass; no gameplay/save/qualification change. Anchor sharing and other S6 obligations remain. [Result](Validation/Results/Specialization_B304_Refactor_S6b.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: S6 shared anchor/worker facts and remaining dependent hot paths, then S7–S10; no automatic deployment/main/native launch.
+- Primary next: S6 minimal raw anchor sharing and dependent hot paths, then S7–S10.
+
+## S0754 — B304.331 Share raw worker samples within existing fact authority
+
+S6b adds read-only EffectiveFacts projections with private phase-scoped raw worker reuse for actual Infrastructure/Apply/Chair. Three same-city no-write consumers read workers once rather than3, with identical carriers; actual Store proof retains7 full stamps and removes4 measured native leaf calls (plot/worker pairs), no extra diagnostic native reads.135 impact-selected scenarios including20 independent scope/capacity/UNKNOWN/exception/reentry/service-replacement/governor/write-barrier cases pass; no gameplay/save/qualification change. Anchor sharing and other S6 obligations remain.
 
 ## S0753 — B303.330 Separate bounded D business facts from eight report samples
 

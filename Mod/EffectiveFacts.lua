@@ -19,7 +19,7 @@ function SPCEffectiveFacts.Start(P,shared)
  end
  function data.Version()return generation end
  function data.Invalidate()
-  generation=generation+1;if phase then phase.values={};phase.count=0 end
+  generation=generation+1;if phase then phase.values={};phase.count=0;phase.workers={};phase.workerCount=0 end
  end
  function data.BeginWrite()
   data.Invalidate();writes=writes+1;local ticket={};tickets[ticket]=true;return ticket
@@ -88,22 +88,86 @@ function SPCEffectiveFacts.Start(P,shared)
   end
   return out
  end
- local function phasedRead(pid,city)
-  if not phase or writes>0 then return capture(pid,city)end
+ -- Read-only projections run inside the same existing full authority checks.
+ -- Only raw worker counts share a phase; eligibility remains in each projection.
+ local workerBusy={};local workerBusyCount=0
+ local function projectValue(value,parent,project,slotKey,slotValue)
+  if not project then return clone(value)end
+  local window=phase;local version=generation;local changes=shared.FactChanges
+  local function epochs()
+   if not(changes and changes.Generation)then return nil,nil end
+   return changes.Generation(value.owner,'COMMERCE'),changes.Generation(value.owner,'COMMERCE',value.cityID)
+  end
+  local ownerEpoch,cityEpoch=epochs();local active=true
+  local function unchanged()
+   local a,b=epochs()
+   return phase==window and generation==version and shared.FactChanges==changes and a==ownerEpoch and b==cityEpoch
+    and(not slotKey or window.values[slotKey]==slotValue)
+  end
+  local function workers(anchor,readNative)
+   assert(active and type(readNative)=='function','WORKER_READER_EXPIRED')
+   assert(type(anchor)=='table'and getmetatable(anchor)==nil,'WORKER_ANCHOR_INVALID')
+   local id,kind,plot=anchor.id,anchor.type,anchor.plot
+   assert(type(id)=='number'and id>=0 and id%1==0 and type(kind)=='string'and type(plot)=='number'and plot>=0 and plot%1==0,'WORKER_ANCHOR_INVALID')
+   -- Legacy/no-phase/unconfirmed identity retains the original fresh path.
+   if not(window and parent and changes and changes.Generation)or writes>0 then return readNative()end
+   assert(unchanged(),'WORKER_FACTS_CHANGED_DURING_READ')
+   window.workers=window.workers or {};window.workerCount=window.workerCount or 0
+   local key=tostring(value.owner)..':'..tostring(value.cityID)..':'..tostring(plot)
+   local cached=window.workers[key]
+   if cached and cached.parent==parent and cached.changes==changes and cached.id==id and cached.kind==kind and cached.ownerEpoch==ownerEpoch and cached.cityEpoch==cityEpoch then
+    return cached.value
+   end
+   if cached then window.workers[key]=nil;window.workerCount=window.workerCount-1 end
+   assert(not workerBusy[key]and workerBusyCount<8,'WORKER_CAPTURE_IN_PROGRESS')
+   workerBusy[key]=true;workerBusyCount=workerBusyCount+1
+   local result=pack(pcall(readNative))
+   workerBusy[key]=nil;workerBusyCount=workerBusyCount-1
+   local count=finish(result)
+   assert(type(count)=='number'and count>=0 and count<math.huge and count%1==0,'WORKER_COUNT_INVALID')
+   assert(unchanged()and writes==0,'WORKER_FACTS_CHANGED_DURING_READ')
+   if window.workerCount<2048 then
+    window.workerCount=window.workerCount+1
+    window.workers[key]={parent=parent,changes=changes,id=id,kind=kind,value=count,ownerEpoch=ownerEpoch,cityEpoch=cityEpoch}
+   end
+   return count
+  end
+  local result=pack(pcall(project,clone(value),workers));active=false
+  -- A typed mutation during any part of the read-only projection cannot certify
+  -- its old plan. This is separate from the base fact's own full Store witness.
+  if window and not unchanged()then return pack(false,'WORKER_FACTS_CHANGED_DURING_READ')end
+  return result
+ end
+ local function phasedRead(pid,city,project)
+  if not phase or writes>0 then return projectValue(capture(pid,city),nil,project)end
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
   local before=generation;local identity=stamp(pid,city)
-  if not identity then return capture(pid,city)end
+  if not identity then return projectValue(capture(pid,city),nil,project)end
   local key=tostring(pid)..':'..tostring(city:GetID());local cached=phase.values[key]
   if cached and cached.identity==identity then
-   local current=cached.gate and gate(city) or nil
-   if (not cached.gate or same(current,cached.gate)) and stamp(pid,city)==identity and generation==before and writes==0 then
-    P.Count('facts_reuse');return clone(cached.value)
+   local projected=projectValue(cached.value,cached,project,key,cached)
+   -- Certify governor AFTER the read-only body, with the original one gate read.
+   local current=cached.gate and gate(city)or nil
+   if not cached.gate or same(current,cached.gate)then
+    assert(stamp(pid,city)==identity and generation==before and writes==0,'EFFECTIVE_FACTS_CHANGED_DURING_READ')
+    if phase.values[key]~=cached then
+     if project then return pack(false,'WORKER_FACTS_CHANGED_DURING_READ')end
+     error('EFFECTIVE_FACTS_CHANGED_DURING_READ',0)
+    end
+    P.Count('facts_reuse');return projected
    end
   end
   if cached then phase.values[key]=nil;phase.count=phase.count-1 end
   local value=capture(pid,city)
+  local candidate=value.activeStatus=='KNOWN'and not value.investmentPending and phase.count<2048 and {identity=identity,value=clone(value)}or nil
+  local projected=projectValue(value,candidate,project,key,nil)
   -- A getter may reenter native code. Never publish old confirmed facts across a write/reference boundary.
   assert(stamp(pid,city)==identity and generation==before and writes==0,'EFFECTIVE_FACTS_CHANGED_DURING_READ')
+  -- A reentrant read may publish a newer governor/base witness. Never overwrite it.
+  if phase.values[key]~=nil then
+   if project then return pack(false,'WORKER_FACTS_CHANGED_DURING_READ')end
+   error('EFFECTIVE_FACTS_CHANGED_DURING_READ',0)
+  end
   if value.activeStatus=='KNOWN' and not value.investmentPending then
    local witness
    if value.specialization~='NONE' and value.potential>1 then
@@ -112,17 +176,23 @@ function SPCEffectiveFacts.Start(P,shared)
      and value.active==math.min(value.potential,witness[4]),'EFFECTIVE_GOVERNOR_CHANGED_DURING_READ')
    end
    assert(stamp(pid,city)==identity and generation==before and writes==0,'EFFECTIVE_FACTS_CHANGED_DURING_READ')
-   if phase.count<2048 then
+   if phase.count<2048 and phase.values[key]==nil then
     phase.count=phase.count+1
-    phase.values[key]={identity=identity,value=clone(value),gate=witness}
+    candidate=candidate or {identity=identity,value=clone(value)};candidate.gate=witness;phase.values[key]=candidate
    end
   end
-  return clone(value)
+  return projected
  end
- function data.Read(pid,city)
-  local result=pack(pcall(phasedRead,pid,city))
+ local function read(pid,city,project)
+  local result=pack(pcall(phasedRead,pid,city,project))
   if not result[1]then data.Invalidate()end
   return finish(result)
+ end
+ function data.Read(pid,city)return read(pid,city)end
+ function data.Inspect(pid,city,project)
+  assert(type(project)=='function','FACT_PROJECTION_INVALID')
+  -- Projection failures do not invalidate independent confirmed base facts.
+  return finish(read(pid,city,project))
  end
  -- A RuntimeWork audit keeps its existing local reuse, but every lookup now revalidates.
  -- Detached scope is owned only by that short-lived batch; no registry retains it.
@@ -130,7 +200,7 @@ function SPCEffectiveFacts.Start(P,shared)
   local scope={values={},count=0,version=generation}
   return function(pid,city)
    if phase then return data.Read(pid,city)end
-   if scope.version~=generation then scope.values={};scope.count=0 end
+   if scope.version~=generation then scope.values={};scope.count=0;scope.workers={};scope.workerCount=0 end
    phase=scope;local result=pack(pcall(data.Read,pid,city));phase=nil;scope.version=generation
    return finish(result)
   end
