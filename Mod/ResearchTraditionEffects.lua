@@ -8,17 +8,19 @@ function M.Start(P,shared)
  local store=assert(shared.CityProgressionStore)
  local data={ready=false,changes=0};shared.ResearchTraditionEffects=data
  local pending={};local busy=false;local definitions
+ local ownedIndex={};local markHealth
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)markHealth(scope)end)
  local function key(c)return c:GetOwner()..':'..c:GetID()end
  local function defs()
   if definitions then return definitions end
-  local out={}
+  local out,nextOwned={},{}
   for _,n in ipairs(amounts)do
    local row=assert(P.Info('Buildings',name(n)),'TRADITION_CARRIER_MISSING')
    assert((row.InternalOnly==true or row.InternalOnly==1) and row.PrereqDistrict=='DISTRICT_CITY_CENTER'
     and row.CitizenSlots==0 and row.Housing==0,'TRADITION_CARRIER_INVALID')
-   out[#out+1]={amount=n,id=row.Index}
+   out[#out+1]={amount=n,id=row.Index};nextOwned[row.Index]=true
   end
-  definitions=out;return out
+  definitions=out;ownedIndex=nextOwned;return out
  end
  local function desired(pid,c)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'TRADITION_OWNER_UNKNOWN')
@@ -51,16 +53,16 @@ function M.Start(P,shared)
   if not data.ready or busy then return end
   busy=true
   local ok,err=pcall(function()
-   local want=desired(pid,c);local rows=installed(c) -- validate all inputs before writing
+   defs();local want=desired(pid,c);local rows=installed(c) -- validate all inputs before writing
    for _,v in ipairs(rows)do
     if v.has and (v.amount~=want or v.pillaged)then
-     P.RemoveBuilding(c:GetBuildings(),v.id)
+     health.Remove(c,v.id)
      assert(P.HasBuilding(c:GetBuildings(),v.id)==false,'TRADITION_REMOVE_FAILED')
      v.has=false;data.changes=data.changes+1
     end
    end
    for _,v in ipairs(rows)do if v.amount==want and not v.has then
-    P.CreateBuilding(c:GetBuildQueue(),v.id)
+    health.Create(c,v.id)
     assert(P.HasBuilding(c:GetBuildings(),v.id)==true and c:GetBuildings():IsPillaged(v.id)==false,'TRADITION_CREATE_FAILED')
     data.changes=data.changes+1
    end end
@@ -81,6 +83,19 @@ function M.Start(P,shared)
    elseif data.lastError and data.lastError.city=='STORE' then data.lastError=nil end
   end
  end
+ local function healthRun(scope)
+  -- Update/Flush retain their established private guard. A synchronous native
+  -- publish cannot consume another city's real cause while that guard is held.
+  if busy then markHealth(scope);return end
+  for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and SPCRuntimeWork.Player(scope,pid)then
+   if scope and scope.city~=nil then
+    local c=player:GetCities():FindID(scope.city)
+    if c and c:GetOwner()==pid then P.Count('city_scan');data.Update(pid,c)end
+   else store.VisitTradition(pid,function(c)P.Count('city_scan');data.Update(pid,c)end)end
+  end end
+ end
+ local auditHealth,mark,flushHealth=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchTraditionEffects',healthRun)
+ markHealth=mark
  local function hook(n,fn)local e=P.Field(Events,n);if e and e.Add then e.Add(fn)end end
  SPCRuntimeWork.StartReady(P,shared,'ResearchTraditionEffects',function()
   definitions=nil;pending={};data.lastError=nil;data.ready=true

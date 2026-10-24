@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0744",
-    "runtime": "B295.322 / modinfo322",
+    "status": "S0745",
+    "runtime": "B296.323 / modinfo323",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,7 +35,7 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "current_batch": "REFACTOR_S5D4C6_COMPLETE_CONTINUING",
+  "current_batch": "REFACTOR_S5D4C7_COMPLETE_CONTINUING",
   "next_batch": "S5d remaining effect-owner health/structural and transfer closure, then S6–S10 under continuing authorization. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B271.298 stable from main cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; SHA256 102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993; B270 backup verified, no pending transaction; receipt B271.298-cc71f9b-stable-deploy.json.",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "No automatic deployment granted by U1 D13. Runtime replacement needs explicit approval and existing transaction/game-exit/hash/receipt safeguards. No main promotion before separately approved post-U5 action.",
-  "context_review_status": "S0744 S5d4c6 complete:InsightsTourism exact192-ID live health and bounded kernel preserve independent cold cleanup and read-only permanent history.12 new/full391 cases have390 properties PASS/1 registered S6 capacity counterexample OPEN. Initialization reentry, new-reference UNKNOWN, sibling loss/damage and dormant failure recovery are covered. Tradition/network effect health and transfer closure continue before S6–S10. No native/deployment PASS.",
+  "context_review_status": "S0745 S5d4c7 complete:Tradition five exact projection carriers use bounded health causes while authoritative Store age/cursor/history and original turn ordering remain unchanged.11 new/full402 cases have401 properties PASS/1 registered S6 capacity counterexample OPEN. Synchronous publish across private busy and queue busy retains sibling recovery. Remaining effect/network health and transfer closure continue before S6–S10. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B295_Refactor_S5d4c6.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B296_Refactor_S5d4c7.md"
 }

@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "229f8347e7dc27bae44942aed2be4992d16f0c4fc7ca25e6bf6a571c7851773a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B295_Refactor_S5d4c6.md",
-      "provenance": "B295.322 Insights historical projection exact health; local/static evidence only; no deployment/native PASS."
+      "sha256": "e20dd78eadcc897d6dac26318f65dcbc0bbdb65572df8f41d8fecb6762bcc6bf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B296_Refactor_S5d4c7.md",
+      "provenance": "B296.323 Tradition projection health preserves authoritative age; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -871,9 +871,9 @@
       "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/ResearchTraditionEffects.lua": {
-      "sha256": "9c8da6b40013a7a89a4308976a6c12bef4905efdef83898215555edf2fda9833",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "67cd50fbe2540b93393accfcf43c083392fc5551b220915b85d9907704d18915",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B296_Refactor_S5d4c7.md",
+      "provenance": "B296.323 Tradition projection health preserves authoritative age; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Restructuring.lua": {
       "sha256": "a73419ec31cdf08e734aaac78d85d1fc909d967d335568ad1f94b4572a582fa5",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "778e5ffa250d35aeec0846b486d0d079602b692fd37a1049f0d36f2573657e4b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B295_Refactor_S5d4c6.md",
-      "provenance": "B295.322 Insights historical projection exact health; local/static evidence only; no deployment/native PASS."
+      "sha256": "dafebe71b1458b26af153b78e7782b43180903697549cc96a8c37ae558767e15",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B296_Refactor_S5d4c7.md",
+      "provenance": "B296.323 Tradition projection health preserves authoritative age; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
