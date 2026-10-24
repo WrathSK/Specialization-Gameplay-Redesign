@@ -114,6 +114,7 @@ function SPCIndustrySupport.Start(P,shared)
  end
  function data.BindPermanentWrites()
   if shared.FactChanges then shared.FactChanges.RegisterConsumer('IndustrySupport',function(e)
+   if type(e.city)~='number'then return end
    local player=Players[e.player];local c=player and player:GetCities():FindID(e.city)
    if c and c:GetOwner()==e.player then data.MarkCity(c)end
   end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end

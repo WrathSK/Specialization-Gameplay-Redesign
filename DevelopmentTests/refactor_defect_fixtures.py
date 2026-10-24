@@ -6,7 +6,27 @@ def commerce():
     import test_culture_network
     test_culture_network.LuaRuntime=TrackedLua51
     from test_b239_commerce import fixture
-    with legacy_source_observation():return fixture()
+    with legacy_source_observation():l=fixture()
+    return fact_publication_profile(l)
+
+def fact_publication_profile(l, automatic=True):
+    l.execute((ROOT/'Mod/FactChanges.lua').read_text());l.execute((ROOT/'Mod/FactConsumerBindings.lua').read_text())
+    l.execute("SPCFactChanges.New(shared);SPCFactConsumerBindings.New(shared)")
+    if automatic:
+        l.execute("""
+        fixtureDrain=false
+        function fixturePublication()
+         if fixtureDrain then return end;fixtureDrain=true
+         shared.FactChanges.Flush();shared.FactBindings.Flush()
+         -- Existing dirty consumers drain at their real publish hook.
+         Events.GameCoreEventPublishComplete.Fire();fixtureDrain=false
+        end
+        for _,name in ipairs({'Refresh','CheckEvidence','Receive'})do
+         local original=net[name]
+         net[name]=function(...)local out=original(...);fixturePublication();return out end
+        end
+        """)
+    return l
 
 def gc():
     import test_b269_memory
@@ -17,8 +37,12 @@ def gc():
     return case.l
 
 def request_context():
-    c=Context();c.load('SafeCallbacks');c.execute("P={Scalar=tostring,IsTestPlayer=function(pid)return pid==0 end};shared={};stage=function()end;refreshInvestmentSupport=function()end;city={GetOwner=function()return 0 end};Players={[0]={GetCities=function()return {FindID=function()return city end}end}}")
-    c.execute(c.fragment('Mod/Gameplay.lua','local function request(playerID,params)','GameEvents.SPC_P0_Request.Add')+'\nrunRequest=request')
+    c=Context();c.load('SafeCallbacks');c.load('FactChanges');c.load('FactConsumerBindings')
+    c.execute("P={Scalar=tostring,IsTestPlayer=function(pid)return pid==0 end};shared={};stage=function()end;city={GetOwner=function()return 0 end};Players={[0]={GetCities=function()return {FindID=function()return city end}end}};SPCFactChanges.New(shared);SPCFactConsumerBindings.New(shared)")
+    c.execute(c.fragment('Mod/Gameplay.lua','local function refreshInvestmentSupport(', 'local function request(playerID,params)')+'\n_G.refreshInvestmentSupport=refreshInvestmentSupport')
+    # Maintained synchronous fixture explicitly closes one publication boundary
+    # after the request; production request remains deferred and ACK is independent.
+    c.execute(c.fragment('Mod/Gameplay.lua','local function request(playerID,params)','GameEvents.SPC_P0_Request.Add')+'\nrunRequest=function(...)request(...);shared.FactChanges.Flush();shared.FactBindings.Flush()end')
     return c
 
 def startup():

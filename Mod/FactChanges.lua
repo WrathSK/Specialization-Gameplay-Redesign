@@ -34,6 +34,8 @@ function M.New(shared)
  if previous and type(previous.Close)=='function'then previous.Close()end
  local d={sequence=0,emitted=0,delivered=0,pending=0,errors={},closed=false}
  local consumers,order,queue,keys={},{},{},{};local busy=false
+ local activePhase,activeConsumer,activeWork,activeKeys
+ d.flushRevision=0
  -- Session-local authority stamps, not fact values. Owner scope covers pool membership:
  -- a newly qualifying source may be absent from every old per-city dependency list.
  local generations={};local owners=0
@@ -112,6 +114,19 @@ function M.New(shared)
   if not previous then keys[#keys+1]=key;d.pending=#keys end
   queue[key]=row;return row.sequence
  end
+ -- A Bridge proof published inside its own sampling callback can feed phase1.
+ -- Every unrelated/reentrant cause remains in the next ordinary snapshot.
+ function d.EmitDerived(event)
+  assert(type(event)=='table' and getmetatable(event)==nil,'FACT_DERIVED_STRUCTURE')
+  local count=0;entries(event.kinds or {},7,function(k)assert(k=='NETWORK','FACT_DERIVED_KIND');count=count+1 end)
+  assert(count==1,'FACT_DERIVED_KIND')
+  if not (busy and activePhase==0 and activeConsumer=='NetworkBridge')then return d.Emit(event)end
+  local savedQueue,savedKeys,savedPending=queue,keys,d.pending
+  queue=activeWork;keys=activeKeys;d.pending=#keys
+  local ok,value=pcall(d.Emit,event)
+  activeWork=queue;activeKeys=keys;queue=savedQueue;keys=savedKeys;d.pending=savedPending
+  assert(ok,value);return value
+ end
  local function interested(consumer,row)
   for kind in pairs(row.kinds)do if consumer.kinds[kind]then
    if kind~='HISTORY' or not next(consumer.topics)then return true end
@@ -123,22 +138,24 @@ function M.New(shared)
   if d.closed or busy or #keys==0 then return false end
   busy=true
   local work,sequence=queue,keys;queue={};keys={};d.pending=0
+  d.flushRevision=d.flushRevision+1;local initialCount=#sequence;activeWork=work;activeKeys=sequence
   -- Known phases, stable registration order. New causes never recurse into this snapshot.
-  for phase=0,1 do for _,name in ipairs(order)do local consumer=consumers[name]
+  for phase=0,1 do activePhase=phase;for _,name in ipairs(order)do local consumer=consumers[name]
    if consumer and consumer.phase==phase then
     local failure;local attempted=false
-    for _,key in ipairs(sequence)do
-     if d.closed then busy=false;return true end
+    for index=1,(phase==0 and initialCount or #sequence)do
+     local key=sequence[index]
+     if d.closed then busy=false;activeWork=nil;activeKeys=nil;activeConsumer=nil;activePhase=nil;return true end
      local row=work[key]
      if interested(consumer,row)then
-      attempted=true;local ok,err=pcall(function()return consumer.callback(clone(row))end);d.delivered=d.delivered+1
+      attempted=true;activeConsumer=name;local ok,err=pcall(function()return consumer.callback(clone(row))end);activeConsumer=nil;d.delivered=d.delivered+1
       if not ok then local read,message=pcall(tostring,err);failure=read and message:sub(1,180) or 'FACT_CALLBACK_FAILED'end
      end
     end
     if attempted then d.errors[name]=failure end
    end
   end end
-  busy=false;return true
+  busy=false;activePhase=nil;activeConsumer=nil;activeWork=nil;activeKeys=nil;return true
  end
  function d.Close()
   queue={};keys={};consumers={};order={};d.pending=0;d.closed=true

@@ -104,8 +104,11 @@ function SPCDialogueProjects.Start(P,shared)
   for _,v in pairs(work)do safe(v[1],v[2],function()audit(v[1],v[2])end)end
   busy=false
  end
- function d.Refresh(pid,id)
+ function d.RefreshAccess(pid,id)
   mark(pid,id);d.Flush()
+ end
+ function d.Refresh(pid,id)
+  d.RefreshAccess(pid,id)
   if shared.DialogueEffects then shared.DialogueEffects.Audit({player=pid,city=id})end
  end
  local advance

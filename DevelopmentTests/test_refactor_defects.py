@@ -38,5 +38,7 @@ class Defects(unittest.TestCase):
         from refactor_harness import TrackedLua51,legacy_source_observation
         test_culture_network.LuaRuntime=TrackedLua51
         with legacy_source_observation():l=test_culture_network.fixture()
-        l.execute("recovered=0;shared.Commerce={Audit=function()recovered=recovered+1;assert(net.CurrentDomesticPartners(0,cities[2]).validity=='VERIFIED')end};shared.RouteSignalRevision=shared.RouteSignalRevision+1;net.players[0].revalidation='NEEDS_REVALIDATION';send('0,4,0,2,10;0,2,0,1,11;0,2,0,5,12',3)")
+        from refactor_defect_fixtures import fact_publication_profile
+        fact_publication_profile(l)
+        l.execute("recovered=0;shared.Commerce={Mark=function()recovered=recovered+1;assert(net.CurrentDomesticPartners(0,cities[2]).validity=='VERIFIED')end};shared.RouteSignalRevision=shared.RouteSignalRevision+1;net.players[0].revalidation='NEEDS_REVALIDATION';send('0,4,0,2,10;0,2,0,1,11;0,2,0,5,12',3)")
         self.assertEqual(l.eval('recovered'),1,'S4_RECOVERY_NOT_NOTIFIED')

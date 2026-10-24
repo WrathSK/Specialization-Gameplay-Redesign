@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0728
-Implementation Build: B279.306 / modinfo306; stable/live B271.298
+Status Revision: S0729
+Implementation Build: B280.307 / modinfo307; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5_HISTORY_COMPLETE_S5A_REMAINDER_AUTHORIZED
+Work State: REFACTOR_S5A_COMPLETE_S5B_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B279.306 history propagation complete: [typed confirmed histories](Validation/Results/Specialization_B279_Refactor_S5_History.md). Real Store publishes confirmed templates, Engineering/Dialogue results, insights and age/selection changes; six isolated declared adapters replace direct result fanouts.14 new Lua51 cases PASS; selected132PASS/4 laterOPEN. Request/Claim/Restructuring/network manual lists remain the next S5a work. Stable/live/main B271.298; no deployment/native PASS.
+B280.307 S5a complete: [declared request/network propagation](Validation/Results/Specialization_B280_Refactor_S5a.md). Own-sync→one owner network capture→coalesced effects; network proof immediately stales transaction authority; true reentry waits for next publication.15 new Lua51 cases;147 properties PASS/4 laterOPEN. Existing native operation/ACK/persistence rules retained; no new native/deployment PASS. Stable/live/main B271.298.
 
 - User decision: none.
 - User testing: final U5 unless a concrete blocking native fact appears.
-- Primary next: remaining S5a request/network migration→S5b/c/d→S6→S7/S8→S9/S10.
+- Primary next: S5b safe shared facts/barriers→S5c→S5d→S6→S7/S8→S9/S10.
+
+## S0729 — B280.307 S5a complete
+
+Remaining manual request/Claim/Restructuring/network effect lists replaced by isolated declared scopes and actual output-proof freshness. Reviewed duplicate Dialogue effect relay avoided with project-only RefreshAccess; city-only adapters preserve narrow coalesced work.15 new cases/147 selected properties PASS,4 laterOPEN. No new timer/frame/polling, save schema or gameplay change; no deployment/native PASS.
 
 ## S0728 — B279.306 confirmed history topics
 

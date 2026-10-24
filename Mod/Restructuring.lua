@@ -5,7 +5,7 @@ SPCRestructuring={ACCESS='BUILDING_SPC_RESTRUCTURING_ACCESS',DISRUPTION='BUILDIN
 function SPCRestructuring.Start(P,shared)
  local M=SPCRestructuringModel;local S=SPCRestructuring;local cp=M.Copy;local store=assert(shared.CityProgressionStore)
  local d={views={},errors={},ready=false};shared.Restructuring=d
- local busy=false;local births,completed,dirty,publication={},{},{},{};local plans={}
+ local busy=false;local births,completed,dirty={},{},{};local plans={}
  local recovery={};local initializationStamp
  local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'RESTRUCTURING')
  local function key(pid,id)return pid..':'..id end
@@ -138,26 +138,8 @@ function SPCRestructuring.Start(P,shared)
   for _,r in ipairs(seed)do recovery[key(r.owner,r.cityID)]=r;mark(r.owner,r.cityID)end
   d.ready=true;initialization('REST_INIT_READY',cause or 'FLUSH',status);return true
  end
- -- Dependency-specific publication, once per successful identity transition.
- -- Existing consumers own their carriers; no broad RemoveOwned or history deletion.
+ -- UI publication follows own-state synchronization; effect edges are declared centrally.
  function d.Publish(pid,c)
-  local id=c:GetID();local errors={}
-  local function call(name,method,...)
-   local x=shared[name];if not x or type(x[method])~='function'then return end
-   local ok,err=pcall(x[method],...);if not ok then errors[name]=code(err)end
-  end
-  call('NetworkBridge','Refresh',pid)
-  call('Standardization','Refresh',pid,id)
-  for _,name in ipairs({'ResearchSupport','IndustrySupport','Lv2Housing','Lv2GPP','Lv3Support','Lv3Effects',
-   'ResearchInfrastructure','ResearchCross','ResearchApply','ResearchChair','CultureAesthetic','CultureMeaning','CultureInspiration',
-   'DialogueEffects','CultureInsightsTourism'})do call(name,'Audit',{player=pid,city=id})end
-  call('ResearchTraditionEffects','Update',pid,c)
-  call('StandardizationEffects','SourceChanged',pid,id)
-  for _,name in ipairs({'EngineeringStudy','IndustryWonderEffects','CrewProjects','DialogueProjects','CapitalInvestment'})do call(name,'Refresh',pid,id)end
-  call('Commerce','SourceChanged',pid,id);call('CultureNetwork','Mark',pid,id)
-  call('DevelopmentInvestment','Reconcile',pid,id)
-  d.errors[key(pid,id)]=next(errors) and errors or nil
-  for name,why in pairs(errors)do log('REST_PUBLICATION_HELD',pid,c,nil,name..':'..why)end
   ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1
  end
  local function sync(pid,c,recover)
@@ -203,15 +185,7 @@ function SPCRestructuring.Start(P,shared)
    else for id in pairs(ids)do visit(city(pid,id),id)end end
   end
   busy=false
-  local changed=publication;publication={}
-  for _,a in pairs(changed)do
-   local c=city(a.owner,a.cityID)
-   if c and c:GetOwner()==a.owner and P.IsTestPlayer(a.owner)then
-    local ok,f=pcall(shared.EffectiveFacts.Read,a.owner,c)
-    local identity=ok and table.concat({a.owner,a.cityID,c:GetX(),c:GetY(),f.token or ''},':')
-    if identity==a.reference then d.Publish(a.owner,c)end
-   end
-  end
+
  end
  -- Investment completion already proves the changed city. Reuse the normal
  -- derived-marker writer; no player scan, retained fact packet or timer.
@@ -316,10 +290,16 @@ function SPCRestructuring.Start(P,shared)
   for pid in pairs(Players)do if P.IsTestPlayer(pid)then mark(pid)end end;d.Flush('LOAD_EVENT')
   log('REST_LOAD_RETURNED')
  end)
- if shared.FactChanges then shared.FactChanges.RegisterConsumer('Restructuring',function(e)
-  mark(e.player,e.city)
-  if e.causes.RESTRUCTURING_COMMITTED then publication[key(e.player,e.city)]={owner=e.player,cityID=e.city,reference=e.reference}end
- end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
+ function d.FactChanged(e)
+  if e.city==nil then return end
+  local c=city(e.player,e.city);if not c or c:GetOwner()~=e.player then return end
+  if e.reference then
+   local ok,f=pcall(shared.EffectiveFacts.Read,e.player,c)
+   if not ok or table.concat({e.player,e.city,c:GetX(),c:GetY(),f.token or ''},':')~=e.reference then return end
+  end
+  d.Refresh(e.player,e.city)
+  if e.causes.RESTRUCTURING_COMMITTED then d.Publish(e.player,c)end
+ end
  store.RegisterExit('Restructuring',function(c,loss)
   for k,r in pairs(recovery)do if r.x==c:GetX() and r.y==c:GetY()then recovery[k]=nil end end
   store.RemoveOwned(c,loss,{S.ACCESS,S.DISRUPTION})

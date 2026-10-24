@@ -89,7 +89,7 @@ class Wiring(unittest.TestCase):
     def test_production_eight_observers_no_filename_chain_and_independent_wonder(self):
         names=['ClaimProjects','IndustrySupport','EngineeringStudyProjects','CrewProjects','Commerce','DevelopmentInvestment','Restructuring','LevelBannerState','IndustryWonderEffects']
         for name in names:
-            text=(ROOT/'Mod'/f'{name}.lua').read_text();self.assertNotIn('SPCSafeCallbacks.Chain(',text);self.assertIn('FactChanges.RegisterConsumer',text)
+            text=(ROOT/'Mod'/f'{name}.lua').read_text();self.assertNotIn('SPCSafeCallbacks.Chain(',text);self.assertTrue('FactChanges.RegisterConsumer' in text or name=='Restructuring' and 'function d.FactChanged(e)' in text)
         self.assertNotIn('OnPermanentCityWrite',(ROOT/'Mod/CityProgressionStore.lua').read_text())
 
 class Freshness(unittest.TestCase):
@@ -122,7 +122,7 @@ class Freshness(unittest.TestCase):
         """)
     def test_generation_only_role_refresh_republishes_current_proof_once(self):
         l=commerce();l.execute((ROOT/'Mod/FactChanges.lua').read_text());l.execute("""
-        local changes=SPCFactChanges.New(shared);assert(toggle(2,'DISTRICT_CAMPUS',true));local count=0
+        local changes=SPCFactChanges.New(shared);SPCFactConsumerBindings.New(shared);assert(toggle(2,'DISTRICT_CAMPUS',true));local count=0
         local audit=com.Audit;com.Audit=function(s)count=count+1;return audit(s)end
         changes.Emit({owner=0,cityID=1,kinds={'POTENTIAL'},cause='COMMITTED'});net.Refresh(0)
         assert(count==1 and com.TransactionCurrent(0,2));net.Refresh(0);assert(count==1)

@@ -73,18 +73,18 @@ class Bindings(unittest.TestCase):
     def test_declared_consumers_isolate_failure_scope_and_idle_budget(self):
         c=Context();c.load('FactChanges');c.load('FactConsumerBindings');c.execute("""
         d=SPCFactChanges.New(shared);calls={};shared.CultureInsightsTourism={Audit=function(e)assert(e.player==0 and e.city==1);error('BROKEN_TOURISM')end}
-        shared.CultureNetwork={SourceChanged=function(pid,id)assert(pid==0 and id==1);calls[#calls+1]='network'end}
+        shared.CultureNetwork={Audit=function(e)assert(e.player==0 and e.changed[1]);calls[#calls+1]='network'end}
         shared.DialogueEffects={Audit=function()error('UNRELATED')end};SPCFactConsumerBindings.New(shared)
-        d.Emit({owner=0,cityID=1,kinds={'HISTORY'},topic='INSIGHTS',cause='INSIGHTS_COMMITTED'});d.Flush()
-        assert(#calls==1 and d.errors.HistoryInsightsTourism and not d.errors.HistoryCultureNetwork)
+        d.Emit({owner=0,cityID=1,kinds={'HISTORY'},topic='INSIGHTS',cause='INSIGHTS_COMMITTED'});d.Flush();shared.FactBindings.Flush()
+        assert(#calls==1 and shared.FactBindings.errors.CultureInsightsTourism and not shared.FactBindings.errors.CultureNetwork)
         local n=d.delivered;for i=1,1000 do d.Flush()end;assert(d.delivered==n)
         """)
     def test_failed_optional_target_does_not_disable_other_bindings(self):
         c=Context();c.load('FactChanges');c.load('FactConsumerBindings');c.execute("""
         d=SPCFactChanges.New(shared);calls=0;shared.StartStatus={DialogueEffects={state='FAILED'}}
         shared.DialogueEffects={Audit=function()error('FAILED_TARGET_LIVE')end}
-        shared.StandardizationEffects={SourceChanged=function(pid,id)assert(pid==0 and id==2);calls=calls+1 end}
-        SPCFactConsumerBindings.New(shared);d.Emit({owner=0,cityID=2,kinds={'HISTORY'},topic='TEMPLATES',cause='TEMPLATES_COMMITTED'});d.Emit({owner=0,cityID=1,kinds={'HISTORY'},topic='DIALOGUE',cause='DIALOGUE_COMMITTED'});d.Flush();assert(calls==1 and not d.errors.HistoryDialogue)
+        shared.StandardizationEffects={Audit=function(e)assert(e.player==0 and e.changed[2]);calls=calls+1 end}
+        SPCFactConsumerBindings.New(shared);d.Emit({owner=0,cityID=2,kinds={'HISTORY'},topic='TEMPLATES',cause='TEMPLATES_COMMITTED'});d.Emit({owner=0,cityID=1,kinds={'HISTORY'},topic='DIALOGUE',cause='DIALOGUE_COMMITTED'});d.Flush();shared.FactBindings.Flush();assert(calls==1 and not shared.FactBindings.errors.DialogueEffects)
         """)
     def test_late_binding_factory_failure_quarantines_registered_observers(self):
         c=Context();c.load('FactChanges');c.load('FactConsumerBindings');c.load('RuntimeComposition');c.execute("""

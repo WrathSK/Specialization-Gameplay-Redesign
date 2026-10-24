@@ -21,39 +21,17 @@ local function stage(value)
   shared.Events[#shared.Events+1]=line
   if #shared.Events>32 then table.remove(shared.Events,1) end
 end
--- One post-investment contract, shared by DEV and normal Settler confirmation.
--- Only a proved new receipt narrows these consumers; other actions retain
--- the old player fallback. No facts/cache or native object survives this call.
+-- Request-caused dirty notification; committed receipts are revalidated by the real action.
 local function refreshInvestmentSupport(playerID,result)
- if type(result)=='table' and result.status=='COMMITTED' and shared.StandardizationEffects then
-  local consumer=shared.StandardizationEffects
-  local ok,err=pcall(consumer.SourceChanged,playerID,result.city)
-  consumer.errors['investment-notify:'..tostring(playerID)]=not ok and tostring(err) or nil
- end
- for _,name in ipairs({'Lv2Housing','Lv2GPP'})do
-  local consumer=shared[name]
-  if consumer then
-   local scope={player=playerID}
-   if type(result)=='table' and result.status=='COMMITTED' then scope.investment=result end
-   local ok,err=pcall(consumer.Audit,scope)
-   local key='investment-notify:'..tostring(playerID)
-   consumer.errors[key]=not ok and tostring(err) or nil
-  end
- end
- if type(result)=='table' and result.status=='COMMITTED' then
-  for _,name in ipairs({'EngineeringStudy','IndustryWonderEffects','CrewProjects','Restructuring','LevelBanners'})do
-   local d=shared[name];if d then local ok,err=pcall(d.Refresh,playerID,result.city);if not ok then print('[SPC][Investment entry '..name..'] '..tostring(err))end end
-  end
- end
- if type(result)=='table' and result.status=='COMMITTED' and shared.Commerce then
-  local ok,err=pcall(shared.Commerce.Refresh,playerID,result.city)
-  if not ok then print('[SPC][Commerce investment entry] '..tostring(err))end
- end
- if type(result)=='table' and result.status=='COMMITTED' and shared.DialogueProjects
-  and not shared.DialogueProjects.startupError and shared.DialogueProjects.Refresh then
-  local ok,err=pcall(shared.DialogueProjects.Refresh,playerID,result.city) -- target entry only
-  if not ok then print('[SPC][Dialogue investment entry] '..tostring(err))end
- end
+ if not shared.FactChanges then return end
+ local committed=type(result)=='table' and result.cause=='INVESTMENT_COMMITTED' and (result.status=='COMMITTED' or result.status=='ALREADY_COMMITTED')
+ local reference=committed and result.reference
+ local event={owner=playerID,cityID=committed and result.city or nil,
+  reference=reference and table.concat({reference.owner,reference.cityID,reference.x,reference.y,result.anchor.token},':') or nil,
+  kinds=committed and {'POTENTIAL','ACTIVE'} or {'ACTIVE','D','WORKERS'},
+  cause=committed and (result.status=='COMMITTED' and 'INVESTMENT_COMMITTED' or 'INVESTMENT_RECOVERY') or 'REQUEST_FACTS_DIRTY',
+  revision=committed and result.revision or nil,investment=committed and result.status=='COMMITTED' and result or nil}
+ shared.FactChanges.Emit(event)
 end
 local function request(playerID,params)
   shared.RequestIngress=shared.RequestIngress or {count=0}
@@ -573,21 +551,7 @@ local function request(playerID,params)
     if not P.IsTestPlayer(playerID) then return end
     local result
     shared.Snapshot,result=shared.UnitActions.Run(playerID,params);shared.LastToken=params.Token
-    if shared.NetworkBridge then SPCSafeCallbacks.Notify(shared,'NetworkBridge','Refresh',playerID) end
-    SPCSafeCallbacks.Call(shared,'investment-support',refreshInvestmentSupport,playerID,result)
-    if shared.ResearchInfrastructure then SPCSafeCallbacks.Notify(shared,'ResearchInfrastructure','Audit',{player=playerID}) end
-    if shared.ResearchCross then SPCSafeCallbacks.Notify(shared,'ResearchCross','Audit',{player=playerID}) end
-    if shared.ResearchApply then SPCSafeCallbacks.Notify(shared,'ResearchApply','Audit',{player=playerID}) end
-    if shared.ResearchChair then SPCSafeCallbacks.Notify(shared,'ResearchChair','Audit',{player=playerID}) end
-    if shared.CultureAesthetic then SPCSafeCallbacks.Notify(shared,'CultureAesthetic','Audit',{player=playerID}) end
-    if shared.CultureMeaning then SPCSafeCallbacks.Notify(shared,'CultureMeaning','Audit',{player=playerID})end
-    if shared.CultureInspiration then SPCSafeCallbacks.Notify(shared,'CultureInspiration','Audit',{player=playerID,city=params.CityID})end
-    if shared.CultureInsightsTourism then SPCSafeCallbacks.Notify(shared,'CultureInsightsTourism','Audit',{player=playerID,city=params.CityID})end
-    if shared.ResearchSupport then SPCSafeCallbacks.Notify(shared,'ResearchSupport','Audit',{player=playerID}) end
-    if shared.IndustrySupport then SPCSafeCallbacks.Notify(shared,'IndustrySupport','Audit',{player=playerID}) end
-    if shared.Lv3Effects then SPCSafeCallbacks.Notify(shared,'Lv3Effects','Audit') end
-    if shared.NetworkBoost then SPCSafeCallbacks.Notify(shared,'NetworkBoost','Audit') end
-    if shared.Dialogue then SPCSafeCallbacks.Notify(shared,'Dialogue','Audit',playerID) end
+    SPCSafeCallbacks.Call(shared,'request-facts',refreshInvestmentSupport,playerID,result)
     return
   end
   if params.Action=="UNIT_TARGETS_READ" then
@@ -600,24 +564,11 @@ local function request(playerID,params)
   end
   if params.Action=="LV2_GPP_DIRTY" then
     P.Observe('ui','received')
-    if params.FactsChanged and shared.CultureMeaning then SPCSafeCallbacks.Notify(shared,'CultureMeaning','Audit',{player=playerID})end
-    if params.FactsChanged and shared.CultureInspiration then SPCSafeCallbacks.Notify(shared,'CultureInspiration','Audit',{player=playerID})end
-    if params.FactsChanged and shared.CultureInsightsTourism then SPCSafeCallbacks.Notify(shared,'CultureInsightsTourism','Audit',{player=playerID})end
-    if params.FactsChanged and shared.DialogueEffects then SPCSafeCallbacks.Notify(shared,'DialogueEffects','Audit',{player=playerID})end
-    if params.FactsChanged and shared.ResearchTraditionEffects then SPCSafeCallbacks.Notify(shared,'ResearchTraditionEffects','Mark',playerID)end
-    if params.FactsChanged and shared.NetworkBridge then SPCSafeCallbacks.Notify(shared,'NetworkBridge','Refresh',playerID) end
-    if params.FactsChanged and shared.CultureNetwork then SPCSafeCallbacks.Notify(shared,'CultureNetwork','Mark',playerID)end
-    if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then SPCSafeCallbacks.Notify(shared,'Lv2Housing','Audit',{player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.Lv2GPP then SPCSafeCallbacks.Notify(shared,'Lv2GPP','Audit',{player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.Lv3Effects then SPCSafeCallbacks.Notify(shared,'Lv3Effects','Audit',{player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.Lv4Percent then SPCSafeCallbacks.Notify(shared,'Lv4Percent','Audit',{player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.ResearchInfrastructure then SPCSafeCallbacks.Notify(shared,'ResearchInfrastructure','Audit',{player=playerID}) end
-    if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.CultureAesthetic then SPCSafeCallbacks.Notify(shared,'CultureAesthetic','Audit',{player=playerID}) end
-    if not (params.WorkerOnly==true and params.FactsChanged==false) and shared.CultureMeaningProbe then SPCSafeCallbacks.Notify(shared,'CultureMeaningProbe','Audit',{player=playerID})end
-    -- Cross has no worker/focus input. Missing/mixed/contradictory provenance retains the fallback.
-    if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.ResearchCross then SPCSafeCallbacks.Notify(shared,'ResearchCross','Audit',{player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.ResearchApply then SPCSafeCallbacks.Notify(shared,'ResearchApply','Audit',{player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.ResearchChair then SPCSafeCallbacks.Notify(shared,'ResearchChair','Audit',{player=playerID}) end
+    if shared.FactChanges then
+     local workerOnly=params.WorkerOnly==true and params.FactsChanged==false
+     local kinds=workerOnly and {'WORKERS'} or params.FactsChanged and {'ACTIVE','D','WORKERS'} or {'D','WORKERS'}
+     shared.FactChanges.Emit({owner=playerID,kinds=kinds,cause=workerOnly and 'UI_WORKERS_DIRTY' or 'UI_FACTS_DIRTY'})
+    end
     return
   end
   if params.Action=="NETWORK_PUSH" then
@@ -658,19 +609,7 @@ local function request(playerID,params)
       shared.Snapshot,result=shared.InvestmentAction.Confirm(playerID,city,params.PlanToken)
     else shared.Snapshot="B033 REJECTED: PREPARE_FIRST" end
     shared.LastToken=params.Token -- primary result already returned; observers cannot revoke ACK
-    if shared.NetworkBridge then SPCSafeCallbacks.Notify(shared,'NetworkBridge','Refresh',playerID) end
-    SPCSafeCallbacks.Call(shared,'investment-support',refreshInvestmentSupport,playerID,result)
-    if shared.ResearchInfrastructure then SPCSafeCallbacks.Notify(shared,'ResearchInfrastructure','Audit',{player=playerID}) end
-    if shared.ResearchCross then SPCSafeCallbacks.Notify(shared,'ResearchCross','Audit',{player=playerID}) end
-    if shared.ResearchApply then SPCSafeCallbacks.Notify(shared,'ResearchApply','Audit',{player=playerID}) end
-    if shared.ResearchChair then SPCSafeCallbacks.Notify(shared,'ResearchChair','Audit',{player=playerID}) end
-    if shared.CultureAesthetic then SPCSafeCallbacks.Notify(shared,'CultureAesthetic','Audit',{player=playerID}) end
-    if shared.CultureMeaning then SPCSafeCallbacks.Notify(shared,'CultureMeaning','Audit',{player=playerID})end
-    if shared.CultureInspiration then SPCSafeCallbacks.Notify(shared,'CultureInspiration','Audit',{player=playerID,city=params.CityID})end
-    if shared.CultureInsightsTourism then SPCSafeCallbacks.Notify(shared,'CultureInsightsTourism','Audit',{player=playerID,city=params.CityID})end
-    if shared.ResearchSupport then SPCSafeCallbacks.Notify(shared,'ResearchSupport','Audit',{player=playerID}) end
-    if shared.IndustrySupport then SPCSafeCallbacks.Notify(shared,'IndustrySupport','Audit',{player=playerID}) end
-    if shared.Lv3Effects then SPCSafeCallbacks.Notify(shared,'Lv3Effects','Audit') end
+    SPCSafeCallbacks.Call(shared,'request-facts',refreshInvestmentSupport,playerID,result)
     shared.LastToken=params.Token;stage("ACK INVESTMENT");return
   end
   if params.Action=="LV2_GPP_READ" then
@@ -805,7 +744,13 @@ composition.Run('CitySequenceProbe',{},{'CitySequenceProbe'},function() include(
 
 composition.Run('FactChanges',{}, {'FactChanges'},function()
  include('FactChanges');local changes=SPCFactChanges.New(shared)
- local function drain()if composition.sealed then changes.Flush()end end
+ local draining=false
+ local function drain()
+  if not composition.sealed or draining then return end;draining=true
+  local ok,err=pcall(function()changes.Flush();if shared.FactBindings then shared.FactBindings.Flush()end end)
+  draining=false
+  if not ok then local safe,text=pcall(tostring,err);shared.FactPropagationError=safe and text:sub(1,180) or 'FACT_PROPAGATION_FAILED'end
+ end
  local event=P.Field(Events,'GameCoreEventPublishComplete');if event and event.Add then event.Add(drain)end
 end)
 

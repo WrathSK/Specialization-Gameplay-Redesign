@@ -4,10 +4,17 @@ include("NetworkInput")
 include("ExpeditionTrainingDiagnostics")
 SPCNetworkBridge={}
 function SPCNetworkBridge.Start(P,shared)
- local d={ready=false,players={}};shared.NetworkBridge=d
+ local d={ready=false,players={},proofRevisions={}};shared.NetworkBridge=d
  local function generation(pid)return shared.FactChanges and shared.FactChanges.Generation(pid,'NETWORK') or 0 end
  local function currentGeneration(pid,b)return (b.factGeneration or 0)==generation(pid)end
- if shared.FactChanges then shared.FactChanges.RegisterConsumer('NetworkBridge',function(e)d.Refresh(e.player)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'},phase=0})end
+ local function isolatedForProof(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
+ local notify
+ function d.ProofRevision(pid)return d.proofRevisions[pid] or 0 end
+ function d.TransactionCurrent(pid)
+  local b=d.players[pid]
+  return b~=nil and b.availability=='AVAILABLE' and b.revalidation=='VERIFIED'
+   and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b) and not isolatedForProof(pid)
+ end
  ExposedMembers.SPCNetworkEpoch=(ExposedMembers.SPCNetworkEpoch or 0)+1
  d.epoch=ExposedMembers.SPCNetworkEpoch
  local function integer(n) return type(n)=="number" and n>=0 and n%1==0 and n<2147483648 end
@@ -84,7 +91,7 @@ function SPCNetworkBridge.Start(P,shared)
  local function pendingProof(pid,b,request,cause)
   local first=b.revalidation~='NEEDS_REVALIDATION'
   b.proofPending=true;b.revalidation='NEEDS_REVALIDATION';b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';b.effectAvailability='PENDING'
-  if first then state('NETWORK_PENDING',pid,b,cause or 'READ_OR_SIGNAL')end
+  if first then state('NETWORK_PENDING',pid,b,cause or 'READ_OR_SIGNAL');if notify then notify(pid)end end
   if request==true or request==nil and first then
    local ui=ExposedMembers.SPC_P0_BackgroundRoutes
    if ui and type(ui.RequestRevalidation)=='function' then pcall(ui.RequestRevalidation,d.epoch,pid) end
@@ -105,23 +112,24 @@ function SPCNetworkBridge.Start(P,shared)
    effectAvailability=b.effectAvailability,continuityOnly=b.continuityOnly==true}
  end
  local function proofSignature(b)
-  local parts={tostring(b.availability),tostring(b.effectAvailability),tostring(b.revalidation),
+  local parts={tostring(b.inputRevision),tostring(b.validity),tostring(b.withdrawal),tostring(b.availability),tostring(b.effectAvailability),tostring(b.revalidation),
    tostring(b.signal),tostring(shared.RouteSignalRevision or 0),tostring(b.transportFailure),tostring(b.continuityOnly),tostring(b.factGeneration or 0)}
   local ids={};for id in pairs(b.input and b.input.provenance or {})do ids[#ids+1]=id end;table.sort(ids)
   for _,id in ipairs(ids)do local f=b.input.provenance[id];parts[#parts+1]=id..':'..f.reference..':'..f.status end
   return table.concat(parts,'|')
  end
- local function notify(pid)
-  local b=bucket(pid);b.lastNotifiedProof=proofSignature(b)
-  if b.effectAvailability=='AVAILABLE'then b.proofPending=false end
-  local publication=d.Input(pid)
-  -- Logical input changes and pending-to-available recovery each notify once.
-  for _,name in ipairs({'Lv3Effects','StandardizationEffects','Commerce','CapitalInvestment','DevelopmentInvestment','CultureNetwork'}) do
-   local consumer=shared[name]
-   if consumer then local ok,err=pcall(consumer.Audit,publication)
-    if not ok then bucket(pid).consumerError=short(err) end
-   end
+ notify=function(pid)
+  local b=bucket(pid);local signature=proofSignature(b)
+  if b.lastNotifiedProof==signature then return false end
+  b.lastNotifiedProof=signature;if b.effectAvailability=='AVAILABLE'then b.proofPending=false end
+  d.proofRevisions[pid]=(d.proofRevisions[pid] or 0)+1
+  if shared.FactChanges then
+   local ok,err=pcall(shared.FactChanges.EmitDerived,{owner=pid,kinds={'NETWORK'},cause='NETWORK_PROOF_PUBLISHED',revision=d.proofRevisions[pid],
+    evidence={epoch=d.epoch,inputVersion=b.inputRevision,proofRevision=d.proofRevisions[pid],validity=b.validity,
+     availability=b.availability,effectAvailability=b.effectAvailability,revalidation=b.revalidation,continuityOnly=b.continuityOnly==true}})
+   b.consumerError=not ok and short(err) or nil
   end
+  return true
  end
  local function publish(pid,b,input,view,withdrawal)
   if b.inputSignature==input.signature then P.Count('input_duplicate');return false end
@@ -264,12 +272,12 @@ function SPCNetworkBridge.Start(P,shared)
     b.availability=(input.pending or not fresh) and 'NEEDS_REVALIDATION' or 'AVAILABLE';b.error=b.transportFailure
     if duplicate then
      b.input=input;P.Count('input_duplicate')
-     if (b.effectAvailability=='AVAILABLE' or b.continuityOnly) and (b.proofPending or b.lastNotifiedProof~=proofSignature(b))then notify(pid)end
+     notify(pid)
     else changed=publish(pid,b,input,view,withdrawal) end
    if b.availability=='AVAILABLE' and b.revalidation=='VERIFIED'then state('NETWORK_VERIFIED',pid,b,'SAMPLE_ACCEPTED')end
-   else b.availability='NEEDS_REVALIDATION';b.effectAvailability='PENDING';b.continuityOnly=false;b.error=short(view);state('NETWORK_SAMPLE_FAILED',pid,b,b.error)end
+   else b.availability='NEEDS_REVALIDATION';b.effectAvailability=b.continuityOnly and 'RETAINED_NEGATIVE' or 'PENDING';b.error=short(view);state('NETWORK_SAMPLE_FAILED',pid,b,b.error)end
   else
-   b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';b.effectAvailability='PENDING';b.continuityOnly=false;b.error=short(input)
+   b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';b.effectAvailability=b.continuityOnly and 'RETAINED_NEGATIVE' or 'PENDING';b.error=short(input)
    state('NETWORK_SAMPLE_FAILED',pid,b,b.error)
    -- A failed new sample cannot hide independently confirmed loss of an old input.
    local lost,rows={},b.routes
@@ -287,7 +295,7 @@ function SPCNetworkBridge.Start(P,shared)
    end
    changed=prune(pid,b,lost,rows,'CONFIRMED_INPUT_LOSS_WHILE_SAMPLE_PENDING')
   end
-  b.refreshing=false;return changed
+  notify(pid);b.refreshing=false;return changed
  end
  function d.Receive(pid,p)
   if isolated(pid) then state('NETWORK_RECEIVE_DROP',pid,nil,'ISOLATED',p);return end -- includes delayed pre-experiment packets

@@ -91,6 +91,8 @@ A8 is no longer excluded: the user explicitly approved eight collection eras aft
 
 #### S5 — Propagation foundation, in a→b→c→d order
 
+B280 S5a complete: [remaining request/network lists](../../Status/Validation/Results/Specialization_B280_Refactor_S5a.md),15 new Lua51 cases/147 program properties PASS,4 laterOPEN. Typed own-sync→one owner capture→coalesced effects replaces the actual lists; network proof and input generation are separate. Continue b→c→d; this does not close their existing counterexamples.
+
 B279 history producer migration complete: [confirmed Store topics/adapters](../../Status/Validation/Results/Specialization_B279_Refactor_S5_History.md),14 new Lua51 cases/132 program properties PASS,4 laterOPEN. Remaining Gameplay/Claim/Restructuring/network lists are still next; this does not close full S5a.
 
 B278 S5a2a complete: [committed Store migration/freshness](../../Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md),16 new Lua51 cases/118 program properties PASS,4 laterOPEN. Eight permanent subscribers migrated; remaining request/history/network/manual lists are S5a2b. Transaction barriers are immediate scalar marks, effects retain applied values.

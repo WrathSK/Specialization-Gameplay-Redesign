@@ -5,7 +5,7 @@ function SPCClaimProjects.Start(P,shared)
  local store=assert(shared.CityProgressionStore);local cp=SPCCityIdentityRead.Copy
  local d={views={},syncAck={},revision=0,status="等待加载或城市生产面板确认"};shared.ClaimProjects=d
  local turn
- local ready=false;local busy=false;local dirty={};local active={};local derived={};local errors={}
+ local ready=false;local busy=false;local dirty={};local active={};local errors={}
  function d.IsBusy()return busy end -- read-only GC scheduling guard; no transaction authority
  local kinds={'RESEARCH','CULTURE','INDUSTRY','COMMERCE'};local projects={};local markers={}
  for _,k in ipairs(kinds)do projects['PROJECT_SPC_CLAIM_'..k]=k;markers[#markers+1]='BUILDING_SPC_CLAIM_'..k end
@@ -76,18 +76,6 @@ function SPCClaimProjects.Start(P,shared)
   if d.startupError or not ready or busy then return end;busy=true
   local work=dirty;dirty={}
   for _,v in pairs(work)do safe(v[1],v[2],function()audit(v[1],v[2])end)end
-  local players=derived;derived={}
-  for pid in pairs(players)do
-   -- Exact existing consumers: fresh facts, never a saved yield or route snapshot.
-   for _,name in ipairs({'ResearchSupport','Lv2Housing','Lv2GPP','IndustrySupport','Lv3Support','Lv3Effects','CrewProjects','ResearchInfrastructure','ResearchCross'})do
-    local consumer=shared[name];if consumer and consumer.Audit then
-     local ok,err=pcall(consumer.Audit,{player=pid});if not ok then print('[SPC][Claim derive] '..name..': '..tostring(err))end
-    end
-   end
-   if shared.NetworkBridge then
-    local ok,err=pcall(shared.NetworkBridge.Refresh,pid);if not ok then print('[SPC][Claim network] '..tostring(err))end
-   end
-  end
   busy=false
  end
  -- One city sync: rehydrate access/timer; settle only a previously saved due timer. Never begin a timer.
@@ -145,7 +133,7 @@ function SPCClaimProjects.Start(P,shared)
    if s.receipt then return end
    assert(s.eligible and s.set[kind],'完成事件不在候选内')
    local e=district(c,kind);e.reference=s.reference;e.token=s.token;e.kind=kind;e.project=row.ProjectType;e.turn=Game.GetCurrentGameTurn()
-   if store.ClaimComplete(pid,c,e)then derived[pid]=true end
+   store.ClaimComplete(pid,c,e)
    active[key(pid,id)]=nil;mark(pid,id)
   end)
   -- This can reenter from FinishProgress; Flush is deliberately deferred.

@@ -3,13 +3,14 @@ import ast
 import unittest
 from pathlib import Path
 from refactor_harness import TrackedLua51,legacy_source_observation,ROOT
-from refactor_defect_fixtures import commerce
+from refactor_defect_fixtures import commerce,fact_publication_profile
 
 
 def culture(ready=True):
     import test_culture_network as module
     module.LuaRuntime=TrackedLua51
-    with legacy_source_observation():return module.fixture(ready)
+    with legacy_source_observation():l=module.fixture(ready)
+    return fact_publication_profile(l)
 
 
 def standard(ready=True,cold=False):

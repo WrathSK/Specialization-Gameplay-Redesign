@@ -21,6 +21,9 @@ function M.Start(P,shared)
  function d.TransactionCurrent(pid,id)
   local v=views[key(pid,id)]
   if not v or v.stage~='READY' or (v.factGeneration or 0)~=generation(pid)then return false end
+  local bridge=shared.NetworkBridge
+  if bridge and bridge.ProofRevision and (v.networkProofRevision or 0)~=bridge.ProofRevision(pid)then return false end
+  if bridge and bridge.TransactionCurrent and not bridge.TransactionCurrent(pid)then return false end
   for source,epoch in pairs(v.sourceGenerations or {})do if epoch~=generation(pid,source)then return false end end
   return true
  end
@@ -289,8 +292,8 @@ function M.Start(P,shared)
     local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true})
     if changed then for cid in pairs(changed)do addTargets(ids,pid,cid)end else addTargets(ids,pid)end
    end end
-   local batch={facts={},depth={},yields={},identities={}};local plans={};local sampledGenerations={}
-   for _,pair in pairs(ids)do sampledGenerations[pair[1]]=generation(pair[1])end
+   local batch={facts={},depth={},yields={},identities={}};local plans={};local sampledGenerations={};local sampledProofs={}
+   for _,pair in pairs(ids)do sampledGenerations[pair[1]]=generation(pair[1]);sampledProofs[pair[1]]=shared.NetworkBridge.ProofRevision and shared.NetworkBridge.ProofRevision(pair[1]) or 0 end
    for k,pair in pairs(ids)do
     local pid,id=pair[1],pair[2];local c=city(pid,id)
     if c and c:GetOwner()==pid then
@@ -335,7 +338,7 @@ function M.Start(P,shared)
      x.v.stage='HELD';x.v.reason=code(err);x.v.totalGold=0;x.v.totalRaw=0;x.v.canConfigure=false;x.v.effective={}
      for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
     end
-    x.v.factGeneration=sampledGenerations[x.pid];x.v.sourceGenerations={}
+    x.v.factGeneration=sampledGenerations[x.pid];x.v.networkProofRevision=sampledProofs[x.pid];x.v.sourceGenerations={}
     for sid in pairs(x.sources or {[x.id]=true})do x.v.sourceGenerations[sid]=batch.epochs and batch.epochs[key(x.pid,sid)] or generation(x.pid,sid)end
     publish(x.pid,x.id,x.v)
    end
