@@ -36,7 +36,7 @@
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
   "current_batch": "MAIN_SYNC_COMPLETE_STOPPED_BY_USER",
-  "next_batch": "None: finish the explicitly authorized temporary hotfix branch cleanup, then stop. Completed S6d and remaining S6–S10 authorization are preserved for later continuation.",
+  "next_batch": "None: user-authorized main record synchronization and temporary branch cleanup completed. Stop; preserve S6d and remaining S6–S10 for a later continuation.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "B307 main deployment completed under explicit user approval. This handoff authorizes main record synchronization and safe temporary branch deletion only; no new deployment or automatic main promotion.",
-  "context_review_status": "S0760: User-authorized main-to-develop record synchronization completed after the B307 stable deployment. Main deployment evidence is imported through the merge; develop keeps B308.335, D0058/A0182 and all completed S6d source unchanged. Live/stable is B307.334 from PR7. The temporary hotfix tip is already reachable from main; only its local/remote references may be removed after this merge is verified and pushed. No deployment, gameplay change or further refactor work in this synchronization; stop afterward.",
+  "context_review_status": "S0760: User-authorized main-to-develop record synchronization completed after the B307 stable deployment. Main deployment evidence is imported through the merge; develop keeps B308.335, D0058/A0182 and all completed S6d source unchanged. Live/stable is B307.334 from PR7. The temporary hotfix tip is already reachable from main; only its local/remote references may be removed after this merge is verified and pushed. No deployment, gameplay change or further refactor work in this synchronization; stop afterward. Cleanup completed: local/remote temporary hotfix references removed after ancestry verification; main/develop and history retained.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

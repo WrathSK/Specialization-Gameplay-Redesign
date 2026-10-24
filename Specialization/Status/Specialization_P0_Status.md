@@ -11,15 +11,17 @@ Work State: MAIN_SYNC_COMPLETE_STOPPED_BY_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-User-authorized main-to-develop record synchronization completed after the B307 stable deployment. Main deployment evidence is imported through the merge; develop keeps B308.335, D0058/A0182 and all completed S6d source unchanged. Live/stable is B307.334 from PR7. The temporary hotfix tip is already reachable from main; only its local/remote references may be removed after this merge is verified and pushed. No deployment, gameplay change or further refactor work in this synchronization; stop afterward. [Main deployment record](Validation/Results/Specialization_B307_Disable_Timing_Probes.md); [develop validation](Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md).
+User-authorized main-to-develop record synchronization completed after the B307 stable deployment. Main deployment evidence is imported through the merge; develop keeps B308.335, D0058/A0182 and all completed S6d source unchanged. Live/stable is B307.334 from PR7. Temporary branch `hotfix/b307-disable-timing-probes` was safely removed locally and remotely after its381e5a4 tip was verified reachable from both main and develop. No deployment, gameplay change or further refactor work in this synchronization; stop afterward. [Main deployment record](Validation/Results/Specialization_B307_Disable_Timing_Probes.md); [develop validation](Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md).
 
 - User decision: none; synchronization and temporary branch deletion explicitly authorized.
 - User testing: B307 responsiveness comparison remains USER_GAME_TEST_REQUIRED; final U5 is unchanged.
-- Primary next: finish verified branch-reference cleanup, then stop. Remaining S6–S10 work is retained for a later continuation.
+- Primary next: none; synchronization and branch cleanup are complete. Remaining S6–S10 work is retained for a later continuation.
 
 ## S0760 — Main record synchronization and bounded hotfix cleanup
 
 User-authorized main-to-develop record synchronization completed after the B307 stable deployment. Main deployment evidence is imported through the merge; develop keeps B308.335, D0058/A0182 and all completed S6d source unchanged. Live/stable is B307.334 from PR7. The temporary hotfix tip is already reachable from main; only its local/remote references may be removed after this merge is verified and pushed. No deployment, gameplay change or further refactor work in this synchronization; stop afterward.
+
+Cleanup completion: local and remote `hotfix/b307-disable-timing-probes` references deleted after main/develop reachability and no-worktree/no-unique-commit checks. Only main and develop remain locally; Git history, deployment recovery and all development source are retained. No pending work in this maintenance batch.
 
 ## S0759 — B307 approved main deployment and stop
 
