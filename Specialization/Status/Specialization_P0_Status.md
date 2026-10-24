@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0757
-Implementation Build: B307.334 / modinfo334 candidate; stable/live B271.298
+Status Revision: S0759
+Implementation Build: B307.334 / modinfo334; stable/live B307.334
 Architecture Revision Reviewed: A0181
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B307_PROBE_DISABLE_CANDIDATE_AWAITING_PROMOTION
+Work State: B307_STABLE_DEPLOYED_STOPPED_BY_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-User-approved narrow main-based hotfix disables B271 A/B/C before trace allocation and native observer registration in both Gameplay and UI. No automatic timing counters or NETWORK_VERIFIED observer remains; the right-click action reports that timing probes are disabled. The internal-carrier Pillage=0 SQL, all gameplay/save data, original counters, memory/GC diagnostics and collector protocol remain unchanged. Develop refactoring is excluded. Local validation only; main/live remain B271.298 until separate approval. [Result](Validation/Results/Specialization_B307_Disable_Timing_Probes.md).
+User approved PR7 merge followed by stable deployment and stop. PR7 merged normally; B307.334 from main19d51bd is deployed with312/312 source/live MATCH. B271.298 recovery package verified; no pending transaction. B271 A/B/C are disabled for the next game load; D4 and original gameplay/diagnostics remain. Actual lag improvement is USER_GAME_TEST_REQUIRED. No game launch or further refactor work. [Result](Validation/Results/Specialization_B307_Disable_Timing_Probes.md).
 
-- User decision: approve main merge and deployment separately.
-- User testing: compare the same campaign/turn after approved activation; performance effect remains USER_GAME_TEST_REQUIRED.
-- Primary next: forward-port the isolated implementation to develop; preserve the authorized S6–S10 refactor.
+- User decision: none; merge and deployment explicitly approved.
+- User testing: compare responsiveness/turn duration with the same campaign copy after loading B307; continued lag follows the user's planned pause.
+- Primary next: none; stop after deployment records and branch synchronization.
+
+## S0759 — B307 approved main deployment and stop
+
+User approved PR7 merge followed by stable deployment and stop. PR7 merged normally; B307.334 from main19d51bd is deployed with312/312 source/live MATCH. B271.298 recovery package verified; no pending transaction. B271 A/B/C are disabled for the next game load; D4 and original gameplay/diagnostics remain. Actual lag improvement is USER_GAME_TEST_REQUIRED. No game launch or further refactor work.
 
 ## S0757 — B307.334 narrow probe-disable candidate
 

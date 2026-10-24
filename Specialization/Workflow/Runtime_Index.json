@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "runtime": "B271.298 / modinfo298",
+  "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
+  "runtime": "B307.334 / modinfo334",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1566,5 +1566,5 @@
       "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     }
   },
-  "source_review": "B307.334 narrow stable candidate only; no deployment or native performance claim."
+  "source_review": "S0759 user-approved PR7 merge/deployment;312/312 MATCH and B271 recovery verified. Runtime source unchanged since candidate validation; no native performance PASS."
 }

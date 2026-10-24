@@ -10,7 +10,7 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0181",
-    "status": "S0757",
+    "status": "S0759",
     "runtime": "B307.334 / modinfo334",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,12 +34,12 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
-  "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "current_batch": "B307_PROBE_DISABLE_CANDIDATE_AWAITING_PROMOTION",
-  "next_batch": "Await separate approval for main merge and deployment; forward-port only the implementation into develop.",
+  "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
+  "current_batch": "B307_STABLE_DEPLOYED_STOPPED_BY_USER",
+  "next_batch": "None: user requested stop after approved merge/deployment. Refactor authorization is retained but no automatic continuation in this handoff.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B271.298 stable from main cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; SHA256 102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993; B270 backup verified, no pending transaction; receipt B271.298-cc71f9b-stable-deploy.json.",
-  "stable": "main B271.298 / modinfo298; approved PR #6 merged and deployed",
+  "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
+  "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
     "Specialization/Architecture/v2/State_Ownership_Save.md",
@@ -48,8 +48,8 @@
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
-  "deployment_authorization": "W0003 temporary auto-switch phase ended at user-approved main playtest milestone. Future runtime changes require explicit approval and existing transaction safeguards.",
-  "context_review_status": "S0757: User-approved narrow main-based hotfix disables B271 A/B/C before trace allocation and native observer registration in both Gameplay and UI. No automatic timing counters or NETWORK_VERIFIED observer remains; the right-click action reports that timing probes are disabled. The internal-carrier Pillage=0 SQL, all gameplay/save data, original counters, memory/GC diagnostics and collector protocol remain unchanged. Develop refactoring is excluded. Local validation only; main/live remain B271.298 until separate approval.",
+  "deployment_authorization": "User explicitly approved this PR7/B307 stable deployment then stop; completed. No authorization inferred for future replacement.",
+  "context_review_status": "S0759: User approved PR7 merge followed by stable deployment and stop. PR7 merged normally; B307.334 from main19d51bd is deployed with312/312 source/live MATCH. B271.298 recovery package verified; no pending transaction. B271 A/B/C are disabled for the next game load; D4 and original gameplay/diagnostics remain. Actual lag improvement is USER_GAME_TEST_REQUIRED. No game launch or further refactor work.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

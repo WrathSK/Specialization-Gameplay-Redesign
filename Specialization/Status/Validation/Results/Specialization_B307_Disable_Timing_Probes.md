@@ -32,3 +32,7 @@ After separately approved merge/deployment: load a copy of the same B271 campaig
 ## Final static result
 
 STATIC_CONFIRMED: {"Lua51": 189, "XML": 25, "context_content": "PASS", "literal_context_cli": "DEVELOP_ONLY_NOT_APPLICABLE_TO_HOTFIX_BRANCH", "modinfo": "334", "package_files": 312, "unchanged_other_runtime_files": 308}. All other308 runtime files, including D4 SQL and original GC/counter/collector modules, are byte-identical to main25327e7. Source/candidate is separate from liveB271.
+
+## S0759 — Approved main merge and stable deployment
+
+User approved PR7 merge followed by stable deployment and stop. PR7 merged normally; B307.334 from main19d51bd is deployed with312/312 source/live MATCH. B271.298 recovery package verified; no pending transaction. B271 A/B/C are disabled for the next game load; D4 and original gameplay/diagnostics remain. Actual lag improvement is USER_GAME_TEST_REQUIRED. No game launch or further refactor work. Receipt: `B307.334-19d51bd-stable-deploy.json`; source commit `19d51bd8cdb520af7d35f2eeade34fc86d8361f4`; package SHA256 `b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146`. Both worktrees retain the source-only forward-port; deploying develop was not authorized. Earlier candidate approval wording above is superseded by this explicit user authorization and completed transaction. Stop after recording; no native performance PASS.

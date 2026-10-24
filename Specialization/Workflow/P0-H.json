@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0057",
     "research": "D0040",
@@ -11,14 +11,14 @@
     "shared": "D0045",
     "presentation": "D0032",
     "architecture": "A0181",
-    "status": "S0757",
+    "status": "S0759",
     "runtime": "B307.334 / modinfo334",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
-  "goal": "Disable only B271 A/B/C timing probes in a main-based candidate; preserve D4 and all gameplay. No main promotion/deployment yet.",
+  "goal": "B307 narrow probe withdrawal approved, merged and deployed; stop at user request.",
   "implementation_authorized": true,
   "context": [
     {
@@ -41,7 +41,7 @@
   "validation": {
     "depth": "Default-off Lua5.1 tests plus retained B271, B269 memory/B270 scope and unchanged SQL on readonly engine DB memory copy.",
     "local": "43 selected PASS; one unchanged historical SQL precondition FAIL explicitly excluded and covered by independent current DB test.",
-    "user": "USER_GAME_TEST_REQUIRED: same-campaign bounded performance comparison after approved activation."
+    "user": "USER_GAME_TEST_REQUIRED: same-campaign bounded responsiveness comparison after loading B307; no game launched."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
@@ -51,6 +51,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "UNCHANGED_B271_STABLE"
+    "deployment": "B307.334 STABLE_DEPLOYED;312/312 MATCH; B307.334-19d51bd-stable-deploy.json"
   }
 }
