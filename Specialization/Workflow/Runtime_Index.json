@@ -181,9 +181,9 @@
       "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/CultureAesthetic.lua": {
-      "sha256": "27ca38cb6d64f4a7d3e8241eb97e4e753bd14d15b1201b562805be6990958f80",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "6829cea9df3f1d295c6746f3d199eb7d71a6d74e30862c88d50edb85d845ce8c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B293_Refactor_S5d4c4.md",
+      "provenance": "B293.320 Aesthetic health and confirmed-work delivery recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureAestheticModel.lua": {
       "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "b9fe44cfe0f84e6a414e99cbf46c8b842a57c47da9831c88c4f4741d22ba1bb3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B292_Refactor_S5d4c3.md",
-      "provenance": "B292.319 trusted Industry D scope and exact carrier health; local/static evidence only; no deployment/native PASS."
+      "sha256": "b91863d5dc5734e5dd515e23cea688dd15e675a727ce6aac6070d72b37e7191c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B293_Refactor_S5d4c4.md",
+      "provenance": "B293.320 Aesthetic health and confirmed-work delivery recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8c5a74e54837e30ab57ac8bd1a3d057e39ba337108d1ec77e3aa99b5f295cd2d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B292_Refactor_S5d4c3.md",
-      "provenance": "B292.319 trusted Industry D scope and exact carrier health; local/static evidence only; no deployment/native PASS."
+      "sha256": "8ec3bd387e176b09bcd620f4ee3475bf2518f1377e4ca66369874d3b4e487461",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B293_Refactor_S5d4c4.md",
+      "provenance": "B293.320 Aesthetic health and confirmed-work delivery recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

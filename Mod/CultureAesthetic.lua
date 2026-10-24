@@ -18,6 +18,7 @@ function M.Start(P,shared)
   d.ready=true;d.readyReason=reason;return true
  end
  local carrier
+ local health=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return carrier~=nil and id==carrier end,function(scope)d.MarkAudit(scope)end)
  local function validate()
   if carrier then return end
   local r=assert(P.Info('Buildings',M.Carrier),'AE_DEFINITIONS_MISSING')
@@ -62,7 +63,7 @@ function M.Start(P,shared)
  end
  local function removeCarrier(c)
   local yes=installed(c)
-  if yes then P.RemoveBuilding(c:GetBuildings(),carrier);assert(P.HasBuilding(c:GetBuildings(),carrier)==false,'AE_REMOVE_UNCONFIRMED');d.changes=d.changes+1 end
+  if yes then health.Remove(c,carrier);assert(P.HasBuilding(c:GetBuildings(),carrier)==false,'AE_REMOVE_UNCONFIRMED');d.changes=d.changes+1 end
  end
  local function withdraw(c)
   validate();removeCarrier(c)
@@ -134,7 +135,7 @@ function M.Start(P,shared)
   end
   assert(c:GetOwner()==pid and SPCNetworkInput.Reference(c)==nativeRef,'AE_REFERENCE_CHANGED')
   if wanted then
-   P.CreateBuilding(c:GetBuildQueue(),carrier)
+   health.Create(c,carrier)
    local b=c:GetBuildings();assert(P.HasBuilding(b,carrier)==true and b:IsPillaged(carrier)==false,'AE_CREATE_UNCONFIRMED');d.changes=d.changes+1
   end
   d.records[key]=p.status=='READY' and {reference=nativeRef,token=f.token,amounts=p.amounts,total=p.total,owner=pid,x=c:GetX(),y=c:GetY()} or nil
@@ -203,46 +204,36 @@ function M.Start(P,shared)
  end
  local function bind(source,name,fn)local e=P.Field(source,name);if e and e.Add then e.Add(fn)end end
  bind(Events,'LoadScreenClose',function()carrier=nil;d.records={};d.errors={};d.error=nil;d.ready=true;d.readyReason='LOAD_SCREEN_CLOSE';d.Audit()end)
- bind(Events,'CityBuildingsChanged',function(pid,cid)d.Audit({player=pid,city=cid})end)
- for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'})do
-  bind(Events,name,function(x,y,id,owner)
-   local row=P.Info('Buildings',id)
-   if row and (row.BuildingType==M.Carrier or shared.CultureInspiration and shared.CultureInspiration.IsOwnedCarrier(row.BuildingType) or shared.CultureMeaning and shared.CultureMeaning.IsOwnedCarrier(row.BuildingType) or shared.CultureMeaningProbe and shared.CultureMeaningProbe.IsOwnedCarrier(row.BuildingType))then return end
-   -- L2A's exact ten transient test carriers cannot change ordinary buildings/X.
-   local ok,c=pcall(function()
-    local district=CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)
-    return district and district:GetCity() or CityManager.GetCityAt(x,y)
-   end)
-   if ok and c and c:GetOwner()==owner then d.Audit({player=owner,city=c:GetID()})else d.Audit()end
-  end)
- end
- for _,name in ipairs({'BuildingPillaged','BuildingRepaired','DistrictRemovedFromMap','DistrictBuildProgressChanged',
-  'DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap'})do
-  bind(Events,name,function()d.Audit()end)
- end
+ -- Ordinary structural input is scoped DC D. Current carrier health has its
+ -- exact live owner above; no dead city/building signal or prefix suppression.
+ SPCRuntimeWork.TargetHook(P,Events,'CityTransfered',d.MarkAudit)
+ SPCRuntimeWork.TargetHook(P,Events,'CityRemovedFromMap',function(scope)d.MarkAudit({player=scope and scope.player})end)
  local lastTurn
  bind(Events,'PlayerTurnActivated',function(pid)
   if P.IsTestPlayer(pid) and lastTurn~=Game.GetCurrentGameTurn()then
    lastTurn=Game.GetCurrentGameTurn();ready('LOCAL_TURN');d.Audit({player=pid})
   end
  end)
- for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage','CityBuilt'})do bind(GameEvents,name,function()d.Audit()end)end
  -- Each ability owns its response; delivery failures cannot suppress siblings.
  shared.GreatWorkFacts.RegisterConsumer('CultureAesthetic',function(pid,changed)
   if not P.IsTestPlayer(pid)then return end
-  -- A confirmed current-city sample is a ready boundary even if the UI load
-  -- notification was missed. UNKNOWN/foreign input cannot open this path.
+  local initial=false
   if not d.ready then
    for _,cid in ipairs(changed)do
     local c=Players[pid]:GetCities():FindID(cid);local w=shared.GreatWorkFacts.Summary(pid,cid)
     if c and c:GetOwner()==pid and w and w.hasConfirmed and w.availability=='KNOWN'
-     and w.reference==SPCNetworkInput.Reference(c)then
-     ready('CONFIRMED_WORKS');d.Audit({player=pid});return -- initial local-player reconciliation once
-    end
+     and w.reference==SPCNetworkInput.Reference(c)then ready('CONFIRMED_WORKS');initial=true;break end
    end
-   return
   end
-  for _,cid in ipairs(changed)do d.Audit({player=pid,city=cid})end
+  local failure
+  if initial then
+   if not d.Audit({player=pid})then failure=true end
+  else
+   for _,cid in ipairs(changed)do if not d.Audit({player=pid,city=cid})then failure=true end end
+  end
+  for _,cid in ipairs(changed)do if d.errors[pid..':'..cid]then failure=true end end
+  -- Equal fresh samples may recover a failed/queued delivery. Idle cannot.
+  assert(not failure and d.ready and not d.error and not d.auditError,'AE_COLLECTION_DELIVERY_PENDING')
  end)
  local store=shared.CityProgressionStore
  if store then
