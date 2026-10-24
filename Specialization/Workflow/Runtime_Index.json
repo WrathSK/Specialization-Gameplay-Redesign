@@ -196,9 +196,9 @@
       "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureInspiration.lua": {
-      "sha256": "8a6259afa79458da6e7ceef84eb6b3e082f37d907681fa54cf23a4ba7e761862",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "17b3f8cb62c919c88982db2e5b11ece667101ee09ce49a99fc7b2447ddfa4074",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B294_Refactor_S5d4c5.md",
+      "provenance": "B294.321 Meaning Inspiration initialization and exact health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureInspirationModel.lua": {
       "sha256": "514fa59c5e95d9cd970b002892496f06f838b06706ee4b8ebf9d4e0018f59180",
@@ -211,9 +211,9 @@
       "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
     },
     "Mod/CultureMeaning.lua": {
-      "sha256": "8bd56205feb636bc0379ef2b36ead9ca254b9cedf828da5ffbcc1653bdd37fbc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "3265348c1b4de382fa358d17a00bd02e1615f9daa5a17583636e9e25778e7c9a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B294_Refactor_S5d4c5.md",
+      "provenance": "B294.321 Meaning Inspiration initialization and exact health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureMeaningModel.lua": {
       "sha256": "2b4d396b91b4dc5623ae1dc0d74170995d6d34356fe101ade037784cfd686a1d",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "b91863d5dc5734e5dd515e23cea688dd15e675a727ce6aac6070d72b37e7191c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B293_Refactor_S5d4c4.md",
-      "provenance": "B293.320 Aesthetic health and confirmed-work delivery recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "cd158cdf266d94953eb822a406b607719773e186fe47dddd90f08d58e954cd4b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B294_Refactor_S5d4c5.md",
+      "provenance": "B294.321 Meaning Inspiration initialization and exact health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8ec3bd387e176b09bcd620f4ee3475bf2518f1377e4ca66369874d3b4e487461",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B293_Refactor_S5d4c4.md",
-      "provenance": "B293.320 Aesthetic health and confirmed-work delivery recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "5de737c5b47be76c5fbd9d11dd9dd2a41bca5cc3900924545a4a2c375f6871e4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B294_Refactor_S5d4c5.md",
+      "provenance": "B294.321 Meaning Inspiration initialization and exact health; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

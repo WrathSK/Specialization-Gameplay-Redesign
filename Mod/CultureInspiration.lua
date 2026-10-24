@@ -1,3 +1,4 @@
+include('RuntimeWork')
 include('CultureInspirationModel')
 include('CurrentSpecializationFacts')
 include('NetworkInput')
@@ -7,13 +8,15 @@ function SPCCultureInspiration.Start(P,shared)
  assert(shared.CultureInspirationProbe and shared.CultureInspirationProbe.retired,'INSP_PROBE_NOT_RETIRED')
  local M=SPCCultureInspirationModel
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.CultureInspiration=d
+ local ownedIndex={}
+ local health=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.MarkAudit(scope)end)
  local ids;local pendingCleanup={};local owned={}
  for _,name in ipairs(M.Owned)do owned[name]=true end
  function d.IsOwnedCarrier(name)return owned[name]==true end
  local function key(pid,cid)return tostring(pid)..':'..tostring(cid)end
  local function validate()
   if ids then return end
-  local nextIDs={};local args,attachments={},{}
+  local nextIDs,nextOwned={},{};local args,attachments={},{}
   for _,a in ipairs(assert(P.Rows('ModifierArguments'),'INSP_DB_UNKNOWN'))do
    if a.ModifierId:find('^SPC_INSPIRATION_ERA_')then args[a.ModifierId]=args[a.ModifierId] or {};args[a.ModifierId][a.Name]=a.Value end
   end
@@ -28,9 +31,9 @@ function SPCCultureInspiration.Start(P,shared)
    assert((b.InternalOnly==1 or b.InternalOnly==true) and b.PrereqDistrict=='DISTRICT_CITY_CENTER' and b.CitizenSlots==0 and b.Housing==0,'INSP_CARRIER_INVALID')
    assert(m.ModifierType=='MODIFIER_CITY_INCREASE_GREAT_PERSON_POINT_BONUS' and not m.OwnerRequirementSetId and not m.SubjectRequirementSetId,'INSP_MODIFIER_INVALID')
    assert(a and tonumber(a.Amount)==e*M.PercentPerEra and a.GreatPersonClassType==nil,'INSP_AMOUNT_INVALID')
-   assert(links and #links==1 and links[1]==mid,'INSP_ATTACHMENT_INVALID');nextIDs[name]=b.Index
+   assert(links and #links==1 and links[1]==mid,'INSP_ATTACHMENT_INVALID');nextIDs[name]=b.Index;nextOwned[b.Index]=true
   end
-  ids=nextIDs
+  ids=nextIDs;ownedIndex=nextOwned
  end
  local function present(c,name)
   local v=P.HasBuilding(c:GetBuildings(),ids[name]);assert(type(v)=='boolean','INSP_PRESENCE_UNKNOWN');return v
@@ -48,14 +51,14 @@ function SPCCultureInspiration.Start(P,shared)
      local has=present(c,name);local damaged=false
      if has and name==want then damaged=c:GetBuildings():IsPillaged(ids[name]);assert(type(damaged)=='boolean','INSP_HEALTH_UNKNOWN')end
      if has and (name~=want or damaged)then
-      P.RemoveBuilding(c:GetBuildings(),ids[name]);assert(not present(c,name),'INSP_REMOVE_UNCONFIRMED');d.changes=d.changes+1
+      health.Remove(c,ids[name]);assert(not present(c,name),'INSP_REMOVE_UNCONFIRMED');d.changes=d.changes+1
      end
     end)
     if not good then failure=failure or err end
    end
    assert(not failure,failure);current()
    if want and not present(c,want)then
-    P.CreateBuilding(c:GetBuildQueue(),ids[want]);current()
+    health.Create(c,ids[want]);current()
     assert(present(c,want),'INSP_CREATE_UNCONFIRMED');d.changes=d.changes+1
    end
    current()
@@ -70,8 +73,8 @@ function SPCCultureInspiration.Start(P,shared)
  end
  local function ready()
   if d.ready then return true end
-  if d.startupFailed then return false end
-  d.busy=true
+  if d.initializing or d.startupFailed then return false end
+  d.initializing=true
   local ok,result=pcall(function()
    validate();local all={};local supported=false
    for _,player in pairs(Players)do local cities=player:GetCities();if cities then for _,c in cities:Members()do
@@ -85,7 +88,7 @@ function SPCCultureInspiration.Start(P,shared)
    end
    d.ready=true;return true
   end)
-  d.busy=false
+  d.initializing=false
   if not ok then d.startupFailed=true;d.startupError=tostring(result):sub(1,180)end
   return ok and result
  end
@@ -117,23 +120,7 @@ function SPCCultureInspiration.Start(P,shared)
   p.owner=pid;p.cityID=c:GetID();p.reference=reference;p.x=c:GetX();p.y=c:GetY()
   d.records[k]=p;d.errors[k]=nil
  end
- function d.Audit(scope)
-  if scope and scope.player~=nil and not P.IsTestPlayer(scope.player)then return false end
-  if d.busy then
-   local nextScope={player=scope and scope.player,city=scope and scope.city}
-   if d.pending then
-    if d.pending.player~=nextScope.player then nextScope.player=nil;nextScope.city=nil
-    elseif d.pending.city~=nextScope.city then nextScope.city=nil end
-   end
-   d.pending=nextScope;return false
-  end
-  if not ready()then return false end
-  if d.pending and not d.draining then
-   if not scope or d.pending.player~=scope.player then scope=nil
-   elseif d.pending.city~=scope.city then scope={player=scope.player}end
-   d.pending=nil
-  end
-  d.busy=true
+ local function audit(scope)
   local ok,why=pcall(function()
    for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or scope.player==nil or scope.player==pid)then
     local cities=player:GetCities();local seen={}
@@ -151,11 +138,19 @@ function SPCCultureInspiration.Start(P,shared)
     end
    end end
   end)
-  d.busy=false;d.error=not ok and tostring(why):sub(1,180) or nil
-  if d.pending and not d.draining then
-   local pending=d.pending;d.pending=nil;d.draining=true;d.Audit(pending);d.draining=false
-  end
+  d.error=not ok and tostring(why):sub(1,180) or nil
   return ok
+ end
+ local direct,mark,flush=SPCRuntimeWork.NewAudit(P,shared,d,'CultureInspiration',audit)
+ d.MarkAudit=mark;d.FlushAudit=flush
+ function d.Audit(scope)
+  if d.initializing then mark(scope);return false end
+  if scope and scope.player~=nil and not P.IsTestPlayer(scope.player)then return false end
+  if not d.ready then
+   local ok,why=pcall(ready)
+   if not ok or not why then d.error=not ok and tostring(why):sub(1,180) or d.startupError or 'INSP_NOT_READY';return false end
+  end
+  return direct(scope)
  end
  function d.CollectionConfirmed(pid)
   if P.IsTestPlayer(pid) and not d.ready then return d.Audit({player=pid})end
@@ -178,23 +173,23 @@ function SPCCultureInspiration.Start(P,shared)
   d.ready=false;d.startupFailed=nil;d.startupError=nil;d.records={};d.errors={};d.pending=nil;pendingCleanup={};ids=nil;d.Audit()
  end)
  -- NativeFacts owns governor qualification causes; declared ACTIVE delivery is deferred.
- bind('CityBuildingsChanged',function(pid,cid)
-  if d.writing~=key(pid,cid)then d.Audit({player=pid,city=cid})end
- end) -- id-only native event: also repairs a removed/pillaged owned carrier.
- for _,name in ipairs({'DistrictPillaged','DistrictRepaired','DistrictRemovedFromMap','CityTransfered','CityRemovedFromMap'})do
-  bind(name,function()d.Audit()end) -- unknown signatures retain supported-player reconciliation.
+ SPCRuntimeWork.TargetHook(P,Events,'CityTransfered',d.MarkAudit)
+ SPCRuntimeWork.TargetHook(P,Events,'CityRemovedFromMap',function(scope)d.MarkAudit({player=scope and scope.player})end)
+ if not shared.DistrictCompleteness then
+  for _,name in ipairs({'DistrictPillaged','DistrictRepaired','DistrictRemovedFromMap','DistrictBuildProgressChanged'})do SPCRuntimeWork.TargetHook(P,Events,name,d.Audit)end
  end
- bind('DistrictBuildProgressChanged',function(pid,_,cid)
-  if type(pid)=='number' and type(cid)=='number'then d.Audit({player=pid,city=cid})end
- end)
  local lastTurn
  bind('PlayerTurnActivated',function(pid)
   if P.IsTestPlayer(pid)then local turn=Game.GetCurrentGameTurn();if lastTurn~=turn then lastTurn=turn;d.Audit({player=pid})end end
  end)
  shared.GreatWorkFacts.RegisterConsumer('CultureInspiration',function(pid,changed)
-  if P.IsTestPlayer(pid)then
-   if not d.ready then d.Audit({player=pid})else for _,cid in ipairs(changed)do d.Audit({player=pid,city=cid})end end
-  end
+  if not P.IsTestPlayer(pid)then return end
+  local failure
+  if not d.ready then
+   if not d.Audit({player=pid})then failure=true end
+  else for _,cid in ipairs(changed)do if not d.Audit({player=pid,city=cid})then failure=true end end end
+  for _,cid in ipairs(changed)do if d.errors[key(pid,cid)]then failure=true end end
+  assert(not failure and d.ready and not d.error and not d.auditError,'INSP_COLLECTION_DELIVERY_PENDING')
  end)
  local store=shared.CityProgressionStore
  if store then

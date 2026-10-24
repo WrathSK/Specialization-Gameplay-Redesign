@@ -1,3 +1,4 @@
+include('RuntimeWork')
 include('CultureMeaningModel')
 include('GreatWorkCatalog')
 include('CurrentSpecializationFacts')
@@ -8,18 +9,20 @@ function SPCCultureMeaning.Start(P,shared)
  assert(not shared.CultureMeaningProbe,'ME_PROBE_CONFLICT')
  local M=SPCCultureMeaningModel
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.CultureMeaning=d
+ local ownedIndex={}
+ local health=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.MarkAudit(scope)end)
  local ids,coverage;local cleanupPending={};local owned={};for _,name in ipairs(M.Owned)do owned[name]=true end
  function d.IsOwnedCarrier(name)return owned[name]==true end
  local function key(pid,cid)return tostring(pid)..':'..tostring(cid) end
  local function validate()
   if ids then return end
-  local nextIDs={}
+  local nextIDs,nextOwned={},{}
   for _,name in ipairs(M.Owned)do
    local row=assert(P.Info('Buildings',name),'ME_DEFINITIONS_MISSING')
    assert((row.InternalOnly==1 or row.InternalOnly==true) and row.PrereqDistrict==(M.CarrierDistrict[name] or 'DISTRICT_CITY_CENTER') and row.CitizenSlots==0 and row.Housing==0,'ME_CARRIER_INVALID')
-   nextIDs[name]=row.Index
+   nextIDs[name]=row.Index;nextOwned[row.Index]=true
   end
-  ids=nextIDs
+  ids=nextIDs;ownedIndex=nextOwned
  end
  local function installed(c,name)
   local has=P.HasBuilding(c:GetBuildings(),ids[name]);assert(type(has)=='boolean','ME_CARRIER_UNKNOWN');return has
@@ -36,7 +39,7 @@ function SPCCultureMeaning.Start(P,shared)
       damaged=c:GetBuildings():IsPillaged(ids[name]);assert(type(damaged)=='boolean','ME_CARRIER_HEALTH_UNKNOWN')
      end
      if has and (not want[name] or damaged)then
-      P.RemoveBuilding(c:GetBuildings(),ids[name]);assert(not installed(c,name),'ME_REMOVE_UNCONFIRMED');d.changes=d.changes+1
+      health.Remove(c,ids[name]);assert(not installed(c,name),'ME_REMOVE_UNCONFIRMED');d.changes=d.changes+1
      end
     end)
     if not good then failure=failure or err end
@@ -49,7 +52,7 @@ function SPCCultureMeaning.Start(P,shared)
    for _,name in ipairs(M.Owned)do if want[name]then
     currentOwner()
     if not installed(c,name)then
-     P.CreateBuilding(c:GetBuildQueue(),ids[name]);currentOwner();assert(installed(c,name),'ME_CREATE_UNCONFIRMED');d.changes=d.changes+1
+     health.Create(c,ids[name]);currentOwner();assert(installed(c,name),'ME_CREATE_UNCONFIRMED');d.changes=d.changes+1
     end
    end end
    currentOwner()
@@ -62,8 +65,8 @@ function SPCCultureMeaning.Start(P,shared)
  end
  local function ready()
   if d.ready then return true end
-  if d.busy or d.startupFailed then return false end
-  d.busy=true
+  if d.initializing or d.startupFailed then return false end
+  d.initializing=true
   local ok,result=pcall(function()
    validate();local cities={};local supported=false
    for _,player in pairs(Players)do local collection=player:GetCities();if collection then
@@ -81,7 +84,7 @@ function SPCCultureMeaning.Start(P,shared)
    coverage=M.RecipientCoverage(P);d.recipientStatus=coverage.status;d.recipientCount=coverage.verified
    d.ready=true;return true
   end)
-  d.busy=false
+  d.initializing=false
   if not ok then d.startupFailed=true;d.startupError=tostring(result):sub(1,180)end
   return ok and result
  end
@@ -126,24 +129,7 @@ function SPCCultureMeaning.Start(P,shared)
   p.reference=reference;p.owner=pid;p.cityID=c:GetID();p.x=c:GetX();p.y=c:GetY()
   d.records[k]=p;d.errors[k]=nil
  end
- function d.Audit(scope)
-  if scope and scope.player~=nil and not P.IsTestPlayer(scope.player)then return end
-  if d.busy then
-   -- Merge only reentrant recalculation, never ordered ownership transitions.
-   local nextScope={player=scope and scope.player,city=scope and scope.city}
-   if d.pending then
-    if d.pending.player~=nextScope.player then nextScope.player=nil;nextScope.city=nil
-    elseif d.pending.city~=nextScope.city then nextScope.city=nil end
-   end
-   d.pending=nextScope;return false,'BUSY'
-  end
-  if not ready()then return false,'NOT_READY'end
-  if d.pending and not d.draining then
-   if not scope or d.pending.player~=scope.player then scope=nil
-   elseif d.pending.city~=scope.city then scope={player=scope.player}end
-   d.pending=nil
-  end
-  d.busy=true
+ local function audit(scope)
   local ok,why=pcall(function()
    for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or scope.player==nil or scope.player==pid)then
     local collection=player:GetCities();local present={}
@@ -163,13 +149,19 @@ function SPCCultureMeaning.Start(P,shared)
     end
    end end
   end)
-  d.busy=false;d.error=not ok and tostring(why):sub(1,180) or nil
-  if d.pending and not d.draining then
-   local pending=d.pending;d.pending=nil;d.draining=true
-   local drained,err=pcall(d.Audit,pending);d.draining=false
-   if not drained then d.error=tostring(err):sub(1,180);return false end
-  end -- One immediate catch-up; further invalidation waits for the next real boundary.
+  d.error=not ok and tostring(why):sub(1,180) or nil
   return ok
+ end
+ local direct,mark,flush=SPCRuntimeWork.NewAudit(P,shared,d,'CultureMeaning',audit)
+ d.MarkAudit=mark;d.FlushAudit=flush
+ function d.Audit(scope)
+  if d.initializing then mark(scope);return false end
+  if scope and scope.player~=nil and not P.IsTestPlayer(scope.player)then return false end
+  if not d.ready then
+   local ok,why=pcall(ready)
+   if not ok or not why then d.error=not ok and tostring(why):sub(1,180) or d.startupError or 'ME_NOT_READY';return false end
+  end
+  return direct(scope)
  end
  function d.CollectionConfirmed(pid)
   if not P.IsTestPlayer(pid)then return false end
@@ -196,28 +188,8 @@ function SPCCultureMeaning.Start(P,shared)
  bind(Events,'LoadScreenClose',function()
   d.pending=nil;d.ready=false;d.startupFailed=nil;d.startupError=nil;d.records={};d.errors={};cleanupPending={};ids=nil;coverage=nil;d.Audit()
  end)
- bind(Events,'CityBuildingsChanged',function(pid,cid)
-  if d.writing==key(pid,cid)then return end
-  d.Audit({player=pid,city=cid})
- end)
- for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'})do bind(Events,name,function(x,y,id,owner)
-  local row=P.Info('Buildings',id);local typ=row and row.BuildingType
-  if typ and (owned[typ] or shared.GreatWorkAdjacency.IsOwnedCarrier(typ) or shared.Dialogue.IsOwnedCarrier(typ)
-   or shared.CultureInspiration and shared.CultureInspiration.IsOwnedCarrier(typ)
-   or SPCCultureAesthetic and typ==SPCCultureAesthetic.Carrier)then return end
-  if type(owner)=='number' and not P.IsTestPlayer(owner)then return end
-  local ok,c=pcall(function()local district=CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y);return district and district:GetCity() or CityManager.GetCityAt(x,y)end)
-  if ok and c and (owner==nil or c:GetOwner()==owner)then d.Audit({player=c:GetOwner(),city=c:GetID()})
-  else d.Audit({player=owner})end
- end)end
- -- NativeFacts owns governor qualification causes; declared ACTIVE delivery is deferred.
- for _,name in ipairs({'DistrictRemovedFromMap','DistrictBuildProgressChanged'})do bind(Events,name,function(pid,districtID,cid)
-  d.Audit({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})
- end)end
- for _,name in ipairs({'BuildingPillaged','BuildingRepaired','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap'})do
-  bind(Events,name,function()d.Audit()end) -- native signatures unresolved: supported player only
- end
- for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','OnPillage','CityBuilt'})do bind(GameEvents,name,function()d.Audit()end)end
+ SPCRuntimeWork.TargetHook(P,Events,'CityTransfered',d.MarkAudit)
+ SPCRuntimeWork.TargetHook(P,Events,'CityRemovedFromMap',function(scope)d.MarkAudit({player=scope and scope.player})end)
  local lastTurn
  bind(Events,'PlayerTurnActivated',function(pid)
   if not P.IsTestPlayer(pid)then return end
@@ -225,8 +197,12 @@ function SPCCultureMeaning.Start(P,shared)
  end)
  shared.GreatWorkFacts.RegisterConsumer('CultureMeaning',function(pid,changed)
   if not P.IsTestPlayer(pid)then return end
-  if not d.ready then d.Audit({player=pid});return end
-  for _,cid in ipairs(changed)do d.Audit({player=pid,city=cid})end
+  local failure
+  if not d.ready then
+   if not d.Audit({player=pid})then failure=true end
+  else for _,cid in ipairs(changed)do if not d.Audit({player=pid,city=cid})then failure=true end end end
+  for _,cid in ipairs(changed)do if d.errors[key(pid,cid)]then failure=true end end
+  assert(not failure and d.ready and not d.error and not d.auditError,'ME_COLLECTION_DELIVERY_PENDING')
  end)
  local store=shared.CityProgressionStore
  if store then
