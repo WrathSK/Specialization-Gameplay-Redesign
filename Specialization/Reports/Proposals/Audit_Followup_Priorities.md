@@ -65,6 +65,8 @@ B273 S3 complete: [actual scope, results and execution closure](../../Status/Val
 
 #### S4 — Native defects and the accepted hold direction; stop U2
 
+B274 S4a local recovery subset complete: [actual result/closure](../../Status/Validation/Results/Specialization_B274_Refactor_S4a.md). Industry budget/reentry, GreatWork signature, GC UI deferral and compact Housing pass; network hold/provenance/cold-load and Development startup containment remain S4b. Revised U1 D13 makes U2 an internal checkpoint, no automatic native stop/deployment.
+
 | Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
 |---|---|---|
 | Great Work city containment / F03,C011 | OPEN: `UI/DialogueRefresh.lua:54–81` whole-loop pcall, nil ACTIVE concatenation72. | Per-city failure/token; preserve signature until S5 hook migration. |

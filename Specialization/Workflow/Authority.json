@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0722",
-    "runtime": "B273.300 / modinfo300",
+    "status": "S0723",
+    "runtime": "B274.301 / modinfo301",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,7 +35,7 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "cc71f9be40051c0be4c2657e271f6b56bf83e3f0",
-  "current_batch": "REFACTOR_S3_COMPLETE_S4_AUTHORIZED",
+  "current_batch": "REFACTOR_S4A_COMPLETE_S4B_AUTHORIZED",
   "next_batch": "Continue S3→S4→approved A8 correction→S5a/b/c/d→S6→S7/S8→S9/S10; internal checkpoints, no automatic deployment. Stop affected paths only for the accepted conditions; U5 native acceptance and main separate.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B271.298 stable from main cc71f9be40051c0be4c2657e271f6b56bf83e3f0;312/312 MATCH; SHA256 102b2b55a5f442a15d930aad7d17425fbbc84c9b8276bdc9a22539a0999a7993; B270 backup verified, no pending transaction; receipt B271.298-cc71f9b-stable-deploy.json.",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "No automatic deployment granted by U1 D13. Runtime replacement needs explicit approval and existing transaction/game-exit/hash/receipt safeguards. No main promotion before separately approved post-U5 action.",
-  "context_review_status": "S0722: S3 four former failure gates and23 new cases pass; program41PASS/9OPEN,40 inherited methods+positive fixture bodies PASS; unchanged assertions, explicit fixture setup corrections. D0058/A0182 unchanged; no deployment/native PASS.",
+  "context_review_status": "S0723 B274 S4a:3 former gates+13 new cases PASS; program57PASS/6OPEN;44 inherited methods and real positive bodies PASS. Event/proof-only recovery and frozen superseded polling expectations explicit. No deployment/native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md"
 }

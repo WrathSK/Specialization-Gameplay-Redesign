@@ -681,9 +681,9 @@
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "c34fdae591c5bde66699c2322b3dd3f390e7e15cef40fe20fa4c8cc41f1a5082",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "e491c00c87bc17cb6a854d233ee4791124a846717babca812ff9f533cb7abe91",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
+      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "eed229b2e765cdd7ffc43404413b9c347f642e1041ee2fb280a66e4abc16a7b9",
@@ -721,9 +721,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "4fc334ff38f257796d3a8cd91023e72f0983443a43657c79070fd66774ff779b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "351cbacd1d61a8bd6191609869ab6a3d3444ab80e7fd6d02221ea49d2f2d00c5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
+      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/Lv3Effects.lua": {
       "sha256": "14e77e6a4f3d98a9f431ea1768a535417a788421a31d67bc7e93f372aeb9ba0e",
@@ -781,14 +781,14 @@
       "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "b587734c6b6eb1cd1b480344948c460c268729ff30803490ef77f03dd0b24e3a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
-      "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
+      "sha256": "8e514fb8b493b1c9235d0bf1d6815e39c52077dde2dbfa752fa662ae4abdfbaf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
+      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/Probe.lua": {
-      "sha256": "8084bc8a62403986a5a25d2a436c251aecbb0923d83d099535d19e69cc80f2e2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "46bc21105bb97ecb434303471468ed37ab92a5769072e521f558d243acc39786",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
+      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -901,9 +901,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/SampleLifecycle.lua": {
-      "sha256": "2aef4ce1073e63d32371f2896fe51273b4b212884201fd571103bf1f44aad3a2",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "7bc6223f321bccf3cd2e419718a8cc3265833737233838f6eebf665a109caac2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
+      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/ShadowRouteState.lua": {
       "sha256": "6f35992fd9e5b8d2429061acbaf83e3f7747300592bf050dbb23e1e5fe9163e6",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "29aaacfdea45ffb899ccf1170f3833eeb7f280a09b511fb77444573b23a02f64",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "12cd2b1aea16cf9b7e6f84cd57a5e390e9c344083a6add8cf7ffdba5f508de82",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
+      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/Standardization.lua": {
       "sha256": "4b6d07a5e24aacdd2581685ff889c212e5188f06191057ad3cdb45094e42e546",
@@ -1286,9 +1286,9 @@
       "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/UI/DialogueRefresh.lua": {
-      "sha256": "dda6cec0878eb854133983afe7e35652a019a0adf280d0c65747b0f4ef19373a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B225_Task_Scheduling_Lifecycle.md",
-      "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
+      "sha256": "5bd140e7ae502e66ce652e48ed391a167f186f8951f0906d7a55a9ed1a950373",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
+      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/UI/DialogueRefresh.xml": {
       "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",
@@ -1396,9 +1396,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/IndustryRefresh.lua": {
-      "sha256": "fb9fa4ea155982ded71744938d583b6146a20315df60830653a96ec7a1b2fdc8",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "sha256": "dfa7a8f02da15fc6fdf1f476458602f78489550f3f9ae3976a93b803893c637e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
+      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
     },
     "Mod/UI/IndustryRefresh.xml": {
       "sha256": "9af08ee9bb27efd3a6dee21d6cda407965200834b4172d63d064a6b1b9396ebe",

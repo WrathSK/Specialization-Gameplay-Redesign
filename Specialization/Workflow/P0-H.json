@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0722",
-    "runtime": "B273.300 / modinfo300",
+    "status": "S0723",
+    "runtime": "B274.301 / modinfo301",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "S3 complete; continue user-authorized S4 then approved A8 and dependency-ordered S5–S10. No routine stage approvals/deployment.",
+  "goal": "S4a complete; continue authorized S4b network continuity/provenance then separate approved A8 and S5–S10. No routine native stop/deployment.",
   "implementation_authorized": true,
   "context": [
     {
@@ -54,6 +54,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
       "kind": "full",
       "reason": "Actual S3 closure and S4 handoff; local evidence only."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
+      "kind": "full",
+      "reason": "Current S4a results and remaining network S4b scope; source/local evidence only."
     }
   ],
   "dependencies": [
@@ -80,8 +85,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-    "local": "S3_TARGETS_PASS;41 properties PASS/9 later OPEN;40 inherited methods PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
+    "local": "S4a_TARGETS_PASS:57 properties PASS/6 later OPEN;44 inherited methods PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B271_STABLE"
   }

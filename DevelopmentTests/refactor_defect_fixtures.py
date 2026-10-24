@@ -57,7 +57,7 @@ end
     c.globals().include=include
     return c
 
-def greatworks():
+def greatworks(extra=""):
     c=Context('UI');c.execute(r"""
 P={VERSION='S2',Count=function(k)counts[k]=(counts[k]or 0)+1 end,
  IsTestPlayer=function(p)return p==0 end,Field=function(t,k)return t and t[k]end}
@@ -76,6 +76,7 @@ end
 PlayerOperations={EXECUTE_SCRIPT=1};UI={RequestPlayerOperation=function(pid,op,p)packet=p;return true end}
 """)
     c.globals().include=lambda name:None
+    if extra:c.execute(extra)
     c.load('UI/DialogueRefresh');c.execute('init()')
     return c
 

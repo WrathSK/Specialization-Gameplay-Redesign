@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0722
-Implementation Build: B273.300 / modinfo300; stable/live B271.298
+Status Revision: S0723
+Implementation Build: B274.301 / modinfo301; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S3_COMPLETE_S4_AUTHORIZED
+Work State: REFACTOR_S4A_COMPLETE_S4B_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S3 completed in B273.300: [composition isolation, committed observers, UI containment and readiness](Validation/Results/Specialization_B273_Refactor_S3.md). Four S2 S3 target properties and23 new S3 cases pass. Full program:41 passing properties/9 named later-stage open gates;40 selected inherited methods and positive-effect fixture bodies pass. Current fixture setup corrections preserve assertions and frozen sources. D0058/A0182 unchanged. S4 is authorized next; eight-era correction follows S4 separately before S5. Stable/live/main remain B271.298; no deployment/native PASS.
+S4a completed in B274.301: [local recovery and work-budget results](Validation/Results/Specialization_B274_Refactor_S4a.md). Industry no-progress publish attempts20→0; per-city work signatures, UI-pending GC deferral and compact Housing pass their original gates plus13 new cases. Full program57 passing properties/6 later OPEN;44 inherited methods and real positive matrices pass. S4b network hold/provenance/cold-load work remains next. D0058/A0182 unchanged; approved eight-era correction follows S4 separately. Stable/live/main remain B271.298; no deployment/native PASS.
 
-- User decision: none for normal S4 continuation. Stop only affected paths for accepted conditions.
-- User testing: U5 final integration; earlier only a concrete blocking native fact. No automatic deployment.
-- Primary next: S4→approved A8→S5a/b/c/d→S6→S7/S8→S9/S10. U2/U3/U4 are engineering checkpoints.
+- User decision: none for normal S4b continuation.
+- User testing: U5 final integration, earlier only a concrete blocking native fact. No automatic deployment.
+- Primary next: S4b→internal U2→approved A8→S5a/b/c/d→S6→S7/S8→S9/S10.
+
+## S0723 — B274.301 S4a diagnosed local recovery
+
+Industry separates dormant failures from true event/sample causes, retains reentrant proof/scope and never retries merely because a publish occurred. New validated availability recovery can restore an equal sample. Missing/nil/throwing specialization signatures stay local to their city and do not invalidate raw slot facts. GC waits for all approved scalar blockers then reevaluates once; Housing uses the same compact D facts. Silent getter recovery without an event remains an explicit propagation limitation. Source/local/static evidence only; network hold work still open.
 
 ## S0722 — B273.300 S3 composition and readiness
 

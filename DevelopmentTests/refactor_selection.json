@@ -18,6 +18,13 @@
       "test_refactor_defects",
       "test_refactor_attribution",
       "test_refactor_s3"
+    ],
+    "S4a": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a"
     ]
   },
   "counterexamples": {
@@ -32,18 +39,6 @@
     "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample": {
       "code": "S5_FACT_CAPTURE_NOT_SHARED",
       "owner_stage": "S5b"
-    },
-    "test_refactor_baseline.RealConsumers.test_T05_unchanged_pending_has_attempt_budget": {
-      "code": "S4_PENDING_RETRY_STORM",
-      "owner_stage": "S4"
-    },
-    "test_refactor_defects.Defects.test_greatwork_nil_active_does_not_invalidate_other_city_facts": {
-      "code": "S4_GW_NIL_ACTIVE_ABORT",
-      "owner_stage": "S4"
-    },
-    "test_refactor_defects.Defects.test_UI_pending_gc_recovers_in_eligible_window": {
-      "code": "S4_UI_PENDING_GC_STUCK",
-      "owner_stage": "S4"
     },
     "test_refactor_defects.Defects.test_commerce_carrier_present_across_network_pending": {
       "code": "S4_COMMERCE_PENDING_WITHDRAWAL",
@@ -66,13 +61,15 @@
       "test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample"
     ],
     "Mod/IndustrySupport.lua": [
-      "test_refactor_baseline.RealConsumers.test_T05_unchanged_pending_has_attempt_budget"
+      "test_refactor_baseline.RealConsumers.test_T05_unchanged_pending_has_attempt_budget",
+      "test_refactor_s4a"
     ],
     "Mod/RuntimeWork.lua": [
       "test_refactor_baseline.RealConsumers"
     ],
     "Mod/Lv2Housing.lua": [
-      "test_refactor_baseline.RealConsumers"
+      "test_refactor_baseline.RealConsumers",
+      "test_refactor_s4a"
     ],
     "Mod/Lv2GPP.lua": [
       "test_refactor_baseline.RealConsumers"
@@ -84,11 +81,13 @@
       "test_refactor_defects.Defects"
     ],
     "Mod/UI/DialogueRefresh.lua": [
-      "test_refactor_defects.Defects"
+      "test_refactor_defects.Defects",
+      "test_refactor_s4a"
     ],
     "Mod/PerformanceCounters.lua": [
       "test_refactor_defects",
-      "test_refactor_attribution"
+      "test_refactor_attribution",
+      "test_refactor_s4a"
     ],
     "Mod/Commerce.lua": [
       "test_refactor_defects.Defects"
@@ -119,6 +118,12 @@
     ],
     "Mod/UI/TimedProjectSelection.lua": [
       "test_refactor_s3"
+    ],
+    "Mod/SampleLifecycle.lua": [
+      "test_refactor_s4a"
+    ],
+    "Mod/UI/IndustryRefresh.lua": [
+      "test_refactor_s4a"
     ]
   },
   "exclusions": {

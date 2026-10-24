@@ -69,7 +69,12 @@ local function refresh()
    if not stored.known then legacyValid=false end
    for _,w in ipairs(stored.legacy) do rows[#rows+1]=id..','..w.id..','..w.type end
    for _,w in ipairs(stored.raw) do facts[#facts+1]=id..','..w.building..','..w.slot..','..w.id..','..w.type..';';factsCount=factsCount+1 end
-   local f=s.EffectiveFacts.Read(pid,c);signature[#signature+1]=id..':'..f.specialization..':'..f.active
+   -- This is an optional refresh signature, never the authority for slot facts.
+   -- A city-local identity/ACTIVE read failure must not discard other cities' works.
+   local known,f=pcall(function()return s.EffectiveFacts.Read(pid,c)end)
+   local kind=known and type(f)=='table' and f.specialization or 'UNKNOWN'
+   local active=known and type(f)=='table' and f.active
+   signature[#signature+1]=id..':'..tostring(kind)..':'..(type(active)=='number' and tostring(active) or 'UNKNOWN')
   end
   for id in pairs(cache) do if not seenCities[id] then cache[id]=nil end end
   assert(legacyValid,'GW_COLLECTION_UNAVAILABLE')

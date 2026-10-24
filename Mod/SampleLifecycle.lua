@@ -33,6 +33,7 @@ function L.Receive(P,data,k,pid,p,industry)
   or p.Generation~=data.generation or not integer(p.Seq) or p.Turn~=Game.GetCurrentGameTurn() then count(P,k,'stale');return false end
  local ack=data.responses[pid]
  if ack and ack.epoch==p.ClientEpoch and p.Seq<=ack.seq then count(P,k,'duplicate');return false end
+ local wasUnavailable=ack and ack.status=='UNAVAILABLE'
  local function respond(status) data.responses[pid]={epoch=p.ClientEpoch,seq=p.Seq,generation=p.Generation,status=status} end
  if p.Valid~=1 then respond('UNAVAILABLE');return false end
  local ok,value=pcall(function()
@@ -54,11 +55,11 @@ function L.Receive(P,data,k,pid,p,industry)
  if not ok then data.receiveErrors=data.receiveErrors or {};data.receiveErrors[pid]=tostring(value);respond('UNAVAILABLE');count(P,k,'stale');return false end
  data.receiveErrors=data.receiveErrors or {};data.receiveErrors[pid]=nil;data.seq[pid]=p.Seq
  local old=data.samples[pid]
- if old and old.signature==value.signature then old.turn=p.Turn;respond('UNCHANGED');count(P,k,'duplicate');return false end
- data.samples[pid]=value;respond('ACCEPTED');count(P,k,'apply');return true
+ if old and old.signature==value.signature then old.turn=p.Turn;respond('UNCHANGED');count(P,k,'duplicate');return false,wasUnavailable and 'CONFIRMED_RECOVERED' or 'CONFIRMED_UNCHANGED' end
+ data.samples[pid]=value;respond('ACCEPTED');count(P,k,'apply');return true,'CONFIRMED_CHANGED'
 end
 -- One player-wide batch in flight per producer; no cross-module lock or history.
-function L.Client(P,k,action,public)
+function L.Client(P,k,action,public,options)
  local c={clock=0};local pending,epoch,generation,last,key,tries,seq
  local function reset()
   local e='SPC_C2_'..k..'_epoch';ExposedMembers[e]=(ExposedMembers[e] or 0)+1;epoch=ExposedMembers[e]
@@ -74,7 +75,8 @@ function L.Client(P,k,action,public)
    local ack=data.responses[Game.GetLocalPlayer()]
    if ack and ack.epoch==epoch and ack.seq==pending.Seq and ack.generation==generation then
     public.state=ack.status;pending=nil;public.pending=0
-    if ack.status=='ACCEPTED' or ack.status=='UNCHANGED' then last=key end
+    if ack.status=='ACCEPTED' or ack.status=='UNCHANGED' then last=key
+    elseif ack.status=='UNAVAILABLE' and options and options.recoveryProof then last=nil end
    elseif c.clock-public.sentAt<5 and pending.Turn==Game.GetCurrentGameTurn() then
     count(P,k,'pending');return false
    else pending=nil;public.pending=0;ExposedMembers['SPC_C2_'..k..'_issued']=nil;count(P,k,'timeout') end

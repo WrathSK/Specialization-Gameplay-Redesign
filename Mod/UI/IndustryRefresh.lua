@@ -2,7 +2,7 @@ include('Probe')
 include('SampleLifecycle')
 local P=SPCP0;local busy=false;local hooks={};local dirty=true;local seenGeneration,seenTurn,seenWrites
 local public={state='LOADED',attempts=0,requests=0};ExposedMembers.SPC_IndustryBackground=public
-local client=SPCSampleLifecycle.Client(P,'industry','INDUSTRY_BASE',public)
+local client=SPCSampleLifecycle.Client(P,'industry','INDUSTRY_BASE',public,{recoveryProof=true})
 local function refresh()
  local shared=ExposedMembers.SPC_P0;local data=shared and shared.IndustrySupport
  if busy or not shared or shared.Version~=P.VERSION or not data or not data.ready then return end

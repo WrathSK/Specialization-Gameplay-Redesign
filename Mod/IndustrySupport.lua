@@ -7,7 +7,7 @@ include('SpecialistSupport')
 SPCIndustrySupport={}
 function SPCIndustrySupport.Start(P,shared)
  local batch
- local pending={} -- one current reference per affected city, cleared on success/loss/load
+ local pending,armed={},{} -- one current reference per affected city, cleared on success/loss/load
  local data={ready=false,busy=false,changes=0,errors={}};shared.IndustrySupport=data
  SPCSampleLifecycle.Reset(data,'industry')
  local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'INDUSTRY_SUPPORT')
@@ -48,32 +48,69 @@ function SPCIndustrySupport.Start(P,shared)
   if store and store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return false end
   data.ready=true;return true
  end
- function data.MarkCity(c)
+ local function queue(c,wake)
   if not c or not P.IsTestPlayer(c:GetOwner())then return end
-  pending[key(c:GetOwner(),c:GetID())]={player=c:GetOwner(),city=c:GetID(),reference=reference(c)}
+  local k=key(c:GetOwner(),c:GetID())
+  pending[k]={player=c:GetOwner(),city=c:GetID(),reference=reference(c)}
+  if wake then armed[k]=true end
+ end
+ function data.MarkCity(c)queue(c,true)end
+ -- Only real incoming causes are retained while a visit is busy. Never retain cities/native handles.
+ local deferred,deferredOrder,sampleWork={},{},{}
+ local function defer(scope)
+  local s=type(scope)=='table' and scope or {};local out={player=s.player,city=s.city,load=s.load==true or nil}
+  local tag=tostring(out.player)..':'..tostring(out.city)..':'..tostring(out.load)
+  if type(s.transfer)=='table'then
+   out.transfer={owner=s.transfer.owner,city=s.transfer.city,oldOwner=s.transfer.oldOwner}
+   tag='TRANSFER:'..tostring(out.transfer.owner)..':'..tostring(out.transfer.city)..':'..tostring(out.transfer.oldOwner)
+  elseif type(s.plot)=='table'then out.plot={s.plot[1],s.plot[2]};tag='PLOT:'..tostring(out.plot[1])..':'..tostring(out.plot[2])end
+  if not deferred[tag]then
+   if #deferredOrder>=2048 then data.errors.deferred='INDUSTRY_CAUSE_LIMIT';return end
+   deferredOrder[#deferredOrder+1]=tag
+  end
+  deferred[tag]=out
  end
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
+  local k=key(pid,c:GetID());armed[k]=nil -- consume only causes present before this visit
   local before=data.changes;local n=inspect(pid,c)
   SPCSpecialistSupport.Retire(P,c,shared);carriers(c,n,true)
   local k=pid..':'..c:GetID();local waiting=pending[k]
   local f=waiting and P.IsTestPlayer(pid) and batch.Facts(pid,c) or {specialization='EXIT'}
-  if n~=nil or f.specialization~='NONE' or not waiting or reference(c)~=waiting.reference then pending[k]=nil end
+  if n~=nil or f.specialization~='NONE' or not waiting or reference(c)~=waiting.reference then if not armed[k]then pending[k]=nil end end
   if trace and data.changes~=before then trace.Record('INDUSTRY_SUPPORT',{owner=pid,city=c:GetID(),expected=n or 0,wanted=n~=nil and 'FOOD_3_PLUS_BASE_PRODUCTION' or 'NONE',readStatus='VERIFIED'})end
- end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why;local p=Players[pid];local c=why and P.IsTestPlayer(pid) and p and p:GetCities():FindID(cid);if c then data.MarkCity(c)end end)
+ end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why;local p=Players[pid];local c=why and P.IsTestPlayer(pid) and p and p:GetCities():FindID(cid);if c then queue(c,false)end end)
  function data.Audit(scope)
   if P.Observe then P.Observe('audit','IndustrySupport') end
-  if not startReady() or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  if data.busy then defer(scope);P.Count('busy_skip');return end
+  if not startReady()then P.Count('busy_skip');return end
+  data.busy=true;batch=SPCRuntimeWork.New(P,shared)
   targets.Run(scope)
   data.busy=false;batch=nil
  end
- function data.FlushPending(pid)
+ function data.FlushPending(pid,confirmedSample)
   if data.busy or not startReady() then return end
-  local todo={};for k,v in pairs(pending)do if pid==nil or pid==v.player then todo[k]=v end end
+  if not confirmedSample and not next(armed)then return end
+  local todo={};for k in pairs(confirmedSample and pending or armed)do
+   local v=pending[k];if v and (pid==nil or pid==v.player)then todo[k]=v end
+  end
   for k,v in pairs(todo)do
    local player=Players[v.player];local c=player and player:GetCities():FindID(v.city)
-   if not c or c:GetOwner()~=v.player or reference(c)~=v.reference then pending[k]=nil
-   else data.Audit({player=v.player,city=v.city})end
+   if not c or c:GetOwner()~=v.player or reference(c)~=v.reference then pending[k]=nil;armed[k]=nil
+   else
+    armed[k]=nil -- consume the cause before Audit/native reentry; failure cannot re-arm it
+    data.Audit({player=v.player,city=v.city})
+   end
   end
+ end
+ local function drainCauses(pid)
+  if data.busy or not startReady()then return end
+  local samples={};for owner,cause in pairs(sampleWork)do if pid==nil or owner==pid then samples[owner]=cause;sampleWork[owner]=nil end end
+  -- Snapshot before visits so a newer reentrant cause survives for the next publication.
+  local work,order=deferred,deferredOrder;deferred={};deferredOrder={}
+  for owner,cause in pairs(samples)do
+   if cause=='CHANGED'then data.Audit({player=owner})else data.FlushPending(owner,true)end
+  end
+  for _,tag in ipairs(order)do data.Audit(work[tag])end
  end
  function data.BindPermanentWrites()
   SPCSafeCallbacks.Chain(shared,'IndustrySupport',function(c,reason)
@@ -82,9 +119,11 @@ function SPCIndustrySupport.Start(P,shared)
  end
  data.ReadBase=inspect
  function data.Receive(pid,params)
-  if SPCSampleLifecycle.Receive(P,data,'industry',pid,params,true) then
-   data.Audit({player=pid})
-  else data.FlushPending(pid) end
+  local changed,proof=SPCSampleLifecycle.Receive(P,data,'industry',pid,params,true)
+  if changed or proof=='CONFIRMED_RECOVERED'then
+   sampleWork[pid]=changed and 'CHANGED' or sampleWork[pid] or 'RECOVERED'
+   drainCauses(pid)
+  elseif proof=='CONFIRMED_UNCHANGED'then data.FlushPending(pid)end
  end
  function data.Describe(pid,city)
   local bg=ExposedMembers.SPC_IndustryBackground
@@ -100,8 +139,8 @@ function SPCIndustrySupport.Start(P,shared)
    ..'\nRead only; verify native specialist yields. Native district yields are additional; retired III Food/Gold upgrade cannot reactivate.'
  end
  local function hook(source,name,fn) local e=P.Field(source,name);if e and e.Add then e.Add(fn) end end
- hook(Events,'LoadScreenClose',function() pending={};data.ready=true;SPCSampleLifecycle.Reset(data,'industry');data.Audit({load=true}) end)
- hook(Events,'GameCoreEventPublishComplete',function()data.FlushPending()end)
+ hook(Events,'LoadScreenClose',function() pending={};armed={};deferred={};deferredOrder={};sampleWork={};data.ready=true;SPCSampleLifecycle.Reset(data,'industry');data.Audit({load=true}) end)
+ hook(Events,'GameCoreEventPublishComplete',function()drainCauses();data.FlushPending()end)
  hook(GameEvents,'OnDistrictConstructed',function(pid,index,x,y)
   local r=P.Info('Districts',index)
   if not r or P.Family(r.DistrictType)~='INDUSTRY' or not P.IsTestPlayer(pid)then return end
@@ -115,6 +154,7 @@ function SPCIndustrySupport.Start(P,shared)
    local ids={};for bit=-1,7 do ids[#ids+1]=name(bit)end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
    pending[key(loss.origin.owner,loss.origin.cityID)]=nil;pending[key(c:GetOwner(),c:GetID())]=nil
+   armed[key(loss.origin.owner,loss.origin.cityID)]=nil;armed[key(c:GetOwner(),c:GetID())]=nil
  end))end
 
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('IndustrySupport',function(pid)SPCSampleLifecycle.Reset(data,'industry');data.last={} end)end

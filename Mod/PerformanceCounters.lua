@@ -253,7 +253,7 @@ function M.StartMemory(P,shared)
  function d.ReadGC(pid)
   if not localHuman(pid)then return '仅本地人类玩家可诊断' end
   local lines={'GC试运行｜'..(a.failure and '已停用：'..a.failure or a.enabled and '自动开启' or '手动关闭'),
-   '增长128 MiB + 间隔2回合；发布边界评估，网络确认后最多补评估一次。',
+   '增长128 MiB + 间隔2回合；发布边界评估，网络及界面请求结束后最多补评估一次。',
    '最近状态 '..a.reason..'｜本次加载调用 '..a.collections..' 次｜Lua '..tostring(_VERSION)}
   lines[#lines+1]='起点 '..tostring(a.baselineSource or '尚未取得')..' / T'..tostring(a.baselineTurn or '?')
   for _,v in ipairs(a.rows)do
@@ -314,6 +314,10 @@ function M.StartMemory(P,shared)
    if waitingNetwork then
     local counters=ExposedMembers.SPC_Performance
     if counters and (counters.inflight or 0)>0 then return end -- scalar-only wait, no heap/log spam
+    -- The same deferred safety window may include several concurrent UI requests.
+    for _,key in ipairs({'SPC_CopyBackground','SPC_IndustryBackground','SPC_ResearchCrossBackground','SPC_DiscountEligibility'})do
+     local ui=ExposedMembers[key];if ui and ui.pending and ui.pending~=0 then return end
+    end
     waitingNetwork=false;retryUsed=true
    elseif assessedTurn==t then pendingTurn=nil;return end
    assessedTurn=t;pendingTurn=nil -- consume this attempt before idle/native reentry
@@ -321,7 +325,7 @@ function M.StartMemory(P,shared)
    if not ok or not localHuman(pid)then return end
    local safe,why=idle(pid)
    if not safe then
-    if why=='NETWORK_INFLIGHT' and not retryUsed then waitingNetwork=true;pendingTurn=t end
+    if (why=='NETWORK_INFLIGHT' or why:match('^UI_PENDING:')) and not retryUsed then waitingNetwork=true;pendingTurn=t end
     log('SKIP:'..why);return
    end
    if t-lastTurn<policy.minTurns then log('INTERVAL');return end
