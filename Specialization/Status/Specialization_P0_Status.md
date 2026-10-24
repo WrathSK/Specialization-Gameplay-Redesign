@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0735
-Implementation Build: B286.313 / modinfo313; stable/live B271.298
+Status Revision: S0736
+Implementation Build: B287.314 / modinfo314; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S5D3_COMPLETE_S5D4_AUTHORIZED
+Work State: REFACTOR_PAUSED_FOR_CLIENT_RESTART
 
 ## CURRENT AUTHORITATIVE STATE
 
-S5d3 complete:20 new independent Dialogue/real work transport/UI gate cases PASS plus affected eight-era regressions. Full260 cases have259 passing properties/1 S6 capacity counterexample OPEN. Effects owns governor/transfer/GW and exact live carrier recovery; retired Dialogue no longer forwards effects, while Q7 transport/pairing/history duties remain. GPP relay stays until other consumers have the next native owner; S5d is not yet complete. [Result](Validation/Results/Specialization_B286_Refactor_S5d3.md). Stable/live/main B271.298; no deployment/native PASS.
+S5d4a complete:13 new live D/scope and actual consumer cases PASS; full273 cases have272 passing properties/1 previously registered S6 capacity counterexample OPEN. DistrictCompleteness uses verified live structural events and exact city scope; reliable event owner wins on coordinate-transfer conflict. ResearchSupport/Housing receive D. Remaining native-owner/exact-health migration and GPP relay retirement are not complete. User requested a safe stop for client restart; current batch committed/pushed before pause, no next batch begun. [Result](Validation/Results/Specialization_B287_Refactor_S5d4a.md). Stable/live/main B271.298; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: S5d4 one native fact owner/live D and exact health coverage before retiring GPP UI relay→S6→S7/S8→S9/S10.
+- Primary next: Paused at user request for client restart. On user continuation resume already-authorized S5d4b native fact owner/exact health coverage and GPP relay retirement, then S6–S10; no new routine authorization required.
+
+## S0736 — B287.314 live D structural signals and safe restart checkpoint
+
+S5d4a complete:13 new live D/scope and actual consumer cases PASS; full273 cases have272 passing properties/1 previously registered S6 capacity counterexample OPEN. DistrictCompleteness uses verified live structural events and exact city scope; reliable event owner wins on coordinate-transfer conflict. ResearchSupport/Housing receive D. Remaining native-owner/exact-health migration and GPP relay retirement are not complete. User requested a safe stop for client restart; current batch committed/pushed before pause, no next batch begun.
 
 ## S0735 — B286.313 independent Dialogue recovery and bounded UI marks
 

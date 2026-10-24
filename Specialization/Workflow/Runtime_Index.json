@@ -546,9 +546,9 @@
       "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "84b70a498f09fb7f4a0ac70cd81468ac712264b1227bef5b7609da2292eeed77",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B283_Refactor_S5c2.md",
-      "provenance": "B283.310 bounded Bridge busy work and negative recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "819ea9948f0c9e0f9821717441998c2d56ec003a342b49f9ace7d2b3408468f2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B287_Refactor_S5d4a.md",
+      "provenance": "B287.314 live D structural signals and safe restart checkpoint; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DistrictPrecisionProbe.lua": {
       "sha256": "12a6b244c9694f8303400b544cd747e554ce56c88e9d2bf302a31c22f67aed6c",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "06367ae9230e9d9cab66cea11f7183cc560121c57b9f55a8fa9443927f5dd7f5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
-      "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
+      "sha256": "5f9d209966a8273e00f10daf8e559c799fe9ef868606d50535dd76767699230a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B287_Refactor_S5d4a.md",
+      "provenance": "B287.314 live D structural signals and safe restart checkpoint; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3960538d46f76e20f188f753132d35dd38aa9be3cc4fcb27e789f02843ab12da",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
-      "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
+      "sha256": "eb5b6152b513c4dc25d9a611b24ef550462ca5eb3c6fc3fe4546a2f2778d164a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B287_Refactor_S5d4a.md",
+      "provenance": "B287.314 live D structural signals and safe restart checkpoint; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1586,9 +1586,9 @@
       "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "b3af10d1f222c6be978bb98b4b4d8330fdbc4c3156d87b18392d1eeca5375640",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
-      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
+      "sha256": "7844a94b91d91a27cfffa3b97cab83f50c2cc95c6e658d16a1066422502ce3e7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B287_Refactor_S5d4a.md",
+      "provenance": "B287.314 live D structural signals and safe restart checkpoint; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "B271 approved source promoted through PR6 and deployed;312/312 source/live MATCH. Scoped local validation inherited; native acceptance pending."

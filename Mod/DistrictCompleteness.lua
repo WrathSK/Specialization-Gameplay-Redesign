@@ -136,8 +136,8 @@ function M.Start(P,shared)
   assert(c:GetOwner()==pid,'DC_OWNER_CHANGED_DURING_READ')
   return M.Calculate(catalog,raw,false),raw
  end
+ local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
  function data.MarkDirty(pid,cid,cause)
-  local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
   if not valid(pid)then pid=nil;cid=nil elseif not valid(cid)then cid=nil end
   if pid~=nil and not P.IsTestPlayer(pid)then return end
   local function mark(e)if e then e.invalidation=(e.invalidation or 0)+1;if not e.dirty then e.dirty=true;count('dirty')end end end
@@ -191,33 +191,45 @@ function M.Start(P,shared)
    local t=scope.transfer;data.MarkDirty(t.owner,t.city);data.MarkDirty(t.oldOwner)
   else data.MarkDirty(scope.player,scope.city)end
  end
- for _,name in ipairs({'DistrictAddedToMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'})do
+ for _,name in ipairs({'DistrictAddedToMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRemovedFromMap'})do
   hook(Events,name,function(pid,did,cid)dirty({player=pid,city=cid})end)
  end
- hook(Events,'CityBuildingsChanged',function(pid,cid)data.MarkDirty(pid,cid)end)
  hook(Events,'CityRemovedFromMap',function(pid,cid)data.MarkDirty(pid,cid)end)
  hook(Events,'CityTransfered',function(owner,cid,oldOwner)
   if type(owner)=='number' and type(cid)=='number' and type(oldOwner)=='number'then dirty({transfer={owner=owner,city=cid,oldOwner=oldOwner}})else dirty({})end
  end)
- for _,name in ipairs({'BuildingPillaged','BuildingRepaired'})do hook(Events,name,function()data.MarkDirty()end)end
- hook(Events,'DistrictRemovedFromMap',function()data.MarkDirty()end) -- unresolved native signature: bounded fallback
- for _,name in ipairs({'BuildingConstructed','OnDistrictConstructed','CityBuilt'})do
-  hook(GameEvents,name,function(pid)
-   data.MarkDirty(type(pid)=='number' and pid>=0 and pid or nil)
-  end)
+ local function internal(index)
+  local ok,row=pcall(P.Info,'Buildings',index)
+  return ok and row and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_')~=nil
  end
- hook(GameEvents,'OnPillage',function()data.MarkDirty()end) -- first player is the actor, not necessarily the affected owner
+ for _,name in ipairs({'BuildingConstructed','BuildingPillageStateChanged'})do
+  hook(GameEvents,name,function(pid,cid,index)if not internal(index)then data.MarkDirty(pid,cid)end end)
+ end
+ hook(GameEvents,'CityBuilt',function(pid,cid)data.MarkDirty(pid,cid)end)
+ hook(GameEvents,'OnDistrictConstructed',function(pid)data.MarkDirty(pid)end) -- type/x/y are not cityID
+ hook(GameEvents,'OnPillage',function(actor,unit,improvement,building,district,plotId)
+  -- This action can carry both building and district metadata; do not infer
+  -- an unchanged district from an internal building field.
+  local ok,owner=pcall(function()return Map.GetPlotByIndex(plotId):GetOwner()end)
+  data.MarkDirty(ok and owner or nil) -- actor may be a foreign raider
+ end)
  hook(Events,'LoadScreenClose',function() cache={};catalog=nil;buildingOrder=nil;epoch=epoch+1 end)
  for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'}) do
   hook(Events,name,function(x,y,id,owner)
-   local row=P.Info('Buildings',id)
-   if row and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_') then return end
-   -- Same native owner argument already used by RuntimeWork/Standardization.
-   -- Unknown metadata retains the full bounded fallback; transfer handling is
-   -- independently unchanged and always invalidates all cached references.
-   if type(owner)=='number' and owner>=0 and owner<math.huge and owner%1==0 then
-    data.MarkDirty(owner)
-   else data.MarkDirty() end
+   if internal(id)then return end
+   local ok,c=pcall(function()
+    local d=CityManager and CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)
+    return d and d:GetCity() or CityManager and CityManager.GetCityAt and CityManager.GetCityAt(x,y)
+   end)
+   if ok and c then
+    local good,pid,cid=pcall(function()return c:GetOwner(),c:GetID()end)
+    if good and valid(pid) and valid(cid) and (not valid(owner) or owner==pid)then
+     data.MarkDirty(pid,cid);return
+    end
+    -- Transfer/rebinding can resolve a different current city. The reliable
+    -- event owner wins; its former city ID cannot be inferred from that city.
+   end
+   data.MarkDirty(owner) -- reliable owner or conservative UNKNOWN; never guess zero
   end)
  end
  -- Missed native events: next explicit read in a new turn reconciles once.

@@ -18,8 +18,8 @@ function SPCFactConsumerBindings.New(shared)
  end,{kinds=role,phase=0})
  local declarations={
   {target='Standardization',method='Refresh',cityOnly=true,kinds={'IDENTITY'}},
-  {target='ResearchSupport',method='Audit',kinds=role},
-  {target='Lv2Housing',method='Audit',kinds=role},
+  {target='ResearchSupport',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
+  {target='Lv2Housing',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='Lv2GPP',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='IndustrySupport',method='Audit',cityOnly=true,allowOwnerCause='REQUEST_FACTS_DIRTY',kinds={'D'}},
   {target='Lv3Support',method='Audit',kinds=role},
