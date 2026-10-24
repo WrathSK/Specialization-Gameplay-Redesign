@@ -23,6 +23,7 @@ function SPCNetworkBridge.Start(P,shared)
  if traceOK then reportTrace=value end
  local stateTrace=SPCExpeditionTrainingDiagnostics.New(P,'NETWORK_STATE')
  local function state(stage,pid,b,reason,packet)
+  if stage=='NETWORK_VERIFIED' and shared.EventTiming then pcall(shared.EventTiming.Verified,pid,b)end
   pcall(function()
    -- Fixed token only; never retain raw engine errors or route payloads.
    local token=type(reason)=='string' and (reason:match('NETWORK_[A-Z0-9_]+') or reason:match(':%d+: ([A-Z][A-Z0-9_]+)') or reason:match('^([A-Z][A-Z0-9_]+)$') or reason:match('^[A-Za-z][A-Za-z0-9_]+$') and reason:upper()) or nil

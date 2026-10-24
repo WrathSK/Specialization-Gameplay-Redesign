@@ -33,6 +33,10 @@ _memory_spec = importlib.util.spec_from_file_location('spc_memory_evidence', HER
 _memory = importlib.util.module_from_spec(_memory_spec)
 _memory_spec.loader.exec_module(_memory)
 MemoryEvidence = _memory.MemoryEvidence
+_timing_spec = importlib.util.spec_from_file_location('spc_turn_timing', HERE / 'turn_timing_evidence.py')
+_timing = importlib.util.module_from_spec(_timing_spec)
+_timing_spec.loader.exec_module(_timing)
+TurnTimingEvidence = _timing.TurnTimingEvidence
 _spec = importlib.util.spec_from_file_location('spc_trace_reader', HERE / 'read_expedition_trace.py')
 reader = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(reader)
@@ -84,6 +88,7 @@ class Session:
         self.record_total = 0
         self.trace_epoch = None
         self.highest_sequence = 0
+        self.timing = TurnTimingEvidence()
         self.memory = MemoryEvidence(self.directory, self.event)
 
     def event(self, kind, **values):
@@ -102,6 +107,7 @@ class Session:
         self.records.write(stamp + ' ' + source + ' ' + record + '\n')
         self.records.flush()
         f = fields(record)
+        self.timing.add(f)
         stage = f.get('stage', '?')
         if f.get('seq', '').isdigit():
             self.highest_sequence = max(self.highest_sequence, int(f['seq']))
@@ -213,6 +219,7 @@ class Session:
                  'stages: ' + ', '.join('%s=%d' % kv for kv in sorted(self.stages.items()))]
         lines.append('hd_prints: %d (dropped by reader: %d)' % (self.hd_total, self.hd_dropped))
         lines.extend(self.memory.summary())
+        lines.extend(self.timing.summary())
         lines.append('gate_prints: %d' % self.gate_total)
         lines += ['gate: %s x%d' % kv for kv in sorted(self.gate.items())]
         lines += ['hd: %s x%d' % kv for kv in sorted(self.hd.items())]

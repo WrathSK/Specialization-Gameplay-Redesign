@@ -9,9 +9,9 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0180",
-    "status": "S0716",
-    "runtime": "B270.297 / modinfo297",
+    "architecture": "A0181",
+    "status": "S0717",
+    "runtime": "B271.298 / modinfo298",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+  "implementation_plan": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
   "runtime_commit": "3eb1aede3ff60c0273c821c7df0051d82211184f",
-  "current_batch": "B270_MAIN_MERGED_STABLE_DEPLOYED",
-  "next_batch": "Await normal v0.1 playtest evidence on B270; no further implementation or deployment authorized.",
+  "current_batch": "B271_IMPLEMENTED_AWAITING_DEPLOYMENT_APPROVAL",
+  "next_batch": "Await explicit B271 deployment approval; no main PR or deployment in this batch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B270.297 stable from main 3eb1aed;310/310 MATCH; SHA256a009d477bc73a0503426436a8002aad0cfd6197c900a4f2e232b8bb4b4ff5318; B269 backup retained, no pending transaction; receipt B270.297-3eb1aed-stable-deploy.json.",
   "stable": "main B270.297 / modinfo297; approved PR #4 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "W0003 temporary auto-switch phase ended at user-approved main playtest milestone. Future runtime changes require explicit approval and existing transaction safeguards.",
-  "context_review_status": "S0716: user authorized PR followed by deployment; main merge and stable transaction verified; native event and memory trend acceptance pending.",
+  "context_review_status": "S0717: B271 approved diagnostics and user D4 decision implemented and locally checked. runtime_commit/live/stable still identify last deployed B270, not B271. Native testing pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md"
 }

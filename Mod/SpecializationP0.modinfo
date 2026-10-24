@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="297">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="298">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B270.297：事件范围与退休清理、GC有界补评估及内存证据修复。</Description>
+    <Description>B271.298：有界回合时序诊断与内部载体不可掠夺。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -164,6 +164,7 @@
       <File>UI/Institutions.lua</File>
       <File>UI/Institutions.xml</File>
       <File>PerformanceCounters.lua</File>
+      <File>EventTimingDiagnostics.lua</File>
       <File>RuntimeAuditCore.lua</File>
       <File>UI/RuntimeAudit.lua</File>
       <File>UI/RuntimeAudit.xml</File>
@@ -477,8 +478,11 @@
     <UpdateIcons id="SPC_B263_IG_Icons"><Properties><LoadOrder>10001100</LoadOrder></Properties><File>Data/TestAmericaIcons.sql</File></UpdateIcons>
     <UpdateColors id="SPC_B263_IG_Colors"><Properties><LoadOrder>10001100</LoadOrder></Properties><File>Data/TestAmericaColors.xml</File></UpdateColors>
     <UpdateIcons id="SPC_B268_IG_RawIcons"><Properties><LoadOrder>10001200</LoadOrder></Properties><File>Data/RawIcons.sql</File></UpdateIcons>
+    <UpdateDatabase id="SPC_InternalCarrierPillage"><Properties><LoadOrder>10002000</LoadOrder></Properties><File>Data/InternalCarrierPillage.sql</File></UpdateDatabase>
   </InGameActions>
   <Files>
+    <File>EventTimingDiagnostics.lua</File>
+    <File>Data/InternalCarrierPillage.sql</File>
     <File>Restructuring.lua</File>
     <File>RestructuringModel.lua</File>
     <File>RestructuringUI.lua</File>

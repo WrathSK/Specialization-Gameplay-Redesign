@@ -1,22 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0716
-Implementation Build: B270.297 / modinfo297; stable/live B270.297
-Architecture Revision Reviewed: A0180
+Status Revision: S0717
+Implementation Build: B271.298 / modinfo298; stable/live B270.297
+Architecture Revision Reviewed: A0181
 Design Revision Reviewed: D0057
 Latest Accepted Design Revision: D0057
 Design Sync State: D0057_DEVELOPMENT_MINIMUM_QUOTE
-Work State: B270_MAIN_MERGED_STABLE_DEPLOYED
+Work State: B271_IMPLEMENTED_AWAITING_DEPLOYMENT_APPROVAL
 
 ## CURRENT AUTHORITATIVE STATE
 
-用户授权“PR然后部署”，B270.297已通过PR #4合并至main并完成稳定部署；[结果与原生待验范围](Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md)。
+B271.298按用户批准完成：[诊断、D4决定与本地验证](Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md)。A/B默认开启、每次加载前6个观察本地回合；C独立默认关闭、右键专业化诊断入口开关。内部载体不可掠夺为用户2026-10-23明确决定，实际数据库副本4557行通过；非目标不变。详细能力依赖、历史测试限制见结果。
 
-- 实际合并提交3eb1aed；保留两份main README，Mod树与已验证develop1ea33f8一致。
-- 部署前再次确认游戏退出、main干净、旧B269与已记录哈希一致。310/310源码/运行文件MATCH，B269恢复包保留，无待完成事务；本地凭据B270.297-3eb1aed-stable-deploy.json。
-- 原18项新增、13项内存、243项回归、B138六组合同与532组收益配置通过范围保持；无新增实机PASS。
-- 可继续正常v0.1游玩，沿用tuner采集入口。实际内存趋势及原生事件/清理/GC时机待新日志验证；不启动游戏、不新增长测门槛。
+- User decision：等待B271另行部署批准；未部署、未创建main PR。
+- User testing：部署后2–3回合入账/事件证据及实际掠夺场景；USER_GAME_TEST_REQUIRED，不把离线结果当引擎事实。
+- Primary next：停在审批边界。当前main/live仍为B270.297，既有3eb1aed部署凭据不变。两份README为用户未提交预览稿，排除在本批提交之外。
+
+## S0717 — B271批准范围实施完成
+
+A0181记录用户D4决定和观察合同；A/B只读、C默认关闭、原生投递语义保留UNKNOWN；不改GC、业务资格/金额/存档、旧科研损坏恢复，不做载体迁移。15项新增、已选择现行回归及189Lua/25XML检查通过。旧文化夹具问题在未改HEAD复现并明列，未修历史断言。新数据运行效果仍待单独批准部署后的用户验证。
 
 ## S0716 — B270 PR与稳定部署
 

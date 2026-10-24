@@ -6,6 +6,7 @@ local P=SPCP0
 include("NetworkSender")
 local sendNetwork,stopSender=SPCNetworkSender.New(P)
 local networkStopped=false
+local timingObserver
 local active=false
 local public
 local lastGood,firstComplete,lastChange
@@ -217,8 +218,12 @@ local function initialize()
  flush()
  -- No recurring full-scan timer. Events and local turn boundaries remain primary.
 end
-ContextPtr:SetInitHandler(initialize)
+ContextPtr:SetInitHandler(function()
+ initialize()
+ pcall(function()include('ExpeditionTrainingDiagnostics');include('EventTimingDiagnostics');timingObserver=SPCEventTimingDiagnostics.Start(P,nil,'UI')end)
+end)
 ContextPtr:SetShutdown(function()
+ if timingObserver then timingObserver.Stop()end
  active=false;if public then stopSender(public) end;normalized:Reset();ContextPtr:ClearUpdate()
  for _,h in ipairs(hooks) do if h.event.Remove then h.event.Remove(h.callback) end end
  if ExposedMembers.SPC_P0_BackgroundRoutes==public then ExposedMembers.SPC_P0_BackgroundRoutes=nil end

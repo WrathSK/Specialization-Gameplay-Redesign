@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0180
+# Specialization v0.1 Architecture — A0181
 
 Document Owner: Codex
-Architecture Revision: A0180
+Architecture Revision: A0181
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0032
@@ -572,6 +572,14 @@ StandardizationDiscount独立于永久账本；当前来源并集和最高ACTIVE
 
 B269仅增加有界Gameplay内存/GC/已有工作量记录，由固定只读采集器转存；128条加载内环，不写存档、不扩大城市扫描、不改变GC策略。外部复用OS统计，不自动分类采样。关联仅用接收时间并标注采样年龄，加载/进程身份分段，缺失保留UNKNOWN。容量/故障显式记录，诊断不成为玩法或v0.1长测的新门禁。精确范围、测试及部署边界见[本批结果](../Status/Validation/Results/Specialization_B269_Memory_Diagnostics.md)。
 
+
+## A0181 — B271有界观察与内部载体数据策略
+
+用户决定（2026-10-23）：所有InternalOnly的BUILDING_SPC_*内部建筑（含访问标记）设Buildings_XP2.Pillage=0。玩家无法在生产菜单修复内部载体；真实建筑/区域掠夺继续通过既有D、锚点、建筑集合约束效果。历史/时代能力保留其原输入，不新增通用掠夺停效规则；旧损坏存档不迁移，当前版本新开存档为支持范围。科研三个消费者的损坏重建、CarrierHealthTrace保留。
+
+诊断A/B默认开启，按加载后前6个观察本地回合有界；C独立默认关闭，两个context追加监听，每侧400条/窗口、12条批量，Publish只计数，不新增帧或timer。只读现金及既有标量，观察序号不是引擎执行时钟；未知签名/缺失/截断不构成结论。诊断不得调用业务Audit/Mark或写保存。原TRAIN协议/环/读取上限、GC策略不变。
+
+[实现、逐能力依赖与验证范围](../Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md)。部署与实机仍需单独批准/验证。
 
 ## A0180 — B270定域工作与内存证据质量
 

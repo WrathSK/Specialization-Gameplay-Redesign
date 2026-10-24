@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_DEPLOYMENT_APPROVAL",
   "authority_versions": {
     "design": "D0057",
     "research": "D0040",
@@ -10,76 +10,54 @@
     "commerce": "D0057",
     "shared": "D0045",
     "presentation": "D0032",
-    "architecture": "A0180",
-    "status": "S0716",
-    "runtime": "B270.297 / modinfo297",
+    "architecture": "A0181",
+    "status": "S0717",
+    "runtime": "B271.298 / modinfo298",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-  "goal": "Implement the four approved B270 repairs: count-quality/summary, one post-network GC retry, participant/exact recovery scopes and overflow-test icon alias; preserve gameplay and ownership proofs.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
+  "goal": "B271: bounded read-only treasury/event observations (A/B default on, C default off), collector summaries, and explicitly decided internal-carrier Pillage=0; no deployment.",
   "implementation_authorized": true,
   "context": [
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+      "path": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
       "kind": "full",
-      "reason": "Explicitly approved four-item scope, investigation and validation boundaries."
+      "reason": "Approved batch, evidence and deployment boundary."
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "## A0180 — B270定域工作与内存证据质量",
-      "reason": "Opt-in scope, UNKNOWN recovery and bounded evidence/GC contract."
-    },
-    {
-      "path": "Mod/RuntimeWork.lua",
-      "kind": "full",
-      "reason": "Opt-in exact target owner and original Hook/batch compatibility."
-    },
-    {
-      "path": "Mod/PerformanceCounters.lua",
-      "kind": "full",
-      "reason": "Sole GC coordinator and count quality."
-    },
-    {
-      "path": "tools/memory_evidence.py",
-      "kind": "full",
-      "reason": "Bounded process sampling and summaries."
-    },
-    {
-      "path": "Mod/CityProgressionStore.lua",
-      "kind": "full",
-      "reason": "Unmodified original loss proof and RemoveOwned authority."
+      "selector": "## A0181 — B271有界观察与内部载体数据策略",
+      "reason": "Read-only diagnostic contract and user D4 decision."
     }
   ],
   "dependencies": [
-    "Original Store.RemoveOwned loss proofs; current-reference, UNKNOWN and failure isolation contracts.",
-    "Existing participant eligibility, per-Audit facts/district indexes and current carrier writers.",
-    "Fixed B205 read-only collector and external_monitor process identity API."
+    "Existing TRAIN protocol/bounds; PerformanceCounters scalar callback counters; NetworkBridge confirmation outlet.",
+    "Buildings_XP2 engine schema and post-SPC-definition load order; original actual building/district predicates."
   ],
   "old_writers": [
-    "Existing effect writers retain amount/qualification authority and exact owned exits; the helper only schedules targets.",
-    "Only the existing GC coordinator executes full collection; no gameplay persistence changes.",
-    "Inert retired ID definitions remain for old-save cleanup; no historical reward reconstruction."
+    "All gameplay writers, exact exits and save contracts retained; ResearchApply/Infrastructure/Chair pillage repair kept.",
+    "No GC coordinator or policy changes; legacy definitions remain inactive/isolated as before."
   ],
   "conditional_context": [],
   "non_scope": [
-    "Gameplay rules, permanent Property/save schema, broad consumer migration, external Mod edits, new binary artwork, automatic profiling, main promotion and deployment."
+    "Gameplay amounts/eligibility/Property schema/Design changes, GC changes, timers/frame listeners, save migration, main PR and deployment; two uncommitted README preview drafts."
   ],
   "validation": {
-    "depth": "Actual Lua5.1, current Lua/SQL positive-effect matrices, offline collector/network/process doubles, affected regression and static package checks",
-    "local": "18 new + 13 memory + 243 existing; B138 six groups PASS; scoped positive-effect validation, native untested",
-    "user": "Continue normal v0.1 play on deployed B270; event delivery, exact cleanup recovery, GC reassessment and actual memory trend remain native tests."
+    "depth": "Lua5.1 bounded diagnostics, copied actual engine DB, current native-input models, selected existing regressions and static package checks",
+    "local": "LOCAL_SIMULATION_PASS within B271 report scope; historical culture fixture failures reproduced on unchanged HEAD are explicitly excluded from PASS",
+    "user": "USER_GAME_TEST_REQUIRED after separate deployment approval: 2-3 local turns, C enabled, collector active; pillage/disaster if observed."
   },
   "full_audit_triggers": [
     "Text cannot express the existing rule without changing it: retain the existing meaning and report DESIGN_DECISION_REQUIRED; do not implement a new rule.",
     "Unexpected source, publication, process or deployment mismatch: stop affected mutation and inspect; no blind rehash or force-copy."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
     "local": "LOCAL_SIMULATION_PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "B270.297 stable DEPLOYED from main 3eb1aed;310/310 MATCH; B269 backup retained; receipt B270.297-3eb1aed-stable-deploy.json"
+    "deployment": "NOT_DEPLOYED; explicit approval required; live B270.297 unchanged"
   }
 }

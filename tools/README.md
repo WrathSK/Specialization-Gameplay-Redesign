@@ -114,3 +114,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 tools/read_expedition_trace.py probe
 ```
 
 Native fixed-query transport was observed once; automatic disk logging, passive streaming and B205 trace retrieval are distinct unverified surfaces. Retain output only in ignored local evidence; do not publish raw engine logs/configuration. [Scope and evidence](../Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md). Offline checks: `python3 DevelopmentTests/test_expedition_trace_reader.py` (needs Lupa) and `python3 DevelopmentTests/test_expedition_trace_collector.py`. Neither opens a live socket.
+
+## B271 bounded turn observations
+
+A/B record treasury timing and existing callback/audit counts automatically during the first six observed local turns after load. C is separately off by default: right-click the existing 专业化诊断 entry to toggle for this load. It observes two contexts, at most400 events per side/window, in batches of12; no new timer/frame listener. Run the existing collector during2–3 turns. New TRAIN rows enter records.log; summary.txt reports balance observations/network confirmation order, callback counts, missing points and capped/incomplete event windows. A first observed balance difference is an interval observation, not attribution to engine accrual. Existing ring/protocol/reader limits remain unchanged. See [B271 evidence and limitations](../Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md). This documentation does not authorize deployment.
