@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0725
-Implementation Build: B276.303 / modinfo303; stable/live B271.298
+Status Revision: S0726
+Implementation Build: B277.304 / modinfo304; stable/live B271.298
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_A8_COMPLETE_S5A_AUTHORIZED
+Work State: REFACTOR_S5A1_COMPLETE_S5A2_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-Approved eight-era correction complete in B276.303: [A8 actual model/writer/Store/SQL evidence](Validation/Results/Specialization_B276_Eight_Eras.md). E/X0–8, Inspiration max24%, Dialogue round max40; pool/own-era/GameEra quota/history unchanged.95 program properties PASS/4 laterOPEN;64 selected inherited methods PASS. Loaded9-GameEra SQL covers totals5–360, seven unchanged categories and new Pillage0 carriers. S4/internal U2 remains locally complete. Stable/live/main remain B271.298; no deployment/native PASS.
+S5a1 precursor completed in B277.304: [bounded registry and isolation](Validation/Results/Specialization_B277_Refactor_S5a1.md).15 new Lua5.1 cases PASS; program102PASS/4 laterOPEN. Production producers/consumers are not wired to it yet; S5a2 remains required before claiming propagation migration. S3 helper VFS import entries are explicit in addition to package inventory. S4 and approved A8 remain complete within their local scope. Stable/live/main remain B271.298; no deployment/native PASS.
 
 - User decision: none.
-- User testing: final U5 unless a concrete blocking native fact appears; no automatic deployment.
-- Primary next: S5a→S5b→S5c→S5d→S6→S7/S8→S9/S10.
+- User testing: U5 unless a concrete blocking native fact arises; no automatic deployment.
+- Primary next: S5a2 production wiring/freshness→S5b→S5c→S5d→S6→S7/S8→S9/S10.
+
+## S0726 — B277.304 S5a1 precursor
+
+Pure explicit registry, typed scope/evidence, bounded coalescing, snapshot drain, callback/clone/error containment and shutdown replacement are locally verified. Startup registration quarantine covers the new registry. No production scheduler or automatic consumer is enabled; committed-source migration and synchronous transaction dirty marks remain next. Source/local/static evidence only, not S5 completion or native behavior.
 
 ## S0725 — B276.303 approved A8 implemented
 

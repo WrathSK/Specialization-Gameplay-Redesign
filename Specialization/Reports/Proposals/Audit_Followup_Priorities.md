@@ -91,6 +91,8 @@ A8 is no longer excluded: the user explicitly approved eight collection eras aft
 
 #### S5 — Propagation foundation, in a→b→c→d order
 
+B277 S5a1 precursor complete: [bounded registry/isolation](../../Status/Validation/Results/Specialization_B277_Refactor_S5a1.md),15 new cases and102 program properties PASS/4 laterOPEN. No production migration yet; S5a2 must replace actual dispatch/permanent chains and preserve transaction freshness, then proceed b→c→d.
+
 | Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
 |---|---|---|
 | S5a declared fact-change registry / F02,C027 | OPEN: separate fan-outs `Gameplay.lua:24–53,569–587,598–617,650–670`. | Declared kinds/cause/owner/city/reference/revision; Mark-only, per-consumer pcall; no autodiscovery bus. |

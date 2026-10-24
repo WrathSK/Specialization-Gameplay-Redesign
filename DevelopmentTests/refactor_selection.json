@@ -42,6 +42,15 @@
       "test_refactor_s4a",
       "test_refactor_s4b",
       "test_refactor_a8"
+    ],
+    "S5a1": [
+      "test_refactor_baseline",
+      "test_refactor_defects",
+      "test_refactor_attribution",
+      "test_refactor_s3",
+      "test_refactor_s4a",
+      "test_refactor_s4b",
+      "test_refactor_s5a"
     ]
   },
   "counterexamples": {
@@ -116,7 +125,8 @@
       "test_refactor_attribution"
     ],
     "Mod/RuntimeComposition.lua": [
-      "test_refactor_s3"
+      "test_refactor_s3",
+      "test_refactor_s5a"
     ],
     "Mod/SafeCallbacks.lua": [
       "test_refactor_s3"
@@ -177,6 +187,9 @@
     ],
     "Mod/Text/TestText.sql": [
       "test_refactor_a8"
+    ],
+    "Mod/FactChanges.lua": [
+      "test_refactor_s5a"
     ]
   },
   "exclusions": {

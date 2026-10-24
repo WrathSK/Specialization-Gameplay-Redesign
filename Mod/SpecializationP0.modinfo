@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="303">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="304">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B276.303：统一八个馆藏时代，巨作启迪最高24%，时代对话单次最高40个百分点。</Description>
+    <Description>B277.304：有界事实传播前置组件；生产通知迁移尚未接管。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -301,6 +301,10 @@
       <File>Textures/SPC_Raw_Icons_16.dds</File>
       <File>Textures/SPC_Raw_Icons_24.dds</File>
       <File>Textures/SPC_Raw_Icons_48.dds</File>
+      <File>SafeCallbacks.lua</File>
+      <File>RuntimeComposition.lua</File>
+      <File>UI/SafeAdapters.lua</File>
+      <File>FactChanges.lua</File>
     </ImportFiles>
     <UpdateDatabase id="SPC_B029_Carrier">
       <Properties>
@@ -793,6 +797,7 @@
     <File>Textures/SPC_Raw_Icons_16.dds</File>
     <File>Textures/SPC_Raw_Icons_24.dds</File>
     <File>Textures/SPC_Raw_Icons_48.dds</File>
+    <File>FactChanges.lua</File>
     <File>SafeCallbacks.lua</File>
     <File>RuntimeComposition.lua</File>
     <File>UI/SafeAdapters.lua</File>
