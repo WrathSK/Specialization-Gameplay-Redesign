@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0808
-Implementation Build: B355.382 / modinfo382; stable/live B307.334
+Status Revision: S0809
+Implementation Build: B356.383 / modinfo383; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9B3_COMPLETE_CONTINUING
+Work State: REFACTOR_S9C1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9b3 moves closest revealed Expedition entry selection into Gameplay-only ExpeditionEntry,called explicitly through the existing Gate owner. UI preserves direct zero-enumeration and original revealed-candidate/distance scope,returns raw observations and binds the selected scalar reference to the same native city for original helpers. No save,permit,travel/arrival or mission behavior changes.12 focused plus40 original assertions pass;nine exact before/after selection/read-count cases match;1000 actual window publishes add0 choices/writes. Remaining S9 training owner revisions,channels,applied display,adjacency and S10 continue; exact D7/D5 limitations stay OPEN. [Result](Validation/Results/Specialization_B355_Refactor_S9b3.md). Stable/live/main B307.334; no deployment/native PASS.
+S9c1 adds the isolated PlayerActionReplies terminal transport: fixed UNIT_ACTION scope,eight-slot ring,owner+token lookup,explicit epoch/version/action/unitID validation,detached text/status/kind/phase only,scalar Has,explicit Take/Discard and Shutdown. Twelve focused tests prove capacity,retained duplicates,identity/limits and no native/callback/clock/save dependency. It is not transaction/replay authority or durable evidence. No production producer/UI consumes it yet; next wire Gameplay before migrating the player ACK while DEV stays compatible. Other S9/S10 and exact D7/D5 limits remain OPEN. [Result](Validation/Results/Specialization_B356_Refactor_S9c1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue remaining S9 owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations.
+- Primary next: Continue S9c Gameplay terminal-result producer and UnitPanel ACK migration,then remaining channels,owner-bound training signals,applied display,adjacency and S10; preserve exact D7/native D5 limitations.
+
+## S0809 — B356.383 Prove a bounded player-action terminal reply primitive
+
+S9c1 adds the isolated PlayerActionReplies terminal transport: fixed UNIT_ACTION scope,eight-slot ring,owner+token lookup,explicit epoch/version/action/unitID validation,detached text/status/kind/phase only,scalar Has,explicit Take/Discard and Shutdown. Twelve focused tests prove capacity,retained duplicates,identity/limits and no native/callback/clock/save dependency. It is not transaction/replay authority or durable evidence. No production producer/UI consumes it yet; next wire Gameplay before migrating the player ACK while DEV stays compatible. Other S9/S10 and exact D7/D5 limits remain OPEN.
 
 ## S0808 — B355.382 Select Expedition entry cities from raw UI facts in Gameplay
 

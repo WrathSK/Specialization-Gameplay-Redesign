@@ -1730,6 +1730,9 @@
     ],
     "S9b3": [
       "test_refactor_s9b3"
+    ],
+    "S9c1": [
+      "test_refactor_s9c1"
     ]
   },
   "counterexamples": {},
@@ -2148,6 +2151,9 @@
     ],
     "Mod/ExpeditionSpyRead.lua": [
       "test_refactor_s9b3"
+    ],
+    "Mod/PlayerActionReplies.lua": [
+      "test_refactor_s9c1"
     ]
   },
   "exclusions": {

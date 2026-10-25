@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="382">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="383">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B355.382：人文考察团入口选择移至Gameplay，保留原生旅行与许可边界。</Description>
+    <Description>B356.383：建立有界玩家操作结果通道，尚未接线，不改变现有按钮行为。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -249,6 +249,7 @@
       <File>UnitSiteProbe.lua</File>
       <File>UnitSiteFacts.lua</File>
       <File>UnitTargets.lua</File>
+      <File>PlayerActionReplies.lua</File>
       <File>UnitActions.lua</File>
       <File>CrewModel.lua</File>
     <File>UI/CrewProjectUI.lua</File>
@@ -730,6 +731,7 @@
     <File>UI/CityPotential.xml</File>
     <File>UI/CityPotential.lua</File>
     <File>UI/UnitTargetMarkers.xml</File>
+    <File>PlayerActionReplies.lua</File>
     <File>UnitActions.lua</File>
     <File>Data/Crew.sql</File>
     <File>Specialization.dep</File>

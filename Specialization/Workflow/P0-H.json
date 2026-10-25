@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0808",
-    "runtime": "B355.382 / modinfo382",
+    "status": "S0809",
+    "runtime": "B356.383 / modinfo383",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue remaining S9 owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
+  "goal": "Continue S9c Gameplay terminal-result producer and UnitPanel ACK migration,then remaining channels,owner-bound training signals,applied display,adjacency and S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -474,6 +474,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B355_Refactor_S9b3.md",
       "kind": "full",
       "reason": "Select Expedition entry cities from raw UI facts in Gameplay actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B356_Refactor_S9c1.md",
+      "kind": "full",
+      "reason": "Prove a bounded player-action terminal reply primitive actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -500,8 +505,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B355_Refactor_S9b3.md",
-    "local": "LOCAL_SIMULATION_PASS: 836 tests; Lua51/XML/package/reference checks passed",
+    "report": "Specialization/Status/Validation/Results/Specialization_B356_Refactor_S9c1.md",
+    "local": "LOCAL_SIMULATION_PASS: 848 tests; Lua51/XML/package/reference checks passed",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }
