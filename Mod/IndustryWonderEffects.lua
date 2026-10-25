@@ -1,5 +1,6 @@
 include('NetworkInput')
 include('RuntimeWork')
+include('CarrierSet')
 include('ExpeditionTrainingDiagnostics')
 -- Derived ordinary-production effects only. No progress injection, N/E/L ledger
 -- reads, topology or Crew writes. Native effect filters each Wonder's own era.
@@ -10,8 +11,8 @@ function SPCIndustryWonderEffects.Start(P,shared)
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'INDUSTRY_WONDER_EFFECT')
  local function key(pid,id)return pid..':'..id end
  local function mark(pid,id)if P.IsTestPlayer(pid)then local q=dirty[pid] or {};dirty[pid]=q;if id==nil then q.all=true else q[id]=true end end end
- local ownedIndex={}
- local health=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)
+ local ownedRegistry
+ local health=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedRegistry~=nil and ownedRegistry.Owns(id) end,function(scope)
   for pid in pairs(Players)do if SPCRuntimeWork.Player(scope,pid)then mark(pid,scope and scope.city)end end
  end)
  local function validate()
@@ -22,9 +23,9 @@ function SPCIndustryWonderEffects.Start(P,shared)
    assert(type(e.ChronologyIndex)=='number' and (b.InternalOnly==true or b.InternalOnly==1) and b.CitizenSlots==0 and b.Housing==0,'IW_DEFINITION_INVALID')
    local row={id=r.CarrierType,index=b.Index,era=r.EraType,chronology=e.ChronologyIndex,amount=r.Amount}
    assert(row.amount==10 or row.amount==20 or row.amount==30,'IW_AMOUNT_INVALID')
-   list[#list+1]=row;nextOwned[row.index]=true;byEra[r.EraType]=byEra[r.EraType] or {};byEra[r.EraType][r.Amount]=row
+   list[#list+1]=row;nextOwned[#nextOwned+1]={id=row.index,name=row.id};byEra[r.EraType]=byEra[r.EraType] or {};byEra[r.EraType][r.Amount]=row
   end
-  assert(#list>0,'IW_DEFINITION_EMPTY');definitions,eras,ownedIndex=list,byEra,nextOwned
+  assert(#list>0,'IW_DEFINITION_EMPTY');local registry=SPCCarrierSet.Registry(nextOwned);definitions,eras,ownedRegistry=list,byEra,registry
  end
  local function current(pid)
   local ok,e=P.Call(Players[pid],'GetEra');assert(ok,'IW_CIVILIZATION_ERA_UNKNOWN')
@@ -125,7 +126,7 @@ function SPCIndustryWonderEffects.Start(P,shared)
  end)
  local store=shared.CityProgressionStore
  store.RegisterExit('IndustryWonderEffects',function(c,loss)
-  validate();local ids={};for _,r in ipairs(definitions)do ids[#ids+1]=r.id end;store.RemoveOwned(c,loss,ids)
+  validate();store.RemoveOwned(c,loss,ownedRegistry.Names())
   for k,r in pairs(d.records)do if r.owner==loss.origin.owner and r.x==loss.origin.x and r.y==loss.origin.y then d.records[k]=nil;d.errors[k]=nil end end
   mark(loss.origin.owner)
  end)

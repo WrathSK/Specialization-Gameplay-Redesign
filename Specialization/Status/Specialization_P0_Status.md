@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0771
-Implementation Build: B319.346 / modinfo346; stable/live B307.334
+Status Revision: S0772
+Implementation Build: B320.347 / modinfo347; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7A5_COMPLETE_CONTINUING
+Work State: REFACTOR_S7A_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7a5 migrates IndustrySupport exact -1..7 carrier descriptors/health/exit into CarrierSet using its original sequential read-write-readback order. BASE sampling, pending/armed work, eligibility, partial success and withdrawal counters remain unchanged. [Result](Validation/Results/Specialization_B319_Refactor_S7a5.md). Stable/live/main B307.334; no deployment/native PASS.
+S7a6 shares immutable exact owned-ID/name registries across CarrierSet and the remaining Apply/Infrastructure/Chair/Wonder validators. Failed revalidation retains prior ownership; Chair exit still reads its current catalogue; Wonder keeps its original single-handle observation/write and UNKNOWN asymmetry. S7a extraction is complete with these explicit policy boundaries. [Result](Validation/Results/Specialization_B320_Refactor_S7a6.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7a remaining owned definitions/IndustryWonder carriers; then S7b–S10.
+- Primary next: Continue S7b property-cell and numeric-policy extraction, then S7c–S10.
+
+## S0772 — B320.347 Unify exact owned-carrier registries and close S7a extraction
+
+S7a6 shares immutable exact owned-ID/name registries across CarrierSet and the remaining Apply/Infrastructure/Chair/Wonder validators. Failed revalidation retains prior ownership; Chair exit still reads its current catalogue; Wonder keeps its original single-handle observation/write and UNKNOWN asymmetry. S7a extraction is complete with these explicit policy boundaries.
 
 ## S0771 — B319.346 Share Industry support carriers without changing sequential mutation
 

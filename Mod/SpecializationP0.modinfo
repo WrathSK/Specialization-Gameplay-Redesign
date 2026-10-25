@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="346">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="347">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B319.346：共享工业基础专家支持载体，保留逐位读写和 BASE 恢复调度。</Description>
+    <Description>B320.347：统一载体归属清单，保留各能力验证、观察与退出差异。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

@@ -8,20 +8,20 @@ M.Bits=5 -- max current Gold coefficient30; rejects overflow, never clamps
 local function name(y,i) return 'BUILDING_SPC_RESEARCH_APPLY_'..y..'_'..i end
 function M.Start(P,shared)
  local data={ready=false,busy=false,errors={},changes=0};shared.ResearchApply=data
- local ownedIndex={}
- local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(index)return ownedIndex[index]==true end,function(scope)data.MarkAudit(scope)end)
+ local ownedRegistry
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(index)return ownedRegistry~=nil and ownedRegistry.Owns(index) end,function(scope)data.MarkAudit(scope)end)
  local definitions
  local function validate()
   if definitions then return end
   local rows=assert(P.Rows('Building_CitizenYieldChanges'),'AP_DATABASE_UNKNOWN');local nextOwned={}
   for _,y in ipairs(SPCResearchApplyModel.Yields) do for i=0,M.Bits-1 do
    local r=assert(P.Info('Buildings',name(y,i)),'AP_BUILDING_MISSING')
-   nextOwned[r.Index]=true
+   nextOwned[#nextOwned+1]={id=r.Index,name=name(y,i)}
    assert(r.PrereqDistrict=='DISTRICT_CAMPUS' and r.CitizenSlots==0 and r.Housing==0,'AP_BUILDING_MISMATCH')
    local n=0;for _,v in ipairs(rows) do if v.BuildingType==name(y,i) then
     assert(v.YieldType=='YIELD_'..y and v.YieldChange==2^i,'AP_YIELD_MISMATCH');n=n+1
    end end;assert(n==1,'AP_YIELD_MISSING')
-  end end;ownedIndex=nextOwned;definitions=true
+  end end;ownedRegistry=SPCCarrierSet.Registry(nextOwned);definitions=true
  end
  local function inspect(pid,c,detail)
   return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers)
@@ -131,7 +131,10 @@ function M.Start(P,shared)
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.Hook(P,Events,n,data.Audit)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchApply',function(c,loss)
-   local ids={};for _,y in ipairs(SPCResearchApplyModel.Yields)do for bit=0,M.Bits-1 do ids[#ids+1]=name(y,bit)end end
+   local ids
+   if ownedRegistry then ids=ownedRegistry.Names()else
+    ids={};for _,y in ipairs(SPCResearchApplyModel.Yields)do for bit=0,M.Bits-1 do ids[#ids+1]=name(y,bit)end end
+   end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end)end
 

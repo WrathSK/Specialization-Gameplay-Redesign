@@ -13,14 +13,14 @@ local function name(i) return 'BUILDING_SPC_RESEARCH_INFRA_'..i end
 local function integer(n) return type(n)=='number' and n>=0 and n<math.huge and n%1==0 end
 function M.Start(P,shared)
  local data={ready=false,busy=false,errors={},changes=0};shared.ResearchInfrastructure=data
- local definitions;local ownedIndex={}
- local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)data.MarkAudit(scope)end)
+ local definitions;local ownedRegistry
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedRegistry~=nil and ownedRegistry.Owns(id) end,function(scope)data.MarkAudit(scope)end)
  local function validate()
   if definitions then return end
   local rows=assert(P.Rows('Building_CitizenYieldChanges'),'RI_DATABASE_UNAVAILABLE');local nextOwned={}
   for i=0,3 do
    local r=assert(P.Info('Buildings',name(i)),'RI_BUILDING_MISSING')
-   nextOwned[r.Index]=true
+   nextOwned[#nextOwned+1]={id=r.Index,name=name(i)}
    assert(r.PrereqDistrict=='DISTRICT_CAMPUS' and r.CitizenSlots==0 and r.Housing==0,'RI_BUILDING_MISMATCH')
    local found=0
    for _,v in ipairs(rows) do if v.BuildingType==name(i) then
@@ -29,7 +29,7 @@ function M.Start(P,shared)
    assert(found==1,'RI_YIELD_MISSING')
   end
   for _,n in ipairs(M.Retired) do assert(P.Info('Buildings',n),'RI_TOMBSTONE_MISSING') end
-  ownedIndex=nextOwned;definitions=true
+  ownedRegistry=SPCCarrierSet.Registry(nextOwned);definitions=true
  end
  local function inspect(pid,c)
   if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return {d=0,workers=0,science=0,status='INACTIVE'} end
@@ -149,7 +149,7 @@ function M.Start(P,shared)
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchInfrastructure',targets.Exit(function(c,loss)
-   local ids={};for bit=0,3 do ids[#ids+1]=name(bit)end;for _,id in ipairs(M.Retired)do ids[#ids+1]=id end
+   local ids;if ownedRegistry then ids=ownedRegistry.Names()else ids={};for bit=0,3 do ids[#ids+1]=name(bit)end end;for _,id in ipairs(M.Retired)do ids[#ids+1]=id end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end))end
 

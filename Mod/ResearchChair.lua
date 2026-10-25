@@ -14,8 +14,8 @@ local errors={CHAIR_WORKERS_UNKNOWN='工作专家数暂不可读',CHAIR_BUILDING
 local function explain(err) local code=tostring(err):match('CHAIR_[A-Z_]+');return errors[code] or code or '接口未就绪' end
 function M.Start(P,shared)
  local data={ready=false,busy=false,errors={},changes=0};shared.ResearchChair=data
- local ownedIndex={}
- local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(index)return ownedIndex[index]==true end,function(scope)data.MarkAudit(scope)end)
+ local ownedRegistry
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(index)return ownedRegistry~=nil and ownedRegistry.Owns(index) end,function(scope)data.MarkAudit(scope)end)
  local definitions,targets
  local function validate()
   if definitions then return end
@@ -26,10 +26,10 @@ function M.Start(P,shared)
    for i=0,M.Bits-1 do
     local r=assert(P.Info('Buildings',name(v.BuildingType,i)),'CHAIR_CARRIER_MISSING')
     assert(r.PrereqDistrict=='DISTRICT_CAMPUS' and r.CitizenSlots==0 and r.Housing==0,'CHAIR_CARRIER_INVALID')
-    defs[#defs+1]={target=v.BuildingType,bit=i,id=r.Index};nextOwned[r.Index]=true
+    defs[#defs+1]={target=v.BuildingType,bit=i,id=r.Index};nextOwned[#nextOwned+1]={id=r.Index,name=name(v.BuildingType,i)}
    end
   end
-  assert(#defs>0,'CHAIR_TARGET_TABLE_EMPTY');definitions=defs;targets=ts;ownedIndex=nextOwned
+  assert(#defs>0,'CHAIR_TARGET_TABLE_EMPTY');local registry=SPCCarrierSet.Registry(nextOwned);definitions=defs;targets=ts;ownedRegistry=registry
  end
  local function inspect(pid,c,detail)
   assert(c:GetOwner()==pid,'CHAIR_OWNER_CHANGED')

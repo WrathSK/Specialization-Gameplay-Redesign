@@ -1,5 +1,15 @@
 -- Ordered exact carrier mechanics only; caller owns eligibility, events and loss policy.
 SPCCarrierSet={}
+-- Exact scalar ownership only. Caller validates schema and publishes atomically.
+-- Names retain order/duplicates; Store owns exit-list validation.
+function SPCCarrierSet.Registry(entries)
+ local ids,names={},{}
+ for _,v in ipairs(entries)do ids[v.id]=true;names[#names+1]=v.name end
+ local registry={}
+ function registry.Owns(id)return ids[id]==true end
+ function registry.Names()local out={};for _,n in ipairs(names)do out[#out+1]=n end;return out end
+ return registry
+end
 function SPCCarrierSet.Define(P,entries,resolve,errors)
  local d={};local descriptors={};local names,keys={},{}
  for _,v in ipairs(entries)do
@@ -9,13 +19,14 @@ function SPCCarrierSet.Define(P,entries,resolve,errors)
  local definitions,owned
  local function initialize()
   if definitions then return end
-  local nextDefinitions,nextOwned={},{}
-  for _,v in ipairs(descriptors)do local id=resolve(v.name,v.key);nextDefinitions[v.key]=id;nextOwned[id]=true end
+  local nextDefinitions,entries={},{}
+  for _,v in ipairs(descriptors)do local id=resolve(v.name,v.key);nextDefinitions[v.key]=id;entries[#entries+1]={id=id,name=v.name}end
+  local nextOwned=SPCCarrierSet.Registry(entries)
   definitions,owned=nextDefinitions,nextOwned -- publish only a complete definition set
  end
  function d.Initialize()initialize()end
  function d.Index(key)initialize();return definitions[key]end
- function d.Owns(id)return owned~=nil and owned[id]==true end -- health hooks never resolve rows
+ function d.Owns(id)return owned~=nil and owned.Owns(id)end -- health hooks never resolve rows
  function d.Names()
   local out={};for _,v in ipairs(descriptors)do out[#out+1]=v.name end;return out
  end

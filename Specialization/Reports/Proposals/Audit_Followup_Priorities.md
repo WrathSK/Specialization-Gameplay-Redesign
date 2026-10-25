@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B320.347 S7a6 shares immutable exact owned-ID/name registries across CarrierSet and the remaining Apply/Infrastructure/Chair/Wonder validators. Failed revalidation retains prior ownership; Chair exit still reads its current catalogue; Wonder keeps its original single-handle observation/write and UNKNOWN asymmetry. S7a extraction is complete with these explicit policy boundaries. [Result](../../Status/Validation/Results/Specialization_B320_Refactor_S7a6.md).
+
 B319.346 S7a5 migrates IndustrySupport exact -1..7 carrier descriptors/health/exit into CarrierSet using its original sequential read-write-readback order. BASE sampling, pending/armed work, eligibility, partial success and withdrawal counters remain unchanged. [Result](../../Status/Validation/Results/Specialization_B319_Refactor_S7a5.md).
 
 B318.345 S7a4 shares the exact located carrier mutation loops for Apply/Infrastructure/Chair after their unchanged complete owner preflight. Preserve observed-vs-fresh removal-location witnesses, per-write readback/counts, UNKNOWN holds, real-input pillage and D4 cleanup. [Result](../../Status/Validation/Results/Specialization_B318_Refactor_S7a4.md).
