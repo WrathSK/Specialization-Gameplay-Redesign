@@ -24,7 +24,7 @@ def display():
       function include()end
       Locale={Lookup=function(k,...)local t=loc[k]or k;for i,x in ipairs({...})do t=t:gsub('{ '..i..' }',tostring(x)):gsub('{'..i..'}',tostring(x))end;return t end}
       local function event()local e={};function e.Add(f)e.f=f end;function e.Remove(f)if e.f==f then e.f=nil end end;return setmetatable(e,{__call=function(_,...)if e.f then return e.f(...)end end})end
-      LuaEvents={SPC_InstitutionOverview=event(),SPC_PresentationChanged=event()}
+      LuaEvents={SPC_InstitutionOverview=event(),SPC_PresentationChanged=event(),SPC_PresentationConsumerReady=event()}
       ExposedMembers={SPC_P0={}};Game={GetLocalPlayer=function()return 0 end}
       city={GetID=function()return 4 end,GetOwner=function()return 0 end,GetX=function()return 8 end,GetY=function()return 9 end}
       UI={GetHeadSelectedCity=function()return city end}
@@ -52,14 +52,31 @@ def display():
       GameInfo={Buildings=function()return ipairs(buildings)end}
       -- Match the game's single row iterator rather than ipairs' index/value pair.
       GameInfo.Buildings=function()local i=0;return function()i=i+1;return buildings[i]end end
-      function ViewPanelBreakdown(d)nativeRenders=nativeRenders+1;rendered=d end
+      function ViewPanelBreakdown(d)nativeRenders=nativeRenders+1;rendered=d;if duringNative then duringNative(d)end end
       data={Owner=0,City=city,BuildingsAndDistricts={{Buildings={{Type='BUILDING_SPC_OWN'},{Type='BUILDING_LIBRARY'},{Type='BUILDING_OTHER_MOD'}}}}}
       v={owner=0,cityID=4,x=8,y=9,specialization='CULTURE',potential=4,active=4,activeStatus='KNOWN'}
       ExposedMembers.SPC_P0.CityPresentationView=v
+      -- Pure display fixture supplies an explicitly accepted UI packet, not a production mirror fallback.
+      displayAccepted=true
+      local service={epoch=1,version='DISPLAY',scope='CITY_PRESENTATION',Has=function()end,Take=function()end,Discard=function()end}
+      ExposedMembers.SPC_P0.Version='DISPLAY';ExposedMembers.SPC_P0.PlayerActionReplies={Presentations=service}
+      local deliveries=0
+      function deliverDisplay()
+       deliveries=deliveries+1
+       local s=ExposedMembers.SPC_P0;local value=s.CityPresentationView
+       local m={owner=0,cityID=4,x=8,y=9,backend=s,parent=s.PlayerActionReplies,channel=service,
+        epoch=1,has=service.Has,take=service.Take,discard=service.Discard}
+       return {status=value and not value.error and 'READY'or 'UNAVAILABLE',view=value,meta=m,sourceSequence=0,deliverySequence=deliveries,version='DISPLAY'}
+      end
+      local e=LuaEvents.SPC_PresentationChanged
+      setmetatable(e,{__call=function(_,packet)
+       if packet==nil and displayAccepted then packet=deliverDisplay()end
+       if e.f then return e.f(packet)end
+      end})
     ''')
     for filename in ['InstitutionPresentation.lua','UI/InstitutionOverview.lua','UI/Institutions.lua']:
         lua.execute((ROOT/'Mod'/filename).read_text())
-    lua.execute('init();ViewPanelBreakdown(data)')
+    lua.execute('init();LuaEvents.SPC_PresentationChanged(deliverDisplay());ViewPanelBreakdown(data)')
     return lua
 
 

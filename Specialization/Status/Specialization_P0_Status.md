@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0816
-Implementation Build: B363.390 / modinfo390; stable/live B307.334
+Status Revision: S0817
+Implementation Build: B364.391 / modinfo391; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9C6A_COMPLETE_CONTINUING
+Work State: REFACTOR_S9C6B_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9c6a adds independent CITY_PRESENTATION8,total32 fixed-role slots. Its fixed scalar/nested projection preserves request vsStore tokens,false/nil/zero and unknown summary semantics without historical arrays/native objects. Gameplay reads original values once and protects same-city xy/final owner/id; two unsafe later FindID calls are removed. Eighteen focused tests pass including all six original B251 Store assertions. Both UI consumers and applied-owner fields remain next; other S9/S10 and exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B363_Refactor_S9c6a.md). Stable/live/main B307.334; no deployment/native PASS.
+S9c6b makes CityPotential the only presentation Take consumer and Overview an accepted-packet reader. Fixed UI Ready replays local accepted data without a Gameplay read. Source/delivery ordering,CLOSED state and native generation/cause fences prevent old or identical replays,shutdown and busy reentry from overwriting new displays. Eighteen new plus34 original UI assertions pass;unknown retains rows without fake zeros. Training owner signals,applied display,adjacency,S10 and exact D7/D5 limits remain OPEN. [Result](Validation/Results/Specialization_B364_Refactor_S9c6b.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 CityPotential sole-Take and Overview accepted-DTO consumption,then owner-bound training signals,applied display and adjacency,S10; preserve exact D7/native D5 limitations.
+- Primary next: Continue S9 owner-bound training signals,owner-applied institution values and adjacency,then S10; preserve exact D7/native D5 limitations.
+
+## S0817 — B364.391 Route institution displays through one ordered accepted reply
+
+S9c6b makes CityPotential the only presentation Take consumer and Overview an accepted-packet reader. Fixed UI Ready replays local accepted data without a Gameplay read. Source/delivery ordering,CLOSED state and native generation/cause fences prevent old or identical replays,shutdown and busy reentry from overwriting new displays. Eighteen new plus34 original UI assertions pass;unknown retains rows without fake zeros. Training owner signals,applied display,adjacency,S10 and exact D7/D5 limits remain OPEN.
 
 ## S0816 — B363.390 Publish fixed institution views with protected city reference reads
 

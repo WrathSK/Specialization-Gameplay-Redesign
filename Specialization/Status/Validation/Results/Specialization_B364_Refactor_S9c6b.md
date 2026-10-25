@@ -1,0 +1,33 @@
+# B364.391 — S9c6b one institution reply consumer and ordered UI handoff
+
+## Plan and Runtime Impact Contract
+
+Accepted S9/F25,D15; base B363.390/774875c. CityPotential is the sole CITY_PRESENTATION Take consumer. InstitutionOverview no longer reads CityPresentationView,does not Take or issue operations,and consumes only the accepted fixed UI packet; Institutions remains a pure renderer. Gameplay still keeps its legacy mirror for DEV. Existing history/calculated metrics are unchanged; actual owner-applied values remain a following S9 duty,not claimed complete here.
+
+One expectation records selected owner/city/xy,request token,cause and backend/parent/port/epoch/method identities. It is consumed once before native reference checks; bad/negative replies mean unavailable,not zero. Selection/backend/version/endpoint/method changes and shutdown release expected replies. Same-reference temporary failures retain established institution rows with UNKNOWN ACTIVE/metrics; source/reference resets withdraw prior display. Current RuntimeUIRevision remains because owner history/applied publication is not yet complete; deleting it now would miss real changes. No permanent write,unit/money operation,new Gameplay read scope,GC policy,timer or native listener.
+
+The accepted UI handoff has READY/UNAVAILABLE/RESET/CLOSED plus the original scalar request reference and detached DTO. One latest packet lives in CityPotential and one in Overview; no native city/unit reference is added. A fixed SPC_PresentationConsumerReady listener replays the already accepted local packet when Overview loads later,without a new Gameplay request/native fact read. Startup order is supported both ways. Existing UI sequence allocates a monotonic source ID; a per-source delivery sequence advances only for new delivery/reset/close,while replay keeps its original sequence. Overview accepts only strictly newer(source,delivery),and retains one current-source closed tombstone. No unbounded history/tombstone registry. Old context close/old ready cannot replace the newer source or newer result; identical replay is idempotent.
+
+Ordered native boundaries retain new causes and close fences. Independent review reproduced and this slice fixes: (1) native Overview original reentry produced a fresh accepted result,then outer old rendering overwrote it; generation/lastData fence now prevents that. (2) closing during READY inserted RESET,then outer READY resurrected rows; ordered delivery and CLOSED terminal prevent this. (3) Ready replay reentry produced a new real typed result before returning old packet; delivery ordering rejects the old packet. (4) busy getter raised a real cause just before dirty=false; post-getter cause/close check preserves it for next boundary. (5) identical Ready during native render advanced generation and cancelled the only new render; duplicate delivery now does not advance generation. All are explicit regressions; no periodic retry substitutes for them.
+
+T04/T05/T08,L3 for ordered multi-context reply handoff:18 new Consumer tests plus34 original UI assertions pass on Lua5.1. They cover poison global mirror,interleaved same-city tokens,one Take serving both displays,1000 Ready/idle publications with0 new requests,negative-without-coordinates UNKNOWN rows,equal backend restart/old epoch,late Overview load/Ready replay,hidden reopen,native render/new typed result ordering,shutdown during native stamp/icon,older source reset,eviction/bad envelope,close during delivery,busy reentry,method replacement once and idempotent replay. Original B265 EventPresentation/NativeOverview/PresentationContract,B266 lifecycle/exceptions,Culture display and B251 Presentation assertions are retained. No UI art/geometry/text changes.
+
+Fixture updates are explicit protocol adaptations: pure display fixtures inject accepted packets through their display seam,not a production mirror fallback. B265/B266 use the real reply service and original request port/epoch for late delivery. A first late-load fixture lacked the distinct native Overview stack after action-context replacement; added only the correct control-path routing. Original row/tooltip/filter/request/layout assertions remain. Full validation additionally inherits the prior943 program properties. Independent final read-only review reran18 Consumer tests and diff check:PASS,with no remaining blocking issue in scope.
+
+No deployment,main promotion,game launch or native PASS. Next owner-bound training signals,owner-applied display fields and adjacency,then S10. D7 permanent irrecoverability proof and D5 native Crew attribution remain exactly scoped OPEN.
+
+### Machine validation evidence
+
+- Stage/status: `S9c6b` / `LOCAL_SIMULATION_PASS`; tests=995, passing=995, registered-open=0.
+- Source: base `774875c69f40e9d955cad237cdad227f3fddec99`; dirty=True; input SHA256 `e6ced0501a24bd6e7ac80ec7ad0dafed2fb5d4e7b0136aeaa5cd8683eddb4717`; stable=True.
+- Source scope: Mod/DevelopmentTests/tools, including tracked and nonignored new files. The containing commit must match this input digest; parent HEAD alone is not the tested snapshot.
+- Command: `python3 DevelopmentTests/run_refactor.py --stage S9c6b --output local/refactor/S9c6b-B364-final/closure.json`.
+- Environment: `{"backend": "Lua 5.1", "implementation": "CPython", "lupa": "2.8", "machine": "arm64", "platform": "Darwin", "python": "3.10.13", "python_hash_seed": "UNSET", "sqlite": "3.43.2"}`.
+- External input: `{"configured": true, "recovery": "EXTERNAL_INPUT_NOT_ARCHIVED", "sha256": {"database": "fa7578c3c2e2f19dee918b3801c627ce6edf526ce6d94e04c71a83038c2c215b"}}`.
+- Full artifact: `local/refactor/S9c6b-B364-final/closure.json`; SHA256 `56ce3d79290ccdc8cd5eaae2888a414cc0591bb4768a9600db36bdce7760f2a8`; stdout/stderr alongside it.
+- Retention: LOCAL_ONLY, not a permanent backup. A hash identifies bytes but cannot recover them. Re-running creates comparable new evidence, not the old execution.
+- Executed modules/fragments: 205; this is observed loading/completion, not full function/path coverage. Detailed mappings remain in the artifact.
+- Measurements (changed from prior artifact): `{"S9c6b_dual_consumer": {"DEV_global_consumed": false, "Take_per_received_reply": 1, "UI_consumers": 2, "thousand_Ready_or_idle_extra_requests": 0}}`.
+- Limits/mocks: `{"exclusions": {"historical_unrelated_suites": "Selected program scenarios only; inherited stage regressions are named when selected. No old assertions modified."}, "native_mocks": ["synthetic owner/city/district/building methods", "explicit catalogue stub for D workload fixtures", "B270 seven real writers with native doubles"]}`; LOCAL_SIMULATION only.
+
+Static package: {"Lua51": 212, "XML": 25, "package_files": 334, "modinfo": 391}

@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "7d4d944de537c300e36e1117d9e97ea2ab1b072d24cda5403e3e258b858a5ef1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md",
-      "provenance": "B363.390 Publish fixed institution views with protected city reference reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "382670dbd4a4a0a2e706a6b9f9d5cb9d2578f7246744451b3e126950680ce5b4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B364_Refactor_S9c6b.md",
+      "provenance": "B364.391 Route institution displays through one ordered accepted reply; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "49550d51c7813ca5877c9546a7e1e68d7d57ad92e478de6f64596e170a261383",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md",
-      "provenance": "B363.390 Publish fixed institution views with protected city reference reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "ed79a5482319f6d97fd38b9d408fcd87a4d07736af2d54e2213d0d71718eeb39",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B364_Refactor_S9c6b.md",
+      "provenance": "B364.391 Route institution displays through one ordered accepted reply; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1206,9 +1206,9 @@
       "provenance": "B091 UI evidence supplement; no identity authority changes"
     },
     "Mod/UI/CityPotential.lua": {
-      "sha256": "ecaa2a77de27ac5aa16a46bfdfc796e6320f0dc9424ff1338b5d8bdf606d9deb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B266_Institution_Refresh_Recovery.md",
-      "provenance": "B266 authorized native Stack/Grid sizing, unconditional UI guard release and bounded failure stages. 64 scoped local tests PASS; gameplay unchanged; native recovery pending."
+      "sha256": "e4f9976c80e6c86bfae903af943f245255a5d7c7965ced18c10ce81c1ad19c59",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B364_Refactor_S9c6b.md",
+      "provenance": "B364.391 Route institution displays through one ordered accepted reply; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CityPotential.xml": {
       "sha256": "ee21aabc5a688151475978bc1fbd261edfeb64368c8f73e7f91789ed35e24043",
@@ -1406,9 +1406,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/InstitutionOverview.lua": {
-      "sha256": "5b85c0a88a59fcf285ee5dc3cdc079e6a201b6afa265905433a95870dcd9a013",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "sha256": "5883f751f2d0a45e6caf64118d286e4caf1a84256c2e5022ac33f091b664ebac",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B364_Refactor_S9c6b.md",
+      "provenance": "B364.391 Route institution displays through one ordered accepted reply; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/Institutions.lua": {
       "sha256": "f239ef9364fbbeb9d1b7574fd236253c51df7ffd5fed44da6df42373b9919864",

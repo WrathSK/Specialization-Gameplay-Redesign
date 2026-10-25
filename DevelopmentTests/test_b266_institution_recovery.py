@@ -12,14 +12,16 @@ SETUP = """
  city=cities[4];asynchronous=true
  function answer(p)
   local c=cities[p.CityID]
-  ExposedMembers.SPC_P0.CityPresentationView={owner=0,cityID=c.id,x=c.x,y=c.y,token=p.Token,
+  local v={owner=0,cityID=c.id,x=c.x,y=c.y,token=p.Token,
    specialization=c.kind or 'NONE',active=c.active,potential=c.potential,activeStatus='KNOWN',
    institutionArchive={},institutionSummary={known=true,dialogue=2,insights=1,
     tradition={age=2,percent=1,nextAge=10,state='COUNTING'},engineering=1,templatesKnown=true,
     buildingTemplates=1,districtTemplates=1,reputation={age=3,state='COUNTING'}}}
+  ExposedMembers.SPC_P0.CityPresentationView=v;publishPresentation(p,v)
  end
  UI.RequestPlayerOperation=function(pid,op,p)
   assert(pid==0 and p.Action=='CITY_PRESENTATION_READ')
+  requestPorts[p]=ExposedMembers.SPC_P0.PlayerActionReplies.Presentations
   requests[#requests+1]=p;if not asynchronous then answer(p)end
  end
  function publishCity(c)

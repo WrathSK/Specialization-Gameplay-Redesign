@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="390">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="391">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B363.390：机构展示新增独立有界回复，城市引用读取保持在受保护边界内。</Description>
+    <Description>B364.391：机构界面统一接收已验收回复，保留未知值及原生开关行为。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
