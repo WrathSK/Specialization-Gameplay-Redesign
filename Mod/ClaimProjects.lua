@@ -6,7 +6,7 @@ function SPCClaimProjects.Start(P,shared)
  local store=assert(shared.CityProgressionStore);local cp=SPCCityIdentityRead.Copy
  local d={views={},syncAck={},revision=0,status="等待加载或城市生产面板确认"};shared.ClaimProjects=d
  local turn
- local ready=false;local busy=false;local dirty={};local active={};local errors={}
+ local ready=false;local busy=false;local dirty={};local rounds=SPCTimedProjects.WorkSet(cp);local errors={}
  function d.IsBusy()return busy end -- read-only GC scheduling guard; no transaction authority
  local kinds={'RESEARCH','CULTURE','INDUSTRY','COMMERCE'};local projects={};local markers={}
  for _,k in ipairs(kinds)do projects['PROJECT_SPC_CLAIM_'..k]=k;markers[#markers+1]='BUILDING_SPC_CLAIM_'..k end
@@ -26,14 +26,16 @@ function SPCClaimProjects.Start(P,shared)
    assert(v.owner==c:GetOwner() and v.id==c:GetID() and v.turn==Game.GetCurrentGameTurn() and matches,'队列读数不匹配');return v.size
   end,{read='当前生产不可读',unique='认领必须为唯一当前目标；队列数量=',appendSize=true})
  end
+ local function wake(pid,id)rounds.Wake(pid,id);mark(pid,id)end
  local function stop(c,s,why)
   if s and s.timer and s.timer.stage=='ACTIVE' then
    local t=cp(s.timer);t.stage='STOPPED';t.reason=why;store.WriteClaimTimer(c:GetOwner(),c,s.timer,t)
   end
+  rounds.Forget(c:GetOwner(),c:GetID())
  end
  local function audit(pid,id)
-  local k=key(pid,id);local c=city(pid,id);active[k]=nil
-  if not c or c:GetOwner()~=pid then publish(pid,id,nil);return end
+  local k=key(pid,id);local c=city(pid,id);rounds.Defer(pid,id)
+  if not c or c:GetOwner()~=pid then rounds.Forget(pid,id);publish(pid,id,nil);return end
   local ok,s=pcall(state,c)
   -- Access is transient; unknown authority disables access without deleting records.
   for i,kind in ipairs(kinds)do
@@ -45,17 +47,18 @@ function SPCClaimProjects.Start(P,shared)
     assert(P.HasBuilding(b,row.Index)==wanted,'认领入口更新未确认')
    end
   end
-  if not ok then publish(pid,id,{stage='STOPPED',reason=tostring(s):gsub('^.-:%d+: ',''):sub(1,160)});return end
-  if not s then publish(pid,id,nil);return end
-  if s.receipt then publish(pid,id,{stage='COMPLETED',project=s.receipt.project,reason='专业已认领，Potential 1'});return end
-  local t=s.timer
-  if t and t.stage=='ACTIVE' then
+  if not ok then rounds.Block(pid,id);publish(pid,id,{stage='STOPPED',reason=tostring(s):gsub('^.-:%d+: ',''):sub(1,160)});return end
+  if not s then rounds.Forget(pid,id);publish(pid,id,nil);return end
+  if s.receipt then rounds.Forget(pid,id);publish(pid,id,{stage='COMPLETED',project=s.receipt.project,reason='专业已认领，Potential 1'});return end
+  local t=s.timer;rounds.Track(pid,id,t and t.stage)
+  if t and t.stage=='ACTIVE'and rounds.CanRead(pid,id)then
    local good,_,matches=pcall(queue,c,t.project)
    if good and not matches then stop(c,s,'已改选目标；重新选择须完整占用一回合');t=state(c).timer
-   elseif not good then publish(pid,id,{stage='STOPPED',project=t.project,reason='当前队列未确认；不完成项目'});active[k]={pid,id};return
+   elseif not good then publish(pid,id,{stage='STOPPED',project=t.project,reason='当前队列未确认；不完成项目'});rounds.Block(pid,id);return
    elseif Game.GetCurrentGameTurn()>t.start+1 then stop(c,s,'错过完整回合窗口；请重新选择');t=state(c).timer
-   else active[k]={pid,id}end
+   else rounds.Track(pid,id,t.stage)end
   end
+  if t and t.stage=='ACTIVE'and not rounds.CanRead(pid,id)then publish(pid,id,{stage='STOPPED',project=t.project,reason='当前队列未确认；等待相关事件，不完成项目'});return end
   if not t and s.eligible then
    local ok,target=P.Call(c:GetBuildQueue(),'CurrentlyBuilding')
    if ok and projects[target] then
@@ -67,7 +70,7 @@ function SPCClaimProjects.Start(P,shared)
  end
  local function safe(pid,id,fn)
   local ok,err=pcall(fn)
-  if not ok then errors[key(pid,id)]=tostring(err);publish(pid,id,{stage='STOPPED',reason=tostring(err):gsub('^.-:%d+: ',''):sub(1,160)})end
+  if not ok then rounds.Block(pid,id);errors[key(pid,id)]=tostring(err);publish(pid,id,{stage='STOPPED',reason=tostring(err):gsub('^.-:%d+: ',''):sub(1,160)})end
   return ok
  end
  function d.Flush()
@@ -75,17 +78,19 @@ function SPCClaimProjects.Start(P,shared)
   local work=dirty;dirty={}
   for _,v in pairs(work)do safe(v[1],v[2],function()audit(v[1],v[2])end)end
   busy=false
+  for _,v in pairs(rounds.TakeRecovery())do turn(v[1],false,v[2])end
  end
  -- One city sync: rehydrate access/timer; settle only a previously saved due timer. Never begin a timer.
  function d.Sync(pid,id,token)
   if d.startupError or busy or not P.IsTestPlayer(pid) or type(id)~='number' then return end
   local c=city(pid,id);if not c or c:GetOwner()~=pid then return end
-  ready=true;d.status='已就绪';mark(pid,id);d.Flush()
+  ready=true;d.status='已就绪';wake(pid,id);d.Flush()
   turn(pid,false,id)
   if type(token)=='string' then d.syncAck[key(pid,id)]=token end
  end
  function d.Request(pid,p)
   if d.startupError or not ready or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number' or not projects[p.Project] then return end
+  rounds.Wake(pid,p.CityID)
   safe(pid,p.CityID,function()
    local c=assert(city(pid,p.CityID),'城市不可读');local s=assert(state(c),'不是候选城市')
    assert(s.eligible and s.set[projects[p.Project]],'不在冻结候选内')
@@ -132,23 +137,26 @@ function SPCClaimProjects.Start(P,shared)
    assert(s.eligible and s.set[kind],'完成事件不在候选内')
    local e=district(c,kind);e.reference=s.reference;e.token=s.token;e.kind=kind;e.project=row.ProjectType;e.turn=Game.GetCurrentGameTurn()
    store.ClaimComplete(pid,c,e)
-   active[key(pid,id)]=nil;mark(pid,id)
+   rounds.Forget(pid,id);mark(pid,id)
   end)
   -- This can reenter from FinishProgress; Flush is deliberately deferred.
  end
  turn=function(pid,ending,onlyID)
   if d.startupError or not ready or not P.IsTestPlayer(pid)then return end
-  local work=cp(active)
-  for _,v in pairs(work)do if v[1]==pid and (not onlyID or v[2]==onlyID) then safe(pid,v[2],function()
+  local work=rounds.Active()
+  for _,v in pairs(work)do if v[1]==pid and (not onlyID or v[2]==onlyID)and rounds.Runnable(pid,v[2])then safe(pid,v[2],function()
    local c=assert(city(pid,v[2]));local s=state(c);local t=s and s.timer
-   if not t or t.stage~='ACTIVE' then return end
+   if not t or t.stage~='ACTIVE'then rounds.Track(pid,v[2],t and t.stage);return end
+   if not rounds.Runnable(pid,v[2])then return end
    local q,match=queue(c,t.project)
+   if not rounds.Runnable(pid,v[2])then return end
    if not match then stop(c,s,'当前目标已改变');mark(pid,v[2]);return end
    local now=Game.GetCurrentGameTurn()
-   if ending and now==t.start then
+   local boundary=SPCTimedProjectModel.Boundary(t.start,t.deactivated,now,ending)
+   if boundary=='END'then
     local next=cp(t);next.deactivated=true;store.WriteClaimTimer(pid,c,t,next)
-   elseif not ending and now>t.start then
-    if now~=t.start+1 or not t.deactivated then stop(c,s,'未确认完整生产回合；请重新选择')
+   elseif boundary=='DUE'or boundary=='MISSED'then
+    if boundary=='MISSED'then stop(c,s,'未确认完整生产回合；请重新选择')
     else
      local next=cp(t);next.stage='CALLING';next.reason='等待原生完成事件；结果未知时不重复调用'
      store.WriteClaimTimer(pid,c,t,next) -- persist before potentially reentrant native call
@@ -177,7 +185,7 @@ function SPCClaimProjects.Start(P,shared)
  hook('PlayerTurnDeactivated',function(pid)turn(pid,true)end)
  hook('PlayerTurnActivated',function(pid)turn(pid,false)end)
  for _,name in ipairs({'CityProductionChanged','CityProductionQueueChanged'})do hook(name,function(pid,id)
-  if ready and P.IsTestPlayer(pid) and active[key(pid,id)]then safe(pid,id,function()
+  if ready and P.IsTestPlayer(pid) and rounds.Has(pid,id)then rounds.Wake(pid,id); safe(pid,id,function()
    local c=assert(city(pid,id));local s=state(c)
    if s and s.timer and s.timer.stage=='ACTIVE' then
     local _,match=queue(c,s.timer.project);if not match then stop(c,s,'已改选目标；需重新占用完整回合')end
@@ -185,11 +193,11 @@ function SPCClaimProjects.Start(P,shared)
   end)end
   mark(pid,id)
  end)end
- for _,name in ipairs({'CityProductionUpdated','CityTransfered','CityInitialized'})do hook(name,mark)end
- if shared.FactChanges then shared.FactChanges.RegisterConsumer('ClaimProjects',function(e)mark(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
+ for _,name in ipairs({'CityProductionUpdated','CityTransfered','CityInitialized'})do hook(name,wake)end
+ if shared.FactChanges then shared.FactChanges.RegisterConsumer('ClaimProjects',function(e)wake(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
  store.RegisterExit('ClaimProjects',function(c,loss)
   store.RemoveOwned(c,loss,markers)
-  local k=key(loss.origin.owner,loss.origin.cityID);active[k]=nil;dirty[k]=nil;publish(loss.origin.owner,loss.origin.cityID,nil)
+  local k=key(loss.origin.owner,loss.origin.cityID);rounds.Forget(loss.origin.owner,loss.origin.cityID);dirty[k]=nil;publish(loss.origin.owner,loss.origin.cityID,nil)
  end)
  if shared.TimedProjectReaders then shared.TimedProjectReaders.Attach('ClaimProjects',d)end
 end

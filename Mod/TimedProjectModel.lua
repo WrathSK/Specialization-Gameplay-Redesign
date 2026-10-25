@@ -10,3 +10,10 @@ function SPCTimedProjectModel.ClassifyQueue(target,size,project)
  end
  return 'UNKNOWN'
 end
+
+-- Shared clock facts only. Each owner decides writes, cancellation and proof.
+function SPCTimedProjectModel.Boundary(start,ended,now,ending)
+ if ending then return now==start and 'END'or 'WAIT'end
+ if now>start then return now==start+1 and ended and 'DUE'or 'MISSED'end
+ return 'WAIT'
+end

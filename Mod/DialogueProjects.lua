@@ -6,7 +6,7 @@ function SPCDialogueProjects.Start(P,shared)
  local M=SPCDialogueProjectModel;local cp=M.Copy;local store=assert(shared.CityProgressionStore)
  local PROJECT='PROJECT_SPC_ERA_DIALOGUE';local MARKER='BUILDING_SPC_ERA_DIALOGUE_ACCESS'
  local d={views={},syncAck={},revision=0};shared.DialogueProjects=d
- local ready,busy=false,false;local dirty,active,settling,interrupted,finishing,armed={},{},{},{},{},{};local lastEra
+ local ready,busy=false,false;local rounds=SPCTimedProjects.WorkSet(cp);local advance;local dirty,settling,interrupted,finishing,armed={},{},{},{},{};local lastEra
  local function key(pid,id)return tostring(pid)..':'..tostring(id)end
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
  local function ref(c)return {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}end
@@ -20,19 +20,20 @@ function SPCDialogueProjects.Start(P,shared)
   if ok and row and row.EraType then return row.EraType end
   return assert(ExposedMembers.SPC_DialogueGameEra,'游戏时代接口未就绪')()
  end
- local function mark(pid,id)
-  if P.IsTestPlayer(pid) and type(id)=='number' then dirty[key(pid,id)]={pid,id}end
+ local function mark(pid,id,qualificationOnly)
+  if P.IsTestPlayer(pid) and type(id)=='number' then local k=key(pid,id);local old=dirty[k];dirty[k]={pid,id,qualificationOnly==true and (not old or old[3]==true)}end
  end
- local function markPlayer(pid)
+ local function markPlayer(pid,qualificationOnly)
   if not P.IsTestPlayer(pid)then return end
-  for _,c in Players[pid]:GetCities():Members()do mark(pid,c:GetID())end
+  for _,c in Players[pid]:GetCities():Members()do mark(pid,c:GetID(),qualificationOnly)end
  end
+ local function wake(pid,id)rounds.Wake(pid,id);mark(pid,id)end
  local function publish(pid,id,v)
   local k=key(pid,id)
   if not same(d.views[k],v)then d.views[k]=v;d.revision=d.revision+1 end
  end
- local function read(pid,c)
-  local s=store.DialogueState(pid,c);local f=shared.EffectiveFacts.Read(pid,c)
+ local function read(pid,c,s)
+  s=s or store.DialogueState(pid,c);local f=shared.EffectiveFacts.Read(pid,c)
   assert(f.token==s.token and f.owner==pid and f.cityID==c:GetID(),'城市专业引用不一致')
   local known=f.activeStatus=='KNOWN' and not f.investmentPending
   return s,f,known,known and f.specialization=='CULTURE' and f.active>=3
@@ -52,19 +53,21 @@ function SPCDialogueProjects.Start(P,shared)
  end
  local function cancel(pid,c,s,reason)
   if s.value and s.value.pending then write(pid,c,s,M.Cancel(s.value,reason))end
-  active[key(pid,c:GetID())]=nil;interrupted[key(pid,c:GetID())]=nil;armed[key(pid,c:GetID())]=nil;mark(pid,c:GetID())
+  rounds.Forget(pid,c:GetID());interrupted[key(pid,c:GetID())]=nil;armed[key(pid,c:GetID())]=nil;mark(pid,c:GetID())
  end
  local function safe(pid,id,fn)
   local ok,why=pcall(fn)
   if not ok then
+   rounds.Block(pid,id)
    local old=d.views[key(pid,id)]
    publish(pid,id,{stage='HELD',reference=old and old.reference,token=old and old.token,reason=tostring(why):gsub('^.-:%d+: ',''):sub(1,180)})
   end
   return ok
  end
- local function audit(pid,id)
+ local function audit(pid,id,qualificationOnly)
   local c=city(pid,id);local k=key(pid,id)
-  if not c or c:GetOwner()~=pid then active[k]=nil;publish(pid,id,nil);return end
+  if not qualificationOnly then rounds.Defer(pid,id)end
+  if not c or c:GetOwner()~=pid then rounds.Forget(pid,id);publish(pid,id,nil);return end
   local ok,s,f,known,eligible=pcall(read,pid,c)
   local eOK,e=pcall(era)
   local allowed=ok and known and eligible and eOK and not (s.value and s.value.used[e])
@@ -78,18 +81,20 @@ function SPCDialogueProjects.Start(P,shared)
   if not eOK then error(e)end
   local v=s.value;local p=v and v.pending
   if p then
-   active[k]={pid,id}
+   rounds.Track(pid,id,p.stage)
    if interrupted[k] then cancel(pid,c,s,'生产已中断；本轮取消，未消耗时代机会');v=store.DialogueState(pid,c).value;p=nil
    elseif known and not eligible then cancel(pid,c,s,'资格已失效；本轮取消，未消耗时代机会');v=store.DialogueState(pid,c).value;p=nil
-   elseif known then
+   elseif known and p.stage=='ACTIVE'and not qualificationOnly and rounds.CanRead(pid,id)then
     local _,matches=queue(c)
     if not matches and p.stage=='ACTIVE' then cancel(pid,c,s,'已改选生产；本轮取消，重新开始需完整一回合');v=store.DialogueState(pid,c).value;p=nil end
    end
-  else active[k]=nil end
+  else rounds.Forget(pid,id)end
+  if p and not known then rounds.Block(pid,id)end
   local stage=p and p.stage or (v and v.used[e] and 'USED' or eligible and 'AVAILABLE' or 'INELIGIBLE')
   local reason=p and p.reason or (stage=='USED' and '本游戏时代已成功；不可重复' or stage=='AVAILABLE' and '从城市生产列表选择时代对话' or '需要文化身份及ACTIVE III')
   if not known then stage='HELD';reason='当前资格尚不可确认；未清除历史，也不完成项目'
   elseif not p and v and v.last and stage=='AVAILABLE' then reason=v.last.reason..'；可重新选择'end
+  if p and p.stage=='ACTIVE'and not rounds.CanRead(pid,id)then stage='HELD';reason='当前资格或生产未确认；等待相关事件，不完成项目'end
   local lastGain,lastX
   if v and v.last then for _,r in pairs(v.used)do if r.id==v.last.id then lastGain=r.gain;lastX=r.x end end end
   publish(pid,id,{stage=stage,reason=reason,start=p and p.start,era=p and p.era or e,total=v and v.total or 0,
@@ -98,17 +103,17 @@ function SPCDialogueProjects.Start(P,shared)
  function d.Flush()
   if not ready or busy then return end;busy=true
   local work=dirty;dirty={}
-  for _,v in pairs(work)do safe(v[1],v[2],function()audit(v[1],v[2])end)end
+  for _,v in pairs(work)do safe(v[1],v[2],function()audit(v[1],v[2],v[3])end)end
   busy=false
+  for _,v in pairs(rounds.TakeRecovery())do advance(v[1],false,v[2])end
  end
  function d.RefreshAccess(pid,id)
-  mark(pid,id);d.Flush()
+  wake(pid,id);d.Flush()
  end
  function d.Refresh(pid,id)
   d.RefreshAccess(pid,id)
   if shared.DialogueEffects then shared.DialogueEffects.Audit({player=pid,city=id})end
  end
- local advance
  function d.Sync(pid,id,token)
   if not P.IsTestPlayer(pid) or type(id)~='number' or not city(pid,id)then return end
   ready=true;d.Refresh(pid,id);advance(pid,false,id)
@@ -116,6 +121,7 @@ function SPCDialogueProjects.Start(P,shared)
  end
  function d.Request(pid,p)
   if not ready or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number' then return end
+  rounds.Wake(pid,p.CityID)
   safe(pid,p.CityID,function()
    local c=assert(city(pid,p.CityID),'城市不可读');local s,_,known,eligible=read(pid,c)
    if interrupted[key(pid,p.CityID)] then cancel(pid,c,s,'改选后重新开始');s=store.DialogueState(pid,c)end
@@ -155,27 +161,31 @@ function SPCDialogueProjects.Start(P,shared)
    if not good then
     write(pid,c,s,M.Hold(v,'完成时事实未确认；不以之后的馆藏补算'));mark(pid,id);return
    end
-   write(pid,c,s,M.Complete(v,p.id,sample.x,sample.turn));active[k]=nil;interrupted[k]=nil;mark(pid,id)
+   write(pid,c,s,M.Complete(v,p.id,sample.x,sample.turn));rounds.Forget(pid,id);interrupted[k]=nil;mark(pid,id)
    -- Confirmed Store receipt publishes DIALOGUE, including a zero-X success.
   end)
   settling[k]=nil
  end
  advance=function(pid,ending,onlyID)
   if not ready or busy or not P.IsTestPlayer(pid)then return end
-  local work=cp(active)
-  for _,v in pairs(work)do if v[1]==pid and (onlyID==nil or onlyID==v[2])then safe(pid,v[2],function()
-   local c=assert(city(pid,v[2]));local s,_,known,eligible=read(pid,c);local p=s.value and s.value.pending
-   if not p then active[key(pid,v[2])]=nil;return end
+  local work=rounds.Active()
+  for _,v in pairs(work)do if v[1]==pid and (onlyID==nil or onlyID==v[2])and rounds.Runnable(pid,v[2])then safe(pid,v[2],function()
+   local c=assert(city(pid,v[2]));local s=store.DialogueState(pid,c);local p=s.value and s.value.pending
+   if not p or p.stage~='ACTIVE'then rounds.Track(pid,v[2],p and p.stage);return end
+   local _,_,known,eligible=read(pid,c,s)
    if known and not eligible then cancel(pid,c,s,'资格已失效；本轮取消');return end
-   if not known then return end
+   if not known then rounds.Block(pid,v[2]);return end
+   if not rounds.Runnable(pid,v[2])then return end
    local q,matches=queue(c)
+   if not rounds.Runnable(pid,v[2])then return end
    if not matches and p.stage=='ACTIVE' then cancel(pid,c,s,'生产中断；本轮取消');return end
    if p.stage~='ACTIVE' then return end
    local now=Game.GetCurrentGameTurn()
-   if ending and now==p.start then
+   local boundary=SPCTimedProjectModel.Boundary(p.start,p.ended,now,ending)
+   if boundary=='END'then
     if not p.ended then write(pid,c,s,M.EndTurn(s.value,now))end
-   elseif not ending and now>p.start then
-    if now~=p.start+1 or not p.ended then cancel(pid,c,s,'未确认完整生产回合；请重新选择')
+   elseif boundary=='DUE'or boundary=='MISSED'then
+    if boundary=='MISSED'then cancel(pid,c,s,'未确认完整生产回合；请重新选择')
     else
      assert(type(P.Field(q,'FinishProgress'))=='function','完成接口缺失')
      write(pid,c,s,M.Calling(s.value,now)) -- persist before native reentry, never replay after load
@@ -190,9 +200,11 @@ function SPCDialogueProjects.Start(P,shared)
  local function production(pid,id)
   if not ready or not P.IsTestPlayer(pid)then return end
   local k=key(pid,id)
-  if active[k] and not settling[k]then safe(pid,id,function()
+  rounds.Wake(pid,id)
+  if rounds.Has(pid,id)and not settling[k]then safe(pid,id,function()
    local c=assert(city(pid,id));local s,_,known,eligible=read(pid,c);local p=s.value and s.value.pending
    if p and known and not eligible then cancel(pid,c,s,'资格已失效；本轮取消')
+   elseif p and not known then rounds.Block(pid,id)
    elseif p then
     local _,matches=queue(c)
     -- Native completion can publish target change before CityProjectCompleted.
@@ -240,18 +252,18 @@ function SPCDialogueProjects.Start(P,shared)
  hook('PlayerTurnDeactivated',function(pid)advance(pid,true)end)
  hook('PlayerTurnActivated',function(pid)
   if not ready or not P.IsTestPlayer(pid)then return end
-  local ok,e=pcall(era);if ok and e~=lastEra then lastEra=e;markPlayer(pid);d.Flush()end
+  local ok,e=pcall(era);if ok and e~=lastEra then lastEra=e;markPlayer(pid,true);d.Flush()end
   advance(pid,false)
  end)
  for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged'})do hook(name,function(pid)
   if not ready then return end
   for p in pairs(Players)do if P.IsTestPlayer(p) and (type(pid)~='number' or pid==p or pid<0)then
    -- Ordered qualification changes cannot be coalesced away across a loss/return burst.
-   for _,v in pairs(cp(active))do if v[1]==p then safe(p,v[2],function()audit(p,v[2])end)end end
-   markPlayer(p)
+   for _,v in pairs(rounds.All())do if v[1]==p then safe(p,v[2],function()audit(p,v[2],true)end)end end
+   markPlayer(p,true)
   end end
  end,true)end
- hook('CityInitialized',mark,true);hook('CityTransfered',mark,true)
+ hook('CityInitialized',wake,true);hook('CityTransfered',wake,true)
  hook('LoadScreenClose',function()
   ready=true
   for pid in pairs(Players)do if P.IsTestPlayer(pid)then markPlayer(pid)end end
@@ -261,11 +273,11 @@ function SPCDialogueProjects.Start(P,shared)
   store.RemoveOwned(c,loss,{MARKER})
   for k,row in pairs(d.views)do if row.reference and row.reference.owner==loss.origin.owner
    and row.reference.x==c:GetX() and row.reference.y==c:GetY()then
-   active[k]=nil;dirty[k]=nil;interrupted[k]=nil;armed[k]=nil;d.views[k]=nil;d.syncAck[k]=nil
+   rounds.Forget(row.reference.owner,row.reference.cityID);dirty[k]=nil;interrupted[k]=nil;armed[k]=nil;d.views[k]=nil;d.syncAck[k]=nil
   end end
   d.revision=d.revision+1
  end)
- store.RegisterReturn('DialogueProjects',function(pid,c)mark(pid,c:GetID())end)
+ store.RegisterReturn('DialogueProjects',function(pid,c)wake(pid,c:GetID())end)
  function d.IsBusy()return busy or next(settling)~=nil end
  if shared.TimedProjectReaders then shared.TimedProjectReaders.Attach('DialogueProjects',d)end
 end

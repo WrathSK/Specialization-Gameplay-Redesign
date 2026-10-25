@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0779",
-    "runtime": "B327.354 / modinfo354",
+    "status": "S0780",
+    "runtime": "B328.355 / modinfo355",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "On user resume, continue S7d full-turn work-set and Crew proof/consume extraction, then S7e–S10. Do not deploy, promote main or launch the game.",
+  "goal": "Continue S7d Crew completion-proof/consume responsibilities, then S7e/f and S8–S10; no automatic deployment, main promotion or game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -329,6 +329,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
       "kind": "full",
       "reason": "Replace project SYNC retries with explicit readiness actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
+      "kind": "full",
+      "reason": "Suspend unknown project timers until related facts recover actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -355,8 +360,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
-    "local": "LOCAL_SIMULATION_PASS:447/447",
+    "report": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
+    "local": "LOCAL_SIMULATION_PASS:461/461",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

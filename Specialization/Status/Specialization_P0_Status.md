@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0779
-Implementation Build: B327.354 / modinfo354; stable/live B307.334
+Status Revision: S0780
+Implementation Build: B328.355 / modinfo355; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7D3B_USER_PAUSE
+Work State: REFACTOR_S7D4_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7d3b connects the three project UIs only after successful adapter/hook construction. Current reader/backend/service readiness permits one SYNC per city and availability generation; missing ACK, failed send and idle publication never cause city lookup or resend. New availability rearms only unsent intents, never a prior BEGIN. Old contexts cannot consume ACKs, overwrite selection status or clear a newly explicit intent. Queues still require S7d2 selection/related-event permits. Full-turn working sets and Crew proof/consume extraction remain next. User requested a safe pause after this verified batch; the next slice has not begun. [Result](Validation/Results/Specialization_B327_Refactor_S7d3b.md). Stable/live/main B307.334; no deployment/native PASS.
+User resumed the accepted program. S7d4 shares a pure END/WAIT/DUE/MISSED boundary classifier and a session-only pending/runnable/UNKNOWN work set across Claim, Dialogue and Engineering. HELD/CALLING and UNKNOWN-blocked ACTIVE rounds no longer perform turn-based queue or qualification retries. Related exact-city facts/production or explicit initialization Sync can restore timer work; recovery within the original due window settles once, missed windows never backfill. Independent models/receipts, ordered qualification-loss handling and native completion policies remain. Crew proof/consume and S7e–S10 remain next. [Result](Validation/Results/Specialization_B328_Refactor_S7d4.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: On user resume, continue S7d full-turn work-set and Crew proof/consume extraction, then S7e–S10. Do not deploy, promote main or launch the game.
+- Primary next: Continue S7d Crew completion-proof/consume responsibilities, then S7e/f and S8–S10; no automatic deployment, main promotion or game launch.
+
+## S0780 — B328.355 Suspend unknown project timers until related facts recover
+
+User resumed the accepted program. S7d4 shares a pure END/WAIT/DUE/MISSED boundary classifier and a session-only pending/runnable/UNKNOWN work set across Claim, Dialogue and Engineering. HELD/CALLING and UNKNOWN-blocked ACTIVE rounds no longer perform turn-based queue or qualification retries. Related exact-city facts/production or explicit initialization Sync can restore timer work; recovery within the original due window settles once, missed windows never backfill. Independent models/receipts, ordered qualification-loss handling and native completion policies remain. Crew proof/consume and S7e–S10 remain next.
 
 ## S0779 — B327.354 Replace project SYNC retries with explicit readiness
 

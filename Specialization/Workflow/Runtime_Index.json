@@ -111,9 +111,9 @@
       "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/ClaimProjects.lua": {
-      "sha256": "84a05d4fe519347b71973e7bd7d00d47586a573d5299e7a0aa36a098b5db15e2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B326_Refactor_S7d3a.md",
-      "provenance": "B326.353 Add fixed project-reader readiness and scoped study synchronization; local/static evidence only; no deployment/native PASS."
+      "sha256": "b239f05a187be029fcf7d27ac26aa6854007650214809f42ea8d7d039b3aee73",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
+      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
       "sha256": "175cdfeb1fa30bd8d367e0bb8ee7e8e605b57638b712cef14ea9a34e2e87b8c6",
@@ -541,9 +541,9 @@
       "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/DialogueProjects.lua": {
-      "sha256": "d0eee8067e6cf229c2a363bccbf0e03f583d1104f3549c63c5cc11098abbbaaf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B326_Refactor_S7d3a.md",
-      "provenance": "B326.353 Add fixed project-reader readiness and scoped study synchronization; local/static evidence only; no deployment/native PASS."
+      "sha256": "3c7b23993f78abc1b32aa994fd26da909cf385247409626dbeddca00f5abd10b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
+      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DistrictCompleteness.lua": {
       "sha256": "dc7d30c4e04c156b90faa9dfeb262f03e068b09023e536ebc180621da4c404f6",
@@ -576,9 +576,9 @@
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/EngineeringStudyProjects.lua": {
-      "sha256": "caa1b49b85dec3b1080b8da09582204263742a058e4ae8d63eecacfca56757eb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B326_Refactor_S7d3a.md",
-      "provenance": "B326.353 Add fixed project-reader readiness and scoped study synchronization; local/static evidence only; no deployment/native PASS."
+      "sha256": "147cee4530535a15293340b0a50cd84111701afd3b95232209fa720a17a1fd4a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
+      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/EnvelopeProbe.lua": {
       "sha256": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "bd96a2dc8c9433ff541b4e529ff2e3cf91ac732ba8d8e05042c22f153309bbbf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
-      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
+      "sha256": "1db9cb7fb51e47bc2a682f6bed6eec1446323ed8e432f48d575ba35a7ec1a66c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
+      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e30a44c0cfd6d14a91367ac9e5c814fe9cc738d709f9407ec5acb965a79ea3a5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
-      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
+      "sha256": "0ac23fcfdfae6d64d320cc709c0382c41328129c69658274c7a7d11b3b0cc787",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
+      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1621,14 +1621,14 @@
       "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/TimedProjectModel.lua": {
-      "sha256": "41857de84268ec47bc06171e964f18e693b1d670c1f78cf59f8bf7b836ef1da4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B324_Refactor_S7d1.md",
-      "provenance": "B324.351 Distinguish confirmed production targets from unknown queue reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "85b17900e90a763ec4e7de5a25163bb998283946d1155b3e6272a5fef4515214",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
+      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/TimedProjects.lua": {
-      "sha256": "c8ad17f5d491371437c0dd286faf1201c3de7ba3f20c2869b03919728c8605a1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B324_Refactor_S7d1.md",
-      "provenance": "B324.351 Distinguish confirmed production targets from unknown queue reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "d64e313c994c466e16de70c7a1de291d478ae2c236fbc60f1ce84c4ee58ee371",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
+      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/TimedProjectSelectionClient.lua": {
       "sha256": "fd2df0e8da4ade89fa4649fe148b991927552b1edcda8f117f7cfbbf1340bd6b",
