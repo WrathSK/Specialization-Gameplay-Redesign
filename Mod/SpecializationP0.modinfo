@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="358">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="359">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B331.358：待处理工作和旧载体使用正式城市标识，未知引用不造成重复轮询。</Description>
+    <Description>B332.359：拆分专业子记录校验边界；完成本地检查后按用户要求安全暂停。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -145,6 +145,7 @@
       <File>CityIdentityMapping.lua</File>
       <File>UI/CityIdentityEvidence.lua</File>
       <File>CityProgressionStore.lua</File>
+      <File>StoreSubrecords.lua</File>
       <File>ResearchTradition.lua</File>
       <File>ResearchTraditionEffects.lua</File>
       <File>CitySequenceProbe.lua</File>
@@ -589,6 +590,7 @@
       <File>CityIdentityMapping.lua</File>
       <File>UI/CityIdentityEvidence.lua</File>
     <File>CityProgressionStore.lua</File>
+    <File>StoreSubrecords.lua</File>
       <File>ResearchTradition.lua</File>
       <File>ResearchTraditionEffects.lua</File>
       <File>CitySequenceProbe.lua</File>

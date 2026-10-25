@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0784",
-    "runtime": "B331.358 / modinfo358",
+    "status": "S0785",
+    "runtime": "B332.359 / modinfo359",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S8 sub-record isolation and deterministic recovery/exit receipts, then S9–S10; D5 native proof remains OPEN. No automatic deployment/main/native launch.",
+  "goal": "After the user resumes, define S8b ability-specific reliable recovery/permanent-fault criteria and implement scoped isolation/lifecycle migration, then S9–S10. Retain D5 native proof OPEN. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -354,6 +354,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
       "kind": "full",
       "reason": "Store-owned scalar city references actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B332_Refactor_S8a.md",
+      "kind": "full",
+      "reason": "Extract fixed sub-record validation ownership actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -380,8 +385,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
-    "local": "LOCAL_SIMULATION_PASS:156/156",
+    "report": "Specialization/Status/Validation/Results/Specialization_B332_Refactor_S8a.md",
+    "local": "LOCAL_SIMULATION_PASS:386/386",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

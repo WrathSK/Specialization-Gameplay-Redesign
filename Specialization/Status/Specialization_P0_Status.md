@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0784
-Implementation Build: B331.358 / modinfo358; stable/live B307.334
+Status Revision: S0785
+Implementation Build: B332.359 / modinfo359; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7F_COMPLETE_CONTINUING
+Work State: REFACTOR_S8A_SAFE_APP_UPDATE_PAUSE
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7f replaces RuntimeWork/IndustrySupport raw-marker keys with a shared scalar native reference and Store index token. The new read-only Store.ReferenceToken is a locator for registered/held/former-holder sites, never ACTIVE/history/transaction authority. Unknown or unavailable modern providers never fall back to a City marker. Native owner/id/location and existing queue/target guards stay. Pending Industry causes are consumed before protected reads; UNKNOWN retains identity without publish rearming, and same-turn newer causes survive. No schema/permanent write change. D5 remains OPEN; no deployment/main/native PASS. [Result](Validation/Results/Specialization_B331_Refactor_S7f.md). Stable/live/main B307.334; no deployment/native PASS.
+S8a extracts nine fixed validation owners /14 fields into StoreSubrecords, preserving every assertion, original two-phase position, valid bytes, writes and strict pre-isolation failure behavior. Explicit Check reports independent CHECK_FAILED observations without repair, permanent-corruption classification or automatic work. Base identity/envelope/reference guards remain strict. D7 isolation/rebuild/defaults and lifecycle migration remain S8b; D5 native proof remains OPEN. User requested a safe app-update pause: close this verified develop batch and stop; no deployment/main/native PASS. [Result](Validation/Results/Specialization_B332_Refactor_S8a.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S8 sub-record isolation and deterministic recovery/exit receipts, then S9–S10; D5 native proof remains OPEN.
+- Primary next: After the user resumes, define S8b ability-specific reliable recovery/permanent-fault criteria and implement scoped isolation/lifecycle migration, then S9–S10. Retain D5 native proof OPEN.
+
+## S0785 — B332.359 Extract fixed sub-record validation ownership
+
+S8a extracts nine fixed validation owners /14 fields into StoreSubrecords, preserving every assertion, original two-phase position, valid bytes, writes and strict pre-isolation failure behavior. Explicit Check reports independent CHECK_FAILED observations without repair, permanent-corruption classification or automatic work. Base identity/envelope/reference guards remain strict. D7 isolation/rebuild/defaults and lifecycle migration remain S8b; D5 native proof remains OPEN. User requested a safe app-update pause: close this verified develop batch and stop; no deployment/main/native PASS.
 
 ## S0784 — B331.358 Store-owned scalar city references
 

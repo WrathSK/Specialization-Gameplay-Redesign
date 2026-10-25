@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B332.359 S8a extracts nine fixed validation owners /14 fields into StoreSubrecords, preserving every assertion, original two-phase position, valid bytes, writes and strict pre-isolation failure behavior. Explicit Check reports independent CHECK_FAILED observations without repair, permanent-corruption classification or automatic work. Base identity/envelope/reference guards remain strict. D7 isolation/rebuild/defaults and lifecycle migration remain S8b; D5 native proof remains OPEN. User requested a safe app-update pause: close this verified develop batch and stop; no deployment/main/native PASS. [Result](../../Status/Validation/Results/Specialization_B332_Refactor_S8a.md).
+
 B331.358 S7f replaces RuntimeWork/IndustrySupport raw-marker keys with a shared scalar native reference and Store index token. The new read-only Store.ReferenceToken is a locator for registered/held/former-holder sites, never ACTIVE/history/transaction authority. Unknown or unavailable modern providers never fall back to a City marker. Native owner/id/location and existing queue/target guards stay. Pending Industry causes are consumed before protected reads; UNKNOWN retains identity without publish rearming, and same-turn newer causes survive. No schema/permanent write change. D5 remains OPEN; no deployment/main/native PASS. [Result](../../Status/Validation/Results/Specialization_B331_Refactor_S7f.md).
 
 B330.357 S7e centralizes six exact retired-ID groups (135 buildings), retaining 87 inert definitions and all48 SQL-active Convergence cleanup targets. Cross and Aesthetic skip repeated legacy presence scans only after confirmed cleanup; current effect reads and all exact exits remain. RetireOnce rejects false/fault/stale-reference/load callbacks before stamping. Retired Convergence still validates owner and HistoricalReference on every call, including cache hits. New actual startup dependencies keep owner failures isolated. D5 completion attribution remains OPEN; no deployment/main/native PASS. [Result](../../Status/Validation/Results/Specialization_B330_Refactor_S7e.md).
@@ -290,7 +292,7 @@ B277 S5a1 precursor complete: [bounded registry/isolation](../../Status/Validati
 
 | Planned item / original IDs | HEAD status and source evidence | Next action / boundary |
 |---|---|---|
-| Declared sub-record hooks / F06,C003,D-7 | OPEN: Store93–152 inlines profession validation into one validator. | Registry key/validate/exit/loss/return/P4/tick; Store orders commits. D-7 applies to ability records, not corrupt base identity/envelope. |
+| Declared sub-record hooks / F06,C003,D-7 | CHANGED B332: nine fixed validation owners /14 fields extracted with original strict phases/assertions; explicit checks observe failures without repair. | S8b still owes per-ability temporary/permanent/rebuild criteria, fault isolation, lawful defaults and lifecycle hooks. D-7 is NOT yet complete; base identity/envelope stays strict. |
 | Exit receipts and HELD retry / F08,C009 technical | CHANGED: Store831–845 has per-exit pcall/attempts/in-memory finished;818 rejects missing old definitions;1273–1284 turn ticks lack held-exit retry. | ExitCompleted and bounded turn retry; consolidate legacy exits, missing definition is absent for that retired cleanup only. |
 | Deterministic return / C005 | OPEN: Store919 uses pairs without ordered per-observer isolation. | Preserve current gameplay outcomes; missed-loss inference, multi-hop, reservations, tombstones/raze and acquisition remain excluded. |
 

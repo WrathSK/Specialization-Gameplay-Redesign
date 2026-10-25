@@ -1051,6 +1051,24 @@
       "test_refactor_s4a.IndustryReentry",
       "test_refactor_s7a5",
       "test_refactor_s7a4"
+    ],
+    "S8a": [
+      "test_refactor_s8a",
+      "test_refactor_s7d5",
+      "test_refactor_s7d4",
+      "test_refactor_s7d1",
+      "test_refactor_s7c",
+      "test_refactor_s7b2",
+      "test_refactor_s7b1",
+      "test_refactor_s5a2",
+      "test_refactor_s5b",
+      "test_refactor_s7f.ActualStore",
+      "test_refactor_s7e.Registry",
+      "test_refactor_s3",
+      "test_refactor_s6e.RetainedReceipts",
+      "test_refactor_s6e.RetainedGuards",
+      "test_refactor_s6f.RetainedDevelopment",
+      "test_refactor_s6f.RetainedGuards"
     ]
   },
   "counterexamples": {},
@@ -1446,6 +1464,9 @@
     ],
     "Mod/CityReference.lua": [
       "test_refactor_s7f"
+    ],
+    "Mod/StoreSubrecords.lua": [
+      "test_refactor_s8a"
     ]
   },
   "exclusions": {
