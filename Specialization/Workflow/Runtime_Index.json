@@ -501,9 +501,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "9216ad73f9b681cbb1640192f9b26550c4a3ea2a6bc771095b401322c2ca5538",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
-      "provenance": "B310.337 Use guarded worker projections in Commerce and Development; local/static evidence only; no deployment/native PASS."
+      "sha256": "8af94412156a449d53a985ae2969699265103edac2f6c8e246d269302a21d52b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "4f4df0ed1eee502d9ee19ad8e053c6070b9f17d74b0e33eaba26f33ab13e256a",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "3b14eddbe8e7d26b42440ae7ece5cede749d183d59245e2a01fe1d1f6b3f7a7e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
-      "provenance": "B351.378 Clear obsolete initial Claim timers only from strict terminal receipts; local/static evidence only; no deployment/native PASS."
+      "sha256": "095f8a0b93184629e304544fedcd0514ccf1edce9ef47548edab045ce2638ef7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "57857c2373b257b2638dc1e22dea9b1fb62ff8124209c9b10842c541c24abd28",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
-      "provenance": "B351.378 Clear obsolete initial Claim timers only from strict terminal receipts; local/static evidence only; no deployment/native PASS."
+      "sha256": "c74419a661a3ac1114fc3e6e4bc1f12c7f8fc2cbb992cb31fec3609b0547f2db",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1186,9 +1186,9 @@
       "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
     },
     "Mod/UI/CapitalInvestmentUI.lua": {
-      "sha256": "e3ce29cc55a65ec356660a26f5b8d03b830111cf0adc62a89cbf6b78220955fe",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B241_Capital_Local.md",
-      "provenance": "B241 explicitly authorized D0056 Capital stable/venture contracts, guarded Store/native money receipts, existing current network projection and ordinary UI.155 targeted local checks PASS; native money/reload/settlement pending. Unrelated source and frozen evidence inherited."
+      "sha256": "5a4a84a59b532122e9e7a70cfd1f90ae0b741082f1af02c833ef3f4329786949",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CityBannerManager_SPC_Levels.lua": {
       "sha256": "849d2a82448990deb91f7b51b273cb71f6a086cd9d0cae047463209673d6f067",
@@ -1236,9 +1236,9 @@
       "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
     },
     "Mod/UI/CommerceUI.lua": {
-      "sha256": "f8e9efaf4e06bf5f54346b39f1558468a98c3fa0ec65fc1c8e853ac144b1d2bb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "ef9d498969592123616ec32b97a6fac2218545dc80623ca060ef0b828cdc031b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CopyYieldRefresh.lua": {
       "sha256": "b2d133cd6860fb60e0f3398032d77575b4332cfe6ff7834d1079327b8a4c1032",
@@ -1251,9 +1251,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "61739610c7ab2f8442473107be426db9c207961af627c585fda8a2b5dd61037c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B349_Refactor_S9a1.md",
-      "provenance": "B349.376 Declare fixed production-panel adapter phases without changing ordering; local/static evidence only; no deployment/native PASS."
+      "sha256": "2785ebe13f65f5f23513518bb76133722fedb6ff18912730debaf73182713795",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "b07ea80a0db7f1fb10bcc259dd711afacab49fd6edafb2b5d097e19a1abdc64b",
@@ -1276,9 +1276,9 @@
       "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
     },
     "Mod/UI/DevelopmentInvestmentUI.lua": {
-      "sha256": "f9be17cc361ba1be6dc8a18a17f95b7f8d9ec618287c90513298e0d8d83a4662",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "4b31475f35b1940444a8ab7c162261c94b5e0f756aa181b8ac1088a113482636",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DialogueProjectUI.lua": {
       "sha256": "9f969c7fb49b29f41e44d94c4087385b7e72fc3bdaf122cca065cec62d9826a3",
@@ -1576,9 +1576,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/UI/SafeAdapters.lua": {
-      "sha256": "819a7e4e183806c667316e67fa56a086ac4c796713a54e2dba8d91cfaa7144a1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B349_Refactor_S9a1.md",
-      "provenance": "B349.376 Declare fixed production-panel adapter phases without changing ordering; local/static evidence only; no deployment/native PASS."
+      "sha256": "151b3a23f73872c66061733a7679b45a425ba4ce03e05e0e003a47839899b2e8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/FactChanges.lua": {
       "sha256": "43d709d0d304fda52cd52c6faaf168bdad0e1334fe1e6ae3f07c358b59254afe",

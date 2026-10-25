@@ -55,9 +55,9 @@ function SPCDevelopmentInvestment.Start(P,shared)
   if changed>0 then emit('DEVELOPMENT_EFFECTS',{owner=c:GetOwner(),city=c:GetID(),contractDomain=domain,expected=domain and 50 or 0,count=changed})end
  end
  local function publish(pid,id,v)
-  local k=key(pid,id);local old=d.views[k];v.revision=old and old.revision or 0
+  local k=key(pid,id);local old=d.views[k];if v then v.revision=old and old.revision or 0 end
   if same(old,v)then return end
-  d.revision=d.revision+1;v.revision=d.revision;d.views[k]=cp(v)
+  d.revision=d.revision+1;if v then v.revision=d.revision end;d.views[k]=cp(v)
  end
  function d.Mark(pid,id)
   if not P.IsTestPlayer(pid)then return end
@@ -266,7 +266,7 @@ function SPCDevelopmentInvestment.Start(P,shared)
   return v,internal
  end
  function d.Refresh(pid,id,withQuotes)
-  local c=city(pid,id);if not c then d.views[key(pid,id)]=nil;quotes[key(pid,id)]=nil;openViews[key(pid,id)]=nil;return end
+  local c=city(pid,id);if not c then publish(pid,id,nil);quotes[key(pid,id)]=nil;openViews[key(pid,id)]=nil;return end
   local ok,v,q=pcall(function()if withQuotes then return snapshot(pid,c)else return sourceFacts(pid,c)end end)
   if not ok then v={stage='HELD',available=d.views[key(pid,id)] and d.views[key(pid,id)].available or false,canSign=false,reason=failure(v,pid,id,'REFRESH'),options={}}end
   if withQuotes then quotes[key(pid,id)]=ok and q or nil;openViews[key(pid,id)]=true
