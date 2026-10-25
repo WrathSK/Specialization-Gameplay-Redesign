@@ -1715,6 +1715,9 @@
     ],
     "S8b9": [
       "test_refactor_s8b9"
+    ],
+    "S8b10": [
+      "test_refactor_s8b10"
     ]
   },
   "counterexamples": {},

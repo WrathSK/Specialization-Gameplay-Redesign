@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0803",
-    "runtime": "B350.377 / modinfo377",
+    "status": "S0804",
+    "runtime": "B351.378 / modinfo378",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Assess strict already-completed Claim terminal cleanup,then S9 owner-specific UI revisions and Gameplay-owned target/request/display boundaries; retain unsupported permanent D7/native D5 items explicitly. No automatic deployment/main/native launch.",
+  "goal": "Continue S9 owner-specific UI revisions,Gameplay-owned target/request/display and shared adjacency slices,then S10 duty migration/deletion safeguards; retain exact D7/native D5 proof limitations. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -449,6 +449,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
       "kind": "full",
       "reason": "Rebuild only provable template metadata from complete saved history actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
+      "kind": "full",
+      "reason": "Clear obsolete initial Claim timers only from strict terminal receipts actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -475,8 +480,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
-    "local": "740 LOCAL_SIMULATION_PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
+    "local": "747 LOCAL_SIMULATION_PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

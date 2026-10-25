@@ -169,3 +169,19 @@ function S.TemplateMetadataCandidate(r,copy)
  end)
  if ok then return candidate,fields end -- failure/UNKNOWN is no reconstruction proof
 end
+
+-- An initial acquired-city Claim receipt belongs to the strict record envelope.
+-- It can prove its obsolete timer is terminal; never infer completion from time,
+-- a queue, an exception or a later restructuring episode.
+function S.NeedsCompletedClaimCleanup(r)
+ return type(r)=='table'and r.schema==3 and r.stage=='ACTIVE'and r.progression=='SPECIALIZED'
+  and r.restructuring==nil and not r.referenceInvalidated and not r.completionError
+  and type(r.acquisition)=='table'and r.acquisition.mode=='LEGACY_CLAIM'
+  and type(r.claim)=='table'and r.claimTimer~=nil
+end
+function S.CompletedClaimCandidate(r,copy)
+ if not S.NeedsCompletedClaimCleanup(r)then return end
+ local n=copy(r);n.claimTimer=nil
+ return n,{{key='claimTimer',field='claimTimer',previousType=type(r.claimTimer),basis='STRICT_INITIAL_CLAIM_RECEIPT'}}
+ -- Complete parent validation, native CAS and readback are still mandatory.
+end

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0803
-Implementation Build: B350.377 / modinfo377; stable/live B307.334
+Status Revision: S0804
+Implementation Build: B351.378 / modinfo378; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8B9_COMPLETE_CONTINUING
+Work State: REFACTOR_S8B10_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8b9 reconstructs redundant captured/lifecycle metadata only from complete validated typed saved template history and strict Industry/base proof. Ledger,learned/district receipts and extensions remain exact; valid lifecycle is untouched for capture-only repair. Unknown versions,old ambiguous/building-only/missing or invalid history,and temporary validator errors supply no proof. Known repairs coalesce in one Store restore CAS; normal pending reconciliation is counted separately. No permanent history reset or replay. Remaining terminal Claim proof and nonreconstructible D7/native D5 boundaries stay explicit; continue authorized S9–S10. [Result](Validation/Results/Specialization_B350_Refactor_S8b9.md). Stable/live/main B307.334; no deployment/native PASS.
+S8b10 clears an obsolete initial acquired-city Claim timer only after strict terminal Claim receipt/full-parent proof. ACTIVE SPECIALIZED schema3 LEGACY_CLAIM with no later restructuring,invalidated reference or completion error is required; unfinished/other episodes stay preserved. Cleanup coalesces with independently valid sibling repairs in one restore CAS; no native completion replay,new timer,scan or save field. Deterministic metadata/terminal repair slices are complete within their stated proof scope; unprovable permanent D7 history/money outcomes and D5 native attribution remain OPEN. Resume S9 owner-specific UI revisions and target/channel/display/adjacency work,then S10. [Result](Validation/Results/Specialization_B351_Refactor_S8b10.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Assess strict already-completed Claim terminal cleanup,then S9 owner-specific UI revisions and Gameplay-owned target/request/display boundaries; retain unsupported permanent D7/native D5 items explicitly.
+- Primary next: Continue S9 owner-specific UI revisions,Gameplay-owned target/request/display and shared adjacency slices,then S10 duty migration/deletion safeguards; retain exact D7/native D5 proof limitations.
+
+## S0804 — B351.378 Clear obsolete initial Claim timers only from strict terminal receipts
+
+S8b10 clears an obsolete initial acquired-city Claim timer only after strict terminal Claim receipt/full-parent proof. ACTIVE SPECIALIZED schema3 LEGACY_CLAIM with no later restructuring,invalidated reference or completion error is required; unfinished/other episodes stay preserved. Cleanup coalesces with independently valid sibling repairs in one restore CAS; no native completion replay,new timer,scan or save field. Deterministic metadata/terminal repair slices are complete within their stated proof scope; unprovable permanent D7 history/money outcomes and D5 native attribution remain OPEN. Resume S9 owner-specific UI revisions and target/channel/display/adjacency work,then S10.
 
 ## S0803 — B350.377 Rebuild only provable template metadata from complete saved history
 

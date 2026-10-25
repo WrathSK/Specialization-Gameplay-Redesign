@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "a9a1bc5dc11817000e7c7f1ccbbea387449127f527e57b12467218c03a51d9cf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
-      "provenance": "B350.377 Rebuild only provable template metadata from complete saved history; local/static evidence only; no deployment/native PASS."
+      "sha256": "0f3ef65278b1c7e04f6f8bed3de1af087800e218d44ccd29eee5aef56270747a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
+      "provenance": "B351.378 Clear obsolete initial Claim timers only from strict terminal receipts; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "d85b497cf9906aea4e51a38bbc381a141425a1d5772f62e892c2d5d2995aff09",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
-      "provenance": "B350.377 Rebuild only provable template metadata from complete saved history; local/static evidence only; no deployment/native PASS."
+      "sha256": "3b14eddbe8e7d26b42440ae7ece5cede749d183d59245e2a01fe1d1f6b3f7a7e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
+      "provenance": "B351.378 Clear obsolete initial Claim timers only from strict terminal receipts; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9dec26dd4f53b2163b015f615c24f1d2de66af69f925a638680e50f46c25f784",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
-      "provenance": "B350.377 Rebuild only provable template metadata from complete saved history; local/static evidence only; no deployment/native PASS."
+      "sha256": "57857c2373b257b2638dc1e22dea9b1fb62ff8124209c9b10842c541c24abd28",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
+      "provenance": "B351.378 Clear obsolete initial Claim timers only from strict terminal receipts; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1651,9 +1651,9 @@
       "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     },
     "Mod/StoreSubrecords.lua": {
-      "sha256": "9f3ae77c3b49e3c5ea478db2ff9efb30e5541e4ad7e620839d1105ce75296d93",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
-      "provenance": "B350.377 Rebuild only provable template metadata from complete saved history; local/static evidence only; no deployment/native PASS."
+      "sha256": "80ab1c10079b79d3cf2cbbb4a0ba23e1038f80c26b42dbb9617df7aa156d2d67",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
+      "provenance": "B351.378 Clear obsolete initial Claim timers only from strict terminal receipts; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LegacyCleanupCatalog.lua": {
       "sha256": "92320e3f9af46a296e15897000e6dfee6f615603125c3c4fd659405f1d41e373",
