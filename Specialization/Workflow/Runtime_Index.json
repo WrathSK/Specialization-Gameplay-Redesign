@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "4de621f58de099506d13ff59529d5817c6249aef58b6b3d7bb0432561478100c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md",
-      "provenance": "B371.398 Stop stale Tradition carrier writes after confirmed lifecycle change; local/static evidence only; no deployment/native PASS."
+      "sha256": "14afa68f9e166c715141624c66121fde54db3f36a2d1c334ea9d1d9180f14503",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
+      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "bf6f0ddd091875aecdc8245db1a42f90fa3dd973b0275173e435819ab5fe0462",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B379_Refactor_S9e6.md",
-      "provenance": "B379.406 Apply source-local network UNKNOWN while keeping transaction proof strict; local/static evidence only; no deployment/native PASS."
+      "sha256": "d98a00f03e90d0a21260c893f75a390218bec304e0c1711cd3ab7847ba46d758",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
+      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -866,9 +866,9 @@
       "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchTradition.lua": {
-      "sha256": "c5253c305160d1faa0abbd62d8257a5a73b7d4a80084601c61ecada22d45a219",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
-      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "a7645393beab985282a474805375f7249254079d47c0ef6b41ffad3434950e38",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
+      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
     },
     "Mod/ResearchTraditionEffects.lua": {
       "sha256": "e1ee24656d3fa0be3b746158658f758aa5aca6adc4d8c0671a65a2d121cf1c57",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "df9ab2b048125ac152c07b22f2e673926a30879f9e5dfb4939c62115fb02104a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
-      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "7dcf09e9c3fe938488c5259cd4cc4c1c92b35e2f04a9eeeda1768f7760d4c1bd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
+      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "4c2238394ea7c3999ef045c88b715d64b724654fd6b1bee06e521e9557c6da9c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B379_Refactor_S9e6.md",
-      "provenance": "B379.406 Apply source-local network UNKNOWN while keeping transaction proof strict; local/static evidence only; no deployment/native PASS."
+      "sha256": "f79be267027d946b5082deb37eeb549e8bed68f1fce18ce8ef635fce10d8cbdd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
+      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

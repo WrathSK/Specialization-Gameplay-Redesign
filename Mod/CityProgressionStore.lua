@@ -1223,10 +1223,16 @@ local function CreateProgressionRecord(P,shared,storage)
   -- Reset samples/quotes before making facts available. No callback applies yields.
   runReturns(generation,revision,loss,c,current,registration)
   if not isolated.commerce and n.commerce then n.commerce=commerceTransition(n,'Resume',newOwner,Game.GetCurrentGameTurn())end
+  local resumedTradition=false
+  if not isolated.researchTradition and n.researchTradition then
+   n.researchTradition=SPCResearchTradition.ResumeOwner(n.researchTradition,Game.GetCurrentGameTurn(),R.Current(n).specialization)
+   resumedTradition=true
+  end
   n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence=proof and 'NATIVE_TRANSITION_V1' or 'CityTransfered+original_binding';n.returnProof=proof;n.referenceInvalidated=nil
   assert(returnCurrent(generation,revision,loss,c,current,registration),'RETURN_CONTEXT_CHANGED')
   n.revision=n.revision+1;save(n)
   finished={};attempts={};exitTickets={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false;d.exitErrors={};d.exitStatus='NOT_CONFIRMED';d.returnStatus='CONFIRMED_CURRENT_FACTS_REQUIRED'
+  if resumedTradition then publishFact(shared,c,'TRADITION_COMMITTED',n,nil,'TRADITION')end
   return true
  end
  local function reconcile(newOwner,newID,oldOwner,returnGuarded)

@@ -20,13 +20,21 @@ function M.Begin(turn,receipt)
  local t={version=1,start=turn,age=0,cursor=turn,state='COUNTING',receipt=receipt}
  M.Validate(t);return t
 end
+-- The Store supplies a proved supported-owner return boundary. Never credit the
+-- held interval, even if an older record still says COUNTING or owner-policy hold.
+function M.ResumeOwner(t,turn,identity)
+ M.Validate(t);assert(integer(turn)and turn>=t.cursor,'TRADITION_TURN_INVALID')
+ assert(type(identity)=='string','TRADITION_IDENTITY_UNKNOWN')
+ return {version=1,start=t.start,age=t.age,cursor=turn,
+  state=identity=='RESEARCH'and 'COUNTING'or 'PAUSED_IDENTITY',receipt=t.receipt,qualification=t.qualification}
+end
 -- A caller must provide ordered, reliable identity transitions. No ACTIVE input.
 -- Unknown/missed intervals fail closed; do not infer an identity history on load.
 function M.Advance(t,turn,identity)
  M.Validate(t);assert(integer(turn) and turn>=t.cursor,'TRADITION_TURN_INVALID')
  assert(type(identity)=='string','TRADITION_IDENTITY_UNKNOWN')
  local n={version=1,start=t.start,age=t.age,cursor=t.cursor,state=t.state,receipt=t.receipt,qualification=t.qualification}
- if t.state=='OWNER_POLICY_UNRESOLVED'then return n end
+ if t.state=='OWNER_POLICY_UNRESOLVED'then return M.ResumeOwner(t,turn,identity),turn>t.cursor end
  local cursor,credit,skipped=SPCTurnLedger.Advance(t.cursor,turn,t.state=='COUNTING',t.state=='UNKNOWN_INTERVAL')
  n.age=n.age+credit;n.cursor=cursor;n.state=identity=='RESEARCH' and 'COUNTING' or 'PAUSED_IDENTITY'
  return n,skipped
@@ -50,7 +58,7 @@ function M.Start(P,shared)
     (f.specialization=='RESEARCH' and f.potential==4 and '首次P4起点不可确认；不猜测补龄。测试需从P3投资开始。' or '尚未在本版本首次达到科研潜力4。') end
    local speed=GameInfo.GameSpeeds[GameConfiguration.GetGameSpeedType()]
    local bonus,nextAge=M.Shadow(t.age,assert(speed and speed.CostMultiplier,'TRADITION_SPEED_UNKNOWN')/100)
-   local reason={COUNTING='累计中',PAUSED_IDENTITY='转出科研，暂停',OWNER_POLICY_UNRESOLVED='跨Owner归属待定，保留但暂停',UNKNOWN_INTERVAL='计龄区间不可确认，保留但暂停'}
+   local reason={COUNTING='累计中',PAUSED_IDENTITY='转出科研，暂停',OWNER_POLICY_UNRESOLVED='易主区间暂停，等待可靠恢复',UNKNOWN_INTERVAL='计龄区间不可确认，保留但暂停'}
    local gate=f.activeStatus=='KNOWN' and f.specialization=='RESEARCH' and f.active>=4
    local effect='影子计算；未接入收益writer。'
    if shared.ResearchTraditionEffects then

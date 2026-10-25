@@ -74,8 +74,8 @@ class Exit(unittest.TestCase):
   v=runtime();v.execute("local old=facts();shared.EffectiveFacts[inputReader]=function()error('OLD_BASE_FAILURE')end;local get=c.GetID;local once=true;c.GetID=function(...)local id=get(...);if once then once=false;T.loss(c,9,900)end;return id end;effects.Update(0,c);local a=effects.Applied(old);assert(current(c)==0 and a.appliedStatus=='KNOWN'and a.applied==0 and a.lastConfirmed==0 and a.reason=='EXIT_CONFIRMED')")
  def test_exit_during_inflight_native_application_remains_unknown_after_old_writer_returns(self):
   v=runtime();v.execute("nextTier();local old=facts();local remove=P.RemoveBuilding;local once=true;P.RemoveBuilding=function(b,id)remove(b,id);if once and b.city==c then once=false;T.loss(c,9,900)end end;effects.Update(0,c);local a=effects.Applied(old);assert(a.appliedStatus=='UNKNOWN'and a.applied==nil and a.lastConfirmed==5)")
- def test_return_with_new_local_ID_then_second_loss_uses_fixed_location(self):
-  v=runtime();v.execute("local original=c:GetID();T.loss(c,9,900);c.s.ref.owner=0;c.s.ref.cityID=original+1000;Events.CityTransfered.Fire(0,original+1000,9);assert(T.record(c).stage=='ACTIVE');effects.Update(0,c);local next=facts();assert(next.cityID==original+1000 and applied().applied==0);T.loss(c,9,901);assert(effects.Applied(next).appliedStatus=='KNOWN'and effects.Applied(next).applied==0)")
+ def test_return_with_new_local_ID_then_second_loss_uses_fixed_location(self,resumed_tradition=True):
+  v=runtime();v.execute('expectedAfterReturn=...',5 if resumed_tradition else 0);v.execute("local original=c:GetID();T.loss(c,9,900);c.s.ref.owner=0;c.s.ref.cityID=original+1000;Events.CityTransfered.Fire(0,original+1000,9);assert(T.record(c).stage=='ACTIVE');effects.Update(0,c);local next=facts();assert(next.cityID==original+1000 and applied().applied==expectedAfterReturn and current(c)==expectedAfterReturn);T.loss(c,9,901);assert(effects.Applied(next).appliedStatus=='KNOWN'and effects.Applied(next).applied==0)")
 
 class Differential(unittest.TestCase):
  def test_original_values_history_and_all_native_work_match_with_no_extra_ID_sample(self):

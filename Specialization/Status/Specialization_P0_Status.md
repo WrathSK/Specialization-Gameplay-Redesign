@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0832
-Implementation Build: B379.406 / modinfo406; stable/live B307.334
+Status Revision: S0833
+Implementation Build: B380.407 / modinfo407; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E6_CONTINUING
+Work State: REFACTOR_S9E7_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e6 implements accepted R01 at the actual Bridge/effect consumers:topology-confirmed unknown/unadmitted roles no longer impose whole-player effect continuity or block unrelated reliable Commerce configuration. Existing source provenance and valid prior contributions remain;never-confirmed sources add nothing,reference/identity loss withdraws,and known siblings update. Modern unadmitted Commerce source is UNKNOWN rather than false NONE. Mixed/retained inputs still fail every existing new-transaction proof;D1 topology hold and Standardization cold A stay unchanged. R05 cold aggregate decomposition is explicitly not claimed fixed. Other accepted S9/U4/S10 work continues;no native/deployment PASS. [Result](Validation/Results/Specialization_B379_Refactor_S9e6.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e7/R04 corrects the legacy absorbing owner-policy state against existing D0040/D0058 Research rules. A proven existing Store return preserves age/start/receipt/qualification,rebases cursor without lost-time credit,and resumes Research counting;non-Research stays paused. Postcommit existing HISTORY/TRADITION propagation restores the effect at the publish boundary. Native return guards,CAS,D7 isolation and owner admission stay unchanged. Actual20-turn loss/return retains age10 and next full turn reaches11 instead of staying10 forever,without extra return Store writes. R05 cold aggregate,other accepted S9/U4/S10 work remains;no native/deployment PASS. L3 also repairs B376 nil/non-table audit-scope rejection;ordinary full supported-owner audits remain required and tested. [Result](Validation/Results/Specialization_B380_Refactor_S9e7.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Resolve R05 cold source retention against accepted authority and actual available evidence;continue R06/R07/R02 Store closure,R04 history trace,R19/R13 display and remaining applied owners,then U4/S10. Stop only any concrete undecidable affected boundary. No deployment/main/game launch.
+- Primary next: Continue R05 cold source retention authority/evidence,R06/R07/R02 isolated Store closure,R19/R13 UI and remaining S9 applied owners;then full U4/S10. No deployment/main/game launch.
+
+## S0833 — B380.407 Resume retained Academic Tradition after confirmed city return
+
+S9e7/R04 corrects the legacy absorbing owner-policy state against existing D0040/D0058 Research rules. A proven existing Store return preserves age/start/receipt/qualification,rebases cursor without lost-time credit,and resumes Research counting;non-Research stays paused. Postcommit existing HISTORY/TRADITION propagation restores the effect at the publish boundary. Native return guards,CAS,D7 isolation and owner admission stay unchanged. Actual20-turn loss/return retains age10 and next full turn reaches11 instead of staying10 forever,without extra return Store writes. R05 cold aggregate,other accepted S9/U4/S10 work remains;no native/deployment PASS. L3 also repairs B376 nil/non-table audit-scope rejection;ordinary full supported-owner audits remain required and tested.
 
 ## S0832 — B379.406 Apply source-local network UNKNOWN while keeping transaction proof strict
 

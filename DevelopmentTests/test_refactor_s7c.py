@@ -59,11 +59,11 @@ class Boundaries(unittest.TestCase):
         local v=C.Advance(C.BeginReputation(C.New(0),5,'P4'),8,'COMMERCE');assert(v.reputation.age==0 and v.reputation.cursor==8 and v.reputation.state=='COUNTING');v=C.Advance(v,9,'COMMERCE');assert(v.reputation.age==1)
         assert(not pcall(R.Advance,r,8,'RESEARCH')and not pcall(C.Advance,v,8,'COMMERCE'))
         """)
-    def test_old_UNKNOWN_resumes_but_owner_holds_remain_independent(self):
-        l=pure();l.execute("""
+    def test_old_UNKNOWN_resumes_but_owner_holds_remain_independent(self,resumed_tradition=True):
+        l=pure();l.execute('resumedTradition=...',resumed_tradition);l.execute("""
         local R,C=SPCResearchTradition,SPCCommerceModel
         local r=R.Begin(5,'P4');r.state='UNKNOWN_INTERVAL';r=R.Advance(r,8,'CULTURE');assert(r.age==0 and r.cursor==8 and r.state=='PAUSED_IDENTITY')
-        r.state='OWNER_POLICY_UNRESOLVED';r=R.Advance(r,10,'RESEARCH');assert(r.age==0 and r.cursor==8 and r.state=='OWNER_POLICY_UNRESOLVED')
+        r.state='OWNER_POLICY_UNRESOLVED';r=R.Advance(r,10,'RESEARCH');if resumedTradition then assert(r.age==0 and r.cursor==10 and r.state=='COUNTING')else assert(r.age==0 and r.cursor==8 and r.state=='OWNER_POLICY_UNRESOLVED')end
         local v=C.BeginReputation(C.New(0),5,'P4');v.reputation.state='UNKNOWN_INTERVAL';v=C.Advance(v,8,'COMMERCE');assert(v.reputation.age==0 and v.reputation.state=='COUNTING');v=C.OwnerChanged(v,3,9);v=C.Advance(v,12,'COMMERCE');assert(v.reputation.cursor==9 and v.reputation.state=='DORMANT_OWNER')
         """)
     def test_unknown_at_cap_recovers_once_and_counting_cap_remains_noop(self):

@@ -164,7 +164,8 @@ end
 
 -- Exact native destination metadata is a routing hint, not exit authority.
 local function lifecycleTransfer(scope)
- local value=type(scope)=='table'and scope.transfer
+ if type(scope)~='table'then return end
+ local value=scope.transfer
  if value==nil then return end
  assert(type(value)=='table'and getmetatable(value)==nil,'RUNTIME_TRANSFER_STRUCTURE')
  local allowed={owner=true,city=true,oldOwner=true};local n=0

@@ -1885,6 +1885,11 @@
       "test_refactor_s5c2",
       "test_refactor_s9e1",
       "test_refactor_s5c1.NetworkSignals"
+    ],
+    "S9e7": [
+      "test_refactor_s9e7",
+      "test_refactor_s9d1b",
+      "test_refactor_s9e3b"
     ]
   },
   "counterexamples": {},
@@ -2552,6 +2557,17 @@
         "test_refactor_s4b.NetworkProof.test_first_unknown_role_freezes_carrier_projection"
       ],
       "current": "Topology-confirmed per-source UNKNOWN/retained effects do not hold unrelated cities;topology pending and transaction proof remain strict. Cold aggregate R05 remains separate."
+    },
+    "S9e7": {
+      "source": "7c47fa5",
+      "decision": "R04 implementation correction to existing D0040/D0058 city-owned Tradition lifecycle",
+      "historical_assertions_retained": [
+        "test_refactor_s7c.Boundaries.test_old_UNKNOWN_resumes_but_owner_holds_remain_independent",
+        "test_refactor_s9d1b.Witness.test_same_reference_loss_return_invalidates_old_Base_witness_before_facts_return",
+        "test_refactor_s9d1b.WriteBarrier.test_loss_return_after_remove_same_owner_ID_token_still_rejects_old_scope",
+        "test_refactor_s9d1.Exit.test_return_with_new_local_ID_then_second_loss_uses_fixed_location"
+      ],
+      "current": "A proven original-owner return rebases the same city age without lost-interval credit and resumes reliable Research-Identity counting;no new owner admission or new save field."
     }
   }
 }

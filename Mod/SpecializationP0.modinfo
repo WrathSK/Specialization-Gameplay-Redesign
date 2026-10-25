@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="406">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="407">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B379.406：按来源隔离网络未知，保留严格交易凭据，继续重构。</Description>
+    <Description>B380.407：按现有随城历史规则恢复学术传统计龄，继续重构。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
