@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0761",
-    "runtime": "B309.336 / modinfo336",
+    "status": "S0762",
+    "runtime": "B310.337 / modinfo337",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue remaining S6 worker consumers, scoped receiver discovery, capital source snapshot and unit/UI/target/network hot paths, then S7–S10. No automatic deployment/main/native launch.",
+  "goal": "Continue S6 scoped receiver discovery, Capital source snapshot and unit/UI/target/network hot paths, then S7–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -239,6 +239,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
       "kind": "full",
       "reason": "Quote Capital only for explicit requests actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
+      "kind": "full",
+      "reason": "Use guarded worker projections in Commerce and Development actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -265,8 +270,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
-    "local": "LOCAL_SIMULATION_PASS (92/92, 15 new)",
+    "report": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
+    "local": "LOCAL_SIMULATION_PASS (196/196, 13 new)",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

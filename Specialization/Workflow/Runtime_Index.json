@@ -116,9 +116,9 @@
       "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
-      "sha256": "473f4a033d039639132d20c4bd9f1d76bc0e5f588208b0fed46d16b873d4421f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B299_Refactor_S5d4c10.md",
-      "provenance": "B299.326 Commerce exact health and output dependency closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "e990c22e395d8fa2a5d596220ca227eb31a3516b75ed5205c37d4f3cb66d3b83",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
+      "provenance": "B310.337 Use guarded worker projections in Commerce and Development; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -501,9 +501,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "bb2daddd025d607770cd81f3ae8a2507f67da5c7557baa383d50ec8ac047bcf7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
-      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
+      "sha256": "9216ad73f9b681cbb1640192f9b26550c4a3ea2a6bc771095b401322c2ca5538",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
+      "provenance": "B310.337 Use guarded worker projections in Commerce and Development; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "4f4df0ed1eee502d9ee19ad8e053c6070b9f17d74b0e33eaba26f33ab13e256a",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "67feebae315ea30b002b4b382d766cae4166a29e29e2064cd20ce7c7b7fb5d5e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
-      "provenance": "B309.336 Quote Capital only for explicit requests; local/static evidence only; no deployment/native PASS."
+      "sha256": "67483e6abc4551443e8fb52839bb2794483b4bfc38354fd166853ff3985db1e6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
+      "provenance": "B310.337 Use guarded worker projections in Commerce and Development; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e3b2cc5c2f2a7fe6baef0e5f19e6e866e69d741fff2955309e3aa03f930926d2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
-      "provenance": "B309.336 Quote Capital only for explicit requests; local/static evidence only; no deployment/native PASS."
+      "sha256": "e6475044a5b86f6faa577a517a6d2f2e5fdd8d3890c646b857660601fb684e66",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
+      "provenance": "B310.337 Use guarded worker projections in Commerce and Development; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

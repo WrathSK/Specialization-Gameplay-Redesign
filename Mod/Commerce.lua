@@ -119,10 +119,7 @@ function M.Start(P,shared)
   if batch.epochs[k]==nil then batch.epochs[k]=generation(pid,id)end
   return batch.epochs[k]
  end
- local function facts(batch,pid,c)
-  local k=key(pid,c:GetID());if not batch.facts[k]then batch.facts[k]=shared.EffectiveFacts.Read(pid,c)end
-  return batch.facts[k]
- end
+
  local function depth(batch,pid,c,token)
   local k=key(pid,c:GetID())
   if not batch.depth[k]then
@@ -139,7 +136,8 @@ function M.Start(P,shared)
  local function prepare(batch,pid,id)
   stamp(batch,pid,id)
   local c=assert(city(pid,id),'COMMERCE_CITY_UNKNOWN');assert(c:GetOwner()==pid,'COMMERCE_OWNER_CHANGED')
-  local f=facts(batch,pid,c);local v={reference=ref(c),token=f.token,identity=f.specialization,potential=f.potential,
+  local function localInputs(f,workers)
+  local v={reference=ref(c),token=f.token,identity=f.specialization,potential=f.potential,
    active=f.active,activeStatus=f.activeStatus,workers=0,selected={},effective={},domains={},totalRaw=0,totalGold=0,
    stage='INELIGIBLE',reason='COMMERCE_IDENTITY_REQUIRED',canConfigure=false,reputation={age=0,effective=0}}
   local out={pid=pid,id=id,c=c,v=v,sources={[id]=true}}
@@ -163,11 +161,25 @@ function M.Start(P,shared)
   for _,r in ipairs(dc.districts)do if f.first and r.id==f.first.districtID and r.type==f.first.type then anchor=r;break end end
   assert(anchor and anchor.complete==true,'COMMERCE_ANCHOR_UNKNOWN')
   if anchor.pillaged~=true then
-   local plot=assert(Map.GetPlotByIndex(anchor.plot),'COMMERCE_WORKERS_UNKNOWN')
-   local n=plot:GetWorkerCount();assert(integer(n),'COMMERCE_WORKERS_UNKNOWN');v.workers=n
+   v.workers=workers(anchor,function()
+    local plot=assert(Map.GetPlotByIndex(anchor.plot),'COMMERCE_WORKERS_UNKNOWN')
+    local n=plot:GetWorkerCount();assert(integer(n),'COMMERCE_WORKERS_UNKNOWN');return n
+   end)
   end
   v.canConfigure=f.active>=3;v.domains=C.Layout(v.selected,v.workers,f.active,localDomains)
   if f.active<3 then v.reason='COMMERCE_ACTIVE_III_REQUIRED';return out end
+  out.localReady=true;return out
+  end
+  -- Keep the old HELD diagnostic facts only after the full EF read is certified.
+  -- No convergence withdrawal or carrier write is permitted in this projection.
+  local function project(f,workers)return f,pcall(localInputs,f,workers)end
+  local f,ok,out
+  if shared.EffectiveFacts.Inspect then f,ok,out=shared.EffectiveFacts.Inspect(pid,c,project)
+  else f,ok,out=project(shared.EffectiveFacts.Read(pid,c),function(_,read)return read()end)end
+  batch.facts[key(pid,id)]=f
+  if not ok then error(out,0)end
+  if not out.localReady then return out end
+  out.localReady=nil;local v=out.v
   if shared.CommerceConvergence and shared.CommerceConvergence.Withdraw then shared.CommerceConvergence.Withdraw(c)end
   for _,index in ipairs(legacy)do assert(not present(c,index),'COMMERCE_LEGACY_REMAINS')end
   local bridge=shared.NetworkBridge

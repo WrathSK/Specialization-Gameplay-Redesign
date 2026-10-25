@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="336">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="337">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B309.336：资本投资后台刷新不再计算报价，确认保持即时复核。</Description>
+    <Description>B310.337：商业及发展投资使用受保护的共享工人数采样，资格与交易规则保持不变。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

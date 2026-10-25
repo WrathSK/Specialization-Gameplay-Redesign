@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0761
-Implementation Build: B309.336 / modinfo336; stable/live B307.334
+Status Revision: S0762
+Implementation Build: B310.337 / modinfo337; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S6E_COMPLETE_CONTINUING
+Work State: REFACTOR_S6F_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S6e makes automatic Capital entry/contract refresh quote-free; explicit requests retain full terms and confirmations freshly price only their selected domain before the original money/receipt transaction. Retained display quotes are stale and blocked in UI and Gameplay, with qualification/HELD reasons preserved. Original direct Refresh defaults stay full. Worker migration remains open after new fixture corrections identified the first prototype failures; no shared guard was weakened. [Result](Validation/Results/Specialization_B309_Refactor_S6e.md). Stable/live/main B307.334; no deployment/native PASS.
+S6f moves Commerce local inputs and Development source inputs into the existing certified EF projection, sharing only raw workers within a valid synchronous read phase. Each consumer retains its own ACTIVE/anchor/pillage/qualification rules; all writes and irreversible actions remain outside the read projection. No scheduler or retry was added. [Result](Validation/Results/Specialization_B310_Refactor_S6f.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue remaining S6 worker consumers, scoped receiver discovery, capital source snapshot and unit/UI/target/network hot paths, then S7–S10.
+- Primary next: Continue S6 scoped receiver discovery, Capital source snapshot and unit/UI/target/network hot paths, then S7–S10.
+
+## S0762 — B310.337 Use guarded worker projections in Commerce and Development
+
+S6f moves Commerce local inputs and Development source inputs into the existing certified EF projection, sharing only raw workers within a valid synchronous read phase. Each consumer retains its own ACTIVE/anchor/pillage/qualification rules; all writes and irreversible actions remain outside the read projection. No scheduler or retry was added.
 
 ## S0761 — B309.336 Quote Capital only for explicit requests
 

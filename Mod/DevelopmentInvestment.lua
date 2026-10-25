@@ -194,7 +194,8 @@ function SPCDevelopmentInvestment.Start(P,shared)
  end
  local function sourceFacts(pid,c)
   assert(not startupPending[key(pid,c:GetID())],'DEVELOPMENT_CITY_STARTUP_PENDING')
-  local f=shared.EffectiveFacts.Read(pid,c);local r=ref(c);local old=state(pid,c)
+  local function project(f,workers)
+  local r=ref(c);local old=state(pid,c)
   local v={reference=r,token=r.token,identity=f.specialization,potential=f.potential,stage='READY',workers=0,
    available=(f.specialization=='COMMERCE' and f.potential>=4) or old~=nil,contracts=cp(old and old.contracts or {}),used=count(old),canSign=false}
   if not v.available then return v,old end
@@ -210,11 +211,16 @@ function SPCDevelopmentInvestment.Start(P,shared)
   for _,row in ipairs(dc.value.districts)do if f.first and row.id==f.first.districtID and row.type==f.first.type then anchor=row;break end end
   assert(anchor and anchor.complete,'DEVELOPMENT_WORKERS_UNKNOWN')
   if not anchor.pillaged then
-   local plot=assert(Map.GetPlotByIndex(anchor.plot),'DEVELOPMENT_WORKERS_UNKNOWN');local n=plot:GetWorkerCount()
-   assert(type(n)=='number' and n>=0 and n%1==0,'DEVELOPMENT_WORKERS_UNKNOWN');v.workers=n
+   v.workers=workers(anchor,function()
+    local plot=assert(Map.GetPlotByIndex(anchor.plot),'DEVELOPMENT_WORKERS_UNKNOWN');local n=plot:GetWorkerCount()
+    assert(type(n)=='number' and n>=0 and n%1==0,'DEVELOPMENT_WORKERS_UNKNOWN');return n
+   end)
   end
   v.canSign=v.used<v.workers;v.reason=v.canSign and 'DEVELOPMENT_READY' or 'DEVELOPMENT_CAPACITY_FULL'
   return v,old
+  end
+  if shared.EffectiveFacts.Inspect then return shared.EffectiveFacts.Inspect(pid,c,project)end
+  return project(shared.EffectiveFacts.Read(pid,c),function(_,read)return read()end)
  end
  local function nativeTarget(pid,c)
   local reader=assert(ExposedMembers.SPC_DevelopmentRead,'DEVELOPMENT_PRICE_READER_UNAVAILABLE')

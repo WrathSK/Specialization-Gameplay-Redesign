@@ -674,6 +674,14 @@
     "S6e": [
       "test_refactor_s6e",
       "test_refactor_s3"
+    ],
+    "S6f": [
+      "test_refactor_s6f",
+      "test_refactor_s6b",
+      "test_refactor_s6c",
+      "test_refactor_s5d4c10",
+      "test_refactor_s6e",
+      "test_refactor_s3"
     ]
   },
   "counterexamples": {},
@@ -741,7 +749,10 @@
     "Mod/Commerce.lua": [
       "test_refactor_defects.Defects",
       "test_refactor_s4b",
-      "test_refactor_s5d1"
+      "test_refactor_s5d1",
+      "test_refactor_s6f.Consumers",
+      "test_refactor_s6f.RetainedDevelopment",
+      "test_refactor_s6f.RetainedGuards"
     ],
     "Mod/NetworkBridge.lua": [
       "test_refactor_defects.Defects",
@@ -798,7 +809,10 @@
       "test_refactor_s6d"
     ],
     "Mod/DevelopmentInvestment.lua": [
-      "test_refactor_s4b"
+      "test_refactor_s4b",
+      "test_refactor_s6f.Consumers",
+      "test_refactor_s6f.RetainedDevelopment",
+      "test_refactor_s6f.RetainedGuards"
     ],
     "Mod/TradeRouteProbe.lua": [
       "test_refactor_s4b"
