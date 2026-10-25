@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0772
-Implementation Build: B320.347 / modinfo347; stable/live B307.334
+Status Revision: S0773
+Implementation Build: B321.348 / modinfo348; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7A_COMPLETE_CONTINUING
+Work State: REFACTOR_S7B1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7a6 shares immutable exact owned-ID/name registries across CarrierSet and the remaining Apply/Infrastructure/Chair/Wonder validators. Failed revalidation retains prior ownership; Chair exit still reads its current catalogue; Wonder keeps its original single-handle observation/write and UNKNOWN asymmetry. S7a extraction is complete with these explicit policy boundaries. [Result](Validation/Results/Specialization_B320_Refactor_S7a6.md). Stable/live/main B307.334; no deployment/native PASS.
+S7b1 introduces a stateless PropertyCell one-write/one-postread observation primitive in modern CityProgressionStore and ExpeditionSpyStore. Store still requires normal setter return plus exact readback; Expedition still accepts exact validated readback after a throwing setter. CAS, locks, reservations, envelopes, barriers and failure classes remain owned by their original modules. [Result](Validation/Results/Specialization_B321_Refactor_S7b1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7b property-cell and numeric-policy extraction, then S7c–S10.
+- Primary next: Continue S7b Crew property observations and explicit numeric storage policy, then S7c–S10.
+
+## S0773 — B321.348 Share one-write one-read observation without unifying success policy
+
+S7b1 introduces a stateless PropertyCell one-write/one-postread observation primitive in modern CityProgressionStore and ExpeditionSpyStore. Store still requires normal setter return plus exact readback; Expedition still accepts exact validated readback after a throwing setter. CAS, locks, reservations, envelopes, barriers and failure classes remain owned by their original modules.
 
 ## S0772 — B320.347 Unify exact owned-carrier registries and close S7a extraction
 

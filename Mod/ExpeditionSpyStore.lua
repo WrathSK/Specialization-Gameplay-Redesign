@@ -1,5 +1,6 @@
 -- B201: one bounded player-owned Expedition record. Game Property is save authority;
 -- callers own phase/native-action semantics. No retries, migration or cleanup here.
+if not SPCPropertyCell then include('PropertyCell')end
 SPCExpeditionSpyStore={PREFIX='SPC_EXPEDITION_TEAM_P'}
 local M=SPCExpeditionSpyStore
 local phases={TRAINING=true,CREATING=true,NAMING=true,CREATED=true,TRAVELLING=true,ARRIVED=true,
@@ -134,11 +135,12 @@ function M.Write(P,pid,expected,candidate)
  if not equal(current,old)then return nil,'STORE_STALE_EXPECTED' end
  -- Treat a writer return/exception as inconclusive. The validated readback is
  -- the outcome authority, including a write that succeeded before throwing.
- pcall(function()
+ local result=SPCPropertyCell.WriteReadback(function()
   assert(P and type(P.SetProperty)=='function','PROPERTY_WRITER_UNAVAILABLE')
   P.SetProperty(Game,key(pid),envelope(nextValue,pid))
- end)
- local observed,readError=read(pid)
+ end,function()return read(pid)end)
+ if not result.readReturned then error(result.observed,0)end
+ local observed,readError=result.observed,result.readReason
  if readError then
   return nil,readError=='STORE_CORRUPT' and 'STORE_WRITE_READBACK_CORRUPT' or 'STORE_WRITE_READBACK_UNREADABLE'
  end

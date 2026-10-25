@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B321.348 S7b1 introduces a stateless PropertyCell one-write/one-postread observation primitive in modern CityProgressionStore and ExpeditionSpyStore. Store still requires normal setter return plus exact readback; Expedition still accepts exact validated readback after a throwing setter. CAS, locks, reservations, envelopes, barriers and failure classes remain owned by their original modules. [Result](../../Status/Validation/Results/Specialization_B321_Refactor_S7b1.md).
+
 B320.347 S7a6 shares immutable exact owned-ID/name registries across CarrierSet and the remaining Apply/Infrastructure/Chair/Wonder validators. Failed revalidation retains prior ownership; Chair exit still reads its current catalogue; Wonder keeps its original single-handle observation/write and UNKNOWN asymmetry. S7a extraction is complete with these explicit policy boundaries. [Result](../../Status/Validation/Results/Specialization_B320_Refactor_S7a6.md).
 
 B319.346 S7a5 migrates IndustrySupport exact -1..7 carrier descriptors/health/exit into CarrierSet using its original sequential read-write-readback order. BASE sampling, pending/armed work, eligibility, partial success and withdrawal counters remain unchanged. [Result](../../Status/Validation/Results/Specialization_B319_Refactor_S7a5.md).

@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "d0ffe93e76271f2516d958f454ea9639bbd3162a19dc59d32da8a6039c5895ee",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
-      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
+      "sha256": "83d298d7c406c7930f27edc6491a9b4b822e14a2ad2ecd32eb0cb40ed748297c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
+      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -611,9 +611,9 @@
       "provenance": "B225 explicitly authorized common task scheduling/release, manual-sleep cleanup, accepted D0051 city Works and deal invalidation.617 targeted local tests PASS; no new timer/schema/capacity/source/GC change; native pending."
     },
     "Mod/ExpeditionSpyStore.lua": {
-      "sha256": "e792e7ea8e8f102ad8effce27f3e13e3b5891c0e170a9e1b197153380b9d0c41",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md",
-      "provenance": "B213 user-authorized seven bounded audit repairs and Culture institution/Insight/mission-icon presentation; reviewed changed direct source plus 778 Expedition/tool and 66 UI/Store/Dialogue/helper local checks. Native pending; source B213.240 is not deployed. Live receipt remains B212.239. No training cost/capacity/source, GC or external runtime change."
+      "sha256": "13b1151f71155b6b030adf4c393e14b7197b3697ce197aeebc00acac99e2cc77",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
+      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ExpeditionSpyUI.lua": {
       "sha256": "a19873023674c435b9eb132a8cdbdee0d01fa928245ce42c5dfb6d6db79bdc06",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "264d037603ccd16e38b9121ff2e3658695b5a6c2b193bf9c2821467f283054e1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B320_Refactor_S7a6.md",
-      "provenance": "B320.347 Unify exact owned-carrier registries and close S7a extraction; local/static evidence only; no deployment/native PASS."
+      "sha256": "d40686e10e8104379e6cc9e20f4ce0eb50333152a5700582779b342349a933d8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
+      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9ac3f036e5241ec50811fb1b3fb4082a41d966998572d9159d19b2270054afc4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B320_Refactor_S7a6.md",
-      "provenance": "B320.347 Unify exact owned-carrier registries and close S7a extraction; local/static evidence only; no deployment/native PASS."
+      "sha256": "73d87ff80993f683619e9f0d99b07ac118643b473dae375ec762a9baf92aa8de",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
+      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1609,6 +1609,11 @@
       "sha256": "c338c177088e9e0fa22601b1d5a8f93b07a15e76557178dcf93a08c094395421",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B320_Refactor_S7a6.md",
       "provenance": "B320.347 Unify exact owned-carrier registries and close S7a extraction; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/PropertyCell.lua": {
+      "sha256": "61a7e7d9258533b377bb6d94df0bb98f2944bd60f2832c5d9cbbc7424c0ac051",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
+      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

@@ -1,3 +1,4 @@
+if not SPCPropertyCell then include('PropertyCell')end
 if not SPCRestructuringModel then include('RestructuringModel') end
 if not SPCResearchTradition then include('ResearchTradition') end
 if not SPCDialogueProjectModel then include('DialogueProjectModel') end
@@ -1121,9 +1122,11 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     -- committed endpoints skip the cross-record uniqueness walk.
     if current~=referenceKey(before) then checkReference(token,current)end
     writing=true
-    local ok,err=pcall(function()P.SetProperty(Game,key,cp(value))end)
     -- Even a throwing setter may have applied. Read once while the lock is held.
-    readOK,observed=pcall(function()return cp(Game:GetProperty(key))end)
+    local result=SPCPropertyCell.WriteReadback(function()P.SetProperty(Game,key,cp(value))end,
+     function()return cp(Game:GetProperty(key))end)
+    local ok,err=result.writeReturned,result.writeResult
+    readOK,observed=result.readReturned,result.observed
     local confirmed=ok and readOK and same(observed,value)
     if not confirmed then
      -- Diagnostics use the already obtained readback. Observer failure cannot alter guards.

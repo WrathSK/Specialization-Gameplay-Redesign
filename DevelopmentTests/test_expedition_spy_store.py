@@ -49,6 +49,7 @@ def fixture():
        return out
       end
     """)
+    lua.execute((ROOT / "Mod/PropertyCell.lua").read_text())
     lua.execute((ROOT / "Mod/ExpeditionSpyStore.lua").read_text())
     lua.execute("store=SPCExpeditionSpyStore")
     return lua

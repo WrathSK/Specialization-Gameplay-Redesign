@@ -87,6 +87,7 @@ def gate(ui=False, window=False):
        local p={NativeAllowed=true};for k,v in pairs(overrides or {})do p[k]=v end;return dispatch(token,p)
       end
     """)
+    l.execute((R/'Mod/PropertyCell.lua').read_text())
     l.execute((R/'Mod/ExpeditionSpyStore.lua').read_text())
     l.execute((R/'Mod/ExpeditionSpyGate.lua').read_text());l.execute("SPCExpeditionSpyGate.Start(P,shared);local h=handler;handler=function(pid,p)if p.Action=='NAME' then nameConfirmCalls=nameConfirmCalls+1 end;return h(pid,p)end")
     if ui or window:

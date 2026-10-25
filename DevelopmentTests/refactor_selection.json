@@ -847,6 +847,13 @@
       "test_refactor_s3",
       "test_refactor_s6b",
       "test_refactor_s5d4b1.ActualConsumers"
+    ],
+    "S7b1": [
+      "test_refactor_s7b1",
+      "test_refactor_s5a2",
+      "test_refactor_s5b",
+      "test_refactor_s6b.Composition",
+      "test_refactor_s3"
     ]
   },
   "counterexamples": {},
@@ -932,7 +939,8 @@
       "test_refactor_s6j"
     ],
     "Mod/CityProgressionStore.lua": [
-      "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity"
+      "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity",
+      "test_refactor_s7b1"
     ],
     "Mod/ResearchChair.lua": [
       "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope",
@@ -1171,6 +1179,14 @@
     "Mod/IndustryWonderEffects.lua": [
       "test_refactor_s5d4c8",
       "test_refactor_s7a6"
+    ],
+    "Mod/PropertyCell.lua": [
+      "test_refactor_s7b1",
+      "test_refactor_s5b.Authority",
+      "test_refactor_s5b.Phase"
+    ],
+    "Mod/ExpeditionSpyStore.lua": [
+      "test_refactor_s7b1"
     ]
   },
   "exclusions": {
