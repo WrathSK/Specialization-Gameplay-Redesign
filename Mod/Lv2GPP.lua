@@ -1,5 +1,6 @@
 include('RuntimeWork')
 include('SpecialistSupport')
+include('CarrierSet')
 -- B035: working-specialist count -> native building base GPP. No ChangePointsTotal.
 SPCLv2GPP={}
 function SPCLv2GPP.Start(P,shared)
@@ -8,17 +9,19 @@ function SPCLv2GPP.Start(P,shared)
  local kinds={"RESEARCH","CULTURE","INDUSTRY","COMMERCE"}
  local districts={RESEARCH="DISTRICT_CAMPUS",CULTURE="DISTRICT_THEATER",INDUSTRY="DISTRICT_INDUSTRIAL_ZONE",COMMERCE="DISTRICT_COMMERCIAL_HUB"}
  local classes={RESEARCH={"SCIENTIST"},CULTURE={"WRITER","ARTIST","MUSICIAN"},INDUSTRY={"ENGINEER"},COMMERCE={"MERCHANT"}}
- local definitions;local ownedIndex={}
- local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)data.MarkAudit(scope)end)
+ local definitions
  local function int(v) return type(v)=="number" and v>=0 and v%1==0 and v<math.huge end
  local function name(kind,bit) return "BUILDING_SPC_DEV_GPP_"..kind.."_"..bit end
+ local entries={};for _,kind in ipairs(kinds)do for bit=0,7 do local key=name(kind,bit);entries[#entries+1]={key=key,name=key}end end
+ local carriersSet=SPCCarrierSet.Define(P,entries,function(key)return assert(P.Info('Buildings',key),'B035_BUILDING_DATABASE_MISMATCH '..key).Index end,
+  {read='GPP_CARRIER_READ_UNKNOWN',write='GPP_CARRIER_CHANGE_UNCONFIRMED'})
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,carriersSet.Owns,function(scope)data.MarkAudit(scope)end)
  local function validateDefinitions()
   if definitions then return end
-  local rows=P.Rows("Building_GreatPersonPoints");assert(rows,"GPP_DATABASE_UNAVAILABLE");local nextOwned={}
+  local rows=P.Rows("Building_GreatPersonPoints");assert(rows,"GPP_DATABASE_UNAVAILABLE")
   for _,kind in ipairs(kinds) do for bit=0,7 do
    local building=name(kind,bit);local b=P.Info("Buildings",building)
    assert(b and type(b.Index)=="number" and b.PrereqDistrict==districts[kind] and b.Housing==0 and b.CitizenSlots==0,"B035_BUILDING_DATABASE_MISMATCH "..building)
-   nextOwned[b.Index]=true
    local expected={};for _,cl in ipairs(classes[kind]) do expected["GREAT_PERSON_CLASS_"..cl]=true end
    local seen={}
    for _,r in ipairs(rows) do if r.BuildingType==building then
@@ -27,7 +30,7 @@ function SPCLv2GPP.Start(P,shared)
    end end
    for cl in pairs(expected) do assert(seen[cl],"B035_GPP_DEFINITION_MISSING "..building) end
   end end
-  ownedIndex=nextOwned;definitions=true
+  carriersSet.Initialize();definitions=true
  end
  local function inspect(pid,city)
   return SPCSpecialistSupport.Inspect(P,shared,pid,city,batch or SPCRuntimeWork.New(P,shared),function(kind,d,f,workers,geometry)
@@ -42,12 +45,6 @@ function SPCLv2GPP.Start(P,shared)
   end)
  end
 
- local function set(city,id,wanted)
-  local b=city:GetBuildings();local present=P.HasBuilding(b,id);assert(type(present)=="boolean","GPP_CARRIER_READ_UNKNOWN")
-  if present==wanted then return end
-  if wanted then health.Create(city,id) else health.Remove(city,id) end
-  assert(P.HasBuilding(b,id)==wanted,"GPP_CARRIER_CHANGE_UNCONFIRMED");data.changes=data.changes+1
- end
  local function reconcile(pid,city)
   validateDefinitions();local f=inspect(pid,city)
   local n=f.enabled and f.workers or 0
@@ -56,23 +53,8 @@ function SPCLv2GPP.Start(P,shared)
   for _,k in ipairs(kinds) do for bit=0,7 do
    wanted[name(k,bit)]=k==kind and math.floor(n/2^bit)%2==1
   end end
-  -- Verify every installed carrier before any write; UNKNOWN holds projection.
-  local present={}
-  for _,k in ipairs(kinds) do for bit=0,7 do
-   local b=P.Info('Buildings',name(k,bit))
-   local value=P.HasBuilding(city:GetBuildings(),b.Index)
-   assert(type(value)=='boolean','GPP_CARRIER_READ_UNKNOWN');present[name(k,bit)]=value
-  end end
-  -- Skip confirmed unchanged bits. Changed bits still get the fresh pre-write
-  -- read and post-write verification in set(); no state survives this reconcile.
-  -- Remove all stale classes/bits before adding the new count. No cumulative reward.
-  for _,k in ipairs(kinds) do for bit=0,7 do
-   local key=name(k,bit);local b=P.Info("Buildings",key)
-   if b and not wanted[key] and present[key] then set(city,b.Index,false) end
-  end end
-  for _,k in ipairs(kinds) do for bit=0,7 do
-   local key=name(k,bit);if wanted[key] and not present[key] then set(city,P.Info("Buildings",key).Index,true) end
-  end end
+  -- Full presence preflight, then original fresh changed-bit read and readback.
+  carriersSet.Apply(city,wanted,health,function()data.changes=data.changes+1 end,true)
  end
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   reconcile(pid,c)
@@ -132,8 +114,7 @@ function SPCLv2GPP.Start(P,shared)
  end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2GPP',targets.Exit(function(c,loss)
-   local ids={};for _,k in ipairs(kinds)do for bit=0,7 do ids[#ids+1]=name(k,bit)end end
-   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+   carriersSet.Exit(shared,c,loss)
  end))end
 
 end

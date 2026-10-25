@@ -28,14 +28,21 @@ function SPCCarrierSet.Define(P,entries,resolve,errors)
   end
   return plan -- fresh complete preflight; no city/native handles retained by the set
  end
- function d.Apply(city,wanted,health,confirmed)
+ function d.Apply(city,wanted,health,confirmed,freshBeforeWrite)
   local plan=d.Observe(city,wanted)
   for _,adding in ipairs({false,true})do for _,v in ipairs(plan)do
    if v.wanted==adding and v.present~=v.wanted then
-    if adding then health.Create(city,v.id)else health.Remove(city,v.id)end
-    assert(P.HasBuilding(city:GetBuildings(),v.id)==v.wanted,errors.write)
-    if confirmed then confirmed(v.key,v.id,v.wanted)end
-    v.present=v.wanted
+    local buildings
+    if freshBeforeWrite then
+     buildings=city:GetBuildings();v.present=P.HasBuilding(buildings,v.id)
+     assert(type(v.present)=='boolean',errors.read)
+    end
+    if v.present~=v.wanted then
+     if adding then health.Create(city,v.id)else health.Remove(city,v.id)end
+     assert(P.HasBuilding(buildings or city:GetBuildings(),v.id)==v.wanted,errors.write)
+     if confirmed then confirmed(v.key,v.id,v.wanted)end
+     v.present=v.wanted
+    end
    end
   end end
   return plan

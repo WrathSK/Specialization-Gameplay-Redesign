@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B316.343 S7a2 migrates Lv2GPP ordered presence bits to CarrierSet while preserving its separate fresh pre-write check for changed bits. Database GPP validation, workers/ACTIVE policy, all-bit preflight, native base-point carriers and health/exit behavior remain. [Result](../../Status/Validation/Results/Specialization_B316_Refactor_S7a2.md).
+
 B315.342 S7a1 extracts a static lazy presence-only CarrierSet for ResearchSupport and Lv2Housing. One exact descriptor list drives database resolution, health ownership and exit names; full preflight, remove-before-add, per-write readback and partial confirmed-change counts stay unchanged. [Result](../../Status/Validation/Results/Specialization_B315_Refactor_S7a1.md).
 
 B314.341 S6j adds bounded synchronous per-city NETWORK stamps and a facts-only Bridge capture entry. Complete city membership/reference and route endpoint/trader/war checks remain; only confirmed unchanged stamped city EF reads are reused. Explicit, startup, queued and new route captures stay full. [Result](../../Status/Validation/Results/Specialization_B314_Refactor_S6j.md).

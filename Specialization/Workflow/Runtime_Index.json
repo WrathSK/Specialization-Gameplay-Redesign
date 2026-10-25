@@ -716,9 +716,9 @@
       "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "76e1698fbf5d0321f4fbeede9e33e2f443793ef52e27dd0941ab44cd8ee96bf9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
-      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
+      "sha256": "797426d19d550fc8224d6f70fac55af16cfbddc49957c4fe429481c7e5136fd7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B316_Refactor_S7a2.md",
+      "provenance": "B316.343 Migrate GPP bits with fresh pre-write carrier reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv2Housing.lua": {
       "sha256": "4c6c40eae4782cfc382c8cf05529e9e80c4f6121324c50fde500488bf37ace6f",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "54a07ca12eb1e4445268b513d88f1ca1772e4c1ddd9efb2827614100818603d1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
-      "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "e5df830196efc4cff64982083936781609fd272ca87953c21e19b94c3d502142",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B316_Refactor_S7a2.md",
+      "provenance": "B316.343 Migrate GPP bits with fresh pre-write carrier reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "4604d202a5502c2ffb0a6a51ef2f26716fe79ef63c5fec50e6ba66e6e798dc9e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
-      "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "33185d5dc76573e7c16faad16889db61f0893c2a5cdc0da8a3ecc3f91397107e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B316_Refactor_S7a2.md",
+      "provenance": "B316.343 Migrate GPP bits with fresh pre-write carrier reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1606,9 +1606,9 @@
       "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CarrierSet.lua": {
-      "sha256": "b85667c5f834c13a241937497083894e92296467e3f6fa46480adfdfa7c1a42a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
-      "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "1cf800e6024694074d32929405ad422e01b9583350e80e6d5a58dc163bc9d244",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B316_Refactor_S7a2.md",
+      "provenance": "B316.343 Migrate GPP bits with fresh pre-write carrier reads; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

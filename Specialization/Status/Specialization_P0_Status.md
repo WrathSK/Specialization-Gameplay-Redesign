@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0767
-Implementation Build: B315.342 / modinfo342; stable/live B307.334
+Status Revision: S0768
+Implementation Build: B316.343 / modinfo343; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7A1_COMPLETE_CONTINUING
+Work State: REFACTOR_S7A2_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7a1 extracts a static lazy presence-only CarrierSet for ResearchSupport and Lv2Housing. One exact descriptor list drives database resolution, health ownership and exit names; full preflight, remove-before-add, per-write readback and partial confirmed-change counts stay unchanged. [Result](Validation/Results/Specialization_B315_Refactor_S7a1.md). Stable/live/main B307.334; no deployment/native PASS.
+S7a2 migrates Lv2GPP ordered presence bits to CarrierSet while preserving its separate fresh pre-write check for changed bits. Database GPP validation, workers/ACTIVE policy, all-bit preflight, native base-point carriers and health/exit behavior remain. [Result](Validation/Results/Specialization_B316_Refactor_S7a2.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7a carrier-set migration in bounded owner groups; then S7b–S10.
+- Primary next: Continue S7a location-sensitive carriers and D4 redundant repair removal; then S7b–S10.
+
+## S0768 — B316.343 Migrate GPP bits with fresh pre-write carrier reads
+
+S7a2 migrates Lv2GPP ordered presence bits to CarrierSet while preserving its separate fresh pre-write check for changed bits. Database GPP validation, workers/ACTIVE policy, all-bit preflight, native base-point carriers and health/exit behavior remain.
 
 ## S0767 — B315.342 Extract presence-only carrier sets without ability policy
 
