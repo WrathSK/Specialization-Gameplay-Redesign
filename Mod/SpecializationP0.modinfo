@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="397">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="398">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B370.397：科研传统发布实际已应用值，未知与上次确认分开，机构接线待后续。</Description>
+    <Description>B371.398：确认引用变化后阻止科研传统旧栈后续写入，可靠检查点暂停。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

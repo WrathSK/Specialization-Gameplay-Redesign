@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0823",
-    "runtime": "B370.397 / modinfo397",
+    "status": "S0824",
+    "runtime": "B371.398 / modinfo398",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S9 other owner-applied publications and institution DTO wiring,shared adjacency and narrow in-flight exit guard review under existing confirmed-loss rules,then S10 safe responsibility retirement;exact D7 permanent-history/money and D5 native attribution limits remain. No automatic deployment/main/native launch.",
+  "goal": "Await user continuation at this safe checkpoint;then resume S9 Commerce/Dialogue/Insights/Standardization applied publications and institution DTO,shared adjacency,then S10 responsibility retirement. Do not deploy/promote main/launch game;exact D7 permanent-history/money and D5 native attribution remain. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -549,6 +549,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B370_Refactor_S9d1.md",
       "kind": "full",
       "reason": "Publish Research Tradition applied values independently of candidates actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md",
+      "kind": "full",
+      "reason": "Stop stale Tradition carrier writes after confirmed lifecycle change actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -575,8 +580,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B370_Refactor_S9d1.md",
-    "local": "LOCAL_SIMULATION_PASS_1105",
+    "report": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md",
+    "local": "LOCAL_SIMULATION_PASS_1117",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

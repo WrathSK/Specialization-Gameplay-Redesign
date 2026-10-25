@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0823
-Implementation Build: B370.397 / modinfo397; stable/live B307.334
+Status Revision: S0824
+Implementation Build: B371.398 / modinfo398; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9D1_COMPLETE_CONTINUING
+Work State: REFACTOR_S9D1B_COMPLETE_SAFE_STOP
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9d1 adds pure bounded ResearchTradition Applied publication from original successful carrier readbacks,with exact scalar reference and independent gate/reason/lastConfirmed. Existing facts/rows/error-location getters are reused;normal Update adds0 native reads. Health/lifecycle/source/sequence guards preserve UNKNOWN on partial/reentrant work.27 new tests and11 original Tradition health assertions pass;2048 publisher cap never blocks effect writes. UI DTO is not wired. Other owner publications,adjacency,S10 and exact D7/D5 limits remain;mid-application exit writer safety is a recorded narrow follow-up. [Result](Validation/Results/Specialization_B370_Refactor_S9d1.md). Stable/live/main B307.334; no deployment/native PASS.
+S9d1b closes the demonstrated Tradition Remove→confirmed loss→later Create window. Store issues a pure synchronous lifecycle witness with its unchanged Base value;explicit EF reader carries it through the existing phase cache while default Read/Inspect contracts stay unchanged. Optional final NativeHealth beforeWrite rejects stale ref/lifetime/source after original b/q getters with0 added native sampling.12 new tests and104 focused affected checks pass. Publisher capacity is independent;already-entered native calls cannot be canceled. User requested safe stop after this verified commit;other owner publications/DTO,adjacency,S10 and exact D7/D5 limits remain. [Result](Validation/Results/Specialization_B371_Refactor_S9d1b.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 other owner-applied publications and institution DTO wiring,shared adjacency and narrow in-flight exit guard review under existing confirmed-loss rules,then S10 safe responsibility retirement;exact D7 permanent-history/money and D5 native attribution limits remain.
+- Primary next: Await user continuation at this safe checkpoint;then resume S9 Commerce/Dialogue/Insights/Standardization applied publications and institution DTO,shared adjacency,then S10 responsibility retirement. Do not deploy/promote main/launch game;exact D7 permanent-history/money and D5 native attribution remain.
+
+## S0824 — B371.398 Stop stale Tradition carrier writes after confirmed lifecycle change
+
+S9d1b closes the demonstrated Tradition Remove→confirmed loss→later Create window. Store issues a pure synchronous lifecycle witness with its unchanged Base value;explicit EF reader carries it through the existing phase cache while default Read/Inspect contracts stay unchanged. Optional final NativeHealth beforeWrite rejects stale ref/lifetime/source after original b/q getters with0 added native sampling.12 new tests and104 focused affected checks pass. Publisher capacity is independent;already-entered native calls cannot be canceled. User requested safe stop after this verified commit;other owner publications/DTO,adjacency,S10 and exact D7/D5 limits remain.
 
 ## S0823 — B370.397 Publish Research Tradition applied values independently of candidates
 

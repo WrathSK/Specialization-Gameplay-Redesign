@@ -266,6 +266,15 @@ local function CreateProgressionRecord(P,shared,storage)
    tostring(identity),tostring(potential),tostring(inv and inv.revision or 1),tostring(rest and rest.serial),tostring(r.ownerChanges or 0)},'|')
   return core..'|'..observed..'|'..facts..(facts~='FACTS_UNOBSERVED'and factInput and ':'..factInput or ''),core
  end
+ -- Pure reference/write witness only; each ability still owns its qualification.
+ function d.CarrierReferenceStamp(pid,id,x,y,token)
+  if not ready or fault or committing or not root or root.stage~='ACTIVE'or root.referenceInvalidated or root.completionError then return nil end
+  local a=root.current or root.origin;local b=root.base
+  if not a or not b or a.owner~=pid or a.cityID~=id or a.x~=x or a.y~=y or b.token~=token then return nil end
+  local r=root.restructuring
+  return table.concat({pid,id,x,y,#token..':'..token,root.ownerChanges or 0,r and r.serial or 0,
+   r and r.phase or 'NO_RESTRUCTURING',r and r.identity or b.specialization,r and r.potential or b.potential},'|')
+ end
  local function active(pid,c)
   storage.Check()
   assert(ready and not fault and root and root.stage=='ACTIVE','PROGRESSION_HELD')
@@ -306,7 +315,10 @@ local function CreateProgressionRecord(P,shared,storage)
   return {token=r.base.token,x=r.origin.x,y=r.origin.y,ownerChanges=r.ownerChanges or 0,
    industryEpoch=r.restructuring and r.restructuring.serial or 0}
  end
- function d.Base(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local b=R.Current(r);return projected(r,b,false)end
+ function d.Base(pid,c)
+  assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local b=projected(r,R.Current(r),false)
+  return b,d.CarrierReferenceStamp(b.owner,b.cityID,b.x,b.y,b.token)
+ end
  function d.FactStamp(pid,c)
   assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c)
   return table.concat({r.base.token,r.revision},':')
@@ -1563,6 +1575,11 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.TrainingInputStamp(pid,id,x,y)
   local w,why=trainingWorker(pid,id,x,y)
   if w then return w.TrainingInputStamp(pid,id,x,y)end;return why
+ end
+ function store.CarrierReferenceStamp(pid,id,x,y,token)
+  if writing then return nil end
+  local w=trainingWorker(pid,id,x,y)
+  return w and w.CarrierReferenceStamp(pid,id,x,y,token)or nil
  end
  function store.ObserveTrainingFacts(pid,id,x,y,token,state,issuer,serial,input)
   local w=trainingWorker(pid,id,x,y)

@@ -77,7 +77,7 @@ function SPCEffectiveFacts.Start(P,shared)
  end
  local function capture(pid,city) P.Count('facts');
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
-  local f=shared.CityFlowProbe.SupportFacts(pid,city)
+  local f,referenceWitness=shared.CityFlowProbe.SupportFacts(pid,city)
   assert(f.owner==pid and f.cityID==city:GetID() and type(f.token)=='string','EFFECTIVE_FOUNDATION_IDENTITY')
   local store=shared.CityProgressionStore
   local ledger
@@ -120,14 +120,14 @@ function SPCEffectiveFacts.Start(P,shared)
     out.active=math.min(out.potential,ceiling)
    else out.active=nil;out.activeStatus='UNKNOWN_GOVERNOR' end
   end
-  return out
+  return out,referenceWitness
  end
  -- Read-only projections run inside the same existing full authority checks.
  -- Only raw worker counts share a phase; eligibility remains in each projection.
  local workerBusy={};local workerBusyCount=0
- local function projectValue(value,parent,project,slotKey,slotValue)
+ local function projectValue(value,parent,project,slotKey,slotValue,referenceWitness)
   noteTrainingBase(value)
-  if not project then return clone(value)end
+  if not project then return clone(value),referenceWitness end
   local window=phase;local version=generation;local changes=shared.FactChanges
   local function epochs()
    if not(changes and changes.Generation)then return nil,nil end
@@ -200,13 +200,13 @@ function SPCEffectiveFacts.Start(P,shared)
   return result
  end
  local function phasedRead(pid,city,project)
-  if not phase or writes>0 then return projectValue(capture(pid,city),nil,project)end
+  if not phase or writes>0 then local value,witness=capture(pid,city);return projectValue(value,nil,project,nil,nil,witness)end
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
   local before=generation;local identity=stamp(pid,city)
-  if not identity then return projectValue(capture(pid,city),nil,project)end
+  if not identity then local value,witness=capture(pid,city);return projectValue(value,nil,project,nil,nil,witness)end
   local key=tostring(pid)..':'..tostring(city:GetID());local cached=phase.values[key]
   if cached and cached.identity==identity then
-   local projected=projectValue(cached.value,cached,project,key,cached)
+   local projected,referenceWitness=projectValue(cached.value,cached,project,key,cached,cached.referenceWitness)
    -- Certify governor AFTER the read-only body, with the original one gate read.
    local current=cached.gate and gate(city)or nil
    if not cached.gate or same(current,cached.gate)then
@@ -215,13 +215,13 @@ function SPCEffectiveFacts.Start(P,shared)
      if project then return pack(false,'WORKER_FACTS_CHANGED_DURING_READ')end
      error('EFFECTIVE_FACTS_CHANGED_DURING_READ',0)
     end
-    P.Count('facts_reuse');return projected
+    P.Count('facts_reuse');return projected,referenceWitness
    end
   end
   if cached then phase.values[key]=nil;phase.count=phase.count-1 end
-  local value=capture(pid,city)
-  local candidate=value.activeStatus=='KNOWN'and not value.investmentPending and phase.count<2048 and {identity=identity,value=clone(value)}or nil
-  local projected=projectValue(value,candidate,project,key,nil)
+  local value,referenceWitness=capture(pid,city)
+  local candidate=value.activeStatus=='KNOWN'and not value.investmentPending and phase.count<2048 and {identity=identity,value=clone(value),referenceWitness=referenceWitness}or nil
+  local projected,witness=projectValue(value,candidate,project,key,nil,referenceWitness)
   -- A getter may reenter native code. Never publish old confirmed facts across a write/reference boundary.
   assert(stamp(pid,city)==identity and generation==before and writes==0,'EFFECTIVE_FACTS_CHANGED_DURING_READ')
   -- A reentrant read may publish a newer governor/base witness. Never overwrite it.
@@ -239,12 +239,12 @@ function SPCEffectiveFacts.Start(P,shared)
    assert(stamp(pid,city)==identity and generation==before and writes==0,'EFFECTIVE_FACTS_CHANGED_DURING_READ')
    if phase.count<2048 and phase.values[key]==nil then
     phase.count=phase.count+1
-    candidate=candidate or {identity=identity,value=clone(value)};candidate.gate=witness;phase.values[key]=candidate
+    candidate=candidate or {identity=identity,value=clone(value),referenceWitness=referenceWitness};candidate.gate=witness;phase.values[key]=candidate
    end
   end
-  return projected
+  return projected,witness
  end
- local function read(pid,city,project)
+ local function read(pid,city,project,withCarrierReference)
   local store=shared.CityProgressionStore
   local previous=trainingFrame;local frame
   if store and type(store.ObserveTrainingFacts)=='function'and trainingDepth<8 then
@@ -265,8 +265,14 @@ function SPCEffectiveFacts.Start(P,shared)
     data.trainingObservationError=not ok and 'TRAINING_OBSERVATION_FAILED'or nil
    end
   end
+  if not project and result[1]then
+   if withCarrierReference then return result[2],result[3]end
+   return result[2] -- original public Read arity/shape, no witness field in facts
+  end
   return finish(result)
  end
+ -- Explicit same-base scalar witness; default Read/Inspect contracts stay unchanged.
+ function data.ReadWithCarrierReference(pid,city)return read(pid,city,nil,true)end
  function data.Read(pid,city)return read(pid,city)end
  function data.Inspect(pid,city,project)
   assert(type(project)=='function','FACT_PROJECTION_INVALID')

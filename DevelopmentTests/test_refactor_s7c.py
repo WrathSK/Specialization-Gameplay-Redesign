@@ -18,7 +18,7 @@ BASE='afd2204'
 @contextmanager
 def history():
     previous=Path.read_text;execute=TrackedLua51.execute
-    originals={ROOT/'Mod'/(n+'.lua'):subprocess.check_output(['git','show',BASE+':Mod/'+n+'.lua'],cwd=ROOT,text=True)for n in ('ResearchTradition','CommerceModel','CityProgressionStore','Commerce')}
+    originals={ROOT/'Mod'/(n+'.lua'):subprocess.check_output(['git','show',BASE+':Mod/'+n+'.lua'],cwd=ROOT,text=True)for n in ('ResearchTradition','ResearchTraditionEffects','CommerceModel','CityProgressionStore','Commerce')}
     digests={sha256(s.encode()).hexdigest():'historical/'+BASE+'/'+str(p.relative_to(ROOT))for p,s in originals.items()}
     def read(p,*a,**kw):return originals[p]if p in originals else previous(p,*a,**kw)
     def run(vm,s,*a,**kw):

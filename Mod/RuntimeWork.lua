@@ -476,7 +476,7 @@ function SPCRuntimeWork.StartReady(P,shared,name,start)
 end
 
 -- Exact live carrier health only. No policy, prefix ownership or periodic audit.
-function SPCRuntimeWork.NativeHealth(P,shared,data,owns,mark)
+function SPCRuntimeWork.NativeHealth(P,shared,data,owns,mark,beforeWrite)
  local h={};local removing,creating
  local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
  local function guarded(fn,...)
@@ -528,12 +528,18 @@ function SPCRuntimeWork.NativeHealth(P,shared,data,owns,mark)
    if ok then plot=value end -- optional proof; do not add a new qualification failure
   end
   local prior=removing;removing=witness(c,index,plot)
-  local ok,value=pcall(function()return P.RemoveBuilding(c:GetBuildings(),index)end);removing=prior
+  local ok,value=pcall(function()
+   if not beforeWrite then return P.RemoveBuilding(c:GetBuildings(),index)end
+   local remove=P.RemoveBuilding;local b=c:GetBuildings();beforeWrite();return remove(b,index)
+  end);removing=prior
   if not ok then error(value,0)end;return value
  end
  function h.Create(c,index,plot)
   local prior=creating;creating=witness(c,index,plot)
-  local ok,value=pcall(function()return P.CreateBuilding(c:GetBuildQueue(),index)end);creating=prior
+  local ok,value=pcall(function()
+   if not beforeWrite then return P.CreateBuilding(c:GetBuildQueue(),index)end
+   local create=P.CreateBuilding;local q=c:GetBuildQueue();beforeWrite();return create(q,index)
+  end);creating=prior
   if not ok then error(value,0)end;return value
  end
  return h

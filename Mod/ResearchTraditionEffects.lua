@@ -8,8 +8,11 @@ function M.Start(P,shared)
  local store=assert(shared.CityProgressionStore)
  local data={ready=false,changes=0};shared.ResearchTraditionEffects=data
  local pending={};local busy=false;local definitions
- local ownedIndex={};local markHealth
- local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)markHealth(scope)end)
+ local ownedIndex={};local markHealth;local writeGuard
+ local strictCarrierReference=store.UsesNewAuthority==true
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)markHealth(scope)end,function()
+  if strictCarrierReference then assert(writeGuard,'TRADITION_WRITE_WITNESS_UNAVAILABLE');writeGuard()end
+ end)
  -- Fixed presentation-only slots; never effect/save authority or native-object storage.
  local records,byID,ownerGeneration={},{},{};local count=0;local generation=0;local sequence=0;local publicationDepth=0
  local function integer(v)return type(v)=='number'and v==v and v>=0 and v<1000000000 and v%1==0 end
@@ -99,7 +102,21 @@ function M.Start(P,shared)
  end
  local function desired(pid,c,frame)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'TRADITION_OWNER_UNKNOWN')
-  local f=shared.EffectiveFacts.Read(pid,c)
+  local f
+  if frame and strictCarrierReference then
+   local facts=shared.EffectiveFacts;local reader=assert(facts.ReadWithCarrierReference,'TRADITION_WRITE_READER_UNAVAILABLE')
+   local witness;f,witness=reader(pid,c)
+   local stamp=assert(store.CarrierReferenceStamp,'TRADITION_WRITE_STAMP_UNAVAILABLE')
+   local owner,id,x,y,token=f.owner,f.cityID,f.x,f.y,f.token
+   local create,remove=P.CreateBuilding,P.RemoveBuilding
+   writeGuard=function()
+    assert(rawequal(shared.CityProgressionStore,store)and store.CarrierReferenceStamp==stamp
+     and rawequal(shared.EffectiveFacts,facts)and facts.ReadWithCarrierReference==reader
+     and rawequal(shared.ResearchTraditionEffects,data)and P.CreateBuilding==create and P.RemoveBuilding==remove,'TRADITION_WRITE_SOURCE_CHANGED')
+    assert(type(witness)=='string'and stamp(owner,id,x,y,token)==witness,'TRADITION_WRITE_REFERENCE_CHANGED')
+   end
+   writeGuard()
+  else f=shared.EffectiveFacts.Read(pid,c)end
   if frame then safe(bind,frame,f)end
   if f.specialization~='RESEARCH'then if frame then frame.gate='INELIGIBLE';frame.reason='NOT_RESEARCH'end;return 0 end
   assert(f.activeStatus=='KNOWN' and type(f.active)=='number','TRADITION_ACTIVE_UNKNOWN')
@@ -131,7 +148,7 @@ function M.Start(P,shared)
  end
  function data.Update(pid,c)
   if not data.ready or busy then return end
-  busy=true
+  busy=true;local previousGuard=writeGuard;writeGuard=nil
   sequence=sequence+1;publicationDepth=publicationDepth+1
   local frame={sequence=sequence,generation=generation,ownerGeneration=ownerGeneration[pid]or 0,owner=pid}
   local ok,err=pcall(function()
@@ -153,7 +170,7 @@ function M.Start(P,shared)
    safe(publish,frame,true,total)
   end)
   if not ok then safe(publish,frame,false)end
-  busy=false
+  writeGuard=previousGuard;busy=false
   local reported,why=pcall(function()
    if not ok then data.lastError={city=key(c,frame),reason=tostring(err)}
    elseif data.lastError and data.lastError.city==key(c)then data.lastError=nil end
