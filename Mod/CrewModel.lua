@@ -6,7 +6,8 @@ SPCCrewModel={
  RATIOS={150,140,130,120},
  UNIT_PROPERTY='SPC_CREW_SOURCE_V1',
  ORDER_PROPERTY='SPC_CREW_ORDERS_V1',
- RECEIPT_PROPERTY='SPC_CREW_GRANTS_V1'
+ RECEIPT_PROPERTY='SPC_CREW_GRANTS_V1',
+ USE_RECEIPT_PROPERTY='SPC_CREW_ACTION_RECEIPTS_V1'
 }
 local M=SPCCrewModel
 function M.Copy(v)if type(v)~='table'then return v end;local o={};for k,x in pairs(v)do o[k]=M.Copy(x)end;return o end

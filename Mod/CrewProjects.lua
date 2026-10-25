@@ -1,4 +1,5 @@
 include('SafeCallbacks')
+include('UnitSiteFacts')
 if not SPCPropertyCell then include('PropertyCell')end
 include('CrewModel')
 include('ExpeditionTrainingDiagnostics')
@@ -9,6 +10,7 @@ SPCCrewProjects={}
 function SPCCrewProjects.Start(P,shared)
  local M=SPCCrewModel;local cp,same=M.Copy,M.Same;local store=assert(shared.CityProgressionStore)
  local d={ready=false,busy=false,errors={},views={},revision=0};shared.CrewProjects=d
+ local consuming={}
  local dirty,settling,failed,issued={}, {}, {}, {};local knownUnits={};local lastRequest,lastReply;local trace=SPCExpeditionTrainingDiagnostics.New(P,'CREW')
  local function key(pid,id)return pid..':'..id end
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
@@ -293,6 +295,54 @@ function SPCCrewProjects.Start(P,shared)
   end)
   if not ok then failed[k]=d.errors[k] or 'CREW_GRANT_UNCONFIRMED' end
   settling[k]=nil;mark(pid,id) -- normal publish handles removal after completion callbacks
+ end
+ function d.UseTarget(pid,u)
+  d.Unit(pid,u) -- strict permanent source and locked capacity
+  assert(u:GetBuildCharges()==1,'CREW_REQUIRES_EXACTLY_ONE_CHARGE')
+  assert(u:GetProperty('SPC_CREW_RESERVED')==nil,'CREW_RESERVED')
+  local c=SPCUnitSiteFacts.TargetCity(shared,pid,u);local s=shared.ConstructionProbe.ReadSnapshot(pid,c)
+  local row=s.kind=='Buildings' and P.Info('Buildings',s.target)
+  assert(row and (row.IsWonder==true or row.IsWonder==1) and s.progress<s.cost,'CREW_WONDER_REQUIRED')
+  -- D0053 accepts native Production modifiers. Keep base input bounded;
+  -- receipt, target and debit checks remain authoritative.
+  return c,s
+ end
+
+ function d.Consume(pid,u,c,plan)
+  if consuming[pid]then return {status='BUSY',kind='CREW_USE',phase='PRECHECK'}end
+  consuming[pid]=true;local destructive=false;local phase='PRECHECK'
+  local ok,result=pcall(function()
+   assert(P.IsTestPlayer(pid)and u and u:GetOwner()==pid,'OWN_UNIT_REQUIRED')
+   local current=Players[pid]:GetUnits():FindID(u:GetID());assert(current and current:GetOwner()==pid,'OWN_UNIT_REQUIRED');u=current
+   assert(type(plan)=='table'and plan.unitID==u:GetID(),'PREPARE_THIS_UNIT_FIRST');plan=cp(plan)
+   assert(c and c:GetOwner()==pid and c:GetID()==plan.cityID,'OWNER_CHANGED')
+   local binding=d.Unit(pid,u);local amount=binding.capacity;assert(amount==plan.amount and binding.grant==plan.grant,'TARGET_CHANGED_PREPARE_AGAIN')
+   local now,s=d.UseTarget(pid,u)
+   assert(now:GetID()==c:GetID() and plan.turn==Game.GetCurrentGameTurn() and s.target==plan.target and s.cost==plan.cost and s.progress==plan.progress,'TARGET_CHANGED_PREPARE_AGAIN')
+   local receipts=cp(Players[pid]:GetProperty(M.USE_RECEIPT_PROPERTY) or {});assert(type(receipts)=='table','CREW_USE_HISTORY_INVALID');assert(not receipts[binding.grant],'RECEIPT_EXISTS')
+   local function record(state)
+    receipts[binding.grant]={state=state,unitID=plan.unitID,cityID=c:GetID(),target=s.target,amount=math.min(amount,s.cost-s.progress)}
+    pcall(P.SetProperty,Players[pid],M.USE_RECEIPT_PROPERTY,receipts)
+    assert(same(Players[pid]:GetProperty(M.USE_RECEIPT_PROPERTY),receipts),'CREW_USE_RECEIPT_UNCONFIRMED')
+   end
+   destructive=true;phase='INTENT';record('INTENT');P.SetProperty(u,'SPC_CREW_RESERVED',plan.token)
+   assert(u:GetProperty('SPC_CREW_RESERVED')==plan.token,'RESERVATION_UNCONFIRMED')
+   Players[pid]:GetUnits():Destroy(u)
+   assert(not Players[pid]:GetUnits():FindID(plan.unitID),'UNIT_DEBIT_UNCONFIRMED')
+   local after=shared.ConstructionProbe.ReadSnapshot(pid,c)
+   assert(after.target==s.target and after.progress==s.progress and after.cost==s.cost,'TARGET_CHANGED_AFTER_DEBIT')
+   phase='GRANT_ATTEMPTED';record('GRANT_ATTEMPTED') -- Never automatically replay an uncertain engine grant.
+   d.RecordUse(pid,c,plan.unitID,'CREW_USE_ATTEMPT',amount,s.progress,s.cost,math.min(amount,s.cost-s.progress))
+   c:GetBuildQueue():AddProgress(math.min(amount,s.cost-s.progress)) -- One native call; accepted modifiers apply. No correction/replay.
+   phase='GRANT_RETURNED';record('GRANT_RETURNED')
+   d.RecordUse(pid,c,plan.unitID,'CREW_USE_RETURNED',amount,s.progress,s.cost,math.min(amount,s.cost-s.progress))
+   return {status='COMMITTED',kind='CREW_USE',phase=phase,baseInput=math.min(amount,s.cost-s.progress),unusedBase=math.max(0,amount-(s.cost-s.progress))}
+  end)
+  consuming[pid]=nil
+  if ok then return result end
+  local printable,text=pcall(tostring,result)
+  text=printable and text or 'CREW_USE_ERROR'
+  return {status=destructive and 'HELD'or 'REJECTED',kind='CREW_USE',phase=phase,error=text}
  end
  function d.RecordUse(pid,c,uid,stage,capacity,progress,cost,amount)
   observe(stage,pid,c,{eventUnit=uid,baseCapacity=capacity,nativeProgress=progress,nativeCost=cost,baseInput=amount})

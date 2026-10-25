@@ -24,7 +24,7 @@ function SPCCrewPrecision.Start(P,shared)
   local measured=params.Action=='UNIT_ACTION_CONFIRM'
   local record
   if measured then local ok,v=pcall(before,pid,params);record=ok and v or {owner=pid,error=tostring(v)} end
-  local result,receipt=original(pid,params) -- Preserve the committed investment receipt through this observer.
+  local result,receipt,outcome=original(pid,params) -- Preserve the committed investment receipt through this observer.
   if record then
    record.result=result
    local ok,err=pcall(function()
@@ -34,7 +34,7 @@ function SPCCrewPrecision.Start(P,shared)
     local s=shared.ConstructionProbe.ReadSnapshot(pid,city)
     record.afterTarget=s.target;record.after=s.progress
     record.unitPresent=Players[pid]:GetUnits():FindID(record.unitID)~=nil
-    if not result:find('CREW CONSUMED',1,true) then record.note='ACTION_NOT_COMPLETED: not a precision measurement'
+    if not outcome or outcome.kind~='CREW_USE'or outcome.status~='COMMITTED'then record.note='ACTION_NOT_COMPLETED: not a precision measurement'
     elseif s.target==record.target then record.observed=record.after-record.before -- Native modifiers are accepted; this is not an exact-base oracle.
     else record.note='TARGET_COMPLETED_OR_CHANGED: do not subtract different targets' end
    end)
@@ -43,6 +43,6 @@ function SPCCrewPrecision.Start(P,shared)
    shared.CrewPrecision=record
    print('[SPC][B046][PRECISION] before='..tostring(record.before)..' after='..tostring(record.after)..' baseInput='..tostring(record.baseInput)..' observed='..tostring(record.observed))
   end
-  return result,receipt
+  return result,receipt,outcome
  end
 end

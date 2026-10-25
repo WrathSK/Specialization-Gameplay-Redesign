@@ -983,6 +983,30 @@
       "test_refactor_s6e.RetainedGuards",
       "test_refactor_s6f.RetainedDevelopment",
       "test_refactor_s6f.RetainedGuards"
+    ],
+    "S7d5": [
+      "test_refactor_s7d5",
+      "test_refactor_s6i",
+      "test_refactor_s7d4",
+      "test_refactor_s7d3b",
+      "test_refactor_s7d3a",
+      "test_refactor_s7d2",
+      "test_refactor_s7d1",
+      "test_refactor_s7c",
+      "test_refactor_s5d4c7",
+      "test_refactor_s5d4c10",
+      "test_refactor_s4b.CommerceRetention",
+      "test_refactor_s6f.Composition",
+      "test_refactor_s7b2",
+      "test_refactor_s7b1",
+      "test_refactor_s5a2",
+      "test_refactor_s5b",
+      "test_refactor_s6b.Composition",
+      "test_refactor_s3",
+      "test_refactor_s6e.RetainedReceipts",
+      "test_refactor_s6e.RetainedGuards",
+      "test_refactor_s6f.RetainedDevelopment",
+      "test_refactor_s6f.RetainedGuards"
     ]
   },
   "counterexamples": {},
@@ -1293,10 +1317,12 @@
       "test_refactor_s6i"
     ],
     "Mod/UnitSiteFacts.lua": [
-      "test_refactor_s6i"
+      "test_refactor_s6i",
+      "test_refactor_s7d5"
     ],
     "Mod/UnitActions.lua": [
-      "test_refactor_s6i"
+      "test_refactor_s6i",
+      "test_refactor_s7d5"
     ],
     "Mod/InvestmentAction.lua": [
       "test_refactor_s6i"
@@ -1322,7 +1348,8 @@
       "test_refactor_s7b1"
     ],
     "Mod/CrewProjects.lua": [
-      "test_refactor_s7b2"
+      "test_refactor_s7b2",
+      "test_refactor_s7d5"
     ],
     "Mod/CapitalInvestmentModel.lua": [
       "test_refactor_s7b2"
@@ -1360,6 +1387,12 @@
     ],
     "Mod/EngineeringStudyProjects.lua": [
       "test_refactor_s7d4"
+    ],
+    "Mod/CrewModel.lua": [
+      "test_refactor_s7d5"
+    ],
+    "Mod/CrewPrecision.lua": [
+      "test_refactor_s7d5"
     ]
   },
   "exclusions": {
@@ -1440,7 +1473,8 @@
     "Mod/UI/UnitTargetMarkers.lua|MEASURED_MISSING_EVENT": 1,
     "Mod/UnitActions.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/YieldCarrierProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
-    "Mod/NetworkBridge.lua|MEASURED_MISSING_EVENT": 2
+    "Mod/NetworkBridge.lua|MEASURED_MISSING_EVENT": 2,
+    "Mod/CrewProjects.lua|PROPERTY_PRODUCER_OWNERSHIP": 1
   },
   "static_review_boundary": "S2 reviewed current runtime debt; counts are heuristic alarms, not compliance. New/widened alarms block pending human review; later removal of old debt is allowed.",
   "resolved_counterexamples": {
@@ -1477,6 +1511,14 @@
       ],
       "reason": "Restore original optional route signal hooks moved from TradeRouteProbe; B282 incorrectly conflated absent Events names with GameEvents. HD Misc.lua767-770 verifies GameEvents.CityConquered signature; GameEvents.TradeRoutePlundered availability remains UNKNOWN, preserving guarded original hook. Scanner is a bare-name heuristic. No new native dependency/delivery assertion. Frozen B282 evidence not rewritten.",
       "evidence": "20 independent S5c2 actual Bridge/Commerce/Sender cases PASS including Namespaces.test_existing_gameevent_route_signals_are_not_events_namespace_absence and no doubled diagnostic signals in inherited S5c1."
+    },
+    {
+      "stage": "S7d5",
+      "key": "Mod/CrewProjects.lua|PROPERTY_PRODUCER_OWNERSHIP",
+      "before": 0,
+      "after": 1,
+      "reason": "Accepted S7d/F12/C080 moves the unchanged Crew use receipt/reservation writer from UnitActions to CrewProjects. Scanner detects direct P.SetProperty syntax; previous Crew writes used captured setters/pcall. UnitActions ownership alarm falls1→0, Crew rises0→1; pair total remains1. Single-use mutation-order/receipt differential and typed failure tests pass. No new property key/schema, permission, automatic writer or retry.",
+      "evidence": "test_refactor_s7d5.StaticOwnership and Transaction eight-mode exact75f435a differential; original local first artifact preserved with497 passing tests and this ownership review alarm."
     }
   ],
   "supported_state_changes": {

@@ -166,19 +166,19 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/CrewModel.lua": {
-      "sha256": "dd741d672f769601e423af8e192738aff9353d2effc5dcb2b82dbd40372eb269",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
-      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
+      "sha256": "2056c65fb64f842aca18fd0364b440447b1f600b59cde6823755956915fe1270",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
+      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CrewPrecision.lua": {
-      "sha256": "26b032b92352987028ddae7e111a6fb25369f645ac41adf9476981602b5b5142",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+      "sha256": "c4a98f521a346b097748d0c9df470c1ef209d06fc60ec052c4d0898e6cc0fe59",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
+      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "db41804d8ef1b0090f24e23b9288ac9869115f96fe5363e0b9735e5232c32242",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
-      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "abb20452455ed9540d34d67a4d94f24b930004e429fa18ec58cda19db3ebaef4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
+      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "6829cea9df3f1d295c6746f3d199eb7d71a6d74e30862c88d50edb85d845ce8c",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "1db9cb7fb51e47bc2a682f6bed6eec1446323ed8e432f48d575ba35a7ec1a66c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
-      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
+      "sha256": "c83f72c3559e2508bb99f34e47036c131760716cd00eeb90086aa770c8fba34b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
+      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "0ac23fcfdfae6d64d320cc709c0382c41328129c69658274c7a7d11b3b0cc787",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
-      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
+      "sha256": "32dd6ee5c6b29f50360d0441d8f1bde03e79dbc7155be29ffdef967290511578",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
+      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1536,9 +1536,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UnitActions.lua": {
-      "sha256": "5a03b67b0316d3a77015d106540d3daa86f64186c025a9ef5863605c44df84a2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
-      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
+      "sha256": "0354cdbf65bd6cd7f59c6c0c929cce9220447bfdd05ff85a30b72e2ac9f85cba",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
+      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UnitSiteProbe.lua": {
       "sha256": "2398a3af7567fbf58498eee3e95f91ff3e1c44574ad601cb75b38bb398a9d0fc",
@@ -1601,9 +1601,9 @@
       "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UnitSiteFacts.lua": {
-      "sha256": "e6f641f1879ff5262140b05f01a95e2fa92662364128596ecfcbfa4a06c19393",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
-      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
+      "sha256": "e8b6bcd4d8d68f1b49f7ce240cfa02faeef43950de0f734807209ece078b5be0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
+      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CarrierSet.lua": {
       "sha256": "c338c177088e9e0fa22601b1d5a8f93b07a15e76557178dcf93a08c094395421",

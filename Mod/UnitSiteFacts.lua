@@ -46,3 +46,15 @@ function M.CityAt(P,pid,u)
  if c:GetOwner()~=pid then return nil,false end
  return c,true
 end
+
+function M.TargetCity(shared,pid,u)
+  local params={UnitID=u:GetID(),Token='ACTION_SITE',BuilderPreview=false};local s
+  if shared.UnitTargets.ReadAtSite then s=shared.UnitTargets.ReadAtSite(pid,params)
+  else shared.UnitTargets.Refresh(pid,params);s=shared.UnitTargetSnapshot end
+  assert(not s.error,s.error)
+  local plot=Map.GetPlot(u:GetX(),u:GetY()):GetIndex()
+  for _,v in ipairs(s.plots) do
+   if v.plot==plot then return Players[pid]:GetCities():FindID(v.cityID) end
+  end
+  error('MOVE_TO_LEGAL_TARGET: select unit to see map markers')
+end

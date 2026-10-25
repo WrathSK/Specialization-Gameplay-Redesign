@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0780",
-    "runtime": "B328.355 / modinfo355",
+    "status": "S0781",
+    "runtime": "B329.356 / modinfo356",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S7d Crew completion-proof/consume responsibilities, then S7e/f and S8–S10; no automatic deployment, main promotion or game launch. No automatic deployment/main/native launch.",
+  "goal": "Continue S7d6 unique Crew completion attribution under D5, then S7e/f and S8–S10. No automatic deployment, main promotion or game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -334,6 +334,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
       "kind": "full",
       "reason": "Suspend unknown project timers until related facts recover actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
+      "kind": "full",
+      "reason": "Move one-use Crew transaction to its owner actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -360,8 +365,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
-    "local": "LOCAL_SIMULATION_PASS:461/461",
+    "report": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
+    "local": "LOCAL_SIMULATION_PASS:498/498",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

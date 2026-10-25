@@ -1,37 +1,16 @@
 include('UnitSiteFacts')
--- B044: native project crews, explicit legacy DEV spawn, single-use capped injection.
+-- Shared unit preview/dispatch; action owners return explicit transaction outcomes.
 SPCUnitActions={}
 function SPCUnitActions.Start(P,shared)
  local data={};shared.UnitActions=data
  local plans,busy={},{}
- local KEY='SPC_CREW_ACTION_RECEIPTS_V1'
  local function unit(pid,id)
   assert(P.IsTestPlayer(pid),'TEST_PLAYER_REQUIRED')
   local u=Players[pid]:GetUnits():FindID(id);assert(u and u:GetOwner()==pid,'OWN_UNIT_REQUIRED')
   return u,P.Info('Units',u:GetType()).UnitType
  end
- local function target(pid,u)
-  local params={UnitID=u:GetID(),Token='ACTION_SITE',BuilderPreview=false};local s
-  if shared.UnitTargets.ReadAtSite then s=shared.UnitTargets.ReadAtSite(pid,params)
-  else shared.UnitTargets.Refresh(pid,params);s=shared.UnitTargetSnapshot end
-  assert(not s.error,s.error)
-  local plot=Map.GetPlot(u:GetX(),u:GetY()):GetIndex()
-  for _,v in ipairs(s.plots) do
-   if v.plot==plot then return Players[pid]:GetCities():FindID(v.cityID) end
-  end
-  error('MOVE_TO_LEGAL_TARGET: select unit to see map markers')
- end
- local function fresh(pid,u)
-  shared.CrewProjects.Unit(pid,u) -- strict permanent source and locked capacity
-  assert(u:GetBuildCharges()==1,'CREW_REQUIRES_EXACTLY_ONE_CHARGE')
-  assert(u:GetProperty('SPC_CREW_RESERVED')==nil,'CREW_RESERVED')
-  local c=target(pid,u);local s=shared.ConstructionProbe.ReadSnapshot(pid,c)
-  local row=s.kind=='Buildings' and P.Info('Buildings',s.target)
-  assert(row and (row.IsWonder==true or row.IsWonder==1) and s.progress<s.cost,'CREW_WONDER_REQUIRED')
-  -- D0053 accepts native Production modifiers. Keep base input bounded;
-  -- receipt, target and debit checks remain authoritative.
-  return c,s
- end
+ local function target(pid,u)return SPCUnitSiteFacts.TargetCity(shared,pid,u)end
+ local function fresh(pid,u)return shared.CrewProjects.UseTarget(pid,u)end
  -- B045 presentation-only refresh. Reuse exact existing eligibility/queue checks.
  -- Invalidating an ephemeral preview never consumes, grants or changes city facts.
  function data.ReadView(pid,id,token)
@@ -82,9 +61,9 @@ function SPCUnitActions.Start(P,shared)
   return view
  end
  function data.Run(pid,p)
-  if busy[pid] then return 'BUSY: no second action' end
+  if busy[pid]then return 'BUSY: no second action',nil,{status='BUSY',kind='UNIT_ACTION'}end
   busy[pid]=true
-  local destructive=false
+  local outcome={status='REJECTED',kind='UNIT_ACTION',phase='PRECHECK'}
   local ok,result,investment=pcall(function()
    assert(P.IsTestPlayer(pid),'TEST_PLAYER_REQUIRED')
    if p.Action=='UNIT_ACTION_SPAWN' then
@@ -99,10 +78,12 @@ function SPCUnitActions.Start(P,shared)
      local text=shared.InvestmentAction.Prepare(pid,c,u:GetID(),p.Token,true)
      local preview=shared.InvestmentPreview
      if preview and preview.owner==pid and preview.unitID==u:GetID() then plans[pid]={kind=kind,cityID=c:GetID(),unitID=u:GetID(),token=preview.token} end
+     outcome={status=plans[pid]and 'PREPARED'or 'REJECTED',kind='INVESTMENT',phase='PREPARE'}
      return text
     end
     local c,s=fresh(pid,u);local amount=shared.CrewProjects.Unit(pid,u).capacity
     plans[pid]={kind=kind,cityID=c:GetID(),unitID=u:GetID(),token=p.Token,turn=Game.GetCurrentGameTurn(),target=s.target,cost=s.cost,progress=s.progress,amount=amount,grant=shared.CrewProjects.Unit(pid,u).grant}
+    outcome={status='PREPARED',kind='CREW_USE',phase='PREPARE'}
     return 'CREW PREPARED | consume this Crew ('..amount..')\nProgress='..s.progress..' / '..s.cost..' | baseInput='..math.min(amount,s.cost-s.progress)..' | unusedBase='..math.max(0,amount-(s.cost-s.progress))..'\nConfirm unit action once. No production added yet.'
    end
    assert(p.Action=='UNIT_ACTION_CONFIRM','UNKNOWN_ACTION')
@@ -111,29 +92,17 @@ function SPCUnitActions.Start(P,shared)
    assert(p.PlanToken==nil or p.PlanToken==plan.token,'PREVIEW_TOKEN_CHANGED')
    local c=Players[pid]:GetCities():FindID(plan.cityID);assert(c and c:GetOwner()==pid,'OWNER_CHANGED')
    if kind=='UNIT_SETTLER' then
-    return shared.InvestmentAction.Confirm(pid,c,plan.token)
+    local text,receipt=shared.InvestmentAction.Confirm(pid,c,plan.token)
+    local status=receipt and receipt.status
+    outcome={status=(status=='COMMITTED'or status=='ALREADY_COMMITTED')and 'COMMITTED'or status=='UNKNOWN'and 'HELD'or 'REJECTED',kind='INVESTMENT',phase='CONFIRM'}
+    return text,receipt
    end
-   local binding=shared.CrewProjects.Unit(pid,u);local amount=binding.capacity;assert(amount==plan.amount and binding.grant==plan.grant,'TARGET_CHANGED_PREPARE_AGAIN')
-   local now,s=fresh(pid,u)
-   assert(now:GetID()==c:GetID() and plan.turn==Game.GetCurrentGameTurn() and s.target==plan.target and s.cost==plan.cost and s.progress==plan.progress,'TARGET_CHANGED_PREPARE_AGAIN')
-   local receipts=SPCCrewModel.Copy(Players[pid]:GetProperty(KEY) or {});assert(type(receipts)=='table','CREW_USE_HISTORY_INVALID');assert(not receipts[binding.grant],'RECEIPT_EXISTS')
-   local function record(state)
-    receipts[binding.grant]={state=state,unitID=plan.unitID,cityID=c:GetID(),target=s.target,amount=math.min(amount,s.cost-s.progress)}
-    pcall(P.SetProperty,Players[pid],KEY,receipts)
-    assert(SPCCrewModel.Same(Players[pid]:GetProperty(KEY),receipts),'CREW_USE_RECEIPT_UNCONFIRMED')
+   outcome=shared.CrewProjects.Consume(pid,u,c,plan)
+   if outcome.status=='COMMITTED'then
+    return 'CREW CONSUMED | baseInput='..outcome.baseInput..' | unusedBase='..outcome.unusedBase..'\nVerify native target progress. Repeated confirm cannot grant again.'
    end
-   destructive=true;record('INTENT');P.SetProperty(u,'SPC_CREW_RESERVED',plan.token)
-   assert(u:GetProperty('SPC_CREW_RESERVED')==plan.token,'RESERVATION_UNCONFIRMED')
-   Players[pid]:GetUnits():Destroy(u)
-   assert(not Players[pid]:GetUnits():FindID(plan.unitID),'UNIT_DEBIT_UNCONFIRMED')
-   local after=shared.ConstructionProbe.ReadSnapshot(pid,c)
-   assert(after.target==s.target and after.progress==s.progress and after.cost==s.cost,'TARGET_CHANGED_AFTER_DEBIT')
-   record('GRANT_ATTEMPTED') -- Never automatically replay an uncertain engine grant.
-   shared.CrewProjects.RecordUse(pid,c,plan.unitID,'CREW_USE_ATTEMPT',amount,s.progress,s.cost,math.min(amount,s.cost-s.progress))
-   c:GetBuildQueue():AddProgress(math.min(amount,s.cost-s.progress)) -- One native call; accepted modifiers apply. No correction/replay.
-   record('GRANT_RETURNED')
-   shared.CrewProjects.RecordUse(pid,c,plan.unitID,'CREW_USE_RETURNED',amount,s.progress,s.cost,math.min(amount,s.cost-s.progress))
-   return 'CREW CONSUMED | baseInput='..math.min(amount,s.cost-s.progress)..' | unusedBase='..math.max(0,amount-(s.cost-s.progress))..'\nVerify native target progress. Repeated confirm cannot grant again.'
+   return outcome.error or outcome.status
+
   end)
   busy[pid]=nil
   if not ok then plans[pid]=nil end
@@ -142,8 +111,9 @@ function SPCUnitActions.Start(P,shared)
    local u=Players[pid]:GetUnits():FindID(plan.unitID)
    if u then shared.UnitActionPreview={owner=pid,unitID=plan.unitID,token=plan.token,turn=Game.GetCurrentGameTurn(),x=u:GetX(),y=u:GetY()} end
   end
-  local output=ok and result or ((destructive and 'HELD / RESULT UNCERTAIN (do not retry): ' or 'REJECTED: ')..tostring(result):match('[^\r\n]+'))
-  if not ok or output:find('REJECTED',1,true) or output:find('HELD',1,true) then
+  if not ok then outcome={status='REJECTED',kind=outcome.kind,phase='PRECHECK',error=tostring(result)}end
+  local output=ok and result or ('REJECTED: '..tostring(result):match('[^\r\n]+'))
+  if outcome.status=='REJECTED'or outcome.status=='HELD'then
    print('[SPC][B043][UNIT_ACTION_DETAIL] '..output)
    local hints={
     MOVE_TO_LEGAL_TARGET='请先移动到高亮的目标地块。施工队前往当前施工目标；移民前往本城专业区域。',
@@ -159,14 +129,14 @@ function SPCUnitActions.Start(P,shared)
     MOVE_CIVILIAN_OFF_CITY_CENTER='请先将平民单位移出市中心。',
    }
    for code,hint in pairs(hints) do
-    if output:find(code,1,true) and not destructive then return 'REJECTED: '..hint..' ['..code..']',investment end
+    if output:find(code,1,true) and outcome.status=='REJECTED'then return 'REJECTED: '..hint..' ['..code..']',investment,outcome end
    end
-   if destructive or output:find('HELD',1,true) then return 'HELD: 操作结果尚未确认，请停止重试并回传日志。',investment end
+   if outcome.status=='HELD'then return 'HELD: 操作结果尚未确认，请停止重试并回传日志。',investment,outcome end
    -- Preserve stable uppercase reason identifiers, not Lua paths/line numbers.
    local reason=output:match(':%d+:%s*([A-Z][A-Z0-9_]+)') or 'ACTION_REJECTED'
-   return 'REJECTED: 当前操作不可执行。['..reason..'] 详细信息已写入日志。',investment
+   return 'REJECTED: 当前操作不可执行。['..reason..'] 详细信息已写入日志。',investment,outcome
   end
-  return output,investment
+  return output,investment,outcome
  end
  local removed=Events and Events.UnitRemovedFromMap
  if removed and removed.Add then removed.Add(function(pid,id)

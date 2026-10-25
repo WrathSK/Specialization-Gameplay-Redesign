@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="355">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="356">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B328.355：分离完整回合计时与待确认轮次，仅由相关事件恢复未知事实。</Description>
+    <Description>B329.356：施工队模块拥有消费与收据，通用入口和观察器读取明确结果。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
