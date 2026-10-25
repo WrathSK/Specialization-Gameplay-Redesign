@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0817
-Implementation Build: B364.391 / modinfo391; stable/live B307.334
+Status Revision: S0818
+Implementation Build: B365.392 / modinfo392; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9C6B_COMPLETE_CONTINUING
+Work State: REFACTOR_S9A3A_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9c6b makes CityPotential the only presentation Take consumer and Overview an accepted-packet reader. Fixed UI Ready replays local accepted data without a Gameplay read. Source/delivery ordering,CLOSED state and native generation/cause fences prevent old or identical replays,shutdown and busy reentry from overwriting new displays. Eighteen new plus34 original UI assertions pass;unknown retains rows without fake zeros. Training owner signals,applied display,adjacency,S10 and exact D7/D5 limits remain OPEN. [Result](Validation/Results/Specialization_B364_Refactor_S9c6b.md). Stable/live/main B307.334; no deployment/native PASS.
+S9a3a adds pure Store TrainingInputStamp using existing positions/workers and fixed eligibility-related scalars,including current-epoch investmentPending and observed binding state. It performs0 native/fact reads/scans/writes;unrelated history/revisions/city writes remain stable. Original active short circuit,single binding read and thrown object remain;one Lua pcall records unknown observations. Ten new plus21 actual regressions pass. UI/global dependency remains until Gate capacity/final binding composition;remaining S9/S10 and exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B365_Refactor_S9a3a.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 owner-bound training signals,owner-applied institution values and adjacency,then S10; preserve exact D7/native D5 limitations.
+- Primary next: Continue S9 training capacity and binding observations,then actual owner/UI wiring before removing global dependency;owner-applied display,adjacency,S10 and exact D7/native D5 limitations remain.
+
+## S0818 — B365.392 Expose Store training refresh inputs without native polling
+
+S9a3a adds pure Store TrainingInputStamp using existing positions/workers and fixed eligibility-related scalars,including current-epoch investmentPending and observed binding state. It performs0 native/fact reads/scans/writes;unrelated history/revisions/city writes remain stable. Original active short circuit,single binding read and thrown object remain;one Lua pcall records unknown observations. Ten new plus21 actual regressions pass. UI/global dependency remains until Gate capacity/final binding composition;remaining S9/S10 and exact D7/D5 limits stay OPEN.
 
 ## S0817 — B364.391 Route institution displays through one ordered accepted reply
 

@@ -196,15 +196,49 @@ local function CreateProgressionRecord(P,shared,storage)
   return c and c:GetX()==r.x and c:GetY()==r.y or false -- old cityID may be reused elsewhere
  end
  function d.IsRecaptured(c)return root and root.current~=nil and d.Owns(c) or false end
+ -- Pure training refresh provenance. This does not grant admission or read native state.
+ local bindingObservation,bindingOwner,bindingCity,bindingX,bindingY,bindingToken
+ local function trainingReference(a)
+  if type(a)~='table'then return nil end
+  return tostring(a.owner)..':'..tostring(a.cityID)..':'..tostring(a.x)..':'..tostring(a.y)
+ end
+ local function binding(c,a)
+  local ok,value=pcall(c.GetProperty,c,M.Keys.TOKEN) -- the original single read
+  bindingOwner,bindingCity,bindingX,bindingY=a.owner,a.cityID,a.x,a.y
+  bindingToken=root and root.base and root.base.token
+  bindingObservation=not ok and 'UNAVAILABLE'or value==nil and 'ABSENT'or value==bindingToken and 'MATCH'or 'MISMATCH'
+  if not ok then error(value,0)end -- same exception/UNKNOWN protection, never reset history
+  return value
+ end
+ function d.TrainingInputStamp(pid,id,x,y)
+  if not ready or fault then return 'WORKER_UNAVAILABLE'end
+  if committing then return 'WORKER_COMMITTING'end
+  local r=root;local a=r and(r.current or r.origin)
+  if not r or type(a)~='table'or type(r.base)~='table'then return 'UNAVAILABLE'end
+  local reference=trainingReference(a)
+  if a.owner~=pid or a.cityID~=id or a.x~=x or a.y~=y then return 'REFERENCE_MISMATCH'end
+  local token=r.base.token
+  if type(token)~='string'or #token>256 then return 'IDENTITY_UNAVAILABLE'end
+  local observed=bindingOwner==a.owner and bindingCity==a.cityID and bindingX==a.x and bindingY==a.y
+   and bindingToken==token and bindingObservation or 'UNOBSERVED'
+  local rest=r.restructuring;local inv
+  if rest then inv=rest.investment else inv=r.investment end
+  local pending=inv and inv.pending~=nil or false
+  return table.concat({ready and 'READY'or 'NOT_READY',fault and 'FAILED'or 'READABLE',committing and 'COMMITTING'or 'IDLE',
+   tostring(r.stage),tostring(r.progression),r.referenceInvalidated and 'REMOVED'or 'PRESENT',r.completionError and 'COMPLETION_HELD'or 'COMPLETE_READABLE',
+   #token..':'..token,reference,pending and 'INVESTMENT_PENDING'or 'INVESTMENT_IDLE',rest and tostring(rest.phase)or 'NO_RESTRUCTURING',observed},'|')
+ end
  local function active(pid,c)
   storage.Check()
   assert(ready and not fault and root and root.stage=='ACTIVE','PROGRESSION_HELD')
-  assert(P.IsTestPlayer(pid) and pid==root.origin.owner and same(ref(c),root.current or root.origin),'PROGRESSION_REFERENCE_CHANGED')
+  local allowed=P.IsTestPlayer(pid)and pid==root.origin.owner
+  local current=allowed and ref(c)or nil
+  assert(allowed and same(current,root.current or root.origin),'PROGRESSION_REFERENCE_CHANGED')
   assert(not root.referenceInvalidated,'PROGRESSION_REFERENCE_REMOVED')
   assert(not root.completionError,root.completionError)
-  if root.schema>=2 and not root.current then assert(c:GetProperty(M.Keys.TOKEN)==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
+  if root.schema>=2 and not root.current then assert(binding(c,current)==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
   if root.current then
-   local token=c:GetProperty(M.Keys.TOKEN)
+   local token=binding(c,current)
    if root.returnEvidence=='NATIVE_TRANSITION_V1' then
     assert(validTransition(root.returnProof,root.lastLoss,root.current) and (token==nil or token==root.base.token),'PROGRESSION_BINDING_CONFLICT')
    else assert(token==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
@@ -1466,6 +1500,25 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   end
   -- Frozen two-record legacy test adapter, not the modern runtime route.
   for token,row in pairs(envelope.records)do if row.origin.x==x and row.origin.y==y then return token end end
+ end
+ -- Existing position/worker indexes only; no native getter, storage.Check, fact read or scan.
+ function store.TrainingInputStamp(pid,id,x,y)
+  for _,v in ipairs({pid,id,x,y})do
+   if type(v)~='number'or v~=v or v<0 or v>=1000000000 or v%1~=0 then return 'INVALID_REFERENCE'end
+  end
+  if pid==nil or id==nil or x==nil or y==nil then return 'INVALID_REFERENCE'end
+  if fault then return 'COLLECTION_FAILED'end
+  if modern and not initialized then return 'COLLECTION_NOT_READY'end
+  local token
+  if modern then token=positions and positions[tostring(x)..':'..tostring(y)]
+  else
+   -- Explicit frozen two-record adapter; no production fallback enumeration.
+   for name,r in pairs(envelope.records)do local a=r.current or r.origin
+    if a and a.x==x and a.y==y then token=name;break end
+   end
+  end
+  local w=token and workers[token]
+  return w and w.TrainingInputStamp(pid,id,x,y)or 'UNREGISTERED'
  end
  function store.HistoricalReference(c)return requireCity(c).HistoricalReference(c)end
  function store.IndustryHistoryStamp(c)return requireCity(c).IndustryHistoryStamp(c)end

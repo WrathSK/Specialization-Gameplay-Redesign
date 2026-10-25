@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="391">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="392">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B364.391：机构界面统一接收已验收回复，保留未知值及原生开关行为。</Description>
+    <Description>B365.392：训练输入标识只读已有内存记录，保留原资格与刷新来源。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

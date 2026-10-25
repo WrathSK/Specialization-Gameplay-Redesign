@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "0f3ef65278b1c7e04f6f8bed3de1af087800e218d44ccd29eee5aef56270747a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
-      "provenance": "B351.378 Clear obsolete initial Claim timers only from strict terminal receipts; local/static evidence only; no deployment/native PASS."
+      "sha256": "e3759881d8eaad0a4f9b2be31550ddc08116501106bc333ca1d3d729df33c237",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B365_Refactor_S9a3a.md",
+      "provenance": "B365.392 Expose Store training refresh inputs without native polling; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "382670dbd4a4a0a2e706a6b9f9d5cb9d2578f7246744451b3e126950680ce5b4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B364_Refactor_S9c6b.md",
-      "provenance": "B364.391 Route institution displays through one ordered accepted reply; local/static evidence only; no deployment/native PASS."
+      "sha256": "3296bc7bf4b81c62575cb61bf6cb5f0923a9698c1da20b1cbadd3951f8d336ed",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B365_Refactor_S9a3a.md",
+      "provenance": "B365.392 Expose Store training refresh inputs without native polling; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "ed79a5482319f6d97fd38b9d408fcd87a4d07736af2d54e2213d0d71718eeb39",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B364_Refactor_S9c6b.md",
-      "provenance": "B364.391 Route institution displays through one ordered accepted reply; local/static evidence only; no deployment/native PASS."
+      "sha256": "de8d2467058b96a4dc45b9fbc4f88c565524bd453fad78354ef01c975a44eab1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B365_Refactor_S9a3a.md",
+      "provenance": "B365.392 Expose Store training refresh inputs without native polling; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
