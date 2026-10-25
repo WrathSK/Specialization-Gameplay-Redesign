@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="344">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="345">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B317.344：按已接受不可掠夺规则删除内部载体自身掠夺拆建理由，保留真实建筑状态。</Description>
+    <Description>B318.345：共享科研载体位置敏感建拆机制，保留各 owner 预检、退出和业务规则。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

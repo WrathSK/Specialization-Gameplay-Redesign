@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0769",
-    "runtime": "B317.344 / modinfo344",
+    "status": "S0770",
+    "runtime": "B318.345 / modinfo345",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S7a location-sensitive carrier-set migration; then S7b–S10. No automatic deployment/main/native launch.",
+  "goal": "Continue S7a owned-definition/observation consolidation and remaining Industry carriers; then S7b–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -279,6 +279,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
       "kind": "full",
       "reason": "Retire redundant internal-carrier pillage rebuild reasons actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
+      "kind": "full",
+      "reason": "Share located carrier mutation mechanics after owner preflight actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -305,7 +310,7 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
     "local": "PENDING_FINAL_VALIDATION",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"

@@ -1,4 +1,5 @@
 include('RuntimeWork')
+include('CarrierSet')
 include('ResearchApplyModel')
 -- Sole RES_L3_APPLY writer. Native Campus specialist yield, never city flat compensation.
 SPCResearchApply={}
@@ -68,19 +69,11 @@ function M.Start(P,shared)
   end
   return rows,amounts
  end
- local function remove(c,row)
-  health.Remove(c,row.id,row.plot);assert(P.HasBuilding(c:GetBuildings(),row.id)==false,'AP_REMOVE_FAILED');row.yes=false;data.changes=data.changes+1
- end
  local function reconcile(pid,c)
   local p=inspect(pid,c);local rows=installed(c)
-  for _,v in ipairs(rows) do
-   v.want=math.floor(p.per[v.y]/2^v.bit)%2==1
-   if v.yes and (not v.want or v.plot~=p.plot) then remove(c,v) end
-  end
-  for _,v in ipairs(rows) do if v.want and not v.yes then
-   health.Create(c,v.id,p.plot)
-   local b=c:GetBuildings();assert(P.HasBuilding(b,v.id)==true and b:GetBuildingLocation(v.id)==p.plot and b:IsPillaged(v.id)==false,'AP_CREATE_LOCATION_FAILED');data.changes=data.changes+1
-  end end
+  for _,v in ipairs(rows)do v.want=math.floor(p.per[v.y]/2^v.bit)%2==1 end
+  SPCCarrierSet.ApplyLocated(P,c,rows,p.plot,health,
+   {observedRemoval=true,removeError='AP_REMOVE_FAILED',createError='AP_CREATE_LOCATION_FAILED'},function()data.changes=data.changes+1 end)
  end
  local function audit(scope)
   local ok,err=pcall(function()

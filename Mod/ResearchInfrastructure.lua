@@ -1,4 +1,5 @@
 include('RuntimeWork')
+include('CarrierSet')
 -- P0-C RES_L4_INFRA. One Campus per city (user-confirmed environment).
 -- Shared D remains highest-single-district; unexpected multiple Campuses HOLD.
 SPCResearchInfrastructure={}
@@ -95,19 +96,9 @@ function M.Start(P,shared)
   end)
   local state=installed(c,true) -- current bits are always fresh before any write
   local amount=p.workers>0 and p.d or 0
-  for i=0,3 do
-   local r=state.bits[i];local wanted=math.floor(amount/2^i)%2==1
-   if r.yes and (not wanted or r.plot~=p.plot) then remove(c,r.id);r.yes=false end
-  end
-  for i=0,3 do
-   local r=state.bits[i]
-   if math.floor(amount/2^i)%2==1 and not r.yes then
-    health.Create(c,r.id,p.plot)
-    local b=c:GetBuildings()
-    assert(P.HasBuilding(b,r.id)==true and b:GetBuildingLocation(r.id)==p.plot and b:IsPillaged(r.id)==false,'RI_CREATE_UNCONFIRMED')
-    data.changes=data.changes+1
-   end
-  end
+  local rows={};for i=0,3 do local r=state.bits[i];r.want=math.floor(amount/2^i)%2==1;rows[#rows+1]=r end
+  SPCCarrierSet.ApplyLocated(P,c,rows,p.plot,health,
+   {removeError='RI_REMOVE_UNCONFIRMED',createError='RI_CREATE_UNCONFIRMED'},function()data.changes=data.changes+1 end)
  end
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   reconcile(pid,c)

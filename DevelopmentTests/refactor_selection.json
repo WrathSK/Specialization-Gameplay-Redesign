@@ -752,6 +752,33 @@
       "test_refactor_s6c",
       "test_refactor_s5d4a",
       "test_refactor_s3"
+    ],
+    "S7a4": [
+      "test_refactor_s7a4",
+      "test_refactor_s7a3.FrozenArtificialDamage",
+      "test_refactor_s7a3.CurrentD4.test_forced_unsupported_damage_is_not_rebuilt_or_presented_as_actual_yield",
+      "test_refactor_s7a3.CurrentD4.test_infrastructure_external_loss_and_cross_UNKNOWN_missing_restore_still_work",
+      "test_refactor_s7a3.CurrentD4.test_real_anchor_and_ordinary_building_pillage_still_withdraws_then_recovers",
+      "test_refactor_s7a3.CurrentD4.test_actual_configuration_sql_preserves_non_spc_and_covers_four_families",
+      "test_refactor_s5d4c1.Witness",
+      "test_refactor_s5d4c1.ResearchHealth.test_external_Chair_loss_recovers_exact_city_with_no_D_capture_or_other_writer",
+      "test_refactor_s5d4c1.ResearchHealth.test_other_city_loss_during_health_write_survives_to_next_snapshot",
+      "test_refactor_s5d4c1.ResearchHealth.test_unlocated_other_city_loss_is_not_hidden_by_current_write",
+      "test_refactor_s5d4c1.ResearchHealth.test_unknown_holds_and_failed_create_waits_new_external_health_evidence",
+      "test_refactor_s5d4c1.ResearchHealth.test_actual_apply_health_uses_exact_own_ID",
+      "test_refactor_s5d4c1.ResearchHealth.test_scoped_D_replacement_remains_one_Audit_per_writer",
+      "test_refactor_s5d4c1.ResearchHealth.test_actual_cross_external_loss_recovers_without_new_BASE",
+      "test_refactor_s5d4c1.ResearchHealth.test_cross_direct_structural_fallback_only_without_D_provider",
+      "test_refactor_s7a2",
+      "test_refactor_s7a1",
+      "test_refactor_s5d4c2.TargetKernel",
+      "test_refactor_s5d4c2.SupportHealth",
+      "test_refactor_s5d4c2.HousingGPPHealth",
+      "test_refactor_s5d4c2.InfrastructureHealth.test_other_city_loss_during_repair_survives",
+      "test_refactor_s6c",
+      "test_refactor_s5d4a",
+      "test_refactor_s3",
+      "test_refactor_s6b"
     ]
   },
   "counterexamples": {},
@@ -852,7 +879,8 @@
       "test_refactor_s5d4c1.ResearchHealth.test_actual_cross_external_loss_recovers_without_new_BASE",
       "test_refactor_s5d4c1.ResearchHealth.test_cross_direct_structural_fallback_only_without_D_provider",
       "test_refactor_s6b",
-      "test_refactor_s7a3"
+      "test_refactor_s7a3",
+      "test_refactor_s7a4"
     ],
     "Mod/CarrierHealthTrace.lua": [
       "test_refactor_attribution"
@@ -947,7 +975,8 @@
       "test_refactor_s5d4c1.ResearchHealth.test_actual_cross_external_loss_recovers_without_new_BASE",
       "test_refactor_s5d4c1.ResearchHealth.test_cross_direct_structural_fallback_only_without_D_provider",
       "test_refactor_s6b",
-      "test_refactor_s7a3"
+      "test_refactor_s7a3",
+      "test_refactor_s7a4"
     ],
     "Mod/ResearchCross.lua": [
       "test_refactor_s5d1",
@@ -990,7 +1019,8 @@
       "test_refactor_s5d4c2.HousingGPPHealth",
       "test_refactor_s5d4c2.InfrastructureHealth.test_other_city_loss_during_repair_survives",
       "test_refactor_s6b",
-      "test_refactor_s7a3"
+      "test_refactor_s7a3",
+      "test_refactor_s7a4"
     ],
     "Mod/ResearchSupport.lua": [
       "test_refactor_s5d4c2",
@@ -1061,7 +1091,8 @@
     ],
     "Mod/CarrierSet.lua": [
       "test_refactor_s7a1",
-      "test_refactor_s7a2"
+      "test_refactor_s7a2",
+      "test_refactor_s7a4"
     ]
   },
   "exclusions": {

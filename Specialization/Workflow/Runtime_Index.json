@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "cff316d5c7999af7528f029c61bb3496b71f344dd742a3255f7073532fb4a22b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
-      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
+      "sha256": "f1c4eb3e9294b4bcd76467b2b3a279143d0426170f0c56139629d9cbed31561a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
+      "provenance": "B318.345 Share located carrier mutation mechanics after owner preflight; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -816,9 +816,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "708ce91658f719b1dd604e600724859cd44a06ba13f462af3745334c2937785e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
-      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
+      "sha256": "7e3af2ecd3116bb1b4384f1ec87d57abfc904014b7cc2106a521e487074101af",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
+      "provenance": "B318.345 Share located carrier mutation mechanics after owner preflight; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -826,9 +826,9 @@
       "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "25181015faad28ba630087fd898504246d235aa0d47d9bff6a358490450883bd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
-      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
+      "sha256": "d6cd0bad0e6556ab17713da46abe945d54651bcedb0028bcfa95bf3436c9d25e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
+      "provenance": "B318.345 Share located carrier mutation mechanics after owner preflight; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchChairModel.lua": {
       "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
@@ -851,9 +851,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "1c39a4b5b88e57767187ec87f0cf268772fb370b0358d32e710a3e443939b063",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
-      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
+      "sha256": "e8af2ad68e9c5190acd8f443a37fdce5802a64a14e129cc5aea3d247ded38ba4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
+      "provenance": "B318.345 Share located carrier mutation mechanics after owner preflight; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
       "sha256": "3fe47c1a8bc1d8bbb3efdf1659c6d8e3c631fd06f422f676628faf69075c1939",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6bc2eb5e0dba2f6c2e61741d18e58fa619f118c6721b97d42bccf9c9a9bd0e6c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
-      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
+      "sha256": "2d8a7b093e5bf6426a127ffb8e5454e4e3eb01097737a1572694bc85ce9ce76e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
+      "provenance": "B318.345 Share located carrier mutation mechanics after owner preflight; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1606,9 +1606,9 @@
       "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CarrierSet.lua": {
-      "sha256": "1cf800e6024694074d32929405ad422e01b9583350e80e6d5a58dc163bc9d244",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B316_Refactor_S7a2.md",
-      "provenance": "B316.343 Migrate GPP bits with fresh pre-write carrier reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "2f09b328b61f0a4448d9c43aa1206f1c22e9e8cb640b7c1939809a15c5502f39",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
+      "provenance": "B318.345 Share located carrier mutation mechanics after owner preflight; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

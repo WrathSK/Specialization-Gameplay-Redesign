@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B318.345 S7a4 shares the exact located carrier mutation loops for Apply/Infrastructure/Chair after their unchanged complete owner preflight. Preserve observed-vs-fresh removal-location witnesses, per-write readback/counts, UNKNOWN holds, real-input pillage and D4 cleanup. [Result](../../Status/Validation/Results/Specialization_B318_Refactor_S7a4.md).
+
 B317.344 S7a3 removes only the redundant own-carrier pillage rebuild condition from Apply/Infrastructure/Chair/Cross under the accepted D4 immunity rule. Real-building/district pillage, wrong-location repair, UNKNOWN/readback guards and diagnostics remain; no old-save repair migration. [Result](../../Status/Validation/Results/Specialization_B317_Refactor_S7a3.md).
 
 B316.343 S7a2 migrates Lv2GPP ordered presence bits to CarrierSet while preserving its separate fresh pre-write check for changed bits. Database GPP validation, workers/ACTIVE policy, all-bit preflight, native base-point carriers and health/exit behavior remain. [Result](../../Status/Validation/Results/Specialization_B316_Refactor_S7a2.md).

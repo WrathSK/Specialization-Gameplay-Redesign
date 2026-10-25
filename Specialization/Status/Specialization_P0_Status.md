@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0769
-Implementation Build: B317.344 / modinfo344; stable/live B307.334
+Status Revision: S0770
+Implementation Build: B318.345 / modinfo345; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7A3_COMPLETE_CONTINUING
+Work State: REFACTOR_S7A4_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7a3 removes only the redundant own-carrier pillage rebuild condition from Apply/Infrastructure/Chair/Cross under the accepted D4 immunity rule. Real-building/district pillage, wrong-location repair, UNKNOWN/readback guards and diagnostics remain; no old-save repair migration. [Result](Validation/Results/Specialization_B317_Refactor_S7a3.md). Stable/live/main B307.334; no deployment/native PASS.
+S7a4 shares the exact located carrier mutation loops for Apply/Infrastructure/Chair after their unchanged complete owner preflight. Preserve observed-vs-fresh removal-location witnesses, per-write readback/counts, UNKNOWN holds, real-input pillage and D4 cleanup. [Result](Validation/Results/Specialization_B318_Refactor_S7a4.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7a location-sensitive carrier-set migration; then S7b–S10.
+- Primary next: Continue S7a owned-definition/observation consolidation and remaining Industry carriers; then S7b–S10.
+
+## S0770 — B318.345 Share located carrier mutation mechanics after owner preflight
+
+S7a4 shares the exact located carrier mutation loops for Apply/Infrastructure/Chair after their unchanged complete owner preflight. Preserve observed-vs-fresh removal-location witnesses, per-write readback/counts, UNKNOWN holds, real-input pillage and D4 cleanup.
 
 ## S0769 — B317.344 Retire redundant internal-carrier pillage rebuild reasons
 

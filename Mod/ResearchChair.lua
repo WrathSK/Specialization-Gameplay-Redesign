@@ -1,4 +1,5 @@
 include('RuntimeWork')
+include('CarrierSet')
 include('ResearchChairModel')
 SPCResearchChair={Bits=8}
 local M=SPCResearchChair
@@ -65,17 +66,9 @@ function M.Start(P,shared)
  end
  local function reconcile(pid,c)
   local p=inspect(pid,c);local rows=installed(c)
-  for _,r in ipairs(rows) do
-   r.want=math.floor((p.amounts[r.target] or 0)/2^r.bit)%2==1
-   if r.yes and (not r.want or r.plot~=p.plot) then
-    health.Remove(c,r.id,r.plot);assert(P.HasBuilding(c:GetBuildings(),r.id)==false,'CHAIR_REMOVE_FAILED')
-    r.yes=false;data.changes=data.changes+1
-   end
-  end
-  for _,r in ipairs(rows) do if r.want and not r.yes then
-   health.Create(c,r.id,p.plot);local b=c:GetBuildings()
-   assert(P.HasBuilding(b,r.id)==true and b:GetBuildingLocation(r.id)==p.plot and b:IsPillaged(r.id)==false,'CHAIR_CREATE_FAILED');data.changes=data.changes+1
-  end end
+  for _,r in ipairs(rows)do r.want=math.floor((p.amounts[r.target] or 0)/2^r.bit)%2==1 end
+  SPCCarrierSet.ApplyLocated(P,c,rows,p.plot,health,
+   {observedRemoval=true,removeError='CHAIR_REMOVE_FAILED',createError='CHAIR_CREATE_FAILED'},function()data.changes=data.changes+1 end)
  end
  local function audit(scope)
   local ok,err=pcall(function()

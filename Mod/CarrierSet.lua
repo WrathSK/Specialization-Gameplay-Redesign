@@ -52,3 +52,20 @@ function SPCCarrierSet.Define(P,entries,resolve,errors)
  end
  return d
 end
+
+-- Owners supply a complete fresh preflight and their own desired bits/plot.
+-- No eligibility, definition, legacy retirement or retry policy lives here.
+function SPCCarrierSet.ApplyLocated(P,city,rows,plot,health,options,confirmed)
+ for _,r in ipairs(rows)do
+  if r.yes and (not r.want or r.plot~=plot)then
+   if options.observedRemoval then health.Remove(city,r.id,r.plot)else health.Remove(city,r.id)end
+   assert(P.HasBuilding(city:GetBuildings(),r.id)==false,options.removeError)
+   r.yes=false;confirmed()
+  end
+ end
+ for _,r in ipairs(rows)do if r.want and not r.yes then
+  health.Create(city,r.id,plot);local b=city:GetBuildings()
+  assert(P.HasBuilding(b,r.id)==true and b:GetBuildingLocation(r.id)==plot and b:IsPillaged(r.id)==false,options.createError)
+  confirmed()
+ end end
+end
