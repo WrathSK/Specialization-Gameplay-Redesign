@@ -30,7 +30,7 @@ local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
  local isolated={} -- session-only observations; original ability bytes remain in root
- local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering','capital','development'} -- fixed reviewed owner scope
+ local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering','capital','development','claimTimer'} -- fixed reviewed owner scope
  local isolationFields={};for _,key in ipairs(isolationKeys)do isolationFields[key]=SPCStoreSubrecords.Fields(key)end
  -- Session-only, two bounded scalar summaries; never history or age authority.
  local timing={}
@@ -637,7 +637,7 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  -- Claim state belongs to the existing city record, not UI or a second property.
  function d.ClaimState(pid,c)
-  local r=active(pid,c)
+  local r=active(pid,c);assert(not isolated.claimTimer,'CLAIM_TIMER_ISOLATED')
   if r.restructuring then
    local s=r.restructuring
    if s.phase~='UNASSIGNED' or next(s.candidates)==nil then return nil end
@@ -648,14 +648,14 @@ local function CreateProgressionRecord(P,shared,storage)
    eligible=r.progression=='UNASSIGNED',timer=r.claimTimer,receipt=r.claim,revision=r.revision})
  end
  function d.WriteClaimTimer(pid,c,old,value)
-  local r=active(pid,c)
+  local r=active(pid,c);assert(not isolated.claimTimer,'CLAIM_TIMER_ISOLATED')
   assert((r.restructuring and r.restructuring.phase=='UNASSIGNED' and next(r.restructuring.candidates)~=nil) or (not r.restructuring and r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED'),'CLAIM_INELIGIBLE')
   assert(same(r.claimTimer,old),'CLAIM_TIMER_STALE')
   if same(old,value) then return end
   local n=cp(r);n.claimTimer=cp(value);n.revision=n.revision+1;save(n)
  end
  function d.ClaimComplete(pid,c,e)
-  local r=active(pid,c)
+  local r=active(pid,c);assert(not isolated.claimTimer,'CLAIM_TIMER_ISOLATED')
   if r.restructuring then
    local s=r.restructuring;if s.phase=='SETTLED' then return false end
    assert(s.phase=='UNASSIGNED' and s.candidates[e.kind] and e.token==r.base.token and same(e.reference,r.current or r.origin)
@@ -1091,7 +1091,7 @@ local function CreateProgressionRecord(P,shared,storage)
    elseif same(current,root.origin) and root.stage=='PREPARED' then activate(c)
    elseif not root.loss and current.owner~=root.origin.owner and oldOwner==root.origin.owner
     and newOwner==current.owner and newID==current.cityID then
-    local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;n.claimTimer=nil;n.revision=n.revision+1
+    local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;if not isolated.claimTimer then n.claimTimer=nil end;n.revision=n.revision+1
     if n.restructuring and (n.restructuring.phase=='REALLOCATING' or n.restructuring.phase=='CONSUMING')then n.restructuring=R.Discard(n.restructuring)end
     if not isolated.engineering and n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
     if not isolated.dialogue and n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end

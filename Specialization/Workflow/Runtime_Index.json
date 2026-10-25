@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "4faab5d1fedce031fa1ec270b54f9da53ac583b28a34f69e384db0572207d729",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B344_Refactor_S8b5.md",
-      "provenance": "B344.371 Isolate opaque money contracts without treating them as empty; local/static evidence only; no deployment/native PASS."
+      "sha256": "1ad8f7ff5b90b1f28181bb81dc40655844aa2c58a23f838cf5ac82df01c3d58c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B345_Refactor_S8b6.md",
+      "provenance": "B345.372 Isolate Claim timers without widening completion rules; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "b1f28fae464dd9f78db4b602196e1d8e52d8e35eb35bd97258c7136b80b00540",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B344_Refactor_S8b5.md",
-      "provenance": "B344.371 Isolate opaque money contracts without treating them as empty; local/static evidence only; no deployment/native PASS."
+      "sha256": "2f9597466b95902546482cc4a5f977a2bf20bf350dfba2d614ae0280320130ab",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B345_Refactor_S8b6.md",
+      "provenance": "B345.372 Isolate Claim timers without widening completion rules; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f3a7b9f786ea0ec5825952e3a058389760dae5430f9382ae82ed8f81869b45bf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B344_Refactor_S8b5.md",
-      "provenance": "B344.371 Isolate opaque money contracts without treating them as empty; local/static evidence only; no deployment/native PASS."
+      "sha256": "37f9abeb35eceab11a5175b50cc02769102b47bf6904748f694c9ad7db792161",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B345_Refactor_S8b6.md",
+      "provenance": "B345.372 Isolate Claim timers without widening completion rules; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

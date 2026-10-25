@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0797
-Implementation Build: B344.371 / modinfo371; stable/live B307.334
+Status Revision: S0798
+Implementation Build: B345.372 / modinfo372; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8B5_COMPLETE_CONTINUING
+Work State: REFACTOR_S8B6_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8b5 extends fixed complete-group preservation to Capital/Development. State/Write reject before Decode; visitors report opaque history while still visiting healthy workers. Shared CapitalReference stays available. Lifecycle does not interpret/reset/terminate invalid payloads; all original fields persist. Actual money services prove no debit/credit/RNG/contract replay, independent healthy Capital signing, and existing Development global-occupancy UNKNOWN blocking new signing even for a healthy source. No schema/event/money policy change. Commerce/templates/claim and permanent D7 recovery plus D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B344_Refactor_S8b5.md). Stable/live/main B307.334; no deployment/native PASS.
+S8b6 isolates only the existing ClaimTimer field. Claim state/write/complete reject isolated timer history; confirmed loss preserves that opaque field while core lifecycle and other capabilities continue. Actual ClaimProjects withdraw all four access markers and do not finish or replace invalid ACTIVE/CALLING over three turns. Independent first specialization and healthy native completion without a timer remain unchanged. Acquisition/Claim receipts/base stay strict. Commerce/templates and permanent D7 recovery plus D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B345_Refactor_S8b6.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue Commerce/reputation, templates and claim-specific S8 boundaries, then remaining S9–S10; preserve unprovable transaction/history recovery as an explicit open boundary.
+- Primary next: Complete bounded Commerce/reputation and template-history S8 handling, then S9–S10; keep native transaction and permanent-history proof limits explicit.
+
+## S0798 — B345.372 Isolate Claim timers without widening completion rules
+
+S8b6 isolates only the existing ClaimTimer field. Claim state/write/complete reject isolated timer history; confirmed loss preserves that opaque field while core lifecycle and other capabilities continue. Actual ClaimProjects withdraw all four access markers and do not finish or replace invalid ACTIVE/CALLING over three turns. Independent first specialization and healthy native completion without a timer remain unchanged. Acquisition/Claim receipts/base stay strict. Commerce/templates and permanent D7 recovery plus D5 native proof remain OPEN.
 
 ## S0797 — B344.371 Isolate opaque money contracts without treating them as empty
 
