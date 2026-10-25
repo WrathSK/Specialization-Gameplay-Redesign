@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="367">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="368">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B340.367：接入旧退出聚合核心，保留独立恢复与Dialogue后处理。</Description>
+    <Description>B341.368：见闻子记录独立隔离，保留原文并维持其余有效能力和完整提交保护。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

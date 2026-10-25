@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0793",
-    "runtime": "B340.367 / modinfo367",
+    "status": "S0794",
+    "runtime": "B341.368 / modinfo368",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Finish S8 ability-specific fault isolation/recovery, then continue S9–S10 without routine reauthorization. No automatic deployment/main/native launch.",
+  "goal": "Continue the remaining ability-specific S8 fault isolation/recovery and then S9–S10, preserving unresolved D5/D7 evidence boundaries. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -399,6 +399,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
       "kind": "full",
       "reason": "Wire the mandatory composite legacy exit owner actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B341_Refactor_S8b2.md",
+      "kind": "full",
+      "reason": "Isolate invalid Insights without discarding city history actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -425,8 +430,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-    "local": "588/588 LOCAL_SIMULATION_PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B341_Refactor_S8b2.md",
+    "local": "622/622 LOCAL_SIMULATION_PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

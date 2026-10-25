@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0793
-Implementation Build: B340.367 / modinfo367; stable/live B307.334
+Status Revision: S0794
+Implementation Build: B341.368 / modinfo368; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8C5C_COMPLETE_CONTINUING
+Work State: REFACTOR_S8B2_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8c5c replaces current11 legacy exit registrations with one mandatory composite gate, pre-registered before include/Start can fail. Actual Lv3Support/Lv3Effects keep independent RuntimeWork recovery through fixed group adapters; Dialogue keeps exact post-cleanup hold release and Return reset. Production explicitly opts in; isolated old Start profiles and live Withdraw/Init/manual APIs remain. No new listener, timer, schema, ownership gameplay, deployment or main change. D7 isolation and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B340_Refactor_S8c5c.md). Stable/live/main B307.334; no deployment/native PASS.
+S8b2 isolates only an independently invalid, completely readable/copyable Insights leaf when the entire remaining parent and eight other abilities pass unchanged strict validation. Original bytes remain in every saved record; other legal writes continue with exact preservation and full CAS/readback. Insights getter/Add reject isolation; institution display marks only that metric pending. Read/copy/other-core failure stays held. No permanent-corruption verdict, zero reset or repair setter. Remaining D7 abilities/recovery and D5 native proof stay OPEN. [Result](Validation/Results/Specialization_B341_Refactor_S8b2.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Finish S8 ability-specific fault isolation/recovery, then continue S9–S10 without routine reauthorization.
+- Primary next: Continue the remaining ability-specific S8 fault isolation/recovery and then S9–S10, preserving unresolved D5/D7 evidence boundaries.
+
+## S0794 — B341.368 Isolate invalid Insights without discarding city history
+
+S8b2 isolates only an independently invalid, completely readable/copyable Insights leaf when the entire remaining parent and eight other abilities pass unchanged strict validation. Original bytes remain in every saved record; other legal writes continue with exact preservation and full CAS/readback. Insights getter/Add reject isolation; institution display marks only that metric pending. Read/copy/other-core failure stays held. No permanent-corruption verdict, zero reset or repair setter. Remaining D7 abilities/recovery and D5 native proof stay OPEN.
 
 ## S0793 — B340.367 Wire the mandatory composite legacy exit owner
 

@@ -29,7 +29,7 @@ function M.Signature(v)
  local parts={tostring(v.specialization),tostring(v.potential),tostring(v.active),tostring(v.activeStatus),tostring(v.progression)}
  for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do parts[#parts+1]=tostring(v.institutionArchive and v.institutionArchive[kind] or '')end
  local s=v.institutionSummary or {}
- for _,k in ipairs({'known','dialogue','engineering','insights','templatesKnown','buildingTemplates','districtTemplates'})do parts[#parts+1]=tostring(s[k])end
+ for _,k in ipairs({'known','dialogue','engineering','insights','insightsKnown','templatesKnown','buildingTemplates','districtTemplates'})do parts[#parts+1]=tostring(s[k])end
  for _,k in ipairs({'tradition','reputation'})do
   local t=s[k];parts[#parts+1]=tostring(type(t))
   for _,field in ipairs({'age','state','cursor','percent','nextAge'})do parts[#parts+1]=tostring(type(t)=='table' and t[field] or nil)end
@@ -81,7 +81,7 @@ local function metric(entry,v)
   add('REPUTATION',value)
  elseif entry.kind=='CULTURE' then
   if entry.level==3 then add('DIALOGUE',available and loc('DIALOGUE_VALUE',s.dialogue))
-  elseif entry.level==4 then add('EXPEDITION',available and loc('INSIGHTS_VALUE',s.insights))end
+  elseif entry.level==4 then add('EXPEDITION',available and s.insightsKnown~=false and loc('INSIGHTS_VALUE',s.insights))end
  elseif entry.kind=='INDUSTRY' then
   if entry.level==3 then
    local value

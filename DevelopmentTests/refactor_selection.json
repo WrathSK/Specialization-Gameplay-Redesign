@@ -1681,6 +1681,13 @@
     ],
     "S8c5c": [
       "test_refactor_s8c5c"
+    ],
+    "S8b2": [
+      "test_refactor_s8b2",
+      "test_b251_institutions.Presentation",
+      "test_b251_institutions.StoreSummary",
+      "test_culture_institutions.CultureInstitutionDisplay",
+      "test_b265_city_presentation.PresentationContract.test_profession_metric_colors_stay_inside_their_ability"
     ]
   },
   "counterexamples": {},

@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "23dffdad46064f8811485e4bea94048b720f1fc20d3ebe91a8b0fdbc03bf8c2d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
-      "provenance": "B338.365 Preserve exact group acknowledgement before legacy owner migration; local/static evidence only; no deployment/native PASS."
+      "sha256": "bc2ef2b92c2cfc9d949ca38003f8adb15843a2c7d973deec6c4398e45dd54dd5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B341_Refactor_S8b2.md",
+      "provenance": "B341.368 Isolate invalid Insights without discarding city history; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -701,9 +701,9 @@
       "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "fab127ba8195fdf1c4f5891a8af77b7a7fedc96efafd2fb86f64d8ed8673533f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "sha256": "b1bfd8d415c2bf9761b196dc8a1aef69e64e3d98d578cd5266b02c6144c28847",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B341_Refactor_S8b2.md",
+      "provenance": "B341.368 Isolate invalid Insights without discarding city history; local/static evidence only; no deployment/native PASS."
     },
     "Mod/InvestmentAction.lua": {
       "sha256": "c172e8793367032401f886b511bf9c0523e34ded1a1cccfa8921b9c5d60b3cb6",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "d6e8ea5d280326f25d798d6fc66813ca3ed39983dbfe3c8e7a17872306a76f5d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "944249179bbf2ed7919a7f39abf07d4c0d8ac80b98d4121427cf4f1184b5dd94",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B341_Refactor_S8b2.md",
+      "provenance": "B341.368 Isolate invalid Insights without discarding city history; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "1d0c4cea91c990f1ce31a080058bfcb966fbfa10d4a06cb0eda98a2eba15f91e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "9dc4325a4f8e5e6c164e9700a1bd3f506edade0632a13558d595785fc96f9bfc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B341_Refactor_S8b2.md",
+      "provenance": "B341.368 Isolate invalid Insights without discarding city history; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1651,9 +1651,9 @@
       "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     },
     "Mod/StoreSubrecords.lua": {
-      "sha256": "296445c11d4d811f97ede59185c4c1136f64e426fc951397c32fe9b0446fe95d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B333_Refactor_S8b1.md",
-      "provenance": "B333.360 Rebuild redundant known flags from preserved authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "1364f3dd411f4227dd5167c6df9ed21474eb8711fec119168c2471cee278fc9b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B341_Refactor_S8b2.md",
+      "provenance": "B341.368 Isolate invalid Insights without discarding city history; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LegacyCleanupCatalog.lua": {
       "sha256": "92320e3f9af46a296e15897000e6dfee6f615603125c3c4fd659405f1d41e373",

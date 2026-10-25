@@ -29,6 +29,7 @@ local returnPhase={DistrictCompleteness=1,NetworkBridge=1,GreatWorkFacts=1,
 local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
+ local isolated={} -- session-only observations; original ability bytes remain in root
  -- Session-only, two bounded scalar summaries; never history or age authority.
  local timing={}
  local function noteTiming(name,before,value)
@@ -53,7 +54,7 @@ local function CreateProgressionRecord(P,shared,storage)
  local nativeEvents={};local eventSequence=0
  local root,fault,busy;local ready=false;local committing=false
  local function errorText(why,fallback)
-  local ok,text=pcall(tostring,why);return ok and text or fallback
+  local ok,text=pcall(tostring,why);return ok and type(text)=='string'and text or fallback
  end
  local foreignSeen=false;local transition;local transitionFault;local conquest;local foundation;local firstTransitionFault
  local function observe(name,...)
@@ -206,7 +207,13 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  function d.Investment(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local _,i=R.Current(r);return projected(r,i,true)end
  local function save(nextValue,observeFailure)
-  assert(not fault,'STORE_WRITE_HELD');validate(nextValue)
+  assert(not fault,'STORE_WRITE_HELD')
+  if isolated.expeditionInsights then
+   -- Compare before optimistic root publication; preserve all fields, including unknown extensions.
+   local checked=cp(nextValue) -- normalize/reject unsupported values before exact preservation comparison
+   assert(root and same(checked.expeditionInsights,root.expeditionInsights),'ISOLATED_INSIGHTS_CANNOT_CHANGE')
+   checked.expeditionInsights=nil;validate(checked)
+  else validate(nextValue)end
   local previous=root;local nextRoot=cp(nextValue)
   local facts=shared.EffectiveFacts;local ticket=facts and facts.BeginWrite and facts.BeginWrite('STORE_COMMIT')
   root=nextRoot -- protect target before engine callbacks, after the read barrier
@@ -327,10 +334,12 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  -- B212: Expedition Insight history shares the record's commit/readback boundary.
  function d.ExpeditionInsights(pid,c)
-  local e=active(pid,c).expeditionInsights;return cp(e and e.records or {})
+  local r=active(pid,c);assert(not isolated.expeditionInsights,'EXPEDITION_INSIGHTS_ISOLATED')
+  local e=r.expeditionInsights;return cp(e and e.records or {})
  end
  function d.AddExpeditionInsight(pid,c,civ,category,turn)
-  local r=active(pid,c);local key=tostring(civ)..':'..tostring(category)
+  local r=active(pid,c);assert(not isolated.expeditionInsights,'EXPEDITION_INSIGHTS_ISOLATED')
+  local key=tostring(civ)..':'..tostring(category)
   local e=r.expeditionInsights
   if e and e.records[key] then return false end -- first success only; repeat is idempotent
   local n=cp(r);n.expeditionInsights=n.expeditionInsights or {version=1,records={}}
@@ -472,8 +481,10 @@ local function CreateProgressionRecord(P,shared,storage)
    tradition=t and {age=t.age,state=t.state,cursor=t.cursor} or false,
    reputation=rep and {age=rep.age,state=rep.state} or false,
    dialogue=r.dialogue and r.dialogue.total or 0,engineering=r.engineering and r.engineering.L or 0,
-   insights=0,templatesKnown=false}
-  for _ in pairs(r.expeditionInsights and r.expeditionInsights.records or {})do out.insights=out.insights+1 end
+   insightsKnown=not isolated.expeditionInsights,templatesKnown=false}
+  if out.insightsKnown then
+   out.insights=0;for _ in pairs(r.expeditionInsights and r.expeditionInsights.records or {})do out.insights=out.insights+1 end
+  end
   local lifecycle=r.templateLifecycle
   if r.templatesCaptured and r.templates and lifecycle and not lifecycle.reconcilePending
    and shared.Standardization and shared.Standardization.ValidateHistory then
@@ -799,15 +810,25 @@ local function CreateProgressionRecord(P,shared,storage)
    if root then
     local valid,why=pcall(validate,root)
     if not valid then
-     assert(SPCStoreSubrecords.IsKnownFlagFailure(why),why)
-     local candidate,fields=SPCStoreSubrecords.KnownCandidate(root,cp)
-     assert(candidate,why)
-     candidate.revision=root.revision+1
-     assert(candidate.revision>root.revision,'SUBRECORD_RECOVERY_REVISION_UNAVAILABLE')
-     -- save performs the unchanged full parent/ability validation BEFORE any
-     -- candidate becomes visible, then the existing exact native CAS/readback.
-     save(candidate)
-     d.subrecordRecovery={kind='KNOWN_FLAGS_REBUILT',fields=fields,revision=candidate.revision}
+     -- A complete bounded native copy is already available. Isolate only the
+     -- independently failed Insights leaf when the entire remaining parent passes.
+     -- CHECK_FAILED is not permanent irrecoverability and authorizes no reset.
+     local check=SPCStoreSubrecords.CheckOne('expeditionInsights',root,same)
+     local checked=cp(root);checked.expeditionInsights=nil
+     local parentOK=check.status=='CHECK_FAILED'and pcall(validate,checked)
+     if parentOK then
+      isolated.expeditionInsights={state='ISOLATED',status=check.status,reason=check.reason}
+     else
+      assert(SPCStoreSubrecords.IsKnownFlagFailure(why),why)
+      local candidate,fields=SPCStoreSubrecords.KnownCandidate(root,cp)
+      assert(candidate,why)
+      candidate.revision=root.revision+1
+      assert(candidate.revision>root.revision,'SUBRECORD_RECOVERY_REVISION_UNAVAILABLE')
+      -- save performs the unchanged full parent/ability validation BEFORE any
+      -- candidate becomes visible, then the existing exact native CAS/readback.
+      save(candidate)
+      d.subrecordRecovery={kind='KNOWN_FLAGS_REBUILT',fields=fields,revision=candidate.revision}
+     end
     end
    end
    ready=true
@@ -816,7 +837,7 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  function d.Ready()return ready and not fault end
  function d.Status()return cp(d and {exitStatus=d.exitStatus,exitErrors=d.exitErrors,observation=d.observation,
-  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,returnErrors=d.returnErrors,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery})end
+  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,returnErrors=d.returnErrors,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery,subrecordIsolation=isolated})end
  restore() -- before Binding/Journal/Flow/Investment register load callbacks
  -- No absence/failed getter is confirmation. A matched native ownership event is required.
  function d.IsExitTarget(c,loss)

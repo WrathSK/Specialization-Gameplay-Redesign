@@ -99,14 +99,14 @@ function S.Validate(r,phase,same)
 end
 -- Explicit inspection only. Independent failures can be reported without
 -- mutating the record or classifying a transient exception as irrecoverable.
+function S.CheckOne(key,r,same)
+ local d=assert(byKey[key],'SUBRECORD_UNKNOWN')
+ local ok,why=pcall(d.validate,r,same);local text
+ if not ok then local safe,value=pcall(tostring,why);text=safe and type(value)=='string'and value:sub(1,180)or'SUBRECORD_VALIDATION_UNKNOWN'end
+ return {key=d.key,fields=fields(d),status=ok and 'PASS'or'CHECK_FAILED',reason=text}
+end
 function S.Check(r,same)
- local out={}
- for _,d in ipairs(definitions)do
-  local ok,why=pcall(d.validate,r,same);local text
-  if not ok then local safe,value=pcall(tostring,why);text=safe and value:sub(1,180)or'SUBRECORD_VALIDATION_UNKNOWN'end
-  out[#out+1]={key=d.key,fields=fields(d),status=ok and 'PASS'or'CHECK_FAILED',reason=text}
- end
- return out
+ local out={};for _,d in ipairs(definitions)do out[#out+1]=S.CheckOne(d.key,r,same)end;return out
 end
 
 -- Redundant known flags have no false-valued producer. Complete preserved
