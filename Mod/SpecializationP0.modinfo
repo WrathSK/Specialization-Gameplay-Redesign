@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="404">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="405">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B377.404：退出旧半点实验自动扫描，保留精确失城清理和恢复，继续重构。</Description>
+    <Description>B378.405：保留工人城市范围，停止UI回合中继重复采样D，继续重构。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

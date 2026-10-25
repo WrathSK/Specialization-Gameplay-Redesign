@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0830
-Implementation Build: B377.404 / modinfo404; stable/live B307.334
+Status Revision: S0831
+Implementation Build: B378.405 / modinfo405; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E4_CONTINUING
+Work State: REFACTOR_S9E5_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e4/R18 disables all production Half experiment callbacks/read-write access through an explicit retired startup option;only a static DEV compatibility reply remains. Actual production-entry comparison across100 world cities/31 boundaries falls3100 city visits and6200 native getter calls to0. Mandatory LegacyCleanup still removes all32 B050 IDs within1409+2 total and independently recovers failed physical cleanup through original Store tickets. SQL/save references and file stay until S10 safe package retirement. R11 and accepted remaining S9/U4/S10 continue;no native/deployment PASS. [Result](Validation/Results/Specialization_B377_Refactor_S9e4.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e5/R11 traces actual UI->Gameplay->D/FC/Bindings->writers and removes demonstrated duplicate structural sampling from a known-local UI turn. Worker recovery stays;existing turn-keyed D cache owns first-read freshness. One verified worker city survives UI transport;different/unknown/focus/load scopes conservatively widen. Failed-send and reentrant scopes merge within original real-cause retry rules. Actual two-city normal GP-turn then UI-turn D captures2->0 without changing carriers;needed worker reconciliation remains. Native N5 relay-retirement and CPU/heap remain U5;accepted remaining S9/U4/S10 continue. [Result](Validation/Results/Specialization_B378_Refactor_S9e5.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Trace R11 UI/GPP turn->D reads,then accepted remaining source-local/cold/Store/display findings,U4 and S10 package duty retirement. No deployment/main/game launch.
+- Primary next: Continue accepted R01/R05 source-local/cold provenance,Store/display/Design-trace findings and remaining S9 owner-applied views;then full U4 and safe S10 duty retirement. No deployment/main/game launch.
+
+## S0831 — B378.405 Preserve city worker scope and stop duplicate UI turn depth sampling
+
+S9e5/R11 traces actual UI->Gameplay->D/FC/Bindings->writers and removes demonstrated duplicate structural sampling from a known-local UI turn. Worker recovery stays;existing turn-keyed D cache owns first-read freshness. One verified worker city survives UI transport;different/unknown/focus/load scopes conservatively widen. Failed-send and reentrant scopes merge within original real-cause retry rules. Actual two-city normal GP-turn then UI-turn D captures2->0 without changing carriers;needed worker reconciliation remains. Native N5 relay-retirement and CPU/heap remain U5;accepted remaining S9/U4/S10 continue.
 
 ## S0830 — B377.404 Retire automatic Half experiment scans while retaining exact cleanup
 

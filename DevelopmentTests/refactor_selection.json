@@ -1844,6 +1844,14 @@
       "test_refactor_s9c2.Startup",
       "test_refactor_s8c4.PureCatalogue",
       "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group"
+    ],
+    "S9e5": [
+      "test_refactor_s9e5",
+      "test_refactor_s5d4b2",
+      "test_refactor_s5d1.Kernel",
+      "test_refactor_s5d1.Writers",
+      "test_refactor_s5c1.Districts",
+      "test_refactor_s3.Observers"
     ]
   },
   "counterexamples": {},

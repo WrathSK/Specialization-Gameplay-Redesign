@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "4f98bfe0dae61f4181319a4b23700052dcd0bb568dcda3b5ace643e6c4724670",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
-      "provenance": "B377.404 Retire automatic Half experiment scans while retaining exact cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "536d3edbea0cb17dfc23e1ebb18e06b921f11b3b6ff48aafd1933f7e3584df3e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
+      "provenance": "B378.405 Preserve city worker scope and stop duplicate UI turn depth sampling; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "89c2309c99a4ab3c57bed5d52e2f87d49ff4f9b33566996d1db4b3dc780290c5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
-      "provenance": "B377.404 Retire automatic Half experiment scans while retaining exact cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "148dcee2af8f10f524ad36bbf85d9fe8347537517543707281ac94958503d848",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
+      "provenance": "B378.405 Preserve city worker scope and stop duplicate UI turn depth sampling; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "4fec04ee1a5cbb84c96a8a8bc30f47ee4c937cfc020ff3f162ca472eee4280fe",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
-      "provenance": "B377.404 Retire automatic Half experiment scans while retaining exact cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "3be10271a5aaa3b30c028a1119304ed7cd837258130bec2a88475e03f9895e04",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
+      "provenance": "B378.405 Preserve city worker scope and stop duplicate UI turn depth sampling; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1381,9 +1381,9 @@
       "provenance": "B369.396 Consume covered owner inputs in Training UI without idle native reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/GPPRefresh.lua": {
-      "sha256": "f889c9ca549614fb85500b476963a3ce0489f7644605629033a3466ea2b41412",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "75f994e242f2a6db933eacf4d11cd156bedb80712ab6c11af576b7ea0ac87da6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
+      "provenance": "B378.405 Preserve city worker scope and stop duplicate UI turn depth sampling; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/GPPRefresh.xml": {
       "sha256": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109",

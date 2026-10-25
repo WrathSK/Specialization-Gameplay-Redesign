@@ -635,7 +635,9 @@ local function request(playerID,params)
       local safe,text=pcall(tostring,err)
       shared.ObserverErrors.UI_DEPTH_FACTS=not ok and (safe and text:sub(1,180) or 'UI_DEPTH_MARK_FAILED') or nil
      end
-     shared.NativeFacts.Workers({player=playerID},workerOnly and 'UI_WORKERS_DIRTY' or 'UI_FACTS_DIRTY')
+     local cid=params.CityID
+     if not(workerOnly and type(cid)=='number'and cid>=0 and cid<2147483648 and cid%1==0)then cid=nil end
+     shared.NativeFacts.Workers({player=playerID,city=cid},workerOnly and 'UI_WORKERS_DIRTY' or 'UI_FACTS_DIRTY')
     end
     return
   end

@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0830",
-    "runtime": "B377.404 / modinfo404",
+    "status": "S0831",
+    "runtime": "B378.405 / modinfo405",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Trace R11 UI/GPP turn->D reads,then accepted remaining source-local/cold/Store/display findings,U4 and S10 package duty retirement. No deployment/main/game launch. No automatic deployment/main/native launch.",
+  "goal": "Continue accepted R01/R05 source-local/cold provenance,Store/display/Design-trace findings and remaining S9 owner-applied views;then full U4 and safe S10 duty retirement. No deployment/main/game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -584,6 +584,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
       "kind": "full",
       "reason": "Retire automatic Half experiment scans while retaining exact cleanup actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
+      "kind": "full",
+      "reason": "Preserve city worker scope and stop duplicate UI turn depth sampling actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -610,8 +615,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
-    "local": "LOCAL_SIMULATION_PASS_54",
+    "report": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
+    "local": "LOCAL_SIMULATION_PASS_49",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }
