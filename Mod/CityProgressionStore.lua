@@ -198,6 +198,7 @@ local function CreateProgressionRecord(P,shared,storage)
  function d.IsRecaptured(c)return root and root.current~=nil and d.Owns(c) or false end
  -- Pure training refresh provenance. This does not grant admission or read native state.
  local bindingObservation,bindingOwner,bindingCity,bindingX,bindingY,bindingToken
+ local factObservation,factOwner,factCity,factX,factY,factToken,factIssuer,factSerial
  local function trainingReference(a)
   if type(a)~='table'then return nil end
   return tostring(a.owner)..':'..tostring(a.cityID)..':'..tostring(a.x)..':'..tostring(a.y)
@@ -209,6 +210,19 @@ local function CreateProgressionRecord(P,shared,storage)
   bindingObservation=not ok and 'UNAVAILABLE'or value==nil and 'ABSENT'or value==bindingToken and 'MATCH'or 'MISMATCH'
   if not ok then error(value,0)end -- same exception/UNKNOWN protection, never reset history
   return value
+ end
+ function d.ObserveTrainingFacts(pid,id,x,y,token,state,issuer,serial)
+  local facts=shared.EffectiveFacts
+  if not facts or facts.TrainingObservationIssuer~=issuer or type(issuer)~='table'
+   or type(serial)~='number'or serial<1 or serial%1~=0 or serial>=9007199254740992 then return false end
+  if state~='FACTS_CONFIRMED'and state~='FACTS_UNKNOWN'and state~='FACTS_UNAVAILABLE'and state~='FACTS_BUDGET_UNKNOWN'then return false end
+  if not ready or fault or committing or not root or not root.base then return false end
+  local a=root.current or root.origin
+  if not a or a.owner~=pid or a.cityID~=id or a.x~=x or a.y~=y or root.base.token~=token then return false end
+  if factIssuer==issuer and factSerial and serial<=factSerial then return false end
+  factOwner,factCity,factX,factY,factToken=pid,id,x,y,token
+  factObservation,factIssuer,factSerial=state,issuer,serial
+  return true
  end
  function d.TrainingInputStamp(pid,id,x,y)
   if not ready or fault then return 'WORKER_UNAVAILABLE'end
@@ -224,9 +238,12 @@ local function CreateProgressionRecord(P,shared,storage)
   local rest=r.restructuring;local inv
   if rest then inv=rest.investment else inv=r.investment end
   local pending=inv and inv.pending~=nil or false
+  local service=shared.EffectiveFacts
+  local facts=service and service.TrainingObservationIssuer==factIssuer and factOwner==a.owner and factCity==a.cityID
+   and factX==a.x and factY==a.y and factToken==token and factObservation or 'FACTS_UNOBSERVED'
   return table.concat({ready and 'READY'or 'NOT_READY',fault and 'FAILED'or 'READABLE',committing and 'COMMITTING'or 'IDLE',
    tostring(r.stage),tostring(r.progression),r.referenceInvalidated and 'REMOVED'or 'PRESENT',r.completionError and 'COMPLETION_HELD'or 'COMPLETE_READABLE',
-   #token..':'..token,reference,pending and 'INVESTMENT_PENDING'or 'INVESTMENT_IDLE',rest and tostring(rest.phase)or 'NO_RESTRUCTURING',observed},'|')
+   #token..':'..token,reference,pending and 'INVESTMENT_PENDING'or 'INVESTMENT_IDLE',rest and tostring(rest.phase)or 'NO_RESTRUCTURING',observed,facts},'|')
  end
  local function active(pid,c)
   storage.Check()
@@ -234,6 +251,11 @@ local function CreateProgressionRecord(P,shared,storage)
   local allowed=P.IsTestPlayer(pid)and pid==root.origin.owner
   local current=allowed and ref(c)or nil
   assert(allowed and same(current,root.current or root.origin),'PROGRESSION_REFERENCE_CHANGED')
+  local facts=shared.EffectiveFacts
+  if facts and facts.NoteTrainingReference then
+   local good=pcall(facts.NoteTrainingReference,c,current,root.base.token)
+   if type(facts)=='table'then rawset(facts,'trainingReferenceObservationError',not good and 'TRAINING_REFERENCE_NOTE_FAILED'or nil)end
+  end
   assert(not root.referenceInvalidated,'PROGRESSION_REFERENCE_REMOVED')
   assert(not root.completionError,root.completionError)
   if root.schema>=2 and not root.current then assert(binding(c,current)==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
@@ -1502,13 +1524,10 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   for token,row in pairs(envelope.records)do if row.origin.x==x and row.origin.y==y then return token end end
  end
  -- Existing position/worker indexes only; no native getter, storage.Check, fact read or scan.
- function store.TrainingInputStamp(pid,id,x,y)
-  for _,v in ipairs({pid,id,x,y})do
-   if type(v)~='number'or v~=v or v<0 or v>=1000000000 or v%1~=0 then return 'INVALID_REFERENCE'end
-  end
-  if pid==nil or id==nil or x==nil or y==nil then return 'INVALID_REFERENCE'end
-  if fault then return 'COLLECTION_FAILED'end
-  if modern and not initialized then return 'COLLECTION_NOT_READY'end
+ local function trainingWorker(pid,id,x,y)
+  if not(int(pid)and int(id)and int(x)and int(y))then return nil,'INVALID_REFERENCE'end
+  if fault then return nil,'COLLECTION_FAILED'end
+  if modern and not initialized then return nil,'COLLECTION_NOT_READY'end
   local token
   if modern then token=positions and positions[tostring(x)..':'..tostring(y)]
   else
@@ -1518,7 +1537,15 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    end
   end
   local w=token and workers[token]
-  return w and w.TrainingInputStamp(pid,id,x,y)or 'UNREGISTERED'
+  return w,w and nil or 'UNREGISTERED'
+ end
+ function store.TrainingInputStamp(pid,id,x,y)
+  local w,why=trainingWorker(pid,id,x,y)
+  return w and w.TrainingInputStamp(pid,id,x,y)or why
+ end
+ function store.ObserveTrainingFacts(pid,id,x,y,token,state,issuer,serial)
+  local w=trainingWorker(pid,id,x,y)
+  return w and w.ObserveTrainingFacts(pid,id,x,y,token,state,issuer,serial)or false
  end
  function store.HistoricalReference(c)return requireCity(c).HistoricalReference(c)end
  function store.IndustryHistoryStamp(c)return requireCity(c).IndustryHistoryStamp(c)end

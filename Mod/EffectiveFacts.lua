@@ -41,6 +41,39 @@ function SPCEffectiveFacts.Start(P,shared)
   return table.concat({city:GetOwner(),city:GetID(),city:GetX(),city:GetY(),Game.GetCurrentGameTurn(),value},':')
  end
  local function gate(city)return {P.GovernorGate(city)}end
+ -- Fixed passive observation, scoped to this synchronous read stack only.
+ local trainingFrame;local trainingDepth=0;local trainingSerial=0
+ local trainingIssuer={};data.TrainingObservationIssuer=trainingIssuer -- tiny session identity
+ local function trainingInt(v)return type(v)=='number'and v==v and v>=0 and v<1000000000 and v%1==0 end
+ local function scope(pid,id,x,y,token)
+  return trainingInt(pid)and trainingInt(id)and trainingInt(x)and trainingInt(y)and type(token)=='string'and #token>0 and #token<=256
+ end
+ local function observationOverflow(frame,pid,city,a,token)
+  while frame do
+   if frame.pid==pid and(frame.city==city or(a and frame.reference and frame.owner==a.owner and frame.cityID==a.cityID
+    and frame.x==a.x and frame.y==a.y and frame.token==token))then frame.budgetUnknown=true end
+   frame=frame.previous
+  end
+ end
+ function data.NoteTrainingReference(city,a,token)
+  local f=trainingFrame
+  if trainingDepth>8 then observationOverflow(f,type(a)=='table'and a.owner or nil,city,a,token);return false end
+  if not f or f.city~=city or type(a)~='table'or a.owner~=f.pid or not scope(a.owner,a.cityID,a.x,a.y,token)then return false end
+  f.reference=true;f.owner,f.cityID,f.x,f.y,f.token=a.owner,a.cityID,a.x,a.y,token
+  return true
+ end
+ local function noteTrainingBase(value)
+  local f=trainingFrame
+  if trainingDepth>8 then
+   if type(value)=='table'then observationOverflow(f,value.owner,nil,value,value.token)end;return
+  end
+  if not f or type(value)~='table'or value.owner~=f.pid or not scope(value.owner,value.cityID,value.x,value.y,value.token)then return end
+  f.base=true;f.baseOwner,f.baseCity,f.baseX,f.baseY,f.baseToken=value.owner,value.cityID,value.x,value.y,value.token
+  f.activeStatus=value.activeStatus
+  if not f.reference then
+   f.reference=true;f.owner,f.cityID,f.x,f.y,f.token=value.owner,value.cityID,value.x,value.y,value.token
+  end
+ end
  local function capture(pid,city) P.Count('facts');
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
   local f=shared.CityFlowProbe.SupportFacts(pid,city)
@@ -92,6 +125,7 @@ function SPCEffectiveFacts.Start(P,shared)
  -- Only raw worker counts share a phase; eligibility remains in each projection.
  local workerBusy={};local workerBusyCount=0
  local function projectValue(value,parent,project,slotKey,slotValue)
+  noteTrainingBase(value)
   if not project then return clone(value)end
   local window=phase;local version=generation;local changes=shared.FactChanges
   local function epochs()
@@ -210,8 +244,26 @@ function SPCEffectiveFacts.Start(P,shared)
   return projected
  end
  local function read(pid,city,project)
+  local store=shared.CityProgressionStore
+  local previous=trainingFrame;local frame
+  if store and type(store.ObserveTrainingFacts)=='function'and trainingDepth<8 then
+   trainingSerial=trainingSerial+1;frame={pid=pid,city=city,store=store,serial=trainingSerial,previous=previous}
+  end
+  local overflow=store and type(store.ObserveTrainingFacts)=='function'and trainingDepth>=8
+  if overflow then observationOverflow(previous,pid,city);data.trainingObservationOverflows=math.min(2147483647,(data.trainingObservationOverflows or 0)+1)end
+  trainingDepth=trainingDepth+1;trainingFrame=overflow and previous or frame -- only bounded matching ancestors are downgraded
   local result=pack(pcall(phasedRead,pid,city,project))
+  trainingFrame=previous;trainingDepth=trainingDepth-1 -- release even when the original read throws
   if not result[1]then data.Invalidate()end
+  if frame and shared.CityProgressionStore==store then
+   if frame.reference then
+    local confirmed=result[1]and frame.base and frame.owner==frame.baseOwner and frame.cityID==frame.baseCity
+     and frame.x==frame.baseX and frame.y==frame.baseY and frame.token==frame.baseToken
+    local state=frame.budgetUnknown and 'FACTS_BUDGET_UNKNOWN'or not confirmed and 'FACTS_UNAVAILABLE'or frame.activeStatus=='KNOWN'and 'FACTS_CONFIRMED'or 'FACTS_UNKNOWN'
+    local ok=pcall(store.ObserveTrainingFacts,frame.owner,frame.cityID,frame.x,frame.y,frame.token,state,trainingIssuer,frame.serial)
+    data.trainingObservationError=not ok and 'TRAINING_OBSERVATION_FAILED'or nil
+   end
+  end
   return finish(result)
  end
  function data.Read(pid,city)return read(pid,city)end

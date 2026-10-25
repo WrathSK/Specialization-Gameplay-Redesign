@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0819",
-    "runtime": "B366.393 / modinfo393",
+    "status": "S0820",
+    "runtime": "B367.394 / modinfo394",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S9 final binding/facts observations and post-stamp SYNC receipt,then owner-bound Training UI/idle gating before removing global dependency;applied display,adjacency,S10 and exact D7/native D5 limitations remain. No automatic deployment/main/native launch.",
+  "goal": "Continue S9 final Training binding observation and post-stamp SYNC receipt,then owner-bound UI/idle gating before removing its global dependency;applied display,adjacency,S10 and exact D7/native D5 limits remain. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -529,6 +529,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
       "kind": "full",
       "reason": "Observe training capacity through existing scoped unit boundaries actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B367_Refactor_S9a3c.md",
+      "kind": "full",
+      "reason": "Observe scoped training fact availability without resampling actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -555,8 +560,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
-    "local": "LOCAL_SIMULATION_PASS_1017",
+    "report": "Specialization/Status/Validation/Results/Specialization_B367_Refactor_S9a3c.md",
+    "local": "LOCAL_SIMULATION_PASS_1031",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0819
-Implementation Build: B366.393 / modinfo393; stable/live B307.334
+Status Revision: S0820
+Implementation Build: B367.394 / modinfo394; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9A3B_COMPLETE_CONTINUING
+Work State: REFACTOR_S9A3C_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9a3b adds pure Gate CapacityInputStamp from private owner/blocked/busy/phase and scoped unit-event/failure scalars. Existing Birth/Removed boundaries invalidate only the supported owner without new hooks/native reads/unit caches;ordinary local unit false positives are explicit. Observer errors cannot block original birth/removal duties or poison a successor. Ten new capacity tests plus43 original Training/17 UI assertions pass through12 selected tests. UI/global dependency remains;post-stamp wiring,other S9/S10 and exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B366_Refactor_S9a3b.md). Stable/live/main B307.334; no deployment/native PASS.
+S9a3c observes scoped base-fact availability from existing Store reference/private EF base values without new native getters or saved fields. Fixed per-worker scalars and tiny session issuer/serial protect same-city nested ordering;projector errors do not poison independent base facts. Eight transient frames bound observation cost;overflow marks only matching ancestors BUDGET_UNKNOWN and real later reads recover. Fourteen new tests plus actual shared-read regressions pass. Training UI/global dependency remains;post-stamp binding/SYNC,applied display,adjacency,S10 and exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B367_Refactor_S9a3c.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 final binding/facts observations and post-stamp SYNC receipt,then owner-bound Training UI/idle gating before removing global dependency;applied display,adjacency,S10 and exact D7/native D5 limitations remain.
+- Primary next: Continue S9 final Training binding observation and post-stamp SYNC receipt,then owner-bound UI/idle gating before removing its global dependency;applied display,adjacency,S10 and exact D7/native D5 limits remain.
+
+## S0820 — B367.394 Observe scoped training fact availability without resampling
+
+S9a3c observes scoped base-fact availability from existing Store reference/private EF base values without new native getters or saved fields. Fixed per-worker scalars and tiny session issuer/serial protect same-city nested ordering;projector errors do not poison independent base facts. Eight transient frames bound observation cost;overflow marks only matching ancestors BUDGET_UNKNOWN and real later reads recover. Fourteen new tests plus actual shared-read regressions pass. Training UI/global dependency remains;post-stamp binding/SYNC,applied display,adjacency,S10 and exact D7/D5 limits stay OPEN.
 
 ## S0819 — B366.393 Observe training capacity through existing scoped unit boundaries
 

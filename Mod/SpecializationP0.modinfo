@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="393">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="394">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B366.393：训练容量增加纯会话标识，沿用既有单位事件与实时资格检查。</Description>
+    <Description>B367.394：训练事实只读观察复用原有采样，嵌套超限保持未知保护。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

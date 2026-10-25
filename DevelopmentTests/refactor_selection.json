@@ -1763,6 +1763,9 @@
     ],
     "S9a3b": [
       "test_refactor_s9a3b"
+    ],
+    "S9a3c": [
+      "test_refactor_s9a3c"
     ]
   },
   "counterexamples": {},
@@ -2317,7 +2320,7 @@
       "key": "Mod/CrewProjects.lua|PROPERTY_PRODUCER_OWNERSHIP",
       "before": 0,
       "after": 1,
-      "reason": "Accepted S7d/F12/C080 moves the unchanged Crew use receipt/reservation writer from UnitActions to CrewProjects. Scanner detects direct P.SetProperty syntax; previous Crew writes used captured setters/pcall. UnitActions ownership alarm falls1→0, Crew rises0→1; pair total remains1. Single-use mutation-order/receipt differential and typed failure tests pass. No new property key/schema, permission, automatic writer or retry.",
+      "reason": "Accepted S7d/F12/C080 moves the unchanged Crew use receipt/reservation writer from UnitActions to CrewProjects. Scanner detects direct P.SetProperty syntax; previous Crew writes used captured setters/pcall. UnitActions ownership alarm falls1\u21920, Crew rises0\u21921; pair total remains1. Single-use mutation-order/receipt differential and typed failure tests pass. No new property key/schema, permission, automatic writer or retry.",
       "evidence": "test_refactor_s7d5.StaticOwnership and Transaction eight-mode exact75f435a differential; original local first artifact preserved with497 passing tests and this ownership review alarm."
     },
     {
