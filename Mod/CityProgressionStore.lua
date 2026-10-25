@@ -24,6 +24,20 @@ end
 local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
+ -- Session-only, two bounded scalar summaries; never history or age authority.
+ local timing={}
+ local function noteTiming(name,before,value)
+  local old=timing[name]
+  timing[name]={count=math.min(2147483647,(old and old.count or 0)+1),from=before.cursor,to=value.cursor,
+   reason=before.state=='UNKNOWN_INTERVAL'and '旧未知区间恢复'or '缺失可靠回合边界'}
+ end
+ function d.TimingDescribe()
+  local rows={}
+  for _,v in ipairs({{'research','科研'},{'commerce','商业'}})do local t=timing[v[1]];if t then
+   rows[#rows+1]=v[2]..' '..t.count..'次，最近T'..t.from..'→T'..t.to..'（'..t.reason..'）'
+  end end
+  return #rows>0 and ('\n计龄跳过（本次加载）：'..table.concat(rows,'；')..'；未补计，持续出现请保留日志调查。')or ''
+ end
  local exits,finished,attempts={},{},{};local exitBusy=false;local runningExit;local exitReads={}
  local returns={};function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn end
  -- Fixed latest slot per native event; session-only evidence, never identity authority.
@@ -350,12 +364,14 @@ local function CreateProgressionRecord(P,shared,storage)
   if not ready or fault or not root or root.origin.owner~=pid or not root.commerce or root.stage~='ACTIVE' then return end
   if not SPCCommerceModel.IsStandardSpeed()then return end
   local t=root.commerce.reputation
-  if R.Current(root).specialization=='COMMERCE' and (not t or t.age==40 or t.state~='COUNTING')then return end
+  if R.Current(root).specialization=='COMMERCE' and (not t or t.state=='DORMANT_OWNER' or t.state=='COUNTING'and t.age==40)then return end
   local ok,err=pcall(function()
    local a=root.current or root.origin
    local c=assert(CityManager.GetCityAt(a.x,a.y),'COMMERCE_CITY_UNKNOWN')
-   local r=active(pid,c);local value=SPCCommerceModel.Advance(r.commerce,turn,R.Current(r).specialization)
-   if not same(value,r.commerce)then local n=cp(r);n.commerce=value;n.revision=n.revision+1;save(n);publishFact(shared,c,'REPUTATION_COMMITTED',n,nil,'COMMERCE')end
+   local r=active(pid,c);local value,skipped=SPCCommerceModel.Advance(r.commerce,turn,R.Current(r).specialization)
+   if not same(value,r.commerce)then local n=cp(r);n.commerce=value;n.revision=n.revision+1;save(n)
+    if skipped then noteTiming('commerce',r.commerce.reputation,value.reputation)end
+    publishFact(shared,c,'REPUTATION_COMMITTED',n,nil,'COMMERCE')end
   end)
   d.commerceError=not ok and tostring(err) or nil
  end
@@ -387,9 +403,10 @@ local function CreateProgressionRecord(P,shared,storage)
    local a=root.current or root.origin
    local c=assert(CityManager.GetCityAt(a.x,a.y),'TRADITION_CITY_UNKNOWN')
    local r=active(pid,c)
-   local value=SPCResearchTradition.Advance(r.researchTradition,turn,R.Current(r).specialization)
+   local value,skipped=SPCResearchTradition.Advance(r.researchTradition,turn,R.Current(r).specialization)
    if not same(value,r.researchTradition) then
     local n=cp(r);n.researchTradition=value;n.revision=n.revision+1;save(n)
+    if skipped then noteTiming('research',r.researchTradition,value)end
     publishFact(shared,c,'TRADITION_COMMITTED',n,nil,'TRADITION')
    end
   end)
@@ -1361,12 +1378,12 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   local w=find(c)
   if not w and modern then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n正常建城须收到确认事件；征服须确认完整事件与无专业历史，不能自动认领。'end
   if not w then return '所选城市未登记；仍使用旧保存路径。右键迁移进度可登记完整的己方专业城。\n本批最多显式登记两城；先保留转换前存档。'end
-  return w.Describe(pid,c)..'\n已登记：'..count()..(modern and ' | 所选城 ' or '/2 | 所选城 ')..c:GetOwner()..'/'..c:GetID()
+  return w.Describe(pid,c)..w.TimingDescribe()..'\n已登记：'..count()..(modern and ' | 所选城 ' or '/2 | 所选城 ')..c:GetOwner()..'/'..c:GetID()
  end
  function store.NativeDescribe(pid,c)
   if fault or not c then return store.Describe(pid,c)end
   local w=find(c);if not w then return store.Describe(pid,c)end
-  return w.NativeDescribe(pid)..'\n所选城 '..c:GetOwner()..'/'..c:GetID()..' | 已登记 '..count()..(modern and '' or '/2')
+  return w.NativeDescribe(pid)..w.TimingDescribe()..'\n所选城 '..c:GetOwner()..'/'..c:GetID()..' | 已登记 '..count()..(modern and '' or '/2')
  end
  function store.Import(pid,c)
   if modern then return '本版本只支持新测试局；旧进度迁移入口已关闭。请左键查看当前进度。'end

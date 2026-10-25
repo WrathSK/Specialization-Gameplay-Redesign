@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "83d298d7c406c7930f27edc6491a9b4b822e14a2ad2ecd32eb0cb40ed748297c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
-      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "21920caf24712473ed088df9e7804f061c5e7e33fb0f8c9464b7fd93bc3bf5b6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
+      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -116,9 +116,9 @@
       "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
-      "sha256": "e990c22e395d8fa2a5d596220ca227eb31a3516b75ed5205c37d4f3cb66d3b83",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
-      "provenance": "B310.337 Use guarded worker projections in Commerce and Development; local/static evidence only; no deployment/native PASS."
+      "sha256": "175cdfeb1fa30bd8d367e0bb8ee7e8e605b57638b712cef14ea9a34e2e87b8c6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
+      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -131,9 +131,9 @@
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/CommerceModel.lua": {
-      "sha256": "48d885109e162057c00eae73bb3ad80f024c7034fbdb44535b05cff12558e525",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "4ff0c0c545447020040cca872e49a1be9a5e1c9f1f876e9c1c19f01b373be613",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
+      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CompletionProbe.lua": {
       "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "66c875fb8e5162c78fd8109b31fd99598124962d70c259b6d51b3ac2b0e6e9d9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
-      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "5871f074ae8a4dd5602d0a5f046ca3f2653e245fac06b4d37921477c65b18d87",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
+      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -866,9 +866,9 @@
       "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchTradition.lua": {
-      "sha256": "bfd4e3437c873c97349216f876c86e80ba1b97cc4c847821f4990c2ab9d062c7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B247_Restructuring_Local.md",
-      "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
+      "sha256": "c5253c305160d1faa0abbd62d8257a5a73b7d4a80084601c61ecada22d45a219",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
+      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchTraditionEffects.lua": {
       "sha256": "67cd50fbe2540b93393accfcf43c083392fc5551b220915b85d9907704d18915",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "0e4c1e55fb11a707c4f73e4253444faf38c06e73bec2ac8aaa509271cd371033",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
-      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "6b1ccd01d2fecb1bc1daa38309335cda1fc3a7039ed165a3c7ea90ddb55353fa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
+      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1614,6 +1614,11 @@
       "sha256": "23f1622b9d2c4e6db1bc719b864b2fd058c949875d8fe925ddb23d94b8c30051",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
       "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/TurnLedger.lua": {
+      "sha256": "5056a904946a652b87e72564770c727529734f9a9f3e1c2e57ffb85d829a563c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
+      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

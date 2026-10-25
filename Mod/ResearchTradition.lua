@@ -1,4 +1,5 @@
 -- Research-only age model/readout. Effects are owned by ResearchTraditionEffects.
+if not SPCTurnLedger then include('TurnLedger')end
 SPCResearchTradition={}
 local M=SPCResearchTradition
 local function integer(v)return type(v)=='number' and v>=0 and v<1000000000 and v%1==0 end
@@ -25,12 +26,10 @@ function M.Advance(t,turn,identity)
  M.Validate(t);assert(integer(turn) and turn>=t.cursor,'TRADITION_TURN_INVALID')
  assert(type(identity)=='string','TRADITION_IDENTITY_UNKNOWN')
  local n={version=1,start=t.start,age=t.age,cursor=t.cursor,state=t.state,receipt=t.receipt,qualification=t.qualification}
- if t.state=='OWNER_POLICY_UNRESOLVED' or t.state=='UNKNOWN_INTERVAL' then return n end
- local delta=turn-t.cursor
- if delta>1 then n.state='UNKNOWN_INTERVAL';return n end
- if t.state=='COUNTING' then n.age=n.age+delta end
- n.cursor=turn;n.state=identity=='RESEARCH' and 'COUNTING' or 'PAUSED_IDENTITY'
- return n
+ if t.state=='OWNER_POLICY_UNRESOLVED'then return n end
+ local cursor,credit,skipped=SPCTurnLedger.Advance(t.cursor,turn,t.state=='COUNTING',t.state=='UNKNOWN_INTERVAL')
+ n.age=n.age+credit;n.cursor=cursor;n.state=identity=='RESEARCH' and 'COUNTING' or 'PAUSED_IDENTITY'
+ return n,skipped
 end
 function M.Shadow(age,multiplier)
  assert(integer(age) and type(multiplier)=='number' and multiplier>0 and multiplier<math.huge,'TRADITION_SPEED_UNKNOWN')

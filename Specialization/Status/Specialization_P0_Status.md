@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0774
-Implementation Build: B322.349 / modinfo349; stable/live B307.334
+Status Revision: S0775
+Implementation Build: B323.350 / modinfo350; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7B_COMPLETE_CONTINUING
+Work State: REFACTOR_S7C_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7b2 migrates Crew order/receipt write observations while preserving clone-before-attempt, exact readback and no-replay rules. PropertyCell centralizes only existing nonnegative finite/canonical-decimal mechanics for Capital/Development; field whitelists, DECIMAL17_V1 wire format, required/optional validation and native-money tolerance remain unchanged. S7b is complete without a global float32 conversion policy. [Result](Validation/Results/Specialization_B322_Refactor_S7b2.md). Stable/live/main B307.334; no deployment/native PASS.
+S7c shares a pure reliable-boundary TurnLedger. Missing or previously UNKNOWN intervals receive no age credit; the current reliable boundary rebases the cursor and restores each model's legal counting/paused state. Store no longer skips recoverable Commerce records. D6 unknown/missing Reputation gives zero reputation bonus while other confirmed Commercialization remains. Owner holds, identity exit/pause, Standard-only and cap40 remain independent. [Result](Validation/Results/Specialization_B323_Refactor_S7c.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7c event-driven turn-ledger recovery and D6 unknown-reputation handling, then S7d–S10.
+- Primary next: Continue S7d actual timed-project event/UNKNOWN and unique Crew completion proof extraction, then S7e–S10.
+
+## S0775 — B323.350 Share reliable turn boundaries and implement accepted D6 recovery
+
+S7c shares a pure reliable-boundary TurnLedger. Missing or previously UNKNOWN intervals receive no age credit; the current reliable boundary rebases the cursor and restores each model's legal counting/paused state. Store no longer skips recoverable Commerce records. D6 unknown/missing Reputation gives zero reputation bonus while other confirmed Commercialization remains. Owner holds, identity exit/pause, Standard-only and cap40 remain independent.
 
 ## S0774 — B322.349 Complete property-cell mechanics and scoped decimal policy
 

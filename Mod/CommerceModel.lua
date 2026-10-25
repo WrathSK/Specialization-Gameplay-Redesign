@@ -1,5 +1,6 @@
 -- Commerce owns only selected order and proven institution history. Current
 -- ACTIVE, worker capacity, D/X and Gold are recomputed by the consumer.
+if not SPCTurnLedger then include('TurnLedger')end
 SPCCommerceModel={}
 local M=SPCCommerceModel
 local domains={DISTRICT_CAMPUS=true,DISTRICT_THEATER=true,DISTRICT_INDUSTRIAL_ZONE=true,DISTRICT_HOLY_SITE=true,DISTRICT_HARBOR=true}
@@ -76,11 +77,10 @@ function M.Advance(v,turn,identity)
  if identity~='COMMERCE'then return M.Exit(v)end
  local n=copy(v);local t=n.reputation;if not t then return n end
  assert(turn>=t.cursor,'COMMERCE_REPUTATION_TURN_REVERSED')
- if t.state~='COUNTING' or t.age==40 then return n end
- local delta=turn-t.cursor
- if delta>1 then t.state='UNKNOWN_INTERVAL';return n end
- t.age=math.min(40,t.age+delta);t.cursor=turn
- return M.Validate(n)
+ if t.state=='DORMANT_OWNER' or t.state=='COUNTING'and t.age==40 then return n end
+ local cursor,credit,skipped=SPCTurnLedger.Advance(t.cursor,turn,t.state=='COUNTING',t.state=='UNKNOWN_INTERVAL')
+ t.age=math.min(40,t.age+credit);t.cursor=cursor;t.state='COUNTING'
+ return M.Validate(n),skipped
 end
 function M.OwnerChanged(v,owner,turn)
  M.Validate(v);assert(int(owner) and int(turn),'COMMERCE_OWNER_UNKNOWN')

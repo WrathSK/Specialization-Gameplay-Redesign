@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0774",
-    "runtime": "B322.349 / modinfo349",
+    "status": "S0775",
+    "runtime": "B323.350 / modinfo350",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S7c event-driven turn-ledger recovery and D6 unknown-reputation handling, then S7d–S10. No automatic deployment/main/native launch.",
+  "goal": "Continue S7d actual timed-project event/UNKNOWN and unique Crew completion proof extraction, then S7e–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -304,6 +304,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
       "kind": "full",
       "reason": "Complete property-cell mechanics and scoped decimal policy actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
+      "kind": "full",
+      "reason": "Share reliable turn boundaries and implement accepted D6 recovery actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -330,8 +335,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
-    "local": "LOCAL_SIMULATION_PASS:251/251",
+    "report": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
+    "local": "LOCAL_SIMULATION_PASS:318/318",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

@@ -1,0 +1,29 @@
+# B323.350 — S7c reliable-boundary ledger and accepted D6
+
+## Plan and Runtime Impact Contract
+
+Accepted S7c F23/ST-01/EXT-01/02, explicit U1 D6/D0058; base B322.349/afd2204. This slice intentionally changes only the accepted UNKNOWN policy: no credit for unprovable intervals and no permanent absorbing UNKNOWN; unknown Commerce reputation removes its bonus, not independently legal base Gold. Historical permanent-UNKNOWN/whole-Commerce-HELD expectations are superseded only for these exact D6 cases; frozen assertions/evidence remain unchanged and separately traceable.
+
+TurnLedger is pure, no Start/objects/cache/events/timers/writes. Callers validate their own ordered turns and state. A gap >1 or old UNKNOWN rebases to the supplied current reliable boundary with credit0; otherwise the prior counting state earns the completed 0/1 interval. The owner then chooses its own current legal state. Research retains identity pause/return and OWNER_POLICY_UNRESOLVED; Commerce retains identity exit, DORMANT_OWNER, Standard-only and COUNTING+cap40 no-write optimization. UNKNOWN+cap40 must still recover once. ACTIVE/worker/pillage/network do not pause identity age. No inferred lost interval, fabricated origin/receipt or persisted shape change.
+
+Existing Store local activation/load hooks and registered workers remain the sole clock. Store/reference/city failures retain their existing error/hold behavior; the next reliable existing boundary recovers without periodic retry or new city scans. Successful state commits use unchanged PropertyCell/Store guards and FactChanges propagation. Normal reliable-turn tests must never enter UNKNOWN; UNKNOWN remains exceptional protection and a persistent real-game occurrence requires boundary/commit/recovery investigation, not acceptance of a fallback.
+
+T01/T02/T04/T05/T08: pure counting/paused/gap/oldUNKNOWN/same-turn/reversal matrix; real Store two-city selective unavailability, preserved receipts/age, no missed credit and next interval+1; cold load, owner holds, cap40, failed writes/no replay, real ResearchEffects/current facts and Commerce writer R0/base-Gold. Differential unchanged reliable/identity/cap paths against base, explicit D6 counterexamples for changed paths. No deployment/main/game launch or native save-file/engine PASS.
+
+Diagnostic follow-up: retain only a session-local count and latest from/to/reason per Research/Commerce ledger (maximum two rows per registered record), updated after confirmed successful rebase commits. Existing on-demand Store reports append this evidence without new native reads, persistent writes, listeners or retries. This makes repeated missing-boundary recovery visible rather than silently replacing errors with COUNTING. The pure model second return reports a rebase only; it is not an age/save authority.
+
+### Machine validation evidence
+
+- Stage/status: `S7c` / `LOCAL_SIMULATION_PASS`; tests=318, passing=318, registered-open=0.
+- Source: base `afd2204bb799e39e3442989cb37a92063c37da15`; dirty=True; input SHA256 `07e09a3cc456ab433a4259289f65566ac9125e8b13ea682fe4e53292c880bfe6`; stable=True.
+- Source scope: Mod/DevelopmentTests/tools, including tracked and nonignored new files. The containing commit must match this input digest; parent HEAD alone is not the tested snapshot.
+- Command: `python3 DevelopmentTests/run_refactor.py --stage S7c --output local/refactor/S7c-B323-first/closure.json`.
+- Environment: `{"backend": "Lua 5.1", "implementation": "CPython", "lupa": "2.8", "machine": "arm64", "platform": "Darwin", "python": "3.10.13", "python_hash_seed": "UNSET", "sqlite": "3.43.2"}`.
+- External input: `{"configured": true, "recovery": "EXTERNAL_INPUT_NOT_ARCHIVED", "sha256": {"database": "fa7578c3c2e2f19dee918b3801c627ce6edf526ce6d94e04c71a83038c2c215b"}}`.
+- Full artifact: `local/refactor/S7c-B323-first/closure.json`; SHA256 `17106c4781a933611c054ead629c5cc9ecbb5ea12c532e20191b8168c0011dba`; stdout/stderr alongside it.
+- Retention: LOCAL_ONLY, not a permanent backup. A hash identifies bytes but cannot recover them. Re-running creates comparable new evidence, not the old execution.
+- Executed modules/fragments: 82; this is observed loading/completion, not full function/path coverage. Detailed mappings remain in the artifact.
+- Measurements (changed from prior artifact): `{"S5d4c10_commerce_health": {"permanent_writes": 0, "repair_writes": 1, "thousand_idle_reads": 0}, "S5d4c7_Tradition_health": {"history_changes": 0, "permanent_writes": 0, "thousand_idle_extra_reads": 0}, "S6f_actual_Commerce_Development": {"existing_explicit_phase_workers": 1, "independent_workers": 2, "projection_writes": 0, "scope": "actual Store/EF/Commerce/Development; D/Bridge/native doubles; production scheduler unchanged", "unchanged_gold": 15}, "S7c_actual_Store_Commerce_propagation": {"actual": "Store/EF/FactChanges/Commerce", "direct_turn_mark_suppressed_for_proof": true, "native_doubles": "D/Bridge/worker/yield", "next_complete_age": 21, "recovered_gold": 16, "retained_age": 20, "thousand_idle_writes": 0, "typed_commits_consumed": 1, "unknown_gold": 15}, "S7c_frozen_D6_before": {"base": "afd2204", "original_assertions_unchanged": true, "superseded": "absorbing UNKNOWN and whole-Commerce HELD only"}, "S7c_research_recovery": {"actual": "Store/FactChanges/FactBindings/ResearchEffects", "first_complete_interval_after_rebase": 1, "sibling_continues": true, "thousand_idle_history_writes": 0, "unreliable_intervals_credited": 0}}`.
+- Limits/mocks: `{"exclusions": {"historical_unrelated_suites": "Selected program scenarios only; inherited stage regressions are named when selected. No old assertions modified."}, "native_mocks": ["synthetic owner/city/district/building methods", "explicit catalogue stub for D workload fixtures", "B270 seven real writers with native doubles"]}`; LOCAL_SIMULATION only.
+
+Static package: {"Lua51": 200, "XML": 25, "package_files": 322, "modinfo": 350}

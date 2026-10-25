@@ -150,11 +150,8 @@ function M.Start(P,shared)
   local value=state.value or model.New(pid);model.Validate(value);assert(value.owner==pid,'COMMERCE_OWNER_CHANGED')
   v.selected=cp(value.selected);v.reputation=cp(value.reputation or {age=0,state='NOT_ESTABLISHED'});v.reputation.effective=0
   assert(f.activeStatus=='KNOWN' and integer(f.active) and not f.investmentPending,'COMMERCE_QUALIFICATION_UNKNOWN')
-  if f.potential==4 then assert(value.reputation,'COMMERCE_REPUTATION_UNKNOWN')end
-  if f.active==4 then
-   assert(v.reputation.state=='COUNTING','COMMERCE_REPUTATION_UNKNOWN')
-   v.reputation.effective=v.reputation.age
-  end
+  -- D6: unreadable reputation grants no bonus; independently confirmed Gold remains.
+  if f.active==4 and v.reputation.state=='COUNTING'then v.reputation.effective=v.reputation.age end
   local dc=depth(batch,pid,c,f.token);local localDomains={}
   for domain,r in pairs(dc.domains)do localDomains[domain]=r.value end
   local anchor
