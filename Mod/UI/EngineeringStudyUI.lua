@@ -25,7 +25,10 @@ function M.New(P,send,notify)
   assert(c:GetOwner()==pid,'EST_UI_OWNER')
   return {reference={owner=pid,cityID=id,x=c:GetX(),y=c:GetY()},turn=Game.GetCurrentGameTurn(),project=M.Current(c),size=c:GetBuildQueue():GetSize()}
  end
+ client.Configure('EngineeringStudy','SPC_EngineeringStudyRead','ENGINEERING_STUDY_SYNC',send)
+ a.Connect=client.Connect;a.Sync=client.Sync;a.WarmStart=client.WarmStart
  function a.Before(c,item,queued)
+  if not client.OwnsReader()then return not item or item.Type~=M.PROJECT end
   local k=c and (c:GetOwner()..':'..c:GetID())
   if not item or item.Type~=M.PROJECT then if k then pending[k]=nil end;return true end
   if not c or queued or not P.IsTestPlayer(c:GetOwner())then return false end
@@ -34,8 +37,9 @@ function M.New(P,send,notify)
  local function drain()
   local d=(ExposedMembers.SPC_P0 or {}).EngineeringStudy;if not d then return end
   for k,p in pairs(pending)do
+   if not client.OwnsReader()then return end
    if p.turn~=Game.GetCurrentGameTurn()then pending[k]=nil
-   elseif p.read then
+   elseif p.read and client.Ready()then
     local ok,q,current=client.Read(k,p,function()return ExposedMembers.SPC_EngineeringStudyRead(p.pid,p.id)end)
     if current and ok and q.project==M.PROJECT and q.size==1 then
      pending[k]=nil -- latch before native re-entry; no ambiguous resend
@@ -43,9 +47,11 @@ function M.New(P,send,notify)
     elseif current and ok and q.project==M.PROJECT and type(q.size)=='number' and q.size>1 then pending[k]=nil;notify(p.pid,p.id)end
    end
   end
+  if not client.OwnsReader()then return end
   if revision==d.revision then return end;revision=d.revision
   for k in pairs(seen)do if not d.views[k]then seen[k]=nil;pending[k]=nil end end
   for k,v in pairs(d.views)do
+   if not client.OwnsReader()then return end
    local sig=v.stage..':'..tostring(v.start)..':'..v.reason..':'..tostring(v.L)
    if seen[k]~=sig then seen[k]=sig;local pid,id=k:match('^(%d+):(%d+)$');if pid then notify(tonumber(pid),tonumber(id))end end
   end

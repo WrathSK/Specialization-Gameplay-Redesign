@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="353">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="354">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B326.353：建立三项目读取器就绪握手基础，研习同步限定单城且不重放。</Description>
+    <Description>B327.354：三个项目界面按真实就绪代际同步一次，不再空闲查城或重发。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0778
-Implementation Build: B326.353 / modinfo353; stable/live B307.334
+Status Revision: S0779
+Implementation Build: B327.354 / modinfo354; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7D3A_COMPLETE_CONTINUING
+Work State: REFACTOR_S7D3B_USER_PAUSE
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7d3a adds a fixed three-slot reader/backend initialization handshake. Store FRESH/EXISTING, composition seal, current export and successful owner startup are all required; monotonic immutable registration serials prevent old UI resurrection without retaining history. Wake only marks UI work and never reads cities or resends actions. Engineering receives an independent exact-city saved-state Sync with original full-turn/no-replay proof. Default UI connection and old SYNC retry removal remain S7d3b; no intermediate deployment. [Result](Validation/Results/Specialization_B326_Refactor_S7d3a.md). Stable/live/main B307.334; no deployment/native PASS.
+S7d3b connects the three project UIs only after successful adapter/hook construction. Current reader/backend/service readiness permits one SYNC per city and availability generation; missing ACK, failed send and idle publication never cause city lookup or resend. New availability rearms only unsent intents, never a prior BEGIN. Old contexts cannot consume ACKs, overwrite selection status or clear a newly explicit intent. Queues still require S7d2 selection/related-event permits. Full-turn working sets and Crew proof/consume extraction remain next. User requested a safe pause after this verified batch; the next slice has not begun. [Result](Validation/Results/Specialization_B327_Refactor_S7d3b.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7d3b explicit UI readiness connection and remove SYNC pulse retries, then full-turn/Crew extraction and S7e–S10.
+- Primary next: On user resume, continue S7d full-turn work-set and Crew proof/consume extraction, then S7e–S10. Do not deploy, promote main or launch the game.
+
+## S0779 — B327.354 Replace project SYNC retries with explicit readiness
+
+S7d3b connects the three project UIs only after successful adapter/hook construction. Current reader/backend/service readiness permits one SYNC per city and availability generation; missing ACK, failed send and idle publication never cause city lookup or resend. New availability rearms only unsent intents, never a prior BEGIN. Old contexts cannot consume ACKs, overwrite selection status or clear a newly explicit intent. Queues still require S7d2 selection/related-event permits. Full-turn working sets and Crew proof/consume extraction remain next. User requested a safe pause after this verified batch; the next slice has not begun.
 
 ## S0778 — B326.353 Add fixed project-reader readiness and scoped study synchronization
 

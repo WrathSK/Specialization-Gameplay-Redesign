@@ -940,6 +940,27 @@
       "test_refactor_s6e.RetainedGuards",
       "test_refactor_s6f.RetainedDevelopment",
       "test_refactor_s6f.RetainedGuards"
+    ],
+    "S7d3b": [
+      "test_refactor_s7d3b",
+      "test_refactor_s7d3a",
+      "test_refactor_s7d2",
+      "test_refactor_s7d1",
+      "test_refactor_s7c",
+      "test_refactor_s5d4c7",
+      "test_refactor_s5d4c10",
+      "test_refactor_s4b.CommerceRetention",
+      "test_refactor_s6f.Composition",
+      "test_refactor_s7b2",
+      "test_refactor_s7b1",
+      "test_refactor_s5a2",
+      "test_refactor_s5b",
+      "test_refactor_s6b.Composition",
+      "test_refactor_s3",
+      "test_refactor_s6e.RetainedReceipts",
+      "test_refactor_s6e.RetainedGuards",
+      "test_refactor_s6f.RetainedDevelopment",
+      "test_refactor_s6f.RetainedGuards"
     ]
   },
   "counterexamples": {},
@@ -1302,10 +1323,12 @@
       "test_refactor_s7d1"
     ],
     "Mod/UI/TimedProjectSelectionClient.lua": [
-      "test_refactor_s7d2"
+      "test_refactor_s7d2",
+      "test_refactor_s7d3b"
     ],
     "Mod/TimedProjectReaders.lua": [
-      "test_refactor_s7d3a"
+      "test_refactor_s7d3a",
+      "test_refactor_s7d3b"
     ]
   },
   "exclusions": {
@@ -1457,6 +1480,18 @@
         "test_b235_engineering.StudyUI.test_selection_waits_for_native_queue_then_sends_once"
       ],
       "current": "one explicit selection/related city event permits one queue read; silent size change cannot rearm UNKNOWN"
+    },
+    "S7d3b": {
+      "source": "9bca334d2c326bb4d9003424a8db680b2846b9b6",
+      "decision": "U1 D4 no publication/time/UNKNOWN retries; S7d3a fixed readiness",
+      "historical_assertions_retained": [
+        "test_b129_claim_sync.Sync.test_retry_then_ack",
+        "test_b129_claim_sync.Sync.test_bounded_and_no_begin",
+        "test_b129_claim_sync.Sync.test_late_backend",
+        "test_b129_claim_sync.Sync.test_stale_ack_does_not_close",
+        "test_dialogue_project_ui.DialogueUI.test_retry_is_bounded_and_late_backend_waits"
+      ],
+      "current": "one explicit SYNC attempt per city/current reader/backend/service availability generation; missing ACK and throw do not resend; new initialization availability only rearms unissued intents, never BEGIN replay; unknown local player waits for existing initialization boundary"
     }
   }
 }

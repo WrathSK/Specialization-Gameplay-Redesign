@@ -1,5 +1,6 @@
 """S7d2 explicit queue-read permits, real Store/controllers and UI clients.
-SYNC pulse retries remain for S7d3; actual ACKs settle before queue measurements.
+Actual current readiness/ACKs settle before queue measurements; old assertions
+use exact historical sources with their original handshake.
 """
 from pathlib import Path
 import unittest
@@ -16,78 +17,8 @@ SPECS = {
 
 
 def ui_actual(kind):
-    """Actual Store/controller first; current native UI method-shaped queue.
-
-    actual(kind) starts a legitimate saved round. Cancel it through the existing
-    native production event before creating a fresh UI intent, rather than
-    deleting its timer or forging an empty saved record. Count only the UI
-    reader bridge: real controller qualification/queue reads remain active.
-    """
-    vm = actual(kind)
-
-    def include(name):
-        # Required search order: the panel's UI helpers, then Gameplay helpers.
-        candidates = (ROOT / "Mod/UI" / (name + ".lua"), ROOT / "Mod" / (name + ".lua"))
-        path = next((p for p in candidates if p.is_file()), None)
-        if path is None:
-            raise FileNotFoundError(name)
-        with legacy_source_observation():
-            vm.execute(path.read_text())
-
-    vm.globals().include = include
-    vm.globals().fixtureKind = kind
-    module, exported, backend, reader, begin = SPECS[kind]
-    vm.globals().backendKey = backend
-    vm.globals().readerKey = reader
-    vm.globals().beginAction = begin
-    vm.execute("""
-    q.target='NORMAL';changed()
-    assert(not pending() or pending().stage=='STOPPED')
-    Game.GetLocalPlayer=function()return 0 end
-    ExposedMembers=ExposedMembers or {};ExposedMembers.SPC_P0=shared
-    PlayerOperations={EXECUTE_SCRIPT=1}
-    local row=assert(P.Info('Projects',project));local hash=row.Hash or row.Index
-    GameInfo.Projects=GameInfo.Projects or {};GameInfo.Projects[project]={Hash=hash}
-    -- The UI needs only the selected project's real, already-defined hash.
-    q.GetCurrentProductionTypeHash=function()return q.target==project and hash or 0 end
-    uiQueueSize=1;q.GetSize=function()return uiQueueSize end
-    -- Collector construction needs an iterable catalogue; these are queue-only
-    -- tests and never invoke works=true or any native completion reward path.
-    if fixtureKind=='Dialogue'then GameInfo.Buildings=function()return function()end end end
-    uiPackets={};uiBegins=0;uiNotifies=0;uiReads=0
-    function sendUI(pid,op,p)
-     uiPackets[#uiPackets+1]=p
-     if p.Action==beginAction then
-      uiBegins=uiBegins+1
-      if duringSend then duringSend()end
-      shared[backendKey].Request(pid,p)
-     elseif p.Action=='CLAIM_SYNC' or p.Action=='DIALOGUE_PROJECT_SYNC'then
-      shared[backendKey].Sync(pid,p.CityID,p.Token)
-     else error('UNEXPECTED_UI_ACTION_'..tostring(p.Action))end
-    end
-    """)
-    include(module)
-    vm.execute("""
-    ui=_G[...].New(P,sendUI,function()uiNotifies=uiNotifies+1 end)
-    function pumpUI()return (ui.Pulse or ui.Publish)()end
-    if ui.WarmStart then ui.WarmStart();pumpUI()end
-    -- Settle an actual synchronous backend ACK, not fabricated UI success.
-    pumpUI();uiPackets={};uiBegins=0;uiReads=0
-    local raw=assert(ExposedMembers[readerKey])
-    ExposedMembers[readerKey]=function(...)
-     uiReads=uiReads+1
-     if unreadable then error('QUEUE_READ_UNKNOWN')end
-     local value=raw(...)
-     if afterQueueRead then afterQueueRead()end
-     return value
-    end
-    function selectUI()return ui.Before(c,{Type=project},false)end
-    function ordinaryUI()return ui.Before(c,{Type='NORMAL'},false)end
-    function queueEventUI(pid,id)return ui.QueueEvent(pid,id)end
-    function ownEventUI()return queueEventUI(c:GetOwner(),c:GetID())end
-    function idleUI(n)for i=1,n do pumpUI()end end
-    """, exported)
-    return vm
+    from timed_project_ui_fixture import fixture
+    return fixture(kind,connect=True)
 
 
 class Permit(unittest.TestCase):

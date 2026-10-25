@@ -25,7 +25,7 @@ function M.Text(pid,id,project)
  return '1','认领需完整一回合；完成才建立专业。已有未分配生产与项目期间生产不留给后续目标。'
 end
 function M.New(P,send,notify)
- local api={};local pending={};local seen={};local pendingText={};local synced={};local warmed=false;local pulse=0
+ local api={};local pending={};local seen={};local pendingText={}
  local client=SPCTimedProjectSelectionClient.New(P,pending);api.QueueEvent=client.QueueEvent;api.Close=client.Close
  ExposedMembers.SPC_ClaimSelection={}
  ExposedMembers.SPC_ClaimSync={}
@@ -33,42 +33,14 @@ function M.New(P,send,notify)
   local c=assert(Players[pid] and Players[pid]:GetCities():FindID(id));assert(c:GetOwner()==pid)
   return {owner=pid,id=id,turn=Game.GetCurrentGameTurn(),project=M.Current(c),size=c:GetBuildQueue():GetSize()}
  end
- -- At most three sends per city/UI lifetime, on bounded publish opportunities.
- -- Sending is not acknowledgement. Sync never creates or restarts a saved timer.
- function api.Sync(c)
-  if not c or not P.IsTestPlayer(c:GetOwner())then return end
-  local k=tostring(c:GetOwner())..':'..c:GetID()
-  local s=synced[k]
-  if not s then s={owner=c:GetOwner(),id=c:GetID(),tries=0,nextPulse=pulse};synced[k]=s end
-  local backend=(ExposedMembers.SPC_P0 or {}).ClaimProjects
-  if backend and backend.syncAck and s.token and backend.syncAck[k]==s.token then
-   s.done=true;ExposedMembers.SPC_ClaimSync[k]=nil;return
-  end
-  if s.done or pulse<s.nextPulse then return end
-  if backend and backend.startupError then
-   ExposedMembers.SPC_ClaimSync[k]='认领模块未就绪：'..backend.startupError;return
-  end
-  if s.tries>=3 then
-   ExposedMembers.SPC_ClaimSync[k]='读档同步未获确认；请保留存档和E2报告，暂停测试';return
-  end
-  -- Wait for the actual module; early UI construction must not consume retries.
-  if not backend then ExposedMembers.SPC_ClaimSync[k]='等待认领模块加载';return end
-  s.tries=s.tries+1;s.token='CLAIM_SYNC:'..k..':'..s.tries
-  s.nextPulse=pulse+(s.tries==1 and 4 or 12)
-  ExposedMembers.SPC_ClaimSync[k]='读档同步等待确认（'..s.tries..'/3）'
-  local ok,err=pcall(send,c:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='CLAIM_SYNC',Token=s.token,CityID=c:GetID()})
-  if not ok then ExposedMembers.SPC_ClaimSync[k]='读档同步发送失败：'..tostring(err)end
- end
- -- One bounded local-city reconciliation per UI lifetime, independent of opening a panel.
- function api.WarmStart()
-  if warmed then return end
-  local pid=Game.GetLocalPlayer();local player=Players[pid]
-  if not player or not P.IsTestPlayer(pid)then return end
-  warmed=true
-  for _,c in player:GetCities():Members()do api.Sync(c)end
- end
+ client.Configure('ClaimProjects','SPC_ClaimQueueRead','CLAIM_SYNC',send,function(k,state,why)
+  if state=='ACK'then ExposedMembers.SPC_ClaimSync[k]=nil
+  else ExposedMembers.SPC_ClaimSync[k]=state=='FAILED'and ('读档同步未确认：'..tostring(why))or '读档同步等待确认；不会自动重发'end
+ end)
+ api.Connect=client.Connect;api.Sync=client.Sync;api.WarmStart=client.WarmStart
  function api.Before(c,item,queueMode)
   local name=item and item.Type;local k=c and tostring(c:GetOwner())..':'..c:GetID()
+  if not client.OwnsReader()then return not M.IsProject(name)end
   if not M.IsProject(name)then if k then pending[k]=nil;ExposedMembers.SPC_ClaimSelection[k]=nil end;return true end
   if not c or not P.IsTestPlayer(c:GetOwner())then return false end
   if queueMode then ExposedMembers.SPC_ClaimSelection[k]='认领项目不能排在队列后面；请选为唯一当前目标';notify(c:GetOwner(),c:GetID());return false end
@@ -77,36 +49,35 @@ function M.New(P,send,notify)
   ExposedMembers.SPC_ClaimSelection[k]='等待原生选择确认';return true
  end
  local function drain()
-  pulse=pulse+1
-  api.WarmStart() -- fallback when this context missed LoadScreenClose; no repeated city scan
   local shared=(ExposedMembers.SPC_P0 or {}).ClaimProjects
-  for _,s in pairs(synced)do if not s.done then
-   local c=Players[s.owner] and Players[s.owner]:GetCities():FindID(s.id)
-   if c then api.Sync(c)end
-  end end
   for k,p in pairs(pending)do
+   if not client.OwnsReader()then return end
    local view=shared and shared.views[k]
    if view and view.project==p.project and view.stage=='ACTIVE' then pending[k]=nil;ExposedMembers.SPC_ClaimSelection[k]=nil
    elseif p.sent and view and view.stage=='STOPPED' then pending[k]=nil;ExposedMembers.SPC_ClaimSelection[k]=view.reason;notify(p.owner,p.id)
    elseif p.turn~=Game.GetCurrentGameTurn()then pending[k]=nil;ExposedMembers.SPC_ClaimSelection[k]='启动确认超时；请重新选择项目';notify(p.owner,p.id)
-   elseif not p.sent and p.read then
+   elseif not p.sent and p.read and client.Ready()then
     local ok,v,current=client.Read(k,p,function()return ExposedMembers.SPC_ClaimQueueRead(p.owner,p.id)end)
     if current and ok and v.project==p.project then
      if v.size==1 then
       p.sent=true
       local good,err=pcall(send,p.owner,PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='CLAIM_BEGIN',Token='CLAIM:'..k..':'..p.turn,CityID=p.id,Project=p.project,StartTurn=p.turn})
-      if not good then ExposedMembers.SPC_ClaimSelection[k]='启动请求失败：'..tostring(err);pending[k]=nil;notify(p.owner,p.id)end
+      if not good and pending[k]==p and client.OwnsReader()then ExposedMembers.SPC_ClaimSelection[k]='启动请求失败：'..tostring(err);pending[k]=nil;notify(p.owner,p.id)end
      elseif type(v.size)=='number' and v.size>1 then
       ExposedMembers.SPC_ClaimSelection[k]='认领必须为唯一当前目标；队列数量='..v.size;pending[k]=nil;notify(p.owner,p.id)
      else ExposedMembers.SPC_ClaimSelection[k]='等待队列确认；数量='..tostring(v.size)end
     end
    end
   end
+  if not client.OwnsReader()then return end
   for k,reason in pairs(ExposedMembers.SPC_ClaimSelection)do
+   if not client.OwnsReader()then return end
    if pendingText[k]~=reason then pendingText[k]=reason;local pid,id=k:match('^(%d+):(%d+)$');if pid then notify(tonumber(pid),tonumber(id))end end
   end
+  if not client.OwnsReader()then return end
   if shared then
    for k,v in pairs(shared.views)do
+    if not client.OwnsReader()then return end
     local signature=tostring(v.stage)..':'..tostring(v.project)..':'..tostring(v.start)..':'..v.reason
     if signature~=seen[k]then seen[k]=signature;local pid,id=k:match('^(%d+):(%d+)$');if pid then notify(tonumber(pid),tonumber(id))end end
    end

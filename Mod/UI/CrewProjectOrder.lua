@@ -41,6 +41,7 @@ function GetDataHelper(...)
  adapters.Items(commerceSelection,data)
  adapters.Call(claimSelection,'Sync',data.City)
  adapters.Call(dialogueSelection,'Sync',data.City)
+ adapters.Call(engineeringSelection,'Sync',data.City)
  adapters.Items(displaySelection,data)
  -- HD exposes Disabled from native CanProduce. Filter only our exact project IDs.
  local items={}
@@ -126,7 +127,10 @@ for _,e in ipairs({capitalSelection,developmentSelection,commerceSelection,crewS
  adapters.Hook(Events,'GameCoreEventPublishComplete',e,'Publish')
 end
 for _,e in ipairs({projectSelection,claimSelection,dialogueSelection})do adapters.Hook(Events,'GameCoreEventPublishComplete',e,'Pulse')end
-for _,e in ipairs({dialogueSelection,claimSelection})do adapters.Hook(Events,'LoadScreenClose',e,'WarmStart')end
+for _,e in ipairs({dialogueSelection,claimSelection,engineeringSelection})do
+ adapters.Hook(Events,'LoadScreenClose',e,'WarmStart')
+ adapters.Hook(Events,'LocalPlayerTurnBegin',e,'WarmStart') -- only an uninitialized availability generation can enumerate
+end
 -- Exact native city production signals permit one pending-intent read. Publish
 -- drains those causes; unreadable queues wait for a new related signal.
 for _,name in ipairs({'CityProductionChanged','CityProductionQueueChanged','CityProductionUpdated'})do
@@ -174,3 +178,6 @@ ContextPtr:SetShutdown(function()
  adapters.Close()
  if nativeShutdown then nativeShutdown()end
 end)
+
+-- Publish readers only after all successful adapters and native hooks are wired.
+for _,e in ipairs({claimSelection,dialogueSelection,engineeringSelection})do adapters.Call(e,'Connect')end

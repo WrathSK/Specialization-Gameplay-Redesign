@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "8fcaaed6e4364731ab907768d5e8a755cfc52c4ef9dd4c741f77c305b825517b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B326_Refactor_S7d3a.md",
-      "provenance": "B326.353 Add fixed project-reader readiness and scoped study synchronization; local/static evidence only; no deployment/native PASS."
+      "sha256": "bd96a2dc8c9433ff541b4e529ff2e3cf91ac732ba8d8e05042c22f153309bbbf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
+      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b45bca9859cc420c5be35e0ff96081ee684018b5f6cc1d9404c0980745c300b2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B326_Refactor_S7d3a.md",
-      "provenance": "B326.353 Add fixed project-reader readiness and scoped study synchronization; local/static evidence only; no deployment/native PASS."
+      "sha256": "e30a44c0cfd6d14a91367ac9e5c814fe9cc738d709f9407ec5acb965a79ea3a5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
+      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1221,9 +1221,9 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/ClaimProjectUI.lua": {
-      "sha256": "2bb35248e047a059982d4f5ea33a6b355008c546aefc5423418a5b850abbea37",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B325_Refactor_S7d2.md",
-      "provenance": "B325.352 Drain project UI queue reads only for explicit related causes; local/static evidence only; no deployment/native PASS."
+      "sha256": "c727c46d9eaebfb21717ff243a4ed519f90c2e50be8f9bcb65257e914e0ba383",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
+      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CommercePanel.lua": {
       "sha256": "4a593323cacd8a9c6f3271ccbc1c57cb68986183eb9021b4f05c3d1d314352eb",
@@ -1251,9 +1251,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "30121b0630d4c150c8dcab29771ff60e50b8f8b431106de5403beffcbd0d9378",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B325_Refactor_S7d2.md",
-      "provenance": "B325.352 Drain project UI queue reads only for explicit related causes; local/static evidence only; no deployment/native PASS."
+      "sha256": "daab4a3df86d8e71056d1a1964b467e195700eb97ed53277ae4d9f955237c05f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
+      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "b07ea80a0db7f1fb10bcc259dd711afacab49fd6edafb2b5d097e19a1abdc64b",
@@ -1281,9 +1281,9 @@
       "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
     },
     "Mod/UI/DialogueProjectUI.lua": {
-      "sha256": "77ce96ad6a24ccbb4892d53cb479970e2079730c87a1d851b9f15d3e4070cb10",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B325_Refactor_S7d2.md",
-      "provenance": "B325.352 Drain project UI queue reads only for explicit related causes; local/static evidence only; no deployment/native PASS."
+      "sha256": "9f969c7fb49b29f41e44d94c4087385b7e72fc3bdaf122cca065cec62d9826a3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
+      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "274d7491240789affb0ac7d47e222c0180c1b7489a700afa745dc0f3e5ba5876",
@@ -1306,9 +1306,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/EngineeringStudyUI.lua": {
-      "sha256": "42340adeae43d11d1faf43477bebfcd2687e0609b12189767a7cfacf3f399a2e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B325_Refactor_S7d2.md",
-      "provenance": "B325.352 Drain project UI queue reads only for explicit related causes; local/static evidence only; no deployment/native PASS."
+      "sha256": "daba30b786cfce586be5e58afdb8c0eb31de4398e081655f948c714016dc97c9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
+      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1631,14 +1631,14 @@
       "provenance": "B324.351 Distinguish confirmed production targets from unknown queue reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/TimedProjectSelectionClient.lua": {
-      "sha256": "ef858964c4a1b4d49759d798a7cd27f4fc371f88eae80e26aed90da9dff81508",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B325_Refactor_S7d2.md",
-      "provenance": "B325.352 Drain project UI queue reads only for explicit related causes; local/static evidence only; no deployment/native PASS."
+      "sha256": "fd2df0e8da4ade89fa4649fe148b991927552b1edcda8f117f7cfbbf1340bd6b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
+      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     },
     "Mod/TimedProjectReaders.lua": {
-      "sha256": "1c00993d21810bfc25e8aadd76545225cfc67cb1b819373669674136e89bf00a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B326_Refactor_S7d3a.md",
-      "provenance": "B326.353 Add fixed project-reader readiness and scoped study synchronization; local/static evidence only; no deployment/native PASS."
+      "sha256": "a10d90472e4cfe5cf898589cb9fcfde956ac7faf3ba86243c49ad10bb0f16769",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
+      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

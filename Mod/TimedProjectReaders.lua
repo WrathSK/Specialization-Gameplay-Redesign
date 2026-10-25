@@ -4,7 +4,7 @@ include('RuntimeWork')
 SPCTimedProjectReaders={}
 function SPCTimedProjectReaders.New(P,shared)
  local keys={ClaimProjects='SPC_ClaimQueueRead',DialogueProjects='SPC_DialogueProjectRead',EngineeringStudy='SPC_EngineeringStudyRead'}
- local d={epoch=0,errors={}};shared.TimedProjectReaders=d
+ local d={epoch=0,errors={},readers={}};shared.TimedProjectReaders=d
  local sealed=false;local backends,registrations,delivered,serials={},{},{},{}
  local status
  local function current(kind,row)
@@ -15,7 +15,7 @@ function SPCTimedProjectReaders.New(P,shared)
  end
  local function notify(kind)
   local backend,binding=backends[kind],registrations[kind];local row=binding and binding.row
-  if not sealed or d.epoch==0 or not backend or shared[kind]~=backend or not current(kind,row)or binding.reader~=row.reader or binding.wake~=row.wake or binding.serial~=row.serial then return end
+  if shared.TimedProjectReaders~=d or not sealed or d.epoch==0 or not backend or shared[kind]~=backend or not current(kind,row)or binding.reader~=row.reader or binding.wake~=row.wake or binding.serial~=row.serial then return end
   local start=shared.StartStatus and shared.StartStatus[kind=='EngineeringStudy'and 'EngineeringStudyProjects'or kind]
   if shared.StartStatus and (not start or start.state~='OK')then return end
   local last=delivered[kind]
@@ -34,10 +34,10 @@ function SPCTimedProjectReaders.New(P,shared)
   local prior=registrations[kind];local greatest=serials[kind]or 0
   if prior and prior.row==row and (prior.serial~=row.serial or prior.reader~=row.reader or prior.wake~=row.wake)then return false end
   if row.serial<greatest or row.serial==greatest and (not prior or prior.row~=row or prior.reader~=row.reader or prior.wake~=row.wake)then return false end
-  serials[kind]=row.serial;registrations[kind]={row=row,reader=row.reader,wake=row.wake,serial=row.serial};notify(kind);return true
+  d.readers[kind]=row;serials[kind]=row.serial;registrations[kind]={row=row,reader=row.reader,wake=row.wake,serial=row.serial};notify(kind);return true
  end
  function d.Unregister(kind,row)
-  if registrations[kind]and registrations[kind].row==row then registrations[kind]=nil;delivered[kind]=nil end
+  if registrations[kind]and registrations[kind].row==row then registrations[kind]=nil;delivered[kind]=nil;d.readers[kind]=nil end
  end
  function d.Attach(kind,backend)
   assert(keys[kind]and type(backend)=='table','TIMED_BACKEND_KIND')
