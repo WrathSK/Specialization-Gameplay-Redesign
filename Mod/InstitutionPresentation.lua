@@ -29,7 +29,7 @@ function M.Signature(v)
  local parts={tostring(v.specialization),tostring(v.potential),tostring(v.active),tostring(v.activeStatus),tostring(v.progression)}
  for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do parts[#parts+1]=tostring(v.institutionArchive and v.institutionArchive[kind] or '')end
  local s=v.institutionSummary or {}
- for _,k in ipairs({'known','traditionKnown','dialogue','engineering','insights','insightsKnown','templatesKnown','buildingTemplates','districtTemplates'})do parts[#parts+1]=tostring(s[k])end
+ for _,k in ipairs({'known','traditionKnown','dialogueKnown','engineeringKnown','dialogue','engineering','insights','insightsKnown','templatesKnown','buildingTemplates','districtTemplates'})do parts[#parts+1]=tostring(s[k])end
  for _,k in ipairs({'tradition','reputation'})do
   local t=s[k];parts[#parts+1]=tostring(type(t))
   for _,field in ipairs({'age','state','cursor','percent','nextAge'})do parts[#parts+1]=tostring(type(t)=='table' and t[field] or nil)end
@@ -80,7 +80,7 @@ local function metric(entry,v)
   end
   add('REPUTATION',value)
  elseif entry.kind=='CULTURE' then
-  if entry.level==3 then add('DIALOGUE',available and loc('DIALOGUE_VALUE',s.dialogue))
+  if entry.level==3 then add('DIALOGUE',available and s.dialogueKnown~=false and loc('DIALOGUE_VALUE',s.dialogue))
   elseif entry.level==4 then add('EXPEDITION',available and s.insightsKnown~=false and loc('INSIGHTS_VALUE',s.insights))end
  elseif entry.kind=='INDUSTRY' then
   if entry.level==3 then
@@ -89,13 +89,14 @@ local function metric(entry,v)
     value=loc('TEMPLATES_VALUE',s.buildingTemplates,s.districtTemplates~=nil and tostring(s.districtTemplates) or loc('PENDING_SHORT'))
     if v.activeStatus=='KNOWN' and type(v.active)=='number' then
      if entry.historical or v.active<3 then value=value..'[NEWLINE]'..loc('STANDARDIZATION_PAUSED')
+     elseif v.active>=4 and s.engineeringKnown==false then value=value..'[NEWLINE]'..loc('PENDING')
      else local boost=v.active>=4 and 2*s.engineering or 0
       value=value..'[NEWLINE]'..loc('STANDARDIZATION_VALUE',10+boost,boost)
      end
     else value=value..'[NEWLINE]'..loc('PENDING')end
    end
    add('STANDARDIZATION',value)
-  elseif entry.level==4 then add('ENGINEERING',available and loc('ENGINEERING_VALUE',s.engineering,2*s.engineering))end
+  elseif entry.level==4 then add('ENGINEERING',available and s.engineeringKnown~=false and loc('ENGINEERING_VALUE',s.engineering,2*s.engineering))end
  end
  return results
 end

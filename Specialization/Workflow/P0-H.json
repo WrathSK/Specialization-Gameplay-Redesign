@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0795",
-    "runtime": "B342.369 / modinfo369",
+    "status": "S0796",
+    "runtime": "B343.370 / modinfo370",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue remaining S8 ability isolation/recovery with actual consumer and lifecycle proofs, then S9–S10. No automatic deployment/main/native launch.",
+  "goal": "Continue the remaining S8 ability groups and bounded recovery proof, then S9–S10; keep D5 and unprovable permanent-history recovery open. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -409,6 +409,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B342_Refactor_S8b3.md",
       "kind": "full",
       "reason": "Isolate invalid Tradition while preserving lifecycle and effect routing actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B343_Refactor_S8b4.md",
+      "kind": "full",
+      "reason": "Isolate project history groups without replaying completion actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -435,8 +440,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B342_Refactor_S8b3.md",
-    "local": "652/652 LOCAL_SIMULATION_PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B343_Refactor_S8b4.md",
+    "local": "664/664 LOCAL_SIMULATION_PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

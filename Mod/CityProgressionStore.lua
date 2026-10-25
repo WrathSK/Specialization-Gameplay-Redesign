@@ -30,7 +30,8 @@ local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
  local isolated={} -- session-only observations; original ability bytes remain in root
- local isolationKeys={'expeditionInsights','researchTradition'} -- fixed reviewed leaf scope
+ local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering'} -- fixed reviewed owner scope
+ local isolationFields={};for _,key in ipairs(isolationKeys)do isolationFields[key]=SPCStoreSubrecords.Fields(key)end
  -- Session-only, two bounded scalar summaries; never history or age authority.
  local timing={}
  local function noteTiming(name,before,value)
@@ -213,8 +214,10 @@ local function CreateProgressionRecord(P,shared,storage)
    -- Normalize before comparison: metatable fallback cannot forge preservation.
    local checked=cp(nextValue)
    for _,key in ipairs(isolationKeys)do if isolated[key]then
-    assert(root and same(checked[key],root[key]),'ISOLATED_SUBRECORD_CANNOT_CHANGE_'..key)
-    checked[key]=nil
+    for _,field in ipairs(isolationFields[key])do
+     assert(root and same(checked[field],root[field]),'ISOLATED_SUBRECORD_CANNOT_CHANGE_'..field)
+     checked[field]=nil
+    end
    end end
    validate(checked) -- complete base and all remaining abilities remain strict
   else validate(nextValue)end
@@ -230,11 +233,11 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  -- Dialogue history shares the existing record's commit/readback and failure boundary.
  function d.DialogueState(pid,c)
-  local r=active(pid,c)
+  local r=active(pid,c);assert(not isolated.dialogue,'DIALOGUE_HISTORY_ISOLATED')
   return cp({value=r.dialogue,token=r.base.token,reference=r.current or r.origin})
  end
  function d.WriteDialogue(pid,c,old,value)
-  local r=active(pid,c);assert(same(r.dialogue,old),'DIALOGUE_HISTORY_STALE')
+  local r=active(pid,c);assert(not isolated.dialogue,'DIALOGUE_HISTORY_ISOLATED');assert(same(r.dialogue,old),'DIALOGUE_HISTORY_STALE')
   assert(value~=nil,'DIALOGUE_HISTORY_CANNOT_DELETE');SPCDialogueProjectModel.Validate(value,r)
   if same(old,value)then return end
   local n=cp(r);n.dialogueKnown=true;n.dialogue=cp(value);n.revision=n.revision+1;save(n)
@@ -293,12 +296,12 @@ local function CreateProgressionRecord(P,shared,storage)
  -- confirmed-loss cancellation. No candidate L escapes native write callbacks.
  function d.EngineeringState(pid,c)
   assert(not committing,'EST_COMMIT_IN_PROGRESS')
-  local r=active(pid,c)
+  local r=active(pid,c);assert(not isolated.engineering,'EST_HISTORY_ISOLATED')
   return cp({value=r.engineering,token=r.base.token,reference=r.current or r.origin})
  end
  function d.WriteEngineering(pid,c,old,value)
   assert(not committing,'EST_COMMIT_IN_PROGRESS')
-  local r=active(pid,c);assert(same(r.engineering,old),'EST_HISTORY_STALE')
+  local r=active(pid,c);assert(not isolated.engineering,'EST_HISTORY_ISOLATED');assert(same(r.engineering,old),'EST_HISTORY_STALE')
   assert(value~=nil,'EST_HISTORY_CANNOT_DELETE');SPCEngineeringStudyModel.Validate(value,r)
   if same(old,value)then return end
   local n=cp(r);n.engineeringKnown=true;n.engineering=cp(value);n.revision=n.revision+1;save(n)
@@ -487,8 +490,10 @@ local function CreateProgressionRecord(P,shared,storage)
   local out={known=true,traditionKnown=not isolated.researchTradition,token=r.base.token,reference=cp(r.current or r.origin),revision=r.revision,
    tradition=t and {age=t.age,state=t.state,cursor=t.cursor} or false,
    reputation=rep and {age=rep.age,state=rep.state} or false,
-   dialogue=r.dialogue and r.dialogue.total or 0,engineering=r.engineering and r.engineering.L or 0,
+   dialogueKnown=not isolated.dialogue,engineeringKnown=not isolated.engineering,
    insightsKnown=not isolated.expeditionInsights,templatesKnown=false}
+  if out.dialogueKnown then out.dialogue=r.dialogue and r.dialogue.total or 0 end
+  if out.engineeringKnown then out.engineering=r.engineering and r.engineering.L or 0 end
   if not out.traditionKnown then out.tradition=nil end
   if out.insightsKnown then
    out.insights=0;for _ in pairs(r.expeditionInsights and r.expeditionInsights.records or {})do out.insights=out.insights+1 end
@@ -522,8 +527,8 @@ local function CreateProgressionRecord(P,shared,storage)
   if not isolated.researchTradition and n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,turn,'NONE')end
   if n.commerce then n.commerce=SPCCommerceModel.Exit(n.commerce);n.commerceKnown=true end
   if n.capital then n.capital=SPCCapitalInvestmentModel.Encode(SPCCapitalInvestmentModel.ResetProtection(SPCCapitalInvestmentModel.Decode(n.capital)))end
-  if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'专业重组取消未完成对话；历史保留')end
-  if n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_IDENTITY_EXIT')end
+  if not isolated.dialogue and n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'专业重组取消未完成对话；历史保留')end
+  if not isolated.engineering and n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_IDENTITY_EXIT')end
   n.revision=n.revision+1;save(n);publishIdentity(c);return cp(n.restructuring)
  end
  function d.ConfigureRestructuring(pid,c,team,kind,first)
@@ -818,28 +823,29 @@ local function CreateProgressionRecord(P,shared,storage)
    if root then
     local valid,why=pcall(validate,root)
     if not valid then
-     -- A complete bounded native copy is already available. Isolate only the
-     -- independently failed reviewed leaves when the entire remaining parent passes.
-     -- CHECK_FAILED is not permanent irrecoverability and authorizes no reset.
-     local checked=cp(root);local failures={}
+     -- First construct redundant known markers without publishing them. Only
+     -- independently valid owners may commit those markers after the full proof.
+     local candidate,changes=SPCStoreSubrecords.KnownCandidate(root,cp)
+     local checked=cp(candidate or root);local failures={}
      for _,key in ipairs(isolationKeys)do
-      local check=SPCStoreSubrecords.CheckOne(key,root,same)
+      local check=SPCStoreSubrecords.CheckOne(key,checked,same)
       if check.status=='CHECK_FAILED'then
-       checked[key]=nil;failures[key]={state='ISOLATED',status=check.status,reason=check.reason}
+       for _,field in ipairs(isolationFields[key])do checked[field]=nil end
+       failures[key]={state='ISOLATED',status=check.status,reason=check.reason}
       end
      end
-     local parentOK=next(failures)and pcall(validate,checked)
-     if parentOK then isolated=failures
-     else
-      assert(SPCStoreSubrecords.IsKnownFlagFailure(why),why)
-      local candidate,fields=SPCStoreSubrecords.KnownCandidate(root,cp)
-      assert(candidate,why)
-      candidate.revision=root.revision+1
-      assert(candidate.revision>root.revision,'SUBRECORD_RECOVERY_REVISION_UNAVAILABLE')
-      -- save performs the unchanged full parent/ability validation BEFORE any
-      -- candidate becomes visible, then the existing exact native CAS/readback.
-      save(candidate)
-      d.subrecordRecovery={kind='KNOWN_FLAGS_REBUILT',fields=fields,revision=candidate.revision}
+     local parentOK=pcall(validate,checked);assert(parentOK,why)
+     isolated=failures -- CHECK_FAILED observes unavailability, never irrecoverability.
+     local repaired,fields
+     for _,change in ipairs(changes or {})do if not isolated[change.key]then
+      repaired=repaired or cp(root);fields=fields or {}
+      repaired[change.field]=true;fields[#fields+1]=change
+     end end
+     if repaired then
+      repaired.revision=root.revision+1
+      assert(repaired.revision>root.revision,'SUBRECORD_RECOVERY_REVISION_UNAVAILABLE')
+      save(repaired) -- complete remaining-parent validation, exact native CAS/readback
+      d.subrecordRecovery={kind='KNOWN_FLAGS_REBUILT',fields=fields,revision=repaired.revision}
      end
     end
    end
@@ -1084,8 +1090,8 @@ local function CreateProgressionRecord(P,shared,storage)
     and newOwner==current.owner and newID==current.cityID then
     local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;n.claimTimer=nil;n.revision=n.revision+1
     if n.restructuring and (n.restructuring.phase=='REALLOCATING' or n.restructuring.phase=='CONSUMING')then n.restructuring=R.Discard(n.restructuring)end
-    if n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
-    if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
+    if not isolated.engineering and n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
+    if not isolated.dialogue and n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
     if not isolated.researchTradition and n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
     n.ownerChanges=(n.ownerChanges or 0)+1
     if n.capital then

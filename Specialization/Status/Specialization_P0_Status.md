@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0795
-Implementation Build: B342.369 / modinfo369; stable/live B307.334
+Status Revision: S0796
+Implementation Build: B343.370 / modinfo370; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8B3_COMPLETE_CONTINUING
+Work State: REFACTOR_S8B4_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8b3 extends the fixed preserved-leaf isolation scope to Research Tradition. Complete remaining-parent validation still gates isolation; either or both reviewed leaves can be unavailable without losing other valid capabilities. All writes preserve each isolated original field. Age ticks, P4 initialization and lifecycle age mutation skip only invalid history; actual effect city routing remains so confirmed qualification loss still withdraws carriers. Institution display marks Tradition pending. No age reconstruction/reset, schema, event or timer change. Other D7 abilities/permanent recovery and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B342_Refactor_S8b3.md). Stable/live/main B307.334; no deployment/native PASS.
+S8b4 extends preserved-group isolation to Dialogue and Engineering using each owner's complete known+payload field set. Pure known-marker candidates are proved before only nonisolated marker repairs commit; invalid groups keep original markers/content. APIs reject isolated groups, lifecycle skips their Cancel only, and other city capabilities continue. Actual project CALLING records are preserved without FinishProgress/sample/reward replay; different existing access-marker policies remain. Institution metrics show independent pending, never zero L/total. Other D7 groups/permanent recovery and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B343_Refactor_S8b4.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue remaining S8 ability isolation/recovery with actual consumer and lifecycle proofs, then S9–S10.
+- Primary next: Continue the remaining S8 ability groups and bounded recovery proof, then S9–S10; keep D5 and unprovable permanent-history recovery open.
+
+## S0796 — B343.370 Isolate project history groups without replaying completion
+
+S8b4 extends preserved-group isolation to Dialogue and Engineering using each owner's complete known+payload field set. Pure known-marker candidates are proved before only nonisolated marker repairs commit; invalid groups keep original markers/content. APIs reject isolated groups, lifecycle skips their Cancel only, and other city capabilities continue. Actual project CALLING records are preserved without FinishProgress/sample/reward replay; different existing access-marker policies remain. Institution metrics show independent pending, never zero L/total. Other D7 groups/permanent recovery and D5 native proof remain OPEN.
 
 ## S0795 — B342.369 Isolate invalid Tradition while preserving lifecycle and effect routing
 

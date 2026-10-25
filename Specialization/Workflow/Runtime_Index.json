@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "6e2628e6dde36cb972d3f1af84cedc991160b4337a09c945944b70acc2452423",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B342_Refactor_S8b3.md",
-      "provenance": "B342.369 Isolate invalid Tradition while preserving lifecycle and effect routing; local/static evidence only; no deployment/native PASS."
+      "sha256": "c3b2c503d77ca8151f2b607f92186d62bc163b8abf3c6ac354976b3342a41fa5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B343_Refactor_S8b4.md",
+      "provenance": "B343.370 Isolate project history groups without replaying completion; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -701,9 +701,9 @@
       "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "da389c7b0e9dcb3393f31903b3f0bda3b32ed686cb0213dce83f1afe3559e6d9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B342_Refactor_S8b3.md",
-      "provenance": "B342.369 Isolate invalid Tradition while preserving lifecycle and effect routing; local/static evidence only; no deployment/native PASS."
+      "sha256": "12ad798d1d15315c8097a2e96dce728067cc698844e79fd14a0fce43368501d2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B343_Refactor_S8b4.md",
+      "provenance": "B343.370 Isolate project history groups without replaying completion; local/static evidence only; no deployment/native PASS."
     },
     "Mod/InvestmentAction.lua": {
       "sha256": "c172e8793367032401f886b511bf9c0523e34ded1a1cccfa8921b9c5d60b3cb6",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "ecf13093809a83dd8f48b1de91d5eddf7d0bb0db527921f22c18e9ba49acdf3b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B342_Refactor_S8b3.md",
-      "provenance": "B342.369 Isolate invalid Tradition while preserving lifecycle and effect routing; local/static evidence only; no deployment/native PASS."
+      "sha256": "f9ea633235620efcdbad2e28765cabc0dbf292d35ff971b89de5955fccfdd868",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B343_Refactor_S8b4.md",
+      "provenance": "B343.370 Isolate project history groups without replaying completion; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "ddef8624c3345c7e8c4fc8fdd916010de5c1c494247e9d1eb9e6d1526ade2be3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B342_Refactor_S8b3.md",
-      "provenance": "B342.369 Isolate invalid Tradition while preserving lifecycle and effect routing; local/static evidence only; no deployment/native PASS."
+      "sha256": "ec4991cc5487b7fe707ed8b978423553de015f2e0a4ba69f845d57e6ea3c39c9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B343_Refactor_S8b4.md",
+      "provenance": "B343.370 Isolate project history groups without replaying completion; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
