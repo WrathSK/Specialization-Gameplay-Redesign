@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0791
-Implementation Build: B338.365 / modinfo365; stable/live B307.334
+Status Revision: S0792
+Implementation Build: B339.366 / modinfo366; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8C5A_COMPLETE_CONTINUING
+Work State: REFACTOR_S8C5B_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8c5a extracts a read-only exact-current-exit proof and adds an explicit completion adapter to existing RuntimeWork target exits. Ordinary exits keep the same ACK path; group adapters must prove the current Store ticket/slot and accept only their group, leaving aggregate completion to the owner. This preserves independent retry/pending cleanup for the following legacy consolidation without allowing one recovered group to ACK unfinished peers. No production group-adapter caller, new listener/timer, saved schema or gameplay change. Legacy owner wiring and full D7/D5 boundaries remain OPEN. [Result](Validation/Results/Specialization_B338_Refactor_S8c5a.md). Stable/live/main B307.334; no deployment/native PASS.
+S8c5b establishes an explicitly invoked composite cleanup core with independent fixed groups, exact current ticket/readback gates, weak-key session progress and required Lv3 runner/Dialogue post-cleanup roles. A partial directory or failed group cannot suppress peers or acknowledge the aggregate; original target retries can finish only their own group. Catalogue groups resolve independently. The core is not yet wired into Gameplay; current11 production exits and live Withdraw APIs remain. D7 isolation and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B339_Refactor_S8c5b.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Complete the isolated legacy cleanup owner and production responsibility migration, preserving subgroup recovery, mandatory startup gate and Dialogue hold duty; then continue S8 isolation/recovery and S9–S10.
+- Primary next: Wire the protected mandatory composite gate and fixed participants into current production startup, then finish S8 ability isolation/recovery and continue S9–S10.
+
+## S0792 — B339.366 Prove isolated composite legacy cleanup before production wiring
+
+S8c5b establishes an explicitly invoked composite cleanup core with independent fixed groups, exact current ticket/readback gates, weak-key session progress and required Lv3 runner/Dialogue post-cleanup roles. A partial directory or failed group cannot suppress peers or acknowledge the aggregate; original target retries can finish only their own group. Catalogue groups resolve independently. The core is not yet wired into Gameplay; current11 production exits and live Withdraw APIs remain. D7 isolation and D5 native proof remain OPEN.
 
 ## S0791 — B338.365 Preserve exact group acknowledgement before legacy owner migration
 

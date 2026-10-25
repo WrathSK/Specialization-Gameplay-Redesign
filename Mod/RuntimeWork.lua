@@ -166,7 +166,7 @@ end
 -- other consumers. Only scalar references survive a synchronous audit.
 function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
  local t={pending={},exits={},known={},transfers={}}
- local function errorText(value)local ok,text=pcall(tostring,value);return ok and text or 'RUNTIME_TARGET_FAILED'end
+ local function errorText(value)local ok,text=pcall(tostring,value);return ok and type(text)=='string'and text or 'RUNTIME_TARGET_FAILED'end
  local function report(pid,cid,err)
   local ok,why=pcall(onError,pid,cid,err)
   if not ok then t.error=errorText(why)end
@@ -224,6 +224,10 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
   assert(store.ExitCompleted(e.name,c,e.loss,e.ticket,function()return t.exits[key(e.ref)]==e end)==true,'RUNTIME_EXIT_ACK_UNCONFIRMED')
   return true
  end
+ local function cleanExit(e,c)
+  if e.completion then return e.fn(c,e.loss,e.ticket,function()return t.exits[key(e.ref)]==e end)end
+  return e.fn(c,e.loss) -- ordinary exit argument contract remains unchanged
+ end
  local transfers
  function t.Retry(scope)
   if transfers then transfers(scope)end
@@ -236,7 +240,7 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
    if ok and c and t.exits[k]==e then
     local priorPending=t.pending[k]
     local good,err=pcall(function()
-     assert(e.fn(c,e.loss)~=false,'RUNTIME_EXIT_UNCONFIRMED')
+     assert(cleanExit(e,c)~=false,'RUNTIME_EXIT_UNCONFIRMED')
      if t.exits[k]~=e then return false end
      return acknowledge(e,c)
     end)
@@ -322,7 +326,7 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
    local priorPending=t.pending[k];local entry={ref=r,loss=loss,fn=fn,name=name,ticket=ticket,completion=completion}
    put(t.exits,k,entry) -- retain before the first possibly failing native read
    local ok,err=pcall(function()
-    assert(fn(c,loss)~=false,'RUNTIME_EXIT_UNCONFIRMED')
+    assert(cleanExit(entry,c)~=false,'RUNTIME_EXIT_UNCONFIRMED')
     assert(t.exits[k]==entry,'RUNTIME_EXIT_SUPERSEDED')
     acknowledge(entry,c)
     assert(t.exits[k]==entry,'RUNTIME_EXIT_SUPERSEDED')

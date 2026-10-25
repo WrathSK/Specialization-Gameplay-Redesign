@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "e5e8b1b5c63c32af5727871fc9daadf7722546feb07ee10d57713f622eefbe40",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
-      "provenance": "B338.365 Preserve exact group acknowledgement before legacy owner migration; local/static evidence only; no deployment/native PASS."
+      "sha256": "c9e43a8da1c95d02e336fcdc49a1a2d8fb412442571f2905ad6ab8a22df3d013",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
+      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "69a069864add17c99be48135eaf26352d9f7c6c5bbccf1c3890adc558b0ed293",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
-      "provenance": "B338.365 Preserve exact group acknowledgement before legacy owner migration; local/static evidence only; no deployment/native PASS."
+      "sha256": "843b62dccc53c830170c05ca4f33ae61437f5d1fb12c6c391ed42d66eeb8a761",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
+      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "86d5a2dd3addf5eb9d30dcafdf12e141618037194da4ae0f0496b5b3ea6609f9",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "56b1ed9a14a5625ea1607674e277c359316058b8cebd62e5c7fb8be48b0a2dfc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
-      "provenance": "B338.365 Preserve exact group acknowledgement before legacy owner migration; local/static evidence only; no deployment/native PASS."
+      "sha256": "5151bb8c03f6811adc68d6cf9509949176796bcbccbefd258fdfdc5d3ee3ed41",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
+      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1566,9 +1566,9 @@
       "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/RuntimeComposition.lua": {
-      "sha256": "162849f5f8dfde457f15fbe3eb375b4bf661aba15160e838e7151be77fde71c9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
-      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
+      "sha256": "ae132348aee0a8b5829f415eedff34ad4b10ea0f72624538228bf3e5ac6b2fc3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
+      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SafeCallbacks.lua": {
       "sha256": "59f119acc1a5c0171607de9be6d94e05f230b34b4cb316af545ef4a74b87c321",
@@ -1656,9 +1656,14 @@
       "provenance": "B333.360 Rebuild redundant known flags from preserved authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LegacyCleanupCatalog.lua": {
-      "sha256": "ea67217f0b7a73bf11e0db4515dd08b8e2d1ed3edfe5645f95cf78ad77b4fae8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
-      "provenance": "B337.364 Prove the exact current legacy cleanup catalogue; local/static evidence only; no deployment/native PASS."
+      "sha256": "92320e3f9af46a296e15897000e6dfee6f615603125c3c4fd659405f1d41e373",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
+      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/LegacyCleanup.lua": {
+      "sha256": "fac336744471beb59cabb12e4dd0949a443fe985148128abc35eaeff0b1b1f51",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
+      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

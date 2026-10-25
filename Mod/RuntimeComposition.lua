@@ -56,6 +56,8 @@ function M.New(shared)
   end
   registration(shared.CityProgressionStore,'RegisterExit')
   registration(shared.CityProgressionStore,'RegisterReturn')
+  registration(shared.LegacyCleanup,'RegisterRunner')
+  registration(shared.LegacyCleanup,'RegisterPostCleanup')
   registration(shared.GreatWorkFacts,'RegisterConsumer')
   registration(shared.FactChanges,'RegisterConsumer')
   registration(shared.DistrictCompleteness,'RegisterConsumer')

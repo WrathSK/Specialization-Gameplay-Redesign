@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0791",
-    "runtime": "B338.365 / modinfo365",
+    "status": "S0792",
+    "runtime": "B339.366 / modinfo366",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Complete the isolated legacy cleanup owner and production responsibility migration, preserving subgroup recovery, mandatory startup gate and Dialogue hold duty; then continue S8 isolation/recovery and S9–S10. No automatic deployment/main/native launch.",
+  "goal": "Wire the protected mandatory composite gate and fixed participants into current production startup, then finish S8 ability isolation/recovery and continue S9–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -389,6 +389,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
       "kind": "full",
       "reason": "Preserve exact group acknowledgement before legacy owner migration actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
+      "kind": "full",
+      "reason": "Prove isolated composite legacy cleanup before production wiring actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -415,8 +420,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
-    "local": "LOCAL_SIMULATION_PASS_546",
+    "report": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
+    "local": "578/578 LOCAL_SIMULATION_PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

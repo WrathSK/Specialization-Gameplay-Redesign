@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="365">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="366">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B338.365：为旧退出合并保留独立异步恢复，分组确认不等于整体完成。</Description>
+    <Description>B339.366：统一旧退出核心的独立分组、精确凭据和异步恢复；生产接线仍待下一片。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -184,6 +184,7 @@
       <File>CityReference.lua</File>
       <File>Tombstones.lua</File>
       <File>LegacyCleanupCatalog.lua</File>
+      <File>LegacyCleanup.lua</File>
       <File>ReverseDependencies.lua</File>
       <File>NativeFacts.lua</File>
       <File>OrdinaryBuildingCatalog.lua</File>
@@ -632,6 +633,7 @@
     <File>CityReference.lua</File>
     <File>Tombstones.lua</File>
     <File>LegacyCleanupCatalog.lua</File>
+    <File>LegacyCleanup.lua</File>
     <File>ReverseDependencies.lua</File>
     <File>NativeFacts.lua</File>
     <File>OrdinaryBuildingCatalog.lua</File>
