@@ -92,6 +92,6 @@ function SPCLv2Housing.Start(P,shared)
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2Housing',targets.Exit(function(c,loss)
    carriersSet.Exit(shared,c,loss)
- end))end
+ end,'Lv2Housing'))end
 
 end

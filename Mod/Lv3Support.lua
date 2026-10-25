@@ -116,6 +116,6 @@ function SPCLv3Support.Start(P,shared)
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Support',targets.Exit(function(c,loss)
    local ids={};for _,id in ipairs(SPCSpecialistSupport.Retired)do ids[#ids+1]=id end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end))end
+ end,'Lv3Support'))end
 
 end

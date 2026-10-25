@@ -115,6 +115,6 @@ function SPCLv2GPP.Start(P,shared)
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2GPP',targets.Exit(function(c,loss)
    carriersSet.Exit(shared,c,loss)
- end))end
+ end,'Lv2GPP'))end
 
 end

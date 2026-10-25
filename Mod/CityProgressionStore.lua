@@ -40,6 +40,7 @@ local function CreateProgressionRecord(P,shared,storage)
   return #rows>0 and ('\n计龄跳过（本次加载）：'..table.concat(rows,'；')..'；未补计，持续出现请保留日志调查。')or ''
  end
  local exits,finished,attempts={},{},{};local exitBusy=false;local runningExit;local exitReads={}
+ local exitTickets={} -- one opaque capability per registered exit/current loss; never saved
  local returns={};function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn end
  -- Fixed latest slot per native event; session-only evidence, never identity authority.
  local eventNames={'CityTransfered','CityConquered','CityAddedToMap','CityRemovedFromMap','CityInitialized','CityBuilt'}
@@ -839,21 +840,64 @@ local function CreateProgressionRecord(P,shared,storage)
   end end
   if runningExit then exitReads[runningExit]={checked=#rows,removed=found}end
  end
+ local function summarizeExit()
+  local count=0;local pending=false
+  for name in pairs(exits)do count=count+1;if not finished[name]then pending=true end end
+  d.exitStatus=count==0 and 'NO_EXIT_MODULES'or pending and 'PARTIAL_HELD'or'WITHDRAWN'
+ end
+ local function currentExit(generation,loss)
+  local safe,allowed=pcall(storage.CanExit)
+  return safe and allowed==true and not committing and ready and not fault and exitTickets==generation
+   and root and root.stage=='HELD_TRANSFER'and same(root.loss,loss)
+ end
+ local function confirmedExit(generation,c,loss)
+  if not currentExit(generation,loss)then return false end
+  local matched=d.IsExitTarget(c,loss) -- native reference getters may reenter
+  return matched and currentExit(generation,loss)
+ end
+ function d.ExitCompleted(name,c,loss,ticket,current)
+  if committing or type(name)~='string'or not exits[name]or ticket==nil or not rawequal(exitTickets[name],ticket)then return false end
+  local generation=exitTickets
+  if not confirmedExit(generation,c,loss)then return false end
+  if current then local ok,value=pcall(current);if not ok or value~=true then return false end end
+  if not currentExit(generation,loss)then return false end
+  -- The current callback must return successfully before it can finish. An ACK
+  -- inside it cannot let reentrant recapture cross the unfinished cleanup barrier.
+  if runningExit~=name then finished[name]=true;d.exitErrors[name]=nil;summarizeExit()end
+  return true
+ end
  function d.ExitConfirmed()
-  if exitBusy or not ready or fault or not root or not root.loss then return end
-  local ok,c=pcall(CityManager.GetCityAt,root.origin.x,root.origin.y)
-  if not ok or not c or not d.IsExitTarget(c,root.loss) then d.exitStatus='TARGET_UNAVAILABLE';return end
-  foreignSeen=true
-  exitBusy=true;local names={};for name in pairs(exits)do names[#names+1]=name end
-  table.sort(names,function(a,b)if a=='NetworkBridge' then return b~='NetworkBridge' end;if b=='NetworkBridge' then return false end;return a<b end)
-  for _,name in ipairs(names)do if not finished[name] and (attempts[name] or 0)<3 then
-   attempts[name]=(attempts[name] or 0)+1
-   runningExit=name;local good,err=pcall(exits[name],c,cp(root.loss));runningExit=nil
-   if good then finished[name]=true;d.exitErrors[name]=nil else d.exitErrors[name]=tostring(err)end
-  end end
-  d.exitStatus=#names>0 and 'WITHDRAWN' or 'NO_EXIT_MODULES'
-  for _,name in ipairs(names)do if not finished[name] then d.exitStatus='PARTIAL_HELD' end end
-  exitBusy=false
+  if exitBusy or committing or not ready or fault or not root or not root.loss then return end
+  local generation=exitTickets;local loss=cp(root.loss)
+  if not currentExit(generation,loss)then return end
+  exitBusy=true -- before the first native getter, including initial site lookup
+  local good,why=pcall(function()
+   local ok,c=pcall(CityManager.GetCityAt,root.origin.x,root.origin.y)
+   if not currentExit(generation,loss)then return end
+   local matched=ok and c and confirmedExit(generation,c,loss)
+   if not currentExit(generation,loss)then return end
+   if not matched then d.exitStatus='TARGET_UNAVAILABLE';return end
+   foreignSeen=true
+   local names={};for name in pairs(exits)do names[#names+1]=name end
+   table.sort(names,function(a,b)if a=='NetworkBridge'then return b~='NetworkBridge'end;if b=='NetworkBridge'then return false end;return a<b end)
+   for _,name in ipairs(names)do
+    if not confirmedExit(generation,c,loss)then return end
+    if not finished[name]and(attempts[name]or 0)<3 then
+     exitTickets[name]=exitTickets[name]or{};local ticket=exitTickets[name]
+     attempts[name]=(attempts[name]or 0)+1
+     runningExit=name;local done,err=pcall(exits[name],c,cp(loss),ticket);runningExit=nil
+     if not confirmedExit(generation,c,loss)then return end
+     if done and err~=false then finished[name]=true;d.exitErrors[name]=nil
+     else d.exitErrors[name]=done and 'EXIT_CLEANUP_UNCONFIRMED'or errorText(err,'EXIT_CLEANUP_FAILED')end
+    end
+   end
+   if not currentExit(generation,loss)then return end
+   d.exitErrors.RUNTIME=nil;summarizeExit() -- includes registrations made during callbacks
+  end)
+  runningExit=nil;exitBusy=false -- diagnostic/observer failures cannot latch the owner
+  if not good and currentExit(generation,loss)then
+   d.exitErrors.RUNTIME=errorText(why,'EXIT_RUNTIME_FAILED');d.exitStatus='PARTIAL_HELD'
+  end
  end
  local function recapture(c,current,newOwner,newID,oldOwner)
   if not root.loss or root.stage~='HELD_TRANSFER' or newOwner~=root.origin.owner
@@ -931,7 +975,7 @@ local function CreateProgressionRecord(P,shared,storage)
   if n.commerce then n.commerce=SPCCommerceModel.Resume(n.commerce,newOwner,Game.GetCurrentGameTurn())end
   n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence=proof and 'NATIVE_TRANSITION_V1' or 'CityTransfered+original_binding';n.returnProof=proof;n.referenceInvalidated=nil
   n.revision=n.revision+1;save(n)
-  finished={};attempts={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false;d.exitErrors={};d.exitStatus='NOT_CONFIRMED';d.returnStatus='CONFIRMED_CURRENT_FACTS_REQUIRED'
+  finished={};attempts={};exitTickets={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false;d.exitErrors={};d.exitStatus='NOT_CONFIRMED';d.returnStatus='CONFIRMED_CURRENT_FACTS_REQUIRED'
   return true
  end
  local function reconcile(newOwner,newID,oldOwner)
@@ -962,7 +1006,7 @@ local function CreateProgressionRecord(P,shared,storage)
     end
     if n.commerce then n.commerce=SPCCommerceModel.OwnerChanged(n.commerce,current.owner,Game.GetCurrentGameTurn())end
     n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
-    finished={};attempts={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
+    finished={};attempts={};exitTickets={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
    end
    d.observation='READABLE'
   end)
@@ -1073,6 +1117,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  local function make(token,admitting)
   local storage={}
   storage.Check=check
+  storage.CanExit=function()return not fault and not writing end -- pure collection barrier
   function storage.Read()
    check()
    if modern and not admitting then
@@ -1327,7 +1372,12 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   for _,w in pairs(workers)do w.RegisterReturn(name,fn)end
  end
  function store.ExitConfirmed()
-  if fault then return end;for _,w in pairs(workers)do w.ExitConfirmed()end
+  if fault or writing then return end;for _,w in pairs(workers)do w.ExitConfirmed()end
+ end
+ function store.ExitCompleted(name,c,loss,ticket,current)
+  if fault or writing then return false end
+  local ok,w=pcall(find,c)
+  return ok and w~=nil and w.ExitCompleted(name,c,loss,ticket,current)==true or false
  end
  -- Read-only, copied per-city diagnostic status; never expose mutable worker authority.
  function store.Status(c)

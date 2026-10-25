@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0786
-Implementation Build: B333.360 / modinfo360; stable/live B307.334
+Status Revision: S0787
+Implementation Build: B334.361 / modinfo361; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8B1_COMPLETE_CONTINUING
+Work State: REFACTOR_S8C1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-User resumed after the app-update checkpoint. S8b1 reconstructs only five redundant known flags when complete preserved payloads and the entire parent pass unchanged validation, followed by one exact Store CAS/readback and revision increment. No payload, serial, amount, age, request or CALLING receipt is reset or replayed. Healthy loads write nothing; unavailable reads/decoders, other invalid fields and failed readback stay guarded. Unprintable errors cannot leak the existing fact-write barrier. D7 isolation/remaining recovery and D5 native proof remain OPEN; no deployment/main/native PASS. [Result](Validation/Results/Specialization_B333_Refactor_S8b1.md). Stable/live/main B307.334; no deployment/native PASS.
+S8c1 adds session-only exact-loss completion capabilities to Store and seven existing RuntimeWork exit owners. Successful independent cleanup now acknowledges Store even after its original three-attempt budget; false/fault/UNKNOWN or stale/replaced work cannot complete a loss. Reentrant native getters cannot complete a newer loss, forged table equality cannot forge tickets, and successful sibling exits do not repeat. No saved schema, new listener, timer, money operation or ownership gameplay change. S8b2 isolation, bounded held retry, legacy exit consolidation and deterministic return remain next; D5 native proof remains OPEN. [Result](Validation/Results/Specialization_B334_Refactor_S8c1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S8b scoped ability isolation and independently safe recovery, then S8 exit/return duties and S9–S10; retain unresolved irreversible-evidence boundaries and D5 native proof explicitly.
+- Primary next: Continue the bounded S8 HELD_TRANSFER retry and remaining sub-record isolation/recovery, legacy cleanup and ordered returns, then S9–S10. Keep irreversible-evidence gaps explicit.
+
+## S0787 — B334.361 Acknowledge asynchronous cleanup for the exact loss
+
+S8c1 adds session-only exact-loss completion capabilities to Store and seven existing RuntimeWork exit owners. Successful independent cleanup now acknowledges Store even after its original three-attempt budget; false/fault/UNKNOWN or stale/replaced work cannot complete a loss. Reentrant native getters cannot complete a newer loss, forged table equality cannot forge tickets, and successful sibling exits do not repeat. No saved schema, new listener, timer, money operation or ownership gameplay change. S8b2 isolation, bounded held retry, legacy exit consolidation and deterministic return remain next; D5 native proof remains OPEN.
 
 ## S0786 — B333.360 Rebuild redundant known flags from preserved authority
 

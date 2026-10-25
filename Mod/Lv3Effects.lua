@@ -159,6 +159,6 @@ function SPCLv3Effects.Start(P,shared,options)
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Effects',targets.Exit(function(c,loss)
    local ids={};for _,id in ipairs(names)do ids[#ids+1]=id end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end))end
+ end,'Lv3Effects'))end
 
 end

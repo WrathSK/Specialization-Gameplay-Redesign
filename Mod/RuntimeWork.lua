@@ -166,9 +166,10 @@ end
 -- other consumers. Only scalar references survive a synchronous audit.
 function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
  local t={pending={},exits={},known={},transfers={}}
+ local function errorText(value)local ok,text=pcall(tostring,value);return ok and text or 'RUNTIME_TARGET_FAILED'end
  local function report(pid,cid,err)
   local ok,why=pcall(onError,pid,cid,err)
-  if not ok then t.error=tostring(why)end
+  if not ok then t.error=errorText(why)end
  end
  local function reference(c)
   local r={owner=c:GetOwner(),city=c:GetID()}
@@ -203,21 +204,40 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
   if P.IsTestPlayer(pid)then put(t.known,k,r)end
   local ok,err=pcall(visit,pid,c)
   if ok then t.pending[k]=nil else put(t.pending,k,r)end
-  report(pid,r.city,not ok and tostring(err) or nil)
+  report(pid,r.city,not ok and errorText(err) or nil)
   return k
+ end
+ local function acknowledge(e,c)
+  if not e.name then return true end -- explicit standalone/legacy helper use
+  local store=shared.CityProgressionStore
+  if not(store and type(store.ExitCompleted)=='function')then
+   assert(not(store and store.UsesNewAuthority==true),'RUNTIME_EXIT_ACK_UNAVAILABLE')
+   return true -- isolated pre-Store fixtures only, not current Gameplay
+  end
+  assert(store.ExitCompleted(e.name,c,e.loss,e.ticket,function()return t.exits[key(e.ref)]==e end)==true,'RUNTIME_EXIT_ACK_UNCONFIRMED')
+  return true
  end
  local transfers
  function t.Retry(scope)
   if transfers then transfers(scope)end
   local seen={}
-  for k,e in pairs(t.exits)do if selected(scope,e.ref)then
+  local exitSnapshot={};for k,e in pairs(t.exits)do exitSnapshot[k]=e end
+  for k,e in pairs(exitSnapshot)do if t.exits[k]==e and selected(scope,e.ref)then
    local ok,c=pcall(resolve,e.ref)
    -- Keep UNKNOWN/reference changes; only the store's original loss proof can
    -- authorize withdrawal. Never follow a reused ID or coordinate to a new city.
-   if ok and c then
-    local good,err=pcall(e.fn,c,e.loss)
-    report(e.ref.owner,e.ref.city,not good and tostring(err) or nil)
-    if good then t.exits[k]=nil;t.pending[k]=nil end
+   if ok and c and t.exits[k]==e then
+    local priorPending=t.pending[k]
+    local good,err=pcall(function()
+     assert(e.fn(c,e.loss)~=false,'RUNTIME_EXIT_UNCONFIRMED')
+     if t.exits[k]~=e then return false end
+     return acknowledge(e,c)
+    end)
+    if t.exits[k]==e then
+     good=good and err~=false
+     report(e.ref.owner,e.ref.city,not good and errorText(err)or nil)
+     if good and t.exits[k]==e then t.exits[k]=nil;if t.pending[k]==priorPending then t.pending[k]=nil end end
+    end
     seen[k]=true
    end
   end end
@@ -242,7 +262,7 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
     return true
    end)
    if ok and done then t.transfers[k]=nil
-   elseif not ok then report(v.owner,v.city,tostring(done))end
+   elseif not ok then report(v.owner,v.city,errorText(done))end
   end end
  end
  function t.Run(scope)
@@ -261,14 +281,14 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
       end
      end
     end)
-    if not ok then report(pid,'player',tostring(err))end
+    if not ok then report(pid,'player',errorText(err))end
    end
   end
  end
  local runImpl,retryImpl=t.Run,t.Retry
  function t.Run(scope)
   local ok,err=pcall(runImpl,scope)
-  if not ok then t.error=tostring(err);report(type(scope)=='table' and scope.player or 'runtime','player',t.error)end
+  if not ok then t.error=errorText(err);report(type(scope)=='table' and scope.player or 'runtime','player',t.error)end
  end
  function t.Retry(scope)
   local ok,out=pcall(function()
@@ -285,15 +305,23 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
    end
    return retryImpl(scope)
   end)
-  if not ok then t.error=tostring(out);report(type(scope)=='table' and scope.player or 'runtime','player',t.error);return {}end
+  if not ok then t.error=errorText(out);report(type(scope)=='table' and scope.player or 'runtime','player',t.error);return {}end
   return out
  end
- function t.Exit(fn)
-  return function(c,loss)
+ function t.Exit(fn,name)
+  return function(c,loss,ticket)
    local r=reference(c);local k=key(r)
-   put(t.exits,k,{ref=r,loss=loss,fn=fn}) -- retain before the first possibly failing read
-   local ok,err=pcall(fn,c,loss)
-   if ok then t.exits[k]=nil;t.pending[k]=nil else error(err)end
+   local priorPending=t.pending[k];local entry={ref=r,loss=loss,fn=fn,name=name,ticket=ticket}
+   put(t.exits,k,entry) -- retain before the first possibly failing native read
+   local ok,err=pcall(function()
+    assert(fn(c,loss)~=false,'RUNTIME_EXIT_UNCONFIRMED')
+    assert(t.exits[k]==entry,'RUNTIME_EXIT_SUPERSEDED')
+    acknowledge(entry,c)
+    assert(t.exits[k]==entry,'RUNTIME_EXIT_SUPERSEDED')
+   end)
+   if ok then
+    if t.exits[k]==entry then t.exits[k]=nil;if t.pending[k]==priorPending then t.pending[k]=nil end end
+   else error(err)end
   end
  end
  function t.Forget(pid,cid)

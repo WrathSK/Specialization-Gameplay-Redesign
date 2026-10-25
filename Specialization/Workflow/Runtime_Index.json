@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "3246a759bf767b9ba1ee9139d14ac24131e7502459eafd9969ca76b711a7f3aa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B333_Refactor_S8b1.md",
-      "provenance": "B333.360 Rebuild redundant known flags from preserved authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "ceaf809f9bdae3a75553eaa4105c3359d280db08386e37d3fb2a955b98eba5d8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -681,9 +681,9 @@
       "provenance": "B279 confirmed historical result topics and explicit isolated adapters; project/native/persistence semantics retained. Local/static only; remaining manual lists next; no deployment/native PASS."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "ca53d1c045418edf73852a6eb530dbe5fddfeb33eb6f06f9b155d006f49606f5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
-      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
+      "sha256": "8b2dd0976f4f7f503d54a6901186167e8b3ff42d2f6c7a349496cf9cee3c3458",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "dbffd20fa22c32d7b573314667f7726fc14317bcab552f9110288f1e5e055cd2",
@@ -716,24 +716,24 @@
       "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "797426d19d550fc8224d6f70fac55af16cfbddc49957c4fe429481c7e5136fd7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B316_Refactor_S7a2.md",
-      "provenance": "B316.343 Migrate GPP bits with fresh pre-write carrier reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "adfe55f02e39cb44362aa1123db13b3d788908aae55d437384d4a666f83a32a4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "4c6c40eae4782cfc382c8cf05529e9e80c4f6121324c50fde500488bf37ace6f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
-      "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "8f40c2a320afc5cf0c460f2c314c7b28b7903b9d164f5f00d7e488aca3f3cf9d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv3Effects.lua": {
-      "sha256": "3456fe93ddacaae03286a98e206c37e803383192be7b907cd6aba4aeb0f8ef8d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "45fb947e01ae49e55b36a6f35c0897ed247db429867d9cdfaf4aaa94b56980ba",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv3Support.lua": {
-      "sha256": "f53410b255aa46bbe7979a4070bc576cd75de780c34ffc03edfe5bb870612f95",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "6c5e2b7e2fd549ff6b2698275619daf8f830c3b47f2247535de2041ef43291b8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv4CopyRead.lua": {
       "sha256": "964d15c56466bccb58bb832e21924f891fa25c7a548ac8ec8ddab11ea44cc05f",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "9c2c519ff92659d9dd6742829eb7d85af24ed44f31a115307bfe40db16b80466",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B333_Refactor_S8b1.md",
-      "provenance": "B333.360 Rebuild redundant known flags from preserved authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "5fc2fa41f6e20b756403522d667cb3a8876e2cc6e300f471ed48b068c65843c5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -851,9 +851,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "6d9c1fd8f2e99e9d075b3f0390b2e4f4603bce2a1a57022902b121d78bda790e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "14dcb69412716311e5a0fc5ab411d1dead4ba485346edfa0b7b6a864af889645",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
       "sha256": "3fe47c1a8bc1d8bbb3efdf1659c6d8e3c631fd06f422f676628faf69075c1939",
@@ -861,9 +861,9 @@
       "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchSupport.lua": {
-      "sha256": "f59bd5239a66824f95bb7b43bfa54672dbff3053a3ea602716fa96eb9ba11f32",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
-      "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "929115853954b2031b78e4768a3e20bdd2a32c7ae6d80b885209e43da3af1243",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchTradition.lua": {
       "sha256": "c5253c305160d1faa0abbd62d8257a5a73b7d4a80084601c61ecada22d45a219",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "d161ab947315be10062f1444794ce451e8f99e51b072e60110a2952002494156",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
-      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
+      "sha256": "4b407439ca6da541a8d2749949bdfd76108d745762dadbad53582df51d883b16",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "86d5a2dd3addf5eb9d30dcafdf12e141618037194da4ae0f0496b5b3ea6609f9",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "53fc9c7771620c4a0158c02dad289a807ee19ec8bbe6acf07eb089e53599243f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B333_Refactor_S8b1.md",
-      "provenance": "B333.360 Rebuild redundant known flags from preserved authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "f74ca5b62a9206d60e99970f651ab52f11ce0fe953a1c5680a1642d7ac2a13bf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
+      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

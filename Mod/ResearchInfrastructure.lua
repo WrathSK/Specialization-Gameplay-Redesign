@@ -148,6 +148,6 @@ function M.Start(P,shared)
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchInfrastructure',targets.Exit(function(c,loss)
    local ids;if ownedRegistry then ids=ownedRegistry.Names()else ids={};for bit=0,3 do ids[#ids+1]=name(bit)end end;for _,id in ipairs(M.Retired)do ids[#ids+1]=id end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end))end
+ end,'ResearchInfrastructure'))end
 
 end

@@ -176,7 +176,7 @@ function SPCIndustrySupport.Start(P,shared)
    carriersSet.Exit(shared,c,loss)
    pending[key(loss.origin.owner,loss.origin.cityID)]=nil;pending[key(c:GetOwner(),c:GetID())]=nil
    armed[key(loss.origin.owner,loss.origin.cityID)]=nil;armed[key(c:GetOwner(),c:GetID())]=nil
- end))end
+ end,'IndustrySupport'))end
 
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('IndustrySupport',function(pid)SPCSampleLifecycle.Reset(data,'industry');data.last={} end)end
 
