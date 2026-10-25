@@ -1,45 +1,29 @@
 include('RuntimeWork')
 include('SpecialistSupport')
+include('CarrierSet')
 -- P0-B1: existing native +3F/+3P carriers at all ACTIVE levels; no III top-up.
 SPCResearchSupport={}
 function SPCResearchSupport.Start(P,shared)
  local batch
  local data={ready=false,busy=false,changes=0,errors={},ruleset=SPCSpecialistSupport.RULESET};shared.ResearchSupport=data
  local kinds={'RESEARCH','CULTURE','COMMERCE'}
- local definitions;local ownedIndex={}
- local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)data.MarkAudit(scope)end)
- local function validate()
-  if definitions then return definitions end
-  local rows,nextOwned={},{}
-  for _,kind in ipairs(kinds)do
-   local id=assert(P.Info('Buildings','BUILDING_SPC_DEV_'..kind..'_SUPPORT'),'B1_SUPPORT_DEFINITION_MISSING').Index
-   rows[kind]=id;nextOwned[id]=true
-  end
-  definitions=rows;ownedIndex=nextOwned;return rows
- end
+ local entries={};for _,kind in ipairs(kinds)do entries[#entries+1]={key=kind,name='BUILDING_SPC_DEV_'..kind..'_SUPPORT'}end
+ local carriersSet=SPCCarrierSet.Define(P,entries,function(name)
+  return assert(P.Info('Buildings',name),'B1_SUPPORT_DEFINITION_MISSING').Index
+ end,{read='B1_SUPPORT_READ_UNKNOWN',write='B1_SUPPORT_WRITE_UNCONFIRMED'})
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,carriersSet.Owns,function(scope)data.MarkAudit(scope)end)
+ local function validate()carriersSet.Initialize()end
  local function desired(pid,c,batch)
   local kind,d=SPCSpecialistSupport.Anchor(P,shared,pid,c,batch)
   if kind=='INDUSTRY' then return nil end
   return kind,d
  end
  local function carriers(c,wanted,write)
-  local have,plan={},{}
-  for _,kind in ipairs(kinds) do
-   local id=validate()[kind]
-   local present=P.HasBuilding(c:GetBuildings(),id)
-   assert(type(present)=='boolean','B1_SUPPORT_READ_UNKNOWN')
-   plan[#plan+1]={kind=kind,id=id,present=present,wanted=kind==wanted}
-  end
-  if write then
-   for _,adding in ipairs({false,true}) do for _,v in ipairs(plan) do
-    if v.wanted==adding and v.present~=v.wanted then
-     if adding then health.Create(c,v.id) else health.Remove(c,v.id) end
-     assert(P.HasBuilding(c:GetBuildings(),v.id)==v.wanted,'B1_SUPPORT_WRITE_UNCONFIRMED')
-     data.changes=data.changes+1;v.present=v.wanted
-    end
-   end end
-  end
-  for _,v in ipairs(plan) do if v.present then have[#have+1]=v.kind end end
+  local requested={};if wanted then requested[wanted]=true end
+  local plan
+  if write then plan=carriersSet.Apply(c,requested,health,function()data.changes=data.changes+1 end)
+  else plan=carriersSet.Observe(c,requested)end
+  local have={};for _,v in ipairs(plan)do if v.present then have[#have+1]=v.key end end
   return table.concat(have,',')
  end
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
@@ -69,8 +53,7 @@ function SPCResearchSupport.Start(P,shared)
  end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchSupport',targets.Exit(function(c,loss)
-   local ids={};for _,k in ipairs(kinds)do ids[#ids+1]='BUILDING_SPC_DEV_'..k..'_SUPPORT'end
-   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+   carriersSet.Exit(shared,c,loss)
  end))end
 
 end

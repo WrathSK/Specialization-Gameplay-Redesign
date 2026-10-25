@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0766
-Implementation Build: B314.341 / modinfo341; stable/live B307.334
+Status Revision: S0767
+Implementation Build: B315.342 / modinfo342; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S6J_COMPLETE_CONTINUING
+Work State: REFACTOR_S7A1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S6j adds bounded synchronous per-city NETWORK stamps and a facts-only Bridge capture entry. Complete city membership/reference and route endpoint/trader/war checks remain; only confirmed unchanged stamped city EF reads are reused. Explicit, startup, queued and new route captures stay full. [Result](Validation/Results/Specialization_B314_Refactor_S6j.md). Stable/live/main B307.334; no deployment/native PASS.
+S7a1 extracts a static lazy presence-only CarrierSet for ResearchSupport and Lv2Housing. One exact descriptor list drives database resolution, health ownership and exit names; full preflight, remove-before-add, per-write readback and partial confirmed-change counts stay unchanged. [Result](Validation/Results/Specialization_B315_Refactor_S7a1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7a carrier mechanism extraction, then S7b–S10 in dependency order; U3 local checkpoint complete.
+- Primary next: Continue S7a carrier-set migration in bounded owner groups; then S7b–S10.
+
+## S0767 — B315.342 Extract presence-only carrier sets without ability policy
+
+S7a1 extracts a static lazy presence-only CarrierSet for ResearchSupport and Lv2Housing. One exact descriptor list drives database resolution, health ownership and exit names; full preflight, remove-before-add, per-write readback and partial confirmed-change counts stay unchanged.
 
 ## S0766 — B314.341 Reuse confirmed network city facts behind precise invalidation stamps
 

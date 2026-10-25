@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B315.342 S7a1 extracts a static lazy presence-only CarrierSet for ResearchSupport and Lv2Housing. One exact descriptor list drives database resolution, health ownership and exit names; full preflight, remove-before-add, per-write readback and partial confirmed-change counts stay unchanged. [Result](../../Status/Validation/Results/Specialization_B315_Refactor_S7a1.md).
+
 B314.341 S6j adds bounded synchronous per-city NETWORK stamps and a facts-only Bridge capture entry. Complete city membership/reference and route endpoint/trader/war checks remain; only confirmed unchanged stamped city EF reads are reused. Explicit, startup, queued and new route captures stay full. [Result](../../Status/Validation/Results/Specialization_B314_Refactor_S6j.md).
 
 B313.340 S6i adds a static read-only site helper and separate target ReadAtSite, narrowing proven action-site and known-city investment checks without replacing full marker discovery. City/queue/HD uniqueness and original irreversible freshness/readback protections remain. [Result](../../Status/Validation/Results/Specialization_B313_Refactor_S6i.md).

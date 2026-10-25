@@ -714,6 +714,14 @@
       "test_refactor_s5c2",
       "test_refactor_s4b",
       "test_refactor_s3"
+    ],
+    "S7a1": [
+      "test_refactor_s7a1",
+      "test_refactor_s5d4c2",
+      "test_refactor_s6c",
+      "test_refactor_s5d4a",
+      "test_refactor_s5b",
+      "test_refactor_s3"
     ]
   },
   "counterexamples": {},
@@ -750,7 +758,8 @@
       "test_refactor_baseline.RealConsumers",
       "test_refactor_s4a",
       "test_refactor_s5d4c2",
-      "test_refactor_s6c"
+      "test_refactor_s6c",
+      "test_refactor_s7a1"
     ],
     "Mod/Lv2GPP.lua": [
       "test_refactor_baseline.RealConsumers",
@@ -922,7 +931,8 @@
       "test_refactor_s6b"
     ],
     "Mod/ResearchSupport.lua": [
-      "test_refactor_s5d4c2"
+      "test_refactor_s5d4c2",
+      "test_refactor_s7a1"
     ],
     "Mod/GreatWorkFacts.lua": [
       "test_refactor_s5d4c4",
@@ -986,6 +996,9 @@
     ],
     "Mod/InvestmentAction.lua": [
       "test_refactor_s6i"
+    ],
+    "Mod/CarrierSet.lua": [
+      "test_refactor_s7a1"
     ]
   },
   "exclusions": {

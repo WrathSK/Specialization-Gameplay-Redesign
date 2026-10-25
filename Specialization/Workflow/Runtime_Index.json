@@ -721,9 +721,9 @@
       "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "0db5d74d289f8a4137497024f4b61e13d436e38df57d303bf697a52e107bc8cf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
-      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
+      "sha256": "4c6c40eae4782cfc382c8cf05529e9e80c4f6121324c50fde500488bf37ace6f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
+      "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv3Effects.lua": {
       "sha256": "42429e6bf83f16ab007b7477b04102f82e3916bda847d6a20bf151892bfd9d50",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "2434914e6a9d2b11202f103a7e59987e678659f580f0c7f47d68bf0e30c257f6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
-      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
+      "sha256": "54a07ca12eb1e4445268b513d88f1ca1772e4c1ddd9efb2827614100818603d1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
+      "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -861,9 +861,9 @@
       "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchSupport.lua": {
-      "sha256": "61834ddc729c35e607ec2d4c36a94565072b43797e35d21ae193da11e6424f2b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
-      "provenance": "B291.318 scoped support housing GPP and infrastructure health; local/static evidence only; no deployment/native PASS."
+      "sha256": "f59bd5239a66824f95bb7b43bfa54672dbff3053a3ea602716fa96eb9ba11f32",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
+      "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchTradition.lua": {
       "sha256": "bfd4e3437c873c97349216f876c86e80ba1b97cc4c847821f4990c2ab9d062c7",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "96d0b79a6a9d7bbc7c69214bb58fe82aefc9ac75f488b8d0945206a17ea211ea",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
-      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
+      "sha256": "4604d202a5502c2ffb0a6a51ef2f26716fe79ef63c5fec50e6ba66e6e798dc9e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
+      "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1604,6 +1604,11 @@
       "sha256": "e6f641f1879ff5262140b05f01a95e2fa92662364128596ecfcbfa4a06c19393",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
       "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/CarrierSet.lua": {
+      "sha256": "b85667c5f834c13a241937497083894e92296467e3f6fa46480adfdfa7c1a42a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
+      "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

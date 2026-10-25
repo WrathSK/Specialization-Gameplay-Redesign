@@ -1,5 +1,6 @@
 include('RuntimeWork')
 include('SpecialistSupport')
+include('CarrierSet')
 -- P0-B2: shared ordinary eligibility, distinct Tier presence in the actual anchor.
 -- D's weighted sum/highest-domain choice is deliberately not a housing input.
 SPCLv2Housing={}
@@ -7,19 +8,15 @@ function SPCLv2Housing.Start(P,shared)
  local batch
  local data={ready=false,busy=false,changes=0,errors={},events=0};shared.Lv2Housing=data
  local kinds={RESEARCH=true,CULTURE=true,COMMERCE=true,INDUSTRY=true}
- local definitions;local ownedIndex={}
- local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)data.MarkAudit(scope)end)
- local function validate()
-  if definitions then return definitions end
-  local rows,nextOwned={},{}
-  for i=0,8 do
-   local row=P.Info('Buildings','BUILDING_SPC_DEV_LV2_HOUSING_'..i)
-   assert(row and type(row.Index)=='number' and row.Housing==1,'B2_HOUSING_DATABASE_MISMATCH')
-   rows[i]=row.Index;nextOwned[row.Index]=true
-  end
-  definitions=rows;ownedIndex=nextOwned;return rows
- end
- local function carrier(i)return validate()[i]end
+ local entries={};for i=0,8 do entries[#entries+1]={key=i,name='BUILDING_SPC_DEV_LV2_HOUSING_'..i}end
+ local carriersSet=SPCCarrierSet.Define(P,entries,function(name)
+  local row=P.Info('Buildings',name)
+  assert(row and type(row.Index)=='number'and row.Housing==1,'B2_HOUSING_DATABASE_MISMATCH')
+  return row.Index
+ end,{read='B2_HOUSING_CARRIER_UNKNOWN',write='B2_HOUSING_WRITE_UNCONFIRMED'})
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,carriersSet.Owns,function(scope)data.MarkAudit(scope)end)
+ local function validate()carriersSet.Initialize()end
+ local function carrier(i)return carriersSet.Index(i)end
  local function expected(pid,city,batch)
   local wanted={}
   local kind,d,f=SPCSpecialistSupport.Anchor(P,shared,pid,city,batch)
@@ -44,24 +41,9 @@ function SPCLv2Housing.Start(P,shared)
   end
   return wanted,kind..' ACTIVE='..f.active..' anchor='..d.id,anchor.buildings
  end
- local function plan(city,wanted)
-  local result={}
-  for i=0,8 do
-   local id=carrier(i);local present=P.HasBuilding(city:GetBuildings(),id)
-   assert(type(present)=='boolean','B2_HOUSING_CARRIER_UNKNOWN')
-   result[#result+1]={id=id,present=present,wanted=wanted[i]==true}
-  end
-  return result -- all inputs and carrier reads verified before the first write
- end
  local function process(pid,city,batch)
-  local wanted=expected(pid,city,batch);local changes=plan(city,wanted)
-  for _,adding in ipairs({false,true}) do for _,v in ipairs(changes) do
-   if v.wanted==adding and v.present~=v.wanted then
-    if adding then health.Create(city,v.id) else health.Remove(city,v.id) end
-    assert(P.HasBuilding(city:GetBuildings(),v.id)==v.wanted,'B2_HOUSING_WRITE_UNCONFIRMED')
-    data.changes=data.changes+1
-   end
-  end end
+  local wanted=expected(pid,city,batch)
+  carriersSet.Apply(city,wanted,health,function()data.changes=data.changes+1 end)
  end
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   process(pid,c,batch)
@@ -109,8 +91,7 @@ function SPCLv2Housing.Start(P,shared)
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2Housing',targets.Exit(function(c,loss)
-   local ids={};for bit=0,8 do ids[#ids+1]='BUILDING_SPC_DEV_LV2_HOUSING_'..bit end
-   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+   carriersSet.Exit(shared,c,loss)
  end))end
 
 end
