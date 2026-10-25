@@ -321,7 +321,9 @@ function SPCCrewProjects.Start(P,shared)
    assert(now:GetID()==c:GetID() and plan.turn==Game.GetCurrentGameTurn() and s.target==plan.target and s.cost==plan.cost and s.progress==plan.progress,'TARGET_CHANGED_PREPARE_AGAIN')
    local receipts=cp(Players[pid]:GetProperty(M.USE_RECEIPT_PROPERTY) or {});assert(type(receipts)=='table','CREW_USE_HISTORY_INVALID');assert(not receipts[binding.grant],'RECEIPT_EXISTS')
    local function record(state)
-    receipts[binding.grant]={state=state,unitID=plan.unitID,cityID=c:GetID(),target=s.target,amount=math.min(amount,s.cost-s.progress)}
+    receipts[binding.grant]={state=state,unitID=plan.unitID,cityID=c:GetID(),target=s.target,amount=math.floor(math.min(amount,s.cost-s.progress)+0.5)}
+    -- Evidence amount only: integer readback survives binary32 Property storage.
+    -- Reservation/debit and the actual fractional AddProgress below stay exact.
     pcall(P.SetProperty,Players[pid],M.USE_RECEIPT_PROPERTY,receipts)
     assert(same(Players[pid]:GetProperty(M.USE_RECEIPT_PROPERTY),receipts),'CREW_USE_RECEIPT_UNCONFIRMED')
    end

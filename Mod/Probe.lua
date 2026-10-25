@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-371.398"
+P.VERSION = "P0-B-372.399"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -568,8 +568,12 @@ function P.CreateBuilding(object,id) P.Count('building_create');return factWrite
 function P.RemoveBuilding(object,id) P.Count('building_remove');return factWrite(object.RemoveBuilding,object,id)end
 function P.SetProperty(object,key,value) P.Count('property_write');return factWrite(object.SetProperty,object,key,value)end
 -- A live non-trader is a reliable negative. Missing/removed/unknown unit is not.
-function P.RouteUnitRelevant(pid,id)
+function P.RouteUnitRelevant(pid,id,acceptedTraders)
  if type(pid)~='number' or type(id)~='number' then return true end
+ -- Removed units cannot be classified from FindID. A complete accepted snapshot,
+ -- including the empty set, is routing evidence only; it grants no route facts.
+ -- Use only for removal, since a newly starting trader may not be in that set.
+ if type(acceptedTraders)=='table' then return acceptedTraders[id]~=nil end
  local player=Players and Players[pid]
  if not player then return true end
  local ok,u=pcall(function() return player:GetUnits():FindID(id) end)

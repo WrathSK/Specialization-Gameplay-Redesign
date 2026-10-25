@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0824",
-    "runtime": "B371.398 / modinfo398",
+    "status": "S0825",
+    "runtime": "B372.399 / modinfo399",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Await user continuation at this safe checkpoint;then resume S9 Commerce/Dialogue/Insights/Standardization applied publications and institution DTO,shared adjacency,then S10 responsibility retirement. Do not deploy/promote main/launch game;exact D7 permanent-history/money and D5 native attribution remain. No automatic deployment/main/native launch.",
+  "goal": "Continue priority R15 adjacency producer locality,then R09 transfer/reverse dependencies,R18 duty migration and R11 full relay trace;reconcile remaining current S8 findings and finish owner-applied DTO/S10. No deployment/main promotion/game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -554,6 +554,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md",
       "kind": "full",
       "reason": "Stop stale Tradition carrier writes after confirmed lifecycle change actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
+      "kind": "full",
+      "reason": "Filter removed units by accepted trader IDs and stabilize Crew receipt readback actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -580,8 +585,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md",
-    "local": "LOCAL_SIMULATION_PASS_1117",
+    "report": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
+    "local": "LOCAL_SIMULATION_PASS_64",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0824
-Implementation Build: B371.398 / modinfo398; stable/live B307.334
+Status Revision: S0825
+Implementation Build: B372.399 / modinfo399; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9D1B_COMPLETE_SAFE_STOP
+Work State: REFACTOR_S9E1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9d1b closes the demonstrated Tradition Remove→confirmed loss→later Create window. Store issues a pure synchronous lifecycle witness with its unchanged Base value;explicit EF reader carries it through the existing phase cache while default Read/Inspect contracts stay unchanged. Optional final NativeHealth beforeWrite rejects stale ref/lifetime/source after original b/q getters with0 added native sampling.12 new tests and104 focused affected checks pass. Publisher capacity is independent;already-entered native calls cannot be canceled. User requested safe stop after this verified commit;other owner publications/DTO,adjacency,S10 and exact D7/D5 limits remain. [Result](Validation/Results/Specialization_B371_Refactor_S9d1b.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e1 ingests the accepted S8 user handoff at current B371 and fixes R10/R22. Actual Probe/Bridge/UI use existing accepted trader-ID maps only for removed units;1000 nonsnapshot removals perform0 unit lookups/city scans/route signals. Missing snapshots stay conservative;new trader operations keep live checks. Crew rounds only diagnostic receipt amount for binary32-stable readback,leaving exact native base input and irreversible order unchanged. Other R15/R09/R18/R11/per-source/Store/UI/doc closures and U4/U5 remain scheduled;no deployment/native PASS. [Result](Validation/Results/Specialization_B372_Refactor_S9e1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Await user continuation at this safe checkpoint;then resume S9 Commerce/Dialogue/Insights/Standardization applied publications and institution DTO,shared adjacency,then S10 responsibility retirement. Do not deploy/promote main/launch game;exact D7 permanent-history/money and D5 native attribution remain.
+- Primary next: Continue priority R15 adjacency producer locality,then R09 transfer/reverse dependencies,R18 duty migration and R11 full relay trace;reconcile remaining current S8 findings and finish owner-applied DTO/S10. No deployment/main promotion/game launch.
+
+## S0825 — B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback
+
+S9e1 ingests the accepted S8 user handoff at current B371 and fixes R10/R22. Actual Probe/Bridge/UI use existing accepted trader-ID maps only for removed units;1000 nonsnapshot removals perform0 unit lookups/city scans/route signals. Missing snapshots stay conservative;new trader operations keep live checks. Crew rounds only diagnostic receipt amount for binary32-stable readback,leaving exact native base input and irreversible order unchanged. Other R15/R09/R18/R11/per-source/Store/UI/doc closures and U4/U5 remain scheduled;no deployment/native PASS.
 
 ## S0824 — B371.398 Stop stale Tradition carrier writes after confirmed lifecycle change
 

@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0824",
-    "runtime": "B371.398 / modinfo398",
+    "status": "S0825",
+    "runtime": "B372.399 / modinfo399",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S9D1B_COMPLETE_SAFE_STOP",
-  "next_batch": "Await user continuation at this safe checkpoint;then resume S9 Commerce/Dialogue/Insights/Standardization applied publications and institution DTO,shared adjacency,then S10 responsibility retirement. Do not deploy/promote main/launch game;exact D7 permanent-history/money and D5 native attribution remain. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S9E1_COMPLETE_CONTINUING",
+  "next_batch": "Continue priority R15 adjacency producer locality,then R09 transfer/reverse dependencies,R18 duty migration and R11 full relay trace;reconcile remaining current S8 findings and finish owner-applied DTO/S10. No deployment/main promotion/game launch. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "User resumed accepted S8b–S10 after the app update. Coherent verified develop batches may commit/push without routine stage authorization; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S0824 S9d1b closes the demonstrated Tradition Remove→confirmed loss→later Create window. Store issues a pure synchronous lifecycle witness with its unchanged Base value;explicit EF reader carries it through the existing phase cache while default Read/Inspect contracts stay unchanged. Optional final NativeHealth beforeWrite rejects stale ref/lifetime/source after original b/q getters with0 added native sampling.12 new tests and104 focused affected checks pass. Publisher capacity is independent;already-entered native calls cannot be canceled. User requested safe stop after this verified commit;other owner publications/DTO,adjacency,S10 and exact D7/D5 limits remain. No native/deployment PASS.",
+  "context_review_status": "S0825 S9e1 ingests the accepted S8 user handoff at current B371 and fixes R10/R22. Actual Probe/Bridge/UI use existing accepted trader-ID maps only for removed units;1000 nonsnapshot removals perform0 unit lookups/city scans/route signals. Missing snapshots stay conservative;new trader operations keep live checks. Crew rounds only diagnostic receipt amount for binary32-stable readback,leaving exact native base input and irreversible order unchanged. Other R15/R09/R18/R11/per-source/Store/UI/doc closures and U4/U5 remain scheduled;no deployment/native PASS. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md"
 }

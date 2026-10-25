@@ -176,9 +176,9 @@
       "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "abb20452455ed9540d34d67a4d94f24b930004e429fa18ec58cda19db3ebaef4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
-      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "99f26a31fde32d0da0d2cf5d75c8655f4cb9e9172b9b8ac83abfc3624e0800d7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
+      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "05937dbbcba0e05656966706433c55fc7395c0148ca5c77cf1b2287d2a5bb4c2",
@@ -751,9 +751,9 @@
       "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "00f617f706881d48b6977617476b8a5814d32dee993936de2b4dc1a7d153ba68",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
-      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
+      "sha256": "6d620c81a317ae670420560dcabf90670d8e860d99d634a34dd22099c5a80965",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
+      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "fe5657464477c3a6677fecd74c952923d6f3fe4d7008a50add09fd408fff7a99",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "aa351f2e2be47557bad1d31d42e7104fd2cc90493930f3a060599f57499bb3a0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md",
-      "provenance": "B371.398 Stop stale Tradition carrier writes after confirmed lifecycle change; local/static evidence only; no deployment/native PASS."
+      "sha256": "44f07d115c266bedfc129eb8ac731ebc50af48dec39871cff513549fdfcd08c3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
+      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c19a6500fb292ccabd608169606e13ede00e74f033e52b54386e19fb53ee3ac3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md",
-      "provenance": "B371.398 Stop stale Tradition carrier writes after confirmed lifecycle change; local/static evidence only; no deployment/native PASS."
+      "sha256": "a8b832bd4c41797aea549ba3c2ececb40363c944e2697f5fa7ba0e28a630896e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
+      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1146,14 +1146,14 @@
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/TradeRouteProbe.lua": {
-      "sha256": "24f2be90fa89b954dc4ddbadde94ccca9ff15799e28d5f80f5c3fe65f81d5f67",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
-      "provenance": "B282.309 scoped D providers and official network signals; local/static evidence only; no deployment/native PASS."
+      "sha256": "9e4a18510e839fc1e6e91a2ee200b1f595e443c8fc0e11f90dbc1d050c284ba0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
+      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/BackgroundRoutes.lua": {
-      "sha256": "04584fc34eda768be333e09b56bb48bc660c46f423db22183fdf19c97e3d68e7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
-      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
+      "sha256": "485c16f8eba75fb37388b09687b2a2cbdf1f44c43ccf824fe2bd9d8f77955b8e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
+      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/BackgroundRoutes.xml": {
       "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",

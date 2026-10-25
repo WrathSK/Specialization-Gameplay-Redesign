@@ -125,7 +125,9 @@ function SPCTradeRouteProbe.Start(P,shared)
     local eventName=name;listen(Events,eventName,function(pid,id)
       if eventName:find('^Unit') then
         if type(pid)=='number' and not P.IsTestPlayer(pid)then return end
-        P.Count('unit_cb');if not P.RouteUnitRelevant(pid,id) then P.Count('unit_ignored');return end
+        local bridge=shared.NetworkBridge;local b=bridge and bridge.players[pid]
+        local accepted=eventName=='UnitRemovedFromMap' and b and b.routeReferences or nil
+        P.Count('unit_cb');if not P.RouteUnitRelevant(pid,id,accepted) then P.Count('unit_ignored');return end
       end
       pending[eventName]=true
     end)

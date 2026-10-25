@@ -851,12 +851,16 @@ function SPCNetworkBridge.Start(P,shared)
   return true -- no Capture/derive/publication/consumer dispatch
  end
  -- Event payloads only invalidate proof; they never become route facts.
+ local function routeUnitRelevant(pid,id,removed)
+  local b=d.players[pid]
+  return not P.RouteUnitRelevant or P.RouteUnitRelevant(pid,id,removed and b and b.routeReferences or nil)
+ end
  local function signal(namespace,name,unit)
   local event=P.Field(namespace,name);if not event or not event.Add then return end
   event.Add(function(pid,id)
    if unit then
     if type(pid)=='number' and not P.IsTestPlayer(pid)then return end
-    if P.RouteUnitRelevant and not P.RouteUnitRelevant(pid,id)then return end
+    if not routeUnitRelevant(pid,id,name=='UnitRemovedFromMap')then return end
    end
    shared.RouteSignalRevision=shared.RouteSignalRevision+1
   end)
@@ -887,7 +891,7 @@ function SPCNetworkBridge.Start(P,shared)
   local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(function(pid,id)
    if name=='UnitRemovedFromMap' then
     if type(pid)=='number' and not P.IsTestPlayer(pid)then return end
-    if P.RouteUnitRelevant and not P.RouteUnitRelevant(pid,id)then return end
+    if not routeUnitRelevant(pid,id,true)then return end
    end
    d.CheckEvidence(false,name)
   end) end

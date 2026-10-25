@@ -1778,6 +1778,13 @@
     ],
     "S9d1b": [
       "test_refactor_s9d1b"
+    ],
+    "S9e1": [
+      "test_refactor_s9e1",
+      "test_refactor_s7d5",
+      "test_refactor_s5c1.NetworkSignals",
+      "test_refactor_s4b.NetworkProof",
+      "test_refactor_s5c2"
     ]
   },
   "counterexamples": {},
@@ -1867,7 +1874,8 @@
       "test_refactor_s5c2",
       "test_refactor_s5d4b1",
       "test_refactor_s6g.ScopedTopology",
-      "test_refactor_s6j"
+      "test_refactor_s6j",
+      "test_refactor_s9e1"
     ],
     "Mod/CityProgressionStore.lua": [
       "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity",
@@ -1940,10 +1948,12 @@
       "test_refactor_s6f.RetainedGuards"
     ],
     "Mod/TradeRouteProbe.lua": [
-      "test_refactor_s4b"
+      "test_refactor_s4b",
+      "test_refactor_s9e1"
     ],
     "Mod/UI/BackgroundRoutes.lua": [
-      "test_refactor_s4b"
+      "test_refactor_s4b",
+      "test_refactor_s9e1"
     ],
     "Mod/CultureInspirationModel.lua": [
       "test_refactor_a8"
@@ -2132,7 +2142,8 @@
     ],
     "Mod/CrewProjects.lua": [
       "test_refactor_s7b2",
-      "test_refactor_s7d5"
+      "test_refactor_s7d5",
+      "test_refactor_s9e1"
     ],
     "Mod/CapitalInvestmentModel.lua": [
       "test_refactor_s7b2"
@@ -2207,6 +2218,9 @@
       "test_refactor_s9c2",
       "test_refactor_s9c4a",
       "test_refactor_s9c4b"
+    ],
+    "Mod/Probe.lua": [
+      "test_refactor_s9e1"
     ]
   },
   "exclusions": {
@@ -2332,7 +2346,7 @@
       "key": "Mod/CrewProjects.lua|PROPERTY_PRODUCER_OWNERSHIP",
       "before": 0,
       "after": 1,
-      "reason": "Accepted S7d/F12/C080 moves the unchanged Crew use receipt/reservation writer from UnitActions to CrewProjects. Scanner detects direct P.SetProperty syntax; previous Crew writes used captured setters/pcall. UnitActions ownership alarm falls1\u21920, Crew rises0\u21921; pair total remains1. Single-use mutation-order/receipt differential and typed failure tests pass. No new property key/schema, permission, automatic writer or retry.",
+      "reason": "Accepted S7d/F12/C080 moves the unchanged Crew use receipt/reservation writer from UnitActions to CrewProjects. Scanner detects direct P.SetProperty syntax; previous Crew writes used captured setters/pcall. UnitActions ownership alarm falls1→0, Crew rises0→1; pair total remains1. Single-use mutation-order/receipt differential and typed failure tests pass. No new property key/schema, permission, automatic writer or retry.",
       "evidence": "test_refactor_s7d5.StaticOwnership and Transaction eight-mode exact75f435a differential; original local first artifact preserved with497 passing tests and this ownership review alarm."
     },
     {
