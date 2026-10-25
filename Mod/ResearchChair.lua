@@ -111,7 +111,11 @@ function M.Start(P,shared)
  SPCRuntimeWork.StartReady(P,shared,'ResearchChair',function()definitions=nil;targets=nil;data.ready=true;data.errors={};data.Audit()end)
  -- Shared D/P0-C owns invalidation and registers first; reuse its confirmed view.
  -- Ordinary structural input is owned by scoped DC D; health is exact above.
- for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.Hook(P,Events,n,data.Audit)end
+ SPCRuntimeWork.Hook(P,Events,'PlayerTurnActivated',data.Audit)
+ if not(shared.FactChanges and shared.DistrictCompleteness and type(shared.DistrictCompleteness.RegisterConsumer)=='function')then
+  SPCRuntimeWork.TargetHook(P,Events,'CityTransfered',function(scope)SPCRuntimeWork.LifecycleScopes(P,scope,data.MarkAudit)end)
+  SPCRuntimeWork.TargetHook(P,Events,'CityRemovedFromMap',data.MarkAudit)
+ end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchChair',function(c,loss)
    local ids={};for _,v in ipairs(assert(P.Rows('SPC_ResearchChairTargets'),'EXIT_CHAIR_TARGETS_UNKNOWN'))do for bit=0,M.Bits-1 do ids[#ids+1]=name(v.BuildingType,bit)end end

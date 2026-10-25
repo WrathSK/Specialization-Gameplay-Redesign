@@ -150,7 +150,11 @@ function M.Start(P,shared)
  local function bind(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
  SPCRuntimeWork.StartReady(P,shared,'ResearchCross',function()data.ready=true;SPCSampleLifecycle.Reset(data,'cross');data.plans={};data.errors={};data.Audit()end)
  -- Ordinary structural input is owned by scoped DC D; health is exact above.
- for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.Hook(P,Events,n,data.Audit)end
+ SPCRuntimeWork.Hook(P,Events,'PlayerTurnActivated',data.Audit)
+ if not(shared.FactChanges and shared.DistrictCompleteness and type(shared.DistrictCompleteness.RegisterConsumer)=='function')then
+  SPCRuntimeWork.TargetHook(P,Events,'CityTransfered',function(scope)SPCRuntimeWork.LifecycleScopes(P,scope,data.MarkAudit)end)
+  SPCRuntimeWork.TargetHook(P,Events,'CityRemovedFromMap',data.MarkAudit)
+ end
  -- D is a notification shortcut, not a business input. Preserve this writer's
  -- established independence when the optional structural provider failed startup.
  if not shared.DistrictCompleteness then

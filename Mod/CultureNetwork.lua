@@ -484,7 +484,11 @@ function M.Start(P,shared)
    SPCRuntimeWork.TargetHook(P,Events,event,function(scope)d.Mark(scope.player,scope.city)end)
   end
  end
- bind('CityTransfered',function()d.Mark()end)
+ if not(shared.FactChanges and shared.DistrictCompleteness and type(shared.DistrictCompleteness.RegisterConsumer)=='function')then
+  SPCRuntimeWork.TargetHook(P,Events,'CityTransfered',function(scope)
+   SPCRuntimeWork.LifecycleScopes(P,scope,function(s)d.Mark(s and s.player,s and s.city)end)
+  end)
+ end
  bind('PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then d.Mark(pid)end end)
  -- Working specialists scale through the native carrier, not a stored/count ledger.
  store.RegisterExit('CultureNetwork',function(c,loss)

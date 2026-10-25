@@ -162,6 +162,28 @@ function SPCRuntimeWork.Hook(P,source,name,fn)
  end)
 end
 
+-- Exact native destination metadata is a routing hint, not exit authority.
+local function lifecycleTransfer(scope)
+ local value=type(scope)=='table'and scope.transfer
+ if value==nil then return end
+ assert(type(value)=='table'and getmetatable(value)==nil,'RUNTIME_TRANSFER_STRUCTURE')
+ local allowed={owner=true,city=true,oldOwner=true};local n=0
+ for k,v in pairs(value)do
+  n=n+1;assert(allowed[k]and type(v)=='number'and v>=0 and v<2147483648 and v%1==0,'RUNTIME_TRANSFER_FIELD')
+ end
+ assert(n==3 and value.owner~=nil and value.city~=nil and value.oldOwner~=nil,'RUNTIME_TRANSFER_FIELDS')
+ return {owner=value.owner,city=value.city,oldOwner=value.oldOwner}
+end
+function SPCRuntimeWork.LifecycleScopes(P,scope,visit)
+ local t=lifecycleTransfer(scope)
+ if not t then return visit(scope)end
+ local failed,why=false,nil
+ local function notify(value)local ok,err=pcall(visit,value);if not ok and not failed then failed=true;why=err end end
+ if P.IsTestPlayer(t.owner)then notify({player=t.owner,city=t.owner~=t.oldOwner and t.city or nil})end
+ if t.oldOwner~=t.owner and P.IsTestPlayer(t.oldOwner)then notify({player=t.oldOwner})end
+ if failed then error(why,0)end -- one failed side cannot erase the other mark
+end
+
 -- B270 opt-in target owner. Existing Player/Hook contracts stay unchanged for
 -- other consumers. Only scalar references survive a synchronous audit.
 function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
@@ -183,6 +205,7 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
  end
  local function selected(scope,r)
   if type(scope)~='table' then return true end
+  if scope.transfer then local v=scope.transfer;return r.owner==v.oldOwner or r.owner==v.owner and r.city==v.city end
   return (scope.player==nil or scope.player==r.owner) and (scope.city==nil or scope.city==r.city)
  end
  local function lookup(cs,id)
@@ -227,6 +250,15 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
  local function cleanExit(e,c)
   if e.completion then return e.fn(c,e.loss,e.ticket,function()return t.exits[key(e.ref)]==e end)end
   return e.fn(c,e.loss) -- ordinary exit argument contract remains unchanged
+ end
+ local function relevantTransfer(v)
+  if P.IsTestPlayer(v.owner)or P.IsTestPlayer(v.oldOwner)then return true end
+  local function related(r)return r.owner==v.owner or r.owner==v.oldOwner end
+  for _,r in pairs(t.known)do if related(r)then return true end end
+  for _,r in pairs(t.pending)do if related(r)then return true end end
+  for _,e in pairs(t.exits)do if related(e.ref)then return true end end
+  for _,q in pairs(t.transfers)do if related(q)or q.oldOwner==v.owner or q.oldOwner==v.oldOwner then return true end end
+  return false
  end
  local transfers
  function t.Retry(scope)
@@ -277,13 +309,20 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
   end end
  end
  function t.Run(scope)
+  local moved=lifecycleTransfer(scope)
+  if moved then
+   if not relevantTransfer(moved)then return end
+   scope={transfer=moved} -- detach before any native qualification/recovery work
+  end
   local seen=t.Retry(scope)
   for pid,p in pairs(Players)do
-   if SPCRuntimeWork.Player(scope,pid) and (type(scope)=='table' and scope.load or P.IsTestPlayer(pid))then
+   if (not moved or pid==moved.owner or pid==moved.oldOwner)and SPCRuntimeWork.Player(scope,pid)
+    and (type(scope)=='table' and scope.load or P.IsTestPlayer(pid))then
     local ok,err=pcall(function()
      local cs=p:GetCities();if not cs then return end
-     if type(scope)=='table' and scope.city~=nil then
-      local c=lookup(cs,scope.city);if c and not seen[key(reference(c))]then run(pid,c)end
+     local selectedCity=moved and pid==moved.owner and moved.owner~=moved.oldOwner and moved.city or type(scope)=='table'and scope.city
+     if selectedCity~=nil and selectedCity~=false then
+      local c=lookup(cs,selectedCity);if c and not seen[key(reference(c))]then run(pid,c)end
      else
       for _,c in cs:Members()do
        if not seen[key(reference(c))]then
@@ -303,16 +342,11 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
  end
  function t.Retry(scope)
   local ok,out=pcall(function()
-   if type(scope)=='table' and scope.transfer then
-    local v=scope.transfer
-    assert(type(v)=='table' and getmetatable(v)==nil,'RUNTIME_TRANSFER_STRUCTURE')
-    local fields={owner=true,city=true,oldOwner=true};local n=0
-    for field,value in pairs(v)do
-     n=n+1;assert(fields[field] and type(value)=='number' and value>=0 and value<2147483648 and value%1==0,'RUNTIME_TRANSFER_FIELD')
-    end
-    assert(n==3 and v.owner~=nil and v.city~=nil and v.oldOwner~=nil,'RUNTIME_TRANSFER_FIELDS')
-    local detached={owner=v.owner,city=v.city,oldOwner=v.oldOwner}
-    put(t.transfers,tostring(v.owner)..':'..tostring(v.city)..':'..tostring(v.oldOwner),detached)
+   local v=lifecycleTransfer(scope)
+   if v then
+    if not relevantTransfer(v)then return {}end
+    scope={transfer=v}
+    put(t.transfers,tostring(v.owner)..':'..tostring(v.city)..':'..tostring(v.oldOwner),v)
    end
    return retryImpl(scope)
   end)

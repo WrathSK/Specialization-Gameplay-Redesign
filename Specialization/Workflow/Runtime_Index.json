@@ -226,9 +226,9 @@
       "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "df6da387b974ad93f91a7a0253e8bede305dc8bce4fcaee6b81ff70edb7ee28f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
-      "provenance": "B311.338 Discover Culture receivers through bounded topology edges; local/static evidence only; no deployment/native PASS."
+      "sha256": "d028fc22c88f89df8c9f2275e3f904e1e9fef09a962eb3fa319fb04ba24eaa87",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
+      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "045a1ea1f23191ec4e0da3cdeb10e3182af58186b121a625dce4c65256e7ddfc",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "54f132c20e3d646a23a06eeb63fad36271bb3cd2f18893e69e9835f3f99100fa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
-      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
+      "sha256": "dfcf3852a0ed828c00cc6e0d64d4f8e110446ce72938626ddb31c67cc5f79a2c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
+      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -816,9 +816,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "295f67a2372df544b1fb4e788872d80cb20093df64e7df986adf119707471382",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B320_Refactor_S7a6.md",
-      "provenance": "B320.347 Unify exact owned-carrier registries and close S7a extraction; local/static evidence only; no deployment/native PASS."
+      "sha256": "23b6952948c87df8453617ef8123b9f1fd828d9f115c3823342e9da2820228d6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
+      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -826,9 +826,9 @@
       "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "0d95b2834d2eec8ef96ada3e6884a1f8ae42eb818d3e20fc7f70330986c380f0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B320_Refactor_S7a6.md",
-      "provenance": "B320.347 Unify exact owned-carrier registries and close S7a extraction; local/static evidence only; no deployment/native PASS."
+      "sha256": "381b662b22cef06866605f1804e3d210c93a88cc34137b0801a0bae29feae2c7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
+      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchChairModel.lua": {
       "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
@@ -836,9 +836,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "56544e88c13c1f86ed26e98b607db95eba8064ebb54f679a8376cc5c9792cfd7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
+      "sha256": "5fd592250bdf5d9d761b05dc30e36d83e25c9b4e6c6ec0b56a951b2fdf71c726",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
+      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchCrossModel.lua": {
       "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "88f526f3473305188709630cdffa1c2b16df87b27ced515ccb7d5d9e65b3c04d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md",
-      "provenance": "B371.398 Stop stale Tradition carrier writes after confirmed lifecycle change; local/static evidence only; no deployment/native PASS."
+      "sha256": "df9ab2b048125ac152c07b22f2e673926a30879f9e5dfb4939c62115fb02104a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
+      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c8e3fa4fff0c1bcc2a98d085937fd4a7d122a66e8e3abe5870b75a48f2e026ed",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
-      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
+      "sha256": "1798a74fe315becbcdcb110a7f78f07e5639b4a667554b6b5835e846150e5a76",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
+      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

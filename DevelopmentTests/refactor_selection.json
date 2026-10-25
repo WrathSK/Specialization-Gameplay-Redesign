@@ -1821,6 +1821,20 @@
       "test_refactor_s5c2",
       "test_refactor_s8c5c.Production",
       "test_refactor_s9c2.Startup"
+    ],
+    "S9e3b": [
+      "test_refactor_s9e3b",
+      "test_refactor_s5d4d2",
+      "test_refactor_s5d1.Kernel",
+      "test_refactor_s5d1.Writers",
+      "test_refactor_s5d4c2.TargetKernel",
+      "test_refactor_s5d4c2.SupportHealth",
+      "test_refactor_s5d4c2.HousingGPPHealth",
+      "test_refactor_s5c1.Districts",
+      "test_refactor_s7a3",
+      "test_refactor_s8c5b",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s9e3"
     ]
   },
   "counterexamples": {},

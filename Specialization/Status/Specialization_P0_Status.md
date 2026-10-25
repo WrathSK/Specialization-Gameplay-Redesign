@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0828
-Implementation Build: B375.402 / modinfo402; stable/live B307.334
+Status Revision: S0829
+Implementation Build: B376.403 / modinfo403; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E3_PARTIAL_CONTINUING
+Work State: REFACTOR_S9E3B_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e3/R09a stops unrelated foreign lifecycle work in actual Bridge/Std and retires two production probe world-clean callbacks under existing centralExit. Std preserves initialized/cleaned state,incoming city scope and exact confirmed-exit origin marks. Pure accepted-route routing ignores unrelated foreign endpoints only with current proof;pending/stale/busy/missing snapshots remain conservative and actual endpoint loss still invalidates. Confirmed LegacyCleanup still removes1409 buildings+2 flags. R09 remains PARTIAL:Research/Culture hooks,typed-transfer adoption,old-owner unknown-ID fallback and known-local duplicate notifications remain for next slice. No deployment/native PASS. [Result](Validation/Results/Specialization_B375_Refactor_S9e3.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e3b narrows Apply/Chair/Cross/CultureNetwork lifecycle work to their existing D->FactChanges->Bindings route;typed fallback remains when that provider chain is absent. Seven NewTargets owners reject unrelated foreign transfers with0 city/building reads,route supported incoming to its new city,and retain bounded foreign pending/exit/transfer recovery. Exact Store tickets and unknown old-ID owner fallback remain. S5d transfer adoption is explicitly closed as D for ordinary readers plus proved native fallback for foreign holders,not fictitious D delivery. Existing network/direct duplicate notifications and other S9/U4/S10 duties remain;no native/deployment PASS. [Result](Validation/Results/Specialization_B376_Refactor_S9e3b.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue R09 remaining Research/Culture producer routing and explicitly close S5d transfer adoption,then R18 HalfYield duty retirement,R11 relay trace,remaining accepted source-local/cold/Store/display findings,U4 and S10. No deployment/main/game launch.
+- Primary next: Continue R18 HalfYield exact-ID duty retirement,R11 UI/GPP trace,remaining accepted source-local/cold/Store/display findings,U4 and S10;retain explicit old-owner/unknown/native limits. No deployment/main/game launch.
+
+## S0829 — B376.403 Scope remaining lifecycle readers and preserve foreign target recovery
+
+S9e3b narrows Apply/Chair/Cross/CultureNetwork lifecycle work to their existing D->FactChanges->Bindings route;typed fallback remains when that provider chain is absent. Seven NewTargets owners reject unrelated foreign transfers with0 city/building reads,route supported incoming to its new city,and retain bounded foreign pending/exit/transfer recovery. Exact Store tickets and unknown old-ID owner fallback remain. S5d transfer adoption is explicitly closed as D for ordinary readers plus proved native fallback for foreign holders,not fictitious D delivery. Existing network/direct duplicate notifications and other S9/U4/S10 duties remain;no native/deployment PASS.
 
 ## S0828 — B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes
 
