@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0829",
-    "runtime": "B376.403 / modinfo403",
+    "status": "S0830",
+    "runtime": "B377.404 / modinfo404",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue R18 HalfYield exact-ID duty retirement,R11 UI/GPP trace,remaining accepted source-local/cold/Store/display findings,U4 and S10;retain explicit old-owner/unknown/native limits. No deployment/main/game launch. No automatic deployment/main/native launch.",
+  "goal": "Trace R11 UI/GPP turn->D reads,then accepted remaining source-local/cold/Store/display findings,U4 and S10 package duty retirement. No deployment/main/game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -579,6 +579,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
       "kind": "full",
       "reason": "Scope remaining lifecycle readers and preserve foreign target recovery actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
+      "kind": "full",
+      "reason": "Retire automatic Half experiment scans while retaining exact cleanup actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -605,8 +610,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
-    "local": "LOCAL_SIMULATION_PASS_115",
+    "report": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
+    "local": "LOCAL_SIMULATION_PASS_54",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

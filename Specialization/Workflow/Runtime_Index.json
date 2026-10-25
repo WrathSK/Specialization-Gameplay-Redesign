@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "0fcf6b431c33294c9924c06475c88e03b9c5883c320d3809fefb8bf99ea8c936",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md",
-      "provenance": "B363.390 Publish fixed institution views with protected city reference reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "4f98bfe0dae61f4181319a4b23700052dcd0bb568dcda3b5ace643e6c4724670",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
+      "provenance": "B377.404 Retire automatic Half experiment scans while retaining exact cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -671,9 +671,9 @@
       "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/HalfYieldProbe.lua": {
-      "sha256": "d87c82d128bf8fc8c7c16ed7c23bcc40334516cef3a2fbfb4cbc3afd7a05e516",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "01ffce7e57e7d4cb79d03ec0e4bb8f2756f312a5253114e815d8d98c5c8e4679",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
+      "provenance": "B377.404 Retire automatic Half experiment scans while retaining exact cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustryHistory.lua": {
       "sha256": "c361a4a8a9ea7a701fbec8bc45f391199da7886e6d06859245efb3e0257d1d76",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "dfcf3852a0ed828c00cc6e0d64d4f8e110446ce72938626ddb31c67cc5f79a2c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
-      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "89c2309c99a4ab3c57bed5d52e2f87d49ff4f9b33566996d1db4b3dc780290c5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
+      "provenance": "B377.404 Retire automatic Half experiment scans while retaining exact cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "1798a74fe315becbcdcb110a7f78f07e5639b4a667554b6b5835e846150e5a76",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
-      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "4fec04ee1a5cbb84c96a8a8bc30f47ee4c937cfc020ff3f162ca472eee4280fe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
+      "provenance": "B377.404 Retire automatic Half experiment scans while retaining exact cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

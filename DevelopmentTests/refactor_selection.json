@@ -1835,6 +1835,15 @@
       "test_refactor_s8c5b",
       "test_refactor_s8c5c.Production",
       "test_refactor_s9e3"
+    ],
+    "S9e4": [
+      "test_refactor_s9e4",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5b.Composite",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_refactor_s8c4.PureCatalogue",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group"
     ]
   },
   "counterexamples": {},

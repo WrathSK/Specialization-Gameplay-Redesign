@@ -8,6 +8,14 @@ function SPCHalfYieldProbe.Plan(pop)
 end
 function SPCHalfYieldProbe.Start(P,shared,options)
  local data={ready=false,busy=false,errors={},baseline={}};shared.HalfYieldProbe=data
+ if options and options.retired then
+  -- Mandatory LegacyCleanup owns all exact B050 IDs; this experiment has no
+  -- production listeners, population/turn audits, native reads or write access.
+  data.ready=true;data.retired=true
+  local function retired()return '旧半点实验已退役；正式能力与退出清理由各自所有者处理。'end
+  data.Run=retired;data.Describe=retired
+  return data -- temporary read-only DEV compatibility until S10 package retirement
+ end
  local key='SPC_B050_HALF_ENABLED'
  local function name(y,mode,bit) return 'BUILDING_SPC_B050_'..y..'_'..mode..'_'..bit end
  local function totals(c)

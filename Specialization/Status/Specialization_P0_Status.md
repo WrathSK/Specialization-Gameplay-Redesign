@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0829
-Implementation Build: B376.403 / modinfo403; stable/live B307.334
+Status Revision: S0830
+Implementation Build: B377.404 / modinfo404; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E3B_CONTINUING
+Work State: REFACTOR_S9E4_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e3b narrows Apply/Chair/Cross/CultureNetwork lifecycle work to their existing D->FactChanges->Bindings route;typed fallback remains when that provider chain is absent. Seven NewTargets owners reject unrelated foreign transfers with0 city/building reads,route supported incoming to its new city,and retain bounded foreign pending/exit/transfer recovery. Exact Store tickets and unknown old-ID owner fallback remain. S5d transfer adoption is explicitly closed as D for ordinary readers plus proved native fallback for foreign holders,not fictitious D delivery. Existing network/direct duplicate notifications and other S9/U4/S10 duties remain;no native/deployment PASS. [Result](Validation/Results/Specialization_B376_Refactor_S9e3b.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e4/R18 disables all production Half experiment callbacks/read-write access through an explicit retired startup option;only a static DEV compatibility reply remains. Actual production-entry comparison across100 world cities/31 boundaries falls3100 city visits and6200 native getter calls to0. Mandatory LegacyCleanup still removes all32 B050 IDs within1409+2 total and independently recovers failed physical cleanup through original Store tickets. SQL/save references and file stay until S10 safe package retirement. R11 and accepted remaining S9/U4/S10 continue;no native/deployment PASS. [Result](Validation/Results/Specialization_B377_Refactor_S9e4.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue R18 HalfYield exact-ID duty retirement,R11 UI/GPP trace,remaining accepted source-local/cold/Store/display findings,U4 and S10;retain explicit old-owner/unknown/native limits. No deployment/main/game launch.
+- Primary next: Trace R11 UI/GPP turn->D reads,then accepted remaining source-local/cold/Store/display findings,U4 and S10 package duty retirement. No deployment/main/game launch.
+
+## S0830 — B377.404 Retire automatic Half experiment scans while retaining exact cleanup
+
+S9e4/R18 disables all production Half experiment callbacks/read-write access through an explicit retired startup option;only a static DEV compatibility reply remains. Actual production-entry comparison across100 world cities/31 boundaries falls3100 city visits and6200 native getter calls to0. Mandatory LegacyCleanup still removes all32 B050 IDs within1409+2 total and independently recovers failed physical cleanup through original Store tickets. SQL/save references and file stay until S10 safe package retirement. R11 and accepted remaining S9/U4/S10 continue;no native/deployment PASS.
 
 ## S0829 — B376.403 Scope remaining lifecycle readers and preserve foreign target recovery
 
