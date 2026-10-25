@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0787",
-    "runtime": "B334.361 / modinfo361",
+    "status": "S0788",
+    "runtime": "B335.362 / modinfo362",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue the bounded S8 HELD_TRANSFER retry and remaining sub-record isolation/recovery, legacy cleanup and ordered returns, then S9–S10. Keep irreversible-evidence gaps explicit. No automatic deployment/main/native launch.",
+  "goal": "Continue S8 sub-record isolation/recovery, exact legacy exit consolidation and deterministic return order, then S9–S10; retain D5 and irreversible-evidence gaps explicitly. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -369,6 +369,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
       "kind": "full",
       "reason": "Acknowledge asynchronous cleanup for the exact loss actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B335_Refactor_S8c2.md",
+      "kind": "full",
+      "reason": "Bound held cleanup retries to existing local turn boundaries actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -395,8 +400,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-    "local": "LOCAL_SIMULATION_PASS_452",
+    "report": "Specialization/Status/Validation/Results/Specialization_B335_Refactor_S8c2.md",
+    "local": "LOCAL_SIMULATION_PASS_465",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

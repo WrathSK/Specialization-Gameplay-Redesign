@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "ceaf809f9bdae3a75553eaa4105c3359d280db08386e37d3fb2a955b98eba5d8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "dc38b735651cf279666166b973098cb6115a1ff0fcf85c76db3ba88d508082ff",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B335_Refactor_S8c2.md",
+      "provenance": "B335.362 Bound held cleanup retries to existing local turn boundaries; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "5fc2fa41f6e20b756403522d667cb3a8876e2cc6e300f471ed48b068c65843c5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "404a0e06a26676743f2c3910166aabf713f9a5c10ae48b9070e1ba136e85c5d0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B335_Refactor_S8c2.md",
+      "provenance": "B335.362 Bound held cleanup retries to existing local turn boundaries; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f74ca5b62a9206d60e99970f651ab52f11ce0fe953a1c5680a1642d7ac2a13bf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "d91dd37cef65f1eb459a8adbed806a6d3864da0d546d61060a34aa8669050a6e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B335_Refactor_S8c2.md",
+      "provenance": "B335.362 Bound held cleanup retries to existing local turn boundaries; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

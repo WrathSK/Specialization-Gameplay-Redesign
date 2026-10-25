@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0787
-Implementation Build: B334.361 / modinfo361; stable/live B307.334
+Status Revision: S0788
+Implementation Build: B335.362 / modinfo362; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8C1_COMPLETE_CONTINUING
+Work State: REFACTOR_S8C2_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8c1 adds session-only exact-loss completion capabilities to Store and seven existing RuntimeWork exit owners. Successful independent cleanup now acknowledges Store even after its original three-attempt budget; false/fault/UNKNOWN or stale/replaced work cannot complete a loss. Reentrant native getters cannot complete a newer loss, forged table equality cannot forge tickets, and successful sibling exits do not repeat. No saved schema, new listener, timer, money operation or ownership gameplay change. S8b2 isolation, bounded held retry, legacy exit consolidation and deterministic return remain next; D5 native proof remains OPEN. [Result](Validation/Results/Specialization_B334_Refactor_S8c1.md). Stable/live/main B307.334; no deployment/native PASS.
+S8c2 uses the existing PlayerTurnActivated registered-worker loop for exact held cleanup only. Each load/loss permits at most three automatic site attempts, at most once after a newer reliable local turn; the original three callback attempts and exact S8c1 tickets are not reset. Initial loss/load checks stamp the current turn, so duplicate/same-turn activation adds no cleanup. Healthy/completed/nonlocal/UNKNOWN-local-player paths add no site reads; failed reads do not refund the bounded budget. No timer, world scan, schema or ownership gameplay change. D7 isolation, legacy cleanup, ordered returns and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B335_Refactor_S8c2.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue the bounded S8 HELD_TRANSFER retry and remaining sub-record isolation/recovery, legacy cleanup and ordered returns, then S9–S10. Keep irreversible-evidence gaps explicit.
+- Primary next: Continue S8 sub-record isolation/recovery, exact legacy exit consolidation and deterministic return order, then S9–S10; retain D5 and irreversible-evidence gaps explicitly.
+
+## S0788 — B335.362 Bound held cleanup retries to existing local turn boundaries
+
+S8c2 uses the existing PlayerTurnActivated registered-worker loop for exact held cleanup only. Each load/loss permits at most three automatic site attempts, at most once after a newer reliable local turn; the original three callback attempts and exact S8c1 tickets are not reset. Initial loss/load checks stamp the current turn, so duplicate/same-turn activation adds no cleanup. Healthy/completed/nonlocal/UNKNOWN-local-player paths add no site reads; failed reads do not refund the bounded budget. No timer, world scan, schema or ownership gameplay change. D7 isolation, legacy cleanup, ordered returns and D5 native proof remain OPEN.
 
 ## S0787 — B334.361 Acknowledge asynchronous cleanup for the exact loss
 

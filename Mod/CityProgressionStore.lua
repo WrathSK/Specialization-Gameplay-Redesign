@@ -41,6 +41,7 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  local exits,finished,attempts={},{},{};local exitBusy=false;local runningExit;local exitReads={}
  local exitTickets={} -- one opaque capability per registered exit/current loss; never saved
+ local autoGeneration=exitTickets;local autoCount=0;local lastSiteTurn
  local returns={};function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn end
  -- Fixed latest slot per native event; session-only evidence, never identity authority.
  local eventNames={'CityTransfered','CityConquered','CityAddedToMap','CityRemovedFromMap','CityInitialized','CityBuilt'}
@@ -866,12 +867,35 @@ local function CreateProgressionRecord(P,shared,storage)
   if runningExit~=name then finished[name]=true;d.exitErrors[name]=nil;summarizeExit()end
   return true
  end
+ local function syncExitRetry()
+  if autoGeneration~=exitTickets then autoGeneration=exitTickets;autoCount=0;lastSiteTurn=nil end
+ end
+ local function validExitTurn(turn)return type(turn)=='number'and turn>=0 and turn<2147483648 and turn%1==0 end
+ function d.HeldExitPending(pid,turn)
+  if exitBusy or not validExitTurn(turn)or not root or not root.loss or root.origin.owner~=pid
+   or not currentExit(exitTickets,root.loss)then return false end
+  syncExitRetry()
+  if autoCount>=3 or type(lastSiteTurn)=='number'and turn<=lastSiteTurn then return false end
+  for name in pairs(exits)do if not finished[name]and(attempts[name]or 0)<3 then return true end end
+  return false
+ end
+ function d.RetryHeldExit(pid,turn)
+  if not d.HeldExitPending(pid,turn)then return false end
+  if lastSiteTurn==false then lastSiteTurn=turn;return false end -- reliable baseline only
+  autoCount=autoCount+1;lastSiteTurn=turn -- consume before any reentrant native getter
+  d.ExitConfirmed();return true
+ end
  function d.ExitConfirmed()
   if exitBusy or committing or not ready or fault or not root or not root.loss then return end
   local generation=exitTickets;local loss=cp(root.loss)
   if not currentExit(generation,loss)then return end
   exitBusy=true -- before the first native getter, including initial site lookup
   local good,why=pcall(function()
+   syncExitRetry()
+   local clockOK,turn=pcall(Game.GetCurrentGameTurn)
+   if not currentExit(generation,loss)then return end
+   if clockOK and validExitTurn(turn)then lastSiteTurn=math.max(type(lastSiteTurn)=='number'and lastSiteTurn or turn,turn)
+   elseif lastSiteTurn==nil then lastSiteTurn=false end
    local ok,c=pcall(CityManager.GetCityAt,root.origin.x,root.origin.y)
    if not currentExit(generation,loss)then return end
    local matched=ok and c and confirmedExit(generation,c,loss)
@@ -1345,14 +1369,22 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   for _,w in pairs(workers)do local ok,err=pcall(w.VisitTradition,pid,fn);if not ok then firstError=firstError or err end end
   assert(not firstError,firstError) -- an unreadable city must not prevent other records from updating
  end
- local function traditionTick(pid)
+ local function traditionTick(pid,allowExitRetry)
   if fault or not P.IsTestPlayer(pid)then return end
-  local turn=Game.GetCurrentGameTurn()
+  local turn=Game.GetCurrentGameTurn();local localChecked,localAllowed=false,false
   -- Existing registered records only: no world/city/building scan or fact packet.
-  for _,w in pairs(workers)do w.TickTradition(pid,turn);w.TickCommerce(pid,turn)end
+  for _,w in pairs(workers)do
+   w.TickTradition(pid,turn);w.TickCommerce(pid,turn)
+   if allowExitRetry and w.HeldExitPending(pid,turn)then
+    if not localChecked then
+     localChecked=true;local ok,owner=pcall(Game.GetLocalPlayer);localAllowed=ok and owner==pid
+    end
+    if localAllowed then w.RetryHeldExit(pid,turn)end
+   end
+  end
  end
  local turnEvent=P.Field(Events,'PlayerTurnActivated')
- if turnEvent and turnEvent.Add then turnEvent.Add(traditionTick)end
+ if turnEvent and turnEvent.Add then turnEvent.Add(function(pid)traditionTick(pid,true)end)end
  local loadEvent=P.Field(Events,'LoadScreenClose')
  if loadEvent and loadEvent.Add then loadEvent.Add(function()
   for pid in pairs(Players)do if P.IsTestPlayer(pid)then traditionTick(pid)end end
