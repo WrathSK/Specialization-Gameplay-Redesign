@@ -1900,6 +1900,15 @@
     ],
     "S9e9": [
       "test_refactor_s9e9"
+    ],
+    "S9e10": [
+      "test_refactor_s9e10",
+      "test_refactor_s7d2.Permit",
+      "test_refactor_s7d3b.Kernel",
+      "test_refactor_s7d3b.ActualUIs",
+      "test_refactor_s7d3b.Boundaries",
+      "test_refactor_s9b2.CurrentUI",
+      "test_refactor_s9b2.Completion"
     ]
   },
   "counterexamples": {},

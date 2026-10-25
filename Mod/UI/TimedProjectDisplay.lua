@@ -34,7 +34,8 @@ function SPCTimedProjectDisplay.Items(data)
    local turns,note=SPCEngineeringStudyUI.Text(data.Owner,data.City:GetID())
    item.TurnsLeft=turns;item.Progress=0;item.ToolTip=note.."[NEWLINE]"..(item.ToolTip or "")
   elseif item.Type==SPCDialogueProjectUI.PROJECT then
-   local turns,note=SPCDialogueProjectUI.Text(data.Owner,data.City:GetID())
+   local read=item.IsCurrentProduction==false and SPCDialogueProjectUI.Preview or SPCDialogueProjectUI.Text
+   local turns,note=read(data.Owner,data.City:GetID())
    item.TurnsLeft=turns;item.Progress=0;item.ToolTip=note.."[NEWLINE]"..(item.ToolTip or "")
   elseif SPCClaimProjectUI.IsProject(item.Type)then
    local turns,note=SPCClaimProjectUI.Text(data.Owner,data.City:GetID(),item.Type)

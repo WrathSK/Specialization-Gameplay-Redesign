@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "846b82ee9c638ac4115754a32ed67c6bd778e41cb76310359d14439dbf65375b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
-      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
+      "sha256": "f199fcba1d11448b920ae27e38e48f082fa930f354a44e5211059c9ce20ea79c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
+      "provenance": "B383.410 Separate Dialogue candidate preview from current timer status; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b52032a5e2af32d407688a8fd4dd3fc63e139e4bdb7613a2f88f070e91c9dd0b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
-      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
+      "sha256": "069e6fd0e290a4ef3629387df1d7cb81e161e82907242337497efa64d01158c6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
+      "provenance": "B383.410 Separate Dialogue candidate preview from current timer status; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1281,9 +1281,9 @@
       "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DialogueProjectUI.lua": {
-      "sha256": "62742befde982dda296d7760918e7127ad03989fa53dfb93513d21f714720ecc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
-      "provenance": "B354.381 Interpret fresh Dialogue work slots in Gameplay; local/static evidence only; no deployment/native PASS."
+      "sha256": "cecc5a2207f69bfe890a8d7ae6861e812c7a297097457d5638a4d49ba93f130e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
+      "provenance": "B383.410 Separate Dialogue candidate preview from current timer status; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "274d7491240789affb0ac7d47e222c0180c1b7489a700afa745dc0f3e5ba5876",
@@ -1481,9 +1481,9 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/TimedProjectDisplay.lua": {
-      "sha256": "70bd6d122f854a57b49f175a3619a193d356c9b7e8ebf90b76ea23084c9ff62d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "37b7a40fe88b530682b88f8b9434cc0b3ccd26fe91475e388665512602e23423",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
+      "provenance": "B383.410 Separate Dialogue candidate preview from current timer status; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/TimedProjectRead.lua": {
       "sha256": "4fdd50853302ca414249532becbdd17f052b31ebaa5860438a888f80d5e83214",

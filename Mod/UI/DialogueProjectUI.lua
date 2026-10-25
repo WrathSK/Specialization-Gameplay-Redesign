@@ -8,14 +8,17 @@ function M.Current(c)
  local row=GameInfo.Projects[M.PROJECT]
  return c and c:GetOwner()==Game.GetLocalPlayer() and row and c:GetBuildQueue():GetCurrentProductionTypeHash()==row.Hash and M.PROJECT or nil
 end
+function M.Preview()
+ return '1','时代对话：需连续占用完整的 1 个回合；完成后按本城合格馆藏覆盖的作品时代数，永久累计巨作原生旅游业绩倍率。'
+end
 function M.Text(pid,id)
  local d=(ExposedMembers.SPC_P0 or {}).DialogueProjects;local v=d and d.views[pid..':'..id]
  if v and v.stage=='ACTIVE' then return '1',v.reason end
  if v and v.stage=='CALLING' then return '待确认',v.reason end
  if v and v.stage=='HELD' then return '已暂停',v.reason end
  local c=Players[pid] and Players[pid]:GetCities():FindID(id)
- if M.Current(c)then return '确认中','等待Gameplay确认计时；未确认时不会完成项目'end
- return '1','时代对话：需连续占用完整的 1 个回合；完成后按本城合格馆藏覆盖的作品时代数，永久累计巨作原生旅游业绩倍率。'
+ if M.Current(c)then return '待计时','此项目须独占生产队列并连续占用完整的 1 个回合；计时等待Gameplay确认，未确认时不会完成项目。'end
+ return M.Preview()
 end
 function M.New(P,send,notify)
  local api={};local pending,seen={},{};local revision=-1

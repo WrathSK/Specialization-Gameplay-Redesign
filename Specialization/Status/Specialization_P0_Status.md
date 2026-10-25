@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0835
-Implementation Build: B382.409 / modinfo409; stable/live B307.334
+Status Revision: S0836
+Implementation Build: B383.410 / modinfo410; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E9_CONTINUING
+Work State: REFACTOR_S9E10_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e9/R06–R07 classifies only declared owner-validator assertion codes as CHECK_FAILED;other exceptions are CHECK_UNKNOWN,with the same affected-group opaque preservation and independent base/ability validation. Development compares each open saved source owner/change epoch to the already read current reference,closing a real valid→transient isolation→loss/return→reload resurrection path without replay or new samples. Selected-city Describe now exposes protected groups and proved metadata repairs from existing sidecars only. R02 irrecoverability/legal-baseline and unprovable missed lifecycle remain explicit;no persistent schema or blanket reset. Other accepted R05/R19/applied-owner/U4/S10 work continues. [Result](Validation/Results/Specialization_B382_Refactor_S9e9.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e10/R19 verifies native later queue cells are icon/name-only and do not consume the Mod timer overlay. Known noncurrent Dialogue candidates now use a pure fixed-duration preview,not the city current timer state. A native-current unconfirmed timer says 待计时 with the existing sole-queue requirement;ACTIVE/CALLING/HELD text and all queue/Begin/finish/recovery behavior stay. Seven real UI/controller/caller tests add no queue reads or automatic actions. Original reported screenshot location remains U5,not a claimed native reproduction. R05/R02 proof limits,applied owners,U4/S10 continue. [Result](Validation/Results/Specialization_B383_Refactor_S9e10.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Document R05 cold aggregate proof limits and R02 per-ability recovery criteria;continue R19 actual display and remaining applied owners/U4/S10. No deployment/main/game launch.
+- Primary next: Record R05 cold aggregate proof limitation and R02 per-ability criteria;continue remaining accepted S9 applied owners,U4/S10 without automatic deployment/main/game launch.
+
+## S0836 — B383.410 Separate Dialogue candidate preview from current timer status
+
+S9e10/R19 verifies native later queue cells are icon/name-only and do not consume the Mod timer overlay. Known noncurrent Dialogue candidates now use a pure fixed-duration preview,not the city current timer state. A native-current unconfirmed timer says 待计时 with the existing sole-queue requirement;ACTIVE/CALLING/HELD text and all queue/Begin/finish/recovery behavior stay. Seven real UI/controller/caller tests add no queue reads or automatic actions. Original reported screenshot location remains U5,not a claimed native reproduction. R05/R02 proof limits,applied owners,U4/S10 continue.
 
 ## S0835 — B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs
 
