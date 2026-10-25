@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0831
-Implementation Build: B378.405 / modinfo405; stable/live B307.334
+Status Revision: S0832
+Implementation Build: B379.406 / modinfo406; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E5_CONTINUING
+Work State: REFACTOR_S9E6_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e5/R11 traces actual UI->Gameplay->D/FC/Bindings->writers and removes demonstrated duplicate structural sampling from a known-local UI turn. Worker recovery stays;existing turn-keyed D cache owns first-read freshness. One verified worker city survives UI transport;different/unknown/focus/load scopes conservatively widen. Failed-send and reentrant scopes merge within original real-cause retry rules. Actual two-city normal GP-turn then UI-turn D captures2->0 without changing carriers;needed worker reconciliation remains. Native N5 relay-retirement and CPU/heap remain U5;accepted remaining S9/U4/S10 continue. [Result](Validation/Results/Specialization_B378_Refactor_S9e5.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e6 implements accepted R01 at the actual Bridge/effect consumers:topology-confirmed unknown/unadmitted roles no longer impose whole-player effect continuity or block unrelated reliable Commerce configuration. Existing source provenance and valid prior contributions remain;never-confirmed sources add nothing,reference/identity loss withdraws,and known siblings update. Modern unadmitted Commerce source is UNKNOWN rather than false NONE. Mixed/retained inputs still fail every existing new-transaction proof;D1 topology hold and Standardization cold A stay unchanged. R05 cold aggregate decomposition is explicitly not claimed fixed. Other accepted S9/U4/S10 work continues;no native/deployment PASS. [Result](Validation/Results/Specialization_B379_Refactor_S9e6.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue accepted R01/R05 source-local/cold provenance,Store/display/Design-trace findings and remaining S9 owner-applied views;then full U4 and safe S10 duty retirement. No deployment/main/game launch.
+- Primary next: Resolve R05 cold source retention against accepted authority and actual available evidence;continue R06/R07/R02 Store closure,R04 history trace,R19/R13 display and remaining applied owners,then U4/S10. Stop only any concrete undecidable affected boundary. No deployment/main/game launch.
+
+## S0832 — B379.406 Apply source-local network UNKNOWN while keeping transaction proof strict
+
+S9e6 implements accepted R01 at the actual Bridge/effect consumers:topology-confirmed unknown/unadmitted roles no longer impose whole-player effect continuity or block unrelated reliable Commerce configuration. Existing source provenance and valid prior contributions remain;never-confirmed sources add nothing,reference/identity loss withdraws,and known siblings update. Modern unadmitted Commerce source is UNKNOWN rather than false NONE. Mixed/retained inputs still fail every existing new-transaction proof;D1 topology hold and Standardization cold A stay unchanged. R05 cold aggregate decomposition is explicitly not claimed fixed. Other accepted S9/U4/S10 work continues;no native/deployment PASS.
 
 ## S0831 — B378.405 Preserve city worker scope and stop duplicate UI turn depth sampling
 

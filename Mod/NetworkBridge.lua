@@ -367,9 +367,10 @@ function SPCNetworkBridge.Start(P,shared)
     -- A proved route set does not resolve unreadable city facts.
     inputProviders[pid]={registry=provider,effective=effective,reader=reader,store=store,base=store and store.Base,stamp=store and store.FactStamp,turn=now}
     b.factGeneration=sampledGeneration
-    b.continuityOnly=not candidate and b.continuityOnly==true or withdrawal and (input.roleUnknown or b.revalidation=='NEEDS_REVALIDATION') or false
+    b.continuityOnly=not candidate and b.continuityOnly==true or withdrawal and b.revalidation=='NEEDS_REVALIDATION' or false
     local fresh=b.revalidation=='VERIFIED' and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b)
-    b.effectAvailability=b.continuityOnly and 'RETAINED_NEGATIVE' or fresh and not input.roleUnknown and 'AVAILABLE' or 'PENDING'
+    -- Topology proof permits source-local D2 effects; MIXED remains unfit for transactions.
+    b.effectAvailability=b.continuityOnly and 'RETAINED_NEGATIVE' or fresh and 'AVAILABLE' or 'PENDING'
     b.availability=(input.pending or not fresh) and 'NEEDS_REVALIDATION' or 'AVAILABLE';b.error=b.transportFailure
     if duplicate then
      b.input=input;P.Count('input_duplicate')

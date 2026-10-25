@@ -116,9 +116,9 @@
       "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
-      "sha256": "2ce8201cf19b55397a14bc67b367e5571746e2ea4fdd52710c38a59e0fad1b3a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
-      "provenance": "B347.374 Isolate unavailable Commerce reputation while preserving base Gold; local/static evidence only; no deployment/native PASS."
+      "sha256": "4a534111e94e34a093707bc1493533d6cdaa596f853c29f58b7adb6af30376b2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B379_Refactor_S9e6.md",
+      "provenance": "B379.406 Apply source-local network UNKNOWN while keeping transaction proof strict; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -751,9 +751,9 @@
       "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "1964f0bde58406ca6ffba3e6d34a382f5ed1a992be352b679739755e2c1cca1b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
-      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
+      "sha256": "c9fbf6364f3e761c69eae918176b3884e97c7b6b84a804bc49ab4967c3303ff3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B379_Refactor_S9e6.md",
+      "provenance": "B379.406 Apply source-local network UNKNOWN while keeping transaction proof strict; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "fe5657464477c3a6677fecd74c952923d6f3fe4d7008a50add09fd408fff7a99",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "148dcee2af8f10f524ad36bbf85d9fe8347537517543707281ac94958503d848",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
-      "provenance": "B378.405 Preserve city worker scope and stop duplicate UI turn depth sampling; local/static evidence only; no deployment/native PASS."
+      "sha256": "bf6f0ddd091875aecdc8245db1a42f90fa3dd973b0275173e435819ab5fe0462",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B379_Refactor_S9e6.md",
+      "provenance": "B379.406 Apply source-local network UNKNOWN while keeping transaction proof strict; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3be10271a5aaa3b30c028a1119304ed7cd837258130bec2a88475e03f9895e04",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
-      "provenance": "B378.405 Preserve city worker scope and stop duplicate UI turn depth sampling; local/static evidence only; no deployment/native PASS."
+      "sha256": "4c2238394ea7c3999ef045c88b715d64b724654fd6b1bee06e521e9557c6da9c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B379_Refactor_S9e6.md",
+      "provenance": "B379.406 Apply source-local network UNKNOWN while keeping transaction proof strict; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

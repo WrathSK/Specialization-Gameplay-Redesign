@@ -1852,6 +1852,39 @@
       "test_refactor_s5d1.Writers",
       "test_refactor_s5c1.Districts",
       "test_refactor_s3.Observers"
+    ],
+    "S9e6": [
+      "test_refactor_s9e6",
+      "test_refactor_s4b.NetworkProof.test_equal_proof_once_and_failed_capture_never_exposes_fresh_effects",
+      "test_refactor_s4b.NetworkProof.test_partial_facts_role_retained_and_transaction_remains_strict",
+      "test_refactor_s4b.NetworkProof.test_confirmed_route_loss_prunes_only_its_paths",
+      "test_refactor_s4b.NetworkProof.test_known_center_loss_survives_other_fact_failure",
+      "test_refactor_s4b.NetworkProof.test_unknown_owner_is_not_negative_and_numeric_owner_loss_is",
+      "test_refactor_s4b.NetworkProof.test_negative_route_prune_keeps_unreadable_other_partner_contribution",
+      "test_refactor_s4b.NetworkProof.test_known_nontrader_and_foreign_unit_do_not_invalidate",
+      "test_refactor_s4b.CommerceRetention.test_pending_freezes_positive_changes_but_honors_capacity_and_active_loss",
+      "test_refactor_s4b.CommerceRetention.test_mixed_max_retained_loser_and_confirmed_zero_no_resurrection",
+      "test_refactor_s4b.CommerceRetention.test_cold_pending_installed_gold_kept_without_property_write",
+      "test_refactor_s4b.CommerceRetention.test_unknown_source_or_receiver_reference_never_clears_applied_gold",
+      "test_refactor_s4b.CommerceRetention.test_pending_active_iv_to_iii_removes_reputation_bonus",
+      "test_refactor_s4b.CultureRetention.test_mixed_union_and_equal_history_recovery",
+      "test_refactor_s4b.CultureRetention.test_confirmed_source_loss_then_unknown_cannot_resurrect",
+      "test_refactor_s4b.CultureRetention.test_unknown_source_reference_preserves_completed_civilizations",
+      "test_refactor_s4b.CultureRetention.test_whole_hold_demotes_source_provenance",
+      "test_refactor_s4b.CultureRetention.test_cold_confirmed_topology_never_invents_unknown_source_history",
+      "test_refactor_s4b.CultureRetention.test_cold_no_topology_preserves_installed_set",
+      "test_refactor_s4b.StandardizationRetention.test_actual_bridge_pending_freezes_self_and_network_combination",
+      "test_refactor_s4b.StandardizationRetention.test_mixed_sources_take_max_and_confirmed_loss_keeps_other",
+      "test_refactor_s4b.StandardizationRetention.test_unknown_source_reference_retains_previous_contribution",
+      "test_refactor_s4b.StandardizationRetention.test_pending_iv_to_iii_loses_only_confirmed_extra_share",
+      "test_refactor_s4b.StandardizationRetention.test_pending_source_provenance_is_retained_and_unknown_owner_holds",
+      "test_refactor_s4b.StandardizationRetention.test_cold_exception_A_exact_hold_then_event_recompute",
+      "test_refactor_s4b.DevelopmentContainment.test_one_startup_city_failure_does_not_poison_index_or_existing_contract",
+      "test_refactor_s4b.DevelopmentContainment.test_pending_target_cannot_debit_and_failed_city_reads_do_not_poll",
+      "test_refactor_s4b.DevelopmentContainment.test_partial_index_blocks_signing_then_real_commit_recovery_releases_it",
+      "test_refactor_s5c2",
+      "test_refactor_s9e1",
+      "test_refactor_s5c1.NetworkSignals"
     ]
   },
   "counterexamples": {},
@@ -2511,6 +2544,14 @@
         "test_refactor_s5d3.Dialogue.test_confirmed_store_exit_and_return_keep_history_and_recompute"
       ],
       "current": "The five current Culture return owners mark existing work before commit; actual Store/EF/Insights composition proves native projection waits for committed ACTIVE and existing publication. Fake-Store immediate projection expectations stay frozen, not weakened."
+    },
+    "S9e6": {
+      "source": "9316565",
+      "decision": "User accepted S8 R01 source-local D2 isolation",
+      "historical_assertions_retained": [
+        "test_refactor_s4b.NetworkProof.test_first_unknown_role_freezes_carrier_projection"
+      ],
+      "current": "Topology-confirmed per-source UNKNOWN/retained effects do not hold unrelated cities;topology pending and transaction proof remain strict. Cold aggregate R05 remains separate."
     }
   }
 }

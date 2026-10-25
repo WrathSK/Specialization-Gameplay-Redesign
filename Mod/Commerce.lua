@@ -203,7 +203,7 @@ function M.Start(P,shared)
   out.network=network
   for _,sid in ipairs(network.partners)do out.sources[sid]=true;stamp(batch,pid,sid)end
   v.stage='READY';v.reason='COMMERCE_READY';v.networkProvenance=cp(network.provenance)
-  if network.input and network.input.factAvailability=='MIXED' or network.continuityOnly then v.stage='RETAINED';v.reason='COMMERCE_MIXED_FACTS';v.canConfigure=false end
+  if network.continuityOnly then v.stage='RETAINED';v.reason='COMMERCE_MIXED_FACTS';v.canConfigure=false end
   for _,r in ipairs(v.domains)do if r.effective then v.effective[#v.effective+1]=r.id end end
   out.rows=v.domains;return out
  end
@@ -221,7 +221,12 @@ function M.Start(P,shared)
   if batch.identities[k]~=nil then return batch.identities[k]end
   local ok,kind=pcall(function()
    local owns=store.Owns(c);assert(type(owns)=='boolean','COMMERCE_SOURCE_IDENTITY_UNKNOWN')
-   if not owns then return 'NONE' end
+   if not owns then
+    -- Modern Store not-yet-admitted is UNKNOWN, not a confirmed identity exit.
+    -- Only the existing explicit legacy exclusion can prove a non-source.
+    assert(store.BlocksLegacy and store.BlocksLegacy(c)==false,'COMMERCE_SOURCE_UNADMITTED')
+    return 'NONE'
+   end
    local f=store.Base(pid,c)
    assert(f.owner==pid and f.cityID==c:GetID() and type(f.token)=='string'
     and type(f.specialization)=='string','COMMERCE_SOURCE_IDENTITY_UNKNOWN')
