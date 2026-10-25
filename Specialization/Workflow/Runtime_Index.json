@@ -681,9 +681,9 @@
       "provenance": "B279 confirmed historical result topics and explicit isolated adapters; project/native/persistence semantics retained. Local/static only; remaining manual lists next; no deployment/native PASS."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "63e46e4e523fdc4eac03fdb085aa7e67c1e5ab1a9e99f76f8de7c621c2093445",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
-      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
+      "sha256": "5098df318799708c1632ac735d99d10e110c950d782f0d48fd7f7c1b119fd788",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B319_Refactor_S7a5.md",
+      "provenance": "B319.346 Share Industry support carriers without changing sequential mutation; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "b324ed219e50575e2d10cbe50477c66694cfbc9899c8d2a8f13e58d3686e71d0",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "f1c4eb3e9294b4bcd76467b2b3a279143d0426170f0c56139629d9cbed31561a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
-      "provenance": "B318.345 Share located carrier mutation mechanics after owner preflight; local/static evidence only; no deployment/native PASS."
+      "sha256": "41c3fbd4fe4a376af28d8233b333c73bc29b84160cc9676ad9a09af76a741927",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B319_Refactor_S7a5.md",
+      "provenance": "B319.346 Share Industry support carriers without changing sequential mutation; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "2d8a7b093e5bf6426a127ffb8e5454e4e3eb01097737a1572694bc85ce9ce76e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
-      "provenance": "B318.345 Share located carrier mutation mechanics after owner preflight; local/static evidence only; no deployment/native PASS."
+      "sha256": "210bbc3042270b83b356faa011ffdb3ea0ca5affc8be17f150c14aa57e8ab722",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B319_Refactor_S7a5.md",
+      "provenance": "B319.346 Share Industry support carriers without changing sequential mutation; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1606,9 +1606,9 @@
       "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CarrierSet.lua": {
-      "sha256": "2f09b328b61f0a4448d9c43aa1206f1c22e9e8cb640b7c1939809a15c5502f39",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
-      "provenance": "B318.345 Share located carrier mutation mechanics after owner preflight; local/static evidence only; no deployment/native PASS."
+      "sha256": "f4d5bc54fc2c96b0a304226a4fc95b351175229624ba23d7a248a8d462719505",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B319_Refactor_S7a5.md",
+      "provenance": "B319.346 Share Industry support carriers without changing sequential mutation; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

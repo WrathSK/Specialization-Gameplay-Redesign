@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B319.346 S7a5 migrates IndustrySupport exact -1..7 carrier descriptors/health/exit into CarrierSet using its original sequential read-write-readback order. BASE sampling, pending/armed work, eligibility, partial success and withdrawal counters remain unchanged. [Result](../../Status/Validation/Results/Specialization_B319_Refactor_S7a5.md).
+
 B318.345 S7a4 shares the exact located carrier mutation loops for Apply/Infrastructure/Chair after their unchanged complete owner preflight. Preserve observed-vs-fresh removal-location witnesses, per-write readback/counts, UNKNOWN holds, real-input pillage and D4 cleanup. [Result](../../Status/Validation/Results/Specialization_B318_Refactor_S7a4.md).
 
 B317.344 S7a3 removes only the redundant own-carrier pillage rebuild condition from Apply/Infrastructure/Chair/Cross under the accepted D4 immunity rule. Real-building/district pillage, wrong-location repair, UNKNOWN/readback guards and diagnostics remain; no old-save repair migration. [Result](../../Status/Validation/Results/Specialization_B317_Refactor_S7a3.md).

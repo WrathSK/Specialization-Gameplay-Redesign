@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0770
-Implementation Build: B318.345 / modinfo345; stable/live B307.334
+Status Revision: S0771
+Implementation Build: B319.346 / modinfo346; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7A4_COMPLETE_CONTINUING
+Work State: REFACTOR_S7A5_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7a4 shares the exact located carrier mutation loops for Apply/Infrastructure/Chair after their unchanged complete owner preflight. Preserve observed-vs-fresh removal-location witnesses, per-write readback/counts, UNKNOWN holds, real-input pillage and D4 cleanup. [Result](Validation/Results/Specialization_B318_Refactor_S7a4.md). Stable/live/main B307.334; no deployment/native PASS.
+S7a5 migrates IndustrySupport exact -1..7 carrier descriptors/health/exit into CarrierSet using its original sequential read-write-readback order. BASE sampling, pending/armed work, eligibility, partial success and withdrawal counters remain unchanged. [Result](Validation/Results/Specialization_B319_Refactor_S7a5.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7a owned-definition/observation consolidation and remaining Industry carriers; then S7b–S10.
+- Primary next: Continue S7a remaining owned definitions/IndustryWonder carriers; then S7b–S10.
+
+## S0771 — B319.346 Share Industry support carriers without changing sequential mutation
+
+S7a5 migrates IndustrySupport exact -1..7 carrier descriptors/health/exit into CarrierSet using its original sequential read-write-readback order. BASE sampling, pending/armed work, eligibility, partial success and withdrawal counters remain unchanged.
 
 ## S0770 — B318.345 Share located carrier mutation mechanics after owner preflight
 

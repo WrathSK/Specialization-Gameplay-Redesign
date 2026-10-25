@@ -47,6 +47,21 @@ function SPCCarrierSet.Define(P,entries,resolve,errors)
   end end
   return plan
  end
+ -- Industry's established per-bit transaction order, including partial success.
+ function d.ApplySequential(city,wanted,health,confirmed)
+  initialize();local result={}
+  for _,v in ipairs(descriptors)do
+   local id=definitions[v.key];local b=city:GetBuildings();local present=P.HasBuilding(b,id)
+   assert(type(present)=='boolean',errors.read);local want=wanted[v.key]==true
+   if present~=want then
+    if want then health.Create(city,id)else health.Remove(city,id)end
+    assert(P.HasBuilding(b,id)==want,errors.write)
+    if confirmed then confirmed(v.key,id,want)end;present=want
+   end
+   result[#result+1]={key=v.key,id=id,present=present,wanted=want}
+  end
+  return result
+ end
  function d.Exit(shared,city,loss)
   return shared.CityProgressionStore.RemoveOwned(city,loss,d.Names())
  end

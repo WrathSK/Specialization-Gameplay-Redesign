@@ -2,6 +2,7 @@ include('SafeCallbacks')
 include('RuntimeWork')
 include('SampleLifecycle')
 include('SpecialistSupport')
+include('CarrierSet')
 -- B036 IND-001: native per-specialist Food + base Production adjacency.
 -- No actual-adjacency fallback, rounding or city-wide multiplication. Crew access is independently audited.
 SPCIndustrySupport={}
@@ -14,17 +15,12 @@ function SPCIndustrySupport.Start(P,shared)
  local function key(pid,cid)return tostring(pid)..':'..tostring(cid)end
  local function reference(c)return table.concat({c:GetOwner(),c:GetID(),c:GetX(),c:GetY(),tostring(c:GetProperty('SPC_DEV_BINDING_B013_TOKEN'))},':')end
  local function name(bit) return 'BUILDING_SPC_DEV_INDUSTRY_LV1_'..bit end
- local definitions;local ownedIndex={}
- local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)defer(scope)end)
- local function validate()
-  if definitions then return definitions end
-  local rows,nextOwned={},{}
-  for bit=-1,7 do
-   local row=P.Info('Buildings',name(bit));assert(row and row.Index,'B036_DATABASE_MISSING: restart/new test game required')
-   rows[bit]=row.Index;nextOwned[row.Index]=true
-  end
-  definitions=rows;ownedIndex=nextOwned;return rows
- end
+ local entries={};for bit=-1,7 do entries[#entries+1]={key=bit,name=name(bit)}end
+ local carriersSet=SPCCarrierSet.Define(P,entries,function(key)
+  local row=P.Info('Buildings',key);assert(row and row.Index,'B036_DATABASE_MISSING: restart/new test game required');return row.Index
+ end,{read='CARRIER_READ_UNKNOWN',write='CARRIER_WRITE_UNCONFIRMED'})
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,carriersSet.Owns,function(scope)defer(scope)end)
+ local function validate()carriersSet.Initialize()end
  local function inspect(pid,city,externalBatch)
   return SPCSpecialistSupport.Inspect(P,shared,pid,city,externalBatch or batch or SPCRuntimeWork.New(P,shared),function(kind,d,f,workers,geometry)
   if kind~='INDUSTRY' then return nil end
@@ -38,20 +34,14 @@ function SPCIndustrySupport.Start(P,shared)
   end)
  end
  local function carriers(city,n,write)
-  local total,food=0,0;local removed=false
-  for bit=-1,7 do
-   local id=validate()[bit]
-   local wanted=n~=nil and (bit==-1 or math.floor(n/2^bit)%2==1)
-   local b=city:GetBuildings();local present=P.HasBuilding(b,id)
-   assert(type(present)=='boolean','CARRIER_READ_UNKNOWN')
-   if write and present~=wanted then
-    if wanted then health.Create(city,id) else health.Remove(city,id);removed=true end
-    assert(P.HasBuilding(b,id)==wanted,'CARRIER_WRITE_UNCONFIRMED')
-    data.changes=data.changes+1;present=wanted
-   end
-   if present then if bit==-1 then food=3 else total=total+2^bit end end
-  end
-  if removed and n==nil then P.Count('industry_withdraw') end
+  local wanted={};for bit=-1,7 do wanted[bit]=n~=nil and (bit==-1 or math.floor(n/2^bit)%2==1)end
+  local rows;local removed=false
+  if write then rows=carriersSet.ApplySequential(city,wanted,health,function(_,_,adding)
+   data.changes=data.changes+1;if not adding then removed=true end
+  end)else rows=carriersSet.Observe(city,wanted)end
+  local total,food=0,0
+  for _,r in ipairs(rows)do if r.present then if r.key==-1 then food=3 else total=total+2^r.key end end end
+  if removed and n==nil then P.Count('industry_withdraw')end
   return total,food
  end
  local function startReady()
@@ -176,8 +166,7 @@ function SPCIndustrySupport.Start(P,shared)
  end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('IndustrySupport',targets.Exit(function(c,loss)
-   local ids={};for bit=-1,7 do ids[#ids+1]=name(bit)end
-   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+   carriersSet.Exit(shared,c,loss)
    pending[key(loss.origin.owner,loss.origin.cityID)]=nil;pending[key(c:GetOwner(),c:GetID())]=nil
    armed[key(loss.origin.owner,loss.origin.cityID)]=nil;armed[key(c:GetOwner(),c:GetID())]=nil
  end))end
