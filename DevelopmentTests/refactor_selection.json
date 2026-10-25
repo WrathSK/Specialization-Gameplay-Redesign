@@ -697,6 +697,12 @@
       "test_refactor_s5d4a",
       "test_refactor_s5d4c10",
       "test_refactor_s3"
+    ],
+    "S6i": [
+      "test_refactor_s6i",
+      "test_refactor_s6h",
+      "test_refactor_s5a2",
+      "test_refactor_s3"
     ]
   },
   "counterexamples": {},
@@ -954,7 +960,17 @@
       "test_refactor_s6h.Panel",
       "test_refactor_s6h.Markers",
       "test_refactor_s6h.ActualTargets",
-      "test_refactor_s6h.ActualConsumption"
+      "test_refactor_s6h.ActualConsumption",
+      "test_refactor_s6i"
+    ],
+    "Mod/UnitSiteFacts.lua": [
+      "test_refactor_s6i"
+    ],
+    "Mod/UnitActions.lua": [
+      "test_refactor_s6i"
+    ],
+    "Mod/InvestmentAction.lua": [
+      "test_refactor_s6i"
     ]
   },
   "exclusions": {

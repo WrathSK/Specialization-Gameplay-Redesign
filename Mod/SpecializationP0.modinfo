@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="339">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="340">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B312.339：单位按钮及目标标记改为事件发布处理，空转不读取单位。</Description>
+    <Description>B313.340：单位当前地点检查使用已确认城市范围，保留完整地图目标与消费前复核。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -240,6 +240,7 @@
       <File>YieldCarrierProbe.lua</File>
       <File>UnitActionSitePolicy.lua</File>
       <File>UnitSiteProbe.lua</File>
+      <File>UnitSiteFacts.lua</File>
       <File>UnitTargets.lua</File>
       <File>UnitActions.lua</File>
       <File>CrewModel.lua</File>
@@ -709,6 +710,7 @@
     <File>UnitSiteProbe.lua</File>
     <File>UI/UnitSites.xml</File>
     <File>UI/UnitSites.lua</File>
+    <File>UnitSiteFacts.lua</File>
     <File>UnitTargets.lua</File>
     <File>UI/UnitTargetMarkers.lua</File>
     <File>UI/CityPotential.xml</File>

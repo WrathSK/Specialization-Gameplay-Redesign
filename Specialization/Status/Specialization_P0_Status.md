@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0764
-Implementation Build: B312.339 / modinfo339; stable/live B307.334
+Status Revision: S0765
+Implementation Build: B313.340 / modinfo340; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S6H_COMPLETE_CONTINUING
+Work State: REFACTOR_S6I_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S6h removes unit/action/target reply polling from .2/.25-second callbacks. Semantic UI events and publication consume strict request replies and coalesce actual changes; the existing callback remains a scalar timeout clock only, never a native read or retry. F28 eliminated the old multi-destination Capital quote hotspot; F32 live D/carrier closure is already covered by S5, with probe cleanup still S10. [Result](Validation/Results/Specialization_B312_Refactor_S6h.md). Stable/live/main B307.334; no deployment/native PASS.
+S6i adds a static read-only site helper and separate target ReadAtSite, narrowing proven action-site and known-city investment checks without replacing full marker discovery. City/queue/HD uniqueness and original irreversible freshness/readback protections remain. [Result](Validation/Results/Specialization_B313_Refactor_S6i.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S6 authoritative current-site/UnitTargets locality and proven network-input increments; then S7–S10.
+- Primary next: Finish S6 proven network-input increments and normal-probe hot path obligations, record U3 engineering checkpoint, then S7–S10.
+
+## S0765 — B313.340 Read current unit sites through proven city scope
+
+S6i adds a static read-only site helper and separate target ReadAtSite, narrowing proven action-site and known-city investment checks without replacing full marker discovery. City/queue/HD uniqueness and original irreversible freshness/readback protections remain.
 
 ## S0764 — B312.339 Consume unit UI replies at semantic events and publication
 

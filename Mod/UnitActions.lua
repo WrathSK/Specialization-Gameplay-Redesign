@@ -1,3 +1,4 @@
+include('UnitSiteFacts')
 -- B044: native project crews, explicit legacy DEV spawn, single-use capped injection.
 SPCUnitActions={}
 function SPCUnitActions.Start(P,shared)
@@ -10,8 +11,10 @@ function SPCUnitActions.Start(P,shared)
   return u,P.Info('Units',u:GetType()).UnitType
  end
  local function target(pid,u)
-  shared.UnitTargets.Refresh(pid,{UnitID=u:GetID(),Token='ACTION_SITE',BuilderPreview=false})
-  local s=shared.UnitTargetSnapshot;assert(not s.error,s.error)
+  local params={UnitID=u:GetID(),Token='ACTION_SITE',BuilderPreview=false};local s
+  if shared.UnitTargets.ReadAtSite then s=shared.UnitTargets.ReadAtSite(pid,params)
+  else shared.UnitTargets.Refresh(pid,params);s=shared.UnitTargetSnapshot end
+  assert(not s.error,s.error)
   local plot=Map.GetPlot(u:GetX(),u:GetY()):GetIndex()
   for _,v in ipairs(s.plots) do
    if v.plot==plot then return Players[pid]:GetCities():FindID(v.cityID) end
@@ -39,10 +42,15 @@ function SPCUnitActions.Start(P,shared)
    view.x=u:GetX();view.y=u:GetY()
    if kind=='UNIT_SETTLER' then
     -- Locate the district before checking the cap, to give a specific cap tooltip.
-    local city
-    for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+    local city,known
+    if SPCUnitSiteFacts then
+     local ok;ok,city,known=pcall(SPCUnitSiteFacts.DistrictCity,P,pid,u)
+     if not ok then city=nil;known=false end
+    end
+    if not known then for _,d in Players[pid]:GetDistricts():Members()do P.Count('district_scan')
      local c=d:GetCity()
      if c and c:GetOwner()==pid and d:GetX()==u:GetX() and d:GetY()==u:GetY() then city=c;break end
+    end
     end
     assert(city,'MOVE_TO_LEGAL_TARGET')
     local v=shared.InvestmentAction.ReadView(pid,city,id)

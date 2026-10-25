@@ -1,8 +1,9 @@
+include('UnitSiteFacts')
 -- B041: target enumeration, derived read-only data. Not authority to consume units.
 SPCUnitTargets={}
 function SPCUnitTargets.Start(P,shared)
  local data={};shared.UnitTargets=data
- function data.Refresh(pid,params)
+ local function collect(pid,params,site)
   local response={token=params.Token,owner=pid,unitID=params.UnitID,plots={},unknown={},version=P.VERSION}
   local ok,err=pcall(function()
    assert(P.IsTestPlayer(pid),'TEST_PLAYER_REQUIRED')
@@ -14,15 +15,20 @@ function SPCUnitTargets.Start(P,shared)
    if crew then shared.CrewProjects.Unit(pid,u)end
    assert(invest or P.CrewBase(row.UnitType)~=nil or (row.UnitType=='UNIT_BUILDER' and params.BuilderPreview==true),'UNIT_NOT_ENABLED')
    response.mode=invest and 'INVEST' or (P.CrewBase(row.UnitType)~=nil and 'BUILD' or 'BUILD TEST')
-   local districts={}
-   for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
-    local c=d:GetCity()
-    if c and c:GetOwner()==pid then
-     local id=c:GetID();districts[id]=districts[id] or {};table.insert(districts[id],d)
+   local districts={};local cityList
+   if site then
+    local c=site.city
+    if c then districts[c:GetID()]=SPCUnitSiteFacts.Districts(P,pid,c)end
+    cityList=function()local done=false;return function()if not done then done=true;return 1,c end end end
+   else
+    for _,d in Players[pid]:GetDistricts():Members()do P.Count('district_scan')
+     local c=d:GetCity()
+     if c and c:GetOwner()==pid then local id=c:GetID();districts[id]=districts[id]or {};table.insert(districts[id],d)end
     end
+    cityList=function()return Players[pid]:GetCities():Members()end
    end
    local seen={}
-   for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan');
+   for _,c in cityList()do if c then P.Count('city_scan')
     local good,value=pcall(function()
      assert(c:GetOwner()==pid,'OWNER_CHANGED')
      local candidates={};local ds=districts[c:GetID()] or {}
@@ -75,9 +81,21 @@ function SPCUnitTargets.Start(P,shared)
     if good and value and not seen[value.plot] then seen[value.plot]=true;response.plots[#response.plots+1]=value
     elseif not good then response.unknown[#response.unknown+1]={cityID=c:GetID(),reason=tostring(value):match('[^\r\n]+')} end
    end
+   end
    table.sort(response.plots,function(a,b) return a.plot<b.plot end)
   end)
   if not ok then response.plots={};response.error=tostring(err):match('[^\r\n]+') end
-  shared.UnitTargetSnapshot=response
+  return response
+ end
+ function data.Refresh(pid,params)shared.UnitTargetSnapshot=collect(pid,params)end
+ function data.ReadAtSite(pid,params)
+  local ok,c,known=pcall(function()
+   assert(P.IsTestPlayer(pid),'TEST_PLAYER_REQUIRED')
+   local u=Players[pid]:GetUnits():FindID(params.UnitID);assert(u and u:GetOwner()==pid,'UNIT_MISSING')
+   if SPCUnitSiteFacts then return SPCUnitSiteFacts.CityAt(P,pid,u)end
+  end)
+  -- A failed/unavailable hint keeps the original complete discovery. It never
+  -- guesses a city or treats UNKNOWN as a confirmed empty target set.
+  return collect(pid,params,ok and known and {city=c}or nil)
  end
 end

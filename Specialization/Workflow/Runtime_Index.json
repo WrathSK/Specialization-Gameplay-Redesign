@@ -706,9 +706,9 @@
       "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
     },
     "Mod/InvestmentAction.lua": {
-      "sha256": "7f1089dbc0b54a5d6c82bc6d5efd0ff326515401da87d0f1498813f3be761ecd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B174_Investment_Propagation_Local.md",
-      "provenance": "B174 bounded investment propagation repair; actual-module old/new values and failure tests reviewed. Source only; no deployment or native PASS."
+      "sha256": "c172e8793367032401f886b511bf9c0523e34ded1a1cccfa8921b9c5d60b3cb6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
+      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LevelBannerState.lua": {
       "sha256": "4929677c51ba8b923fd3ca86535e722ff252fe82081b52d3f0058aee01fda33a",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "01d46be5ceaec1b2eba1a4c889a95ff9bb03624dd1c87d74380c5a5e56c6ad8e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
-      "provenance": "B312.339 Consume unit UI replies at semantic events and publication; local/static evidence only; no deployment/native PASS."
+      "sha256": "6f5e0b668c1cca2b331bf23a6d9783249a65d496137504e1308c7afea3f327e2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
+      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "fa6d389946c7a6d229d21d396187e2555bb77691292cc777da36582cfcb88f7e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
-      "provenance": "B312.339 Consume unit UI replies at semantic events and publication; local/static evidence only; no deployment/native PASS."
+      "sha256": "9d4023c80ce487c27cc0ac2fe7d9fa0987f6624fb653fdbffc58fae5c9ffbfce",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
+      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1536,9 +1536,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UnitActions.lua": {
-      "sha256": "3f42d92378b2b363952955be33244d980922ee53582d4143888c934fc23eeb76",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+      "sha256": "5a03b67b0316d3a77015d106540d3daa86f64186c025a9ef5863605c44df84a2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
+      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UnitSiteProbe.lua": {
       "sha256": "2398a3af7567fbf58498eee3e95f91ff3e1c44574ad601cb75b38bb398a9d0fc",
@@ -1546,9 +1546,9 @@
       "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/UnitTargets.lua": {
-      "sha256": "a34c97f670cfb2b36f0a247d5f3ee3f15f7bfa24f0289c7c2e17c478026af06f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
-      "provenance": "B312.339 Consume unit UI replies at semantic events and publication; local/static evidence only; no deployment/native PASS."
+      "sha256": "81f79cd1539d1803ab9cb4b847aa5536c9eb39907729b9e9d8bd858085bcce3d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
+      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/YieldCarrierProbe.lua": {
       "sha256": "df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21",
@@ -1599,6 +1599,11 @@
       "sha256": "a9c9f2bc4bba3b60b5eeab0313d5600c55f155f568a3d0e2cc6669bf54ea7c8a",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
       "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/UnitSiteFacts.lua": {
+      "sha256": "e6f641f1879ff5262140b05f01a95e2fa92662364128596ecfcbfa4a06c19393",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
+      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."
