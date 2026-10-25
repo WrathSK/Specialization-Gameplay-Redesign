@@ -7,6 +7,7 @@ for _,k in ipairs({'copy','industry','cross'}) do
  for _,n in ipairs({'attempt','send','receive','pending','retry','stale','apply','withdraw','duplicate','timeout'}) do names[#names+1]=k..'_'..n end
 end
 for _,n in ipairs({'read','capture','hit','dirty','publish','failure'}) do names[#names+1]='dc_'..n end
+for _,n in ipairs({'adj_base_capture','adj_base_hit'})do names[#names+1]=n end
 function M.New()
  local s={schema=1,turn=Game.GetCurrentGameTurn(),startTurn=Game.GetCurrentGameTurn(),entries={},inflight=0,peakInflight=0,revision=0,routes=0,enabled=true}
  for _,n in ipairs(names) do s.entries[n]={current=0,total=0,previous=0,peak=0} end
@@ -35,7 +36,7 @@ function M.Describe(detailed)
   'Current / Total (direct Lua engine calls; native Modifier Property writes not observable)',
   'revision='..s.revision..' routes='..s.routes..' inflight='..s.inflight..' peak='..s.peakInflight}
  local groups={{'unit_cb','unit_ignored'},{'revalidate','route_scan'},{'publication','same_snapshot'},
- {'derive','facts','facts_reuse'},{'city_scan','district_scan'},{'building_check','building_create','building_remove'},
+ {'derive','facts','facts_reuse'},{'city_scan','district_scan'},{'adj_base_capture','adj_base_hit'},{'building_check','building_create','building_remove'},
  {'property_write','net_send','net_receive'},{'audit_lv3','audit_boost','audit_standard'},
  {'audit_commerce','audit_copy'},{'busy_skip','send_duplicate','send_inflight','send_timeout'},
  {'route_failure','confirmed_invalid'},{'fact_change','input_duplicate','input_publication'},{'withdrawal','revalidate_same','stale_input'},{'derive_requested','derive_executed'},{'derived_cache_hit','derived_cache_miss'},{'input_version_change','derived_invalidation'},{'discount_attempt','discount_send','discount_pending'},{'discount_ack','discount_retry','discount_timeout'},{'discount_receive','discount_duplicate','discount_stale'},{'discount_apply','discount_withdraw'},{'discount_dirty_mark','discount_direct_refresh','discount_reconcile'},{'discount_skipped_clean','discount_fact_capture','discount_city_processed','discount_ui_scan'}}

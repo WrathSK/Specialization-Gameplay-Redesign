@@ -120,9 +120,10 @@ end
 function L.Sampler(P,industry,encode,limit)
  local s={};local owner,rows,index,full,work,serial,epoch,lastValid,lastWire,lastCount
  function s.Reset()
+  L.InvalidateBaseProduction()
   owner=nil;rows=nil;index=nil;full=true;work={};serial=0;epoch={};lastValid=nil;lastWire=nil;lastCount=0
  end
- function s.All()serial=serial+1;full=true;work={}end
+ function s.All()L.InvalidateBaseProduction();serial=serial+1;full=true;work={}end
  function s.Owner(pid)
   if owner~=nil and integer(pid)and pid~=owner then return false end
   s.All();return true
@@ -132,7 +133,7 @@ function L.Sampler(P,industry,encode,limit)
  function s.Plot(x,y)
   if not coordinate(x,y)or not rows or not index then s.All();return true end
   local hit=index[at(x,y)];if not hit then return false end
-  serial=serial+1;for key in pairs(hit)do work[key]=true end;return true
+  L.InvalidateBaseProduction();serial=serial+1;for key in pairs(hit)do work[key]=true end;return true
  end
  function s.District(pid,did,cid,x,y)
   -- Other owners' districts may change our adjacency. Own membership is rebuilt;
@@ -165,7 +166,7 @@ function L.Sampler(P,industry,encode,limit)
   end
   return map
  end
- function s.Read(pid)
+ function s.Read(pid,turn)
   if owner~=pid then s.Reset();owner=pid end
   if not s.Pending()and lastValid~=nil then return lastValid,lastWire,lastCount end
   local ticket,lifetime=serial,epoch;local all=full;local todo=work;full=false;work={}
@@ -182,7 +183,7 @@ function L.Sampler(P,industry,encode,limit)
    end
    local nextRows={};if not all and rows then for key,r in pairs(rows)do nextRows[key]=r end end
    for key,r in pairs(live)do
-    local wire=encode(pid,r);assert(type(wire)=='string','SAMPLE_WIRE_UNKNOWN')
+    local wire=encode(pid,r,turn);assert(type(wire)=='string','SAMPLE_WIRE_UNKNOWN')
     nextRows[key]={cityID=r.cityID,id=r.id,type=r.type,reference=r.reference,x=r.x,y=r.y,wire=wire}
    end
    local wires={};local n=0
@@ -237,4 +238,64 @@ function L.ChangedCities(old,value,signature)
  end
  for key,row in pairs(old.rows)do if not value.rows[key]then cities[row.cityID]=true end end
  return cities
+end
+
+-- Narrow cross-UI reuse: one native BASE Production value, never effect/role
+-- authority. The stamp contains only current scalar producer/write lifetimes.
+function L.InvalidateBaseProduction()
+ local c=ExposedMembers.SPC_C2_BaseProduction
+ if c and c.schema==1 then c.revision=c.revision+1;c.rows={};c.count=0;c.textBytes=0 end
+end
+local function productionStamp(P,turn)
+ local e=ExposedMembers;local g=e.SPC_P0
+ local i,x=g and g.IndustrySupport,g and g.ResearchCross
+ if not g or g.Version~=P.VERSION or not i or not x or not i.ready or not x.ready
+  or not integer(turn)then return nil end
+ local fields={e.SPC_C2_industry_generation,e.SPC_C2_cross_generation,
+  e.SPC_C2_industry_epoch,e.SPC_C2_cross_epoch}
+ for n=1,4 do if not integer(fields[n])then return nil end end
+ if i.generation~=fields[1]or x.generation~=fields[2]then return nil end
+ fields[5]=turn;fields[6]=e.SPC_RuntimeUIRevision or 0
+ fields[7]=i.sampleRevision or 0;fields[8]=x.sampleRevision or 0
+ for n=5,8 do if not integer(fields[n])then return nil end end
+ return table.concat(fields,':')
+end
+function L.ReadBaseProduction(P,pid,r,districtType,yieldIndex,turn)
+ local function native()
+  if P.Count then P.Count('adj_base_capture')end
+  return Map.GetPlot(r.x,r.y):GetAdjacencyYield(pid,r.cityID,districtType,yieldIndex)
+ end
+ local function indexScalar(v)return type(v)=='number'and v==v and math.abs(v)<1e8 or type(v)=='string'and #v<=256 end
+ local stamp=productionStamp(P,turn)
+ if not stamp or not integer(pid)or not integer(r.id)or not integer(r.cityID)
+  or not integer(r.x)or not integer(r.y)or type(r.reference)~='string'or type(r.type)~='string'
+  or not indexScalar(districtType)or not indexScalar(yieldIndex)then return native()end
+ local e=ExposedMembers;local c=e.SPC_C2_BaseProduction
+ if not c or c.schema~=1 or c.version~=P.VERSION then
+  c={schema=1,version=P.VERSION,authority='NATIVE_SAMPLE_ONLY',revision=0,rows={},count=0,textBytes=0}
+  e.SPC_C2_BaseProduction=c
+ end
+ if c.stamp~=stamp then c.stamp=stamp;c.rows={};c.count=0;c.textBytes=0 end
+ local key=tostring(pid)..':'..tostring(r.id)
+ local prior=c.rows[key]
+ local function same(row)
+  return row and row.reference==r.reference and row.city==r.cityID and row.x==r.x and row.y==r.y
+   and row.type==r.type and row.districtType==districtType and row.yieldIndex==yieldIndex
+ end
+ if same(prior)and type(prior.value)=='number'and prior.value==prior.value and math.abs(prior.value)<1e8 then
+  if P.Count then P.Count('adj_base_hit')end;return prior.value
+ end
+ local revision=c.revision
+ local value=native() -- a thrown/unknown read is never installed or retried here
+ if e.SPC_C2_BaseProduction==c and c.revision==revision and productionStamp(P,turn)==stamp
+  and type(value)=='number'and value==value and math.abs(value)<1e8 and type(r.reference)=='string'then
+  local bytes=#r.reference+(type(r.type)=='string'and #r.type or 0)
+  local oldBytes=prior and prior.textBytes or 0
+  if (prior or c.count<512)and c.textBytes-oldBytes+bytes<=262144 then
+   c.rows[key]={reference=r.reference,city=r.cityID,x=r.x,y=r.y,type=r.type,
+    districtType=districtType,yieldIndex=yieldIndex,value=value,textBytes=bytes}
+   if not prior then c.count=c.count+1 end;c.textBytes=c.textBytes-oldBytes+bytes
+  end
+ end
+ return value
 end

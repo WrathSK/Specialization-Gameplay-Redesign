@@ -3,9 +3,9 @@ include('SampleLifecycle')
 local P=SPCP0;local busy=false;local hooks={};local seenData,seenGeneration,seenTurn,seenSample
 local public={state='LOADED',attempts=0,requests=0};ExposedMembers.SPC_IndustryBackground=public
 local client=SPCSampleLifecycle.Client(P,'industry','INDUSTRY_BASE',public,{recoveryProof=true})
-local sampler=SPCSampleLifecycle.Sampler(P,true,function(pid,r)
+local sampler=SPCSampleLifecycle.Sampler(P,true,function(pid,r,turn)
  local d=r.district
- local sum=Map.GetPlot(r.x,r.y):GetAdjacencyYield(pid,r.cityID,d:GetType(),P.Info('Yields','YIELD_PRODUCTION').Index)
+ local sum=SPCSampleLifecycle.ReadBaseProduction(P,pid,r,d:GetType(),P.Info('Yields','YIELD_PRODUCTION').Index,turn)
  assert(type(sum)=='number'and sum>=0 and sum<=255 and sum%1==0,'BASE_ADJACENCY_UNKNOWN_FRACTIONAL_OR_OUT_OF_RANGE')
  return r.cityID..','..r.id..','..r.reference..','..string.format('%.17g',sum)..',0'
 end,60000)
@@ -22,11 +22,11 @@ local function refresh()
  if not client.Before(data)then return end
  if not sampler.Pending()and not client.NeedsSample()then return end
  busy=true
- local valid,rows,n,err=sampler.Read(pid)
+ local valid,rows,n,err=sampler.Read(pid,turn)
  if valid==nil then busy=false;return end -- superseded by a real cause retained for the next boundary
  local current=ExposedMembers.SPC_P0
  if current~=shared or current.IndustrySupport~=data or current.Version~=P.VERSION
-  or data.generation~=seenGeneration or data.sampleRevision~=seenSample or Game.GetLocalPlayer()~=pid then
+  or data.generation~=seenGeneration or data.sampleRevision~=seenSample or Game.GetLocalPlayer()~=pid or Game.GetCurrentGameTurn()~=turn then
   sampler.All();busy=false;return -- changed source/reference cause remains pending,never sends old context data
  end
  public.error=not valid and tostring(err)or nil;public.count=n

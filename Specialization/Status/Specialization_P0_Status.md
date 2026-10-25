@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0826
-Implementation Build: B373.400 / modinfo400; stable/live B307.334
+Status Revision: S0827
+Implementation Build: B374.401 / modinfo401; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E2_COMPLETE_CONTINUING
+Work State: REFACTOR_S9E2B_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e2 narrows R15 actual UI→sample→consumer work. Shared bounded sampling mechanism tracks scalar district rings;remote AI plots perform0 adjacency reads/censuses/audits,one matched industrial change reads1 zone and audits1 city. Gameplay still verifies complete C2 membership. Industry drops raw plot audits and global write revision sampling;explicit role/reference scalar causes preserve recovery. Cross keeps its own six-yield/pillage policy and gains equal-value availability recovery. Native delivery/CPU/heap and actual cross-context numeric reuse remain open,not implied by the shared mechanism. Continue S9/S10;no deployment/native PASS. [Result](Validation/Results/Specialization_B373_Refactor_S9e2.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e2b closes R15 duplicate numeric sampling with a narrow bounded scalar BASE Production cache across the existing two UI producers. Build/both producer generations/client epochs/turn/related causes/native write revision/exact district ref guard reuse;UNKNOWN,missing proof and capacity use original fresh reads without denying work. Actual two-UI composition preserves a nonempty changed C2 packet while native Production reads fall3→2,duplicate industrial reads2→1;real Probe writes correctly force fresh later reads. Other five Cross yields/qualification remain independent. Native N5/N14,pillage behavior,complete C2 validation/turn census and other S9/U4/S10 work remain. [Result](Validation/Results/Specialization_B374_Refactor_S9e2b.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue R15 actual cross-context base-value reuse with explicit bounded validity/write barriers,then R09 transfer/reverse dependencies,R18 retirement,R11 relay trace and remaining S9/U4/S10. Native N5/N14 remain U5;no deployment/main/game launch.
+- Primary next: Continue R09 actual Standardization transfer/reverse-dependency scope and adopted lifecycle metadata,then R18 probe retirement,R11 UI→Gameplay trace,remaining source-local/cold/Store/display findings,S9 owner-applied UI,U4 and S10. No deployment/main/game launch.
+
+## S0827 — B374.401 Reuse native base Production across the two scoped UI producers
+
+S9e2b closes R15 duplicate numeric sampling with a narrow bounded scalar BASE Production cache across the existing two UI producers. Build/both producer generations/client epochs/turn/related causes/native write revision/exact district ref guard reuse;UNKNOWN,missing proof and capacity use original fresh reads without denying work. Actual two-UI composition preserves a nonempty changed C2 packet while native Production reads fall3→2,duplicate industrial reads2→1;real Probe writes correctly force fresh later reads. Other five Cross yields/qualification remain independent. Native N5/N14,pillage behavior,complete C2 validation/turn census and other S9/U4/S10 work remain.
 
 ## S0826 — B373.400 Scope adjacency sampling and notify only changed cities
 

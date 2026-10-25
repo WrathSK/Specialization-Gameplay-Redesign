@@ -5,14 +5,18 @@ local P=SPCP0;local busy=false;local hooks={};local seenData,seenGeneration,seen
 local public={state='LOADED',attempts=0,requests=0};ExposedMembers.SPC_ResearchCrossBackground=public
 local client=SPCSampleLifecycle.Client(P,'cross','RESEARCH_CROSS_SAMPLE',public,{recoveryProof=true})
 local replacements
-local sampler=SPCSampleLifecycle.Sampler(P,false,function(pid,r)
+local sampler=SPCSampleLifecycle.Sampler(P,false,function(pid,r,turn)
  local d=r.district;local pillaged=d:IsPillaged();assert(type(pillaged)=='boolean','CROSS_PILLAGE_UNKNOWN')
  local fields={r.cityID,r.id,r.reference,pillaged and '1'or '0'}
  replacements=replacements or SPCResearchCrossSample.Replacements(P)
  local domain=SPCResearchCrossModel.Domain(r.type,replacements)
  for _,y in ipairs(SPCResearchCrossModel.Yields)do
   local value=0
-  if domain and not pillaged then value=Map.GetPlot(r.x,r.y):GetAdjacencyYield(pid,r.cityID,d:GetType(),P.Info('Yields','YIELD_'..y).Index)end
+  if domain and not pillaged then
+   local yieldIndex=P.Info('Yields','YIELD_'..y).Index
+   if y=='PRODUCTION'then value=SPCSampleLifecycle.ReadBaseProduction(P,pid,r,d:GetType(),yieldIndex,turn)
+   else value=Map.GetPlot(r.x,r.y):GetAdjacencyYield(pid,r.cityID,d:GetType(),yieldIndex)end
+  end
   assert(type(value)=='number'and value==value and math.abs(value)<1e8,'CROSS_BASE_UNAVAILABLE')
   fields[#fields+1]=string.format('%.17g',value)
  end
@@ -32,11 +36,11 @@ local function refresh()
  if not sampler.Pending()and not client.NeedsSample()then return end
  busy=true
  replacements=nil
- local valid,rows,n,err=sampler.Read(pid)
+ local valid,rows,n,err=sampler.Read(pid,turn)
  if valid==nil then busy=false;return end -- superseded by a real cause retained for the next boundary
  local current=ExposedMembers.SPC_P0
  if current~=shared or current.ResearchCross~=data or current.Version~=P.VERSION
-  or data.generation~=seenGeneration or data.sampleRevision~=seenSample or Game.GetLocalPlayer()~=pid then
+  or data.generation~=seenGeneration or data.sampleRevision~=seenSample or Game.GetLocalPlayer()~=pid or Game.GetCurrentGameTurn()~=turn then
   sampler.All();busy=false;return -- changed source/reference cause remains pending,never sends old context data
  end
  public.error=not valid and tostring(err)or nil;public.count=n

@@ -781,14 +781,14 @@
       "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "7106072d5161098caad6aee2603858ed6e176280943aaddf99ad1ef4de400a6e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
-      "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
+      "sha256": "8d80f53f097e31f6435d196af3fbcde3fff586e7f24c6d4aa5ce25b9f3a90ff0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
+      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "9f587045de4261e623ed377c8ab3f37b24f14b817355d6d32b1e655dcfcaa35d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
+      "sha256": "532ed4d5a85b720c135c347ec591fdf5d35e0abe47838b800faefd79b6394f09",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
+      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -901,9 +901,9 @@
       "provenance": "B371.398 Stop stale Tradition carrier writes after confirmed lifecycle change; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
-      "sha256": "3e139080f70c57402ebab797b8b10ff5efe69e662e7b96b50179b89a175b261f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
+      "sha256": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
+      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ShadowRouteState.lua": {
       "sha256": "6f35992fd9e5b8d2429061acbaf83e3f7747300592bf050dbb23e1e5fe9163e6",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e38d32eeea1f02310c263a2f0abfd8749712782e39d73299333d0a0c035f257e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
+      "sha256": "0e7950ae1a3cc0d7515b613386d1600e215043d4d3f91738baa603623926abfc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
+      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1396,9 +1396,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/IndustryRefresh.lua": {
-      "sha256": "05bcbd8343005b004a6728935455cdbc3a88d51c68cfbb355aa8aab02098374f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
+      "sha256": "f2ccea01405828a5c89c6aabac6b0920f3668a9f850773704bf33c651d413d31",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
+      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/IndustryRefresh.xml": {
       "sha256": "9af08ee9bb27efd3a6dee21d6cda407965200834b4172d63d064a6b1b9396ebe",
@@ -1456,9 +1456,9 @@
       "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
     },
     "Mod/UI/ResearchCrossRefresh.lua": {
-      "sha256": "8d57c0332d2cde7c07ea5a7e09b86a586e152963316acea9e96b4994506c9d97",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
+      "sha256": "eaa746ed4fb69620442ebef640d0569d9ff7e6899794073242b249c64d29f5de",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
+      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/ResearchCrossRefresh.xml": {
       "sha256": "72f1e300b5cdd94839ee4a6308b265115783af2bf5321da52ef1bebdd8b77498",

@@ -1798,6 +1798,20 @@
       "test_refactor_s5d4c3",
       "test_refactor_s5d1.Writers",
       "test_refactor_s9e1"
+    ],
+    "S9e2b": [
+      "test_refactor_s9e2b",
+      "test_refactor_s9e2",
+      "test_refactor_s4a.Industry",
+      "test_refactor_s4a.IndustryReentry",
+      "test_refactor_s7f.IndustryPending",
+      "test_refactor_s6c",
+      "test_refactor_s5a2",
+      "test_refactor_s5c1.Districts",
+      "test_refactor_s7a3",
+      "test_refactor_s5d4c3",
+      "test_refactor_s5d1.Writers",
+      "test_refactor_s9e1"
     ]
   },
   "counterexamples": {},
@@ -1870,7 +1884,8 @@
     "Mod/PerformanceCounters.lua": [
       "test_refactor_defects",
       "test_refactor_attribution",
-      "test_refactor_s4a"
+      "test_refactor_s4a",
+      "test_refactor_s9e2b"
     ],
     "Mod/Commerce.lua": [
       "test_refactor_defects.Defects",
@@ -1938,11 +1953,13 @@
     "Mod/SampleLifecycle.lua": [
       "test_refactor_s4a",
       "test_refactor_s6c",
-      "test_refactor_s9e2"
+      "test_refactor_s9e2",
+      "test_refactor_s9e2b"
     ],
     "Mod/UI/IndustryRefresh.lua": [
       "test_refactor_s4a",
-      "test_refactor_s9e2"
+      "test_refactor_s9e2",
+      "test_refactor_s9e2b"
     ],
     "Mod/NetworkInput.lua": [
       "test_refactor_s4b",
@@ -2244,7 +2261,8 @@
       "test_refactor_s9e2"
     ],
     "Mod/UI/ResearchCrossRefresh.lua": [
-      "test_refactor_s9e2"
+      "test_refactor_s9e2",
+      "test_refactor_s9e2b"
     ]
   },
   "exclusions": {

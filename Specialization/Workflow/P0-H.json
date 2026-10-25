@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0826",
-    "runtime": "B373.400 / modinfo400",
+    "status": "S0827",
+    "runtime": "B374.401 / modinfo401",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue R15 actual cross-context base-value reuse with explicit bounded validity/write barriers,then R09 transfer/reverse dependencies,R18 retirement,R11 relay trace and remaining S9/U4/S10. Native N5/N14 remain U5;no deployment/main/game launch. No automatic deployment/main/native launch.",
+  "goal": "Continue R09 actual Standardization transfer/reverse-dependency scope and adopted lifecycle metadata,then R18 probe retirement,R11 UI→Gameplay trace,remaining source-local/cold/Store/display findings,S9 owner-applied UI,U4 and S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -564,6 +564,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
       "kind": "full",
       "reason": "Scope adjacency sampling and notify only changed cities actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
+      "kind": "full",
+      "reason": "Reuse native base Production across the two scoped UI producers actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -590,8 +595,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-    "local": "LOCAL_SIMULATION_PASS_113",
+    "report": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
+    "local": "LOCAL_SIMULATION_PASS_128",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }
