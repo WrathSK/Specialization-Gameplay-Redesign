@@ -1772,6 +1772,9 @@
     ],
     "S9a3e": [
       "test_refactor_s9a3e"
+    ],
+    "S9d1": [
+      "test_refactor_s9d1"
     ]
   },
   "counterexamples": {},

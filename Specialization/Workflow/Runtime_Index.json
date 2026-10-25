@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "c2f48d4fbc8d273d1573393f695ab23780d465f975dcca1391c8f1bd212bb593",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B369_Refactor_S9a3e.md",
-      "provenance": "B369.396 Consume covered owner inputs in Training UI without idle native reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "eaf4544083822003a90117c58317ebb09aedeea10bfd4831bbd2703e0ff4cf02",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B370_Refactor_S9d1.md",
+      "provenance": "B370.397 Publish Research Tradition applied values independently of candidates; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -871,9 +871,9 @@
       "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchTraditionEffects.lua": {
-      "sha256": "67cd50fbe2540b93393accfcf43c083392fc5551b220915b85d9907704d18915",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B296_Refactor_S5d4c7.md",
-      "provenance": "B296.323 Tradition projection health preserves authoritative age; local/static evidence only; no deployment/native PASS."
+      "sha256": "520834cd9425d58b7eee7b65064822fafef24201e67583f3b91599e164f0ff2a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B370_Refactor_S9d1.md",
+      "provenance": "B370.397 Publish Research Tradition applied values independently of candidates; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Restructuring.lua": {
       "sha256": "a73419ec31cdf08e734aaac78d85d1fc909d967d335568ad1f94b4572a582fa5",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c1a5cc3810a97d48af7db510639a7f8e7ee861f83c135dd8be6eb733472e0735",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B369_Refactor_S9a3e.md",
-      "provenance": "B369.396 Consume covered owner inputs in Training UI without idle native reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "1146c19d4fcafc68b1962509a3d8805959f017c85eb980642eba3e43463e9f91",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B370_Refactor_S9d1.md",
+      "provenance": "B370.397 Publish Research Tradition applied values independently of candidates; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

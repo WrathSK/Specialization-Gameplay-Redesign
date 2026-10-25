@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0822
-Implementation Build: B369.396 / modinfo396; stable/live B307.334
+Status Revision: S0823
+Implementation Build: B370.397 / modinfo397; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9A3_COMPLETE_CONTINUING
+Work State: REFACTOR_S9D1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9a3e migrates only Training UI from global runtime revision to exact Store/EF/Gate/Training sources,owner inputs and covered SYNC receipts. Attempted and covered states stay separate;stale/missing receipts do not grant visible eligibility or absorb new facts. Actual1000publish+1000playback calls add0 native reads,SYNC or writes;25 new tests plus original training/handshake assertions pass. Notify/render/Build/Close reentry is fenced,one scalar selection/header replaces native city caching. Real eligible-row render has explicit additional reference-check cost. Continue owner-applied display,adjacency,S10;exact D7/D5/native limits remain. [Result](Validation/Results/Specialization_B369_Refactor_S9a3e.md). Stable/live/main B307.334; no deployment/native PASS.
+S9d1 adds pure bounded ResearchTradition Applied publication from original successful carrier readbacks,with exact scalar reference and independent gate/reason/lastConfirmed. Existing facts/rows/error-location getters are reused;normal Update adds0 native reads. Health/lifecycle/source/sequence guards preserve UNKNOWN on partial/reentrant work.27 new tests and11 original Tradition health assertions pass;2048 publisher cap never blocks effect writes. UI DTO is not wired. Other owner publications,adjacency,S10 and exact D7/D5 limits remain;mid-application exit writer safety is a recorded narrow follow-up. [Result](Validation/Results/Specialization_B370_Refactor_S9d1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 owner-published actually applied institution values/gates/reasons and shared adjacency sampling,then S10 responsibility migration and safe retirement;exact D7 permanent-history/money and D5 native attribution limits remain.
+- Primary next: Continue S9 other owner-applied publications and institution DTO wiring,shared adjacency and narrow in-flight exit guard review under existing confirmed-loss rules,then S10 safe responsibility retirement;exact D7 permanent-history/money and D5 native attribution limits remain.
+
+## S0823 — B370.397 Publish Research Tradition applied values independently of candidates
+
+S9d1 adds pure bounded ResearchTradition Applied publication from original successful carrier readbacks,with exact scalar reference and independent gate/reason/lastConfirmed. Existing facts/rows/error-location getters are reused;normal Update adds0 native reads. Health/lifecycle/source/sequence guards preserve UNKNOWN on partial/reentrant work.27 new tests and11 original Tradition health assertions pass;2048 publisher cap never blocks effect writes. UI DTO is not wired. Other owner publications,adjacency,S10 and exact D7/D5 limits remain;mid-application exit writer safety is a recorded narrow follow-up.
 
 ## S0822 — B369.396 Consume covered owner inputs in Training UI without idle native reads
 
