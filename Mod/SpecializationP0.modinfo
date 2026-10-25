@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="383">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="384">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B356.383：建立有界玩家操作结果通道，尚未接线，不改变现有按钮行为。</Description>
+    <Description>B357.384：接入Gameplay玩家结果发布，保留DEV与原有事实传播；UI切换待下批。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

@@ -54,3 +54,15 @@ function SPCPlayerActionReplies.New(epoch,version)
  function d.Shutdown()closed=true;slots={};index={};count=0 end
  return d
 end
+-- One explicit Gameplay producer service. Session metadata only, not a save.
+function SPCPlayerActionReplies.Start(P,shared)
+ local previous=ExposedMembers.SPC_PlayerActionReplyEpoch or 0
+ assert(type(previous)=='number' and previous>=0 and previous<9007199254740991
+  and previous%1==0,'PLAYER_REPLY_EPOCH')
+ local d=SPCPlayerActionReplies.New(previous+1,P.VERSION)
+ local old=shared.PlayerActionReplies
+ if old and type(old.Shutdown)=='function'then old.Shutdown()end
+ ExposedMembers.SPC_PlayerActionReplyEpoch=previous+1
+ shared.PlayerActionReplies=d
+ return d
+end

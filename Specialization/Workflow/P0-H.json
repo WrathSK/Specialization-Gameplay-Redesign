@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0809",
-    "runtime": "B356.383 / modinfo383",
+    "status": "S0810",
+    "runtime": "B357.384 / modinfo384",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S9c Gameplay terminal-result producer and UnitPanel ACK migration,then remaining channels,owner-bound training signals,applied display,adjacency and S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
+  "goal": "Migrate UnitPanel prepare/confirm ACK to the validated player channel,then remaining channels,owner-bound training signals,applied display,adjacency and S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -479,6 +479,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B356_Refactor_S9c1.md",
       "kind": "full",
       "reason": "Prove a bounded player-action terminal reply primitive actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B357_Refactor_S9c2.md",
+      "kind": "full",
+      "reason": "Publish optional player action results at the real Gameplay boundary actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -505,8 +510,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B356_Refactor_S9c1.md",
-    "local": "LOCAL_SIMULATION_PASS: 848 tests; Lua51/XML/package/reference checks passed",
+    "report": "Specialization/Status/Validation/Results/Specialization_B357_Refactor_S9c2.md",
+    "local": "LOCAL_SIMULATION_PASS: 861 tests; Lua51/XML/package/reference checks passed",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

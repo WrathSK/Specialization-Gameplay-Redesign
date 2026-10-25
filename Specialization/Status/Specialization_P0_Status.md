@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0809
-Implementation Build: B356.383 / modinfo383; stable/live B307.334
+Status Revision: S0810
+Implementation Build: B357.384 / modinfo384; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9C1_COMPLETE_CONTINUING
+Work State: REFACTOR_S9C2_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9c1 adds the isolated PlayerActionReplies terminal transport: fixed UNIT_ACTION scope,eight-slot ring,owner+token lookup,explicit epoch/version/action/unitID validation,detached text/status/kind/phase only,scalar Has,explicit Take/Discard and Shutdown. Twelve focused tests prove capacity,retained duplicates,identity/limits and no native/callback/clock/save dependency. It is not transaction/replay authority or durable evidence. No production producer/UI consumes it yet; next wire Gameplay before migrating the player ACK while DEV stays compatible. Other S9/S10 and exact D7/D5 limits remain OPEN. [Result](Validation/Results/Specialization_B356_Refactor_S9c1.md). Stable/live/main B307.334; no deployment/native PASS.
+S9c2 starts the fixed PlayerActionReplies service after UnitActions while preserving all original startup order. Explicit UNIT_ACTION/epoch requests publish detached terminal results at the original Gameplay reply boundary before fact observation; no-channel DEV keeps LastToken/Snapshot. Text,investment receipt and typed outcome are preserved separately; publication failure/reentry never suppresses original receipt propagation or replays the action. Fourteen focused tests pass including16 actual Crew legacy/typed fault cases. Player UI/view/target consumers remain unchanged; continue S9c migration and remaining S9/S10 with exact D7/D5 limits OPEN. [Result](Validation/Results/Specialization_B357_Refactor_S9c2.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9c Gameplay terminal-result producer and UnitPanel ACK migration,then remaining channels,owner-bound training signals,applied display,adjacency and S10; preserve exact D7/native D5 limitations.
+- Primary next: Migrate UnitPanel prepare/confirm ACK to the validated player channel,then remaining channels,owner-bound training signals,applied display,adjacency and S10; preserve exact D7/native D5 limitations.
+
+## S0810 — B357.384 Publish optional player action results at the real Gameplay boundary
+
+S9c2 starts the fixed PlayerActionReplies service after UnitActions while preserving all original startup order. Explicit UNIT_ACTION/epoch requests publish detached terminal results at the original Gameplay reply boundary before fact observation; no-channel DEV keeps LastToken/Snapshot. Text,investment receipt and typed outcome are preserved separately; publication failure/reentry never suppresses original receipt propagation or replays the action. Fourteen focused tests pass including16 actual Crew legacy/typed fault cases. Player UI/view/target consumers remain unchanged; continue S9c migration and remaining S9/S10 with exact D7/D5 limits OPEN.
 
 ## S0809 — B356.383 Prove a bounded player-action terminal reply primitive
 

@@ -555,8 +555,20 @@ local function request(playerID,params)
   end
   if params.Action=="UNIT_ACTION_SPAWN" or params.Action=="UNIT_ACTION_PREPARE" or params.Action=="UNIT_ACTION_CONFIRM" then
     if not P.IsTestPlayer(playerID) then return end
-    local result
-    shared.Snapshot,result=shared.UnitActions.Run(playerID,params);shared.LastToken=params.Token
+    local replies
+    if params.ReplyChannel~=nil then
+      replies=shared.PlayerActionReplies
+      if not replies or not replies.Accepts(playerID,params)then return end
+    end
+    local text,result,outcome=shared.UnitActions.Run(playerID,params)
+    if replies then
+      local ok,accepted=false,false
+      if shared.PlayerActionReplies==replies then ok,accepted=pcall(replies.Publish,playerID,params,text,outcome)end
+      shared.ObserverErrors=shared.ObserverErrors or {}
+      shared.ObserverErrors['unit-action-reply']=not(ok and accepted==true)and 'PLAYER_REPLY_UNAVAILABLE'or nil
+    else
+      shared.Snapshot=text;shared.LastToken=params.Token -- Explicit DEV/legacy compatibility.
+    end
     SPCSafeCallbacks.Call(shared,'request-facts',refreshInvestmentSupport,playerID,result)
     return
   end
@@ -834,6 +846,8 @@ composition.Run('UnitTargets',{'EffectiveFacts','UnitSiteProbe'},{'UnitTargets'}
 composition.Run('UnitActions',{'CityProgressionStore','InvestmentAction','ConstructionProbe','UnitTargets'},{'UnitActions'},function() include('UnitActions');SPCUnitActions.Start(P,shared) end)
 
 composition.Run('CrewProjects',{'CityProgressionStore','EffectiveFacts'},{'CrewProjects'},function() include('CrewProjects');SPCCrewProjects.Start(P,shared) end)
+
+composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'},function() include('PlayerActionReplies');SPCPlayerActionReplies.Start(P,shared) end)
 
 composition.Run('CrewPrecision',{'UnitActions','UnitTargets','CrewProjects','ConstructionProbe'},{'CrewPrecision'},function() include('CrewPrecision');SPCCrewPrecision.Start(P,shared) end,{{shared.UnitActions,'Run'}})
 

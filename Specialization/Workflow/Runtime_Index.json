@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "d656340cd583a7277de2c3f7284db028e20a7487e912d741272da971444ff0fe",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "8c5d3661be4f6c285ca11104bf3677be36d64bc93f8e9ab010768c6b22e6eec2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B357_Refactor_S9c2.md",
+      "provenance": "B357.384 Publish optional player action results at the real Gameplay boundary; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "273afec5f7f8c1df9c873d50ea16dae7ca7d1749555ef9aa389faa363058b767",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B356_Refactor_S9c1.md",
-      "provenance": "B356.383 Prove a bounded player-action terminal reply primitive; local/static evidence only; no deployment/native PASS."
+      "sha256": "f49c6729b64ef134f7a238408376d2f97ee99120989e2c56f9ffae75b929646a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B357_Refactor_S9c2.md",
+      "provenance": "B357.384 Publish optional player action results at the real Gameplay boundary; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "19b19a41769232e8afb036a203e52cc2ba6091fc04c767a0c35737aa6be1d114",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B356_Refactor_S9c1.md",
-      "provenance": "B356.383 Prove a bounded player-action terminal reply primitive; local/static evidence only; no deployment/native PASS."
+      "sha256": "f45cedc3839e076b3b5b478f744f38024dae7c5fc5d9ff40ab4408c3d1a3240b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B357_Refactor_S9c2.md",
+      "provenance": "B357.384 Publish optional player action results at the real Gameplay boundary; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1676,9 +1676,9 @@
       "provenance": "B355.382 Select Expedition entry cities from raw UI facts in Gameplay; local/static evidence only; no deployment/native PASS."
     },
     "Mod/PlayerActionReplies.lua": {
-      "sha256": "0f5cf37cc0530e370511407d578481ee154ffda403aa77e924a973b976558276",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B356_Refactor_S9c1.md",
-      "provenance": "B356.383 Prove a bounded player-action terminal reply primitive; local/static evidence only; no deployment/native PASS."
+      "sha256": "6ba98178232fb4d5d7dd48abe4facf5e8a042b6bec3772157dc1d00c3964bcd7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B357_Refactor_S9c2.md",
+      "provenance": "B357.384 Publish optional player action results at the real Gameplay boundary; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."
