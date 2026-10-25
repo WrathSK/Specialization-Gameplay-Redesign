@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0794
-Implementation Build: B341.368 / modinfo368; stable/live B307.334
+Status Revision: S0795
+Implementation Build: B342.369 / modinfo369; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8B2_COMPLETE_CONTINUING
+Work State: REFACTOR_S8B3_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8b2 isolates only an independently invalid, completely readable/copyable Insights leaf when the entire remaining parent and eight other abilities pass unchanged strict validation. Original bytes remain in every saved record; other legal writes continue with exact preservation and full CAS/readback. Insights getter/Add reject isolation; institution display marks only that metric pending. Read/copy/other-core failure stays held. No permanent-corruption verdict, zero reset or repair setter. Remaining D7 abilities/recovery and D5 native proof stay OPEN. [Result](Validation/Results/Specialization_B341_Refactor_S8b2.md). Stable/live/main B307.334; no deployment/native PASS.
+S8b3 extends the fixed preserved-leaf isolation scope to Research Tradition. Complete remaining-parent validation still gates isolation; either or both reviewed leaves can be unavailable without losing other valid capabilities. All writes preserve each isolated original field. Age ticks, P4 initialization and lifecycle age mutation skip only invalid history; actual effect city routing remains so confirmed qualification loss still withdraws carriers. Institution display marks Tradition pending. No age reconstruction/reset, schema, event or timer change. Other D7 abilities/permanent recovery and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B342_Refactor_S8b3.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue the remaining ability-specific S8 fault isolation/recovery and then S9–S10, preserving unresolved D5/D7 evidence boundaries.
+- Primary next: Continue remaining S8 ability isolation/recovery with actual consumer and lifecycle proofs, then S9–S10.
+
+## S0795 — B342.369 Isolate invalid Tradition while preserving lifecycle and effect routing
+
+S8b3 extends the fixed preserved-leaf isolation scope to Research Tradition. Complete remaining-parent validation still gates isolation; either or both reviewed leaves can be unavailable without losing other valid capabilities. All writes preserve each isolated original field. Age ticks, P4 initialization and lifecycle age mutation skip only invalid history; actual effect city routing remains so confirmed qualification loss still withdraws carriers. Institution display marks Tradition pending. No age reconstruction/reset, schema, event or timer change. Other D7 abilities/permanent recovery and D5 native proof remain OPEN.
 
 ## S0794 — B341.368 Isolate invalid Insights without discarding city history
 

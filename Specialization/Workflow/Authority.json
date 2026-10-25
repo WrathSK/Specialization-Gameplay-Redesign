@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0794",
-    "runtime": "B341.368 / modinfo368",
+    "status": "S0795",
+    "runtime": "B342.369 / modinfo369",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S8B2_COMPLETE_CONTINUING",
-  "next_batch": "Continue the remaining ability-specific S8 fault isolation/recovery and then S9–S10, preserving unresolved D5/D7 evidence boundaries. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S8B3_COMPLETE_CONTINUING",
+  "next_batch": "Continue remaining S8 ability isolation/recovery with actual consumer and lifecycle proofs, then S9–S10. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "User resumed accepted S8b–S10 after the app update. Coherent verified develop batches may commit/push without routine stage authorization; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S0794 S8b2 isolates only an independently invalid, completely readable/copyable Insights leaf when the entire remaining parent and eight other abilities pass unchanged strict validation. Original bytes remain in every saved record; other legal writes continue with exact preservation and full CAS/readback. Insights getter/Add reject isolation; institution display marks only that metric pending. Read/copy/other-core failure stays held. No permanent-corruption verdict, zero reset or repair setter. Remaining D7 abilities/recovery and D5 native proof stay OPEN. No native/deployment PASS.",
+  "context_review_status": "S0795 S8b3 extends the fixed preserved-leaf isolation scope to Research Tradition. Complete remaining-parent validation still gates isolation; either or both reviewed leaves can be unavailable without losing other valid capabilities. All writes preserve each isolated original field. Age ticks, P4 initialization and lifecycle age mutation skip only invalid history; actual effect city routing remains so confirmed qualification loss still withdraws carriers. Institution display marks Tradition pending. No age reconstruction/reset, schema, event or timer change. Other D7 abilities/permanent recovery and D5 native proof remain OPEN. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B341_Refactor_S8b2.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B342_Refactor_S8b3.md"
 }

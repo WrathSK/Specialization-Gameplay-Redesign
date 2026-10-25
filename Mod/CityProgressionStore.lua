@@ -30,6 +30,7 @@ local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
  local isolated={} -- session-only observations; original ability bytes remain in root
+ local isolationKeys={'expeditionInsights','researchTradition'} -- fixed reviewed leaf scope
  -- Session-only, two bounded scalar summaries; never history or age authority.
  local timing={}
  local function noteTiming(name,before,value)
@@ -208,11 +209,14 @@ local function CreateProgressionRecord(P,shared,storage)
  function d.Investment(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local _,i=R.Current(r);return projected(r,i,true)end
  local function save(nextValue,observeFailure)
   assert(not fault,'STORE_WRITE_HELD')
-  if isolated.expeditionInsights then
-   -- Compare before optimistic root publication; preserve all fields, including unknown extensions.
-   local checked=cp(nextValue) -- normalize/reject unsupported values before exact preservation comparison
-   assert(root and same(checked.expeditionInsights,root.expeditionInsights),'ISOLATED_INSIGHTS_CANNOT_CHANGE')
-   checked.expeditionInsights=nil;validate(checked)
+  if next(isolated)then
+   -- Normalize before comparison: metatable fallback cannot forge preservation.
+   local checked=cp(nextValue)
+   for _,key in ipairs(isolationKeys)do if isolated[key]then
+    assert(root and same(checked[key],root[key]),'ISOLATED_SUBRECORD_CANNOT_CHANGE_'..key)
+    checked[key]=nil
+   end end
+   validate(checked) -- complete base and all remaining abilities remain strict
   else validate(nextValue)end
   local previous=root;local nextRoot=cp(nextValue)
   local facts=shared.EffectiveFacts;local ticket=facts and facts.BeginWrite and facts.BeginWrite('STORE_COMMIT')
@@ -277,7 +281,7 @@ local function CreateProgressionRecord(P,shared,storage)
   if r.restructuring then return cp(r.restructuring.institutions[r.restructuring.identity] or {})end
   local times=cp(r.institutionTurns or {});times[1]=r.base.first and r.base.first.turn
   -- These existing first-P4 receipts prove a historical time; never use load time.
-  if times[4]==nil and r.researchTradition then times[4]=r.researchTradition.start end
+  if times[4]==nil and not isolated.researchTradition and r.researchTradition then times[4]=r.researchTradition.start end
   if times[4]==nil and r.commerce and r.commerce.reputation then times[4]=r.commerce.reputation.start end
   return times
  end
@@ -347,9 +351,12 @@ local function CreateProgressionRecord(P,shared,storage)
   publishFact(shared,c,'INSIGHTS_COMMITTED',n,nil,'INSIGHTS')
   return true
  end
- function d.ReadTradition(pid,c)return cp(active(pid,c).researchTradition)end
+ function d.ReadTradition(pid,c)
+  local r=active(pid,c);assert(not isolated.researchTradition,'TRADITION_HISTORY_ISOLATED');return cp(r.researchTradition)
+ end
  function d.VisitTradition(pid,fn)
   if not ready or fault or not root or root.stage~='ACTIVE' or root.origin.owner~=pid or not root.researchTradition then return end
+  -- Locate even an isolated history: the effect owner must still process a confirmed qualification loss.
   local a=root.current or root.origin
   local c=CityManager.GetCityAt(a.x,a.y)
   if c and c:GetOwner()==pid then fn(c)end -- consumer revalidates exact persistent reference
@@ -357,7 +364,7 @@ local function CreateProgressionRecord(P,shared,storage)
  -- Only this record owns age writes. No diagnostics/effect writers participate.
  function d.TickTradition(pid,turn)
   if not ready or fault or not root or root.origin.owner~=pid or not root.researchTradition
-   or root.stage~='ACTIVE' then return end
+   or isolated.researchTradition or root.stage~='ACTIVE' then return end
   local ok,err=pcall(function()
    local a=root.current or root.origin
    local c=assert(CityManager.GetCityAt(a.x,a.y),'TRADITION_CITY_UNKNOWN')
@@ -449,7 +456,7 @@ local function CreateProgressionRecord(P,shared,storage)
    times[level]=times[level] or turn
    if level==4 then
     local q=n.restructuring and R.Qualification(n,base,target.investment,op.receipt)
-    if base.specialization=='RESEARCH' and not r.researchTradition then
+    if base.specialization=='RESEARCH' and not isolated.researchTradition and not r.researchTradition then
      n.researchTradition=SPCResearchTradition.Begin(turn,op.receipt);n.researchTradition.qualification=q
     end
     if base.specialization=='COMMERCE' and SPCCommerceModel.IsStandardSpeed() and not (r.commerce and r.commerce.reputation) then
@@ -465,7 +472,7 @@ local function CreateProgressionRecord(P,shared,storage)
      anchor=cp(nextValue.anchor),receipt=op.receipt,unitUID=op.unitUID,revision=nextValue.revision,reference=cp(a)}
    end)
   end
-  if n.researchTradition and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(pid)end
+  if not isolated.researchTradition and n.researchTradition and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(pid)end
  end
  -- The record owns current Identity, the one-time Potential debit and the native
  -- consumption intent. Callers provide proved native references, not UI authority.
@@ -476,12 +483,13 @@ local function CreateProgressionRecord(P,shared,storage)
  -- ledger initialization, native scans or writes, including UNKNOWN templates.
  function d.InstitutionSummary(pid,c)
   assert(not committing,'PRESENTATION_COMMIT_IN_PROGRESS');local r=active(pid,c)
-  local t=r.researchTradition;local rep=r.commerce and r.commerce.reputation
-  local out={known=true,token=r.base.token,reference=cp(r.current or r.origin),revision=r.revision,
+  local t=not isolated.researchTradition and r.researchTradition;local rep=r.commerce and r.commerce.reputation
+  local out={known=true,traditionKnown=not isolated.researchTradition,token=r.base.token,reference=cp(r.current or r.origin),revision=r.revision,
    tradition=t and {age=t.age,state=t.state,cursor=t.cursor} or false,
    reputation=rep and {age=rep.age,state=rep.state} or false,
    dialogue=r.dialogue and r.dialogue.total or 0,engineering=r.engineering and r.engineering.L or 0,
    insightsKnown=not isolated.expeditionInsights,templatesKnown=false}
+  if not out.traditionKnown then out.tradition=nil end
   if out.insightsKnown then
    out.insights=0;for _ in pairs(r.expeditionInsights and r.expeditionInsights.records or {})do out.insights=out.insights+1 end
   end
@@ -511,7 +519,7 @@ local function CreateProgressionRecord(P,shared,storage)
   if r.restructuring and r.restructuring.receipt==receipt and same(r.restructuring.team,team) then return cp(r.restructuring)end
   local f=shared.EffectiveFacts.Read(pid,c);local n=cp(r);local turn=Game.GetCurrentGameTurn()
   n.restructuring=R.Begin(r,f,team,receipt,turn)
-  if n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,turn,'NONE')end
+  if not isolated.researchTradition and n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,turn,'NONE')end
   if n.commerce then n.commerce=SPCCommerceModel.Exit(n.commerce);n.commerceKnown=true end
   if n.capital then n.capital=SPCCapitalInvestmentModel.Encode(SPCCapitalInvestmentModel.ResetProtection(SPCCapitalInvestmentModel.Decode(n.capital)))end
   if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'专业重组取消未完成对话；历史保留')end
@@ -540,7 +548,7 @@ local function CreateProgressionRecord(P,shared,storage)
   if s.phase=='SETTLED' then return false end
   assert(not Players[pid]:GetUnits():FindID(team.id),'REST_UNIT_STILL_PRESENT')
   local n=cp(r);n.restructuring=R.Finish(s)
-  if n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,Game.GetCurrentGameTurn(),n.restructuring.identity)end
+  if not isolated.researchTradition and n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,Game.GetCurrentGameTurn(),n.restructuring.identity)end
   if n.restructuring.identity=='INDUSTRY' then
    if n.templateLifecycle then n.templateLifecycle.reconcilePending=true
    elseif n.templates then n.templateLifecycle={version=1,state='INITIALIZED',reconcilePending=true}
@@ -811,13 +819,17 @@ local function CreateProgressionRecord(P,shared,storage)
     local valid,why=pcall(validate,root)
     if not valid then
      -- A complete bounded native copy is already available. Isolate only the
-     -- independently failed Insights leaf when the entire remaining parent passes.
+     -- independently failed reviewed leaves when the entire remaining parent passes.
      -- CHECK_FAILED is not permanent irrecoverability and authorizes no reset.
-     local check=SPCStoreSubrecords.CheckOne('expeditionInsights',root,same)
-     local checked=cp(root);checked.expeditionInsights=nil
-     local parentOK=check.status=='CHECK_FAILED'and pcall(validate,checked)
-     if parentOK then
-      isolated.expeditionInsights={state='ISOLATED',status=check.status,reason=check.reason}
+     local checked=cp(root);local failures={}
+     for _,key in ipairs(isolationKeys)do
+      local check=SPCStoreSubrecords.CheckOne(key,root,same)
+      if check.status=='CHECK_FAILED'then
+       checked[key]=nil;failures[key]={state='ISOLATED',status=check.status,reason=check.reason}
+      end
+     end
+     local parentOK=next(failures)and pcall(validate,checked)
+     if parentOK then isolated=failures
      else
       assert(SPCStoreSubrecords.IsKnownFlagFailure(why),why)
       local candidate,fields=SPCStoreSubrecords.KnownCandidate(root,cp)
@@ -1074,7 +1086,7 @@ local function CreateProgressionRecord(P,shared,storage)
     if n.restructuring and (n.restructuring.phase=='REALLOCATING' or n.restructuring.phase=='CONSUMING')then n.restructuring=R.Discard(n.restructuring)end
     if n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
     if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
-    if n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
+    if not isolated.researchTradition and n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
     n.ownerChanges=(n.ownerChanges or 0)+1
     if n.capital then
      local C=SPCCapitalInvestmentModel

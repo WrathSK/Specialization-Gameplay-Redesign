@@ -1688,6 +1688,9 @@
       "test_b251_institutions.StoreSummary",
       "test_culture_institutions.CultureInstitutionDisplay",
       "test_b265_city_presentation.PresentationContract.test_profession_metric_colors_stay_inside_their_ability"
+    ],
+    "S8b3": [
+      "test_refactor_s8b3"
     ]
   },
   "counterexamples": {},
