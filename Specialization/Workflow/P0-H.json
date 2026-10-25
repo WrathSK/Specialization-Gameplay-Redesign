@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0773",
-    "runtime": "B321.348 / modinfo348",
+    "status": "S0774",
+    "runtime": "B322.349 / modinfo349",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S7b Crew property observations and explicit numeric storage policy, then S7c–S10. No automatic deployment/main/native launch.",
+  "goal": "Continue S7c event-driven turn-ledger recovery and D6 unknown-reputation handling, then S7d–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -299,6 +299,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
       "kind": "full",
       "reason": "Share one-write one-read observation without unifying success policy actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
+      "kind": "full",
+      "reason": "Complete property-cell mechanics and scoped decimal policy actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -325,8 +330,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
-    "local": "LOCAL_SIMULATION_PASS:137/137",
+    "report": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
+    "local": "LOCAL_SIMULATION_PASS:251/251",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

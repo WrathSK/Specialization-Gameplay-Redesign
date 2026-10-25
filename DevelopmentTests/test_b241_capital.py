@@ -79,7 +79,7 @@ def runtime():
 
 class Model(unittest.TestCase):
  def run_lua(self,s):
-  l=LuaRuntime(unpack_returned_tuples=True);l.execute((R/'Mod/CapitalInvestmentModel.lua').read_text());l.execute("M=SPCCapitalInvestmentModel;ref={owner=0,cityID=1,x=1,y=2,token='city',changes=0};"+s)
+  l=LuaRuntime(unpack_returned_tuples=True);l.execute((R/'Mod/PropertyCell.lua').read_text());l.execute((R/'Mod/CapitalInvestmentModel.lua').read_text());l.execute("M=SPCCapitalInvestmentModel;ref={owner=0,cityID=1,x=1,y=2,token='city',changes=0};"+s)
  def test_safe_venture_and_current_treasury_formula(self):
   self.run_lua("local q=M.Quote{domain='DISTRICT_CAMPUS',source=ref,turn=5,balance=1000.5,D=3,R=20,failureCount=0,commercialized=true};assert(q.principal==250.125 and q.S==1 and q.C==1.25 and math.abs(q.r-.0375)<1e-9);assert(math.abs(q.failure-q.principal*.6)<1e-9 and q.due==15 and q.net==q.expected-q.principal)")
  def test_highest_current_active_then_earliest_institution_then_stable_key(self):

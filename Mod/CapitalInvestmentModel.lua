@@ -1,4 +1,5 @@
 -- B241: bounded business state and pure quotes; no native calls or effect writer.
+if not SPCPropertyCell then include('PropertyCell')end
 SPCCapitalInvestmentModel={}
 local M=SPCCapitalInvestmentModel
 M.Domains={
@@ -13,7 +14,7 @@ function M.Same(a,b)
  for k,v in pairs(a)do if not M.Same(v,b[k])then return false end end
  for k in pairs(b)do if a[k]==nil then return false end end;return true
 end
-function M.Finite(n)return type(n)=='number' and n==n and n>=0 and n<math.huge end
+M.Finite=SPCPropertyCell.NonnegativeFinite
 -- B245 user-approved per-call allowance, not an engine quantization constant.
 M.MONEY_TOLERANCE=.01
 function M.MoneyMatches(before,delta,after)
@@ -79,10 +80,8 @@ local storedNumbers={principal=true,balanceBefore=true,balanceAfter=true,safe=tr
  success=true,failure=true,probability=true,creditBefore=false,creditAfter=false,paid=false,
  debitAfter=false,debited=false,creditActualAfter=false}
 function M.StoredNumber(field,value)
- if storedNumbers[field]==nil or type(value)~='string' or #value>32 then return nil end
- local n=tonumber(value)
- if M.Finite(n) and string.format('%.17g',n)==value then return n end
- return nil
+ if storedNumbers[field]==nil then return nil end
+ return SPCPropertyCell.CanonicalDecimal17(value)
 end
 function M.Encode(value)
  M.Validate(value);assert(value.numberEncoding==nil,'CAPITAL_ENCODING_INVALID')

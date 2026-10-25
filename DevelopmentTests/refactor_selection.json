@@ -854,6 +854,18 @@
       "test_refactor_s5b",
       "test_refactor_s6b.Composition",
       "test_refactor_s3"
+    ],
+    "S7b2": [
+      "test_refactor_s7b2",
+      "test_refactor_s7b1",
+      "test_refactor_s5a2",
+      "test_refactor_s5b",
+      "test_refactor_s6b.Composition",
+      "test_refactor_s3",
+      "test_refactor_s6e.RetainedReceipts",
+      "test_refactor_s6e.RetainedGuards",
+      "test_refactor_s6f.RetainedDevelopment",
+      "test_refactor_s6f.RetainedGuards"
     ]
   },
   "counterexamples": {},
@@ -1183,10 +1195,20 @@
     "Mod/PropertyCell.lua": [
       "test_refactor_s7b1",
       "test_refactor_s5b.Authority",
-      "test_refactor_s5b.Phase"
+      "test_refactor_s5b.Phase",
+      "test_refactor_s7b2"
     ],
     "Mod/ExpeditionSpyStore.lua": [
       "test_refactor_s7b1"
+    ],
+    "Mod/CrewProjects.lua": [
+      "test_refactor_s7b2"
+    ],
+    "Mod/CapitalInvestmentModel.lua": [
+      "test_refactor_s7b2"
+    ],
+    "Mod/DevelopmentInvestmentModel.lua": [
+      "test_refactor_s7b2"
     ]
   },
   "exclusions": {

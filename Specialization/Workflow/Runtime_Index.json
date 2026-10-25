@@ -56,9 +56,9 @@
       "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
     },
     "Mod/CapitalInvestmentModel.lua": {
-      "sha256": "70cd65bc15f3353ca59f32f0eed6c4cb4124a0212e9f6737f7f67a529e31ba06",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B245_Capital_Receipts_Local.md",
-      "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
+      "sha256": "dea0ac30fc0264783a82bf74fa15bde4d79ce511a111894fdbf561d0dbceb15b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
+      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CarrierHealthTrace.lua": {
       "sha256": "819e8b4745f0a8f3e1e426daf693d579718f1a6d038382de09ae48d5bd2e7b78",
@@ -176,9 +176,9 @@
       "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "73db9b7c6b1d9f67059cfd51c4772b2531cde467534477412001741be08b6581",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
-      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
+      "sha256": "db41804d8ef1b0090f24e23b9288ac9869115f96fe5363e0b9735e5232c32242",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
+      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "6829cea9df3f1d295c6746f3d199eb7d71a6d74e30862c88d50edb85d845ce8c",
@@ -511,9 +511,9 @@
       "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
     },
     "Mod/DevelopmentInvestmentModel.lua": {
-      "sha256": "df3d1b78280ba8c49bb1b51a6dc99996b655b0bb0207f0fe7b6197550d676e42",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "c0f97e0933cb4da423a3ea73667f98ab9a7fc009ac45cefef4fa3869b225ddd1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
+      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DiagnosticLog.lua": {
       "sha256": "fd4c52434a868a69f74177321a8588aef51ea3e55cc4b0e5d53715ca0b780db3",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "d40686e10e8104379e6cc9e20f4ce0eb50333152a5700582779b342349a933d8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
-      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "66c875fb8e5162c78fd8109b31fd99598124962d70c259b6d51b3ac2b0e6e9d9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
+      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "73d87ff80993f683619e9f0d99b07ac118643b473dae375ec762a9baf92aa8de",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
-      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "0e4c1e55fb11a707c4f73e4253444faf38c06e73bec2ac8aaa509271cd371033",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
+      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1611,9 +1611,9 @@
       "provenance": "B320.347 Unify exact owned-carrier registries and close S7a extraction; local/static evidence only; no deployment/native PASS."
     },
     "Mod/PropertyCell.lua": {
-      "sha256": "61a7e7d9258533b377bb6d94df0bb98f2944bd60f2832c5d9cbbc7424c0ac051",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
-      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "23f1622b9d2c4e6db1bc719b864b2fd058c949875d8fe925ddb23d94b8c30051",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
+      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

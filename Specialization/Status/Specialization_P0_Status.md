@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0773
-Implementation Build: B321.348 / modinfo348; stable/live B307.334
+Status Revision: S0774
+Implementation Build: B322.349 / modinfo349; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7B1_COMPLETE_CONTINUING
+Work State: REFACTOR_S7B_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7b1 introduces a stateless PropertyCell one-write/one-postread observation primitive in modern CityProgressionStore and ExpeditionSpyStore. Store still requires normal setter return plus exact readback; Expedition still accepts exact validated readback after a throwing setter. CAS, locks, reservations, envelopes, barriers and failure classes remain owned by their original modules. [Result](Validation/Results/Specialization_B321_Refactor_S7b1.md). Stable/live/main B307.334; no deployment/native PASS.
+S7b2 migrates Crew order/receipt write observations while preserving clone-before-attempt, exact readback and no-replay rules. PropertyCell centralizes only existing nonnegative finite/canonical-decimal mechanics for Capital/Development; field whitelists, DECIMAL17_V1 wire format, required/optional validation and native-money tolerance remain unchanged. S7b is complete without a global float32 conversion policy. [Result](Validation/Results/Specialization_B322_Refactor_S7b2.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7b Crew property observations and explicit numeric storage policy, then S7c–S10.
+- Primary next: Continue S7c event-driven turn-ledger recovery and D6 unknown-reputation handling, then S7d–S10.
+
+## S0774 — B322.349 Complete property-cell mechanics and scoped decimal policy
+
+S7b2 migrates Crew order/receipt write observations while preserving clone-before-attempt, exact readback and no-replay rules. PropertyCell centralizes only existing nonnegative finite/canonical-decimal mechanics for Capital/Development; field whitelists, DECIMAL17_V1 wire format, required/optional validation and native-money tolerance remain unchanged. S7b is complete without a global float32 conversion policy.
 
 ## S0773 — B321.348 Share one-write one-read observation without unifying success policy
 

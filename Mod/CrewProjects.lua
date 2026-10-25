@@ -1,4 +1,5 @@
 include('SafeCallbacks')
+if not SPCPropertyCell then include('PropertyCell')end
 include('CrewModel')
 include('ExpeditionTrainingDiagnostics')
 -- B239: paid native projects retain one capacity admission while paused; actual queue entries stay separate.
@@ -44,9 +45,12 @@ function SPCCrewProjects.Start(P,shared)
  end
  local function save(c,old,v)
   assert(same(c:GetProperty(M.ORDER_PROPERTY),old),'CREW_STALE_ORDER')
-  local ok=pcall(P.SetProperty,c,M.ORDER_PROPERTY,cp(v))
-  assert(same(c:GetProperty(M.ORDER_PROPERTY),v),'CREW_ORDER_WRITE_UNCONFIRMED')
-  return ok -- readback, not a setter's return, establishes the saved value
+  local setter=P.SetProperty;local payload=cp(v) -- clone errors precede the attempted write
+  local result=SPCPropertyCell.WriteReadback(function()return setter(c,M.ORDER_PROPERTY,payload)end,
+   function()return c:GetProperty(M.ORDER_PROPERTY)end)
+  if not result.readReturned then error(result.observed,0)end
+  assert(same(result.observed,v),'CREW_ORDER_WRITE_UNCONFIRMED')
+  return result.writeReturned -- readback, not a setter's return, establishes the saved value
  end
  local function queue(pid,c)
   local r=assert(ExposedMembers.SPC_CrewNativeRead,'CREW_UI_READER_UNAVAILABLE')(pid,c:GetID())
@@ -84,8 +88,11 @@ function SPCCrewProjects.Start(P,shared)
  end
  local function receiptSave(pid,old,v)
   assert(same(Players[pid]:GetProperty(M.RECEIPT_PROPERTY) or {},old),'CREW_STALE_RECEIPT')
-  pcall(P.SetProperty,Players[pid],M.RECEIPT_PROPERTY,cp(v))
-  assert(same(Players[pid]:GetProperty(M.RECEIPT_PROPERTY),v),'CREW_RECEIPT_WRITE_UNCONFIRMED')
+  local setter=P.SetProperty;local target=Players[pid];local payload=cp(v)
+  local result=SPCPropertyCell.WriteReadback(function()return setter(target,M.RECEIPT_PROPERTY,payload)end,
+   function()return Players[pid]:GetProperty(M.RECEIPT_PROPERTY)end)
+  if not result.readReturned then error(result.observed,0)end
+  assert(same(result.observed,v),'CREW_RECEIPT_WRITE_UNCONFIRMED')
  end
  local function safe(pid,id,fn)
   local ok,err=pcall(fn);local k=key(pid,id)
