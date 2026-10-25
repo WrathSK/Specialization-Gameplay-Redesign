@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B312.339 S6h removes unit/action/target reply polling from .2/.25-second callbacks. Semantic UI events and publication consume strict request replies and coalesce actual changes; the existing callback remains a scalar timeout clock only, never a native read or retry. F28 eliminated the old multi-destination Capital quote hotspot; F32 live D/carrier closure is already covered by S5, with probe cleanup still S10. [Result](../../Status/Validation/Results/Specialization_B312_Refactor_S6h.md).
+
 B311.338 S6g lets CultureNetwork use old dependencies plus a private current-topology reverse index before copying/reconciling receivers. Selected receivers keep all sources; owner-wide, unknown, old adapter and unavailable-index cases retain the full discovery fallback. Standardization live census remains unchanged. [Result](../../Status/Validation/Results/Specialization_B311_Refactor_S6g.md).
 
 B310.337 S6f moves Commerce local inputs and Development source inputs into the existing certified EF projection, sharing only raw workers within a valid synchronous read phase. Each consumer retains its own ACTIVE/anchor/pillage/qualification rules; all writes and irreversible actions remain outside the read projection. No scheduler or retry was added. [Result](../../Status/Validation/Results/Specialization_B310_Refactor_S6f.md).

@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "d7dbc0e1dcab9445364a3c33e92c7e4fb279c98dbffe0c324164b69a907bae8d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
-      "provenance": "B311.338 Discover Culture receivers through bounded topology edges; local/static evidence only; no deployment/native PASS."
+      "sha256": "01d46be5ceaec1b2eba1a4c889a95ff9bb03624dd1c87d74380c5a5e56c6ad8e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
+      "provenance": "B312.339 Consume unit UI replies at semantic events and publication; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "ae8b4ae93cf986b2d87865f8a9fe9ac9f73d3948a512dd159a75558886936f59",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
-      "provenance": "B311.338 Discover Culture receivers through bounded topology edges; local/static evidence only; no deployment/native PASS."
+      "sha256": "fa6d389946c7a6d229d21d396187e2555bb77691292cc777da36582cfcb88f7e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
+      "provenance": "B312.339 Consume unit UI replies at semantic events and publication; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1501,9 +1501,9 @@
       "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/UI/UnitPanelActions.lua": {
-      "sha256": "14967b4e7acc4d3d54134eaf37c82001f9c9278376cdfa6b38e37fe81c2bf69f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "sha256": "b0719c71b1279335dea1a7a55bfc73972981968ff5610bf44d42328cbe53d3b5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
+      "provenance": "B312.339 Consume unit UI replies at semantic events and publication; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/UnitPanelActions.xml": {
       "sha256": "7a48eaa0f2c9ef58d84a27547e78431407c840d14fb76332d702594546b61145",
@@ -1521,9 +1521,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/UnitTargetMarkers.lua": {
-      "sha256": "03ccc4ff3ef3d80802f45638fabec6e603815e96357d3b25c58dffebb8c3ea8d",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "bb5dc8dc4103fac9be51dd433ded282e27d0aec658bccdc27c9eb5b2098c352e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
+      "provenance": "B312.339 Consume unit UI replies at semantic events and publication; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/UnitTargetMarkers.xml": {
       "sha256": "d4a976b7811eb6f5df0f668f15b8a260e4c01576bca3716bfd8ad09e12792331",
@@ -1546,9 +1546,9 @@
       "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/UnitTargets.lua": {
-      "sha256": "8dca19451eda53dc8c5fd7a0bcf195a2855c3cc67409258898ed3fdfbb564397",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B236_Crew_Local.md",
-      "provenance": "B236 approved Crew/Practice formation, immutable returned-unit binding, native living/queue capacity, receipt-safe Wonder-only use and protection; preserves investment receipt and adds Industry institutions.212 scoped local checks; native gate pending. No Store schema, GC, Culture HOLD or Research-network change."
+      "sha256": "a34c97f670cfb2b36f0a247d5f3ee3f15f7bfa24f0289c7c2e17c478026af06f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
+      "provenance": "B312.339 Consume unit UI replies at semantic events and publication; local/static evidence only; no deployment/native PASS."
     },
     "Mod/YieldCarrierProbe.lua": {
       "sha256": "df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21",

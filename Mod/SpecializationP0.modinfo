@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="338">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="339">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B311.338：文化网络先确定受影响接收城市，再复制相关来源，保留完整回退。</Description>
+    <Description>B312.339：单位按钮及目标标记改为事件发布处理，空转不读取单位。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

@@ -7,6 +7,7 @@ function SPCUnitTargets.Start(P,shared)
   local ok,err=pcall(function()
    assert(P.IsTestPlayer(pid),'TEST_PLAYER_REQUIRED')
    local u=Players[pid]:GetUnits():FindID(params.UnitID);assert(u and u:GetOwner()==pid,'UNIT_MISSING')
+   response.turn=Game.GetCurrentGameTurn();response.x=u:GetX();response.y=u:GetY()
    local row=P.Info('Units',u:GetType());assert(row,'UNIT_TYPE_UNKNOWN')
    local invest=row.UnitType=='UNIT_SETTLER'
    local crew=P.CrewBase(row.UnitType)~=nil

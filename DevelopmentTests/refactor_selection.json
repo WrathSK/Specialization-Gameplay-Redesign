@@ -690,6 +690,13 @@
       "test_refactor_s5c2",
       "test_refactor_s4b",
       "test_refactor_s3"
+    ],
+    "S6h": [
+      "test_refactor_s6h",
+      "test_refactor_s6e",
+      "test_refactor_s5d4a",
+      "test_refactor_s5d4c10",
+      "test_refactor_s3"
     ]
   },
   "counterexamples": {},
@@ -930,6 +937,24 @@
     "Mod/UI/CapitalInvestmentPanel.lua": [
       "test_refactor_s6e.UIQuotes",
       "test_refactor_s6e.RetainedSidebar"
+    ],
+    "Mod/UI/UnitPanelActions.lua": [
+      "test_refactor_s6h.Panel",
+      "test_refactor_s6h.Markers",
+      "test_refactor_s6h.ActualTargets",
+      "test_refactor_s6h.ActualConsumption"
+    ],
+    "Mod/UI/UnitTargetMarkers.lua": [
+      "test_refactor_s6h.Panel",
+      "test_refactor_s6h.Markers",
+      "test_refactor_s6h.ActualTargets",
+      "test_refactor_s6h.ActualConsumption"
+    ],
+    "Mod/UnitTargets.lua": [
+      "test_refactor_s6h.Panel",
+      "test_refactor_s6h.Markers",
+      "test_refactor_s6h.ActualTargets",
+      "test_refactor_s6h.ActualConsumption"
     ]
   },
   "exclusions": {

@@ -1,8 +1,10 @@
 include('Probe')
 local P=SPCP0
-local parent,pending,elapsed,timer,unitKey,feedback
-local view,viewToken,viewRequestedAt,viewReceivedAt
-local clock=0;local nextView=0;local dirty=true;local hooks={};local renderKey;local revision
+local parent,pending,elapsed,unitKey,feedback
+local view,viewToken,viewRequestedAt
+local clock=0;local dirty=true;local hooks={};local renderKey;local revision;local backend;local backendVersion
+local renderDirty=true;local pumping=false;local stopped=false;local pump;local causeVersion=0
+local function signal()causeVersion=causeVersion+1;dirty=true end
 local function current()
  local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid) then return nil end
  local u=UI.GetHeadSelectedUnit();if not u or u:GetOwner()~=pid then return nil end
@@ -20,18 +22,32 @@ local function crewView(u)
   and view.turn==Game.GetCurrentGameTurn() and view.x==u:GetX() and view.y==u:GetY() then return view end
 end
 local function readView(u)
- if viewToken and clock-viewRequestedAt>2 then viewToken=nil;view=nil end
+ if pending then dirty=false;return end -- one cause is consumed; ACK re-arms the fresh read
+ local shared=ExposedMembers.SPC_P0
+ if not shared or shared.Version~=P.VERSION then dirty=false;view=nil;viewToken=nil;return end
+ if dirty and not pending then viewToken=nil;view=nil end
  if viewToken then
-  local v=(ExposedMembers.SPC_P0 or {}).UnitActionView
-  if v and v.token==viewToken then view=v;viewReceivedAt=clock;viewToken=nil end
+  local v=shared.UnitActionView
+  if v and v.token==viewToken then
+   viewToken=nil
+   if v.owner==u:GetOwner()and v.unitID==u:GetID()and v.turn==Game.GetCurrentGameTurn()and v.x==u:GetX()and v.y==u:GetY()then view=v else view=nil end
+  end
  end
  if not viewToken and dirty and not pending then
   dirty=false
   ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
-  viewToken=P.VERSION..':VIEW:'..ExposedMembers.SPC_P0_UISequence;viewRequestedAt=clock;nextView=clock+0.5
+  viewToken=P.VERSION..':VIEW:'..ExposedMembers.SPC_P0_UISequence;viewRequestedAt=clock
   local ok=pcall(UI.RequestPlayerOperation,u:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,
    {OnStart='SPC_P0_Request',Action='UNIT_ACTION_VIEW',UnitID=u:GetID(),Token=viewToken})
-  if not ok then viewToken=nil;view=nil end
+  if not ok then viewToken=nil;view=nil
+  else
+   local v=shared and shared.UnitActionView
+   if ExposedMembers.SPC_P0~=shared then viewToken=nil;view=nil
+   elseif v and v.token==viewToken then
+    viewToken=nil
+    if v.owner==u:GetOwner()and v.unitID==u:GetID()and v.turn==Game.GetCurrentGameTurn()and v.x==u:GetX()and v.y==u:GetY()then view=v else view=nil end
+   end
+  end
  end
 end
 local function number(n) return tostring(n):gsub('%.0+$','') end
@@ -73,42 +89,45 @@ local function dispatch(confirm)
  end
  if confirm and not p then return end
  ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
- pending=P.VERSION..':PANEL:'..Game.GetCurrentGameTurn()..':'..ExposedMembers.SPC_P0_UISequence;elapsed=0
+ pending=P.VERSION..':PANEL:'..Game.GetCurrentGameTurn()..':'..ExposedMembers.SPC_P0_UISequence;elapsed=0;renderDirty=true
  local ok,err=pcall(UI.RequestPlayerOperation,u:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,
   {OnStart='SPC_P0_Request',Action=confirm and 'UNIT_ACTION_CONFIRM' or 'UNIT_ACTION_PREPARE',UnitID=u:GetID(),Token=pending,PlanToken=p and p.token})
  feedback=ok and '正在处理，请稍候。' or '请求未送达，请查看日志。'
  if not ok then print('[SPC][B043][PANEL_ERROR] '..tostring(err));pending=nil end
 end
-local function update(dt)
- clock=clock+dt
- timer=timer+dt;if timer<0.2 then return end
- local step=timer;timer=0
+local function refresh()
  if not parent then
   parent=ContextPtr:LookUpControl('/InGame/UnitPanel/StandardActionsStack')
   if parent then Controls.ActionGroup:ChangeParent(parent)
-  else ExposedMembers.SPC_UnitPanelStatus='UNIT_PANEL_STACK_NOT_FOUND';return end
- end
- if pending then
-  elapsed=elapsed+step;local s=ExposedMembers.SPC_P0 or {}
-  if s.Version==P.VERSION and s.LastToken==pending then
-   feedback=tostring(s.Snapshot);ExposedMembers.SPC_UnitPanelStatus=feedback
-   print('[SPC][B045][PANEL_RESULT] '..feedback);pending=nil;view=nil;viewToken=nil;nextView=0;dirty=true
-  elseif elapsed>10 then pending=nil;feedback='等待结果超时；请查看专业化诊断中的移民 / 施工队，不要重复确认。';ExposedMembers.SPC_UnitPanelStatus=feedback end
+  else ExposedMembers.SPC_UnitPanelStatus='UNIT_PANEL_STACK_NOT_FOUND';dirty=false;return end
  end
  local u,kind=current();local key=u and (u:GetOwner()..':'..u:GetID()..':'..u:GetX()..':'..u:GetY()..':'..Game.GetCurrentGameTurn())
- if unitKey~=key then unitKey=key;feedback=nil;view=nil;viewToken=nil;nextView=0;dirty=true end
- local r=ExposedMembers.SPC_RuntimeUIRevision or 0;if r~=revision then revision=r;dirty=true end
+ if unitKey~=key then
+  unitKey=key;feedback=nil;view=nil;viewToken=nil;pending=nil;dirty=true
+ end
+ if pending then
+  local shared=ExposedMembers.SPC_P0 or {}
+  if shared.Version==P.VERSION and shared.LastToken==pending then
+   feedback=tostring(shared.Snapshot);ExposedMembers.SPC_UnitPanelStatus=feedback
+   print('[SPC][B045][PANEL_RESULT] '..feedback);pending=nil;view=nil;viewToken=nil;dirty=true
+  end
+ end
  local visible=u~=nil and UI.GetInterfaceMode()==InterfaceModeTypes.SELECTION
  if not visible then
   if renderKey~=false then Controls.ActionGroup:SetHide(true);renderKey=false;parent:CalculateSize();parent:ReprocessAnchoring() end
-  return
+  dirty=false;return
  end
  if renderKey==false or renderKey==nil then Controls.ActionGroup:SetHide(false) end
  if visible then
   local invest=kind=='UNIT_SETTLER';local icon=invest and 'ICON_SPC_RAW_INVEST_PREPARE' or 'ICON_SPC_RAW_CREW_PREPARE'
   local confirmIcon=invest and 'ICON_SPC_RAW_INVEST_CONFIRM' or 'ICON_SPC_RAW_CREW_CONFIRM'
 
-  readView(u);local v=crewView(u);local a,b
+  readView(u)
+  local selected=UI.GetHeadSelectedUnit()
+  if not selected or selected:GetOwner()~=u:GetOwner()or selected:GetID()~=u:GetID()or selected:GetX()~=u:GetX()or selected:GetY()~=u:GetY()or selected:GetType()~=u:GetType()then
+   view=nil;viewToken=nil;dirty=true;Controls.ActionGroup:SetHide(true);renderKey=false;return
+  end
+  local v=crewView(u);local a,b
   if invest then a,b=investmentTips(v) else a,b=crewTips(v) end
   local confirmed=v and v.prepared and preview(u) and preview(u).token==v.planToken
   local newKey=icon..'|'..a..'|'..tostring(b)..'|'..tostring(confirmed)..'|'..tostring(pending~=nil)
@@ -126,14 +145,67 @@ local function update(dt)
  end
  parent:CalculateSize();parent:ReprocessAnchoring()
 end
-ContextPtr:SetInitHandler(function()
- timer=0;ContextPtr:SetHide(false)
- for _,name in ipairs({'CityProductionChanged','CityProductionUpdated','CityProductionCompleted','CityBuildQueueChanged',
-  'BuildingAddedToMap','BuildingRemovedFromMap','DistrictBuildProgressChanged','DistrictRemovedFromMap','CityTransfered','InterfaceModeChanged'}) do
-  local e=P.Field(Events,name);if e and e.Add then local f=function() dirty=true end;e.Add(f);hooks[#hooks+1]={e,f} end
+-- The existing update callback is only a scalar timeout clock. It performs no
+-- game reads, reply polling, request, render or time-based retry.
+local function tick(dt)
+ clock=clock+dt
+ if pending then
+  elapsed=elapsed+dt
+  if elapsed>10 then
+   pending=nil;view=nil;viewToken=nil;renderDirty=true
+   feedback='等待结果超时；请查看专业化诊断中的移民 / 施工队，不要重复确认。'
+   ExposedMembers.SPC_UnitPanelStatus=feedback
+  end
  end
- Controls.PrepareButton:RegisterCallback(Mouse.eLClick,function() dispatch(false) end)
- Controls.ConfirmButton:RegisterCallback(Mouse.eLClick,function() dispatch(true) end)
- ContextPtr:SetUpdate(update)
+ if viewToken and clock-viewRequestedAt>2 then viewToken=nil;view=nil;renderDirty=true end
+end
+pump=function()
+ if stopped or pumping then return end
+ local shared=ExposedMembers.SPC_P0;local r=ExposedMembers.SPC_RuntimeUIRevision or 0
+ if backend~=shared or backendVersion~=(shared and shared.Version)then backend=shared;backendVersion=shared and shared.Version;pending=nil;view=nil;viewToken=nil;unitKey=nil;dirty=true end
+ if revision~=r then revision=r;dirty=true end
+ local reply=shared and shared.UnitActionView
+ local action=shared and shared.Version==P.VERSION and pending and shared.LastToken==pending
+ local received=viewToken and reply and reply.token==viewToken
+ if not(dirty or renderDirty or action or received)then return end
+ pumping=true;renderDirty=false;local observedCause=causeVersion
+ local ok=pcall(refresh)
+ pumping=false
+ if not ok then dirty=causeVersion~=observedCause;renderDirty=false;renderKey=nil;ExposedMembers.SPC_UnitPanelStatus='UNIT_PANEL_CALLBACK_FAILED'end
+end
+local function mark(pid)
+ if type(pid)~='number'or pid==Game.GetLocalPlayer()then signal()end
+end
+local function selectedChanged(pid,id)
+ pending=nil;view=nil;viewToken=nil;signal();pump()
+end
+local function unitChanged(pid,id)
+ if type(pid)=='number'and pid~=Game.GetLocalPlayer()then return end
+ if unitKey and type(pid)=='number'and type(id)=='number'and unitKey:sub(1,#(pid..':'..id..':'))~=pid..':'..id..':'then return end
+ pending=nil;view=nil;viewToken=nil;signal();pump()
+end
+local function bind(name,fn)
+ local e=P.Field(Events,name);if e and e.Add then e.Add(fn);hooks[#hooks+1]={e,fn}end
+end
+ContextPtr:SetInitHandler(function()
+ stopped=false;ContextPtr:SetHide(false)
+ for _,name in ipairs({'CityProductionChanged','CityProductionUpdated','CityProductionCompleted','CityBuildQueueChanged',
+  'DistrictBuildProgressChanged','DistrictRemovedFromMap','PlayerTurnActivated','GovernorEstablished','GovernorPromoted','GovernorAssigned'})do bind(name,mark)end
+ -- Building map events begin with coordinates, not an owner ID.
+ for _,name in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','CityTransfered','LocalPlayerTurnBegin'})do bind(name,function()signal()end)end
+ for _,name in ipairs({'UnitMoveComplete','UnitRemovedFromMap'})do bind(name,unitChanged)end
+ -- Optional teleport signature is not narrowed; use the conservative UI cause.
+ bind('UnitTeleported',function()selectedChanged()end)
+ bind('UnitSelectionChanged',selectedChanged)
+ bind('InterfaceModeChanged',function()signal();pump()end)
+ bind('LocalPlayerChanged',function()backend=nil;signal();pump()end)
+ bind('LoadScreenClose',function()backend=nil;signal();pump()end)
+ bind('GameCoreEventPublishComplete',pump);bind('GameCoreEventPlaybackComplete',pump)
+ Controls.PrepareButton:RegisterCallback(Mouse.eLClick,function()dispatch(false)end)
+ Controls.ConfirmButton:RegisterCallback(Mouse.eLClick,function()dispatch(true)end)
+ ContextPtr:SetUpdate(tick);pump()
 end)
-ContextPtr:SetShutdown(function() ContextPtr:ClearUpdate();Controls.ActionGroup:SetHide(true);for _,h in ipairs(hooks) do h[1].Remove(h[2]) end end)
+ContextPtr:SetShutdown(function()
+ stopped=true;ContextPtr:ClearUpdate();Controls.ActionGroup:SetHide(true)
+ for _,h in ipairs(hooks)do h[1].Remove(h[2])end
+end)

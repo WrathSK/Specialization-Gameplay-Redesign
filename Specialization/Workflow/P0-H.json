@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0763",
-    "runtime": "B311.338 / modinfo338",
+    "status": "S0764",
+    "runtime": "B312.339 / modinfo339",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S6 Capital source snapshot, unit-panel publish/UnitTargets scope and remaining native-event hot paths, then S7–S10. No automatic deployment/main/native launch.",
+  "goal": "Continue S6 authoritative current-site/UnitTargets locality and proven network-input increments; then S7–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -249,6 +249,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
       "kind": "full",
       "reason": "Discover Culture receivers through bounded topology edges actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
+      "kind": "full",
+      "reason": "Consume unit UI replies at semantic events and publication actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -275,8 +280,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
-    "local": "LOCAL_SIMULATION_PASS (110/110, 10 new)",
+    "report": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
+    "local": "LOCAL_SIMULATION_PASS (147/147, 22 new, 6 retained actual consumption/target cases)",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

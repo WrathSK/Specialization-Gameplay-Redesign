@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0763
-Implementation Build: B311.338 / modinfo338; stable/live B307.334
+Status Revision: S0764
+Implementation Build: B312.339 / modinfo339; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S6G_COMPLETE_CONTINUING
+Work State: REFACTOR_S6H_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S6g lets CultureNetwork use old dependencies plus a private current-topology reverse index before copying/reconciling receivers. Selected receivers keep all sources; owner-wide, unknown, old adapter and unavailable-index cases retain the full discovery fallback. Standardization live census remains unchanged. [Result](Validation/Results/Specialization_B311_Refactor_S6g.md). Stable/live/main B307.334; no deployment/native PASS.
+S6h removes unit/action/target reply polling from .2/.25-second callbacks. Semantic UI events and publication consume strict request replies and coalesce actual changes; the existing callback remains a scalar timeout clock only, never a native read or retry. F28 eliminated the old multi-destination Capital quote hotspot; F32 live D/carrier closure is already covered by S5, with probe cleanup still S10. [Result](Validation/Results/Specialization_B312_Refactor_S6h.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S6 Capital source snapshot, unit-panel publish/UnitTargets scope and remaining native-event hot paths, then S7–S10.
+- Primary next: Continue S6 authoritative current-site/UnitTargets locality and proven network-input increments; then S7–S10.
+
+## S0764 — B312.339 Consume unit UI replies at semantic events and publication
+
+S6h removes unit/action/target reply polling from .2/.25-second callbacks. Semantic UI events and publication consume strict request replies and coalesce actual changes; the existing callback remains a scalar timeout clock only, never a native read or retry. F28 eliminated the old multi-destination Capital quote hotspot; F32 live D/carrier closure is already covered by S5, with probe cleanup still S10.
 
 ## S0763 — B311.338 Discover Culture receivers through bounded topology edges
 
