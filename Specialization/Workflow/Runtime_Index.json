@@ -226,9 +226,9 @@
       "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "26d72859824f31c35f78ef4e1d8d5fe3369f0d7871e9edbc106c2e719a6b0c57",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
-      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "df6da387b974ad93f91a7a0253e8bede305dc8bce4fcaee6b81ff70edb7ee28f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
+      "provenance": "B311.338 Discover Culture receivers through bounded topology edges; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "045a1ea1f23191ec4e0da3cdeb10e3182af58186b121a625dce4c65256e7ddfc",
@@ -751,9 +751,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "115fc3341aa4c4984f5fc4fbb949f339996d69d1d2c326fcbbedb15e6ed14e44",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "2baeb7fdcc359b145a04eedf1780bf7f8be93e8a612a9aaa92adc19a330048fa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
+      "provenance": "B311.338 Discover Culture receivers through bounded topology edges; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "fa1e16ae91b376d0f254f09f23337de8877c3a4bee8e7b30f01fb601f10f79b4",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "67483e6abc4551443e8fb52839bb2794483b4bfc38354fd166853ff3985db1e6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
-      "provenance": "B310.337 Use guarded worker projections in Commerce and Development; local/static evidence only; no deployment/native PASS."
+      "sha256": "d7dbc0e1dcab9445364a3c33e92c7e4fb279c98dbffe0c324164b69a907bae8d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
+      "provenance": "B311.338 Discover Culture receivers through bounded topology edges; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e6475044a5b86f6faa577a517a6d2f2e5fdd8d3890c646b857660601fb684e66",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
-      "provenance": "B310.337 Use guarded worker projections in Commerce and Development; local/static evidence only; no deployment/native PASS."
+      "sha256": "ae8b4ae93cf986b2d87865f8a9fe9ac9f73d3948a512dd159a75558886936f59",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
+      "provenance": "B311.338 Discover Culture receivers through bounded topology edges; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

@@ -1,4 +1,5 @@
 include('RuntimeWork')
+include('ReverseDependencies')
 -- AV2-B: one private derived view per accepted complete input; no consumer-yield cache.
 include("NetworkInput")
 include("ExpeditionTrainingDiagnostics")
@@ -85,8 +86,12 @@ function SPCNetworkBridge.Start(P,shared)
     directDomestic[r.dc]=directDomestic[r.dc] or {};directDomestic[r.dc][r.oc]=true
    end
   end
+  -- B311: private scalar topology index, replaced with this one accepted view.
+  -- Capacity failure disables only scoped copying; the complete view stays valid.
+  local cultureIndex=SPCReverseDependencies.New()
+  for cid,set in pairs(recipients.CULTURE or {})do if not cultureIndex.Replace(pid,cid,set)then break end end
   return {sources=sources,centers=centers,recipients=recipients,connected=connected,national=national,
-   directDomestic=directDomestic,directOutgoing=directOutgoing,references=references}
+   directDomestic=directDomestic,directOutgoing=directOutgoing,references=references,cultureIndex=cultureIndex}
  end
  local function bucket(pid)
   if not d.players[pid] then d.players[pid]={seq=-1,revision=0,inputRevision=0,derivedRevision=0,validity='UNKNOWN',availability='UNAVAILABLE'} end
@@ -561,10 +566,25 @@ function SPCNetworkBridge.Start(P,shared)
   local v=currentView(pid,true)
   return {input=d.Input(pid),recipients=copy(v.recipients.INDUSTRY or {})}
  end
- function d.CurrentCultureBatch(pid)
+ function d.CurrentCultureBatch(pid,selection)
   assert(d.ready and P.IsTestPlayer(pid),'NETWORK_NOT_READY_OR_OWNER')
-  local v=currentView(pid,true)
-  return {input=d.Input(pid),recipients=copy(v.recipients.CULTURE or {})}
+  local v=currentView(pid,true);local rows=v.recipients.CULTURE or {}
+  if type(selection)=='table'and type(selection.sources)=='table'and type(selection.targets)=='table'then
+   local candidates={};local scoped=true
+   for cid,selected in pairs(selection.targets)do if selected then candidates[cid]=true end end
+   for source,changed in pairs(selection.sources)do if changed then
+    local targets=v.cultureIndex.Dependents(pid,source)
+    if not targets then scoped=false;break end
+    for cid in pairs(targets)do candidates[cid]=true end
+   end end
+   if scoped then
+    local recipients={}
+    -- Every selected receiver retains ALL its sources, including unchanged ones.
+    for cid in pairs(candidates)do if rows[cid]then recipients[cid]=copy(rows[cid])end end
+    return {input=d.Input(pid),recipients=recipients,candidates=candidates,scoped=true}
+   end
+  end
+  return {input=d.Input(pid),recipients=copy(rows)}
  end
  -- B239 read-only per-city direct route projection. No Refresh, proof request,
  -- all-city scan or reference retention by the caller. UNKNOWN has no partners.

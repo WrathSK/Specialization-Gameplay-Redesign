@@ -178,7 +178,7 @@ function M.Start(P,shared)
   if batch.network then return batch.network end
   local bridge=assert(shared.NetworkBridge,'CN_NETWORK_UNAVAILABLE');local input=bridge.Input(pid)
   if input.validity=='CONFIRMED_INVALID' then batch.network={input=input,recipients={}};return batch.network end
-  local current=bridge.CurrentCultureBatch(pid)
+  local current=bridge.CurrentCultureBatch(pid,batch.selection)
   assert(current.input.validity=='VERIFIED' and (current.input.effectAvailability=='AVAILABLE' or current.input.effectAvailability==nil and current.input.availability=='AVAILABLE' or current.input.continuityOnly),'CN_NETWORK_PENDING')
   batch.network=current;return current
  end
@@ -321,20 +321,29 @@ function M.Start(P,shared)
    end
    for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and not isolated(pid) and (not scope or scope.player==nil or pid==scope.player)then
     phase='PLAYER_RECONCILIATION';failureOwner=pid;failureCity=nil
-    local batch={facts={},sources={}};local viewOk,view=pcall(network,batch,pid);if not viewOk then batch.networkFailed=tostring(view)end;local ids={}
-    d.playerError=d.playerError or {};d.playerError[pid]=not viewOk and tostring(view):sub(1,180) or nil
-    if viewOk then for cid in pairs(view.recipients)do ids[cid]=true end end
-    for _,r in pairs(d.records)do if r.owner==pid then ids[r.id]=true end end
-    if scope and scope.city~=nil then ids[scope.city]=true end
     local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true})
     local affected={};local indexed=true
-    if changed then
-     for source,isChanged in pairs(changed)do if isChanged then
-      affected[source]=true;local prior=dependents.Dependents(pid,source)
-      if prior then for cid in pairs(prior)do affected[cid]=true end else indexed=false end
-     end end
-     -- Current topology includes newly connected receivers absent from old edges.
-     if viewOk and indexed then for cid,sources in pairs(view.recipients)do for source in pairs(sources)do if changed[source]then affected[cid]=true;break end end end end
+    if changed then for source,isChanged in pairs(changed)do if isChanged then
+     affected[source]=true;local prior=dependents.Dependents(pid,source)
+     if prior then for cid in pairs(prior)do affected[cid]=true end else indexed=false end
+    end end end
+    local batch={facts={},sources={},selection=changed and indexed and {sources=changed,targets=affected}or nil}
+    local viewOk,view=pcall(network,batch,pid);if not viewOk then batch.networkFailed=tostring(view)end;local ids={}
+    d.playerError=d.playerError or {};d.playerError[pid]=not viewOk and tostring(view):sub(1,180) or nil
+    if changed and indexed and viewOk and view.scoped==true then
+     for cid in pairs(view.candidates)do
+      if d.records[key(pid,cid)]or view.recipients[cid]or scope.city==cid then ids[cid]=true end
+     end
+     -- Candidate discovery is already old dependencies + new topology + self.
+     for cid in pairs(ids)do affected[cid]=true end
+    else
+     -- Cold, owner-wide, unavailable-index and old-adapter compatibility path.
+     if viewOk then for cid in pairs(view.recipients)do ids[cid]=true end end
+     for _,r in pairs(d.records)do if r.owner==pid then ids[r.id]=true end end
+     if scope and scope.city~=nil then ids[scope.city]=true end
+     if changed and viewOk and indexed then
+      for cid,sources in pairs(view.recipients)do for source in pairs(sources)do if changed[source]then affected[cid]=true;break end end end
+     end
     end
     for cid in pairs(ids)do
      local old=d.records[key(pid,cid)];local visit=not changed or affected[cid]

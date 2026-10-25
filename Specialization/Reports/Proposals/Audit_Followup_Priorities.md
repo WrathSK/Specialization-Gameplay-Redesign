@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B311.338 S6g lets CultureNetwork use old dependencies plus a private current-topology reverse index before copying/reconciling receivers. Selected receivers keep all sources; owner-wide, unknown, old adapter and unavailable-index cases retain the full discovery fallback. Standardization live census remains unchanged. [Result](../../Status/Validation/Results/Specialization_B311_Refactor_S6g.md).
+
 B310.337 S6f moves Commerce local inputs and Development source inputs into the existing certified EF projection, sharing only raw workers within a valid synchronous read phase. Each consumer retains its own ACTIVE/anchor/pillage/qualification rules; all writes and irreversible actions remain outside the read projection. No scheduler or retry was added. [Result](../../Status/Validation/Results/Specialization_B310_Refactor_S6f.md).
 
 B309.336 S6e makes automatic Capital entry/contract refresh quote-free; explicit requests retain full terms and confirmations freshly price only their selected domain before the original money/receipt transaction. Retained display quotes are stale and blocked in UI and Gameplay, with qualification/HELD reasons preserved. Original direct Refresh defaults stay full. Worker migration remains open after new fixture corrections identified the first prototype failures; no shared guard was weakened. [Result](../../Status/Validation/Results/Specialization_B309_Refactor_S6e.md).

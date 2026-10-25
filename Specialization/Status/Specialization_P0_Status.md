@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0762
-Implementation Build: B310.337 / modinfo337; stable/live B307.334
+Status Revision: S0763
+Implementation Build: B311.338 / modinfo338; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S6F_COMPLETE_CONTINUING
+Work State: REFACTOR_S6G_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S6f moves Commerce local inputs and Development source inputs into the existing certified EF projection, sharing only raw workers within a valid synchronous read phase. Each consumer retains its own ACTIVE/anchor/pillage/qualification rules; all writes and irreversible actions remain outside the read projection. No scheduler or retry was added. [Result](Validation/Results/Specialization_B310_Refactor_S6f.md). Stable/live/main B307.334; no deployment/native PASS.
+S6g lets CultureNetwork use old dependencies plus a private current-topology reverse index before copying/reconciling receivers. Selected receivers keep all sources; owner-wide, unknown, old adapter and unavailable-index cases retain the full discovery fallback. Standardization live census remains unchanged. [Result](Validation/Results/Specialization_B311_Refactor_S6g.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S6 scoped receiver discovery, Capital source snapshot and unit/UI/target/network hot paths, then S7–S10.
+- Primary next: Continue S6 Capital source snapshot, unit-panel publish/UnitTargets scope and remaining native-event hot paths, then S7–S10.
+
+## S0763 — B311.338 Discover Culture receivers through bounded topology edges
+
+S6g lets CultureNetwork use old dependencies plus a private current-topology reverse index before copying/reconciling receivers. Selected receivers keep all sources; owner-wide, unknown, old adapter and unavailable-index cases retain the full discovery fallback. Standardization live census remains unchanged.
 
 ## S0762 — B310.337 Use guarded worker projections in Commerce and Development
 

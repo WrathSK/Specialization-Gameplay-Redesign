@@ -682,6 +682,14 @@
       "test_refactor_s5d4c10",
       "test_refactor_s6e",
       "test_refactor_s3"
+    ],
+    "S6g": [
+      "test_refactor_s6g",
+      "test_refactor_s6d",
+      "test_refactor_s5d4c9",
+      "test_refactor_s5c2",
+      "test_refactor_s4b",
+      "test_refactor_s3"
     ]
   },
   "counterexamples": {},
@@ -759,7 +767,8 @@
       "test_refactor_s4b",
       "test_refactor_s5c1",
       "test_refactor_s5c2",
-      "test_refactor_s5d4b1"
+      "test_refactor_s5d4b1",
+      "test_refactor_s6g.ScopedTopology"
     ],
     "Mod/CityProgressionStore.lua": [
       "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity"
@@ -802,7 +811,8 @@
     ],
     "Mod/CultureNetwork.lua": [
       "test_refactor_s4b",
-      "test_refactor_s6d"
+      "test_refactor_s6d",
+      "test_refactor_s6g.ScopedTopology"
     ],
     "Mod/StandardizationEffects.lua": [
       "test_refactor_s4b",
