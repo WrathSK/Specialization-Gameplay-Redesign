@@ -1,10 +1,40 @@
 include('Probe')
 local P=SPCP0
-local parent,pending,elapsed,unitKey,feedback
+local parent,pending,pendingMeta,elapsed,unitKey,feedback
 local view,viewToken,viewRequestedAt
 local clock=0;local dirty=true;local hooks={};local renderKey;local revision;local backend;local backendVersion
 local renderDirty=true;local pumping=false;local stopped=false;local pump;local causeVersion=0
 local function signal()causeVersion=causeVersion+1;dirty=true end
+local function clearAction()
+ local m=pendingMeta;pending=nil;pendingMeta=nil
+ if m then pcall(m.discard,m.owner,m.token)end
+end
+local function sameChannel(m)
+ local shared=ExposedMembers.SPC_P0
+ return shared==m.backend and shared.Version==P.VERSION and shared.PlayerActionReplies==m.channel
+  and m.channel.epoch==m.epoch and m.channel.version==P.VERSION
+  and m.channel.Has==m.has and m.channel.Take==m.take and m.channel.Discard==m.discard
+end
+local function actionReady()
+ local m=pendingMeta;if not pending or not m then return false end
+ if not sameChannel(m)then return true end -- one explicit invalidation, never replay
+ local ok,value=pcall(m.has,m.owner,m.token);return not ok or value==true
+end
+local function consumeAction()
+ local m=pendingMeta;if not m or not actionReady()then return false end
+ local localOwner=Game.GetLocalPlayer()
+ local ok,row=false,nil
+ if sameChannel(m)and localOwner==m.owner then ok,row=pcall(m.take,m.owner,m.token)end
+ local valid=ok and type(row)=='table'and row.owner==m.owner and row.token==m.token
+  and row.action==m.action and row.unitID==m.unitID and row.epoch==m.epoch
+  and row.version==P.VERSION and type(row.text)=='string'and sameChannel(m)
+ clearAction() -- release before controls/notify can reenter
+ feedback=valid and row.text or '操作结果暂不可确认；请查看诊断，不要重复确认。'
+ ExposedMembers.SPC_UnitPanelStatus=feedback
+ if valid then print('[SPC][B045][PANEL_RESULT] '..feedback)end
+ view=nil;viewToken=nil;dirty=true
+ return true
+end
 local function current()
  local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid) then return nil end
  local u=UI.GetHeadSelectedUnit();if not u or u:GetOwner()~=pid then return nil end
@@ -89,11 +119,24 @@ local function dispatch(confirm)
  end
  if confirm and not p then return end
  ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
- pending=P.VERSION..':PANEL:'..Game.GetCurrentGameTurn()..':'..ExposedMembers.SPC_P0_UISequence;elapsed=0;renderDirty=true
- local ok,err=pcall(UI.RequestPlayerOperation,u:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,
-  {OnStart='SPC_P0_Request',Action=confirm and 'UNIT_ACTION_CONFIRM' or 'UNIT_ACTION_PREPARE',UnitID=u:GetID(),Token=pending,PlanToken=p and p.token})
+ local owner,id,turn=u:GetOwner(),u:GetID(),Game.GetCurrentGameTurn()
+ local shared=ExposedMembers.SPC_P0;local channel=shared and shared.PlayerActionReplies
+ if not shared or shared.Version~=P.VERSION or not channel or channel.version~=P.VERSION
+  or channel.scope~='UNIT_ACTION'or type(channel.epoch)~='number'or type(channel.Has)~='function'
+  or type(channel.Take)~='function'or type(channel.Discard)~='function'then
+  ExposedMembers.SPC_UnitPanelStatus='操作结果通道尚未就绪；未发送操作。';return
+ end
+ pending=P.VERSION..':PANEL:'..turn..':'..ExposedMembers.SPC_P0_UISequence;elapsed=0;renderDirty=true
+ local action=confirm and 'UNIT_ACTION_CONFIRM'or 'UNIT_ACTION_PREPARE'
+ pendingMeta={owner=owner,unitID=id,token=pending,action=action,backend=shared,channel=channel,
+  epoch=channel.epoch,has=channel.Has,take=channel.Take,discard=channel.Discard}
+ local attempt=pendingMeta
+ local ok,err=pcall(UI.RequestPlayerOperation,owner,PlayerOperations.EXECUTE_SCRIPT,
+  {OnStart='SPC_P0_Request',Action=action,UnitID=id,Token=pending,PlanToken=p and p.token,
+   ReplyChannel='UNIT_ACTION',ReplyEpoch=channel.epoch})
+ if stopped or not rawequal(pendingMeta,attempt)then return end -- an older send cannot clear a later action
  feedback=ok and '正在处理，请稍候。' or '请求未送达，请查看日志。'
- if not ok then print('[SPC][B043][PANEL_ERROR] '..tostring(err));pending=nil end
+ if not ok then print('[SPC][B043][PANEL_ERROR] '..tostring(err));clearAction()end
 end
 local function refresh()
  if not parent then
@@ -101,16 +144,10 @@ local function refresh()
   if parent then Controls.ActionGroup:ChangeParent(parent)
   else ExposedMembers.SPC_UnitPanelStatus='UNIT_PANEL_STACK_NOT_FOUND';dirty=false;return end
  end
+ local acknowledged=consumeAction() -- a completed source unit may already be gone
  local u,kind=current();local key=u and (u:GetOwner()..':'..u:GetID()..':'..u:GetX()..':'..u:GetY()..':'..Game.GetCurrentGameTurn())
  if unitKey~=key then
-  unitKey=key;feedback=nil;view=nil;viewToken=nil;pending=nil;dirty=true
- end
- if pending then
-  local shared=ExposedMembers.SPC_P0 or {}
-  if shared.Version==P.VERSION and shared.LastToken==pending then
-   feedback=tostring(shared.Snapshot);ExposedMembers.SPC_UnitPanelStatus=feedback
-   print('[SPC][B045][PANEL_RESULT] '..feedback);pending=nil;view=nil;viewToken=nil;dirty=true
-  end
+  unitKey=key;if not acknowledged then feedback=nil end;view=nil;viewToken=nil;dirty=true
  end
  local visible=u~=nil and UI.GetInterfaceMode()==InterfaceModeTypes.SELECTION
  if not visible then
@@ -145,14 +182,14 @@ local function refresh()
  end
  parent:CalculateSize();parent:ReprocessAnchoring()
 end
--- The existing update callback is only a scalar timeout clock. It performs no
--- game reads, reply polling, request, render or time-based retry.
+-- The existing scalar timeout also releases its bounded reply slot. It performs
+-- no game reads, reply polling, request, render or time-based retry.
 local function tick(dt)
  clock=clock+dt
  if pending then
   elapsed=elapsed+dt
   if elapsed>10 then
-   pending=nil;view=nil;viewToken=nil;renderDirty=true
+   clearAction();view=nil;viewToken=nil;renderDirty=true
    feedback='等待结果超时；请查看专业化诊断中的移民 / 施工队，不要重复确认。'
    ExposedMembers.SPC_UnitPanelStatus=feedback
   end
@@ -162,10 +199,10 @@ end
 pump=function()
  if stopped or pumping then return end
  local shared=ExposedMembers.SPC_P0;local r=ExposedMembers.SPC_RuntimeUIRevision or 0
- if backend~=shared or backendVersion~=(shared and shared.Version)then backend=shared;backendVersion=shared and shared.Version;pending=nil;view=nil;viewToken=nil;unitKey=nil;dirty=true end
+ if backend~=shared or backendVersion~=(shared and shared.Version)then backend=shared;backendVersion=shared and shared.Version;clearAction();view=nil;viewToken=nil;unitKey=nil;dirty=true end
  if revision~=r then revision=r;dirty=true end
  local reply=shared and shared.UnitActionView
- local action=shared and shared.Version==P.VERSION and pending and shared.LastToken==pending
+ local action=actionReady()
  local received=viewToken and reply and reply.token==viewToken
  if not(dirty or renderDirty or action or received)then return end
  pumping=true;renderDirty=false;local observedCause=causeVersion
@@ -177,12 +214,12 @@ local function mark(pid)
  if type(pid)~='number'or pid==Game.GetLocalPlayer()then signal()end
 end
 local function selectedChanged(pid,id)
- pending=nil;view=nil;viewToken=nil;signal();pump()
+ view=nil;viewToken=nil;signal();pump()
 end
 local function unitChanged(pid,id)
  if type(pid)=='number'and pid~=Game.GetLocalPlayer()then return end
  if unitKey and type(pid)=='number'and type(id)=='number'and unitKey:sub(1,#(pid..':'..id..':'))~=pid..':'..id..':'then return end
- pending=nil;view=nil;viewToken=nil;signal();pump()
+ view=nil;viewToken=nil;signal();pump()
 end
 local function bind(name,fn)
  local e=P.Field(Events,name);if e and e.Add then e.Add(fn);hooks[#hooks+1]={e,fn}end
@@ -198,14 +235,14 @@ ContextPtr:SetInitHandler(function()
  bind('UnitTeleported',function()selectedChanged()end)
  bind('UnitSelectionChanged',selectedChanged)
  bind('InterfaceModeChanged',function()signal();pump()end)
- bind('LocalPlayerChanged',function()backend=nil;signal();pump()end)
- bind('LoadScreenClose',function()backend=nil;signal();pump()end)
+ bind('LocalPlayerChanged',function()clearAction();backend=nil;signal();pump()end)
+ bind('LoadScreenClose',function()clearAction();backend=nil;signal();pump()end)
  bind('GameCoreEventPublishComplete',pump);bind('GameCoreEventPlaybackComplete',pump)
  Controls.PrepareButton:RegisterCallback(Mouse.eLClick,function()dispatch(false)end)
  Controls.ConfirmButton:RegisterCallback(Mouse.eLClick,function()dispatch(true)end)
  ContextPtr:SetUpdate(tick);pump()
 end)
 ContextPtr:SetShutdown(function()
- stopped=true;ContextPtr:ClearUpdate();Controls.ActionGroup:SetHide(true)
+ stopped=true;clearAction();ContextPtr:ClearUpdate();Controls.ActionGroup:SetHide(true)
  for _,h in ipairs(hooks)do h[1].Remove(h[2])end
 end)

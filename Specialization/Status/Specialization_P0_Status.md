@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0810
-Implementation Build: B357.384 / modinfo384; stable/live B307.334
+Status Revision: S0811
+Implementation Build: B358.385 / modinfo385; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9C2_COMPLETE_CONTINUING
+Work State: REFACTOR_S9C3_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9c2 starts the fixed PlayerActionReplies service after UnitActions while preserving all original startup order. Explicit UNIT_ACTION/epoch requests publish detached terminal results at the original Gameplay reply boundary before fact observation; no-channel DEV keeps LastToken/Snapshot. Text,investment receipt and typed outcome are preserved separately; publication failure/reentry never suppresses original receipt propagation or replays the action. Fourteen focused tests pass including16 actual Crew legacy/typed fault cases. Player UI/view/target consumers remain unchanged; continue S9c migration and remaining S9/S10 with exact D7/D5 limits OPEN. [Result](Validation/Results/Specialization_B357_Refactor_S9c2.md). Stable/live/main B307.334; no deployment/native PASS.
+S9c3 migrates UnitPanel PREPARE/CONFIRM ACK to PlayerActionReplies with exact owner/unit/action/token/version/epoch/backend/method checks. Terminal is consumed before selected-unit reset,so synchronous unit destruction or selection changes cannot discard its result. One bounded pending survives selection until terminal/old timeout; it never grants the new unit a preview. An old send stack cannot clear a newer attempt. Twelve new tests plus20 existing UI assertions pass,including actual Crew COMMITTED/HELD removal-before-ACK and1000idle no requests. DEV compatibility and view/target protocols remain; remaining S9/S10 and exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B358_Refactor_S9c3.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Migrate UnitPanel prepare/confirm ACK to the validated player channel,then remaining channels,owner-bound training signals,applied display,adjacency and S10; preserve exact D7/native D5 limitations.
+- Primary next: Continue S9 view/target/presentation token channels,owner-bound training signals,applied display and adjacency,then S10; preserve exact D7/native D5 limitations.
+
+## S0811 — B358.385 Consume player action replies independently of DEV in UnitPanel
+
+S9c3 migrates UnitPanel PREPARE/CONFIRM ACK to PlayerActionReplies with exact owner/unit/action/token/version/epoch/backend/method checks. Terminal is consumed before selected-unit reset,so synchronous unit destruction or selection changes cannot discard its result. One bounded pending survives selection until terminal/old timeout; it never grants the new unit a preview. An old send stack cannot clear a newer attempt. Twelve new tests plus20 existing UI assertions pass,including actual Crew COMMITTED/HELD removal-before-ACK and1000idle no requests. DEV compatibility and view/target protocols remain; remaining S9/S10 and exact D7/D5 limits stay OPEN.
 
 ## S0810 — B357.384 Publish optional player action results at the real Gameplay boundary
 

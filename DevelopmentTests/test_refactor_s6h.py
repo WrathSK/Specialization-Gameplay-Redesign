@@ -41,9 +41,13 @@ function reply(p)
   local v={version=P.VERSION,owner=u.owner,unitID=u.id,token=p.Token,turn=turn,x=u.x,y=u.y,mode='INVEST',plots={{plot=10},{plot=999}},unknown={}}
   if mutateReply then mutateReply(v)end;s.UnitTargetSnapshot=v
  elseif p.Action=='UNIT_ACTION_PREPARE'then
-  plan='PLAN';s.UnitActionPreview={owner=u.owner,unitID=u.id,turn=turn,x=u.x,y=u.y,token=plan};s.LastToken=p.Token;s.Snapshot='PREPARED'
+  if p.ReplyChannel and not s.PlayerActionReplies.Accepts(u.owner,p)then return end
+  plan='PLAN';s.UnitActionPreview={owner=u.owner,unitID=u.id,turn=turn,x=u.x,y=u.y,token=plan}
+  if p.ReplyChannel then s.PlayerActionReplies.Publish(u.owner,p,'PREPARED',{status='PREPARED',kind='UNIT_ACTION',phase='PREPARE'})else s.LastToken=p.Token;s.Snapshot='PREPARED'end
  elseif p.Action=='UNIT_ACTION_CONFIRM'then
-  assert(p.PlanToken==plan and plan);confirmed=confirmed+1;plan=nil;s.UnitActionPreview=nil;s.LastToken=p.Token;s.Snapshot='DONE'
+  if p.ReplyChannel and not s.PlayerActionReplies.Accepts(u.owner,p)then return end
+  assert(p.PlanToken==plan and plan);confirmed=confirmed+1;plan=nil;s.UnitActionPreview=nil
+  if p.ReplyChannel then s.PlayerActionReplies.Publish(u.owner,p,'DONE',{status='COMMITTED',kind='UNIT_ACTION',phase='CONFIRM'})else s.LastToken=p.Token;s.Snapshot='DONE'end
  end
 end
 UI={GetHeadSelectedUnit=function()counts.selected=counts.selected+1;return selected end,GetInterfaceMode=function()return mode end,GetColorValue=function()return 1 end,
@@ -64,7 +68,7 @@ function deliver()local q=queued;queued={};for _,p in ipairs(q)do reply(p)end;pu
 
 
 def ui(markers=False,before=""):
-    c=Context('unit-target-ui'if markers else'unit-action-ui');c.execute(SETUP);c.execute(before)
+    c=Context('unit-target-ui'if markers else'unit-action-ui');c.execute(SETUP);c.load('PlayerActionReplies');c.execute('SPCPlayerActionReplies.Start(P,ExposedMembers.SPC_P0)');c.execute(before)
     c.load('UI/UnitTargetMarkers'if markers else'UI/UnitPanelActions');c.execute('init()');return c
 
 

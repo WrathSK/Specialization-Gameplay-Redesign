@@ -1736,6 +1736,9 @@
     ],
     "S9c2": [
       "test_refactor_s9c2"
+    ],
+    "S9c3": [
+      "test_refactor_s9c3"
     ]
   },
   "counterexamples": {},
@@ -2038,7 +2041,8 @@
       "test_refactor_s6h.Panel",
       "test_refactor_s6h.Markers",
       "test_refactor_s6h.ActualTargets",
-      "test_refactor_s6h.ActualConsumption"
+      "test_refactor_s6h.ActualConsumption",
+      "test_refactor_s9c3"
     ],
     "Mod/UI/UnitTargetMarkers.lua": [
       "test_refactor_s6h.Panel",

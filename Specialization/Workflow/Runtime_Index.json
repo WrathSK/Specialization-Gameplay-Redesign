@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "f49c6729b64ef134f7a238408376d2f97ee99120989e2c56f9ffae75b929646a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B357_Refactor_S9c2.md",
-      "provenance": "B357.384 Publish optional player action results at the real Gameplay boundary; local/static evidence only; no deployment/native PASS."
+      "sha256": "1e31728288074fbfbe1c8f35ee83c954d5436d2bf1b8d28fcf5ae9160a4c6e9b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B358_Refactor_S9c3.md",
+      "provenance": "B358.385 Consume player action replies independently of DEV in UnitPanel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f45cedc3839e076b3b5b478f744f38024dae7c5fc5d9ff40ab4408c3d1a3240b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B357_Refactor_S9c2.md",
-      "provenance": "B357.384 Publish optional player action results at the real Gameplay boundary; local/static evidence only; no deployment/native PASS."
+      "sha256": "0ed17956501ca958af23a29f1192a5866f4453bc33bc0dacadf0a73ac84f466f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B358_Refactor_S9c3.md",
+      "provenance": "B358.385 Consume player action replies independently of DEV in UnitPanel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1501,9 +1501,9 @@
       "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/UI/UnitPanelActions.lua": {
-      "sha256": "b0719c71b1279335dea1a7a55bfc73972981968ff5610bf44d42328cbe53d3b5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
-      "provenance": "B312.339 Consume unit UI replies at semantic events and publication; local/static evidence only; no deployment/native PASS."
+      "sha256": "19a0cb9444bad290c1324c25e1406b17aade657bbf7b8ac71234ce3f03585248",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B358_Refactor_S9c3.md",
+      "provenance": "B358.385 Consume player action replies independently of DEV in UnitPanel; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/UnitPanelActions.xml": {
       "sha256": "7a48eaa0f2c9ef58d84a27547e78431407c840d14fb76332d702594546b61145",
