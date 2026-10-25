@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0800",
-    "runtime": "B347.374 / modinfo374",
+    "status": "S0801",
+    "runtime": "B348.375 / modinfo375",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Finish bounded template-family isolation with strict base and independent IndustryHistory proof, then continue S9–S10; report unresolved permanent D7 proof boundaries. No automatic deployment/main/native launch.",
+  "goal": "Record remaining permanent D7 recovery proof boundaries without guessing/reset, then advance authorized S9 projections/target ownership and S10 responsibility migration. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -434,6 +434,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
       "kind": "full",
       "reason": "Isolate unavailable Commerce reputation while preserving base Gold actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md",
+      "kind": "full",
+      "reason": "Isolate template family and preserve independent Industry history recovery actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -460,8 +465,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
-    "local": "703 LOCAL_SIMULATION_PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md",
+    "local": "720 LOCAL_SIMULATION_PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

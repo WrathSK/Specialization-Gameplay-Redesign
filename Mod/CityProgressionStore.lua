@@ -31,7 +31,7 @@ local function CreateProgressionRecord(P,shared,storage)
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
  local isolated={} -- session-only observations; original ability bytes remain in root
  local partialReputation -- plain bounded observation, never a copy of the saved history
- local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering','capital','development','claimTimer','commerce'} -- fixed reviewed owner scope
+ local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering','capital','development','claimTimer','commerce','templateLifecycle'} -- fixed reviewed owner scope
  local isolationFields={};for _,key in ipairs(isolationKeys)do isolationFields[key]=SPCStoreSubrecords.Fields(key)end
  -- Session-only, two bounded scalar summaries; never history or age authority.
  local timing={}
@@ -110,6 +110,12 @@ local function CreateProgressionRecord(P,shared,storage)
   for _,n in ipairs({'TOKEN','JOURNAL','FLOW','INVEST','TEMPLATES'}) do s.values[n]=c:GetProperty(M.Keys[n])end
   s.ledger=Game:GetProperty('SPC_DEV_BINDING_B013_P'..s.ref.owner)
   return cp(s)
+ end
+ -- Masking an unavailable ability must not hide this original base invariant.
+ local function unassignedTemplates(r)
+  if (r.schema==2 or r.schema==3)and r.progression=='UNASSIGNED'then
+   assert(r.templates==nil,'STORE_UNASSIGNED')
+  end
  end
  local function validate(r)
   assert(type(r)=='table' and (r.schema==1 or r.schema==2 or r.schema==3) and (r.stage=='PREPARED' or r.stage=='ACTIVE' or r.stage=='HELD_TRANSFER')
@@ -216,6 +222,13 @@ local function CreateProgressionRecord(P,shared,storage)
   return {token=root.base.token,foundationTurn=root.base.foundationTurn,
    founded=root.schema==2,owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}
  end
+ -- Readiness identity for the existing lawful Industry-entry reconciliation.
+ -- Separate from HistoricalReference: callers storing unit bindings keep that schema.
+ function d.IndustryHistoryStamp(c)
+  local r=active(c:GetOwner(),c)
+  return {token=r.base.token,x=r.origin.x,y=r.origin.y,ownerChanges=r.ownerChanges or 0,
+   industryEpoch=r.restructuring and r.restructuring.serial or 0}
+ end
  function d.Base(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local b=R.Current(r);return projected(r,b,false)end
  function d.FactStamp(pid,c)
   assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c)
@@ -226,7 +239,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(not fault,'STORE_WRITE_HELD')
   if next(isolated)or partialReputation then
    -- Normalize before comparison: metatable fallback cannot forge preservation.
-   local checked=cp(nextValue)
+   local checked=cp(nextValue);unassignedTemplates(checked)
    for _,key in ipairs(isolationKeys)do if isolated[key]then
     for _,field in ipairs(isolationFields[key])do
      assert(root and same(checked[field],root[field]),'ISOLATED_SUBRECORD_CANNOT_CHANGE_'..field)
@@ -525,8 +538,8 @@ local function CreateProgressionRecord(P,shared,storage)
   if out.insightsKnown then
    out.insights=0;for _ in pairs(r.expeditionInsights and r.expeditionInsights.records or {})do out.insights=out.insights+1 end
   end
-  local lifecycle=r.templateLifecycle
-  if r.templatesCaptured and r.templates and lifecycle and not lifecycle.reconcilePending
+  local lifecycle=not isolated.templateLifecycle and r.templateLifecycle
+  if not isolated.templateLifecycle and r.templatesCaptured and r.templates and lifecycle and not lifecycle.reconcilePending
    and shared.Standardization and shared.Standardization.ValidateHistory then
    local ok=pcall(shared.Standardization.ValidateHistory,c,r.templates)
    if ok then
@@ -583,7 +596,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(not Players[pid]:GetUnits():FindID(team.id),'REST_UNIT_STILL_PRESENT')
   local n=cp(r);n.restructuring=R.Finish(s)
   if not isolated.researchTradition and n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,Game.GetCurrentGameTurn(),n.restructuring.identity)end
-  if n.restructuring.identity=='INDUSTRY' then
+  if n.restructuring.identity=='INDUSTRY' and not isolated.templateLifecycle then
    if n.templateLifecycle then n.templateLifecycle.reconcilePending=true
    elseif n.templates then n.templateLifecycle={version=1,state='INITIALIZED',reconcilePending=true}
    elseif not s.established.INDUSTRY and r.base.specialization~='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
@@ -592,7 +605,9 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  -- Only the existing Standardization module owns interpretation of this ledger.
  function d.ReadTemplates(c)
-  local r=active(c:GetOwner(),c)
+  local r=active(c:GetOwner(),c);assert(not isolated.templateLifecycle,'TEMPLATES_HISTORY_ISOLATED')
+  -- Never replace an already saved ledger from the obsolete City property.
+  assert(r.templates==nil or r.templatesCaptured,'TEMPLATES_CAPTURE_HISTORY_UNAVAILABLE')
   if not r.templatesCaptured then
    assert(not r.current,'TEMPLATES_HISTORY_UNAVAILABLE')
    local n=cp(r);n.templates=c:GetProperty(M.Keys.TEMPLATES);n.templatesCaptured=true;n.revision=n.revision+1;save(n)
@@ -605,7 +620,7 @@ local function CreateProgressionRecord(P,shared,storage)
   return cp(root.templates),false
  end
  function d.WriteTemplates(c,old,value)
-  local r=active(c:GetOwner(),c)
+  local r=active(c:GetOwner(),c);assert(not isolated.templateLifecycle,'TEMPLATES_HISTORY_ISOLATED')
   local current=d.ReadTemplates(c) -- same missing-history guard for every writer
   r=active(c:GetOwner(),c) -- a legacy capture may have replaced the record
   assert(R.Current(r).specialization=='INDUSTRY' and r.templatesCaptured and same(current,old),'TEMPLATES_STALE')
@@ -641,7 +656,7 @@ local function CreateProgressionRecord(P,shared,storage)
    if s.phase=='UNASSIGNED' and next(s.candidates)==nil then
     local r=active(pid,c);assert(same(e.reference,r.current or r.origin),'COMPLETION_REFERENCE_CHANGED')
     local n=cp(r);n.restructuring=R.Claim(s,e.specialization,{districtID=e.districtID,type=e.type,turn=e.turn})
-    if e.specialization=='INDUSTRY' then
+    if e.specialization=='INDUSTRY' and not isolated.templateLifecycle then
      if n.templateLifecycle then n.templateLifecycle.reconcilePending=true
      elseif not s.established.INDUSTRY and r.base.specialization~='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
     end
@@ -655,7 +670,7 @@ local function CreateProgressionRecord(P,shared,storage)
   if root.stage~='ACTIVE' or root.referenceInvalidated then return end
   local r=active(pid,c);assert(same(e.reference,r.current or r.origin),'COMPLETION_REFERENCE_CHANGED')
   local n=cp(r);n.progression='SPECIALIZED';n.base.specialization=e.specialization;n.base.potential=1
-  if e.specialization=='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
+  if e.specialization=='INDUSTRY' and not isolated.templateLifecycle then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
   if n.current then n.currentFirst=cp(n.base.first)end
   n.revision=n.revision+1;save(n)
@@ -687,7 +702,7 @@ local function CreateProgressionRecord(P,shared,storage)
    assert(s.phase=='UNASSIGNED' and s.candidates[e.kind] and e.token==r.base.token and same(e.reference,r.current or r.origin)
     and e.project=='PROJECT_SPC_CLAIM_'..e.kind and e.turn==Game.GetCurrentGameTurn(),'REST_CLAIM_PROOF')
    local n=cp(r);n.restructuring=R.Claim(s,e.kind,{districtID=e.districtID,type=e.type,turn=e.turn});n.claimTimer=nil
-   if e.kind=='INDUSTRY' then
+   if e.kind=='INDUSTRY' and not isolated.templateLifecycle then
     if n.templateLifecycle then n.templateLifecycle.reconcilePending=true
     elseif not s.established.INDUSTRY and r.base.specialization~='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
    end
@@ -699,7 +714,7 @@ local function CreateProgressionRecord(P,shared,storage)
    and e.project=='PROJECT_SPC_CLAIM_'..e.kind and e.turn==Game.GetCurrentGameTurn(),'CLAIM_PROOF_INVALID')
   assert(type(e.districtID)=='number' and type(e.type)=='string','CLAIM_DISTRICT_INVALID')
   local n=cp(r);n.progression='SPECIALIZED';n.base.specialization=e.kind;n.base.potential=1
-  if e.kind=='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
+  if e.kind=='INDUSTRY' and not isolated.templateLifecycle then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
   if n.current then n.currentFirst=cp(n.base.first)end
   -- Receipt retains the historical record anchor; active requests use current reference.
@@ -855,7 +870,7 @@ local function CreateProgressionRecord(P,shared,storage)
      -- First construct redundant known markers without publishing them. Only
      -- independently valid owners may commit those markers after the full proof.
      local candidate,changes=SPCStoreSubrecords.KnownCandidate(root,cp)
-     local checked=cp(candidate or root);local failures={};local reputationFailure
+     local checked=cp(candidate or root);unassignedTemplates(checked);local failures={};local reputationFailure
      for _,key in ipairs(isolationKeys)do
       local check=SPCStoreSubrecords.CheckOne(key,checked,same)
       if check.status=='CHECK_FAILED'then
@@ -1069,7 +1084,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(first,'RETURN_DISTRICT_UNAVAILABLE')
   end -- P0 has no historical professional district to rebind.
   local n=cp(root)
-  if R.Current(n).specialization=='INDUSTRY' then
+  if R.Current(n).specialization=='INDUSTRY' and not isolated.templateLifecycle then
    -- Preserve reliable city experience; current eligible buildings are unioned
    -- by Standardization only after the authoritative return is committed.
    if n.templatesCaptured and n.templates then
@@ -1439,6 +1454,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   for token,row in pairs(envelope.records)do if row.origin.x==x and row.origin.y==y then return token end end
  end
  function store.HistoricalReference(c)return requireCity(c).HistoricalReference(c)end
+ function store.IndustryHistoryStamp(c)return requireCity(c).IndustryHistoryStamp(c)end
  function store.HistoryStartStatus()
   if fault then return 'HELD' end
   if not modern or not initialized then return 'WAITING' end

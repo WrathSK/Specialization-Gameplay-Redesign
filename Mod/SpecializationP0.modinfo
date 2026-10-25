@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="374">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="375">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B347.374：商业信誉未知时隔离原记录，保留确认的基础收益及配置。</Description>
+    <Description>B348.375：隔离不可读模板历史，保留城市身份与独立工业经验恢复。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

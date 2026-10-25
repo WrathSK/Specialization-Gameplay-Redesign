@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0800
-Implementation Build: B347.374 / modinfo374; stable/live B307.334
+Status Revision: S0801
+Implementation Build: B348.375 / modinfo375; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8B7B_COMPLETE_CONTINUING
+Work State: REFACTOR_S8B8_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8b7b isolates invalid Commerce configuration as one owner, or only reputation when configuration independently validates. Original unavailable history and known marker remain exact across writes, investment, restructuring and loss/return. Actual Store+Commerce proves confirmed Gold16→15 without unknown reputation bonus and configuration off/on0→15; cold PENDING preserves installed16 and prohibits new transactions. UI/summary distinguish unknown from zero. Healthy copy work and saved bytes match B346. No new event,scan,timer,saved field or permanent repair/reset. Templates and permanent D7 recovery remain OPEN,as does D5 native proof. [Result](Validation/Results/Specialization_B347_Refactor_S8b7b.md). Stable/live/main B307.334; no deployment/native PASS.
+S8b8 isolates the fixed templateLifecycle/templates/templatesCaptured family after bounded copy and preserves exact raw history across unrelated writes,claims,restructuring and return. UNASSIGNED core checks run before masking; missing capture marker cannot overwrite an already saved ledger from legacy City data. Independent IndustryHistory N reconciliation survives template unavailability using existing owner-change/restructuring epochs,without inventing E or rescanning ordinary investment. Healthy initialization read order remains unchanged. Full permanent D7 proof and D5 native attribution remain OPEN; continue S9–S10. [Result](Validation/Results/Specialization_B348_Refactor_S8b8.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Finish bounded template-family isolation with strict base and independent IndustryHistory proof, then continue S9–S10; report unresolved permanent D7 proof boundaries.
+- Primary next: Record remaining permanent D7 recovery proof boundaries without guessing/reset, then advance authorized S9 projections/target ownership and S10 responsibility migration.
+
+## S0801 — B348.375 Isolate template family and preserve independent Industry history recovery
+
+S8b8 isolates the fixed templateLifecycle/templates/templatesCaptured family after bounded copy and preserves exact raw history across unrelated writes,claims,restructuring and return. UNASSIGNED core checks run before masking; missing capture marker cannot overwrite an already saved ledger from legacy City data. Independent IndustryHistory N reconciliation survives template unavailability using existing owner-change/restructuring epochs,without inventing E or rescanning ordinary investment. Healthy initialization read order remains unchanged. Full permanent D7 proof and D5 native attribution remain OPEN; continue S9–S10.
 
 ## S0800 — B347.374 Isolate unavailable Commerce reputation while preserving base Gold
 

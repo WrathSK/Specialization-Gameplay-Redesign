@@ -5,7 +5,7 @@
 SPCStoreSubrecords={}
 local S=SPCStoreSubrecords
 local definitions={
- {key='templateLifecycle',phase='PROFESSION',fields={'templateLifecycle'},validate=function(r,same)
+ {key='templateLifecycle',phase='PROFESSION',fields={'templateLifecycle','templates','templatesCaptured'},validate=function(r,same)
   -- B140: missing history is not proof of first initialization. The optional
   -- extension adopts only validated existing ledgers; old ambiguous nil stays held.
   if r.templateLifecycle then
@@ -101,7 +101,14 @@ end
 -- mutating the record or classifying a transient exception as irrecoverable.
 function S.CheckOne(key,r,same)
  local d=assert(byKey[key],'SUBRECORD_UNKNOWN')
- local ok,why=pcall(d.validate,r,same);local text
+ local ok,why=pcall(function()
+  d.validate(r,same)
+  -- Only failed-restore inspection needs this extra shape/provenance check.
+  -- Healthy full validation retains M.Preview's original order and workload.
+  if key=='templateLifecycle'and r.templates~=nil then
+   SPCCityIdentityRead.ValidateTemplates(r.templates,r.base.token,r.origin.x,r.origin.y)
+  end
+ end);local text
  if not ok then local safe,value=pcall(tostring,why);text=safe and type(value)=='string'and value:sub(1,180)or'SUBRECORD_VALIDATION_UNKNOWN'end
  return {key=d.key,fields=fields(d),status=ok and 'PASS'or'CHECK_FAILED',reason=text}
 end

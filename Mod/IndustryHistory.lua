@@ -150,17 +150,22 @@ function SPCIndustryHistory.Start(P,shared)
  -- Called only by the existing lawful Industry initialize/return path. A local
  -- scan adds presently verifiable city experience; it cannot manufacture E credit.
  local wonderCatalog;local reconciledThisSession={} -- readiness only, not duplicated N history
+ local function reconcileStamp(c)
+  local a=shared.CityProgressionStore.IndustryHistoryStamp(c)
+  assert(type(a)=='table'and type(a.token)=='string'and int(a.ownerChanges)and int(a.industryEpoch),'IH_ENTRY_STAMP_UNAVAILABLE')
+  return a
+ end
  function d.NeedsReconcile(c)
   if not d.ready or fault then return true end
-  local a=shared.CityProgressionStore.HistoricalReference(c)
-  return not reconciledThisSession[a.token]
+  local a=reconcileStamp(c);local old=reconciledThisSession[a.token]
+  return not old or old.ownerChanges~=a.ownerChanges or old.industryEpoch~=a.industryEpoch
  end
  function d.Reconcile(pid,c)
   assert(d.ready and root and not fault,'IH_HISTORY_UNAVAILABLE')
   assert(not busy,'IH_COMPLETION_IN_PROGRESS')
   assert(c and c:GetOwner()==pid and P.IsTestPlayer(pid),'IH_OWNER_CHANGED')
   local f=shared.EffectiveFacts.Read(pid,c);assert(f.specialization=='INDUSTRY','IH_INDUSTRY_REQUIRED')
-  local a=shared.CityProgressionStore.HistoricalReference(c)
+  local a=reconcileStamp(c)
   assert(a.token==f.token,'IH_CITY_CHANGED')
   reconciledThisSession[a.token]=nil -- failed/re-entry scans remain retryable on existing events/load
   if not wonderCatalog then
@@ -185,11 +190,11 @@ function SPCIndustryHistory.Start(P,shared)
     value.wonders[row.BuildingType]=now;additions=additions+1
    end
   end
-  if additions==0 then reconciledThisSession[a.token]=true;return false end
+  if additions==0 then reconciledThisSession[a.token]={ownerChanges=a.ownerChanges,industryEpoch=a.industryEpoch};return false end
   local candidate=copy(root);candidate.reconciled[a.token]=value;candidate.revision=candidate.revision+additions
   local ok,err=pcall(commit,root,candidate)
   if not ok then hold(err);error(fault)end
-  reconciledThisSession[a.token]=true
+  reconciledThisSession[a.token]={ownerChanges=a.ownerChanges,industryEpoch=a.industryEpoch}
   log('INDUSTRY_WONDER_RECONCILED',{owner=pid,city=c:GetID(),readStatus='CURRENT_UNION_RETAINED'})
   return true
  end
