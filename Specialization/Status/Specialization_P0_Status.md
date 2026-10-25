@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0815
-Implementation Build: B362.389 / modinfo389; stable/live B307.334
+Status Revision: S0816
+Implementation Build: B363.390 / modinfo390; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9C5B_COMPLETE_CONTINUING
+Work State: REFACTOR_S9C6A_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9c5b migrates Marker to UNIT_TARGETS with exact envelope/inner actor/token/stamp and final port/selection/cause/close fences. Negative/late/evicted replies do not resend; cleanup only discards its own target expectation. Sixteen focused plus20 original UI tests pass;six old/new render/native-work traces match and actual32-city marker adds0 idle scans/writes. Native GP/Naturalist retirement reentry is protected. Presentation/training/applied display/adjacency and S10 remain; exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B362_Refactor_S9c5b.md). Stable/live/main B307.334; no deployment/native PASS.
+S9c6a adds independent CITY_PRESENTATION8,total32 fixed-role slots. Its fixed scalar/nested projection preserves request vsStore tokens,false/nil/zero and unknown summary semantics without historical arrays/native objects. Gameplay reads original values once and protects same-city xy/final owner/id; two unsafe later FindID calls are removed. Eighteen focused tests pass including all six original B251 Store assertions. Both UI consumers and applied-owner fields remain next; other S9/S10 and exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B363_Refactor_S9c6a.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 presentation token channel with both actual consumers,owner-bound training signals,applied display and adjacency,then S10; preserve exact D7/native D5 limitations.
+- Primary next: Continue S9 CityPotential sole-Take and Overview accepted-DTO consumption,then owner-bound training signals,applied display and adjacency,S10; preserve exact D7/native D5 limitations.
+
+## S0816 — B363.390 Publish fixed institution views with protected city reference reads
+
+S9c6a adds independent CITY_PRESENTATION8,total32 fixed-role slots. Its fixed scalar/nested projection preserves request vsStore tokens,false/nil/zero and unknown summary semantics without historical arrays/native objects. Gameplay reads original values once and protects same-city xy/final owner/id; two unsafe later FindID calls are removed. Eighteen focused tests pass including all six original B251 Store assertions. Both UI consumers and applied-owner fields remain next; other S9/S10 and exact D7/D5 limits stay OPEN.
 
 ## S0815 — B362.389 Consume target replies independently and protect native lens retirement
 

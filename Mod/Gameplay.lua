@@ -232,6 +232,11 @@ local function request(playerID,params)
   end
   if params.Action=='CITY_PRESENTATION_READ' then
     if not P.IsTestPlayer(playerID) then return end
+    local service=shared.PlayerActionReplies;local replies
+    if params.ReplyChannel~=nil then
+      replies=service and service.Presentations
+      if not replies or not replies.Accepts(playerID,params)then return end
+    end
     local ok,f=pcall(function()
       local c=Players[playerID]:GetCities():FindID(params.CityID)
       assert(c and c:GetOwner()==playerID,'PRESENTATION_CITY_UNAVAILABLE')
@@ -249,19 +254,30 @@ local function request(playerID,params)
         if ready then s.tradition.percent=percent;s.tradition.nextAge=nextAge end
        end
       else f.institutionSummary={known=false}end
+      -- Bind to this same selected native city inside the protected read.
+      f.presentationX=c:GetX();f.presentationY=c:GetY()
+      assert(c:GetOwner()==playerID and c:GetID()==params.CityID,'PRESENTATION_REFERENCE_CHANGED')
       return f
     end)
-    shared.CityPresentationView={token=params.Token,owner=playerID,cityID=params.CityID,
+    local view={token=params.Token,owner=playerID,cityID=params.CityID,
       specialization=ok and f.specialization or nil,potential=ok and f.potential or nil,
       progression=ok and f.progression or nil,institutionArchive=ok and f.institutionArchive or nil,
       institutionSummary=ok and f.institutionSummary or nil,
       investments=ok and f.investmentCount or nil,active=ok and f.active or nil,activeStatus=ok and f.activeStatus or nil,
-      x=ok and Players[playerID]:GetCities():FindID(params.CityID):GetX() or nil,
-      y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
+      x=ok and f.presentationX or nil,
+      y=ok and f.presentationY or nil,error=not ok and tostring(f) or nil}
+    shared.CityPresentationView=view -- legacy/DEV mirror, not the typed consumer's reply
+    if replies then
+      local good,accepted=false,false
+      if shared.PlayerActionReplies==service and service.Presentations==replies then good,accepted=pcall(replies.PublishPresentation,playerID,params,view)end
+      shared.ObserverErrors=shared.ObserverErrors or {}
+      shared.ObserverErrors['city-presentation-reply']=not(good and accepted==true)and 'PLAYER_PRESENTATION_REPLY_UNAVAILABLE'or nil
+      if not(good and accepted==true)and shared.PlayerActionReplies==service and service.Presentations==replies then pcall(replies.FailPresentation,playerID,params)end
+    end
     -- Existing bounded trace, scalar results only; no extra native reads.
     if SPCExpeditionTrainingDiagnostics then
       if not shared.PresentationDiagnostics then shared.PresentationDiagnostics=SPCExpeditionTrainingDiagnostics.New(P,'PRESENTATION_GAMEPLAY')end
-      local d=shared.PresentationDiagnostics;local v=shared.CityPresentationView
+      local d=shared.PresentationDiagnostics;local v=view
       if d then pcall(d.Record,'INSTITUTION_FACTS',{owner=playerID,city=params.CityID,requestKey=params.Token,
         specialization=v.specialization,potential=v.potential,active=v.active,activeStatus=v.activeStatus,readStatus=ok and 'READY' or 'UNAVAILABLE'})end
     end

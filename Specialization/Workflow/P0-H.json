@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0815",
-    "runtime": "B362.389 / modinfo389",
+    "status": "S0816",
+    "runtime": "B363.390 / modinfo390",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S9 presentation token channel with both actual consumers,owner-bound training signals,applied display and adjacency,then S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
+  "goal": "Continue S9 CityPotential sole-Take and Overview accepted-DTO consumption,then owner-bound training signals,applied display and adjacency,S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -509,6 +509,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B362_Refactor_S9c5b.md",
       "kind": "full",
       "reason": "Consume target replies independently and protect native lens retirement actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md",
+      "kind": "full",
+      "reason": "Publish fixed institution views with protected city reference reads actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -535,8 +540,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B362_Refactor_S9c5b.md",
-    "local": "LOCAL_SIMULATION_PASS_925",
+    "report": "Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md",
+    "local": "LOCAL_SIMULATION_PASS_943",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

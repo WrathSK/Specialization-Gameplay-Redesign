@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0815",
-    "runtime": "B362.389 / modinfo389",
+    "status": "S0816",
+    "runtime": "B363.390 / modinfo390",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S9C5B_COMPLETE_CONTINUING",
-  "next_batch": "Continue S9 presentation token channel with both actual consumers,owner-bound training signals,applied display and adjacency,then S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S9C6A_COMPLETE_CONTINUING",
+  "next_batch": "Continue S9 CityPotential sole-Take and Overview accepted-DTO consumption,then owner-bound training signals,applied display and adjacency,S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "User resumed accepted S8b–S10 after the app update. Coherent verified develop batches may commit/push without routine stage authorization; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S0815 S9c5b migrates Marker to UNIT_TARGETS with exact envelope/inner actor/token/stamp and final port/selection/cause/close fences. Negative/late/evicted replies do not resend; cleanup only discards its own target expectation. Sixteen focused plus20 original UI tests pass;six old/new render/native-work traces match and actual32-city marker adds0 idle scans/writes. Native GP/Naturalist retirement reentry is protected. Presentation/training/applied display/adjacency and S10 remain; exact D7/D5 limits stay OPEN. No native/deployment PASS.",
+  "context_review_status": "S0816 S9c6a adds independent CITY_PRESENTATION8,total32 fixed-role slots. Its fixed scalar/nested projection preserves request vsStore tokens,false/nil/zero and unknown summary semantics without historical arrays/native objects. Gameplay reads original values once and protects same-city xy/final owner/id; two unsafe later FindID calls are removed. Eighteen focused tests pass including all six original B251 Store assertions. Both UI consumers and applied-owner fields remain next; other S9/S10 and exact D7/D5 limits stay OPEN. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B362_Refactor_S9c5b.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md"
 }
