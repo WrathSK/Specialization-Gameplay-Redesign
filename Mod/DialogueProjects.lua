@@ -133,6 +133,20 @@ function SPCDialogueProjects.Start(P,shared)
   end)
   d.Flush()
  end
+ local function freshSample(pid,c,s)
+  local reader=assert(ExposedMembers.SPC_DialogueProjectRead,'完成时馆藏读取未就绪')
+  local facts=assert(shared.GreatWorkFacts,'馆藏解释未就绪')
+  local interpret=assert(facts.InterpretCompletion,'馆藏解释未就绪')
+  local value=reader(pid,c:GetID(),true)
+  assert(type(value)=='table' and getmetatable(value)==nil and value.protocol==2
+   and type(value.reference)=='table' and getmetatable(value.reference)==nil and same(value.reference,s.reference)
+   and value.turn==Game.GetCurrentGameTurn(),'完成时馆藏引用不一致')
+  local x=interpret(value.raw)
+  assert(reader==ExposedMembers.SPC_DialogueProjectRead and facts==shared.GreatWorkFacts
+   and interpret==facts.InterpretCompletion and c:GetOwner()==pid
+   and same(value.reference,ref(c)) and value.turn==Game.GetCurrentGameTurn(),'完成取样期间引用变化')
+  return {x=x,turn=value.turn}
+ end
  local function completion(pid,id,index)
   if not ready or not P.IsTestPlayer(pid)then return end
   local row=P.Info('Projects',index);if not row or row.ProjectType~=PROJECT then return end
@@ -151,9 +165,7 @@ function SPCDialogueProjects.Start(P,shared)
    end
    local good,sample=pcall(function()
     assert(known,'完成时资格未知')
-    local value=assert(ExposedMembers.SPC_DialogueProjectRead,'完成时馆藏读取未就绪')(pid,id,true)
-    assert(same(value.reference,s.reference) and value.turn==Game.GetCurrentGameTurn(),'完成时馆藏引用不一致')
-    assert(type(value.x)=='number' and value.x%1==0 and value.x>=0 and value.x<=8,'完成时馆藏时代未知')
+    local value=freshSample(pid,c,s)
     local after,_,currentKnown,currentEligible=read(pid,c)
     assert(currentKnown and currentEligible and same(after,s),'完成取样期间状态已变化')
     return value
@@ -226,8 +238,7 @@ function SPCDialogueProjects.Start(P,shared)
    '累计记录：+'..tostring(v and v.total or 0)..'%'..(shared.DialogueEffects and '' or '（本批尚未接入实际产出）'),
    '当前游戏时代：'..Locale.Lookup((P.Info('Eras',e) or {}).Name or e)..'｜机会：'..(v and v.used[e] and '已使用' or '未使用')}
   local readOK,current=pcall(function()
-   local x=assert(ExposedMembers.SPC_DialogueProjectRead)(pid,c:GetID(),true)
-   assert(same(x.reference,s.reference) and x.turn==Game.GetCurrentGameTurn());return x.x
+   return freshSample(pid,c,s).x
   end)
   lines[#lines+1]='当前合格馆藏时代：'..(readOK and tostring(current) or '未确认')..'（成功时才取样记账）'
   if p then lines[#lines+1]='本轮：'..p.reason..'｜启动T'..p.start..'｜启动时代：'..Locale.Lookup((P.Info('Eras',p.era) or {}).Name or p.era)

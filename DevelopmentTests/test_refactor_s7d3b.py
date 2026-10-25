@@ -385,7 +385,10 @@ def run_current_dialogue_method(method):
    finally:case.doCleanups()
 
 class CurrentNonRetry(unittest.TestCase):
- def test_original_fresh_sampler(self):run_current_dialogue_method(CURRENT_DIALOGUE_METHODS[0])
+ def test_original_fresh_sampler(self):
+  # Frozen UI scalar-x protocol; S9b2 tests the current raw producer+consumer.
+  from test_refactor_s9b2 import before
+  with before():run_current_dialogue_method(CURRENT_DIALOGUE_METHODS[0])
  def test_original_saved_load_no_start(self):run_current_dialogue_method(CURRENT_DIALOGUE_METHODS[1])
  def test_original_pending_cancel(self):run_current_dialogue_method(CURRENT_DIALOGUE_METHODS[2])
  def test_original_idle_no_works_or_notify(self):run_current_dialogue_method(CURRENT_DIALOGUE_METHODS[3])

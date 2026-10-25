@@ -227,8 +227,11 @@ class FrozenPolling(unittest.TestCase):
         import test_dialogue_project_ui as dialogue
         import test_b235_engineering as study
         originals={ROOT/'Mod/UI'/(n+'.lua'):subprocess.check_output(['git','show','d1cf0a3:Mod/UI/'+n+'.lua'],cwd=ROOT,text=True)for n in ('ClaimProjectUI','DialogueProjectUI','EngineeringStudyUI')}
+        # This old UI emits scalar x; pair it with the last compatible controller.
+        controller=ROOT/'Mod/DialogueProjects.lua'
+        originals[controller]=subprocess.check_output(['git','show','574764d:Mod/DialogueProjects.lua'],cwd=ROOT,text=True)
         previous=Path.read_text;execute=TrackedLua51.execute
-        hashes={sha256(v.encode()).hexdigest():'historical/d1cf0a3/'+str(p.relative_to(ROOT))for p,v in originals.items()}
+        hashes={sha256(v.encode()).hexdigest():'historical/'+('574764d'if p==controller else'd1cf0a3')+'/'+str(p.relative_to(ROOT))for p,v in originals.items()}
         def read(p,*a,**kw):return originals[p]if p in originals else previous(p,*a,**kw)
         def run(vm,text,*a,**kw):
             h=sha256(text.encode()).hexdigest()
@@ -246,6 +249,6 @@ class FrozenPolling(unittest.TestCase):
             vm=ui_actual(kind);vm.execute("q.target=project;uiQueueSize=0;assert(selectUI());pumpUI();idleUI(1000);assert(uiBegins==0)");after.append(vm.eval('uiReads'))
         self.assertEqual(before,[1001,1001,1001]);self.assertEqual(after,[1,1,1])
         measure('S7d2_UI_queue_work',{'baseline':'d1cf0a3','owners':list(KINDS),'before_reads':before,'after_reads':after,'idle_publications':1000,'native_CPU_or_memory_claim':False})
-        measure('S7d2_frozen_polling',{'source':'d1cf0a3','original_assertions':3,'current':'silent native-size change cannot grant new read permit','no_historical_report_rewrite':True})
+        measure('S7d2_frozen_polling',{'source':'d1cf0a3','original_assertions':3,'Dialogue_scalar_controller':'574764d','current':'silent native-size change cannot grant new read permit','no_historical_report_rewrite':True})
 
 if __name__ == '__main__':unittest.main()

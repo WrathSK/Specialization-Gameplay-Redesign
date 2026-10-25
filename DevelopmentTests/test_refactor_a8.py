@@ -46,7 +46,9 @@ class EightEras(unittest.TestCase):
         import test_store_write_boundaries as storage
         import test_dialogue_projects as module
         storage.LuaRuntime=TrackedLua51
-        with legacy_source_observation():l=module.game()
+        # Scalar-x transport at B353; current raw eight-era completion is covered in S9b2.
+        from test_refactor_s9b2 import before
+        with before(),legacy_source_observation():l=module.game()
         l.execute("sampleX=8;duplicate=true;begin(c);GameEra='ERA_INFORMATION';endturn();assert(ledger(c).total==40 and ledger(c).used.ERA_CLASSICAL.x==8 and not ledger(c).used.ERA_INFORMATION and samples==1 and finishes==1);local old=T.encode(ledger(c));Events.CityProjectCompleted.Fire(0,c:GetID(),999);assert(T.encode(ledger(c))==old);reload();assert(T.encode(ledger(c))==old);sampleX=9;begin(c);endturn();assert(ledger(c).total==40 and ledger(c).pending.stage=='HELD' and samples==2)")
     def test_model_old_receipt_valid_new_x8_valid_x9_rejected_without_mutation(self):
         c=Context();c.load('DialogueProjectModel');c.execute("local M=SPCDialogueProjectModel;local r={owner=0,cityID=1,x=1,y=1};local v=M.Begin(nil,'T',r,'ERA_ANCIENT',1);local a=M.Complete(v,v.serial,7,2);assert(a.total==35 and M.Validate(a));local b=M.Begin(a,'T',r,'ERA_CLASSICAL',2);local d=M.Complete(b,b.serial,8,3);assert(d.total==75 and M.Validate(d));assert(not pcall(M.Complete,b,b.serial,9,3));assert(b.pending and b.total==35 and not b.used.ERA_CLASSICAL)")

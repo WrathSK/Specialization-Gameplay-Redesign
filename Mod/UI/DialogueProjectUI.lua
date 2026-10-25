@@ -20,7 +20,7 @@ end
 function M.New(P,send,notify)
  local api={};local pending,seen={},{};local revision=-1
  local client=SPCTimedProjectSelectionClient.New(P,pending);api.QueueEvent=client.QueueEvent;api.Close=client.Close
- local collect=SPCGreatWorkFacts.Collector(P);local catalog
+ local collect=SPCGreatWorkFacts.Collector(P)
  local function era()
   local row=assert(P.Info('Eras',Game.GetEras():GetCurrentEra()),'游戏时代不可读')
   return assert(row.EraType,'游戏时代类型不可读')
@@ -34,11 +34,10 @@ function M.New(P,send,notify)
   local v={reference=ref,turn=Game.GetCurrentGameTurn(),project=M.Current(c),size=c:GetBuildQueue():GetSize()}
   if works then
    -- Fresh slots in this synchronous completion call; never the last background ACK.
-   catalog=catalog or SPCGreatWorkCatalog.Build(P)
-   local raw=collect(c);local p=SPCGreatWorkFacts.Plan(catalog,raw)
+   local raw=collect(c)
    assert(c:GetOwner()==pid and c:GetID()==id and c:GetX()==ref.x and c:GetY()==ref.y
     and v.turn==Game.GetCurrentGameTurn(),'完成取样期间引用变化')
-   v.x=p.eraCount
+   v.protocol=2;v.raw=raw
   end
   return v
  end

@@ -1724,6 +1724,9 @@
     ],
     "S9b1": [
       "test_refactor_s9b1"
+    ],
+    "S9b2": [
+      "test_refactor_s9b2"
     ]
   },
   "counterexamples": {},
@@ -1903,7 +1906,8 @@
     ],
     "Mod/DialogueProjects.lua": [
       "test_refactor_a8",
-      "test_refactor_s7d4"
+      "test_refactor_s7d4",
+      "test_refactor_s9b2"
     ],
     "Mod/DialogueEffects.lua": [
       "test_refactor_a8",
@@ -1986,7 +1990,8 @@
     ],
     "Mod/GreatWorkFacts.lua": [
       "test_refactor_s5d4c4",
-      "test_refactor_s5d4c5"
+      "test_refactor_s5d4c5",
+      "test_refactor_s9b2"
     ],
     "Mod/CultureMeaning.lua": [
       "test_refactor_s5d4c5"
@@ -2128,6 +2133,9 @@
     ],
     "Mod/DevelopmentInvestmentTargets.lua": [
       "test_refactor_s9b1"
+    ],
+    "Mod/UI/DialogueProjectUI.lua": [
+      "test_refactor_s9b2"
     ]
   },
   "exclusions": {

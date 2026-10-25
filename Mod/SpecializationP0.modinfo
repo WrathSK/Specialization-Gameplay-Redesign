@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="380">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="381">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B353.380：发展投资目标规则移至Gameplay，UI仅提供原生事实与候选价格。</Description>
+    <Description>B354.381：时代对话馆藏解释移至Gameplay，复用既有目录并保留一次取样。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

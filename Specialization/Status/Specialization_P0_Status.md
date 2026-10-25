@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0806
-Implementation Build: B353.380 / modinfo380; stable/live B307.334
+Status Revision: S0807
+Implementation Build: B354.381 / modinfo381; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9B1_COMPLETE_CONTINUING
+Work State: REFACTOR_S9B2_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9b1 moves Development lowest-tier/minimum-price/ID-tie/unknown-domain policy into Gameplay-only DevelopmentInvestmentTargets. UI returns raw construction facts then batches only requested lowest-tier prices; original options/existing and financial quote schema stay unchanged. Two protocol2 readers verify context generation,echo,owner/reference/turn and function identity; no automatic retry.20 before/after cases preserve quotes,costs,history and purchase-price call counts; fresh confirmation and money protection remain. One extra exact-city lookup/control call per quoted target is explicit. Remaining S9 training owner signals,Dialogue/Expedition rules,channels/display/adjacency and S10 stay pending. [Result](Validation/Results/Specialization_B353_Refactor_S9b1.md). Stable/live/main B307.334; no deployment/native PASS.
+S9b2 removes era policy/catalogue construction from Dialogue UI. The UI sends fresh protocol2 raw slots; GreatWorkFacts interprets them with its already-built Gameplay catalogue,independent of background ACK. Completion and explicit Describe share guarded interpretation; one-shot sample,zero quota,HELD/CALLING nonreplay,reference/turn/token checks and existing queue false protocol remain. Eleven focused tests pass; nine before/after complete ledgers match for0–8 eras. Remaining S9 Expedition entry,training owner signals,channels,applied display,adjacency and S10 continue; D7 history/money and D5 native attribution stay OPEN. [Result](Validation/Results/Specialization_B354_Refactor_S9b2.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue remaining S9 Dialogue-era and Expedition-entry raw-fact rules,owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations.
+- Primary next: Continue S9 Expedition-entry raw-fact policy,owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations.
+
+## S0807 — B354.381 Interpret fresh Dialogue work slots in Gameplay
+
+S9b2 removes era policy/catalogue construction from Dialogue UI. The UI sends fresh protocol2 raw slots; GreatWorkFacts interprets them with its already-built Gameplay catalogue,independent of background ACK. Completion and explicit Describe share guarded interpretation; one-shot sample,zero quota,HELD/CALLING nonreplay,reference/turn/token checks and existing queue false protocol remain. Eleven focused tests pass; nine before/after complete ledgers match for0–8 eras. Remaining S9 Expedition entry,training owner signals,channels,applied display,adjacency and S10 continue; D7 history/money and D5 native attribution stay OPEN.
 
 ## S0806 — B353.380 Move Development target selection into Gameplay without broadening price reads
 

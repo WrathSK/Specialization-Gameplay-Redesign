@@ -28,8 +28,8 @@ P.Info=function(t,k)
  return old(t,k)
 end
 GameInfo.Projects={PROJECT_SPC_ERA_DIALOGUE={Hash=1999}}
-GameInfo.Buildings=function()local done=false;return function()if not done then done=true;return {Index=998}end end end
-c.b.present[998]=true;slots={1}
+GameInfo.Buildings=function()local done=false;return function()if not done then done=true;return {Index=997}end end end
+c.b.present[997]=true;slots={1}
 c.b.GetNumGreatWorkSlots=function()return #slots end
 c.b.GetGreatWorkInSlot=function(_,bid,slot)return slots[slot+1]end
 c.b.GetGreatWorkTypeFromIndex=function(_,id)return id end

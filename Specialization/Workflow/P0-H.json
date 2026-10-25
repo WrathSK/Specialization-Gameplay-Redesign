@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0806",
-    "runtime": "B353.380 / modinfo380",
+    "status": "S0807",
+    "runtime": "B354.381 / modinfo381",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue remaining S9 Dialogue-era and Expedition-entry raw-fact rules,owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
+  "goal": "Continue S9 Expedition-entry raw-fact policy,owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -464,6 +464,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
       "kind": "full",
       "reason": "Move Development target selection into Gameplay without broadening price reads actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
+      "kind": "full",
+      "reason": "Interpret fresh Dialogue work slots in Gameplay actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -490,8 +495,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
-    "local": "LOCAL_SIMULATION_PASS: 773 tests; Lua51/XML/package/reference checks passed",
+    "report": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
+    "local": "LOCAL_SIMULATION_PASS: 784 tests; Lua51/XML/package/reference checks passed",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

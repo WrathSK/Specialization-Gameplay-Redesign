@@ -541,9 +541,9 @@
       "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/DialogueProjects.lua": {
-      "sha256": "3c7b23993f78abc1b32aa994fd26da909cf385247409626dbeddca00f5abd10b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
-      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
+      "sha256": "9a101f96765cdde9078d7048d0b100e1f8e66fb789d7a1210e356d39d35a4e92",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
+      "provenance": "B354.381 Interpret fresh Dialogue work slots in Gameplay; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DistrictCompleteness.lua": {
       "sha256": "dc7d30c4e04c156b90faa9dfeb262f03e068b09023e536ebc180621da4c404f6",
@@ -661,9 +661,9 @@
       "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/GreatWorkFacts.lua": {
-      "sha256": "7d26a5a9121e0658091b7537ab68402480fdbe8f91558662e68a747224cb2a47",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B224_Current_Works_Idle_Repair.md",
-      "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
+      "sha256": "2577ef540ac0145b7e054ecfab03b57251a70f27d201250d53df913ae1340879",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
+      "provenance": "B354.381 Interpret fresh Dialogue work slots in Gameplay; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkProbe.lua": {
       "sha256": "bf87de3ffe15a224f6de0a6fdbb0a2854319eb3d3990dd4b4b8b86cda1ca2aa4",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "ccf3a6f142bc75227d03cbb69b67d4d005ad532644aa08e50f2568626dc9111c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
-      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "4213896dafe21f30a55c0d1496a42cbfa63c4663fa9e64fac80191cac3e7860b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
+      "provenance": "B354.381 Interpret fresh Dialogue work slots in Gameplay; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "55644aa4538403b0ed3eb23457a7b9a0074dd2917d2a5bd34c78041082e9543b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
-      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "af0c7061c9cc6521a1f6a7d06471eb16771e165ce3f33cf804beb1b8509f58ff",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
+      "provenance": "B354.381 Interpret fresh Dialogue work slots in Gameplay; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1281,9 +1281,9 @@
       "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DialogueProjectUI.lua": {
-      "sha256": "9f969c7fb49b29f41e44d94c4087385b7e72fc3bdaf122cca065cec62d9826a3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
-      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
+      "sha256": "62742befde982dda296d7760918e7127ad03989fa53dfb93513d21f714720ecc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
+      "provenance": "B354.381 Interpret fresh Dialogue work slots in Gameplay; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "274d7491240789affb0ac7d47e222c0180c1b7489a700afa745dc0f3e5ba5876",

@@ -16,10 +16,29 @@ def game():
     l.execute((R / 'Mod/DialogueProjects.lua').read_text())
     l.execute(r'''
 T.start(); oldInfo=P.Info; GameEra='ERA_CLASSICAL'; samples=0; finishes=0; sampleX=1; brokenSample=false
+-- Native completion double: raw slots are interpreted by the real Gameplay
+-- catalogue. Scalar x remains solely for explicitly frozen pre-protocol sources.
+include('GreatWorkFacts')
+local eraOrder={'ERA_ANCIENT','ERA_CLASSICAL','ERA_MEDIEVAL','ERA_RENAISSANCE','ERA_INDUSTRIAL','ERA_MODERN','ERA_ATOMIC','ERA_INFORMATION'}
+local preferred={'GREATWORK_ARTIFACT_1','GREATWORK_ARTIFACT_10','GREATWORK_ARTIFACT_11'}
+fixtureWorks={};fixtureKinds={}
+local kinds={};for kind in pairs(SPCGreatWorkCatalog.entries)do kinds[#kinds+1]=kind end;table.sort(kinds)
+for i,e in ipairs(eraOrder)do
+ local kind=preferred[i]
+ if not kind then for _,k in ipairs(kinds)do if SPCGreatWorkCatalog.entries[k][3]==e then kind=k;break end end end
+ local entry=assert(SPCGreatWorkCatalog.entries[kind]);assert(entry[3]==e)
+ fixtureKinds[i]=kind;fixtureWorks[kind]={GreatWorkType=kind,GreatWorkObjectType=entry[1],EraType=e,Name=kind}
+end
+function rawCompletion(n)
+ local raw={};for i=1,math.min(n,8)do raw[i]={id=i,type=fixtureKinds[i],building=998,slot=i-1}end
+ if n<0 or n>8 then return nil end -- no ninth era can be represented by this real catalogue
+ return raw
+end
 P.Info=function(t,k)
  if t=='Projects' and (k==999 or k=='PROJECT_SPC_ERA_DIALOGUE')then return {Index=999,Hash=1999,ProjectType='PROJECT_SPC_ERA_DIALOGUE'}end
  if t=='Buildings' and (k==998 or k=='BUILDING_SPC_ERA_DIALOGUE_ACCESS')then return {Index=998,InternalOnly=1}end
- if t=='Eras'then return {EraType=GameEra,Name=GameEra}end
+ if t=='GreatWorks'then return fixtureWorks[k]end
+ if t=='Eras'then return {EraType=type(k)=='string' and k or GameEra,Name=GameEra}end
  return oldInfo(t,k)
 end
 P.Call=function(o,k,...)if type(o and o[k])~='function'then return false end;return pcall(o[k],o,...)end
@@ -49,10 +68,11 @@ end
 function sample(pid,id,works)
  local c=assert(Players[pid]:GetCities():FindID(id))
  if works then samples=samples+1;assert(not brokenSample,'injected unavailable sample')end
- return {reference={owner=pid,cityID=id,x=c:GetX(),y=c:GetY()},turn=T.now(),project=c.q.target,size=c.q.size,x=works and sampleX or nil}
+ return {reference={owner=pid,cityID=id,x=c:GetX(),y=c:GetY()},turn=T.now(),project=c.q.target,size=c.q.size,x=works and sampleX or nil,protocol=works and 2 or nil,raw=works and rawCompletion(sampleX)or nil}
 end
 function bootDialogue()
  ExposedMembers={SPC_P0=shared,SPC_DialogueProjectRead=sample}
+ SPCGreatWorkFacts.Start(P,shared)
  SPCDialogueProjects.Start(P,shared);dp=shared.DialogueProjects
  Events.LoadScreenClose.Fire()
 end
