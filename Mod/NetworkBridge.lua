@@ -35,6 +35,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid) end
  local derive
+ local inputProviders={} -- one call-local service identity/turn witness per accepted owner input
  local views={} -- private, at most one view per player; never keyed by historical versions
  local reportTrace
  local traceOK,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'NETWORK_REPORT')
@@ -300,7 +301,7 @@ function SPCNetworkBridge.Start(P,shared)
   return true
  end
  -- Capture a coherent complete input before changing any officially published input.
- local function refresh(pid)
+ local function refresh(pid,incremental)
   if isolated(pid) then return false end
   if not P.IsTestPlayer(pid) or not d.ready then return false end
   local b=bucket(pid)
@@ -315,9 +316,24 @@ function SPCNetworkBridge.Start(P,shared)
   if not candidate and not b.routes then b.refreshing=false;return false end
   local rows=candidate and candidate.routes or b.routes
   local fingerprint=candidate and candidate.fingerprint or b.fingerprint
+  local registry=shared.FactChanges;local provider=registry
+  if not (provider and type(provider.NetworkCityGeneration)=='function')then provider=nil end
+  local effective,store=shared.EffectiveFacts,shared.CityProgressionStore
+  local reader=effective and effective.Read
+  local prior=inputProviders[pid];local now
+  local baseReader=store and store.Base;local stampReader=store and store.FactStamp
   local ok,input=pcall(function()
+   now=Game.GetCurrentGameTurn()
+   local sampling=provider and {provider=provider,reuse=incremental==true and not candidate and prior~=nil
+    and prior.registry==provider and prior.effective==effective and prior.reader==reader
+    and prior.store==store and prior.base==baseReader and prior.stamp==stampReader and prior.turn==now}
    if candidate then assert(Players[pid]:GetTrade():CountOutgoingRoutes()==#rows,'NETWORK_CANDIDATE_COUNT_CHANGED') end
-   return SPCNetworkInput.Capture(P,shared,pid,rows,fingerprint,b.input)
+   local result=SPCNetworkInput.Capture(P,shared,pid,rows,fingerprint,b.input,sampling)
+   assert(shared.FactChanges==registry and shared.EffectiveFacts==effective and effective.Read==reader
+    and shared.CityProgressionStore==store and (store and store.Base)==baseReader
+    and (store and store.FactStamp)==stampReader
+    and Game.GetCurrentGameTurn()==now,'NETWORK_INPUT_SERVICE_CHANGED')
+   return result
   end)
   local changed=false
   if ok then
@@ -349,6 +365,7 @@ function SPCNetworkBridge.Start(P,shared)
     end
     -- Commit current proof BEFORE exposing availability or notifying a consumer.
     -- A proved route set does not resolve unreadable city facts.
+    inputProviders[pid]={registry=provider,effective=effective,reader=reader,store=store,base=store and store.Base,stamp=store and store.FactStamp,turn=now}
     b.factGeneration=sampledGeneration
     b.continuityOnly=not candidate and b.continuityOnly==true or withdrawal and (input.roleUnknown or b.revalidation=='NEEDS_REVALIDATION') or false
     local fresh=b.revalidation=='VERIFIED' and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b)
@@ -381,11 +398,11 @@ function SPCNetworkBridge.Start(P,shared)
   end
   notify(pid);b.refreshing=false;return changed
  end
- function d.Refresh(pid,fromReceive)
+ function d.Refresh(pid,fromReceive,incremental)
   local b=d.players[pid]
   if b and (b.refreshing or b.receiving and not fromReceive)then P.Count('busy_skip');enqueue(pid,'refresh');return false end
   if dormant[pid]then enqueue(pid,'refresh')end
-  local ok,value=pcall(refresh,pid)
+  local ok,value=pcall(refresh,pid,incremental)
   b=d.players[pid];if b then b.refreshing=false end
   -- One bounded urgent negative catch-up; no positive resample or recursive retry loop.
   local q=pending[pid]
@@ -407,6 +424,8 @@ function SPCNetworkBridge.Start(P,shared)
   if not ok then if b then b.operationError=short(value)end;error(value,0)end
   return value
  end
+ -- Only the declared role-fact binding opts in. Every other entry stays full.
+ function d.RefreshFacts(pid)return d.Refresh(pid,false,true)end
  local function receiveImpl(pid,p,deferred)
 
   if isolated(pid) then state('NETWORK_RECEIVE_DROP',pid,nil,'ISOLATED',p);return end -- includes delayed pre-experiment packets
@@ -822,7 +841,7 @@ function SPCNetworkBridge.Start(P,shared)
  function d.ExperimentalStop(pid)
   assert(isolated(pid),'NETWORK_EXPERIMENT_NOT_ARMED')
   local b=bucket(pid);assert(not b.refreshing,'NETWORK_EXPERIMENT_BUSY')
-  views[pid]=nil;pending[pid]=nil;dormant[pid]=nil;b.queuedWork=nil;b.negativeHeld=nil
+  views[pid]=nil;inputProviders[pid]=nil;pending[pid]=nil;dormant[pid]=nil;b.queuedWork=nil;b.negativeHeld=nil
   b.routes=nil;b.fingerprint=nil;b.routeReferences=nil;b.candidate=nil;b.input=nil;b.inputSignature=nil
   b.sources=nil;b.centers=nil;b.recipients=nil;b.derivedFor=nil
   b.validity='EXPERIMENT_ISOLATED';b.availability='EXPERIMENT_ISOLATED';b.reason='EXPERIMENT_ISOLATED'
@@ -850,7 +869,9 @@ function SPCNetworkBridge.Start(P,shared)
   for pid in pairs(d.players) do d.Refresh(pid) end
  end
  for _,name in ipairs({"OnDistrictConstructed","CityBuilt"}) do
-  local ev=P.Field(GameEvents,name);if ev and ev.Add then ev.Add(d.Rebuild) end
+  local ev=P.Field(GameEvents,name);if ev and ev.Add then ev.Add(function(pid)
+   if integer(pid)then if P.IsTestPlayer(pid)then d.Refresh(pid)end else d.Rebuild()end
+  end) end
  end
  function d.CheckEvidence(failedFullRead,cause)
   if isolated() then return end

@@ -14,7 +14,7 @@ function SPCFactConsumerBindings.New(shared)
  end,{kinds=role,phase=0})
  shared.FactChanges.RegisterConsumer('NetworkBridge',function(e)
   local value=target('NetworkBridge');local revision=shared.FactChanges.flushRevision
-  if value and networkDrains[e.player]~=revision then networkDrains[e.player]=revision;value.Refresh(e.player)end
+  if value and networkDrains[e.player]~=revision then networkDrains[e.player]=revision;(value.RefreshFacts or value.Refresh)(e.player)end
  end,{kinds=role,phase=0})
  local declarations={
   {target='Standardization',method='Refresh',cityOnly=true,kinds={'IDENTITY'}},

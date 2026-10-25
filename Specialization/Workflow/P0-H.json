@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0765",
-    "runtime": "B313.340 / modinfo340",
+    "status": "S0766",
+    "runtime": "B314.341 / modinfo341",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Finish S6 proven network-input increments and normal-probe hot path obligations, record U3 engineering checkpoint, then S7–S10. No automatic deployment/main/native launch.",
+  "goal": "Continue S7a carrier mechanism extraction, then S7b–S10 in dependency order; U3 local checkpoint complete. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -259,6 +259,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
       "kind": "full",
       "reason": "Read current unit sites through proven city scope actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
+      "kind": "full",
+      "reason": "Reuse confirmed network city facts behind precise invalidation stamps actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -285,7 +290,7 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
     "local": "PENDING_FINAL_VALIDATION",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"

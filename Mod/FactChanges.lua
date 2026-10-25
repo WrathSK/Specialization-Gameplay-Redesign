@@ -58,6 +58,11 @@ function M.New(shared)
   if domain=='COMMERCE' and cityID~=nil then return global.COMMERCE+(row and row.cities and row.cities[cityID] or 0) end
   return (global[domain] or 0)+(row and row[domain] or 0)
  end
+ -- Scalar role-fact versions. Never evict a city and accidentally certify old facts.
+ function d.NetworkCityGeneration(owner,cityID)
+  local row=generations[owner]
+  return global.NETWORK+(row and row.NETWORK_WIDE or 0)+(row and row.networkCities and row.networkCities[cityID] or 0)
+ end
  local function invalidate(owner,cityID,kinds,topic)
   local network=kinds.IDENTITY or kinds.POTENTIAL or kinds.ACTIVE
   local commerce=network or kinds.D or kinds.WORKERS or kinds.HISTORY and topic=='COMMERCE'
@@ -69,7 +74,16 @@ function M.New(shared)
   end
   local row=generations[owner]
   if not row then assert(owners<2048,'FACT_OWNER_LIMIT');owners=owners+1;row={};generations[owner]=row end
-  if network then row.NETWORK=(row.NETWORK or 0)+1 end
+  if network then
+   row.NETWORK=(row.NETWORK or 0)+1
+   row.networkCities=row.networkCities or {};row.networkCityCount=row.networkCityCount or 0
+   if cityID==nil or row.networkCities[cityID]==nil and row.networkCityCount>=2048 then
+    row.NETWORK_WIDE=(row.NETWORK_WIDE or 0)+1
+   else
+    if row.networkCities[cityID]==nil then row.networkCityCount=row.networkCityCount+1 end
+    row.networkCities[cityID]=(row.networkCities[cityID] or 0)+1
+   end
+  end
   if commerce then
    if network or cityID==nil then row.COMMERCE=(row.COMMERCE or 0)+1
    else

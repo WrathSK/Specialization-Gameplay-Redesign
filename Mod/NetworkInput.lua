@@ -19,12 +19,12 @@ function N.Signature(input)
  end
  return table.concat(parts)
 end
-function N.Capture(P,shared,pid,rows,routeSignature,previous)
+function N.Capture(P,shared,pid,rows,routeSignature,previous,sampling)
  local player=assert(Players[pid],'NETWORK_PLAYER_UNAVAILABLE')
  local cities=player:GetCities();local capital=cities:GetCapitalCity()
  local out={validity='VERIFIED',routeSignature=routeSignature,cities={},capital=capital and capital:GetID() or nil,
   kResearch=SPCBoostConfig and SPCBoostConfig.k.RESEARCH or 1,kCulture=SPCBoostConfig and SPCBoostConfig.k.CULTURE or 1}
- out.factAvailability='CONFIRMED';out.provenance={}
+ out.factAvailability='CONFIRMED';out.provenance={};out.factStamps={};out.factAuthority={}
  local function level(n)return type(n)=='number' and n>=0 and n<=4 and n%1==0 end
  local kinds={NONE=true,RESEARCH=true,CULTURE=true,INDUSTRY=true,COMMERCE=true}
  local count=0
@@ -33,7 +33,40 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous)
   local id=c:GetID();assert(c:GetOwner()==pid and not out.cities[id],'NETWORK_CITY_REFERENCE_INVALID')
   local reference=N.Reference(c);local old=previous and previous.cities[id]
   if old and old.reference~=reference then old=nil end
-  local ok,f=pcall(function()return shared.EffectiveFacts.Read(pid,c)end)
+  -- Scope versions come from synchronous invalidation, not the first delivered row.
+  -- A missing/failed notification therefore cannot certify a stale sibling city.
+  local stamp=sampling and sampling.provider.NetworkCityGeneration(pid,id)
+  out.factStamps[id]=stamp
+  -- Preserve the Store's existing commit/fault guard even before a post-commit
+  -- role notification exists. Legacy/failed authority witnesses never authorize reuse.
+  local authority
+  if sampling and shared.CityProgressionStore and shared.CityProgressionStore.FactStamp then
+   local known,value=pcall(shared.CityProgressionStore.FactStamp,pid,c)
+   if known and type(value)=='string'then authority=value end
+  end
+  out.factAuthority[id]=authority
+  local reusable=sampling and sampling.reuse and old and old.provenance=='CONFIRMED' and stamp~=nil
+   and previous.factStamps and previous.factStamps[id]==stamp and authority~=nil
+   and previous.factAuthority and previous.factAuthority[id]==authority
+  if reusable and old.specialization~='NONE' and old.potential>1 then
+   -- Preserve the existing raw governor readiness witness; an engine property
+   -- becoming readable does not require a new synthetic role notification.
+   local known,current=pcall(function()
+    local owner,city,status,ceiling=P.GovernorGate(c)
+    return owner==pid and city==id and status=='KNOWN' and type(ceiling)=='number'
+     and ceiling>=1 and ceiling<=4 and ceiling%1==0 and math.min(old.potential,ceiling)==old.active
+   end)
+   reusable=known and current
+  end
+  if reusable then
+   local known,value=pcall(shared.CityProgressionStore.FactStamp,pid,c)
+   reusable=known and value==authority
+  end
+  local ok,f
+  if reusable then
+   ok=true;f={specialization=old.specialization,potential=old.potential,active=old.active,token=old.token,
+    firstID=old.firstID,firstType=old.firstType}
+  else ok,f=pcall(function()return shared.EffectiveFacts.Read(pid,c)end)end
   local valid=ok and type(f)=='table' and kinds[f.specialization] and level(f.potential) and level(f.active)
   local provenance='CONFIRMED';local reason
   if not valid then

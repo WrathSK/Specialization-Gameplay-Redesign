@@ -751,14 +751,14 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "2baeb7fdcc359b145a04eedf1780bf7f8be93e8a612a9aaa92adc19a330048fa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
-      "provenance": "B311.338 Discover Culture receivers through bounded topology edges; local/static evidence only; no deployment/native PASS."
+      "sha256": "00f617f706881d48b6977617476b8a5814d32dee993936de2b4dc1a7d153ba68",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
+      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkInput.lua": {
-      "sha256": "fa1e16ae91b376d0f254f09f23337de8877c3a4bee8e7b30f01fb601f10f79b4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
-      "provenance": "B275 approved S4b network continuity/provenance, scoped negatives, strict transaction proof and Development startup/index containment. Actual combination local/static evidence; native/deployment separate."
+      "sha256": "fe5657464477c3a6677fecd74c952923d6f3fe4d7008a50add09fd408fff7a99",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
+      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkIsolation.lua": {
       "sha256": "3b1ac34bd4dc421437e0cfa3968180114959bf98524b5179c148ab8a85bed8d2",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "6f5e0b668c1cca2b331bf23a6d9783249a65d496137504e1308c7afea3f327e2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
-      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
+      "sha256": "2434914e6a9d2b11202f103a7e59987e678659f580f0c7f47d68bf0e30c257f6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
+      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9d4023c80ce487c27cc0ac2fe7d9fa0987f6624fb653fdbffc58fae5c9ffbfce",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
-      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
+      "sha256": "96d0b79a6a9d7bbc7c69214bb58fe82aefc9ac75f488b8d0945206a17ea211ea",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
+      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1581,14 +1581,14 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/FactChanges.lua": {
-      "sha256": "daa5d61fc0bef96cffd2fe2f081cd3ef9658a01c278c0f042a533050f694c4c2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B301_Refactor_S5d4d1.md",
-      "provenance": "B301.328 Detached bounded native transfer metadata transport; local/static evidence only; no deployment/native PASS."
+      "sha256": "43d709d0d304fda52cd52c6faaf168bdad0e1334fe1e6ae3f07c358b59254afe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
+      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "e426e090716e783aa6fc8336cbaebe222d4ad50da4886674d500d1ca7d541ef8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B298_Refactor_S5d4c9.md",
-      "provenance": "B298.325 Culture Network exact health and D closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "22ec0ce02d1db3410561b034b1f913021123f6046762d798e9d02c431953bb1c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
+      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "66b5f5bf68274e54ec9495802f9a7ade09eaa5a89ecda22518b2ea787f84bec9",

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0765
-Implementation Build: B313.340 / modinfo340; stable/live B307.334
+Status Revision: S0766
+Implementation Build: B314.341 / modinfo341; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S6I_COMPLETE_CONTINUING
+Work State: REFACTOR_S6J_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S6i adds a static read-only site helper and separate target ReadAtSite, narrowing proven action-site and known-city investment checks without replacing full marker discovery. City/queue/HD uniqueness and original irreversible freshness/readback protections remain. [Result](Validation/Results/Specialization_B313_Refactor_S6i.md). Stable/live/main B307.334; no deployment/native PASS.
+S6j adds bounded synchronous per-city NETWORK stamps and a facts-only Bridge capture entry. Complete city membership/reference and route endpoint/trader/war checks remain; only confirmed unchanged stamped city EF reads are reused. Explicit, startup, queued and new route captures stay full. [Result](Validation/Results/Specialization_B314_Refactor_S6j.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Finish S6 proven network-input increments and normal-probe hot path obligations, record U3 engineering checkpoint, then S7–S10.
+- Primary next: Continue S7a carrier mechanism extraction, then S7b–S10 in dependency order; U3 local checkpoint complete.
+
+## S0766 — B314.341 Reuse confirmed network city facts behind precise invalidation stamps
+
+S6j adds bounded synchronous per-city NETWORK stamps and a facts-only Bridge capture entry. Complete city membership/reference and route endpoint/trader/war checks remain; only confirmed unchanged stamped city EF reads are reused. Explicit, startup, queued and new route captures stay full.
 
 ## S0765 — B313.340 Read current unit sites through proven city scope
 

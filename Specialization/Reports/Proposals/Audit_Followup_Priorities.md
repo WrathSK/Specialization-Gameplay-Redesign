@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B314.341 S6j adds bounded synchronous per-city NETWORK stamps and a facts-only Bridge capture entry. Complete city membership/reference and route endpoint/trader/war checks remain; only confirmed unchanged stamped city EF reads are reused. Explicit, startup, queued and new route captures stay full. [Result](../../Status/Validation/Results/Specialization_B314_Refactor_S6j.md).
+
 B313.340 S6i adds a static read-only site helper and separate target ReadAtSite, narrowing proven action-site and known-city investment checks without replacing full marker discovery. City/queue/HD uniqueness and original irreversible freshness/readback protections remain. [Result](../../Status/Validation/Results/Specialization_B313_Refactor_S6i.md).
 
 B312.339 S6h removes unit/action/target reply polling from .2/.25-second callbacks. Semantic UI events and publication consume strict request replies and coalesce actual changes; the existing callback remains a scalar timeout clock only, never a native read or retry. F28 eliminated the old multi-destination Capital quote hotspot; F32 live D/carrier closure is already covered by S5, with probe cleanup still S10. [Result](../../Status/Validation/Results/Specialization_B312_Refactor_S6h.md).
