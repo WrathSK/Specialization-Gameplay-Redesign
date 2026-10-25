@@ -20,7 +20,7 @@ class Projection(unittest.TestCase):
  def test_wrong_reference_protocol_or_port_cannot_publish(self):
   for mutation in ('v.owner=1','v.unitID=99',"v.token='B'",'v.legal=1','v.prepared=nil','v=setmetatable(v,{})'):
    c=fixture();c.execute('local v=view();'+mutation+';assert(not d.PublishView(0,packet(),v)and d.Count()==0)')
-  c=fixture();c.execute("assert(not d.Publish(0,packet(),'TEXT'));local p=packet();p.ReplyChannel='UNIT_ACTION';assert(not d.Accepts(0,p));assert(not a.PublishView(0,p,view()));assert(not pcall(SPCPlayerActionReplies.New,1,'TEST',false)and not pcall(SPCPlayerActionReplies.New,1,'TEST','UNIT_TARGETS'))")
+  c=fixture();c.execute("assert(not d.Publish(0,packet(),'TEXT'));local p=packet();p.ReplyChannel='UNIT_ACTION';assert(not d.Accepts(0,p));assert(not a.PublishView(0,p,view()));assert(not pcall(SPCPlayerActionReplies.New,1,'TEST',false)and not pcall(SPCPlayerActionReplies.New,1,'TEST','OTHER'))")
  def test_nonfinite_or_wrong_scalar_fields_reject_without_evicting_old(self):
   for mutation in ('v.amount=math.huge','v.cost=0/0','v.progress=-math.huge',"v.potential='4'",'v.planToken={}',"v.reason=string.rep('X',200001)",'v.targetName={}'):
    c=fixture();c.execute("assert(d.PublishView(0,packet('KEEP'),view('KEEP')));local v=view();"+mutation+";assert(not d.PublishView(0,packet(),v)and d.Count()==1 and d.Has(0,'KEEP'))")

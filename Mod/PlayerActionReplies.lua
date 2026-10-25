@@ -4,10 +4,10 @@ function SPCPlayerActionReplies.New(epoch,version,scope)
  local function integer(n)return type(n)=='number' and n>=0 and n<9007199254740992 and n%1==0 end
  local function text(s,max)return type(s)=='string' and #s>0 and #s<=max end
  assert(integer(epoch) and epoch>0 and text(version,128),'PLAYER_REPLY_SESSION')
- if scope==nil then scope='UNIT_ACTION'end;assert(scope=='UNIT_ACTION'or scope=='UNIT_VIEW','PLAYER_REPLY_SCOPE')
+ if scope==nil then scope='UNIT_ACTION'end;assert(scope=='UNIT_ACTION'or scope=='UNIT_VIEW'or scope=='UNIT_TARGETS','PLAYER_REPLY_SCOPE')
  local d={epoch=epoch,version=version,scope=scope}
  local slots,index={},{};local cursor,count=0,0;local closed=false
- local actions=scope=='UNIT_ACTION'and {UNIT_ACTION_PREPARE=true,UNIT_ACTION_CONFIRM=true}or {UNIT_ACTION_VIEW=true}
+ local actions=scope=='UNIT_ACTION'and {UNIT_ACTION_PREPARE=true,UNIT_ACTION_CONFIRM=true}or(scope=='UNIT_VIEW'and {UNIT_ACTION_VIEW=true}or {UNIT_TARGETS_READ=true})
  local function key(pid,token)
   if not integer(pid) or not text(token,256)then return nil end
   return tostring(pid)..':'..token
@@ -73,6 +73,52 @@ function SPCPlayerActionReplies.New(epoch,version,scope)
   if scope~='UNIT_VIEW'or not d.Accepts(pid,p)then return false,'STALE_OR_INVALID_REQUEST'end
   return put(pid,p,{error='VIEW_UNAVAILABLE'}) -- explicit negative delivery, never a zero/success view
  end
+ -- Transport budgets only; target discovery keeps its original native scope.
+ function d.PublishTargets(pid,p,s)
+  if scope~='UNIT_TARGETS'or not d.Accepts(pid,p)then return false,'STALE_OR_INVALID_REQUEST'end
+  if type(s)~='table'or getmetatable(s)~=nil or s.owner~=pid or s.unitID~=p.UnitID
+   or s.token~=p.Token or s.version~=version then return false,'INVALID_TARGETS'end
+  local out={owner=pid,unitID=p.UnitID,token=p.Token,version=version,plots={},unknown={}}
+  for _,field in ipairs({'turn','x','y'})do
+   local v=s[field];if v~=nil and not integer(v)then return false,'INVALID_TARGET_STAMP'end;out[field]=v
+  end
+  local budget=0;local rows=0
+  local function stringValue(v,limit)
+   if type(v)~='string'or #v>limit then return false end
+   budget=budget+#v;return budget<=262144
+  end
+  if s.error~=nil then
+   if not stringValue(s.error,20000)then return false,'INVALID_TARGET_ERROR'end;out.error=s.error
+  end
+  if s.mode~=nil then
+   if not stringValue(s.mode,128)then return false,'INVALID_TARGET_MODE'end;out.mode=s.mode
+  elseif s.error==nil then return false,'MISSING_TARGET_MODE'end
+  for _,field in ipairs({'plots','unknown'})do
+   local src=s[field]
+   if type(src)~='table'or getmetatable(src)~=nil or #src>4096 then return false,'INVALID_TARGET_ROWS'end
+   local n=0
+   for k in pairs(src)do
+    if not integer(k)or k<1 or k>#src then return false,'INVALID_TARGET_ARRAY'end;n=n+1
+   end
+   rows=rows+n;if n~=#src or rows>4096 then return false,'TARGET_ROWS_LIMIT'end
+   for i=1,n do
+    local row=src[i]
+    if type(row)~='table'or getmetatable(row)~=nil then return false,'INVALID_TARGET_ROW'end
+    if field=='plots'then
+     if not integer(row.plot)then return false,'INVALID_TARGET_PLOT'end
+     out.plots[i]={plot=row.plot}
+    else
+     if not integer(row.cityID)or not stringValue(row.reason,20000)then return false,'INVALID_TARGET_UNKNOWN'end
+     out.unknown[i]={cityID=row.cityID,reason=row.reason}
+    end
+   end
+  end
+  return put(pid,p,{targets=out})
+ end
+ function d.FailTargets(pid,p)
+  if scope~='UNIT_TARGETS'or not d.Accepts(pid,p)then return false,'STALE_OR_INVALID_REQUEST'end
+  return put(pid,p,{error='TARGETS_UNAVAILABLE'}) -- never a successful empty/partial map
+ end
  function d.Has(pid,token)return not closed and index[key(pid,token)]~=nil or false end
  function d.Take(pid,token)
   if closed then return nil end
@@ -93,9 +139,10 @@ function SPCPlayerActionReplies.Start(P,shared)
   and previous%1==0,'PLAYER_REPLY_EPOCH')
  local d=SPCPlayerActionReplies.New(previous+1,P.VERSION)
  local views=SPCPlayerActionReplies.New(previous+1,P.VERSION,'UNIT_VIEW')
- d.Views=views -- independent eight-slot space; views cannot evict terminal ACKs
+ local targets=SPCPlayerActionReplies.New(previous+1,P.VERSION,'UNIT_TARGETS')
+ d.Views=views;d.Targets=targets -- independent spaces; read traffic cannot evict terminal ACKs
  local shutdown=d.Shutdown
- d.Shutdown=function()views.Shutdown();shutdown()end
+ d.Shutdown=function()targets.Shutdown();views.Shutdown();shutdown()end
  local old=shared.PlayerActionReplies
  if old and type(old.Shutdown)=='function'then old.Shutdown()end
  ExposedMembers.SPC_PlayerActionReplyEpoch=previous+1

@@ -87,7 +87,9 @@ function SPCUnitTargets.Start(P,shared)
   if not ok then response.plots={};response.error=tostring(err):match('[^\r\n]+') end
   return response
  end
- function data.Refresh(pid,params)shared.UnitTargetSnapshot=collect(pid,params)end
+ function data.Refresh(pid,params)
+  local response=collect(pid,params);shared.UnitTargetSnapshot=response;return response
+ end
  function data.ReadAtSite(pid,params)
   local ok,c,known=pcall(function()
    assert(P.IsTestPlayer(pid),'TEST_PLAYER_REQUIRED')

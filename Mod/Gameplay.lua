@@ -585,7 +585,21 @@ local function request(playerID,params)
     return
   end
   if params.Action=="UNIT_TARGETS_READ" then
-    if shared.UnitTargets then shared.UnitTargets.Refresh(playerID,params) end
+    if shared.UnitTargets then
+      local service=shared.PlayerActionReplies;local replies
+      if params.ReplyChannel~=nil then
+        replies=service and service.Targets
+        if not replies or not replies.Accepts(playerID,params)then return end
+      end
+      local targets=shared.UnitTargets.Refresh(playerID,params)
+      if replies then
+        local ok,accepted=false,false
+        if shared.PlayerActionReplies==service and service.Targets==replies then ok,accepted=pcall(replies.PublishTargets,playerID,params,targets)end
+        shared.ObserverErrors=shared.ObserverErrors or {}
+        shared.ObserverErrors['unit-target-reply']=not(ok and accepted==true)and 'PLAYER_TARGET_REPLY_UNAVAILABLE'or nil
+        if not(ok and accepted==true)and shared.PlayerActionReplies==service and service.Targets==replies then pcall(replies.FailTargets,playerID,params)end
+      end
+    end
     return
   end
   if params.Action=="INDUSTRY_BASE" then
