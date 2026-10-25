@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0792",
-    "runtime": "B339.366 / modinfo366",
+    "status": "S0793",
+    "runtime": "B340.367 / modinfo367",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Wire the protected mandatory composite gate and fixed participants into current production startup, then finish S8 ability isolation/recovery and continue S9–S10. No automatic deployment/main/native launch.",
+  "goal": "Finish S8 ability-specific fault isolation/recovery, then continue S9–S10 without routine reauthorization. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -394,6 +394,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
       "kind": "full",
       "reason": "Prove isolated composite legacy cleanup before production wiring actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "kind": "full",
+      "reason": "Wire the mandatory composite legacy exit owner actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -420,8 +425,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
-    "local": "578/578 LOCAL_SIMULATION_PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+    "local": "588/588 LOCAL_SIMULATION_PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

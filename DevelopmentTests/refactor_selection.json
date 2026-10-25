@@ -1678,6 +1678,9 @@
       "test_refactor_s5d3.Dialogue.test_retired_transfer_still_invalidates_pair_and_preserves_sequence",
       "test_refactor_s5d3.Dialogue.test_initialization_reentry_queues_actual_cause_without_restarting_cleanup",
       "test_refactor_s5d3.Dialogue.test_work_consumer_start_failure_dependency_does_not_fake_effect_ready"
+    ],
+    "S8c5c": [
+      "test_refactor_s8c5c"
     ]
   },
   "counterexamples": {},

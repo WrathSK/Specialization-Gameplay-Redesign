@@ -3,7 +3,7 @@
 include('RuntimeWork')
 include('Tombstones')
 SPCLv4Percent={}
-function SPCLv4Percent.Start(P,shared)
+function SPCLv4Percent.Start(P,shared,options)
  local d={ready=false,busy=false,errors={},changes=0};shared.Lv4Percent=d
  local names=SPCTombstones.Names('Lv4Culture')
  function d.WithdrawCulture(c)
@@ -24,7 +24,7 @@ function SPCLv4Percent.Start(P,shared)
  function d.Describe(pid,c)
   return shared.CultureAesthetic and shared.CultureAesthetic.Describe(pid,c) or '旧文化专家百分比已退休；新能力等待确认。'
  end
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv4Percent',function(c,loss)
+ if not(options and options.centralExit)and shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv4Percent',function(c,loss)
   shared.CityProgressionStore.RemoveOwned(c,loss,names)
  end)end
 end

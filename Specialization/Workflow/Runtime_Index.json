@@ -126,9 +126,9 @@
       "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
     },
     "Mod/CommerceConvergence.lua": {
-      "sha256": "fd277f6f699c49e4abb39cf761ce6328cb2e83890a52d01a1aab9cbabb064439",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "e9a38b34e9f2fb5a1afa76c87dcc6ebca384b782a2f925cb9b26888026ab3be6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CommerceModel.lua": {
       "sha256": "4ff0c0c545447020040cca872e49a1be9a5e1c9f1f876e9c1c19f01b373be613",
@@ -521,9 +521,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Dialogue.lua": {
-      "sha256": "4f8abd47935c52c7d8d7684ae382a4391330245afae3e56c033fef8d6069f37e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
-      "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
+      "sha256": "004413bde77836bde9fa94600e904f7f7ee0a939515fe0bde93e7142388ce179",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DialogueEffects.lua": {
       "sha256": "339f7e682a4095ceafba2821a846437ea2750a4f9a5c880b5cc309225e22e05a",
@@ -641,14 +641,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "35d345cf57ccdb180aedf1afc10a3db815dc23fdf4b64d59ca03136e73bdba1a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
-      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
+      "sha256": "d656340cd583a7277de2c3f7284db028e20a7487e912d741272da971444ff0fe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
-      "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+      "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacencyModel.lua": {
       "sha256": "f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4",
@@ -666,14 +666,14 @@
       "provenance": "B224 user-authorized empty collection transport, exact UI work reader and event-driven current-unit idle controls; direct dependencies and 490 scoped tests reviewed. No permanent schema, reward, capacity, binding or GC change; native acceptance pending."
     },
     "Mod/GreatWorkProbe.lua": {
-      "sha256": "525f1658a6e37dd28c2a0512d147ffca5f0d48548b79e4082da3c4e9bd7e7607",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "bf87de3ffe15a224f6de0a6fdbb0a2854319eb3d3990dd4b4b8b86cda1ca2aa4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/HalfYieldProbe.lua": {
-      "sha256": "e97bda093ba66a9ef96b628eee29abcc4045caccb535abff9c25010c2c3a7d57",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "d87c82d128bf8fc8c7c16ed7c23bcc40334516cef3a2fbfb4cbc3afd7a05e516",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustryHistory.lua": {
       "sha256": "856f8f94f96ff869c0c08a3df92424700732d2a4bdb524fefce5e76991860688",
@@ -726,14 +726,14 @@
       "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv3Effects.lua": {
-      "sha256": "45fb947e01ae49e55b36a6f35c0897ed247db429867d9cdfaf4aaa94b56980ba",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "634d788697cb89f28333430af01b68cedb3aa724a42999a53bf992c2acb0f7f9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv3Support.lua": {
-      "sha256": "6c5e2b7e2fd549ff6b2698275619daf8f830c3b47f2247535de2041ef43291b8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "c0d8de9f9454bd89e89c3bb86644246de653fc542c5ff4f0cd095cc5eaa22951",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv4CopyRead.lua": {
       "sha256": "964d15c56466bccb58bb832e21924f891fa25c7a548ac8ec8ddab11ea44cc05f",
@@ -741,14 +741,14 @@
       "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Lv4Percent.lua": {
-      "sha256": "04e04b42473e78ca222a38297751ca181ec51adbc214978933c7bf9d4a3650bf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "ae937995aae63bfe07f3543a20f3cb15ee4070edeebd72de8530d75bd3cdf0a9",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBoost.lua": {
-      "sha256": "35786ce184569607059f2c495a9f37b4f210f8b29fb73347b95e1479d7dd30bc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "1188881dd736ff1f1329b10234896d1b3acc498813977bfefaeeb7a4e2d57baa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBridge.lua": {
       "sha256": "00f617f706881d48b6977617476b8a5814d32dee993936de2b4dc1a7d153ba68",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "c9e43a8da1c95d02e336fcdc49a1a2d8fb412442571f2905ad6ab8a22df3d013",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
-      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
+      "sha256": "d6e8ea5d280326f25d798d6fc66813ca3ed39983dbfe3c8e7a17872306a76f5d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -796,9 +796,9 @@
       "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
     },
     "Mod/PurchaseProbe.lua": {
-      "sha256": "847d5c0c6e86dd82b5929c7fe2c4dba3dd849e48dcdae3353ea0b8c866deb7a8",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
+      "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/PurchaseProbeRead.lua": {
       "sha256": "8b01b03284548636d531d2305cdd70cdfc11a3f7f25f4acb5e0d53269c64ea24",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "5151bb8c03f6811adc68d6cf9509949176796bcbccbefd258fdfdc5d3ee3ed41",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
-      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
+      "sha256": "1d0c4cea91c990f1ce31a080058bfcb966fbfa10d4a06cb0eda98a2eba15f91e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
+      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

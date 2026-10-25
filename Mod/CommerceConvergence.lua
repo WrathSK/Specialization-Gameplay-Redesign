@@ -34,7 +34,7 @@ function SPCCommerceConvergence.Start(P,shared,options)
   function d.Describe()return '旧商业汇聚已退出；当前商业化与商业信誉请查看商业化面板。'end
   function d.ExperimentalNetworkWithdraw(pid)d.Audit({player=pid});for _,e in pairs(d.errors)do assert(not e,'COM_LEGACY_REMOVE_UNCONFIRMED')end;return true end
   local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(function()d.Audit()end)end
-  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('CommerceConvergence',function(c,loss)shared.CityProgressionStore.RemoveOwned(c,loss,ids)end)end
+  if not(options and options.centralExit)and shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('CommerceConvergence',function(c,loss)shared.CityProgressionStore.RemoveOwned(c,loss,ids)end)end
   return
  end
  local d={busy=false,ready=false,last={},errors={},mode={},testCity={},baseline={},writes=0};shared.CommerceConvergence=d
@@ -203,7 +203,7 @@ function SPCCommerceConvergence.Start(P,shared,options)
  for _,name in ipairs({'LoadScreenClose','PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','CityWorkerChanged','CityPopulationChanged','CityFocusChanged','CityTransfered','BuildingAddedToMap','BuildingRemovedFromMap','CityProductionCompleted','CityTileOwnershipChanged','GovernmentPolicyChanged','GovernmentChanged','ResearchCompleted','CivicCompleted'}) do hook(Events,name) end
  for _,name in ipairs({'CityBuilt','OnBuildingConstructed','OnDistrictConstructed'}) do hook(GameEvents,name) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('CommerceConvergence',function(c,loss)
+ if not(options and options.centralExit)and shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('CommerceConvergence',function(c,loss)
    local ids={};for _,y in ipairs(ys)do for bit=0,15 do ids[#ids+1]='BUILDING_SPC_B061_'..y..'_'..bit end end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end)end

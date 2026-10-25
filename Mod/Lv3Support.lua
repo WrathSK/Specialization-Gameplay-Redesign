@@ -93,7 +93,7 @@ end
 -- P0-B1 permanent code gate: historicalStart is intentionally unreachable.
 -- Exact tombstone IDs remain in DB, with no CitizenYieldChanges.
 include('SpecialistSupport')
-function SPCLv3Support.Start(P,shared)
+function SPCLv3Support.Start(P,shared,options)
  local data={ready=false,busy=false,errors={},changes=0,ruleset='RETIRED_D0032_P0B1'};shared.Lv3Support=data
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   data.changes=data.changes+SPCSpecialistSupport.Retire(P,c,shared)
@@ -113,7 +113,11 @@ function SPCLv3Support.Start(P,shared)
  -- No ordinary scan: only exact failed retirement/exit candidates are retried.
  SPCRuntimeWork.TargetHook(P,Events,'PlayerTurnActivated',data.Audit)
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Support',targets.Exit(function(c,loss)
+ if options and options.centralExit then
+  assert(shared.LegacyCleanup,'LEGACY_CLEANUP_UNAVAILABLE').RegisterRunner('Lv3Support',function(clean,ack)
+   return targets.Exit(clean,'LegacyCleanup',ack)
+  end)
+ elseif shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Support',targets.Exit(function(c,loss)
    local ids={};for _,id in ipairs(SPCSpecialistSupport.Retired)do ids[#ids+1]=id end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end,'Lv3Support'))end

@@ -772,7 +772,14 @@ end)
 
 composition.Run('CityProgressionStore',{'CityIdentityDefinition','FactChanges'},{'CityProgressionStore'},function() include('CityProgressionStore');SPCCityProgressionStore.Start(P,shared) end)
 
-composition.Run('YieldCarrierExit',{'CityProgressionStore'},{},function() SPCYieldCarrierProbe.RegisterExit(shared) end)
+composition.Run('LegacyCleanup',{'CityProgressionStore'},{'LegacyCleanup'},function()
+ -- Register before include/Start: a failed owner must never remove the mandatory exit gate.
+ local exit
+ shared.CityProgressionStore.RegisterExit('LegacyCleanup',function(...)
+  assert(exit,'LEGACY_CLEANUP_UNAVAILABLE');return exit(...)
+ end)
+ include('LegacyCleanup');local owner=SPCLegacyCleanup.Start(P,shared);exit=owner.Exit
+end)
 
 composition.Run('BindingProbe',{'CityProgressionStore'},{'BindingProbe'},function() include('BindingProbe');SPCBindingProbe.Start(P,shared) end)
 
@@ -814,9 +821,9 @@ composition.Run('NetworkBridge',{'EffectiveFacts','NativeFacts'},{'NetworkBridge
 
 composition.Run('IndustrySupport',{'RuntimeRetirement','EffectiveFacts','CityProgressionStore','NativeFacts'},{'IndustrySupport'},function() include('IndustrySupport');SPCIndustrySupport.Start(P,shared) end)
 
-composition.Run('Lv3Support',{'RuntimeRetirement','EffectiveFacts'},{'Lv3Support'},function() include('Lv3Support');SPCLv3Support.Start(P,shared) end)
+composition.Run('Lv3Support',{'RuntimeRetirement','EffectiveFacts','LegacyCleanup'},{'Lv3Support'},function() include('Lv3Support');SPCLv3Support.Start(P,shared,{centralExit=true}) end)
 
-composition.Run('Lv3Effects',{'RuntimeRetirement','EffectiveFacts','NativeFacts'},{'Lv3Effects'},function() include('Lv3Effects');SPCLv3Effects.Start(P,shared,{retireCommerce=true}) end)
+composition.Run('Lv3Effects',{'RuntimeRetirement','EffectiveFacts','NativeFacts','LegacyCleanup'},{'Lv3Effects'},function() include('Lv3Effects');SPCLv3Effects.Start(P,shared,{retireCommerce=true,centralExit=true}) end)
 
 composition.Run('ConstructionProbe',{},{'ConstructionProbe'},function() include('ConstructionProbe');SPCConstructionProbe.Start(P,shared) end)
 
@@ -830,7 +837,7 @@ composition.Run('CrewProjects',{'CityProgressionStore','EffectiveFacts'},{'CrewP
 
 composition.Run('CrewPrecision',{'UnitActions','UnitTargets','CrewProjects','ConstructionProbe'},{'CrewPrecision'},function() include('CrewPrecision');SPCCrewPrecision.Start(P,shared) end,{{shared.UnitActions,'Run'}})
 
-composition.Run('Lv4Percent',{'RuntimeRetirement','EffectiveFacts'},{'Lv4Percent'},function() include('Lv4Percent');SPCLv4Percent.Start(P,shared) end)
+composition.Run('Lv4Percent',{'RuntimeRetirement','EffectiveFacts'},{'Lv4Percent'},function() include('Lv4Percent');SPCLv4Percent.Start(P,shared,{centralExit=true}) end)
 
 composition.Run('ResearchInfrastructure',{'RuntimeRetirement','EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchInfrastructure'},function() include('ResearchInfrastructure');SPCResearchInfrastructure.Start(P,shared) end)
 
@@ -840,7 +847,7 @@ composition.Run('ResearchApply',{'EffectiveFacts','DistrictCompleteness','Native
 
 composition.Run('ResearchChair',{'EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchChair'},function() include('ResearchChair');SPCResearchChair.Start(P,shared) end)
 
-composition.Run('HalfYieldProbe',{},{'HalfYieldProbe'},function() include('HalfYieldProbe');SPCHalfYieldProbe.Start(P,shared) end)
+composition.Run('HalfYieldProbe',{},{'HalfYieldProbe'},function() include('HalfYieldProbe');SPCHalfYieldProbe.Start(P,shared,{centralExit=true}) end)
 
 composition.Run('CopyYields',{},{'CopyYields'},function() include('CopyYields');SPCCopyYields.Start(P,shared,{retired=true}) end)
 
@@ -848,23 +855,23 @@ composition.Run('IndustryHistory',{'CityProgressionStore'},{'IndustryHistory'},f
 
 composition.Run('Standardization',{'CityProgressionStore','EffectiveFacts'},{'Standardization'},function() include('StandardizationCatalog');include('Standardization');SPCStandardization.Start(P,shared) end)
 
-composition.Run('PurchaseProbe',{},{'PurchaseProbe'},function() include('PurchaseProbe');SPCPurchaseProbe.Start(P,shared) end)
+composition.Run('PurchaseProbe',{},{'PurchaseProbe'},function() include('PurchaseProbe');SPCPurchaseProbe.Start(P,shared,{centralExit=true}) end)
 
 composition.Run('StandardizationDiscount',{},{'StandardizationDiscount'},function() include('StandardizationDiscount');SPCStandardizationDiscount.Start(P,shared,{retired=true}) end)
 
 composition.Run('StandardizationEffects',{'CityProgressionStore','Standardization','NetworkBridge','EffectiveFacts','CopyYields','StandardizationDiscount','NativeFacts'},{'StandardizationEffects'},function() include('StandardizationEffects');SPCStandardizationEffects.Start(P,shared) end)
 
-composition.Run('NetworkBoost',{},{'NetworkBoost'},function() include('NetworkBoost');SPCNetworkBoost.Start(P,shared,{retired=true}) end)
+composition.Run('NetworkBoost',{},{'NetworkBoost'},function() include('NetworkBoost');SPCNetworkBoost.Start(P,shared,{retired=true,centralExit=true}) end)
 
-composition.Run('GreatWorkProbe',{},{'GreatWorkProbe'},function() include('GreatWorkProbe');SPCGreatWorkProbe.Start(P,shared) end)
+composition.Run('GreatWorkProbe',{},{'GreatWorkProbe'},function() include('GreatWorkProbe');SPCGreatWorkProbe.Start(P,shared,{centralExit=true}) end)
 
 composition.Run('GreatWorkFacts',{},{'GreatWorkFacts'},function() include('GreatWorkFacts');SPCGreatWorkFacts.Start(P,shared) end)
 
 composition.Run('CultureAesthetic',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Lv3Effects','Lv4Percent','NativeFacts'},{'CultureAesthetic'},function() include('CultureAesthetic');SPCCultureAesthetic.Start(P,shared) end)
 
-composition.Run('Dialogue',{'GreatWorkFacts'},{'Dialogue'},function() include('Dialogue');SPCDialogue.Start(P,shared) end)
+composition.Run('Dialogue',{'GreatWorkFacts','LegacyCleanup'},{'Dialogue'},function() include('Dialogue');SPCDialogue.Start(P,shared,{centralExit=true}) end)
 
-composition.Run('GreatWorkAdjacency',{},{'GreatWorkAdjacency'},function() include('GreatWorkAdjacency');SPCGWAdjacency.Start(P,shared,{retired=true}) end)
+composition.Run('GreatWorkAdjacency',{},{'GreatWorkAdjacency'},function() include('GreatWorkAdjacency');SPCGWAdjacency.Start(P,shared,{retired=true,centralExit=true}) end)
 
 composition.Run('CultureMeaning',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','GreatWorkAdjacency','Dialogue','NativeFacts'},{'CultureMeaning'},function() include('CultureMeaning');SPCCultureMeaning.Start(P,shared) end)
 
@@ -872,7 +879,7 @@ composition.Run('CultureInspirationProbe',{},{'CultureInspirationProbe'},functio
 
 composition.Run('CultureInspiration',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','CultureInspirationProbe','NativeFacts'},{'CultureInspiration'},function() include('CultureInspiration');SPCCultureInspiration.Start(P,shared) end)
 
-composition.Run('CommerceConvergence',{'RuntimeRetirement'},{'CommerceConvergence'},function() include('CommerceConvergence');SPCCommerceConvergence.Start(P,shared,{retired=true}) end)
+composition.Run('CommerceConvergence',{'RuntimeRetirement'},{'CommerceConvergence'},function() include('CommerceConvergence');SPCCommerceConvergence.Start(P,shared,{retired=true,centralExit=true}) end)
 
 
 -- Preserve the deliberate legacy-inheritance isolation boundary and observer order.

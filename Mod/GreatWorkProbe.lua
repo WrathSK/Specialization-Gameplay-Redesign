@@ -1,6 +1,6 @@
 -- B055 isolated backend comparison. Not automatic era preservation or GW-002 gameplay.
 SPCGreatWorkProbe={}
-function SPCGreatWorkProbe.Start(P,shared)
+function SPCGreatWorkProbe.Start(P,shared,options)
  local d={ready=false};shared.GreatWorkProbe=d
  local function set(c,mode,want)
   local r=assert(P.Info('Buildings','BUILDING_SPC_B055_GW_'..mode),'B055_GW_DATABASE_MISSING')
@@ -36,7 +36,7 @@ function SPCGreatWorkProbe.Start(P,shared)
  end
  local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() if d.ready then d.Clean() end end) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('GreatWorkProbe',function(c,loss)
+ if not(options and options.centralExit)and shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('GreatWorkProbe',function(c,loss)
    local ids={};ids={'BUILDING_SPC_B055_GW_CITY','BUILDING_SPC_B055_GW_OBJECT'}
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end)end

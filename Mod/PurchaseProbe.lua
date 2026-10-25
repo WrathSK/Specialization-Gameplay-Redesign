@@ -1,6 +1,6 @@
 -- B053 manual currency-isolation fixture, never a network effect.
 SPCPurchaseProbe={}
-function SPCPurchaseProbe.Start(P,shared)
+function SPCPurchaseProbe.Start(P,shared,options)
  local d={};shared.PurchaseProbe=d
  local function row(kind) local r=P.Info('Buildings','BUILDING_SPC_B053_'..kind);assert(r,'B053_DATABASE_MISSING');return r end
  local function set(c,kind,want)
@@ -33,7 +33,7 @@ function SPCPurchaseProbe.Start(P,shared)
   end end
  end) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('PurchaseProbe',function(c,loss)
+ if not(options and options.centralExit)and shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('PurchaseProbe',function(c,loss)
    local ids={};ids={'BUILDING_SPC_B053_FIXTURE','BUILDING_SPC_B053_DISCOUNT'}
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end)end

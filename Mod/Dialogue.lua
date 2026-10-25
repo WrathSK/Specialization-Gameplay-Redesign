@@ -1,7 +1,7 @@
 include('DialogueModel')
 include('NetworkInput')
 SPCDialogue={}
-function SPCDialogue.Start(P,shared)
+function SPCDialogue.Start(P,shared,options)
  local d={ready=false,busy=false,seq={},samples={},paired={},off={},test={},last={},errors={},changes=0,received={},generation=1};shared.Dialogue=d
  local levels={};for _ in GameInfo.Eras() do levels[#levels+1]=true end
  local function set(c,id,want)
@@ -365,9 +365,7 @@ function SPCDialogue.Start(P,shared)
  end
  local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() if d.retired then d.samples={};d.paired={};return end;if d.carrierTest then d.carrierTest=nil;d.meaningOverride=nil;d.meaningQualification=nil end;d.ready=false;d.samples={};d.paired={};d.last={};d.Init();auditAll() end) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Dialogue',function(c,loss)
-   local ids={};for n=2,#levels do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,n in ipairs({25,50,100,200})do ids[#ids+1]='BUILDING_SPC_B059_TEST'..n end
-   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ local function exitPost(c,loss)
    local t=d.carrierTest
    if t and t.owner==loss.origin.owner then
     -- Exit has already proved its exact target. Drop only the matching hold.
@@ -376,7 +374,16 @@ function SPCDialogue.Start(P,shared)
      d.carrierTest=nil;d.meaningOverride=nil;d.meaningQualification=nil
     end
    end
+ end
+ if options and options.centralExit then
+  assert(shared.LegacyCleanup,'LEGACY_CLEANUP_UNAVAILABLE').RegisterPostCleanup('Dialogue',exitPost)
+ else
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Dialogue',function(c,loss)
+   local ids={};for n=2,#levels do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,n in ipairs({25,50,100,200})do ids[#ids+1]='BUILDING_SPC_B059_TEST'..n end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+   exitPost(c,loss)
  end)end
+ end
 
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('Dialogue',function(pid)d.generation=d.generation+1;d.samples={};d.paired={};d.seq={};d.last={};d.test={} end)end
 

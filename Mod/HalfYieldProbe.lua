@@ -6,7 +6,7 @@ function SPCHalfYieldProbe.Plan(pop)
  while odd%2==0 do odd=odd/2;bit=bit+1 end
  return {bit=bit,coefficient=1/2^(bit+1),subtract=(odd-1)/2}
 end
-function SPCHalfYieldProbe.Start(P,shared)
+function SPCHalfYieldProbe.Start(P,shared,options)
  local data={ready=false,busy=false,errors={},baseline={}};shared.HalfYieldProbe=data
  local key='SPC_B050_HALF_ENABLED'
  local function name(y,mode,bit) return 'BUILDING_SPC_B050_'..y..'_'..mode..'_'..bit end
@@ -74,7 +74,7 @@ function SPCHalfYieldProbe.Start(P,shared)
  hook('LoadScreenClose',function() data.ready=true;data.Audit() end)
  for _,n in ipairs({'CityPopulationChanged','PlayerTurnActivated','CityTransfered'}) do hook(n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('HalfYieldProbe',function(c,loss)
+ if not(options and options.centralExit)and shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('HalfYieldProbe',function(c,loss)
    local ids={};for _,y in ipairs({'SCIENCE','PRODUCTION'})do for _,mode in ipairs({'POP','SUB'})do for bit=0,7 do ids[#ids+1]=name(y,mode,bit)end end end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end)end

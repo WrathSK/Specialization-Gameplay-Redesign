@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0792
-Implementation Build: B339.366 / modinfo366; stable/live B307.334
+Status Revision: S0793
+Implementation Build: B340.367 / modinfo367; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8C5B_COMPLETE_CONTINUING
+Work State: REFACTOR_S8C5C_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8c5b establishes an explicitly invoked composite cleanup core with independent fixed groups, exact current ticket/readback gates, weak-key session progress and required Lv3 runner/Dialogue post-cleanup roles. A partial directory or failed group cannot suppress peers or acknowledge the aggregate; original target retries can finish only their own group. Catalogue groups resolve independently. The core is not yet wired into Gameplay; current11 production exits and live Withdraw APIs remain. D7 isolation and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B339_Refactor_S8c5b.md). Stable/live/main B307.334; no deployment/native PASS.
+S8c5c replaces current11 legacy exit registrations with one mandatory composite gate, pre-registered before include/Start can fail. Actual Lv3Support/Lv3Effects keep independent RuntimeWork recovery through fixed group adapters; Dialogue keeps exact post-cleanup hold release and Return reset. Production explicitly opts in; isolated old Start profiles and live Withdraw/Init/manual APIs remain. No new listener, timer, schema, ownership gameplay, deployment or main change. D7 isolation and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B340_Refactor_S8c5c.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Wire the protected mandatory composite gate and fixed participants into current production startup, then finish S8 ability isolation/recovery and continue S9–S10.
+- Primary next: Finish S8 ability-specific fault isolation/recovery, then continue S9–S10 without routine reauthorization.
+
+## S0793 — B340.367 Wire the mandatory composite legacy exit owner
+
+S8c5c replaces current11 legacy exit registrations with one mandatory composite gate, pre-registered before include/Start can fail. Actual Lv3Support/Lv3Effects keep independent RuntimeWork recovery through fixed group adapters; Dialogue keeps exact post-cleanup hold release and Return reset. Production explicitly opts in; isolated old Start profiles and live Withdraw/Init/manual APIs remain. No new listener, timer, schema, ownership gameplay, deployment or main change. D7 isolation and D5 native proof remain OPEN.
 
 ## S0792 — B339.366 Prove isolated composite legacy cleanup before production wiring
 
