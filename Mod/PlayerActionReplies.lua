@@ -69,6 +69,10 @@ function SPCPlayerActionReplies.New(epoch,version,scope)
   out.targetName=name
   return put(pid,p,{view=out})
  end
+ function d.FailView(pid,p)
+  if scope~='UNIT_VIEW'or not d.Accepts(pid,p)then return false,'STALE_OR_INVALID_REQUEST'end
+  return put(pid,p,{error='VIEW_UNAVAILABLE'}) -- explicit negative delivery, never a zero/success view
+ end
  function d.Has(pid,token)return not closed and index[key(pid,token)]~=nil or false end
  function d.Take(pid,token)
   if closed then return nil end

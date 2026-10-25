@@ -36,7 +36,9 @@ function reply(p)
  local s=ExposedMembers.SPC_P0;local u=units[p.UnitID]
  if p.Action=='UNIT_ACTION_VIEW'then
   local v={owner=u.owner,unitID=u.id,token=p.Token,turn=turn,x=u.x,y=u.y,legal=true,prepared=plan~=nil,planToken=plan,amount=250,baseInput=100,baseUnused=0,progress=20,cost=400,targetName='WONDER',specialization='RESEARCH',potential=1,nextPotential=2}
+  if p.ReplyChannel and not s.PlayerActionReplies.Views.Accepts(u.owner,p)then return end
   if mutateReply then mutateReply(v)end;s.UnitActionView=v
+  if p.ReplyChannel then local port=s.PlayerActionReplies.Views;if not port.PublishView(u.owner,p,v)then port.FailView(u.owner,p)end end
  elseif p.Action=='UNIT_TARGETS_READ'then
   local v={version=P.VERSION,owner=u.owner,unitID=u.id,token=p.Token,turn=turn,x=u.x,y=u.y,mode='INVEST',plots={{plot=10},{plot=999}},unknown={}}
   if mutateReply then mutateReply(v)end;s.UnitTargetSnapshot=v
@@ -98,7 +100,7 @@ class Panel(unittest.TestCase):
         c=ui();c.execute("Controls.PrepareButton.click();publish();assert(not Controls.ConfirmButton.hide);selected=units[9];selectedChanged();assert(Controls.ActionGroup.hide);selected=units[8];selectedChanged();assert(not Controls.ActionGroup.hide and Controls.ConfirmButton.hide);mode=2;Events.InterfaceModeChanged.Fire();assert(Controls.ActionGroup.hide);mode=1;Events.InterfaceModeChanged.Fire();selected.x=8;Events.UnitMoveComplete.Fire(0,8);assert(Controls.ConfirmButton.hide);turn=2;Events.LocalPlayerTurnBegin.Fire();publish();assert(Controls.ConfirmButton.hide and confirmed==0)")
 
     def test_backend_replacement_and_wrong_version_cannot_accept_old_reply(self):
-        c=ui();c.execute("autoReply=false;selectedChanged();local old=ExposedMembers.SPC_P0;ExposedMembers.SPC_P0={Version='OTHER',UnitActionView=old.UnitActionView};publish();assert(Controls.ConfirmButton.hide);local n=counts.requests;ExposedMembers.SPC_P0.Version=P.VERSION;publish();assert(counts.requests==n+1);deliver();assert(Controls.ConfirmButton.hide)")
+        c=ui();c.execute("autoReply=false;selectedChanged();local old=ExposedMembers.SPC_P0;ExposedMembers.SPC_P0={Version='OTHER',UnitActionView=old.UnitActionView,PlayerActionReplies=old.PlayerActionReplies};publish();assert(Controls.ConfirmButton.hide);local n=counts.requests;ExposedMembers.SPC_P0.Version=P.VERSION;publish();assert(counts.requests==n+1);deliver();assert(Controls.ConfirmButton.hide)")
 
     def test_synchronous_backend_or_selection_reentry_never_shows_old_confirmation(self):
         for code in ("ExposedMembers.SPC_P0=clone(ExposedMembers.SPC_P0)","selected=units[9];selectedChanged()"):

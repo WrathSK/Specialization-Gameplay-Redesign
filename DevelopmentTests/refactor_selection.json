@@ -1742,6 +1742,9 @@
     ],
     "S9c4a": [
       "test_refactor_s9c4a"
+    ],
+    "S9c4b": [
+      "test_refactor_s9c4b"
     ]
   },
   "counterexamples": {},
@@ -1799,7 +1802,8 @@
       "test_refactor_s5d4b1",
       "test_refactor_s5d4b2",
       "test_refactor_s9c2",
-      "test_refactor_s9c4a"
+      "test_refactor_s9c4a",
+      "test_refactor_s9c4b"
     ],
     "Mod/UI/CrewProjectOrder.lua": [
       "test_refactor_defects.Defects"
@@ -2046,7 +2050,8 @@
       "test_refactor_s6h.Markers",
       "test_refactor_s6h.ActualTargets",
       "test_refactor_s6h.ActualConsumption",
-      "test_refactor_s9c3"
+      "test_refactor_s9c3",
+      "test_refactor_s9c4b"
     ],
     "Mod/UI/UnitTargetMarkers.lua": [
       "test_refactor_s6h.Panel",
@@ -2167,7 +2172,8 @@
     "Mod/PlayerActionReplies.lua": [
       "test_refactor_s9c1",
       "test_refactor_s9c2",
-      "test_refactor_s9c4a"
+      "test_refactor_s9c4a",
+      "test_refactor_s9c4b"
     ]
   },
   "exclusions": {

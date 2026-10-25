@@ -560,6 +560,7 @@ local function request(playerID,params)
         if shared.PlayerActionReplies==service and service.Views==replies then ok,accepted=pcall(replies.PublishView,playerID,params,view)end
         shared.ObserverErrors=shared.ObserverErrors or {}
         shared.ObserverErrors['unit-view-reply']=not(ok and accepted==true)and 'PLAYER_VIEW_REPLY_UNAVAILABLE'or nil
+        if not(ok and accepted==true)and shared.PlayerActionReplies==service and service.Views==replies then pcall(replies.FailView,playerID,params)end
       end
     end
     return

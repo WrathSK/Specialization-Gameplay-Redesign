@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0812
-Implementation Build: B359.386 / modinfo386; stable/live B307.334
+Status Revision: S0813
+Implementation Build: B360.387 / modinfo387; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9C4A_COMPLETE_CONTINUING
+Work State: REFACTOR_S9C4B_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9c4a reuses bounded reply storage with a fixed UNIT_VIEW port and19 scalar fields. Its8-slot ring is independent of ACTION8,so view traffic cannot evict terminal ACKs; factory epoch/shutdown covers both without changing startup order. Explicit typed VIEW calls the original ReadView once,preserves legacy global/preview invalidation,and publishes a detached exact projection. Eleven new tests plus strengthened real HELD assertion pass;precision,nextPotential5 and missing-coordinate negative views stay unchanged. UI VIEW consumer/targets/presentation and other S9/S10 remain pending; exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B359_Refactor_S9c4a.md). Stable/live/main B307.334; no deployment/native PASS.
+S9c4b migrates UnitPanel VIEW to its independent bounded port with exact envelope/inner-token/actor/current turn/xy and final backend/port/method/epoch/close fences. Selection,action start,timeout and shutdown discard only the expected view; ACTION wait remains independent. Fixed negative delivery ends failed-view waits without fake zero values or retries. Thirteen new tests plus32 existing UI/actual Crew assertions pass; six B359/current scenarios preserve tooltips/icons/requests/native getters exactly. Targets/presentation and other S9/S10 remain; precise D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B360_Refactor_S9c4b.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Migrate UnitPanel VIEW consumer to the fixed port,then targets/presentation channels,owner-bound training signals,applied display,adjacency and S10; preserve exact D7/native D5 limitations.
+- Primary next: Continue S9 targets/presentation token channels,owner-bound training signals,applied display and adjacency,then S10; preserve exact D7/native D5 limitations.
+
+## S0813 — B360.387 Consume bounded unit views without global snapshot replies
+
+S9c4b migrates UnitPanel VIEW to its independent bounded port with exact envelope/inner-token/actor/current turn/xy and final backend/port/method/epoch/close fences. Selection,action start,timeout and shutdown discard only the expected view; ACTION wait remains independent. Fixed negative delivery ends failed-view waits without fake zero values or retries. Thirteen new tests plus32 existing UI/actual Crew assertions pass; six B359/current scenarios preserve tooltips/icons/requests/native getters exactly. Targets/presentation and other S9/S10 remain; precise D7/D5 limits stay OPEN.
 
 ## S0812 — B359.386 Publish fixed unit views in an independent bounded reply port
 
@@ -23,7 +27,7 @@ S9c4a reuses bounded reply storage with a fixed UNIT_VIEW port and19 scalar fiel
 
 ## S0811 — B358.385 Consume player action replies independently of DEV in UnitPanel
 
-S9c3 migrates UnitPanel PREPARE/CONFIRM ACK to PlayerActionReplies with exact owner/unit/action/token/version/epoch/backend/method checks. Terminal is consumed before selected-unit reset,so synchronous unit destruction or selection changes cannot discard its result. One bounded pending survives selection until terminal/old timeout; it never grants the new unit a preview. An old send stack cannot clear a newer attempt. Twelve new tests plus20 existing UI assertions pass,including actual Crew COMMITTED/HELD removal-before-ACK and1000idle no requests. DEV compatibility and view/target protocols remain; remaining S9/S10 and exact D7/D5 limits stay OPEN.
+S9c3 migrates UnitPanel PREPARE/CONFIRM ACK to PlayerActionReplies with exact owner/unit/action/token/version/epoch/backend/method checks. Terminal is consumed before selected-unit reset,so synchronous unit destruction or selection changes cannot discard its result. One bounded pending survives selection until terminal/old timeout; it never grants the new unit a preview. An old send stack cannot clear a newer attempt. Thirteen new tests plus20 existing UI assertions pass,including actual Crew COMMITTED/HELD removal-before-ACK and1000idle no requests. DEV compatibility and view/target protocols remain; remaining S9/S10 and exact D7/D5 limits stay OPEN.
 
 ## S0810 — B357.384 Publish optional player action results at the real Gameplay boundary
 

@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "81b07ed87efd60b26cfd47c544b6ad6beadde12e1e0a11204d5fba565a255d3b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B359_Refactor_S9c4a.md",
-      "provenance": "B359.386 Publish fixed unit views in an independent bounded reply port; local/static evidence only; no deployment/native PASS."
+      "sha256": "040807af4c2a42abe7e7a3303deb71551486b265634675bc68cc0b33690764a8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B360_Refactor_S9c4b.md",
+      "provenance": "B360.387 Consume bounded unit views without global snapshot replies; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "3f82d4aceb545953c10f34f85c7acba5b595e22ac0d9968da035639488bc4f4c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B359_Refactor_S9c4a.md",
-      "provenance": "B359.386 Publish fixed unit views in an independent bounded reply port; local/static evidence only; no deployment/native PASS."
+      "sha256": "6ff6bebfd47034a345b122c58e8d932e6624c71c2baf63d8a3ed809461996e35",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B360_Refactor_S9c4b.md",
+      "provenance": "B360.387 Consume bounded unit views without global snapshot replies; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "411759df38b0683da952a24d41e81af51e26baa157cb7310c2e5ac5686762377",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B359_Refactor_S9c4a.md",
-      "provenance": "B359.386 Publish fixed unit views in an independent bounded reply port; local/static evidence only; no deployment/native PASS."
+      "sha256": "e8bf6324e8247c815099d7d710741e339cc2cffde7265e7ae62a870101189626",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B360_Refactor_S9c4b.md",
+      "provenance": "B360.387 Consume bounded unit views without global snapshot replies; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1501,9 +1501,9 @@
       "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/UI/UnitPanelActions.lua": {
-      "sha256": "19a0cb9444bad290c1324c25e1406b17aade657bbf7b8ac71234ce3f03585248",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B358_Refactor_S9c3.md",
-      "provenance": "B358.385 Consume player action replies independently of DEV in UnitPanel; local/static evidence only; no deployment/native PASS."
+      "sha256": "811a6f65c3af73c62bef2b42d4c98cf59bbdeaee506754e64db93e40f40895b1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B360_Refactor_S9c4b.md",
+      "provenance": "B360.387 Consume bounded unit views without global snapshot replies; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/UnitPanelActions.xml": {
       "sha256": "7a48eaa0f2c9ef58d84a27547e78431407c840d14fb76332d702594546b61145",
@@ -1676,9 +1676,9 @@
       "provenance": "B355.382 Select Expedition entry cities from raw UI facts in Gameplay; local/static evidence only; no deployment/native PASS."
     },
     "Mod/PlayerActionReplies.lua": {
-      "sha256": "ccf5d0269ab88e693260776def1283b9cdf8d4a2f3dd4814cdd56ef5c37d8bad",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B359_Refactor_S9c4a.md",
-      "provenance": "B359.386 Publish fixed unit views in an independent bounded reply port; local/static evidence only; no deployment/native PASS."
+      "sha256": "51979a3966cdec3ac116b13c445e6d23ae776473cde6cd9e82eed93bd0be82f0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B360_Refactor_S9c4b.md",
+      "provenance": "B360.387 Consume bounded unit views without global snapshot replies; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

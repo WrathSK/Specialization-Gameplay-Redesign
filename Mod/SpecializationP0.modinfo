@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="386">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="387">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B359.386：单位视图固定投影与独立有界发布，保留原读取副作用；UI迁移待后片。</Description>
+    <Description>B360.387：单位视图消费迁移至独立有界端口，保留显示与原生读取边界。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
