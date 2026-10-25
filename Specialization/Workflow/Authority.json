@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0790",
-    "runtime": "B337.364 / modinfo364",
+    "status": "S0791",
+    "runtime": "B338.365 / modinfo365",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S8C4_COMPLETE_CONTINUING",
-  "next_batch": "Wire the verified legacy catalogue into one isolated cleanup owner while retaining independent subgroup failures and current production Withdraw duties; continue S8 isolation/recovery, then S9–S10. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S8C5A_COMPLETE_CONTINUING",
+  "next_batch": "Complete the isolated legacy cleanup owner and production responsibility migration, preserving subgroup recovery, mandatory startup gate and Dialogue hold duty; then continue S8 isolation/recovery and S9–S10. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "User resumed accepted S8b–S10 after the app update. Coherent verified develop batches may commit/push without routine stage authorization; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S0790 S8c4 adds a pure explicit-input legacy cleanup catalogue and proves it against actual current Start registrations/options and the read-only engine configuration. The historical14 source registrations are11 actual exits:10 building groups and two plot flags. Current production exit/Withdraw/startup behavior is unchanged; the new helper has no automatic caller or hook. SQL-active cleanup targets and unreachable old exits with live Withdraw duties are retained. Central exit migration, D7 isolation and D5 native proof remain OPEN. No native/deployment PASS.",
+  "context_review_status": "S0791 S8c5a extracts a read-only exact-current-exit proof and adds an explicit completion adapter to existing RuntimeWork target exits. Ordinary exits keep the same ACK path; group adapters must prove the current Store ticket/slot and accept only their group, leaving aggregate completion to the owner. This preserves independent retry/pending cleanup for the following legacy consolidation without allowing one recovered group to ACK unfinished peers. No production group-adapter caller, new listener/timer, saved schema or gameplay change. Legacy owner wiring and full D7/D5 boundaries remain OPEN. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md"
 }

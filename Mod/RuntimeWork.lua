@@ -210,6 +210,13 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
  local function acknowledge(e,c)
   if not e.name then return true end -- explicit standalone/legacy helper use
   local store=shared.CityProgressionStore
+  if e.completion then
+   assert(store and type(store.IsExitCurrent)=='function','RUNTIME_EXIT_CURRENT_UNAVAILABLE')
+   local current=function()return t.exits[key(e.ref)]==e end
+   assert(store.IsExitCurrent(e.name,c,e.loss,e.ticket,current)==true,'RUNTIME_EXIT_CURRENT_UNCONFIRMED')
+   assert(e.completion(c,e.loss,e.ticket,current)==true,'RUNTIME_EXIT_GROUP_UNCONFIRMED')
+   return true -- only the aggregate owner may acknowledge the whole Store exit
+  end
   if not(store and type(store.ExitCompleted)=='function')then
    assert(not(store and store.UsesNewAuthority==true),'RUNTIME_EXIT_ACK_UNAVAILABLE')
    return true -- isolated pre-Store fixtures only, not current Gameplay
@@ -308,10 +315,11 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
   if not ok then t.error=errorText(out);report(type(scope)=='table' and scope.player or 'runtime','player',t.error);return {}end
   return out
  end
- function t.Exit(fn,name)
+ function t.Exit(fn,name,completion)
+  assert(completion==nil or type(completion)=='function'and type(name)=='string'and #name>0,'RUNTIME_EXIT_COMPLETION_ADAPTER_INVALID')
   return function(c,loss,ticket)
    local r=reference(c);local k=key(r)
-   local priorPending=t.pending[k];local entry={ref=r,loss=loss,fn=fn,name=name,ticket=ticket}
+   local priorPending=t.pending[k];local entry={ref=r,loss=loss,fn=fn,name=name,ticket=ticket,completion=completion}
    put(t.exits,k,entry) -- retain before the first possibly failing native read
    local ok,err=pcall(function()
     assert(fn(c,loss)~=false,'RUNTIME_EXIT_UNCONFIRMED')

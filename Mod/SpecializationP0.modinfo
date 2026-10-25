@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="364">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="365">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B337.364：核准旧退出的精确目录及地块属性，尚不替换当前退出所有者。</Description>
+    <Description>B338.365：为旧退出合并保留独立异步恢复，分组确认不等于整体完成。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

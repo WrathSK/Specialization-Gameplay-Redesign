@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0790",
-    "runtime": "B337.364 / modinfo364",
+    "status": "S0791",
+    "runtime": "B338.365 / modinfo365",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Wire the verified legacy catalogue into one isolated cleanup owner while retaining independent subgroup failures and current production Withdraw duties; continue S8 isolation/recovery, then S9–S10. No automatic deployment/main/native launch.",
+  "goal": "Complete the isolated legacy cleanup owner and production responsibility migration, preserving subgroup recovery, mandatory startup gate and Dialogue hold duty; then continue S8 isolation/recovery and S9–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -384,6 +384,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
       "kind": "full",
       "reason": "Prove the exact current legacy cleanup catalogue actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
+      "kind": "full",
+      "reason": "Preserve exact group acknowledgement before legacy owner migration actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -410,8 +415,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
-    "local": "LOCAL_SIMULATION_PASS_45",
+    "report": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
+    "local": "LOCAL_SIMULATION_PASS_546",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

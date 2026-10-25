@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0790
-Implementation Build: B337.364 / modinfo364; stable/live B307.334
+Status Revision: S0791
+Implementation Build: B338.365 / modinfo365; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8C4_COMPLETE_CONTINUING
+Work State: REFACTOR_S8C5A_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8c4 adds a pure explicit-input legacy cleanup catalogue and proves it against actual current Start registrations/options and the read-only engine configuration. The historical14 source registrations are11 actual exits:10 building groups and two plot flags. Current production exit/Withdraw/startup behavior is unchanged; the new helper has no automatic caller or hook. SQL-active cleanup targets and unreachable old exits with live Withdraw duties are retained. Central exit migration, D7 isolation and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B337_Refactor_S8c4.md). Stable/live/main B307.334; no deployment/native PASS.
+S8c5a extracts a read-only exact-current-exit proof and adds an explicit completion adapter to existing RuntimeWork target exits. Ordinary exits keep the same ACK path; group adapters must prove the current Store ticket/slot and accept only their group, leaving aggregate completion to the owner. This preserves independent retry/pending cleanup for the following legacy consolidation without allowing one recovered group to ACK unfinished peers. No production group-adapter caller, new listener/timer, saved schema or gameplay change. Legacy owner wiring and full D7/D5 boundaries remain OPEN. [Result](Validation/Results/Specialization_B338_Refactor_S8c5a.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Wire the verified legacy catalogue into one isolated cleanup owner while retaining independent subgroup failures and current production Withdraw duties; continue S8 isolation/recovery, then S9–S10.
+- Primary next: Complete the isolated legacy cleanup owner and production responsibility migration, preserving subgroup recovery, mandatory startup gate and Dialogue hold duty; then continue S8 isolation/recovery and S9–S10.
+
+## S0791 — B338.365 Preserve exact group acknowledgement before legacy owner migration
+
+S8c5a extracts a read-only exact-current-exit proof and adds an explicit completion adapter to existing RuntimeWork target exits. Ordinary exits keep the same ACK path; group adapters must prove the current Store ticket/slot and accept only their group, leaving aggregate completion to the owner. This preserves independent retry/pending cleanup for the following legacy consolidation without allowing one recovered group to ACK unfinished peers. No production group-adapter caller, new listener/timer, saved schema or gameplay change. Legacy owner wiring and full D7/D5 boundaries remain OPEN.
 
 ## S0790 — B337.364 Prove the exact current legacy cleanup catalogue
 

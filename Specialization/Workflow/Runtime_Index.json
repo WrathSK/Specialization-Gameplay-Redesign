@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "259dc3736a7b417589190d619241acbcec843ebb88cb004a4351a3ba4cbc5024",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
-      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "23dffdad46064f8811485e4bea94048b720f1fc20d3ebe91a8b0fdbc03bf8c2d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
+      "provenance": "B338.365 Preserve exact group acknowledgement before legacy owner migration; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "acb16722de430d4d69f3a796a2660ae4e25efca81c9644c45a2fff516ece101f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
-      "provenance": "B337.364 Prove the exact current legacy cleanup catalogue; local/static evidence only; no deployment/native PASS."
+      "sha256": "e5e8b1b5c63c32af5727871fc9daadf7722546feb07ee10d57713f622eefbe40",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
+      "provenance": "B338.365 Preserve exact group acknowledgement before legacy owner migration; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "4b407439ca6da541a8d2749949bdfd76108d745762dadbad53582df51d883b16",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "69a069864add17c99be48135eaf26352d9f7c6c5bbccf1c3890adc558b0ed293",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
+      "provenance": "B338.365 Preserve exact group acknowledgement before legacy owner migration; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "86d5a2dd3addf5eb9d30dcafdf12e141618037194da4ae0f0496b5b3ea6609f9",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "0e47b67fae4430578f7ba547ad6670c920b27cecf65261c8b79f0bf55b211bfc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
-      "provenance": "B337.364 Prove the exact current legacy cleanup catalogue; local/static evidence only; no deployment/native PASS."
+      "sha256": "56b1ed9a14a5625ea1607674e277c359316058b8cebd62e5c7fb8be48b0a2dfc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
+      "provenance": "B338.365 Preserve exact group acknowledgement before legacy owner migration; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

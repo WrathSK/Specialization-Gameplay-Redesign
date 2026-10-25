@@ -861,12 +861,16 @@ local function CreateProgressionRecord(P,shared,storage)
   local matched=d.IsExitTarget(c,loss) -- native reference getters may reenter
   return matched and currentExit(generation,loss)
  end
- function d.ExitCompleted(name,c,loss,ticket,current)
+ function d.IsExitCurrent(name,c,loss,ticket,current)
   if committing or type(name)~='string'or not exits[name]or ticket==nil or not rawequal(exitTickets[name],ticket)then return false end
   local generation=exitTickets
   if not confirmedExit(generation,c,loss)then return false end
   if current then local ok,value=pcall(current);if not ok or value~=true then return false end end
   if not currentExit(generation,loss)then return false end
+  return true
+ end
+ function d.ExitCompleted(name,c,loss,ticket,current)
+  if not d.IsExitCurrent(name,c,loss,ticket,current)then return false end
   -- The current callback must return successfully before it can finish. An ACK
   -- inside it cannot let reentrant recapture cross the unfinished cleanup barrier.
   if runningExit~=name then finished[name]=true;d.exitErrors[name]=nil;summarizeExit()end
@@ -1451,6 +1455,11 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  end
  function store.ExitConfirmed()
   if fault or writing then return end;for _,w in pairs(workers)do w.ExitConfirmed()end
+ end
+ function store.IsExitCurrent(name,c,loss,ticket,current)
+  if fault or writing then return false end
+  local ok,w=pcall(find,c)
+  return ok and w~=nil and w.IsExitCurrent(name,c,loss,ticket,current)==true or false
  end
  function store.ExitCompleted(name,c,loss,ticket,current)
   if fault or writing then return false end
