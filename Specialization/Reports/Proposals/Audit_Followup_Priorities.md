@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B330.357 S7e centralizes six exact retired-ID groups (135 buildings), retaining 87 inert definitions and all48 SQL-active Convergence cleanup targets. Cross and Aesthetic skip repeated legacy presence scans only after confirmed cleanup; current effect reads and all exact exits remain. RetireOnce rejects false/fault/stale-reference/load callbacks before stamping. Retired Convergence still validates owner and HistoricalReference on every call, including cache hits. New actual startup dependencies keep owner failures isolated. D5 completion attribution remains OPEN; no deployment/main/native PASS. [Result](../../Status/Validation/Results/Specialization_B330_Refactor_S7e.md).
+
 S0782 S7d6: D5 remains OPEN; current two-city same-count deficit and conditional late-event ambiguity are characterized, not fixed. Native completion-specific proof is required before D5 cutover. Continue independent S7e/f. [Assessment](../../Status/Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md).
 
 B329.356 S7d5 moves Crew preflight, irreversible consumption and the unchanged use-receipt key to CrewProjects. UnitActions keeps preview/dispatch and presents typed owner outcomes; CrewPrecision preserves text, investment receipt and outcome without substring success classification. INTENT→reserve→debit→fresh target→GRANT_ATTEMPTED→one AddProgress→GRANT_RETURNED ordering and failure/no-replay protection match the previous implementation. Existing InvestmentAction receipt status also prevents an inner UNKNOWN from being mislabeled REJECTED. Native formation/completion attribution remains S7d6; no deployment/main/native PASS. [Result](../../Status/Validation/Results/Specialization_B329_Refactor_S7d5.md).
@@ -279,7 +281,7 @@ B277 S5a1 precursor complete: [bounded registry/isolation](../../Status/Validati
 | S7d three 1T projects / F07,C014,C168,LC-02,TX-N4 | OPEN: ClaimProjects38–49 and DialogueProjects71–80 withdraw UNKNOWN access; EngineeringStudyProjects70–75 preserves it. | Common pure model/controller/UI; divergent outcomes are D-4, not a mechanical refactor. |
 | S7d Crew completion/recovery / C167,CR-1 | OPEN: CrewProjects120–131 CALLING/HELD;262–282 shared +1 receipt and init/bind. | D-5 proof-based multi-completion/reobservation; do not invent source attribution or replay uncertain outcomes. |
 | S7d Crew consume ownership / F12,C080 | OPEN: `UnitActions.lua:108–127,137–138,154–156` owns consume/add-progress and string classification. | Move to CrewProjects with typed outcomes and existing irreversible receipt guarantees. |
-| S7e tombstones / F20 | CHANGED: RuntimeWork233–243 RetireOnce already used by Infrastructure85–92; Cross64–67 and CommerceConvergence8–25 still recurring scans. | Data registry and exact RetireOnce where applicable, not deletion of live exits. |
+| S7e tombstones / F20 | B330: exact six-group 135-ID registry; Cross/Aesthetic/retired Convergence use reference-scoped cleanup. False/fault/stale callback never stamps success; Convergence still refreshes HistoricalReference on hits. | Local T03/T06/T07/T08 gates; SQL definitions/modifier links and exact exits retained. Native cleanup remains U5. |
 | S7f common city reference / F31 | OPEN: RuntimeWork238–239 and IndustrySupport14 construct raw token keys. | Store token plus native owner/target checks; do not drop ConstructionProbe19–24 safeguards. |
 
 #### S8 — Store technical lifecycle, not ownership gameplay

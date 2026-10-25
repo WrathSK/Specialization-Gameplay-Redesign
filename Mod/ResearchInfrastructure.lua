@@ -1,14 +1,11 @@
 include('RuntimeWork')
 include('CarrierSet')
+include('Tombstones')
 -- P0-C RES_L4_INFRA. One Campus per city (user-confirmed environment).
 -- Shared D remains highest-single-district; unexpected multiple Campuses HOLD.
 SPCResearchInfrastructure={}
 local M=SPCResearchInfrastructure
-M.Retired={}
-for i=0,7 do M.Retired[#M.Retired+1]='BUILDING_SPC_LV4_PERCENT_RESEARCH_'..i end
-for _,mode in ipairs({'POS','NEG','POP'}) do for i=0,(mode=='POP' and 7 or 15) do
- M.Retired[#M.Retired+1]='BUILDING_SPC_B051_SCIENCE_'..mode..'_'..i
-end end
+M.Retired=SPCTombstones.Names('ResearchInfrastructure')
 local function name(i) return 'BUILDING_SPC_RESEARCH_INFRA_'..i end
 local function integer(n) return type(n)=='number' and n>=0 and n<math.huge and n%1==0 end
 function M.Start(P,shared)

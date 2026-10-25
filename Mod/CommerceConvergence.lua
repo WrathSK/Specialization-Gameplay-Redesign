@@ -1,13 +1,15 @@
 include('RuntimeWork')
+include('Tombstones')
 -- D0024: independently planned, absolute city-layer integer grants.
 SPCCommerceConvergence={}
 function SPCCommerceConvergence.Start(P,shared,options)
  if options and options.retired then
   local d={retired=true,ready=false,busy=false,errors={},writes=0};shared.CommerceConvergence=d
-  local ids={};for _,y in ipairs({'SCIENCE','CULTURE','PRODUCTION'})do for bit=0,15 do ids[#ids+1]='BUILDING_SPC_B061_'..y..'_'..bit end end
+  local ids=SPCTombstones.Names('CommerceConvergence')
   function d.Withdraw(c)
    assert(c and P.IsTestPlayer(c:GetOwner()),'COM_LEGACY_OWNER_UNSUPPORTED')
    assert(shared.CityProgressionStore.HistoricalReference(c),'COM_LEGACY_REFERENCE_UNKNOWN')
+   SPCRuntimeWork.RetireOnce(P,shared,c,'CommerceConvergence',function()
    local rows={}
    for _,id in ipairs(ids)do
     local row=assert(P.Info('Buildings',id),'COM_LEGACY_DEFINITION_UNKNOWN')
@@ -15,6 +17,8 @@ function SPCCommerceConvergence.Start(P,shared,options)
     rows[#rows+1]={id=row.Index,has=has}
    end
    for _,v in ipairs(rows)do if v.has then P.RemoveBuilding(c:GetBuildings(),v.id);assert(P.HasBuilding(c:GetBuildings(),v.id)==false,'COM_LEGACY_REMOVE_UNCONFIRMED');d.writes=d.writes+1 end end
+   return 0
+   end)
    return true
   end
   function d.Audit(scope)

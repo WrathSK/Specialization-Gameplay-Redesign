@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0782
-Implementation Build: B329.356 / modinfo356; stable/live B307.334
+Status Revision: S0783
+Implementation Build: B330.357 / modinfo357; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7D6_PROOF_GAP_CONTINUE_S7E
+Work State: REFACTOR_S7E_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7d6 assessment reproduces the current two-city same-counter Crew deficit and a conditional late-event ambiguity. D5 remains OPEN: no production fix, receipt migration or relaxed proof is accepted. Current source surfaces establish player-wide counts and a three-field event use, not a verified per-completion instance identity. Continue independent S7e/f; no automatic deployment/main/native launch. [Assessment](Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md). Runtime/live remain B329.356/B307.334.
+S7e centralizes six exact retired-ID groups (135 buildings), retaining 87 inert definitions and all48 SQL-active Convergence cleanup targets. Cross and Aesthetic skip repeated legacy presence scans only after confirmed cleanup; current effect reads and all exact exits remain. RetireOnce rejects false/fault/stale-reference/load callbacks before stamping. Retired Convergence still validates owner and HistoricalReference on every call, including cache hits. New actual startup dependencies keep owner failures isolated. D5 completion attribution remains OPEN; no deployment/main/native PASS. [Result](Validation/Results/Specialization_B330_Refactor_S7e.md). Stable/live/main B307.334; no deployment/native PASS.
 
-- User decision: preserve D5; no waiver requested.
-- User testing: targeted native completion proof before D5 cutover; final U5 remains.
-- Primary next: continue independent S7e/f; retain D5 open in the existing intake.
+- User decision: none.
+- User testing: final U5 unless a specific blocking native fact appears.
+- Primary next: Continue S7f Store-owned city references, then S8–S10; retain D5 native proof OPEN and do not cut over dependent completion logic.
+
+## S0783 — B330.357 Exact reference-scoped retired carrier cleanup
+
+S7e centralizes six exact retired-ID groups (135 buildings), retaining 87 inert definitions and all48 SQL-active Convergence cleanup targets. Cross and Aesthetic skip repeated legacy presence scans only after confirmed cleanup; current effect reads and all exact exits remain. RetireOnce rejects false/fault/stale-reference/load callbacks before stamping. Retired Convergence still validates owner and HistoricalReference on every call, including cache hits. New actual startup dependencies keep owner failures isolated. D5 completion attribution remains OPEN; no deployment/main/native PASS.
 
 ## S0782 — S7d6 proof assessment, runtime unchanged
 

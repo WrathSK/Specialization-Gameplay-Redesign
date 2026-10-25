@@ -333,7 +333,7 @@ function SPCRuntimeWork.StartRetirement(P,shared)
  return d
 end
 
--- Exact inert tombstones are verified once per current city reference/load.
+-- Exact retired IDs are cleaned once per current city reference/load.
 -- Failure never publishes a clean marker; positive effects remain blocked.
 function SPCRuntimeWork.RetireOnce(P,shared,c,tag,fn)
  shared.RuntimeRetirementCache=shared.RuntimeRetirementCache or {}
@@ -344,7 +344,12 @@ function SPCRuntimeWork.RetireOnce(P,shared,c,tag,fn)
  local owner,cid=c:GetOwner(),c:GetID()
  local stamp=table.concat({owner,cid,tostring(x),tostring(y),tostring(token)},':')
  if cache[k]==stamp then return 0 end
- local n=fn()
+ local n=fn();assert(n~=false,'RETIREMENT_NOT_CONFIRMED')
+ -- A callback may synchronously replace a city binding or clear the load cache.
+ -- Never publish success for a reference/load that was not actually cleaned.
+ local currentToken=c.GetProperty and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN') or ''
+ assert(c:GetOwner()==owner and c:GetID()==cid and (not c.GetX or c:GetX()==x) and (not c.GetY or c:GetY()==y)
+  and tostring(currentToken)==tostring(token) and shared.RuntimeRetirementCache==all,'RETIREMENT_REFERENCE_CHANGED')
  if cache[k]==nil then local count=0;for _ in pairs(cache)do count=count+1 end;assert(count<2048,'RETIREMENT_CACHE_LIMIT')end
  if shared.RuntimeRetirement then shared.RuntimeRetirement.Remember(tag,k,stamp,owner,cid)end
  cache[k]=stamp;return n

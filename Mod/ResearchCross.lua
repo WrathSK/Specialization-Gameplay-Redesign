@@ -1,12 +1,11 @@
 include('RuntimeWork')
+include('Tombstones')
 include('ResearchCrossSample')
 -- Sole RES_L3_CROSS writer. No population/specialist/Network/D input.
 SPCResearchCross={}
 local M=SPCResearchCross
 M.Bits=16 -- signed encoding limit, not a gameplay cap: overflow HOLDs visibly
-M.Retired={}
-for i=0,7 do M.Retired[#M.Retired+1]='BUILDING_SPC_DEV_LV3_POP_RESEARCH_'..i end
-for _,s in ipairs({'03','05','1'}) do M.Retired[#M.Retired+1]='BUILDING_SPC_B082_DISTRICT_'..s end
+M.Retired=SPCTombstones.Names('ResearchCross')
 local function name(sign,i) return 'BUILDING_SPC_RESEARCH_CROSS_'..sign..'_'..i end
 function M.Start(P,shared)
  local data={ready=false,busy=false,errors={},plans={},changes=0};shared.ResearchCross=data
@@ -24,10 +23,10 @@ function M.Start(P,shared)
   -- Immutable definitions publish atomically, independently of transient presence.
   ownedIndex=nextOwned;healthDefinitions=rows;return rows
  end
- local function installed(c)
+ local function installed(c,skipOld)
   local defs=defineHealth()
   local out={old={},bits={},amount=0,oldCount=0};local b=c:GetBuildings()
-  for _,n in ipairs(M.Retired) do
+  for _,n in ipairs(skipOld and {} or M.Retired) do
    local id=assert(P.Info('Buildings',n),'CROSS_OLD_DEFINITION_MISSING').Index
    local yes=P.HasBuilding(b,id);assert(type(yes)=='boolean','CROSS_CARRIER_UNKNOWN')
    out.old[#out.old+1]={id=id,yes=yes};if yes then out.oldCount=out.oldCount+1 end
@@ -76,9 +75,17 @@ function M.Start(P,shared)
   return plan
  end
  local function reconcile(pid,c)
-  local state=installed(c)
-  -- SQL already makes these inert; cleanup is explicit, limited, and before new writes.
-  for _,r in ipairs(state.old) do if r.yes then remove(c,r) end end
+  local state=installed(c,true) -- active bits remain freshly observed on every reconciliation
+  SPCRuntimeWork.RetireOnce(P,shared,c,'ResearchCross',function()
+   local rows={};local b=c:GetBuildings()
+   for _,n in ipairs(M.Retired)do
+    local id=assert(P.Info('Buildings',n),'CROSS_OLD_DEFINITION_MISSING').Index
+    local yes=P.HasBuilding(b,id);assert(type(yes)=='boolean','CROSS_CARRIER_UNKNOWN')
+    rows[#rows+1]={id=id,yes=yes}
+   end
+   for _,r in ipairs(rows)do if r.yes then remove(c,r)end end
+   return 0
+  end)
   local plan=inspect(pid,c);local amount=plan.science
   for _,r in ipairs(state.bits) do
    r.want=(amount>=0 and r.sign=='POS' or amount<0 and r.sign=='NEG') and math.floor(math.abs(amount)/2^r.bit)%2==1

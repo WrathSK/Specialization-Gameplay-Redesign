@@ -830,11 +830,11 @@ composition.Run('CrewProjects',{'CityProgressionStore','EffectiveFacts'},{'CrewP
 
 composition.Run('CrewPrecision',{'UnitActions','UnitTargets','CrewProjects','ConstructionProbe'},{'CrewPrecision'},function() include('CrewPrecision');SPCCrewPrecision.Start(P,shared) end,{{shared.UnitActions,'Run'}})
 
-composition.Run('Lv4Percent',{'EffectiveFacts'},{'Lv4Percent'},function() include('Lv4Percent');SPCLv4Percent.Start(P,shared) end)
+composition.Run('Lv4Percent',{'RuntimeRetirement','EffectiveFacts'},{'Lv4Percent'},function() include('Lv4Percent');SPCLv4Percent.Start(P,shared) end)
 
 composition.Run('ResearchInfrastructure',{'RuntimeRetirement','EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchInfrastructure'},function() include('ResearchInfrastructure');SPCResearchInfrastructure.Start(P,shared) end)
 
-composition.Run('ResearchCross',{'EffectiveFacts','NativeFacts'},{'ResearchCross'},function() include('ResearchCross');SPCResearchCross.Start(P,shared) end)
+composition.Run('ResearchCross',{'RuntimeRetirement','EffectiveFacts','NativeFacts'},{'ResearchCross'},function() include('ResearchCross');SPCResearchCross.Start(P,shared) end)
 
 composition.Run('ResearchApply',{'EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchApply'},function() include('ResearchApply');SPCResearchApply.Start(P,shared) end)
 
@@ -872,7 +872,7 @@ composition.Run('CultureInspirationProbe',{},{'CultureInspirationProbe'},functio
 
 composition.Run('CultureInspiration',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','CultureInspirationProbe','NativeFacts'},{'CultureInspiration'},function() include('CultureInspiration');SPCCultureInspiration.Start(P,shared) end)
 
-composition.Run('CommerceConvergence',{},{'CommerceConvergence'},function() include('CommerceConvergence');SPCCommerceConvergence.Start(P,shared,{retired=true}) end)
+composition.Run('CommerceConvergence',{'RuntimeRetirement'},{'CommerceConvergence'},function() include('CommerceConvergence');SPCCommerceConvergence.Start(P,shared,{retired=true}) end)
 
 
 -- Preserve the deliberate legacy-inheritance isolation boundary and observer order.

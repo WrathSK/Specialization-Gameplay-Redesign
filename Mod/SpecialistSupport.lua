@@ -1,14 +1,9 @@
+include('Tombstones')
 -- P0-B1 specific support contract; no generic ability/state framework.
 SPCSpecialistSupport={}
 local S=SPCSpecialistSupport
 S.RULESET='D0032-P0B1'
-S.Retired={
- 'BUILDING_SPC_DEV_LV3_RESEARCH','BUILDING_SPC_DEV_LV3_CULTURE',
- 'BUILDING_SPC_DEV_LV3_COMMERCE','BUILDING_SPC_DEV_LV3_INDUSTRY',
- 'BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_0','BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_1',
- 'BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_2','BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_3',
- 'BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_4','BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_5',
- 'BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_6','BUILDING_SPC_DEV_LV3_INDUSTRY_GOLD_7'}
+S.Retired=SPCTombstones.Names('SpecialistSupport')
 function S.Retire(P,c,shared)
  if shared then return SPCRuntimeWork.RetireOnce(P,shared,c,'SpecialistSupport',function()return S.Retire(P,c)end)end
  local removed=0;local b=c:GetBuildings()

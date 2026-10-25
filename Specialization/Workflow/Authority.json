@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0782",
-    "runtime": "B329.356 / modinfo356",
+    "status": "S0783",
+    "runtime": "B330.357 / modinfo357",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S7D6_PROOF_GAP_CONTINUE_S7E",
-  "next_batch": "Continue independent S7e/f, retaining D5 native proof as OPEN; no deployment/main/game launch.",
+  "current_batch": "REFACTOR_S7E_COMPLETE_CONTINUING",
+  "next_batch": "Continue S7f Store-owned city references, then S8–S10; retain D5 native proof OPEN and do not cut over dependent completion logic. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "User resumed the accepted S2–S10 program; coherent verified develop batches may commit and push. B307 stable deployment is unchanged; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S7d6 assessment reproduces the current two-city same-counter Crew deficit and a conditional late-event ambiguity. D5 remains OPEN: no production fix, receipt migration or relaxed proof is accepted. Current source surfaces establish player-wide counts and a three-field event use, not a verified per-completion instance identity. Continue independent S7e/f; no automatic deployment/main/native launch.",
+  "context_review_status": "S0783 S7e centralizes six exact retired-ID groups (135 buildings), retaining 87 inert definitions and all48 SQL-active Convergence cleanup targets. Cross and Aesthetic skip repeated legacy presence scans only after confirmed cleanup; current effect reads and all exact exits remain. RetireOnce rejects false/fault/stale-reference/load callbacks before stamping. Retired Convergence still validates owner and HistoricalReference on every call, including cache hits. New actual startup dependencies keep owner failures isolated. D5 completion attribution remains OPEN; no deployment/main/native PASS. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md"
 }

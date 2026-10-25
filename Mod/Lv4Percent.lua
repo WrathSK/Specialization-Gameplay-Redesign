@@ -1,10 +1,13 @@
 -- P0-L1: exact old Culture IV worker-percent retirement owner.
 -- Types/Buildings remain inert cleanup IDs. No old benefit is generated.
+include('RuntimeWork')
+include('Tombstones')
 SPCLv4Percent={}
 function SPCLv4Percent.Start(P,shared)
  local d={ready=false,busy=false,errors={},changes=0};shared.Lv4Percent=d
- local names={};for bit=0,7 do names[#names+1]='BUILDING_SPC_LV4_PERCENT_CULTURE_'..bit end
+ local names=SPCTombstones.Names('Lv4Culture')
  function d.WithdrawCulture(c)
+  SPCRuntimeWork.RetireOnce(P,shared,c,'Lv4Culture',function()
   local rows={};local b=c:GetBuildings()
   for _,name in ipairs(names)do
    local r=assert(P.Info('Buildings',name),'LV4_DATABASE_MISSING')
@@ -13,6 +16,8 @@ function SPCLv4Percent.Start(P,shared)
   for _,r in ipairs(rows)do if r.present then
    P.RemoveBuilding(b,r.id);assert(P.HasBuilding(b,r.id)==false,'LV4_REMOVE_UNCONFIRMED');d.changes=d.changes+1
   end end
+  return 0
+  end)
   return true
  end
  function d.Audit()end -- compatibility only; L1 invokes the precise withdrawal once per relevant city

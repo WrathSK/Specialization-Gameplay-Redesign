@@ -126,9 +126,9 @@
       "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
     },
     "Mod/CommerceConvergence.lua": {
-      "sha256": "4f3029c13904a2cdeba2affe857976de414425d829e4efe8bec3571a8986a303",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "fd277f6f699c49e4abb39cf761ce6328cb2e83890a52d01a1aab9cbabb064439",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CommerceModel.lua": {
       "sha256": "4ff0c0c545447020040cca872e49a1be9a5e1c9f1f876e9c1c19f01b373be613",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "950a4f012d17120b09143681f98d07af4826b697a97827f5738219cd5a609179",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B326_Refactor_S7d3a.md",
-      "provenance": "B326.353 Add fixed project-reader readiness and scoped study synchronization; local/static evidence only; no deployment/native PASS."
+      "sha256": "281aea7647f44bb2c313d145f306a3c53b6a8744f9638ccde0d1ce306faa4090",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -726,9 +726,9 @@
       "provenance": "B315.342 Extract presence-only carrier sets without ability policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv3Effects.lua": {
-      "sha256": "42429e6bf83f16ab007b7477b04102f82e3916bda847d6a20bf151892bfd9d50",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "3456fe93ddacaae03286a98e206c37e803383192be7b907cd6aba4aeb0f8ef8d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Lv3Support.lua": {
       "sha256": "f53410b255aa46bbe7979a4070bc576cd75de780c34ffc03edfe5bb870612f95",
@@ -741,9 +741,9 @@
       "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
     },
     "Mod/Lv4Percent.lua": {
-      "sha256": "f7c323188cd4f6f6f6dc3f8eec2ceb37b1a8522fe527e211bb35b7801ac65438",
-      "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
-      "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
+      "sha256": "04e04b42473e78ca222a38297751ca181ec51adbc214978933c7bf9d4a3650bf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBoost.lua": {
       "sha256": "35786ce184569607059f2c495a9f37b4f210f8b29fb73347b95e1479d7dd30bc",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "c83f72c3559e2508bb99f34e47036c131760716cd00eeb90086aa770c8fba34b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
-      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "b244539793ae8036e65de155a65036109ffac9f29cbb4ce22e6012ddcb570d46",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -836,9 +836,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "20c4147875356e618d25d89e9d6053d85bf35733bdb4aad7cc9809736191afdc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
-      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
+      "sha256": "f0033c835f0f9642c7aba94cf38eff6edbc1efb2393d23f570faee32a75125e4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchCrossModel.lua": {
       "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
@@ -851,9 +851,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "0f9fe9b7ef76415f3528668a56846070c29f963a346608b16f525e6be0018e12",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B320_Refactor_S7a6.md",
-      "provenance": "B320.347 Unify exact owned-carrier registries and close S7a extraction; local/static evidence only; no deployment/native PASS."
+      "sha256": "6d9c1fd8f2e99e9d075b3f0390b2e4f4603bce2a1a57022902b121d78bda790e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
       "sha256": "3fe47c1a8bc1d8bbb3efdf1659c6d8e3c631fd06f422f676628faf69075c1939",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "4ad30e883050e9e5bcd0a22ac0b10da393016ce2a14614ecc820dbe7a8380c98",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
-      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
+      "sha256": "29653582a1615fd9faf749d0985492a625584a7eda8e5251a53f2f444e575777",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "86d5a2dd3addf5eb9d30dcafdf12e141618037194da4ae0f0496b5b3ea6609f9",
@@ -916,9 +916,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecialistSupport.lua": {
-      "sha256": "c33e795dd52bd1f1fddb20af5ba9327d8e497803ff1a4a1cd99c435d4ec895a0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
-      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
+      "sha256": "75a6bd3ef7ee3dbc9ac2f64321c04bfd51e8f598591e93b19bed89579af1ee0b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Specialization.dep": {
       "sha256": "33e4ab62dfc52efc143b9d56a77f6538cc6a25c986754984436e1aca10ab0e0d",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "32dd6ee5c6b29f50360d0441d8f1bde03e79dbc7155be29ffdef967290511578",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
-      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "1a06ec521e16a05449f27af6c7ffd1d93ea4a65e36fa7241ae54e21eb14d9846",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1639,6 +1639,11 @@
       "sha256": "a10d90472e4cfe5cf898589cb9fcfde956ac7faf3ba86243c49ad10bb0f16769",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
       "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/Tombstones.lua": {
+      "sha256": "083ea53b413c4d52504d987572385cf2f875a57e6195bd78bf2872b35edad8ab",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

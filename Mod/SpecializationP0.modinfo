@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="356">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="357">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B329.356：施工队模块拥有消费与收据，通用入口和观察器读取明确结果。</Description>
+    <Description>B330.357：旧载体精确清单与引用内一次确认，保留真实效果和退出职责。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -180,6 +180,7 @@
       <File>CopyYields.lua</File>
       <File>SampleLifecycle.lua</File>
       <File>RuntimeWork.lua</File>
+      <File>Tombstones.lua</File>
       <File>ReverseDependencies.lua</File>
       <File>NativeFacts.lua</File>
       <File>OrdinaryBuildingCatalog.lua</File>
@@ -624,6 +625,7 @@
     <File>CopyYields.lua</File>
     <File>SampleLifecycle.lua</File>
     <File>RuntimeWork.lua</File>
+    <File>Tombstones.lua</File>
     <File>ReverseDependencies.lua</File>
     <File>NativeFacts.lua</File>
     <File>OrdinaryBuildingCatalog.lua</File>
