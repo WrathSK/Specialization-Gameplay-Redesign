@@ -204,8 +204,13 @@ local function initialize()
   'UnitOperationStarted','UnitOperationsCleared','UnitOperationDeactivated','UnitRemovedFromMap',
   'CityAddedToMap','CityRemovedFromMap','CityTransfered','DiplomacyDeclareWar','PlayerTurnActivated','PlayerTurnDeactivated'}) do
   local eventName=name
-  bind(name,function(pid,id)
+  bind(name,function(pid,id,oldOwner)
    if networkBlocked() then return end
+   if eventName=='CityTransfered'and oldOwner~=nil or eventName=='CityRemovedFromMap'then
+    local g=ExposedMembers.SPC_P0;local b=g and g.NetworkBridge
+    if g and g.Version==P.VERSION and b and type(b.RouteLifecycleRelevant)=='function'
+     and not b.RouteLifecycleRelevant(pid,id,eventName=='CityTransfered'and oldOwner or nil)then return end
+   end
    if eventName:find('^Unit') then
     if type(pid)=='number' and pid~=Game.GetLocalPlayer()then return end
     local accepted=eventName=='UnitRemovedFromMap' and public.snapshot and public.snapshot.traders or nil

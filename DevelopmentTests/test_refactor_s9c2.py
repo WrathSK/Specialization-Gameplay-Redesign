@@ -66,15 +66,15 @@ class Startup(unittest.TestCase):
   import test_refactor_s8c5c as prior
   path=ROOT/'Mod/Gameplay.lua';old=subprocess.check_output(['git','show','ca6f960:Mod/Gameplay.lua'],cwd=ROOT,text=True);read=Path.read_text
   with patch.object(Path,'read_text',lambda p,*a,**kw:old if p==path else read(p,*a,**kw)),patch.object(prior,'measure',lambda name,data:measure(name+'_B356',data)):
-   prior.Production('test_real_production_options_register_one_gate_and_preserve_all_old_start_order').test_real_production_options_register_one_gate_and_preserve_all_old_start_order()
+   prior.Production('test_real_production_options_register_one_gate_and_preserve_all_old_start_order').test_real_production_options_register_one_gate_and_preserve_all_old_start_order(reply_service=False)
  def test_current_composite_options_and_1409_plus_two_cleanup_keep_original_assertions(self):
   import test_refactor_s8c5c as prior
   path=ROOT/'Mod/Gameplay.lua';current=path.read_text();read=Path.read_text
   inserted="composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'},function() include('PlayerActionReplies');SPCPlayerActionReplies.Start(P,shared) end)\n\n"
   self.assertEqual(current.count(inserted),1)
   projected=current.replace(inserted,'',1)
-  with patch.object(Path,'read_text',lambda p,*a,**kw:projected if p==path else read(p,*a,**kw)):
-   prior.Production('test_real_production_options_register_one_gate_and_preserve_all_old_start_order').test_real_production_options_register_one_gate_and_preserve_all_old_start_order()
+  with patch.object(Path,'read_text',lambda p,*a,**kw:projected if p==path else read(p,*a,**kw)),patch.object(prior,'measure',lambda name,data:measure(name+'_WITHOUT_REPLY_SERVICE',data)):
+   prior.Production('test_real_production_options_register_one_gate_and_preserve_all_old_start_order').test_real_production_options_register_one_gate_and_preserve_all_old_start_order(reply_service=False)
  def test_real_factory_new_epoch_shutdown_and_failed_allocation_preserve_prior(self):
   c=Context();c.load('PlayerActionReplies');c.execute("P={VERSION='TEST'};local a=SPCPlayerActionReplies.Start(P,shared);local p={ReplyChannel='UNIT_ACTION',ReplyEpoch=a.epoch,Action='UNIT_ACTION_CONFIRM',UnitID=1,Token='A'};assert(a.Publish(0,p,'X'));local b=SPCPlayerActionReplies.Start(P,shared);assert(b.epoch==a.epoch+1 and a.Count()==0 and not a.Publish(0,p,'LATE'));ExposedMembers.SPC_PlayerActionReplyEpoch='BAD';assert(not pcall(SPCPlayerActionReplies.Start,P,shared)and shared.PlayerActionReplies==b)")
 

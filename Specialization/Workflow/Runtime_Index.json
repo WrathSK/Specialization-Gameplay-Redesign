@@ -666,9 +666,9 @@
       "provenance": "B354.381 Interpret fresh Dialogue work slots in Gameplay; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkProbe.lua": {
-      "sha256": "bf87de3ffe15a224f6de0a6fdbb0a2854319eb3d3990dd4b4b8b86cda1ca2aa4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "4a481c84a80fb03023c8ea5dbc372a6d5f371a7c906ad2f6fa8bd36b4d676688",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
+      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/HalfYieldProbe.lua": {
       "sha256": "d87c82d128bf8fc8c7c16ed7c23bcc40334516cef3a2fbfb4cbc3afd7a05e516",
@@ -746,14 +746,14 @@
       "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBoost.lua": {
-      "sha256": "1188881dd736ff1f1329b10234896d1b3acc498813977bfefaeeb7a4e2d57baa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "332f1c9f0d117ca3c0e559a3b1c5eda9f20502a165ce3d783723ef43544dee4d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
+      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "6d620c81a317ae670420560dcabf90670d8e860d99d634a34dd22099c5a80965",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
-      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
+      "sha256": "1964f0bde58406ca6ffba3e6d34a382f5ed1a992be352b679739755e2c1cca1b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
+      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "fe5657464477c3a6677fecd74c952923d6f3fe4d7008a50add09fd408fff7a99",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "532ed4d5a85b720c135c347ec591fdf5d35e0abe47838b800faefd79b6394f09",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
-      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
+      "sha256": "54f132c20e3d646a23a06eeb63fad36271bb3cd2f18893e69e9835f3f99100fa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
+      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "0e7950ae1a3cc0d7515b613386d1600e215043d4d3f91738baa603623926abfc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
-      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
+      "sha256": "c8e3fa4fff0c1bcc2a98d085937fd4a7d122a66e8e3abe5870b75a48f2e026ed",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
+      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -946,9 +946,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/StandardizationEffects.lua": {
-      "sha256": "7a4433bf563d593d925877ec0aa752392c4f5ea389f175828054439f1e95c6f7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
-      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "a4e3cb0b1a330330b5a7fe39307d7e19160b49c99944712eba19679979d6a8fb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
+      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/StorageProbe.lua": {
       "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
@@ -1151,9 +1151,9 @@
       "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/BackgroundRoutes.lua": {
-      "sha256": "485c16f8eba75fb37388b09687b2a2cbdf1f44c43ccf824fe2bd9d8f77955b8e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
-      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
+      "sha256": "4e168ff0538996d0dee9f1b6ddb1177e6008d1a1128631fc76d19d195fcf127a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
+      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/BackgroundRoutes.xml": {
       "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="401">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="402">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B374.401：工业与科研后台在同一可靠窗口复用 BASE 生产力样本，继续重构。</Description>
+    <Description>B375.402：收窄商路与标准化易主响应，退出两个旧全局清理监听，继续重构。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

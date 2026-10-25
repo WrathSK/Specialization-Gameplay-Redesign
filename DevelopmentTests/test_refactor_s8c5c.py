@@ -58,11 +58,15 @@ def production(extra='',failure=None,late=None):
 
 
 class Production(unittest.TestCase):
- def test_real_production_options_register_one_gate_and_preserve_all_old_start_order(self):
+ def test_real_production_options_register_one_gate_and_preserve_all_old_start_order(self,reply_service=True):
   s=(ROOT/'Mod/Gameplay.lua').read_text();old=subprocess.check_output(['git','show',BASE+':Mod/Gameplay.lua'],cwd=ROOT,text=True)
   pattern=r'(SPC\w+)\.Start\(P,shared'
   names=re.findall(pattern,s);self.assertEqual(names.count('SPCLegacyCleanup'),1)
-  self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],re.findall(pattern,old))
+  # B357 subsequently added the accepted reply service at this exact point.
+  # Keep the complete prior order assertion, now including that approved addition.
+  expected=re.findall(pattern,old)
+  if reply_service:expected.insert(expected.index('SPCCrewPrecision'),'SPCPlayerActionReplies')
+  self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"));self.assertLess(s.index("composition.Run('LegacyCleanup'"),s.index("composition.Run('BindingProbe'"))
   self.assertNotIn("composition.Run('YieldCarrierExit'",s)
   for name in MODULES:self.assertIn('centralExit=true',entry(name))

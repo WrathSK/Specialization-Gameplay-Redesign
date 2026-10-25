@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0827
-Implementation Build: B374.401 / modinfo401; stable/live B307.334
+Status Revision: S0828
+Implementation Build: B375.402 / modinfo402; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E2B_COMPLETE_CONTINUING
+Work State: REFACTOR_S9E3_PARTIAL_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e2b closes R15 duplicate numeric sampling with a narrow bounded scalar BASE Production cache across the existing two UI producers. Build/both producer generations/client epochs/turn/related causes/native write revision/exact district ref guard reuse;UNKNOWN,missing proof and capacity use original fresh reads without denying work. Actual two-UI composition preserves a nonempty changed C2 packet while native Production reads fall3→2,duplicate industrial reads2→1;real Probe writes correctly force fresh later reads. Other five Cross yields/qualification remain independent. Native N5/N14,pillage behavior,complete C2 validation/turn census and other S9/U4/S10 work remain. [Result](Validation/Results/Specialization_B374_Refactor_S9e2b.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e3/R09a stops unrelated foreign lifecycle work in actual Bridge/Std and retires two production probe world-clean callbacks under existing centralExit. Std preserves initialized/cleaned state,incoming city scope and exact confirmed-exit origin marks. Pure accepted-route routing ignores unrelated foreign endpoints only with current proof;pending/stale/busy/missing snapshots remain conservative and actual endpoint loss still invalidates. Confirmed LegacyCleanup still removes1409 buildings+2 flags. R09 remains PARTIAL:Research/Culture hooks,typed-transfer adoption,old-owner unknown-ID fallback and known-local duplicate notifications remain for next slice. No deployment/native PASS. [Result](Validation/Results/Specialization_B375_Refactor_S9e3.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue R09 actual Standardization transfer/reverse-dependency scope and adopted lifecycle metadata,then R18 probe retirement,R11 UI→Gameplay trace,remaining source-local/cold/Store/display findings,S9 owner-applied UI,U4 and S10. No deployment/main/game launch.
+- Primary next: Continue R09 remaining Research/Culture producer routing and explicitly close S5d transfer adoption,then R18 HalfYield duty retirement,R11 relay trace,remaining accepted source-local/cold/Store/display findings,U4 and S10. No deployment/main/game launch.
+
+## S0828 — B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes
+
+S9e3/R09a stops unrelated foreign lifecycle work in actual Bridge/Std and retires two production probe world-clean callbacks under existing centralExit. Std preserves initialized/cleaned state,incoming city scope and exact confirmed-exit origin marks. Pure accepted-route routing ignores unrelated foreign endpoints only with current proof;pending/stale/busy/missing snapshots remain conservative and actual endpoint loss still invalidates. Confirmed LegacyCleanup still removes1409 buildings+2 flags. R09 remains PARTIAL:Research/Culture hooks,typed-transfer adoption,old-owner unknown-ID fallback and known-local duplicate notifications remain for next slice. No deployment/native PASS.
 
 ## S0827 — B374.401 Reuse native base Production across the two scoped UI producers
 

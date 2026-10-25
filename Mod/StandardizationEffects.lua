@@ -348,7 +348,15 @@ function SPCStandardizationEffects.Start(P,shared)
  end)
  hook(Events,'PlayerTurnActivated',function(pid)mark(pid);flush()end)
  -- NativeFacts owns governor qualification causes; declared ACTIVE delivery is deferred.
- hook(Events,'CityTransfered',function()initialized=false;cleaned={};all();flush()end)
+ hook(Events,'CityTransfered',function(owner,cid,oldOwner)
+  local function valid(v)return type(v)=='number'and v>=0 and v<2147483648 and v%1==0 end
+  if not(valid(owner)and valid(cid)and valid(oldOwner))then all();flush();return end
+  -- Keep initialization/clean markers. A different reference retires only that
+  -- receiver; native destination ID must never be aliased to its former owner.
+  if P.IsTestPlayer(owner)then mark(owner,cid)end
+  if oldOwner~=owner and P.IsTestPlayer(oldOwner)then mark(oldOwner)end
+  flush()
+ end)
  -- Store confirmed loss owns destination reference proof; no guessed coordinates.
  local store=shared.CityProgressionStore
  if store then
@@ -357,7 +365,7 @@ function SPCStandardizationEffects.Start(P,shared)
    store.RemoveOwned(c,loss,ids)
    d.records[key(loss.origin.owner,loss.origin.cityID)]=nil;dependents.Remove(loss.origin.owner,loss.origin.cityID);d.errors[key(loss.origin.owner,loss.origin.cityID)]=nil
    cleaned[key(loss.origin.owner,loss.origin.cityID)]=nil
-   mark(loss.origin.owner);mark(c:GetOwner())
+   mark(loss.origin.owner,loss.origin.cityID);mark(c:GetOwner(),c:GetID())
   end)
   store.RegisterReturn('StandardizationEffects',function(pid,c)mark(pid,c:GetID())end)
  end

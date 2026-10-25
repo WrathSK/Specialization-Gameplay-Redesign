@@ -34,7 +34,7 @@ function SPCGreatWorkProbe.Start(P,shared,options)
    ..'\n二者互斥；未配置旅游业加成；排除遗物、产品、未知类型。'
    ..'\n这是手动实验，不是已完成的时代补贴/50%基础相邻能力。'
  end
- local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() if d.ready then d.Clean() end end) end
+ local e=P.Field(Events,'CityTransfered');if not(options and options.centralExit)and e and e.Add then e.Add(function() if d.ready then d.Clean() end end) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if not(options and options.centralExit)and shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('GreatWorkProbe',function(c,loss)
    local ids={};ids={'BUILDING_SPC_B055_GW_CITY','BUILDING_SPC_B055_GW_OBJECT'}

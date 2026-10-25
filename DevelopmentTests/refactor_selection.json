@@ -1812,6 +1812,15 @@
       "test_refactor_s5d4c3",
       "test_refactor_s5d1.Writers",
       "test_refactor_s9e1"
+    ],
+    "S9e3": [
+      "test_refactor_s9e3",
+      "test_refactor_s9e1",
+      "test_refactor_s4b",
+      "test_refactor_s6d",
+      "test_refactor_s5c2",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s9c2.Startup"
     ]
   },
   "counterexamples": {},
@@ -1904,7 +1913,8 @@
       "test_refactor_s5d4b1",
       "test_refactor_s6g.ScopedTopology",
       "test_refactor_s6j",
-      "test_refactor_s9e1"
+      "test_refactor_s9e1",
+      "test_refactor_s9e3"
     ],
     "Mod/CityProgressionStore.lua": [
       "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity",
@@ -1972,7 +1982,8 @@
     ],
     "Mod/StandardizationEffects.lua": [
       "test_refactor_s4b",
-      "test_refactor_s6d"
+      "test_refactor_s6d",
+      "test_refactor_s9e3"
     ],
     "Mod/DevelopmentInvestment.lua": [
       "test_refactor_s4b",
@@ -1986,7 +1997,8 @@
     ],
     "Mod/UI/BackgroundRoutes.lua": [
       "test_refactor_s4b",
-      "test_refactor_s9e1"
+      "test_refactor_s9e1",
+      "test_refactor_s9e3"
     ],
     "Mod/CultureInspirationModel.lua": [
       "test_refactor_a8"
@@ -2263,6 +2275,12 @@
     "Mod/UI/ResearchCrossRefresh.lua": [
       "test_refactor_s9e2",
       "test_refactor_s9e2b"
+    ],
+    "Mod/NetworkBoost.lua": [
+      "test_refactor_s9e3"
+    ],
+    "Mod/GreatWorkProbe.lua": [
+      "test_refactor_s9e3"
     ]
   },
   "exclusions": {

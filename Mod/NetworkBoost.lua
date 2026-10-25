@@ -180,10 +180,10 @@ function SPCNetworkBoost.Start(P,shared,options)
  else
   SPCRuntimeWork.Hook(P,Events,'PlayerTurnActivated',d.Audit)
  end
- hook(Events,'CityTransfered',function() if isolated() then return end;if d.ready and not d.busy then
+ if not(options and options.centralExit)then hook(Events,'CityTransfered',function() if isolated() then return end;if d.ready and not d.busy then
   d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
   if not ok then print('[SPC][B055][CLEAN] '..tostring(err));d.ready=false;return end;d.Audit()
- end end)
+ end end)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if not(options and options.centralExit)and shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('NetworkBoost',function(c,loss)
    local ids={};for _,r in pairs(SPCBoostConfig.rows)do ids[#ids+1]=r.building end;for _,id in pairs(SPCBoostIntegerConfig.rows)do if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,id in ipairs(testRows)do if P.Info('Buildings',id)then ids[#ids+1]=id end end

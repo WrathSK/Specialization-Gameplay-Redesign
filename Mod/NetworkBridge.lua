@@ -851,13 +851,33 @@ function SPCNetworkBridge.Start(P,shared)
   return true -- no Capture/derive/publication/consumer dispatch
  end
  -- Event payloads only invalidate proof; they never become route facts.
+ -- Routing hint only: never turns a retained snapshot into transaction proof.
+ function d.RouteLifecycleRelevant(owner,cid,oldOwner)
+  if not integer(owner)or not integer(cid)or oldOwner~=nil and not integer(oldOwner)then return true end
+  local found=false
+  for pid,b in pairs(d.players)do if b.input or b.routes then
+   found=true
+   if pid==owner or pid==oldOwner then return true end
+   if not b.routes or not b.routeReferences or b.revalidation~='VERIFIED'
+    or b.signal~=(shared.RouteSignalRevision or 0)or b.refreshing or b.receiving or b.queuedWork or b.negativeHeld then return true end
+   for _,route in ipairs(b.routes)do
+    -- Transfer carries the destination's new city ID, not the former owner's ID.
+    if oldOwner~=nil then
+     if route.op==owner or route.op==oldOwner or route.dp==owner or route.dp==oldOwner then return true end
+    elseif route.op==owner and route.oc==cid or route.dp==owner and route.dc==cid then return true end
+   end
+  end end
+  return not found -- no accepted snapshot is UNKNOWN, not an empty route set
+ end
  local function routeUnitRelevant(pid,id,removed)
   local b=d.players[pid]
   return not P.RouteUnitRelevant or P.RouteUnitRelevant(pid,id,removed and b and b.routeReferences or nil)
  end
  local function signal(namespace,name,unit)
   local event=P.Field(namespace,name);if not event or not event.Add then return end
-  event.Add(function(pid,id)
+  event.Add(function(pid,id,oldOwner)
+   if name=='CityTransfered'and oldOwner~=nil and not d.RouteLifecycleRelevant(pid,id,oldOwner)then return end
+   if name=='CityRemovedFromMap'and not d.RouteLifecycleRelevant(pid,id)then return end
    if unit then
     if type(pid)=='number' and not P.IsTestPlayer(pid)then return end
     if not routeUnitRelevant(pid,id,name=='UnitRemovedFromMap')then return end
@@ -888,7 +908,9 @@ function SPCNetworkBridge.Start(P,shared)
   end
  end
  for _,name in ipairs({'TradeRouteActivityChanged','TradeRouteRemovedFromMap','UnitRemovedFromMap','CityRemovedFromMap','CityTransfered','DiplomacyDeclareWar'}) do
-  local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(function(pid,id)
+  local ev=P.Field(Events,name);if ev and ev.Add then ev.Add(function(pid,id,oldOwner)
+   if name=='CityTransfered'and oldOwner~=nil and not d.RouteLifecycleRelevant(pid,id,oldOwner)then return end
+   if name=='CityRemovedFromMap'and not d.RouteLifecycleRelevant(pid,id)then return end
    if name=='UnitRemovedFromMap' then
     if type(pid)=='number' and not P.IsTestPlayer(pid)then return end
     if not routeUnitRelevant(pid,id,true)then return end
