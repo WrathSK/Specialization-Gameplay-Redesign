@@ -1700,6 +1700,9 @@
     ],
     "S8b6": [
       "test_refactor_s8b6"
+    ],
+    "S8b7a": [
+      "test_refactor_s8b7a"
     ]
   },
   "counterexamples": {},

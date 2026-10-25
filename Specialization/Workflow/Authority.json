@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0798",
-    "runtime": "B345.372 / modinfo372",
+    "status": "S0799",
+    "runtime": "B346.373 / modinfo373",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S8B6_COMPLETE_CONTINUING",
-  "next_batch": "Complete bounded Commerce/reputation and template-history S8 handling, then S9–S10; keep native transaction and permanent-history proof limits explicit. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S8B7A_COMPLETE_CONTINUING",
+  "next_batch": "Wire bounded Commerce/reputation partial-availability with full original-history preservation and actual Gold/lifecycle proof, then templates and S9–S10. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "User resumed accepted S8b–S10 after the app update. Coherent verified develop batches may commit/push without routine stage authorization; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S0798 S8b6 isolates only the existing ClaimTimer field. Claim state/write/complete reject isolated timer history; confirmed loss preserves that opaque field while core lifecycle and other capabilities continue. Actual ClaimProjects withdraw all four access markers and do not finish or replace invalid ACTIVE/CALLING over three turns. Independent first specialization and healthy native completion without a timer remain unchanged. Acquisition/Claim receipts/base stay strict. Commerce/templates and permanent D7 recovery plus D5 native proof remain OPEN. No native/deployment PASS.",
+  "context_review_status": "S0799 S8b7a extracts existing Commerce configuration and reputation assertions into fixed pure validation entry points. Full Validate invokes both in the original order and returns the same object. All production consumers and Store Commerce failure behavior remain unchanged; no partial reputation projection is wired yet. Exact old-source differential covers24 valid/invalid inputs plus9 operation sequences, preserving results, errors and bytes. Remaining Commerce/template isolation, permanent D7 recovery and D5 native proof remain OPEN. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B345_Refactor_S8b6.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B346_Refactor_S8b7a.md"
 }

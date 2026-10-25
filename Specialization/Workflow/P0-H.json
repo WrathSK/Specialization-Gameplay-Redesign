@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0798",
-    "runtime": "B345.372 / modinfo372",
+    "status": "S0799",
+    "runtime": "B346.373 / modinfo373",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Complete bounded Commerce/reputation and template-history S8 handling, then S9–S10; keep native transaction and permanent-history proof limits explicit. No automatic deployment/main/native launch.",
+  "goal": "Wire bounded Commerce/reputation partial-availability with full original-history preservation and actual Gold/lifecycle proof, then templates and S9–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -424,6 +424,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B345_Refactor_S8b6.md",
       "kind": "full",
       "reason": "Isolate Claim timers without widening completion rules actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B346_Refactor_S8b7a.md",
+      "kind": "full",
+      "reason": "Separate Commerce validation observations without changing behavior actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -450,8 +455,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B345_Refactor_S8b6.md",
-    "local": "681/681 LOCAL_SIMULATION_PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B346_Refactor_S8b7a.md",
+    "local": "685/685 LOCAL_SIMULATION_PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

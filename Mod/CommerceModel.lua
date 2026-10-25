@@ -22,7 +22,7 @@ end
 function M.New(owner)
  assert(int(owner),'COMMERCE_OWNER_INVALID');return {version=1,owner=owner,selected={}}
 end
-function M.Validate(v,r)
+function M.ValidateConfiguration(v,r)
  assert(type(v)=='table' and v.version==1 and int(v.owner) and type(v.selected)=='table','COMMERCE_STATE_INVALID')
  local seen,n={},0
  for i,domain in pairs(v.selected)do
@@ -34,7 +34,9 @@ function M.Validate(v,r)
   local a=r.loss and r.loss.target or r.current or r.origin
   assert(a and v.owner==a.owner,'COMMERCE_OWNER_REFERENCE_CHANGED')
  end
- local t=v.reputation
+ return v
+end
+function M.ValidateReputation(t,r)
  if t then
   assert(type(t)=='table' and t.version==1 and int(t.start) and int(t.cursor) and t.cursor>=t.start
    and int(t.age) and t.age<=40 and t.age<=t.cursor-t.start
@@ -48,6 +50,10 @@ function M.Validate(v,r)
    assert(count==3,'COMMERCE_REPUTATION_P4_REQUIRED')
   end
  end
+ return t
+end
+function M.Validate(v,r)
+ M.ValidateConfiguration(v,r);M.ValidateReputation(v.reputation,r)
  return v
 end
 function M.Select(v,domain,enabled)

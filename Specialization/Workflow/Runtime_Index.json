@@ -131,9 +131,9 @@
       "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CommerceModel.lua": {
-      "sha256": "4ff0c0c545447020040cca872e49a1be9a5e1c9f1f876e9c1c19f01b373be613",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
-      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "3aad7cb782649145ead3b4f7d4a95507312b63c466e6ced757efff03b05e23c6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B346_Refactor_S8b7a.md",
+      "provenance": "B346.373 Separate Commerce validation observations without changing behavior; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CompletionProbe.lua": {
       "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "2f9597466b95902546482cc4a5f977a2bf20bf350dfba2d614ae0280320130ab",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B345_Refactor_S8b6.md",
-      "provenance": "B345.372 Isolate Claim timers without widening completion rules; local/static evidence only; no deployment/native PASS."
+      "sha256": "921b2de82d86759743fe08f74874d24f7bed202ed2d39890414ba843b6b84920",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B346_Refactor_S8b7a.md",
+      "provenance": "B346.373 Separate Commerce validation observations without changing behavior; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "37f9abeb35eceab11a5175b50cc02769102b47bf6904748f694c9ad7db792161",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B345_Refactor_S8b6.md",
-      "provenance": "B345.372 Isolate Claim timers without widening completion rules; local/static evidence only; no deployment/native PASS."
+      "sha256": "673120145fc55258c5f30b9e0580439e6934c0373a60472f440a5ccc30869ba3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B346_Refactor_S8b7a.md",
+      "provenance": "B346.373 Separate Commerce validation observations without changing behavior; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
