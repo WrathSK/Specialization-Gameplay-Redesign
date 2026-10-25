@@ -19,7 +19,7 @@ function CreateQueueInstance(...)
  return instance
 end
 local claimSelection,dialogueSelection,trainingSelection,engineeringSelection,crewSelection,commerceSelection,capitalSelection,developmentSelection
-local displaySelection=adapters.Add('TimedDisplay',function()return false end,{},function()return SPCTimedProjectDisplay end)
+local displaySelection=adapters.Add('TimedDisplay',function()return false end,{},function()return SPCTimedProjectDisplay end,{Render={100,'Items'}})
 local baseCurrent=RefreshCurrentProduction
 function RefreshCurrentProduction(parent,pid,id)
  local result=baseCurrent(parent,pid,id)
@@ -29,20 +29,12 @@ function RefreshCurrentProduction(parent,pid,id)
 end
 pcall(include,'CrewModel')
 local ranks=setmetatable({},{__index=function(_,id)if SPCCrewModel and SPCCrewModel.Parse then return SPCCrewModel.Parse(id)end end})
+adapters.Barrier('Render',20,function(data)SPCRestructuringUI.ObserveTraining(SPCP0,data)end)
 local baseGetData=GetDataHelper
 function GetDataHelper(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
- adapters.Items(trainingSelection,data)
- pcall(function()SPCRestructuringUI.ObserveTraining(SPCP0,data)end)
- adapters.Items(crewSelection,data)
- adapters.Items(capitalSelection,data)
- adapters.Items(developmentSelection,data)
- adapters.Items(commerceSelection,data)
- adapters.Call(claimSelection,'Sync',data.City)
- adapters.Call(dialogueSelection,'Sync',data.City)
- adapters.Call(engineeringSelection,'Sync',data.City)
- adapters.Items(displaySelection,data)
+ adapters.Render(data)
  -- HD exposes Disabled from native CanProduce. Filter only our exact project IDs.
  local items={}
  for _,item in ipairs(data.ProjectItems)do
@@ -88,53 +80,45 @@ adapters.Add('ProjectTurnRead',function()return false end,{'SPC_ProjectTurnRead'
 end)
 local projectSelection=adapters.Add('TimedProjectSelection',one('PROJECT_SPC_OVERFLOW_SINK_TEST'),{'SPC_TimedProjectSelection'},function()
  include('TimedProjectSelection');return SPCTimedProjectSelection.New(SPCP0,send,notify)
-end)
+end,{Before={90,'Before'},Pulse={10,'Pulse'}})
 claimSelection=adapters.Add('ClaimProjectUI',claim,{'SPC_ClaimQueueRead','SPC_ClaimSelection','SPC_ClaimSync'},function()
  include('ClaimProjectUI');return SPCClaimProjectUI.New(SPCP0,send,notify)
-end)
+end,{Render={70,'Sync'},Before={70,'Before',true},Pulse={20,'Pulse'},Warm={20,'WarmStart'},Queue={10,'QueueEvent'},Connect={10,'Connect'}})
 dialogueSelection=adapters.Add('DialogueProjectUI',one('PROJECT_SPC_ERA_DIALOGUE'),{'SPC_DialogueGameEra','SPC_DialogueProjectRead'},function()
  include('DialogueProjectUI');return SPCDialogueProjectUI.New(SPCP0,send,notify)
-end)
+end,{Render={80,'Sync'},Before={60,'Before',true},Pulse={30,'Pulse'},Warm={10,'WarmStart'},Queue={20,'QueueEvent'},Connect={20,'Connect'}})
 engineeringSelection=adapters.Add('EngineeringStudyUI',one('PROJECT_SPC_ENGINEERING_STUDY'),{'SPC_EngineeringStudyRead'},function()
  include('EngineeringStudyUI');return SPCEngineeringStudyUI.New(SPCP0,send,notify)
-end)
+end,{Render={90,'Sync'},Before={50,'Before',true},Publish={50,'Publish'},Warm={30,'WarmStart'},Queue={30,'QueueEvent'},Connect={30,'Connect'}})
 local baseAdvance=AdvanceProject
 capitalSelection=adapters.Add('CapitalInvestmentUI',one('PROJECT_SPC_CAPITAL_INVESTMENT'),{},function()
  include('CapitalInvestmentUI');return SPCCapitalInvestmentUI.New(SPCP0,notify)
-end)
+end,{Render={40,'Items'},Before={10,'Before',true},Publish={10,'Publish'}})
 developmentSelection=adapters.Add('DevelopmentInvestmentUI',one('PROJECT_SPC_DEVELOPMENT_INVESTMENT'),{'SPC_DevelopmentRead'},function()
  include('DevelopmentInvestmentUI');return SPCDevelopmentInvestmentUI.New(SPCP0,notify)
-end)
+end,{Render={50,'Items'},Before={20,'Before',true},Publish={20,'Publish'}})
 commerceSelection=adapters.Add('CommerceUI',one('PROJECT_SPC_COMMERCIALIZATION'),{},function()
  include('CommerceUI');return SPCCommerceUI.New(SPCP0,notify)
-end)
+end,{Render={60,'Items'},Before={30,'Before',true},Publish={30,'Publish'}})
 crewSelection=adapters.Add('CrewProjectUI',crew,{'SPC_CrewNativeRead'},function()
  include('CrewProjectUI');return SPCCrewProjectUI.New(SPCP0,send,notify,baseAdvance)
+end,{Render={30,'Items'},Before={40,'Before',true},Publish={40,'Publish'}})
+adapters.Barrier('Before',80,function(c,item)
+ return not(item.Type=='PROJECT_SPC_OVERFLOW_SINK_TEST'and CheckQueueItemSelected())
 end)
+local function queuedSelection()return CheckQueueItemSelected()end
 function AdvanceProject(c,item)
- if not adapters.Before(capitalSelection,c,item,CheckQueueItemSelected())then return end
- if not adapters.Before(developmentSelection,c,item,CheckQueueItemSelected())then return end
- if not adapters.Before(commerceSelection,c,item,CheckQueueItemSelected())then return end
- if not adapters.Before(crewSelection,c,item,CheckQueueItemSelected())then return end
- if not adapters.Before(engineeringSelection,c,item,CheckQueueItemSelected())then return end
- if not adapters.Before(dialogueSelection,c,item,CheckQueueItemSelected())then return end
- if not adapters.Before(claimSelection,c,item,CheckQueueItemSelected()) then return end
- if item.Type=="PROJECT_SPC_OVERFLOW_SINK_TEST" and CheckQueueItemSelected() then return end
- if not adapters.Before(projectSelection,c,item) then return end
- return baseAdvance(c,item)
+ if adapters.BeforeAll(c,item,queuedSelection)then return baseAdvance(c,item)end
 end
-for _,e in ipairs({capitalSelection,developmentSelection,commerceSelection,crewSelection,engineeringSelection})do
- adapters.Hook(Events,'GameCoreEventPublishComplete',e,'Publish')
-end
-for _,e in ipairs({projectSelection,claimSelection,dialogueSelection})do adapters.Hook(Events,'GameCoreEventPublishComplete',e,'Pulse')end
-for _,e in ipairs({dialogueSelection,claimSelection,engineeringSelection})do
- adapters.Hook(Events,'LoadScreenClose',e,'WarmStart')
- adapters.Hook(Events,'LocalPlayerTurnBegin',e,'WarmStart') -- only an uninitialized availability generation can enumerate
-end
--- Exact native city production signals permit one pending-intent read. Publish
--- drains those causes; unreadable queues wait for a new related signal.
+adapters.Each('Publish',function(e,method)adapters.Hook(Events,'GameCoreEventPublishComplete',e,method)end)
+adapters.Each('Pulse',function(e,method)adapters.Hook(Events,'GameCoreEventPublishComplete',e,method)end)
+adapters.Each('Warm',function(e,method)
+ adapters.Hook(Events,'LoadScreenClose',e,method)
+ adapters.Hook(Events,'LocalPlayerTurnBegin',e,method) -- only an uninitialized availability generation can enumerate
+end)
+-- Keep one listener per adapter and the original event-major registration order.
 for _,name in ipairs({'CityProductionChanged','CityProductionQueueChanged','CityProductionUpdated'})do
- for _,e in ipairs({claimSelection,dialogueSelection,engineeringSelection})do adapters.Hook(Events,name,e,'QueueEvent')end
+ adapters.Each('Queue',function(e,method)adapters.Hook(Events,name,e,method)end)
 end
 adapters.Hook(LuaEvents,'SPC_TimedProjectDisplayChanged',nil,nil,function(pid,id)
  local c=UI.GetHeadSelectedCity()
@@ -145,7 +129,7 @@ end)
 local baseBuildUnit=BuildUnit
 trainingSelection=adapters.Add('ExpeditionTrainingUI',one('UNIT_SPC_EXPEDITION_SPY'),{'SPC_ExpeditionQueueRead'},function()
  include('ExpeditionTrainingUI');return SPCExpeditionTrainingUI.New(SPCP0,send,notify,baseBuildUnit)
-end)
+end,{Render={10,'Items'}})
 function BuildUnit(c,item)
  if item.Type~='UNIT_SPC_EXPEDITION_SPY' then return baseBuildUnit(c,item)end
  if adapters.Before(trainingSelection,c,item,CheckQueueItemSelected())then return baseBuildUnit(c,item)end
@@ -180,4 +164,4 @@ ContextPtr:SetShutdown(function()
 end)
 
 -- Publish readers only after all successful adapters and native hooks are wired.
-for _,e in ipairs({claimSelection,dialogueSelection,engineeringSelection})do adapters.Call(e,'Connect')end
+adapters.Each('Connect',function(e,method)adapters.Call(e,method)end)

@@ -2,13 +2,58 @@
 SPCSafeAdapters={}
 function SPCSafeAdapters.New()
  local d={entries={},hooks={},closed=false}
+ -- Fixed UI phases only; ranks preserve different render/selection/hook orders.
+ -- Declarations are copied scalar metadata, never event discovery or native facts.
+ local phases={Render={},Before={},Publish={},Pulse={},Warm={},Queue={},Connect={}}
+ local methods={Render={Items=true,Sync=true},Before={Before=true},Publish={Publish=true},Pulse={Pulse=true},
+  Warm={WarmStart=true},Queue={QueueEvent=true},Connect={Connect=true}}
+ local function declaration(name,rank,e,method,queued,fn)
+  local phase=assert(phases[name],'ADAPTER_PHASE_UNKNOWN')
+  assert(type(rank)=='number'and rank>=1 and rank<=100 and rank%1==0,'ADAPTER_PHASE_RANK')
+  assert(#phase<16,'ADAPTER_PHASE_LIMIT')
+  assert(fn and (name=='Render'or name=='Before')or not fn and methods[name][method],'ADAPTER_PHASE_METHOD')
+  assert(queued==nil or name=='Before'and type(queued)=='boolean','ADAPTER_PHASE_QUEUE')
+  for _,step in ipairs(phase)do assert(step.rank~=rank,'ADAPTER_PHASE_DUPLICATE')end
+  return {rank=rank,entry=e,method=method,queued=queued,fn=fn}
+ end
+ local function install(name,step)
+  local phase=phases[name];phase[#phase+1]=step;table.sort(phase,function(a,b)return a.rank<b.rank end)
+ end
+ function d.Barrier(name,rank,fn)
+  assert(type(fn)=='function','ADAPTER_PHASE_BARRIER');install(name,declaration(name,rank,nil,nil,nil,fn))
+ end
+ function d.Each(name,visit)
+  for _,step in ipairs(assert(phases[name],'ADAPTER_PHASE_UNKNOWN'))do visit(step.entry,step.method)end
+ end
+ function d.Render(data)
+  for _,step in ipairs(phases.Render)do
+   if step.fn then pcall(step.fn,data)
+   elseif step.method=='Items'then d.Items(step.entry,data)
+   else d.Call(step.entry,step.method,data.City)end
+  end
+ end
+ function d.BeforeAll(c,item,checkQueued)
+  for _,step in ipairs(phases.Before)do
+   if step.fn then if not step.fn(c,item)then return false end
+   else
+    local queued;if step.queued then queued=checkQueued()end
+    if not d.Before(step.entry,c,item,queued)then return false end
+   end
+  end
+  return true
+ end
  local function clone(v,seen)
   if type(v)~='table'then return v end
   seen=seen or {};if seen[v]then return seen[v]end
   local o={};seen[v]=o;for k,x in pairs(v)do o[k]=clone(x,seen)end;return o
  end
- function d.Add(name,owns,keys,construct)
+ function d.Add(name,owns,keys,construct,plan)
   local e={name=name,owns=owns,errors={},exports={}};d.entries[#d.entries+1]=e
+  local pending={}
+  for phase,spec in pairs(plan or {})do
+   assert(type(spec)=='table'and #spec>=2 and #spec<=3,'ADAPTER_PHASE_SPEC')
+   pending[phase]=declaration(phase,spec[1],e,spec[2],spec[3])
+  end
   local before={};for _,key in ipairs(keys or {})do before[key]={value=ExposedMembers[key]}end
   local ok,api=pcall(construct)
   e.api=ok and type(api)=='table' and api or nil
@@ -18,6 +63,7 @@ function SPCSafeAdapters.New()
    if ok then e.exports[key]=current
    elseif current~=before[key].value then ExposedMembers[key]=before[key].value end
   end
+  for phase,step in pairs(pending)do install(phase,step)end
   return e
  end
  function d.Call(e,method,...)

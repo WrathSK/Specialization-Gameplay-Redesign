@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0801
-Implementation Build: B348.375 / modinfo375; stable/live B307.334
+Status Revision: S0802
+Implementation Build: B349.376 / modinfo376; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8B8_COMPLETE_CONTINUING
+Work State: REFACTOR_S9A1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8b8 isolates the fixed templateLifecycle/templates/templatesCaptured family after bounded copy and preserves exact raw history across unrelated writes,claims,restructuring and return. UNASSIGNED core checks run before masking; missing capture marker cannot overwrite an already saved ledger from legacy City data. Independent IndustryHistory N reconciliation survives template unavailability using existing owner-change/restructuring epochs,without inventing E or rescanning ordinary investment. Healthy initialization read order remains unchanged. Full permanent D7 proof and D5 native attribution remain OPEN; continue S9–S10. [Result](Validation/Results/Specialization_B348_Refactor_S8b8.md). Stable/live/main B307.334; no deployment/native PASS.
+S9a1 declares fixed production-panel Render/Before/Publish/Pulse/Warm/Queue/Connect ranks beside each existing adapter registration. Different phase orders,ObserveTraining and queued-overflow barriers,one native listener per adapter,Connect-last timing,native arguments/returns and failure isolation match exact B348 traces. No owner revision or business rule changes yet. D7 permanent recovery proof remains scoped OPEN; proceed with deterministic recovery opportunities and S9 owner revisions/target-channel/display work before S10. [Result](Validation/Results/Specialization_B349_Refactor_S9a1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Record remaining permanent D7 recovery proof boundaries without guessing/reset, then advance authorized S9 projections/target ownership and S10 responsibility migration.
+- Primary next: Implement only provable remaining template metadata/terminal Claim recovery,then S9 owner-specific UI revisions and Gameplay-owned target/request/display boundaries; retain unprovable D7/native D5 items explicitly.
+
+## S0802 — B349.376 Declare fixed production-panel adapter phases without changing ordering
+
+S9a1 declares fixed production-panel Render/Before/Publish/Pulse/Warm/Queue/Connect ranks beside each existing adapter registration. Different phase orders,ObserveTraining and queued-overflow barriers,one native listener per adapter,Connect-last timing,native arguments/returns and failure isolation match exact B348 traces. No owner revision or business rule changes yet. D7 permanent recovery proof remains scoped OPEN; proceed with deterministic recovery opportunities and S9 owner revisions/target-channel/display work before S10.
 
 ## S0801 — B348.375 Isolate template family and preserve independent Industry history recovery
 

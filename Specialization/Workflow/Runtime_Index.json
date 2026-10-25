@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "fe1d9640669639d3b6e8e05885b19feef1bb396560c3153ee7b96825927d52c9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md",
-      "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "ec4da336e891db43d6275860533760a5ed3c065baa833ce0b0be6ee3319a39c8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B349_Refactor_S9a1.md",
+      "provenance": "B349.376 Declare fixed production-panel adapter phases without changing ordering; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "4583608efac959b6390daa93de1b46bec4ec8b1874c17c82b2046e6e0746b798",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md",
-      "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "0620a2b00d3853ca635c544c1e81e7ba15623b618d18d4dae4ef3e581587ed45",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B349_Refactor_S9a1.md",
+      "provenance": "B349.376 Declare fixed production-panel adapter phases without changing ordering; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1251,9 +1251,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "daab4a3df86d8e71056d1a1964b467e195700eb97ed53277ae4d9f955237c05f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
-      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
+      "sha256": "61739610c7ab2f8442473107be426db9c207961af627c585fda8a2b5dd61037c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B349_Refactor_S9a1.md",
+      "provenance": "B349.376 Declare fixed production-panel adapter phases without changing ordering; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "b07ea80a0db7f1fb10bcc259dd711afacab49fd6edafb2b5d097e19a1abdc64b",
@@ -1576,9 +1576,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/UI/SafeAdapters.lua": {
-      "sha256": "d4095f7e5a9084e2ea61a71df4ababce09f24310619bfa3b6237ca522ccb4e04",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "819a7e4e183806c667316e67fa56a086ac4c796713a54e2dba8d91cfaa7144a1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B349_Refactor_S9a1.md",
+      "provenance": "B349.376 Declare fixed production-panel adapter phases without changing ordering; local/static evidence only; no deployment/native PASS."
     },
     "Mod/FactChanges.lua": {
       "sha256": "43d709d0d304fda52cd52c6faaf168bdad0e1334fe1e6ae3f07c358b59254afe",
