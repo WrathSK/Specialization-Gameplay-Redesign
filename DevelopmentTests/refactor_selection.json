@@ -1007,6 +1007,9 @@
       "test_refactor_s6e.RetainedGuards",
       "test_refactor_s6f.RetainedDevelopment",
       "test_refactor_s6f.RetainedGuards"
+    ],
+    "S7d6Proof": [
+      "test_refactor_s7d6_proof"
     ]
   },
   "counterexamples": {},

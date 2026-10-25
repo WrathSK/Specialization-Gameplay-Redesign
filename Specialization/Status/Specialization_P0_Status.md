@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0781
+Status Revision: S0782
 Implementation Build: B329.356 / modinfo356; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7D5_COMPLETE_CONTINUING
+Work State: REFACTOR_S7D6_PROOF_GAP_CONTINUE_S7E
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7d5 moves Crew preflight, irreversible consumption and the unchanged use-receipt key to CrewProjects. UnitActions keeps preview/dispatch and presents typed owner outcomes; CrewPrecision preserves text, investment receipt and outcome without substring success classification. INTENT→reserve→debit→fresh target→GRANT_ATTEMPTED→one AddProgress→GRANT_RETURNED ordering and failure/no-replay protection match the previous implementation. Existing InvestmentAction receipt status also prevents an inner UNKNOWN from being mislabeled REJECTED. Native formation/completion attribution remains S7d6; no deployment/main/native PASS. [Result](Validation/Results/Specialization_B329_Refactor_S7d5.md). Stable/live/main B307.334; no deployment/native PASS.
+S7d6 assessment reproduces the current two-city same-counter Crew deficit and a conditional late-event ambiguity. D5 remains OPEN: no production fix, receipt migration or relaxed proof is accepted. Current source surfaces establish player-wide counts and a three-field event use, not a verified per-completion instance identity. Continue independent S7e/f; no automatic deployment/main/native launch. [Assessment](Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md). Runtime/live remain B329.356/B307.334.
 
-- User decision: none.
-- User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7d6 unique Crew completion attribution under D5, then S7e/f and S8–S10. No automatic deployment, main promotion or game launch.
+- User decision: preserve D5; no waiver requested.
+- User testing: targeted native completion proof before D5 cutover; final U5 remains.
+- Primary next: continue independent S7e/f; retain D5 open in the existing intake.
+
+## S0782 — S7d6 proof assessment, runtime unchanged
+
+S7d6 assessment reproduces the current two-city same-counter Crew deficit and a conditional late-event ambiguity. D5 remains OPEN: no production fix, receipt migration or relaxed proof is accepted. Current source surfaces establish player-wide counts and a three-field event use, not a verified per-completion instance identity. Continue independent S7e/f; no automatic deployment/main/native launch.
 
 ## S0781 — B329.356 Move one-use Crew transaction to its owner
 

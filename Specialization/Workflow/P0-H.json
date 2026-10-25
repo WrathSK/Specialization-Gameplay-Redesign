@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0781",
+    "status": "S0782",
     "runtime": "B329.356 / modinfo356",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S7d6 unique Crew completion attribution under D5, then S7e/f and S8–S10. No automatic deployment, main promotion or game launch. No automatic deployment/main/native launch.",
+  "goal": "Continue independent S7e/f, retaining D5 native proof as OPEN; no deployment/main/game launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -339,6 +339,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
       "kind": "full",
       "reason": "Move one-use Crew transaction to its owner actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md",
+      "kind": "full",
+      "reason": "D5 native proof gap, characterization scope and independent continuation boundary."
     }
   ],
   "dependencies": [
@@ -365,9 +370,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
-    "local": "LOCAL_SIMULATION_PASS:498/498",
-    "native": "NO_NEW_NATIVE_TEST",
+    "report": "Specialization/Status/Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md",
+    "local": "LOCAL_COUNTEREXAMPLE_CONFIRMED:2/2_characterizations;D5_OPEN_NOT_FIXED",
+    "native": "D5_NATIVE_PROOF_REQUIRED",
     "deployment": "UNCHANGED_B307_STABLE"
   }
 }

@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+S0782 S7d6: D5 remains OPEN; current two-city same-count deficit and conditional late-event ambiguity are characterized, not fixed. Native completion-specific proof is required before D5 cutover. Continue independent S7e/f. [Assessment](../../Status/Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md).
+
 B329.356 S7d5 moves Crew preflight, irreversible consumption and the unchanged use-receipt key to CrewProjects. UnitActions keeps preview/dispatch and presents typed owner outcomes; CrewPrecision preserves text, investment receipt and outcome without substring success classification. INTENT→reserve→debit→fresh target→GRANT_ATTEMPTED→one AddProgress→GRANT_RETURNED ordering and failure/no-replay protection match the previous implementation. Existing InvestmentAction receipt status also prevents an inner UNKNOWN from being mislabeled REJECTED. Native formation/completion attribution remains S7d6; no deployment/main/native PASS. [Result](../../Status/Validation/Results/Specialization_B329_Refactor_S7d5.md).
 
 B328.355 User resumed the accepted program. S7d4 shares a pure END/WAIT/DUE/MISSED boundary classifier and a session-only pending/runnable/UNKNOWN work set across Claim, Dialogue and Engineering. HELD/CALLING and UNKNOWN-blocked ACTIVE rounds no longer perform turn-based queue or qualification retries. Related exact-city facts/production or explicit initialization Sync can restore timer work; recovery within the original due window settles once, missed windows never backfill. Independent models/receipts, ordered qualification-loss handling and native completion policies remain. Crew proof/consume and S7e–S10 remain next. [Result](../../Status/Validation/Results/Specialization_B328_Refactor_S7d4.md).
