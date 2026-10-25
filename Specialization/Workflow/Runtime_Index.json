@@ -111,9 +111,9 @@
       "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/ClaimProjects.lua": {
-      "sha256": "36955e7b65ddaf9fedd2450f15fc67d9c96c3cea9d48d6c1aa42cfe5a71dc5a8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B280_Refactor_S5a.md",
-      "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
+      "sha256": "b4066b43d03cf7b3200576c39d82dc1c09c72164fbc4f0f1faadf83c1dad6caa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B324_Refactor_S7d1.md",
+      "provenance": "B324.351 Distinguish confirmed production targets from unknown queue reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
       "sha256": "175cdfeb1fa30bd8d367e0bb8ee7e8e605b57638b712cef14ea9a34e2e87b8c6",
@@ -541,9 +541,9 @@
       "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/DialogueProjects.lua": {
-      "sha256": "ebce0c407bbad9fd62fd1304d644dc70584b826a4ed5b26e6118705f3ba2efe3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B280_Refactor_S5a.md",
-      "provenance": "B280 declared request/network scope collector; own-state and output proof phase ordering; protected deferred effect delivery. Local/static only; no deployment/native PASS."
+      "sha256": "62d2d7faabb062705604d73c108dc50af5aa23d760d8115a64e342804101ca3e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B324_Refactor_S7d1.md",
+      "provenance": "B324.351 Distinguish confirmed production targets from unknown queue reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DistrictCompleteness.lua": {
       "sha256": "dc7d30c4e04c156b90faa9dfeb262f03e068b09023e536ebc180621da4c404f6",
@@ -576,9 +576,9 @@
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/EngineeringStudyProjects.lua": {
-      "sha256": "3630cde44cb251a25893e99db53bb2744f336baf986e15f17a6da5367ecd8e26",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B279_Refactor_S5_History.md",
-      "provenance": "B279 confirmed historical result topics and explicit isolated adapters; project/native/persistence semantics retained. Local/static only; remaining manual lists next; no deployment/native PASS."
+      "sha256": "2881edf6af0db888aa277cede6a33e75e1af9dda73f5915f1c71264442a443ab",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B324_Refactor_S7d1.md",
+      "provenance": "B324.351 Distinguish confirmed production targets from unknown queue reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/EnvelopeProbe.lua": {
       "sha256": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "5871f074ae8a4dd5602d0a5f046ca3f2653e245fac06b4d37921477c65b18d87",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
-      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "b212977b4f4ff6dc7ee8d9408e57f1d82defa88c39b3db30cbdd8e224fe51bc0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B324_Refactor_S7d1.md",
+      "provenance": "B324.351 Distinguish confirmed production targets from unknown queue reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6b1ccd01d2fecb1bc1daa38309335cda1fc3a7039ed165a3c7ea90ddb55353fa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
-      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "b650aa86a1e76ce72bf02c9ac10c6529fddc58f056673674e23cb311d82b4da0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B324_Refactor_S7d1.md",
+      "provenance": "B324.351 Distinguish confirmed production targets from unknown queue reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1619,6 +1619,16 @@
       "sha256": "5056a904946a652b87e72564770c727529734f9a9f3e1c2e57ffb85d829a563c",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
       "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/TimedProjectModel.lua": {
+      "sha256": "41857de84268ec47bc06171e964f18e693b1d670c1f78cf59f8bf7b836ef1da4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B324_Refactor_S7d1.md",
+      "provenance": "B324.351 Distinguish confirmed production targets from unknown queue reads; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/TimedProjects.lua": {
+      "sha256": "c8ad17f5d491371437c0dd286faf1201c3de7ba3f20c2869b03919728c8605a1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B324_Refactor_S7d1.md",
+      "provenance": "B324.351 Distinguish confirmed production targets from unknown queue reads; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

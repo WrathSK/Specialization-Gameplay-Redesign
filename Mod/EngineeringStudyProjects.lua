@@ -1,3 +1,4 @@
+include('TimedProjects')
 include('SafeCallbacks')
 include('EngineeringStudyModel')
 include('ExpeditionTrainingDiagnostics')
@@ -46,14 +47,11 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   return actual
  end
  local function queue(c)
-  local q=c:GetBuildQueue();local ok,target=P.Call(q,'CurrentlyBuilding');assert(ok,'EST_QUEUE_UNKNOWN')
-  if target~=PROJECT then return q,false end
-  local good,n=P.Call(q,'GetSize')
-  if not good then
+  return SPCTimedProjects.Queue(P,c,PROJECT,function(target)
    local v=assert(ExposedMembers.SPC_EngineeringStudyRead,'EST_UI_NOT_READY')(c:GetOwner(),c:GetID())
-   assert(same(v.reference,ref(c)) and v.turn==Game.GetCurrentGameTurn() and v.project==PROJECT,'EST_QUEUE_REFERENCE');n=v.size
-  end
-  assert(type(n)=='number' and n==1,'EST_SINGLE_PROJECT_REQUIRED');return q,true
+   local matches=target==PROJECT and v.project==PROJECT or target~=PROJECT and (v.project==nil or v.project=='')
+   assert(same(v.reference,ref(c)) and v.turn==Game.GetCurrentGameTurn() and matches,'EST_QUEUE_REFERENCE');return v.size
+  end,{read='EST_QUEUE_UNKNOWN',unique='EST_SINGLE_PROJECT_REQUIRED'})
  end
  local function cancel(pid,c,s,why)
   if s.value and s.value.pending then write(pid,c,s,M.Cancel(s.value,why))end

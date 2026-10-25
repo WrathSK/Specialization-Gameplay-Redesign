@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="350">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="351">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B323.350：落实可靠边界恢复计龄与未知信誉不加成，保留其它合法收益。</Description>
+    <Description>B324.351：共享项目队列观察，区分确认空队列与未知读数。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -210,7 +210,7 @@
       <File>EnvelopeProbe.lua</File>
       <File>FreshBindingHook.lua</File>
       <File>CityFlowProbe.lua</File>
-      <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File>
+      <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File><File>TimedProjectModel.lua</File><File>TimedProjects.lua</File>
       <File>IndustrySupport.lua</File>
       <File>UI/IndustryRefresh.lua</File>
       <File>UI/IndustryRefresh.xml</File>
@@ -671,7 +671,7 @@
     <File>EnvelopeProbe.lua</File>
     <File>FreshBindingHook.lua</File>
     <File>CityFlowProbe.lua</File>
-    <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File>
+    <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File><File>TimedProjectModel.lua</File><File>TimedProjects.lua</File>
     <File>IndustrySupport.lua</File>
     <File>UI/IndustryRefresh.lua</File>
     <File>UI/IndustryRefresh.xml</File>

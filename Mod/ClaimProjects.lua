@@ -1,4 +1,5 @@
 include('SafeCallbacks')
+include('TimedProjects')
 -- Four concrete Claim projects. The city progression record owns all saved state.
 SPCClaimProjects={}
 function SPCClaimProjects.Start(P,shared)
@@ -19,14 +20,11 @@ function SPCClaimProjects.Start(P,shared)
  end
  local function state(c)return store.ClaimState(c:GetOwner(),c)end
  local function queue(c,project)
-  local q=c:GetBuildQueue();local ok,target=P.Call(q,'CurrentlyBuilding');assert(ok,'当前生产不可读')
-  if target~=project then return q,false end
-  local good,n=P.Call(q,'GetSize')
-  if not good then
+  return SPCTimedProjects.Queue(P,c,project,function(target)
    local read=assert(ExposedMembers.SPC_ClaimQueueRead,'队列读数未就绪')
-   local v=read(c:GetOwner(),c:GetID());assert(v.owner==c:GetOwner() and v.id==c:GetID() and v.turn==Game.GetCurrentGameTurn() and v.project==project,'队列读数不匹配');n=v.size
-  end
-  assert(n==1,'认领必须为唯一当前目标；队列数量='..tostring(n));return q,true
+   local v=read(c:GetOwner(),c:GetID());local matches=target==project and v.project==project or target~=project and (v.project==nil or v.project=='')
+   assert(v.owner==c:GetOwner() and v.id==c:GetID() and v.turn==Game.GetCurrentGameTurn() and matches,'队列读数不匹配');return v.size
+  end,{read='当前生产不可读',unique='认领必须为唯一当前目标；队列数量=',appendSize=true})
  end
  local function stop(c,s,why)
   if s and s.timer and s.timer.stage=='ACTIVE' then

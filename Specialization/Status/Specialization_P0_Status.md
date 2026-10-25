@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0775
-Implementation Build: B323.350 / modinfo350; stable/live B307.334
+Status Revision: S0776
+Implementation Build: B324.351 / modinfo351; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7C_COMPLETE_CONTINUING
+Work State: REFACTOR_S7D1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7c shares a pure reliable-boundary TurnLedger. Missing or previously UNKNOWN intervals receive no age credit; the current reliable boundary rebases the cursor and restores each model's legal counting/paused state. Store no longer skips recoverable Commerce records. D6 unknown/missing Reputation gives zero reputation bonus while other confirmed Commercialization remains. Owner holds, identity exit/pause, Standard-only and cap40 remain independent. [Result](Validation/Results/Specialization_B323_Refactor_S7c.md). Stable/live/main B307.334; no deployment/native PASS.
+S7d1 adds a pure queue classifier and stateless TimedProjects observation helper to Claim/Dialogue/Engineering. Known other targets remain a mismatch; nil/empty target needs an exact zero queue count to prove EMPTY. Inconsistent/missing reads remain UNKNOWN and cannot cancel or complete. Each owner retains its eligibility, cancellation, completion, Store and irreversible-call policy. Existing UI/turn retry retirement follows in S7d2. [Result](Validation/Results/Specialization_B324_Refactor_S7d1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7d actual timed-project event/UNKNOWN and unique Crew completion proof extraction, then S7e–S10.
+- Primary next: Continue S7d event-driven recovery/UI selection and full-turn mechanics, then unique Crew completion/consume and S7e–S10.
+
+## S0776 — B324.351 Distinguish confirmed production targets from unknown queue reads
+
+S7d1 adds a pure queue classifier and stateless TimedProjects observation helper to Claim/Dialogue/Engineering. Known other targets remain a mismatch; nil/empty target needs an exact zero queue count to prove EMPTY. Inconsistent/missing reads remain UNKNOWN and cannot cancel or complete. Each owner retains its eligibility, cancellation, completion, Store and irreversible-call policy. Existing UI/turn retry retirement follows in S7d2.
 
 ## S0775 — B323.350 Share reliable turn boundaries and implement accepted D6 recovery
 

@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B324.351 S7d1 adds a pure queue classifier and stateless TimedProjects observation helper to Claim/Dialogue/Engineering. Known other targets remain a mismatch; nil/empty target needs an exact zero queue count to prove EMPTY. Inconsistent/missing reads remain UNKNOWN and cannot cancel or complete. Each owner retains its eligibility, cancellation, completion, Store and irreversible-call policy. Existing UI/turn retry retirement follows in S7d2. [Result](../../Status/Validation/Results/Specialization_B324_Refactor_S7d1.md).
+
 B323.350 S7c shares a pure reliable-boundary TurnLedger. Missing or previously UNKNOWN intervals receive no age credit; the current reliable boundary rebases the cursor and restores each model's legal counting/paused state. Store no longer skips recoverable Commerce records. D6 unknown/missing Reputation gives zero reputation bonus while other confirmed Commercialization remains. Owner holds, identity exit/pause, Standard-only and cap40 remain independent. [Result](../../Status/Validation/Results/Specialization_B323_Refactor_S7c.md).
 
 B322.349 S7b2 migrates Crew order/receipt write observations while preserving clone-before-attempt, exact readback and no-replay rules. PropertyCell centralizes only existing nonnegative finite/canonical-decimal mechanics for Capital/Development; field whitelists, DECIMAL17_V1 wire format, required/optional validation and native-money tolerance remain unchanged. S7b is complete without a global float32 conversion policy. [Result](../../Status/Validation/Results/Specialization_B322_Refactor_S7b2.md).

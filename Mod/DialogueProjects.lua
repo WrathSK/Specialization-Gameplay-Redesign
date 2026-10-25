@@ -1,3 +1,4 @@
+include('TimedProjects')
 -- P0-M: real production/timer/history. DialogueEffects owns derived yield projection.
 include('DialogueProjectModel')
 SPCDialogueProjects={}
@@ -43,15 +44,11 @@ function SPCDialogueProjects.Start(P,shared)
   return actual
  end
  local function queue(c)
-  local q=c:GetBuildQueue();local ok,target=P.Call(q,'CurrentlyBuilding');assert(ok,'当前生产不可读')
-  if target~=PROJECT then return q,false end
-  local good,n=P.Call(q,'GetSize')
-  if not good then
+  return SPCTimedProjects.Queue(P,c,PROJECT,function(target)
    local v=assert(ExposedMembers.SPC_DialogueProjectRead,'队列读取未就绪')(c:GetOwner(),c:GetID(),false)
-   assert(same(v.reference,ref(c)) and v.turn==Game.GetCurrentGameTurn() and v.project==PROJECT,'队列引用不一致');n=v.size
-  end
-  assert(type(n)=='number' and n==1,'时代对话必须为唯一当前生产目标')
-  return q,true
+   local matches=target==PROJECT and v.project==PROJECT or target~=PROJECT and (v.project==nil or v.project=='')
+   assert(same(v.reference,ref(c)) and v.turn==Game.GetCurrentGameTurn() and matches,'队列引用不一致');return v.size
+  end,{read='当前生产不可读',unique='时代对话必须为唯一当前生产目标'})
  end
  local function cancel(pid,c,s,reason)
   if s.value and s.value.pending then write(pid,c,s,M.Cancel(s.value,reason))end
