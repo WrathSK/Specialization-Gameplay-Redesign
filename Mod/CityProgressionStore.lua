@@ -30,7 +30,7 @@ local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
  local isolated={} -- session-only observations; original ability bytes remain in root
- local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering'} -- fixed reviewed owner scope
+ local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering','capital','development'} -- fixed reviewed owner scope
  local isolationFields={};for _,key in ipairs(isolationKeys)do isolationFields[key]=SPCStoreSubrecords.Fields(key)end
  -- Session-only, two bounded scalar summaries; never history or age authority.
  local timing={}
@@ -247,11 +247,11 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  -- B241 APIs never expose an optimistic candidate during a native setter.
  function d.CapitalState(pid,c)
-  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c);assert(not isolated.capital,'CAPITAL_HISTORY_ISOLATED')
   return {value=SPCCapitalInvestmentModel.Decode(r.capital),token=r.base.token}
  end
  function d.WriteCapital(pid,c,old,value,observeFailure)
-  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c);assert(not isolated.capital,'CAPITAL_HISTORY_ISOLATED')
   assert(same(SPCCapitalInvestmentModel.Decode(r.capital),old),'CAPITAL_HISTORY_STALE')
   assert(value~=nil,'CAPITAL_HISTORY_CANNOT_DELETE');SPCCapitalInvestmentModel.Validate(value)
   if same(old,value)then return end
@@ -263,11 +263,11 @@ local function CreateProgressionRecord(P,shared,storage)
   return {owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=root.base.token,changes=root.ownerChanges or 0,stage=root.stage,identity=R.Current(root).specialization}
  end
  function d.DevelopmentState(pid,c)
-  assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c);assert(not isolated.development,'DEVELOPMENT_HISTORY_ISOLATED')
   return {value=SPCDevelopmentInvestmentModel.Decode(r.development),token=r.base.token}
  end
  function d.WriteDevelopment(pid,c,old,value,observeFailure)
-  assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c);assert(not isolated.development,'DEVELOPMENT_HISTORY_ISOLATED')
   assert(same(SPCDevelopmentInvestmentModel.Decode(r.development),old),'DEVELOPMENT_HISTORY_STALE')
   assert(value~=nil,'DEVELOPMENT_HISTORY_CANNOT_DELETE');SPCDevelopmentInvestmentModel.Validate(value)
   if same(old,value)then return end
@@ -276,6 +276,7 @@ local function CreateProgressionRecord(P,shared,storage)
  function d.VisitDevelopment(pid,fn)
   storage.Check();assert(ready and not fault and root,'DEVELOPMENT_HISTORY_UNAVAILABLE')
   if root.origin.owner~=pid then return end
+  assert(not isolated.development,'DEVELOPMENT_HISTORY_ISOLATED')
   assert(not root.developmentKnown or root.development,'DEVELOPMENT_HISTORY_UNAVAILABLE')
   if root.development then fn(SPCDevelopmentInvestmentModel.Decode(root.development),d.CapitalReference())end
  end
@@ -289,7 +290,9 @@ local function CreateProgressionRecord(P,shared,storage)
   return times
  end
  function d.VisitCapital(pid,fn)
-  if not root or root.origin.owner~=pid or not root.capital then return end
+  if not root or root.origin.owner~=pid then return end
+  assert(not isolated.capital,'CAPITAL_HISTORY_ISOLATED')
+  if not root.capital then return end
   local reference=d.CapitalReference();fn(SPCCapitalInvestmentModel.Decode(root.capital),reference)
  end
  -- Engineering owns its business schema; Store owns exact city persistence and
@@ -526,7 +529,7 @@ local function CreateProgressionRecord(P,shared,storage)
   n.restructuring=R.Begin(r,f,team,receipt,turn)
   if not isolated.researchTradition and n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,turn,'NONE')end
   if n.commerce then n.commerce=SPCCommerceModel.Exit(n.commerce);n.commerceKnown=true end
-  if n.capital then n.capital=SPCCapitalInvestmentModel.Encode(SPCCapitalInvestmentModel.ResetProtection(SPCCapitalInvestmentModel.Decode(n.capital)))end
+  if not isolated.capital and n.capital then n.capital=SPCCapitalInvestmentModel.Encode(SPCCapitalInvestmentModel.ResetProtection(SPCCapitalInvestmentModel.Decode(n.capital)))end
   if not isolated.dialogue and n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'专业重组取消未完成对话；历史保留')end
   if not isolated.engineering and n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_IDENTITY_EXIT')end
   n.revision=n.revision+1;save(n);publishIdentity(c);return cp(n.restructuring)
@@ -1094,11 +1097,11 @@ local function CreateProgressionRecord(P,shared,storage)
     if not isolated.dialogue and n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
     if not isolated.researchTradition and n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
     n.ownerChanges=(n.ownerChanges or 0)+1
-    if n.capital then
+    if not isolated.capital and n.capital then
      local C=SPCCapitalInvestmentModel
      n.capital=C.Encode(C.Terminate(C.Decode(n.capital),'CAPITAL_OWNER_CHANGED'))
     end
-    if n.development then
+    if not isolated.development and n.development then
      local D=SPCDevelopmentInvestmentModel
      n.development=D.Encode(D.Terminate(D.Decode(n.development),'DEVELOPMENT_OWNER_CHANGED'))
     end

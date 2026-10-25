@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0796",
-    "runtime": "B343.370 / modinfo370",
+    "status": "S0797",
+    "runtime": "B344.371 / modinfo371",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue the remaining S8 ability groups and bounded recovery proof, then S9–S10; keep D5 and unprovable permanent-history recovery open. No automatic deployment/main/native launch.",
+  "goal": "Continue Commerce/reputation, templates and claim-specific S8 boundaries, then remaining S9–S10; preserve unprovable transaction/history recovery as an explicit open boundary. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -414,6 +414,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B343_Refactor_S8b4.md",
       "kind": "full",
       "reason": "Isolate project history groups without replaying completion actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B344_Refactor_S8b5.md",
+      "kind": "full",
+      "reason": "Isolate opaque money contracts without treating them as empty actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -440,8 +445,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B343_Refactor_S8b4.md",
-    "local": "664/664 LOCAL_SIMULATION_PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B344_Refactor_S8b5.md",
+    "local": "672/672 LOCAL_SIMULATION_PASS",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

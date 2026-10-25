@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="370">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="371">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B343.370：对话与研习双字段隔离，保留已知标志可靠重建与项目完成保护。</Description>
+    <Description>B344.371：资金合同双字段保留式隔离，维持不重放和未知全局占用门禁。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

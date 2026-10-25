@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0796
-Implementation Build: B343.370 / modinfo370; stable/live B307.334
+Status Revision: S0797
+Implementation Build: B344.371 / modinfo371; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8B4_COMPLETE_CONTINUING
+Work State: REFACTOR_S8B5_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8b4 extends preserved-group isolation to Dialogue and Engineering using each owner's complete known+payload field set. Pure known-marker candidates are proved before only nonisolated marker repairs commit; invalid groups keep original markers/content. APIs reject isolated groups, lifecycle skips their Cancel only, and other city capabilities continue. Actual project CALLING records are preserved without FinishProgress/sample/reward replay; different existing access-marker policies remain. Institution metrics show independent pending, never zero L/total. Other D7 groups/permanent recovery and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B343_Refactor_S8b4.md). Stable/live/main B307.334; no deployment/native PASS.
+S8b5 extends fixed complete-group preservation to Capital/Development. State/Write reject before Decode; visitors report opaque history while still visiting healthy workers. Shared CapitalReference stays available. Lifecycle does not interpret/reset/terminate invalid payloads; all original fields persist. Actual money services prove no debit/credit/RNG/contract replay, independent healthy Capital signing, and existing Development global-occupancy UNKNOWN blocking new signing even for a healthy source. No schema/event/money policy change. Commerce/templates/claim and permanent D7 recovery plus D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B344_Refactor_S8b5.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue the remaining S8 ability groups and bounded recovery proof, then S9–S10; keep D5 and unprovable permanent-history recovery open.
+- Primary next: Continue Commerce/reputation, templates and claim-specific S8 boundaries, then remaining S9–S10; preserve unprovable transaction/history recovery as an explicit open boundary.
+
+## S0797 — B344.371 Isolate opaque money contracts without treating them as empty
+
+S8b5 extends fixed complete-group preservation to Capital/Development. State/Write reject before Decode; visitors report opaque history while still visiting healthy workers. Shared CapitalReference stays available. Lifecycle does not interpret/reset/terminate invalid payloads; all original fields persist. Actual money services prove no debit/credit/RNG/contract replay, independent healthy Capital signing, and existing Development global-occupancy UNKNOWN blocking new signing even for a healthy source. No schema/event/money policy change. Commerce/templates/claim and permanent D7 recovery plus D5 native proof remain OPEN.
 
 ## S0796 — B343.370 Isolate project history groups without replaying completion
 

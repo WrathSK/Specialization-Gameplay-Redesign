@@ -1694,6 +1694,9 @@
     ],
     "S8b4": [
       "test_refactor_s8b4"
+    ],
+    "S8b5": [
+      "test_refactor_s8b5"
     ]
   },
   "counterexamples": {},
