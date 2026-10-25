@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B317.344 S7a3 removes only the redundant own-carrier pillage rebuild condition from Apply/Infrastructure/Chair/Cross under the accepted D4 immunity rule. Real-building/district pillage, wrong-location repair, UNKNOWN/readback guards and diagnostics remain; no old-save repair migration. [Result](../../Status/Validation/Results/Specialization_B317_Refactor_S7a3.md).
+
 B316.343 S7a2 migrates Lv2GPP ordered presence bits to CarrierSet while preserving its separate fresh pre-write check for changed bits. Database GPP validation, workers/ACTIVE policy, all-bit preflight, native base-point carriers and health/exit behavior remain. [Result](../../Status/Validation/Results/Specialization_B316_Refactor_S7a2.md).
 
 B315.342 S7a1 extracts a static lazy presence-only CarrierSet for ResearchSupport and Lv2Housing. One exact descriptor list drives database resolution, health ownership and exit names; full preflight, remove-before-add, per-write readback and partial confirmed-change counts stay unchanged. [Result](../../Status/Validation/Results/Specialization_B315_Refactor_S7a1.md).

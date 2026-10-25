@@ -82,7 +82,7 @@ function M.Start(P,shared)
   local plan=inspect(pid,c);local amount=plan.science
   for _,r in ipairs(state.bits) do
    r.want=(amount>=0 and r.sign=='POS' or amount<0 and r.sign=='NEG') and math.floor(math.abs(amount)/2^r.bit)%2==1
-   if r.yes and (not r.want or r.pillaged) then remove(c,r) end
+   if r.yes and (not r.want) then remove(c,r) end
   end
   for _,r in ipairs(state.bits) do if r.want and not r.yes then
    health.Create(c,r.id)

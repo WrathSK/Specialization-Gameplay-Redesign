@@ -67,7 +67,7 @@ function M.Start(P,shared)
   local p=inspect(pid,c);local rows=installed(c)
   for _,r in ipairs(rows) do
    r.want=math.floor((p.amounts[r.target] or 0)/2^r.bit)%2==1
-   if r.yes and (not r.want or r.plot~=p.plot or r.pillaged) then
+   if r.yes and (not r.want or r.plot~=p.plot) then
     health.Remove(c,r.id,r.plot);assert(P.HasBuilding(c:GetBuildings(),r.id)==false,'CHAIR_REMOVE_FAILED')
     r.yes=false;data.changes=data.changes+1
    end

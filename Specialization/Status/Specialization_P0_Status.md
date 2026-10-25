@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0768
-Implementation Build: B316.343 / modinfo343; stable/live B307.334
+Status Revision: S0769
+Implementation Build: B317.344 / modinfo344; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7A2_COMPLETE_CONTINUING
+Work State: REFACTOR_S7A3_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7a2 migrates Lv2GPP ordered presence bits to CarrierSet while preserving its separate fresh pre-write check for changed bits. Database GPP validation, workers/ACTIVE policy, all-bit preflight, native base-point carriers and health/exit behavior remain. [Result](Validation/Results/Specialization_B316_Refactor_S7a2.md). Stable/live/main B307.334; no deployment/native PASS.
+S7a3 removes only the redundant own-carrier pillage rebuild condition from Apply/Infrastructure/Chair/Cross under the accepted D4 immunity rule. Real-building/district pillage, wrong-location repair, UNKNOWN/readback guards and diagnostics remain; no old-save repair migration. [Result](Validation/Results/Specialization_B317_Refactor_S7a3.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7a location-sensitive carriers and D4 redundant repair removal; then S7b–S10.
+- Primary next: Continue S7a location-sensitive carrier-set migration; then S7b–S10.
+
+## S0769 — B317.344 Retire redundant internal-carrier pillage rebuild reasons
+
+S7a3 removes only the redundant own-carrier pillage rebuild condition from Apply/Infrastructure/Chair/Cross under the accepted D4 immunity rule. Real-building/district pillage, wrong-location repair, UNKNOWN/readback guards and diagnostics remain; no old-save repair migration.
 
 ## S0768 — B316.343 Migrate GPP bits with fresh pre-write carrier reads
 

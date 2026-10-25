@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "e5df830196efc4cff64982083936781609fd272ca87953c21e19b94c3d502142",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B316_Refactor_S7a2.md",
-      "provenance": "B316.343 Migrate GPP bits with fresh pre-write carrier reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "cff316d5c7999af7528f029c61bb3496b71f344dd742a3255f7073532fb4a22b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
+      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -816,9 +816,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "a4c93a57ac9d4dd26424e818369b8571e8c3c66ee11f8b58916fa525033b40f3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
-      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "708ce91658f719b1dd604e600724859cd44a06ba13f462af3745334c2937785e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
+      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -826,9 +826,9 @@
       "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "5d87d45a17844fdde8e941201e678946b279d37f18a1fa57a501646b6e3570e9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
-      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "25181015faad28ba630087fd898504246d235aa0d47d9bff6a358490450883bd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
+      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchChairModel.lua": {
       "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
@@ -836,9 +836,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "6b242f9c3d63789a35204040ddb5280f0b52c16f784c32dcf44649c9105adb13",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
-      "provenance": "B290.317 exact research carrier health and scoped structural closure; local/static evidence only; no deployment/native PASS."
+      "sha256": "20c4147875356e618d25d89e9d6053d85bf35733bdb4aad7cc9809736191afdc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
+      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchCrossModel.lua": {
       "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
@@ -851,9 +851,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "943d458465805e09a143a6453cc4580fd49cf166cc2fc8cc76d6d8c4e1209133",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
-      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "1c39a4b5b88e57767187ec87f0cf268772fb370b0358d32e710a3e443939b063",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
+      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
       "sha256": "3fe47c1a8bc1d8bbb3efdf1659c6d8e3c631fd06f422f676628faf69075c1939",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "33185d5dc76573e7c16faad16889db61f0893c2a5cdc0da8a3ecc3f91397107e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B316_Refactor_S7a2.md",
-      "provenance": "B316.343 Migrate GPP bits with fresh pre-write carrier reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "6bc2eb5e0dba2f6c2e61741d18e58fa619f118c6721b97d42bccf9c9a9bd0e6c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
+      "provenance": "B317.344 Retire redundant internal-carrier pillage rebuild reasons; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

@@ -75,7 +75,7 @@ function M.Start(P,shared)
   local p=inspect(pid,c);local rows=installed(c)
   for _,v in ipairs(rows) do
    v.want=math.floor(p.per[v.y]/2^v.bit)%2==1
-   if v.yes and (not v.want or v.plot~=p.plot or v.pillaged) then remove(c,v) end
+   if v.yes and (not v.want or v.plot~=p.plot) then remove(c,v) end
   end
   for _,v in ipairs(rows) do if v.want and not v.yes then
    health.Create(c,v.id,p.plot)

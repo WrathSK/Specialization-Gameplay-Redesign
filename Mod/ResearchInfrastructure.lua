@@ -97,7 +97,7 @@ function M.Start(P,shared)
   local amount=p.workers>0 and p.d or 0
   for i=0,3 do
    local r=state.bits[i];local wanted=math.floor(amount/2^i)%2==1
-   if r.yes and (not wanted or r.plot~=p.plot or r.pillaged) then remove(c,r.id);r.yes=false end
+   if r.yes and (not wanted or r.plot~=p.plot) then remove(c,r.id);r.yes=false end
   end
   for i=0,3 do
    local r=state.bits[i]

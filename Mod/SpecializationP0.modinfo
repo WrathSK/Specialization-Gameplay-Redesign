@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="343">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="344">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B316.343：迁移伟人点数载体的共有机制，保留变更位写前复核和原生基础点数。</Description>
+    <Description>B317.344：按已接受不可掠夺规则删除内部载体自身掠夺拆建理由，保留真实建筑状态。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
