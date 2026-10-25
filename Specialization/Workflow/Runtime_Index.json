@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "dc38b735651cf279666166b973098cb6115a1ff0fcf85c76db3ba88d508082ff",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B335_Refactor_S8c2.md",
-      "provenance": "B335.362 Bound held cleanup retries to existing local turn boundaries; local/static evidence only; no deployment/native PASS."
+      "sha256": "259dc3736a7b417589190d619241acbcec843ebb88cb004a4351a3ba4cbc5024",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
+      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -181,9 +181,9 @@
       "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureAesthetic.lua": {
-      "sha256": "6829cea9df3f1d295c6746f3d199eb7d71a6d74e30862c88d50edb85d845ce8c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B293_Refactor_S5d4c4.md",
-      "provenance": "B293.320 Aesthetic health and confirmed-work delivery recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "05937dbbcba0e05656966706433c55fc7395c0148ca5c77cf1b2287d2a5bb4c2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
+      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureAestheticModel.lua": {
       "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
@@ -191,14 +191,14 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureInsightsTourism.lua": {
-      "sha256": "f8379d9f2d2f6c3d24339caf11e70028b084f8e0cfdd4fa325464414e055b294",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B295_Refactor_S5d4c6.md",
-      "provenance": "B295.322 Insights historical projection exact health; local/static evidence only; no deployment/native PASS."
+      "sha256": "e565cf6dc3223b42a79e82823818b567c63967cf7b14dc4bfe6a2040c5ecaac3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
+      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureInspiration.lua": {
-      "sha256": "17b3f8cb62c919c88982db2e5b11ece667101ee09ce49a99fc7b2447ddfa4074",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B294_Refactor_S5d4c5.md",
-      "provenance": "B294.321 Meaning Inspiration initialization and exact health; local/static evidence only; no deployment/native PASS."
+      "sha256": "7d7c876096585879e8da9835a512549a3b2670da522d8e3de0fe8304d8225323",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
+      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureInspirationModel.lua": {
       "sha256": "514fa59c5e95d9cd970b002892496f06f838b06706ee4b8ebf9d4e0018f59180",
@@ -211,9 +211,9 @@
       "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
     },
     "Mod/CultureMeaning.lua": {
-      "sha256": "3265348c1b4de382fa358d17a00bd02e1615f9daa5a17583636e9e25778e7c9a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B294_Refactor_S5d4c5.md",
-      "provenance": "B294.321 Meaning Inspiration initialization and exact health; local/static evidence only; no deployment/native PASS."
+      "sha256": "77af20893b02be893c2e66fcc816d982a069b805d87316632490a5ad90350fe0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
+      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureMeaningModel.lua": {
       "sha256": "2b4d396b91b4dc5623ae1dc0d74170995d6d34356fe101ade037784cfd686a1d",
@@ -526,9 +526,9 @@
       "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DialogueEffects.lua": {
-      "sha256": "556098585c1522829d5ee88f37bd9ab529efe712ec99ef5149f55ecffba12dce",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "provenance": "B288.315 declared governor fact owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "339f7e682a4095ceafba2821a846437ea2750a4f9a5c880b5cc309225e22e05a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
+      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DialogueModel.lua": {
       "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "404a0e06a26676743f2c3910166aabf713f9a5c10ae48b9070e1ba136e85c5d0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B335_Refactor_S8c2.md",
-      "provenance": "B335.362 Bound held cleanup retries to existing local turn boundaries; local/static evidence only; no deployment/native PASS."
+      "sha256": "6e8f6568ae7a2e8ebbb075344dd7e74b434f9cfb2a6031449ba4e72ba7b84d6a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
+      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d91dd37cef65f1eb459a8adbed806a6d3864da0d546d61060a34aa8669050a6e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B335_Refactor_S8c2.md",
-      "provenance": "B335.362 Bound held cleanup retries to existing local turn boundaries; local/static evidence only; no deployment/native PASS."
+      "sha256": "8b18597aac61eec83ad537d2ea24f3f973dabebd263fb3d1155e66515963d0b3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
+      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",

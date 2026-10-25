@@ -152,6 +152,6 @@ function M.Start(P,shared)
   assert(store.IsExitTarget(c,loss),'INSIGHT_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,M.Owned)
   for k,p in pairs(d.records)do if p.owner==loss.origin.owner and p.x==c:GetX() and p.y==c:GetY()then d.records[k]=nil;d.errors[k]=nil end end
  end)
- store.RegisterReturn('CultureInsightsTourism',function(pid,c)d.Audit({player=pid,city=c:GetID()})end)
+ store.RegisterReturn('CultureInsightsTourism',function(pid,c)d.MarkAudit({player=pid,city=c:GetID()})end)
  return d
 end

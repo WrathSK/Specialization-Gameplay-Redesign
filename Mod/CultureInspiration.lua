@@ -198,7 +198,7 @@ function SPCCultureInspiration.Start(P,shared)
    shared.CultureInspirationProbe.Withdraw(c)
    for k,p in pairs(d.records)do if p.owner==loss.origin.owner and p.x==c:GetX() and p.y==c:GetY()then d.records[k]=nil;d.errors[k]=nil;pendingCleanup[k]=nil end end
   end)
-  store.RegisterReturn('CultureInspiration',function(pid,c)d.Audit({player=pid,city=c:GetID()})end)
+  store.RegisterReturn('CultureInspiration',function(pid,c)d.MarkAudit({player=pid,city=c:GetID()})end)
  end
  return d
 end

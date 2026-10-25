@@ -241,7 +241,7 @@ function M.Start(P,shared)
    assert(store.IsExitTarget(c,loss),'AE_EXIT_UNCONFIRMED');withdraw(c)
    for key,r in pairs(d.records)do if r.owner==loss.origin.owner and r.x==c:GetX() and r.y==c:GetY()then d.records[key]=nil;d.errors[key]=nil end end
   end)
-  store.RegisterReturn('CultureAesthetic',function(pid,c)d.Audit({player=pid,city=c:GetID()})end)
+  store.RegisterReturn('CultureAesthetic',function(pid,c)d.MarkAudit({player=pid,city=c:GetID()})end)
  end
  return d
 end

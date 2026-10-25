@@ -22,6 +22,10 @@ local function publishFact(shared,c,cause,r,investment,topic)
  end)
  if not ok then shared.PermanentWriteObserverError=tostring(err)end
 end
+-- Fixed pre-commit return duties; all unlisted marks run in the final phase.
+local returnPhase={DistrictCompleteness=1,NetworkBridge=1,GreatWorkFacts=1,
+ InvestmentAction=2,IndustrySupport=2,Dialogue=2,GreatWorkAdjacency=2,DevelopmentInvestment=2,
+ CopyYields=2,StandardizationDiscount=2}
 local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
@@ -42,7 +46,8 @@ local function CreateProgressionRecord(P,shared,storage)
  local exits,finished,attempts={},{},{};local exitBusy=false;local runningExit;local exitReads={}
  local exitTickets={} -- one opaque capability per registered exit/current loss; never saved
  local autoGeneration=exitTickets;local autoCount=0;local lastSiteTurn
- local returns={};function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn end
+ local returns={};local returnRevision=0;local returnBusy=false
+ function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn;returnRevision=returnRevision+1 end
  -- Fixed latest slot per native event; session-only evidence, never identity authority.
  local eventNames={'CityTransfered','CityConquered','CityAddedToMap','CityRemovedFromMap','CityInitialized','CityBuilt'}
  local nativeEvents={};local eventSequence=0
@@ -811,7 +816,7 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  function d.Ready()return ready and not fault end
  function d.Status()return cp(d and {exitStatus=d.exitStatus,exitErrors=d.exitErrors,observation=d.observation,
-  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery})end
+  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,returnErrors=d.returnErrors,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery})end
  restore() -- before Binding/Journal/Flow/Investment register load callbacks
  -- No absence/failed getter is confirmation. A matched native ownership event is required.
  function d.IsExitTarget(c,loss)
@@ -923,9 +928,32 @@ local function CreateProgressionRecord(P,shared,storage)
    d.exitErrors.RUNTIME=errorText(why,'EXIT_RUNTIME_FAILED');d.exitStatus='PARTIAL_HELD'
   end
  end
+ local function returnCurrent(generation,revision,loss,c,current,registration)
+  if not currentExit(generation,loss)or root.revision~=revision or returnRevision~=registration then return false end
+  local ok,observed=pcall(ref,c)
+  return ok and same(observed,current)and currentExit(generation,loss)and root.revision==revision and returnRevision==registration
+ end
+ local function runReturns(generation,revision,loss,c,current,registration)
+  local names={};for name in pairs(returns)do names[#names+1]=name end
+  table.sort(names,function(a,b)
+   local ap,bp=returnPhase[a]or 3,returnPhase[b]or 3
+   if ap~=bp then return ap<bp end;return a<b
+  end)
+  local errors={};d.returnErrors=errors
+  for _,name in ipairs(names)do
+   assert(returnCurrent(generation,revision,loss,c,current,registration),'RETURN_CONTEXT_CHANGED')
+   local ok,value=pcall(returns[name],loss.origin.owner,c)
+   if not ok or value==false then errors[name]=ok and 'RETURN_CALLBACK_UNCONFIRMED'or errorText(value,'RETURN_CALLBACK_FAILED'):sub(1,180)end
+  end
+  assert(returnCurrent(generation,revision,loss,c,current,registration),'RETURN_CONTEXT_CHANGED')
+  assert(returnRevision==registration,'RETURN_REGISTRATION_CHANGED')
+  local failed={};for name in pairs(errors)do failed[#failed+1]=name end;table.sort(failed)
+  assert(#failed==0,'RETURN_CALLBACK_FAILED '..table.concat(failed,','))
+ end
  local function recapture(c,current,newOwner,newID,oldOwner)
   if not root.loss or root.stage~='HELD_TRANSFER' or newOwner~=root.origin.owner
    or oldOwner~=root.loss.target.owner or newID~=current.cityID or current.owner~=newOwner then return false end
+  local generation,revision,loss,registration=exitTickets,root.revision,cp(root.loss),returnRevision
   d.returnCandidate=current.owner..'/'..current.cityID..' from '..tostring(oldOwner)
   d.returnRejection=nil -- latest matched attempt; diagnostics only
   assert(P.IsTestPlayer(newOwner),'RETURN_PLAYER_UNCONFIRMED')
@@ -995,15 +1023,18 @@ local function CreateProgressionRecord(P,shared,storage)
    end
   end
   -- Reset samples/quotes before making facts available. No callback applies yields.
-  for _,fn in pairs(returns)do fn(root.origin.owner,c)end
+  runReturns(generation,revision,loss,c,current,registration)
   if n.commerce then n.commerce=SPCCommerceModel.Resume(n.commerce,newOwner,Game.GetCurrentGameTurn())end
   n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence=proof and 'NATIVE_TRANSITION_V1' or 'CityTransfered+original_binding';n.returnProof=proof;n.referenceInvalidated=nil
+  assert(returnCurrent(generation,revision,loss,c,current,registration),'RETURN_CONTEXT_CHANGED')
   n.revision=n.revision+1;save(n)
   finished={};attempts={};exitTickets={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false;d.exitErrors={};d.exitStatus='NOT_CONFIRMED';d.returnStatus='CONFIRMED_CURRENT_FACTS_REQUIRED'
   return true
  end
- local function reconcile(newOwner,newID,oldOwner)
+ local function reconcile(newOwner,newID,oldOwner,returnGuarded)
   if not ready or fault or not root then return end
+  local returning=root.loss and root.stage=='HELD_TRANSFER'and newOwner==root.origin.owner and oldOwner==root.loss.target.owner
+  if returning and not returnGuarded then if returnBusy then return end;returnBusy=true end
   if newOwner~=nil then d.lastTransfer=tostring(oldOwner)..' → '..tostring(newOwner)..'/'..tostring(newID)end
   local ok,err=pcall(function()
    local c=CityManager.GetCityAt(root.origin.x,root.origin.y)
@@ -1034,7 +1065,8 @@ local function CreateProgressionRecord(P,shared,storage)
    end
    d.observation='READABLE'
   end)
-  if not ok then d.observation='UNKNOWN: '..tostring(err);d.returnRejection=tostring(err):match('RETURN_[A-Z_]+') or d.returnRejection end
+  if returning and not returnGuarded then returnBusy=false end
+  if not ok then local text=errorText(err,'RETURN_READ_FAILED');d.observation='UNKNOWN: '..text;d.returnRejection=text:match('RETURN_[A-Z_]+') or d.returnRejection end
   d.ExitConfirmed()
  end
  -- Manager forwards bounded native events; each record retains its own state.
@@ -1042,6 +1074,19 @@ local function CreateProgressionRecord(P,shared,storage)
   if name=='LoadScreenClose' then reconcile();return end
   if not ready or fault or not root then return end
   local owner,id,x,y=...
+  if name=='CityTransfered'and root.loss and root.stage=='HELD_TRANSFER'and owner==root.origin.owner and x==root.loss.target.owner then
+   if returnBusy then return end;returnBusy=true -- protects Handle's relevance lookup too
+   local arguments={...};local argumentCount=select('#',...)
+   local ok,why=pcall(function()
+    local c=CityManager.GetCityAt(root.origin.x,root.origin.y);if not c then return end
+    local r=ref(c);if r.owner~=owner or r.cityID~=id then return end
+    pcall(observe,name,unpack(arguments,1,argumentCount))
+    reconcile(owner,id,x,true)
+   end)
+   returnBusy=false
+   if not ok then local text=errorText(why,'RETURN_READ_FAILED');d.observation='UNKNOWN: '..text;d.returnRejection='RETURN_READ_FAILED'end
+   return
+  end
   local relevant=false
   if name=='CityConquered' then local _,_,_,cx,cy=...;relevant=cx==root.origin.x and cy==root.origin.y
   elseif name=='CityTransfered' then
@@ -1400,6 +1445,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   for _,w in pairs(workers)do w.RegisterExit(name,fn)end
  end
  function store.RegisterReturn(name,fn)
+  assert(not writing,'RETURN_REGISTRATION_DURING_WRITE')
   assert(type(fn)=='function' and not returns[name],'RETURN_REGISTRATION_CONFLICT');returns[name]=fn
   for _,w in pairs(workers)do w.RegisterReturn(name,fn)end
  end

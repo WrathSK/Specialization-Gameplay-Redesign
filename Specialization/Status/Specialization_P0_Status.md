@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0788
-Implementation Build: B335.362 / modinfo362; stable/live B307.334
+Status Revision: S0789
+Implementation Build: B336.363 / modinfo363; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8C2_COMPLETE_CONTINUING
+Work State: REFACTOR_S8C3_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8c2 uses the existing PlayerTurnActivated registered-worker loop for exact held cleanup only. Each load/loss permits at most three automatic site attempts, at most once after a newer reliable local turn; the original three callback attempts and exact S8c1 tickets are not reset. Initial loss/load checks stamp the current turn, so duplicate/same-turn activation adds no cleanup. Healthy/completed/nonlocal/UNKNOWN-local-player paths add no site reads; failed reads do not refund the bounded budget. No timer, world scan, schema or ownership gameplay change. D7 isolation, legacy cleanup, ordered returns and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B335_Refactor_S8c2.md). Stable/live/main B307.334; no deployment/native PASS.
+S8c3 orders existing Return callbacks into fact invalidation, sample/quote clearing and deferred marks, with stable names inside each phase. Callback false/fault blocks return commit while independent remaining invalidations still run. Session busy/generation/revision/reference guards prevent reentry or stale candidates from committing. Five Culture callbacks now mark their existing deferred audit instead of reading while Store is still HELD. No new timer, listener, saved schema or ownership gameplay. D7 isolation, legacy cleanup and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B336_Refactor_S8c3.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S8 sub-record isolation/recovery, exact legacy exit consolidation and deterministic return order, then S9–S10; retain D5 and irreversible-evidence gaps explicitly.
+- Primary next: Continue S8 ability isolation/recovery and exact legacy cleanup responsibility migration, then S9–S10; keep D5 native proof and uncertain irreversible histories open.
+
+## S0789 — B336.363 Order protected return invalidation before commit
+
+S8c3 orders existing Return callbacks into fact invalidation, sample/quote clearing and deferred marks, with stable names inside each phase. Callback false/fault blocks return commit while independent remaining invalidations still run. Session busy/generation/revision/reference guards prevent reentry or stale candidates from committing. Five Culture callbacks now mark their existing deferred audit instead of reading while Store is still HELD. No new timer, listener, saved schema or ownership gameplay. D7 isolation, legacy cleanup and D5 native proof remain OPEN.
 
 ## S0788 — B335.362 Bound held cleanup retries to existing local turn boundaries
 
