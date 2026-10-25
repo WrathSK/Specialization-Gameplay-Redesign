@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0821
-Implementation Build: B368.395 / modinfo395; stable/live B307.334
+Status Revision: S0822
+Implementation Build: B369.396 / modinfo396; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9A3D_COMPLETE_CONTINUING
+Work State: REFACTOR_S9A3_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9a3d shares a single opaque per-worker binding observation ticket with the original final Training getter;older reads cannot overwrite newer observations. Store exposes lifecycle-aware pure core and private EF qualification signatures separate from passive states. SYNC adds only3 reference and2 turn getters to publish a scalar covered-input receipt after stable sources/core/facts/capacity;real concurrent changes suppress it. Twenty-two new actual-composition/differential tests pass. Original admission/save/native order remains;Training UI/global dependency and remaining S9/S10/D7/D5 boundaries stay OPEN. [Result](Validation/Results/Specialization_B368_Refactor_S9a3d.md). Stable/live/main B307.334; no deployment/native PASS.
+S9a3e migrates only Training UI from global runtime revision to exact Store/EF/Gate/Training sources,owner inputs and covered SYNC receipts. Attempted and covered states stay separate;stale/missing receipts do not grant visible eligibility or absorb new facts. Actual1000publish+1000playback calls add0 native reads,SYNC or writes;25 new tests plus original training/handshake assertions pass. Notify/render/Build/Close reentry is fenced,one scalar selection/header replaces native city caching. Real eligible-row render has explicit additional reference-check cost. Continue owner-applied display,adjacency,S10;exact D7/D5/native limits remain. [Result](Validation/Results/Specialization_B369_Refactor_S9a3e.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 Training UI owner-input and covered-reply consumption with zero idle native reads,then remove only its global refresh dependency;applied display,adjacency,S10 and exact D7/native D5 limits remain.
+- Primary next: Continue S9 owner-published actually applied institution values/gates/reasons and shared adjacency sampling,then S10 responsibility migration and safe retirement;exact D7 permanent-history/money and D5 native attribution limits remain.
+
+## S0822 — B369.396 Consume covered owner inputs in Training UI without idle native reads
+
+S9a3e migrates only Training UI from global runtime revision to exact Store/EF/Gate/Training sources,owner inputs and covered SYNC receipts. Attempted and covered states stay separate;stale/missing receipts do not grant visible eligibility or absorb new facts. Actual1000publish+1000playback calls add0 native reads,SYNC or writes;25 new tests plus original training/handshake assertions pass. Notify/render/Build/Close reentry is fenced,one scalar selection/header replaces native city caching. Real eligible-row render has explicit additional reference-check cost. Continue owner-applied display,adjacency,S10;exact D7/D5/native limits remain.
 
 ## S0821 — B368.395 Cover final binding and stable post-SYNC inputs
 

@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "f7b6e188b4857fe0a645d4a82e636c65298dabebf9ee7a444eef49c03eeeaf4a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B368_Refactor_S9a3d.md",
-      "provenance": "B368.395 Cover final binding and stable post-SYNC inputs; local/static evidence only; no deployment/native PASS."
+      "sha256": "c2f48d4fbc8d273d1573393f695ab23780d465f975dcca1391c8f1bd212bb593",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B369_Refactor_S9a3e.md",
+      "provenance": "B369.396 Consume covered owner inputs in Training UI without idle native reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e7795d30412b278250ac9f37f29704e463673b9a5d10baaacbe961b9c48510bb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B368_Refactor_S9a3d.md",
-      "provenance": "B368.395 Cover final binding and stable post-SYNC inputs; local/static evidence only; no deployment/native PASS."
+      "sha256": "c1a5cc3810a97d48af7db510639a7f8e7ee861f83c135dd8be6eb733472e0735",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B369_Refactor_S9a3e.md",
+      "provenance": "B369.396 Consume covered owner inputs in Training UI without idle native reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1376,9 +1376,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/UI/ExpeditionTrainingUI.lua": {
-      "sha256": "8015d6e8164ea8bcbcd7121db2db2663d6333d6775c2374fdc106fee91e0c50f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "sha256": "3820efa639b89b444967464bcf312de65dd9f93e05954ac07920c2ee8774216b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B369_Refactor_S9a3e.md",
+      "provenance": "B369.396 Consume covered owner inputs in Training UI without idle native reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/GPPRefresh.lua": {
       "sha256": "f889c9ca549614fb85500b476963a3ce0489f7644605629033a3466ea2b41412",

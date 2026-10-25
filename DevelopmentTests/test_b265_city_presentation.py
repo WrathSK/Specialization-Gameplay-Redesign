@@ -173,7 +173,7 @@ class TrainingRefresh(unittest.TestCase):
   """)
  def test_projection_change_after_first_boundary_refreshes_and_idle_is_free(self):
   ui().execute("""
-   ExposedMembers.SPC_P0={LevelBanners={views={['2:1']={active=3,potential=4,activeStatus='KNOWN',specialization='CULTURE'}}}}
+   ExposedMembers.SPC_P0.LevelBanners={views={['2:1']={active=3,potential=4,activeStatus='KNOWN',specialization='CULTURE'}}}
    active=3;adapter.Sync(city);adapter.Pulse();active=4;adapter.Pulse();assert(#sentPackets==1)
    ExposedMembers.SPC_P0.LevelBanners.views['2:1'].active=4
    adapter.RefreshFacts();local d={City=city};adapter.Items(d);assert(#d.UnitItems==1 and #sentPackets==2)

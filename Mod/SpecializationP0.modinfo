@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="395">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="396">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B368.395：训练最终绑定复用原读取，并发布防重入的只读刷新回执。</Description>
+    <Description>B369.396：训练界面独立刷新，空闲不读原生选择，预约流程保留。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
