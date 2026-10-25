@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0820
-Implementation Build: B367.394 / modinfo394; stable/live B307.334
+Status Revision: S0821
+Implementation Build: B368.395 / modinfo395; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9A3C_COMPLETE_CONTINUING
+Work State: REFACTOR_S9A3D_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9a3c observes scoped base-fact availability from existing Store reference/private EF base values without new native getters or saved fields. Fixed per-worker scalars and tiny session issuer/serial protect same-city nested ordering;projector errors do not poison independent base facts. Eight transient frames bound observation cost;overflow marks only matching ancestors BUDGET_UNKNOWN and real later reads recover. Fourteen new tests plus actual shared-read regressions pass. Training UI/global dependency remains;post-stamp binding/SYNC,applied display,adjacency,S10 and exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B367_Refactor_S9a3c.md). Stable/live/main B307.334; no deployment/native PASS.
+S9a3d shares a single opaque per-worker binding observation ticket with the original final Training getter;older reads cannot overwrite newer observations. Store exposes lifecycle-aware pure core and private EF qualification signatures separate from passive states. SYNC adds only3 reference and2 turn getters to publish a scalar covered-input receipt after stable sources/core/facts/capacity;real concurrent changes suppress it. Twenty-two new actual-composition/differential tests pass. Original admission/save/native order remains;Training UI/global dependency and remaining S9/S10/D7/D5 boundaries stay OPEN. [Result](Validation/Results/Specialization_B368_Refactor_S9a3d.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 final Training binding observation and post-stamp SYNC receipt,then owner-bound UI/idle gating before removing its global dependency;applied display,adjacency,S10 and exact D7/native D5 limits remain.
+- Primary next: Continue S9 Training UI owner-input and covered-reply consumption with zero idle native reads,then remove only its global refresh dependency;applied display,adjacency,S10 and exact D7/native D5 limits remain.
+
+## S0821 — B368.395 Cover final binding and stable post-SYNC inputs
+
+S9a3d shares a single opaque per-worker binding observation ticket with the original final Training getter;older reads cannot overwrite newer observations. Store exposes lifecycle-aware pure core and private EF qualification signatures separate from passive states. SYNC adds only3 reference and2 turn getters to publish a scalar covered-input receipt after stable sources/core/facts/capacity;real concurrent changes suppress it. Twenty-two new actual-composition/differential tests pass. Original admission/save/native order remains;Training UI/global dependency and remaining S9/S10/D7/D5 boundaries stay OPEN.
 
 ## S0820 — B367.394 Observe scoped training fact availability without resampling
 

@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "17d8f584692c6fde72e79e0928f4f69cddcb05171d8e5f1d05685d5df998f65b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B367_Refactor_S9a3c.md",
-      "provenance": "B367.394 Observe scoped training fact availability without resampling; local/static evidence only; no deployment/native PASS."
+      "sha256": "3d5c287a77aa3f8c843ed1db464dc14d703b02f0543c045186c1cecc7b67a10b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B368_Refactor_S9a3d.md",
+      "provenance": "B368.395 Cover final binding and stable post-SYNC inputs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -561,9 +561,9 @@
       "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "1fabbe9b55b6b26c82295c374b3b5e5e50efa3178e0b21ef40de709fd205fb04",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B367_Refactor_S9a3c.md",
-      "provenance": "B367.394 Observe scoped training fact availability without resampling; local/static evidence only; no deployment/native PASS."
+      "sha256": "73bda83932361fff08f1c2053c1300d4b48af0108c69c494f9ead1e1ad211acd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B368_Refactor_S9a3d.md",
+      "provenance": "B368.395 Cover final binding and stable post-SYNC inputs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/EligibilityProbe.lua": {
       "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
@@ -621,9 +621,9 @@
       "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
     },
     "Mod/ExpeditionTraining.lua": {
-      "sha256": "c6919030eb87e16f1238880b40fa83911053a9a317001916886f683cc9c9cd5f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
-      "provenance": "B366.393 Observe training capacity through existing scoped unit boundaries; local/static evidence only; no deployment/native PASS."
+      "sha256": "4152629910856070554b8145eeb89a7b1399b09689fa563527fc58eaa06a9c52",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B368_Refactor_S9a3d.md",
+      "provenance": "B368.395 Cover final binding and stable post-SYNC inputs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
       "sha256": "ef9d5c9bbed018a0285913a28fa191790cf551b2d7ec62edd7280e0e4a870af2",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "d994f209ac99dcc30ebf1caf1eb2f5a62db76c5bbe603ab0a2b49a1676b2b97c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B367_Refactor_S9a3c.md",
-      "provenance": "B367.394 Observe scoped training fact availability without resampling; local/static evidence only; no deployment/native PASS."
+      "sha256": "f7b6e188b4857fe0a645d4a82e636c65298dabebf9ee7a444eef49c03eeeaf4a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B368_Refactor_S9a3d.md",
+      "provenance": "B368.395 Cover final binding and stable post-SYNC inputs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b1d71c48da4b17616201ffacd1abdb246ef7f3878850dec8f2f613ff5469a383",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B367_Refactor_S9a3c.md",
-      "provenance": "B367.394 Observe scoped training fact availability without resampling; local/static evidence only; no deployment/native PASS."
+      "sha256": "e7795d30412b278250ac9f37f29704e463673b9a5d10baaacbe961b9c48510bb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B368_Refactor_S9a3d.md",
+      "provenance": "B368.395 Cover final binding and stable post-SYNC inputs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

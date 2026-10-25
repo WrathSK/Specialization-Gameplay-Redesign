@@ -1766,6 +1766,9 @@
     ],
     "S9a3c": [
       "test_refactor_s9a3c"
+    ],
+    "S9a3d": [
+      "test_refactor_s9a3d"
     ]
   },
   "counterexamples": {},

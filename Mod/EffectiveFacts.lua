@@ -70,6 +70,7 @@ function SPCEffectiveFacts.Start(P,shared)
   if not f or type(value)~='table'or value.owner~=f.pid or not scope(value.owner,value.cityID,value.x,value.y,value.token)then return end
   f.base=true;f.baseOwner,f.baseCity,f.baseX,f.baseY,f.baseToken=value.owner,value.cityID,value.x,value.y,value.token
   f.activeStatus=value.activeStatus
+  f.input=table.concat({tostring(value.specialization),tostring(value.potential),tostring(value.active),tostring(value.activeStatus),tostring(value.investmentPending)},':')
   if not f.reference then
    f.reference=true;f.owner,f.cityID,f.x,f.y,f.token=value.owner,value.cityID,value.x,value.y,value.token
   end
@@ -260,7 +261,7 @@ function SPCEffectiveFacts.Start(P,shared)
     local confirmed=result[1]and frame.base and frame.owner==frame.baseOwner and frame.cityID==frame.baseCity
      and frame.x==frame.baseX and frame.y==frame.baseY and frame.token==frame.baseToken
     local state=frame.budgetUnknown and 'FACTS_BUDGET_UNKNOWN'or not confirmed and 'FACTS_UNAVAILABLE'or frame.activeStatus=='KNOWN'and 'FACTS_CONFIRMED'or 'FACTS_UNKNOWN'
-    local ok=pcall(store.ObserveTrainingFacts,frame.owner,frame.cityID,frame.x,frame.y,frame.token,state,trainingIssuer,frame.serial)
+    local ok=pcall(store.ObserveTrainingFacts,frame.owner,frame.cityID,frame.x,frame.y,frame.token,state,trainingIssuer,frame.serial,frame.input)
     data.trainingObservationError=not ok and 'TRAINING_OBSERVATION_FAILED'or nil
    end
   end
