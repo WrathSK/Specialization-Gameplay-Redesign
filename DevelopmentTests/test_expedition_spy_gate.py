@@ -89,7 +89,8 @@ def gate(ui=False, window=False):
     """)
     l.execute((R/'Mod/PropertyCell.lua').read_text())
     l.execute((R/'Mod/ExpeditionSpyStore.lua').read_text())
-    l.execute((R/'Mod/ExpeditionSpyGate.lua').read_text());l.execute("SPCExpeditionSpyGate.Start(P,shared);local h=handler;handler=function(pid,p)if p.Action=='NAME' then nameConfirmCalls=nameConfirmCalls+1 end;return h(pid,p)end")
+    l.execute((R/'Mod/ExpeditionEntry.lua').read_text())
+    l.execute((R/'Mod/ExpeditionSpyGate.lua').read_text());l.execute("SPCExpeditionSpyGate.Start(P,shared);ExposedMembers.SPC_P0=shared;local h=handler;handler=function(pid,p)if p.Action=='NAME' then nameConfirmCalls=nameConfirmCalls+1 end;return h(pid,p)end")
     if ui or window:
         l.execute("""
           Players[2].GetDiplomacy=function()return {HasMet=function()return met~=false end,

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="381">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="382">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B354.381：时代对话馆藏解释移至Gameplay，复用既有目录并保留一次取样。</Description>
+    <Description>B355.382：人文考察团入口选择移至Gameplay，保留原生旅行与许可边界。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -111,6 +111,7 @@
       <File>UI/ExpeditionTrainingUI.lua</File>
       <File>UI/ExpeditionTrainingName.lua</File>
       <File>ExpeditionSpyStore.lua</File>
+      <File>ExpeditionEntry.lua</File>
       <File>ExpeditionSpyGate.lua</File>
       <File>ExpeditionMovementProbe.lua</File>
       <File>ExpeditionSpyUI.lua</File>
@@ -530,6 +531,7 @@
       <File>UI/ExpeditionTrainingUI.lua</File>
       <File>UI/ExpeditionTrainingName.lua</File>
       <File>ExpeditionSpyStore.lua</File>
+    <File>ExpeditionEntry.lua</File>
     <File>ExpeditionSpyGate.lua</File>
       <File>ExpeditionMovementProbe.lua</File>
     <File>ExpeditionSpyUI.lua</File>

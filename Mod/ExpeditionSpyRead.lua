@@ -75,18 +75,43 @@ local function revealed(pid,c)
 end
 function M.Entry(pid,owner,target)
  local p=Players[owner];if not p or not target then return nil end
- if revealed(pid,target)then return target end
- local best,bestD
- local cities=call(p,'GetCities')
- if not cities or type(cities.Members)~='function' then return nil end
- for _,c in cities:Members()do
-  if c:GetOwner()==owner and revealed(pid,c)then
-   local d=(Map and type(Map.GetPlotDistance)=='function' and Map.GetPlotDistance(c:GetX(),c:GetY(),target:GetX(),target:GetY()))
-    or math.abs(c:GetX()-target:GetX())+math.abs(c:GetY()-target:GetY())
-   if not best or d<bestD or (d==bestD and c:GetID()<best:GetID())then best,bestD=c,d end
+ local backend=(ExposedMembers.SPC_P0 or {}).ExpeditionGate
+ local choose=backend and backend.ChooseEntry
+ if type(choose)~='function'then return nil end
+ local turn=Game.GetCurrentGameTurn()
+ local function sample(c)
+  return {owner=c:GetOwner(),id=c:GetID(),x=c:GetX(),y=c:GetY(),revealed=revealed(pid,c)}
+ end
+ local raw={protocol=1,observer=pid,turn=turn,target=sample(target),cities={}}
+ local native={}
+ if not raw.target.revealed then
+  local cities=call(p,'GetCities')
+  if not cities or type(cities.Members)~='function'then return nil end
+  for _,c in cities:Members()do
+   -- Preserve the old short-circuit scope: no visibility/distance read for a
+   -- foreign owner, and no distance read for an unrevealed city.
+   if c:GetOwner()==owner and revealed(pid,c)then
+    local row={owner=owner,id=c:GetID(),x=c:GetX(),y=c:GetY(),revealed=true}
+    row.distance=Map and type(Map.GetPlotDistance)=='function' and Map.GetPlotDistance(row.x,row.y,raw.target.x,raw.target.y)or nil
+    raw.cities[#raw.cities+1]=row;native[row.id]=c
+    assert(#raw.cities<=4096,'ENTRY_RAW_LIMIT')
+   end
   end
  end
- return best
+ local selected=choose(pid,raw)
+ assert(target:GetOwner()==raw.target.owner and target:GetID()==raw.target.id
+  and target:GetX()==raw.target.x and target:GetY()==raw.target.y,'ENTRY_RAW_STALE')
+ local function current()
+  local now=Game.GetCurrentGameTurn()
+  assert(now==turn and (ExposedMembers.SPC_P0 or {}).ExpeditionGate==backend
+   and backend.ChooseEntry==choose,'ENTRY_RAW_STALE')
+ end
+ if not selected then current();return nil end
+ local c=raw.target.revealed and target or native[selected.id]
+ assert(c and selected.owner==owner and c:GetOwner()==selected.owner and c:GetID()==selected.id
+  and c:GetX()==selected.x and c:GetY()==selected.y,'ENTRY_CHANGED')
+ current() -- Native identity reads above may reenter and replace the owner.
+ return c
 end
 function M.Target(pid,owner,id)
  local p=Players[owner];local me=Players[pid]

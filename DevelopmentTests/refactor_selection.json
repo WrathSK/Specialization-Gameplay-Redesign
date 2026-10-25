@@ -1727,6 +1727,9 @@
     ],
     "S9b2": [
       "test_refactor_s9b2"
+    ],
+    "S9b3": [
+      "test_refactor_s9b3"
     ]
   },
   "counterexamples": {},
@@ -2136,6 +2139,15 @@
     ],
     "Mod/UI/DialogueProjectUI.lua": [
       "test_refactor_s9b2"
+    ],
+    "Mod/ExpeditionEntry.lua": [
+      "test_refactor_s9b3"
+    ],
+    "Mod/ExpeditionSpyGate.lua": [
+      "test_refactor_s9b3"
+    ],
+    "Mod/ExpeditionSpyRead.lua": [
+      "test_refactor_s9b3"
     ]
   },
   "exclusions": {

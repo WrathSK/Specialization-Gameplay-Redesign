@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0807",
-    "runtime": "B354.381 / modinfo381",
+    "status": "S0808",
+    "runtime": "B355.382 / modinfo382",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S9B2_COMPLETE_CONTINUING",
-  "next_batch": "Continue S9 Expedition-entry raw-fact policy,owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S9B3_COMPLETE_CONTINUING",
+  "next_batch": "Continue remaining S9 owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "User resumed accepted S8b–S10 after the app update. Coherent verified develop batches may commit/push without routine stage authorization; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S0807 S9b2 removes era policy/catalogue construction from Dialogue UI. The UI sends fresh protocol2 raw slots; GreatWorkFacts interprets them with its already-built Gameplay catalogue,independent of background ACK. Completion and explicit Describe share guarded interpretation; one-shot sample,zero quota,HELD/CALLING nonreplay,reference/turn/token checks and existing queue false protocol remain. Eleven focused tests pass; nine before/after complete ledgers match for0–8 eras. Remaining S9 Expedition entry,training owner signals,channels,applied display,adjacency and S10 continue; D7 history/money and D5 native attribution stay OPEN. No native/deployment PASS.",
+  "context_review_status": "S0808 S9b3 moves closest revealed Expedition entry selection into Gameplay-only ExpeditionEntry,called explicitly through the existing Gate owner. UI preserves direct zero-enumeration and original revealed-candidate/distance scope,returns raw observations and binds the selected scalar reference to the same native city for original helpers. No save,permit,travel/arrival or mission behavior changes.12 focused plus40 original assertions pass;nine exact before/after selection/read-count cases match;1000 actual window publishes add0 choices/writes. Remaining S9 training owner revisions,channels,applied display,adjacency and S10 continue; exact D7/D5 limitations stay OPEN. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B355_Refactor_S9b3.md"
 }

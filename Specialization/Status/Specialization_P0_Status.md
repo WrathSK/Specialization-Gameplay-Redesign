@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0807
-Implementation Build: B354.381 / modinfo381; stable/live B307.334
+Status Revision: S0808
+Implementation Build: B355.382 / modinfo382; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9B2_COMPLETE_CONTINUING
+Work State: REFACTOR_S9B3_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9b2 removes era policy/catalogue construction from Dialogue UI. The UI sends fresh protocol2 raw slots; GreatWorkFacts interprets them with its already-built Gameplay catalogue,independent of background ACK. Completion and explicit Describe share guarded interpretation; one-shot sample,zero quota,HELD/CALLING nonreplay,reference/turn/token checks and existing queue false protocol remain. Eleven focused tests pass; nine before/after complete ledgers match for0–8 eras. Remaining S9 Expedition entry,training owner signals,channels,applied display,adjacency and S10 continue; D7 history/money and D5 native attribution stay OPEN. [Result](Validation/Results/Specialization_B354_Refactor_S9b2.md). Stable/live/main B307.334; no deployment/native PASS.
+S9b3 moves closest revealed Expedition entry selection into Gameplay-only ExpeditionEntry,called explicitly through the existing Gate owner. UI preserves direct zero-enumeration and original revealed-candidate/distance scope,returns raw observations and binds the selected scalar reference to the same native city for original helpers. No save,permit,travel/arrival or mission behavior changes.12 focused plus40 original assertions pass;nine exact before/after selection/read-count cases match;1000 actual window publishes add0 choices/writes. Remaining S9 training owner revisions,channels,applied display,adjacency and S10 continue; exact D7/D5 limitations stay OPEN. [Result](Validation/Results/Specialization_B355_Refactor_S9b3.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 Expedition-entry raw-fact policy,owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations.
+- Primary next: Continue remaining S9 owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations.
+
+## S0808 — B355.382 Select Expedition entry cities from raw UI facts in Gameplay
+
+S9b3 moves closest revealed Expedition entry selection into Gameplay-only ExpeditionEntry,called explicitly through the existing Gate owner. UI preserves direct zero-enumeration and original revealed-candidate/distance scope,returns raw observations and binds the selected scalar reference to the same native city for original helpers. No save,permit,travel/arrival or mission behavior changes.12 focused plus40 original assertions pass;nine exact before/after selection/read-count cases match;1000 actual window publishes add0 choices/writes. Remaining S9 training owner revisions,channels,applied display,adjacency and S10 continue; exact D7/D5 limitations stay OPEN.
 
 ## S0807 — B354.381 Interpret fresh Dialogue work slots in Gameplay
 

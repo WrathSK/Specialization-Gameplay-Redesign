@@ -4,8 +4,10 @@
 if include and not SPCGreatWorkCatalog then include('GreatWorkCatalog')end
 if include and not SPCExpeditionTrainingDiagnostics then include('ExpeditionTrainingDiagnostics')end
 SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
+if include and not SPCExpeditionEntry then include('ExpeditionEntry')end
 function SPCExpeditionSpyGate.Start(P,shared)
  local M=SPCExpeditionSpyGate
+ local selectEntry=assert(SPCExpeditionEntry and SPCExpeditionEntry.Select,'ENTRY_RULE_UNAVAILABLE')
  -- v0.1 supports standard speed only; Design floor(2 x speed multiplier) is deferred.
  local TASK_TURNS=2
  local returnToCentre
@@ -803,6 +805,12 @@ function SPCExpeditionSpyGate.Start(P,shared)
  for pid in pairs(Players)do if P.IsTestPlayer(pid)then load(pid);break end end
  publishActivity() -- Restored activity is observation-only until a fresh UI sample.
  local data={};shared.ExpeditionGate=data
+ -- Explicit read-only rule call: no load(), Store access, reservation or scan.
+ function data.ChooseEntry(pid,raw)
+  assert(P.IsTestPlayer(pid) and type(raw)=='table' and raw.observer==pid
+   and raw.turn==Game.GetCurrentGameTurn(),'ENTRY_RAW_STALE')
+  return selectEntry(raw)
+ end
  -- B219 disposable-save experiment: read exact idle binding, then suspend this
  -- Gate in memory before movement. Never amend saved coordinates or history.
  function data.MovementProbeRead(pid)
