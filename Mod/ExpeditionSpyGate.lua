@@ -11,6 +11,11 @@ function SPCExpeditionSpyGate.Start(P,shared)
  -- v0.1 supports standard speed only; Design floor(2 x speed multiplier) is deferred.
  local TASK_TURNS=2
  local returnToCentre
+ local capacityOwner;local capacityEvents=0;local capacityObserverFailed=false
+ local function unitCapacityChanged(pid)
+  if pid~=capacityOwner then return false end
+  capacityEvents=capacityEvents+1;capacityObserverFailed=false;return true
+ end
  local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
  local preparingKey,preparingTurn -- Session observation only; never a saved clock or native permission.
  local movementProbeLocked=false
@@ -36,7 +41,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end
  local function load(pid)
   if loaded then return end
-  loaded=true
+  loaded=true;capacityOwner=pid
   local err;envelope,err=Store.Read(pid)
   if err then
    storeBlocked=true;state={owner=pid,phase='HELD',stop=err,activityMode='BLOCKED'};return
@@ -830,6 +835,15 @@ function SPCExpeditionSpyGate.Start(P,shared)
  -- adapter owns native event correlation; it cannot write this record directly.
  data.Training={}
  local T=data.Training
+ -- Pure session input, never a substitute for Available's fresh native unit read.
+ function T.CapacityInputStamp(pid)
+  if not loaded then return 'UNLOADED'end
+  if pid~=capacityOwner then return 'OWNER_MISMATCH'end
+  return table.concat({storeBlocked and 'BLOCKED'or 'READABLE',busy and 'BUSY'or 'IDLE',
+   state.phase or 'NONE',capacityEvents,capacityObserverFailed and 'OBSERVER_FAILED'or 'OBSERVED'},':')
+ end
+ T.MarkUnitCapacity=unitCapacityChanged
+ function T.CapacityObservationFailed(failed)capacityObserverFailed=failed==true end
  function T.Read(pid)
   load(pid);local v=savedState();v.blocked=storeBlocked;return v
  end
@@ -977,6 +991,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   end
  end)end
  if Events.UnitRemovedFromMap then Events.UnitRemovedFromMap.Add(function(pid,id)
+  unitCapacityChanged(pid) -- private observer; no type lookup or public callback before cleanup
   if placementWatch and pid==placementWatch.owner and id==placementWatch.id then closePlacement('REMOVED_CLOSE')end
   if pid==state.owner and id==state.unitID then state.removedEvents=math.min(99,(state.removedEvents or 0)+1)end
  end)end

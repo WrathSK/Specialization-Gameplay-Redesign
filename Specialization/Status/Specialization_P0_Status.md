@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0818
-Implementation Build: B365.392 / modinfo392; stable/live B307.334
+Status Revision: S0819
+Implementation Build: B366.393 / modinfo393; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9A3A_COMPLETE_CONTINUING
+Work State: REFACTOR_S9A3B_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9a3a adds pure Store TrainingInputStamp using existing positions/workers and fixed eligibility-related scalars,including current-epoch investmentPending and observed binding state. It performs0 native/fact reads/scans/writes;unrelated history/revisions/city writes remain stable. Original active short circuit,single binding read and thrown object remain;one Lua pcall records unknown observations. Ten new plus21 actual regressions pass. UI/global dependency remains until Gate capacity/final binding composition;remaining S9/S10 and exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B365_Refactor_S9a3a.md). Stable/live/main B307.334; no deployment/native PASS.
+S9a3b adds pure Gate CapacityInputStamp from private owner/blocked/busy/phase and scoped unit-event/failure scalars. Existing Birth/Removed boundaries invalidate only the supported owner without new hooks/native reads/unit caches;ordinary local unit false positives are explicit. Observer errors cannot block original birth/removal duties or poison a successor. Ten new capacity tests plus43 original Training/17 UI assertions pass through12 selected tests. UI/global dependency remains;post-stamp wiring,other S9/S10 and exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B366_Refactor_S9a3b.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 training capacity and binding observations,then actual owner/UI wiring before removing global dependency;owner-applied display,adjacency,S10 and exact D7/native D5 limitations remain.
+- Primary next: Continue S9 final binding/facts observations and post-stamp SYNC receipt,then owner-bound Training UI/idle gating before removing global dependency;applied display,adjacency,S10 and exact D7/native D5 limitations remain.
+
+## S0819 — B366.393 Observe training capacity through existing scoped unit boundaries
+
+S9a3b adds pure Gate CapacityInputStamp from private owner/blocked/busy/phase and scoped unit-event/failure scalars. Existing Birth/Removed boundaries invalidate only the supported owner without new hooks/native reads/unit caches;ordinary local unit false positives are explicit. Observer errors cannot block original birth/removal duties or poison a successor. Ten new capacity tests plus43 original Training/17 UI assertions pass through12 selected tests. UI/global dependency remains;post-stamp wiring,other S9/S10 and exact D7/D5 limits stay OPEN.
 
 ## S0818 — B365.392 Expose Store training refresh inputs without native polling
 

@@ -114,6 +114,10 @@ function SPCExpeditionTraining.Start(P,shared)
  end
  function d.Birth(pid,id)
   if not P.IsTestPlayer(pid)then return end
+  if T.MarkUnitCapacity then
+   local ok=pcall(T.MarkUnitCapacity,pid)
+   if T.CapacityObservationFailed then pcall(T.CapacityObservationFailed,not ok)end
+  end
   local u=Players[pid]:GetUnits():FindID(id);local r=u and P.Info('Units',u:GetType())
   if not r or r.UnitType~=M.KIND then return end
   run(pid,function()

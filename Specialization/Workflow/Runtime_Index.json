@@ -601,9 +601,9 @@
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "17cdf282299b6e21afcad995e7b282b47f807744d8e91257f37223198b9b47c6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B355_Refactor_S9b3.md",
-      "provenance": "B355.382 Select Expedition entry cities from raw UI facts in Gameplay; local/static evidence only; no deployment/native PASS."
+      "sha256": "164f3b6c8e51a0ede5fa1f45e520a3a3ab96f455e6aec7b3ce9c79a3d34e674c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
+      "provenance": "B366.393 Observe training capacity through existing scoped unit boundaries; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ExpeditionSpyRead.lua": {
       "sha256": "74b1960a96970f0ee5bc80e59499ccff490eb27ad97f56b1d346872aabbce305",
@@ -621,9 +621,9 @@
       "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
     },
     "Mod/ExpeditionTraining.lua": {
-      "sha256": "e37203dfc87afe07456cdb22e4ff7a03086bf2380cc7b4da31090329b44b3142",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "sha256": "c6919030eb87e16f1238880b40fa83911053a9a317001916886f683cc9c9cd5f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
+      "provenance": "B366.393 Observe training capacity through existing scoped unit boundaries; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
       "sha256": "ef9d5c9bbed018a0285913a28fa191790cf551b2d7ec62edd7280e0e4a870af2",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "3296bc7bf4b81c62575cb61bf6cb5f0923a9698c1da20b1cbadd3951f8d336ed",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B365_Refactor_S9a3a.md",
-      "provenance": "B365.392 Expose Store training refresh inputs without native polling; local/static evidence only; no deployment/native PASS."
+      "sha256": "219b9fd9b471223a0977e1687a34d80fa84ec44693853112ea26068e8ed0a77d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
+      "provenance": "B366.393 Observe training capacity through existing scoped unit boundaries; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "de8d2467058b96a4dc45b9fbc4f88c565524bd453fad78354ef01c975a44eab1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B365_Refactor_S9a3a.md",
-      "provenance": "B365.392 Expose Store training refresh inputs without native polling; local/static evidence only; no deployment/native PASS."
+      "sha256": "b2b4f92b3479d52453601a394f9f294ab4729bcd320be839829cccd4ee887280",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
+      "provenance": "B366.393 Observe training capacity through existing scoped unit boundaries; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

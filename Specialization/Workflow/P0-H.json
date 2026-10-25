@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0818",
-    "runtime": "B365.392 / modinfo392",
+    "status": "S0819",
+    "runtime": "B366.393 / modinfo393",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S9 training capacity and binding observations,then actual owner/UI wiring before removing global dependency;owner-applied display,adjacency,S10 and exact D7/native D5 limitations remain. No automatic deployment/main/native launch.",
+  "goal": "Continue S9 final binding/facts observations and post-stamp SYNC receipt,then owner-bound Training UI/idle gating before removing global dependency;applied display,adjacency,S10 and exact D7/native D5 limitations remain. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -524,6 +524,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B365_Refactor_S9a3a.md",
       "kind": "full",
       "reason": "Expose Store training refresh inputs without native polling actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
+      "kind": "full",
+      "reason": "Observe training capacity through existing scoped unit boundaries actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -550,8 +555,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B365_Refactor_S9a3a.md",
-    "local": "LOCAL_SIMULATION_PASS_1005",
+    "report": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
+    "local": "LOCAL_SIMULATION_PASS_1017",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }
