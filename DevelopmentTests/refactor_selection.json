@@ -1748,6 +1748,9 @@
     ],
     "S9c5a": [
       "test_refactor_s9c5a"
+    ],
+    "S9c5b": [
+      "test_refactor_s9c5b"
     ]
   },
   "counterexamples": {},

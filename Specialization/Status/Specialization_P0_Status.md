@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0814
-Implementation Build: B361.388 / modinfo388; stable/live B307.334
+Status Revision: S0815
+Implementation Build: B362.389 / modinfo389; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9C5A_COMPLETE_CONTINUING
+Work State: REFACTOR_S9C5B_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9c5a adds independent UNIT_TARGETS8 beside ACTION8/VIEW8,total24. Fixed detached projection has4096 combined rows and262144 retained text bytes; malformed/over-limit data yields explicit unavailable,never partial map. Gameplay collects once and returns that same legacy DTO,then publishes only into the original service. Twelve new plus32 existing target/view assertions pass,including actual32-city/scope/snapshot work. Marker consumer and other S9/S10 remain; exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B361_Refactor_S9c5a.md). Stable/live/main B307.334; no deployment/native PASS.
+S9c5b migrates Marker to UNIT_TARGETS with exact envelope/inner actor/token/stamp and final port/selection/cause/close fences. Negative/late/evicted replies do not resend; cleanup only discards its own target expectation. Sixteen focused plus20 original UI tests pass;six old/new render/native-work traces match and actual32-city marker adds0 idle scans/writes. Native GP/Naturalist retirement reentry is protected. Presentation/training/applied display/adjacency and S10 remain; exact D7/D5 limits stay OPEN. [Result](Validation/Results/Specialization_B362_Refactor_S9c5b.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 target Marker consumer,presentation channels,owner-bound training signals,applied display and adjacency,then S10; preserve exact D7/native D5 limitations.
+- Primary next: Continue S9 presentation token channel with both actual consumers,owner-bound training signals,applied display and adjacency,then S10; preserve exact D7/native D5 limitations.
+
+## S0815 — B362.389 Consume target replies independently and protect native lens retirement
+
+S9c5b migrates Marker to UNIT_TARGETS with exact envelope/inner actor/token/stamp and final port/selection/cause/close fences. Negative/late/evicted replies do not resend; cleanup only discards its own target expectation. Sixteen focused plus20 original UI tests pass;six old/new render/native-work traces match and actual32-city marker adds0 idle scans/writes. Native GP/Naturalist retirement reentry is protected. Presentation/training/applied display/adjacency and S10 remain; exact D7/D5 limits stay OPEN.
 
 ## S0814 — B361.388 Publish fixed bounded target replies independently of action and view
 

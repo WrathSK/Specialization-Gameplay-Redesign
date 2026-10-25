@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="388">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="389">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B361.388：地图目标结果使用独立有界回复空间，保留原有扫描与旧接口。</Description>
+    <Description>B362.389：地图目标消费改用独立回复，保留原生镜头层及关闭边界。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

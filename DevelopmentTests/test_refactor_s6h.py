@@ -41,7 +41,9 @@ function reply(p)
   if p.ReplyChannel then local port=s.PlayerActionReplies.Views;if not port.PublishView(u.owner,p,v)then port.FailView(u.owner,p)end end
  elseif p.Action=='UNIT_TARGETS_READ'then
   local v={version=P.VERSION,owner=u.owner,unitID=u.id,token=p.Token,turn=turn,x=u.x,y=u.y,mode='INVEST',plots={{plot=10},{plot=999}},unknown={}}
+  if p.ReplyChannel and not s.PlayerActionReplies.Targets.Accepts(u.owner,p)then return end
   if mutateReply then mutateReply(v)end;s.UnitTargetSnapshot=v
+  if p.ReplyChannel then local port=s.PlayerActionReplies.Targets;if not port.PublishTargets(u.owner,p,v)then port.FailTargets(u.owner,p)end end
  elseif p.Action=='UNIT_ACTION_PREPARE'then
   if p.ReplyChannel and not s.PlayerActionReplies.Accepts(u.owner,p)then return end
   plan='PLAN';s.UnitActionPreview={owner=u.owner,unitID=u.id,turn=turn,x=u.x,y=u.y,token=plan}
