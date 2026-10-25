@@ -113,9 +113,17 @@ function M.Start(P,shared)
    if not ok then data.errors[pid].player=tostring(err) end
   end end
  end
+ function data.SampleChanged()data.sampleRevision=(data.sampleRevision or 0)+1 end
  data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchCross',audit)
  function data.Receive(pid,p)
-  if SPCResearchCrossSample.Receive(P,data,pid,p) then data.Audit({player=pid}) end
+  local changed,cities,recovered=SPCResearchCrossSample.Receive(P,data,pid,p)
+  if changed then
+   if cities==nil then data.Audit({player=pid})else for cid in pairs(cities)do data.Audit({player=pid,city=cid})end end
+  elseif recovered then
+   -- Equal reliable sample can retry only actual previously failed cities.
+   local todo={};for cid in pairs(data.errors[pid]or {})do if type(cid)=='number'then todo[cid]=true end end
+   for cid in pairs(todo)do data.Audit({player=pid,city=cid})end
+  end
  end
  function data.Describe(pid,c,detail)
   local ok,text=pcall(function()

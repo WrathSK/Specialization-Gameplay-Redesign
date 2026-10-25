@@ -56,7 +56,9 @@ function SPCIndustrySupport.Start(P,shared)
   pending[k]={player=c:GetOwner(),city=c:GetID(),reference=reference(c)}
   if wake then armed[k]=true end
  end
- function data.MarkCity(c)queue(c,true)end
+ function data.MarkCity(c)
+  data.sampleRevision=(data.sampleRevision or 0)+1;queue(c,true)
+ end
  -- Only real incoming causes are retained while a visit is busy. Never retain cities/native handles.
  local deferred,deferredOrder,sampleWork={},{},{}
  defer=function(scope)
@@ -118,7 +120,9 @@ function SPCIndustrySupport.Start(P,shared)
   -- Snapshot before visits so a newer reentrant cause survives for the next publication.
   local work,order=deferred,deferredOrder;deferred={};deferredOrder={}
   for owner,cause in pairs(samples)do
-   if cause=='CHANGED'then data.Audit({player=owner})else data.FlushPending(owner,true)end
+   if cause.all then data.Audit({player=owner})
+   else for cid in pairs(cause.cities)do data.Audit({player=owner,city=cid})end end
+   if cause.recovered then data.FlushPending(owner,true)end
   end
   for _,tag in ipairs(order)do data.Audit(work[tag])end
  end
@@ -127,7 +131,7 @@ function SPCIndustrySupport.Start(P,shared)
    local causes=e.causes or {}
    if causes.NATIVE_GOVERNOR_ASSIGNED or causes.NATIVE_GOVERNOR_ESTABLISHED
     or causes.NATIVE_GOVERNOR_CHANGED or causes.NATIVE_GOVERNOR_PROMOTED then
-    defer({player=e.player,city=e.city});return
+    data.sampleRevision=(data.sampleRevision or 0)+1;defer({player=e.player,city=e.city});return
    end
    if type(e.city)~='number'then return end
    local player=Players[e.player];local c=player and player:GetCities():FindID(e.city)
@@ -136,9 +140,12 @@ function SPCIndustrySupport.Start(P,shared)
  end
  data.ReadBase=inspect
  function data.Receive(pid,params)
-  local changed,proof=SPCSampleLifecycle.Receive(P,data,'industry',pid,params,true)
+  local changed,proof,cities=SPCSampleLifecycle.Receive(P,data,'industry',pid,params,true)
   if changed or proof=='CONFIRMED_RECOVERED'then
-   sampleWork[pid]=changed and 'CHANGED' or sampleWork[pid] or 'RECOVERED'
+   local q=sampleWork[pid]or {cities={}};sampleWork[pid]=q
+   if changed and cities==nil then q.all=true end
+   for cid in pairs(cities or {})do q.cities[cid]=true end
+   if proof=='CONFIRMED_RECOVERED'then q.recovered=true end
    drainCauses(pid)
   elseif proof=='CONFIRMED_UNCHANGED'then data.FlushPending(pid)end
  end
@@ -158,9 +165,9 @@ function SPCIndustrySupport.Start(P,shared)
  local function hook(source,name,fn) local e=P.Field(source,name);if e and e.Add then e.Add(fn) end end
  hook(Events,'LoadScreenClose',function() pending={};armed={};deferred={};deferredOrder={};sampleWork={};data.ready=true;SPCSampleLifecycle.Reset(data,'industry');data.Audit({load=true}) end)
  hook(Events,'GameCoreEventPublishComplete',function()drainCauses();data.FlushPending()end)
- -- Shared D replaces only ordinary structural causes. Preserve independent
- -- raw-adjacency plot notifications and the no-provider startup fallback.
- for _,n in ipairs({'PlayerTurnActivated','CityTransfered','ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
+ -- Shared D owns structure; validated background samples own adjacency changes.
+ -- Retain lifecycle/turn safety and the independent no-provider startup fallback.
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
  if not shared.DistrictCompleteness then
  hook(GameEvents,'OnDistrictConstructed',function(pid,index,x,y)
   local r=P.Info('Districts',index)

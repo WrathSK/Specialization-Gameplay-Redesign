@@ -681,9 +681,9 @@
       "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "8b2dd0976f4f7f503d54a6901186167e8b3ff42d2f6c7a349496cf9cee3c3458",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "22542ea63d991f424f9adb7e122234a8bc34eb9be54baf600d21fa45a8659926",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
+      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "dbffd20fa22c32d7b573314667f7726fc14317bcab552f9110288f1e5e055cd2",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "44f07d115c266bedfc129eb8ac731ebc50af48dec39871cff513549fdfcd08c3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
-      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
+      "sha256": "9f587045de4261e623ed377c8ab3f37b24f14b817355d6d32b1e655dcfcaa35d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
+      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -836,9 +836,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "f0033c835f0f9642c7aba94cf38eff6edbc1efb2393d23f570faee32a75125e4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "56544e88c13c1f86ed26e98b607db95eba8064ebb54f679a8376cc5c9792cfd7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
+      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchCrossModel.lua": {
       "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
@@ -846,9 +846,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/ResearchCrossSample.lua": {
-      "sha256": "8a99338b17a45895a04f4a839f01d081651a3418639258c8f9658293219c6c15",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "3c4664da3386dc48595afc8a96bc2fbfb281e3b2c3a1ed089151a2ac58d785aa",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
+      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchInfrastructure.lua": {
       "sha256": "14dcb69412716311e5a0fc5ab411d1dead4ba485346edfa0b7b6a864af889645",
@@ -901,9 +901,9 @@
       "provenance": "B371.398 Stop stale Tradition carrier writes after confirmed lifecycle change; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
-      "sha256": "86d5a2dd3addf5eb9d30dcafdf12e141618037194da4ae0f0496b5b3ea6609f9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
-      "provenance": "B305.332 Share minimal anchor state without a building census; local/static evidence only; no deployment/native PASS."
+      "sha256": "3e139080f70c57402ebab797b8b10ff5efe69e662e7b96b50179b89a175b261f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
+      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ShadowRouteState.lua": {
       "sha256": "6f35992fd9e5b8d2429061acbaf83e3f7747300592bf050dbb23e1e5fe9163e6",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a8b832bd4c41797aea549ba3c2ececb40363c944e2697f5fa7ba0e28a630896e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
-      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
+      "sha256": "e38d32eeea1f02310c263a2f0abfd8749712782e39d73299333d0a0c035f257e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
+      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1396,9 +1396,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/IndustryRefresh.lua": {
-      "sha256": "dfa7a8f02da15fc6fdf1f476458602f78489550f3f9ae3976a93b803893c637e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
-      "provenance": "B274 approved S4a per-city signature containment, real-cause-only Industry recovery/reentry, bounded UI GC wait and compact D Housing. Scope-specific local/static evidence, no native acceptance/deployment."
+      "sha256": "05bcbd8343005b004a6728935455cdbc3a88d51c68cfbb355aa8aab02098374f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
+      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/IndustryRefresh.xml": {
       "sha256": "9af08ee9bb27efd3a6dee21d6cda407965200834b4172d63d064a6b1b9396ebe",
@@ -1456,9 +1456,9 @@
       "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
     },
     "Mod/UI/ResearchCrossRefresh.lua": {
-      "sha256": "2dc2f58df5320e374bdf4af79493062dda5ba74615f57431a5ca6269ca12f2f4",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "8d57c0332d2cde7c07ea5a7e09b86a586e152963316acea9e96b4994506c9d97",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
+      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/ResearchCrossRefresh.xml": {
       "sha256": "72f1e300b5cdd94839ee4a6308b265115783af2bf5321da52ef1bebdd8b77498",
@@ -1586,9 +1586,9 @@
       "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "22ec0ce02d1db3410561b034b1f913021123f6046762d798e9d02c431953bb1c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
-      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
+      "sha256": "98930ed43c95c52a0e6e4e2729469df0d4e96d91e5775498f4d853a3b92fa9f4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
+      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "66b5f5bf68274e54ec9495802f9a7ade09eaa5a89ecda22518b2ea787f84bec9",

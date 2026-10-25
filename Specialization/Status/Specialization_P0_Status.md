@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0825
-Implementation Build: B372.399 / modinfo399; stable/live B307.334
+Status Revision: S0826
+Implementation Build: B373.400 / modinfo400; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E1_COMPLETE_CONTINUING
+Work State: REFACTOR_S9E2_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e1 ingests the accepted S8 user handoff at current B371 and fixes R10/R22. Actual Probe/Bridge/UI use existing accepted trader-ID maps only for removed units;1000 nonsnapshot removals perform0 unit lookups/city scans/route signals. Missing snapshots stay conservative;new trader operations keep live checks. Crew rounds only diagnostic receipt amount for binary32-stable readback,leaving exact native base input and irreversible order unchanged. Other R15/R09/R18/R11/per-source/Store/UI/doc closures and U4/U5 remain scheduled;no deployment/native PASS. [Result](Validation/Results/Specialization_B372_Refactor_S9e1.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e2 narrows R15 actual UI→sample→consumer work. Shared bounded sampling mechanism tracks scalar district rings;remote AI plots perform0 adjacency reads/censuses/audits,one matched industrial change reads1 zone and audits1 city. Gameplay still verifies complete C2 membership. Industry drops raw plot audits and global write revision sampling;explicit role/reference scalar causes preserve recovery. Cross keeps its own six-yield/pillage policy and gains equal-value availability recovery. Native delivery/CPU/heap and actual cross-context numeric reuse remain open,not implied by the shared mechanism. Continue S9/S10;no deployment/native PASS. [Result](Validation/Results/Specialization_B373_Refactor_S9e2.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue priority R15 adjacency producer locality,then R09 transfer/reverse dependencies,R18 duty migration and R11 full relay trace;reconcile remaining current S8 findings and finish owner-applied DTO/S10. No deployment/main promotion/game launch.
+- Primary next: Continue R15 actual cross-context base-value reuse with explicit bounded validity/write barriers,then R09 transfer/reverse dependencies,R18 retirement,R11 relay trace and remaining S9/U4/S10. Native N5/N14 remain U5;no deployment/main/game launch.
+
+## S0826 — B373.400 Scope adjacency sampling and notify only changed cities
+
+S9e2 narrows R15 actual UI→sample→consumer work. Shared bounded sampling mechanism tracks scalar district rings;remote AI plots perform0 adjacency reads/censuses/audits,one matched industrial change reads1 zone and audits1 city. Gameplay still verifies complete C2 membership. Industry drops raw plot audits and global write revision sampling;explicit role/reference scalar causes preserve recovery. Cross keeps its own six-yield/pillage policy and gains equal-value availability recovery. Native delivery/CPU/heap and actual cross-context numeric reuse remain open,not implied by the shared mechanism. Continue S9/S10;no deployment/native PASS.
 
 ## S0825 — B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback
 

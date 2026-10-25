@@ -14,6 +14,7 @@ function S.Receive(P,data,pid,p)
   or p.Generation~=data.generation or type(p.Seq)~='number' or p.Seq<1 or p.Seq%1~=0
   or p.Turn~=Game.GetCurrentGameTurn() then P.Count('cross_stale');return false end
  local ack=data.responses[pid]
+ local wasUnavailable=ack and ack.status=='UNAVAILABLE'
  if ack and ack.epoch==p.ClientEpoch and p.Seq<=ack.seq then P.Count('cross_duplicate');return false end
  local function respond(status) data.responses[pid]={epoch=p.ClientEpoch,seq=p.Seq,generation=p.Generation,status=status} end
  if p.Valid~=1 then respond('UNAVAILABLE');return false end
@@ -42,6 +43,11 @@ function S.Receive(P,data,pid,p)
  if not ok then data.receiveErrors[pid]=tostring(value);respond('UNAVAILABLE');P.Count('cross_stale');return false end
  data.receiveErrors[pid]=nil;data.seq[pid]=p.Seq
  local old=data.samples[pid]
- if old and old.signature==value.signature then old.turn=p.Turn;respond('UNCHANGED');P.Count('cross_duplicate');return false end
- data.samples[pid]=value;respond('ACCEPTED');P.Count('cross_apply');return true
+ if old and old.signature==value.signature then old.turn=p.Turn;respond('UNCHANGED');P.Count('cross_duplicate');return false,nil,wasUnavailable==true end
+ local changed=L.ChangedCities(old,value,function(row)
+  local out={row.reference,row.pillaged and '1'or '0'}
+  for _,y in ipairs(SPCResearchCrossModel.Yields)do out[#out+1]=string.format('%.17g',row.yields[y])end
+  return table.concat(out,',')
+ end)
+ data.samples[pid]=value;respond('ACCEPTED');P.Count('cross_apply');return true,changed
 end

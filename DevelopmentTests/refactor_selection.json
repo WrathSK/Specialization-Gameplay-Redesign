@@ -1785,6 +1785,19 @@
       "test_refactor_s5c1.NetworkSignals",
       "test_refactor_s4b.NetworkProof",
       "test_refactor_s5c2"
+    ],
+    "S9e2": [
+      "test_refactor_s9e2",
+      "test_refactor_s4a.Industry",
+      "test_refactor_s4a.IndustryReentry",
+      "test_refactor_s7f.IndustryPending",
+      "test_refactor_s6c",
+      "test_refactor_s5a2",
+      "test_refactor_s5c1.Districts",
+      "test_refactor_s7a3",
+      "test_refactor_s5d4c3",
+      "test_refactor_s5d1.Writers",
+      "test_refactor_s9e1"
     ]
   },
   "counterexamples": {},
@@ -1809,7 +1822,8 @@
       "test_refactor_s5d4c3",
       "test_refactor_s6c",
       "test_refactor_s7a5",
-      "test_refactor_s7f"
+      "test_refactor_s7f",
+      "test_refactor_s9e2"
     ],
     "Mod/RuntimeWork.lua": [
       "test_refactor_baseline.RealConsumers",
@@ -1923,10 +1937,12 @@
     ],
     "Mod/SampleLifecycle.lua": [
       "test_refactor_s4a",
-      "test_refactor_s6c"
+      "test_refactor_s6c",
+      "test_refactor_s9e2"
     ],
     "Mod/UI/IndustryRefresh.lua": [
-      "test_refactor_s4a"
+      "test_refactor_s4a",
+      "test_refactor_s9e2"
     ],
     "Mod/NetworkInput.lua": [
       "test_refactor_s4b",
@@ -2014,7 +2030,8 @@
       "test_refactor_s5d4c1.ResearchHealth.test_scoped_D_replacement_remains_one_Audit_per_writer",
       "test_refactor_s5d4c1.ResearchHealth.test_actual_cross_external_loss_recovers_without_new_BASE",
       "test_refactor_s5d4c1.ResearchHealth.test_cross_direct_structural_fallback_only_without_D_provider",
-      "test_refactor_s7a3"
+      "test_refactor_s7a3",
+      "test_refactor_s9e2"
     ],
     "Mod/CultureAesthetic.lua": [
       "test_refactor_s5d1",
@@ -2029,7 +2046,8 @@
       "test_refactor_s5d4b1",
       "test_refactor_s5d4b2",
       "test_refactor_s5d4c3",
-      "test_refactor_s6j"
+      "test_refactor_s6j",
+      "test_refactor_s9e2"
     ],
     "Mod/NativeFacts.lua": [
       "test_refactor_s5d4b1",
@@ -2221,6 +2239,12 @@
     ],
     "Mod/Probe.lua": [
       "test_refactor_s9e1"
+    ],
+    "Mod/ResearchCrossSample.lua": [
+      "test_refactor_s9e2"
+    ],
+    "Mod/UI/ResearchCrossRefresh.lua": [
+      "test_refactor_s9e2"
     ]
   },
   "exclusions": {

@@ -26,7 +26,7 @@ function SPCFactConsumerBindings.New(shared)
   {target='Lv3Effects',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','NETWORK'}},
   {target='Lv4Percent',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='ResearchInfrastructure',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
-  {target='ResearchCross',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
+  {target='ResearchCross',method='Audit',sample=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='ResearchApply',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='ResearchChair',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='CultureAesthetic',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
@@ -75,6 +75,11 @@ function SPCFactConsumerBindings.New(shared)
  local function invoke(row,q)
   local value=target(row.target);if not value or type(value[row.method])~='function'then return end
   local fn=value[row.method];local failure
+  -- C2 producer gets only real declared input causes, never a global write pulse
+  -- or its own sample reply. This is a scalar wake, not an extra fact read.
+  if row.sample and type(value.SampleChanged)=='function'then
+   local ok=pcall(value.SampleChanged);if not ok then failure='SAMPLE_CAUSE_NOTIFY_FAILED'end
+  end
   local function call(...)
    local ok,err=pcall(fn,...)
    if not ok then local safe,text=pcall(tostring,err);failure=safe and text:sub(1,180) or 'FACT_BINDING_FAILED'end
