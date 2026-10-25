@@ -1273,6 +1273,19 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.ClaimState(pid,c)return requireCity(c).ClaimState(pid,c)end
  function store.WriteClaimTimer(pid,c,old,value)return requireCity(c).WriteClaimTimer(pid,c,old,value)end
  function store.ClaimComplete(pid,c,e)return requireCity(c).ClaimComplete(pid,c,e)end
+ -- Locator only: a reliable index token can identify a held/former-holder site.
+ -- It grants no ACTIVE/history/transaction eligibility and never follows a raw
+ -- City Property. Existing worker/current-native checks still govern every use.
+ function store.ReferenceToken(c)
+  check();assert(not writing,'STORE_COLLECTION_BUSY')
+  local x,y=c:GetX(),c:GetY()
+  if modern then
+   assert(initialized and positions,'STORE_REFERENCE_NOT_READY')
+   return positions[x..':'..y]
+  end
+  -- Frozen two-record legacy test adapter, not the modern runtime route.
+  for token,row in pairs(envelope.records)do if row.origin.x==x and row.origin.y==y then return token end end
+ end
  function store.HistoricalReference(c)return requireCity(c).HistoricalReference(c)end
  function store.HistoryStartStatus()
   if fault then return 'HELD' end

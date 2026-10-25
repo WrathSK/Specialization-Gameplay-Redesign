@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0783
-Implementation Build: B330.357 / modinfo357; stable/live B307.334
+Status Revision: S0784
+Implementation Build: B331.358 / modinfo358; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7E_COMPLETE_CONTINUING
+Work State: REFACTOR_S7F_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7e centralizes six exact retired-ID groups (135 buildings), retaining 87 inert definitions and all48 SQL-active Convergence cleanup targets. Cross and Aesthetic skip repeated legacy presence scans only after confirmed cleanup; current effect reads and all exact exits remain. RetireOnce rejects false/fault/stale-reference/load callbacks before stamping. Retired Convergence still validates owner and HistoricalReference on every call, including cache hits. New actual startup dependencies keep owner failures isolated. D5 completion attribution remains OPEN; no deployment/main/native PASS. [Result](Validation/Results/Specialization_B330_Refactor_S7e.md). Stable/live/main B307.334; no deployment/native PASS.
+S7f replaces RuntimeWork/IndustrySupport raw-marker keys with a shared scalar native reference and Store index token. The new read-only Store.ReferenceToken is a locator for registered/held/former-holder sites, never ACTIVE/history/transaction authority. Unknown or unavailable modern providers never fall back to a City marker. Native owner/id/location and existing queue/target guards stay. Pending Industry causes are consumed before protected reads; UNKNOWN retains identity without publish rearming, and same-turn newer causes survive. No schema/permanent write change. D5 remains OPEN; no deployment/main/native PASS. [Result](Validation/Results/Specialization_B331_Refactor_S7f.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7f Store-owned city references, then S8–S10; retain D5 native proof OPEN and do not cut over dependent completion logic.
+- Primary next: Continue S8 sub-record isolation and deterministic recovery/exit receipts, then S9–S10; D5 native proof remains OPEN.
+
+## S0784 — B331.358 Store-owned scalar city references
+
+S7f replaces RuntimeWork/IndustrySupport raw-marker keys with a shared scalar native reference and Store index token. The new read-only Store.ReferenceToken is a locator for registered/held/former-holder sites, never ACTIVE/history/transaction authority. Unknown or unavailable modern providers never fall back to a City marker. Native owner/id/location and existing queue/target guards stay. Pending Industry causes are consumed before protected reads; UNKNOWN retains identity without publish rearming, and same-turn newer causes survive. No schema/permanent write change. D5 remains OPEN; no deployment/main/native PASS.
 
 ## S0783 — B330.357 Exact reference-scoped retired carrier cleanup
 

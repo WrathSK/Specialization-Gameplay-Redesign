@@ -800,7 +800,7 @@ composition.Run('DistrictCompleteness',{},{'DistrictCompleteness'},function() in
 
 composition.Run('InvestmentAction',{'CityProgressionStore','EffectiveFacts'},{'InvestmentAction'},function() include('InvestmentAction');SPCInvestmentAction.Start(P,shared) end)
 
-composition.Run('RuntimeRetirement',{}, {'RuntimeRetirement'},function()include('RuntimeWork');SPCRuntimeWork.StartRetirement(P,shared)end)
+composition.Run('RuntimeRetirement',{'CityProgressionStore'}, {'RuntimeRetirement'},function()include('RuntimeWork');SPCRuntimeWork.StartRetirement(P,shared)end)
 
 composition.Run('ResearchSupport',{'RuntimeRetirement','EffectiveFacts','NativeFacts'},{'ResearchSupport'},function() include('ResearchSupport');SPCResearchSupport.Start(P,shared) end)
 

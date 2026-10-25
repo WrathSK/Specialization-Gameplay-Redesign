@@ -2,6 +2,8 @@
 
 ## Refactor program intake — 2026-10-24
 
+B331.358 S7f replaces RuntimeWork/IndustrySupport raw-marker keys with a shared scalar native reference and Store index token. The new read-only Store.ReferenceToken is a locator for registered/held/former-holder sites, never ACTIVE/history/transaction authority. Unknown or unavailable modern providers never fall back to a City marker. Native owner/id/location and existing queue/target guards stay. Pending Industry causes are consumed before protected reads; UNKNOWN retains identity without publish rearming, and same-turn newer causes survive. No schema/permanent write change. D5 remains OPEN; no deployment/main/native PASS. [Result](../../Status/Validation/Results/Specialization_B331_Refactor_S7f.md).
+
 B330.357 S7e centralizes six exact retired-ID groups (135 buildings), retaining 87 inert definitions and all48 SQL-active Convergence cleanup targets. Cross and Aesthetic skip repeated legacy presence scans only after confirmed cleanup; current effect reads and all exact exits remain. RetireOnce rejects false/fault/stale-reference/load callbacks before stamping. Retired Convergence still validates owner and HistoricalReference on every call, including cache hits. New actual startup dependencies keep owner failures isolated. D5 completion attribution remains OPEN; no deployment/main/native PASS. [Result](../../Status/Validation/Results/Specialization_B330_Refactor_S7e.md).
 
 S0782 S7d6: D5 remains OPEN; current two-city same-count deficit and conditional late-event ambiguity are characterized, not fixed. Native completion-specific proof is required before D5 cutover. Continue independent S7e/f. [Assessment](../../Status/Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md).
@@ -282,7 +284,7 @@ B277 S5a1 precursor complete: [bounded registry/isolation](../../Status/Validati
 | S7d Crew completion/recovery / C167,CR-1 | OPEN: CrewProjects120–131 CALLING/HELD;262–282 shared +1 receipt and init/bind. | D-5 proof-based multi-completion/reobservation; do not invent source attribution or replay uncertain outcomes. |
 | S7d Crew consume ownership / F12,C080 | OPEN: `UnitActions.lua:108–127,137–138,154–156` owns consume/add-progress and string classification. | Move to CrewProjects with typed outcomes and existing irreversible receipt guarantees. |
 | S7e tombstones / F20 | B330: exact six-group 135-ID registry; Cross/Aesthetic/retired Convergence use reference-scoped cleanup. False/fault/stale callback never stamps success; Convergence still refreshes HistoricalReference on hits. | Local T03/T06/T07/T08 gates; SQL definitions/modifier links and exact exits retained. Native cleanup remains U5. |
-| S7f common city reference / F31 | OPEN: RuntimeWork238–239 and IndustrySupport14 construct raw token keys. | Store token plus native owner/target checks; do not drop ConstructionProbe19–24 safeguards. |
+| S7f common city reference / F31 | B331: shared scalar reference uses Store index token in current Gameplay; raw markers remain only isolated legacy profiles. UNKNOWN consumes only the current pending cause and cannot cause publish retries. | Native owner/id/location and queue/target checks retained; locator is not eligibility. No schema/write or deployment change. |
 
 #### S8 — Store technical lifecycle, not ownership gameplay
 

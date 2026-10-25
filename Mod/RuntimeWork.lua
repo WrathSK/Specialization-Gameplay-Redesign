@@ -1,3 +1,4 @@
+include('CityReference')
 -- D2: ephemeral batch indexes, never persisted or shared across writes/batches.
 SPCRuntimeWork={}
 function SPCRuntimeWork.New(P,shared)
@@ -338,18 +339,15 @@ end
 function SPCRuntimeWork.RetireOnce(P,shared,c,tag,fn)
  shared.RuntimeRetirementCache=shared.RuntimeRetirementCache or {}
  local all=shared.RuntimeRetirementCache;all[tag]=all[tag] or {};local cache=all[tag]
- local x,y=c.GetX and c:GetX(),c.GetY and c:GetY()
- local k=x~=nil and (x..':'..y) or (c:GetOwner()..':'..c:GetID())
- local token=c.GetProperty and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN') or ''
- local owner,cid=c:GetOwner(),c:GetID()
- local stamp=table.concat({owner,cid,tostring(x),tostring(y),tostring(token)},':')
+ local ref=SPCCityReference.Read(shared,c);local owner,cid,x,y=ref.owner,ref.cityID,ref.x,ref.y
+ local k=x~=nil and (x..':'..y)or(owner..':'..cid)
+ local stamp=SPCCityReference.Key(ref)
  if cache[k]==stamp then return 0 end
  local n=fn();assert(n~=false,'RETIREMENT_NOT_CONFIRMED')
  -- A callback may synchronously replace a city binding or clear the load cache.
  -- Never publish success for a reference/load that was not actually cleaned.
- local currentToken=c.GetProperty and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN') or ''
- assert(c:GetOwner()==owner and c:GetID()==cid and (not c.GetX or c:GetX()==x) and (not c.GetY or c:GetY()==y)
-  and tostring(currentToken)==tostring(token) and shared.RuntimeRetirementCache==all,'RETIREMENT_REFERENCE_CHANGED')
+ assert(SPCCityReference.Equal(ref,SPCCityReference.Read(shared,c))
+  and shared.RuntimeRetirementCache==all,'RETIREMENT_REFERENCE_CHANGED')
  if cache[k]==nil then local count=0;for _ in pairs(cache)do count=count+1 end;assert(count<2048,'RETIREMENT_CACHE_LIMIT')end
  if shared.RuntimeRetirement then shared.RuntimeRetirement.Remember(tag,k,stamp,owner,cid)end
  cache[k]=stamp;return n

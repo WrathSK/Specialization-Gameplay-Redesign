@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0783",
-    "runtime": "B330.357 / modinfo357",
+    "status": "S0784",
+    "runtime": "B331.358 / modinfo358",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S7f Store-owned city references, then S8–S10; retain D5 native proof OPEN and do not cut over dependent completion logic. No automatic deployment/main/native launch.",
+  "goal": "Continue S8 sub-record isolation and deterministic recovery/exit receipts, then S9–S10; D5 native proof remains OPEN. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -349,6 +349,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
       "kind": "full",
       "reason": "Exact reference-scoped retired carrier cleanup actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
+      "kind": "full",
+      "reason": "Store-owned scalar city references actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -375,8 +380,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-    "local": "LOCAL_SIMULATION_PASS:124/124",
+    "report": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
+    "local": "LOCAL_SIMULATION_PASS:156/156",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

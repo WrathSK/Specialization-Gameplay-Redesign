@@ -1028,6 +1028,29 @@
       "test_refactor_s6c",
       "test_refactor_s5d4a",
       "test_refactor_s3"
+    ],
+    "S7f": [
+      "test_refactor_s7f",
+      "test_refactor_s7e",
+      "test_refactor_s5d2",
+      "test_refactor_s7a6",
+      "test_refactor_s7a3.FrozenArtificialDamage",
+      "test_refactor_s7a3.CurrentD4.test_infrastructure_external_loss_and_cross_UNKNOWN_missing_restore_still_work",
+      "test_refactor_s7a3.CurrentD4.test_real_anchor_and_ordinary_building_pillage_still_withdraws_then_recovers",
+      "test_refactor_s5d4c1.ResearchHealth.test_actual_cross_external_loss_recovers_without_new_BASE",
+      "test_refactor_s5d4c1.ResearchHealth.test_cross_direct_structural_fallback_only_without_D_provider",
+      "test_refactor_s7a2",
+      "test_refactor_s7a1",
+      "test_refactor_s5d4c2.TargetKernel",
+      "test_refactor_s5d4c2.SupportHealth",
+      "test_refactor_s5d4c2.HousingGPPHealth",
+      "test_refactor_s6c",
+      "test_refactor_s5d4a",
+      "test_refactor_s3",
+      "test_refactor_s4a.Industry",
+      "test_refactor_s4a.IndustryReentry",
+      "test_refactor_s7a5",
+      "test_refactor_s7a4"
     ]
   },
   "counterexamples": {},
@@ -1051,7 +1074,8 @@
       "test_refactor_s5d4b1",
       "test_refactor_s5d4c3",
       "test_refactor_s6c",
-      "test_refactor_s7a5"
+      "test_refactor_s7a5",
+      "test_refactor_s7f"
     ],
     "Mod/RuntimeWork.lua": [
       "test_refactor_baseline.RealConsumers",
@@ -1059,7 +1083,8 @@
       "test_refactor_s5d2",
       "test_refactor_s5d4c1",
       "test_refactor_s5d4c2",
-      "test_refactor_s6c"
+      "test_refactor_s6c",
+      "test_refactor_s7f"
     ],
     "Mod/Lv2Housing.lua": [
       "test_refactor_baseline.RealConsumers",
@@ -1116,7 +1141,8 @@
     "Mod/CityProgressionStore.lua": [
       "test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity",
       "test_refactor_s7b1",
-      "test_refactor_s7c"
+      "test_refactor_s7c",
+      "test_refactor_s7f"
     ],
     "Mod/ResearchChair.lua": [
       "test_refactor_baseline.RealConsumers.test_T01_real_chair_honors_city_scope",
@@ -1414,6 +1440,12 @@
     ],
     "Mod/CrewPrecision.lua": [
       "test_refactor_s7d5"
+    ],
+    "Mod/Tombstones.lua": [
+      "test_refactor_s7e.Registry"
+    ],
+    "Mod/CityReference.lua": [
+      "test_refactor_s7f"
     ]
   },
   "exclusions": {

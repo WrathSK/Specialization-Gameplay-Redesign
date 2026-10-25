@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "21920caf24712473ed088df9e7804f061c5e7e33fb0f8c9464b7fd93bc3bf5b6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
-      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "45808c60ced24ca3cd7c8d49753fbea8e6e5332a248693ba906e2f41e7d46c9f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
+      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "281aea7647f44bb2c313d145f306a3c53b6a8744f9638ccde0d1ce306faa4090",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "35d345cf57ccdb180aedf1afc10a3db815dc23fdf4b64d59ca03136e73bdba1a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
+      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "af9970fc7f7790d21a4aeb29217941a1a5b82170972eae163600a0a4334ef139",
@@ -681,9 +681,9 @@
       "provenance": "B279 confirmed historical result topics and explicit isolated adapters; project/native/persistence semantics retained. Local/static only; remaining manual lists next; no deployment/native PASS."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "5098df318799708c1632ac735d99d10e110c950d782f0d48fd7f7c1b119fd788",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B319_Refactor_S7a5.md",
-      "provenance": "B319.346 Share Industry support carriers without changing sequential mutation; local/static evidence only; no deployment/native PASS."
+      "sha256": "ca53d1c045418edf73852a6eb530dbe5fddfeb33eb6f06f9b155d006f49606f5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
+      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "dbffd20fa22c32d7b573314667f7726fc14317bcab552f9110288f1e5e055cd2",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "b244539793ae8036e65de155a65036109ffac9f29cbb4ce22e6012ddcb570d46",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "d0251b379a2fc1a2597cb3365cc35c4a0c0c0b33cdf342329d89c76affa66035",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
+      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "29653582a1615fd9faf749d0985492a625584a7eda8e5251a53f2f444e575777",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "d161ab947315be10062f1444794ce451e8f99e51b072e60110a2952002494156",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
+      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "86d5a2dd3addf5eb9d30dcafdf12e141618037194da4ae0f0496b5b3ea6609f9",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "1a06ec521e16a05449f27af6c7ffd1d93ea4a65e36fa7241ae54e21eb14d9846",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "f40144ff3a172184a6edac8f8749df15d011542b31f06bbe415c27e380af6e18",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
+      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1644,6 +1644,11 @@
       "sha256": "083ea53b413c4d52504d987572385cf2f875a57e6195bd78bf2872b35edad8ab",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
       "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/CityReference.lua": {
+      "sha256": "f62f4a3ca528294865111a46718380a0e5d9403fe4d0fd113378ec13ad435924",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
+      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

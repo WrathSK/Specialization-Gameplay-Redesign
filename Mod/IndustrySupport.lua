@@ -13,7 +13,7 @@ function SPCIndustrySupport.Start(P,shared)
  SPCSampleLifecycle.Reset(data,'industry')
  local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'INDUSTRY_SUPPORT')
  local function key(pid,cid)return tostring(pid)..':'..tostring(cid)end
- local function reference(c)return table.concat({c:GetOwner(),c:GetID(),c:GetX(),c:GetY(),tostring(c:GetProperty('SPC_DEV_BINDING_B013_TOKEN'))},':')end
+ local function reference(c)return SPCCityReference.Key(SPCCityReference.Read(shared,c))end
  local function name(bit) return 'BUILDING_SPC_DEV_INDUSTRY_LV1_'..bit end
  local entries={};for bit=-1,7 do entries[#entries+1]={key=bit,name=name(bit)}end
  local carriersSet=SPCCarrierSet.Define(P,entries,function(key)
@@ -97,12 +97,19 @@ function SPCIndustrySupport.Start(P,shared)
    local v=pending[k];if v and (pid==nil or pid==v.player)then todo[k]=v end
   end
   for k,v in pairs(todo)do
-   local player=Players[v.player];local c=player and player:GetCities():FindID(v.city)
-   if not c or c:GetOwner()~=v.player or reference(c)~=v.reference then pending[k]=nil;armed[k]=nil
-   else
-    armed[k]=nil -- consume the cause before Audit/native reentry; failure cannot re-arm it
+   armed[k]=nil -- consume this cause before any native/reference read or reentry
+   local ok,why=pcall(function()
+    local player=Players[v.player];local c=player and player:GetCities():FindID(v.city)
+    if pending[k]~=v then return end -- a newer cause owns its own reference
+    if not c or c:GetOwner()~=v.player then pending[k]=nil;return end
+    local now=reference(c)
+    if pending[k]~=v then return end
+    if now~=v.reference then pending[k]=nil;return end
     data.Audit({player=v.player,city=v.city})
-   end
+   end)
+   if not ok then
+    local safe,text=pcall(tostring,why);data.errors[k]=safe and text:sub(1,180)or'INDUSTRY_REFERENCE_UNKNOWN'
+   end -- UNKNOWN retains the pending identity, but no publish retry is armed
   end
  end
  local function drainCauses(pid)
