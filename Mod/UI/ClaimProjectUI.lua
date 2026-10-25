@@ -1,3 +1,4 @@
+include('TimedProjectSelectionClient')
 -- Exact Claim entry/read model. No UI-owned timer or per-frame requests.
 SPCClaimProjectUI={}
 local M=SPCClaimProjectUI
@@ -25,6 +26,7 @@ function M.Text(pid,id,project)
 end
 function M.New(P,send,notify)
  local api={};local pending={};local seen={};local pendingText={};local synced={};local warmed=false;local pulse=0
+ local client=SPCTimedProjectSelectionClient.New(P,pending);api.QueueEvent=client.QueueEvent;api.Close=client.Close
  ExposedMembers.SPC_ClaimSelection={}
  ExposedMembers.SPC_ClaimSync={}
  ExposedMembers.SPC_ClaimQueueRead=function(pid,id)
@@ -71,10 +73,10 @@ function M.New(P,send,notify)
   if not c or not P.IsTestPlayer(c:GetOwner())then return false end
   if queueMode then ExposedMembers.SPC_ClaimSelection[k]='认领项目不能排在队列后面；请选为唯一当前目标';notify(c:GetOwner(),c:GetID());return false end
   if pending[k]then return false end
-  pending[k]={owner=c:GetOwner(),id=c:GetID(),project=name,turn=Game.GetCurrentGameTurn()}
+  pending[k]={owner=c:GetOwner(),id=c:GetID(),project=name,turn=Game.GetCurrentGameTurn(),read=true}
   ExposedMembers.SPC_ClaimSelection[k]='等待原生选择确认';return true
  end
- function api.Pulse()
+ local function drain()
   pulse=pulse+1
   api.WarmStart() -- fallback when this context missed LoadScreenClose; no repeated city scan
   local shared=(ExposedMembers.SPC_P0 or {}).ClaimProjects
@@ -87,9 +89,9 @@ function M.New(P,send,notify)
    if view and view.project==p.project and view.stage=='ACTIVE' then pending[k]=nil;ExposedMembers.SPC_ClaimSelection[k]=nil
    elseif p.sent and view and view.stage=='STOPPED' then pending[k]=nil;ExposedMembers.SPC_ClaimSelection[k]=view.reason;notify(p.owner,p.id)
    elseif p.turn~=Game.GetCurrentGameTurn()then pending[k]=nil;ExposedMembers.SPC_ClaimSelection[k]='启动确认超时；请重新选择项目';notify(p.owner,p.id)
-   elseif not p.sent then
-    local ok,v=pcall(ExposedMembers.SPC_ClaimQueueRead,p.owner,p.id)
-    if ok and v.project==p.project then
+   elseif not p.sent and p.read then
+    local ok,v,current=client.Read(k,p,function()return ExposedMembers.SPC_ClaimQueueRead(p.owner,p.id)end)
+    if current and ok and v.project==p.project then
      if v.size==1 then
       p.sent=true
       local good,err=pcall(send,p.owner,PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='CLAIM_BEGIN',Token='CLAIM:'..k..':'..p.turn,CityID=p.id,Project=p.project,StartTurn=p.turn})
@@ -110,5 +112,6 @@ function M.New(P,send,notify)
    end
   end
  end
+ api.Pulse=client.Bind(drain)
  return api
 end

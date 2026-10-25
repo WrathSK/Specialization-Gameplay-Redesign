@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="351">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="352">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B324.351：共享项目队列观察，区分确认空队列与未知读数。</Description>
+    <Description>B325.352：项目界面按选择与同城生产事件读取队列，不在未知后逐发布重读。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -131,7 +131,7 @@
       <File>DialogueProjectModel.lua</File>
       <File>DialogueProjects.lua</File>
     <File>DialogueEffects.lua</File>
-      <File>UI/ClaimProjectUI.lua</File>
+      <File>UI/TimedProjectSelectionClient.lua</File><File>UI/ClaimProjectUI.lua</File>
       <File>UI/DialogueProjectUI.lua</File>
       <File>TimedProject.lua</File>
       <File>UI/TimedProjectRead.lua</File>
@@ -568,7 +568,7 @@
     <File>DialogueProjectModel.lua</File>
     <File>DialogueProjects.lua</File>
     <File>DialogueEffects.lua</File>
-    <File>UI/ClaimProjectUI.lua</File>
+    <File>UI/TimedProjectSelectionClient.lua</File><File>UI/ClaimProjectUI.lua</File>
     <File>UI/DialogueProjectUI.lua</File>
     <File>Data/ClaimProjects.sql</File>
     <File>Text/ClaimProjects.sql</File>

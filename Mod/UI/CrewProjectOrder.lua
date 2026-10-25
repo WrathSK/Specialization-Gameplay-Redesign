@@ -127,6 +127,11 @@ for _,e in ipairs({capitalSelection,developmentSelection,commerceSelection,crewS
 end
 for _,e in ipairs({projectSelection,claimSelection,dialogueSelection})do adapters.Hook(Events,'GameCoreEventPublishComplete',e,'Pulse')end
 for _,e in ipairs({dialogueSelection,claimSelection})do adapters.Hook(Events,'LoadScreenClose',e,'WarmStart')end
+-- Exact native city production signals permit one pending-intent read. Publish
+-- drains those causes; unreadable queues wait for a new related signal.
+for _,name in ipairs({'CityProductionChanged','CityProductionQueueChanged','CityProductionUpdated'})do
+ for _,e in ipairs({claimSelection,dialogueSelection,engineeringSelection})do adapters.Hook(Events,name,e,'QueueEvent')end
+end
 adapters.Hook(LuaEvents,'SPC_TimedProjectDisplayChanged',nil,nil,function(pid,id)
  local c=UI.GetHeadSelectedCity()
  if c and c:GetOwner()==pid and c:GetID()==id and not ContextPtr:IsHidden()then Refresh()end

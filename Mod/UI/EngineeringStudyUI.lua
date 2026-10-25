@@ -1,3 +1,4 @@
+include('TimedProjectSelectionClient')
 -- Read-only queue bridge and explicit normal-production intent. Existing native
 -- publication events drain pending clicks; no timers, frame callbacks or probes.
 SPCEngineeringStudyUI={PROJECT='PROJECT_SPC_ENGINEERING_STUDY'}
@@ -17,6 +18,7 @@ function M.Text(pid,id)
 end
 function M.New(P,send,notify)
  local a={};local pending,seen={},{};local revision=-1
+ local client=SPCTimedProjectSelectionClient.New(P,pending);a.QueueEvent=client.QueueEvent;a.Close=client.Close
  ExposedMembers.SPC_EngineeringStudyRead=function(pid,id)
   assert(pid==Game.GetLocalPlayer() and P.IsTestPlayer(pid),'EST_UI_OWNER')
   local c=assert(Players[pid]:GetCities():FindID(id),'EST_UI_CITY')
@@ -27,18 +29,18 @@ function M.New(P,send,notify)
   local k=c and (c:GetOwner()..':'..c:GetID())
   if not item or item.Type~=M.PROJECT then if k then pending[k]=nil end;return true end
   if not c or queued or not P.IsTestPlayer(c:GetOwner())then return false end
-  pending[k]={pid=c:GetOwner(),id=c:GetID(),turn=Game.GetCurrentGameTurn()};return true
+  pending[k]={pid=c:GetOwner(),id=c:GetID(),turn=Game.GetCurrentGameTurn(),read=true};return true
  end
- function a.Publish()
+ local function drain()
   local d=(ExposedMembers.SPC_P0 or {}).EngineeringStudy;if not d then return end
   for k,p in pairs(pending)do
    if p.turn~=Game.GetCurrentGameTurn()then pending[k]=nil
-   else
-    local ok,q=pcall(ExposedMembers.SPC_EngineeringStudyRead,p.pid,p.id)
-    if ok and q.project==M.PROJECT and q.size==1 then
+   elseif p.read then
+    local ok,q,current=client.Read(k,p,function()return ExposedMembers.SPC_EngineeringStudyRead(p.pid,p.id)end)
+    if current and ok and q.project==M.PROJECT and q.size==1 then
      pending[k]=nil -- latch before native re-entry; no ambiguous resend
      pcall(send,p.pid,PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='ENGINEERING_STUDY_BEGIN',CityID=p.id,StartTurn=p.turn,Token='EST:'..k..':'..p.turn})
-    elseif ok and q.project==M.PROJECT and q.size>1 then pending[k]=nil;notify(p.pid,p.id)end
+    elseif current and ok and q.project==M.PROJECT and type(q.size)=='number' and q.size>1 then pending[k]=nil;notify(p.pid,p.id)end
    end
   end
   if revision==d.revision then return end;revision=d.revision
@@ -48,5 +50,6 @@ function M.New(P,send,notify)
    if seen[k]~=sig then seen[k]=sig;local pid,id=k:match('^(%d+):(%d+)$');if pid then notify(tonumber(pid),tonumber(id))end end
   end
  end
+ a.Publish=client.Bind(drain)
  return a
 end

@@ -1,3 +1,4 @@
+include('TimedProjectSelectionClient')
 -- Normal production intent/read model. Gameplay owns timers, quota and history.
 include('GreatWorkFacts')
 SPCDialogueProjectUI={}
@@ -18,6 +19,7 @@ function M.Text(pid,id)
 end
 function M.New(P,send,notify)
  local api={};local pending,synced,seen,retry={},{},{},{};local warmed=false;local pulse=0;local revision=-1
+ local client=SPCTimedProjectSelectionClient.New(P,pending);api.QueueEvent=client.QueueEvent;api.Close=client.Close
  local collect=SPCGreatWorkFacts.Collector(P);local catalog
  local function era()
   local row=assert(P.Info('Eras',Game.GetEras():GetCurrentEra()),'游戏时代不可读')
@@ -64,9 +66,9 @@ function M.New(P,send,notify)
   local k=c and (c:GetOwner()..':'..c:GetID())
   if not item or item.Type~=M.PROJECT then if k then pending[k]=nil end;return true end
   if not c or not P.IsTestPlayer(c:GetOwner()) or queued or pending[k]then return false end
-  pending[k]={pid=c:GetOwner(),id=c:GetID(),turn=Game.GetCurrentGameTurn()};return true
+  pending[k]={pid=c:GetOwner(),id=c:GetID(),turn=Game.GetCurrentGameTurn(),read=true};return true
  end
- function api.Pulse()
+ local function drain()
   pulse=pulse+1;api.WarmStart()
   for k,s in pairs(retry)do
    local c=Players[s.pid] and Players[s.pid]:GetCities():FindID(s.id)
@@ -77,13 +79,13 @@ function M.New(P,send,notify)
    local v=b.views[k]
    if v and v.stage=='ACTIVE' and v.start==p.turn then pending[k]=nil
    elseif p.turn~=Game.GetCurrentGameTurn() or (p.sent and v and v.stage=='HELD')then pending[k]=nil;notify(p.pid,p.id)
-   elseif not p.sent then
-    local ok,q=pcall(queue,p.pid,p.id)
-    if ok and q.project==M.PROJECT and q.size==1 then
+   elseif not p.sent and p.read then
+    local ok,q,current=client.Read(k,p,function()return queue(p.pid,p.id)end)
+    if current and ok and q.project==M.PROJECT and q.size==1 then
      p.sent=true
      local sent=pcall(send,p.pid,PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='DIALOGUE_PROJECT_BEGIN',CityID=p.id,StartTurn=p.turn,Token='DIALOGUE:'..k..':'..p.turn})
      if not sent then pending[k]=nil end
-    elseif ok and q.project==M.PROJECT and type(q.size)=='number' and q.size>1 then pending[k]=nil;notify(p.pid,p.id)end
+    elseif current and ok and q.project==M.PROJECT and type(q.size)=='number' and q.size>1 then pending[k]=nil;notify(p.pid,p.id)end
    end
   end
   if revision~=b.revision then
@@ -95,5 +97,6 @@ function M.New(P,send,notify)
   end
   end
  end
+ api.Pulse=client.Bind(drain)
  return api
 end

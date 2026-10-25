@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0776
-Implementation Build: B324.351 / modinfo351; stable/live B307.334
+Status Revision: S0777
+Implementation Build: B325.352 / modinfo352; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S7D1_COMPLETE_CONTINUING
+Work State: REFACTOR_S7D2_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S7d1 adds a pure queue classifier and stateless TimedProjects observation helper to Claim/Dialogue/Engineering. Known other targets remain a mismatch; nil/empty target needs an exact zero queue count to prove EMPTY. Inconsistent/missing reads remain UNKNOWN and cannot cancel or complete. Each owner retains its eligibility, cancellation, completion, Store and irreversible-call policy. Existing UI/turn retry retirement follows in S7d2. [Result](Validation/Results/Specialization_B324_Refactor_S7d1.md). Stable/live/main B307.334; no deployment/native PASS.
+S7d2 shares an explicit intent-read gate among Claim/Dialogue/Engineering UIs. A selection or matching native city production signal permits one read; UNKNOWN/OTHER cannot rearm it. New facts or changed intent invalidate in-flight results; drain/send/close reentry cannot repeat BEGIN. Cached display/ACK checks remain. Existing SYNC pulse retries are explicitly pending S7d3, so this is not full D4 closure or a deployable transition. [Result](Validation/Results/Specialization_B325_Refactor_S7d2.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S7d event-driven recovery/UI selection and full-turn mechanics, then unique Crew completion/consume and S7e–S10.
+- Primary next: Continue S7d event-driven availability/SYNC and full-turn mechanics, then unique Crew completion/consume and S7e–S10.
+
+## S0777 — B325.352 Drain project UI queue reads only for explicit related causes
+
+S7d2 shares an explicit intent-read gate among Claim/Dialogue/Engineering UIs. A selection or matching native city production signal permits one read; UNKNOWN/OTHER cannot rearm it. New facts or changed intent invalidate in-flight results; drain/send/close reentry cannot repeat BEGIN. Cached display/ACK checks remain. Existing SYNC pulse retries are explicitly pending S7d3, so this is not full D4 closure or a deployable transition.
 
 ## S0776 — B324.351 Distinguish confirmed production targets from unknown queue reads
 
