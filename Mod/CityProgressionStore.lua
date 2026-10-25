@@ -30,7 +30,8 @@ local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
  local isolated={} -- session-only observations; original ability bytes remain in root
- local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering','capital','development','claimTimer'} -- fixed reviewed owner scope
+ local partialReputation -- plain bounded observation, never a copy of the saved history
+ local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering','capital','development','claimTimer','commerce'} -- fixed reviewed owner scope
  local isolationFields={};for _,key in ipairs(isolationKeys)do isolationFields[key]=SPCStoreSubrecords.Fields(key)end
  -- Session-only, two bounded scalar summaries; never history or age authority.
  local timing={}
@@ -74,6 +75,19 @@ local function CreateProgressionRecord(P,shared,storage)
   if type(a)~=type(b) then return false end;if type(a)~='table' then return a==b end
   for k,v in pairs(a) do if not same(v,b[k]) then return false end end
   for k in pairs(b) do if a[k]==nil then return false end end;return true
+ end
+ -- Configuration projections never replace the storage old value or saved reputation.
+ local function commerceProjection(r)
+  if not partialReputation then return r.commerce end -- existing outer copy/comparison policy
+  local value={};for key,v in pairs(r.commerce)do if key~='reputation'then value[key]=v end end
+  return cp(value) -- do not copy an unusable archive into a disposable read projection
+ end
+ local function commerceMerge(value,r)
+  if not partialReputation then return value end
+  local out=cp(value);out.reputation=cp(r.commerce.reputation);return out
+ end
+ local function commerceTransition(r,method,...)
+  return commerceMerge(SPCCommerceModel[method](commerceProjection(r),...),r)
  end
  local function ref(c)return {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}end
  local function validTransition(proof,loss,current)
@@ -210,7 +224,7 @@ local function CreateProgressionRecord(P,shared,storage)
  function d.Investment(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local _,i=R.Current(r);return projected(r,i,true)end
  local function save(nextValue,observeFailure)
   assert(not fault,'STORE_WRITE_HELD')
-  if next(isolated)then
+  if next(isolated)or partialReputation then
    -- Normalize before comparison: metatable fallback cannot forge preservation.
    local checked=cp(nextValue)
    for _,key in ipairs(isolationKeys)do if isolated[key]then
@@ -219,6 +233,11 @@ local function CreateProgressionRecord(P,shared,storage)
      checked[field]=nil
     end
    end end
+   if partialReputation then
+    assert(not isolated.commerce and type(checked.commerce)=='table','COMMERCE_PARTIAL_SCOPE_CHANGED')
+    assert(same(checked.commerce.reputation,root.commerce.reputation)and same(checked.commerceKnown,root.commerceKnown),'ISOLATED_REPUTATION_CANNOT_CHANGE')
+    checked.commerce.reputation=nil;checked.commerceKnown=true -- validation projection only; never saved
+   end
    validate(checked) -- complete base and all remaining abilities remain strict
   else validate(nextValue)end
   local previous=root;local nextRoot=cp(nextValue)
@@ -286,7 +305,7 @@ local function CreateProgressionRecord(P,shared,storage)
   local times=cp(r.institutionTurns or {});times[1]=r.base.first and r.base.first.turn
   -- These existing first-P4 receipts prove a historical time; never use load time.
   if times[4]==nil and not isolated.researchTradition and r.researchTradition then times[4]=r.researchTradition.start end
-  if times[4]==nil and r.commerce and r.commerce.reputation then times[4]=r.commerce.reputation.start end
+  if times[4]==nil and not isolated.commerce and not partialReputation and r.commerce and r.commerce.reputation then times[4]=r.commerce.reputation.start end
   return times
  end
  function d.VisitCapital(pid,fn)
@@ -314,21 +333,25 @@ local function CreateProgressionRecord(P,shared,storage)
  -- Reputation is written only by proven P4 admission/turn/ownership transitions.
  function d.CommerceState(pid,c)
   assert(not committing,'COMMERCE_COMMIT_IN_PROGRESS')
-  local r=active(pid,c)
-  return cp({value=r.commerce,token=r.base.token,reference=r.current or r.origin})
+  local r=active(pid,c);assert(not isolated.commerce,'COMMERCE_HISTORY_ISOLATED')
+  return cp({value=commerceProjection(r),token=r.base.token,reference=r.current or r.origin,reputationKnown=not partialReputation})
  end
  function d.WriteCommerce(pid,c,old,value)
   assert(not committing,'COMMERCE_COMMIT_IN_PROGRESS')
-  local r=active(pid,c);assert(same(r.commerce,old),'COMMERCE_HISTORY_STALE')
+  local r=active(pid,c);assert(not isolated.commerce,'COMMERCE_HISTORY_ISOLATED')
+  if partialReputation then old=cp(old);value=cp(value)end
+  assert(same(commerceProjection(r),old),'COMMERCE_HISTORY_STALE')
   assert(value~=nil,'COMMERCE_HISTORY_CANNOT_DELETE');SPCCommerceModel.Validate(value,r)
-  assert(R.Current(r).specialization=='COMMERCE' and value.owner==pid,'COMMERCE_IDENTITY_CHANGED')
-  assert(same(old and old.reputation,value.reputation),'COMMERCE_REPUTATION_STORE_OWNED')
+  assert(R.Current(r).specialization=='COMMERCE'and value.owner==pid,'COMMERCE_IDENTITY_CHANGED')
+  if partialReputation then assert(value.reputation==nil,'COMMERCE_REPUTATION_ISOLATED')
+  else assert(same(old and old.reputation,value.reputation),'COMMERCE_REPUTATION_STORE_OWNED')end
   if same(old,value)then return end
-  local n=cp(r);n.commerceKnown=true;n.commerce=cp(value);n.revision=n.revision+1;save(n)
+  local n=cp(r);if not partialReputation then n.commerceKnown=true end
+  n.commerce=cp(commerceMerge(value,r));n.revision=n.revision+1;save(n)
   publishFact(shared,c,'COMMERCE_COMMITTED',n,nil,'COMMERCE')
  end
  function d.TickCommerce(pid,turn)
-  if not ready or fault or not root or root.origin.owner~=pid or not root.commerce or root.stage~='ACTIVE' then return end
+  if not ready or fault or not root or root.origin.owner~=pid or not root.commerce or isolated.commerce or partialReputation or root.stage~='ACTIVE' then return end
   if not SPCCommerceModel.IsStandardSpeed()then return end
   local t=root.commerce.reputation
   if R.Current(root).specialization=='COMMERCE' and (not t or t.state=='DORMANT_OWNER' or t.state=='COUNTING'and t.age==40)then return end
@@ -465,7 +488,7 @@ local function CreateProgressionRecord(P,shared,storage)
     if base.specialization=='RESEARCH' and not isolated.researchTradition and not r.researchTradition then
      n.researchTradition=SPCResearchTradition.Begin(turn,op.receipt);n.researchTradition.qualification=q
     end
-    if base.specialization=='COMMERCE' and SPCCommerceModel.IsStandardSpeed() and not (r.commerce and r.commerce.reputation) then
+    if base.specialization=='COMMERCE' and not isolated.commerce and not partialReputation and SPCCommerceModel.IsStandardSpeed() and not (r.commerce and r.commerce.reputation) then
      n.commerceKnown=true;n.commerce=SPCCommerceModel.BeginReputation(r.commerce or SPCCommerceModel.New(pid),turn,op.receipt)
      n.commerce.reputation.qualification=q
     end
@@ -489,8 +512,8 @@ local function CreateProgressionRecord(P,shared,storage)
  -- ledger initialization, native scans or writes, including UNKNOWN templates.
  function d.InstitutionSummary(pid,c)
   assert(not committing,'PRESENTATION_COMMIT_IN_PROGRESS');local r=active(pid,c)
-  local t=not isolated.researchTradition and r.researchTradition;local rep=r.commerce and r.commerce.reputation
-  local out={known=true,traditionKnown=not isolated.researchTradition,token=r.base.token,reference=cp(r.current or r.origin),revision=r.revision,
+  local t=not isolated.researchTradition and r.researchTradition;local rep=not isolated.commerce and not partialReputation and r.commerce and r.commerce.reputation
+  local out={known=true,reputationKnown=not isolated.commerce and not partialReputation,traditionKnown=not isolated.researchTradition,token=r.base.token,reference=cp(r.current or r.origin),revision=r.revision,
    tradition=t and {age=t.age,state=t.state,cursor=t.cursor} or false,
    reputation=rep and {age=rep.age,state=rep.state} or false,
    dialogueKnown=not isolated.dialogue,engineeringKnown=not isolated.engineering,
@@ -498,6 +521,7 @@ local function CreateProgressionRecord(P,shared,storage)
   if out.dialogueKnown then out.dialogue=r.dialogue and r.dialogue.total or 0 end
   if out.engineeringKnown then out.engineering=r.engineering and r.engineering.L or 0 end
   if not out.traditionKnown then out.tradition=nil end
+  if not out.reputationKnown then out.reputation=nil end
   if out.insightsKnown then
    out.insights=0;for _ in pairs(r.expeditionInsights and r.expeditionInsights.records or {})do out.insights=out.insights+1 end
   end
@@ -528,7 +552,9 @@ local function CreateProgressionRecord(P,shared,storage)
   local f=shared.EffectiveFacts.Read(pid,c);local n=cp(r);local turn=Game.GetCurrentGameTurn()
   n.restructuring=R.Begin(r,f,team,receipt,turn)
   if not isolated.researchTradition and n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,turn,'NONE')end
-  if n.commerce then n.commerce=SPCCommerceModel.Exit(n.commerce);n.commerceKnown=true end
+  if not isolated.commerce and n.commerce then
+   n.commerce=commerceTransition(n,'Exit');if not partialReputation then n.commerceKnown=true end
+  end
   if not isolated.capital and n.capital then n.capital=SPCCapitalInvestmentModel.Encode(SPCCapitalInvestmentModel.ResetProtection(SPCCapitalInvestmentModel.Decode(n.capital)))end
   if not isolated.dialogue and n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'专业重组取消未完成对话；历史保留')end
   if not isolated.engineering and n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_IDENTITY_EXIT')end
@@ -829,18 +855,26 @@ local function CreateProgressionRecord(P,shared,storage)
      -- First construct redundant known markers without publishing them. Only
      -- independently valid owners may commit those markers after the full proof.
      local candidate,changes=SPCStoreSubrecords.KnownCandidate(root,cp)
-     local checked=cp(candidate or root);local failures={}
+     local checked=cp(candidate or root);local failures={};local reputationFailure
      for _,key in ipairs(isolationKeys)do
       local check=SPCStoreSubrecords.CheckOne(key,checked,same)
       if check.status=='CHECK_FAILED'then
-       for _,field in ipairs(isolationFields[key])do checked[field]=nil end
-       failures[key]={state='ISOLATED',status=check.status,reason=check.reason}
+       local configuration=key=='commerce'and pcall(SPCCommerceModel.ValidateConfiguration,checked.commerce,checked)
+       local repOK,repWhy=true
+       if configuration then repOK,repWhy=pcall(SPCCommerceModel.ValidateReputation,checked.commerce.reputation,checked)end
+       if configuration and not repOK then
+        reputationFailure={state='ISOLATED',status='CHECK_FAILED',reason=errorText(repWhy,'COMMERCE_REPUTATION_UNKNOWN'):sub(1,180)}
+        checked.commerce.reputation=nil;checked.commerceKnown=true -- no mutation of root/candidate
+       else
+        for _,field in ipairs(isolationFields[key])do checked[field]=nil end
+        failures[key]={state='ISOLATED',status=check.status,reason=check.reason}
+       end
       end
      end
      local parentOK=pcall(validate,checked);assert(parentOK,why)
-     isolated=failures -- CHECK_FAILED observes unavailability, never irrecoverability.
+     isolated=failures;partialReputation=reputationFailure -- observations, never irrecoverability.
      local repaired,fields
-     for _,change in ipairs(changes or {})do if not isolated[change.key]then
+     for _,change in ipairs(changes or {})do if not isolated[change.key]and not(change.key=='commerce'and partialReputation)then
       repaired=repaired or cp(root);fields=fields or {}
       repaired[change.field]=true;fields[#fields+1]=change
      end end
@@ -858,7 +892,7 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  function d.Ready()return ready and not fault end
  function d.Status()return cp(d and {exitStatus=d.exitStatus,exitErrors=d.exitErrors,observation=d.observation,
-  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,returnErrors=d.returnErrors,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery,subrecordIsolation=isolated})end
+  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,returnErrors=d.returnErrors,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery,subrecordIsolation=isolated,reputationIsolation=partialReputation})end
  restore() -- before Binding/Journal/Flow/Investment register load callbacks
  -- No absence/failed getter is confirmation. A matched native ownership event is required.
  function d.IsExitTarget(c,loss)
@@ -1070,7 +1104,7 @@ local function CreateProgressionRecord(P,shared,storage)
   end
   -- Reset samples/quotes before making facts available. No callback applies yields.
   runReturns(generation,revision,loss,c,current,registration)
-  if n.commerce then n.commerce=SPCCommerceModel.Resume(n.commerce,newOwner,Game.GetCurrentGameTurn())end
+  if not isolated.commerce and n.commerce then n.commerce=commerceTransition(n,'Resume',newOwner,Game.GetCurrentGameTurn())end
   n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence=proof and 'NATIVE_TRANSITION_V1' or 'CityTransfered+original_binding';n.returnProof=proof;n.referenceInvalidated=nil
   assert(returnCurrent(generation,revision,loss,c,current,registration),'RETURN_CONTEXT_CHANGED')
   n.revision=n.revision+1;save(n)
@@ -1105,7 +1139,7 @@ local function CreateProgressionRecord(P,shared,storage)
      local D=SPCDevelopmentInvestmentModel
      n.development=D.Encode(D.Terminate(D.Decode(n.development),'DEVELOPMENT_OWNER_CHANGED'))
     end
-    if n.commerce then n.commerce=SPCCommerceModel.OwnerChanged(n.commerce,current.owner,Game.GetCurrentGameTurn())end
+    if not isolated.commerce and n.commerce then n.commerce=commerceTransition(n,'OwnerChanged',current.owner,Game.GetCurrentGameTurn())end
     n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
     finished={};attempts={};exitTickets={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
    end

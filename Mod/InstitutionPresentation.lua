@@ -29,7 +29,7 @@ function M.Signature(v)
  local parts={tostring(v.specialization),tostring(v.potential),tostring(v.active),tostring(v.activeStatus),tostring(v.progression)}
  for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do parts[#parts+1]=tostring(v.institutionArchive and v.institutionArchive[kind] or '')end
  local s=v.institutionSummary or {}
- for _,k in ipairs({'known','traditionKnown','dialogueKnown','engineeringKnown','dialogue','engineering','insights','insightsKnown','templatesKnown','buildingTemplates','districtTemplates'})do parts[#parts+1]=tostring(s[k])end
+ for _,k in ipairs({'known','reputationKnown','traditionKnown','dialogueKnown','engineeringKnown','dialogue','engineering','insights','insightsKnown','templatesKnown','buildingTemplates','districtTemplates'})do parts[#parts+1]=tostring(s[k])end
  for _,k in ipairs({'tradition','reputation'})do
   local t=s[k];parts[#parts+1]=tostring(type(t))
   for _,field in ipairs({'age','state','cursor','percent','nextAge'})do parts[#parts+1]=tostring(type(t)=='table' and t[field] or nil)end
@@ -72,8 +72,8 @@ local function metric(entry,v)
   end
   add('TRADITION',value)
  elseif entry.kind=='COMMERCE' and entry.level==4 then
-  local t=available and s.reputation;local value
-  if available and t==false then value=loc('NOT_STARTED')
+  local t=available and s.reputationKnown~=false and s.reputation;local value
+  if available and s.reputationKnown~=false and t==false then value=loc('NOT_STARTED')
   elseif type(t)=='table' then
    value=loc('REPUTATION_VALUE',t.age,t.age/2)
    if t.state~='COUNTING'then value=value..'[NEWLINE]'..loc('ACCUMULATION_PAUSED')end

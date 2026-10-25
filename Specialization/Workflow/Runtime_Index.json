@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "1ad8f7ff5b90b1f28181bb81dc40655844aa2c58a23f838cf5ac82df01c3d58c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B345_Refactor_S8b6.md",
-      "provenance": "B345.372 Isolate Claim timers without widening completion rules; local/static evidence only; no deployment/native PASS."
+      "sha256": "feae12ccbe49a0e4d3faf091c5e44570b91efe33f9f161bf410d059136696306",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
+      "provenance": "B347.374 Isolate unavailable Commerce reputation while preserving base Gold; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -116,9 +116,9 @@
       "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
-      "sha256": "175cdfeb1fa30bd8d367e0bb8ee7e8e605b57638b712cef14ea9a34e2e87b8c6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
-      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "2ce8201cf19b55397a14bc67b367e5571746e2ea4fdd52710c38a59e0fad1b3a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
+      "provenance": "B347.374 Isolate unavailable Commerce reputation while preserving base Gold; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -701,9 +701,9 @@
       "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "12ad798d1d15315c8097a2e96dce728067cc698844e79fd14a0fce43368501d2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B343_Refactor_S8b4.md",
-      "provenance": "B343.370 Isolate project history groups without replaying completion; local/static evidence only; no deployment/native PASS."
+      "sha256": "f3a0a416628100695579faed6fd46251100276023b05935432708851420b32c7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
+      "provenance": "B347.374 Isolate unavailable Commerce reputation while preserving base Gold; local/static evidence only; no deployment/native PASS."
     },
     "Mod/InvestmentAction.lua": {
       "sha256": "c172e8793367032401f886b511bf9c0523e34ded1a1cccfa8921b9c5d60b3cb6",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "921b2de82d86759743fe08f74874d24f7bed202ed2d39890414ba843b6b84920",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B346_Refactor_S8b7a.md",
-      "provenance": "B346.373 Separate Commerce validation observations without changing behavior; local/static evidence only; no deployment/native PASS."
+      "sha256": "95fc200cfbafee55a65f3e25d415f57104ab2bb1040839a429bf8e175ad987e3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
+      "provenance": "B347.374 Isolate unavailable Commerce reputation while preserving base Gold; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "673120145fc55258c5f30b9e0580439e6934c0373a60472f440a5ccc30869ba3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B346_Refactor_S8b7a.md",
-      "provenance": "B346.373 Separate Commerce validation observations without changing behavior; local/static evidence only; no deployment/native PASS."
+      "sha256": "f21e73a7b24d817126593e8770c53a84ebd9e973532c8f2d730911d06c7d9f73",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
+      "provenance": "B347.374 Isolate unavailable Commerce reputation while preserving base Gold; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1226,9 +1226,9 @@
       "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CommercePanel.lua": {
-      "sha256": "4a593323cacd8a9c6f3271ccbc1c57cb68986183eb9021b4f05c3d1d314352eb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
-      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+      "sha256": "249679a0bc361f4ce9fb6d323f68d26d1d2194dd518edcc9bf961457185676e1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
+      "provenance": "B347.374 Isolate unavailable Commerce reputation while preserving base Gold; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CommercePanel.xml": {
       "sha256": "0ed8ca0ccec0289637c39110edec10cf75413c559549ee8e1789a61ec1f28396",

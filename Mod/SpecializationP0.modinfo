@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="373">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="374">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B346.373：商业配置与信誉独立校验入口，完整校验及正常行为保持一致。</Description>
+    <Description>B347.374：商业信誉未知时隔离原记录，保留确认的基础收益及配置。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0799
-Implementation Build: B346.373 / modinfo373; stable/live B307.334
+Status Revision: S0800
+Implementation Build: B347.374 / modinfo374; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8B7A_COMPLETE_CONTINUING
+Work State: REFACTOR_S8B7B_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8b7a extracts existing Commerce configuration and reputation assertions into fixed pure validation entry points. Full Validate invokes both in the original order and returns the same object. All production consumers and Store Commerce failure behavior remain unchanged; no partial reputation projection is wired yet. Exact old-source differential covers24 valid/invalid inputs plus9 operation sequences, preserving results, errors and bytes. Remaining Commerce/template isolation, permanent D7 recovery and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B346_Refactor_S8b7a.md). Stable/live/main B307.334; no deployment/native PASS.
+S8b7b isolates invalid Commerce configuration as one owner, or only reputation when configuration independently validates. Original unavailable history and known marker remain exact across writes, investment, restructuring and loss/return. Actual Store+Commerce proves confirmed Gold16→15 without unknown reputation bonus and configuration off/on0→15; cold PENDING preserves installed16 and prohibits new transactions. UI/summary distinguish unknown from zero. Healthy copy work and saved bytes match B346. No new event,scan,timer,saved field or permanent repair/reset. Templates and permanent D7 recovery remain OPEN,as does D5 native proof. [Result](Validation/Results/Specialization_B347_Refactor_S8b7b.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Wire bounded Commerce/reputation partial-availability with full original-history preservation and actual Gold/lifecycle proof, then templates and S9–S10.
+- Primary next: Finish bounded template-family isolation with strict base and independent IndustryHistory proof, then continue S9–S10; report unresolved permanent D7 proof boundaries.
+
+## S0800 — B347.374 Isolate unavailable Commerce reputation while preserving base Gold
+
+S8b7b isolates invalid Commerce configuration as one owner, or only reputation when configuration independently validates. Original unavailable history and known marker remain exact across writes, investment, restructuring and loss/return. Actual Store+Commerce proves confirmed Gold16→15 without unknown reputation bonus and configuration off/on0→15; cold PENDING preserves installed16 and prohibits new transactions. UI/summary distinguish unknown from zero. Healthy copy work and saved bytes match B346. No new event,scan,timer,saved field or permanent repair/reset. Templates and permanent D7 recovery remain OPEN,as does D5 native proof.
 
 ## S0799 — B346.373 Separate Commerce validation observations without changing behavior
 

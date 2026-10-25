@@ -139,7 +139,7 @@ function M.Start(P,shared)
   local function localInputs(f,workers)
   local v={reference=ref(c),token=f.token,identity=f.specialization,potential=f.potential,
    active=f.active,activeStatus=f.activeStatus,workers=0,selected={},effective={},domains={},totalRaw=0,totalGold=0,
-   stage='INELIGIBLE',reason='COMMERCE_IDENTITY_REQUIRED',canConfigure=false,reputation={age=0,effective=0}}
+   stage='INELIGIBLE',reason='COMMERCE_IDENTITY_REQUIRED',canConfigure=false,reputationKnown=false,reputation={state='UNKNOWN',effective=0}}
   local out={pid=pid,id=id,c=c,v=v,sources={[id]=true}}
   if f.specialization~='COMMERCE'then return out end
   local standard,speedReason=model.IsStandardSpeed()
@@ -148,7 +148,8 @@ function M.Start(P,shared)
   local state=store.CommerceState(pid,c)
   assert(state.token==f.token,'COMMERCE_REFERENCE_CHANGED')
   local value=state.value or model.New(pid);model.Validate(value);assert(value.owner==pid,'COMMERCE_OWNER_CHANGED')
-  v.selected=cp(value.selected);v.reputation=cp(value.reputation or {age=0,state='NOT_ESTABLISHED'});v.reputation.effective=0
+  v.selected=cp(value.selected);v.reputationKnown=state.reputationKnown~=false
+  v.reputation=not v.reputationKnown and {state='UNKNOWN',effective=0}or cp(value.reputation or {age=0,state='NOT_ESTABLISHED'});v.reputation.effective=0
   assert(f.activeStatus=='KNOWN' and integer(f.active) and not f.investmentPending,'COMMERCE_QUALIFICATION_UNKNOWN')
   -- D6: unreadable reputation grants no bonus; independently confirmed Gold remains.
   if f.active==4 and v.reputation.state=='COUNTING'then v.reputation.effective=v.reputation.age end
@@ -318,7 +319,7 @@ function M.Start(P,shared)
       x={pid=pid,id=id,c=c,v={reference=ref(c),token=f and f.token or old and old.token,
        identity=f and f.specialization or old and old.identity,potential=f and f.potential,active=f and f.active,
        activeStatus=f and f.activeStatus,selected=old and cp(old.selected) or {},effective={},domains=old and cp(old.domains) or {},
-       workers=0,reputation=old and cp(old.reputation) or {age=0,effective=0},totalRaw=0,totalGold=0,
+       workers=0,reputationKnown=old and old.reputationKnown or false,reputation=old and cp(old.reputation) or {state='UNKNOWN',effective=0},totalRaw=0,totalGold=0,
        stage='HELD',reason=code(x),canConfigure=false}}
       local reason=x.v.reason
       if reason:match('NETWORK_') or reason=='COMMERCE_QUALIFICATION_UNKNOWN' or reason=='COMMERCE_SOURCE_UNKNOWN' or reason=='COMMERCE_STATE_UNKNOWN' or reason=='COMMERCE_ANCHOR_UNKNOWN' or reason=='COMMERCE_DISTRICT_FACTS_UNKNOWN' then hold(x,old,reason)
@@ -423,7 +424,7 @@ function M.Start(P,shared)
   if not v then return '商业化：等待城市记录。'end
   local rows={'商业化｜'..title(c)..'｜'..(v.stage=='READY' and '已就绪' or v.reason),
    '工作专家 '..v.workers..'｜生效领域 '..#(v.effective or {})..'｜合计 +'..v.totalGold..' 基础金币/回合',
-   '商业信誉 '..tostring(v.reputation and v.reputation.age or 0)..'；当前使用 '..tostring(v.reputation and v.reputation.effective or 0)}
+   v.reputationKnown==false and '商业信誉暂不可确认；不据此新增信誉加成' or '商业信誉 '..tostring(v.reputation and v.reputation.age or 0)..'；当前使用 '..tostring(v.reputation and v.reputation.effective or 0)}
   for _,r in ipairs(v.domains or {})do
    local n=Locale and Locale.Lookup and Locale.Lookup(r.nameKey) or r.id
    local reasons={COMMERCE_LOCAL_DISTRICT_REQUIRED='本城缺少对应区域',COMMERCE_NOT_SELECTED='未开启',
