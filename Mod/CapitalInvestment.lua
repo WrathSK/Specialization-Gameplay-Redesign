@@ -108,6 +108,23 @@ function SPCCapitalInvestment.Start(P,shared)
   sequence=sequence+1;dirty[pid]=dirty[pid] or {}
   if id==nil then dirty[pid].all=sequence else dirty[pid][id]=sequence end
  end
+ -- Treasury events can arrive after an explicit fresh quote. Compare the
+ -- producer's current scalar before invalidating; never clear other causes.
+ local treasuryReading=false
+ local function treasuryChanged(pid)
+  if not P.IsTestPlayer(pid)then return end
+  if treasuryReading then d.Mark(pid);return end
+  treasuryReading=true
+  local readable,balance=pcall(money,pid)
+  treasuryReading=false
+  if not readable then d.Mark(pid);return end
+  local found=false
+  for k,entry in pairs(known)do if entry[1]==pid then
+   found=true;local v=d.views[k]
+   if not v or v.balance~=balance then d.Mark(pid,entry[2])end
+  end end
+  if not found then d.Mark(pid)end
+ end
  local function prepare(pid,c,withQuotes,onlyDomain)
   local r=reference(c);local saved=store.CapitalState(pid,c);local value=saved.value or M.New();M.Validate(value)
   local f=shared.EffectiveFacts.Read(pid,c)
@@ -407,7 +424,7 @@ function SPCCapitalInvestment.Start(P,shared)
   if type(oldOwner)=='number' and P.IsTestPlayer(oldOwner)then d.Reconcile(oldOwner)end
   if type(newOwner)=='number' and newOwner~=oldOwner and P.IsTestPlayer(newOwner)then d.Reconcile(newOwner)end
  end)
- for _,event in ipairs({'TreasuryChanged','PlayerTreasuryChanged','PlayerGoldChanged'})do hook(event,function(pid)d.Mark(pid)end)end
+ for _,event in ipairs({'TreasuryChanged','PlayerTreasuryChanged','PlayerGoldChanged'})do hook(event,treasuryChanged)end
  store.RegisterExit('CapitalInvestment',function(c,loss)
   assert(store.IsExitTarget(c,loss),'CAPITAL_EXIT_UNCONFIRMED')
   store.RemoveOwned(c,loss,{SPCCapitalInvestment.ACCESS});d.Mark(loss.origin.owner)

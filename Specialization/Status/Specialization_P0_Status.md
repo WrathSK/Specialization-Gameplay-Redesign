@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0833
-Implementation Build: B380.407 / modinfo407; stable/live B307.334
+Status Revision: S0834
+Implementation Build: B381.408 / modinfo408; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E7_CONTINUING
+Work State: REFACTOR_S9E8_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e7/R04 corrects the legacy absorbing owner-policy state against existing D0040/D0058 Research rules. A proven existing Store return preserves age/start/receipt/qualification,rebases cursor without lost-time credit,and resumes Research counting;non-Research stays paused. Postcommit existing HISTORY/TRADITION propagation restores the effect at the publish boundary. Native return guards,CAS,D7 isolation and owner admission stay unchanged. Actual20-turn loss/return retains age10 and next full turn reaches11 instead of staying10 forever,without extra return Store writes. R05 cold aggregate,other accepted S9/U4/S10 work remains;no native/deployment PASS. L3 also repairs B376 nil/non-table audit-scope rejection;ordinary full supported-owner audits remain required and tested. [Result](Validation/Results/Specialization_B380_Refactor_S9e7.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e8/R13 fixes the actual delayed Treasury notification -> owner mark -> quote-free refresh chain. Existing Treasury producer callbacks now compare one finite current balance with already indexed views,mark only changed/unavailable balances,and preserve unknown/reentrant/no-index fallback plus every independent cause. Fresh post-confirm quotes and displayed balance survive unchanged late notifications;real balance changes still stale and all original fresh confirmation,receipt,RNG,no-replay and HELD guards remain. Ten new tests include real Store+Capital with a separate actual UI context. Native N12 remains U5;R05,Store/applied-owner/U4/S10 work continues. [Result](Validation/Results/Specialization_B381_Refactor_S9e8.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue R05 cold source retention authority/evidence,R06/R07/R02 isolated Store closure,R19/R13 UI and remaining S9 applied owners;then full U4/S10. No deployment/main/game launch.
+- Primary next: Continue accepted R19 queue display,R05 cold source authority/evidence,R06/R07/R02 Store closure and remaining S9 applied owners,then U4/S10. No deployment/main/game launch.
+
+## S0834 — B381.408 Keep fresh Capital quotes through delayed same-balance Treasury events
+
+S9e8/R13 fixes the actual delayed Treasury notification -> owner mark -> quote-free refresh chain. Existing Treasury producer callbacks now compare one finite current balance with already indexed views,mark only changed/unavailable balances,and preserve unknown/reentrant/no-index fallback plus every independent cause. Fresh post-confirm quotes and displayed balance survive unchanged late notifications;real balance changes still stale and all original fresh confirmation,receipt,RNG,no-replay and HELD guards remain. Ten new tests include real Store+Capital with a separate actual UI context. Native N12 remains U5;R05,Store/applied-owner/U4/S10 work continues.
 
 ## S0833 — B380.407 Resume retained Academic Tradition after confirmed city return
 

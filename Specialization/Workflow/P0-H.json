@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0833",
-    "runtime": "B380.407 / modinfo407",
+    "status": "S0834",
+    "runtime": "B381.408 / modinfo408",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue R05 cold source retention authority/evidence,R06/R07/R02 isolated Store closure,R19/R13 UI and remaining S9 applied owners;then full U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
+  "goal": "Continue accepted R19 queue display,R05 cold source authority/evidence,R06/R07/R02 Store closure and remaining S9 applied owners,then U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -599,6 +599,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
       "kind": "full",
       "reason": "Resume retained Academic Tradition after confirmed city return actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B381_Refactor_S9e8.md",
+      "kind": "full",
+      "reason": "Keep fresh Capital quotes through delayed same-balance Treasury events actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -625,8 +630,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
-    "local": "LOCAL_SIMULATION_PASS_1144",
+    "report": "Specialization/Status/Validation/Results/Specialization_B381_Refactor_S9e8.md",
+    "local": "LOCAL_SIMULATION_PASS_124",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

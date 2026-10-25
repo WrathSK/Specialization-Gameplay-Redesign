@@ -46,9 +46,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CapitalInvestment.lua": {
-      "sha256": "41d928da4e2e223e5363e37b7cc0e8affc7d98e6bc8ec1eb9b63c00cbf2b48ce",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
-      "provenance": "B309.336 Quote Capital only for explicit requests; local/static evidence only; no deployment/native PASS."
+      "sha256": "6cc200501c72fbf3f6d37b598c1c01c9b5657fbd46486eadfa9073ffaff8422c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B381_Refactor_S9e8.md",
+      "provenance": "B381.408 Keep fresh Capital quotes through delayed same-balance Treasury events; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CapitalInvestmentDiagnostics.lua": {
       "sha256": "0ab8a511f180736f2d3d4a129d8fc9a15174e381a4ceaae1da6f78c7720542f9",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "d98a00f03e90d0a21260c893f75a390218bec304e0c1711cd3ab7847ba46d758",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
-      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
+      "sha256": "7278ab8ab3d0da0b88bf72bc1f96f0aa8fb24c4d2a8e7fae006e30fb889bd5db",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B381_Refactor_S9e8.md",
+      "provenance": "B381.408 Keep fresh Capital quotes through delayed same-balance Treasury events; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f79be267027d946b5082deb37eeb549e8bed68f1fce18ce8ef635fce10d8cbdd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
-      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
+      "sha256": "e5e27c6bf348cad42c78a2273fcf4c6f45bbd197141ad65a03e9ff42fc74b1de",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B381_Refactor_S9e8.md",
+      "provenance": "B381.408 Keep fresh Capital quotes through delayed same-balance Treasury events; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

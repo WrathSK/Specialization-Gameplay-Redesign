@@ -1890,6 +1890,13 @@
       "test_refactor_s9e7",
       "test_refactor_s9d1b",
       "test_refactor_s9e3b"
+    ],
+    "S9e8": [
+      "test_refactor_s9e8",
+      "test_refactor_s6e",
+      "test_refactor_s6b",
+      "test_refactor_s6c",
+      "test_refactor_s9a2.ActualUI"
     ]
   },
   "counterexamples": {},
