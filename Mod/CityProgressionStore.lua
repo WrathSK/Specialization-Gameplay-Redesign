@@ -866,10 +866,12 @@ local function CreateProgressionRecord(P,shared,storage)
    root=storage.Read()
    if root then
     local valid,why=pcall(validate,root)
-    if not valid then
+    if not valid or SPCStoreSubrecords.NeedsTemplateMetadata(root)then
      -- First construct redundant known markers without publishing them. Only
      -- independently valid owners may commit those markers after the full proof.
      local candidate,changes=SPCStoreSubrecords.KnownCandidate(root,cp)
+     local templateCandidate,templateFields=SPCStoreSubrecords.TemplateMetadataCandidate(candidate or root,cp)
+     if templateCandidate then candidate=templateCandidate end
      local checked=cp(candidate or root);unassignedTemplates(checked);local failures={};local reputationFailure
      for _,key in ipairs(isolationKeys)do
       local check=SPCStoreSubrecords.CheckOne(key,checked,same)
@@ -888,16 +890,22 @@ local function CreateProgressionRecord(P,shared,storage)
      end
      local parentOK=pcall(validate,checked);assert(parentOK,why)
      isolated=failures;partialReputation=reputationFailure -- observations, never irrecoverability.
-     local repaired,fields
+     local repaired,fields;local templateApplied=false
      for _,change in ipairs(changes or {})do if not isolated[change.key]and not(change.key=='commerce'and partialReputation)then
       repaired=repaired or cp(root);fields=fields or {}
       repaired[change.field]=true;fields[#fields+1]=change
      end end
+     if templateFields and not isolated.templateLifecycle then
+      templateApplied=true
+      repaired=repaired or cp(root);fields=fields or {}
+      repaired.templatesCaptured=templateCandidate.templatesCaptured;repaired.templateLifecycle=cp(templateCandidate.templateLifecycle)
+      for _,field in ipairs(templateFields)do fields[#fields+1]=field end
+     end
      if repaired then
       repaired.revision=root.revision+1
       assert(repaired.revision>root.revision,'SUBRECORD_RECOVERY_REVISION_UNAVAILABLE')
       save(repaired) -- complete remaining-parent validation, exact native CAS/readback
-      d.subrecordRecovery={kind='KNOWN_FLAGS_REBUILT',fields=fields,revision=repaired.revision}
+      d.subrecordRecovery={kind=templateApplied and 'PROVEN_METADATA_REBUILT'or'KNOWN_FLAGS_REBUILT',fields=fields,revision=repaired.revision}
      end
     end
    end

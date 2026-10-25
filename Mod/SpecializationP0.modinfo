@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="376">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="377">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B349.376：生产面板适配器使用固定阶段声明，保留原顺序与失败隔离。</Description>
+    <Description>B350.377：仅从完整已存模板历史重建可证明的冗余元数据。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

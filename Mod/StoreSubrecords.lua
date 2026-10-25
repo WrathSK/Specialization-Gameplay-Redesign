@@ -133,3 +133,39 @@ function S.KnownCandidate(r,copy)
  end end
  return candidate,changes -- never a confirmed value or permanent-fault verdict
 end
+
+-- Redundant template metadata may be rebuilt only from a complete current saved
+-- ledger, never from present buildings, catalogue classification or an exception.
+local function brokenTemplateMetadata(t)
+ return type(t)~='table'or t.version~=1 or t.state~='INITIALIZED'or type(t.reconcilePending)~='boolean'
+  or t.districtsKnown~=nil and t.districtsKnown~=true
+end
+function S.NeedsTemplateMetadata(r)
+ if type(r)~='table'or type(r.templates)~='table'then return false end
+ local t=r.templateLifecycle
+ if type(t)=='table'and t.version~=nil and t.version~=1 then return false end -- unknown explicit version
+ return r.templatesCaptured~=true or brokenTemplateMetadata(t)
+end
+function S.TemplateMetadataCandidate(r,copy)
+ if not S.NeedsTemplateMetadata(r)then return end
+ local ok,candidate,fields=pcall(function()
+  local n=copy(r) -- complete bounded input, including unknown extensions
+  assert(n.base.specialization=='INDUSTRY'or n.restructuring and n.restructuring.established.INDUSTRY,'TEMPLATES_INDUSTRY_PROOF_REQUIRED')
+  local v=n.templates
+  assert(v.knowledgeVersion==1 and type(v.districts)=='table','TEMPLATES_COMPLETE_HISTORY_REQUIRED')
+  SPCCityIdentityRead.ValidateTemplates(v,n.base.token,n.origin.x,n.origin.y)
+  local old=n.templateLifecycle;local changes={}
+  if n.templatesCaptured~=true then
+   changes[#changes+1]={key='templateLifecycle',field='templatesCaptured',previousType=type(n.templatesCaptured),basis='COMPLETE_SAVED_LEDGER'}
+   n.templatesCaptured=true
+  end
+  if brokenTemplateMetadata(old)then
+   local t=type(old)=='table'and copy(old)or {}
+   t.version=1;t.state='INITIALIZED';t.reconcilePending=true;t.districtsKnown=true;n.templateLifecycle=t
+   changes[#changes+1]={key='templateLifecycle',field='templateLifecycle',previousType=type(old),basis='COMPLETE_SAVED_LEDGER',
+    previousState=type(old)=='table'and type(old.state)=='string'and old.state:sub(1,80)or nil}
+  end
+  return n,changes
+ end)
+ if ok then return candidate,fields end -- failure/UNKNOWN is no reconstruction proof
+end

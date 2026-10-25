@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "86b5e8ccadeab0028c9cd639560f61863695f3bfc35c739721031c1bc532a53b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md",
-      "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "a9a1bc5dc11817000e7c7f1ccbbea387449127f527e57b12467218c03a51d9cf",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
+      "provenance": "B350.377 Rebuild only provable template metadata from complete saved history; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "ec4da336e891db43d6275860533760a5ed3c065baa833ce0b0be6ee3319a39c8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B349_Refactor_S9a1.md",
-      "provenance": "B349.376 Declare fixed production-panel adapter phases without changing ordering; local/static evidence only; no deployment/native PASS."
+      "sha256": "d85b497cf9906aea4e51a38bbc381a141425a1d5772f62e892c2d5d2995aff09",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
+      "provenance": "B350.377 Rebuild only provable template metadata from complete saved history; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "0620a2b00d3853ca635c544c1e81e7ba15623b618d18d4dae4ef3e581587ed45",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B349_Refactor_S9a1.md",
-      "provenance": "B349.376 Declare fixed production-panel adapter phases without changing ordering; local/static evidence only; no deployment/native PASS."
+      "sha256": "9dec26dd4f53b2163b015f615c24f1d2de66af69f925a638680e50f46c25f784",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
+      "provenance": "B350.377 Rebuild only provable template metadata from complete saved history; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1651,9 +1651,9 @@
       "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     },
     "Mod/StoreSubrecords.lua": {
-      "sha256": "2b5fcbd6c8c77c150683c624acf4e6dca19c3af33991f823aadd30f11f6407ea",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md",
-      "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "9f3ae77c3b49e3c5ea478db2ff9efb30e5541e4ad7e620839d1105ce75296d93",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
+      "provenance": "B350.377 Rebuild only provable template metadata from complete saved history; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LegacyCleanupCatalog.lua": {
       "sha256": "92320e3f9af46a296e15897000e6dfee6f615603125c3c4fd659405f1d41e373",

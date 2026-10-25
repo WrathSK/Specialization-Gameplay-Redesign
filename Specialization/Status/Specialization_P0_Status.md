@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0802
-Implementation Build: B349.376 / modinfo376; stable/live B307.334
+Status Revision: S0803
+Implementation Build: B350.377 / modinfo377; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9A1_COMPLETE_CONTINUING
+Work State: REFACTOR_S8B9_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9a1 declares fixed production-panel Render/Before/Publish/Pulse/Warm/Queue/Connect ranks beside each existing adapter registration. Different phase orders,ObserveTraining and queued-overflow barriers,one native listener per adapter,Connect-last timing,native arguments/returns and failure isolation match exact B348 traces. No owner revision or business rule changes yet. D7 permanent recovery proof remains scoped OPEN; proceed with deterministic recovery opportunities and S9 owner revisions/target-channel/display work before S10. [Result](Validation/Results/Specialization_B349_Refactor_S9a1.md). Stable/live/main B307.334; no deployment/native PASS.
+S8b9 reconstructs redundant captured/lifecycle metadata only from complete validated typed saved template history and strict Industry/base proof. Ledger,learned/district receipts and extensions remain exact; valid lifecycle is untouched for capture-only repair. Unknown versions,old ambiguous/building-only/missing or invalid history,and temporary validator errors supply no proof. Known repairs coalesce in one Store restore CAS; normal pending reconciliation is counted separately. No permanent history reset or replay. Remaining terminal Claim proof and nonreconstructible D7/native D5 boundaries stay explicit; continue authorized S9–S10. [Result](Validation/Results/Specialization_B350_Refactor_S8b9.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Implement only provable remaining template metadata/terminal Claim recovery,then S9 owner-specific UI revisions and Gameplay-owned target/request/display boundaries; retain unprovable D7/native D5 items explicitly.
+- Primary next: Assess strict already-completed Claim terminal cleanup,then S9 owner-specific UI revisions and Gameplay-owned target/request/display boundaries; retain unsupported permanent D7/native D5 items explicitly.
+
+## S0803 — B350.377 Rebuild only provable template metadata from complete saved history
+
+S8b9 reconstructs redundant captured/lifecycle metadata only from complete validated typed saved template history and strict Industry/base proof. Ledger,learned/district receipts and extensions remain exact; valid lifecycle is untouched for capture-only repair. Unknown versions,old ambiguous/building-only/missing or invalid history,and temporary validator errors supply no proof. Known repairs coalesce in one Store restore CAS; normal pending reconciliation is counted separately. No permanent history reset or replay. Remaining terminal Claim proof and nonreconstructible D7/native D5 boundaries stay explicit; continue authorized S9–S10.
 
 ## S0802 — B349.376 Declare fixed production-panel adapter phases without changing ordering
 
