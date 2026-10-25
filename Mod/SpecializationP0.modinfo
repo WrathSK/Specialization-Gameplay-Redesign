@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="385">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="386">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B358.385：单位准备与确认回执独立于DEV，保留销毁后的结果与单次等待。</Description>
+    <Description>B359.386：单位视图固定投影与独立有界发布，保留原读取副作用；UI迁移待后片。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

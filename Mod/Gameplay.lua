@@ -549,7 +549,18 @@ local function request(playerID,params)
   end
   if params.Action=="UNIT_ACTION_VIEW" then
     if P.IsTestPlayer(playerID) and type(params.UnitID)=="number" and shared.UnitActions then
-      shared.UnitActions.ReadView(playerID,params.UnitID,params.Token)
+      local service=shared.PlayerActionReplies;local replies
+      if params.ReplyChannel~=nil then
+        replies=service and service.Views
+        if not replies or not replies.Accepts(playerID,params)then return end
+      end
+      local view=shared.UnitActions.ReadView(playerID,params.UnitID,params.Token)
+      if replies then
+        local ok,accepted=false,false
+        if shared.PlayerActionReplies==service and service.Views==replies then ok,accepted=pcall(replies.PublishView,playerID,params,view)end
+        shared.ObserverErrors=shared.ObserverErrors or {}
+        shared.ObserverErrors['unit-view-reply']=not(ok and accepted==true)and 'PLAYER_VIEW_REPLY_UNAVAILABLE'or nil
+      end
     end
     return
   end

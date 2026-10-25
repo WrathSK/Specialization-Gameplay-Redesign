@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0811",
-    "runtime": "B358.385 / modinfo385",
+    "status": "S0812",
+    "runtime": "B359.386 / modinfo386",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S9 view/target/presentation token channels,owner-bound training signals,applied display and adjacency,then S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
+  "goal": "Migrate UnitPanel VIEW consumer to the fixed port,then targets/presentation channels,owner-bound training signals,applied display,adjacency and S10; preserve exact D7/native D5 limitations. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -489,6 +489,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B358_Refactor_S9c3.md",
       "kind": "full",
       "reason": "Consume player action replies independently of DEV in UnitPanel actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B359_Refactor_S9c4a.md",
+      "kind": "full",
+      "reason": "Publish fixed unit views in an independent bounded reply port actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -515,8 +520,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B358_Refactor_S9c3.md",
-    "local": "LOCAL_SIMULATION_PASS: 873 tests; Lua51/XML/package/reference checks passed",
+    "report": "Specialization/Status/Validation/Results/Specialization_B359_Refactor_S9c4a.md",
+    "local": "LOCAL_SIMULATION_PASS: 884 tests; Lua51/XML/package/reference checks passed",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

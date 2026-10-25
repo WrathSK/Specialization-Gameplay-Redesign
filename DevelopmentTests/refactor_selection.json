@@ -1739,6 +1739,9 @@
     ],
     "S9c3": [
       "test_refactor_s9c3"
+    ],
+    "S9c4a": [
+      "test_refactor_s9c4a"
     ]
   },
   "counterexamples": {},
@@ -1795,7 +1798,8 @@
       "test_refactor_s5d3",
       "test_refactor_s5d4b1",
       "test_refactor_s5d4b2",
-      "test_refactor_s9c2"
+      "test_refactor_s9c2",
+      "test_refactor_s9c4a"
     ],
     "Mod/UI/CrewProjectOrder.lua": [
       "test_refactor_defects.Defects"
@@ -2162,7 +2166,8 @@
     ],
     "Mod/PlayerActionReplies.lua": [
       "test_refactor_s9c1",
-      "test_refactor_s9c2"
+      "test_refactor_s9c2",
+      "test_refactor_s9c4a"
     ]
   },
   "exclusions": {
