@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0777",
-    "runtime": "B325.352 / modinfo352",
+    "status": "S0778",
+    "runtime": "B326.353 / modinfo353",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S7D2_COMPLETE_CONTINUING",
-  "next_batch": "Continue S7d event-driven availability/SYNC and full-turn mechanics, then unique Crew completion/consume and S7e–S10. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S7D3A_COMPLETE_CONTINUING",
+  "next_batch": "Continue S7d3b explicit UI readiness connection and remove SYNC pulse retries, then full-turn/Crew extraction and S7e–S10. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "User resumed the accepted S2–S10 program; coherent verified develop batches may commit and push. B307 stable deployment is unchanged; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S0777 S7d2 shares an explicit intent-read gate among Claim/Dialogue/Engineering UIs. A selection or matching native city production signal permits one read; UNKNOWN/OTHER cannot rearm it. New facts or changed intent invalidate in-flight results; drain/send/close reentry cannot repeat BEGIN. Cached display/ACK checks remain. Existing SYNC pulse retries are explicitly pending S7d3, so this is not full D4 closure or a deployable transition. No native/deployment PASS.",
+  "context_review_status": "S0778 S7d3a adds a fixed three-slot reader/backend initialization handshake. Store FRESH/EXISTING, composition seal, current export and successful owner startup are all required; monotonic immutable registration serials prevent old UI resurrection without retaining history. Wake only marks UI work and never reads cities or resends actions. Engineering receives an independent exact-city saved-state Sync with original full-turn/no-replay proof. Default UI connection and old SYNC retry removal remain S7d3b; no intermediate deployment. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B325_Refactor_S7d2.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B326_Refactor_S7d3a.md"
 }

@@ -267,4 +267,5 @@ function SPCDialogueProjects.Start(P,shared)
  end)
  store.RegisterReturn('DialogueProjects',function(pid,c)mark(pid,c:GetID())end)
  function d.IsBusy()return busy or next(settling)~=nil end
+ if shared.TimedProjectReaders then shared.TimedProjectReaders.Attach('DialogueProjects',d)end
 end

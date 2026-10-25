@@ -81,8 +81,11 @@ local function request(playerID,params)
     local ok,out=pcall(shared.MemoryObservation.Read,playerID,params.Action=='MEMORY_BEGIN')
     shared.Snapshot=ok and out or ('内存观测不可用：'..tostring(out));shared.LastToken=params.Token;return
   end
-  if params.Action=='ENGINEERING_STUDY_BEGIN' then
-    if shared.EngineeringStudy then shared.EngineeringStudy.Request(playerID,params)end;return
+  if params.Action=='ENGINEERING_STUDY_BEGIN' or params.Action=='ENGINEERING_STUDY_SYNC' then
+    local d=shared.EngineeringStudy
+    if d and not d.startupError then
+      if params.Action=='ENGINEERING_STUDY_SYNC'then d.Sync(playerID,params.CityID,params.Token)else d.Request(playerID,params)end
+    end;return
   end
   if params.Action=='DIALOGUE_CARRIER_NEXT' and shared.DialogueEffects then
     params.Action='DIALOGUE_PROJECT_READ' -- stale UI cannot re-enable the retired test writer
@@ -880,6 +883,8 @@ shared.OnPermanentCityWrite=nil
 shared.InheritanceIsolation=true
 
 
+composition.Run('TimedProjectReaders',{'CityProgressionStore'},{'TimedProjectReaders'},function()include('TimedProjectReaders');SPCTimedProjectReaders.New(P,shared)end)
+
 composition.Run('ClaimProjects',{'CityProgressionStore'},{'ClaimProjects'},function() include('ClaimProjects');SPCClaimProjects.Start(P,shared) end)
 
 composition.Run('IndustrySupportBind',{'IndustrySupport'},{},function() shared.IndustrySupport.BindPermanentWrites() end)
@@ -938,6 +943,7 @@ composition.Run('FactConsumerBindings',{'FactChanges'},{'FactBindings'},function
 
 -- Composition completion is diagnostic; it does not assert Store/effects readiness.
 local startupFailures=composition.Complete()
+if shared.TimedProjectReaders then pcall(shared.TimedProjectReaders.Seal)end
 pcall(stage,startupFailures==0 and 'INITIALIZED ISOLATED_PROBES USER_GAME_TEST_REQUIRED'
  or ('INITIALIZED_PARTIAL STARTUP_FAILURES='..startupFailures..' USER_GAME_TEST_REQUIRED'))
 if readiness then pcall(readiness.Seal)end

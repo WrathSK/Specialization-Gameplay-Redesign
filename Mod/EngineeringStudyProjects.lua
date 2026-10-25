@@ -8,7 +8,7 @@ SPCEngineeringStudyProjects={}
 function SPCEngineeringStudyProjects.Start(P,shared)
  local M=SPCEngineeringStudyModel;local cp=M.Copy;local store=assert(shared.CityProgressionStore)
  local PROJECT='PROJECT_SPC_ENGINEERING_STUDY';local MARKER='BUILDING_SPC_ENGINEERING_STUDY_ACCESS'
- local d={views={},revision=0};shared.EngineeringStudy=d
+ local d={views={},syncAck={},revision=0};shared.EngineeringStudy=d
  local ready,busy=false,false;local dirty,active,settling,interrupted,finishing,armed={},{},{},{},{},{}
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'ENGINEERING_STUDY')
  local function key(pid,id)return pid..':'..id end
@@ -133,9 +133,10 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   end)
   settling[k]=nil
  end
- local function advance(pid,ending)
+ local advance
+ advance=function(pid,ending,onlyID)
   if not initialize() or busy or not P.IsTestPlayer(pid)then return end
-  for _,v in pairs(cp(active))do if v[1]==pid then safe(pid,v[2],function()
+  for _,v in pairs(cp(active))do if v[1]==pid and (onlyID==nil or v[2]==onlyID)then safe(pid,v[2],function()
    local c=assert(city(pid,v[2]),'EST_CITY_UNKNOWN');local s,known,eligible=read(pid,c);local p=s.value and s.value.pending
    if not p then active[key(pid,v[2])]=nil;return end
    if known and not eligible then cancel(pid,c,s,'EST_QUALIFICATION_LOST');return end
@@ -155,6 +156,12 @@ function SPCEngineeringStudyProjects.Start(P,shared)
     end
    end
   end)end end;d.Flush()
+ end
+ function d.Sync(pid,id,token)
+  if not P.IsTestPlayer(pid)or type(id)~='number'or not city(pid,id)then return end
+  if not initialize()then return end
+  d.Refresh(pid,id);advance(pid,false,id)
+  if type(token)=='string'then d.syncAck[key(pid,id)]=token end
  end
  local function production(pid,id)
   if not ready or not P.IsTestPlayer(pid)then return end
@@ -202,4 +209,5 @@ function SPCEngineeringStudyProjects.Start(P,shared)
  end)
  store.RegisterReturn('EngineeringStudy',function(pid,c)mark(pid,c:GetID())end)
  if shared.FactChanges then shared.FactChanges.RegisterConsumer('EngineeringStudy',function(e)mark(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
+ if shared.TimedProjectReaders then shared.TimedProjectReaders.Attach('EngineeringStudy',d)end
 end

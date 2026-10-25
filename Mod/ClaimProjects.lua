@@ -191,4 +191,5 @@ function SPCClaimProjects.Start(P,shared)
   store.RemoveOwned(c,loss,markers)
   local k=key(loss.origin.owner,loss.origin.cityID);active[k]=nil;dirty[k]=nil;publish(loss.origin.owner,loss.origin.cityID,nil)
  end)
+ if shared.TimedProjectReaders then shared.TimedProjectReaders.Attach('ClaimProjects',d)end
 end

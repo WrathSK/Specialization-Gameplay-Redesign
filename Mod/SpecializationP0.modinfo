@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="352">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="353">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B325.352：项目界面按选择与同城生产事件读取队列，不在未知后逐发布重读。</Description>
+    <Description>B326.353：建立三项目读取器就绪握手基础，研习同步限定单城且不重放。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -210,7 +210,7 @@
       <File>EnvelopeProbe.lua</File>
       <File>FreshBindingHook.lua</File>
       <File>CityFlowProbe.lua</File>
-      <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File><File>TimedProjectModel.lua</File><File>TimedProjects.lua</File>
+      <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File><File>TimedProjectModel.lua</File><File>TimedProjects.lua</File><File>TimedProjectReaders.lua</File>
       <File>IndustrySupport.lua</File>
       <File>UI/IndustryRefresh.lua</File>
       <File>UI/IndustryRefresh.xml</File>
@@ -671,7 +671,7 @@
     <File>EnvelopeProbe.lua</File>
     <File>FreshBindingHook.lua</File>
     <File>CityFlowProbe.lua</File>
-    <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File><File>TimedProjectModel.lua</File><File>TimedProjects.lua</File>
+    <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File><File>TimedProjectModel.lua</File><File>TimedProjects.lua</File><File>TimedProjectReaders.lua</File>
     <File>IndustrySupport.lua</File>
     <File>UI/IndustryRefresh.lua</File>
     <File>UI/IndustryRefresh.xml</File>

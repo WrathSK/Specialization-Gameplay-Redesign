@@ -920,6 +920,26 @@
       "test_refactor_s6e.RetainedGuards",
       "test_refactor_s6f.RetainedDevelopment",
       "test_refactor_s6f.RetainedGuards"
+    ],
+    "S7d3a": [
+      "test_refactor_s7d3a",
+      "test_refactor_s7d2",
+      "test_refactor_s7d1",
+      "test_refactor_s7c",
+      "test_refactor_s5d4c7",
+      "test_refactor_s5d4c10",
+      "test_refactor_s4b.CommerceRetention",
+      "test_refactor_s6f.Composition",
+      "test_refactor_s7b2",
+      "test_refactor_s7b1",
+      "test_refactor_s5a2",
+      "test_refactor_s5b",
+      "test_refactor_s6b.Composition",
+      "test_refactor_s3",
+      "test_refactor_s6e.RetainedReceipts",
+      "test_refactor_s6e.RetainedGuards",
+      "test_refactor_s6f.RetainedDevelopment",
+      "test_refactor_s6f.RetainedGuards"
     ]
   },
   "counterexamples": {},
@@ -1283,6 +1303,9 @@
     ],
     "Mod/UI/TimedProjectSelectionClient.lua": [
       "test_refactor_s7d2"
+    ],
+    "Mod/TimedProjectReaders.lua": [
+      "test_refactor_s7d3a"
     ]
   },
   "exclusions": {
