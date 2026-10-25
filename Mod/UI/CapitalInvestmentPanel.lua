@@ -44,7 +44,7 @@ local function send(action,mode)
  local b,v=backend();if not city()then close();return end
  if action=='CAPITAL_CONFIRM' then
   local row;for _,r in ipairs(v and v.domains or {})do if r.id==current.domain then row=r;break end end
-  if not (v and v.stage=='READY' and v.canSign and row and row.canSign and row.quote and (mode=='STABLE' or mode=='VENTURE'))then render();return end
+  if not (v and not v.quoteStale and v.stage=='READY' and v.canSign and row and row.canSign and row.quote and (mode=='STABLE' or mode=='VENTURE'))then render();return end
  end
  ExposedMembers.SPC_CapitalUISequence=(ExposedMembers.SPC_CapitalUISequence or 0)+1
  local token='CAPITAL:'..P.VERSION..':'..ExposedMembers.SPC_CapitalUISequence
@@ -105,10 +105,10 @@ render=function()
   elseif contract.stage=='TERMINATED' then text=text..'[NEWLINE]'..L('TERMINATED')end
  end
  local message=pending and L('REQUEST_WAIT') or v and v.stage=='HELD' and reason(v.reason,v.failure) or requestError and reason(requestError,requestFailure)
-  or row and not row.canSign and reason(row.reason) or v and not v.canSign and reason(v.reason) or ''
+  or v and v.quoteStale and reason(v.reason or 'CAPITAL_QUOTE_STALE') or row and not row.canSign and reason(row.reason) or v and not v.canSign and reason(v.reason) or ''
  Controls.Current:SetText(text..(message~='' and '[NEWLINE][NEWLINE]'..message or ''))
  Controls.ConfirmCaption:SetText(L(current.mode=='VENTURE' and 'CONFIRM_VENTURE' or 'CONFIRM_STABLE'))
- Controls.Confirm:SetDisabled(not(v and v.stage=='READY' and v.canSign and row and row.canSign and q and current.mode and not pending))
+ Controls.Confirm:SetDisabled(not(v and not v.quoteStale and v.stage=='READY' and v.canSign and row and row.canSign and q and current.mode and not pending))
  Controls.Refresh:SetDisabled(pending~=nil)
  local column=layout();domainRows:ResetInstances();modeRows:ResetInstances()
  for _,d in ipairs(domains)do

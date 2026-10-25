@@ -46,9 +46,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CapitalInvestment.lua": {
-      "sha256": "b1c6c793e4a2207040e8aba2747497f70b90d57b92270ff2403f50f29e912d37",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
-      "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
+      "sha256": "41d928da4e2e223e5363e37b7cc0e8affc7d98e6bc8ec1eb9b63c00cbf2b48ce",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
+      "provenance": "B309.336 Quote Capital only for explicit requests; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CapitalInvestmentDiagnostics.lua": {
       "sha256": "0ab8a511f180736f2d3d4a129d8fc9a15174e381a4ceaae1da6f78c7720542f9",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "1c9af2bebef1f5501a71a17f069203df2f72062cf6786d330d94b184e24f80af",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
-      "provenance": "B308.335 Git forward-port of B307 probe disable; local/static only; no deployment/native PASS."
+      "sha256": "67feebae315ea30b002b4b382d766cae4166a29e29e2064cd20ce7c7b7fb5d5e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
+      "provenance": "B309.336 Quote Capital only for explicit requests; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6f3aa900b7ce02051ea272f54c8da0c1e96ac486aa97320c6e3f131244b5c813",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
-      "provenance": "B308.335 Git forward-port of B307 probe disable; local/static only; no deployment/native PASS."
+      "sha256": "e3b2cc5c2f2a7fe6baef0e5f19e6e866e69d741fff2955309e3aa03f930926d2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
+      "provenance": "B309.336 Quote Capital only for explicit requests; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1176,9 +1176,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CapitalInvestmentPanel.lua": {
-      "sha256": "c723a334365de7d30071f8e67dc119d15b041e5fc587885a26aa183c16b8e5d7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
-      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+      "sha256": "f341dddb6a6c1a4f447df578995703481cb0afab0737bb7007cdbf04e32a57bc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
+      "provenance": "B309.336 Quote Capital only for explicit requests; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CapitalInvestmentPanel.xml": {
       "sha256": "ff0bcf91a2c7725fa69f717f55b1305d97bac389c9617442d311d8e59b1d4dfc",

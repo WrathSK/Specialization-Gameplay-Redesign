@@ -670,6 +670,10 @@
       "test_refactor_s5d4c10",
       "test_refactor_s5d4c11",
       "test_refactor_s3"
+    ],
+    "S6e": [
+      "test_refactor_s6e",
+      "test_refactor_s3"
     ]
   },
   "counterexamples": {},
@@ -892,6 +896,16 @@
     ],
     "Mod/ReverseDependencies.lua": [
       "test_refactor_s6d"
+    ],
+    "Mod/CapitalInvestment.lua": [
+      "test_refactor_s6e.LazyQuotes",
+      "test_refactor_s6e.RetainedCapital",
+      "test_refactor_s6e.RetainedReceipts",
+      "test_refactor_s6e.RetainedGuards"
+    ],
+    "Mod/UI/CapitalInvestmentPanel.lua": [
+      "test_refactor_s6e.UIQuotes",
+      "test_refactor_s6e.RetainedSidebar"
     ]
   },
   "exclusions": {

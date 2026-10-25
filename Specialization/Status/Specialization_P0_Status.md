@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0760
-Implementation Build: B308.335 / modinfo335; stable/live B307.334
+Status Revision: S0761
+Implementation Build: B309.336 / modinfo336; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: MAIN_SYNC_COMPLETE_STOPPED_BY_USER
+Work State: REFACTOR_S6E_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-User-authorized main-to-develop record synchronization completed after the B307 stable deployment. Main deployment evidence is imported through the merge; develop keeps B308.335, D0058/A0182 and all completed S6d source unchanged. Live/stable is B307.334 from PR7. Temporary branch `hotfix/b307-disable-timing-probes` was safely removed locally and remotely after its381e5a4 tip was verified reachable from both main and develop. No deployment, gameplay change or further refactor work in this synchronization; stop afterward. [Main deployment record](Validation/Results/Specialization_B307_Disable_Timing_Probes.md); [develop validation](Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md).
+S6e makes automatic Capital entry/contract refresh quote-free; explicit requests retain full terms and confirmations freshly price only their selected domain before the original money/receipt transaction. Retained display quotes are stale and blocked in UI and Gameplay, with qualification/HELD reasons preserved. Original direct Refresh defaults stay full. Worker migration remains open after new fixture corrections identified the first prototype failures; no shared guard was weakened. [Result](Validation/Results/Specialization_B309_Refactor_S6e.md). Stable/live/main B307.334; no deployment/native PASS.
 
-- User decision: none; synchronization and temporary branch deletion explicitly authorized.
-- User testing: B307 responsiveness comparison remains USER_GAME_TEST_REQUIRED; final U5 is unchanged.
-- Primary next: none; synchronization and branch cleanup are complete. Remaining S6–S10 work is retained for a later continuation.
+- User decision: none.
+- User testing: final U5 unless a specific blocking native fact appears.
+- Primary next: Continue remaining S6 worker consumers, scoped receiver discovery, capital source snapshot and unit/UI/target/network hot paths, then S7–S10.
+
+## S0761 — B309.336 Quote Capital only for explicit requests
+
+S6e makes automatic Capital entry/contract refresh quote-free; explicit requests retain full terms and confirmations freshly price only their selected domain before the original money/receipt transaction. Retained display quotes are stale and blocked in UI and Gameplay, with qualification/HELD reasons preserved. Original direct Refresh defaults stay full. Worker migration remains open after new fixture corrections identified the first prototype failures; no shared guard was weakened.
 
 ## S0760 — Main record synchronization and bounded hotfix cleanup
 

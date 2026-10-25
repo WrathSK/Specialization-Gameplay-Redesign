@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0760",
-    "runtime": "B308.335 / modinfo335",
+    "status": "S0761",
+    "runtime": "B309.336 / modinfo336",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Approved B307 main deployment records synchronized into develop; temporary hotfix branch safely deleted locally/remotely. Current B308/S6d source unchanged. This maintenance batch is complete; stop. Original refactor plan remains authorized for later continuation.",
+  "goal": "Continue remaining S6 worker consumers, scoped receiver discovery, capital source snapshot and unit/UI/target/network hot paths, then S7–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -234,14 +234,19 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
       "kind": "full",
       "reason": "Approved stable B307 deployment imported from main through Git merge; independent develop source remains B308."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
+      "kind": "full",
+      "reason": "Quote Capital only for explicit requests actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
     "User-assigned Primary and U1 acceptance authorize S2–S10 in order; current D0058/A0182 govern changed semantics.",
-    "Current live B271 receipt remains unchanged; no automatic deployment."
+    "Stable/live B307.334 receipt remains unchanged; S2–S10 continue under accepted U1, with no automatic deployment."
   ],
   "old_writers": [
-    "Current B271 runtime unchanged in the U1 documentation commit; each later cutover audits actual writer/observer/exit closures."
+    "Historical U1 began on B271; current stable/live is B307.334 and develop continues independently. Each cutover audits actual writer/observer/exit closures."
   ],
   "conditional_context": [],
   "non_scope": [
@@ -251,7 +256,7 @@
   ],
   "validation": {
     "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
-    "local": "Document/reference/acceptance/hash checks pass; no gameplay simulation in this docs-only batch.",
+    "local": "Each implementation batch selects T01–T08, actual module composition, Lua51/static package checks and scoped workload/correctness regressions. See current result for evidence and limits.",
     "user": "U5 final native integration; earlier minimal test only when a concrete engine fact blocks dependent development. No automatic deployment."
   },
   "full_audit_triggers": [
@@ -260,9 +265,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
-    "local": "LOCAL_SIMULATION_PASS:20 probe/current B271 tests plus109 current S6d regressions.",
+    "report": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
+    "local": "LOCAL_SIMULATION_PASS (92/92, 15 new)",
     "native": "NO_NEW_NATIVE_TEST",
-    "deployment": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json."
+    "deployment": "UNCHANGED_B307_STABLE"
   }
 }

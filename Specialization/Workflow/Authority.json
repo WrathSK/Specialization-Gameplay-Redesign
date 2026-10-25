@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0760",
-    "runtime": "B308.335 / modinfo335",
+    "status": "S0761",
+    "runtime": "B309.336 / modinfo336",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "MAIN_SYNC_COMPLETE_STOPPED_BY_USER",
-  "next_batch": "None: user-authorized main record synchronization and temporary branch cleanup completed. Stop; preserve S6d and remaining S6–S10 for a later continuation.",
+  "current_batch": "REFACTOR_S6E_COMPLETE_CONTINUING",
+  "next_batch": "Continue remaining S6 worker consumers, scoped receiver discovery, capital source snapshot and unit/UI/target/network hot paths, then S7–S10. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -48,8 +48,8 @@
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
-  "deployment_authorization": "B307 main deployment completed under explicit user approval. This handoff authorizes main record synchronization and safe temporary branch deletion only; no new deployment or automatic main promotion.",
-  "context_review_status": "S0760: User-authorized main-to-develop record synchronization completed after the B307 stable deployment. Main deployment evidence is imported through the merge; develop keeps B308.335, D0058/A0182 and all completed S6d source unchanged. Live/stable is B307.334 from PR7. The temporary hotfix tip is already reachable from main; only its local/remote references may be removed after this merge is verified and pushed. No deployment, gameplay change or further refactor work in this synchronization; stop afterward. Cleanup completed: local/remote temporary hotfix references removed after ancestry verification; main/develop and history retained.",
+  "deployment_authorization": "User resumed the accepted S2–S10 program; coherent verified develop batches may commit and push. B307 stable deployment is unchanged; no automatic deployment, main promotion or game launch.",
+  "context_review_status": "S0761 S6e makes automatic Capital entry/contract refresh quote-free; explicit requests retain full terms and confirmations freshly price only their selected domain before the original money/receipt transaction. Retained display quotes are stale and blocked in UI and Gameplay, with qualification/HELD reasons preserved. Original direct Refresh defaults stay full. Worker migration remains open after new fixture corrections identified the first prototype failures; no shared guard was weakened. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md"
 }

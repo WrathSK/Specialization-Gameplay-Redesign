@@ -105,9 +105,10 @@ function SPCCapitalInvestment.Start(P,shared)
  function d.Mark(pid,id)
   if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then d.Mark(owner)end end;return end
   if not P.IsTestPlayer(pid)then return end
-  dirty[pid]=dirty[pid] or {};if id==nil then dirty[pid].all=true else dirty[pid][id]=true end
+  sequence=sequence+1;dirty[pid]=dirty[pid] or {}
+  if id==nil then dirty[pid].all=sequence else dirty[pid][id]=sequence end
  end
- local function prepare(pid,c)
+ local function prepare(pid,c,withQuotes,onlyDomain)
   local r=reference(c);local saved=store.CapitalState(pid,c);local value=saved.value or M.New();M.Validate(value)
   local f=shared.EffectiveFacts.Read(pid,c)
   local v={reference=r,token=r.token,identity=f.specialization,potential=f.potential,canSign=false,stage='READY',contracts={},domains={}}
@@ -127,11 +128,21 @@ function SPCCapitalInvestment.Start(P,shared)
   local standard,why=SPCCommerceModel.IsStandardSpeed();assert(standard,why or 'CAPITAL_STANDARD_SPEED_ONLY')
   local cv=shared.Commerce and shared.Commerce.views[key(pid,c:GetID())]
   assert(cv and cv.token==r.token and cv.stage=='READY' and (not shared.Commerce.TransactionCurrent or shared.Commerce.TransactionCurrent(pid,c:GetID())),'CAPITAL_COMMERCE_PENDING')
+  if withQuotes==false then
+   -- Automatic entry/contract refresh never speculates about sources or prices.
+   v.canSign=false;v.quoteStale=true;v.reason='CAPITAL_QUOTE_STALE'
+   for _,domain in ipairs(M.Domains)do
+    local contract=v.contracts[domain.id]
+    v.domains[#v.domains+1]={id=domain.id,nameKey=domain.nameKey,contract=contract,canSign=false,
+     reason=M.Open(contract)and 'CAPITAL_DOMAIN_OCCUPIED'or 'CAPITAL_QUOTE_STALE'}
+   end
+   return v,{}
+  end
   local dc=shared.DistrictCompleteness.ReadFacts(pid,c,f.token)
   assert(dc.validity=='VERIFIED' and dc.availability=='READY' and dc.value,'CAPITAL_DISTRICT_UNKNOWN')
   local balance=money(pid);v.balance=balance;local currentTurn=Game.GetCurrentGameTurn();local internal={}
   local factCache={}
-  for _,domain in ipairs(M.Domains)do
+  for _,domain in ipairs(M.Domains)do if onlyDomain==nil or onlyDomain==domain.id then
    local row={id=domain.id,nameKey=domain.nameKey,contract=v.contracts[domain.id]}
    local phase='NETWORK_SOURCES'
    local ok,q=pcall(function()
@@ -167,13 +178,14 @@ function SPCCapitalInvestment.Start(P,shared)
     if oldReason~=row.reason then failure(q,pid,c:GetID(),domain.id,phase)end
    end
    v.domains[#v.domains+1]=row
-  end
+  end end
   return v,internal
  end
- function d.Refresh(pid,id)
+ function d.Refresh(pid,id,withQuotes)
   local c=city(pid,id);local k=key(pid,id)
+  local cause=dirty[pid];local allCause=cause and cause.all;local cityCause=cause and cause[id]
   if not c then publish(pid,id,nil);quotes[k]=nil;known[k]=nil;return end
-  local ok,v,internal=pcall(prepare,pid,c)
+  local ok,v,internal=pcall(prepare,pid,c,withQuotes)
   if not ok then
    local readError=v
    local old=d.views[k];v={reference=old and old.reference,token=old and old.token,available=old and old.available or false,
@@ -182,8 +194,23 @@ function SPCCapitalInvestment.Start(P,shared)
    v.failure=old and old.failure or detail
   end
   if v.stage=='HELD' and not v.failure then local old=d.views[k];v.failure=old and cp(old.failure)end
+  if withQuotes==false then
+   local previous=d.views[k]
+   if previous and same(previous.reference,v.reference)then
+    for _,row in ipairs(v.domains or {})do
+     for _,old in ipairs(previous.domains or {})do if row.id==old.id then row.quote=cp(old.quote);break end end
+    end
+   end
+   v.quoteStale=true;v.canSign=false;quotes[k]=nil
+  else
+   quotes[k]=internal
+   -- A fresh quote covers only causes already present before its read. Preserve
+   -- siblings and any reentrant/new mark; discard this receipt with the queue.
+   if ok and cause and dirty[pid]==cause then
+    cause.covered=cause.covered or {};cause.covered[id]={all=allCause,city=cityCause}
+   end
+  end
   publish(pid,id,v);known[k]=v.available and {pid,id} or nil
-  quotes[k]=internal
   local good,why=pcall(function()if ok then marker(c,v.available==true)end end)
   if not good then v.stage='HELD';v.reason=code(why);v.canSign=false;v.failure=failure(why,pid,id,nil,'ACCESS_UPDATE');publish(pid,id,v)end
   return cp(d.views[k])
@@ -268,7 +295,10 @@ function SPCCapitalInvestment.Start(P,shared)
    for k,v in pairs(shared.Commerce and shared.Commerce.views or {})do
     if v.identity=='COMMERCE' and (changes.all or changes[tonumber(k:match(':(%d+)$'))])then ids[tonumber(k:match(':(%d+)$'))]=true end
    end
-   for id in pairs(ids)do d.Refresh(pid,id)end
+   for id in pairs(ids)do
+    local covered=changes.covered and changes.covered[id]
+    if not covered or covered.all~=changes.all or covered.city~=changes[id]then d.Refresh(pid,id,false)end
+   end
   end
  end
  function d.Request(pid,p)
@@ -279,7 +309,7 @@ function SPCCapitalInvestment.Start(P,shared)
    assert(not busy,'CAPITAL_BUSY')
    local c=assert(city(pid,p.CityID),'CAPITAL_CITY_UNKNOWN')
    if p.Action=='CAPITAL_OPEN' or p.Action=='CAPITAL_REFRESH'then
-    local v=d.Refresh(pid,p.CityID);responseView=v
+    local v=d.Refresh(pid,p.CityID,true);responseView=v
     for _,row in ipairs(v and v.domains or {})do if row.quote and (p.Domain==nil or p.Domain==row.id)then
      local q=row.quote
      emit('CAPITAL_QUOTE',{owner=pid,city=p.CityID,contractDomain=row.id,sourceCity=q.sSource and q.sSource.cityID,
@@ -290,10 +320,10 @@ function SPCCapitalInvestment.Start(P,shared)
    assert(p.Action=='CAPITAL_CONFIRM' and (p.Mode=='STABLE' or p.Mode=='VENTURE'),'CAPITAL_REQUEST_INVALID')
    attempt.phase='QUOTE_VALIDATE'
    local k=key(pid,p.CityID);local v=d.views[k]
-   assert(v and v.revision==p.Revision and v.token==p.CityToken,'CAPITAL_QUOTE_STALE')
+   assert(v and not v.quoteStale and v.revision==p.Revision and v.token==p.CityToken,'CAPITAL_QUOTE_STALE')
    local entry=quotes[k] and quotes[k][p.Domain]
    assert(entry and entry.quote and v.canSign,'CAPITAL_QUOTE_UNAVAILABLE')
-   local locked=cp(entry);local current,internal=prepare(pid,c)
+   local locked=cp(entry);local current,internal=prepare(pid,c,true,p.Domain)
    local actual=internal[p.Domain]
    assert(actual and same(actual,locked) and current.canSign,'CAPITAL_QUOTE_STALE')
    assert(not M.Open(locked.old and locked.old.contracts[p.Domain]),'CAPITAL_DOMAIN_OCCUPIED')
@@ -326,7 +356,7 @@ function SPCCapitalInvestment.Start(P,shared)
   local detail
   if not good then detail=failure(why,pid,packet.CityID,packet.Domain,attempt);why=detail.errorCode end
   if packet.Action=='CAPITAL_CONFIRM' and type(packet.CityID)=='number' and P.IsTestPlayer(pid)then
-   local ok,v=pcall(d.Refresh,pid,packet.CityID)
+   local ok,v=pcall(d.Refresh,pid,packet.CityID,true)
    if ok then
     responseView=v
     if v and v.stage=='HELD' and detail then
