@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="379">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="380">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B352.379：三个投资入口按当前城市已发布视图刷新，保留空闲早退。</Description>
+    <Description>B353.380：发展投资目标规则移至Gameplay，UI仅提供原生事实与候选价格。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -90,6 +90,7 @@
       <File>CapitalInvestment.lua</File>
       <File>DevelopmentInvestmentModel.lua</File>
       <File>DevelopmentInvestmentCatalog.lua</File>
+      <File>DevelopmentInvestmentTargets.lua</File>
       <File>DevelopmentInvestment.lua</File>
       <File>UI/DevelopmentInvestmentRead.lua</File>
       <File>UI/DevelopmentInvestmentUI.lua</File>
@@ -506,6 +507,7 @@
       <File>CapitalInvestment.lua</File>
       <File>DevelopmentInvestmentModel.lua</File>
       <File>DevelopmentInvestmentCatalog.lua</File>
+      <File>DevelopmentInvestmentTargets.lua</File>
       <File>DevelopmentInvestment.lua</File>
       <File>UI/DevelopmentInvestmentRead.lua</File>
       <File>UI/DevelopmentInvestmentUI.lua</File>

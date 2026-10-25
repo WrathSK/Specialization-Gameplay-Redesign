@@ -94,7 +94,7 @@ local baseAdvance=AdvanceProject
 capitalSelection=adapters.Add('CapitalInvestmentUI',one('PROJECT_SPC_CAPITAL_INVESTMENT'),{},function()
  include('CapitalInvestmentUI');return SPCCapitalInvestmentUI.New(SPCP0,notify,SPCSafeAdapters.NewViewObserver())
 end,{Render={40,'Items'},Before={10,'Before',true},Publish={10,'Publish'}})
-developmentSelection=adapters.Add('DevelopmentInvestmentUI',one('PROJECT_SPC_DEVELOPMENT_INVESTMENT'),{'SPC_DevelopmentRead'},function()
+developmentSelection=adapters.Add('DevelopmentInvestmentUI',one('PROJECT_SPC_DEVELOPMENT_INVESTMENT'),{'SPC_DevelopmentRead','SPC_DevelopmentPriceRead'},function()
  include('DevelopmentInvestmentUI');return SPCDevelopmentInvestmentUI.New(SPCP0,notify,SPCSafeAdapters.NewViewObserver())
 end,{Render={50,'Items'},Before={20,'Before',true},Publish={20,'Publish'}})
 commerceSelection=adapters.Add('CommerceUI',one('PROJECT_SPC_COMMERCIALIZATION'),{},function()

@@ -1,6 +1,7 @@
 include('SafeCallbacks')
 include('DevelopmentInvestmentModel')
 include('DevelopmentInvestmentCatalog')
+include('DevelopmentInvestmentTargets')
 include('CommerceModel')
 include('ExpeditionTrainingDiagnostics')
 SPCDevelopmentInvestment={ACCESS='BUILDING_SPC_DEVELOPMENT_ACCESS'}
@@ -224,10 +225,24 @@ function SPCDevelopmentInvestment.Start(P,shared)
  end
  local function nativeTarget(pid,c)
   local reader=assert(ExposedMembers.SPC_DevelopmentRead,'DEVELOPMENT_PRICE_READER_UNAVAILABLE')
+  local priceReader=assert(ExposedMembers.SPC_DevelopmentPriceRead,'DEVELOPMENT_PRICE_READER_UNAVAILABLE')
   local out=reader(pid,c:GetID())
-  assert(type(out)=='table' and out.owner==pid and out.cityID==c:GetID() and out.x==c:GetX() and out.y==c:GetY()
-   and out.turn==Game.GetCurrentGameTurn() and type(out.options)=='table' and type(out.existing)=='table','DEVELOPMENT_NATIVE_FACTS_STALE')
-  return out
+  local function current(v,phase)
+   assert(c:GetOwner()==pid and type(v)=='table'and v.protocol==2 and v.phase==phase and type(v.generation)=='number'and v.generation>=1 and v.generation<9007199254740992 and v.generation%1==0 and v.owner==pid and v.cityID==c:GetID()
+    and v.x==c:GetX()and v.y==c:GetY()and v.turn==Game.GetCurrentGameTurn(),'DEVELOPMENT_NATIVE_FACTS_STALE')
+  end
+  current(out,'ELIGIBILITY')
+  local groups,existing,encoded,ids=SPCDevelopmentInvestmentTargets.Candidates(catalog,out)
+  local options={}
+  if #ids>0 then
+   local values=priceReader(pid,c:GetID(),encoded);current(values,'PRICES')
+   assert(values.generation==out.generation and values.request==encoded
+    and values.owner==out.owner and values.cityID==out.cityID and values.x==out.x and values.y==out.y and values.turn==out.turn,'DEVELOPMENT_NATIVE_FACTS_STALE')
+   options=SPCDevelopmentInvestmentTargets.Options(groups,ids,values)
+  end
+  current(out,'ELIGIBILITY')
+  assert(reader==ExposedMembers.SPC_DevelopmentRead and priceReader==ExposedMembers.SPC_DevelopmentPriceRead,'DEVELOPMENT_NATIVE_FACTS_STALE')
+  return {options=options,existing=existing} -- original financial quote shape only
  end
  local function snapshot(pid,c,onlyTarget)
   local v,old=sourceFacts(pid,c);local rows={};local internal={owner=pid,options={}}

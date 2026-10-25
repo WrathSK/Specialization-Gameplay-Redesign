@@ -1721,6 +1721,9 @@
     ],
     "S9a2": [
       "test_refactor_s9a2"
+    ],
+    "S9b1": [
+      "test_refactor_s9b1"
     ]
   },
   "counterexamples": {},
@@ -2122,6 +2125,9 @@
     "Mod/StoreSubrecords.lua": [
       "test_refactor_s8a",
       "test_refactor_s8b1"
+    ],
+    "Mod/DevelopmentInvestmentTargets.lua": [
+      "test_refactor_s9b1"
     ]
   },
   "exclusions": {

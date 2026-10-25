@@ -501,9 +501,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "8af94412156a449d53a985ae2969699265103edac2f6c8e246d269302a21d52b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
-      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
+      "sha256": "aaf5abc88fae2b3c428d9d412d7c333b55f1ef1f561bcce723e07a3a6679f7a8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
+      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "4f4df0ed1eee502d9ee19ad8e053c6070b9f17d74b0e33eaba26f33ab13e256a",
@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "095f8a0b93184629e304544fedcd0514ccf1edce9ef47548edab045ce2638ef7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
-      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
+      "sha256": "ccf3a6f142bc75227d03cbb69b67d4d005ad532644aa08e50f2568626dc9111c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
+      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c74419a661a3ac1114fc3e6e4bc1f12c7f8fc2cbb992cb31fec3609b0547f2db",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
-      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
+      "sha256": "55644aa4538403b0ed3eb23457a7b9a0074dd2917d2a5bd34c78041082e9543b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
+      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1251,9 +1251,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "2785ebe13f65f5f23513518bb76133722fedb6ff18912730debaf73182713795",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
-      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
+      "sha256": "c2c7d2dbde21c6b4e66f0031119098c23058a97a0babd8b01421eaf9b242b556",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
+      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "b07ea80a0db7f1fb10bcc259dd711afacab49fd6edafb2b5d097e19a1abdc64b",
@@ -1271,9 +1271,9 @@
       "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
     },
     "Mod/UI/DevelopmentInvestmentRead.lua": {
-      "sha256": "47f1b5543ee82591fee607ac29e021067ebf22c42324861716648e0bc36551d5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "ca7a5726e8752958920bc1c1c40ca9508d16ed218eac9f44588e1a3c637a3b32",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
+      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DevelopmentInvestmentUI.lua": {
       "sha256": "4b31475f35b1940444a8ab7c162261c94b5e0f756aa181b8ac1088a113482636",
@@ -1664,6 +1664,11 @@
       "sha256": "fac336744471beb59cabb12e4dd0949a443fe985148128abc35eaeff0b1b1f51",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
       "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/DevelopmentInvestmentTargets.lua": {
+      "sha256": "0af2689c6ae0e01b5f9e50683da32a19f1499f10b1ae7c7d566ee3b5c9b119f8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
+      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

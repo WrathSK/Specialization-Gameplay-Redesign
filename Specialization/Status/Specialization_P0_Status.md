@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0805
-Implementation Build: B352.379 / modinfo379; stable/live B307.334
+Status Revision: S0806
+Implementation Build: B353.380 / modinfo380; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9A2_COMPLETE_CONTINUING
+Work State: REFACTOR_S9B1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9a2 injects independent bounded selected-view observers for production Capital/Development/Commerce. Existing module revision gate keeps idle native head reads at0; selected row revision/presence/token/reference suppress unrelated-city refresh while preserving same-turn changes,backend replacement,UNKNOWN recovery and synchronous reentry. Successful Items records its view only after filtering; Close releases old backend. Development deleted views now publish one owner revision,with no money/history change. Standalone legacy constructors and independent dashboard/ack protocols remain unchanged. Continue remaining S9 Gameplay targets/channels/display/adjacency and S10. [Result](Validation/Results/Specialization_B352_Refactor_S9a2.md). Stable/live/main B307.334; no deployment/native PASS.
+S9b1 moves Development lowest-tier/minimum-price/ID-tie/unknown-domain policy into Gameplay-only DevelopmentInvestmentTargets. UI returns raw construction facts then batches only requested lowest-tier prices; original options/existing and financial quote schema stay unchanged. Two protocol2 readers verify context generation,echo,owner/reference/turn and function identity; no automatic retry.20 before/after cases preserve quotes,costs,history and purchase-price call counts; fresh confirmation and money protection remain. One extra exact-city lookup/control call per quoted target is explicit. Remaining S9 training owner signals,Dialogue/Expedition rules,channels/display/adjacency and S10 stay pending. [Result](Validation/Results/Specialization_B353_Refactor_S9b1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S9 owner-bound training refresh and Gameplay-owned Development target/Dialogue-era/Expedition-entry rules,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations.
+- Primary next: Continue remaining S9 Dialogue-era and Expedition-entry raw-fact rules,owner-bound training signals,token channels,applied display and shared adjacency,then S10; preserve exact D7/native D5 limitations.
+
+## S0806 — B353.380 Move Development target selection into Gameplay without broadening price reads
+
+S9b1 moves Development lowest-tier/minimum-price/ID-tie/unknown-domain policy into Gameplay-only DevelopmentInvestmentTargets. UI returns raw construction facts then batches only requested lowest-tier prices; original options/existing and financial quote schema stay unchanged. Two protocol2 readers verify context generation,echo,owner/reference/turn and function identity; no automatic retry.20 before/after cases preserve quotes,costs,history and purchase-price call counts; fresh confirmation and money protection remain. One extra exact-city lookup/control call per quoted target is explicit. Remaining S9 training owner signals,Dialogue/Expedition rules,channels/display/adjacency and S10 stay pending.
 
 ## S0805 — B352.379 Refresh production actions from the selected owner view
 
