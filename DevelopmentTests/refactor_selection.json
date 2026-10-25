@@ -1069,6 +1069,81 @@
       "test_refactor_s6e.RetainedGuards",
       "test_refactor_s6f.RetainedDevelopment",
       "test_refactor_s6f.RetainedGuards"
+    ],
+    "S8b1": [
+      "test_refactor_s8b1",
+      "test_refactor_s8a.ValidationRegistry",
+      "test_refactor_s8a.ActualStore.test_valid_history_bytes_and_normal_ticks_match_before_extraction",
+      "test_refactor_s8a.ActualStore.test_base_identity_and_reference_corruption_remain_strict",
+      "test_refactor_s7d5",
+      "test_refactor_s7d4",
+      "test_refactor_s7d1.Classification.test_current_empty_and_fallback_have_exact_read_order",
+      "test_refactor_s7d1.Classification.test_fact_matrix_keeps_empty_unknown_current_and_multiple_distinct",
+      "test_refactor_s7d1.Classification.test_other_keeps_original_early_return_without_size_or_fallback",
+      "test_refactor_s7d1.Classification.test_unproven_or_broken_reads_cannot_yield_match_or_empty",
+      "test_refactor_s7d1.RealOwners.test_UI_fallback_can_confirm_empty_with_current_exact_reference",
+      "test_refactor_s7d1.RealOwners.test_UI_fallback_rejects_stale_or_wrong_reference_or_conflicting_target",
+      "test_refactor_s7d1.RealOwners.test_ambiguous_nil_positive_preserves_pending_recovers_same_city_and_then_completes",
+      "test_refactor_s7d1.RealOwners.test_confirmed_empty_or_other_cancels_but_unknown_does_not",
+      "test_refactor_s7d1.RealOwners.test_missing_size_and_unverified_UI_fallback_hold_ledger",
+      "test_refactor_s7d1.RealOwners.test_normal_full_turn_and_confirmed_other_outcomes_match_baseline",
+      "test_refactor_s7d1.RealOwners.test_unrelated_events_and_idle_do_not_read_the_pending_city_queue",
+      "test_refactor_s7d1.Retained.test_claim_claim_timer_same_turn_progress_and_coldload",
+      "test_refactor_s7d1.Retained.test_claim_existing_b127_saved_claim_timer_regression",
+      "test_refactor_s7d1.Retained.test_dialogue_actual_store_loss_cancels_pending_retains_history",
+      "test_refactor_s7d1.Retained.test_dialogue_calling_is_never_replayed_after_load",
+      "test_refactor_s7d1.Retained.test_dialogue_completed_history_unaffected_by_active_loss",
+      "test_refactor_s7d1.Retained.test_dialogue_completion_reference_and_turn_cannot_be_guessed",
+      "test_refactor_s7d1.Retained.test_dialogue_completion_sample_start_era_and_duplicate",
+      "test_refactor_s7d1.Retained.test_dialogue_completion_unknown_is_not_resampled_later",
+      "test_refactor_s7d1.Retained.test_dialogue_existing_claim_load_and_duplicate_groups",
+      "test_refactor_s7d1.Retained.test_dialogue_failed_commit_then_late_callback_does_not_resample",
+      "test_refactor_s7d1.Retained.test_dialogue_forced_native_completion_and_premature_event",
+      "test_refactor_s7d1.Retained.test_dialogue_interrupt_away_and_back_same_publish_requires_new_turn",
+      "test_refactor_s7d1.Retained.test_dialogue_known_active_loss_cancels_even_return_in_same_turn",
+      "test_refactor_s7d1.Retained.test_dialogue_model_identity_exit_no_extra_cap_or_owner_partition",
+      "test_refactor_s7d1.Retained.test_dialogue_pending_and_committed_cold_load",
+      "test_refactor_s7d1.Retained.test_dialogue_result_write_failure_never_partially_awards_or_replays",
+      "test_refactor_s7d1.Retained.test_dialogue_second_loss_after_changed_id_removes_owned_state",
+      "test_refactor_s7d1.Retained.test_dialogue_two_cities_and_idle_no_saved_writes_or_collection_scans",
+      "test_refactor_s7d1.Retained.test_dialogue_unknown_does_not_delete_or_complete",
+      "test_refactor_s7d1.Retained.test_dialogue_user_can_abandon_unconfirmed_completion",
+      "test_refactor_s7d1.Retained.test_dialogue_write_failure_before_finish_never_calls_native",
+      "test_refactor_s7d1.Retained.test_dialogue_zero_consumes_quota_and_same_era_cannot_restart",
+      "test_refactor_s7d1.Retained.test_engineering_L_above_current_E_preserved",
+      "test_refactor_s7d1.Retained.test_engineering_active_loss_return_does_not_resume_old_round",
+      "test_refactor_s7d1.Retained.test_engineering_cancel_then_restart_requires_full_turn",
+      "test_refactor_s7d1.Retained.test_engineering_coldload_calling_no_native_replay",
+      "test_refactor_s7d1.Retained.test_engineering_coldload_restores_completed_and_active_round",
+      "test_refactor_s7d1.Retained.test_engineering_confirmed_E_change_publishes_access_without_panel",
+      "test_refactor_s7d1.Retained.test_engineering_corrupt_receipt_not_reconstructed_from_E",
+      "test_refactor_s7d1.Retained.test_engineering_duplicate_completion_cannot_add_L",
+      "test_refactor_s7d1.Retained.test_engineering_full_turn_two_successes_then_L_equals_E",
+      "test_refactor_s7d1.Retained.test_engineering_identity_exit_cancels_without_erasing_history",
+      "test_refactor_s7d1.Retained.test_engineering_initialized_empty_and_missing_known_are_distinct",
+      "test_refactor_s7d1.Retained.test_engineering_native_missing_or_failed_receipt_is_not_replayed",
+      "test_refactor_s7d1.Retained.test_engineering_noncompleted_population_other_city_unaffected",
+      "test_refactor_s7d1.Retained.test_engineering_original_owner_recapture_restores_L_without_pending",
+      "test_refactor_s7d1.Retained.test_engineering_owner_loss_cancels_only_pending",
+      "test_refactor_s7d1.Retained.test_engineering_pending_investment_does_not_finish",
+      "test_refactor_s7d1.Retained.test_engineering_premature_native_completion_does_not_award_full_turn",
+      "test_refactor_s7d1.Retained.test_engineering_same_publish_away_and_back_cancels",
+      "test_refactor_s7d1.Retained.test_engineering_second_loss_after_changed_id_clears_current_view",
+      "test_refactor_s7d1.Retained.test_engineering_store_failed_write_never_publishes_L",
+      "test_refactor_s7d1.Retained.test_engineering_store_stale_readback_and_reentrant_reader",
+      "test_refactor_s7d1.Retained.test_engineering_unknown_access_retained_without_reward",
+      "test_refactor_s7c",
+      "test_refactor_s7b2",
+      "test_refactor_s7b1",
+      "test_refactor_s5a2",
+      "test_refactor_s5b",
+      "test_refactor_s7f.ActualStore",
+      "test_refactor_s7e.Registry",
+      "test_refactor_s3",
+      "test_refactor_s6e.RetainedReceipts",
+      "test_refactor_s6e.RetainedGuards",
+      "test_refactor_s6f.RetainedDevelopment",
+      "test_refactor_s6f.RetainedGuards"
     ]
   },
   "counterexamples": {},
@@ -1466,7 +1541,8 @@
       "test_refactor_s7f"
     ],
     "Mod/StoreSubrecords.lua": [
-      "test_refactor_s8a"
+      "test_refactor_s8a",
+      "test_refactor_s8b1"
     ]
   },
   "exclusions": {
@@ -1639,6 +1715,15 @@
         "test_dialogue_project_ui.DialogueUI.test_retry_is_bounded_and_late_backend_waits"
       ],
       "current": "one explicit SYNC attempt per city/current reader/backend/service availability generation; missing ACK and throw do not resend; new initialization availability only rearms unissued intents, never BEGIN replay; unknown local player waits for existing initialization boundary"
+    },
+    "S8b1": {
+      "source": "801a85a1775453bdb6a831de5279bb562c6990de",
+      "decision": "Accepted U1 D7 deterministic reconstruction, no payload reset",
+      "historical_assertions_retained": [
+        "test_refactor_s8a.ActualStore.test_each_corrupt_ability_keeps_exact_existing_fail_closed_behavior_without_rewriting",
+        "test_refactor_s7d1.Retained.test_dialogue_corrupt_history_is_held_not_reinitialized"
+      ],
+      "current": "Only redundant known markers with complete unchanged valid payloads/full parent validation/native CAS are reconstructed; missing/corrupt payload, bad reference and UNKNOWN still guard; valid pending CALLING rounds remain exact and are not replayed."
     }
   }
 }

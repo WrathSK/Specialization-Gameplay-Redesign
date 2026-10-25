@@ -45,6 +45,9 @@ local function CreateProgressionRecord(P,shared,storage)
  local eventNames={'CityTransfered','CityConquered','CityAddedToMap','CityRemovedFromMap','CityInitialized','CityBuilt'}
  local nativeEvents={};local eventSequence=0
  local root,fault,busy;local ready=false;local committing=false
+ local function errorText(why,fallback)
+  local ok,text=pcall(tostring,why);return ok and text or fallback
+ end
  local foreignSeen=false;local transition;local transitionFault;local conquest;local foundation;local firstTransitionFault
  local function observe(name,...)
   if not root then return end
@@ -203,7 +206,7 @@ local function CreateProgressionRecord(P,shared,storage)
   committing=true
   local ok,err=pcall(storage.Write,previous,nextValue,observeFailure)
   committing=false
-  if not ok then fault=tostring(err)end
+  if not ok then fault=errorText(err,'STORE_WRITE_FAILED')end
   if ticket then facts.EndWrite(ticket)end
   if not ok then error(fault)end
  end
@@ -785,13 +788,28 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  local function restore()
   local ok,err=pcall(function()
-   root=storage.Read();if root then validate(root)end;ready=true
+   root=storage.Read()
+   if root then
+    local valid,why=pcall(validate,root)
+    if not valid then
+     assert(SPCStoreSubrecords.IsKnownFlagFailure(why),why)
+     local candidate,fields=SPCStoreSubrecords.KnownCandidate(root,cp)
+     assert(candidate,why)
+     candidate.revision=root.revision+1
+     assert(candidate.revision>root.revision,'SUBRECORD_RECOVERY_REVISION_UNAVAILABLE')
+     -- save performs the unchanged full parent/ability validation BEFORE any
+     -- candidate becomes visible, then the existing exact native CAS/readback.
+     save(candidate)
+     d.subrecordRecovery={kind='KNOWN_FLAGS_REBUILT',fields=fields,revision=candidate.revision}
+    end
+   end
+   ready=true
   end)
-  if not ok then fault=tostring(err);ready=false end
+  if not ok then fault=errorText(err,'STORE_RESTORE_FAILED');ready=false end
  end
  function d.Ready()return ready and not fault end
  function d.Status()return cp(d and {exitStatus=d.exitStatus,exitErrors=d.exitErrors,observation=d.observation,
-  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,lastTransfer=d.lastTransfer})end
+  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery})end
  restore() -- before Binding/Journal/Flow/Investment register load callbacks
  -- No absence/failed getter is confirmation. A matched native ownership event is required.
  function d.IsExitTarget(c,loss)

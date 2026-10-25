@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="359">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="360">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B332.359：拆分专业子记录校验边界；完成本地检查后按用户要求安全暂停。</Description>
+    <Description>B333.360：有效历史的已知标记确定性恢复，未知结果和不可逆凭据保持原样。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

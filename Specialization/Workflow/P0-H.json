@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0785",
-    "runtime": "B332.359 / modinfo359",
+    "status": "S0786",
+    "runtime": "B333.360 / modinfo360",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "After the user resumes, define S8b ability-specific reliable recovery/permanent-fault criteria and implement scoped isolation/lifecycle migration, then S9–S10. Retain D5 native proof OPEN. No automatic deployment/main/native launch.",
+  "goal": "Continue S8b scoped ability isolation and independently safe recovery, then S8 exit/return duties and S9–S10; retain unresolved irreversible-evidence boundaries and D5 native proof explicitly. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -359,6 +359,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B332_Refactor_S8a.md",
       "kind": "full",
       "reason": "Extract fixed sub-record validation ownership actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B333_Refactor_S8b1.md",
+      "kind": "full",
+      "reason": "Rebuild redundant known flags from preserved authority actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -385,8 +390,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B332_Refactor_S8a.md",
-    "local": "LOCAL_SIMULATION_PASS:386/386",
+    "report": "Specialization/Status/Validation/Results/Specialization_B333_Refactor_S8b1.md",
+    "local": "LOCAL_SIMULATION_PASS:398/398",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

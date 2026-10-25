@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0785
-Implementation Build: B332.359 / modinfo359; stable/live B307.334
+Status Revision: S0786
+Implementation Build: B333.360 / modinfo360; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8A_SAFE_APP_UPDATE_PAUSE
+Work State: REFACTOR_S8B1_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8a extracts nine fixed validation owners /14 fields into StoreSubrecords, preserving every assertion, original two-phase position, valid bytes, writes and strict pre-isolation failure behavior. Explicit Check reports independent CHECK_FAILED observations without repair, permanent-corruption classification or automatic work. Base identity/envelope/reference guards remain strict. D7 isolation/rebuild/defaults and lifecycle migration remain S8b; D5 native proof remains OPEN. User requested a safe app-update pause: close this verified develop batch and stop; no deployment/main/native PASS. [Result](Validation/Results/Specialization_B332_Refactor_S8a.md). Stable/live/main B307.334; no deployment/native PASS.
+User resumed after the app-update checkpoint. S8b1 reconstructs only five redundant known flags when complete preserved payloads and the entire parent pass unchanged validation, followed by one exact Store CAS/readback and revision increment. No payload, serial, amount, age, request or CALLING receipt is reset or replayed. Healthy loads write nothing; unavailable reads/decoders, other invalid fields and failed readback stay guarded. Unprintable errors cannot leak the existing fact-write barrier. D7 isolation/remaining recovery and D5 native proof remain OPEN; no deployment/main/native PASS. [Result](Validation/Results/Specialization_B333_Refactor_S8b1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: After the user resumes, define S8b ability-specific reliable recovery/permanent-fault criteria and implement scoped isolation/lifecycle migration, then S9–S10. Retain D5 native proof OPEN.
+- Primary next: Continue S8b scoped ability isolation and independently safe recovery, then S8 exit/return duties and S9–S10; retain unresolved irreversible-evidence boundaries and D5 native proof explicitly.
+
+## S0786 — B333.360 Rebuild redundant known flags from preserved authority
+
+User resumed after the app-update checkpoint. S8b1 reconstructs only five redundant known flags when complete preserved payloads and the entire parent pass unchanged validation, followed by one exact Store CAS/readback and revision increment. No payload, serial, amount, age, request or CALLING receipt is reset or replayed. Healthy loads write nothing; unavailable reads/decoders, other invalid fields and failed readback stay guarded. Unprintable errors cannot leak the existing fact-write barrier. D7 isolation/remaining recovery and D5 native proof remain OPEN; no deployment/main/native PASS.
 
 ## S0785 — B332.359 Extract fixed sub-record validation ownership
 

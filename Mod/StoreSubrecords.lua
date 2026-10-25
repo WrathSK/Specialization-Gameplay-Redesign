@@ -1,5 +1,6 @@
 -- Fixed validation ownership, with exactly the existing two Store phases.
--- No native discovery, hooks, writes, automatic repair or per-city registry.
+-- No native discovery, hooks, writes or per-city registry. Explicit candidates
+-- require the Store full-parent validator and exact storage readback before use.
 -- CHECK_FAILED is a validation observation, never proof of permanent corruption.
 SPCStoreSubrecords={}
 local S=SPCStoreSubrecords
@@ -18,25 +19,25 @@ local definitions={
  {key='researchTradition',phase='PROFESSION',fields={'researchTradition'},validate=function(r,same)
   if r.researchTradition then SPCResearchTradition.Validate(r.researchTradition,r) end
  end},
- {key='dialogue',phase='PROFESSION',fields={'dialogueKnown','dialogue'},validate=function(r,same)
+ {key='dialogue',known='dialogueKnown',phase='PROFESSION',fields={'dialogueKnown','dialogue'},validate=function(r,same)
   if r.dialogueKnown~=nil or r.dialogue~=nil then
    assert(r.dialogueKnown==true and type(r.dialogue)=='table','DIALOGUE_HISTORY_UNAVAILABLE')
    SPCDialogueProjectModel.Validate(r.dialogue,r)
   end
  end},
- {key='engineering',phase='PROFESSION',fields={'engineeringKnown','engineering'},validate=function(r,same)
+ {key='engineering',known='engineeringKnown',phase='PROFESSION',fields={'engineeringKnown','engineering'},validate=function(r,same)
   if r.engineeringKnown~=nil or r.engineering~=nil then
    assert(r.engineeringKnown==true and type(r.engineering)=='table','EST_HISTORY_UNAVAILABLE')
    SPCEngineeringStudyModel.Validate(r.engineering,r)
   end
  end},
- {key='commerce',phase='PROFESSION',fields={'commerceKnown','commerce'},validate=function(r,same)
+ {key='commerce',known='commerceKnown',phase='PROFESSION',fields={'commerceKnown','commerce'},validate=function(r,same)
   if r.commerceKnown~=nil or r.commerce~=nil then
    assert(r.commerceKnown==true and type(r.commerce)=='table','COMMERCE_HISTORY_UNAVAILABLE')
    SPCCommerceModel.Validate(r.commerce,r)
   end
  end},
- {key='capital',phase='PROFESSION',fields={'capitalKnown','capital'},validate=function(r,same)
+ {key='capital',known='capitalKnown',phase='PROFESSION',fields={'capitalKnown','capital'},validate=function(r,same)
   if r.capitalKnown~=nil or r.capital~=nil then
    assert(r.capitalKnown==true and type(r.capital)=='table','CAPITAL_HISTORY_UNAVAILABLE')
    local capital=SPCCapitalInvestmentModel.Decode(r.capital)
@@ -46,7 +47,7 @@ local definitions={
    end
   end
  end},
- {key='development',phase='PROFESSION',fields={'developmentKnown','development'},validate=function(r,same)
+ {key='development',known='developmentKnown',phase='PROFESSION',fields={'developmentKnown','development'},validate=function(r,same)
   if r.developmentKnown~=nil or r.development~=nil then
    assert(r.developmentKnown==true and type(r.development)=='table','DEVELOPMENT_HISTORY_UNAVAILABLE')
    local value=SPCDevelopmentInvestmentModel.Decode(r.development)
@@ -106,4 +107,22 @@ function S.Check(r,same)
   out[#out+1]={key=d.key,fields=fields(d),status=ok and 'PASS'or'CHECK_FAILED',reason=text}
  end
  return out
+end
+
+-- Redundant known flags have no false-valued producer. Complete preserved
+-- payloads may prove them true; no payload, amount, serial or receipt is reset.
+local knownFailures={DIALOGUE_HISTORY_UNAVAILABLE=true,EST_HISTORY_UNAVAILABLE=true,
+ COMMERCE_HISTORY_UNAVAILABLE=true,CAPITAL_HISTORY_UNAVAILABLE=true,DEVELOPMENT_HISTORY_UNAVAILABLE=true}
+function S.IsKnownFlagFailure(why)
+ local code=type(why)=='string'and why:match('([A-Z][A-Z_]+)$')
+ return code and knownFailures[code]==true or false
+end
+function S.KnownCandidate(r,copy)
+ local candidate,changes
+ for _,d in ipairs(definitions)do if d.known and r[d.key]~=nil and r[d.known]~=true then
+  candidate=candidate or copy(r);changes=changes or {}
+  changes[#changes+1]={key=d.key,field=d.known,previousType=type(r[d.known])}
+  candidate[d.known]=true
+ end end
+ return candidate,changes -- never a confirmed value or permanent-fault verdict
 end
