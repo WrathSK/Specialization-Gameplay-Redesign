@@ -786,9 +786,9 @@
       "provenance": "B281.308 guarded synchronous fact reuse; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "6e8f6568ae7a2e8ebbb075344dd7e74b434f9cfb2a6031449ba4e72ba7b84d6a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
-      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "acb16722de430d4d69f3a796a2660ae4e25efca81c9644c45a2fff516ece101f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
+      "provenance": "B337.364 Prove the exact current legacy cleanup catalogue; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8b18597aac61eec83ad537d2ea24f3f973dabebd263fb3d1155e66515963d0b3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
-      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "0e47b67fae4430578f7ba547ad6670c920b27cecf65261c8b79f0bf55b211bfc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
+      "provenance": "B337.364 Prove the exact current legacy cleanup catalogue; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "c3a0979bc10f9c059837838e3f2611f92b364f9de4200a43324aa932c18ebda7",
@@ -1654,6 +1654,11 @@
       "sha256": "296445c11d4d811f97ede59185c4c1136f64e426fc951397c32fe9b0446fe95d",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B333_Refactor_S8b1.md",
       "provenance": "B333.360 Rebuild redundant known flags from preserved authority; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/LegacyCleanupCatalog.lua": {
+      "sha256": "ea67217f0b7a73bf11e0db4515dd08b8e2d1ed3edfe5645f95cf78ad77b4fae8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
+      "provenance": "B337.364 Prove the exact current legacy cleanup catalogue; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

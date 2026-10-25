@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0789
-Implementation Build: B336.363 / modinfo363; stable/live B307.334
+Status Revision: S0790
+Implementation Build: B337.364 / modinfo364; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S8C3_COMPLETE_CONTINUING
+Work State: REFACTOR_S8C4_COMPLETE_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S8c3 orders existing Return callbacks into fact invalidation, sample/quote clearing and deferred marks, with stable names inside each phase. Callback false/fault blocks return commit while independent remaining invalidations still run. Session busy/generation/revision/reference guards prevent reentry or stale candidates from committing. Five Culture callbacks now mark their existing deferred audit instead of reading while Store is still HELD. No new timer, listener, saved schema or ownership gameplay. D7 isolation, legacy cleanup and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B336_Refactor_S8c3.md). Stable/live/main B307.334; no deployment/native PASS.
+S8c4 adds a pure explicit-input legacy cleanup catalogue and proves it against actual current Start registrations/options and the read-only engine configuration. The historical14 source registrations are11 actual exits:10 building groups and two plot flags. Current production exit/Withdraw/startup behavior is unchanged; the new helper has no automatic caller or hook. SQL-active cleanup targets and unreachable old exits with live Withdraw duties are retained. Central exit migration, D7 isolation and D5 native proof remain OPEN. [Result](Validation/Results/Specialization_B337_Refactor_S8c4.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue S8 ability isolation/recovery and exact legacy cleanup responsibility migration, then S9–S10; keep D5 native proof and uncertain irreversible histories open.
+- Primary next: Wire the verified legacy catalogue into one isolated cleanup owner while retaining independent subgroup failures and current production Withdraw duties; continue S8 isolation/recovery, then S9–S10.
+
+## S0790 — B337.364 Prove the exact current legacy cleanup catalogue
+
+S8c4 adds a pure explicit-input legacy cleanup catalogue and proves it against actual current Start registrations/options and the read-only engine configuration. The historical14 source registrations are11 actual exits:10 building groups and two plot flags. Current production exit/Withdraw/startup behavior is unchanged; the new helper has no automatic caller or hook. SQL-active cleanup targets and unreachable old exits with live Withdraw duties are retained. Central exit migration, D7 isolation and D5 native proof remain OPEN.
 
 ## S0789 — B336.363 Order protected return invalidation before commit
 

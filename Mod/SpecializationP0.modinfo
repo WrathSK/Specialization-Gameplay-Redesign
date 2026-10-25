@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="363">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="364">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B336.363：夺回回调按依赖排序并隔离故障，效果通过原有队列在提交后刷新。</Description>
+    <Description>B337.364：核准旧退出的精确目录及地块属性，尚不替换当前退出所有者。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -183,6 +183,7 @@
       <File>RuntimeWork.lua</File>
       <File>CityReference.lua</File>
       <File>Tombstones.lua</File>
+      <File>LegacyCleanupCatalog.lua</File>
       <File>ReverseDependencies.lua</File>
       <File>NativeFacts.lua</File>
       <File>OrdinaryBuildingCatalog.lua</File>
@@ -630,6 +631,7 @@
     <File>RuntimeWork.lua</File>
     <File>CityReference.lua</File>
     <File>Tombstones.lua</File>
+    <File>LegacyCleanupCatalog.lua</File>
     <File>ReverseDependencies.lua</File>
     <File>NativeFacts.lua</File>
     <File>OrdinaryBuildingCatalog.lua</File>

@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0789",
-    "runtime": "B336.363 / modinfo363",
+    "status": "S0790",
+    "runtime": "B337.364 / modinfo364",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue S8 ability isolation/recovery and exact legacy cleanup responsibility migration, then S9–S10; keep D5 native proof and uncertain irreversible histories open. No automatic deployment/main/native launch.",
+  "goal": "Wire the verified legacy catalogue into one isolated cleanup owner while retaining independent subgroup failures and current production Withdraw duties; continue S8 isolation/recovery, then S9–S10. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -379,6 +379,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
       "kind": "full",
       "reason": "Order protected return invalidation before commit actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
+      "kind": "full",
+      "reason": "Prove the exact current legacy cleanup catalogue actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -405,8 +410,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
-    "local": "LOCAL_SIMULATION_PASS_536",
+    "report": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
+    "local": "LOCAL_SIMULATION_PASS_45",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }
