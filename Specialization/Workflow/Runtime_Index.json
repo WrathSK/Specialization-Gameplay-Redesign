@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "14afa68f9e166c715141624c66121fde54db3f36a2d1c334ea9d1d9180f14503",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
-      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
+      "sha256": "ef195505e993e496020fe7c86738ea253a190d223c4cab834a28afe346e51a74",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
+      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -501,9 +501,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "aaf5abc88fae2b3c428d9d412d7c333b55f1ef1f561bcce723e07a3a6679f7a8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
-      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "5b969a82f32b590036c04a9a67c51a67812b3d45d410315138e4dd5069d893c5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
+      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "4f4df0ed1eee502d9ee19ad8e053c6070b9f17d74b0e33eaba26f33ab13e256a",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "7278ab8ab3d0da0b88bf72bc1f96f0aa8fb24c4d2a8e7fae006e30fb889bd5db",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B381_Refactor_S9e8.md",
-      "provenance": "B381.408 Keep fresh Capital quotes through delayed same-balance Treasury events; local/static evidence only; no deployment/native PASS."
+      "sha256": "846b82ee9c638ac4115754a32ed67c6bd778e41cb76310359d14439dbf65375b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
+      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e5e27c6bf348cad42c78a2273fcf4c6f45bbd197141ad65a03e9ff42fc74b1de",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B381_Refactor_S9e8.md",
-      "provenance": "B381.408 Keep fresh Capital quotes through delayed same-balance Treasury events; local/static evidence only; no deployment/native PASS."
+      "sha256": "b52032a5e2af32d407688a8fd4dd3fc63e139e4bdb7613a2f88f070e91c9dd0b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
+      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1651,9 +1651,9 @@
       "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
     },
     "Mod/StoreSubrecords.lua": {
-      "sha256": "80ab1c10079b79d3cf2cbbb4a0ba23e1038f80c26b42dbb9617df7aa156d2d67",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
-      "provenance": "B351.378 Clear obsolete initial Claim timers only from strict terminal receipts; local/static evidence only; no deployment/native PASS."
+      "sha256": "9bfdd490878f6fedaa69f6d729bf8d109b82738f79e4033f56d210fb89e6a53f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
+      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LegacyCleanupCatalog.lua": {
       "sha256": "92320e3f9af46a296e15897000e6dfee6f615603125c3c4fd659405f1d41e373",

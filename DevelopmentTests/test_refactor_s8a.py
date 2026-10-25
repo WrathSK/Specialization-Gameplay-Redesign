@@ -66,14 +66,14 @@ class ValidationRegistry(unittest.TestCase):
   vm=actual_store();vm.execute(SETUP)
   for key,inject in BAD.items():
    vm.execute("local n=M.Copy(T.record(a));"+inject+";local before=T.encode(n);local writes=T.writes();local reports=SPCStoreSubrecords.Check(n,equal);local failures=0;for _,v in ipairs(reports)do if v.status=='CHECK_FAILED'then failures=failures+1;assert(v.key==... and v.reason and not v.permanent)end end;assert(failures==1 and #reports==9 and T.encode(n)==before and T.writes()==writes)",key)
- def test_transient_model_exception_stays_unconfirmed_and_changes_no_record(self):
-  vm=actual_store();vm.execute(SETUP+"""
+ def test_transient_model_exception_stays_unconfirmed_and_changes_no_record(self,expected_status="CHECK_UNKNOWN"):
+  vm=actual_store();vm.execute("expectedStatus=...",expected_status);vm.execute(SETUP+"""
   local n=M.Copy(T.record(a));n.engineeringKnown=true;n.engineering=SPCEngineeringStudyModel.New()
   local original=SPCEngineeringStudyModel.Validate;local encoded=T.encode(n);local writes=T.writes()
   SPCEngineeringStudyModel.Validate=function()error(setmetatable({},{__tostring=function()error('UNREADABLE_ERROR')end}))end
   local reports=SPCStoreSubrecords.Check(n,equal);local found
   for _,v in ipairs(reports)do if v.key=='engineering'then found=v end end
-  assert(found.status=='CHECK_FAILED'and found.reason=='SUBRECORD_VALIDATION_UNKNOWN'and not found.permanent)
+  assert(found.status==expectedStatus and found.reason=='SUBRECORD_VALIDATION_UNKNOWN'and not found.permanent)
   SPCEngineeringStudyModel.Validate=original
   for _,v in ipairs(SPCStoreSubrecords.Check(n,equal))do assert(v.status=='PASS')end
   assert(T.encode(n)==encoded and T.writes()==writes)

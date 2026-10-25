@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0834
-Implementation Build: B381.408 / modinfo408; stable/live B307.334
+Status Revision: S0835
+Implementation Build: B382.409 / modinfo409; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E8_CONTINUING
+Work State: REFACTOR_S9E9_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e8/R13 fixes the actual delayed Treasury notification -> owner mark -> quote-free refresh chain. Existing Treasury producer callbacks now compare one finite current balance with already indexed views,mark only changed/unavailable balances,and preserve unknown/reentrant/no-index fallback plus every independent cause. Fresh post-confirm quotes and displayed balance survive unchanged late notifications;real balance changes still stale and all original fresh confirmation,receipt,RNG,no-replay and HELD guards remain. Ten new tests include real Store+Capital with a separate actual UI context. Native N12 remains U5;R05,Store/applied-owner/U4/S10 work continues. [Result](Validation/Results/Specialization_B381_Refactor_S9e8.md). Stable/live/main B307.334; no deployment/native PASS.
+S9e9/R06–R07 classifies only declared owner-validator assertion codes as CHECK_FAILED;other exceptions are CHECK_UNKNOWN,with the same affected-group opaque preservation and independent base/ability validation. Development compares each open saved source owner/change epoch to the already read current reference,closing a real valid→transient isolation→loss/return→reload resurrection path without replay or new samples. Selected-city Describe now exposes protected groups and proved metadata repairs from existing sidecars only. R02 irrecoverability/legal-baseline and unprovable missed lifecycle remain explicit;no persistent schema or blanket reset. Other accepted R05/R19/applied-owner/U4/S10 work continues. [Result](Validation/Results/Specialization_B382_Refactor_S9e9.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Continue accepted R19 queue display,R05 cold source authority/evidence,R06/R07/R02 Store closure and remaining S9 applied owners,then U4/S10. No deployment/main/game launch.
+- Primary next: Document R05 cold aggregate proof limits and R02 per-ability recovery criteria;continue R19 actual display and remaining applied owners/U4/S10. No deployment/main/game launch.
+
+## S0835 — B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs
+
+S9e9/R06–R07 classifies only declared owner-validator assertion codes as CHECK_FAILED;other exceptions are CHECK_UNKNOWN,with the same affected-group opaque preservation and independent base/ability validation. Development compares each open saved source owner/change epoch to the already read current reference,closing a real valid→transient isolation→loss/return→reload resurrection path without replay or new samples. Selected-city Describe now exposes protected groups and proved metadata repairs from existing sidecars only. R02 irrecoverability/legal-baseline and unprovable missed lifecycle remain explicit;no persistent schema or blanket reset. Other accepted R05/R19/applied-owner/U4/S10 work continues.
 
 ## S0834 — B381.408 Keep fresh Capital quotes through delayed same-balance Treasury events
 

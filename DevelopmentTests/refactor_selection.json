@@ -1897,6 +1897,9 @@
       "test_refactor_s6b",
       "test_refactor_s6c",
       "test_refactor_s9a2.ActualUI"
+    ],
+    "S9e9": [
+      "test_refactor_s9e9"
     ]
   },
   "counterexamples": {},
@@ -2575,6 +2578,14 @@
         "test_refactor_s9d1.Exit.test_return_with_new_local_ID_then_second_loss_uses_fixed_location"
       ],
       "current": "A proven original-owner return rebases the same city age without lost-interval credit and resumes reliable Research-Identity counting;no new owner admission or new save field."
+    },
+    "S9e9": {
+      "source": "f8f5914",
+      "decision": "R06 validator-only CHECK_FAILED classification;no permanent-corruption verdict",
+      "historical_assertions_retained": [
+        "test_refactor_s8a.ValidationRegistry.test_transient_model_exception_stays_unconfirmed_and_changes_no_record"
+      ],
+      "current": "Declared pure-owner assertion codes CHECK_FAILED;runtime/unprintable/missing-validator exceptions CHECK_UNKNOWN. Both retain opaque affected group;no reset or replay."
     }
   }
 }

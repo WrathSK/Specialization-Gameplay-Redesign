@@ -123,7 +123,8 @@ function SPCDevelopmentInvestment.Start(P,shared)
   local old=state(r.owner,source);assert(old,'DEVELOPMENT_HISTORY_UNAVAILABLE');local value=cp(old)
   for targetKey,c in pairs(value.contracts)do if M.Open(c)then
    local valid,target=validateReference(c.target)
-   if not valid then c.stage='TERMINATED';c.reason='DEVELOPMENT_OWNER_CHANGED'
+   if c.source.owner~=r.owner or c.source.changes~=r.changes or not valid then
+    c.stage='TERMINATED';c.reason='DEVELOPMENT_OWNER_CHANGED'
    elseif c.stage=='DEBIT_INTENT'then c.stage='TERMINATED';c.reason='DEVELOPMENT_UNUSED_INTENT'
    elseif c.stage=='DEBIT_CALLING'then c.stage='HELD';c.reason='DEVELOPMENT_NATIVE_OUTCOME_UNKNOWN'
    elseif c.stage=='ACTIVE'then

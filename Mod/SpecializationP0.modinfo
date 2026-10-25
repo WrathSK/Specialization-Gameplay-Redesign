@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="408">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="409">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B381.408：避免重复金币通知使资本投资新报价过期，继续重构。</Description>
+    <Description>B382.409：区分暂时无法验证的记录，阻止旧发展合同复活并显示保护状态。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

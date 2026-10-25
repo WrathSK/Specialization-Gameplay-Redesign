@@ -867,6 +867,24 @@ local function CreateProgressionRecord(P,shared,storage)
    ..'\n已完成投资：'..f.investmentCount..' | 待完成事务：'..tostring(f.investmentPending)
    ..'\n来源：独立Game记录；旧City账本冻结。\nACTIVE依当前事实；Network等待当前路线；回滚使用迁移前存档。'
  end
+ -- Existing observations only: no revalidation or repair during presentation.
+ local describeProgress=d.Describe
+ function d.Describe(pid,c)
+  local text=describeProgress(pid,c);local protected,recovered={},{}
+  local names={expeditionInsights='考察见闻',researchTradition='学术传统',dialogue='时代对话',engineering='工程研习',capital='资本投资',development='发展投资',claimTimer='认领计时',commerce='商业化',templateLifecycle='工业模板'}
+  for _,key in ipairs(isolationKeys)do if isolated[key]then
+   protected[#protected+1]=names[key]..(isolated[key].status=='CHECK_UNKNOWN'and '（暂时无法验证）'or '')
+  end end
+  if partialReputation then protected[#protected+1]='商业信誉'..(partialReputation.status=='CHECK_UNKNOWN'and '（暂时无法验证）'or '')end
+  for _,change in ipairs(d.subrecordRecovery and d.subrecordRecovery.fields or {})do
+   local name=names[change.key]or change.field
+   local found=false;for _,old in ipairs(recovered)do if old==name then found=true end end
+   if not found then recovered[#recovered+1]=name end
+  end
+  if #protected>0 then text=text..'\n记录不可用（已保护）：'..table.concat(protected,'、')..'。原记录完整保留；未隔离能力独立核验，不据此清零或重复结算。'end
+  if #recovered>0 then text=text..'\n已验证修复：'..table.concat(recovered,'、')..'。仅恢复已被保存凭据证明的元数据；未重放完成或金币操作。'end
+  return text
+ end
  -- On-demand evidence only. No state writes, refresh, requests or effect application.
  function d.NativeDescribe(pid)
   local ok,out=pcall(function()
@@ -966,12 +984,12 @@ local function CreateProgressionRecord(P,shared,storage)
      local checked=cp(candidate or root);unassignedTemplates(checked);local failures={};local reputationFailure
      for _,key in ipairs(isolationKeys)do
       local check=SPCStoreSubrecords.CheckOne(key,checked,same)
-      if check.status=='CHECK_FAILED'then
+      if check.status=='CHECK_FAILED'or check.status=='CHECK_UNKNOWN'then
        local configuration=key=='commerce'and pcall(SPCCommerceModel.ValidateConfiguration,checked.commerce,checked)
        local repOK,repWhy=true
        if configuration then repOK,repWhy=pcall(SPCCommerceModel.ValidateReputation,checked.commerce.reputation,checked)end
        if configuration and not repOK then
-        reputationFailure={state='ISOLATED',status='CHECK_FAILED',reason=errorText(repWhy,'COMMERCE_REPUTATION_UNKNOWN'):sub(1,180)}
+        reputationFailure={state='ISOLATED',status=check.status,reason=errorText(repWhy,'COMMERCE_REPUTATION_UNKNOWN'):sub(1,180)}
         checked.commerce.reputation=nil;checked.commerceKnown=true -- no mutation of root/candidate
        else
         for _,field in ipairs(isolationFields[key])do checked[field]=nil end
