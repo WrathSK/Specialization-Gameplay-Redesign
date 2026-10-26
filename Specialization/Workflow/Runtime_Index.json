@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "f199fcba1d11448b920ae27e38e48f082fa930f354a44e5211059c9ce20ea79c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
-      "provenance": "B383.410 Separate Dialogue candidate preview from current timer status; local/static evidence only; no deployment/native PASS."
+      "sha256": "42091679b40bf8337178c808aacce4797238880e06b765909e6ba39e7cb64a6a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B384_Refactor_S9f1.md",
+      "provenance": "B384.411 Prove bounded deferred-lifecycle evidence mechanics before Store wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "069e6fd0e290a4ef3629387df1d7cb81e161e82907242337497efa64d01158c6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
-      "provenance": "B383.410 Separate Dialogue candidate preview from current timer status; local/static evidence only; no deployment/native PASS."
+      "sha256": "8be7803b83f71b0709cfb644e54ae9515ed488370097088d0af0ebdc5547ff14",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B384_Refactor_S9f1.md",
+      "provenance": "B384.411 Prove bounded deferred-lifecycle evidence mechanics before Store wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1679,6 +1679,11 @@
       "sha256": "4d7cbe0cae57b292bb87611c737563da9d69cc7f2344a2fd9700c8c369311f52",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md",
       "provenance": "B363.390 Publish fixed institution views with protected city reference reads; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/StoreDeferredLifecycle.lua": {
+      "sha256": "58831013705a7d6490e5446c394d1e139776aac35ae1187b65c9b777969a8c94",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B384_Refactor_S9f1.md",
+      "provenance": "B384.411 Prove bounded deferred-lifecycle evidence mechanics before Store wiring; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

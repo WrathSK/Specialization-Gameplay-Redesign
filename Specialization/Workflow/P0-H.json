@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0838",
-    "runtime": "B383.410 / modinfo410",
+    "status": "S0839",
+    "runtime": "B384.411 / modinfo411",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Implement bounded deferred-lifecycle mechanics and actual Store recovery first,then validated source-attribution storage/writer composition;continue applied-owner integration,U4/S10. No automatic deployment/main/game launch.",
+  "goal": "Wire approved deferred lifecycle evidence at actual Store confirmed loss/return and validated recovery boundaries,prove unchanged opaque payloads and original ability transforms,then derived network source storage and remaining S9/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -625,6 +625,11 @@
       "kind": "section",
       "selector": "### Recovery evidence persistence — approved 2026-10-25",
       "reason": "Approved bounded persistence and failure/ownership constraints before implementation."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B384_Refactor_S9f1.md",
+      "kind": "full",
+      "reason": "Prove bounded deferred-lifecycle evidence mechanics before Store wiring actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -651,11 +656,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
-    "local": "LOCAL_SIMULATION_PASS_48",
+    "report": "Specialization/Status/Validation/Results/Specialization_B384_Refactor_S9f1.md",
+    "local": "LOCAL_SIMULATION_PASS_15",
     "native": "NO_NEW_NATIVE_TEST",
-    "deployment": "UNCHANGED_B307_STABLE",
-    "boundary_proposal": "Specialization/Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md",
-    "boundary": "USER_APPROVED_BOTH_EXTENSIONS;CONSTRAINTS_SYNCHRONIZED;IMPLEMENTATION_PENDING"
+    "deployment": "UNCHANGED_B307_STABLE"
   }
 }

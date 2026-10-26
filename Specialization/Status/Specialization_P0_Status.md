@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0838
-Implementation Build: B383.410 / modinfo410; stable/live B307.334
+Status Revision: S0839
+Implementation Build: B384.411 / modinfo411; stable/live B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9_RECOVERY_EXTENSIONS_AUTHORIZED
+Work State: REFACTOR_S9F1_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-The user approved both minimal recovery-evidence persistence extensions on2026-10-25. A0183 and Workflow now record the constraints before implementation:durable bounded deferred-lifecycle evidence for opaque abilities,and derived Commerce/Culture source attribution for accepted D2 cold recovery. D0058 gameplay,Std-only cold A,strict Store/native receipts and no replay stay. Latest tested/pushed runtime is B383.410;the new saved fields are not implemented yet. Continue approved S9–S10;no routine stage reapproval. No deployment/main/native PASS.
+S9f1 implements the first approved A0183 prerequisite as an isolated pure StoreDeferredLifecycle model. Optional version1 evidence binds parent token/origin,has the fixed nine owners and one coalesced pending episode each,keeps earliest unresolved/last confirmed boundary,and supports return-only evidence without invented prior turn. Detached owner/token/episode witnesses gate exact clear;unknown fields/versions,reference/epoch drift and malformed values reject. Fifteen focused tests cover bounds,cycles,cold object roundtrip and no native/save/event calls. It is packaged only,not included by production Store/Gameplay. Actual Store capture/recovery and network source attribution are next;no new-save/native effect claim yet. [Result](Validation/Results/Specialization_B384_Refactor_S9f1.md). Stable/live/main B307.334; no deployment/native PASS.
 
-- User decision: both extensions approved;none pending in this scope.
-- User testing: final U5;no immediate game test.
-- Primary next: Implement bounded deferred-lifecycle mechanics and actual Store recovery first,then validated source-attribution storage/writer composition;continue applied-owner integration,U4/S10. No automatic deployment/main/game launch.
+- User decision: none.
+- User testing: final U5 unless a specific blocking native fact appears.
+- Primary next: Wire approved deferred lifecycle evidence at actual Store confirmed loss/return and validated recovery boundaries,prove unchanged opaque payloads and original ability transforms,then derived network source storage and remaining S9/U4/S10. No deployment/main/game launch.
+
+## S0839 — B384.411 Prove bounded deferred-lifecycle evidence mechanics before Store wiring
+
+S9f1 implements the first approved A0183 prerequisite as an isolated pure StoreDeferredLifecycle model. Optional version1 evidence binds parent token/origin,has the fixed nine owners and one coalesced pending episode each,keeps earliest unresolved/last confirmed boundary,and supports return-only evidence without invented prior turn. Detached owner/token/episode witnesses gate exact clear;unknown fields/versions,reference/epoch drift and malformed values reject. Fifteen focused tests cover bounds,cycles,cold object roundtrip and no native/save/event calls. It is packaged only,not included by production Store/Gameplay. Actual Store capture/recovery and network source attribution are next;no new-save/native effect claim yet.
 
 ## S0838 — A0183 approved recovery-evidence constraints
 

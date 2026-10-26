@@ -1909,6 +1909,9 @@
       "test_refactor_s7d3b.Boundaries",
       "test_refactor_s9b2.CurrentUI",
       "test_refactor_s9b2.Completion"
+    ],
+    "S9f1": [
+      "test_refactor_s9f1"
     ]
   },
   "counterexamples": {},
