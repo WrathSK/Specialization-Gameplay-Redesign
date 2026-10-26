@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0182
+# Specialization v0.1 Architecture — A0183
 
 Document Owner: Codex
-Architecture Revision: A0182
+Architecture Revision: A0183
 Design Spec Synced Through: D0032
 Design Spec SHA256: d6abded36a2036b73d691ecdb5bf44432beb36875646a307ba25c117b98244b9
 Latest Accepted Design Revision: D0058
@@ -10,6 +10,17 @@ Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
 Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; this document defines target contracts, not a parallel deployment ledger.
 
 ## CURRENT AUTHORITATIVE STATE
+
+A0183 adds the user-approved minimal recovery-evidence persistence extensions (2026-10-25),without changing D0058 gameplay. Runtime implementation and native evidence remain separate. See the [approved recovery scope](../Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md).
+
+### Recovery evidence persistence — approved 2026-10-25
+
+- **Derived network attribution:** Commerce/Culture may save bounded detached source contributions needed by accepted D-2 after cold load. Preserve source/receiver lifecycle and applied-result provenance;use supported-version/shape/size/reference validation and exact write/readback ordering. The record is a derived recovery witness,never permanent achievement,route/role authority,qualification,quote or irreversible transaction proof. Never invent decomposition from an aggregate or extend Standardization-only exception A. Pending/unconfirmed candidates cannot be published as successfully applied recovery evidence.
+- **Deferred lifecycle:** Store may preserve a bounded per-ability witness when a confirmed existing loss/return transition cannot safely update opaque ability bytes. Keep those bytes exact;record only necessary existing episode/owner/reference/change/turn facts,not an event history. Reliable existing load/related availability boundaries may execute the original ability-specific transition once with full parent/CAS/readback protection. Clear only with its confirmed save;UNKNOWN or write ambiguity cannot authorize idle retry,native completion or payment replay.
+- **Ownership and failure:** permanent city history remains exclusively Store-owned;raw native balances and irreversible receipts keep existing owners. Exact encoding,bounds,dependency/writer invalidation and both sides of partial-write failure must be specified and tested before production wiring. No native objects,unbounded cache or automatic discovery bus. Changed inputs in the same turn still invalidate;unknown values never become confirmed cached successes.
+- **Recovery and damage:** transient/unavailable inputs remain distinct from permanent supported-version record failure. Accepted D-7 reconstruction precedes any lawful baseline. The [per-ability table](../Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md#r02-per-ability-baseline-intake-accepted-d-7-not-new-policy) is an implementation proof checklist,not blanket reset permission. Do not manufacture a P4 start,completion outcome,paid receipt or missing historical episode.
+- **Compatibility and testing:** no implicit old-save migration or generic exactly-once promise. Current-version new-save/local composition and U5 native save/load evidence are separate. Existing timers,UNKNOWN recovery and lifecycle/transaction checks remain strict. Shared service expansion uses P01–P10 and T01–T08;normal internal slices continue under the user's existing S2–S10 authorization. Deployment/main promotion remain separately approved actions.
+
 
 A0182 records the accepted U1 integration/network contracts and the user-amended execution boundary. D0058 is the current scoped Design amendment; the original D0032 target adaptation is not represented as a complete D0058 runtime implementation. S2–S10 are authorized in dependency order. U2/U3/U4 are engineering checkpoints, with native testing only when an unresolved native fact blocks continuation; no automatic deployment. U5 is final user acceptance and main promotion needs separate approval. See the [accepted U1 decisions](../Reports/Proposals/Refactor_Program_U1.md#accepted-u1--2026-10-24).
 

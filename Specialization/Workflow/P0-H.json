@@ -10,15 +10,15 @@
     "commerce": "D0058",
     "shared": "D0058",
     "presentation": "D0032",
-    "architecture": "A0182",
-    "status": "S0837",
+    "architecture": "A0183",
+    "status": "S0838",
     "runtime": "B383.410 / modinfo410",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Continue unaffected S9 applied-owner integration and full U4/S10 prerequisites;await only the narrow R05/deferred-lifecycle saved-evidence decision. No deployment/main/game launch.",
+  "goal": "Implement bounded deferred-lifecycle mechanics and actual Store recovery first,then validated source-attribution storage/writer composition;continue applied-owner integration,U4/S10. No automatic deployment/main/game launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -618,7 +618,13 @@
     {
       "path": "Specialization/Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md",
       "kind": "full",
-      "reason": "Scoped R05/deferred-lifecycle persistence proposal and accepted D7 per-ability prerequisites;new saved fields await user approval."
+      "reason": "User explicitly approved both minimal persisted-evidence contracts;exact implementation and local/native evidence remain separate."
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "selector": "### Recovery evidence persistence — approved 2026-10-25",
+      "reason": "Approved bounded persistence and failure/ownership constraints before implementation."
     }
   ],
   "dependencies": [
@@ -650,6 +656,6 @@
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE",
     "boundary_proposal": "Specialization/Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md",
-    "boundary": "STATIC_CONFIRMED_AND_LOCAL_COUNTEREXAMPLES;NO_NEW_PERSISTENCE_IMPLEMENTED"
+    "boundary": "USER_APPROVED_BOTH_EXTENSIONS;CONSTRAINTS_SYNCHRONIZED;IMPLEMENTATION_PENDING"
   }
 }

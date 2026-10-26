@@ -1,6 +1,8 @@
 # R05 / R02–R06 — Minimal recovery-evidence persistence proposal
 
-Status: Primary proposal; no Design change or new persistence implemented.
+Status: USER_APPROVED_BOTH_EXTENSIONS — 2026-10-25. Technical implementation pending; no gameplay-rule amendment.
+
+The user explicitly approved both minimal extensions in this Primary session. The network/deferred-lifecycle scope below is authorized;do not request routine reauthorization. D-1/D-2/D-7,Standardization-only A,native outcome protection and deployment/main boundaries remain unchanged.
 Routing: existing [refactor intake](Audit_Followup_Priorities.md), R05. This is not a second backlog.
 
 ## What is already decided
@@ -33,7 +35,7 @@ Authorize a **derived network-recovery record**,then implement it in independent
 5. Prove carrier-write/recovery-record ordering and both failure directions before composition. An unknown native/save outcome is not permission to reconstruct a successful commit. No deployment or claim of old-save migration follows from this approval.
 6. Add real writer+Store tests for cold mixed sources,overlapping culture sets,multiple Commerce domains,known loss plus unknown sibling,owner/reference reuse,unknown record versions,partial writes,source recovery,same-turn second change and bounded idle work. Preserve the current cold counterexamples on the previous source;do not weaken them.
 
-This extension crosses the existing persistence/shared-contract boundary. Primary is requesting that narrow approval,not new authorization for the overall refactor and not a re-vote on D-1/D-2. Current user instructions prohibit silently changing save authority or major shared contracts.
+This extension crossed the existing persistence/shared-contract boundary and has now received explicit narrow user approval. It is not a re-vote on D-1/D-2 or authorization to weaken saved authority and native outcome protections.
 
 Alternative:leave R05 explicitly OPEN for this integration candidate and schedule that extension later. Do not claim complete D-2 cold-load support or zero the limitation in the backlog. Unaffected S9/U4/S10 engineering can continue either way.
 
@@ -51,7 +53,7 @@ Authorize a small **per-ability deferred-lifecycle witness** in the existing Sto
 - Money CALLING/HELD and native completion remain nonreplayable. A witness can prove a required cancellation/rebase/configuration clear,never prove an unknown payment or unit grant succeeded.
 - New-supported-save coverage only;do not reconstruct missing historical episodes in old saves or silently migrate them. Test temporary failure across loss/return/cold load,second changes,partial write and independent abilities.
 
-This is a persistence mechanism for existing rules,not new gameplay. It still needs narrow approval because it adds saved cross-module recovery evidence. Neither extension has been implemented.
+This is a persistence mechanism for existing rules,not new gameplay. It still needs narrow approval because it adds saved cross-module recovery evidence. Both extensions are authorized;implementation/evidence remains separate.
 
 ## R02 per-ability baseline intake (accepted D-7, not new policy)
 
@@ -71,15 +73,15 @@ All rows first require a supported record/version,strict valid identity/referenc
 
 This table defines implementation prerequisites and losses,not permission to reset every failing group. Accepted D-7 already authorizes a lawful baseline once permanence is actually proved;Primary continues the deterministic/reconstructible cases internally. Only genuinely absent lawful-origin/outcome cases go to a user decision. No permanent HELD status is presented as the finished recovery feature.
 
-## Requested decision and ongoing work
+## Approved scope and ongoing work
 
 Recommended:approve both bounded saved-evidence extensions,keeping all existing D-1/D-2/D-7 rules,strict native outcomes and new-save limits. Primary will finish exact encoding/bounds/ordering tests in independent batches before production wiring,without routine stage approval requests.
 
 Alternative:retain these specific limitations for later;do not call R05 cold attribution or skipped opaque lifecycle fully repaired. The remaining authorized display/applied-owner/U4/S10 work can continue either way.
 
-User decision:approve both extensions,only the network extension,or defer the new persistence contract.
+User decision:both minimal extensions explicitly APPROVED on 2026-10-25;none pending for this scope.
 User testing:U5 cold save/load,source loss/return and recovery after any approved implementation.
-Primary next:continue unaffected authorized work;no new persisted recovery fields before approval.
+Primary next:write the approved constraints first,then implement durable deferred-lifecycle evidence and bounded derived network attribution in separately tested batches;continue S9–S10 without routine stage approvals. No deployment/main/game launch.
 
 
 ## Evidence locator

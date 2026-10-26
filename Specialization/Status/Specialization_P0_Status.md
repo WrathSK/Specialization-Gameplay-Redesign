@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0837
+Status Revision: S0838
 Implementation Build: B383.410 / modinfo410; stable/live B307.334
-Architecture Revision Reviewed: A0182
+Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9_CONTINUING_RECOVERY_DECISION
+Work State: REFACTOR_S9_RECOVERY_EXTENSIONS_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B380–B383 are committed/pushed with scoped local validation (1144/124/799/48 cases);latest runtime B383.410. R04 Tradition return,R13 Capital delayed Treasury display,R06/R07 scoped uncertainty/Development epoch/reporting,and R19 candidate/current display are corrected within stated evidence. R05 cold Commerce15→6/Culture1→0 exposes missing saved source attribution. The [recovery persistence proposal](../Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md) also records the deferred opaque-lifecycle gap and D7 per-ability prerequisites. Only new saved-evidence contracts await user decision;unaffected S9/U4/S10 continues. No complete D2 cold/D7/U4/native or deployment PASS.
+The user approved both minimal recovery-evidence persistence extensions on2026-10-25. A0183 and Workflow now record the constraints before implementation:durable bounded deferred-lifecycle evidence for opaque abilities,and derived Commerce/Culture source attribution for accepted D2 cold recovery. D0058 gameplay,Std-only cold A,strict Store/native receipts and no replay stay. Latest tested/pushed runtime is B383.410;the new saved fields are not implemented yet. Continue approved S9–S10;no routine stage reapproval. No deployment/main/native PASS.
 
-- User decision: approve the proposed two saved-evidence extensions,network only,or defer them.
-- User testing: final U5;no game test requested now.
-- Primary next: Continue unaffected S9 applied-owner integration and full U4/S10 prerequisites;await only the narrow R05/deferred-lifecycle saved-evidence decision. No deployment/main/game launch.
+- User decision: both extensions approved;none pending in this scope.
+- User testing: final U5;no immediate game test.
+- Primary next: Implement bounded deferred-lifecycle mechanics and actual Store recovery first,then validated source-attribution storage/writer composition;continue applied-owner integration,U4/S10. No automatic deployment/main/game launch.
+
+## S0838 — A0183 approved recovery-evidence constraints
+
+The user approved both minimal recovery-evidence persistence extensions on2026-10-25. A0183 and Workflow now record the constraints before implementation:durable bounded deferred-lifecycle evidence for opaque abilities,and derived Commerce/Culture source attribution for accepted D2 cold recovery. D0058 gameplay,Std-only cold A,strict Store/native receipts and no replay stay. Latest tested/pushed runtime is B383.410;the new saved fields are not implemented yet. Continue approved S9–S10;no routine stage reapproval. No deployment/main/native PASS.
 
 ## S0837 — Recovery evidence boundary and per-ability D7 table
 

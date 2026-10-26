@@ -2,6 +2,9 @@
 
 ## Refactor program intake — 2026-10-24
 
+S0838 / A0183 user decision:both minimal saved-evidence extensions are explicitly APPROVED (2026-10-25). [Approved scope](Refactor_Recovery_Persistence_Proposal.md). Constraints synchronized before implementation;proceed with standalone bounded deferred-lifecycle mechanics,actual Store recovery,then source-attribution codec/store/writer composition before remaining applied-owner/U4/S10 work. No routine implementation reapproval,no deployment/main/game launch. The earlier S0837 awaiting-decision checkpoint is superseded by this approval,not deleted.
+
+
 S0837 bounded recovery decision: [R05 / R02–R06 persistence proposal](Refactor_Recovery_Persistence_Proposal.md) records actual cold attribution counterexamples and the missing deferred-lifecycle evidence,plus the accepted D7 per-ability baseline/proof table. Only the two new saved-evidence contracts await user approval;no new fields or reset are implemented. Existing D1/D2/Std-only A are not reopened. Continue unaffected applied-owner/display/U4/S10 duties;do not claim either technical boundary complete.
 
 
