@@ -1928,6 +1928,10 @@
     ],
     "S9g2": [
       "test_refactor_s9g2"
+    ],
+    "S9g3": [
+      "test_refactor_s9g3",
+      "test_refactor_s9g2"
     ]
   },
   "counterexamples": {},
@@ -2470,7 +2474,8 @@
     "Mod/YieldCarrierProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/NetworkBridge.lua|MEASURED_MISSING_EVENT": 2,
     "Mod/CrewProjects.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
-    "Mod/LegacyCleanup.lua|PROPERTY_PRODUCER_OWNERSHIP": 1
+    "Mod/LegacyCleanup.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/NetworkRecoveryStore.lua|PROPERTY_PRODUCER_OWNERSHIP": 1
   },
   "static_review_boundary": "S2 reviewed current runtime debt; counts are heuristic alarms, not compliance. New/widened alarms block pending human review; later removal of old debt is allowed.",
   "resolved_counterexamples": {
@@ -2523,6 +2528,14 @@
       "after": 1,
       "reason": "Accepted S8/F08/C009/D12 responsibility migration: the explicitly invoked composite cleanup core clears only the existing SPC_B029_ONE/SPC_B029_HALF plot flags. No new key, schema, qualification, listener or automatic writer. YieldCarrierProbe keeps the old owner until production wiring in the following slice; this preparatory overlap is deliberate. Scanner and all assertions remain unchanged.",
       "evidence": "test_refactor_s8c5b actual Store/RuntimeWork/core27 cases; first artifact local/refactor/S8c5b-B339-final/closure.json preserved with578 passing tests and this ownership alarm. Exact flags read back; unrelated properties untouched; zero creates/idle work; source-current guards before every write."
+    },
+    {
+      "stage": "S9g3",
+      "key": "Mod/NetworkRecoveryStore.lua|PROPERTY_PRODUCER_OWNERSHIP",
+      "before": 0,
+      "after": 1,
+      "reason": "User-approved A0183 derived network evidence owns exactly SPC_DERIVED_NETWORK_RECOVERY_V1_<COMMERCE|CULTURE>_<formal Store token>,outside permanent history. Import-only adapter has no automatic caller;explicit supported modern-Store Open proves current admission and every operation rechecks live lifecycle/reference. Only the exact generated key receives bounded Cell strings via original P.SetProperty with all existing barriers/counters/UI epochs. No arbitrary key/native object,listener,retry,source grant or envelope write. Current old-slot recovery rejects owner/epoch/shape changes;actual automatic consumer/cold source/negative carrier cleanup remain a mandatory P04 re-review,not covered by this preliminary allowance. Scanner syntax and every runtime assertion remain unchanged.",
+      "evidence": "local/refactor/S9g3-B390-final/closure.json:62 local assertions pass;overall FAIL solely this new ownership alarm. test_refactor_s9g3 actual Store+actual Probe wrapper exact namespaces,unadmitted/foreign/token/owner/loss-return/permanent-write guards,both native write fault phases,core byte preservation and measured2writes/6slotReads/12ref checks;no native/deployment PASS."
     }
   ],
   "supported_state_changes": {

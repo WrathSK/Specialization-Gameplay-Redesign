@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0844",
-    "runtime": "B389.416 / modinfo416",
+    "status": "S0845",
+    "runtime": "B390.417 / modinfo417",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Review and implement actual scoped derived-slot ownership/native setter and carrier-failure ordering without widening permanent Copy or creating UI feedback;then real Commerce/Culture cold restoration and remaining D7/applied-owner/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
+  "goal": "Integrate actual Commerce then Culture recovery with old APPLIED-shape/source-stamp proof,retained-source carry,source/receiver invalidation and negative-failure cleanup;measure real consumers/no feedback before closing R05. Continue D7/applied-owner/U4/S10;no deployment/main/game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -655,6 +655,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B389_Refactor_S9g2.md",
       "kind": "full",
       "reason": "Prove single-use invalidate and finalize mechanics before native slot wiring actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B390_Refactor_S9g3.md",
+      "kind": "full",
+      "reason": "Prove explicit native derived-slot adapter with existing Store and write guards actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -681,8 +686,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B389_Refactor_S9g2.md",
-    "local": "LOCAL_SIMULATION_PASS_44",
+    "report": "Specialization/Status/Validation/Results/Specialization_B390_Refactor_S9g3.md",
+    "local": "LOCAL_SIMULATION_PASS_63",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

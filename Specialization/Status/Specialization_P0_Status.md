@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0844
-Implementation Build: B389.416 / modinfo416; stable/live B307.334
+Status Revision: S0845
+Implementation Build: B390.417 / modinfo417; stable/live B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9G2_CONTINUING
+Work State: REFACTOR_S9G3_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9g2 adds callback-only NetworkRecoveryCell ordering before native storage wiring. Changed data invalidates the old slot without candidate facts,returns one private carrier ticket only after exact postread,then requires explicit carrier/input proof and tombstone CAS before APPLIED publication. RETAINED facts must equal a previous APPLIED source;UNKNOWN/invalidated bytes cannot supply them. Identical payload skips both metadata writes but keeps final proof/CAS. Failures/reentry/stale tickets never grant success or idle retry,and idle cells keep no encoded blob. Actual native slot/setter/barrier/cold consumer composition remain next;no saved field or native/deployment claim. [Result](Validation/Results/Specialization_B389_Refactor_S9g2.md). Stable/live/main B307.334; no deployment/native PASS.
+S9g3 adds an explicit import-only NetworkRecoveryStore adapter for fixed family+formal city-token derived Game Property keys outside permanent records. Initial actual Store admission is reused through pure live CarrierReferenceStamp plus fresh exact native reference/owner/id fences. No native object or idle encoded cache is retained. Actual Probe P.SetProperty and all existing fact barriers,counters/UI epochs remain;no setter bypass. Scoped actual Store/native doubles measure2 writes,6 slot reads and12 location/raw-binding checks per changed commit,same-value0writes and no idle work. Core records stay exact and faults stay derived-local. Automatic Commerce/Culture cold restoration,negative failure ordering and total work remain next;no native-save/deployment claim. [Result](Validation/Results/Specialization_B390_Refactor_S9g3.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Review and implement actual scoped derived-slot ownership/native setter and carrier-failure ordering without widening permanent Copy or creating UI feedback;then real Commerce/Culture cold restoration and remaining D7/applied-owner/U4/S10. No deployment/main/game launch.
+- Primary next: Integrate actual Commerce then Culture recovery with old APPLIED-shape/source-stamp proof,retained-source carry,source/receiver invalidation and negative-failure cleanup;measure real consumers/no feedback before closing R05. Continue D7/applied-owner/U4/S10;no deployment/main/game launch.
+
+## S0845 — B390.417 Prove explicit native derived-slot adapter with existing Store and write guards
+
+S9g3 adds an explicit import-only NetworkRecoveryStore adapter for fixed family+formal city-token derived Game Property keys outside permanent records. Initial actual Store admission is reused through pure live CarrierReferenceStamp plus fresh exact native reference/owner/id fences. No native object or idle encoded cache is retained. Actual Probe P.SetProperty and all existing fact barriers,counters/UI epochs remain;no setter bypass. Scoped actual Store/native doubles measure2 writes,6 slot reads and12 location/raw-binding checks per changed commit,same-value0writes and no idle work. Core records stay exact and faults stay derived-local. Automatic Commerce/Culture cold restoration,negative failure ordering and total work remain next;no native-save/deployment claim.
 
 ## S0844 — B389.416 Prove single-use invalidate and finalize mechanics before native slot wiring
 
