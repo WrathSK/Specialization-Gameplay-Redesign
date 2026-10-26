@@ -10,7 +10,7 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0846",
+    "status": "S0847",
     "runtime": "B391.418 / modinfo418",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S9G4_CONTINUING",
-  "next_batch": "Wire actual Commerce cold recovery and strict source/domain/carrier proofs with failure cleanup and workload comparison,then Culture cold set recovery;continue remaining D7/applied-owner/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
+  "runtime_commit": "b0be389631c35291b545238f3e252ae32c76bda4",
+  "current_batch": "REFACTOR_S9G4_DEVELOP_TEST_DEPLOYED",
+  "next_batch": "Collect phase-test evidence at this batch boundary;then continue already authorized actual Commerce/Culture recovery,D7/applied-owner/U4/S10. Final U5 follows completion;no automatic further deployment,restore,main promotion or game launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
+  "live": "B391.418 temporary develop from b0be389631c35291b545238f3e252ae32c76bda4;340/340 MATCH; SHA256 983881621f35f399c3181122220799a6ea207bdd8cd44d533490b96e7bdaeed2;B307.334 stable backup312/312 MATCH;no pending transaction;receipt B391.418-b0be389-playtest.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -48,8 +48,8 @@
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
-  "deployment_authorization": "User resumed accepted S8b–S10 after the app update. Coherent verified develop batches may commit/push without routine stage authorization; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S0846 S9g4 closes the actual same-source mixed-domain representation gap before automatic consumers. Each Commerce domain carries precise confirmed/retained/unknown status;UNKNOWN has no facts,and Cell matches only retained domains to prior APPLIED facts while allowing fresh siblings. Culture whole-set proof stays. A pure NetworkRecoveryStamp declares token/reference/owner epoch/restructuring serial-phase-identity;the adapter uses it with existing fresh native fences. Existing CarrierReferenceStamp output is unchanged,and ordinary Potential upgrades were already stable,not a claimed reproduced bug. Actual cold writer/consumer integration,R05 work and remaining S9/U4/S10 continue;no native/deployment claim. No native/deployment PASS.",
+  "deployment_authorization": "2026-10-25 user explicitly authorized current develop deployment and requested a new-campaign targeted checklist. One temporary switch completed;no standing authorization for future replacement,restore,main promotion or game launch.",
+  "context_review_status": "S0847 User explicitly approved a temporary deployment of current B391.418 develop for a new-campaign phase test. Source b0be389 and live340/340 MATCH;B307.334 stable backup312/312 MATCH,no pending transaction. S9 actual Commerce/Culture cold consumers and S10 remain unfinished;this is not final U5,main promotion or native PASS. B271 timing probes remain disabled. Original S9g4 source/test evidence retained;no implementation change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B391_Develop_Deployment.md"
 }

@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0846
-Implementation Build: B391.418 / modinfo418; stable/live B307.334
+Status Revision: S0847
+Implementation Build: B391.418 / modinfo418; live B391.418 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9G4_CONTINUING
+Work State: REFACTOR_S9G4_DEVELOP_TEST_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9g4 closes the actual same-source mixed-domain representation gap before automatic consumers. Each Commerce domain carries precise confirmed/retained/unknown status;UNKNOWN has no facts,and Cell matches only retained domains to prior APPLIED facts while allowing fresh siblings. Culture whole-set proof stays. A pure NetworkRecoveryStamp declares token/reference/owner epoch/restructuring serial-phase-identity;the adapter uses it with existing fresh native fences. Existing CarrierReferenceStamp output is unchanged,and ordinary Potential upgrades were already stable,not a claimed reproduced bug. Actual cold writer/consumer integration,R05 work and remaining S9/U4/S10 continue;no native/deployment claim. [Result](Validation/Results/Specialization_B391_Refactor_S9g4.md). Stable/live/main B307.334; no deployment/native PASS.
+User explicitly approved a temporary deployment of current B391.418 develop for a new-campaign phase test. Source b0be389 and live340/340 MATCH;B307.334 stable backup312/312 MATCH,no pending transaction. S9 actual Commerce/Culture cold consumers and S10 remain unfinished;this is not final U5,main promotion or native PASS. B271 timing probes remain disabled. [Deployment](Validation/Results/Specialization_B391_Develop_Deployment.md) · [用户测试清单](Validation/Results/Specialization_B391_Develop_Playtest_Checklist.md).
 
-- User decision: none.
-- User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Wire actual Commerce cold recovery and strict source/domain/carrier proofs with failure cleanup and workload comparison,then Culture cold set recovery;continue remaining D7/applied-owner/U4/S10. No deployment/main/game launch.
+- User decision: one temporary develop deployment approved and completed.
+- User testing: new B391 campaign phase test; final U5 remains later.
+- Primary next: Collect phase-test evidence at this batch boundary;then continue already authorized actual Commerce/Culture recovery,D7/applied-owner/U4/S10. Final U5 follows completion;no automatic further deployment,restore,main promotion or game launch.
+
+## S0847 — B391.418 Approved temporary develop deployment and targeted test handoff
+
+User explicitly approved a temporary deployment of current B391.418 develop for a new-campaign phase test. Source b0be389 and live340/340 MATCH;B307.334 stable backup312/312 MATCH,no pending transaction. S9 actual Commerce/Culture cold consumers and S10 remain unfinished;this is not final U5,main promotion or native PASS. B271 timing probes remain disabled.
 
 ## S0846 — B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope
 
