@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0840
-Implementation Build: B385.412 / modinfo412; stable/live B307.334
+Status Revision: S0841
+Implementation Build: B386.413 / modinfo413; stable/live B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9F2_CONTINUING
+Work State: REFACTOR_S9F3_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9f2 proves fixed pure lifecycle delegates before actual Store cutover. Deferred evidence gains commerce-only REPUTATION scope;whole-ability protection dominates and exact witnesses bind scope. StoreLifecycleRecovery calls original ability Cancel/Terminate/Resume/OwnerChanged/Exit/qualification rules,keeps completed history/actual money receipts,returns fixed owned updates and no held-interval credit,never constructs New() from a missing/bad payload. Independent valid domain selections survive reputation-only recovery. Template return explicitly requires the existing catalogue gate. Both libraries remain import-only with no production Store/Gameplay caller. Actual durable capture/commit/recovery and network attribution remain next;no new-save/native claim. [Result](Validation/Results/Specialization_B385_Refactor_S9f2.md). Stable/live/main B307.334; no deployment/native PASS.
+S9f3 wires the approved optional deferred-lifecycle evidence into existing confirmed Store loss/return commits and strict parent validation. Only skipped required duties are captured;Insights has no invented owner mutation,healthy records add no field/write/clock read,and commerce reputation-only remains independent. Fresh worker load restores the existing private opaque/partial protection before marker repair,so recovered readers cannot expose pre-loss configuration. Original bytes,CAS/readback and independent abilities remain protected. One-shot transform/clear is the next separate cutover;no complete recovery or native-save claim. [Result](Validation/Results/Specialization_B386_Refactor_S9f3.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Integrate validated deferred witness capture and fixed recovery delegates into actual Store loss/return/load boundaries with strict payload preservation,CAS/readback and targeted real-producer propagation;then source attribution and remaining S9/U4/S10. No deployment/main/game launch.
+- Primary next: Integrate exact private one-shot recovery commit and original ability transforms at load/declared availability boundaries,then approved network source attribution and remaining S9/U4/S10. No deployment/main/game launch.
+
+## S0841 — B386.413 Persist skipped lifecycle duties and protect them on fresh worker load
+
+S9f3 wires the approved optional deferred-lifecycle evidence into existing confirmed Store loss/return commits and strict parent validation. Only skipped required duties are captured;Insights has no invented owner mutation,healthy records add no field/write/clock read,and commerce reputation-only remains independent. Fresh worker load restores the existing private opaque/partial protection before marker repair,so recovered readers cannot expose pre-loss configuration. Original bytes,CAS/readback and independent abilities remain protected. One-shot transform/clear is the next separate cutover;no complete recovery or native-save claim.
 
 ## S0840 — B385.412 Prove fixed lifecycle delegates and independent reputation scope
 

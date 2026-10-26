@@ -7,6 +7,7 @@ if not SPCCommerceModel then include('CommerceModel') end
 if not SPCCapitalInvestmentModel then include('CapitalInvestmentModel') end
 if not SPCDevelopmentInvestmentModel then include('DevelopmentInvestmentModel') end
 if not SPCStoreSubrecords then include('StoreSubrecords')end
+if not SPCStoreDeferredLifecycle then include('StoreDeferredLifecycle')end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
 local function publishFact(shared,c,cause,r,investment,topic)
@@ -28,11 +29,40 @@ local returnPhase={DistrictCompleteness=1,NetworkBridge=1,GreatWorkFacts=1,
  CopyYields=2,StandardizationDiscount=2}
 local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
+ local Deferred=SPCStoreDeferredLifecycle
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
  local isolated={} -- session-only observations; original ability bytes remain in root
  local partialReputation -- plain bounded observation, never a copy of the saved history
  local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering','capital','development','claimTimer','commerce','templateLifecycle'} -- fixed reviewed owner scope
  local isolationFields={};for _,key in ipairs(isolationKeys)do isolationFields[key]=SPCStoreSubrecords.Fields(key)end
+ local root,fault,busy;local ready=false;local committing=false
+ -- A pending saved duty uses the same private API/write protection as an opaque
+ -- payload. It is evidence of skipped work, never proof of permanent corruption.
+ local lossDuties={researchTradition=true,dialogue=true,engineering=true,capital=true,development=true,claimTimer=true,commerce=true}
+ local function pendingProtection(r,failures,reputationFailure)
+  for key,e in pairs(r.deferredLifecycle and r.deferredLifecycle.entries or {})do
+   if key=='commerce'and e.scope=='REPUTATION'and not failures.commerce then
+    reputationFailure=reputationFailure or {state='ISOLATED',status='DEFERRED_LIFECYCLE',reason='CONFIRMED_OWNER_TRANSITION_PENDING'}
+   else failures[key]=failures[key]or {state='ISOLATED',status='DEFERRED_LIFECYCLE',reason='CONFIRMED_OWNER_TRANSITION_PENDING'}end
+  end
+  return failures,reputationFailure
+ end
+ local function deferredSelection(returned)
+  local wanted={}
+  for _,key in ipairs(isolationKeys)do
+   if isolated[key]and(lossDuties[key]or returned and key=='templateLifecycle')then wanted[key]=true end
+  end
+  if partialReputation and not wanted.commerce then wanted.commerce='REPUTATION'end
+  return wanted
+ end
+ local function captureDeferred(n,returned)
+  local wanted=deferredSelection(returned)
+  if n.deferredLifecycle~=nil or next(wanted)then
+   local previous=root;local turn=Game.GetCurrentGameTurn()
+   assert(root==previous and n.revision==root.revision+(returned and 0 or 1),'DEFERRED_CAPTURE_SUPERSEDED')
+   n.deferredLifecycle=Deferred[returned and 'Return'or'Loss'](n.deferredLifecycle,n,wanted,turn)
+  end
+ end
  -- Session-only, two bounded scalar summaries; never history or age authority.
  local timing={}
  local function noteTiming(name,before,value)
@@ -55,7 +85,6 @@ local function CreateProgressionRecord(P,shared,storage)
  -- Fixed latest slot per native event; session-only evidence, never identity authority.
  local eventNames={'CityTransfered','CityConquered','CityAddedToMap','CityRemovedFromMap','CityInitialized','CityBuilt'}
  local nativeEvents={};local eventSequence=0
- local root,fault,busy;local ready=false;local committing=false
  local function errorText(why,fallback)
   local ok,text=pcall(tostring,why);return ok and type(text)=='string'and text or fallback
  end
@@ -153,6 +182,7 @@ local function CreateProgressionRecord(P,shared,storage)
    else assert(r.progression=='SPECIALIZED' and kinds[r.base.specialization] and r.base.potential==1,'STORE_SCOPE')end
   end
   if r.restructuring then R.Validate(r.restructuring,r)end
+  if r.deferredLifecycle~=nil then Deferred.Validate(r.deferredLifecycle,r)end
   SPCStoreSubrecords.Validate(r,'PROFESSION',same)
   if r.ownerChanges~=nil then assert(type(r.ownerChanges)=='number' and r.ownerChanges>=0 and r.ownerChanges%1==0,'CAPITAL_OWNER_HISTORY_INVALID')end
   if r.institutionTurns~=nil then
@@ -998,7 +1028,7 @@ local function CreateProgressionRecord(P,shared,storage)
       end
      end
      local parentOK=pcall(validate,checked);assert(parentOK,why)
-     isolated=failures;partialReputation=reputationFailure -- observations, never irrecoverability.
+     isolated,partialReputation=pendingProtection(root,failures,reputationFailure) -- observations, never irrecoverability.
      local repaired,fields;local templateApplied,claimApplied=false,false
      for _,change in ipairs(changes or {})do if not isolated[change.key]and not(change.key=='commerce'and partialReputation)then
       repaired=repaired or cp(root);fields=fields or {}
@@ -1022,6 +1052,7 @@ local function CreateProgressionRecord(P,shared,storage)
      end
     end
    end
+   if root and root.deferredLifecycle then isolated,partialReputation=pendingProtection(root,isolated,partialReputation)end
    ready=true
   end)
   if not ok then fault=errorText(err,'STORE_RESTORE_FAILED');ready=false end
@@ -1247,6 +1278,7 @@ local function CreateProgressionRecord(P,shared,storage)
    resumedTradition=true
   end
   n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence=proof and 'NATIVE_TRANSITION_V1' or 'CityTransfered+original_binding';n.returnProof=proof;n.referenceInvalidated=nil
+  captureDeferred(n,true)
   assert(returnCurrent(generation,revision,loss,c,current,registration),'RETURN_CONTEXT_CHANGED')
   n.revision=n.revision+1;save(n)
   finished={};attempts={};exitTickets={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false;d.exitErrors={};d.exitStatus='NOT_CONFIRMED';d.returnStatus='CONFIRMED_CURRENT_FACTS_REQUIRED'
@@ -1282,7 +1314,7 @@ local function CreateProgressionRecord(P,shared,storage)
      n.development=D.Encode(D.Terminate(D.Decode(n.development),'DEVELOPMENT_OWNER_CHANGED'))
     end
     if not isolated.commerce and n.commerce then n.commerce=commerceTransition(n,'OwnerChanged',current.owner,Game.GetCurrentGameTurn())end
-    n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
+    n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};captureDeferred(n,false);save(n)
     finished={};attempts={};exitTickets={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
    end
    d.observation='READABLE'

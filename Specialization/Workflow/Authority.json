@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0840",
-    "runtime": "B385.412 / modinfo412",
+    "status": "S0841",
+    "runtime": "B386.413 / modinfo413",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S9F2_CONTINUING",
-  "next_batch": "Integrate validated deferred witness capture and fixed recovery delegates into actual Store loss/return/load boundaries with strict payload preservation,CAS/readback and targeted real-producer propagation;then source attribution and remaining S9/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S9F3_CONTINUING",
+  "next_batch": "Integrate exact private one-shot recovery commit and original ability transforms at load/declared availability boundaries,then approved network source attribution and remaining S9/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "User resumed accepted S8b–S10 after the app update. Coherent verified develop batches may commit/push without routine stage authorization; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S0840 S9f2 proves fixed pure lifecycle delegates before actual Store cutover. Deferred evidence gains commerce-only REPUTATION scope;whole-ability protection dominates and exact witnesses bind scope. StoreLifecycleRecovery calls original ability Cancel/Terminate/Resume/OwnerChanged/Exit/qualification rules,keeps completed history/actual money receipts,returns fixed owned updates and no held-interval credit,never constructs New() from a missing/bad payload. Independent valid domain selections survive reputation-only recovery. Template return explicitly requires the existing catalogue gate. Both libraries remain import-only with no production Store/Gameplay caller. Actual durable capture/commit/recovery and network attribution remain next;no new-save/native claim. No native/deployment PASS.",
+  "context_review_status": "S0841 S9f3 wires the approved optional deferred-lifecycle evidence into existing confirmed Store loss/return commits and strict parent validation. Only skipped required duties are captured;Insights has no invented owner mutation,healthy records add no field/write/clock read,and commerce reputation-only remains independent. Fresh worker load restores the existing private opaque/partial protection before marker repair,so recovered readers cannot expose pre-loss configuration. Original bytes,CAS/readback and independent abilities remain protected. One-shot transform/clear is the next separate cutover;no complete recovery or native-save claim. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B386_Refactor_S9f3.md"
 }

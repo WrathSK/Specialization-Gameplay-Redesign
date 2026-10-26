@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "ef195505e993e496020fe7c86738ea253a190d223c4cab834a28afe346e51a74",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
-      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
+      "sha256": "16b8d659f913dc103e7ef12b59995e63d4a6d0b1155708eec1568b9c38fa01c0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B386_Refactor_S9f3.md",
+      "provenance": "B386.413 Persist skipped lifecycle duties and protect them on fresh worker load; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "257037c4537921858e77f353b896ac2eb88a5f620d3122279482cf9ca3b9ff50",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md",
-      "provenance": "B385.412 Prove fixed lifecycle delegates and independent reputation scope; local/static evidence only; no deployment/native PASS."
+      "sha256": "36ece4807b28de68d5fca4797fc9d790fb9626f1250ebc1f01befd906051249d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B386_Refactor_S9f3.md",
+      "provenance": "B386.413 Persist skipped lifecycle duties and protect them on fresh worker load; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "dc1f8e2f191a8987e770ee775d07aa09262d1868ec35c2e61f9e06afc007a4d5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md",
-      "provenance": "B385.412 Prove fixed lifecycle delegates and independent reputation scope; local/static evidence only; no deployment/native PASS."
+      "sha256": "9ec52ca3a36b1f2e591f5e499dd29f16cc0bcf702e88a45d225714f4c779a777",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B386_Refactor_S9f3.md",
+      "provenance": "B386.413 Persist skipped lifecycle duties and protect them on fresh worker load; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

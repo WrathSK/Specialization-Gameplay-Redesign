@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0840",
-    "runtime": "B385.412 / modinfo412",
+    "status": "S0841",
+    "runtime": "B386.413 / modinfo413",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Integrate validated deferred witness capture and fixed recovery delegates into actual Store loss/return/load boundaries with strict payload preservation,CAS/readback and targeted real-producer propagation;then source attribution and remaining S9/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
+  "goal": "Integrate exact private one-shot recovery commit and original ability transforms at load/declared availability boundaries,then approved network source attribution and remaining S9/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -635,6 +635,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md",
       "kind": "full",
       "reason": "Prove fixed lifecycle delegates and independent reputation scope actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B386_Refactor_S9f3.md",
+      "kind": "full",
+      "reason": "Persist skipped lifecycle duties and protect them on fresh worker load actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -661,8 +666,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md",
-    "local": "LOCAL_SIMULATION_PASS_33",
+    "report": "Specialization/Status/Validation/Results/Specialization_B386_Refactor_S9f3.md",
+    "local": "LOCAL_SIMULATION_PASS_86",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

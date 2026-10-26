@@ -60,6 +60,10 @@ class Model(unittest.TestCase):
  def test_publication_package_is_import_only_with_no_production_inclusion(self):
   import xml.etree.ElementTree as ET
   tree=ET.parse(ROOT/'Mod/SpecializationP0.modinfo');name='StoreDeferredLifecycle.lua';self.assertEqual([x.text for x in tree.findall('./Files/File')].count(name),1);self.assertIn(name,[x.text for x in tree.findall('./InGameActions/ImportFiles/File')])
-  for source in ('CityProgressionStore.lua','Gameplay.lua'):self.assertNotIn("include('StoreDeferredLifecycle')",(ROOT/'Mod'/source).read_text())
+  import subprocess
+  # Freeze the exact pre-cutover proof; current production wiring has its own test.
+  for source in ('CityProgressionStore.lua','Gameplay.lua'):
+   text=subprocess.check_output(['git','show','71dd0ad:Mod/'+source],cwd=ROOT,text=True)
+   self.assertNotIn("include('StoreDeferredLifecycle')",text)
 
 if __name__=='__main__':unittest.main()

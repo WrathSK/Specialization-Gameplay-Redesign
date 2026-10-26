@@ -1916,6 +1916,9 @@
     "S9f2": [
       "test_refactor_s9f1",
       "test_refactor_s9f2"
+    ],
+    "S9f3": [
+      "test_refactor_s9f3"
     ]
   },
   "counterexamples": {},
