@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0845
-Implementation Build: B390.417 / modinfo417; stable/live B307.334
+Status Revision: S0846
+Implementation Build: B391.418 / modinfo418; stable/live B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9G3_CONTINUING
+Work State: REFACTOR_S9G4_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9g3 adds an explicit import-only NetworkRecoveryStore adapter for fixed family+formal city-token derived Game Property keys outside permanent records. Initial actual Store admission is reused through pure live CarrierReferenceStamp plus fresh exact native reference/owner/id fences. No native object or idle encoded cache is retained. Actual Probe P.SetProperty and all existing fact barriers,counters/UI epochs remain;no setter bypass. Scoped actual Store/native doubles measure2 writes,6 slot reads and12 location/raw-binding checks per changed commit,same-value0writes and no idle work. Core records stay exact and faults stay derived-local. Automatic Commerce/Culture cold restoration,negative failure ordering and total work remain next;no native-save/deployment claim. [Result](Validation/Results/Specialization_B390_Refactor_S9g3.md). Stable/live/main B307.334; no deployment/native PASS.
+S9g4 closes the actual same-source mixed-domain representation gap before automatic consumers. Each Commerce domain carries precise confirmed/retained/unknown status;UNKNOWN has no facts,and Cell matches only retained domains to prior APPLIED facts while allowing fresh siblings. Culture whole-set proof stays. A pure NetworkRecoveryStamp declares token/reference/owner epoch/restructuring serial-phase-identity;the adapter uses it with existing fresh native fences. Existing CarrierReferenceStamp output is unchanged,and ordinary Potential upgrades were already stable,not a claimed reproduced bug. Actual cold writer/consumer integration,R05 work and remaining S9/U4/S10 continue;no native/deployment claim. [Result](Validation/Results/Specialization_B391_Refactor_S9g4.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Integrate actual Commerce then Culture recovery with old APPLIED-shape/source-stamp proof,retained-source carry,source/receiver invalidation and negative-failure cleanup;measure real consumers/no feedback before closing R05. Continue D7/applied-owner/U4/S10;no deployment/main/game launch.
+- Primary next: Wire actual Commerce cold recovery and strict source/domain/carrier proofs with failure cleanup and workload comparison,then Culture cold set recovery;continue remaining D7/applied-owner/U4/S10. No deployment/main/game launch.
+
+## S0846 — B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope
+
+S9g4 closes the actual same-source mixed-domain representation gap before automatic consumers. Each Commerce domain carries precise confirmed/retained/unknown status;UNKNOWN has no facts,and Cell matches only retained domains to prior APPLIED facts while allowing fresh siblings. Culture whole-set proof stays. A pure NetworkRecoveryStamp declares token/reference/owner epoch/restructuring serial-phase-identity;the adapter uses it with existing fresh native fences. Existing CarrierReferenceStamp output is unchanged,and ordinary Potential upgrades were already stable,not a claimed reproduced bug. Actual cold writer/consumer integration,R05 work and remaining S9/U4/S10 continue;no native/deployment claim.
 
 ## S0845 — B390.417 Prove explicit native derived-slot adapter with existing Store and write guards
 

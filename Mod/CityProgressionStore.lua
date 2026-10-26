@@ -298,13 +298,25 @@ local function CreateProgressionRecord(P,shared,storage)
   return core..'|'..observed..'|'..facts..(facts~='FACTS_UNOBSERVED'and factInput and ':'..factInput or ''),core
  end
  -- Pure reference/write witness only; each ability still owns its qualification.
- function d.CarrierReferenceStamp(pid,id,x,y,token)
+ local function currentCarrierScope(pid,id,x,y,token)
   if not ready or fault or committing or not root or root.stage~='ACTIVE'or root.referenceInvalidated or root.completionError then return nil end
   local a=root.current or root.origin;local b=root.base
   if not a or not b or a.owner~=pid or a.cityID~=id or a.x~=x or a.y~=y or b.token~=token then return nil end
-  local r=root.restructuring
-  return table.concat({pid,id,x,y,#token..':'..token,root.ownerChanges or 0,r and r.serial or 0,
+  return root,b
+ end
+ function d.CarrierReferenceStamp(pid,id,x,y,token)
+  local value,b=currentCarrierScope(pid,id,x,y,token);if not value then return nil end
+  local r=value.restructuring
+  return table.concat({pid,id,x,y,#token..':'..token,value.ownerChanges or 0,r and r.serial or 0,
    r and r.phase or 'NO_RESTRUCTURING',r and r.identity or b.specialization,r and r.potential or b.potential},'|')
+ end
+ -- Derived-source continuity scope,not current qualification or transaction proof.
+ -- Potential/ordinary history can change while old source facts remain reliable.
+ function d.NetworkRecoveryStamp(pid,id,x,y,token)
+  local value,b=currentCarrierScope(pid,id,x,y,token);if not value then return nil end
+  local r=value.restructuring
+  return table.concat({'NREC_SCOPE1',pid,id,x,y,#token..':'..token,value.ownerChanges or 0,
+   r and r.serial or 0,r and r.phase or 'NO_RESTRUCTURING',r and r.identity or b.specialization},'|')
  end
  local function active(pid,c)
   storage.Check()
@@ -1728,6 +1740,11 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   if writing then return nil end
   local w=trainingWorker(pid,id,x,y)
   return w and w.CarrierReferenceStamp(pid,id,x,y,token)or nil
+ end
+ function store.NetworkRecoveryStamp(pid,id,x,y,token)
+  if writing then return nil end
+  local w=trainingWorker(pid,id,x,y)
+  return w and w.NetworkRecoveryStamp(pid,id,x,y,token)or nil
  end
  function store.ObserveTrainingFacts(pid,id,x,y,token,state,issuer,serial,input)
   local w=trainingWorker(pid,id,x,y)

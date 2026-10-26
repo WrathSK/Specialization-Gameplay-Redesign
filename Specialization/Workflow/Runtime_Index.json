@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "8dc06d94bb4bcdf88afd708448a48f4efbb723819ddbf61aabf7a9b55f4ba7b3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
-      "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "08ae58cb0f5f31e459f477485a664296fddd18da7215d5a1cf3a39babf52db3a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md",
+      "provenance": "B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "517331b21e83c319d0e03f9afcbcdb1292c470c1bdcbf2ef26b596b40cc26da1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B390_Refactor_S9g3.md",
-      "provenance": "B390.417 Prove explicit native derived-slot adapter with existing Store and write guards; local/static evidence only; no deployment/native PASS."
+      "sha256": "87c34142877cd98f2dcbe467a1b1228f685dea79180a6caa059562051590cadd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md",
+      "provenance": "B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "23df6be575b223e5a9438f8166ff0bd5b534eea4bb4283613963d3a67500f6aa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B390_Refactor_S9g3.md",
-      "provenance": "B390.417 Prove explicit native derived-slot adapter with existing Store and write guards; local/static evidence only; no deployment/native PASS."
+      "sha256": "98dfa7210b07ca8172ea0ea25dda88e951042dce6d0065872d90fee7977cfdfe",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md",
+      "provenance": "B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1691,19 +1691,19 @@
       "provenance": "B385.412 Prove fixed lifecycle delegates and independent reputation scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkRecoveryModel.lua": {
-      "sha256": "c196e6b3b8e8020ac8ea7c586a957d2b5fda6dbc362cf795c3894b9f1e00273a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B388_Refactor_S9g1.md",
-      "provenance": "B388.415 Prove bounded canonical network attribution framing before persistence wiring; local/static evidence only; no deployment/native PASS."
+      "sha256": "90931c3ba0434f3c1ecd7c68ff396355660dbb3bc84af84d546ba6009ec251f0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md",
+      "provenance": "B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkRecoveryCell.lua": {
-      "sha256": "36f1a05cea48904264f766a76d9e47598e2d7dfbc5e8bdf5b7b65d0d2a5a2e44",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B389_Refactor_S9g2.md",
-      "provenance": "B389.416 Prove single-use invalidate and finalize mechanics before native slot wiring; local/static evidence only; no deployment/native PASS."
+      "sha256": "dadd05d415e39d9aaa53e49d378fbcd90fb08ab8bca167fc4ff29ffc0174a569",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md",
+      "provenance": "B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkRecoveryStore.lua": {
-      "sha256": "2b1bcbe955387c4704b0ab1727f3199d6736391869a5ce8148bc7b6515e18df5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B390_Refactor_S9g3.md",
-      "provenance": "B390.417 Prove explicit native derived-slot adapter with existing Store and write guards; local/static evidence only; no deployment/native PASS."
+      "sha256": "b10a2b98d693f9c7f7ecfa7dc269e843cd1c9da114b4e4a107fbee6f6defd778",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md",
+      "provenance": "B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

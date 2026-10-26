@@ -28,12 +28,12 @@ function M.Open(P,shared,pid,city,family)
   -- Reuse the proved initial Store admission. Its pure live stamp rejects
   -- commit/fault/removal/owner/epoch/role changes; the fresh canonical native
   -- reference below independently checks owner/id/location/raw binding.
-  local stamp=store.CarrierReferenceStamp(pid,id,x,y,token)
+  local stamp=store.NetworkRecoveryStamp(pid,id,x,y,token)
   assert(type(stamp)=='string'and #stamp>0 and #stamp<=512,'NREC_STORE_LIFECYCLE_UNAVAILABLE')
   local c=assert(CityManager.GetCityAt(x,y),'NREC_STORE_CITY_UNAVAILABLE')
   local native=SPCNetworkInput.Reference(c)
   assert(c:GetOwner()==pid and c:GetID()==id,'NREC_STORE_REFERENCE_CHANGED')
-  assert(store.CarrierReferenceStamp(pid,id,x,y,token)==stamp,'NREC_STORE_LIFECYCLE_CHANGED')
+  assert(store.NetworkRecoveryStamp(pid,id,x,y,token)==stamp,'NREC_STORE_LIFECYCLE_CHANGED')
   return {reference=native,stamp=stamp}
  end
  local initial=current()

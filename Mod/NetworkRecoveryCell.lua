@@ -80,11 +80,20 @@ function M.New(family,readOnce,writeOnce,current)
    local wire=C.Encode(value);local candidate=C.Decode(wire);check(candidate.receiver)
    local oldRaw=read();local old=parse(oldRaw);check(candidate.receiver)
    assert(candidate.sequence==old.sequence+1,'NREC_CELL_SEQUENCE_CHANGED')
-   for id,s in pairs(candidate.sources)do if s.status=='RETAINED'then
-    assert(old.state=='APPLIED'and same(old.receiver,candidate.receiver),'NREC_CELL_RETAINED_PROOF_UNAVAILABLE')
-    local previous=old.value.sources[id]
-    assert(previous and previous.status~='UNKNOWN'and same(previous,s,true),'NREC_CELL_RETAINED_FACT_CHANGED')
-   end end
+   for id,s in pairs(candidate.sources)do
+    local function previous()
+     assert(old.state=='APPLIED'and same(old.receiver,candidate.receiver),'NREC_CELL_RETAINED_PROOF_UNAVAILABLE')
+     local prior=old.value.sources[id]
+     assert(prior and prior.status~='UNKNOWN'and prior.reference==s.reference and prior.stamp==s.stamp,'NREC_CELL_RETAINED_FACT_CHANGED')
+     return prior
+    end
+    if family=='COMMERCE'then
+     for domain,row in pairs(s.domains or {})do if(row.status or s.status)=='RETAINED'then
+      local prior=previous();local value=prior.domains[domain]
+      assert(value and(value.status or prior.status)~='UNKNOWN'and same(value,row,true),'NREC_CELL_RETAINED_FACT_CHANGED')
+     end end
+    elseif s.status=='RETAINED'then assert(same(previous(),s,true),'NREC_CELL_RETAINED_FACT_CHANGED')end
+   end
    assert(validateInputs(C.Decode(wire),old.value and C.Decode(oldRaw:sub(2))or nil)==true,'NREC_CELL_INPUT_UNCONFIRMED')
    check(candidate.receiver)
    local unchanged=false

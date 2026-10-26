@@ -46,10 +46,19 @@ function M.Validate(v)
    witness({reference=s.reference,stamp=s.stamp})
    if v.family=='COMMERCE'then
     assert(s.eligible==nil and s.civilizations==nil,'NREC_FAMILY_INVALID');fields(s.domains,domainSet)
+    local mixed,known=false,0
     for _,d in pairs(s.domains)do
-     fields(d,{eligible=true,X=true});assert(type(d.eligible)=='boolean','NREC_ELIGIBILITY_INVALID')
-     if d.eligible then number(d.X)else assert(d.X==nil,'NREC_INELIGIBLE_HAS_VALUE')end
+     fields(d,{eligible=true,X=true,status=true});local status=d.status or s.status
+     assert(statuses[status],'NREC_PROVENANCE_INVALID')
+     if status~='CONFIRMED'then mixed=true end
+     if status=='UNKNOWN'then assert(d.eligible==nil and d.X==nil,'NREC_UNKNOWN_HAS_FACTS')
+     else
+      known=known+1;assert(type(d.eligible)=='boolean','NREC_ELIGIBILITY_INVALID')
+      if d.eligible then number(d.X)else assert(d.X==nil,'NREC_INELIGIBLE_HAS_VALUE')end
+     end
     end
+    assert(s.status~='CONFIRMED'or not mixed,'NREC_SOURCE_PROVENANCE_MISMATCH')
+    assert(s.status~='RETAINED'or mixed and known>0,'NREC_SOURCE_PROVENANCE_MISMATCH')
    else
     assert(s.domains==nil and type(s.eligible)=='boolean','NREC_FAMILY_INVALID');assert(type(s.civilizations)=='table'and getmetatable(s.civilizations)==nil,'NREC_STRUCTURE_INVALID')
     local n=0;for c,yes in pairs(s.civilizations)do assert(civ(c)and yes==true,'NREC_CIV_INVALID');n=n+1;assert(n<=64,'NREC_CIV_SOURCE_LIMIT');all[c]=true end
@@ -82,7 +91,7 @@ function M.Encode(v)
   if s.status~='UNKNOWN'then
    if v.family=='COMMERCE'then
     local n=0;for _ in pairs(s.domains)do n=n+1 end;int(n)
-    for i,key in ipairs(domains)do local d=s.domains[key];if d then int(i);boolean(d.eligible);if d.eligible then put(number(d.X))end end end
+    for i,key in ipairs(domains)do local d=s.domains[key];if d then int(i);local status=d.status or s.status;put(status);if status~='UNKNOWN'then boolean(d.eligible);if d.eligible then put(number(d.X))end end end end
    else
     boolean(s.eligible);local values={};for c in pairs(s.civilizations)do values[#values+1]=index[c]end;table.sort(values);int(#values);for _,i in ipairs(values)do int(i)end
    end
@@ -122,8 +131,11 @@ function M.Decode(wire)
     s.domains={};local count=int(6)
     for _=1,count do
      local key=domains[int(6)];assert(key and not s.domains[key],'NREC_DOMAIN_INVALID')
-     local d={eligible=boolean()};s.domains[key]=d
-     if d.eligible then local encoded=get();local value=tonumber(encoded);assert(value and number(value)==encoded,'NREC_VALUE_INVALID');d.X=value end
+     local d={status=get()};assert(statuses[d.status],'NREC_PROVENANCE_INVALID');s.domains[key]=d
+     if d.status~='UNKNOWN'then
+      d.eligible=boolean()
+      if d.eligible then local encoded=get();local value=tonumber(encoded);assert(value and number(value)==encoded,'NREC_VALUE_INVALID');d.X=value end
+     end
     end
    else
     s.eligible=boolean();s.civilizations={};local count=int(65)

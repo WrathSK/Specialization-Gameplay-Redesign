@@ -1932,6 +1932,11 @@
     "S9g3": [
       "test_refactor_s9g3",
       "test_refactor_s9g2"
+    ],
+    "S9g4": [
+      "test_refactor_s9g4",
+      "test_refactor_s9g3",
+      "test_refactor_s9g2"
     ]
   },
   "counterexamples": {},
