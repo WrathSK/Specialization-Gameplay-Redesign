@@ -58,7 +58,7 @@ class PurePlans(unittest.TestCase):
   v=prepare(ordinary(),'expeditionInsights');v.execute("r.expeditionInsights={version=1,records={['CIVILIZATION_EGYPT:PEOPLE']={civ='CIVILIZATION_EGYPT',category='PEOPLE',turn=1}}};local p=plan();assert(next(p.set)==nil and next(p.remove)==nil and p.topic=='INSIGHTS');r.expeditionInsights.records.WRONG={};assert(not pcall(plan))")
  def test_pure_delegate_does_not_touch_any_native_or_event_surface(self):
   v=prepare(ordinary(),'dialogue');v.execute("r.dialogue=SPCDialogueProjectModel.New();r.dialogueKnown=true;local forbidden=setmetatable({},{__index=function()error('NATIVE_SURFACE_FORBIDDEN')end});Game=forbidden;Players=forbidden;Events=forbidden;GameEvents=forbidden;UI=forbidden;local p=plan();assert(p.set.dialogue.serial==0 and p.nextEvidence==nil)")
-  measure('S9f2_fixed_lifecycle_delegates',{'owners':9,'native_or_Property_calls_in_plan':0,'Store_wired':False,'money_or_completion_replay':False,'independent_commerce_configuration':'preserved for REPUTATION scope'})
+  measure('S9f2_fixed_lifecycle_delegates',{'owners':9,'native_or_Property_calls_in_plan':0,'scope':'pure Plan fixture only','money_or_completion_replay':False,'independent_commerce_configuration':'preserved for REPUTATION scope'})
  def test_stale_witness_and_unreliable_time_leave_every_payload_unchanged(self):
   v=prepare(ordinary(),'dialogue');v.execute("local before=T.encode(r);assert(not pcall(plan,19));witness.epoch=2;assert(not pcall(plan,30));assert(T.encode(r)==before)")
 

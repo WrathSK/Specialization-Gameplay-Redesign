@@ -8,6 +8,7 @@ if not SPCCapitalInvestmentModel then include('CapitalInvestmentModel') end
 if not SPCDevelopmentInvestmentModel then include('DevelopmentInvestmentModel') end
 if not SPCStoreSubrecords then include('StoreSubrecords')end
 if not SPCStoreDeferredLifecycle then include('StoreDeferredLifecycle')end
+if not SPCStoreLifecycleRecovery then include('StoreLifecycleRecovery')end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
 local function publishFact(shared,c,cause,r,investment,topic)
@@ -354,18 +355,49 @@ local function CreateProgressionRecord(P,shared,storage)
   return table.concat({r.base.token,r.revision},':')
  end
  function d.Investment(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local _,i=R.Current(r);return projected(r,i,true)end
- local function save(nextValue,observeFailure)
+ local noRecovery={}
+ local recoveryCapability={} -- private: no API accepts or returns it
+ local function recoveryPermit(nextValue,permit)
+  if not permit then return noRecovery end
+  assert(permit.capability==recoveryCapability and root==permit.previous and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
+  assert(nextValue.revision==root.revision+1,'DEFERRED_RECOVERY_REVISION_CHANGED')
+  local evidence=root.deferredLifecycle;local released,fields={},{}
+  for _,plan in ipairs(permit.plans)do
+   assert(not released[plan.key],'DEFERRED_RECOVERY_DUPLICATE')
+   evidence=Deferred.Clear(evidence,plan.key,plan.witness,root)
+   released[plan.key]=true
+   for _,field in ipairs(isolationFields[plan.key])do fields[field]=true
+    if plan.remove[field]then assert(nextValue[field]==nil,'DEFERRED_RECOVERY_VALUE_CHANGED')
+    elseif plan.set[field]~=nil then assert(same(nextValue[field],plan.set[field]),'DEFERRED_RECOVERY_VALUE_CHANGED')
+    else assert(same(nextValue[field],root[field]),'DEFERRED_RECOVERY_VALUE_CHANGED')end
+   end
+   if plan.witness.scope=='REPUTATION'then
+    local a,b=cp(nextValue.commerce),cp(root.commerce);a.reputation=nil;b.reputation=nil
+    assert(same(a,b),'DEFERRED_RECOVERY_CONFIGURATION_CHANGED')
+   end
+  end
+  assert(next(released)and same(evidence,nextValue.deferredLifecycle),'DEFERRED_RECOVERY_CLEAR_CHANGED')
+  fields.revision=true;fields.deferredLifecycle=true
+  for k,v in pairs(root)do if not fields[k]then assert(same(v,nextValue[k]),'DEFERRED_RECOVERY_PARENT_CHANGED')end end
+  for k,v in pairs(nextValue)do if not fields[k]then assert(same(v,root[k]),'DEFERRED_RECOVERY_PARENT_CHANGED')end end
+  return released
+ end
+ local function save(nextValue,observeFailure,permit)
   assert(not fault,'STORE_WRITE_HELD')
+  local released=recoveryPermit(nextValue,permit)
+  if root and root.deferredLifecycle then for key in pairs(root.deferredLifecycle.entries)do
+   assert(released[key]or nextValue.deferredLifecycle and nextValue.deferredLifecycle.entries[key],'DEFERRED_CLEAR_REQUIRES_RECOVERY')
+  end end
   if next(isolated)or partialReputation then
    -- Normalize before comparison: metatable fallback cannot forge preservation.
    local checked=cp(nextValue);unassignedTemplates(checked)
-   for _,key in ipairs(isolationKeys)do if isolated[key]then
+   for _,key in ipairs(isolationKeys)do if isolated[key]and not released[key]then
     for _,field in ipairs(isolationFields[key])do
      assert(root and same(checked[field],root[field]),'ISOLATED_SUBRECORD_CANNOT_CHANGE_'..field)
      checked[field]=nil
     end
    end end
-   if partialReputation then
+   if partialReputation and not released.commerce then
     assert(not isolated.commerce and type(checked.commerce)=='table','COMMERCE_PARTIAL_SCOPE_CHANGED')
     assert(same(checked.commerce.reputation,root.commerce.reputation)and same(checked.commerceKnown,root.commerceKnown),'ISOLATED_REPUTATION_CANNOT_CHANGE')
     checked.commerce.reputation=nil;checked.commerceKnown=true -- validation projection only; never saved
@@ -381,6 +413,10 @@ local function CreateProgressionRecord(P,shared,storage)
   if not ok then fault=errorText(err,'STORE_WRITE_FAILED')end
   if ticket then facts.EndWrite(ticket)end
   if not ok then error(fault)end
+  if permit and(root~=nextRoot or fault)then
+   fault=fault or 'DEFERRED_RECOVERY_SUPERSEDED_DURING_WRITE';error(fault)
+  end
+  for key in pairs(released)do isolated[key]=nil;if key=='commerce'then partialReputation=nil end end
  end
  -- Dialogue history shares the existing record's commit/readback and failure boundary.
  function d.DialogueState(pid,c)
@@ -911,6 +947,10 @@ local function CreateProgressionRecord(P,shared,storage)
    local found=false;for _,old in ipairs(recovered)do if old==name then found=true end end
    if not found then recovered[#recovered+1]=name end
   end
+  local deferred={}
+  for _,key in ipairs(isolationKeys)do if root and root.deferredLifecycle and root.deferredLifecycle.entries[key]then deferred[#deferred+1]=names[key]end end
+  if #deferred>0 then text=text..'\n易主处理待恢复：'..table.concat(deferred,'、')..'。保留已确认边界和原记录；等待可靠加载事实，不按回合重试。'end
+  if d.deferredRecovery then text=text..'\n已恢复遗漏的易主处理；历史保留，未重放金币或完成操作。'end
   if #protected>0 then text=text..'\n记录不可用（已保护）：'..table.concat(protected,'、')..'。原记录完整保留；未隔离能力独立核验，不据此清零或重复结算。'end
   if #recovered>0 then text=text..'\n已验证修复：'..table.concat(recovered,'、')..'。仅恢复已被保存凭据证明的元数据；未重放完成或金币操作。'end
   return text
@@ -998,6 +1038,57 @@ local function CreateProgressionRecord(P,shared,storage)
   local report=ok and out or ('E2诊断 UNKNOWN：'..tostring(out))
   print('[SPC][E2_NATIVE] '..report);return report
  end
+ local recovering=false
+ local function recoverDeferred(cause)
+  if recovering or not ready or fault or committing or not root or not root.deferredLifecycle then return end
+  recovering=true
+  local ok,why=pcall(function()
+   storage.Check();local previous=root
+   local turn=Game.GetCurrentGameTurn();assert(root==previous and not fault and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
+   local city
+   if previous.stage=='ACTIVE'then
+    city=assert(CityManager.GetCityAt(previous.origin.x,previous.origin.y),'DEFERRED_RECOVERY_CITY_UNAVAILABLE')
+    active(previous.origin.owner,city) -- original exact live reference/binding gate
+    assert(root==previous,'DEFERRED_RECOVERY_SUPERSEDED')
+   end
+   local candidate=previous;local plans,errors={},{}
+   for _,key in ipairs(isolationKeys)do
+    local witness=Deferred.Entry(previous.deferredLifecycle,key,previous)
+    if witness then
+     local good,value=pcall(function()
+      assert(root==previous and not fault and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
+      local n=cp(candidate);local plan=SPCStoreLifecycleRecovery.Plan(n,key,witness,turn)
+      for field,v in pairs(plan.set)do n[field]=v end
+      for field in pairs(plan.remove)do n[field]=nil end
+      n.deferredLifecycle=plan.nextEvidence
+      if plan.requiresTemplateValidation then
+       assert(city and shared.Standardization and shared.Standardization.ValidateHistory,'RETURN_TEMPLATE_VALIDATOR_UNAVAILABLE')
+       shared.Standardization.ValidateHistory(city,n.templates)
+      end
+      assert(SPCStoreSubrecords.CheckOne(key,n,same).status=='PASS','DEFERRED_RECOVERY_PAYLOAD_UNAVAILABLE')
+      assert(root==previous and not fault and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
+      return {candidate=n,plan=plan}
+     end)
+     if good then candidate=value.candidate;plans[#plans+1]=value.plan
+     else errors[key]=errorText(value,'DEFERRED_RECOVERY_UNKNOWN'):sub(1,180)end
+    end
+   end
+   d.deferredRecoveryErrors=next(errors)and errors or nil
+   if #plans==0 then return end
+   assert(root==previous and not fault and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
+   candidate.revision=previous.revision+1
+   save(candidate,nil,{capability=recoveryCapability,previous=previous,plans=plans})
+   local names={};for _,plan in ipairs(plans)do names[#names+1]=plan.key end
+   d.deferredRecovery={cause=cause,keys=names,revision=candidate.revision}
+   if candidate.stage=='ACTIVE'then for _,plan in ipairs(plans)do if plan.topic then
+    publishFact(shared,city,'DEFERRED_LIFECYCLE_RECOVERED',candidate,nil,plan.topic)
+   end end end
+  end)
+  recovering=false
+  if not ok then d.deferredRecoveryError=errorText(why,'DEFERRED_RECOVERY_UNKNOWN'):sub(1,180)
+   if fault and cause=='RESTORE'then error(fault)end -- load faults stay private; native callbacks never escape
+  else d.deferredRecoveryError=nil end
+ end
  local function restore()
   local ok,err=pcall(function()
    root=storage.Read()
@@ -1054,12 +1145,13 @@ local function CreateProgressionRecord(P,shared,storage)
    end
    if root and root.deferredLifecycle then isolated,partialReputation=pendingProtection(root,isolated,partialReputation)end
    ready=true
+   recoverDeferred('RESTORE')
   end)
   if not ok then fault=errorText(err,'STORE_RESTORE_FAILED');ready=false end
  end
  function d.Ready()return ready and not fault end
  function d.Status()return cp(d and {exitStatus=d.exitStatus,exitErrors=d.exitErrors,observation=d.observation,
-  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,returnErrors=d.returnErrors,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery,subrecordIsolation=isolated,reputationIsolation=partialReputation})end
+  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,returnErrors=d.returnErrors,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery,subrecordIsolation=isolated,reputationIsolation=partialReputation,deferredRecovery=d.deferredRecovery,deferredRecoveryErrors=d.deferredRecoveryErrors,deferredRecoveryError=d.deferredRecoveryError})end
  restore() -- before Binding/Journal/Flow/Investment register load callbacks
  -- No absence/failed getter is confirmation. A matched native ownership event is required.
  function d.IsExitTarget(c,loss)
@@ -1325,7 +1417,7 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  -- Manager forwards bounded native events; each record retains its own state.
  function d.Handle(name,...)
-  if name=='LoadScreenClose' then reconcile();return end
+  if name=='LoadScreenClose' then reconcile();recoverDeferred('LOAD_COMPLETE');return end
   if not ready or fault or not root then return end
   local owner,id,x,y=...
   if name=='CityTransfered'and root.loss and root.stage=='HELD_TRANSFER'and owner==root.origin.owner and x==root.loss.target.owner then
@@ -1357,7 +1449,7 @@ local function CreateProgressionRecord(P,shared,storage)
   elseif name=='CityConquered' then
    if not pcall(trackConquest,...) then transitionFault='RETURN_CHAIN_READ_FAILED'end
    rememberFault(name)
-  else trackSafely(name,...);reconcile()end
+  else trackSafely(name,...);reconcile();if name=='CityInitialized'then recoverDeferred('CITY_INITIALIZED')end end
  end
  return d
 end

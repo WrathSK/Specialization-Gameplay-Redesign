@@ -41,7 +41,7 @@ function SPCFactConsumerBindings.New(shared)
   {target='EngineeringStudy',method='CreditChanged',kinds={'HISTORY'},topics={'WONDER_CREDIT'}},
   {target='DialogueProjects',method='RefreshAccess',cityOnly=true,kinds=role},
   {target='Commerce',method='Mark',kinds={'ACTIVE','WORKERS','NETWORK'}},
-  {target='CapitalInvestment',method='Mark',kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK'}},
+  {target='CapitalInvestment',method='Mark',kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'CAPITAL_RECOVERY'}},
   {target='DevelopmentInvestment',method='Audit',kinds={'NETWORK'}},
  }
  local function ownerAllowed(row,e)

@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "16b8d659f913dc103e7ef12b59995e63d4a6d0b1155708eec1568b9c38fa01c0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B386_Refactor_S9f3.md",
-      "provenance": "B386.413 Persist skipped lifecycle duties and protect them on fresh worker load; local/static evidence only; no deployment/native PASS."
+      "sha256": "8dc06d94bb4bcdf88afd708448a48f4efbb723819ddbf61aabf7a9b55f4ba7b3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
+      "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -501,9 +501,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "5b969a82f32b590036c04a9a67c51a67812b3d45d410315138e4dd5069d893c5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
-      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
+      "sha256": "8b0938253768885523e6fdc3868aab402385ee02f21d7a65089016066ce5b72b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
+      "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "4f4df0ed1eee502d9ee19ad8e053c6070b9f17d74b0e33eaba26f33ab13e256a",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "36ece4807b28de68d5fca4797fc9d790fb9626f1250ebc1f01befd906051249d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B386_Refactor_S9f3.md",
-      "provenance": "B386.413 Persist skipped lifecycle duties and protect them on fresh worker load; local/static evidence only; no deployment/native PASS."
+      "sha256": "29824b893bfa04bf438126af4f8653b8ff2ef13bed80a6c11f6389ec443a1b3b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
+      "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9ec52ca3a36b1f2e591f5e499dd29f16cc0bcf702e88a45d225714f4c779a777",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B386_Refactor_S9f3.md",
-      "provenance": "B386.413 Persist skipped lifecycle duties and protect them on fresh worker load; local/static evidence only; no deployment/native PASS."
+      "sha256": "40b2d3c737907d25e86e32fecb17f8ba3ee3b7981224fc0ecbaaf0c2968bd9ca",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
+      "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1586,9 +1586,9 @@
       "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "98930ed43c95c52a0e6e4e2729469df0d4e96d91e5775498f4d853a3b92fa9f4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
+      "sha256": "0a91920ee5f5559f0ccb1d21e611368bd5c53bd519caa957897f82f9bf5a8874",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
+      "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "66b5f5bf68274e54ec9495802f9a7ade09eaa5a89ecda22518b2ea787f84bec9",

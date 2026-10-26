@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0841
-Implementation Build: B386.413 / modinfo413; stable/live B307.334
+Status Revision: S0842
+Implementation Build: B387.414 / modinfo414; stable/live B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9F3_CONTINUING
+Work State: REFACTOR_S9F4_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9f3 wires the approved optional deferred-lifecycle evidence into existing confirmed Store loss/return commits and strict parent validation. Only skipped required duties are captured;Insights has no invented owner mutation,healthy records add no field/write/clock read,and commerce reputation-only remains independent. Fresh worker load restores the existing private opaque/partial protection before marker repair,so recovered readers cannot expose pre-loss configuration. Original bytes,CAS/readback and independent abilities remain protected. One-shot transform/clear is the next separate cutover;no complete recovery or native-save claim. [Result](Validation/Results/Specialization_B386_Refactor_S9f3.md). Stable/live/main B307.334; no deployment/native PASS.
+S9f4 completes actual deferred lifecycle recovery at restore,load completion and exactly related existing city initialization. A private exact-root/witness/scope capability validates original owner transforms and remaining parent,commits updates plus evidence clear in one CAS/readback,and releases opaque protection only after confirmed success. Independent valid groups recover while UNKNOWN remains dormant;reputation-only keeps postreturn selections,age resumes without held credit,template history needs its original catalogue gate,and money/native outcomes are never replayed. Narrow committed history edges rearm lazy Capital/Development consumers. Approved network attribution,broader D7/applied-owner/U4/S10 remain open;no native save/deployment claim. [Result](Validation/Results/Specialization_B387_Refactor_S9f4.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Integrate exact private one-shot recovery commit and original ability transforms at load/declared availability boundaries,then approved network source attribution and remaining S9/U4/S10. No deployment/main/game launch.
+- Primary next: Implement approved bounded Commerce/Culture cold-network source attribution with exact Store/carrier commit witnesses and failure ordering,then remaining D7/applied-owner/U4/S10. No deployment/main/game launch.
+
+## S0842 — B387.414 Recover saved skipped lifecycle duties through one exact Store commit
+
+S9f4 completes actual deferred lifecycle recovery at restore,load completion and exactly related existing city initialization. A private exact-root/witness/scope capability validates original owner transforms and remaining parent,commits updates plus evidence clear in one CAS/readback,and releases opaque protection only after confirmed success. Independent valid groups recover while UNKNOWN remains dormant;reputation-only keeps postreturn selections,age resumes without held credit,template history needs its original catalogue gate,and money/native outcomes are never replayed. Narrow committed history edges rearm lazy Capital/Development consumers. Approved network attribution,broader D7/applied-owner/U4/S10 remain open;no native save/deployment claim.
 
 ## S0841 — B386.413 Persist skipped lifecycle duties and protect them on fresh worker load
 

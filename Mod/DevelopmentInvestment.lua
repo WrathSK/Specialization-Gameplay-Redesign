@@ -396,6 +396,6 @@ function SPCDevelopmentInvestment.Start(P,shared)
   d.Mark(loss.origin.owner)
  end)
  store.RegisterReturn('DevelopmentInvestment',function(pid,c)d.SourceChanged(pid,c:GetID())end)
- if shared.FactChanges then shared.FactChanges.RegisterConsumer('DevelopmentInvestment',function(e)d.SourceChanged(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
+ if shared.FactChanges then shared.FactChanges.RegisterConsumer('DevelopmentInvestment',function(e)d.SourceChanged(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'DEVELOPMENT_RECOVERY'}})end
  return d
 end

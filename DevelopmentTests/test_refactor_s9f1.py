@@ -27,7 +27,7 @@ def plain(x):return {k:plain(v)for k,v in x.items()}if lua_type(x)=='table'else 
 class Model(unittest.TestCase):
  def test_all_nine_owners_coalesce_with_no_native_or_saved_side_effect(self):
   v=fixture();v.execute("local all={};for _,key in ipairs(M.Keys())do all[key]=true end;v=M.Loss(nil,r,all,0);local n=0;for _ in pairs(v.entries)do n=n+1 end;assert(n==9 and M.Validate(v,r)==v);v=returned(5);for _,key in ipairs(M.Keys())do local e=M.Entry(v,key,r);assert(e.key==key and e.token=='CITY'and e.epoch==1 and e.firstTurn==0 and e.lossTurn==0 and e.returnTurn==5 and e.returned.cityID==19);v=M.Clear(v,key,e,r)end;assert(v==nil)")
-  measure('S9f1_deferred_model_bound',{'owners':9,'episodes_per_owner':1,'automatic_calls':0,'native_or_Property_access':0,'Store_wired':False})
+  measure('S9f1_deferred_model_bound',{'owners':9,'episodes_per_owner':1,'automatic_calls':0,'native_or_Property_access':0,'fixture_Store_calls':0})
  def test_duplicate_loss_and_return_preserve_first_observed_boundaries(self):
   v=fixture();v.execute("v=M.Loss(nil,r,{commerce=true},10);v=M.Loss(v,r,{commerce=true},12);assert(v.entries.commerce.lossTurn==10);v=returned(20);v=M.Return(v,r,{commerce=true},25);assert(v.entries.commerce.returnTurn==20 and v.entries.commerce.firstTurn==10)")
  def test_multiple_pending_episodes_keep_first_unresolved_turn_and_latest_loss(self):
