@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="411">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="412">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B384.411：验证固定大小的延后生命周期凭据模型，暂不接入生产保存。</Description>
+    <Description>B385.412：验证各能力原有生命周期转换和独立信誉恢复，尚未接入保存。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -149,6 +149,7 @@
       <File>CityProgressionStore.lua</File>
       <File>StoreSubrecords.lua</File>
       <File>StoreDeferredLifecycle.lua</File>
+      <File>StoreLifecycleRecovery.lua</File>
       <File>ResearchTradition.lua</File>
       <File>ResearchTraditionEffects.lua</File>
       <File>CitySequenceProbe.lua</File>
@@ -600,6 +601,7 @@
     <File>CityProgressionStore.lua</File>
     <File>StoreSubrecords.lua</File>
     <File>StoreDeferredLifecycle.lua</File>
+    <File>StoreLifecycleRecovery.lua</File>
       <File>ResearchTradition.lua</File>
       <File>ResearchTraditionEffects.lua</File>
       <File>CitySequenceProbe.lua</File>

@@ -27,8 +27,8 @@ local function parent(r)
  reference(r.origin)
 end
 local envelopeFields={version=true,token=true,owner=true,x=true,y=true,entries=true}
-local entryFields={epoch=true,firstTurn=true,lossTurn=true,lossTarget=true,returnTurn=true,returned=true}
-local witnessFields={key=true,token=true,epoch=true,firstTurn=true,lossTurn=true,lossTarget=true,returnTurn=true,returned=true}
+local entryFields={epoch=true,firstTurn=true,lossTurn=true,lossTarget=true,returnTurn=true,returned=true,scope=true}
+local witnessFields={key=true,token=true,epoch=true,firstTurn=true,lossTurn=true,lossTarget=true,returnTurn=true,returned=true,scope=true}
 local function entry(e,origin,witness)
  fields(e,witness and witnessFields or entryFields);reference(e.lossTarget)
  assert(int(e.epoch)and e.epoch>0 and int(e.firstTurn)
@@ -50,6 +50,7 @@ function M.Validate(v,r)
  local n=0
  for key,e in pairs(v.entries)do
   assert(allowed[key],'DEFERRED_OWNER_UNKNOWN');n=n+1;entry(e,v)
+  assert(e.scope==nil or key=='commerce'and e.scope=='REPUTATION','DEFERRED_SCOPE_INVALID')
  end
  assert(n>0 and n<=#keys,'DEFERRED_BOUND_INVALID')
  if r then
@@ -67,7 +68,7 @@ function M.Validate(v,r)
 end
 local function entryCopy(e)
  return {epoch=e.epoch,firstTurn=e.firstTurn,lossTurn=e.lossTurn,lossTarget=refCopy(e.lossTarget),
-  returnTurn=e.returnTurn,returned=e.returned and refCopy(e.returned)or nil}
+  returnTurn=e.returnTurn,returned=e.returned and refCopy(e.returned)or nil,scope=e.scope}
 end
 local function copy(v,r)
  M.Validate(v)
@@ -80,7 +81,11 @@ local function copy(v,r)
 end
 local function selected(wanted)
  assert(plain(wanted),'DEFERRED_SELECTION_INVALID')
- for key,value in pairs(wanted)do assert(allowed[key]and type(value)=='boolean','DEFERRED_SELECTION_INVALID')end
+ for key,value in pairs(wanted)do assert(allowed[key]and(type(value)=='boolean'or key=='commerce'and value=='REPUTATION'),'DEFERRED_SELECTION_INVALID')end
+end
+local function scope(old,wanted)
+ if old and old.scope==nil or wanted==true then return nil end
+ return old and old.scope or wanted=='REPUTATION'and 'REPUTATION'or nil
 end
 local function finish(v,r)
  if next(v.entries)==nil then return nil end
@@ -98,9 +103,10 @@ function M.Loss(v,r,wanted,turn)
   if old and old.epoch==r.ownerChanges then
    assert(not old.returned and sameRef(old.lossTarget,r.loss.target),'DEFERRED_EPOCH_REUSED')
    assert(turn>=old.lossTurn,'DEFERRED_TURN_REVERSED') -- duplicate keeps original boundary
+   old.scope=scope(old,wanted[key])
   else
    out.entries[key]={epoch=r.ownerChanges,firstTurn=old and old.firstTurn or turn,
-    lossTurn=turn,lossTarget=refCopy(r.loss.target)}
+    lossTurn=turn,lossTarget=refCopy(r.loss.target),scope=scope(old,wanted[key])}
   end
  end end
  return finish(out,r)
@@ -118,7 +124,8 @@ function M.Return(v,r,wanted,turn)
    assert(e.epoch==r.ownerChanges and sameRef(e.lossTarget,r.lastLoss.target),'DEFERRED_PARENT_EPISODE_CHANGED')
    assert(turn>=(e.returnTurn or e.lossTurn or e.firstTurn),'DEFERRED_TURN_REVERSED')
    if e.returned then assert(sameRef(e.returned,r.current),'DEFERRED_PARENT_RETURN_CHANGED')end
-  else e={epoch=r.ownerChanges,firstTurn=turn,lossTarget=refCopy(r.lastLoss.target)};out.entries[key]=e end
+  else e={epoch=r.ownerChanges,firstTurn=turn,lossTarget=refCopy(r.lastLoss.target),scope=scope(nil,wanted[key])};out.entries[key]=e end
+  e.scope=scope(e,wanted[key])
   if not e.returned then e.returnTurn=turn;e.returned=refCopy(r.current)end
  end end
  return finish(out,r)
@@ -130,7 +137,7 @@ function M.Entry(v,key,r)
 end
 local function sameEntry(a,b)
  return plain(a)and plain(b)and a.epoch==b.epoch and a.firstTurn==b.firstTurn and a.lossTurn==b.lossTurn
-  and a.returnTurn==b.returnTurn and sameRef(a.lossTarget,b.lossTarget)
+  and a.returnTurn==b.returnTurn and a.scope==b.scope and sameRef(a.lossTarget,b.lossTarget)
   and(a.returned==nil and b.returned==nil or sameRef(a.returned,b.returned))
 end
 function M.Clear(v,key,witness,r)
