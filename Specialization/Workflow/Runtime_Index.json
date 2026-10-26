@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "29824b893bfa04bf438126af4f8653b8ff2ef13bed80a6c11f6389ec443a1b3b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
-      "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "c29ee89648722109e600a8d2ac06b17f64bd30d32d1ee4a1086e4acef4867e75",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B388_Refactor_S9g1.md",
+      "provenance": "B388.415 Prove bounded canonical network attribution framing before persistence wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "40b2d3c737907d25e86e32fecb17f8ba3ee3b7981224fc0ecbaaf0c2968bd9ca",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
-      "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "6e517e78b01c0134710bd9b60c12bf6e6bad1faf7c3225684f68134f446505e4",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B388_Refactor_S9g1.md",
+      "provenance": "B388.415 Prove bounded canonical network attribution framing before persistence wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1689,6 +1689,11 @@
       "sha256": "0fed22622fd438fe21df94de78b2435edc0442fa3776e9b4db888248c246c699",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md",
       "provenance": "B385.412 Prove fixed lifecycle delegates and independent reputation scope; local/static evidence only; no deployment/native PASS."
+    },
+    "Mod/NetworkRecoveryModel.lua": {
+      "sha256": "c196e6b3b8e8020ac8ea7c586a957d2b5fda6dbc362cf795c3894b9f1e00273a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B388_Refactor_S9g1.md",
+      "provenance": "B388.415 Prove bounded canonical network attribution framing before persistence wiring; local/static evidence only; no deployment/native PASS."
     }
   },
   "source_review": "S0760 main deployment records synchronized; current develop Mod tree is byte-identical to B308/4886940, including completed S6d. Last deployed package remains the separate B307 main source,312/312 MATCH. No new code/native/deployment claim."

@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0842",
-    "runtime": "B387.414 / modinfo414",
+    "status": "S0843",
+    "runtime": "B388.415 / modinfo415",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Implement approved bounded Commerce/Culture cold-network source attribution with exact Store/carrier commit witnesses and failure ordering,then remaining D7/applied-owner/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
+  "goal": "Define and prove derived-slot ownership/CAS,invalidate-before-carrier/finalize-after-proof ordering and unchanged old-source carry witnesses before production Commerce/Culture wiring;then remaining D7/applied-owner/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -645,6 +645,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
       "kind": "full",
       "reason": "Recover saved skipped lifecycle duties through one exact Store commit actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B388_Refactor_S9g1.md",
+      "kind": "full",
+      "reason": "Prove bounded canonical network attribution framing before persistence wiring actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -671,8 +676,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
-    "local": "LOCAL_SIMULATION_PASS_70",
+    "report": "Specialization/Status/Validation/Results/Specialization_B388_Refactor_S9g1.md",
+    "local": "LOCAL_SIMULATION_PASS_20",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }

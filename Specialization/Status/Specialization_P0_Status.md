@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0842
-Implementation Build: B387.414 / modinfo414; stable/live B307.334
+Status Revision: S0843
+Implementation Build: B388.415 / modinfo415; stable/live B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9F4_CONTINUING
+Work State: REFACTOR_S9G1_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9f4 completes actual deferred lifecycle recovery at restore,load completion and exactly related existing city initialization. A private exact-root/witness/scope capability validates original owner transforms and remaining parent,commits updates plus evidence clear in one CAS/readback,and releases opaque protection only after confirmed success. Independent valid groups recover while UNKNOWN remains dormant;reputation-only keeps postreturn selections,age resumes without held credit,template history needs its original catalogue gate,and money/native outcomes are never replayed. Narrow committed history edges rearm lazy Capital/Development consumers. Approved network attribution,broader D7/applied-owner/U4/S10 remain open;no native save/deployment claim. [Result](Validation/Results/Specialization_B387_Refactor_S9f4.md). Stable/live/main B307.334; no deployment/native PASS.
+S9g1 adds an import-only pure NetworkRecoveryModel codec before actual source-evidence persistence. It frames version/family/sequence,existing reference/lifecycle stamps,carrier shape,5-domain values or deduplicated civilization sets and source provenance;UNKNOWN carries no facts. Deterministic canonical framing preserves binary64 values as DECIMAL17 strings,limits512 sources/64 civilizations each/<256 dictionary/1MiB wire,and rejects malformed/future/noncanonical/truncated data without native work. Maximum bundle size is measured;the permanent Copy budget is unchanged. Actual derived-slot/CAS,carry-proof,carrier ordering and Commerce/Culture cold restoration remain next,not claimed complete. [Result](Validation/Results/Specialization_B388_Refactor_S9g1.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Implement approved bounded Commerce/Culture cold-network source attribution with exact Store/carrier commit witnesses and failure ordering,then remaining D7/applied-owner/U4/S10. No deployment/main/game launch.
+- Primary next: Define and prove derived-slot ownership/CAS,invalidate-before-carrier/finalize-after-proof ordering and unchanged old-source carry witnesses before production Commerce/Culture wiring;then remaining D7/applied-owner/U4/S10. No deployment/main/game launch.
+
+## S0843 — B388.415 Prove bounded canonical network attribution framing before persistence wiring
+
+S9g1 adds an import-only pure NetworkRecoveryModel codec before actual source-evidence persistence. It frames version/family/sequence,existing reference/lifecycle stamps,carrier shape,5-domain values or deduplicated civilization sets and source provenance;UNKNOWN carries no facts. Deterministic canonical framing preserves binary64 values as DECIMAL17 strings,limits512 sources/64 civilizations each/<256 dictionary/1MiB wire,and rejects malformed/future/noncanonical/truncated data without native work. Maximum bundle size is measured;the permanent Copy budget is unchanged. Actual derived-slot/CAS,carry-proof,carrier ordering and Commerce/Culture cold restoration remain next,not claimed complete.
 
 ## S0842 — B387.414 Recover saved skipped lifecycle duties through one exact Store commit
 
