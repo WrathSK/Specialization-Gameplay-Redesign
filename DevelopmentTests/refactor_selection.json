@@ -1925,6 +1925,9 @@
     ],
     "S9g1": [
       "test_refactor_s9g1"
+    ],
+    "S9g2": [
+      "test_refactor_s9g2"
     ]
   },
   "counterexamples": {},

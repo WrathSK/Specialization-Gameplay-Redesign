@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0843
-Implementation Build: B388.415 / modinfo415; stable/live B307.334
+Status Revision: S0844
+Implementation Build: B389.416 / modinfo416; stable/live B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9G1_CONTINUING
+Work State: REFACTOR_S9G2_CONTINUING
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9g1 adds an import-only pure NetworkRecoveryModel codec before actual source-evidence persistence. It frames version/family/sequence,existing reference/lifecycle stamps,carrier shape,5-domain values or deduplicated civilization sets and source provenance;UNKNOWN carries no facts. Deterministic canonical framing preserves binary64 values as DECIMAL17 strings,limits512 sources/64 civilizations each/<256 dictionary/1MiB wire,and rejects malformed/future/noncanonical/truncated data without native work. Maximum bundle size is measured;the permanent Copy budget is unchanged. Actual derived-slot/CAS,carry-proof,carrier ordering and Commerce/Culture cold restoration remain next,not claimed complete. [Result](Validation/Results/Specialization_B388_Refactor_S9g1.md). Stable/live/main B307.334; no deployment/native PASS.
+S9g2 adds callback-only NetworkRecoveryCell ordering before native storage wiring. Changed data invalidates the old slot without candidate facts,returns one private carrier ticket only after exact postread,then requires explicit carrier/input proof and tombstone CAS before APPLIED publication. RETAINED facts must equal a previous APPLIED source;UNKNOWN/invalidated bytes cannot supply them. Identical payload skips both metadata writes but keeps final proof/CAS. Failures/reentry/stale tickets never grant success or idle retry,and idle cells keep no encoded blob. Actual native slot/setter/barrier/cold consumer composition remain next;no saved field or native/deployment claim. [Result](Validation/Results/Specialization_B389_Refactor_S9g2.md). Stable/live/main B307.334; no deployment/native PASS.
 
 - User decision: none.
 - User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Define and prove derived-slot ownership/CAS,invalidate-before-carrier/finalize-after-proof ordering and unchanged old-source carry witnesses before production Commerce/Culture wiring;then remaining D7/applied-owner/U4/S10. No deployment/main/game launch.
+- Primary next: Review and implement actual scoped derived-slot ownership/native setter and carrier-failure ordering without widening permanent Copy or creating UI feedback;then real Commerce/Culture cold restoration and remaining D7/applied-owner/U4/S10. No deployment/main/game launch.
+
+## S0844 — B389.416 Prove single-use invalidate and finalize mechanics before native slot wiring
+
+S9g2 adds callback-only NetworkRecoveryCell ordering before native storage wiring. Changed data invalidates the old slot without candidate facts,returns one private carrier ticket only after exact postread,then requires explicit carrier/input proof and tombstone CAS before APPLIED publication. RETAINED facts must equal a previous APPLIED source;UNKNOWN/invalidated bytes cannot supply them. Identical payload skips both metadata writes but keeps final proof/CAS. Failures/reentry/stale tickets never grant success or idle retry,and idle cells keep no encoded blob. Actual native slot/setter/barrier/cold consumer composition remain next;no saved field or native/deployment claim.
 
 ## S0843 — B388.415 Prove bounded canonical network attribution framing before persistence wiring
 

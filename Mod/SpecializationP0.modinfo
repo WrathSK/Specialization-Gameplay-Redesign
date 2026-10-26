@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="415">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="416">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B388.415：验证网络来源凭据的有上限编码和小数精度，尚未接入保存。</Description>
+    <Description>B389.416：验证来源凭据先失效后确认的单次提交及失败保护，尚未接入实际保存。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -151,6 +151,7 @@
       <File>StoreDeferredLifecycle.lua</File>
       <File>StoreLifecycleRecovery.lua</File>
       <File>NetworkRecoveryModel.lua</File>
+      <File>NetworkRecoveryCell.lua</File>
       <File>ResearchTradition.lua</File>
       <File>ResearchTraditionEffects.lua</File>
       <File>CitySequenceProbe.lua</File>
@@ -604,6 +605,7 @@
     <File>StoreDeferredLifecycle.lua</File>
     <File>StoreLifecycleRecovery.lua</File>
     <File>NetworkRecoveryModel.lua</File>
+    <File>NetworkRecoveryCell.lua</File>
       <File>ResearchTradition.lua</File>
       <File>ResearchTraditionEffects.lua</File>
       <File>CitySequenceProbe.lua</File>

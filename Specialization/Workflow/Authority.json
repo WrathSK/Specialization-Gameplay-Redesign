@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0843",
-    "runtime": "B388.415 / modinfo415",
+    "status": "S0844",
+    "runtime": "B389.416 / modinfo416",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "19d51bd8cdb520af7d35f2eeade34fc86d8361f4",
-  "current_batch": "REFACTOR_S9G1_CONTINUING",
-  "next_batch": "Define and prove derived-slot ownership/CAS,invalidate-before-carrier/finalize-after-proof ordering and unchanged old-source carry witnesses before production Commerce/Culture wiring;then remaining D7/applied-owner/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
+  "current_batch": "REFACTOR_S9G2_CONTINUING",
+  "next_batch": "Review and implement actual scoped derived-slot ownership/native setter and carrier-failure ordering without widening permanent Copy or creating UI feedback;then real Commerce/Culture cold restoration and remaining D7/applied-owner/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B307.334 stable from main 19d51bd8cdb520af7d35f2eeade34fc86d8361f4;312/312 MATCH; SHA256 b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146; B271 backup verified; no pending transaction; receipt B307.334-19d51bd-stable-deploy.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "User resumed accepted S8b–S10 after the app update. Coherent verified develop batches may commit/push without routine stage authorization; no automatic deployment, main promotion or game launch.",
-  "context_review_status": "S0843 S9g1 adds an import-only pure NetworkRecoveryModel codec before actual source-evidence persistence. It frames version/family/sequence,existing reference/lifecycle stamps,carrier shape,5-domain values or deduplicated civilization sets and source provenance;UNKNOWN carries no facts. Deterministic canonical framing preserves binary64 values as DECIMAL17 strings,limits512 sources/64 civilizations each/<256 dictionary/1MiB wire,and rejects malformed/future/noncanonical/truncated data without native work. Maximum bundle size is measured;the permanent Copy budget is unchanged. Actual derived-slot/CAS,carry-proof,carrier ordering and Commerce/Culture cold restoration remain next,not claimed complete. No native/deployment PASS.",
+  "context_review_status": "S0844 S9g2 adds callback-only NetworkRecoveryCell ordering before native storage wiring. Changed data invalidates the old slot without candidate facts,returns one private carrier ticket only after exact postread,then requires explicit carrier/input proof and tombstone CAS before APPLIED publication. RETAINED facts must equal a previous APPLIED source;UNKNOWN/invalidated bytes cannot supply them. Identical payload skips both metadata writes but keeps final proof/CAS. Failures/reentry/stale tickets never grant success or idle retry,and idle cells keep no encoded blob. Actual native slot/setter/barrier/cold consumer composition remain next;no saved field or native/deployment claim. No native/deployment PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B388_Refactor_S9g1.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B389_Refactor_S9g2.md"
 }

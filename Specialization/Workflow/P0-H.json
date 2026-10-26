@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0843",
-    "runtime": "B388.415 / modinfo415",
+    "status": "S0844",
+    "runtime": "B389.416 / modinfo416",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Define and prove derived-slot ownership/CAS,invalidate-before-carrier/finalize-after-proof ordering and unchanged old-source carry witnesses before production Commerce/Culture wiring;then remaining D7/applied-owner/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
+  "goal": "Review and implement actual scoped derived-slot ownership/native setter and carrier-failure ordering without widening permanent Copy or creating UI feedback;then real Commerce/Culture cold restoration and remaining D7/applied-owner/U4/S10. No deployment/main/game launch. No automatic deployment/main/native launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -650,6 +650,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B388_Refactor_S9g1.md",
       "kind": "full",
       "reason": "Prove bounded canonical network attribution framing before persistence wiring actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B389_Refactor_S9g2.md",
+      "kind": "full",
+      "reason": "Prove single-use invalidate and finalize mechanics before native slot wiring actual runtime impacts, validation closure and remaining boundaries."
     }
   ],
   "dependencies": [
@@ -676,8 +681,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B388_Refactor_S9g1.md",
-    "local": "LOCAL_SIMULATION_PASS_20",
+    "report": "Specialization/Status/Validation/Results/Specialization_B389_Refactor_S9g2.md",
+    "local": "LOCAL_SIMULATION_PASS_44",
     "native": "NO_NEW_NATIVE_TEST",
     "deployment": "UNCHANGED_B307_STABLE"
   }
