@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0836
+Status Revision: S0837
 Implementation Build: B383.410 / modinfo410; stable/live B307.334
 Architecture Revision Reviewed: A0182
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9E10_CONTINUING
+Work State: REFACTOR_S9_CONTINUING_RECOVERY_DECISION
 
 ## CURRENT AUTHORITATIVE STATE
 
-S9e10/R19 verifies native later queue cells are icon/name-only and do not consume the Mod timer overlay. Known noncurrent Dialogue candidates now use a pure fixed-duration preview,not the city current timer state. A native-current unconfirmed timer says 待计时 with the existing sole-queue requirement;ACTIVE/CALLING/HELD text and all queue/Begin/finish/recovery behavior stay. Seven real UI/controller/caller tests add no queue reads or automatic actions. Original reported screenshot location remains U5,not a claimed native reproduction. R05/R02 proof limits,applied owners,U4/S10 continue. [Result](Validation/Results/Specialization_B383_Refactor_S9e10.md). Stable/live/main B307.334; no deployment/native PASS.
+B380–B383 are committed/pushed with scoped local validation (1144/124/799/48 cases);latest runtime B383.410. R04 Tradition return,R13 Capital delayed Treasury display,R06/R07 scoped uncertainty/Development epoch/reporting,and R19 candidate/current display are corrected within stated evidence. R05 cold Commerce15→6/Culture1→0 exposes missing saved source attribution. The [recovery persistence proposal](../Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md) also records the deferred opaque-lifecycle gap and D7 per-ability prerequisites. Only new saved-evidence contracts await user decision;unaffected S9/U4/S10 continues. No complete D2 cold/D7/U4/native or deployment PASS.
 
-- User decision: none.
-- User testing: final U5 unless a specific blocking native fact appears.
-- Primary next: Record R05 cold aggregate proof limitation and R02 per-ability criteria;continue remaining accepted S9 applied owners,U4/S10 without automatic deployment/main/game launch.
+- User decision: approve the proposed two saved-evidence extensions,network only,or defer them.
+- User testing: final U5;no game test requested now.
+- Primary next: Continue unaffected S9 applied-owner integration and full U4/S10 prerequisites;await only the narrow R05/deferred-lifecycle saved-evidence decision. No deployment/main/game launch.
+
+## S0837 — Recovery evidence boundary and per-ability D7 table
+
+B380–B383 are committed/pushed with scoped local validation (1144/124/799/48 cases);latest runtime B383.410. R04 Tradition return,R13 Capital delayed Treasury display,R06/R07 scoped uncertainty/Development epoch/reporting,and R19 candidate/current display are corrected within stated evidence. R05 cold Commerce15→6/Culture1→0 exposes missing saved source attribution. The [recovery persistence proposal](../Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md) also records the deferred opaque-lifecycle gap and D7 per-ability prerequisites. Only new saved-evidence contracts await user decision;unaffected S9/U4/S10 continues. No complete D2 cold/D7/U4/native or deployment PASS.
 
 ## S0836 — B383.410 Separate Dialogue candidate preview from current timer status
 

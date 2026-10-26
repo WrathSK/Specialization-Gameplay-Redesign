@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0182",
-    "status": "S0836",
+    "status": "S0837",
     "runtime": "B383.410 / modinfo410",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Record R05 cold aggregate proof limitation and R02 per-ability criteria;continue remaining accepted S9 applied owners,U4/S10 without automatic deployment/main/game launch. No automatic deployment/main/native launch.",
+  "goal": "Continue unaffected S9 applied-owner integration and full U4/S10 prerequisites;await only the narrow R05/deferred-lifecycle saved-evidence decision. No deployment/main/game launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -614,6 +614,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
       "kind": "full",
       "reason": "Separate Dialogue candidate preview from current timer status actual runtime impacts, validation closure and remaining boundaries."
+    },
+    {
+      "path": "Specialization/Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md",
+      "kind": "full",
+      "reason": "Scoped R05/deferred-lifecycle persistence proposal and accepted D7 per-ability prerequisites;new saved fields await user approval."
     }
   ],
   "dependencies": [
@@ -643,6 +648,8 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
     "local": "LOCAL_SIMULATION_PASS_48",
     "native": "NO_NEW_NATIVE_TEST",
-    "deployment": "UNCHANGED_B307_STABLE"
+    "deployment": "UNCHANGED_B307_STABLE",
+    "boundary_proposal": "Specialization/Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md",
+    "boundary": "STATIC_CONFIRMED_AND_LOCAL_COUNTEREXAMPLES;NO_NEW_PERSISTENCE_IMPLEMENTED"
   }
 }
