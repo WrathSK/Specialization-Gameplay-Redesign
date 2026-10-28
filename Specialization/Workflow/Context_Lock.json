@@ -1277,6 +1277,6 @@
     "DevelopmentTests/test_b392_identity.py": "2430e1c7849f7ed96e41f15ccc96fa53810a6d71b1e2b7472a227b621ea8532a",
     "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md": "b79a349570591bc724bdf934c44d5a533c94844664e19b0b0d332421755cdf5e",
     "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md": "cc8cc8a3f9f34baa82786367ff095a95cd01a95bb5b103c144157ff787db576f",
-    "DevelopmentTests/test_b393_observer_isolation.py": "88c7daee088cd3c72b3468a8fd2bf9d68b7616d5fcdbbfed27d3a34501786fd0"
+    "DevelopmentTests/test_b393_observer_isolation.py": "de67cc206f0d0dabcf372259a85bf915f0c3a322a1c880eba6b9799555e0f02d"
   }
 }
