@@ -18,7 +18,7 @@
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Safe B393 develop deployment under standing authorization,then bounded native recovery test;original S9/S10 remains open. No main promotion/game launch.",
+  "goal": "Collect B393 new-campaign district/specialization/investment/institution native recovery evidence;then resume authorized S9/S10. Standing safe develop deployment authorized2026-10-27;no main promotion/game launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -714,6 +714,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
     "local": "14 focused+237 inherited cases PASS;20 collector cases and temporary-switch gate PASS;218 Lua51/25 XML/340 refs/341files and context341/1276 PASS. Three unchanged stale reader-limit tests documented separately.",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "B392_ACTIVE_PENDING_SAFE_B393_REPLACEMENT"
+    "deployment": "DEVELOP_ACTIVE_B393_341_OF_341_MATCH"
   }
 }

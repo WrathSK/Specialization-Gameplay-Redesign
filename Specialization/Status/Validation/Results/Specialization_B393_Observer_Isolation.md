@@ -29,3 +29,9 @@ Local outputs under `local/refactor/B393-observer/` are regenerable artifacts,no
 ## Static and handoff checks
 
 STATIC_CONFIRMED:218 Lua5.1 files compile,25 XML files parse,and340 manifest references exactly cover341 runtime files including modinfo420. Context integrity passes341 runtime and1276 guarded files. Diff whitespace check passes. This does not prove native recovery.
+
+## Deployment — 2026-10-27
+
+Two reliable OS process checks confirmed game exit before the existing restore→activate transactions. Source `bca2c48b74a3652fc2dbcab3f86c26dfcb1a68c7` is pushed develop. Live341/341files match;digest `464fb661e08734ddf8260faea84102ce54003bb5a3b8ccec0c7b3b6f8d7c7fb6`. External receipt `B393.420-bca2c48-playtest.json` is DEVELOP_ACTIVE;no pending marker. Outgoing B392 and stable B307 backups match exact prior digests. Main remains `bc49dab5739e7819ceaf49228de7d47310c296d8`;no promotion,PR,game launch or unrelated Mod edit. This final documentation update does not change the deployed runtime bytes.
+
+User decision:none pending;standing safe develop deployment authorization used. User testing:current-version new campaign,district completion→specialization→investment→institution display;native recovery remains USER_GAME_TEST_REQUIRED. Primary next:collect the bounded B393 recovery result at this repair boundary;original S9/S10 and final U5 remain open.
