@@ -23,3 +23,9 @@ Full local outputs: `local/refactor/B392-identity/`;local-only regenerable artif
 STATIC_CONFIRMED:218 Lua5.1 files compile,25 XML files parse,340 modinfo file references exactly cover341 runtime files including the manifest;version419. Context check passes341 runtime/1274 guarded files. No other Mod or game configuration changed.
 - local/refactor/B392-identity/deployment-tests.txt: SHA256 `262460364984bf1f6fc3c12d40857ab110c75e34b3de050db5aa83ba6d1d2e03`.
 - local/refactor/B392-identity/tests.txt: SHA256 `7946dbe53f3fd833ac9798f182f1ec816cf0ebbddcb38f44873fd33ca7ff4b5c`.
+
+## Deployment — 2026-10-27
+
+Automatic OS process checks before both swaps confirmed the game exited. Existing temporary_playtest restore→activate transactions completed,with no game launch. Source `3d8468c6ed5a5d248586912f3d160ad58a32a254` is committed and pushed develop. Live341/341files match;digest `339857a4d73773acd4858b5e996cc7686a3e74d1cf152559c0b97ed1195a75ed`. Receipt `B392.419-3d8468c-playtest.json` is in the external deployment archive;phase DEVELOP_ACTIVE,no pending marker. B391 outgoing backup and B307 stable backup both match their prior exact digests. Main remains unchanged;no PR/promotion. Runtime source is unchanged by this final documentation commit.
+
+User decision:none pending;standing safe develop deployment authorization recorded. User testing:new-current-build district→specialization→investment→institutions;native recovery not yet PASS. Primary next:collect this bounded recovery result;original S9/S10 scope remains incomplete.

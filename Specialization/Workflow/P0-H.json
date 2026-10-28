@@ -18,7 +18,7 @@
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Verify and deploy B392 under resumed development deployment authorization;collect native district-to-specialization recovery evidence,then resume existing S9/S10. No main promotion or game launch.",
+  "goal": "Collect B392 new-campaign district/specialization/investment/institution native recovery evidence;then resume authorized S9/S10. Standing safe develop deployment authorized2026-10-27;no main promotion/game launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -709,6 +709,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
     "local": "237 scoped cases PASS;218 Lua51,25 XML,340 refs/341files PASS;temporary switch regression PASS",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "PENDING_AUTOMATIC_GAME_EXIT_AND_TRANSACTION_CHECKS"
+    "deployment": "DEVELOP_ACTIVE_B392_341_OF_341_MATCH"
   }
 }

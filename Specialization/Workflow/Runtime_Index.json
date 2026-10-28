@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "b0be389631c35291b545238f3e252ae32c76bda4",
-  "runtime": "B391.418 / modinfo418 temporary develop; stable/main B307.334",
+  "runtime_commit": "3d8468c6ed5a5d248586912f3d160ad58a32a254",
+  "runtime": "B392.419 / modinfo419 temporary develop;stable/main B307.334",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1711,5 +1711,5 @@
       "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
     }
   },
-  "source_review": "S0848/B392.419 compatibility source;runtime/runtime_commit still describe last verified B391 deployment until receipt verification."
+  "source_review": "S0848/B392 compatibility source and deployed341/341 MATCH;restricted local profile PASS,native recovery still pending."
 }
