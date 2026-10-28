@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0849
+Status Revision: S0850
 Implementation Build: B393.420 / modinfo420; live B393.420 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B393_DEVELOP_REPAIR_DEPLOYED
+Work State: B393_PARTIAL_NATIVE_REVIEW_RECORDED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B392 native testing still reports unavailable specialization facts despite removal of UI exceptions. B393.420 removes the remaining optional rawset dependency and isolates passive observations from the authoritative city/fact read;gameplay,save structure and strict identity/UNKNOWN guards stay.14 focused and237 inherited local cases pass;B393 is deployed341/341 MATCH with B392 outgoing/B307 stable backups retained;native recovery remains USER_GAME_TEST_REQUIRED. Existing failure records now carry allowlisted cause metadata. [Current repair](Validation/Results/Specialization_B393_Observer_Isolation.md). Original S9/S10 incomplete scope and final U5 remain unchanged.
+B393.420 remains deployed from bca2c48;no runtime replacement in this evidence batch. The latest T1–T6 session has953 continuous TRAIN records:all173 institution facts and98 specialized applied views are READY,six cities establish all four professions,and Culture/Commerce/Research reach ACTIVE4. This supports scoped native recovery of the B391/B392 base-read symptom,not full ability/visual acceptance. User reports most Culture/Research accepted and Commerce broadly problematic;exact ability exceptions remain unspecified. Capital and Development requests are demonstrably held by pending Commerce/outgoing facts;nonzero Commerce income,contract outcomes,cold load and final U5 remain unverified. [Partial playtest coverage](Validation/Results/Specialization_B393_Partial_Playtest.md). Original S9/S10 incomplete scope stays.
 
-- User decision:2026-10-27 standing automatic safe develop deployment applies;game-exit,clean source,hash,receipt and rollback gates remain;no main promotion/game launch.
-- User testing:after verified replacement,new-current-build district→specialization→investment→institutions;do not claim native recovery from local tests.
-- Primary next:collect B393 native recovery evidence at this repair batch boundary;then resume already authorized S9/S10.
+- User decision:none new;record the user's partial acceptance without inventing per-ability PASS. Standing safe develop deployment remains authorized2026-10-27;no main promotion/game launch.
+- User testing:continue from this recorded coverage;no repeat of demonstrated base recovery or expedition training/dispatch solely for bookkeeping. Commercial end-to-end tests remain blocked;clarify Culture/Research exceptions when available.
+- Primary next:carry commercial pending/recovery evidence into the next authorized investigation while preserving remaining S9/S10 and final U5. This turn stops after evidence/documents;no runtime fix/deployment.
+
+## S0850 — B393 partial native playtest coverage
+
+2026-10-28 review of the previous evening's new campaign. User's partial Culture/Research acceptance is retained separately from log-observed operations. Four-profession base reads recover;Culture/Commerce/Research ACTIVE4,Dialogue queue changes,Expedition training/dispatch and one domestic route are recorded. Capital/Development are held before signing;ability-specific numeric outcomes are not inferred. Twelve raw files are locally archived/hash-checked;concise coverage and blockers are versioned. Runtime,main,Design/Architecture and frozen reports remain unchanged.
 
 ## S0849 — B393.420 Observer failure isolation
 

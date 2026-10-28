@@ -347,3 +347,13 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B268 T5–T35内存增长（2026-10-21实机；2026-10-22诊断实施）
 
 同PID23529，Activity Monitor10.82→14.36GB，+3.54GB；T5→T28专业确立前已+1.90GB，T35首次科研P1/A1。644条诊断无断号，但无同窗口Lua/GC/分类内存。根因UNKNOWN，继续v0.1正常游玩。[B269](Validation/Results/Specialization_B269_Memory_Diagnostics.md)增加随行证据，尚未部署。原8图/日志及SHA清单保存在ignored证据批B268_Memory_T5_T35_20261021。测试项目缺失图标82次是单独维护项，尚无GB级因果证据。
+
+## B393.420 部分实机验收 — 2026-10-28记录
+
+[覆盖表与证据](Validation/Results/Specialization_B393_Partial_Playtest.md)：文化／科研“大部分验收”保留为用户概括，待补单项例外；四专业基础读取在本轮六城恢复，173事实READY、98专业UI数据READY。文化／商业／科研到四级，工业仅一级；人文考察团训练完成与派遣提交已测，任务结果未闭合。原B391 T1–T8按报告保留部分／未覆盖，不改冻结清单或宣称最终U5。
+
+| ID | Category | Found build | Turn | Issue / evidence | Current long game impact | Stable hotfix | Develop only / next step |
+|---|---|---|---|---|---|---|---|
+| PT015 | BUG / BLOCKED triage | B393.420 | 5–6 | Capital:5次CAPITAL_COMMERCE_PENDING，11次打开／刷新均HELD、canSign=false；Development:DEVELOPMENT_OUTGOING_PENDING。网络曾确认1路线后重新待确认，末次signal26/28；见覆盖报告seq751–906 | 本轮商业合同入口受阻；根因未裁定，不能推及所有商业能力 | 本次无main热修／晋升 | 后续定域调查事实更新与恢复传播；不得靠放宽交易资格消除提示。商业化非零入账、合同结算和信誉／重组尚未验收闭合 |
+
+User decision：无新的玩法决定。User testing：不为记录重复已证实步骤；文化／科研例外可直接补充。Primary next：本次只记录；下次授权工作先带入PT015，再继续原S9/S10边界。

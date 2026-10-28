@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0849",
+    "status": "S0850",
     "runtime": "B393.420 / modinfo420",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Collect B393 new-campaign district/specialization/investment/institution native recovery evidence;then resume authorized S9/S10. Standing safe develop deployment authorized2026-10-27;no main promotion/game launch.",
+  "goal": "Carry B393 commercial pending/recovery evidence into the next authorized investigation;retain incomplete S9/S10 and final U5. This evidence turn changes no runtime and performs no deployment/main promotion/game launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -685,6 +685,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
       "kind": "full",
       "reason": "Current B393 repair,restricted production regression and known native/test limits."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B393_Partial_Playtest.md",
+      "kind": "full",
+      "reason": "B393 partial native coverage,user-reported acceptance,commercial blockers and remaining deliberate tests;no full ability/U5 PASS."
     }
   ],
   "dependencies": [
@@ -703,7 +708,7 @@
   "validation": {
     "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
     "local": "Each implementation batch selects T01–T08, actual module composition, Lua51/static package checks and scoped workload/correctness regressions. See current result for evidence and limits.",
-    "user": "B393 native recovery test;final U5 remains later. Automatic safe develop deployment authorized2026-10-27;no main promotion or game launch."
+    "user": "B393 base-read recovery observed in this T1–T6 session;per-ability exceptions and commercial end-to-end outcomes remain open. Original S9/S10 and final U5 remain;standing safe develop deployment does not authorize main promotion/game launch."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -711,9 +716,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
+    "report": "Specialization/Status/Validation/Results/Specialization_B393_Partial_Playtest.md",
     "local": "14 focused+237 inherited cases PASS;20 collector cases and temporary-switch gate PASS;218 Lua51/25 XML/340 refs/341files and context341/1276 PASS. Three unchanged stale reader-limit tests documented separately.",
-    "native": "USER_GAME_TEST_REQUIRED",
+    "native": "SCOPED_BASE_READ_RECOVERY_PASS;USER_REPORTED_PARTIAL_CULTURE_RESEARCH;COMMERCIAL_ENTRY_BLOCKED;FULL_U5_REQUIRED",
     "deployment": "DEVELOP_ACTIVE_B393_341_OF_341_MATCH"
   }
 }
