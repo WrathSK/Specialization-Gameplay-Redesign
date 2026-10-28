@@ -247,24 +247,32 @@ function SPCEffectiveFacts.Start(P,shared)
  local function read(pid,city,project,withCarrierReference)
   local store=shared.CityProgressionStore
   local previous=trainingFrame;local frame
-  if store and type(store.ObserveTrainingFacts)=='function'and trainingDepth<8 then
+  local observed,observer=pcall(function()return store and store.ObserveTrainingFacts end)
+  local hasObserver=observed and type(observer)=='function'
+  if hasObserver and trainingDepth<8 then
    trainingSerial=trainingSerial+1;frame={pid=pid,city=city,store=store,serial=trainingSerial,previous=previous}
   end
-  local overflow=store and type(store.ObserveTrainingFacts)=='function'and trainingDepth>=8
-  if overflow then observationOverflow(previous,pid,city);data.trainingObservationOverflows=math.min(2147483647,(data.trainingObservationOverflows or 0)+1)end
+  local overflow=hasObserver and trainingDepth>=8
+  if overflow then
+   observationOverflow(previous,pid,city)
+   pcall(function()data.trainingObservationOverflows=math.min(2147483647,(data.trainingObservationOverflows or 0)+1)end)
+  end
   trainingDepth=trainingDepth+1;trainingFrame=overflow and previous or frame -- only bounded matching ancestors are downgraded
   local result=pack(pcall(phasedRead,pid,city,project))
   trainingFrame=previous;trainingDepth=trainingDepth-1 -- release even when the original read throws
   if not result[1]then data.Invalidate()end
-  if frame and shared.CityProgressionStore==store then
-   if frame.reference then
-    local confirmed=result[1]and frame.base and frame.owner==frame.baseOwner and frame.cityID==frame.baseCity
-     and frame.x==frame.baseX and frame.y==frame.baseY and frame.token==frame.baseToken
-    local state=frame.budgetUnknown and 'FACTS_BUDGET_UNKNOWN'or not confirmed and 'FACTS_UNAVAILABLE'or frame.activeStatus=='KNOWN'and 'FACTS_CONFIRMED'or 'FACTS_UNKNOWN'
-    local ok=pcall(store.ObserveTrainingFacts,frame.owner,frame.cityID,frame.x,frame.y,frame.token,state,trainingIssuer,frame.serial,frame.input)
-    data.trainingObservationError=not ok and 'TRAINING_OBSERVATION_FAILED'or nil
+  -- Preserve the original result even if observer lookup or its diagnostic setter throws.
+  pcall(function()
+   if frame and shared.CityProgressionStore==store then
+    if frame.reference then
+     local confirmed=result[1]and frame.base and frame.owner==frame.baseOwner and frame.cityID==frame.baseCity
+      and frame.x==frame.baseX and frame.y==frame.baseY and frame.token==frame.baseToken
+     local state=frame.budgetUnknown and 'FACTS_BUDGET_UNKNOWN'or not confirmed and 'FACTS_UNAVAILABLE'or frame.activeStatus=='KNOWN'and 'FACTS_CONFIRMED'or 'FACTS_UNKNOWN'
+     local ok=pcall(store.ObserveTrainingFacts,frame.owner,frame.cityID,frame.x,frame.y,frame.token,state,trainingIssuer,frame.serial,frame.input)
+     data.trainingObservationError=not ok and 'TRAINING_OBSERVATION_FAILED'or nil
+    end
    end
-  end
+  end)
   if not project and result[1]then
    if withCarrierReference then return result[2],result[3]end
    return result[2] -- original public Read arity/shape, no witness field in facts

@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0848",
-    "runtime": "B392.419 / modinfo419",
+    "status": "S0849",
+    "runtime": "B393.420 / modinfo420",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Collect B392 new-campaign district/specialization/investment/institution native recovery evidence;then resume authorized S9/S10. Standing safe develop deployment authorized2026-10-27;no main promotion/game launch.",
+  "goal": "Safe B393 develop deployment under standing authorization,then bounded native recovery test;original S9/S10 remains open. No main promotion/game launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -680,6 +680,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
       "kind": "full",
       "reason": "Current bounded B391 failure evidence,compatibility repair and resumed safe deployment authorization."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
+      "kind": "full",
+      "reason": "Current B393 repair,restricted production regression and known native/test limits."
     }
   ],
   "dependencies": [
@@ -687,18 +692,18 @@
     "Stable/live B307.334 receipt remains unchanged; S2–S10 continue under accepted U1, with no automatic deployment."
   ],
   "old_writers": [
-    "Historical U1 began on B271; current stable/live is B307.334 and develop continues independently. Each cutover audits actual writer/observer/exit closures."
+    "Historical U1 began on B271;stable/main remains B307.334. Current live package is tracked by Authority/receipt;each cutover audits actual writer/observer/exit closures."
   ],
   "conditional_context": [],
   "non_scope": [
-    "Automatic deployment/main promotion/game launch, Advisory edits, unrelated features/ownership semantics/Expedition functional repairs.",
+    "Unapproved deployment,main promotion,game launch,Advisory edits,unrelated features/ownership semantics/Expedition functional repairs. Safe develop deployment has standing user authorization2026-10-27.",
     "A8 scope beyond explicitly approved eight-era count/validation/carriers; keep work pool, own-era, quota and history unchanged.",
     "D7 destructive baseline without safe ability-specific irrecoverability proof."
   ],
   "validation": {
     "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
     "local": "Each implementation batch selects T01–T08, actual module composition, Lua51/static package checks and scoped workload/correctness regressions. See current result for evidence and limits.",
-    "user": "B392 native recovery test;final U5 remains later. Automatic safe develop deployment authorized2026-10-27;no main promotion or game launch."
+    "user": "B393 native recovery test;final U5 remains later. Automatic safe develop deployment authorized2026-10-27;no main promotion or game launch."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -706,9 +711,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-    "local": "237 scoped cases PASS;218 Lua51,25 XML,340 refs/341files PASS;temporary switch regression PASS",
+    "report": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
+    "local": "14 focused+237 inherited cases PASS;20 collector cases and temporary-switch gate PASS;218 Lua51/25 XML/340 refs/341files and context341/1276 PASS. Three unchanged stale reader-limit tests documented separately.",
     "native": "USER_GAME_TEST_REQUIRED",
-    "deployment": "DEVELOP_ACTIVE_B392_341_OF_341_MATCH"
+    "deployment": "B392_ACTIVE_PENDING_SAFE_B393_REPLACEMENT"
   }
 }

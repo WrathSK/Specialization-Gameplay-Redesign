@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "15010f0efba05e252735704506ea30b28c858fa05619d34d70f41d4c17c2077a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "sha256": "0975c8ec1399ce8a6147a00e05acad0b57059595f5c6ac372b38c9027d6a9bb0",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
+      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -561,9 +561,9 @@
       "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "14bed62797b2fae0fdec863801bc57a81d9f6d73d5c907ae9bb149c7144100e3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md",
-      "provenance": "B371.398 Stop stale Tradition carrier writes after confirmed lifecycle change; local/static evidence only; no deployment/native PASS."
+      "sha256": "904d988101ec84c4d80e615c760ecde08e1a69bb3035646f6244ffe477ca40c2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
+      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
     },
     "Mod/EligibilityProbe.lua": {
       "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
@@ -626,9 +626,9 @@
       "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "ef9d5c9bbed018a0285913a28fa191790cf551b2d7ec62edd7280e0e4a870af2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "f0a6a2a28a195ebbb81ed4d89e52a2fe88192a164fbc77adcf21e2fac8b981bd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
+      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
     },
     "Mod/FreshBindingHook.lua": {
       "sha256": "03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "536d3edbea0cb17dfc23e1ebb18e06b921f11b3b6ff48aafd1933f7e3584df3e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
-      "provenance": "B378.405 Preserve city worker scope and stop duplicate UI turn depth sampling; local/static evidence only; no deployment/native PASS."
+      "sha256": "fcd2690b7f135b21a8df30b6569e984e341f61ce2acd5e941239989293c6addd",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
+      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "beb28c349f45e0cbefa10939e7676b4207d7ee8c4a1ef26e51b7a98b8887113e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "sha256": "766b9dcc76b715b7975205abe457617a23032ac092efbdfac081cb82f5b78c3b",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
+      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c29b50e320cb55e59c7139719d93506c6b1638a0e3c613ea4182469c6f280042",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "sha256": "fa6e1a7dc85097cb2f74a8e363bf22fe34a09c3f4ffa19ca9081d8df8687404c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
+      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1711,5 +1711,5 @@
       "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
     }
   },
-  "source_review": "S0848/B392 compatibility source and deployed341/341 MATCH;restricted local profile PASS,native recovery still pending."
+  "source_review": "S0849/B393 observer-isolation repair local scope passed;last verified deployed package remains B392 until transaction receipt."
 }

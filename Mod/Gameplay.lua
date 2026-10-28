@@ -275,12 +275,21 @@ local function request(playerID,params)
       if not(good and accepted==true)and shared.PlayerActionReplies==service and service.Presentations==replies then pcall(replies.FailPresentation,playerID,params)end
     end
     -- Existing bounded trace, scalar results only; no extra native reads.
-    if SPCExpeditionTrainingDiagnostics then
-      if not shared.PresentationDiagnostics then shared.PresentationDiagnostics=SPCExpeditionTrainingDiagnostics.New(P,'PRESENTATION_GAMEPLAY')end
-      local d=shared.PresentationDiagnostics;local v=view
-      if d then pcall(d.Record,'INSTITUTION_FACTS',{owner=playerID,city=params.CityID,requestKey=params.Token,
-        specialization=v.specialization,potential=v.potential,active=v.active,activeStatus=v.activeStatus,readStatus=ok and 'READY' or 'UNAVAILABLE'})end
-    end
+    pcall(function()
+      if SPCExpeditionTrainingDiagnostics then
+        if not shared.PresentationDiagnostics then shared.PresentationDiagnostics=SPCExpeditionTrainingDiagnostics.New(P,'PRESENTATION_GAMEPLAY')end
+        local d=shared.PresentationDiagnostics;local v=view
+        if d then
+          local row={owner=playerID,city=params.CityID,requestKey=params.Token,
+            specialization=v.specialization,potential=v.potential,active=v.active,activeStatus=v.activeStatus,readStatus=ok and 'READY' or 'UNAVAILABLE'}
+          if not ok then
+            local failure=SPCExpeditionTrainingDiagnostics.Failure(f,'CITY_FACTS')
+            for _,key in ipairs({'errorCode','errorClass','errorFile','errorLine','errorSymbol'})do row[key]=failure[key]end
+          end
+          d.Record('INSTITUTION_FACTS',row)
+        end
+      end
+    end)
     return
   end
   if type(params.Action)=='string' and params.Action:find('^INSPIRE_') then

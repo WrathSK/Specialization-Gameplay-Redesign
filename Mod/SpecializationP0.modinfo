@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="419">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="420">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B392.419：修复专业状态与界面读取的对象身份比较兼容性；保持原有玩法与存档结构。</Description>
+    <Description>B393.420：修复城市专业读取被观察逻辑阻断的问题，补充失败原因日志；保持原有玩法与存档结构。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

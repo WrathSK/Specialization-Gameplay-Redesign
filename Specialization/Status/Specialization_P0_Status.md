@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0848
-Implementation Build: B392.419 / modinfo419; live B392.419 develop; stable/main B307.334
+Status Revision: S0849
+Implementation Build: B393.420 / modinfo420; live B392.419 develop pending safe replacement; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B392_DEVELOP_REPAIR_DEPLOYED
+Work State: B393_OBSERVER_REPAIR_VALIDATED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B391 new-campaign testing found unavailable specialization facts and repeated institution UI failures. B392.419 repairs optional raw-equality dependence without changing object-identity fences,gameplay or saved records. 237 scoped local cases pass;B392 deployed341/341 MATCH,with B391 outgoing and B307 stable recovery packages retained;native recovery remains USER_GAME_TEST_REQUIRED. [Current repair](Validation/Results/Specialization_B392_Restricted_Lua_Identity.md). Original S9/S10 incomplete scope and final U5 remain unchanged.
+B392 native testing still reports unavailable specialization facts despite removal of UI exceptions. B393.420 removes the remaining optional rawset dependency and isolates passive observations from the authoritative city/fact read;gameplay,save structure and strict identity/UNKNOWN guards stay.14 focused and237 inherited local cases pass;native recovery remains USER_GAME_TEST_REQUIRED. Existing failure records now carry allowlisted cause metadata. [Current repair](Validation/Results/Specialization_B393_Observer_Isolation.md). Original S9/S10 incomplete scope and final U5 remain unchanged.
 
-- User decision: 2026-10-27 authorizes investigation/implementation and resumes automatic safe develop deployment;game-exit,clean source,hash,receipt and rollback gates remain;no main promotion/game launch.
-- User testing: after verified replacement,new-current-build district→specialization→investment→institutions;do not claim native recovery from local tests.
-- Primary next: collect B392 native recovery evidence at this repair batch boundary;then resume already authorized S9/S10.
+- User decision:2026-10-27 standing automatic safe develop deployment applies;game-exit,clean source,hash,receipt and rollback gates remain;no main promotion/game launch.
+- User testing:after verified replacement,new-current-build district→specialization→investment→institutions;do not claim native recovery from local tests.
+- Primary next:complete safe B393 deployment then collect the bounded recovery evidence;stop at this repair boundary.
+
+## S0849 — B393.420 Observer failure isolation
+
+B367's diagnostic rawset could fail the central Base read;B392's restricted profile did not expose that composed path. B393 protects observer lookup/callback/error publication while preserving original native errors and reads. New error metadata uses existing bounded logs;no scan,listener,retry,save or gameplay expansion. Local four-profession and consumer checks pass. Native recovery still unconfirmed;main remains B307.334.
 
 ## S0848 — B392.419 Restricted Lua identity repair
 

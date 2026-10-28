@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0848",
-    "runtime": "B392.419 / modinfo419",
+    "status": "S0849",
+    "runtime": "B393.420 / modinfo420",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "3d8468c6ed5a5d248586912f3d160ad58a32a254",
-  "current_batch": "B392_DEVELOP_REPAIR_DEPLOYED",
-  "next_batch": "Collect B392 new-campaign district/specialization/investment/institution native recovery evidence;then resume authorized S9/S10. Standing safe develop deployment authorized2026-10-27;no main promotion/game launch.",
+  "current_batch": "B393_OBSERVER_REPAIR_VALIDATED",
+  "next_batch": "Safe B393 develop deployment under standing authorization,then bounded native recovery test;original S9/S10 remains open. No main promotion/game launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B392.419 temporary develop from 3d8468c6ed5a5d248586912f3d160ad58a32a254;341/341 MATCH;SHA256 339857a4d73773acd4858b5e996cc7686a3e74d1cf152559c0b97ed1195a75ed;B391 outgoing and B307 stable backups MATCH;no pending transaction;receipt B392.419-3d8468c-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0847 User explicitly approved a temporary deployment of current B391.418 develop for a new-campaign phase test. Source b0be389 and live340/340 MATCH;B307.334 stable backup312/312 MATCH,no pending transaction. S9 actual Commerce/Culture cold consumers and S10 remain unfinished;this is not final U5,main promotion or native PASS. B271 timing probes remain disabled. Original S9g4 source/test evidence retained;no implementation change.",
+  "context_review_status": "S0849 B392 native recovery failed;B393 observes without blocking city authority and records allowlisted failure metadata.14 focused+237 inherited local cases pass;no native recovery claim.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B391_Develop_Deployment.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md"
 }

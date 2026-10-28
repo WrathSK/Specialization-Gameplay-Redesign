@@ -254,9 +254,10 @@ local function CreateProgressionRecord(P,shared,storage)
   return true
  end
  local function binding(c,a)
-  local ticket=d.BeginTrainingBindingObservation(a.owner,a.cityID,a.x,a.y,root and root.base and root.base.token)
+  -- Optional observation cannot mask the authoritative read, including lookup failures.
+  local observed,ticket=pcall(function()return d.BeginTrainingBindingObservation(a.owner,a.cityID,a.x,a.y,root and root.base and root.base.token)end)
   local ok,value=pcall(c.GetProperty,c,M.Keys.TOKEN) -- the original single read
-  d.FinishTrainingBindingObservation(ticket,ok,value)
+  if observed then pcall(function()d.FinishTrainingBindingObservation(ticket,ok,value)end)end
   if not ok then error(value,0)end -- same exception/UNKNOWN protection, never reset history
   return value
  end
@@ -326,11 +327,15 @@ local function CreateProgressionRecord(P,shared,storage)
   local allowed=P.IsTestPlayer(pid)and pid==root.origin.owner
   local current=allowed and ref(c)or nil
   assert(allowed and same(current,root.current or root.origin),'PROGRESSION_REFERENCE_CHANGED')
-  local facts=shared.EffectiveFacts
-  if facts and facts.NoteTrainingReference then
-   local good=pcall(facts.NoteTrainingReference,c,current,root.base.token)
-   if type(facts)=='table'then rawset(facts,'trainingReferenceObservationError',not good and 'TRAINING_REFERENCE_NOTE_FAILED'or nil)end
-  end
+  -- Protect observer lookup, callback and error publication as one non-authoritative edge.
+  -- Restricted game Lua need not expose raw helpers; never patch globals to supply them.
+  pcall(function()
+   local facts=shared.EffectiveFacts
+   if facts and facts.NoteTrainingReference then
+    local good=pcall(facts.NoteTrainingReference,c,current,root.base.token)
+    if type(facts)=='table'then facts.trainingReferenceObservationError=not good and 'TRAINING_REFERENCE_NOTE_FAILED'or nil end
+   end
+  end)
   assert(not root.referenceInvalidated,'PROGRESSION_REFERENCE_REMOVED')
   assert(not root.completionError,root.completionError)
   if root.schema>=2 and not root.current then assert(binding(c,current)==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
