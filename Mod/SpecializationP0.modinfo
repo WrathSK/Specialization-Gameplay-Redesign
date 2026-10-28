@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="418">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="419">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B391.418：支持同源逐领域确认／保留凭据，并明确独立生命周期范围，尚未自动接入网络效果。</Description>
+    <Description>B392.419：修复专业状态与界面读取的对象身份比较兼容性；保持原有玩法与存档结构。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -318,6 +318,7 @@
       <File>Textures/SPC_Raw_Icons_24.dds</File>
       <File>Textures/SPC_Raw_Icons_48.dds</File>
       <File>SafeCallbacks.lua</File>
+      <File>IdentityEqual.lua</File>
       <File>RuntimeComposition.lua</File>
       <File>UI/SafeAdapters.lua</File>
       <File>FactChanges.lua</File>
@@ -833,6 +834,7 @@
     <File>FactChanges.lua</File>
       <File>FactConsumerBindings.lua</File>
     <File>SafeCallbacks.lua</File>
+    <File>IdentityEqual.lua</File>
     <File>RuntimeComposition.lua</File>
     <File>UI/SafeAdapters.lua</File>
   </Files>

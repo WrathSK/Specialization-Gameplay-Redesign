@@ -1,3 +1,5 @@
+if not SPCIdentityEqual then include('IdentityEqual')end
+local sameIdentity=SPCIdentityEqual.Same
 -- ProductionPanel-local containment; native data and selection remain the base panel's.
 SPCSafeAdapters={}
 function SPCSafeAdapters.New()
@@ -130,7 +132,7 @@ function SPCSafeAdapters.NewViewObserver()
  local rowToken,reference,refOwner,refCity,refX,refY,refToken,refChanges;local closed=false
  local function scalar(n)return type(n)=='number'and n==n and math.abs(n)<9007199254740992 end
  local function source(value)
-  if not rawequal(owner,value)then owner=value;ownerRevision=nil;ownerSeen=false;rowSeen=false end
+  if not sameIdentity(owner,value)then owner=value;ownerRevision=nil;ownerSeen=false;rowSeen=false end
  end
  function d.SourceChanged(value)
   if closed then return false end

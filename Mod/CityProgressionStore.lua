@@ -1,3 +1,5 @@
+if not SPCIdentityEqual then include('IdentityEqual')end
+local sameIdentity=SPCIdentityEqual.Same
 if not SPCPropertyCell then include('PropertyCell')end
 if not SPCRestructuringModel then include('RestructuringModel') end
 if not SPCResearchTradition then include('ResearchTradition') end
@@ -243,7 +245,7 @@ local function CreateProgressionRecord(P,shared,storage)
   bindingChanges=root.ownerChanges or 0;bindingObservation='READING';bindingTicket={};return bindingTicket
  end
  function d.FinishTrainingBindingObservation(ticket,ok,value)
-  if not ticket or not rawequal(ticket,bindingTicket)then return false end
+  if not ticket or not sameIdentity(ticket,bindingTicket)then return false end
   bindingTicket=nil
   local a=root and(root.current or root.origin)
   if not ready or fault or committing or not a or not root.base or a.owner~=bindingOwner or a.cityID~=bindingCity
@@ -1209,7 +1211,7 @@ local function CreateProgressionRecord(P,shared,storage)
   return matched and currentExit(generation,loss)
  end
  function d.IsExitCurrent(name,c,loss,ticket,current)
-  if committing or type(name)~='string'or not exits[name]or ticket==nil or not rawequal(exitTickets[name],ticket)then return false end
+  if committing or type(name)~='string'or not exits[name]or ticket==nil or not sameIdentity(exitTickets[name],ticket)then return false end
   local generation=exitTickets
   if not confirmedExit(generation,c,loss)then return false end
   if current then local ok,value=pcall(current);if not ok or value~=true then return false end end

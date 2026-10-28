@@ -1,3 +1,5 @@
+if not SPCIdentityEqual then include('IdentityEqual')end
+local sameIdentity=SPCIdentityEqual.Same
 -- B202: bounded admission adapter. Native production owns cost/progress/copy
 -- history; this UI never spawns, destroys or teleports the trained unit.
 if include then include('ExpeditionTrainingDiagnostics')end
@@ -48,10 +50,10 @@ function SPCExpeditionTrainingUI.New(P,send,notify,build)
  end
  local function sameSource(a)
   local b=ExposedMembers.SPC_P0
-  return a and rawequal(b,a.backend)and rawequal(field(b,'CityProgressionStore'),a.store) and field(a.store,'TrainingInputStamp')==a.storeRead
-   and rawequal(field(b,'EffectiveFacts'),a.facts) and field(a.facts,'Read')==a.factsRead and rawequal(field(a.facts,'TrainingObservationIssuer'),a.issuer)
-   and rawequal(field(b,'ExpeditionGate'),a.gate)and rawequal(field(a.gate,'Training'),a.training) and field(a.training,'CapacityInputStamp')==a.capacity
-   and field(a.training,'Available')==a.available and field(a.training,'Read')==a.gateRead and rawequal(field(b,'ExpeditionTraining'),a.owner)
+  return a and sameIdentity(b,a.backend)and sameIdentity(field(b,'CityProgressionStore'),a.store) and field(a.store,'TrainingInputStamp')==a.storeRead
+   and sameIdentity(field(b,'EffectiveFacts'),a.facts) and field(a.facts,'Read')==a.factsRead and sameIdentity(field(a.facts,'TrainingObservationIssuer'),a.issuer)
+   and sameIdentity(field(b,'ExpeditionGate'),a.gate)and sameIdentity(field(a.gate,'Training'),a.training) and field(a.training,'CapacityInputStamp')==a.capacity
+   and field(a.training,'Available')==a.available and field(a.training,'Read')==a.gateRead and sameIdentity(field(b,'ExpeditionTraining'),a.owner)
    and field(a.owner,'Request')==a.request and field(a.store,'BeginTrainingBindingObservation')==a.begin
    and field(a.store,'FinishTrainingBindingObservation')==a.finish
  end
@@ -119,7 +121,7 @@ function SPCExpeditionTrainingUI.New(P,send,notify,build)
  function api.Sync(c)
   if closed then return end
   if pumping then
-   if not rawequal(c,activeCity)then cause=cause+1;selectionDeferred=true end
+   if not sameIdentity(c,activeCity)then cause=cause+1;selectionDeferred=true end
    return
   end
   pumping=true;activeCity=c;selectionDeferred=false

@@ -1,3 +1,5 @@
+if not SPCIdentityEqual then include('IdentityEqual')end
+local sameIdentity=SPCIdentityEqual.Same
 -- B202: one saved queue reservation; native queue/completion/birth are evidence,
 -- never an instruction to create a unit. No periodic all-city collection.
 if include then include('ExpeditionTrainingDiagnostics')end
@@ -159,7 +161,7 @@ function SPCExpeditionTraining.Start(P,shared)
   -- A rejected competing RESERVE must not hold someone else's valid queue.
   local v=ok and value or {error=value};v.token=p.Token;v.owner=pid;v.city=p.CityID
   if p.Action=='SYNC'then local good,input=pcall(coveredInputs,inputObservation);if good then v.input=input end end
-  if not rawequal(latestRequest,attempt)then return end -- a newer accepted request owns publication
+  if not sameIdentity(latestRequest,attempt)then return end -- a newer accepted request owns publication
   lastToken=p.Token;lastReply=v;ExposedMembers.SPC_ExpeditionTrainingReply=v
  end
  function d.Birth(pid,id)

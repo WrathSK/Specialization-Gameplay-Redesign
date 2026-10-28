@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0847",
-    "runtime": "B391.418 / modinfo418",
+    "status": "S0848",
+    "runtime": "B392.419 / modinfo419",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Collect phase-test evidence at this batch boundary;then continue already authorized actual Commerce/Culture recovery,D7/applied-owner/U4/S10. Final U5 follows completion;no automatic further deployment,restore,main promotion or game launch.",
+  "goal": "Verify and deploy B392 under resumed development deployment authorization;collect native district-to-specialization recovery evidence,then resume existing S9/S10. No main promotion or game launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -675,6 +675,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B391_Develop_Playtest_Checklist.md",
       "kind": "full",
       "reason": "Current new-campaign deliberate native scenarios and known unsupported/open cases."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
+      "kind": "full",
+      "reason": "Current bounded B391 failure evidence,compatibility repair and resumed safe deployment authorization."
     }
   ],
   "dependencies": [
@@ -693,7 +698,7 @@
   "validation": {
     "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
     "local": "Each implementation batch selects T01–T08, actual module composition, Lua51/static package checks and scoped workload/correctness regressions. See current result for evidence and limits.",
-    "user": "U5 final native integration; earlier minimal test only when a concrete engine fact blocks dependent development. No automatic deployment."
+    "user": "B392 native recovery test;final U5 remains later. Automatic safe develop deployment authorized2026-10-27;no main promotion or game launch."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -701,9 +706,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B391_Develop_Deployment.md",
-    "local": "Prior S9g4 75/75 artifact/source MATCH;217 Lua51,25 XML,339 package references PASS;temporary tool regression PASS",
-    "native": "USER_GAME_TEST_REQUIRED_PHASE_ONLY",
-    "deployment": "DEVELOP_ACTIVE_B391_340_OF_340_MATCH"
+    "report": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
+    "local": "237 scoped cases PASS;218 Lua51,25 XML,340 refs/341files PASS;temporary switch regression PASS",
+    "native": "USER_GAME_TEST_REQUIRED",
+    "deployment": "PENDING_AUTOMATIC_GAME_EXIT_AND_TRANSACTION_CHECKS"
   }
 }

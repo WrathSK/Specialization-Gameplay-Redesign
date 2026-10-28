@@ -1,3 +1,5 @@
+if not SPCIdentityEqual then include('IdentityEqual')end
+local sameIdentity=SPCIdentityEqual.Same
 -- B266: event-driven selected-city reads isolated from native layout failures. The legacy context name
 -- is retained for package continuity; no WorldTracker badge or update timer.
 include('Probe')
@@ -94,7 +96,7 @@ local function consume(c)
  if not ok then clearPending();return end
  if not ready then return end
  local good,row=pcall(m.take,m.owner,m.token)
- if not rawequal(pendingMeta,m)then return end
+ if not sameIdentity(pendingMeta,m)then return end
  clearPending()
  if stopped or not sameChannel(m)then return end
  local pid,id,x,y=c:GetOwner(),c:GetID(),c:GetX(),c:GetY()
@@ -166,7 +168,7 @@ local function refresh()
   local ok=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,
    {OnStart='SPC_P0_Request',Action='CITY_PRESENTATION_READ',CityID=id,Token=pending,
     ReplyChannel='CITY_PRESENTATION',ReplyEpoch=port.epoch})
-  if stopped or not rawequal(pendingMeta,m)then return end
+  if stopped or not sameIdentity(pendingMeta,m)then return end
   if not ok then clearPending();view=nil;record('INSTITUTION_UI_SEND_FAILED',c,{readStatus='SEND_ERROR'})
   else consume(c)end
  end

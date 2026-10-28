@@ -1,3 +1,5 @@
+if not SPCIdentityEqual then include('IdentityEqual')end
+local sameIdentity=SPCIdentityEqual.Same
 include('Probe')
 local P=SPCP0
 local parent,pending,pendingMeta,elapsed,unitKey,feedback
@@ -35,7 +37,7 @@ local function consumeView(u)
  local m=viewMeta;if not m or not viewReady()then return end
  local ok,row=false,nil
  if sameViewChannel(m)then ok,row=pcall(m.take,m.owner,m.token)end
- if not rawequal(viewMeta,m)then return end
+ if not sameIdentity(viewMeta,m)then return end
  clearView() -- a native selection read must not keep an old expected reply alive
  local v=ok and type(row)=='table'and getmetatable(row)==nil and row.view
  if type(v)~='table'or getmetatable(v)~=nil then view=nil;return end
@@ -109,7 +111,7 @@ local function readView(u)
   local ok=pcall(UI.RequestPlayerOperation,owner,PlayerOperations.EXECUTE_SCRIPT,
    {OnStart='SPC_P0_Request',Action='UNIT_ACTION_VIEW',UnitID=id,Token=viewToken,
     ReplyChannel='UNIT_VIEW',ReplyEpoch=channel.epoch})
-  if stopped or not rawequal(viewMeta,attempt)then return end
+  if stopped or not sameIdentity(viewMeta,attempt)then return end
   if not ok then clearView();view=nil else consumeView(u)end
  end
 end
@@ -171,7 +173,7 @@ local function dispatch(confirm)
  local ok,err=pcall(UI.RequestPlayerOperation,owner,PlayerOperations.EXECUTE_SCRIPT,
   {OnStart='SPC_P0_Request',Action=action,UnitID=id,Token=pending,PlanToken=p and p.token,
    ReplyChannel='UNIT_ACTION',ReplyEpoch=channel.epoch})
- if stopped or not rawequal(pendingMeta,attempt)then return end -- an older send cannot clear a later action
+ if stopped or not sameIdentity(pendingMeta,attempt)then return end -- an older send cannot clear a later action
  feedback=ok and '正在处理，请稍候。' or '请求未送达，请查看日志。'
  if not ok then print('[SPC][B043][PANEL_ERROR] '..tostring(err));clearAction()end
 end

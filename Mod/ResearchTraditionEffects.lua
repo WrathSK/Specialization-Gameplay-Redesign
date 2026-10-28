@@ -1,3 +1,5 @@
+if not SPCIdentityEqual then include('IdentityEqual')end
+local sameIdentity=SPCIdentityEqual.Same
 include('RuntimeWork')
 -- F2: transient, module-owned Science percentage. Store remains the age authority.
 SPCResearchTraditionEffects={}
@@ -57,9 +59,9 @@ function M.Start(P,shared)
   frame.input=input(f);frame.gate='UNKNOWN';frame.reason='ACTIVE_UNAVAILABLE';frame.errorReason='ACTIVE_UNAVAILABLE'
  end
  local function current(frame)
-  return frame.row and records[frame.key]==frame.row and rawequal(frame.row.attempt,frame.attempt)
+  return frame.row and records[frame.key]==frame.row and sameIdentity(frame.row.attempt,frame.attempt)
    and frame.row.serial==frame.serial and generation==frame.generation and(ownerGeneration[frame.owner]or 0)==frame.ownerGeneration
-   and rawequal(shared.ResearchTraditionEffects,data)and rawequal(shared.CityProgressionStore,store)
+   and sameIdentity(shared.ResearchTraditionEffects,data)and sameIdentity(shared.CityProgressionStore,store)
  end
  local function publish(frame,known,value)
   if not current(frame)then return end
@@ -69,7 +71,7 @@ function M.Start(P,shared)
   if known then r.lastConfirmed=value end
  end
  function data.Applied(f)
-  if not rawequal(shared.ResearchTraditionEffects,data)or not rawequal(shared.CityProgressionStore,store)then
+  if not sameIdentity(shared.ResearchTraditionEffects,data)or not sameIdentity(shared.CityProgressionStore,store)then
    return {appliedStatus='UNAVAILABLE',gate='UNKNOWN',reason='SOURCE_REPLACED',requiredActive=4}
   end
   if not valid(f)then return {appliedStatus='UNOBSERVED',gate='UNKNOWN',reason='REFERENCE_UNAVAILABLE',requiredActive=4}end
@@ -110,9 +112,9 @@ function M.Start(P,shared)
    local owner,id,x,y,token=f.owner,f.cityID,f.x,f.y,f.token
    local create,remove=P.CreateBuilding,P.RemoveBuilding
    writeGuard=function()
-    assert(rawequal(shared.CityProgressionStore,store)and store.CarrierReferenceStamp==stamp
-     and rawequal(shared.EffectiveFacts,facts)and facts.ReadWithCarrierReference==reader
-     and rawequal(shared.ResearchTraditionEffects,data)and P.CreateBuilding==create and P.RemoveBuilding==remove,'TRADITION_WRITE_SOURCE_CHANGED')
+    assert(sameIdentity(shared.CityProgressionStore,store)and store.CarrierReferenceStamp==stamp
+     and sameIdentity(shared.EffectiveFacts,facts)and facts.ReadWithCarrierReference==reader
+     and sameIdentity(shared.ResearchTraditionEffects,data)and P.CreateBuilding==create and P.RemoveBuilding==remove,'TRADITION_WRITE_SOURCE_CHANGED')
     assert(type(witness)=='string'and stamp(owner,id,x,y,token)==witness,'TRADITION_WRITE_REFERENCE_CHANGED')
    end
    writeGuard()

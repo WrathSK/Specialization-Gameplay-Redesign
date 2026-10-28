@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0847
-Implementation Build: B391.418 / modinfo418; live B391.418 develop; stable/main B307.334
+Status Revision: S0848
+Implementation Build: B392.419 / modinfo419; live B391.418 develop until replacement verified; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: REFACTOR_S9G4_DEVELOP_TEST_DEPLOYED
+Work State: B392_RESTRICTED_LUA_REPAIR_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
-User explicitly approved a temporary deployment of current B391.418 develop for a new-campaign phase test. Source b0be389 and live340/340 MATCH;B307.334 stable backup312/312 MATCH,no pending transaction. S9 actual Commerce/Culture cold consumers and S10 remain unfinished;this is not final U5,main promotion or native PASS. B271 timing probes remain disabled. [Deployment](Validation/Results/Specialization_B391_Develop_Deployment.md) · [用户测试清单](Validation/Results/Specialization_B391_Develop_Playtest_Checklist.md).
+B391 new-campaign testing found unavailable specialization facts and repeated institution UI failures. B392.419 repairs optional raw-equality dependence without changing object-identity fences,gameplay or saved records. 237 scoped local cases pass;native recovery remains USER_GAME_TEST_REQUIRED. [Current repair](Validation/Results/Specialization_B392_Restricted_Lua_Identity.md). Original S9/S10 incomplete scope and final U5 remain unchanged.
 
-- User decision: one temporary develop deployment approved and completed.
-- User testing: new B391 campaign phase test; final U5 remains later.
-- Primary next: Collect phase-test evidence at this batch boundary;then continue already authorized actual Commerce/Culture recovery,D7/applied-owner/U4/S10. Final U5 follows completion;no automatic further deployment,restore,main promotion or game launch.
+- User decision: 2026-10-27 authorizes investigation/implementation and resumes automatic safe develop deployment;game-exit,clean source,hash,receipt and rollback gates remain;no main promotion/game launch.
+- User testing: after verified replacement,new-current-build district→specialization→investment→institutions;do not claim native recovery from local tests.
+- Primary next: verify package and deploy B392,then stop this repair batch for native recovery evidence.
+
+## S0848 — B392.419 Restricted Lua identity repair
+
+B392 replaces optional raw equality in eight consumers with a pure identity helper; restricted-Lua and unchanged consumer regressions pass. User resumed automatic safe develop deployment on 2026-10-27. No gameplay/save/main change; native recovery requires user testing.
 
 ## S0847 — B391.418 Approved temporary develop deployment and targeted test handoff
 

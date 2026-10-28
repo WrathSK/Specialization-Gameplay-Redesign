@@ -1,3 +1,5 @@
+if not SPCIdentityEqual then include('IdentityEqual')end
+local sameIdentity=SPCIdentityEqual.Same
 include('Probe')
 local P=SPCP0
 local selection,pending,requestedAt,pendingMeta,targetPort
@@ -62,14 +64,14 @@ local function request(u)
  local ok,err=pcall(UI.RequestPlayerOperation,owner,PlayerOperations.EXECUTE_SCRIPT,
   {OnStart='SPC_P0_Request',Action='UNIT_TARGETS_READ',Token=pending,UnitID=id,BuilderPreview=builderPreview,
    ReplyChannel='UNIT_TARGETS',ReplyEpoch=port.epoch})
- if stopped or not rawequal(pendingMeta,m)then return end
+ if stopped or not sameIdentity(pendingMeta,m)then return end
  if not ok then clear();ExposedMembers.SPC_TargetMarkerStatus='Dispatch error: '..tostring(err)end
 end
 local function consume(u)
  local m=pendingMeta;if not m or not ready()then return end
  local ok,row=false,nil
  if sameChannel(m)then ok,row=pcall(m.take,m.owner,m.token)end
- if not rawequal(pendingMeta,m)then return end
+ if not sameIdentity(pendingMeta,m)then return end
  discardPending() -- release the expected reply before any native selection read
  if stopped then return end
  local s=ok and type(row)=='table'and getmetatable(row)==nil and row.targets

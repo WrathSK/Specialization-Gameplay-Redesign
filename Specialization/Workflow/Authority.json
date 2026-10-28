@@ -10,8 +10,8 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0847",
-    "runtime": "B391.418 / modinfo418",
+    "status": "S0848",
+    "runtime": "B392.419 / modinfo419",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "b0be389631c35291b545238f3e252ae32c76bda4",
-  "current_batch": "REFACTOR_S9G4_DEVELOP_TEST_DEPLOYED",
-  "next_batch": "Collect phase-test evidence at this batch boundary;then continue already authorized actual Commerce/Culture recovery,D7/applied-owner/U4/S10. Final U5 follows completion;no automatic further deployment,restore,main promotion or game launch.",
+  "current_batch": "B392_RESTRICTED_LUA_REPAIR_READY",
+  "next_batch": "Verify and deploy B392 under resumed development deployment authorization;collect native district-to-specialization recovery evidence,then resume existing S9/S10. No main promotion or game launch.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B391.418 temporary develop from b0be389631c35291b545238f3e252ae32c76bda4;340/340 MATCH; SHA256 983881621f35f399c3181122220799a6ea207bdd8cd44d533490b96e7bdaeed2;B307.334 stable backup312/312 MATCH;no pending transaction;receipt B391.418-b0be389-playtest.json.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -48,7 +48,7 @@
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
-  "deployment_authorization": "2026-10-25 user explicitly authorized current develop deployment and requested a new-campaign targeted checklist. One temporary switch completed;no standing authorization for future replacement,restore,main promotion or game launch.",
+  "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
   "context_review_status": "S0847 User explicitly approved a temporary deployment of current B391.418 develop for a new-campaign phase test. Source b0be389 and live340/340 MATCH;B307.334 stable backup312/312 MATCH,no pending transaction. S9 actual Commerce/Culture cold consumers and S10 remain unfinished;this is not final U5,main promotion or native PASS. B271 timing probes remain disabled. Original S9g4 source/test evidence retained;no implementation change.",
   "implementation_scope": {
     "v0_1": [

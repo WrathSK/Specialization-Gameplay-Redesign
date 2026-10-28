@@ -51,6 +51,7 @@ class Context:
         self.name = name
         self.lua.execute(EVENTS)
         self.lua.globals().include = self.load
+        self.load("IdentityEqual")  # Pure production dependency; legacy fixtures may stub include.
         for event in missing:
             self.lua.execute("Events[...] = false", event)
         RUN["contexts"].append({"name":name,"backend":"Lua 5.1","hidden_no_frame":True})
@@ -105,7 +106,9 @@ def legacy_source_observation():
     with patch.object(Path,'read_text',read):yield
 
 class TrackedLua51:
-    def __init__(self,*args,**kwargs):self._lua=NativeLua51(*args,**kwargs)
+    def __init__(self,*args,**kwargs):
+        self._lua=NativeLua51(*args,**kwargs)
+        self.execute((ROOT/"Mod/IdentityEqual.lua").read_text()) # Explicit dependency for frozen include stubs.
     def __getattr__(self,key):return getattr(self._lua,key)
     def execute(self,source,*args,**kwargs):
         digest=sha256(source.encode() if isinstance(source,str) else source).hexdigest()
