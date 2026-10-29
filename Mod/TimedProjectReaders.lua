@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_GP',point,build)end
+ end)
+end
 include('RuntimeWork')
 -- Fixed three-slot initialization handshake, not a discovery/event bus.
 -- Wake callbacks mark UI work only; this service never reads cities or retries actions.
@@ -25,16 +33,19 @@ function SPCTimedProjectReaders.New(P,shared)
   d.error=nil
   delivered[kind]={backend=backend,row=row,reader=row.reader,epoch=d.epoch} -- latch before cross-context reentry
   local ok,err=pcall(row.wake,backend,d.epoch,row.reader)
+  if kind=='DialogueProjects'then cultureObserve('READER_WAKE_RESULT',function()local e=not ok and SPCCultureDiagnostics.Error(err)or {};e.recordType=kind;e.packetEpoch=d.epoch;e.packetSeq=row.serial;e.requestAccepted=ok;return e end)end
   local printable,text=pcall(tostring,err)
   d.errors[kind]=not ok and (printable and text:sub(1,180)or 'TIMED_READER_WAKE_FAILED')or nil
  end
  function d.Register(kind,row)
   assert(keys[kind],'TIMED_READER_KIND')
-  if not current(kind,row)then return false end
+  if not current(kind,row)then if kind=='DialogueProjects'then cultureObserve('READER_REGISTER_REJECT',function()return {recordType=kind,packetEpoch=d.epoch,reason='CURRENT_ROW_MISMATCH'}end)end;return false end
   local prior=registrations[kind];local greatest=serials[kind]or 0
   if prior and prior.row==row and (prior.serial~=row.serial or prior.reader~=row.reader or prior.wake~=row.wake)then return false end
   if row.serial<greatest or row.serial==greatest and (not prior or prior.row~=row or prior.reader~=row.reader or prior.wake~=row.wake)then return false end
-  d.readers[kind]=row;serials[kind]=row.serial;registrations[kind]={row=row,reader=row.reader,wake=row.wake,serial=row.serial};notify(kind);return true
+  d.readers[kind]=row;serials[kind]=row.serial;registrations[kind]={row=row,reader=row.reader,wake=row.wake,serial=row.serial}
+  if kind=='DialogueProjects'then cultureObserve('READER_REGISTER',function()return {recordType=kind,packetEpoch=d.epoch,packetSeq=row.serial,ready=sealed}end)end
+  notify(kind);return true
  end
  function d.Unregister(kind,row)
   if registrations[kind]and registrations[kind].row==row then registrations[kind]=nil;delivered[kind]=nil;d.readers[kind]=nil end
@@ -52,6 +63,7 @@ function SPCTimedProjectReaders.New(P,shared)
   local state=status()
   if state~='FRESH'and state~='EXISTING'then d.error=state=='HELD'and 'TIMED_STORE_HELD'or state==nil and 'TIMED_STORE_UNKNOWN'or 'TIMED_STORE_NOT_READY';return end
   d.epoch=1;d.error=nil
+  cultureObserve('READER_SERVICE_READY',function()return {packetEpoch=d.epoch,readStatus=state}end)
   for kind in pairs(keys)do notify(kind)end
  end
  SPCRuntimeWork.StartReady(P,shared,'TimedProjectReaders',ready)

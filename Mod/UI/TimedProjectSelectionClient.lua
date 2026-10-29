@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_PROJECT_UI',point,build)end
+ end)
+end
 -- One explicit intent-read gate, shared by the three independent project UIs.
 -- No native listeners, clock retries, save authority or project eligibility here.
 SPCTimedProjectSelectionClient={}
@@ -45,10 +53,12 @@ function SPCTimedProjectSelectionClient.New(P,pending)
    assert(type(epoch)=='number'and epoch>=1 and epoch%1==0,'TIMED_UI_EPOCH')
    if available and available.backend==backend and available.epoch==epoch and available.reader==reader and available.service==service then return end
    available={backend=backend,epoch=epoch,reader=reader,service=service};generation=generation+1;wakePending=true
+   if config.kind=='DialogueProjects'then cultureObserve('UI_READER_WAKE',function()return {recordType=config.kind,packetEpoch=epoch,packetSeq=row.serial,ready=true}end)end
   end
   registration=row;slots[config.kind]=row
   registeredService=shared().TimedProjectReaders
   if registeredService then registeredService.Register(config.kind,row)end
+  if config.kind=='DialogueProjects'then cultureObserve('UI_READER_CONNECT',function()return {recordType=config.kind,packetSeq=row.serial,ready=available~=nil,reason=registeredService and 'SERVICE_PRESENT'or 'SERVICE_MISSING'}end)end
  end
  local function resetGeneration()
   if sentGeneration~=generation then
@@ -92,6 +102,10 @@ function SPCTimedProjectSelectionClient.New(P,pending)
   end
  end
  function d.QueueEvent(pid,id)
+  if config and config.kind=='DialogueProjects'then cultureObserve('UI_QUEUE_EVENT',function()
+   local _,p=next(pending);if not p then return end
+   return {owner=p.pid,city=p.id,eventOwner=pid,eventCity=id,taskStart=p.turn,ready=p.pid==pid and p.id==id,requestAccepted=not closed}
+  end)end
   if closed or config and not d.OwnsReader()or type(pid)~='number' or type(id)~='number'then return end
   local p=pending[pid..':'..id]
   if p and not p.sent and p.turn==Game.GetCurrentGameTurn()and P.IsTestPlayer(pid)then p.read=true end
@@ -101,14 +115,25 @@ function SPCTimedProjectSelectionClient.New(P,pending)
   local captured=generation
   p.read=nil -- consume before the getter; a new event can permit the next drain
   local ok,value=pcall(read)
-  return ok,value,not closed and captured==generation and (not config or d.Ready())and not p.read and pending[k]==p and p.turn==Game.GetCurrentGameTurn()
+  local current=not closed and captured==generation and (not config or d.Ready())and not p.read and pending[k]==p and p.turn==Game.GetCurrentGameTurn()
+  if config and config.kind=='DialogueProjects'then cultureObserve('UI_QUEUE_READ',function()
+   local e=not ok and SPCCultureDiagnostics.Error(value)or {};e.owner=p.pid;e.city=p.id;e.taskStart=p.turn;e.packetEpoch=generation;e.requestAccepted=ok;e.ready=current
+   if ok and type(value)=='table'then e.projectType=value.project or 'OTHER';e.queueSize=value.size else e.readStatus='READ_ERROR'end;return e
+  end)end
+  return ok,value,current
  end
  function d.Bind(fn)
   return function()
    if closed or draining then return end;draining=true
    local ok,value=pcall(function()
     if config then
-     if not d.Ready()then return end
+     if not d.Ready()then
+      if config.kind=='DialogueProjects'then cultureObserve('UI_WAIT_READER',function()
+       local _,p=next(pending);if not p then return end
+       return {recordType=config.kind,owner=p.pid,city=p.id,taskStart=p.turn,packetEpoch=generation,ready=false}
+      end)end
+      return
+     end
      local captured=generation
      if wakePending then
       wakePending=false;resetGeneration()

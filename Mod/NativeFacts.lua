@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_GP',point,build)end
+ end)
+end
 include('RuntimeWork')
 -- Declared native cause owner. No fact values, native handles or persisted state.
 SPCNativeFacts={}
@@ -35,6 +43,7 @@ function SPCNativeFacts.New(P,shared)
  function d.Workers(scope,cause)
   assert(cause=='NATIVE_WORKER_CHANGED' or cause=='NATIVE_FOCUS_CHANGED'
    or cause=='UI_WORKERS_DIRTY' or cause=='UI_FACTS_DIRTY','WORKER_CAUSE_UNKNOWN')
+  cultureObserve('WORKER_CAUSE',function()return {owner=type(scope)=='table'and scope.player,city=type(scope)=='table'and scope.city,reason=cause}end)
   return guarded('WORKERS',scope,cause,'WORKERS')
  end
  SPCRuntimeWork.TargetHook(P,Events,'CityWorkerChanged',function(scope)d.Workers(scope,'NATIVE_WORKER_CHANGED')end)

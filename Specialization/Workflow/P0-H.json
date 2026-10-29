@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0850",
-    "runtime": "B393.420 / modinfo420",
+    "status": "S0851",
+    "runtime": "B394.421 / modinfo421",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Carry B393 commercial pending/recovery evidence into the next authorized investigation;retain incomplete S9/S10 and final U5. This evidence turn changes no runtime and performs no deployment/main promotion/game launch.",
+  "goal": "User-authorized2026-10-28 B394 diagnostic-only Culture observations with isolation/removal gates;automatic safe develop deployment remains separately bounded by current authorization. No gameplay repair,pillage test,main promotion or game launch.",
   "implementation_authorized": true,
   "context": [
     {
@@ -690,6 +690,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B393_Partial_Playtest.md",
       "kind": "full",
       "reason": "B393 partial native coverage,user-reported acceptance,commercial blockers and remaining deliberate tests;no full ability/U5 PASS."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "kind": "full",
+      "reason": "Current scoped observer isolation/cost/removal and native collection boundary."
     }
   ],
   "dependencies": [
@@ -716,9 +721,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B393_Partial_Playtest.md",
-    "local": "14 focused+237 inherited cases PASS;20 collector cases and temporary-switch gate PASS;218 Lua51/25 XML/340 refs/341files and context341/1276 PASS. Three unchanged stale reader-limit tests documented separately.",
-    "native": "SCOPED_BASE_READ_RECOVERY_PASS;USER_REPORTED_PARTIAL_CULTURE_RESEARCH;COMMERCIAL_ENTRY_BLOCKED;FULL_U5_REQUIRED",
-    "deployment": "DEVELOP_ACTIVE_B393_341_OF_341_MATCH"
+    "report": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+    "local": "14 focused plus selected unchanged subsystem checks pass;old corruption assertion remains baseline-identical OPEN. No runtime defect fix claimed.",
+    "native": "USER_GAME_TEST_REQUIRED bounded diagnostic reproduction;no deliberate pillage."
   }
 }

@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_GP',point,build)end
+ end)
+end
 include('RuntimeWork')
 include('SpecialistSupport')
 include('CarrierSet')
@@ -32,8 +40,9 @@ function SPCLv2GPP.Start(P,shared)
   end end
   carriersSet.Initialize();definitions=true
  end
- local function inspect(pid,city)
+ local function inspect(pid,city,observed)
   return SPCSpecialistSupport.Inspect(P,shared,pid,city,batch or SPCRuntimeWork.New(P,shared),function(kind,d,f,workers,geometry)
+  if observed then pcall(observed,d and d.cityID or f and f.cityID)end -- diagnostic-only scalar, never eligibility
   if not classes[kind] then return {workers=0,enabled=false,reason='CONFIRMED_INELIGIBLE'} end
   if f.active<2 then return {kind=kind,active=f.active,workers=0,enabled=false,reason='ACTIVE_BELOW_II'} end
   local g=geometry();local plot=assert(Map.GetPlot(g.x,g.y),'B2_GPP_PLOT_UNAVAILABLE')
@@ -41,12 +50,14 @@ function SPCLv2GPP.Start(P,shared)
   local n
   if type(plot.GetIndex)=='function'then n=workers({id=d.id,type=d.type,plot=plot:GetIndex()},read)else n=read()end
   assert(int(n)and n<=255,'WORKER_COUNT_UNKNOWN_OR_UNSUPPORTED')
+  cultureObserve('GPP_SAMPLE',function()return {owner=pid,city=d.cityID or f.cityID or 'UNKNOWN',specialization=kind,active=f.active,workers=n,reason=observed and 'AUDIT'or 'READ_ONLY'}end)
   return {kind=kind,workers=n,active=f.active,enabled=true,reason='VERIFIED anchor='..d.id}
   end)
  end
 
  local function reconcile(pid,city)
-  validateDefinitions();local f=inspect(pid,city)
+  local observedCity
+  validateDefinitions();local f=inspect(pid,city,function(id)observedCity=id end)
   local n=f.enabled and f.workers or 0
   local kind=f.kind
   local wanted={}
@@ -54,11 +65,20 @@ function SPCLv2GPP.Start(P,shared)
    wanted[name(k,bit)]=k==kind and math.floor(n/2^bit)%2==1
   end end
   -- Full presence preflight, then original fresh changed-bit read and readback.
-  carriersSet.Apply(city,wanted,health,function()data.changes=data.changes+1 end,true)
+  local plan=carriersSet.Apply(city,wanted,health,function()data.changes=data.changes+1 end,true)
+  cultureObserve('GPP_APPLIED',function()
+   local actual,other=0,0
+   for _,v in ipairs(plan)do
+    local k,bit=v.key:match('^BUILDING_SPC_DEV_GPP_(%u+)_(%d+)$')
+    if v.present then if k==kind then actual=actual+2*2^tonumber(bit)else other=other+2*2^tonumber(bit)end end
+   end
+   return {owner=pid,city=observedCity or 'UNKNOWN',specialization=kind,workers=n,expectedNumber=2*n,actualNumber=actual,
+    count=other,readStatus='PREFLIGHT_AND_CHANGED_READBACK'}
+  end)
  end
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   reconcile(pid,c)
- end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
+ end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why;cultureObserve('GPP_FAILED',function()local e=SPCCultureDiagnostics.Error(why);e.owner=pid;e.city=cid;return e end)end)
  local function runAudit(scope)
   validateDefinitions()
   batch=SPCRuntimeWork.New(P,shared);data.refreshes=data.refreshes+1

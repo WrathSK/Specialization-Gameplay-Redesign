@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_ACTIVITY_UI',point,build)end
+ end)
+end
 -- B201: fresh recovery observations and durable arming before one native Sleep request.
 -- No persistent state, native espionage mission, or dependency on the management window.
 include('Probe')
@@ -286,6 +294,10 @@ end
 local function evaluate(n)
  local ok,u,activity=pcall(read,n)
  n.readStatus=not ok and 'READ_ERROR' or (u and 'READ_OK' or 'POSITION_PENDING')
+ cultureObserve('EXPEDITION_ACTIVITY_READ',function()
+  local e=not ok and SPCCultureDiagnostics.Error(u)or {};e.owner=n.owner;e.eventUnit=n.unitID;e.phase=n.phase;e.mode=n.mode;e.activityKey=n.activityKey
+  e.readStatus=n.readStatus;e.x=n.x;e.y=n.y;e.actualX=n.actualX;e.actualY=n.actualY;e.activity=ok and activity or nil;e.activitySampleTurn=n.sampleTurn;e.operationEvent=operationEvent;return e
+ end)
  if not ok then fail(n,u);return end
  if not u then return end -- Initial placement still invisible in this UI context.
  if n.mode=='ASLEEP' then
@@ -490,13 +502,24 @@ end
 local function published()event('PUBLICATION',false)end
 local function activityChanged(pid,id)
  local v=view()
- if type(v)=='table' and pid==v.owner and id==v.unitID then event('ACTIVITY_OR_MOVE',true)end
+ if type(v)=='table' and pid==v.owner and id==v.unitID then
+  cultureObserve('EXPEDITION_ACTIVITY_EVENT',function()return {owner=pid,eventUnit=id,phase=v.phase,mode=v.mode,activityKey=v.activityKey,operationEvent='ACTIVITY_OR_MOVE'}end)
+  event('ACTIVITY_OR_MOVE',true)
+ end
+end
+local function moved(pid,id,x,y)
+ local v=view()
+ if type(v)=='table'and pid==v.owner and id==v.unitID then
+  cultureObserve('EXPEDITION_MOVE_EVENT',function()return {owner=pid,eventUnit=id,phase=v.phase,mode=v.mode,activityKey=v.activityKey,eventX=x,eventY=y}end)
+ end
+ activityChanged(pid,id) -- original callback exactly once, same registration slot
 end
 local function nativeOperation(name)
  return function(pid,id,hash)
   local v=view()
   if type(v)=='table' and pid==v.owner and id==v.unitID then
    operationEvent=name;operationHash=type(hash)=='number' and hash or 'NIL'
+   cultureObserve('EXPEDITION_OPERATION_EVENT',function()return {owner=pid,eventUnit=id,phase=v.phase,mode=v.mode,activityKey=v.activityKey,operationEvent=name,operationHash=operationHash}end)
    event(name,true)
   end
  end
@@ -517,7 +540,7 @@ local function initialize()
  Events.GameCoreEventPublishComplete.Add(published)
  Events.LocalPlayerTurnBegin.Add(turn)
  if Events.UnitActivityChanged then Events.UnitActivityChanged.Add(activityChanged)end
- if Events.UnitMoveComplete then Events.UnitMoveComplete.Add(activityChanged)end
+ if Events.UnitMoveComplete then Events.UnitMoveComplete.Add(moved)end
  for _,name in ipairs({'UnitOperationAdded','UnitOperationDeactivated','UnitOperationsCleared','UnitCommandStarted','UnitMovementPointsChanged'})do
   local e=Events[name]
   if e then local fn=nativeOperation(name);e.Add(fn);operationHooks[#operationHooks+1]={event=e,fn=fn}end
@@ -535,7 +558,7 @@ ContextPtr:SetShutdown(function()
   Events.GameCoreEventPublishComplete.Remove(published)
   Events.LocalPlayerTurnBegin.Remove(turn)
   if Events.UnitActivityChanged then Events.UnitActivityChanged.Remove(activityChanged)end
-  if Events.UnitMoveComplete then Events.UnitMoveComplete.Remove(activityChanged)end
+  if Events.UnitMoveComplete then Events.UnitMoveComplete.Remove(moved)end
  end
  for _,h in ipairs(operationHooks)do h.event.Remove(h.fn)end;operationHooks={}
  initialized=false

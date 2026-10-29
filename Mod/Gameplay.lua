@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_GP',point,build)end
+ end)
+end
 include("Probe")
 include("SafeCallbacks")
 include("RuntimeComposition")
@@ -106,6 +114,7 @@ local function request(playerID,params)
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'请选择己方城市')
       return d.Describe(playerID,c)..(shared.DialogueEffects and '' or '\n\n'..shared.Dialogue.DescribeCarrierTest(playerID,c))
     end)
+    if params.Action=='DIALOGUE_PROJECT_BEGIN'then cultureObserve('DIALOGUE_INGRESS_RESULT',function()local e=not ok and SPCCultureDiagnostics.Error(out)or {};e.owner=playerID;e.city=params.CityID;e.taskStart=params.StartTurn;e.requestResult=ok and 'HANDLER_RETURNED'or 'HANDLER_THREW';return e end)end
     if params.Action=='DIALOGUE_PROJECT_READ' then shared.Snapshot=ok and out or ('时代对话暂停：'..tostring(out));shared.LastToken=params.Token end
     return
   end

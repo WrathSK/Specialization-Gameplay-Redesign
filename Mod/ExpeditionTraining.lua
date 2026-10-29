@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_GP',point,build)end
+ end)
+end
 if not SPCIdentityEqual then include('IdentityEqual')end
 local sameIdentity=SPCIdentityEqual.Same
 -- B202: one saved queue reservation; native queue/completion/birth are evidence,
@@ -171,9 +179,11 @@ function SPCExpeditionTraining.Start(P,shared)
    if T.CapacityObservationFailed then pcall(T.CapacityObservationFailed,not ok)end
   end
   local u=Players[pid]:GetUnits():FindID(id);local r=u and P.Info('Units',u:GetType())
+  if r and (r.UnitType==M.KIND or r.UnitType=='UNIT_SPY')then cultureObserve('UNIT_ADDED_OBSERVED',function()return {eventOwner=pid,eventUnit=id,unitType=r.UnitType,unitIndex=r.Index}end)end
   if not r or r.UnitType~=M.KIND then return end
   run(pid,function()
    local s=T.Read(pid)
+   cultureObserve('EXPEDITION_BIRTH_STATE',function()return {owner=pid,eventUnit=id,phase=s.phase,reservation=s.trainingToken,ready=s.phase=='TRAINING'}end)
    if s.phase~='TRAINING' then return end
    popFlush('POP_SUMMARY',pid);observeAt('BIRTH_ENTRY',pid,s.sourceCity,s,{eventOwner=pid,eventUnit=id})
    -- B209: an order completed immediately (carried overflow) in the reservation
@@ -185,7 +195,13 @@ function SPCExpeditionTraining.Start(P,shared)
   end)
  end
  function d.Complete(pid,id,kind,index,cancelled)
-  if not P.IsTestPlayer(pid) or kind~=0 then return end
+  if not P.IsTestPlayer(pid)then return end
+  cultureObserve('DIPLOMATIC_BUILDING_COMPLETED',function()
+   if kind~=1 then return end
+   local r=GameInfo.Buildings[index]
+   if r and (r.BuildingType=='BUILDING_CONSULATE'or r.BuildingType=='BUILDING_CHANCERY')then return {owner=pid,city=id,eventKind=kind,eventIndex=index,recordType=r.BuildingType,requestAccepted=not cancelled}end
+  end)
+  if kind~=0 then return end
   local r=P.Info('Units',index);if not r or r.UnitType~=M.KIND then return end
   run(pid,function()
    popFlush('POP_SUMMARY',pid);observeAt('COMPLETE_CALLBACK',pid,id,nil,{eventOwner=pid,eventCity=id,eventKind=kind,eventIndex=index,cancelled=cancelled})

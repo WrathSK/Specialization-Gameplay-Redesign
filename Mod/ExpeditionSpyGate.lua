@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_GP',point,build)end
+ end)
+end
 -- B201: bounded player-owned identity/intent, exact Property readback.
 -- Native unit/travel/activity are fresh facts; no native mission or reward.
 -- Native name assignment and travel survival remain explicit user-game gates.
@@ -968,6 +976,10 @@ function SPCExpeditionSpyGate.Start(P,shared)
   if movementProbeLocked then return end
   if placementWatch and pid==placementWatch.owner then closePlacement('TURN_CLOSE')end
   if P.IsTestPlayer(pid)then load(pid)end
+  cultureObserve('EXPEDITION_TURN_STATE',function()
+   if state.owner~=pid or not state.unitID then return end
+   return {owner=pid,eventUnit=state.unitID,phase=state.phase,mode=state.activityMode,activityKey=state.activityKey,ready=not busy,reason=loadOnly and 'LOAD_BOUNDARY'or 'TURN_BOUNDARY',readStatus=recovering and 'RECOVERING'or 'RUNNING',x=state.x,y=state.y,taskStart=state.taskStart,taskDue=state.taskDue}
+  end)
   if busy or not P.IsTestPlayer(pid) or state.owner~=pid or not state.unitID or state.phase=='HELD' or state.phase=='ENDED' then return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
   step='TURN';local ok,err=pcall(function()

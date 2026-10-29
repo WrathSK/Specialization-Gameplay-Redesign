@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="420">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="421">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B393.420：修复城市专业读取被观察逻辑阻断的问题，补充失败原因日志；保持原有玩法与存档结构。</Description>
+    <Description>B394.421：补充可独立关闭的文化诊断，记录对话启动、专家点数和考察团恢复；玩法与存档结构不变。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -323,6 +323,7 @@
       <File>UI/SafeAdapters.lua</File>
       <File>FactChanges.lua</File>
       <File>FactConsumerBindings.lua</File>
+      <File>CultureDiagnostics.lua</File>
     </ImportFiles>
     <UpdateDatabase id="SPC_B029_Carrier">
       <Properties>
@@ -837,6 +838,7 @@
     <File>IdentityEqual.lua</File>
     <File>RuntimeComposition.lua</File>
     <File>UI/SafeAdapters.lua</File>
+    <File>CultureDiagnostics.lua</File>
   </Files>
   <Dependencies>
     <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />

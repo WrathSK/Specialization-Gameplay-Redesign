@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_GP',point,build)end
+ end)
+end
 include('TimedProjects')
 -- P0-M: real production/timer/history. DialogueEffects owns derived yield projection.
 include('DialogueProjectModel')
@@ -58,6 +66,7 @@ function SPCDialogueProjects.Start(P,shared)
  local function safe(pid,id,fn)
   local ok,why=pcall(fn)
   if not ok then
+   cultureObserve('DIALOGUE_SAFE_FAILED',function()local e=SPCCultureDiagnostics.Error(why);e.owner=pid;e.city=id;return e end)
    rounds.Block(pid,id)
    local old=d.views[key(pid,id)]
    publish(pid,id,{stage='HELD',reference=old and old.reference,token=old and old.token,reason=tostring(why):gsub('^.-:%d+: ',''):sub(1,180)})
@@ -120,7 +129,10 @@ function SPCDialogueProjects.Start(P,shared)
   if type(token)=='string' then d.syncAck[key(pid,id)]=token end
  end
  function d.Request(pid,p)
-  if not ready or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number' then return end
+  if not ready or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number' then
+   cultureObserve('DIALOGUE_BEGIN_GUARD',function()return {owner=pid,city=p.CityID,ready=ready,reason=not ready and 'NOT_READY'or busy and 'BUSY'or 'PLAYER_OR_CITY_GUARD'}end)
+   return
+  end
   rounds.Wake(pid,p.CityID)
   safe(pid,p.CityID,function()
    local c=assert(city(pid,p.CityID),'城市不可读');local s,_,known,eligible=read(pid,c)
@@ -130,6 +142,7 @@ function SPCDialogueProjects.Start(P,shared)
    local q,matches=queue(c);assert(matches,'当前目标未确认');assert(type(P.Field(q,'FinishProgress'))=='function','完成接口缺失')
    if s.value and s.value.pending then assert(s.value.pending.stage=='ACTIVE','上次完成尚未确认；请先改选普通目标');return end
    write(pid,c,s,M.Begin(s.value,s.token,s.reference,era(),p.StartTurn));mark(pid,p.CityID)
+   cultureObserve('DIALOGUE_BEGIN_COMMITTED',function()return {owner=pid,city=p.CityID,taskStart=p.StartTurn,requestAccepted=true}end)
   end)
   d.Flush()
  end
@@ -153,7 +166,7 @@ function SPCDialogueProjects.Start(P,shared)
   local k=key(pid,id);if settling[k]then return end;settling[k]=true
   safe(pid,id,function()
    local c=assert(city(pid,id));local s,_,known,eligible=read(pid,c);local v=s.value;local p=v and v.pending
-   if not p then return end -- repeated native event never creates a start or reward
+   if not p then cultureObserve('DIALOGUE_COMPLETE_NO_START',function()return {owner=pid,city=id,reason='IGNORED_NO_PENDING'}end);return end -- repeated native event never creates a start or reward
    if known and not eligible then cancel(pid,c,s,'完成前资格失效；未记奖励或额度');return end
    if p.stage=='HELD' then return end -- never resample a failed completion boundary later
    if p.stage=='CALLING' and (armed[k]~=p.id or Game.GetCurrentGameTurn()~=p.start+1)then

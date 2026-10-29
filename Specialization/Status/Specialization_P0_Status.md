@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0850
-Implementation Build: B393.420 / modinfo420; live B393.420 develop; stable/main B307.334
+Status Revision: S0851
+Implementation Build: B394.421 / modinfo421; live B393.420 pending safe replacement; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B393_PARTIAL_NATIVE_REVIEW_RECORDED
+Work State: B394_ISOLATED_CULTURE_DIAGNOSTICS_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-B393.420 remains deployed from bca2c48;no runtime replacement in this evidence batch. The latest T1–T6 session has953 continuous TRAIN records:all173 institution facts and98 specialized applied views are READY,six cities establish all four professions,and Culture/Commerce/Research reach ACTIVE4. This supports scoped native recovery of the B391/B392 base-read symptom,not full ability/visual acceptance. User reports most Culture/Research accepted and Commerce broadly problematic;exact ability exceptions remain unspecified. Capital and Development requests are demonstrably held by pending Commerce/outgoing facts;nonzero Commerce income,contract outcomes,cold load and final U5 remain unverified. [Partial playtest coverage](Validation/Results/Specialization_B393_Partial_Playtest.md). Original S9/S10 incomplete scope stays.
+B394.421 adds optional bounded Culture observations only;14 focused real-path isolation/differential checks and related targeted regressions pass. No reported gameplay defect is claimed fixed. Dialogue startup/reselection,automatic-specialist GPP and Expedition recovery/grant identity remain the diagnostic targets. Native collection is pending;live B393 remains until safe verified replacement. Main remains B307.334 and original S9/S10/final U5 stay open. [B394 result and removal instructions](Validation/Results/Specialization_B394_Culture_Diagnostics.md);[B393 detailed Culture evidence](Validation/Results/Specialization_B393_Culture_Playtest_20261028.md).
 
-- User decision:none new;record the user's partial acceptance without inventing per-ability PASS. Standing safe develop deployment remains authorized2026-10-27;no main promotion/game launch.
-- User testing:continue from this recorded coverage;no repeat of demonstrated base recovery or expedition training/dispatch solely for bookkeeping. Commercial end-to-end tests remain blocked;clarify Culture/Research exceptions when available.
-- Primary next:carry commercial pending/recovery evidence into the next authorized investigation while preserving remaining S9/S10 and final U5. This turn stops after evidence/documents;no runtime fix/deployment.
+- User decision2026-10-28:clearing all works by gifting to AI and correct withdrawal is PASS;no deliberate pillage tests are to be requested. Internal carriers remain immune;only naturally encountered real district/building damage is future evidence. Remaining Meaning coverage is user-managed;Culture network is deliberately deferred by failed Works and absent early AI wonders. New diagnostics must remain optional,isolated and safely removable;no hidden business dependencies.
+- User testing:when convenient,collect the existing failing Dialogue/specialist/Works-save scenarios once;no forced pillage or repeated accepted coverage. B394 does not fix those behaviors or constitute final U5 acceptance.
+- Primary next:commit/push verified B394 diagnostics,perform existing game-exit/receipt/hash-gated automatic develop deployment if safe,then stop. No main promotion/game launch.
+
+## S0851 — B394 isolated Culture diagnostics and user coverage correction
+
+2026-10-28 user authorizes missing logs/probes with strict removal boundaries. Scalar-only protected taps reuse existing work;no new event listener,polling,city/unit sampling,save or effect decision. Existing TRAIN clock cost is disclosed;192-record/context-role caps and collector truncation alerts preserve evidence limits. The old corruption assertion fails on both baseline/current and remains open;no assertion was weakened. Cleared-collection PASS and no-deliberate-pillage test policy supersede those specific earlier test suggestions without rewriting frozen evidence.
 
 ## S0850 — B393 partial native playtest coverage
 

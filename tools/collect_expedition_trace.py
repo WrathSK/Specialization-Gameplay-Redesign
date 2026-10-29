@@ -88,6 +88,7 @@ class Session:
         self.record_total = 0
         self.trace_epoch = None
         self.highest_sequence = 0
+        self.culture_points = Counter()
         self.timing = TurnTimingEvidence()
         self.memory = MemoryEvidence(self.directory, self.event)
 
@@ -113,6 +114,11 @@ class Session:
             self.highest_sequence = max(self.highest_sequence, int(f['seq']))
         self.stages[stage] += 1
         self.record_total += 1
+        if stage == 'CULTURE_DIAGNOSTIC':
+            self.culture_points[f.get('point', '?')] += 1
+            if f.get('eventTruncated') == 'true':
+                self.alert('CULTURE_DIAGNOSTIC_TRUNCATED context=%s role=%s count=%s' %
+                           (f.get('context', '?'), f.get('traceRole', '?'), f.get('eventCount', '?')))
         if stage == 'TRACE_THROTTLED':
             self.alert('TRACE_THROTTLED role=%s turn=%s' % (f.get('traceRole', '?'), f.get('turn', '?')))
         if stage == 'READINESS_SUMMARY':
@@ -220,6 +226,9 @@ class Session:
         lines.append('hd_prints: %d (dropped by reader: %d)' % (self.hd_total, self.hd_dropped))
         lines.extend(self.memory.summary())
         lines.extend(self.timing.summary())
+        if self.culture_points:
+            lines.append('culture_diagnostic_points: ' + ', '.join('%s=%d' % kv for kv in self.culture_points.most_common(16)))
+            lines.append('culture_diagnostic_scope: optional bounded observations; handler return is not committed acceptance; carrier plan is not measured final GPP')
         lines.append('gate_prints: %d' % self.gate_total)
         lines += ['gate: %s x%d' % kv for kv in sorted(self.gate.items())]
         lines += ['hd: %s x%d' % kv for kv in sorted(self.hd.items())]

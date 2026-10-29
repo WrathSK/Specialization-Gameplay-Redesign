@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_PROJECT_UI',point,build)end
+ end)
+end
 include('TimedProjectSelectionClient')
 -- Normal production intent/read model. Gameplay owns timers, quota and history.
 include('GreatWorkFacts')
@@ -52,8 +60,13 @@ function M.New(P,send,notify)
   if not client.OwnsReader()then return not item or item.Type~=M.PROJECT end
   local k=c and (c:GetOwner()..':'..c:GetID())
   if not item or item.Type~=M.PROJECT then if k then pending[k]=nil end;return true end
-  if not c or not P.IsTestPlayer(c:GetOwner()) or queued or pending[k]then return false end
-  pending[k]={pid=c:GetOwner(),id=c:GetID(),turn=Game.GetCurrentGameTurn(),read=true};return true
+  if not c or not P.IsTestPlayer(c:GetOwner()) or queued or pending[k]then
+   cultureObserve('DIALOGUE_SELECTION_REJECT',function()return {requestAccepted=false,queued=queued,reason=pending[k]and 'PENDING_INTENT'or 'SELECTION_GUARD'}end)
+   return false
+  end
+  pending[k]={pid=c:GetOwner(),id=c:GetID(),turn=Game.GetCurrentGameTurn(),read=true}
+  cultureObserve('DIALOGUE_SELECTION',function()local p=pending[k];return {owner=p.pid,city=p.id,taskStart=p.turn,queued=queued,requestAccepted=true}end)
+  return true
  end
  local function drain()
   local b=backend();if not b then return end
@@ -67,6 +80,7 @@ function M.New(P,send,notify)
     if current and ok and q.project==M.PROJECT and q.size==1 then
      p.sent=true
      local sent=pcall(send,p.pid,PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='DIALOGUE_PROJECT_BEGIN',CityID=p.id,StartTurn=p.turn,Token='DIALOGUE:'..k..':'..p.turn})
+     cultureObserve('DIALOGUE_BEGIN_SENT',function()return {owner=p.pid,city=p.id,taskStart=p.turn,requestResult=sent and 'TRANSPORT_RETURNED'or 'TRANSPORT_THREW'}end)
      if not sent and pending[k]==p and client.OwnsReader()then pending[k]=nil end
     elseif current and ok and q.project==M.PROJECT and type(q.size)=='number' and q.size>1 then pending[k]=nil;notify(p.pid,p.id)end
    end

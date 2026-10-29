@@ -541,9 +541,9 @@
       "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/DialogueProjects.lua": {
-      "sha256": "9a101f96765cdde9078d7048d0b100e1f8e66fb789d7a1210e356d39d35a4e92",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
-      "provenance": "B354.381 Interpret fresh Dialogue work slots in Gameplay; local/static evidence only; no deployment/native PASS."
+      "sha256": "55636ab6bb32607576a130d710e85fb95861efc867b6d337a7b560a167a67005",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/DistrictCompleteness.lua": {
       "sha256": "dc7d30c4e04c156b90faa9dfeb262f03e068b09023e536ebc180621da4c404f6",
@@ -601,9 +601,9 @@
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "164f3b6c8e51a0ede5fa1f45e520a3a3ab96f455e6aec7b3ce9c79a3d34e674c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
-      "provenance": "B366.393 Observe training capacity through existing scoped unit boundaries; local/static evidence only; no deployment/native PASS."
+      "sha256": "00836328f6727a25d5269a84d03f102d063a6608b20cf024feae7e396e919f63",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/ExpeditionSpyRead.lua": {
       "sha256": "74b1960a96970f0ee5bc80e59499ccff490eb27ad97f56b1d346872aabbce305",
@@ -621,14 +621,14 @@
       "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
     },
     "Mod/ExpeditionTraining.lua": {
-      "sha256": "58250519aea9403441fb8a071f6b8b3c69bebf714619524384474a712d43bc7e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "sha256": "8d8134c648309be70affbe3c0062aa3ed632b62fb5b1e846f42823b202f01083",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "f0a6a2a28a195ebbb81ed4d89e52a2fe88192a164fbc77adcf21e2fac8b981bd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
-      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
+      "sha256": "60bf658631aac386e6c7b2db5fa82145cfa03c868590adae01ece573f4d348e7",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/FreshBindingHook.lua": {
       "sha256": "03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "fcd2690b7f135b21a8df30b6569e984e341f61ce2acd5e941239989293c6addd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
-      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
+      "sha256": "f9809bb73b4b0ae9b5551a2c062e8339973511ae92414fd0e59b37add5d9319f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -716,9 +716,9 @@
       "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "adfe55f02e39cb44362aa1123db13b3d788908aae55d437384d4a666f83a32a4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "798009f65eb8a6547492a0c9bdec79b582a2f26c16fd999065bb523e6087a03c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/Lv2Housing.lua": {
       "sha256": "8f40c2a320afc5cf0c460f2c314c7b28b7903b9d164f5f00d7e488aca3f3cf9d",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "766b9dcc76b715b7975205abe457617a23032ac092efbdfac081cb82f5b78c3b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
-      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
+      "sha256": "3d909c2663270aff40e1ac8627b6bc2323c4fdb96054e3c0f4c845e87934eea3",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "fa6e1a7dc85097cb2f74a8e363bf22fe34a09c3f4ffa19ca9081d8df8687404c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
-      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
+      "sha256": "db6935e5329cb412023bc52fdf05d53411c8b1565d35963af56957cad4a416ed",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1281,9 +1281,9 @@
       "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DialogueProjectUI.lua": {
-      "sha256": "cecc5a2207f69bfe890a8d7ae6861e812c7a297097457d5638a4d49ba93f130e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
-      "provenance": "B383.410 Separate Dialogue candidate preview from current timer status; local/static evidence only; no deployment/native PASS."
+      "sha256": "4cb355d1de34671ee655b5f55b203113910ffb5e85ca3d2fd7db0a0128816f6a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "274d7491240789affb0ac7d47e222c0180c1b7489a700afa745dc0f3e5ba5876",
@@ -1331,9 +1331,9 @@
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "a3530d1b0321e3a436bf0bcdc4d08fe2025167a4654117905bf8c3b07cf19437",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md",
-      "provenance": "B229 authorized retained network waiting/release diagnostics;255 targeted offline PASS. Release semantics/native writers unchanged; native pending."
+      "sha256": "004c3c98fd51343545845b7749e3f6a3559182cb2cce6c03179252a616d62158",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",
@@ -1591,9 +1591,9 @@
       "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NativeFacts.lua": {
-      "sha256": "66b5f5bf68274e54ec9495802f9a7ade09eaa5a89ecda22518b2ea787f84bec9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "provenance": "B289.316 worker input normalization and GPP governor relay retirement; local/static evidence only; no deployment/native PASS."
+      "sha256": "f9eb3fc5b15ec3f203acf9da38ab943d8140a9819e6077984dd3a8442b3d6106",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/ReverseDependencies.lua": {
       "sha256": "a9c9f2bc4bba3b60b5eeab0313d5600c55f155f568a3d0e2cc6669bf54ea7c8a",
@@ -1631,14 +1631,14 @@
       "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/TimedProjectSelectionClient.lua": {
-      "sha256": "fd2df0e8da4ade89fa4649fe148b991927552b1edcda8f117f7cfbbf1340bd6b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
-      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
+      "sha256": "e99f0001b73211a9b9c90efa0d841f8d4491af10d05c094c8e6c6cd788f35f91",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/TimedProjectReaders.lua": {
-      "sha256": "a10d90472e4cfe5cf898589cb9fcfde956ac7faf3ba86243c49ad10bb0f16769",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
-      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
+      "sha256": "b55e09fad23abb6157b2118f1e753be0cbd492e30b8f98b8b854513caf4688ce",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/Tombstones.lua": {
       "sha256": "083ea53b413c4d52504d987572385cf2f875a57e6195bd78bf2872b35edad8ab",
@@ -1709,7 +1709,12 @@
       "sha256": "ebe8c7ff6c39c59a9fd1507a20ed1fb43e34080cf92bdfd95aa10e306e7efac2",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
       "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+    },
+    "Mod/CultureDiagnostics.lua": {
+      "sha256": "8eda50128cb55266e5695cc6406b134882293c4f54322c2ff84fe0d4a9368dcb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     }
   },
-  "source_review": "S0849/B393 observer-isolation source and deployed341/341 MATCH;restricted actual composition/local regressions PASS,native recovery still pending."
+  "source_review": "S0851/B394 scoped optional observer source reviewed;14 focused isolation/differential and selected subsystem tests PASS;runtime/live reference remains last verified receipt until deployment."
 }
