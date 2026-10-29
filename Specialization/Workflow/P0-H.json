@@ -723,6 +723,7 @@
   "result": {
     "report": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
     "local": "14 focused plus selected unchanged subsystem checks pass;old corruption assertion remains baseline-identical OPEN. No runtime defect fix claimed.",
-    "native": "USER_GAME_TEST_REQUIRED bounded diagnostic reproduction;no deliberate pillage."
+    "native": "USER_GAME_TEST_REQUIRED bounded diagnostic reproduction;no deliberate pillage.",
+    "deployment": "B394.421-ec3d613-playtest.json DEVELOP_ACTIVE;342/342 MATCH,old B393 and stable B307 recoverable,no pending marker."
   }
 }

@@ -48,3 +48,10 @@ This batch is diagnostic-only; it does not claim any of the reported runtime def
 Use the existing collector and a relevant Culture save. Reproduce one Dialogue selection (including switching to an ordinary unit), one automatic-versus-manually-locked specialist change, and load the saved in-progress Works mission through its existing next boundary. Observe any naturally reproduced diplomatic grant, without changing external Mods or forcing an ownership interpretation. This is collection, not a requirement to make the known failures disappear in B394. No deliberate pillage, repeated already-passed clear-collection scenario or immediate Meaning/network expansion is requested.
 
 User decision:none pending;isolation/removability and no-deliberate-pillage constraints recorded. User testing:bounded reproduction/collection only when convenient;runtime causes remain unresolved until evidence. Primary next:commit/push verified diagnostic batch,then automatic safe develop deployment only after reliable exit and existing receipt/hash gates;stop at this batch boundary.
+
+
+## Deployment — 2026-10-28
+
+Under the existing standing safe-develop authorization, reliable OS process checks before each transaction found no game process. The existing temporary-playtest tool restored the exact B307 stable package from the active B393 receipt,then activated pushed source `ec3d6136361de91c47b0e83fa95606b65dc0d7bc`. Live342/342files match SHA256 `07a4ace015c4aa5ff7c7e74dd5af0c13ef705a35c5f055a0e59b70c331325623`;receipt `B394.421-ec3d613-playtest.json` is DEVELOP_ACTIVE. Outgoing B393 and stable B307 backup hashes match;no pending transaction remains. Main stays `bc49dab5739e7819ceaf49228de7d47310c296d8`. No game launch,main promotion or unrelated Mod change.
+
+User decision:none pending. User testing:run the existing collector during the relevant known-failure reproductions when convenient;no deliberate pillage or immediate network/Meaning expansion. Primary next:stop at deployed diagnostic batch;diagnostic observations are not gameplay repairs or native PASS.

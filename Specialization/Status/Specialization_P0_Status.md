@@ -2,7 +2,7 @@
 
 Document Owner: Codex
 Status Revision: S0851
-Implementation Build: B394.421 / modinfo421; live B393.420 pending safe replacement; stable/main B307.334
+Implementation Build: B394.421 / modinfo421; live B394.421 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
@@ -11,11 +11,11 @@ Work State: B394_ISOLATED_CULTURE_DIAGNOSTICS_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-B394.421 adds optional bounded Culture observations only;14 focused real-path isolation/differential checks and related targeted regressions pass. No reported gameplay defect is claimed fixed. Dialogue startup/reselection,automatic-specialist GPP and Expedition recovery/grant identity remain the diagnostic targets. Native collection is pending;live B393 remains until safe verified replacement. Main remains B307.334 and original S9/S10/final U5 stay open. [B394 result and removal instructions](Validation/Results/Specialization_B394_Culture_Diagnostics.md);[B393 detailed Culture evidence](Validation/Results/Specialization_B393_Culture_Playtest_20261028.md).
+B394.421 adds optional bounded Culture observations only;14 focused real-path isolation/differential checks and related targeted regressions pass. No reported gameplay defect is claimed fixed. Dialogue startup/reselection,automatic-specialist GPP and Expedition recovery/grant identity remain the diagnostic targets. Native collection is pending;B394 is deployed from ec3d613 with342/342files MATCH and exact B393/B307 recovery retained. Main remains B307.334 and original S9/S10/final U5 stay open. [B394 result and removal instructions](Validation/Results/Specialization_B394_Culture_Diagnostics.md);[B393 detailed Culture evidence](Validation/Results/Specialization_B393_Culture_Playtest_20261028.md).
 
 - User decision2026-10-28:clearing all works by gifting to AI and correct withdrawal is PASS;no deliberate pillage tests are to be requested. Internal carriers remain immune;only naturally encountered real district/building damage is future evidence. Remaining Meaning coverage is user-managed;Culture network is deliberately deferred by failed Works and absent early AI wonders. New diagnostics must remain optional,isolated and safely removable;no hidden business dependencies.
 - User testing:when convenient,collect the existing failing Dialogue/specialist/Works-save scenarios once;no forced pillage or repeated accepted coverage. B394 does not fix those behaviors or constitute final U5 acceptance.
-- Primary next:commit/push verified B394 diagnostics,perform existing game-exit/receipt/hash-gated automatic develop deployment if safe,then stop. No main promotion/game launch.
+- Primary next:stop after verified B394 diagnostic deployment;collect the bounded native evidence next. No gameplay repair,main promotion or game launch.
 
 ## S0851 — B394 isolated Culture diagnostics and user coverage correction
 

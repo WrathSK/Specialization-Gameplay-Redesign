@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "bca2c48b74a3652fc2dbcab3f86c26dfcb1a68c7",
-  "runtime": "B393.420 / modinfo420 temporary develop;stable/main B307.334",
+  "runtime_commit": "ec3d6136361de91c47b0e83fa95606b65dc0d7bc",
+  "runtime": "B394.421 / modinfo421 temporary develop;stable/main B307.334",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1716,5 +1716,5 @@
       "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     }
   },
-  "source_review": "S0851/B394 scoped optional observer source reviewed;14 focused isolation/differential and selected subsystem tests PASS;runtime/live reference remains last verified receipt until deployment."
+  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed."
 }
