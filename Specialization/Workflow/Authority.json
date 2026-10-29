@@ -10,7 +10,7 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0851",
+    "status": "S0852",
     "runtime": "B394.421 / modinfo421",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "ec3d6136361de91c47b0e83fa95606b65dc0d7bc",
-  "current_batch": "B394_ISOLATED_CULTURE_DIAGNOSTICS_DEPLOYED",
-  "next_batch": "Collect bounded Culture diagnostic evidence for the existing failures after safe deployment;no intentional pillage tests,no gameplay repair/main promotion/game launch in B394. Preserve S9/S10/final U5.",
+  "current_batch": "B394_CULTURE_NATIVE_DIAGNOSTICS_REVIEWED",
+  "next_batch": "Await next scoped engineering step for confirmed Dialogue initialization blocker,Expedition recovery ACK evidence and GPP assignment/sample/final output;no runtime change in this evidence batch,no intentional pillage or mandatory Harbor retest.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B394.421 temporary develop from ec3d6136361de91c47b0e83fa95606b65dc0d7bc;342/342 MATCH;SHA256 07a4ace015c4aa5ff7c7e74dd5af0c13ef705a35c5f055a0e59b70c331325623;B393 outgoing and B307 stable backups MATCH;no pending transaction;receipt B394.421-ec3d613-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0851 B394 optional removable scalar observers;14 focused cases plus selected unchanged regressions PASS. Frozen Culture evidence retained with cleared-collection PASS and deliberate network deferral. One old corrupt-history assertion fails identically on c99ec22/current and remains OPEN. Native diagnostics pending.",
+  "context_review_status": "S0852 latest692 continuous TRAIN rows across2 loads;Dialogue ready=false twice,GPP3/6 and2/4 carriers match,Expedition early Sleep recovery unconfirmed before later displacement. User additional Meaning/same-era PASS;false GPP failure labels and border-causality uncertainty preserved. No runtime/main/deployment change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostic_Native_Review_20261028.md"
 }

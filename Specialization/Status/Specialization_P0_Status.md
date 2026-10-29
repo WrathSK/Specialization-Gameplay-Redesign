@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0851
+Status Revision: S0852
 Implementation Build: B394.421 / modinfo421; live B394.421 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B394_ISOLATED_CULTURE_DIAGNOSTICS_LOCAL_COMPLETE
+Work State: B394_CULTURE_NATIVE_DIAGNOSTICS_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B394.421 adds optional bounded Culture observations only;14 focused real-path isolation/differential checks and related targeted regressions pass. No reported gameplay defect is claimed fixed. Dialogue startup/reselection,automatic-specialist GPP and Expedition recovery/grant identity remain the diagnostic targets. Native collection is pending;B394 is deployed from ec3d613 with342/342files MATCH and exact B393/B307 recovery retained. Main remains B307.334 and original S9/S10/final U5 stay open. [B394 result and removal instructions](Validation/Results/Specialization_B394_Culture_Diagnostics.md);[B393 detailed Culture evidence](Validation/Results/Specialization_B393_Culture_Playtest_20261028.md).
+B394.421 remains deployed from ec3d613;this evidence batch changes no runtime. Latest692 continuous TRAIN rows include212 Culture diagnostic observations across two loads. Dialogue BEGIN reaches an uninitialized controller twice despite correct UI reader/queue;GPP sampled3→base6 and later2→base4 with matching observed carriers,but the original auto/lock distinction remains unresolved. Expedition recovery reads correct Sleep/position before load close yet never confirms;later position drift causes HELD. Border closure is a user-observed candidate,not established by the captured diplomatic logs. [Native review](Validation/Results/Specialization_B394_Culture_Diagnostic_Native_Review_20261028.md). Main B307.334,original S9/S10 and final U5 remain unchanged.
 
-- User decision2026-10-28:clearing all works by gifting to AI and correct withdrawal is PASS;no deliberate pillage tests are to be requested. Internal carriers remain immune;only naturally encountered real district/building damage is future evidence. Remaining Meaning coverage is user-managed;Culture network is deliberately deferred by failed Works and absent early AI wonders. New diagnostics must remain optional,isolated and safely removable;no hidden business dependencies.
-- User testing:when convenient,collect the existing failing Dialogue/specialist/Works-save scenarios once;no forced pillage or repeated accepted coverage. B394 does not fix those behaviors or constitute final U5 acceptance.
-- Primary next:stop after verified B394 diagnostic deployment;collect the bounded native evidence next. No gameplay repair,main promotion or game launch.
+- User decision:Meaning Holy Site/Industry/Commerce/Encampment and same-era duplicate coverage PASS;Harbor not directly tested and not a blocker. Prior clear-all-works PASS,no intentional pillage tests and deferred Culture network remain. No new Design interpretation.
+- User testing:no repeat of accepted cases requested. Future collection should target only remaining initialization/ACK or assignment-read boundaries after authorized engineering work;do not manufacture border changes or pillage.
+- Primary next:stop after this log/source review. Dialogue initialization,Expedition recovery-ACK and GPP sampling/final-output boundaries are narrowed;the GPP_FAILED observer wrongly labels successful clear-error callbacks and must not be interpreted as52 gameplay failures. No runtime fix/deployment in this batch.
+
+## S0852 — B394 native diagnostic review and additional Culture acceptance
+
+2026-10-28. User confirms four further Meaning domains and same-era duplicates.16 raw files archived/hash-checked. Two ready=false Dialogue guards,three valid GPP samples,and early Sleep read→unconfirmed recovery→later displacement distinguish actual blockers from candidates. Border-closure observation is retained without asserting cause;52 generic GPP failure labels are not a valid failure count. Frozen evidence and runtime remain unchanged.
 
 ## S0851 — B394 isolated Culture diagnostics and user coverage correction
 
