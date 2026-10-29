@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "runtime_commit": "ec3d6136361de91c47b0e83fa95606b65dc0d7bc",
-  "current_batch": "B395_CULTURE_RECOVERY_LOCAL_COMPLETE",
+  "runtime_commit": "06819915e283be1c90746fad4d521241887189c3",
+  "current_batch": "B395_CULTURE_RECOVERY_DEPLOYED",
   "next_batch": "Targeted native Dialogue and saved Works recovery;explicit automatic-versus-locked GPP comparison. No forced pillage,Harbor retest or main promotion.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B394.421 temporary develop from ec3d6136361de91c47b0e83fa95606b65dc0d7bc;342/342 MATCH;SHA256 07a4ace015c4aa5ff7c7e74dd5af0c13ef705a35c5f055a0e59b70c331325623;B393 outgoing and B307 stable backups MATCH;no pending transaction;receipt B394.421-ec3d613-playtest.json",
+  "live": "B395.422 temporary develop from 06819915e283be1c90746fad4d521241887189c3;342/342 MATCH;SHA256 a16b895a647f768fb54d7f6c93ed093b155f0b303bbfd6540b3edac0ad0f726f;B394 outgoing and B307 stable backups MATCH;no pending transaction;receipt B395.422-0681991-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0853 bounded Culture startup/recovery repairs and isolated explicit GPP comparison;19 focused/92 core local tests,static package checks;native pending,live remains B394 until verified switch.",
+  "context_review_status": "S0853 B395 scoped Culture recovery locally verified and safely deployed from0681991;19 focused/92 core tests;native Dialogue/Works/GPP follow-up required,baseline failures and border/gift limitations preserved.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

@@ -2,20 +2,20 @@
 
 Document Owner: Codex
 Status Revision: S0853
-Implementation Build: B395.422 / modinfo422; live B394.421 develop until safe switch; stable/main B307.334
+Implementation Build: B395.422 / modinfo422; live B395.422 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B395_CULTURE_RECOVERY_LOCAL_COMPLETE
+Work State: B395_CULTURE_RECOVERY_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B395.422 local repairs close the missing Dialogue owner initialization/current-slot UI-intent paths and delay the first Expedition recovery ACK until a real load boundary. GPP false failure labels are corrected;actual-versus-locked population is an isolated explicit read,not a business fix.19 new/92 core local cases pass;known baseline legacy failures are preserved in the [batch result](Validation/Results/Specialization_B395_Culture_Recovery.md). No new gameplay,save schema,Open Borders requirement or position relaxation. Live remains B394 until the verified safe transaction;main B307.334,original S9/S10 and final U5 remain.
+B395.422 local repairs close the missing Dialogue owner initialization/current-slot UI-intent paths and delay the first Expedition recovery ACK until a real load boundary. GPP false failure labels are corrected;actual-versus-locked population is an isolated explicit read,not a business fix.19 new/92 core local cases pass;known baseline legacy failures are preserved in the [batch result](Validation/Results/Specialization_B395_Culture_Recovery.md). No new gameplay,save schema,Open Borders requirement or position relaxation. Live B395.422 from0681991 is342/342 MATCH under receipt B395.422-0681991-playtest.json;main B307.334,original S9/S10 and final U5 remain.
 
 - User decision:none pending. Existing Meaning Holy Site/Industry/Commerce/Encampment,same-era duplicates and clear-all-works PASS stand. Harbor is not a mandatory test;no deliberate pillage requirement. Culture network remains deliberately deferred.
 - User testing:after safe deployment,Dialogue normal/full-turn and replacement,one saved Works recovery,and right-click 专家与岗位 for automatic/locked GPP comparison. Border displacement and original diplomatic-grant immobility remain unresolved;no local-to-native PASS.
-- Primary next:commit/push and automatically deploy only after reliable exit/hash/receipt checks,then stop at this bounded batch. No main promotion or game launch.
+- Primary next:stop at deployed B395 boundary and inspect next targeted logs;B394/B307 recovery backups MATCH,no pending transaction. No main promotion or game launch.
 
 ## S0853 — B395.422 Culture startup/recovery and explicit GPP comparison
 

@@ -734,6 +734,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
     "local": "19 focused/92 core;127 project/worker,11 current protocol,11 owner classification,20 collector;219 Lua51 compile/25 XML/342 package;baseline failures explicitly preserved.",
     "native": "USER_GAME_TEST_REQUIRED:Dialogue,Works recovery,GPP automatic/locked;no border causality or general success claim.",
-    "deployment": "Await verified safe switch;live remains B394.421."
+    "deployment": "B395.422 from 06819915e283be1c90746fad4d521241887189c3;342/342 MATCH;receipt B395.422-0681991-playtest.json;B394/B307 backups MATCH,no pending transaction;main unchanged."
   }
 }
