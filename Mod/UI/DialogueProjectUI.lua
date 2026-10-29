@@ -68,6 +68,10 @@ function M.New(P,send,notify)
   cultureObserve('DIALOGUE_SELECTION',function()local p=pending[k];return {owner=p.pid,city=p.id,taskStart=p.turn,queued=queued,requestAccepted=true}end)
   return true
  end
+ -- A native replacement of the current slot invalidates only unsubmitted UI intent.
+ function api.CancelSelection(c)
+  if c then pending[c:GetOwner()..':'..c:GetID()]=nil end
+ end
  local function drain()
   local b=backend();if not b then return end
   for k,p in pairs(pending)do

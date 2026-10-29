@@ -7,6 +7,7 @@ local function cultureObserve(point,build)
  end)
 end
 include('TimedProjects')
+include('RuntimeWork')
 -- P0-M: real production/timer/history. DialogueEffects owns derived yield projection.
 include('DialogueProjectModel')
 SPCDialogueProjects={}
@@ -16,6 +17,14 @@ function SPCDialogueProjects.Start(P,shared)
  local d={views={},syncAck={},revision=0};shared.DialogueProjects=d
  local ready,busy=false,false;local rounds=SPCTimedProjects.WorkSet(cp);local advance;local dirty,settling,interrupted,finishing,armed={},{},{},{},{};local lastEra
  local function key(pid,id)return tostring(pid)..':'..tostring(id)end
+ -- B395: owner readiness follows confirmed Store readiness, not a possibly missed UI Sync/load.
+ -- Repeated explicit causes are O(1) after initialization; no idle recovery scan.
+ local function initialize()
+  if ready then return true end
+  local ok,status=pcall(function()return store.HistoryStartStatus()end)
+  if not ok or (status~='FRESH' and status~='EXISTING')then return false end
+  ready=true;return true
+ end
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
  local function ref(c)return {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}end
  local function same(a,b)
@@ -125,11 +134,12 @@ function SPCDialogueProjects.Start(P,shared)
  end
  function d.Sync(pid,id,token)
   if not P.IsTestPlayer(pid) or type(id)~='number' or not city(pid,id)then return end
-  ready=true;d.Refresh(pid,id);advance(pid,false,id)
+  if not initialize()then return end
+  d.Refresh(pid,id);advance(pid,false,id)
   if type(token)=='string' then d.syncAck[key(pid,id)]=token end
  end
  function d.Request(pid,p)
-  if not ready or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number' then
+  if not P.IsTestPlayer(pid) or type(p.CityID)~='number' or busy or not initialize()then
    cultureObserve('DIALOGUE_BEGIN_GUARD',function()return {owner=pid,city=p.CityID,ready=ready,reason=not ready and 'NOT_READY'or busy and 'BUSY'or 'PLAYER_OR_CITY_GUARD'}end)
    return
   end
@@ -288,10 +298,22 @@ function SPCDialogueProjects.Start(P,shared)
   end end
  end,true)end
  hook('CityInitialized',wake,true);hook('CityTransfered',wake,true)
- hook('LoadScreenClose',function()
-  ready=true
-  for pid in pairs(Players)do if P.IsTestPlayer(pid)then markPlayer(pid)end end
+ local bootstrapped,loadReconciled=false,false
+ local function recoverInitialization()
+  if not initialize()then return false end
+  -- An initialization boundary is a reliable recovery cause, including early UNKNOWN.
+  for pid in pairs(Players)do if P.IsTestPlayer(pid)then
+   for _,c in Players[pid]:GetCities():Members()do wake(pid,c:GetID())end
+  end end
   d.Flush();for pid in pairs(Players)do advance(pid,false)end
+  return true
+ end
+ hook('LoadScreenClose',function()
+  if loadReconciled then return end
+  if recoverInitialization()then loadReconciled=true;bootstrapped=true end
+ end)
+ SPCRuntimeWork.StartReady(P,shared,'DialogueProjects',function()
+  if not bootstrapped then bootstrapped=recoverInitialization()end
  end)
  store.RegisterExit('DialogueProjects',function(c,loss)
   store.RemoveOwned(c,loss,{MARKER})

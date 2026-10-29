@@ -541,9 +541,9 @@
       "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/DialogueProjects.lua": {
-      "sha256": "55636ab6bb32607576a130d710e85fb95861efc867b6d337a7b560a167a67005",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "61e28748ed2ffc6c3840dfe1dac30f23360010603a8bee5b7e4846ef80819b4c",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     },
     "Mod/DistrictCompleteness.lua": {
       "sha256": "dc7d30c4e04c156b90faa9dfeb262f03e068b09023e536ebc180621da4c404f6",
@@ -601,9 +601,9 @@
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "00836328f6727a25d5269a84d03f102d063a6608b20cf024feae7e396e919f63",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "006804916cfbae7d2a1684e170897b47bac22db446e6c0826140e5aa35466529",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     },
     "Mod/ExpeditionSpyRead.lua": {
       "sha256": "74b1960a96970f0ee5bc80e59499ccff490eb27ad97f56b1d346872aabbce305",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "f9809bb73b4b0ae9b5551a2c062e8339973511ae92414fd0e59b37add5d9319f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "3f9eac29927d3f76e3cb2abb360cfa69fc8a8dcc716f6cffd220fa89f7b8ec12",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -716,9 +716,9 @@
       "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "798009f65eb8a6547492a0c9bdec79b582a2f26c16fd999065bb523e6087a03c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "418033bdb97223fc3cb064fd31d25618dc7c7a623718a9ed67ffb9ea47f70a43",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     },
     "Mod/Lv2Housing.lua": {
       "sha256": "8f40c2a320afc5cf0c460f2c314c7b28b7903b9d164f5f00d7e488aca3f3cf9d",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "3d909c2663270aff40e1ac8627b6bc2323c4fdb96054e3c0f4c845e87934eea3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "99a63b86899193e2760fbf5ba2d196e0eabdf6627ed2f191c451973c794cadb5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "db6935e5329cb412023bc52fdf05d53411c8b1565d35963af56957cad4a416ed",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "03a0b4688c6d51ae6c4cd330b218ee76ee3cfb672eca8ed70c3497275ab5d23d",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1251,9 +1251,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "c2c7d2dbde21c6b4e66f0031119098c23058a97a0babd8b01421eaf9b242b556",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
-      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
+      "sha256": "7b20bc1ea30fc23b9f9c00ce73f910ebe74ff89e1d4415760463d789de44fe28",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "b07ea80a0db7f1fb10bcc259dd711afacab49fd6edafb2b5d097e19a1abdc64b",
@@ -1281,9 +1281,9 @@
       "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DialogueProjectUI.lua": {
-      "sha256": "4cb355d1de34671ee655b5f55b203113910ffb5e85ca3d2fd7db0a0128816f6a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "6768522855cde7bb4aae2118ca1b22feaff03d790262d1446e6ab4f35d035542",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "274d7491240789affb0ac7d47e222c0180c1b7489a700afa745dc0f3e5ba5876",
@@ -1331,9 +1331,9 @@
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
-      "sha256": "004c3c98fd51343545845b7749e3f6a3559182cb2cce6c03179252a616d62158",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "ffb41a3f0a2381c36528bba0d4d7bbcf792aead94b00776ff0c41ba84e4f39eb",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",
@@ -1441,9 +1441,9 @@
       "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "e55f82a9eff719fadf48e05e1e07510117ce1eae6ac99945e91d0d006d97f13f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md",
-      "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
+      "sha256": "4e0cb9b2a78c6af7fe070e0100abe03934a001df3304f87a88d3f9affd5106e6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "c34df627a8d1f42f1b536b12347d930689344fc4b3b2f1c88b40e716a5e33f89",
@@ -1711,9 +1711,9 @@
       "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
     },
     "Mod/CultureDiagnostics.lua": {
-      "sha256": "8eda50128cb55266e5695cc6406b134882293c4f54322c2ff84fe0d4a9368dcb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "c4bcdc743e8bbbd0580f9ce151dbf941685f87574680fc2c4f0bb768e42d7f5f",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
     }
   },
   "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed."

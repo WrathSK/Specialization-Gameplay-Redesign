@@ -151,7 +151,11 @@ local baseGetBuildInsertMode=GetBuildInsertMode
 function GetBuildInsertMode(parameters)
  local result=baseGetBuildInsertMode(parameters)
  if parameters[CityOperationTypes.PARAM_INSERT_MODE]==CityOperationTypes.VALUE_REPLACE_AT then
-  adapters.Call(trainingSelection,'CancelQueue',UI.GetHeadSelectedCity(),parameters[CityOperationTypes.PARAM_QUEUE_DESTINATION_LOCATION])
+  local c=UI.GetHeadSelectedCity();local index=parameters[CityOperationTypes.PARAM_QUEUE_DESTINATION_LOCATION]
+  adapters.Call(trainingSelection,'CancelQueue',c,index)
+  local row=GameInfo.Projects['PROJECT_SPC_ERA_DIALOGUE']
+  local selectingDialogue=row and type(row.Hash)=='number'and parameters[CityOperationTypes.PARAM_PROJECT_TYPE]==row.Hash
+  if index==0 and not selectingDialogue then adapters.Call(dialogueSelection,'CancelSelection',c)end
  end
  return result
 end

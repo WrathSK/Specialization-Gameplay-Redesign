@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0852",
-    "runtime": "B394.421 / modinfo421",
+    "status": "S0853",
+    "runtime": "B395.422 / modinfo422",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Read B394 native diagnostics and user Culture acceptance only;record confirmed blockers versus candidates without runtime repair/deployment or new gameplay. Preserve no-intentional-pillage and deferred network boundaries.",
+  "goal": "Implement scoped B395 Culture startup/recovery repairs and removable explicit GPP comparison;local proof then standing safe-develop deployment,without gameplay/save/main changes.",
   "implementation_authorized": true,
   "context": [
     {
@@ -700,6 +700,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostic_Native_Review_20261028.md",
       "kind": "full",
       "reason": "Current native diagnostic findings,additional user acceptance and remaining exact evidence gaps."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "kind": "full",
+      "reason": "Current scoped repairs,Runtime Impact,proofs,baseline failures and native handoff."
     }
   ],
   "dependencies": [
@@ -726,9 +731,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostic_Native_Review_20261028.md",
-    "local": "Read-only log/source review;no tests or runtime change. Existing B394 local proofs preserved.",
-    "native": "692 TRAIN rows;Dialogue uninitialized atBEGIN,GPP matched carrier plans,Expedition recovery/position failure. Additional Meaning/same-era user PASS;no final U5 or generic failure-count claim.",
-    "deployment": "B394.421 ec3d613 remains unchanged."
+    "report": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+    "local": "19 focused/92 core;127 project/worker,11 current protocol,11 owner classification,20 collector;219 Lua51 compile/25 XML/342 package;baseline failures explicitly preserved.",
+    "native": "USER_GAME_TEST_REQUIRED:Dialogue,Works recovery,GPP automatic/locked;no border causality or general success claim.",
+    "deployment": "Await verified safe switch;live remains B394.421."
   }
 }

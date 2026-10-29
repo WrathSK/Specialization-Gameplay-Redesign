@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0852
-Implementation Build: B394.421 / modinfo421; live B394.421 develop; stable/main B307.334
+Status Revision: S0853
+Implementation Build: B395.422 / modinfo422; live B394.421 develop until safe switch; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B394_CULTURE_NATIVE_DIAGNOSTICS_REVIEWED
+Work State: B395_CULTURE_RECOVERY_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-B394.421 remains deployed from ec3d613;this evidence batch changes no runtime. Latest692 continuous TRAIN rows include212 Culture diagnostic observations across two loads. Dialogue BEGIN reaches an uninitialized controller twice despite correct UI reader/queue;GPP sampled3→base6 and later2→base4 with matching observed carriers,but the original auto/lock distinction remains unresolved. Expedition recovery reads correct Sleep/position before load close yet never confirms;later position drift causes HELD. Border closure is a user-observed candidate,not established by the captured diplomatic logs. [Native review](Validation/Results/Specialization_B394_Culture_Diagnostic_Native_Review_20261028.md). Main B307.334,original S9/S10 and final U5 remain unchanged.
+B395.422 local repairs close the missing Dialogue owner initialization/current-slot UI-intent paths and delay the first Expedition recovery ACK until a real load boundary. GPP false failure labels are corrected;actual-versus-locked population is an isolated explicit read,not a business fix.19 new/92 core local cases pass;known baseline legacy failures are preserved in the [batch result](Validation/Results/Specialization_B395_Culture_Recovery.md). No new gameplay,save schema,Open Borders requirement or position relaxation. Live remains B394 until the verified safe transaction;main B307.334,original S9/S10 and final U5 remain.
 
-- User decision:Meaning Holy Site/Industry/Commerce/Encampment and same-era duplicate coverage PASS;Harbor not directly tested and not a blocker. Prior clear-all-works PASS,no intentional pillage tests and deferred Culture network remain. No new Design interpretation.
-- User testing:no repeat of accepted cases requested. Future collection should target only remaining initialization/ACK or assignment-read boundaries after authorized engineering work;do not manufacture border changes or pillage.
-- Primary next:stop after this log/source review. Dialogue initialization,Expedition recovery-ACK and GPP sampling/final-output boundaries are narrowed;the GPP_FAILED observer wrongly labels successful clear-error callbacks and must not be interpreted as52 gameplay failures. No runtime fix/deployment in this batch.
+- User decision:none pending. Existing Meaning Holy Site/Industry/Commerce/Encampment,same-era duplicates and clear-all-works PASS stand. Harbor is not a mandatory test;no deliberate pillage requirement. Culture network remains deliberately deferred.
+- User testing:after safe deployment,Dialogue normal/full-turn and replacement,one saved Works recovery,and right-click 专家与岗位 for automatic/locked GPP comparison. Border displacement and original diplomatic-grant immobility remain unresolved;no local-to-native PASS.
+- Primary next:commit/push and automatically deploy only after reliable exit/hash/receipt checks,then stop at this bounded batch. No main promotion or game launch.
+
+## S0853 — B395.422 Culture startup/recovery and explicit GPP comparison
+
+User continuation authorizes scoped repairs after B394 log review. Strict Store-ready Dialogue initialization and finite actual-load recovery preserve unknown/no-replay rules;native current-slot intent cleanup excludes self-selection. Expedition transient load readiness protects first ACK and resets across UI lifecycle. Independent scalar ACK and explicit GPP observations remain removable;no saved/diagnostic authority coupling. Local/static checks pass within reported limits;native verification remains pending.
 
 ## S0852 — B394 native diagnostic review and additional Culture acceptance
 

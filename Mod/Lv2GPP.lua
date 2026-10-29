@@ -47,11 +47,11 @@ function SPCLv2GPP.Start(P,shared)
   if f.active<2 then return {kind=kind,active=f.active,workers=0,enabled=false,reason='ACTIVE_BELOW_II'} end
   local g=geometry();local plot=assert(Map.GetPlot(g.x,g.y),'B2_GPP_PLOT_UNAVAILABLE')
   local function read()local n=plot:GetWorkerCount();assert(int(n)and n<=255,'WORKER_COUNT_UNKNOWN_OR_UNSUPPORTED');return n end
-  local n
-  if type(plot.GetIndex)=='function'then n=workers({id=d.id,type=d.type,plot=plot:GetIndex()},read)else n=read()end
+  local n,anchorIndex
+  if type(plot.GetIndex)=='function'then anchorIndex=plot:GetIndex();n=workers({id=d.id,type=d.type,plot=anchorIndex},read)else n=read()end
   assert(int(n)and n<=255,'WORKER_COUNT_UNKNOWN_OR_UNSUPPORTED')
   cultureObserve('GPP_SAMPLE',function()return {owner=pid,city=d.cityID or f.cityID or 'UNKNOWN',specialization=kind,active=f.active,workers=n,reason=observed and 'AUDIT'or 'READ_ONLY'}end)
-  return {kind=kind,workers=n,active=f.active,enabled=true,reason='VERIFIED anchor='..d.id}
+  return {kind=kind,workers=n,anchorIndex=anchorIndex,active=f.active,enabled=true,reason='VERIFIED anchor='..d.id}
   end)
  end
 
@@ -78,7 +78,10 @@ function SPCLv2GPP.Start(P,shared)
  end
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   reconcile(pid,c)
- end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why;cultureObserve('GPP_FAILED',function()local e=SPCCultureDiagnostics.Error(why);e.owner=pid;e.city=cid;return e end)end)
+ end,function(pid,cid,why)
+  data.errors[tostring(pid)..':'..cid]=why
+  if why~=nil then cultureObserve('GPP_FAILED',function()local e=SPCCultureDiagnostics.Error(why);e.owner=pid;e.city=cid;return e end)end
+ end)
  local function runAudit(scope)
   validateDefinitions()
   batch=SPCRuntimeWork.New(P,shared);data.refreshes=data.refreshes+1
@@ -99,7 +102,7 @@ function SPCLv2GPP.Start(P,shared)
   local ok,err=pcall(runAudit,scope);batch=nil;if not ok then error(err,0)end
  end
  data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'Lv2GPP',audit,{targets=true})
- function data.Describe(pid,city)
+ function data.Describe(pid,city,requestToken,requestCity)
   local ok,result=pcall(function()
    assert(data.ready,"GPP_NOT_READY");validateDefinitions()
    local f=inspect(pid,city);local n=f.enabled and f.workers or 0;local actual,other=0,0
@@ -116,6 +119,8 @@ function SPCLv2GPP.Start(P,shared)
     end)
     native[#native+1]=cl..":"..(good and type(value)=="number" and tostring(value) or "UNKNOWN")
    end
+   cultureObserve('GPP_EXPLICIT_GP',function()return {owner=pid,city=requestCity or 'UNKNOWN',requestKey=requestToken,
+    specialization=f.kind,workers=n,eventIndex=f.anchorIndex,expectedNumber=2*n,actualNumber=2*actual,count=other,readStatus='READ_ONLY'}end)
    local err=data.errors[pid..":"..city:GetID()]
    return "city="..city:GetID().." "..(f.kind or f.reason).." ACTIVE="..tostring(f.active).." workers="..f.workers
     .."\nAdded BASE per class: expected="..2*n.." carrier="..2*actual.." other="..other

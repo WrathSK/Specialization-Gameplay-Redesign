@@ -24,7 +24,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   if pid~=capacityOwner then return false end
   capacityEvents=capacityEvents+1;capacityObserverFailed=false;return true
  end
- local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
+ local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local loadReady=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
  local preparingKey,preparingTurn -- Session observation only; never a saved clock or native permission.
  local movementProbeLocked=false
  local missionStatus,missionReason,missionRetryKey,missionUnknownReads
@@ -99,7 +99,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  local revision=0;local published={}
  local function publishActivity()
   local v={trainingToken=state.trainingToken,owner=state.owner,unitID=state.unitID,expectedName=state.expectedName,x=state.x,y=state.y,
-   teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase or 'IDLE',mode=recovering and 'RECOVER' or state.activityMode or 'NONE',recovering=recovering,sleepConfirmed=state.sleepConfirmed==true,
+   teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase or 'IDLE',mode=recovering and 'RECOVER' or state.activityMode or 'NONE',recovering=recovering,loadReady=loadReady,sleepConfirmed=state.sleepConfirmed==true,
    owned=state.activityOwned==true,releasePending=state.activityPending==true,taskStart=state.taskStart,taskDue=state.taskDue,
    taskCompleted=state.taskCompleted,taskCompletions=state.taskCompletions,missionStatus=missionStatus,missionReason=missionReason,error=state.stop,activityFailure=state.activityFailure,
    trainingReceipt=state.phase=='TRAINING' and (state.trainingBorn~=nil or state.trainingCompleted==true) or nil,
@@ -912,8 +912,13 @@ function SPCExpeditionSpyGate.Start(P,shared)
    ExposedMembers.SPC_ExpeditionGateReply={owner=pid,token=p.Token,phase=state.phase,error='MOVEMENT_PROBE_RELOAD_REQUIRED'}
    return
   end
-  if busy then return end
+  local function ingress(reason)
+   if p.Action=='ACTIVITY'then cultureObserve('EXPEDITION_ACK_INGRESS',function()return {owner=pid,eventUnit=p.UnitID,
+    activityKey=p.ActivityKey,requestKey=p.Token,requestResult=p.Result,reason=reason}end)end
+  end
+  if busy then ingress('BUSY');return end
   local activity=p.Action=='ACTIVITY'
+  ingress(activity and p.Token==lastActivityToken and 'DUPLICATE'or 'HANDLING')
   if activity and p.Token==lastActivityToken then ExposedMembers.SPC_ExpeditionActivityReply=lastActivityReply;return end
   if not activity and p.Token==lastToken then ExposedMembers.SPC_ExpeditionGateReply=lastReply;return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
@@ -991,8 +996,10 @@ function SPCExpeditionSpyGate.Start(P,shared)
   publishActivity()
  end
  if Events.LoadScreenClose then Events.LoadScreenClose.Add(function()
+  loadReady=true
   closePlacement('LOAD_CLOSE')
   if state.owner then data.Turn(state.owner,true)end
+  publishActivity()
  end)end
  Events.PlayerTurnActivated.Add(function(pid)data.Turn(pid,false)end) -- Owned endpoints/unit; pending travel adds one player-unit collection read; no task-turn scan.
  if Events.CityTransfered then Events.CityTransfered.Add(function()

@@ -701,7 +701,7 @@ local function request(playerID,params)
     shared.LastToken=params.Token;stage("ACK INVESTMENT");return
   end
   if params.Action=="LV2_GPP_READ" then
-    shared.Snapshot=shared.Lv2GPP.Describe(playerID,city)
+    shared.Snapshot=shared.Lv2GPP.Describe(playerID,city,params.Token,params.CityID)
     shared.LastToken=params.Token;stage("ACK LV2_GPP");return
   end
   if params.Action=="LV2_HOUSING_READ" then

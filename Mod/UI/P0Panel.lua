@@ -3,6 +3,7 @@ include("BoostGreatWorkRead")
 include("PurchaseProbeRead")
 include("Probe")
 include("GPPReadout")
+pcall(include,"CultureDiagnostics") -- optional, never used by report/business decisions
 include("InspirationReadout")
 include("Lv4CopyRead")
 include("CityIdentityEvidence")
@@ -43,7 +44,11 @@ local function displayResponse()
      local heap=SPCPerformance.Heap and SPCPerformance.Heap()
      report=report..'\nUI调用处 Lua（堆是否独立未证，勿相加）：'..(heap and string.format('%.2f MiB',heap) or '不可用')
     end
-    if pendingAction=="LV2_GPP_READ" then report=SPCGPPReadout.Render(P,report);localReport=report;print("[SPC][B035][UI_RATE] "..report) end
+    if pendingAction=="LV2_GPP_READ" then
+      report=SPCGPPReadout.Render(P,report);localReport=report;print("[SPC][B035][UI_RATE] "..report)
+      pcall(function()local d=SPCCultureDiagnostics;if d and d.ENABLED then
+       d.ObserveGPPUI(P,pendingToken,pageCity,report:match('city=%d+ (%u+) ACTIVE='))end end)
+    end
     if pendingAction=="LV4_PERCENT_READ" then
       local f=data.Lv4PercentRead
       local ok,native=pcall(function()
@@ -583,6 +588,8 @@ local function initialize()
   end)
   Controls.GovernorButton:RegisterCallback(Mouse.eLClick,function() request("GOVERNOR") end)
   Controls.SpecialistsButton:RegisterCallback(Mouse.eLClick,function() request("SPECIALISTS") end)
+  Controls.SpecialistsButton:RegisterCallback(Mouse.eRClick,function() request('LV2_GPP_READ') end)
+  Controls.SpecialistsButton:SetToolTipString('左键：专家与岗位。右键：二级伟人点数与实际/锁定人数只读对照。')
   Controls.MarkButton:RegisterCallback(Mouse.eLClick,function() request("MARK_CITY") end)
   Controls.CopyButton:RegisterCallback(Mouse.eLClick,function() copy(false) end)
   Controls.BaselineButton:RegisterCallback(Mouse.eLClick,function() copy(true) end)

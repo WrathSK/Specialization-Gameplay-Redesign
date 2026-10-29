@@ -11,8 +11,9 @@ from test_store_write_boundaries import fixture, run_claim_return_regression, le
 R = Path(__file__).resolve().parents[1]
 
 
-def game():
+def game(skip_controller_load=False):
     l = fixture()
+    l.globals().skipControllerLoad = skip_controller_load
     l.execute((R / 'Mod/DialogueProjects.lua').read_text())
     l.execute(r'''
 T.start(); oldInfo=P.Info; GameEra='ERA_CLASSICAL'; samples=0; finishes=0; sampleX=1; brokenSample=false
@@ -74,7 +75,7 @@ function bootDialogue()
  ExposedMembers={SPC_P0=shared,SPC_DialogueProjectRead=sample}
  SPCGreatWorkFacts.Start(P,shared)
  SPCDialogueProjects.Start(P,shared);dp=shared.DialogueProjects
- Events.LoadScreenClose.Fire()
+ if not skipControllerLoad then Events.LoadScreenClose.Fire()end
 end
 function reload()T.reload();bootDialogue()end
 function begin(c)
