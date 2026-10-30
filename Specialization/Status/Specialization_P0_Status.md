@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0854
+Status Revision: S0855
 Implementation Build: B395.422 / modinfo422; live B395.422 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B395_CULTURE_RESEARCH_NATIVE_REVIEWED
+Work State: B395_GPP_INTERFACES_INVESTIGATED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B395.422 remains deployed from0681991,342/342 MATCH;no runtime change in this review. Two new collectors contain2363 captured TRAIN rows across4loads,T16–33 with T30reload branches. User normal Dialogue,People/Works/Places(including load recovery and border-close scenario),first Culture network propagation,and listed Research support/Application/Cross/Infrastructure/Tradition scenarios are recorded with narrow evidence bounds. GPP automatic/locked behavior is mixed;the P0 UI comparison has an isolated missing-logger wiring defect. University Chair output remains unexplained. [Native review](Validation/Results/Specialization_B395_Culture_Research_Playtest_20261029.md). Main B307.334,original S9/S10 and final U5 remain unchanged.
+B395.422 remains deployed from0681991,342/342 MATCH;this follow-up changes no runtime. [Interface investigation](Validation/Results/Specialization_B395_GPP_Interface_Investigation_20261029.md) confirms Gameplay GPP/Chair call GetWorkerCount,while original UI distinctly exposes CITIZENS and LOCKED_CITIZENS. It does not prove Getter semantics in this save. Three diagnostic defects are scoped:P0 logger unavailable,UI comparison Culture-only,and unrelated AI consuming role budget. No business count replacement/retry/scan is implemented. Prior native acceptance remains in the [playtest review](Validation/Results/Specialization_B395_Culture_Research_Playtest_20261029.md). Main B307.334,original S9/S10 and final U5 remain unchanged.
 
-- User decision:park the deleted,non-reproducible movement case;Early Empire/State Workforce remains a hypothesis only. Other Dialogue states will be tested later. No deliberate pillage or mandatory Harbor retest;prior Meaning/same-era/clear-all PASS remain.
-- User testing:none newly requested before diagnostic repair. Culture network is no longer wholly deferred:the first same-civilization-three-category/trade/specialist case now has user PASS;other cases are not inferred. GPP and Chair are not blanket PASS.
-- Primary next:propose/perform only a separately authorized narrow repair for P0 observer wiring/budget,and investigate Chair applied-versus-native rows. This batch is logs/source/database analysis and recording only;no gameplay or deployment change.
+- User decision:9/4/5/5was the city-details building list;Chair is now suspected panel refresh and user-deferred,not an active ability repair. Deleted displacement remains parked;other Dialogue states later. No new gameplay decision.
+- User testing:none newly requested. GPP still needs same-token/anchor actual-versus-locked native evidence after diagnostic repair;prior Culture/Research listed PASS and no-deliberate-pillage/mandatory-Harbor constraints stand.
+- Primary next:present the exact interfaces and minimum removable diagnostic repair plan;await implementation authorization. Do not reopen Chair/old movement or silently add population polling/retry behavior.
+
+## S0855 — B395 worker interface investigation and Chair deferral
+
+2026-10-29 user authorizes investigation and confirms building-list observation,then parks Chair as suspected refresh. Getter/cache/event paths and actual B205 native-double composition were inspected. Missing P0 transport and Research coverage are diagnostic defects;existing-player filtering can recover wasted AI budget without extra identity reads. Population-only and false-transport examples are conditional local gaps,not native causes. Runtime,main,Design/Architecture and frozen results remain unchanged.
 
 ## S0854 — B395 native Culture / Research coverage and remaining evidence gaps
 

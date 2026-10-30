@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0854",
+    "status": "S0855",
     "runtime": "B395.422 / modinfo422",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Read all new B395 native/collector logs and reconcile user Culture/Research coverage;preserve narrow PASS,diagnostic gaps and parked old movement case;no runtime repair/deployment.",
+  "goal": "Investigate exact GPP worker interfaces/propagation and removable diagnostic gaps;record user Chair deferral;propose minimum logging repair only,no runtime change.",
   "implementation_authorized": true,
   "context": [
     {
@@ -710,6 +710,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Research_Playtest_20261029.md",
       "kind": "full",
       "reason": "Current native coverage,source/DB reconciliation,diagnostic defect and remaining GPP/Chair limits."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B395_GPP_Interface_Investigation_20261029.md",
+      "kind": "full",
+      "reason": "Exact interface conclusion,diagnostic composition proof,conditional gaps and user Chair deferral."
     }
   ],
   "dependencies": [
@@ -736,9 +741,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Research_Playtest_20261029.md",
-    "local": "Read-only source/DB/log analysis;in-memory missing-logger counterexample only,no new regression or runtime change.",
-    "native": "2363 captured rows,4loads;Dialogue user normal PASS,People/Places/Works saved-task success,first Culture network PASS,listed Research numeric scenarios;GPP mixed and Chair University residual OPEN.",
-    "deployment": "B395.4220681991 remains342/342 MATCH,receipt unchanged;mainB307.334."
+    "report": "Specialization/Status/Validation/Results/Specialization_B395_GPP_Interface_Investigation_20261029.md",
+    "local": "Read-only source/DB plus in-memory actual-module counterexamples;no repository tests/code changes.",
+    "native": "No new game call or PASS;Getter semantics and timing still need a paired native observation. Chair display issue user-deferred.",
+    "deployment": "B395.4220681991 unchanged;no deployment,mainB307.334."
   }
 }

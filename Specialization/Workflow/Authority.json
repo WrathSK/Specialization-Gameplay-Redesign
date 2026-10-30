@@ -10,7 +10,7 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0854",
+    "status": "S0855",
     "runtime": "B395.422 / modinfo422",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "06819915e283be1c90746fad4d521241887189c3",
-  "current_batch": "B395_CULTURE_RESEARCH_NATIVE_REVIEWED",
-  "next_batch": "Narrow GPP observer logger/budget repair and Research Chair applied/native investigation require scoped continuation;park deleted movement case,other Dialogue states deferred;no runtime change in review.",
+  "current_batch": "B395_GPP_INTERFACES_INVESTIGATED",
+  "next_batch": "Await scoped implementation authorization for removable GPP observer transport/Culture+Research coverage/budget correction;keep current business Getter;Chair and deleted movement parked.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B395.422 temporary develop from 06819915e283be1c90746fad4d521241887189c3;342/342 MATCH;SHA256 a16b895a647f768fb54d7f6c93ed093b155f0b303bbfd6540b3edac0ad0f726f;B394 outgoing and B307 stable backups MATCH;no pending transaction;receipt B395.422-0681991-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0854 two collectors2363 contiguous captured rows/four loads;positive People/Places/Works recovery and first Culture network user case. Research numeric scenarios reconciled;GPP mixed and P0 observer missing logger,Chair University mismatch remain. No runtime/deployment/main change.",
+  "context_review_status": "S0855 exact Getter versus UI CITIZENS/LOCKED interfaces confirmed statically;missing diagnostic transport,Research exclusion and AI budget consumption scoped;conditional event/transport gaps not native causes. Chair deferred by user;no runtime change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Research_Playtest_20261029.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B395_GPP_Interface_Investigation_20261029.md"
 }
