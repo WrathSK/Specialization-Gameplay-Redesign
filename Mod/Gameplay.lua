@@ -642,6 +642,10 @@ local function request(playerID,params)
   end
   if params.Action=="LV2_GPP_DIRTY" then
     P.Observe('ui','received')
+    pcall(function()local d=SPCCultureDiagnostics;if d and d.ENABLED then
+     d.Emit('CULTURE_GPP_DIRTY','GPP_DIRTY_INGRESS',function()return {owner=playerID,city=params.CityID,requestKey=params.Token,
+      observerSide='GAMEPLAY',ready=shared.NativeFacts~=nil,recordType=params.FactsChanged==true and 'FACTS_AND_WORKERS'or params.WorkerOnly==true and params.FactsChanged==false and 'WORKERS_ONLY'or 'CONSERVATIVE'}end)
+    end end)
     if shared.NativeFacts then
      local workerOnly=params.WorkerOnly==true and params.FactsChanged==false
      if not workerOnly then

@@ -21,6 +21,8 @@ function SPCNativeFacts.New(P,shared)
    -- A failed queue/observer must never leave an old transaction credential live.
    shared.FactChanges.InvalidateCommitted(pid,cid,{kind})
    shared.FactChanges.Emit({owner=pid,cityID=cid,kinds={kind},cause=cause})
+   -- Reuse the existing eligibility decision;no second identity/native read.
+   if kind=='WORKERS'then cultureObserve('WORKER_CAUSE',function()return {owner=pid,city=cid,eventOwner=scope.player,reason=cause}end)end
   end
   if owner~=nil then
    if enabled(owner)then emit(owner,city)end
@@ -43,7 +45,6 @@ function SPCNativeFacts.New(P,shared)
  function d.Workers(scope,cause)
   assert(cause=='NATIVE_WORKER_CHANGED' or cause=='NATIVE_FOCUS_CHANGED'
    or cause=='UI_WORKERS_DIRTY' or cause=='UI_FACTS_DIRTY','WORKER_CAUSE_UNKNOWN')
-  cultureObserve('WORKER_CAUSE',function()return {owner=type(scope)=='table'and scope.player,city=type(scope)=='table'and scope.city,reason=cause}end)
   return guarded('WORKERS',scope,cause,'WORKERS')
  end
  SPCRuntimeWork.TargetHook(P,Events,'CityWorkerChanged',function(scope)d.Workers(scope,'NATIVE_WORKER_CHANGED')end)

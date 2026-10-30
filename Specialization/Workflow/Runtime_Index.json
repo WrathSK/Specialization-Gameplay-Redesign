@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "3f9eac29927d3f76e3cb2abb360cfa69fc8a8dcc716f6cffd220fa89f7b8ec12",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
-      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
+      "sha256": "066b29da7d521d3833cfbf0a69d35552f72ddd10db44c0f7deaaf7361177a03e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
+      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "99a63b86899193e2760fbf5ba2d196e0eabdf6627ed2f191c451973c794cadb5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
-      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
+      "sha256": "5745fd1de5f2590ca116bc089d914ce5c84270b145b55e9dc03085b783abdd07",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
+      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "03a0b4688c6d51ae6c4cd330b218ee76ee3cfb672eca8ed70c3497275ab5d23d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
-      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
+      "sha256": "7902ff4338f41e0ac40eadfab22b0ff2d4bfa7e2491f76b3956cded3b4a10f95",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
+      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1381,9 +1381,9 @@
       "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
     },
     "Mod/UI/GPPRefresh.lua": {
-      "sha256": "75f994e242f2a6db933eacf4d11cd156bedb80712ab6c11af576b7ea0ac87da6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
-      "provenance": "B378.405 Preserve city worker scope and stop duplicate UI turn depth sampling; local/static evidence only; no deployment/native PASS."
+      "sha256": "06e8a2200c787731bdd8ea1eb10d6cb51aae74884064cfe3a5a7b52453efec04",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
+      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
     },
     "Mod/UI/GPPRefresh.xml": {
       "sha256": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109",
@@ -1591,9 +1591,9 @@
       "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NativeFacts.lua": {
-      "sha256": "f9eb3fc5b15ec3f203acf9da38ab943d8140a9819e6077984dd3a8442b3d6106",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
+      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
     },
     "Mod/ReverseDependencies.lua": {
       "sha256": "a9c9f2bc4bba3b60b5eeab0313d5600c55f155f568a3d0e2cc6669bf54ea7c8a",
@@ -1711,9 +1711,9 @@
       "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
     },
     "Mod/CultureDiagnostics.lua": {
-      "sha256": "c4bcdc743e8bbbd0580f9ce151dbf941685f87574680fc2c4f0bb768e42d7f5f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
-      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
+      "sha256": "d1ad434584af661a853ade6b2681cfff4310024d270ff43ece67fef810617d22",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
+      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
     }
   },
   "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed."

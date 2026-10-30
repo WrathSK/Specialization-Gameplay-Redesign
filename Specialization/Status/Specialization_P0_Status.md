@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0855
-Implementation Build: B395.422 / modinfo422; live B395.422 develop; stable/main B307.334
+Status Revision: S0856
+Implementation Build: B396.423 / modinfo423; live B395.422 until safe switch; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B395_GPP_INTERFACES_INVESTIGATED
+Work State: B396_GPP_DIAGNOSTICS_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-B395.422 remains deployed from0681991,342/342 MATCH;this follow-up changes no runtime. [Interface investigation](Validation/Results/Specialization_B395_GPP_Interface_Investigation_20261029.md) confirms Gameplay GPP/Chair call GetWorkerCount,while original UI distinctly exposes CITIZENS and LOCKED_CITIZENS. It does not prove Getter semantics in this save. Three diagnostic defects are scoped:P0 logger unavailable,UI comparison Culture-only,and unrelated AI consuming role budget. No business count replacement/retry/scan is implemented. Prior native acceptance remains in the [playtest review](Validation/Results/Specialization_B395_Culture_Research_Playtest_20261029.md). Main B307.334,original S9/S10 and final U5 remain unchanged.
+B396.423 diagnostic-only repair is locally verified:real cold P0 transport,explicit Research/Culture/Industry/Commerce actual-versus-locked comparison,separate GP/dirty budgets and supported-player cause filtering.97targeted methods and static/package checks pass;native Getter semantics remain unproven. [Batch result](Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md). No gameplay Getter/formula/eligibility/carrier/save/event/retry/GC change;Lv2GPP/ResearchChair/EffectiveFacts source unchanged. Live remains B395until safe transaction;main B307.334,original S9/S10 and final U5 remain.
 
-- User decision:9/4/5/5was the city-details building list;Chair is now suspected panel refresh and user-deferred,not an active ability repair. Deleted displacement remains parked;other Dialogue states later. No new gameplay decision.
-- User testing:none newly requested. GPP still needs same-token/anchor actual-versus-locked native evidence after diagnostic repair;prior Culture/Research listed PASS and no-deliberate-pillage/mandatory-Harbor constraints stand.
-- Primary next:present the exact interfaces and minimum removable diagnostic repair plan;await implementation authorization. Do not reopen Chair/old movement or silently add population polling/retry behavior.
+- User decision:implement missing observation and collect while testing Industry/Commerce. Chair suspected panel refresh and deleted displacement stay parked;no new gameplay decision.
+- User testing:keep collector open and right-click 专家与岗位 for selected test city in automatic/locked states when convenient;four current professions supported,no extra campaign or accepted-case repetition.
+- Primary next:commit/push then safely deploy under reliable exit/hash/receipt guards and stop. New evidence is diagnostic,not a GPP business fix or native PASS.
+
+## S0856 — B396.423 Repair removable four-profession GPP comparison
+
+2026-10-29. User authorizes missing diagnostics for ongoing Industry/Commerce testing. Lazy observer-owned B205 transport now precedes native UI sampling,existing disabled instances/noops are respected,explicit GP and dirty tracing have fixed independent budgets,and AI no longer consumes local cause rows. Actual cold P0/serialization and business-differential tests pass within stated boundaries. Runtime deployment remains the next guarded operation;main unchanged.
 
 ## S0855 — B395 worker interface investigation and Chair deferral
 

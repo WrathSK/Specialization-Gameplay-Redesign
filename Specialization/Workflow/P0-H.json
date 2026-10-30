@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0855",
-    "runtime": "B395.422 / modinfo422",
+    "status": "S0856",
+    "runtime": "B396.423 / modinfo423",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Investigate exact GPP worker interfaces/propagation and removable diagnostic gaps;record user Chair deferral;propose minimum logging repair only,no runtime change.",
+  "goal": "Authorized B396 removable GPP diagnostic repair for four current professions;prove transport and business isolation,then standing safe-develop deployment;no gameplay repair.",
   "implementation_authorized": true,
   "context": [
     {
@@ -715,6 +715,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B395_GPP_Interface_Investigation_20261029.md",
       "kind": "full",
       "reason": "Exact interface conclusion,diagnostic composition proof,conditional gaps and user Chair deferral."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
+      "kind": "full",
+      "reason": "Current diagnostic implementation,Runtime Impact,local proof and user opportunistic collection."
     }
   ],
   "dependencies": [
@@ -741,9 +746,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B395_GPP_Interface_Investigation_20261029.md",
-    "local": "Read-only source/DB plus in-memory actual-module counterexamples;no repository tests/code changes.",
-    "native": "No new game call or PASS;Getter semantics and timing still need a paired native observation. Chair display issue user-deferred.",
-    "deployment": "B395.4220681991 unchanged;no deployment,mainB307.334."
+    "report": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
+    "local": "97targeted methods including9new cold P0/transport/scope differentials;219Lua51,25XML,342runtime,context and switch checks.",
+    "native": "USER_GAME_TEST_REQUIRED;collect actual/locked/Getter pairs while testing Industry/Commerce;not a business fix.",
+    "deployment": "Await safe switch;live B395.422 remains until transaction."
   }
 }

@@ -1,3 +1,8 @@
+-- Optional/removable transport observations;never used by dirty/retry decisions.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()local d=SPCCultureDiagnostics;if d and d.ENABLED then d.Emit('CULTURE_GPP_DIRTY',point,build)end end)
+end
 include('DiagnosticLog')
 local print=SPCDiagnosticLog and SPCDiagnosticLog.For('GPPRefresh') or print
 -- Background dirty notification only. Never sends worker counts, yields or city facts.
@@ -45,9 +50,13 @@ local function flush()
  local sentFacts,sentWorkers,sentCity=factsDirty,workerOnly,workerCity
  busy=true;dirty=false;factsDirty=false;workerOnly=true;workerCity=nil;seq=seq+1;tries=tries+1
  observe('send')
- local ok,err=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,
-  {OnStart="SPC_P0_Request",Action="LV2_GPP_DIRTY",Token=P.VERSION..":gpp:"..seq,FactsChanged=sentFacts,WorkerOnly=sentWorkers,CityID=sentWorkers and not sentFacts and sentCity or nil})
+ local packet={OnStart="SPC_P0_Request",Action="LV2_GPP_DIRTY",Token=P.VERSION..":gpp:"..seq,FactsChanged=sentFacts,WorkerOnly=sentWorkers,CityID=sentWorkers and not sentFacts and sentCity or nil}
+ cultureObserve('GPP_DIRTY_SEND',function()return {owner=pid,city=packet.CityID,requestKey=packet.Token,observerSide='UI',
+  recordType=sentFacts and 'FACTS_AND_WORKERS'or sentWorkers and 'WORKERS_ONLY'or 'CONSERVATIVE'}end)
+ local ok,err=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,packet)
  observe(ok and 'sent' or 'failed')
+ cultureObserve('GPP_DIRTY_RETURN',function()return {owner=pid,city=packet.CityID,requestKey=packet.Token,observerSide='UI',
+  requestResult=not ok and 'THREW'or err==false and 'FALSE'or err==true and 'TRUE'or err==nil and 'NIL'or 'OTHER'}end)
  if not ok then
   -- Retry the entire failed cause set, merging any callbacks received during send.
   retain(sentWorkers,sentCity);factsDirty=factsDirty or sentFacts
