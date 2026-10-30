@@ -22,6 +22,7 @@ Only new delivery Markdown in this topic is writable. No source/configuration, e
 | Where are collection scans, turn work and deferred recovery? | [Scan inventory](Scan_Inventory.md) — S01–S33 |
 | What differs, and what is still unknown? | [Consistency and questions](Comparison_and_Questions.md) — C01–C12, Q01–Q08 |
 | Where is a particular Lua file in this map? | [Module index](Module_Index.md) — M01–M14, 218 packaged Lua files |
+| Which direct native listeners have distinct duties or overlap shared notifications? | [Direct Event Listener Audit](Direct_Event_Listener_Audit.md) — supplementary four-profession audit at `abcc2b0`; classifications and source evidence |
 
 Read As-Is and To-Be first; open only the event/state/scan details relevant to the question. Group IDs are investigation navigation labels, not proposed runtime services or a new authority registry. To-Be local T01–T24 labels are distinct from Workflow T01–T08 validation gates.
 
@@ -60,3 +61,7 @@ The earlier local save checkpoint was retained through laptop closure and resume
 Stage A: root/project/investigation guidance; project and Architecture navigation; Workflow R9, language, checkpoint and reading rules; Authority metadata, Status CURRENT, P0-H routing; user prompt and final diagram-governance clarification. Stage B: modinfo and Gameplay/UI composition, actual calls/registrations/state access for shared infrastructure and the four current professions; accepted formal Architecture/U1/recovery references. No external Mod/HD scan, historical archive sweep, private disk search or live game inspection. Detailed ledgers remain in each report.
 
 User decision: review the As-Is/To-Be views and any genuine conflict at the owner's pace; no new rule is required for publication. User testing: no additional immediate request; existing acceptance table remains user-owned. Primary next: deliver this reviewed investigation checkpoint and stop. Further architecture design, governance migration or runtime changes are separate authorized work.
+
+## Supplementary direct-listener checkpoint — 2026-10-30
+
+[Direct Event Listener Audit](Direct_Event_Listener_Audit.md) records the subsequent user-requested read-only listener review at develop `abcc2b0` / B396.423 metadata. It rechecks current registration/activation paths, parameters, shared-notification overlap, enumeration and recovery duties. The original B393 baseline, coverage and validation statements above remain historical statements about that earlier checkpoint; this addition does not refresh or supersede those reports. The audit remains non-authoritative and does not approve listener deletion or a centralized-push redesign.
