@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0853",
+    "status": "S0854",
     "runtime": "B395.422 / modinfo422",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Implement scoped B395 Culture startup/recovery repairs and removable explicit GPP comparison;local proof then standing safe-develop deployment,without gameplay/save/main changes.",
+  "goal": "Read all new B395 native/collector logs and reconcile user Culture/Research coverage;preserve narrow PASS,diagnostic gaps and parked old movement case;no runtime repair/deployment.",
   "implementation_authorized": true,
   "context": [
     {
@@ -705,6 +705,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
       "kind": "full",
       "reason": "Current scoped repairs,Runtime Impact,proofs,baseline failures and native handoff."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Research_Playtest_20261029.md",
+      "kind": "full",
+      "reason": "Current native coverage,source/DB reconciliation,diagnostic defect and remaining GPP/Chair limits."
     }
   ],
   "dependencies": [
@@ -731,9 +736,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
-    "local": "19 focused/92 core;127 project/worker,11 current protocol,11 owner classification,20 collector;219 Lua51 compile/25 XML/342 package;baseline failures explicitly preserved.",
-    "native": "USER_GAME_TEST_REQUIRED:Dialogue,Works recovery,GPP automatic/locked;no border causality or general success claim.",
-    "deployment": "B395.422 from 06819915e283be1c90746fad4d521241887189c3;342/342 MATCH;receipt B395.422-0681991-playtest.json;B394/B307 backups MATCH,no pending transaction;main unchanged."
+    "report": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Research_Playtest_20261029.md",
+    "local": "Read-only source/DB/log analysis;in-memory missing-logger counterexample only,no new regression or runtime change.",
+    "native": "2363 captured rows,4loads;Dialogue user normal PASS,People/Places/Works saved-task success,first Culture network PASS,listed Research numeric scenarios;GPP mixed and Chair University residual OPEN.",
+    "deployment": "B395.4220681991 remains342/342 MATCH,receipt unchanged;mainB307.334."
   }
 }

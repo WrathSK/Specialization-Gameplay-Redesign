@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0853
+Status Revision: S0854
 Implementation Build: B395.422 / modinfo422; live B395.422 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B395_CULTURE_RECOVERY_DEPLOYED
+Work State: B395_CULTURE_RESEARCH_NATIVE_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B395.422 local repairs close the missing Dialogue owner initialization/current-slot UI-intent paths and delay the first Expedition recovery ACK until a real load boundary. GPP false failure labels are corrected;actual-versus-locked population is an isolated explicit read,not a business fix.19 new/92 core local cases pass;known baseline legacy failures are preserved in the [batch result](Validation/Results/Specialization_B395_Culture_Recovery.md). No new gameplay,save schema,Open Borders requirement or position relaxation. Live B395.422 from0681991 is342/342 MATCH under receipt B395.422-0681991-playtest.json;main B307.334,original S9/S10 and final U5 remain.
+B395.422 remains deployed from0681991,342/342 MATCH;no runtime change in this review. Two new collectors contain2363 captured TRAIN rows across4loads,T16–33 with T30reload branches. User normal Dialogue,People/Works/Places(including load recovery and border-close scenario),first Culture network propagation,and listed Research support/Application/Cross/Infrastructure/Tradition scenarios are recorded with narrow evidence bounds. GPP automatic/locked behavior is mixed;the P0 UI comparison has an isolated missing-logger wiring defect. University Chair output remains unexplained. [Native review](Validation/Results/Specialization_B395_Culture_Research_Playtest_20261029.md). Main B307.334,original S9/S10 and final U5 remain unchanged.
 
-- User decision:none pending. Existing Meaning Holy Site/Industry/Commerce/Encampment,same-era duplicates and clear-all-works PASS stand. Harbor is not a mandatory test;no deliberate pillage requirement. Culture network remains deliberately deferred.
-- User testing:after safe deployment,Dialogue normal/full-turn and replacement,one saved Works recovery,and right-click 专家与岗位 for automatic/locked GPP comparison. Border displacement and original diplomatic-grant immobility remain unresolved;no local-to-native PASS.
-- Primary next:stop at deployed B395 boundary and inspect next targeted logs;B394/B307 recovery backups MATCH,no pending transaction. No main promotion or game launch.
+- User decision:park the deleted,non-reproducible movement case;Early Empire/State Workforce remains a hypothesis only. Other Dialogue states will be tested later. No deliberate pillage or mandatory Harbor retest;prior Meaning/same-era/clear-all PASS remain.
+- User testing:none newly requested before diagnostic repair. Culture network is no longer wholly deferred:the first same-civilization-three-category/trade/specialist case now has user PASS;other cases are not inferred. GPP and Chair are not blanket PASS.
+- Primary next:propose/perform only a separately authorized narrow repair for P0 observer wiring/budget,and investigate Chair applied-versus-native rows. This batch is logs/source/database analysis and recording only;no gameplay or deployment change.
+
+## S0854 — B395 native Culture / Research coverage and remaining evidence gaps
+
+2026-10-29.75raw files archived/hash-verified. Saved People recovery,Places on alternate reload branches,and Works reward have positive log chains;Culture source/receiver counts and the user's specialist yield change agree in the tested scenario. University fixed-base0 is normal HD configuration,but its5-worker4Science row remains open. GPP carrier plans match observed Getter counts,not proven automatic occupancy;P0's new UI observer lacks its context logger and the first Culture_GP role truncates atT24. Record the diagnostic integration gap without changing business rules or blaming the native API. Deleted old displacement is parked by user.
 
 ## S0853 — B395.422 Culture startup/recovery and explicit GPP comparison
 
