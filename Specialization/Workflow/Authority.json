@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "runtime_commit": "06819915e283be1c90746fad4d521241887189c3",
-  "current_batch": "B396_GPP_DIAGNOSTICS_LOCAL_COMPLETE",
+  "runtime_commit": "4ec32e136ec5aa04f6135f819d6a1c3de5a8477d",
+  "current_batch": "B396_GPP_DIAGNOSTICS_DEPLOYED",
   "next_batch": "Opportunistic four-profession actual/locked GPP evidence during Industry/Commerce tests;keep gameplay Getter and parked Chair/movement. Await native data after safe deployment.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B395.422 temporary develop from 06819915e283be1c90746fad4d521241887189c3;342/342 MATCH;SHA256 a16b895a647f768fb54d7f6c93ed093b155f0b303bbfd6540b3edac0ad0f726f;B394 outgoing and B307 stable backups MATCH;no pending transaction;receipt B395.422-0681991-playtest.json",
+  "live": "B396.423 temporary develop from 4ec32e136ec5aa04f6135f819d6a1c3de5a8477d;342/342 MATCH;SHA256 a23d650d86d2a1c1fbe3b335caaab875fbaabb9d45b34ed846f7e63013f27748;B395 outgoing and B307 stable backups MATCH;no pending transaction;receipt B396.423-4ec32e1-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0856 B396 diagnostic wiring/four-profession coverage/bounded tracing verified by97targeted local methods;source semantics unchanged,native pending,live remainsB395until safe switch.",
+  "context_review_status": "S0856 B396 four-profession observation wiring/transport/budget verified97targeted methods and safely deployed from4ec32e1;native counts pending,no business Getter/formula/save change. Chair/movement parked.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

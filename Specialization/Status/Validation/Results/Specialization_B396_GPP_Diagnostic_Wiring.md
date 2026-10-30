@@ -42,3 +42,9 @@ Keep the existing collector running. Select an eligible owned city and **right-c
 Transport return FALSE/NIL/TRUE/THREW describes only the existing request call;INGRESS means the Gameplay branch was entered,not that carriers or final native GPP are correct. UNKNOWN/readPoint and LIMIT_REACHED are explicit evidence limits. Do not infer counts from absent rows or use UI readings as settlement authority.
 
 User decision:none pending. User testing:collect opportunistically during the already-planned Industry/Commerce testing. Primary next:commit/push verified B396,safely deploy only if reliably exited under existing authorization,record receipt and stop. Native semantics remain open.
+
+## Verified temporary deployment
+
+Under standing user authorization,the existing tool checked game exit before both transactions,restored exact B307 via the active B395 receipt,then activated pushed source `4ec32e136ec5aa04f6135f819d6a1c3de5a8477d`. Live B396.423 is342/342MATCH,SHA256 `a23d650d86d2a1c1fbe3b335caaab875fbaabb9d45b34ed846f7e63013f27748`;receipt `B396.423-4ec32e1-playtest.json` is DEVELOP_ACTIVE. Outgoing B395 and stable B307 backups match,no pending marker remains. Main stays bc49dab5739e7819ceaf49228de7d47310c296d8;no game launch or native PASS.
+
+User decision:none pending. User testing:collect during planned Industry/Commerce testing,right-click 专家与岗位 for automatic/locked selected-city comparison when convenient. Primary next:stop at deployed diagnostic boundary and inspect the next logs;business Getter,Chair/displacement deferral and final U5 remain.

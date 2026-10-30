@@ -2,24 +2,24 @@
 
 Document Owner: Codex
 Status Revision: S0856
-Implementation Build: B396.423 / modinfo423; live B395.422 until safe switch; stable/main B307.334
+Implementation Build: B396.423 / modinfo423; live B396.423 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B396_GPP_DIAGNOSTICS_LOCAL_COMPLETE
+Work State: B396_GPP_DIAGNOSTICS_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B396.423 diagnostic-only repair is locally verified:real cold P0 transport,explicit Research/Culture/Industry/Commerce actual-versus-locked comparison,separate GP/dirty budgets and supported-player cause filtering.97targeted methods and static/package checks pass;native Getter semantics remain unproven. [Batch result](Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md). No gameplay Getter/formula/eligibility/carrier/save/event/retry/GC change;Lv2GPP/ResearchChair/EffectiveFacts source unchanged. Live remains B395until safe transaction;main B307.334,original S9/S10 and final U5 remain.
+B396.423 diagnostic-only repair is locally verified:real cold P0 transport,explicit Research/Culture/Industry/Commerce actual-versus-locked comparison,separate GP/dirty budgets and supported-player cause filtering.97targeted methods and static/package checks pass;native Getter semantics remain unproven. [Batch result](Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md). No gameplay Getter/formula/eligibility/carrier/save/event/retry/GC change;Lv2GPP/ResearchChair/EffectiveFacts source unchanged. Live B396.423 from4ec32e1 is342/342MATCH under receipt B396.423-4ec32e1-playtest.json;main B307.334,original S9/S10 and final U5 remain.
 
 - User decision:implement missing observation and collect while testing Industry/Commerce. Chair suspected panel refresh and deleted displacement stay parked;no new gameplay decision.
 - User testing:keep collector open and right-click 专家与岗位 for selected test city in automatic/locked states when convenient;four current professions supported,no extra campaign or accepted-case repetition.
-- Primary next:commit/push then safely deploy under reliable exit/hash/receipt guards and stop. New evidence is diagnostic,not a GPP business fix or native PASS.
+- Primary next:stop at deployed diagnostic boundary and inspect next data;B395/B307 recovery backups MATCH,no pending transaction. This is not a GPP business fix or native PASS.
 
 ## S0856 — B396.423 Repair removable four-profession GPP comparison
 
-2026-10-29. User authorizes missing diagnostics for ongoing Industry/Commerce testing. Lazy observer-owned B205 transport now precedes native UI sampling,existing disabled instances/noops are respected,explicit GP and dirty tracing have fixed independent budgets,and AI no longer consumes local cause rows. Actual cold P0/serialization and business-differential tests pass within stated boundaries. Runtime deployment remains the next guarded operation;main unchanged.
+2026-10-29. User authorizes missing diagnostics for ongoing Industry/Commerce testing. Lazy observer-owned B205 transport now precedes native UI sampling,existing disabled instances/noops are respected,explicit GP and dirty tracing have fixed independent budgets,and AI no longer consumes local cause rows. Actual cold P0/serialization and business-differential tests pass within stated boundaries. Verified deployment is recorded in the current result;main unchanged.
 
 ## S0855 — B395 worker interface investigation and Chair deferral
 
