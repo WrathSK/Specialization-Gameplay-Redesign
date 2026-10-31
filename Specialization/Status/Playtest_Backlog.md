@@ -362,3 +362,16 @@ User decision：无新的玩法决定。User testing：不为记录重复已证�
 ## PT015 follow-up — B397 NET-1 / NET-2 local repair, native pending
 
 2026-10-31. [B397 result](Validation/Results/Specialization_B397_Network_Proof_Transport.md) repairs the independently confirmed equal-content/stale-signal sender latch and bounded first-load missing-receipt recovery.87selected local methods pass;Bridge/transaction/D-1/formulas stay unchanged. PT015 remains USER_GAME_TEST_REQUIRED,not PASS:in the planned commercial session,one reload and the next ordinary unchanged-route turn should verify proof recovery,Commerce READY,and eligible Capital/Development quotation/confirmation. Other zero-revenue/HELD causes are not presumed fixed. Accepted Option B convergence stays after U5;no new architecture migration or deliberate pillage/repeated accepted Research/Culture tests.
+
+
+## B397 third Industry playtest — 2026-10-31
+
+[Evidence review](Validation/Results/Specialization_B397_Industry_Playtest_20261031.md) records the user's normal Industry acceptance and precise limits. No new implementation/deployment. Passed cases do not require repetition;ownership,pillage and HD GPP are not reopened.
+
+| ID | Category | Found build | Turn | Issue / evidence | Current long game impact | Stable hotfix | Develop only / next step |
+|---|---|---|---|---|---|---|---|
+| PT016 | BUG / project entry | B397.424 | 49–51 | Engineering Study reordered to queue head or naturally advanced remains confirming;explicit selection creates BEGIN but queue notifications only wake existing requests. Dialogue has the same user-observed symptom;qualification/reward owners remain independent. Report provides source and exact timer/reward records. | Cannot count that round until queue cleared and project explicitly reselected;ordinary/reloaded single-project completion and one reward pass | None authorized | Plan smallest same-city event-driven re-entry repair;preserve full turn,UNKNOWN,qualification and unique receipts. Whole-queue clearing is a backup,not permanent acceptance. Do not silently change the multi-item queue contract. |
+
+PT015 partial native progress: B397 four loads confirm routes within their loaded turns;unchanged routeCount/inputRevision signals catch up;new routes apply18% Standardization to receivers/forwarding in the same turn. The earlier missing initial proof is B396. This does not prove deliberate dropped-first-send recovery,byte-identical payloads,Commerce READY,nonzero revenue or Capital/Development transactions;PT015 remains open for those actual commercial outcomes.
+
+PT001 bounded evidence: same-load counter deltas show real carrier-call bursts (T45+52/-123,T52+111/-33),not proof of exact frame cost or unconditional rebuild. T39 unit-deletion turn has net0/0 and carrier0/0;later pending is explicitly trader-route removal. GC moments are separately recorded;no new performance/GC fix or probe is authorized by the review.

@@ -1,21 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0857
+Status Revision: S0858
 Implementation Build: B397.424 / modinfo424; live B397.424 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B397_NETWORK_PROOF_TRANSPORT_DEPLOYED
+Work State: B397_INDUSTRY_PLAYTEST_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B397.424 narrowly repairs NET-1 signal-aware route-proof deduplication and NET-2 bounded missing-receipt recovery at LoadScreenClose/LocalPlayerTurnBegin.87 selected methods and restricted Lua51/package checks pass;native delivery remains pending. [Batch result](Validation/Results/Specialization_B397_Network_Proof_Transport.md). Bridge validation/replay/TransactionCurrent,D-1 passive freeze,profession formulas/prices/saves and accepted Research/Culture business sources are unchanged. Live B397.424 from aa51feb is342/342MATCH under receipt B397.424-aa51feb-playtest.json;stable B307 and outgoing B396 recovery match,no pending transaction. Main stays B307.334.
+The third Industry playtest is reviewed across B396 T36–41 and B397 T41–58, with overlapping collector records and reload branches separated. [Coverage and evidence](Validation/Results/Specialization_B397_Industry_Playtest_20261031.md): ordinary tested Industry abilities pass; Engineering Study queue reordering/natural advancement has a confirmed re-entry gap (PT016). The initial Monument15 observation fits B396's unreceived load proof; B397 shows same-turn Standardization application and four loaded-turn proof recoveries. This does not close PT015 commercial transactions or prove a deliberately lost first packet recovered. Batched carrier calls are measured; exact hitch attribution remains unknown.
 
-- User decision:repair NET-1/NET-2 now;Option B architecture convergence is accepted for after U5,not implemented here. User explicitly approves publishing the prior eeb4a08 report with this batch after privacy checks. No Principles A/B/C migration,S9/S10 cleanup or main promotion.
-- User testing:combine one loaded-turn proof recovery and unchanged-content signal catch-up with the next planned Commerce READY/Capital/Development test;no separate Research/Culture retest or deliberate pillage.
-- Primary next:stop at verified B397 deployment and inspect the next commercial-session logs. Existing U4/S9/S10/final U5 obligations remain,not mechanically closed.
+Live remains B397.424 from aa51feb,342/342MATCH under the existing receipt;stable/main stays B307.334. No runtime,Design,Architecture,test or deployment change in this review. No final U5 acceptance is implied.
+
+- User decision:none needed for recording evidence;no new queue semantics or implementation approved by this review. Option B convergence remains after U5.
+- User testing:no repeated passed cases,deliberate pillage,ownership or mandatory GPP/variant campaign. Continue the intended Commerce session when desired;Dialogue cross-era quota remains opportunistic/deferred.
+- Primary next:prepare the smallest queue re-entry repair around reliable same-city events and existing complete-turn guards;retain PT015 and measured performance uncertainty. Stop at this evidence-review boundary.
+
+## S0858 — Third Industry playtest and bounded anomaly review
+
+2026-10-31. Seven new collector sessions and28latest native log files read;56files/4,070,137bytes copied to ignored evidence with SHA256 readback. Industry costs/thresholds,750Crew spending,study reward/qualification/reload/E-limit histories and subsequent L5/E5 are reconciled. Queue pending creation is limited to explicit ordinary selection;reordering/natural advance lacks a replacement BEGIN. T39 worker/warrior deletion shows no network signal change or resend;individual filtering callbacks were not captured. Building-call bursts and separate GC moments are recorded without causal overclaim. User-observed Research Tradition age36/20% is consistent with prior T22age0,not independently sampled in these logs. No code/test/deployment changes.
 
 ## S0857 — B397 pre-U5 network proof transport
 
