@@ -1,6 +1,6 @@
 # B397 — pre-U5 network proof transport repair (NET-1 / NET-2)
 
-Status: locally validated; native recovery pending deployment/user verification. Recorded 2026-10-31.
+Status: locally validated and deployed; native recovery awaits user verification. Recorded 2026-10-31.
 Baseline: develop eeb4a08; runtime B396.423; D0058 / A0183 / S0856. User explicitly authorizes this narrow transport repair under the existing Primary workflow. Main promotion is not authorized. Option B architecture convergence is deferred until after U5.
 
 ## Confirmed defects and authorized scope
@@ -61,3 +61,12 @@ User decision:authorization covers repair and safe develop deployment;the user a
 ## Static and deployment preparation
 
 All219runtime Lua files compile with Lua5.1;25XML files parse;341unique modinfo file references resolve across342runtime files. Only NetworkSender,BackgroundRoutes and the two build-identity files differ from baseline runtime. NetworkBridge,profession business modules,SQL/save definitions and formal Design/Architecture remain byte-identical. The first context check identified the same four reviewed runtime files also present in Context_Lock;their named duplicate hash entries were synchronized after source review,without unrelated rehash. Current live B396 and its exact receipt/stable B307 recovery package match in read-only preflight;main is clean. Source version424 is not called deployed until a completed verified receipt below.
+
+
+## Verified temporary develop deployment — 2026-10-31
+
+The privacy/publication gate passed all12batch files;the user explicitly approved including the unchanged earlier listener-report commit eeb4a08. Both commits were pushed to develop. Reliable OS process checks before each transaction found no running game. The existing tool restored B396 through its exact receipt,then activated B397 from source `aa51febb4b99ad21e51416066a737620b2eff8a2`. Live **342/342 MATCH**,SHA256 `4c14e43d73e98a3f03593422575ce880fad7adc55d4c5c39abd959055fddc0b7`,receipt `B397.424-aa51feb-playtest.json` phase DEVELOP_ACTIVE. Stable B307 and outgoing B396 recovery packages both match;no pending transaction remains. Main stays B307.334. No game launch,user-save mutation or native PASS.
+
+Context integrity passes342runtime files/1290guarded inputs and its self-test;static alarms have no new/widened occurrence. Only deployment/result/current-pointer metadata is updated after the tested source commit;Mod/test bytes remain unchanged.
+
+User decision:none pending. User testing:the combined Commerce-session reload/next-turn/READY/eligible investment delta above. Primary next:stop at verified B397 deployment and review the user's next logs;Option B convergence and S9/S10 work remain deferred/outside this batch.

@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "runtime_commit": "4ec32e136ec5aa04f6135f819d6a1c3de5a8477d",
-  "current_batch": "B397_NETWORK_PROOF_TRANSPORT_LOCAL_VALIDATED",
+  "runtime_commit": "aa51febb4b99ad21e51416066a737620b2eff8a2",
+  "current_batch": "B397_NETWORK_PROOF_TRANSPORT_DEPLOYED",
   "next_batch": "Combined native Commerce test: load-turn proof recovery,unchanged-content signal catch-up,Commerce READY and Capital/Development strict eligibility;post-U5 Option B deferred.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B396.423 temporary develop from 4ec32e136ec5aa04f6135f819d6a1c3de5a8477d;342/342 MATCH;SHA256 a23d650d86d2a1c1fbe3b335caaab875fbaabb9d45b34ed846f7e63013f27748;B395 outgoing and B307 stable backups MATCH;no pending transaction;receipt B396.423-4ec32e1-playtest.json",
+  "live": "B397.424 temporary develop from aa51febb4b99ad21e51416066a737620b2eff8a2;342/342 MATCH;SHA256 4c14e43d73e98a3f03593422575ce880fad7adc55d4c5c39abd959055fddc0b7;B396 outgoing and B307 stable backups MATCH;no pending transaction;receipt B397.424-aa51feb-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0857 B397 NET-1/NET-2 local transport repair:87selected methods pass;D1/Bridge/transactions/formulas unchanged;safe deployment and native verification pending.",
+  "context_review_status": "S0857 B397 NET-1/NET-2 locally validated87methods and safely deployed aa51feb;D1/Bridge/strict transactions/formulas unchanged;native recovery pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

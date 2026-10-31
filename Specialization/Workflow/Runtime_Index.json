@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "4ec32e136ec5aa04f6135f819d6a1c3de5a8477d",
-  "runtime": "B396.423 / modinfo423 temporary develop;stable/main B307.334",
+  "runtime_commit": "aa51febb4b99ad21e51416066a737620b2eff8a2",
+  "runtime": "B397.424 / modinfo424 temporary develop;stable/main B307.334",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1716,5 +1716,5 @@
       "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
     }
   },
-  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed. B397.424:S0857 four named runtime files reviewed for NET-1/NET-2;87local methods pass,native/deployment pending;no other runtime hashes refreshed."
+  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed. B397.424:S0857 four named runtime files reviewed for NET-1/NET-2;87local methods pass,native/deployment pending;no other runtime hashes refreshed. B397deployment:aa51feb,342/342MATCH,receipt and B396/B307 recovery verified;native pending."
 }

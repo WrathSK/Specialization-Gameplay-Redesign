@@ -2,24 +2,24 @@
 
 Document Owner: Codex
 Status Revision: S0857
-Implementation Build: B397.424 / modinfo424; live B396.423 develop pending replacement; stable/main B307.334
+Implementation Build: B397.424 / modinfo424; live B397.424 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B397_NETWORK_PROOF_TRANSPORT_LOCAL_VALIDATED
+Work State: B397_NETWORK_PROOF_TRANSPORT_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B397.424 narrowly repairs NET-1 signal-aware route-proof deduplication and NET-2 bounded missing-receipt recovery at LoadScreenClose/LocalPlayerTurnBegin.87 selected methods and restricted Lua51/package checks pass;native delivery remains pending. [Batch result](Validation/Results/Specialization_B397_Network_Proof_Transport.md). Bridge validation/replay/TransactionCurrent,D-1 passive freeze,profession formulas/prices/saves and accepted Research/Culture business sources are unchanged. Live remains B396.423 under its existing verified receipt until the safe deployment transaction;main stays B307.334.
+B397.424 narrowly repairs NET-1 signal-aware route-proof deduplication and NET-2 bounded missing-receipt recovery at LoadScreenClose/LocalPlayerTurnBegin.87 selected methods and restricted Lua51/package checks pass;native delivery remains pending. [Batch result](Validation/Results/Specialization_B397_Network_Proof_Transport.md). Bridge validation/replay/TransactionCurrent,D-1 passive freeze,profession formulas/prices/saves and accepted Research/Culture business sources are unchanged. Live B397.424 from aa51feb is342/342MATCH under receipt B397.424-aa51feb-playtest.json;stable B307 and outgoing B396 recovery match,no pending transaction. Main stays B307.334.
 
 - User decision:repair NET-1/NET-2 now;Option B architecture convergence is accepted for after U5,not implemented here. User explicitly approves publishing the prior eeb4a08 report with this batch after privacy checks. No Principles A/B/C migration,S9/S10 cleanup or main promotion.
 - User testing:combine one loaded-turn proof recovery and unchanged-content signal catch-up with the next planned Commerce READY/Capital/Development test;no separate Research/Culture retest or deliberate pillage.
-- Primary next:review/publish verified B397,then standing safe develop deployment after reliable exit detection;record receipt and stop. Existing U4/S9/S10/final U5 obligations remain,not mechanically closed.
+- Primary next:stop at verified B397 deployment and inspect the next commercial-session logs. Existing U4/S9/S10/final U5 obligations remain,not mechanically closed.
 
 ## S0857 — B397 pre-U5 network proof transport
 
-2026-10-31. Explicit user-scoped NET-1/NET-2 repair. Actual Sender/Bridge baseline counterexamples,34new-file methods(including11existing assertions) and87total selected methods pass. Complete snapshots and strict transaction gates remain;missing receipts get only finite lifecycle recovery,with a bounded witness surviving transient sample failure/reentry. Native drop stage and remaining Commercialization/contract outcomes remain unproved;see batch result for inherited old-test failures and minimal native delta.
+2026-10-31. Explicit user-scoped NET-1/NET-2 repair. Actual Sender/Bridge baseline counterexamples,34new-file methods(including11existing assertions) and87total selected methods pass. Complete snapshots and strict transaction gates remain;missing receipts get only finite lifecycle recovery,with a bounded witness surviving transient sample failure/reentry. Native drop stage and remaining Commercialization/contract outcomes remain unproved;see batch result for inherited old-test failures and minimal native delta. Verified deployment from aa51feb matches342files with exact B396/B307 recovery;no native PASS.
 
 ## S0856 — B396.423 Repair removable four-profession GPP comparison
 
