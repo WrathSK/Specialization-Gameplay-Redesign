@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "runtime_commit": "aa51febb4b99ad21e51416066a737620b2eff8a2",
-  "current_batch": "B398_QUEUE_RECOVERY_LOCAL_COMPLETE",
-  "next_batch": "Verify source/privacy publication and safe standing temporary develop switch,then minimal native queue delta;no main promotion or broader refactor.",
+  "runtime_commit": "73bf5b56ae7d18e4776014ae09edeb63559f19ac",
+  "current_batch": "B398_DEPLOYED_NATIVE_REQUIRED",
+  "next_batch": "Await/review minimal native Study/Dialogue queue delta;Commerce testing may continue separately. No automatic main promotion or broader refactor.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B397.424 temporary develop from aa51febb4b99ad21e51416066a737620b2eff8a2;342/342 MATCH;SHA256 4c14e43d73e98a3f03593422575ce880fad7adc55d4c5c39abd959055fddc0b7;B396 outgoing and B307 stable backups MATCH;no pending transaction;receipt B397.424-aa51feb-playtest.json",
+  "live": "B398.425 temporary develop from 73bf5b56ae7d18e4776014ae09edeb63559f19ac;343/343 MATCH;SHA256 d068aace17220003524b5ffa7c1babaec194c7f903196f424c8e170d4d2a9274;B397 outgoing and B307 stable backups MATCH;no pending transaction;receipt B398.425-73bf5b5-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0861 B398 scoped queue recovery locally validated85selected methods,220Lua51/25XML/343runtime;native/deployment pending,no rule/save/formula changes.",
+  "context_review_status": "S0861 B398 scoped queue repair:85selected methods,220Lua51/25XML/343runtime PASS;343/343 deployment MATCH and recovery verified;native required,no rule/save/formula changes.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

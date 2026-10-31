@@ -2,26 +2,26 @@
 
 Document Owner: Codex
 Status Revision: S0861
-Implementation Build: B398.425 / modinfo425; live B397.424 develop pending safe switch; stable/main B307.334
+Implementation Build: B398.425 / modinfo425; live B398.425 develop from73bf5b5; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B398_QUEUE_RECOVERY_LOCAL_COMPLETE
+Work State: B398_DEPLOYED_NATIVE_REQUIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
 B398.425 implements the user-approved Study/Dialogue queue repair. [Result](Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md):85selected methods pass,including actual UI/readers/independent owners/Store,restricted Lua and historical counterexamples;220Lua51/25XML/342unique references/343runtime files. Verified queued entries recover only on related evidence,duplicates are refused,and local-END/full-turn/receipt guards remain strict. Single-item timing,qualifications/formulas/saves,Claim policy,network and GC remain unchanged. No native automatic queue deletion.
 
-A completed candidate cannot seed another round from stale native getters;initialization with a same-turn completion ambiguity explains explicit reselection. Last verified live remains B397.424 aa51feb until the safe-switch receipt;main B307.334. Local tests are not native acceptance or full U4/U5. The initial broader inherited selection did not all pass;result records baseline-existing failures,missing DB setup and the explicitly superseded raw selection-check trace.
+A completed candidate cannot seed another round from stale native getters;initialization with a same-turn completion ambiguity explains explicit reselection. Verified live is B398.425 from73bf5b5,343/343 MATCH;B397 outgoing and B307 stable recovery backups match,receipt B398.425-73bf5b5-playtest.json,no pending transaction;main remains B307.334. Local tests are not native acceptance or full U4/U5. The initial broader inherited selection did not all pass;result records baseline-existing failures,missing DB setup and the explicitly superseded raw selection-check trace.
 
 - User decision:none further within the approved batch.
 - User testing:after verified repaired deployment,one Study natural-advance case,one Dialogue reorder-to-sole case,and convenient queued-before-start reload;duplicate clicking must not append copies. No repeat no-P0/accepted ability/GPP/ownership/pillage campaign.
-- Primary next:complete integrity/privacy commit and push,then safe temporary-develop switch if reliably exited;verify receipt/recovery and stop. Other refactor/cold-recovery/S10/Option B work and main promotion remain outside this repair.
+- Primary next:stop at this completed repair/deployment boundary;review the user's next queue evidence when supplied. Other refactor/cold-recovery/S10/Option B work and main promotion remain outside this repair.
 
 ## S0861 — B398.425 local queue recovery closure
 
-2026-10-31. Approved single-item two-project recovery implemented with bounded queue observations and scalar candidates;asynchronous insertion lock,explicit cancellation,local-END fences,interruption-first old-round normalization and completed-receipt candidate retirement. Optional diagnostics remain observers. Native queue/transport/reload uncertainty remains;see result for exact commands and limits.
+2026-10-31. Approved single-item two-project recovery implemented with bounded queue observations and scalar candidates;asynchronous insertion lock,explicit cancellation,local-END fences,interruption-first old-round normalization and completed-receipt candidate retirement. Optional diagnostics remain observers. Native queue/transport/reload uncertainty remains;see result for exact commands and limits. Deployment verified from73bf5b5:343/343 MATCH,exact B397 outgoing/B307 stable recovery,no pending marker. No main promotion or game launch.
 
 ## S0860 — B398 authorized queue recovery execution
 

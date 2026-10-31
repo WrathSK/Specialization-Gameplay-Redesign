@@ -63,4 +63,10 @@ With an available opportunity, no P0 needed:
 
 No repeated profession-yield, GPP, ownership, forced pillage, all Crew variants or no-P0 test. Confirmed exhausted native leftovers are explained for removal by the player; the Mod does not remove them or use completion to dispose of them. Lost native BUILD confirmation remains locked until real entry or explicit replacement/removal evidence; no speculative retry.
 
-User decision:none further inside this batch. User testing:the small queue delta after verified deployment;ordinary Commercial testing may continue separately. Primary next:finish integrity/privacy publication and existing safe temporary-develop deployment if the game is reliably exited;then stop. Option B migration,cold source-consumer integration,S10 and main promotion are outside this repair.
+User decision:none further inside this batch. User testing:the small queue delta after verified deployment;ordinary Commercial testing may continue separately. Primary next:deployment is verified below;stop and await the user's next queue evidence. Option B migration,cold source-consumer integration,S10 and main promotion are outside this repair.
+
+## Verified deployment — 2026-10-31
+
+Source `73bf5b56ae7d18e4776014ae09edeb63559f19ac` was committed and pushed to develop after the19-file publication check passed. The false-positive credential finding was a historical execution-label variable;it was renamed without scanner exceptions or assertion changes,and all41new-file methods passed again. Runtime bytes remained unchanged.
+
+Reliable OS process checks found the game exited before both swaps. The existing temporary-playtest transaction restored the recorded stable package,retained the exact B397 outgoing package,then activated build425. Live **343/343 MATCH**,SHA256 `d068aace17220003524b5ffa7c1babaec194c7f903196f424c8e170d4d2a9274`;stable B307 backup and outgoing B397 backup MATCH,no pending transaction. Receipt `B398.425-73bf5b5-playtest.json`,phase `DEVELOP_ACTIVE`. Main remains B307.334;no game launch or USER_GAME_TEST_PASS.

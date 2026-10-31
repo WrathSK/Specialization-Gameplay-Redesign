@@ -381,3 +381,5 @@ PT016 plan review — 2026-10-31: [Queue recovery and remaining playtest proposa
 
 
 PT016 B398.425 — 2026-10-31: [Local repair/result](Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md) has85selected passing methods and restricted/package proof. Native re-entry remains USER_GAME_TEST_REQUIRED,not closed by simulation. Study/Dialogue only;sole-current full-turn,unique rewards,UNKNOWN and no native queue deletion remain. Duplicate/unconfirmed native insertions are blocked;explicit replacement/removal may abandon a provisional insertion. Completed receipt metadata retires old candidates;an ambiguous same-turn completed queue item requires explicit reselection. Minimal native delta is natural advancement plus reorder-to-sole and convenient queued-before-start reload. User's recent no-P0 operation already has evidence;do not request it again.
+
+PT016 deployment checkpoint — B398.425 from73bf5b5 is verified343/343 MATCH;receipt `B398.425-73bf5b5-playtest.json`. Local repair remains distinct from pending native acceptance. No new no-P0 campaign or repeated accepted-ability tests.
