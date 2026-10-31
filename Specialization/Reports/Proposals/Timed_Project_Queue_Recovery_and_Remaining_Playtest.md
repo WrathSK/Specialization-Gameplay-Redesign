@@ -87,11 +87,13 @@ No implementation or deployment has occurred. Approved implementation can use th
 
 This is a current coverage reconciliation, not a replacement audit/backlog. B391's frozen checklist is an intermediate-version handoff and has been superseded in part by the user's B393–B397 results and explicit exclusions. Do not mechanically reissue it.
 
+User clarification, 2026-10-31: the recent test sessions did not open P0 at all. Their accepted outcomes already provide no-P0 evidence for those exercised paths. Do not request another close-P0 test or prohibit normal city/production/population interfaces. Future ordinary performance observation is not a replacement demand for that already-covered usage.
+
 | Priority / owner | Remaining item | Minimal useful observation / disposition |
 |---|---|---|
 | Required after repair / user | PT016 queue recovery | The native delta above; do not repeat known failing permutations before repair. |
 | Shared integration / user, combine with asset restructuring | Save while REALLOCATING → reload → complete configuration | Old effects do not revive during reallocation; the completed configuration restores appropriate access/effects once. No city transfer; this is the unclosed shared T6 case, not another four-profession numeric campaign. |
-| Final engineering candidate / user + Primary | Ordinary background and performance observation | After the candidate's relevant engineering work is complete, use a few normal planned test turns with panels closed for part of the time. User notes idle/AI/local-action hitches; Primary interprets collector/native workload and does baseline attribution. No duplicate reload/network ritual or speculative performance percentage. |
+| Final engineering candidate / user + Primary | Ordinary background and performance observation | Recent sessions already cover operation without P0. During subsequent normal play of the final relevant engineering candidate, the user may note idle/AI/local-action hitches; Primary interprets collector/native workload and does baseline attribution. No separate panel-closing, reload or network ritual; no speculative performance percentage. |
 | Opportunistic / user | Dialogue starts just before game-era transition | Successful round uses its **start-era** opportunity; a later new-era opportunity is not wrongly consumed. Already deferred by the user. |
 | Opportunistic / user | Two A4 Industry sources with different L and exclusive/overlapping templates | Per-template union and highest coefficient only among actual holders; no globally borrowing the strongest source's L. Existing A3/mixed-source positives remain accepted. |
 | Passive progression / user | Academic Tradition age40 cap; later Practice N3/N6 thresholds | Observe during natural play;36/20% and N1/N2 results already pass. No special wonder/population grind. |
@@ -120,6 +122,6 @@ Evidence: [B391 checklist](../../Status/Validation/Results/Specialization_B391_D
 
 User decision: review the scoped implementation plan, including the proposed duplicate-copy UI guard while retaining sole-project timing. Native automatic deletion and multi-item counting are not included; either would need an explicit additional policy decision.
 
-User testing: none newly requested before repair; continue the intended Commerce test if desired. Later non-Commerce mandatory work is the small queue delta and the shared REALLOCATING recovery case, plus final-candidate normal observation at the appropriate engineering boundary. Everything labeled opportunistic/parked stays that way.
+User testing: none newly requested before repair; continue the intended Commerce test if desired. Later non-Commerce repair verification is the small queue delta and the shared REALLOCATING recovery case if still uncovered. Final-candidate performance evidence comes from ordinary continued play; no separate no-P0 test is required. Everything labeled opportunistic/parked stays that way.
 
 Primary next: wait for plan approval before runtime/test/Design/Architecture edits. After approval, prove the queue evidence and safeguards, implement only the accepted scope, run minimum sufficient checks and use the existing safe develop deployment workflow. Stop the affected path if reliable entry/initialization proof cannot be established without new persistence or changed policy. No main promotion.
