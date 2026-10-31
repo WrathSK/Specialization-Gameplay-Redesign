@@ -11,16 +11,21 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0858",
+    "status": "S0859",
     "runtime": "B397.424 / modinfo424",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B397_Industry_Playtest_20261031.md",
-  "goal": "Read submitted third Industry playtest logs,archive evidence and record scoped acceptance/anomalies;no runtime/test/Design/Architecture changes or deployment.",
+  "goal_reference": "Specialization/Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md",
+  "goal": "Prepare and review scoped two-project queue recovery/duplicate safeguards and reconcile remaining non-Commerce tests;no implementation before approval.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md",
+      "kind": "full",
+      "reason": "Current unapproved queue re-entry plan,existing sole-project rule,stale eligibility example,and remaining native versus engineering work."
+    },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B397_Industry_Playtest_20261031.md",
       "kind": "full",
@@ -748,7 +753,7 @@
   "validation": {
     "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
     "local": "Each implementation batch selects T01–T08, actual module composition, Lua51/static package checks and scoped workload/correctness regressions. See current result for evidence and limits.",
-    "user": "No repeated passed Industry/Research/Culture,GPP,deliberate pillage or ownership campaign. Continue intended Commerce test;Dialogue era-crossing quota deferred by user."
+    "user": "No new user test before repair. Planned minimal queue native delta;REALLOCATING recovery with asset restructuring;final-candidate ordinary observation. Other opportunities/user exclusions stay optional/deferred."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -756,9 +761,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B397_Industry_Playtest_20261031.md",
-    "local": "Read-only source/rule/log reconciliation and documentation integrity only;no new gameplay tests.",
-    "native": "User observed normal Industry cases pass;queue re-entry fails;commercial end-to-end PT015 and exact hitch cause remain open.",
-    "deployment": "Unchanged B397.424 aa51feb;existing receipt/recovery retained;no deployment performed."
+    "report": "Specialization/Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md",
+    "local": "Read-only native/source/contract and current coverage reconciliation;documentation integrity only.",
+    "native": "No new native acceptance;prior results inherited only at their recorded scope.",
+    "deployment": "Unchanged B397.424;no deployment performed."
   }
 }

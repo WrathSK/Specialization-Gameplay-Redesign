@@ -1,23 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0858
+Status Revision: S0859
 Implementation Build: B397.424 / modinfo424; live B397.424 develop; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B397_INDUSTRY_PLAYTEST_REVIEWED
+Work State: B397_QUEUE_RECOVERY_PLAN_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
 
-The third Industry playtest is reviewed across B396 T36–41 and B397 T41–58, with overlapping collector records and reload branches separated. [Coverage and evidence](Validation/Results/Specialization_B397_Industry_Playtest_20261031.md): ordinary tested Industry abilities pass; Engineering Study queue reordering/natural advancement has a confirmed re-entry gap (PT016). The initial Monument15 observation fits B396's unreceived load proof; B397 shows same-turn Standardization application and four loaded-turn proof recoveries. This does not close PT015 commercial transactions or prove a deliberately lost first packet recovered. Batched carrier calls are measured; exact hitch attribution remains unknown.
+The user requested the PT016 queue repair plan and remaining non-Commerce test list,then raised repeated Study entries with only one remaining opportunity. [Proposed plan](../Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md) preserves sole-project full-turn timing,adds verified event-driven re-entry and proposes a duplicate-copy UI guard. Plan only,not implementation approval. Each Study start/completion rechecks L<E;queued entries never reserve knowledge. Native automatic deletion of exhausted entries is unverified and excluded from the proposed minimal scope.
 
-Live remains B397.424 from aa51feb,342/342MATCH under the existing receipt;stable/main stays B307.334. No runtime,Design,Architecture,test or deployment change in this review. No final U5 acceptance is implied.
+The plan clarifies that CheckQueueItemSelected denotes an existing selected queue/manager slot,not queue mode;append mode is separate. The previous Industry report stays frozen. Its ordinary Industry acceptance and scoped B397 network positives remain;PT016 and actual PT015 commercial outcomes remain open. Last verified runtime stays B397.424 from aa51feb;main B307.334. No runtime/test/Design/Architecture/deployment change.
 
-- User decision:none needed for recording evidence;no new queue semantics or implementation approved by this review. Option B convergence remains after U5.
-- User testing:no repeated passed cases,deliberate pillage,ownership or mandatory GPP/variant campaign. Continue the intended Commerce session when desired;Dialogue cross-era quota remains opportunistic/deferred.
-- Primary next:prepare the smallest queue re-entry repair around reliable same-city events and existing complete-turn guards;retain PT015 and measured performance uncertainty. Stop at this evidence-review boundary.
+- User decision:review the proposed queue repair and duplicate guard. No multi-item timing or automatic native queue deletion is presumed approved.
+- User testing:none newly required before repair;later minimal queue delta,REALLOCATING save/reload completion combined with asset restructuring,and final-candidate normal observation. Cross-era quota/multi-source refinements remain opportunistic;no forced pillage,ownership,GPP or repeated accepted abilities.
+- Primary next:wait for this plan's implementation approval. Remaining cold-recovery integration,D7/applied-owner/U4/S10 work is engineering,not transferred into player tests;accepted Option B convergence remains after U5.
+
+## S0859 — Proposed queue recovery and remaining native coverage
+
+2026-10-31. Source/accepted-rule review plus current B393–B397 coverage reconciliation. Corrects the queued parameter interpretation using native UI source. The proposed two-project opt-in separates session queued candidates from actual timers,retains related-event-only reads and unique receipts,and covers last-opportunity/repeated-entry protection. Claim policy stays unchanged. The test list records no compulsory re-test of accepted Culture/Research/Industry abilities;Consulate-granted-unit failure remains a separate unclosed natural-recurrence item,not erased by normal Expedition task success. No implementation or native PASS added.
 
 ## S0858 — Third Industry playtest and bounded anomaly review
 

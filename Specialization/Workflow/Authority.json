@@ -10,7 +10,7 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0858",
+    "status": "S0859",
     "runtime": "B397.424 / modinfo424",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "aa51febb4b99ad21e51416066a737620b2eff8a2",
-  "current_batch": "B397_INDUSTRY_PLAYTEST_REVIEWED",
-  "next_batch": "Plan scoped Study/Dialogue queue re-entry repair;continue intended Commerce native testing/PT015;no automatic queue-rule change or post-U5 migration.",
+  "current_batch": "B397_QUEUE_RECOVERY_PLAN_REVIEW",
+  "next_batch": "Await user review of scoped Study/Dialogue queue recovery and duplicate-copy UI guard;preserve sole-project timing and no automatic native queue deletion. Continue intended commercial native testing independently.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B397.424 temporary develop from aa51febb4b99ad21e51416066a737620b2eff8a2;342/342 MATCH;SHA256 4c14e43d73e98a3f03593422575ce880fad7adc55d4c5c39abd959055fddc0b7;B396 outgoing and B307 stable backups MATCH;no pending transaction;receipt B397.424-aa51feb-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0858 read-only third Industry playtest review;normal tested Industry cases accepted;PT016 queue re-entry gap;B397 proof positives scoped,commercial outcomes and exact hitch cause remain open;runtime unchanged.",
+  "context_review_status": "S0859 plan-only queue recovery/repeated-entry safeguards and non-Commerce coverage reconciliation;queued parameter clarified from native UI source. No implementation/test/deployment/Design/Architecture change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B397_Industry_Playtest_20261031.md"
+  "context_revalidation_report": "Specialization/Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md"
 }
