@@ -1,4 +1,5 @@
 include('TimedProjectSelectionClient')
+include('TimedProjectQueueIntent')
 -- Read-only queue bridge and explicit normal-production intent. Existing native
 -- publication events drain pending clicks; no timers, frame callbacks or probes.
 SPCEngineeringStudyUI={PROJECT='PROJECT_SPC_ENGINEERING_STUDY'}
@@ -11,7 +12,12 @@ function M.Text(pid,id)
  local d=(ExposedMembers.SPC_P0 or {}).EngineeringStudy;local v=d and d.views[pid..':'..id]
  if v and v.stage=='ACTIVE'then return '1','工程传统研习：完整一回合后，本城历史层数 +1。'end
  if v and v.stage=='CALLING'then return '待确认','原生完成回执待确认；不会重复发放。'end
- if v and v.stage=='HELD'then return '已暂停','研习未确认，请查看工业历史报告。'end
+ if v and v.stage=='HELD'then
+  if v.reason=='EST_SINGLE_PROJECT_REQUIRED'then return '已暂停','工程传统研习必须独占生产队列；移除其他项后自动核对计时。'end
+  return '已暂停','研习未确认，请查看工业历史报告。'
+ end
+ local queueStatus=ExposedMembers.SPC_EngineeringStudyQueueStatus
+ if type(queueStatus)=='function'then local ok,label,note=pcall(queueStatus,pid,id);if ok and label then return label,note end end
  local c=Players[pid] and Players[pid]:GetCities():FindID(id)
  if M.Current(c)then return '确认中','请选择为唯一当前项目；中断后需要重新选择。'end
  return '1','需要工业 ACTIVE IV 且本城 L 小于全国 E；中断取消本轮。'
@@ -26,13 +32,20 @@ function M.New(P,send,notify)
   return {reference={owner=pid,cityID=id,x=c:GetX(),y=c:GetY()},turn=Game.GetCurrentGameTurn(),project=M.Current(c),size=c:GetBuildQueue():GetSize()}
  end
  client.Configure('EngineeringStudy','SPC_EngineeringStudyRead','ENGINEERING_STUDY_SYNC',send)
+ local queueIntent=SPCTimedProjectQueueIntent.New(P,client,'EngineeringStudy',send,notify);client.AttachQueueIntent(queueIntent)
  a.Connect=client.Connect;a.Sync=client.Sync;a.WarmStart=client.WarmStart
  function a.Before(c,item,queued)
   if not client.OwnsReader()then return not item or item.Type~=M.PROJECT end
   local k=c and (c:GetOwner()..':'..c:GetID())
   if not item or item.Type~=M.PROJECT then if k then pending[k]=nil end;return true end
+  if c and queueIntent.Supported(c)then
+   pending[k]=nil;return queueIntent.Before(c,item,queued)
+  end
   if not c or queued or not P.IsTestPlayer(c:GetOwner())then return false end
   pending[k]={pid=c:GetOwner(),id=c:GetID(),turn=Game.GetCurrentGameTurn(),read=true};return true
+ end
+ function a.CancelSelection(c)
+  if c then pending[c:GetOwner()..':'..c:GetID()]=nil;queueIntent.CancelUnconfirmed(c)end
  end
  local function drain()
   local d=(ExposedMembers.SPC_P0 or {}).EngineeringStudy;if not d then return end

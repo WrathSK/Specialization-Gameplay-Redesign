@@ -84,10 +84,10 @@ end,{Before={90,'Before'},Pulse={10,'Pulse'}})
 claimSelection=adapters.Add('ClaimProjectUI',claim,{'SPC_ClaimQueueRead','SPC_ClaimSelection','SPC_ClaimSync'},function()
  include('ClaimProjectUI');return SPCClaimProjectUI.New(SPCP0,send,notify)
 end,{Render={70,'Sync'},Before={70,'Before',true},Pulse={20,'Pulse'},Warm={20,'WarmStart'},Queue={10,'QueueEvent'},Connect={10,'Connect'}})
-dialogueSelection=adapters.Add('DialogueProjectUI',one('PROJECT_SPC_ERA_DIALOGUE'),{'SPC_DialogueGameEra','SPC_DialogueProjectRead'},function()
+dialogueSelection=adapters.Add('DialogueProjectUI',one('PROJECT_SPC_ERA_DIALOGUE'),{'SPC_DialogueGameEra','SPC_DialogueProjectRead','SPC_DialogueQueueStatus'},function()
  include('DialogueProjectUI');return SPCDialogueProjectUI.New(SPCP0,send,notify)
 end,{Render={80,'Sync'},Before={60,'Before',true},Pulse={30,'Pulse'},Warm={10,'WarmStart'},Queue={20,'QueueEvent'},Connect={20,'Connect'}})
-engineeringSelection=adapters.Add('EngineeringStudyUI',one('PROJECT_SPC_ENGINEERING_STUDY'),{'SPC_EngineeringStudyRead'},function()
+engineeringSelection=adapters.Add('EngineeringStudyUI',one('PROJECT_SPC_ENGINEERING_STUDY'),{'SPC_EngineeringStudyRead','SPC_EngineeringStudyQueueStatus'},function()
  include('EngineeringStudyUI');return SPCEngineeringStudyUI.New(SPCP0,send,notify)
 end,{Render={90,'Sync'},Before={50,'Before',true},Publish={50,'Publish'},Warm={30,'WarmStart'},Queue={30,'QueueEvent'},Connect={30,'Connect'}})
 local baseAdvance=AdvanceProject
@@ -103,12 +103,17 @@ end,{Render={60,'Items'},Before={30,'Before',true},Publish={30,'Publish'}})
 crewSelection=adapters.Add('CrewProjectUI',crew,{'SPC_CrewNativeRead'},function()
  include('CrewProjectUI');return SPCCrewProjectUI.New(SPCP0,send,notify,baseAdvance)
 end,{Render={30,'Items'},Before={40,'Before',true},Publish={40,'Publish'}})
+local selectedQueueSlot=false
 adapters.Barrier('Before',80,function(c,item)
- return not(item.Type=='PROJECT_SPC_OVERFLOW_SINK_TEST'and CheckQueueItemSelected())
+ return not(item.Type=='PROJECT_SPC_OVERFLOW_SINK_TEST'and selectedQueueSlot)
 end)
-local function queuedSelection()return CheckQueueItemSelected()end
 function AdvanceProject(c,item)
- if adapters.BeforeAll(c,item,queuedSelection)then return baseAdvance(c,item)end
+ local selected=CheckQueueItemSelected()
+ local previous=selectedQueueSlot;selectedQueueSlot=selected
+ local ok,allowed=pcall(adapters.BeforeAll,c,item,function()return selected end)
+ selectedQueueSlot=previous
+ if not ok then error(allowed,0)end
+ if allowed and not selected then return baseAdvance(c,item)end
 end
 adapters.Each('Publish',function(e,method)adapters.Hook(Events,'GameCoreEventPublishComplete',e,method)end)
 adapters.Each('Pulse',function(e,method)adapters.Hook(Events,'GameCoreEventPublishComplete',e,method)end)
@@ -136,7 +141,9 @@ function BuildUnit(c,item)
 end
 local baseRemoveQueueItem=RemoveQueueItem
 function RemoveQueueItem(index)
- adapters.Call(trainingSelection,'CancelQueue',UI.GetHeadSelectedCity(),index)
+ local c=UI.GetHeadSelectedCity()
+ if index==0 then adapters.Call(dialogueSelection,'CancelSelection',c);adapters.Call(engineeringSelection,'CancelSelection',c)end
+ adapters.Call(trainingSelection,'CancelQueue',c,index)
  return baseRemoveQueueItem(index)
 end
 adapters.Hook(Events,'GameCoreEventPublishComplete',trainingSelection,'Pulse')
@@ -156,6 +163,9 @@ function GetBuildInsertMode(parameters)
   local row=GameInfo.Projects['PROJECT_SPC_ERA_DIALOGUE']
   local selectingDialogue=row and type(row.Hash)=='number'and parameters[CityOperationTypes.PARAM_PROJECT_TYPE]==row.Hash
   if index==0 and not selectingDialogue then adapters.Call(dialogueSelection,'CancelSelection',c)end
+  local engineering=GameInfo.Projects['PROJECT_SPC_ENGINEERING_STUDY']
+  local selectingEngineering=engineering and parameters[CityOperationTypes.PARAM_PROJECT_TYPE]==engineering.Hash
+  if index==0 and not selectingEngineering then adapters.Call(engineeringSelection,'CancelSelection',c)end
  end
  return result
 end

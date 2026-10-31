@@ -61,7 +61,8 @@ end
     lua.execute(base + helpers + acquisition + r'''
 T={}
 T.ai=ai;T.district=district;T.take=take
-T.start=start;T.fresh=fresh;T.register=register;T.complete=complete;T.invest=invest
+T.start=function(...)local result=start(...);Players[0].IsTurnActive=function()return true end;return result end
+T.fresh=fresh;T.register=register;T.complete=complete;T.invest=invest
 T.record=record;T.encode=encode;T.clean=clean;T.boot=boot
 function T.props()return props end
 function T.writes()return writes end

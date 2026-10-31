@@ -8,7 +8,7 @@ SPCEngineeringStudyProjects={}
 function SPCEngineeringStudyProjects.Start(P,shared)
  local M=SPCEngineeringStudyModel;local cp=M.Copy;local store=assert(shared.CityProgressionStore)
  local PROJECT='PROJECT_SPC_ENGINEERING_STUDY';local MARKER='BUILDING_SPC_ENGINEERING_STUDY_ACCESS'
- local d={views={},syncAck={},revision=0};shared.EngineeringStudy=d
+ local d={views={},syncAck={},revision=0,beginClosedTurns={},beginOpenTurns={}};shared.EngineeringStudy=d
  local ready,busy=false,false;local rounds=SPCTimedProjects.WorkSet(cp);local advance;local dirty,settling,interrupted,finishing,armed={},{},{},{},{}
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'ENGINEERING_STUDY')
  local function key(pid,id)return pid..':'..id end
@@ -90,7 +90,8 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   local why=p and p.reason or (not eligible and 'EST_ACTIVE_IV_REQUIRED' or good and e.known and L>=e.E and 'EST_KNOWLEDGE_REACHED' or 'EST_SELECT_PROJECT')
   if not known or not good or not e.known then stage='HELD';why=not known and 'EST_QUALIFICATION_UNKNOWN' or 'EST_E_UNKNOWN'end
   if p and p.stage=='ACTIVE'and not rounds.CanRead(pid,id)then stage='HELD';why='EST_RELATED_FACT_REQUIRED'end
-  publish(pid,id,{stage=stage,reason=why,L=L,E=good and e.E or nil,start=p and p.start,reference=s.reference,token=s.token})
+  local completed=s.value and s.value.receipts and s.value.receipts[L]
+  publish(pid,id,{stage=stage,reason=why,L=L,E=good and e.E or nil,start=p and p.start,reference=s.reference,token=s.token,completedID=completed and completed.id or 0,completedTurn=completed and completed.completed})
  end
  local function initialize()
   if ready then return true end
@@ -105,16 +106,28 @@ function SPCEngineeringStudyProjects.Start(P,shared)
  end
  function d.Refresh(pid,id)wake(pid,id);d.Flush()end
  function d.CreditChanged(pid)for _,v in pairs(rounds.All())do if v[1]==pid then rounds.Wake(pid,v[2])end end;markPlayer(pid)end -- confirmed history commit, no immediate cross-writer reentry
+ local function beginWindow(pid,turn)
+  if turn~=Game.GetCurrentGameTurn()or d.beginClosedTurns[pid]==turn then return false end
+  local ok,active=pcall(function()return Players[pid]:IsTurnActive()end)
+  return ok and active==true and turn==Game.GetCurrentGameTurn()and d.beginClosedTurns[pid]~=turn
+ end
  function d.Request(pid,p)
   if not initialize() or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number'then return end
+  if not beginWindow(pid,p.StartTurn)then return end
   rounds.Wake(pid,p.CityID)
   safe(pid,p.CityID,function()
    local c=assert(city(pid,p.CityID),'EST_CITY_UNKNOWN');local s,known,eligible=read(pid,c)
-   if interrupted[key(pid,p.CityID)]then cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');s=store.EngineeringState(pid,c)end
+   if interrupted[key(pid,p.CityID)]then cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');s,known,eligible=read(pid,c)end
+   local prior=s.value and s.value.pending
+   local due=prior and SPCTimedProjectModel.Boundary(prior.start,prior.ended,Game.GetCurrentGameTurn(),false)=='DUE'
+   advance(pid,false,p.CityID) -- confirmed interruption wins before DUE/missed normalization
+   c=assert(city(pid,p.CityID),'TIMED_ENTRY_CITY_CHANGED');s,known,eligible=read(pid,c)
+   if due then return end -- old completion needs a distinct new queue/selection proof
    local e=credit(pid);assert(known and eligible and e.known,'EST_ENTRY_UNKNOWN')
    assert(p.StartTurn==Game.GetCurrentGameTurn(),'EST_START_STALE')
    local q,matches=queue(c);assert(matches,'EST_PROJECT_NOT_CURRENT');assert(type(P.Field(q,'FinishProgress'))=='function','EST_FINISH_UNAVAILABLE')
    if s.value and s.value.pending then assert(s.value.pending.stage=='ACTIVE','EST_ABANDON_REQUIRED');return end
+   if not beginWindow(pid,p.StartTurn)then mark(pid,p.CityID);return end
    write(pid,c,s,M.Begin(s.value,s.token,s.reference,p.StartTurn,e.E));mark(pid,p.CityID)
   end);d.Flush()
  end
@@ -200,8 +213,14 @@ function SPCEngineeringStudyProjects.Start(P,shared)
  local function hook(n,f)local e=P.Field(Events,n);if e and e.Add then e.Add(f)end end
  hook('CityProjectCompleted',completion);hook('CityProductionChanged',production);hook('CityProductionQueueChanged',production)
  hook('GameCoreEventPublishComplete',d.Flush)
- hook('PlayerTurnDeactivated',function(pid)d.Flush();advance(pid,true)end)
- hook('PlayerTurnActivated',function(pid)d.Flush();advance(pid,false)end)
+ hook('PlayerTurnDeactivated',function(pid)
+  if P.IsTestPlayer(pid)then d.beginClosedTurns[pid]=Game.GetCurrentGameTurn();d.beginOpenTurns[pid]=nil end
+  d.Flush();advance(pid,true)
+ end)
+ hook('PlayerTurnActivated',function(pid)
+  if P.IsTestPlayer(pid)then d.beginClosedTurns[pid]=nil;d.beginOpenTurns[pid]=Game.GetCurrentGameTurn()end
+  d.Flush();advance(pid,false)
+ end)
  for _,n in ipairs({'GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged'})do hook(n,function(pid)
   for p in pairs(Players)do if P.IsTestPlayer(p) and (type(pid)~='number' or pid<0 or p==pid)then
    for _,v in pairs(rounds.All())do if v[1]==p then safe(p,v[2],function()audit(p,v[2],true)end)end end;markPlayer(p,true)

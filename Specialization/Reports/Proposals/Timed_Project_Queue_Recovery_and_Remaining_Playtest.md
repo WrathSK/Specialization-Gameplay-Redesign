@@ -1,6 +1,6 @@
 # Proposed timed-project queue recovery and remaining non-Commerce playtest
 
-2026-10-31. Primary proposal at `44f9958`; live remains B397.424 (`aa51feb`), main B307.334. **PLAN_ONLY / NOT_IMPLEMENTED / awaiting user review.** This records the user's request to prepare a plan and reconcile remaining tests. It does not approve new queue semantics, change formal Design/Architecture, authorize implementation or claim final U5. Original acceptance/evidence records remain frozen.
+2026-10-31. Primary proposal at `44f9958`; live remains B397.424 (`aa51feb`), main B307.334. **APPROVED_FOR_IMPLEMENTATION / LOCAL_SIMULATION_PASS / native validation pending.** This records the user's request to prepare a plan and reconcile remaining tests. The user approved these one-turn-project repair principles on 2026-10-31. This authorizes the bounded implementation below, not multi-item timing, native queue deletion, formal rule changes or final U5 acceptance. Original acceptance/evidence records remain frozen.
 
 ## 1. Intended result and accepted boundary
 
@@ -81,7 +81,7 @@ Local gates, after implementation authorization:
 
 Minimum later native delta, only after a verified repaired package: one Engineering Study natural-advance case, one Dialogue reorder-to-sole case, and one queued-before-start reload if that automatic recovery is implemented. Check full-turn display and one reward. Check duplicate refusal in the same small session; no whole ability retest. Claim native repetition is not required solely because a guarded shared helper changed; local actual-Claim regression is required, and a concrete new native uncertainty would need its own explanation.
 
-No implementation or deployment has occurred. Approved implementation can use the existing standing safe develop deployment process after checks and reliable game exit; no new game launch or main promotion follows from plan approval.
+Implementation is locally validated in [B398](../../Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md);deployment is recorded there only after verification. Approved implementation can use the existing standing safe develop deployment process after checks and reliable game exit; no new game launch or main promotion follows from plan approval.
 
 ## 5. What still needs testing outside Commerce
 
@@ -124,4 +124,15 @@ User decision: review the scoped implementation plan, including the proposed dup
 
 User testing: none newly requested before repair; continue the intended Commerce test if desired. Later non-Commerce repair verification is the small queue delta and the shared REALLOCATING recovery case if still uncovered. Final-candidate performance evidence comes from ordinary continued play; no separate no-P0 test is required. Everything labeled opportunistic/parked stays that way.
 
-Primary next: wait for plan approval before runtime/test/Design/Architecture edits. After approval, prove the queue evidence and safeguards, implement only the accepted scope, run minimum sufficient checks and use the existing safe develop deployment workflow. Stop the affected path if reliable entry/initialization proof cannot be established without new persistence or changed policy. No main promotion.
+Primary next: user approval is received;the scoped implementation and local proof are recorded in B398. Complete publication and the existing safe develop deployment workflow. Stop the affected path if reliable entry/initialization proof cannot be established without new persistence or changed policy. No main promotion.
+
+
+## Accepted implementation checkpoint — B398, 2026-10-31
+
+User approves the reviewed one-turn-project repair principles. Preserve the runtime scope, separate policy owners, duplicate prevention and no automatic native deletion. Standing safe develop deployment applies after local proof and reliable game exit;no main promotion/game launch.
+
+Implementation refinement before code: native queue reads use existing GetSize/GetAt/index0 and canonical GameInfo.Project resolution, bounded at the existing Mod defensive100entry ceiling (not claimed engine capacity). Queue indexes are snapshot positions,not persisted IDs. One production-list selection consumes the side-effecting CheckQueueItemSelected once and shares that scalar among adapters;an existing selected slot must never fall through to a second native BUILD. This touches the selection wrapper,so include its ordinary-item/other-adapter regression. Add an owner-side local-END fence: a new round cannot begin after its player's T END;existing related work may defer to the next reliable opening without a city sweep. Normalize only confirmed missed/interrupted old rounds before re-entry;preserve valid ACTIVE/DUE/CALLING and ambiguous HELD. All changes remain within P01–P10/T01/T02/T03/T04/T05/T06/T08,L3 actual-composition coverage. No timer/frame retry/new save record or expanded automatic consumers.
+
+Execution result will be recorded separately;all planned tests remain pending until run.
+
+B398 implementation notes:85selected methods pass (83primary plus2isolated RealOwners);220Lua51/25XML/343runtime files. The adapter chain caches one selected-slot check;the original base function is preserved. Receipt-derived completedID/completedTurn in temporary owner views retire a consumed candidate,including initialization that just completed a DUE round. A same-turn ambiguous completed/native queue item requires explicit reselection rather than automatic reuse. Candidate/presentation caches are independently bounded;idle Publish does not rescan views. Unknown sends do not gain time-only retries. These refinements add no saved field,formula or automatic native queue deletion.

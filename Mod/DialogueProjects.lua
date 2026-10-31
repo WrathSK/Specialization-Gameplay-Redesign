@@ -14,7 +14,7 @@ SPCDialogueProjects={}
 function SPCDialogueProjects.Start(P,shared)
  local M=SPCDialogueProjectModel;local cp=M.Copy;local store=assert(shared.CityProgressionStore)
  local PROJECT='PROJECT_SPC_ERA_DIALOGUE';local MARKER='BUILDING_SPC_ERA_DIALOGUE_ACCESS'
- local d={views={},syncAck={},revision=0};shared.DialogueProjects=d
+ local d={views={},syncAck={},revision=0,beginClosedTurns={},beginOpenTurns={}};shared.DialogueProjects=d
  local ready,busy=false,false;local rounds=SPCTimedProjects.WorkSet(cp);local advance;local dirty,settling,interrupted,finishing,armed={},{},{},{},{};local lastEra
  local function key(pid,id)return tostring(pid)..':'..tostring(id)end
  -- B395: owner readiness follows confirmed Store readiness, not a possibly missed UI Sync/load.
@@ -113,10 +113,13 @@ function SPCDialogueProjects.Start(P,shared)
   if not known then stage='HELD';reason='当前资格尚不可确认；未清除历史，也不完成项目'
   elseif not p and v and v.last and stage=='AVAILABLE' then reason=v.last.reason..'；可重新选择'end
   if p and p.stage=='ACTIVE'and not rounds.CanRead(pid,id)then stage='HELD';reason='当前资格或生产未确认；等待相关事件，不完成项目'end
-  local lastGain,lastX
-  if v and v.last then for _,r in pairs(v.used)do if r.id==v.last.id then lastGain=r.gain;lastX=r.x end end end
+  local lastGain,lastX,completedID,completedTurn=nil,nil,0,nil
+  if v then for _,r in pairs(v.used)do
+   if r.id>completedID then completedID=r.id;completedTurn=r.completed end
+   if v.last and r.id==v.last.id then lastGain=r.gain;lastX=r.x end
+  end end
   publish(pid,id,{stage=stage,reason=reason,start=p and p.start,era=p and p.era or e,total=v and v.total or 0,
-   used=v and v.used[e]~=nil or false,x=lastX,gain=lastGain,reference=s.reference,token=s.token})
+   used=v and v.used[e]~=nil or false,x=lastX,gain=lastGain,reference=s.reference,token=s.token,completedID=completedID,completedTurn=completedTurn})
  end
  function d.Flush()
   if not ready or busy then return end;busy=true
@@ -138,20 +141,33 @@ function SPCDialogueProjects.Start(P,shared)
   d.Refresh(pid,id);advance(pid,false,id)
   if type(token)=='string' then d.syncAck[key(pid,id)]=token end
  end
+ local function beginWindow(pid,turn)
+  if turn~=Game.GetCurrentGameTurn()or d.beginClosedTurns[pid]==turn then return false end
+  local ok,active=pcall(function()return Players[pid]:IsTurnActive()end)
+  return ok and active==true and turn==Game.GetCurrentGameTurn()and d.beginClosedTurns[pid]~=turn
+ end
  function d.Request(pid,p)
   if not P.IsTestPlayer(pid) or type(p.CityID)~='number' or busy or not initialize()then
    cultureObserve('DIALOGUE_BEGIN_GUARD',function()return {owner=pid,city=p.CityID,ready=ready,reason=not ready and 'NOT_READY'or busy and 'BUSY'or 'PLAYER_OR_CITY_GUARD'}end)
    return
   end
+  if not beginWindow(pid,p.StartTurn)then return end
   rounds.Wake(pid,p.CityID)
   safe(pid,p.CityID,function()
    local c=assert(city(pid,p.CityID),'城市不可读');local s,_,known,eligible=read(pid,c)
-   if interrupted[key(pid,p.CityID)] then cancel(pid,c,s,'改选后重新开始');s=store.DialogueState(pid,c)end
+   if interrupted[key(pid,p.CityID)] then cancel(pid,c,s,'改选后重新开始');s,_,known,eligible=read(pid,c)end
+   local prior=s.value and s.value.pending
+   local due=prior and SPCTimedProjectModel.Boundary(prior.start,prior.ended,Game.GetCurrentGameTurn(),false)=='DUE'
+   advance(pid,false,p.CityID) -- confirmed interruption wins before DUE/missed normalization
+   c=assert(city(pid,p.CityID),'TIMED_ENTRY_CITY_CHANGED');s,_,known,eligible=read(pid,c)
+   if due then return end -- old completion needs a distinct new queue/selection proof
    assert(known and eligible,'需要已确认的文化ACTIVE III')
    assert(p.StartTurn==Game.GetCurrentGameTurn(),'启动请求已过期')
    local q,matches=queue(c);assert(matches,'当前目标未确认');assert(type(P.Field(q,'FinishProgress'))=='function','完成接口缺失')
    if s.value and s.value.pending then assert(s.value.pending.stage=='ACTIVE','上次完成尚未确认；请先改选普通目标');return end
-   write(pid,c,s,M.Begin(s.value,s.token,s.reference,era(),p.StartTurn));mark(pid,p.CityID)
+   local startEra=era()
+   if not beginWindow(pid,p.StartTurn)then mark(pid,p.CityID);return end
+   write(pid,c,s,M.Begin(s.value,s.token,s.reference,startEra,p.StartTurn));mark(pid,p.CityID)
    cultureObserve('DIALOGUE_BEGIN_COMMITTED',function()return {owner=pid,city=p.CityID,taskStart=p.StartTurn,requestAccepted=true}end)
   end)
   d.Flush()
@@ -283,8 +299,12 @@ function SPCDialogueProjects.Start(P,shared)
  hook('CityProductionChanged',production)
  hook('CityProductionQueueChanged',production,true)
  hook('GameCoreEventPublishComplete',d.Flush)
- hook('PlayerTurnDeactivated',function(pid)advance(pid,true)end)
+ hook('PlayerTurnDeactivated',function(pid)
+  if P.IsTestPlayer(pid)then d.beginClosedTurns[pid]=Game.GetCurrentGameTurn();d.beginOpenTurns[pid]=nil end
+  advance(pid,true)
+ end)
  hook('PlayerTurnActivated',function(pid)
+  if P.IsTestPlayer(pid)then d.beginClosedTurns[pid]=nil;d.beginOpenTurns[pid]=Game.GetCurrentGameTurn()end
   if not ready or not P.IsTestPlayer(pid)then return end
   local ok,e=pcall(era);if ok and e~=lastEra then lastEra=e;markPlayer(pid,true);d.Flush()end
   advance(pid,false)

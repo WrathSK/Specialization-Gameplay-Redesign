@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="424">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="425">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B397.424：修复商路证明信号追平与读档后有界恢复；网络待确认冻结及交易资格规则不变。</Description>
+    <Description>B398.425：修复时代对话与工程研习的有界队列恢复，阻止重复排入；保留独占队列与完整一回合结算。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -133,7 +133,7 @@
       <File>DialogueProjectModel.lua</File>
       <File>DialogueProjects.lua</File>
     <File>DialogueEffects.lua</File>
-      <File>UI/TimedProjectSelectionClient.lua</File><File>UI/ClaimProjectUI.lua</File>
+      <File>UI/TimedProjectSelectionClient.lua</File><File>UI/TimedProjectQueueIntent.lua</File><File>UI/ClaimProjectUI.lua</File>
       <File>UI/DialogueProjectUI.lua</File>
       <File>TimedProject.lua</File>
       <File>UI/TimedProjectRead.lua</File>
@@ -585,7 +585,7 @@
     <File>DialogueProjectModel.lua</File>
     <File>DialogueProjects.lua</File>
     <File>DialogueEffects.lua</File>
-    <File>UI/TimedProjectSelectionClient.lua</File><File>UI/ClaimProjectUI.lua</File>
+    <File>UI/TimedProjectSelectionClient.lua</File><File>UI/TimedProjectQueueIntent.lua</File><File>UI/ClaimProjectUI.lua</File>
     <File>UI/DialogueProjectUI.lua</File>
     <File>Data/ClaimProjects.sql</File>
     <File>Text/ClaimProjects.sql</File>

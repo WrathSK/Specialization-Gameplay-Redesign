@@ -11,7 +11,7 @@ end
 SPCTimedProjectSelectionClient={}
 local specs={ClaimProjects={'SPC_ClaimQueueRead','CLAIM_SYNC'},DialogueProjects={'SPC_DialogueProjectRead','DIALOGUE_PROJECT_SYNC'},EngineeringStudy={'SPC_EngineeringStudyRead','ENGINEERING_STUDY_SYNC'}}
 function SPCTimedProjectSelectionClient.New(P,pending)
- local d={};local closed,draining=false,false
+ local d={};local closed,draining=false,false;local queueIntent
  local config,registration,registeredService,available;local generation,warmed=0,0;local wakePending=false
  local sent,waiting={},{};local sentGeneration,count=0,0
  local function message(v)local ok,t=pcall(tostring,v);return ok and t:sub(1,180)or 'TIMED_UI_ERROR'end
@@ -23,6 +23,11 @@ function SPCTimedProjectSelectionClient.New(P,pending)
   assert(not config and specs[kind]and specs[kind][1]==readerKey and specs[kind][2]==action and type(send)=='function','TIMED_UI_CONFIGURATION')
   assert(type(ExposedMembers[readerKey])=='function','TIMED_UI_READER')
   config={kind=kind,readerKey=readerKey,action=action,send=send,onStatus=onStatus,reader=assert(ExposedMembers[readerKey],'TIMED_UI_READER')}
+ end
+ function d.Generation()return generation end
+ function d.AttachQueueIntent(policy)
+  assert(config and config.kind~='ClaimProjects'and not queueIntent,'TIMED_QUEUE_POLICY')
+  queueIntent=policy
  end
  function d.OwnsReader()
   local slots=ExposedMembers.SPC_TimedProjectReaderSlots
@@ -83,12 +88,15 @@ function SPCTimedProjectSelectionClient.New(P,pending)
   return state.state,state.token
  end
  function d.WarmStart()
-  if not d.Ready()or warmed==generation then return end
+  if not d.Ready()then return end
+  if queueIntent then queueIntent.Boundary()end
+  if warmed==generation then return end
   local pid=Game.GetLocalPlayer();local player=Players[pid]
   if not player or not P.IsTestPlayer(pid)then return end
   local captured=generation;warmed=captured -- one known-city reconciliation for this actual availability generation
   for _,c in player:GetCities():Members()do
    if generation~=captured or not d.Ready()then break end
+   if queueIntent then queueIntent.Initial(c)end
    d.Sync(c)
   end
  end
@@ -107,6 +115,7 @@ function SPCTimedProjectSelectionClient.New(P,pending)
    return {owner=p.pid,city=p.id,eventOwner=pid,eventCity=id,taskStart=p.turn,ready=p.pid==pid and p.id==id,requestAccepted=not closed}
   end)end
   if closed or config and not d.OwnsReader()or type(pid)~='number' or type(id)~='number'then return end
+  if queueIntent then queueIntent.Event(pid,id)end
   local p=pending[pid..':'..id]
   if p and not p.sent and p.turn==Game.GetCurrentGameTurn()and P.IsTestPlayer(pid)then p.read=true end
  end
@@ -143,13 +152,16 @@ function SPCTimedProjectSelectionClient.New(P,pending)
      replies()
      if generation~=captured or not d.Ready()then return end
     end
+    if queueIntent then queueIntent.Pulse()end
     return fn()
    end);draining=false
    if not ok then error(value,0)end;return value
   end
  end
  function d.Close()
-  if closed then return end;closed=true
+  if closed then return end
+  if queueIntent then queueIntent.Close()end
+  closed=true
   local row=registration
   if row and config then
    local slots=ExposedMembers.SPC_TimedProjectReaderSlots

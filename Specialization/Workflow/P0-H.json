@@ -11,16 +11,31 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0859",
-    "runtime": "B397.424 / modinfo424",
+    "status": "S0861",
+    "runtime": "B398.425 / modinfo425",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md",
-  "goal": "Prepare and review scoped two-project queue recovery/duplicate safeguards and reconcile remaining non-Commerce tests;no implementation before approval.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
+  "goal": "Implement user-approved bounded Study/Dialogue queue recovery/duplicate guards with preserved single-item full-turn policy,actual-composition validation and safe standing develop deployment.",
+  "implementation_authorized": true,
   "context": [
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
+      "kind": "full",
+      "reason": "Current scoped B398 implementation,actual-component proof,baseline failures and native/deployment delta."
+    },
+    {
+      "path": "DevelopmentTests/test_b398_queue_recovery.py",
+      "kind": "full",
+      "reason": "Actual composition,baseline counterexamples,scope/lifecycle/receipt/restricted checks."
+    },
+    {
+      "path": "Mod/UI/TimedProjectQueueIntent.lua",
+      "kind": "full",
+      "reason": "New bounded two-project session queue evidence;no native queue mutation or saved authority."
+    },
     {
       "path": "Specialization/Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md",
       "kind": "full",
@@ -761,9 +776,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md",
-    "local": "Read-only native/source/contract and current coverage reconciliation;documentation integrity only.",
-    "native": "No new native acceptance;prior results inherited only at their recorded scope.",
-    "deployment": "Unchanged B397.424;no deployment performed."
+    "report": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
+    "local": "85selected methods PASS;41new-file methods including3historical counterexamples;220Lua51/25XML/342unique refs/343runtime. Broader inherited failures disclosed,not full U4.",
+    "native": "USER_GAME_TEST_REQUIRED for actual queue/transport/save-reload delta;no repeated no-P0 or accepted abilities.",
+    "deployment": "Last verified B397.424 aa51feb;B398 safe switch pending."
   }
 }

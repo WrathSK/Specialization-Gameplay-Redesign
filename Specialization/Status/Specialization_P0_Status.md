@@ -1,23 +1,31 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0859
-Implementation Build: B397.424 / modinfo424; live B397.424 develop; stable/main B307.334
+Status Revision: S0861
+Implementation Build: B398.425 / modinfo425; live B397.424 develop pending safe switch; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B397_QUEUE_RECOVERY_PLAN_REVIEW
+Work State: B398_QUEUE_RECOVERY_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
-The user requested the PT016 queue repair plan and remaining non-Commerce test list,then raised repeated Study entries with only one remaining opportunity. [Proposed plan](../Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md) preserves sole-project full-turn timing,adds verified event-driven re-entry and proposes a duplicate-copy UI guard. Plan only,not implementation approval. Each Study start/completion rechecks L<E;queued entries never reserve knowledge. Native automatic deletion of exhausted entries is unverified and excluded from the proposed minimal scope.
+B398.425 implements the user-approved Study/Dialogue queue repair. [Result](Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md):85selected methods pass,including actual UI/readers/independent owners/Store,restricted Lua and historical counterexamples;220Lua51/25XML/342unique references/343runtime files. Verified queued entries recover only on related evidence,duplicates are refused,and local-END/full-turn/receipt guards remain strict. Single-item timing,qualifications/formulas/saves,Claim policy,network and GC remain unchanged. No native automatic queue deletion.
 
-The plan clarifies that CheckQueueItemSelected denotes an existing selected queue/manager slot,not queue mode;append mode is separate. The previous Industry report stays frozen. Its ordinary Industry acceptance and scoped B397 network positives remain;PT016 and actual PT015 commercial outcomes remain open. Last verified runtime stays B397.424 from aa51feb;main B307.334. No runtime/test/Design/Architecture/deployment change.
+A completed candidate cannot seed another round from stale native getters;initialization with a same-turn completion ambiguity explains explicit reselection. Last verified live remains B397.424 aa51feb until the safe-switch receipt;main B307.334. Local tests are not native acceptance or full U4/U5. The initial broader inherited selection did not all pass;result records baseline-existing failures,missing DB setup and the explicitly superseded raw selection-check trace.
 
-- User decision:review the proposed queue repair and duplicate guard. No multi-item timing or automatic native queue deletion is presumed approved.
-- User testing:none newly required before repair;later minimal queue delta,REALLOCATING save/reload completion combined with asset restructuring,and final-candidate normal observation. Cross-era quota/multi-source refinements remain opportunistic;no forced pillage,ownership,GPP or repeated accepted abilities.
-- Primary next:wait for this plan's implementation approval. Remaining cold-recovery integration,D7/applied-owner/U4/S10 work is engineering,not transferred into player tests;accepted Option B convergence remains after U5.
+- User decision:none further within the approved batch.
+- User testing:after verified repaired deployment,one Study natural-advance case,one Dialogue reorder-to-sole case,and convenient queued-before-start reload;duplicate clicking must not append copies. No repeat no-P0/accepted ability/GPP/ownership/pillage campaign.
+- Primary next:complete integrity/privacy commit and push,then safe temporary-develop switch if reliably exited;verify receipt/recovery and stop. Other refactor/cold-recovery/S10/Option B work and main promotion remain outside this repair.
+
+## S0861 — B398.425 local queue recovery closure
+
+2026-10-31. Approved single-item two-project recovery implemented with bounded queue observations and scalar candidates;asynchronous insertion lock,explicit cancellation,local-END fences,interruption-first old-round normalization and completed-receipt candidate retirement. Optional diagnostics remain observers. Native queue/transport/reload uncertainty remains;see result for exact commands and limits.
+
+## S0860 — B398 authorized queue recovery execution
+
+2026-10-31. Explicit user approval of reviewed principles. Before-code Runtime Impact refinement covers canonical bounded native queue sampling,side-effecting selected-slot check once per click,and local-END/new-round boundary. No unrelated cold-recovery/S10/Option B or business formula expansion.
 
 ## S0859 — Proposed queue recovery and remaining native coverage
 
