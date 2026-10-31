@@ -20,6 +20,7 @@ local systemPulses,contextPulses=0,0
 local dispatching=false
 local publishPulses,playbackPulses=0,0
 local attempts,retryPending=0,false
+local pendingWake -- one scalar lifecycle witness; never a timer or native object
 local lastFlush="INITIALIZE"
 local function integer(n) return type(n)=="number" and n>=0 and n<math.huge and n%1==0 end
 local function need(o,m,...)
@@ -103,7 +104,7 @@ end
 local function stopNetwork(epoch)
  if networkStopped then return public.networkStopEpoch==epoch end
  networkStopped=true;stopSender(public)
- dirty=false;retryPending=false;attempts=0;lastGood=nil;public.snapshot=nil;normalized:Reset()
+ dirty=false;retryPending=false;attempts=0;pendingWake=nil;lastGood=nil;public.snapshot=nil;normalized:Reset()
  public.networkStopped=true;public.networkStopEpoch=epoch;public.status='ISOLATED_SESSION'
  public.revalidation='STOPPED';public.error=nil;render();return true
 end
@@ -137,6 +138,7 @@ local function requestRevalidation(epoch,pid)
 end
 local function refresh()
  if networkBlocked() then return end
+ local wake=pendingWake;if wake then wake.armed=false end
  P.Count('route_scan');generation=generation+1
  local pid=Game.GetLocalPlayer()
  if not P.IsTestPlayer(pid) then dirty=false;return end
@@ -149,7 +151,10 @@ local function refresh()
   if lastGood and lastGood.player==s.player and lastGood.fingerprint==s.fingerprint then P.Count('same_snapshot') end
   lastGood=s;public.snapshot=s;public.status='COMPLETE_UI_SHADOW';public.error=nil
   public.revalidation='VERIFIED';dirty=false;retryPending=false
-  sendNetwork(public) -- sender also compares content + epoch + receiver ACK
+  if pendingWake==wake then pendingWake=nil end -- detach before native reentry
+  local g=ExposedMembers.SPC_P0;local b=g and g.NetworkBridge
+  local reason=wake and wake.turn==s.turn and b and wake.epoch==b.epoch and wake.name or nil
+  sendNetwork(public,reason) -- complete proof, current signal and receiver ACK
  else
   P.Count('route_failure');public.error=short(s);public.revalidation='NEEDS_REVALIDATION'
   -- No invalid packet solely because a read failed. Gameplay independently checks
@@ -177,6 +182,7 @@ local function flush()
  if not active or networkBlocked() then return end
  if dispatching then P.Count('busy_skip');return end
  observeGame()
+ if pendingWake and pendingWake.armed and not dirty then mark('DEFERRED_'..pendingWake.name) end
  if not dirty and not retryPending then
   -- ACK checking is bounded, and sender returns before encoding unchanged data.
   if public.snapshot and public.awaitingNetwork then sendNetwork(public) end
@@ -187,6 +193,10 @@ local function flush()
  dispatching=false
  if networkStopped then return end
  if not ok then P.Count('route_failure');dirty=false;retryPending=false;public.revalidation='RETRY_STOPPED' end
+end
+local function rememberWake(name)
+ local g=ExposedMembers.SPC_P0;local b=g and g.NetworkBridge
+ pendingWake={name=name,turn=Game.GetCurrentGameTurn(),epoch=b and b.epoch,armed=true}
 end
 local function bind(name,fn)
  local e=P.Field(Events,name)
@@ -217,11 +227,21 @@ local function initialize()
     P.Count('unit_cb');if not P.RouteUnitRelevant(pid,id,accepted) then P.Count('unit_ignored');return end
    end
    if eventName:find('^PlayerTurn') and pid~=Game.GetLocalPlayer() then return end
+   if eventName=='LoadScreenClose' then rememberWake(eventName) end
    mark(eventName)
-   if eventName=='LoadScreenClose' or eventName:find('^PlayerTurn') then flush() end
+   if eventName=='LoadScreenClose' then flush()
+   elseif eventName:find('^PlayerTurn') then flush() end
   end)
  end
- for _,name in ipairs({'GameCoreEventPublishComplete','GameCoreEventPlaybackComplete','SystemUpdateUI'}) do bind(name,flush) end
+ -- This parameterless native local boundary is a later availability witness
+ -- when LoadScreenClose happened before the player could issue operations.
+ bind('LocalPlayerTurnBegin',function()
+  if networkBlocked() then return end
+  if public.awaitingNetwork or public.awaitingTurn or public.status~='COMPLETE_UI_SHADOW' then
+   rememberWake('LocalPlayerTurnBegin');mark('LocalPlayerTurnBegin');flush()
+  end
+ end)
+ for _,name in ipairs({'GameCoreEventPublishComplete','GameCoreEventPlaybackComplete','SystemUpdateUI'}) do bind(name,function()flush()end) end
  flush()
  -- No recurring full-scan timer. Events and local turn boundaries remain primary.
 end
@@ -231,7 +251,7 @@ ContextPtr:SetInitHandler(function()
 end)
 ContextPtr:SetShutdown(function()
  if timingObserver then timingObserver.Stop()end
- active=false;if public then stopSender(public) end;normalized:Reset();ContextPtr:ClearUpdate()
+ active=false;pendingWake=nil;if public then stopSender(public) end;normalized:Reset();ContextPtr:ClearUpdate()
  for _,h in ipairs(hooks) do if h.event.Remove then h.event.Remove(h.callback) end end
  if ExposedMembers.SPC_P0_BackgroundRoutes==public then ExposedMembers.SPC_P0_BackgroundRoutes=nil end
 end)

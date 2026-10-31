@@ -766,9 +766,9 @@
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/NetworkSender.lua": {
-      "sha256": "18ebadec6cf2677d8b4a5851be7f4c5eef05909c2d8f02e7d8673899b719c331",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md",
-      "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
+      "sha256": "824b284791f9637d2f839d88a736e6796e6ba30019b350aff87e9e40c3f0f17e",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B397_Network_Proof_Transport.md",
+      "provenance": "B397.424 scoped NET-1/NET-2 signal and bounded lifecycle proof transport;87targeted methods/restricted Lua51/package checks PASS,native/deployment pending;D1 and transaction gates unchanged."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
       "sha256": "3fb804c0fa2091d800d09c7d3dae3d8745ae68f58e9c1bdbd740cac2e1c0c31d",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "5745fd1de5f2590ca116bc089d914ce5c84270b145b55e9dc03085b783abdd07",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
-      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
+      "sha256": "b3173ba4464f3a624f14da7777fa8bd5291ceae7367fe2a597a923c6e19d19b2",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B397_Network_Proof_Transport.md",
+      "provenance": "B397.424 scoped NET-1/NET-2 signal and bounded lifecycle proof transport;87targeted methods/restricted Lua51/package checks PASS,native/deployment pending;D1 and transaction gates unchanged."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "7902ff4338f41e0ac40eadfab22b0ff2d4bfa7e2491f76b3956cded3b4a10f95",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
-      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
+      "sha256": "311beefcbf29c400691af821442c578e0640b4573914752f12f9299223489bfc",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B397_Network_Proof_Transport.md",
+      "provenance": "B397.424 scoped NET-1/NET-2 signal and bounded lifecycle proof transport;87targeted methods/restricted Lua51/package checks PASS,native/deployment pending;D1 and transaction gates unchanged."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1151,9 +1151,9 @@
       "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/BackgroundRoutes.lua": {
-      "sha256": "4e168ff0538996d0dee9f1b6ddb1177e6008d1a1128631fc76d19d195fcf127a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
-      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
+      "sha256": "bc491f9e993a8ca991b3a01eae6fac8daee973a448dd2a6f30b3070d83573cae",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B397_Network_Proof_Transport.md",
+      "provenance": "B397.424 scoped NET-1/NET-2 signal and bounded lifecycle proof transport;87targeted methods/restricted Lua51/package checks PASS,native/deployment pending;D1 and transaction gates unchanged."
     },
     "Mod/UI/BackgroundRoutes.xml": {
       "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",
@@ -1716,5 +1716,5 @@
       "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
     }
   },
-  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed."
+  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed. B397.424:S0857 four named runtime files reviewed for NET-1/NET-2;87local methods pass,native/deployment pending;no other runtime hashes refreshed."
 }

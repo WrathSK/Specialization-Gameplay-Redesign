@@ -1,21 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0856
-Implementation Build: B396.423 / modinfo423; live B396.423 develop; stable/main B307.334
+Status Revision: S0857
+Implementation Build: B397.424 / modinfo424; live B396.423 develop pending replacement; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B396_GPP_DIAGNOSTICS_DEPLOYED
+Work State: B397_NETWORK_PROOF_TRANSPORT_LOCAL_VALIDATED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B396.423 diagnostic-only repair is locally verified:real cold P0 transport,explicit Research/Culture/Industry/Commerce actual-versus-locked comparison,separate GP/dirty budgets and supported-player cause filtering.97targeted methods and static/package checks pass;native Getter semantics remain unproven. [Batch result](Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md). No gameplay Getter/formula/eligibility/carrier/save/event/retry/GC change;Lv2GPP/ResearchChair/EffectiveFacts source unchanged. Live B396.423 from4ec32e1 is342/342MATCH under receipt B396.423-4ec32e1-playtest.json;main B307.334,original S9/S10 and final U5 remain.
+B397.424 narrowly repairs NET-1 signal-aware route-proof deduplication and NET-2 bounded missing-receipt recovery at LoadScreenClose/LocalPlayerTurnBegin.87 selected methods and restricted Lua51/package checks pass;native delivery remains pending. [Batch result](Validation/Results/Specialization_B397_Network_Proof_Transport.md). Bridge validation/replay/TransactionCurrent,D-1 passive freeze,profession formulas/prices/saves and accepted Research/Culture business sources are unchanged. Live remains B396.423 under its existing verified receipt until the safe deployment transaction;main stays B307.334.
 
-- User decision:implement missing observation and collect while testing Industry/Commerce. Chair suspected panel refresh and deleted displacement stay parked;no new gameplay decision.
-- User testing:keep collector open and right-click 专家与岗位 for selected test city in automatic/locked states when convenient;four current professions supported,no extra campaign or accepted-case repetition.
-- Primary next:stop at deployed diagnostic boundary and inspect next data;B395/B307 recovery backups MATCH,no pending transaction. This is not a GPP business fix or native PASS.
+- User decision:repair NET-1/NET-2 now;Option B architecture convergence is accepted for after U5,not implemented here. User explicitly approves publishing the prior eeb4a08 report with this batch after privacy checks. No Principles A/B/C migration,S9/S10 cleanup or main promotion.
+- User testing:combine one loaded-turn proof recovery and unchanged-content signal catch-up with the next planned Commerce READY/Capital/Development test;no separate Research/Culture retest or deliberate pillage.
+- Primary next:review/publish verified B397,then standing safe develop deployment after reliable exit detection;record receipt and stop. Existing U4/S9/S10/final U5 obligations remain,not mechanically closed.
+
+## S0857 — B397 pre-U5 network proof transport
+
+2026-10-31. Explicit user-scoped NET-1/NET-2 repair. Actual Sender/Bridge baseline counterexamples,34new-file methods(including11existing assertions) and87total selected methods pass. Complete snapshots and strict transaction gates remain;missing receipts get only finite lifecycle recovery,with a bounded witness surviving transient sample failure/reentry. Native drop stage and remaining Commercialization/contract outcomes remain unproved;see batch result for inherited old-test failures and minimal native delta.
 
 ## S0856 — B396.423 Repair removable four-profession GPP comparison
 

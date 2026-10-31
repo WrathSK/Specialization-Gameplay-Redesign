@@ -11,16 +11,21 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0856",
-    "runtime": "B396.423 / modinfo423",
+    "status": "S0857",
+    "runtime": "B397.424 / modinfo424",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
-  "goal": "Authorized B396 removable GPP diagnostic repair for four current professions;prove transport and business isolation,then standing safe-develop deployment;no gameplay repair.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B397_Network_Proof_Transport.md",
+  "goal": "Authorized pre-U5 NET-1/NET-2 route-proof transport repair;strict proof/transactions and D1 unchanged;bounded lifecycle recovery,local gates and standing safe develop deployment only.",
   "implementation_authorized": true,
   "context": [
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B397_Network_Proof_Transport.md",
+      "kind": "full",
+      "reason": "Current explicit NET-1/NET-2 scope,Runtime Impact Contract,local evidence and native/deployment boundary."
+    },
     {
       "path": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
       "kind": "section",

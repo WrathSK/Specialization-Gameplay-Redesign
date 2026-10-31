@@ -357,3 +357,8 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 | PT015 | BUG / BLOCKED triage | B393.420 | 5–6 | Capital:5次CAPITAL_COMMERCE_PENDING，11次打开／刷新均HELD、canSign=false；Development:DEVELOPMENT_OUTGOING_PENDING。网络曾确认1路线后重新待确认，末次signal26/28；见覆盖报告seq751–906 | 本轮商业合同入口受阻；根因未裁定，不能推及所有商业能力 | 本次无main热修／晋升 | 后续定域调查事实更新与恢复传播；不得靠放宽交易资格消除提示。商业化非零入账、合同结算和信誉／重组尚未验收闭合 |
 
 User decision：无新的玩法决定。User testing：不为记录重复已证实步骤；文化／科研例外可直接补充。Primary next：本次只记录；下次授权工作先带入PT015，再继续原S9/S10边界。
+
+
+## PT015 follow-up — B397 NET-1 / NET-2 local repair, native pending
+
+2026-10-31. [B397 result](Validation/Results/Specialization_B397_Network_Proof_Transport.md) repairs the independently confirmed equal-content/stale-signal sender latch and bounded first-load missing-receipt recovery.87selected local methods pass;Bridge/transaction/D-1/formulas stay unchanged. PT015 remains USER_GAME_TEST_REQUIRED,not PASS:in the planned commercial session,one reload and the next ordinary unchanged-route turn should verify proof recovery,Commerce READY,and eligible Capital/Development quotation/confirmation. Other zero-revenue/HELD causes are not presumed fixed. Accepted Option B convergence stays after U5;no new architecture migration or deliberate pillage/repeated accepted Research/Culture tests.
