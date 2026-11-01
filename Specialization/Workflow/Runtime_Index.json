@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "73bf5b56ae7d18e4776014ae09edeb63559f19ac",
-  "runtime": "B398.425 / modinfo425 temporary develop;stable/main B307.334",
+  "runtime_commit": "491517093de18c8b151053724e316f1e08228995",
+  "runtime": "B399.426 / modinfo426 temporary develop;stable/main B307.334",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1726,5 +1726,5 @@
       "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     }
   },
-  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed. B397.424:S0857 four named runtime files reviewed for NET-1/NET-2;87local methods pass,native/deployment pending;no other runtime hashes refreshed. B397deployment:aa51feb,342/342MATCH,receipt and B396/B307 recovery verified;native pending.; S0861 B398.425 reviewed bounded queue intents/full-turn gates and native selection semantics;85selected local methods,220Lua51/25XML/343runtime. Deployment pending. B398 verified deployment:73bf5b5,343/343 MATCH;exact B397/B307 recovery and receipt,no pending transaction;runtime/test bytes unchanged by receipt recording,native pending. S0863 B399.426:nine owned runtime entries reviewed plus new observer inventory;178selected local methods,221Lua51/25XML/344runtime;independent removal proof and inherited failures disclosed. Last deployed runtime pointers remain B398 pending receipt."
+  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed. B397.424:S0857 four named runtime files reviewed for NET-1/NET-2;87local methods pass,native/deployment pending;no other runtime hashes refreshed. B397deployment:aa51feb,342/342MATCH,receipt and B396/B307 recovery verified;native pending.; S0861 B398.425 reviewed bounded queue intents/full-turn gates and native selection semantics;85selected local methods,220Lua51/25XML/343runtime. Deployment pending. B398 verified deployment:73bf5b5,343/343 MATCH;exact B397/B307 recovery and receipt,no pending transaction;runtime/test bytes unchanged by receipt recording,native pending. S0863 B399.426:nine owned runtime entries reviewed plus new observer inventory;178selected local methods,221Lua51/25XML/344runtime;independent removal proof and inherited failures disclosed. Last deployed runtime pointers remain B398 pending receipt. B399 verified deployment:4915170,344/344MATCH;exact B398/B307 recovery and receipt,no pending marker;runtime/test bytes unchanged by this metadata,native pending."
 }

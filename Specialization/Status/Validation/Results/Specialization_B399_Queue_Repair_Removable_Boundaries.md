@@ -50,7 +50,7 @@ Regenerable logs,explicit selector and the concise environment/result manifest s
 
 Continue the existing save/reload and two-investment plan;the captured contracts are dueT68. With a convenient opportunity,one already-started Study/Dialogue reorder→sole case should now restart and complete once. Keep the collector running during ordinary next2–3turns;the new short observation window is automatic. No P0 toggle,new GPP/pillage/ownership campaign,repeat of accepted abilities or forced border test is requested.
 
-User decision:none further within this authorized scope. User testing:the small queue delta and already intended commercial play;Treasury/border records are evidence,not a claimed root-cause repair. Primary next:publish the verified batch,perform the existing safe temporary-develop switch if the game is reliably exited,record actual receipt/recovery,and stop. Main promotion and broader refactor remain outside this batch.
+User decision:none further within this authorized scope. User testing:the small queue delta and already intended commercial play;Treasury/border records are evidence,not a claimed root-cause repair. Primary next:stop at the verified deployment boundary below;await the existing native test/log opportunity. Main promotion and broader refactor remain outside this batch.
 
 ## Re-run selection
 
@@ -80,3 +80,7 @@ print('SELECTED',len(selected),'PREEXISTING_SEPARATELY_REPRODUCED',len(existing)
 r=unittest.TextTestRunner(verbosity=0).run(unittest.TestSuite(selected))
 raise SystemExit(0 if r.wasSuccessful()else 1)
 ```
+
+## Verified temporary deployment
+
+2026-11-01. The game executable was absent before each transaction;clean committed source `491517093de18c8b151053724e316f1e08228995` was already pushed to develop. Existing guarded restore→activate tools were used with reviewed hashes and separate check-only/apply steps. Live B399.426 matches all344source files,SHA256 `7f1eae6b8ef33a0c865cadb651428fa79b5f6bf98fffb6601b43afcc75278077`. Receipt `B399.426-4915170-playtest.json` is DEVELOP_ACTIVE;outgoing B398.425 and stable B307.334 recovery packages both match their recorded hashes. No pending deployment marker remains. This records package equality/recovery,not native API delivery or gameplay PASS. Main and frozen native evidence are unchanged;no game launch. Subsequent receipt metadata commits do not change runtime bytes.

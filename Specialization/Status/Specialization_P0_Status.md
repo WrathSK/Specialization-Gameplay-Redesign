@@ -2,16 +2,16 @@
 
 Document Owner: Codex
 Status Revision: S0863
-Implementation Build: B399.426 / modinfo426 local complete; live B398.425 develop from73bf5b5; stable/main B307.334
+Implementation Build: B399.426 / modinfo426; live B399.426 develop from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B399_LOCAL_COMPLETE_DEPLOYMENT_PENDING
+Work State: B399_DEPLOYED_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-B399.426 is locally complete under the user's explicit authorization to finish the repair and add removable probes. Design D0058/Architecture A0183 and stable/main B307.334 remain unchanged. [B399 result](Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md) records the repair,independent observer/removal contract,exact re-run selection and limits. Live remains B398.425 from73bf5b5 until a verified temporary-develop receipt is recorded.
+B399.426 is locally complete and deployed under the user's explicit authorization to finish the repair and add removable probes. Design D0058/Architecture A0183 and stable/main B307.334 remain unchanged. [B399 result](Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md) records the repair,independent observer/removal contract,exact re-run selection and limits. Live from4915170 is344/344 MATCH;receipt `B399.426-4915170-playtest.json` and exact outgoing B398/stable B307 recovery are verified,no pending transaction.
 
 PT016:Study/Dialogue temporary views now expose existing confirmed cancellation evidence so the same-turn reorder→sole round may start with a distinct identity. Unknown sends and unconfirmed cancellations cannot restart;full-turn,eligibility,completion receipts and no native queue deletion remain. 178selected local methods pass,including29new methods;four inherited failures are separately reproduced at baseline,not claimed PASS. 221Lua5.1 files compile,25XML parse,343unique references resolve across344runtime files. No new permanent record or native PASS.
 
@@ -19,11 +19,11 @@ PT017/PT018:an isolated optional observer samples Treasury/maintenance and one a
 
 - User decision:none further within this batch.
 - User testing:ordinary next2–3turns with the collector;one convenient started→reorder→sole restart should complete once. Continue the already intended investment/reload test;no P0 toggle or GPP/pillage/ownership/accepted-ability repeat requested.
-- Primary next:publish verified develop,check reliable game exit,perform the existing guarded temporary switch,record exact receipt/recovery,and stop. No main promotion or game launch.
+- Primary next:stop and await the ordinary test/log opportunity;no main promotion,game launch or broader refactor in this batch.
 
 ## S0863 — B399.426 canceled-round recovery and removable boundary observations
 
-2026-11-01. Scoped owner/view/request correction uses existing confirmed cancellation records without saved fields or extra owner reads. New protected optional observer has finite6-turn/96Treasury/64position/512clock limits,independent Stop/disable/removal and a separately capped collector summary. 178selected methods and restricted/static package checks pass within the result's limits;four historical failures remain explicit. Native causes and queue acceptance remain pending;deployment is separately verified after publication.
+2026-11-01. Scoped owner/view/request correction uses existing confirmed cancellation records without saved fields or extra owner reads. New protected optional observer has finite6-turn/96Treasury/64position/512clock limits,independent Stop/disable/removal and a separately capped collector summary. 178selected methods and restricted/static package checks pass within the result's limits;four historical failures remain explicit. Native causes and queue acceptance remain pending. Deployment subsequently verified from4915170:344/344MATCH,exact B398/B307 recovery,receipt and no pending marker;runtime/test bytes unchanged by receipt metadata.
 
 ## S0862 — B398 fourth playtest evidence and residual gaps
 

@@ -799,6 +799,6 @@
     "report": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
     "local": "178selected methods PASS(176combined+2isolated);29new;four existing failures reproduced at6a9a05d,not weakened. 221Lua51/25XML/343unique refs/344runtime. Exact selection and independent exit proof recorded.",
     "native": "USER_GAME_TEST_REQUIRED:queue restart,optional sample/event delivery,PT017Treasury origin/PT018native displacement. No formula/unit-behavior repair. Existing T68Capital maturity/reload remains.",
-    "deployment": "Pending clean-source publication and reliable game-exit verification;last verified live remains B398.425/73bf5b5."
+    "deployment": "Verified temporary develop B399.426 from491517093de18c8b151053724e316f1e08228995;344/344MATCH;receipt B399.426-4915170-playtest.json;outgoing B398/stable B307 exact recovery;no pending marker,main unchanged,no native PASS."
   }
 }
