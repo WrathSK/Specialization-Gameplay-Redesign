@@ -11,16 +11,31 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0862",
-    "runtime": "B398.425 / modinfo425",
+    "status": "S0863",
+    "runtime": "B399.426 / modinfo426",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md",
-  "goal": "Record scoped fourth native playtest evidence,independently reproduce residual queue admission gap,and separate observed balances/contracts/border recurrence from unresolved causes;no runtime change in this intake.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+  "goal": "Repair confirmed canceled-round queue re-entry for Study/Dialogue and add removable bounded Treasury/Expedition observers;preserve unknown/no-replay guards and all business amounts/unit rules.",
   "implementation_authorized": true,
   "context": [
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+      "kind": "full",
+      "reason": "Current B399 implementation/local proof,isolated observer exit,baseline failures and native/deployment limits."
+    },
+    {
+      "path": "DevelopmentTests/test_b399_queue_boundaries.py",
+      "kind": "full",
+      "reason": "Actual owner/Store/UI cancellation and observer optionality,bounds,cleanup,guard,transport and restricted Lua checks."
+    },
+    {
+      "path": "Mod/PlaytestBoundaryDiagnostics.lua",
+      "kind": "full",
+      "reason": "Independent optional finite observer;no business consumer or save authority."
+    },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
       "kind": "full",
@@ -39,7 +54,7 @@
     {
       "path": "Specialization/Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md",
       "kind": "full",
-      "reason": "Current unapproved queue re-entry plan,existing sole-project rule,stale eligibility example,and remaining native versus engineering work."
+      "reason": "Accepted existing sole-project rule and user-authorized B399 before-code Runtime Impact Contract;no unrelated refactor."
     },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B397_Industry_Playtest_20261031.md",
@@ -758,8 +773,8 @@
     }
   ],
   "dependencies": [
-    "User-assigned Primary and U1 acceptance authorize S2–S10 in order; current D0058/A0182 govern changed semantics.",
-    "Stable/live B307.334 receipt remains unchanged; S2–S10 continue under accepted U1, with no automatic deployment."
+    "User-assigned Primary and accepted U1 govern continuing work;current explicit authorization covers only B399 queue repair and isolated necessary probes;D0058/A0183 unchanged.",
+    "Standing2026-10-27 automatic safe develop deployment applies only after verified game exit and clean published source;stable/main B307.334 is not promoted."
   ],
   "old_writers": [
     "Historical U1 began on B271;stable/main remains B307.334. Current live package is tracked by Authority/receipt;each cutover audits actual writer/observer/exit closures."
@@ -773,7 +788,7 @@
   "validation": {
     "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
     "local": "Each implementation batch selects T01–T08, actual module composition, Lua51/static package checks and scoped workload/correctness regressions. See current result for evidence and limits.",
-    "user": "Keep already planned investments through capturedT68maturity and ordinary save/reload. No new queue/GPP/no-P0/pillage/accepted-profession repeat requested by this intake."
+    "user": "Ordinary next2–3turns with collector and one convenient canceled-round restart;continue capturedT68maturity/reload. No repeated GPP/no-P0/pillage/accepted-ability campaign."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -781,9 +796,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md",
-    "local": "Six current actual-module/native-double investigation cases:four admissions successful,two canceled-round restart counterexamples reproduced. Prior85selected test result preserved,not rerun or expanded to full acceptance.",
-    "native": "Scoped Commerce UI/configuration and two Capital signatures/debits;PT016reorder failure remains;PT017Treasury/PT018border mechanism unresolved. DueT68maturity/reload and Development remain pending.",
-    "deployment": "Unchanged B398.425 from73bf5b5,343/343 MATCH;prior receipt/recovery remains. No new deployment."
+    "report": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+    "local": "178selected methods PASS(176combined+2isolated);29new;four existing failures reproduced at6a9a05d,not weakened. 221Lua51/25XML/343unique refs/344runtime. Exact selection and independent exit proof recorded.",
+    "native": "USER_GAME_TEST_REQUIRED:queue restart,optional sample/event delivery,PT017Treasury origin/PT018native displacement. No formula/unit-behavior repair. Existing T68Capital maturity/reload remains.",
+    "deployment": "Pending clean-source publication and reliable game-exit verification;last verified live remains B398.425/73bf5b5."
   }
 }

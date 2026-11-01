@@ -118,8 +118,9 @@ function SPCDialogueProjects.Start(P,shared)
    if r.id>completedID then completedID=r.id;completedTurn=r.completed end
    if v.last and r.id==v.last.id then lastGain=r.gain;lastX=r.x end
   end end
+  local cancelledID=not p and v and v.last and v.last.id>completedID and v.last.id or 0
   publish(pid,id,{stage=stage,reason=reason,start=p and p.start,era=p and p.era or e,total=v and v.total or 0,
-   used=v and v.used[e]~=nil or false,x=lastX,gain=lastGain,reference=s.reference,token=s.token,completedID=completedID,completedTurn=completedTurn})
+   used=v and v.used[e]~=nil or false,x=lastX,gain=lastGain,reference=s.reference,token=s.token,completedID=completedID,completedTurn=completedTurn,cancelledID=cancelledID})
  end
  function d.Flush()
   if not ready or busy then return end;busy=true

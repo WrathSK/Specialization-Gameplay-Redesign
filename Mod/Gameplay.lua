@@ -1037,3 +1037,6 @@ if readiness then pcall(readiness.Seal)end
 
 -- Install after original listeners; observational append only.
 pcall(function()include('EventTimingDiagnostics');SPCEventTimingDiagnostics.Start(P,shared,'GAMEPLAY')end)
+
+-- B399 optional read-only boundary observer; no composition/business dependency.
+pcall(function()include('PlaytestBoundaryDiagnostics');SPCPlaytestBoundaryDiagnostics.Start(P,shared)end)

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="425">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="426">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B398.425：修复时代对话与工程研习的有界队列恢复，阻止重复排入；保留独占队列与完整一回合结算。</Description>
+    <Description>B399.426：补齐一回合项目中断后重启；增加可独立退出的金库及考察团位置观察，不改变金额或单位行为。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -173,6 +173,7 @@
       <File>UI/Institutions.xml</File>
       <File>PerformanceCounters.lua</File>
       <File>EventTimingDiagnostics.lua</File>
+    <File>PlaytestBoundaryDiagnostics.lua</File>
       <File>RuntimeAuditCore.lua</File>
       <File>UI/RuntimeAudit.lua</File>
       <File>UI/RuntimeAudit.xml</File>
@@ -505,6 +506,7 @@
   </InGameActions>
   <Files>
     <File>EventTimingDiagnostics.lua</File>
+    <File>PlaytestBoundaryDiagnostics.lua</File>
     <File>Data/InternalCarrierPillage.sql</File>
     <File>Restructuring.lua</File>
     <File>RestructuringModel.lua</File>

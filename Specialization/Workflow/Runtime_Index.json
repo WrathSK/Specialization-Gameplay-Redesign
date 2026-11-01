@@ -541,9 +541,9 @@
       "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/DialogueProjects.lua": {
-      "sha256": "178542704e3ae625ef009e507c340ebce02b299bc26f7ac17ea4c52719f86a80",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-      "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas."
+      "sha256": "74be8c006510d8490aacbe385b4f1c829406ff03457b214cd9a2e202647a6aa5",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
     "Mod/DistrictCompleteness.lua": {
       "sha256": "dc7d30c4e04c156b90faa9dfeb262f03e068b09023e536ebc180621da4c404f6",
@@ -576,9 +576,9 @@
       "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
     },
     "Mod/EngineeringStudyProjects.lua": {
-      "sha256": "fc54ffebd22d845652300c4808104bac32da037c367561fdddca449b911f877a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-      "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas."
+      "sha256": "672fd086a94c3fe5db8ae2ad58e85a52f97676aeddde4d54bc640a6c05087c52",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
     "Mod/EnvelopeProbe.lua": {
       "sha256": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
@@ -601,9 +601,9 @@
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "006804916cfbae7d2a1684e170897b47bac22db446e6c0826140e5aa35466529",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
-      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
+      "sha256": "7f46238a60dd3131d30737aab768533bebb6a7659e6950e395abe21666c9e52a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
     "Mod/ExpeditionSpyRead.lua": {
       "sha256": "74b1960a96970f0ee5bc80e59499ccff490eb27ad97f56b1d346872aabbce305",
@@ -626,9 +626,9 @@
       "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "60bf658631aac386e6c7b2db5fa82145cfa03c868590adae01ece573f4d348e7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "e30a3fbe5c4c7e5fc823bd1d60cc910c72904af89c3e8fec1c3f44e4a1dc84f1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
     "Mod/FreshBindingHook.lua": {
       "sha256": "03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "066b29da7d521d3833cfbf0a69d35552f72ddd10db44c0f7deaaf7361177a03e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
-      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
+      "sha256": "1040447c5b04c7ae85e3dc31713cc38b5133a13173066ab469ddb81ede59ced8",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "c577086d11e819738823ad010fe1e7890a8e4668093f380d3c8d67d652869e68",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-      "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas."
+      "sha256": "7787a01755de97dfa688e76fa13c7d2cec13a3462232c37493f19c08cffdbeb6",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "488d3928711664a1bf2be21e40f548a332d67595e6100839f7d811e2a598edb3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-      "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas."
+      "sha256": "59edc69b19cf5bdb197febc13feabf590281b97d2791918f0fafed81f5b8d767",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1716,10 +1716,15 @@
       "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
     },
     "Mod/UI/TimedProjectQueueIntent.lua": {
-      "sha256": "7eae330c5ab0556b9b0f7ade9050ca3a5a30e1871b6fb25a04b1fdd6bbde4a84",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-      "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas."
+      "sha256": "682c9adb557540783e3865096b062f43ea64adb84af252df0955e3e3ee3cdc9a",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
+    },
+    "Mod/PlaytestBoundaryDiagnostics.lua": {
+      "sha256": "e7b2512454f7dd52a7b21e952de67b7d3c8d9d253248c363058aa65ca9a5a5c1",
+      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     }
   },
-  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed. B397.424:S0857 four named runtime files reviewed for NET-1/NET-2;87local methods pass,native/deployment pending;no other runtime hashes refreshed. B397deployment:aa51feb,342/342MATCH,receipt and B396/B307 recovery verified;native pending.; S0861 B398.425 reviewed bounded queue intents/full-turn gates and native selection semantics;85selected local methods,220Lua51/25XML/343runtime. Deployment pending. B398 verified deployment:73bf5b5,343/343 MATCH;exact B397/B307 recovery and receipt,no pending transaction;runtime/test bytes unchanged by receipt recording,native pending."
+  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed. B397.424:S0857 four named runtime files reviewed for NET-1/NET-2;87local methods pass,native/deployment pending;no other runtime hashes refreshed. B397deployment:aa51feb,342/342MATCH,receipt and B396/B307 recovery verified;native pending.; S0861 B398.425 reviewed bounded queue intents/full-turn gates and native selection semantics;85selected local methods,220Lua51/25XML/343runtime. Deployment pending. B398 verified deployment:73bf5b5,343/343 MATCH;exact B397/B307 recovery and receipt,no pending transaction;runtime/test bytes unchanged by receipt recording,native pending. S0863 B399.426:nine owned runtime entries reviewed plus new observer inventory;178selected local methods,221Lua51/25XML/344runtime;independent removal proof and inherited failures disclosed. Last deployed runtime pointers remain B398 pending receipt."
 }

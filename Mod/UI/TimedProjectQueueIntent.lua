@@ -16,7 +16,7 @@ function M.New(P,client,kind,send,notify)
  local function view(k)local b=backend();return b and b.views and b.views[k]end
  local function viewKey(v)
   if not v then return 'UNKNOWN'end
-  return tostring(v.stage)..':'..tostring(v.reason)..':'..tostring(v.start)..':'..tostring(v.L)..':'..tostring(v.E)..':'..tostring(v.era)..':'..tostring(v.token)..':'..tostring(v.completedID)
+  return tostring(v.stage)..':'..tostring(v.reason)..':'..tostring(v.start)..':'..tostring(v.L)..':'..tostring(v.E)..':'..tostring(v.era)..':'..tostring(v.token)..':'..tostring(v.completedID)..':'..tostring(v.cancelledID)
  end
  local function window(pid)
   local b=backend();return b and tostring(b.beginClosedTurns and b.beginClosedTurns[pid])..':'..tostring(b.beginOpenTurns and b.beginOpenTurns[pid])or 'UNKNOWN'
@@ -194,12 +194,13 @@ function M.New(P,client,kind,send,notify)
   local activeOK,active=false,nil;if type(method)=='function'then activeOK,active=pcall(method,player)end
   if not current(p,revision,gen)then return end
   if not activeOK or active~=true then p.waitWindow=true;hint(p,'待开始','等待本地回合可操作状态确认；不补计排队时间。');return end
+  -- A confirmed owner cancellation changes cancelledID; unknown sends do not.
   local attempt=s.turn..':'..p.serial..':'..s.signature..':'..vk
   if p.attempt==attempt then return end
   p.attempt=attempt;p.force=nil;p.queue=s.signature -- latch before script-operation reentry
   hint(p,'确认中','正在确认完整一回合计时；不会重复提交同一轮。')
   if not current(p,revision,gen)or b~=backend()then return end
-  local sent=pcall(send,p.pid,PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action=spec.action,CityID=p.id,StartTurn=s.turn,Token='TQI:'..generation..':'..p.serial..':'..s.turn})
+  local sent=pcall(send,p.pid,PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action=spec.action,CityID=p.id,StartTurn=s.turn,Token='TQI:'..generation..':'..p.serial..':'..s.turn..':'..tostring(v.cancelledID or 0)})
   if not sent and current(p,revision,gen)then hint(p,'待确认','启动请求结果未知；不会盲目重发，请保留日志。')end
  end
  function d.Pulse()

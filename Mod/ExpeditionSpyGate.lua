@@ -11,6 +11,13 @@ end
 -- Native name assignment and travel survival remain explicit user-game gates.
 if include and not SPCGreatWorkCatalog then include('GreatWorkCatalog')end
 if include and not SPCExpeditionTrainingDiagnostics then include('ExpeditionTrainingDiagnostics')end
+-- B399 optional observer. Removing its module/startup leaves this tap inert.
+local function boundaryObserve(point,build)
+ pcall(function()
+  local d=SPCPlaytestBoundaryDiagnostics
+  if d and d.ENABLED then d.Observe(point,build)end
+ end)
+end
 SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
 if include and not SPCExpeditionEntry then include('ExpeditionEntry')end
 function SPCExpeditionSpyGate.Start(P,shared)
@@ -984,6 +991,11 @@ function SPCExpeditionSpyGate.Start(P,shared)
   cultureObserve('EXPEDITION_TURN_STATE',function()
    if state.owner~=pid or not state.unitID then return end
    return {owner=pid,eventUnit=state.unitID,phase=state.phase,mode=state.activityMode,activityKey=state.activityKey,ready=not busy,reason=loadOnly and 'LOAD_BOUNDARY'or 'TURN_BOUNDARY',readStatus=recovering and 'RECOVERING'or 'RUNNING',x=state.x,y=state.y,taskStart=state.taskStart,taskDue=state.taskDue}
+  end)
+  boundaryObserve('EXPEDITION_TURN',function()
+   if state.owner~=pid then return end
+   return {owner=pid,eventUnit=state.unitID,phase=state.phase,x=state.x,y=state.y,
+    targetOwner=state.target and state.target.owner,targetCity=state.target and state.target.id}
   end)
   if busy or not P.IsTestPlayer(pid) or state.owner~=pid or not state.unitID or state.phase=='HELD' or state.phase=='ENDED' then return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1

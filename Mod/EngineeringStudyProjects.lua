@@ -55,8 +55,9 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   end,{read='EST_QUEUE_UNKNOWN',unique='EST_SINGLE_PROJECT_REQUIRED'})
  end
  local function cancel(pid,c,s,why)
-  if s.value and s.value.pending then write(pid,c,s,M.Cancel(s.value,why))end
+  if s.value and s.value.pending then s=write(pid,c,s,M.Cancel(s.value,why))end
   local k=key(pid,c:GetID());rounds.Forget(pid,c:GetID());interrupted[k]=nil;armed[k]=nil;mark(pid,c:GetID())
+  return s -- already-confirmed post-write value; no extra Store/native read
  end
  local function audit(pid,id,qualificationOnly)
   local c=city(pid,id);local k=key(pid,id)
@@ -78,11 +79,11 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   if not ok then error(s)end
   if p then
    rounds.Track(pid,id,p.stage)
-   if interrupted[k]then cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');p=nil
-   elseif known and not eligible then cancel(pid,c,s,'EST_QUALIFICATION_LOST');p=nil
+   if interrupted[k]then s=cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');p=nil
+   elseif known and not eligible then s=cancel(pid,c,s,'EST_QUALIFICATION_LOST');p=nil
    elseif known and good and e.known and p.stage=='ACTIVE'and not qualificationOnly and rounds.CanRead(pid,id)then
     local _,matches=queue(c)
-    if not matches and p.stage=='ACTIVE'then cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');p=nil end
+    if not matches and p.stage=='ACTIVE'then s=cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');p=nil end
    end
   else rounds.Forget(pid,id)end
   if p and (not known or not good or not e.known)then rounds.Block(pid,id)end
@@ -91,7 +92,9 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   if not known or not good or not e.known then stage='HELD';why=not known and 'EST_QUALIFICATION_UNKNOWN' or 'EST_E_UNKNOWN'end
   if p and p.stage=='ACTIVE'and not rounds.CanRead(pid,id)then stage='HELD';why='EST_RELATED_FACT_REQUIRED'end
   local completed=s.value and s.value.receipts and s.value.receipts[L]
-  publish(pid,id,{stage=stage,reason=why,L=L,E=good and e.E or nil,start=p and p.start,reference=s.reference,token=s.token,completedID=completed and completed.id or 0,completedTurn=completed and completed.completed})
+  local last=s.value and s.value.last
+  local cancelledID=not p and last and last.id>(completed and completed.id or 0)and last.id or 0
+  publish(pid,id,{stage=stage,reason=why,L=L,E=good and e.E or nil,start=p and p.start,reference=s.reference,token=s.token,completedID=completed and completed.id or 0,completedTurn=completed and completed.completed,cancelledID=cancelledID})
  end
  local function initialize()
   if ready then return true end

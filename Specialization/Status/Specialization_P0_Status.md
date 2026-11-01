@@ -1,25 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0862
-Implementation Build: B398.425 / modinfo425; live B398.425 develop from73bf5b5; stable/main B307.334
+Status Revision: S0863
+Implementation Build: B399.426 / modinfo426 local complete; live B398.425 develop from73bf5b5; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B398_FOURTH_PLAYTEST_REVIEWED
+Work State: B399_LOCAL_COMPLETE_DEPLOYMENT_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
-B398.425 remains the exact deployed/source package from73bf5b5;main B307.334,Design D0058/Architecture A0183 unchanged. [Fourth native review](Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md) reads1,399continuous TRAIN records/four loads and68latest native logs,with the user's handwritten earlier-run observations kept separate.72raw files are archived/hash-verified locally;no runtime/test source,game configuration or deployment changed.
+B399.426 is locally complete under the user's explicit authorization to finish the repair and add removable probes. Design D0058/Architecture A0183 and stable/main B307.334 remain unchanged. [B399 result](Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md) records the repair,independent observer/removal contract,exact re-run selection and limits. Live remains B398.425 from73bf5b5 until a verified temporary-develop receipt is recorded.
 
-PT016 remains open:Dialogue natural advancement passes by user observation and a T60completion is logged,but active→multi-item→reorder→sole recovery still fails. Six actual-module/native-double investigation cases yield four successful admissions and two reproduced canceled-round admission gaps,both owners affected locally;the prior85selected tests omitted this round trip. Do not treat B398 as fully accepted.
+PT016:Study/Dialogue temporary views now expose existing confirmed cancellation evidence so the same-turn reorder→sole round may start with a distinct identity. Unknown sends and unconfirmed cancellations cannot restart;full-turn,eligibility,completion receipts and no native queue deletion remain. 178selected local methods pass,including29new methods;four inherited failures are separately reproduced at baseline,not claimed PASS. 221Lua5.1 files compile,25XML parse,343unique references resolve across344runtime files. No new permanent record or native PASS.
 
-Commercialization domain floors/depth/source/capacity and matching43/46/47carrier configurations have scoped evidence. Two Capital contracts signed/debited atT58,dueT68;this trace endsT61. Full Commercialization Treasury accounting and mature/reload settlement remain open. PT017 records repeated actual+52 END→STARTED Treasury intervals with source UNKNOWN. PT018 records two T60Open-Borders-expiry/displacement guard recurrences;exact native mechanism remains unknown. No repaired symptom is inferred from a correct safety guard.
+PT017/PT018:an isolated optional observer samples Treasury/maintenance and one already tracked Expedition unit for at most6consecutive turns per load,with independent sample/clock limits and owned-listener removal. Off/absent/throwing observer tests preserve business results;the old broad B271 probe stays disabled. Actual+52origin and native border displacement remain UNKNOWN. No speculative income/unit repair,formula,GC or other-Mod change. Existing Capital contracts remain dueT68 and require their planned maturity/reload observation.
 
-- User decision:review the scoped canceled-round queue admission correction;any Treasury-origin diagnostic addition stays separate and isolated. No gameplay change inferred.
-- User testing:keep the already planned investments for their capturedT68 maturity/save-reload observation;no repeated queue/GPP/accepted-profession/no-P0/pillage campaign now.
-- Primary next:stop after this evidence intake;no implementation or deployment. Capital/Development and other unfinished shared/refactor work retain their existing scope.
+- User decision:none further within this batch.
+- User testing:ordinary next2–3turns with the collector;one convenient started→reorder→sole restart should complete once. Continue the already intended investment/reload test;no P0 toggle or GPP/pillage/ownership/accepted-ability repeat requested.
+- Primary next:publish verified develop,check reliable game exit,perform the existing guarded temporary switch,record exact receipt/recovery,and stop. No main promotion or game launch.
+
+## S0863 — B399.426 canceled-round recovery and removable boundary observations
+
+2026-11-01. Scoped owner/view/request correction uses existing confirmed cancellation records without saved fields or extra owner reads. New protected optional observer has finite6-turn/96Treasury/64position/512clock limits,independent Stop/disable/removal and a separately capped collector summary. 178selected methods and restricted/static package checks pass within the result's limits;four historical failures remain explicit. Native causes and queue acceptance remain pending;deployment is separately verified after publication.
 
 ## S0862 — B398 fourth playtest evidence and residual gaps
 
