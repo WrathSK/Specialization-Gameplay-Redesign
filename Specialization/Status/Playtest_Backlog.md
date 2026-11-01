@@ -383,3 +383,17 @@ PT016 plan review — 2026-10-31: [Queue recovery and remaining playtest proposa
 PT016 B398.425 — 2026-10-31: [Local repair/result](Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md) has85selected passing methods and restricted/package proof. Native re-entry remains USER_GAME_TEST_REQUIRED,not closed by simulation. Study/Dialogue only;sole-current full-turn,unique rewards,UNKNOWN and no native queue deletion remain. Duplicate/unconfirmed native insertions are blocked;explicit replacement/removal may abandon a provisional insertion. Completed receipt metadata retires old candidates;an ambiguous same-turn completed queue item requires explicit reselection. Minimal native delta is natural advancement plus reorder-to-sole and convenient queued-before-start reload. User's recent no-P0 operation already has evidence;do not request it again.
 
 PT016 deployment checkpoint — B398.425 from73bf5b5 is verified343/343 MATCH;receipt `B398.425-73bf5b5-playtest.json`. Local repair remains distinct from pending native acceptance. No new no-P0 campaign or repeated accepted-ability tests.
+
+
+## B398 fourth playtest — 2026-11-01
+
+[Evidence review](Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md):different handwritten/replayed balances remain separate. Commerce floors/depth/source/capacity and two Capital entries/debits have scoped acceptance;T58contracts are dueT68,not settled byT61. Development/Reputation/Restructuring and full national income remain open;GPP explicitly untested. No runtime change.
+
+PT015 partial progress:proof recovery allows two real valid Capital confirmations. Eleven pending refresh guards are not eleven failed debit calls. No complete maturity/reload/Development acceptance;strict transaction proof is retained.
+
+PT016 remains USER_REPORTED_FAIL for reorder→remove recovery despite natural advancement success. Current actual-module/native-double replay confirms a canceled accepted round can return to the same attempted signature and block a legitimate sole-queue restart for both projects. Proposed narrow correction distinguishes confirmed cancellation/new queue evidence from unknown sends;no arbitrary latch clearing,polling,single-item-policy change or reward relaxation.
+
+| ID | Category | Found build | Turn | Issue / evidence | Current long game impact | Stable hotfix | Develop only / next step |
+|---|---|---|---|---|---|---|---|
+| PT017 | Treasury accounting / UNKNOWN origin | B398.425 |58–61|Several measured END→STARTED gains are exactly52,followed by ordinary income;T60also has a10residual against its start-point net estimate,not a proved separate transaction. Handwritten earlier balances differ. No captured Capital credit;contracts not due. | Cannot close Commercialization national-income acceptance or attribute the difference from UI alone | None authorized | Narrowly identify posting origin/phase from existing evidence;any new observer must stay removable and isolated;no speculative amount/formula change |
+| PT018 | Expedition border displacement | B398.425 recurrence |60|Two reload branches show native Open Borders expiry,activity/move event and TEAM_DISPLACED_STOP;thenHELD. Loaded Spy/IgnoreMoves flags match UNIT_SPY. | Affected prototype loses task/actions;old deleted-save cause still unproved | None authorized | Investigate exact native ejection/state path;retain exact-unit/position safety,no guessed teleport or ignored guard;no new deliberate test requested |

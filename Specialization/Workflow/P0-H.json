@@ -11,14 +11,14 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0861",
+    "status": "S0862",
     "runtime": "B398.425 / modinfo425",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-  "goal": "Implement user-approved bounded Study/Dialogue queue recovery/duplicate guards with preserved single-item full-turn policy,actual-composition validation and safe standing develop deployment.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md",
+  "goal": "Record scoped fourth native playtest evidence,independently reproduce residual queue admission gap,and separate observed balances/contracts/border recurrence from unresolved causes;no runtime change in this intake.",
   "implementation_authorized": true,
   "context": [
     {
@@ -750,6 +750,11 @@
       "path": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
       "kind": "full",
       "reason": "Current diagnostic implementation,Runtime Impact,local proof and user opportunistic collection."
+    },
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md",
+      "kind": "full",
+      "reason": "Current fourth native evidence,residual queue admission counterexample,unresolved Treasury and border recurrence;no runtime edits."
     }
   ],
   "dependencies": [
@@ -768,7 +773,7 @@
   "validation": {
     "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
     "local": "Each implementation batch selects T01–T08, actual module composition, Lua51/static package checks and scoped workload/correctness regressions. See current result for evidence and limits.",
-    "user": "No new user test before repair. Planned minimal queue native delta;REALLOCATING recovery with asset restructuring;final-candidate ordinary observation. Other opportunities/user exclusions stay optional/deferred."
+    "user": "Keep already planned investments through capturedT68maturity and ordinary save/reload. No new queue/GPP/no-P0/pillage/accepted-profession repeat requested by this intake."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -776,9 +781,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-    "local": "85selected methods PASS;41new-file methods including3historical counterexamples;220Lua51/25XML/342unique refs/343runtime. Broader inherited failures disclosed,not full U4.",
-    "native": "USER_GAME_TEST_REQUIRED for actual queue/transport/save-reload delta;no repeated no-P0 or accepted abilities.",
-    "deployment": "B398.425 73bf5b56ae7d18e4776014ae09edeb63559f19ac,343/343 MATCH;receipt B398.425-73bf5b5-playtest.json;B397 outgoing/B307 stable backups MATCH,no pending transaction."
+    "report": "Specialization/Status/Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md",
+    "local": "Six current actual-module/native-double investigation cases:four admissions successful,two canceled-round restart counterexamples reproduced. Prior85selected test result preserved,not rerun or expanded to full acceptance.",
+    "native": "Scoped Commerce UI/configuration and two Capital signatures/debits;PT016reorder failure remains;PT017Treasury/PT018border mechanism unresolved. DueT68maturity/reload and Development remain pending.",
+    "deployment": "Unchanged B398.425 from73bf5b5,343/343 MATCH;prior receipt/recovery remains. No new deployment."
   }
 }

@@ -1,23 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0861
+Status Revision: S0862
 Implementation Build: B398.425 / modinfo425; live B398.425 develop from73bf5b5; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B398_DEPLOYED_NATIVE_REQUIRED
+Work State: B398_FOURTH_PLAYTEST_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B398.425 implements the user-approved Study/Dialogue queue repair. [Result](Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md):85selected methods pass,including actual UI/readers/independent owners/Store,restricted Lua and historical counterexamples;220Lua51/25XML/342unique references/343runtime files. Verified queued entries recover only on related evidence,duplicates are refused,and local-END/full-turn/receipt guards remain strict. Single-item timing,qualifications/formulas/saves,Claim policy,network and GC remain unchanged. No native automatic queue deletion.
+B398.425 remains the exact deployed/source package from73bf5b5;main B307.334,Design D0058/Architecture A0183 unchanged. [Fourth native review](Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md) reads1,399continuous TRAIN records/four loads and68latest native logs,with the user's handwritten earlier-run observations kept separate.72raw files are archived/hash-verified locally;no runtime/test source,game configuration or deployment changed.
 
-A completed candidate cannot seed another round from stale native getters;initialization with a same-turn completion ambiguity explains explicit reselection. Verified live is B398.425 from73bf5b5,343/343 MATCH;B397 outgoing and B307 stable recovery backups match,receipt B398.425-73bf5b5-playtest.json,no pending transaction;main remains B307.334. Local tests are not native acceptance or full U4/U5. The initial broader inherited selection did not all pass;result records baseline-existing failures,missing DB setup and the explicitly superseded raw selection-check trace.
+PT016 remains open:Dialogue natural advancement passes by user observation and a T60completion is logged,but active→multi-item→reorder→sole recovery still fails. Six actual-module/native-double investigation cases yield four successful admissions and two reproduced canceled-round admission gaps,both owners affected locally;the prior85selected tests omitted this round trip. Do not treat B398 as fully accepted.
 
-- User decision:none further within the approved batch.
-- User testing:after verified repaired deployment,one Study natural-advance case,one Dialogue reorder-to-sole case,and convenient queued-before-start reload;duplicate clicking must not append copies. No repeat no-P0/accepted ability/GPP/ownership/pillage campaign.
-- Primary next:stop at this completed repair/deployment boundary;review the user's next queue evidence when supplied. Other refactor/cold-recovery/S10/Option B work and main promotion remain outside this repair.
+Commercialization domain floors/depth/source/capacity and matching43/46/47carrier configurations have scoped evidence. Two Capital contracts signed/debited atT58,dueT68;this trace endsT61. Full Commercialization Treasury accounting and mature/reload settlement remain open. PT017 records repeated actual+52 END→STARTED Treasury intervals with source UNKNOWN. PT018 records two T60Open-Borders-expiry/displacement guard recurrences;exact native mechanism remains unknown. No repaired symptom is inferred from a correct safety guard.
+
+- User decision:review the scoped canceled-round queue admission correction;any Treasury-origin diagnostic addition stays separate and isolated. No gameplay change inferred.
+- User testing:keep the already planned investments for their capturedT68 maturity/save-reload observation;no repeated queue/GPP/accepted-profession/no-P0/pillage campaign now.
+- Primary next:stop after this evidence intake;no implementation or deployment. Capital/Development and other unfinished shared/refactor work retain their existing scope.
+
+## S0862 — B398 fourth playtest evidence and residual gaps
+
+2026-11-01. Scoped native evidence/configuration acceptance,Capital signing/money readback,unresolved Treasury intervals and Open Borders recurrence;current actual modules independently reproduce the missing canceled-round queue admission. See result for source/line evidence,raw archive,different replay baselines and limits. Runtime343/343 MATCH;old frozen reports and acceptance remain intact.
 
 ## S0861 — B398.425 local queue recovery closure
 

@@ -10,7 +10,7 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0861",
+    "status": "S0862",
     "runtime": "B398.425 / modinfo425",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "73bf5b56ae7d18e4776014ae09edeb63559f19ac",
-  "current_batch": "B398_DEPLOYED_NATIVE_REQUIRED",
-  "next_batch": "Await/review minimal native Study/Dialogue queue delta;Commerce testing may continue separately. No automatic main promotion or broader refactor.",
+  "current_batch": "B398_FOURTH_PLAYTEST_REVIEWED",
+  "next_batch": "Review scoped confirmed-cancellation queue admission correction;Treasury+52origin and native border ejection remain bounded investigations. Captured Capital contracts dueT68;no automatic implementation/deployment/main promotion from intake.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B398.425 temporary develop from 73bf5b56ae7d18e4776014ae09edeb63559f19ac;343/343 MATCH;SHA256 d068aace17220003524b5ffa7c1babaec194c7f903196f424c8e170d4d2a9274;B397 outgoing and B307 stable backups MATCH;no pending transaction;receipt B398.425-73bf5b5-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0861 B398 scoped queue repair:85selected methods,220Lua51/25XML/343runtime PASS;343/343 deployment MATCH and recovery verified;native required,no rule/save/formula changes.",
+  "context_review_status": "S0862 B398 fourth native intake:1399continuous TRAIN/four loads,72rawfiles archived;scoped Commerce configuration/Capital debit evidence,PT016 residual failure,PT017Treasury/PT018border unresolved. Six actual-module local replay cases;runtime unchanged343MATCH.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md"
 }
