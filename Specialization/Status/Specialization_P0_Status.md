@@ -1,27 +1,31 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0865
+Status Revision: S0866
 Implementation Build: B399.426 / modinfo426; live B399.426 develop from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B399_PREU5_BOUNDARY_REVIEWED
+Work State: B399_COVERAGE_RECONCILED_WAITING_USER
 
 ## CURRENT AUTHORITATIVE STATE
 
-B399.426 remains the exact deployed package from4915170:344/344MATCH;stable/main B307.334,D0058/A0183 unchanged. [Fifth native acceptance](Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md) and its78-file archive/two moved screenshots remain intact. [Button/Treasury/U5 review](Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md) now records the user's clarified interaction and nonblocking priorities. No runtime,test implementation or deployment change.
+B399.426 remains the exact deployed package from4915170:344/344MATCH;stable/main B307.334,D0058/A0183 unchanged. [Fifth native acceptance](Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md) and [A/B-Treasury review](Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md) remain valid within scope. [Network/project coverage reconciliation](Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md) narrows the remaining test list. No source,test,probe or deployment change. **Do not start U5;wait for the user's next task.**
 
-PT019:user requires permanent informational Prepare A,inert on repeated clicks while prepared,and separate left Confirm B. Actual UI lacks A's inert guard;native-helper Lua51 replay reproduces repeated PREPARE. It does not reproduce the reported A-confirm/B-inert hitbox/timing mapping;that remains a real user-reported UI defect requiring scoped repair/validation,not a callback swap inferred from identical icons.
+Ordinary route creation/re-establishment,real expiry/removal,source ACTIVE/identity exit/return,template/value changes,multiple-source max/forwarding and ordinary cold proof recovery have sufficient described-case native coverage. No mandatory trader-death/plunder/city-removal campaign. Distinct event delivery and strong-source→weaker-source fallback remain honest limits,covered first by local composition/opportunistic observation rather than uncontrolled AI tests. Partial unreadable-source/cold aggregate recovery remains engineering work,not missing ordinary-route testing.
 
-PT017:extra41persists with Commerce27,58and0;52also occurs with different applied totals. Actual carrier sums match configured values;all31loaded bit definitions have one correct modifier link. Mod Lua has only Capital and Development direct Treasury writes;captured calls reconcile without41/52duplicates. This excludes duplicate Commercialization carriers/direct SPC Lua payments in these intervals;the ultimate native/foreign-Mod source remains UNKNOWN. User explicitly makes origin tracing a nonblocking side task that may be dropped;no new probes/tests required.
+Claim shares Queue/WorkSet/full-turn boundary mechanisms with Dialogue/Engineering,and existing actual-owner local tests cover all three. Withdraw the standalone repeated Claim full-turn/reload campaign recommendation;retain independent qualification/receipt outcomes without inventing native PASS. The newer automatic UI queue re-entry policy opts in only Dialogue/Engineering;that does not justify repeating the common core or silently adding Claim to it.
 
-Pre-U5:ordinary four-profession mainline acceptance is retained,not assigned for blanket retest. Remaining localized native coverage includes the corrected A/B UI,independent Claim full-round/reload evidence if not already located,and supported multi-city Crew attribution/use-after-load. Primary first owes accepted cold Commerce/Culture recovery consumer integration,remaining exact duty migration/retirement and reviewed package deletion safety;these are engineering/local-proof duties,not missing player tests. Then one final-candidate load/turn/idle/performance integration smoke and user U5decision. Post-U5Option B migration,ownership semantics,HD GPP,forced pillage,parked Police policy and nonblocking multi-item timing are not silently added as prerequisites.
+PT019A/Bflow and PT017nonblocking duplicate-path exclusion remain as recorded. Remaining Crew attribution/use-after-load evidence,original S9cold consumer integration,S10duty retirement/deletion safety and eventual final integrated load/performance smoke stay separate. Do not begin these or U5 in this documentation task. Post-U5Option B,ownership,HD GPP,forced pillage,Police semantics and multi-item timing keep their accepted boundaries.
 
-- User decision:none for this investigation;A/Bcontract and Treasury priority clarified.
-- User testing:none requested now. Reuse existing native evidence;only a later repaired/final candidate gets the small changed-path delta.
-- Primary next:publish reviewed documentation and stop. No implementation,deployment,main promotion or large new audit from this intake.
+- User decision:none requested.
+- User testing:none now;no trader-kill/city-removal or repeated Claim timer campaign.
+- Primary next:publish only the narrowed coverage record,then wait for the user's other work. U5 explicitly not started;no implementation,deployment,main promotion or game launch.
+
+## S0866 — B399 network/common-project coverage reconciled;U5 held
+
+2026-11-01. User points out route expiry,source liquidation/governor changes and shared project mechanisms already cover the mainline. Source/evidence review agrees;removes uncontrolled route-loss and standalone duplicate Claim timing tests from current requirements while retaining distinct entry/fallback/partial-read evidence limits. U5 not started;await next task. Runtime unchanged.
 
 ## S0865 — B399 clarified buttons,Treasury exclusion and U5 boundary
 

@@ -11,16 +11,21 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0865",
+    "status": "S0866",
     "runtime": "B399.426 / modinfo426",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md",
-  "goal": "Investigate clarified A/B actions and exclude duplicate Mod payment paths for41/52;reconcile remaining pre-U5native coverage with actual engineering duties without runtime changes.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md",
+  "goal": "Reconcile existing route/source and shared-project coverage,remove redundant or uncontrolled native-test suggestions,and wait for other user work without starting U5.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md",
+      "kind": "full",
+      "reason": "Current narrowed network/shared-project coverage and explicit U5 hold;no test/implementation/deployment start."
+    },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md",
       "kind": "full",
@@ -798,7 +803,7 @@
   "validation": {
     "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
     "local": "Each implementation batch selects T01–T08, actual module composition, Lua51/static package checks and scoped workload/correctness regressions. See current result for evidence and limits.",
-    "user": "None now. Reuse accepted ability evidence;eventual repaired/final candidate only gets localized A/B,unclosed Claim/Crew and load/performance smoke after engineering prerequisites. No new forced RNG/pillage/GPP/ownership campaign."
+    "user": "None now. No dedicated uncontrolled trader death/city removal or repeated Claim timer campaign. User explicitly says not to start U5;wait for next task."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -806,9 +811,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md",
-    "local": "Actual RestructuringUI plus native helper Lua51 replay:PREPARE,CONFIRM,PREPARE;missing A inert guard confirmed,reported visual swap not reproduced. Read-only DB31bit mappings PASS,scoped current write sites and17trace intervals checked. No gameplay regression suite run or source change.",
-    "native": "Prior fifth-run acceptance retained. User clarifies A/Bfailure;PT017duplicate carrier/direct SPC payment paths excluded for observed intervals,ultimate source UNKNOWN/nonblocking. No new native PASS or blanket U5closure.",
-    "deployment": "Unchanged B399.426/4915170,existing receipt/source hash;no deployment/main/game launch."
+    "report": "Specialization/Status/Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md",
+    "local": "Scoped source/evidence reconciliation only;common Queue/WorkSet/Boundary verified and existing B399 actual-owner results reused. No tests rerun or runtime edits.",
+    "native": "Existing ordinary route/source-change and Dialogue/Study mechanism coverage retained. Distinct event entry,strong-to-weak fallback and partial-read limits not relabelled native PASS. Claim independent outcomes not invented.",
+    "deployment": "Unchanged B399.426/4915170;no deployment or game launch. U5 not started;await user."
   }
 }

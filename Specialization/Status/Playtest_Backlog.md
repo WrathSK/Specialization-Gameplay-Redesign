@@ -428,3 +428,14 @@ See [native review](Validation/Results/Specialization_B399_Fifth_Playtest_202611
 - PT017NONBLOCKING by explicit user direction:41persists with Commerce0/27/58,52with other totals;31loaded Commerce bits have exactly one correct link;only Capital/Development directly mutate Treasury and captured calls reconcile. Duplicate Commerce carrier/direct SPC payment paths are excluded for these intervals. Ultimate posting origin remains UNKNOWN;may stop tracing it,no extra probe or user test.
 - Keep prior ordinary ability,Commerce/contract/reputation/restructuring and sole-project acceptance. Possible later native delta:repaired A/B;Claim full-round/reload if no prior adequate receipt;Crew supported two-city completion and use-after-load/no-replay;final integrated package load/turn/idle/performance smoke. Engineering attribution/cold recovery/duty retirement/deletion-safety work comes first and must not be labelled incomplete player testing.
 - No pre-U5Option B migration,forced pillage,HD GPPrepeat,undecided ownership/Police rule,forced venture failure or standalone multi-item queue batch added. Unexercised branches remain documented limits,not automatic new gates.
+
+
+## B399 narrowed route/project coverage and U5 hold — 2026-11-01
+
+[Reconciliation](Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md) supersedes earlier native-test suggestions where they imply more route-loss or repeated Claim timing testing is required.
+
+- Ordinary route creation/expiry/re-establishment,source ACTIVE/identity exit/return,source value/template changes,multiple-source max/forwarding and normal cold recovery have scoped native acceptance. Do not require removing a city or waiting for AI to kill/plunder a trader. Distinct native event delivery is an untested entry-point limit,not missing shared disconnection coverage.
+- Strong eligible source loss while a weaker eligible source survives is not independently measured in the latest summary;local composition first,opportunistic native observation only. The second industrial source was already liquidated when the strong route expired.
+- Partial unreadable-source/cold UNKNOWN recovery and dropped/late proofs belong to existing local/engineering obligations,not player-generated fault scenarios. Do not expand normal reload PASS to unfinished cold consumers.
+- Remove standalone Claim shared full-turn/reload repetition from current mandatory testing. Actual Queue/WorkSet/Boundary are shared and actual-owner local regressions include all three. Eligibility/receipts remain independent;B398/B399automatic UI re-entry remains a two-owner opt-in. No invented Claim native PASS or new opt-in behavior.
+- **User explicitly defers starting U5 and will assign other work.** Wait after this record;no implementation/deployment/test campaign now. PT017nonblocking,PT019A/Band other existing limits remain tracked.
