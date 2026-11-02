@@ -1,25 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0863
+Status Revision: S0864
 Implementation Build: B399.426 / modinfo426; live B399.426 develop from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B399_DEPLOYED_NATIVE_PENDING
+Work State: B399_FIFTH_PLAYTEST_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B399.426 is locally complete and deployed under the user's explicit authorization to finish the repair and add removable probes. Design D0058/Architecture A0183 and stable/main B307.334 remain unchanged. [B399 result](Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md) records the repair,independent observer/removal contract,exact re-run selection and limits. Live from4915170 is344/344 MATCH;receipt `B399.426-4915170-playtest.json` and exact outgoing B398/stable B307 recovery are verified,no pending transaction.
+B399.426 remains the exact deployed package from4915170:344/344MATCH;stable/main B307.334,D0058/A0183 unchanged. [Fifth native review](Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md) reconciles3,535continuous captured TRAIN records across three collector sessions/four Gameplay contexts,and64updated final native logs. Two screenshots were individually reviewed,moved to the ignored batch archive,and SHA256-verified;78files/38,559,558bytes archived in total. No runtime or deployment changed in this intake.
 
-PT016:Study/Dialogue temporary views now expose existing confirmed cancellation evidence so the same-turn reorder→sole round may start with a distinct identity. Unknown sends and unconfirmed cancellations cannot restart;full-turn,eligibility,completion receipts and no native queue deletion remain. 178selected local methods pass,including29new methods;four inherited failures are separately reproduced at baseline,not claimed PASS. 221Lua5.1 files compile,25XML parse,343unique references resolve across344runtime files. No new permanent record or native PASS.
+Scoped native acceptance now includes sole-project Dialogue restart and user-confirmed cross-era quota/reward;Commercialization58with reputation/domain arithmetic,withdrawal on governor departure and return;three new Capital contracts settling once at68Tafter pre-maturity cold load/governor absence;Development contract continuity/domain switching/completion withdrawal/capacity reuse;Reputation3/8/14through inactive/cold periods;user-confirmed Standardization purchase max/route-loss withdrawal;and Restructuring66Tliquidation→67Tcold restore→72Tmanual Research3configuration/new Campus abilities. These are described-case acceptance,not every failure branch or final U5/all-refactor closure. GPP and deliberate pillage/ownership testing stay excluded.
 
-PT017/PT018:an isolated optional observer samples Treasury/maintenance and one already tracked Expedition unit for at most6consecutive turns per load,with independent sample/clock limits and owned-listener removal. Off/absent/throwing observer tests preserve business results;the old broad B271 probe stays disabled. Actual+52origin and native border displacement remain UNKNOWN. No speculative income/unit repair,formula,GC or other-Mod change. Existing Capital contracts remain dueT68 and require their planned maturity/reload observation.
+Capital credits total12,589.56640625,and the screenshot balance bridge is exact:6,926.80078125+41+96.55859375+12,589.56640625=19,653.92578125. PT017extra-credit origin remains UNKNOWN(41this branch,52in another),now located before LOCAL_BEGIN. PT018now has UnitTeleported/actual(23,25)→(23,24)before displacement guard;the originating engine/foreign-Mod rule remains unknown. PT019records the user's inert-confirm/action-button mapping complaint;one liquidation/configuration is proved,but clicked-entry identity is not logged.
 
-- User decision:none further within this batch.
-- User testing:ordinary next2–3turns with the collector;one convenient started→reorder→sole restart should complete once. Continue the already intended investment/reload test;no P0 toggle or GPP/pillage/ownership/accepted-ability repeat requested.
-- Primary next:stop and await the ordinary test/log opportunity;no main promotion,game launch or broader refactor in this batch.
+- User decision:none needed for intake. Multi-item queue timing is a nonblocking later consideration,not a standalone progress-blocking batch;Police eligibility/Design semantics parked by user.
+- User testing:none newly required. Current acceptance respects user observations and untested failure/post-settlement-reload boundaries;continue ordinary opportunities without repeating accepted abilities/no-P0/GPP/pillage campaigns.
+- Primary next:publish only reviewed evidence/status records,then stop. No code repair,deployment,main promotion or wider audit in this intake;remaining S9/S10/shared work retains its independent scope.
+
+## S0864 — B399 fifth playtest acceptance and exact Capital settlement
+
+2026-11-01. Three new contracts signed58Tpay once68Twith exact Treasury/screenshot reconciliation;Commercialization withdrawal/resume,Reputation continuity,Development and Restructuring have scoped positive evidence. Sole-project queue recovery passes;multi-item timing is user-deferred/nonblocking. Extra-credit origin and Expedition ejection remain unresolved;new confirm-button UI observation is PT019. All78archived hashes match,including two moved screenshot originals;source/runtime unchanged. See the new result for evidence scope,limits and explicit user observations.
 
 ## S0863 — B399.426 canceled-round recovery and removable boundary observations
 

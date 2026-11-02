@@ -404,3 +404,17 @@ PT016 B399.426 — 2026-11-01: [Authorized follow-up](Validation/Results/Special
 PT017/PT018 B399 observation opportunity:optional read-only Treasury/maintenance and exact tracked-unit position/border samples are isolated from business,default at most6consecutive turns per load,and independently removable. Existing broad B271 remains disabled. Collector keeps received rows and explicitly caps its summary. No posting-origin,border-cause or functional repair is claimed. Ordinary next2–3turns and the already planned T68investment/reload may supply evidence;no forced border/pillage/GPP or accepted-ability campaign.
 
 PT016/PT017/PT018 B399 deployment checkpoint:source `4915170`,344/344MATCH,receipt `B399.426-4915170-playtest.json`,exact B398/B307 recovery,no pending marker. Package deployment is confirmed;native queue acceptance/sample delivery and Treasury/border causes remain pending.
+
+
+## B399 fifth playtest — 2026-11-01
+
+See [native review](Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md). Capital maturity is now observed for three new58Tcontracts due68T(one stable/two successful ventures),with pre-maturity cold restart/governor absence,one credit each and exact screenshot reconciliation through72T. Commercialization58/domain floors,reputation growth/withdrawal/resume,Development continuity/completion/re-entry,Standardization purchase max/withdrawal and Restructuring cold wait/manual new-Campus Research3configuration have scoped acceptance. This does not mechanically close all historical PT015or all U5branches;GPP remains deferred.
+
+- PT016:sole-project recovery is USER_GAME_TEST_PASS in the reported Dialogue sequence;cross-era reward/next-era opportunity also user-confirmed. Multi-item queue-head timing remains excluded by the present sole-project contract and is a user-deferred,nonblocking later consideration;do not create an independent blocking batch or silently change the timing rule.
+- PT017:68TCapital payout arithmetic closes exactly. Additional native credit is41on the main branch,52on another;observed before LOCAL_BEGIN. Posting origin remains UNKNOWN;not proof of duplicate Commercialization or a universal52. Keep separate from accepted contract settlement.
+- PT018:exact-unit samples now show UnitTeleported and(23,25)→(23,24)before TEAM_DISPLACED_STOP;activity/Spy/border getters unavailable. Root ejection rule remains unknown;no guessed teleport/guard bypass or deliberate border test.
+- Development Police semantics are parked by user. The CityCenter contract was quoted against Granary and closes on Granary at67T;do not label the user's62Tcurrent-production reset as that confirmed contract close.
+
+| ID | Category | Found build | Turn | Issue / evidence | Current long game impact | Stable hotfix | Develop only / next step |
+|---|---|---|---|---|---|---|---|
+| PT019 | UI action mapping / USER_REPORTED | B399.426 |66|User reports left liquidation-confirm button inert while the action-labeled button completes. Trace proves one valid liquidation and later configuration,with no failed request;clicked callback identity is not recorded. Both current entries reuse the icon but have distinct PREPARE/CONFIRM callbacks. | Confusing confirmation affordance;business outcome succeeded in this case | None authorized | Scoped click/action mapping investigation when scheduled;do not infer bypass/root cause or patch from the label alone |

@@ -150,3 +150,8 @@ User explicitly authorizes completing the residual repair and adding removable o
 Standing safe develop deployment applies after committed/pushed local proof and reliable game exit;otherwise defer runtime replacement. Stop at this authorized batch boundary.
 
 B399 final observer work-scope review:cache observer-only local-player admission;at most4local-player lookup/identity-helper attempts per load,then no identity re-read on local/foreign callbacks. Existing helper internals(max4native/configuration calls per admission)are bounded separately from the direct-getter counter. No cached observer admission feeds gameplay.
+
+
+## Fifth-playtest user disposition — 2026-11-01
+
+User confirms B399 sole-project recovery after complex queue reordering and Dialogue cross-era reward/quota behavior. If other items remain behind the project,the present sole-project condition still prevents1-turn timing. User requests retaining possible multi-item recovery as a nonblocking later improvement,not a separate progress-blocking batch. No change to the currently accepted sole-project/full-turn/UNKNOWN/receipt rule is approved or implemented by this evidence intake. [Recorded native scope](../../Status/Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md).
