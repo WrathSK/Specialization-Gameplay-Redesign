@@ -1,25 +1,31 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0864
+Status Revision: S0865
 Implementation Build: B399.426 / modinfo426; live B399.426 develop from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0183
 Design Revision Reviewed: D0058
 Latest Accepted Design Revision: D0058
 Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B399_FIFTH_PLAYTEST_REVIEWED
+Work State: B399_PREU5_BOUNDARY_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B399.426 remains the exact deployed package from4915170:344/344MATCH;stable/main B307.334,D0058/A0183 unchanged. [Fifth native review](Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md) reconciles3,535continuous captured TRAIN records across three collector sessions/four Gameplay contexts,and64updated final native logs. Two screenshots were individually reviewed,moved to the ignored batch archive,and SHA256-verified;78files/38,559,558bytes archived in total. No runtime or deployment changed in this intake.
+B399.426 remains the exact deployed package from4915170:344/344MATCH;stable/main B307.334,D0058/A0183 unchanged. [Fifth native acceptance](Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md) and its78-file archive/two moved screenshots remain intact. [Button/Treasury/U5 review](Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md) now records the user's clarified interaction and nonblocking priorities. No runtime,test implementation or deployment change.
 
-Scoped native acceptance now includes sole-project Dialogue restart and user-confirmed cross-era quota/reward;Commercialization58with reputation/domain arithmetic,withdrawal on governor departure and return;three new Capital contracts settling once at68Tafter pre-maturity cold load/governor absence;Development contract continuity/domain switching/completion withdrawal/capacity reuse;Reputation3/8/14through inactive/cold periods;user-confirmed Standardization purchase max/route-loss withdrawal;and Restructuring66Tliquidation→67Tcold restore→72Tmanual Research3configuration/new Campus abilities. These are described-case acceptance,not every failure branch or final U5/all-refactor closure. GPP and deliberate pillage/ownership testing stay excluded.
+PT019:user requires permanent informational Prepare A,inert on repeated clicks while prepared,and separate left Confirm B. Actual UI lacks A's inert guard;native-helper Lua51 replay reproduces repeated PREPARE. It does not reproduce the reported A-confirm/B-inert hitbox/timing mapping;that remains a real user-reported UI defect requiring scoped repair/validation,not a callback swap inferred from identical icons.
 
-Capital credits total12,589.56640625,and the screenshot balance bridge is exact:6,926.80078125+41+96.55859375+12,589.56640625=19,653.92578125. PT017extra-credit origin remains UNKNOWN(41this branch,52in another),now located before LOCAL_BEGIN. PT018now has UnitTeleported/actual(23,25)→(23,24)before displacement guard;the originating engine/foreign-Mod rule remains unknown. PT019records the user's inert-confirm/action-button mapping complaint;one liquidation/configuration is proved,but clicked-entry identity is not logged.
+PT017:extra41persists with Commerce27,58and0;52also occurs with different applied totals. Actual carrier sums match configured values;all31loaded bit definitions have one correct modifier link. Mod Lua has only Capital and Development direct Treasury writes;captured calls reconcile without41/52duplicates. This excludes duplicate Commercialization carriers/direct SPC Lua payments in these intervals;the ultimate native/foreign-Mod source remains UNKNOWN. User explicitly makes origin tracing a nonblocking side task that may be dropped;no new probes/tests required.
 
-- User decision:none needed for intake. Multi-item queue timing is a nonblocking later consideration,not a standalone progress-blocking batch;Police eligibility/Design semantics parked by user.
-- User testing:none newly required. Current acceptance respects user observations and untested failure/post-settlement-reload boundaries;continue ordinary opportunities without repeating accepted abilities/no-P0/GPP/pillage campaigns.
-- Primary next:publish only reviewed evidence/status records,then stop. No code repair,deployment,main promotion or wider audit in this intake;remaining S9/S10/shared work retains its independent scope.
+Pre-U5:ordinary four-profession mainline acceptance is retained,not assigned for blanket retest. Remaining localized native coverage includes the corrected A/B UI,independent Claim full-round/reload evidence if not already located,and supported multi-city Crew attribution/use-after-load. Primary first owes accepted cold Commerce/Culture recovery consumer integration,remaining exact duty migration/retirement and reviewed package deletion safety;these are engineering/local-proof duties,not missing player tests. Then one final-candidate load/turn/idle/performance integration smoke and user U5decision. Post-U5Option B migration,ownership semantics,HD GPP,forced pillage,parked Police policy and nonblocking multi-item timing are not silently added as prerequisites.
+
+- User decision:none for this investigation;A/Bcontract and Treasury priority clarified.
+- User testing:none requested now. Reuse existing native evidence;only a later repaired/final candidate gets the small changed-path delta.
+- Primary next:publish reviewed documentation and stop. No implementation,deployment,main promotion or large new audit from this intake.
+
+## S0865 — B399 clarified buttons,Treasury exclusion and U5 boundary
+
+2026-11-01. User defines A-prepare/B-confirm with prepared A inert,and makes41/52origin nonblocking after duplicate-effect exclusion. Native-helper replay confirms missing A guard but not visual mapping. Existing traces refute duplicate Commerce amounts across active/inactive states;read-only loaded definitions and direct write sites agree. Original pre-U5engineering duties are separated from remaining native smoke;no new whole-profession/GPP/pillage/ownership campaign. See result for proofs and limits;runtime unchanged.
 
 ## S0864 — B399 fifth playtest acceptance and exact Capital settlement
 

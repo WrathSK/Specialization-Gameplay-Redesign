@@ -418,3 +418,13 @@ See [native review](Validation/Results/Specialization_B399_Fifth_Playtest_202611
 | ID | Category | Found build | Turn | Issue / evidence | Current long game impact | Stable hotfix | Develop only / next step |
 |---|---|---|---|---|---|---|---|
 | PT019 | UI action mapping / USER_REPORTED | B399.426 |66|User reports left liquidation-confirm button inert while the action-labeled button completes. Trace proves one valid liquidation and later configuration,with no failed request;clicked callback identity is not recorded. Both current entries reuse the icon but have distinct PREPARE/CONFIRM callbacks. | Confusing confirmation affordance;business outcome succeeded in this case | None authorized | Scoped click/action mapping investigation when scheduled;do not infer bypass/root cause or patch from the label alone |
+
+
+## B399 user clarification and pre-U5 disposition — 2026-11-01
+
+[Scoped investigation](Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md) supersedes the timing/uncertainty of earlier PT017/PT019notes without rewriting frozen evidence.
+
+- PT019expected flow:A always visible/informational;first click prepares;prepared A click is inert;B appears to its left and alone confirms. Actual missing A guard reproduces as repeated PREPARE in native-helper Lua51 replay;A-confirm/B-inert visual mapping remains user-reported/unreproduced by the helper model. Do not fix by assuming the declarations are reversed or same icon causes collision.
+- PT017NONBLOCKING by explicit user direction:41persists with Commerce0/27/58,52with other totals;31loaded Commerce bits have exactly one correct link;only Capital/Development directly mutate Treasury and captured calls reconcile. Duplicate Commerce carrier/direct SPC payment paths are excluded for these intervals. Ultimate posting origin remains UNKNOWN;may stop tracing it,no extra probe or user test.
+- Keep prior ordinary ability,Commerce/contract/reputation/restructuring and sole-project acceptance. Possible later native delta:repaired A/B;Claim full-round/reload if no prior adequate receipt;Crew supported two-city completion and use-after-load/no-replay;final integrated package load/turn/idle/performance smoke. Engineering attribution/cold recovery/duty retirement/deletion-safety work comes first and must not be labelled incomplete player testing.
+- No pre-U5Option B migration,forced pillage,HD GPPrepeat,undecided ownership/Police rule,forced venture failure or standalone multi-item queue batch added. Unexercised branches remain documented limits,not automatic new gates.

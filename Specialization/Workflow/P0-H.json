@@ -11,16 +11,21 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0864",
+    "status": "S0865",
     "runtime": "B399.426 / modinfo426",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md",
-  "goal": "Review fifth native playtest evidence and screenshots,archive originals with hashes,record scoped acceptance and nonblocking user deferrals without runtime changes.",
+  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md",
+  "goal": "Investigate clarified A/B actions and exclude duplicate Mod payment paths for41/52;reconcile remaining pre-U5native coverage with actual engineering duties without runtime changes.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md",
+      "kind": "full",
+      "reason": "Current user A/Bcontract,nonblocking Treasury exclusions and pre-U5coverage/engineering separation;read-only scope,no repair authorization."
+    },
     {
       "path": "Specialization/Status/Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md",
       "kind": "full",
@@ -793,7 +798,7 @@
   "validation": {
     "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
     "local": "Each implementation batch selects T01–T08, actual module composition, Lua51/static package checks and scoped workload/correctness regressions. See current result for evidence and limits.",
-    "user": "No newly required campaign. User has completed fifth testing;retain described-case acceptance and unexercised failure/post-settlement-reload limits. No repeated accepted-ability/GPP/no-P0/pillage/ownership test."
+    "user": "None now. Reuse accepted ability evidence;eventual repaired/final candidate only gets localized A/B,unclosed Claim/Crew and load/performance smoke after engineering prerequisites. No new forced RNG/pillage/GPP/ownership campaign."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -801,9 +806,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md",
-    "local": "Evidence intake only:no gameplay tests rerun or source changes. Verify archived78hashes,result links,unchanged344-file package,Context Lock/current references and publication boundary.",
-    "native": "3535TRAIN/four contexts;three68Tcredits exactly match screenshots;scoped Dialogue/Commerce/Development/Reputation/Restructuring/Standardization acceptance. PT017credit origin,PT018ejection and PT019button identity remain unknown;multi-item queue improvement user-deferred/nonblocking.",
-    "deployment": "Unchanged B399.426 from4915170,344/344MATCH;existing receipt/recovery retained. No deployment/main promotion in this intake."
+    "report": "Specialization/Status/Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md",
+    "local": "Actual RestructuringUI plus native helper Lua51 replay:PREPARE,CONFIRM,PREPARE;missing A inert guard confirmed,reported visual swap not reproduced. Read-only DB31bit mappings PASS,scoped current write sites and17trace intervals checked. No gameplay regression suite run or source change.",
+    "native": "Prior fifth-run acceptance retained. User clarifies A/Bfailure;PT017duplicate carrier/direct SPC payment paths excluded for observed intervals,ultimate source UNKNOWN/nonblocking. No new native PASS or blanket U5closure.",
+    "deployment": "Unchanged B399.426/4915170,existing receipt/source hash;no deployment/main/game launch."
   }
 }

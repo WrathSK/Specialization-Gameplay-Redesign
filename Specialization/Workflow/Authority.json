@@ -10,7 +10,7 @@
     "shared": "D0058",
     "presentation": "D0032",
     "architecture": "A0183",
-    "status": "S0864",
+    "status": "S0865",
     "runtime": "B399.426 / modinfo426",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
   "runtime_commit": "491517093de18c8b151053724e316f1e08228995",
-  "current_batch": "B399_FIFTH_PLAYTEST_REVIEWED",
-  "next_batch": "Stop after publishing scoped fifth-playtest evidence. Queue multi-item timing is user-deferred/nonblocking;PT017origin/PT018ejection/PT019button identity remain investigations. No new runtime repair,deployment or main promotion from this intake.",
+  "current_batch": "B399_PREU5_BOUNDARY_REVIEWED",
+  "next_batch": "Stop after scoped PT019A/B and PT017duplicate-path/U5-boundary documentation. No new implementation/deployment here. Original accepted engineering closures precede final U5;post-U5Option B stays later;Treasury-origin tracing is nonblocking.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B399.426 temporary develop from 491517093de18c8b151053724e316f1e08228995;344/344 MATCH;SHA256 7f1eae6b8ef33a0c865cadb651428fa79b5f6bf98fffb6601b43afcc75278077;B398 outgoing and B307 stable backups MATCH;no pending transaction;receipt B399.426-4915170-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0864 B399 fifth intake:3535TRAIN/three sessions/four contexts;64updated native logs,two moved/hash-verified screenshots,78archive files. Exact68Tthree-contract settlement plus scoped Commerce/Development/Reputation/Restructuring acceptance;PT017/PT018/PT019remain;runtime344MATCH unchanged.",
+  "context_review_status": "S0865:PT019A/Bcontract clarified;Lua51 native-helper replay confirms A repeated-prepare gap,not native mapping. Existing41/52active/inactive carrier/write-site/loaded-definition exclusion reviewed;origin nonblocking. Pre-U5native versus engineering duties separated;runtime unchanged.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md"
+  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md"
 }
