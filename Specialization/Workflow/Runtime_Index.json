@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "3699fc4deb05f39c20f8210048fb2baadf66037f66ed51ba48bab2cd84c16998",
+      "sha256": "9340c1f6541fa5f20b832730cd3b3c82deea0db98d8993297de15d2c84178c23",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0878/B405.432 PU06a:private exact lawful Commerce→REALLOCATING exit clears partial old reputation only after CAS/readback;preserves siblings/unknown receipts.70local PASS incl20new;1inherited assertion NOT_PASS.2labels only;no deployment/native claim."
+      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -116,9 +116,9 @@
       "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
-      "sha256": "fa5d7ddbaf6498730879012523e89bfc06980ae855f4862052ece2a167404594",
+      "sha256": "17497cccc06efdbb4d5dac3f510b6a47d4d9450aee8435010649a9463e2b550f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0872/B402.429 PU03 approved first NetworkBridge/FactChanges/Bindings/Commerce responsibility path;33new+130related pass,one pre-slice historical assertion unchanged. Probe/modinfo labels only. Strict proof,phase0,D-1,formulas,saves and existing controls retained;no deployment/native PASS."
+      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -131,9 +131,9 @@
       "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CommerceModel.lua": {
-      "sha256": "3aad7cb782649145ead3b4f7d4a95507312b63c466e6ced757efff03b05e23c6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B346_Refactor_S8b7a.md",
-      "provenance": "B346.373 Separate Commerce validation observations without changing behavior; local/static evidence only; no deployment/native PASS."
+      "sha256": "4b34d390108921bffe72909b97589b9c5f06f2a51d9d0705635428271c07ece9",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
     },
     "Mod/CompletionProbe.lua": {
       "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "58d23e236361fd3efde2dc849e36c2d7a31fab4cf089b7f83b65b908cc7cc7d6",
+      "sha256": "e9b6a18601a4a886000dbb823d08af2f2140f0eb90ecfdb12bff112734b6573a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0878/B405.432 PU06a:private exact lawful Commerce→REALLOCATING exit clears partial old reputation only after CAS/readback;preserves siblings/unknown receipts.70local PASS incl20new;1inherited assertion NOT_PASS.2labels only;no deployment/native claim."
+      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3e7c158222df861ed15629216f30c9c7d55d5a2be7a56ade095b79f2cb76595e",
+      "sha256": "486427c832ba29c05e9a552b900bbf6bbe555e381f2a6bcdbb0a16ad6d86e84b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0878/B405.432 PU06a:private exact lawful Commerce→REALLOCATING exit clears partial old reputation only after CAS/readback;preserves siblings/unknown receipts.70local PASS incl20new;1inherited assertion NOT_PASS.2labels only;no deployment/native claim."
+      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1226,9 +1226,9 @@
       "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CommercePanel.lua": {
-      "sha256": "249679a0bc361f4ce9fb6d323f68d26d1d2194dd518edcc9bf961457185676e1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
-      "provenance": "B347.374 Isolate unavailable Commerce reputation while preserving base Gold; local/static evidence only; no deployment/native PASS."
+      "sha256": "c59dc031532038af76fd6e280071afca9398a73c6a353fcc4d033a8c2d099a16",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
     },
     "Mod/UI/CommercePanel.xml": {
       "sha256": "0ed8ca0ccec0289637c39110edec10cf75413c559549ee8e1789a61ec1f28396",
@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0878/B405.432 PU06a:CityProgressionStore and2labels reviewed;70of71selectedPASS,20newallPASS,1unchanged template-scope assertion NOT_PASS.222Lua51/25XML/5artdef/345runtime,0new alarms;PU06 remaining use/mode contract next,live pointers unchanged.",
-  "source_runtime": "B405.432 / modinfo432;not deployed",
-  "tested_source_snapshot_sha256": "5fcc8ed9349b0460dfce20c28bef30614eb5b270f9898053156b4a96a7d02d75"
+  "source_review": "S0880/B406.433 PU06b:4functional files and2labels reviewed;105of106selectedPASS incl28new;1pre-D6 raw expectation NOT_PASS.41healthy age/Gold samples same,12current D6casesPASS;222Lua51/25XML/5artdef/345runtime,0new alarms. Capital modes/provenance next;live unchanged.",
+  "source_runtime": "B406.433 / modinfo433;not deployed",
+  "tested_source_snapshot_sha256": "c54b971dd9ad0347eb505089b258fbcac4c106ebca96859afffa40daae8c4658"
 }

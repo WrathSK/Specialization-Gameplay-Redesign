@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="432">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="433">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B405.432：商业身份合法退出后清除隔离旧信誉，保留其他历史与未知付款收据；未改变收益公式。</Description>
+    <Description>B406.433：商业信誉只读来源与用途投影，区分确认、不适用、窄政策零和未知；不覆盖历史、不改变金币公式。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

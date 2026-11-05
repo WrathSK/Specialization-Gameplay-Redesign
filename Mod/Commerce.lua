@@ -166,10 +166,13 @@ function M.Start(P,shared)
   local state=store.CommerceState(pid,c)
   assert(state.token==f.token,'COMMERCE_REFERENCE_CHANGED')
   local value=state.value or model.New(pid);model.Validate(value);assert(value.owner==pid,'COMMERCE_OWNER_CHANGED')
-  v.selected=cp(value.selected);v.reputationKnown=state.reputationKnown~=false
-  v.reputation=not v.reputationKnown and {state='UNKNOWN',effective=0}or cp(value.reputation or {age=0,state='NOT_ESTABLISHED'});v.reputation.effective=0
-  -- Existing Reputation policy/Store remain unchanged in PU01 (PU06 owns it).
-  if f.active==4 and v.reputation.state=='COUNTING'then v.reputation.effective=v.reputation.age end
+  v.selected=cp(value.selected);v.reputationUse=model.ReputationUse(state.reputationInput,f)
+  v.reputationKnown=state.reputationKnown~=false and v.reputationUse.status~='UNKNOWN'and v.reputationUse.status~='POLICY_ZERO'
+  v.reputation=not v.reputationKnown and {state='UNKNOWN'}or cp(value.reputation or {age=0,state='NOT_ESTABLISHED'})
+  -- D6 passive Gold retains independently confirmed value without an unknown
+  -- reputation bonus. This numeric clamp is never a transaction R credential.
+  v.reputation.effective=v.reputationUse.effective or 0
+  v.reputationMessage=model.ReputationText(v.reputationUse)
   local dc=depth(batch,pid,c,f.token);local localDomains={};local selected={}
   for _,domain in ipairs(v.selected)do selected[domain]=true end
   for _,def in ipairs(C.Domains)do
@@ -314,6 +317,9 @@ function M.Start(P,shared)
   value.factStatus=x.v.factStatus or {status='UNKNOWN'}
   value.totalGold=observed(x.c);value.stage='HELD';value.reason=reason;value.canConfigure=false
   value.appliedRetained=true;value.sourceProvenance=value.sourceProvenance or {}
+  value.reputationUse={status='UNKNOWN',reason='COMMERCE_PURPOSE_INPUTS_PENDING',
+   historyStatus=x.v.reputationUse and x.v.reputationUse.historyStatus or 'UNKNOWN'}
+  value.reputationMessage='商业信誉用途尚待完整事实核验；保留已应用收益，不用于新投资。'
   for _,domain in pairs(value.sourceProvenance)do for _,f in pairs(domain)do if f.status=='CONFIRMED'then f.status='RETAINED'end end end
   for _,f in pairs(value.networkProvenance or {})do if f.status=='CONFIRMED'then f.status='RETAINED'end end
   x.v=value;x.hold=true;x.rows=nil
@@ -504,7 +510,7 @@ function M.Start(P,shared)
   if not v then return '商业化：等待城市记录。'end
   local rows={'商业化｜'..title(c)..'｜'..(v.stage=='READY' and '已就绪' or v.reason),
    '工作专家 '..v.workers..'｜生效领域 '..#(v.effective or {})..'｜合计 +'..v.totalGold..' 基础金币/回合',
-   v.reputationKnown==false and '商业信誉暂不可确认；不据此新增信誉加成' or '商业信誉 '..tostring(v.reputation and v.reputation.age or 0)..'；当前使用 '..tostring(v.reputation and v.reputation.effective or 0)}
+   v.reputationMessage or model.ReputationText(v.reputationUse)}
   for _,r in ipairs(v.domains or {})do
    local n=Locale and Locale.Lookup and Locale.Lookup(r.nameKey) or r.id
    local reasons={COMMERCE_LOCAL_DISTRICT_REQUIRED='本城缺少对应区域',COMMERCE_NOT_SELECTED='未开启',

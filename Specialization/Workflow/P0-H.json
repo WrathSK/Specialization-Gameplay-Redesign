@@ -11,95 +11,95 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0878",
-    "runtime": "B405.432 / modinfo432",
+    "status": "S0880",
+    "runtime": "B406.433 / modinfo433",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "PU06a lawful Commerce-exit reputation release complete locally;continue final use/mode/provenance contract independently.",
+  "goal": "PU06b Store→Commerce final reputation input/use contract complete locally;Capital mode/provenance consumer next,not yet complete.",
   "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
       "selector": "### Accepted convergence boundaries — 2026-11-04",
-      "reason": "Accepted scoped lawful exit versus bad-history repair and strict parent/receipt boundaries."
+      "reason": "Accepted independent modes,ODP02 narrow policy and true history ownership."
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current RIC and continuous Owner authorization."
+      "reason": "Continuous grant,RIC,actual local/native and follow-up boundary."
     },
     {
       "path": "Specialization/Design/Content/Commerce_D0059.json",
       "kind": "full",
-      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
+      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
     },
     {
       "path": "Mod/CityProgressionStore.lua",
       "kind": "full",
-      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
+      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
     },
     {
       "path": "Mod/CommerceModel.lua",
       "kind": "full",
-      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
+      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
     },
     {
-      "path": "Mod/RestructuringModel.lua",
+      "path": "Mod/Commerce.lua",
       "kind": "full",
-      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
-    },
-    {
-      "path": "Mod/StoreDeferredLifecycle.lua",
-      "kind": "full",
-      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
-    },
-    {
-      "path": "Mod/StoreLifecycleRecovery.lua",
-      "kind": "full",
-      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
+      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
     },
     {
       "path": "Mod/StoreSubrecords.lua",
       "kind": "full",
-      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
+      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
+    },
+    {
+      "path": "Mod/StoreDeferredLifecycle.lua",
+      "kind": "full",
+      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
     },
     {
       "path": "DevelopmentTests/test_refactor_s8b7b.py",
       "kind": "full",
-      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
+      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
     },
     {
-      "path": "DevelopmentTests/test_b247_restructuring.py",
+      "path": "DevelopmentTests/test_refactor_s6f.py",
       "kind": "full",
-      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
+      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
     },
     {
-      "path": "DevelopmentTests/test_pu06a_reputation_exit.py",
+      "path": "Mod/UI/CommercePanel.lua",
       "kind": "full",
-      "reason": "Actual Store lawful exit,unknown money preservation,reentry,readback,cold,no-revival and explicit-OPEN original assertions."
+      "reason": "Display copied authoritative use explanation;no UI qualification or layout change."
+    },
+    {
+      "path": "DevelopmentTests/test_pu06b_reputation_use.py",
+      "kind": "full",
+      "reason": "True Store/Commerce buckets,cold/input guards,read-only copied data,healthy differential and actual sidebar explanation."
     }
   ],
   "dependencies": [
-    "PU01–05a source retained;PU05b independent OPEN.",
-    "Actual active parent/reference and lawful Commerce→REALLOCATING proof before leaf release."
+    "PU06a lawful-exit behavior retained.",
+    "Use producer-owned isolation/deferred facts and real current qualification;no new environment provider."
   ],
   "old_writers": [
-    "Store remains sole identity/history commit owner;no new generic recovery endpoint or native-money caller."
+    "Store remains history writer;Commerce remains passive carrier/formula/transaction-readiness owner;model is pure read projection."
   ],
   "conditional_context": [],
   "non_scope": [
-    "Whole configuration corruption,unconfirmed parent/reference,temporary governor/owner loss reset,global permanent-corruption inference.",
-    "Remaining PU06 quote/provenance work is next piece;no gameplay/formula,HD/Tier/deployment/main/U5/native launch."
+    "Capital mode/contract shape deferred to next dependent piece,not marked complete.",
+    "History repair,permanent corruption inference,new native events/reads/scans,poll,HD/Tier,GC,deployment/main/native/U5."
   ],
   "validation": {
-    "depth": "L3 T01/T03/T05/T08 actual Store/EF/business transition",
-    "local": "Baseline lawful-exit residual,exact private capability,no reset via ordinary writes,full parent/ref checks,deferred scope and sibling/unknown money byte preservation,failed/reentrant writes,cold same-build continuity.",
-    "user": "None now;later integrated new-campaign verification remains separate."
+    "depth": "L3 T01/T02/T04/T08 true Store→Commerce plus pure use matrix",
+    "local": "Known0/nonapplicable/severe policy0/unsafe leaf,parent,origin,dependency,deferred and missing P4 buckets;real passive Gold and copy/history protection;formula/retention/ref/write/idle/static/context/privacy.",
+    "user": "None now;no deployment or native inference."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -107,8 +107,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "71selected,70PASS incl20new;1unchanged baseline template-scope error NOT_PASS.222Lua51/25XML/5artdef/345runtime,0new alarms.",
+    "local": "106selected,105PASS incl28new;1unchanged pre-D6 interval assertion NOT_PASS;12current D6 casesPASS.222Lua51/25XML/5artdef/345runtime,0new alarms.",
     "native": "NOT_RUN;not deployed",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu06a-evidence-and-limits--s0878"
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu06b-evidence-and-limits--s0880"
   }
 }

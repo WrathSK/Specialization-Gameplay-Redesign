@@ -1,17 +1,43 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0878
-Implementation Build: source B405.432 / modinfo432; recorded live B399.426 from4915170; stable/main B307.334
+Status Revision: S0880
+Implementation Build: source B406.433 / modinfo433; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: PU06A_LOCAL_COMPLETE_CONTINUOUS_NO_DEPLOYMENT
+Work State: PU06B_LOCAL_COMPLETE_CONTINUOUS_NO_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+商业信誉只读契约片已完成代码与本地验证，源码 **B406.433 / modinfo433**。Store区分确认、缺失、严重叶异常和仍不安全的来源；商业化再结合已确认ACTIVE选择实际用途，明确区分确认信誉、不适用、窄政策零和UNKNOWN。未知信誉不吞掉其它合法金币，也不修写历史。尚未部署；下一片将资本投资直接接入同一契约，当前不能声称投资模式隔离与A11已完成。
+
+### PU06b evidence and limits — S0880
+
+- **LOCAL_SIMULATION:**106selected,105PASS,all28new PASS;1fixed-baseline obsolete interval assertion NOT_PASS,no new unexplained errors/failures. Actual Store/EF/Commerce/FactChanges plus explicit property/worker/yield/D/Bridge/unit/event doubles;48observed module/fragments,not full path coverage.41healthy true-Store age0–40 Gold outputs exactly match fixed `a9409ef`.12current D6 boundary/Store/notification-recovery cases PASS.
+- **Contract:**CommerceModel.ReputationInput receives Store-owned validation/isolation/deferred evidence;only CHECK_FAILED plus deterministic COMMERCE_REPUTATION_INVALID leaf shape can be a severe candidate. Origin/qualification/dependency/deferred/general UNKNOWN stay unsafe;missing required P4 history is not fabricated zero. Pure ReputationUse combines actual current qualification:confirmed age0,not-applicable current level,narrow policy-zero,UNKNOWN remain distinct. No bad raw history exported or rewritten. A non-counting history cannot supply current R.
+- **Actual consumer/presentation:**Commerce uses only confirmed/policy/inapplicable numeric bonus;general UNKNOWN supplies no bonus while independently confirmed lawful Gold remains. HELD/cold missing purpose facts retain exact installed total and replace any candidate with UNKNOWN,no usable new-investment credential. Backend explanation is copied to actual sidebar;no layout/rule/request added. Existing normal formula,phase sharing,post-write freshness,D-1 retained effects and transaction proof remain.
+- **Work:**0extra native reads/city/building enumeration,new events,timers,polling,store fields or retries. One bounded classification per existing state read;confirmed origin may check at most3P4receipt keys.1000idle callbacks add0classification/history/carrier writes or notifications. Detached inputs cannot mutate authority. PU06a lawful exit and real unknown money receipts remain covered by20retained tests.
+- **Evidence precision:**old `test_b239_commerce_store.Model.test_unknown_gap_is_held_not_backfilled` expects the pre-D6 UNKNOWN_INTERVAL policy and fails identically on fixed baseline;not labelled PASS. No frozen test/report changed. First expanded historical/current comparison exposed a test-observation key collision;the maintained fixture now names exact historical digests separately while keeping source-stability assertions. An initial new fixture assumption about known=false was corrected against existing deterministic redundant-marker restoration and covered separately. Raw attempts are local evidence,not production defects.
+- **Static/artifact:**222Lua51,25XML,5artdef,modinfo433,345runtime/344package,156own includes;0new/widened alarms. CPython3.14.8/source-built Lupa2.8 Lua51;no external DB/game. `local/refactor/PU06b-558b4d84301648db8a005c04a2d4cbde/closure.json`,SHA256 `d2b3b52a290167741af4b46825f9c02c4e531d631fc94161b4d35743f83a48cd`,tested source `c54b971dd9ad0347eb505089b258fbcac4c106ebca96859afffa40daae8c4658`,stable during run. Exact suites/exclusions/baseline gaps/limits/runner/transcripts remain local beside/in artifact;`static.json` has package checks. Re-run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<source-built-lupa>:DevelopmentTests python3.14 <artifact-directory>/rerun.py`;bind with `DevelopmentTests/refactor_evidence.py source <artifact> --commit HEAD`. Local artifacts/hashes are not permanent backups;versioned source/tests support comparable reruns.
+
+User decision:none. User testing:none now;no native acceptance/deployment. Primary next:verified commit/push develop,then PU06 Capital mode-specific admission and locked provenance using this same Store→Commerce contract. PU05b remains independently OPEN.
+
+### PU06b runtime impact and gates — S0879
+
+- **Owner/facts:**Store retains sole reputation authority and existing active parent/reference/CAS boundary. CommerceModel pure input classification consumes the existing bounded saved leaf and isolation/deferred observation;no native read. Store exposes copied input status and bounded reason without leaking bad history. Existing Commerce current-fact read phase supplies actual identity/ACTIVE/potential;pure use projection owns applicability and explicit provenance.
+- **Semantics:**only independent CHECK_FAILED plus deterministic leaf-shape COMMERCE_REPUTATION_INVALID,with no deferred Commerce duty,can be a severe-leaf candidate. Parent/origin/qualification/dependency/general CHECK_UNKNOWN/deferred failures cannot become policy zero. A reliable current non-IV level makes R inapplicable,not a repaired history. Missing required P4 reputation and unconfirmed counting state stay UNKNOWN;confirmed age0 differs from absence. Purpose-required facts still belong to the real consumer. No permanent-corruption assertion or authority write.
+- **Consumer:**Commerce separately displays use status/reason and archived age knownness. UNKNOWN removes only the unknown reputation bonus while preserving other confirmed lawful Gold,as D6 already requires. Narrow policy-zero is labelled and never written back. Existing normal formula,network D-1 retention,strict TransactionCurrent,reference/write barriers and input work remain. Final same projection is the upcoming Capital consumer contract,not a temporary fallback.
+- **Cost/lifetime:**one bounded scalar leaf classification per existing city-local CommerceState read;no extra city/building enumeration,native sampling,automatic consumer,event,timer,poll,store field or retry. Copies are detached;normal same-turn second changes follow existing freshness and notifications.
+- **Gates:**L3 T01/T02/T04/T08 actual Store→Commerce;leaf/parent/dependency/deferred/absence/knownzero/nonapplicable matrix,normal formula and 40-age bounds,actual passive Gold and error visibility,raw history byte preservation,unknown input/no optimistic write,return isolation and idle work. Frozen old mock protocols are not production compatibility requirements;any necessary maintained fixture adapter must be explicit and preserve assertions. Lua51/package/context/publication;no native PASS.
+- **Remaining:**Capital mode-specific qualifications and locked provenance are the next PU06 piece;do not claim A11 complete before it. No main/deployment/native/HD/Tier/S9/S10 work. PU05b remains independent OPEN.
+
+User decision:none within D0059/ODP02=A. User testing:none now. Primary next:implement/verify/commit/push this shared reputation projection,then continue Capital on that same contract;stop for a genuine new semantic/external/native gate.
+
+## Prior PU06a checkpoint — S0878
 
 商业身份合法退出片已完成代码与本地验证，源码 **B405.432 / modinfo432**。已隔离的异常信誉不会再被合并回退出后的记录；正常退出、其他能力与未知付款收据保持原有规则。尚未部署，live/main记录不变。后续继续PU06的信誉用途投影和投资模式／来源锁定，不把这一小片视为整个商业契约已经完成。
 

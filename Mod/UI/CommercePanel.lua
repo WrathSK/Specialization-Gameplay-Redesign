@@ -60,6 +60,7 @@ render=function()
  local reputation=good and v.reputation or {}
  local reputationText
  if not good then reputationText=L('WAITING')
+ elseif type(v.reputationMessage)=='string'then reputationText=v.reputationMessage
  elseif v.reputationKnown==false or v.reason=='COMMERCE_REPUTATION_UNKNOWN' or reputation.state=='UNKNOWN_INTERVAL' then reputationText=L('REPUTATION_UNKNOWN')
  elseif reputation.state=='NOT_ESTABLISHED' then reputationText=L('REPUTATION_NOT_STARTED')
  elseif type(reputation.age)~='number' or type(reputation.effective)~='number' then reputationText=L('REPUTATION_UNKNOWN')

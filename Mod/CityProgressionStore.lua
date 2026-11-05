@@ -540,7 +540,10 @@ local function CreateProgressionRecord(P,shared,storage)
  function d.CommerceState(pid,c)
   assert(not committing,'COMMERCE_COMMIT_IN_PROGRESS')
   local r=active(pid,c);assert(not isolated.commerce,'COMMERCE_HISTORY_ISOLATED')
-  return cp({value=commerceProjection(r),token=r.base.token,reference=r.current or r.origin,reputationKnown=not partialReputation})
+  local input=SPCCommerceModel.ReputationInput(r.commerce,r,partialReputation,
+   r.deferredLifecycle and r.deferredLifecycle.entries.commerce)
+  return cp({value=commerceProjection(r),token=r.base.token,reference=r.current or r.origin,
+   reputationKnown=not partialReputation,reputationInput=input})
  end
  function d.WriteCommerce(pid,c,old,value)
   assert(not committing,'COMMERCE_COMMIT_IN_PROGRESS')
