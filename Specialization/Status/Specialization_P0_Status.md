@@ -1,27 +1,31 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0866
+Status Revision: S0867
 Implementation Build: B399.426 / modinfo426; live B399.426 develop from4915170; stable/main B307.334
-Architecture Revision Reviewed: A0183
-Design Revision Reviewed: D0058
-Latest Accepted Design Revision: D0058
-Design Sync State: D0058_U1_ACCEPTED_RUNTIME_REFACTOR_PENDING
-Work State: B399_COVERAGE_RECONCILED_WAITING_USER
+Architecture Revision Reviewed: A0184
+Design Revision Reviewed: D0059
+Latest Accepted Design Revision: D0059
+Design Sync State: D0059_CONVERGENCE_ACCEPTED_PU01_PENDING
+Work State: FORMAL_SYNC_COMPLETE_PU01_AUTHORIZED
 
 ## CURRENT AUTHORITATIVE STATE
 
-B399.426 remains the exact deployed package from4915170:344/344MATCH;stable/main B307.334,D0058/A0183 unchanged. [Fifth native acceptance](Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md) and [A/B-Treasury review](Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md) remain valid within scope. [Network/project coverage reconciliation](Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md) narrows the remaining test list. No source,test,probe or deployment change. **Do not start U5;wait for the user's next task.**
+The Owner authorized three sequential narrow steps: reliable publication/retrieval → first formal synchronization including the finite workflow/current-information A set → **current-HD PU01 only**. Step1 is complete at `fcf61e2bbbd74394490cbd40af033c3e3529bf3a`: all 19 reviewed files were independently retrieved from that remote commit; full-content SHA256 and byte sizes matched 19/19. Proprietary Raw stayed outside Git. That pushed history is the durable retrieval basis, not an ignored local file/hash alone.
 
-Ordinary route creation/re-establishment,real expiry/removal,source ACTIVE/identity exit/return,template/value changes,multiple-source max/forwarding and ordinary cold proof recovery have sufficient described-case native coverage. No mandatory trader-death/plunder/city-removal campaign. Distinct event delivery and strong-source→weaker-source fallback remain honest limits,covered first by local composition/opportunistic observation rather than uncontrolled AI tests. Partial unreadable-source/cold aggregate recovery remains engineering work,not missing ordinary-route testing.
+D0059/A0184 now record the accepted normal same-build restoration, bounded warm witnesses/no derived persistence target, scoped Reputation/recovery, effective-chain Tier and delivery/mandatory-exit boundaries. Workflow/AGENTS/Technical navigation implement the finite A set; current contracts replace candidate default routing. **This is formal synchronization, not runtime implementation or new native acceptance.** Old S9 derived-network wiring and cold exception A are superseded; true history/deferred lifecycle and exact production/exit duties remain. No history deletion.
 
-Claim shares Queue/WorkSet/full-turn boundary mechanisms with Dialogue/Engineering,and existing actual-owner local tests cover all three. Withdraw the standalone repeated Claim full-turn/reload campaign recommendation;retain independent qualification/receipt outcomes without inventing native PASS. The newer automatic UI queue re-entry policy opts in only Dialogue/Engineering;that does not justify repeating the common core or silently adding Claim to it.
+Source and recorded live package remain **B399.426 / modinfo426**, runtime source `491517093de18c8b151053724e316f1e08228995`, 344 runtime files. No runtime byte changed in this formal slice. Existing live 344/344 receipt and stable/main B307.334 are inherited records, not newly inspected deployment evidence. U5 is held; previous scoped native acceptance and limits in S0866/B399 results remain unchanged. No game launch, deployment, main/PR promotion or new native tests.
 
-PT019A/Bflow and PT017nonblocking duplicate-path exclusion remain as recorded. Remaining Crew attribution/use-after-load evidence,original S9cold consumer integration,S10duty retirement/deletion safety and eventual final integrated load/performance smoke stay separate. Do not begin these or U5 in this documentation task. Post-U5Option B,ownership,HD GPP,forced pillage,Police semantics and multi-item timing keep their accepted boundaries.
+**Next authorized scope — PU01:** real Commerce + current-HD shared facts, explicit state classification and purpose/domain projections, with only the proved minimum production shared-read/write-barrier seam. Preserve max/Floor, strict transaction proof, D formula, qualification, saves and GC. Before code, read [accepted contract/RIC](../../Specialization/Architecture/Specialization_v0.1_Architecture.md#pu01--authorized-current-hd-first-slice), actual direct modules and affected tests; perform real-producer/consumer local composition, unavailable D/workers, reliable negative, independent domains, same-reference/same-turn second change/write invalidation and restricted Lua/package regressions. A wider core/persistence/irreversible/cold-policy need stops only the affected path for Owner review. Later PU/O/HD work is not authorized here.
 
-- User decision:none requested.
-- User testing:none now;no trader-kill/city-removal or repeated Claim timer campaign.
-- Primary next:publish only the narrowed coverage record,then wait for the user's other work. U5 explicitly not started;no implementation,deployment,main promotion or game launch.
+- User decision: none now; the three-stage application is explicitly approved.
+- User testing: none in this slice; native evidence remains separately bounded, no compulsory repeated accepted-ability/pillage/trader-loss campaign.
+- Primary next: complete reviewed formal checks/commit/push, then execute PU01; stop after its own validated develop commit/push. No automatic deployment or next package.
+
+## S0867 — Accepted convergence successor and finite first-sync gate
+
+2026-11-04. Step1 remote retrieval 19/19 verified; D0059/A0184 and finite A set accepted/current. Frozen D0058 Spec/Content, original audits and validation bodies preserved. STATIC_CONFIRMED: unchanged 344 runtime files; all five D0058 Content originals and frozen Spec preserved; all existing 1,302 guards retained, six successor inputs added; all structured numerical leaves unchanged; 79 added relative Markdown paths/anchors checked (not a claim about all historical links). LOCAL tooling: `context.py check P0-H` PASS (1,308 guards), `context.py self-test P0-H` PASS (15 cases), and `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s DevelopmentTests -p test_context_helper.py` PASS (3 tests); `git diff --check` PASS. No gameplay/native test or runtime change. The helper's hardcoded `implementation_authorized:false` output describes its reference-only check, not the approved manifest or user permission. PU01 implementation is next, not already PASS; runtime remains B399.426. Published candidate history is on-demand, not the current task queue.
 
 ## S0866 — B399 network/common-project coverage reconciled;U5 held
 

@@ -5,6 +5,25 @@ Design Authority: User
 
 Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-and-repository-knowledge)。本索引只导航内容权威，不授予新玩法决定或实施权限。
 
+## Current accepted content — D0059
+
+当前四专业及共同合同的唯一结构化入口：
+
+| 内容 | 当前正文 |
+|---|---|
+| 共同规则／Tier／网络／恢复 | [Shared D0059](Shared_D0059.json) |
+| 科研 | [Research D0059](Research_D0059.json) |
+| 文化 | [Culture D0059](Culture_D0059.json) |
+| 商业 | [Commerce D0059](Commerce_D0059.json) |
+| 工业 | [Industry D0059](Industry_D0059.json) |
+
+[当前Spec](../Specialization_v0.1_Design_Spec.md)与[接受记录](../Design_ChangeLog.md#accepted-d0059--2026-11-04)说明精确取代范围。正常同构建恢复、会话来源见证与有效升级链Tier已接受；其它公式／数值不变，代码／实机范围查Status。军事／港口D0037、市政D0047仍为未来设计，不扩当前运行范围。
+
+<details>
+<summary>Historical acceptance provenance — on demand, not current routing</summary>
+
+以下是各次接受时的原文定位，含当时“当前／唯一”等历史用语；不覆盖上方D0059入口。旧Content与Spec原件冻结，不按字符串改写历史规则。
+
 ## D0058 — U1网络连续性与异常恢复
 
 当前结构化正文为 [Shared D0058](Shared_D0058.json)、[Research D0058](Research_D0058.json)、[Industry D0058](Industry_D0058.json)、[Culture D0058](Culture_D0058.json)、[Commerce D0058](Commerce_D0058.json)。正式同步网络保持／逐来源provenance／冷加载例外A、计龄恢复、未知信誉无加成、单能力安全恢复及项目／施工队凭据边界；其余数值、资格和归属保持。A8评估后用户明确确认全部按8时代统一，启迪最高24%／对话单次40个百分点，其它作品池、归属和额度保持。[接受记录](../Design_ChangeLog.md#accepted-d0058--2026-10-24)。以下修订段为既有接受来源，不覆盖本段当前入口；旧Content与Spec冻结原字节。
@@ -159,3 +178,5 @@ schema-v1复用institutions/abilities/base_effects/contracts/parameters；新增
 [Culture D0038](Culture_D0038.json)在D0029基础上仅明确意义延展：每领域先换算为实际产出并分别Floor，之后同yield相加，最后乘合格巨作件数W。系数0.5、金币份额3、领域与作品资格、原生产出倍率隔离保持；不外推GPP。D0029原件与旧Shared引用保留，按当前Spec的D0035覆盖声明解释；其它primitive及完整运行切换未接受。
 
 D0046仅恢复意义延展政府广场／外交区的文化输入；其它专业／Shared仍D0045，Culture原生共存门禁未自动通过。
+
+</details>

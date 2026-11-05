@@ -3,8 +3,28 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0058
+Latest Accepted Design Revision: D0059
 Document State: ACCEPTED
+
+## Accepted D0059 — 2026-11-04
+
+用户接受Claude分范围复审、C1–C5计划闭合及N1–N3，并明确授权可靠发布→首次正式规范同步（含有限工作流／现行信息A集合）→仅PU01。必要候选及四份原审已发布于`fcf61e2bbbd74394490cbd40af033c3e3529bf3a`；独立远程重取19份内容的SHA256与字节数全部一致。发布／计划闭合不证明运行修复或实机通过。
+
+本修订正式记录OD-1至4、ODP01=B／ODP02=A：正常同构建恢复和首个完整可消费事实幂等对账；会话有界来源见证取代派生网络保存接线及旧标准化冷例外A；可靠负事实先阻严格资格并登记整体对账责任；NET05为严重错误可见的临时no-write，未选择永久旧支付、K-only或清空政策。真实历史／延迟生命周期保护不撤销。
+
+独立信誉叶的窄政策R0仅投影且来源可见，合法Commerce身份退出的信誉初始化与坏记录修复分开。明确取代D0058 SAFE-004一般不可恢复后初始基线许可：可靠确定性重建优先，否则显式阻止受影响不安全能力，有效兄弟继续；新损失／重建／不可逆结果政策另需用户决定。项目资格／结算独立，Crew唯一归因凭据与不重放保持。
+
+Tier取当前环境真实同区域升级链位置；区外、虚拟或非升级门槛不自动递增，工业水磨坊为T1；真实缺链／循环／分支歧义不可静默T0/T1。HD旧Tier仅对照，不拟合旧cap/bump；撤回跨环境固定Tier表方向。D公式、权重、cap及三层D6／四层D10不变。四专业其它数值／公式／资格／归属、A8八时代、原GC保持；当前同步不实施Tier或HD解耦。
+
+[Shared D0059](Content/Shared_D0059.json)、[Research D0059](Content/Research_D0059.json)、[Industry D0059](Content/Industry_D0059.json)、[Culture D0059](Content/Culture_D0059.json)、[Commerce D0059](Content/Commerce_D0059.json)是后继正文；D0058 Content原字节及[D0058 Spec](Revisions/Specialization_Design_Spec_D0058.md)冻结。候选退出默认阅读，正式Markdown接管；代码／实机结果及下一授权边界只查Status。后续PU/O、U5、main、部署与历史删除均不在本次PU01授权内。
+
+Accepted Spec SHA256: `2ba50adf66bf9251430cec392480a23597848b899a4c785fb0d47d5a0f98ae4f`
+Frozen D0058 Spec SHA256: `da691d7797733f6b689012f0cf2e4721fd3fcf34580b44c1bede396ba0d7cc77`
+Shared D0059 SHA256: `b8bdacc9d91b67fa9208a03528346197d6349916ccf026611f73ce5d16eda7b6`
+Research D0059 SHA256: `ef438f18fcd15cc106f695b9f76e58b55de3f56a6b6b1dc712d41f0b5a43ebb9`
+Industry D0059 SHA256: `e24317fb61ae2bbe77f844a4ac015c97d97dd3345e67ff71b2cc54791cc8b380`
+Culture D0059 SHA256: `697b7db40881d8a4662b8160059563e3de4c916b42435a8c1cee374112dbdcd3`
+Commerce D0059 SHA256: `adc54b97f7f2220a58275d05f2ae7bb6f7f8d9ea7671c94254858b325fd2acad`
 
 ## Accepted D0058 — 2026-10-24
 

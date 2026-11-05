@@ -205,8 +205,8 @@ ACTIVE四级可以训练人文考察团，首测生产成本**沿用当前间谍
 
 [返回Design导航](README.md)。本页为阅读呈现，不新增独立权威或实现授权。
 
-- [文化正式内容](Content/Culture_D0058.json)：全部能力、作品池、领域、任务、城市历史及当前Owner过滤与网络并集。
-- [当前Spec](Specialization_v0.1_Design_Spec.md)：CUL及GW取代关系；[Shared](Content/Shared_D0058.json)解释D和产出份额。
+- [文化正式内容](Content/Culture_D0059.json)：全部能力、作品池、领域、任务、城市历史及当前Owner过滤与网络并集。
+- [当前Spec](Specialization_v0.1_Design_Spec.md)：CUL及GW取代关系；[Shared](Content/Shared_D0059.json)解释D和产出份额。
 - [A–D接受与替代](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：明确取代原Owner见闻分账，不改作品／意义延展规则。
 - [原冻结审阅](../Historical/Design/Reviews/Culture_D0028_Review.md)（只引用未被取代部分）、[边界接受审阅](../Historical/Design/Reviews/Culture_D0029_Review.md)、[Hybrid D正式方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)、[接受记录](Design_ChangeLog.md)。
 

@@ -3,807 +3,153 @@
   "batch": "P0-H",
   "status": "AUTHORIZED",
   "authority_versions": {
-    "design": "D0058",
-    "research": "D0058",
-    "industry": "D0058",
-    "culture": "D0058",
-    "commerce": "D0058",
-    "shared": "D0058",
+    "design": "D0059",
+    "research": "D0059",
+    "industry": "D0059",
+    "culture": "D0059",
+    "commerce": "D0059",
+    "shared": "D0059",
     "presentation": "D0032",
-    "architecture": "A0183",
-    "status": "S0866",
+    "architecture": "A0184",
+    "status": "S0867",
     "runtime": "B399.426 / modinfo426",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Status/Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md",
-  "goal": "Reconcile existing route/source and shared-project coverage,remove redundant or uncontrolled native-test suggestions,and wait for other user work without starting U5.",
-  "implementation_authorized": false,
+  "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+  "goal": "Authorized current-HD PU01 only after accepted formal sync;explicit fact status/purpose projections and proved shared-read/write-barrier seam without formulas/transactions/save changes.",
+  "implementation_authorized": true,
   "context": [
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md",
-      "kind": "full",
-      "reason": "Current narrowed network/shared-project coverage and explicit U5 hold;no test/implementation/deployment start."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md",
-      "kind": "full",
-      "reason": "Current user A/Bcontract,nonblocking Treasury exclusions and pre-U5coverage/engineering separation;read-only scope,no repair authorization."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md",
-      "kind": "full",
-      "reason": "Current fifth-playtest facts,Capital/screenshot reconciliation,acceptance and unresolved origin/UI/ejection limits;no runtime repair authorization."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
-      "kind": "full",
-      "reason": "Current B399 implementation/local proof,isolated observer exit,baseline failures and native/deployment limits."
-    },
-    {
-      "path": "DevelopmentTests/test_b399_queue_boundaries.py",
-      "kind": "full",
-      "reason": "Actual owner/Store/UI cancellation and observer optionality,bounds,cleanup,guard,transport and restricted Lua checks."
-    },
-    {
-      "path": "Mod/PlaytestBoundaryDiagnostics.lua",
-      "kind": "full",
-      "reason": "Independent optional finite observer;no business consumer or save authority."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-      "kind": "full",
-      "reason": "Current scoped B398 implementation,actual-component proof,baseline failures and native/deployment delta."
-    },
-    {
-      "path": "DevelopmentTests/test_b398_queue_recovery.py",
-      "kind": "full",
-      "reason": "Actual composition,baseline counterexamples,scope/lifecycle/receipt/restricted checks."
-    },
-    {
-      "path": "Mod/UI/TimedProjectQueueIntent.lua",
-      "kind": "full",
-      "reason": "New bounded two-project session queue evidence;no native queue mutation or saved authority."
-    },
-    {
-      "path": "Specialization/Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md",
-      "kind": "full",
-      "reason": "Accepted existing sole-project rule and user-authorized B399 before-code Runtime Impact Contract;no unrelated refactor."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B397_Industry_Playtest_20261031.md",
-      "kind": "full",
-      "reason": "Current native Industry acceptance,queue re-entry counterexample,scoped network recovery and measured hitch uncertainty."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B397_Network_Proof_Transport.md",
-      "kind": "full",
-      "reason": "Current explicit NET-1/NET-2 scope,Runtime Impact Contract,local evidence and native/deployment boundary."
-    },
-    {
-      "path": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "## Accepted U1 — 2026-10-24",
-      "reason": "Explicit accepted D1–D15 amendments and continuing authority."
-    },
-    {
-      "path": "Specialization/Reports/Proposals/Audit_Followup_Priorities.md",
-      "kind": "section",
-      "selector": "## Refactor program intake — 2026-10-24",
-      "reason": "Single current intake/stage map; original IDs and before evidence."
-    },
-    {
-      "path": "Specialization/Workflow/README.md",
-      "kind": "section",
-      "selector": "### Runtime Impact Contract and targeted gates",
-      "reason": "Internal impact/gate selection and proof obligations."
+      "selector": "### PU01 — authorized current-HD first slice",
+      "reason": "Accepted exact scope, ownership, RIC and local/native stop boundary."
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "### Runtime integration contract — P01–P10",
-      "reason": "Accepted integration constraints and scoped exceptions."
+      "selector": "### Accepted convergence boundaries — 2026-11-04",
+      "reason": "Accepted supersessions and immutable responsibilities;not a candidate task queue."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
-      "kind": "full",
-      "reason": "Actual S2 baseline and next S3 obligations; no native acceptance."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "kind": "full",
-      "reason": "Actual S3 closure and S4 handoff; local evidence only."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B274_Refactor_S4a.md",
-      "kind": "full",
-      "reason": "Current S4a results and remaining network S4b scope; source/local evidence only."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B275_Refactor_S4b.md",
-      "kind": "full",
-      "reason": "Current S4b/internal U2 scope, Runtime Impact Contract, actual integration evidence and remaining gates."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
-      "kind": "full",
-      "reason": "Approved A8 actual implementation, finite working-set delta, exact local/SQL/native boundary."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B277_Refactor_S5a1.md",
-      "kind": "full",
-      "reason": "Current precursor contract, exact no-production-wiring boundary and next integration gates."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B278_Refactor_S5a2a.md",
-      "kind": "full",
-      "reason": "Actual Store migration, explicit transaction freshness contract and remaining manual lists."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B279_Refactor_S5_History.md",
-      "kind": "full",
-      "reason": "Confirmed historical result producers, exact adapter scope and pending/receipt/native boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B280_Refactor_S5a.md",
-      "kind": "full",
-      "reason": "Completed actual request/network typed propagation, proof freshness and scoped deferred observers."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B281_Refactor_S5b.md",
-      "kind": "full",
-      "reason": "guarded synchronous fact reuse actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B282_Refactor_S5c1.md",
-      "kind": "full",
-      "reason": "scoped D providers and official network signals actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B283_Refactor_S5c2.md",
-      "kind": "full",
-      "reason": "bounded Bridge busy work and negative recovery actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B284_Refactor_S5d1.md",
-      "kind": "full",
-      "reason": "scoped consumer audit kernel actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B285_Refactor_S5d2.md",
-      "kind": "full",
-      "reason": "namespaced adapters and indexed retirement actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
-      "kind": "full",
-      "reason": "independent Dialogue recovery and bounded UI marks actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B287_Refactor_S5d4a.md",
-      "kind": "full",
-      "reason": "live D structural signals and safe restart checkpoint actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B288_Refactor_S5d4b1.md",
-      "kind": "full",
-      "reason": "declared governor fact owner actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B289_Refactor_S5d4b2.md",
-      "kind": "full",
-      "reason": "worker input normalization and GPP governor relay retirement actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B290_Refactor_S5d4c1.md",
-      "kind": "full",
-      "reason": "exact research carrier health and scoped structural closure actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B291_Refactor_S5d4c2.md",
-      "kind": "full",
-      "reason": "scoped support housing GPP and infrastructure health actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B292_Refactor_S5d4c3.md",
-      "kind": "full",
-      "reason": "trusted Industry D scope and exact carrier health actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B293_Refactor_S5d4c4.md",
-      "kind": "full",
-      "reason": "Aesthetic health and confirmed-work delivery recovery actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B294_Refactor_S5d4c5.md",
-      "kind": "full",
-      "reason": "Meaning Inspiration initialization and exact health actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B295_Refactor_S5d4c6.md",
-      "kind": "full",
-      "reason": "Insights historical projection exact health actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B296_Refactor_S5d4c7.md",
-      "kind": "full",
-      "reason": "Tradition projection health preserves authoritative age actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B297_Refactor_S5d4c8.md",
-      "kind": "full",
-      "reason": "Industry Wonder exact health and native ROLE closure actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B298_Refactor_S5d4c9.md",
-      "kind": "full",
-      "reason": "Culture Network exact health and D closure actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B299_Refactor_S5d4c10.md",
-      "kind": "full",
-      "reason": "Commerce exact health and output dependency closure actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B300_Refactor_S5d4c11.md",
-      "kind": "full",
-      "reason": "Standardization exact health tickets preserve pending aggregates actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B301_Refactor_S5d4d1.md",
-      "kind": "full",
-      "reason": "Detached bounded native transfer metadata transport actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B302_Refactor_S5d4d2.md",
-      "kind": "full",
-      "reason": "Native D transfer metadata and detached target recovery actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Refactor_Closure_Storage_2026-10-24.md",
-      "kind": "full",
-      "reason": "Accepted evidence preservation rule, exact historical retrieval and continued refactor boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B303_Refactor_S6a.md",
-      "kind": "full",
-      "reason": "Separate bounded D business facts from eight report samples actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
-      "kind": "full",
-      "reason": "Share raw worker samples within existing fact authority actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B305_Refactor_S6c.md",
-      "kind": "full",
-      "reason": "Share minimal anchor state without a building census actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
-      "kind": "full",
-      "reason": "Index retained source dependencies without changing receiver discovery actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
-      "kind": "full",
-      "reason": "Isolated stable probe-disable forward-port; no program-stage advance."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B307_Disable_Timing_Probes.md",
-      "kind": "full",
-      "reason": "Approved stable B307 deployment imported from main through Git merge; independent develop source remains B308."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
-      "kind": "full",
-      "reason": "Quote Capital only for explicit requests actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B310_Refactor_S6f.md",
-      "kind": "full",
-      "reason": "Use guarded worker projections in Commerce and Development actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B311_Refactor_S6g.md",
-      "kind": "full",
-      "reason": "Discover Culture receivers through bounded topology edges actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B312_Refactor_S6h.md",
-      "kind": "full",
-      "reason": "Consume unit UI replies at semantic events and publication actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
-      "kind": "full",
-      "reason": "Read current unit sites through proven city scope actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
-      "kind": "full",
-      "reason": "Reuse confirmed network city facts behind precise invalidation stamps actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B315_Refactor_S7a1.md",
-      "kind": "full",
-      "reason": "Extract presence-only carrier sets without ability policy actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B316_Refactor_S7a2.md",
-      "kind": "full",
-      "reason": "Migrate GPP bits with fresh pre-write carrier reads actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B317_Refactor_S7a3.md",
-      "kind": "full",
-      "reason": "Retire redundant internal-carrier pillage rebuild reasons actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B318_Refactor_S7a4.md",
-      "kind": "full",
-      "reason": "Share located carrier mutation mechanics after owner preflight actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B319_Refactor_S7a5.md",
-      "kind": "full",
-      "reason": "Share Industry support carriers without changing sequential mutation actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B320_Refactor_S7a6.md",
-      "kind": "full",
-      "reason": "Unify exact owned-carrier registries and close S7a extraction actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
-      "kind": "full",
-      "reason": "Share one-write one-read observation without unifying success policy actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
-      "kind": "full",
-      "reason": "Complete property-cell mechanics and scoped decimal policy actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
-      "kind": "full",
-      "reason": "Share reliable turn boundaries and implement accepted D6 recovery actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B324_Refactor_S7d1.md",
-      "kind": "full",
-      "reason": "Distinguish confirmed production targets from unknown queue reads actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B325_Refactor_S7d2.md",
-      "kind": "full",
-      "reason": "Drain project UI queue reads only for explicit related causes actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B326_Refactor_S7d3a.md",
-      "kind": "full",
-      "reason": "Add fixed project-reader readiness and scoped study synchronization actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
-      "kind": "full",
-      "reason": "Replace project SYNC retries with explicit readiness actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
-      "kind": "full",
-      "reason": "Suspend unknown project timers until related facts recover actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
-      "kind": "full",
-      "reason": "Move one-use Crew transaction to its owner actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md",
-      "kind": "full",
-      "reason": "D5 native proof gap, characterization scope and independent continuation boundary."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "kind": "full",
-      "reason": "Exact reference-scoped retired carrier cleanup actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
-      "kind": "full",
-      "reason": "Store-owned scalar city references actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B332_Refactor_S8a.md",
-      "kind": "full",
-      "reason": "Extract fixed sub-record validation ownership actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B333_Refactor_S8b1.md",
-      "kind": "full",
-      "reason": "Rebuild redundant known flags from preserved authority actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "kind": "full",
-      "reason": "Acknowledge asynchronous cleanup for the exact loss actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B335_Refactor_S8c2.md",
-      "kind": "full",
-      "reason": "Bound held cleanup retries to existing local turn boundaries actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
-      "kind": "full",
-      "reason": "Order protected return invalidation before commit actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B337_Refactor_S8c4.md",
-      "kind": "full",
-      "reason": "Prove the exact current legacy cleanup catalogue actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B338_Refactor_S8c5a.md",
-      "kind": "full",
-      "reason": "Preserve exact group acknowledgement before legacy owner migration actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
-      "kind": "full",
-      "reason": "Prove isolated composite legacy cleanup before production wiring actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-      "kind": "full",
-      "reason": "Wire the mandatory composite legacy exit owner actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B341_Refactor_S8b2.md",
-      "kind": "full",
-      "reason": "Isolate invalid Insights without discarding city history actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B342_Refactor_S8b3.md",
-      "kind": "full",
-      "reason": "Isolate invalid Tradition while preserving lifecycle and effect routing actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B343_Refactor_S8b4.md",
-      "kind": "full",
-      "reason": "Isolate project history groups without replaying completion actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B344_Refactor_S8b5.md",
-      "kind": "full",
-      "reason": "Isolate opaque money contracts without treating them as empty actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B345_Refactor_S8b6.md",
-      "kind": "full",
-      "reason": "Isolate Claim timers without widening completion rules actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B346_Refactor_S8b7a.md",
-      "kind": "full",
-      "reason": "Separate Commerce validation observations without changing behavior actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
-      "kind": "full",
-      "reason": "Isolate unavailable Commerce reputation while preserving base Gold actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md",
-      "kind": "full",
-      "reason": "Isolate template family and preserve independent Industry history recovery actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B349_Refactor_S9a1.md",
-      "kind": "full",
-      "reason": "Declare fixed production-panel adapter phases without changing ordering actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B350_Refactor_S8b9.md",
-      "kind": "full",
-      "reason": "Rebuild only provable template metadata from complete saved history actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B351_Refactor_S8b10.md",
-      "kind": "full",
-      "reason": "Clear obsolete initial Claim timers only from strict terminal receipts actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
-      "kind": "full",
-      "reason": "Refresh production actions from the selected owner view actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
-      "kind": "full",
-      "reason": "Move Development target selection into Gameplay without broadening price reads actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
-      "kind": "full",
-      "reason": "Interpret fresh Dialogue work slots in Gameplay actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B355_Refactor_S9b3.md",
-      "kind": "full",
-      "reason": "Select Expedition entry cities from raw UI facts in Gameplay actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B356_Refactor_S9c1.md",
-      "kind": "full",
-      "reason": "Prove a bounded player-action terminal reply primitive actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B357_Refactor_S9c2.md",
-      "kind": "full",
-      "reason": "Publish optional player action results at the real Gameplay boundary actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B358_Refactor_S9c3.md",
-      "kind": "full",
-      "reason": "Consume player action replies independently of DEV in UnitPanel actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B359_Refactor_S9c4a.md",
-      "kind": "full",
-      "reason": "Publish fixed unit views in an independent bounded reply port actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B360_Refactor_S9c4b.md",
-      "kind": "full",
-      "reason": "Consume bounded unit views without global snapshot replies actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B361_Refactor_S9c5a.md",
-      "kind": "full",
-      "reason": "Publish fixed bounded target replies independently of action and view actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B362_Refactor_S9c5b.md",
-      "kind": "full",
-      "reason": "Consume target replies independently and protect native lens retirement actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md",
-      "kind": "full",
-      "reason": "Publish fixed institution views with protected city reference reads actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B364_Refactor_S9c6b.md",
-      "kind": "full",
-      "reason": "Route institution displays through one ordered accepted reply actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B365_Refactor_S9a3a.md",
-      "kind": "full",
-      "reason": "Expose Store training refresh inputs without native polling actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B366_Refactor_S9a3b.md",
-      "kind": "full",
-      "reason": "Observe training capacity through existing scoped unit boundaries actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B367_Refactor_S9a3c.md",
-      "kind": "full",
-      "reason": "Observe scoped training fact availability without resampling actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B368_Refactor_S9a3d.md",
-      "kind": "full",
-      "reason": "Cover final binding and stable post-SYNC inputs actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B369_Refactor_S9a3e.md",
-      "kind": "full",
-      "reason": "Consume covered owner inputs in Training UI without idle native reads actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B370_Refactor_S9d1.md",
-      "kind": "full",
-      "reason": "Publish Research Tradition applied values independently of candidates actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B371_Refactor_S9d1b.md",
-      "kind": "full",
-      "reason": "Stop stale Tradition carrier writes after confirmed lifecycle change actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
-      "kind": "full",
-      "reason": "Filter removed units by accepted trader IDs and stabilize Crew receipt readback actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-      "kind": "full",
-      "reason": "Scope adjacency sampling and notify only changed cities actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
-      "kind": "full",
-      "reason": "Reuse native base Production across the two scoped UI producers actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
-      "kind": "full",
-      "reason": "Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
-      "kind": "full",
-      "reason": "Scope remaining lifecycle readers and preserve foreign target recovery actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
-      "kind": "full",
-      "reason": "Retire automatic Half experiment scans while retaining exact cleanup actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B378_Refactor_S9e5.md",
-      "kind": "full",
-      "reason": "Preserve city worker scope and stop duplicate UI turn depth sampling actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B379_Refactor_S9e6.md",
-      "kind": "full",
-      "reason": "Apply source-local network UNKNOWN while keeping transaction proof strict actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
-      "kind": "full",
-      "reason": "Resume retained Academic Tradition after confirmed city return actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B381_Refactor_S9e8.md",
-      "kind": "full",
-      "reason": "Keep fresh Capital quotes through delayed same-balance Treasury events actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
-      "kind": "full",
-      "reason": "Distinguish unknown subrecord checks and reconcile saved Development owner epochs actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
-      "kind": "full",
-      "reason": "Separate Dialogue candidate preview from current timer status actual runtime impacts, validation closure and remaining boundaries."
-    },
-    {
-      "path": "Specialization/Reports/Proposals/Refactor_Recovery_Persistence_Proposal.md",
-      "kind": "full",
-      "reason": "User explicitly approved both minimal persisted-evidence contracts;exact implementation and local/native evidence remain separate."
-    },
-    {
-      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Recovery evidence persistence — approved 2026-10-25",
-      "reason": "Approved bounded persistence and failure/ownership constraints before implementation."
+      "selector": "## CURRENT AUTHORITATIVE STATE",
+      "reason": "Current state/evidence/authorized next stop;runtime/live separated."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B384_Refactor_S9f1.md",
-      "kind": "full",
-      "reason": "Prove bounded deferred-lifecycle evidence mechanics before Store wiring actual runtime impacts, validation closure and remaining boundaries."
+      "path": "Specialization/Design/Content/Commerce_D0059.json",
+      "kind": "json",
+      "selector": "/contracts/commercialization",
+      "reason": "Complete purpose qualification/source/max/Floor/stack rules."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md",
-      "kind": "full",
-      "reason": "Prove fixed lifecycle delegates and independent reputation scope actual runtime impacts, validation closure and remaining boundaries."
+      "path": "Specialization/Design/Content/Shared_D0059.json",
+      "kind": "json",
+      "selector": "/concepts/DISTRICT_DEVELOPMENT",
+      "reason": "Required D semantics;no Tier algorithm in this slice."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B386_Refactor_S9f3.md",
-      "kind": "full",
-      "reason": "Persist skipped lifecycle duties and protect them on fresh worker load actual runtime impacts, validation closure and remaining boundaries."
+      "path": "Specialization/Design/Content/Shared_D0059.json",
+      "kind": "json",
+      "selector": "/concepts/NETWORK_LAYER",
+      "reason": "Reliable vs unavailable/passive/strict-use distinction."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
+      "path": "Mod/Commerce.lua",
       "kind": "full",
-      "reason": "Recover saved skipped lifecycle duties through one exact Store commit actual runtime impacts, validation closure and remaining boundaries."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B388_Refactor_S9g1.md",
+      "path": "Mod/CommerceModel.lua",
       "kind": "full",
-      "reason": "Prove bounded canonical network attribution framing before persistence wiring actual runtime impacts, validation closure and remaining boundaries."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B389_Refactor_S9g2.md",
+      "path": "Mod/CommerceCalculation.lua",
       "kind": "full",
-      "reason": "Prove single-use invalidate and finalize mechanics before native slot wiring actual runtime impacts, validation closure and remaining boundaries."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B390_Refactor_S9g3.md",
+      "path": "Mod/EffectiveFacts.lua",
       "kind": "full",
-      "reason": "Prove explicit native derived-slot adapter with existing Store and write guards actual runtime impacts, validation closure and remaining boundaries."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md",
+      "path": "Mod/NativeFacts.lua",
       "kind": "full",
-      "reason": "Represent mixed per-domain source facts and declare pure derived lifecycle scope actual runtime impacts, validation closure and remaining boundaries."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B391_Develop_Deployment.md",
+      "path": "Mod/CurrentSpecializationFacts.lua",
       "kind": "full",
-      "reason": "Explicit one-time stage deployment,actual package/backup verification and incomplete-U5 boundary."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B391_Develop_Playtest_Checklist.md",
+      "path": "Mod/RuntimeWork.lua",
       "kind": "full",
-      "reason": "Current new-campaign deliberate native scenarios and known unsupported/open cases."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
+      "path": "Mod/NetworkInput.lua",
       "kind": "full",
-      "reason": "Current bounded B391 failure evidence,compatibility repair and resumed safe deployment authorization."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
+      "path": "Mod/NetworkBridge.lua",
       "kind": "full",
-      "reason": "Current B393 repair,restricted production regression and known native/test limits."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B393_Partial_Playtest.md",
+      "path": "Mod/FactChanges.lua",
       "kind": "full",
-      "reason": "B393 partial native coverage,user-reported acceptance,commercial blockers and remaining deliberate tests;no full ability/U5 PASS."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
+      "path": "Mod/FactConsumerBindings.lua",
       "kind": "full",
-      "reason": "Current scoped observer isolation/cost/removal and native collection boundary."
+      "reason": "Direct actual producer/consumer or invalidation closure;read when touched/required by the current seam."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostic_Native_Review_20261028.md",
+      "path": "DevelopmentTests/test_b239_commerce_integration.py",
       "kind": "full",
-      "reason": "Current native diagnostic findings,additional user acceptance and remaining exact evidence gaps."
+      "reason": "Affected real-owner/max/qualification/network/regression proof;expand by actual changed closure."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
+      "path": "DevelopmentTests/test_b239_commerce_network.py",
       "kind": "full",
-      "reason": "Current scoped repairs,Runtime Impact,proofs,baseline failures and native handoff."
+      "reason": "Affected real-owner/max/qualification/network/regression proof;expand by actual changed closure."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Research_Playtest_20261029.md",
+      "path": "DevelopmentTests/test_b240_commerce.py",
       "kind": "full",
-      "reason": "Current native coverage,source/DB reconciliation,diagnostic defect and remaining GPP/Chair limits."
+      "reason": "Affected real-owner/max/qualification/network/regression proof;expand by actual changed closure."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Specialization_B395_GPP_Interface_Investigation_20261029.md",
+      "path": "DevelopmentTests/test_b397_network_transport.py",
       "kind": "full",
-      "reason": "Exact interface conclusion,diagnostic composition proof,conditional gaps and user Chair deferral."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
-      "kind": "full",
-      "reason": "Current diagnostic implementation,Runtime Impact,local proof and user opportunistic collection."
-    },
-    {
-      "path": "Specialization/Status/Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md",
-      "kind": "full",
-      "reason": "Current fourth native evidence,residual queue admission counterexample,unresolved Treasury and border recurrence;no runtime edits."
+      "reason": "Affected real-owner/max/qualification/network/regression proof;expand by actual changed closure."
     }
   ],
   "dependencies": [
-    "User-assigned Primary and accepted U1 govern continuing work;current explicit authorization covers only B399 queue repair and isolated necessary probes;D0058/A0183 unchanged.",
-    "Standing2026-10-27 automatic safe develop deployment applies only after verified game exit and clean published source;stable/main B307.334 is not promoted."
+    "Completed approved Step1 remote retrieval,then accepted D0059/A0184 and finite A-set formal gate committed/pushed before PU01.",
+    "Current HD input only;no official provider/Tier algorithm,derived persistence,transaction/city-ownership redesign."
   ],
   "old_writers": [
-    "Historical U1 began on B271;stable/main remains B307.334. Current live package is tracked by Authority/receipt;each cutover audits actual writer/observer/exit closures."
+    "Commerce remains sole Commercialization Gold writer;shared fact/projection getters remain read-only;no temporary alternate hold writer.",
+    "Retain NetworkBridge proof/NET-1/NET-2,actual caller invalidation and existing RuntimeWork phase boundary;review before minimal seam extraction."
   ],
   "conditional_context": [],
   "non_scope": [
-    "Unapproved deployment,main promotion,game launch,Advisory edits,unrelated features/ownership semantics/Expedition functional repairs. Safe develop deployment has standing user authorization2026-10-27.",
-    "A8 scope beyond explicitly approved eight-era count/validation/carriers; keep work pool, own-era, quota and history unchanged.",
-    "D7 destructive baseline without safe ability-specific irrecoverability proof."
+    "Later PU/O/HD packages,Tier implementation,S9/S10 deletion,main/PR/U5,deployment/game launch.",
+    "Formulas,amounts,qualification,strict transaction proof,save/history schema,GC policy and unrelated accepted Research/Culture abilities."
   ],
   "validation": {
-    "depth": "Docs synchronization first; each S2–S10 batch selects Runtime Impact/T01–T08 and W0004 depth with real modules and executed closure.",
-    "local": "Each implementation batch selects T01–T08, actual module composition, Lua51/static package checks and scoped workload/correctness regressions. See current result for evidence and limits.",
-    "user": "None now. No dedicated uncontrolled trader death/city removal or repeated Claim timer campaign. User explicitly says not to start U5;wait for next task."
+    "depth": "L2 projections;targeted L3 if actual writer/barrier changes require it. T02/T04/T08 plus scoped T01/T05 as affected.",
+    "local": "Actual facts+Commerce;unknown-vs-zero/negative,unreadableD/workers,independentdomains,sameref/secondchange/writebarriers,restrictedLua/package and affected regressions.",
+    "user": "None now;LOCAL never nativePASS;final minimal native gap listed only if necessary."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -811,9 +157,7 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "report": "Specialization/Status/Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md",
-    "local": "Scoped source/evidence reconciliation only;common Queue/WorkSet/Boundary verified and existing B399 actual-owner results reused. No tests rerun or runtime edits.",
-    "native": "Existing ordinary route/source-change and Dialogue/Study mechanism coverage retained. Distinct event entry,strong-to-weak fallback and partial-read limits not relabelled native PASS. Claim independent outcomes not invented.",
-    "deployment": "Unchanged B399.426/4915170;no deployment or game launch. U5 not started;await user."
+    "local": "Step2 documentation/integrity gate pending selected checks;PU01 not yet implemented.",
+    "native": "No new native validation or deployment;prior B399 accepted scopes/limits inherited."
   }
 }

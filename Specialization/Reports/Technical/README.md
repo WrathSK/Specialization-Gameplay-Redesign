@@ -2,6 +2,8 @@
 
 从[架构系统说明](../../Architecture/Specialization_v0.1_Architecture.md#系统如何组成)了解结构；这里回答“依据在哪里、结论能用到哪一步”。当前任务/授权/待测只看[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。文件较旧不代表结论无效，较新也不自动覆盖不同接口的证据。
 
+[Engine Reference](Engine_Reference.md) — read the relevant question sections alongside existing project evidence for native events, Modifiers, cold load, SQL/UI and environment dependencies. Reference evidence is not accepted Design/Architecture or implementation permission; no full-library reading requirement.
+
 ## 独立并行调查
 
 [General Investigation Zone / 通用调查区](Investigations/README.md) holds non-authoritative research within user-authorized topics. Investigation writes only its own topic Markdown and has read-only Git access. Primary may publish reviewed Stable checkpoints under [W0005 standing publication permission](../../Workflow/README.md#advisory-and-investigation-local-checkpoints), without per-report approval. Publication is not acceptance of conclusions, Design authority, implementation permission or mandatory context.

@@ -1,5 +1,7 @@
 # Commerce implementation preparation
 
+Current successor: [A0184 accepted convergence and PU01](../Specialization_v0.1_Architecture.md#accepted-convergence-boundaries--2026-11-04) and D0059 override the older pending/cold/Reputation clauses below. Earlier B239/B240 schedules remain historical evidence, not the current task. Read Status for actual implementation and authorization.
+
 State: B246_NATIVE_ACCEPTED_SCOPED / B248_ACCESS_FOLLOWUP_LOCALLY_VERIFIED_NATIVE_ENTRY_UNRESOLVED. Updated 2026-10-18: [B246 native review](../../Status/Validation/Results/Specialization_B246_Native_Review.md) accepts the submitted Development cases; simultaneous Standardization remains unexercised. [B247 implementation](#b247-implementation-and-validation) is explicitly authorized and locally verified. Actual source/live deployment remains in Status.
 
 ## 当前范围与停止点

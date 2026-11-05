@@ -2,18 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0058
+Design Revision: D0059
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-10-24
-Acceptance Evidence: 用户U1 handoff明确确认D-1至D-15及修订：网络保持／逐来源provenance／冷加载例外A、事件驱动项目、施工队唯一完成凭据、计龄恢复、能力子记录安全自动恢复；A8经定域评估后用户另明确接受8时代；S2–S10授权、部署另行批准。
-Previous Accepted Revision: [D0057冻结原文](Revisions/Specialization_Design_Spec_D0057.md)
-Latest Accepted Design Revision: D0058
+Acceptance Date: 2026-11-04
+Acceptance Evidence: 用户接受统一架构收敛处置、OD-1至4／ODP-01=B／ODP-02=A及最终Tier/N1–N3修正，并明确授权可靠发布→首次正式同步（含最小工作流集合）→仅PU01。候选及原审已在fcf61e2可靠发布并远程逐份核验；不是后续全部实施、部署或实机授权。
+Previous Accepted Revision: [D0058冻结原文](Revisions/Specialization_Design_Spec_D0058.md)
+Latest Accepted Design Revision: D0059
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
 
-**SCOPE-001（D0058）** U1确认网络待确认保持、逐来源隔离与冷加载组合值例外A；确认未知计龄间隔不补计／恢复续计、未知信誉无加成但不取消其它合法商业化；确认单项能力损坏的安全自动重建／已证实不可恢复时合法初始基线。Claim／时代对话／工程研习各自玩法保持，UNKNOWN不直接取消／完成；施工队每次结算需唯一可验证凭据，不凭累计差值发放。具体见下方SAFE、NET及当前Shared／四专业D0058。用户补充明确确认A8全部按8时代统一，原7为计数遗漏：启迪E0–8／最高24%，对话X0–8／单次最高40个百分点，作品池／自身时代／游戏时代额度／历史归属保持。[接受记录](Design_ChangeLog.md#accepted-d0058--2026-10-24)。
+**SCOPE-001（D0059）** 正式接受正常同构建恢复／会话有界来源见证、独立信誉政策零与合法退出、严重子记录范围化保护、当前环境有效升级链Tier及原生证据边界。明确取代旧冷加载例外A与派生网络保存接线目标、一般损坏后猜初始基线、跨构建兼容义务；真实历史／延迟生命周期责任保留。四专业其余公式、数值、资格、额度、城市归属玩法及A8八时代不变。Design同步不表示运行实现或新实机通过；当前授权仅PU01，见[接受记录](Design_ChangeLog.md#accepted-d0059--2026-11-04)。
 
 ### 异常恢复共同边界 — SAFE
 
@@ -21,9 +21,9 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **SAFE-002** 支持同回合多城合法施工队完成，正常路径优先可靠独立完成事件。累计差值仅发现遗漏，不能单独证明发放数量；每次发放必须具备唯一且可验证的请求、单位、来源及完成凭据。HELD／CALLING只凭新证据恢复，不重放不可逆操作，无法归属的结果保留诊断待确认。
 
-**SAFE-003** 无法可靠确认的计龄间隔不补计；可靠事实恢复后继续正常计龄，不永久停用。UNKNOWN_INTERVAL为异常保护而非正常业务；正常场景持续出现时调查回合边界、提交与恢复传播根因。 商业信誉无法可靠读取时按无信誉加成使用其它已确认合法的商业化金币；不得把原记录清零。
+**SAFE-003** 无法可靠确认的计龄间隔不补计；可靠事实恢复后继续正常计龄，不永久停用。UNKNOWN_INTERVAL为异常保护而非正常业务；正常场景持续出现时调查回合边界、提交与恢复传播根因。 商业信誉按当前用途区分已确认、不适用、窄政策零和不安全未知；仅符合独立信誉叶例外时无信誉加成使用其它已确认合法金币，不覆盖原记录。仅在独立信誉叶严重异常、父identity／reference／记录包及实际用途其它必要事实均可靠时，明示窄政策R0来源，只投影不覆盖权威信誉；错误及来源可见。适用于合法商业化与新风险投资条款；稳健投资不增加无关信誉依赖。缺依赖、父不一致、未决生命周期或一般CHECK_UNKNOWN不自动满足该例外；余额、网络证明、合同占位、付款／原生结果收据仍严格。正常已确认信誉及不适用当前信誉加成与此政策零分别表示；已签条款锁定，不追改。
 
-**SAFE-004** 基础identity、reference、record envelope损坏沿用既有严格保护。 单个能力子记录损坏只隔离该能力，其它有效能力继续。 能从可靠权威事实确定性重建时自动重建；不得猜补年龄、见闻、额度或已完成事务。 暂时不可读、初始化未完成、读取异常或UNKNOWN不得清零／覆盖永久记录。 只有已确认永久不可恢复且无其它可靠恢复证据时，允许该能力回到符合其完整结构和约束的合法零基线／初始记录；不把永久HELD或玩家手动选择作为正常最终结果。 按能力定义可验证判据，可靠区分读取失败与持久子记录损坏。一次pcall失败、UNKNOWN、经过时间或重试次数均不是永久不可恢复证明；不能安全判定时保护原记录、报告具体受影响边界。 保留足够的限量诊断用于追查根因；不要求玩家在游戏中处理技术损坏。
+**SAFE-004** 基础identity、reference、record envelope保持严格保护。单个能力子记录异常仅隔离受影响能力，有效兄弟继续；能从可靠权威事实确定性重建时自动重建，不猜补年龄、见闻、额度、完成或付款。暂时不可读、初始化未完成、异常或UNKNOWN不清零／覆盖历史。D0059明确取代D0058 SAFE-004的一般不可恢复后零基线许可：已证永久不可恢复且无可靠重建权威时，显式报告并阻止该不安全能力／结算，不把永久静默HELD或玩家手工修复当正常结果；任何新增损失、重建或不可逆结果政策提交用户。可信合法Commerce身份退出按原规则重置schema-valid信誉初始记录，即使旧信誉叶不可读，保有效兄弟及未知Capital收据；这是合法业务转换，不是猜零修史。一次pcall失败、UNKNOWN、时间或重试次数均非永久损坏证明。诊断有界，不要求玩家处理技术记录。
 
 **SCOPE-001（D0057）** 发展投资对同一区域多个合格下一阶建筑取最低理论金币购买价，并在界面明确列出报价依据。合同仍绑定城市＋区域，完成下一座合格建筑即结束，不绑定报价建筑。取代同阶HD建筑成本必然相同的旧假设，其它规则不变。[接受记录](Design_ChangeLog.md#accepted-d0057--2026-10-18)。
 
@@ -149,7 +149,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ### Shared Mechanical Vocabulary — D0028
 
-唯一当前共享定义：[Shared_D0058](Content/Shared_D0058.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
+唯一当前共享定义：[Shared_D0058](Content/Shared_D0059.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
 
 **D0035语义及引用覆盖：** D正式中文名“区域基础设施深度”，即Absolute Infrastructure Depth。不是完成百分比，不要求建满=10；三层链D6、四层链D10均为允许的额外投资差异。当前不引入Relative Completeness。已有专业冻结文件中Shared_D0028引用及“区域完善度”用语，当前解释统一遵从Shared_D0045保留的D0035语义澄清；旧文件字节不变、历史解释保留。公式、稳定concept ID及其它Shared合同不变。[Consumer/目录/术语审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)。
 
@@ -161,7 +161,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **D0040 Research增量：DESIGN_FROZEN — implementation / balance validation pending.**
 
-唯一新规则与文案正文：[Research当前Content](Content/Research_D0058.json)。[Schema](Content/README.md)；[当前边界审阅](../Historical/Design/Reviews/Boundary_D0031_Review.md)；[D0030历史审查](../Historical/Design/Reviews/Research_D0030_Review.md)。机构永久随Potential累积，ACTIVE仅控制对应阶段能力；机构为presentation-only，不进入普通建筑体系。
+唯一新规则与文案正文：[Research当前Content](Content/Research_D0059.json)。[Schema](Content/README.md)；[当前边界审阅](../Historical/Design/Reviews/Boundary_D0031_Review.md)；[D0030历史审查](../Historical/Design/Reviews/Research_D0030_Review.md)。机构永久随Potential累积，ACTIVE仅控制对应阶段能力；机构为presentation-only，不进入普通建筑体系。
 
 | Rule ID | 当前权威content条目 |
 |---|---|
@@ -182,7 +182,7 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 **D0048: DESIGN_FROZEN主体保持；主题化许可为USER_ACCEPTED_V0.1_PROVISIONAL／BALANCE_REQUIRED。保留九域六产出、D0045参数、D0042生命周期、Dialogue隔离与D0038逐域Floor；implementation / balance validation pending.**
 
-唯一规则、公式、首版Tooltip与Mission内容：[Culture_D0058](Content/Culture_D0058.json)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
+唯一规则、公式、首版Tooltip与Mission内容：[Culture_D0058](Content/Culture_D0059.json)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
 
 | Rule ID | 当前content条目 |
 |---|---|
@@ -207,7 +207,7 @@ D0032批准[Culture时代馆藏Hybrid D方向](../Historical/Design/Records/Cult
 
 **D0053: DESIGN_FROZEN — D0052一级260及成本保留，施工接受适用Production加成并留待未来实测平衡； 在D0044职责／首测值上追加每模板来源绑定、正式Gold/Faith、研习中断、专业单位保护与最终Floor；模板可靠性及历史合同保留，implementation / balance validation pending.**
 
-唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0058.json)。[本轮接受与取代](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)／[D0044既定职责](../Historical/Design/Reviews/Industry_D0044_Review.md)、[早期冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
+唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0059.json)。[本轮接受与取代](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)／[D0044既定职责](../Historical/Design/Reviews/Industry_D0044_Review.md)、[早期冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
 
 | Rule ID | 当前权威content条目 |
 |---|---|
@@ -246,7 +246,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 **D0057: DESIGN_FROZEN；发展投资同阶合格候选取最低理论购买价并列明依据、不绑定报价建筑；最高S同级按最早建立对应机构等级优先，其它合同保留；外部来源身份过滤与Harbor→Food已接受，D0054逐领域Floor保留；在D0045基础上按2026-10-16用户交接修订商业化、资本投资资格、风险保护与发展投资，其余D0039–D0045合同保持；不等于实现／平衡验收／技术通过。**
 
-唯一机械合同：[Commerce D0058](Content/Commerce_D0058.json)（[D0056](Content/Commerce_D0056.json)为历史）（[D0055](Content/Commerce_D0055.json)为历史）（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
+唯一机械合同：[Commerce D0058](Content/Commerce_D0059.json)（[D0056](Content/Commerce_D0056.json)为历史）（[D0055](Content/Commerce_D0055.json)为历史）（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
 
 | Rule ID | 当前权威content |
 |---|---|
@@ -280,7 +280,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 **NET-004** 确认路线结束、取消、战争/征服/端点失效等使路线不再有效时，相关接入/接收资格撤销，不能仅因过去曾建立过路线而继续享受网络。读档后应反映当前真实集合，无需玩家打开贸易界面恢复网络；待确认期间的临时载体处理依NET-005，不把未知当确认空网。
 
-**NET-005 — 待确认保持与逐城隔离（U1 D-1/D-2）** 路线拓扑待确认／UNKNOWN时，所有网络派生载体保持上次实际生效值，不撤销、不改写；标准化本城与网络贡献共用的组合载体整体保持，依赖网络的其它输入变化等相关新事实确认后重算。已确认的身份、ACTIVE门槛、Owner、REALLOCATING等资格退出按各能力规则即时处理，UNKNOWN不等于确认失效，不新增专业门槛。新确认事实到达后，按当前合法来源更新，含确认断路／失效时的精确撤销；即使数值未变，确认状态恢复也必须传播。冷加载中引用和资格未确认失效的已有载体暂作上次实际值，无载体不补造；这不是永久历史／旧主收益恢复。拓扑已确认但单城事实不可读时，保持其引用有效的上次已知贡献；无可靠旧贡献者暂不参与，其它可读城市的新事实可结合保留贡献更新效果，保留／未知状态不得冒充全新确认。冷加载旧组合值尚不能可靠分解时继续整体保持直到必要事实可用；同时存在已确认来源失效和其它必要来源未知时采用已接受的例外A，暂留不可分组合值，事实恢复后事件驱动重算并撤除失效贡献，接收城自身确认失效仍立即退出。商业化、文化网络及工业标准化网络部分均适用；资本／发展交易保持原有确认事实、余额、收据和已签合同存续规则。完整解释见[Network](Network.md#未确认不等于失效)。
+**NET-005 — 正常恢复、待确认保持与逐来源隔离（D0059）** 同一受支持构建的正常读档恢复等价的引擎事实、真实Mod历史与原生效果；Lua缓存／索引重建不构成业务变化。路线拓扑PENDING／UNKNOWN或必要事实／历史／拓扑尚未完整可消费时，不撤除、部分重算或改写已恢复的网络派生载体；标准化本城与网络共用物理载体整体保持。首个完整可靠可消费快照按现行公式幂等对账，旧输出不是当前网络事实或新不可逆交易资格。会话内拓扑已确认、单来源暂不可读时，仅保留引用仍有效的上次可靠贡献，其它可读来源使用新事实；逐来源区分confirmed／retained／unknown，无可靠见证不造贡献，不默认持久化派生来源。可靠负事实立即撤销相应严格资格并登记被动撤除责任；冷加载不可拆分整体且无可靠来源见证时，不猜拆减项，首个完整可消费快照执行撤除。接收城自身已确认身份／资格／Owner／reference／REALLOCATING退出仍按原有精确规则优先处理。事实恢复由相关事件、可用性／初始化完成交付触发，不增加轮询。超出正常初始化窗口仍不可恢复时，临时no-write、原输出标为未对账且显示严重错误、严格交易禁止；这不是永久旧全额支付、K-only或清空政策，真实新取舍交用户决定。资本／发展既有确认、余额、收据与已签合同存续规则不变。 完整解释见[Network](Network.md#未确认不等于失效)。
 
 ### Research当前网络 / Culture旧网络历史 — NET-RC
 

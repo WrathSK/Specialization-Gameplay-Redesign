@@ -1,5 +1,7 @@
 # 外审处置与候选修订：一页执行摘要
 
+**Historical/reference routing after accepted sync (2026-11-04):** current rules and authorization now live in [Architecture](../../../../../../Architecture/Specialization_v0.1_Architecture.md#accepted-convergence-boundaries--2026-11-04) and [Status](../../../../../../Status/Specialization_P0_Status.md#current-authoritative-state). This preserved candidate/audit package is on-demand evidence, not a second current authority or later-package implementation permission. Original planning text below is retained.
+
 Status: Stable candidate — C1–C5计划闭合已获Owner接受，N1–N3整合完成；当前仅提出分阶段实施申请。
 
 Primary｜2026-11-04｜develop `954dc67aca007082a5a164becdbafbacbad1403a`；D0058 / A0183 / S0866。B399.426 仅为现有部署记录，本轮未验运行包。

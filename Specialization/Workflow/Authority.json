@@ -2,15 +2,15 @@
   "workflow": "W0001",
   "role": "Navigation/review basis only. User is final semantic authority; Primary is authorized recorder/engineer, not gameplay owner. See Workflow README W0005. Referenced accepted Design/Architecture govern their respective subjects; hash match proves unchanged, not correct.",
   "versions": {
-    "design": "D0058",
-    "research": "D0058",
-    "industry": "D0058",
-    "culture": "D0058",
-    "commerce": "D0058",
-    "shared": "D0058",
+    "design": "D0059",
+    "research": "D0059",
+    "industry": "D0059",
+    "culture": "D0059",
+    "commerce": "D0059",
+    "shared": "D0059",
     "presentation": "D0032",
-    "architecture": "A0183",
-    "status": "S0866",
+    "architecture": "A0184",
+    "status": "S0867",
     "runtime": "B399.426 / modinfo426",
     "military": "D0037",
     "harbor": "D0037",
@@ -18,11 +18,11 @@
   },
   "paths": {
     "design": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
-    "research": "Specialization/Design/Content/Research_D0058.json",
-    "industry": "Specialization/Design/Content/Industry_D0058.json",
-    "culture": "Specialization/Design/Content/Culture_D0058.json",
-    "commerce": "Specialization/Design/Content/Commerce_D0058.json",
-    "shared": "Specialization/Design/Content/Shared_D0058.json",
+    "research": "Specialization/Design/Content/Research_D0059.json",
+    "industry": "Specialization/Design/Content/Industry_D0059.json",
+    "culture": "Specialization/Design/Content/Culture_D0059.json",
+    "commerce": "Specialization/Design/Content/Commerce_D0059.json",
+    "shared": "Specialization/Design/Content/Shared_D0059.json",
     "presentation": "Specialization/Historical/Design/Records/Culture_Era_Presentation_D0032.md",
     "architecture": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
     "status": "Specialization/Status/Specialization_P0_Status.md",
@@ -33,10 +33,10 @@
   },
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
-  "implementation_plan": "Specialization/Reports/Proposals/Refactor_Program_U1.md",
+  "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "491517093de18c8b151053724e316f1e08228995",
-  "current_batch": "B399_COVERAGE_RECONCILED_WAITING_USER",
-  "next_batch": "Wait for the user next task. U5 explicitly not started. No new mandatory trader-kill/city-removal or duplicate Claim timing campaign;no implementation/deployment/main promotion from this documentation.",
+  "current_batch": "PU01_AUTHORIZED_AFTER_FORMAL_SYNC",
+  "next_batch": "Current-HD Commerce/shared-fact status/use first slice only, after formal sync commit/push. Stop after validated PU01 develop commit/push;no deployment/main/U5/later package.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B399.426 temporary develop from 491517093de18c8b151053724e316f1e08228995;344/344 MATCH;SHA256 7f1eae6b8ef33a0c865cadb651428fa79b5f6bf98fffb6601b43afcc75278077;B398 outgoing and B307 stable backups MATCH;no pending transaction;receipt B399.426-4915170-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -48,8 +48,8 @@
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
-  "deployment_authorization": "2026-10-27 user resumed automatic deployment of completed verified develop batches after reliable game-exit detection;existing transaction/receipt/hash/recovery gates remain. Running/uncertain game blocks;no launch/termination/main promotion.",
-  "context_review_status": "S0866:ordinary route/source-change coverage reconciled;shared Claim timing covered by mechanism/native and actual-owner local evidence without invented outcome PASS;distinct native entry/fallback/partial-read limits retained. U5 held by user;runtime unchanged.",
+  "deployment_authorization": "Current staged authorization explicitly excludes deployment. Prior standing develop deployment does not apply to this task;main/game launch remain excluded.",
+  "context_review_status": "S0867:published/retrieved19/19;D0059/A0184 and finite workflow/current-information sync;runtime unchanged;PU01 authorized subject to completed formal gate.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,5 +64,5 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md"
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#s0867--accepted-convergence-successor-and-finite-first-sync-gate"
 }

@@ -1,5 +1,7 @@
 # v3-final candidate：Owner 决策闭环交接
 
+**Historical/reference routing after accepted sync (2026-11-04):** current rules and authorization now live in [Architecture](../../../../../Architecture/Specialization_v0.1_Architecture.md#accepted-convergence-boundaries--2026-11-04) and [Status](../../../../../Status/Specialization_P0_Status.md#current-authoritative-state). This preserved candidate/audit package is on-demand evidence, not a second current authority or later-package implementation permission. Original planning text below is retained.
+
 调查材料／后继候选；不覆盖正式规范。
 
 Status: Stable（可审阅的候选文档，不是工程或实机 PASS）。
