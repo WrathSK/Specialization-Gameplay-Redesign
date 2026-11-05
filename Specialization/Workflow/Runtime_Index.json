@@ -231,9 +231,9 @@
       "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CurrentSpecializationFacts.lua": {
-      "sha256": "045a1ea1f23191ec4e0da3cdeb10e3182af58186b121a625dce4c65256e7ddfc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
-      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "c577cdb9f6e07b79f798185525a8da51a2828eee291409b2fb7ccd3c8bcaeb50",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
     },
     "Mod/Data/BoostIntegerTest.sql": {
       "sha256": "78fe221ecc883eeb0948001dc98638ff12111491baa7e254339c853d398f1f1b",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "ba6c5f2525f2600ce88703c7493d79748feebf8e7096239a068fcad5ab755d34",
+      "sha256": "1b371faa67600de5378bf0561fe6e746c1a50bad12750b2f9d09b7780c97cacf",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0872/B402.429 PU03 approved first NetworkBridge/FactChanges/Bindings/Commerce responsibility path;33new+130related pass,one pre-slice historical assertion unchanged. Probe/modinfo labels only. Strict proof,phase0,D-1,formulas,saves and existing controls retained;no deployment/native PASS."
+      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -816,9 +816,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "23b6952948c87df8453617ef8123b9f1fd828d9f115c3823342e9da2820228d6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
-      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "529d9182d52dba78b95ce9629e80cc8bb7a2f658bdd7e0d7f839281cf917e623",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
@@ -826,9 +826,9 @@
       "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "381b662b22cef06866605f1804e3d210c93a88cc34137b0801a0bae29feae2c7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
-      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "752bd3256f9887f41a701db2f8d8bb901c30d52b1cf964087af0992dbaea41a0",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
     },
     "Mod/ResearchChairModel.lua": {
       "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
@@ -836,9 +836,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "5fd592250bdf5d9d761b05dc30e36d83e25c9b4e6c6ec0b56a951b2fdf71c726",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B376_Refactor_S9e3b.md",
-      "provenance": "B376.403 Scope remaining lifecycle readers and preserve foreign target recovery; local/static evidence only; no deployment/native PASS."
+      "sha256": "1156135442782d73f132eb76d604aec4976569fb382342b0526c432a19038ab1",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
     },
     "Mod/ResearchCrossModel.lua": {
       "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
@@ -851,9 +851,9 @@
       "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "14dcb69412716311e5a0fc5ab411d1dead4ba485346edfa0b7b6a864af889645",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "0b9e9c30498148a5e595757ae77fc43f4675b78c00bd74b11c8ef2176dcae81a",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
       "sha256": "3fe47c1a8bc1d8bbb3efdf1659c6d8e3c631fd06f422f676628faf69075c1939",
@@ -916,9 +916,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecialistSupport.lua": {
-      "sha256": "75a6bd3ef7ee3dbc9ac2f64321c04bfd51e8f598591e93b19bed89579af1ee0b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "sha256": "ae69f4f3657f5f087083e3a18c0f49b36c49d86fe706083cc6dbfc0a58544e1a",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
     },
     "Mod/Specialization.dep": {
       "sha256": "33e4ab62dfc52efc143b9d56a77f6538cc6a25c986754984436e1aca10ab0e0d",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f79fef3936b3365a4e0bc27696cad83d826d0fbcb687d1bc8d1fb6aeec9abe0d",
+      "sha256": "513fe39566bdae7a2418a13f16951f5d6d5b92d7255da0b9ad0772c1c8ebd3a8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0872/B402.429 PU03 approved first NetworkBridge/FactChanges/Bindings/Commerce responsibility path;33new+130related pass,one pre-slice historical assertion unchanged. Probe/modinfo labels only. Strict proof,phase0,D-1,formulas,saves and existing controls retained;no deployment/native PASS."
+      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0872/B402.429 PU03:four functional files plus2build labels reviewed.33new+130related PASS;1historical startup-list assertion unchanged at exact pre-slice3ab601d,not PASS.222Lua51/25XML/5artdef/345runtime,0new alarms;live pointers unchanged. Only first NETWORK→Commerce receipt path,not full O2/O3.",
-  "source_runtime": "B402.429 / modinfo429;not deployed",
-  "tested_source_snapshot_sha256": "1e219d26bf25d32c9d2abc1be87e6103f9151ed0b914c6e539a46ef1d8f84b2f"
+  "source_review": "S0874 PU04:six functional runtime files and2labels reviewed;20new+144related pass,4pre-slice historical health errors unchanged. Known output matrix and source/reference/write-phase guards checked.222Lua51/25XML/5artdef/345runtime,0new alarms;live pointers unchanged.",
+  "source_runtime": "B403.430 / modinfo430;not deployed",
+  "tested_source_snapshot_sha256": "b3d22cc9dcdd40a81408f30def83c05d7df434f799ac6e875afb3d5ae885bece"
 }

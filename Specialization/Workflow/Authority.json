@@ -10,8 +10,8 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0872",
-    "runtime": "B402.429 / modinfo429",
+    "status": "S0874",
+    "runtime": "B403.430 / modinfo430",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "491517093de18c8b151053724e316f1e08228995",
-  "current_batch": "B402_PU03_COMPLETE_BATCH_STOP",
-  "next_batch": "PU03 first real network-to-Commerce responsibility chain locally complete;reviewed commit/push develop then stop. Owner next-slice instruction required;no automatic PU04,later-package cutover,deployment,main or U5.",
+  "current_batch": "B403_PU04_LOCAL_COMPLETE_CONTINUOUS",
+  "next_batch": "Continue PU05a source/reference/order-scoped Crew unresolved receipts after verified PU04 commit/push;PU05b native attribution remains independent. No routine next-slice approval;stop for external review,Owner decision or existing native/semantic/deployment gates.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B399.426 temporary develop from 491517093de18c8b151053724e316f1e08228995;344/344 MATCH;SHA256 7f1eae6b8ef33a0c865cadb651428fa79b5f6bf98fffb6601b43afcc75278077;B398 outgoing and B307 stable backups MATCH;no pending transaction;receipt B399.426-4915170-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "Current continuation authorizes source work and local verification only;deployment/main/game launch remain excluded.",
-  "context_review_status": "S0872:four functional runtime files and Probe/modinfo labels reviewed;33new+130related pass,one unchanged historical startup-list assertion;all inherited guards retained plus one new test.",
+  "context_review_status": "S0874 PU04:20new+144related PASS;4same exact-baseline old health assertion errors,not PASS.222Lua51/25XML/5artdef/345runtime,0new alarms. No formula/save/deployment change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,6 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#pu03-evidence-and-limits--s0872",
-  "source_status": "Canonical B402.429 source;tested Mod/DevelopmentTests/tools snapshot SHA256 1e219d26bf25d32c9d2abc1be87e6103f9151ed0b914c6e539a46ef1d8f84b2f. Verify exact commit binding after publication;runtime_commit/live still identify B399.426 last deployed package."
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#pu04-evidence-and-limits--s0874",
+  "source_status": "Canonical B403.430;tested Mod/DevelopmentTests/tools SHA256 b3d22cc9dcdd40a81408f30def83c05d7df434f799ac6e875afb3d5ae885bece;bind to containing commit. Live remains recorded B399.426 from4915170;not inspected or deployed.",
+  "continuation_authorization": "Explicit Owner:持续推进;stop for external-audit checkpoints or decisions/problems requiring Owner. Replaces routine per-slice reapproval,not semantic/native/deployment/main gates."
 }

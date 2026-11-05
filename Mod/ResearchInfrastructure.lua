@@ -1,4 +1,5 @@
 include('RuntimeWork')
+include('SpecialistSupport')
 include('CarrierSet')
 include('Tombstones')
 -- P0-C RES_L4_INFRA. One Campus per city (user-confirmed environment).
@@ -30,10 +31,11 @@ function M.Start(P,shared)
  end
  local function inspect(pid,c)
   if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return {d=0,workers=0,science=0,status='INACTIVE'} end
-  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers)
+  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers,anchors)
   assert(f.validity=='VERIFIED' and type(f.identity)=='string','RI_FACTS_UNKNOWN')
   local p={identity=f.identity,potential=f.potential,active=f.active,d=0,workers=0,science=0,status='INACTIVE'}
   if f.identity~='RESEARCH' then return p end
+  if SPCCurrentSpecializationFacts.AnchorUnavailable(P,shared,pid,c,f,anchors)then return p end
   assert(integer(f.active) and f.active<=4 and integer(f.potential) and f.potential<=4 and f.active<=f.potential,'RI_ACTIVE_UNKNOWN')
   if f.active<4 then return p end
   local v=shared.DistrictCompleteness.ReadFacts(pid,c,f.token)
@@ -54,7 +56,7 @@ function M.Start(P,shared)
   assert(plan.status=='READY' and integer(plan.d) and plan.d<=10 and integer(plan.workers),'RI_WORKERS_OR_DEPTH_UNKNOWN')
   p.status='READY';p.d=plan.d;p.workers=plan.workers;p.science=plan.science;p.plot=campus.plot;p.district=campus.id
   return p
-  end)
+  end,true)
  end
  local function installed(c,skipOld)
   local b=c:GetBuildings();local out={old={},bits={},oldCount=0,coefficient=0}

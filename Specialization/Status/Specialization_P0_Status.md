@@ -1,19 +1,43 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0872
-Implementation Build: source B402.429 / modinfo429; recorded live B399.426 from4915170; stable/main B307.334
+Status Revision: S0874
+Implementation Build: source B403.430 / modinfo430; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
-Design Sync State: D0059_CONVERGENCE_ACCEPTED_PU03_LOCAL_COMPLETE
-Work State: PU03_LOCAL_COMPLETE_BATCH_STOP_NO_DEPLOYMENT
+Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
+Work State: PU04_LOCAL_COMPLETE_CONTINUOUS_NO_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
-商路证明向商业收益模块交接责任的第一条真实链路已完成代码修复与本地验证，源码为 **B402.429 / modinfo429**。发送未登记、消费者缺失／启动失败／拒绝接管时，范围不会被静默丢弃；已接管但执行失败的工作由商业模块保留，等待相关真实变化。旧回执不能清除新变化，成功的其他消费者不重复执行。本轮没有部署、启动游戏、晋升 main 或开始 U5；其余消费者迁移仍未完成。
+2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
-**Source is not deployment:** recorded live remains B399.426 from `491517093de18c8b151053724e316f1e08228995`,344/344 per inherited receipt;stable/main B307.334. This batch did not inspect or replace that package. Source inventory345files. D0059/A0184 and completed PU01/PU02 remain unchanged.
+科研失效事实片已完成代码与本地验证，源码 **B403.430 / modinfo430**。已复现并修复：学院已可靠失效、总督等级暂不可读时，原先四项科研效果会停在ACTIVE断言而不撤除。现在复用现有锚点采样，先处理已确认的结构性负事实；学院本身不可读仍保留原效果。已知等级的公式与正常输出保持原样。后续按持续授权推进施工队的来源／订单收据隔离；本轮未部署或实机测试。
+
+### PU04 evidence and limits — S0874
+
+- **LOCAL_SIMULATION:**168selected,164PASS,0failures;all20new methods PASS. Four existing S5d4c1 health assertions reproduce the same errors at fixed pre-slice `a9a0b4371d8f41a128cbf8506a10254c71af4366` and are not PASS: `test_actual_cross_UNKNOWN_holds_then_reliable_sample_recovers`, `test_actual_cross_pillage_repairs_through_exact_health`, `test_confirmed_damage_during_creation_is_not_suppressed`, `test_live_pillage_repairs_without_dead_events_and_does_not_rearm_self` in `test_refactor_s5d4c1.ResearchHealth`. RuntimeWork/CarrierSet/native health implementation is byte-unchanged;its remaining obligations stay visible for PU08/O7,not silently closed.
+- **Before/after:**6new negative methods give9expected assertion errors with the six scoped source files virtually substituted from exact baseline;the four writer-specific `CONFIRMED_NEGATIVE_HIDDEN_*` cases are included. The existing eight known ACTIVE1–4/workers0,3 output combinations pass both before and after. All frozen tests/models remain unchanged.
+- **Actual closure:**EffectiveFacts + facade + existing SpecialistSupport sampler + ResearchInfrastructure/Apply/Chair/Cross. Separate true Store/EF reference and commit-reentry tests prove exact-reference admission and stale-projection rejection;effect fixtures retain explicit Store/foundation/native-district/worker/route/carrier doubles.81observed modules/fragments is loading/completion evidence,not full function/path coverage. Tests also cover unknown-anchor/identity/ledger holds,missing/incomplete/wrong-reference negatives,same-turn repair,one-city sibling preservation,1000idle no extra work,restricted Lua and observer isolation.
+- **Work/contract:**only the four consumers opt into the existing EF read phase for UNKNOWN_GOVERNOR negatives. Known paths do no new negative-sampler work. UNKNOWN base facts remain uncached:3affected writers mean3fresh city-local anchor samples,each with one guarded base recapture;do not label this shared-capture optimization. Confirmed-base read-phase sharing and existing mutation barriers remain. No retained ACTIVE,source-object cache,new native event/timer,poll,save field,formula or ordinary-building ontology change. SpecialistSupport exports its same raw sampler;its own qualification policy remains.
+- **Static:**222Lua5.1 compile,25XML,5artdef,modinfo430,345runtime/344package entries and156own literal include targets;0new/widened static alarms. Source/Context/publication checks are required at delivery. Source-built Lupa2.8/CPython3.14.8;repository fixture SQL only,no external engine DB. Historical SQLite fixture ResourceWarnings are preserved in local transcripts,not hidden or treated as native behavior.
+- **Evidence/re-run:**`local/refactor/PU04-46ddc3e67ee140719dd7c2d7b0f1e9d4/closure.json`;SHA256 `7e80db2bac2a9a32b3d98ba1655545a71a7d9c83ea1a09243f06f3c9115794f7`;tested Mod/DevelopmentTests/tools snapshot `b3d22cc9dcdd40a81408f30def83c05d7df434f799ac6e875afb3d5ae885bece`,stable during execution. Exact suite names,runner,profile,before/failed-run transcripts and execution map are local beside/in artifact;`static.json` records syntax/package checks. Command: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<source-built-lupa>:DevelopmentTests python3.14 <artifact-directory>/rerun.py`;commit binding uses `DevelopmentTests/refactor_evidence.py source <artifact> --commit HEAD`. Full artifacts are LOCAL_ONLY,not permanent backups;hashes do not recover bytes. Versioned source/tests and fixed baseline permit comparable reruns,not recovery of the old execution.
+- **Limits:**no native incidence or effect PASS;no compulsory pillage scenario. Existing D-1/strict transaction/retired-carrier health and mandatory exits are unchanged. Unknown anchor reads still hold;this is not a new partial-fact or Governor-retention system. No deployment/main/U5/no-HD work.
+
+User decision:none. User testing:none now. Primary next:verified commit/push develop,then proceed to PU05a under the continuous grant. Its native same-tier attribution and irreversible proof gate remains separate;stop for required external review or real Owner decision.
+
+### PU04 runtime impact and gates — S0873
+
+- **Producer/owner:** existing EffectiveFacts owns full current identity/reference and Governor availability;its guarded anchor projection shares only a synchronous read phase. Reuse SpecialistSupport's existing city-scoped native anchor sampler without changing its policy. CurrentSpecializationFacts forwards the third projection reader;ResearchInfrastructure/Apply/Chair/Cross remain independent effect owners.
+- **Cause/scope:** existing relevant D/ACTIVE/worker and initialization routes only. In the compound UNKNOWN_GOVERNOR branch,read exact historical anchor within the target city before the level assertion;confirmed absent/wrong owner/city/type/incomplete/pillaged can withdraw that owner's installed effects. A thrown/incomplete read stays UNKNOWN;no retained positive or invented identity. Known normal eligibility/formulas remain unchanged. No new native event/signature.
+- **Read/write/work:** no extra anchor read on the known-ACTIVE path. Unknown branch enumerates only that city's districts,not buildings/all cities;confirmed-base legal EF phases retain existing raw-anchor sharing;UNKNOWN base facts remain uncached,so this rare branch samples once per affected writer. Only these four consumers opt into an existing EF.WithPhase negative inspection when Governor is unknown;one fresh base recapture supplies full parent/reference/mutation guards even outside the caller phase. No new partial-fact cache;normal known reads are unchanged. No native handles,cross-turn cache,timer,per-frame/per-turn new scan or retry. Existing exact native carrier write/health/retirement controls remain.
+- **Proof:** L3 T01/T02/T04/T06/T08;real EF,actual facade/sampler and four writers;fixed a9a0b43 before counterexamples,known-state differential,unknown-anchor hold,confirmed loss/recovery,stale token/ref,write-in-projection rejection,same-turn second change,two cities,foreign scope and idle0. Preserve worker/read-phase and exact health regressions;Lua51/package/context/privacy gates. No forced pillage campaign;native inherited uncertainty remains separate.
+- **Gate:** do not implement unproved negatives,relax source/reference guards,extend ordinary building ontology,change formulas or silently fix other modules. Next planned local slice is source/order-scoped Crew receipt isolation;its native attribution gap remains independent. External-review and explicit native/environment gates stop their dependent work;no automatic broad audit.
+
+User decision:none now. User testing:none now. Primary next:prove PU04,repair only established defect,validate/commit/push,then continue approved next ready slice unless a real stop condition is reached.
+
+## Prior PU03 checkpoint — S0872
 
 ### PU03 evidence and limits — S0872
 
@@ -27,7 +51,7 @@ Work State: PU03_LOCAL_COMPLETE_BATCH_STOP_NO_DEPLOYMENT
 - **Evidence:**full artifact `local/refactor/PU03-6053589367b54e9ebe944efd378af337/closure.json`;SHA256 `7c576942e966ce770f10a59b246321fc58830c3f564ba6c06e383dd5a9d315b6`;tested Mod/DevelopmentTests/tools input SHA256 `1e219d26bf25d32c9d2abc1be87e6103f9151ed0b914c6e539a46ef1d8f84b2f`,stable during run. Runner,exact selected methods,fixture profile,baseline transcripts,environment and execution mapping are beside/in the artifact. Re-run with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<source-built-lupa>:DevelopmentTests python3.14 <artifact-directory>/rerun.py`;after source publication,`DevelopmentTests/refactor_evidence.py source <artifact> --commit HEAD` must match this digest. Static summary is `static.json` beside the artifact. Full artifacts are LOCAL_ONLY,not a permanent backup;hashes identify bytes and cannot recover them.Tracked source/tests plus commands and fixed baseline support a new comparable run,not recovery of this execution.
 - **Remaining limit:**only NETWORK→Commerce uses this first responsibility contract. Other legacy bindings/owner queues and later O2/O3/mandatory-exit/no-HD/Tier packages remain separate. Native transport timing,actual yields,mouse/UI and third-party composition are not proved locally. No immediate new native request;after separately approved deployment,use the already planned route refresh/READY/strict-transaction/reload smoke. No USER_GAME_TEST_PASS added.
 
-User decision:none for this completed scope. User testing:none now;deployment is not authorized here. Primary next:reviewed commit/push develop,then stop at this batch boundary;do not begin PU04 or later work automatically.
+Prior PU03 stopped/pushed at a9a0b43;the 2026-11-05 continuous grant above supersedes its routine per-slice stop only. Original validation/native limitations remain.
 
 ### PU03 runtime impact and gates — S0871
 

@@ -41,6 +41,12 @@ local function sample(P,pid,c,f,batch)
  assert(type(raw.complete)=='boolean'and type(raw.pillaged)=='boolean','B1_DISTRICT_STATE_UNKNOWN')
  return raw
 end
+-- Shared raw sampler only; each caller keeps its own eligibility policy.
+function S.ReadAnchor(P,pid,c,f,batch,anchors)
+ local read=function()return sample(P,pid,c,f,batch)end
+ if anchors then return anchors(f.first,read)end
+ return read()
+end
 -- Nil = confirmed ineligible; thrown read = UNKNOWN, retain existing projection.
 function S.Inspect(P,shared,pid,c,batch,project)
  if c:GetOwner()~=pid or not P.IsTestPlayer(pid)then return project(nil)end
@@ -48,7 +54,7 @@ function S.Inspect(P,shared,pid,c,batch,project)
   if f.specialization=='NONE'then return project(nil)end
   assert(P.Families and type(f.specialization)=='string','B1_IDENTITY_UNKNOWN')
   assert(f.first and type(f.potential)=='number'and f.potential>=1,'B1_FOUNDATION_UNKNOWN')
-  local raw=anchors(f.first,function()return sample(P,pid,c,f,batch)end)
+  local raw=S.ReadAnchor(P,pid,c,f,batch,anchors)
   if not raw.present or raw.owner~=pid or raw.cityID~=c:GetID() or raw.type~=f.first.type or P.Family(raw.type)~=f.specialization then return project(nil)end
   if not raw.complete or raw.pillaged then return project(nil)end
   assert(type(f.active)=='number','B1_ACTIVE_UNKNOWN')

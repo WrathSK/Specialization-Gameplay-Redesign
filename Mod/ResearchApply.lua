@@ -1,4 +1,5 @@
 include('RuntimeWork')
+include('SpecialistSupport')
 include('CarrierSet')
 include('ResearchApplyModel')
 -- Sole RES_L3_APPLY writer. Native Campus specialist yield, never city flat compensation.
@@ -24,7 +25,10 @@ function M.Start(P,shared)
   end end;ownedRegistry=SPCCarrierSet.Registry(nextOwned);definitions=true
  end
  local function inspect(pid,c,detail)
-  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers)
+  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers,anchors)
+  if f.identity=='RESEARCH' and SPCCurrentSpecializationFacts.AnchorUnavailable(P,shared,pid,c,f,anchors)then
+   return SPCResearchApplyModel.Plan({validity='VERIFIED',identity='NONE'},nil,nil)
+  end
   local inactive=SPCResearchApplyModel.Plan(f,nil,nil)
   if inactive.status~='NEEDS_DEPTH' then return inactive end
   local reader=detail and shared.DistrictCompleteness.Read or shared.DistrictCompleteness.ReadFacts
@@ -51,7 +55,7 @@ function M.Start(P,shared)
   p.depth=v;p.plot=campus.plot;p.district=campus.id;p.active=f.active;p.warnings=warnings
   for _,y in ipairs(SPCResearchApplyModel.Yields) do assert(p.per[y]>=0 and p.per[y]<2^M.Bits,'AP_ENCODING_RANGE') end
   return p
-  end)
+  end,true)
  end
  local function installed(c)
   local b=c:GetBuildings();local rows={};local amounts={}

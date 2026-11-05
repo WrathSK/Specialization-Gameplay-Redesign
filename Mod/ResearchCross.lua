@@ -1,4 +1,5 @@
 include('RuntimeWork')
+include('SpecialistSupport')
 include('Tombstones')
 include('ResearchCrossSample')
 -- Sole RES_L3_CROSS writer. No population/specialist/Network/D input.
@@ -44,7 +45,10 @@ function M.Start(P,shared)
   health.Remove(c,r.id);assert(P.HasBuilding(c:GetBuildings(),r.id)==false,'CROSS_REMOVE_UNCONFIRMED');r.yes=false;data.changes=data.changes+1
  end
  local function inspect(pid,c)
-  local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
+  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,workers,anchors)
+  if f.identity=='RESEARCH' and SPCCurrentSpecializationFacts.AnchorUnavailable(P,shared,pid,c,f,anchors)then
+   return SPCResearchCrossModel.Plan({validity='VERIFIED',identity='NONE'},{})
+  end
   local plan=SPCResearchCrossModel.Plan(f,{}) -- validate activation independently of sample availability
   if plan.status~='READY' then return plan end
   local districts=c:GetDistricts();local n=districts:GetNumDistricts()
@@ -73,6 +77,7 @@ function M.Start(P,shared)
   plan=SPCResearchCrossModel.Plan(f,rows);plan.active=f.active;plan.potential=f.potential
   assert(math.abs(plan.science)<2^M.Bits,'CROSS_ENCODING_RANGE_UNSUPPORTED')
   return plan
+  end,true)
  end
  local function reconcile(pid,c)
   local state=installed(c,true) -- active bits remain freshly observed on every reconciliation

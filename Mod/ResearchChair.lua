@@ -1,4 +1,5 @@
 include('RuntimeWork')
+include('SpecialistSupport')
 include('CarrierSet')
 include('ResearchChairModel')
 SPCResearchChair={Bits=8}
@@ -33,7 +34,10 @@ function M.Start(P,shared)
  end
  local function inspect(pid,c,detail)
   assert(c:GetOwner()==pid,'CHAIR_OWNER_CHANGED')
-  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers)
+  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers,anchors)
+  if f.identity=='RESEARCH' and SPCCurrentSpecializationFacts.AnchorUnavailable(P,shared,pid,c,f,anchors)then
+   return SPCResearchChairModel.Plan({validity='VERIFIED',identity='NONE'},nil,nil,targets)
+  end
   local p=SPCResearchChairModel.Plan(f,nil,nil,targets)
   if p.status~='NEEDS_BUILDINGS' then return p end
   local reader=detail and shared.DistrictCompleteness.Read or shared.DistrictCompleteness.ReadFacts
@@ -48,7 +52,7 @@ function M.Start(P,shared)
   -- Technical encoding bound, not gameplay cap; fail visibly, never truncate.
   assert(p.workers<2^M.Bits,'CHAIR_ENCODING_RANGE')
   return p
-  end)
+  end,true)
  end
  local function installed(c)
   local b=c:GetBuildings();local rows,amounts={},{}
