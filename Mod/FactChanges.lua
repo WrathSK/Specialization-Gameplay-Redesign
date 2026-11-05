@@ -46,9 +46,10 @@ end
 function M.New(shared)
  local previous=shared.FactChanges
  if previous and type(previous.Close)=='function'then previous.Close()end
- local d={sequence=0,emitted=0,delivered=0,pending=0,errors={},closed=false}
- local consumers,order,queue,keys={},{},{},{};local busy=false
- local activePhase,activeConsumer,activeWork,activeKeys
+ M.epoch=(M.epoch or 0)+1
+ local d={epoch=M.epoch,sequence=0,emitted=0,delivered=0,pending=0,retained=0,retryReady=0,errors={},closed=false}
+ local consumers,order,queue,keys={},{},{},{};local responsibilityOrder={};local busy=false
+ local activePhase,activeConsumer,activeWork,activeKeys,deriving
  d.flushRevision=0
  -- Session-local authority stamps, not fact values. Owner scope covers pool membership:
  -- a newly qualifying source may be absent from every old per-city dependency list.
@@ -102,6 +103,64 @@ function M.New(shared)
   assert(next(set) and (topic==nil or token(topic)),'FACT_COMMIT_KINDS')
   invalidate(owner,cityID,set,topic)
  end
+ -- Opt-in ordinary responsibility delivery shares this registry and scope cap.
+ -- Reserve before Emit commits: capacity failure cannot consume a producer intent.
+ local interested
+ local function merged(previous,row)
+  if not previous then return row end
+  local out=clone(row)
+  for _,field in ipairs({'kinds','causes','topics','revisions'})do
+   for k,v in pairs(previous[field])do if out[field][k]==nil then out[field][k]=v end end
+  end
+  if out.evidence==nil then out.evidence=previous.evidence end
+  if out.investment==nil then out.investment=previous.investment end
+  if previous.transfers then
+   out.transfers=out.transfers or {};for k,v in pairs(previous.transfers)do if not out.transfers[k]then out.transfers[k]=clone(v)end end
+  end
+  for _,field in ipairs({'causes','topics','transfers'})do
+   local n=0;for _ in pairs(out[field] or {})do n=n+1 end;assert(n<=32,'FACT_DELIVERY_MERGE_LIMIT')
+  end
+  clone(out);return out
+ end
+ local function slot(key,batch)return key..atom(batch)end
+ local function prepare(consumer,key,row)
+  local replaced={};local source=consumer.byScope[key] or {}
+  -- A phase0-derived fact belongs to the active snapshot. A separately queued
+  -- next-snapshot cause must neither leak into it nor be erased by its ACK.
+  for batch,old in pairs(source)do if batch<=row.deliveryBatch then replaced[#replaced+1]=old end end
+  table.sort(replaced,function(a,b)return a.row.sequence<b.row.sequence end)
+  local prior
+  for _,old in ipairs(replaced)do prior=merged(prior,old.row)end
+  return {key=slot(key,row.deliveryBatch),scope=key,batch=row.deliveryBatch,row=merged(prior,row),state='QUEUED',wakes={},replaces=replaced}
+ end
+ local function remove(consumer,entry)
+  if consumer.deliveries[entry.key]~=entry then return false end
+  if entry.armed then d.retryReady=d.retryReady-1 end
+  if entry.error then consumer.failures=consumer.failures-1 end
+  consumer.deliveries[entry.key]=nil
+  local scope=consumer.byScope[entry.scope]
+  if scope then scope[entry.batch]=nil;if not next(scope)then consumer.byScope[entry.scope]=nil end end
+  d.retained=d.retained-1;return true
+ end
+ local function install(consumer,entry)
+  for _,old in ipairs(entry.replaces)do remove(consumer,old)end
+  entry.replaces=nil
+  consumer.deliveries[entry.key]=entry;consumer.byScope[entry.scope]=consumer.byScope[entry.scope] or {}
+  consumer.byScope[entry.scope][entry.batch]=entry;d.retained=d.retained+1
+ end
+ function d.Receipt(event,status,reason)
+  local v=type(event)=='table' and getmetatable(event)==nil and event.delivery
+  assert(not d.closed and type(v)=='table' and getmetatable(v)==nil and v.epoch==d.epoch
+   and token(v.consumer) and integer(v.ticket),'FACT_RECEIPT_CONTEXT')
+  assert(status=='REGISTERED' or status=='IRRELEVANT' and token(reason),'FACT_RECEIPT_STATUS')
+  return {status=status,epoch=v.epoch,consumer=v.consumer,ticket=v.ticket,reason=reason}
+ end
+ function d.AcceptsReceipt(event,receipt)
+  if d.closed or type(receipt)~='table' or getmetatable(receipt)~=nil then return false end
+  local v=event.delivery
+  return v and v.epoch==d.epoch and receipt.epoch==v.epoch and receipt.consumer==v.consumer and receipt.ticket==v.ticket
+   and (receipt.status=='REGISTERED' or receipt.status=='IRRELEVANT' and token(receipt.reason)) or false
+ end
  function d.RegisterConsumer(name,callback,options)
   assert(not d.closed and token(name) and not consumers[name] and type(callback)=='function','FACT_CONSUMER_INVALID')
   assert(#order<128,'FACT_CONSUMER_LIMIT');options=options or {}
@@ -110,8 +169,19 @@ function M.New(shared)
   assert(next(kinds),'FACT_CONSUMER_KINDS_REQUIRED')
   local topics={};entries(options.topics or {},32,function(topic)assert(token(topic),'FACT_TOPIC_INVALID');topics[topic]=true end)
   local phase=options.phase or 1;assert(phase==0 or phase==1,'FACT_PHASE_INVALID')
-  consumers[name]={name=name,callback=callback,kinds=kinds,topics=topics,phase=phase,order=#order+1}
-  order[#order+1]=name
+  assert(options.delivery==nil or options.delivery=='RESPONSIBILITY' and phase==1,'FACT_DELIVERY_MODE')
+  assert(options.delivery==nil or not busy,'FACT_DELIVERY_REGISTER_DURING_FLUSH')
+  local consumer={name=name,callback=callback,kinds=kinds,topics=topics,phase=phase,order=#order+1,
+   responsibility=options.delivery~=nil,deliveries={},byScope={},failures=0}
+  local reserved={}
+  if consumer.responsibility then
+   for _,key in ipairs(keys)do local row=queue[key];if interested(consumer,row)then reserved[#reserved+1]=prepare(consumer,key,row)end end
+   assert(d.retained+#reserved<=2048,'FACT_DELIVERY_SCOPE_LIMIT')
+  end
+  consumers[name]=consumer;order[#order+1]=name
+  if consumer.responsibility then responsibilityOrder[#responsibilityOrder+1]=name end
+  for _,entry in ipairs(reserved)do install(consumer,entry)end
+  return name
  end
  function d.Emit(event)
   assert(not d.closed and type(event)=='table' and getmetatable(event)==nil,'FACT_CHANGE_STRUCTURE')
@@ -129,7 +199,8 @@ function M.New(shared)
   local key=atom(event.owner)..atom(event.cityID)..atom(event.reference)
   local previous=queue[key]
   assert(previous or #keys<2048,'FACT_QUEUE_LIMIT')
-  local row={player=event.owner,city=event.cityID,reference=event.reference,kinds={},causes={},topics={},revisions={}}
+  local row={player=event.owner,city=event.cityID,reference=event.reference,kinds={},causes={},topics={},revisions={},
+   deliveryBatch=deriving and d.flushRevision or d.flushRevision+1}
   if previous then
    for _,field in ipairs({'kinds','causes','topics','revisions'})do for k,v in pairs(previous[field])do row[field][k]=v end end
    row.evidence=previous.evidence;row.investment=previous.investment
@@ -154,10 +225,19 @@ function M.New(shared)
   -- Cause/topic names are detached bounded tokens, never raw filenames/errors.
   local n=0;for _ in pairs(row.causes)do n=n+1 end;assert(n<=32,'FACT_CAUSE_LIMIT')
   n=0;for _ in pairs(row.topics)do n=n+1 end;assert(n<=32,'FACT_TOPIC_LIMIT')
+  local reserved={};local added=0
+  for _,name in ipairs(responsibilityOrder)do local consumer=consumers[name]
+   if interested(consumer,row)then
+    local entry=prepare(consumer,key,row);reserved[#reserved+1]={consumer,entry};added=added+1-#entry.replaces
+   end
+  end
+  assert(d.retained+added<=2048,'FACT_DELIVERY_SCOPE_LIMIT')
   invalidate(event.owner,event.cityID,kinds,event.topic) -- zero native calls; visible before deferred delivery
   d.sequence=row.sequence;d.emitted=d.emitted+1
   if not previous then keys[#keys+1]=key;d.pending=#keys end
-  queue[key]=row;return row.sequence
+  queue[key]=row
+  for _,item in ipairs(reserved)do install(item[1],item[2])end
+  return row.sequence
  end
  -- A Bridge proof published inside its own sampling callback can feed phase1.
  -- Every unrelated/reentrant cause remains in the next ordinary snapshot.
@@ -168,42 +248,112 @@ function M.New(shared)
   if not (busy and activePhase==0 and activeConsumer=='NetworkBridge')then return d.Emit(event)end
   local savedQueue,savedKeys,savedPending=queue,keys,d.pending
   queue=activeWork;keys=activeKeys;d.pending=#keys
-  local ok,value=pcall(d.Emit,event)
+  local wasDeriving=deriving;deriving=true
+  local ok,value=pcall(d.Emit,event);deriving=wasDeriving
   activeWork=queue;activeKeys=keys;queue=savedQueue;keys=savedKeys;d.pending=savedPending
   assert(ok,value);return value
  end
- local function interested(consumer,row)
+ interested=function(consumer,row)
   for kind in pairs(row.kinds)do if consumer.kinds[kind]then
    if kind~='HISTORY' or not next(consumer.topics)then return true end
    for topic in pairs(row.topics)do if consumer.topics[topic]then return true end end
   end end
   return false
  end
+ -- Explicit completion/availability wake only. Repeated cause/revision cannot
+ -- rearm a failed ticket; idle publication never manufactures retry evidence.
+ function d.WakeConsumer(name,cause,revision,scope)
+  if d.closed then return false end
+  local consumer=consumers[name]
+  assert(consumer and consumer.responsibility and token(cause) and integer(revision),'FACT_WAKE_INVALID')
+  assert(scope==nil or type(scope)=='table' and getmetatable(scope)==nil,'FACT_WAKE_SCOPE')
+  if scope then
+   assert(scope.player==nil or integer(scope.player),'FACT_WAKE_PLAYER')
+   assert(scope.city==nil or integer(scope.city) and scope.player~=nil,'FACT_WAKE_CITY')
+   assert(scope.reference==nil or type(scope.reference)=='string' and #scope.reference<=512,'FACT_WAKE_REFERENCE')
+  end
+  local woke=false
+  for _,entry in pairs(consumer.deliveries)do local row=entry.row
+   if entry.state=='HELD' and (not scope or (scope.player==nil or row.player==scope.player)
+    and (scope.city==nil or row.city==nil or row.city==scope.city)
+    and (scope.reference==nil or row.reference==scope.reference)) and revision>(entry.wakes[cause] or -1)then
+    if entry.wakes[cause]==nil then local n=0;for _ in pairs(entry.wakes)do n=n+1 end;assert(n<32,'FACT_WAKE_CAUSE_LIMIT')end
+    entry.wakes[cause]=revision
+    if not entry.armed then entry.armed=true;d.retryReady=d.retryReady+1 end
+    woke=true
+   end
+  end
+  return woke
+ end
+ local function attempt(consumer,entry)
+  if consumer.deliveries[entry.key]~=entry then return end
+  if entry.armed then entry.armed=false;d.retryReady=d.retryReady-1 end
+  local ok,result=pcall(function()
+   local event=clone(entry.row);event.delivery={epoch=d.epoch,consumer=consumer.name,ticket=entry.row.sequence}
+   return consumer.callback(event)
+  end)
+  d.delivered=d.delivered+1
+  local event={delivery={epoch=d.epoch,consumer=consumer.name,ticket=entry.row.sequence}}
+  local accepted=ok and d.AcceptsReceipt(event,result)
+  -- Reentrant Emit/Close owns the newer entry; neither an old ACK nor error
+  -- may remove or overwrite it.
+  if not d.closed and consumer.deliveries[entry.key]==entry then
+   if accepted then
+    remove(consumer,entry)
+   else
+    if not entry.error then consumer.failures=consumer.failures+1 end
+    local safe,text=pcall(tostring,result)
+    entry.error=not ok and (safe and text:sub(1,180) or 'FACT_CALLBACK_FAILED') or 'FACT_DELIVERY_UNACKNOWLEDGED'
+    entry.state='HELD'
+   end
+  end
+ end
  function d.Flush()
-  if d.closed or busy or #keys==0 then return false end
+  if d.closed or busy or #keys==0 and d.retryReady==0 then return false end
   busy=true
   local work,sequence=queue,keys;queue={};keys={};d.pending=0
+  local retry={}
+  for _,name in ipairs(order)do local consumer=consumers[name]
+   if consumer.responsibility then
+    local rows={};for _,entry in pairs(consumer.deliveries)do if entry.armed then rows[#rows+1]=entry end end;retry[name]=rows
+   end
+  end
   d.flushRevision=d.flushRevision+1;local initialCount=#sequence;activeWork=work;activeKeys=sequence
   -- Known phases, stable registration order. New causes never recurse into this snapshot.
   for phase=0,1 do activePhase=phase;for _,name in ipairs(order)do local consumer=consumers[name]
    if consumer and consumer.phase==phase then
-    local failure;local attempted=false
+    local failure;local attempted=false;local seen={}
     for index=1,(phase==0 and initialCount or #sequence)do
      local key=sequence[index]
      if d.closed then busy=false;activeWork=nil;activeKeys=nil;activeConsumer=nil;activePhase=nil;return true end
      local row=work[key]
      if interested(consumer,row)then
-      attempted=true;activeConsumer=name;local ok,err=pcall(function()return consumer.callback(clone(row))end);activeConsumer=nil;d.delivered=d.delivered+1
-      if not ok then local read,message=pcall(tostring,err);failure=read and message:sub(1,180) or 'FACT_CALLBACK_FAILED'end
+      activeConsumer=name
+      if consumer.responsibility then
+       local entry=consumer.deliveries[slot(key,row.deliveryBatch)]
+       if entry and entry.row.sequence==row.sequence then attempted=true;seen[entry]=true;attempt(consumer,entry)end
+      else
+       attempted=true;local ok,err=pcall(function()return consumer.callback(clone(row))end);d.delivered=d.delivered+1
+       if not ok then local read,message=pcall(tostring,err);failure=read and message:sub(1,180) or 'FACT_CALLBACK_FAILED'end
+      end
+      activeConsumer=nil
      end
     end
-    if attempted then d.errors[name]=failure end
+    for _,entry in ipairs(retry[name] or {})do
+     if d.closed then break end
+     if not seen[entry] and consumer.deliveries[entry.key]==entry and entry.armed then
+      attempted=true;activeConsumer=name;attempt(consumer,entry);activeConsumer=nil
+     end
+    end
+    if consumer.responsibility then
+     d.errors[name]=consumer.failures>0 and 'FACT_DELIVERY_UNACKNOWLEDGED' or nil
+    elseif attempted then d.errors[name]=failure end
    end
   end end
   busy=false;activePhase=nil;activeConsumer=nil;activeWork=nil;activeKeys=nil;return true
  end
  function d.Close()
-  queue={};keys={};consumers={};order={};d.pending=0;d.closed=true
+  queue={};keys={};consumers={};order={};responsibilityOrder={};d.pending=0;d.retained=0;d.retryReady=0;d.closed=true
   if shared.FactChanges==d then shared.FactChanges=nil end
  end
  return d

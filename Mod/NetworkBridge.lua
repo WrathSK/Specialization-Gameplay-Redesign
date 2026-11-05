@@ -7,9 +7,9 @@ SPCNetworkBridge={}
 function SPCNetworkBridge.Start(P,shared)
  local d={ready=false,players={},proofRevisions={}};shared.NetworkBridge=d
  shared.RouteSignalRevision=0 -- compatibility projection; Bridge is the sole production writer
- function d.RegisterConsumer(name,fn)
+ function d.RegisterConsumer(name,fn,options)
   assert(shared.FactChanges,'NETWORK_FACT_REGISTRY_UNAVAILABLE')
-  return shared.FactChanges.RegisterConsumer('NET_'..name,fn,{kinds={'NETWORK'}})
+  return shared.FactChanges.RegisterConsumer('NET_'..name,fn,{kinds={'NETWORK'},delivery=options and options.delivery})
  end
  local function generation(pid)return shared.FactChanges and shared.FactChanges.Generation(pid,'NETWORK') or 0 end
  local function currentGeneration(pid,b)return (b.factGeneration or 0)==generation(pid)end
@@ -131,17 +131,25 @@ function SPCNetworkBridge.Start(P,shared)
   return table.concat(parts,'|')
  end
  notify=function(pid)
-  local b=bucket(pid);local signature=proofSignature(b)
-  if b.lastNotifiedProof==signature then return false end
-  b.lastNotifiedProof=signature;if b.effectAvailability=='AVAILABLE'then b.proofPending=false end
-  d.proofRevisions[pid]=(d.proofRevisions[pid] or 0)+1
-  if shared.FactChanges then
-   local ok,err=pcall(shared.FactChanges.EmitDerived,{owner=pid,kinds={'NETWORK'},cause='NETWORK_PROOF_PUBLISHED',revision=d.proofRevisions[pid],
+  local b=bucket(pid);local signature=proofSignature(b);local intent=b.notificationIntent
+  if not intent and b.lastNotifiedProof==signature then return false end
+  if not intent or intent.signature~=signature then
+   d.proofRevisions[pid]=(d.proofRevisions[pid] or 0)+1
+   intent={signature=signature,event={owner=pid,kinds={'NETWORK'},cause='NETWORK_PROOF_PUBLISHED',revision=d.proofRevisions[pid],
     evidence={epoch=d.epoch,inputVersion=b.inputRevision,proofRevision=d.proofRevisions[pid],validity=b.validity,
-     availability=(b.queuedWork or b.negativeHeld) and 'NEEDS_REVALIDATION' or b.availability,effectAvailability=(b.queuedWork or b.negativeHeld) and 'PENDING' or b.effectAvailability,revalidation=b.revalidation,continuityOnly=b.continuityOnly==true}})
-   b.consumerError=not ok and short(err) or nil
+     availability=(b.queuedWork or b.negativeHeld) and 'NEEDS_REVALIDATION' or b.availability,effectAvailability=(b.queuedWork or b.negativeHeld) and 'PENDING' or b.effectAvailability,revalidation=b.revalidation,continuityOnly=b.continuityOnly==true}}}
+   b.notificationIntent=intent -- one scalar latest-proof intent per existing owner bucket
   end
-  return true
+  if b.effectAvailability=='AVAILABLE'then b.proofPending=false end
+  local registry=shared.FactChanges
+  if not registry then b.consumerError='NETWORK_NOTIFICATION_REGISTRY_UNAVAILABLE';return false end
+  local ok,seq=pcall(registry.EmitDerived,intent.event)
+  local registered=ok and type(seq)=='number' and seq>=1 and seq%1==0 and shared.FactChanges==registry and not registry.closed
+  if b.notificationIntent==intent then
+   if registered then b.lastNotifiedProof=signature;b.notificationIntent=nil;b.consumerError=nil
+   else b.consumerError=not ok and short(seq) or 'NETWORK_NOTIFICATION_UNCONFIRMED'end
+  end
+  return registered
  end
  local function mergeWork(dst,src)
   dst.losses=dst.losses or {};dst.drops=dst.drops or {}

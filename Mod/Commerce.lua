@@ -15,6 +15,7 @@ function M.Start(P,shared)
  local C=SPCCommerceCalculation;local Use=SPCFactUse;local model=SPCCommerceModel;local cp=model.Copy
  local d={views={},revision=0,ready=false,writes=0};shared.Commerce=d
  local views,dependencies,byTarget,dirty,known,samples={},{},{},{},{},{}
+ local heldDeliveries={} -- only failed work already accepted from the fact-delivery owner
  local definitions,legacy,sourceKinds={},{},{};local initialized=false;local busy=false;local permanentBound=false
  local ownedIndex={}
  local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.Mark(scope.player,scope.city)end)
@@ -113,7 +114,11 @@ function M.Start(P,shared)
    local ok,h=pcall(store.HistoricalReference,c)
    if ok and h.owner==pid and h.cityID==c:GetID()then known[key(pid,c:GetID())]={pid,c:GetID()}end
   end end end end
-  initialized=true;d.ready=true;return true
+  initialized=true;d.ready=true
+  if shared.FactBindings and shared.FactBindings.Wake and shared.FactChanges then
+   shared.FactBindings.Wake('Commerce','OWNER_READY',shared.FactChanges.sequence)
+  end
+  return true
  end
  local function stamp(batch,pid,id)
   local k=key(pid,id);batch.epochs=batch.epochs or {}
@@ -319,9 +324,24 @@ function M.Start(P,shared)
  end
  function d.Mark(pid,id)
   if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then d.Mark(owner,id)end end;return end
-  if not P.IsTestPlayer(pid) or isolated(pid)then return end
-  dirty[pid]=dirty[pid] or {cities={}}
-  if id==nil then dirty[pid].all=true else dirty[pid].cities[id]=true end
+  if not P.IsTestPlayer(pid)then return false,'UNSUPPORTED_PLAYER'end
+  if isolated(pid)then return false,'ISOLATED'end
+  dirty[pid]=dirty[pid] or heldDeliveries[pid] or {cities={}};heldDeliveries[pid]=nil
+  if id==nil then dirty[pid].all=true;dirty[pid].cities={}
+  elseif not dirty[pid].all then dirty[pid].cities[id]=true end
+  return true -- exact scope is registered before a delivery ACK may be made
+ end
+ function d.AcceptFact(event)
+  local registry=shared.FactChanges
+  if not registry or type(event)~='table' or type(event.player)~='number' then return false end
+  local receipt=registry.Receipt(event,'REGISTERED') -- validate context before registering work
+  local accepted,reason=d.Mark(event.player,event.city)
+  if accepted~=true then
+   if reason=='UNSUPPORTED_PLAYER'then return registry.Receipt(event,'IRRELEVANT',reason)end
+   return false
+  end
+  dirty[event.player].factDuty=true
+  return receipt
  end
  function d.Audit(scope)
   if scope and scope.player~=nil and (not P.IsTestPlayer(scope.player) or isolated(scope.player))then return end
@@ -426,6 +446,7 @@ function M.Start(P,shared)
   end)
   if not ok then d.error=code(why)end
   busy=false;d.busy=false
+  return ok and initialized
  end
  function d.Refresh(pid,id)d.Audit({player=pid,city=id});return cp(views[key(pid,id)])end
  function d.SourceChanged(pid,id)d.Audit({player=pid,changed={[id]=true}})end
@@ -543,7 +564,19 @@ function M.Start(P,shared)
  end
  local function flush()
   if busy then return end;local todo=dirty;dirty={}
-  for pid,v in pairs(todo)do d.Audit({player=pid,changed=not v.all and v.cities or nil})end
+  for pid,v in pairs(todo)do
+   local accepted=d.Audit({player=pid,changed=not v.all and v.cities or nil})
+   if v.factDuty and not accepted then
+    -- A real reentrant cause keeps its next snapshot armed. Otherwise retain
+    -- the accepted responsibility dormant; never retry it on idle publish.
+    local nextWork=dirty[pid] or heldDeliveries[pid]
+    if nextWork then
+     nextWork.factDuty=true
+     if v.all then nextWork.all=true;nextWork.cities={}
+     elseif not nextWork.all then for id in pairs(v.cities)do nextWork.cities[id]=true end end
+    else heldDeliveries[pid]=v end
+   end
+  end
  end
  local function hook(source,event,fn)local e=P.Field(source,event);if e and e.Add then e.Add(fn)end end
  hook(Events,'LoadScreenClose',function()d.Audit()end)

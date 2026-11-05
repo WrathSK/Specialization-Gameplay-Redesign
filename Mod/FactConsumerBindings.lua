@@ -2,7 +2,7 @@
 SPCFactConsumerBindings={}
 function SPCFactConsumerBindings.New(shared)
  local d={errors={}};shared.FactBindings=d
- local pending={};local networkDrains={}
+ local pending={};local networkDrains={};local registry=shared.FactChanges;local deliveryNames={}
  local function target(name)
   local value=shared[name];local state=shared.StartStatus and shared.StartStatus[name]
   if value and not value.startupError and not (state and (state.state=='FAILED' or state.state=='SKIPPED_DEPENDENCY'))then return value end
@@ -40,7 +40,7 @@ function SPCFactConsumerBindings.New(shared)
   {target='CultureNetwork',method='Audit',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D','NETWORK','HISTORY'},topics={'INSIGHTS'}},
   {target='EngineeringStudy',method='CreditChanged',kinds={'HISTORY'},topics={'WONDER_CREDIT'}},
   {target='DialogueProjects',method='RefreshAccess',cityOnly=true,kinds=role},
-  {target='Commerce',method='Mark',kinds={'ACTIVE','WORKERS','NETWORK'}},
+  {target='Commerce',method='Mark',networkTakeover='AcceptFact',kinds={'ACTIVE','WORKERS','NETWORK'}},
   {target='CapitalInvestment',method='Mark',kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'CAPITAL_RECOVERY'}},
   {target='DevelopmentInvestment',method='Audit',kinds={'NETWORK'}},
  }
@@ -62,12 +62,39 @@ function SPCFactConsumerBindings.New(shared)
   for name in pairs(e.topics)do q.topics[name]=true end
   for name in pairs(e.causes)do q.causes[name]=true end
  end
+ local function takeover(row,e)
+  local value=target(row.target);local receipt
+  local ok,err=pcall(function()
+   assert(value and type(value[row.networkTakeover])=='function','FACT_BINDING_TARGET_UNAVAILABLE')
+   receipt=value[row.networkTakeover](e)
+   assert(registry.AcceptsReceipt(e,receipt),'FACT_BINDING_NOT_REGISTERED')
+  end)
+  if not ok then
+   local safe,text=pcall(tostring,err);d.errors[row.target]=safe and text:sub(1,180) or 'FACT_BINDING_FAILED'
+   error(d.errors[row.target],0)
+  end
+  d.errors[row.target]=nil;return receipt
+ end
+ function d.Wake(name,cause,revision,scope)
+  local woke=false
+  for _,consumer in ipairs(deliveryNames[name] or {})do
+   if registry.WakeConsumer(consumer,cause,revision,scope)then woke=true end
+  end
+  return woke
+ end
  for _,declaration in ipairs(declarations)do
   local row=declaration
   local remaining={};local callback=function(e)collect(row,e)end
   for _,kind in ipairs(row.kinds)do
    local provider=kind=='D' and shared.DistrictCompleteness or kind=='NETWORK' and shared.NetworkBridge
-   if provider and type(provider.RegisterConsumer)=='function'then provider.RegisterConsumer('Binding_'..row.target,callback)
+   if kind=='NETWORK' and row.networkTakeover then
+    local receive=function(e)return takeover(row,e)end;local name
+    if provider and type(provider.RegisterConsumer)=='function'then
+     name=provider.RegisterConsumer('Binding_'..row.target,receive,{delivery='RESPONSIBILITY'})
+    else name=registry.RegisterConsumer('Binding_'..row.target..'_NETWORK',receive,{kinds={'NETWORK'},delivery='RESPONSIBILITY'})end
+    assert(type(name)=='string','FACT_BINDING_DELIVERY_UNREGISTERED')
+    deliveryNames[row.target]=deliveryNames[row.target] or {};table.insert(deliveryNames[row.target],name)
+   elseif provider and type(provider.RegisterConsumer)=='function'then provider.RegisterConsumer('Binding_'..row.target,callback)
    else remaining[#remaining+1]=kind end
   end
   if #remaining>0 then shared.FactChanges.RegisterConsumer('Binding_'..row.target,callback,{kinds=remaining,topics=row.topics})end

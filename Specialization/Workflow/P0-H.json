@@ -11,86 +11,107 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0870",
-    "runtime": "B401.428 / modinfo428",
+    "status": "S0872",
+    "runtime": "B402.429 / modinfo429",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "PU02 implemented/local gates complete;review evidence,commit/push develop and stop. No later package or deployment authorized.",
+  "goal": "Completed PU03 first real Bridge→FactChanges→Bindings→Commerce responsibility chain;scoped local evidence and exact limits recorded. Commit/push develop then batch stop;no deployment or next-slice implementation.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
       "selector": "### Accepted convergence boundaries — 2026-11-04",
-      "reason": "Current accepted strict operation,receipt,scope and native-evidence boundaries;authorization comes from current Owner approval and Status."
+      "reason": "Accepted owner takeover/ACK,phase0,strict network and scope boundaries;user grants the current continuation."
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current narrow task,RIC,acceptance and source/live separation."
+      "reason": "Current narrow slice,RIC,validation and source/live boundary."
     },
     {
-      "path": "Specialization/Design/Content/Commerce_D0059.json",
+      "path": "Specialization/Design/Content/Shared_D0059.json",
       "kind": "json",
-      "selector": "/contracts/restructuring",
-      "reason": "Unchanged liquidation/configuration qualification,wait,consumption and permanent history."
+      "selector": "/concepts/NETWORK_LAYER",
+      "reason": "Passive hold/current fact/strict-transaction distinction and event-driven recovery remain unchanged."
     },
     {
-      "path": "Mod/RestructuringUI.lua",
+      "path": "Mod/NetworkBridge.lua",
       "kind": "full",
-      "reason": "Actual native-panel adapter,request route,sole action owner or direct regression;read only as needed for the changed closure."
+      "reason": "Actual producer,dispatcher,binding,first owner,composition/read boundary or direct test profile;read according to changed seam."
     },
     {
-      "path": "Mod/UI/ExpeditionSpyUnitPanel.lua",
+      "path": "Mod/FactChanges.lua",
       "kind": "full",
-      "reason": "Actual native-panel adapter,request route,sole action owner or direct regression;read only as needed for the changed closure."
+      "reason": "Actual producer,dispatcher,binding,first owner,composition/read boundary or direct test profile;read according to changed seam."
     },
     {
-      "path": "Mod/Restructuring.lua",
+      "path": "Mod/FactConsumerBindings.lua",
       "kind": "full",
-      "reason": "Actual native-panel adapter,request route,sole action owner or direct regression;read only as needed for the changed closure."
+      "reason": "Actual producer,dispatcher,binding,first owner,composition/read boundary or direct test profile;read according to changed seam."
     },
     {
-      "path": "Mod/RestructuringModel.lua",
+      "path": "Mod/Commerce.lua",
       "kind": "full",
-      "reason": "Actual native-panel adapter,request route,sole action owner or direct regression;read only as needed for the changed closure."
+      "reason": "Actual producer,dispatcher,binding,first owner,composition/read boundary or direct test profile;read according to changed seam."
     },
     {
-      "path": "DevelopmentTests/test_b247_restructuring.py",
+      "path": "Mod/RuntimeComposition.lua",
       "kind": "full",
-      "reason": "Actual native-panel adapter,request route,sole action owner or direct regression;read only as needed for the changed closure."
+      "reason": "Actual producer,dispatcher,binding,first owner,composition/read boundary or direct test profile;read according to changed seam."
     },
     {
-      "path": "DevelopmentTests/test_b249_restructuring_startup.py",
+      "path": "Mod/RuntimeWork.lua",
       "kind": "full",
-      "reason": "Actual native-panel adapter,request route,sole action owner or direct regression;read only as needed for the changed closure."
+      "reason": "Actual producer,dispatcher,binding,first owner,composition/read boundary or direct test profile;read according to changed seam."
     },
     {
-      "path": "DevelopmentTests/test_pu02_restructuring_ui.py",
+      "path": "DevelopmentTests/test_b397_network_transport.py",
       "kind": "full",
-      "reason": "Current action-pair,actual service/native-fragment and unchanged idle assertions with explicit test profile."
+      "reason": "Actual producer,dispatcher,binding,first owner,composition/read boundary or direct test profile;read according to changed seam."
+    },
+    {
+      "path": "DevelopmentTests/test_refactor_s5a.py",
+      "kind": "full",
+      "reason": "Actual producer,dispatcher,binding,first owner,composition/read boundary or direct test profile;read according to changed seam."
+    },
+    {
+      "path": "DevelopmentTests/test_refactor_s5c2.py",
+      "kind": "full",
+      "reason": "Actual producer,dispatcher,binding,first owner,composition/read boundary or direct test profile;read according to changed seam."
+    },
+    {
+      "path": "DevelopmentTests/refactor_defect_fixtures.py",
+      "kind": "full",
+      "reason": "Actual producer,dispatcher,binding,first owner,composition/read boundary or direct test profile;read according to changed seam."
+    },
+    {
+      "path": "DevelopmentTests/test_pu03_delivery.py",
+      "kind": "full",
+      "reason": "Maintained current responsibility contract tests,actual owner/read-phase/transport fixture profile and fixed baseline reproduction."
     }
   ],
   "dependencies": [
-    "Accepted D0059/A0184 and completed PU01 retained;current HD/native panel and existing Restructuring service/Store only.",
-    "No dependency on deploying PU01,later delivery/Tier/no-HD work or new shared request framework."
+    "D0059/A0184 and completed PU01/PU02 retained;current HD/native provider only.",
+    "Use existing sealed Gameplay fact drain and synchronous phase0;no new Probe/diagnostic control dependency. Existing production read/write/Flight/GC controls remain."
   ],
   "old_writers": [
-    "Restructuring remains sole action coordinator;Store owns permanent transitions and native consumption receipts. UI never writes gameplay state."
+    "Commerce remains sole commercialization writer;Bridge sole route-proof owner;FC owns unclaimed delivery until a scoped owner receipt.",
+    "Only NETWORK→Commerce opts into the first receipt chain. Legacy consumers and other-owner/newAudit/flush migrations remain later O2;do not delete their recovery."
   ],
   "conditional_context": [],
   "non_scope": [
-    "Later PU/O/HD work,production gameplay/receipt/schema/formula/qualification changes,main/PR/U5,deployment or game launch.",
-    "Unrelated UI redesign,diagnostic framework,event scan or timer."
+    "PU04 onward,full O2/O3/O5 migration,Tier/no-HD,diagnostic retirement,deployment/main/PR/U5/game launch.",
+    "Gameplay formulas,qualifications,money/unit operations,save/history schemas,GC strategy,unrelated accepted profession behavior."
   ],
   "validation": {
-    "depth": "L1 visible UI;targeted T08 and L3 action/receipt regressions because a misrouted confirm is irreversible.",
-    "local": "Baseline order/inert-A counterexamples;actual owned UI→request→Restructuring plus local native/HD renderer replay with explicit controls/transport doubles. Duplicate/stale/delayed/unit-position cases,one native action,restricted Lua/package and affected regressions.",
-    "user": "Future separately authorized runtime window:liquidation/configuration A prepares once,A inert,B left confirms once. No native PASS or deployment in this slice."
+    "depth": "L3 scoped delivery/invalidation ordering;T01/T02/T03/T05/T08,actual Bridge+Commerce and real sealed drain.",
+    "local": "Baseline lost send/false/missing/start-failed delivery;matched vs stale ACK,successful siblings,capacity atomicity,scoped wakes and second changes. Commerce owns post-takeover failures without idle retry. Same-value/revalidation,NET-1/2 strict transactions,phase0/Seal ordering and restricted Lua/package/context.",
+    "user": "No immediate native test required for internal handoff logic. After separately approved deployment,retain minimal route/READY/transaction/reload smoke;no new full campaign."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -98,8 +119,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "37new+14unchanged-panel pass;112selected108pass+4exact-baseline historical errors;222Lua51/25XML/5artdef/345runtime;no new alarm. Detailed limits and ignored artifact in current Status.",
-    "native": "NOT_RUN;no deployment/game/main/U5;B399 native evidence unchanged.",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu02-evidence-and-limits--s0870"
+    "local": "33new+130related PASS;one exact pre-slice historical startup-list assertion unchanged,not PASS;source stable and0new scan alarms;222Lua51/25XML/5artdef/345runtime package checks. Context/publication and commit binding checked at delivery.",
+    "native": "NOT_RUN;no deployment",
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu03-evidence-and-limits--s0872"
   }
 }
