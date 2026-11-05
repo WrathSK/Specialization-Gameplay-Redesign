@@ -11,86 +11,95 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0876",
-    "runtime": "B404.431 / modinfo431",
+    "status": "S0878",
+    "runtime": "B405.432 / modinfo432",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "PU05a source/order receipt isolation complete locally;new campaign for version2 payload. Verify commit/push then continue independent PU06,keeping PU05b native proof gate.",
+  "goal": "PU06a lawful Commerce-exit reputation release complete locally;continue final use/mode/provenance contract independently.",
   "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
       "selector": "### Accepted convergence boundaries — 2026-11-04",
-      "reason": "Accepted unique Crew completion proof,source/order receipt split,current-build saves and no blind replay."
+      "reason": "Accepted scoped lawful exit versus bad-history repair and strict parent/receipt boundaries."
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Owner continuous grant and current receipt RIC/stop gates."
+      "reason": "Current RIC and continuous Owner authorization."
     },
     {
-      "path": "Mod/CrewProjects.lua",
+      "path": "Specialization/Design/Content/Commerce_D0059.json",
       "kind": "full",
-      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
+      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
     },
     {
-      "path": "Mod/CrewModel.lua",
+      "path": "Mod/CityProgressionStore.lua",
       "kind": "full",
-      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
+      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
     },
     {
-      "path": "Mod/PropertyCell.lua",
+      "path": "Mod/CommerceModel.lua",
       "kind": "full",
-      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
+      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
     },
     {
-      "path": "DevelopmentTests/test_b236_crews.py",
+      "path": "Mod/RestructuringModel.lua",
       "kind": "full",
-      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
+      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
     },
     {
-      "path": "DevelopmentTests/test_refactor_s7d5.py",
+      "path": "Mod/StoreDeferredLifecycle.lua",
       "kind": "full",
-      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
+      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
     },
     {
-      "path": "DevelopmentTests/test_refactor_s7d6_proof.py",
+      "path": "Mod/StoreLifecycleRecovery.lua",
       "kind": "full",
-      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
+      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
     },
     {
-      "path": "Specialization/Status/Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md",
+      "path": "Mod/StoreSubrecords.lua",
       "kind": "full",
-      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
+      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
     },
     {
-      "path": "DevelopmentTests/test_pu05a_receipts.py",
+      "path": "DevelopmentTests/test_refactor_s8b7b.py",
       "kind": "full",
-      "reason": "Current scoped receipt,provider,capacity,reentry,new-campaign and portable original-assertion coverage."
+      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
+    },
+    {
+      "path": "DevelopmentTests/test_b247_restructuring.py",
+      "kind": "full",
+      "reason": "Approved reputation rule or actual parent,leaf,transition,deferred owner and true Store fixture."
+    },
+    {
+      "path": "DevelopmentTests/test_pu06a_reputation_exit.py",
+      "kind": "full",
+      "reason": "Actual Store lawful exit,unknown money preservation,reentry,readback,cold,no-revival and explicit-OPEN original assertions."
     }
   ],
   "dependencies": [
-    "PU01–04 source slices retained;current HD provider and actual Store reference/readback/exit guards.",
-    "C1 Owner-accepted split is locally implementable;PU05b native attribution remains independent."
+    "PU01–05a source retained;PU05b independent OPEN.",
+    "Actual active parent/reference and lawful Commerce→REALLOCATING proof before leaf release."
   ],
   "old_writers": [
-    "CrewProjects remains sole grant/admission/use owner;Store owns city identity/history;native UI reader owns queue/current player counters.",
-    "No new automatic consumer or diagnostic control dependency;one optional queue-read constructor seam preserves current provider."
+    "Store remains sole identity/history commit owner;no new generic recovery endpoint or native-money caller."
   ],
   "conditional_context": [],
   "non_scope": [
-    "PU05b attribution/native capture,unknown unbound unit source inference,unit count differences,regrant/refund/recovery machine.",
-    "Formula/cost/capacity/target/qualification/ownership gameplay,no-HD/Tier/GC changes,deployment/main/U5/game launch."
+    "Whole configuration corruption,unconfirmed parent/reference,temporary governor/owner loss reset,global permanent-corruption inference.",
+    "Remaining PU06 quote/provenance work is next piece;no gameplay/formula,HD/Tier/deployment/main/U5/native launch."
   ],
   "validation": {
-    "depth": "L3 T01/T03/T05/T06/T08;true Store+Crew and strict one-shot operations",
-    "local": "Baseline shared CALLING blocks independent next+1 city;new scoped receipt retains A and permits fully proved B. Version/shape/capacity/source/order/counter checks,reentry/duplicate/cold/property/binding faults,no replay,unchanged use paths and S7d6 OPEN characterization. Lua51/package/privacy/context.",
-    "user": "No immediate native request;later approved new-campaign integration. PU05b remains a separate native evidence gate."
+    "depth": "L3 T01/T03/T05/T08 actual Store/EF/business transition",
+    "local": "Baseline lawful-exit residual,exact private capability,no reset via ordinary writes,full parent/ref checks,deferred scope and sibling/unknown money byte preservation,failed/reentrant writes,cold same-build continuity.",
+    "user": "None now;later integrated new-campaign verification remains separate."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -98,8 +107,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "101selected PASS,22new+79related;raw empty-statement Lua55 fixture uses explicit Lua51 semantic-noop adapter;frozen assertions unchanged.222Lua51/25XML/5artdef/345runtime,0new alarms.",
-    "native": "NOT_RUN;PU05b remains OPEN;not deployed",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu05a-evidence-and-limits--s0876"
+    "local": "71selected,70PASS incl20new;1unchanged baseline template-scope error NOT_PASS.222Lua51/25XML/5artdef/345runtime,0new alarms.",
+    "native": "NOT_RUN;not deployed",
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu06a-evidence-and-limits--s0878"
   }
 }

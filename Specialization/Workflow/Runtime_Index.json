@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "0975c8ec1399ce8a6147a00e05acad0b57059595f5c6ac372b38c9027d6a9bb0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
-      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
+      "sha256": "3699fc4deb05f39c20f8210048fb2baadf66037f66ed51ba48bab2cd84c16998",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0878/B405.432 PU06a:private exact lawful Commerce→REALLOCATING exit clears partial old reputation only after CAS/readback;preserves siblings/unknown receipts.70local PASS incl20new;1inherited assertion NOT_PASS.2labels only;no deployment/native claim."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "9376bbf008944b683ca107bb243af7da483e3aa42cb95bd35f289f631bc5d8c8",
+      "sha256": "58d23e236361fd3efde2dc849e36c2d7a31fab4cf089b7f83b65b908cc7cc7d6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0876/B404.431 PU05a:separate per-project consumed ordinal/source-order pending grant;one optional explicit queue reader.101local methods pass with documented Lua51 fixture adapter;new campaign for version2 receipt,PU05b native gap OPEN. Probe/modinfo labels only;no deployment/native PASS."
+      "provenance": "S0878/B405.432 PU06a:private exact lawful Commerce→REALLOCATING exit clears partial old reputation only after CAS/readback;preserves siblings/unknown receipts.70local PASS incl20new;1inherited assertion NOT_PASS.2labels only;no deployment/native claim."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "621ddbe750e1b63223a2884cd00631fa6c1285b1f42a426136ef99623fc722c8",
+      "sha256": "3e7c158222df861ed15629216f30c9c7d55d5a2be7a56ade095b79f2cb76595e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0876/B404.431 PU05a:separate per-project consumed ordinal/source-order pending grant;one optional explicit queue reader.101local methods pass with documented Lua51 fixture adapter;new campaign for version2 receipt,PU05b native gap OPEN. Probe/modinfo labels only;no deployment/native PASS."
+      "provenance": "S0878/B405.432 PU06a:private exact lawful Commerce→REALLOCATING exit clears partial old reputation only after CAS/readback;preserves siblings/unknown receipts.70local PASS incl20new;1inherited assertion NOT_PASS.2labels only;no deployment/native claim."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0876/B404.431 PU05a:CrewModel/CrewProjects and2labels reviewed.101selected PASS incl22new;true Store/order/native-double proof and one-shot use differential8modes;no formula/capacity/target change.222Lua51/25XML/5artdef/345runtime,0new alarms. New campaign;PU05b OPEN;live pointers unchanged.",
-  "source_runtime": "B404.431 / modinfo431;not deployed;new campaign required",
-  "tested_source_snapshot_sha256": "fe36a7dec60ffa69dd1c93f9428c44d45919110cd5d5a59cf3111d574cb74e1e"
+  "source_review": "S0878/B405.432 PU06a:CityProgressionStore and2labels reviewed;70of71selectedPASS,20newallPASS,1unchanged template-scope assertion NOT_PASS.222Lua51/25XML/5artdef/345runtime,0new alarms;PU06 remaining use/mode contract next,live pointers unchanged.",
+  "source_runtime": "B405.432 / modinfo432;not deployed",
+  "tested_source_snapshot_sha256": "5fcc8ed9349b0460dfce20c28bef30614eb5b270f9898053156b4a96a7d02d75"
 }

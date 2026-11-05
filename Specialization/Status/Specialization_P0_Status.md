@@ -1,17 +1,42 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0876
-Implementation Build: source B404.431 / modinfo431; recorded live B399.426 from4915170; stable/main B307.334
+Status Revision: S0878
+Implementation Build: source B405.432 / modinfo432; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: PU05A_LOCAL_COMPLETE_CONTINUOUS_NO_DEPLOYMENT
+Work State: PU06A_LOCAL_COMPLETE_CONTINUOUS_NO_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+商业身份合法退出片已完成代码与本地验证，源码 **B405.432 / modinfo432**。已隔离的异常信誉不会再被合并回退出后的记录；正常退出、其他能力与未知付款收据保持原有规则。尚未部署，live/main记录不变。后续继续PU06的信誉用途投影和投资模式／来源锁定，不把这一小片视为整个商业契约已经完成。
+
+### PU06a evidence and limits — S0878
+
+- **LOCAL_SIMULATION:**71selected,70PASS,all20new PASS;1inherited error remains,0new failures/errors. True Store/EF/CommerceModel/Restructuring/deferred models with explicit native property/reference/binding/event/unit doubles;49observed modules/fragments,not path coverage. Three pre-repair assertions fail at fixed `cc70f79`:lawful exit remerges bad reputation,cold load retains it,and a deferred reputation duty survives the lawful exit.
+- **Implemented:**private synchronous root/candidate/transition-bound permit only after existing confirmed Commerce→REALLOCATING admission. Apply normal CommerceModel.Exit to valid configuration projection;after exact CAS/write/readback release only reputation isolation. Exact REPUTATION-only deferred witness is superseded by that exit;other deferred duties remain. No generic reset API or new saved field. Whole invalid configuration is preserved outside this leaf-only release.
+- **Correctness/work:**ordinary config/private saves cannot reset/replace history;governor/owner loss does not obtain reset authority. Parent/ref/team failures stop before write. Failed write/readback and setter reentry never publish success/retry. Healthy exit saved bytes and1durable property write match fixed baseline;1000idle callbacks add0writes. Reload/other-profession configuration do not resurrect old age. Valid siblings,isolated histories,and real-model DEBIT_CALLING/CREDIT_CALLING payloads stay byte-exact;no money replay/refund or new scan/timer/event.
+- **Inherited precision:**`test_refactor_s8b7b.Store.test_core_and_unreviewed_templates_still_hold_without_guessing` reproduces the same old template-scope assertion at fixed baseline and remains NOT_PASS. Frozen prior lawful-exit expectations are explicitly superseded by D0059,not edited. Raw B247 contract test reproduces CAPITAL_QUOTE_STALE on baseline;maintained Compatibility adds the protocol-valid explicit CAPITAL_OPEN to its fixture and runs every original signed-contract/development/payout assertion unchanged under Lua51. The raw body is not called PASS.
+- **Static/evidence:**222Lua51,25XML,5artdef,modinfo432,345runtime/344package entries,156own includes;0new/widened alarms. CPython3.14.8/source-built Lupa2.8 Lua51;no external DB/game. Artifact `local/refactor/PU06a-0e56cc3b05c844659be9df0275a8b6c7/closure.json`,SHA256 `5932379d8c370527ea51956e030ea6cf8fd7656c03aa5cedcd104b6d4f4deae6`;tested source `5fcc8ed9349b0460dfce20c28bef30614eb5b270f9898053156b4a96a7d02d75`,stable during run. Exact suites/exclusions/errors/environment/fixture profile/runner/before transcripts remain local beside/in artifact;`static.json` records package checks. Re-run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<source-built-lupa>:DevelopmentTests python3.14 <artifact-directory>/rerun.py`;bind `DevelopmentTests/refactor_evidence.py source <artifact> --commit HEAD`. Local files/hashes are not permanent backup;versioned source/tests support comparable reruns.
+- **Remaining:**PU06 severe-leaf policy-zero/unsafe distinction and Capital mode/provenance are next,not implemented here. PU05b attribution OPEN;no new native behavior claim,deployment/main/U5/no-HD changes.
+
+User decision:none. User testing:none now;later integration remains separately gated. Primary next:verified commit/push develop,then continue PU06 shared reputation/mode contract under continuous authorization.
+
+### PU06a runtime impact and gates — S0877
+
+- **Owner/input:**CityProgressionStore remains sole authoritative parent/history writer;existing BeginRestructuring calls actual EffectiveFacts and RestructuringModel.Begin after active owner/reference/binding and readback guards. This confirmed Commerce→REALLOCATING transition is the only new release capability;not a generic bad-history recovery API.
+- **Change:**a private synchronous,root/candidate-bound permit applies normal CommerceModel.Exit to the valid configuration projection and resets its known marker. Only isolated reputation is released after successful exact write/readback. If an exact deferred REPUTATION-only owner duty exists,the same lawful exit supersedes that reputation duty;clear only its exact witness. Other deferred duties,valid sibling histories and unknown Capital/payment receipts remain exact. Whole configuration/parent/reference failure is not a reputation-leaf exception.
+- **Lifetime/work:**no saved field/new authority,cache,new native read,event,timer,poll,city enumeration or periodic retry. Reuse existing source-local transition,property write barrier,CAS/readback and identity notification. A failed/uncertain write never publishes successful release or retries money. Known healthy exit/configuration behavior remains unchanged.
+- **Proof:**L3 T01/T03/T05/T08;actual Store+EF+CommerceModel,baseline retained bad leaf,ordinary write cannot forge release,governor/owner/reference/parent distinctions,exact deferred scope,siblings/unknown payment preservation,readback/reentry faults,same-build reload and no old-age resurrection. Frozen historical expectation of preserving bad reputation at lawful exit is superseded only for that exact assertion,not edited or claimed PASS. Restricted Lua/package/context/privacy gates.
+- **Limits:**no global severe-leaf policy-zero classification or Capital quote schema in this piece,no formula/cost/eligibility/ownership policy change. Current-build-only save support;no cross-build migration. PU05b native attribution remains OPEN and independent. No deployment/main/U5/native test request.
+
+User decision:none;accepted D0059 lawful-exit rule. User testing:none now. Primary next:prove/implement/verify/commit/push this small Store slice,then continue PU06 projection/mode contracts under continuous grant;stop at actual external-review or Owner-decision gates.
+
+## Prior PU05a checkpoint — S0876
 
 施工队跨城市收据隔离片已完成代码与本地验证，源码 **B404.431 / modinfo431**。一城的未决发放保留自己的来源／订单记录，另一城在库存与独立完成证明均可靠时，可以正常完成下一笔发放。原有成本、两槽容量、续建与使用结算未变；未知库存、绑定失败和不可归属完成仍禁止猜测发放。**收据格式变更，后续部署必须新开存档**；当前未部署，live与main记录不变。
 

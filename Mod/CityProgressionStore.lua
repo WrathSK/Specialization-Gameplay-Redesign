@@ -376,8 +376,27 @@ local function CreateProgressionRecord(P,shared,storage)
  function d.Investment(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local _,i=R.Current(r);return projected(r,i,true)end
  local noRecovery={}
  local recoveryCapability={} -- private: no API accepts or returns it
+ local commerceExitCapability={} -- one synchronous lawful business transition,not a repair API
  local function recoveryPermit(nextValue,permit)
   if not permit then return noRecovery end
+  if permit.capability==commerceExitCapability then
+   assert(root==permit.previous and nextValue==permit.candidate and not committing
+    and partialReputation and not isolated.commerce,'COMMERCE_EXIT_SUPERSEDED')
+   local b=R.Current(root);local rest=nextValue.restructuring
+   assert(b.specialization=='COMMERCE'and rest and rest.phase=='REALLOCATING'and rest.previous=='COMMERCE'
+    and same(rest,permit.transition)and nextValue.revision==root.revision+1,'COMMERCE_EXIT_UNCONFIRMED')
+   R.Validate(rest,nextValue)
+   assert(nextValue.commerceKnown==true and same(nextValue.commerce,SPCCommerceModel.Exit(commerceProjection(root))),
+    'COMMERCE_EXIT_VALUE_CHANGED')
+   local evidence=root.deferredLifecycle
+   local witness=Deferred.Entry(evidence,'commerce',root)
+   if witness then
+    assert(witness.scope=='REPUTATION','COMMERCE_EXIT_DEFERRED_SCOPE_CHANGED')
+    evidence=Deferred.Clear(evidence,'commerce',witness,root)
+   end
+   assert(same(evidence,nextValue.deferredLifecycle),'COMMERCE_EXIT_DEFERRED_CHANGED')
+   return {commerce=true}
+  end
   assert(permit.capability==recoveryCapability and root==permit.previous and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
   assert(nextValue.revision==root.revision+1,'DEFERRED_RECOVERY_REVISION_CHANGED')
   local evidence=root.deferredLifecycle;local released,fields={},{}
@@ -433,7 +452,7 @@ local function CreateProgressionRecord(P,shared,storage)
   if ticket then facts.EndWrite(ticket)end
   if not ok then error(fault)end
   if permit and(root~=nextRoot or fault)then
-   fault=fault or 'DEFERRED_RECOVERY_SUPERSEDED_DURING_WRITE';error(fault)
+   fault=fault or (permit.capability==commerceExitCapability and 'COMMERCE_EXIT_SUPERSEDED_DURING_WRITE'or 'DEFERRED_RECOVERY_SUPERSEDED_DURING_WRITE');error(fault)
   end
   for key in pairs(released)do isolated[key]=nil;if key=='commerce'then partialReputation=nil end end
  end
@@ -739,13 +758,24 @@ local function CreateProgressionRecord(P,shared,storage)
   local f=shared.EffectiveFacts.Read(pid,c);local n=cp(r);local turn=Game.GetCurrentGameTurn()
   n.restructuring=R.Begin(r,f,team,receipt,turn)
   if not isolated.researchTradition and n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,turn,'NONE')end
+  local exitPermit
   if not isolated.commerce and n.commerce then
-   n.commerce=commerceTransition(n,'Exit');if not partialReputation then n.commerceKnown=true end
+   if partialReputation and f.specialization=='COMMERCE'then
+    -- Confirmed identity exit has its own rule. Never merge the opaque old age
+    -- into the new identity,or use this capability for ordinary config/owner writes.
+    n.commerce=SPCCommerceModel.Exit(commerceProjection(r));n.commerceKnown=true
+    local witness=Deferred.Entry(r.deferredLifecycle,'commerce',r)
+    if witness then
+     assert(witness.scope=='REPUTATION','COMMERCE_EXIT_DEFERRED_SCOPE_CHANGED')
+     n.deferredLifecycle=Deferred.Clear(r.deferredLifecycle,'commerce',witness,r)
+    end
+    exitPermit={capability=commerceExitCapability,previous=r,candidate=n,transition=cp(n.restructuring)}
+   else n.commerce=commerceTransition(n,'Exit');if not partialReputation then n.commerceKnown=true end end
   end
   if not isolated.capital and n.capital then n.capital=SPCCapitalInvestmentModel.Encode(SPCCapitalInvestmentModel.ResetProtection(SPCCapitalInvestmentModel.Decode(n.capital)))end
   if not isolated.dialogue and n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'专业重组取消未完成对话；历史保留')end
   if not isolated.engineering and n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_IDENTITY_EXIT')end
-  n.revision=n.revision+1;save(n);publishIdentity(c);return cp(n.restructuring)
+  n.revision=n.revision+1;save(n,nil,exitPermit);publishIdentity(c);return cp(n.restructuring)
  end
  function d.ConfigureRestructuring(pid,c,team,kind,first)
   assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c)
