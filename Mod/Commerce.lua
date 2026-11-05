@@ -2,6 +2,7 @@ include('SafeCallbacks')
 include('RuntimeWork')
 include('CommerceModel')
 include('CommerceCalculation')
+include('FactUse')
 include('NetworkInput')
 include('ExpeditionTrainingDiagnostics')
 -- B240: one current-effect owner. No timer, persisted derived output, generic
@@ -11,7 +12,7 @@ local M=SPCCommerce
 for bit=0,30 do M.Owned[#M.Owned+1]='BUILDING_SPC_COMMERCE_GOLD_'..bit end
 function M.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'COMMERCE_STORE_REQUIRED')
- local C=SPCCommerceCalculation;local model=SPCCommerceModel;local cp=model.Copy
+ local C=SPCCommerceCalculation;local Use=SPCFactUse;local model=SPCCommerceModel;local cp=model.Copy
  local d={views={},revision=0,ready=false,writes=0};shared.Commerce=d
  local views,dependencies,byTarget,dirty,known,samples={},{},{},{},{},{}
  local definitions,legacy,sourceKinds={},{},{};local initialized=false;local busy=false;local permanentBound=false
@@ -124,8 +125,7 @@ function M.Start(P,shared)
   local k=key(pid,c:GetID())
   if not batch.depth[k]then
    local s=shared.DistrictCompleteness.ReadFacts(pid,c,token)
-   assert(s.validity=='VERIFIED' and s.availability=='READY' and s.value,'COMMERCE_DISTRICT_FACTS_UNKNOWN')
-   batch.depth[k]=s.value
+   batch.depth[k]=s
   end
   return batch.depth[k]
  end
@@ -139,33 +139,58 @@ function M.Start(P,shared)
   local function localInputs(f,workers)
   local v={reference=ref(c),token=f.token,identity=f.specialization,potential=f.potential,
    active=f.active,activeStatus=f.activeStatus,workers=0,selected={},effective={},domains={},totalRaw=0,totalGold=0,
-   stage='INELIGIBLE',reason='COMMERCE_IDENTITY_REQUIRED',canConfigure=false,reputationKnown=false,reputation={state='UNKNOWN',effective=0}}
+   stage='INELIGIBLE',reason='COMMERCE_IDENTITY_REQUIRED',canConfigure=false,reputationKnown=false,reputation={state='UNKNOWN',effective=0},
+   factStatus={domains={}}}
   local out={pid=pid,id=id,c=c,v=v,sources={[id]=true}}
-  if f.specialization~='COMMERCE'then return out end
+  local qualified=Use.Qualification(f,'COMMERCE',3);v.factStatus.qualification=qualified.status
+  if qualified.status=='UNKNOWN'then out.unavailable='COMMERCE_QUALIFICATION_UNKNOWN';return out end
+  if qualified.status=='NOT_APPLICABLE'then
+   v.reason=f.specialization~='COMMERCE'and 'COMMERCE_IDENTITY_REQUIRED'or 'COMMERCE_ACTIVE_III_REQUIRED'
+   -- Confirmed loss is independent of now irrelevant D/workers/configuration.
+   local previous=views[key(pid,id)]
+   if previous and previous.reference==v.reference and previous.token==v.token then v.selected=cp(previous.selected)end
+   return out
+  end
   local standard,speedReason=model.IsStandardSpeed()
-  assert(standard,speedReason or 'COMMERCE_STANDARD_SPEED_ONLY')
+  if not standard then
+   v.reason=speedReason or 'COMMERCE_SPEED_UNKNOWN';v.stage='HELD'
+   if speedReason~='COMMERCE_STANDARD_SPEED_ONLY'then out.unavailable=v.reason end
+   return out -- a confirmed unsupported speed is distinct from an unreadable one
+  end
   assert(f.owner==pid and f.cityID==id and type(f.token)=='string','COMMERCE_REFERENCE_CHANGED')
   local state=store.CommerceState(pid,c)
   assert(state.token==f.token,'COMMERCE_REFERENCE_CHANGED')
   local value=state.value or model.New(pid);model.Validate(value);assert(value.owner==pid,'COMMERCE_OWNER_CHANGED')
   v.selected=cp(value.selected);v.reputationKnown=state.reputationKnown~=false
   v.reputation=not v.reputationKnown and {state='UNKNOWN',effective=0}or cp(value.reputation or {age=0,state='NOT_ESTABLISHED'});v.reputation.effective=0
-  assert(f.activeStatus=='KNOWN' and integer(f.active) and not f.investmentPending,'COMMERCE_QUALIFICATION_UNKNOWN')
-  -- D6: unreadable reputation grants no bonus; independently confirmed Gold remains.
+  -- Existing Reputation policy/Store remain unchanged in PU01 (PU06 owns it).
   if f.active==4 and v.reputation.state=='COUNTING'then v.reputation.effective=v.reputation.age end
-  local dc=depth(batch,pid,c,f.token);local localDomains={}
-  for domain,r in pairs(dc.domains)do localDomains[domain]=r.value end
-  local anchor
-  for _,r in ipairs(dc.districts)do if f.first and r.id==f.first.districtID and r.type==f.first.type then anchor=r;break end end
-  assert(anchor and anchor.complete==true,'COMMERCE_ANCHOR_UNKNOWN')
-  if anchor.pillaged~=true then
-   v.workers=workers(anchor,function()
+  local dc=depth(batch,pid,c,f.token);local localDomains={};local selected={}
+  for _,domain in ipairs(v.selected)do selected[domain]=true end
+  for _,def in ipairs(C.Domains)do
+   local fact=Use.Depth(dc,def.id);v.factStatus.domains[def.id]=fact.status
+   if fact.status=='CONFIRMED'then localDomains[def.id]=fact.value
+   elseif fact.status=='UNKNOWN'and selected[def.id]then out.unavailable='COMMERCE_DISTRICT_FACTS_UNKNOWN' end
+  end
+  if out.unavailable then return out end
+  local anchor=Use.Anchor(dc,f.first);v.factStatus.anchor=anchor.status
+  if anchor.status~='CONFIRMED'or not anchor.value.complete then out.unavailable='COMMERCE_ANCHOR_UNKNOWN';return out end
+  anchor=anchor.value
+  local working
+  if anchor.pillaged then working={status='CONFIRMED',value=0}
+  else working=Use.Number(function()
+   return workers(anchor,function()
     local plot=assert(Map.GetPlotByIndex(anchor.plot),'COMMERCE_WORKERS_UNKNOWN')
     local n=plot:GetWorkerCount();assert(integer(n),'COMMERCE_WORKERS_UNKNOWN');return n
    end)
+  end,true,nil,'COMMERCE_WORKERS_UNKNOWN')end
+  v.factStatus.workers=working.status
+  if working.status~='CONFIRMED'then out.unavailable=working.reason;return out end
+  v.workers=working.value;v.canConfigure=true;v.domains=C.Layout(v.selected,v.workers,f.active,localDomains)
+  for _,row in ipairs(v.domains)do
+   row.inputStatus=v.factStatus.domains[row.id]
+   if row.inputStatus=='UNKNOWN'then row.eligible=false;row.reason='COMMERCE_DISTRICT_FACTS_UNKNOWN'end
   end
-  v.canConfigure=f.active>=3;v.domains=C.Layout(v.selected,v.workers,f.active,localDomains)
-  if f.active<3 then v.reason='COMMERCE_ACTIVE_III_REQUIRED';return out end
   out.localReady=true;return out
   end
   -- Keep the old HELD diagnostic facts only after the full EF read is certified.
@@ -176,9 +201,8 @@ function M.Start(P,shared)
   else f,ok,out=project(shared.EffectiveFacts.Read(pid,c),function(_,read)return read()end)end
   batch.facts[key(pid,id)]=f
   if not ok then error(out,0)end
-  if not out.localReady then return out end
+  if out.unavailable or not out.localReady then return out end
   out.localReady=nil;local v=out.v
-  if shared.CommerceConvergence and shared.CommerceConvergence.Withdraw then shared.CommerceConvergence.Withdraw(c)end
   for _,index in ipairs(legacy)do assert(not present(c,index),'COMMERCE_LEGACY_REMAINS')end
   local bridge=shared.NetworkBridge
   local network=(bridge.CurrentEffectPartners or bridge.CurrentDomesticPartners)(pid,c)
@@ -282,6 +306,7 @@ function M.Start(P,shared)
   -- Keep the exact installed result, including a cold-load value whose source
   -- decomposition is unavailable. Never make this a new-transaction credential.
   local value=old and old.reference==ref(x.c) and old.token==x.v.token and cp(old) or x.v
+  value.factStatus=x.v.factStatus or {status='UNKNOWN'}
   value.totalGold=observed(x.c);value.stage='HELD';value.reason=reason;value.canConfigure=false
   value.appliedRetained=true;value.sourceProvenance=value.sourceProvenance or {}
   for _,domain in pairs(value.sourceProvenance)do for _,f in pairs(domain)do if f.status=='CONFIRMED'then f.status='RETAINED'end end end
@@ -314,11 +339,31 @@ function M.Start(P,shared)
     if changed then for cid in pairs(changed)do addTargets(ids,pid,cid)end else addTargets(ids,pid)end
    end end
    local batch={facts={},depth={},yields={},identities={}};local plans={};local sampledGenerations={};local sampledProofs={}
-   for _,pair in pairs(ids)do sampledGenerations[pair[1]]=generation(pair[1]);sampledProofs[pair[1]]=shared.NetworkBridge.ProofRevision and shared.NetworkBridge.ProofRevision(pair[1]) or 0 end
+   local facts=shared.EffectiveFacts
+   local readVersion=facts.Version and facts.Version()
+   local function collect()
+    -- Retire exact legacy effects before capturing any plan. If retirement
+    -- writes, the existing fence invalidates preflight reads, then all plans
+    -- sample the post-write phase. Never write inside EF's projection body.
+    local retired={}
+    if shared.CommerceConvergence and shared.CommerceConvergence.Withdraw then
+     for k,pair in pairs(ids)do
+      local c=city(pair[1],pair[2])
+      if c and c:GetOwner()==pair[1]then
+       local ok,why=pcall(function()
+        local f=facts.Read(pair[1],c)
+        if Use.Qualification(f,'COMMERCE',3).status=='CONFIRMED'then shared.CommerceConvergence.Withdraw(c)end
+       end)
+       if not ok then retired[k]=why end
+      end
+     end
+    end
+    readVersion=facts.Version and facts.Version()
+    for _,pair in pairs(ids)do sampledGenerations[pair[1]]=generation(pair[1]);sampledProofs[pair[1]]=shared.NetworkBridge.ProofRevision and shared.NetworkBridge.ProofRevision(pair[1])or 0 end
    for k,pair in pairs(ids)do
     local pid,id=pair[1],pair[2];local c=city(pid,id)
     if c and c:GetOwner()==pid then
-     local good,x=pcall(prepare,batch,pid,id)
+     local good,x=pcall(function()if retired[k]then error(retired[k],0)end;return prepare(batch,pid,id)end)
      if not good then
       local f=batch.facts[k];local old=views[k]
       x={pid=pid,id=id,c=c,v={reference=ref(c),token=f and f.token or old and old.token,
@@ -326,9 +371,8 @@ function M.Start(P,shared)
        activeStatus=f and f.activeStatus,selected=old and cp(old.selected) or {},effective={},domains=old and cp(old.domains) or {},
        workers=0,reputationKnown=old and old.reputationKnown or false,reputation=old and cp(old.reputation) or {state='UNKNOWN',effective=0},totalRaw=0,totalGold=0,
        stage='HELD',reason=code(x),canConfigure=false}}
-      local reason=x.v.reason
-      if reason:match('NETWORK_') or reason=='COMMERCE_QUALIFICATION_UNKNOWN' or reason=='COMMERCE_SOURCE_UNKNOWN' or reason=='COMMERCE_STATE_UNKNOWN' or reason=='COMMERCE_ANCHOR_UNKNOWN' or reason=='COMMERCE_DISTRICT_FACTS_UNKNOWN' then hold(x,old,reason)
-      else for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=reason;r.raw=0;r.gold=0;r.floor=0 end end
+      hold(x,old,x.v.reason) -- errors are unavailable input, never evidence of zero
+     elseif x.unavailable then hold(x,views[k],x.unavailable)
      else setDependencies(pid,id,x.v.identity=='COMMERCE' and x.sources or {})end
      if not x.hold and (x.v.identity~='COMMERCE' or type(x.v.active)=='number' and x.v.active<3)then samples[k]=nil end
      plans[k]=x;known[k]=(x.v.identity=='COMMERCE' or x.v.stage=='HELD') and {pid,id} or nil
@@ -338,9 +382,19 @@ function M.Start(P,shared)
     local good,err=pcall(resolve,batch,x)
     if not good then hold(x,views[key(x.pid,x.id)],code(err))end
    end
+   end
+   if facts.WithPhase then facts.WithPhase('COMMERCE_INPUTS',collect)else collect()end
+   local writeDuringRead=facts.Version and facts.Version()~=readVersion
    -- D0055 inputs exclude Gold. Apply only differences; unchanged reads never
    -- dismantle effects or write to a remote source merely to sample its yield.
    for k,x in pairs(plans)do
+    local stale=writeDuringRead or sampledGenerations[x.pid]~=generation(x.pid)
+     or sampledProofs[x.pid]~=(shared.NetworkBridge.ProofRevision and shared.NetworkBridge.ProofRevision(x.pid)or 0)
+    for sid in pairs(x.sources or {[x.id]=true})do
+     local before=batch.epochs and batch.epochs[key(x.pid,sid)]
+     if before~=nil and before~=generation(x.pid,sid)then stale=true end
+    end
+    if stale then hold(x,views[k],'COMMERCE_INPUT_CHANGED_DURING_READ')end
     local binding=false
     local good,err=pcall(function()
      local h=store.HistoricalReference(x.c)

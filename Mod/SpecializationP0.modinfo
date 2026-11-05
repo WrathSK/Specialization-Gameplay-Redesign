@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="426">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="427">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B399.426：补齐一回合项目中断后重启；增加可独立退出的金库及考察团位置观察，不改变金额或单位行为。</Description>
+    <Description>B400.427：商业化区分确认事实与暂不可读输入，复用共享读取及写入失效屏障；保留既有公式与交易保护。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -290,6 +290,7 @@
     <File>UI/CityPotential.lua</File><File>DiagnosticLog.lua</File>
       <File>CommerceModel.lua</File>
       <File>CommerceCalculation.lua</File>
+      <File>FactUse.lua</File>
       <File>Commerce.lua</File>
       <File>UI/CommerceUI.lua</File>
       <File>Restructuring.lua</File>
@@ -793,6 +794,7 @@
     <File>Data/CultureInsightsTourism.sql</File>
       <File>CommerceModel.lua</File>
     <File>CommerceCalculation.lua</File>
+    <File>FactUse.lua</File>
     <File>Commerce.lua</File>
     <File>UI/CommerceUI.lua</File>
     <File>Data/Commerce.sql</File>

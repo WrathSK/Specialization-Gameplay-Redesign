@@ -116,9 +116,9 @@
       "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Commerce.lua": {
-      "sha256": "4a534111e94e34a093707bc1493533d6cdaa596f853c29f58b7adb6af30376b2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B379_Refactor_S9e6.md",
-      "provenance": "B379.406 Apply source-local network UNKNOWN while keeping transaction proof strict; local/static evidence only; no deployment/native PASS."
+      "sha256": "2c7e69b05de67b05c327695c313bab9f4c52681088ba37a10415723de655eb5a",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -546,9 +546,9 @@
       "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "dc7d30c4e04c156b90faa9dfeb262f03e068b09023e536ebc180621da4c404f6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B303_Refactor_S6a.md",
-      "provenance": "B303.330 Separate bounded D business facts from eight report samples; local/static evidence only; no deployment/native PASS."
+      "sha256": "e9f6ad81e0df2d91bce66e4ac9d188950130ddaa7fc3dad5809bf99e9561d18f",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     },
     "Mod/DistrictPrecisionProbe.lua": {
       "sha256": "12a6b244c9694f8303400b544cd747e554ce56c88e9d2bf302a31c22f67aed6c",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "7787a01755de97dfa688e76fa13c7d2cec13a3462232c37493f19c08cffdbeb6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
-      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
+      "sha256": "b23ea336a384d123b58c6bd5ceddf55f093c0749242eaa6211a618e25d5e3c2c",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "59edc69b19cf5bdb197febc13feabf590281b97d2791918f0fafed81f5b8d767",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
-      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
+      "sha256": "39170ce986b9298c33000e0f4d689123c4bbadea3e20ed2f3871334ffadfeaa1",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1724,7 +1724,14 @@
       "sha256": "e7b2512454f7dd52a7b21e952de67b7d3c8d9d253248c363058aa65ca9a5a5c1",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
       "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
+    },
+    "Mod/FactUse.lua": {
+      "sha256": "3a4e3c24b770913687d4140120e54df80e20b693f1fb24b7d736f23cbedcf414",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed. B397.424:S0857 four named runtime files reviewed for NET-1/NET-2;87local methods pass,native/deployment pending;no other runtime hashes refreshed. B397deployment:aa51feb,342/342MATCH,receipt and B396/B307 recovery verified;native pending.; S0861 B398.425 reviewed bounded queue intents/full-turn gates and native selection semantics;85selected local methods,220Lua51/25XML/343runtime. Deployment pending. B398 verified deployment:73bf5b5,343/343 MATCH;exact B397/B307 recovery and receipt,no pending transaction;runtime/test bytes unchanged by receipt recording,native pending. S0863 B399.426:nine owned runtime entries reviewed plus new observer inventory;178selected local methods,221Lua51/25XML/344runtime;independent removal proof and inherited failures disclosed. Last deployed runtime pointers remain B398 pending receipt. B399 verified deployment:4915170,344/344MATCH;exact B398/B307 recovery and receipt,no pending marker;runtime/test bytes unchanged by this metadata,native pending."
+  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed. B397.424:S0857 four named runtime files reviewed for NET-1/NET-2;87local methods pass,native/deployment pending;no other runtime hashes refreshed. B397deployment:aa51feb,342/342MATCH,receipt and B396/B307 recovery verified;native pending.; S0861 B398.425 reviewed bounded queue intents/full-turn gates and native selection semantics;85selected local methods,220Lua51/25XML/343runtime. Deployment pending. B398 verified deployment:73bf5b5,343/343 MATCH;exact B397/B307 recovery and receipt,no pending transaction;runtime/test bytes unchanged by receipt recording,native pending. S0863 B399.426:nine owned runtime entries reviewed plus new observer inventory;178selected local methods,221Lua51/25XML/344runtime;independent removal proof and inherited failures disclosed. Last deployed runtime pointers remain B398 pending receipt. B399 verified deployment:4915170,344/344MATCH;exact B398/B307 recovery and receipt,no pending marker;runtime/test bytes unchanged by this metadata,native pending. S0868/B400.427 PU01:five named runtime entries reviewed;20newpass,146selected144pass+2unchangedhistoricalfailures,222Lua51/25XML/345runtime;actual read/write/status guards. Last deployed fields remain4915170/B399.426;no deployment.",
+  "source_runtime": "B400.427 / modinfo427;not deployed",
+  "tested_source_snapshot_sha256": "a458d021ad33628ec15a26dc4549ae44c9497afb3b8c1742b05c27757945df4d"
 }

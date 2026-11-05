@@ -201,9 +201,13 @@ function M.Start(P,shared)
   -- A report miss may explicitly reacquire raw facts, but cannot turn a failed
   -- sample into an idle retry. Normal compact reads never materialize reports.
   local needsReport=detail and not row and not e.error
-  if e.dirty or e.turn~=turn or needsReport then
+  local currentWrite=writeVersion()
+  if e.dirty or e.turn~=turn or needsReport or e.writeVersion~=currentWrite then
    e.dirty=false;e.turn=turn;local ticket=e.invalidation or 0
-   local readEpoch=epoch;local before=writeVersion()
+   local readEpoch=epoch;local before=currentWrite
+   -- The attempted version is recorded even on failure: unchanged UNKNOWN is
+   -- not an idle retry. A genuine later write fences the next explicit read.
+   e.writeVersion=before
    local ok,value,raw
    if #inFlight<CAPTURE_LIMIT then
     inFlight[#inFlight+1]=e

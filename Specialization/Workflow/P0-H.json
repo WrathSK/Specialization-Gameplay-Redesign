@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0059",
     "research": "D0059",
@@ -11,15 +11,15 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0867",
-    "runtime": "B399.426 / modinfo426",
+    "status": "S0868",
+    "runtime": "B400.427 / modinfo427",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "Authorized current-HD PU01 only after accepted formal sync;explicit fact status/purpose projections and proved shared-read/write-barrier seam without formulas/transactions/save changes.",
-  "implementation_authorized": true,
+  "goal": "PU01 implemented/local gates complete;review current evidence,then stop. No later implementation or deployment authorized.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
@@ -131,6 +131,26 @@
       "path": "DevelopmentTests/test_b397_network_transport.py",
       "kind": "full",
       "reason": "Affected real-owner/max/qualification/network/regression proof;expand by actual changed closure."
+    },
+    {
+      "path": "Mod/FactUse.lua",
+      "kind": "full",
+      "reason": "Detached shared status/use projection,first current-HD Commerce consumer;no native reads or persistent authority."
+    },
+    {
+      "path": "Mod/DistrictCompleteness.lua",
+      "kind": "full",
+      "reason": "Actual current-HD D producer;minimal attempted-write-version fence proved by real native-write/read counterexample."
+    },
+    {
+      "path": "Mod/OrdinaryBuildingCatalog.lua",
+      "kind": "full",
+      "reason": "Unchanged current HD provider;Tier algorithm not implemented in PU01."
+    },
+    {
+      "path": "DevelopmentTests/test_pu01_fact_use.py",
+      "kind": "full",
+      "reason": "20 actual-source cases,restricted Lua51,negative/unknown/zero,source changes and real write fence."
     }
   ],
   "dependencies": [
@@ -149,7 +169,7 @@
   "validation": {
     "depth": "L2 projections;targeted L3 if actual writer/barrier changes require it. T02/T04/T08 plus scoped T01/T05 as affected.",
     "local": "Actual facts+Commerce;unknown-vs-zero/negative,unreadableD/workers,independentdomains,sameref/secondchange/writebarriers,restrictedLua/package and affected regressions.",
-    "user": "None now;LOCAL never nativePASS;final minimal native gap listed only if necessary."
+    "user": "None requested now. New native behavior not PASS;later runtime window needs separate approval."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -157,7 +177,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "Step2 documentation/integrity gate pending selected checks;PU01 not yet implemented.",
-    "native": "No new native validation or deployment;prior B399 accepted scopes/limits inherited."
+    "local": "20newpass;146selected=144pass+2unchangedhistoricalfailures;222Lua51/25XML/345runtime;no new static alarm. Full local artifact and reproducible before/source binding in Status S0868.",
+    "native": "NOT_RUN;no deployment/game/main/U5;oldB399evidence unchanged.",
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu01-evidence-and-limits--s0868"
   }
 }
