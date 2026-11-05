@@ -46,9 +46,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CapitalInvestment.lua": {
-      "sha256": "6cc200501c72fbf3f6d37b598c1c01c9b5657fbd46486eadfa9073ffaff8422c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B381_Refactor_S9e8.md",
-      "provenance": "B381.408 Keep fresh Capital quotes through delayed same-balance Treasury events; local/static evidence only; no deployment/native PASS."
+      "sha256": "953a6e57b207a4d4894df193be944b946eaa77098d08a8523ee5c13602e00dc6",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0882/B407.434 PU06c:typed per-mode terms,shared current R and locked source,Capital3 requires new campaign.113local PASS incl37new,strict once-only cash retained;exact legacy test-only profiles documented.2labels only;no deployment/native claim."
     },
     "Mod/CapitalInvestmentDiagnostics.lua": {
       "sha256": "0ab8a511f180736f2d3d4a129d8fc9a15174e381a4ceaae1da6f78c7720542f9",
@@ -56,9 +56,9 @@
       "provenance": "B245 authorized <=0.01 native debit/credit allowance and actual persisted receipts.142 targeted methods PASS; formulas, exact generic Store and no-replay gates retained. No timer/GC; native acceptance pending."
     },
     "Mod/CapitalInvestmentModel.lua": {
-      "sha256": "dea0ac30fc0264783a82bf74fa15bde4d79ce511a111894fdbf561d0dbceb15b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
-      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
+      "sha256": "86944452c55c50428bcb69d3081935c2ec38131ad9e7d86b594d8fe3598a01f4",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0882/B407.434 PU06c:typed per-mode terms,shared current R and locked source,Capital3 requires new campaign.113local PASS incl37new,strict once-only cash retained;exact legacy test-only profiles documented.2labels only;no deployment/native claim."
     },
     "Mod/CarrierHealthTrace.lua": {
       "sha256": "819e8b4745f0a8f3e1e426daf693d579718f1a6d038382de09ae48d5bd2e7b78",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "e9b6a18601a4a886000dbb823d08af2f2140f0eb90ecfdb12bff112734b6573a",
+      "sha256": "952798ffa162b4513dda5dce796b40cabfb9d2ce40b7343cee6fcf97cc6009e5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
+      "provenance": "S0882/B407.434 PU06c:typed per-mode terms,shared current R and locked source,Capital3 requires new campaign.113local PASS incl37new,strict once-only cash retained;exact legacy test-only profiles documented.2labels only;no deployment/native claim."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "486427c832ba29c05e9a552b900bbf6bbe555e381f2a6bcdbb0a16ad6d86e84b",
+      "sha256": "1369166a372cd4e37e77f86bf85628894d46bfecf606a07567a7d16fcd47ce32",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
+      "provenance": "S0882/B407.434 PU06c:typed per-mode terms,shared current R and locked source,Capital3 requires new campaign.113local PASS incl37new,strict once-only cash retained;exact legacy test-only profiles documented.2labels only;no deployment/native claim."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1176,9 +1176,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CapitalInvestmentPanel.lua": {
-      "sha256": "f341dddb6a6c1a4f447df578995703481cb0afab0737bb7007cdbf04e32a57bc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B309_Refactor_S6e.md",
-      "provenance": "B309.336 Quote Capital only for explicit requests; local/static evidence only; no deployment/native PASS."
+      "sha256": "33b4e7344b71045931e4444903cefc39623b170f3f0f9a8d2238c5aea5963fce",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0882/B407.434 PU06c:typed per-mode terms,shared current R and locked source,Capital3 requires new campaign.113local PASS incl37new,strict once-only cash retained;exact legacy test-only profiles documented.2labels only;no deployment/native claim."
     },
     "Mod/UI/CapitalInvestmentPanel.xml": {
       "sha256": "ff0bcf91a2c7725fa69f717f55b1305d97bac389c9617442d311d8e59b1d4dfc",
@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0880/B406.433 PU06b:4functional files and2labels reviewed;105of106selectedPASS incl28new;1pre-D6 raw expectation NOT_PASS.41healthy age/Gold samples same,12current D6casesPASS;222Lua51/25XML/5artdef/345runtime,0new alarms. Capital modes/provenance next;live unchanged.",
-  "source_runtime": "B406.433 / modinfo433;not deployed",
-  "tested_source_snapshot_sha256": "c54b971dd9ad0347eb505089b258fbcac4c106ebca96859afffa40daae8c4658"
+  "source_review": "S0882/B407.434 PU06c:3functional files and2labels reviewed;113unique selectedPASS incl37new;actual owners,240financial outputs same,strict cash/cold/UI/restricted guards;222Lua51/25XML/5artdef/345runtime,0new alarms. PU06 local complete,PU07 next;PU05bOPEN/live unchanged.",
+  "source_runtime": "B407.434 / modinfo434;not deployed;Capital3/Crew receipt2 require new campaign",
+  "tested_source_snapshot_sha256": "a06e2ed1cef9a33dde71a20d593245d3f775cb372836cf30ad3d18393d42c349"
 }

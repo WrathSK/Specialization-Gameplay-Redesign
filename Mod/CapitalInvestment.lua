@@ -125,7 +125,7 @@ function SPCCapitalInvestment.Start(P,shared)
   end end
   if not found then d.Mark(pid)end
  end
- local function prepare(pid,c,withQuotes,onlyDomain)
+ local function prepare(pid,c,withQuotes,onlyDomain,onlyMode)
   local r=reference(c);local saved=store.CapitalState(pid,c);local value=saved.value or M.New();M.Validate(value)
   local f=shared.EffectiveFacts.Read(pid,c)
   local v={reference=r,token=r.token,identity=f.specialization,potential=f.potential,canSign=false,stage='READY',contracts={},domains={}}
@@ -158,6 +158,19 @@ function SPCCapitalInvestment.Start(P,shared)
   local dc=shared.DistrictCompleteness.ReadFacts(pid,c,f.token)
   assert(dc.validity=='VERIFIED' and dc.availability=='READY' and dc.value,'CAPITAL_DISTRICT_UNKNOWN')
   local balance=money(pid);v.balance=balance;local currentTurn=Game.GetCurrentGameTurn();local internal={}
+  local reputationUse={status='UNKNOWN',reason='CAPITAL_REPUTATION_NOT_READ'}
+  if onlyMode~='STABLE'then
+   if f.active<4 then reputationUse=SPCCommerceModel.ReputationUse(nil,f)
+   else
+    local good,value=pcall(function()
+     local state=store.CommerceState(pid,c);local a=state.reference
+     assert(state.token==r.token and a and a.owner==r.owner and a.cityID==r.cityID and a.x==r.x and a.y==r.y,
+      'CAPITAL_REPUTATION_REFERENCE_CHANGED')
+     return SPCCommerceModel.ReputationUse(state.reputationInput,f)
+    end)
+    if good then reputationUse=value else reputationUse={status='UNKNOWN',reason=code(value)}end
+   end
+  end
   local factCache={}
   for _,domain in ipairs(M.Domains)do if onlyDomain==nil or onlyDomain==domain.id then
    local row={id=domain.id,nameKey=domain.nameKey,contract=v.contracts[domain.id]}
@@ -180,13 +193,16 @@ function SPCCapitalInvestment.Start(P,shared)
     local depth=dc.value.domains[domain.id]
     phase='QUOTE'
     local q=M.Quote({domain=domain.id,source=r,sourceName=title(c),turn=currentTurn,balance=balance,
-     D=depth and depth.value or 0,R=cv.reputation.effective or 0,commercialized=commercialized,
+     D=depth and depth.value or 0,reputationUse=reputationUse,commercialized=commercialized,
      candidates=candidates,failureCount=value.protection[tostring(pid)] or 0})
     return q
    end)
    if ok then
     row.quote=M.PublicQuote(q);row.canSign=not M.Open(row.contract) and q.principal>0
     row.reason=M.Open(row.contract) and 'CAPITAL_DOMAIN_OCCUPIED' or q.principal<=0 and 'CAPITAL_TREASURY_EMPTY' or 'CAPITAL_READY'
+    row.modes={STABLE={canSign=row.canSign,reason=row.reason},
+     VENTURE={canSign=row.canSign and q.ventureAvailable,reason=not row.canSign and row.reason
+      or not q.ventureAvailable and 'CAPITAL_REPUTATION_UNKNOWN'or 'CAPITAL_READY'}}
     internal[domain.id]={quote=q,old=cp(saved.value)}
    else
     row.canSign=false;row.reason=code(q)
@@ -340,11 +356,12 @@ function SPCCapitalInvestment.Start(P,shared)
    assert(v and not v.quoteStale and v.revision==p.Revision and v.token==p.CityToken,'CAPITAL_QUOTE_STALE')
    local entry=quotes[k] and quotes[k][p.Domain]
    assert(entry and entry.quote and v.canSign,'CAPITAL_QUOTE_UNAVAILABLE')
-   local locked=cp(entry);local current,internal=prepare(pid,c,true,p.Domain)
-   local actual=internal[p.Domain]
-   assert(actual and same(actual,locked) and current.canSign,'CAPITAL_QUOTE_STALE')
+   local locked=cp(entry);local q,termsReason=M.Terms(locked.quote,p.Mode)
+   assert(q,termsReason or 'CAPITAL_QUOTE_UNAVAILABLE')
+   local current,internal=prepare(pid,c,true,p.Domain,p.Mode);local actual=internal[p.Domain]
+   local fresh=actual and M.Terms(actual.quote,p.Mode)
+   assert(fresh and same(fresh,q)and same(actual.old,locked.old)and current.canSign,'CAPITAL_QUOTE_STALE')
    assert(not M.Open(locked.old and locked.old.contracts[p.Domain]),'CAPITAL_DOMAIN_OCCUPIED')
-   local q=locked.quote
    assert(q.principal>0,'CAPITAL_TREASURY_EMPTY')
    local roll=0
    if p.Mode=='VENTURE'then

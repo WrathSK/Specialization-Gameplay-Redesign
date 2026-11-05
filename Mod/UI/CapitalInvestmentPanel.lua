@@ -23,8 +23,17 @@ local function reason(k,detail)
   CAPITAL_MONEY_UNCONFIRMED='金币实际变化与请求不符，已停止重复操作；请交回日志',
   CAPITAL_NATIVE_OUTCOME_UNKNOWN='金币回执尚未确认；合同已暂停',CAPITAL_TREASURY_EMPTY='当前没有可投入金币',
   CAPITAL_SOURCE_UNKNOWN='专业来源暂不可确认',CAPITAL_REFERENCE_UNAVAILABLE='城市归属暂不可确认',
-  CAPITAL_TREASURY_UNAVAILABLE='国库暂不可读取',CAPITAL_STANDARD_SPEED_ONLY='本版资本投资仅支持标准速度'}
+  CAPITAL_TREASURY_UNAVAILABLE='国库暂不可读取',CAPITAL_REPUTATION_UNKNOWN='信誉暂不可确认；风险投资暂停，稳健投资仍按独立资格判断',CAPITAL_STANDARD_SPEED_ONLY='本版资本投资仅支持标准速度'}
  return names[k] or (k and L('ERROR',k) or L('WAITING'))
+end
+local function modeState(row,mode)return row and row.modes and row.modes[mode]end
+local function modeAllowed(row,mode)local state=modeState(row,mode);return state and state.canSign==true end
+local function reputationText(use,mode)
+ if mode=='STABLE'then return '稳健投资不使用商业信誉。'end
+ if use and use.status=='CONFIRMED'then return '已确认商业信誉：'..number(use.effective)
+ elseif use and use.status=='NOT_APPLICABLE'then return '当前等级不使用信誉加成（R=0）。'
+ elseif use and use.status=='POLICY_ZERO'then return '信誉记录异常；本次按无信誉加成政策计价（R=0），原记录保留。'end
+ return '商业信誉暂不可确认，风险投资暂停。'
 end
 local function backend()
  local b=U.Backend();return b,b and current and b.views[current.owner..':'..current.city]
@@ -44,7 +53,7 @@ local function send(action,mode)
  local b,v=backend();if not city()then close();return end
  if action=='CAPITAL_CONFIRM' then
   local row;for _,r in ipairs(v and v.domains or {})do if r.id==current.domain then row=r;break end end
-  if not (v and not v.quoteStale and v.stage=='READY' and v.canSign and row and row.canSign and row.quote and (mode=='STABLE' or mode=='VENTURE'))then render();return end
+  if not (v and not v.quoteStale and v.stage=='READY' and v.canSign and row and row.canSign and row.quote and modeAllowed(row,mode))then render();return end
  end
  ExposedMembers.SPC_CapitalUISequence=(ExposedMembers.SPC_CapitalUISequence or 0)+1
  local token='CAPITAL:'..P.VERSION..':'..ExposedMembers.SPC_CapitalUISequence
@@ -88,27 +97,30 @@ render=function()
  local q=row and row.quote
  Controls.Quote:SetText(q and L('PRINCIPAL',number(q.principal),q.due) or L('WAITING'))
  local returns=q and (current.mode=='STABLE' and L('STABLE_DETAIL',number(q.safe),number(q.safe-q.principal)) or L('VENTURE_DETAIL',number(q.probability*100),number(q.success),number(q.failure),number(q.expected),number(q.net))) or L('WAITING')
- if q and current.mode=='VENTURE' then
+ if q and current.mode=='VENTURE' and type(q.net)=='number'then
   if q.net<0 then returns=returns..'[NEWLINE][NEWLINE]'..L('NEGATIVE_EV')
   elseif q.net<q.safe-q.principal then returns=returns..'[NEWLINE][NEWLINE]'..L('BELOW_SAFE')end
  end
  Controls.Returns:SetText(returns)
- Controls.Basis:SetText(q and (L('FUNDAMENTALS',q.D,q.S,number(q.C),number(q.r*100))..'[NEWLINE]'..(q.sSource and L('SOURCE',q.sSourceName,number(q.S)) or L('NO_SOURCE'))..'[NEWLINE][NEWLINE]'..L('HELP')) or L('WAITING'))
+ Controls.Basis:SetText(q and (L('FUNDAMENTALS',q.D,q.S,number(q.C),number(q.r*100))..'[NEWLINE]'..(q.sSource and L('SOURCE',q.sSourceName,number(q.S)) or L('NO_SOURCE'))..'[NEWLINE]'..reputationText(q.reputationUse,current.mode)..'[NEWLINE][NEWLINE]'..L('HELP')) or L('WAITING'))
  local text=L('NO_CONTRACT')
  if contract then
   local states={ACTIVE='执行中',SETTLED='已结算',TERMINATED='已终止',HELD='需核对回执',DEBIT_INTENT='确认中',DEBIT_CALLING='需核对扣款',CREDIT_INTENT='到期待结算',CREDIT_CALLING='需核对返还'}
   text=L('CONTRACT_MODE',L(contract.mode=='STABLE' and 'MODE_STABLE' or 'MODE_VENTURE'))..'[NEWLINE]'..L('CONTRACT',states[contract.stage] or contract.stage,number(contract.principal),contract.due)
   text=text..'[NEWLINE]'..L('ACTUAL_DEBIT',number(contract.debited))..'[NEWLINE]'..L('LOCKED_TERMS',contract.D,contract.S,number(contract.C),contract.sSourceName or L('SOURCE_NONE'))
+  text=text..'[NEWLINE]签约时：'..reputationText(contract.reputationSource,contract.mode)
   if contract.stage=='SETTLED' then
    if contract.mode=='VENTURE' then text=text..'[NEWLINE]'..L(contract.won and 'RESULT_SUCCESS' or 'RESULT_FAILURE')end
    text=text..'[NEWLINE]'..L('SETTLED',number(contract.paid),number(contract.paid-(contract.debited or contract.principal)))
   elseif contract.stage=='TERMINATED' then text=text..'[NEWLINE]'..L('TERMINATED')end
  end
  local message=pending and L('REQUEST_WAIT') or v and v.stage=='HELD' and reason(v.reason,v.failure) or requestError and reason(requestError,requestFailure)
-  or v and v.quoteStale and reason(v.reason or 'CAPITAL_QUOTE_STALE') or row and not row.canSign and reason(row.reason) or v and not v.canSign and reason(v.reason) or ''
+  or v and v.quoteStale and reason(v.reason or 'CAPITAL_QUOTE_STALE') or row and not row.canSign and reason(row.reason)
+  or row and current.mode and not modeAllowed(row,current.mode)and reason(modeState(row,current.mode)and modeState(row,current.mode).reason)
+  or v and not v.canSign and reason(v.reason) or ''
  Controls.Current:SetText(text..(message~='' and '[NEWLINE][NEWLINE]'..message or ''))
  Controls.ConfirmCaption:SetText(L(current.mode=='VENTURE' and 'CONFIRM_VENTURE' or 'CONFIRM_STABLE'))
- Controls.Confirm:SetDisabled(not(v and not v.quoteStale and v.stage=='READY' and v.canSign and row and row.canSign and q and current.mode and not pending))
+ Controls.Confirm:SetDisabled(not(v and not v.quoteStale and v.stage=='READY' and v.canSign and row and row.canSign and q and modeAllowed(row,current.mode) and not pending))
  Controls.Refresh:SetDisabled(pending~=nil)
  local column=layout();domainRows:ResetInstances();modeRows:ResetInstances()
  for _,d in ipairs(domains)do
@@ -122,7 +134,8 @@ render=function()
  end
  if current.domain then for _,mode in ipairs({'STABLE','VENTURE'})do
   local chosen=mode;local item=modeRows:GetInstance();item.Caption:SetText(L('MODE_'..mode));item.Caption:SetTruncateWidth(column-40)
-  item.State:SetText(q and (mode=='STABLE' and L('STABLE_BRIEF',number(q.safe)) or L('VENTURE_BRIEF',number(q.probability*100),number(q.success),number(q.failure))) or L(mode=='STABLE' and 'STABLE_SUMMARY' or 'VENTURE_SUMMARY'));item.State:SetWrapWidth(column-40)
+  local admission=modeState(row,mode)
+  item.State:SetText(admission and not admission.canSign and reason(admission.reason)or q and (mode=='STABLE' and L('STABLE_BRIEF',number(q.safe)) or L('VENTURE_BRIEF',number(q.probability*100),number(q.success),number(q.failure))) or L(mode=='STABLE' and 'STABLE_SUMMARY' or 'VENTURE_SUMMARY'));item.State:SetWrapWidth(column-40)
   item.Root:SetSizeY(item.State:GetSizeY()+48);item.Caption:SetColorByName(current.mode==mode and 'Gold' or 'White')
   item.Root:RegisterCallback(Mouse.eLClick,function()if current and not pending then current.mode=chosen;render()end end)
  end end

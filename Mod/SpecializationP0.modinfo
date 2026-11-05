@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="433">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="434">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B406.433：商业信誉只读来源与用途投影，区分确认、不适用、窄政策零和未知；不覆盖历史、不改变金币公式。</Description>
+    <Description>B407.434：资本投资按模式核验信誉并锁定来源；稳健签约不依赖无关信誉，风险未知不签约。合同格式更新须新档。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

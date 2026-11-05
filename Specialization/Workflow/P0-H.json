@@ -11,95 +11,105 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0880",
-    "runtime": "B406.433 / modinfo433",
+    "status": "S0882",
+    "runtime": "B407.434 / modinfo434",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "PU06b Store→Commerce final reputation input/use contract complete locally;Capital mode/provenance consumer next,not yet complete.",
+  "goal": "PU06 final Store→Commerce→Capital mode/provenance contract locally complete;new campaign for Capital3. Continue PU07 Claim root prerequisite;no native/main/deployment.",
   "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
       "selector": "### Accepted convergence boundaries — 2026-11-04",
-      "reason": "Accepted independent modes,ODP02 narrow policy and true history ownership."
+      "reason": "Approved final R contract,mode independence,locked terms and current-build-only saves."
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Continuous grant,RIC,actual local/native and follow-up boundary."
+      "reason": "Current RIC/continuous grant and strict money/gate boundaries."
     },
     {
       "path": "Specialization/Design/Content/Commerce_D0059.json",
       "kind": "full",
-      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
     },
     {
-      "path": "Mod/CityProgressionStore.lua",
+      "path": "Mod/CapitalInvestment.lua",
       "kind": "full",
-      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
+    },
+    {
+      "path": "Mod/CapitalInvestmentModel.lua",
+      "kind": "full",
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
+    },
+    {
+      "path": "Mod/UI/CapitalInvestmentPanel.lua",
+      "kind": "full",
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
     },
     {
       "path": "Mod/CommerceModel.lua",
       "kind": "full",
-      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
     },
     {
-      "path": "Mod/Commerce.lua",
+      "path": "Mod/CityProgressionStore.lua",
       "kind": "full",
-      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
     },
     {
-      "path": "Mod/StoreSubrecords.lua",
+      "path": "DevelopmentTests/test_b241_capital.py",
       "kind": "full",
-      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
     },
     {
-      "path": "Mod/StoreDeferredLifecycle.lua",
+      "path": "DevelopmentTests/test_b245_capital_receipts.py",
       "kind": "full",
-      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
     },
     {
-      "path": "DevelopmentTests/test_refactor_s8b7b.py",
+      "path": "DevelopmentTests/test_b244_capital_storage.py",
       "kind": "full",
-      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
     },
     {
-      "path": "DevelopmentTests/test_refactor_s6f.py",
+      "path": "DevelopmentTests/test_b262_capital_sidebar.py",
       "kind": "full",
-      "reason": "Existing accepted reputation rule,real read/consumer owner and maintained true Store/Commerce fixture."
-    },
-    {
-      "path": "Mod/UI/CommercePanel.lua",
-      "kind": "full",
-      "reason": "Display copied authoritative use explanation;no UI qualification or layout change."
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
     },
     {
       "path": "DevelopmentTests/test_pu06b_reputation_use.py",
       "kind": "full",
-      "reason": "True Store/Commerce buckets,cold/input guards,read-only copied data,healthy differential and actual sidebar explanation."
+      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
+    },
+    {
+      "path": "DevelopmentTests/test_pu06c_capital_terms.py",
+      "kind": "full",
+      "reason": "Actual financial owners/shared R,typed source/terms,strict cash/fresh VM/reentry,normal matrix and explicit UI/native fixture profiles."
     }
   ],
   "dependencies": [
-    "PU06a lawful-exit behavior retained.",
-    "Use producer-owned isolation/deferred facts and real current qualification;no new environment provider."
+    "PU06a lawful exit andPU06b Store→Commerce source/use contract retained.",
+    "Existing full current Commerce/network proof and all independent financial/reference/occupancy facts remain strict."
   ],
   "old_writers": [
-    "Store remains history writer;Commerce remains passive carrier/formula/transaction-readiness owner;model is pure read projection."
+    "Capital coordinator/Store retain all native money/record duties;pure model supplies typed per-mode terms,UI only displays copied status."
   ],
   "conditional_context": [],
   "non_scope": [
-    "Capital mode/contract shape deferred to next dependent piece,not marked complete.",
-    "History repair,permanent corruption inference,new native events/reads/scans,poll,HD/Tier,GC,deployment/main/native/U5."
+    "No saved-history/R repair,money replay/refund,loose transaction readiness or numeric-R compatibility fallback.",
+    "No formula/price/protection/term/ownership gameplay,HD/Tier,GC,new event/poll,deployment/main/U5/native launch."
   ],
   "validation": {
-    "depth": "L3 T01/T02/T04/T08 true Store→Commerce plus pure use matrix",
-    "local": "Known0/nonapplicable/severe policy0/unsafe leaf,parent,origin,dependency,deferred and missing P4 buckets;real passive Gold and copy/history protection;formula/retention/ref/write/idle/static/context/privacy.",
-    "user": "None now;no deployment or native inference."
+    "depth": "L3 T01/T02/T03/T05/T08 actual financial owner chain",
+    "local": "All R buckets;stable no R read;mode-specific fresh comparison;locked source/outcome same-build reload;strict parent/network/balance/unknown receipts;DEBIT/CREDIT faults,no duplicate/roll/native call;typed v3 rejection/DECIMAL17/pure formula/UI/static/context/privacy.",
+    "user": "None now;later integration new campaign,not cross-build migration/native money PASS."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -107,8 +117,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "106selected,105PASS incl28new;1unchanged pre-D6 interval assertion NOT_PASS;12current D6 casesPASS.222Lua51/25XML/5artdef/345runtime,0new alarms.",
-    "native": "NOT_RUN;not deployed",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu06b-evidence-and-limits--s0880"
+    "local": "113unique selectedPASS,37new+76retained;240financial values same;3semantic failures reproduced on fixed source.222Lua51/25XML/5artdef/345runtime,0new alarms.",
+    "native": "NOT_RUN;new campaign required,not deployed",
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu06c-evidence-and-limits--s0882"
   }
 }

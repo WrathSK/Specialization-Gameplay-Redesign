@@ -1,17 +1,45 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0880
-Implementation Build: source B406.433 / modinfo433; recorded live B399.426 from4915170; stable/main B307.334
+Status Revision: S0882
+Implementation Build: source B407.434 / modinfo434; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: PU06B_LOCAL_COMPLETE_CONTINUOUS_NO_DEPLOYMENT
+Work State: PU06_LOCAL_COMPLETE_CONTINUOUS_NO_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+商业信誉的合法退出、用途投影与资本投资消费者衔接已完成代码及定域本地验证，源码 **B407.434 / modinfo434**。风险投资不再把被动金币计算中的数值0当作可靠信誉；稳健签约不因无关信誉读取失败而失效。新合同锁定确认／当前不适用／窄政策零的来源，结算不读取新信誉或追改条款。**Capital格式version3、Crew收据version2，后续部署须新档**。当前未部署、未晋升main；下一片继续认领项目的事件范围根因，不开始U5。
+
+### PU06c evidence and limits — S0882
+
+- **LOCAL_SIMULATION:**113unique selected methods PASS,0errors/failures/skips;37new plus76retained.44observed modules/fragments,not full project/path coverage. Actual Store→Commerce→Capital with explicit native property/binding/D/Bridge/worker/yield/treasury/unit/event doubles. Fixed `c711059` reproduces3semantic failures:UNSAFE_R_SIGNED_AS_ZERO,PASSIVE_R_CLAMP_USED_AS_PROOF,and real three-owner UNSAFE_SHARED_R_SIGNED. These are local proofs,not native incidence.
+- **Final R contract:**fresh Store-owned input plus the same CommerceModel.ReputationUse supplies risk R;no second reputation policy. Confirmation compares selected-mode typed terms and unchanged Capital value before random/native debit. Confirmed0,not-applicable0 and narrow policy0 have distinct locked source/reason/history status;UNKNOWN cannot create risk terms/returns. Same numeric0 with changed provenance is stale. STABLE uses explicit NOT_REQUIRED source and no pre-debit R read;all common current Commerce/network,D/source/history,reference,balance/occupancy/receipt gates remain.
+- **Save/settlement:**version3 payload rejects old nonnil2,no decoder/migration/reset. Source metadata is copied and validated with R/mode. Existing signed same-build terms/outcome stay fixed through governor/route/reputation changes and reload. DEBIT_INTENT/CALLING,CREDIT_INTENT/CALLING,DECIMAL17,money tolerance,three slots,owner rupture and unknown money isolation remain. Payout uses only locked terms;no refund/regrant/replay. Unknown/bad Capital cannot become an empty slot via reputation policy.
+- **Proof/work:**240D/S/C/R financial/probability combinations match fixed source;quantized requested-vs-actual receipts,positive/tiny/nonfinite/boundary guards,fresh-VM restore,write/readback faults,duplicates/native reentry and debit/credit failures preserve once-only behavior. Source-local R read is once per explicit quote/risk revalidation and includes existing reference/binding native getters;not0nativework. STABLE qualification reads0R before debit;existing post-success two-mode quote display may read1without affecting completed action. Stale automatic refresh reads0R. No new native API category,city/building enumeration,event,timer,poll or automatic consumer.
+- **UI:**existing actual mode callbacks now gate per mode and fail closed on missing mode protocol;current quote source and locked contract source shown separately. Mode geometry,scroll/escape/request latch regressions PASS under explicit controls. Unknown risk returns stay unavailable,not numeric0. No native font/pixel/input acceptance claimed.
+- **Fixture precision:**new protocol tests run without numeric compatibility wrappers. Old standalone explicit numeric-R fixtures are adapted only in tests into declared synthetic CONFIRMED facts/selected terms;old assertions unchanged. Frozen Lua55 float32 pack/unpack operation has an exact host struct float32 substitute for Lua51;no production shim or native precision claim. Old UI producer gets explicit modes/confirmed0 fields before unchanged panel code. Deferred-return fixture supplies capital access InternalOnly=1 from actual Commerce.sql:22,not a weakened exit;same-VM reload restores its D/Bridge doubles and never repeats Start. Raw initial unsupported/fixture failures remain local;not production fixes or PASS.
+- **Static/artifact:**222Lua51,25XML,5artdef,modinfo434,345runtime/344package entries,156own includes;0new/widened alarms. CPython3.14.8/source-built Lupa2.8 Lua51;no external DB/game. `local/refactor/PU06c-e5e797c0b6d74255af99ca0ed8b5acf1/closure.json`,SHA256 `783a0940bae8606335e45f2bb489611dea7a47acb018a45ba9608ae9d4bc4911`;tested source `a06e2ed1cef9a33dde71a20d593245d3f775cb372836cf30ad3d18393d42c349`,stable during run. Exact suites,per-case profiles,runner,limits,before/raw transcripts local beside/in artifact;`static.json` records package checks. Re-run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<source-built-lupa>:DevelopmentTests python3.14 <artifact-directory>/rerun.py`;bind `DevelopmentTests/refactor_evidence.py source <artifact> --commit HEAD`. Local file/hash is not permanent backup;versioned source/tests support comparable reruns.
+- **Boundaries:**PU06local contract complete,not a full backlog/U5/native PASS. Prior frozen obsolete/inherited assertions remain documented in prior Status,not declared repaired. PU05b native attribution stays OPEN;HD/Tier/main/deployment/S9/S10 excluded. Existing live/main pointers unchanged.
+
+User decision:none. User testing:none now;later integration requires new campaign and retains native gates. Primary next:verified commit/push develop,then PU07 source-scoped Claim completion-error root under continuous authorization;stop for external review or a genuine Owner/native gate.
+
+### PU06c runtime impact and gates — S0881
+
+- **Owners/input:**CapitalInvestment remains sole quote/confirmation/native-money coordinator;Store remains parent/Capital/history owner. Real current EF and existing strict Commerce.TransactionCurrent/network/D/source/institution/balance/occupancy gates remain. For VENTURE,read fresh Store.CommerceState and reuse CommerceModel.ReputationUse with current qualification;never trust a stale passive numeric clamp. Explicit quote-open may obtain both modes;STABLE pre-debit confirmation skips reputation reading entirely. Existing post-success UI quote refresh may read R once but cannot qualify or undo that completed stable action. A reputation read failure blocks only the risk terms,not independently valid stable terms.
+- **Terms/provenance:**pure Capital model emits typed base quotes and purpose-specific terms. STABLE selects constant not-required R provenance;VENTURE requires exact allowed shared use provenance,with UNKNOWN left unusable. Confirmation compares fresh selected-mode terms and unchanged Capital value before roll/debit. Locked contract copies source status/reason/value/history status,so confirmed0,inapplicable0,policy0 remain distinct;bad source shapes cannot masquerade as success. No legacy numeric-R fallback. Existing signed same-build contracts never read current R or reprice.
+- **Save/irreversible:**Capital payload version3 is an explicit new-campaign format;old nonnil version2 is rejected rather than migrated/reset. No cross-build save support implied. Keep DECIMAL17 money encoding/tolerance,three domain slots,DEBIT_INTENT/CALLING before native call,CREDIT_INTENT/CALLING,readback,once-only/refund/replay protections and owner rupture unchanged. Unknown Capital/receipt state is never repaired by R policy.
+- **Work/UI:**at most one bounded existing Store reputation read for an explicit multi-domain quote/VENTURE confirmation;none before the STABLE irreversible operation or during stale automatic refresh;existing post-success quote display may read once. No new native API category,city/building scans,event,timer,poll or automatic consumer. The fresh existing Store call retains its source-city reference and one binding-token Property read;this bounded cost is not called zero native work. Existing panel modes/geometry stay;mode-specific confirmation and copied locked-source explanations prevent presenting unavailable risk returns as valid. No normal hover or browse requests added.
+- **Proof:**L3 T01/T02/T03/T05/T08;actual Store→Commerce→Capital,all source buckets,confirmed zero vs notapplicable/policy/unsafe,parent/dependency/deferred gates,STABLE independence,per-mode stale terms,current history/source changes,locked outcome/provenance reload,all native money fault/reentry/no-replay boundaries and unknown sibling preservation. Pure normal formulas compare fixed source;explicit legacy fixture adaptation may map its authoritative numeric R inputs to typed synthetic facts without changing assertions. Production receives no compatibility fallback. Native result remains NOT_RUN.
+- **Next/limits:**complete PU06 only after this dependent consumer and local checks,then continue PU07 Claim root prerequisite. PU05b native attribution stays OPEN. No A8/ownership/new gameplay/HD/Tier/GC/S9/S10/deployment/main/U5/native launch.
+
+User decision:none within accepted D0059/ODP02 and current-build-only contract. User testing:none now;later deployment requires new campaign. Primary next:implement/verify/commit/push final Capital consumer,then ready PU07;stop for actual external-review/Owner/native gates.
+
+## Prior PU06b checkpoint — S0880
 
 商业信誉只读契约片已完成代码与本地验证，源码 **B406.433 / modinfo433**。Store区分确认、缺失、严重叶异常和仍不安全的来源；商业化再结合已确认ACTIVE选择实际用途，明确区分确认信誉、不适用、窄政策零和UNKNOWN。未知信誉不吞掉其它合法金币，也不修写历史。尚未部署；下一片将资本投资直接接入同一契约，当前不能声称投资模式隔离与A11已完成。
 

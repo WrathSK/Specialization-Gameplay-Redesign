@@ -30,9 +30,31 @@ local function reference(r)
   and type(r.token)=='string' and #r.token>0 and int(r.changes)
 end
 local stages={DEBIT_INTENT=true,DEBIT_CALLING=true,ACTIVE=true,CREDIT_INTENT=true,CREDIT_CALLING=true,SETTLED=true,TERMINATED=true,HELD=true}
-function M.New()return {version=2,sequence=0,contracts={},protection={}}end
+-- Only this copied shared-use projection may justify new VENTURE terms.
+-- STABLE does not inspect it,including when the history reader is unavailable.
+function M.ReputationSource(use,mode)
+ if mode=='STABLE'then
+  return {status='NOT_APPLICABLE',reason='STABLE_REPUTATION_NOT_REQUIRED',historyStatus='NOT_REQUIRED',effective=0}
+ end
+ if mode~='VENTURE'or type(use)~='table'then return nil,'CAPITAL_REPUTATION_UNKNOWN'end
+ local fields={status=true,reason=true,historyStatus=true,effective=true,age=true}
+ for k in pairs(use)do if not fields[k]then return nil,'CAPITAL_REPUTATION_UNKNOWN'end end
+ if not int(use.effective)or use.effective>40 then return nil,'CAPITAL_REPUTATION_UNKNOWN'end
+ local okay
+ if use.status=='CONFIRMED'then
+  okay=use.historyStatus=='CONFIRMED'and use.reason=='COMMERCE_REPUTATION_CONFIRMED'and use.age==use.effective
+ elseif use.status=='NOT_APPLICABLE'then
+  local known={CONFIRMED=true,ABSENT=true,SEVERE_LEAF=true,UNKNOWN=true}
+  okay=known[use.historyStatus]and use.reason=='COMMERCE_REPUTATION_ACTIVE_IV_REQUIRED'and use.effective==0 and use.age==nil
+ elseif use.status=='POLICY_ZERO'then
+  okay=use.historyStatus=='SEVERE_LEAF'and use.reason=='COMMERCE_REPUTATION_ISOLATED_LEAF_POLICY'and use.effective==0 and use.age==nil
+ end
+ if not okay then return nil,'CAPITAL_REPUTATION_UNKNOWN'end
+ return copy(use)
+end
+function M.New()return {version=3,sequence=0,contracts={},protection={}}end
 function M.Validate(v)
- assert(type(v)=='table' and v.version==2 and int(v.sequence) and type(v.contracts)=='table' and type(v.protection)=='table','CAPITAL_HISTORY_INVALID')
+ assert(type(v)=='table' and v.version==3 and int(v.sequence) and type(v.contracts)=='table' and type(v.protection)=='table','CAPITAL_HISTORY_INVALID')
  local owners=0;for k,n in pairs(v.protection)do
   assert(type(k)=='string' and k:match('^%d+$') and tonumber(k)<64 and int(n),'CAPITAL_PROTECTION_INVALID');owners=owners+1
  end;assert(owners<=64,'CAPITAL_PROTECTION_INVALID')
@@ -47,6 +69,8 @@ function M.Validate(v)
    and int(c.D) and c.D>=1 and c.D<=10 and int(c.S) and c.S>=1 and c.S<=4
    and (c.C==1 or c.C==1.25) and int(c.R) and c.R<=40 and int(c.failureCount)
    and M.Finite(c.balanceBefore) and M.Finite(c.balanceAfter),'CAPITAL_CONTRACT_INVALID')
+  local reputation=M.ReputationSource(c.reputationSource,c.mode)
+  assert(reputation and M.Same(reputation,c.reputationSource)and reputation.effective==c.R,'CAPITAL_CONTRACT_INVALID')
   -- Actual receipts are separate from locked theoretical balances/amounts.
   local debit=c.debitAfter~=nil or c.debited~=nil
   if debit then
@@ -134,31 +158,51 @@ function M.Choose(candidates)
 end
 function M.Quote(input)
  assert(domains[input.domain] and reference(input.source) and int(input.turn)
-  and int(input.D) and input.D<=10 and int(input.R) and input.R<=40
+  and int(input.D) and input.D<=10
   and int(input.failureCount) and M.Finite(input.balance),'CAPITAL_QUOTE_UNKNOWN')
+ assert(input.R==nil,'CAPITAL_REPUTATION_PROTOCOL') -- no numeric UNKNOWN-to-zero fallback
+ local reputation=M.ReputationSource(input.reputationUse,'VENTURE')
  local chosen,S=M.Choose(input.candidates or {})
  local D=math.max(1,input.D);local C=input.commercialized and 1.25 or 1
  local principal=input.balance/4;local r=.01*D*S*C
  local base=math.min(.8,.4+.01*D*S)
  local probability=.8-(.8-base)*(.75^input.failureCount)
- local safe=principal*(1+r);local success=principal*(1+3*r);local failure=principal*(.5+.005*input.R)
- local q={domain=input.domain,source=copy(input.source),sSource=chosen and copy(chosen.reference),attained=chosen and chosen.attained,
+ local safe=principal*(1+r);local success=principal*(1+3*r)
+ local failure=reputation and principal*(.5+.005*reputation.effective)or nil
+ local q={kind='CAPITAL_QUOTE_V1',domain=input.domain,source=copy(input.source),sSource=chosen and copy(chosen.reference),attained=chosen and chosen.attained,
   sourceName=input.sourceName,sSourceName=chosen and chosen.name,turn=input.turn,due=input.turn+10,
-  D=D,S=S,C=C,R=input.R,principal=principal,balance=input.balance,r=r,probability=probability,
-  safe=safe,success=success,failure=failure,expected=probability*success+(1-probability)*failure,failureCount=input.failureCount}
- q.net=q.expected-principal;return q
+  D=D,S=S,C=C,R=reputation and reputation.effective,principal=principal,balance=input.balance,r=r,probability=probability,
+  safe=safe,success=success,failure=failure,failureCount=input.failureCount,ventureAvailable=reputation~=nil,
+  reputationUse=reputation or {status='UNKNOWN',reason=type(input.reputationUse)=='table'and type(input.reputationUse.reason)=='string'and input.reputationUse.reason:sub(1,180)or 'CAPITAL_REPUTATION_UNKNOWN'}}
+ if failure then q.expected=probability*success+(1-probability)*failure;q.net=q.expected-principal end
+ return q
+end
+local termFields={'domain','source','sSource','attained','sourceName','sSourceName','turn','due','D','S','C',
+ 'principal','balance','r','probability','safe','success','failureCount'}
+function M.Terms(q,mode)
+ if type(q)~='table'or q.kind~='CAPITAL_QUOTE_V1'then return nil,'CAPITAL_QUOTE_UNKNOWN'end
+ if mode~='STABLE'and mode~='VENTURE'then return nil,'CAPITAL_MODE_INVALID'end
+ local reputation,why=M.ReputationSource(q.reputationUse,mode)
+ if not reputation then return nil,why end
+ local n={kind='CAPITAL_TERMS_V1',mode=mode,reputationSource=reputation,R=reputation.effective}
+ for _,key in ipairs(termFields)do n[key]=copy(q[key])end
+ n.failure=n.principal*(.5+.005*n.R)
+ n.expected=mode=='STABLE'and n.safe or n.probability*n.success+(1-n.probability)*n.failure
+ n.net=n.expected-n.principal
+ return n
 end
 function M.Begin(old,q,mode,roll,request)
  local n=copy(old or M.New());M.Validate(n)
  assert(not M.Open(n.contracts[q.domain]),'CAPITAL_DOMAIN_OCCUPIED')
  assert(mode=='STABLE' or mode=='VENTURE','CAPITAL_MODE_INVALID')
+ assert(q.kind=='CAPITAL_TERMS_V1'and q.mode==mode,'CAPITAL_TERMS_REQUIRED')
  assert(q.principal>0,'CAPITAL_TREASURY_EMPTY')
  assert(type(request)=='string' and #request>0 and #request<=100,'CAPITAL_REQUEST_INVALID')
  assert(M.Finite(roll) and roll<1,'CAPITAL_ROLL_UNAVAILABLE')
  n.sequence=n.sequence+1
  n.contracts[q.domain]={sequence=n.sequence,request=request,domain=q.domain,source=copy(q.source),sSource=copy(q.sSource),
   sourceName=q.sourceName,sSourceName=q.sSourceName,attained=q.attained,mode=mode,start=q.turn,due=q.due,
-  principal=q.principal,D=q.D,S=q.S,C=q.C,R=q.R,safe=q.safe,success=q.success,failure=q.failure,
+  principal=q.principal,D=q.D,S=q.S,C=q.C,R=q.R,reputationSource=copy(q.reputationSource),safe=q.safe,success=q.success,failure=q.failure,
   probability=q.probability,won=mode=='STABLE' or roll<q.probability,failureCount=q.failureCount,
   balanceBefore=q.balance,balanceAfter=q.balance-q.principal,stage='DEBIT_INTENT'}
  return M.Validate(n)
