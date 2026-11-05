@@ -10,8 +10,8 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0868",
-    "runtime": "B400.427 / modinfo427",
+    "status": "S0870",
+    "runtime": "B401.428 / modinfo428",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "491517093de18c8b151053724e316f1e08228995",
-  "current_batch": "B400_PU01_LOCAL_COMPLETE_STOPPED",
-  "next_batch": "Await Owner next scoped task. PU01 local slice complete;no automatic later package,deployment,U5,main promotion or game launch.",
+  "current_batch": "B401_PU02_LOCAL_COMPLETE_STOPPED",
+  "next_batch": "PU02 local completion;stop after reviewed commit/push develop. Await Owner next scoped task or separately approved native window. No automatic PU03,O6,HD,U5,deployment or main promotion.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B399.426 temporary develop from 491517093de18c8b151053724e316f1e08228995;344/344 MATCH;SHA256 7f1eae6b8ef33a0c865cadb651428fa79b5f6bf98fffb6601b43afcc75278077;B398 outgoing and B307 stable backups MATCH;no pending transaction;receipt B399.426-4915170-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -48,8 +48,8 @@
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
-  "deployment_authorization": "Current staged authorization explicitly excludes deployment. Prior standing develop deployment does not apply to this task;main/game launch remain excluded.",
-  "context_review_status": "S0868:PU01 local20/20;146selected=144pass+2unchangedbaselinefailures;222Lua51/25XML/345runtime;no native/deployment. First two staged gates already published.",
+  "deployment_authorization": "PU02 grant excludes deployment,main promotion and game launch;future runtime window requires separate approval.",
+  "context_review_status": "S0870:PU02 37new+14unchanged-panel methods pass;112selected108pass+4exact-baseline historical errors;222Lua51/25XML/5artdef/345runtime. No new alarm,deployment or native PASS.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,6 +64,6 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#pu01-evidence-and-limits--s0868",
-  "source_status": "Canonical B400.427 source;commit binding verified after publication using tested source snapshot a458d021ad33628ec15a26dc4549ae44c9497afb3b8c1742b05c27757945df4d. runtime_commit/live still describe the last deployed package,not this source."
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#pu02-evidence-and-limits--s0870",
+  "source_status": "Canonical B401.428 source;tested Mod/DevelopmentTests/tools snapshot SHA256 c79b114e6e65304b5d9b48a67c9383d435be44d55c471f17748c4ad115688959. Verify commit binding after publication;runtime_commit/live still identify B399.426 last deployed package."
 }

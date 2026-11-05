@@ -1,16 +1,38 @@
--- Native UnitPanel adapter. Event/request replies only; no SetUpdate or timer.
+-- Native UnitPanel adapter. Event/request replies only; no frame callback or timer.
 SPCRestructuringUI={KIND='UNIT_SPC_RESTRUCTURING_TEAM'}
 local M=SPCRestructuringUI
 local serial=0
+local pending -- One packet of scalars for this UI context; never a native object.
+local function view(u)
+ local v=(ExposedMembers.SPC_RestructuringViews or {})[u:GetOwner()..':'..u:GetID()]
+ if type(v)=='table' and v.owner==u:GetOwner() and v.unit==u:GetID()
+  and v.x==u:GetX() and v.y==u:GetY() and v.turn==Game.GetCurrentGameTurn()then return v end
+end
+local function awaiting()
+ if pending then
+  local reply=ExposedMembers.SPC_RestructuringReply
+  local v=(ExposedMembers.SPC_RestructuringViews or {})[pending.owner..':'..pending.unit]
+  -- A published matching plan is also a prepare ACK. A missing confirm ACK
+  -- never becomes permission to resend, including after a transport exception.
+  if reply and reply.owner==pending.owner and reply.unit==pending.unit and reply.token==pending.token
+   or pending.action=='REST_PREPARE' and type(v)=='table' and v.owner==pending.owner and v.unit==pending.unit and v.prepared==pending.token then pending=nil end
+ end
+ return pending~=nil
+end
 function M.IsTeam(u)
  local row=u and GameInfo.Units[u:GetUnitType()]
  return row and row.UnitType==M.KIND and u:GetOwner()==Game.GetLocalPlayer() or false
 end
 function M.Request(action,u,plan)
  if not M.IsTeam(u)then return end
+ if action~='REST_READ' and awaiting()then return end
  serial=serial+1
- UI.RequestPlayerOperation(u:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,
-  {OnStart='SPC_P0_Request',Action=action,UnitID=u:GetID(),Token='REST_UI:'..u:GetID()..':'..serial..':'..Game.GetCurrentGameTurn(),PlanToken=plan})
+ local token='REST_UI:'..u:GetID()..':'..serial..':'..Game.GetCurrentGameTurn()
+ local packet={OnStart='SPC_P0_Request',Action=action,UnitID=u:GetID(),Token=token,PlanToken=plan}
+ if action~='REST_READ'then pending={owner=u:GetOwner(),unit=u:GetID(),token=token,action=action}end
+ -- A false return or exception is not proof that Gameplay did not receive it.
+ local ok=pcall(UI.RequestPlayerOperation,u:GetOwner(),PlayerOperations.EXECUTE_SCRIPT,packet)
+ return ok and token or nil
 end
 function M.SelectedChanged()
  local u=UI.GetHeadSelectedUnit();if M.IsTeam(u)then M.Request('REST_READ',u)end
@@ -22,8 +44,7 @@ function M.Actions(u,actions)
  for category,entries in pairs(actions)do if category~='displayOrder' and type(entries)=='table'then
   for i=#entries,1,-1 do if row and entries[i].userTag==row.Hash then table.remove(entries,i)end end
  end end
- local v=(ExposedMembers.SPC_RestructuringViews or {})[u:GetOwner()..':'..u:GetID()]
- if v and (v.owner~=u:GetOwner() or v.unit~=u:GetID() or v.x~=u:GetX() or v.y~=u:GetY() or v.turn~=Game.GetCurrentGameTurn())then v=nil end
+ local v=view(u);local waiting=awaiting()
  local uid=u:GetID();local label=Locale.Lookup(v and v.action=='CONFIGURE' and 'LOC_SPC_REST_CONFIGURE' or 'LOC_SPC_REST_LIQUIDATE')
  local tip=label..'[NEWLINE]'
  if v and v.cityName then
@@ -35,17 +56,30 @@ function M.Actions(u,actions)
  end
  local reply=ExposedMembers.SPC_RestructuringReply
  if reply and reply.unit==uid and reply.owner==u:GetOwner() and not reply.ok then tip=tip..'[NEWLINE]'..Locale.Lookup('LOC_SPC_REST_PENDING')..' ('..tostring(reply.reason)..')'end
+ if waiting then tip=tip..'[NEWLINE]'..Locale.Lookup('LOC_SPC_REST_PENDING')end
+ local owner=u:GetOwner()
+ local x,y,turn=u:GetX(),u:GetY(),Game.GetCurrentGameTurn()
+ local action,identity,city,prepared=v and v.action,v and v.uid,v and v.city,v and v.prepared
  local function click(confirm)
   local selected=UI.GetHeadSelectedUnit()
-  if not M.IsTeam(selected) or selected:GetID()~=uid or g_isOkayToProcess~=true then return end
-  M.Request(confirm and 'REST_CONFIRM' or 'REST_PREPARE',selected,confirm and v.prepared or nil)
+  if not M.IsTeam(selected) or selected:GetOwner()~=owner or selected:GetID()~=uid
+   or selected:GetX()~=x or selected:GetY()~=y or Game.GetCurrentGameTurn()~=turn or g_isOkayToProcess~=true then return end
+  local fresh=view(selected)
+  if not fresh or not fresh.legal or fresh.action~=action or fresh.uid~=identity or fresh.city~=city
+   or fresh.prepared~=prepared or awaiting()then return end
+  if confirm then
+   if not prepared then return end
+  elseif prepared then return end -- A stays hoverable/informational after preparation.
+  M.Request(confirm and 'REST_CONFIRM' or 'REST_PREPARE',selected,confirm and prepared or nil)
  end
  local icon=v and v.action=='CONFIGURE' and 'ICON_SPC_RAW_CONFIGURE' or 'ICON_SPC_RAW_LIQUIDATE'
- AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon=icon},not(v and v.legal),tip,-247,function()click(false)end)
- if v and v.prepared then
-  AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon=icon},not v.legal,
+ -- Native StandardActionsStack grows Right. Insert B before A so A keeps its
+ -- original right-hand slot and B grows to the left; do not swap callback roles.
+ if prepared then
+  AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon=icon},not v.legal or waiting,
    Locale.Lookup('LOC_SPC_REST_CONFIRM',label)..'[NEWLINE]'..tip,-248,function()click(true)end)
  end
+ AddActionToTable(actions,{CategoryInUI='SPECIFIC',Icon=icon},not(v and v.legal) or waiting,tip,-247,function()click(false)end)
  return actions
 end
 function M.BlockDelete(hash)

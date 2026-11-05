@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="427">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="428">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B400.427：商业化区分确认事实与暂不可读输入，复用共享读取及写入失效屏障；保留既有公式与交易保护。</Description>
+    <Description>B401.428：资产重组准备按钮保持原位，确认按钮居左；阻止重复与过期点击，保留既有资格、扣除和单位消耗保护。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

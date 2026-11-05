@@ -420,6 +420,10 @@ See [native review](Validation/Results/Specialization_B399_Fifth_Playtest_202611
 | PT019 | UI action mapping / USER_REPORTED | B399.426 |66|User reports left liquidation-confirm button inert while the action-labeled button completes. Trace proves one valid liquidation and later configuration,with no failed request;clicked callback identity is not recorded. Both current entries reuse the icon but have distinct PREPARE/CONFIRM callbacks. | Confusing confirmation affordance;business outcome succeeded in this case | None authorized | Scoped click/action mapping investigation when scheduled;do not infer bypass/root cause or patch from the label alone |
 
 
+## B401 action-pair source repair — 2026-11-05
+
+PT019 code repair is locally complete in source B401.428. Actual native Right-growth plus A-then-B insertion moved the preparation slot left;the adapter now inserts B before A,keeps prepared A inert and guards fresh exact-unit/plan callbacks and duplicate outstanding requests. Actual owned UI→service and pinned native/HD fragment tests pass;see [current result](Specialization_P0_Status.md#pu02-evidence-and-limits--s0870) for the112selected108pass/four unchanged historical-error limits. This is not a native click PASS. Future separately authorized window needs only one liquidation/configuration action-pair check;no immediate deployment,U5 or new full-ability retest. Earlier B399 observations remain frozen below.
+
 ## B399 user clarification and pre-U5 disposition — 2026-11-01
 
 [Scoped investigation](Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md) supersedes the timing/uncertainty of earlier PT017/PT019notes without rewriting frozen evidence.

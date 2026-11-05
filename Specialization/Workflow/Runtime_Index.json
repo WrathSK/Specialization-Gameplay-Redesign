@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "b23ea336a384d123b58c6bd5ceddf55f093c0749242eaa6211a618e25d5e3c2c",
+      "sha256": "7c02a22008bf952aa2a1ff9c67e6021bfe2a7c569d34182d31c503f552e3166a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
+      "provenance": "S0870/B401.428 PU02:three reviewed runtime deltas,RestructuringUI behavior and Probe/modinfo labels only.37new+14unchanged-panel pass;112selected108pass+4unchanged exact-baseline errors;222Lua51/25XML/5artdef/345runtime. No new alarm or gameplay/service/save change. Live pointers remain4915170/B399.426;no native/deployment PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -886,9 +886,9 @@
       "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/RestructuringUI.lua": {
-      "sha256": "b0d00e3752fa737f49acb6bc385887cc1ffb80e6f6a2161abd1912f873ab1530",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "sha256": "f4505f10643fc84a0b34ce74c7c174e21718a70d1f6884a42460ac337c130318",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0870/B401.428 PU02:three reviewed runtime deltas,RestructuringUI behavior and Probe/modinfo labels only.37new+14unchanged-panel pass;112selected108pass+4unchanged exact-baseline errors;222Lua51/25XML/5artdef/345runtime. No new alarm or gameplay/service/save change. Live pointers remain4915170/B399.426;no native/deployment PASS."
     },
     "Mod/RuntimeAuditCore.lua": {
       "sha256": "25aefb1036b4dd9aaedf6c5bc00a6b6c26823953ef4bae00a62a90f901e9f4ff",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "39170ce986b9298c33000e0f4d689123c4bbadea3e20ed2f3871334ffadfeaa1",
+      "sha256": "8ff184abf002b02342b64d72a3f58e1190b447a954055c0f61a5a12ecd19ecb7",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
+      "provenance": "S0870/B401.428 PU02:three reviewed runtime deltas,RestructuringUI behavior and Probe/modinfo labels only.37new+14unchanged-panel pass;112selected108pass+4unchanged exact-baseline errors;222Lua51/25XML/5artdef/345runtime. No new alarm or gameplay/service/save change. Live pointers remain4915170/B399.426;no native/deployment PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0851/B394 scoped optional observers reviewed;14 focused and selected local regressions PASS;342/342 deployed from ec3d613,exact B393/B307 recovery MATCH. Native collection pending;no gameplay repair claimed. B397.424:S0857 four named runtime files reviewed for NET-1/NET-2;87local methods pass,native/deployment pending;no other runtime hashes refreshed. B397deployment:aa51feb,342/342MATCH,receipt and B396/B307 recovery verified;native pending.; S0861 B398.425 reviewed bounded queue intents/full-turn gates and native selection semantics;85selected local methods,220Lua51/25XML/343runtime. Deployment pending. B398 verified deployment:73bf5b5,343/343 MATCH;exact B397/B307 recovery and receipt,no pending transaction;runtime/test bytes unchanged by receipt recording,native pending. S0863 B399.426:nine owned runtime entries reviewed plus new observer inventory;178selected local methods,221Lua51/25XML/344runtime;independent removal proof and inherited failures disclosed. Last deployed runtime pointers remain B398 pending receipt. B399 verified deployment:4915170,344/344MATCH;exact B398/B307 recovery and receipt,no pending marker;runtime/test bytes unchanged by this metadata,native pending. S0868/B400.427 PU01:five named runtime entries reviewed;20newpass,146selected144pass+2unchangedhistoricalfailures,222Lua51/25XML/345runtime;actual read/write/status guards. Last deployed fields remain4915170/B399.426;no deployment.",
-  "source_runtime": "B400.427 / modinfo427;not deployed",
-  "tested_source_snapshot_sha256": "a458d021ad33628ec15a26dc4549ae44c9497afb3b8c1742b05c27757945df4d"
+  "source_review": "S0870/B401.428 PU02:three reviewed runtime deltas,RestructuringUI behavior and Probe/modinfo labels only.37new+14unchanged-panel pass;112selected108pass+4unchanged exact-baseline errors;222Lua51/25XML/5artdef/345runtime. No new alarm or gameplay/service/save change. Live pointers remain4915170/B399.426;no native/deployment PASS.",
+  "source_runtime": "B401.428 / modinfo428;not deployed",
+  "tested_source_snapshot_sha256": "c79b114e6e65304b5d9b48a67c9383d435be44d55c471f17748c4ad115688959"
 }

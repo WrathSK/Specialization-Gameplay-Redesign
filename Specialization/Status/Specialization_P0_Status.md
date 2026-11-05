@@ -1,15 +1,49 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0868
-Implementation Build: source B400.427 / modinfo427; recorded live B399.426 from4915170; stable/main B307.334
+Status Revision: S0870
+Implementation Build: source B401.428 / modinfo428; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
-Design Sync State: D0059_CONVERGENCE_ACCEPTED_PU01_LOCAL_COMPLETE
-Work State: PU01_LOCAL_COMPLETE_STOPPED_NO_DEPLOYMENT
+Design Sync State: D0059_CONVERGENCE_ACCEPTED_PU02_LOCAL_COMPLETE
+Work State: PU02_LOCAL_COMPLETE_STOPPED_NO_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
+
+资产重组按钮窄片已完成代码修复和本地验证，当前源码为 **B401.428 / modinfo428**。准备按钮 A 保持原右侧位置、只准备一次；确认按钮 B 出现在其左侧，并独占匹配方案的确认入口。实际游戏中的鼠标命中与刷新尚未验收，本轮没有部署、启动游戏、开启 U5 或推进下一工作片。已批准玩法、保存、收益、资格和不可逆操作保护均未改动。
+
+Only RestructuringUI behavior changed: insert B before A in the native Right-growing action array; keep prepared A hoverable/inert; resolve current owner/unit/binding/position/turn/view/plan at click; suppress a second outstanding action packet. Existing pending tooltip explains a missing reply. One scalar packet remains context-local;prepare can acknowledge its exact published plan,confirmation needs the matched reply and is never automatically replayed after missing/false/throw transport. No new timer,subscription,probe,save field or native object cache. Gameplay dispatcher,Restructuring,Store and native consumption code are byte-unchanged. Probe and modinfo change build label/description only.
+
+**Source is not deployment:** recorded live remains B399.426 from `491517093de18c8b151053724e316f1e08228995`,344/344 per inherited receipt;stable/main B307.334. This task did not inspect or replace that package. Source inventory remains345files. D0059/A0184 and completed PU01 are retained;later delivery/mandatory-exit/recovery/receipt/retirement,Tier/no-HD and U5 gates remain separate. No later implementation is inferred from this completion.
+
+### PU02 runtime impact and gates — S0869
+
+- **Owner/path:** UI/ExpeditionSpyUnitPanel → RestructuringUI → existing REST request dispatcher → Restructuring → Store/native receipt. UI owns only short-lived scalar click state; service owns plans and fresh eligibility; Store owns permanent history and consumption. Do not move or relax those responsibilities.
+- **Evidence/cause:** actual native UnitPanel registers CallbackFunc/tag per reused instance and iterates action arrays in order; its XML StandardActionsStack grows Right with44×53 buttons,38×38 icons and2px padding. HD delegates these custom icons to the native renderer. Current insertion A then B moves A left and adds B right; this contradicts the requested stable A-right/B-left layout. Prepared A also lacks an inert guard. This is source/local geometry evidence,not a claim of observing current native hit testing.
+- **Read/write/lifetime:** click resolves the selected local team and current published view,matching owner/unit/position/turn and prepared token; backend still freshly reads binding,reference,eligibility and plan before any write. Suppress duplicate outstanding action packets with bounded scalar UI state; never automatically replay an unknown confirmation. No new save fields,native-object cache,timer,frame callback or event subscriptions.
+- **Work/recovery:** only rendering/explicit click and existing selection/movement/publication boundaries; O(1) UI view lookup,existing backend reads unchanged. Reused controls must bind the correct current callback. Delayed or unrelated replies cannot authorize a stale plan; new valid explicit action needs a current plan,not elapsed time.
+- **Unchanged:** five-full-turn wait,Potential debit,unit source/target bindings,strict references,native one-call consumption/readback and no-replay protection. Ordinary units,Expedition actions and full HD panel styling remain unchanged. Later official UnitPanel behavior is revalidated under O6,not certified here.
+- **Proof:** L1 UI plus targeted T08 and L3 receipt regression. Reproduce old ordering/prepared-A defects before repair; exercise actual owned UI/request/service with explicit native control/transport doubles and external native/HD rendering fragments. Test duplicate A/B,stale plan/unit/position,delayed replies,failed consumption and one native call. Restricted Lua5.1,XML/package/context checks. No all-history suite unless a concrete affected risk appears.
+- **Native delta:** after separately approved deployment,one liquidation and one configuration with A-right/B-left,A-inert,B-only-confirm. Native hitboxes/refresh/third-party composition remain USER_GAME_TEST_REQUIRED; local replay is never native PASS.
+
+### PU02 evidence and limits — S0870
+
+- **LOCAL_SIMULATION:** all37new methods pass (18portable+18through pinned native/HD fragments+1restricted-runtime/scope check),plus14unchanged Expedition idle/refresh assertions with an explicit current dependency profile. Actual owned UI wrapper → real Gameplay REST dispatch fragment → real Restructuring/Store exercised for liquidation/configuration,old callbacks,delayed/unrelated ACK,duplicate A/B,new binding with reused unitID,movement/turn/qualification loss,known failure recovery and one native destruction attempt. Missing-confirmation/uncertain-consumption paths never auto-resend or replay.
+- **Full selected result:**112methods,108pass,**4unchanged historical raw-fixture errors**,not an all-green suite. Each reproduces on exact baseline `a068c0b27abb7b215452973c3bb1e54fec07b5ab`: B247 ContractPreservation `test_signed_capital_and_development_survive_identity_exit_and_settle` (CAPITAL_QUOTE_STALE),DirectIntegration `test_dispatcher_commits_current_identity_before_actual_support_and_network_capture`,Service `test_projection_after_commit_not_before_and_does_not_delete_contract_effect`,and B249 Startup `test_missing_facts_waits_then_committed_investment_can_start`. No frozen assertion/file was changed. Four named errors remain evidence limits,not PASS or newly introduced UI regressions.
+- **Before/after:** five defect methods each run in portable and actual-fragment modes fail at baseline (10expected assertion errors:A_MOVED,A_REPREPARED,DUPLICATE_PENDING_A,STALE_B_SENT,STALE_POSITION_SENT);the same current methods pass. The old B247 position-index/synthetic-unacknowledged-plan UI test is not current acceptance;new tests address actions by tag and actually execute the service. The frozen Expedition fixture stubs include();its maintained profile loads real RestructuringUI before the wrapper and provides only its deferred-refresh double's pack/unpack compatibility. Primary PU02 cases use bare Lua51 without those helpers.
+- **STATIC_CONFIRMED:**222Lua files compile in restricted Lua5.1;25XML,5artdef and modinfo parse;345runtime entries/reference closure match;no new/widened reviewed static alarm. Actual external source evidence: installed macOS native UnitPanel.lua203–223/271–317/831–865 and XML34–39/492–495;HD-17 base action builder/AddActionButton1015–1088 delegates these icons. Array order and nonoverlapping XML dimensions explain the slot reversal;callbacks are not swapped. Full game hit testing,render scheduling and third-party composition remain unproved.
+- **Reproduction/evidence:**baseline `a068c0b`;owned test [test_pu02_restructuring_ui.py](../../DevelopmentTests/test_pu02_restructuring_ui.py). Run `python3.14 -m unittest test_pu02_restructuring_ui test_b247_restructuring test_b249_restructuring_startup.Startup test_b249_restructuring_startup.RepeatedEvents test_b249_restructuring_startup.Recovery` plus the three named package/delete assertions in the artifact command. CPython3.14.8,Lupa2.8,Lua51,Darwin arm64,no-bytecode;configure pinned read-only SPC_UNIT_PANEL_LUA/SPC_HD_UNIT_PANEL_LUA originals (or local copies). Unconfigured external-fragment tests explicitly SKIP,never imply PASS. Four historical errors remain expected disclosed limits,not modified assertions. Full artifact **`local/refactor/PU02-a4ae160be13044bea51263cf5251599b/closure.json`**,SHA256 `9076421f4eebc8b2e7d1dcd7691347482b6945313959ef486211ea9ea9caba27`;tested Mod/DevelopmentTests/tools snapshot `c79b114e6e65304b5d9b48a67c9383d435be44d55c471f17748c4ad115688959`. Local originals,prerequisites,executed closure,baseline/error transcripts and rerun script remain ignored there;not a permanent backup. Version-pinned tests and baseline Git object preserve the reconstructable contract;actual original native files remain an external prerequisite.
+- **Native delta only after separate deployment approval:**test one liquidation and one configuration:A remains right;first A prepares with tooltip;repeated A has no action;B is left and alone confirms once;five-turn wait and consumption remain. Native clicks/UI scaling/refresh are USER_GAME_TEST_REQUIRED. No immediate user test or new whole-profession campaign is requested.
+
+User decision: none for this completed slice. User testing: the short native delta is deferred to a separately authorized runtime window. Primary next: reviewed commit/push develop,verify tested-source binding and stop;no deployment or next package.
+
+## S0870 — B401.428 asset-restructuring action pair, local completion
+
+2026-11-05. Owner-authorized PU02. Native Right-growth explains position change;A-right/B-left order,prepared-A inertness,fresh callback/plan and one outstanding packet implemented in the existing UI adapter.37new+14unchanged-panel methods pass;112selected108pass+4unchanged baseline errors,222Lua51/25XML/5artdef/345runtime. Only three runtime files changed,including two build-label files. No gameplay/save/service change,native PASS or deployment.
+
+
+## Prior PU01 checkpoint — S0868
 
 The approved narrow three-stage application is complete locally: (1) 19 reviewed audit/candidate files published at `fcf61e2bbbd74394490cbd40af033c3e3529bf3a`, all independently retrieved from that remote commit with exact SHA256/size; (2) D0059/A0184 and the finite workflow/current-information A set formally synchronized and pushed at `fb7be65b664b78f2c692cdc9d661511f37823b2e`; (3) **current-HD PU01** implemented and locally validated as source **B400.427 / modinfo427**. No later package is started or authorized by this completion.
 
