@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="430">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="431">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B403.430：科研效果优先处理已确认的学院失效；总督或锚点未知保持保护，沿用收益公式与引用校验。</Description>
+    <Description>B404.431：施工队按来源与订单保存未决收据，完成序号独立保留；严格单次发放与库存校验不变。收据格式更新须新开存档。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

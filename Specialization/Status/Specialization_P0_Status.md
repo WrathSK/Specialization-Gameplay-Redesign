@@ -1,19 +1,45 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0874
-Implementation Build: source B403.430 / modinfo430; recorded live B399.426 from4915170; stable/main B307.334
+Status Revision: S0876
+Implementation Build: source B404.431 / modinfo431; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: PU04_LOCAL_COMPLETE_CONTINUOUS_NO_DEPLOYMENT
+Work State: PU05A_LOCAL_COMPLETE_CONTINUOUS_NO_DEPLOYMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
-科研失效事实片已完成代码与本地验证，源码 **B403.430 / modinfo430**。已复现并修复：学院已可靠失效、总督等级暂不可读时，原先四项科研效果会停在ACTIVE断言而不撤除。现在复用现有锚点采样，先处理已确认的结构性负事实；学院本身不可读仍保留原效果。已知等级的公式与正常输出保持原样。后续按持续授权推进施工队的来源／订单收据隔离；本轮未部署或实机测试。
+施工队跨城市收据隔离片已完成代码与本地验证，源码 **B404.431 / modinfo431**。一城的未决发放保留自己的来源／订单记录，另一城在库存与独立完成证明均可靠时，可以正常完成下一笔发放。原有成本、两槽容量、续建与使用结算未变；未知库存、绑定失败和不可归属完成仍禁止猜测发放。**收据格式变更，后续部署必须新开存档**；当前未部署，live与main记录不变。
+
+### PU05a evidence and limits — S0876
+
+- **LOCAL_SIMULATION:**101selected methods PASS,0errors/failures/skips;22new plus79related methods. Actual CityProgressionStore/IndustryHistory/Crew/UnitActions with explicit native queue/stats/property/unit/event doubles;36observed modules/fragments,not full path coverage. Fixed pre-slice `4931f2b0a97aef1a663ea7c998b10e245a0bfd3a` reproduces both new cross-city and cold-reload block assertions (`OTHER_CITY_BLOCKED_BY_SHARED_RECEIPT`,`RELOADED_SOURCE_BLOCKED_OTHER_CITY`) before repair.
+- **Implemented:**version2 payload under existing `SPC_CREW_GRANTS_V1` namespace separates consumed per-project `water` from pending source-token+admitted-order rows. Exact owner/city/location/project/count accompany the request. Strict native next+1,source/order admission,current capacity and inventory checks precede one InitUnit;water+pending intent are persisted/read back before the call. Confirmed unit binding and city-order cleanup precede removal of only that pending row,using a fresh envelope so another city's reentrant completion is preserved. Normal completed pending rows are not accumulated as history;water remains. Unit binding/use receipts and grant IDs remain unchanged.
+- **Preserved limits:**the affected source retains its existing HELD/admission protection;this does not authorize another same-source order through an unresolved request. Unbound/invalid native units still make Inventory unsafe,even for another city. That is a separate missing required input,not a same-project receipt lock;no source inference,unit-set/count snapshots,refund,regrant or blind CALLING replay. Binding/return/receipt faults retain one-shot protection. The new split does not claim these unknown outcomes are resolved.
+- **Tests/work:**same-project cross-city sequential grants,reload,duplicate/old callbacks,self/different-city reentry,fresh-envelope merge,source changes,binding failure,failed final cleanup,strict malformed snapshots and invalid provider rejection. Only an explicitly omitted constructor queue reader uses the default late-resolved UI slot;false/invalid providers fail. Existing full snapshot validation remains. Normal grant has1native creation and5durable grant-property writes.2047/2048/2049 pending boundary rejects before new order write/call;bounded2048water/pending rows per owner,not a gameplay cap. No new events,timers,polling or turn scans.
+- **Existing behavior:**cost matrices,two-slot occupancy,paid pauses,resume,qualification-drop/cold continuity and accepted Crew amplification regressions pass. Actual S7d5 use differential retains receipts,debit,progress and mutation order across **8**normal/fault modes. Source is checked against the current commit before publication;no save migration or gameplay change inferred from a local PASS.
+- **Fixture precision:**frozen `test_b236_crews.Formation.test_missing_admission_or_counter_jump_never_guesses_unit` inserts `;;` for its empty-before subcase,which Lua51 rejects. Exact baseline reproduces that syntax error. The raw body remains unchanged and is excluded from the executable selection;`test_pu05a_receipts.Compatibility` calls its original method with only that empty statement replaced by semantic-noop `do end`. Both original admission/counter guards run unchanged. No assertion is weakened and raw syntax failure is not called PASS.
+- **PU05b remains OPEN:**both original S7d6 characterization methods pass as characterizations:two cities observing cumulative2 still grant0under strict attribution;the constructed late-duplicate histories remain indistinguishable and produce the same one-grant response under their conditional native assumption. These are unclosed proof gaps,not successful multi-city native support. No new native incidence or event-contract claim. Continue independent PU06;do not relax unique proof or launch/capture automatically.
+- **Static/evidence:**222Lua5.1,25XML,5artdef,modinfo431,345runtime/344package entries,156own include targets and0new/widened alarms. CPython3.14.8/source-built Lupa2.8 Lua51;no external engine DB/game. Artifact `local/refactor/PU05a-d42efd4e6d234ee1b8a0fd8c3895694e/closure.json`,SHA256 `7146f8582567471b6f3d5c57fb2a7ac3aca30cbedf4ab7f3e7cc441784493a85`;tested Mod/DevelopmentTests/tools input `fe36a7dec60ffa69dd1c93f9428c44d45919110cd5d5a59cf3111d574cb74e1e`,stable during run. Exact command/suites/environment/fixture map/before transcripts and runner remain local beside/in artifact;`static.json` records package checks. Re-run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<source-built-lupa>:DevelopmentTests python3.14 <artifact-directory>/rerun.py`;bind with `DevelopmentTests/refactor_evidence.py source <artifact> --commit HEAD`. LOCAL_ONLY artifacts/hashes are not permanent backups;versioned source/tests support comparable reruns,not recovery of this execution.
+
+User decision:none for completed PU05a. User testing:none now;later deployment requires new campaign and PU05b retains its separate native evidence gate. Primary next:verified commit/push develop,then continue independent PU06 under the continuous grant;stop for required external review or real Owner decision.
+
+### PU05a runtime impact and gates — S0875
+
+- **Producer/owner:**actual CrewProjects and true CityProgressionStore admission/reference remain;native Events.CityProjectCompleted(player,city,project) selects that city's saved admitted order and source token. CrewModel owns a small explicit receipt envelope;player property owns consumed high-water plus unresolved per-source/order rows. No unit-position/count-difference attribution. O4 reuses one optional constructor queue-reader function;current default still freshly resolves the existing UI slot and validates the full snapshot.
+- **Change:**separate consumed high-water from pending calls,with exact owner/source/location/city/order/project/count. High-water and pending intent persist and read back before InitUnit. Keep grant ID and bound unit/source/capacity semantics;after confirmed binding and city-order cleanup,remove only that exact pending row,retain high-water. Duplicate/late events remain bounded by consumed ordinal and strict admission. Unknown native call/binding remains held and never replays.
+- **Evidence/scope:**A unresolved CALLING with otherwise reliable Inventory must not block independently admitted B at strict next +1. A native unbound/invalid unit still makes Inventory unsafe under existing rules;do not infer its source or hide it to pass this test. Binding/return failures receive no guessed unit,refund,regrant or new recovery machine. PU05b's +2 and conditional late-duplicate attribution remains OPEN and is characterized separately,not solved by this receipt split.
+- **Bound/lifetime:**at most2048validated water keys and2048pending rows per owner envelope as technical fail-closed bounds,not gameplay limits. Completed normal pending rows are removed;uncertain rows retain unique proof and their own source reservation. No cumulative full grant-history log. Validate the next envelope before attempting a new reservation/write/call;capacity K−1/K/K+1 and malformed/mismatched/duplicate count scope tested. No timer,poll,per-frame or new turn scan;existing events/availability and exact exit duties retained.
+- **Compatibility:**receipt representation changes require a new campaign under accepted current-build-only support. Keep the existing property namespace but explicit version2 payload;old nonnil flat payload fails visibly,never decoded as fresh or silently migrated. Unit binding and use receipt formats stay byte-contract compatible;costs,capacity,targets,qualifications and locked terms remain unchanged. No cross-build save promise or legacy decoder.
+- **Proof:**L3 T01/T03/T05/T06/T08;true Store+Crew,baseline shared-CALLING block,strict sequential B,own-scope hold,duplicates/reentry/reload,reference/source changes,binding/property faults and no replay;unchanged transaction outputs/use mutation order. Retain original S7d6 counterexample/indistinguishability,restricted Lua and package/privacy/context gates. No new native test or engine-contract claim.
+
+User decision:none within accepted PU05a. User testing:none now;new campaign required for later deployment of the changed receipt format. Primary next:implement/test/commit/push this durable slice,then continue ready independent Pre work;do not cross native/external-review gates or implement PU05b by weakening proof.
+
+## Prior PU04 checkpoint — S0874
 
 ### PU04 evidence and limits — S0874
 

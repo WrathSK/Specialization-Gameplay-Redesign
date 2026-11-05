@@ -11,96 +11,86 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0874",
-    "runtime": "B403.430 / modinfo430",
+    "status": "S0876",
+    "runtime": "B404.431 / modinfo431",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "PU04 proven negative-fact ordering repaired and locally verified;commit/push develop,continue next ready approved slice with independent evidence/stop gates.",
+  "goal": "PU05a source/order receipt isolation complete locally;new campaign for version2 payload. Verify commit/push then continue independent PU06,keeping PU05b native proof gate.",
   "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
       "selector": "### Accepted convergence boundaries — 2026-11-04",
-      "reason": "Accepted reliable negatives,normal cold restoration,ownership and delivery boundaries."
+      "reason": "Accepted unique Crew completion proof,source/order receipt split,current-build saves and no blind replay."
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Visible Owner continuous grant,current RIC and evidence/stop boundary."
+      "reason": "Owner continuous grant and current receipt RIC/stop gates."
     },
     {
-      "path": "Mod/CurrentSpecializationFacts.lua",
+      "path": "Mod/CrewProjects.lua",
       "kind": "full",
-      "reason": "Actual authority/anchor producer,facade,consumer or maintained combination fixture;read by affected seam."
+      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
     },
     {
-      "path": "Mod/SpecialistSupport.lua",
+      "path": "Mod/CrewModel.lua",
       "kind": "full",
-      "reason": "Actual authority/anchor producer,facade,consumer or maintained combination fixture;read by affected seam."
+      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
     },
     {
-      "path": "Mod/EffectiveFacts.lua",
+      "path": "Mod/PropertyCell.lua",
       "kind": "full",
-      "reason": "Actual authority/anchor producer,facade,consumer or maintained combination fixture;read by affected seam."
+      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
     },
     {
-      "path": "Mod/ResearchInfrastructure.lua",
+      "path": "DevelopmentTests/test_b236_crews.py",
       "kind": "full",
-      "reason": "Actual authority/anchor producer,facade,consumer or maintained combination fixture;read by affected seam."
+      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
     },
     {
-      "path": "Mod/ResearchApply.lua",
+      "path": "DevelopmentTests/test_refactor_s7d5.py",
       "kind": "full",
-      "reason": "Actual authority/anchor producer,facade,consumer or maintained combination fixture;read by affected seam."
+      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
     },
     {
-      "path": "Mod/ResearchChair.lua",
+      "path": "DevelopmentTests/test_refactor_s7d6_proof.py",
       "kind": "full",
-      "reason": "Actual authority/anchor producer,facade,consumer or maintained combination fixture;read by affected seam."
+      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
     },
     {
-      "path": "Mod/ResearchCross.lua",
+      "path": "Specialization/Status/Validation/Results/Refactor_S7d6_Crew_Proof_Gap.md",
       "kind": "full",
-      "reason": "Actual authority/anchor producer,facade,consumer or maintained combination fixture;read by affected seam."
+      "reason": "Actual saved proof/native callback/queue/use owner or maintained true Store/Crew fixture and independent native gap."
     },
     {
-      "path": "DevelopmentTests/test_refactor_s6b.py",
+      "path": "DevelopmentTests/test_pu05a_receipts.py",
       "kind": "full",
-      "reason": "Actual authority/anchor producer,facade,consumer or maintained combination fixture;read by affected seam."
-    },
-    {
-      "path": "DevelopmentTests/test_refactor_s6c.py",
-      "kind": "full",
-      "reason": "Actual authority/anchor producer,facade,consumer or maintained combination fixture;read by affected seam."
-    },
-    {
-      "path": "DevelopmentTests/test_pu04_negative.py",
-      "kind": "full",
-      "reason": "Current actual EF/four writers plus true Store/ref tests and fixed baseline profile."
+      "reason": "Current scoped receipt,provider,capacity,reentry,new-campaign and portable original-assertion coverage."
     }
   ],
   "dependencies": [
-    "D0059/A0184,PU01–03 complete locally;current HD native/provider profile only.",
-    "Existing production anchor sampler/read phase and exact carrier/write controls;no new diagnostic control dependency."
+    "PU01–04 source slices retained;current HD provider and actual Store reference/readback/exit guards.",
+    "C1 Owner-accepted split is locally implementable;PU05b native attribution remains independent."
   ],
   "old_writers": [
-    "ResearchInfrastructure/Apply/Chair/Cross retain sole owned effects and formulas;no new effect writer.",
-    "SpecialistSupport keeps independent eligibility;only expose its unchanged raw city-local sampler."
+    "CrewProjects remains sole grant/admission/use owner;Store owns city identity/history;native UI reader owns queue/current player counters.",
+    "No new automatic consumer or diagnostic control dependency;one optional queue-read constructor seam preserves current provider."
   ],
   "conditional_context": [],
   "non_scope": [
-    "New Governor/ACTIVE retention,normal cold semantics redesign,ordinary building ontology,HD/Tier port,GC/diagnostic retirement.",
-    "Deployment/main/game/U5;native attribution cannot be replaced by aggregate differences."
+    "PU05b attribution/native capture,unknown unbound unit source inference,unit count differences,regrant/refund/recovery machine.",
+    "Formula/cost/capacity/target/qualification/ownership gameplay,no-HD/Tier/GC changes,deployment/main/U5/game launch."
   ],
   "validation": {
-    "depth": "L3;T01/T02/T04/T06/T08",
-    "local": "Before compound UNKNOWN_GOVERNOR+confirmed anchor loss with real EF/four writers;known facts no output/read expansion;unknown anchor hold,ref/owner/write boundaries,same-turn repair,shared phase,two cities/foreign and idle. Restricted Lua/package/current guards/privacy.",
-    "user": "No forced pillage or immediate native request;later approved integration only."
+    "depth": "L3 T01/T03/T05/T06/T08;true Store+Crew and strict one-shot operations",
+    "local": "Baseline shared CALLING blocks independent next+1 city;new scoped receipt retains A and permits fully proved B. Version/shape/capacity/source/order/counter checks,reentry/duplicate/cold/property/binding faults,no replay,unchanged use paths and S7d6 OPEN characterization. Lua51/package/privacy/context.",
+    "user": "No immediate native request;later approved new-campaign integration. PU05b remains a separate native evidence gate."
   },
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -108,8 +98,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "20new+144related PASS;4old health assertions fail identically at fixed baseline,not PASS;222Lua51/25XML/5artdef/345runtime,0new alarms.",
-    "native": "NOT_RUN;not deployed",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu04-evidence-and-limits--s0874"
+    "local": "101selected PASS,22new+79related;raw empty-statement Lua55 fixture uses explicit Lua51 semantic-noop adapter;frozen assertions unchanged.222Lua51/25XML/5artdef/345runtime,0new alarms.",
+    "native": "NOT_RUN;PU05b remains OPEN;not deployed",
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu05a-evidence-and-limits--s0876"
   }
 }

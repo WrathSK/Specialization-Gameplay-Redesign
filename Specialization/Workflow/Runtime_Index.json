@@ -166,9 +166,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/CrewModel.lua": {
-      "sha256": "2056c65fb64f842aca18fd0364b440447b1f600b59cde6823755956915fe1270",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
-      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "a789494fd538a59d216a7a407a944e9c7ce07386bb235a25526f213f1afeca20",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0876/B404.431 PU05a:separate per-project consumed ordinal/source-order pending grant;one optional explicit queue reader.101local methods pass with documented Lua51 fixture adapter;new campaign for version2 receipt,PU05b native gap OPEN. Probe/modinfo labels only;no deployment/native PASS."
     },
     "Mod/CrewPrecision.lua": {
       "sha256": "c4a98f521a346b097748d0c9df470c1ef209d06fc60ec052c4d0898e6cc0fe59",
@@ -176,9 +176,9 @@
       "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "99f26a31fde32d0da0d2cf5d75c8655f4cb9e9172b9b8ac83abfc3624e0800d7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
-      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
+      "sha256": "c09b0d2dfe00fffea20b2207352506648b1e8687dfe4cc30225087557df97ab3",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0876/B404.431 PU05a:separate per-project consumed ordinal/source-order pending grant;one optional explicit queue reader.101local methods pass with documented Lua51 fixture adapter;new campaign for version2 receipt,PU05b native gap OPEN. Probe/modinfo labels only;no deployment/native PASS."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "05937dbbcba0e05656966706433c55fc7395c0148ca5c77cf1b2287d2a5bb4c2",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "1b371faa67600de5378bf0561fe6e746c1a50bad12750b2f9d09b7780c97cacf",
+      "sha256": "9376bbf008944b683ca107bb243af7da483e3aa42cb95bd35f289f631bc5d8c8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
+      "provenance": "S0876/B404.431 PU05a:separate per-project consumed ordinal/source-order pending grant;one optional explicit queue reader.101local methods pass with documented Lua51 fixture adapter;new campaign for version2 receipt,PU05b native gap OPEN. Probe/modinfo labels only;no deployment/native PASS."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "513fe39566bdae7a2418a13f16951f5d6d5b92d7255da0b9ad0772c1c8ebd3a8",
+      "sha256": "621ddbe750e1b63223a2884cd00631fa6c1285b1f42a426136ef99623fc722c8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
+      "provenance": "S0876/B404.431 PU05a:separate per-project consumed ordinal/source-order pending grant;one optional explicit queue reader.101local methods pass with documented Lua51 fixture adapter;new campaign for version2 receipt,PU05b native gap OPEN. Probe/modinfo labels only;no deployment/native PASS."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0874 PU04:six functional runtime files and2labels reviewed;20new+144related pass,4pre-slice historical health errors unchanged. Known output matrix and source/reference/write-phase guards checked.222Lua51/25XML/5artdef/345runtime,0new alarms;live pointers unchanged.",
-  "source_runtime": "B403.430 / modinfo430;not deployed",
-  "tested_source_snapshot_sha256": "b3d22cc9dcdd40a81408f30def83c05d7df434f799ac6e875afb3d5ae885bece"
+  "source_review": "S0876/B404.431 PU05a:CrewModel/CrewProjects and2labels reviewed.101selected PASS incl22new;true Store/order/native-double proof and one-shot use differential8modes;no formula/capacity/target change.222Lua51/25XML/5artdef/345runtime,0new alarms. New campaign;PU05b OPEN;live pointers unchanged.",
+  "source_runtime": "B404.431 / modinfo431;not deployed;new campaign required",
+  "tested_source_snapshot_sha256": "fe36a7dec60ffa69dd1c93f9428c44d45919110cd5d5a59cf3111d574cb74e1e"
 }
