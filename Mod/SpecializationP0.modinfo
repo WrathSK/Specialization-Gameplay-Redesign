@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="435">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="436">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B408.435：认领候选不再受无关区域完成回调污染；真正首次完成来源不明的保护保留，完整归属修复尚待门禁。</Description>
+    <Description>B409.436：修复首次专业确认的城市定位和错误范围，维持完整区域完成证明。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

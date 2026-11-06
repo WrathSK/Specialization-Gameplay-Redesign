@@ -1,6 +1,6 @@
 # Unattributable District Events — Narrow Recovery Proposal
 
-**State:** DRAFT / OWNER_REVIEW_REQUIRED. 2026-11-05. Primary-authored decision proposal, not an accepted Design/Architecture amendment or implementation permission.
+**State:** A SELECTED by Owner on2026-11-05 for existing-PU07 source investigation/local repair/composition only. B NOT APPROVED;no further B schema design now. Remaining text preserves the reviewed options,not new Design/Architecture or persistence authority.
 
 **Code baseline:** develop `1b6a69b14f0cbc5911411aa2288ee237ebd74bbe`, B408.435, D0059/A0184/S0884. Production code, tests, formal rules and deployment remain unchanged by this document.
 
@@ -23,7 +23,7 @@ There is no request to reapprove the overall convergence program. A real new nat
 ## 2. Evidence and unchanged rules
 
 - **STATIC_CONFIRMED:** [PROG-001/005](../../Design/Specialization_v0.1_Design_Spec.md#L97) chooses the first **valid completed** district notification, not placement, type priority or a load snapshot. Validity includes city identity, district type, completion and historical eligibility. Fixed Legacy Claim candidates follow a separate path.
-- **STATIC_CONFIRMED:** the [construction callback](../../../Mod/CityProgressionStore.lua#L2143) receives owner/type/x/y, not cityID. Its [completion proof](../../../Mod/CityProgressionStore.lua#L2018) additionally validates the live district, city, type, owner, completion and reference. The callback name alone does not replace those checks.
+- **STATIC_CONFIRMED:** the [construction callback](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1b6a69b14f0cbc5911411aa2288ee237ebd74bbe/Mod/CityProgressionStore.lua#L2143) uses the known owner/type/x/y prefix,with no independently qualified cityID argument;four bound parameters do not prove exact native arity. Its [completion proof](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1b6a69b14f0cbc5911411aa2288ee237ebd74bbe/Mod/CityProgressionStore.lua#L2018) additionally validates the live district, city, type, owner, completion and reference. The callback name alone does not replace those checks.
 - **LOCAL_SIMULATION_PASS, limited:** B408's [tests](../../../DevelopmentTests/test_pu07a_completion_scope.py) and [S0884 evidence](../../Status/Specialization_P0_Status.md#pu07a-evidence-and-limits--s0884) cover 51 selected methods, including 24 new methods. A missing qualifying target no longer poisons two fixed Claim sets. With two potentially affected FIRST_COMPLETION roots, the conservative hold still occurs; that test explicitly characterizes an **OPEN** remainder, not a repair PASS.
 - **STATIC_CONFIRMED candidate sources:** existing [RuntimeWork](../../../Mod/RuntimeWork.lua#L451) consumes owner/districtID/cityID for district events. In pinned HD Gameplay, `PolicyOnDistrictConstructed` uses `Map.GetPlot(x,y)` and `Cities.GetPlotPurchaseCity(plot)`. This establishes a same-context usage precedent, not a guarantee of attribution during the missing-reference condition. A plot's current city cannot silently substitute for the event's original district/city identity.
 - **NOT ESTABLISHED:** that a completely unattributable qualifying completion occurs in supported normal macOS play, its frequency, or an independent witness that always recovers it. Synthetic nil/throw tests prove the source branch's consequences, not native incidence.
@@ -104,7 +104,7 @@ Do not close PU07/advance its dependent Claim gate solely because a journal exis
 
 If the Owner instead wants B's exact contract developed now, that authorizes only the scoped candidate design; formal Architecture/save synchronization and production wiring follow explicit approval of that contract. It does not approve a new gameplay fallback for permanently unknown first history.
 
-User decision: select A (recommended), request the bounded B contract, or defer the remainder. User testing: none requested now. Primary next: await review; no production/test/formal-rule changes, probe, deployment or main promotion in this document-only batch.
+Owner disposition: A selected on2026-11-05;B remains unapproved and its save structure is not being refined. A code/local outcome and concrete native limits are recorded in [S0886](../../Status/Specialization_P0_Status.md#pu07-source-a-evidence-and-limits--s0886),not new authority in this proposal. User decision:none for that delivery. User testing:none now. Primary next:stop after its verified develop publication;no probe/deployment/other work package.
 
 ## Evidence locators
 

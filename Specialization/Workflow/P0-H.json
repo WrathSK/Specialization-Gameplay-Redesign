@@ -11,119 +11,104 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0884",
-    "runtime": "B408.435 / modinfo435",
+    "status": "S0886",
+    "runtime": "B409.436 / modinfo436",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "PU07a safe family/fixed Claim/callback scope verified;remaining unattributable first-history source/save scope requires Owner. Stop after commit/push;PU07not complete/PU09not begun.",
+  "goal": "SelectedA PU07 source attribution/local delivery complete;known-city-only errors,full first proof,unattributed explicit first-stream stop,0new persistence/HD dependency/events. Stop at this scope;native/post-fault restore not certified.",
   "implementation_authorized": true,
   "context": [
     {
+      "path": "Mod/CityProgressionStore.lua",
+      "kind": "full",
+      "reason": "Sole first-history/record owner;source routing,admission,reference,diagnostic and save guards."
+    },
+    {
+      "path": "Mod/ClaimProjects.lua",
+      "kind": "full",
+      "reason": "Actual candidate/timer/receipt consumer;existing state must stay independent of unattributed first stream failure."
+    },
+    {
+      "path": "Mod/EffectiveFacts.lua",
+      "kind": "full",
+      "reason": "Actual existing identity read and diagnostic FailureReport consumer;no broad eligibility fault."
+    },
+    {
+      "path": "DevelopmentTests/test_pu07a_completion_scope.py",
+      "kind": "full",
+      "reason": "FixedB408 scope/first proof and instrumentation;identify superseded broad-hold characterizations."
+    },
+    {
+      "path": "DevelopmentTests/test_store_write_boundaries.py",
+      "kind": "full",
+      "reason": "Actual Store,history,write/CAS/admission/Claim/cold regression fixtures."
+    },
+    {
+      "path": "Specialization/Reports/Proposals/Claim_Completion_Recovery_Proposal.md",
+      "kind": "section",
+      "reason": "Owner selectedA only;B remains unapproved.",
+      "selector": "## 3. A — Complete the existing source route first"
+    },
+    {
+      "path": "Specialization/Reports/Technical/Engine_Reference.md",
+      "kind": "section",
+      "reason": "Qualified native/context source route and evidence limits.",
+      "selector": "## Source index and Raw locations"
+    },
+    {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "### Accepted convergence boundaries — 2026-11-04",
-      "reason": "Approved final R contract,mode independence,locked terms and current-build-only saves."
+      "selector": "### Runtime integration contract — P01–P10",
+      "reason": "Evidence-driven scoped source and failure handling;no persistence extension."
+    },
+    {
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "kind": "section",
+      "selector": "## 3. 共同成长与永久投资 — PROG",
+      "reason": "Unchanged first valid completion,LegacyClaim and ownership boundaries."
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current RIC/continuous grant and strict money/gate boundaries."
+      "reason": "CurrentA approval,RIC and explicit native/post-fault limits."
     },
     {
-      "path": "Specialization/Design/Content/Commerce_D0059.json",
+      "path": "DevelopmentTests/test_pu07_source_attribution.py",
       "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "Mod/CapitalInvestment.lua",
-      "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "Mod/CapitalInvestmentModel.lua",
-      "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "Mod/UI/CapitalInvestmentPanel.lua",
-      "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "Mod/CommerceModel.lua",
-      "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "Mod/CityProgressionStore.lua",
-      "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "DevelopmentTests/test_b241_capital.py",
-      "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "DevelopmentTests/test_b245_capital_receipts.py",
-      "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "DevelopmentTests/test_b244_capital_storage.py",
-      "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "DevelopmentTests/test_b262_capital_sidebar.py",
-      "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "DevelopmentTests/test_pu06b_reputation_use.py",
-      "kind": "full",
-      "reason": "Accepted R/financial rule,actual quote/history/native coordinator/UI or explicit money receipt fixtures."
-    },
-    {
-      "path": "DevelopmentTests/test_pu06c_capital_terms.py",
-      "kind": "full",
-      "reason": "Actual financial owners/shared R,typed source/terms,strict cash/fresh VM/reentry,normal matrix and explicit UI/native fixture profiles."
-    },
-    {
-      "path": "DevelopmentTests/test_pu07a_completion_scope.py",
-      "kind": "full",
-      "reason": "Actual Store+Claim scoped callback and strict first/admission guards;explicit remaining unknown-source characterization;fixed healthy differential."
+      "reason": "Actual source/proof/error scope and independent consumers,healthy values/work;explicit native/cold limits and no new saved witness."
     }
   ],
   "dependencies": [
-    "PU06a lawful exit andPU06b Store→Commerce source/use contract retained.",
-    "Existing full current Commerce/network proof and all independent financial/reference/occupancy facts remain strict."
+    "Keep original Store proof and source/reference lifecycle;fixed Claim independent.",
+    "Native source usage is context/version evidence,not all-readers-fail recovery."
   ],
   "old_writers": [
-    "Capital coordinator/Store retain all native money/record duties;pure model supplies typed per-mode terms,UI only displays copied status."
+    "Store retains first-selection and current root writes;no new writer or journal."
   ],
   "conditional_context": [],
   "non_scope": [
-    "No saved-history/R repair,money replay/refund,loose transaction readiness or numeric-R compatibility fallback.",
-    "No formula/price/protection/term/ownership gameplay,HD/Tier,GC,new event/poll,deployment/main/U5/native launch."
+    "B persistence design/implementation",
+    "PU08/PU09 or other packages",
+    "Native probes/game testing/deployment/main",
+    "Gameplay first rule,ownership,Tier,HD runtime dependency,GC"
   ],
-  "validation": {
-    "depth": "L3 T01/T02/T03/T05/T08 actual financial owner chain",
-    "local": "All R buckets;stable no R read;mode-specific fresh comparison;locked source/outcome same-build reload;strict parent/network/balance/unknown receipts;DEBIT/CREDIT faults,no duplicate/roll/native call;typed v3 rejection/DECIMAL17/pure formula/UI/static/context/privacy.",
-    "user": "None now;later integration new campaign,not cross-build migration/native money PASS."
-  },
+  "validation": [
+    "Actual Store+Claim source/first proof composition,known-city and unknown-source0cross-city writes.",
+    "Retained healthy byte/work,admission/Claim/reference/money source checks;document superseded broad-hold characterizations without changing frozen assertions.",
+    "Restricted Lua51,XML/package/static/context/privacy/source identity;no native game/probe."
+  ],
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
     "Stop for smoke failure/missing confirmation/unexpected work increase, excluded scope, early campaign incompatibility, unclear ownership/concurrent edits.",
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "51selectedPASS,24new+27retained;3semantic baseline failures reproduced.1frozen method4subtest failures unchanged NOT_PASS outside selection.222Lua51/25XML/5artdef/345runtime,0new alarms.",
-    "native": "NOT_RUN;not deployed;PU07remaining source/save gateOPEN",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu07a-evidence-and-limits--s0884"
+    "local": "80selectedPASS,34new+46retained;6B408synthetic counterexamples.5old characterizations superseded NOT_PASS;prior4metadata comparison failures inherited.222Lua51/25XML/5artdef/345runtime,0new alarms.",
+    "native": "NOT_RUN;no probe/game/deployment;failure-time source availability and post-fault cold history not certified.",
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu07-source-a-evidence-and-limits--s0886"
   }
 }

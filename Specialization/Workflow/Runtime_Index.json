@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "afdf40b5c8f7a25bb092291fd76df207662adeb64e4849741c58cf85ee1e095d",
+      "sha256": "cd8467d4b81d34d870aab7acb640ac1227b88ca35c3956a6bc368695e7ced1f9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0884/B408.435 PU07a safe subset:construction-only owner/fixed Claim guard,family prefilter,contained pending errors.51selectedPASS incl24new;remaining unassigned first scopeOPEN;generic admission holds/old errors retained.2labels only;no native/deployment."
+      "provenance": "S0886/B409.436 selectedA:normal source retained;one qualified point membership for error attribution,full original proof mandatory;0cross-city unbound writes,explicit session first-stop.80localPASS incl34new;native/cold fault limitsOPEN,Bunapproved.2labels only,no deployment."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "5394743de3f4cacb0d74d3039e67d42c8cd53013d1f66dfcb0347d4e1dacf90b",
+      "sha256": "69add1e33773a37738febf708892ebc9bc3a83dfee12e695de832878c612e259",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0884/B408.435 PU07a safe subset:construction-only owner/fixed Claim guard,family prefilter,contained pending errors.51selectedPASS incl24new;remaining unassigned first scopeOPEN;generic admission holds/old errors retained.2labels only;no native/deployment."
+      "provenance": "S0886/B409.436 selectedA:normal source retained;one qualified point membership for error attribution,full original proof mandatory;0cross-city unbound writes,explicit session first-stop.80localPASS incl34new;native/cold fault limitsOPEN,Bunapproved.2labels only,no deployment."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6042804c6b2dbf8e0d2aac0e7a66b8c2ef129937dc4ec07d4564cea24ccc70d4",
+      "sha256": "90ac33a2e8180f041a7d197a120effddc9486d94cce87ca8136bf76343286a1a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0884/B408.435 PU07a safe subset:construction-only owner/fixed Claim guard,family prefilter,contained pending errors.51selectedPASS incl24new;remaining unassigned first scopeOPEN;generic admission holds/old errors retained.2labels only;no native/deployment."
+      "provenance": "S0886/B409.436 selectedA:normal source retained;one qualified point membership for error attribution,full original proof mandatory;0cross-city unbound writes,explicit session first-stop.80localPASS incl34new;native/cold fault limitsOPEN,Bunapproved.2labels only,no deployment."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0884/B408.435:1functional Store file and2labels reviewed.51selectedPASS incl24new;3fixed-baseline failures;8/20/40normal byte/work differential.1frozen method4failures unchanged NOT_PASS outside selection.222Lua51/25XML/5artdef/345runtime,0new alarms. PU07remaining source/save gateOPEN;stop for Owner.",
-  "source_runtime": "B408.435 / modinfo435;not deployed;PU07a safe subset only",
-  "tested_source_snapshot_sha256": "ccbd2e592a2a5bfcaac17d97bff7570e52c2507703f5fb1364d3fbbb26d8f6c9"
+  "source_review": "S0886/B409.436:1functional Store file+2labels reviewed.80selectedPASS,34new+46retained;6injected before failures;healthy8/20/40bytes/work unchanged,27native-double calls same total.5superseded tests NOT_PASS/prior4metadata failures inherited;222Lua51/25XML/5artdef/345runtime,0new alarms. A complete locally,stopPU07;no native/B/deployment.",
+  "source_runtime": "B409.436 / modinfo436;not deployed;selectedA local delivery only",
+  "tested_source_snapshot_sha256": "31af6d068bf744000e93fd67fbadf85dc60f9dec7fbe2dff7d2a0f95744c76e5"
 }

@@ -853,17 +853,18 @@ local function CreateProgressionRecord(P,shared,storage)
    base={schema=1,kind='DEV_FOUNDATION_JOURNAL',owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=c:GetProperty(M.Keys.TOKEN),
     foundationTurn=proof.turn,revision=0,health='TRACKING',specialization='NONE',potential=0},templatesCaptured=true})
  end
- function d.HoldCompletion(reason,completionOwner)
+ function d.HoldCompletion(reason,completionOwner,completionCity)
   if not ready or fault or not root or root.schema<2 or root.progression~='UNASSIGNED' or root.completionError or root.stage~='ACTIVE' or root.referenceInvalidated then return end
   if completionOwner~=nil then
-   if (root.current or root.origin).owner~=completionOwner then return end
+   local a=root.current or root.origin
+   if a.owner~=completionOwner or completionCity~=nil and a.cityID~=completionCity then return end
    -- Construction cannot change an already fixed Claim candidate set. Generic
    -- admission failure (no completionOwner) still holds an incomplete foundation.
    if root.restructuring then
     if root.restructuring.phase~='UNASSIGNED' or next(root.restructuring.candidates)~=nil then return end
    elseif root.acquisition and root.acquisition.mode=='LEGACY_CLAIM' then return end
   end
-  local n=cp(root);n.completionError=reason;n.revision=n.revision+1;save(n)
+  local n=cp(root);n.completionError=reason;n.revision=n.revision+1;save(n);return true
  end
  function d.Complete(pid,c,e)
   if root and root.restructuring then
@@ -1519,6 +1520,23 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  local M=SPCCityIdentityRead;local cp=M.Copy;local KEY=SPCCityProgressionStore.KEY
  local store={UsesNewAuthority=not legacyTest};shared.CityProgressionStore=store
  local envelope,raw,fault,writing;local workers={};local exits,returns={},{}
+ -- A terminal first-selection fault is session-local, not a saved recovery log.
+ -- It never changes another city's record or disables established ability reads.
+ local completionSourceFailure;local completionErrorPrints=0
+ local function completionText(value)
+  local ok,text=pcall(tostring,value)
+  return ok and type(text)=='string' and text:gsub('[\r\n]',' '):sub(1,180) or 'COMPLETION_CALLBACK_ERROR'
+ end
+ local function completionError(pid,id,why,terminal)
+  local reason=completionText(why)
+  if terminal and not completionSourceFailure then
+   completionSourceFailure={owner=pid,reason=reason}
+   pcall(print,'[SPC][STORE_COMPLETION_ERROR] owner='..tostring(pid)..' scope=UNATTRIBUTED first_selection=STOPPED reason='..reason)
+  elseif not terminal and completionErrorPrints<8 then
+   completionErrorPrints=completionErrorPrints+1
+   pcall(print,'[SPC][STORE_COMPLETION_ERROR] owner='..tostring(pid)..' city='..tostring(id)..' scope=CITY reason='..reason)
+  end
+ end
  local modern=not legacyTest;local index,positions,capacity;local initialized=false;local freshHistoryStart=false
  local INDEX=SPCCityProgressionStore.INDEX;local PREFIX=SPCCityProgressionStore.RECORD
  local initializeNew
@@ -1917,6 +1935,11 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   return w and w.Status() or {unregistered=true}
  end
  function store.FailureReport()
+  if not fault and completionSourceFailure then
+   return P.VERSION..' | 首次专业确认暂停（本次会话）\n区域通知未能可靠定位城市；该通知没有写入任何城市。'
+    ..'\n为避免误选后来的区域，后续首次专业自动确认已停止。已有专业、投资和固定认领候选未因此撤除。'
+    ..'\n原因：'..completionSourceFailure.reason..'\n请保留日志；该异常后的跨读档恢复尚未验证。'
+  end
   if not fault then return nil end
   local first=tostring(fault):match('^[^\r\n]+') or ''
   local message=first:match('.*:%d+: (.*)') or first
@@ -1926,7 +1949,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    ..'\n请停止投资并保留此报告；不会回退旧账本。'
  end
  function store.Describe(pid,c)
-  if fault then return store.FailureReport() end
+  if fault or completionSourceFailure then return store.FailureReport() end
   if not c then return '请选择一座城市；不会默认读取另一城。'end
   local w=find(c)
   if not w and modern then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n正常建城须收到确认事件；征服须确认完整事件与无专业历史，不能自动认领。'end
@@ -1934,7 +1957,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   return w.Describe(pid,c)..w.TimingDescribe()..'\n已登记：'..count()..(modern and ' | 所选城 ' or '/2 | 所选城 ')..c:GetOwner()..'/'..c:GetID()
  end
  function store.NativeDescribe(pid,c)
-  if fault or not c then return store.Describe(pid,c)end
+  if fault or completionSourceFailure or not c then return store.Describe(pid,c)end
   local w=find(c);if not w then return store.Describe(pid,c)end
   return w.NativeDescribe(pid)..w.TimingDescribe()..'\n所选城 '..c:GetOwner()..'/'..c:GetID()..' | 已登记 '..count()..(modern and '' or '/2')
  end
@@ -2015,15 +2038,52 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   end
   error('COMPLETION_MAPPING_LIMIT')
  end
- local function completion(pid,index,x,y)
+ -- Keep the ordinary district->city route. A single independent plot association
+ -- can scope a failure; it is never a substitute for the full completion proof.
+ local function completionCity(pid,index,x,y)
+  local object
+  local good,city=pcall(function()
+   object=CityManager.GetDistrictAt(x,y)
+   return object and object:GetCity()
+  end)
+  if good and city then return city end
+  if object then
+   local known,incomplete=pcall(function()
+    return object:GetOwner()==pid and object:GetType()==index and object:IsComplete()==false
+   end)
+   if known and incomplete then return nil,'INCOMPLETE' end
+  end
+  local associated,value=pcall(function()
+   assert(integer(x) and integer(y),'COMPLETION_COORDINATES_UNAVAILABLE')
+   local plot=assert(Map.GetPlot(x,y),'COMPLETION_PLOT_UNAVAILABLE')
+   assert(plot:GetOwner()==pid and plot:GetDistrictType()==index,'COMPLETION_PLOT_CHANGED')
+   local c=assert(Cities.GetPlotPurchaseCity(plot),'COMPLETION_PLOT_CITY_UNAVAILABLE')
+   assert(c:GetOwner()==pid and integer(c:GetID()),'COMPLETION_PLOT_CITY_CHANGED')
+   -- Purchase-city association alone is not district ownership. Require the
+   -- city's own location lookup; no collection enumeration or HD helper.
+   local collection=assert(c:GetDistricts(),'COMPLETION_CITY_DISTRICTS_UNAVAILABLE')
+   local member=assert(collection:GetDistrictAtLocation(x,y),'COMPLETION_CITY_MEMBERSHIP_UNAVAILABLE')
+   assert(member:GetOwner()==pid and member:GetType()==index,'COMPLETION_CITY_MEMBERSHIP_CHANGED')
+   return c
+  end)
+  if associated then return value end
+  return nil,'UNATTRIBUTED',completionText(value)
+ end
+ local function completion(pid,index,x,y,expected)
   local district=assert(CityManager.GetDistrictAt(x,y),'COMPLETION_DISTRICT_UNAVAILABLE')
   local c=assert(district:GetCity(),'COMPLETION_CITY_UNAVAILABLE')
-  assert(c:GetOwner()==pid and district:GetOwner()==pid and district:GetType()==index,'COMPLETION_REFERENCE_CHANGED')
+  local owner,id=c:GetOwner(),c:GetID()
+  if expected and (owner~=expected.owner or id~=expected.cityID)then return nil,nil,'SOURCE_DISAGREEMENT'end
+  local current={owner=owner,cityID=id,x=c:GetX(),y=c:GetY()}
+  if expected and not same(current,expected)then return nil,nil,'SOURCE_DISAGREEMENT'end
+  assert(owner==pid and district:GetOwner()==pid and district:GetType()==index,'COMPLETION_REFERENCE_CHANGED')
   local info=assert(P.Info('Districts',index),'COMPLETION_TYPE_UNAVAILABLE')
   local kind=family(info.DistrictType)
-  if not kind or district:IsComplete()~=true then return c end
+  if not kind then return c end
+  local complete=district:IsComplete();assert(type(complete)=='boolean','COMPLETION_STATUS_UNAVAILABLE')
+  if not complete then return c end
   local id=district:GetID();assert(integer(id),'COMPLETION_ID_UNAVAILABLE')
-  return c,{reference=reference(c),specialization=kind,type=info.DistrictType,districtID=id,turn=Game.GetCurrentGameTurn()}
+  return c,{reference=current,specialization=kind,type=info.DistrictType,districtID=id,turn=Game.GetCurrentGameTurn()}
  end
  local function admit(q)
   if not q or q.error or q.committing then return end
@@ -2142,29 +2202,35 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  end
  local function constructed(pid,index,x,y)
   if not freshReady or not P.IsTestPlayer(pid)then return end
-  local target,q,w
+  -- No later-first inference after an unassignable observation. Established
+  -- identities and the separate fixed-candidate Claim path stay independent.
+  if completionSourceFailure and completionSourceFailure.owner==pid then return end
+  local target,q,w,sourceID
   local ok,err=pcall(function()
-   -- Exclude unrelated district families before fallible native target reads.
    local mapped,kind=pcall(function()
     local info=assert(P.Info('Districts',index),'COMPLETION_TYPE_UNAVAILABLE')
     return family(info.DistrictType)
    end)
    if mapped and not kind then return end
-   local object=CityManager.GetDistrictAt(x,y);target=object and object:GetCity()
+   local status,why
+   target,status,why=completionCity(pid,index,x,y)
+   if status=='INCOMPLETE' then return end
    if not target then
-    -- Unattributable qualified first history is still unsafe. Do not silently
-    -- choose a later first; fixed Claim sets do not depend on this callback.
-    for _,writer in pairs(workers)do pcall(writer.HoldCompletion,'COMPLETION_CITY_UNAVAILABLE',pid)end
-    for _,candidate in ipairs(pending)do
-     if candidate.reference.owner==pid and not candidate.error then candidate.error='COMPLETION_CITY_UNAVAILABLE'end
-    end
+    completionError(pid,nil,'COMPLETION_SOURCE_UNAVAILABLE: '..completionText(why),true)
     return
    end
-   if target:GetOwner()~=pid then return end -- stale/foreign target is not this source
-   q=at(target:GetX(),target:GetY());w=find(target)
+   if target:GetOwner()~=pid then return end
+   sourceID=target:GetID();assert(integer(sourceID),'COMPLETION_CITY_ID_UNAVAILABLE')
+   local xCity,yCity=target:GetX(),target:GetY()
+   local expected={owner=pid,cityID=sourceID,x=xCity,y=yCity}
+   q=at(xCity,yCity)
+   if q and (q.reference.owner~=pid or q.reference.cityID~=nil and q.reference.cityID~=sourceID)then q=nil end
+   w=find(target)
    if not q and not w then return end
-   if not mapped then error(kind,0)end -- unreadable metadata is not a negative fact
-   local c,e=completion(pid,index,x,y);if not e then return end
+   if not mapped then error(kind,0)end
+   local c,e,changed=completion(pid,index,x,y,expected)
+   if changed then completionError(pid,nil,'COMPLETION_SOURCE_DISAGREEMENT',true);return end
+   if not e then return end
    if q then
     if q.error then return end
     if q.reference.cityID==nil and q.reference.owner==e.reference.owner and q.reference.x==e.reference.x and q.reference.y==e.reference.y then q.reference.cityID=e.reference.cityID end
@@ -2172,27 +2238,27 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     for _,v in ipairs(q.completions)do if same(v.fact,e)then return end end
     if #q.completions>=COMPLETIONS then q.error='EARLY_COMPLETION_LIMIT';return end
     q.completions[#q.completions+1]={owner=pid,index=index,x=x,y=y,fact=e}
-    return -- reentrant callbacks during admission are consumed by its ordered replay
+    return
    end
    w.Complete(pid,c,e)
   end)
   if not ok then
-   local printable,text=pcall(tostring,err)
-   local reason=printable and type(text)=='string' and text or 'COMPLETION_CALLBACK_ERROR'
-   if q then if not q.error then q.error=reason end
-   elseif w then pcall(w.HoldCompletion,'COMPLETION_EVIDENCE_UNAVAILABLE',pid)
-   else
-    -- A target getter may fail before find/at can bind a writer. An independent
-    -- owner/cityID narrows pending admission; without it retain the old owner
-    -- safeguard rather than treating the missed first event as known-empty.
-    local scoped,id=false,nil
-    if target then
-     local good,owner,cityID=pcall(function()return target:GetOwner(),target:GetID()end)
-     if good and owner==pid and integer(cityID)then scoped=true;id=cityID end
-    end
+   local reason=completionText(err)
+   if q then
+    if not q.error then q.error=reason;completionError(pid,sourceID,reason)end
+   elseif w then
+    local saved,changed=pcall(w.HoldCompletion,'COMPLETION_EVIDENCE_UNAVAILABLE',pid,sourceID)
+    if not saved or changed then completionError(pid,sourceID,reason)end
+   elseif sourceID~=nil then
+    -- City identity is independently known even when a coordinate/binding read
+    -- failed. Visit existing scalar records only; never mark another city.
     for _,candidate in ipairs(pending)do
-     if candidate.reference.owner==pid and (not scoped or candidate.reference.cityID==id) and not candidate.error then candidate.error=reason end
+     if candidate.reference.owner==pid and candidate.reference.cityID==sourceID and not candidate.error then candidate.error=reason end
     end
+    for _,writer in pairs(workers)do pcall(writer.HoldCompletion,'COMPLETION_EVIDENCE_UNAVAILABLE',pid,sourceID)end
+    completionError(pid,sourceID,reason)
+   else
+    completionError(pid,nil,reason,true)
    end
   end
  end
