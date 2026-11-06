@@ -11,7 +11,7 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0892",
+    "status": "S0893",
     "runtime": "B411.438 / modinfo438",
     "military": "D0037",
     "harbor": "D0037",
@@ -111,6 +111,6 @@
   "result": {
     "local": "103selectedPASS;15new+1retained wrapper,4frozenB138functions fail identically with fixed/current default harness,NOT_PASS. Actual absent PerformanceCounters fails as known coupling;not independence PASS.",
     "native": "NOT_RUN;no loader/timing/valid-save/effect/retirement certification.",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu11-harness-evidence-and-limits--s0892"
+    "report": "Specialization/Status/Specialization_P0_Status.md#current-pre-integration-checkpoint--s0893"
   }
 }

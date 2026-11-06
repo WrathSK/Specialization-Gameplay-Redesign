@@ -1,17 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0892
+Status Revision: S0893
 Implementation Build: source B411.438 / modinfo438; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: PU11_HARNESS_LOCAL_COMPLETE_PRE_GATE_REVIEW
+Work State: PRE_NATIVE_EVIDENCE_AND_NEXT_PHASE_OWNER_GATE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Current Pre integration checkpoint — S0893
+
+当前HD环境下，已获准且不依赖新原生事实的Pre代码／测试片已推进至本地可交接边界，源码B411.438；最近提交为PU08`7729420`、PU09/10`22bb9b7`、PU11工具`8c53981`，均已推送develop。以下是现有§4顺序的状态核对，不是新计划、全仓复审或全Pre通过声明。未执行外部代码审计或U5，不把后续HD/O包算作当前已授权代码。
+
+| 实际职责 | 当前本地结果 | 保留边界 |
+|---|---|---|
+| 共享事实的可用性、可靠负事实与现有总督读取（PU01/04/10） | 已实施或确认无需改动；真实生产者/消费者定域验证有记录 | 不等于官方环境provider、Tier或所有原生收益验收；四项旧ResearchHealth断言仍NOT_PASS，不要求随机掠夺测试 |
+| 资产重组准备/确认及网络责任交付（PU02/03） | A/B正确路由、责任ACK/同值恢复及严格交易的本地链已完成 | 实际UI点击/跨上下文交付仍须本轮集成验证；不放宽READY |
+| 施工队跨城市未决收据（PU05a） | 不同来源/已接纳订单隔离，不再用一笔CALLING阻塞另一笔严格+1完成 | 同级同回合的完成归属证明（PU05b）仍OPEN，不能把累计+2解释为发两个单位 |
+| 商业信誉退出、按用途资格与锁定合同（PU06） | 实际Store/Commerce/Capital本地链完成；签约条款不重定价 | Capital3/Crew2格式导致后续部署须新开档；未知付款/发放不得重放 |
+| 首次完成来源、项目入口UNKNOWN、必要退出/返回（PU07/09/08） | 已完成选定A来源定位、标记保留与固定责任门禁/训练清理 | 完全无法定位的真实首次事件及异常后跨加载仍未证；不新增B保存，不猜首次历史；原生标记撤销对队列影响仍未知 |
+| 包缺失与诊断依赖验证能力（PU11） | 已提交真实清单/VFS及实际根/Flight/ACK/GC测试 | 诊断独立性没有完成；生产职责提取、有效存档三臂与删除属既有P3/O7门禁，当前文件不可据此删除 |
+
+**实际下一门禁：**现有Engine_Reference ER01/02、B238单次实机证据及S7d6本地反例均未给出可区分“两城同级同时完成/迟到旧回调”的原生完成实例或交付合同。当前Crew依然要求来源/订单/收据与严格+1，不能仅改累计比较来宣布修复。独立Pre片已继续完成；再推进该归属切片需要新的定域原生证据，而正式HD/O适配也有独立实施门禁。这是需要Owner介入的边界，不是假设已经到达或通过了外部审计。
+
+**可审阅的最小原生取证范围（尚未授权执行）：**仅当前构建新档、两座工业城同等级施工队各一份在同回合自然完成，另作0/正进度取消重选的有限对照。需要记录真实完成回调的完整参数数量/有界标量、当时来源/订单/原有收据、现有UI读取槽提供的队列/累计值与上下文/新鲜度；若已有日志不足，新增观察者须先给出独立可移除的只读实现方案并获批。目的只区分已记录的两类历史与寻找完成专属凭据，不重放/补发单位、不过度推断未出现迟到回调，不启动轮询或随机事件测试。没有足够证据就准确保留OPEN；不能承诺一次2–3回合样本证明任意迟到不可能。
+
+本地收尾已完成：PU11的103项选定检查、Lua/XML/包检查、1324项Context保护、隐私门禁及提交源绑定通过；四个旧B138函数和既有ResearchHealth等冻结失败未改写/未伪报PASS。完整新工件按既有策略仅存忽略目录；无运行包变更。当前记录liveB399.426与mainB307.334保持，未部署/启动游戏/探针/晋升main。
+
+User decision:是否先对当前Pre代码做定域外审，或安排上述最小原生取证；推荐先让外审查看代码及显式OPEN边界，再集中决定取证/部署窗口。此处未发送外部审计消息，未请求玩法豁免。 User testing:本轮没有执行；U5尚未开始，不要求重新测试已验收的全部文化/科研或随机掠夺/商人死亡。 Primary next:STOP at this actual Owner/native/next-phase boundary;preserve clean pushed develop and await scoped direction;no automatic probe/game/deployment/main/O-package.
 
 测试包缺失能力已完成，运行包仍为 **B411.438 / modinfo438**，本片仅修改测试工具。现在能按实际打包／include清单，分别模拟缺文件抛错或静默nil，并拒绝用预注入global掩盖缺失。真实Gameplay和后台商路UI已通过空世界加载与商路／GC组合检查；这不是有效四专业存档／收益验收。现有PerformanceCounters仍拥有生产Flight／GC职责，文件真缺失会让两个入口失败；已明确暴露并保留为后续职责迁移门禁，不能声称诊断已经独立或可删除。未部署／启动游戏／探针／晋升main。继续只核对现有Pre剩余依赖与实际下一门禁，不自动进入HD/O包或U5。
 
