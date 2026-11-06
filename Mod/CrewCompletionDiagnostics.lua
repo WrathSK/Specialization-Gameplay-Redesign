@@ -1,7 +1,7 @@
--- B412 disposable read-only evidence, never completion/admission authority.
+-- B413 disposable read-only evidence, never completion/admission authority.
 -- Remove the protected Gameplay/UI attachment blocks and this file to retire.
-if type(SPCCrewCompletionDiagnostics)=='table'and SPCCrewCompletionDiagnostics.VERSION==412 then return end
-SPCCrewCompletionDiagnostics={VERSION=412,ENABLED=true,TURN_LIMIT=6,EVENT_LIMIT=64,
+if type(SPCCrewCompletionDiagnostics)=='table'and SPCCrewCompletionDiagnostics.VERSION==413 then return end
+SPCCrewCompletionDiagnostics={VERSION=413,ENABLED=true,TURN_LIMIT=6,EVENT_LIMIT=64,PRELUDE_LIMIT=8,
  VISIT_LIMIT=256,SAMPLE_LIMIT=32,ROW_LIMIT=192,CITY_LIMIT=8,ORDER_LIMIT=8,ARG_LIMIT=12}
 local M=SPCCrewCompletionDiagnostics
 local instance;local used=false
@@ -29,7 +29,7 @@ function M.Start(P,side)
  used=true
  local live,busy=true,false;local hooks={};local cities,pending={},{};local cityCount=0
  local rows,events,visits,samples=0,0,0,0;local localID;local qualified=false;local checks=0
- local firstTurn;local observation=0;local afterAttached=false
+ local firstTurn;local prelude=0;local observation=0;local afterAttached=false
  local api={}
  local function count()if type(P.Count)=='function'then pcall(P.Count,'observer_native_attempt')end end
  local function read(o,name,...)
@@ -42,12 +42,13 @@ function M.Start(P,side)
  end
  function api.Stop(reason)
   if not live then return end;live=false
-  for _,h in ipairs(hooks)do pcall(h.remove,h.fn)end
-  hooks={};pending={};cities={}
+  -- Never mutate a native listener list while it may be dispatching. The
+  -- fixed callbacks stay inert until this Lua context is destroyed.
+  pending={};cities={}
   record('CREW_PROOF_STATUS',{point='STOP',reason=reason,eventCount=events,eventTotal=rows,
    eventTruncated=reason:find('LIMIT',1,true)~=nil})
  end
- function api.Stats()return {live=live,rows=rows,events=events,visits=visits,samples=samples,cities=cityCount,hooks=#hooks}end
+ function api.Stats()return {live=live,rows=rows,events=events,visits=visits,samples=samples,cities=cityCount,hooks=#hooks,prelude=prelude,pending=next(pending)~=nil}end
  local function emit(stage,data)
   if not live then return end
   if rows>=M.ROW_LIMIT then api.Stop('ROW_LIMIT');return end
@@ -87,15 +88,39 @@ function M.Start(P,side)
   if type(key)~='string'then return false,'MODEL_UNAVAILABLE'end
   return read(c,'GetProperty',key)
  end
+ -- Published owner state is only an observational relevance hint. Never read
+ -- cities/properties just to discover whether an ordinary event is related.
+ local function related(key,pid,id)
+  if cities[key]then return true end
+  local shared=ExposedMembers and ExposedMembers.SPC_P0
+  local view=field(field(field(shared,'CrewProjects'),'views'),key)
+  if field(view,'owner')~=pid or field(view,'city')~=id then return false end
+  for _,name in ipairs({'reserved','queued','paused'})do
+   local n=field(view,name);if integer(n)and n>0 then return true end
+  end
+  local retained=field(view,'retained')
+  return type(retained)=='table'and next(retained)~=nil
+ end
  local function relevant(name,a)
   local pid,id=a[1],a[2]
-  if not integer(id)or not owner(pid)or not now()then return end
+  if not integer(pid)or not integer(id)then return end
+  local key=pid..':'..id
   local kind=name=='CityProjectCompleted'and project(a[3])or nil
+  if not kind and not related(key,pid,id)then return end
+  -- Queueing/ordinary construction gets only a small bounded prelude. Once
+  -- full,it performs no native sampling;completion retains the remaining cap.
+  if not firstTurn and not kind and prelude>=M.PRELUDE_LIMIT then return end
+  if not owner(pid)then return end
+  local t=now();if not t then return end
+  if events>=M.EVENT_LIMIT then api.Stop('EVENT_LIMIT');return end
+  -- A verified project type on this event arms observation,not grant authority.
+  -- Unknown later arguments/ordinary production events imply no completion or
+  -- cancellation semantics and cannot start the six-turn completion window.
+  if kind then firstTurn=firstTurn or t
+  elseif not firstTurn then prelude=prelude+1 end
   local c=city(pid,id)
   if not c then if kind then return 'CITY_UNAVAILABLE',kind,false,'CITY_UNAVAILABLE'end;return end
-  local ok,raw=rawOrders(c);local orderList=ok and type(raw)=='table'and field(raw,'orders')or nil
-  local key=pid..':'..id
-  if not kind and not cities[key]and not(type(orderList)=='table'and field(orderList,1)~=nil)then return end
+  local ok,raw=rawOrders(c)
   if not cities[key]then
    if cityCount>=M.CITY_LIMIT then api.Stop('CITY_LIMIT');return end
    cityCount=cityCount+1;cities[key]=true
@@ -161,9 +186,8 @@ function M.Start(P,side)
  end
  local function rawEvent(name,phase,n,a)
   if not live then return end
-  if events>=M.EVENT_LIMIT then api.Stop('EVENT_LIMIT');return end
   local c,kind,ok,raw=relevant(name,a);if not c or not live then return end
-  local t=now();if not t then return end;firstTurn=firstTurn or t;events=events+1
+  local t=now();if not t then return end;events=events+1
   local parts={}
   for i=1,math.min(n,M.ARG_LIMIT)do
    local v=a[i];local text=type(v)=='string'and ('REDACTED_STRING_'..#v)or atom(v)
@@ -172,11 +196,15 @@ function M.Start(P,side)
   emit('CREW_PROOF_EVENT',{owner=a[1],city=a[2],point=name,phase=phase,projectType=kind,
    eventCount=n,eventBatch=table.concat(parts,'|'),eventTruncated=n>M.ARG_LIMIT})
   snapshot(name,phase,a[1],a[2],kind,c,ok,raw,name=='CityProjectCompleted')
-  if phase~='BEFORE_CREW'and c~='CITY_UNAVAILABLE'then pending[a[1]..':'..a[2]]={owner=a[1],city=a[2],project=kind}end
+  if not live then return end
+  if not firstTurn and prelude==M.PRELUDE_LIMIT then
+   emit('CREW_PROOF_STATUS',{point='PRELUDE_LIMIT',reason='WAITING_FOR_CREW_COMPLETION',eventTruncated=true})
+  end
+  if live and phase~='BEFORE_CREW'and c~='CITY_UNAVAILABLE'then pending[a[1]..':'..a[2]]={owner=a[1],city=a[2],project=kind}end
  end
  local function hook(name,phase)
-  local event=Events and Events[name];local add,remove=field(event,'Add'),field(event,'Remove')
-  if type(add)~='function'or type(remove)~='function'then emit('CREW_PROOF_STATUS',{point='HOOK_UNAVAILABLE',reason=name});return false end
+  local event=Events and Events[name];local add=field(event,'Add')
+  if type(add)~='function'then emit('CREW_PROOF_STATUS',{point='HOOK_UNAVAILABLE',reason=name});return false end
   local fn=function(...)
    if not live or busy then return end
    if not M.ENABLED then api.Stop('DISABLED');return end
@@ -184,8 +212,8 @@ function M.Start(P,side)
    busy=true;local ok=pcall(rawEvent,name,phase,n,a);busy=false
    if not ok then api.Stop('OBSERVER_ERROR')end
   end
-  local ok=pcall(add,fn);if ok then hooks[#hooks+1]={remove=remove,fn=fn}
-  else pcall(remove,fn);emit('CREW_PROOF_STATUS',{point='HOOK_UNAVAILABLE',reason=name})end
+  local ok=pcall(add,fn);if ok then hooks[#hooks+1]=fn
+  else emit('CREW_PROOF_STATUS',{point='HOOK_UNAVAILABLE',reason=name})end
   return ok
  end
  local function followup()
@@ -211,13 +239,13 @@ function M.Start(P,side)
   end
  end
  local event=Events and Events.GameCoreEventPublishComplete
- local add,remove=field(event,'Add'),field(event,'Remove')
- if type(add)=='function'and type(remove)=='function'then
-  local ok=pcall(add,followup);if ok then hooks[#hooks+1]={remove=remove,fn=followup}
-  else pcall(remove,followup);emit('CREW_PROOF_STATUS',{point='HOOK_UNAVAILABLE',reason='GameCoreEventPublishComplete'})end
+ local add=field(event,'Add')
+ if type(add)=='function'then
+  local ok=pcall(add,followup);if ok then hooks[#hooks+1]=followup
+  else emit('CREW_PROOF_STATUS',{point='HOOK_UNAVAILABLE',reason='GameCoreEventPublishComplete'})end
  else emit('CREW_PROOF_STATUS',{point='HOOK_UNAVAILABLE',reason='GameCoreEventPublishComplete'})end
  instance=api
  emit('CREW_PROOF_STATUS',{point='ARMED',reason='READ_ONLY_NO_GRANT_AUTHORITY',eventPublishCount=#hooks,eventCount=M.EVENT_LIMIT,eventTotal=M.ROW_LIMIT,
-  eventBatch='args:'..M.ARG_LIMIT..'|samples:'..M.SAMPLE_LIMIT..'|visits:'..M.VISIT_LIMIT..'|cities:'..M.CITY_LIMIT..'|turns:'..M.TURN_LIMIT})
+  eventBatch='args:'..M.ARG_LIMIT..'|samples:'..M.SAMPLE_LIMIT..'|visits:'..M.VISIT_LIMIT..'|cities:'..M.CITY_LIMIT..'|turns:'..M.TURN_LIMIT..'|prelude:'..M.PRELUDE_LIMIT})
  return api
 end

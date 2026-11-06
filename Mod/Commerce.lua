@@ -138,6 +138,15 @@ function M.Start(P,shared)
   local n=c:GetName();if Locale and Locale.Lookup then n=Locale.Lookup(n)end
   return tostring(n):gsub('[\r\n]',' ')
  end
+ local function readWorking(anchor,workers)
+  if anchor.pillaged or not anchor.complete then return {status='CONFIRMED',value=0}end
+  return Use.Number(function()
+   return workers(anchor,function()
+    local plot=assert(Map.GetPlotByIndex(anchor.plot),'COMMERCE_WORKERS_UNKNOWN')
+    local n=plot:GetWorkerCount();assert(integer(n),'COMMERCE_WORKERS_UNKNOWN');return n
+   end)
+  end,true,nil,'COMMERCE_WORKERS_UNKNOWN')
+ end
  local function prepare(batch,pid,id)
   stamp(batch,pid,id)
   local c=assert(city(pid,id),'COMMERCE_CITY_UNKNOWN');assert(c:GetOwner()==pid,'COMMERCE_OWNER_CHANGED')
@@ -148,7 +157,24 @@ function M.Start(P,shared)
    factStatus={domains={}}}
   local out={pid=pid,id=id,c=c,v=v,sources={[id]=true}}
   local qualified=Use.Qualification(f,'COMMERCE',3);v.factStatus.qualification=qualified.status
-  if qualified.status=='UNKNOWN'then out.unavailable='COMMERCE_QUALIFICATION_UNKNOWN';return out end
+  if qualified.status=='UNKNOWN'then
+   -- A reliable same-city negative proves zero for every ACTIVE value. Read
+   -- through the existing guarded phase;UNKNOWN itself never means zero.
+   if f.activeStatus=='UNKNOWN_GOVERNOR'and not f.investmentPending
+    and f.owner==pid and f.cityID==id and type(f.token)=='string'and type(f.first)=='table'then
+    local anchor=Use.Anchor(depth(batch,pid,c,f.token),f.first);v.factStatus.anchor=anchor.status
+    if anchor.status=='CONFIRMED'then
+     local n=readWorking(anchor.value,workers);v.factStatus.workers=n.status
+     if n.status=='CONFIRMED'and n.value==0 then
+      local previous=views[key(pid,id)]
+      if previous and previous.reference==v.reference and previous.token==v.token then v.selected=cp(previous.selected)end
+      v.reason=(anchor.value.pillaged or not anchor.value.complete)and 'COMMERCE_ANCHOR_UNAVAILABLE'or 'COMMERCE_NO_WORKERS'
+      return out -- no configuration,network sampling or positive transaction
+     end
+    end
+   end
+   out.unavailable='COMMERCE_QUALIFICATION_UNKNOWN';return out
+  end
   if qualified.status=='NOT_APPLICABLE'then
    v.reason=f.specialization~='COMMERCE'and 'COMMERCE_IDENTITY_REQUIRED'or 'COMMERCE_ACTIVE_III_REQUIRED'
    -- Confirmed loss is independent of now irrelevant D/workers/configuration.
@@ -184,15 +210,7 @@ function M.Start(P,shared)
   local anchor=Use.Anchor(dc,f.first);v.factStatus.anchor=anchor.status
   if anchor.status~='CONFIRMED'or not anchor.value.complete then out.unavailable='COMMERCE_ANCHOR_UNKNOWN';return out end
   anchor=anchor.value
-  local working
-  if anchor.pillaged then working={status='CONFIRMED',value=0}
-  else working=Use.Number(function()
-   return workers(anchor,function()
-    local plot=assert(Map.GetPlotByIndex(anchor.plot),'COMMERCE_WORKERS_UNKNOWN')
-    local n=plot:GetWorkerCount();assert(integer(n),'COMMERCE_WORKERS_UNKNOWN');return n
-   end)
-  end,true,nil,'COMMERCE_WORKERS_UNKNOWN')end
-  v.factStatus.workers=working.status
+  local working=readWorking(anchor,workers);v.factStatus.workers=working.status
   if working.status~='CONFIRMED'then out.unavailable=working.reason;return out end
   v.workers=working.value;v.canConfigure=true;v.domains=C.Layout(v.selected,v.workers,f.active,localDomains)
   for _,row in ipairs(v.domains)do

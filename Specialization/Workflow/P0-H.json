@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0059",
     "research": "D0059",
@@ -11,14 +11,14 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0896",
-    "runtime": "B412.439 / modinfo439",
+    "status": "S0898",
+    "runtime": "B413.440 / modinfo440",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "Prepare isolated bounded multi-Crew observation,then external audit entry;do not fix attribution or run/deploy the game.",
+  "goal": "Narrow B412 review repair:probe relevance/window/inert retirement;Commerce confirmed-negative ordering;test protocol/reproducibility/absence precision;L2 deferred;Claude delta recheck.",
   "implementation_authorized": true,
   "context": [
     {
@@ -90,23 +90,61 @@
       "path": "Specialization/Reports/Proposals/Pre_U5_External_Review_Handoff.md",
       "kind": "full",
       "reason": "Requested fixed-source targeted external-review handoff;not authority or performed review."
+    },
+    {
+      "path": "Mod/Commerce.lua",
+      "kind": "full",
+      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
+    },
+    {
+      "path": "Mod/Probe.lua",
+      "kind": "full",
+      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
+    },
+    {
+      "path": "DevelopmentTests/run_pre_u5_review.py",
+      "kind": "full",
+      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
+    },
+    {
+      "path": "DevelopmentTests/test_b413_review_repairs.py",
+      "kind": "full",
+      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
+    },
+    {
+      "path": "DevelopmentTests/test_b239_commerce.py",
+      "kind": "full",
+      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
+    },
+    {
+      "path": "DevelopmentTests/test_pu11_package_absence.py",
+      "kind": "full",
+      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
+    },
+    {
+      "path": "DevelopmentTests/README.md",
+      "kind": "full",
+      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
     }
   ],
   "dependencies": [
     "Existing B411 actual Store/Crew/UI reader and ER01/02/S7d6 proof limit."
   ],
   "old_writers": [
-    "CrewProjects/Store/native creation and receipt owners remain byte-identical."
+    "CrewProjects/CrewModel/Store actual grants,orders and receipts unchanged.",
+    "EffectiveFacts/DC safety fence retained;L2 deferred."
   ],
   "conditional_context": [],
   "non_scope": [
-    "Grant/eligibility/cost/history/schema/GC changes",
-    "Native probe execution,game/deployment/main/U5",
-    "HD/O migration or historical cleanup"
+    "Crew grant/attribution/formulas/terms/save/GC changes",
+    "L2 optimization and other work packages",
+    "Native probe/game/deployment/main/U5"
   ],
   "validation": [
-    "Actual owner equivalence on/off/missing;bounded safe raw evidence and no idle retry",
-    "Actual trace/collector roundtrip;restricted Lua/package/context/privacy"
+    "258selected localPASS including13new;8fixedB412 counterexamples",
+    "Actual on/off/absent shifting dispatch and bounded observation;Commerce negatives/UNKNOWN/stale/recovery",
+    "Versioned fixture profiles and true affected missing-file path;Lua51/package/context/privacy",
+    "Required Claude actual-delta short recheck pending;native/deploy excluded"
   ],
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -114,8 +152,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "103selectedPASS;22new+81retained;223Lua51/25XML/5artdef/346runtime;0new alarms. Strict S7d6 ambiguity retained,not repaired.",
-    "native": "NOT_RUN;source readiness only,no socket/game/deployment/native proof.",
-    "report": "Specialization/Status/Specialization_P0_Status.md#probe-and-external-review-entry-ready--s0896"
+    "local": "258PASS,13new;8baseline counterexamples;223Lua51/25XML/5artdef/346runtime;L2 OPEN",
+    "external_review": "PENDING_SHORT_RECHECK",
+    "native": "NOT_RUN;attribution OPEN;no deployment",
+    "report": "Specialization/Status/Specialization_P0_Status.md#narrow-review-repairs-locally-verified--s0898"
   }
 }

@@ -13,6 +13,10 @@ For context-helper maintenance: `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTe
 
 For deployment-tool changes only, `test_deployment.py` exercises temporary directories, never live runtime. Deployment itself follows the separate authorized workflow.
 
+## Narrow Pre-U5 review gate
+
+Run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<lupa-environment>:DevelopmentTests python3.14 DevelopmentTests/run_pre_u5_review.py` from the repository root. Lupa2.8 must provide Lua51 and Lua55;the runner uses Lua51 and verifies repository test-module origins. All execution/compatibility steps are versioned here;no ignored runner or external DB is required. The existing numeric Capital fixture adapter applies only to the explicitly listed B245 Receipts/Guards and PU06a MoneyReceipts;current protocol tests run without it. Original business assertions remain unchanged. `--before` requires eight defect counterexamples against fixed B412 `b862242` to fail;that result is a baseline characterization,not a gameplay PASS. Each invocation writes a unique ignored artifact with environment,commands,actual closure,raw failures,source digest and limitations. Original B245 historical whole-file/old-quote comparisons and its obsolete UI fixture remain NOT_PASS and are not covered by this gate;current PU06c UI/terms tests are selected. Native Crew attribution remains OPEN.
+
 ## Refactor program runner
 
 `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/run_refactor.py --stage S5d4d2` runs the selected current program cases. It writes a unique complete artifact and stdout/stderr under ignored `local/refactor/<stage>-<run-id>/` and prints a compact review section; explicit `--output` must also stay in this ignored area and cannot overwrite prior evidence. `refactor_selection.json` still owns cases, reverse index, reviewed alarms and OPEN pre-refactor counterexamples. Unexpected failures, widened alarms, changed inputs during the run or an unretired now-passing counterexample fail the runner; do not weaken assertions or refresh the baseline to hide failure.

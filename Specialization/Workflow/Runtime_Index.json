@@ -116,9 +116,9 @@
       "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/Commerce.lua": {
-      "sha256": "17497cccc06efdbb4d5dac3f510b6a47d4d9450aee8435010649a9463e2b550f",
+      "sha256": "de0640db03b58af6353a484c825251efc81efad0d4c59927c352eeb4a6ccc1e8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
+      "provenance": "S0898 B413:narrow probe budget/window/inert retirement and Commerce reliable-negative ordering;258localPASS,8before counterexamples;no native/deploy;L2 unchanged."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "9862960cc3d0f5a059baec2c32fb7b1dbbc4dbab8ad2be86d5e28795991d8113",
+      "sha256": "a22f0ea29481051703be401b85ba025b5de834fc16e26799f22d2f7f03f2ec20",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0895 B412:optional bounded Crew evidence;3protected seams,version/package labels;settlement/model/Store unchanged;103localPASS,not native/deploy."
+      "provenance": "S0898 B413:narrow probe budget/window/inert retirement and Commerce reliable-negative ordering;258localPASS,8before counterexamples;no native/deploy;L2 unchanged."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "51b98674e3534d8489c7cc5b173d90948b63fa26b208d46dce8c4ed72e7a471a",
+      "sha256": "dd66fbbef516312c84b3f68e36bc7843128ffe9384f5044ab778db37788c3b2a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0895 B412:optional bounded Crew evidence;3protected seams,version/package labels;settlement/model/Store unchanged;103localPASS,not native/deploy."
+      "provenance": "S0898 B413:narrow probe budget/window/inert retirement and Commerce reliable-negative ordering;258localPASS,8before counterexamples;no native/deploy;L2 unchanged."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1731,12 +1731,12 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     },
     "Mod/CrewCompletionDiagnostics.lua": {
-      "sha256": "3dcc3d7430633baf92f0bf0e66adb9353495f534bb4a518b1b9e3dea96bd4ca3",
+      "sha256": "950a5ed9a10d6f2f365a82da92b4851c7020bec5004d66110592e6cc75b5943e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0895 B412:optional bounded Crew evidence;3protected seams,version/package labels;settlement/model/Store unchanged;103localPASS,not native/deploy."
+      "provenance": "S0898 B413:narrow probe budget/window/inert retirement and Commerce reliable-negative ordering;258localPASS,8before counterexamples;no native/deploy;L2 unchanged."
     }
   },
-  "source_review": "S0895 B412 disposable observer:5Modpaths+collector+test reviewed;103localPASS,22new,0new alarms;Crew/model/Store/fixed reader untouched.",
-  "source_runtime": "B412.439 / modinfo439;not deployed",
-  "tested_source_snapshot_sha256": "aae215526454f1f5ee4a8738835b1ab20be9ae50424fd9ccfaee48dfb52e780e"
+  "source_review": "S0898 B413:4runtime paths and maintained tests/entry/current records;258localPASS,13new;8fixedB412 counterexamples;Claude short recheck pending.",
+  "source_runtime": "B413.440 / modinfo440;not deployed",
+  "tested_source_snapshot_sha256": "24e1e879f01460539a7908d1ad7e33f3362d407bb0e6a0966f6d75b6cfa85ea8"
 }

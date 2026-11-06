@@ -39,7 +39,8 @@ Players={[0]={IsHuman=function()return true end,GetCities=function()reads=reads+
  SetProperty=function()writes=writes+1;error('PROBE_WRITE_FORBIDDEN')end,
  GetStats=function()reads=reads+1;return {GetNumProjectsAdvanced=function(_,index)reads=reads+1;return nativeCompleted[index]end}end}}
 UI={GetHeadSelectedCity=function()return cityMap[1]end,RequestPlayerOperation=function()requests=requests+1;error('PROBE_OPERATION_FORBIDDEN')end}
-ExposedMembers.SPC_P0={CrewProjects={errors={}}}
+ExposedMembers.SPC_P0={CrewProjects={errors={},views={}}}
+for id=1,2 do ExposedMembers.SPC_P0.CrewProjects.views['0:'..id]={owner=0,city=id,reserved=1,queued=1,retained={[project]={stage='QUEUED'}}}end
 function proofRows(stage,phase)
  local a={};local trace=ExposedMembers.SPC_B205TrainingTrace
  for _,row in ipairs(trace and trace.entries or {})do if row.stage==stage and(not phase or row.phase==phase)then a[#a+1]=row end end
@@ -56,7 +57,7 @@ def pure(side='GAMEPLAY',enabled=True):
     if side=='UI':c.execute("probe=SPCCrewCompletionDiagnostics.Start(SPCP0,'UI')")
     return c
 
-def actual(mode='on'):
+def actual(mode='on',dispatch='tombstone'):
     import test_b236_crews as crews
     from test_refactor_s7d5 import profile
     text=(ROOT/'Mod/Gameplay.lua').read_text();start=text.index('-- B412 removable observation seams');end=text.index("composition.Run('CrewProjects'",start)
@@ -64,14 +65,20 @@ def actual(mode='on'):
     source=crews.SETUP.replace('C.install();SPCCrewProjects.Start(P,shared);','C.install();'+before+'SPCCrewProjects.Start(P,shared);'+after+';')
     assert source!=crews.SETUP
     with profile(),patch.object(crews,'SETUP',source):v=crews.crew_runtime()
-    # Native fixture adds safe removable registrations before the real owner Start.
-    # Tombstones preserve all existing callback positions while dispatch is active.
+    # Install dispatch semantics BEFORE the observer captures registrations.
     v.execute("""
      print=function()end;Game.GetLocalPlayer=function()return 0 end
+     dispatch=...;removes=0
      for _,name in ipairs({'CityProjectCompleted','CityProductionChanged','CityProductionCompleted','GameCoreEventPublishComplete'})do
-      local e=Events[name];e.Remove=function(fn)for i=1,#e.list do if e.list[i]==fn then e.list[i]=function()end end end end
+      local e=Events[name]
+      e.Remove=function(fn)removes=removes+1;for i=1,#e.list do if e.list[i]==fn then
+       if dispatch=='tombstone'then e.list[i]=function()end else table.remove(e.list,i)end;break end end end
+      e.Fire=function(...)
+       local a=e.list;if dispatch=='snapshot'then a={};for i,fn in ipairs(e.list)do a[i]=fn end end
+       for _,fn in ipairs(a)do fn(...)end
+      end
      end
-    """)
+    """,dispatch)
     v.execute((ROOT/'Mod/ExpeditionTrainingDiagnostics.lua').read_text())
     if mode!='absent':v.execute((ROOT/'Mod/CrewCompletionDiagnostics.lua').read_text())
     if mode=='off':v.execute('SPCCrewCompletionDiagnostics.ENABLED=false')
@@ -109,7 +116,7 @@ class Probe(unittest.TestCase):
         c=pure('UI');c.execute("fire(0,1,projectIndex);local s=proofRows('CREW_PROOF_STATE');assert(#s==1 and s[1].observerSide=='UI'and s[1].reader=='RETURNED_CURRENT');local n=Events.CityProjectCompleted.Count();SPCCrewProjectUI.New(SPCP0,UI.RequestPlayerOperation,function()end,function()end);assert(Events.CityProjectCompleted.Count()==n and writes==0 and requests==0)")
     def test_disabled_before_start_has_no_hooks_output_or_native_reads(self):
         c=pure(enabled=False);c.execute("local n=reads;for i=1,1000 do fire(0,1,projectIndex);publish()end;assert(reads==n and probe==nil and ExposedMembers.SPC_B205TrainingTrace==nil and writes==0 and requests==0)")
-    def test_stop_or_disable_removes_only_own_listeners(self):
+    def test_stop_or_disable_leaves_inert_fixed_listeners(self):
         for mode in ('stop','disable'):
             c=pure();c.execute('business=0;Events.CityProjectCompleted.Add(function()business=business+1 end);probe.After()')
             c.execute('SPCCrewCompletionDiagnostics.Stop()'if mode=='stop'else'SPCCrewCompletionDiagnostics.ENABLED=false;fire(0,1,projectIndex)')
@@ -133,14 +140,14 @@ class Probe(unittest.TestCase):
         for limit,value in (('EVENT_LIMIT',1),('VISIT_LIMIT',1),('SAMPLE_LIMIT',1),('ROW_LIMIT',2),('CITY_LIMIT',1)):
             c=pure();c.execute('local key,value=...;SPCCrewCompletionDiagnostics[key]=value',limit,value)
             c.execute("fire(0,1,projectIndex);fire(0,2,projectIndex);fire(0,1,projectIndex);publish();local a=proofRows('CREW_PROOF_STATUS');assert(a[#a].point=='STOP'and a[#a].eventTruncated=='true');local n=reads;for i=1,1000 do fire(0,1,projectIndex);publish()end;assert(reads==n and not probe.Stats().live);SPCCrewCompletionDiagnostics.Start(SPCP0,'GAMEPLAY');assert(not probe.Stats().live)")
-    def test_window_arms_on_first_relevant_activity_not_loading_and_has_fresh_reload(self):
+    def test_window_arms_on_first_verified_completion_not_loading_and_has_fresh_reload(self):
         c=pure();c.execute("turn=80;fire(0,1,projectIndex);assert(probe.Stats().live);turn=86;fire(0,1,projectIndex);assert(not probe.Stats().live);local n=reads;publish();assert(reads==n)")
         fresh=pure();fresh.execute('turn=86;fire(0,1,projectIndex);assert(probe.Stats().live and probe.Stats().events==1)')
-    def test_missing_remove_or_logger_cannot_create_an_unremovable_dependency(self):
+    def test_missing_remove_is_supported_and_missing_logger_adds_no_dependency(self):
         c=Context();c.load('CrewCompletionDiagnostics');c.execute("n=Events.CityProjectCompleted.Count();assert(SPCCrewCompletionDiagnostics.Start({},'GAMEPLAY')==nil and Events.CityProjectCompleted.Count()==n)")
-        c=pure(enabled=False);c.execute("SPCCrewCompletionDiagnostics.ENABLED=true;Events.CityProjectCompleted.Remove=nil;probe=SPCCrewCompletionDiagnostics.Start(SPCP0,'GAMEPLAY');assert(Events.CityProjectCompleted.Count()==0)")
+        c=pure(enabled=False);c.execute("SPCCrewCompletionDiagnostics.ENABLED=true;Events.CityProjectCompleted.Remove=nil;probe=SPCCrewCompletionDiagnostics.Start(SPCP0,'GAMEPLAY');assert(Events.CityProjectCompleted.Count()==1);SPCCrewCompletionDiagnostics.Stop();local n=reads;fire(0,1,projectIndex);assert(reads==n)")
     def test_missing_hooks_and_constructor_failure_are_visible_or_inert(self):
-        c=pure(enabled=False);c.execute("SPCCrewCompletionDiagnostics.ENABLED=true;Events.CityProjectCompleted.Remove=nil;probe=SPCCrewCompletionDiagnostics.Start(SPCP0,'GAMEPLAY');local a=proofRows('CREW_PROOF_STATUS');assert(a[1].point=='HOOK_UNAVAILABLE'and a[1].reason=='CityProjectCompleted')")
+        c=pure(enabled=False);c.execute("SPCCrewCompletionDiagnostics.ENABLED=true;Events.CityProjectCompleted.Add=nil;probe=SPCCrewCompletionDiagnostics.Start(SPCP0,'GAMEPLAY');local a=proofRows('CREW_PROOF_STATUS');assert(a[1].point=='HOOK_UNAVAILABLE'and a[1].reason=='CityProjectCompleted')")
         c=pure(enabled=False);c.execute("SPCCrewCompletionDiagnostics.ENABLED=true;SPCExpeditionTrainingDiagnostics.New=function()error('PRIVATE_FACTORY_FAILURE')end;assert(SPCCrewCompletionDiagnostics.Start(SPCP0,'GAMEPLAY')==nil and Events.CityProjectCompleted.Count()==0)")
     def test_order_excerpt_limit_is_explicit_and_never_changes_saved_rows(self):
         c=pure();c.execute("for i=2,10 do cityMap[1].raw.orders[i]={serial=i,stage='PAUSED',project=project,base=0,price=390,capacity=260}end;fire(0,1,projectIndex);local e=proofRows('CREW_PROOF_STATE')[1];assert(e.eventTruncated=='true'and #cityMap[1].raw.orders==10 and writes==0)")

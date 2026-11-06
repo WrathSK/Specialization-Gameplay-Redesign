@@ -131,12 +131,18 @@ class ActualRoots(unittest.TestCase):
                 for _,row in c.globals().ExposedMembers.SPC_P0.StartStatus.items():
                     state=row['state'];states[state]=states.get(state,0)+1
                 measure('pu11_empty_world_start_states',{'states':states,'load_counts':c.load_counts,'scope':'Empty native DB;load characterization only,not healthy four-profession startup or valid-save acceptance.'})
-    def test_optional_culture_observer_can_be_absent_in_actual_empty_world_roots(self):
-        for name in ('Gameplay','UI/BackgroundRoutes'):
-            for mode in ('throw','silent_nil'):
-                c=root(name,PackageVFS(absent=['CultureDiagnostics'],missing_include=mode,forbidden_globals=['SPCCultureDiagnostics']))
-                self.assertIsNone(c.globals().SPCCultureDiagnostics);self.assertIsNotNone(c.globals().SPCPerformance)
-                self.assertEqual(c.load_counts['failed'],0)
+    def test_optional_culture_observer_absence_reaches_actual_gameplay_consumer(self):
+        for mode in ('throw','silent_nil'):
+            c=root('Gameplay',PackageVFS(absent=['CultureDiagnostics'],missing_include=mode,forbidden_globals=['SPCCultureDiagnostics']))
+            self.assertIsNone(c.globals().SPCCultureDiagnostics);self.assertIsNotNone(c.globals().SPCPerformance)
+            affected=[row for row in c.loads if row['status']=='ABSENT'and row['module']=='CultureDiagnostics.lua']
+            self.assertGreater(len(affected),0,'MISSING_FILE_DID_NOT_AFFECT_TESTED_PATH')
+            self.assertEqual(c.load_counts['failed'],0)
+    def test_background_routes_does_not_load_culture_observer_not_an_absence_claim(self):
+        c=root('UI/BackgroundRoutes',PackageVFS(absent=['CultureDiagnostics'],missing_include='throw',forbidden_globals=['SPCCultureDiagnostics']))
+        self.assertEqual(c.load_counts['missing'],0)
+        self.assertFalse(any(row['module']=='CultureDiagnostics.lua'for row in c.loads))
+        self.assertIsNone(c.globals().SPCCultureDiagnostics)
     def test_absent_performance_is_current_required_coupling_not_independence_pass(self):
         for name in ('Gameplay','UI/BackgroundRoutes'):
             for mode in ('throw','silent_nil'):
