@@ -34,8 +34,11 @@ function SPCDialogueProjects.Start(P,shared)
  end
  local function era()
   local ok,row=pcall(function()return P.Info('Eras',Game.GetEras():GetCurrentEra())end)
-  if ok and row and row.EraType then return row.EraType end
-  return assert(ExposedMembers.SPC_DialogueGameEra,'游戏时代接口未就绪')()
+  local value
+  if ok and row and row.EraType then value=row.EraType
+  else value=assert(ExposedMembers.SPC_DialogueGameEra,'游戏时代接口未就绪')()end
+  assert(type(value)=='string'and #value>0,'游戏时代读数未确认')
+  return value
  end
  local function mark(pid,id,qualificationOnly)
   if P.IsTestPlayer(pid) and type(id)=='number' then local k=key(pid,id);local old=dirty[k];dirty[k]={pid,id,qualificationOnly==true and (not old or old[3]==true)}end
@@ -52,7 +55,7 @@ function SPCDialogueProjects.Start(P,shared)
  local function read(pid,c,s)
   s=s or store.DialogueState(pid,c);local f=shared.EffectiveFacts.Read(pid,c)
   assert(f.token==s.token and f.owner==pid and f.cityID==c:GetID(),'城市专业引用不一致')
-  local known=f.activeStatus=='KNOWN' and not f.investmentPending
+  local known=f.specialization~='CULTURE' or f.activeStatus=='KNOWN'and not f.investmentPending
   return s,f,known,known and f.specialization=='CULTURE' and f.active>=3
  end
  local function write(pid,c,s,v)
@@ -88,10 +91,16 @@ function SPCDialogueProjects.Start(P,shared)
   if not c or c:GetOwner()~=pid then rounds.Forget(pid,id);publish(pid,id,nil);return end
   local ok,s,f,known,eligible=pcall(read,pid,c)
   local eOK,e=pcall(era)
-  local allowed=ok and known and eligible and eOK and not (s.value and s.value.used[e])
+  -- Independent reliable negatives withdraw; a required UNKNOWN preserves the
+  -- installed marker but cannot grant access or qualify Request/completion.
+  local allowed
+  if ok then
+   if known and not eligible or eOK and s.value and s.value.used[e]then allowed=false
+   elseif known and eligible and eOK then allowed=true end
+  end
   local row=assert(P.Info('Buildings',MARKER),'时代对话入口定义缺失');local buildings=c:GetBuildings()
   local has=P.HasBuilding(buildings,row.Index);assert(type(has)=='boolean','项目入口状态不可读')
-  if has~=allowed then
+  if allowed~=nil and has~=allowed then
    if allowed then P.CreateBuilding(c:GetBuildQueue(),row.Index)else P.RemoveBuilding(buildings,row.Index)end
    assert(P.HasBuilding(buildings,row.Index)==allowed,'项目入口更新未确认')
   end

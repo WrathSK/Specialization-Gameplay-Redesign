@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="437">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="438">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B410.437：必要退出与返回责任先于模块启动登记；训练清理须明确确认。</Description>
+    <Description>B411.438：项目资格未知时保留现有入口，确认失效仍撤销；启动和结算保持严格校验。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

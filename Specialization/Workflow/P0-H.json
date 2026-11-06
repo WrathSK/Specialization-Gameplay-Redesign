@@ -11,116 +11,121 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0888",
-    "runtime": "B410.437 / modinfo437",
+    "status": "S0890",
+    "runtime": "B411.438 / modinfo438",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "PU08 mandatory exit/return responsibilities independent of successful Start;confirmed exact Training cleanup;then continue dependency-ready authorized Pre work.",
+  "goal": "PU09 Claim/Dialogue marker UNKNOWN vs reliable negative roots;assess current dependent Governor producer without speculative repair.",
   "implementation_authorized": true,
   "context": [
     {
-      "path": "Mod/RuntimeComposition.lua",
+      "path": "Mod/ClaimProjects.lua",
       "kind": "full",
-      "reason": "Protected startup,mandatory callbacks and original registration guards."
+      "reason": "Actual Claim access/timer/strict native completion owner."
     },
     {
-      "path": "Mod/Gameplay.lua",
+      "path": "Mod/DialogueProjects.lua",
       "kind": "full",
-      "reason": "Actual fixed duty declaration and complete original ordered Startup."
-    },
-    {
-      "path": "Mod/ExpeditionTraining.lua",
-      "kind": "full",
-      "reason": "Actual matching training source cleanup and run result."
+      "reason": "Actual Dialogue access/era/Governor/timer/reward owner."
     },
     {
       "path": "Mod/CityProgressionStore.lua",
       "kind": "full",
-      "reason": "Unchanged actual exit/reference/ticket/return phase authority."
+      "reason": "Unchanged ClaimState/DialogueState/identity/history source."
     },
     {
-      "path": "Mod/LegacyCleanup.lua",
+      "path": "Mod/EffectiveFacts.lua",
       "kind": "full",
-      "reason": "Unchanged11exact families and mandatory runners/posts."
+      "reason": "Actual purpose facts,shared read window/freshness."
     },
     {
-      "path": "Mod/ResearchSupport.lua",
+      "path": "Mod/TimedProjects.lua",
       "kind": "full",
-      "reason": "Representative actual physical carrier owner."
+      "reason": "Unchanged UNKNOWN suspension/relevant recovery."
     },
     {
-      "path": "Mod/CarrierSet.lua",
+      "path": "Mod/DialogueProjectModel.lua",
       "kind": "full",
-      "reason": "Exact support IDs/native presence and withdrawal."
+      "reason": "Unchanged independent quota/timer/once-only reward."
     },
     {
-      "path": "Mod/RuntimeWork.lua",
+      "path": "DevelopmentTests/test_pu07a_completion_scope.py",
       "kind": "full",
-      "reason": "Foreign target scheduling/ACK,bounded retry."
+      "reason": "Actual Store+fixed Claim fixture;superseded broad-hold cases excluded."
     },
     {
-      "path": "Mod/ExpeditionSpyGate.lua",
+      "path": "DevelopmentTests/test_dialogue_projects.py",
       "kind": "full",
-      "reason": "Existing training HOLD and source/receipt semantics."
+      "reason": "Actual Store/EF/Dialogue fixture and retained business tests."
     },
     {
-      "path": "Mod/ExpeditionSpyStore.lua",
+      "path": "DevelopmentTests/test_refactor_s7d4.py",
       "kind": "full",
-      "reason": "Existing exact save/readback authority."
+      "reason": "Actual event-driven UNKNOWN work/recovery and independent timer regressions."
     },
     {
-      "path": "DevelopmentTests/test_refactor_s3.py",
+      "path": "DevelopmentTests/test_b395_culture_recovery.py",
       "kind": "full",
-      "reason": "Actual Startup/component regressions."
-    },
-    {
-      "path": "DevelopmentTests/test_refactor_s8c5c.py",
-      "kind": "full",
-      "reason": "Actual unchanged exact legacy cleanup and failed Start."
-    },
-    {
-      "path": "DevelopmentTests/test_expedition_training.py",
-      "kind": "full",
-      "reason": "Original training/receipt/native operation regressions."
+      "reason": "Existing load/readiness recovery evidence."
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Owner continuation,RIC and retained source/native gates."
+      "reason": "Current scope/RIC/known limitations."
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
       "selector": "### Accepted convergence boundaries — 2026-11-04",
-      "reason": "Required failed-Start cleanup and no new ownership/recovery semantics."
+      "reason": "Cold restore/required facts/independent projects."
     },
     {
-      "path": "DevelopmentTests/test_pu08_cleanup.py",
+      "path": "Mod/Probe.lua",
       "kind": "full",
-      "reason": "Actual required cleanup/Store/Training tests and qualified evidence boundaries."
+      "reason": "Only actual GovernorGate producer evaluated;label change only unless a defect proved."
+    },
+    {
+      "path": "DevelopmentTests/test_pu09_marker_roots.py",
+      "kind": "full",
+      "reason": "Actual project/Store/EF/Governor UNKNOWN markers and strict operations."
+    },
+    {
+      "path": "Mod/NativeFacts.lua",
+      "kind": "full",
+      "reason": "Actual established-city notification source used in recovery proof."
+    },
+    {
+      "path": "Mod/FactChanges.lua",
+      "kind": "full",
+      "reason": "Existing invalidation/delivery producer,unchanged."
+    },
+    {
+      "path": "Mod/FactConsumerBindings.lua",
+      "kind": "full",
+      "reason": "Existing real city-only Dialogue RefreshAccess edge,unchanged."
     }
   ],
   "dependencies": [
-    "Accepted PU08/A10/A17;actual29exit/23return map;no optional observer gates.",
-    "Retain Store exact endpoint/tickets,successful siblings,bounded retries,existing training/native receipt rules."
+    "PU07 source/family scope local delivery;fixed Claim is independent of session first-stop.",
+    "Accepted existing purpose-specific eligibility and normal cold restoration;no new native source."
   ],
   "old_writers": [
-    "All individual effect/history/action owners retain exact cleanup;Store retains lifecycle authority."
+    "Existing Store,Claim,Dialogue and Gate owners retained;no marker may certify transaction eligibility."
   ],
   "conditional_context": [],
   "non_scope": [
-    "B persistence or first-history recovery",
-    "HD decoupling/Tier/O5/O6",
-    "New ownership rules,GC,probes/game/deployment/main/U5",
-    "S9/S10 deletion"
+    "B source persistence/old completionError clearing",
+    "Engineering rules,new ownership/era semantics",
+    "HD/O5/O6/main/deploy/game/probe/U5",
+    "S9/S10 cleanup"
   ],
   "validation": [
-    "T01/T05/T06/T08 actual producer/owners,failed/skipped Start with old installed effects,Training busy/throw/readback,no replay.",
-    "Original full start order,exact legacy cleanup,ordinary/reference/sibling isolation;restricted Lua51/package/context/privacy;no native PASS."
+    "T01/T02/T05/T08 actual producers/consumers,UNKNOWN markers/new action gates,known negatives,actual era/Governor boundaries and relevant recovery.",
+    "Affected independent timer/load/receipt regression;Lua51/package/static/context/privacy."
   ],
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -128,8 +133,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "95selectedPASS,26new+69retained;6fixedB409 synthetic counterexamples;2inherited assertions NOT_PASS,not changed.222Lua51/25XML/5artdef/345runtime,0new alarms.",
-    "native": "NOT_RUN;no native probe/game/deployment.",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu08-evidence-and-limits--s0888"
+    "local": "92selectedPASS,20new+72retained;6fixedB410 counterexamples.1frozen method4current/1before suberrors NOT_PASS,unchanged.222Lua51/25XML/5artdef/345runtime,0new alarms.",
+    "native": "NOT_RUN;queue/native property timing/cancellation not certified.",
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu09--dependent-pu10-evidence-and-limits--s0890"
   }
 }

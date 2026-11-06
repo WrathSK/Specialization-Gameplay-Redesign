@@ -1,17 +1,43 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0888
-Implementation Build: source B410.437 / modinfo437; recorded live B399.426 from4915170; stable/main B307.334
+Status Revision: S0890
+Implementation Build: source B411.438 / modinfo438; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: PU08_LOCAL_COMPLETE_CONTINUING_PRE_NO_DEPLOYMENT
+Work State: PU09_PU10_LOCAL_COMPLETE_CONTINUING_PRE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+认领／时代对话的入口UNKNOWN片已完成，源码 **B411.438 / modinfo438**：资格暂不可读时保留已安装标记，不新增入口，也不据此放宽启动或奖励；确认身份／等级失效、候选不存在或当时代额度已用，仍按各自规则撤销。实际总督六属性读取的相关依赖核对通过，未证实需修改的底层算法；可靠无总督=一级、未知不缓存及同回合变化保持原实现。已完成代码与定域本地验证，未部署／原生测试；继续现有Pre的包缺失与生产依赖门禁，不提前进入HD适配或U5。
+
+### PU09 / dependent PU10 evidence and limits — S0890
+
+- **LOCAL_SIMULATION_PASS:**92unique selected methods,20new+72retained,0errors/failures/skips;48observed source modules/fragments,not whole path coverage. Six fixed`7729420`counterexamples expose actual Claim/Dialogue marker removal or optimistic nil-era access under injected UNKNOWN/load controls;not native random incidence. Actual Store+Claim(two candidate cities),Store+EF+Dialogue,NativeFacts→FactChanges→FactConsumerBindings→real Dialogue.RefreshAccess and independent3project timer regressions exercised.
+- **Changed owners:**Claim no longer reads/writes its4markers after ClaimState failure;confirmed nil/noncandidate/ineligible still withdraws. Dialogue independently uses confirmed identity/ACTIVE loss or reliable used-era quota as negative;complete reliable positive grants;required UNKNOWN leaves installed access untouched. Existing era sources must return a nonempty string;nil/false/empty/numeric fallback is not an era. References,Store leaf isolation,fresh Request/completion evidence,timer/reward/quota and no-replay owners remain unchanged. Preserved marker can remain natively selectable;it is explicitly **not** confirmed Gameplay permission or guaranteed native queue preservation. No new permanent history/normalization/UNKNOWN reward.
+- **Root and recovery:**PU07 fixed-source/error scope remains separate;no sticky error cleared or source history invented. Three isolated malformed Dialogue leaves retain exact raw bytes and valid sibling while start/completion/reward stay blocked. Existing deterministic missing-known metadata reconstruction is confirmed independently,not treated as corruption. Existing scoped GovernorEstablished(cityID)→NativeFacts→FC/Bindings reawakens same-value qualification;actual load/readiness and explicit city Sync retain original recovery. A broad qualification display event is not invented queue availability. Queue UNKNOWN stays distinct and does not retry on idle/time.
+- **PU10 scoped assessment:**actual Probe GovernorGate source fragment plus real EF/Store proves reliable no-governor=level1,missing control/read throw/inconsistent flags=UNKNOWN,same-phase availability recovery and two true same-turn changes remain fresh. Producer algorithm/Store/EF files unchanged;Probe has version label only. No per-profession governor cache,poll,default ceiling or new fallback. This is retained local producer evidence,not native property timing certification or a claim all future O1 adaptation is complete.
+- **Frozen NOT_PASS / raw attempts:**old`DialogueProjects.test_corrupt_history_is_held_not_reinitialized`has4subtest errors now and1on fixedB410:three obsolete marker-withdrawal assertions conflict with accepted UNKNOWN retention;missing-known metadata rebuild already differed before this batch. Original unchanged/excluded from92. New explicit tests prove strict operation denial,raw bad-leaf preservation and known metadata rebuild. Initial new recovery fixture omitted the real notification chain/city argument;one assertion used nonexistent public`.known`instead of saved`dialogueKnown`+returned`.value`. Corrected fixture/protocol only,no production recovery workaround. Raw/before/inherited logs preserved locally.
+- **Work/static/reproduction:**0new events/timers/polls/caches/saved fields/native API categories;no new city/building enumeration. Unknown Claim marker work skipped;Dialogue retains its original single presence read and writes0. Selected1000idle tests preserve zero retry.222Lua51,25XML,5artdef,345runtime/344package,156own includes,0new/widened alarms. CPython3.14.8/source-built Lupa2.8 Lua51,no external DB/game. Artifact`local/refactor/PU09_markers-26d731e649c04ea2b9a791e799f2f868/closure.json`,SHA256`d69a5d5ade4cca409340794feee9443407686f96e155f23838ba0ce7722a6eea`,tested source`b59298bd591fb9122263381712f1183fb19f1e2fee9798e2e6194dfcc5839d17`,stable through run. Exact suites/origins/runner/failures/measurements local alongside;static.json stores package checks. Re-run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<source-built-lupa>:DevelopmentTests python3.14 <artifact-directory>/rerun.py`;bind `DevelopmentTests/refactor_evidence.py source <artifact> --commit HEAD`. Local file/hash is not permanent backup;versioned tests/source enable comparable reruns.
+- **Limits/next:**native marker removal/cancellation remains unproved;not a renewed mandatory broad timer campaign. PU05b unique same-tier completion attribution,PU07 abnormal first-source/post-fault cold history,earlier health and U5 gates remain OPEN/separate. No new save schema;Capital3/Crew2 current-build new-campaign restriction inherited. Recorded liveB399.426/mainB307.334 unchanged. Next assess ready PU11 required production-helper/package-absence closure,not O7 blanket retirement;stop at external review or real Owner/native boundary.
+
+User decision:none. User testing:none now. Primary next:verified develop commit/push,then continue ready Pre responsibilities under Owner continuation;no automatic game/probe/deployment/main/U5/HD adaptation.
+
+继续Owner授权的现有Pre顺序，修复认领／时代对话把UNKNOWN资格折成false并撤入口的实际路径（PU09），同时验证实际六属性总督读取的相关依赖（PU10）；已正确的无总督=一级与UNKNOWN不缓存路径保留。PU07来源修复完成的范围与未证异常边界继续分开，不清旧completionError、不加恢复保存。PU08已提交7729420，本片未部署。
+
+### PU09 runtime impact and gates — S0889
+
+- **Root/owners:**Claim audit currently removes every access marker on failed ClaimState;Dialogue allowed folds Store/EF/Governor/era UNKNOWN into false. Store/first-source/isolation remains authoritative;only complete reliable eligibility grants new access/start/settlement. Confirmed negative facts still withdraw. Existing Engineering project semantics are not copied or changed. No inferred cold-load history or new normal initialization fallback.
+- **Implementation:**on unknown Claim authority preserve existing markers without creating any;known nil/ineligible/set negatives use the original exact withdrawal. Dialogue uses purpose-specific confirmed identity/ACTIVE and current-era quota:independent reliable negative withdraws,full positive grants,otherwise installed marker untouched. Validate existing era-reader output as a real nonempty string so nil fallback cannot grant access. New/settling requests retain original fresh proofs and no-replay/timer/history rules. The existing notification/init boundaries own same-value recovery;no extra poll.
+- **Governor assessment:**inspect and exercise actual six-property GovernorGate,Store/EF init/ref/pending and synchronous phase freshness. Known no-governor remains level1;throw/missing control/inconsistent bits stay UNKNOWN,not a cache success. Only a proved current defect would justify a scoped PU10 repair;otherwise record retained positive evidence,not a fabricated fix.
+- **Work/compatibility:**same native APIs/events/city scope and fixed markers;no new saved fields/cache/owner,enumeration/timer/retry or cross-profession rules. UNKNOWN skips marker writes;retained access is not transaction eligibility. No native queue cancellation claim. Existing modules keep their own completion/era quotas and once-only receipts;current-build save restriction unchanged.
+- **Validation:**L3,T01/T02/T05/T08. Actual Store+Claim and Store+EF+Dialogue;baseline UNKNOWN marker counterexamples,known loss/quota,nil/throw/invalid era,cold restored marker,absent marker,no start/settlement on UNKNOWN,reliable same-value related-event recovery,siblings/reference isolation,queue unreadability distinct,ordinary full-turn/duplicate receipts retained. Test actual Governor reader fragment with real EF/Store including same-phase recovery. Lua51/package/context/privacy. No new probe/native/game/U5/deployment or random-event campaign.
+
+User decision:none within existing contracts. User testing:none now. Primary next:complete and publish the scoped marker/root slice,then continue only dependency-ready Pre work;stop at required external-review or real Owner/native boundaries.
 
 必要退出／返回责任片已完成，源码 **B410.437 / modinfo437**。固定29项退出、23项返回责任在Store正常启动入口内预登记；各原有owner再接入自身清理函数。失败／跳过／未接入不再从门禁消失。训练清理现在确认精确标记撤回及原有暂停状态保存；忙碌、异常、回读失败或原生清理期间的新状态均不伪装成成功。代码与定域本地验证完成，未部署、未启动游戏／探针、未晋升main。按Owner持续授权继续下一依赖就绪片，而不是把本地结果当U5。
 

@@ -37,15 +37,17 @@ function SPCClaimProjects.Start(P,shared)
   local k=key(pid,id);local c=city(pid,id);rounds.Defer(pid,id)
   if not c or c:GetOwner()~=pid then rounds.Forget(pid,id);publish(pid,id,nil);return end
   local ok,s=pcall(state,c)
-  -- Access is transient; unknown authority disables access without deleting records.
+  -- UNKNOWN preserves installed access, never certifies a new request/completion.
+  if ok then
   for i,kind in ipairs(kinds)do
    local row=assert(P.Info('Buildings',markers[i]),'认领入口定义缺失');local b=c:GetBuildings()
    local has=P.HasBuilding(b,row.Index);assert(type(has)=='boolean','认领入口读取失败')
-   local wanted=ok and s and s.eligible and s.set[kind]==true or false
+   local wanted=s and s.eligible and s.set[kind]==true or false
    if has~=wanted then
     if wanted then P.CreateBuilding(c:GetBuildQueue(),row.Index)else P.RemoveBuilding(b,row.Index)end
     assert(P.HasBuilding(b,row.Index)==wanted,'认领入口更新未确认')
    end
+  end
   end
   if not ok then rounds.Block(pid,id);publish(pid,id,{stage='STOPPED',reason=tostring(s):gsub('^.-:%d+: ',''):sub(1,160)});return end
   if not s then rounds.Forget(pid,id);publish(pid,id,nil);return end

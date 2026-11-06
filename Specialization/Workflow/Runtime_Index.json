@@ -111,9 +111,9 @@
       "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
     },
     "Mod/ClaimProjects.lua": {
-      "sha256": "b239f05a187be029fcf7d27ac26aa6854007650214809f42ea8d7d039b3aee73",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
-      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
+      "sha256": "84f28fdc61391fe9aaafdc60a78a3b476428f7c2fef39a8d8e9df75f16355608",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/Commerce.lua": {
       "sha256": "17497cccc06efdbb4d5dac3f510b6a47d4d9450aee8435010649a9463e2b550f",
@@ -541,9 +541,9 @@
       "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/DialogueProjects.lua": {
-      "sha256": "74be8c006510d8490aacbe385b4f1c829406ff03457b214cd9a2e202647a6aa5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
-      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
+      "sha256": "675302f7302bfcb9a4e2d2d9a8c4e618f4bd8f7c7f5cab6797d77a4d8fc0dbbe",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/DistrictCompleteness.lua": {
       "sha256": "e9f6ad81e0df2d91bce66e4ac9d188950130ddaa7fc3dad5809bf99e9561d18f",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "8e8e67d5f22a11af4bd7eb3059b03ab19a6072e89ae540eed88a3db793cb5e25",
+      "sha256": "8a8ede86505008b0875beb25dfa61df70843ac6b93400b9b030381c870119530",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
+      "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a89d7d4ac40d35af6db436a3bc00e10698b00f366710befd0bae712805c7ea66",
+      "sha256": "69d1c542212dc323dd09dbe8fbc411e38f792002b7d74dd934d1c462477e7380",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
+      "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0888/B410.437:3functional runtime+2labels reviewed,required52fixed slots/34owners;95selectedPASS incl26new,6counterexamples,2old-fixture NOT_PASS;222Lua51/25XML/5artdef/345runtime,0new alarms. Continue ready Pre,not native/main/deploy.",
-  "source_runtime": "B410.437 / modinfo437;not deployed",
-  "tested_source_snapshot_sha256": "73ce070b96ab4080eb7c3fd26ebe1038453dfc23cea99c0292a6786d80b5b503"
+  "source_review": "S0890/B411.438:2functional project owners+2labels,new20case test reviewed;92localPASS,6counterexamples,1frozen method NOT_PASS;222Lua51/25XML/5artdef/345runtime,0new alarms.Continue ready Pre,no native/deploy.",
+  "source_runtime": "B411.438 / modinfo438;not deployed",
+  "tested_source_snapshot_sha256": "b59298bd591fb9122263381712f1183fb19f1e2fee9798e2e6194dfcc5839d17"
 }
