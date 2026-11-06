@@ -1,17 +1,42 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0890
+Status Revision: S0892
 Implementation Build: source B411.438 / modinfo438; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: PU09_PU10_LOCAL_COMPLETE_CONTINUING_PRE
+Work State: PU11_HARNESS_LOCAL_COMPLETE_PRE_GATE_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+测试包缺失能力已完成，运行包仍为 **B411.438 / modinfo438**，本片仅修改测试工具。现在能按实际打包／include清单，分别模拟缺文件抛错或静默nil，并拒绝用预注入global掩盖缺失。真实Gameplay和后台商路UI已通过空世界加载与商路／GC组合检查；这不是有效四专业存档／收益验收。现有PerformanceCounters仍拥有生产Flight／GC职责，文件真缺失会让两个入口失败；已明确暴露并保留为后续职责迁移门禁，不能声称诊断已经独立或可删除。未部署／启动游戏／探针／晋升main。继续只核对现有Pre剩余依赖与实际下一门禁，不自动进入HD/O包或U5。
+
+### PU11 harness evidence and limits — S0892
+
+- **LOCAL_SIMULATION_PASS:**103unique selected methods,0errors/failures/skips;16methods in the new suite(15new+1unchanged bounded-GC wrapper),87other retained methods.151observed source modules/fragments,not full path coverage. Actual empty-native-DB Gameplay records86Start OK and296successful source-load attempts;this proves loading/wiring only,not real definitions/effects/receipts. Actual UI root loads its real Probe/Performance/Shadow/Sender without injected production globals.
+- **Harness:**opt-in immutable PackageVFS from exact current modinfo fingerprint,Files vs ImportFiles distinct,exact absent set and forbidden globals,throw/silent-nil include modes,fresh VM/no implicit IdentityEqual export,strict project-relative paths,source-read failure separate,and64scalar load rows plus totals. A missing include is never executed source PASS;failed parent execution remains FAILED_PARTWAY. Default Context loading and frozen assertions unchanged. Does not model native include cache,basename aliases/external search or certify the real loader's failure mode.
+- **Actual transport/GC:**two fresh Lua51 contexts run true BackgroundRoutes/Probe/Performance/Sender→native-shaped scalar operation transport→actual Gameplay/Bridge ACK. Enabled/disabled counters both preserve strict pending proof,one send,ACK release,1000idle no resend,andshutdown Flight cleanup. Explicit scalar mirroring simulates ExposedMembers visibility,not native timing. Actual GC waits while real UI Flight is mirrored in-flight and performs only the existing single deferred collection after ACK;currentB269 GC policy/boundary/ring and counters retained. No GC strategy modification.
+- **Required coupling remains OPEN:**both actual roots fail at Probe→PerformanceCounters when that file/global is truly absent,in both modeled loader modes. This expected characterization is not independence PASS. Optional CultureDiagnostics absence keeps empty-world roots loading;this says nothing about absent other trace/error factories. P3 Flight/currentGC/error/ACK/facts/exact-cleanup transfer and valid-save/effect on/off/absent arms still belong to their existing affected owners/O7,not blanket retirement here.
+- **Frozen NOT_PASS:**four oldB138 functions(behavior,missed_load,safety_gates,failure_latches) fail identically with fixed`22bb9b7`harness and current default harness. Old exact read-count/delayed-safety assertions remain unchanged,excluded from103;raw comparison retained. Initial new native fixture omitted actual CountOutgoingRoutes/GetCapitalCity methods;only native doubles were completed,no production workaround. Initial failures/transcripts preserved;no historical test edited.
+- **Work/static/reproduction:**0Mod/source/build/save/native-event/timer/poll/GC-policy changes.222Lua51,25XML,5artdef,345runtime/344package,156own includes,0new/widened alarms. CPython3.14.8/source-built Lupa2.8 Lua51,no external DB/game. Artifact`local/refactor/PU11_package_absence-61b757c2c8ed4e9bbcf1d39f85f7a59b/closure.json`,SHA256`8c15dca819a07e3d60eaa7633cc9cd8125e2aadb2abce1b410e26345917d0385`,tested source`6ae9425c928df97aac1356ea34183e223a45935e715ab23ca81a4219798b0447`,stable through run. Exact suite origins,runner/raw attempts/measurements local beside/in artifact;static.json records package check. Re-run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<source-built-lupa>:DevelopmentTests python3.14 <artifact-directory>/rerun.py`;bind `DevelopmentTests/refactor_evidence.py source <artifact> --commit HEAD`. Local files/hash are not permanent backups;versioned source/tests permit comparable reruns.
+- **Remaining gates:**PU05b unique native completion attribution,PU07 actual abnormal first-source/post-fault cold history,native marker cancellation,old carrier-health assertions and full U5 remain separately OPEN/unproved. No mandatory random pillage/trader-death campaign. No new schema;Capital3/Crew2 new-campaign restriction inherited. Recorded liveB399.426/mainB307.334 unchanged. Finish the existing-slice readiness comparison before choosing the next actual authorized dependency;no invented all-Pre/whole-independence PASS.
+
+User decision:none for completed harness. User testing:none initiated. Primary next:verified develop commit/push,then reconcile existing Pre gate/status against its published dependency table and continue only if a dependency-ready authorized slice remains;otherwise report exact native/Owner/external-review boundary.
+
+按现有Pre顺序补齐PU11的包/VFS真实缺失测试能力。当前`Context.load`直接读磁盘，旧Startup夹具注入生产／诊断globals，不能证明缺文件可运行。本片只改测试工具与定域测试：从实际modinfo建立文件／include可见性，模拟缺include抛错及静默nil，检查缺global未被预注入。先用真实Gameplay/UI入口与真实Probe/Performance/NetworkSender对当前依赖作限定范围基线。生产/GC/Flight/错误职责迁移及O7完整三臂正向验收保持既定后续职责，不能把本片工具能力当独立性PASS或删除许可。运行包保持B411.438，不部署。
+
+### PU11 harness runtime impact and gates — S0891
+
+- **Scope:**test-only PackageVFS from actualmodinfo,exact absent files and forbidden diagnostic globals,throw/silent-nil include modes. Entry files and imported include files remain distinct;missing profile is explicit simulated engine behavior,not a claim which behavior the native loader uses. Keep default Context semantics and all existing fixture assertions unchanged.
+- **Proof:**actual source loading,source-fragment vs complete/failed execution tracked separately. Fresh Lua51 VMs,no preinjected SPC production wrappers/Flight/errors. Native-only controls for empty-world bootstrap are explicitly not valid saved-game/four-profession acceptance. Present/disabled/absent paths through actual production factories/entryroots;known coupling failures stay OPEN with their actual origin. Required cleanup/transaction protections cannot be stubbed away into an independence PASS.
+- **Work/limits:**no runtime source/schema/events/timers/GC/deployment change. Bounded scalar load observations,modinfo fingerprint,strict relative module paths;no native handles or game attachment. Profile retained across a simulated fresh-context reload,not Lua globals. Future positive O7 arms must use valid actual states/receipts/effects and full required duties after migration. No premature helper transfer without a new affected consumer,blanket file/global/SQL deletion,HD port or full audit.
+- **Validation:**targeted helper/VFS tests,actual Gameplay and UI roots,current real Performance Flight on/off invariants and known absent dependency;default harness/component/cleanup/marker regression,package/static/context/privacy. No native test/probe or whole-independence PASS. Stop only at actual audit/Owner/native/next-authorization boundary after dependency-ready Pre work.
+
+User decision:none for scoped existing PU11 harness. User testing:none now. Primary next:verify/publish this limited capability and exact remaining gates,then stop only where the current plan genuinely requires external/Owner/native permission.
 
 认领／时代对话的入口UNKNOWN片已完成，源码 **B411.438 / modinfo438**：资格暂不可读时保留已安装标记，不新增入口，也不据此放宽启动或奖励；确认身份／等级失效、候选不存在或当时代额度已用，仍按各自规则撤销。实际总督六属性读取的相关依赖核对通过，未证实需修改的底层算法；可靠无总督=一级、未知不缓存及同回合变化保持原实现。已完成代码与定域本地验证，未部署／原生测试；继续现有Pre的包缺失与生产依赖门禁，不提前进入HD适配或U5。
 

@@ -11,121 +11,97 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0890",
+    "status": "S0892",
     "runtime": "B411.438 / modinfo438",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "PU09 Claim/Dialogue marker UNKNOWN vs reliable negative roots;assess current dependent Governor producer without speculative repair.",
+  "goal": "PU11 opt-in actual package/include VFS and true absent-global tests;current dependency characterization only,no O7 retirement/independence claim.",
   "implementation_authorized": true,
   "context": [
     {
-      "path": "Mod/ClaimProjects.lua",
+      "path": "DevelopmentTests/refactor_harness.py",
       "kind": "full",
-      "reason": "Actual Claim access/timer/strict native completion owner."
+      "reason": "Default loader/source observations and new opt-in package VFS."
     },
     {
-      "path": "Mod/DialogueProjects.lua",
+      "path": "Mod/SpecializationP0.modinfo",
       "kind": "full",
-      "reason": "Actual Dialogue access/era/Governor/timer/reward owner."
+      "reason": "Actual package/include authority;no modifications."
     },
     {
-      "path": "Mod/CityProgressionStore.lua",
+      "path": "Mod/Gameplay.lua",
       "kind": "full",
-      "reason": "Unchanged ClaimState/DialogueState/identity/history source."
+      "reason": "Actual root/startup;only explicit native bootstrap doubles permitted."
     },
     {
-      "path": "Mod/EffectiveFacts.lua",
+      "path": "Mod/Probe.lua",
       "kind": "full",
-      "reason": "Actual purpose facts,shared read window/freshness."
+      "reason": "Actual source of required wrappers;no preinjected substitute."
     },
     {
-      "path": "Mod/TimedProjects.lua",
+      "path": "Mod/PerformanceCounters.lua",
       "kind": "full",
-      "reason": "Unchanged UNKNOWN suspension/relevant recovery."
+      "reason": "Actual Count/Flight/GC responsibilities,unchanged."
     },
     {
-      "path": "Mod/DialogueProjectModel.lua",
+      "path": "Mod/NetworkSender.lua",
       "kind": "full",
-      "reason": "Unchanged independent quota/timer/once-only reward."
+      "reason": "Actual cross-context production Flight dependency,unchanged."
     },
     {
-      "path": "DevelopmentTests/test_pu07a_completion_scope.py",
+      "path": "Mod/UI/BackgroundRoutes.lua",
       "kind": "full",
-      "reason": "Actual Store+fixed Claim fixture;superseded broad-hold cases excluded."
+      "reason": "Actual UI root include chain,unchanged."
     },
     {
-      "path": "DevelopmentTests/test_dialogue_projects.py",
+      "path": "DevelopmentTests/test_pu08_cleanup.py",
       "kind": "full",
-      "reason": "Actual Store/EF/Dialogue fixture and retained business tests."
+      "reason": "Real required cleanup barriers and current Startup protocol."
     },
     {
-      "path": "DevelopmentTests/test_refactor_s7d4.py",
+      "path": "DevelopmentTests/test_pu09_marker_roots.py",
       "kind": "full",
-      "reason": "Actual event-driven UNKNOWN work/recovery and independent timer regressions."
-    },
-    {
-      "path": "DevelopmentTests/test_b395_culture_recovery.py",
-      "kind": "full",
-      "reason": "Existing load/readiness recovery evidence."
+      "reason": "Actual strict project/facts and marker regression."
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current scope/RIC/known limitations."
+      "reason": "Scoped harness RIC and all remaining permission/native gates."
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
       "selector": "### Accepted convergence boundaries — 2026-11-04",
-      "reason": "Cold restore/required facts/independent projects."
+      "reason": "Production duty transfer before retirement;no false absence claim."
     },
     {
-      "path": "Mod/Probe.lua",
+      "path": "DevelopmentTests/test_pu11_package_absence.py",
       "kind": "full",
-      "reason": "Only actual GovernorGate producer evaluated;label change only unless a defect proved."
-    },
-    {
-      "path": "DevelopmentTests/test_pu09_marker_roots.py",
-      "kind": "full",
-      "reason": "Actual project/Store/EF/Governor UNKNOWN markers and strict operations."
-    },
-    {
-      "path": "Mod/NativeFacts.lua",
-      "kind": "full",
-      "reason": "Actual established-city notification source used in recovery proof."
-    },
-    {
-      "path": "Mod/FactChanges.lua",
-      "kind": "full",
-      "reason": "Existing invalidation/delivery producer,unchanged."
-    },
-    {
-      "path": "Mod/FactConsumerBindings.lua",
-      "kind": "full",
-      "reason": "Existing real city-only Dialogue RefreshAccess edge,unchanged."
+      "reason": "Actual package-root/forbidden-global/2VM Flight/ACK/GC and bounded trace tests,with explicit native-only empty-world controls."
     }
   ],
   "dependencies": [
-    "PU07 source/family scope local delivery;fixed Claim is independent of session first-stop.",
-    "Accepted existing purpose-specific eligibility and normal cold restoration;no new native source."
+    "Published PU08/PU09 code and unchanged default test profile.",
+    "Accepted P3/PU11 absence requirement;later O7 valid-save/effect/GC/Flight arms remain required."
   ],
   "old_writers": [
-    "Existing Store,Claim,Dialogue and Gate owners retained;no marker may certify transaction eligibility."
+    "Production source/effects/history/receipts/Flight/GC owners unchanged."
   ],
   "conditional_context": [],
   "non_scope": [
-    "B source persistence/old completionError clearing",
-    "Engineering rules,new ownership/era semantics",
-    "HD/O5/O6/main/deploy/game/probe/U5",
-    "S9/S10 cleanup"
+    "Production helper/GC/Flight policy changes",
+    "Any file/SQL/global removal or O7 cutover",
+    "HD/core gameplay/Design/Architecture changes",
+    "Game/probe/deployment/main/U5"
   ],
   "validation": [
-    "T01/T02/T05/T08 actual producers/consumers,UNKNOWN markers/new action gates,known negatives,actual era/Governor boundaries and relevant recovery.",
-    "Affected independent timer/load/receipt regression;Lua51/package/static/context/privacy."
+    "Actual modinfo visibility/absent throw+nil/missing-global detection,fresh VM and bounded traces.",
+    "Actual Gameplay/UI source roots with explicit native controls,present/off/absent real-factory Flight characterization;no injected production globals.",
+    "Default harness and affected cleanup/project regressions,static/context/privacy."
   ],
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -133,8 +109,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "92selectedPASS,20new+72retained;6fixedB410 counterexamples.1frozen method4current/1before suberrors NOT_PASS,unchanged.222Lua51/25XML/5artdef/345runtime,0new alarms.",
-    "native": "NOT_RUN;queue/native property timing/cancellation not certified.",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu09--dependent-pu10-evidence-and-limits--s0890"
+    "local": "103selectedPASS;15new+1retained wrapper,4frozenB138functions fail identically with fixed/current default harness,NOT_PASS. Actual absent PerformanceCounters fails as known coupling;not independence PASS.",
+    "native": "NOT_RUN;no loader/timing/valid-save/effect/retirement certification.",
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu11-harness-evidence-and-limits--s0892"
   }
 }

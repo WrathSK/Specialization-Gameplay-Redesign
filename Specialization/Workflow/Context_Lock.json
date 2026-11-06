@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0890 marker/root:2functional owners+2labels,new20case test,current records reviewed;92localPASS with frozen4current/1before errors NOT_PASS;1322inherited guards+1new test;no native/save schema/deployment.",
+  "review_basis": "S0892:opt-in test-only VFS/default compatibility+actual roots/2VM flight/GC,103localPASS,4frozen failures NOT_PASS.1323inherited guards+1new test. Runtime unchanged;no native/deployment/retirement.",
   "files": {
     "AGENTS.md": "101b1eb8f0ea587a38d9cb98d385b73edb1fc6e18ee7742f1bf4a69d32a5b7bf",
     "Art/Institutions/README.md": "23b7ace94796d7212ab848fb12a712a85ff2e837ec7daa0f3dcff1ad3efa7fcb",
@@ -680,7 +680,7 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
     "Specialization/Status/Playtest_Backlog.md": "40d71835eae1234e8c7337d7719805e2dce00d67647ab493b53c9171f1c2b71a",
-    "Specialization/Status/Specialization_P0_Status.md": "25629d468c091554f71044116b70f6ec024a49a8fd1ea34878cb076b59795ecc",
+    "Specialization/Status/Specialization_P0_Status.md": "e17bcfd9618d94b6635c38428718cfc958260afd632ee1d7d7ea17fe6430f1d2",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -927,13 +927,13 @@
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md": "3ad3d5e3d7a0d7429ca62d3bf1b973bda0712dde3cae717511ec8477ed387467",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "686b5ee9b9ef95d254b5529757614da2abda2ba349fe46f1b2b18a46fd7100a6",
+    "Specialization/Workflow/Authority.json": "64bdba951ced5ba37df02a10d961d673afe4236b8ca0235f49704da73b732874",
     "Specialization/Workflow/Investment-Propagation.json": "dc2783bae2c863f3c1371011542078270aa54a4a8bb96f0a2ba8ad268536c4af",
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
     "Specialization/Workflow/P0-E2.json": "1e7b54d36ae9e71f9b60e0d9644c4775d7bf9ece87d6b22f084f548bcc5ed486",
     "Specialization/Workflow/P0-F2.json": "a245915f40bd094902dd24726b5f9ffdd1c705153e34d2964cdc67ddaa540611",
     "Specialization/Workflow/P0-GH1.json": "56633c47751cba8d0d20b1bc2d0e87cbd983399f2c43e77839843e37cc904dac",
-    "Specialization/Workflow/P0-H.json": "06e1bae239b7bd5ffe27dd18c5d9eea0ce7c1763e1293bed2f91ed7e816fbbff",
+    "Specialization/Workflow/P0-H.json": "7537d4ecbbc4d13e059a124d19a94f1e4d6783fb366d0dece1ae6c58519042ea",
     "Specialization/Workflow/P0-L2A.json": "2672ad4f884394d991f66d81b1ff1155e1c965b305cf777682e21ffd7163cfc1",
     "Specialization/Workflow/P0-L2B.json": "926c796045cd9e6687fff4580b0bdd9796361e609581942c66fed47ed28a7475",
     "Specialization/Workflow/P0-L2C.json": "40aa6c8fddb51053f3c2aaa2b997fda70a53c4f1d61f78cd74372f938a50103b",
@@ -946,7 +946,7 @@
     "Specialization/Workflow/P0-Panel-Cleanup.json": "ba13ce7196445f13d8c274a23f113ff4dfea4c5771b4cf42e79b95eec1462545",
     "Specialization/Workflow/P0-U1.json": "1d49b6c02c504d52809cf821efe0b989d94c4dbdaaa183dd748495befb6b5a8b",
     "Specialization/Workflow/README.md": "e9f8cfa744db78ad0ea4b5c1df767835402362c57a9d4e0e93b2e6c59f02ddb5",
-    "Specialization/Workflow/Runtime_Index.json": "25f1b30a6cf50ed8418540787b9ce779f337a9b28a948ef012784b6c1efa179c",
+    "Specialization/Workflow/Runtime_Index.json": "10bddd82253acb1000f00670ad1d4e2916b73c7821b9574a70664e5549075aa8",
     "Specialization/Workflow/Shared-D-Facts.json": "83d049663b05c39da143625e69e005f4646e31f3bca7ec249bcf6ae22cd24ca8",
     "Specialization/Workflow/Store-Write-Repair.json": "00bf4ab7b86f318d14784d1c8f5df8345cc8e1a5f89ff332099c9966265d5fa9",
     "Specialization/Workflow/context.py": "2d234a3060faab27ec26d93851d17d075fba3c3ff6ddeed174bb903aad996ec6",
@@ -986,7 +986,7 @@
     "Specialization/Design/Content/Commerce_D0058.json": "7a1bdee459a31910b5540f835069853eda1f435759d06a37c89dbd4fac545d66",
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0057.md": "f5a1f82d9bf7207e50672e3ea3ea108ddbd6527116d99259c81235109239dd1d",
     "DevelopmentTests/run_refactor.py": "e82d6bd75aadfc85bfc52c882683b9ab27f9d3da87d1c5e9d7b005dd7fb2e6a5",
-    "DevelopmentTests/refactor_harness.py": "b2c5ec221fe8692133c14ed5ad2849b02766dcf7e1fd3feb93d8239535d731d2",
+    "DevelopmentTests/refactor_harness.py": "71e970a9c7c230f3995bcffeaa0c47233110d828729cc06107cb21a22fe91a62",
     "DevelopmentTests/refactor_defect_fixtures.py": "b5e9aff146b3670cd8f8b3a850e65159cb84c93da94f0f469327913e65843285",
     "DevelopmentTests/test_refactor_baseline.py": "289c5da13703a87701caaf71861cc68e3da0b4f900a19cfd116acb5cab2e22e4",
     "DevelopmentTests/test_refactor_defects.py": "39299a242dea68718c27844b3057e4e96395b655d8021672c46037f8059b728f",
@@ -1324,6 +1324,7 @@
     "Specialization/Reports/Technical/Engine_Reference.md": "4f7e026c4b311b836882dca3b87ae004fdd774bb077e78a9d88f2f381b813175",
     "DevelopmentTests/test_pu07_source_attribution.py": "5ebdb14123163475de6a3d918d825dbfecb5b391ff8f4cae15527b92a00f783a",
     "DevelopmentTests/test_pu08_cleanup.py": "5e4ccfbade0735b791f10474f0fcc1b35d65893cd5d6c8dc223cca33596e564c",
-    "DevelopmentTests/test_pu09_marker_roots.py": "61ed9ec817ec762c130048361c7ea7e5717290385e7d1f2155c975dc49f17f46"
+    "DevelopmentTests/test_pu09_marker_roots.py": "61ed9ec817ec762c130048361c7ea7e5717290385e7d1f2155c975dc49f17f46",
+    "DevelopmentTests/test_pu11_package_absence.py": "e5579810188c6a55a08ba72e3e6c44ae9e17974dc14251136d36a5466c41ea49"
   }
 }

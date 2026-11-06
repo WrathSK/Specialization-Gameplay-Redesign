@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0890/B411.438:2functional project owners+2labels,new20case test reviewed;92localPASS,6counterexamples,1frozen method NOT_PASS;222Lua51/25XML/5artdef/345runtime,0new alarms.Continue ready Pre,no native/deploy.",
+  "source_review": "S0892 PU11 test-only:all runtime index bytes unchanged;VFS/helper/test reviewed,103localPASS,4unchanged frozen failures NOT_PASS;0Mod/build/GC-policy change.",
   "source_runtime": "B411.438 / modinfo438;not deployed",
-  "tested_source_snapshot_sha256": "b59298bd591fb9122263381712f1183fb19f1e2fee9798e2e6194dfcc5839d17"
+  "tested_source_snapshot_sha256": "6ae9425c928df97aac1356ea34183e223a45935e715ab23ca81a4219798b0447"
 }

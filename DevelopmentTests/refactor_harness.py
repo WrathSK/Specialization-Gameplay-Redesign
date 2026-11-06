@@ -1,5 +1,9 @@
 """Bounded refactor test profile. Lua 5.1, explicit clocks/events, no native game attachment."""
 from contextlib import contextmanager
+from collections import deque
+from dataclasses import dataclass
+import re
+import xml.etree.ElementTree as ET
 from hashlib import sha256
 from pathlib import Path
 import json
@@ -45,25 +49,110 @@ ContextPtr={SetUpdate=function()error('HIDDEN_CONTEXT_NO_FRAME',0)end,SetShutdow
 function publish()Events.GameCoreEventPublishComplete.Fire()end
 """
 
+def module_path(module):
+    """Exact project-relative Lua names, not a model of external include search."""
+    if not isinstance(module,str) or not re.fullmatch(r'[A-Za-z0-9_/-]+(?:\.lua)?',module):
+        raise ValueError('INVALID_PACKAGE_MODULE')
+    parts=module.split('/')
+    if any(not part or part in ('.','..') for part in parts):
+        raise ValueError('INVALID_PACKAGE_MODULE')
+    return module if module.endswith('.lua') else module+'.lua'
+
+@dataclass(frozen=True,init=False)
+class PackageVFS:
+    """Opt-in package facts plus explicit simulated missing-include behavior.
+
+    Does not claim native include caching, basename aliases, external HD/official
+    search or actual native throw/nil semantics. Entry files use Files; include
+    files also require ImportFiles. Never changes the package on disk.
+    """
+    files: frozenset
+    imports: frozenset
+    absent: frozenset
+    missing_include: str
+    forbidden_globals: tuple
+    manifest_sha256: str
+
+    def __init__(self,absent=(),missing_include='throw',forbidden_globals=(),manifest=None):
+        if missing_include not in ('throw','silent_nil'):
+            raise ValueError('INVALID_MISSING_INCLUDE_MODE')
+        raw=Path(manifest or ROOT/'Mod/SpecializationP0.modinfo').read_bytes()
+        doc=ET.fromstring(raw)
+        files=frozenset(n.text.strip() for n in doc.findall('./Files/File'))
+        imports=frozenset(n.text.strip() for n in doc.findall('./InGameActions/ImportFiles/File'))
+        if not files or not imports.issubset(files):raise ValueError('INVALID_PACKAGE_MANIFEST')
+        missing=frozenset(module_path(n) for n in absent)
+        if not missing.issubset(files):raise ValueError('ABSENT_MODULE_NOT_IN_PACKAGE')
+        guards=tuple(forbidden_globals)
+        if any(not isinstance(n,str) or not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*',n) for n in guards):
+            raise ValueError('INVALID_GLOBAL_GUARD')
+        guards=tuple(sorted(set(guards)))
+        for k,v in dict(files=files,imports=imports,absent=missing,missing_include=missing_include,
+                        forbidden_globals=guards,manifest_sha256=sha256(raw).hexdigest()).items():
+            object.__setattr__(self,k,v)
+
+    def reason(self,path,included):
+        if path not in self.files:return 'NOT_PACKAGED'
+        if path in self.absent:return 'ABSENT'
+        if included and path not in self.imports:return 'NOT_IMPORTED'
+        return None
+
 class Context:
-    def __init__(self, name="Gameplay", missing=()):
+    def __init__(self, name="Gameplay", missing=(), vfs=None):
+        if vfs is not None and not isinstance(vfs,PackageVFS):raise TypeError("INVALID_VFS_PROFILE")
+        self.vfs=vfs
+        self.loads=deque(maxlen=64)
+        self.load_counts={"attempts":0,"missing":0,"completed":0,"failed":0}
+        self._load_stack=[]
         self.lua = NativeLua51(unpack_returned_tuples=True)
         self.name = name
         self.lua.execute(EVENTS)
-        self.lua.globals().include = self.load
-        self.load("IdentityEqual")  # Pure production dependency; legacy fixtures may stub include.
+        self.lua.globals().include = self.load if vfs is None else lambda module:self.load(module,included=True)
+        if vfs is None:self.load("IdentityEqual")  # Pure production dependency; legacy fixtures may stub include.
         for event in missing:
             self.lua.execute("Events[...] = false", event)
-        RUN["contexts"].append({"name":name,"backend":"Lua 5.1","hidden_no_frame":True})
+        RUN["contexts"].append({"name":name,"backend":"Lua 5.1","hidden_no_frame":True,**({"package_vfs":vfs.manifest_sha256,"missing_include":vfs.missing_include,"absent":sorted(vfs.absent),"forbidden_globals":list(vfs.forbidden_globals)} if vfs else {})})
         assert self.lua.eval('_VERSION') == 'Lua 5.1'
-    def load(self, module):
-        path=ROOT/'Mod'/(module if module.endswith('.lua') else module+'.lua')
-        text=path.read_text();key=str(path.relative_to(ROOT));digest=sha256(text.encode()).hexdigest()
+    def _check_globals(self):
+        if self.vfs:
+            for name in self.vfs.forbidden_globals:
+                if self.lua.globals()[name] is not None:
+                    raise AssertionError('FORBIDDEN_PREINJECTED_GLOBAL:'+name)
+    def load(self, module, *, included=False):
+        if self.vfs:
+            self._check_globals()
+            relative=module_path(module)
+            self.load_counts['attempts']+=1
+            row={'module':relative,'included':included,'parent':self._load_stack[-1] if self._load_stack else None}
+            self.loads.append(row)
+            reason=self.vfs.reason(relative,included)
+            if reason:
+                self.load_counts['missing']+=1;row['status']=reason
+                if included and self.vfs.missing_include=='silent_nil':return None
+                raise FileNotFoundError('PACKAGE_'+reason+':'+relative)
+            path=ROOT/'Mod'/relative
+            if not path.resolve().is_relative_to((ROOT/'Mod').resolve()):
+                row['status']='OUTSIDE_MOD';raise ValueError('PACKAGE_PATH_OUTSIDE_MOD')
+        else:
+            path=ROOT/'Mod'/(module if module.endswith('.lua') else module+'.lua')
+        try:text=path.read_text()
+        except OSError:
+            if self.vfs:self.load_counts['failed']+=1;row['status']='FILE_READ_FAILED'
+            raise
+        key=str(path.relative_to(ROOT));digest=sha256(text.encode()).hexdigest()
         executed(key,digest)
-        try:result=self.lua.execute(text)
+        self._load_stack.append(key)
+        try:
+            result=self.lua.execute(text)
+            self._check_globals()
         except Exception:
-            completion(key,False);raise
-        completion(key,True);return result
+            completion(key,False)
+            if self.vfs:self.load_counts['failed']+=1;row['status']='FAILED_PARTWAY'
+            raise
+        finally:self._load_stack.pop()
+        completion(key,True)
+        if self.vfs:self.load_counts['completed']+=1;row['status']='COMPLETED'
+        return result
     def fragment(self,path,start,end):
         text=(ROOT/path).read_text();assert text.count(start)==1 and text.count(end)==1
         fragment=text[text.index(start):text.index(end)]
@@ -86,7 +175,7 @@ class Context:
         # A host JSON round-trip copies only explicitly retained fixture scalars/tables.
         return json.loads(json.dumps(value,allow_nan=False))
     def reload(self, retained, name=None):
-        result=Context(name or self.name);result.globals().retained=result.table(self.snapshot(retained));return result
+        result=Context(name or self.name,vfs=self.vfs);result.globals().retained=result.table(self.snapshot(retained));return result
 
 def measure(name, values):
     assert name not in RUN['measurements'], 'DUPLICATE_MEASUREMENT'
