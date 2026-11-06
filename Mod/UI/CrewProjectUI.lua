@@ -109,5 +109,7 @@ function SPCCrewProjectUI.New(P,send,notify,build)
    revision=d.revision;local c=UI.GetHeadSelectedCity();if localCity(c)then notify(c:GetOwner(),c:GetID())end
   end
  end
+ -- B412 optional observer; does not wrap the reader,send,build or native handlers.
+ pcall(function()include('CrewCompletionDiagnostics');SPCCrewCompletionDiagnostics.Start(P,'UI')end)
  return a
 end

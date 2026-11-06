@@ -11,97 +11,97 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0893",
-    "runtime": "B411.438 / modinfo438",
+    "status": "S0895",
+    "runtime": "B412.439 / modinfo439",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "PU11 opt-in actual package/include VFS and true absent-global tests;current dependency characterization only,no O7 retirement/independence claim.",
+  "goal": "Prepare isolated bounded multi-Crew observation,then external audit entry;do not fix attribution or run/deploy the game.",
   "implementation_authorized": true,
   "context": [
     {
-      "path": "DevelopmentTests/refactor_harness.py",
+      "path": "Mod/CrewProjects.lua",
       "kind": "full",
-      "reason": "Default loader/source observations and new opt-in package VFS."
+      "reason": "Actual irreversible completion owner,unchanged."
     },
     {
-      "path": "Mod/SpecializationP0.modinfo",
+      "path": "Mod/CrewModel.lua",
       "kind": "full",
-      "reason": "Actual package/include authority;no modifications."
+      "reason": "Exact source/order/receipt vocabulary and schema,unchanged."
+    },
+    {
+      "path": "Mod/UI/CrewProjectUI.lua",
+      "kind": "full",
+      "reason": "Existing UI native queue/cumulative reader and optional observer seam."
     },
     {
       "path": "Mod/Gameplay.lua",
       "kind": "full",
-      "reason": "Actual root/startup;only explicit native bootstrap doubles permitted."
+      "reason": "Protected disposable observer before/after actual Crew listener registration."
     },
     {
-      "path": "Mod/Probe.lua",
+      "path": "Mod/ExpeditionTrainingDiagnostics.lua",
       "kind": "full",
-      "reason": "Actual source of required wrappers;no preinjected substitute."
+      "reason": "Existing safe bounded scalar trace sink,no production-helper change."
     },
     {
-      "path": "Mod/PerformanceCounters.lua",
+      "path": "Mod/SpecializationP0.modinfo",
       "kind": "full",
-      "reason": "Actual Count/Flight/GC responsibilities,unchanged."
+      "reason": "Package/import and build identity."
     },
     {
-      "path": "Mod/NetworkSender.lua",
+      "path": "tools/collect_expedition_trace.py",
       "kind": "full",
-      "reason": "Actual cross-context production Flight dependency,unchanged."
+      "reason": "Existing collector raw protocol and additive bounded observer summary."
     },
     {
-      "path": "Mod/UI/BackgroundRoutes.lua",
+      "path": "tools/read_expedition_trace.py",
       "kind": "full",
-      "reason": "Actual UI root include chain,unchanged."
+      "reason": "Unchanged fixed safe TRAIN/snapshot protocol."
     },
     {
-      "path": "DevelopmentTests/test_pu08_cleanup.py",
+      "path": "DevelopmentTests/test_pu05a_receipts.py",
       "kind": "full",
-      "reason": "Real required cleanup barriers and current Startup protocol."
+      "reason": "Actual Store/Crew receipt regressions."
     },
     {
-      "path": "DevelopmentTests/test_pu09_marker_roots.py",
+      "path": "DevelopmentTests/test_refactor_s7d6_proof.py",
       "kind": "full",
-      "reason": "Actual strict project/facts and marker regression."
+      "reason": "Keep ambiguity characterization OPEN."
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
-      "kind": "section",
-      "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Scoped harness RIC and all remaining permission/native gates."
-    },
-    {
-      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-      "kind": "section",
-      "selector": "### Accepted convergence boundaries — 2026-11-04",
-      "reason": "Production duty transfer before retirement;no false absence claim."
-    },
-    {
-      "path": "DevelopmentTests/test_pu11_package_absence.py",
       "kind": "full",
-      "reason": "Actual package-root/forbidden-global/2VM Flight/ACK/GC and bounded trace tests,with explicit native-only empty-world controls."
+      "reason": "Current authorized observation scope and RIC."
+    },
+    {
+      "path": "Mod/CrewCompletionDiagnostics.lua",
+      "kind": "full",
+      "reason": "Disposable bounded read-only event/order/receipt/reader observer,actual review complete."
+    },
+    {
+      "path": "DevelopmentTests/test_b412_crew_observation.py",
+      "kind": "full",
+      "reason": "22new scope/retirement/actual owner-equivalence/collector tests."
     }
   ],
   "dependencies": [
-    "Published PU08/PU09 code and unchanged default test profile.",
-    "Accepted P3/PU11 absence requirement;later O7 valid-save/effect/GC/Flight arms remain required."
+    "Existing B411 actual Store/Crew/UI reader and ER01/02/S7d6 proof limit."
   ],
   "old_writers": [
-    "Production source/effects/history/receipts/Flight/GC owners unchanged."
+    "CrewProjects/Store/native creation and receipt owners remain byte-identical."
   ],
   "conditional_context": [],
   "non_scope": [
-    "Production helper/GC/Flight policy changes",
-    "Any file/SQL/global removal or O7 cutover",
-    "HD/core gameplay/Design/Architecture changes",
-    "Game/probe/deployment/main/U5"
+    "Grant/eligibility/cost/history/schema/GC changes",
+    "Native probe execution,game/deployment/main/U5",
+    "HD/O migration or historical cleanup"
   ],
   "validation": [
-    "Actual modinfo visibility/absent throw+nil/missing-global detection,fresh VM and bounded traces.",
-    "Actual Gameplay/UI source roots with explicit native controls,present/off/absent real-factory Flight characterization;no injected production globals.",
-    "Default harness and affected cleanup/project regressions,static/context/privacy."
+    "Actual owner equivalence on/off/missing;bounded safe raw evidence and no idle retry",
+    "Actual trace/collector roundtrip;restricted Lua/package/context/privacy"
   ],
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -109,8 +109,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "103selectedPASS;15new+1retained wrapper,4frozenB138functions fail identically with fixed/current default harness,NOT_PASS. Actual absent PerformanceCounters fails as known coupling;not independence PASS.",
-    "native": "NOT_RUN;no loader/timing/valid-save/effect/retirement certification.",
-    "report": "Specialization/Status/Specialization_P0_Status.md#current-pre-integration-checkpoint--s0893"
+    "local": "103selectedPASS;22new+81retained;223Lua51/25XML/5artdef/346runtime;0new alarms. Strict S7d6 ambiguity retained,not repaired.",
+    "native": "NOT_RUN;source readiness only,no socket/game/deployment/native proof.",
+    "report": "Specialization/Status/Specialization_P0_Status.md#crew-completion-probe-ready-locally--s0895"
   }
 }

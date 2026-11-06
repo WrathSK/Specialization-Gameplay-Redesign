@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "dbfa4582a5d82c081d922d0ad75c2246f15a04543d9207f1fecf8561076cf9ee",
+      "sha256": "8380b65519038bbaa16ff61b39124328bd6fd2b6c1f1a9fd7eeeb5b7be94c907",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
+      "provenance": "S0895 B412:optional bounded Crew evidence;3protected seams,version/package labels;settlement/model/Store unchanged;103localPASS,not native/deploy."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "8a8ede86505008b0875beb25dfa61df70843ac6b93400b9b030381c870119530",
+      "sha256": "9862960cc3d0f5a059baec2c32fb7b1dbbc4dbab8ad2be86d5e28795991d8113",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
+      "provenance": "S0895 B412:optional bounded Crew evidence;3protected seams,version/package labels;settlement/model/Store unchanged;103localPASS,not native/deploy."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "69d1c542212dc323dd09dbe8fbc411e38f792002b7d74dd934d1c462477e7380",
+      "sha256": "51b98674e3534d8489c7cc5b173d90948b63fa26b208d46dce8c4ed72e7a471a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
+      "provenance": "S0895 B412:optional bounded Crew evidence;3protected seams,version/package labels;settlement/model/Store unchanged;103localPASS,not native/deploy."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1256,9 +1256,9 @@
       "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas."
     },
     "Mod/UI/CrewProjectUI.lua": {
-      "sha256": "b07ea80a0db7f1fb10bcc259dd711afacab49fd6edafb2b5d097e19a1abdc64b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B239_Commercialization_Local.md",
-      "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
+      "sha256": "754add58b271140f6651e427557eb01df2ef1e913fdc41240bc5dbadc841d7a5",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0895 B412:optional bounded Crew evidence;3protected seams,version/package labels;settlement/model/Store unchanged;103localPASS,not native/deploy."
     },
     "Mod/UI/DevelopmentInvestmentPanel.lua": {
       "sha256": "8ec0d4a6506e480c3801b652b7dff3a4e37768e8b6c8cc96e97f6b6ddba2d140",
@@ -1729,9 +1729,14 @@
       "sha256": "3a4e3c24b770913687d4140120e54df80e20b693f1fb24b7d736f23cbedcf414",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
+    },
+    "Mod/CrewCompletionDiagnostics.lua": {
+      "sha256": "3dcc3d7430633baf92f0bf0e66adb9353495f534bb4a518b1b9e3dea96bd4ca3",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0895 B412:optional bounded Crew evidence;3protected seams,version/package labels;settlement/model/Store unchanged;103localPASS,not native/deploy."
     }
   },
-  "source_review": "S0892 PU11 test-only:all runtime index bytes unchanged;VFS/helper/test reviewed,103localPASS,4unchanged frozen failures NOT_PASS;0Mod/build/GC-policy change.",
-  "source_runtime": "B411.438 / modinfo438;not deployed",
-  "tested_source_snapshot_sha256": "6ae9425c928df97aac1356ea34183e223a45935e715ab23ca81a4219798b0447"
+  "source_review": "S0895 B412 disposable observer:5Modpaths+collector+test reviewed;103localPASS,22new,0new alarms;Crew/model/Store/fixed reader untouched.",
+  "source_runtime": "B412.439 / modinfo439;not deployed",
+  "tested_source_snapshot_sha256": "aae215526454f1f5ee4a8738835b1ab20be9ae50424fd9ccfaee48dfb52e780e"
 }

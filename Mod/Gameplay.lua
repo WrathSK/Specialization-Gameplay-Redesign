@@ -951,7 +951,11 @@ composition.Run('UnitTargets',{'EffectiveFacts','UnitSiteProbe'},{'UnitTargets'}
 
 composition.Run('UnitActions',{'CityProgressionStore','InvestmentAction','ConstructionProbe','UnitTargets'},{'UnitActions'},function() include('UnitActions');SPCUnitActions.Start(P,shared) end)
 
+-- B412 removable observation seams only; neither result controls Crew startup.
+local crewCompletionObservation
+pcall(function()include('CrewCompletionDiagnostics');crewCompletionObservation=SPCCrewCompletionDiagnostics.Start(P,'GAMEPLAY')end)
 composition.Run('CrewProjects',{'CityProgressionStore','EffectiveFacts'},{'CrewProjects'},function() include('CrewProjects');SPCCrewProjects.Start(P,shared) end)
+pcall(function()if crewCompletionObservation then crewCompletionObservation.After()end end)
 
 composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'},function() include('PlayerActionReplies');SPCPlayerActionReplies.Start(P,shared) end)
 

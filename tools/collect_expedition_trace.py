@@ -88,6 +88,8 @@ class Session:
         self.record_total = 0
         self.trace_epoch = None
         self.highest_sequence = 0
+        self.crew_proof_rows = []
+        self.crew_proof_truncated = False
         self.culture_points = Counter()
         self.boundary_rows = []  # B399 optional summary only; raw protocol is unchanged.
         self.boundary_truncated = False
@@ -126,6 +128,19 @@ class Session:
                      'goldYield', 'maintenance', 'x', 'y', 'actualX', 'actualY', 'reason')})
             else:
                 self.boundary_truncated = True
+        if stage in ('CREW_PROOF_STATUS', 'CREW_PROOF_EVENT', 'CREW_PROOF_STATE'):
+            if stage == 'CREW_PROOF_STATUS' and (f.get('point') == 'HOOK_UNAVAILABLE' or f.get('reason') == 'OBSERVER_ERROR'):
+                self.alert('CREW_PROOF_INCOMPLETE side=%s point=%s reason=%s' %
+                           (f.get('observerSide', '?'), f.get('point', '?'), f.get('reason', '?')))
+            if f.get('eventTruncated') == 'true':
+                self.alert('CREW_PROOF_TRUNCATED point=%s side=%s reason=%s' %
+                           (f.get('point', '?'), f.get('observerSide', '?'), f.get('reason', '?')))
+            if len(self.crew_proof_rows) < 96:
+                self.crew_proof_rows.append({k: f.get(k, '?') for k in
+                    ('seq', 'stage', 'turn', 'observerSide', 'phase', 'point', 'city', 'projectType',
+                     'eventCount', 'reader', 'completed', 'nativeProgress', 'errorCode', 'reason')})
+            else:
+                self.crew_proof_truncated = True
         if stage == 'CULTURE_DIAGNOSTIC':
             self.culture_points[f.get('point', '?')] += 1
             if f.get('eventTruncated') == 'true':
@@ -244,6 +259,12 @@ class Session:
                 lines.append('playtest_boundary: ' + ' '.join('%s=%s' % (k, v) for k, v in row.items() if v != '?'))
             if self.boundary_truncated:
                 lines.append('playtest_boundary_summary_truncated: first32 shown; all received records remain in records.log')
+        if self.crew_proof_rows:
+            lines.append('crew_proof_scope: read-only callback/order/receipt/reader observations; no completion-instance or native uniqueness PASS; raw arguments and state excerpts remain in records.log')
+            for row in self.crew_proof_rows:
+                lines.append('crew_proof: ' + ' '.join('%s=%s' % (k, v) for k, v in row.items() if v != '?'))
+            if self.crew_proof_truncated:
+                lines.append('crew_proof_summary_truncated: first96 shown; all received records remain in records.log')
         if self.culture_points:
             lines.append('culture_diagnostic_points: ' + ', '.join('%s=%d' % kv for kv in self.culture_points.most_common(16)))
             lines.append('culture_diagnostic_scope: optional bounded observations; handler return is not committed acceptance; carrier plan is not measured final GPP')

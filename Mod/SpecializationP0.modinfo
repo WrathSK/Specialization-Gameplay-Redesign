@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="438">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="439">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B411.438：项目资格未知时保留现有入口，确认失效仍撤销；启动和结算保持严格校验。</Description>
+    <Description>B412.439：独立只读施工队完成证据探针；保留原有发放与重复保护规则。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -174,6 +174,7 @@
       <File>PerformanceCounters.lua</File>
       <File>EventTimingDiagnostics.lua</File>
     <File>PlaytestBoundaryDiagnostics.lua</File>
+    <File>CrewCompletionDiagnostics.lua</File>
       <File>RuntimeAuditCore.lua</File>
       <File>UI/RuntimeAudit.lua</File>
       <File>UI/RuntimeAudit.xml</File>
@@ -508,6 +509,7 @@
   <Files>
     <File>EventTimingDiagnostics.lua</File>
     <File>PlaytestBoundaryDiagnostics.lua</File>
+    <File>CrewCompletionDiagnostics.lua</File>
     <File>Data/InternalCarrierPillage.sql</File>
     <File>Restructuring.lua</File>
     <File>RestructuringModel.lua</File>
