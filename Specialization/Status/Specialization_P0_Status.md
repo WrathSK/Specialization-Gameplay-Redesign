@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0895
+Status Revision: S0896
 Implementation Build: source B412.439 / modinfo439; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: CREW_PROOF_PROBE_LOCAL_READY_REVIEW_ENTRY_NEXT
+Work State: B412_NATIVE_PROBE_AND_EXTERNAL_REVIEW_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Probe and external-review entry ready — S0896
+
+2026-11-06 Owner-requested order is complete:the isolated probe was implemented/tested/published first,then the [targeted external-review entry](../Reports/Proposals/Pre_U5_External_Review_Handoff.md) was prepared. Source is **B412.439**,commit`b8622426a50cef08beff6253bcf9de77a10944a6`;review baseline is`fb7be65b664b78f2c692cdc9d661511f37823b2e`. The runtime review diff is30files/1195insertions/167deletions,not a new all-repository audit. The entry fixes scope,authority,actual source/test owners,evidence/known NOT_PASS and native limits,and a small Owner checklist. It explicitly separates observation ordering from native completion-instance proof and distinguishes source readiness from deployment/native acceptance.
+
+Probe local gate remains103selectedPASS(22new+81retained),223Lua51/25XML/5artdef/346runtime and1326existing guards;preparing this documentation changes no runtime/test/tool bytes. Probe default is enabled in source with no P0 activation;native events still have not run. Collector launcher was read,not executed,and resolves to the develop collector. **Recorded live remains B399.426;B412 has not been deployed.** Current-build new-campaign restriction inherited from Pre receipt changes. No external audit was sent/performed,no game/socket/native probe,main/PR/U5/HD adaptation or deployment occurred.
+
+User decision:none for completed preparation;deployment needs separate explicit instruction. User testing:Owner's multi-Crew evidence later,using the entry's same-project simultaneous completion and bounded cancellation/load checklist after deployment. Primary next:STOP;await external review/evidence or explicit deployment direction;do not relabel S7d6/PU07/P3 native and migration gaps as PASS.
 
 ### Crew completion probe ready locally — S0895
 

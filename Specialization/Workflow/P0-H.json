@@ -11,7 +11,7 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0895",
+    "status": "S0896",
     "runtime": "B412.439 / modinfo439",
     "military": "D0037",
     "harbor": "D0037",
@@ -85,6 +85,11 @@
       "path": "DevelopmentTests/test_b412_crew_observation.py",
       "kind": "full",
       "reason": "22new scope/retirement/actual owner-equivalence/collector tests."
+    },
+    {
+      "path": "Specialization/Reports/Proposals/Pre_U5_External_Review_Handoff.md",
+      "kind": "full",
+      "reason": "Requested fixed-source targeted external-review handoff;not authority or performed review."
     }
   ],
   "dependencies": [
@@ -111,6 +116,6 @@
   "result": {
     "local": "103selectedPASS;22new+81retained;223Lua51/25XML/5artdef/346runtime;0new alarms. Strict S7d6 ambiguity retained,not repaired.",
     "native": "NOT_RUN;source readiness only,no socket/game/deployment/native proof.",
-    "report": "Specialization/Status/Specialization_P0_Status.md#crew-completion-probe-ready-locally--s0895"
+    "report": "Specialization/Status/Specialization_P0_Status.md#probe-and-external-review-entry-ready--s0896"
   }
 }
