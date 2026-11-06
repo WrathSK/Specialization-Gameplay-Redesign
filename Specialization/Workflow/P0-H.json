@@ -11,95 +11,116 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0886",
-    "runtime": "B409.436 / modinfo436",
+    "status": "S0888",
+    "runtime": "B410.437 / modinfo437",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "SelectedA PU07 source attribution/local delivery complete;known-city-only errors,full first proof,unattributed explicit first-stream stop,0new persistence/HD dependency/events. Stop at this scope;native/post-fault restore not certified.",
+  "goal": "PU08 mandatory exit/return responsibilities independent of successful Start;confirmed exact Training cleanup;then continue dependency-ready authorized Pre work.",
   "implementation_authorized": true,
   "context": [
     {
+      "path": "Mod/RuntimeComposition.lua",
+      "kind": "full",
+      "reason": "Protected startup,mandatory callbacks and original registration guards."
+    },
+    {
+      "path": "Mod/Gameplay.lua",
+      "kind": "full",
+      "reason": "Actual fixed duty declaration and complete original ordered Startup."
+    },
+    {
+      "path": "Mod/ExpeditionTraining.lua",
+      "kind": "full",
+      "reason": "Actual matching training source cleanup and run result."
+    },
+    {
       "path": "Mod/CityProgressionStore.lua",
       "kind": "full",
-      "reason": "Sole first-history/record owner;source routing,admission,reference,diagnostic and save guards."
+      "reason": "Unchanged actual exit/reference/ticket/return phase authority."
     },
     {
-      "path": "Mod/ClaimProjects.lua",
+      "path": "Mod/LegacyCleanup.lua",
       "kind": "full",
-      "reason": "Actual candidate/timer/receipt consumer;existing state must stay independent of unattributed first stream failure."
+      "reason": "Unchanged11exact families and mandatory runners/posts."
     },
     {
-      "path": "Mod/EffectiveFacts.lua",
+      "path": "Mod/ResearchSupport.lua",
       "kind": "full",
-      "reason": "Actual existing identity read and diagnostic FailureReport consumer;no broad eligibility fault."
+      "reason": "Representative actual physical carrier owner."
     },
     {
-      "path": "DevelopmentTests/test_pu07a_completion_scope.py",
+      "path": "Mod/CarrierSet.lua",
       "kind": "full",
-      "reason": "FixedB408 scope/first proof and instrumentation;identify superseded broad-hold characterizations."
+      "reason": "Exact support IDs/native presence and withdrawal."
     },
     {
-      "path": "DevelopmentTests/test_store_write_boundaries.py",
+      "path": "Mod/RuntimeWork.lua",
       "kind": "full",
-      "reason": "Actual Store,history,write/CAS/admission/Claim/cold regression fixtures."
+      "reason": "Foreign target scheduling/ACK,bounded retry."
     },
     {
-      "path": "Specialization/Reports/Proposals/Claim_Completion_Recovery_Proposal.md",
-      "kind": "section",
-      "reason": "Owner selectedA only;B remains unapproved.",
-      "selector": "## 3. A — Complete the existing source route first"
+      "path": "Mod/ExpeditionSpyGate.lua",
+      "kind": "full",
+      "reason": "Existing training HOLD and source/receipt semantics."
     },
     {
-      "path": "Specialization/Reports/Technical/Engine_Reference.md",
-      "kind": "section",
-      "reason": "Qualified native/context source route and evidence limits.",
-      "selector": "## Source index and Raw locations"
+      "path": "Mod/ExpeditionSpyStore.lua",
+      "kind": "full",
+      "reason": "Existing exact save/readback authority."
     },
     {
-      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-      "kind": "section",
-      "selector": "### Runtime integration contract — P01–P10",
-      "reason": "Evidence-driven scoped source and failure handling;no persistence extension."
+      "path": "DevelopmentTests/test_refactor_s3.py",
+      "kind": "full",
+      "reason": "Actual Startup/component regressions."
     },
     {
-      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
-      "kind": "section",
-      "selector": "## 3. 共同成长与永久投资 — PROG",
-      "reason": "Unchanged first valid completion,LegacyClaim and ownership boundaries."
+      "path": "DevelopmentTests/test_refactor_s8c5c.py",
+      "kind": "full",
+      "reason": "Actual unchanged exact legacy cleanup and failed Start."
+    },
+    {
+      "path": "DevelopmentTests/test_expedition_training.py",
+      "kind": "full",
+      "reason": "Original training/receipt/native operation regressions."
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "CurrentA approval,RIC and explicit native/post-fault limits."
+      "reason": "Owner continuation,RIC and retained source/native gates."
     },
     {
-      "path": "DevelopmentTests/test_pu07_source_attribution.py",
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "selector": "### Accepted convergence boundaries — 2026-11-04",
+      "reason": "Required failed-Start cleanup and no new ownership/recovery semantics."
+    },
+    {
+      "path": "DevelopmentTests/test_pu08_cleanup.py",
       "kind": "full",
-      "reason": "Actual source/proof/error scope and independent consumers,healthy values/work;explicit native/cold limits and no new saved witness."
+      "reason": "Actual required cleanup/Store/Training tests and qualified evidence boundaries."
     }
   ],
   "dependencies": [
-    "Keep original Store proof and source/reference lifecycle;fixed Claim independent.",
-    "Native source usage is context/version evidence,not all-readers-fail recovery."
+    "Accepted PU08/A10/A17;actual29exit/23return map;no optional observer gates.",
+    "Retain Store exact endpoint/tickets,successful siblings,bounded retries,existing training/native receipt rules."
   ],
   "old_writers": [
-    "Store retains first-selection and current root writes;no new writer or journal."
+    "All individual effect/history/action owners retain exact cleanup;Store retains lifecycle authority."
   ],
   "conditional_context": [],
   "non_scope": [
-    "B persistence design/implementation",
-    "PU08/PU09 or other packages",
-    "Native probes/game testing/deployment/main",
-    "Gameplay first rule,ownership,Tier,HD runtime dependency,GC"
+    "B persistence or first-history recovery",
+    "HD decoupling/Tier/O5/O6",
+    "New ownership rules,GC,probes/game/deployment/main/U5",
+    "S9/S10 deletion"
   ],
   "validation": [
-    "Actual Store+Claim source/first proof composition,known-city and unknown-source0cross-city writes.",
-    "Retained healthy byte/work,admission/Claim/reference/money source checks;document superseded broad-hold characterizations without changing frozen assertions.",
-    "Restricted Lua51,XML/package/static/context/privacy/source identity;no native game/probe."
+    "T01/T05/T06/T08 actual producer/owners,failed/skipped Start with old installed effects,Training busy/throw/readback,no replay.",
+    "Original full start order,exact legacy cleanup,ordinary/reference/sibling isolation;restricted Lua51/package/context/privacy;no native PASS."
   ],
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -107,8 +128,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "80selectedPASS,34new+46retained;6B408synthetic counterexamples.5old characterizations superseded NOT_PASS;prior4metadata comparison failures inherited.222Lua51/25XML/5artdef/345runtime,0new alarms.",
-    "native": "NOT_RUN;no probe/game/deployment;failure-time source availability and post-fault cold history not certified.",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu07-source-a-evidence-and-limits--s0886"
+    "local": "95selectedPASS,26new+69retained;6fixedB409 synthetic counterexamples;2inherited assertions NOT_PASS,not changed.222Lua51/25XML/5artdef/345runtime,0new alarms.",
+    "native": "NOT_RUN;no native probe/game/deployment.",
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu08-evidence-and-limits--s0888"
   }
 }

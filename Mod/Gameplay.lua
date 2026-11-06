@@ -848,7 +848,47 @@ composition.Run('FactChanges',{}, {'FactChanges'},function()
  local event=P.Field(Events,'GameCoreEventPublishComplete');if event and event.Add then event.Add(drain)end
 end)
 
-composition.Run('CityProgressionStore',{'CityIdentityDefinition','FactChanges'},{'CityProgressionStore'},function() include('CityProgressionStore');SPCCityProgressionStore.Start(P,shared) end)
+composition.Run('CityProgressionStore',{'CityIdentityDefinition','FactChanges'},{'CityProgressionStore'},function()
+ include('CityProgressionStore');SPCCityProgressionStore.Start(P,shared)
+ -- Current production duties only:29 exits,23 returns. Exact cleanup stays in
+ -- each existing owner; retired positive writers/optional observers add no gate.
+ for _,row in ipairs({
+  {'LegacyCleanup','LegacyCleanup'},
+  {'ResearchTraditionEffects','ResearchTradition'},
+  {'DistrictCompleteness',nil,'DistrictCompleteness'},
+  {'InvestmentAction',nil,'InvestmentAction'},
+  {'ResearchSupport','ResearchSupport'},
+  {'Lv2Housing','Lv2Housing'},
+  {'Lv2GPP','Lv2GPP'},
+  {'NetworkBridge','NetworkBridge','NetworkBridge'},
+  {'IndustrySupport','IndustrySupport','IndustrySupport'},
+  {'CrewProjects','CrewProjects','CrewProjects'},
+  {'ResearchInfrastructure','ResearchInfrastructure'},
+  {'ResearchCross','ResearchCross'},
+  {'ResearchApply','ResearchApply'},
+  {'ResearchChair','ResearchChair'},
+  {'Standardization',nil,'Standardization'},
+  {'StandardizationEffects','StandardizationEffects','StandardizationEffects'},
+  {'GreatWorkFacts','GreatWorkFacts','GreatWorkFacts'},
+  {'CultureAesthetic','CultureAesthetic','CultureAesthetic'},
+  {'Dialogue',nil,'Dialogue'},
+  {'GreatWorkAdjacency',nil,'GreatWorkAdjacency'},
+  {'CultureMeaning','CultureMeaning','CultureMeaning'},
+  {'CultureInspiration','CultureInspiration','CultureInspiration'},
+  {'ClaimProjects','ClaimProjects'},
+  {'EngineeringStudyProjects','EngineeringStudy','EngineeringStudy'},
+  {'IndustryWonderEffects','IndustryWonderEffects','IndustryWonderEffects'},
+  {'Commerce','Commerce','Commerce'},
+  {'CapitalInvestment','CapitalInvestment','CapitalInvestment'},
+  {'DevelopmentInvestment','DevelopmentInvestment','DevelopmentInvestment'},
+  {'DialogueProjects','DialogueProjects','DialogueProjects'},
+  {'DialogueEffects','DialogueEffects','DialogueEffects'},
+  {'CultureInsightsTourism','CultureInsightsTourism','CultureInsightsTourism'},
+  {'CultureNetwork','CultureNetwork','CultureNetwork'},
+  {'ExpeditionTraining','ExpeditionTraining'},
+  {'Restructuring','Restructuring','Restructuring'}
+ })do composition.RequireCleanup(row[1],row[2],row[3])end
+end)
 
 composition.Run('LegacyCleanup',{'CityProgressionStore'},{'LegacyCleanup'},function()
  -- Register before include/Start: a failed owner must never remove the mandatory exit gate.

@@ -297,9 +297,25 @@ function SPCExpeditionTraining.Start(P,shared)
  end)
  hook('CityTransfered',function()current(false)end)
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ExpeditionTraining',function(c,loss)
-  local pid=loss.origin.owner;local s=T.Read(pid)
-  if s.phase=='TRAINING' and s.sourceCity==loss.origin.cityID then
-   run(pid,function()shared.CityProgressionStore.RemoveOwned(c,loss,{M.MARKER});error('TRAINING_SOURCE_LOST')end)
-  end
+  local pid=loss.origin.owner
+  local ok,value=run(pid,function()
+   local s=T.Read(pid);assert(not s.blocked,'TRAINING_STATE_UNAVAILABLE')
+   -- Physical ownership is independent of the current reservation/profession.
+   shared.CityProgressionStore.RemoveOwned(c,loss,{M.MARKER})
+   if s.phase=='TRAINING'and s.sourceCity==loss.origin.cityID then
+    assert(s.owner==pid and s.x==loss.origin.x and s.y==loss.origin.y,'TRAINING_SOURCE_CHANGED')
+    local current=T.Read(pid) -- RemoveOwned crosses a native notification boundary.
+    assert(not current.blocked and current.phase=='TRAINING'and current.owner==s.owner
+     and current.sourceCity==s.sourceCity and current.x==s.x and current.y==s.y
+     and current.trainingToken==s.trainingToken and current.sourceRef==s.sourceRef,'TRAINING_EXIT_CHANGED')
+    T.Hold('TRAINING_SOURCE_LOST') -- existing lawful source-loss transition
+    local after=T.Read(pid)
+    assert(not after.blocked and after.phase=='HELD'and after.owner==pid
+     and after.sourceCity==s.sourceCity and after.x==s.x and after.y==s.y
+     and after.trainingToken==s.trainingToken and after.sourceRef==s.sourceRef,'TRAINING_EXIT_UNCONFIRMED')
+   end
+   return true
+  end,function()return false end) -- an unrelated saved team is never held by this cleanup's failure
+  return ok==true and value==true
  end)end
 end

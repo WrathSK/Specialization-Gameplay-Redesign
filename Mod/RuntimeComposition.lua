@@ -6,6 +6,27 @@ function M.Native(source)return natives[source] or source end
 local function failed(entry)return entry.state=='FAILED' or entry.state=='SKIPPED_DEPENDENCY'end
 function M.New(shared)
  local d={entries={},order={}};shared.StartStatus=d.entries
+ -- Explicit production duties are reserved before their owners start. No
+ -- discovery, restart or replacement cleanup: each owner supplies its old body.
+ local cleanup={RegisterExit={},RegisterReturn={}};local cleanupStore
+ function d.RequireCleanup(name,exit,returned)
+  assert(not d.sealed and not d.entries[name],'CLEANUP_REQUIREMENT_LATE')
+  local store=assert(shared.CityProgressionStore,'CLEANUP_STORE_UNAVAILABLE')
+  assert(not cleanupStore or cleanupStore==store,'CLEANUP_STORE_CHANGED');cleanupStore=store
+  local function reserve(key,label)
+   if label==nil then return end
+   assert(type(label)=='string'and #label>0 and not cleanup[key][label],'CLEANUP_REQUIREMENT_CONFLICT')
+   local slot={owner=name};cleanup[key][label]=slot
+   assert(type(store[key])=='function','CLEANUP_REGISTRY_UNAVAILABLE')
+   store[key](label,function(...)
+    local entry=d.entries[name]
+    assert(shared.CityProgressionStore==store and entry and entry.state=='OK'and type(slot.fn)=='function',
+     'CLEANUP_OWNER_UNAVAILABLE '..name)
+    return slot.fn(...)
+   end)
+  end
+  reserve('RegisterExit',exit);reserve('RegisterReturn',returned)
+ end
  function d.Run(name,deps,exports,fn,fields)
   assert(not d.entries[name],'START_DUPLICATE_ENTRY')
   local entry={state='STARTING'};d.entries[name]=entry;d.order[#d.order+1]=name
@@ -47,10 +68,17 @@ function M.New(shared)
    if not owner or type(owner[key])~='function'then return end
    local native=owner[key];local wrapped=function(label,fn,...)
     assert(type(fn)=='function','START_REGISTRATION_TYPE')
-    return native(label,function(...)
+    local guarded=function(...)
      assert(not failed(entry),'STARTUP_FAILED_'..name)
      return fn(...)
-    end,...)
+    end
+    local slots=owner==cleanupStore and cleanup[key]
+    local slot=slots and slots[label]
+    if slot then
+     assert(not d.sealed and slot.owner==name and not slot.fn,'CLEANUP_REGISTRATION_CONFLICT')
+     slot.fn=guarded;return
+    end
+    return native(label,guarded,...)
    end
    methods[#methods+1]={owner,key,native,wrapped};owner[key]=wrapped
   end

@@ -621,9 +621,9 @@
       "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
     },
     "Mod/ExpeditionTraining.lua": {
-      "sha256": "8d8134c648309be70affbe3c0062aa3ed632b62fb5b1e846f42823b202f01083",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "sha256": "c5724a9b9c96508948be918d57c369139d75b882bd2a303f92bce5d11a3fa46f",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
       "sha256": "e30a3fbe5c4c7e5fc823bd1d60cc910c72904af89c3e8fec1c3f44e4a1dc84f1",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "1040447c5b04c7ae85e3dc31713cc38b5133a13173066ab469ddb81ede59ced8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
-      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
+      "sha256": "dbfa4582a5d82c081d922d0ad75c2246f15a04543d9207f1fecf8561076cf9ee",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "69add1e33773a37738febf708892ebc9bc3a83dfee12e695de832878c612e259",
+      "sha256": "8e8e67d5f22a11af4bd7eb3059b03ab19a6072e89ae540eed88a3db793cb5e25",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0886/B409.436 selectedA:normal source retained;one qualified point membership for error attribution,full original proof mandatory;0cross-city unbound writes,explicit session first-stop.80localPASS incl34new;native/cold fault limitsOPEN,Bunapproved.2labels only,no deployment."
+      "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "90ac33a2e8180f041a7d197a120effddc9486d94cce87ca8136bf76343286a1a",
+      "sha256": "a89d7d4ac40d35af6db436a3bc00e10698b00f366710befd0bae712805c7ea66",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0886/B409.436 selectedA:normal source retained;one qualified point membership for error attribution,full original proof mandatory;0cross-city unbound writes,explicit session first-stop.80localPASS incl34new;native/cold fault limitsOPEN,Bunapproved.2labels only,no deployment."
+      "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1566,9 +1566,9 @@
       "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/RuntimeComposition.lua": {
-      "sha256": "ae132348aee0a8b5829f415eedff34ad4b10ea0f72624538228bf3e5ac6b2fc3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
-      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
+      "sha256": "9b85b003e8b54c4cdbb12e2d368ce537bfe7c703e55a97c08b89ef3aab93577b",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
     },
     "Mod/SafeCallbacks.lua": {
       "sha256": "59f119acc1a5c0171607de9be6d94e05f230b34b4cb316af545ef4a74b87c321",
@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0886/B409.436:1functional Store file+2labels reviewed.80selectedPASS,34new+46retained;6injected before failures;healthy8/20/40bytes/work unchanged,27native-double calls same total.5superseded tests NOT_PASS/prior4metadata failures inherited;222Lua51/25XML/5artdef/345runtime,0new alarms. A complete locally,stopPU07;no native/B/deployment.",
-  "source_runtime": "B409.436 / modinfo436;not deployed;selectedA local delivery only",
-  "tested_source_snapshot_sha256": "31af6d068bf744000e93fd67fbadf85dc60f9dec7fbe2dff7d2a0f95744c76e5"
+  "source_review": "S0888/B410.437:3functional runtime+2labels reviewed,required52fixed slots/34owners;95selectedPASS incl26new,6counterexamples,2old-fixture NOT_PASS;222Lua51/25XML/5artdef/345runtime,0new alarms. Continue ready Pre,not native/main/deploy.",
+  "source_runtime": "B410.437 / modinfo437;not deployed",
+  "tested_source_snapshot_sha256": "73ce070b96ab4080eb7c3fd26ebe1038453dfc23cea99c0292a6786d80b5b503"
 }

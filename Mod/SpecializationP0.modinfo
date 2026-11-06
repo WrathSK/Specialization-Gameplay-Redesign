@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="436">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="437">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B409.436：修复首次专业确认的城市定位和错误范围，维持完整区域完成证明。</Description>
+    <Description>B410.437：必要退出与返回责任先于模块启动登记；训练清理须明确确认。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
