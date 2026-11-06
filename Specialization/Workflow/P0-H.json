@@ -11,14 +11,14 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0882",
-    "runtime": "B407.434 / modinfo434",
+    "status": "S0884",
+    "runtime": "B408.435 / modinfo435",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "PU06 final Store→Commerce→Capital mode/provenance contract locally complete;new campaign for Capital3. Continue PU07 Claim root prerequisite;no native/main/deployment.",
+  "goal": "PU07a safe family/fixed Claim/callback scope verified;remaining unattributable first-history source/save scope requires Owner. Stop after commit/push;PU07not complete/PU09not begun.",
   "implementation_authorized": true,
   "context": [
     {
@@ -92,6 +92,11 @@
       "path": "DevelopmentTests/test_pu06c_capital_terms.py",
       "kind": "full",
       "reason": "Actual financial owners/shared R,typed source/terms,strict cash/fresh VM/reentry,normal matrix and explicit UI/native fixture profiles."
+    },
+    {
+      "path": "DevelopmentTests/test_pu07a_completion_scope.py",
+      "kind": "full",
+      "reason": "Actual Store+Claim scoped callback and strict first/admission guards;explicit remaining unknown-source characterization;fixed healthy differential."
     }
   ],
   "dependencies": [
@@ -117,8 +122,8 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "113unique selectedPASS,37new+76retained;240financial values same;3semantic failures reproduced on fixed source.222Lua51/25XML/5artdef/345runtime,0new alarms.",
-    "native": "NOT_RUN;new campaign required,not deployed",
-    "report": "Specialization/Status/Specialization_P0_Status.md#pu06c-evidence-and-limits--s0882"
+    "local": "51selectedPASS,24new+27retained;3semantic baseline failures reproduced.1frozen method4subtest failures unchanged NOT_PASS outside selection.222Lua51/25XML/5artdef/345runtime,0new alarms.",
+    "native": "NOT_RUN;not deployed;PU07remaining source/save gateOPEN",
+    "report": "Specialization/Status/Specialization_P0_Status.md#pu07a-evidence-and-limits--s0884"
   }
 }

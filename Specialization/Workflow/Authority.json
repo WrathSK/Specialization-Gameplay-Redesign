@@ -10,8 +10,8 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0882",
-    "runtime": "B407.434 / modinfo434",
+    "status": "S0884",
+    "runtime": "B408.435 / modinfo435",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "491517093de18c8b151053724e316f1e08228995",
-  "current_batch": "B407_PU06_LOCAL_COMPLETE_CONTINUOUS",
-  "next_batch": "Continue PU07 Claim Store sticky completion-error source/reference prerequisite under continuous grant after verified commit/push. PU05b native attribution independent OPEN;no main/deployment/U5 without gates.",
+  "current_batch": "B408_PU07A_LOCAL_COMPLETE_SOURCE_SAVE_CHECKPOINT",
+  "next_batch": "STOP after verified commit/push:remaining PU07 unattributable true-first source proof or minimal persistence extension requires Owner scope decision. PU07not closed;PU09not authorized past this gate. Preserve strict guard/old errors;no deployment/main/U5.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B399.426 temporary develop from 491517093de18c8b151053724e316f1e08228995;344/344 MATCH;SHA256 7f1eae6b8ef33a0c865cadb651428fa79b5f6bf98fffb6601b43afcc75278077;B398 outgoing and B307 stable backups MATCH;no pending transaction;receipt B399.426-4915170-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "Current continuation authorizes source work and local verification only;deployment/main/game launch remain excluded.",
-  "context_review_status": "S0882:113unique selectedPASS incl37new and76retained;true Store→Commerce→Capital,before3semantic failures,240financial comparisons,strict money/cold/UI/restricted guards.222Lua51/25XML/5artdef/345runtime,0new alarms.",
+  "context_review_status": "S0884:51selectedPASS incl24new;actual instrumented Store+Claim,3fixed-baseline counterexamples,8/20/40healthy byte/work differential.1inherited method/4subtest failures unchanged NOT_PASS outside selection.222Lua51/25XML/5artdef/345runtime,0new alarms;PU07remainingOPEN.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#pu06c-evidence-and-limits--s0882",
-  "source_status": "Canonical B407.434;tested source SHA256 a06e2ed1cef9a33dde71a20d593245d3f775cb372836cf30ad3d18393d42c349;Capital3/Crew receipt2 require new campaign;bind containing commit. Live B399.426 unchanged,not deployed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#pu07a-evidence-and-limits--s0884",
+  "source_status": "Canonical B408.435;tested source SHA256 ccbd2e592a2a5bfcaac17d97bff7570e52c2507703f5fb1364d3fbbb26d8f6c9;bind containing commit. Safe PU07a subset only,remaining source/save gateOPEN. Live B399.426 unchanged;no deployment;Capital3/Crew receipt2 require later new campaign.",
   "continuation_authorization": "Explicit Owner:持续推进;stop for external-audit checkpoints or decisions/problems requiring Owner. Replaces routine per-slice reapproval,not semantic/native/deployment/main gates."
 }

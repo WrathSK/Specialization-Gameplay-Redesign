@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="434">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="435">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B407.434：资本投资按模式核验信誉并锁定来源；稳健签约不依赖无关信誉，风险未知不签约。合同格式更新须新档。</Description>
+    <Description>B408.435：认领候选不再受无关区域完成回调污染；真正首次完成来源不明的保护保留，完整归属修复尚待门禁。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

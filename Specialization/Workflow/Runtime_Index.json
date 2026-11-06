@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "9340c1f6541fa5f20b832730cd3b3c82deea0db98d8993297de15d2c84178c23",
+      "sha256": "afdf40b5c8f7a25bb092291fd76df207662adeb64e4849741c58cf85ee1e095d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
+      "provenance": "S0884/B408.435 PU07a safe subset:construction-only owner/fixed Claim guard,family prefilter,contained pending errors.51selectedPASS incl24new;remaining unassigned first scopeOPEN;generic admission holds/old errors retained.2labels only;no native/deployment."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "952798ffa162b4513dda5dce796b40cabfb9d2ce40b7343cee6fcf97cc6009e5",
+      "sha256": "5394743de3f4cacb0d74d3039e67d42c8cd53013d1f66dfcb0347d4e1dacf90b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0882/B407.434 PU06c:typed per-mode terms,shared current R and locked source,Capital3 requires new campaign.113local PASS incl37new,strict once-only cash retained;exact legacy test-only profiles documented.2labels only;no deployment/native claim."
+      "provenance": "S0884/B408.435 PU07a safe subset:construction-only owner/fixed Claim guard,family prefilter,contained pending errors.51selectedPASS incl24new;remaining unassigned first scopeOPEN;generic admission holds/old errors retained.2labels only;no native/deployment."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "1369166a372cd4e37e77f86bf85628894d46bfecf606a07567a7d16fcd47ce32",
+      "sha256": "6042804c6b2dbf8e0d2aac0e7a66b8c2ef129937dc4ec07d4564cea24ccc70d4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0882/B407.434 PU06c:typed per-mode terms,shared current R and locked source,Capital3 requires new campaign.113local PASS incl37new,strict once-only cash retained;exact legacy test-only profiles documented.2labels only;no deployment/native claim."
+      "provenance": "S0884/B408.435 PU07a safe subset:construction-only owner/fixed Claim guard,family prefilter,contained pending errors.51selectedPASS incl24new;remaining unassigned first scopeOPEN;generic admission holds/old errors retained.2labels only;no native/deployment."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1731,7 +1731,7 @@
       "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
     }
   },
-  "source_review": "S0882/B407.434 PU06c:3functional files and2labels reviewed;113unique selectedPASS incl37new;actual owners,240financial outputs same,strict cash/cold/UI/restricted guards;222Lua51/25XML/5artdef/345runtime,0new alarms. PU06 local complete,PU07 next;PU05bOPEN/live unchanged.",
-  "source_runtime": "B407.434 / modinfo434;not deployed;Capital3/Crew receipt2 require new campaign",
-  "tested_source_snapshot_sha256": "a06e2ed1cef9a33dde71a20d593245d3f775cb372836cf30ad3d18393d42c349"
+  "source_review": "S0884/B408.435:1functional Store file and2labels reviewed.51selectedPASS incl24new;3fixed-baseline failures;8/20/40normal byte/work differential.1frozen method4failures unchanged NOT_PASS outside selection.222Lua51/25XML/5artdef/345runtime,0new alarms. PU07remaining source/save gateOPEN;stop for Owner.",
+  "source_runtime": "B408.435 / modinfo435;not deployed;PU07a safe subset only",
+  "tested_source_snapshot_sha256": "ccbd2e592a2a5bfcaac17d97bff7570e52c2507703f5fb1364d3fbbb26d8f6c9"
 }

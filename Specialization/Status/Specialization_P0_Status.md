@@ -1,17 +1,47 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0882
-Implementation Build: source B407.434 / modinfo434; recorded live B399.426 from4915170; stable/main B307.334
+Status Revision: S0884
+Implementation Build: source B408.435 / modinfo435; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: PU06_LOCAL_COMPLETE_CONTINUOUS_NO_DEPLOYMENT
+Work State: PU07A_LOCAL_COMPLETE_REMAINING_SOURCE_SAVE_GATE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+合盖后的恢复检查正常：无残留测试／提交／推送进程、无Git锁，969a5fa与远程一致；原未提交文件均为本片已知改动。随后完成认领事件的安全范围修复，源码 **B408.435 / modinfo435**：无关区域不再读取城市，已固定认领候选不因后续区域回调出错而失效，已知来源错误限于该城。代码与定域本地验证完成，**没有实机验证或部署**。
+
+真正符合条件、但完全无法归属的首次完成事件仍保留原严格保护，**PU07整体未关闭，PU09未开始**。继续彻底消除这一分支的跨城暂停，需要可靠独立来源或扩展最小待核实保存凭据；现计划明确不允许静默增加永久权威，因此按Owner持续推进的停止条件，在本片提交／推送后停下。
+
+### PU07a evidence and limits — S0884
+
+- **LOCAL_SIMULATION_PASS:**51unique selected methods,24new+27retained,0errors/failures/skips. Actual test-instrumented Store plus actual Claim/TimedProjects;non-v01/future/replacement,unknown family,missing/throwing district/city/type,foreign/stale owner,known-target pending scope,bad error text,strict generic admission holds,normal/duplicate/early first,old persisted errors,copied receipts/references/CAS and actual Capital source guards.38observed complete modules/fragments,not full function/path coverage.
+- **Before/result:**on fixed969a5faa4dd79d52f486349b0b8bbed14eb387aa,3expected semantic counterexamples reproduce:unrelated native lookup,fixed candidate poisoning,known-ID coordinate failure poisoning another pending source. Initial two-fixed-candidate reproduction wrote2errors and removed2markers. Repaired missing/unrelated callback writes0to those candidates and preserves both markers/ClaimState.100duplicate missing callbacks plus1000idle Publish events add0candidate writes.
+- **First-history boundaries:**full live completion proof and delivery order remain;early two-district replay uses distinct native-double tiles930/931. Initial fixture incorrectly overwrote one tile;raw failure retained,geometry corrected without weakening live proof. Generic FOUNDATION_ADMISSION_INCOMPLETE still blocks fixed-candidate roots;construction-only context does not bypass it. Old completionError is not cleared or reinterpreted. New8/20/40city differential against fixed969a5fa preserves normal saved values,write counts and0Store-reload writes.
+- **Retained NOT_PASS:**one frozen pre-institutionTurns comparison against cdd3ceb8 has4subtest failures,both before and after this slice;not a new repair failure,not silently PASS. Original test/assertions untouched;excluded from the selected51and preserved in local raw/baseline transcripts. New fixed-source differential covers this slice's current healthy bytes/work. Earlier PU04 health and PU05b native gaps remain OPEN independently.
+- **Work/contract:**one extra bounded existing DistrictReplaces/catalog family read per relevant callback;normal target-native call count unchanged. Early getter failure uses existing owner/ID getters to narrow pending source;unreadable source retains prior owner-scoped admission safeguard. No new native API category,listener,timer,poll,city/building enumeration,shared cache,saved field or schema. Current-build-only/new-campaign Capital3/Crew receipt2 restriction inherited. Native timing,incidence,rendering and full process persistence NOT_RUN.
+- **Static/artifact:**222Lua51,25XML,5artdef,modinfo435,345runtime/344package entries,156own includes;0new/widened alarms. CPython3.14.8/source-built Lupa2.8 Lua51;repository native/SQL doubles,no external DB/game. `local/refactor/PU07a-5ecae19b3b6c4f78b36ea71aa7681818/closure.json`,SHA256 `e3a27aa61cb34eb325b02e419d6f3deff54d8a6dbb7a29632300d0c0de77d54f`,tested source `ccbd2e592a2a5bfcaac17d97bff7570e52c2507703f5fb1364d3fbbb26d8f6c9`,stable during run. Exact suites,all raw/before/inherited transcripts,runner,private writer/storage instrumentation and limits remain local beside/in artifact;static.json has package checks. Re-run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<source-built-lupa>:DevelopmentTests python3.14 <artifact-directory>/rerun.py`;bind `DevelopmentTests/refactor_evidence.py source <artifact> --commit HEAD`. Local file/hash is not a permanent backup;versioned source/tests permit comparable reruns.
+
+### Remaining PU07 source/save checkpoint
+
+The native construction callback carries owner,type,x,y,not cityID. The existing independent DistrictBuildProgressChanged signature and pinned HD Gameplay plot-purchase-city usage are potential source witnesses;their existence does not prove attribution when the required native references are all unreadable. Do not claim no alternative API exists. In the genuinely unattributable case,ignoring the event or clearing its sticky error could promote a later completion as the first. The repaired fixed Claim sets are independent and safe;FIRST_COMPLETION's conservative multi-root hold is explicitly **OPEN_NOT_REPAIRED**.
+
+**Proposed narrow extension,not accepted/implemented:**preserve a bounded minimal pending-evidence receipt for an actually delivered but unattributable qualifying event,with original scalar event/source-cohort identity,so later reliable relevant facts can recover source/order without inventing history or resetting old errors. The receipt itself is not proof of city attribution;UNKNOWN stays unsafe,and transactions/first choice cannot use it as confirmed success. Exact shape,bounds,lifetime,source revalidation and event-driven recovery must be reviewed before implementation. This changes the approved no-new-persistent-authority boundary,so requires an explicit Owner scope decision and formal contract before code. No new event/save field,probe,dependency or rule is authorized by this proposal. If the extension is declined,retain the existing strict abnormal-case guard,leave this remainder/PU09 gate open,and ask Owner whether to continue independent planned slices. No whole-plan re-audit or deployment is requested.
+
+User decision:required only for the remaining PU07 source/save scope;recommend a minimal reviewed recovery-receipt proposal rather than silently dropping an event or guessing first history. User testing:none now;native delta will be defined only after that source contract. Primary next:verified commit/push this safe subset,then STOP at the source/save checkpoint per Owner instruction. No PU08/PU09/main/deployment/U5 while awaiting this decision.
+
+### PU07a runtime impact and gates — S0883
+
+- **Scope/owners:**CityProgressionStore remains sole admission/first-completion/history writer;Claim remains independent marker/timer/receipt owner. Filter reliable non-v0.1 family metadata before native target lookup;known-target errors cannot escape to the generic all-pending callback catch. A construction-only hold may affect only matching-owner roots for which automatic first completion is still relevant;fixed LEGACY_CLAIM candidates do not depend on this event. Generic FOUNDATION_ADMISSION_INCOMPLETE protection stays unchanged.
+- **Limits:**qualified completion with no reliable city attribution still retains the existing conservative first-history guard,not silently ignored. This slice does not close PU07's remaining missing-source evidence requirement or authorize PU09. No new plot-to-city API,extra listener,shared cache,persistence,periodic retry,load-time first inference,ownership gameplay or old-error clearing.
+- **Cost:**one extra bounded existing DistrictReplaces/catalog family read per relevant callback;no new city/building enumeration. Existing missing-source fallback may visit existing workers/pending only for unresolved qualifying or metadata-unknown events;fixed candidate roots are not written. No new workset/capacity/lifetime.
+- **Validation:**actual Store+Claim with explicit native controls;before non-v0.1/qualified missing-target events each persist errors to two fixed candidate roots and revoke both markers. Test relevant/unrelated,nil/throw,owner/reference isolation,normal/duplicate/early true first,unchanged generic admission errors,legacy-error retention and zero idle work. Local characterization of conservative unresolved-first fallback is a retained limitation,not source attribution PASS. Targeted L3 and Lua51/XML/package/context/privacy checks;native incidence/recovery remains NOT_RUN.
+
+User decision:none for this safe subset. User testing:none during implementation;PU07 remaining attribution gate must be reported before dependent work. Primary next:verify/commit/push this subset,then stop if a new source/persistence/native decision is necessary. No deployment/main/U5.
 
 商业信誉的合法退出、用途投影与资本投资消费者衔接已完成代码及定域本地验证，源码 **B407.434 / modinfo434**。风险投资不再把被动金币计算中的数值0当作可靠信誉；稳健签约不因无关信誉读取失败而失效。新合同锁定确认／当前不适用／窄政策零的来源，结算不读取新信誉或追改条款。**Capital格式version3、Crew收据version2，后续部署须新档**。当前未部署、未晋升main；下一片继续认领项目的事件范围根因，不开始U5。
 

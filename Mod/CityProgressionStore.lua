@@ -853,8 +853,16 @@ local function CreateProgressionRecord(P,shared,storage)
    base={schema=1,kind='DEV_FOUNDATION_JOURNAL',owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=c:GetProperty(M.Keys.TOKEN),
     foundationTurn=proof.turn,revision=0,health='TRACKING',specialization='NONE',potential=0},templatesCaptured=true})
  end
- function d.HoldCompletion(reason)
+ function d.HoldCompletion(reason,completionOwner)
   if not ready or fault or not root or root.schema<2 or root.progression~='UNASSIGNED' or root.completionError or root.stage~='ACTIVE' or root.referenceInvalidated then return end
+  if completionOwner~=nil then
+   if (root.current or root.origin).owner~=completionOwner then return end
+   -- Construction cannot change an already fixed Claim candidate set. Generic
+   -- admission failure (no completionOwner) still holds an incomplete foundation.
+   if root.restructuring then
+    if root.restructuring.phase~='UNASSIGNED' or next(root.restructuring.candidates)~=nil then return end
+   elseif root.acquisition and root.acquisition.mode=='LEGACY_CLAIM' then return end
+  end
   local n=cp(root);n.completionError=reason;n.revision=n.revision+1;save(n)
  end
  function d.Complete(pid,c,e)
@@ -2134,17 +2142,28 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  end
  local function constructed(pid,index,x,y)
   if not freshReady or not P.IsTestPlayer(pid)then return end
-  local object=CityManager.GetDistrictAt(x,y);local target=object and object:GetCity()
-  if not target then
-   -- Cannot assign this missing native reference to one city. Retain history and
-   -- hold only fresh UNASSIGNED records, never pick a later completion on load.
-   for _,w in pairs(workers)do w.HoldCompletion('COMPLETION_CITY_UNAVAILABLE')end
-   for _,q in ipairs(pending)do q.error='COMPLETION_CITY_UNAVAILABLE'end
-   return
-  end
-  local q=target and at(target:GetX(),target:GetY());local w=target and find(target)
-  if not q and not w then return end
+  local target,q,w
   local ok,err=pcall(function()
+   -- Exclude unrelated district families before fallible native target reads.
+   local mapped,kind=pcall(function()
+    local info=assert(P.Info('Districts',index),'COMPLETION_TYPE_UNAVAILABLE')
+    return family(info.DistrictType)
+   end)
+   if mapped and not kind then return end
+   local object=CityManager.GetDistrictAt(x,y);target=object and object:GetCity()
+   if not target then
+    -- Unattributable qualified first history is still unsafe. Do not silently
+    -- choose a later first; fixed Claim sets do not depend on this callback.
+    for _,writer in pairs(workers)do pcall(writer.HoldCompletion,'COMPLETION_CITY_UNAVAILABLE',pid)end
+    for _,candidate in ipairs(pending)do
+     if candidate.reference.owner==pid and not candidate.error then candidate.error='COMPLETION_CITY_UNAVAILABLE'end
+    end
+    return
+   end
+   if target:GetOwner()~=pid then return end -- stale/foreign target is not this source
+   q=at(target:GetX(),target:GetY());w=find(target)
+   if not q and not w then return end
+   if not mapped then error(kind,0)end -- unreadable metadata is not a negative fact
    local c,e=completion(pid,index,x,y);if not e then return end
    if q then
     if q.error then return end
@@ -2158,7 +2177,23 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    w.Complete(pid,c,e)
   end)
   if not ok then
-   if q then q.error=tostring(err) elseif w then w.HoldCompletion('COMPLETION_EVIDENCE_UNAVAILABLE')end
+   local printable,text=pcall(tostring,err)
+   local reason=printable and type(text)=='string' and text or 'COMPLETION_CALLBACK_ERROR'
+   if q then if not q.error then q.error=reason end
+   elseif w then pcall(w.HoldCompletion,'COMPLETION_EVIDENCE_UNAVAILABLE',pid)
+   else
+    -- A target getter may fail before find/at can bind a writer. An independent
+    -- owner/cityID narrows pending admission; without it retain the old owner
+    -- safeguard rather than treating the missed first event as known-empty.
+    local scoped,id=false,nil
+    if target then
+     local good,owner,cityID=pcall(function()return target:GetOwner(),target:GetID()end)
+     if good and owner==pid and integer(cityID)then scoped=true;id=cityID end
+    end
+    for _,candidate in ipairs(pending)do
+     if candidate.reference.owner==pid and (not scoped or candidate.reference.cityID==id) and not candidate.error then candidate.error=reason end
+    end
+   end
   end
  end
  local function freshHook(ns,name,fn)
