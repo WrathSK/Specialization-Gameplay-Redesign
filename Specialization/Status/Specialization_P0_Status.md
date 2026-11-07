@@ -1,17 +1,30 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0901
+Status Revision: S0902
 Implementation Build: source/live B413.440 / modinfo440 from02d732e; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: B413_DEPLOYED_AWAITING_OWNER_NATIVE_EVIDENCE
+Work State: B413_FOCUSED_NATIVE_EVIDENCE_RECORDED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Focused B413 native evidence reviewed — S0902
+
+2026-11-06: The Owner confirms that the asset liquidation and configuration buttons, Commercialization, Development Investment, and Claim worked normally, and both Crew units appeared. The live B413.440 package (modinfo440, source `02d732e`) still matches 346/346 files. **USER_GAME_TEST_PASS** applies only to the scenarios below.
+
+- **Crew (T10):** Cities 65536 and 131073 each completed `PROJECT_SPC_CREW_250` (390 production, 260 capacity), for order serials 1 and 2. Gameplay received `(0,65536,235,-1,-9999,-9999,false)` and `(0,131073,235,-1,-9999,-9999,false)`: seven arguments per event, with no truncation. The native cumulative count was 1 before the first handler and 2 before the second. Each emitted one verified CREW_BOUND after binding the unit, removing its order, and reading back the receipt. The consumed count advanced to 2; both order lists were empty on follow-up (records 651–666). T3 zero-progress cancellation and T4 reselection show no premature grant (490, 534–543). At T17 reload, both cities still had one unit and zero queued orders (1500, 1502); no additional grant appeared through T32. The probe captured T10 despite the interval from T3 and stopped at T16 WINDOW_END without truncating its event capture. Its Gameplay samples could read the current UI view, but no independent UI arrival rows were recorded. A native unique completion ordinal, other cumulative counter orders, late duplicates, positive-progress cancellation, and after-load unit use remain unverified.
+- **Capital Investment:** One stable Campus contract and two venture contracts (Theater Square and Industrial Zone) signed at T15 and settled at T25, once each. Actual debit → credit: 5132.203125 → 5324.65625; 3849.15234375 → 4282.1796875; 2886.86328125 → 3211.6328125. Totals: 11868.21875 debited, 12818.46875 credited, 950.25 net. Both ventures succeeded. Payouts match the locked 3.75% and 11.25% rates within the 0.01 native readback tolerance (maximum error 0.002466). The three settlements followed the T17 Gameplay context reload; no extra debit or credit appears through T32 (1169–1186, 1456, 1894–1899). Venture failure and protection were not exercised.
+- **Network and Commercialization:** At T17, Commercialization retained 14 Gold while proof was temporarily unavailable. Three routes were then verified (signal 23 matched), and the view returned to READY with 14 Gold matching the carrier readback (1527, 1539, 1549, 1568). Reputation age was 7 before and after the reload and reached 15 by T25. The 27 CAPITAL_COMMERCE_PENDING entries were refresh reads; they did not block the observed signings or settlements. This does not attribute unrelated treasury income or cover proof transport faults.
+- **Development Investment, asset restructuring, and Claim:** The three T15 development contracts each debited once (30, 135, 57), installed the 50% effect, and closed and withdrew it on T16 building completion (1199–1224, 1314–1345). The repaired button flows have one liquidation receipt at T26 and one configuration receipt at T31 for the same team (1968, 2251); PT019 passes for the observed flows. Claim passed by the Owner's observation; this capture has no dedicated Claim receipt for deeper queue or recovery coverage.
+
+Evidence: B413.440 private collector session `local/diagnostics/B205/session-20261107T041956Z-7ba1e1` (GAME_EXITED, T1–32, 2,346 unique TRAIN records). Four originals were copied byte for byte (1,291,125 bytes) to the ignored `local/legacy-workspace/Specialization/Status/Validation/Evidence/B413_Focused_Playtest_20261106`. Manifest SHA256 `18f516eb7f9f77fa7ba2e2f6b1150196be92b4666a41cabe90b04984578158fe`; records SHA256 `a2719fe4612bf8f7152ab2a898a5c38cd44cfe66f60ae1c6e255dec860a9eca2`. One partial collector frame preceded the reload; the cited completion and settlement rows are intact. A fresh Gameplay context is confirmed; process samples end before T17, so a full process restart is not independently confirmed. The ignored copies and hashes are not an independent long-term backup.
+
+User decision: none. User testing: no repeat of the observed scenarios. Primary next: stop after recording the evidence. Unobserved PU05b and PU07 limits and the deferred L2 performance work remain open. No general U5 acceptance, code change, game launch, external review, new deployment, or main promotion.
 
 ### Approved B413 deployment complete — S0901
 

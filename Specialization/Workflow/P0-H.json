@@ -11,14 +11,14 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0901",
+    "status": "S0902",
     "runtime": "B413.440 / modinfo440",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "Owner-approved B413.440 temporary develop deployment complete;stop for Owner-native evidence.",
+  "goal": "B413 approved deployment and scoped Owner-native evidence recorded;stop at current boundary.",
   "implementation_authorized": true,
   "context": [
     {
@@ -173,8 +173,8 @@
   "result": {
     "local": "262PASS,0failures/errors/skips;8baseline counterexamples;all346Mod files unchanged;inherited historical NOT_PASS retained",
     "external_review": "OWNER_RETURNED:runtime locally sound;D-1 test-only fix verified;review waives another round for exact condition/selection change",
-    "native": "NOT_RUN;game not launched;native attribution/PU07/L2 OPEN",
-    "report": "Specialization/Status/Specialization_P0_Status.md#approved-b413-deployment-complete--s0901",
+    "native": "USER_GAME_TEST_PASS scoped: T10 same-project two-city Crew observed aggregate1→2 and exact binds;T25 three settlements after T17 context reload;Owner button/Commerce/Development/Claim;no general PU05b/PU07/U5 PASS",
+    "report": "Specialization/Status/Specialization_P0_Status.md#focused-b413-native-evidence-reviewed--s0902",
     "deployment": {
       "version": "B413.440 / modinfo440",
       "source_commit": "02d732ef1e999bab1e325057ae7694f51177b3ea",
