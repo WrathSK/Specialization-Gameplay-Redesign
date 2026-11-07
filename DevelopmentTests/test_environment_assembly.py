@@ -59,6 +59,19 @@ def execute_data(db, name):
     db.executescript((MOD / 'Data' / name).read_text(encoding='utf-8'))
 
 
+def matches_profile(action, criteria, hd):
+    name = action.get('criteria')
+    if name is None:
+        return True
+    condition = criteria[name]
+    mod = condition.find('ModInUse')
+    if ([child.tag for child in condition] != ['RuleSetInUse', 'ModInUse']
+            or condition.findtext('RuleSetInUse') != 'RULESET_EXPANSION_2'
+            or mod.text.lower() != HD_ID or mod.get('inverse') not in (None, '1')):
+        raise AssertionError(f'Unmodeled assembly criterion {name}')
+    return hd != (mod.get('inverse') == '1')
+
+
 def replay(db, hd, selected=None):
     root = manifest()
     criteria = {entry.get('id'): entry for entry in root.findall('./ActionCriteria/Criteria')}
@@ -68,16 +81,8 @@ def replay(db, hd, selected=None):
     for action in actions:
         if selected is not None and action.get('id') not in selected:
             continue
-        name = action.get('criteria')
-        if name:
-            condition = criteria[name]
-            mod = condition.find('ModInUse')
-            if ([child.tag for child in condition] != ['RuleSetInUse', 'ModInUse']
-                    or condition.findtext('RuleSetInUse') != 'RULESET_EXPANSION_2'
-                    or mod.text.lower() != HD_ID or mod.get('inverse') not in (None, '1')):
-                raise AssertionError(f'Unmodeled assembly criterion {name}')
-            if hd == (mod.get('inverse') == '1'):
-                continue
+        if not matches_profile(action, criteria, hd):
+            continue
         for file in action.findall('File'):
             if file.attrib:
                 raise AssertionError('Replay requires explicit handling of file priority')
@@ -222,6 +227,50 @@ class Assembly(unittest.TestCase):
                 self.assertEqual(rows(db, "SELECT RequiredBuilding FROM Projects WHERE ProjectType='PROJECT_SPC_DEVELOPMENT_INVESTMENT'"), {
                     ('BUILDING_SPC_DEVELOPMENT_ACCESS',),
                 })
+
+
+class UIBaseSelection(unittest.TestCase):
+    def test_hd_replacements_keep_order_and_official_uses_shipped_bases(self):
+        root = manifest()
+        criteria = {entry.get('id'): entry for entry in root.findall('./ActionCriteria/Criteria')}
+        hd_overrides = {
+            'ProductionPanel': ('UI/CrewProjectOrder.lua', 150100),
+            'UnitPanel': ('UI/ExpeditionSpyUnitPanel.lua', 2000006),
+            'CityPanel': ('UI/TimedProjectCityPanel.lua', 2000005),
+            'CityPanelOverview': ('UI/InstitutionOverview.lua', 2000003),
+            'ActionPanel': ('UI/TimedTurnProbe.lua', 2000004),
+        }
+        shared = {
+            'EspionageChooser': ('UI/ExpeditionSpyChooser.lua', 2000006),
+            'EspionagePopup': ('UI/ExpeditionSpyPopup.lua', 2000006),
+        }
+        for hd, expected in ((False, shared), (True, hd_overrides | shared)):
+            with self.subTest(hd=hd):
+                active = {}
+                for action in root.findall('./InGameActions/ReplaceUIScript'):
+                    if not matches_profile(action, criteria, hd):
+                        continue
+                    context = action.findtext('Properties/LuaContext')
+                    self.assertNotIn(context, active)
+                    active[context] = (action.findtext('Properties/LuaReplace'), int(action.findtext('Properties/LoadOrder')))
+                self.assertEqual(active, expected)
+
+        assets = Path(os.environ['SPC_OFFICIAL_ASSETS'])
+        base = assets / 'Base/Assets/UI'
+        ingame = ET.parse(base / 'InGame.xml')
+        production = ingame.find(".//LuaContext[@ID='ProductionPanel']")
+        self.assertEqual(production.get('FileName'), 'ProductionPanel')
+        self.assertTrue((base / 'Panels/ProductionPanel.lua').is_file())
+        expansion = assets / 'DLC/Expansion2'
+        xp2 = ET.parse(expansion / 'Expansion2.modinfo')
+        replacements = {
+            action.findtext('Properties/LuaContext'): action.findtext('Properties/LuaReplace')
+            for action in xp2.findall('./InGameActions/ReplaceUIScript') if action.get('criteria') == 'Expansion2'
+        }
+        for context in hd_overrides.keys() - {'ProductionPanel'}:
+            expected = f'UI/Replacements/{context}_Expansion2.lua'
+            self.assertEqual(replacements.get(context), expected)
+            self.assertTrue((expansion / expected).is_file())
 
 
 class RestructuringArt(unittest.TestCase):

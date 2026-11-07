@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0928",
-    "runtime": "B432.459 / modinfo459 source candidate",
+    "status": "S0929",
+    "runtime": "B433.460 / modinfo460 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Expose the actual matching-city Restructuring result through phase zero without changing the authoritative role or strict network rules.",
+  "goal": "Route the five HD-dependent UI contexts through existing explicit Gathering Storm profiles.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Restructuring configuration reports actual synchronization — S0928",
+      "selector": "### Official and HD UI bases selected separately — S0929",
       "reason": "Current configuration audit, evidence limits and next boundary"
     },
     {
@@ -51,7 +51,7 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_restructuring_completion.py",
+      "path": "DevelopmentTests/test_environment_assembly.py",
       "kind": "head",
       "selector": 28,
       "reason": "Rerunnable scoped delivery regression"
@@ -74,8 +74,8 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "619 selected Lua 5.1 checks, with 611 passing and eight pre-existing nonpassing cases confirmed on d0e5ca7.",
-    "Public command and real Store, Restructuring, FactChanges, bindings and Bridge isolate the cleanup error and verify exact-scope readback. Identity and network outcomes are tested separately.",
+    "Exact official/HD manifest routing, installed official base scripts, pinned data replay, retained UI adapter and asset checks.",
+    "23 of 24 selected tests pass. The inherited startup-order snapshot failure is reproduced on f86d848.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -319,6 +319,16 @@
       "source_snapshot_sha256": "a502fe9c47afab07f7be87ff7e53c76f1a762881ed3d7a0d4bcf3e66a3d6544c",
       "local_evidence": "local/refactor/B432_Restructuring_Completion-d7cac8739fa149c9b5c91a2392953b89/closure.json",
       "local_evidence_sha256": "4730bc033730e4609090f95ed93e1857d3b0042255fb0e56069787f52c193f7a",
+      "deployed": false
+    },
+    "official_hd_ui_base_selection": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED_WITH_BASELINE_OPEN",
+      "version": "B433.460 / modinfo460",
+      "package_sha256": "afb7a4c64d22f188cec8d71bbc929320cd2bbe669b652cbe55c0f827e3102608",
+      "report": "Specialization/Status/Specialization_P0_Status.md#official-and-hd-ui-bases-selected-separately--s0929",
+      "source_snapshot_sha256": "fd8f67baaf367b9f8dec13681c4277c1df8c4c34bb28acafed90ecf2deaf660b",
+      "local_evidence": "local/refactor/B433_UI_Base_Profile-62fb0c10cb674d89a703444926a774ab/closure.json",
+      "local_evidence_sha256": "0110d856202e02db38d84fdebad877a3901364336c1763fed1bc194489b4c1fc",
       "deployed": false
     }
   }

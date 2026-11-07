@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "0926d0dd602eb2b1543932bf8be1c015d0d9dccec6ef87f33ba3ebef2e6127e5",
+      "sha256": "f58811b3207f032a01741d588eb7fc98f43b629f9265c9b18868b18f8a20fb35",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0928 verifies scoped Restructuring synchronization, selected-city completion reporting and the approved Owner communication update."
+      "provenance": "S0929 records the HD-only selection of five existing UI replacement actions and the shipped official base evidence."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c0d76db0b518bb6ff1b6e357bdf30aebe22b0b7ba9b0ac015bffd6b0334c79f3",
+      "sha256": "323eeef54a2574ec3521fc2ae8f61465c85b66e5549ca0ae558bc14c2e6e5b82",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0928 verifies scoped Restructuring synchronization, selected-city completion reporting and the approved Owner communication update."
+      "provenance": "S0929 records the HD-only selection of five existing UI replacement actions and the shipped official base evidence."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0928
-Implementation Build: source B432.459 / modinfo459, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0929
+Implementation Build: source B433.460 / modinfo460, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RESTRUCTURING_CONFIGURATION_SYNC_LOCALLY_VERIFIED
+Work State: OFFICIAL_AND_HD_UI_BASES_SELECTED_LOCALLY
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Official and HD UI bases selected separately — S0929
+
+Five replacement actions call HD-owned Lua bases. The existing Gathering Storm HD criterion now selects those actions. In the fixed official profile the native Production panel and the Expansion 2 Unit, City, City Overview and Action panels supply the bases. The two Espionage replacements already use official Lua and remain in both profiles.
+
+- **Runtime Impact Contract (L2, T05/T07/T08).** This is a manifest-only selection using the same loaded Mod ID as data assembly. The five existing HD Lua files, replacement order and native hook signatures are identical. The engine supplies the official bases through its ordinary context configuration. There is no runtime profile probe, cache, listener, retry or new data ownership.
+- **LOCAL_SIMULATION_PASS in scope.** The actual SPC manifest selects seven existing overrides in the pinned HD case and two in the official case. Local checks resolve all five shipped base scripts against the installed `InGame.xml` and Expansion 2 manifest. Both fixed database assembly profiles, art, existing HD adapter behavior and scoped Restructuring still pass. Of 24 selected tests, 23 passed. The one historical full startup-list equality assertion also fails on the fixed B432 baseline with the same source difference. The UI test models selection and does not launch game UI or establish native criteria, SPC controls, actions, tooltip values or effects.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `afb7a4c64d22f188cec8d71bbc929320cd2bbe669b652cbe55c0f827e3102608`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_environment_assembly test_refactor_s3.Adapters with SPC_OFFICIAL_DB, SPC_HD_DB and SPC_OFFICIAL_ASSETS set as in S0909`. Tested source SHA256 `fd8f67baaf367b9f8dec13681c4277c1df8c4c34bb28acafed90ecf2deaf660b`. Full local evidence `local/refactor/B433_UI_Base_Profile-62fb0c10cb674d89a703444926a774ab/closure.json`, SHA256 `0110d856202e02db38d84fdebad877a3901364336c1763fed1bc194489b4c1fc`. [Rerunnable regression](../../DevelopmentTests/test_environment_assembly.py)
+
+The next ready work is startup subscription ordering. The fixed no-HD load smoke follows assembly and uses a separate deployment. Specific SPC interactions on the official bases remain the UI adaptation slice (O6). No Owner decision or test is needed at this checkpoint. Live remains B414.441.
 
 ### Restructuring configuration reports actual synchronization — S0928
 
