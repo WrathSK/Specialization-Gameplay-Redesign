@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0926
+Status Revision: S0927
 Implementation Build: source B431.458 / modinfo458, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: EFFECT_DELIVERY_LOCALLY_VERIFIED_PHASE_ZERO_POLICY_DECISION
+Work State: EFFECT_DELIVERY_VERIFIED_RESTRUCTURING_COMPLETION_AUDITED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Restructuring configuration completion audited — S0927
+
+The Owner has not approved gating new network benefits or transaction eligibility on disruption carrier readback. This section supersedes S0926's proposal and its decision-stop framing. Asset configuration establishes a new specialization with the post-liquidation Potential. ACTIVE for that new specialization is calculated from current conditions.
+
+- **Normal path.** The request records configuration intent, verifies the team's one-time destruction, saves the consumption receipt, commits the new identity, removes and reads back the disruption carrier, and reports success. The Store publishes the committed identity fact for the existing synchronous dispatch. The Bridge consumes current identity facts independently of the command outcome. The targeted B399 and B413 collector records show successful configuration, and the B249 review records successful readback. The reviewed native evidence contains no instance of a failed disruption removal. B431 is a source candidate.
+- **Local counterexample.** S0926's direct Store fixture skipped the command and native destruction entry. A new B431 replay exercises the real command through the Lua 5.1 Store/Restructuring/Bindings/Bridge composition. Only the target city's `P.RemoveBuilding` for `BUILDING_SPC_REALLOCATING` is replaced with a no-op. The request reports `REST_MARKER_WRITE_UNCONFIRMED` after one destruction and a committed new identity. Both cases match the same city reference and publish the new Culture ACTIVE III. The scoped synchronization records its failed readback locally, while the legacy phase-zero callback reports no failure to its dispatcher. The city report still calls `SETTLED` complete. A later successful explicit scoped sync also leaves the earlier city error in place. The fixture uses an empty verified route set. This establishes error-propagation and presentation gaps, with no native failure or actual transaction shown.
+- **Minimal repair proposal.** Return the actual matching city's synchronous outcome through `Refresh` and `FactChanged` to the existing dispatch error channel. Report committed identity separately from confirmed native cleanup in the current city report. Clear an outstanding sync error on matching verified readback. Preserve the current Store write sequence, ACTIVE inputs, network rules, authoritative exits and irreversible operation guards. The proposal adds no new recovery work. Source baseline `1a78733`. Replays with CPython 3.14/Lupa Lua 5.1 and the existing exact Store fixture. Private replay `local/refactor/RestructuringCompletion-1a78733/public_configuration.py`, SHA256 `c9917c31ea134ae321404c3c66824a07ef6bcc9a8c852716a9c8e0224aba0fd6`. Result SHA256 `61f80f668648632b6ba14ebd8eb8fde63a069d9577d7b9f5416aacb73325d1bc`.
+
+User decision: none required by the evidence. User testing: none. Primary next: retain the scoped completion repair as a proposal and continue independent authorized work.
 
 ### Effect delivery verified and synchronous transition policy isolated — S0926
 

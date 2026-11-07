@@ -11,21 +11,21 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0926",
+    "status": "S0927",
     "runtime": "B431.458 / modinfo458 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Close effect-recipient verification without changing gameplay or synchronous transition policy.",
+  "goal": "Record the actual configuration completion boundary and a behavior-preserving repair proposal.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Effect delivery verified and synchronous transition policy isolated — S0926",
-      "reason": "Current local checkpoint, measured scope and remaining gates"
+      "selector": "### Restructuring configuration completion audited — S0927",
+      "reason": "Current configuration audit, evidence limits and next boundary"
     },
     {
       "path": "Specialization/Design/Content/Shared_D0060.json",
@@ -303,6 +303,13 @@
       "local_evidence": "local/refactor/O2o-6992496bffa64452a86eb343a168c3fe/closure.json",
       "local_evidence_sha256": "e47c1ca9107745dcabe179fa888375003d905243114688f15df947fbba31d650",
       "deployed": false
+    },
+    "restructuring_completion_boundary_audit": {
+      "status": "STATIC_CONFIRMED_AND_LOCAL_REPRODUCED",
+      "basis": "1a78733",
+      "report": "Specialization/Status/Specialization_P0_Status.md#restructuring-configuration-completion-audited--s0927",
+      "local_evidence": "local/refactor/RestructuringCompletion-1a78733/public_configuration.log",
+      "local_evidence_sha256": "61f80f668648632b6ba14ebd8eb8fde63a069d9577d7b9f5416aacb73325d1bc"
     }
   }
 }
