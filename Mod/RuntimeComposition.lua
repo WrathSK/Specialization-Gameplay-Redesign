@@ -27,7 +27,7 @@ function M.New(shared)
   end
   reserve('RegisterExit',exit);reserve('RegisterReturn',returned)
  end
- function d.Run(name,deps,exports,fn,fields)
+ function d.Run(name,deps,exports,fn,fields,options)
   assert(not d.entries[name],'START_DUPLICATE_ENTRY')
   local entry={state='STARTING'};d.entries[name]=entry;d.order[#d.order+1]=name
   for _,dep in ipairs(deps or {})do
@@ -40,6 +40,14 @@ function M.New(shared)
   for _,slot in ipairs(fields or {})do slots[#slots+1]={slot[1],slot[2],slot[1][slot[2]]}end
   local hooks={};local original={Events=Events,GameEvents=GameEvents,LuaEvents=LuaEvents}
   local handles={} -- native event identity → original callback → guard, within this entry
+  -- Only audited ordinary listeners opt in. Lifecycle evidence may need the
+  -- immediate Add result during construction.
+  local afterStart=options and options.deferNativeSubscriptions==true
+  local deferred=afterStart and {} or nil
+  local function attach(event,guard)
+   hooks[#hooks+1]={event=event,fn=guard}
+   return event.Add(guard)
+  end
   local function facade(source)
    if source==nil then return nil end
    local cache={};local namespace=setmetatable({}, {__index=function(_,key)
@@ -50,12 +58,22 @@ function M.New(shared)
      if method=='Add'then return function(fn)
       assert(type(fn)=='function','START_CALLBACK_TYPE')
       local guard=byfn[fn]
-      if not guard then guard=function(...)if not failed(entry)then return fn(...)end end;byfn[fn]=guard end
-      hooks[#hooks+1]={event=event,fn=guard};return event.Add(guard)
+      if not guard then
+       guard=function(...)
+        if not failed(entry) and (not afterStart or entry.state=='OK')then return fn(...)end
+       end
+       byfn[fn]=guard
+      end
+      if deferred then deferred[#deferred+1]={event=event,fn=guard}
+      else return attach(event,guard)end
      end end
      if method=='Remove'then
       if type(event.Remove)~='function'then return nil end
-      return function(fn)return event.Remove(byfn[fn] or fn)end
+      return function(fn)
+       local guard=byfn[fn] or fn
+       if deferred then deferred[#deferred+1]={event=event,fn=guard,remove=true}
+       else return event.Remove(guard)end
+      end
      end
      return event[method]
     end,__call=function(_,...)return event(...)end})
@@ -94,6 +112,14 @@ function M.New(shared)
   local ok,err=pcall(fn)
   Events=original.Events;GameEvents=original.GameEvents;LuaEvents=original.LuaEvents
   for _,slot in ipairs(methods)do if slot[1][slot[2]]==slot[4]then slot[1][slot[2]]=slot[3]end end
+  local subscriptions=deferred;deferred=nil
+  if ok and subscriptions then
+   ok,err=pcall(function()
+    for _,row in ipairs(subscriptions)do
+     if row.remove then row.event.Remove(row.fn)else attach(row.event,row.fn)end
+    end
+   end)
+  end
   entry.state=ok and 'OK' or 'FAILED'
   if not ok then
    entry.code=tostring(err):match('([A-Z][A-Z0-9_]+)') or 'START_ERROR'

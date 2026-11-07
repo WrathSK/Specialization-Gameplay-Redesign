@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="460">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="461">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B433.460：区分原版与 HD 的界面基底装配。</Description>
+    <Description>B434.461：事实分发和已核对的效果模块在启动确认后接入普通监听。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

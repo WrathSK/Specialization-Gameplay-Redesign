@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "ba1c61208d222703ec53ba3810c3cba0f55eae936388d1ab9f54ac6e722d8f64",
+      "sha256": "df38f67dc5e92017a2334f328718ffaaeb5d101f152ed13a0e206a4ae08de85c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B418.445 / S0912 ordinary Commerce and Network proof responsibility on the existing fact registry."
+      "provenance": "S0930 verifies the audited native subscription boundary and the local evidence for the fixed official-profile load smoke candidate."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "f58811b3207f032a01741d588eb7fc98f43b629f9265c9b18868b18f8a20fb35",
+      "sha256": "91f7a5e9f762b7323738ac6a923f9073445439dd4aec0241cfc4628bda66ebf4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0929 records the HD-only selection of five existing UI replacement actions and the shipped official base evidence."
+      "provenance": "S0930 verifies the audited native subscription boundary and the local evidence for the fixed official-profile load smoke candidate."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "323eeef54a2574ec3521fc2ae8f61465c85b66e5549ca0ae558bc14c2e6e5b82",
+      "sha256": "c7f4485879804cd258ec7b23df4761f12cf4d720f3ba900b02fd4a7397f5099b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0929 records the HD-only selection of five existing UI replacement actions and the shipped official base evidence."
+      "provenance": "S0930 verifies the audited native subscription boundary and the local evidence for the fixed official-profile load smoke candidate."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1566,9 +1566,9 @@
       "provenance": "B271 authorized bounded diagnostics or explicit internal-carrier Pillage=0 decision. Local checks only; not deployed."
     },
     "Mod/RuntimeComposition.lua": {
-      "sha256": "9b85b003e8b54c4cdbb12e2d368ce537bfe7c703e55a97c08b89ef3aab93577b",
+      "sha256": "87b281c2dd2e3b99871bdf03db40124ed0d111b58423fbcd0dcd4f4e4645fa51",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
+      "provenance": "S0930 verifies the audited native subscription boundary and the local evidence for the fixed official-profile load smoke candidate."
     },
     "Mod/SafeCallbacks.lua": {
       "sha256": "59f119acc1a5c0171607de9be6d94e05f230b34b4cb316af545ef4a74b87c321",

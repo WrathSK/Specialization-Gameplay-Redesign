@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0929
-Implementation Build: source B433.460 / modinfo460, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0930
+Implementation Build: source B434.461 / modinfo461, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OFFICIAL_AND_HD_UI_BASES_SELECTED_LOCALLY
+Work State: OFFICIAL_LOAD_SMOKE_CANDIDATE_LOCALLY_VERIFIED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Ordinary effect listeners attach after initialization — S0930
+
+The existing composition guard now attaches opted-in ordinary native event callbacks after their owner constructs successfully. The shared FactChanges drain and seventeen reviewed effect owners opt in. Native callbacks only run once all of that owner's registrations succeed. The CityProgressionStore's early source probes still get their native registration results for founding and ownership evidence. Its predeclared exit and return delegates remain independent of ordinary subscription success.
+
+- **Runtime Impact Contract (L2, T02/T05/T06/T08).** The opted-in owner holds only its existing native registration operations during its constructor, releases the list during startup, then activates the same guarded callbacks. Native names and callback count, cross-owner order, readiness wake, FactChanges phase ranks, seal, exact cleanup IDs, Store and rule ownership remain as before. A thrown attach leaves no runnable callback, even when the native removal double is absent. No new engine read, dispatch scope, queue after Start, saved state, recovery trigger or polling.
+- **LOCAL_SIMULATION_PASS in scope.** The regression exercises early and reentrant dispatch, duplicate callback identity and removal, constructor failure, attachment failure after insertion, and blocked mandatory exit with a successful sibling still active. Real Gameplay/FactChanges phase-zero and scoped Store/ResearchSupport cleanup composition passed. 609 of 615 selected tests passed, with the same six nonpassing cases on the fixed B433 comparison of 613 existing tests. Four additional local PackageVFS entry checks passed using the true Gameplay and BackgroundRoutes roots under restricted native doubles. The package replay has no game database effects or native UI evidence.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `19d86c81e82b28a57f616a6332f29ce67f927b8b8ede2b447cea36fe22aef8e0`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_refactor_s3.Composition test_pu08_cleanup.StoreComposition test_pu03_delivery.ReadAndOrder; optional package replay: python3.14 -m unittest test_pu11_package_absence.ActualRoots`. Tested source SHA256 `505a160418a9dec0b433a81849c17df0ef368c4d255366841875f79820f085b3`. Full local evidence `local/refactor/B434_Startup_Subscription-b7d4f160d80843cbb75da7f5d8ddd1ab/closure.json`, SHA256 `b4cdb15be8ab5a66c223cfa48a289a3d6e9cecfd748801a0b181821bff07f320`. [Rerunnable regression](../../DevelopmentTests/test_refactor_s3.py)
+
+Local assembly is ready for the separately approved fixed official-profile load smoke. The existing Official-only configuration and B413 HD comparison retain distinct identities. Verify the candidate's startup and five native panels in one new official game, with the actual load manifest and runtime version. Concrete official UI interaction, Crew wonder targeting, actual yields, exits and cold restoration retain their own gates. Live remains B414.441.
 
 ### Official and HD UI bases selected separately — S0929
 

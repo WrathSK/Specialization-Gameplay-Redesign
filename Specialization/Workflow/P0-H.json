@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0929",
-    "runtime": "B433.460 / modinfo460 source candidate",
+    "status": "S0930",
+    "runtime": "B434.461 / modinfo461 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Route the five HD-dependent UI contexts through existing explicit Gathering Storm profiles.",
+  "goal": "Prepare the no-HD load candidate by deferring audited ordinary native subscriptions without disturbing lifecycle evidence or mandatory cleanup.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Official and HD UI bases selected separately — S0929",
+      "selector": "### Ordinary effect listeners attach after initialization — S0930",
       "reason": "Current configuration audit, evidence limits and next boundary"
     },
     {
@@ -51,7 +51,7 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_environment_assembly.py",
+      "path": "DevelopmentTests/test_refactor_s3.py",
       "kind": "head",
       "selector": 28,
       "reason": "Rerunnable scoped delivery regression"
@@ -74,8 +74,9 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "Exact official/HD manifest routing, installed official base scripts, pinned data replay, retained UI adapter and asset checks.",
-    "23 of 24 selected tests pass. The inherited startup-order snapshot failure is reproduced on f86d848.",
+    "615 selected Lua 5.1 checks, 609 passing and six nonpassing cases reproduced on fixed B433.",
+    "True Gameplay startup, existing mandatory exit owner, reentrant native registration model and retained readback tests.",
+    "Four supplemental restricted PackageVFS Gameplay and BackgroundRoutes tests.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -329,6 +330,16 @@
       "source_snapshot_sha256": "fd8f67baaf367b9f8dec13681c4277c1df8c4c34bb28acafed90ecf2deaf660b",
       "local_evidence": "local/refactor/B433_UI_Base_Profile-62fb0c10cb674d89a703444926a774ab/closure.json",
       "local_evidence_sha256": "0110d856202e02db38d84fdebad877a3901364336c1763fed1bc194489b4c1fc",
+      "deployed": false
+    },
+    "ordinary_native_subscription_start_boundary": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED_WITH_BASELINE_OPEN",
+      "version": "B434.461 / modinfo461",
+      "package_sha256": "19d86c81e82b28a57f616a6332f29ce67f927b8b8ede2b447cea36fe22aef8e0",
+      "report": "Specialization/Status/Specialization_P0_Status.md#ordinary-effect-listeners-attach-after-initialization--s0930",
+      "source_snapshot_sha256": "505a160418a9dec0b433a81849c17df0ef368c4d255366841875f79820f085b3",
+      "local_evidence": "local/refactor/B434_Startup_Subscription-b7d4f160d80843cbb75da7f5d8ddd1ab/closure.json",
+      "local_evidence_sha256": "b4cdb15be8ab5a66c223cfa48a289a3d6e9cecfd748801a0b181821bff07f320",
       "deployed": false
     }
   }

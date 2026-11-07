@@ -46,6 +46,48 @@ class Composition(unittest.TestCase):
         assert(writes==2 and original.Add~=nil)
         saved.Remove(fn);original.Fire();assert(writes==2)
         """)
+    def test_opted_in_ordinary_listener_waits_for_start_and_attachment(self):
+        c=self.make();c.execute("""
+        local event=Events.Test;local add=event.Add;local seen={};local initialized=false
+        add(function()seen[#seen+1]='PREVIOUS'end)
+        event.Add=function(cb)
+          assert(initialized and Events==originalEvents);add(cb);event.Fire()
+        end
+        assert(d.Run('Ordinary',{}, {},function()
+          saved=Events.Test;fn=function()seen[#seen+1]='ORDINARY'end
+          local discarded=function()seen[#seen+1]='DISCARDED'end
+          saved.Add(fn);saved.Add(discarded);saved.Remove(discarded);saved('DURING_START')
+          assert(table.concat(seen,',')=='PREVIOUS' and event.Count()==1)
+          initialized=true
+        end,nil,{deferNativeSubscriptions=true}))
+        assert(table.concat(seen,',')=='PREVIOUS,PREVIOUS,PREVIOUS' and event.Count()==2)
+        event.Fire()
+        assert(table.concat(seen,',')=='PREVIOUS,PREVIOUS,PREVIOUS,PREVIOUS,ORDINARY')
+        saved.Remove(fn);assert(event.Count()==1)
+        """)
+    def test_deferred_attachment_failure_keeps_mandatory_cleanup_blocked(self):
+        c=self.make();c.execute("""
+        local event=Events.Test;local add=event.Add;local exit;local sibling=0;local attempted=0
+        shared.CityProgressionStore={RegisterExit=function(_,f)exit=f end}
+        d.RequireCleanup('Ordinary','EXIT')
+        add(function()sibling=sibling+1 end)
+        event.Remove=nil
+        event.Add=function(fn)attempted=attempted+1;add(fn);event.Fire();error('ADD_FAILED')end
+        local options={deferNativeSubscriptions=true}
+        assert(not d.Run('Broken',{}, {},function()
+          Events.Test.Add(function()writes=writes+1 end);error('START_FAILED')
+        end,nil,options))
+        assert(attempted==0 and sibling==0 and event.Count()==1)
+        assert(not d.Run('Ordinary',{}, {'Ordinary'},function()
+          shared.Ordinary={}
+          shared.CityProgressionStore.RegisterExit('EXIT',function()writes=writes+10 end)
+          Events.Test.Add(function()writes=writes+1 end)
+          Events.Test.Add(function()writes=writes+2 end)
+        end,nil,options))
+        assert(d.entries.Ordinary.code=='ADD_FAILED' and shared.Ordinary==nil and not pcall(exit))
+        assert(attempted==1 and sibling==1 and writes==0)
+        event.Fire();assert(sibling==2 and writes==0 and Events==originalEvents)
+        """)
     def test_missing_event_stays_missing(self):
         c=self.make();c.execute("Events.Absent=false;assert(d.Run('Good',{}, {},function()assert(not Events.Absent)end));assert(Events.Absent==false)")
     def test_start_order_matches_original_production_sequence(self):
