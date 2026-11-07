@@ -311,7 +311,7 @@ class ActualChain(unittest.TestCase):
 class ReadAndOrder(unittest.TestCase):
     def test_actual_bridge_runs_after_sync_before_owner_receipt(self):
         l=pipeline();l.execute("""
-          order={};shared.Restructuring={FactChanged=function()order[#order+1]='SYNC'end}
+          order={};shared.Restructuring={FactChanged=function()order[#order+1]='SYNC';return true end}
           local capture=SPCNetworkInput.Capture
           SPCNetworkInput.Capture=function(...)order[#order+1]='BRIDGE';return capture(...)end
           local take=com.AcceptFact

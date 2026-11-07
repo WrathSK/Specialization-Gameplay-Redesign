@@ -10,7 +10,9 @@ function SPCFactConsumerBindings.New(shared)
  local role={'IDENTITY','POTENTIAL','ACTIVE'}
  -- All own-state synchronizations precede the one owner-wide network sample.
  shared.FactChanges.RegisterConsumer('RestructuringSync',function(e)
-  local value=target('Restructuring');if value and value.FactChanged then value.FactChanged(e)end
+  local value=target('Restructuring');if not value or not value.FactChanged then return end
+  local result,reason=value.FactChanged(e)
+  if result~=true and result~='IRRELEVANT' then error(reason or 'REST_SYNC_UNCONFIRMED',0)end
  end,{kinds=role,phase=0})
  shared.FactChanges.RegisterConsumer('NetworkBridge',function(e)
   local value=target('NetworkBridge');local revision=shared.FactChanges.flushRevision

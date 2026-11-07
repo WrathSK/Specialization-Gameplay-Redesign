@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="458">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="459">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B431.458：巨构工程学确认接手范围并保留失败责任。</Description>
+    <Description>B432.459：资产配置分别报告身份提交与混乱减益撤除结果。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

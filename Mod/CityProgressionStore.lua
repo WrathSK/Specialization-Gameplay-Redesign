@@ -970,9 +970,17 @@ local function CreateProgressionRecord(P,shared,storage)
   if not ok then return '进度记录已保存；当前事实未确认：'..tostring(f)end
   if root.restructuring then
    local s=root.restructuring;local names={RESEARCH='科研',CULTURE='文化',INDUSTRY='工业',COMMERCE='商业',NONE='无当前专业'}
-   local phase={REALLOCATING='资产重组中',CONSUMING='配置确认中；结果不明时不重复操作',SETTLED='资产配置完成',UNASSIGNED='重组已因易主终止；等待重新认领'}
+   local phase={REALLOCATING='资产重组中',CONSUMING='配置确认中；结果不明时不重复操作',SETTLED='新专业身份已提交',UNASSIGNED='重组已因易主终止；等待重新认领'}
+   local cleanupUnconfirmed
+   local service=shared.Restructuring
+   if s.phase=='SETTLED' and service and service.ConfigurationCleanupError then
+    local a=root.current or root.origin
+    local stamp=d.CarrierReferenceStamp(a.owner,a.cityID,a.x,a.y,root.base.token)
+    cleanupUnconfirmed=service.ConfigurationCleanupError(a.x,a.y,stamp)
+   end
    return P.VERSION..' | '..(phase[s.phase] or s.phase)..'\n'..(names[f.specialization] or f.specialization)
     ..' | Potential '..f.potential..' | ACTIVE '..tostring(f.active)
+    ..(cleanupUnconfirmed and '\n混乱减益撤除未确认。' or '')
     ..((s.phase=='REALLOCATING' or s.phase=='CONSUMING') and ('\n清算前 '..s.before..' 级 → 保留 '..s.potential..' 级；尚需 '..math.max(0,s.started+5-Game.GetCurrentGameTurn())..' 个完整回合。\n期满不会自动配置；同一团队须前往同城另一个合格专业区域。') or '')
     ..'\n各专业历史分别保留；历史机构不代表当前能力生效。'
   end

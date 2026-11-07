@@ -6,11 +6,12 @@ function SPCRestructuring.Start(P,shared)
  local M=SPCRestructuringModel;local S=SPCRestructuring;local cp=M.Copy;local store=assert(shared.CityProgressionStore)
  local d={views={},errors={},ready=false};shared.Restructuring=d
  local busy=false;local births,completed,dirty={},{},{};local plans={}
- local recovery={};local initializationStamp
+ local recovery,cleanupErrors={},{};local initializationStamp
  local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'RESTRUCTURING')
  local function key(pid,id)return pid..':'..id end
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
  local function ref(c)return {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}end
+ local function carrierStamp(a,token)return store.CarrierReferenceStamp(a.owner,a.cityID,a.x,a.y,token)end
  local function code(e)return tostring(e):match('(REST_[A-Z_]+)') or tostring(e):match('([A-Z][A-Z_]+)') or 'REST_READ_FAILED'end
  local function log(stage,pid,c,s,reason)
   if trace then trace.Record(stage,{owner=pid,city=c and c:GetID(),phase=s and s.phase,
@@ -38,6 +39,24 @@ function SPCRestructuring.Start(P,shared)
    if wanted then P.CreateBuilding(c:GetBuildQueue(),row.Index)else P.RemoveBuilding(b,row.Index)end
    assert(P.HasBuilding(b,row.Index)==wanted,'REST_MARKER_WRITE_UNCONFIRMED')
   end
+ end
+ local function requireCurrent(c,a,token,stamp)
+  assert(M.Same(ref(c),a) and carrierStamp(a,token)==stamp,'REST_SYNC_REFERENCE_CHANGED')
+ end
+ local function finishDisruption(c,a,token)
+  assert(M.Same(ref(c),a),'REST_SYNC_REFERENCE_CHANGED')
+  local stamp=assert(carrierStamp(a,token),'REST_SYNC_REFERENCE_UNCONFIRMED')
+  local ok,err=pcall(marker,c,S.DISRUPTION,false)
+  requireCurrent(c,a,token,stamp)
+  local k=key(a.x,a.y)
+  if not ok then cleanupErrors[k]={stamp=stamp,reason=code(err)};error(err,0)end
+  cleanupErrors[k]=nil
+  return stamp
+ end
+ -- Diagnostic only. The Store supplies the current identity witness.
+ function d.ConfigurationCleanupError(x,y,stamp)
+  local row=cleanupErrors[key(x,y)]
+  if row and row.stamp==stamp then return row.reason end
  end
  local function standard()assert(SPCCommerceModel.IsStandardSpeed(),'REST_STANDARD_SPEED_ONLY')end
  local function place(pid,u)
@@ -142,17 +161,31 @@ function SPCRestructuring.Start(P,shared)
  function d.Publish(pid,c)
   ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1
  end
- local function sync(pid,c,recover)
-  local f=shared.EffectiveFacts.Read(pid,c);local s=store.RestructuringState(pid,c)
+ local function sync(pid,c,recover,request)
+  local f=shared.EffectiveFacts.Read(pid,c);local a,stamp
+  if request then
+   a=ref(c)
+   if request.reference and table.concat({a.owner,a.cityID,a.x,a.y,f.token or ''},':')~=request.reference then return 'IRRELEVANT'end
+   stamp=assert(carrierStamp(a,f.token),'REST_SYNC_REFERENCE_UNCONFIRMED')
+  end
+  local s=store.RestructuringState(pid,c)
+  if request then requireCurrent(c,a,f.token,stamp)end
   local wanted=SPCCommerceModel.IsStandardSpeed() and f.specialization=='COMMERCE' and f.active==4 and not f.investmentPending
   marker(c,S.ACCESS,wanted)
   if trace then trace.Record('REST_ACCESS',{owner=pid,city=c:GetID(),mode=f.specialization,
    expected=f.active,count=f.potential,wanted=wanted,markerPresent=wanted,ready=d.ready})end
   local disrupted=s and (s.phase=='REALLOCATING' or s.phase=='CONSUMING') or false
+  if request then requireCurrent(c,a,f.token,stamp)end
+  if s and s.phase=='SETTLED' then
+   finishDisruption(c,a or ref(c),f.token)
+   return true
+  end
   marker(c,S.DISRUPTION,disrupted)
   if recover and s and s.phase=='CONSUMING' then
    -- Intent alone is not a consumed receipt. Never guess from an absent unit.
-   if s.consumed==true then store.FinishRestructuring(pid,c,s.team);marker(c,S.DISRUPTION,false);log('REST_RECOVERED_CONFIGURATION',pid,c,store.RestructuringState(pid,c))
+   if s.consumed==true then
+    store.FinishRestructuring(pid,c,s.team);stamp=finishDisruption(c,a or ref(c),f.token)
+    log('REST_RECOVERED_CONFIGURATION',pid,c,store.RestructuringState(pid,c))
    else log('REST_RECOVERY_HELD',pid,c,s,'REST_CONSUMPTION_UNCONFIRMED')end
   end
   if recover and s and s.phase=='REALLOCATING' then
@@ -163,35 +196,55 @@ function SPCRestructuring.Start(P,shared)
    else assert(target(pid,b):GetID()==c:GetID(),'REST_TARGET_CHANGED')end
    log('REST_RESTORED',pid,c,s)
   end
+  if request then requireCurrent(c,a,f.token,stamp)end
+  return true
  end
- function d.Flush(cause)
-  if busy then return end;busy=true
+ local function flush(cause,request)
   -- Keep dirty work and event pairs intact while authoritative dependencies wait.
-  if not initialize(cause)then busy=false;return end
+  if not initialize(cause)then return false,'REST_SYNC_NOT_READY'end
   local todo=dirty;dirty={}
   for pid,ids in pairs(todo)do
-   local function visit(c,id)
-    local k=key(pid,id)
-    if not c then recovery[k]=nil;return end
-    local ok,err=pcall(function()
-     if c:GetOwner()~=pid or not store.Owns(c)then recovery[k]=nil;return end
+   local function visit(id,c)
+    local k=key(pid,id);local selected=request and request.owner==pid and request.city==id
+    local ok,result=pcall(function()
+     c=c or city(pid,id)
+     if not c or c:GetOwner()~=pid or not store.Owns(c)then recovery[k]=nil;return 'IRRELEVANT'end
      local saved=recovery[k]
      if saved and not M.Same(saved,ref(c))then recovery[k]=nil;saved=nil end
-     sync(pid,c,saved~=nil);recovery[k]=nil
+     local synced=sync(pid,c,saved~=nil,selected and request)
+     if synced==true then recovery[k]=nil end
+     return synced
     end)
-    if not ok then d.errors[k]=code(err);log('REST_SYNC_HELD',pid,c,nil,code(err))end
+    local reason=not ok and code(result) or nil
+    if selected then request.result=ok and result or false;request.reason=reason end
+    if not ok then log('REST_SYNC_HELD',pid,c,nil,reason)end
    end
-   if ids.all then for _,c in Players[pid]:GetCities():Members()do visit(c,c:GetID())end
-   else for id in pairs(ids)do visit(city(pid,id),id)end end
+   if ids.all then for _,c in Players[pid]:GetCities():Members()do visit(c:GetID(),c)end
+   else for id in pairs(ids)do visit(id)end end
   end
+  if request then
+   if request.result==nil then return false,'REST_SYNC_CITY_UNAVAILABLE'end
+   return request.result,request.reason
+  end
+ end
+ function d.Flush(cause,request)
+  if busy then return false,'REST_SYNC_BUSY'end
+  busy=true
+  local ok,result,reason=pcall(flush,cause,request)
   busy=false
-
+  if not ok then
+   if not request then error(result,0)end
+   if request.result~=nil then return request.result,request.reason end
+   return false,code(result)
+  end
+  return result,reason
  end
  -- Investment completion already proves the changed city. Reuse the normal
  -- derived-marker writer; no player scan, retained fact packet or timer.
- function d.Refresh(pid,id)
-  if not P.IsTestPlayer(pid) or type(id)~='number' then return end
-  mark(pid,id);d.Flush('CITY_REFRESH')
+ function d.Refresh(pid,id,reference)
+  if not P.IsTestPlayer(pid) or type(id)~='number' then return 'IRRELEVANT'end
+  mark(pid,id)
+  return d.Flush('CITY_REFRESH',{owner=pid,city=id,reference=reference})
  end
  function d.Request(pid,p)
   if not P.IsTestPlayer(pid) or type(p)~='table' or type(p.Token)~='string' or #p.Token>100 then return end
@@ -221,7 +274,7 @@ function SPCRestructuring.Start(P,shared)
     Players[pid]:GetUnits():Destroy(u)
     assert(not Players[pid]:GetUnits():FindID(p.UnitID),'REST_CONSUMPTION_UNCONFIRMED')
     store.ConfirmRestructuringConsumption(pid,c,teamRef(b))
-    store.FinishRestructuring(pid,c,teamRef(b));marker(c,S.DISRUPTION,false);mark(pid,c:GetID())
+    store.FinishRestructuring(pid,c,teamRef(b));finishDisruption(c,b.target.reference,b.target.token);mark(pid,c:GetID())
     log('REST_CONFIGURED',pid,c,store.RestructuringState(pid,c))
    end
   end)
@@ -291,18 +344,15 @@ function SPCRestructuring.Start(P,shared)
   log('REST_LOAD_RETURNED')
  end)
  function d.FactChanged(e)
-  if e.city==nil then return end
-  local c=city(e.player,e.city);if not c or c:GetOwner()~=e.player then return end
-  if e.reference then
-   local ok,f=pcall(shared.EffectiveFacts.Read,e.player,c)
-   if not ok or table.concat({e.player,e.city,c:GetX(),c:GetY(),f.token or ''},':')~=e.reference then return end
-  end
-  d.Refresh(e.player,e.city)
-  if e.causes.RESTRUCTURING_COMMITTED then d.Publish(e.player,c)end
+  local result,reason=d.Refresh(e.player,e.city,e.reference)
+  if result~='IRRELEVANT' and e.causes.RESTRUCTURING_COMMITTED then d.Publish(e.player)end
+  return result,reason
  end
  store.RegisterExit('Restructuring',function(c,loss)
   for k,r in pairs(recovery)do if r.x==c:GetX() and r.y==c:GetY()then recovery[k]=nil end end
+  local k=key(loss.target.x,loss.target.y);local prior=cleanupErrors[k]
   store.RemoveOwned(c,loss,{S.ACCESS,S.DISRUPTION})
+  if cleanupErrors[k]==prior then cleanupErrors[k]=nil end
   local s=store.RestructuringExit(c)
   if s and s.phase=='DISCARDED' then
    local u=Players[s.team.owner]:GetUnits():FindID(s.team.id)

@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0927",
-    "runtime": "B431.458 / modinfo458 source candidate",
+    "status": "S0928",
+    "runtime": "B432.459 / modinfo459 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the actual configuration completion boundary and a behavior-preserving repair proposal.",
+  "goal": "Expose the actual matching-city Restructuring result through phase zero without changing the authoritative role or strict network rules.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Restructuring configuration completion audited — S0927",
+      "selector": "### Restructuring configuration reports actual synchronization — S0928",
       "reason": "Current configuration audit, evidence limits and next boundary"
     },
     {
@@ -51,7 +51,7 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_refactor_s5a2.py",
+      "path": "DevelopmentTests/test_restructuring_completion.py",
       "kind": "head",
       "selector": 28,
       "reason": "Rerunnable scoped delivery regression"
@@ -74,8 +74,8 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "553 of 556 selected Lua51 tests pass, including the 100 reverse-index and wiring cases. Three pre-existing errors retained.",
-    "Pre-existing phase-zero carrier/role discrepancy reproduced on fixed B421 and B431 with the same fixture and no irreversible operations.",
+    "619 selected Lua 5.1 checks, with 611 passing and eight pre-existing nonpassing cases confirmed on d0e5ca7.",
+    "Public command and real Store, Restructuring, FactChanges, bindings and Bridge isolate the cleanup error and verify exact-scope readback. Identity and network outcomes are tested separately.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -310,6 +310,16 @@
       "report": "Specialization/Status/Specialization_P0_Status.md#restructuring-configuration-completion-audited--s0927",
       "local_evidence": "local/refactor/RestructuringCompletion-1a78733/public_configuration.log",
       "local_evidence_sha256": "61f80f668648632b6ba14ebd8eb8fde63a069d9577d7b9f5416aacb73325d1bc"
+    },
+    "restructuring_configuration_sync_result": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED_WITH_BASELINE_OPEN",
+      "version": "B432.459 / modinfo459",
+      "package_sha256": "4004b99761fb349c2beefd9c80bb57403f2c0cf7be00a18d8f3f0d76d969fb19",
+      "report": "Specialization/Status/Specialization_P0_Status.md#restructuring-configuration-reports-actual-synchronization--s0928",
+      "source_snapshot_sha256": "a502fe9c47afab07f7be87ff7e53c76f1a762881ed3d7a0d4bcf3e66a3d6544c",
+      "local_evidence": "local/refactor/B432_Restructuring_Completion-d7cac8739fa149c9b5c91a2392953b89/closure.json",
+      "local_evidence_sha256": "4730bc033730e4609090f95ed93e1857d3b0042255fb0e56069787f52c193f7a",
+      "deployed": false
     }
   }
 }

@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0927
-Implementation Build: source B431.458 / modinfo458, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0928
+Implementation Build: source B432.459 / modinfo459, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: EFFECT_DELIVERY_VERIFIED_RESTRUCTURING_COMPLETION_AUDITED
+Work State: RESTRUCTURING_CONFIGURATION_SYNC_LOCALLY_VERIFIED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Restructuring configuration reports actual synchronization — S0928
+
+Asset configuration reports the committed specialization independently of whether removal of the disruption marker has been confirmed. The real scoped outcome now reaches the existing phase-zero error channel. The network samples independently confirmed role facts in the same order. This implements the Owner-approved completion repair and resolves the proposal in S0927 without gating network publication.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T08).** The existing dirty-city drain performs the same marker work. A scoped notice uses one current fact read and checks the Store's existing reference stamp around the native writer. The selected-city report reads a scalar diagnostic for the matching stamp. At most one session-only cleanup error is retained per affected site, released on verified cleanup or confirmed exit. A new identity cannot inherit the error. The callback reports failure through the existing registry. It does not own network qualification, a new queue, recovery triggers or saved records.
+- **LOCAL_SIMULATION_PASS in scope.** The public configuration command and real Store/FactChanges/Bindings/Bridge prove one team consumption, committed new Culture III, marker readback before the network sample, and the same empty verified proof in both normal and injected-failure paths. Only the target marker removal was replaced with a no-op. A matching subsequent cause clears the error after actual readback. An old reference, a sibling city and idle drains cannot do so. A later configuration does not inherit the old warning. Of 619 selected tests, 611 passed. The same eight nonpassing cases reproduce on the fixed B431 basis with the existing 616 tests. No new failure, native failure incidence, yield or real transaction is shown.
+- The existing Workflow language section now gives the approved Owner-facing reporting structure. The project AGENTS already links to that section.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `4004b99761fb349c2beefd9c80bb57403f2c0cf7be00a18d8f3f0d76d969fb19`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `PYTHONPATH=DevelopmentTests python3.14 -m unittest test_restructuring_completion test_refactor_s5propagation.PhaseBarrier test_pu03_delivery.ReadAndOrder`. Tested source SHA256 `a502fe9c47afab07f7be87ff7e53c76f1a762881ed3d7a0d4bcf3e66a3d6544c`. Full local evidence `local/refactor/B432_Restructuring_Completion-d7cac8739fa149c9b5c91a2392953b89/closure.json`, SHA256 `4730bc033730e4609090f95ed93e1857d3b0042255fb0e56069787f52c193f7a`. [Rerunnable regression](../../DevelopmentTests/test_restructuring_completion.py)
+
+The next ready work is to separate the shipped Gathering Storm UI base from HD overrides, then verify the existing startup and exit ordering. The fixed no-HD load smoke has a separate deployment boundary. No Owner decision or test is needed at this checkpoint. Live remains B414.441.
 
 ### Restructuring configuration completion audited — S0927
 

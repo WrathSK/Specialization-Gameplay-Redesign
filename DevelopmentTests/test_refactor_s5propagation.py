@@ -55,7 +55,7 @@ class PhaseBarrier(unittest.TestCase):
         """)
     def test_all_own_syncs_precede_one_network_capture_per_owner(self):
         c=bindings();c.execute("""
-        shared.Restructuring={FactChanged=function(e)calls[#calls+1]='R'..e.city end}
+        shared.Restructuring={FactChanged=function(e)calls[#calls+1]='R'..e.city;return true end}
         shared.NetworkBridge={Refresh=function(pid)calls[#calls+1]='N'..pid;d.EmitDerived({owner=pid,kinds={'NETWORK'},cause='NETWORK_PROOF_PUBLISHED'})end}
         shared.Lv3Effects={Audit=function(s)assert(s.player==0 and s.city==nil);calls[#calls+1]='E'end}
         d.Emit({owner=0,cityID=1,kinds={'ACTIVE'},cause='COMMITTED'});d.Emit({owner=0,cityID=2,kinds={'POTENTIAL'},cause='COMMITTED'})

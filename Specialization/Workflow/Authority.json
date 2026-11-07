@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0927",
-    "runtime": "B431.458 / modinfo458 source candidate",
+    "status": "S0928",
+    "runtime": "B432.459 / modinfo459 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "72fe54d46b2fc66e24f776c23f980c02d77c9182",
-  "current_batch": "EFFECT_DELIVERY_VERIFIED_RESTRUCTURING_COMPLETION_AUDITED",
-  "next_batch": "Narrow Restructuring completion reporting and synchronous error propagation proposal under the existing rules. Independent approved work may continue.",
+  "current_batch": "RESTRUCTURING_CONFIGURATION_SYNC_LOCALLY_VERIFIED",
+  "next_batch": "Continue the approved HD-independent runtime assembly. Verify the conditional UI base selection and the actual startup and exit obligations before the fixed no-HD load smoke.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B414.441 / modinfo441 temporary develop from 72fe54d46b2fc66e24f776c23f980c02d77c9182, 346/346 MATCH, SHA256 ffba41b4203db25c2ad7c1a60c0851fdcd02a462f80625bec57ce8c4354ee8a4. Receipt B414.441-72fe54d-playtest.json DEVELOP_ACTIVE. B413 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner explicitly approved B414.441 deployment. Completed with receipt-bound verification. This approval is for this deployment.",
-  "context_review_status": "S0927 records the scoped B431 configuration audit and supersedes the unapproved S0926 policy proposal.",
+  "context_review_status": "S0928 verifies scoped Restructuring synchronization, selected-city completion reporting and the approved Owner communication update.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#restructuring-configuration-completion-audited--s0927",
-  "source_status": "B431.458 / modinfo458 at reviewed candidate package SHA256 8d4d2b740cae0710431e26a3ac89ff1cbde74ccb8326618d3a9a30379f4c014a. Live B414.441 receipt remains separate.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#restructuring-configuration-reports-actual-synchronization--s0928",
+  "source_status": "B432.459 / modinfo459 at reviewed candidate package SHA256 4004b99761fb349c2beefd9c80bb57403f2c0cf7be00a18d8f3f0d76d969fb19. Live B414.441 receipt remains separate.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
