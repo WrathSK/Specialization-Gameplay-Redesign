@@ -3,8 +3,18 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0059
+Latest Accepted Design Revision: D0060
 Document State: ACCEPTED
+
+## Accepted D0060 — 2026-11-07
+
+用户确认静修院（BUILDING_JNR_HOSPITIUM）和花园（BUILDING_JNR_GARDEN）为T4，作为有效升级链的两项明确例外。数据中心按实际链为T5，合格时贡献5点深度。区域基础设施深度仍封顶10，三层D6与四层D10规则保持。学术主持适用范围仍为T1–T4。
+
+[Shared D0060](Content/Shared_D0060.json)记录这次增量，D0059各专业正文及旧Shared保留为相应版本。共同事实层负责解释升级链、例外、权重及D上限，能力消费已确认的D事实和各自所需的资格。用户批准首片环境装配及原版现代大商人美术替代。实现进度与实机门禁由Status记录。
+
+Accepted Spec SHA256: `782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39`
+Frozen D0059 Spec SHA256: `2ba50adf66bf9251430cec392480a23597848b899a4c785fb0d47d5a0f98ae4f`
+Shared D0060 SHA256: `d4ba4cc8ab619cd0364253af3b727c00f592d574206aeebe5252b018695fc1ea`
 
 ## Accepted D0059 — 2026-11-04
 

@@ -14,13 +14,13 @@ INSERT INTO SPC_StandardizationLevels SELECT t.Kind,t.TargetType,L,t.CarrierType
 INSERT INTO Types(Type,Kind) SELECT CarrierType,'KIND_BUILDING' FROM SPC_StandardizationLevels;
 INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing)
  SELECT CarrierType,'Standardization final-value carrier',1,'DISTRICT_CITY_CENTER',1,0,0 FROM SPC_StandardizationLevels;
-INSERT INTO Modifiers(ModifierId,ModifierType) SELECT CarrierType,CASE Kind WHEN 'BUILDING' THEN 'MODIFIER_SINGLE_CITY_ADJUST_BUILDING_PRODUCTION' ELSE 'MODIFIER_SINGLE_CITY_ADJUST_DISTRICT_PRODUCTION' END FROM SPC_StandardizationLevels;
+INSERT INTO Modifiers(ModifierId,ModifierType) SELECT CarrierType,CASE Kind WHEN 'BUILDING' THEN 'MODIFIER_SINGLE_CITY_ADJUST_BUILDING_PRODUCTION' ELSE 'MODIFIER_SPC_SINGLE_CITY_ADJUST_DISTRICT_PRODUCTION' END FROM SPC_StandardizationLevels;
 INSERT INTO ModifierArguments(ModifierId,Name,Value) SELECT CarrierType,CASE Kind WHEN 'BUILDING' THEN 'BuildingType' ELSE 'DistrictType' END,TargetType FROM SPC_StandardizationLevels;
 INSERT INTO ModifierArguments(ModifierId,Name,Value) SELECT CarrierType,'Amount',10+2*Level FROM SPC_StandardizationLevels;
 INSERT INTO BuildingModifiers(BuildingType,ModifierId) SELECT CarrierType,CarrierType FROM SPC_StandardizationLevels;
 -- Existing target-specific native building cost effect applies only where purchase
 -- is already legal. No CAN_PURCHASE/CAN_FAITH_PURCHASE permissions are introduced.
-INSERT INTO Modifiers(ModifierId,ModifierType) SELECT CarrierType||'_PURCHASE','MODIFIER_CITY_ADJUST_BUILDING_PURCHASE_COST' FROM SPC_StandardizationLevels WHERE Kind='BUILDING';
+INSERT INTO Modifiers(ModifierId,ModifierType) SELECT CarrierType||'_PURCHASE','MODIFIER_SPC_CITY_ADJUST_BUILDING_PURCHASE_COST' FROM SPC_StandardizationLevels WHERE Kind='BUILDING';
 INSERT INTO ModifierArguments(ModifierId,Name,Value) SELECT CarrierType||'_PURCHASE','BuildingType',TargetType FROM SPC_StandardizationLevels WHERE Kind='BUILDING';
 INSERT INTO ModifierArguments(ModifierId,Name,Value) SELECT CarrierType||'_PURCHASE','Amount',2*Level FROM SPC_StandardizationLevels WHERE Kind='BUILDING';
 INSERT INTO BuildingModifiers(BuildingType,ModifierId) SELECT CarrierType,CarrierType||'_PURCHASE' FROM SPC_StandardizationLevels WHERE Kind='BUILDING';

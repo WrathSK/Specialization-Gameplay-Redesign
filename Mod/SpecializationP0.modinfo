@@ -1,13 +1,44 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="441">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="442">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B414.441：施工队行动栏仅显示通用操作和施工。</Description>
+    <Description>B415.442：环境数据装配与资产重组美术解耦。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
+  <ActionCriteria>
+    <Criteria id="SPC_OfficialEnvironment">
+      <RuleSetInUse>RULESET_EXPANSION_2</RuleSetInUse>
+      <ModInUse inverse="1">521b8777-0977-4859-a5ee-3e411a732e5c</ModInUse>
+    </Criteria>
+    <Criteria id="SPC_HDEnvironment">
+      <RuleSetInUse>RULESET_EXPANSION_2</RuleSetInUse>
+      <ModInUse>521b8777-0977-4859-a5ee-3e411a732e5c</ModInUse>
+    </Criteria>
+  </ActionCriteria>
   <InGameActions>
+    <UpdateDatabase id="SPC_EnvironmentSchema">
+      <Properties><LoadOrder>10003000</LoadOrder></Properties>
+      <File>Data/EnvironmentSchema.sql</File>
+      <File>Data/EnvironmentModifiers.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_EnvironmentOfficial" criteria="SPC_OfficialEnvironment">
+      <Properties><LoadOrder>10003010</LoadOrder></Properties>
+      <File>Data/EnvironmentOfficial.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_EnvironmentHD" criteria="SPC_HDEnvironment">
+      <Properties><LoadOrder>10003010</LoadOrder></Properties>
+      <File>Data/EnvironmentHD.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_EnvironmentBuildings">
+      <Properties><LoadOrder>10003020</LoadOrder></Properties>
+      <File>Data/EnvironmentBuildings.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_DevelopmentInvestmentEffects">
+      <Properties><LoadOrder>10003130</LoadOrder></Properties>
+      <File>Data/DevelopmentInvestmentEffects.sql</File>
+    </UpdateDatabase>
     <UpdateDatabase id="SPC_B247_Restructuring"><Properties><LoadOrder>10001090</LoadOrder></Properties><File>Data/Restructuring.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B247_RestructuringText"><File>Text/Restructuring.sql</File></UpdateText>
     <UpdateDatabase id="SPC_B246_Development"><Properties><LoadOrder>10001080</LoadOrder></Properties><File>Data/DevelopmentInvestment.sql</File></UpdateDatabase>
@@ -18,10 +49,10 @@
     <UpdateText id="SPC_B239_CommerceText"><File>Text/Commerce.sql</File></UpdateText>
     <AddUserInterfaces id="SPC_B241_CapitalPanel"><Properties><Context>InGame</Context></Properties><File>UI/CapitalInvestmentPanel.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_B239_CommercePanel"><Properties><Context>InGame</Context></Properties><File>UI/CommercePanel.xml</File></AddUserInterfaces>
-    <UpdateDatabase id="SPC_B235_EngineeringStudy"><Properties><LoadOrder>2000003</LoadOrder></Properties><File>Data/EngineeringStudy.sql</File></UpdateDatabase>
+    <UpdateDatabase id="SPC_B235_EngineeringStudy"><Properties><LoadOrder>10003120</LoadOrder></Properties><File>Data/EngineeringStudy.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B235_EngineeringStudyText"><File>Text/EngineeringStudy.sql</File></UpdateText>
     <UpdateDatabase id="SPC_B234_Standardization">
-      <Properties><LoadOrder>2000002</LoadOrder></Properties>
+      <Properties><LoadOrder>10003110</LoadOrder></Properties>
       <File>Data/StandardizationEffects.sql</File>
     </UpdateDatabase>
     <UpdateDatabase id="SPC_ExpeditionGate"><Properties><LoadOrder>10001050</LoadOrder></Properties><File>Data/ExpeditionGate.sql</File></UpdateDatabase>
@@ -53,7 +84,7 @@
     <AddUserInterfaces id="SPC_Institutions"><Properties><Context>InGame</Context></Properties><File>UI/Institutions.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_ResearchChair"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/ResearchChair.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_ResearchApply"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/ResearchApply.sql</File></UpdateDatabase>
-    <UpdateDatabase id="SPC_ResearchCross"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/ResearchCross.sql</File></UpdateDatabase>
+    <UpdateDatabase id="SPC_ResearchCross"><Properties><LoadOrder>10003150</LoadOrder></Properties><File>Data/ResearchCross.sql</File></UpdateDatabase>
     <AddUserInterfaces id="SPC_ResearchCrossRefresh"><Properties><Context>InGame</Context></Properties><File>UI/ResearchCrossRefresh.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_B082_DistrictPrecision"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/DistrictPrecisionProbe.sql</File></UpdateDatabase>
     <AddUserInterfaces id="SPC_RuntimeAudit">
@@ -62,13 +93,13 @@
     </AddUserInterfaces>
     <UpdateDatabase id="SPC_B054_Discounts">
       <Properties>
-        <LoadOrder>2000001</LoadOrder>
+        <LoadOrder>10003100</LoadOrder>
       </Properties>
       <File>Data/StandardizationDiscount.sql</File>
     </UpdateDatabase>
     <UpdateDatabase id="SPC_B053_Purchase">
       <Properties>
-        <LoadOrder>2000000</LoadOrder>
+        <LoadOrder>10003140</LoadOrder>
       </Properties>
       <File>Data/PurchaseProbe.sql</File>
     </UpdateDatabase>
@@ -504,9 +535,15 @@
     <UpdateIcons id="SPC_B263_IG_Icons"><Properties><LoadOrder>10001100</LoadOrder></Properties><File>Data/TestAmericaIcons.sql</File></UpdateIcons>
     <UpdateColors id="SPC_B263_IG_Colors"><Properties><LoadOrder>10001100</LoadOrder></Properties><File>Data/TestAmericaColors.xml</File></UpdateColors>
     <UpdateIcons id="SPC_B268_IG_RawIcons"><Properties><LoadOrder>10001200</LoadOrder></Properties><File>Data/RawIcons.sql</File></UpdateIcons>
-    <UpdateDatabase id="SPC_InternalCarrierPillage"><Properties><LoadOrder>10002000</LoadOrder></Properties><File>Data/InternalCarrierPillage.sql</File></UpdateDatabase>
+    <UpdateDatabase id="SPC_InternalCarrierPillage"><Properties><LoadOrder>10004000</LoadOrder></Properties><File>Data/InternalCarrierPillage.sql</File></UpdateDatabase>
   </InGameActions>
   <Files>
+    <File>Data/EnvironmentSchema.sql</File>
+    <File>Data/EnvironmentModifiers.sql</File>
+    <File>Data/EnvironmentOfficial.sql</File>
+    <File>Data/EnvironmentHD.sql</File>
+    <File>Data/EnvironmentBuildings.sql</File>
+    <File>Data/DevelopmentInvestmentEffects.sql</File>
     <File>EventTimingDiagnostics.lua</File>
     <File>PlaytestBoundaryDiagnostics.lua</File>
     <File>CrewCompletionDiagnostics.lua</File>
@@ -849,7 +886,6 @@
   <Dependencies>
     <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />
     <Mod id="4873eb62-8ccc-4574-b784-dda455e74e68" title="Gathering Storm" />
-    <Mod id="b248a322-3e2a-4a6a-830a-6b0d1f3435fc" title="Leugi Monopoly++: Tycoons and Investors (reused unit art)" />
     <Mod id="113D9459-0A3B-4FCB-A49C-483F40303575" title="Teddy Roosevelt Persona Pack (Bull Moose presentation)" />
   </Dependencies>
   <FrontEndActions>

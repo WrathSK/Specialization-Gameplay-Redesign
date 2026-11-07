@@ -413,7 +413,7 @@ v0.1只支持标准速度（D0050）；资本投资期限、发展投资定价�
 - [商业D0058正式内容](Content/Commerce_D0059.json)（[D0056](Content/Commerce_D0056.json)保留）（[D0055](Content/Commerce_D0055.json)保留）（[D0050](Content/Commerce_D0050.json)与[D0045](Content/Commerce_D0045.json)保留为历史）：本轮公式、初值、明确Legacy与剩余边界；机构／能力ID和名称沿D0032。
 - [A–D生命周期接受审阅](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)及[D0039公式收口](../Historical/Design/Reviews/Commerce_D0039_Review.md)与[ChangeLog](Design_ChangeLog.md)：关闭项、代数解释和真实未决；不在Review另设公式权威。
 - [当前Spec](Specialization_v0.1_Design_Spec.md)：共同成长、参与资格、PROG-011显式重组征服例外、COM和NET。
-- [Shared D0059](Content/Shared_D0059.json)、[Shared](Shared.md)、[Network](Network.md)：共同D／普通建筑／领域词汇及连接；不是商业公式来源。
+- [Shared D0060](Content/Shared_D0060.json)、[Shared](Shared.md)、[Network](Network.md)：共同D／普通建筑／领域词汇及连接；不是商业公式来源。
 - [D0032历史冻结](Content/Commerce_D0032.json)及[历史审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)：主体接受与旧效果退出；其中本轮已关闭的TBD不再当前。
 - [工业当前内容](Content/Industry_D0059.json)：标准化自身模板／资格；商业叠加例子不改其Balance。
 

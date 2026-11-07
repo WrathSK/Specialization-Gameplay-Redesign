@@ -3,67 +3,83 @@
   "batch": "P0-H",
   "status": "COMPLETE",
   "authority_versions": {
-    "design": "D0059",
+    "design": "D0060",
     "research": "D0059",
     "industry": "D0059",
     "culture": "D0059",
     "commerce": "D0059",
-    "shared": "D0059",
+    "shared": "D0060",
     "presentation": "D0032",
-    "architecture": "A0184",
-    "status": "S0908",
-    "runtime": "B414.441 / modinfo441",
+    "architecture": "A0185",
+    "status": "S0909",
+    "runtime": "B415.442 / modinfo442 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Complete bounded environment assembly preparation and present concrete implementation scope.",
+  "goal": "Complete the authorized first environment-data assembly and remove the Restructuring Team Leugi dependency.",
   "implementation_authorized": false,
   "context": [
     {
-      "path": "Mod/UI/ExpeditionSpyUnitPanel.lua",
-      "kind": "full",
-      "reason": "Owned UnitPanel entry and native action admission"
-    },
-    {
-      "path": "Mod/UI/UnitPanelActions.lua",
-      "kind": "full",
-      "reason": "Existing separate Crew prepare and confirm controls"
-    },
-    {
-      "path": "DevelopmentTests/test_b414_crew_unit_panel.py",
-      "kind": "full",
-      "reason": "Focused regression for Crew action admission and dispatch"
-    },
-    {
       "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Environment data assembly and Restructuring art ready locally — S0909",
+      "reason": "Current local checkpoint, exact proof and remaining gates"
+    },
+    {
+      "path": "Specialization/Design/Content/Shared_D0060.json",
+      "kind": "json",
+      "selector": "/concepts/DISTRICT_DEVELOPMENT",
+      "reason": "Accepted Tier overrides and shared D contract"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "selector": "### Environment assembly and shared depth — A0185",
+      "reason": "Approved assembly inputs and O1/O5b responsibilities"
+    },
+    {
+      "path": "Mod/SpecializationP0.modinfo",
       "kind": "head",
-      "selector": 36,
-      "reason": "U5 native scope, pinned package and stop boundary"
+      "selector": 44,
+      "reason": "Selected profile and data component entry"
+    },
+    {
+      "path": "Mod/Data/EnvironmentBuildings.sql",
+      "kind": "full",
+      "reason": "Final projection and marker"
+    },
+    {
+      "path": "DevelopmentTests/test_environment_assembly.py",
+      "kind": "full",
+      "reason": "Reproducible profile replay and asset checks"
     }
   ],
   "dependencies": [
-    "Existing UnitPanel and DL_UnitPanel native action builders",
-    "Existing UnitPanelActions context",
-    "B413 HD baseline and supplemental trace"
+    "S0907 independent official and S0903 fixed HD databases, exact file hashes in the replay tests.",
+    "Gathering Storm ModInUse criteria; HD input component supplies only virtual-building exclusions.",
+    "D0060 explicit Tier exceptions; effective-chain resolution and consumer cutover are O1.",
+    "Official modern Great Merchant asset references and retained RawIcons override."
   ],
   "old_writers": [
-    "CrewProjects retains native construction and receipts. UnitPanel only filters its own UI actions."
+    "Current Standardization, Engineering Study, Development and Research retain exact runtime ownership, formulas and exits.",
+    "The original HD Lua readers stay active pending the O1 shared catalog cutover. Legacy wrapper names are replaced only for SPC-owned SQL definitions."
   ],
   "conditional_context": [
-    "Read the pinned HD DB/native panel inputs for action-category or callback questions."
+    "Follow Engine_Reference ER03/05/06/07, pinned actual action list and matching manifests for loader and native primitive evidence.",
+    "Review current Store and exact exit owners only if advancing the later O5b/startup or O1 dependency boundary."
   ],
   "non_scope": [
-    "Cross-build save compatibility, native engine permission outside UnitPanel, new grants or attribution, Claim recovery, repeated playtests, deployment, main or architecture migration."
+    "O1 effective-chain solver/cutover, O2–O8 runtime migration, old save conversions, native effects and UI/startup validation, deployment or main promotion."
   ],
   "validation": [
-    "4 focused and 51 retained Lua51 methods passed",
-    "2 B413 baseline counterexamples reproduced",
-    "223 Lua files compile, 32 XML/artdef/dep/modinfo files parse, package references verified"
+    "Four fixed-profile SQL/asset checks, exact HD affected output comparison, local invalid-profile gating and official modifier/XP2 closure.",
+    "115/119 selected legacy regression methods pass in the Lua51 comparison, four inherited failures match baseline; 55/55 UnitPanel.",
+    "223 Lua51 compiles, 32 XML parses, 352 package files and Context Lock."
   ],
   "full_audit_triggers": [
-    "Stop if a needed common action is blocked, a non-Crew action changes, or any production/persistence impact is found."
+    "Reopen affected scope if the selected native profile differs, a fixed-HD target or primitive changes, or a later source/cutover changes ordinary admission, exact exits, history or irreversible behavior."
   ],
   "result": {
     "baseline": "OWNER_ACCEPTED_B413_HD_PROFILE",
@@ -103,6 +119,18 @@
       "runtime_changed": false,
       "native_test_run": false,
       "owner_decision": "T5 weight/range and visual/implementation scope as recorded in proposal"
+    },
+    "environment_assembly": {
+      "status": "LOCAL_ASSEMBLY_PASS_SCOPED",
+      "version": "B415.442 / modinfo442",
+      "package_sha256": "fc51d2eb37e6079ed86ab417e65f82a7409b5bbe28ba0ac645e52048b2ceeaa1",
+      "runtime_files": 352,
+      "deployed": false,
+      "native_test_run": false,
+      "report": "Specialization/Status/Specialization_P0_Status.md#environment-data-assembly-and-restructuring-art-ready-locally--s0909",
+      "source_snapshot_sha256": "613791c254bc2d660580fd143f563ff6431537ee92e1c852a71345bc843076a7",
+      "local_evidence": "local/refactor/O5a-9fded86f5ed74ba9a6149327a984207b/closure.json",
+      "local_evidence_sha256": "5917d6fa9376a4da99642ca523432ed83ec07887bc33091934de98e8266e47ef"
     }
   }
 }

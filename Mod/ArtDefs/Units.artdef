@@ -315,7 +315,7 @@
                     <m_ParamName text="Count" />
                   </Element>
                   <Element class="AssetObjects..ArtDefReferenceValue">
-                    <m_ElementName text="Leu_Investor" />
+                    <m_ElementName text="Great_Merchant_Male_Modern" />
                     <m_RootCollectionName text="UnitMemberTypes" />
                     <m_ArtDefPath text="Units.artdef" />
                     <m_CollectionIsLocked>true</m_CollectionIsLocked>
@@ -325,7 +325,7 @@
                 </m_Values>
               </m_Fields>
               <m_ChildCollections />
-              <m_Name text="MonopolyPlus_Units_Members" />
+              <m_Name text="SPC_RestructuringMembers" />
               <m_AppendMergedParameterCollections>false</m_AppendMergedParameterCollections>
             </Element>
           </Element>
@@ -336,13 +336,13 @@
               <m_Fields>
                 <m_Values>
                   <Element class="AssetObjects..StringValue">
-                    <m_Value text="GreatMerchant_Classical" />
+                    <m_Value text="GreatMerchantModern" />
                     <m_ParamName text="XrefName" />
                   </Element>
                 </m_Values>
               </m_Fields>
               <m_ChildCollections />
-              <m_Name text="MonopolyPlus_Units_Audio" />
+              <m_Name text="SPC_RestructuringAudio" />
               <m_AppendMergedParameterCollections>false</m_AppendMergedParameterCollections>
             </Element>
           </Element>

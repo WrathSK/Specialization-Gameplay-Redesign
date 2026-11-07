@@ -2,18 +2,20 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0059
+Design Revision: D0060
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-11-04
-Acceptance Evidence: 用户接受统一架构收敛处置、OD-1至4／ODP-01=B／ODP-02=A及最终Tier/N1–N3修正，并明确授权可靠发布→首次正式同步（含最小工作流集合）→仅PU01。候选及原审已在fcf61e2可靠发布并远程逐份核验；不是后续全部实施、部署或实机授权。
-Previous Accepted Revision: [D0058冻结原文](Revisions/Specialization_Design_Spec_D0058.md)
-Latest Accepted Design Revision: D0059
+Acceptance Date: 2026-11-07
+Acceptance Evidence: 用户确认静修院／花园保留T4、数据中心按真实链为T5并贡献5点D、学术主持仍覆盖T1–T4，并授权首片环境装配。
+Previous Accepted Revision: [D0059冻结原文](Revisions/Specialization_Design_Spec_D0059.md)
+Latest Accepted Design Revision: D0060
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
 
-**SCOPE-001（D0059）** 正式接受正常同构建恢复／会话有界来源见证、独立信誉政策零与合法退出、严重子记录范围化保护、当前环境有效升级链Tier及原生证据边界。明确取代旧冷加载例外A与派生网络保存接线目标、一般损坏后猜初始基线、跨构建兼容义务；真实历史／延迟生命周期责任保留。四专业其余公式、数值、资格、额度、城市归属玩法及A8八时代不变。Design同步不表示运行实现或新实机通过；当前授权仅PU01，见[接受记录](Design_ChangeLog.md#accepted-d0059--2026-11-04)。
+**SCOPE-001（D0059）** 正式接受正常同构建恢复／会话有界来源见证、独立信誉政策零与合法退出、严重子记录范围化保护、当前环境有效升级链Tier及原生证据边界。明确取代旧冷加载例外A与派生网络保存接线目标、一般损坏后猜初始基线、跨构建兼容义务；真实历史／延迟生命周期责任保留。四专业其余公式、数值、资格、额度、城市归属玩法及A8八时代不变。D0059的接受依据见[接受记录](Design_ChangeLog.md#accepted-d0059--2026-11-04)。实施进度由Status记录。
+
+**SCOPE-002（D0060）** 确认当前环境的两项圣地Tier例外及T5的深度贡献。精确规则见[共同内容](Content/Shared_D0060.json)及[接受记录](Design_ChangeLog.md#accepted-d0060--2026-11-07)。
 
 ### 异常恢复共同边界 — SAFE
 
@@ -149,11 +151,11 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ### Shared Mechanical Vocabulary — D0028
 
-唯一当前共享定义：[Shared_D0058](Content/Shared_D0059.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
+唯一当前共享定义：[Shared D0060](Content/Shared_D0060.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
 
 **D0035语义及引用覆盖：** D正式中文名“区域基础设施深度”，即Absolute Infrastructure Depth。不是完成百分比，不要求建满=10；三层链D6、四层链D10均为允许的额外投资差异。当前不引入Relative Completeness。已有专业冻结文件中Shared_D0028引用及“区域完善度”用语，当前解释统一遵从Shared_D0045保留的D0035语义澄清；旧文件字节不变、历史解释保留。公式、稳定concept ID及其它Shared合同不变。[Consumer/目录/术语审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)。
 
-被掠夺建筑默认不贡献也不接受收益；这是当前效果资格，不删除明确永久的模板/历史记录。免费取得不改变普通建筑性质。区域基础设施深度有硬上限10，同领域多区域取最高单区域；不追补缺失Tier。Network独立于Ability slots，不统一专业公式或强制0/1/2/3结构。
+被掠夺建筑默认不贡献也不接受收益；这是当前效果资格，不删除明确永久的模板/历史记录。免费取得不改变普通建筑性质。区域基础设施深度有硬上限10，同领域多区域取最高单区域；不追补缺失Tier。数据中心为T5，合格时贡献5点深度。圣地静修院、花园明确按T4处理。Network独立于Ability slots，不统一专业公式或强制0/1/2/3结构。
 
 **SHARED-LIFECYCLE-001 — ACCEPTED D0042／D0044／D0045具名增量** A城市历史、B文明历史、C持续机构关系、D已成立合同、E进行中事务、F配置／派生、G专业单位／来源绑定，彼此不混同，不设统一继承。Shared_D0045.LONG_TERM_STATE_LIFECYCLE保留[D0042具名合同](../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)及D0044已完成研习L；本轮明确研习以IV资格采用完整1T取消／重做合同，历史L不清零。施工队／考察团／重组团队不能被捕获或转Owner，敌方原可能捕获／消灭的交互保护撤退／安全回归；重组目标易主解散与考察来源易主取消任务／保留原Owner单位／重挂靠的专属规则优先。原生接口属Technical，不再有捕获Owner Gameplay TBD。纯派生ACTIVE／Network／carrier按当前事实重算；不扩AI／多人。首都未来例外单列，不纳入当前A–G runtime。
 

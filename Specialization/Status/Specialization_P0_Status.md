@@ -1,17 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0908
-Implementation Build: source/live B414.441 / modinfo441 from72fe54d; stable/main B307.334
-Architecture Revision Reviewed: A0184
-Design Revision Reviewed: D0059
-Latest Accepted Design Revision: D0059
-Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: ENVIRONMENT_ASSEMBLY_REVIEW_READY
+Status Revision: S0909
+Implementation Build: source B415.442 / modinfo442, local assembly candidate. Live B414.441 from72fe54d; stable/main B307.334.
+Architecture Revision Reviewed: A0185
+Design Revision Reviewed: D0060
+Latest Accepted Design Revision: D0060
+Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
+Work State: ENVIRONMENT_ASSEMBLY_LOCAL_COMPLETE_O1_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Environment data assembly and Restructuring art ready locally — S0909
+
+The Owner confirmed Holy Site Hospitium/Garden T4, actual-chain Data Center T5 with weight5 and cap10, and official modern Great Merchant art. The Owner then authorized the reviewed first assembly slice. [D0060](../Design/Design_ChangeLog.md#accepted-d0060--2026-11-07) records the decisions and supersedes the earlier T3 proposal for the two Holy Site buildings. Research Chair keeps its T1–T4 rule. [A0185](../Architecture/Specialization_v0.1_Architecture.md#environment-assembly-and-shared-depth--a0185) records the assembly contract. Source B415.442 and deployed B414.441 remain separate.
+
+- **Implemented.** Gathering Storm selects one official or HD data component by ModInUse. Final building definitions and the two Tier overrides feed the assembly inventory before target generation. The pinned load log and 93 external manifests locate 193 applied database action IDs, with the final declared external band at 10000000. SPC assembly follows at 10003000–10003020, target generation at 10003100–10003150 and carrier Pillage0 coverage at 10004000. Development access/project definitions are independent of effect generation. The three SPC-owned wrappers preserve Collections, Effects and existing amounts. The Restructuring Team resolves its model, audio and fallback icons to shipped Great Merchant assets. SPC's direct Leugi dependencies were removed and the custom icon overrides still apply.
+- **Runtime Impact Contract (L3 database/installed effect boundary, T06 exact ownership and T07 catalogue scope).** The only new processing is during database assembly. It projects 82 official / 162 fixed HD building definitions and the selected HD exclusions. The ready marker certifies exactly one selected, nonempty data assembly. Generators are gated on it and do not use Tier values. Existing production owners, IDs, selected HD Lua readers, Start/exit registrations, store and receipts stay on their current path. No new Lua sampling, event registrations, caches or game writes. O1 owns the chain solver and shared fact cutover. Data assembly is independent of O5b startup/UI-base and O6 interaction validation.
+- **Local replay.** With explicit `SPC_OFFICIAL_DB`, `SPC_HD_DB`, `SPC_OFFICIAL_ASSETS`, run `python3.14 -m unittest test_environment_assembly` from the repository root with DevelopmentTests on PYTHONPATH. Four checks passed: 54 selected Gameplay SQL files from the official snapshot, reconstructed HD slice, no/dual profile failure, and real shipped art references plus icon override precedence. The HD SQL replay drops the old Tier table after recording its membership and replays only removed affected SPC definitions. Exact HD targets, carrier definitions, modifier attachments/arguments and project/access rows match the pinned baseline after normalizing the three wrapper names. Both local profiles have zero unresolved ModifierTypes, foreign-key violations or missing internal SPC Pillage0 rows. Official/HD counts are 256/576 discount rows, 95/175 standardization targets, 855/1,575 levels and 16/17 Development effects.
+- **Retained regression and package.** CPython 3.14.8, Lupa 2.8, SQLite 3.53.4, Darwin arm64. The comparison ran Standardization/Engineering/Development and exact-exit tests with the pinned HD DB and Lua 5.1 substituted for legacy Lua55 fixture imports. 115 of 119 pass, with the same four nonpassing test IDs on parent `8576e8a`: the older Standardization self/no-network and entry-wiring assertions, the Development fractional-storage fixture, and the historical LegacyCleanup wiring assertion. A previously duplicate-creating Development definition fixture now passes its four original checks; no business assertions were weakened. The retained UnitPanel suites add 55 passes using the pinned original panel files. All 223 Lua sources compile in Lua 5.1, 32 XML/artdef/dep/modinfo files parse, and all 352 package references are checked. Candidate package SHA256 `fc51d2eb37e6079ed86ab417e65f82a7409b5bbe28ba0ac645e52048b2ceeaa1`.
+- **Evidence locator.** Tested Mod/DevelopmentTests/tools snapshot `613791c254bc2d660580fd143f563ff6431537ee92e1c852a71345bc843076a7`. Reproducible data/asset entry is versioned in [test_environment_assembly.py](../../DevelopmentTests/test_environment_assembly.py). Local execution evidence, before/after comparisons and replay settings are in `local/refactor/O5a-9fded86f5ed74ba9a6149327a984207b/closure.json`, SHA256 `5917d6fa9376a4da99642ca523432ed83ec07887bc33091934de98e8266e47ef`. Detailed machine-generated results stay local. SQL replay and Lua simulation leave native component selection, actual rendering and effect behavior pending.
+
+User decision: none for this completed slice. User testing: none at this checkpoint. Primary next: connect effective-chain Tier and D to the existing shared fact contract with the O1 producer/consumer gate. Native no-HD smoke follows the completed data/startup/UI-base assembly, under its separate test/deployment boundary.
 
 ### Environment assembly preparation ready — S0908
 

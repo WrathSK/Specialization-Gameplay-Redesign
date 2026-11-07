@@ -206,7 +206,7 @@ L属于**A类城市历史账本**，与文明历史B的E、城市真实完成数
 [返回Design导航](README.md)。正文是阅读呈现，正式来源保持原权威。
 
 - [工业当前内容](Content/Industry_D0059.json)：全部本地效果、目录、历史、网络、队伍与容量。
-- [当前Spec](Specialization_v0.1_Design_Spec.md)：IND引用与取代边界；[Shared](Content/Shared_D0059.json)。
+- [当前Spec](Specialization_v0.1_Design_Spec.md)：IND引用与取代边界；[Shared](Content/Shared_D0060.json)。
 - [A–D生命周期接受](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：模板与工程实践随城，工程传统属实际完成文明。
 - [冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)、[容量接受记录](Design_ChangeLog.md)：D0032关闭容量2，旧D0031未决描述不覆盖它。
 - [旧施工合同](Revisions/Specialization_Design_Spec_D0026.md)：只用当前内容明确保留的成本／速度／劳动力／拒绝与溢出规则，不恢复旧解锁和目标。

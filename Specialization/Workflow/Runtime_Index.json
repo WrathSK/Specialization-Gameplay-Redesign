@@ -26,9 +26,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/ArtDefs/Units.artdef": {
-      "sha256": "eae2ffd941b6b2a96c336b49ca5ba95a9f24bc84a2da9654fafa8a59eb8fab30",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B248_Training_Entry.md",
-      "provenance": "B248 city-scoped investment access fix, bounded training diagnostics and installed Investor presentation.58 targeted local methods PASS; load-time native entry remains unresolved. No new gameplay rule, timer, Property or external mutation."
+      "sha256": "e93a32f35938a6354f2bc5d16aa7ace1d3f354cebccdf773f64825fd510209eb",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/BindingProbe.lua": {
       "sha256": "0dba8b101c768738ccb300c9ff2266137b1053cfa0b0fcf82dca25dd3b21144c",
@@ -311,9 +311,9 @@
       "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/Data/DevelopmentInvestment.sql": {
-      "sha256": "f2bdba6cbcc588b574a2cc41ba1d49980f680327ddd94c6c19d8809bedf58c37",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "b2a351fbf178a3e52db9f6839a1436d5232a6e814ba444b1e315e6b0d6c81823",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/Data/Dialogue.sql": {
       "sha256": "488512ffe8d0864120350651777b502808c8fe2f43c5dcf797ad4189a374a82d",
@@ -336,9 +336,9 @@
       "provenance": "B084 P0-D1 reviewed formal cutover"
     },
     "Mod/Data/EngineeringStudy.sql": {
-      "sha256": "f2e7ae37ac66d92a375ecee86f2029ba487e4015f5c9f47e44029dbacd2ecf3d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
-      "provenance": "B235 authorized IND-3: exact city L/receipt transaction, full-turn study, actual-holder IV Standardization and own-city older-Wonder production. Scoped actual-source/SQL validation; District purchase isolated, native pending. No Design/Crew/GC change."
+      "sha256": "650903d69dd56119c86b3dda43c33d3e285885f038895a59fad31da29e0f261e",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/Data/ExpeditionGate.sql": {
       "sha256": "a2444b37cc885e653b15e98c883dc2d794702b6aa505fd3fc3fb8af1e5c2f262",
@@ -371,9 +371,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "7b690c0989addeecb92ee640a92e857871043f59bf8d579f279b5de28089754b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B270_Event_Scope_Memory_Repair.md",
-      "provenance": "B270 approved scoped repair; main3eb1aed stable deployment310/310 verified; native acceptance pending."
+      "sha256": "5967ea3bc1d30b28c9cada129202c6b5f845e2145e61f15c98c0072661e98798",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -426,9 +426,9 @@
       "provenance": "B267 authorized PRE-01–05 diagnostics/readiness/Commerce-network/carrier observation and retained prototype availability gate. 243 scoped local tests; native delivery/treasury/pillage/hiding pending. No gameplay rule or retry change."
     },
     "Mod/Data/PurchaseProbe.sql": {
-      "sha256": "ea043f7ee0cf7cdb6aaf198cf971424e9bf2f5cf749e8d1dea2b39ca302f9a75",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "27935652fac0534019e6137bdff9342aab98bd9fed73d0acd4b351a2db8822cd",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/Data/RawIcons.sql": {
       "sha256": "6202048ac242973293b761c4406a3923c0b87ba6ae2a4aef622d48c799ad492c",
@@ -446,9 +446,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/Data/ResearchCross.sql": {
-      "sha256": "58d437e730c83c129909b7bf4ed4824519abfa07c0de6c81ec96a07c407cc932",
-      "review_source": "Specialization/Architecture/v2/P0_D1_Research_Cross_Cutover.md",
-      "provenance": "B084 P0-D1 reviewed formal cutover"
+      "sha256": "25e741a07c9014ed0868601d4d070c1521c396b710233b0a6fdc3fcba679ceec",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/Data/ResearchInfrastructure.sql": {
       "sha256": "b2c6dd3af4c57797040d6fb7cce967ced43a8f0eca6f95ce32d162cef279b248",
@@ -471,14 +471,14 @@
       "provenance": "B247 authorized current-identity transaction/team and direct consumer/UI adaptations. 240 targeted local methods PASS (50 new, 190 retained); no native PASS or performance claim. Named histories and signed contracts preserved; no timer/GC change."
     },
     "Mod/Data/StandardizationDiscount.sql": {
-      "sha256": "bdbb77b6bb8cc55d905b13bafa161a7b28b14e87dcbd09bee1a064b2392beac3",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "9b1b7bd1db941ba1955a67cc02327acbef09d954126458f0c7f74241ba866012",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/Data/StandardizationEffects.sql": {
-      "sha256": "260593ac9ff2b946faa9552f617b0fe2f74fcb90b138465e2894b1b2ecca326f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "293f63bffa381ccc8491995d920aefb515ef8c5437a91d86b90bd6551de659c3",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/Data/TestAmerica.sql": {
       "sha256": "786e8af3a34adffb77a0dbe0a2f119e2ddf67d900df356293306dbf967cc0619",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "930f2d41dae9c3416b01ebc0281f75ceeda2dd3beb1951859f15072db97a0e99",
+      "sha256": "be2f9fabbc8b89ee53003e5351ebb9adcc6c279cb13200a956dc777b6b768339",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0904 B414 local review. Crew UnitPanel filtering and build markers only. B413 stays deployed."
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -921,14 +921,14 @@
       "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
     },
     "Mod/Specialization.dep": {
-      "sha256": "33e4ab62dfc52efc143b9d56a77f6538cc6a25c986754984436e1aca10ab0e0d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "sha256": "77b56743d8848d681829a7cc4dc908c824672de86a6be2dbffd1cae3a6edba3b",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "813ae2c275f2d5716a6db6c6f6bfd28021a67a8b99fb05577542fadc89f1bcc6",
+      "sha256": "2328785e006a2c9e946ee66428931a5e8af0d483bb7cd261d8a8b04ea2ce7bd2",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0904 B414 local review. Crew UnitPanel filtering and build markers only. B413 stays deployed."
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1734,9 +1734,39 @@
       "sha256": "950a5ed9a10d6f2f365a82da92b4851c7020bec5004d66110592e6cc75b5943e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0898 B413:narrow probe budget/window/inert retirement and Commerce reliable-negative ordering;258localPASS,8before counterexamples;no native/deploy;L2 unchanged."
+    },
+    "Mod/Data/DevelopmentInvestmentEffects.sql": {
+      "sha256": "70184c6315104ba1cab831f4b3903c6c063290e2c123bea32a4a1571bb37aaaf",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
+    },
+    "Mod/Data/EnvironmentBuildings.sql": {
+      "sha256": "fc13d66a580db54cc2154c277634802deb6dac99dcd19f104604e56ced710d9f",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
+    },
+    "Mod/Data/EnvironmentHD.sql": {
+      "sha256": "7b1e14e0805ce40c4a5c88a3b17183b324d96c6d9a78fe7122be01d9efc5bb11",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
+    },
+    "Mod/Data/EnvironmentModifiers.sql": {
+      "sha256": "bc8a9f8253dbd1e28699964206803685d53e083461dc1965d0c9af0fcc376c31",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
+    },
+    "Mod/Data/EnvironmentOfficial.sql": {
+      "sha256": "05cceb2d06f09e0e7698c8d21eed1c69a55919fcb9ad70b4c860926a0f044897",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
+    },
+    "Mod/Data/EnvironmentSchema.sql": {
+      "sha256": "f7a8cf880d2a70d88efccfeb0c57b88b18debe8e4380a8331124ba59dc7c7e32",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     }
   },
-  "source_review": "S0901:reviewed runtime102bb16 byte-identical02d732e;D-1 tests262PASS;approved temporary deployment346/346 MATCH. L2/native evidence OPEN.",
-  "source_runtime": "B413.440 / modinfo440;approved deployment verified at02d732e",
-  "tested_source_snapshot_sha256": "c53bbe91af2dfd23959ba46b43210c722012bd8e691ce8323e3b4a54257bb6c9"
+  "source_review": "S0909: B415.442 O5a data/art and unchanged selected-HD consumer closure reviewed. Exact scope in Status.",
+  "source_runtime": "B415.442 / modinfo442 source only; deployed B414.441 remains the receipt-bound comparison.",
+  "tested_source_snapshot_sha256": "613791c254bc2d660580fd143f563ff6431537ee92e1c852a71345bc843076a7"
 }

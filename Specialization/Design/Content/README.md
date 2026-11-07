@@ -5,24 +5,24 @@ Design Authority: User
 
 Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-and-repository-knowledge)。本索引只导航内容权威，不授予新玩法决定或实施权限。
 
-## Current accepted content — D0059
+## Current accepted content — D0060 / D0059
 
 当前四专业及共同合同的唯一结构化入口：
 
 | 内容 | 当前正文 |
 |---|---|
-| 共同规则／Tier／网络／恢复 | [Shared D0059](Shared_D0059.json) |
+| 共同规则／Tier／网络／恢复 | [Shared D0060](Shared_D0060.json) |
 | 科研 | [Research D0059](Research_D0059.json) |
 | 文化 | [Culture D0059](Culture_D0059.json) |
 | 商业 | [Commerce D0059](Commerce_D0059.json) |
 | 工业 | [Industry D0059](Industry_D0059.json) |
 
-[当前Spec](../Specialization_v0.1_Design_Spec.md)与[接受记录](../Design_ChangeLog.md#accepted-d0059--2026-11-04)说明精确取代范围。正常同构建恢复、会话来源见证与有效升级链Tier已接受；其它公式／数值不变，代码／实机范围查Status。军事／港口D0037、市政D0047仍为未来设计，不扩当前运行范围。
+[当前Spec](../Specialization_v0.1_Design_Spec.md)与[接受记录](../Design_ChangeLog.md#accepted-d0060--2026-11-07)说明精确取代范围。D0060记录静修院／花园T4与T5权重5，各专业沿用D0059，代码／实机范围查Status。军事／港口D0037、市政D0047仍为未来设计，不扩当前运行范围。
 
 <details>
 <summary>Historical acceptance provenance — on demand, not current routing</summary>
 
-以下是各次接受时的原文定位，含当时“当前／唯一”等历史用语；不覆盖上方D0059入口。旧Content与Spec原件冻结，不按字符串改写历史规则。
+以下是各次接受时的原文定位，含当时“当前／唯一”等历史用语；以上方现行入口为准。旧Content与Spec原件冻结，不按字符串改写历史规则。
 
 ## D0058 — U1网络连续性与异常恢复
 

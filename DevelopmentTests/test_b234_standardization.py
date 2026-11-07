@@ -10,6 +10,7 @@ import zlib
 import xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 from project_paths import external_database
+from test_environment_assembly import prepare_hd_inputs
 
 R=Path(__file__).resolve().parents[1]
 M=R/'Mod'
@@ -85,6 +86,7 @@ class Standardization(unittest.TestCase):
                                  ('Modifiers','ModifierId'),('Buildings','BuildingType'),('Types','Type')]:
                 cls.db.executemany('DELETE FROM '+table+' WHERE '+column+'=?',own)
             cls.db.execute('DROP TABLE SPC_StandardizationTargets')
+        prepare_hd_inputs(cls.db)
         cls.db.executescript((M/'Data/StandardizationEffects.sql').read_text())
         cls.db.row_factory=sqlite3.Row
         cls.tables={'SPC_StandardizationLevels':[]} # B234 fixture: no learned IV layers.

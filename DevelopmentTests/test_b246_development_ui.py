@@ -4,6 +4,7 @@ from pathlib import Path
 from lupa.lua55 import LuaRuntime
 from test_b239_commerce_ui import SETUP
 from project_paths import external_database
+from test_environment_assembly import prepare_hd_inputs, replay
 R=Path(__file__).resolve().parents[1];MOD=R/'Mod'
 def ui():
  # B252 changes only presentation/selection controls; keep protocol assertions.
@@ -29,7 +30,17 @@ class Definitions(unittest.TestCase):
   cls.db=sqlite3.connect(':memory:');cls.db.create_function('Make_Hash',1,lambda text:zlib.crc32(text.encode()));src=sqlite3.connect(external_database(R).as_uri()+'?mode=ro',uri=True)
   try:src.backup(cls.db)
   finally:src.close()
-  cls.db.executescript((MOD/'Data/DevelopmentInvestment.sql').read_text())
+  # Rebuild only Development's own definitions in the disposable fixture.
+  cls.db.execute('PRAGMA foreign_keys=ON')
+  if cls.db.execute("SELECT 1 FROM sqlite_master WHERE name='SPC_DevelopmentEffects'").fetchone():
+   carriers = list(cls.db.execute('SELECT CarrierType FROM SPC_DevelopmentEffects'))
+   cls.db.execute('DROP TABLE SPC_DevelopmentEffects')
+   cls.db.executemany('DELETE FROM Modifiers WHERE ModifierId=?', carriers)
+   cls.db.executemany('DELETE FROM Types WHERE Type=?', carriers)
+  cls.db.executemany('DELETE FROM Types WHERE Type=?', ((key,) for key in ('PROJECT_SPC_DEVELOPMENT_INVESTMENT', 'BUILDING_SPC_DEVELOPMENT_ACCESS')))
+  cls.db.commit()
+  prepare_hd_inputs(cls.db)
+  replay(cls.db, hd=True, selected={'SPC_B246_Development', 'SPC_DevelopmentInvestmentEffects'})
  @classmethod
  def tearDownClass(cls):cls.db.close()
  def test_effect_is_exact_district_building_plus50_without_other_arguments(self):
