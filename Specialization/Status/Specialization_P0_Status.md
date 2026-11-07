@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0916
-Implementation Build: source B422.449 / modinfo449, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0917
+Implementation Build: source B423.450 / modinfo450, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: FACT_SCOPE_RECEIPT_CAPACITY_LOCAL_COMPLETE_O2_CONTINUES
+Work State: TRADITION_FACT_OWNER_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Research Tradition acknowledges work at its existing projection boundary — S0917
+
+Research Tradition takes named responsibility for role and Tradition history notices. Work still joins its existing owner-scoped pending set and reads Store and ACTIVE at its established projection boundary. A missing target or unconfirmed player remains held. A known irrelevant owner can release its exact ticket.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T05/T08).** The accepted named receipt precedes the existing projection drain. Marking does no city, Store or carrier read. Pending work uses the existing owner mark and verifies eligibility before adding a new owner. Several accepted city facts for the same owner still cause one index visit. Registration leaves four declared recipients in the existing registry, with a 16,384-receipt two-batch cap. The first ready projection also consumes marks already taken before initialization. Existing native health and exact exits retain their paths and ordering. No new listener, scan, polling, Store write or carrier policy.
+- **LOCAL_SIMULATION_PASS in scope.** Fixed B422 dropped the missing-target and temporary-player-availability cases. The real Store and effect owner now recover on a named wake or a new related fact. Three accepted scopes produce one owner visit, and a second change in the same turn is processed. Unrelated history and confirmed foreign owners produce zero visits. There are 308 passes in 309 selected tests. One inherited whole-worker isolation assertion in S8b3 fails identically against fixed B422 and remains open. The broader inherited loader replay was interrupted and is not counted.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `f311393729c925a8b717b16dceedee480a2d07372fdb71fd76001656fd3465cf`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol test_tradition_fact_responsibility test_refactor_s5d4c7 test_refactor_s9d1.Exit test_refactor_s9d1.Publication test_refactor_s9d1.Differential test_refactor_s9d1b.Witness test_refactor_s9d1b.WriteBarrier test_refactor_s8b3.Tradition test_refactor_s8b3.EffectsAndPresentation test_refactor_s9e7.Model test_refactor_s9e7.RealStore`. Tested source SHA256 `cfadfe296b661f2ce968b736e21be72380bab0041783fb77c90a1940a1f7af11`. Full local evidence `local/refactor/O2f-d9c46e43e4c649938cda35902aa3c146/closure.json`, SHA256 `442c8c27a853f46be98a21b7cad588f0cb4c7058c00d11a7dffdc8c33a26f512`. [Rerunnable regression](../../DevelopmentTests/test_tradition_fact_responsibility.py)
+
+No Owner decision or user testing is needed now. Primary continues the existing effect-audit order and scope work. Live remains B414.441.
 
 ### Fact scope capacity independent of recipient count — S0916
 

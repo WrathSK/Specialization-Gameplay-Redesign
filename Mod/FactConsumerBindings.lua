@@ -35,7 +35,7 @@ function SPCFactConsumerBindings.New(shared)
   {target='CultureInspiration',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='CultureInsightsTourism',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'INSIGHTS'}},
   {target='DialogueEffects',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'DIALOGUE'}},
-  {target='ResearchTraditionEffects',method='Mark',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'TRADITION'}},
+  {target='ResearchTraditionEffects',takeover='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'TRADITION'}},
   {target='StandardizationEffects',method='Audit',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'TEMPLATES','ENGINEERING'}},
   {target='CultureNetwork',method='Audit',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D','NETWORK','HISTORY'},topics={'INSIGHTS'}},
   {target='EngineeringStudy',method='CreditChanged',kinds={'HISTORY'},topics={'WONDER_CREDIT'}},
@@ -124,7 +124,7 @@ function SPCFactConsumerBindings.New(shared)
     local proof=not q.conflicting and not q.causes.RESTRUCTURING_COMMITTED and q.proofs[id] or nil
     call({player=q.player,city=id,investment=proof})
    end end
-  elseif row.method=='CreditChanged' or row.target=='ResearchTraditionEffects' then call(q.player)
+  elseif row.method=='CreditChanged' then call(q.player)
   elseif q.all then call(q.player)
   else for _,id in ipairs(q.order)do call(q.player,id)end end
   if failure then error(failure,0)end

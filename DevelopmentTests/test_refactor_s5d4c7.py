@@ -4,7 +4,7 @@ from refactor_harness import ROOT,legacy_source_observation,measure
 from test_refactor_s5a2 import actual_store
 
 
-def fixture(cold_unknown=False):
+def fixture(cold_unknown=False, wait_for_store=False):
     l=actual_store();l.execute("""
     T.start();c=T.research(1);other=T.research(2)
     GameConfiguration.GetGameSpeedType=function()return 'STANDARD'end;GameInfo.GameSpeeds={STANDARD={CostMultiplier=100}}
@@ -31,8 +31,13 @@ def fixture(cold_unknown=False):
         with legacy_source_observation():l.globals().include(module)
     l.execute("SPCNativeFacts.New(P,shared);SPCFactConsumerBindings.New(shared);SPCResearchTraditionEffects.Start(P,shared);effects=shared.ResearchTraditionEffects;function pp()shared.FactChanges.Flush();shared.FactBindings.Flush();Events.GameCoreEventPublishComplete.Fire()end")
     if cold_unknown:l.execute('T.governor(nil);c.fx[905]=true;other.fx[905]=true')
+    if wait_for_store:l.execute("""
+    local store=shared.CityProgressionStore;local status=store.HistoryStartStatus
+    store.HistoryStartStatus=function()return 'WAITING'end
+    function readyStore()store.HistoryStartStatus=status end
+    """)
     l.execute('pp()')
-    if not cold_unknown:l.execute('assert(current(c)==5 and current(other)==5)')
+    if not cold_unknown and not wait_for_store:l.execute('assert(current(c)==5 and current(other)==5)')
     return l
 
 

@@ -180,8 +180,28 @@ function M.Start(P,shared)
   publicationDepth=publicationDepth-1
   if not reported then if not frame.row then generation=generation+1 end;error(why,0)end
  end
+ local function mark(pid)
+  invalidate({player=pid},'INPUT_PENDING');pending[pid]=true
+ end
  function data.Mark(pid)
-  if P.IsTestPlayer(pid)then invalidate({player=pid},'INPUT_PENDING');pending[pid]=true end
+  if P.IsTestPlayer(pid)then mark(pid)end
+ end
+ function data.AcceptFact(event)
+  local registry=shared.FactChanges
+  if not registry then return false end
+  local pid=event.player
+  -- The existing Tradition index consumes owner-scoped work only.
+  if pid==nil then return registry.Receipt(event,'IRRELEVANT','OWNER_SCOPE_REQUIRED')end
+  local receipt=registry.Receipt(event,'REGISTERED')
+  if not pending[pid]then
+   local eligible,_,status=P.IsTestPlayer(pid)
+   if not eligible then
+    if status=='INELIGIBLE'then return registry.Receipt(event,'IRRELEVANT','UNSUPPORTED_PLAYER')end
+    return false
+   end
+  end
+  mark(pid)
+  return receipt
  end
  function data.Flush()
   if not data.ready or busy or not next(pending)then return end
@@ -207,9 +227,12 @@ function M.Start(P,shared)
  markHealth=function(scope)invalidate(scope,'HEALTH_PENDING');return mark(scope)end
  local function hook(n,fn)local e=P.Field(Events,n);if e and e.Add then e.Add(fn)end end
  SPCRuntimeWork.StartReady(P,shared,'ResearchTraditionEffects',function()
-  definitions=nil;pending={};data.lastError=nil;data.ready=true
+  -- Pre-ready marks already taken by this owner join the initial projection.
+  definitions=nil;data.lastError=nil;data.ready=true
   for pid in pairs(Players)do data.Mark(pid)end
   data.Flush()
+  local bindings,changes=shared.FactBindings,shared.FactChanges
+  if bindings and bindings.Wake and changes then bindings.Wake('ResearchTraditionEffects','OWNER_READY',changes.sequence)end
  end)
  -- Age is settled by Store's earlier listener. No new world/district scan.
  hook('PlayerTurnActivated',data.Mark)

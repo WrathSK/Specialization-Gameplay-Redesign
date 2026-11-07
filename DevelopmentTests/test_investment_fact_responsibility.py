@@ -9,6 +9,10 @@ def composition():
     lua.execute("""
 fc=shared.FactChanges;bindings=shared.FactBindings
 capital=shared.CapitalInvestment;development=shared.DevelopmentInvestment
+-- This composition has investment owners, with no Tradition projection.
+shared.ResearchTraditionEffects={AcceptFact=function(e)
+ return fc.Receipt(e,'IRRELEVANT','FIXTURE_OUTSIDE_SCOPE')
+end}
 function deliver()
  fc.Flush();bindings.Flush()
 end

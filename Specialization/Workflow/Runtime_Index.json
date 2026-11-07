@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "4d4e8ab0ee9e95dbb774de28c089be925f1d17d13f7e1ad676abe6308ac80547",
+      "sha256": "cea76bf0b6e403690238a3bec74d87a9e6ed7fb0bfea593dd07ad372206839c0",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B422.449 / modinfo449 / S0916 independent scope and recipient capacity with existing receipt and phase semantics."
+      "provenance": "S0917 B423.450 verifies the actual Research Tradition fact takeover and its existing projection cadence."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -871,9 +871,9 @@
       "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
     },
     "Mod/ResearchTraditionEffects.lua": {
-      "sha256": "5256329d34bf7d4f03184155d4fa35e7b8682e504336f67da657980042032f56",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "sha256": "f065b58ed977f23cb4ee6366f03a2c688906923c43937f5ca4fccba14006ce72",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0917 B423.450 verifies the actual Research Tradition fact takeover and its existing projection cadence."
     },
     "Mod/Restructuring.lua": {
       "sha256": "a73419ec31cdf08e734aaac78d85d1fc909d967d335568ad1f94b4572a582fa5",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e73c37cd4ca9cca2808b5db58584f16dc2216741494ebfc6eb70ccbb4c23bdda",
+      "sha256": "b95a9581269ac4f5fe96b625fa96c07fd56750861b19c4303d0ae90f5a123f0e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B422.449 / modinfo449 / S0916 independent scope and recipient capacity with existing receipt and phase semantics."
+      "provenance": "S0917 B423.450 verifies the actual Research Tradition fact takeover and its existing projection cadence."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1586,9 +1586,9 @@
       "provenance": "B422.449 / modinfo449 / S0916 independent scope and recipient capacity with existing receipt and phase semantics."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "0a238224905bc035dd599a02252b927b7075ef41ddc19e73de674ccadbb2f3ab",
+      "sha256": "9af2d019b4632f4fa98666632d347e282b04bb83ca46a01b00e4f40883734818",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B419.446 / S0913 acknowledged investment refresh duties through the existing FactChanges registry."
+      "provenance": "S0917 B423.450 verifies the actual Research Tradition fact takeover and its existing projection cadence."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",

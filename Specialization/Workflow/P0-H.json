@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0916",
-    "runtime": "B422.449 / modinfo449 source candidate",
+    "status": "S0917",
+    "runtime": "B423.450 / modinfo450 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Keep the current fact scope capacity while separately bounding independent recipient duties.",
+  "goal": "Move the existing Tradition owner mark to independent acknowledged delivery.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Fact scope capacity independent of recipient count — S0916",
+      "selector": "### Research Tradition acknowledges work at its existing projection boundary — S0917",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,10 +51,10 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_fact_delivery_capacity.py",
+      "path": "DevelopmentTests/test_tradition_fact_responsibility.py",
       "kind": "head",
       "selector": 28,
-      "reason": "Rerunnable exact scope and receipt boundary regressions"
+      "reason": "Rerunnable scoped delivery regression"
     }
   ],
   "dependencies": [
@@ -74,8 +74,8 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "231 local checks and fixed B421 fan-out comparison.",
-    "2,048 distinct scopes and 12,288 receipts tested at separate limits; full reentry and B421 strict-use regressions.",
+    "Four real Tradition takeover checks and two fixed B422 failure reproductions.",
+    "308 passes, one unchanged pre-existing error in the 309-check selection.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -202,6 +202,16 @@
       "source_snapshot_sha256": "c4652697ccc71324d4c373e72b864dda5c6fe47f786ec9c79d367746b6104aff",
       "local_evidence": "local/refactor/O2e-6f3261f2c06d4f2480392a7121186567/closure.json",
       "local_evidence_sha256": "cc69201cfd671f51f28829902f0b6b1d11b588980f1bfcef3a8ee861e4be6e10",
+      "deployed": false
+    },
+    "tradition_fact_responsibility": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED_WITH_BASELINE_OPEN",
+      "version": "B423.450 / modinfo450",
+      "package_sha256": "f311393729c925a8b717b16dceedee480a2d07372fdb71fd76001656fd3465cf",
+      "report": "Specialization/Status/Specialization_P0_Status.md#research-tradition-acknowledges-work-at-its-existing-projection-boundary--s0917",
+      "source_snapshot_sha256": "cfadfe296b661f2ce968b736e21be72380bab0041783fb77c90a1940a1f7af11",
+      "local_evidence": "local/refactor/O2f-d9c46e43e4c649938cda35902aa3c146/closure.json",
+      "local_evidence_sha256": "442c8c27a853f46be98a21b7cad588f0cb4c7058c00d11a7dffdc8c33a26f512",
       "deployed": false
     }
   }

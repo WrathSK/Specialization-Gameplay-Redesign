@@ -62,6 +62,7 @@ def pipeline():
           local function outside(e)return fc.Receipt(e,'IRRELEVANT','FIXTURE_OUTSIDE_SCOPE')end
           shared.CapitalInvestment={AcceptFact=outside,Mark=function()end}
           shared.DevelopmentInvestment={AcceptFact=outside,SourceChanged=function()end}
+          shared.ResearchTraditionEffects={AcceptFact=outside}
           function drain()fc.Flush();bindings.Flush();Events.GameCoreEventPublishComplete.Fire()end
           function proof()
            shared.RouteSignalRevision=(shared.RouteSignalRevision or 0)+1

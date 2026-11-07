@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0916",
-    "runtime": "B422.449 / modinfo449 source candidate",
+    "status": "S0917",
+    "runtime": "B423.450 / modinfo450 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "72fe54d46b2fc66e24f776c23f980c02d77c9182",
-  "current_batch": "FACT_SCOPE_RECEIPT_CAPACITY_LOCAL_COMPLETE_O2_CONTINUES",
-  "next_batch": "O2 continues through actual effect-audit owners with the verified shared scope and separate receipt bounds.",
+  "current_batch": "TRADITION_FACT_OWNER_LOCAL_COMPLETE_O2_CONTINUES",
+  "next_batch": "O2 continues with the ordered audit owners, preserving existing scope aggregation and carrier write order.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B414.441 / modinfo441 temporary develop from 72fe54d46b2fc66e24f776c23f980c02d77c9182, 346/346 MATCH, SHA256 ffba41b4203db25c2ad7c1a60c0851fdcd02a462f80625bec57ce8c4354ee8a4. Receipt B414.441-72fe54d-playtest.json DEVELOP_ACTIVE. B413 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner explicitly approved B414.441 deployment. Completed with receipt-bound verification. This approval is for this deployment.",
-  "context_review_status": "S0916: distinct scope and receipt capacity, phase isolation and B421 strict-use regression verified locally.",
+  "context_review_status": "S0917 B423.450 verifies the actual Research Tradition fact takeover and its existing projection cadence.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#fact-scope-capacity-independent-of-recipient-count--s0916",
-  "source_status": "B422.449 / modinfo449 at reviewed candidate package SHA256 1dda76d146c562e1bbb26a0c7b3bbf0ca267fcb0ca7e2f9b038f54e4b99e4ec6. Live B414.441 receipt remains separate.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#research-tradition-acknowledges-work-at-its-existing-projection-boundary--s0917",
+  "source_status": "B423.450 / modinfo450 at reviewed candidate package SHA256 f311393729c925a8b717b16dceedee480a2d07372fdb71fd76001656fd3465cf. Live B414.441 receipt remains separate.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
