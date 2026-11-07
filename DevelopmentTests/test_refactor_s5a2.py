@@ -88,8 +88,18 @@ class Wiring(unittest.TestCase):
         c.globals().include=load;c.load('Gameplay');c.execute("local s=ExposedMembers.SPC_P0;assert(s.StartStatus.FactChanges.state=='FAILED' and s.StartStatus.CityProgressionStore.state=='SKIPPED_DEPENDENCY' and sealed)")
     def test_production_eight_observers_no_filename_chain_and_independent_wonder(self):
         names=['ClaimProjects','IndustrySupport','EngineeringStudyProjects','CrewProjects','Commerce','DevelopmentInvestment','Restructuring','LevelBannerState','IndustryWonderEffects']
+        bindings=(ROOT/'Mod'/'FactConsumerBindings.lua').read_text()
         for name in names:
-            text=(ROOT/'Mod'/f'{name}.lua').read_text();self.assertNotIn('SPCSafeCallbacks.Chain(',text);self.assertTrue('FactChanges.RegisterConsumer' in text or name=='Restructuring' and 'function d.FactChanged(e)' in text)
+            text=(ROOT/'Mod'/f'{name}.lua').read_text()
+            self.assertNotIn('SPCSafeCallbacks.Chain(',text)
+            if name=='Commerce':
+                self.assertIn("target='Commerce',takeover='AcceptFact'",bindings)
+                self.assertIn('function d.AcceptFact(event)',text)
+            elif name=='IndustryWonderEffects':
+                self.assertIn('local facts=shared.FactChanges',text)
+                self.assertIn("facts.RegisterConsumer('IndustryWonderEffects'",text)
+            else:
+                self.assertTrue('FactChanges.RegisterConsumer' in text or name=='Restructuring' and 'function d.FactChanged(e)' in text)
         self.assertNotIn('OnPermanentCityWrite',(ROOT/'Mod/CityProgressionStore.lua').read_text())
 
 class Freshness(unittest.TestCase):

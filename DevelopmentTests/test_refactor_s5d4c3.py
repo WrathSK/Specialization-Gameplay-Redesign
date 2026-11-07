@@ -58,7 +58,7 @@ class Causes(unittest.TestCase):
     def test_true_global_dominates_owner_and_city_once(self):
         l=actual();l.execute("resetVisits();structural(0,2);structural(0);structural();pulse();assert(visits[1]==1 and visits[2]==1)")
     def test_original_UI_narrow_gate_and_strict_native_global_complement(self):
-        c=depth();c.load('FactConsumerBindings');c.execute("SPCFactConsumerBindings.New(shared);seen={};shared.IndustrySupport={Audit=function(s)seen[#seen+1]=s end};d.MarkDirty(0,1);d.MarkDirty();fc.Flush();shared.FactBindings.Flush();assert(#seen==1 and seen[1].player==nil and seen[1].city==nil)")
+        c=depth();c.load('FactConsumerBindings');c.execute("SPCFactConsumerBindings.New(shared);seen={};shared.IndustrySupport={AcceptFact=function(s)seen[#seen+1]=s;return true end};d.MarkDirty(0,1);d.MarkDirty();fc.Flush();shared.FactBindings.Flush();assert(#seen==1 and seen[1].player==nil and seen[1].city==nil)")
 
 
 class Construction(unittest.TestCase):

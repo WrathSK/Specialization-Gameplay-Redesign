@@ -27,7 +27,9 @@ def baseline():
 def observed():
  v=standard();v.execute("""
  visits=0;legacy=0;carrierReads=0;scopes={}
- local a=std.Audit;std.Audit=function(scope)visits=visits+1;scopes[#scopes+1]=scope or {};return a(scope)end
+ local function observe(a)return function(scope)visits=visits+1;scopes[#scopes+1]=scope or {};return a(scope)end end
+ std.Audit=observe(std.Audit)
+ if std.AcceptFact then std.AcceptFact=observe(std.AcceptFact)end
  shared.StandardizationDiscount.Withdraw=function()legacy=legacy+1;return true end
  shared.CopyYields.Withdraw=function()legacy=legacy+1;return true end
  local has=P.HasBuilding;P.HasBuilding=function(b,id)if tostring(id):find('BUILDING_SPC_STD_',1,true)then carrierReads=carrierReads+1 end;return has(b,id)end

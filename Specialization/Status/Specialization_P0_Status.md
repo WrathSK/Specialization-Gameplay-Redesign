@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0925
+Status Revision: S0926
 Implementation Build: source B431.458 / modinfo458, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: EFFECT_RECIPIENTS_LOCAL_COMPLETE_O2_BOUNDARIES_OPEN
+Work State: EFFECT_DELIVERY_LOCALLY_VERIFIED_PHASE_ZERO_POLICY_DECISION
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Effect delivery verified and synchronous transition policy isolated — S0926
+
+The ordinary effect-recipient migration is locally verified. The reverse-index follow-up adapts old harness lookups and doubles to the real registered endpoints while preserving their scope, yield, writer-count, fallback, reference and lifecycle assertions. The B431 runtime package is byte-identical to S0925.
+
+- **LOCAL_SIMULATION_PASS in scope.** 553 of 556 selected tests pass, including all 100 supplemental wiring, Worker, reverse-index and native-event-shaped regressions. The same three inherited failures remain visible and are reproduced on the fixed B429 source. Local compile, XML/package and source checks remain separate from native evidence.
+- **Pre-existing synchronous boundary, decision required.** A fault-injected real Store, Restructuring, FactChanges, Bindings and Bridge composition yields the same results on fixed B421 and B431. When applying the disruption marker fails, the Store still establishes `REALLOCATING` and Bridge publishes the city as `NONE/0`. When removing the disruption marker fails after configuration, Bridge can publish `CULTURE/3` and recover its owner proof while the marker is still physically present in the fixture. In both cases Restructuring exposes `REST_MARKER_WRITE_UNCONFIRMED`, but the phase-zero dispatch has no pending completion receipt. This proves a missing contract at the source boundary. It does not show that the fault occurs natively or that any transaction settled. The fixture uses an empty verified route set. The local reproduction is `phase_zero_boundary.py` beside this checkpoint's evidence, SHA256 `115824c295c7d744154849db785ff145735cb0020d07f386014b41fe87f8d55b`.
+- **Proposed narrow next rule for review.** A confirmed exit revokes its old eligibility immediately. If restoring positive eligibility depends on removing the disruption marker, keep the affected city's pending synchronization and defer that city's newly available use until matching native readback. Unrelated cities continue. Store history and authority, signed transactions, and the current passive hold rule remain unchanged. The positive-release rule requires Owner confirmation before phase-zero publication is changed.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `8d4d2b740cae0710431e26a3ac89ff1cbde74ccb8326618d3a9a30379f4c014a`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol test_ordered_audit_receipts test_tradition_fact_responsibility test_refactor_s5propagation.PhaseBarrier test_refactor_s5propagation.Scopes test_refactor_s5d1.Kernel test_scoped_depth_write test_refactor_s5propagation.ActualInvestment test_refactor_s9e7.UnscopedRouting test_refactor_s5d4c7 test_refactor_s9d1b.Witness test_refactor_s9d1b.WriteBarrier test_pu04_negative test_refactor_s5d4a test_refactor_s5d1.Writers.test_actual_apply_chair_one_city_keeps_sibling_carriers_errors test_refactor_s5d1.Writers.test_actual_chair_busy_second_city_retained_until_publish test_refactor_s5d1.Writers.test_actual_apply_chair_owner_read_failure_is_city_isolated test_refactor_s5d4c4.AestheticHealth test_refactor_s5d4c5.CultureProjection test_refactor_s5d4c6.InsightsHealth test_refactor_s5d3.Dialogue test_refactor_s5history.Bindings test_sampled_effect_fact_receipts test_refactor_s4a.Industry test_refactor_s4a.IndustryReentry test_refactor_s5d1.Writers.test_actual_cross_scoped_plan_and_error_are_not_globally_replaced test_refactor_s5d1.Writers.test_actual_cross_busy_cause_is_processed_once test_refactor_s5d1.Writers.test_actual_cross_owner_read_failure_is_city_isolated test_network_effect_fact_receipts test_refactor_s4b test_refactor_s5d4c8.WonderHealth test_refactor_s5a2.Wiring test_refactor_s7a6.ActualWonder test_refactor_s6d test_refactor_s6g.ScopedTopology test_refactor_s6j test_refactor_s5d4b1 test_refactor_s5d4b2 test_refactor_s5d4c3 test_refactor_s9e3.Transfer`. Tested source SHA256 `f266d8088da4f798f3fd48bb138f31c0fc8ff5c1247b099d37d77babd31289fc`. Full local evidence `local/refactor/O2o-6992496bffa64452a86eb343a168c3fe/closure.json`, SHA256 `e47c1ca9107745dcabe179fa888375003d905243114688f15df947fbba31d650`. [Rerunnable regression](../../DevelopmentTests/test_refactor_s5a2.py)
+
+Owner decision needed on the one positive-release rule before changing synchronous transition behavior. No user testing is requested at this checkpoint. No production bytes were changed in this follow-up. Live remains B414.441.
 
 ### Industry Wonder takes responsibility in its existing owner drain — S0925
 

@@ -12,7 +12,7 @@ def get_index(l,name):
     l.execute("""
     function up(fn,name)for i=1,100 do local k,v=debug.getupvalue(fn,i);if not k then return end;if k==name then return v end end end
     """)
-    l.execute('idx=assert(up('+name+".Audit,'dependents'))")
+    l.execute('local audit='+name+".Audit;idx=assert(up(up(audit,'audit')or audit,'dependents'))")
 
 
 class Relations(unittest.TestCase):
