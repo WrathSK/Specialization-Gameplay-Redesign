@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "bb8028761b77c77816868d7694ff2e7c8b48c9f7095c74fc17916e5890f28f9e",
+      "sha256": "b23b33c36c235d659d1e181c532f1144b3fc6b4ce5d897e5cb4c102790d04c81",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
+      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -851,9 +851,9 @@
       "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "f1bbd81092dd692e030ce9cf1a6635c7515bf424eb8518a6f395f2990717f64f",
+      "sha256": "cffa8595cb7ca7247031ffbfeee46b1c30eb4d960cfcc0d3e79053610f45afee",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
+      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
       "sha256": "a2520ff72fab9f2ebfee92b1ca0fecd281ae9ea7647d162eecb35dc0656c6ed6",
@@ -861,9 +861,9 @@
       "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/ResearchSupport.lua": {
-      "sha256": "929115853954b2031b78e4768a3e20bdd2a32c7ae6d80b885209e43da3af1243",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "f51ebcf4c94905ae357cf9cacd4e9d6953af9b4cca6d5a21027f7093d83663e4",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
     },
     "Mod/ResearchTradition.lua": {
       "sha256": "a7645393beab985282a474805375f7249254079d47c0ef6b41ffad3434950e38",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "dceaeb7e6c78aa8165a6dfdd1a579c148abe3f209a4cfcdd64aaed562094abd7",
+      "sha256": "5a95eaaf8002069bc943cff272103319ddc42808513102b691d20a5472d04274",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
+      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
@@ -916,9 +916,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/SpecialistSupport.lua": {
-      "sha256": "ae69f4f3657f5f087083e3a18c0f49b36c49d86fe706083cc6dbfc0a58544e1a",
+      "sha256": "476341541fc0284fe1164ac4c155593b9bb883342679106ccceebe37c9126ea9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
+      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
     },
     "Mod/Specialization.dep": {
       "sha256": "77b56743d8848d681829a7cc4dc908c824672de86a6be2dbffd1cae3a6edba3b",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a543d1fca92bb1ef7c99cb7c252da2abf0bcd928aedd2511743def775e1c59b6",
+      "sha256": "32fdd95d4c6e77ed32cecef4f5b7d5ed934b1cccac35a61bcc7f5ec8a45fce43",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
+      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1586,9 +1586,9 @@
       "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "7ab200b84560758818c1c9c2a172305848ac4243839a74df4cd2456c5acd8e6a",
+      "sha256": "dd4a16d09c09b52371a01a6ec47b17ced394bf46c4ea41422007858d396db737",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
+      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",

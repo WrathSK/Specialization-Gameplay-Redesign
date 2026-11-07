@@ -48,8 +48,13 @@ function S.ReadAnchor(P,pid,c,f,batch,anchors)
  return read()
 end
 -- Nil = confirmed ineligible; thrown read = UNKNOWN, retain existing projection.
-function S.Inspect(P,shared,pid,c,batch,project)
- if c:GetOwner()~=pid or not P.IsTestPlayer(pid)then return project(nil)end
+function S.Inspect(P,shared,pid,c,batch,project,requireKnownPlayer)
+ if c:GetOwner()~=pid then return project(nil)end
+ local eligible,_,status=P.IsTestPlayer(pid)
+ if not eligible then
+  assert(not requireKnownPlayer or status=='INELIGIBLE','B1_PLAYER_UNAVAILABLE')
+  return project(nil)
+ end
  local function inspect(f,workers,anchors)
   if f.specialization=='NONE'then return project(nil)end
   assert(P.Families and type(f.specialization)=='string','B1_IDENTITY_UNKNOWN')
@@ -70,6 +75,6 @@ function S.Inspect(P,shared,pid,c,batch,project)
  end
  return batch.Inspect(pid,c,inspect)
 end
-function S.Anchor(P,shared,pid,c,batch)
- return S.Inspect(P,shared,pid,c,batch,function(kind,raw,f)return kind,raw,f end)
+function S.Anchor(P,shared,pid,c,batch,requireKnownPlayer)
+ return S.Inspect(P,shared,pid,c,batch,function(kind,raw,f)return kind,raw,f end,requireKnownPlayer)
 end

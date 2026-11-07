@@ -507,7 +507,7 @@ function SPCRuntimeWork.TargetHook(P,source,name,fn)
 end
 
 -- One initialization latch. Fallback checks only the Store's scalar lifecycle state.
-function SPCRuntimeWork.StartReady(P,shared,name,start)
+function SPCRuntimeWork.StartReady(P,shared,name,start,wakeFacts)
  local latched=false
  local function attempt(fromLoad)
   if latched then return end
@@ -518,6 +518,10 @@ function SPCRuntimeWork.StartReady(P,shared,name,start)
   elseif not fromLoad then return end
   latched=true -- never repeat initialization/Audit after a callback exception
   start()
+  if wakeFacts then
+   local bindings,changes=shared.FactBindings,shared.FactChanges
+   if bindings and bindings.Wake and changes then bindings.Wake(name,'OWNER_READY',changes.sequence)end
+  end
  end
  local function bind(event,fn)local e=P.Field(Events,event);if e and e.Add then e.Add(fn)end end
  bind('LoadScreenClose',function()attempt(true)end)

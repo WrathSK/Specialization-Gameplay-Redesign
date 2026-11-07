@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0918
-Implementation Build: source B424.451 / modinfo451, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0919
+Implementation Build: source B425.452 / modinfo452, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ORDERED_RESEARCH_AUDIT_RECEIPT_LOCAL_COMPLETE_O2_CONTINUES
+Work State: BASIC_SUPPORT_ORDERED_RECEIPT_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Basic specialist support takes its existing ordered audit — S0919
+
+Basic specialist support now takes ordinary role and D duties in its existing first audit slot. Its readiness and target lists remain independent of Research Infrastructure and the other producers.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T05/T08).** One ordered recipient joins the existing registry, for six named recipients and a 24,576-receipt ceiling. Scope, grouping and native reads stay on the same path. The already used readiness wake is shared by these two ordered targets. Only confirmed player ineligibility or a reliable anchor/ACTIVE negative can withdraw ordinary support. Unavailable player status retains the projection and does not change other callers of the shared anchor sampler. Exact exits and health recovery remain in the existing owners.
+- **LOCAL_SIMULATION_PASS.** The fixed B424 support fixture dropped the registry duty when the real writer was busy. The candidate retains the exact ticket, leaves an already successful sibling idle, and withdraws and restores the existing carrier on the same scoped causes. All 323 selected Lua51 tests pass, including the bounded D producer and Investment witness regressions. Actual native timing remains unmeasured.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `10c25902b78864f9bd61c29d154ab1060fda50d77dcc706a56a97bef44b49dc3`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol test_ordered_audit_receipts test_tradition_fact_responsibility test_refactor_s5propagation.PhaseBarrier test_refactor_s5propagation.Scopes test_refactor_s5d1.Kernel test_scoped_depth_write test_refactor_s5propagation.ActualInvestment test_refactor_s9e7.UnscopedRouting test_refactor_s5d4c7 test_refactor_s9d1b.Witness test_refactor_s9d1b.WriteBarrier test_pu04_negative test_refactor_s5d4a`. Tested source SHA256 `3fce602ddb74ca4a31feb50b223f1928bea31be1935890e8f2ef16f263773b12`. Full local evidence `local/refactor/O2h-23487c504ec045b99fd8daba71f324b0/closure.json`, SHA256 `b6c6edfd1d187315125e8f74ba280655efb672b932e2591af78083ee22bed6c7`. [Rerunnable regression](../../DevelopmentTests/test_refactor_s5d4a.py)
+
+No Owner decision or user testing is needed now. Primary continues within the approved effect delivery work. Live remains B414.441.
 
 ### Research Infrastructure takes fact duties in the existing audit order — S0918
 

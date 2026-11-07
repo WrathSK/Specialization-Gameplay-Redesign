@@ -36,6 +36,28 @@ class NativeDepth(unittest.TestCase):
         c=depth();c.execute("sample(1);sample(2);resetCounts();GameEvents.BuildingPillageStateChanged.Fire(1,1,1,true);sample(1);sample(2);assert(not counts.dc_capture);GameEvents.BuildingPillageStateChanged.Fire(nil,nil,1,true);assert(not counts.dc_capture);sample(1);sample(2);assert(counts.dc_capture==2)")
 
 
+def support():
+    from test_b270_event_scope import make_fixture
+    with legacy_source_observation():
+        lua, _, _ = make_fixture(0, True)
+        for name in ('FactChanges', 'FactConsumerBindings'):
+            lua.execute((ROOT / 'Mod' / (name + '.lua')).read_text())
+    lua.execute("""
+    fc=SPCFactChanges.New(shared);bindings=SPCFactConsumerBindings.New(shared)
+    city=cities[0][0];pillaged=false
+    P.Families={DISTRICT_CAMPUS='RESEARCH'};P.Family=function()return 'RESEARCH'end
+    local district={GetID=function()return 1 end,GetType=function()return 1 end,GetCity=function()return city end,IsComplete=function()return true end,IsPillaged=function()return pillaged end}
+    Players[0].GetDistricts=function()return {Members=function()return ipairs({district})end}end
+    shared.EffectiveFacts.Read=function()return {specialization='RESEARCH',potential=1,active=1,first={districtID=1,type='DISTRICT_CAMPUS'},token='T'}end
+    owner=shared.ResearchSupport;owner.Audit({player=0,city=0})
+    carrier=P.Info('Buildings','BUILDING_SPC_DEV_RESEARCH_SUPPORT').Index
+    assert(city.values[carrier])
+    function emit(cause)fc.Emit({owner=0,cityID=0,kinds={'D'},cause=cause})end
+    function drain()fc.Flush();bindings.Flush()end
+    """)
+    return lua
+
+
 class Consumers(unittest.TestCase):
     def test_actual_housing_live_pillage_state_updates_from_D_subscription(self):
         l=investment();l.execute("""
@@ -46,18 +68,24 @@ class Consumers(unittest.TestCase):
         d.bs[1].pillaged=false;fire('GameEvents.BuildingPillageStateChanged',0,1,lib,false);drain();assert(housing(c)==2 and turn==1)
         """)
     def test_actual_support_anchor_health_receives_D_without_extra_ACTIVE(self):
-        from test_b270_event_scope import make_fixture
-        with legacy_source_observation():l,_,_=make_fixture(0,True)
-        with legacy_source_observation():l.execute((ROOT/'Mod/FactChanges.lua').read_text());l.execute((ROOT/'Mod/FactConsumerBindings.lua').read_text())
-        l.execute("""
-        SPCFactChanges.New(shared);SPCFactConsumerBindings.New(shared);local c=cities[0][0];pillaged=false
-        P.Families={DISTRICT_CAMPUS='RESEARCH'};P.Family=function()return 'RESEARCH'end
-        local district={GetID=function()return 1 end,GetType=function()return 1 end,GetCity=function()return c end,IsComplete=function()return true end,IsPillaged=function()return pillaged end}
-        Players[0].GetDistricts=function()return {Members=function()return ipairs({district})end}end
-        shared.EffectiveFacts.Read=function()return {specialization='RESEARCH',potential=1,active=1,first={districtID=1,type='DISTRICT_CAMPUS'},token='T'}end
-        shared.ResearchSupport.Audit({player=0,city=0});local id=P.Info('Buildings','BUILDING_SPC_DEV_RESEARCH_SUPPORT').Index;assert(c.values[id])
-        pillaged=true;shared.FactChanges.Emit({owner=0,cityID=0,kinds={'D'},cause='ANCHOR_STATE_CHANGED'});shared.FactChanges.Flush();shared.FactBindings.Flush();assert(not c.values[id])
-        pillaged=false;shared.FactChanges.Emit({owner=0,cityID=0,kinds={'D'},cause='ANCHOR_REPAIRED'});shared.FactChanges.Flush();shared.FactBindings.Flush();assert(c.values[id])
+        l=support();l.execute("""
+        pillaged=true;emit('ANCHOR_STATE_CHANGED');drain();assert(not city.values[carrier])
+        pillaged=false;emit('ANCHOR_REPAIRED');drain();assert(city.values[carrier])
+        """)
+
+    def test_actual_support_refusal_preserves_only_its_receipt_until_a_named_wake(self):
+        l=support();l.execute("""
+        local sibling=0
+        fc.RegisterConsumer('Sibling',function()sibling=sibling+1 end,{kinds={'D'}})
+        local name='Binding_ResearchSupport'
+        owner.busy=true;pillaged=true;emit('ANCHOR_STATE_CHANGED');drain()
+        assert(city.values[carrier] and fc.errors[name] and sibling==1)
+        owner.busy=false;local n=fc.delivered
+        for i=1,50 do drain()end
+        assert(city.values[carrier] and fc.delivered==n)
+        assert(bindings.Wake('ResearchSupport','TARGET_READY',fc.sequence,{player=0,city=0}))
+        drain()
+        assert(not city.values[carrier] and not fc.errors[name] and sibling==1)
         """)
 
 if __name__=='__main__':unittest.main()

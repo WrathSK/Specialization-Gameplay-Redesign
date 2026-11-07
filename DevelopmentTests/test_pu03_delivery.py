@@ -65,6 +65,7 @@ def pipeline():
           shared.ResearchTraditionEffects={AcceptFact=outside}
           -- This proof/Commerce composition has no infrastructure projection.
           shared.ResearchInfrastructure={AcceptFact=function()return true end}
+          shared.ResearchSupport={AcceptFact=function()return true end}
           function drain()fc.Flush();bindings.Flush();Events.GameCoreEventPublishComplete.Fire()end
           function proof()
            shared.RouteSignalRevision=(shared.RouteSignalRevision or 0)+1

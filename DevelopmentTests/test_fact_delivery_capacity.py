@@ -13,15 +13,14 @@ class DeliveryCapacity(unittest.TestCase):
 local fc=shared.FactChanges
 fc.Flush()
 local called=0
--- The current declarations include Infrastructure. This D/Commerce fixture
--- models that recipient and adds two more to keep four interested receivers.
+-- Model the two declared Research recipients absent from this D/Commerce
+-- composition and add one more to exercise four interested receivers.
 shared.ResearchInfrastructure={AcceptFact=function()called=called+1;return true end}
-for index=1,2 do
- fc.RegisterConsumer('Extra'..index,function(e)
-  called=called+1
-  return fc.Receipt(e,'REGISTERED')
- end,{kinds={'D'},delivery='RESPONSIBILITY'})
-end
+shared.ResearchSupport={AcceptFact=function()called=called+1;return true end}
+fc.RegisterConsumer('Extra',function(e)
+ called=called+1
+ return fc.Receipt(e,'REGISTERED')
+end,{kinds={'D'},delivery='RESPONSIBILITY'})
 local writes=effectWrites
 for id=1001,3047 do dc.MarkDirty(0,id) end
 assert(fc.retainedScopes==2047 and fc.retained==8188)

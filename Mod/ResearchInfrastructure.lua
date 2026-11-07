@@ -150,9 +150,7 @@ function M.Start(P,shared)
  local function bind(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
  SPCRuntimeWork.StartReady(P,shared,'ResearchInfrastructure',function()
   data.ready=true;data.errors={};definitions=nil;data.Audit({load=true})
-  local bindings,changes=shared.FactBindings,shared.FactChanges
-  if bindings and bindings.Wake and changes then bindings.Wake('ResearchInfrastructure','OWNER_READY',changes.sequence)end
- end)
+ end,true)
  -- Scoped D owns ordinary structural changes; exact health owns current bits.
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.

@@ -12,6 +12,7 @@ def bindings():
     for _,name in ipairs({'Commerce','CapitalInvestment','DevelopmentInvestment','ResearchTraditionEffects'})do
      shared[name]={AcceptFact=outside}
     end
+    shared.ResearchSupport={AcceptFact=function()return true end}
     function drain()d.Flush();shared.FactBindings.Flush()end
     """)
     return c

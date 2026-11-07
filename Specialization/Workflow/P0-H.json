@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0918",
-    "runtime": "B424.451 / modinfo451 source candidate",
+    "status": "S0919",
+    "runtime": "B425.452 / modinfo452 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Give the existing ordered Research Infrastructure audit explicit responsibility without changing its work scope or write order.",
+  "goal": "Move the existing basic specialist support audit to exact ordered fact acceptance.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Research Infrastructure takes fact duties in the existing audit order — S0918",
+      "selector": "### Basic specialist support takes its existing ordered audit — S0919",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,7 +51,7 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_ordered_audit_receipts.py",
+      "path": "DevelopmentTests/test_refactor_s5d4a.py",
       "kind": "head",
       "selector": 28,
       "reason": "Rerunnable scoped delivery regression"
@@ -74,8 +74,8 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "309 selected tests, including six actual Research Infrastructure receipt tests.",
-    "Fixed B423 refuses the missing-read/busy protection checks. Local pre/post work and carrier result agree.",
+    "323 selected tests including real basic-support and prior ordered D consumer scenarios.",
+    "One fixed B424 counterexample with no change in the other receiver.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -222,6 +222,16 @@
       "source_snapshot_sha256": "0ce9bd16324694c43927ff50c8c250cfb0146948a305cb1547448289e13de3e0",
       "local_evidence": "local/refactor/O2g-7ec9d50918254457932a9a448cd35691/closure.json",
       "local_evidence_sha256": "e329538dc8023bc18f592b93f6b1fdb07cf1001f1a3b24387bff243ffc704fbc",
+      "deployed": false
+    },
+    "ordered_basic_support_receipt": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "version": "B425.452 / modinfo452",
+      "package_sha256": "10c25902b78864f9bd61c29d154ab1060fda50d77dcc706a56a97bef44b49dc3",
+      "report": "Specialization/Status/Specialization_P0_Status.md#basic-specialist-support-takes-its-existing-ordered-audit--s0919",
+      "source_snapshot_sha256": "3fce602ddb74ca4a31feb50b223f1928bea31be1935890e8f2ef16f263773b12",
+      "local_evidence": "local/refactor/O2h-23487c504ec045b99fd8daba71f324b0/closure.json",
+      "local_evidence_sha256": "b6c6edfd1d187315125e8f74ba280655efb672b932e2591af78083ee22bed6c7",
       "deployed": false
     }
   }

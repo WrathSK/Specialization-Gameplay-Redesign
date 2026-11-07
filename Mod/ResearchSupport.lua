@@ -14,7 +14,7 @@ function SPCResearchSupport.Start(P,shared)
  local health=SPCRuntimeWork.NativeHealth(P,shared,data,carriersSet.Owns,function(scope)data.MarkAudit(scope)end)
  local function validate()carriersSet.Initialize()end
  local function desired(pid,c,batch)
-  local kind,d=SPCSpecialistSupport.Anchor(P,shared,pid,c,batch)
+  local kind,d=SPCSpecialistSupport.Anchor(P,shared,pid,c,batch,true)
   if kind=='INDUSTRY' then return nil end
   return kind,d
  end
@@ -29,11 +29,14 @@ function SPCResearchSupport.Start(P,shared)
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   SPCSpecialistSupport.Retire(P,c,shared);local kind=desired(pid,c,batch);carriers(c,kind,true)
  end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
- local function audit(scope)
-  local ok,err=pcall(function()validate();batch=SPCRuntimeWork.New(P,shared);targets.Run(scope)end)
-  batch=nil;if not ok then error(err,0)end
+ local function audit(scope,taking)
+  local ok,result=pcall(function()
+   validate();batch=SPCRuntimeWork.New(P,shared);return targets.Run(scope,taking)
+  end)
+  batch=nil;if not ok then error(result,0)end
+  return result
  end
- data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchSupport',audit,{targets=true})
+ data.Audit,data.MarkAudit,data.FlushAudit,data.AcceptFact=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchSupport',audit,{targets=true,receipts=true})
  function data.Run(pid,c,action)
   local ok,kind,d=pcall(desired,pid,c,SPCRuntimeWork.New(P,shared))
   local known,have=pcall(carriers,c,nil,false)
@@ -45,7 +48,7 @@ function SPCResearchSupport.Start(P,shared)
    ..'\nRead only; ON/OFF aliases cannot enable the retired III upgrade.'
  end
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
- SPCRuntimeWork.StartReady(P,shared,'ResearchSupport',function() data.ready=true;data.errors={};data.Audit({load=true})end)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchSupport',function()data.ready=true;data.errors={};data.Audit({load=true})end,true)
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
  if not shared.DistrictCompleteness then
   for _,n in ipairs({'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end

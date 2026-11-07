@@ -14,6 +14,7 @@ shared.ResearchTraditionEffects={AcceptFact=function(e)
  return fc.Receipt(e,'IRRELEVANT','FIXTURE_OUTSIDE_SCOPE')
 end}
 shared.ResearchInfrastructure={AcceptFact=function()return true end}
+shared.ResearchSupport={AcceptFact=function()return true end}
 function deliver()
  fc.Flush();bindings.Flush()
 end
