@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0907
+Status Revision: S0908
 Implementation Build: source/live B414.441 / modinfo441 from72fe54d; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: OFFICIAL_DATABASE_CAPTURED_MIGRATION_PENDING
+Work State: ENVIRONMENT_ASSEMBLY_REVIEW_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Environment assembly preparation ready — S0908
+
+2026-11-07: The Owner authorized the scoped next-step preparation. [Assembly readiness and exact next-slice proposal](../Reports/Proposals/Environment_Assembly_Readiness.md) compares the independent official DB with the accepted fixed HD profile. No runtime, formal Design/Architecture, test code, configuration, deployment or game launch changed. The existing integrated roadmap remains the ordering authority; the proposal does not authorize migration code.
+
+Read-only extraction found 138/4,888 Buildings and 84/348 prerequisites (official/HD), no missing prerequisite row references, and passing SQLite quick checks. The versioned tools/inspect_environment_inputs.py entry preserves immutable inputs, rejects existing output and emits deterministic local evidence (SHA256 2bc8ca3b6ffaef474fde16688a5f17e635490d79b4df6ed0a2da1302657a233e). Raw extraction and the explicitly provisional graph walk are retained in the external Assembly_Preparation_2026-11-07 archive. STATIC_DATABASE observations are not migrated-provider or native-effect acceptance.
+
+The fixed HD chain places Data Center at T5, and Hospitium/Garden at T3 rather than old HD T4. OrdinaryBuildingCatalog currently rejects above T4; Shared's explicit weight list ends at4. A bounded Owner decision is requested on T5 weight5 while retaining D cap10. Research Chair remains explicitly T1–T4; no automatic extension is proposed. The candidate also records Sewer's environment-specific district, center-policy separation, saved template classification compatibility, three missing official wrapper names, final Pillage SQL ordering, and the Leugi manifest/artdef/dep/icon removal closure. The official modern Great Merchant is an available visual candidate, not an accepted render.
+
+User decision: review the bounded Tier treatment, art candidate and first environment-assembly implementation scope. User testing: none now. Primary next: await that review before migration code; later no-HD smoke and O5/O6 behavior gates remain separate. Previously accepted HD content is not retested or broadened.
 
 ### Official database captured and Leugi scope amended — S0907
 

@@ -11,14 +11,14 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0907",
+    "status": "S0908",
     "runtime": "B414.441 / modinfo441",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record official database capture and Owner Leugi-decoupling scope decision.",
+  "goal": "Complete bounded environment assembly preparation and present concrete implementation scope.",
   "implementation_authorized": false,
   "context": [
     {
@@ -94,6 +94,15 @@
       "community_targets": 0,
       "manifest_sha256": "a699121f3bb74480681225d3ed9f5c2618ae820491052365b4569288ff668dfb",
       "report": "Specialization/Status/Specialization_P0_Status.md#official-database-captured-and-leugi-scope-amended--s0907"
+    },
+    "environment_preparation": {
+      "status": "STATIC_CONFIRMED_SCOPED_INPUTS_IMPLEMENTATION_PENDING",
+      "proposal": "Specialization/Reports/Proposals/Environment_Assembly_Readiness.md",
+      "extractor": "tools/inspect_environment_inputs.py",
+      "local_evidence_sha256": "2bc8ca3b6ffaef474fde16688a5f17e635490d79b4df6ed0a2da1302657a233e",
+      "runtime_changed": false,
+      "native_test_run": false,
+      "owner_decision": "T5 weight/range and visual/implementation scope as recorded in proposal"
     }
   }
 }
