@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "72fe54d46b2fc66e24f776c23f980c02d77c9182",
-  "runtime": "B414.441 / modinfo441 temporary develop deployed, 346/346 MATCH. Stable/main B307.334.",
+  "runtime_commit": "3274798cca313b41adacf64f65a9b161f416d210",
+  "runtime": "B434.461 / modinfo461 temporary develop deployed, 352/352 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1766,7 +1766,7 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     }
   },
-  "source_review": "S0909: B415.442 O5a data/art and unchanged selected-HD consumer closure reviewed. Exact scope in Status.",
-  "source_runtime": "B415.442 / modinfo442 source only; deployed B414.441 remains the receipt-bound comparison.",
-  "tested_source_snapshot_sha256": "613791c254bc2d660580fd143f563ff6431537ee92e1c852a71345bc843076a7"
+  "source_review": "S0930 startup-subscription candidate verified locally. S0931 confirms receipt-bound deployment.",
+  "source_runtime": "B434.461 / modinfo461 deployed from 3274798. Fixed official-profile smoke pending.",
+  "tested_source_snapshot_sha256": "505a160418a9dec0b433a81849c17df0ef368c4d255366841875f79820f085b3"
 }

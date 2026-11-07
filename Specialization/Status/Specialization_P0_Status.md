@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0930
-Implementation Build: source B434.461 / modinfo461, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0931
+Implementation Build: source and live B434.461 / modinfo461 from 3274798. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OFFICIAL_LOAD_SMOKE_CANDIDATE_LOCALLY_VERIFIED
+Work State: OFFICIAL_LOAD_SMOKE_DEPLOYED_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B434 deployed for the official-profile load smoke — S0931
+
+The Owner authorized the temporary B434.461 deployment for one new-game loading smoke in the fixed official Gathering Storm profile. After verified game exit, the receipt-bound stable restore and candidate activation completed. All 352 installed files match source `3274798cca313b41adacf64f65a9b161f416d210` and package SHA256 `19d86c81e82b28a57f616a6332f29ce67f927b8b8ede2b447cea36fe22aef8e0`.
+
+Receipt `B434.461-3274798-playtest.json` is DEVELOP_ACTIVE. Outgoing B414.441 is retained at 346/346 MATCH and the B307.334 recovery package at 312/312 MATCH. The installed UUID is unique and the transaction marker is absent. The official database baseline and the fixed HD regression profile remain distinct.
+
+- **USER_GAME_TEST_REQUIRED.** Start a new game in the previously captured official profile with B434 enabled. Use the Roosevelt test leader and reach the first playable turn. Found the capital, inspect the city and city overview panels and open production. Select the starting military unit to inspect the unit panel and check the normal action/next-turn control.
+- **Evidence.** Check the in-game mod selection in `Modding.log`, relevant `Database.log` errors and the same session's `SPC_EnvironmentAssembly` row (`OFFICIAL`). Record Lua startup through the native log or the existing collector's readiness records from the first playable turn. The Owner records whether the five panels actually render and respond. Use a screenshot and the relevant operation on failure. Native ability results, save/load and interaction adaptation have separate validation scopes.
+
+User decision is complete for this switch. User testing is the first-turn load smoke above. Primary next is to review the same-session evidence and record the scoped outcome.
 
 ### Ordinary effect listeners attach after initialization — S0930
 
