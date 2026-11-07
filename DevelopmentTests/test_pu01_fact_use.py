@@ -1,5 +1,6 @@
 """PU01 actual HD catalogue/DC/EF/Commerce; Lua51, native doubles, LOCAL only."""
 import unittest
+from test_b239_commerce import bind_commerce
 from refactor_harness import ROOT, TrackedLua51, legacy_source_observation
 
 MOD = ROOT / 'Mod'
@@ -110,7 +111,10 @@ def fixture():
     v.execute('local P=P\n'+probe[start:end])
     with legacy_source_observation():
         v.globals().include('Commerce')
-    v.execute("SPCCommerce.Start(P,shared);com=shared.Commerce;com.BindPermanentWrites();audit();assert(gold()==15,view().reason)")
+    v.execute("SPCCommerce.Start(P,shared);com=shared.Commerce")
+    with legacy_source_observation():
+        bind_commerce(v)
+    v.execute("audit();assert(gold()==15,view().reason)")
     return v
 
 

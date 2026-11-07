@@ -1,5 +1,6 @@
 """S6f worker consumers: actual modules, Lua51; native/foundation doubles named."""
 import unittest
+from test_b239_commerce import bind_commerce
 from test_refactor_s6e import MoneyLua51
 from refactor_harness import TrackedLua51, legacy_source_observation, measure
 from test_refactor_s5d4c10 import fixture as commerce_fixture
@@ -88,7 +89,11 @@ def combined():
       local function write(fn,...)local t=f.BeginWrite();local ok,v=pcall(fn,...);f.EndWrite(t);assert(ok,v);return v end
       P.CreateBuilding=function(...)return write(create,...)end
       P.RemoveBuilding=function(...)return write(remove,...)end
-      SPCCommerce.Start(P,shared);com=shared.Commerce;com.BindPermanentWrites()
+      SPCCommerce.Start(P,shared);com=shared.Commerce
+    """)
+    with legacy_source_observation():
+        bind_commerce(l)
+    l.execute("""
       function auditCommerce()
        com.Audit({player=0,city=source:GetID()});local v=com.views['0:'..source:GetID()]
        assert(v and v.stage=='READY',v and v.reason or com.error);return v

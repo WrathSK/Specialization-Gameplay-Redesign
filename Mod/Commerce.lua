@@ -16,7 +16,7 @@ function M.Start(P,shared)
  local d={views={},revision=0,ready=false,writes=0};shared.Commerce=d
  local views,dependencies,byTarget,dirty,known,samples={},{},{},{},{},{}
  local heldDeliveries={} -- only failed work already accepted from the fact-delivery owner
- local definitions,legacy,sourceKinds={},{},{};local initialized=false;local busy=false;local permanentBound=false
+ local definitions,legacy,sourceKinds={},{},{};local initialized=false;local busy=false
  local ownedIndex={}
  local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.Mark(scope.player,scope.city)end)
  local ownNames={};for _,id in ipairs(M.Owned)do ownNames[id]=true end
@@ -346,26 +346,38 @@ function M.Start(P,shared)
   if cid~=nil then ids[key(pid,cid)]={pid,cid};for k,v in pairs(dependencies[key(pid,cid)] or {})do ids[k]=v end
   else for k,v in pairs(known)do if v[1]==pid then ids[k]=v end end end
  end
- function d.Mark(pid,id)
-  if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then d.Mark(owner,id)end end;return end
+ function d.Mark(pid,id,responsibility)
+  if pid==nil then
+   local accepted=false
+   for owner in pairs(Players)do if P.IsTestPlayer(owner)then
+    local marked,reason=d.Mark(owner,id,responsibility)
+    if marked==true then accepted=true
+    elseif reason~='ISOLATED'then return false,reason end
+   end end
+   return accepted,'NO_ELIGIBLE_OWNER'
+  end
   if not P.IsTestPlayer(pid)then return false,'UNSUPPORTED_PLAYER'end
   if isolated(pid)then return false,'ISOLATED'end
   dirty[pid]=dirty[pid] or heldDeliveries[pid] or {cities={}};heldDeliveries[pid]=nil
   if id==nil then dirty[pid].all=true;dirty[pid].cities={}
   elseif not dirty[pid].all then dirty[pid].cities[id]=true end
+  if responsibility then dirty[pid].factDuty=true end
   return true -- exact scope is registered before a delivery ACK may be made
  end
  function d.AcceptFact(event)
   local registry=shared.FactChanges
-  if not registry or type(event)~='table' or type(event.player)~='number' then return false end
-  local receipt=registry.Receipt(event,'REGISTERED') -- validate context before registering work
-  local accepted,reason=d.Mark(event.player,event.city)
-  if accepted~=true then
-   if reason=='UNSUPPORTED_PLAYER'then return registry.Receipt(event,'IRRELEVANT',reason)end
-   return false
+  if not registry or type(event)~='table' then return false end
+  local network=event.kinds and event.kinds.NETWORK
+  if type(event.player)~='number'and (event.player~=nil or event.city~=nil or network)then return false end
+  local receipt=registry.Receipt(event,'REGISTERED')
+  local accepted,reason=d.Mark(event.player,event.city,true)
+  if accepted==true then return receipt end
+  -- Optional isolation still suppresses ordinary marks. Network proof duty
+  -- remains unacknowledged during isolation, as on the original proof route.
+  if reason=='UNSUPPORTED_PLAYER' or reason=='NO_ELIGIBLE_OWNER' or not network and reason=='ISOLATED'then
+   return registry.Receipt(event,'IRRELEVANT',reason)
   end
-  dirty[event.player].factDuty=true
-  return receipt
+  return false
  end
  function d.Audit(scope)
   if scope and scope.player~=nil and (not P.IsTestPlayer(scope.player) or isolated(scope.player))then return end
@@ -474,11 +486,6 @@ function M.Start(P,shared)
  end
  function d.Refresh(pid,id)d.Audit({player=pid,city=id});return cp(views[key(pid,id)])end
  function d.SourceChanged(pid,id)d.Audit({player=pid,changed={[id]=true}})end
- function d.BindPermanentWrites()
-  if permanentBound then return end
-  if shared.FactChanges then shared.FactChanges.RegisterConsumer('Commerce',function(e)d.Mark(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','HISTORY'},topics={'COMMERCE'}})end
-  permanentBound=true
- end
  function d.ExperimentalNetworkWithdraw(pid)
   assert(isolated(pid) and P.IsTestPlayer(pid) and not busy,'COMMERCE_ISOLATION_REQUIRED')
   validate()

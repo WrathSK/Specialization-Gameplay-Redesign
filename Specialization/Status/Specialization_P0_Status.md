@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0911
-Implementation Build: source B417.444 / modinfo444, local shared-facts candidate. Live B414.441 from72fe54d; stable/main B307.334.
+Status Revision: S0912
+Implementation Build: source B418.445 / modinfo445, local Commerce delivery candidate. Live B414.441 from72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: SHARED_FACTS_O1_LOCAL_COMPLETE_DELIVERY_NEXT
+Work State: COMMERCE_FACT_DELIVERY_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Commerce receives ordinary fact duties through one path — S0912
+
+Commerce now takes responsibility for ordinary progression, district, worker and Commerce-history changes in the same declared consumer as Network proof. The former duplicate Active/Workers mark and old fire-and-forget registration are retired. The registry retains unacknowledged scopes, and the Commerce owner takes a matching receipt only after it has marked its existing work. Its accepted failed work remains held until an existing cause rearms its owner queue.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T05/T08).** Use the existing bounded registry and one combined duty for each same-scope snapshot. Phase0 ordering, Network proof production, transaction gates and owner flush placement stay unchanged. All-owner ordinary events keep their previous supported-player scope. No additional city scan, write, listener, persistent queue or idle retry. The owner's existing coalescing within a player remains. The other ordinary owners still use their existing routes until the next verified O2 slices.
+- **LOCAL_SIMULATION_PASS.** At fixed B417, real Commerce/Bindings loses a missing-owner worker duty and a failed ordinary owner scope, and marks a combined role/proof snapshot more than once. The current composition holds and wakes the correct registry ticket, keeps successful siblings idle, marks the combined change once, and preserves the owner duty after a failed audit. The global D and history-topic filter checks also pass. 150 selected tests pass, including PU03 capacity/stale ACK/transport, PU01 current proofs and retained/frozen reputation cases. Native market effects and actual event timing remain pending at the existing gates.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses, 352 package references, package SHA256 `a78d5c66ea5f0db70660675b872f1bb819272066a6c444c27edf049ea647fa0d`. CPython 3.14/Lupa 2.8, DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_commerce_fact_responsibility test_pu03_delivery test_pu01_fact_use test_refactor_s6f test_b413_review_repairs.CommerceNegatives test_refactor_s5d4c10 test_refactor_s4b.CommerceRetention test_refactor_s7c.FrozenD6 test_refactor_s7c.CommerceFallback test_refactor_s5d4b1.ActualConsumers test_refactor_s5history.Bindings`. Tested source SHA256 `d3cb3698318eca7d1c006d5a78d6cef7cf4df784b4ad90779ac49e066238995a`. Full local execution and fixed-base failure evidence `local/refactor/O2a-9f806177c907457380221a67b01241c2/closure.json`, SHA256 `bd3b5dfe688ef5bb5a0d54c6612a85b788c5df5b21cec479379fe7242292c60c`. [Commerce duty regression](../../DevelopmentTests/test_commerce_fact_responsibility.py)
+
+User decision: none. User testing: none now. Primary next: extend explicit owner takeover to the next ordinary audit owners with compatible scope and readiness. Live remains B414.441.
 
 ### Scoped carrier writes keep other cities’ depth facts warm — S0911
 

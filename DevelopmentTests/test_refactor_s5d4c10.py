@@ -28,7 +28,7 @@ def fixture():
     function loss(cid,bit)P.RemoveBuilding(cities[cid]:GetBuildings(),'BUILDING_SPC_COMMERCE_GOLD_'..(bit or 0))end
     """)
     with legacy_source_observation():l.globals().include('Commerce')
-    l.execute(blocks[1]);l.execute("SPCFactConsumerBindings.New(shared);pulse();assert(toggle(2,'DISTRICT_CAMPUS',true));pulse();assert(ownedGold(cities[2])==15)")
+    l.execute(blocks[1]);l.execute("if com.BindPermanentWrites then com.BindPermanentWrites()end;SPCFactConsumerBindings.New(shared);pulse();assert(toggle(2,'DISTRICT_CAMPUS',true));pulse();assert(ownedGold(cities[2])==15)")
     return l
 
 class CommerceHealth(unittest.TestCase):

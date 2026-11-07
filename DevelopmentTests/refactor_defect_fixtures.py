@@ -6,12 +6,15 @@ def commerce():
     import test_culture_network
     test_culture_network.LuaRuntime=TrackedLua51
     from test_b239_commerce import fixture
-    with legacy_source_observation():l=fixture()
-    return fact_publication_profile(l)
+    with legacy_source_observation():l=fixture(attach=False)
+    return fact_publication_profile(l,bind_legacy_commerce=True)
 
-def fact_publication_profile(l, automatic=True):
+def fact_publication_profile(l, automatic=True, bind_legacy_commerce=False):
     l.execute((ROOT/'Mod/FactChanges.lua').read_text());l.execute((ROOT/'Mod/FactConsumerBindings.lua').read_text())
-    l.execute((ROOT/'Mod/NativeFacts.lua').read_text());l.execute("SPCFactChanges.New(shared);if not shared.NativeFacts then SPCNativeFacts.New(P,shared)end;SPCFactConsumerBindings.New(shared)")
+    l.execute((ROOT/'Mod/NativeFacts.lua').read_text());l.execute("SPCFactChanges.New(shared);if not shared.NativeFacts then SPCNativeFacts.New(P,shared)end")
+    if bind_legacy_commerce:
+        l.execute("if com.BindPermanentWrites then com.BindPermanentWrites()end")
+    l.execute("SPCFactConsumerBindings.New(shared)")
     if automatic:
         l.execute("""
         fixtureDrain=false

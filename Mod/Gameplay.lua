@@ -1028,8 +1028,6 @@ composition.Run('CrewProjectsBind',{'CrewProjects'},{},function() shared.CrewPro
 
 composition.Run('Commerce',{'CityProgressionStore','EffectiveFacts','NetworkBridge','CommerceConvergence','NativeFacts'},{'Commerce'},function() include('Commerce');SPCCommerce.Start(P,shared) end)
 
-composition.Run('CommerceBind',{'Commerce'},{},function() shared.Commerce.BindPermanentWrites() end)
-
 composition.Run('CapitalInvestment',{'CityProgressionStore','EffectiveFacts','Commerce','NetworkBridge'},{'CapitalInvestment'},function() include('CapitalInvestment');SPCCapitalInvestment.Start(P,shared) end)
 
 composition.Run('DevelopmentInvestment',{'CityProgressionStore','EffectiveFacts','NetworkBridge'},{'DevelopmentInvestment'},function() include('DevelopmentInvestment');SPCDevelopmentInvestment.Start(P,shared) end)

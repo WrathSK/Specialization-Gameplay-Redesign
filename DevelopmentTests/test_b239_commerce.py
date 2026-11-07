@@ -8,7 +8,16 @@ ROOT = Path(__file__).resolve().parents[1]
 MOD = ROOT/'Mod'
 
 
-def fixture():
+def bind_commerce(lua):
+    # Exact historical owner versions still own their old registration.
+    if lua.eval('com.BindPermanentWrites~=nil'):
+        lua.execute('com.BindPermanentWrites()')
+    elif lua.eval('shared.FactChanges~=nil and shared.FactBindings==nil'):
+        lua.globals().include('FactConsumerBindings')
+        lua.execute('SPCFactConsumerBindings.New(shared)')
+
+
+def fixture(attach=True):
     lua = network_fixture()
     lua.execute((MOD/'CommerceModel.lua').read_text())
     lua.execute(r'''
@@ -95,7 +104,8 @@ def fixture():
     ''')
     lua.execute((MOD/'Commerce.lua').read_text())
     lua.execute('''
-      SPCCommerce.Start(P,shared);com=shared.Commerce;com.BindPermanentWrites();com.Audit()
+      SPCCommerce.Start(P,shared);com=shared.Commerce
+      com.Audit()
       function view(cid)return com.views['0:'..cid]end
       function toggle(cid,domain,enabled)
         local v=view(cid)
@@ -104,6 +114,8 @@ def fixture():
       end
       function domain(cid,id)for _,r in ipairs(view(cid).domains)do if r.id==id then return r end end end
     ''')
+    if attach:
+        bind_commerce(lua)
     return lua
 
 

@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0911",
-    "runtime": "B417.444 / modinfo444 source candidate",
+    "status": "S0912",
+    "runtime": "B418.445 / modinfo445 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Keep shared D fresh through actual city-local carrier writes while preserving the broader in-flight and unclassified-write barriers.",
+  "goal": "Deliver ordinary Commerce and Network proof notifications once through the existing accountable owner.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Scoped carrier writes keep other cities’ depth facts warm — S0911",
+      "selector": "### Commerce receives ordinary fact duties through one path — S0912",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,10 +51,10 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_scoped_depth_write.py",
+      "path": "DevelopmentTests/test_commerce_fact_responsibility.py",
       "kind": "head",
-      "selector": 20,
-      "reason": "Rerunnable scoped before/after mutation tests"
+      "selector": 22,
+      "reason": "Rerunnable actual ordinary Commerce duty tests"
     }
   ],
   "dependencies": [
@@ -71,12 +71,11 @@
     "Review current Store and exact exit owners only if advancing the later O5b/startup or O1 dependency boundary."
   ],
   "non_scope": [
-    "O2–O8, cross-build save migration, native loading, UI validation, deployment and main promotion."
+    "Other O2 owners, O3–O8 migration, native/UI validation, game deployment and main promotion."
   ],
   "validation": [
-    "B416 reproduces 1/10/3 unrelated-city recaptures; B417 proves 0/0/0 and same-city barriers.",
-    "68/68 core and 98/103 supplemental, five inherited NOT_PASS.",
-    "223 Lua51, 32 XML and 352 package entries plus Context Lock."
+    "B417 three new reproducible failure cases; four O2a scenarios pass.",
+    "150 selected checks; Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
     "Reopen affected scope if the selected native profile differs, a fixed-HD target or primitive changes, or a later source/cutover changes ordinary admission, exact exits, history or irreversible behavior."
@@ -152,6 +151,16 @@
       "source_snapshot_sha256": "6c4e60a414e2ff000de29d28c2a12e629e383244cbf94d9d52f6caef29b4ef9e",
       "local_evidence": "local/refactor/O1b-d1c8daa3ea87409e975088ef657ba9ab/closure.json",
       "local_evidence_sha256": "7719491c92fbcd5bd6aecafeeccf8bee32d3a6b2132e268c82bdb6c0eff68a4e",
+      "deployed": false
+    },
+    "commerce_fact_delivery": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "version": "B418.445 / modinfo445",
+      "package_sha256": "a78d5c66ea5f0db70660675b872f1bb819272066a6c444c27edf049ea647fa0d",
+      "report": "Specialization/Status/Specialization_P0_Status.md#commerce-receives-ordinary-fact-duties-through-one-path--s0912",
+      "source_snapshot_sha256": "d3cb3698318eca7d1c006d5a78d6cef7cf4df784b4ad90779ac49e066238995a",
+      "local_evidence": "local/refactor/O2a-9f806177c907457380221a67b01241c2/closure.json",
+      "local_evidence_sha256": "bd3b5dfe688ef5bb5a0d54c6612a85b788c5df5b21cec479379fe7242292c60c",
       "deployed": false
     }
   }
