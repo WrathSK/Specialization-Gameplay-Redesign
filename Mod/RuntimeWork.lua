@@ -75,17 +75,22 @@ function SPCRuntimeWork.NewAudit(P,shared,data,label,run,options)
   end
   return true
  end
- local function audit(scope)
+ local function runAudit(scope,taking)
   if type(scope)~='table'then scope=nil end
   if not data.ready then return false end
   if type(scope)=='table' and scope.player~=nil and not targetOwner and not P.IsTestPlayer(scope.player)then return false end
-  if data.busy then if P.Count then P.Count('busy_skip')end;mark(scope);return false end
+  if data.busy then
+   if P.Count then P.Count('busy_skip')end
+   if not taking then mark(scope)end
+   return false
+  end
   data.busy=true;if P.Observe then pcall(P.Observe,'audit',label)end
-  local ok,why=pcall(run,scope);data.busy=false
+  local ok,why=pcall(run,scope,taking);data.busy=false
   local safe,text=pcall(tostring,why)
   data.auditError=not ok and (safe and text:sub(1,180) or 'RUNTIME_AUDIT_FAILED') or nil
-  return ok
+  return ok and (not taking or why==true)
  end
+ local function audit(scope)return runAudit(scope,false)end
  local function flush()
   if draining or data.busy or not data.ready or not next(pending) and not next(transfers)then return false end
   draining=true;local work,moved=pending,transfers;pending={};transfers={};total=0
@@ -100,7 +105,9 @@ function SPCRuntimeWork.NewAudit(P,shared,data,label,run,options)
  end
  local e=P.Field(Events,'GameCoreEventPublishComplete');if e and e.Add then e.Add(flush)end
  local load=P.Field(Events,'LoadScreenClose');if load and load.Add then load.Add(function()pending={};transfers={};total=0 end)end
- return audit,mark,flush
+ local accept
+ if options and options.receipts then accept=function(scope)return runAudit(scope,true)end end
+ return audit,mark,flush,accept
 end
 -- Only the named, synchronous investment result may narrow these two writers.
 -- Native hooks/player scopes remain unchanged. Facts belong to this writer's
@@ -309,37 +316,47 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
    elseif not ok then report(v.owner,v.city,errorText(done))end
   end end
  end
- function t.Run(scope)
+ function t.Run(scope,taking)
   local moved=lifecycleTransfer(scope)
   if moved then
-   if not relevantTransfer(moved)then return end
+   if not relevantTransfer(moved)then return true end
    scope={transfer=moved} -- detach before any native qualification/recovery work
   end
   local seen=t.Retry(scope)
+  local covered=true;local foundOwner=false
   for pid,p in pairs(Players)do
-   if (not moved or pid==moved.owner or pid==moved.oldOwner)and SPCRuntimeWork.Player(scope,pid)
-    and (type(scope)=='table' and scope.load or P.IsTestPlayer(pid))then
-    local ok,err=pcall(function()
-     local cs=p:GetCities();if not cs then return end
-     local selectedCity=moved and pid==moved.owner and moved.owner~=moved.oldOwner and moved.city or type(scope)=='table'and scope.city
-     if selectedCity~=nil and selectedCity~=false then
-      local c=lookup(cs,selectedCity);if c and not seen[key(reference(c))]then run(pid,c)end
-     else
-      for _,c in cs:Members()do
-       if not seen[key(reference(c))]then
-        run(pid,c) -- plot/unknown metadata falls back only to participants, never guessed radii
+   if (not moved or pid==moved.owner or pid==moved.oldOwner)and SPCRuntimeWork.Player(scope,pid)then
+    foundOwner=true
+    local eligible,status
+    if type(scope)=='table' and scope.load then eligible=true
+    else local why;eligible,why,status=P.IsTestPlayer(pid)end
+    if eligible then
+     local ok,visited=pcall(function()
+      local cs=p:GetCities();if not cs then return false end
+      local selectedCity=moved and pid==moved.owner and moved.owner~=moved.oldOwner and moved.city or type(scope)=='table'and scope.city
+      if selectedCity~=nil and selectedCity~=false then
+       local c=lookup(cs,selectedCity);if c and not seen[key(reference(c))]then run(pid,c)end
+      else
+       for _,c in cs:Members()do
+        if not seen[key(reference(c))]then
+         run(pid,c) -- plot/unknown metadata falls back only to participants, never guessed radii
+        end
        end
       end
-     end
-    end)
-    if not ok then report(pid,'player',errorText(err))end
+      return true
+     end)
+     if not ok then report(pid,'player',errorText(visited))end
+     if taking and (not ok or not visited)then covered=false end
+    elseif taking and status~='INELIGIBLE'then covered=false end
    end
   end
+  return covered and (not taking or type(scope)~='table' or scope.player==nil or foundOwner)
  end
  local runImpl,retryImpl=t.Run,t.Retry
- function t.Run(scope)
-  local ok,err=pcall(runImpl,scope)
+ function t.Run(scope,taking)
+  local ok,err=pcall(runImpl,scope,taking)
   if not ok then t.error=errorText(err);report(type(scope)=='table' and scope.player or 'runtime','player',t.error)end
+  if taking then return ok and err end
  end
  function t.Retry(scope)
   local ok,out=pcall(function()

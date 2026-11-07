@@ -13,7 +13,10 @@ class DeliveryCapacity(unittest.TestCase):
 local fc=shared.FactChanges
 fc.Flush()
 local called=0
-for index=1,3 do
+-- The current declarations include Infrastructure. This D/Commerce fixture
+-- models that recipient and adds two more to keep four interested receivers.
+shared.ResearchInfrastructure={AcceptFact=function()called=called+1;return true end}
+for index=1,2 do
  fc.RegisterConsumer('Extra'..index,function(e)
   called=called+1
   return fc.Receipt(e,'REGISTERED')
@@ -29,10 +32,10 @@ local ok,err=pcall(dc.MarkDirty,0,3049)
 assert(not ok and tostring(err):find('FACT_QUEUE_LIMIT') and fc.sequence==sequence)
 assert(fc.retainedScopes==2048 and fc.retained==8192)
 local delivered=fc.delivered
-fc.Flush()
+fc.Flush();shared.FactBindings.Flush()
 assert(fc.delivered-delivered>=8192 and called==6144 and effectWrites==writes)
 assert(fc.retainedScopes==0 and fc.retained==0 and fc.pending==0)
-dc.MarkDirty(0,3049);fc.Flush()
+dc.MarkDirty(0,3049);fc.Flush();shared.FactBindings.Flush()
 assert(called==6147 and fc.retainedScopes==0 and fc.retained==0)
 """)
         measure('delivery_depth_fanout', {

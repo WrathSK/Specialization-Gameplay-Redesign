@@ -5,6 +5,7 @@ local SCOPE_LIMIT=2048
 -- Reservation replaces all older entries for this receiver and scope. Only
 -- phase-zero derived work can also leave a separately queued next batch.
 local RECEIPT_BATCHES=2
+local RECEIPTS_PER_RECEIVER=SCOPE_LIMIT*RECEIPT_BATCHES
 local K={IDENTITY=true,POTENTIAL=true,ACTIVE=true,D=true,WORKERS=true,HISTORY=true,NETWORK=true}
 local function token(v)return type(v)=='string' and #v>0 and #v<=64 and v:match('^[A-Za-z][A-Za-z0-9_]*$')end
 local function integer(v)return type(v)=='number' and v>=0 and v<9007199254740992 and v%1==0 end
@@ -115,9 +116,10 @@ function M.New(shared)
  -- A scope is counted once, independent of the number of subscribers. Check
  -- both budgets before committing any reservation or changing the queue.
  local function checkCapacity(scopes,receipts,receiverCount)
-  assert(d.retained+receipts<=SCOPE_LIMIT*RECEIPT_BATCHES*receiverCount,'FACT_DELIVERY_RECEIVER_LIMIT')
+  assert(d.retained+receipts<=RECEIPTS_PER_RECEIVER*receiverCount,'FACT_DELIVERY_RECEIVER_LIMIT')
   assert(d.retainedScopes+scopes<=SCOPE_LIMIT,'FACT_DELIVERY_SCOPE_LIMIT')
  end
+ function d.ReceiptSlotsPerReceiver()return RECEIPTS_PER_RECEIVER end
  local interested
  local function merged(previous,row)
   if not previous then return row end
@@ -193,9 +195,10 @@ function M.New(shared)
   local topics={};entries(options.topics or {},32,function(topic)assert(token(topic),'FACT_TOPIC_INVALID');topics[topic]=true end)
   local phase=options.phase or 1;assert(phase==0 or phase==1,'FACT_PHASE_INVALID')
   assert(options.delivery==nil or options.delivery=='RESPONSIBILITY' and phase==1,'FACT_DELIVERY_MODE')
+  assert(options.ordered==nil or options.ordered==true and options.delivery=='RESPONSIBILITY','FACT_ORDERED_DELIVERY_MODE')
   assert(options.delivery==nil or not busy,'FACT_DELIVERY_REGISTER_DURING_FLUSH')
   local consumer={name=name,callback=callback,kinds=kinds,topics=topics,phase=phase,order=#order+1,
-   responsibility=options.delivery~=nil,deliveries={},byScope={},failures=0}
+   responsibility=options.delivery~=nil,ordered=options.ordered,deliveries={},byScope={},failures=0}
   local reserved={}
   if consumer.responsibility then
    local scopes=0
@@ -316,28 +319,44 @@ function M.New(shared)
   end
   return woke
  end
+ local function finish(consumer,entry,ok,result)
+  -- Reentrant Emit/Close owns the newer entry.
+  if d.closed or consumer.deliveries[entry.key]~=entry then return end
+  local event={delivery={epoch=d.epoch,consumer=consumer.name,ticket=entry.row.sequence}}
+  if ok and d.AcceptsReceipt(event,result)then
+   remove(consumer,entry)
+  else
+   if not entry.error then consumer.failures=consumer.failures+1 end
+   local safe,text=pcall(tostring,result)
+   entry.error=not ok and (safe and text:sub(1,180) or 'FACT_CALLBACK_FAILED') or 'FACT_DELIVERY_UNACKNOWLEDGED'
+   entry.state='HELD'
+  end
+  if consumer.ordered then d.errors[consumer.name]=consumer.failures>0 and 'FACT_DELIVERY_UNACKNOWLEDGED' or nil end
+ end
  local function attempt(consumer,entry)
   if consumer.deliveries[entry.key]~=entry then return end
   if entry.armed then entry.armed=false;d.retryReady=d.retryReady-1 end
+  local resolve,resolved
+  if consumer.ordered then
+   local name,key,ticket=consumer.name,entry.key,entry.row.sequence
+   resolve=function(receipt)
+    if resolved then return end;resolved=true
+    local current=consumers[name];local received=current and current.deliveries[key]
+    if received and received.row.sequence==ticket then finish(current,received,true,receipt)end
+   end
+  end
   local ok,result=pcall(function()
    local event=clone(entry.row);event.delivery={epoch=d.epoch,consumer=consumer.name,ticket=entry.row.sequence}
+   if resolve then return consumer.callback(event,resolve)end
    return consumer.callback(event)
   end)
   d.delivered=d.delivered+1
-  local event={delivery={epoch=d.epoch,consumer=consumer.name,ticket=entry.row.sequence}}
-  local accepted=ok and d.AcceptsReceipt(event,result)
-  -- Reentrant Emit/Close owns the newer entry; neither an old ACK nor error
-  -- may remove or overwrite it.
-  if not d.closed and consumer.deliveries[entry.key]==entry then
-   if accepted then
-    remove(consumer,entry)
-   else
-    if not entry.error then consumer.failures=consumer.failures+1 end
-    local safe,text=pcall(tostring,result)
-    entry.error=not ok and (safe and text:sub(1,180) or 'FACT_CALLBACK_FAILED') or 'FACT_DELIVERY_UNACKNOWLEDGED'
-    entry.state='HELD'
-   end
-  end
+  -- The existing Binding drain will finish this exact ticket. A successful
+  -- collection alone does not acknowledge the owner's audit.
+  if resolved then return end
+  if resolve and ok and result==true then
+   if not d.closed and consumer.deliveries[entry.key]==entry then entry.state='COLLECTED'end
+  else resolved=true;finish(consumer,entry,ok,result)end
  end
  function d.Flush()
   if d.closed or busy or #keys==0 and d.retryReady==0 then return false end

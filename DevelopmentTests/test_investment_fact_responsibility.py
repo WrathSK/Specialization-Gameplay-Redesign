@@ -13,6 +13,7 @@ capital=shared.CapitalInvestment;development=shared.DevelopmentInvestment
 shared.ResearchTraditionEffects={AcceptFact=function(e)
  return fc.Receipt(e,'IRRELEVANT','FIXTURE_OUTSIDE_SCOPE')
 end}
+shared.ResearchInfrastructure={AcceptFact=function()return true end}
 function deliver()
  fc.Flush();bindings.Flush()
 end

@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0917",
-    "runtime": "B423.450 / modinfo450 source candidate",
+    "status": "S0918",
+    "runtime": "B424.451 / modinfo451 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Move the existing Tradition owner mark to independent acknowledged delivery.",
+  "goal": "Give the existing ordered Research Infrastructure audit explicit responsibility without changing its work scope or write order.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Research Tradition acknowledges work at its existing projection boundary — S0917",
+      "selector": "### Research Infrastructure takes fact duties in the existing audit order — S0918",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,7 +51,7 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_tradition_fact_responsibility.py",
+      "path": "DevelopmentTests/test_ordered_audit_receipts.py",
       "kind": "head",
       "selector": 28,
       "reason": "Rerunnable scoped delivery regression"
@@ -74,8 +74,8 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "Four real Tradition takeover checks and two fixed B422 failure reproductions.",
-    "308 passes, one unchanged pre-existing error in the 309-check selection.",
+    "309 selected tests, including six actual Research Infrastructure receipt tests.",
+    "Fixed B423 refuses the missing-read/busy protection checks. Local pre/post work and carrier result agree.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -212,6 +212,16 @@
       "source_snapshot_sha256": "cfadfe296b661f2ce968b736e21be72380bab0041783fb77c90a1940a1f7af11",
       "local_evidence": "local/refactor/O2f-d9c46e43e4c649938cda35902aa3c146/closure.json",
       "local_evidence_sha256": "442c8c27a853f46be98a21b7cad588f0cb4c7058c00d11a7dffdc8c33a26f512",
+      "deployed": false
+    },
+    "ordered_research_infrastructure_receipt": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "version": "B424.451 / modinfo451",
+      "package_sha256": "609734c0237fe3505025300566518e1df957d8b1ea598b0a468f816013cd9762",
+      "report": "Specialization/Status/Specialization_P0_Status.md#research-infrastructure-takes-fact-duties-in-the-existing-audit-order--s0918",
+      "source_snapshot_sha256": "0ce9bd16324694c43927ff50c8c250cfb0146948a305cb1547448289e13de3e0",
+      "local_evidence": "local/refactor/O2g-7ec9d50918254457932a9a448cd35691/closure.json",
+      "local_evidence_sha256": "e329538dc8023bc18f592b93f6b1fdb07cf1001f1a3b24387bff243ffc704fbc",
       "deployed": false
     }
   }

@@ -63,6 +63,8 @@ def pipeline():
           shared.CapitalInvestment={AcceptFact=outside,Mark=function()end}
           shared.DevelopmentInvestment={AcceptFact=outside,SourceChanged=function()end}
           shared.ResearchTraditionEffects={AcceptFact=outside}
+          -- This proof/Commerce composition has no infrastructure projection.
+          shared.ResearchInfrastructure={AcceptFact=function()return true end}
           function drain()fc.Flush();bindings.Flush();Events.GameCoreEventPublishComplete.Fire()end
           function proof()
            shared.RouteSignalRevision=(shared.RouteSignalRevision or 0)+1
@@ -312,7 +314,8 @@ class ReadAndOrder(unittest.TestCase):
           local take=com.AcceptFact
           com.AcceptFact=function(e)order[#order+1]='OWNER';return take(e)end
           fc.Emit({owner=0,cityID=2,kinds={'ACTIVE'},cause='ROLE_FACT_CONFIRMED'})
-          fc.Flush();assert(order[1]=='SYNC' and order[2]=='BRIDGE' and order[3]=='OWNER' and fc.retained==0)
+          fc.Flush();assert(order[1]=='SYNC' and order[2]=='BRIDGE' and order[3]=='OWNER')
+          bindings.Flush();assert(fc.retained==0)
         """)
 
     def test_actual_gameplay_sealed_drain_uses_and_releases_real_fact_phase(self):

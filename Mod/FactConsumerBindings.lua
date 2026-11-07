@@ -2,7 +2,7 @@
 SPCFactConsumerBindings={}
 function SPCFactConsumerBindings.New(shared)
  local d={errors={}};shared.FactBindings=d
- local pending={};local networkDrains={};local registry=shared.FactChanges;local deliveryNames={}
+ local pending,receiptCounts={},{};local networkDrains={};local registry=shared.FactChanges;local deliveryNames={}
  local function target(name)
   local value=shared[name];local state=shared.StartStatus and shared.StartStatus[name]
   if value and not value.startupError and not (state and (state.state=='FAILED' or state.state=='SKIPPED_DEPENDENCY'))then return value end
@@ -25,7 +25,7 @@ function SPCFactConsumerBindings.New(shared)
   {target='Lv3Support',method='Audit',kinds=role},
   {target='Lv3Effects',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','NETWORK'}},
   {target='Lv4Percent',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
-  {target='ResearchInfrastructure',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
+  {target='ResearchInfrastructure',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='ResearchCross',method='Audit',sample=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='ResearchApply',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='ResearchChair',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
@@ -49,8 +49,11 @@ function SPCFactConsumerBindings.New(shared)
   for cause in pairs(row.ownerCauses)do if e.causes[cause]then return true end end
   return false
  end
- local function collect(row,e)
+ local function collect(row,e,resolve)
   if row.ownerCauses and e.city==nil and not ownerAllowed(row,e)then return end
+  if resolve then
+   assert((receiptCounts[row.target] or 0)<registry.ReceiptSlotsPerReceiver(),'FACT_BINDING_RECEIPT_LIMIT')
+  end
   local owners=pending[row.target] or {};pending[row.target]=owners
   local key=tostring(e.player);local q=owners[key]
   if not q then q={player=e.player,cities={},order={},proofs={},references={},topics={},causes={}};owners[key]=q end
@@ -61,6 +64,14 @@ function SPCFactConsumerBindings.New(shared)
   if not q.all and not q.conflicting and e.investment then q.proofs[e.city]=e.investment end
   for name in pairs(e.topics)do q.topics[name]=true end
   for name in pairs(e.causes)do q.causes[name]=true end
+  if resolve then
+   local receipt=registry.Receipt(e,'REGISTERED')
+   local key=e.city or false;q.receipts=q.receipts or {}
+   local group=q.receipts[key] or {};q.receipts[key]=group
+   group[#group+1]=function(accepted)resolve(accepted and receipt or nil)end
+   receiptCounts[row.target]=(receiptCounts[row.target] or 0)+1
+   return true
+  end
  end
  local function takeover(row,e)
   local value=target(row.target);local receipt
@@ -85,6 +96,10 @@ function SPCFactConsumerBindings.New(shared)
    -- phase0 adds a Network proof to an already queued role fact.
    deliveryNames[row.target]=registry.RegisterConsumer('Binding_'..row.target,
     function(e)return takeover(row,e)end,{kinds=row.kinds,topics=row.topics,delivery='RESPONSIBILITY'})
+  elseif row.ordered then
+   deliveryNames[row.target]=registry.RegisterConsumer('Binding_'..row.target,function(e,resolve)
+    return collect(row,e,resolve)
+   end,{kinds=row.kinds,topics=row.topics,delivery='RESPONSIBILITY',ordered=true})
   else
    local remaining={};local callback=function(e)collect(row,e)end
    for _,kind in ipairs(row.kinds)do
@@ -95,17 +110,36 @@ function SPCFactConsumerBindings.New(shared)
    if #remaining>0 then registry.RegisterConsumer('Binding_'..row.target,callback,{kinds=remaining,topics=row.topics})end
   end
  end
- local function invoke(row,q)
-  local value=target(row.target);if not value or type(value[row.method])~='function'then return end
-  local fn=value[row.method];local failure
+ local function complete(groups,accepted,city)
+  for _,q in pairs(groups)do
+   local receipts=q.receipts
+   if receipts and city~=nil then
+    for _,resolve in ipairs(receipts[city] or {})do resolve(accepted)end
+    receipts[city]=nil
+   elseif receipts then
+    for _,group in pairs(receipts)do for _,resolve in ipairs(group)do resolve(accepted)end end
+    q.receipts=nil
+   end
+  end
+ end
+ local function invoke(row,q,covered)
+  local value=target(row.target);local fn=value and value[row.ordered or row.method]
+  if type(fn)~='function'then
+   if row.ordered then complete(covered,false);error('FACT_BINDING_TARGET_UNAVAILABLE',0)end
+   return
+  end
+  local failure
   -- C2 producer gets only real declared input causes, never a global write pulse
   -- or its own sample reply. This is a scalar wake, not an extra fact read.
   if row.sample and type(value.SampleChanged)=='function'then
    local ok=pcall(value.SampleChanged);if not ok then failure='SAMPLE_CAUSE_NOTIFY_FAILED'end
   end
   local function call(...)
-   local ok,err=pcall(fn,...)
-   if not ok then local safe,text=pcall(tostring,err);failure=safe and text:sub(1,180) or 'FACT_BINDING_FAILED'end
+   if registry.closed or shared.FactChanges~=registry then return false end
+   local ok,result=pcall(fn,...)
+   if not ok then local safe,text=pcall(tostring,result);failure=safe and text:sub(1,180) or 'FACT_BINDING_FAILED'
+   elseif row.ordered and result~=true then failure='FACT_BINDING_NOT_REGISTERED'end
+   return ok and result==true
   end
   if row.cityOnly and q.all and not ownerAllowed(row,q)then
    for _,id in ipairs(q.order)do
@@ -119,10 +153,13 @@ function SPCFactConsumerBindings.New(shared)
     local bridge=target('NetworkBridge');if bridge and bridge.RequestPendingProof then bridge.RequestPendingProof(q.player)end
    end
   elseif row.method=='Audit'then
-   if q.all then call({player=q.player})
+   if q.all then
+    local accepted=call({player=q.player})
+    if row.ordered then complete(covered,accepted)end
    else for _,id in ipairs(q.order)do
     local proof=not q.conflicting and not q.causes.RESTRUCTURING_COMMITTED and q.proofs[id] or nil
-    call({player=q.player,city=id,investment=proof})
+    local accepted=call({player=q.player,city=id,investment=proof})
+    if row.ordered then complete(covered,accepted,id)end
    end end
   elseif row.method=='CreditChanged' then call(q.player)
   elseif q.all then call(q.player)
@@ -130,15 +167,19 @@ function SPCFactConsumerBindings.New(shared)
   if failure then error(failure,0)end
  end
  function d.Flush()
+  if registry.closed or shared.FactChanges~=registry then pending={};receiptCounts={};return false end
   if d.busy then return false end;d.busy=true
-  local work=pending;pending={}
+  local work=pending;pending={};receiptCounts={}
   for _,row in ipairs(declarations)do
    local owners=work[row.target] or {};local global=owners['nil']
    -- A real all-player Audit already contains the known owner/city scopes.
    -- City-only methods deliberately ignore global fallback and keep their narrow work.
-   if global and (not row.cityOnly or ownerAllowed(row,global)) and (row.method=='Audit' or row.source)then owners={global=global}end
-   for _,q in pairs(owners)do
-    local ok,err=pcall(invoke,row,q)
+   local collapse=global and (not row.cityOnly or ownerAllowed(row,global)) and (row.method=='Audit' or row.source)
+   local selected=collapse and {global=global} or owners
+   for _,q in pairs(selected)do
+    local covered=row.ordered and (collapse and owners or {q}) or nil
+    local ok,err=pcall(invoke,row,q,covered)
+    if covered then complete(covered,false)end -- any unvisited receipt stays held
     if ok then d.errors[row.target]=nil else local safe,value=pcall(tostring,err);d.errors[row.target]=safe and value:sub(1,180) or 'FACT_BINDING_FAILED'end
    end
   end

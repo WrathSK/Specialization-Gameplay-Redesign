@@ -5,7 +5,15 @@ from refactor_defect_fixtures import commerce,fact_publication_profile
 
 
 def bindings():
-    c=Context();c.load('FactChanges');c.load('FactConsumerBindings');c.execute('d=SPCFactChanges.New(shared);SPCFactConsumerBindings.New(shared);calls={};function drain()d.Flush();shared.FactBindings.Flush()end')
+    c=Context();c.load('FactChanges');c.load('FactConsumerBindings');c.execute("""
+    d=SPCFactChanges.New(shared);SPCFactConsumerBindings.New(shared);calls={}
+    -- This routing fixture does not instantiate the investment, Commerce or Tradition owners.
+    local function outside(e)return d.Receipt(e,'IRRELEVANT','FIXTURE_OUTSIDE_SCOPE')end
+    for _,name in ipairs({'Commerce','CapitalInvestment','DevelopmentInvestment','ResearchTraditionEffects'})do
+     shared[name]={AcceptFact=outside}
+    end
+    function drain()d.Flush();shared.FactBindings.Flush()end
+    """)
     return c
 
 
@@ -71,7 +79,7 @@ class Scopes(unittest.TestCase):
         """)
     def test_bad_city_and_target_do_not_suppress_other_city_or_sibling(self):
         c=bindings();c.execute("""
-        shared.ResearchInfrastructure={Audit=function()error('BROKEN_TARGET')end}
+        shared.ResearchInfrastructure={AcceptFact=function()error('BROKEN_TARGET')end}
         shared.ResearchChair={Audit=function(s)if s.city==1 then error('BAD_CITY')end;calls[#calls+1]=s.city end}
         d.Emit({owner=0,cityID=1,kinds={'ACTIVE'},cause='COMMITTED'});d.Emit({owner=0,cityID=2,kinds={'ACTIVE'},cause='COMMITTED'})
         drain();assert(#calls==1 and calls[1]==2 and shared.FactBindings.errors.ResearchChair and shared.FactBindings.errors.ResearchInfrastructure)
@@ -86,6 +94,7 @@ class Scopes(unittest.TestCase):
         shared.DialogueProjects={Refresh=function()error('LEGACY_EFFECT_RELAY')end,RefreshAccess=function(pid,id)assert(id==1);calls[#calls+1]='P'end}
         shared.DialogueEffects={Audit=function(s)assert(s.city==nil);calls[#calls+1]='E'end}
         shared.IndustrySupport={Audit=function()error('UNRELATED_RETRY')end}
+        shared.ResearchInfrastructure={AcceptFact=function()return true end}
         d.Emit({owner=0,cityID=1,kinds={'IDENTITY'},cause='RESTRUCTURING_COMMITTED'})
         d.Emit({owner=0,kinds={'ACTIVE','D','WORKERS'},cause='UI_FACTS_DIRTY'});drain()
         assert(table.concat(calls,',')=='S,E,P' and not next(shared.FactBindings.errors))

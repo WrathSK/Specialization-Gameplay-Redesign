@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0917
-Implementation Build: source B423.450 / modinfo450, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0918
+Implementation Build: source B424.451 / modinfo451, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: TRADITION_FACT_OWNER_LOCAL_COMPLETE_O2_CONTINUES
+Work State: ORDERED_RESEARCH_AUDIT_RECEIPT_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Research Infrastructure takes fact duties in the existing audit order — S0918
+
+Research Infrastructure now confirms its exact receipt after the existing Binding drain reaches its audit. Collection only stages a bounded completion handle. The registry keeps the ticket when the owner is busy or the scope cannot be taken. The actual effect still reads current facts and keeps the existing city error and exact Store exit paths.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T04/T05/T08).** The same FactChanges and FactBindings queues and native callback perform delivery. The existing Binding grouping and writer order remain. Pending completion handles contain detached receipt scalars and are bounded by 4,096 per ordered receiver per binding snapshot. Their confirmation checks the exact live ticket, and replacement/close invalidates stale completions. Five named receivers yield a 20,480-receipt registry ceiling. A real readiness transition can rearm a prior failed scope once. Normal scoped work adds no native sample or publication. Explicitly unavailable player qualification retains carriers on the existing target-retry path. Confirmed negative, D, eligibility, effect and exit rules are unchanged.
+- **LOCAL_SIMULATION_PASS.** Fixed B423 did not preserve an independent duty for a refused audit or unavailable city collection. The new path holds those scopes and recovers on a named wake or relevant new fact, without replaying successful siblings. The same combined D/worker change in B423 and B424 produced the same effect and order with three city visits, two D captures and four carrier writes. Reentry, stale completion, context close, the exact 2,048-scope limit, and B421 strict transaction fences pass. The 309 selected tests passed. Actual cold startup frequency and native timing remain unmeasured.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `609734c0237fe3505025300566518e1df957d8b1ea598b0a468f816013cd9762`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol test_ordered_audit_receipts test_tradition_fact_responsibility test_refactor_s5propagation.PhaseBarrier test_refactor_s5propagation.Scopes test_refactor_s5d1.Kernel test_scoped_depth_write test_refactor_s5propagation.ActualInvestment test_refactor_s9e7.UnscopedRouting test_refactor_s5d4c7 test_refactor_s9d1b.Witness test_refactor_s9d1b.WriteBarrier test_pu04_negative`. Tested source SHA256 `0ce9bd16324694c43927ff50c8c250cfb0146948a305cb1547448289e13de3e0`. Full local evidence `local/refactor/O2g-7ec9d50918254457932a9a448cd35691/closure.json`, SHA256 `e329538dc8023bc18f592b93f6b1fdb07cf1001f1a3b24387bff243ffc704fbc`. [Rerunnable regression](../../DevelopmentTests/test_ordered_audit_receipts.py)
+
+No Owner decision or user testing is needed now. Primary continues within the approved delivery work, checking the existing narrow investment witness before moving the Housing and GPP consumers. Live remains B414.441.
 
 ### Research Tradition acknowledges work at its existing projection boundary — S0917
 

@@ -30,7 +30,13 @@ function M.Start(P,shared)
   ownedRegistry=SPCCarrierSet.Registry(nextOwned);definitions=true
  end
  local function inspect(pid,c)
-  if c:GetOwner()~=pid or not P.IsTestPlayer(pid) then return {d=0,workers=0,science=0,status='INACTIVE'} end
+  local owned=c:GetOwner()==pid
+  if owned then
+   local eligible,_,status=P.IsTestPlayer(pid)
+   assert(eligible or status=='INELIGIBLE','RI_PLAYER_UNAVAILABLE')
+   owned=eligible
+  end
+  if not owned then return {d=0,workers=0,science=0,status='INACTIVE'} end
   return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers,anchors)
   assert(f.validity=='VERIFIED' and type(f.identity)=='string','RI_FACTS_UNKNOWN')
   local p={identity=f.identity,potential=f.potential,active=f.active,d=0,workers=0,science=0,status='INACTIVE'}
@@ -101,10 +107,10 @@ function M.Start(P,shared)
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   reconcile(pid,c)
  end,function(pid,cid,why)data.errors[pid]=data.errors[pid] or {};data.errors[pid][cid]=why end)
- local function audit(scope)
-  validate();targets.Run(scope)
+ local function audit(scope,taking)
+  validate();return targets.Run(scope,taking)
  end
- data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchInfrastructure',audit,{targets=true})
+ data.Audit,data.MarkAudit,data.FlushAudit,data.AcceptFact=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchInfrastructure',audit,{targets=true,receipts=true})
  function data.Describe(pid,c,detail)
   local ok,text=pcall(function()
    assert(data.ready,'RI_NOT_READY');validate()
@@ -142,7 +148,11 @@ function M.Start(P,shared)
   return ok and text or (P.VERSION..' | 科研基础设施：暂不可确认\n未把未知当作0；保留上次配置。\n原因：'..tostring(text))
  end
  local function bind(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
- SPCRuntimeWork.StartReady(P,shared,'ResearchInfrastructure',function()data.ready=true;data.errors={};definitions=nil;data.Audit({load=true})end)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchInfrastructure',function()
+  data.ready=true;data.errors={};definitions=nil;data.Audit({load=true})
+  local bindings,changes=shared.FactBindings,shared.FactChanges
+  if bindings and bindings.Wake and changes then bindings.Wake('ResearchInfrastructure','OWNER_READY',changes.sequence)end
+ end)
  -- Scoped D owns ordinary structural changes; exact health owns current bits.
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
