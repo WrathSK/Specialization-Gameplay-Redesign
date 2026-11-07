@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0914",
-    "runtime": "B420.447 / modinfo447 source candidate",
+    "status": "S0915",
+    "runtime": "B421.448 / modinfo448 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Keep registered fact duties dormant when native player qualification is temporarily unreadable.",
+  "goal": "Fence strict use before fallible committed D delivery and measure the next fan-out boundary.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Fact receipts distinguish unavailability from ineligibility — S0914",
+      "selector": "### Committed D changes fence strict use before enqueue — S0915",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,10 +51,10 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_fact_owner_eligibility.py",
+      "path": "DevelopmentTests/test_depth_invalidation_delivery.py",
       "kind": "head",
-      "selector": 23,
-      "reason": "Rerunnable production eligibility and receipt tests"
+      "selector": 22,
+      "reason": "Rerunnable strict-use regressions at current bounds"
     }
   ],
   "dependencies": [
@@ -71,11 +71,12 @@
     "Review current Store and exact exit owners only if advancing the later O5b/startup or O1 dependency boundary."
   ],
   "non_scope": [
-    "Remaining O2 effect owners, O3–O8, ingress and native testing, deployment and main promotion."
+    "Receipt/scope cap redefinition, remaining O2 owners, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "Three candidate scenarios with fixed-base UNKNOWN counterexamples.",
-    "175 selected checks; Lua51, XML/manifest and Context Lock."
+    "Three exact B420 counterexamples; all B421 D boundary cases pass.",
+    "227 selected checks and 2,048/1,024/512 fact-scope replay.",
+    "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
     "Reopen affected scope if the selected native profile differs, a fixed-HD target or primitive changes, or a later source/cutover changes ordinary admission, exact exits, history or irreversible behavior."
@@ -181,6 +182,16 @@
       "source_snapshot_sha256": "1c8542fc907305096b96589efe84034b11e1b00ab89a341c7672ecda58e152d3",
       "local_evidence": "local/refactor/O2c-7ecfa400c72d4351bef3b7310da9718f/closure.json",
       "local_evidence_sha256": "76d749b79025c63db787a39dac7322cbacc8f539a5188297dc399fabd5f31be4",
+      "deployed": false
+    },
+    "committed_depth_delivery": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "version": "B421.448 / modinfo448",
+      "package_sha256": "90f5f2310e11b7ac5d83637ef3bc0c5a7dd2772b16e8bcc57a18ae791a4dcdf1",
+      "report": "Specialization/Status/Specialization_P0_Status.md#committed-d-changes-fence-strict-use-before-enqueue--s0915",
+      "source_snapshot_sha256": "82691ca01024f98128bc1f85071b04cf606885f7c8efdda61bd6514765d13381",
+      "local_evidence": "local/refactor/O2d-286c9146756b42529b8a4c6cefb2195c/closure.json",
+      "local_evidence_sha256": "a08379c723cd0b1087e4e46883f447210290420a275489c830fc1dd4c716f75b",
       "deployed": false
     }
   }

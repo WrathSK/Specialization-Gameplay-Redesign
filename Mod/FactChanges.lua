@@ -86,10 +86,13 @@ function M.New(shared)
    end
   end
   if commerce then
-   if network or cityID==nil then row.COMMERCE=(row.COMMERCE or 0)+1
+   if network or cityID==nil or (row.cityCount or 0)>=2048 and row.cities[cityID]==nil then
+    -- Existing city stamps stay valid as identities. The owner stamp makes an
+    -- unindexable change unsafe for strict use without allocating or evicting.
+    row.COMMERCE=(row.COMMERCE or 0)+1
    else
     row.cities=row.cities or {};row.cityCount=row.cityCount or 0
-    if row.cities[cityID]==nil then assert(row.cityCount<2048,'FACT_CITY_LIMIT');row.cityCount=row.cityCount+1 end
+    if row.cities[cityID]==nil then row.cityCount=row.cityCount+1 end
     row.cities[cityID]=(row.cities[cityID] or 0)+1
    end
   end
@@ -98,7 +101,8 @@ function M.New(shared)
  -- Committed producers invalidate authority before fallible evidence construction.
  -- Emit also invalidates independently; repeated stamps are harmless opaque versions.
  function d.InvalidateCommitted(owner,cityID,kinds,topic)
-  assert(not d.closed and integer(owner) and (cityID==nil or integer(cityID)),'FACT_COMMIT_SCOPE')
+  assert(not d.closed and (owner==nil or integer(owner))
+   and (cityID==nil or owner~=nil and integer(cityID)),'FACT_COMMIT_SCOPE')
   local set={};entries(kinds,7,function(kind)assert(K[kind],'FACT_KIND_UNKNOWN');set[kind]=true end)
   assert(next(set) and (topic==nil or token(topic)),'FACT_COMMIT_KINDS')
   invalidate(owner,cityID,set,topic)

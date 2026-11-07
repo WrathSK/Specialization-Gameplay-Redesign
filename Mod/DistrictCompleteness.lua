@@ -169,10 +169,10 @@ function M.Start(P,shared)
  function data.MarkDirty(pid,cid,cause,transfer)
   if not valid(pid)then pid=nil;cid=nil elseif not valid(cid)then cid=nil end
   if pid~=nil and not P.IsTestPlayer(pid)then return end
+  local changes,kinds=shared.FactChanges,{'D'}
+  if changes then changes.InvalidateCommitted(pid,cid,kinds)end
   markScope(pid,cid)
-  if shared.FactChanges then
-   shared.FactChanges.Emit({owner=pid,cityID=cid,kinds={'D'},cause=cause or 'DISTRICT_FACTS_DIRTY',transfer=transfer})
-  end
+  if changes then changes.Emit({owner=pid,cityID=cid,kinds=kinds,cause=cause or 'DISTRICT_FACTS_DIRTY',transfer=transfer})end
  end
  local function forget(k)
   if cache[k]then cache[k]=nil;businessCount=businessCount-1 end

@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0914
-Implementation Build: source B420.447 / modinfo447, local fact delivery candidate. Live B414.441 from72fe54d; stable/main B307.334.
+Status Revision: S0915
+Implementation Build: source B421.448 / modinfo448, local fact delivery candidate. Live B414.441 from72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: FACT_RECEIPT_ELIGIBILITY_LOCAL_COMPLETE_O2_CONTINUES
+Work State: DEPTH_STRICT_USE_FENCE_LOCAL_COMPLETE_O2_CAPACITY_DECISION
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Committed D changes fence strict use before enqueue — S0915
+
+The existing District Completeness owner invalidates strict Commerce input generations before it attempts to enqueue an already observed D change. Queue or receipt backpressure can still delay delivery. The previously published calculation is no longer usable as a fresh transaction credential in that interval. If the per-city generation directory is full, the existing owner generation fences strict use without adding a city entry or evicting a prior one.
+
+- **Runtime Impact Contract (L3, T02/T03/T04/T05/T08).** This uses the existing detached committed invalidation, with the established all-owner D fallback when the city cannot be located. No new native sampling, retry, scan, writes, persistence or listener. Receipt and queue limits stay at their reviewed bounds. D invalidation does not change Network proof. Passive effect state waits for a new successful read and the existing affected path.
+- **LOCAL_SIMULATION_PASS.** At fixed B420, both a full receipt queue and full publication queue could leave Commerce transaction-current after a real D dirty call failed to enqueue. The per-city stamp limit could also fail before fencing. The current tests reproduce both backpressure conditions, the known-capacity fallback and successful recovery on another accepted city cause. 227 selected tests pass.
+- **Capacity gate before adding effect owners.** The current 2,048 ceiling counts consumer tickets. The real D producer and registry admitted 2,048 distinct city causes with the existing Commerce listener, 1,024 with one additional modeled D receiver, and 512 with three additional modeled receivers, all ready to acknowledge. The next cause was refused before the first drain, and the successful drain cleared every queued ticket. This proves the structural fan-out limit, with no claim about native batches reaching it. Widening the effect-audit delivery while retaining the earlier scope envelope requires an explicit bound decision. Recommended: cap distinct fact scopes and bound receipts separately by declared consumers, sharing immutable data when safe. Preserve independent ACK, epoch/reference and phase separation, and measure K−1/K/K+1 and held siblings before cutover.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package references. Package SHA256 `90f5f2310e11b7ac5d83637ef3bc0c5a7dd2772b16e8bcc57a18ae791a4dcdf1`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol`. Tested source SHA256 `82691ca01024f98128bc1f85071b04cf606885f7c8efdda61bd6514765d13381`. Full local evidence `local/refactor/O2d-286c9146756b42529b8a4c6cefb2195c/closure.json`, SHA256 `a08379c723cd0b1087e4e46883f447210290420a275489c830fc1dd4c716f75b`. [D delivery regression](../../DevelopmentTests/test_depth_invalidation_delivery.py)
+
+User decision: whether to preserve 2,048 distinct scopes by separating the receipt bound before adding the remaining audit owners. User testing: none now. Primary next: await that shared-capacity decision, then validate the smallest implementation against actual owner compositions. Live remains B414.441.
 
 ### Fact receipts distinguish unavailability from ineligibility — S0914
 
