@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0912
-Implementation Build: source B418.445 / modinfo445, local Commerce delivery candidate. Live B414.441 from72fe54d; stable/main B307.334.
+Status Revision: S0913
+Implementation Build: source B419.446 / modinfo446, local investment delivery candidate. Live B414.441 from72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: COMMERCE_FACT_DELIVERY_LOCAL_COMPLETE_O2_CONTINUES
+Work State: INVESTMENT_FACT_DELIVERY_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Investment owners acknowledge scheduled refreshes — S0913
+
+Capital and Development Investment now return an exact receipt only after registering their existing refresh work. A failed Capital startup target or a refused Development mark retains the undelivered scope. The existing explicit quote, native balance, proof, saved receipt and settlement paths retain their responsibilities.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T05/T08).** Capital retains its existing player/city and Commerce recovery-topic scopes. Development consumes the existing owner-wide Network cause and invalidates only that owner's quote views. The two named registrations use the existing registry cap and existing owner queues. Registered refresh work drains at the same native boundary. No new native sampling, persistence, money operation or listener. Owner-ready wakes are explicit, and a newer proof keeps all three current responsibilities until their receipts arrive.
+- **LOCAL_SIMULATION_PASS.** Two fixed B418 counterexamples reproduce dropped recovery/proof work. In the candidate, failed registration stays held, repeated idle drains do no work, the recovered scope is accepted once, and an unrelated history topic produces no quote or debit. 172 checks pass, including real Store/Commerce/Capital reputation policy, proof reentry, and the existing terms/receipt and Development target tests. Restored the complete S6f fixture block for the inherited cold-reputation replay. Its split in B418 caused one local combined test to read an old instance. The original transaction assertions pass again.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package references. Package SHA256 `e63685eedde196f80889b03cfb0788b5e197e2efce6307dcc12cad97ebb7875f`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol`. Tested source SHA256 `85c96624e5ecba4cbc8bc1d5cc85b095c1eeaabcc653e3250afda6b1a529d25a`. Full local evidence `local/refactor/O2b-4a126ecfa85c4acea89821c5ff4e506a/closure.json`, SHA256 `347082fa58bac1721ab542284fbe3620794f6bddf452710c4e23204dcaf0543d`. [Investment duty regression](../../DevelopmentTests/test_investment_fact_responsibility.py)
+
+User decision: none. User testing: none now. Primary next: extend ordinary effect-audit ownership using the existing declaration and audit order, including held readiness and exact scope capacity. Live remains B414.441.
 
 ### Commerce receives ordinary fact duties through one path — S0912
 

@@ -46,9 +46,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CapitalInvestment.lua": {
-      "sha256": "ee9241ea30ef2061dfebb4b088db1601bf586e356d256741d03467c976102514",
+      "sha256": "410afbec4077cd5862d17f3eb0155314f326d3d88dce5056063a80dd9370fa8e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
+      "provenance": "B419.446 / S0913 acknowledged investment refresh duties through the existing FactChanges registry."
     },
     "Mod/CapitalInvestmentDiagnostics.lua": {
       "sha256": "0ab8a511f180736f2d3d4a129d8fc9a15174e381a4ceaae1da6f78c7720542f9",
@@ -501,9 +501,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "8b0938253768885523e6fdc3868aab402385ee02f21d7a65089016066ce5b72b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B387_Refactor_S9f4.md",
-      "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "49ddc51d26dd9b9439170a98557209b8a36ba3136f5c5e2db3acf021ae027831",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "B419.446 / S0913 acknowledged investment refresh duties through the existing FactChanges registry."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "fa05facb8b55e559d47ab10580e9aa3c465ef247efb09579ffe15ba03f865f5a",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "ed53b4d1b3829126eaa4be6a6e88920f0f9e8fdb8078cb2fa2c3f4bfc3ab5119",
+      "sha256": "15a1629e0f9450db54db8fa4ae423fab266d5d55acb29129dc50e37b8af110dd",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B418.445 / S0912 ordinary Commerce and Network proof responsibility on the existing fact registry."
+      "provenance": "B419.446 / S0913 acknowledged investment refresh duties through the existing FactChanges registry."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "07ffbd50aae17bacee55d6f22c502d6071db5e3482fd19a2a67d10f98ca1cc7e",
+      "sha256": "e8b43f78fb5771234f7789a0d7dbef215180080298bece599918ffc35da1102d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B418.445 / S0912 ordinary Commerce and Network proof responsibility on the existing fact registry."
+      "provenance": "B419.446 / S0913 acknowledged investment refresh duties through the existing FactChanges registry."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1586,9 +1586,9 @@
       "provenance": "S0872/B402.429 PU03 approved first NetworkBridge/FactChanges/Bindings/Commerce responsibility path;33new+130related pass,one pre-slice historical assertion unchanged. Probe/modinfo labels only. Strict proof,phase0,D-1,formulas,saves and existing controls retained;no deployment/native PASS."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "2483b369086f5e9db08e09917ee4e364c396071a158fc9343aa71400e198f094",
+      "sha256": "0a238224905bc035dd599a02252b927b7075ef41ddc19e73de674ccadbb2f3ab",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B418.445 / S0912 ordinary Commerce and Network proof responsibility on the existing fact registry."
+      "provenance": "B419.446 / S0913 acknowledged investment refresh duties through the existing FactChanges registry."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",

@@ -103,10 +103,28 @@ function SPCCapitalInvestment.Start(P,shared)
   assert(P.HasBuilding(c:GetBuildings(),row.Index)==wanted,'CAPITAL_ACCESS_UNCONFIRMED')
  end
  function d.Mark(pid,id)
-  if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then d.Mark(owner)end end;return end
-  if not P.IsTestPlayer(pid)then return end
+  if pid==nil then
+   local accepted=false
+   for owner in pairs(Players)do if P.IsTestPlayer(owner)then
+    local marked,reason=d.Mark(owner)
+    if marked~=true then return false,reason end
+    accepted=true
+   end end
+   return accepted,'NO_ELIGIBLE_OWNER'
+  end
+  if not P.IsTestPlayer(pid)then return false,'UNSUPPORTED_PLAYER'end
   sequence=sequence+1;dirty[pid]=dirty[pid] or {}
   if id==nil then dirty[pid].all=sequence else dirty[pid][id]=sequence end
+  return true
+ end
+ function d.AcceptFact(event)
+  local registry=shared.FactChanges
+  if not registry or type(event)~='table' or event.player==nil and event.city~=nil then return false end
+  local receipt=registry.Receipt(event,'REGISTERED')
+  local accepted,reason=d.Mark(event.player,event.city)
+  if accepted==true then return receipt end
+  if reason=='UNSUPPORTED_PLAYER'or reason=='NO_ELIGIBLE_OWNER'then return registry.Receipt(event,'IRRELEVANT',reason)end
+  return false
  end
  -- Treasury events can arrive after an explicit fresh quote. Compare the
  -- producer's current scalar before invalidating; never clear other causes.

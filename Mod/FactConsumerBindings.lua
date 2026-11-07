@@ -41,8 +41,8 @@ function SPCFactConsumerBindings.New(shared)
   {target='EngineeringStudy',method='CreditChanged',kinds={'HISTORY'},topics={'WONDER_CREDIT'}},
   {target='DialogueProjects',method='RefreshAccess',cityOnly=true,kinds=role},
   {target='Commerce',takeover='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','HISTORY','NETWORK'},topics={'COMMERCE'}},
-  {target='CapitalInvestment',method='Mark',kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'CAPITAL_RECOVERY'}},
-  {target='DevelopmentInvestment',method='Audit',kinds={'NETWORK'}},
+  {target='CapitalInvestment',takeover='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'CAPITAL_RECOVERY'}},
+  {target='DevelopmentInvestment',takeover='AcceptFact',kinds={'NETWORK'}},
  }
  local function ownerAllowed(row,e)
   if not row.ownerCauses then return false end

@@ -51,6 +51,11 @@ def pipeline():
         l=commerce()
         l.execute('''
           fixtureDrain=true;fc=shared.FactChanges;bindings=shared.FactBindings
+          -- The isolated proof fixture has no investor. The actual investment
+          -- owners and their missing/failed receipt cases run in the O2 suite.
+          local function outside(e)return fc.Receipt(e,'IRRELEVANT','FIXTURE_OUTSIDE_SCOPE')end
+          shared.CapitalInvestment={AcceptFact=outside,Mark=function()end}
+          shared.DevelopmentInvestment={AcceptFact=outside,SourceChanged=function()end}
           function drain()fc.Flush();bindings.Flush();Events.GameCoreEventPublishComplete.Fire()end
           function proof()
            shared.RouteSignalRevision=(shared.RouteSignalRevision or 0)+1
@@ -186,7 +191,7 @@ class ActualChain(unittest.TestCase):
         l=pipeline();l.execute("""
           local emit=fc.EmitDerived
           fc.EmitDerived=function(e)emit(e);error('AFTER_REGISTERING_SCOPE')end
-          proof();local rev=net.ProofRevision(0);assert(net.players[0].notificationIntent and fc.retained==1)
+          proof();local rev=net.ProofRevision(0);assert(net.players[0].notificationIntent and fc.retained==3)
           drain();local writes=com.writes;assert(fc.retained==0)
           fc.EmitDerived=emit;net.RefreshFacts(0);drain()
           assert(not net.players[0].notificationIntent and net.ProofRevision(0)==rev and com.writes==writes and fc.retained==0)
@@ -245,7 +250,8 @@ class ActualChain(unittest.TestCase):
         l=pipeline();l.execute('''
           local take=com.AcceptFact;local once=true;local calls=0
           com.AcceptFact=function(e)calls=calls+1;local receipt=take(e);if once then once=false;proof()end;return receipt end
-          proof();fc.Flush();bindings.Flush();assert(calls==1 and fc.retained==1)
+          -- The newer proof still owns Commerce plus both investment deliveries.
+          proof();fc.Flush();bindings.Flush();assert(calls==1 and fc.retained==3)
           drain();assert(calls==2 and fc.retained==0)
         ''')
 

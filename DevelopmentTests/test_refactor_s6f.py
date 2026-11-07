@@ -90,10 +90,7 @@ def combined():
       P.CreateBuilding=function(...)return write(create,...)end
       P.RemoveBuilding=function(...)return write(remove,...)end
       SPCCommerce.Start(P,shared);com=shared.Commerce
-    """)
-    with legacy_source_observation():
-        bind_commerce(l)
-    l.execute("""
+      if com.BindPermanentWrites then com.BindPermanentWrites()end
       function auditCommerce()
        com.Audit({player=0,city=source:GetID()});local v=com.views['0:'..source:GetID()]
        assert(v and v.stage=='READY',v and v.reason or com.error);return v
@@ -103,6 +100,10 @@ def combined():
       assert(com.Request(0,{Action='COMMERCE_SELECT',CityID=source:GetID(),Domain='DISTRICT_CAMPUS',Enabled=true,Reference=v.reference,CityToken=v.token,Revision=v.revision,Token='PAIR_SELECTION'}),com.lastRequest.reason)
       assert(gold()==15);workerReads=0
     """)
+    # The complete setup above is also replayed by the cold-reputation fixture.
+    if not l.eval('com.BindPermanentWrites~=nil'):
+        with legacy_source_observation():
+            bind_commerce(l)
     return l
 
 
