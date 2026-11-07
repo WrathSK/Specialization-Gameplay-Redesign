@@ -68,6 +68,90 @@ class WonderHealth(unittest.TestCase):
         l=fixture();l.execute("facts[1].active=3;emit('GovernorAssigned',64,777,0);pulse();assert(not has(1,'ERA_ANCIENT_30'));cities[2]=nil;emit('CityRemovedFromMap',0,2);pulse();assert(not w.records['0:2']and w.records['0:1'])")
     def test_confirmed_exit_exact_carriers_keeps_external(self):
         l=fixture();l.execute("cities[1].built.EXTERNAL=true;cities[1].owner=64;exits.IndustryWonderEffects(cities[1],{origin={owner=0,x=1,y=1}});assert(not w.records['0:1']and cities[1].built.EXTERNAL);for _,r in ipairs(DB.SPC_IndustryWonderEffects)do assert(not cities[1].built[P.Info('Buildings',r.CarrierType).Index])end")
+
+    def test_fact_receipt_refuses_unknown_eligibility_and_uses_existing_publish(self):
+        l=fixture();l.execute("""
+local fc=shared.FactChanges;local eligibility=P.IsTestPlayer;local unavailable=true
+P.IsTestPlayer=function(pid)
+ if unavailable and pid==0 then return false,nil,'UNKNOWN'end
+ local valid=eligibility(pid);return valid,nil,valid and 'ELIGIBLE'or 'INELIGIBLE'
+end
+resetVisits();facts[1].active=3
+fc.Emit({owner=0,cityID=1,kinds={'ACTIVE'},cause='ROLE_COMMITTED'})
+fc.Flush()
+assert(fc.retained==1 and fc.errors.IndustryWonderEffects and not next(factReads))
+unavailable=false
+for i=1,100 do pulse()end
+assert(has(1,'ERA_ANCIENT_30') and not next(factReads))
+assert(fc.WakeConsumer('IndustryWonderEffects','ELIGIBILITY_READY',fc.sequence,{player=0,city=1}))
+fc.Flush()
+assert(fc.retained==0 and not fc.errors.IndustryWonderEffects and not next(factReads))
+w.Flush()
+assert(not has(1,'ERA_ANCIENT_30') and factReads[1]==1 and not factReads[2])
+""")
+
+    def test_accepted_owner_collection_failure_waits_for_a_new_related_cause(self):
+        l=fixture();l.execute("""
+local fc=shared.FactChanges;local original=Players[0].GetCities;local attempts=0
+Players[0].GetCities=function()attempts=attempts+1;error('IW_TEST_CITIES_UNAVAILABLE')end
+facts[1].active=3
+fc.Emit({owner=0,cityID=1,kinds={'ACTIVE'},cause='ROLE_COMMITTED'})
+fc.Flush();assert(fc.retained==0 and attempts==0)
+w.Flush()
+assert(w.errors['0:owner'] and attempts==1 and has(1,'ERA_ANCIENT_30'))
+Players[0].GetCities=original
+factReads={};for i=1,100 do pulse()end
+assert(has(1,'ERA_ANCIENT_30') and not next(factReads))
+fc.Emit({owner=0,cityID=1,kinds={'ACTIVE'},cause='RELATED_READY'})
+pulse()
+assert(not has(1,'ERA_ANCIENT_30') and not w.errors['0:owner'] and factReads[1]==1 and not factReads[2])
+""")
+        measure('wonder_fact_takeover', {
+            'idle_retries_after_collection_failure': 0,
+            'recovered_city_visits': 1, 'unrelated_city_visits': 0,
+        })
+
+    def test_owned_scope_capacity_rejects_next_ticket_without_evicting(self):
+        l=fixture();l.execute("""
+local fc=shared.FactChanges;local store=shared.CityProgressionStore
+local status=store.HistoryStartStatus;store.HistoryStartStatus=function()return 'WAITING'end
+local function emit(id)
+ fc.Emit({owner=0,cityID=id,kinds={'ACTIVE'},cause='ROLE_COMMITTED'})
+end
+facts[1].active=3
+for id=1,2048 do emit(id)end;fc.Flush();assert(fc.retained==0)
+for id=2049,4096 do emit(id)end;fc.Flush();assert(fc.retained==0)
+emit(4097);fc.Flush()
+assert(fc.retained==1 and w.errors.queue=='IW_FACT_QUEUE_LIMIT')
+local old=Players[0]:GetCities();local visited={}
+Players[0].GetCities=function()return {FindID=function(_,id)visited[id]=true;return old:FindID(id)end}end
+store.HistoryStartStatus=status;w.Flush()
+for id=1,4096 do assert(visited[id])end
+assert(not visited[4097] and not has(1,'ERA_ANCIENT_30') and fc.retained==1)
+emit(4097);pulse()
+assert(visited[4097] and not w.errors.queue and fc.retained==0)
+""")
+
+    def test_closed_context_drops_accepted_wonder_work(self):
+        l=fixture();l.execute("""
+local fc=shared.FactChanges;resetVisits();facts[1].active=3
+fc.Emit({owner=0,cityID=1,kinds={'ACTIVE'},cause='ROLE_COMMITTED'})
+fc.Flush();assert(fc.retained==0 and not next(factReads))
+fc.Close();w.Flush()
+assert(has(1,'ERA_ANCIENT_30') and not next(factReads))
+""")
+
+
+    def test_quarantined_wonder_target_cannot_acknowledge_scope(self):
+        l=fixture();l.execute("""
+local fc=shared.FactChanges;resetVisits();facts[1].active=3
+shared.IndustryWonderEffects=nil
+fc.Emit({owner=0,cityID=1,kinds={'ACTIVE'},cause='ROLE_COMMITTED'})
+pulse()
+assert(fc.retained==1 and fc.errors.IndustryWonderEffects)
+assert(has(1,'ERA_ANCIENT_30') and not next(factReads))
+""")
+
     def test_startup_dependency_failure_skips_wonder_not_store(self):
         c=startup();inc=c.globals().include
         def include(n):

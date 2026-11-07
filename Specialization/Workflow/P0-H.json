@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0924",
-    "runtime": "B430.457 / modinfo457 source candidate",
+    "status": "S0925",
+    "runtime": "B431.458 / modinfo458 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Give Standardization and the Culture network effect independent receipts at the existing audit boundary, preserving current D1 and strict proof.",
+  "goal": "Finish the direct Industry Wonder recipient and preserve scope, original publish order and exact lifecycle behavior.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Passive network effects independently take their existing audit scopes — S0924",
+      "selector": "### Industry Wonder takes responsibility in its existing owner drain — S0925",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,7 +51,7 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_network_effect_fact_receipts.py",
+      "path": "DevelopmentTests/test_refactor_s5d4c8.py",
       "kind": "head",
       "selector": 28,
       "reason": "Rerunnable scoped delivery regression"
@@ -74,8 +74,8 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "434 of 437 selected Lua51 checks. Three inherited failures were reproduced on fixed B429.",
-    "Real Bridge + both network effect owners, pending proof and strict transaction fence, one failing recipient, source groups, original work count.",
+    "453 of 456 tests pass. Three previously observed errors remain open.",
+    "Actual Wonder receipt refusal, accepted queue failure, recovery, capacity, context and preserved lifecycle.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -282,6 +282,16 @@
       "source_snapshot_sha256": "bde0dfdd04e454cfe0dacab4b2ea4cc02b338c8f8edfff7a845e76709a892843",
       "local_evidence": "local/refactor/O2m-805d033215e544f18cff879fc6a1f5f4/closure.json",
       "local_evidence_sha256": "ef483984c12cb094043eb6c2f44d7198835a77b58ccdb362b1b6a3af0c00f44e",
+      "deployed": false
+    },
+    "industry_wonder_fact_takeover": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED_WITH_BASELINE_OPEN",
+      "version": "B431.458 / modinfo458",
+      "package_sha256": "8d4d2b740cae0710431e26a3ac89ff1cbde74ccb8326618d3a9a30379f4c014a",
+      "report": "Specialization/Status/Specialization_P0_Status.md#industry-wonder-takes-responsibility-in-its-existing-owner-drain--s0925",
+      "source_snapshot_sha256": "2558489d0767d3d52bcb762044673c45c599b57e5f56f9b07f3b333e0280c255",
+      "local_evidence": "local/refactor/O2n-20373e7eb5cc46989053c95c2b01a328/closure.json",
+      "local_evidence_sha256": "fd35aa70a0a13a3c9d4cd9212dc954c930c04e1d0f0ad5541b2a045c1592a3c0",
       "deployed": false
     }
   }

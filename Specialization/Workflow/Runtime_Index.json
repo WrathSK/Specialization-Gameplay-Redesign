@@ -686,9 +686,9 @@
       "provenance": "S0923 B429.456 verifies ordered receipts for Research Cross and Industry Support, with their existing independent sample recovery."
     },
     "Mod/IndustryWonderEffects.lua": {
-      "sha256": "dbffd20fa22c32d7b573314667f7726fc14317bcab552f9110288f1e5e055cd2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B320_Refactor_S7a6.md",
-      "provenance": "B320.347 Unify exact owned-carrier registries and close S7a extraction; local/static evidence only; no deployment/native PASS."
+      "sha256": "66183adb6ff8d5c19a53e4ef9c0afaebaae65a08779d8dae6aa606d3dac3bd01",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0925 B431.458 verifies bounded Industry Wonder takeover and original effect order."
     },
     "Mod/InheritanceShadow.lua": {
       "sha256": "a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "4c684771dc549e89b90bf56cfbd854945f52879be07a385455fd1ce5e751a4d8",
+      "sha256": "921c509ae9c8212fdd16c85cf8585b5273e89a29a4e64e85edb636c216eb366b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0924 B430.457 verifies real Bridge delivery to Standardization and the Culture network effect, with independent hold and recovery."
+      "provenance": "S0925 B431.458 verifies bounded Industry Wonder takeover and original effect order."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e84a2c417828224fb460af1e18fe7d85a9cec7dd70365861b018709569e5b32d",
+      "sha256": "b78d79e1eb9ca638ffb83e91a84ca15540e25a47f2ae33b46aa7dcd08cfd8c87",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0924 B430.457 verifies real Bridge delivery to Standardization and the Culture network effect, with independent hold and recovery."
+      "provenance": "S0925 B431.458 verifies bounded Industry Wonder takeover and original effect order."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

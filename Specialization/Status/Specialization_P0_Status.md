@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0924
-Implementation Build: source B430.457 / modinfo457, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0925
+Implementation Build: source B431.458 / modinfo458, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ORDERED_NETWORK_EFFECT_RECEIPTS_LOCAL_COMPLETE_O2_CONTINUES
+Work State: EFFECT_RECIPIENTS_LOCAL_COMPLETE_O2_BOUNDARIES_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Industry Wonder takes responsibility in its existing owner drain — S0925
+
+Industry Wonder Effects now acknowledges role notifications only after its original owner queue accepts their scope. Temporary eligibility or missing current owner leaves the registry receipt unacknowledged. A city-collection failure holds the accepted owner scope dormant; a related new cause can restore it. The existing era, readiness, native health and Store exit paths retain their responsibilities.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T05/T08).** The owner keeps at most 4,096 live scopes in its pre-existing publish queue plus retained ownership of failed work, including the active snapshot and reentrant next work. Owner-wide scope still covers its narrower city causes. State is allocated on demand and released after the existing owner drain, coverage, or context close. The only new reader protection is in that owner's existing city pass. No new engine event, read source, timer, automatic idle retry, persisted field or gameplay rule. The registry has twenty declared recipients and a two-batch limit of 81,920 receipts. The distinct shared scope limit remains 2,048, including a tested thirteen-recipient D fan-out of 26,624 receipts.
+- **LOCAL_SIMULATION_PASS in scope.** Real Wonder, NativeFacts and FactChanges exercise temporary eligibility, confirmed foreign/no-scope behavior, failure after registration, role recovery, same-turn changes, exact close/quarantine and the existing era/health/exit paths. Two incoming batches fill the local owned queue; the next scope remains in the registry, all 4,096 prior scopes are visited, and the refused scope succeeds after a new cause. The real scoped recovery visits one city, with zero unrelated reads and zero idle retries. 453 of 456 checks pass. Three inherited fixture assertions fail identically on the earlier fixed B429 basis and remain open. The SQL replay uses the pinned B413 HD database as in S0922.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `8d4d2b740cae0710431e26a3ac89ff1cbde74ccb8326618d3a9a30379f4c014a`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol test_ordered_audit_receipts test_tradition_fact_responsibility test_refactor_s5propagation.PhaseBarrier test_refactor_s5propagation.Scopes test_refactor_s5d1.Kernel test_scoped_depth_write test_refactor_s5propagation.ActualInvestment test_refactor_s9e7.UnscopedRouting test_refactor_s5d4c7 test_refactor_s9d1b.Witness test_refactor_s9d1b.WriteBarrier test_pu04_negative test_refactor_s5d4a test_refactor_s5d1.Writers.test_actual_apply_chair_one_city_keeps_sibling_carriers_errors test_refactor_s5d1.Writers.test_actual_chair_busy_second_city_retained_until_publish test_refactor_s5d1.Writers.test_actual_apply_chair_owner_read_failure_is_city_isolated test_refactor_s5d4c4.AestheticHealth test_refactor_s5d4c5.CultureProjection test_refactor_s5d4c6.InsightsHealth test_refactor_s5d3.Dialogue test_refactor_s5history.Bindings test_sampled_effect_fact_receipts test_refactor_s4a.Industry test_refactor_s4a.IndustryReentry test_refactor_s5d1.Writers.test_actual_cross_scoped_plan_and_error_are_not_globally_replaced test_refactor_s5d1.Writers.test_actual_cross_busy_cause_is_processed_once test_refactor_s5d1.Writers.test_actual_cross_owner_read_failure_is_city_isolated test_network_effect_fact_receipts test_refactor_s4b test_refactor_s5d4c8.WonderHealth`. Tested source SHA256 `2558489d0767d3d52bcb762044673c45c599b57e5f56f9b07f3b333e0280c255`. Full local evidence `local/refactor/O2n-20373e7eb5cc46989053c95c2b01a328/closure.json`, SHA256 `fd35aa70a0a13a3c9d4cd9212dc954c930c04e1d0f0ad5541b2a045c1592a3c0`. [Rerunnable regression](../../DevelopmentTests/test_refactor_s5d4c8.py)
+
+No immediate Owner game test is needed. The ordinary effect-recipient migration is locally verified in scope. Synchronous phase-zero completion, older independent recovery duties and native validation remain separate open work. Live remains B414.441.
 
 ### Passive network effects independently take their existing audit scopes — S0924
 
