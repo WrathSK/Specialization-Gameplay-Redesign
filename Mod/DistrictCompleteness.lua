@@ -152,9 +152,7 @@ function M.Start(P,shared)
   return M.Calculate(catalog,raw,false),raw
  end
  local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
- function data.MarkDirty(pid,cid,cause,transfer)
-  if not valid(pid)then pid=nil;cid=nil elseif not valid(cid)then cid=nil end
-  if pid~=nil and not P.IsTestPlayer(pid)then return end
+ local function markScope(pid,cid)
   local marked={}
   local function mark(e)if e and not marked[e]then marked[e]=true;e.invalidation=(e.invalidation or 0)+1;if not e.dirty then e.dirty=true;count('dirty')end end end
   if pid~=nil and cid~=nil then mark(cache[key(pid,cid)])
@@ -163,6 +161,15 @@ function M.Start(P,shared)
   for _,e in ipairs(inFlight)do
    if (pid==nil or e.ref.owner==pid)and(cid==nil or e.ref.id==cid)then mark(e)end
   end
+ end
+ function data.FenceCarrierWrite(pid,cid)
+  assert(valid(pid)and valid(cid),'DC_CARRIER_WRITE_SCOPE_UNKNOWN')
+  markScope(pid,cid) -- a physical carrier changed, not a new ordinary-D notification
+ end
+ function data.MarkDirty(pid,cid,cause,transfer)
+  if not valid(pid)then pid=nil;cid=nil elseif not valid(cid)then cid=nil end
+  if pid~=nil and not P.IsTestPlayer(pid)then return end
+  markScope(pid,cid)
   if shared.FactChanges then
    shared.FactChanges.Emit({owner=pid,cityID=cid,kinds={'D'},cause=cause or 'DISTRICT_FACTS_DIRTY',transfer=transfer})
   end
@@ -187,9 +194,11 @@ function M.Start(P,shared)
    reports[oldKey]=nil;reportCount=reportCount-1
   end
  end
- local function writeVersion()
+ local function writeVersion(pid,cid)
   local facts=shared.EffectiveFacts
-  return facts and facts.Version and facts.Version()or nil
+  if facts and facts.DistrictWriteVersion then return facts.DistrictWriteVersion(pid,cid)end
+  local version=facts and facts.Version and facts.Version()or nil
+  return version,version,false
  end
  local function read(pid,c,token,detail)
   count('read');assert(P.IsTestPlayer(pid),'DC_OWNER_NOT_ENABLED')
@@ -202,6 +211,13 @@ function M.Start(P,shared)
     value=not detail and active.value and clone(active.value)or nil}
   end end
   local e=cache[k]
+  local currentWrite,barrier,writing=writeVersion(pid,current.id)
+  if writing then
+   local value=e and same(e.ref,current)and e.value
+   return {schema=1,epoch=epoch,reference=clone(current),validity=value and 'VERIFIED'or 'UNKNOWN',
+    availability='TEMPORARILY_UNAVAILABLE',error='DC_WRITE_IN_PROGRESS',revision=value and e.revision or nil,
+    value=not detail and value and clone(value)or nil}
+  end
   if not e or not same(e.ref,current)then
    if e then forget(k)end
    e={ref=current,dirty=true}
@@ -213,22 +229,23 @@ function M.Start(P,shared)
   -- A report miss may explicitly reacquire raw facts, but cannot turn a failed
   -- sample into an idle retry. Normal compact reads never materialize reports.
   local needsReport=detail and not row and not e.error
-  local currentWrite=writeVersion()
   if e.dirty or e.turn~=turn or needsReport or e.writeVersion~=currentWrite then
    e.dirty=false;e.turn=turn;local ticket=e.invalidation or 0
    local readEpoch=epoch;local before=currentWrite
-   -- The attempted version is recorded even on failure: unchanged UNKNOWN is
-   -- not an idle retry. A genuine later write fences the next explicit read.
+   -- Record the attempted generation. A change observed during the attempt
+   -- keeps it unavailable until a new related cause or the next turn.
    e.writeVersion=before
    local ok,value,raw
    if #inFlight<CAPTURE_LIMIT then
     inFlight[#inFlight+1]=e
     ok,value,raw=pcall(capture,pid,c)
     local refOK,finalRef=pcall(ref,pid,c,token)
-    local versionOK,after=pcall(writeVersion)
+    local versionOK,after,endBarrier,endWriting=pcall(writeVersion,pid,current.id)
     inFlight[#inFlight]=nil
     local unchanged=ticket==(e.invalidation or 0)and readEpoch==epoch and(not retained or cache[k]==e)
-    if ok and refOK and versionOK and same(current,finalRef)and unchanged and before==after then
+    local stableWrite=versionOK and not endWriting and before==after and barrier==endBarrier
+    if versionOK then e.writeVersion=after end
+    if ok and refOK and stableWrite and same(current,finalRef)and unchanged then
      if not e.value or not same(e.value,value)then revision=revision+1;e.revision=revision;count('publish')end
      sampleSerial=sampleSerial+1;e.sample=sampleSerial;e.value=value;e.error=nil
      retainRaw(k,e,raw)
@@ -236,7 +253,7 @@ function M.Start(P,shared)
      if not ok then
       local printable,message=pcall(tostring,value);e.error=printable and message:sub(1,180)or 'DC_CAPTURE_FAILED'
      elseif not unchanged then e.error='DC_CHANGED_DURING_CAPTURE'
-     elseif not versionOK or before~=after then e.error='DC_WRITE_DURING_CAPTURE'
+     elseif not stableWrite then e.error='DC_WRITE_DURING_CAPTURE'
      else e.error='DC_REFERENCE_CHANGED'end
      count('failure')
     end

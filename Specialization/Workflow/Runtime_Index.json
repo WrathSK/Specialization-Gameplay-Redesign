@@ -546,9 +546,9 @@
       "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "a4f6193ea84ea042990d9f2011996a108cd491e6fc9faa7e819ae2225b12795d",
+      "sha256": "50210183f5cfa83a365b68a874fecbc6ad7a1b3fd8ff9e35f39f88a6d1a5d899",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
+      "provenance": "B417.444 / S0911 scoped D write barrier, actual owner/write and in-flight regression locally verified."
     },
     "Mod/DistrictPrecisionProbe.lua": {
       "sha256": "12a6b244c9694f8303400b544cd747e554ce56c88e9d2bf302a31c22f67aed6c",
@@ -561,9 +561,9 @@
       "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "904d988101ec84c4d80e615c760ecde08e1a69bb3035646f6244ffe477ca40c2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B393_Observer_Isolation.md",
-      "provenance": "B393 approved non-authoritative observer isolation and allowlisted existing-trace errors;restricted actual composition and inherited regressions PASS,native recovery pending."
+      "sha256": "325e35c647d5621fae680038461c9f4c979815ec3b881cdcb6efab599a2dff82",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "B417.444 / S0911 scoped D write barrier, actual owner/write and in-flight regression locally verified."
     },
     "Mod/EligibilityProbe.lua": {
       "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "ac65fd6de2990f652ea26bbd8c9a4807f9b53e5bc8b470f2b5fe7105f1db2a88",
+      "sha256": "52a821629827e29e2a550c4b0cd88b7b17aec900f1400b0dd61ca0a9b615fc73",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
+      "provenance": "B417.444 / S0911 scoped D write barrier, actual owner/write and in-flight regression locally verified."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "7dcf09e9c3fe938488c5259cd4cc4c1c92b35e2f04a9eeeda1768f7760d4c1bd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
-      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
+      "sha256": "6da5f77f88e40508ad19fb7307bc21fa2c2f1a26f35e9bdd90d1cf6970b2b217",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "B417.444 / S0911 scoped D write barrier, actual owner/write and in-flight regression locally verified."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "72805372b23f7aabe1987080dc95202e15a3a1017d02678a1e66ef86d9993a79",
+      "sha256": "d9350bef18ac361d2e2478c36702caec2c7d8ff5208c4794d3d35f17d84b09c5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
+      "provenance": "B417.444 / S0911 scoped D write barrier, actual owner/write and in-flight regression locally verified."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

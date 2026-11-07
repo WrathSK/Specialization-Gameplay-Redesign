@@ -11,21 +11,46 @@ function SPCEffectiveFacts.Start(P,shared)
  end
  local data={};shared.EffectiveFacts=data
  -- One synchronous declared read window, never a turn/global native-object cache.
- local phase;local generation=0;local writes=0;local tickets={}
+ local phase;local generation,districtGeneration,writes=0,0,0;local tickets={}
  local function pack(...)return {n=select('#',...),...}end
  local function finish(result)
   if not result[1]then error(result[2],0)end
   return unpack(result,2,result.n)
  end
+ local function scopeID(n)return type(n)=='number'and n>=0 and n<2147483648 and n%1==0 end
  function data.Version()return generation end
- function data.Invalidate()
-  generation=generation+1;if phase then phase.values={};phase.count=0;phase.workers={};phase.workerCount=0;phase.anchors={};phase.anchorCount=0 end
+ function data.DistrictWriteVersion(pid,cid)
+  if writes>0 then
+   for _,scope in pairs(tickets)do
+    if not scope or scope.provider~=shared.DistrictCompleteness or (scope.owner==pid and scope.city==cid)then return districtGeneration,generation,true end
+   end
+  end
+  return districtGeneration,generation,false
  end
- function data.BeginWrite()
-  data.Invalidate();writes=writes+1;local ticket={};tickets[ticket]=true;return ticket
+ local function invalidate(scope)
+  generation=generation+1;if phase then phase.values={};phase.count=0;phase.workers={};phase.workerCount=0;phase.anchors={};phase.anchorCount=0 end
+  local dc=shared.DistrictCompleteness
+  if scope and dc==scope.provider then
+   local ok=pcall(dc.FenceCarrierWrite,scope.owner,scope.city)
+   if ok then return true end
+  end
+  districtGeneration=districtGeneration+1
+  return false
+ end
+ function data.Invalidate()invalidate()end
+ function data.BeginWrite(_,carrier)
+  local dc=shared.DistrictCompleteness
+  local scope=false
+  if carrier and dc and dc.FenceCarrierWrite and scopeID(carrier.owner) and scopeID(carrier.city)then
+   scope={owner=carrier.owner,city=carrier.city,provider=dc}
+  end
+  writes=writes+1;local ticket={};tickets[ticket]=false
+  if invalidate(scope)then tickets[ticket]=scope end
+  return ticket
  end
  function data.EndWrite(ticket)
-  assert(tickets[ticket],'FACT_WRITE_TICKET_INVALID');tickets[ticket]=nil;writes=writes-1;data.Invalidate()
+  local scope=tickets[ticket]
+  assert(scope~=nil,'FACT_WRITE_TICKET_INVALID');tickets[ticket]=nil;writes=writes-1;invalidate(scope)
  end
  function data.WithPhase(label,fn,...)
   assert(type(fn)=='function','FACT_PHASE_CALLBACK_INVALID')

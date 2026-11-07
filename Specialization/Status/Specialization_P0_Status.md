@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0910
-Implementation Build: source B416.443 / modinfo443, local shared-building-facts candidate. Live B414.441 from72fe54d; stable/main B307.334.
+Status Revision: S0911
+Implementation Build: source B417.444 / modinfo444, local shared-facts candidate. Live B414.441 from72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: SHARED_BUILDING_FACTS_LOCAL_COMPLETE_SCOPED_WRITE_FENCE_NEXT
+Work State: SHARED_FACTS_O1_LOCAL_COMPLETE_DELIVERY_NEXT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Scoped carrier writes keep other cities’ depth facts warm — S0911
+
+The shared-fact implementation now narrows District Completeness invalidation when the existing carrier health path has an exact city witness and the definition confirms an internal SPC carrier. The affected city is invalidated at both native call boundaries. An unclassified write, a write with a separate pre-write callback, or an unavailable scope still uses the broad fence. The EffectiveFacts read phase and the global barrier protecting in-flight samples and transactions remain effective.
+
+- **Runtime Impact Contract (L3, T04/T07/T08).** Use the existing owner/city/index witness plus an immutable building-definition lookup. No new native city read, event, scheduler, saved state or retained native object. A scoped fence touches one cached entry and the bounded in-flight stack; active write tickets disappear when the native call returns or throws. Matching-city reads cannot publish through a write. A completed capture invalidated mid-call stays unavailable until a related cause or existing turn boundary. Confirmed writes in the same turn, lifecycle/reference invalidation and unscoped fallback remain covered.
+- **LOCAL_SIMULATION_PASS, selected scope.** Exact B416 comparison yields 1→0 sibling-city captures for one write, 10→0 for ten interleaved writes, and 3→0 across actual Research Apply, Infrastructure and Chair writers. The current tests check the local recapture, second same-turn change, during-write read, apply-then-throw, unknown scope, new reference, bounded storage, and the pre-existing commerce freshness controls. 68/68 core checks pass. Of 103 supplemental Research and Culture health checks, 98 pass; the five unchanged pre-existing Research fixture failures remain NOT_PASS. These counts establish local work, not native FPS or elapsed time.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package references. Package SHA256 `4b0334f00df36c6bef07499dd44b530e143f2c09c37da97494894ccfc232a00a`. Use CPython 3.14/Lupa 2.8 and the same pinned database variables as S0910. Run `python3.14 -m unittest test_scoped_depth_write test_refactor_s6a test_refactor_s5c1 test_pu01_fact_use test_b413_review_repairs.CommerceNegatives test_effective_building_tiers test_environment_assembly`. Source SHA256 `6c4e60a414e2ff000de29d28c2a12e629e383244cbf94d9d52f6caef29b4ef9e`. Full local evidence `local/refactor/O1b-d1c8daa3ea87409e975088ef657ba9ab/closure.json`, SHA256 `7719491c92fbcd5bd6aecafeeccf8bee32d3a6b2132e268c82bdb6c0eff68a4e`. [Rerunnable scoped write tests](../../DevelopmentTests/test_scoped_depth_write.py)
+
+User decision: none. User testing: none now. Primary next: extend the existing responsibility delivery to actual ordinary consumer paths (O2), preserving phase0 and mandatory-exit order. Live remains B414.441.
 
 ### Effective building Tier and shared depth connected locally — S0910
 

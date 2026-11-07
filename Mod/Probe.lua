@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-416.443"
+P.VERSION = "P0-B-417.444"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -555,8 +555,8 @@ P.Count=SPCPerformance.Count
 P.Observe=SPCPerformance.Observe
 function P.HasBuilding(object,id) P.Count('building_check');return object:HasBuilding(id) end
 -- Native mutations can reenter or apply and then throw. Both boundaries invalidate read windows.
-local function factWrite(fn,...)
- local service=P.FactReadService;local ticket=service and service.BeginWrite('NATIVE_MUTATION')
+local function factWrite(carrier,fn,...)
+ local service=P.FactReadService;local ticket=service and service.BeginWrite('NATIVE_MUTATION',carrier)
  local function pack(...)return {n=select('#',...),...}end
  local result=pack(pcall(fn,...))
  if ticket then service.EndWrite(ticket)end
@@ -564,9 +564,21 @@ local function factWrite(fn,...)
  ExposedMembers.SPC_RuntimeUIRevision=(ExposedMembers.SPC_RuntimeUIRevision or 0)+1
  return unpack(result,2,result.n)
 end
-function P.CreateBuilding(object,id) P.Count('building_create');return factWrite(object.CreateBuilding,object,id)end
-function P.RemoveBuilding(object,id) P.Count('building_remove');return factWrite(object.RemoveBuilding,object,id)end
-function P.SetProperty(object,key,value) P.Count('property_write');return factWrite(object.SetProperty,object,key,value)end
+local function carrierScope(id,witness)
+ if not witness or witness.index~=id then return end
+ local row=P.Info('Buildings',id)
+ if row and row.Index==id and (row.InternalOnly==true or row.InternalOnly==1)
+  and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_')then return witness end
+end
+function P.CreateBuilding(object,id,witness)
+ P.Count('building_create');return factWrite(carrierScope(id,witness),object.CreateBuilding,object,id)
+end
+function P.RemoveBuilding(object,id,witness)
+ P.Count('building_remove');return factWrite(carrierScope(id,witness),object.RemoveBuilding,object,id)
+end
+function P.SetProperty(object,key,value)
+ P.Count('property_write');return factWrite(nil,object.SetProperty,object,key,value)
+end
 -- A live non-trader is a reliable negative. Missing/removed/unknown unit is not.
 function P.RouteUnitRelevant(pid,id,acceptedTraders)
  if type(pid)~='number' or type(id)~='number' then return true end

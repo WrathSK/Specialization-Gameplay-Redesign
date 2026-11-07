@@ -562,17 +562,17 @@ function SPCRuntimeWork.NativeHealth(P,shared,data,owns,mark,beforeWrite)
    local ok,value=pcall(function()return c:GetBuildings():GetBuildingLocation(index)end)
    if ok then plot=value end -- optional proof; do not add a new qualification failure
   end
-  local prior=removing;removing=witness(c,index,plot)
+  local prior,w=removing,witness(c,index,plot);removing=w
   local ok,value=pcall(function()
-   if not beforeWrite then return P.RemoveBuilding(c:GetBuildings(),index)end
+   if not beforeWrite then return P.RemoveBuilding(c:GetBuildings(),index,w)end
    local remove=P.RemoveBuilding;local b=c:GetBuildings();beforeWrite();return remove(b,index)
   end);removing=prior
   if not ok then error(value,0)end;return value
  end
  function h.Create(c,index,plot)
-  local prior=creating;creating=witness(c,index,plot)
+  local prior,w=creating,witness(c,index,plot);creating=w
   local ok,value=pcall(function()
-   if not beforeWrite then return P.CreateBuilding(c:GetBuildQueue(),index)end
+   if not beforeWrite then return P.CreateBuilding(c:GetBuildQueue(),index,w)end
    local create=P.CreateBuilding;local q=c:GetBuildQueue();beforeWrite();return create(q,index)
   end);creating=prior
   if not ok then error(value,0)end;return value

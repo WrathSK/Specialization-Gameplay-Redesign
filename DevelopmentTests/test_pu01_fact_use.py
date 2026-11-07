@@ -105,7 +105,7 @@ def fixture():
     ''')
     # Execute the actual native write/barrier seam, not a mock that accepts a fence.
     probe = (MOD/'Probe.lua').read_text()
-    start = probe.index('local function factWrite(fn,...)')
+    start = probe.index('local function factWrite(')
     end = probe.index('-- A live non-trader', start)
     v.execute('local P=P\n'+probe[start:end])
     with legacy_source_observation():

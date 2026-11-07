@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0910",
-    "runtime": "B416.443 / modinfo443 source candidate",
+    "status": "S0911",
+    "runtime": "B417.444 / modinfo444 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Connect the approved loaded building chains to the shared D provider and the current Standardization and Development consumers.",
+  "goal": "Keep shared D fresh through actual city-local carrier writes while preserving the broader in-flight and unclassified-write barriers.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Effective building Tier and shared depth connected locally — S0910",
+      "selector": "### Scoped carrier writes keep other cities’ depth facts warm — S0911",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,10 +51,10 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_effective_building_tiers.py",
+      "path": "DevelopmentTests/test_scoped_depth_write.py",
       "kind": "head",
       "selector": 20,
-      "reason": "Rerunnable pinned profile and Lua consumer regression"
+      "reason": "Rerunnable scoped before/after mutation tests"
     }
   ],
   "dependencies": [
@@ -71,12 +71,12 @@
     "Review current Store and exact exit owners only if advancing the later O5b/startup or O1 dependency boundary."
   ],
   "non_scope": [
-    "Scoped carrier-write optimization, O2–O8, cross-build migration, native/UI startup validation, deployment and main promotion."
+    "O2–O8, cross-build save migration, native loading, UI validation, deployment and main promotion."
   ],
   "validation": [
-    "Five Tier and D composition tests and four environment assembly tests.",
-    "202 selected retained/current tests plus 74 Research checks with unchanged eight baseline failures.",
-    "223 Lua51 compiles, 32 XML parses, 352 package entries and Context Lock."
+    "B416 reproduces 1/10/3 unrelated-city recaptures; B417 proves 0/0/0 and same-city barriers.",
+    "68/68 core and 98/103 supplemental, five inherited NOT_PASS.",
+    "223 Lua51, 32 XML and 352 package entries plus Context Lock."
   ],
   "full_audit_triggers": [
     "Reopen affected scope if the selected native profile differs, a fixed-HD target or primitive changes, or a later source/cutover changes ordinary admission, exact exits, history or irreversible behavior."
@@ -143,6 +143,16 @@
       "source_snapshot_sha256": "5bbabed82d7b0470000aadaad35ec1962326f3f0478c8336a90d050c17bf3dfd",
       "local_evidence": "local/refactor/O1a-c03c0490b02549feba791bbd31c71d25/closure.json",
       "local_evidence_sha256": "17f11f4b77e47d6f7b40bbaf9aa66ea8ee82ecf054b470e392460c86e873bd97"
+    },
+    "shared_write_fence": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "version": "B417.444 / modinfo444",
+      "package_sha256": "4b0334f00df36c6bef07499dd44b530e143f2c09c37da97494894ccfc232a00a",
+      "report": "Specialization/Status/Specialization_P0_Status.md#scoped-carrier-writes-keep-other-cities-depth-facts-warm--s0911",
+      "source_snapshot_sha256": "6c4e60a414e2ff000de29d28c2a12e629e383244cbf94d9d52f6caef29b4ef9e",
+      "local_evidence": "local/refactor/O1b-d1c8daa3ea87409e975088ef657ba9ab/closure.json",
+      "local_evidence_sha256": "7719491c92fbcd5bd6aecafeeccf8bee32d3a6b2132e268c82bdb6c0eff68a4e",
+      "deployed": false
     }
   }
 }
