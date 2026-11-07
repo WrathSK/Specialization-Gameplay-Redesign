@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0913",
-    "runtime": "B419.446 / modinfo446 source candidate",
+    "status": "S0914",
+    "runtime": "B420.447 / modinfo447 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Acknowledge investment refreshes only after the existing scoped owner queue accepts them.",
+  "goal": "Keep registered fact duties dormant when native player qualification is temporarily unreadable.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Investment owners acknowledge scheduled refreshes — S0913",
+      "selector": "### Fact receipts distinguish unavailability from ineligibility — S0914",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,10 +51,10 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_investment_fact_responsibility.py",
+      "path": "DevelopmentTests/test_fact_owner_eligibility.py",
       "kind": "head",
-      "selector": 22,
-      "reason": "Rerunnable actual investment owner duty tests"
+      "selector": 23,
+      "reason": "Rerunnable production eligibility and receipt tests"
     }
   ],
   "dependencies": [
@@ -71,11 +71,11 @@
     "Review current Store and exact exit owners only if advancing the later O5b/startup or O1 dependency boundary."
   ],
   "non_scope": [
-    "Other O2 effect audit owners, O3–O8, native/UI validation, deployment and main promotion."
+    "Remaining O2 effect owners, O3–O8, ingress and native testing, deployment and main promotion."
   ],
   "validation": [
-    "Two exact B418 loss counterexamples; all three investment responsibility cases pass.",
-    "172 selected checks, including the restored cold reputation composition; Lua51, XML/manifest and Context Lock."
+    "Three candidate scenarios with fixed-base UNKNOWN counterexamples.",
+    "175 selected checks; Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
     "Reopen affected scope if the selected native profile differs, a fixed-HD target or primitive changes, or a later source/cutover changes ordinary admission, exact exits, history or irreversible behavior."
@@ -171,6 +171,16 @@
       "source_snapshot_sha256": "85c96624e5ecba4cbc8bc1d5cc85b095c1eeaabcc653e3250afda6b1a529d25a",
       "local_evidence": "local/refactor/O2b-4a126ecfa85c4acea89821c5ff4e506a/closure.json",
       "local_evidence_sha256": "347082fa58bac1721ab542284fbe3620794f6bddf452710c4e23204dcaf0543d",
+      "deployed": false
+    },
+    "fact_receipt_eligibility": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "version": "B420.447 / modinfo447",
+      "package_sha256": "765d42372ef907a68a093e6b3aea7552be32cdb7ebe3aa68c011e12e010ec7e1",
+      "report": "Specialization/Status/Specialization_P0_Status.md#fact-receipts-distinguish-unavailability-from-ineligibility--s0914",
+      "source_snapshot_sha256": "1c8542fc907305096b96589efe84034b11e1b00ab89a341c7672ecda58e152d3",
+      "local_evidence": "local/refactor/O2c-7ecfa400c72d4351bef3b7310da9718f/closure.json",
+      "local_evidence_sha256": "76d749b79025c63db787a39dac7322cbacc8f539a5188297dc399fabd5f31be4",
       "deployed": false
     }
   }

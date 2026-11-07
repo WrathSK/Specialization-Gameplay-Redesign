@@ -61,7 +61,8 @@ function SPCDevelopmentInvestment.Start(P,shared)
   d.revision=d.revision+1;if v then v.revision=d.revision end;d.views[k]=cp(v)
  end
  function d.Mark(pid,id)
-  if not P.IsTestPlayer(pid)then return false end
+  local eligible,_,status=P.IsTestPlayer(pid)
+  if not eligible then return false,status end
   dirty[pid]=dirty[pid] or {};if id then dirty[pid][id]=true else dirty[pid].all=true end
   return true
  end
@@ -71,17 +72,19 @@ function SPCDevelopmentInvestment.Start(P,shared)
  end
  function d.Audit(scope)
   local pid=scope and scope.player
-  if pid and P.IsTestPlayer(pid)then
-   for k,x in pairs(quotes)do if x.owner==pid then quotes[k]=nil end end
-   return d.Mark(pid)
-  end
+  if pid==nil then return false end
+  local eligible,_,status=P.IsTestPlayer(pid)
+  if not eligible then return false,status end
+  for k,x in pairs(quotes)do if x.owner==pid then quotes[k]=nil end end
+  return d.Mark(pid)
  end
  function d.AcceptFact(event)
   local registry=shared.FactChanges
   if not registry or type(event)~='table' or type(event.player)~='number'then return false end
   local receipt=registry.Receipt(event,'REGISTERED')
-  if not P.IsTestPlayer(event.player)then return registry.Receipt(event,'IRRELEVANT','UNSUPPORTED_PLAYER')end
-  if d.Audit({player=event.player})==true then return receipt end
+  local accepted,status=d.Audit({player=event.player})
+  if accepted==true then return receipt end
+  if status=='INELIGIBLE'then return registry.Receipt(event,'IRRELEVANT','UNSUPPORTED_PLAYER')end
   return false
  end
  function d.SourceChanged(pid,id)

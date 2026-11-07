@@ -51,6 +51,12 @@ def pipeline():
         l=commerce()
         l.execute('''
           fixtureDrain=true;fc=shared.FactChanges;bindings=shared.FactBindings
+          -- This fixture explicitly proves its supported/foreign player identities.
+          local supported=P.IsTestPlayer
+          P.IsTestPlayer=function(pid)
+           local allowed=supported(pid)
+           return allowed,nil,allowed and 'ELIGIBLE'or 'INELIGIBLE'
+          end
           -- The isolated proof fixture has no investor. The actual investment
           -- owners and their missing/failed receipt cases run in the O2 suite.
           local function outside(e)return fc.Receipt(e,'IRRELEVANT','FIXTURE_OUTSIDE_SCOPE')end

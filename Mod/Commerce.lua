@@ -348,15 +348,20 @@ function M.Start(P,shared)
  end
  function d.Mark(pid,id,responsibility)
   if pid==nil then
-   local accepted=false
-   for owner in pairs(Players)do if P.IsTestPlayer(owner)then
-    local marked,reason=d.Mark(owner,id,responsibility)
-    if marked==true then accepted=true
-    elseif reason~='ISOLATED'then return false,reason end
-   end end
-   return accepted,'NO_ELIGIBLE_OWNER'
+   local accepted,eligible,unknown=false,false,false
+   for owner in pairs(Players)do
+    local allowed,_,status=P.IsTestPlayer(owner)
+    if allowed then
+     eligible=true
+     local marked,reason=d.Mark(owner,id,responsibility)
+     if marked==true then accepted=true
+     elseif reason~='ISOLATED'then return false,reason end
+    elseif status~='INELIGIBLE'then unknown=true end
+   end
+   return accepted,not eligible and unknown and 'PLAYER_UNAVAILABLE'or 'NO_ELIGIBLE_OWNER'
   end
-  if not P.IsTestPlayer(pid)then return false,'UNSUPPORTED_PLAYER'end
+  local eligible,_,status=P.IsTestPlayer(pid)
+  if not eligible then return false,status=='INELIGIBLE'and 'UNSUPPORTED_PLAYER'or 'PLAYER_UNAVAILABLE'end
   if isolated(pid)then return false,'ISOLATED'end
   dirty[pid]=dirty[pid] or heldDeliveries[pid] or {cities={}};heldDeliveries[pid]=nil
   if id==nil then dirty[pid].all=true;dirty[pid].cities={}

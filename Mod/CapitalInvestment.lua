@@ -104,15 +104,19 @@ function SPCCapitalInvestment.Start(P,shared)
  end
  function d.Mark(pid,id)
   if pid==nil then
-   local accepted=false
-   for owner in pairs(Players)do if P.IsTestPlayer(owner)then
-    local marked,reason=d.Mark(owner)
-    if marked~=true then return false,reason end
-    accepted=true
-   end end
-   return accepted,'NO_ELIGIBLE_OWNER'
+   local accepted,unknown=false,false
+   for owner in pairs(Players)do
+    local allowed,_,status=P.IsTestPlayer(owner)
+    if allowed then
+     local marked,reason=d.Mark(owner)
+     if marked~=true then return false,reason end
+     accepted=true
+    elseif status~='INELIGIBLE'then unknown=true end
+   end
+   return accepted,unknown and 'PLAYER_UNAVAILABLE'or 'NO_ELIGIBLE_OWNER'
   end
-  if not P.IsTestPlayer(pid)then return false,'UNSUPPORTED_PLAYER'end
+  local eligible,_,status=P.IsTestPlayer(pid)
+  if not eligible then return false,status=='INELIGIBLE'and 'UNSUPPORTED_PLAYER'or 'PLAYER_UNAVAILABLE'end
   sequence=sequence+1;dirty[pid]=dirty[pid] or {}
   if id==nil then dirty[pid].all=sequence else dirty[pid][id]=sequence end
   return true

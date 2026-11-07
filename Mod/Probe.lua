@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-419.446"
+P.VERSION = "P0-B-420.447"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -37,18 +37,21 @@ function P.IsTestPlayer(playerID)
   local config=PlayerConfigurations and PlayerConfigurations[playerID]
   local ok,civ=P.Call(config,"GetCivilizationTypeName")
   local leaderOK,leader=P.Call(config,"GetLeaderTypeName")
-  if not ok or not leaderOK then return false,"玩家配置暂不可读" end
+  if not ok or not leaderOK then return false,"玩家配置暂不可读","UNKNOWN" end
   -- B263: exact identity pairs; legacy pair remains valid for preserved saves.
   local matched=(civ=="CIVILIZATION_SPC_AMERICA" and leader=="LEADER_SPC_T_ROOSEVELT")
     or (civ=="CIVILIZATION_SPC_TEST" and leader=="LEADER_SPC_TEST")
-  if not matched then return false,"非测试文明或领袖" end
+  if not matched then
+    local known=type(civ)=="string" and #civ>0 and type(leader)=="string" and #leader>0
+    return false,"非测试文明或领袖",known and "INELIGIBLE" or "UNKNOWN"
+  end
   local humanOK,human=P.Call(Players and Players[playerID],"IsHuman")
-  if not humanOK or type(human)~="boolean" then return false,"玩家人类身份暂不可读（Player.IsHuman）" end
-  if not human then return false,"AI玩家未启用" end
+  if not humanOK or type(human)~="boolean" then return false,"玩家人类身份暂不可读（Player.IsHuman）","UNKNOWN" end
+  if not human then return false,"AI玩家未启用","INELIGIBLE" end
   local modeOK,multi=pcall(function() return GameConfiguration.IsAnyMultiplayer() end)
-  if not modeOK or type(multi)~="boolean" then return false,"单人模式暂不可读（IsAnyMultiplayer）" end
-  if multi then return false,"多人模式未支持" end
-  return true
+  if not modeOK or type(multi)~="boolean" then return false,"单人模式暂不可读（IsAnyMultiplayer）","UNKNOWN" end
+  if multi then return false,"多人模式未支持","INELIGIBLE" end
+  return true,nil,"ELIGIBLE"
 end
 
 function P.Summary(playerID,cityID)

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0913
-Implementation Build: source B419.446 / modinfo446, local investment delivery candidate. Live B414.441 from72fe54d; stable/main B307.334.
+Status Revision: S0914
+Implementation Build: source B420.447 / modinfo447, local fact delivery candidate. Live B414.441 from72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: INVESTMENT_FACT_DELIVERY_LOCAL_COMPLETE_O2_CONTINUES
+Work State: FACT_RECEIPT_ELIGIBILITY_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Fact receipts distinguish unavailability from ineligibility — S0914
+
+The existing player check now returns a detached eligibility status alongside its original boolean and display reason. Commerce and the two investment owners keep a fact duty when player configuration, human identity or mode is temporarily unreadable. Confirmed unsupported players still release irrelevant duties. This protects facts that have reached the registry; coverage of individual native ingress events remains separate.
+
+- **Runtime Impact Contract (L3, T01/T02/T05).** Use existing native checks and their results, with no new sampling, owner scan, event or persisted field. Previously authorized whole-player scopes stay whole-player. New reliable information or a named wake allows another attempt; idle publication does not. The gameplay eligibility predicate and the proof/transaction conditions retain their original boolean checks.
+- **LOCAL_SIMULATION_PASS.** The fixed B419 fixture reproduces premature acknowledgement under thrown/nil configuration and unknown human or mode results, including an all-owner cause. Real Probe and the three production consumers now retain the proper tickets. Restoring the same eligible player resumes delivery, and confirmed foreign identity releases without refreshing or charging. 175 selected checks pass.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package references. Package SHA256 `765d42372ef907a68a093e6b3aea7552be32cdb7ebe3aa68c011e12e010ec7e1`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol`. Tested source SHA256 `1c8542fc907305096b96589efe84034b11e1b00ab89a341c7672ecda58e152d3`. Full local evidence `local/refactor/O2c-7ecfa400c72d4351bef3b7310da9718f/closure.json`, SHA256 `76d749b79025c63db787a39dac7322cbacc8f539a5188297dc399fabd5f31be4`. [Rerunnable eligibility tests](../../DevelopmentTests/test_fact_owner_eligibility.py)
+
+User decision: none. User testing: none now. Primary next: verify the existing receipt cap and committed invalidation before widening delivery to additional effect-audit owners. Live remains B414.441.
 
 ### Investment owners acknowledge scheduled refreshes — S0913
 
