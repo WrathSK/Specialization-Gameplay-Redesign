@@ -11,14 +11,14 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0904",
-    "runtime": "B414.441 / modinfo441 source candidate",
+    "status": "S0905",
+    "runtime": "B414.441 / modinfo441",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the accepted B413 HD baseline and locally validate the Crew action-bar correction in B414.",
+  "goal": "Record completed B414 deployment and await the Owner Crew action-bar check.",
   "implementation_authorized": false,
   "context": [
     {
@@ -73,6 +73,19 @@
     "supplemental_manifest_sha256": "3c78b43e8772a872cd2a3b35372db78d112b1ea1e61d57acd67e385534353a74",
     "candidate": "B414.441 / modinfo441 LOCAL_SIMULATION_PASS",
     "candidate_sha256": "ffba41b4203db25c2ad7c1a60c0851fdcd02a462f80625bec57ce8c4354ee8a4",
-    "report": "Specialization/Status/Specialization_P0_Status.md#u5-hd-baseline-acceptance-and-crew-unitpanel-follow-up--s0904"
+    "report": "Specialization/Status/Specialization_P0_Status.md#u5-hd-baseline-acceptance-and-crew-unitpanel-follow-up--s0904",
+    "deployment": {
+      "version": "B414.441 / modinfo441",
+      "source_commit": "72fe54d46b2fc66e24f776c23f980c02d77c9182",
+      "files": 346,
+      "identical": true,
+      "digest": "ffba41b4203db25c2ad7c1a60c0851fdcd02a462f80625bec57ce8c4354ee8a4",
+      "receipt": "B414.441-72fe54d-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "pending": false,
+      "outgoing": "B413.440, 346/346 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH"
+    },
+    "deployment_report": "Specialization/Status/Specialization_P0_Status.md#approved-b414-deployment-complete--s0905"
   }
 }

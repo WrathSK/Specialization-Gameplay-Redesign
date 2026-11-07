@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0904
-Implementation Build: source B414.441 / modinfo441; live B413.440 from02d732e; stable/main B307.334
+Status Revision: S0905
+Implementation Build: source/live B414.441 / modinfo441 from72fe54d; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: B413_U5_ACCEPTED_B414_CREW_PANEL_NATIVE_PENDING
+Work State: B414_DEPLOYED_AWAITING_CREW_ACTION_BAR_CHECK
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Approved B414 deployment complete — S0905
+
+On 2026-11-07 the Owner authorized this temporary B414.441 deployment and limited the user check to the Crew action bar. The verified game exit preceded each receipt-bound swap. The live package matches source 72fe54d46b2fc66e24f776c23f980c02d77c9182 in all 346 files with SHA256 ffba41b4203db25c2ad7c1a60c0851fdcd02a462f80625bec57ce8c4354ee8a4.
+
+Receipt B414.441-72fe54d-playtest.json is DEVELOP_ACTIVE. The outgoing B413.440 is retained with 346/346 matching files. The stable B307.334 recovery package matches clean main in 312/312 files. The deployment is complete with one Specialization UUID in the scan tree and no pending transaction. The accepted B413 HD regression baseline and prior native coverage carry forward.
+
+User decision is none for this completed deployment. User testing is the Crew action bar on B414.441. On a resource tile, check that Harvest Resource is absent and ordinary controls remain. At an eligible Wonder, check the Construction controls. The existing acceptance covers spending and other U5 paths. Primary stops at the user UI check.
 
 ### U5 HD baseline acceptance and Crew UnitPanel follow-up — S0904
 

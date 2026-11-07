@@ -10,8 +10,8 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0904",
-    "runtime": "B414.441 / modinfo441 source candidate",
+    "status": "S0905",
+    "runtime": "B414.441 / modinfo441",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "02d732ef1e999bab1e325057ae7694f51177b3ea",
-  "current_batch": "B413_U5_ACCEPTED_B414_CREW_PANEL_NATIVE_PENDING",
-  "next_batch": "STOP:U5 HD baseline and observed scenarios accepted. B414 Crew UnitPanel candidate validated locally. Separate permission for deployment or architecture migration.",
+  "runtime_commit": "72fe54d46b2fc66e24f776c23f980c02d77c9182",
+  "current_batch": "B414_DEPLOYED_AWAITING_CREW_ACTION_BAR_CHECK",
+  "next_batch": "STOP: B414 is deployed. Await the Owner Crew action-bar check. Prior U5 acceptance is retained.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B413.440 temporary develop from02d732ef1e999bab1e325057ae7694f51177b3ea;346/346 MATCH;SHA256 590d7c52d5b5257d3a2e38f56947cdfbc072c7d0fd1fe021b867ae80d0c9b689;B399 outgoing and B307 stable recovery packages MATCH;no pending transaction;receipt B413.440-02d732e-playtest.json",
+  "live": "B414.441 / modinfo441 temporary develop from 72fe54d46b2fc66e24f776c23f980c02d77c9182, 346/346 MATCH, SHA256 ffba41b4203db25c2ad7c1a60c0851fdcd02a462f80625bec57ce8c4354ee8a4. Receipt B414.441-72fe54d-playtest.json DEVELOP_ACTIVE. B413 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -48,8 +48,8 @@
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
-  "deployment_authorization": "2026-11-06 Owner explicitly approved this B413.440 deployment;completed through receipt-bound restore/activate and read-only hash verification. No standing future deployment,main or game-launch authorization.",
-  "context_review_status": "S0904:Owner accepted the pinned B413 HD profile and scoped U5 evidence. T32 cold-load Crew use verified by the native queue. Separate B414 UnitPanel candidate has targeted local evidence.",
+  "deployment_authorization": "2026-11-07 Owner explicitly approved B414.441 deployment. Completed with receipt-bound verification. This approval is for this deployment.",
+  "context_review_status": "S0905: B414 source/live 346/346 MATCH. Owner Crew action-bar confirmation pending. Scoped B413 U5 evidence retained.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#u5-hd-baseline-acceptance-and-crew-unitpanel-follow-up--s0904",
-  "source_status": "B414.441 source candidate (346 files, SHA256 ffba41b4203db25c2ad7c1a60c0851fdcd02a462f80625bec57ce8c4354ee8a4). B413.440 remains live and is the accepted regression baseline at 02d732e.",
-  "continuation_authorization": "Owner accepted the U5 wrap-up and specified that Crew show only general unit controls and construction. Await separate deployment or next package authorization."
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#approved-b414-deployment-complete--s0905",
+  "source_status": "Canonical/live B414.441 / modinfo441 at 72fe54d46b2fc66e24f776c23f980c02d77c9182. Scoped local UnitPanel validation in S0904 and deployment verification in S0905.",
+  "continuation_authorization": "Owner approved B414.441 deployment and asked to stop for only the Crew action-bar check."
 }
