@@ -50,6 +50,35 @@ function SPCRuntimeWork.Cities(collection,scope)
  end
  return collection:Members()
 end
+-- The two Research city writers share traversal and scope accounting. They
+-- still choose, validate and write their own plans.
+function SPCRuntimeWork.AuditCities(P,scope,errors,reconcile,taking)
+ local accepted=true;local foundOwner=false
+ for pid,player in pairs(Players)do
+  if SPCRuntimeWork.Player(scope,pid)then
+   foundOwner=true
+   local eligible,_,status=P.IsTestPlayer(pid)
+   if eligible then
+    if not (scope and scope.city~=nil)then errors[pid]={}end
+    errors[pid]=errors[pid] or {}
+    local cities=player:GetCities()
+    if not cities then accepted=false
+    else
+     for _,c in SPCRuntimeWork.Cities(cities,scope)do
+      local ok,why=pcall(function()
+       local owner=c:GetOwner()
+       if taking then assert(type(owner)=='number','RUNTIME_AUDIT_OWNER_UNAVAILABLE')end
+       if owner==pid then P.Count('city_scan');reconcile(pid,c)end
+      end)
+      errors[pid][c:GetID()]=not ok and tostring(why) or nil
+      if not ok then accepted=false end
+     end
+    end
+   elseif taking and status~='INELIGIBLE'then accepted=false end
+  end
+ end
+ return accepted and (not scope or scope.player==nil or foundOwner)
+end
 -- Scope-only busy work: no native objects, automatic retry, timers or UNKNOWN
 -- recovery. A real reentrant cause arms one later existing publish snapshot.
 function SPCRuntimeWork.NewAudit(P,shared,data,label,run,options)
@@ -78,7 +107,10 @@ function SPCRuntimeWork.NewAudit(P,shared,data,label,run,options)
  local function runAudit(scope,taking)
   if type(scope)~='table'then scope=nil end
   if not data.ready then return false end
-  if type(scope)=='table' and scope.player~=nil and not targetOwner and not P.IsTestPlayer(scope.player)then return false end
+  if type(scope)=='table' and scope.player~=nil and not targetOwner then
+   local eligible,_,status=P.IsTestPlayer(scope.player)
+   if not eligible then return taking and status=='INELIGIBLE' or false end
+  end
   if data.busy then
    if P.Count then P.Count('busy_skip')end
    if not taking then mark(scope)end

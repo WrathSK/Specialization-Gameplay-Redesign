@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0920",
-    "runtime": "B426.453 / modinfo453 source candidate",
+    "status": "S0921",
+    "runtime": "B427.454 / modinfo454 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Use the existing ordered delivery for Lv2 housing and GPP, including the already committed investment path.",
+  "goal": "Move Research Apply and Chair to ordered responsibility while retaining their calculation and exact exits.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Housing and GPP independently take exact effect refreshes — S0920",
+      "selector": "### Research Apply and Chair independently take their scoped audits — S0921",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,7 +51,7 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_refactor_s5propagation.py",
+      "path": "DevelopmentTests/test_ordered_audit_receipts.py",
       "kind": "head",
       "selector": 28,
       "reason": "Rerunnable scoped delivery regression"
@@ -74,8 +74,7 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "325 selected tests with two real investment entrances, unreadable vs obsolete witness, scoped effects and release.",
-    "Real D producer at 2,048 scopes with five interested recipients and B421 strict-use regressions.",
+    "329 selected tests including the real three-writer Research composition and one fixed B426 counterexample.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -242,6 +241,16 @@
       "source_snapshot_sha256": "6c4d1da53d7a904e5698685e738d2beccdd532bdb1643cef21938c7820b4b15b",
       "local_evidence": "local/refactor/O2i-311025087109428a8336e31097cbf5bc/closure.json",
       "local_evidence_sha256": "a862e81ce645bff7dddfac4c87d405abf99c23d6d86cbf244a9be4457d29e167",
+      "deployed": false
+    },
+    "ordered_research_apply_chair": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "version": "B427.454 / modinfo454",
+      "package_sha256": "8ce9a8ef8b297b8918389d14ea81780d8483dc932f7b3f03920a0f26333d9b7e",
+      "report": "Specialization/Status/Specialization_P0_Status.md#research-apply-and-chair-independently-take-their-scoped-audits--s0921",
+      "source_snapshot_sha256": "90a40aeda5b2b894b229710e0650c9649fb503ca6fd75779a87248a07ed7da34",
+      "local_evidence": "local/refactor/O2j-fbefe0f061ad4812ba49af094fbd586f/closure.json",
+      "local_evidence_sha256": "f9afc3b37efaea40f14c92e247352c197d2a2de33a319724a342bfd19a2d9afe",
       "deployed": false
     }
   }

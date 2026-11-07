@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "872ce553642ad78268d0d2d078f08ff654de70660f84ab4c5a9bdec935fd63bb",
+      "sha256": "e074038556592ead8e86a45d79bf931d0324872e919c4c66e336a169f85fb206",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0920 B426.453 verifies independent Lv2 housing/GPP receipts, strict current investment witness and unchanged one-time debit."
+      "provenance": "S0921 B427.454 verifies independent Research Apply and Chair takeover and unchanged scoped write order."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -816,9 +816,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "3ee619d038a86386663db30830959908124449ededbf44fa22903dfdfdb8eb7d",
+      "sha256": "61d2d0bc74d4b4a7d8216a68485bf4fe31b9251a58929ce7f283c34669d914ef",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
+      "provenance": "S0921 B427.454 verifies independent Research Apply and Chair takeover and unchanged scoped write order."
     },
     "Mod/ResearchApplyModel.lua": {
       "sha256": "8f09915faa202858bbeec746723db882571f8f1ef4ed6bfdb8b937d20a655b30",
@@ -826,9 +826,9 @@
       "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/ResearchChair.lua": {
-      "sha256": "752bd3256f9887f41a701db2f8d8bb901c30d52b1cf964087af0992dbaea41a0",
+      "sha256": "2d9bdb2806427c1c076ac5ca73531c828f0b727c65806872bd351184d17089d1",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
+      "provenance": "S0921 B427.454 verifies independent Research Apply and Chair takeover and unchanged scoped write order."
     },
     "Mod/ResearchChairModel.lua": {
       "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "4700c7de48cc9f02adee0d020d6f1f6f84fc8d7c1b73f9543faf657729b4a94a",
+      "sha256": "c6104b202d850a1811f648d4fb3fca5932c62f1dd0a54e7c07076921e646c983",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0920 B426.453 verifies independent Lv2 housing/GPP receipts, strict current investment witness and unchanged one-time debit."
+      "provenance": "S0921 B427.454 verifies independent Research Apply and Chair takeover and unchanged scoped write order."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "32262b387bf608615f9265ec33bc2c2dc66c93ab24ab470f1a5f899811c22a25",
+      "sha256": "8867b9efe800a7503db0ba878f0c971b74f53a85b0ae5f5d2f4c41fecbb7c6de",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0920 B426.453 verifies independent Lv2 housing/GPP receipts, strict current investment witness and unchanged one-time debit."
+      "provenance": "S0921 B427.454 verifies independent Research Apply and Chair takeover and unchanged scoped write order."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1586,9 +1586,9 @@
       "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "64fa091d747c5bd23516407bbcd496faf65ba34ed39c08e7a4f53d4d46e652eb",
+      "sha256": "c0ce42e9924883c96cb2fee2b4ffb027470980de2fbd565cb65b18ba6a5da6c9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0920 B426.453 verifies independent Lv2 housing/GPP receipts, strict current investment witness and unchanged one-time debit."
+      "provenance": "S0921 B427.454 verifies independent Research Apply and Chair takeover and unchanged scoped write order."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",

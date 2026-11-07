@@ -74,21 +74,15 @@ function M.Start(P,shared)
   SPCCarrierSet.ApplyLocated(P,c,rows,p.plot,health,
    {observedRemoval=true,removeError='CHAIR_REMOVE_FAILED',createError='CHAIR_CREATE_FAILED'},function()data.changes=data.changes+1 end)
  end
- local function audit(scope)
-  local ok,err=pcall(function()
+ local function audit(scope,taking)
+  local ok,accepted=pcall(function()
    validate();data.definitionError=nil
-   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) and P.IsTestPlayer(pid) then
-    if not (scope and scope.city~=nil)then data.errors[pid]={}end
-    data.errors[pid]=data.errors[pid] or {};local cities=player:GetCities()
-    if cities then for _,c in SPCRuntimeWork.Cities(cities,scope) do
-     local good,why=pcall(function()if c:GetOwner()==pid then P.Count('city_scan');reconcile(pid,c)end end)
-     data.errors[pid][c:GetID()]=not good and tostring(why) or nil
-    end end
-   end end
+   return SPCRuntimeWork.AuditCities(P,scope,data.errors,reconcile,taking)
   end)
-  if not ok then data.definitionError=tostring(err) end
+  if not ok then data.definitionError=tostring(accepted)end
+  return ok and accepted
  end
- data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchChair',audit)
+ data.Audit,data.MarkAudit,data.FlushAudit,data.AcceptFact=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchChair',audit,{receipts=true})
  function data.Describe(pid,c,detail)
   local ok,text=pcall(function()
    assert(data.ready,'CHAIR_NOT_READY');validate();local p=inspect(pid,c,true);local rows,amounts=installed(c)
@@ -112,7 +106,7 @@ function M.Start(P,shared)
   return ok and text or ('学术主持：暂不可确认，保留上次配置。\n'..explain(text))
  end
  local function bind(src,n,f) local e=P.Field(src,n);if e and e.Add then e.Add(f) end end
- SPCRuntimeWork.StartReady(P,shared,'ResearchChair',function()definitions=nil;targets=nil;data.ready=true;data.errors={};data.Audit()end)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchChair',function()definitions=nil;targets=nil;data.ready=true;data.errors={};data.Audit()end,true)
  -- Shared D/P0-C owns invalidation and registers first; reuse its confirmed view.
  -- Ordinary structural input is owned by scoped DC D; health is exact above.
  SPCRuntimeWork.Hook(P,Events,'PlayerTurnActivated',data.Audit)

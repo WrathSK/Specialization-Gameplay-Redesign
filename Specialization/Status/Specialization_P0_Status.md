@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0920
-Implementation Build: source B426.453 / modinfo453, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0921
+Implementation Build: source B427.454 / modinfo454, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ORDERED_HOUSING_GPP_RECEIPTS_LOCAL_COMPLETE_O2_CONTINUES
+Work State: ORDERED_RESEARCH_APPLY_CHAIR_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Research Apply and Chair independently take their scoped audits — S0921
+
+Research Apply and Research Chair take their current audit scopes at the original Binding positions. They share the existing city-traversal mechanics. Each still plans and writes only its own effects, with the original scope and error publication.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T04/T05/T08).** Existing scope grouping, carrier write barriers and ready/exit hooks remain. The two consumers now refuse a receipt on temporary admission or city failure. Known ineligible participants release irrelevant work. A failed city is scoped within the original audit and keeps its prior effect. Ten named recipients yield a 40,960-receipt ceiling. The real D producer and seven interested recipients admit 2,048 scopes with 14,336 receipts. No new enumeration, sampling, timer or persistence.
+- **LOCAL_SIMULATION_PASS.** The real ordered chain retains the original three city visits, two D captures, four carrier writes and writer order for the measured combined fact. A failed Apply-only definition read holds Apply's receipt while the successful Infrastructure and Chair receivers stay idle on its recovery. The exact old B426 fixture exposes the missing receipt. The original single-city, busy recovery and scoped owner-read tests remain. All 329 selected tests pass.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `8ce9a8ef8b297b8918389d14ea81780d8483dc932f7b3f03920a0f26333d9b7e`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol test_ordered_audit_receipts test_tradition_fact_responsibility test_refactor_s5propagation.PhaseBarrier test_refactor_s5propagation.Scopes test_refactor_s5d1.Kernel test_scoped_depth_write test_refactor_s5propagation.ActualInvestment test_refactor_s9e7.UnscopedRouting test_refactor_s5d4c7 test_refactor_s9d1b.Witness test_refactor_s9d1b.WriteBarrier test_pu04_negative test_refactor_s5d4a test_refactor_s5d1.Writers.test_actual_apply_chair_one_city_keeps_sibling_carriers_errors test_refactor_s5d1.Writers.test_actual_chair_busy_second_city_retained_until_publish test_refactor_s5d1.Writers.test_actual_apply_chair_owner_read_failure_is_city_isolated`. Tested source SHA256 `90a40aeda5b2b894b229710e0650c9649fb503ca6fd75779a87248a07ed7da34`. Full local evidence `local/refactor/O2j-fbefe0f061ad4812ba49af094fbd586f/closure.json`, SHA256 `f9afc3b37efaea40f14c92e247352c197d2a2de33a319724a342bfd19a2d9afe`. [Rerunnable regression](../../DevelopmentTests/test_ordered_audit_receipts.py)
+
+No Owner decision or user testing is needed now. Primary continues within the approved local effect delivery. Live remains B414.441.
 
 ### Housing and GPP independently take exact effect refreshes — S0920
 

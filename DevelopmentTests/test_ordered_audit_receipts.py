@@ -46,6 +46,35 @@ assert(infra.ready and coefficient(c)==3)
 
 
 class OrderedReceipts(unittest.TestCase):
+    def test_actual_apply_read_failure_leaves_chair_and_infrastructure_complete(self):
+        lua = fixture()
+        lua.execute("""
+local apply=shared.ResearchApply
+local method=apply.AcceptFact and 'AcceptFact' or 'Audit'
+local accept=apply[method];local info=P.Info;local calls={}
+P.Observe=function(kind,name)
+ if kind=='audit'then calls[name]=(calls[name] or 0)+1 end
+end
+apply[method]=function(scope)
+ P.Info=function(tab,id)
+  if tab=='Buildings' and type(id)=='string' and id:match('^BUILDING_SPC_RESEARCH_APPLY_')then
+   error('AP_BUILDINGS_UNAVAILABLE')
+  end
+  return info(tab,id)
+ end
+ local accepted=accept(scope);P.Info=info;return accepted
+end
+upgrade();drain()
+assert(apply.errors[0][1] and fc.errors.Binding_ResearchApply)
+assert(not fc.errors.Binding_ResearchInfrastructure and not fc.errors.Binding_ResearchChair)
+assert(calls.ResearchApply==1 and calls.ResearchChair==1 and calls.ResearchInfrastructure==1)
+apply[method]=accept
+assert(bindings.Wake('ResearchApply','FACT_AVAILABLE',fc.sequence,{player=0,city=1}))
+drain()
+assert(not apply.errors[0][1] and not fc.errors.Binding_ResearchApply)
+assert(calls.ResearchApply==2 and calls.ResearchChair==1 and calls.ResearchInfrastructure==1)
+""")
+
     def test_one_combined_fact_reuses_the_existing_order_and_city(self):
         lua = fixture()
         lua.execute("""

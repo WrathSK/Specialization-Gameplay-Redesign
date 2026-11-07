@@ -64,7 +64,7 @@ def pipeline():
           shared.DevelopmentInvestment={AcceptFact=outside,SourceChanged=function()end}
           shared.ResearchTraditionEffects={AcceptFact=outside}
           -- This proof/Commerce composition has no specialist projections.
-          for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP'})do
+          for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair'})do
            shared[name]={AcceptFact=function()return true end}
           end
           function drain()fc.Flush();bindings.Flush();Events.GameCoreEventPublishComplete.Fire()end

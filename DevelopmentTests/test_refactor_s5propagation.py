@@ -12,7 +12,9 @@ def bindings():
     for _,name in ipairs({'Commerce','CapitalInvestment','DevelopmentInvestment','ResearchTraditionEffects'})do
      shared[name]={AcceptFact=outside}
     end
-    for _,name in ipairs({'ResearchSupport','Lv2Housing','Lv2GPP'})do shared[name]={AcceptFact=function()return true end}end
+    for _,name in ipairs({'ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair'})do
+     shared[name]={AcceptFact=function()return true end}
+    end
     function drain()d.Flush();shared.FactBindings.Flush()end
     """)
     return c
@@ -61,9 +63,10 @@ class PhaseBarrier(unittest.TestCase):
         """)
     def test_consumer_native_reentry_retains_new_work_without_recursive_writes(self):
         c=bindings();c.execute("""
-        local once=true;shared.ResearchChair={Audit=function(s)
+        local once=true;shared.ResearchChair={AcceptFact=function(s)
          calls[#calls+1]=s.city
          if once then once=false;d.Emit({owner=0,cityID=2,kinds={'ACTIVE'},cause='SECOND_CHANGE'});d.Flush();assert(not shared.FactBindings.Flush())end
+         return true
         end}
         d.Emit({owner=0,cityID=1,kinds={'ACTIVE'},cause='FIRST_CHANGE'});drain();assert(#calls==1);shared.FactBindings.Flush();assert(#calls==2 and calls[2]==2)
         """)
@@ -81,7 +84,7 @@ class Scopes(unittest.TestCase):
     def test_bad_city_and_target_do_not_suppress_other_city_or_sibling(self):
         c=bindings();c.execute("""
         shared.ResearchInfrastructure={AcceptFact=function()error('BROKEN_TARGET')end}
-        shared.ResearchChair={Audit=function(s)if s.city==1 then error('BAD_CITY')end;calls[#calls+1]=s.city end}
+        shared.ResearchChair={AcceptFact=function(s)if s.city==1 then error('BAD_CITY')end;calls[#calls+1]=s.city;return true end}
         d.Emit({owner=0,cityID=1,kinds={'ACTIVE'},cause='COMMITTED'});d.Emit({owner=0,cityID=2,kinds={'ACTIVE'},cause='COMMITTED'})
         drain();assert(#calls==1 and calls[1]==2 and shared.FactBindings.errors.ResearchChair and shared.FactBindings.errors.ResearchInfrastructure)
         local n=d.delivered;for i=1,1000 do drain()end;assert(d.delivered==n and #calls==1)
