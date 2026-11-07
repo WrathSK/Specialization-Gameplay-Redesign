@@ -63,9 +63,10 @@ def pipeline():
           shared.CapitalInvestment={AcceptFact=outside,Mark=function()end}
           shared.DevelopmentInvestment={AcceptFact=outside,SourceChanged=function()end}
           shared.ResearchTraditionEffects={AcceptFact=outside}
-          -- This proof/Commerce composition has no infrastructure projection.
-          shared.ResearchInfrastructure={AcceptFact=function()return true end}
-          shared.ResearchSupport={AcceptFact=function()return true end}
+          -- This proof/Commerce composition has no specialist projections.
+          for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP'})do
+           shared[name]={AcceptFact=function()return true end}
+          end
           function drain()fc.Flush();bindings.Flush();Events.GameCoreEventPublishComplete.Fire()end
           function proof()
            shared.RouteSignalRevision=(shared.RouteSignalRevision or 0)+1

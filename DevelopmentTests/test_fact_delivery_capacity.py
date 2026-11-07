@@ -7,39 +7,35 @@ from test_pu03_delivery import registry
 
 
 class DeliveryCapacity(unittest.TestCase):
-    def test_actual_depth_producer_preserves_full_scope_capacity_with_four_receivers(self):
+    def test_actual_depth_producer_preserves_full_scope_capacity_with_five_receivers(self):
         lua = fixture()
         lua.execute("""
 local fc=shared.FactChanges
 fc.Flush()
 local called=0
--- Model the two declared Research recipients absent from this D/Commerce
--- composition and add one more to exercise four interested receivers.
-shared.ResearchInfrastructure={AcceptFact=function()called=called+1;return true end}
-shared.ResearchSupport={AcceptFact=function()called=called+1;return true end}
-fc.RegisterConsumer('Extra',function(e)
- called=called+1
- return fc.Receipt(e,'REGISTERED')
-end,{kinds={'D'},delivery='RESPONSIBILITY'})
+-- Model the four effect recipients absent from the real D/Commerce fixture.
+for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP'})do
+ shared[name]={AcceptFact=function()called=called+1;return true end}
+end
 local writes=effectWrites
 for id=1001,3047 do dc.MarkDirty(0,id) end
-assert(fc.retainedScopes==2047 and fc.retained==8188)
+assert(fc.retainedScopes==2047 and fc.retained==10235)
 dc.MarkDirty(0,3048)
-assert(fc.retainedScopes==2048 and fc.pending==2048 and fc.retained==8192)
+assert(fc.retainedScopes==2048 and fc.pending==2048 and fc.retained==10240)
 local sequence=fc.sequence
 local ok,err=pcall(dc.MarkDirty,0,3049)
 assert(not ok and tostring(err):find('FACT_QUEUE_LIMIT') and fc.sequence==sequence)
-assert(fc.retainedScopes==2048 and fc.retained==8192)
+assert(fc.retainedScopes==2048 and fc.retained==10240)
 local delivered=fc.delivered
 fc.Flush();shared.FactBindings.Flush()
-assert(fc.delivered-delivered>=8192 and called==6144 and effectWrites==writes)
+assert(fc.delivered-delivered>=10240 and called==8192 and effectWrites==writes)
 assert(fc.retainedScopes==0 and fc.retained==0 and fc.pending==0)
 dc.MarkDirty(0,3049);fc.Flush();shared.FactBindings.Flush()
-assert(called==6147 and fc.retainedScopes==0 and fc.retained==0)
+assert(called==8196 and fc.retainedScopes==0 and fc.retained==0)
 """)
         measure('delivery_depth_fanout', {
-            'receivers_interested_in_D': 4, 'scopes_admitted': 2048,
-            'receipts_before_drain': 8192, 'additional_receiver_callbacks': 6144,
+            'receivers_interested_in_D': 5, 'scopes_admitted': 2048,
+            'receipts_before_drain': 10240, 'additional_receiver_callbacks': 8192,
             'carrier_writes_during_receipt_drain': 0,
         })
 

@@ -19,8 +19,8 @@ function SPCFactConsumerBindings.New(shared)
  local declarations={
   {target='Standardization',method='Refresh',cityOnly=true,kinds={'IDENTITY'}},
   {target='ResearchSupport',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
-  {target='Lv2Housing',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
-  {target='Lv2GPP',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
+  {target='Lv2Housing',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
+  {target='Lv2GPP',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='IndustrySupport',method='Audit',cityOnly=true,ownerCauses={REQUEST_FACTS_DIRTY=true,DISTRICT_FACTS_DIRTY=true},kinds={'D'}},
   {target='Lv3Support',method='Audit',kinds=role},
   {target='Lv3Effects',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','NETWORK'}},

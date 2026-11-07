@@ -52,7 +52,7 @@ function SPCLv2GPP.Start(P,shared)
   assert(int(n)and n<=255,'WORKER_COUNT_UNKNOWN_OR_UNSUPPORTED')
   cultureObserve('GPP_SAMPLE',function()return {owner=pid,city=d.cityID or f.cityID or 'UNKNOWN',specialization=kind,active=f.active,workers=n,reason=observed and 'AUDIT'or 'READ_ONLY'}end)
   return {kind=kind,workers=n,anchorIndex=anchorIndex,active=f.active,enabled=true,reason='VERIFIED anchor='..d.id}
-  end)
+  end,true)
  end
 
  local function reconcile(pid,city)
@@ -82,26 +82,27 @@ function SPCLv2GPP.Start(P,shared)
   data.errors[tostring(pid)..':'..cid]=why
   if why~=nil then cultureObserve('GPP_FAILED',function()local e=SPCCultureDiagnostics.Error(why);e.owner=pid;e.city=cid;return e end)end
  end)
- local function runAudit(scope)
+ local function runAudit(scope,taking)
   validateDefinitions()
   batch=SPCRuntimeWork.New(P,shared);data.refreshes=data.refreshes+1
   if type(scope)=='table' and scope.investment~=nil then
    local pid=scope.player;local key='investment:'..tostring(pid)
-   local ok,city=pcall(SPCRuntimeWork.InvestmentCity,P,shared,scope,batch)
-   data.errors[key]=not ok and tostring(city) or nil
-   if ok then
-    P.Count('city_scan');local good,why=pcall(function() reconcile(pid,city) end)
-    data.errors[pid..':'..city:GetID()]=not good and tostring(why) or nil
-   end
-   return
+   local ok,city,obsolete=pcall(SPCRuntimeWork.InvestmentCity,P,shared,scope,batch,taking)
+   data.errors[key]=not ok and tostring(city) or obsolete
+   if not ok then return false end
+   if not city then return obsolete~=nil end -- the checked reference has been superseded
+   P.Count('city_scan');local good,why=pcall(function()reconcile(pid,city)end)
+   data.errors[pid..':'..city:GetID()]=not good and tostring(why) or nil
+   return good
   end
   if type(scope)~='table' or scope.player==nil then data.errors={} end
-  targets.Run(scope)
+  return targets.Run(scope,taking)
  end
- local function audit(scope)
-  local ok,err=pcall(runAudit,scope);batch=nil;if not ok then error(err,0)end
+ local function audit(scope,taking)
+  local ok,result=pcall(runAudit,scope,taking);batch=nil;if not ok then error(result,0)end
+  return result
  end
- data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'Lv2GPP',audit,{targets=true})
+ data.Audit,data.MarkAudit,data.FlushAudit,data.AcceptFact=SPCRuntimeWork.NewAudit(P,shared,data,'Lv2GPP',audit,{targets=true,receipts=true})
  function data.Describe(pid,city,requestToken,requestCity)
   local ok,result=pcall(function()
    assert(data.ready,"GPP_NOT_READY");validateDefinitions()
@@ -131,7 +132,7 @@ function SPCLv2GPP.Start(P,shared)
   local out="P0-B2 Lv2 GPP | "..(ok and result or "ERROR "..tostring(result));print("[SPC][B035] "..out);return out
  end
  local function bind(events,event,fn) local e=P.Field(events,event);if e and e.Add then e.Add(fn) end end
- SPCRuntimeWork.StartReady(P,shared,'Lv2GPP',function() data.ready=true;data.errors={};data.Audit({load=true})end)
+ SPCRuntimeWork.StartReady(P,shared,'Lv2GPP',function()data.ready=true;data.errors={};data.Audit({load=true})end,true)
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
  if not shared.DistrictCompleteness then
   for _,n in ipairs({'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end

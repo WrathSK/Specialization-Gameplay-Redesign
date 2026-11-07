@@ -12,7 +12,7 @@ def bindings():
     for _,name in ipairs({'Commerce','CapitalInvestment','DevelopmentInvestment','ResearchTraditionEffects'})do
      shared[name]={AcceptFact=outside}
     end
-    shared.ResearchSupport={AcceptFact=function()return true end}
+    for _,name in ipairs({'ResearchSupport','Lv2Housing','Lv2GPP'})do shared[name]={AcceptFact=function()return true end}end
     function drain()d.Flush();shared.FactBindings.Flush()end
     """)
     return c
@@ -87,7 +87,7 @@ class Scopes(unittest.TestCase):
         local n=d.delivered;for i=1,1000 do drain()end;assert(d.delivered==n and #calls==1)
         """)
     def test_restructuring_cause_cannot_keep_pretransition_investment_fastpath(self):
-        c=bindings();c.execute("shared.Lv2Housing={Audit=function(s)assert(s.city==1 and s.investment==nil);calls[#calls+1]=1 end};d.Emit({owner=0,cityID=1,reference='REF',kinds={'ACTIVE'},cause='INVESTMENT_COMMITTED',investment={status='COMMITTED'}});d.Emit({owner=0,cityID=1,reference='REF',kinds={'IDENTITY'},cause='RESTRUCTURING_COMMITTED'});drain();assert(#calls==1)")
+        c=bindings();c.execute("shared.Lv2Housing={AcceptFact=function(s)assert(s.city==1 and s.investment==nil);calls[#calls+1]=1;return true end};d.Emit({owner=0,cityID=1,reference='REF',kinds={'ACTIVE'},cause='INVESTMENT_COMMITTED',investment={status='COMMITTED'}});d.Emit({owner=0,cityID=1,reference='REF',kinds={'IDENTITY'},cause='RESTRUCTURING_COMMITTED'});drain();assert(#calls==1)")
 
     def test_city_only_methods_keep_narrow_scope_when_owner_rows_coalesce(self):
         c=bindings();c.execute("""
@@ -115,9 +115,51 @@ class ActualInvestment(unittest.TestCase):
         for normal in (False,True):
             l=investment();l.execute("normal="+str(normal).lower()+";t=prepare(c,301,normal);drain();resetCounts();assert(confirm(c,301,t,normal):find('INVESTED'));assert(kills==1 and ledgerWrites==3 and housing(c)==0 and gpp(c,'RESEARCH')==0);drain();assert(housing(c)==1 and gpp(c,'RESEARCH')==6 and counters.city_scan==2 and members==0);local n=ledgerWrites;confirm(c,301,t,normal);drain();assert(kills==1 and ledgerWrites==n)")
     def test_actual_sibling_survives_writer_error_and_next_explicit_recovery(self):
-        l=investment();l.execute("t=prepare(c,302,false);drain();local audit=shared.Lv2Housing.Audit;shared.Lv2Housing.Audit=function()error('FAILED_HOUSING')end;confirm(c,302,t,false);drain();assert(gpp(c,'RESEARCH')==6 and kills==1 and ledgerWrites==3);shared.Lv2Housing.Audit=audit;confirm(c,302,t,false);drain();assert(housing(c)==1 and kills==1 and ledgerWrites==3)")
+        l=investment();l.execute("""
+        t=prepare(c,302,false);drain()
+        local h=shared.Lv2Housing;local accept=h.AcceptFact
+        h.AcceptFact=function()error('FAILED_HOUSING')end
+        confirm(c,302,t,false);drain()
+        local fc=shared.FactChanges
+        assert(fc.errors.Binding_Lv2Housing and not fc.errors.Binding_Lv2GPP)
+        assert(gpp(c,'RESEARCH')==6 and kills==1 and ledgerWrites==3)
+        h.AcceptFact=accept
+        local before=audits.Lv2GPP
+        assert(shared.FactBindings.Wake('Lv2Housing','TARGET_READY',fc.sequence,{player=0,city=c:GetID()}))
+        drain()
+        assert(housing(c)==1 and kills==1 and ledgerWrites==3 and audits.Lv2GPP==before)
+        confirm(c,302,t,false);drain()
+        assert(housing(c)==1 and kills==1 and ledgerWrites==3)
+        """)
     def test_queued_receipt_reference_change_prevents_stale_effect_write(self):
         l=investment();l.execute("t=prepare(c,303,false);drain();confirm(c,303,t,false);c.token='REPLACED';drain();assert(housing(c)==0 and gpp(c,'RESEARCH')==0 and kills==1 and ledgerWrites==3 and shared.Lv2GPP.errors['investment:0'])")
+
+    def test_confirmed_location_mismatch_releases_only_the_obsolete_effect_duties(self):
+        l=investment();l.execute("""
+        t=prepare(c,303,false);drain();confirm(c,303,t,false)
+        -- A verified location mismatch retires the old effect duty.
+        local x=c.GetX;c.GetX=function(self)return x(self)+1 end
+        drain()
+        local fc=shared.FactChanges
+        assert(housing(c)==0 and gpp(c,'RESEARCH')==0 and kills==1 and ledgerWrites==3)
+        assert(shared.Lv2GPP.errors['investment:0']:find('INVESTMENT_REFERENCE_CHANGED'))
+        assert(not fc.errors.Binding_Lv2Housing and not fc.errors.Binding_Lv2GPP)
+        """)
+
+    def test_unknown_investment_witness_waits_for_a_related_exact_fact(self):
+        l=investment();l.execute("""
+        t=prepare(c,304,false);drain();confirm(c,304,t,false)
+        c.factsError=true;drain()
+        local fc=shared.FactChanges
+        assert(fc.errors.Binding_Lv2Housing and fc.errors.Binding_Lv2GPP)
+        assert(housing(c)==0 and gpp(c,'RESEARCH')==0 and kills==1 and ledgerWrites==3)
+        c.factsError=false;local count=fc.delivered
+        for i=1,30 do drain()end
+        assert(fc.delivered==count and housing(c)==0)
+        confirm(c,304,t,false);drain()
+        assert(not fc.errors.Binding_Lv2Housing and not fc.errors.Binding_Lv2GPP)
+        assert(housing(c)==1 and gpp(c,'RESEARCH')==6 and kills==1 and ledgerWrites==3)
+        """)
 
 
 class NetworkOutput(unittest.TestCase):

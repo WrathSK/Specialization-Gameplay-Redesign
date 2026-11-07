@@ -716,14 +716,14 @@
       "provenance": "B278 S5a2a committed Store notification migration, eight declared subscriptions and scalar transaction freshness before fallible observers; local/static only. Other manual lists remain S5a2b; no deployment/native PASS."
     },
     "Mod/Lv2GPP.lua": {
-      "sha256": "418033bdb97223fc3cb064fd31d25618dc7c7a623718a9ed67ffb9ea47f70a43",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
-      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
+      "sha256": "b6d63e4a323e55294db589fcb49d4e3da685f847b866673bbe4c69f4e34bd2ac",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0920 B426.453 verifies independent Lv2 housing/GPP receipts, strict current investment witness and unchanged one-time debit."
     },
     "Mod/Lv2Housing.lua": {
-      "sha256": "8f40c2a320afc5cf0c460f2c314c7b28b7903b9d164f5f00d7e488aca3f3cf9d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B334_Refactor_S8c1.md",
-      "provenance": "B334.361 Acknowledge asynchronous cleanup for the exact loss; local/static evidence only; no deployment/native PASS."
+      "sha256": "41812aadd8b798a1beca82366942789868cc44dd3ca653633cbe1b79608f5a25",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0920 B426.453 verifies independent Lv2 housing/GPP receipts, strict current investment witness and unchanged one-time debit."
     },
     "Mod/Lv3Effects.lua": {
       "sha256": "634d788697cb89f28333430af01b68cedb3aa724a42999a53bf992c2acb0f7f9",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "b23b33c36c235d659d1e181c532f1144b3fc6b4ce5d897e5cb4c102790d04c81",
+      "sha256": "872ce553642ad78268d0d2d078f08ff654de70660f84ab4c5a9bdec935fd63bb",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
+      "provenance": "S0920 B426.453 verifies independent Lv2 housing/GPP receipts, strict current investment witness and unchanged one-time debit."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "5a95eaaf8002069bc943cff272103319ddc42808513102b691d20a5472d04274",
+      "sha256": "4700c7de48cc9f02adee0d020d6f1f6f84fc8d7c1b73f9543faf657729b4a94a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
+      "provenance": "S0920 B426.453 verifies independent Lv2 housing/GPP receipts, strict current investment witness and unchanged one-time debit."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "32fdd95d4c6e77ed32cecef4f5b7d5ed934b1cccac35a61bcc7f5ec8a45fce43",
+      "sha256": "32262b387bf608615f9265ec33bc2c2dc66c93ab24ab470f1a5f899811c22a25",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
+      "provenance": "S0920 B426.453 verifies independent Lv2 housing/GPP receipts, strict current investment witness and unchanged one-time debit."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1586,9 +1586,9 @@
       "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "dd4a16d09c09b52371a01a6ec47b17ced394bf46c4ea41422007858d396db737",
+      "sha256": "64fa091d747c5bd23516407bbcd496faf65ba34ed39c08e7a4f53d4d46e652eb",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0919 B425.452 verifies basic specialist support ordered receipts, confirmed anchor changes and independent wakes."
+      "provenance": "S0920 B426.453 verifies independent Lv2 housing/GPP receipts, strict current investment witness and unchanged one-time debit."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",

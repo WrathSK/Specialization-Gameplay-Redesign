@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0919",
-    "runtime": "B425.452 / modinfo452 source candidate",
+    "status": "S0920",
+    "runtime": "B426.453 / modinfo453 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Move the existing basic specialist support audit to exact ordered fact acceptance.",
+  "goal": "Use the existing ordered delivery for Lv2 housing and GPP, including the already committed investment path.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Basic specialist support takes its existing ordered audit — S0919",
+      "selector": "### Housing and GPP independently take exact effect refreshes — S0920",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,7 +51,7 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_refactor_s5d4a.py",
+      "path": "DevelopmentTests/test_refactor_s5propagation.py",
       "kind": "head",
       "selector": 28,
       "reason": "Rerunnable scoped delivery regression"
@@ -74,8 +74,8 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "323 selected tests including real basic-support and prior ordered D consumer scenarios.",
-    "One fixed B424 counterexample with no change in the other receiver.",
+    "325 selected tests with two real investment entrances, unreadable vs obsolete witness, scoped effects and release.",
+    "Real D producer at 2,048 scopes with five interested recipients and B421 strict-use regressions.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -232,6 +232,16 @@
       "source_snapshot_sha256": "3fce602ddb74ca4a31feb50b223f1928bea31be1935890e8f2ef16f263773b12",
       "local_evidence": "local/refactor/O2h-23487c504ec045b99fd8daba71f324b0/closure.json",
       "local_evidence_sha256": "b6c6edfd1d187315125e8f74ba280655efb672b932e2591af78083ee22bed6c7",
+      "deployed": false
+    },
+    "ordered_housing_gpp_receipts": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "version": "B426.453 / modinfo453",
+      "package_sha256": "c48ddf401eba602c662869c0bdac01b28b4e3f3abe2a72a7eca2fc11d6c1cee8",
+      "report": "Specialization/Status/Specialization_P0_Status.md#housing-and-gpp-independently-take-exact-effect-refreshes--s0920",
+      "source_snapshot_sha256": "6c4d1da53d7a904e5698685e738d2beccdd532bdb1643cef21938c7820b4b15b",
+      "local_evidence": "local/refactor/O2i-311025087109428a8336e31097cbf5bc/closure.json",
+      "local_evidence_sha256": "a862e81ce645bff7dddfac4c87d405abf99c23d6d86cbf244a9be4457d29e167",
       "deployed": false
     }
   }

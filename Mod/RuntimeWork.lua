@@ -109,30 +109,50 @@ function SPCRuntimeWork.NewAudit(P,shared,data,label,run,options)
  if options and options.receipts then accept=function(scope)return runAudit(scope,true)end end
  return audit,mark,flush,accept
 end
--- Only the named, synchronous investment result may narrow these two writers.
+-- Only a named, committed investment result may narrow these two writers.
 -- Native hooks/player scopes remain unchanged. Facts belong to this writer's
 -- batch; the next writer must revalidate rather than reuse post-write inputs.
-function SPCRuntimeWork.InvestmentCity(P,shared,scope,batch)
+function SPCRuntimeWork.InvestmentCity(P,shared,scope,batch,taking)
  local function same(a,b)
   if type(a)~=type(b) then return false end;if type(a)~='table' then return a==b end
   for k,v in pairs(a)do if not same(v,b[k])then return false end end
   for k in pairs(b)do if a[k]==nil then return false end end;return true
  end
+ local function integer(value)return type(value)=='number' and value>=0 and value<2147483648 and value%1==0 end
+ local function located(r)
+  return type(r)=='table' and integer(r.owner) and integer(r.cityID) and integer(r.x) and integer(r.y)
+ end
+ local function obsolete(reason)
+  if taking then return nil,reason end
+  error(reason,0)
+ end
  local e=scope.investment;local pid=scope.player
  assert(type(e)=='table' and e.status=='COMMITTED' and e.cause=='INVESTMENT_COMMITTED'
-  and type(pid)=='number' and pid==e.player and P.IsTestPlayer(pid),'INVESTMENT_SCOPE_UNKNOWN')
- assert(type(e.city)=='number' and e.city>=0 and e.city%1==0 and type(e.anchor)=='table'
+  and integer(pid) and pid==e.player,'INVESTMENT_SCOPE_UNKNOWN')
+ local eligible,_,status=P.IsTestPlayer(pid)
+ if not eligible and status=='INELIGIBLE'then return obsolete('INVESTMENT_SCOPE_UNKNOWN')end
+ assert(eligible,'INVESTMENT_SCOPE_UNKNOWN')
+ assert(integer(e.city) and scope.city==e.city and type(e.anchor)=='table'
   and e.anchor.owner==pid and e.anchor.cityID==e.city and type(e.anchor.token)=='string' and #e.anchor.token>0
   and type(e.receipt)=='string' and #e.receipt>0 and type(e.unitUID)=='string'
+  and located(e.reference) and e.reference.owner==pid and e.reference.cityID==e.city
   and type(e.revision)=='number' and e.revision>=2 and e.revision<=4 and e.revision%1==0,'INVESTMENT_EVIDENCE_UNKNOWN')
  local player=assert(Players[pid],'INVESTMENT_PLAYER_UNAVAILABLE')
  local city=assert(player:GetCities():FindID(e.city),'INVESTMENT_CITY_UNAVAILABLE')
- assert(same(e.reference,{owner=city:GetOwner(),cityID=city:GetID(),x=city:GetX(),y=city:GetY()})
-  and city:GetOwner()==pid,'INVESTMENT_REFERENCE_CHANGED')
+ local function readReference()
+  local r={owner=city:GetOwner(),cityID=city:GetID(),x=city:GetX(),y=city:GetY()}
+  assert(located(r),'INVESTMENT_REFERENCE_UNAVAILABLE');return r
+ end
+ if not same(e.reference,readReference())then return obsolete('INVESTMENT_REFERENCE_CHANGED')end
  local f=batch.Facts(pid,city)
- assert(same(e.anchor,{owner=f.owner,cityID=f.cityID,token=f.token,first=f.first,specialization=f.specialization})
-  and not f.investmentPending and f.investmentCount>=e.revision-1,'INVESTMENT_BINDING_CHANGED')
- assert(same(e.reference,{owner=city:GetOwner(),cityID=city:GetID(),x=city:GetX(),y=city:GetY()}),'INVESTMENT_CHANGED_DURING_READ')
+ assert(same(e.reference,readReference()),'INVESTMENT_CHANGED_DURING_READ')
+ assert(type(f)=='table' and f.owner==pid and f.cityID==e.city and type(f.token)=='string'
+  and #f.token>0 and type(f.specialization)=='string' and (f.specialization=='NONE' or type(f.first)=='table'),
+  'INVESTMENT_BINDING_UNAVAILABLE')
+ if not same(e.anchor,{owner=f.owner,cityID=f.cityID,token=f.token,first=f.first,specialization=f.specialization})then
+  return obsolete('INVESTMENT_BINDING_CHANGED')
+ end
+ assert(f.investmentPending==false and integer(f.investmentCount) and f.investmentCount>=e.revision-1,'INVESTMENT_BINDING_CHANGED')
  return city
 end
 -- Fixed scalar attribution only. No native lookup, retained scope or event history.

@@ -13,8 +13,9 @@ capital=shared.CapitalInvestment;development=shared.DevelopmentInvestment
 shared.ResearchTraditionEffects={AcceptFact=function(e)
  return fc.Receipt(e,'IRRELEVANT','FIXTURE_OUTSIDE_SCOPE')
 end}
-shared.ResearchInfrastructure={AcceptFact=function()return true end}
-shared.ResearchSupport={AcceptFact=function()return true end}
+for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP'})do
+ shared[name]={AcceptFact=function()return true end}
+end
 function deliver()
  fc.Flush();bindings.Flush()
 end

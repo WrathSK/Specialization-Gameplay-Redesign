@@ -19,7 +19,7 @@ function SPCLv2Housing.Start(P,shared)
  local function carrier(i)return carriersSet.Index(i)end
  local function expected(pid,city,batch)
   local wanted={}
-  local kind,d,f=SPCSpecialistSupport.Anchor(P,shared,pid,city,batch)
+  local kind,d,f=SPCSpecialistSupport.Anchor(P,shared,pid,city,batch,true)
   if not kinds[kind] then return wanted,'CONFIRMED_INELIGIBLE',{} end
   if f.active<2 then return wanted,'ACTIVE='..f.active,{} end
   local svc=assert(shared.DistrictCompleteness,'B2_ORDINARY_FACTS_UNAVAILABLE')
@@ -48,26 +48,27 @@ function SPCLv2Housing.Start(P,shared)
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   process(pid,c,batch)
  end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
- local function runAudit(scope)
+ local function runAudit(scope,taking)
   validate()
   data.events=data.events+1;batch=SPCRuntimeWork.New(P,shared)
   if type(scope)=='table' and scope.investment~=nil then
    local pid=scope.player;local key='investment:'..tostring(pid)
-   local ok,city=pcall(SPCRuntimeWork.InvestmentCity,P,shared,scope,batch)
-   data.errors[key]=not ok and tostring(city) or nil
-   if ok then
-    P.Count('city_scan');local good,why=pcall(function() process(pid,city,batch) end)
-    data.errors[pid..':'..city:GetID()]=not good and tostring(why) or nil
-   end
-   return
+   local ok,city,obsolete=pcall(SPCRuntimeWork.InvestmentCity,P,shared,scope,batch,taking)
+   data.errors[key]=not ok and tostring(city) or obsolete
+   if not ok then return false end
+   if not city then return obsolete~=nil end -- the checked reference has been superseded
+   P.Count('city_scan');local good,why=pcall(function()process(pid,city,batch)end)
+   data.errors[pid..':'..city:GetID()]=not good and tostring(why) or nil
+   return good
   end
   if type(scope)~='table' or scope.player==nil then data.errors={} end
-  targets.Run(scope)
+  return targets.Run(scope,taking)
  end
- local function audit(scope)
-  local ok,err=pcall(runAudit,scope);batch=nil;if not ok then error(err,0)end
+ local function audit(scope,taking)
+  local ok,result=pcall(runAudit,scope,taking);batch=nil;if not ok then error(result,0)end
+  return result
  end
- data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'Lv2Housing',audit,{targets=true})
+ data.Audit,data.MarkAudit,data.FlushAudit,data.AcceptFact=SPCRuntimeWork.NewAudit(P,shared,data,'Lv2Housing',audit,{targets=true,receipts=true})
  function data.Describe(pid,city)
   local ok,out=pcall(function()
    assert(data.ready,'B2_HOUSING_NOT_READY')
@@ -87,7 +88,7 @@ function SPCLv2Housing.Start(P,shared)
   return 'P0-B2 Lv2 Housing | '..(ok and out or ('UNKNOWN / installed housing retained: '..tostring(out)))
  end
  local function bind(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
- SPCRuntimeWork.StartReady(P,shared,'Lv2Housing',function() data.ready=true;data.errors={};data.Audit({load=true})end)
+ SPCRuntimeWork.StartReady(P,shared,'Lv2Housing',function()data.ready=true;data.errors={};data.Audit({load=true})end,true)
  for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2Housing',targets.Exit(function(c,loss)

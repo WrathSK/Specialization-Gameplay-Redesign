@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0919
-Implementation Build: source B425.452 / modinfo452, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0920
+Implementation Build: source B426.453 / modinfo453, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: BASIC_SUPPORT_ORDERED_RECEIPT_LOCAL_COMPLETE_O2_CONTINUES
+Work State: ORDERED_HOUSING_GPP_RECEIPTS_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Housing and GPP independently take exact effect refreshes — S0920
+
+Housing and GPP now acknowledge their respective audits in the existing order. Both revalidate the same narrow committed investment hint against the current location and Store binding. A confirmed obsolete witness releases the old effect duty without applying it. Unavailable facts or a failed effect application hold the exact receipt. Unit consumption and the authoritative investment transaction stay in their existing owners.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T04/T05/T08).** The current group, reference-conflict handling and two existing carrier writers remain. The same two live location observations and current Store fact read support the narrow path. No new listener, persisted field, replay or idle retry. The existing readiness or a relevant new fact can wake the exact retained work. Eight declared receivers yield a 32,768-receipt ceiling. In the modeled D composition, five recipients admit all 2,048 scopes with 10,240 receipts.
+- **LOCAL_SIMULATION_PASS.** Both original investment entrances still use two city visits, zero all-city enumeration and one unit consumption. Temporary witness failure retains both duties without new writes. A confirmed location mismatch releases the obsolete duties without a stale effect. The original token-change protection still passes. Recovering one writer does not rerun the successful sibling, and the retry carries no second debit or history write. The fixed B425 witness refusal did not retain these duties. All 325 selected checks pass.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `c48ddf401eba602c662869c0bdac01b28b4e3f3abe2a72a7eca2fc11d6c1cee8`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol test_ordered_audit_receipts test_tradition_fact_responsibility test_refactor_s5propagation.PhaseBarrier test_refactor_s5propagation.Scopes test_refactor_s5d1.Kernel test_scoped_depth_write test_refactor_s5propagation.ActualInvestment test_refactor_s9e7.UnscopedRouting test_refactor_s5d4c7 test_refactor_s9d1b.Witness test_refactor_s9d1b.WriteBarrier test_pu04_negative test_refactor_s5d4a`. Tested source SHA256 `6c4d1da53d7a904e5698685e738d2beccdd532bdb1643cef21938c7820b4b15b`. Full local evidence `local/refactor/O2i-311025087109428a8336e31097cbf5bc/closure.json`, SHA256 `a862e81ce645bff7dddfac4c87d405abf99c23d6d86cbf244a9be4457d29e167`. [Rerunnable regression](../../DevelopmentTests/test_refactor_s5propagation.py)
+
+No Owner decision or user testing is needed now. Primary continues with the remaining local effect-audit owners. Live remains B414.441.
 
 ### Basic specialist support takes its existing ordered audit — S0919
 
