@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="442">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="443">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B415.442：环境数据装配与资产重组美术解耦。</Description>
+    <Description>B416.443：统一建筑层级和区域深度事实。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

@@ -92,6 +92,13 @@ def commerce():
      {BuildingType='BUILDING_LIBRARY',Index=2001,PrereqDistrict='DISTRICT_CAMPUS',Tier=1},
      {BuildingType='BUILDING_UNIVERSITY',Index=2002,PrereqDistrict='DISTRICT_CAMPUS',Tier=2}},'BuildingType')
     GameInfo.HD_BuildingTiers=GameInfo.Buildings
+    GameInfo.BuildingPrereqs=tableInfo({{Building='BUILDING_UNIVERSITY',PrereqBuilding='BUILDING_LIBRARY'}},'Building')
+    GameInfo.SPC_EnvironmentAssembly=tableInfo({{Id=1,Profile='HD',SchemaVersion=1}},'Id')
+    GameInfo.SPC_EnvironmentBuildings=tableInfo({
+     {BuildingType='BUILDING_LIBRARY',DistrictType='DISTRICT_CAMPUS'},
+     {BuildingType='BUILDING_UNIVERSITY',DistrictType='DISTRICT_CAMPUS'}},'BuildingType')
+    GameInfo.SPC_EnvironmentExcludedBuildings=tableInfo({},'BuildingType')
+    P.Rows=function(name)local t={};for row in GameInfo[name]()do t[#t+1]=row end;return t end
     GameInfo.BuildingReplaces=tableInfo({},'CivUniqueBuildingType')
     local info=P.Info;P.Info=function(t,k)return GameInfo[t]and GameInfo[t][k]or info(t,k)end
     local first=shared.EffectiveFacts.Read(0,source).first

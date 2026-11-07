@@ -37,9 +37,10 @@ function M.Start(P,shared)
   local campus,n=nil,0;local warnings={}
   for _,d in ipairs(v.value.districts) do
    if d.domain=='DISTRICT_CAMPUS' then campus=d;n=n+1 end
-   for _,b in ipairs(d.buildings) do
-    assert(not (b.ordinary and b.depthEligible~=false and b.complete and not b.pillaged and (b.tier==nil or b.reason=='BUILDING_LOCATION_DOMAIN_CONFLICT')),'AP_BUILDING_FACT_UNKNOWN')
-    if detail and b.reason=='UNREVIEWED_BUILDING' then warnings[#warnings+1]=b.name or b.type end
+   if detail then
+    for _,b in ipairs(d.buildings)do
+     if b.reason=='UNREVIEWED_BUILDING'then warnings[#warnings+1]=b.name or b.type end
+    end
    end
   end
   assert(n<=1,'AP_MULTIPLE_CAMPUSES')

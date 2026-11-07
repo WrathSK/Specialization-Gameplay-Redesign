@@ -49,15 +49,11 @@ function M.Plan(f,w,depth)
  assert(w.modifierExcludedCount==0 and w.unknownCategoryCount==0,'ME_FIXTURE_UNSUPPORTED_WORK')
  p.count=w.count;p.status='NEEDS_DEPTH';if not depth then return p end
  assert(depth.validity=='VERIFIED' and depth.availability=='READY' and depth.value,'ME_DEPTH_UNKNOWN')
- local used={};for _,d in ipairs(M.Domains)do used[d[1]]=true end
- for _,d in ipairs(depth.value.districts)do if used[d.domain] and d.complete and not d.pillaged then
-  for _,b in ipairs(d.buildings)do
-   assert(not (b.ordinary and b.depthEligible and b.complete and not b.pillaged and b.tier==nil),'ME_TIER_UNKNOWN')
-  end
- end end
  for _,d in ipairs(M.Domains)do
-  local raw=depth.value.domains[d[1]];local n=raw and raw.value or 0
-  assert(integer(n) and n<=10,'ME_DEPTH_INVALID')
+  local raw=depth.value.domains[d[1]]
+  local n=0
+  if raw then n=assert(raw.value,'ME_TIER_UNKNOWN')end
+  assert(integer(n),'ME_DEPTH_INVALID')
   local rawEach=M.K*n*(d[2]=='GOLD' and 3 or 1);local each=math.floor(rawEach)
   p.domains[d[1]]={value=n,districtID=raw and raw.districtID,yield=d[2],rawEach=rawEach,each=each}
   p.each[d[2]]=p.each[d[2]]+each

@@ -33,6 +33,7 @@ function M.Plan(f,d)
  if f.workers==nil then p.status='UNKNOWN_WORKERS';p.reason=f.workerError;return p end
  local campus=d.value.domains.DISTRICT_CAMPUS
  if not campus then p.status='NO_ELIGIBLE_CAMPUS';p.science=0;return p end
+ if campus.value==nil then p.status='HELD_COMPLETENESS';p.reason=campus.depthError;return p end
  p.status='READY';p.workers=f.workers;p.d=campus.value;p.selectedDistrict=campus.districtID;p.science=p.d*p.workers
  return p
 end
@@ -54,7 +55,7 @@ function M.Describe(P,shared,pid,city)
     lines[#lines+1]='  '..label..' ['..b.type..'] Tier='..tostring(b.tier)..' contribution='..b.contribution
      ..' pillaged='..tostring(b.pillaged)..' reason='..tostring(b.reason)..' tierSource='..tostring(b.tierSource)
    end
-   lines[#lines+1]='  cap前='..r.uncapped..' cap后='..r.value..' /10；最高单区域='..tostring(selected and selected.districtID==r.id or false)
+   lines[#lines+1]='  cap前='..r.uncapped..' cap后='..tostring(r.value or 'UNKNOWN')..'；最高单区域='..tostring(selected and selected.districtID==r.id or false)
   end
   for _,b in ipairs(d.value.excluded) do lines[#lines+1]=b.type..' contribution=0 pillaged='..tostring(b.pillaged)..' reason='..b.reason end
  end

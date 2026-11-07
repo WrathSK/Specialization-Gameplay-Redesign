@@ -71,6 +71,24 @@ def runtime():
   buildings.append(dict(InternalOnly=False,IsWonder=False,**{k:v for k,v in r.items() if k not in ['IsWonder','InternalOnly']},Index=len(buildings)+1));buildings[-1].update(r)
  l.globals().brows=to_lua(l,buildings);l.globals().tiers=to_lua(l,fixture['rows']);l.globals().replaces=to_lua(l,fixture['replaces'])
  l.execute("GameInfo.Buildings=db(brows,'BuildingType');GameInfo.HD_BuildingTiers=db(tiers,'BuildingType');GameInfo.HD_DUMMY_BUILDINGS=db({{BuildingType='BUILDING_FAKE_DUMMY'}},'BuildingType');GameInfo.BuildingReplaces=db(replaces,'CivUniqueBuildingType')")
+ # Model a chain with the fixture's historical tier values. Real graph
+ # behavior is covered independently by test_effective_building_tiers.
+ roots={}
+ for row in fixture['rows']:
+  roots.setdefault((row['PrereqDistrict'],row['Tier']),row['BuildingType'])
+ prereqs=[{'Building':row['BuildingType'],
+  'PrereqBuilding':roots[(row['PrereqDistrict'],row['Tier']-1)]}
+  for row in fixture['rows'] if (row['PrereqDistrict'],row['Tier']-1) in roots]
+ inputs={
+  'BuildingPrereqs':(prereqs,'Building'),
+  'SPC_EnvironmentAssembly':([{'Id':1,'Profile':'HD','SchemaVersion':1}],'Id'),
+  'SPC_EnvironmentBuildings':([{'BuildingType':b['BuildingType'],'DistrictType':b['PrereqDistrict']}
+   for b in fixture['rows']]+[{'BuildingType':'BUILDING_PALACE','DistrictType':'DISTRICT_CITY_CENTER'}],'BuildingType'),
+  'SPC_EnvironmentExcludedBuildings':([{'BuildingType':'BUILDING_FAKE_DUMMY'}],'BuildingType'),
+ }
+ l.execute("function P.Rows(t) local rows={};for row in GameInfo[t]()do rows[#rows+1]=row end;return rows end")
+ for table,(rows,key) in inputs.items():
+  l.globals().GameInfo[table]=l.globals().db(to_lua(l,rows),key)
  for n in NEW:l.execute((M/(n+'.lua')).read_text())
  l.execute("SPCDistrictCompleteness.Start(P,shared);svc=shared.DistrictCompleteness;c=newCity(1);c.active=4;d=addDistrict(c,11,'DISTRICT_CAMPUS');cat=SPCOrdinaryBuildingCatalog.Build(P)")
  return l

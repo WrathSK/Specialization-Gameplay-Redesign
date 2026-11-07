@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0909
-Implementation Build: source B415.442 / modinfo442, local assembly candidate. Live B414.441 from72fe54d; stable/main B307.334.
+Status Revision: S0910
+Implementation Build: source B416.443 / modinfo443, local shared-building-facts candidate. Live B414.441 from72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ENVIRONMENT_ASSEMBLY_LOCAL_COMPLETE_O1_PENDING
+Work State: SHARED_BUILDING_FACTS_LOCAL_COMPLETE_SCOPED_WRITE_FENCE_NEXT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Effective building Tier and shared depth connected locally — S0910
+
+The first shared-facts slice implements [D0060](../Design/Design_ChangeLog.md#accepted-d0060--2026-11-07) and [A0185](../Architecture/Specialization_v0.1_Architecture.md#environment-assembly-and-shared-depth--a0185). The effective loaded chain now provides Tier to District Completeness, Standardization and Development Investment. The data center is T5 with weight 5 and the two approved Holy Site buildings are T4. D remains capped at 10. Research Chair still uses T1–T4. Tier-based template grouping and price candidate ordering use the same catalogue. City-center groups, effect eligibility, financial/receipt validation and stored protocols retain their separate policy.
+
+- **Runtime Impact Contract (L2, T04/T07/T08).** Each consumer context resolves the final assembled definitions, native prerequisite/replacement edges and explicit exceptions once. Existing city reads, lifecycle/reference checks, write fences and native-event registrations remain in place. Invalid effective chains produce a bounded per-domain unknown instead of a zero D. Other confirmed domains remain usable. For D consumers, the producer owns the cap and concrete effect encoding and financial record guards remain at their boundaries. No extra per-turn work, scans, persistence, amounts or GC changes are introduced.
+- **LOCAL_SIMULATION_PASS, selected scope.** Fixed official/HD profiles yielded 82/162 building definitions. The pinned HD comparison had one Tier difference from the old table (Data Center T4→T5). Real Lua51 exercised alternatives/replacements, Water Mill, Holy Site D10, pillage, cap, separate unknown/zero/unavailable, existing Tier eligibility and Development target selection. Of 202 selected assembly and consumer tests, 199 passed; the inherited Standardization self/no-network and old wiring cases and Development fractional-storage case match the base. 69 of 74 additional Research tests passed, with the same five inherited health-fixture failures as the base. None of these eight retained failures is a PASS. Selection, IDs, comparison base and output are in the local evidence. [Versioned Tier/D test entry](../../DevelopmentTests/test_effective_building_tiers.py)
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package references. Package SHA256 `9e0afa627aa5717f5f7734715855bfa2ef8f7246149d47568a84162f35e78aff`. Use CPython 3.14 and Lupa 2.8 Lua51, DevelopmentTests on PYTHONPATH. Set SPC_OFFICIAL_DB, SPC_HD_DB, SPC_OFFICIAL_ASSETS and SPC_DEBUG_GAMEPLAY_DB (the fixed HD capture). Run python3.14 -m unittest test_effective_building_tiers test_environment_assembly. For legacy retained suites set lupa.lua55.LuaRuntime=lupa.lua51.LuaRuntime before importing the selected classes. Tested Mod/DevelopmentTests/tools SHA256 `5bbabed82d7b0470000aadaad35ec1962326f3f0478c8336a90d050c17bf3dfd`. Evidence `local/refactor/O1a-c03c0490b02549feba791bbd31c71d25/closure.json`, SHA256 `17f11f4b77e47d6f7b40bbaf9aa66ea8ee82ecf054b470e392460c86e873bd97`. The full output is local; native loading and actual effects require the later gates.
+
+User decision: none. User testing: none at this checkpoint. Primary next: narrow the District Completeness recapture after a proven unrelated carrier write (O1/L2), then verify the next delivery scope. Live remains B414.441. Native no-HD testing follows O5 startup/UI-base assembly and its separate deployment gate.
 
 ### Environment data assembly and Restructuring art ready locally — S0909
 

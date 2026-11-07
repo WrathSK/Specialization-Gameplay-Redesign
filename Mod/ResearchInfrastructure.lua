@@ -48,12 +48,11 @@ function M.Start(P,shared)
   assert(count<=1,'RI_MULTIPLE_CAMPUSES_UNSUPPORTED_ENVIRONMENT')
   if not campus or not campus.complete or campus.pillaged then return p end
   assert(f.first and f.first.districtID==campus.id and f.first.type==campus.type,'RI_CURRENT_REFERENCE_UNKNOWN')
-  for _,b in ipairs(campus.buildings) do
-   assert(not (b.ordinary and b.complete and not b.pillaged and (b.tier==nil or b.reason=='BUILDING_LOCATION_DOMAIN_CONFLICT')),'RI_ORDINARY_TIER_UNKNOWN')
-  end
+  assert(not campus.depthError,'RI_ORDINARY_TIER_UNKNOWN')
   local input=SPCResearchInfrastructureShadow.WithWorkers(f,v,readWorkers)
   local plan=SPCResearchInfrastructureShadow.Plan(input,v)
-  assert(plan.status=='READY' and integer(plan.d) and plan.d<=10 and integer(plan.workers),'RI_WORKERS_OR_DEPTH_UNKNOWN')
+  assert(plan.status=='READY' and integer(plan.d) and integer(plan.workers),'RI_WORKERS_OR_DEPTH_UNKNOWN')
+  assert(plan.d<2^4,'RI_ENCODING_RANGE')
   p.status='READY';p.d=plan.d;p.workers=plan.workers;p.science=plan.science;p.plot=campus.plot;p.district=campus.id
   return p
   end,true)
@@ -125,7 +124,7 @@ function M.Start(P,shared)
     assert(v.availability=='READY' and v.value,'RI_DEPTH_UNAVAILABLE')
     for _,r in ipairs(v.value.districts) do if r.domain=='DISTRICT_CAMPUS' then
      local chosen=v.value.domains.DISTRICT_CAMPUS
-     lines[#lines+1]='学院 #'..r.id..'：cap前 '..r.uncapped..' → D'..r.value..'；选中='..tostring(chosen and chosen.districtID==r.id or false)
+     lines[#lines+1]='学院 #'..r.id..'：cap前 '..r.uncapped..' → D'..tostring(r.value or 'UNKNOWN')..'；选中='..tostring(chosen and chosen.districtID==r.id or false)
      for _,b in ipairs(r.buildings) do
       if b.ordinary or not b.type:match('^BUILDING_SPC_') then
        local label=Locale and Locale.Lookup and Locale.Lookup(b.name or b.type) or b.type

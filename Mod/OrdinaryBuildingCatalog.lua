@@ -1,9 +1,9 @@
 -- P0-A: reviewed ordinary ontology, NOT Standardization activation policy.
 -- Supported named base/HD infrastructure only; unknown rows never auto-enroll.
--- Native/HD tier data is adapter evidence. No database writes or yield carriers.
+-- The loaded upgrade graph and the selected assembly own Tier facts.
 SPCOrdinaryBuildingCatalog={}
 local M=SPCOrdinaryBuildingCatalog
-M.REVISION='D0035-B164-2'
+M.REVISION='D0060-B416'
 local known={
  ['BUILDING_HD_BUS_STOP']='DISTRICT_NEIGHBORHOOD',
  ['BUILDING_HD_MANSION']='DISTRICT_NEIGHBORHOOD',
@@ -198,60 +198,177 @@ local domains={
  ['DISTRICT_DIPLOMATIC_QUARTER']=true,
  ['DISTRICT_NEIGHBORHOOD']=true,
 }
-local function flag(v) return v==true or v==1 end
+
+-- These are already in the Standardization/Development directory. Their
+-- admission there does not extend D or the ordinary-building effects.
+local effectOnly={
+ BUILDING_PALACE='DISTRICT_CITY_CENTER',
+ BUILDING_JNR_LIGHTHOUSE_FISHING='DISTRICT_HARBOR',
+ BUILDING_JNR_FISH_MARKET='DISTRICT_HARBOR',
+ BUILDING_JNR_OFFSHORE_TERMINAL='DISTRICT_HARBOR',
+}
+local function flag(v)return v==true or v==1 end
+
+local function inputRows(P,name)
+ return assert(P.Rows(name),'BUILDING_CATALOG_TABLE_UNAVAILABLE '..name)
+end
+
+local function districtDirectory(P)
+ local districts,parents={},{}
+ for _,row in ipairs(inputRows(P,'Districts'))do
+  districts[row.DistrictType]={index=row.Index,name=row.Name,internal=flag(row.InternalOnly)}
+ end
+ for _,row in ipairs(inputRows(P,'DistrictReplaces'))do
+  local kind,parent=row.CivUniqueDistrictType,row.ReplacesDistrictType
+  assert(districts[kind] and districts[parent],'BUILDING_CATALOG_DISTRICT_REPLACEMENT_MISSING')
+  assert(not parents[kind] or parents[kind]==parent,'BUILDING_CATALOG_DISTRICT_REPLACEMENT_CONFLICT')
+  parents[kind]=parent
+ end
+ local visiting={}
+ local function base(kind)
+  local row=districts[kind]
+  if row.base then return row.base end
+  assert(not visiting[kind],'BUILDING_CATALOG_DISTRICT_REPLACEMENT_CYCLE')
+  visiting[kind]=true
+  row.base=parents[kind] and base(parents[kind])or kind
+  visiting[kind]=nil
+  return row.base
+ end
+ for kind in pairs(districts)do base(kind)end
+ return districts
+end
+
+local function related(P,name,from,to,members)
+ local result={}
+ for _,row in ipairs(inputRows(P,name))do
+  local key=row[from]
+  if members[key]then
+   local list=result[key]or {};result[key]=list
+   list[#list+1]=assert(row[to],'BUILDING_CATALOG_RELATION_INCOMPLETE')
+  end
+ end
+ return result
+end
+
+local function buildTiers(P,districts,native,excluded,members)
+ local prereqs=related(P,'BuildingPrereqs','Building','PrereqBuilding',members)
+ local replacements=related(P,'BuildingReplaces','CivUniqueBuildingType','ReplacesBuildingType',members)
+ local visiting={}
+ local solve
+ local function resolve(kind,row)
+  local replacement=replacements[kind]
+  local inherited
+  for _,parent in ipairs(replacement or {})do
+   local original=members[parent]
+   if not original or original.base~=row.base then return nil,'REPLACEMENT_UNREVIEWED' end
+   local tier,why=solve(parent)
+   if not tier then return nil,why end
+   if inherited and inherited~=tier then return nil,'REPLACEMENT_TIER_CONFLICT' end
+   inherited=tier
+  end
+  -- The retained city-center grouping uses a separate policy, with Tier 0 for
+  -- its receipts and Development ordering. It has no district D chain.
+  if row.base=='DISTRICT_CITY_CENTER'then return 0 end
+  local previous
+  for _,parent in ipairs(prereqs[kind]or {})do
+   local b=native[parent]
+   if not b then return nil,'TIER_PREREQUISITE_MISSING' end
+   if not excluded[parent]then
+    local d=districts[b.PrereqDistrict]
+    if not d then return nil,'TIER_PREREQUISITE_UNCLASSIFIED' end
+    if d.base==row.base then
+     local tier,why=solve(parent)
+     if not tier then return nil,why end
+     if previous and previous~=tier then return nil,'TIER_PREREQUISITE_AMBIGUOUS' end
+     previous=tier
+    end
+   end
+  end
+  local level=previous and previous+1 or inherited or 1
+  if inherited and level~=inherited then return nil,'REPLACEMENT_TIER_CONFLICT' end
+  row.tierSource=row.override and 'APPROVED_OVERRIDE' or (replacement and 'REPLACEMENT_TIER' or 'EFFECTIVE_CHAIN')
+  return row.override or level
+ end
+ solve=function(kind)
+  local row=members[kind]
+  if not row then return nil,'TIER_PREREQUISITE_UNREVIEWED' end
+  if row.tier~=nil or row.tierError then return row.tier,row.tierError end
+  if visiting[kind]then return nil,'TIER_CHAIN_CYCLE' end
+  visiting[kind]=true
+  row.tier,row.tierError=resolve(kind,row)
+  visiting[kind]=nil
+  return row.tier,row.tierError
+ end
+ for kind in pairs(members)do solve(kind)end
+end
+
 function M.Build(P)
- local hd=assert(P.Field(GameInfo,'HD_BuildingTiers'),'DC_HD_TIERS_UNAVAILABLE')
- local dummyTable=assert(P.Field(GameInfo,'HD_DUMMY_BUILDINGS'),'DC_HD_DUMMY_TABLE_UNAVAILABLE')
- local tiers,dummy,replaces,dr={},{},{},{}
- for r in hd() do tiers[r.BuildingType]=r end
- for r in dummyTable() do dummy[r.BuildingType]=true end
- for r in GameInfo.DistrictReplaces() do dr[r.CivUniqueDistrictType]=r.ReplacesDistrictType end
- for r in GameInfo.BuildingReplaces() do
-  replaces[r.CivUniqueBuildingType]=replaces[r.CivUniqueBuildingType] or {}
-  table.insert(replaces[r.CivUniqueBuildingType],r.ReplacesBuildingType)
+ local assembly=inputRows(P,'SPC_EnvironmentAssembly')
+ assert(#assembly==1 and assembly[1].Id==1 and assembly[1].SchemaVersion==1
+  and (assembly[1].Profile=='OFFICIAL' or assembly[1].Profile=='HD'),'BUILDING_CATALOG_ASSEMBLY_UNAVAILABLE')
+ local districts=districtDirectory(P)
+ local native,excluded,members={},{},{}
+ local buildings=inputRows(P,'Buildings')
+ for _,b in ipairs(buildings)do native[b.BuildingType]=b end
+ for _,r in ipairs(inputRows(P,'SPC_EnvironmentExcludedBuildings'))do
+  excluded[r.BuildingType]=true
  end
- local out={revision=M.REVISION,buildings={}}
- function out.District(kind)
-  local seen={}
-  while dr[kind] do if seen[kind] then return nil end;seen[kind]=true;kind=dr[kind] end
-  return kind
+ local inventory=inputRows(P,'SPC_EnvironmentBuildings')
+ assert(#inventory>0,'BUILDING_CATALOG_ASSEMBLY_EMPTY')
+ for _,r in ipairs(inventory)do
+  local kind=r.BuildingType
+  local b=assert(native[kind],'BUILDING_CATALOG_DEFINITION_MISSING')
+  local district=assert(districts[r.DistrictType],'BUILDING_CATALOG_DISTRICT_MISSING')
+  assert(b.PrereqDistrict==r.DistrictType and not district.internal
+   and not excluded[kind] and not flag(b.InternalOnly) and not flag(b.IsWonder)
+   and not kind:match('^BUILDING_SPC_'),'BUILDING_CATALOG_DEFINITION_CONFLICT')
+  local accepted=known[kind]or ordinaryOnly[kind]or effectOnly[kind]
+  if kind=='BUILDING_SEWER' and district.base=='DISTRICT_CITY_CENTER'then accepted=district.base end
+  if accepted then
+   local row={type=kind,index=b.Index,hash=b.Hash,name=b.Name,district=r.DistrictType,base=district.base,
+    mustPurchase=flag(b.MustPurchase),purchaseYield=b.PurchaseYield,override=r.TierOverride}
+   if accepted~=district.base then row.tierError='DISTRICT_CLASSIFICATION_CONFLICT' end
+   if r.TierOverride~=nil then
+    assert(type(r.TierOverride)=='number' and r.TierOverride%1==0 and r.TierOverride>0
+     and district.base~='DISTRICT_CITY_CENTER','BUILDING_CATALOG_TIER_OVERRIDE_INVALID')
+   end
+   members[kind]=row
+  end
  end
+ buildTiers(P,districts,native,excluded,members)
+ local out={revision=M.REVISION,buildings={},effectBuildings=members,districts=districts}
+ function out.District(kind)return districts[kind] and districts[kind].base end
  function out.Domain(kind)
-  local base=out.District(kind);return domains[base] and base or nil
+  local base=out.District(kind)
+  return domains[base] and base or nil
  end
- local function tier(kind,seen)
-  if seen[kind] then return nil,'REPLACEMENT_CYCLE' end;seen[kind]=true
-  local row=tiers[kind];local raw=row and row.Tier
-  if raw~=nil and (type(raw)~='number' or raw%1~=0 or raw<0 or raw>4) then return nil,'TIER_UNSUPPORTED' end
-  local normalized
-  for _,base in ipairs(replaces[kind] or {}) do
-   if not known[base] or known[base]~=known[kind] then return nil,'REPLACEMENT_UNREVIEWED' end
-   local n,err=tier(base,seen);seen[base]=nil
-   if n==nil then return nil,err end
-   if normalized~=nil and normalized~=n then return nil,'REPLACEMENT_TIER_CONFLICT' end
-   normalized=n
-  end
-  if normalized~=nil and raw~=nil and raw~=normalized then return nil,'REPLACEMENT_TIER_CONFLICT' end
-  if row and out.Domain(row.PrereqDistrict)~=known[kind] then return nil,'TIER_DISTRICT_CONFLICT' end
-  return normalized or raw,(normalized~=nil and 'REPLACEMENT_TIER' or 'HD_TIER')
- end
- for b in GameInfo.Buildings() do
-  local r={type=b.BuildingType,index=b.Index,name=b.Name,domain=out.Domain(b.PrereqDistrict),ordinaryDistrict=out.District(b.PrereqDistrict),ordinary=false}
-  if b.BuildingType=='BUILDING_PALACE' then r.reason='PALACE'
+ for _,b in ipairs(buildings)do
+  local kind=b.BuildingType
+  local entry=members[kind]
+  local r={type=kind,index=b.Index,name=b.Name,domain=out.Domain(b.PrereqDistrict),
+   ordinaryDistrict=out.District(b.PrereqDistrict),ordinary=false,depthEligible=false}
+  if kind=='BUILDING_PALACE' then r.reason='PALACE'
   elseif flag(b.IsWonder) then r.reason='WONDER'
-  elseif flag(b.InternalOnly) or dummy[b.BuildingType] or b.BuildingType:match('^BUILDING_SPC_') then r.reason='INTERNAL_OR_TECHNICAL'
-  elseif ordinaryOnly[b.BuildingType] then
-   if r.ordinaryDistrict~=ordinaryOnly[b.BuildingType] then r.reason='DISTRICT_CLASSIFICATION_CONFLICT'
-   else r.ordinary=true;r.depthEligible=false;r.reason='ORDINARY_DEPTH_NOT_REVIEWED' end
-  elseif not known[b.BuildingType] then r.reason='UNREVIEWED_BUILDING'
-  elseif r.domain~=known[b.BuildingType] then r.reason='DISTRICT_CLASSIFICATION_CONFLICT'
-  else
-   r.ordinary=true;r.tier,r.tierSource=tier(b.BuildingType,{})
-   if r.tier==nil then r.reason=r.tierSource=='HD_TIER' and 'TIER_UNKNOWN' or r.tierSource
-   else r.reason=r.tier==0 and 'ORDINARY_TIER_ZERO' or 'ELIGIBLE' end
-  end
+  elseif flag(b.InternalOnly) or excluded[kind] or kind:match('^BUILDING_SPC_') then r.reason='INTERNAL_OR_TECHNICAL'
+  elseif known[kind] then
+   r.ordinary=true;r.depthEligible=true
+   r.tier=entry and entry.tier
+   r.reason=r.tier and 'ELIGIBLE' or (entry and entry.tierError or 'TIER_INPUT_MISSING')
+   r.tierSource=entry and entry.tierSource
+  elseif ordinaryOnly[kind]then
+   r.ordinary=entry~=nil and entry.tierError~='DISTRICT_CLASSIFICATION_CONFLICT'
+   r.reason=r.ordinary and 'ORDINARY_DEPTH_NOT_REVIEWED' or 'DISTRICT_CLASSIFICATION_CONFLICT'
+  else r.reason='UNREVIEWED_BUILDING' end
   r.ordinaryReason=r.ordinary and 'ELIGIBLE' or r.reason
-  out.buildings[b.Index]=r;out.buildings[b.BuildingType]=r
+  out.buildings[b.Index]=r;out.buildings[kind]=r
  end
  return out
+end
+
+-- Immutable definitions are shared by readers in this Lua context. City
+-- presence, ownership and worker facts still use the live read barriers.
+local definitions
+function M.Read(P)
+ if not definitions then definitions=M.Build(P)end
+ return definitions
 end

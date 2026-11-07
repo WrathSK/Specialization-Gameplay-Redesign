@@ -192,6 +192,7 @@ function SPCCapitalInvestment.Start(P,shared)
     local commercialized=false;for _,entry in ipairs(cv.domains or {})do if entry.id==domain.id and entry.effective then commercialized=true end end
     local depth=dc.value.domains[domain.id]
     phase='QUOTE'
+    assert(not depth or depth.value~=nil,'CAPITAL_DISTRICT_UNKNOWN')
     local q=M.Quote({domain=domain.id,source=r,sourceName=title(c),turn=currentTurn,balance=balance,
      D=depth and depth.value or 0,reputationUse=reputationUse,commercialized=commercialized,
      candidates=candidates,failureCount=value.protection[tostring(pid)] or 0})

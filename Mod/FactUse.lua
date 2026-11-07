@@ -25,7 +25,7 @@ function M.Depth(snapshot,domain)
  if not ready(snapshot)or type(snapshot.value.domains)~='table'then return unknown('DISTRICT_FACTS_UNAVAILABLE')end
  local row=snapshot.value.domains[domain]
  if row==nil then return absent('LOCAL_DISTRICT_REQUIRED')end
- if type(row)~='table'or not finite(row.value)or row.value%1~=0 or row.value>10 then return unknown('DISTRICT_DEPTH_UNAVAILABLE')end
+ if type(row)~='table'or not finite(row.value)or row.value%1~=0 then return unknown('DISTRICT_DEPTH_UNAVAILABLE')end
  return confirmed(row.value)
 end
 function M.Anchor(snapshot,first)

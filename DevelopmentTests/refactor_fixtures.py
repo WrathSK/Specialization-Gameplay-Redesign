@@ -8,7 +8,7 @@ P={Field=function(t,k)return t and t[k]end,IsTestPlayer=function(pid)return pid=
  Count=function(k,n)counts[k]=(counts[k]or 0)+(n or 1)end}
 rows={};for i=1,... do rows[i]={index=i,type='BUILDING_TEST_'..i,name='LOC_TEST_'..i,
  domain='DISTRICT_CAMPUS',ordinary=true,tier=1,depthEligible=true,ordinaryDistrict='DISTRICT_CAMPUS'}end
-SPCOrdinaryBuildingCatalog={Build=function()return {revision=1,buildings=rows,Domain=function(t)return t end}end}
+SPCOrdinaryBuildingCatalog={Read=function()return {revision=1,buildings=rows,Domain=function(t)return t end}end}
 P.Info=function(tab,index)
  if tab=='Districts'then return {Index=1,DistrictType='DISTRICT_CAMPUS'}end
  if index==1 then return {Index=1,BuildingType='BUILDING_TEST_1'}end

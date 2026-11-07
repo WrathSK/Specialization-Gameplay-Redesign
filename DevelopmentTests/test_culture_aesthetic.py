@@ -4,6 +4,7 @@ Read-only external DB -> memory; two-city fixture, no game/deployment/stress.
 from pathlib import Path
 import json, os, sqlite3, subprocess, unittest, zlib, xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
+from test_environment_assembly import prepare_hd_inputs
 R=Path(os.environ.get('SPC_L1_ROOT',Path(__file__).resolve().parents[1]))
 M=R/'Mod'
 
@@ -122,11 +123,14 @@ class AestheticTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):cls.sql=database()
  def runtime(self,ready=True):
+  prepare_hd_inputs(self.sql)
   l=LuaRuntime(unpack_returned_tuples=True);l.execute(FIX)
   def include(n):l.execute((M/(n+'.lua')).read_text())
   l.globals().include=include
-  defs=['Buildings','Districts','DistrictReplaces','BuildingReplaces','HD_BuildingTiers','HD_DUMMY_BUILDINGS','Modifiers','Building_CitizenYieldChanges']
-  keys=['BuildingType','DistrictType','CivUniqueDistrictType','CivUniqueBuildingType','BuildingType','BuildingType','ModifierId','BuildingType']
+  defs=['Buildings','Districts','DistrictReplaces','BuildingReplaces','HD_BuildingTiers','HD_DUMMY_BUILDINGS','Modifiers','Building_CitizenYieldChanges',
+   'BuildingPrereqs','SPC_EnvironmentAssembly','SPC_EnvironmentBuildings','SPC_EnvironmentExcludedBuildings']
+  keys=['BuildingType','DistrictType','CivUniqueDistrictType','CivUniqueBuildingType','BuildingType','BuildingType','ModifierId','BuildingType',
+   'Building','Id','BuildingType','BuildingType']
   for name,key in zip(defs,keys):
    cur=self.sql.execute('SELECT * FROM '+name);names=[x[0]for x in cur.description];rows=[dict(zip(names,r))for r in cur]
    if name in ['Buildings','Districts']:

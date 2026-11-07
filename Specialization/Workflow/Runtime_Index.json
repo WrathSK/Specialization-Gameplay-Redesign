@@ -46,9 +46,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CapitalInvestment.lua": {
-      "sha256": "953a6e57b207a4d4894df193be944b946eaa77098d08a8523ee5c13602e00dc6",
+      "sha256": "ee9241ea30ef2061dfebb4b088db1601bf586e356d256741d03467c976102514",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0882/B407.434 PU06c:typed per-mode terms,shared current R and locked source,Capital3 requires new campaign.113local PASS incl37new,strict once-only cash retained;exact legacy test-only profiles documented.2labels only;no deployment/native claim."
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/CapitalInvestmentDiagnostics.lua": {
       "sha256": "0ab8a511f180736f2d3d4a129d8fc9a15174e381a4ceaae1da6f78c7720542f9",
@@ -121,9 +121,9 @@
       "provenance": "S0898 B413:narrow probe budget/window/inert retirement and Commerce reliable-negative ordering;258localPASS,8before counterexamples;no native/deploy;L2 unchanged."
     },
     "Mod/CommerceCalculation.lua": {
-      "sha256": "8661a9d654be6393e535c7dd9ba31fc4979fb05c415d96d09942e4bd5cff9c3f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B240_Commercialization_Local.md",
-      "provenance": "B240 explicitly authorized D0055 source Identity/Harbor total Food and local prerequisite UI; old sampling removed, true updates/exact exit retained. Direct source/API/callers and109 targeted tests reviewed; no new schema/timer/GC. Native pending."
+      "sha256": "5218cf1acca0282405fd7f0360b4a3c7def0aa26fee3e2d33ac8b62b29dda25f",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/CommerceConvergence.lua": {
       "sha256": "e9a38b34e9f2fb5a1afa76c87dcc6ebca384b782a2f925cb9b26888026ab3be6",
@@ -216,9 +216,9 @@
       "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CultureMeaningModel.lua": {
-      "sha256": "2b4d396b91b4dc5623ae1dc0d74170995d6d34356fe101ade037784cfd686a1d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
+      "sha256": "90d37621b7e5a0bcc28c118a011473816ef8572432e426c08dd2c117844817cb",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/CultureMeaningProbe.lua": {
       "sha256": "c7b738aa0179fd97280dd3766a73ae936590f27f116af435fd89b3b0ed98207b",
@@ -506,9 +506,9 @@
       "provenance": "B387.414 Recover saved skipped lifecycle duties through one exact Store commit; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
-      "sha256": "4f4df0ed1eee502d9ee19ad8e053c6070b9f17d74b0e33eaba26f33ab13e256a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B246_Development_Investment_Local.md",
-      "provenance": "B246 authorized Development Investment and direct adapters;137 targeted local methods PASS. D0057 minimum quote, exact storage and <=0.01 debit receipts, event-owned effects/exit. Native price/Production/persistence pending; no timer/GC."
+      "sha256": "fa05facb8b55e559d47ab10580e9aa3c465ef247efb09579ffe15ba03f865f5a",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/DevelopmentInvestmentModel.lua": {
       "sha256": "c0f97e0933cb4da423a3ea73667f98ab9a7fc009ac45cefef4fa3869b225ddd1",
@@ -546,9 +546,9 @@
       "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "e9f6ad81e0df2d91bce66e4ac9d188950130ddaa7fc3dad5809bf99e9561d18f",
+      "sha256": "a4f6193ea84ea042990d9f2011996a108cd491e6fc9faa7e819ae2225b12795d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/DistrictPrecisionProbe.lua": {
       "sha256": "12a6b244c9694f8303400b544cd747e554ce56c88e9d2bf302a31c22f67aed6c",
@@ -771,9 +771,9 @@
       "provenance": "B397.424 scoped NET-1/NET-2 signal and bounded lifecycle proof transport;87targeted methods/restricted Lua51/package checks PASS,native/deployment pending;D1 and transaction gates unchanged."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
-      "sha256": "3fb804c0fa2091d800d09c7d3dae3d8745ae68f58e9c1bdbd740cac2e1c0c31d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md",
-      "provenance": "B164 authorized scoped Culture quarantine / three reviewed Neighborhood depth entries; exact92 metadata and inherited withdrawal unchanged, current targeted local PASS; native deferred."
+      "sha256": "871658d702a9990d5299f73343f6f8832e3ef956c3afba584ab66dcf7ed761fa",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/OverflowStorageProbe.lua": {
       "sha256": "90e72d14d83d0cef47b559d3fe7a2e038f972fc6ea9c1d761fa9699ff5aa641c",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "be2f9fabbc8b89ee53003e5351ebb9adcc6c279cb13200a956dc777b6b768339",
+      "sha256": "ac65fd6de2990f652ea26bbd8c9a4807f9b53e5bc8b470f2b5fe7105f1db2a88",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -816,14 +816,14 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/ResearchApply.lua": {
-      "sha256": "529d9182d52dba78b95ce9629e80cc8bb7a2f658bdd7e0d7f839281cf917e623",
+      "sha256": "3ee619d038a86386663db30830959908124449ededbf44fa22903dfdfdb8eb7d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/ResearchApplyModel.lua": {
-      "sha256": "ea18add13f74b757d303fe3a35e2cbeda971a8240cf07c160e106cccce5bf9e6",
-      "review_source": "Specialization/Architecture/v2/P0_D2_Research_Apply.md",
-      "provenance": "B085 P0-D2 reviewed per-specialist floor; protected other files unchanged"
+      "sha256": "8f09915faa202858bbeec746723db882571f8f1ef4ed6bfdb8b937d20a655b30",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/ResearchChair.lua": {
       "sha256": "752bd3256f9887f41a701db2f8d8bb901c30d52b1cf964087af0992dbaea41a0",
@@ -851,14 +851,14 @@
       "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ResearchInfrastructure.lua": {
-      "sha256": "0b9e9c30498148a5e595757ae77fc43f4675b78c00bd74b11c8ef2176dcae81a",
+      "sha256": "2112da65728df17713cbda70a73fa46e3a7f1e4b0b5acddeb4b36e3c874cd905",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/ResearchInfrastructureShadow.lua": {
-      "sha256": "3fe47c1a8bc1d8bbb3efdf1659c6d8e3c631fd06f422f676628faf69075c1939",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B304_Refactor_S6b.md",
-      "provenance": "B304.331 Share raw worker samples within existing fact authority; local/static evidence only; no deployment/native PASS."
+      "sha256": "a2520ff72fab9f2ebfee92b1ca0fecd281ae9ea7647d162eecb35dc0656c6ed6",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/ResearchSupport.lua": {
       "sha256": "929115853954b2031b78e4768a3e20bdd2a32c7ae6d80b885209e43da3af1243",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "2328785e006a2c9e946ee66428931a5e8af0d483bb7cd261d8a8b04ea2ce7bd2",
+      "sha256": "72805372b23f7aabe1987080dc95202e15a3a1017d02678a1e66ef86d9993a79",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -936,9 +936,9 @@
       "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/StandardizationCatalog.lua": {
-      "sha256": "0bf50cb354ccd9f31c5f992b60c5107aad4ab3fa7c276382594aed20a20f9358",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
-      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
+      "sha256": "cebac1083374f43463f00f2deae97e1b2f304c1710ec3f754a9cdf0befca11b9",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/StandardizationDiscount.lua": {
       "sha256": "66ccdeff5c18cb95f5c2491e16995fae389317b3f56e4aedd3714f58ebf8f307",
@@ -1726,9 +1726,9 @@
       "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
     "Mod/FactUse.lua": {
-      "sha256": "3a4e3c24b770913687d4140120e54df80e20b693f1fb24b7d736f23cbedcf414",
+      "sha256": "ee14ab91af6aae3e3fab95eed4f70709b3fdc5c07e9503a0e51527e123439f5a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0868/B400.427 PU01 scoped source review:detached fact statuses,current-HD Commerce,existing phase/mutation fence and actual DC cache barrier. Probe build label only;modinfo adds pure FactUse.20newpass;146selected144pass+2baselinefailures;not deployed/nativePASS."
+      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/CrewCompletionDiagnostics.lua": {
       "sha256": "950a5ed9a10d6f2f365a82da92b4851c7020bec5004d66110592e6cc75b5943e",

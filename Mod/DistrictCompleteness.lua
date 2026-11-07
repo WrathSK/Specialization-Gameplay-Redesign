@@ -1,6 +1,8 @@
 -- P0-A shared read-only fact owner. Lazy scoped refresh; no effect/persistence writes.
 SPCDistrictCompleteness={}
 local M=SPCDistrictCompleteness
+local DEPTH_CAP=10
+local TIER_WEIGHT={[0]=0,1,2,3,4,5}
 local function clone(v)
  if type(v)~='table' then return v end
  local t={};for k,x in pairs(v) do t[k]=clone(x) end;return t
@@ -23,7 +25,7 @@ function M.Calculate(catalog,raw,detail)
  for _,d in ipairs(raw.districts) do
   assert(not seen[d.id],'DC_DUPLICATE_DISTRICT');seen[d.id]=true
   local domain=catalog.Domain(d.type)
-  local r={id=d.id,type=d.type,plot=d.plot,domain=domain,baseDistrict=catalog.District and catalog.District(d.type) or domain,complete=d.complete,pillaged=d.pillaged,buildings={},uncapped=0,value=0}
+  local r={id=d.id,type=d.type,plot=d.plot,domain=domain,baseDistrict=catalog.District and catalog.District(d.type) or domain,complete=d.complete,pillaged=d.pillaged,buildings={},uncapped=0}
   bool(d.complete,'DC_COMPLETION_UNKNOWN');bool(d.pillaged,'DC_DISTRICT_PILLAGE_UNKNOWN')
   for _,b in ipairs(d.buildings) do
    local c=catalog.buildings[b.index] or {type=tostring(b.index),reason='UNREVIEWED_BUILDING'}
@@ -32,21 +34,31 @@ function M.Calculate(catalog,raw,detail)
     ordinaryReason=c.ordinaryReason,ordinaryDistrict=c.ordinaryDistrict,depthEligible=c.depthEligible~=false}
    bool(b.complete,'DC_BUILDING_COMPLETION_UNKNOWN');bool(b.pillaged,'DC_BUILDING_PILLAGE_UNKNOWN')
    if not b.complete then v.reason='UNDER_CONSTRUCTION'
-   elseif not c.ordinary or c.tier==nil then -- preserve ontology reason
+   elseif not c.ordinary or c.depthEligible==false then -- preserve classification
    elseif not domain then v.reason='DOMAIN_UNMAPPED'
-   elseif c.domain~=domain then v.reason='BUILDING_LOCATION_DOMAIN_CONFLICT'
    elseif not d.complete then v.reason='DISTRICT_UNFINISHED'
    elseif d.pillaged then v.reason='DISTRICT_PILLAGED'
    elseif b.pillaged then v.reason='BUILDING_PILLAGED'
-   else v.contribution=c.tier;v.reason=c.tier==0 and 'ORDINARY_TIER_ZERO' or 'INCLUDED' end
+   elseif c.domain~=domain then
+    v.reason='BUILDING_LOCATION_DOMAIN_CONFLICT';r.depthError=v.reason
+   elseif c.tier==nil or TIER_WEIGHT[c.tier]==nil then
+    v.reason=c.tier==nil and (c.reason or 'TIER_INPUT_MISSING')or 'TIER_WEIGHT_UNSUPPORTED'
+    r.depthError=v.reason
+   else
+    v.contribution=TIER_WEIGHT[c.tier];v.reason=c.tier==0 and 'ORDINARY_TIER_ZERO' or 'INCLUDED'
+   end
    r.uncapped=r.uncapped+v.contribution;r.buildings[#r.buildings+1]=v
   end
   table.sort(r.buildings,function(a,b) return a.type<b.type end)
-  r.value=math.min(10,r.uncapped);out.districts[#out.districts+1]=r
+  if not r.depthError then r.value=math.min(DEPTH_CAP,r.uncapped)end
+  out.districts[#out.districts+1]=r
   if domain and d.complete and not d.pillaged then
    local previous=out.domains[domain]
-   -- Stable tie: smallest district ID, never sum multiple instances.
-   if not previous or r.value>previous.value then out.domains[domain]={value=r.value,districtID=r.id} end
+   -- The maximum is unknown if any eligible district is incomplete as evidence.
+   -- Keep other domains available, and retain the smallest district ID on ties.
+   if not previous or (not previous.depthError and (r.depthError or r.value>previous.value))then
+    out.domains[domain]={value=r.value,districtID=r.id,depthError=r.depthError}
+   end
   end
  end
  if detail then
@@ -87,7 +99,7 @@ function M.Start(P,shared)
   if not catalog then
    -- Reuse the already-reviewed static definitions; native city presence is
    -- still read each capture. Never omit non-ordinary diagnostic exclusions.
-   local nextCatalog=SPCOrdinaryBuildingCatalog.Build(P);local order={}
+   local nextCatalog=SPCOrdinaryBuildingCatalog.Read(P);local order={}
    for index,entry in pairs(nextCatalog.buildings) do
     if type(index)=='number' then order[#order+1]=entry end
    end
