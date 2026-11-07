@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "runtime_commit": "02d732ef1e999bab1e325057ae7694f51177b3ea",
-  "runtime": "B413.440 / modinfo440 temporary develop;346/346 MATCH;stable/main B307.334",
+  "runtime": "B413.440 / modinfo440 temporary develop deployed (346 files). Canonical source candidate B414.441 / modinfo441. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "a22f0ea29481051703be401b85ba025b5de834fc16e26799f22d2f7f03f2ec20",
+      "sha256": "930f2d41dae9c3416b01ebc0281f75ceeda2dd3beb1951859f15072db97a0e99",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0898 B413:narrow probe budget/window/inert retirement and Commerce reliable-negative ordering;258localPASS,8before counterexamples;no native/deploy;L2 unchanged."
+      "provenance": "S0904 B414 local review. Crew UnitPanel filtering and build markers only. B413 stays deployed."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "dd66fbbef516312c84b3f68e36bc7843128ffe9384f5044ab778db37788c3b2a",
+      "sha256": "813ae2c275f2d5716a6db6c6f6bfd28021a67a8b99fb05577542fadc89f1bcc6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0898 B413:narrow probe budget/window/inert retirement and Commerce reliable-negative ordering;258localPASS,8before counterexamples;no native/deploy;L2 unchanged."
+      "provenance": "S0904 B414 local review. Crew UnitPanel filtering and build markers only. B413 stays deployed."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1351,9 +1351,9 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
-      "sha256": "4ec825b38135f1fb779cc00baba6b8fe5722e9c040e2867d7d36adcbe9f3a6a9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "sha256": "357677051bf53941ebb038906babe230429b7770d3d3dc926c9b9d80a64d7aa4",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0904 B414 local review. Crew UnitPanel filtering and build markers only. B413 stays deployed."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "8c0a5b6a203afc77c086b9193f55ffae205068b02f1afc38c541518d98550b58",

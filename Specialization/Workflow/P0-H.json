@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0059",
     "research": "D0059",
@@ -11,185 +11,68 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0903",
-    "runtime": "B413.440 / modinfo440",
+    "status": "S0904",
+    "runtime": "B414.441 / modinfo441 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
-  "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "B413 original HD baseline pinned and minimum U5 checklist prepared for Owner review.",
+  "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
+  "goal": "Record the accepted B413 HD baseline and locally validate the Crew action-bar correction in B414.",
   "implementation_authorized": false,
   "context": [
     {
-      "path": "Mod/CrewProjects.lua",
+      "path": "Mod/UI/ExpeditionSpyUnitPanel.lua",
       "kind": "full",
-      "reason": "Actual irreversible completion owner,unchanged."
+      "reason": "Owned UnitPanel entry and native action admission"
     },
     {
-      "path": "Mod/CrewModel.lua",
+      "path": "Mod/UI/UnitPanelActions.lua",
       "kind": "full",
-      "reason": "Exact source/order/receipt vocabulary and schema,unchanged."
+      "reason": "Existing separate Crew prepare and confirm controls"
     },
     {
-      "path": "Mod/UI/CrewProjectUI.lua",
+      "path": "DevelopmentTests/test_b414_crew_unit_panel.py",
       "kind": "full",
-      "reason": "Existing UI native queue/cumulative reader and optional observer seam."
-    },
-    {
-      "path": "Mod/Gameplay.lua",
-      "kind": "full",
-      "reason": "Protected disposable observer before/after actual Crew listener registration."
-    },
-    {
-      "path": "Mod/ExpeditionTrainingDiagnostics.lua",
-      "kind": "full",
-      "reason": "Existing safe bounded scalar trace sink,no production-helper change."
-    },
-    {
-      "path": "Mod/SpecializationP0.modinfo",
-      "kind": "full",
-      "reason": "Package/import and build identity."
-    },
-    {
-      "path": "tools/collect_expedition_trace.py",
-      "kind": "full",
-      "reason": "Existing collector raw protocol and additive bounded observer summary."
-    },
-    {
-      "path": "tools/read_expedition_trace.py",
-      "kind": "full",
-      "reason": "Unchanged fixed safe TRAIN/snapshot protocol."
-    },
-    {
-      "path": "DevelopmentTests/test_pu05a_receipts.py",
-      "kind": "full",
-      "reason": "Actual Store/Crew receipt regressions."
-    },
-    {
-      "path": "DevelopmentTests/test_refactor_s7d6_proof.py",
-      "kind": "full",
-      "reason": "Keep ambiguity characterization OPEN."
+      "reason": "Focused regression for Crew action admission and dispatch"
     },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
-      "kind": "full",
-      "reason": "Current authorized observation scope and RIC."
-    },
-    {
-      "path": "Mod/CrewCompletionDiagnostics.lua",
-      "kind": "full",
-      "reason": "Disposable bounded read-only event/order/receipt/reader observer,actual review complete."
-    },
-    {
-      "path": "DevelopmentTests/test_b412_crew_observation.py",
-      "kind": "full",
-      "reason": "22new scope/retirement/actual owner-equivalence/collector tests."
-    },
-    {
-      "path": "Specialization/Reports/Proposals/Pre_U5_External_Review_Handoff.md",
-      "kind": "full",
-      "reason": "Requested fixed-source targeted external-review handoff;not authority or performed review."
-    },
-    {
-      "path": "Mod/Commerce.lua",
-      "kind": "full",
-      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
-    },
-    {
-      "path": "Mod/Probe.lua",
-      "kind": "full",
-      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
-    },
-    {
-      "path": "DevelopmentTests/run_pre_u5_review.py",
-      "kind": "full",
-      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
-    },
-    {
-      "path": "DevelopmentTests/test_b413_review_repairs.py",
-      "kind": "full",
-      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
-    },
-    {
-      "path": "DevelopmentTests/test_b239_commerce.py",
-      "kind": "full",
-      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
-    },
-    {
-      "path": "DevelopmentTests/test_pu11_package_absence.py",
-      "kind": "full",
-      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
-    },
-    {
-      "path": "DevelopmentTests/README.md",
-      "kind": "full",
-      "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
-    },
-    {
-      "path": "DevelopmentTests/test_refactor_s7c.py",
-      "kind": "full",
-      "reason": "Returned D-1 frozen/current regression and Owner external-review coordination;no runtime change."
-    },
-    {
-      "path": "DevelopmentTests/test_refactor_s4b.py",
-      "kind": "full",
-      "reason": "Returned D-1 frozen/current regression and Owner external-review coordination;no runtime change."
-    },
-    {
-      "path": "DevelopmentTests/refactor_selection.json",
-      "kind": "full",
-      "reason": "Returned D-1 frozen/current regression and Owner external-review coordination;no runtime change."
-    },
-    {
-      "path": "Specialization/Workflow/README.md",
-      "kind": "full",
-      "reason": "Returned D-1 frozen/current regression and Owner external-review coordination;no runtime change."
+      "kind": "head",
+      "selector": 36,
+      "reason": "U5 native scope, pinned package and stop boundary"
     }
   ],
   "dependencies": [
-    "Existing B411 actual Store/Crew/UI reader and ER01/02/S7d6 proof limit."
+    "Existing UnitPanel and DL_UnitPanel native action builders",
+    "Existing UnitPanelActions context",
+    "B413 HD baseline and supplemental trace"
   ],
   "old_writers": [
-    "CrewProjects/CrewModel/Store actual grants,orders and receipts unchanged.",
-    "EffectiveFacts/DC safety fence retained;L2 deferred."
+    "CrewProjects retains native construction and receipts. UnitPanel only filters its own UI actions."
   ],
-  "conditional_context": [],
+  "conditional_context": [
+    "Read the pinned HD DB/native panel inputs for action-category or callback questions."
+  ],
   "non_scope": [
-    "Further implementation,attribution/formulas/terms/save/GC changes",
-    "L2 optimization and other packages",
-    "Game launch,native execution,Claude/external review,main/U5 or automatic future deployment"
+    "Cross-build save compatibility, native engine permission outside UnitPanel, new grants or attribution, Claim recovery, repeated playtests, deployment, main or architecture migration."
   ],
   "validation": [
-    "262selected localPASS including unchanged frozen D6/current16→15/fallback assertions;8original baseline counterexamples",
-    "All346Mod files byte-identical independently reviewed102bb16;L2 and native attribution OPEN",
-    "Current context/privacy/source binding;no deployment or automatic external review"
+    "4 focused and 51 retained Lua51 methods passed",
+    "2 B413 baseline counterexamples reproduced",
+    "223 Lua files compile, 32 XML/artdef/dep/modinfo files parse, package references verified"
   ],
   "full_audit_triggers": [
-    "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
-    "Stop for smoke failure/missing confirmation/unexpected work increase, excluded scope, early campaign incompatibility, unclear ownership/concurrent edits.",
-    "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
+    "Stop if a needed common action is blocked, a non-Crew action changes, or any production/persistence impact is found."
   ],
   "result": {
-    "local": "262PASS,0failures/errors/skips;8baseline counterexamples;all346Mod files unchanged;inherited historical NOT_PASS retained",
-    "external_review": "OWNER_RETURNED:runtime locally sound;D-1 test-only fix verified;review waives another round for exact condition/selection change",
-    "native": "USER_GAME_TEST_PASS scoped: T10 same-project two-city Crew observed aggregate1→2 and exact binds;T25 three settlements after T17 context reload;Owner button/Commerce/Development/Claim;no general PU05b/PU07/U5 PASS",
-    "report": "Specialization/Status/Specialization_P0_Status.md#focused-b413-native-evidence-reviewed--s0902",
-    "deployment": {
-      "version": "B413.440 / modinfo440",
-      "source_commit": "02d732ef1e999bab1e325057ae7694f51177b3ea",
-      "files": 346,
-      "identical": true,
-      "digest": "590d7c52d5b5257d3a2e38f56947cdfbc072c7d0fd1fe021b867ae80d0c9b689",
-      "receipt": "B413.440-02d732e-playtest.json",
-      "pending": false
-    },
-    "hd_baseline_review": {
-      "state": "PINNED_FOR_OWNER_REVIEW_U5_NOT_STARTED",
-      "report": "Specialization/Status/Specialization_P0_Status.md#current-hd-baseline-and-minimum-u5-review--s0903",
-      "manifest": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B413_HD_Baseline_20261106/manifest.json",
-      "manifest_sha256": "87f8e2f5d50df396b8a722aa7097bb3ffda6fb3e508c06d0908030e6cbdbdc40",
-      "cold_load": "T17 corroborated by archived native application initialization and save-load logs"
-    }
+    "baseline": "OWNER_ACCEPTED_B413_HD_PROFILE",
+    "baseline_manifest_sha256": "87f8e2f5d50df396b8a722aa7097bb3ffda6fb3e508c06d0908030e6cbdbdc40",
+    "native": "B413 scoped PASS for T32 cold-load Crew spending and prior observed cases. Owner-reported Harvest Resource visibility is open for B414 native verification.",
+    "supplemental_manifest": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B413_Crew_Cold_Use_20261107/manifest.json",
+    "supplemental_manifest_sha256": "3c78b43e8772a872cd2a3b35372db78d112b1ea1e61d57acd67e385534353a74",
+    "candidate": "B414.441 / modinfo441 LOCAL_SIMULATION_PASS",
+    "candidate_sha256": "ffba41b4203db25c2ad7c1a60c0851fdcd02a462f80625bec57ce8c4354ee8a4",
+    "report": "Specialization/Status/Specialization_P0_Status.md#u5-hd-baseline-acceptance-and-crew-unitpanel-follow-up--s0904"
   }
 }

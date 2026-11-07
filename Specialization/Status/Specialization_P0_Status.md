@@ -1,17 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0903
-Implementation Build: source/live B413.440 / modinfo440 from02d732e; stable/main B307.334
+Status Revision: S0904
+Implementation Build: source B414.441 / modinfo441; live B413.440 from02d732e; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: B413_HD_BASELINE_PINNED_U5_REVIEW_PENDING
+Work State: B413_U5_ACCEPTED_B414_CREW_PANEL_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### U5 HD baseline acceptance and Crew UnitPanel follow-up — S0904
+
+On 2026-11-07 the Owner accepted the pinned B413.440 HD profile for future post-migration comparison. Its effective 94-entry loaded list, 111-entry selected configuration, installed content, settings, DB, source and deployment receipt remain tied to the private S0903 baseline. The additional playtest's 94 loaded IDs match that set. Use the effective profile and recorded pins for regression. Save support stays scoped to the same build.
+
+- **U5 acceptance carried forward.** Keep the recorded four-profession, ordinary trade-route change, cold reload and contract-settlement results. Same-tier completion in two cities on T10 passed on the observed native count sequence 1 then 2, with one bound unit per source and verified receipts. Other count orders and delayed callbacks remain PU05b evidence limits. Unlocated Claim and post-fault history remain with PU07. Extra fact recapture remains with O1/L2. The Owner does not require repetition of the accepted scenarios.
+- **Crew spending after cold load passed in the observed B413 case.** Startup at 06:31:59, save deserialization at 06:32:51 and the T32 collector session corroborate a cold load. Both original city inventories showed one Crew before use. Trace lines 150–153 show one attempt and one return for unit 589824, base input 260, and its source inventory going from 1 to 0. The immediate diagnostic still read 0. The native queue records one addition of 260 to the Forbidden City from 0 to 260 of 1000 (City_BuildQueue.csv lines 2–3). UnitOperations.log lines 13 and 18 show the other original unit 524291 operating afterward. Three later grants are verified new orders, each bound once. The interrupted collector captured 271 records at T32. It did not observe a harvest execution. Nine original files are byte-verified in the private archive at local/legacy-workspace/Specialization/Status/Validation/Evidence/B413_Crew_Cold_Use_20261107/manifest.json (manifest SHA256 3c78b43e8772a872cd2a3b35372db78d112b1ea1e61d57acd67e385534353a74).
+- **Reported UI defect and B414 source candidate.** The Owner observed Harvest Resource on a Crew. The captured HD UnitPanel passes Crew through the native action builder. The pinned DB has one build charge per Crew and categorizes UNITOPERATION_HARVEST_RESOURCE as SPECIFIC. The custom Wonder action still requires the one charge. B414 filters the owned Crew family before native rows and hotkeys are registered and guards the native click and improvement paths for the selected Crew. Keep native movement, swap, idle, formation and general unit controls, plus the existing separate Construction and Confirm Construction buttons. This scope is the player UnitPanel. Native operations invoked outside that context are outside the evidence and change.
+- **Runtime impact.** The existing synchronous selection/render path reads the current unit type and checks a fixed allowlist for Crew actions. The temporary scope is restored on nested builds and native errors. It retains no unit objects. No new listeners, periodic work, DB changes, production/receipt changes or persistence fields. The three changed runtime files are the UnitPanel adapter and the two version markers.
+- **Local validation.** CPython 3.14.8 and Lupa 2.8 Lua 5.1. The new four focused checks and 51 existing UnitPanel regression methods passed, including pinned official/HD source fragments for adjacent Restructuring behavior and the retained Expedition controls. Two checks reproduce the leak and stale dispatch against exact B413 source. Commands use PYTHONPATH with the local Lupa installation and DevelopmentTests, then python3.14 -m unittest test_b414_crew_unit_panel and python3.14 -m unittest test_pu02_restructuring_ui with the existing read-only SPC_UNIT_PANEL_LUA and SPC_HD_UNIT_PANEL_LUA inputs. All 223 Lua files compile and all 32 XML/artdef/dep/modinfo files parse. The 346-file B414.441 candidate package SHA256 is ffba41b4203db25c2ad7c1a60c0851fdcd02a462f80625bec57ce8c4354ee8a4. The deployed package and accepted baseline are B413.440 at 02d732e, with the original receipt.
+
+The HD baseline and scoped U5 results are accepted. B414 is a separate source candidate with local evidence and pending native UI confirmation. User decision is whether to schedule its separate deployment. User testing is none now. If approved, only the Crew action-bar check is needed at this boundary. Primary stops here before deployment or architecture migration.
 
 ### Current HD baseline and minimum U5 review — S0903
 

@@ -4,7 +4,36 @@ include('ExpeditionSpyUI')
 include('RestructuringUI')
 local R=SPCExpeditionSpyUI
 local baseActions=GetUnitActionsTable
+local baseAddAction=AddActionToTable
 local baseClick=OnUnitActionClicked
+local baseBuildImprovement=OnUnitActionClicked_BuildImprovement
+
+-- Crew construction uses the separate UnitPanelActions controls. Preserve
+-- ordinary native controls and omit unit abilities, including charge actions.
+local crewCommonActions={
+ UNITOPERATION_MOVE_TO=true, UNITOPERATION_MOVE_TO_UNIT=true, UNITOPERATION_SWAP_UNITS=true,
+ UNITOPERATION_EMBARK=true, UNITOPERATION_DISEMBARK=true, UNITOPERATION_AUTOMATE_EXPLORE=true,
+ UNITOPERATION_SKIP_TURN=true, UNITOPERATION_SLEEP=true, UNITOPERATION_ALERT=true,
+ UNITOPERATION_FORTIFY=true, UNITOPERATION_HEAL=true, UNITOPERATION_REST_REPAIR=true,
+ UNITCOMMAND_WAKE=true, UNITCOMMAND_CANCEL=true, UNITCOMMAND_STOP_AUTOMATION=true,
+ UNITCOMMAND_ENTER_FORMATION=true, UNITCOMMAND_EXIT_FORMATION=true,
+ UNITCOMMAND_NAME_UNIT=true, UNITCOMMAND_DELETE=true, UNITCOMMAND_GIFT=true,
+ UNITCOMMAND_AIRLIFT=true, UNITCOMMAND_MOVE_JUMP=true, UNITCOMMAND_AUTOMATE=true,
+}
+local function isCrew(u)
+ local row=u and GameInfo.Units[u:GetUnitType()]
+ local kind=row and row.UnitType
+ return type(kind)=='string' and kind:match('^UNIT_SPC_CREW_%d+$')~=nil
+end
+local function isCommonCrewAction(row)
+ return row and crewCommonActions[row.OperationType or row.CommandType]
+end
+local crewActionScope=false
+function AddActionToTable(actions,row,...)
+ -- Native registration also binds hotkeys. Filter before it adds either.
+ if crewActionScope and not isCommonCrewAction(row)then return end
+ return baseAddAction(actions,row,...)
+end
 local baseDeletePrompt=OnPromptToDeleteUnit
 local baseDelete=OnDeleteUnit
 function OnPromptToDeleteUnit(...)
@@ -42,7 +71,7 @@ local function idleKind(u)
  return 'OTHER'
 end
 local idleSignature
-function GetUnitActionsTable(u)
+local function buildActions(u)
  if SPCRestructuringUI.IsTeam(u)then return SPCRestructuringUI.Actions(u,baseActions(u))end
  if not R.IsTeam(u)then return baseActions(u)end
  u=current(u)
@@ -114,10 +143,32 @@ function GetUnitActionsTable(u)
  end
  return actions
 end
+function GetUnitActionsTable(u)
+ local crew=isCrew(u)
+ if not crew and not crewActionScope then return buildActions(u)end
+ local previous=crewActionScope
+ crewActionScope=crew
+ local ok,actions=pcall(buildActions,u)
+ crewActionScope=previous
+ if not ok then error(actions,0)end
+ return actions
+end
 function OnUnitActionClicked(...)
- if SPCRestructuringUI.BlockDelete(select(2,...))then return end
- if R.IsTeam(UI.GetHeadSelectedUnit())then R.SuppressNative();return end
+ local actionType,hash=...
+ if SPCRestructuringUI.BlockDelete(hash)then return end
+ local selected=UI.GetHeadSelectedUnit()
+ if R.IsTeam(selected)then R.SuppressNative();return end
+ if isCrew(selected)then
+  local row
+  if actionType==UnitOperationTypes.TYPE then row=GameInfo.UnitOperations[hash]
+  elseif actionType==UnitCommandTypes.TYPE then row=GameInfo.UnitCommands[hash]end
+  if not isCommonCrewAction(row)then return end
+ end
  return baseClick(...)
+end
+function OnUnitActionClicked_BuildImprovement(...)
+ if isCrew(UI.GetHeadSelectedUnit())then return end
+ return baseBuildImprovement(...)
 end
 local baseCancel=OnUnitActionClicked_CancelSpyMission
 function OnUnitActionClicked_CancelSpyMission(...)

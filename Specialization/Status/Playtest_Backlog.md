@@ -451,3 +451,7 @@ PT019 code repair is locally complete in source B401.428. Actual native Right-gr
 ## B413 HD baseline and U5 review scope — 2026-11-06
 
 The actual loaded HD profile and current-build references are pinned. The startup and load logs corroborate the T17 cold load. Keep the previously accepted scenarios at their existing scope. One optional same-build cold-load Crew spending check is presented for Owner review. The other Crew attribution and Claim fault cases stay in their respective engineering slices. [Minimum U5 checklist](Specialization_P0_Status.md#current-hd-baseline-and-minimum-u5-review--s0903)
+
+## B413 U5 acceptance and Crew action bar — 2026-11-07
+
+The Owner accepts the pinned HD regression baseline and prior scoped results. T32 cold-loaded Crew use consumed one bound unit, added 260 production once to the Forbidden City and left the other unit. The reported Harvest Resource button is a separate native UI defect. The B414 candidate has local validation. Its only proposed user confirmation is the action bar after separately approved deployment. [Current result](Specialization_P0_Status.md#u5-hd-baseline-acceptance-and-crew-unitpanel-follow-up--s0904)
