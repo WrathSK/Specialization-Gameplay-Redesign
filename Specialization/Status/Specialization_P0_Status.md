@@ -1,17 +1,35 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0902
+Status Revision: S0903
 Implementation Build: source/live B413.440 / modinfo440 from02d732e; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: B413_FOCUSED_NATIVE_EVIDENCE_RECORDED
+Work State: B413_HD_BASELINE_PINNED_U5_REVIEW_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Current HD baseline and minimum U5 review — S0903
+
+On 2026-11-06 the Owner authorized closing the current acceptance intake, pinning the HD profile and preparing the smallest U5 review. The baseline and checklist are ready for review. U5 is pending Owner authorization.
+
+- **Pinned environment.** B413.440/modinfo440 at `02d732e` matches all 346 deployed files and the existing `B413.440-02d732e-playtest.json` receipt. The selected “原版” group has 111 enabled IDs. The native configuration log lists 113 frontend targets and 94 Gameplay targets for the loaded save (25 official, 68 Workshop, one SPC). Both retained save headers contain those same 94 registered IDs. All 71 Workshop trees in the frontend configuration match ENV-20261104, including HD and its companions. HD declares v2.2 and the engine registry stores version 2. Official pack trees, Steam build 15296837 and installed depot manifests are pinned in the private manifest. The native startup reports 1.0.12.54 (951533) and the installed Aspyr bundle is 1.4.6 / 376653.178. The saves identify Gathering Storm, Standard speed, a small Continents map, Deity, the SPC Roosevelt test leader, and Military and Monopolies modes. The original save bytes preserve the rest of the game setup.
+- **Private reproducibility evidence.** Four databases, three option files, four native logs, the deployment receipt and two reference saves are copied and hash-verified (14 files, 168,814,388 bytes). All four SQLite quick checks returned `ok`. The pinned Gameplay DB was written during the observed save load. See `local/legacy-workspace/Specialization/Status/Validation/Evidence/B413_HD_Baseline_20261106/manifest.json`, SHA256 `87f8e2f5d50df396b8a722aa7097bb3ffda6fb3e508c06d0908030e6cbdbdc40`. The existing ENV-20261104 backup supplies the matching Workshop files. Recovery uses the existing archive and installed official content. No restore test was performed.
+- **Cold load corroborated.** The earlier process sample ends at 21:48:33 local, followed by a new application initialization at 21:49:40 in `Startup.log` and save unserialization at 21:51:32 in `LoadGameViewState.log`. The collector records the new T17 Gameplay context at 21:51:58–59. This supplements S0902 with independent evidence of a game restart and a same-build cold load. The exact loaded filename and the second process ID were not separately captured. The observed restore kept both Crew units, caught up the network proof, returned Commercialization to 14 Gold and retained the three Capital contracts through their one-time T25 settlement.
+- **Accepted scope carried forward.** The observed Crew grants, asset buttons (PT019), Commerce, Capital, Development and ordinary Claim stay recorded at their S0902 scope. Earlier scoped acceptance of the four professions, route/source changes, and sole-project timing carries forward at its recorded scope. The returned B413 review and its 262 selected local checks remain local evidence. [Focused native result](#focused-b413-native-evidence-reviewed--s0902) · [Earlier scoped coverage](Playtest_Backlog.md#b399-narrowed-routeproject-coverage-and-u5-hold--2026-11-01)
+- **Remaining dependencies.** Other native Crew counter orders and late duplicates still require unique evidence before their dependent attribution change (PU05b). The unlocated Claim source and post-fault history limits stay with their own recovery slice (PU07). The extra fact capture stays with the later shared-fact slice (L2/O1). These limits remain visible at U5 review and need no speculative player scenarios for the ordinary HD baseline.
+
+#### Minimum U5 confirmation checklist
+
+1. Confirm the pinned B413.440 “原版” baseline and the actual loaded profile as the comparison for the future HD regression.
+2. Confirm the carry-forward scope above and retain the listed open dependencies. The existing session supplies the observed startup, turns, cold load, restored network/Commerce and completed transactions.
+3. Decide whether to include one optional play step at U5. From a same-build cold-loaded B413 save, use one already bound Crew on a valid Wonder with “施工” then “确认施工”. Check one unit consumed, one progress application and the other Crew retained. Normal Crew spending was accepted earlier and binding survived this restart. This step would cover their combination on B413, which this capture did not exercise.
+
+User decision is review of the baseline and checklist. User testing is none for this handoff. Primary stops here for explicit U5 direction.
 
 ### Focused B413 native evidence reviewed — S0902
 

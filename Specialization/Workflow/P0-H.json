@@ -11,15 +11,15 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0902",
+    "status": "S0903",
     "runtime": "B413.440 / modinfo440",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "B413 approved deployment and scoped Owner-native evidence recorded;stop at current boundary.",
-  "implementation_authorized": true,
+  "goal": "B413 original HD baseline pinned and minimum U5 checklist prepared for Owner review.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Mod/CrewProjects.lua",
@@ -183,6 +183,13 @@
       "digest": "590d7c52d5b5257d3a2e38f56947cdfbc072c7d0fd1fe021b867ae80d0c9b689",
       "receipt": "B413.440-02d732e-playtest.json",
       "pending": false
+    },
+    "hd_baseline_review": {
+      "state": "PINNED_FOR_OWNER_REVIEW_U5_NOT_STARTED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#current-hd-baseline-and-minimum-u5-review--s0903",
+      "manifest": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B413_HD_Baseline_20261106/manifest.json",
+      "manifest_sha256": "87f8e2f5d50df396b8a722aa7097bb3ffda6fb3e508c06d0908030e6cbdbdc40",
+      "cold_load": "T17 corroborated by archived native application initialization and save-load logs"
     }
   }
 }

@@ -447,3 +447,7 @@ PT019 code repair is locally complete in source B401.428. Actual native Right-gr
 ## B413 focused native evidence — 2026-11-06
 
 [Current native result](Specialization_P0_Status.md#focused-b413-native-evidence-reviewed--s0902): the Owner confirms both repaired restructuring button flows, with matching T26 liquidation and T31 configuration receipts. **PT019 passes for those flows.** Capital (one stable, two successful ventures) debited and settled once per contract across the T17 context reload. Three development contracts closed and withdrew their effects on building completion. Commercialization returned to the same yield after proof recovered, and the Owner confirms ordinary Claim. Both same-tier Crew orders completed in distinct cities at T10 with one verified bind and receipt per order; other counter orders and late duplication remain open. No repeat of these successful cases or general U5 acceptance.
+
+## B413 HD baseline and U5 review scope — 2026-11-06
+
+The actual loaded HD profile and current-build references are pinned. The startup and load logs corroborate the T17 cold load. Keep the previously accepted scenarios at their existing scope. One optional same-build cold-load Crew spending check is presented for Owner review. The other Crew attribution and Claim fault cases stay in their respective engineering slices. [Minimum U5 checklist](Specialization_P0_Status.md#current-hd-baseline-and-minimum-u5-review--s0903)

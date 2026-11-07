@@ -10,7 +10,7 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0902",
+    "status": "S0903",
     "runtime": "B413.440 / modinfo440",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "02d732ef1e999bab1e325057ae7694f51177b3ea",
-  "current_batch": "B413_FOCUSED_NATIVE_EVIDENCE_RECORDED",
-  "next_batch": "STOP:Owner B413 evidence recorded;no repeat of tested scenarios;await direction. L2/unobserved PU05b/PU07 remain OPEN;no automatic deploy/game/external review/U5/main.",
+  "current_batch": "B413_HD_BASELINE_PINNED_U5_REVIEW_PENDING",
+  "next_batch": "STOP:Owner reviews the pinned HD baseline and minimum U5 checklist. U5 remains pending explicit authorization.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B413.440 temporary develop from02d732ef1e999bab1e325057ae7694f51177b3ea;346/346 MATCH;SHA256 590d7c52d5b5257d3a2e38f56947cdfbc072c7d0fd1fe021b867ae80d0c9b689;B399 outgoing and B307 stable recovery packages MATCH;no pending transaction;receipt B413.440-02d732e-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-06 Owner explicitly approved this B413.440 deployment;completed through receipt-bound restore/activate and read-only hash verification. No standing future deployment,main or game-launch authorization.",
-  "context_review_status": "S0902:scoped Owner-native evidence and source/receipt verification;T10 two independently bound Crew,T25 three Capital settlements,normal reallocation/Commerce/Development/Claim;unobserved boundaries OPEN.",
+  "context_review_status": "S0903:original HD configuration and observed Gameplay profile pinned with byte-verified DB, save and receipt references. Native startup and load logs corroborate T17 cold recovery. Prior scoped acceptance retained.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#focused-b413-native-evidence-reviewed--s0902",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#current-hd-baseline-and-minimum-u5-review--s0903",
   "source_status": "Canonical/live B413.440 at02d732ef1e999bab1e325057ae7694f51177b3ea;runtime bytes reviewed at102bb16;D-1 follow-up262localPASS. Receipt/hash verified;scoped Owner-native result recorded in S0902.",
-  "continuation_authorization": "Owner-approved narrow P-1/P-2,L1,L3-L5 only;returned review D-1 corrected within L3/L4. External reviews are Owner-initiated;Primary prepares entry only. No deployment/game/main/other package."
+  "continuation_authorization": "Owner authorized current acceptance reconciliation, private HD baseline capture and a U5 checklist for review. Stop at that review boundary."
 }
