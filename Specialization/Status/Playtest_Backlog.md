@@ -455,3 +455,7 @@ The actual loaded HD profile and current-build references are pinned. The startu
 ## B413 U5 acceptance and Crew action bar — 2026-11-07
 
 The Owner accepts the pinned HD regression baseline and prior scoped results. T32 cold-loaded Crew use consumed one bound unit, added 260 production once to the Forbidden City and left the other unit. The reported Harvest Resource button is a separate native UI defect. The B414 candidate has local validation. Its only proposed user confirmation is the action bar after separately approved deployment. [Current result](Specialization_P0_Status.md#u5-hd-baseline-acceptance-and-crew-unitpanel-follow-up--s0904)
+
+## B414 Crew action bar acceptance — 2026-11-07
+
+**USER_GAME_TEST_PASS** for the B414.441 Crew action bar. The Owner confirms Harvest Resource is absent and generic unit controls, Construction and Confirm Construction work normally. The B413.440 HD regression baseline and prior scoped coverage carry forward. [Acceptance record](Specialization_P0_Status.md#b414-crew-action-bar-accepted--s0906)

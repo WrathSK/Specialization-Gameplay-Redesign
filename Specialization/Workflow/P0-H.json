@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0059",
     "research": "D0059",
@@ -11,14 +11,14 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0905",
+    "status": "S0906",
     "runtime": "B414.441 / modinfo441",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record completed B414 deployment and await the Owner Crew action-bar check.",
+  "goal": "Record the B414.441 Crew action-bar acceptance and stop before architecture migration.",
   "implementation_authorized": false,
   "context": [
     {
@@ -68,7 +68,7 @@
   "result": {
     "baseline": "OWNER_ACCEPTED_B413_HD_PROFILE",
     "baseline_manifest_sha256": "87f8e2f5d50df396b8a722aa7097bb3ffda6fb3e508c06d0908030e6cbdbdc40",
-    "native": "B413 scoped PASS for T32 cold-load Crew spending and prior observed cases. Owner-reported Harvest Resource visibility is open for B414 native verification.",
+    "native": "B414.441 USER_GAME_TEST_PASS for the Crew action bar. Harvest Resource is absent and generic controls, Construction and Confirm Construction work. Prior scoped B413 acceptance, including T32 cold-load Crew spending, carries forward.",
     "supplemental_manifest": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B413_Crew_Cold_Use_20261107/manifest.json",
     "supplemental_manifest_sha256": "3c78b43e8772a872cd2a3b35372db78d112b1ea1e61d57acd67e385534353a74",
     "candidate": "B414.441 / modinfo441 LOCAL_SIMULATION_PASS",
@@ -86,6 +86,7 @@
       "outgoing": "B413.440, 346/346 MATCH",
       "stable_recovery": "B307.334, 312/312 MATCH"
     },
-    "deployment_report": "Specialization/Status/Specialization_P0_Status.md#approved-b414-deployment-complete--s0905"
+    "deployment_report": "Specialization/Status/Specialization_P0_Status.md#approved-b414-deployment-complete--s0905",
+    "acceptance_report": "Specialization/Status/Specialization_P0_Status.md#b414-crew-action-bar-accepted--s0906"
   }
 }

@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0905
+Status Revision: S0906
 Implementation Build: source/live B414.441 / modinfo441 from72fe54d; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: B414_DEPLOYED_AWAITING_CREW_ACTION_BAR_CHECK
+Work State: B414_CREW_ACTION_BAR_ACCEPTED_AWAITING_HD_READINESS_DIRECTION
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B414 Crew action bar accepted — S0906
+
+On 2026-11-07 the Owner accepted the Crew action bar on B414.441. **USER_GAME_TEST_PASS** for this check. Harvest Resource is absent. Generic unit controls, Construction and Confirm Construction work normally. This closes the scoped UnitPanel follow-up from S0904–S0905.
+
+B414.441 is the deployed build verified in S0905. The pinned B413.440 HD regression profile and its prior scoped U5 results remain the post-migration comparison. Other Crew completion count sequences and late callbacks, Claim fault recovery and extra fact sampling remain with their respective work.
+
+The next migration gate is to capture an independent Gathering Storm database using the supported official content and retained art in a genuine HD-free launch. Compare it with the pinned HD profile to confirm building upgrade tiers and component selection before assembling environment data for the shared fact provider. The adapted no-HD load smoke follows environment and UI-base assembly. The Owner asked for the next-step outline and a stop. The current action-bar check needs no further user testing.
 
 ### Approved B414 deployment complete — S0905
 
