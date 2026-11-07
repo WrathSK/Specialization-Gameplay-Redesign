@@ -31,7 +31,7 @@ function SPCIndustrySupport.Start(P,shared)
   local n=sample.value
   assert(type(n)=='number' and n>=0 and n<=255 and n%1==0,'BASE_ADJACENCY_UNKNOWN_FRACTIONAL_OR_OUT_OF_RANGE')
   return n
-  end)
+  end,true)
  end
  local function carriers(city,n,write)
   local wanted={};for bit=-1,7 do wanted[bit]=n~=nil and (bit==-1 or math.floor(n/2^bit)%2==1)end
@@ -48,7 +48,7 @@ function SPCIndustrySupport.Start(P,shared)
   if data.ready then return true end
   local store=shared.CityProgressionStore
   if store and store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return false end
-  data.ready=true;return true
+  data.ready=true;SPCRuntimeWork.WakeFactOwner(shared,'IndustrySupport');return true
  end
  local function queue(c,wake)
   if not c or not P.IsTestPlayer(c:GetOwner())then return end
@@ -83,15 +83,22 @@ function SPCIndustrySupport.Start(P,shared)
   if n~=nil or f.specialization~='NONE' or not waiting or reference(c)~=waiting.reference then if not armed[k]then pending[k]=nil end end
   if trace and data.changes~=before then trace.Record('INDUSTRY_SUPPORT',{owner=pid,city=c:GetID(),expected=n or 0,wanted=n~=nil and 'FOOD_3_PLUS_BASE_PRODUCTION' or 'NONE',readStatus='VERIFIED'})end
  end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why;local p=Players[pid];local c=why and P.IsTestPlayer(pid) and p and p:GetCities():FindID(cid);if c then queue(c,false)end end)
- function data.Audit(scope)
+ local function audit(scope,taking)
   if P.Observe then P.Observe('audit','IndustrySupport') end
-  if data.busy then defer(scope);P.Count('busy_skip');return end
-  if not startReady()then P.Count('busy_skip');return end
-  local ok,err=pcall(validate);data.errors.definitions=not ok and tostring(err) or nil;if not ok then return end
-  data.busy=true;batch=SPCRuntimeWork.New(P,shared)
-  targets.Run(scope)
+  if data.busy then if not taking then defer(scope)end;P.Count('busy_skip');return false end
+  if not startReady()then P.Count('busy_skip');return false end
+  local ok,err=pcall(validate);data.errors.definitions=not ok and tostring(err) or nil;if not ok then return false end
+  data.busy=true
+  local worked,accepted=pcall(function()
+   batch=SPCRuntimeWork.New(P,shared)
+   return targets.Run(scope,taking)
+  end)
   data.busy=false;batch=nil
+  if not worked then error(accepted,0)end
+  return accepted
  end
+ function data.Audit(scope)audit(scope,false)end
+ function data.AcceptFact(scope)return audit(scope,true)end
  function data.FlushPending(pid,confirmedSample)
   if data.busy or not startReady() then return end
   if not confirmedSample and not next(armed)then return end
@@ -163,7 +170,11 @@ function SPCIndustrySupport.Start(P,shared)
    ..'\nRead only; verify native specialist yields. Native district yields are additional; retired III Food/Gold upgrade cannot reactivate.'
  end
  local function hook(source,name,fn) local e=P.Field(source,name);if e and e.Add then e.Add(fn) end end
- hook(Events,'LoadScreenClose',function() pending={};armed={};deferred={};deferredOrder={};sampleWork={};data.ready=true;SPCSampleLifecycle.Reset(data,'industry');data.Audit({load=true}) end)
+ hook(Events,'LoadScreenClose',function()
+  pending={};armed={};deferred={};deferredOrder={};sampleWork={};data.ready=true
+  SPCSampleLifecycle.Reset(data,'industry');data.Audit({load=true})
+  SPCRuntimeWork.WakeFactOwner(shared,'IndustrySupport')
+ end)
  hook(Events,'GameCoreEventPublishComplete',function()drainCauses();data.FlushPending()end)
  -- Shared D owns structure; validated background samples own adjacency changes.
  -- Retain lifecycle/turn safety and the independent no-provider startup fallback.

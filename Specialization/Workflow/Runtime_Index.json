@@ -681,9 +681,9 @@
       "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustrySupport.lua": {
-      "sha256": "22542ea63d991f424f9adb7e122234a8bc34eb9be54baf600d21fa45a8659926",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
+      "sha256": "3a2e017a0ede1ef7d5f71615430d9b8b12be0d2863c6a92cd5a2436ce885f02c",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0923 B429.456 verifies ordered receipts for Research Cross and Industry Support, with their existing independent sample recovery."
     },
     "Mod/IndustryWonderEffects.lua": {
       "sha256": "dbffd20fa22c32d7b573314667f7726fc14317bcab552f9110288f1e5e055cd2",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "fe67fb7a285e691e4bad9804608886d01c706c381a3bef2eadfa836e5c3dae04",
+      "sha256": "0b767d69b36bf7208bca43bd67b839fa169006feccb48b5a1e9103e1824a518d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
+      "provenance": "S0923 B429.456 verifies ordered receipts for Research Cross and Industry Support, with their existing independent sample recovery."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -836,9 +836,9 @@
       "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
     },
     "Mod/ResearchCross.lua": {
-      "sha256": "1156135442782d73f132eb76d604aec4976569fb382342b0526c432a19038ab1",
+      "sha256": "8a4dea30198825fd205a1462464425bc6b7744808e39b502d28c69b534809f33",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
+      "provenance": "S0923 B429.456 verifies ordered receipts for Research Cross and Industry Support, with their existing independent sample recovery."
     },
     "Mod/ResearchCrossModel.lua": {
       "sha256": "5db2c93ba1a1560584350a652a4eee5e31684a438bfe3f40559afb795e601166",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "af66e03111ac1aa2a81baea766fbdee5bfcccbba0dde713a74e102810e8906ca",
+      "sha256": "298c12b5c0723a8f0c4bc92d97a1cc5a4e27df3ef0fb247107dd5cbaef54deb0",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
+      "provenance": "S0923 B429.456 verifies ordered receipts for Research Cross and Industry Support, with their existing independent sample recovery."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1586,9 +1586,9 @@
       "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "9e5387a5e357c842c33371a2de73163e0dcfc41756c9b59e35bb6f41c1ee7475",
+      "sha256": "f91da5fcfd5d4439aeafff68163f82f191b60fe003633d64fed52ac90d7629dd",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
+      "provenance": "S0923 B429.456 verifies ordered receipts for Research Cross and Industry Support, with their existing independent sample recovery."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",

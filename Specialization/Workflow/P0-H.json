@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0922",
-    "runtime": "B428.455 / modinfo455 source candidate",
+    "status": "S0923",
+    "runtime": "B429.456 / modinfo456 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Give the five local Culture effect owners independent receipts without changing their Great Work or history responsibilities.",
+  "goal": "Move the two sample-backed effect owners onto explicit ordered receipts while preserving their existing sample causes and consumers.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Local Culture effects take independent ordered audit duties — S0922",
+      "selector": "### Sample-backed Research Cross and Industry Support take scoped duties — S0923",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,7 +51,7 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_refactor_s5d4c5.py",
+      "path": "DevelopmentTests/test_sampled_effect_fact_receipts.py",
       "kind": "head",
       "selector": 28,
       "reason": "Rerunnable scoped delivery regression"
@@ -74,8 +74,8 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "390 passes in 392 selected tests, two unchanged exact exit/return fixture errors.",
-    "Fixed B427 Meaning refusal and real Insights history availability cases.",
+    "403 of 405 selected tests pass. The two inherited fixture failures are unchanged.",
+    "Actual Research UI sample response, same-turn Industry reentry, exact capacity and sibling isolation.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -262,6 +262,16 @@
       "source_snapshot_sha256": "0b3901e4a649800c8767c1dca3730573707f8d4b51237afc3b4d2266331421dd",
       "local_evidence": "local/refactor/O2k-9443a7c1312a4f7799fa06cc3931f661/closure.json",
       "local_evidence_sha256": "564109231a8ec3a3f821fe8027b8970600145f88ce13536158a665bd5fe29b3b",
+      "deployed": false
+    },
+    "ordered_sampled_effect_receipts": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED_WITH_BASELINE_OPEN",
+      "version": "B429.456 / modinfo456",
+      "package_sha256": "53ac0147ddbb2cba737a4279b487438dbd73b9292925c792444e828b77503f1c",
+      "report": "Specialization/Status/Specialization_P0_Status.md#sample-backed-research-cross-and-industry-support-take-scoped-duties--s0923",
+      "source_snapshot_sha256": "6d03610988dbd9c42d5c3dd1cdf08bd4a9102f1455a649df2884fb3576aea822",
+      "local_evidence": "local/refactor/O2l-5f98906c43074687bdc540dbb2ae2e4d/closure.json",
+      "local_evidence_sha256": "86e3535119d293c2a5c7cd868ca09e09c4c1eeef422fcef1d18b538bbe579969",
       "deployed": false
     }
   }

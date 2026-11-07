@@ -7,7 +7,7 @@ from test_pu03_delivery import registry
 
 
 class DeliveryCapacity(unittest.TestCase):
-    def test_actual_depth_producer_preserves_full_scope_capacity_with_ten_receivers(self):
+    def test_actual_depth_producer_preserves_full_scope_capacity_with_twelve_receivers(self):
         lua = fixture()
         lua.execute("""
 local fc=shared.FactChanges
@@ -15,28 +15,28 @@ fc.Flush()
 local called=0
 -- Model the effect recipients absent from the real D/Commerce fixture.
 for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair',
- 'CultureAesthetic','CultureMeaning','CultureInspiration'})do
+ 'CultureAesthetic','CultureMeaning','CultureInspiration','ResearchCross','IndustrySupport'})do
  shared[name]={AcceptFact=function()called=called+1;return true end}
 end
 local writes=effectWrites
 for id=1001,3047 do dc.MarkDirty(0,id) end
-assert(fc.retainedScopes==2047 and fc.retained==20470)
+assert(fc.retainedScopes==2047 and fc.retained==24564)
 dc.MarkDirty(0,3048)
-assert(fc.retainedScopes==2048 and fc.pending==2048 and fc.retained==20480)
+assert(fc.retainedScopes==2048 and fc.pending==2048 and fc.retained==24576)
 local sequence=fc.sequence
 local ok,err=pcall(dc.MarkDirty,0,3049)
 assert(not ok and tostring(err):find('FACT_QUEUE_LIMIT') and fc.sequence==sequence)
-assert(fc.retainedScopes==2048 and fc.retained==20480)
+assert(fc.retainedScopes==2048 and fc.retained==24576)
 local delivered=fc.delivered
 fc.Flush();shared.FactBindings.Flush()
-assert(fc.delivered-delivered>=20480 and called==18432 and effectWrites==writes)
+assert(fc.delivered-delivered>=24576 and called==22528 and effectWrites==writes)
 assert(fc.retainedScopes==0 and fc.retained==0 and fc.pending==0)
 dc.MarkDirty(0,3049);fc.Flush();shared.FactBindings.Flush()
-assert(called==18441 and fc.retainedScopes==0 and fc.retained==0)
+assert(called==22539 and fc.retainedScopes==0 and fc.retained==0)
 """)
         measure('delivery_depth_fanout', {
-            'receivers_interested_in_D': 10, 'scopes_admitted': 2048,
-            'receipts_before_drain': 20480, 'additional_receiver_callbacks': 18432,
+            'receivers_interested_in_D': 12, 'scopes_admitted': 2048,
+            'receipts_before_drain': 24576, 'additional_receiver_callbacks': 22528,
             'carrier_writes_during_receipt_drain': 0,
         })
 

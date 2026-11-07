@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0922
-Implementation Build: source B428.455 / modinfo455, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0923
+Implementation Build: source B429.456 / modinfo456, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ORDERED_LOCAL_CULTURE_RECEIPTS_LOCAL_COMPLETE_O2_CONTINUES
+Work State: ORDERED_SAMPLED_EFFECT_RECEIPTS_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Sample-backed Research Cross and Industry Support take scoped duties — S0923
+
+Cross-disciplinary Research and Industry Support now acknowledge their own fact scopes at the original audit position. Their native sample arrival and readback paths remain independent from fact delivery.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T05/T08).** The existing Cross sampler receives the original dirty cause once. A named audit wake does not request another sample. A missing relevant sample stays with the exact effect owner until its verified UI response arrives. Industry D work keeps its existing city scope and independent role and adjacency sample path. No extra original-native listeners, source capture on recovery, idle retry or persisted data. Seventeen declared recipients yield a two-batch ceiling of 69,632 receipts. The real D producer admits 2,048 scopes and 24,576 receipts with twelve interested receivers in local composition.
+- **LOCAL_SIMULATION_PASS in scope.** The real sampled effects independently hold busy delivery, process a later change and recover with the original scope. The Research UI fixture delivers a new valid sample and releases the effect owner's recorded waiting city. Industry handles a reentrant next snapshot without adding a sample request. 403 of 405 tests pass. The two previously recorded Insights and Dialogue exit/return fixture errors persist unchanged. The SQL replay uses the pinned B413 HD database as in S0922.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `53ac0147ddbb2cba737a4279b487438dbd73b9292925c792444e828b77503f1c`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol test_ordered_audit_receipts test_tradition_fact_responsibility test_refactor_s5propagation.PhaseBarrier test_refactor_s5propagation.Scopes test_refactor_s5d1.Kernel test_scoped_depth_write test_refactor_s5propagation.ActualInvestment test_refactor_s9e7.UnscopedRouting test_refactor_s5d4c7 test_refactor_s9d1b.Witness test_refactor_s9d1b.WriteBarrier test_pu04_negative test_refactor_s5d4a test_refactor_s5d1.Writers.test_actual_apply_chair_one_city_keeps_sibling_carriers_errors test_refactor_s5d1.Writers.test_actual_chair_busy_second_city_retained_until_publish test_refactor_s5d1.Writers.test_actual_apply_chair_owner_read_failure_is_city_isolated test_refactor_s5d4c4.AestheticHealth test_refactor_s5d4c5.CultureProjection test_refactor_s5d4c6.InsightsHealth test_refactor_s5d3.Dialogue test_refactor_s5history.Bindings test_sampled_effect_fact_receipts test_refactor_s4a.Industry test_refactor_s4a.IndustryReentry test_refactor_s5d1.Writers.test_actual_cross_scoped_plan_and_error_are_not_globally_replaced test_refactor_s5d1.Writers.test_actual_cross_busy_cause_is_processed_once test_refactor_s5d1.Writers.test_actual_cross_owner_read_failure_is_city_isolated`. Tested source SHA256 `6d03610988dbd9c42d5c3dd1cdf08bd4a9102f1455a649df2884fb3576aea822`. Full local evidence `local/refactor/O2l-5f98906c43074687bdc540dbb2ae2e4d/closure.json`, SHA256 `86e3535119d293c2a5c7cd868ca09e09c4c1eeef422fcef1d18b538bbe579969`. [Rerunnable regression](../../DevelopmentTests/test_sampled_effect_fact_receipts.py)
+
+No Owner decision or user testing is needed at this checkpoint. Primary continues with the two network effect owners. Live remains B414.441.
 
 ### Local Culture effects take independent ordered audit duties — S0922
 

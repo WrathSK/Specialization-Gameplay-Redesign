@@ -21,12 +21,12 @@ function SPCFactConsumerBindings.New(shared)
   {target='ResearchSupport',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='Lv2Housing',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='Lv2GPP',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
-  {target='IndustrySupport',method='Audit',cityOnly=true,ownerCauses={REQUEST_FACTS_DIRTY=true,DISTRICT_FACTS_DIRTY=true},kinds={'D'}},
+  {target='IndustrySupport',method='Audit',ordered='AcceptFact',cityOnly=true,ownerCauses={REQUEST_FACTS_DIRTY=true,DISTRICT_FACTS_DIRTY=true},kinds={'D'}},
   {target='Lv3Support',method='Audit',kinds=role},
   {target='Lv3Effects',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','NETWORK'}},
   {target='Lv4Percent',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='ResearchInfrastructure',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
-  {target='ResearchCross',method='Audit',sample=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
+  {target='ResearchCross',method='Audit',ordered='AcceptFact',sample=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='ResearchApply',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='ResearchChair',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='CultureAesthetic',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
@@ -49,14 +49,18 @@ function SPCFactConsumerBindings.New(shared)
   for cause in pairs(row.ownerCauses)do if e.causes[cause]then return true end end
   return false
  end
- local function collect(row,e,resolve)
-  if row.ownerCauses and e.city==nil and not ownerAllowed(row,e)then return end
+ local function collect(row,e,resolve,sampleOnly)
+  if row.ownerCauses and e.city==nil and not ownerAllowed(row,e)then
+   if resolve then return registry.Receipt(e,'IRRELEVANT','OUTSIDE_AUDIT_SCOPE')end
+   return
+  end
   if resolve then
    assert((receiptCounts[row.target] or 0)<registry.ReceiptSlotsPerReceiver(),'FACT_BINDING_RECEIPT_LIMIT')
   end
   local owners=pending[row.target] or {};pending[row.target]=owners
   local key=tostring(e.player);local q=owners[key]
   if not q then q={player=e.player,cities={},order={},proofs={},references={},topics={},causes={}};owners[key]=q end
+  if sampleOnly then q.sample=true;return end
   if e.city==nil then q.all=true;q.proofs={}
   elseif not q.cities[e.city]then
    assert(#q.order<2048,'FACT_BINDING_SCOPE_LIMIT');q.cities[e.city]=true;q.order[#q.order+1]=e.city;q.references[e.city]=e.reference
@@ -90,6 +94,15 @@ function SPCFactConsumerBindings.New(shared)
   local consumer=deliveryNames[name]
   return consumer and registry.WakeConsumer(consumer,cause,revision,scope)or false
  end
+ local function subscribeLegacy(row,callback,suffix)
+  local remaining={};local name='Binding_'..row.target..(suffix or '')
+  for _,kind in ipairs(row.kinds)do
+   local provider=kind=='D' and shared.DistrictCompleteness or kind=='NETWORK' and shared.NetworkBridge
+   if provider and type(provider.RegisterConsumer)=='function'then provider.RegisterConsumer(name,callback)
+   else remaining[#remaining+1]=kind end
+  end
+  if #remaining>0 then registry.RegisterConsumer(name,callback,{kinds=remaining,topics=row.topics})end
+ end
  for _,row in ipairs(declarations)do
   if row.takeover then
    -- Reserve one obligation for the owner's combined scope, including when
@@ -100,14 +113,11 @@ function SPCFactConsumerBindings.New(shared)
    deliveryNames[row.target]=registry.RegisterConsumer('Binding_'..row.target,function(e,resolve)
     return collect(row,e,resolve)
    end,{kinds=row.kinds,topics=row.topics,delivery='RESPONSIBILITY',ordered=true})
+   -- Keep the existing sampler dirty signal tied to new producer causes.
+   -- A held effect audit waking on availability must not ask UI to resample.
+   if row.sample then subscribeLegacy(row,function(e)collect(row,e,nil,true)end,'_Source')end
   else
-   local remaining={};local callback=function(e)collect(row,e)end
-   for _,kind in ipairs(row.kinds)do
-    local provider=kind=='D' and shared.DistrictCompleteness or kind=='NETWORK' and shared.NetworkBridge
-    if provider and type(provider.RegisterConsumer)=='function'then provider.RegisterConsumer('Binding_'..row.target,callback)
-    else remaining[#remaining+1]=kind end
-   end
-   if #remaining>0 then registry.RegisterConsumer('Binding_'..row.target,callback,{kinds=remaining,topics=row.topics})end
+   subscribeLegacy(row,function(e)collect(row,e)end)
   end
  end
  local function complete(groups,accepted,city)
@@ -131,9 +141,15 @@ function SPCFactConsumerBindings.New(shared)
   local failure
   -- C2 producer gets only real declared input causes, never a global write pulse
   -- or its own sample reply. This is a scalar wake, not an extra fact read.
-  if row.sample and type(value.SampleChanged)=='function'then
+  local sample=not row.ordered and row.sample;local hasScope=not row.ordered
+  if covered then for _,group in pairs(covered)do
+   if group.sample then sample=true end
+   if group.receipts then hasScope=true end
+  end end
+  if sample and type(value.SampleChanged)=='function'then
    local ok=pcall(value.SampleChanged);if not ok then failure='SAMPLE_CAUSE_NOTIFY_FAILED'end
   end
+  if not hasScope then if failure then error(failure,0)end;return end
   local function call(...)
    if registry.closed or shared.FactChanges~=registry then return false end
    local ok,result=pcall(fn,...)
@@ -143,7 +159,10 @@ function SPCFactConsumerBindings.New(shared)
   end
   if row.cityOnly and q.all and not ownerAllowed(row,q)then
    for _,id in ipairs(q.order)do
-    if row.method=='Audit'then call({player=q.player,city=id})else call(q.player,id)end
+    if row.method=='Audit'then
+     local accepted=call({player=q.player,city=id})
+     if row.ordered then complete(covered,accepted,id)end
+    else call(q.player,id)end
    end
    if failure then error(failure,0)end;return
   end
@@ -174,7 +193,7 @@ function SPCFactConsumerBindings.New(shared)
    local owners=work[row.target] or {};local global=owners['nil']
    -- A real all-player Audit already contains the known owner/city scopes.
    -- City-only methods deliberately ignore global fallback and keep their narrow work.
-   local collapse=global and (not row.cityOnly or ownerAllowed(row,global)) and (row.method=='Audit' or row.source)
+   local collapse=global and global.all and (not row.cityOnly or ownerAllowed(row,global)) and (row.method=='Audit' or row.source)
    local selected=collapse and {global=global} or owners
    for _,q in pairs(selected)do
     local covered=row.ordered and (collapse and owners or {q}) or nil

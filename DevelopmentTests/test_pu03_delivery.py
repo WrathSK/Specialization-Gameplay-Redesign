@@ -65,7 +65,7 @@ def pipeline():
           shared.ResearchTraditionEffects={AcceptFact=outside}
           -- This proof/Commerce composition has no local effect projections.
           for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair',
-           'CultureAesthetic','CultureMeaning','CultureInspiration','CultureInsightsTourism','DialogueEffects'})do
+           'CultureAesthetic','CultureMeaning','CultureInspiration','CultureInsightsTourism','DialogueEffects','ResearchCross','IndustrySupport'})do
            shared[name]={AcceptFact=function()return true end}
           end
           function drain()fc.Flush();bindings.Flush();Events.GameCoreEventPublishComplete.Fire()end

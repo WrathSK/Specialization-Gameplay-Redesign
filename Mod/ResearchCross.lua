@@ -71,7 +71,7 @@ function M.Start(P,shared)
   assert(f.first and f.first.districtID==campus.id,'CROSS_ANCHOR_UNKNOWN')
   for _,r in ipairs(rows) do if r.domain and r.complete and not r.pillaged then
    local batch=data.samples[pid];local sample=batch and batch.rows[c:GetID()..':'..r.id]
-   assert(sample and sample.reference==r.reference and not sample.pillaged,'CROSS_SAMPLE_PENDING')
+   if not sample or sample.reference~=r.reference or sample.pillaged then error('CROSS_SAMPLE_PENDING',0)end
    r.yields=sample.yields
   end end
   plan=SPCResearchCrossModel.Plan(f,rows);plan.active=f.active;plan.potential=f.potential
@@ -103,23 +103,31 @@ function M.Start(P,shared)
   if state.amount~=0 and amount==0 then P.Count('cross_withdraw') end
   return plan
  end
- local function audit(scope)
-  for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) and P.IsTestPlayer(pid) then
+ local function audit(scope,taking)
+  return SPCRuntimeWork.AuditOwners(P,scope,function(pid,player)
+   local accepted=true
    local single=scope and scope.city~=nil
    if not single then data.errors[pid]={};data.plans[pid]={}end
    data.errors[pid]=data.errors[pid] or {};data.plans[pid]=data.plans[pid] or {}
-   local ok,err=pcall(function()
-    local cities=player:GetCities();if not cities then return end
+   local ok,result=pcall(function()
+    local cities=player:GetCities();if not cities then return false end
     for _,c in SPCRuntimeWork.Cities(cities,scope) do
-     local good,p=pcall(function()if c:GetOwner()==pid then P.Count('city_scan');return reconcile(pid,c)end end);local cid=c:GetID()
+     local good,p=pcall(function()
+      if SPCRuntimeWork.AuditCityOwned(c,pid,taking)then P.Count('city_scan');return reconcile(pid,c)end
+     end)
+     local cid=c:GetID()
      data.plans[pid][cid]=good and p or nil;data.errors[pid][cid]=not good and tostring(p) or nil
+     -- Receive already owns this exact city when its background input arrives.
+     if not good and p~='CROSS_SAMPLE_PENDING'then accepted=false end
     end
+    return accepted
    end)
-   if not ok then data.errors[pid].player=tostring(err) end
-  end end
+   if not ok then data.errors[pid].player=tostring(result)end
+   return ok and result
+  end,taking)
  end
  function data.SampleChanged()data.sampleRevision=(data.sampleRevision or 0)+1 end
- data.Audit,data.MarkAudit,data.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchCross',audit)
+ data.Audit,data.MarkAudit,data.FlushAudit,data.AcceptFact=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchCross',audit,{receipts=true})
  function data.Receive(pid,p)
   local changed,cities,recovered=SPCResearchCrossSample.Receive(P,data,pid,p)
   if changed then
@@ -153,7 +161,7 @@ function M.Start(P,shared)
   return ok and text or ('跨学科研究：暂不可确认，未将未知当0。\n'..(tostring(text):match('CROSS_[A-Z_]+') or '接口未就绪'))
  end
  local function bind(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
- SPCRuntimeWork.StartReady(P,shared,'ResearchCross',function()data.ready=true;SPCSampleLifecycle.Reset(data,'cross');data.plans={};data.errors={};data.Audit()end)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchCross',function()data.ready=true;SPCSampleLifecycle.Reset(data,'cross');data.plans={};data.errors={};data.Audit()end,true)
  -- Ordinary structural input is owned by scoped DC D; health is exact above.
  SPCRuntimeWork.Hook(P,Events,'PlayerTurnActivated',data.Audit)
  if not(shared.FactChanges and shared.DistrictCompleteness and type(shared.DistrictCompleteness.RegisterConsumer)=='function')then
