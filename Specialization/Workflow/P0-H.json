@@ -11,14 +11,14 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0906",
+    "status": "S0907",
     "runtime": "B414.441 / modinfo441",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the B414.441 Crew action-bar acceptance and stop before architecture migration.",
+  "goal": "Record official database capture and Owner Leugi-decoupling scope decision.",
   "implementation_authorized": false,
   "context": [
     {
@@ -87,6 +87,13 @@
       "stable_recovery": "B307.334, 312/312 MATCH"
     },
     "deployment_report": "Specialization/Status/Specialization_P0_Status.md#approved-b414-deployment-complete--s0905",
-    "acceptance_report": "Specialization/Status/Specialization_P0_Status.md#b414-crew-action-bar-accepted--s0906"
+    "acceptance_report": "Specialization/Status/Specialization_P0_Status.md#b414-crew-action-bar-accepted--s0906",
+    "official_capture": {
+      "status": "NATIVE_OFFICIAL_DATABASE_CAPTURED",
+      "gameplay_targets": 25,
+      "community_targets": 0,
+      "manifest_sha256": "a699121f3bb74480681225d3ed9f5c2618ae820491052365b4569288ff668dfb",
+      "report": "Specialization/Status/Specialization_P0_Status.md#official-database-captured-and-leugi-scope-amended--s0907"
+    }
   }
 }

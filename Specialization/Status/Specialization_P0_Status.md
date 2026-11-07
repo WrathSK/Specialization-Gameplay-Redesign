@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0906
+Status Revision: S0907
 Implementation Build: source/live B414.441 / modinfo441 from72fe54d; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: B414_CREW_ACTION_BAR_ACCEPTED_AWAITING_HD_READINESS_DIRECTION
+Work State: OFFICIAL_DATABASE_CAPTURED_MIGRATION_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Official database captured and Leugi scope amended — S0907
+
+On 2026-11-07 the Owner completed the database capture and requested removal of the Leugi dependency in the convergence work. This supersedes the previous retained-Leugi-art scope. The runtime still references the Leu_Investor model, Leugi icon aliases and its manifest dependency. Replacement art and metadata belong to the existing environment/UI assembly scope. The next implementation slice remains subject to its existing gate.
+
+The final Gameplay rebuild used 25 official targets, including Gathering Storm, with no community target. HD_BuildingTiers, SPC Types and Leugi unit definitions are absent. The new-game initialization completed and all four archived SQLite databases pass quick_check. Bank requires Market and Stock Exchange requires Bank in this independent database. These are database/load observations. Adapted Specialization behavior awaits its own validation.
+
+Twelve original files (80,584,520 bytes) are copied and hash-verified in the external engine-reference archive HD_Free_Baseline_2026-11-07/Capture_Official_Only. The capture manifest SHA256 is a699121f3bb74480681225d3ed9f5c2618ae820491052365b4569288ff668dfb. The earlier preflight remains the preparation record. Post-game frontend targets include Quick Start and differ from the Gameplay target list. Database.log contains duplicate Localization clickout tags, with no Gameplay ERROR. These limits are preserved in the local capture.
+
+The current BackgroundRoutes collector calls native trade APIs. BTS has no manifest or direct runtime dependency. Existing HD dependencies include building facts, effect definitions, queue helpers and UI bases. Official RF/GS/Teddy prerequisites remain declared. User decision is recorded. User testing is complete for this database capture. Primary next is the scoped database/component comparison and a concrete next-slice proposal before migration code.
 
 ### B414 Crew action bar accepted — S0906
 
