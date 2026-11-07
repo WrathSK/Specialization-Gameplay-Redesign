@@ -15,7 +15,9 @@ function M.Start(P,shared)
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.CultureAesthetic=d
  local function ready(reason)
   if d.ready then return false end
-  d.ready=true;d.readyReason=reason;return true
+  d.ready=true;d.readyReason=reason
+  SPCRuntimeWork.WakeFactOwner(shared,'CultureAesthetic')
+  return true
  end
  local carrier
  local health=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return carrier~=nil and id==carrier end,function(scope)d.MarkAudit(scope)end)
@@ -140,14 +142,16 @@ function M.Start(P,shared)
   end
   d.records[key]=p.status=='READY' and {reference=nativeRef,token=f.token,amounts=p.amounts,total=p.total,owner=pid,x=c:GetX(),y=c:GetY()} or nil
  end
- local function audit(scope)
+ local function audit(scope,taking)
   local live={}
-  for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or not scope.player or scope.player==pid)then
+  return SPCRuntimeWork.AuditOwners(P,scope,function(pid,player)
+   local accepted=true
    local ok,why=pcall(function()
     local collection=assert(player:GetCities(),'AE_CITIES_UNKNOWN')
     local function visit(c)
      if not c then return end;P.Count('city_scan');local key=cityKey(pid,c);live[key]=true
      local good,err=pcall(reconcile,pid,c);d.errors[key]=not good and tostring(err) or nil
+     if not good then accepted=false end
     end
     if scope and scope.city~=nil then visit(collection:FindID(scope.city)) else
      for _,c in collection:Members()do visit(c)end
@@ -158,9 +162,10 @@ function M.Start(P,shared)
     end
    end)
    d.error=not ok and tostring(why) or nil
-  end end
+   return ok and accepted
+  end,taking)
  end
- d.Audit,d.MarkAudit,d.FlushAudit=SPCRuntimeWork.NewAudit(P,shared,d,'CultureAesthetic',audit)
+ d.Audit,d.MarkAudit,d.FlushAudit,d.AcceptFact=SPCRuntimeWork.NewAudit(P,shared,d,'CultureAesthetic',audit,{receipts=true})
  local reasons={PALACE='宫殿',WONDER='奇观',INTERNAL_OR_TECHNICAL='内部载体',UNREVIEWED_BUILDING='未审对象',
   UNDER_CONSTRUCTION='未完成',BUILDING_PILLAGED='已掠夺',DISTRICT_PILLAGED='区域已掠夺',DISTRICT_UNFINISHED='区域未完成'}
  function d.Describe(pid,c,detail,page)
@@ -203,7 +208,10 @@ function M.Start(P,shared)
   return ok and text or ('风雅熏陶：当前事实待复核；UNKNOWN不当作0。\n'..(tostring(text):match('AE_[A-Z_]+') or '接口未就绪')..'\n保留同一引用的最近确认配置；新引用/冷加载未确认前不施加。')
  end
  local function bind(source,name,fn)local e=P.Field(source,name);if e and e.Add then e.Add(fn)end end
- bind(Events,'LoadScreenClose',function()carrier=nil;d.records={};d.errors={};d.error=nil;d.ready=true;d.readyReason='LOAD_SCREEN_CLOSE';d.Audit()end)
+ bind(Events,'LoadScreenClose',function()
+  carrier=nil;d.records={};d.errors={};d.error=nil
+  ready('LOAD_SCREEN_CLOSE');d.readyReason='LOAD_SCREEN_CLOSE';d.Audit()
+ end)
  -- Ordinary structural input is scoped DC D. Current carrier health has its
  -- exact live owner above; no dead city/building signal or prefix suppression.
  SPCRuntimeWork.TargetHook(P,Events,'CityTransfered',d.MarkAudit)

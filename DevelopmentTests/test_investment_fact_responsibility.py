@@ -13,7 +13,8 @@ capital=shared.CapitalInvestment;development=shared.DevelopmentInvestment
 shared.ResearchTraditionEffects={AcceptFact=function(e)
  return fc.Receipt(e,'IRRELEVANT','FIXTURE_OUTSIDE_SCOPE')
 end}
-for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair'})do
+for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair',
+ 'CultureAesthetic','CultureMeaning','CultureInspiration','CultureInsightsTourism','DialogueEffects'})do
  shared[name]={AcceptFact=function()return true end}
 end
 function deliver()

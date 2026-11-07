@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0921
-Implementation Build: source B427.454 / modinfo454, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0922
+Implementation Build: source B428.455 / modinfo455, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ORDERED_RESEARCH_APPLY_CHAIR_LOCAL_COMPLETE_O2_CONTINUES
+Work State: ORDERED_LOCAL_CULTURE_RECEIPTS_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Local Culture effects take independent ordered audit duties — S0922
+
+Aesthetic, Meaning, Inspiration, Insights tourism and Dialogue effects now take their ordinary fact duties separately at the original audit positions. Their Great Work and historical inputs, actual policies and exact exit/return hooks remain in their established owners.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T05/T08).** The same binding groups and native drain apply. No new source capture, listener, idle retry, persisted data or gameplay rule. The current readiness transitions can rearm held receipts. Only reliable city/owner absence completes irrelevant work. Unavailable readings hold their affected receipt. Existing shared GWF delivery stays independent. Fifteen declared receivers yield a 61,440-receipt two-batch ceiling. The real D producer admits 2,048 scopes and 20,480 receipts for ten interested receivers in local composition.
+- **LOCAL_SIMULATION_PASS in scope.** Actual Meaning and Inspiration share the same publish phase. With a Meaning-only input failure, Inspiration completes, and recovery does not replay it. The independent Insights history test holds the old effect and receipt on unreadable history, then completes on a related fact. The fixed B427 Meaning test reproduces the missing receipt. 390 of 392 checks pass. The existing Insights and Dialogue exact exit/return fixture assertions fail identically on fixed B427 and remain open. Culture SQL fixtures use the read-only pinned B413 HD gameplay database through `SPC_DEBUG_GAMEPLAY_DB`, SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `6143ca04b89bfa7c05f67a37ac9167b107aa6dbf8b01d00e2d5093739a9836df`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol test_ordered_audit_receipts test_tradition_fact_responsibility test_refactor_s5propagation.PhaseBarrier test_refactor_s5propagation.Scopes test_refactor_s5d1.Kernel test_scoped_depth_write test_refactor_s5propagation.ActualInvestment test_refactor_s9e7.UnscopedRouting test_refactor_s5d4c7 test_refactor_s9d1b.Witness test_refactor_s9d1b.WriteBarrier test_pu04_negative test_refactor_s5d4a test_refactor_s5d1.Writers.test_actual_apply_chair_one_city_keeps_sibling_carriers_errors test_refactor_s5d1.Writers.test_actual_chair_busy_second_city_retained_until_publish test_refactor_s5d1.Writers.test_actual_apply_chair_owner_read_failure_is_city_isolated test_refactor_s5d4c4.AestheticHealth test_refactor_s5d4c5.CultureProjection test_refactor_s5d4c6.InsightsHealth test_refactor_s5d3.Dialogue test_refactor_s5history.Bindings`. Tested source SHA256 `0b3901e4a649800c8767c1dca3730573707f8d4b51237afc3b4d2266331421dd`. Full local evidence `local/refactor/O2k-9443a7c1312a4f7799fa06cc3931f661/closure.json`, SHA256 `564109231a8ec3a3f821fe8027b8970600145f88ce13536158a665bd5fe29b3b`. [Rerunnable regression](../../DevelopmentTests/test_refactor_s5d4c5.py)
+
+No Owner decision or user testing is needed now. Primary continues with the sample-backed and network-effect duties in the accepted convergence plan. Live remains B414.441.
 
 ### Research Apply and Chair independently take their scoped audits — S0921
 

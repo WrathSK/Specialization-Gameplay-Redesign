@@ -50,34 +50,41 @@ function SPCRuntimeWork.Cities(collection,scope)
  end
  return collection:Members()
 end
--- The two Research city writers share traversal and scope accounting. They
--- still choose, validate and write their own plans.
-function SPCRuntimeWork.AuditCities(P,scope,errors,reconcile,taking)
+-- Scope admission is independent of each owner's calculation and writes.
+function SPCRuntimeWork.AuditOwners(P,scope,visit,taking)
  local accepted=true;local foundOwner=false
  for pid,player in pairs(Players)do
   if SPCRuntimeWork.Player(scope,pid)then
    foundOwner=true
    local eligible,_,status=P.IsTestPlayer(pid)
    if eligible then
-    if not (scope and scope.city~=nil)then errors[pid]={}end
-    errors[pid]=errors[pid] or {}
-    local cities=player:GetCities()
-    if not cities then accepted=false
-    else
-     for _,c in SPCRuntimeWork.Cities(cities,scope)do
-      local ok,why=pcall(function()
-       local owner=c:GetOwner()
-       if taking then assert(type(owner)=='number','RUNTIME_AUDIT_OWNER_UNAVAILABLE')end
-       if owner==pid then P.Count('city_scan');reconcile(pid,c)end
-      end)
-      errors[pid][c:GetID()]=not ok and tostring(why) or nil
-      if not ok then accepted=false end
-     end
-    end
+    if visit(pid,player)==false then accepted=false end
    elseif taking and status~='INELIGIBLE'then accepted=false end
   end
  end
  return accepted and (not scope or scope.player==nil or foundOwner)
+end
+function SPCRuntimeWork.AuditCityOwned(city,pid,taking)
+ local owner=city:GetOwner()
+ if taking then assert(type(owner)=='number','RUNTIME_AUDIT_OWNER_UNAVAILABLE')end
+ return owner==pid
+end
+-- The two Research city writers share traversal and scope accounting.
+function SPCRuntimeWork.AuditCities(P,scope,errors,reconcile,taking)
+ return SPCRuntimeWork.AuditOwners(P,scope,function(pid,player)
+  if not (scope and scope.city~=nil)then errors[pid]={}end
+  errors[pid]=errors[pid] or {}
+  local cities=player:GetCities();if not cities then return false end
+  local accepted=true
+  for _,c in SPCRuntimeWork.Cities(cities,scope)do
+   local ok,why=pcall(function()
+    if SPCRuntimeWork.AuditCityOwned(c,pid,taking)then P.Count('city_scan');reconcile(pid,c)end
+   end)
+   errors[pid][c:GetID()]=not ok and tostring(why) or nil
+   if not ok then accepted=false end
+  end
+  return accepted
+ end,taking)
 end
 -- Scope-only busy work: no native objects, automatic retry, timers or UNKNOWN
 -- recovery. A real reentrant cause arms one later existing publish snapshot.
@@ -558,6 +565,10 @@ function SPCRuntimeWork.TargetHook(P,source,name,fn)
  else SPCRuntimeWork.Hook(P,source,name,fn)end
 end
 
+function SPCRuntimeWork.WakeFactOwner(shared,name)
+ local bindings,changes=shared.FactBindings,shared.FactChanges
+ if bindings and bindings.Wake and changes then return bindings.Wake(name,'OWNER_READY',changes.sequence)end
+end
 -- One initialization latch. Fallback checks only the Store's scalar lifecycle state.
 function SPCRuntimeWork.StartReady(P,shared,name,start,wakeFacts)
  local latched=false
@@ -570,10 +581,7 @@ function SPCRuntimeWork.StartReady(P,shared,name,start,wakeFacts)
   elseif not fromLoad then return end
   latched=true -- never repeat initialization/Audit after a callback exception
   start()
-  if wakeFacts then
-   local bindings,changes=shared.FactBindings,shared.FactChanges
-   if bindings and bindings.Wake and changes then bindings.Wake(name,'OWNER_READY',changes.sequence)end
-  end
+  if wakeFacts then SPCRuntimeWork.WakeFactOwner(shared,name)end
  end
  local function bind(event,fn)local e=P.Field(Events,event);if e and e.Add then e.Add(fn)end end
  bind('LoadScreenClose',function()attempt(true)end)

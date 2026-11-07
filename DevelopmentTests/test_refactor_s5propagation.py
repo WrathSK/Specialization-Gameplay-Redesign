@@ -12,7 +12,8 @@ def bindings():
     for _,name in ipairs({'Commerce','CapitalInvestment','DevelopmentInvestment','ResearchTraditionEffects'})do
      shared[name]={AcceptFact=outside}
     end
-    for _,name in ipairs({'ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair'})do
+    for _,name in ipairs({'ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair',
+     'CultureAesthetic','CultureMeaning','CultureInspiration','CultureInsightsTourism'})do
      shared[name]={AcceptFact=function()return true end}
     end
     function drain()d.Flush();shared.FactBindings.Flush()end
@@ -96,7 +97,7 @@ class Scopes(unittest.TestCase):
         c=bindings();c.execute("""
         shared.Standardization={Refresh=function(pid,id)assert(id==1);calls[#calls+1]='S'end}
         shared.DialogueProjects={Refresh=function()error('LEGACY_EFFECT_RELAY')end,RefreshAccess=function(pid,id)assert(id==1);calls[#calls+1]='P'end}
-        shared.DialogueEffects={Audit=function(s)assert(s.city==nil);calls[#calls+1]='E'end}
+        shared.DialogueEffects={AcceptFact=function(s)assert(s.city==nil);calls[#calls+1]='E';return true end}
         shared.IndustrySupport={Audit=function()error('UNRELATED_RETRY')end}
         shared.ResearchInfrastructure={AcceptFact=function()return true end}
         d.Emit({owner=0,cityID=1,kinds={'IDENTITY'},cause='RESTRUCTURING_COMMITTED'})

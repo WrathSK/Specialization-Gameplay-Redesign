@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0921",
-    "runtime": "B427.454 / modinfo454 source candidate",
+    "status": "S0922",
+    "runtime": "B428.455 / modinfo455 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Move Research Apply and Chair to ordered responsibility while retaining their calculation and exact exits.",
+  "goal": "Give the five local Culture effect owners independent receipts without changing their Great Work or history responsibilities.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Research Apply and Chair independently take their scoped audits — S0921",
+      "selector": "### Local Culture effects take independent ordered audit duties — S0922",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,7 +51,7 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_ordered_audit_receipts.py",
+      "path": "DevelopmentTests/test_refactor_s5d4c5.py",
       "kind": "head",
       "selector": 28,
       "reason": "Rerunnable scoped delivery regression"
@@ -74,7 +74,8 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "329 selected tests including the real three-writer Research composition and one fixed B426 counterexample.",
+    "390 passes in 392 selected tests, two unchanged exact exit/return fixture errors.",
+    "Fixed B427 Meaning refusal and real Insights history availability cases.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -251,6 +252,16 @@
       "source_snapshot_sha256": "90a40aeda5b2b894b229710e0650c9649fb503ca6fd75779a87248a07ed7da34",
       "local_evidence": "local/refactor/O2j-fbefe0f061ad4812ba49af094fbd586f/closure.json",
       "local_evidence_sha256": "f9afc3b37efaea40f14c92e247352c197d2a2de33a319724a342bfd19a2d9afe",
+      "deployed": false
+    },
+    "ordered_local_culture_receipts": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED_WITH_BASELINE_OPEN",
+      "version": "B428.455 / modinfo455",
+      "package_sha256": "6143ca04b89bfa7c05f67a37ac9167b107aa6dbf8b01d00e2d5093739a9836df",
+      "report": "Specialization/Status/Specialization_P0_Status.md#local-culture-effects-take-independent-ordered-audit-duties--s0922",
+      "source_snapshot_sha256": "0b3901e4a649800c8767c1dca3730573707f8d4b51237afc3b4d2266331421dd",
+      "local_evidence": "local/refactor/O2k-9443a7c1312a4f7799fa06cc3931f661/closure.json",
+      "local_evidence_sha256": "564109231a8ec3a3f821fe8027b8970600145f88ce13536158a665bd5fe29b3b",
       "deployed": false
     }
   }

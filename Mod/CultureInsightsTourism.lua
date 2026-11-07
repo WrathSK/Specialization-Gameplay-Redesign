@@ -105,37 +105,49 @@ function M.Start(P,shared)
    d.ready=true
   end)
   d.initializing=false;d.error=not ok and tostring(why):sub(1,180) or nil
+  if ok then SPCRuntimeWork.WakeFactOwner(shared,'CultureInsightsTourism')end
   return ok
  end
- local function audit(scope)
+ local function audit(scope,taking)
+  local complete=true
   local ok,err=pcall(function()
    local seen={}
-   for pid,p in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or scope.player==nil or scope.player==pid)then
+   local covered=SPCRuntimeWork.AuditOwners(P,scope,function(pid,p)
     local function visit(c)
      local k=key(c);seen[k]=true
-     local good,why=pcall(reconcile,pid,c);if not good then d.errors[k]=tostring(why):sub(1,180)end
+     local good,why=pcall(reconcile,pid,c);if not good then d.errors[k]=tostring(why):sub(1,180);complete=false end
     end
-    if scope and scope.city~=nil then local c=p:GetCities():FindID(scope.city);if c and c:GetOwner()==pid then visit(c)end
+    if scope and scope.city~=nil then
+     local c=p:GetCities():FindID(scope.city)
+     if c and SPCRuntimeWork.AuditCityOwned(c,pid,taking)then visit(c)end
     else for _,c in p:GetCities():Members()do if store.Owns(c)then visit(c)end end end
-   end end
-   if not scope or scope.city==nil then
+   end,taking)
+   if (not taking or covered) and (not scope or scope.city==nil)then
     for k,p in pairs(d.records)do if (not scope or scope.player==nil or p.owner==scope.player) and not seen[k]then d.records[k]=nil;d.errors[k]=nil end end
     for k in pairs(d.errors)do
      local pid=tonumber(k:match('^(%d+):'))
      if (not scope or scope.player==nil or pid==scope.player) and not seen[k]then d.errors[k]=nil end
     end
    end
+   return covered and complete
   end)
   d.error=not ok and tostring(err):sub(1,180) or nil
+  return ok and err
  end
- local direct,mark,flush=SPCRuntimeWork.NewAudit(P,shared,d,'CultureInsightsTourism',audit)
+ local direct,mark,flush,accept=SPCRuntimeWork.NewAudit(P,shared,d,'CultureInsightsTourism',audit,{receipts=true})
  d.MarkAudit=mark;d.FlushAudit=flush
- function d.Audit(scope)
-  if d.initializing then mark(scope);return false end
-  if scope and scope.player~=nil and not P.IsTestPlayer(scope.player)then return false end
+ local function refresh(scope,taking)
+  if d.initializing then if not taking then mark(scope)end;return false end
+  if scope and scope.player~=nil then
+   local eligible,_,status=P.IsTestPlayer(scope.player)
+   if not eligible then return taking and status=='INELIGIBLE' or false end
+  end
   if not d.ready and not ready()then return false end
+  if taking then return accept(scope)end
   return direct(scope)
  end
+ function d.Audit(scope)return refresh(scope,false)end
+ function d.AcceptFact(scope)return refresh(scope,true)end
  function d.Describe(pid,c)
   local k=key(c);local p=d.records[k];local err=d.errors[k] or d.error
   local known=p and p.reference==ref(c) and not err

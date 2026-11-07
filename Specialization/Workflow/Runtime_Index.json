@@ -181,9 +181,9 @@
       "provenance": "S0876/B404.431 PU05a:separate per-project consumed ordinal/source-order pending grant;one optional explicit queue reader.101local methods pass with documented Lua51 fixture adapter;new campaign for version2 receipt,PU05b native gap OPEN. Probe/modinfo labels only;no deployment/native PASS."
     },
     "Mod/CultureAesthetic.lua": {
-      "sha256": "05937dbbcba0e05656966706433c55fc7395c0148ca5c77cf1b2287d2a5bb4c2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
-      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "76b7c148d8c5aac6779f360ac5d83c33c106cd5d2b8c3cf67f8863deca9263f1",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
     "Mod/CultureAestheticModel.lua": {
       "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
@@ -191,14 +191,14 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureInsightsTourism.lua": {
-      "sha256": "e565cf6dc3223b42a79e82823818b567c63967cf7b14dc4bfe6a2040c5ecaac3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
-      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "cc489ce107d7469ac98988ba3de3e3a89a5f5ffa25dc721e7a364ad6eb547e87",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
     "Mod/CultureInspiration.lua": {
-      "sha256": "7d7c876096585879e8da9835a512549a3b2670da522d8e3de0fe8304d8225323",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
-      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "e197c0622b023cee9f6833fb9aa31c4ca25683cdec155b26deeada636c5923f4",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
     "Mod/CultureInspirationModel.lua": {
       "sha256": "514fa59c5e95d9cd970b002892496f06f838b06706ee4b8ebf9d4e0018f59180",
@@ -211,9 +211,9 @@
       "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
     },
     "Mod/CultureMeaning.lua": {
-      "sha256": "77af20893b02be893c2e66fcc816d982a069b805d87316632490a5ad90350fe0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
-      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "53304a51312bfd9ad6c8ffaf3d7cf4204c34917f66845154252fb3f2ceda25f9",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
     "Mod/CultureMeaningModel.lua": {
       "sha256": "90d37621b7e5a0bcc28c118a011473816ef8572432e426c08dd2c117844817cb",
@@ -526,9 +526,9 @@
       "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/DialogueEffects.lua": {
-      "sha256": "339f7e682a4095ceafba2821a846437ea2750a4f9a5c880b5cc309225e22e05a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B336_Refactor_S8c3.md",
-      "provenance": "B336.363 Order protected return invalidation before commit; local/static evidence only; no deployment/native PASS."
+      "sha256": "322cff09574c27386c108446959ca4f4d18bf5e8ee7832dbeb7467f09c45de74",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
     "Mod/DialogueModel.lua": {
       "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "e074038556592ead8e86a45d79bf931d0324872e919c4c66e336a169f85fb206",
+      "sha256": "fe67fb7a285e691e4bad9804608886d01c706c381a3bef2eadfa836e5c3dae04",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0921 B427.454 verifies independent Research Apply and Chair takeover and unchanged scoped write order."
+      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -896,9 +896,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "c6104b202d850a1811f648d4fb3fca5932c62f1dd0a54e7c07076921e646c983",
+      "sha256": "6d64f9098e4c3e205be1d919749aab88a88108dc4674c59a8a61ae5273b95971",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0921 B427.454 verifies independent Research Apply and Chair takeover and unchanged scoped write order."
+      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8867b9efe800a7503db0ba878f0c971b74f53a85b0ae5f5d2f4c41fecbb7c6de",
+      "sha256": "af66e03111ac1aa2a81baea766fbdee5bfcccbba0dde713a74e102810e8906ca",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0921 B427.454 verifies independent Research Apply and Chair takeover and unchanged scoped write order."
+      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1586,9 +1586,9 @@
       "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "c0ce42e9924883c96cb2fee2b4ffb027470980de2fbd565cb65b18ba6a5da6c9",
+      "sha256": "9e5387a5e357c842c33371a2de73163e0dcfc41756c9b59e35bb6f41c1ee7475",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0921 B427.454 verifies independent Research Apply and Chair takeover and unchanged scoped write order."
+      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",

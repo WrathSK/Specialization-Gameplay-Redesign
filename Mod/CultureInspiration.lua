@@ -90,6 +90,7 @@ function SPCCultureInspiration.Start(P,shared)
   end)
   d.initializing=false
   if not ok then d.startupFailed=true;d.startupError=tostring(result):sub(1,180)end
+  if ok and result then SPCRuntimeWork.WakeFactOwner(shared,'CultureInspiration')end
   return ok and result
  end
  local function reconcile(pid,c)
@@ -120,38 +121,45 @@ function SPCCultureInspiration.Start(P,shared)
   p.owner=pid;p.cityID=c:GetID();p.reference=reference;p.x=c:GetX();p.y=c:GetY()
   d.records[k]=p;d.errors[k]=nil
  end
- local function audit(scope)
+ local function audit(scope,taking)
+  local complete=true
   local ok,why=pcall(function()
-   for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or scope.player==nil or scope.player==pid)then
+   return SPCRuntimeWork.AuditOwners(P,scope,function(pid,player)
     local cities=player:GetCities();local seen={}
     local function visit(c)
      local k=key(pid,c:GetID());seen[k]=true;P.Count('city_scan')
-     local good,err=pcall(reconcile,pid,c);if not good then d.errors[k]=tostring(err):sub(1,180)end
+     local good,err=pcall(reconcile,pid,c);if not good then d.errors[k]=tostring(err):sub(1,180);complete=false end
     end
     if scope and scope.city~=nil then
-     local c=cities:FindID(scope.city);if c and c:GetOwner()==pid then visit(c)end
+     local c=cities:FindID(scope.city);if c and SPCRuntimeWork.AuditCityOwned(c,pid,taking)then visit(c)end
     else
-     for _,c in cities:Members()do if c:GetOwner()==pid then visit(c)end end
+     for _,c in cities:Members()do if SPCRuntimeWork.AuditCityOwned(c,pid,taking)then visit(c)end end
      for k,p in pairs(d.records)do if p.owner==pid and not seen[k]then d.records[k]=nil end end
      local prefix=pid..':'
      for k in pairs(d.errors)do if k:sub(1,#prefix)==prefix and not seen[k]then d.errors[k]=nil;pendingCleanup[k]=nil end end
     end
-   end end
+   end,taking)
   end)
   d.error=not ok and tostring(why):sub(1,180) or nil
-  return ok
+  return ok and why and complete
  end
- local direct,mark,flush=SPCRuntimeWork.NewAudit(P,shared,d,'CultureInspiration',audit)
+ local direct,mark,flush,accept=SPCRuntimeWork.NewAudit(P,shared,d,'CultureInspiration',audit,{receipts=true})
  d.MarkAudit=mark;d.FlushAudit=flush
- function d.Audit(scope)
-  if d.initializing then mark(scope);return false end
-  if scope and scope.player~=nil and not P.IsTestPlayer(scope.player)then return false end
+ local function refresh(scope,taking)
+  if d.initializing then if not taking then mark(scope)end;return false end
+  if scope and scope.player~=nil then
+   local eligible,_,status=P.IsTestPlayer(scope.player)
+   if not eligible then return taking and status=='INELIGIBLE' or false end
+  end
   if not d.ready then
    local ok,why=pcall(ready)
    if not ok or not why then d.error=not ok and tostring(why):sub(1,180) or d.startupError or 'INSP_NOT_READY';return false end
   end
+  if taking then return accept(scope)end
   return direct(scope)
  end
+ function d.Audit(scope)return refresh(scope,false)end
+ function d.AcceptFact(scope)return refresh(scope,true)end
  function d.CollectionConfirmed(pid)
   if P.IsTestPlayer(pid) and not d.ready then return d.Audit({player=pid})end
  end

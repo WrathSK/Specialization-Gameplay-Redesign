@@ -41,6 +41,28 @@ class CultureProjection(unittest.TestCase):
         for module in ('CultureMeaning','CultureInspiration'):
             l=self.fixture();l.execute("local m=shared['"+module+"'];local id=ownID('"+module+"',a);assert(id);local cap=counts.dc_capture;resetAudits();loss(a,id);pp();assert(a.present[id] and audits['"+module+"']==1 and counts.dc_capture==cap);for n in pairs(audits)do assert(n=='"+module+"',n)end;assert(finalAmount(b,'SCIENCE')==3 and inspiration(b)==6);local w,sc=writes,counts.city_scan;for i=1,1000 do pp()end;assert(writes==w and counts.city_scan==sc)")
         measure('S5d4c5_exact_health',{'owner_audits':1,'D_recaptures':0,'thousand_idle_extra_visits':0})
+    def test_meaning_read_failure_holds_its_duty_without_replaying_inspiration(self):
+        l=self.fixture();l.execute("""
+        local fc=shared.FactChanges;local bindings=shared.FactBindings
+        local owner=shared.CultureMeaning
+        local method=owner.AcceptFact and 'AcceptFact' or 'Audit'
+        local apply=owner[method];local summary=shared.GreatWorkFacts.Summary
+        owner[method]=function(scope)
+         shared.GreatWorkFacts.Summary=function()error('ME_WORKS_TEMPORARILY_UNAVAILABLE')end
+         local ok=apply(scope);shared.GreatWorkFacts.Summary=summary;return ok
+        end
+        resetAudits()
+        fc.Emit({owner=0,cityID=1,kinds={'D'},cause='RELATED_DEPTH'})
+        pp()
+        assert(fc.errors.Binding_CultureMeaning and not fc.errors.Binding_CultureInspiration)
+        assert(finalAmount(a,'SCIENCE')==3 and inspiration(a)==6)
+        assert(audits.CultureMeaning==1 and audits.CultureInspiration==1)
+        owner[method]=apply
+        assert(bindings.Wake('CultureMeaning','FACT_AVAILABLE',fc.sequence,{player=0,city=1}))
+        pp()
+        assert(not fc.errors.Binding_CultureMeaning and audits.CultureMeaning==2 and audits.CultureInspiration==1)
+        """)
+
     def test_live_pillage_repairs_both_existing_policies(self):
         for module in ('CultureMeaning','CultureInspiration'):
             l=self.fixture();l.execute("local id=ownID('"+module+"',a);a.pillaged[id]=true;gp('BuildingPillageStateChanged',0,1,id,true);pp();assert(a.present[id] and not a.pillaged[id]);local w=writes;for i=1,1000 do pp()end;assert(writes==w)")

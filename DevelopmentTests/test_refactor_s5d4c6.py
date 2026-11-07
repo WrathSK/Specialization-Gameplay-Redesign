@@ -32,6 +32,25 @@ def fixture(boot=True):
 
 
 class InsightsHealth(unittest.TestCase):
+    def test_insight_history_receipt_holds_when_current_history_is_unreadable(self):
+        c=fixture();c.load('FactChanges');c.load('FactConsumerBindings')
+        c.execute("""
+        local fc=SPCFactChanges.New(shared);local binding=SPCFactConsumerBindings.New(shared)
+        local before=history();local function emit(topic)
+         fc.Emit({owner=0,cityID=a:GetID(),kinds={'HISTORY'},topic=topic,cause='RELATED_HISTORY'})
+         fc.Flush();binding.Flush()
+        end
+        historyError=true;local work=facts
+        emit('ENGINEERING');assert(facts==work)
+        emit('INSIGHTS')
+        assert(fc.errors.Binding_CultureInsightsTourism and a.present[1] and b.present[1])
+        historyError=false;work=facts
+        for i=1,20 do fc.Flush();binding.Flush()end
+        assert(facts==work)
+        emit('INSIGHTS')
+        assert(not fc.errors.Binding_CultureInsightsTourism and facts==work+1 and history()==before)
+        """)
+
     def test_exact_external_loss_only_target_city_history_identical(self):
         c=fixture();c.execute("local before=history();facts=0;loss(a,1);pp();assert(a.present[1] and b.present[1] and facts==1 and history()==before);local r,w=reads,creates+removes;for i=1,1000 do pp()end;assert(reads==r and creates+removes==w)")
         measure('S5d4c6_exact_history_projection',{'city_fact_reads':1,'permanent_history_writes':0,'thousand_idle_extra_reads':0})

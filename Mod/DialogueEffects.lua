@@ -83,6 +83,7 @@ function SPCDialogueEffects.Start(P,shared)
   end)
   d.initializing=false
   if not ok then d.startupError=tostring(why):sub(1,180)end
+  if ok then SPCRuntimeWork.WakeFactOwner(shared,'DialogueEffects')end
   return ok
  end
  local function reconcile(pid,c)
@@ -151,38 +152,47 @@ function SPCDialogueEffects.Start(P,shared)
   d.records[k]={owner=pid,cityID=c:GetID(),x=c:GetX(),y=c:GetY(),reference=reference,total=total,applied=value,state=state}
   d.errors[k]=nil
  end
- local function audit(scope)
+ local function audit(scope,taking)
+  local complete=true
   local ok,why=pcall(function()
    assert(ready(),d.startupError or 'DIALOGUE_NOT_READY')
-   for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or scope.player==nil or scope.player==pid)then
+   return SPCRuntimeWork.AuditOwners(P,scope,function(pid,player)
     local cities=player:GetCities();local present={}
     local function visit(c)
      local k=key(pid,c:GetID());present[k]=true;P.Count('city_scan')
-     local good,err=pcall(reconcile,pid,c);if not good then d.errors[k]=tostring(err):sub(1,180)end
+     local good,err=pcall(reconcile,pid,c);if not good then d.errors[k]=tostring(err):sub(1,180);complete=false end
     end
-    if scope and scope.city~=nil then local c=cities:FindID(scope.city);if c and c:GetOwner()==pid then visit(c)end
+    if scope and scope.city~=nil then
+     local c=cities:FindID(scope.city)
+     if c and SPCRuntimeWork.AuditCityOwned(c,pid,taking)then visit(c)end
     else
      for _,c in cities:Members()do visit(c)end
      local prefix=pid..':'
      for k in pairs(d.records)do if k:sub(1,#prefix)==prefix and not present[k]then d.records[k]=nil end end
      for k in pairs(d.errors)do if k:sub(1,#prefix)==prefix and not present[k]then d.errors[k]=nil end end
     end
-   end end
+   end,taking)
   end)
   d.error=not ok and tostring(why):sub(1,180) or nil
-  return ok
+  return ok and why and complete
  end
- local direct,mark,flush=SPCRuntimeWork.NewAudit(P,shared,d,'DialogueEffects',audit)
+ local direct,mark,flush,accept=SPCRuntimeWork.NewAudit(P,shared,d,'DialogueEffects',audit,{receipts=true})
  d.MarkAudit=mark;d.FlushAudit=flush
- function d.Audit(scope)
-  if d.initializing then mark(scope);return false end
-  if scope and scope.player~=nil and not P.IsTestPlayer(scope.player)then return false end
+ local function refresh(scope,taking)
+  if d.initializing then if not taking then mark(scope)end;return false end
+  if scope and scope.player~=nil then
+   local eligible,_,status=P.IsTestPlayer(scope.player)
+   if not eligible then return taking and status=='INELIGIBLE' or false end
+  end
   if not d.ready then
    local ok,why=pcall(ready)
    if not ok or not why then d.error=not ok and tostring(why):sub(1,180) or d.startupError or 'DIALOGUE_NOT_READY';return false end
   end
+  if taking then return accept(scope)end
   return direct(scope)
  end
+ function d.Audit(scope)return refresh(scope,false)end
+ function d.AcceptFact(scope)return refresh(scope,true)end
  function d.Describe(pid,c)
   local k=key(pid,c:GetID());local p=d.records[k];local err=d.errors[k] or d.startupError or d.error
   if p and p.reference~=SPCNetworkInput.Reference(c)then p=nil end
