@@ -174,10 +174,12 @@ function M.Start(P,shared)
   return out
  end
  local function network(batch,pid)
-  assert(not batch.networkFailed,batch.networkFailed)
+  if batch.networkFailed then error(batch.networkFailed,0)end
   if batch.network then return batch.network end
   local bridge=assert(shared.NetworkBridge,'CN_NETWORK_UNAVAILABLE');local input=bridge.Input(pid)
   if input.validity=='CONFIRMED_INVALID' then batch.network={input=input,recipients={}};return batch.network end
+  -- The current Bridge already owns a follow-up for its own pending proof.
+  batch.proofPending=bridge.ready and input.revalidation=='NEEDS_REVALIDATION'
   local current=bridge.CurrentCultureBatch(pid,batch.selection)
   assert(current.input.validity=='VERIFIED' and (current.input.effectAvailability=='AVAILABLE' or current.input.effectAvailability==nil and current.input.availability=='AVAILABLE' or current.input.continuityOnly),'CN_NETWORK_PENDING')
   batch.network=current;return current
@@ -239,7 +241,7 @@ function M.Start(P,shared)
      for id,f in pairs(old.provenance or {})do provenance[id]={reference=f.reference,status=f.status=='UNKNOWN' and 'UNKNOWN' or 'RETAINED'}end
      old.provenance=provenance
     end
-    error(reason)
+    error(reason,0)
    end
   end
   assert(c:GetOwner()==pid and ref(c)==reference,'CN_RECEIVER_CHANGED')
@@ -283,13 +285,14 @@ function M.Start(P,shared)
   dirty[pid]=dirty[pid] or {cities={}}
   if cid==nil then dirty[pid].all=true else dirty[pid].cities[cid]=true end
  end
- function d.Audit(scope)
+ local function audit(scope,taking)
   -- Real gameplay events/publications can initialize after a missed UI load event.
-  if scope and scope.player~=nil and (not P.IsTestPlayer(scope.player) or isolated(scope.player))then return end
+  if not taking and scope and scope.player~=nil and (not P.IsTestPlayer(scope.player) or isolated(scope.player))then return false end
   if d.busy then
+   if taking then return false end
    if scope and scope.changed then for cid in pairs(scope.changed)do d.Mark(scope.player,cid)end
    else d.Mark(scope and scope.player,scope and scope.city)end
-   return
+   return false
   end
   d.busy=true;d.error=nil;d.failure=nil
   local phase='DEFINITION_VALIDATION';local failureOwner,failureCity
@@ -317,9 +320,11 @@ function M.Start(P,shared)
       end
      end end
     end
-    initialized=true;d.ready=true
+    initialized=true;d.ready=true;SPCRuntimeWork.WakeFactOwner(shared,'CultureNetwork')
    end
-   for pid,player in pairs(Players)do if P.IsTestPlayer(pid) and not isolated(pid) and (not scope or scope.player==nil or pid==scope.player)then
+   return SPCRuntimeWork.AuditOwners(P,scope,function(pid,player)
+    if isolated(pid)then return true end
+    local accepted=true
     phase='PLAYER_RECONCILIATION';failureOwner=pid;failureCity=nil
     local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true})
     local affected={};local indexed=true
@@ -352,24 +357,39 @@ function M.Start(P,shared)
       for src in pairs(old and old.sources or {})do if changed[src]then visit=true end end
      end
      if visit then
-      local c=player:GetCities():FindID(cid);local k=key(pid,cid)
-      if c and c:GetOwner()==pid then
-       local previous=old and old.diagnosticSignature
-       local ok,err=pcall(reconcile,batch,pid,c);if not ok then d.errors[k]=tostring(err):sub(1,180)end
-       if observe then pcall(observe,pid,c,previous)end
-      else d.records[k]=nil;dependents.Remove(pid,cid);d.errors[k]=nil;forgetSource(pid,cid)end
+      local k=key(pid,cid)
+      local ok,err=pcall(function()
+       local c=player:GetCities():FindID(cid)
+       if c and SPCRuntimeWork.AuditCityOwned(c,pid,taking)then
+        local previous=old and old.diagnosticSignature
+        local applied,why=pcall(reconcile,batch,pid,c)
+        if observe then pcall(observe,pid,c,previous)end
+        if not applied then error(why,0)end
+       else d.records[k]=nil;dependents.Remove(pid,cid);d.errors[k]=nil;forgetSource(pid,cid)end
+      end)
+      if not ok then
+       d.errors[k]=tostring(err):sub(1,180)
+       local reason=diagnosticCode(batch.networkFailed)
+       local expected=batch.proofPending and err==batch.networkFailed
+        and (reason=='CN_NETWORK_PENDING' or reason=='NETWORK_REFRESH_PENDING' or reason=='NETWORK_FACTS_PENDING')
+       if not expected then accepted=false end
+      end
      end
     end
     health(pid,not viewOk and diagnosticCode(view) or 'CN_READY')
-   end end
+    return accepted
+   end,taking)
   end)
-  d.error=not good and tostring(why):sub(1,180) or nil;d.busy=false
+  d.busy=false;d.error=not good and tostring(why):sub(1,180) or nil
   if not good then
    d.failure=SPCExpeditionTrainingDiagnostics.Failure(why,phase)
    d.failure.owner=failureOwner;d.failure.city=failureCity
    health(scope and scope.player,d.failure.errorCode,d.failure)
   end
+  return good and why==true
  end
+ function d.Audit(scope)audit(scope,false)end
+ function d.AcceptFact(scope)return audit(scope,true)end
  -- The successful Insight writer actively calls this in the same event.
  -- History is an effect input, not a topology signature: update dependent cities
  -- directly, or request the outstanding route proof and let recovery notify us.

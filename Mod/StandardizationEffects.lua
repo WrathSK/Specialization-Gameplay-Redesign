@@ -244,13 +244,14 @@ function SPCStandardizationEffects.Start(P,shared)
   old.sources=sources;replaceDependencies(pid,c:GetID(),sources);old.loaded=loaded;old.retained=held;d.errors[k]=reason
   observe(pid,c,old,reason)
  end
- function d.Audit(scope)
+ local function audit(scope,taking)
   local store=shared.CityProgressionStore
-  if store and store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return end
+  if store and store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return false end
   if d.busy then
+   if taking then return false end
    if scope and scope.changed then for cid in pairs(scope.changed)do mark(scope.player,cid)end
    else mark(scope and scope.player,scope and scope.city)end
-   return
+   return false
   end
   d.busy=true
   local good,why=pcall(function()
@@ -264,9 +265,10 @@ function SPCStandardizationEffects.Start(P,shared)
       if not P.IsTestPlayer(pid)then write(c,present(c),{})end
      end end
     end
-    initialized=true;d.ready=true
+    initialized=true;d.ready=true;SPCRuntimeWork.WakeFactOwner(shared,'StandardizationEffects')
    end
-   for pid,p in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or scope.player==nil or scope.player==pid)then
+   return SPCRuntimeWork.AuditOwners(P,scope,function(pid,p)
+    local accepted=true
     local batch={sources={}};local ok,view=pcall(network,batch,pid)
     if ok then batch.view=view else batch.networkError=code(view)end
     local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true});local live={}
@@ -286,18 +288,24 @@ function SPCStandardizationEffects.Start(P,shared)
       for id in pairs(old and old.sources or {})do if changed[id]then visit=true end end
      end
      if visit then
-      local success,err=pcall(reconcile,batch,pid,c)
-      if not success then d.errors[k]=code(err)
+      local success,err=pcall(function()
+       if not taking or SPCRuntimeWork.AuditCityOwned(c,pid,true)then reconcile(batch,pid,c)end
+      end)
+      if not success then accepted=false;d.errors[k]=code(err)
        if trace then trace.Record('INDUSTRY_STANDARDIZATION',{owner=pid,city=cid,readStatus='PENDING',reason=d.errors[k]})end
       end
      end
     end
     for k,r in pairs(d.records)do if r.owner==pid and not live[k]then d.records[k]=nil;dependents.Remove(pid,r.city);d.errors[k]=nil;cleaned[k]=nil end end
-   end end
+    return accepted
+   end,taking)
   end)
   d.error=not good and code(why) or nil;d.busy=false
   if d.error and trace then trace.Record('INDUSTRY_STANDARDIZATION',{readStatus='PENDING',reason=d.error})end
+  return good and why==true
  end
+ function d.Audit(scope)audit(scope,false)end
+ function d.AcceptFact(scope)return audit(scope,true)end
  function d.SourceChanged(pid,cid)
   if not P.IsTestPlayer(pid)then return end
   d.Audit({player=pid,changed={[cid]=true}})

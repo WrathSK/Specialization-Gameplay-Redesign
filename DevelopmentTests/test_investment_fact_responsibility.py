@@ -14,7 +14,7 @@ shared.ResearchTraditionEffects={AcceptFact=function(e)
  return fc.Receipt(e,'IRRELEVANT','FIXTURE_OUTSIDE_SCOPE')
 end}
 for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair',
- 'CultureAesthetic','CultureMeaning','CultureInspiration','CultureInsightsTourism','DialogueEffects','ResearchCross','IndustrySupport'})do
+ 'CultureAesthetic','CultureMeaning','CultureInspiration','CultureInsightsTourism','DialogueEffects','ResearchCross','IndustrySupport','StandardizationEffects','CultureNetwork'})do
  shared[name]={AcceptFact=function()return true end}
 end
 function deliver()

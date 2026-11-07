@@ -13,7 +13,7 @@ def bindings():
      shared[name]={AcceptFact=outside}
     end
     for _,name in ipairs({'ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair',
-     'CultureAesthetic','CultureMeaning','CultureInspiration','CultureInsightsTourism','ResearchCross'})do
+     'CultureAesthetic','CultureMeaning','CultureInspiration','CultureInsightsTourism','ResearchCross','StandardizationEffects','CultureNetwork'})do
      shared[name]={AcceptFact=function()return true end}
     end
     function drain()d.Flush();shared.FactBindings.Flush()end
@@ -76,7 +76,7 @@ class PhaseBarrier(unittest.TestCase):
 class Scopes(unittest.TestCase):
     def test_source_city_union_and_owner_dominance_remove_narrow_receipt(self):
         c=bindings();c.execute("""
-        shared.StandardizationEffects={Audit=function(s)assert(s.changed[1] and s.changed[2] and not s.city);calls[#calls+1]='S'end}
+        shared.StandardizationEffects={AcceptFact=function(s)assert(s.changed[1] and s.changed[2] and not s.city);calls[#calls+1]='S';return true end}
         d.Emit({owner=0,cityID=1,kinds={'HISTORY'},topic='TEMPLATES',cause='COMMIT'});d.Emit({owner=0,cityID=2,kinds={'HISTORY'},topic='ENGINEERING',cause='COMMIT'});drain();assert(#calls==1)
         shared.Lv3Effects={Audit=function(s)assert(s.player==0 and s.city==nil and s.investment==nil);calls[#calls+1]='O'end}
         d.Emit({owner=0,cityID=1,kinds={'ACTIVE'},cause='INVESTMENT_COMMITTED',investment={status='COMMITTED'}})

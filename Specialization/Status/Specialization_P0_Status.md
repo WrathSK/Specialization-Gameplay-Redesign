@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0923
-Implementation Build: source B429.456 / modinfo456, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
+Status Revision: S0924
+Implementation Build: source B430.457 / modinfo457, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ORDERED_SAMPLED_EFFECT_RECEIPTS_LOCAL_COMPLETE_O2_CONTINUES
+Work State: ORDERED_NETWORK_EFFECT_RECEIPTS_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Passive network effects independently take their existing audit scopes — S0924
+
+Standardization and the Culture network effect take ordered fact receipts after the existing owner/source-group audit. A busy or unconfirmed recipient keeps its own receipt. A fresh history notification can request the existing proof once as before. Recovery of a receipt does not repeat a proof request. The current cold/warm D1 protection, real negative facts, Store, proof validation and transaction fences remain separate and unchanged.
+
+- **Runtime Impact Contract (L3, T01/T02/T03/T05/T08).** Both owners retain the original publish order, scopes, reverse-dependency lookup, and native readiness and exit hooks. The existing Bridge owns verified proof follow-up when it reports `NEEDS_REVALIDATION`. Other read or execution failures hold the corresponding receipt. No new source capture, native listener, schedule or persistent work. Nineteen declared recipients yield a two-batch ceiling of 77,824 receipts. The real D producer admits 2,048 scopes and 26,624 receipts with thirteen interested receivers in local composition. The absent Culture network mock groups its source duties in one original owner audit.
+- **LOCAL_SIMULATION_PASS in scope.** Paired real Bridge/Standardization/Culture fixtures at fixed B429 and current source both take six effective-fact reads, two derived reads, eight carrier operations, and two existing proof-request calls for the same two history changes and yield the same projection. Busy and unknown cases retain only the affected receiver, recover on a relevant fact or named readiness, and make no additional idle or proof-request calls. An actual Bridge proof restores the projected effects from pending while strict transaction access remains blocked during pending. 434 of 437 checks pass. The two existing exact exit/return errors and an old Bridge first-unknown-role assertion fail identically on fixed B429 and remain open. The SQL replay uses the pinned B413 HD database as in S0922.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo references resolved. Package SHA256 `6eff65dc72c55025ac5d3866f7068a09b33d6554733d1fad1780467b5daccef0`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol test_ordered_audit_receipts test_tradition_fact_responsibility test_refactor_s5propagation.PhaseBarrier test_refactor_s5propagation.Scopes test_refactor_s5d1.Kernel test_scoped_depth_write test_refactor_s5propagation.ActualInvestment test_refactor_s9e7.UnscopedRouting test_refactor_s5d4c7 test_refactor_s9d1b.Witness test_refactor_s9d1b.WriteBarrier test_pu04_negative test_refactor_s5d4a test_refactor_s5d1.Writers.test_actual_apply_chair_one_city_keeps_sibling_carriers_errors test_refactor_s5d1.Writers.test_actual_chair_busy_second_city_retained_until_publish test_refactor_s5d1.Writers.test_actual_apply_chair_owner_read_failure_is_city_isolated test_refactor_s5d4c4.AestheticHealth test_refactor_s5d4c5.CultureProjection test_refactor_s5d4c6.InsightsHealth test_refactor_s5d3.Dialogue test_refactor_s5history.Bindings test_sampled_effect_fact_receipts test_refactor_s4a.Industry test_refactor_s4a.IndustryReentry test_refactor_s5d1.Writers.test_actual_cross_scoped_plan_and_error_are_not_globally_replaced test_refactor_s5d1.Writers.test_actual_cross_busy_cause_is_processed_once test_refactor_s5d1.Writers.test_actual_cross_owner_read_failure_is_city_isolated test_network_effect_fact_receipts test_refactor_s4b`. Tested source SHA256 `bde0dfdd04e454cfe0dacab4b2ea4cc02b338c8f8edfff7a845e76709a892843`. Full local evidence `local/refactor/O2m-805d033215e544f18cff879fc6a1f5f4/closure.json`, SHA256 `ef483984c12cb094043eb6c2f44d7198835a77b58ccdb362b1b6a3af0c00f44e`. [Rerunnable regression](../../DevelopmentTests/test_network_effect_fact_receipts.py)
+
+No Owner decision or user testing is needed at this checkpoint. Primary continues with the direct Industry Wonder effect receiver. Live remains B414.441.
 
 ### Sample-backed Research Cross and Industry Support take scoped duties — S0923
 

@@ -36,8 +36,8 @@ function SPCFactConsumerBindings.New(shared)
   {target='CultureInsightsTourism',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'INSIGHTS'}},
   {target='DialogueEffects',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'DIALOGUE'}},
   {target='ResearchTraditionEffects',takeover='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'TRADITION'}},
-  {target='StandardizationEffects',method='Audit',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'TEMPLATES','ENGINEERING'}},
-  {target='CultureNetwork',method='Audit',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D','NETWORK','HISTORY'},topics={'INSIGHTS'}},
+  {target='StandardizationEffects',method='Audit',ordered='AcceptFact',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'TEMPLATES','ENGINEERING'}},
+  {target='CultureNetwork',method='Audit',ordered='AcceptFact',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D','NETWORK','HISTORY'},topics={'INSIGHTS'}},
   {target='EngineeringStudy',method='CreditChanged',kinds={'HISTORY'},topics={'WONDER_CREDIT'}},
   {target='DialogueProjects',method='RefreshAccess',cityOnly=true,kinds=role},
   {target='Commerce',takeover='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','HISTORY','NETWORK'},topics={'COMMERCE'}},
@@ -49,7 +49,7 @@ function SPCFactConsumerBindings.New(shared)
   for cause in pairs(row.ownerCauses)do if e.causes[cause]then return true end end
   return false
  end
- local function collect(row,e,resolve,sampleOnly)
+ local function collect(row,e,resolve,signal)
   if row.ownerCauses and e.city==nil and not ownerAllowed(row,e)then
    if resolve then return registry.Receipt(e,'IRRELEVANT','OUTSIDE_AUDIT_SCOPE')end
    return
@@ -60,7 +60,7 @@ function SPCFactConsumerBindings.New(shared)
   local owners=pending[row.target] or {};pending[row.target]=owners
   local key=tostring(e.player);local q=owners[key]
   if not q then q={player=e.player,cities={},order={},proofs={},references={},topics={},causes={}};owners[key]=q end
-  if sampleOnly then q.sample=true;return end
+  if signal then q[signal]=true;return end
   if e.city==nil then q.all=true;q.proofs={}
   elseif not q.cities[e.city]then
    assert(#q.order<2048,'FACT_BINDING_SCOPE_LIMIT');q.cities[e.city]=true;q.order[#q.order+1]=e.city;q.references[e.city]=e.reference
@@ -115,7 +115,12 @@ function SPCFactConsumerBindings.New(shared)
    end,{kinds=row.kinds,topics=row.topics,delivery='RESPONSIBILITY',ordered=true})
    -- Keep the existing sampler dirty signal tied to new producer causes.
    -- A held effect audit waking on availability must not ask UI to resample.
-   if row.sample then subscribeLegacy(row,function(e)collect(row,e,nil,true)end,'_Source')end
+   if row.sample then subscribeLegacy(row,function(e)collect(row,e,nil,'sample')end,'_Source')end
+   -- A fresh history cause may request the existing proof. Receipt recovery
+   -- alone must not repeat that side effect from retained history.
+   if row.request then subscribeLegacy(row,function(e)
+    if next(e.topics)then collect(row,e,nil,'requestProof')end
+   end,'_Proof')end
   else
    subscribeLegacy(row,function(e)collect(row,e)end)
   end
@@ -167,8 +172,9 @@ function SPCFactConsumerBindings.New(shared)
    if failure then error(failure,0)end;return
   end
   if row.source then
-   call({player=q.player,changed=not q.all and q.cities or nil})
-   if row.request and next(q.topics)then
+   local accepted=call({player=q.player,changed=not q.all and q.cities or nil})
+   complete(covered,accepted)
+   if q.requestProof then
     local bridge=target('NetworkBridge');if bridge and bridge.RequestPendingProof then bridge.RequestPendingProof(q.player)end
    end
   elseif row.method=='Audit'then

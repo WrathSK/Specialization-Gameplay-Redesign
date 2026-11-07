@@ -73,7 +73,7 @@ class Bindings(unittest.TestCase):
     def test_declared_consumers_isolate_failure_scope_and_idle_budget(self):
         c=Context();c.load('FactChanges');c.load('FactConsumerBindings');c.execute("""
         d=SPCFactChanges.New(shared);calls={};shared.CultureInsightsTourism={AcceptFact=function(e)assert(e.player==0 and e.city==1);error('BROKEN_TOURISM')end}
-        shared.CultureNetwork={Audit=function(e)assert(e.player==0 and e.changed[1]);calls[#calls+1]='network'end}
+        shared.CultureNetwork={AcceptFact=function(e)assert(e.player==0 and e.changed[1]);calls[#calls+1]='network';return true end}
         shared.DialogueEffects={AcceptFact=function()error('UNRELATED')end};SPCFactConsumerBindings.New(shared)
         d.Emit({owner=0,cityID=1,kinds={'HISTORY'},topic='INSIGHTS',cause='INSIGHTS_COMMITTED'});d.Flush();shared.FactBindings.Flush()
         assert(#calls==1 and d.errors.Binding_CultureInsightsTourism and not d.errors.Binding_DialogueEffects
@@ -84,7 +84,7 @@ class Bindings(unittest.TestCase):
         c=Context();c.load('FactChanges');c.load('FactConsumerBindings');c.execute("""
         d=SPCFactChanges.New(shared);calls=0;failedCalls=0;shared.StartStatus={DialogueEffects={state='FAILED'}}
         shared.DialogueEffects={AcceptFact=function()failedCalls=failedCalls+1;error('FAILED_TARGET_LIVE')end}
-        shared.StandardizationEffects={Audit=function(e)assert(e.player==0 and e.changed[2]);calls=calls+1 end}
+        shared.StandardizationEffects={AcceptFact=function(e)assert(e.player==0 and e.changed[2]);calls=calls+1;return true end}
         SPCFactConsumerBindings.New(shared);d.Emit({owner=0,cityID=2,kinds={'HISTORY'},topic='TEMPLATES',cause='TEMPLATES_COMMITTED'});d.Emit({owner=0,cityID=1,kinds={'HISTORY'},topic='DIALOGUE',cause='DIALOGUE_COMMITTED'});d.Flush();shared.FactBindings.Flush();assert(calls==1 and failedCalls==0 and d.errors.Binding_DialogueEffects)
         """)
     def test_late_binding_factory_failure_quarantines_registered_observers(self):

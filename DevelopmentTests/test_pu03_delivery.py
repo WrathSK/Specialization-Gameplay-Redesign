@@ -65,7 +65,7 @@ def pipeline():
           shared.ResearchTraditionEffects={AcceptFact=outside}
           -- This proof/Commerce composition has no local effect projections.
           for _,name in ipairs({'ResearchInfrastructure','ResearchSupport','Lv2Housing','Lv2GPP','ResearchApply','ResearchChair',
-           'CultureAesthetic','CultureMeaning','CultureInspiration','CultureInsightsTourism','DialogueEffects','ResearchCross','IndustrySupport'})do
+           'CultureAesthetic','CultureMeaning','CultureInspiration','CultureInsightsTourism','DialogueEffects','ResearchCross','IndustrySupport','StandardizationEffects','CultureNetwork'})do
            shared[name]={AcceptFact=function()return true end}
           end
           function drain()fc.Flush();bindings.Flush();Events.GameCoreEventPublishComplete.Fire()end
@@ -203,7 +203,7 @@ class ActualChain(unittest.TestCase):
         l=pipeline();l.execute("""
           local emit=fc.EmitDerived
           fc.EmitDerived=function(e)emit(e);error('AFTER_REGISTERING_SCOPE')end
-          proof();local rev=net.ProofRevision(0);assert(net.players[0].notificationIntent and fc.retained==3)
+          proof();local rev=net.ProofRevision(0);assert(net.players[0].notificationIntent and fc.retained==5)
           drain();local writes=com.writes;assert(fc.retained==0)
           fc.EmitDerived=emit;net.RefreshFacts(0);drain()
           assert(not net.players[0].notificationIntent and net.ProofRevision(0)==rev and com.writes==writes and fc.retained==0)
@@ -262,8 +262,8 @@ class ActualChain(unittest.TestCase):
         l=pipeline();l.execute('''
           local take=com.AcceptFact;local once=true;local calls=0
           com.AcceptFact=function(e)calls=calls+1;local receipt=take(e);if once then once=false;proof()end;return receipt end
-          -- The newer proof still owns Commerce plus both investment deliveries.
-          proof();fc.Flush();bindings.Flush();assert(calls==1 and fc.retained==3)
+          -- The new proof still owns Commerce, both investment and both passive effect receipts.
+          proof();fc.Flush();bindings.Flush();assert(calls==1 and fc.retained==5)
           drain();assert(calls==2 and fc.retained==0)
         ''')
 
