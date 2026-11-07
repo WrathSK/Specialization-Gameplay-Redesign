@@ -1,6 +1,10 @@
 -- Declared per-Gameplay fact propagation. No native reads, persistent state or timer.
 SPCFactChanges={}
 local M=SPCFactChanges
+local SCOPE_LIMIT=2048
+-- Reservation replaces all older entries for this receiver and scope. Only
+-- phase-zero derived work can also leave a separately queued next batch.
+local RECEIPT_BATCHES=2
 local K={IDENTITY=true,POTENTIAL=true,ACTIVE=true,D=true,WORKERS=true,HISTORY=true,NETWORK=true}
 local function token(v)return type(v)=='string' and #v>0 and #v<=64 and v:match('^[A-Za-z][A-Za-z0-9_]*$')end
 local function integer(v)return type(v)=='number' and v>=0 and v<9007199254740992 and v%1==0 end
@@ -47,8 +51,9 @@ function M.New(shared)
  local previous=shared.FactChanges
  if previous and type(previous.Close)=='function'then previous.Close()end
  M.epoch=(M.epoch or 0)+1
- local d={epoch=M.epoch,sequence=0,emitted=0,delivered=0,pending=0,retained=0,retryReady=0,errors={},closed=false}
+ local d={epoch=M.epoch,sequence=0,emitted=0,delivered=0,pending=0,retained=0,retainedScopes=0,retryReady=0,errors={},closed=false}
  local consumers,order,queue,keys={},{},{},{};local responsibilityOrder={};local busy=false
+ local scopeReceipts={}
  local activePhase,activeConsumer,activeWork,activeKeys,deriving
  d.flushRevision=0
  -- Session-local authority stamps, not fact values. Owner scope covers pool membership:
@@ -107,8 +112,12 @@ function M.New(shared)
   assert(next(set) and (topic==nil or token(topic)),'FACT_COMMIT_KINDS')
   invalidate(owner,cityID,set,topic)
  end
- -- Opt-in ordinary responsibility delivery shares this registry and scope cap.
- -- Reserve before Emit commits: capacity failure cannot consume a producer intent.
+ -- A scope is counted once, independent of the number of subscribers. Check
+ -- both budgets before committing any reservation or changing the queue.
+ local function checkCapacity(scopes,receipts,receiverCount)
+  assert(d.retained+receipts<=SCOPE_LIMIT*RECEIPT_BATCHES*receiverCount,'FACT_DELIVERY_RECEIVER_LIMIT')
+  assert(d.retainedScopes+scopes<=SCOPE_LIMIT,'FACT_DELIVERY_SCOPE_LIMIT')
+ end
  local interested
  local function merged(previous,row)
   if not previous then return row end
@@ -135,6 +144,8 @@ function M.New(shared)
   table.sort(replaced,function(a,b)return a.row.sequence<b.row.sequence end)
   local prior
   for _,old in ipairs(replaced)do prior=merged(prior,old.row)end
+  -- Share the detached row until a receiver needs its own retained history.
+  -- Only a fresh copy leaves this registry during an attempt.
   return {key=slot(key,row.deliveryBatch),scope=key,batch=row.deliveryBatch,row=merged(prior,row),state='QUEUED',wakes={},replaces=replaced}
  end
  local function remove(consumer,entry)
@@ -144,6 +155,11 @@ function M.New(shared)
   consumer.deliveries[entry.key]=nil
   local scope=consumer.byScope[entry.scope]
   if scope then scope[entry.batch]=nil;if not next(scope)then consumer.byScope[entry.scope]=nil end end
+  local receipts=scopeReceipts[entry.scope]-1
+  if receipts==0 then
+   scopeReceipts[entry.scope]=nil
+   d.retainedScopes=d.retainedScopes-1
+  else scopeReceipts[entry.scope]=receipts end
   d.retained=d.retained-1;return true
  end
  local function install(consumer,entry)
@@ -151,6 +167,9 @@ function M.New(shared)
   entry.replaces=nil
   consumer.deliveries[entry.key]=entry;consumer.byScope[entry.scope]=consumer.byScope[entry.scope] or {}
   consumer.byScope[entry.scope][entry.batch]=entry;d.retained=d.retained+1
+  local receipts=scopeReceipts[entry.scope]
+  if not receipts then d.retainedScopes=d.retainedScopes+1 end
+  scopeReceipts[entry.scope]=(receipts or 0)+1
  end
  function d.Receipt(event,status,reason)
   local v=type(event)=='table' and getmetatable(event)==nil and event.delivery
@@ -179,8 +198,15 @@ function M.New(shared)
    responsibility=options.delivery~=nil,deliveries={},byScope={},failures=0}
   local reserved={}
   if consumer.responsibility then
-   for _,key in ipairs(keys)do local row=queue[key];if interested(consumer,row)then reserved[#reserved+1]=prepare(consumer,key,row)end end
-   assert(d.retained+#reserved<=2048,'FACT_DELIVERY_SCOPE_LIMIT')
+   local scopes=0
+   for _,key in ipairs(keys)do
+    local row=queue[key]
+    if interested(consumer,row)then
+     reserved[#reserved+1]=prepare(consumer,key,row)
+     if not scopeReceipts[key]then scopes=scopes+1 end
+    end
+   end
+   checkCapacity(scopes,#reserved,#responsibilityOrder+1)
   end
   consumers[name]=consumer;order[#order+1]=name
   if consumer.responsibility then responsibilityOrder[#responsibilityOrder+1]=name end
@@ -202,7 +228,7 @@ function M.New(shared)
   local moved=transfer(event.transfer,event.owner,event.cityID)
   local key=atom(event.owner)..atom(event.cityID)..atom(event.reference)
   local previous=queue[key]
-  assert(previous or #keys<2048,'FACT_QUEUE_LIMIT')
+  assert(previous or #keys<SCOPE_LIMIT,'FACT_QUEUE_LIMIT')
   local row={player=event.owner,city=event.cityID,reference=event.reference,kinds={},causes={},topics={},revisions={},
    deliveryBatch=deriving and d.flushRevision or d.flushRevision+1}
   if previous then
@@ -235,7 +261,8 @@ function M.New(shared)
     local entry=prepare(consumer,key,row);reserved[#reserved+1]={consumer,entry};added=added+1-#entry.replaces
    end
   end
-  assert(d.retained+added<=2048,'FACT_DELIVERY_SCOPE_LIMIT')
+  local newScope=#reserved>0 and not scopeReceipts[key] and 1 or 0
+  checkCapacity(newScope,added,#responsibilityOrder)
   invalidate(event.owner,event.cityID,kinds,event.topic) -- zero native calls; visible before deferred delivery
   d.sequence=row.sequence;d.emitted=d.emitted+1
   if not previous then keys[#keys+1]=key;d.pending=#keys end
@@ -357,7 +384,8 @@ function M.New(shared)
   busy=false;activePhase=nil;activeConsumer=nil;activeWork=nil;activeKeys=nil;return true
  end
  function d.Close()
-  queue={};keys={};consumers={};order={};responsibilityOrder={};d.pending=0;d.retained=0;d.retryReady=0;d.closed=true
+  queue={};keys={};consumers={};order={};responsibilityOrder={};scopeReceipts={}
+  d.pending=0;d.retained=0;d.retainedScopes=0;d.retryReady=0;d.closed=true
   if shared.FactChanges==d then shared.FactChanges=nil end
  end
  return d

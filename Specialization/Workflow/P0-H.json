@@ -11,20 +11,20 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0915",
-    "runtime": "B421.448 / modinfo448 source candidate",
+    "status": "S0916",
+    "runtime": "B422.449 / modinfo449 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Fence strict use before fallible committed D delivery and measure the next fan-out boundary.",
+  "goal": "Keep the current fact scope capacity while separately bounding independent recipient duties.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Committed D changes fence strict use before enqueue — S0915",
+      "selector": "### Fact scope capacity independent of recipient count — S0916",
       "reason": "Current local checkpoint, measured scope and remaining gates"
     },
     {
@@ -51,10 +51,10 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_depth_invalidation_delivery.py",
+      "path": "DevelopmentTests/test_fact_delivery_capacity.py",
       "kind": "head",
-      "selector": 22,
-      "reason": "Rerunnable strict-use regressions at current bounds"
+      "selector": 28,
+      "reason": "Rerunnable exact scope and receipt boundary regressions"
     }
   ],
   "dependencies": [
@@ -71,11 +71,11 @@
     "Review current Store and exact exit owners only if advancing the later O5b/startup or O1 dependency boundary."
   ],
   "non_scope": [
-    "Receipt/scope cap redefinition, remaining O2 owners, O3–O8, native/UI validation, deployment and main promotion."
+    "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "Three exact B420 counterexamples; all B421 D boundary cases pass.",
-    "227 selected checks and 2,048/1,024/512 fact-scope replay.",
+    "231 local checks and fixed B421 fan-out comparison.",
+    "2,048 distinct scopes and 12,288 receipts tested at separate limits; full reentry and B421 strict-use regressions.",
     "Lua51, XML/manifest and Context Lock."
   ],
   "full_audit_triggers": [
@@ -192,6 +192,16 @@
       "source_snapshot_sha256": "82691ca01024f98128bc1f85071b04cf606885f7c8efdda61bd6514765d13381",
       "local_evidence": "local/refactor/O2d-286c9146756b42529b8a4c6cefb2195c/closure.json",
       "local_evidence_sha256": "a08379c723cd0b1087e4e46883f447210290420a275489c830fc1dd4c716f75b",
+      "deployed": false
+    },
+    "fact_scope_receipt_capacity": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "version": "B422.449 / modinfo449",
+      "package_sha256": "1dda76d146c562e1bbb26a0c7b3bbf0ca267fcb0ca7e2f9b038f54e4b99e4ec6",
+      "report": "Specialization/Status/Specialization_P0_Status.md#fact-scope-capacity-independent-of-recipient-count--s0916",
+      "source_snapshot_sha256": "c4652697ccc71324d4c373e72b864dda5c6fe47f786ec9c79d367746b6104aff",
+      "local_evidence": "local/refactor/O2e-6f3261f2c06d4f2480392a7121186567/closure.json",
+      "local_evidence_sha256": "cc69201cfd671f51f28829902f0b6b1d11b588980f1bfcef3a8ee861e4be6e10",
       "deployed": false
     }
   }

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="448">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="449">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B421.448：排队失败时仍使已变化的事实失效。</Description>
+    <Description>B422.449：分别限制事实范围和接收回执。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

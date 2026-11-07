@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0915
-Implementation Build: source B421.448 / modinfo448, local fact delivery candidate. Live B414.441 from72fe54d; stable/main B307.334.
+Status Revision: S0916
+Implementation Build: source B422.449 / modinfo449, local fact delivery candidate. Live B414.441 from 72fe54d; stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: DEPTH_STRICT_USE_FENCE_LOCAL_COMPLETE_O2_CAPACITY_DECISION
+Work State: FACT_SCOPE_RECEIPT_CAPACITY_LOCAL_COMPLETE_O2_CONTINUES
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Fact scope capacity independent of recipient count — S0916
+
+The Owner approved separate scope and recipient budgets. FactChanges retains 2,048 distinct owner/city/reference scopes in one Gameplay context. Ordinary publication retains its existing 2,048-scope limit per snapshot. Each acknowledged recipient still owns its exact ticket, wake and failure state. The detached event row is shared where safe, with a separate retained view when a receiver needs its own history and a private copy passed to each callback.
+
+- **Runtime Impact Contract (L3, T02/T03/T05/T08).** Reserve both budgets before accepting a change. The receipt cap is `2,048 × 2 × declared responsibility recipients`, or 12,288 for the three current recipients. Replacing earlier entries leaves at most the active/older entry and a separate next-snapshot entry per recipient/scope. Allocate on demand and release on exact ACK, supersession or context close. A scalar refcount removes the shared scope when its last recipient releases it. The dispatch fan-out and phase order remain the same. No new reads, native hooks, persistent state, idle work, aggregation policy or retry.
+- **LOCAL_SIMULATION_PASS.** With one, two or four interested receivers, fixed B421 replay admitted 2,048 / 1,024 / 512 scopes using the real D publisher and Commerce. The four-receiver candidate accepts 2,048 scopes with 8,192 receipts and 6,144 modeled extra receiver callbacks. The drain creates zero carrier writes. The two-phase fixture holds 12,288 receipts and refuses the 12,289th; the separate scope bound refuses a new scope while a receipt slot is available. Tests also cover late registration, partial failures, independent retained history, reentry, reference/epoch, same-turn changes and the existing B421 strict-transaction fence. 231 selected checks pass. These are local counts, with native workload and timing still unmeasured.
+- **STATIC_CONFIRMED and reproduction.** 223 Lua51 compiles, 32 XML/artdef/dep/modinfo parses and 352 package files, with modinfo file references resolved. Package SHA256 `1dda76d146c562e1bbb26a0c7b3bbf0ca267fcb0ca7e2f9b038f54e4b99e4ec6`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. `python3.14 -m unittest test_fact_delivery_capacity test_depth_invalidation_delivery test_pu01_fact_use test_refactor_s5c1 test_refactor_s6a test_fact_owner_eligibility test_investment_fact_responsibility test_commerce_fact_responsibility test_pu03_delivery test_refactor_s6f test_pu06b_reputation_use test_pu06c_capital_terms test_refactor_s9b1.Policy test_refactor_s9b1.Protocol`. Tested source SHA256 `c4652697ccc71324d4c373e72b864dda5c6fe47f786ec9c79d367746b6104aff`. Full local evidence `local/refactor/O2e-6f3261f2c06d4f2480392a7121186567/closure.json`, SHA256 `cc69201cfd671f51f28829902f0b6b1d11b588980f1bfcef3a8ee861e4be6e10`. [Rerunnable capacity regression](../../DevelopmentTests/test_fact_delivery_capacity.py)
+
+No Owner decision or user testing is needed now. Primary continues named takeover of the remaining effect owners at their existing calculation phase and preserves their exit responsibilities. Live remains B414.441.
 
 ### Committed D changes fence strict use before enqueue — S0915
 

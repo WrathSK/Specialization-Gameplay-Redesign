@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "0c059e717a384be4395b03239e1f810ea43b31eb81aaed0c4b10d247489337ce",
+      "sha256": "4d4e8ab0ee9e95dbb774de28c089be925f1d17d13f7e1ad676abe6308ac80547",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B421.448 / S0915 committed D and strict-use protection at the current queue and receipt bounds."
+      "provenance": "B422.449 / modinfo449 / S0916 independent scope and recipient capacity with existing receipt and phase semantics."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "cd32f54a724be41cda718ac9f4f5b39ab6fc658f54d53398f56a03bcf8a3d81d",
+      "sha256": "e73c37cd4ca9cca2808b5db58584f16dc2216741494ebfc6eb70ccbb4c23bdda",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B421.448 / S0915 committed D and strict-use protection at the current queue and receipt bounds."
+      "provenance": "B422.449 / modinfo449 / S0916 independent scope and recipient capacity with existing receipt and phase semantics."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1581,9 +1581,9 @@
       "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
     },
     "Mod/FactChanges.lua": {
-      "sha256": "33bc904c752173854f8b4f6879223b9461751ac36cc2c638e8910359e5c3d778",
+      "sha256": "664c58306d713b8d9adfd8f727bd6c111c921d0b039ab5d8011f23cdd059180e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B421.448 / S0915 committed D and strict-use protection at the current queue and receipt bounds."
+      "provenance": "B422.449 / modinfo449 / S0916 independent scope and recipient capacity with existing receipt and phase semantics."
     },
     "Mod/FactConsumerBindings.lua": {
       "sha256": "0a238224905bc035dd599a02252b927b7075ef41ddc19e73de674ccadbb2f3ab",
