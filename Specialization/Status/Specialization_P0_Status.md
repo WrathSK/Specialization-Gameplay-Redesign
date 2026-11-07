@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0900
-Implementation Build: source B413.440 / modinfo440; recorded live B399.426 from4915170; stable/main B307.334
+Status Revision: S0901
+Implementation Build: source/live B413.440 / modinfo440 from02d732e; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: B413_RECHECK_CLOSED_AWAITING_DEPLOYMENT_APPROVAL
+Work State: B413_DEPLOYED_AWAITING_OWNER_NATIVE_EVIDENCE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Approved B413 deployment complete — S0901
+
+2026-11-06 Owner explicitly approved deployment of the verified B413.440 candidate. Temporary develop runtime now matches source`02d732ef1e999bab1e325057ae7694f51177b3ea`(**modinfo440,346/346files,MATCH**,SHA256`590d7c52d5b5257d3a2e38f56947cdfbc072c7d0fd1fe021b867ae80d0c9b689`). Existing receipt-bound tools restored stable B307.334,retained outgoing B399.426,then activated B413.440;game exit was verified before each swap and no game was launched between/after them. Stable source/retained recovery package match312/312files;B399 outgoing344/344files matches its old receipt. No pending transaction,unexpected package change,manual copy,main promotion or new implementation.
+
+Receipt:`SpecializationDeploymentBackups/B413.440-02d732e-playtest.json`phaseDEVELOP_ACTIVE;previous`B399.426-4915170-playtest.json`phaseSTABLE_RESTORED. Independent read-only deploy check confirms source/runtime hashes equal and all346files match. Stable/main remains B307.334;this is a temporary approved develop test,not main promotion. The262localPASS/8fixed-source counterexamples and Owner-returned short review remain scoped source evidence,not native PASS. L2,PU05b native attribution and PU07 boundaries stay OPEN.
+
+User decision:none for completed deployment;this one candidate approval grants no automatic future deployment or other package work. User testing:use a new campaign/current-B413 save,run the existing collector(`tuner -300`),then two industrial cities with the same Crew tier/price naturally completing in one turn. Observe actual units and logs without opening P0 to enable the probe. Before cancellation/reselection,cold-read a same-build save;unverified cancellation events could otherwise arm the bounded window. No random pillage/trader-loss campaign required. Primary next:STOP,await Owner evidence/instructions;do not start the game,Claude/external review,U5/main or another work package.
 
 ### Short-review follow-up complete — S0900
 

@@ -74,7 +74,7 @@ No external review or native test is claimed performed by writing this handoff. 
 
 ## 7. Owner native-test checklist — after separate deployment approval
 
-- **当前探针尚未部署；先等确认部署完成。** 使用获批部署的B413新档／该构建自己的存档，不用旧构建存档承诺迁移。
+- **B413.440已获批部署，346/346文件核对一致（源码02d732e，Status S0901）。** 使用B413新档／该构建自己的存档，不用旧构建存档承诺迁移。
 - 照常先运行 `tuner -300`，并在施工队测试期间保持采集。已核对本机快捷入口指向develop采集器；无需打开P0面板来启用新探针。
 - 两座工业城最好均为工业三级，选择同一等级、同一价档的施工队，各一份，安排在同一回合自然完成。Cheat Panel可协助城市准备／生产力设置；本组完成尽量不要直接点强制完成，以免混淆事件路径。
 - 记录实际产生几只队伍及发生回合。若严格保护导致未发放，保留现场和日志即可；本版只取证，不承诺已修复多城发放，也不要手动补发来充当通过。
@@ -107,3 +107,5 @@ Owner supplied the completed Claude review of`d88a144..102bb16`on2026-11-06. It 
 The returned review explicitly waives another external round for this exact one-line condition and test selection. No native/U5 PASS follows. L1's display-only observation is not repaired;other inherited historical-test failures are not counted as PASS. Native same-tier/same-turn completion attribution and prior PU07 boundaries remain OPEN.
 
 Future external review coordination belongs to the Owner:Primary prepares scoped materials and entry only,without calling Claude or submitting/polling via CLI,tools or computer use. Next request deployment approval for B413.440;do not deploy,launch the game,advance another package or repeat the architecture audit automatically. After approved deployment,main two-city natural completion comes first;cancellation/reselection starts after cold-reading the same-build save because cancellation event semantics remain unverified.
+
+Deployment update(2026-11-06):Owner approved B413.440;receipt`B413.440-02d732e-playtest.json`isDEVELOP_ACTIVE and346/346files MATCH. Prior request-for-approval wording in section9 is historical;the current gate is Owner-native evidence under Status S0901. No game launch or native PASS.

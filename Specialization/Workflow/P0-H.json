@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0059",
     "research": "D0059",
@@ -11,14 +11,14 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0900",
+    "status": "S0901",
     "runtime": "B413.440 / modinfo440",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "Approved narrow repairs and returned D-1 test follow-up complete;await explicit deployment approval;external audits initiated by Owner.",
+  "goal": "Owner-approved B413.440 temporary develop deployment complete;stop for Owner-native evidence.",
   "implementation_authorized": true,
   "context": [
     {
@@ -156,9 +156,9 @@
   ],
   "conditional_context": [],
   "non_scope": [
-    "Crew grant/attribution/formulas/terms/save/GC changes",
-    "L2 optimization and other work packages",
-    "Native probe/game/deployment/main/U5"
+    "Further implementation,attribution/formulas/terms/save/GC changes",
+    "L2 optimization and other packages",
+    "Game launch,native execution,Claude/external review,main/U5 or automatic future deployment"
   ],
   "validation": [
     "262selected localPASS including unchanged frozen D6/current16→15/fallback assertions;8original baseline counterexamples",
@@ -173,7 +173,16 @@
   "result": {
     "local": "262PASS,0failures/errors/skips;8baseline counterexamples;all346Mod files unchanged;inherited historical NOT_PASS retained",
     "external_review": "OWNER_RETURNED:runtime locally sound;D-1 test-only fix verified;review waives another round for exact condition/selection change",
-    "native": "NOT_RUN;attribution and PU07 OPEN;no deployment",
-    "report": "Specialization/Status/Specialization_P0_Status.md#short-review-follow-up-complete--s0900"
+    "native": "NOT_RUN;game not launched;native attribution/PU07/L2 OPEN",
+    "report": "Specialization/Status/Specialization_P0_Status.md#approved-b413-deployment-complete--s0901",
+    "deployment": {
+      "version": "B413.440 / modinfo440",
+      "source_commit": "02d732ef1e999bab1e325057ae7694f51177b3ea",
+      "files": 346,
+      "identical": true,
+      "digest": "590d7c52d5b5257d3a2e38f56947cdfbc072c7d0fd1fe021b867ae80d0c9b689",
+      "receipt": "B413.440-02d732e-playtest.json",
+      "pending": false
+    }
   }
 }
