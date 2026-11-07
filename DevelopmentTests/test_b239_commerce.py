@@ -74,7 +74,7 @@ def fixture():
         -- Maintained fixture follows Store's read-only reputation protocol;
         -- no numeric passive display value is promoted to a transaction proof.
         return {value=SPCCommerceModel.Copy(commerceStates[c.id]),token=c.token,
-          reputationInput=SPCCommerceModel.ReputationInput(commerceStates[c.id]),
+          reputationInput=SPCCommerceModel.ReputationInput and SPCCommerceModel.ReputationInput(commerceStates[c.id])or nil,
           reference={owner=pid,cityID=c.id,x=c:GetX(),y=c:GetY()}}
       end
       st.WriteCommerce=function(pid,c,old,value)

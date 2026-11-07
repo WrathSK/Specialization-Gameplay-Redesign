@@ -10,7 +10,7 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0898",
+    "status": "S0900",
     "runtime": "B413.440 / modinfo440",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "491517093de18c8b151053724e316f1e08228995",
-  "current_batch": "B413_LOCAL_PASS_SHORT_RECHECK_PENDING",
-  "next_batch": "Fixed actual-delta Claude short recheck;resolve only narrow approved defects;STOP before deployment/game/other work packages. Native attribution and deferred L2 remain OPEN.",
+  "current_batch": "B413_RECHECK_CLOSED_AWAITING_DEPLOYMENT_APPROVAL",
+  "next_batch": "STOP:request explicit B413.440 deployment approval. Runtime reviewed102bb16 unchanged;D-1 fixture locally corrected. Owner initiates external audits;no Claude invocation/game/main/other package.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B399.426 temporary develop from 491517093de18c8b151053724e316f1e08228995;344/344 MATCH;SHA256 7f1eae6b8ef33a0c865cadb651428fa79b5f6bf98fffb6601b43afcc75278077;B398 outgoing and B307 stable backups MATCH;no pending transaction;receipt B399.426-4915170-playtest.json",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "Current continuation authorizes source work and local verification only;deployment/main/game launch remain excluded.",
-  "context_review_status": "S0898:258selectedPASS,13new;8fixedB412 counterexamples;223Lua51/25XML/5artdef/346runtime,0new alarms;Claude/native/deployment pending.",
+  "context_review_status": "S0900:Owner-returned runtime short recheck;D-1 fixed,262selectedPASS,8before counterexamples;all346Mod files byte-identical102bb16. L2/native/PU07 OPEN;deployment unapproved.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#narrow-review-repairs-locally-verified--s0898",
-  "source_status": "Canonical B413.440 narrow repairs;tested source 24e1e879f01460539a7908d1ad7e33f3362d407bb0e6a0966f6d75b6cfa85ea8;bind containing commit. No deployment;actual attribution/receipt rules unchanged.",
-  "continuation_authorization": "2026-11-06 Owner approves probe P-1/P-2 and L1,L3-L5 only,defers L2 optimization;requires reproducible local gates and actual-diff Claude short recheck. No deployment/game/other package."
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#short-review-follow-up-complete--s0900",
+  "source_status": "Canonical B413.440 runtime byte-identical reviewed102bb16;D-1 tests/doc follow-up tested source c53bbe91af2dfd23959ba46b43210c722012bd8e691ce8323e3b4a54257bb6c9;bind containing commit. Not deployed.",
+  "continuation_authorization": "Owner-approved narrow P-1/P-2,L1,L3-L5 only;returned review D-1 corrected within L3/L4. External reviews are Owner-initiated;Primary prepares entry only. No deployment/game/main/other package."
 }

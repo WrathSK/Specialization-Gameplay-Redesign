@@ -20,7 +20,8 @@ SUITES=[
  'test_refactor_s7d6_proof.OpenProof','test_pu11_package_absence',
  'test_expedition_trace_collector.CollectorTests','test_refactor_s4b.CommerceRetention',
  'test_refactor_s6f','test_pu06a_reputation_exit','test_pu06b_reputation_use','test_pu06c_capital_terms',
- 'test_b245_capital_receipts.Receipts','test_b245_capital_receipts.Guards']
+ 'test_b245_capital_receipts.Receipts','test_b245_capital_receipts.Guards',
+ 'test_refactor_s7c.FrozenD6','test_refactor_s7c.CommerceFallback']
 BEFORE=[
  'test_b413_review_repairs.ProbeBudget.test_unrelated_local_production_does_not_spend_completion_visits',
  'test_b413_review_repairs.ProbeBudget.test_long_build_keeps_completion_window_and_budget_after_bounded_prelude',
@@ -65,6 +66,10 @@ def main():
     with patch.object(lupa.lua55,'LuaRuntime',TrackedLua51),profile(),legacy_source_observation(),before_sources(args.before),contextlib.redirect_stdout(out),contextlib.redirect_stderr(err):
         cases=list(flat(unittest.defaultTestLoader.loadTestsFromNames(selected)))
         assert len({t.id()for t in cases})==len(cases)
+        if not args.before:
+            required={'test_refactor_s7c.FrozenD6.test_pre_D6_unknown_cases_remain_frozen_on_exact_base_source',
+                'test_refactor_s4b.CommerceRetention.test_pending_active_iv_to_iii_removes_reputation_bonus'}
+            assert required<={t.id()for t in cases},'MISSING_CURRENT_OR_FROZEN_REPUTATION_REGRESSION'
         result=unittest.TextTestRunner(stream=err,resultclass=Result).run(Suite(cases))
     origins={n:str(Path(m.__file__).resolve().relative_to(ROOT))for n,m in sys.modules.items()if n.startswith('test_')and getattr(m,'__file__',None)}
     assert all(p.startswith('DevelopmentTests/')for p in origins.values()),'SHADOWED_TEST_MODULE'

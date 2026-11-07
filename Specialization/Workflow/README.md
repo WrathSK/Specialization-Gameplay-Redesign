@@ -12,6 +12,8 @@ External discussion/advisory tools can explore alternatives, review plans and pr
 
 Do not invent missing gameplay, choose between genuine design alternatives, or silently change accepted rules to accommodate implementation/API limits. Report `DESIGN_DECISION_REQUIRED` and obtain the user's decision. Record technical limitations honestly; neither an Architecture recommendation nor a passing test grants semantic approval. Plan → user review → explicit implementation authorization remains unchanged.
 
+**External review coordination(Owner instruction,2026-11-06):**Primary prepares scoped review materials and a clear entry for the Owner to initiate the external audit. Do not independently invoke Claude or submit or poll an external review through a CLI,tool,agent or computer-use session. Return the prepared handoff to the Owner;process the results when the Owner supplies them.
+
 ### Roles and current assignment
 
 | Role | Responsibility | Current project assignment |

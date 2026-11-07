@@ -11,14 +11,14 @@
     "shared": "D0059",
     "presentation": "D0032",
     "architecture": "A0184",
-    "status": "S0898",
+    "status": "S0900",
     "runtime": "B413.440 / modinfo440",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "goal": "Narrow B412 review repair:probe relevance/window/inert retirement;Commerce confirmed-negative ordering;test protocol/reproducibility/absence precision;L2 deferred;Claude delta recheck.",
+  "goal": "Approved narrow repairs and returned D-1 test follow-up complete;await explicit deployment approval;external audits initiated by Owner.",
   "implementation_authorized": true,
   "context": [
     {
@@ -125,6 +125,26 @@
       "path": "DevelopmentTests/README.md",
       "kind": "full",
       "reason": "B413 narrow approved repair or directly reproducible actual-owner gate;reviewed with current protocol."
+    },
+    {
+      "path": "DevelopmentTests/test_refactor_s7c.py",
+      "kind": "full",
+      "reason": "Returned D-1 frozen/current regression and Owner external-review coordination;no runtime change."
+    },
+    {
+      "path": "DevelopmentTests/test_refactor_s4b.py",
+      "kind": "full",
+      "reason": "Returned D-1 frozen/current regression and Owner external-review coordination;no runtime change."
+    },
+    {
+      "path": "DevelopmentTests/refactor_selection.json",
+      "kind": "full",
+      "reason": "Returned D-1 frozen/current regression and Owner external-review coordination;no runtime change."
+    },
+    {
+      "path": "Specialization/Workflow/README.md",
+      "kind": "full",
+      "reason": "Returned D-1 frozen/current regression and Owner external-review coordination;no runtime change."
     }
   ],
   "dependencies": [
@@ -141,10 +161,9 @@
     "Native probe/game/deployment/main/U5"
   ],
   "validation": [
-    "258selected localPASS including13new;8fixedB412 counterexamples",
-    "Actual on/off/absent shifting dispatch and bounded observation;Commerce negatives/UNKNOWN/stale/recovery",
-    "Versioned fixture profiles and true affected missing-file path;Lua51/package/context/privacy",
-    "Required Claude actual-delta short recheck pending;native/deploy excluded"
+    "262selected localPASS including unchanged frozen D6/current16→15/fallback assertions;8original baseline counterexamples",
+    "All346Mod files byte-identical independently reviewed102bb16;L2 and native attribution OPEN",
+    "Current context/privacy/source binding;no deployment or automatic external review"
   ],
   "full_audit_triggers": [
     "Stop the affected path for a new unapproved behavior/persistence decision, unexplained regression or assertion weakening.",
@@ -152,9 +171,9 @@
     "Unexpected source/hash/receipt mismatch is investigated, not automatically rehashed or bypassed."
   ],
   "result": {
-    "local": "258PASS,13new;8baseline counterexamples;223Lua51/25XML/5artdef/346runtime;L2 OPEN",
-    "external_review": "PENDING_SHORT_RECHECK",
-    "native": "NOT_RUN;attribution OPEN;no deployment",
-    "report": "Specialization/Status/Specialization_P0_Status.md#narrow-review-repairs-locally-verified--s0898"
+    "local": "262PASS,0failures/errors/skips;8baseline counterexamples;all346Mod files unchanged;inherited historical NOT_PASS retained",
+    "external_review": "OWNER_RETURNED:runtime locally sound;D-1 test-only fix verified;review waives another round for exact condition/selection change",
+    "native": "NOT_RUN;attribution and PU07 OPEN;no deployment",
+    "report": "Specialization/Status/Specialization_P0_Status.md#short-review-follow-up-complete--s0900"
   }
 }

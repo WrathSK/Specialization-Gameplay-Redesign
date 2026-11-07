@@ -2,7 +2,7 @@
 
 Primary handoff, 2026-11-06. **Review input, not Architecture authority, acceptance, deployment permission or a new convergence plan.**
 
-**Current narrow recheck:see section8. Sections1–6 preserve the original B412 review input;they are not a request to repeat that completed audit.** The original current-HD repair slices and disposable multi-Crew evidence probe were submitted for a bounded source review. Local checks exist; native completion attribution, the original-HD U5 baseline and later HD-independent migration remain separate gates. Do not reopen the accepted overall architecture or treat this as a whole-repository audit.
+**Current result and deployment boundary:see section9. Sections1–6 preserve the original B412 review input;they are not a request to repeat that completed audit.** The original current-HD repair slices and disposable multi-Crew evidence probe were submitted for a bounded source review. Local checks exist; native completion attribution, the original-HD U5 baseline and later HD-independent migration remain separate gates. Do not reopen the accepted overall architecture or treat this as a whole-repository audit.
 
 ## 1. Fixed input and authority
 
@@ -78,7 +78,7 @@ No external review or native test is claimed performed by writing this handoff. 
 - 照常先运行 `tuner -300`，并在施工队测试期间保持采集。已核对本机快捷入口指向develop采集器；无需打开P0面板来启用新探针。
 - 两座工业城最好均为工业三级，选择同一等级、同一价档的施工队，各一份，安排在同一回合自然完成。Cheat Panel可协助城市准备／生产力设置；本组完成尽量不要直接点强制完成，以免混淆事件路径。
 - 记录实际产生几只队伍及发生回合。若严格保护导致未发放，保留现场和日志即可；本版只取证，不承诺已修复多城发放，也不要手动补发来充当通过。
-- 另作零进度／已有进度取消后重选；条件方便时留完成前一回合的同构建存档，复读一次。不要人为触发Lua完成事件来证明原生重复行为。
+- 主测试先做；取消／重选前先冷读同构建存档，避免尚未确认的取消事件可能提前启动观察窗口。另作零进度／已有进度取消后重选；条件方便时留完成前一回合的同构建存档，复读一次。不要人为触发Lua完成事件来证明原生重复行为。
 - 每个Lua上下文先保留最多8条相关前置事件；普通工期不会提前启动窗口。首个已核实项目类型的施工队完成事件起最多6回合，总量仍限64条事件、256次城市访问、32次原有UI读者调用和192行加停止记录。前置截断会明确提示，缺少已发布施工队订单线索的普通事件不会为探测相关性而访问城市；超限或读不到会明确提示。若要继续另一轮，可冷读同构建存档重新开始窗口。无新事实时不周期重试。
 - 采集结果在既有忽略目录 `local/diagnostics/B205/session-*/`。`summary.txt`包含 `crew_proof:`摘要；`records.log`保留收到的 `CREW_PROOF_EVENT/STATE/STATUS`。检查Gameplay/UI各自ARMED、Gameplay AFTER_ATTACHED以及缺钩子/截断/环覆盖提示；缺失不是通过。无需另开大规模能力验收。
 
@@ -99,3 +99,11 @@ Owner explicitly authorizes this short independent recheck after local repairs;d
 Read only the changed runtime4paths,maintained fixture/tests/runner and relevant current Status/RIC;expand to actual consumers only if needed. Relevant fixed tests can run via the versioned entry;full local artifacts are optional supporting evidence,not needed to discover execution steps. Return a short Chinese Owner summary,any actionable defect with source lines and a concrete counterexample,and scoped readiness. No native/U5/deployment PASS.
 
 Local result:258unique selectedPASS(13new),0failures/errors/skips;157observed source modules/fragments,not full path coverage. Fixed-B412 comparison:8expected defect failures with exact original production sources. Lua51/package:223Lua,25XML,5artdef,346runtime/345package,157own includes;0new alarms. Source digest`24e1e879f01460539a7908d1ad7e33f3362d407bb0e6a0966f6d75b6cfa85ea8`. Artifact`local/refactor/B413_review-cfb0abde9724478c8a8175e8c8a5649b/closure.json`,SHA256`9db1eb0c90e249bf0983e839ada9004252c057f1fe8e2a73cb880ce6abef9c0f`;before artifact`local/refactor/B413_before-4b9d7e9f7cf0444ea5d48396853fb787/closure.json`,SHA256`4747a90d2ffc66fbad424222882816fce24fb319dc61d381275a69a9b5d2ebeb`. These ignored files/hashes are not permanent backup. Versioned command:`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<lupa-environment>:DevelopmentTests python3.14 DevelopmentTests/run_pre_u5_review.py`;add`--before`for fixed-B412 counterexamples.
+
+## 9. Owner-returned short review and D-1 completion
+
+Owner supplied the completed Claude review of`d88a144..102bb16`on2026-11-06. It confirms P-1/P-2/L1 and L5 locally sound;L2 remains OPEN. Its sole new defect is test-only D-1:the shared Commerce fixture unconditionally calls ReputationInput while exact historical`afd2204`has no such function. The fixture now conditionally exposes that field;the versioned gate includes the unchanged S7c FrozenD6 and CommerceFallback cases and protects selection of the frozen/current16→15 regressions.262selected local methods pass;the8original fixedB412 counterexamples remain characterized. All346Mod files are byte-identical to reviewed102bb16;no runtime build bump or production edits. Current evidence/limits are in Status S0900.
+
+The returned review explicitly waives another external round for this exact one-line condition and test selection. No native/U5 PASS follows. L1's display-only observation is not repaired;other inherited historical-test failures are not counted as PASS. Native same-tier/same-turn completion attribution and prior PU07 boundaries remain OPEN.
+
+Future external review coordination belongs to the Owner:Primary prepares scoped materials and entry only,without calling Claude or submitting/polling via CLI,tools or computer use. Next request deployment approval for B413.440;do not deploy,launch the game,advance another package or repeat the architecture audit automatically. After approved deployment,main two-city natural completion comes first;cancellation/reselection starts after cold-reading the same-build save because cancellation event semantics remain unverified.

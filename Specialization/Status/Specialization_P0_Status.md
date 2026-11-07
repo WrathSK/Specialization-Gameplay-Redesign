@@ -1,17 +1,36 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0898
+Status Revision: S0900
 Implementation Build: source B413.440 / modinfo440; recorded live B399.426 from4915170; stable/main B307.334
 Architecture Revision Reviewed: A0184
 Design Revision Reviewed: D0059
 Latest Accepted Design Revision: D0059
 Design Sync State: D0059_CONVERGENCE_ACCEPTED_CONTINUOUS_PRE
-Work State: B413_LOCAL_PASS_SHORT_RECHECK_PENDING
+Work State: B413_RECHECK_CLOSED_AWAITING_DEPLOYMENT_APPROVAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Short-review follow-up complete — S0900
+
+Owner supplied Claude's completed short review of`d88a144..102bb16`:P-1/P-2/L1 runtime repairs and L5 locally sound,L2 remains OPEN,and one test-only D-1 needs correction. The shared fixture now conditionally exposes ReputationInput only when the actual current/frozen model supplies it;exact`afd2204`FrozenD6 and current16→15/fallback assertions remain unchanged. The versioned entry adds S7c FrozenD6 and CommerceFallback and explicitly requires the frozen/current regression IDs. **All346Mod files remain byte-identical to reviewed`102bb16429601d647f5068ae303bdcf4357c66fd`;B413.440 stays unchanged.** L1's nonblocking display observation is retained,not expanded into a UI fix.
+
+- **LOCAL_SIMULATION_PASS:**262unique selected methods,0failures/errors/skips,including the4newly selected historical/current regressions;8fixedB412 counterexamples still fail as expected. D-1 was independently reproduced as COMMERCE_VIEW_STALE before the one-line fixture fix. No business assertion,history source,production file or static alarm weakened.
+- **Selection limits:**an exploratory350-method reverse-index run is retained locally,with3pre-existing assertion failures and2Aesthetic fixture-prerequisite errors;the same old fixture under the same Lua51 harness reproduces those5plusD-1 at102bb16. They are not counted as PASS or fixed. Its manual runner lacks the Aesthetic SQL class setup;that is test-execution failure,not native/runtime evidence. Keep the permanent gate scoped to affected current/frozen reputation cases rather than expanding this one-line correction into unrelated historical/SQL repair. Original test bodies remain unchanged;no whole-history/reverse-index PASS is claimed.
+- **Evidence:**CPython3.14.8/Lupa2.8 Lua51,no external DB/game/socket;0new alarms. Artifact`local/refactor/B413_review-3f68ddb0c9f3453195fa3b85b1adb1a1/closure.json`,SHA256`d017f871e2dc24a94bf433cb83447b02b350cb43a64334aa2d3c9ae72c13c405`,tested source`c53bbe91af2dfd23959ba46b43210c722012bd8e691ce8323e3b4a54257bb6c9`. Re-run the versioned`DevelopmentTests/run_pre_u5_review.py`;`--before`retains8exact-source counterexamples. Before artifact`local/refactor/B413_before-49034b12ab274ca881f3aa0aa75ad5bc/closure.json`,SHA256`4c6e0f786b47df724f424356cf8c3c67b08687dbc7239e2102275003484b5f48`. Raw pre-fix/reference/exploratory evidence stays local;local files/hashes are not permanent backups. Inherited223Lua51/25XML/5artdef/346runtime package check applies to byte-identical Mod;not falsely rerun/native PASS.
+- **External/native boundary:**the Owner-returned review explicitly requires no second external recheck for this exact fixture condition/test selection. Future external audits are Owner-initiated under W0005;Primary prepares materials only. No Claude invocation or computer use this follow-up. Native same-tier/same-turn attribution,late duplicates,PU07 limits and L2 remain OPEN. Main/live unchanged;no deployment or game launch.
+
+User decision:explicit approval to deploy the verified B413.440 candidate is still required. User testing:none before approval;after deployment,first run two-city natural completion,then cold-read the same-build save before cancellation/reselection. Primary next:commit/push this test/document follow-up,verify source binding,and STOP at deployment approval;no other package or automatic external review.
+
+### Returned short review and fixture follow-up — S0899
+
+Owner supplied Claude's completed short recheck of`d88a144..102bb16`:runtime P-1/P-2/L1 and L5 locally sound,L2 remains OPEN. The review identifies one new test-only regression(D-1):the maintained CommerceState fixture unconditionally invokes ReputationInput,absent in the exact`afd2204`CommerceModel used by S7c FrozenD6. Primary independently reproduced COMMERCE_VIEW_STALE under the same Lua51 profile before correction. Within the existing L3/L4 authorization,add only the fixture capability condition and the missing Commerce/Probe reverse-index tests to the versioned entry;retain original business/frozen assertions. No Mod edits,build/version bump,formula,terms,save,GC or attribution changes. L1's nonblocking display difference is not changed. No new external review is required for this exact test-only correction under the returned review;local verification is still required.
+
+**Owner coordination instruction(2026-11-06):**Primary prepares scoped external-review materials and the entry,then hands them to the Owner. Primary must not independently invoke Claude or submit/poll an external review through command line,tools or computer use. The returned review is supplied by the Owner,not a new automatic review task. Deployment remains separately unapproved;native multi-Crew attribution/PU07 limits remain OPEN.
+
+User decision:none for this narrow existing-scope test repair. User testing:none now. Primary next:correct fixture,test the real historical consumer and relevant reverse-index closure,update concise results,publish develop,then request deployment approval without invoking Claude.
 
 ### Narrow review repairs locally verified — S0898
 
