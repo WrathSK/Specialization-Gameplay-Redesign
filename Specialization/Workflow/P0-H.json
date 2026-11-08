@@ -11,21 +11,21 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0931",
+    "status": "S0932",
     "runtime": "B434.461 / modinfo461",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the verified B434 temporary deployment and await the fixed official-profile first-turn load smoke.",
+  "goal": "Record the native split outcome for the fixed official profile and retain the SQL compatibility counterexample.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### B434 deployed for the official-profile load smoke — S0931",
-      "reason": "Current deployment and fixed official-profile smoke evidence requirements"
+      "selector": "### Official UI smoke passed with a database assembly failure — S0932",
+      "reason": "Current native evidence, scoped UI acceptance and assembly blocker"
     },
     {
       "path": "Specialization/Design/Content/Shared_D0060.json",
@@ -356,6 +356,15 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "USER_GAME_TEST_REQUIRED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b434-deployed-for-the-official-profile-load-smoke--s0931"
+    },
+    "b434_official_smoke_native": {
+      "build": "B434.461",
+      "official_target_count": 26,
+      "ui": "USER_GAME_TEST_PASS",
+      "assembly": "USER_GAME_TEST_FAIL",
+      "report": "Specialization/Status/Specialization_P0_Status.md#official-ui-smoke-passed-with-a-database-assembly-failure--s0932",
+      "evidence": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B434_Official_Load_Smoke_20261107",
+      "local_manifest_sha256": "1b4db70739e22088ea7bcf3d0a7acc7acbd985c31e899cdeb9c760f5a95a707f"
     }
   }
 }

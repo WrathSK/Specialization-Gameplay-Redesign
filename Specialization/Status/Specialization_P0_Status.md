@@ -1,17 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0931
+Status Revision: S0932
 Implementation Build: source and live B434.461 / modinfo461 from 3274798. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OFFICIAL_LOAD_SMOKE_DEPLOYED_NATIVE_PENDING
+Work State: OFFICIAL_LOAD_UI_PASS_ASSEMBLY_FAILED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Official UI smoke passed with a database assembly failure — S0932
+
+- **USER_GAME_TEST_PASS in scope.** The Owner confirmed the five native panels display and work. The game reached a playable first turn. The latest in-game target list matches the fixed 25 official targets plus this Mod, and the database selected `OFFICIAL`.
+- **USER_GAME_TEST_FAIL for database assembly.** The same-load Modding log identifies `EnvironmentBuildings.sql` immediately before the SQL failure. The Gameplay database log reports that `HAVING` requires `GROUP BY`. The database contains 82 projected buildings and zero assembly completion rows. The dependent Standardization target/level and Development effect tables are empty. The earlier B434 first-turn collector separately records Development Investment startup failure `BUILDING_CATALOG_ASSEMBLY_UNAVAILABLE`.
+- **LOCAL_SIMULATION_PASS for a candidate expression.** A WHERE-filtered profile lookup on an in-memory copy of the native database yields one completion row for one selected profile and a nonempty inventory. It retains the NOT NULL rejection for zero or two profiles or an empty inventory. This was a scratch evaluation of the SQL expression. The installed candidate is still B434.461.
+- **Evidence locator.** Native records and database snapshot are retained in ignored `local/legacy-workspace/Specialization/Status/Validation/Evidence/B434_Official_Load_Smoke_20261107`. The local manifest records exact file SHA256 values and separates the latest native dump from the earlier collector session. Manifest SHA256 `1b4db70739e22088ea7bcf3d0a7acc7acbd985c31e899cdeb9c760f5a95a707f`.
+
+User decision is none for this review. User testing can stop at this checkpoint. Primary next is the narrow SQLite-compatible completion statement and regression in both profiles, followed by separate deployment and targeted native confirmation of the assembly row and startup. Carry the five-panel acceptance forward if their code is unchanged.
 
 ### B434 deployed for the official-profile load smoke — S0931
 
