@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0941",
-    "runtime": "B439.466 / modinfo466",
+    "status": "S0942",
+    "runtime": "B440.467 / modinfo467",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the locally verified official production panel and the next owned Crew action dependency.",
+  "goal": "Record the locally verified Crew cost/progress reader, diagnostic independence and remaining location dependency.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Crew construction reads native cost and progress through the production UI — S0942",
+      "reason": "Actual Crew queue read, immutable receipt policy and remaining location dependency"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -78,6 +84,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B440 Crew queue: 51 local checks pass. The wider 59-case B439 comparison reproduces all seven remaining historical nonpasses. Native interaction remains pending.",
     "B439 ProductionPanel: 50 local checks pass, with five fixed-B438 counterexamples across three cases. No native interaction or deployment claim.",
     "B438 UnitPanel: 75 focused local checks pass. Three B437 counterexamples now pass and the 40 inherited nonpasses in the historical selection remain visible. Native interaction is a later gate.",
     "20 focused proof and owner tests pass; fixed B436 runtime reproduced five corrected cases.",
@@ -526,6 +533,22 @@
       "local_evidence": "local/refactor/O6bProductionPanel-51b479d076604f80b83f493c52c471ab/closure.json",
       "local_evidence_sha256": "54f4c25d5f20ab151a6d72f3c2b5a9b18e2024c78302f5f0f6c7fe274ab6c314",
       "report": "Specialization/Status/Specialization_P0_Status.md#professional-projects-and-actions-use-the-official-production-panel--s0941",
+      "native": "USER_GAME_TEST_REQUIRED",
+      "deployed": false
+    },
+    "crew_construction_queue": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "build": "B440.467 / modinfo467",
+      "tests": 51,
+      "broad_tests": 59,
+      "broad_passing": 52,
+      "inherited_nonpassing": 7,
+      "fixed_b439_cases": 5,
+      "package_sha256": "8821beee36aab7d7298acdf25968eb2b2f6f593792d67542cfea54f7a9f09fe3",
+      "source_snapshot_sha256": "1b660cb8dd57f649683af04491a08c8b24c16ca7e12f235fd294ec4fbe1ba025",
+      "local_evidence": "local/refactor/O4aCrewTargetQueue-9c92fded6cba450d8def32c842d1f23a/closure.json",
+      "local_evidence_sha256": "e8665a171c22acf8442a756a06efcc373936e3217adbd9bbcec6430f55304a66",
+      "report": "Specialization/Status/Specialization_P0_Status.md#crew-construction-reads-native-cost-and-progress-through-the-production-ui--s0942",
       "native": "USER_GAME_TEST_REQUIRED",
       "deployed": false
     }

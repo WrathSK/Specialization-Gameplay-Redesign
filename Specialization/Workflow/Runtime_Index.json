@@ -176,9 +176,9 @@
       "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "c09b0d2dfe00fffea20b2207352506648b1e8687dfe4cc30225087557df97ab3",
+      "sha256": "0fe7424e5005da821ec11180c57bc831fa70afd1802725c0b979e3945dcd16e4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0876/B404.431 PU05a:separate per-project consumed ordinal/source-order pending grant;one optional explicit queue reader.101local methods pass with documented Lua51 fixture adapter;new campaign for version2 receipt,PU05b native gap OPEN. Probe/modinfo labels only;no deployment/native PASS."
+      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "76b7c148d8c5aac6779f360ac5d83c33c106cd5d2b8c3cf67f8863deca9263f1",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "df38f67dc5e92017a2334f328718ffaaeb5d101f152ed13a0e206a4ae08de85c",
+      "sha256": "0971f9db282d0932bd6d1cd6487c6acf90c32aabe393aa2b404e2fb35aca6ea4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0930 verifies the audited native subscription boundary and the local evidence for the fixed official-profile load smoke candidate."
+      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "0ed34fa14d53078413f5e63719788a5010eca63ca6ec64701a56b776fb53ca4f",
+      "sha256": "aab24cab2c76235f8d02f8639354e10afd343feae0af268fc626a40ac2957417",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0941 B439 scopes production actions to the selected official and HD UI bases. Native interaction pending."
+      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "640dd2b194214f244182ab691695a168728350eaf5d92aa7c4eba3f9c1701fa8",
+      "sha256": "316498d4c0d746ef3c741801abf922884203fc085ee756d817bc788c0fb29fad",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0941 B439 scopes production actions to the selected official and HD UI bases. Native interaction pending."
+      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1251,14 +1251,14 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "d004c8b405051ac764615393038cb1554912474912bad087362b3053471be088",
+      "sha256": "48ada8a0554fc661d3ee39fa52e11a61682eca15bffe0461cdfb84df756d4fed",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0941 B439 scopes production actions to the selected official and HD UI bases. Native interaction pending."
+      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
     },
     "Mod/UI/CrewProjectUI.lua": {
-      "sha256": "754add58b271140f6651e427557eb01df2ef1e913fdc41240bc5dbadc841d7a5",
+      "sha256": "52b9a28d8485dd63c8b423ad705dbb8ab1325b91f6dc916d1f89e191b214c810",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0895 B412:optional bounded Crew evidence;3protected seams,version/package labels;settlement/model/Store unchanged;103localPASS,not native/deploy."
+      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.lua": {
       "sha256": "8ec0d4a6506e480c3801b652b7dff3a4e37768e8b6c8cc96e97f6b6ddba2d140",
@@ -1781,7 +1781,7 @@
       "provenance": "S0941 B439 scopes production actions to the selected official and HD UI bases. Native interaction pending."
     }
   },
-  "source_review": "Specialization/Status/Specialization_P0_Status.md#professional-projects-and-actions-use-the-official-production-panel--s0941",
-  "source_runtime": "B439.466 / modinfo466 local candidate, 355 files",
-  "tested_source_snapshot_sha256": "43c68223a741e0a41b3800cf00ec9b44feca385ab03a62a376ea058540b48354"
+  "source_review": "Specialization/Status/Specialization_P0_Status.md#crew-construction-reads-native-cost-and-progress-through-the-production-ui--s0942",
+  "source_runtime": "B440.467 / modinfo467 local candidate, 355 files",
+  "tested_source_snapshot_sha256": "1b660cb8dd57f649683af04491a08c8b24c16ca7e12f235fd294ec4fbe1ba025"
 }

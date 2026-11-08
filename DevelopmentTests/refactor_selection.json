@@ -2,6 +2,19 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O4aCrewTargetQueue": [
+      "test_o4_crew_target_queue",
+      "test_o6_production_panel",
+      "test_refactor_s7d5",
+      "test_refactor_s6i.CrewSites",
+      "test_refactor_s9c2.RealOwners",
+      "test_refactor_s9c2.Startup.test_producer_startup_is_independent_and_missing_action_dependency_skips_it",
+      "test_refactor_s9c2.Startup.test_original_composite_start_order_and_cleanup_assertion_remains_at_B356",
+      "test_refactor_s9c2.Startup.test_real_factory_new_epoch_shutdown_and_failed_allocation_preserve_prior",
+      "test_refactor_s9e1.CrewReadback",
+      "test_pu05a_receipts.Provider",
+      "test_pu05a_receipts.CrossCity"
+    ],
     "O6bProductionPanel": [
       "test_o6_production_panel",
       "test_environment_assembly.UIBaseSelection",
@@ -2008,6 +2021,7 @@
       "test_refactor_s7a2"
     ],
     "Mod/Gameplay.lua": [
+      "test_o4_crew_target_queue",
       "test_refactor_defects.Defects",
       "test_refactor_s5d2",
       "test_refactor_s5d3",
@@ -2016,9 +2030,6 @@
       "test_refactor_s9c2",
       "test_refactor_s9c4a",
       "test_refactor_s9c4b"
-    ],
-    "Mod/UI/CrewProjectOrder.lua": [
-      "test_refactor_defects.Defects"
     ],
     "Mod/UI/DialogueRefresh.lua": [
       "test_refactor_defects.Defects",
@@ -2323,6 +2334,7 @@
       "test_refactor_s7b1"
     ],
     "Mod/CrewProjects.lua": [
+      "test_o4_crew_target_queue",
       "test_refactor_s7b2",
       "test_refactor_s7d5",
       "test_refactor_s9e1"
@@ -2427,10 +2439,17 @@
       "test_environment_assembly.UIBaseSelection"
     ],
     "Mod/UI/CrewProjectOrder.lua": [
+      "test_refactor_defects.Defects",
+      "test_o4_crew_target_queue",
       "test_o6_production_panel",
       "test_environment_assembly.UIBaseSelection",
       "test_refactor_s3.Adapters",
       "test_refactor_s9a3e.ActualUI"
+    ],
+    "Mod/UI/CrewProjectUI.lua": [
+      "test_o4_crew_target_queue",
+      "test_o6_production_panel",
+      "test_refactor_s9e1.CrewReadback"
     ],
     "Mod/UI/SPCProductionPanelOfficial.lua": [
       "test_o6_production_panel",

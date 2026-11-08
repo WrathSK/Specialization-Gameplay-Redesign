@@ -164,8 +164,9 @@ class ProductionPanelProfiles(unittest.TestCase):
             assert(#sent==reads+1 and sent[#sent].Action=='RESERVE' and sent[#sent].Project=='PROJECT_SPC_CREW_250',
                 'CREW_RESERVATION_BYPASSED')
             assert(#nativeOps==0 and type(ExposedMembers.SPC_CrewNativeRead)=='function')
+            assert(type(ExposedMembers.SPC_CrewTargetRead)=='function','CREW_TARGET_SLOT_MISSING')
             ContextPtr.shutdown()
-            assert(nativeShutdown==1 and ExposedMembers.SPC_CrewNativeRead==nil)
+            assert(nativeShutdown==1 and ExposedMembers.SPC_CrewNativeRead==nil and ExposedMembers.SPC_CrewTargetRead==nil)
         """)
 
     def test_heroes_mode_keeps_shipped_right_click_lookup(self):

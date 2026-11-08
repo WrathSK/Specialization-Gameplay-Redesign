@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0941
-Implementation Build: source B439.466 / modinfo466. Live B437.464 from a24b327. Stable/main B307.334.
+Status Revision: S0942
+Implementation Build: source B440.467 / modinfo467. Live B437.464 from a24b327. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OFFICIAL_PRODUCTION_PANEL_ACTIONS_LOCAL
+Work State: CREW_CONSTRUCTION_QUEUE_READER_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Crew construction reads native cost and progress through the production UI — S0942
+
+Crew preparation and confirmation now read the current Wonder's cost and progress through a dedicated scalar reader in the existing production panel. Both the stock and HD UI use the same native methods. The actual Crew owner still checks the same unit, target and amount before debit and checks progress again after debit. A changed or missing read stops the action in the original reject or hold phase. The separate formation reader and the DEV construction experiment retain their roles.
+
+- **Runtime Impact Contract (L3, T01/T02/T05/T08).** The existing Crew adapter publishes and withdraws one additional fixed read slot. Each call resolves one city and reads one current target, one building cost and one building progress. The returned owner, city, coordinates, turn and target must match the still-current Gameplay city and reader. No queue traversal, new automatic consumer, saved state or polling. Three explicit samples cover preparation and one confirmation. The combined test saw zero further cost or progress samples on 1,000 idle publications. This does not measure engine CPU or memory.
+- **LOCAL_SIMULATION_PASS in scope.** All 51 selected tests passed. Both actual panel entries reach the real Crew and Store with native-shaped doubles, including 150.25 production sent once, durable receipts, stale/absent/invalid responses, mutation during read, post-debit hold and no replay. True ConstructionProbe file absence skips the observer while the formal action still starts. Five new cases fail against B439 and pass here. The wider replay gives 52/59 with seven identical inherited nonpasses on B439 in historical property and startup tests. The prior production adapter's duplicate reverse-index key was corrected and its restored adapter-failure test also passes.
+- **STATIC_CONFIRMED and reproduction.** The shipped CitySupport current-production reader uses native UI BuildingCost/Progress. The pinned HD helpers call those same methods. See Engine Reference ER02. 226 Lua 5.1 compiles, 32 XML-family parses, 355 runtime files, 715 manifest references and no new static alarms. Package SHA256 `8821beee36aab7d7298acdf25968eb2b2f6f593792d67542cfea54f7a9f09fe3`. With CPython 3.14/Lupa 2.8, DevelopmentTests on PYTHONPATH and the pinned official asset root in `SPC_OFFICIAL_ASSETS`, run `python3.14 DevelopmentTests/run_refactor.py --stage O4aCrewTargetQueue`. Tested source SHA256 `1b660cb8dd57f649683af04491a08c8b24c16ca7e12f235fd294ec4fbe1ba025`. Full local evidence `local/refactor/O4aCrewTargetQueue-9c92fded6cba450d8def32c842d1f23a/closure.json`, SHA256 `e8665a171c22acf8442a756a06efcc373936e3217adbd9bbcec6430f55304a66`. Local broad replay logs and selections are alongside it.
+
+User decision and testing are unnecessary at this checkpoint. Live remains B437.464. Primary next is proving the actual in-progress Wonder plot without the HD marker. Formation attribution, native UI operation delivery and actual production gain remain separately scoped. The existing DEV experiment and precision observer remain available to their original HD evidence path.
 
 ### Professional projects and actions use the official production panel — S0941
 

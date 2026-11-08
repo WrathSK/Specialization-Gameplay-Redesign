@@ -34,6 +34,23 @@ function SPCCrewProjectUI.New(P,send,notify,build)
   end end
   return v
  end
+ -- Crew spending only needs the current Wonder's native cost and progress.
+ ExposedMembers.SPC_CrewTargetRead=function(pid,id,target)
+  assert(pid==Game.GetLocalPlayer() and P.IsTestPlayer(pid),'CREW_UI_OWNER')
+  local c=assert(Players[pid]:GetCities():FindID(id),'CREW_UI_CITY')
+  assert(c:GetOwner()==pid and c:GetID()==id,'CREW_UI_OWNER')
+  local x,y,turn=c:GetX(),c:GetY(),Game.GetCurrentGameTurn()
+  local q=c:GetBuildQueue()
+  assert(q:GetCurrentProductionTypeHash()==target,'CREW_TARGET_CHANGED')
+  local row=GameInfo.Buildings[target]
+  assert(row and (row.IsWonder==true or row.IsWonder==1),'CREW_WONDER_REQUIRED')
+  local cost=q:GetBuildingCost(row.Index)
+  local progress=q:GetBuildingProgress(row.Index)
+  assert(c:GetOwner()==pid and c:GetID()==id and c:GetX()==x and c:GetY()==y
+   and Game.GetCurrentGameTurn()==turn and c:GetBuildQueue():GetCurrentProductionTypeHash()==target,
+   'CREW_TARGET_CHANGED')
+  return {owner=pid,city=id,x=x,y=y,turn=turn,target=target,cost=cost,progress=progress}
+ end
  function a.Items(data)
   local c=data.City;if not localCity(c)then return end
   local d=(ExposedMembers.SPC_P0 or {}).CrewProjects;local v=d and d.views[c:GetOwner()..':'..c:GetID()]

@@ -104,7 +104,7 @@ end,{Render={50,'Items'},Before={20,'Before',true},Publish={20,'Publish'}})
 commerceSelection=adapters.Add('CommerceUI',one('PROJECT_SPC_COMMERCIALIZATION'),{},function()
  include('CommerceUI');return SPCCommerceUI.New(SPCP0,notify,SPCSafeAdapters.NewViewObserver())
 end,{Render={60,'Items'},Before={30,'Before',true},Publish={30,'Publish'}})
-crewSelection=adapters.Add('CrewProjectUI',crew,{'SPC_CrewNativeRead'},function()
+crewSelection=adapters.Add('CrewProjectUI',crew,{'SPC_CrewNativeRead','SPC_CrewTargetRead'},function()
  include('CrewProjectUI');return SPCCrewProjectUI.New(SPCP0,send,notify,baseAdvance)
 end,{Render={30,'Items'},Before={40,'Before',true},Publish={40,'Publish'}})
 local selectedQueueSlot=false

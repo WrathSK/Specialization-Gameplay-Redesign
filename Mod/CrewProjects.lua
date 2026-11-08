@@ -305,13 +305,33 @@ function SPCCrewProjects.Start(P,shared,readQueue)
   if not ok then failed[k]=d.errors[k] or 'CREW_GRANT_UNCONFIRMED' end
   settling[k]=nil;mark(pid,id) -- normal publish handles removal after completion callbacks
  end
+ -- Cross-context reads return only scalars and must match this live queue.
+ local function constructionSnapshot(pid,c)
+  assert(c and c:GetOwner()==pid and P.IsTestPlayer(pid),'OWN_TEST_CITY_REQUIRED')
+  local id,x,y,turn=c:GetID(),c:GetX(),c:GetY(),Game.GetCurrentGameTurn()
+  local target=c:GetBuildQueue():CurrentlyBuilding()
+  local row=P.Info('Buildings',target)
+  assert(row and (row.IsWonder==true or row.IsWonder==1) and type(row.Hash)=='number','CREW_WONDER_REQUIRED')
+  local read=ExposedMembers.SPC_CrewTargetRead
+  assert(type(read)=='function','CREW_TARGET_READER_UNAVAILABLE')
+  local snapshot=read(pid,id,row.Hash)
+  assert(type(snapshot)=='table' and getmetatable(snapshot)==nil and ExposedMembers.SPC_CrewTargetRead==read
+   and snapshot.owner==pid and snapshot.city==id and snapshot.x==x and snapshot.y==y
+   and snapshot.turn==turn and snapshot.target==row.Hash and c:GetOwner()==pid and c:GetID()==id
+   and c:GetX()==x and c:GetY()==y and Game.GetCurrentGameTurn()==turn
+   and c:GetBuildQueue():CurrentlyBuilding()==target,'CREW_TARGET_CHANGED')
+  local cost,progress=snapshot.cost,snapshot.progress
+  assert(type(cost)=='number' and cost>0 and cost<math.huge
+   and type(progress)=='number' and progress>=0 and progress<math.huge,'QUEUE_NUMBERS_INVALID')
+  return {target=target,kind='Buildings',cost=cost,progress=progress}
+ end
  function d.UseTarget(pid,u)
   d.Unit(pid,u) -- strict permanent source and locked capacity
   assert(u:GetBuildCharges()==1,'CREW_REQUIRES_EXACTLY_ONE_CHARGE')
   assert(u:GetProperty('SPC_CREW_RESERVED')==nil,'CREW_RESERVED')
-  local c=SPCUnitSiteFacts.TargetCity(shared,pid,u);local s=shared.ConstructionProbe.ReadSnapshot(pid,c)
-  local row=s.kind=='Buildings' and P.Info('Buildings',s.target)
-  assert(row and (row.IsWonder==true or row.IsWonder==1) and s.progress<s.cost,'CREW_WONDER_REQUIRED')
+  local c=SPCUnitSiteFacts.TargetCity(shared,pid,u)
+  local s=constructionSnapshot(pid,c)
+  assert(s.progress<s.cost,'CREW_WONDER_REQUIRED')
   -- D0053 accepts native Production modifiers. Keep base input bounded;
   -- receipt, target and debit checks remain authoritative.
   return c,s
@@ -340,7 +360,7 @@ function SPCCrewProjects.Start(P,shared,readQueue)
    assert(u:GetProperty('SPC_CREW_RESERVED')==plan.token,'RESERVATION_UNCONFIRMED')
    Players[pid]:GetUnits():Destroy(u)
    assert(not Players[pid]:GetUnits():FindID(plan.unitID),'UNIT_DEBIT_UNCONFIRMED')
-   local after=shared.ConstructionProbe.ReadSnapshot(pid,c)
+   local after=constructionSnapshot(pid,c)
    assert(after.target==s.target and after.progress==s.progress and after.cost==s.cost,'TARGET_CHANGED_AFTER_DEBIT')
    phase='GRANT_ATTEMPTED';record('GRANT_ATTEMPTED') -- Never automatically replay an uncertain engine grant.
    d.RecordUse(pid,c,plan.unitID,'CREW_USE_ATTEMPT',amount,s.progress,s.cost,math.min(amount,s.cost-s.progress))

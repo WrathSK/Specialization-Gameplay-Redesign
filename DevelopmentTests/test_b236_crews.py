@@ -189,6 +189,16 @@ ACTION=r"""
 function C.actions(c)
  local q=c:GetBuildQueue();q.target='BUILDING_WONDER_2';q.progress=10;q.cost=1000;q.adds={}
  q.AddProgress=function(_,n)q.adds[#q.adds+1]=n;q.progress=q.progress+n end
+ q.CurrentlyBuilding=function()return q.target end
+ local wonder=P.Info('Buildings',q.target)
+ wonder.Hash=wonder.Hash or wonder.Index
+ ExposedMembers.SPC_CrewTargetRead=function(pid,id,target)
+  local city=Players[pid]:GetCities():FindID(id)
+  local queue=city:GetBuildQueue()
+  assert(P.Info('Buildings',queue.target).Hash==target,'FIXTURE_TARGET_CHANGED')
+  return {owner=pid,city=id,x=city:GetX(),y=city:GetY(),turn=Game.GetCurrentGameTurn(),
+   target=target,cost=queue.cost,progress=queue.progress}
+ end
  shared.ConstructionProbe={ReadSnapshot=function(pid,city)
   local q=city:GetBuildQueue();return {kind='Buildings',target=q.target,progress=q.progress,cost=q.cost}
  end}

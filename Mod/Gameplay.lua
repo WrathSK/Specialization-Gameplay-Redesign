@@ -949,7 +949,7 @@ composition.Run('UnitSiteProbe',{},{'UnitSiteProbe'},function() include('UnitAct
 
 composition.Run('UnitTargets',{'EffectiveFacts','UnitSiteProbe'},{'UnitTargets'},function() include('UnitTargets');SPCUnitTargets.Start(P,shared) end)
 
-composition.Run('UnitActions',{'CityProgressionStore','InvestmentAction','ConstructionProbe','UnitTargets'},{'UnitActions'},function() include('UnitActions');SPCUnitActions.Start(P,shared) end)
+composition.Run('UnitActions',{'CityProgressionStore','InvestmentAction','UnitTargets'},{'UnitActions'},function() include('UnitActions');SPCUnitActions.Start(P,shared) end)
 
 -- B412 removable observation seams only; neither result controls Crew startup.
 local crewCompletionObservation
