@@ -90,12 +90,15 @@ class ManualYieldCarrierRetirement(unittest.TestCase):
             'current_manual_plot_writes':new_writes,'matching_route_packets':len(packets)})
 
     def test_only_hidden_control_retires_and_exit_clears_exact_flags(self):
-        with package(B457) as previous:
+        with package(B457) as previous, package(B458) as retired:
             old_buttons, old_requests = panel_controls(previous)
-            new_buttons, new_requests = panel_controls(ROOT)
+            new_buttons, new_requests = panel_controls(retired)
             self.assertTrue(old_buttons.pop('CarrierOffButton'))
             self.assertEqual(new_buttons, old_buttons)
             self.assertEqual(new_requests, old_requests)
+            current_buttons, current_requests = panel_controls(ROOT)
+            self.assertNotIn('CarrierOffButton', current_buttons)
+            self.assertEqual(current_requests, old_requests)
             for path in ('LegacyCleanup.lua','LegacyCleanupCatalog.lua','Data/YieldCarrierProbe.sql'):
                 self.assertEqual((ROOT/'Mod'/path).read_bytes(), (previous/'Mod'/path).read_bytes())
         game = cleanup_production()

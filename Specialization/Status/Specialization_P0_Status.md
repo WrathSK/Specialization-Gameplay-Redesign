@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0984
-Implementation Build: source B459.486 / modinfo486. Live B459.486 from 68565bc. Stable/main B307.334.
+Status Revision: S0985
+Implementation Build: source B460.487 / modinfo487. Live B459.486 from 68565bc. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: HALF_YIELD_EXPERIMENT_RETIREMENT_REVIEWED
+Work State: HALF_YIELD_EXPERIMENT_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the half-point experiment shell — S0985
+
+The Owner approved the exact retirement reviewed in S0984. Remove `Mod/HalfYieldProbe.lua`, the two manifest entries, retired startup and HALF_READ/ON/OFF dispatcher, and three hidden controls and callbacks. The archived Lua is recoverable from `68565bc8d50d141c1a21e64d3c15f392f012a196:Mod/HalfYieldProbe.lua` at SHA256 `01ffce7e57e7d4cb79d03ec0e4bb8f2756f312a5253114e815d8d98c5c8e4679`. The formal yield paths, B050 SQL and saved-flag readers retain their existing definitions. LegacyCleanup owns the 32 exact B050 carrier removals through the existing Store exit.
+
+- **Runtime Impact Contract (L3, T01/T04/T08).** The old shipped shell only acknowledged requests. No effect writes, automatic listeners, city sampling, timers or persisted records enter this batch. In the paired Gameplay and UI fixtures one module load and the three retired replies disappear, while the three real nonempty route proof packets and strict transaction gate match.
+- **LOCAL_SIMULATION_PASS in scope.** All 64 selected checks pass. The actual Store and central cleanup hold the target group on a modeled read failure and withdraw 32 exact carriers after the same ticket is confirmed. The other city, ordinary building, legacy flag and current P0 progression/network actions are preserved. Disposable package activation and full restoration pass. The 22 Meaning and 19 manual-yield checks also pass. Old exact order and retired-shell behavior are checked against published B459, then current order is compared after the one approved startup removal.
+- **STATIC_CONFIRMED and reproduction.** 215 Lua 5.1 compiles, 32 XML-family parses, 680 file references and 10 replacements across 344 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7rHalfYieldExperimentRetirement` with CPython 3.14/Lupa 2.8, the official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7qMeaningExperimentRetirement and O7pManualYieldCarrierRetirement. Tested source SHA256 `4e04cf6bd86ac826a0790ab91d21d1dbf44b91162ae93aac7cadb627b66ef03b`, package SHA256 `b33c23567b705b77e349baa555f5bc06dc70d671b06ab05de47bf76779908882`. Local closure `local/refactor/B460-O7rHalfYieldExperimentRetirement-r3/closure.json` SHA256 `e24b4fd1a97b21dd884ce03b38119d7a7d71a867877ab482c71024023b99367a`. The standalone historical E2 runner aborts at its pre-existing missing include on both B459 and B460 before reaching exit assertions. The selected current Store and exact-catalogue fixtures provide the exit evidence. Native behavior remains unmeasured in this batch.
+
+B459 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B459 deployment verified and retired half-point shell reviewed — S0984
 

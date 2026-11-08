@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0984",
-    "runtime": "B459.486 / modinfo486",
+    "status": "S0985",
+    "runtime": "B460.487 / modinfo487",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B459 deployment and the retired half-point shell proposal with the exact central withdrawal preserved.",
+  "goal": "Verify retired B050 shell removal and preserve exact city-exit withdrawal, retry and current P0 reports.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the half-point experiment shell — S0985",
+      "reason": "Approved one-path retirement with retained Store cleanup"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -336,6 +342,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B460 passes 64 selected methods and 22/19 carried checks. The actual Store fixture retains the exact 32-carrier exit and same-ticket recovery.",
     "B459 installed 345/345 MATCH with B458 and B307 recovery verified. The projected half-point retirement preserves the 32 exact central removals, city and route reports, and visible P0 controls.",
     "B459 passes 22 selected methods and 19 carried checks. Two old fact registrations disappear and active Meaning keeps its production owners.",
     "B458 installed 346/346 MATCH with B457 and B307 recovery verified. Five local Meaning regression scenarios pass before and after the projected old Lua and binding removal.",
@@ -1812,6 +1819,42 @@
       "local_evidence": "local/refactor/B459-HalfYieldExperimentRetirementReview/result.json",
       "local_evidence_sha256": "038aad84ca3ebb45831a62be3cc7cd53f334717528a3e1526479b5a7ed83ff86",
       "report": "Specialization/Status/Specialization_P0_Status.md#b459-deployment-verified-and-retired-half-point-shell-reviewed--s0984"
+    },
+    "b460_half_yield_experiment_retirement": {
+      "build": "B460.487 / modinfo487",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7rHalfYieldExperimentRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B460-O7rHalfYieldExperimentRetirement-r3/closure.json",
+          "sha256": "e24b4fd1a97b21dd884ce03b38119d7a7d71a867877ab482c71024023b99367a"
+        },
+        "O7qMeaningExperimentRetirement": {
+          "tests": 22,
+          "path": "local/refactor/B460-CarriedO7q-r3/closure.json",
+          "sha256": "c827f59d5268008e88cd29012a418fd11d15bd53a01693c9768a4c5c58207548"
+        },
+        "O7pManualYieldCarrierRetirement": {
+          "tests": 19,
+          "path": "local/refactor/B460-CarriedO7p-r3/closure.json",
+          "sha256": "231af14026d4edaef648c1db7c0eafd8812e843c85aa5b21420c8f1c6ca9037f"
+        }
+      },
+      "files": 344,
+      "removed": {
+        "Mod/HalfYieldProbe.lua": "01ffce7e57e7d4cb79d03ec0e4bb8f2756f312a5253114e815d8d98c5c8e4679"
+      },
+      "prior_source": "68565bc8d50d141c1a21e64d3c15f392f012a196",
+      "modeled_acknowledgments": [
+        3,
+        0
+      ],
+      "modeled_exit_removals": 32,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "4e04cf6bd86ac826a0790ab91d21d1dbf44b91162ae93aac7cadb627b66ef03b",
+      "package_sha256": "b33c23567b705b77e349baa555f5bc06dc70d671b06ab05de47bf76779908882",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-half-point-experiment-shell--s0985"
     }
   }
 }

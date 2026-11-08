@@ -626,9 +626,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "88b09681230bd112abe10a65d12265e1a3ef35c9a18b924949cfe2f72bbe5ca9",
+      "sha256": "3ad85698507476e529d1e790773b456c7b473585e8878baabe8f5b45bc242736",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0981 B458 exact hidden manual yield carrier retirement."
+      "provenance": "S0985 B460 retired B050 half-point experiment shell removal."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -654,11 +654,6 @@
       "sha256": "4a481c84a80fb03023c8ea5dbc372a6d5f371a7c906ad2f6fa8bd36b4d676688",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
       "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
-    },
-    "Mod/HalfYieldProbe.lua": {
-      "sha256": "01ffce7e57e7d4cb79d03ec0e4bb8f2756f312a5253114e815d8d98c5c8e4679",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B377_Refactor_S9e4.md",
-      "provenance": "B377.404 Retire automatic Half experiment scans while retaining exact cleanup; local/static evidence only; no deployment/native PASS."
     },
     "Mod/IndustryHistory.lua": {
       "sha256": "c361a4a8a9ea7a701fbec8bc45f391199da7886e6d06859245efb3e0257d1d76",
@@ -766,9 +761,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "1a834ea101ca738ff231688b48a9025b6719f902997ce3dcb777add6d09ae8d9",
+      "sha256": "38ea18208af003f0996de9e4948b99390532ff42a869f7f3b2144d725fda6450",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0983 B459 inactive Culture Meaning experiment retirement."
+      "provenance": "S0985 B460 retired B050 half-point experiment shell removal."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -896,9 +891,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "0c882cb5ae8412f29749b9e3194817a3aa22a5ea0609be7091f0e71356ecbf77",
+      "sha256": "3ef54cc978c2f8032c8798c0d0125d4e30221dd5d17ca94c8b0116d2b449761e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0983 B459 inactive Culture Meaning experiment retirement."
+      "provenance": "S0985 B460 retired B050 half-point experiment shell removal."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1396,14 +1391,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "1b5a2812d43772c38d92930f2e0645ce321808d477cc2fa1e89ff2ea64912cef",
+      "sha256": "7f8f29e9a510321bb3fffeac322cf6cce99a66a0c5a423920277719ebc1b31a9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0981 B458 exact hidden manual yield carrier retirement."
+      "provenance": "S0985 B460 retired B050 half-point experiment shell removal."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "5bbbfe0460df0a43be8d5c3ef02891f24e76d36fb3001f54382327492dd0f362",
+      "sha256": "1cfc93c91ec8c3cb789575f3928f17cefa90883f60c8264c92e7f1a37b3e8ad3",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0981 B458 exact hidden manual yield carrier retirement."
+      "provenance": "S0985 B460 retired B050 half-point experiment shell removal."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1731,7 +1726,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0984 verifies B459 deployment and both recovery packages and isolates the retired half-point shell from active city-exit cleanup.",
-  "source_runtime": "B459.486 / modinfo486 deployed from 68565bc with the approved inactive Meaning experiment removed.",
-  "tested_source_snapshot_sha256": "dee5243bde6935eff0decefd0b219ad8833ad7c8f825d7796eaa3ee54d5a3202"
+  "source_review": "S0985 verifies the retired B050 shell removal, retained city-exit cleanup and same-ticket recovery, and exact package restoration.",
+  "source_runtime": "B460.487 / modinfo487 local candidate, 344 files. B459.486 remains installed.",
+  "tested_source_snapshot_sha256": "4e04cf6bd86ac826a0790ab91d21d1dbf44b91162ae93aac7cadb627b66ef03b"
 }

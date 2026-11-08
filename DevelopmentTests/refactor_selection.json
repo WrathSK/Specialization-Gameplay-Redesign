@@ -2,6 +2,17 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7rHalfYieldExperimentRetirement": [
+      "test_o7_half_yield_experiment_retirement",
+      "test_refactor_s9e4",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5b.Composite",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_refactor_s8c4.PureCatalogue",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7qMeaningExperimentRetirement": [
       "test_o7_meaning_experiment_retirement",
       "test_culture_meaning_probe.MeaningProbeTests.test_import_registry_rejects_each_missing_action_import",
@@ -2752,7 +2763,6 @@
     "Mod/EnvelopeProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/ExpeditionSpyStore.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/Gameplay.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
-    "Mod/HalfYieldProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/IndustryHistory.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/IndustrySupport.lua|MEASURED_MISSING_EVENT": 1,
     "Mod/IndustrySupport.lua|PUBLISH_PENDING_BUDGET": 1,

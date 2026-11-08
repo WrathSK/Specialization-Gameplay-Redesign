@@ -5,11 +5,8 @@
     <Box Size="840,664" Color="12,19,27,250" />
     <Label ID="Title" Anchor="L,T" Offset="18,15" Style="FontNormal18" String="Specialization diagnostics" />
     <GridButton ID="CloseButton" Anchor="R,T" Offset="12,8" Size="90,32" Style="MainButton"><Label ID="CloseButtonCaption" Anchor="C,C" Style="FontNormal14" String="关闭" Color="255,255,255,255" /></GridButton>
-    <GridButton Hidden="1" ID="HalfReadButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read half test" />
     <GridButton Hidden="1" ID="Lv2GPPButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read Lv2 GPP" />
-    <GridButton Hidden="1" ID="HalfOnButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Half +0.5 ON" />
     <GridButton Hidden="1" ID="InvestPrepareButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Prepare investment" />
-    <GridButton Hidden="1" ID="HalfOffButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Half OFF" />
     <GridButton Hidden="1" ID="InvestConfirmButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Confirm investment" />
     <GridButton Hidden="1" ID="CommerceOFFButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Commerce OFF / baseline" />
     <GridButton Hidden="1" ID="CommerceTEST5Button" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Commerce TEST +5" />

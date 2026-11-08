@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B458, gameplay, package
+from retired_crew_sources import B458, B459, gameplay, package, source
 from test_o7_crew_retirement import verify_package_round_trip
 from test_pu11_package_absence import NATIVE
 
@@ -55,10 +55,15 @@ class MeaningExperimentRetirement(unittest.TestCase):
             before = gameplay(previous, revision=B458)
             after = Context(vfs=profile)
             self.assertEqual(meaning_status(after), meaning_status(before))
-            for path in ('CultureMeaning.lua','CultureMeaningModel.lua','Data/CultureMeaningProbe.sql',
-                         'Gameplay.lua','UI/P0Panel.lua','UI/P0Panel.xml'):
+            for path in ('CultureMeaning.lua','CultureMeaningModel.lua','Data/CultureMeaningProbe.sql'):
                 self.assertEqual((ROOT/'Mod'/path).read_bytes(), (previous/'Mod'/path).read_bytes())
-        self.assertEqual(before.load_counts, after.load_counts)
+            # Keep the original exact boundary on the two published Meaning packages.
+            for path in ('Gameplay.lua','UI/P0Panel.lua','UI/P0Panel.xml'):
+                self.assertEqual(source(path,B459).encode(), (previous/'Mod'/path).read_bytes())
+            with package(B459) as retired:
+                original_after = gameplay(retired, revision=B459)
+                self.assertEqual(meaning_status(original_after), meaning_status(after))
+                self.assertEqual(before.load_counts, original_after.load_counts)
         self.assertEqual(after.load_counts['missing'] + after.load_counts['failed'], 0)
 
     def test_only_old_unowned_fact_subscriptions_are_removed(self):
@@ -72,5 +77,5 @@ class MeaningExperimentRetirement(unittest.TestCase):
             'active_registrations_match':True})
 
     def test_exact_temporary_switch_and_recovery(self):
-        with package(B458) as previous:
-            verify_package_round_trip(self, previous/'Mod', ROOT/'Mod', (REMOVED,), 'CultureMeaning.lua')
+        with package(B458) as previous, package(B459) as retired:
+            verify_package_round_trip(self, previous/'Mod', retired/'Mod', (REMOVED,), 'CultureMeaning.lua')

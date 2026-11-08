@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0984",
-    "runtime": "B459.486 / modinfo486",
+    "status": "S0985",
+    "runtime": "B460.487 / modinfo487",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "68565bc8d50d141c1a21e64d3c15f392f012a196",
-  "current_batch": "HALF_YIELD_EXPERIMENT_RETIREMENT_REVIEWED",
-  "next_batch": "Await exact approval to remove HalfYieldProbe.lua, its two manifest entries, retired Gameplay startup and request branch, and three hidden P0 controls and callbacks. Retain the SQL, central cleanup, existing flag and its readers.",
+  "current_batch": "HALF_YIELD_EXPERIMENT_RETIRED_LOCAL",
+  "next_batch": "Verify the guarded B460 switch and review the B011 event observer separately from Store first-completion admission.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B459.486 / modinfo486 temporary develop from 68565bc8d50d141c1a21e64d3c15f392f012a196, 345/345 MATCH, SHA256 b9da74b5b917d900e5456df5422974f1fa27f129aff7027053e7ca9f381e2a71. Receipt B459.486-68565bc-playtest.json DEVELOP_ACTIVE. B458 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0984 verifies B459 deployment and both recovery packages and isolates the retired half-point shell from active city-exit cleanup.",
+  "context_review_status": "S0985 verifies the retired B050 shell removal, retained city-exit cleanup and same-ticket recovery, and exact package restoration.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b459-deployment-verified-and-retired-half-point-shell-reviewed--s0984",
-  "source_status": "B459.486 / modinfo486 deployed at SHA256 b9da74b5b917d900e5456df5422974f1fa27f129aff7027053e7ca9f381e2a71. Exact inactive Culture Meaning experiment retirement verified.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-half-point-experiment-shell--s0985",
+  "source_status": "B460.487 / modinfo487 locally verified at SHA256 b33c23567b705b77e349baa555f5bc06dc70d671b06ab05de47bf76779908882. B459.486 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

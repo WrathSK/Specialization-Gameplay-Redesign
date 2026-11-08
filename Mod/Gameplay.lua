@@ -537,14 +537,6 @@ local function request(playerID,params)
     if shared.CopyYields then shared.CopyYields.Receive(playerID,params) end
     return
   end
-  if params.Action=='HALF_ON' or params.Action=='HALF_OFF' or params.Action=='HALF_READ' then
-    if not P.IsTestPlayer(playerID) then return end
-    local c=Players[playerID]:GetCities():FindID(params.CityID)
-    if not c or c:GetOwner()~=playerID then return end
-    local ok,result=pcall(shared.HalfYieldProbe.Run,playerID,c,params.Action)
-    if not ok then print('[SPC][B050][REQUEST] '..tostring(result)) end
-    shared.Snapshot=ok and result or '半点实验未完成，请回传日志。';shared.LastToken=params.Token;return
-  end
   if params.Action=='PURCHASE_BASE' or params.Action=='PURCHASE_ON' or params.Action=='PURCHASE_OFF' or params.Action=='PURCHASE_READ' then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
@@ -944,7 +936,6 @@ composition.Run('ResearchApply',{'EffectiveFacts','DistrictCompleteness','Native
 
 composition.Run('ResearchChair',{'EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchChair'},function() include('ResearchChair');SPCResearchChair.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('HalfYieldProbe',{},{'HalfYieldProbe'},function() include('HalfYieldProbe');SPCHalfYieldProbe.Start(P,shared,{centralExit=true,retired=true}) end)
 
 composition.Run('CopyYields',{},{'CopyYields'},function() include('CopyYields');SPCCopyYields.Start(P,shared,{retired=true}) end)
 
