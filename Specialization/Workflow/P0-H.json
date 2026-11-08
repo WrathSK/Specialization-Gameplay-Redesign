@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0965",
+    "status": "S0966",
     "runtime": "B451.478 / modinfo478",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Keep Network Bridge and Culture Network business and failure reports available without optional TRAIN.",
+  "goal": "Record verified B451 deployment with independent network failure reporting and rollback backup.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B451 development deployment verified — S0966",
+      "reason": "Verified runtime, exact one-file addition and recoverable preceding version"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -222,6 +228,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B451 installed 356/356 MATCH with the one parser addition. Both recovery packages match.",
     "B451 passes 99 selected methods including eight trace profiles and real proof/ACK under package absence.",
     "B450 installed 355/355 MATCH with the exact removal. Both recovery packages match.",
     "B450 passes 64 selected methods including nonempty actual roots and full exact-path rollback.",
@@ -1133,6 +1140,20 @@
       "local_evidence_sha256": "15126a7733435fa58d63c9b8203af8ec1fa77cbb501939ca8add83f2e0de284b",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#isolate-network-failure-reporting-from-train--s0965"
+    },
+    "b451_deployment": {
+      "version": "B451.478 / modinfo478",
+      "source_commit": "414edd5521415cde89be47a0b20f146ff31c4bc5",
+      "digest": "a52baca9908f24fe9c62694d908ae3b8b7a53ce32a1994b29edd37afe7c8dc86",
+      "files": 356,
+      "receipt": "B451.478-414edd5-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B450.477, 355/355 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b449-development-deployment-verified--s0966"
     }
   }
 }

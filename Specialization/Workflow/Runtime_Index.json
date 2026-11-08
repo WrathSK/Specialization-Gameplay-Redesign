@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "0224c014aeb0718a0b6f5bad37ad867561c89250",
-  "runtime": "B450.477 / modinfo477 temporary develop deployed, 355/355 MATCH. Stable/main B307.334.",
+  "runtime_commit": "414edd5521415cde89be47a0b20f146ff31c4bc5",
+  "runtime": "B451.478 / modinfo478 temporary develop deployed, 356/356 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1786,7 +1786,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0965 verifies independent Network Bridge and Culture Network reports, proof and passive effects.",
-  "source_runtime": "B451.478 / modinfo478 local candidate, 356 files. B450.477 remains installed.",
+  "source_review": "S0966 verifies B451 development deployment and the exact pending old route observer review.",
+  "source_runtime": "B451.478 / modinfo478 deployed from 414edd5, with independent network failure reporting.",
   "tested_source_snapshot_sha256": "4ecf66a61523bfcbdc1c902ff2be89d4c0fa8bd526ef8bbc33845092057a2d9e"
 }

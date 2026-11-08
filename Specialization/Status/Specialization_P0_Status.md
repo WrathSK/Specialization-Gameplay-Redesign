@@ -1,17 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0965
-Implementation Build: source B451.478 / modinfo478. Live B450.477 from 0224c01. Stable/main B307.334.
+Status Revision: S0966
+Implementation Build: source B451.478 / modinfo478. Live B451.478 from 414edd5. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_TRACE_ISOLATED_LOCAL
+Work State: NETWORK_TRACE_ISOLATED_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B451 development deployment verified — S0966
+
+B451.478 is installed from `414edd5521415cde89be47a0b20f146ff31c4bc5`. All 356 files match SHA256 `a52baca9908f24fe9c62694d908ae3b8b7a53ce32a1994b29edd37afe7c8dc86`. Receipt `B451.478-414edd5-playtest.json` is DEVELOP_ACTIVE. The only added file relative to B450 is ReadFailure.lua. The outgoing B450 package and the stable B307 recovery both match their reviewed hashes. Game exit, the unique UUID and the clear transaction boundary were verified.
+
+Network proof, failure reports and passive reconciliation are locally verified in the recorded scope. There is no immediate user game test. Isolate the existing UI sender and city presentation observation from optional TRAIN. Positive Culture Network cold restore remains separate.
 
 ### Isolate network failure reporting from TRAIN — S0965
 
