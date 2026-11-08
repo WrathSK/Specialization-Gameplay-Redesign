@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0947
+Status Revision: S0948
 Implementation Build: source B443.470 / modinfo470. Live B443.470 from 45206f6. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: PRODUCTION_BINDING_NATIVE_CHECKPOINT
+Work State: OFFICIAL_INTERACTION_NATIVE_CHECKPOINT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### HD production interaction verified on B443 — S0948
+
+**USER_GAME_TEST_PASS in the observed HD interaction scope.** The collector names B443.470 and the loaded DB selects HD. The production UI starts and registers its reader (seq 37–38). The T5–T7 session begins with a save load whose origin build is unverified. It establishes the following behavior during this B443 run.
+
+- **Engineering Study.** Both multi-item attempts held on the sole-project condition (seq 487 and 505). The Owner observed the confirmation text, rearranged and removed other targets, and saw counting resume (seq 500). The queued Study started when Granary finished and it reached the head (seq 517–524 and queue lines 44–47). The two turn-boundary completions took the city's Study level from 1 to 2 and then 3 (seq 168, 245, 253, 524, 566 and 580). The Owner verified the institution UI and Gold discount.
+- **Standardization output.** The applied carrier snapshot advanced from 12% to 14% and 16%, including the source and two recipients (seq 125–128, 250–252 and 576–578). `StandardizationEffects.lua` reports its applied map after a presence check or verified write. The loaded DB attaches both construction and purchase modifiers to the same Granary carrier (16% construction and 6% purchase at level 3). This confirms the carrier update. The Owner separately observed Gold. Native incremental template production under a controlled same-input comparison remains unmeasured in this run.
+- **Crew formation and use.** I, IV and V orders locked at 364, 1400 and 1904 Production, matching the observed 140% Practice tier. The three native completions bound three units (seq 304/313, 358/367 and 387/396). A fourth order was cancelled (seq 469). The placed Forbidden City accepted 260 base Production and gained 337.2. A second Crew supplied 663 base and added 859.8, finishing it. These are native queue values, independent of immediate precision probe readback. The observed amplification is consistent with the applicable Megaproject Engineering bonus (seq 337–339 and 415–417, queue lines 34 and 39–41). The next target received 0.2 Production in the native log, while the large amplified excess was discarded. The UI showed no inherited surplus. The 0.2 matches the gap between the integer progress read (337) and the native queue value (337.2). Its precise engine origin and a strict zero-overflow outcome remain unconfirmed.
+
+Evidence is archived locally at `local/legacy-workspace/Specialization/Status/Validation/Evidence/B443_HD_Production_20261107/manifest.json` (manifest SHA256 `245384ee1229caccb7dd145ece6f0d8c2304afa4e5201b12b694184419e95175`). The HD regression check can close at this scope. The next native gate is one focused no-HD Gathering Storm interaction using the already fixed environment and a current-build campaign. Check the institutions shortcut, one legal full-turn project and one normal Crew order through Wonder use. The observed HD results carry forward. Dependent retirement still follows its existing gates.
 
 ### B443 deployed for the focused production panel check — S0947
 

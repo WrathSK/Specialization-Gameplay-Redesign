@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0947",
+    "status": "S0948",
     "runtime": "B443.470 / modinfo470",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B443 deployment and its focused native production panel checkpoint.",
+  "goal": "Record observed B443 HD production interaction and the separate official-profile native gate.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### HD production interaction verified on B443 — S0948",
+      "reason": "Native HD production panel, Study queue and reward, Crew formation and Wonder use, and evidence limits"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -114,6 +120,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B443 HD native observation passes production reader, Study queue/timing, Gold and applied carrier update, and Crew formation/use in scope. Native queue shows 0.2 residue. Official interaction pending.",
     "B443 deployment: 359/359 MATCH, receipt DEVELOP_ACTIVE, both retained recovery packages verified and no pending transaction. Native production interaction remains required.",
     "B443: 51 production, 48 city presentation and 44 Crew/placement local checks pass with overlapping selections. Two restricted-context fixed-B442 cases fail before reader registration. B443 native interaction awaits verification.",
     "B442 deployment: 359/359 installed, retained B437 and B307 hashes verified. No native interaction claim.",
@@ -676,6 +683,45 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "USER_GAME_TEST_REQUIRED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b443-deployed-for-the-focused-production-panel-check--s0947"
+    },
+    "b443_hd_production_interaction": {
+      "build": "B443.470 / modinfo470",
+      "profile": "HD",
+      "status": "USER_GAME_TEST_PASS_SCOPED",
+      "turns": [
+        5,
+        6,
+        7
+      ],
+      "save_origin_build": "UNKNOWN",
+      "study_levels": [
+        1,
+        2,
+        3
+      ],
+      "standardization_applied_percent": [
+        12,
+        14,
+        16
+      ],
+      "gold_discount_observed": true,
+      "controlled_native_production_delta": "NOT_MEASURED",
+      "crew_orders_bound": 3,
+      "crew_orders_cancelled": 1,
+      "crew_formation_costs": [
+        364,
+        1400,
+        1904
+      ],
+      "observed_wonder_deltas": [
+        337.2,
+        859.8
+      ],
+      "native_queue_residue": 0.2,
+      "native_evidence": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B443_HD_Production_20261107/manifest.json",
+      "native_evidence_sha256": "245384ee1229caccb7dd145ece6f0d8c2304afa4e5201b12b694184419e95175",
+      "report": "Specialization/Status/Specialization_P0_Status.md#hd-production-interaction-verified-on-b443--s0948",
+      "official_native": "USER_GAME_TEST_REQUIRED"
     }
   }
 }

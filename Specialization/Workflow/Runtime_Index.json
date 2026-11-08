@@ -1801,7 +1801,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0946 verifies the production callback binding locally. S0947 confirms receipt-bound deployment.",
-  "source_runtime": "B443.470 / modinfo470 deployed from 45206f6. Native production interaction awaits user-game evidence.",
+  "source_review": "S0946 local checks, S0947 verified deployment and S0948 scoped HD native interaction. Official-profile native gate pending.",
+  "source_runtime": "B443.470 / modinfo470 deployed from 45206f6. The observed HD production interaction passed in scope.",
   "tested_source_snapshot_sha256": "4ed9fc17d677b5bc0a78b02fd2b551e973cab3cd8fd12139c1e2f7553ad18cfa"
 }
