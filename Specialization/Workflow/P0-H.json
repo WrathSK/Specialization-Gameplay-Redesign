@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1011",
+    "status": "S1012",
     "runtime": "B473.500 / modinfo500",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify retirement of the old Dialogue override experiments with the current project, effects, reports and collection preserved.",
+  "goal": "Record B473 deployment and review the old Commerce test buttons with the current readout, dashboard and stale-command guard preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B473 deployment verified and the old Commerce test controls reviewed — S1012",
+      "reason": "Verified B473 deployment and exact retired Commerce test boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -498,6 +504,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B473 installed 337/337 MATCH with both recovery packages verified. The Commerce projection preserves the report, configuration request, stale guard and listener counts.",
     "B473 passes 14 selected and 14/64 carried checks. The retained Dialogue reports, local restoration, collection receipts and nonempty route proofs match.",
     "B472 installed 337/337 MATCH with both recovery packages verified. The Dialogue projection preserves current reports, restored carriers, collection acknowledgement and three nonempty route proofs.",
     "B472 passes 14 selected and 13/84/64 carried checks. Both memory reports, Meaning cold withdrawal and three nonempty route proofs match.",
@@ -3359,6 +3366,61 @@
       "package_sha256": "376fae1dad65b9efbc679f2fc023ef4447aa431eac26d691bd90e6f1b321fbfb",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-dialogue-override-experiments--s1011"
+    },
+    "b473_deployment": {
+      "version": "B473.500 / modinfo500",
+      "source_commit": "fce8db9cc6b09d7894554b2d27eecdabcadc2982",
+      "digest": "376fae1dad65b9efbc679f2fc023ef4447aa431eac26d691bd90e6f1b321fbfb",
+      "files": 337,
+      "receipt": "B473.500-fce8db9-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B472.499, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b473-deployment-verified-and-the-old-commerce-test-controls-reviewed--s1012"
+    },
+    "b473_retired_commerce_controls_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "fce8db9cc6b09d7894554b2d27eecdabcadc2982",
+      "removed": [],
+      "modified": [
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "UI/P0Panel.lua": "8ef5f01150d43a4624c93cb04aa5927feaf7da2b1df5bad7a0affb38f85fbdf1",
+        "UI/P0Panel.xml": "4f63aa23e4e301ff8d777fcc554bafcc1d4d30b7709f2f0aea205f358bb1b41a"
+      },
+      "hidden_controls": [
+        "CommerceOFFButton",
+        "CommerceAUTOButton",
+        "CommerceTEST5Button"
+      ],
+      "retired_actions": [
+        "COMMERCE_OFF",
+        "COMMERCE_AUTO",
+        "COMMERCE_TEST5"
+      ],
+      "modeled_manual_packets": [
+        3,
+        0
+      ],
+      "stale_requests_blocked": 3,
+      "property_writes": [
+        0,
+        0
+      ],
+      "retained_reports": "MATCH",
+      "production_dashboard_request": "MATCH",
+      "panel_listener_counts": "MATCH",
+      "local_evidence": "local/refactor/B473-RetiredCommerceControlsReview/result.json",
+      "local_evidence_sha256": "3fefd85257242c8934f66e44ff67f6d0a3b89e56202b9bc0b6ac538804ef1d03",
+      "local_replay_sha256": "2a7f5d89fd32e7e4d0e96381bc50e48f1da9a3ffacf2c170d62a3cc4dd58e190",
+      "local_transcript_sha256": "f52f0bc2e2ff736cbc04009a49bc55d3d0a52e4afd0952f7a72e22d45abc4bcd",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b473-deployment-verified-and-the-old-commerce-test-controls-reviewed--s1012"
     }
   }
 }

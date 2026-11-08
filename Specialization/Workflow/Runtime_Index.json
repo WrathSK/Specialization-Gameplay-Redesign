@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "0eab91b55aa608ff833c330dcf0e8aac9516e329",
-  "runtime": "B472.499 / modinfo499 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
+  "runtime_commit": "fce8db9cc6b09d7894554b2d27eecdabcadc2982",
+  "runtime": "B473.500 / modinfo500 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1011 verifies the approved old Dialogue override retirement with the current project, effects, reports and collection transport preserved.",
-  "source_runtime": "B473.500 / modinfo500 local candidate, 337 files. B472.499 remains installed.",
+  "source_review": "S1012 verifies B473 deployment and both recovery packages. Three hidden Commerce controls are separate from the P0 readout, production dashboard and stale-request guard.",
+  "source_runtime": "B473.500 / modinfo500 deployed from fce8db9 with the approved old Dialogue override experiments removed.",
   "tested_source_snapshot_sha256": "d7f78eedf96461593bfa0f904df884d466776f37b3785256f091119ff0a86b1c"
 }

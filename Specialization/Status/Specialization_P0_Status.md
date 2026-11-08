@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1011
-Implementation Build: source B473.500 / modinfo500. Live B472.499 from 0eab91b. Stable/main B307.334.
+Status Revision: S1012
+Implementation Build: source B473.500 / modinfo500. Live B473.500 from fce8db9. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRED_DIALOGUE_OVERRIDE_COMMANDS_RETIRED_LOCAL
+Work State: RETIRED_COMMERCE_EXPERIMENT_CONTROLS_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B473 deployment verified and the old Commerce test controls reviewed — S1012
+
+B473.500 is installed from `fce8db9cc6b09d7894554b2d27eecdabcadc2982`. All 337 files match SHA256 `376fae1dad65b9efbc679f2fc023ef4447aa431eac26d691bd90e6f1b321fbfb`. Receipt `B473.500-fce8db9-playtest.json` is DEVELOP_ACTIVE. The approved old Dialogue experiments have retired. The B472 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The hidden Commerce Off, Auto and +5 test buttons still register manual requests. Gameplay already refuses all three at its stale-command guard, before reaching the current Commerce owner. The projection removes those controls and their callbacks in `Mod/UI/P0Panel.lua` and `Mod/UI/P0Panel.xml`. The visible readout keeps the existing request. The Gameplay guard and the production-menu configuration panel retain their responsibilities.
+
+The disposable comparison takes the old button-generated packets from three to zero. All three stale packets still fail at the real Gameplay guard without property writes. The real report with a populated Store, the configuration panel's scoped selection request, and the P0 listener counts match. Disposable switch and restore pass. Evidence `local/refactor/B473-RetiredCommerceControlsReview/result.json` SHA256 `3fefd85257242c8934f66e44ff67f6d0a3b89e56202b9bc0b6ac538804ef1d03` with replay script SHA256 `2a7f5d89fd32e7e4d0e96381bc50e48f1da9a3ffacf2c170d62a3cc4dd58e190` alongside. Reproduce with CPython 3.14/Lupa 2.8 and the named source's DevelopmentTests on PYTHONPATH. In a clean scratch directory run `python3.14 -B review.py --source fce8db9cc6b09d7894554b2d27eecdabcadc2982 --package 376fae1dad65b9efbc679f2fc023ef4447aa431eac26d691bd90e6f1b321fbfb`.
+
+The exact Commerce test control retirement awaits approval. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the old Dialogue override experiments — S1011
 
