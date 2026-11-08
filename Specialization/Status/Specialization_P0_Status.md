@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1001
-Implementation Build: source B468.495 / modinfo495. Live B467.494 from 5efdc9e. Stable/main B307.334.
+Status Revision: S1002
+Implementation Build: source B468.495 / modinfo495. Live B468.495 from 4ac1132. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: LEGACY_CITY_MARKER_RETIRED_LOCAL
+Work State: MANUAL_CITY_FLOW_REPORT_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B468 deployment verified and the manual City Flow report reviewed — S1002
+
+B468.495 is installed from `4ac113246dacc257cbe4a4e10aa352308417dcaf`. All 337 files match SHA256 `375c60a05177040d633616cad23415768670dcc31992bdafd69a7ed56af66d67`. Receipt `B468.495-4ac1132-playtest.json` is DEVELOP_ACTIVE. The two dedicated marker requests have retired, and generic reports can still display existing marker values. The B467 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The hidden B021 City Flow button asks Gameplay to display the old flow record. With the current Store in charge, the old report displays that the legacy flow is frozen. The projection removes this one control, callback and CITY_FLOW_READ command in `Mod/Gameplay.lua`, `Mod/UI/P0Panel.lua` and `Mod/UI/P0Panel.xml`. The package path set stays identical. Keep CityFlowProbe in full. Its SupportFacts supplies EffectiveFacts, ResumeInherited serves city inheritance, ready participates in network input and its Read is still called by the legacy load path. Keep City Journal and binding.
+
+The disposable comparison eliminates both explicit report calls across two owned cities. It preserves a cold Store restore and subsequent first completion, both cities' SupportFacts, legacy B021 resumption, City Journal, the other selected UI requests and three nonempty route proofs with strict transaction qualification. It also passes a disposable package switch and restore. Evidence `local/refactor/B468-ManualCityFlowReportRetirementReview/result.json` SHA256 `5e6035ab36d37c096045351b86aee18d8f9afba726430bcbe7d8790d7276f089` with replay script SHA256 `915059bc98222da5247b3da3388d8d3ec344855f087c86a3c97cf67dfdf759f5` alongside. Reproduce in a clean scratch directory with CPython 3.14/Lupa 2.8 and the named source's DevelopmentTests on PYTHONPATH by running `python3.14 -B review.py --source 4ac113246dacc257cbe4a4e10aa352308417dcaf --package 375c60a05177040d633616cad23415768670dcc31992bdafd69a7ed56af66d67`.
+
+The exact manual City Flow report retirement awaits approval. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the hidden city marker commands — S1001
 

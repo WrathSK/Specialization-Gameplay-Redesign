@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1001",
+    "status": "S1002",
     "runtime": "B468.495 / modinfo495",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the approved hidden marker command retirement with saved marker values and current facts preserved.",
+  "goal": "Record B468 deployment and review the exact manual City Flow retirement with saved recovery, support facts and current reports preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B468 deployment verified and the manual City Flow report reviewed — S1002",
+      "reason": "Verified B468 deployment and exact hidden City Flow report retirement boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -438,6 +444,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B468 installed 337/337 MATCH with both recovery packages verified. The manual City Flow projection preserves Store cold restore, SupportFacts, the legacy resume, City Journal and current route proofs.",
     "B468 passes 28 selected and 26/64 carried checks. Saved marker readout, current Store guards, reports and network proofs match.",
     "B467 installed 337/337 MATCH with both recovery packages verified. The marker projection preserves existing marker values, generic reports and current route proofs.",
     "B467 passes 26 selected checks and 64/9 carried checks. Real shared adjacency, formal network paging and route proof match. The existing layout comparison remains separate.",
@@ -2681,6 +2688,51 @@
       "package_sha256": "375c60a05177040d633616cad23415768670dcc31992bdafd69a7ed56af66d67",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-hidden-city-marker-commands--s1001"
+    },
+    "b468_deployment": {
+      "version": "B468.495 / modinfo495",
+      "source_commit": "4ac113246dacc257cbe4a4e10aa352308417dcaf",
+      "digest": "375c60a05177040d633616cad23415768670dcc31992bdafd69a7ed56af66d67",
+      "files": 337,
+      "receipt": "B468.495-4ac1132-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B467.494, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b468-deployment-verified-and-the-manual-city-flow-report-reviewed--s1002"
+    },
+    "b468_manual_city_flow_report_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "4ac113246dacc257cbe4a4e10aa352308417dcaf",
+      "removed": [],
+      "modified": [
+        "Gameplay.lua",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "Gameplay.lua": "f707ee3529ae088475300520d2ec16cacb49440a6e55657a3b12d79488dd04e6",
+        "UI/P0Panel.lua": "e71efa8ce6aa575603faaa9366acd8cf35fed567f5f96d51590e76d357d482d5",
+        "UI/P0Panel.xml": "09c2b4f0523e47a387e0e0a883de150dd86e02a67de24a50859b509a80510d3a"
+      },
+      "hidden_control": "CityFlowButton",
+      "retired_action": "CITY_FLOW_READ",
+      "manual_flow_read_calls": [
+        2,
+        0
+      ],
+      "store_first_completion_cold_restore_and_support_facts": "MATCH",
+      "legacy_flow_resume": "MATCH",
+      "retained_ui_and_city_journal": "MATCH",
+      "production_route_packets": 3,
+      "local_evidence": "local/refactor/B468-ManualCityFlowReportRetirementReview/result.json",
+      "local_evidence_sha256": "5e6035ab36d37c096045351b86aee18d8f9afba726430bcbe7d8790d7276f089",
+      "local_replay_sha256": "915059bc98222da5247b3da3388d8d3ec344855f087c86a3c97cf67dfdf759f5",
+      "local_transcript_sha256": "11ed952c6e40ddcdc4b4f02beac4d689e99cd36819d25ce05003c33340b0196e",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b468-deployment-verified-and-the-manual-city-flow-report-reviewed--s1002"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "5efdc9e9e946b5504d214309e358278b4faf0eb0",
-  "runtime": "B467.494 / modinfo494 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
+  "runtime_commit": "4ac113246dacc257cbe4a4e10aa352308417dcaf",
+  "runtime": "B468.495 / modinfo495 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1001 verifies the exact city marker command retirement with saved marker reads, current reports and route proof preserved.",
-  "source_runtime": "B468.495 / modinfo495 local candidate, 337 files. B467.494 remains installed.",
+  "source_review": "S1002 verifies B468 deployment and both recovery packages. The hidden manual City Flow report can retire separately from City Flow recovery and SupportFacts.",
+  "source_runtime": "B468.495 / modinfo495 deployed from 4ac1132 with the approved hidden marker commands removed.",
   "tested_source_snapshot_sha256": "a59184bb45cfcd4c327c680c24e16e91cb61d36113b733e2701eaf4ca3fff8e8"
 }
