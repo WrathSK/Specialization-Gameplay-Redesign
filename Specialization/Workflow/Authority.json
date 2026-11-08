@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0967",
+    "status": "S0968",
     "runtime": "B452.479 / modinfo479",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "414edd5521415cde89be47a0b20f146ff31c4bc5",
-  "current_batch": "UI_TRACE_ISOLATED_LOCAL",
-  "next_batch": "Verify the guarded B452 switch. Owner review is needed for the exact B116 ActionPanel wrapper and Gameplay observer removal. Positive Culture Network cold restore remains separate.",
+  "runtime_commit": "26dfcbd0f7baf8a17e52de2bfcb57071da651a6b",
+  "current_batch": "UI_TRACE_ISOLATED_DEPLOYED",
+  "next_batch": "Owner review is needed for the exact B116 ActionPanel wrapper and Gameplay observer removal. Positive Culture Network cold restore remains separate.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B451.478 / modinfo478 temporary develop from 414edd5521415cde89be47a0b20f146ff31c4bc5, 356/356 MATCH, SHA256 a52baca9908f24fe9c62694d908ae3b8b7a53ce32a1994b29edd37afe7c8dc86. Receipt B451.478-414edd5-playtest.json DEVELOP_ACTIVE. B450 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B452.479 / modinfo479 temporary develop from 26dfcbd0f7baf8a17e52de2bfcb57071da651a6b, 356/356 MATCH, SHA256 338831622ea4b2e77b66b851f6c154e1bd356d23dceb9027abcbd0607166bd19. Receipt B452.479-26dfcbd-playtest.json DEVELOP_ACTIVE. B451 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0967 verifies independent route transport and city presentation plus the pending exact B116 removal.",
+  "context_review_status": "S0968 verifies B452 development deployment and the exact pending old route observer review.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#separate-ui-observation-from-route-sending-and-city-presentation--s0967",
-  "source_status": "B452.479 / modinfo479 locally verified at SHA256 338831622ea4b2e77b66b851f6c154e1bd356d23dceb9027abcbd0607166bd19. B451.478 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b449-development-deployment-verified--s0968",
+  "source_status": "B452.479 / modinfo479 deployed and verified at SHA256 338831622ea4b2e77b66b851f6c154e1bd356d23dceb9027abcbd0607166bd19. Route transport and city presentation checks are locally scoped.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

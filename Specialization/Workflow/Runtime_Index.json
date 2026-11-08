@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "414edd5521415cde89be47a0b20f146ff31c4bc5",
-  "runtime": "B451.478 / modinfo478 temporary develop deployed, 356/356 MATCH. Stable/main B307.334.",
+  "runtime_commit": "26dfcbd0f7baf8a17e52de2bfcb57071da651a6b",
+  "runtime": "B452.479 / modinfo479 temporary develop deployed, 356/356 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1786,7 +1786,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0967 verifies independent route transport and city presentation plus the pending exact B116 removal.",
-  "source_runtime": "B452.479 / modinfo479 local candidate, 356 files. B451.478 remains installed.",
+  "source_review": "S0968 verifies B452 development deployment and the exact pending old route observer review.",
+  "source_runtime": "B452.479 / modinfo479 deployed from 26dfcbd, with route and city presentation UI observation isolated.",
   "tested_source_snapshot_sha256": "e275d07526f088ee0cf6f7390a59e709ff887205e9b893d15d454458881882b7"
 }

@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0967",
+    "status": "S0968",
     "runtime": "B452.479 / modinfo479",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Keep route sending and CityPotential independent of optional observation, and prepare the next exact B116 review.",
+  "goal": "Record verified B452 deployment and the pending exact B116 retirement.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B452 development deployment verified — S0968",
+      "reason": "Verified runtime, unchanged package path set and recoverable preceding version"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -234,6 +240,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B452 installed 356/356 MATCH with the same file set as B451. Both recovery packages match.",
     "B452 passes 59 selected methods covering identical wire/ACK, sender work and eight presentation observer profiles.",
     "B451 installed 356/356 MATCH with the one parser addition. Both recovery packages match.",
     "B451 passes 99 selected methods including eight trace profiles and real proof/ACK under package absence.",
@@ -1179,6 +1186,20 @@
       "local_evidence_sha256": "f1fab050473e18ef111dec9340c4ced5608ec0cc9a55ec6202ccb10115183220",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#separate-ui-observation-from-route-sending-and-city-presentation--s0967"
+    },
+    "b452_deployment": {
+      "version": "B452.479 / modinfo479",
+      "source_commit": "26dfcbd0f7baf8a17e52de2bfcb57071da651a6b",
+      "digest": "338831622ea4b2e77b66b851f6c154e1bd356d23dceb9027abcbd0607166bd19",
+      "files": 356,
+      "receipt": "B452.479-26dfcbd-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B451.478, 356/356 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b449-development-deployment-verified--s0968"
     }
   }
 }
