@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "0e8b23c6afd0d33842dc69994a94bfd1ca01b9b640c75e7bb76239ba11c27543",
+      "sha256": "0ed34fa14d53078413f5e63719788a5010eca63ca6ec64701a56b776fb53ca4f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0940 B438 scopes the unit action adapter to the two selected UI bases. Native interaction pending."
+      "provenance": "S0941 B439 scopes production actions to the selected official and HD UI bases. Native interaction pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "88c75ae8166e29f8220fbe5114af9cc8107454d5d5e745802b07f7df40805e47",
+      "sha256": "640dd2b194214f244182ab691695a168728350eaf5d92aa7c4eba3f9c1701fa8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0940 B438 scopes the unit action adapter to the two selected UI bases. Native interaction pending."
+      "provenance": "S0941 B439 scopes production actions to the selected official and HD UI bases. Native interaction pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1251,9 +1251,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "9be27a74114b555fd0094b1c6761908a1b6b224e0d6abfe909e731413f8fc352",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-      "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas."
+      "sha256": "d004c8b405051ac764615393038cb1554912474912bad087362b3053471be088",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0941 B439 scopes production actions to the selected official and HD UI bases. Native interaction pending."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "754add58b271140f6651e427557eb01df2ef1e913fdc41240bc5dbadc841d7a5",
@@ -1774,9 +1774,14 @@
       "sha256": "c471e8fee764cdd8716c0b22ec4e58cd7943579e784b3ee344f64a43ec894b19",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0940 B438 scopes the unit action adapter to the two selected UI bases. Native interaction pending."
+    },
+    "Mod/UI/SPCProductionPanelOfficial.lua": {
+      "sha256": "69bfec2adfd665cc3102d2c48d25c0e42d67d84b067e58e8f78f1e8dc76333fe",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0941 B439 scopes production actions to the selected official and HD UI bases. Native interaction pending."
     }
   },
-  "source_review": "Specialization/Status/Specialization_P0_Status.md#professional-unit-actions-use-the-official-and-hd-panels--s0940",
-  "source_runtime": "B438.465 / modinfo465 local candidate, 354 files",
-  "tested_source_snapshot_sha256": "d91faeded9d859019eb67532962390749a71d3f4e0bacbb6e3aac187e179c61e"
+  "source_review": "Specialization/Status/Specialization_P0_Status.md#professional-projects-and-actions-use-the-official-production-panel--s0941",
+  "source_runtime": "B439.466 / modinfo466 local candidate, 355 files",
+  "tested_source_snapshot_sha256": "43c68223a741e0a41b3800cf00ec9b44feca385ab03a62a376ea058540b48354"
 }

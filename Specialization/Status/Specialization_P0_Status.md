@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0940
-Implementation Build: source B438.465 / modinfo465. Live B437.464 from a24b327. Stable/main B307.334.
+Status Revision: S0941
+Implementation Build: source B439.466 / modinfo466. Live B437.464 from a24b327. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OFFICIAL_UNIT_PANEL_ACTIONS_LOCAL
+Work State: OFFICIAL_PRODUCTION_PANEL_ACTIONS_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Professional projects and actions use the official production panel — S0941
+
+The fixed Gathering Storm profile selects the stock production panel, or the shipped Heroes and Legends panel when that mode is enabled. Both bind the existing project adapter to the official data reader. The fixed HD profile continues through its existing data reader. Commercialization and the two investment entries open their own windows. Crew assembly still reserves capacity before a native build operation, and the shared adapter continues to handle the four Claim projects, Era Dialogue and Engineering Study.
+
+- **Runtime Impact Contract (L2, T01/T02/T05/T08).** The existing environment criterion selects one production entry. The official entry reads the mode once in the native UI context and binds the one existing render adapter to the selected base. A render reads the base list once and filters SPC project rows by their existing IDs. The first selected-city Expedition state request and shutdown use the existing lifecycle. There is no new automatic city scan, persistence, retry, queue ownership or eligibility rule. The Heroes base retains its original right-click behavior.
+- **LOCAL_SIMULATION_PASS in scope.** All 50 selected checks pass, including the shipped official and Heroes callback fragments, the pinned HD data entry, actual SPC UI readers and safe adapters, ordinary queue insert/removal, repeated Crew clicks, and the related UnitPanel/receipt/package gates. Five assertions across three cases reproduce on fixed B438: the three official project-list variants, owned action routing and Crew reservation. Native cost, target placement and operation delivery are outside the local proof.
+- **STATIC_CONFIRMED and reproduction.** 226 Lua 5.1 compiles, 32 XML-family parses, 355 runtime files, 715 manifest references and no new static alarms. Package SHA256 `40da289492159a8458bdd52f47c114b8c14bd501e8120d73fb8113472af19c76`. With CPython 3.14/Lupa 2.8, DevelopmentTests on PYTHONPATH and the pinned official asset root in `SPC_OFFICIAL_ASSETS`, run `python3.14 DevelopmentTests/run_refactor.py --stage O6bProductionPanel`. Tested source SHA256 `43c68223a741e0a41b3800cf00ec9b44feca385ab03a62a376ea058540b48354`. Full local evidence `local/refactor/O6bProductionPanel-51b479d076604f80b83f493c52c471ab/closure.json`, SHA256 `54f4c25d5f20ab151a6d72f3c2b5a9b18e2024c78302f5f0f6c7fe274ab6c314`. The fixed-B438 and candidate comparison logs are alongside it. External UI asset bytes stay local.
+
+User decision and user testing are unnecessary at this checkpoint. Live remains B437.464. Primary next is the existing Crew action's coherent queue and Wonder-location reads, which still use HD helpers. The approved receipt, unit debit, amount and completion proof stay with their current owners. Native panel/interaction tests can reuse the official smoke profile after the dependent action inputs are ready.
 
 ### Professional unit actions use the official and HD panels — S0940
 

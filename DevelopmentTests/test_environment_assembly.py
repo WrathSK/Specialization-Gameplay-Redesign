@@ -281,7 +281,10 @@ class UIBaseSelection(unittest.TestCase):
             'EspionageChooser': ('UI/ExpeditionSpyChooser.lua', 2000006),
             'EspionagePopup': ('UI/ExpeditionSpyPopup.lua', 2000006),
         }
-        official_overrides = {'UnitPanel': ('UI/SPCUnitPanelOfficial.lua', 2000006)}
+        official_overrides = {
+            'UnitPanel': ('UI/SPCUnitPanelOfficial.lua', 2000006),
+            'ProductionPanel': ('UI/SPCProductionPanelOfficial.lua', 150100),
+        }
         for hd, expected in ((False, official_overrides | shared), (True, hd_overrides | shared)):
             with self.subTest(hd=hd):
                 active = {}

@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O6bProductionPanel": [
+      "test_o6_production_panel",
+      "test_environment_assembly.UIBaseSelection",
+      "test_refactor_s3.Adapters",
+      "test_refactor_s3.ReviewBoundaries",
+      "test_pu05a_receipts.Provider",
+      "test_refactor_s9a3e.ActualUI",
+      "test_pu11_package_absence.ActualRoots",
+      "test_o6_unit_panel"
+    ],
     "O6aUnitPanel": [
       "test_o6_unit_panel",
       "test_b414_crew_unit_panel",
@@ -2414,6 +2424,16 @@
     ],
     "Mod/UI/SPCUnitPanelHD.lua": [
       "test_o6_unit_panel",
+      "test_environment_assembly.UIBaseSelection"
+    ],
+    "Mod/UI/CrewProjectOrder.lua": [
+      "test_o6_production_panel",
+      "test_environment_assembly.UIBaseSelection",
+      "test_refactor_s3.Adapters",
+      "test_refactor_s9a3e.ActualUI"
+    ],
+    "Mod/UI/SPCProductionPanelOfficial.lua": [
+      "test_o6_production_panel",
       "test_environment_assembly.UIBaseSelection"
     ],
     "Mod/UI/SPCUnitPanelOfficial.lua": [

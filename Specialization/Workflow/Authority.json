@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0940",
-    "runtime": "B438.465 / modinfo465",
+    "status": "S0941",
+    "runtime": "B439.466 / modinfo466",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "a24b3275c376c5f47b5d81fda4b65bdbaec35cb8",
-  "current_batch": "OFFICIAL_UNIT_PANEL_ACTIONS_LOCAL",
-  "next_batch": "Adapt the official ProductionPanel data and owned project selection over its actual native base. Retain the deferred Culture Network cold restore and pending-network retirement gates.",
+  "current_batch": "OFFICIAL_PRODUCTION_PANEL_ACTIONS_LOCAL",
+  "next_batch": "Give the existing Crew action a coherent queue and Wonder-location read in the official profile through the approved O4 seam. Retain pending-network retirement and deferred positive Culture Network cold restore gates.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B437.464 / modinfo464 temporary develop from a24b3275c376c5f47b5d81fda4b65bdbaec35cb8, 352/352 MATCH, SHA256 ab1613960e0b3d9cc7b6a0dafcd460d031db6675123f677a24fb4c3fe1b98c9c. Receipt B437.464-a24b327-playtest.json DEVELOP_ACTIVE. B435 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner approved autonomous deployment during the development phase. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. Active until the Owner resumes playtesting or revokes it. Game launch and main promotion retain their separate authorization.",
-  "context_review_status": "S0940 verifies the common UnitPanel action adapter locally in the fixed official and HD profiles.",
+  "context_review_status": "S0941 verifies the official production panel adapter and records the remaining native action inputs.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#professional-unit-actions-use-the-official-and-hd-panels--s0940",
-  "source_status": "B438.465 / modinfo465 locally verified package SHA256 1e638e3e6c0db7749a325fcd73828cc151c507dff736b79a90b4f40dce1b50bc. The installed package remains B437.464. Official unit-action interaction remains a native gate.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#professional-projects-and-actions-use-the-official-production-panel--s0941",
+  "source_status": "B439.466 / modinfo466 locally verified package SHA256 40da289492159a8458bdd52f47c114b8c14bd501e8120d73fb8113472af19c76. The installed package remains B437.464. Official production and unit interactions remain native gates.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

@@ -1,5 +1,7 @@
--- Narrow HD adapter: retain its production panel and all original item data.
-include('DL_ProductionPanel')
+-- The HD entry supplies its own base. The official entry has already loaded one.
+local official=SPCOfficialProductionBase==true
+SPCOfficialProductionBase=nil
+if not official then include('DL_ProductionPanel')end
 include('SafeAdapters')
 local adapters=SPCSafeAdapters.New()
 pcall(include,'TimedProjectDisplay')
@@ -30,12 +32,13 @@ end
 pcall(include,'CrewModel')
 local ranks=setmetatable({},{__index=function(_,id)if SPCCrewModel and SPCCrewModel.Parse then return SPCCrewModel.Parse(id)end end})
 adapters.Barrier('Render',20,function(data)SPCRestructuringUI.ObserveTraining(SPCP0,data)end)
-local baseGetData=GetDataHelper
-function GetDataHelper(...)
+local dataReader=official and 'GetData' or 'GetDataHelper'
+local baseGetData=_G[dataReader]
+local function getProductionData(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
  adapters.Render(data)
- -- HD exposes Disabled from native CanProduce. Filter only our exact project IDs.
+ -- Both bases expose Disabled from CanProduce. Filter only our exact project IDs.
  local items={}
  for _,item in ipairs(data.ProjectItems)do
   local owned=ranks[item.Type] or (item.Type=='PROJECT_SPC_CLAIM_RESEARCH' or item.Type=='PROJECT_SPC_CLAIM_CULTURE' or item.Type=='PROJECT_SPC_CLAIM_INDUSTRY' or item.Type=='PROJECT_SPC_CLAIM_COMMERCE') or item.Type=='PROJECT_SPC_ERA_DIALOGUE' or item.Type=='PROJECT_SPC_ENGINEERING_STUDY'
@@ -57,6 +60,7 @@ function GetDataHelper(...)
  end
  data.ProjectItems=result;return data
 end
+_G[dataReader]=getProductionData
 
 -- Normal native project operation is retained; start only after the selected target is readable.
 include('Probe')
