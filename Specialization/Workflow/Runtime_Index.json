@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "f707ee3529ae088475300520d2ec16cacb49440a6e55657a3b12d79488dd04e6",
+      "sha256": "f0befaaaf4c1a112e2a871daf2aca00e524d5016b4a17f8d3bbcbf7fe068f401",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1001 B468 hidden city marker command retirement."
+      "provenance": "S1003 B469 hidden manual City Flow report retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "8b3b5d0a40cf6e4396b406e94ffea896833eae67034f86236fda529514106062",
+      "sha256": "e53616f573b83f2a5bb29f6dcd929be1e3ba9ef67b2843c7779a56eca57928f6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1001 B468 hidden city marker command retirement."
+      "provenance": "S1003 B469 hidden manual City Flow report retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "768011937d1942d2459324a93fc0cb44236696a8923baca30dab8536a4947501",
+      "sha256": "98c9626f318f5141d812823551f7a0aa45141f546420f0d7dc402d1fc51ebfa7",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1001 B468 hidden city marker command retirement."
+      "provenance": "S1003 B469 hidden manual City Flow report retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "e71efa8ce6aa575603faaa9366acd8cf35fed567f5f96d51590e76d357d482d5",
+      "sha256": "954bccb16e2bccc946081d0545473db1f12e1ddaf10adb03fa8b3dc6e78b5d89",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1001 B468 hidden city marker command retirement."
+      "provenance": "S1003 B469 hidden manual City Flow report retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "09c2b4f0523e47a387e0e0a883de150dd86e02a67de24a50859b509a80510d3a",
+      "sha256": "f40b674dc0ea5c9297300599de0a17577005beee6df6313f4ab712bb3c0b6ca5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1001 B468 hidden city marker command retirement."
+      "provenance": "S1003 B469 hidden manual City Flow report retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1002 verifies B468 deployment and both recovery packages. The hidden manual City Flow report can retire separately from City Flow recovery and SupportFacts.",
-  "source_runtime": "B468.495 / modinfo495 deployed from 4ac1132 with the approved hidden marker commands removed.",
-  "tested_source_snapshot_sha256": "a59184bb45cfcd4c327c680c24e16e91cb61d36113b733e2701eaf4ca3fff8e8"
+  "source_review": "S1003 verifies the exact manual City Flow report retirement with current Store, legacy recovery and shared facts preserved.",
+  "source_runtime": "B469.496 / modinfo496 local candidate, 337 files. B468.495 remains installed.",
+  "tested_source_snapshot_sha256": "09fecdf2a8f6c1942afe2f8f9d6c1d3f2afc0d8cf2d181ba30753c610afa09c1"
 }

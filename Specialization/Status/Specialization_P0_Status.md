@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1002
-Implementation Build: source B468.495 / modinfo495. Live B468.495 from 4ac1132. Stable/main B307.334.
+Status Revision: S1003
+Implementation Build: source B469.496 / modinfo496. Live B468.495 from 4ac1132. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: MANUAL_CITY_FLOW_REPORT_RETIREMENT_REVIEWED
+Work State: MANUAL_CITY_FLOW_REPORT_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the hidden manual City Flow report — S1003
+
+The Owner approved the exact City Flow report retirement reviewed in S1002. Remove the hidden CityFlowButton, its callback and the CITY_FLOW_READ branch in Gameplay. The previous paths are recoverable from `4ac113246dacc257cbe4a4e10aa352308417dcaf`. The package path set stays identical.
+
+- **Runtime Impact Contract (L3, T06/T07/T08).** The old command was an explicit selected-city report. It falls from two manual report calls to zero in the comparison. CityFlowProbe retains its startup, legacy load and ResumeInherited behavior, and SupportFacts still supplies EffectiveFacts. NetworkInput, Store, City Journal and Binding retain their paths. The accepted temporary comparison verifies the legacy readback and package round trip in S1002.
+- **LOCAL_SIMULATION_PASS in scope.** All 13 selected methods pass. Two restored Store records, subsequent first completion, SupportFacts, the retained panel and journal, and three nonempty route proofs match. The carried marker and route stages pass 28 and 64 checks respectively. The marker control comparison replays B467/B468. The first run had a fixture flag error when labeling the archived baseline. The corrected flag preserves the original assertions. Both B468 and B469 reproduce the two previously recorded panel assertion failures about visibility and the industrial history button.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7aaManualCityFlowRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7zCityMarkerRetirement and O7hRouteObserverRetirement. Tested source SHA256 `09fecdf2a8f6c1942afe2f8f9d6c1d3f2afc0d8cf2d181ba30753c610afa09c1`, package SHA256 `92130906da6c7cb2bfa95f8243d7fae84b2a8a835532473873ce2ec48999e6ec`. Local closure `local/refactor/B469-O7aaManualCityFlowRetirement-r2/closure.json` SHA256 `63e06f2916eb40976e6cba8374d848a007eb52b933b53109281f239c580fc86f` with both panel logs alongside.
+
+B468 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B468 deployment verified and the manual City Flow report reviewed — S1002
 

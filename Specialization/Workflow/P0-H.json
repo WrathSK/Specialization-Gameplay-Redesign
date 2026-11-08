@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1002",
-    "runtime": "B468.495 / modinfo495",
+    "status": "S1003",
+    "runtime": "B469.496 / modinfo496",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B468 deployment and review the exact manual City Flow retirement with saved recovery, support facts and current reports preserved.",
+  "goal": "Verify the approved City Flow report retirement with current Store, legacy recovery and shared facts preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the hidden manual City Flow report — S1003",
+      "reason": "Approved manual City Flow retirement with both city record paths and current route proof preserved"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -444,6 +450,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B469 passes 13 selected and 28/64 carried checks. Cold Store, first completion, retained SupportFacts, reports and network proofs match.",
     "B468 installed 337/337 MATCH with both recovery packages verified. The manual City Flow projection preserves Store cold restore, SupportFacts, the legacy resume, City Journal and current route proofs.",
     "B468 passes 28 selected and 26/64 carried checks. Saved marker readout, current Store guards, reports and network proofs match.",
     "B467 installed 337/337 MATCH with both recovery packages verified. The marker projection preserves existing marker values, generic reports and current route proofs.",
@@ -2733,6 +2740,54 @@
       "local_transcript_sha256": "11ed952c6e40ddcdc4b4f02beac4d689e99cd36819d25ce05003c33340b0196e",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b468-deployment-verified-and-the-manual-city-flow-report-reviewed--s1002"
+    },
+    "b469_manual_city_flow_report_retirement": {
+      "build": "B469.496 / modinfo496",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7aaManualCityFlowRetirement": {
+          "tests": 13,
+          "path": "local/refactor/B469-O7aaManualCityFlowRetirement-r2/closure.json",
+          "sha256": "63e06f2916eb40976e6cba8374d848a007eb52b933b53109281f239c580fc86f"
+        },
+        "O7zCityMarkerRetirement": {
+          "tests": 28,
+          "path": "local/refactor/B469-CarriedO7z-r2/closure.json",
+          "sha256": "b71e1c3d78d472a491dafd4be76fa53518c66d8cf7d9846a4a96790f369cd080"
+        },
+        "O7hRouteObserverRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B469-CarriedO7h-r2/closure.json",
+          "sha256": "b311fb4b14326e4661f059c39b92404ee92b48b295e39e91ce65af6cf1fd144e"
+        }
+      },
+      "files": 337,
+      "removed": [],
+      "prior_source": "4ac113246dacc257cbe4a4e10aa352308417dcaf",
+      "matching_route_packets": 3,
+      "manual_flow_read_calls": [
+        2,
+        0
+      ],
+      "initial_fixture_error": {
+        "path": "local/refactor/B469-O7aaManualCityFlowRetirement/closure.json",
+        "sha256": "ecb266616008c0b76d0a9ecbab3fb8ddcf7181cafa2cca2b612b7312b4870cae"
+      },
+      "panel_baseline_issue": {
+        "B468": {
+          "path": "local/refactor/B469-O7aaManualCityFlowRetirement-r2/B468-panel-comparison.log",
+          "sha256": "c4b273a4eabda3c7a559bbd5d5a5fbca03e6444bfc7451aa89cfb8795f1df621"
+        },
+        "B469": {
+          "path": "local/refactor/B469-O7aaManualCityFlowRetirement-r2/B469-panel-comparison.log",
+          "sha256": "33c6d236377bdd5d2596b4a7d8f78584776f34a486ba56b6e8bd5b6fb480fa16"
+        }
+      },
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "09fecdf2a8f6c1942afe2f8f9d6c1d3f2afc0d8cf2d181ba30753c610afa09c1",
+      "package_sha256": "92130906da6c7cb2bfa95f8243d7fae84b2a8a835532473873ce2ec48999e6ec",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-hidden-manual-city-flow-report--s1003"
     }
   }
 }

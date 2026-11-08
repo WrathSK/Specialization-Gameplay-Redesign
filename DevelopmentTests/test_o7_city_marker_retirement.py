@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B467, package
+from retired_crew_sources import B467, B468, package
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import scalars
@@ -109,9 +109,9 @@ class CityMarkerRetirement(unittest.TestCase):
             current_transaction_gate_and_reports_match=True))
 
     def test_only_the_two_hidden_marker_controls_retire(self):
-        with package(B467) as previous:
+        with package(B467) as previous, package(B468) as retired:
             old_buttons, old_requests = panel(previous, retired=False)
-        new_buttons, new_requests = panel(ROOT, retired=True)
+            new_buttons, new_requests = panel(retired, retired=True)
         for control in CONTROLS:
             self.assertTrue(old_buttons.pop(control))
         self.assertEqual(old_buttons, new_buttons)
