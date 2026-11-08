@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0992",
-    "runtime": "B463.490 / modinfo490",
+    "status": "S0993",
+    "runtime": "B464.491 / modinfo491",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B463 deployment and the exact synthetic storage retirement proposal with current Store and saved experiment values preserved.",
+  "goal": "Verify retirement of the B012/B019 synthetic storage tools while preserving actual Store, legacy values and route proof.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the synthetic storage diagnostics — S0993",
+      "reason": "Approved two-path retirement with preserved saved experiment values and current Store"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -384,6 +390,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B464 passes 23 selected checks and 19/49 carried checks. Current Store, retained experiment values and route proof match.",
     "B463 installed 340/340 MATCH with both recovery packages verified. The projected synthetic storage retirement preserves Store initialization, saved experiment values, current P0 and route proofs.",
     "B463 passes 19 selected checks and 25/49 carried checks. Eight formal gate cases and the Envelope load read match.",
     "B462 installed 342/342 MATCH with both recovery packages verified. Projected diagnostic retirement preserves eight actual predicate results, Envelope and current route proofs.",
@@ -2213,6 +2220,41 @@
       "local_evidence_sha256": "fb474eb3b1cc4e6cf86b8ef4f1f78a2e547cbafa34c61938e8a81196bbdffce4",
       "local_replay_sha256": "6ef2cc743a62d50bdd7390729839105cb21a4a9e20971b62b3f5109b2386d45a",
       "report": "Specialization/Status/Specialization_P0_Status.md#b463-deployment-verified-and-synthetic-storage-diagnostics-reviewed--s0992"
+    },
+    "b464_synthetic_storage_retirement": {
+      "build": "B464.491 / modinfo491",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7vSyntheticStorageRetirement": {
+          "tests": 23,
+          "path": "local/refactor/B464-O7vSyntheticStorageRetirement-final/closure.json",
+          "sha256": "201ccff6788c789ef9024038583369c83c3102bb99c83baced2eb19791acff2c"
+        },
+        "O7uLegacyEligibilityRetirement": {
+          "tests": 19,
+          "path": "local/refactor/B464-CarriedO7u-final/closure.json",
+          "sha256": "9ae308c0f99e2a4856c58583d323f79f9a16ef19c446798436734701701e9b16"
+        },
+        "O7sCompletionEventObserverRetirement": {
+          "tests": 49,
+          "path": "local/refactor/B464-CarriedO7s-final/closure.json",
+          "sha256": "1f4b155323e9a4ff251b9cf4c9812d748d7b94104d394332db5e906936a0f241"
+        }
+      },
+      "files": 338,
+      "removed": {
+        "Mod/EnvelopeProbe.lua": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
+        "Mod/StorageProbe.lua": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f"
+      },
+      "prior_source": "719bde4bd8b5324abbc978528c0965d874b7b538",
+      "modeled_removed_listeners": 1,
+      "matching_route_packets": 3,
+      "saved_experiment_values": "PRESERVED",
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "d5aa226520596060f6f584ff3d01d7d906a52c5d67c3d92c5b2b93c939a63300",
+      "package_sha256": "ccd82ab6e77eda35efbed0c5506e8515aae9eaa03aaa8d52bc5b8f0a6b9a3350",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-synthetic-storage-diagnostics--s0993"
     }
   }
 }

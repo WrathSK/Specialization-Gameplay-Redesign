@@ -550,11 +550,6 @@
       "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
       "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
-    "Mod/EnvelopeProbe.lua": {
-      "sha256": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
     "Mod/ExpeditionGate.lua": {
       "sha256": "da6cfd270182658465c51b925acc3a2af0efa9fa758d6400796a740e22627e32",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
@@ -611,9 +606,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "fd3fadfa29a5562fe13cd3ebbd7edfb2d39b41aeb995cdfe7003c071c6344bf5",
+      "sha256": "bae3410a7f7546773e72fae3e0464bf98590058d4be5b04691ea9b1c0054c47c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0991 B463 legacy eligibility and roster diagnostic retirement."
+      "provenance": "S0993 B464 synthetic storage diagnostic retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -746,9 +741,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "00cfe7f11bb1c170d947b9fe168b92078e4a8502354f8657903f77b247049072",
+      "sha256": "1ccd68f364b6a6bc4acf33dc5a3d229b82b91ded13d679b7bb388aa38b4e9d53",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0991 B463 legacy eligibility and roster diagnostic retirement."
+      "provenance": "S0993 B464 synthetic storage diagnostic retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -871,9 +866,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "5f628968f6b6335afffa0d3df00bdea08fec9cd68b67e552d834e4bed3fb0f42",
+      "sha256": "a08294652d600178cccc49874f0caafd93095e4dea39ca1d5f0fe95939516812",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0991 B463 legacy eligibility and roster diagnostic retirement."
+      "provenance": "S0993 B464 synthetic storage diagnostic retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -894,11 +889,6 @@
       "sha256": "5e4db568e7c368efc1d29fe978dd1237413721170eb791ddfae2ceafea9fdaef",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0950 B444 verified Standardization report queue read migration."
-    },
-    "Mod/StorageProbe.lua": {
-      "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Text/ClaimProjects.sql": {
       "sha256": "a31dbfc5862df58c043a03adc68423dbabf299e6c389955207dfe21c8b68559c",
@@ -1371,14 +1361,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "fbd0be800253e0b6bf1fc6845fdbb8b7c7482a386f460edda12ebcfdf326ece5",
+      "sha256": "dc3c2b2d5f9fc76f7b6f29f51feb8bcd54e91b395812cd8b663388631b9b227d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0991 B463 legacy eligibility and roster diagnostic retirement."
+      "provenance": "S0993 B464 synthetic storage diagnostic retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "d84df517ecf79876599a1994ce185559be3a5196d7f8fab2399d7d5665f8eedd",
+      "sha256": "176043ec3befbbfae56a0ed72939345a20eb529cb1edb9e72b52beab6a0ed45d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0991 B463 legacy eligibility and roster diagnostic retirement."
+      "provenance": "S0993 B464 synthetic storage diagnostic retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1706,7 +1696,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0992 verifies B463 deployment and both recovery packages. The two proposed synthetic storage tools are separate from the current Store and their existing experiment values remain untouched.",
-  "source_runtime": "B463.490 / modinfo490 deployed from 719bde4 with both approved legacy eligibility diagnostics removed.",
-  "tested_source_snapshot_sha256": "70fe3439a8b1de2dc6a3ab7763934328537d4ff633b05eb52dcda77eefd61c58"
+  "source_review": "S0993 verifies the exact B012/B019 retirement, retained experiment values, current Store and route transport, and exact package restoration.",
+  "source_runtime": "B464.491 / modinfo491 local candidate, 338 files. B463.490 remains installed.",
+  "tested_source_snapshot_sha256": "d5aa226520596060f6f584ff3d01d7d906a52c5d67c3d92c5b2b93c939a63300"
 }

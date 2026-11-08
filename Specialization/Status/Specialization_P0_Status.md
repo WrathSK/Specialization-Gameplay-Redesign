@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0992
-Implementation Build: source B463.490 / modinfo490. Live B463.490 from 719bde4. Stable/main B307.334.
+Status Revision: S0993
+Implementation Build: source B464.491 / modinfo491. Live B463.490 from 719bde4. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: SYNTHETIC_STORAGE_RETIREMENT_REVIEWED
+Work State: SYNTHETIC_STORAGE_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the synthetic storage diagnostics — S0993
+
+The Owner approved the exact retirement reviewed in S0992. Remove the B012 and B019 synthetic Game Property tools, their four manifest declarations, two Gameplay starts, the two request branches for four commands, four hidden P0 controls and callbacks, and the experiment-only expected-stage packet field. Recover `Mod/EnvelopeProbe.lua` and `Mod/StorageProbe.lua` from `719bde4bd8b5324abbc978528c0965d874b7b538` at SHA256 `2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf` and `49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f`. Existing experiment values remain in saved games. Current Store, Claim and retained reports keep their owners.
+
+- **Runtime Impact Contract (L3, T01/T06/T08).** The B019 load observer performed one roster read and two synthetic property reads in the single-player fixture. Its callback and reads disappear. Explicit experiment commands lose their dedicated acknowledgments and writes. The Gameplay and UI fixtures preserve the ordinary request and proof paths. No new listener, writer, timer, retry or save format enters this batch.
+- **LOCAL_SIMULATION_PASS in scope.** All 23 selected methods pass. Actual Store initialization with a new or previously saved empty index preserves the same ordinary property writes, Store and City Journal reports and seeded experiment values. Old explicit commands produce two writes and reject duplicates. Their retired paths produce no writes. Existing populated-record persistence guards, the formal eligibility consumers, three nonempty route proof packets and the retained P0 requests match. Exact disposable activation and restoration pass. The 19 qualification and 49 completion-observer checks also pass. The previous qualification comparison now replays its published B462/B463 pair with the original assertions.
+- **STATIC_CONFIRMED and reproduction.** 209 Lua 5.1 compiles, 32 XML-family parses, 668 file references and 10 replacements across 338 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7vSyntheticStorageRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7uLegacyEligibilityRetirement and O7sCompletionEventObserverRetirement. Tested source SHA256 `d5aa226520596060f6f584ff3d01d7d906a52c5d67c3d92c5b2b93c939a63300`, package SHA256 `ccd82ab6e77eda35efbed0c5506e8515aae9eaa03aaa8d52bc5b8f0a6b9a3350`. Local closure `local/refactor/B464-O7vSyntheticStorageRetirement-final/closure.json` SHA256 `201ccff6788c789ef9024038583369c83c3102bb99c83baced2eb19791acff2c`. Native behavior remains unmeasured in this batch.
+
+B463 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B463 deployment verified and synthetic storage diagnostics reviewed — S0992
 

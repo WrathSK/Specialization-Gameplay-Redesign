@@ -168,7 +168,7 @@ request=function(action,advance)
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
-  local storageAction=action=='EVENT_ORDER_TOGGLE' or action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=='EVENT_ORDER_TOGGLE' or action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="SHADOW_READ" or action=="INHERIT_READ"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
   if action=="INVEST_PREPARE" then
@@ -195,9 +195,7 @@ request=function(action,advance)
   pendingAction=action
   if action=='CULTURE_MEANING_READ' or action=='CULTURE_MEANING_DIAGNOSTIC_READ' then meaningReadReference=SPCNetworkInput.Reference(city)end
   trace("BEFORE_DISPATCH "..action.." city="..tostring(city and city:GetID()))
-  local envelope=ExposedMembers.SPC_P0 and ExposedMembers.SPC_P0.EnvelopeProbe
-  local expectedStage=envelope and envelope.players[playerID] and envelope.players[playerID].step
-  local packet={OnStart="SPC_P0_Request",Action=action,Token=pendingToken,ExpectedStage=action=="ENVELOPE_NEXT" and expectedStage or nil,CityID=city and city:GetID(),Page=page,UnitID=investmentUnitID,PlanToken=investmentPlanToken}
+  local packet={OnStart="SPC_P0_Request",Action=action,Token=pendingToken,CityID=city and city:GetID(),Page=page,UnitID=investmentUnitID,PlanToken=investmentPlanToken}
   if action=='NETWORK_ISOLATE' then
     local g=ExposedMembers.SPC_P0;local bridge=g and g.NetworkBridge
     local epoch=bridge and bridge.epoch
@@ -409,10 +407,6 @@ local function initialize()
   Controls.Lv4PercentButton:RegisterCallback(Mouse.eLClick,function() request("LV4_PERCENT_READ") end)
   Controls.ResearchReadButton:RegisterCallback(Mouse.eLClick,function() request("RESEARCH_READ") end)
   Controls.CityFlowButton:RegisterCallback(Mouse.eLClick,function() request("CITY_FLOW_READ") end)
-  Controls.EnvelopeReadButton:RegisterCallback(Mouse.eLClick,function() request("ENVELOPE_READ") end)
-  Controls.EnvelopeNextButton:RegisterCallback(Mouse.eLClick,function() request("ENVELOPE_NEXT") end)
-  Controls.StorageReadButton:RegisterCallback(Mouse.eLClick,function() request("STORAGE_READ") end)
-  Controls.StorageWriteButton:RegisterCallback(Mouse.eLClick,function() request("STORAGE_WRITE") end)
   Controls.CaptureButton:RegisterCallback(Mouse.eLClick,function() request("CAPTURE") end)
   Controls.BoostTestZeroButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_ZERO') end)
   Controls.BoostTestHalfButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_HALF') end)

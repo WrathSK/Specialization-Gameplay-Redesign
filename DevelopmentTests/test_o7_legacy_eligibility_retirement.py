@@ -1,8 +1,8 @@
 """Retire the two legacy diagnostics while exercising the current player gate."""
 import unittest
 
-from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B462, package
+from refactor_harness import Context, PackageVFS, measure
+from retired_crew_sources import B462, B463, package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -16,7 +16,7 @@ CONTROLS = ('QualificationButton','EligibilityUnknownButton','EligibilityButton'
 
 def context(root, projected, name='Gameplay'):
     vfs=PackageVFS(manifest=root/'Mod/SpecializationP0.modinfo',forbidden_globals=GLOBALS if projected else ())
-    history=None if projected else (root,B462)
+    history=(root,B463 if projected else B462)
     return Context(name=name,vfs=vfs,history=history)
 
 
@@ -108,12 +108,12 @@ def panel(root):
 
 class LegacyEligibilityRetirement(unittest.TestCase):
     def test_formal_gate_and_Envelope_load_read_match(self):
-        with package(B462) as previous:
-            old,new=gate(previous,False),gate(ROOT,True)
+        with package(B462) as previous, package(B463) as retired:
+            old,new=gate(previous,False),gate(retired,True)
             old_probe=(previous/'Mod/Probe.lua').read_bytes()
-            self.assertEqual((ROOT/'Mod/Probe.lua').read_bytes(),old_probe.replace(b'P0-B-462.489',b'P0-B-463.490',1))
+            self.assertEqual((retired/'Mod/Probe.lua').read_bytes(),old_probe.replace(b'P0-B-462.489',b'P0-B-463.490',1))
             for path in ('EnvelopeProbe.lua','CityProgressionStore.lua','ClaimProjects.lua','UI/BackgroundRoutes.lua'):
-                self.assertEqual((ROOT/'Mod'/path).read_bytes(),(previous/'Mod'/path).read_bytes())
+                self.assertEqual((retired/'Mod'/path).read_bytes(),(previous/'Mod'/path).read_bytes())
         self.assertEqual(old[:3],new[:3])
         self.assertEqual(len(new[0]),8)
         self.assertEqual((old[3],new[3]),(4,1))
@@ -123,10 +123,10 @@ class LegacyEligibilityRetirement(unittest.TestCase):
             'modeled_trait_scans':[25,0],'modeled_load_listeners_removed':2,'modeled_writes_match':True})
 
     def test_three_hidden_reports_retire_with_other_requests_and_route_proof_retained(self):
-        with package(B462) as previous:
-            old_route,new_route=routes(previous,False),routes(ROOT,True)
+        with package(B462) as previous, package(B463) as retired:
+            old_route,new_route=routes(previous,False),routes(retired,True)
             old_buttons,old_requests=panel(previous)
-            new_buttons,new_requests=panel(ROOT)
+            new_buttons,new_requests=panel(retired)
         self.assertEqual(old_route[0],new_route[0])
         self.assertEqual(len(new_route[0]),3)
         self.assertEqual(old_route[2],new_route[2])
@@ -139,5 +139,5 @@ class LegacyEligibilityRetirement(unittest.TestCase):
         measure('legacy_eligibility_routes',{'matching_route_packets':3,'other_P0_requests_match':True})
 
     def test_exact_temporary_switch_and_recovery(self):
-        with package(B462) as previous:
-            verify_package_round_trip(self,previous/'Mod',ROOT/'Mod',REMOVED,'Probe.lua')
+        with package(B462) as previous, package(B463) as retired:
+            verify_package_round_trip(self,previous/'Mod',retired/'Mod',REMOVED,'Probe.lua')

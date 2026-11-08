@@ -643,21 +643,13 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Receive(playerID,params) end
     return
   end
-  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="ENVELOPE_READ" and params.Action~="ENVELOPE_NEXT" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="TRADE_EVENTS" and params.Action~="STORAGE_READ" and params.Action~="STORAGE_WRITE" and params.Action~="BINDING_READ" and params.Action~="COMPLETION_RECORD_READ" and params.Action~="CITY_JOURNAL_READ" then return end
+  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="TRADE_EVENTS" and params.Action~="BINDING_READ" and params.Action~="COMPLETION_RECORD_READ" and params.Action~="CITY_JOURNAL_READ" then return end
   if not P.IsTestPlayer(playerID) then return end
   shared.LastToken=nil
   shared.RequestToken=params.Token
   shared.Action=params.Action
   shared.FailureAt=nil
   stage("RECEIVED "..params.Action)
-  if params.Action=="STORAGE_READ" or params.Action=="STORAGE_WRITE" then
-    shared.Snapshot=shared.StorageProbe.Run(playerID,params.Action=="STORAGE_WRITE")
-    shared.LastToken=params.Token;stage("ACK STORAGE");return
-  end
-  if params.Action=="ENVELOPE_READ" or params.Action=="ENVELOPE_NEXT" then
-    shared.Snapshot=shared.EnvelopeProbe.Run(playerID,params.Action,params.ExpectedStage)
-    shared.LastToken=params.Token;stage("ACK ENVELOPE");return
-  end
   local player=Players[playerID]
   local city=type(params.CityID)=="number" and player:GetCities():FindID(params.CityID)
   if not city or city:GetOwner()~=playerID then stage("REJECT_CITY");return end
@@ -786,8 +778,6 @@ else stage("TRADE_ACTIVITY_EVENT_ABSENT") end
 -- Explicit ordered startup entries. Failure containment does not reorder dependencies.
 
 
-composition.Run('StorageProbe',{},{'StorageProbe'},function() include('StorageProbe');SPCStorageProbe.Start(P,shared) end)
-
 composition.Run('CityIdentityDefinition',{}, {},function()include('CityIdentityRead')end)
 
 
@@ -861,8 +851,6 @@ composition.Run('BindingProbe',{'CityProgressionStore'},{'BindingProbe'},functio
 composition.Run('CompletionRecordProbe',{'CityProgressionStore'},{'CompletionRecordProbe'},function() include('CompletionRecordProbe');SPCCompletionRecordProbe.Start(P,shared) end)
 
 composition.Run('CityJournalProbe',{'CityProgressionStore'},{'CityJournalProbe'},function() include('CityJournalProbe');SPCCityJournalProbe.Start(P,shared) end)
-
-composition.Run('EnvelopeProbe',{},{'EnvelopeProbe'},function() include('EnvelopeProbe');SPCEnvelopeProbe.Start(P,shared) end)
 
 composition.Run('CityFlowProbe',{'CityProgressionStore'},{'CityFlowProbe'},function() include('FreshBindingHook');include('CityFlowProbe');SPCCityFlowProbe.Start(P,shared) end)
 

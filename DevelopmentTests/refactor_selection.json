@@ -2,6 +2,14 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7vSyntheticStorageRetirement": [
+      "test_o7_synthetic_storage_retirement",
+      "test_pu07a_completion_scope.PersistedGuards",
+      "test_fact_owner_eligibility.FactOwnerEligibility",
+      "test_refactor_s9c2.Startup",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_unique_xml_control_ids_and_current_lua_parse",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7uLegacyEligibilityRetirement": [
       "test_o7_legacy_eligibility_retirement",
       "test_fact_owner_eligibility.FactOwnerEligibility",
