@@ -20,14 +20,14 @@ ROWS = (
 VISIBLE = frozenset(button for row in ROWS for button in row)
 
 
-def panel_runtime():
+def panel_runtime(panel=PANEL):
     """Execute the whole current panel, including its late initializer wrapper.
 
     Uses the same control/event stand-in pattern as test_b068_ui.py, but keeps
     left/right callbacks separate and seeds hidden flags from the actual XML.
     It requires no external database and never runs gameplay or probe writers.
     """
-    tree = ET.parse(PANEL / 'P0Panel.xml')
+    tree = ET.parse(panel / 'P0Panel.xml')
     lua = LuaRuntime(unpack_returned_tuples=True)
     lua.execute(r'''
         requests={}; printed={}; included={}; eventAdds={}
@@ -94,7 +94,7 @@ def panel_runtime():
         control_id = element.get('ID')
         if control_id:
             lua.globals().makeControl(control_id, element.get('Hidden') == '1')
-    lua.execute((PANEL / 'P0Panel.lua').read_text())
+    lua.execute((panel / 'P0Panel.lua').read_text())
     lua.execute('init()')
     return tree, lua
 
@@ -279,7 +279,6 @@ class CurrentPanelTests(unittest.TestCase):
             ('CompletenessButton', 1, 'COMPLETENESS_READ'),
             ('CompletenessButton', 2, 'RESEARCH_INFRA_DETAIL'),
             ('TemplatesButton', 1, 'STANDARDIZATION_READ'),
-            ('UnitReadButton', 1, 'UNIT_SITE_READ'),
             ('UnitReadButton', 2, 'CITY_SEQUENCE_BEGIN'),
         )
         for control_id, event, expected in pairs:
@@ -290,6 +289,7 @@ class CurrentPanelTests(unittest.TestCase):
                 self.assertEqual(request.UnitID if control_id == 'UnitReadButton' else request.CityID,
                                  17 if control_id == 'UnitReadButton' else 11)
         lua.execute('local n=#requests;Controls.CopyButton.callbacks[Mouse.eLClick]();assert(#requests==n);assert(Controls.Status.text:find("Lua.log"))')
+        self.assertIsNone(lua.globals().Controls.UnitReadButton.callbacks[1])
 
     def test_visibility_cleanup_does_not_execute_probe_or_change_runtime_state(self):
         _, lua = panel_runtime()

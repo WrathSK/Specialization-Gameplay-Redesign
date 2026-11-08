@@ -3,7 +3,8 @@
 from collections import deque
 import unittest
 
-from refactor_harness import Context, PackageVFS, legacy_source_observation, measure
+from refactor_harness import legacy_source_observation, measure
+from retired_crew_sources import B446, gameplay as historical_gameplay, package as historical_package
 from test_o4_crew_target_queue import paired
 from test_pu11_package_absence import NATIVE
 
@@ -153,18 +154,19 @@ class OwnedWonderLocation(unittest.TestCase):
                 """)
 
     def test_formal_target_owner_starts_without_dev_site_probe_file(self):
-        for behavior in ('throw', 'silent_nil'):
-            with self.subTest(behavior=behavior):
-                ctx = Context(vfs=PackageVFS(absent=['UnitSiteProbe'],
-                    missing_include=behavior, forbidden_globals=['SPCUnitSiteProbe']))
-                ctx.loads = deque(maxlen=512)
-                ctx.execute(NATIVE)
-                ctx.load('Gameplay')
-                self.assertTrue(any(row['module']=='UnitSiteProbe.lua' and row['status']=='ABSENT' for row in ctx.loads))
-                ctx.execute("""
-                    local s=ExposedMembers.SPC_P0
-                    assert(s.StartStatus.UnitSiteProbe.state=='FAILED' and s.UnitSiteProbe==nil)
-                    assert(s.StartStatus.UnitTargets.state=='OK' and type(s.UnitTargets.ReadAtSite)=='function',
-                        'FORMAL_TARGETS_BLOCKED_BY_DEV_SITE_PROBE')
-                    assert(s.StartStatus.UnitActions.state=='OK')
-                """)
+        with historical_package(B446) as checkout:
+            for behavior in ('throw', 'silent_nil'):
+                with self.subTest(behavior=behavior):
+                    ctx = historical_gameplay(checkout, revision=B446, absent=['UnitSiteProbe'],
+                        missing_include=behavior, forbidden_globals=['SPCUnitSiteProbe'])
+                    ctx.loads = deque(maxlen=512)
+                    ctx.execute(NATIVE)
+                    ctx.load('Gameplay')
+                    self.assertTrue(any(row['module']=='UnitSiteProbe.lua' and row['status']=='ABSENT' for row in ctx.loads))
+                    ctx.execute("""
+                        local s=ExposedMembers.SPC_P0
+                        assert(s.StartStatus.UnitSiteProbe.state=='FAILED' and s.UnitSiteProbe==nil)
+                        assert(s.StartStatus.UnitTargets.state=='OK' and type(s.UnitTargets.ReadAtSite)=='function',
+                            'FORMAL_TARGETS_BLOCKED_BY_DEV_SITE_PROBE')
+                        assert(s.StartStatus.UnitActions.state=='OK')
+                    """)

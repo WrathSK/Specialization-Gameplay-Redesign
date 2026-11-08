@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0956",
-    "runtime": "B446.473 / modinfo473",
+    "status": "S0957",
+    "runtime": "B447.474 / modinfo474",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B446 deployment and the next scoped exact removal review.",
+  "goal": "Retire the exact approved unit-site diagnostics and preserve the City Sequence and formal action paths.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the old unit-site diagnostics — S0957",
+      "reason": "Exact approved removal, local controls, normal action and rollback evidence"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -168,6 +174,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B447 passes all 33 selected methods. Both retired files are genuinely absent from the candidate and the actual City Sequence right-click results agree with B446.",
     "B446 installed 357/357 MATCH. B445 outgoing and B307 stable recovery verified. No native run.",
     "B446 passes all 72 selected local checks. Route proof and GC guard survive unavailable metric taps. The full counter file is still a production dependency.",
     "B445 installed 357/357 MATCH. Exact two removals, B444 outgoing and B307 stable recovery verified; no native run.",
@@ -925,6 +932,23 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b446-development-deployment-verified--s0956"
+    },
+    "b447_unit_site_retirement": {
+      "build": "B447.474 / modinfo474",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "removed": {
+        "Mod/UnitActionSitePolicy.lua": "2ff1d9e151678a564e91a45a8324e320917eff617f86db8789b7ce068479dd7d",
+        "Mod/UnitSiteProbe.lua": "2398a3af7567fbf58498eee3e95f91ff3e1c44574ad601cb75b38bb398a9d0fc"
+      },
+      "retrieval_commit": "af75e329546f583b94a90169d8af68ebb7e4b559",
+      "tests": 33,
+      "files": 355,
+      "package_sha256": "0ea85cd5ff8ea74248cdc2c64276596f95f222bf5cc8a74e3e48d29f7f99fb45",
+      "source_snapshot_sha256": "bf1b3f53cef5b6c5882009f8ee94185655f603d18274dbab2dafb9f394ca2d37",
+      "local_evidence": "local/refactor/B447-O7eUnitSiteRetirement/closure.json",
+      "local_evidence_sha256": "fc1e06f650aba34178aced4a3b2d39bbfa63e8f39c5d139de136a0362bddb7de",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-unit-site-diagnostics--s0957"
     }
   }
 }

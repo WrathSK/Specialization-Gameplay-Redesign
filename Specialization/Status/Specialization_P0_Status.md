@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0956
-Implementation Build: source B446.473 / modinfo473. Live B446.473 from af75e32. Stable/main B307.334.
+Status Revision: S0957
+Implementation Build: source B447.474 / modinfo474. Live B446.473 from af75e32. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: REVIEW_EXACT_UNIT_SITE_REPORT_RETIREMENT
+Work State: UNIT_SITE_DIAGNOSTICS_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the old unit-site diagnostics — S0957
+
+The Owner approved the exact two-path removal and continued authorized work. B447 removes `Mod/UnitSiteProbe.lua`, its private `Mod/UnitActionSitePolicy.lua`, their manifest declarations and the hidden left-click reads. The hidden P0 right-click still opens the existing City Sequence observation for the selected Settler or city. Its caption and help now describe that remaining action.
+
+- **Runtime Impact Contract (L2, T06/T07/T08).** Gameplay no longer starts or serves the legacy read-only location report. The former request cannot run a location or district scan. Production unit site facts, admitted prepare/confirm, receipts, City Sequence, and the remaining UnitSites controls retain their existing call paths. Exact package replacement retains both removed source files through published history and the outgoing runtime backup.
+- **LOCAL_SIMULATION_PASS in scope.** All 33 selected methods pass. The actual Gameplay root attempts no retired includes, ignores the old read request and starts the formal action owners. The B446 comparison replays the old left-click and produces identical City Sequence reports for the unit and city paths when using the right-click. The actual UnitSites context retains DEV spawn, prepare, confirm and the target toggle. Official and HD construction/target fixtures and the real investment owner remain covered, including one debit and one Crew grant. The real-package swap rejects omitted, partial and extra exclusions, then restores the complete B446 bytes. The historical B445 exact swap and earlier startup order still replay with their original scope.
+- **STATIC_CONFIRMED and reproduction.** 226 Lua 5.1 compiles, 32 XML-family parses, 702 file and 11 replacement references across 355 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7eUnitSiteRetirement` with CPython 3.14/Lupa 2.8 and the pinned `SPC_OFFICIAL_ASSETS`. The existing P0 layout harness uses Lua 5.5. Its additional 11-method run reproduces the same two pre-existing failures on both B446 and B447, for the old visible button set and Templates command expectation. They are outside the passing selection. The actual right-click test passes in the targeted selection. Source SHA256 `bf1b3f53cef5b6c5882009f8ee94185655f603d18274dbab2dafb9f394ca2d37`, package SHA256 `0ea85cd5ff8ea74248cdc2c64276596f95f222bf5cc8a74e3e48d29f7f99fb45`. Local evidence `local/refactor/B447-O7eUnitSiteRetirement/closure.json` at SHA256 `fc1e06f650aba34178aced4a3b2d39bbfa63e8f39c5d139de136a0362bddb7de`, with the P0 comparison beside it.
+- **Historical retrieval.** Both originals remain available through `git show af75e329546f583b94a90169d8af68ebb7e4b559:<path>`. The recorded hashes in S0955 match those published bytes.
+
+B446 remains installed at this source checkpoint. User testing is unnecessary for the exact removal. After the guarded switch, continue the already accepted separation of the GC scheduler and its native heap trust latch from optional performance reporting. The positive Culture Network cold-restore gate remains separate.
 
 ### B446 development deployment verified — S0956
 

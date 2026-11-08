@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7eUnitSiteRetirement": [
+      "test_o7_unit_site_retirement",
+      "test_o4_crew_wonder_site",
+      "test_refactor_s6i.InvestmentSites",
+      "test_o7_crew_retirement",
+      "test_refactor_s9c2.Startup",
+      "test_refactor_s9c2.RealOwners",
+      "test_o7_production_report",
+      "test_o6_unit_panel"
+    ],
     "O7dNetworkFlight": [
       "test_pu11_package_absence.ActualRoots",
       "test_pu11_package_absence.ActualTransport",

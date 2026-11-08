@@ -131,7 +131,7 @@ function SPCCitySequenceProbe.Start(P,shared)
   return d.Describe(pid,page)
  end
  function d.Describe(pid,page)
-  if not capture then return '尚未开始事件观察。选中己方移民或城市，右键“移民 / 施工队”。'end
+  if not capture then return '尚未开始事件观察。选中己方移民或城市，右键“城市事件观察”。'end
   if capture.owner~=pid then return '事件观察不属于当前玩家。'end
   local pages=math.max(1,math.ceil(#capture.rows/10));page=tonumber(page)or 1
   if page~=page or page==math.huge or page==-math.huge then page=1 end

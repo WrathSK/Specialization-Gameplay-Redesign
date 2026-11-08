@@ -171,18 +171,13 @@ request=function(action,advance)
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
-  local storageAction=action=='EVENT_ORDER_TOGGLE' or action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="UNIT_SITE_READ" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=='EVENT_ORDER_TOGGLE' or action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
   if action=='CITY_SEQUENCE_BEGIN' then
     local u=UI.GetHeadSelectedUnit()
     if u and u:GetOwner()==playerID then investmentUnitID=u:GetID()
     else city=UI.GetHeadSelectedCity();if not city or city:GetOwner()~=playerID then status('先选中己方移民或城市。');return end end
-  end
-  if action=="UNIT_SITE_READ" then
-    local u=UI.GetHeadSelectedUnit()
-    if not u or u:GetOwner()~=playerID then status('请先选中己方移民或施工队。');return end
-    investmentUnitID=u:GetID()
   end
   if action=="INVEST_PREPARE" then
     local unit=UI.GetHeadSelectedUnit()
@@ -390,8 +385,7 @@ local function initialize()
   Controls.DiscountsButton:SetHide(true)
   Controls.TemplatesButtonCaption:SetText(Locale.Lookup('LOC_SPC_INDUSTRY_HISTORY_BUTTON'))
   Controls.TemplatesButton:SetToolTipString(Locale.Lookup('LOC_SPC_INDUSTRY_HISTORY_HINT')..'\n左键同时查看工程传统研习L/E与巨构工程学；右键：工业标准化，再次右键翻页。')
-  Controls.UnitReadButtonCaption:SetText('移民 / 施工队')
-  Controls.UnitReadButton:SetToolTipString('移民 / 施工队')
+  Controls.UnitReadButtonCaption:SetText('城市事件观察')
   Controls.CopyButtonCaption:SetText('写入诊断日志')
   Controls.CopyButton:SetToolTipString('写入诊断日志')
   showRoot();Controls.Window:SetHide(true)
@@ -591,9 +585,8 @@ local function initialize()
   Controls.MarkButton:RegisterCallback(Mouse.eLClick,function() request("MARK_CITY") end)
   Controls.CopyButton:RegisterCallback(Mouse.eLClick,function() copy(false) end)
   Controls.BaselineButton:RegisterCallback(Mouse.eLClick,function() copy(true) end)
-  Controls.UnitReadButton:RegisterCallback(Mouse.eLClick,function() request('UNIT_SITE_READ') end)
   Controls.UnitReadButton:RegisterCallback(Mouse.eRClick,function() request('CITY_SEQUENCE_BEGIN') end)
-  Controls.UnitReadButton:SetToolTipString('左键：移民/施工队报告。右键：旧E2事件观察，仅供排障（替换会话观察，不建专业记录）；日常查看使用左键。')
+  Controls.UnitReadButton:SetToolTipString('右键：旧城市事件观察，仅供排障（替换会话观察，不建专业记录）。')
   status(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_PANEL_HINT'))
 end
 local oldInitialize=initialize

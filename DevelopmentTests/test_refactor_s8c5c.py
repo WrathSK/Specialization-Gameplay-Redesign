@@ -70,6 +70,7 @@ class Production(unittest.TestCase):
   if retired:
    expected.append('SPCPlaytestBoundaryDiagnostics') # The approved B397 observer remains packaged.
    for name in RETIRED_GLOBALS:expected.remove(name)
+   expected.remove('SPCUnitSiteProbe') # B447 removed only the diagnostic startup.
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"));self.assertLess(s.index("composition.Run('LegacyCleanup'"),s.index("composition.Run('BindingProbe'"))
   self.assertNotIn("composition.Run('YieldCarrierExit'",s)

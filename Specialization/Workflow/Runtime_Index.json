@@ -106,9 +106,9 @@
       "provenance": "S0928 verifies scoped Restructuring synchronization, selected-city completion reporting and the approved Owner communication update."
     },
     "Mod/CitySequenceProbe.lua": {
-      "sha256": "952e27381d3b3734af3a20dc5b3e1130c010d3f459083240f90cb4e736709544",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
+      "sha256": "4578c1bcfb1005d82d42a72c4adf1b1512660cbf8d4bd5c4eca591d95e2431fb",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0957 B447 exact site diagnostic retirement and retained City Sequence routing."
     },
     "Mod/ClaimProjects.lua": {
       "sha256": "84f28fdc61391fe9aaafdc60a78a3b476428f7c2fef39a8d8e9df75f16355608",
@@ -631,9 +631,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "9fb0f180869d7c14829a3d613240fc31d26ec3ddc840a636b0102c49a534f4ea",
+      "sha256": "76a1a91536ccf0e1ba2e25d1f8e3c86a847605b1f6285fb3b15199cee4f55733",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0955 B446 verified production route flight flag and retained GC guards."
+      "provenance": "S0957 B447 exact site diagnostic retirement and retained City Sequence routing."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -776,9 +776,9 @@
       "provenance": "S0955 B446 verified production route flight flag and retained GC guards."
     },
     "Mod/Probe.lua": {
-      "sha256": "6249542d83dcf71d9ce06cafe3e31af8431cb34f17e3f670e3b8a284bfe0fd23",
+      "sha256": "04c32af1f09e1ca6a9b3d5732b3a04b07d3b9ee67adacc6f9b23911ba0c0e999",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0955 B446 verified production route flight flag and retained GC guards."
+      "provenance": "S0957 B447 exact site diagnostic retirement and retained City Sequence routing."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -916,9 +916,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "416f2559afbd11b6b03faff8f0006d8492f8c52c9b4c9d13d87ba0391b917a99",
+      "sha256": "154da940370739c872121d566fe949bcdfcdffe8cafe72a109b95604a27486d6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0955 B446 verified production route flight flag and retained GC guards."
+      "provenance": "S0957 B447 exact site diagnostic retirement and retained City Sequence routing."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1431,14 +1431,14 @@
       "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "bae08a82c455cacccbbf9af89372c814dd4778905eda4473fd532ae86ff9a2d8",
+      "sha256": "d47e3aedf7652cfdb6de9b2fb1a1e6d7d52e4b2d083b3c390aa5f8d32e8456f2",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
+      "provenance": "S0957 B447 exact site diagnostic retirement and retained City Sequence routing."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "8de801fac49413b76b96a8ba90084e5fdc6ec2f43a9485a1ecc23b75b22e17c8",
+      "sha256": "c2d17b72c6c06f700bcc613b9d0dc25b7425f3092c51da3f982b44fedf66218c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
+      "provenance": "S0957 B447 exact site diagnostic retirement and retained City Sequence routing."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "ee9a0714f727f49821ef17998960e4577fbcdb34e5980420f35ccced594df3ad",
@@ -1501,14 +1501,14 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/UnitSites.lua": {
-      "sha256": "edc263742fd11bee6d6fdbc1e6b3437acda1d850f0072c2a2b889846e8eeb0f0",
+      "sha256": "68c0bf8d13363564a85bfaba9f84eccc642f4fdf13af3d0956ede3188fe2dcfe",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
+      "provenance": "S0957 B447 exact site diagnostic retirement and retained City Sequence routing."
     },
     "Mod/UI/UnitSites.xml": {
-      "sha256": "9615f953f344d02587769e979ce5b4212717eb4c80cf1683d3a866e63aa9d374",
+      "sha256": "6b8377a6fafe10534c24acc2195e1b664232b0dc33b497258c557e5e5a7927ad",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
+      "provenance": "S0957 B447 exact site diagnostic retirement and retained City Sequence routing."
     },
     "Mod/UI/UnitTargetMarkers.lua": {
       "sha256": "01d4a722684fe71b5a92afcd13cd37fbc9e072a09ee8516a6ce2317fcf735883",
@@ -1520,20 +1520,10 @@
       "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
       "provenance": "B076 unchanged inherited inventory"
     },
-    "Mod/UnitActionSitePolicy.lua": {
-      "sha256": "2ff1d9e151678a564e91a45a8324e320917eff617f86db8789b7ce068479dd7d",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
     "Mod/UnitActions.lua": {
       "sha256": "0354cdbf65bd6cd7f59c6c0c929cce9220447bfdd05ff85a30b72e2ac9f85cba",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
       "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
-    },
-    "Mod/UnitSiteProbe.lua": {
-      "sha256": "2398a3af7567fbf58498eee3e95f91ff3e1c44574ad601cb75b38bb398a9d0fc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B237_Crew_Local.md",
-      "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/UnitTargets.lua": {
       "sha256": "2fc049d186cbd684b3f7cf5c8d780ae11ed409d295234e80cae758ce29df7b8b",
@@ -1791,7 +1781,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0956 verifies deployed B446 and routes the next two exact diagnostic removals to the Owner.",
-  "source_runtime": "B446.473 / modinfo473 deployed from af75e32, same 357-file set as B445.",
-  "tested_source_snapshot_sha256": "782edffb581939405efbb0658cd2509784b3e2dbe9b50e08d38331a710cb32a2"
+  "source_review": "S0957 verifies the two approved site diagnostic removals, retained actions and exact rollback.",
+  "source_runtime": "B447.474 / modinfo474 local candidate, 355 files. B446.473 remains installed.",
+  "tested_source_snapshot_sha256": "bf1b3f53cef5b6c5882009f8ee94185655f603d18274dbab2dafb9f394ca2d37"
 }

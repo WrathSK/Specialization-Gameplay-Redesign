@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="473">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="474">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
     <Description>B443.470：恢复专业项目生产面板接入。</Description>
@@ -286,8 +286,6 @@
       <File>InheritanceShadow.lua</File>
       <File>CityInheritance.lua</File>
       <File>YieldCarrierProbe.lua</File>
-      <File>UnitActionSitePolicy.lua</File>
-      <File>UnitSiteProbe.lua</File>
       <File>UnitSiteFacts.lua</File>
       <File>UnitTargets.lua</File>
       <File>PlayerActionReplies.lua</File>
@@ -790,8 +788,6 @@
     <File>Data/Icons.sql</File>
     <File>Data/Colors.sql</File>
     <File>Text/TestText.sql</File>
-    <File>UnitActionSitePolicy.lua</File>
-    <File>UnitSiteProbe.lua</File>
     <File>UI/UnitSites.xml</File>
     <File>UI/UnitSites.lua</File>
     <File>UnitSiteFacts.lua</File>

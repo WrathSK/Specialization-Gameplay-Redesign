@@ -1,4 +1,4 @@
-"""Replay the pre-retirement Crew observers from the published package."""
+"""Replay retired Crew and unit-site observers from published packages."""
 
 from contextlib import contextmanager
 from functools import cache
@@ -11,30 +11,32 @@ import tempfile
 from refactor_harness import Context, PackageVFS, ROOT, SOURCES
 
 B444 = '72947b5596825e030ad07b77f41bac6d65809cfe'
+B445 = '238cf182af66056eeae0da4e4797114a2a04d73f'
+B446 = 'af75e329546f583b94a90169d8af68ebb7e4b559'
 RETIRED = ('ConstructionProbe.lua', 'CrewPrecision.lua')
 RETIRED_GLOBALS = tuple('SPC' + Path(path).stem for path in RETIRED)
 
 
 @cache
-def source(relative):
+def source(relative, revision=B444):
     path = 'Mod/' + relative
-    data = subprocess.check_output(['git', 'show', f'{B444}:{path}'], cwd=ROOT)
-    SOURCES[sha256(data).hexdigest()] = f'historical/{B444}/{path}'
+    data = subprocess.check_output(['git', 'show', f'{revision}:{path}'], cwd=ROOT)
+    SOURCES[sha256(data).hexdigest()] = f'historical/{revision}/{path}'
     return data.decode('utf-8')
 
 
 @contextmanager
-def package():
-    with tempfile.TemporaryDirectory(prefix='spc-b444-history-') as directory:
+def package(revision=B444):
+    with tempfile.TemporaryDirectory(prefix='spc-package-history-') as directory:
         checkout = Path(directory)
         archive = checkout / 'package.tar'
-        subprocess.run(['git', 'archive', '-o', str(archive), B444, 'Mod'],
+        subprocess.run(['git', 'archive', '-o', str(archive), revision, 'Mod'],
                        cwd=ROOT, check=True)
         with tarfile.open(archive) as tar:
             tar.extractall(checkout, filter='data')
         yield checkout
 
 
-def gameplay(checkout, **options):
+def gameplay(checkout, *, revision=B444, **options):
     vfs = PackageVFS(manifest=checkout/'Mod/SpecializationP0.modinfo', **options)
-    return Context(vfs=vfs, history=(checkout, B444))
+    return Context(vfs=vfs, history=(checkout, revision))

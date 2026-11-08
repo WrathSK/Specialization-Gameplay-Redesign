@@ -6,8 +6,8 @@ import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 
-from retired_crew_sources import RETIRED, package as historical_package
-from test_deployment_removals import ROOT, commit, deploy, temporary
+from retired_crew_sources import B445, RETIRED, package as historical_package
+from test_deployment_removals import commit, deploy, temporary
 
 
 class CrewRetirement(unittest.TestCase):
@@ -23,45 +23,50 @@ class CrewRetirement(unittest.TestCase):
 
                 with historical_package() as checkout:
                     before = control_ids(checkout)
-                after = control_ids(ROOT)
+                with historical_package(B445) as checkout:
+                    after = control_ids(checkout)
+                    source = (checkout / 'Mod/UI' / f'{panel}.lua').read_text()
                 self.assertEqual(before - after, removed)
                 self.assertFalse(after - before)
-                source = (ROOT / 'Mod/UI' / f'{panel}.lua').read_text()
                 for name in removed:
                     self.assertNotIn(name, source)
 
     def test_real_package_round_trip_restores_both_paths(self):
-        with tempfile.TemporaryDirectory(prefix='spc-crew-package-round-trip-') as directory:
-            root = Path(directory).resolve()
-            stable, develop = root/'Stable', root/'Develop'
-            target = root/'Game/Mods/SpecializationP0'
-            receipt = root/'Game/SpecializationDeploymentBackups/b445.json'
-            with historical_package() as checkout:
-                shutil.copytree(checkout/'Mod', stable/'Mod')
-            shutil.copytree(stable/'Mod', target)
-            shutil.copytree(ROOT/'Mod', develop/'Mod')
-            before, after = deploy.snapshot(target), deploy.snapshot(develop/'Mod')
-            self.assertEqual(before['files'].keys() - after['files'].keys(), set(RETIRED))
-            self.assertFalse(after['files'].keys() - before['files'].keys())
-            commit(stable, 'main')
-            source = commit(develop, 'develop')
-            args = (develop/'Mod', target, receipt, stable, after['digest'], before['digest'])
-            for allowed in ((), RETIRED[:1], (*RETIRED, 'CrewProjects.lua')):
-                with self.subTest(allowed=allowed), self.assertRaisesRegex(ValueError, 'removal list mismatch'):
-                    temporary.switch(*args, check_only=True, allow_remove=allowed)
-            self.assertEqual(deploy.snapshot(target), before)
-            self.assertFalse(receipt.exists())
-            check = temporary.switch(*args, check_only=True, allow_remove=RETIRED)
-            self.assertEqual(check['removed_paths'], list(RETIRED))
-            active = temporary.switch(*args, authorized=True, allow_remove=RETIRED)
-            self.assertEqual(active['develop_commit'], source)
-            self.assertEqual(active['activate_removed_paths'], list(RETIRED))
-            self.assertEqual(deploy.snapshot(target), after)
-            backup = Path(active['stable_backup'])
-            self.assertEqual(deploy.snapshot(backup), before)
-            restored = temporary.switch(backup, target, receipt, stable, before['digest'], after['digest'],
-                                        restore=True, authorized=True)
-            self.assertEqual(restored['phase'], 'STABLE_RESTORED')
-            self.assertEqual(deploy.snapshot(target), before)
-            self.assertEqual(deploy.snapshot(Path(restored['develop_backup'])), after)
-            self.assertFalse(temporary.boundary(target).exists())
+        with historical_package() as before, historical_package(B445) as after:
+            verify_package_round_trip(self, before/'Mod', after/'Mod', RETIRED, 'CrewProjects.lua')
+
+
+def verify_package_round_trip(case, before_mod, after_mod, removed, kept_path):
+    with tempfile.TemporaryDirectory(prefix='spc-exact-package-round-trip-') as directory:
+        root = Path(directory).resolve()
+        stable, develop = root/'Stable', root/'Develop'
+        target = root/'Game/Mods/SpecializationP0'
+        receipt = root/'Game/SpecializationDeploymentBackups/retirement.json'
+        shutil.copytree(before_mod, stable/'Mod')
+        shutil.copytree(stable/'Mod', target)
+        shutil.copytree(after_mod, develop/'Mod')
+        before, after = deploy.snapshot(target), deploy.snapshot(develop/'Mod')
+        case.assertEqual(before['files'].keys() - after['files'].keys(), set(removed))
+        case.assertFalse(after['files'].keys() - before['files'].keys())
+        commit(stable, 'main')
+        source = commit(develop, 'develop')
+        args = (develop/'Mod', target, receipt, stable, after['digest'], before['digest'])
+        for allowed in ((), removed[:1], (*removed, kept_path)):
+            with case.subTest(allowed=allowed), case.assertRaisesRegex(ValueError, 'removal list mismatch'):
+                temporary.switch(*args, check_only=True, allow_remove=allowed)
+        case.assertEqual(deploy.snapshot(target), before)
+        case.assertFalse(receipt.exists())
+        check = temporary.switch(*args, check_only=True, allow_remove=removed)
+        case.assertEqual(check['removed_paths'], list(removed))
+        active = temporary.switch(*args, authorized=True, allow_remove=removed)
+        case.assertEqual(active['develop_commit'], source)
+        case.assertEqual(active['activate_removed_paths'], list(removed))
+        case.assertEqual(deploy.snapshot(target), after)
+        backup = Path(active['stable_backup'])
+        case.assertEqual(deploy.snapshot(backup), before)
+        restored = temporary.switch(backup, target, receipt, stable, before['digest'], after['digest'],
+                                    restore=True, authorized=True)
+        case.assertEqual(restored['phase'], 'STABLE_RESTORED')
+        case.assertEqual(deploy.snapshot(target), before)
+        case.assertEqual(deploy.snapshot(Path(restored['develop_backup'])), after)
+        case.assertFalse(temporary.boundary(target).exists())

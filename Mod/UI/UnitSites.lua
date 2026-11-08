@@ -10,7 +10,7 @@ local function selected()
  if r and (r.UnitType=='UNIT_SETTLER' or r.UnitType=='UNIT_BUILDER' or P.CrewBase(r.UnitType)~=nil) then return u end
 end
 local function refresh()
- local u=selected();Controls.ReadButton:SetHide(true)
+ local u=selected()
  local now=u and (u:GetID()..':'..u:GetX()..':'..u:GetY()) or nil
  if now~=selection then
   selection=now;if not token then Controls.Window:SetHide(true) end
@@ -18,7 +18,6 @@ local function refresh()
 end
 local function read(action)
  refresh()
- action=action or 'UNIT_SITE_READ'
  local u=selected();local city=UI.GetHeadSelectedCity()
  if (action=='UNIT_ACTION_SPAWN' and not city) or (action~='UNIT_ACTION_SPAWN' and not u) then
   Controls.Window:SetHide(false);Controls.Report:SetText('Spawn: select own city with empty center. Action: select Settler or Crew.');return
@@ -35,7 +34,6 @@ local function showRoot()
 end
 local function initialize()
  showRoot();refresh()
- Controls.ReadButton:RegisterCallback(Mouse.eLClick,function() read() end)
  Controls.SpawnCrewButton:RegisterCallback(Mouse.eLClick,function() read('UNIT_ACTION_SPAWN') end)
  Controls.PrepareUnitButton:RegisterCallback(Mouse.eLClick,function() read('UNIT_ACTION_PREPARE') end)
  Controls.ConfirmUnitButton:RegisterCallback(Mouse.eLClick,function() read('UNIT_ACTION_CONFIRM') end)
