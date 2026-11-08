@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "3f7ba47bde7f8bdbacbf13010dc308196d5872d5",
-  "runtime": "B470.497 / modinfo497 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
+  "runtime_commit": "3574404f0f484345c469f480531919785781d961",
+  "runtime": "B471.498 / modinfo498 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1007 verifies the four hidden boost test retirements while background initialization, exact legacy carrier removal and read-only reports continue.",
-  "source_runtime": "B471.498 / modinfo498 local candidate, 337 files. B470.497 remains installed.",
+  "source_review": "S1008 verifies B471 deployment and both recovery packages. The old Great Work adjacency controls, requests and retry path are separate from memory, automatic Meaning and legacy withdrawal.",
+  "source_runtime": "B471.498 / modinfo498 deployed from 3574404 with the four approved hidden boost tests removed.",
   "tested_source_snapshot_sha256": "14b6a598c90fbaf68a1200f3366663134c50aa73ea63540200607d35cd183390"
 }

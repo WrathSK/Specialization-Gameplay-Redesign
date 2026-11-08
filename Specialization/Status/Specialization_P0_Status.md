@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1007
-Implementation Build: source B471.498 / modinfo498. Live B470.497 from 3f7ba47. Stable/main B307.334.
+Status Revision: S1008
+Implementation Build: source B471.498 / modinfo498. Live B471.498 from 3574404. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRED_BOOST_TEST_CONTROLS_RETIRED_LOCAL
+Work State: RETIRED_GREAT_WORK_ADJACENCY_COMMANDS_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B471 deployment verified and the retired Great Work adjacency requests reviewed — S1008
+
+B471.498 is installed from `3574404f0f484345c469f480531919785781d961`. All 337 files match SHA256 `d829658b19ebbb6dcd0bd7a22afe603db43989f2d9301fb27a87895efa241243`. Receipt `B471.498-3574404-playtest.json` is DEVELOP_ACTIVE. The four hidden B057 test controls have retired. The B470 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The old Great Work adjacency Auto and Off commands stop at the retired guard. The old Read command returns the retirement notice and can trigger a dedicated native six-yield comparison through its UI reply. Its initial button callback is already overwritten by the current memory observation handlers. The projection removes the two hidden controls, the overwritten callback, three GWA requests, their reply branch, dedicated SystemUpdateUI retry listener and the old UI-only adjacency report. The package paths stay identical. The exact edits are in `Mod/Gameplay.lua`, `Mod/UI/P0Panel.lua`, `Mod/UI/P0Panel.xml` and `Mod/UI/BoostGreatWorkRead.lua`. Keep both memory callbacks, the common response handling, the background Great Work inputs and the legacy withdrawal used by Culture Meaning.
+
+The disposable comparison takes the P0 SystemUpdateUI listener count from two to one. Both memory commands produce the same reports with a populated Store. A seeded B060 carrier withdraws and current Meaning configures +3 Science in both fixture cities in both arms. Three nonempty route proofs and strict transaction qualification match. Disposable switch and restore pass. Evidence `local/refactor/B471-RetiredGreatWorkAdjacencyReview/result.json` SHA256 `f26d41dca1b635ae8f1822328327933935ac8bb197050c6aae9d1806df97f9e9` with replay script SHA256 `b239c472f2e84c2b84922bf201e690390d25a8a2d2df16cb9a4b49f7f57dc7da` alongside. Reproduce with CPython 3.14/Lupa 2.8, the named source's DevelopmentTests on PYTHONPATH and `SPC_DEBUG_GAMEPLAY_DB` set to the read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. In a clean scratch directory run `python3.14 -B review.py --source 3574404f0f484345c469f480531919785781d961 --package d829658b19ebbb6dcd0bd7a22afe603db43989f2d9301fb27a87895efa241243`.
+
+The exact Great Work adjacency retirement awaits approval. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the four hidden boost experiment controls — S1007
 

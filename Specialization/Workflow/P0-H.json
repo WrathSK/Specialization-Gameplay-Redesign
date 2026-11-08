@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1007",
+    "status": "S1008",
     "runtime": "B471.498 / modinfo498",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the approved retired boost controls with background initialization, exact carrier removal and retained readouts preserved.",
+  "goal": "Record B471 deployment and review the retired Great Work adjacency path with memory, current Meaning and carrier withdrawal preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B471 deployment verified and the retired Great Work adjacency requests reviewed — S1008",
+      "reason": "Verified B471 deployment and exact retired Great Work adjacency boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -474,6 +480,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B471 installed 337/337 MATCH with both recovery packages verified. The projection preserves the memory control and reports, current Meaning, old carrier withdrawal and three nonempty route proofs.",
     "B471 passes 13 selected and 13/64 carried checks. Actual BoostRefresh request, exact cleanup, readouts and current route proofs match.",
     "B470 installed 337/337 MATCH with both recovery packages verified. The boost test projection preserves the real background init, exact legacy carrier cleanup, current reports and route proofs.",
     "B470 passes 13 selected checks and carried city flow, marker, first-completion and route suites. Cold records, current reports and identity match.",
@@ -3058,6 +3065,68 @@
       "package_sha256": "d829658b19ebbb6dcd0bd7a22afe603db43989f2d9301fb27a87895efa241243",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-four-hidden-boost-experiment-controls--s1007"
+    },
+    "b471_deployment": {
+      "version": "B471.498 / modinfo498",
+      "source_commit": "3574404f0f484345c469f480531919785781d961",
+      "digest": "d829658b19ebbb6dcd0bd7a22afe603db43989f2d9301fb27a87895efa241243",
+      "files": 337,
+      "receipt": "B471.498-3574404-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B470.497, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b471-deployment-verified-and-the-retired-great-work-adjacency-requests-reviewed--s1008"
+    },
+    "b471_retired_great_work_adjacency_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "3574404f0f484345c469f480531919785781d961",
+      "removed": [],
+      "modified": [
+        "Gameplay.lua",
+        "UI/BoostGreatWorkRead.lua",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "Gameplay.lua": "1ca379171ca347c6ef28ef70b8f0409032c3742409897f005db0e8cd914f3e40",
+        "UI/BoostGreatWorkRead.lua": "ae17bdd63047da547cf13dbe0fa1bca230146dbec882d0475a2339a4d293976c",
+        "UI/P0Panel.lua": "a72f61ba4e6f914a1828f4eec29fef7eb668f3ef932f6dbdb834dd70f7bf7893",
+        "UI/P0Panel.xml": "7267c20c405e279c32030791c7e4ceda4366d7f8d8676b53ecf812abe388a97b"
+      },
+      "hidden_controls": [
+        "GWAOffButton",
+        "GWAAutoButton"
+      ],
+      "retired_actions": [
+        "GWA_READ",
+        "GWA_OFF",
+        "GWA_AUTO"
+      ],
+      "manual_read_calls": [
+        1,
+        0
+      ],
+      "system_update_listeners": [
+        2,
+        1
+      ],
+      "memory_buttons_and_reports": "MATCH",
+      "legacy_carrier_withdrawal_and_automatic_meaning": "MATCH",
+      "modeled_meaning_science": [
+        3,
+        3
+      ],
+      "external_db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "production_route_packets": 3,
+      "local_evidence": "local/refactor/B471-RetiredGreatWorkAdjacencyReview/result.json",
+      "local_evidence_sha256": "f26d41dca1b635ae8f1822328327933935ac8bb197050c6aae9d1806df97f9e9",
+      "local_replay_sha256": "b239c472f2e84c2b84922bf201e690390d25a8a2d2df16cb9a4b49f7f57dc7da",
+      "local_transcript_sha256": "f064fb07506f1de3b560774ff2392f5bbe4d66135d9b3c3538cb21fd3873ef10",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b471-deployment-verified-and-the-retired-great-work-adjacency-requests-reviewed--s1008"
     }
   }
 }
