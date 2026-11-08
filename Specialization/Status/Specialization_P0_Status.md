@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0977
-Implementation Build: source B456.483 / modinfo483. Live B455.482 from e5c5afa. Stable/main B307.334.
+Status Revision: S0978
+Implementation Build: source B456.483 / modinfo483. Live B456.483 from fbb1a96. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: MANUAL_OVERFLOW_RETIRED_LOCAL
+Work State: SOURCE_YIELD_PROTOTYPE_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B456 deployment verified and unused city-yield probe reviewed — S0978
+
+B456.483 is installed from `fbb1a963d2b5b2afe8218e5f933a09be442e6186`. All 348 files match SHA256 `4299185b631dc8bd3556112a727c1eac844bf679e9fe493e70c5874d66311b34`. Receipt `B456.483-fbb1a96-playtest.json` is DEVELOP_ACTIVE. The two approved paths are absent. The outgoing B455 and stable B307 recovery packages match their recorded hashes. Game exit, UUID uniqueness and the clear transaction boundary were verified.
+
+**Next exact retirement review (P3-22).** The B028 `Mod/SourceYieldProbe.lua` (`64d9e41633024f4db8526d3c74504a6aeae3bc4b4bbd1e142fafa91a75cc3a4e`) defines a read-only total-yield function without a caller in the current runtime. The current P0 city profession/potential button calls PROGRESSION_READ. The legacy SOURCE_YIELDS request reads the separate YieldCarrierProbe report, and CARRIER_OFF clears the two historical plot flags. The latter module and central cleanup retain their responsibilities.
+
+The disposable projection removes one file, its Gameplay include and two manifest entries. It preserves the P0 button and layout, the legacy carrier requests and plot cleanup, and the current network path. Its real Lua composition loads 295 versus 294 Gameplay chunks with matching BackgroundRoutes loading and three matching normalized route proof packets. The current city report, legacy carrier report and exact two-flag reset match under test doubles. The exact one-path temporary switch and full restoration pass in disposable directories. Recover the prototype from `fbb1a963d2b5b2afe8218e5f933a09be442e6186:Mod/SourceYieldProbe.lua`. Evidence `local/refactor/B456-SourceYieldPrototypeRetirementReview/result.json` SHA256 `4bbbe554d023adeeb7197569250716e6e870da4fd775bc64036b9068744e688c` with the replay script alongside.
+
+The one-path removal awaits approval. The separate P0 layout baseline issue remains recorded in S0977, and positive Culture Network cold restoration retains its native gate.
 
 ### Retire the manual overflow completion tool — S0977
 

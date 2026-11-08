@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0977",
+    "status": "S0978",
     "runtime": "B456.483 / modinfo483",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "e5c5afaf3aeb223861b107a220f910da3d8edf98",
-  "current_batch": "MANUAL_OVERFLOW_RETIRED_LOCAL",
-  "next_batch": "Verify the guarded B456 switch and review the unused SourceYieldProbe import independently of the active city report and legacy carrier controls. Positive Culture Network cold restoration retains its native gate.",
+  "runtime_commit": "fbb1a963d2b5b2afe8218e5f933a09be442e6186",
+  "current_batch": "SOURCE_YIELD_PROTOTYPE_RETIREMENT_REVIEWED",
+  "next_batch": "Await exact removal approval for SourceYieldProbe.lua, its Gameplay include and its two manifest declarations. Retain the current city profession/potential report, existing legacy carrier controls and exact cleanup.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B455.482 / modinfo482 temporary develop from e5c5afaf3aeb223861b107a220f910da3d8edf98, 350/350 MATCH, SHA256 48bcdc913bd79147519f61ae7589430102ac2c20bfe90a1234425eb099f83999. Receipt B455.482-e5c5afa-playtest.json DEVELOP_ACTIVE. B454 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B456.483 / modinfo483 temporary develop from fbb1a963d2b5b2afe8218e5f933a09be442e6186, 348/348 MATCH, SHA256 4299185b631dc8bd3556112a727c1eac844bf679e9fe493e70c5874d66311b34. Receipt B456.483-fbb1a96-playtest.json DEVELOP_ACTIVE. B455 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0977 verifies both manual overflow file removals, preserved automatic timing and P0 behavior, frozen historical tests, and rollback.",
+  "context_review_status": "S0978 verifies B456 deployment and both recovery packages, and reviews the unused SourceYieldProbe import.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-manual-overflow-completion-tool--s0977",
-  "source_status": "B456.483 / modinfo483 locally verified at SHA256 4299185b631dc8bd3556112a727c1eac844bf679e9fe493e70c5874d66311b34. B455.482 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b456-deployment-verified-and-unused-city-yield-probe-reviewed--s0978",
+  "source_status": "B456.483 / modinfo483 deployed at SHA256 4299185b631dc8bd3556112a727c1eac844bf679e9fe493e70c5874d66311b34. Exact manual overflow retirement verified.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

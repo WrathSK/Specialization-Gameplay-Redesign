@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0977",
+    "status": "S0978",
     "runtime": "B456.483 / modinfo483",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify exact manual overflow retirement while preserving automatic timing, P0 controls and formal projects.",
+  "goal": "Record verified B456 deployment and the exact unused city-yield probe proposal.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B456 deployment verified and unused city-yield probe reviewed — S0978",
+      "reason": "Verified B456 deployment and exact next path"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -294,6 +300,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B456 installed 348/348 MATCH with B455 and B307 recovery verified. The SourceYieldProbe projection preserves city and carrier reports, carrier reset and nonempty route proof.",
     "B456 passes 41 selected methods and 41/42 carried checks. Both versions retain the same two separate P0 layout suite failures.",
     "B455 installed 350/350 MATCH with B454 and B307 recovery verified. The manual overflow projection preserves the automatic timer and both production readers.",
     "B455 passes 41 selected methods and the 42/88 carried checks, with exact outgoing rollback.",
@@ -1522,6 +1529,38 @@
       "package_sha256": "4299185b631dc8bd3556112a727c1eac844bf679e9fe493e70c5874d66311b34",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-manual-overflow-completion-tool--s0977"
+    },
+    "b456_deployment": {
+      "version": "B456.483 / modinfo483",
+      "source_commit": "fbb1a963d2b5b2afe8218e5f933a09be442e6186",
+      "digest": "4299185b631dc8bd3556112a727c1eac844bf679e9fe493e70c5874d66311b34",
+      "files": 348,
+      "receipt": "B456.483-fbb1a96-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [
+        "OverflowStorageProbe.lua",
+        "UI/OverflowStorageRead.lua"
+      ],
+      "pending": false,
+      "outgoing": "B455.482, 350/350 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b456-deployment-verified-and-unused-city-yield-probe-reviewed--s0978"
+    },
+    "b456_source_yield_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "fbb1a963d2b5b2afe8218e5f933a09be442e6186",
+      "removed_sha256": {
+        "SourceYieldProbe.lua": "64d9e41633024f4db8526d3c74504a6aeae3bc4b4bbd1e142fafa91a75cc3a4e"
+      },
+      "modified": [
+        "Gameplay.lua",
+        "SpecializationP0.modinfo"
+      ],
+      "modeled_gameplay_load_delta": 1,
+      "local_evidence": "local/refactor/B456-SourceYieldPrototypeRetirementReview/result.json",
+      "local_evidence_sha256": "4bbbe554d023adeeb7197569250716e6e870da4fd775bc64036b9068744e688c",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b456-deployment-verified-and-unused-city-yield-probe-reviewed--s0978"
     }
   }
 }
