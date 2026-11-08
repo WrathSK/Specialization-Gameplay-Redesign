@@ -191,6 +191,10 @@ function M.Start(P,shared)
   local restoring=old and old.loaded
   -- Restored bits describe the aggregate, never the contributing sources.
   assert(not restoring or not view.input.continuityOnly,'CN_COLD_TOPOLOGY_PENDING')
+  if view.rolesPending and view.rolesPending[c:GetID()] then
+   assert(not restoring,'CN_COLD_ROLE_PENDING')
+   p.reason='CN_NETWORK_ROLE_PENDING'
+  end
   for id in pairs(view.recipients[c:GetID()] or {})do
    local s=source(batch,pid,id)
    if view.input.continuityOnly and s.eligible then

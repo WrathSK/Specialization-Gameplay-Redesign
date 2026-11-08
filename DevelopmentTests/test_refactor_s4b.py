@@ -60,7 +60,21 @@ class NetworkProof(unittest.TestCase):
     def test_partial_facts_role_retained_and_transaction_remains_strict(self):
         l=culture();l.execute("cities[4].active=nil;net.Refresh(0);local p=net.Input(0);assert(p.factAvailability=='MIXED' and p.effectAvailability=='AVAILABLE');assert(p.provenance[4].status=='RETAINED');assert(net.CurrentDomesticPartners(0,cities[2]).validity=='UNKNOWN');assert(not pcall(net.CurrentCapitalSources,0,cities[1],'CULTURE'));assert(net.CurrentEffectPartners(0,cities[2]).validity=='VERIFIED');cities[4].active=4;fire('GovernorChanged',0);assert(net.Input(0).provenance[4].status=='CONFIRMED')")
     def test_first_unknown_role_freezes_carrier_projection(self):
-        l=culture();l.execute("local c=cities[3];c.fail=true;net.Refresh(0);assert(net.Input(0).effectAvailability=='AVAILABLE');c.token='NEW';net.Refresh(0);assert(net.Input(0).effectAvailability~='AVAILABLE' and net.Input(0).provenance[3].status=='UNKNOWN')")
+        l=culture(False)
+        l.execute("""
+local c=cities[1];local id='BUILDING_SPC_CULTURE_NETWORK_RESEARCH_0'
+c.present[id]=true;c.locations[id]=100
+cities[3].fail=true
+send('0,3,0,2,10;0,2,0,1,11',2)
+local v=net.CurrentCultureBatch(0)
+assert(v.input.routeValidity=='VERIFIED' and v.input.provenance[3].status=='UNKNOWN')
+assert(not net.TransactionCurrent(0))
+assert(amount(c)==1 and cn.records['0:1'].loaded and created==0 and removed==0)
+assert(v.rolesPending[1] and v.rolesPending[2])
+assert(cn.errors['0:1']:find('CN_COLD_ROLE_PENDING',1,true))
+v.rolesPending[1]=nil
+assert(net.CurrentCultureBatch(0).rolesPending[1])
+""")
     def test_confirmed_route_loss_prunes_only_its_paths(self):
         l=culture();l.execute("cities[3].kind='CULTURE';cities[3].potential=4;cities[3].active=4;complete(4,1);complete(3,2);send('0,4,0,2,10;0,3,0,2,11;0,2,0,1,12',3);assert(amount(cities[1])==2);units[10]=nil;net.CheckEvidence(false);assert(amount(cities[1])==1 and net.Input(0).validity=='VERIFIED' and net.Input(0).continuityOnly);assert(net.CurrentDomesticPartners(0,cities[2]).validity=='UNKNOWN')")
     def test_known_center_loss_survives_other_fact_failure(self):

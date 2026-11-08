@@ -165,6 +165,7 @@ function SPCStandardizationEffects.Start(P,shared)
  local function plan(batch,pid,c,old)
   local wanted,sources,ids={}, {},{[c:GetID()]=true};local reason=batch.networkError
   local continuity=batch.networkError~=nil or batch.view and batch.view.input.continuityOnly
+  if batch.view and batch.view.rolesPending and batch.view.rolesPending[c:GetID()] then reason='STD_NETWORK_ROLE_PENDING'end
   if batch.view then for id in pairs(batch.view.recipients[c:GetID()] or {})do ids[id]=true end
   else for id in pairs(old.sources or {})do ids[id]=true end end
   local removed=false

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0936
-Implementation Build: source B436.463 / modinfo463, local reconciliation candidate. Live B435.462 from 35d5998. Stable/main B307.334.
+Status Revision: S0937
+Implementation Build: source B437.464 / modinfo464, local network candidate. Live B435.462 from 35d5998. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_COLD_FIRST_SOURCE_RECONCILIATION_LOCAL
+Work State: NETWORK_ROUTE_ROLE_RECONCILIATION_LOCAL_NATIVE_GATE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Network reconciliation scopes unresolved route roles — S0937
+
+- **Implemented.** The existing proof distinguishes an unreadable potential source or hub from a confirmed absent role. Culture and Standardization wait on that missing input only for affected receivers at first reconciliation. The capital's own source follows the same rule. Established warm owners retain their source-local reconciliation. A separate route and an off-route city do not cause a receiver to wait, and receiving from a hub never grants a second forward. Commerce direct pairs and strict proof checks use the original contracts.
+- **Runtime Impact Contract (L3, T01/T02/T03/T05/T08).** NetworkInput keeps only unresolved roles incident to a validated domestic route or the capital in the existing snapshot. The Bridge derives a detached, per-family receiver map in the same input revision, preserving coalescing and ACK paths. The only extra passes are over the already sampled rows when such a role is present. Capture limits remain 512 cities and 128 routes. Unresolved role collection is bounded by 512 local entries and each family by at most 129 receivers, including the capital. No extra engine reads, listeners, periodic work, saved state, or another proof owner.
+- **LOCAL_SIMULATION_PASS in scope.** All 20 targeted proof/owner tests pass. Five fail with fixed B436 runtime and identical new assertions on installed values or first reconciliation. The actual Bridge and effect writers with Store/native doubles cover independent routes, exact hub and capital scope, no recursion, detached copies and same-membership availability recovery without idle capture. In the wider selection, 132 of 140 pass; the same eight nonpassing cases reproduce with the B436 runtime. Restricted actual package roots, 223 Lua 5.1 compiles, 32 XML-family parses and 352 package files pass. Local simulation does not establish native restoration order.
+- **Reproduce and evidence.** With CPython 3.14/Lupa 2.8 and DevelopmentTests on PYTHONPATH, run `python3.14 -m unittest test_refactor_s4b.NetworkProof test_network_effect_fact_receipts`. Package SHA256 `ab1613960e0b3d9cc7b6a0dafcd460d031db6675123f677a24fb4c3fe1b98c9c`; tested source SHA256 `4d2338ef75fbbb088f041366d0bd67f40b54cbe576ffd89fceccf083cfd917a0`. Local result, before-runtime comparison and suite list `local/refactor/B437_Route_Role_Completeness-4d2338ef75fbbb08/closure.json`, SHA256 `3180b4872fa520f5708eb1c7993b499c204f632bb1cf101c9b9c5464d49b5504`.
+- **Next native gate (N-COLD).** B413's same-build cold test records restored Commercialization at 14 Gold and route proof catch-up. B435 records empty official-profile startup. Keep both acceptances. The remaining question is whether current-build Culture and Standardization restore installed effects and keep them through first complete proof. In one fixed-profile same-build save, prepare active network effects and record a recipient's Culture specialist bonus and a standardized production or purchase target. Quit and restart, load without opening the trade panel or advancing a turn, then compare the same outputs and collect startup, route-proof and available carrier evidence. Commercialization may be recorded in the same save if it is already active. Current logs help sequence startup and reconciliation; aggregate carrier counts alone cannot identify native timing of every carrier. Mark unsampled steps unknown. No forced loss, random pillage, game launch by Primary or new probe in this batch.
+
+User decision: none on rules. User testing: one focused same-build cold restore when the native gate is taken. Primary next: review that evidence before retiring any pending-network protection. The migration and final no-HD interaction/effect acceptance are separate. B435 is still installed.
 
 ### Network effects wait for listed source facts on cold load — S0936
 

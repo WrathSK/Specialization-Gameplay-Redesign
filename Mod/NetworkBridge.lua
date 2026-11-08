@@ -57,6 +57,35 @@ function SPCNetworkBridge.Start(P,shared)
   if type(v)~='table' then return v end
   local out={};for k,x in pairs(v) do out[k]=copy(x) end;return out
  end
+ -- An unreadable role only affects a possible direct source, hub, or one-hop receiver.
+ -- Resolve this from the already validated route rows, without another native capture.
+ local function pendingRoles(pid,rows,input,sources,centers)
+  local roles=input.unconfirmedRoles
+  if not roles or not next(roles)then return end
+  local hubs={}
+  local function mark(id,kind)
+   if kind~='CULTURE' and kind~='INDUSTRY' and kind~='UNKNOWN'then return end
+   local set=hubs[id] or {};hubs[id]=set
+   if kind~='INDUSTRY'then set.CULTURE=true end
+   if kind~='CULTURE'then set.INDUSTRY=true end
+  end
+  if input.capital then mark(input.capital,roles[input.capital])end
+  for _,r in ipairs(rows)do
+   if r.dp==pid then
+    local role=roles[r.dc];local maybeHub=role=='UNKNOWN' or role=='COMMERCE'
+    if centers[r.dc] or maybeHub then mark(r.dc,roles[r.oc])end
+    if maybeHub and r.dc~=input.capital then mark(r.dc,sources[r.oc])end
+   end
+  end
+  if not next(hubs)then return end
+  local targets={CULTURE={},INDUSTRY={}}
+  local function receive(id,kinds)
+   for kind in pairs(kinds)do targets[kind][id]=true end
+  end
+  for id,kinds in pairs(hubs)do receive(id,kinds)end
+  for _,r in ipairs(rows)do if r.dp==pid and hubs[r.oc]then receive(r.dc,hubs[r.oc])end end
+  return targets
+ end
  local function buildView(pid,rows,input)
   P.Count('derive_requested');P.Count('derived_cache_miss')
   local sources,centers,recipients=derive(pid,rows,input)
@@ -92,7 +121,8 @@ function SPCNetworkBridge.Start(P,shared)
   local cultureIndex=SPCReverseDependencies.New()
   for cid,set in pairs(recipients.CULTURE or {})do if not cultureIndex.Replace(pid,cid,set)then break end end
   return {sources=sources,centers=centers,recipients=recipients,connected=connected,national=national,
-   directDomestic=directDomestic,directOutgoing=directOutgoing,references=references,cultureIndex=cultureIndex}
+   directDomestic=directDomestic,directOutgoing=directOutgoing,references=references,cultureIndex=cultureIndex,
+   rolesPending=pendingRoles(pid,rows,input,sources,centers)}
  end
  local function bucket(pid)
   if not d.players[pid] then d.players[pid]={seq=-1,revision=0,inputRevision=0,derivedRevision=0,validity='UNKNOWN',availability='UNAVAILABLE'} end
@@ -223,7 +253,12 @@ function SPCNetworkBridge.Start(P,shared)
  local function prune(pid,b,lost,rows,reason)
   if not b.input or b.input.validity~='VERIFIED' then return false end
   local input=copy(b.input);local changed=false
-  for id in pairs(lost or {})do if input.cities[id]then input.cities[id]=nil;input.provenance[id]=nil;changed=true end end
+  for id in pairs(lost or {})do
+   if input.cities[id]then
+    input.cities[id]=nil;input.provenance[id]=nil;changed=true
+    if input.unconfirmedRoles then input.unconfirmedRoles[id]=nil end
+   end
+  end
   if input.capital and not input.cities[input.capital]then input.capital=nil end
   local kept={};for _,r in ipairs(rows or b.routes or {})do
    if not (r.op==pid and lost and lost[r.oc] or r.dp==pid and lost and lost[r.dc])then kept[#kept+1]=r end
@@ -592,11 +627,12 @@ function SPCNetworkBridge.Start(P,shared)
  function d.CurrentIndustryBatch(pid)
   assert(d.ready and P.IsTestPlayer(pid),'NETWORK_NOT_READY_OR_OWNER')
   local v=currentView(pid,true)
-  return {input=d.Input(pid),recipients=copy(v.recipients.INDUSTRY or {})}
+  return {input=d.Input(pid),recipients=copy(v.recipients.INDUSTRY or {}),rolesPending=copy(v.rolesPending and v.rolesPending.INDUSTRY)}
  end
  function d.CurrentCultureBatch(pid,selection)
   assert(d.ready and P.IsTestPlayer(pid),'NETWORK_NOT_READY_OR_OWNER')
   local v=currentView(pid,true);local rows=v.recipients.CULTURE or {}
+  local roles=v.rolesPending and v.rolesPending.CULTURE
   if type(selection)=='table'and type(selection.sources)=='table'and type(selection.targets)=='table'then
    local candidates={};local scoped=true
    for cid,selected in pairs(selection.targets)do if selected then candidates[cid]=true end end
@@ -606,13 +642,16 @@ function SPCNetworkBridge.Start(P,shared)
     for cid in pairs(targets)do candidates[cid]=true end
    end end
    if scoped then
-    local recipients={}
+    local recipients={};local pending=roles and {}
     -- Every selected receiver retains ALL its sources, including unchanged ones.
-    for cid in pairs(candidates)do if rows[cid]then recipients[cid]=copy(rows[cid])end end
-    return {input=d.Input(pid),recipients=recipients,candidates=candidates,scoped=true}
+    for cid in pairs(candidates)do
+     if rows[cid]then recipients[cid]=copy(rows[cid])end
+     if roles and roles[cid]then pending[cid]=true end
+    end
+    return {input=d.Input(pid),recipients=recipients,rolesPending=pending,candidates=candidates,scoped=true}
    end
   end
-  return {input=d.Input(pid),recipients=copy(rows)}
+  return {input=d.Input(pid),recipients=copy(rows),rolesPending=copy(roles)}
  end
  -- B239 read-only per-city direct route projection. No Refresh, proof request,
  -- all-city scan or reference retention by the caller. UNKNOWN has no partners.

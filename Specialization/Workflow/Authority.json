@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0936",
-    "runtime": "B436.463 / modinfo463",
+    "status": "S0937",
+    "runtime": "B437.464 / modinfo464",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "35d5998bb68b1f5ac5419c093a1264da7b9e6ac6",
-  "current_batch": "NETWORK_COLD_FIRST_SOURCE_RECONCILIATION_LOCAL",
-  "next_batch": "Continue the shared network reconciliation. Scope unresolved route roles before marking a receiver's first plan complete; retain the existing native restore and retirement gates.",
+  "current_batch": "NETWORK_ROUTE_ROLE_RECONCILIATION_LOCAL_NATIVE_GATE_PENDING",
+  "next_batch": "Take the same-build cold restore evidence gate before retiring existing network protection. Preserve B413/B435 acceptance and unresolved timing, recovery and write-failure limits.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B435.462 / modinfo462 temporary develop from 35d5998bb68b1f5ac5419c093a1264da7b9e6ac6, 352/352 MATCH, SHA256 3649bb5b0406f740ea18f54058967048e8ee5552f50c3543b8e353a905535d9b. Receipt B435.462-35d5998-playtest.json DEVELOP_ACTIVE. B434 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner approved autonomous deployment during the development phase. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. Active until the Owner resumes playtesting or revokes it. Game launch and main promotion retain their separate authorization.",
-  "context_review_status": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436.",
+  "context_review_status": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#network-effects-wait-for-listed-source-facts-on-cold-load--s0936",
-  "source_status": "B436.463 / modinfo463 locally verified candidate package SHA256 9e2b156ae9e6c59308ccb08248d796e6d33cdda03cb2fad21dc0ef4539022a21. Installed B435.462 remains receipt-bound.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#network-reconciliation-scopes-unresolved-route-roles--s0937",
+  "source_status": "B437.464 / modinfo464 locally verified candidate package SHA256 ab1613960e0b3d9cc7b6a0dafcd460d031db6675123f677a24fb4c3fe1b98c9c. Installed B435.462 remains receipt-bound.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

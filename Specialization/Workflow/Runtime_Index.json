@@ -226,9 +226,9 @@
       "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "b7e01ea202cabf0171accc4baec7d06228dfc90ff15e3406a491749865449390",
+      "sha256": "b222a683c2b2c352e15144fe68ea37c029caf2a19ad093a523be643dc960a782",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436."
+      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "c577cdb9f6e07b79f798185525a8da51a2828eee291409b2fb7ccd3c8bcaeb50",
@@ -751,14 +751,14 @@
       "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "c33a957ad45eeb5ea98beb0817d2a8e98b15c6795843be199ed739b05400b643",
+      "sha256": "1abf0e8d4faae370569bbbadcb133ac8c6a6e9c8a90d3f9ba6040cf276bac344",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0872/B402.429 PU03 approved first NetworkBridge/FactChanges/Bindings/Commerce responsibility path;33new+130related pass,one pre-slice historical assertion unchanged. Probe/modinfo labels only. Strict proof,phase0,D-1,formulas,saves and existing controls retained;no deployment/native PASS."
+      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
     },
     "Mod/NetworkInput.lua": {
-      "sha256": "fe5657464477c3a6677fecd74c952923d6f3fe4d7008a50add09fd408fff7a99",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B314_Refactor_S6j.md",
-      "provenance": "B314.341 Reuse confirmed network city facts behind precise invalidation stamps; local/static evidence only; no deployment/native PASS."
+      "sha256": "398b639f4e935dcce4a6d258d4ede18bcc95c2d150a777a95190c657d3168046",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
     },
     "Mod/NetworkIsolation.lua": {
       "sha256": "3b1ac34bd4dc421437e0cfa3968180114959bf98524b5179c148ab8a85bed8d2",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "66175b955b1b6521b4b467593e79fc31fef4517e01cff72e75ab9e9b952804f2",
+      "sha256": "07f8dce21a8fe26328dc40475b44fe86ad4f5b9f8833c5b1b38584511b131d8c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436."
+      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f1c9c86fae6023571d503fb0fa67656bff2cb021d259091b64150d23aba756e7",
+      "sha256": "aae79d21d9f139bdd75aa2db83c415afbd2912a99d36a04840e4a65e855b1fa0",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436."
+      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -946,9 +946,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/StandardizationEffects.lua": {
-      "sha256": "b03f079e1c65bcc34bf0abca419186056dce955c7ef0a333af4f868e39d04033",
+      "sha256": "8c135b2888b072230713d183b471b9c490ab2a53237af16111ae1050efd1f0c4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436."
+      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
     },
     "Mod/StorageProbe.lua": {
       "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
@@ -1766,7 +1766,7 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     }
   },
-  "source_review": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436.",
-  "source_runtime": "B436.463 / modinfo463 source candidate. B435.462 remains installed and receipt-bound.",
-  "tested_source_snapshot_sha256": "279a356b1a517795a41ec558a7524eb3b6e5aa6cceb8bb19e564985b9b39830a"
+  "source_review": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437.",
+  "source_runtime": "B437.464 / modinfo464 source candidate. B435.462 remains installed and receipt-bound.",
+  "tested_source_snapshot_sha256": "4d2338ef75fbbb088f041366d0bd67f40b54cbe576ffd89fceccf083cfd917a0"
 }

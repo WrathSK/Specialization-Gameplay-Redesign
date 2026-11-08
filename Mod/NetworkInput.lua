@@ -16,6 +16,8 @@ function N.Signature(input)
  for _,id in ipairs(ids) do local f=input.cities[id]
   parts[#parts+1]=table.concat({atom(id),atom(f.reference),atom(f.token),atom(f.specialization),atom(f.potential),
    atom(f.active),atom(f.firstID),atom(f.firstType)})
+  local role=input.unconfirmedRoles and input.unconfirmedRoles[id]
+  if role then parts[#parts+1]=atom(role)end
  end
  return table.concat(parts)
 end
@@ -27,7 +29,7 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous,sampling)
  out.factAvailability='CONFIRMED';out.provenance={};out.factStamps={};out.factAuthority={}
  local function level(n)return type(n)=='number' and n>=0 and n<=4 and n%1==0 end
  local kinds={NONE=true,RESEARCH=true,CULTURE=true,INDUSTRY=true,COMMERCE=true}
- local count=0
+ local count=0;local unresolved
  for _,c in cities:Members() do
   P.Count('city_scan');count=count+1;assert(count<=512,'NETWORK_CITY_LIMIT')
   local id=c:GetID();assert(c:GetOwner()==pid and not out.cities[id],'NETWORK_CITY_REFERENCE_INVALID')
@@ -87,6 +89,10 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous,sampling)
     end)
     untracked=read and excluded==true
    end
+   local partial=ok and type(f)=='table' and f or baseFacts or {}
+   if not untracked and (not identity or identity~='NONE' and not level(partial.potential))then
+    unresolved=unresolved or {};unresolved[id]=identity or 'UNKNOWN'
+   end
    if untracked then f={specialization='NONE',potential=0,active=0}
    elseif old and old.provenance~='UNKNOWN' then
     local partial=ok and type(f)=='table' and f or {}
@@ -95,11 +101,9 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous,sampling)
      first=partial.first,firstID=old.firstID,firstType=old.firstType}
     provenance='RETAINED';reason='NETWORK_SOURCE_FACTS_UNAVAILABLE'
    else
-    local partial=ok and type(f)=='table' and f or baseFacts or {}
     f={specialization=identity or 'UNKNOWN',potential=level(partial.potential) and partial.potential or 0,
      active=level(partial.active) and partial.active or 0,token=partial.token,first=partial.first}
     provenance='UNKNOWN';reason='NETWORK_SOURCE_NEVER_CONFIRMED'
-    if not identity or identity~='NONE' and not level(partial.potential)then out.roleUnknown=true end
    end
   end
   if provenance~='CONFIRMED' then out.pending=true;out.factAvailability='MIXED' end
@@ -110,8 +114,12 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous,sampling)
  end
  assert(not out.capital or out.cities[out.capital],'NETWORK_CAPITAL_UNAVAILABLE')
  -- Include all endpoints, including international references, without interpreting foreign progression.
- local refs={}
+ local refs={};local roles
+ if unresolved and out.capital and unresolved[out.capital]then roles={[out.capital]=unresolved[out.capital]}end
  for _,r in ipairs(rows) do
+  if unresolved and r.dp==pid and (unresolved[r.oc] or unresolved[r.dc])then
+   roles=roles or {};roles[r.oc]=unresolved[r.oc];roles[r.dc]=unresolved[r.dc]
+  end
   local op,dp=assert(Players[r.op]),assert(Players[r.dp])
   local o,z=assert(op:GetCities():FindID(r.oc)),assert(dp:GetCities():FindID(r.dc))
   assert(o:GetOwner()==r.op and z:GetOwner()==r.dp,'NETWORK_ENDPOINT_CHANGED')
@@ -124,5 +132,5 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous,sampling)
   refs[#refs+1]=atom(r.trader)..N.Reference(o)..N.Reference(z)
  end
  table.sort(refs);out.routeSignature=atom(routeSignature)..table.concat(refs)
- out.signature=N.Signature(out);return out
+ out.unconfirmedRoles=roles;out.signature=N.Signature(out);return out
 end

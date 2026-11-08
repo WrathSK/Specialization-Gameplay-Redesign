@@ -93,6 +93,92 @@ assert(amount(c)==0 and not cn.records['0:1'].loaded and propertyWrites==0)
 """)
 
 
+class UnreadableRouteRoles(unittest.TestCase):
+    def test_unknown_source_role_holds_only_reachable_receivers(self):
+        lua = composition(ready=False)
+        lua.execute("""
+local id='BUILDING_SPC_STD_14'
+cities[2].present[id]=true
+cities[3].fail=true
+complete(4,1)
+units[13]={}
+send('0,4,0,1,10;0,5,0,2,11;0,3,0,2,12;0,2,0,5,13',4);drain()
+local culture,industry=net.CurrentCultureBatch(0),net.CurrentIndustryBatch(0)
+assert(amount(cities[1])==1 and not cn.records['0:1'].loaded)
+assert(stdValue(5)==0 and not net.TransactionCurrent(0))
+assert(stdValue(2)==14 and std.records['0:2'].loaded and std.records['0:2'].retained)
+assert(culture.rolesPending[2] and culture.rolesPending[5] and not culture.rolesPending[1])
+assert(industry.rolesPending[2] and industry.rolesPending[5] and not industry.rolesPending[1])
+cities[3].fail=false
+net.Refresh(0);drain()
+assert(net.TransactionCurrent(0) and not net.CurrentIndustryBatch(0).rolesPending)
+assert(stdValue(2)==14 and stdValue(5)==14 and not std.records['0:2'].loaded)
+""")
+
+    def test_unknown_hub_does_not_make_its_recipient_a_forwarder(self):
+        lua = composition(ready=False)
+        lua.execute("""
+local c=cities[2];local id='BUILDING_SPC_CULTURE_NETWORK_COMMERCE_0'
+c.present[id]=true;c.locations[id]=200
+complete(4,1)
+cities[3].kind='COMMERCE';cities[3].potential=nil;cities[3].active=0
+send('0,4,0,3,10;0,3,0,2,11;0,2,0,5,12',3);drain()
+local v=net.CurrentCultureBatch(0)
+assert(amount(c)==1 and cn.records['0:2'].loaded and amount(cities[5])==0)
+assert(v.rolesPending[3] and v.rolesPending[2] and not v.rolesPending[5])
+assert(not net.CurrentIndustryBatch(0).rolesPending[2])
+local scoped=net.CurrentCultureBatch(0,{sources={},targets={[2]=true}})
+assert(scoped.scoped and scoped.rolesPending[2] and not scoped.rolesPending[3])
+cities[3].potential=1
+net.Refresh(0);drain()
+assert(not net.CurrentCultureBatch(0).rolesPending and net.TransactionCurrent(0))
+assert(amount(c)==1 and not cn.records['0:2'].loaded and amount(cities[5])==0)
+""")
+
+    def test_known_empty_role_recovers_on_same_derived_membership(self):
+        lua = composition(ready=False)
+        lua.execute("""
+local c=cities[3]
+c.kind='CULTURE';c.potential=nil;c.active=0
+send('0,3,0,2,10;0,2,0,1,11',2);drain()
+assert(cn.records['0:1'].loaded and net.CurrentCultureBatch(0).rolesPending[1])
+local revision=net.Input(0).inputVersion
+local reads=counts.city_scan
+for i=1,100 do drain()end
+assert(counts.city_scan==reads)
+c.potential=0
+net.Refresh(0);drain()
+assert(not net.CurrentCultureBatch(0).rolesPending and net.Input(0).inputVersion==revision+1)
+assert(not cn.records['0:1'].loaded and not cn.errors['0:1'] and net.TransactionCurrent(0))
+""")
+
+    def test_unreadable_capital_source_role_only_holds_its_family(self):
+        lua = composition(ready=False)
+        lua.execute("""
+local capital,c=cities[1],cities[2]
+local id='BUILDING_SPC_CULTURE_NETWORK_COMMERCE_0'
+c.present[id]=true;c.locations[id]=200
+capital.kind='CULTURE';capital.potential=nil;capital.active=0
+send('0,1,0,2,10',1);drain()
+assert(amount(c)==1 and cn.records['0:2'].loaded)
+local roles=net.CurrentCultureBatch(0).rolesPending
+assert(roles[1] and roles[2] and not net.CurrentIndustryBatch(0).rolesPending[2])
+capital.potential=4;capital.active=4;complete(1,1)
+net.Refresh(0);drain()
+assert(not net.CurrentCultureBatch(0).rolesPending and net.TransactionCurrent(0))
+assert(amount(c)==1 and amount(capital)==1 and not cn.records['0:2'].loaded)
+""")
+
+    def test_unreadable_off_route_city_does_not_block_passive_projection(self):
+        lua = composition(ready=False)
+        lua.execute("""
+cities[3].fail=true;complete(4,1)
+send(routes,3);drain()
+assert(not net.CurrentCultureBatch(0).rolesPending and not net.CurrentIndustryBatch(0).rolesPending)
+assert(amount(cities[1])==1 and stdValue(1)==14 and not net.TransactionCurrent(0))
+""")
+
+
 class NetworkEffectFactReceipts(unittest.TestCase):
     def test_standardization_refusal_holds_only_its_own_receipt_and_proof_is_not_rerequested(self):
         lua = composition()
