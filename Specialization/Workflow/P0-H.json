@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0997",
+    "status": "S0998",
     "runtime": "B466.493 / modinfo493",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify hidden raw trade activity report retirement with current route proofs, invalidation and strict transaction gating.",
+  "goal": "Record B466 deployment and the exact manual UI reader retirement proposal with current adjacency, route proof and network paging preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B466 deployment verified and the old manual UI readers reviewed — S0998",
+      "reason": "Verified B466 deployment and exact B003 manual UI retirement boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -414,6 +420,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B466 installed 337/337 MATCH with both recovery packages verified. The manual UI projection preserves shared production adjacency, actual route proofs and formal Network Detail paging.",
     "B466 passes 9 selected checks and 64/28 carried checks. Actual route proof, invalidation, transaction gating and retained reports match.",
     "B465 installed 337/337 MATCH with both recovery packages verified. The raw trade activity projection preserves actual route proof, invalidation and strict transaction gating.",
     "B465 passes 28 selected checks and 23/49/25 carried checks. Populated Store cold load, first completion, saved B014 and route proof match.",
@@ -2446,6 +2453,66 @@
       "package_sha256": "359efd9dcc78586f8b1d02449cd21634ab8c39a7435dedd528add7286952b09c",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-hidden-raw-trade-activity-log--s0997"
+    },
+    "b466_deployment": {
+      "version": "B466.493 / modinfo493",
+      "source_commit": "130867e1fc6f6fc3c216673a998aac7cf365aa96",
+      "digest": "359efd9dcc78586f8b1d02449cd21634ab8c39a7435dedd528add7286952b09c",
+      "files": 337,
+      "receipt": "B466.493-130867e-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B465.492, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b466-deployment-verified-and-the-old-manual-ui-readers-reviewed--s0998"
+    },
+    "b466_manual_network_ui_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "130867e1fc6f6fc3c216673a998aac7cf365aa96",
+      "removed": [],
+      "modified": [
+        "Probe.lua",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "Probe.lua": "49b4ce8e2e64ada195672727de9e90be6666bc3e7f3a1ea2965b4d84baf22b86",
+        "UI/P0Panel.lua": "46470b2a434dce46edc198e5883d3e028b9ea93c71a6edb9f4b3f7cb80ad4923",
+        "UI/P0Panel.xml": "e29cf1d581ad66db753b9054169f5e75954d9c06e5360814785a52c568c23d10"
+      },
+      "hidden_controls": [
+        "AdjacencyButton",
+        "TradeButton",
+        "NextButton"
+      ],
+      "retired_actions": [
+        "ADJACENCY",
+        "TRADE"
+      ],
+      "modeled_manual_district_enumerations": [
+        2,
+        0
+      ],
+      "modeled_manual_route_reads": [
+        2,
+        0
+      ],
+      "shared_production_reads": [
+        1,
+        1
+      ],
+      "network_detail_pages": [
+        1,
+        2,
+        3
+      ],
+      "production_route_packets": 3,
+      "local_evidence": "local/refactor/B466-ManualNetworkUIRetirementReview/result.json",
+      "local_evidence_sha256": "98726278bb9d2e4132e4eb73cbae74fa79dbed0a38eee625d9f2c1359cf31796",
+      "local_replay_sha256": "59ab29f17a59a435c6f3b6c86cc68403647f92b02edf2c8f3e56045c1a01d9b1",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b466-deployment-verified-and-the-old-manual-ui-readers-reviewed--s0998"
     }
   }
 }

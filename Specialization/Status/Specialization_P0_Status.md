@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0997
-Implementation Build: source B466.493 / modinfo493. Live B465.492 from 49450c0. Stable/main B307.334.
+Status Revision: S0998
+Implementation Build: source B466.493 / modinfo493. Live B466.493 from 130867e. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RAW_TRADE_ACTIVITY_RETIRED_LOCAL
+Work State: MANUAL_NETWORK_UI_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B466 deployment verified and the old manual UI readers reviewed — S0998
+
+B466.493 is installed from `130867e1fc6f6fc3c216673a998aac7cf365aa96`. All 337 files match SHA256 `359efd9dcc78586f8b1d02449cd21634ab8c39a7435dedd528add7286952b09c`. Receipt `B466.493-130867e-playtest.json` is DEVELOP_ACTIVE. The raw Gameplay trade activity listener, buffer and hidden report are absent. The B465 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The hidden B003 UI buttons read selected-city district adjacency and raw outgoing route endpoints on demand through `SPCP0.NetworkProbe`. Their NextButton pages those local readouts. The proposal removes that helper, its ADJACENCY and TRADE dispatch and the three hidden P0 controls and callbacks. The projection touches `Mod/Probe.lua`, `Mod/UI/P0Panel.lua` and `Mod/UI/P0Panel.xml` with the same package paths. BackgroundRoutes, the shared adjacency readers and the formal network report use separate producers. Other controls that reuse the P0 pager retain it.
+
+The disposable comparison exercises both pages of each old readout. Its two district enumerations and two manual outgoing route reads disappear. Both packages sample shared production adjacency as seven and reuse that value after one modeled native read. The background report, formal Network Detail pages 1, 2 and 3, three nonempty proofs and their strict transaction gate, and other P0 requests match. Exact disposable activation and restoration pass. Evidence `local/refactor/B466-ManualNetworkUIRetirementReview/result.json` SHA256 `98726278bb9d2e4132e4eb73cbae74fa79dbed0a38eee625d9f2c1359cf31796` with replay script SHA256 `59ab29f17a59a435c6f3b6c86cc68403647f92b02edf2c8f3e56045c1a01d9b1` alongside. Reproduce from the named source with CPython 3.14/Lupa 2.8 by including its DevelopmentTests on PYTHONPATH and running `python3.14 -B review.py` in a clean scratch directory.
+
+The exact manual UI retirement awaits approval. Positive Culture Network cold restoration remains a separate native gate.
 
 ### Retire the hidden raw trade activity log — S0997
 
