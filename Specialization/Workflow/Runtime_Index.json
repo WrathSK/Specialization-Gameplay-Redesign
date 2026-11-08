@@ -631,9 +631,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "62c269f6a112f97914caa5589c97219aadb4720f662609edca325b5ada26cb70",
+      "sha256": "88b09681230bd112abe10a65d12265e1a3ef35c9a18b924949cfe2f72bbe5ca9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0979 B457 exact unused city-yield reader retirement."
+      "provenance": "S0981 B458 exact hidden manual yield carrier retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -771,9 +771,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "e9d52279fe77e9d17cb11240c83c4829c2f55f2180074e73f903483b7230f8ce",
+      "sha256": "88bf85c32d6b501337b1fe99a6abe6aac6d77e7eedcd169cbf4fda33b73694fb",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0979 B457 exact unused city-yield reader retirement."
+      "provenance": "S0981 B458 exact hidden manual yield carrier retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -901,9 +901,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c7afc480d9d67d9a9dc87a67023c329168badc370f1c9a70ca86e74a9e1deca5",
+      "sha256": "20d7d6f31954c9b56c8c2d575116828470916b92dba1da4cbcd4d5da8e62d58b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0979 B457 exact unused city-yield reader retirement."
+      "provenance": "S0981 B458 exact hidden manual yield carrier retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1401,14 +1401,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "354518cebd3370454ab532aa4706dad93dba599d60333a251d2a6a0ccd52fb28",
+      "sha256": "1b5a2812d43772c38d92930f2e0645ce321808d477cc2fa1e89ff2ea64912cef",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0977 B456 exact manual overflow experiment retirement."
+      "provenance": "S0981 B458 exact hidden manual yield carrier retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "2fdfb6342730f70f84362dcc93521158a19542f14ddebb0e5d97dfc00e2f7f62",
+      "sha256": "5bbbfe0460df0a43be8d5c3ef02891f24e76d36fb3001f54382327492dd0f362",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
+      "provenance": "S0981 B458 exact hidden manual yield carrier retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1494,11 +1494,6 @@
       "sha256": "2fc049d186cbd684b3f7cf5c8d780ae11ed409d295234e80cae758ce29df7b8b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
-    },
-    "Mod/YieldCarrierProbe.lua": {
-      "sha256": "df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B096 E2 exact module-owned confirmed exit; targeted local pass, no deployment"
     },
     "Mod/EventTimingDiagnostics.lua": {
       "sha256": "5ff154ee0aa59d206a0c2e9d1eab161fb28d00bc6883815c6862c8409dd59662",
@@ -1741,7 +1736,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0980 verifies B457 deployment and both recovery packages, and reviews the hidden B029 manual carrier experiment independently of central exit cleanup.",
-  "source_runtime": "B457.484 / modinfo484 deployed from 30a0749 with the approved unused city-yield reader removed.",
-  "tested_source_snapshot_sha256": "3d423167b9fdac20d5c8e38b69b760e18d36713f260a55c76fc5ac1a39d7abb2"
+  "source_review": "S0981 verifies the hidden tool removal, retained city reports and exact central exit cleanup, frozen source comparisons and rollback.",
+  "source_runtime": "B458.485 / modinfo485 local candidate, 346 files. B457.484 remains installed.",
+  "tested_source_snapshot_sha256": "a36d720eba156a33ad3b89836e51ca0a960fb3d15170a3274cdb0e7c9bb71ff2"
 }

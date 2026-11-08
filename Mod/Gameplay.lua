@@ -11,7 +11,6 @@ include("RuntimeGC")
 include("SafeCallbacks")
 include("RuntimeComposition")
 include("Lv4CopyRead")
-include("YieldCarrierProbe")
 local P=SPCP0
 -- Legacy requests remain isolated: no broad snapshot, district history, or engine-object encoding.
 -- B004 adds bounded automatic trader-operation diagnostics at the bottom.
@@ -664,7 +663,7 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Receive(playerID,params) end
     return
   end
-  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="CARRIER_STEP" and params.Action~="CARRIER_OFF" and params.Action~="SOURCE_YIELDS" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="ENVELOPE_READ" and params.Action~="ENVELOPE_NEXT" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="TRADE_EVENTS" and params.Action~="STORAGE_READ" and params.Action~="STORAGE_WRITE" and params.Action~="BINDING_READ" and params.Action~="COMPLETION_RECORD_READ" and params.Action~="CITY_JOURNAL_READ" then return end
+  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="ENVELOPE_READ" and params.Action~="ENVELOPE_NEXT" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="TRADE_EVENTS" and params.Action~="STORAGE_READ" and params.Action~="STORAGE_WRITE" and params.Action~="BINDING_READ" and params.Action~="COMPLETION_RECORD_READ" and params.Action~="CITY_JOURNAL_READ" then return end
   if not P.IsTestPlayer(playerID) then return end
   shared.LastToken=nil
   shared.RequestToken=params.Token
@@ -704,14 +703,6 @@ local function request(playerID,params)
   if params.Action=="PROGRESSION_READ" then
     shared.Snapshot=shared.EffectiveFacts.Describe(playerID,city)
     shared.LastToken=params.Token;stage("ACK PROGRESSION");return
-  end
-  if params.Action=="CARRIER_STEP" or params.Action=="CARRIER_OFF" then
-    shared.Snapshot=SPCYieldCarrierProbe.Run(playerID,city,params.Action=="CARRIER_STEP" and "STEP" or "OFF")
-    shared.LastToken=params.Token;stage("ACK CARRIER");return
-  end
-  if params.Action=="SOURCE_YIELDS" then
-    shared.Snapshot=SPCYieldCarrierProbe.Describe(playerID,city)
-    shared.LastToken=params.Token;stage("ACK SOURCE_YIELDS");return
   end
   if params.Action=="NETWORK_READ" or params.Action=="NETWORK_DETAIL" then
     shared.Snapshot=shared.NetworkBridge.Report(playerID,city,params.Action=="NETWORK_DETAIL",params.Page)

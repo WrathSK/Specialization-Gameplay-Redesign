@@ -3,6 +3,7 @@ Runs actual module-owned exits through the actual progression coordinator.
 Not native ownership-transfer/persistence certification.
 """
 from pathlib import Path
+from retired_crew_sources import B457, source
 import argparse,sqlite3,runpy,json
 ap=argparse.ArgumentParser();ap.add_argument('--db',type=Path,required=True);args=ap.parse_args()
 R=Path(__file__).resolve().parents[1];M=R/'Mod'
@@ -41,6 +42,7 @@ print('Owned catalog STATIC_CONFIRMED:',len(owned),'modules;',len(allids),'uniqu
 # Physical mock state is separate for target/control; all possible owned bits are
 # deliberately present to test completeness, including tombstones/manual probes.
 l.globals().allids=l.table_from(sorted(allids))
+l.execute(source('YieldCarrierProbe.lua',B457))
 l.execute(r"""
 shared.CityProgressionStore.RemoveOwned=originalRemove
 present={};control={};removed=0;plotWrites=0
@@ -52,7 +54,7 @@ P.RemoveBuilding=function(object,id)assert(object==b and id~=ordinary);assert(pr
 P.CreateBuilding=function()error('EXIT_MUST_NOT_ADD')end
 local plotState={SPC_B029_ONE=1,SPC_B029_HALF=1,PERMANENT_OTHER='keep'}
 Map={GetPlot=function()return {GetProperty=function(_,k)return plotState[k]end,SetProperty=function(_,k,v)assert(k=='SPC_B029_ONE' or k=='SPC_B029_HALF');plotState[k]=v;plotWrites=plotWrites+1 end}end}
-include('YieldCarrierProbe');SPCYieldCarrierProbe.RegisterExit(shared)
+SPCYieldCarrierProbe.RegisterExit(shared)
 include('NetworkBridge');SPCNetworkBridge.Start(P,shared);net=shared.NetworkBridge
 -- Populate a stale accepted view projection; its provider must publish invalidation.
 net.players[0]={seq=1,revision=1,inputRevision=1,derivedRevision=1,derivedFor=1,validity='VERIFIED',routes={},

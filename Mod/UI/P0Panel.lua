@@ -476,7 +476,6 @@ local function initialize()
   Controls.CompletionRecordButton:RegisterCallback(Mouse.eLClick,function() request("COMPLETION_RECORD_READ") end)
   Controls.BindingReadButton:RegisterCallback(Mouse.eLClick,function() request("BINDING_READ") end)
   Controls.CarrierStepButton:RegisterCallback(Mouse.eLClick,function() request("NETWORK_DETAIL",true) end)
-  Controls.CarrierOffButton:RegisterCallback(Mouse.eLClick,function() request("CARRIER_OFF") end)
   for _,a in ipairs({"READ","OFF","AUTO","TEST5"}) do local action=a;Controls["Commerce"..a.."Button"]:RegisterCallback(Mouse.eLClick,function() request("COMMERCE_"..action) end) end
   Controls.InheritRecordButton:RegisterCallback(Mouse.eLClick,function() request("IDENTITY_RECORD") end)
   Controls.InheritRecordButton:RegisterCallback(Mouse.eRClick,function() request("PROGRESSION_IMPORT") end)

@@ -2,6 +2,7 @@
 import json,sqlite3,unittest
 from refactor_harness import Context,ROOT,measure
 from project_paths import external_database
+from retired_crew_sources import B457, source
 
 OPTIONS={'Lv3Effects':'{retireCommerce=true}','NetworkBoost':'{retired=true}','GreatWorkAdjacency':'{retired=true}','CommerceConvergence':'{retired=true}','CopyYields':'{retired=true}','StandardizationDiscount':'{retired=true}','CultureInspirationProbe':'{retired=true}'}
 MODULES=('HalfYieldProbe','PurchaseProbe','GreatWorkProbe','Lv3Support','Lv3Effects','Lv4Percent','NetworkBoost','GreatWorkAdjacency','Dialogue','CommerceConvergence','CopyYields','StandardizationDiscount','CultureInspirationProbe')
@@ -74,7 +75,7 @@ class ActualCurrentOwners(unittest.TestCase):
   for module in MODULES:
    c.load(module);symbol='SPCGWAdjacency'if module=='GreatWorkAdjacency'else'SPC'+module
    c.execute(symbol+'.Start(P,shared,'+OPTIONS.get(module,'nil')+')')
-  c.load('YieldCarrierProbe');c.execute('SPCYieldCarrierProbe.RegisterExit(shared)')
+  c.execute(source('YieldCarrierProbe.lua',B457));c.execute('SPCYieldCarrierProbe.RegisterExit(shared)')
   c.execute("for name,fn in pairs(captured)do current=name;fn(city,{origin={owner=0,cityID=101}})end")
   c.load('LegacyCleanupCatalog');return c,buildings
  def test_real_current_start_options_match_every_exact_catalogue_group(self):

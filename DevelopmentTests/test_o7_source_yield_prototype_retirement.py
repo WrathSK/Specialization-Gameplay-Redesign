@@ -1,8 +1,8 @@
 """Remove the unreferenced city totals reader while retaining live report paths."""
 import unittest
 
-from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B456, gameplay, package, source
+from refactor_harness import Context, measure
+from retired_crew_sources import B456, B457, gameplay, package, source
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -58,19 +58,19 @@ def progression_button(root):
 
 class SourceYieldPrototypeRetirement(unittest.TestCase):
     def test_real_package_keeps_city_report_carrier_reset_and_nonempty_route_proof(self):
-        profile = PackageVFS(forbidden_globals=('SPCSourceYieldProbe',))
-        self.assertNotIn(REMOVED, profile.files | profile.imports)
-        with package(B456) as previous:
+        with package(B456) as previous, package(B457) as retired:
             old_game = gameplay(previous, revision=B456)
             old_ui = gameplay(previous, revision=B456, name='UI/BackgroundRoutes')
-            game = Context(vfs=profile)
-            ui = Context(name='UI/BackgroundRoutes', vfs=profile)
+            game = gameplay(retired, revision=B457, forbidden_globals=('SPCSourceYieldProbe',))
+            ui = gameplay(retired, revision=B457, name='UI/BackgroundRoutes',
+                          forbidden_globals=('SPCSourceYieldProbe',))
+            self.assertNotIn(REMOVED, game.vfs.files | game.vfs.imports)
             old_packets = exercise_proof(old_game, old_ui)
             new_packets = exercise_proof(game, ui)
             self.assertEqual(len(old_packets), 3)
             self.assertEqual(new_packets, old_packets)
             self.assertEqual(reports(game), reports(old_game))
-            self.assertEqual(progression_button(ROOT), progression_button(previous))
+            self.assertEqual(progression_button(retired), progression_button(previous))
         self.assertEqual(game.load_counts, {**old_game.load_counts,
             'attempts':old_game.load_counts['attempts']-1, 'completed':old_game.load_counts['completed']-1})
         self.assertEqual(ui.load_counts, old_ui.load_counts)
@@ -102,5 +102,5 @@ class SourceYieldPrototypeRetirement(unittest.TestCase):
         ''')
 
     def test_exact_temporary_switch_and_recovery(self):
-        with package(B456) as previous:
-            verify_package_round_trip(self, previous/'Mod', ROOT/'Mod', (REMOVED,), 'YieldCarrierProbe.lua')
+        with package(B456) as previous, package(B457) as retired:
+            verify_package_round_trip(self, previous/'Mod', retired/'Mod', (REMOVED,), 'YieldCarrierProbe.lua')

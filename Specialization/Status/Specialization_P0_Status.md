@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0980
-Implementation Build: source B457.484 / modinfo484. Live B457.484 from 30a0749. Stable/main B307.334.
+Status Revision: S0981
+Implementation Build: source B458.485 / modinfo485. Live B457.484 from 30a0749. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: MANUAL_YIELD_CARRIER_RETIREMENT_REVIEWED
+Work State: MANUAL_YIELD_CARRIER_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the hidden manual yield carrier experiment — S0981
+
+The Owner approved the exact removal of the B029 hidden manual yield carrier experiment. Remove `Mod/YieldCarrierProbe.lua`, its include and two manifest declarations, the three manual request branches, and the hidden Carrier OFF control and callback. Existing plot flags retain their SQL and central city-exit withdrawal. Manual reset for a city that remains in play retires with the tool. Recover the old reader and writer from `30a0749815b1a953f31101207a4a44e2cd3c1a89:Mod/YieldCarrierProbe.lua` at SHA256 `df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21`.
+
+- **Runtime Impact Contract (L3, T01/T04/T08).** The removed tool ran only on manual requests. The prior modeled STEP/OFF sequence writes four times, and all three retired requests produce zero writes in the current fixture. The city-exit owner still clears both flags on the target plot. No new writer, listener, timer, persisted field or city scan enters this batch.
+- **LOCAL_SIMULATION_PASS in scope.** All 19 selected methods pass. The current city and network controls retain their requests. Three matching route packets and the exact two-flag withdrawal survive with the old Lua file absent. The second city and unrelated plot properties are preserved. Both deployment tool contracts and the exact temporary B457 restoration pass in disposable directories. The preceding city-yield and manual overflow stages pass 15 and 41 methods. Exact older comparisons use the published packages. The legacy external-database module-owned exit scripts keep their original assertions and a pinned B457 writer.
+- **STATIC_CONFIRMED and reproduction.** 217 Lua 5.1 compiles, 32 XML-family parses, 684 file references and 10 replacement references across 346 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7pManualYieldCarrierRetirement` with CPython 3.14/Lupa 2.8. The carried stages use O7oSourceYieldPrototypeRetirement and O7nManualOverflowRetirement with the installed official Assets input for production UI. Tested source SHA256 `a36d720eba156a33ad3b89836e51ca0a960fb3d15170a3274cdb0e7c9bb71ff2`, package SHA256 `9b8fffbcf9e7c7f31e3b911972065a1dad99b75fad0540968c0a4f698bb4e8e7`. Local closure `local/refactor/B458-O7pManualYieldCarrierRetirement-final/closure.json` SHA256 `930c21fc07ac3aa64bed16e85e6f0c31ff1ab236bb71ac81b4c9d63c2d0c7b67`. Native behavior and performance remain unmeasured in this batch.
+
+B457 remains installed at this source checkpoint. Deployment verification and positive Culture Network cold restoration retain separate evidence boundaries.
 
 ### B457 deployment verified and hidden carrier experiment reviewed — S0980
 

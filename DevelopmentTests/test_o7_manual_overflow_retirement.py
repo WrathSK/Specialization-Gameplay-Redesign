@@ -82,17 +82,17 @@ class ManualOverflowRetirement(unittest.TestCase):
             'modeled_manual_finish_calls_before':1,'modeled_manual_finish_calls_after':0})
 
     def test_production_inputs_and_p0_timer_survive_retirement(self):
-        with package(B455) as previous:
+        with package(B455) as previous, package(B456) as retired:
             for hd in (False, True):
                 with self.subTest(hd=hd):
-                    self.assertEqual(production_input(ROOT, hd), production_input(previous, hd, (previous, B455)))
+                    self.assertEqual(production_input(retired, hd, (retired, B456)), production_input(previous, hd, (previous, B455)))
             before_text, before_cancel = panel_timer(previous)
-            after_text, after_cancel = panel_timer(ROOT)
+            after_text, after_cancel = panel_timer(retired)
             self.assertEqual(before_text.count(RETIRED_HINT), 1)
             self.assertEqual(after_text, before_text.replace(RETIRED_HINT, ''))
             self.assertEqual(after_cancel, before_cancel)
             old_add, old_remove, old_includes, old_buttons = panel_hooks(previous)
-            new_add, new_remove, new_includes, new_buttons = panel_hooks(ROOT)
+            new_add, new_remove, new_includes, new_buttons = panel_hooks(retired)
             self.assertEqual(new_buttons, old_buttons)
             self.assertEqual(old_includes.count('OverflowStorageRead'), 1)
             self.assertNotIn('OverflowStorageRead', new_includes)

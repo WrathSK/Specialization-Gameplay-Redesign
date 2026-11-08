@@ -2,6 +2,14 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7pManualYieldCarrierRetirement": [
+      "test_o7_manual_yield_carrier_retirement",
+      "test_refactor_s8c4.PureCatalogue",
+      "test_refactor_s8c5c.Production.test_real_production_options_register_one_gate_and_preserve_all_old_start_order",
+      "test_refactor_s9c2.Startup",
+      "test_o7_project_turn_observer_retirement.ProjectTurnObserverRetirement.test_real_timer_request_finishes_once_under_reentrant_events",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7oSourceYieldPrototypeRetirement": [
       "test_o7_source_yield_prototype_retirement",
       "test_refactor_s8c5c.Production.test_real_production_options_register_one_gate_and_preserve_all_old_start_order",
@@ -2767,7 +2775,6 @@
     "Mod/UI/UnitPanelActions.lua|MEASURED_MISSING_EVENT": 1,
     "Mod/UI/UnitTargetMarkers.lua|MEASURED_MISSING_EVENT": 1,
     "Mod/UnitActions.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
-    "Mod/YieldCarrierProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/NetworkBridge.lua|MEASURED_MISSING_EVENT": 2,
     "Mod/CrewProjects.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/LegacyCleanup.lua|PROPERTY_PRODUCER_OWNERSHIP": 1

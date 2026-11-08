@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0980",
-    "runtime": "B457.484 / modinfo484",
+    "status": "S0981",
+    "runtime": "B458.485 / modinfo485",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B457 deployment and the exact hidden carrier experiment retirement proposal.",
+  "goal": "Verify hidden manual carrier retirement while retaining exact plot cleanup, SQL and current P0 reports.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the hidden manual yield carrier experiment — S0981",
+      "reason": "Approved one-path retirement and current report/cleanup regression"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -312,6 +318,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B458 passes 19 selected methods and 15/41 carried checks. The actual cleanup fixture still clears the exact two plot flags.",
     "B457 installed 347/347 MATCH with B456 and B307 recovery verified. The hidden carrier experiment projection preserves exact city-exit cleanup, current reports and nonempty route proof.",
     "B457 passes 15 selected methods and 41 carried checks. Existing report and carrier reset and three nonempty route proofs match.",
     "B456 installed 348/348 MATCH with B455 and B307 recovery verified. The SourceYieldProbe projection preserves city and carrier reports, carrier reset and nonempty route proof.",
@@ -1639,6 +1646,41 @@
       "local_evidence": "local/refactor/B457-ManualYieldCarrierRetirementReview/result.json",
       "local_evidence_sha256": "d7a0ae540c281c5dbc414c3d93fd9ee35e5dbb062bc25ef36cb95d2cdc7d0d62",
       "report": "Specialization/Status/Specialization_P0_Status.md#b457-deployment-verified-and-hidden-carrier-experiment-reviewed--s0980"
+    },
+    "b458_manual_yield_carrier_retirement": {
+      "build": "B458.485 / modinfo485",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7pManualYieldCarrierRetirement": {
+          "tests": 19,
+          "path": "local/refactor/B458-O7pManualYieldCarrierRetirement-final/closure.json",
+          "sha256": "930c21fc07ac3aa64bed16e85e6f0c31ff1ab236bb71ac81b4c9d63c2d0c7b67"
+        },
+        "O7oSourceYieldPrototypeRetirement": {
+          "tests": 15,
+          "path": "local/refactor/B458-CarriedO7o-final/closure.json",
+          "sha256": "d49b28ec267c7b1b1ba2ce9bcd3edb94efdeba3c8c58436d58d50ca1f128d12e"
+        },
+        "O7nManualOverflowRetirement": {
+          "tests": 41,
+          "path": "local/refactor/B458-CarriedO7n-final/closure.json",
+          "sha256": "039f281afb83786c820a82fb7d3b5d749d297c608f002e0c5e9ab0c171a44d20"
+        }
+      },
+      "files": 346,
+      "removed": {
+        "Mod/YieldCarrierProbe.lua": "df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21"
+      },
+      "prior_source": "30a0749815b1a953f31101207a4a44e2cd3c1a89",
+      "manual_modeled_writes": [
+        4,
+        0
+      ],
+      "modeled_exit_plot_writes": 2,
+      "source_snapshot_sha256": "a36d720eba156a33ad3b89836e51ca0a960fb3d15170a3274cdb0e7c9bb71ff2",
+      "package_sha256": "9b8fffbcf9e7c7f31e3b911972065a1dad99b75fad0540968c0a4f698bb4e8e7",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-hidden-manual-yield-carrier-experiment--s0981"
     }
   }
 }
