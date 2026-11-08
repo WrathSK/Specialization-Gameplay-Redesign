@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0951",
+    "status": "S0952",
     "runtime": "B444.471 / modinfo471",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the report-only production read transfer and prepare scoped diagnostic retirement.",
+  "goal": "Verify exact package removal safeguards and route the remaining Crew diagnostic retirement to the Owner.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Exact package removal and rollback ready for review — S0952",
+      "reason": "Exact package deletion gate, rollback proof and the two-path retirement proposal"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -138,6 +144,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S0952 locally verifies exact path removal and guarded rollback in both deployment tools. No runtime removal has been applied.",
     "B444 deployed, 359/359 MATCH. The retained B443 and stable B307 match. Native report detail remains unmeasured.",
     "B444 passes all 51 selected local checks, including official and HD report detail and both actual ConstructionProbe absence modes. The report detail has no native confirmation.",
     "B443 official native interaction passes the observed institution, Study and Crew scope. The raw queue records 0.9 Overflow, with no subsequent inheritance observed.",
@@ -801,6 +808,23 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "REPORT_DETAIL_NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b444-development-deployment-verified--s0951"
+    },
+    "exact_removal_review": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "review": "OWNER_REVIEW_REQUIRED",
+      "baseline": "e279275537f5df7b51cb28491037b0999f95055b",
+      "source_snapshot_sha256": "949eb3d09d705e8e0c42cbbdbeb6de2353ed059396ce11fad855c449b30b4a86",
+      "tests": 6,
+      "existing_regression_scripts": 2,
+      "local_evidence": "local/refactor/B444-O7bDeploymentRemoval/summary.json",
+      "local_evidence_sha256": "740509709c5eae57991457be25af9a7d298052f09791b2d90b92f03716e81d5f",
+      "proposed_removals": {
+        "Mod/ConstructionProbe.lua": "fd5dfd146b376a96730321558f2da4e1585449ac7f9a906528acf70cae753127",
+        "Mod/CrewPrecision.lua": "c4a98f521a346b097748d0c9df470c1ef209d06fc60ec052c4d0898e6cc0fe59"
+      },
+      "retrieval_commit": "72947b5596825e030ad07b77f41bac6d65809cfe",
+      "runtime_changed": false,
+      "report": "Specialization/Status/Specialization_P0_Status.md#exact-package-removal-and-rollback-ready-for-review--s0952"
     }
   }
 }

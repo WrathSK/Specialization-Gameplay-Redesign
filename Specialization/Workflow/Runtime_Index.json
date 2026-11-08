@@ -1801,7 +1801,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0951 verifies receipt-bound deployment of the report-only B444 candidate and both retained recovery packages.",
+  "source_review": "S0952 verifies the exact removal and retained-package transaction in local fixtures. The two remaining Crew diagnostic paths await exact review.",
   "source_runtime": "B444.471 / modinfo471 deployed from 72947b5. B443 scoped native evidence and B444 local report detail are distinct.",
   "tested_source_snapshot_sha256": "31ad807506f5a2e22040a83f5d0bcf927f8ed1b3e62e6f43f7aeaf46d074d236"
 }

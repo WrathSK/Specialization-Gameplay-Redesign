@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S0951 verifies receipt-bound deployment of the report-only B444 candidate and both retained recovery packages.",
+  "review_basis": "S0952 verifies the exact removal and retained-package transaction in local fixtures. The two remaining Crew diagnostic paths await exact review.",
   "files": {
     "AGENTS.md": "101b1eb8f0ea587a38d9cb98d385b73edb1fc6e18ee7742f1bf4a69d32a5b7bf",
     "Art/Institutions/README.md": "23b7ace94796d7212ab848fb12a712a85ff2e837ec7daa0f3dcff1ad3efa7fcb",
@@ -680,7 +680,7 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
     "Specialization/Status/Playtest_Backlog.md": "67b55ad8eaccd5116e6d402394b28c58ed39e349bf10a021af06d1784f4b3a29",
-    "Specialization/Status/Specialization_P0_Status.md": "29e2fdd8bcda2adcc3e92d7f19830fd538cb1cfcc3bb0c01b1621e12f420ae07",
+    "Specialization/Status/Specialization_P0_Status.md": "c0005ead11d2c7b09c6764434b22ca5ccaa5318c2622681d141931913f168295",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -927,13 +927,13 @@
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md": "3ad3d5e3d7a0d7429ca62d3bf1b973bda0712dde3cae717511ec8477ed387467",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "aacdfb73204ef88c8e19dd98e61f980c4d5902145aba34beca4f8eb5fbed6e2b",
+    "Specialization/Workflow/Authority.json": "97560cc6564c0b1c93633150c81d1f2e21e2f176c2c10ecaec8c180f31cdb27b",
     "Specialization/Workflow/Investment-Propagation.json": "dc2783bae2c863f3c1371011542078270aa54a4a8bb96f0a2ba8ad268536c4af",
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
     "Specialization/Workflow/P0-E2.json": "1e7b54d36ae9e71f9b60e0d9644c4775d7bf9ece87d6b22f084f548bcc5ed486",
     "Specialization/Workflow/P0-F2.json": "a245915f40bd094902dd24726b5f9ffdd1c705153e34d2964cdc67ddaa540611",
     "Specialization/Workflow/P0-GH1.json": "56633c47751cba8d0d20b1bc2d0e87cbd983399f2c43e77839843e37cc904dac",
-    "Specialization/Workflow/P0-H.json": "3fe5253e8d286ab6fc52d8fce06a14511f0f03c5dcc19321e7c6af1d49173c57",
+    "Specialization/Workflow/P0-H.json": "253457058fbf031487110151427c3c396edb0d83dd072dd4367c98a488fceb0f",
     "Specialization/Workflow/P0-L2A.json": "2672ad4f884394d991f66d81b1ff1155e1c965b305cf777682e21ffd7163cfc1",
     "Specialization/Workflow/P0-L2B.json": "926c796045cd9e6687fff4580b0bdd9796361e609581942c66fed47ed28a7475",
     "Specialization/Workflow/P0-L2C.json": "40aa6c8fddb51053f3c2aaa2b997fda70a53c4f1d61f78cd74372f938a50103b",
@@ -946,7 +946,7 @@
     "Specialization/Workflow/P0-Panel-Cleanup.json": "ba13ce7196445f13d8c274a23f113ff4dfea4c5771b4cf42e79b95eec1462545",
     "Specialization/Workflow/P0-U1.json": "1d49b6c02c504d52809cf821efe0b989d94c4dbdaaa183dd748495befb6b5a8b",
     "Specialization/Workflow/README.md": "11b001b472c9a36dbef4152a2968e5078950d419e309b0dc8d3b68cbd0ea259b",
-    "Specialization/Workflow/Runtime_Index.json": "7415f6602987f9d1d71284ced7a364155cfa8dbcdeaa7ce0c7f95d3be9b75a8a",
+    "Specialization/Workflow/Runtime_Index.json": "9251ee6373344537772203ccd3c9137415a0d1623f77e0052765d906dcd678f5",
     "Specialization/Workflow/Shared-D-Facts.json": "83d049663b05c39da143625e69e005f4646e31f3bca7ec249bcf6ae22cd24ca8",
     "Specialization/Workflow/Store-Write-Repair.json": "00bf4ab7b86f318d14784d1c8f5df8345cc8e1a5f89ff332099c9966265d5fa9",
     "Specialization/Workflow/context.py": "2d234a3060faab27ec26d93851d17d075fba3c3ff6ddeed174bb903aad996ec6",
@@ -1360,6 +1360,9 @@
     "Mod/UI/SPCCityPanelHD.lua": "d5f8ef286f9e33680a5df7436c197d8b523df229d9770b530ae64c6f8029c14d",
     "Mod/UI/SPCCityPanelOfficial.lua": "55348aa09061d6ccdfd4f8316663a6936ff4f642a9b02a9fb6aaf98d85c2b3c8",
     "DevelopmentTests/test_o6_city_panel.py": "3bc3c725ef8ed419f314c4d1df614ceb6126d54ab0aa2e4d16c98200ab7ab344",
-    "DevelopmentTests/test_o7_production_report.py": "2f1ce6c7950e75a5b2e4a5916d79c841dff2f368fbdbe554a94701eaaf89bf51"
+    "DevelopmentTests/test_o7_production_report.py": "2f1ce6c7950e75a5b2e4a5916d79c841dff2f368fbdbe554a94701eaaf89bf51",
+    "tools/deploy.py": "8db3a9b457971e333833de78b093a59d73a1b19fe524fdf6df31671364d44701",
+    "tools/temporary_playtest.py": "460679147f3a2b14dfa65e9685e6fb97139916ff486b89c1c30484e878d43e4e",
+    "DevelopmentTests/test_deployment_removals.py": "272b90ab9672e91ad161892900dfbad4838c289dd9869d629ba4670b94e3dc30"
   }
 }

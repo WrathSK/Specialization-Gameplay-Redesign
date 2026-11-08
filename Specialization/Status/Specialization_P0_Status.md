@@ -1,17 +1,36 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0951
+Status Revision: S0952
 Implementation Build: source B444.471 / modinfo471. Live B444.471 from 72947b5. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: DIAGNOSTIC_RETIREMENT_PREPARATION
+Work State: REVIEW_EXACT_DIAGNOSTIC_RETIREMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Exact package removal and rollback ready for review — S0952
+
+The retirement plan requires any file removed from an installed package to have a reviewed exact path and a retained recovery copy. Before this change stable deployment refused every outgoing-only path. Temporary activation accepted a stable-only path based on the approved package hashes alone. Both now check the exact list supplied with repeated `--allow-remove` arguments. The outgoing package must declare every listed path. The expected source and runtime hashes still bind the complete packages. Restore uses the original receipt and refuses a removal override.
+
+- **Runtime Impact Contract (L3, T06/T08).** This changes only deployment tooling. The tools calculate the exact difference during their existing package inspection. Neither tool unlinks individual Mod files. Check-only performs the comparison without staging. An apply uses the existing package swap and retains the verified outgoing directory outside Mods. A stable removal now records the exact set, source commit, both hashes and retained path before the swap. Temporary receipts record the activation and restore differences. Stable removal through the CLI requires confirmation that the game exited. The Mod package remains B444.471.
+- **LOCAL_SIMULATION_PASS in scope.** Six focused tests plus the existing stable deployment and temporary switch/restore regressions passed. The disposable fixtures cover default refusal, extra and undeclared paths, stale hashes, staging failure, failure after the old package moves, post-swap verification failure and a failed rollback that leaves the marker and old package intact. Temporary restore recovers the precise stable package using its receipt. A read-only check accepted the actual active B444 receipt with unchanged bytes. These tests do not establish power-loss durability. The exact-file removal path has only been applied to disposable fixtures.
+- **Reproduce.** Run `python3.14 -B DevelopmentTests/test_deployment_removals.py`, then `test_deployment.py` and `test_temporary_playtest.py` in the same directory. Test source SHA256 `949eb3d09d705e8e0c42cbbdbeb6de2353ed059396ce11fad855c449b30b4a86`. Local command and evidence summary `local/refactor/B444-O7bDeploymentRemoval/summary.json`, SHA256 `740509709c5eae57991457be25af9a7d298052f09791b2d90b92f03716e81d5f`.
+
+**Next exact review.** The report transfer at S0950 leaves two candidate paths for retirement. The paths below are the full file removal proposal for this slice.
+
+| File | Remaining use | SHA256 of published original |
+|---|---|---|
+| `Mod/ConstructionProbe.lua` | Hidden DEV Preview and Inject 250 commands. Also supplies the legacy Crew precision observer. | `fd5dfd146b376a96730321558f2da4e1585449ac7f9a906528acf70cae753127` |
+| `Mod/CrewPrecision.lua` | Observer around the unit action dispatcher. Supplies the diagnostic site readout and precision record. | `c4a98f521a346b097748d0c9df470c1ef209d06fc60ec052c4d0898e6cc0fe59` |
+
+Both originals are retrievable with `git show 72947b5596825e030ad07b77f41bac6d65809cfe:<path>`. The approved candidate would remove their manifest entries, exact startup and request hooks, the two hidden DEV controls and the old precision display/observation calls. The formal Crew read, actions and receipts, Standardization report, and standalone completion observation remain with their current owners. Preserve historical regression assertions against the published original and provide the above retrieval route for old links. Before shipping the resulting package, compare actual Gameplay and selected production UI with the observers present, inactive and absent as appropriate for this scope. Exercise a legal Crew action and its one debit/grant, the current report, and the exact two-path package round trip. Other diagnostic and network retirement responsibilities retain their own gates.
+
+Review entry for the Owner's reviewer: compare `e279275..HEAD` on the S0952 publication for `tools/deploy.py`, `tools/temporary_playtest.py` and `DevelopmentTests/test_deployment_removals.py`. Check the exact-set and outgoing-manifest fence, pending and rollback evidence, and the scope of the two paths above against the S0950 evidence. The Owner decides the exact source removal after review. No in-game action is required at this checkpoint.
 
 ### B444 development deployment verified — S0951
 

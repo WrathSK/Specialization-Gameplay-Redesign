@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0951",
+    "status": "S0952",
     "runtime": "B444.471 / modinfo471",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "72947b5596825e030ad07b77f41bac6d65809cfe",
-  "current_batch": "DIAGNOSTIC_RETIREMENT_PREPARATION",
-  "next_batch": "Review the remaining DEV injection and Crew precision dependencies and prepare the exact retirement and package rollback gates. Preserve native evidence limits and the independently gated network work.",
+  "current_batch": "REVIEW_EXACT_DIAGNOSTIC_RETIREMENT",
+  "next_batch": "Owner review and exact approval for retiring ConstructionProbe and CrewPrecision. Reuse the local exact package safeguards and confirm scoped absent-path effects/receipts before a removal build.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B444.471 / modinfo471 temporary develop from 72947b5596825e030ad07b77f41bac6d65809cfe, 359/359 MATCH, SHA256 7d7e4a5a8126f5bf26877a8686624baa4e214afdf62f7c4c92fa8327125f97b7. Receipt B444.471-72947b5-playtest.json DEVELOP_ACTIVE. B443 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0951 verifies receipt-bound deployment of the report-only B444 candidate and both retained recovery packages.",
+  "context_review_status": "S0952 verifies the exact removal and retained-package transaction in local fixtures. The two remaining Crew diagnostic paths await exact review.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b444-development-deployment-verified--s0951",
-  "source_status": "B444.471 / modinfo471 installed. The report progress detail is LOCAL_SIMULATION_PASS_SCOPED. Prepare the narrow diagnostic retirement and exact deployment review.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#exact-package-removal-and-rollback-ready-for-review--s0952",
+  "source_status": "B444.471 / modinfo471 remains installed. Exact removal tooling passes local tests. The proposed two-path Crew diagnostic removal is pending Owner review and approval.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
