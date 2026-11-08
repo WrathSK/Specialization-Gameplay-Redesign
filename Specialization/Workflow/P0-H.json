@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0998",
-    "runtime": "B466.493 / modinfo493",
+    "status": "S0999",
+    "runtime": "B467.494 / modinfo494",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B466 deployment and the exact manual UI reader retirement proposal with current adjacency, route proof and network paging preserved.",
+  "goal": "Verify hidden manual adjacency and route reader retirement with current shared adjacency, route proof and network paging preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the hidden manual adjacency and route readers — S0999",
+      "reason": "Approved hidden manual reader retirement with shared adjacency and network paging preserved"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -420,6 +426,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B467 passes 26 selected checks and 64/9 carried checks. Real shared adjacency, formal network paging and route proof match. The existing layout comparison remains separate.",
     "B466 installed 337/337 MATCH with both recovery packages verified. The manual UI projection preserves shared production adjacency, actual route proofs and formal Network Detail paging.",
     "B466 passes 9 selected checks and 64/28 carried checks. Actual route proof, invalidation, transaction gating and retained reports match.",
     "B465 installed 337/337 MATCH with both recovery packages verified. The raw trade activity projection preserves actual route proof, invalidation and strict transaction gating.",
@@ -2513,6 +2520,51 @@
       "local_evidence_sha256": "98726278bb9d2e4132e4eb73cbae74fa79dbed0a38eee625d9f2c1359cf31796",
       "local_replay_sha256": "59ab29f17a59a435c6f3b6c86cc68403647f92b02edf2c8f3e56045c1a01d9b1",
       "report": "Specialization/Status/Specialization_P0_Status.md#b466-deployment-verified-and-the-old-manual-ui-readers-reviewed--s0998"
+    },
+    "b467_manual_network_ui_retirement": {
+      "build": "B467.494 / modinfo494",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7yManualNetworkUIRetirement": {
+          "tests": 26,
+          "path": "local/refactor/B467-O7yManualNetworkUIRetirement-r2/closure.json",
+          "sha256": "1bb9d26bda942121839c180191acf47f89ab8868f7e6881426e4a8fb8da193b2"
+        },
+        "O7hRouteObserverRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B467-CarriedO7h-r2/closure.json",
+          "sha256": "702cf25260578f34d5d55e36b5ed6c4d99f7bfd4ebf1bfae756739b5ce0c9c84"
+        },
+        "O7xRawTradeActivityRetirement": {
+          "tests": 9,
+          "path": "local/refactor/B467-CarriedO7x-r2/closure.json",
+          "sha256": "c34abe93b068b210b6d8ab456fbca5358e2e69ed14520becd5b73a63fc842e47"
+        }
+      },
+      "files": 337,
+      "removed": {},
+      "prior_source": "130867e1fc6f6fc3c216673a998aac7cf365aa96",
+      "matching_route_packets": 3,
+      "network_detail_pages": [
+        1,
+        2,
+        3
+      ],
+      "panel_baseline_issue": {
+        "B466": {
+          "path": "local/refactor/B467-O7yManualNetworkUIRetirement-r2/B466-panel-comparison.log",
+          "sha256": "c3e4e18278c39cd2dcf2167a1e039a41f357f13296a4b9b74cc27c17c0b1ad73"
+        },
+        "B467": {
+          "path": "local/refactor/B467-O7yManualNetworkUIRetirement-r2/B467-panel-comparison.log",
+          "sha256": "5605562cd7ac1b23f815cea560a6477224c30d2289dd60a54c5a2f7a116e3275"
+        }
+      },
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "5546d8e45ddb1880605963486cd08d416b409e1e8b1b36b856da22bfcbda62ed",
+      "package_sha256": "1cb786b2c323880e9dac36478498bc273f7301cc0b224d62065d87095456d1a6",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-hidden-manual-adjacency-and-route-readers--s0999"
     }
   }
 }

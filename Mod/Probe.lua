@@ -1,7 +1,7 @@
 -- P0 probes only. A successful getter is evidence of a call, not its semantics.
 SPCP0 = {}
 local P = SPCP0
-P.VERSION = "P0-B-466.493"
+P.VERSION = "P0-B-467.494"
 P.Families = {DISTRICT_CAMPUS="RESEARCH", DISTRICT_THEATER="CULTURE",
   DISTRICT_INDUSTRIAL_ZONE="INDUSTRY", DISTRICT_COMMERCIAL_HUB="COMMERCE"}
 P.WorkTypes = {GREATWORKOBJECT_WRITING=true, GREATWORKOBJECT_MUSIC=true,
@@ -447,108 +447,6 @@ function P.FocusProbe(city,action,stage)
     if count==0 then out[#out+1]="NO_SPECIALTY_DISTRICT (not a specialist test pass)" end
   else error("UNKNOWN_FOCUS_ACTION") end
   out[#out+1]="RAW_API_ONLY | USER_GAME_TEST_REQUIRED"
-  return table.concat(out,"\n")
-end
-
--- B003: bounded scalar-only observations. Adjacency and current routes run in UI.
--- Gameplay activity events are a separate diagnostic; neither grants effects.
-function P.NetworkProbe(city,action,stage,page)
-  local function get(o,m,...)
-    stage("BEFORE_"..m)
-    local ok,v=P.Call(o,m,...)
-    if not ok then error(m..":"..P.Scalar(v)) end
-    return v
-  end
-  local owner,id=get(city,"GetOwner"),get(city,"GetID")
-  local out={"city="..id.." owner="..owner.." mode="..action}
-  page=page or 1
-  assert(type(page)=="number" and page>=1 and page%1==0 and page<=512,"PAGE_INVALID")
-  if action=="ADJACENCY" then
-    local collection=get(Players[owner],"GetDistricts")
-    stage("BEFORE_PLAYER_DISTRICT_MEMBERS")
-    local method=P.Field(collection,"Members")
-    if type(method)~="function" then error("DISTRICT_MEMBERS_ABSENT") end
-    local iter,state,key=method(collection)
-    if type(iter)~="function" then error("DISTRICT_ITERATOR_INVALID") end
-    local list,scanned={},0
-    for _,d in iter,state,key do
-      scanned=scanned+1;if scanned>512 then error("DISTRICT_SCAN_LIMIT") end
-      local c=get(d,"GetCity")
-      if c and get(c,"GetOwner")==owner and get(c,"GetID")==id then
-        local dt=get(d,"GetType");local info=P.Info("Districts",dt)
-        if not info then error("DISTRICT_DEFINITION_MISSING") end
-        if info.RequiresPopulation==true or info.RequiresPopulation==1 or P.Families[info.DistrictType] then
-          list[#list+1]={district=d,info=info,id=get(d,"GetID"),type=dt}
-        end
-      end
-    end
-    table.sort(list,function(a,b) return a.id<b.id end)
-    if #list==0 then return table.concat(out,"\n").."\nNO_SPECIALTY_DISTRICT" end
-    local index=(page-1)%#list+1;local item=list[index];local d=item.district
-    out[#out+1]="district "..index.."/"..#list.." id="..item.id.." "..P.Scalar(item.info.DistrictType)
-    out[#out+1]="complete="..P.Scalar(get(d,"IsComplete")).." | BASE_CANDIDATE / ACTUAL_CANDIDATE"
-    local x,y=get(d,"GetX"),get(d,"GetY")
-    stage("BEFORE_GetPlot");local plot=Map.GetPlot(x,y)
-    local count=0
-    for yield in GameInfo.Yields() do
-      count=count+1;if count>12 then error("YIELD_DISPLAY_LIMIT") end
-      stage("BEFORE_BASE_"..P.Scalar(yield.YieldType))
-      local bok,b=P.Call(plot,"GetAdjacencyYield",owner,id,item.type,yield.Index)
-      stage("BEFORE_ACTUAL_"..P.Scalar(yield.YieldType))
-      local aok,a=P.Call(d,"GetAdjacencyYield",yield.Index)
-      local function number(ok,v)
-        if not ok or type(v)~="number" or v~=v or v==math.huge or v==-math.huge then return "UNKNOWN" end
-        return tostring(v)
-      end
-      out[#out+1]=P.Scalar(yield.YieldType)..": "..number(bok,b).." / "..number(aok,a)
-    end
-    if count==0 then error("YIELDS_EMPTY") end
-    out[#out+1]="UI_ONLY: UNKNOWN is not zero; policy/cross-yield semantics unverified"
-  elseif action=="TRADE" then
-    local trade=get(city,"GetTrade")
-    local routes=get(trade,"GetOutgoingRoutes")
-    if type(routes)~="table" then error("ROUTES_NOT_TABLE") end
-    local list={}
-    -- Only array entries + named scalar fields; never encode the route object.
-    for i=1,257 do
-      local row=routes[i];if row==nil then break end
-      if i>256 then error("ROUTE_SCAN_LIMIT") end
-      list[#list+1]=row
-    end
-    local diagnostics=out
-    out={"商路读取 · 本城出发共 "..#list.." 条（不是全国总数）"}
-    diagnostics[#diagnostics+1]="UI OUTGOING rawCount="..#list.." (not recipient N)"
-    if #list==0 then out[#out+1]="本城当前没有出发商路。";diagnostics[#diagnostics+1]="NO_OUTGOING_ROUTES" else
-      local index=(page-1)%#list+1;local row=list[index]
-      out[#out+1]="当前第 "..index.." / "..#list.." 条 · Next district / route 查看下一条"
-      diagnostics[#diagnostics+1]="route "..index.."/"..#list.." trader="..P.Scalar(P.Field(row,"TraderUnitID"))
-      local op,oc=P.Field(row,"OriginCityPlayer"),P.Field(row,"OriginCityID")
-      local dp,dc=P.Field(row,"DestinationCityPlayer"),P.Field(row,"DestinationCityID")
-      local function endpoint(p,c)
-        local text=P.Scalar(p)..":"..P.Scalar(c)
-        if type(p)~="number" or type(c)~="number" then return text.." UNKNOWN", "未知端点 ("..text..")" end
-        local player=Players[p]
-        local cok,cities=P.Call(player,"GetCities");local fok,found=P.Call(cok and cities or nil,"FindID",c)
-        if not fok or not found then return text.." UNRESOLVED", "城市未解析 ("..text..")" end
-        local nok,name=P.Call(found,"GetName")
-        if nok and type(name)=="string" and Locale and Locale.Lookup then name=Locale.Lookup(name) end
-        local ook,actualOwner=P.Call(found,"GetOwner")
-        return text.." "..(nok and P.Scalar(name) or "UNKNOWN_NAME").." currentOwner="..(ook and P.Scalar(actualOwner) or "UNKNOWN"), (nok and type(name)=="string" and P.Scalar(name) or "城市名未知 ("..text..")")
-      end
-      local originDetail,originName=endpoint(op,oc)
-      local destinationDetail,destinationName=endpoint(dp,dc)
-      out[#out+1]="出发："..originName
-      out[#out+1]="到达："..destinationName
-      diagnostics[#diagnostics+1]="FROM "..originDetail
-      diagnostics[#diagnostics+1]="TO   "..destinationDetail
-      diagnostics[#diagnostics+1]="originMatchesSelection="..tostring(op==owner and oc==id)
-      diagnostics[#diagnostics+1]="sameOwnerRaw="..(type(op)=="number" and type(dp)=="number" and tostring(op==dp) or "UNKNOWN")
-    end
-    out[#out+1]="仅显示商路端点；尚未判定专业网络接收关系。"
-    out[#out+1]=""
-    out[#out+1]="排错信息（无需手抄 ID）"
-    out[#out+1]=table.concat(diagnostics,"\n")
-  else error("UNKNOWN_NETWORK_PROBE") end
   return table.concat(out,"\n")
 end
 

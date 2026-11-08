@@ -183,13 +183,6 @@ request=function(action,advance)
   if not storageAction and (not city or city:GetOwner()~=playerID) then trace("Select an owned test city.");return end
   if advance and pageAction==action and city and pageCity==city:GetID() then page=page%512+1 else page=1 end
   pageAction=action;pageCity=city and city:GetID();localReport=nil
-  if action=="ADJACENCY" or action=="TRADE" then
-    pendingToken=nil
-    local last="START"
-    local ok,value=pcall(P.NetworkProbe,city,action,function(v) last=v end,page)
-    localReport=P.VERSION.." | UI "..(ok and "OBSERVATION\n"..value or "READ FAILED at "..last.."\n"..P.Scalar(value))
-    status(localReport:gsub("\n","[NEWLINE]"));print(localReport);return
-  end
   ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
   pendingToken=P.VERSION..":"..tostring(Game.GetCurrentGameTurn())..":"..tostring(ExposedMembers.SPC_P0_UISequence)
   pendingAction=action
@@ -447,7 +440,6 @@ local function initialize()
   Controls.TemplatesButton:RegisterCallback(Mouse.eRClick,function() request("DISCOUNT_READ",true) end)
   Controls.NextTemplatesButton:RegisterCallback(Mouse.eLClick,function() request("STANDARDIZATION_READ",true) end)
   Controls.Lv4CopyButton:RegisterCallback(Mouse.eLClick,function() request("LV4_COPY_READ") end)
-  Controls.AdjacencyButton:RegisterCallback(Mouse.eLClick,function() request("ADJACENCY") end)
   Controls.BackgroundRoutesButton:RegisterCallback(Mouse.eLClick,function()
     ContextPtr:ClearUpdate();pendingToken=nil
     if not P.IsTestPlayer(Game.GetLocalPlayer()) then return end
@@ -455,10 +447,6 @@ local function initialize()
     localReport=P.VERSION.." | 后台路线（只看已有缓存）\n"
       ..((data and data.version==P.VERSION and data.text) or "没有后台记录。请截图；此按钮不会启动读取。")
     status(localReport:gsub("\n","[NEWLINE]"))
-  end)
-  Controls.TradeButton:RegisterCallback(Mouse.eLClick,function() request("TRADE") end)
-  Controls.NextButton:RegisterCallback(Mouse.eLClick,function()
-    if pageAction=="ADJACENCY" or pageAction=="TRADE" then request(pageAction,true) end
   end)
   Controls.GovernorButton:RegisterCallback(Mouse.eLClick,function() request("GOVERNOR") end)
   Controls.SpecialistsButton:RegisterCallback(Mouse.eLClick,function() request("SPECIALISTS") end)

@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "49b4ce8e2e64ada195672727de9e90be6666bc3e7f3a1ea2965b4d84baf22b86",
+      "sha256": "7e9cfedf28588a55a08ed690e9967a3baeb09aa8586d20a2a4b332db50eec547",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0997 B466 hidden raw trade activity log retirement."
+      "provenance": "S0999 B467 manual adjacency and route reader retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "83df961f1eb6e3872b893510d2a1a54ceba945c2b1ee21ebd3f9cf6f900f2781",
+      "sha256": "261c37e4e1c4ac50842b06121c87402f7ee36df6d5a60ab9646df3593e8de45e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0997 B466 hidden raw trade activity log retirement."
+      "provenance": "S0999 B467 manual adjacency and route reader retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "46470b2a434dce46edc198e5883d3e028b9ea93c71a6edb9f4b3f7cb80ad4923",
+      "sha256": "05a85f876ecbe13dd53f396721097e6a626134d8c7e0dd2d1c08056b22f8fae2",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0997 B466 hidden raw trade activity log retirement."
+      "provenance": "S0999 B467 manual adjacency and route reader retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "e29cf1d581ad66db753b9054169f5e75954d9c06e5360814785a52c568c23d10",
+      "sha256": "7fe2d0179b03370fa61928678c48e7d39f55a7149dcfb0eaf51fcb9341d2b048",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0997 B466 hidden raw trade activity log retirement."
+      "provenance": "S0999 B467 manual adjacency and route reader retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0998 verifies B466 deployment and both recovery packages. The hidden B003 manual UI reports are independent of shared production adjacency reads and current route proof.",
-  "source_runtime": "B466.493 / modinfo493 deployed from 130867e with the approved raw trade activity diagnostic removed.",
-  "tested_source_snapshot_sha256": "6976be51fbdaa02ec5c1d616fffebd681e0315a4106c8c9b67cfee4cdeb70996"
+  "source_review": "S0999 verifies the exact B003 manual UI retirement with shared adjacency, current route proofs and the formal network pager covered.",
+  "source_runtime": "B467.494 / modinfo494 local candidate, 337 files. B466.493 remains installed.",
+  "tested_source_snapshot_sha256": "5546d8e45ddb1880605963486cd08d416b409e1e8b1b36b856da22bfcbda62ed"
 }

@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B465, package
+from retired_crew_sources import B465, B466, package
 from test_deployment_removals import deploy
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -57,7 +57,7 @@ def roots(root):
             ui.eval('Events.TradeRouteActivityChanged.Count()'),gp.load_counts,ui.load_counts)
 
 
-def panel(root):
+def panel(root, *, retired):
     doc,ui=panel_runtime(root/'Mod/UI')
     controls=ui.globals().Controls
     buttons={n.get('ID'):controls[n.get('ID')].hidden for n in doc.iter('GridButton') if n.get('ID')}
@@ -67,7 +67,7 @@ def panel(root):
       Controls.CityJournalButton.callbacks[Mouse.eLClick]()
       Controls.OpenButton.callbacks[Mouse.eRClick]()
       if ... then Controls.RouteEventsButton.callbacks[Mouse.eLClick]()end
-    """,root!=ROOT)
+    """,not retired)
     return buttons,[dict(p.items()) for p in ui.globals().requests.values()]
 
 
@@ -84,17 +84,17 @@ class RawTradeActivityRetirement(unittest.TestCase):
             matching_production_packets=3,production_signal_and_strict_gate_match=True))
 
     def test_only_the_hidden_raw_activity_report_retires(self):
-        with package(B465) as previous:
-            old_buttons,old_requests=panel(previous)
+        with package(B465) as previous, package(B466) as retired:
+            old_buttons,old_requests=panel(previous,retired=False)
+            new_buttons,new_requests=panel(retired,retired=True)
             before=deploy.snapshot(previous.resolve()/'Mod')
-        new_buttons,new_requests=panel(ROOT)
+            after=deploy.snapshot(retired.resolve()/'Mod')
         self.assertTrue(old_buttons.pop(CONTROL))
         self.assertEqual(old_buttons,new_buttons)
         self.assertEqual(old_requests[:-1],new_requests)
         self.assertEqual(old_requests[-1]['Action'],'TRADE_EVENTS')
         self.assertEqual([p['Action'] for p in new_requests],
             ['NETWORK_READ','NETWORK_DETAIL','CITY_JOURNAL_READ','EVENT_ORDER_TOGGLE'])
-        after=deploy.snapshot(ROOT/'Mod')
         self.assertEqual(before['files'].keys(),after['files'].keys())
         for name in ('NetworkBridge.lua','UI/BackgroundRoutes.lua','NetworkSender.lua','EventTimingDiagnostics.lua'):
             self.assertEqual(before['files'][name],after['files'][name])

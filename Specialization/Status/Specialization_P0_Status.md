@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0998
-Implementation Build: source B466.493 / modinfo493. Live B466.493 from 130867e. Stable/main B307.334.
+Status Revision: S0999
+Implementation Build: source B467.494 / modinfo494. Live B466.493 from 130867e. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: MANUAL_NETWORK_UI_RETIREMENT_REVIEWED
+Work State: MANUAL_NETWORK_UI_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the hidden manual adjacency and route readers — S0999
+
+The Owner approved the exact B003 retirement reviewed in S0998. Remove `SPCP0.NetworkProbe`, the P0-local ADJACENCY and TRADE dispatch, and the three hidden controls and callbacks for reading and paging the local samples. The previous code is recoverable from `130867e1fc6f6fc3c216673a998aac7cf365aa96`. The package path set is identical.
+
+- **Runtime Impact Contract (L3, T04/T07/T08).** The hidden tools read district adjacency and raw outgoing route endpoints only on explicit clicks. In the reviewed fixture their four report pages used two district enumerations and two raw route reads. Those manual calls retire. The shared adjacency sampler, route proof producers, formal network paging and remaining reports use their existing paths.
+- **LOCAL_SIMULATION_PASS in scope.** All 26 selected methods pass, including the real dual adjacency producer comparisons and the package and P0 checks. Three identical nonempty proofs and the current transaction gate pass, and formal network detail pages 1, 2 and 3, the background report and other requests match. The 64 route proof and 9 raw activity checks also pass. The earlier raw log panel comparison uses the published B465/B466 pair. The reviewed disposable update and restoration pass. These results are local simulation.
+- **Existing P0 layout assertions.** The separate 11-method panel suite reproduces the two failures already recorded in S0977 on both B466 and B467. They cover the expected visible set and the TemplatesButton left-click command. The retirement gate covers the affected controls and retained paths. The original assertions and both comparison logs are retained.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7yManualNetworkUIRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7hRouteObserverRetirement and O7xRawTradeActivityRetirement. Tested source SHA256 `5546d8e45ddb1880605963486cd08d416b409e1e8b1b36b856da22bfcbda62ed`, package SHA256 `1cb786b2c323880e9dac36478498bc273f7301cc0b224d62065d87095456d1a6`. Local closure `local/refactor/B467-O7yManualNetworkUIRetirement-r2/closure.json` SHA256 `1bb9d26bda942121839c180191acf47f89ab8868f7e6881426e4a8fb8da193b2` with the two panel logs alongside.
+
+B466 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B466 deployment verified and the old manual UI readers reviewed — S0998
 
