@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "623903a017788ecec013d1a2c97d98c4ebb87c04",
-  "runtime": "B464.491 / modinfo491 temporary develop deployed, 338/338 MATCH. Stable/main B307.334.",
+  "runtime_commit": "49450c069bc3a76626abbf033c5ece7fab84d87c",
+  "runtime": "B465.492 / modinfo492 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0995 verifies the exact B014 retirement, populated Store cold load and first-completion authority, and exact package restoration.",
-  "source_runtime": "B465.492 / modinfo492 local candidate, 337 files. B464.491 remains installed.",
+  "source_review": "S0996 verifies B465 deployment and both recovery packages. The hidden raw trade activity observer is independent of current route proofs and transaction qualification.",
+  "source_runtime": "B465.492 / modinfo492 deployed from 49450c0 with the approved B014 report removed.",
   "tested_source_snapshot_sha256": "21cb6830500c7ffa3ab6d7e164881e341faa782b2873dd51c6949d1ddbe8c667"
 }

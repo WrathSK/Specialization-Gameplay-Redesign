@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0995
-Implementation Build: source B465.492 / modinfo492. Live B464.491 from 623903a. Stable/main B307.334.
+Status Revision: S0996
+Implementation Build: source B465.492 / modinfo492. Live B465.492 from 49450c0. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: LEGACY_COMPLETION_RECORD_RETIRED_LOCAL
+Work State: RAW_TRADE_ACTIVITY_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B465 deployment verified and the raw trade activity observer reviewed — S0996
+
+B465.492 is installed from `49450c069bc3a76626abbf033c5ece7fab84d87c`. All 337 files match SHA256 `48a7adb45b42e5730987f0a5bd92626440a28e8dc186846da1b7b9c12276d676`. Receipt `B465.492-49450c0-playtest.json` is DEVELOP_ACTIVE. The B014 report and hidden control are absent. The B464 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The hidden raw activity report stores up to 32 scalar observations from its own Gameplay `TradeRouteActivityChanged` listener. It reads the latest three entries for the selected city. Its session buffer and log are independent of the actual Bridge signal, BackgroundRoutes collection and UI transport. The proposal removes the raw listener, session buffer and log, the TRADE_EVENTS request and the hidden RouteEventsButton and callback. The projection touches `Mod/Gameplay.lua`, `Mod/UI/P0Panel.lua` and `Mod/UI/P0Panel.xml` with the same package paths. The production event subscriptions, proof source and Network and detail requests retain their existing behavior.
+
+The disposable Gameplay/UI comparison passes three identical nonempty proofs and revalidates the current transaction gate. After 40 modeled activity events, the old buffer holds 32 rows and the projection retains zero. One Gameplay listener disappears. The UI listener count, route revisions, transaction eligibility and current network report match. Other P0 controls and requests match. Exact disposable activation and restoration pass. Evidence `local/refactor/B465-RawTradeActivityRetirementReview/result.json` SHA256 `cd639fb714dc20cac9dc9128da2f0dd5506dee0698a0e17c410924273c84a17a` with replay script SHA256 `9dc26b68dd14939be2476854aa7bed363aee20b83d3f528772e7083b3f84c910` alongside. Reproduce from the named source with CPython 3.14/Lupa 2.8 by including its DevelopmentTests on PYTHONPATH and running `python3.14 -B review.py --source 49450c069bc3a76626abbf033c5ece7fab84d87c --package 48a7adb45b42e5730987f0a5bd92626440a28e8dc186846da1b7b9c12276d676` in a clean scratch directory.
+
+The exact raw observer retirement awaits approval. Positive Culture Network cold restoration remains a separate native gate.
 
 ### Retire the old completion record report — S0995
 

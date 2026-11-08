@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0995",
+    "status": "S0996",
     "runtime": "B465.492 / modinfo492",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the B014 report retirement with current Store first completion, cold records, legacy value and route proof preserved.",
+  "goal": "Record B465 deployment and the exact hidden raw activity observer retirement proposal with current route proof preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B465 deployment verified and the raw trade activity observer reviewed — S0996",
+      "reason": "Verified B465 deployment and exact raw trade activity observer retirement boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -402,6 +408,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B465 installed 337/337 MATCH with both recovery packages verified. The raw trade activity projection preserves actual route proof, invalidation and strict transaction gating.",
     "B465 passes 28 selected checks and 23/49/25 carried checks. Populated Store cold load, first completion, saved B014 and route proof match.",
     "B464 installed 338/338 MATCH with both recovery packages verified. The projected B014 report retirement preserves populated Store cold load, first specialization, old evidence and route proofs.",
     "B464 passes 23 selected checks and 19/49 carried checks. Current Store, retained experiment values and route proof match.",
@@ -2353,6 +2360,50 @@
       "package_sha256": "48a7adb45b42e5730987f0a5bd92626440a28e8dc186846da1b7b9c12276d676",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-completion-record-report--s0995"
+    },
+    "b465_deployment": {
+      "version": "B465.492 / modinfo492",
+      "source_commit": "49450c069bc3a76626abbf033c5ece7fab84d87c",
+      "digest": "48a7adb45b42e5730987f0a5bd92626440a28e8dc186846da1b7b9c12276d676",
+      "files": 337,
+      "receipt": "B465.492-49450c0-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [
+        "CompletionRecordProbe.lua"
+      ],
+      "pending": false,
+      "outgoing": "B464.491, 338/338 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b465-deployment-verified-and-the-raw-trade-activity-observer-reviewed--s0996"
+    },
+    "b465_raw_trade_activity_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "49450c069bc3a76626abbf033c5ece7fab84d87c",
+      "removed": [],
+      "modified": [
+        "Gameplay.lua",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "Gameplay.lua": "381fe74e86f00856f100960fb0c4b030b0a80a7cbebf1e935b147bb2f4671ccf",
+        "UI/P0Panel.lua": "9a57488869a416ab7f95105fa21ee2823ebf81c07c09f48b3dc267558a7d5790",
+        "UI/P0Panel.xml": "4fa8dcc8c31dbd64e7f63e91632bdf29783864f1973198f4f7884fc7dc9e6f8f"
+      },
+      "hidden_control": "RouteEventsButton",
+      "retired_action": "TRADE_EVENTS",
+      "modeled_gameplay_activity_listeners_removed": 1,
+      "modeled_raw_rows_after_burst": [
+        32,
+        0
+      ],
+      "production_route_packets": 3,
+      "production_signal_and_strict_gate": "MATCH",
+      "local_evidence": "local/refactor/B465-RawTradeActivityRetirementReview/result.json",
+      "local_evidence_sha256": "cd639fb714dc20cac9dc9128da2f0dd5506dee0698a0e17c410924273c84a17a",
+      "local_replay_sha256": "9dc26b68dd14939be2476854aa7bed363aee20b83d3f528772e7083b3f84c910",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b465-deployment-verified-and-the-raw-trade-activity-observer-reviewed--s0996"
     }
   }
 }

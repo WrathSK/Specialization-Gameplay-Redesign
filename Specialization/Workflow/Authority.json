@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0995",
+    "status": "S0996",
     "runtime": "B465.492 / modinfo492",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "623903a017788ecec013d1a2c97d98c4ebb87c04",
-  "current_batch": "LEGACY_COMPLETION_RECORD_RETIRED_LOCAL",
-  "next_batch": "Verify the guarded B465 switch and review the hidden raw trade-activity observer independently of active trade proof and transaction qualification.",
+  "runtime_commit": "49450c069bc3a76626abbf033c5ece7fab84d87c",
+  "current_batch": "RAW_TRADE_ACTIVITY_RETIREMENT_REVIEWED",
+  "next_batch": "Await exact approval to remove the hidden raw trade activity observation, its bounded session buffer and Gameplay listener, the TRADE_EVENTS report route and its hidden P0 button and callback. Retain the actual NetworkBridge and BackgroundRoutes signal and proof paths.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B464.491 / modinfo491 temporary develop from 623903a017788ecec013d1a2c97d98c4ebb87c04, 338/338 MATCH, SHA256 ccd82ab6e77eda35efbed0c5506e8515aae9eaa03aaa8d52bc5b8f0a6b9a3350. Receipt B464.491-623903a-playtest.json DEVELOP_ACTIVE. B463 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B465.492 / modinfo492 temporary develop from 49450c069bc3a76626abbf033c5ece7fab84d87c, 337/337 MATCH, SHA256 48a7adb45b42e5730987f0a5bd92626440a28e8dc186846da1b7b9c12276d676. Receipt B465.492-49450c0-playtest.json DEVELOP_ACTIVE. B464 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0995 verifies the exact B014 retirement, populated Store cold load and first-completion authority, and exact package restoration.",
+  "context_review_status": "S0996 verifies B465 deployment and both recovery packages. The hidden raw trade activity observer is independent of current route proofs and transaction qualification.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-completion-record-report--s0995",
-  "source_status": "B465.492 / modinfo492 locally verified at SHA256 48a7adb45b42e5730987f0a5bd92626440a28e8dc186846da1b7b9c12276d676. B464.491 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b465-deployment-verified-and-the-raw-trade-activity-observer-reviewed--s0996",
+  "source_status": "B465.492 / modinfo492 deployed at SHA256 48a7adb45b42e5730987f0a5bd92626440a28e8dc186846da1b7b9c12276d676. Exact B014 report retirement verified.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
