@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0950
-Implementation Build: source B444.471 / modinfo471. Live B443.470 from 45206f6. Stable/main B307.334.
+Status Revision: S0951
+Implementation Build: source B444.471 / modinfo471. Live B444.471 from 72947b5. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
@@ -12,6 +12,12 @@ Work State: DIAGNOSTIC_RETIREMENT_PREPARATION
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B444 development deployment verified — S0951
+
+B444.471 is installed from `72947b5596825e030ad07b77f41bac6d65809cfe`. All 359 runtime files match SHA256 `7d7e4a5a8126f5bf26877a8686624baa4e214afdf62f7c4c92fa8327125f97b7`. Receipt `B444.471-72947b5-playtest.json` is DEVELOP_ACTIVE. The outgoing B443 and the stable B307 packages match their retained receipt hashes. The Mod UUID is unique and no transaction is pending.
+
+The only new native delta is the optional progress line of the explicit Standardization report. The B443 HD and official production interaction evidence carries forward at its recorded scope. No immediate retest is required for preparing the exact diagnostic retirement and deployment removal gates.
 
 ### The Standardization report reads the selected production queue — S0950
 

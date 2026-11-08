@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "45206f6479bdf1697e3229755cc81d429efe8193",
-  "runtime": "B443.470 / modinfo470 temporary develop deployed, 359/359 MATCH. Stable/main B307.334.",
+  "runtime_commit": "72947b5596825e030ad07b77f41bac6d65809cfe",
+  "runtime": "B444.471 / modinfo471 temporary develop deployed, 359/359 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1801,7 +1801,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0950 verifies the explicit Standardization production read in both actual panel entries and the scoped missing ConstructionProbe comparison.",
-  "source_runtime": "B444.471 / modinfo471 local candidate, 359 files. B443.470 remains installed.",
+  "source_review": "S0951 verifies receipt-bound deployment of the report-only B444 candidate and both retained recovery packages.",
+  "source_runtime": "B444.471 / modinfo471 deployed from 72947b5. B443 scoped native evidence and B444 local report detail are distinct.",
   "tested_source_snapshot_sha256": "31ad807506f5a2e22040a83f5d0bcf927f8ed1b3e62e6f43f7aeaf46d074d236"
 }

@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0950",
+    "status": "S0951",
     "runtime": "B444.471 / modinfo471",
     "military": "D0037",
     "harbor": "D0037",
@@ -21,6 +21,12 @@
   "goal": "Verify the report-only production read transfer and prepare scoped diagnostic retirement.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B444 development deployment verified — S0951",
+      "reason": "Verified B444 receipt, exact package and retained recovery"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -132,6 +138,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B444 deployed, 359/359 MATCH. The retained B443 and stable B307 match. Native report detail remains unmeasured.",
     "B444 passes all 51 selected local checks, including official and HD report detail and both actual ConstructionProbe absence modes. The report detail has no native confirmation.",
     "B443 official native interaction passes the observed institution, Study and Crew scope. The raw queue records 0.9 Overflow, with no subsequent inheritance observed.",
     "B443 HD native observation passes production reader, Study queue/timing, Gold and applied carrier update, and Crew formation/use in scope. Native queue shows 0.2 residue.",
@@ -781,6 +788,19 @@
       "deployed": false,
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#the-standardization-report-reads-the-selected-production-queue--s0950"
+    },
+    "b444_deployment": {
+      "version": "B444.471 / modinfo471",
+      "source_commit": "72947b5596825e030ad07b77f41bac6d65809cfe",
+      "digest": "7d7e4a5a8126f5bf26877a8686624baa4e214afdf62f7c4c92fa8327125f97b7",
+      "files": 359,
+      "receipt": "B444.471-72947b5-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "pending": false,
+      "outgoing": "B443.470, 359/359 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "REPORT_DETAIL_NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b444-development-deployment-verified--s0951"
     }
   }
 }
