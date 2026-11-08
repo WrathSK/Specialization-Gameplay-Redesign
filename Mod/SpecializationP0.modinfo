@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="471">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="472">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
     <Description>B443.470：恢复专业项目生产面板接入。</Description>
@@ -267,7 +267,6 @@
       <File>Lv2GPP.lua</File>
       <File>Lv3Support.lua</File>
       <File>Lv3Effects.lua</File>
-      <File>ConstructionProbe.lua</File>
       <File>GPPReadout.lua</File>
       <File>InvestmentAction.lua</File>
       <File>EffectiveFacts.lua</File>
@@ -297,7 +296,6 @@
     <File>UI/CrewProjectUI.lua</File>
       <File>UI/CrewProjectOrder.lua</File>
     <File>CrewProjects.lua</File>
-      <File>CrewPrecision.lua</File>
       <File>Lv4Percent.lua</File>
       <File>BoostConfig.lua</File>
       <File>NetworkBoost.lua</File>
@@ -766,7 +764,6 @@
     <File>Lv2GPP.lua</File>
     <File>Lv3Support.lua</File>
     <File>Lv3Effects.lua</File>
-    <File>ConstructionProbe.lua</File>
     <File>GPPReadout.lua</File>
     <File>InvestmentAction.lua</File>
     <File>EffectiveFacts.lua</File>
@@ -814,7 +811,6 @@
     <File>UI/CrewProjectUI.lua</File>
     <File>CrewProjects.lua</File>
     <File>Data/CrewProjects.sql</File>
-    <File>CrewPrecision.lua</File>
     <File>UI/CrewProjectOrder.lua</File>
     <File>UI/SPCProductionPanelOfficial.lua</File>
     <File>Lv4Percent.lua</File>

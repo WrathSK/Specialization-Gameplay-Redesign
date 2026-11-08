@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0952
-Implementation Build: source B444.471 / modinfo471. Live B444.471 from 72947b5. Stable/main B307.334.
+Status Revision: S0953
+Implementation Build: source B445.472 / modinfo472. Live B444.471 from 72947b5. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: REVIEW_EXACT_DIAGNOSTIC_RETIREMENT
+Work State: CREW_DIAGNOSTICS_RETIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the two old Crew diagnostic paths — S0953
+
+The Owner approved the exact two-file removal on 2026-11-08. The old DEV production preview and injection, the Crew precision wrapper and the three related controls are removed with `Mod/ConstructionProbe.lua` and `Mod/CrewPrecision.lua`. The normal Crew order, Wonder action and receipt paths, the Standardization production report, and the separate completion observer retain their owners.
+
+- **Runtime Impact Contract (L2, T06/T07/T08).** Formal construction uses the existing selected production reader and reads the same city and target at the same action boundaries. The removed wrapper previously added target and queue observations around confirmation. The obsolete DEV injection request is now ignored by Gameplay. No new fact collection, listener, timer, saved field, or GC behavior. The exact-package gate removes both files as one verified replacement and retains the outgoing package for recovery.
+- **LOCAL_SIMULATION_PASS in scope.** All 75 selected checks passed in CPython 3.14 / Lupa 2.8 with the pinned official asset input. The original B444 report selection also passes all 51 methods on the published pre-retirement source. The comparison starts the actual B444 and B445 Gameplay entries. Report text is identical with the legacy probe present, unavailable in both loader models, and absent from the candidate package in both production panel profiles. The candidate attempts zero retired includes and the old DEV requests cannot alter the last report. With the old observer active, unable to read, or absent, the real Crew owner and selected panels produce the same single unit debit and 150.25 native-input grant, with identical receipt, property-write order and resulting progress. The real-package disposable switch refuses omitted, partial and extra removal lists and restores both paths byte-for-byte. Six earlier removal checks and both deployment regression scripts also pass.
+- **STATIC_CONFIRMED and reproduction.** 228 Lua 5.1 compilations, 32 XML-family parses, 706 file and 11 Lua replacement references across 357 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7cCrewDiagnosticRetirement` with Lupa and the existing `SPC_OFFICIAL_ASSETS` input. Source SHA256 `f5c7ad961efe933cd3acb621eea181e81a244cbc8a6a462ea7956968806cd193`, package SHA256 `a1d01995ef303325a9977ba978f0ddb91129001b30680ede07a8890cbe1f1724`. Full local result `local/refactor/B445-O7cCrewDiagnosticRetirement-final/closure.json` at SHA256 `32d949bce9662a472143aea5f2bd5e60714746b3161c181f60859e30f3ef02e3`. The standalone B236 entry doubles and two English-localization assertions from B238 also fail on the unchanged comparison tree. They remain historical assertions and are not counted as passing. The old startup-order assertions now replay B356/B357 and account for the later approved boundary observer and these two removals in the current order.
+- **Historical retrieval.** For older links, `git show 72947b5596825e030ad07b77f41bac6d65809cfe:Mod/ConstructionProbe.lua` or `git show 72947b5596825e030ad07b77f41bac6d65809cfe:Mod/CrewPrecision.lua` returns the published original. Both original SHA256 values are in S0952 and were verified against the published history before removal. Historical report bodies remain frozen.
+
+Source B445.472 is ready for the guarded development switch when the game is closed. B444 remains installed at this source checkpoint. No immediate user test is needed for the removal. Native result labels remain scoped to the builds actually tested. Pending-network retirement and later gates keep their separate evidence requirements.
 
 ### Exact package removal and rollback ready for review — S0952
 

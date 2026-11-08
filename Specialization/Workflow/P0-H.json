@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0952",
-    "runtime": "B444.471 / modinfo471",
+    "status": "S0953",
+    "runtime": "B445.472 / modinfo472",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify exact package removal safeguards and route the remaining Crew diagnostic retirement to the Owner.",
+  "goal": "Retire the two Owner-approved Crew diagnostics while preserving formal actions, reporting and package recovery.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the two old Crew diagnostic paths — S0953",
+      "reason": "Owner approval, production comparison, original retrieval and rollback evidence"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -144,6 +150,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B445 passes 75 selected local checks, including the old observers and actual package absence, same Crew effects and report, and exact two-file package restoration.",
     "S0952 locally verifies exact path removal and guarded rollback in both deployment tools. No runtime removal has been applied.",
     "B444 deployed, 359/359 MATCH. The retained B443 and stable B307 match. Native report detail remains unmeasured.",
     "B444 passes all 51 selected local checks, including official and HD report detail and both actual ConstructionProbe absence modes. The report detail has no native confirmation.",
@@ -825,6 +832,25 @@
       "retrieval_commit": "72947b5596825e030ad07b77f41bac6d65809cfe",
       "runtime_changed": false,
       "report": "Specialization/Status/Specialization_P0_Status.md#exact-package-removal-and-rollback-ready-for-review--s0952"
+    },
+    "b445_crew_diagnostic_retirement": {
+      "build": "B445.472 / modinfo472",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "approved": "2026-11-08 exact two paths",
+      "removed": {
+        "Mod/ConstructionProbe.lua": "fd5dfd146b376a96730321558f2da4e1585449ac7f9a906528acf70cae753127",
+        "Mod/CrewPrecision.lua": "c4a98f521a346b097748d0c9df470c1ef209d06fc60ec052c4d0898e6cc0fe59"
+      },
+      "retrieval_commit": "72947b5596825e030ad07b77f41bac6d65809cfe",
+      "tests": 75,
+      "files": 357,
+      "package_sha256": "a1d01995ef303325a9977ba978f0ddb91129001b30680ede07a8890cbe1f1724",
+      "source_snapshot_sha256": "f5c7ad961efe933cd3acb621eea181e81a244cbc8a6a462ea7956968806cd193",
+      "local_evidence": "local/refactor/B445-O7cCrewDiagnosticRetirement-final/closure.json",
+      "local_evidence_sha256": "32d949bce9662a472143aea5f2bd5e60714746b3161c181f60859e30f3ef02e3",
+      "deployed": false,
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-two-old-crew-diagnostic-paths--s0953"
     }
   }
 }

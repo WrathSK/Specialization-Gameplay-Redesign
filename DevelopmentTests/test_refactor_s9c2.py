@@ -3,6 +3,7 @@ import json,re,subprocess,unittest
 from unittest.mock import patch
 from pathlib import Path
 from refactor_harness import Context,ROOT,legacy_source_observation,measure
+from retired_crew_sources import RETIRED_GLOBALS, source as retired_source
 from refactor_defect_fixtures import request_context,startup
 from test_refactor_s5d4b2 import load_request
 from test_refactor_s7d5 import fixture as crew,FAULTS
@@ -59,6 +60,11 @@ class Startup(unittest.TestCase):
   old=subprocess.check_output(['git','show','ca6f960:Mod/Gameplay.lua'],cwd=ROOT,text=True)
   current=(ROOT/'Mod/Gameplay.lua').read_text();pattern=r'(SPC\w+)\.Start\(P,shared'
   expected=re.findall(pattern,old);expected.insert(expected.index('SPCCrewPrecision'),'SPCPlayerActionReplies')
+  with_reply=subprocess.check_output(['git','show','e469536f609bb2e24e900163455af5d007dbc844:Mod/Gameplay.lua'],cwd=ROOT,text=True)
+  self.assertEqual(re.findall(pattern,with_reply),expected)
+  expected.append('SPCPlaytestBoundaryDiagnostics')
+  self.assertEqual(re.findall(pattern,retired_source('Gameplay.lua')),expected)
+  for name in RETIRED_GLOBALS:expected.remove(name)
   self.assertEqual(re.findall(pattern,current),expected)
   self.assertIn("composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'}",current)
   c=startup();c.load('Gameplay');c.execute("assert(ExposedMembers.SPC_P0.StartStatus.PlayerActionReplies.state=='OK')")
@@ -66,7 +72,7 @@ class Startup(unittest.TestCase):
   import test_refactor_s8c5c as prior
   path=ROOT/'Mod/Gameplay.lua';old=subprocess.check_output(['git','show','ca6f960:Mod/Gameplay.lua'],cwd=ROOT,text=True);read=Path.read_text
   with patch.object(Path,'read_text',lambda p,*a,**kw:old if p==path else read(p,*a,**kw)),patch.object(prior,'measure',lambda name,data:measure(name+'_B356',data)):
-   prior.Production('test_real_production_options_register_one_gate_and_preserve_all_old_start_order').test_real_production_options_register_one_gate_and_preserve_all_old_start_order(reply_service=False)
+   prior.Production('test_real_production_options_register_one_gate_and_preserve_all_old_start_order').test_real_production_options_register_one_gate_and_preserve_all_old_start_order(reply_service=False,retired=False)
  def test_current_composite_options_and_1409_plus_two_cleanup_keep_original_assertions(self):
   import test_refactor_s8c5c as prior
   path=ROOT/'Mod/Gameplay.lua';current=path.read_text();read=Path.read_text

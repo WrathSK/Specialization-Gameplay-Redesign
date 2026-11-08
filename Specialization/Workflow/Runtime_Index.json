@@ -155,11 +155,6 @@
       "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
-    "Mod/ConstructionProbe.lua": {
-      "sha256": "fd5dfd146b376a96730321558f2da4e1585449ac7f9a906528acf70cae753127",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
     "Mod/CopyYields.lua": {
       "sha256": "4c16707fd696b873ccc3121b12bf5e2848df97791bc3c943f1011ffab82e204c",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
@@ -170,15 +165,10 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0876/B404.431 PU05a:separate per-project consumed ordinal/source-order pending grant;one optional explicit queue reader.101local methods pass with documented Lua51 fixture adapter;new campaign for version2 receipt,PU05b native gap OPEN. Probe/modinfo labels only;no deployment/native PASS."
     },
-    "Mod/CrewPrecision.lua": {
-      "sha256": "c4a98f521a346b097748d0c9df470c1ef209d06fc60ec052c4d0898e6cc0fe59",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
-      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
-    },
     "Mod/CrewProjects.lua": {
-      "sha256": "7ce1c6ecf64e095b0da2073875b55cf5b74a876e395ef74179689df3142a36df",
+      "sha256": "5e4b2edba0b3c2b57d00272d9d53e866cf23cb6a13e02c6d7b38d31f8f4155bb",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
+      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "76b7c148d8c5aac6779f360ac5d83c33c106cd5d2b8c3cf67f8863deca9263f1",
@@ -641,9 +631,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "b20e04a124ad01f9e5abfbf5fd4faf48c66d4c5d782958bccdc4a58669521dd5",
+      "sha256": "437be6e878e49cd9420de2b9767a419ff6e471d6a40d1847f102b275001227d5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
+      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +776,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "1bd0b26c9327ed4cb8a935c2d7b32d1f54dce3f897fde7694f20d47fbbb81e61",
+      "sha256": "51892247b440245654508f8b8391d06962d55b546062a822f31bfc9f6ab2bb8a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0950 B444 verified Standardization report queue read migration."
+      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +916,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "207590d500d9b21feecb2f977c3e308fc1ed16c2db10626bfba9cd335ba32809",
+      "sha256": "e68e74d855aaa9503f7188f7c87326ccbe12ed2661086c7d723c0fa46c347650",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0950 B444 verified Standardization report queue read migration."
+      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1441,14 +1431,14 @@
       "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "4e0cb9b2a78c6af7fe070e0100abe03934a001df3304f87a88d3f9affd5106e6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
-      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
+      "sha256": "bae08a82c455cacccbbf9af89372c814dd4778905eda4473fd532ae86ff9a2d8",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "c34df627a8d1f42f1b536b12347d930689344fc4b3b2f1c88b40e716a5e33f89",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B233_Industry_History_Local.md",
-      "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
+      "sha256": "8de801fac49413b76b96a8ba90084e5fdc6ec2f43a9485a1ecc23b75b22e17c8",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "ee9a0714f727f49821ef17998960e4577fbcdb34e5980420f35ccced594df3ad",
@@ -1511,14 +1501,14 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/UnitSites.lua": {
-      "sha256": "a565b1c3bcb782e1fc44522286aacab4060f65f23777e66ed70dcad37e3ce6e1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B238_Crew_Modifier_Local.md",
-      "provenance": "B238 user-accepted D0053 Crew modifiers: guarded one-use path restored, base/native-delta presentation and scalar observer reviewed;276 targeted checks pass. B237 order/price persistence unchanged; combined native pending. No timer/GC or other-profession behavior change."
+      "sha256": "edc263742fd11bee6d6fdbc1e6b3437acda1d850f0072c2a2b889846e8eeb0f0",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
     },
     "Mod/UI/UnitSites.xml": {
-      "sha256": "70d9f2854b603bfa9922fbb869b5a74e44ec7427b757b047851ee939aecaaa6e",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "9615f953f344d02587769e979ce5b4212717eb4c80cf1683d3a866e63aa9d374",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
     },
     "Mod/UI/UnitTargetMarkers.lua": {
       "sha256": "01d4a722684fe71b5a92afcd13cd37fbc9e072a09ee8516a6ce2317fcf735883",
@@ -1801,7 +1791,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0952 verifies the exact removal and retained-package transaction in local fixtures. The two remaining Crew diagnostic paths await exact review.",
-  "source_runtime": "B444.471 / modinfo471 deployed from 72947b5. B443 scoped native evidence and B444 local report detail are distinct.",
-  "tested_source_snapshot_sha256": "31ad807506f5a2e22040a83f5d0bcf927f8ed1b3e62e6f43f7aeaf46d074d236"
+  "source_review": "S0953 verifies exact Crew diagnostic retirement, retained gameplay and package rollback in local simulation.",
+  "source_runtime": "B445.472 / modinfo472 local candidate, 357 files. B444.471 remains installed.",
+  "tested_source_snapshot_sha256": "f5c7ad961efe933cd3acb621eea181e81a244cbc8a6a462ea7956968806cd193"
 }

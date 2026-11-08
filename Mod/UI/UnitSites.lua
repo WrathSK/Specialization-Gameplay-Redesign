@@ -1,8 +1,6 @@
 include('Probe')
-include('CrewModel')
 local P=SPCP0
 local token,elapsed,selection
-local precisionVisible=false
 local function selected()
  local pid=Game.GetLocalPlayer()
  if not P.IsTestPlayer(pid) then return nil end
@@ -19,7 +17,7 @@ local function refresh()
  end
 end
 local function read(action)
- precisionVisible=false;refresh()
+ refresh()
  action=action or 'UNIT_SITE_READ'
  local u=selected();local city=UI.GetHeadSelectedCity()
  if (action=='UNIT_ACTION_SPAWN' and not city) or (action~='UNIT_ACTION_SPAWN' and not u) then
@@ -32,49 +30,11 @@ local function read(action)
   {OnStart='SPC_P0_Request',Action=action,UnitID=u and u:GetID(),CityID=city and city:GetID(),Token=token,PlanToken=ExposedMembers.SPC_P0 and ExposedMembers.SPC_P0.UnitActionPreview and ExposedMembers.SPC_P0.UnitActionPreview.token})
  if not ok then token=nil;Controls.Report:SetText('Dispatch error: '..tostring(err)) end
 end
-local function precision()
- refresh();precisionVisible=true;token=nil;Controls.Window:SetHide(false)
- local ok,text=pcall(function()
-  local pid=Game.GetLocalPlayer();assert(P.IsTestPlayer(pid),'请选择测试文明')
-  local sample=(ExposedMembers.SPC_P0 or {}).CrewPrecision
-  local city=UI.GetHeadSelectedCity()
-  if not city and sample and sample.owner==pid and sample.cityID then city=Players[pid]:GetCities():FindID(sample.cityID) end
-  assert(city and city:GetOwner()==pid,'请先选中工业专业城市，再读取精度')
-  local speed=GameInfo.GameSpeeds[GameConfiguration.GetGameSpeedType()];local multiplier=speed.CostMultiplier
-  local function n(v) return type(v)=='number' and string.format('%.17g',v) or tostring(v) end
-  local d=(ExposedMembers.SPC_P0 or {}).CrewProjects
-  local view=d and d.views[pid..':'..city:GetID()]
-  local ratio=view and view.ratio
-  local out={'施工队精度（只读） | 城市：'..Locale.Lookup(city:GetName()),'游戏速度系数：'..n(multiplier)..'%；新开工倍率：'..n(ratio or '待确认／未达到工业三级'),'档位：锁定基础施工力 / 新开工理论成本 / 引擎成本 / 该档项目进度'}
-  local q=city:GetBuildQueue()
-  if ratio then for i in ipairs(SPCCrewModel.CAPACITY)do
-   local project=GameInfo.Projects[SPCCrewModel.Project(i,ratio,multiplier)];assert(project,'施工队项目定义缺失')
-   out[#out+1]=i..'：'..n(SPCCrewModel.Amount(i,multiplier))..' / '..n(SPCCrewModel.Cost(i,ratio,multiplier))..' / '..n(q:GetProjectCost(project.Index))..' / '..n(q:GetProjectProgress(project.Index))
-  end end
-  local counts={};for _,u in Players[pid]:GetUnits():Members() do
-   local row=GameInfo.Units[u:GetType()];local base=row and P.CrewBase(row.UnitType)
-   if base then counts[base]=(counts[base] or 0)+1 end
-  end
-  local parts={};for i,s in ipairs(P.Specs) do parts[#parts+1]=i..'级='..(counts[s.charge] or 0) end
-  out[#out+1]='当前己方施工队数量：'..table.concat(parts,'，')
-  if sample and sample.owner==pid then
-   out[#out+1]='最近一次确认（回合'..n(sample.turn)..'，城市ID '..n(sample.cityID)..'）：'
-   if sample.error then out[#out+1]='施工前读取未知：'..sample.error end
-   out[#out+1]='原进度='..n(sample.before)..'；施工后='..n(sample.after)..'；原成本='..n(sample.cost)
-   out[#out+1]='基础投入='..n(sample.baseInput)..'；同一目标实际增加='..n(sample.observed)
-   out[#out+1]='单位仍存在='..tostring(sample.unitPresent)..'；'..tostring(sample.note or sample.afterReadError or '同一目标可比较')
-   out[#out+1]='基础投入可受适用生产力加成；实际增加不要求等于基础投入。'
-  else out[#out+1]='尚无本次加载后的施工确认记录。' end
-  return table.concat(out,'[NEWLINE]')
- end)
- Controls.Report:SetText(ok and text or ('精度读取未完成：'..tostring(text)))
-end
 local function showRoot()
  ContextPtr:SetHide(not P.IsTestPlayer(Game.GetLocalPlayer()))
 end
 local function initialize()
  showRoot();refresh()
- Controls.PrecisionButton:RegisterCallback(Mouse.eLClick,precision)
  Controls.ReadButton:RegisterCallback(Mouse.eLClick,function() read() end)
  Controls.SpawnCrewButton:RegisterCallback(Mouse.eLClick,function() read('UNIT_ACTION_SPAWN') end)
  Controls.PrepareUnitButton:RegisterCallback(Mouse.eLClick,function() read('UNIT_ACTION_PREPARE') end)
@@ -86,7 +46,7 @@ local function initialize()
   if Controls.Window:IsHidden() and not token then return end
   timer=timer+dt;if timer<0.2 then return end
   local step=timer;timer=0;refresh()
-  if not token and not precisionVisible and ExposedMembers.SPC_UnitPanelStatus then Controls.Report:SetText(tostring(ExposedMembers.SPC_UnitPanelStatus):gsub("\n","[NEWLINE]")) end
+  if not token and ExposedMembers.SPC_UnitPanelStatus then Controls.Report:SetText(tostring(ExposedMembers.SPC_UnitPanelStatus):gsub("\n","[NEWLINE]")) end
   Controls.TargetStatus:SetText(ExposedMembers.SPC_TargetMarkerStatus or "操作已移到单位面板；这里保留诊断与DEV生成。")
   if token then
    elapsed=elapsed+step

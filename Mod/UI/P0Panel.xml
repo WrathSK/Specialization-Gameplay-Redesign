@@ -63,8 +63,6 @@
       <GridButton ID="Lv2HousingButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv2 housing" Hidden="1" />
       </Container>
     <GridButton Hidden="1" ID="Lv4PercentButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv4 percent" />
-    <GridButton Hidden="1" ID="ConstructionPreviewButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Preview construction" />
-    <GridButton Hidden="1" ID="ConstructionApplyButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Inject 250 (DEV)" />
   <GridButton ID="SourceYieldButton" Anchor="L,B" Offset="18,98" Size="240,32" Style="MainButton" Hidden="0"><Label ID="SourceYieldButtonCaption" Anchor="C,C" Style="FontNormal14" String="城市专业 / 潜力" Color="255,255,255,255" /></GridButton>
     <GridButton ID="GovernorButton" Anchor="L,B" Offset="280,98" Size="240,32" Style="MainButton" Hidden="0"><Label ID="GovernorButtonCaption" Anchor="C,C" Style="FontNormal14" String="总督条件" Color="255,255,255,255" /></GridButton>
     <GridButton Hidden="0" ID="SpecialistsButton" Anchor="L,B" Offset="542,98" Size="240,32" Style="MainButton"><Label ID="SpecialistsButtonCaption" Anchor="C,C" Style="FontNormal14" String="专家与岗位" Color="255,255,255,255" /></GridButton>

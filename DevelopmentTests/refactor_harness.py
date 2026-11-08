@@ -98,9 +98,11 @@ class PackageVFS:
         return None
 
 class Context:
-    def __init__(self, name="Gameplay", missing=(), vfs=None):
+    def __init__(self, name="Gameplay", missing=(), vfs=None, history=None):
         if vfs is not None and not isinstance(vfs,PackageVFS):raise TypeError("INVALID_VFS_PROFILE")
         self.vfs=vfs
+        self.history=history
+        self.root=history[0] if history else ROOT
         self.loads=deque(maxlen=64)
         self.load_counts={"attempts":0,"missing":0,"completed":0,"failed":0}
         self._load_stack=[]
@@ -130,16 +132,18 @@ class Context:
                 self.load_counts['missing']+=1;row['status']=reason
                 if included and self.vfs.missing_include=='silent_nil':return None
                 raise FileNotFoundError('PACKAGE_'+reason+':'+relative)
-            path=ROOT/'Mod'/relative
-            if not path.resolve().is_relative_to((ROOT/'Mod').resolve()):
+            path=self.root/'Mod'/relative
+            if not path.resolve().is_relative_to((self.root/'Mod').resolve()):
                 row['status']='OUTSIDE_MOD';raise ValueError('PACKAGE_PATH_OUTSIDE_MOD')
         else:
-            path=ROOT/'Mod'/(module if module.endswith('.lua') else module+'.lua')
+            path=self.root/'Mod'/(module if module.endswith('.lua') else module+'.lua')
         try:text=path.read_text()
         except OSError:
             if self.vfs:self.load_counts['failed']+=1;row['status']='FILE_READ_FAILED'
             raise
-        key=str(path.relative_to(ROOT));digest=sha256(text.encode()).hexdigest()
+        key=str(path.relative_to(self.root))
+        if self.history:key='historical/'+self.history[1]+'/'+key
+        digest=sha256(text.encode()).hexdigest()
         executed(key,digest)
         self._load_stack.append(key)
         try:
@@ -175,7 +179,7 @@ class Context:
         # A host JSON round-trip copies only explicitly retained fixture scalars/tables.
         return json.loads(json.dumps(value,allow_nan=False))
     def reload(self, retained, name=None):
-        result=Context(name or self.name,vfs=self.vfs);result.globals().retained=result.table(self.snapshot(retained));return result
+        result=Context(name or self.name,vfs=self.vfs,history=self.history);result.globals().retained=result.table(self.snapshot(retained));return result
 
 def measure(name, values):
     assert name not in RUN['measurements'], 'DUPLICATE_MEASUREMENT'

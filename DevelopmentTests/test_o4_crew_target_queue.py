@@ -3,7 +3,8 @@
 from collections import deque
 import unittest
 
-from refactor_harness import Context, PackageVFS, measure
+from refactor_harness import measure
+from retired_crew_sources import gameplay as historical_gameplay, package as historical_package, source as retired_source
 from test_o6_production_panel import panel
 from test_pu11_package_absence import NATIVE
 from test_refactor_s7d5 import fixture as crew_transaction
@@ -82,6 +83,67 @@ def paired(hd=False):
 
 
 class OwnedConstructionQueue(unittest.TestCase):
+    def test_retirement_preserves_one_debit_grant_and_receipt_on_both_panels(self):
+        for hd in (False, True):
+            results = []
+            for mode in ('active', 'unavailable', 'removed'):
+                with self.subTest(hd=hd, observer=mode):
+                    gameplay, ui = paired(hd)
+                    gameplay.execute('shared.ConstructionProbe=nil')
+                    if mode != 'removed':
+                        gameplay.execute(retired_source('ConstructionProbe.lua'))
+                        gameplay.execute(retired_source('CrewPrecision.lua'))
+                        gameplay.execute("""
+                            if ...=='active'then
+                                ExposedMembers.DLHD={Utils={
+                                    GetCityCurrentBuildQueueCost=function()return q.cost end,
+                                    GetCityCurrentBuildQueueProgress=function()return q.progress end}}
+                            end
+                            SPCConstructionProbe.Start(P,shared)
+                            SPCCrewPrecision.Start(P,shared)
+                        """, mode)
+                    gameplay.execute("""
+                        local mode=...
+                        local writes,debits={},0
+                        local set=P.SetProperty
+                        P.SetProperty=function(o,k,v)
+                            writes[#writes+1]=k
+                            return set(o,k,v)
+                        end
+                        local get=Players[0].GetUnits
+                        Players[0].GetUnits=function()
+                            local units=get()
+                            local destroy=units.Destroy
+                            units.Destroy=function(...)
+                                debits=debits+1
+                                return destroy(...)
+                            end
+                            return units
+                        end
+                        assert(select(3,prepare()).status=='PREPARED')
+                        local _,receipt,outcome=confirm()
+                        assert(receipt==nil and outcome.status=='COMMITTED' and outcome.baseInput==150.25)
+                        local observed=shared.CrewPrecision
+                        if mode=='active'then
+                            assert(observed.observed==150.25 and not observed.unitPresent)
+                        elseif mode=='unavailable'then
+                            assert(observed.error:find('HD_QUEUE_READ_HELPERS_UNAVAILABLE'))
+                        else
+                            assert(observed==nil and shared.ConstructionProbe==nil)
+                        end
+                        for i=1,4 do confirm()end
+                        local _,r=next(C.props[SPCCrewModel.USE_RECEIPT_PROPERTY])
+                        assert(r.state=='GRANT_RETURNED' and r.target=='BUILDING_WONDER_2')
+                        assert(debits==1 and #q.adds==1 and q.adds[1]==150.25 and not C.units[20001] and C.calls==1)
+                        result=T.encode({receipt=r,writes=writes,adds=q.adds,progress=q.progress,outcome=outcome})
+                    """, mode)
+                    ui.execute('assert(costReads==3 and progressReads==3 and #nativeOps==0 and #sent==0)')
+                    results.append(gameplay.eval('result'))
+            self.assertEqual(results, [results[0]] * 3)
+        measure('O7c_crew_action_retirement', {'profiles': 2, 'observer_modes': 3,
+                'unit_debits': 1, 'native_progress_grants': 1, 'clipped_fractional_input': 150.25,
+                'same_receipt_write_order_outcome_and_progress': True})
+
     def test_real_panels_read_one_wonder_and_owner_debits_grants_once(self):
         for hd in (False, True):
             with self.subTest(hd=hd):
@@ -166,19 +228,20 @@ class OwnedConstructionQueue(unittest.TestCase):
         self.assertEqual(ui.eval('progressReads'), 3)
 
     def test_missing_probe_only_skips_the_actual_observer(self):
-        for behavior in ('throw', 'silent_nil'):
-            with self.subTest(behavior=behavior):
-                ctx = Context(vfs=PackageVFS(absent=['ConstructionProbe'],
-                    missing_include=behavior, forbidden_globals=['SPCConstructionProbe']))
-                ctx.loads = deque(maxlen=512)
-                ctx.execute(NATIVE)
-                ctx.load('Gameplay')
-                self.assertTrue(any(row['module']=='ConstructionProbe.lua' and row['status']=='ABSENT' for row in ctx.loads))
-                ctx.execute("""
-                    local s=ExposedMembers.SPC_P0
-                    assert(s.StartStatus.ConstructionProbe.state=='FAILED' and s.ConstructionProbe==nil)
-                    assert(s.StartStatus.CrewPrecision.state=='SKIPPED_DEPENDENCY')
-                    assert(s.StartStatus.UnitActions.state=='OK' and type(s.UnitActions.Run)=='function',
-                        'FORMAL_ACTIONS_BLOCKED_BY_DEV_PROBE')
-                    assert(s.StartStatus.PlayerActionReplies.state=='OK')
-                """)
+        with historical_package() as checkout:
+            for behavior in ('throw', 'silent_nil'):
+                with self.subTest(behavior=behavior):
+                    ctx = historical_gameplay(checkout, absent=['ConstructionProbe'],
+                        missing_include=behavior, forbidden_globals=['SPCConstructionProbe'])
+                    ctx.loads = deque(maxlen=512)
+                    ctx.execute(NATIVE)
+                    ctx.load('Gameplay')
+                    self.assertTrue(any(row['module']=='ConstructionProbe.lua' and row['status']=='ABSENT' for row in ctx.loads))
+                    ctx.execute("""
+                        local s=ExposedMembers.SPC_P0
+                        assert(s.StartStatus.ConstructionProbe.state=='FAILED' and s.ConstructionProbe==nil)
+                        assert(s.StartStatus.CrewPrecision.state=='SKIPPED_DEPENDENCY')
+                        assert(s.StartStatus.UnitActions.state=='OK' and type(s.UnitActions.Run)=='function',
+                            'FORMAL_ACTIONS_BLOCKED_BY_DEV_PROBE')
+                        assert(s.StartStatus.PlayerActionReplies.state=='OK')
+                    """)

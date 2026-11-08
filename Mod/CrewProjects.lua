@@ -368,10 +368,6 @@ function SPCCrewProjects.Start(P,shared,readQueue)
  function d.RecordUse(pid,c,uid,stage,capacity,progress,cost,amount)
   observe(stage,pid,c,{eventUnit=uid,baseCapacity=capacity,nativeProgress=progress,nativeCost=cost,baseInput=amount})
  end
- function d.RecordPrecision(pid,r)
-  observe('CREW_PRECISION',pid,r.cityID and city(pid,r.cityID) or nil,{eventUnit=r.unitID,nativeProgress=r.before,afterProgress=r.after,
-   baseCapacity=r.amount,baseInput=r.baseInput,actualDelta=r.observed,targetChanged=not r.afterReadError and r.afterTarget~=r.target or nil,readStatus=(r.error or r.afterReadError) and 'UNKNOWN' or r.observed~=nil and 'OBSERVED' or 'NOT_MEASURED'})
- end
  function d.Describe(pid,c)
   d.Refresh(pid,c:GetID());local v=d.views[key(pid,c:GetID())];local err=d.errors[key(pid,c:GetID())]
   if err or not v then return '施工队：暂不可确认；'..tostring(err or 'CREW_NOT_READY')end

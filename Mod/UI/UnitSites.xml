@@ -9,7 +9,6 @@
   <GridButton ID="BuilderTargetsButton" Anchor="L,B" Offset="18,12" Size="270,32" Style="MainButton" String="Builder targets ON / OFF (test)" />
   <Label ID="TargetStatus" Anchor="L,B" Offset="300,18" Style="FontNormal14" WrapWidth="525" String="Settler targets automatic" />
   <GridButton ID="SpawnCrewButton" Anchor="L,B" Offset="18,60" Size="250,32" Style="MainButton" String="Spawn Crew 250 (DEV free)" />
-  <GridButton ID="PrecisionButton" Anchor="L,B" Offset="290,60" Size="250,32" Style="MainButton" String="Read Crew precision" />
   <GridButton Hidden="1" ID="PrepareUnitButton" Anchor="L,B" Offset="290,60" Size="250,32" Style="MainButton" String="Prepare unit action" />
   <GridButton Hidden="1" ID="ConfirmUnitButton" Anchor="L,B" Offset="562,60" Size="250,32" Style="MainButton" String="Confirm unit action" />
  </Container>

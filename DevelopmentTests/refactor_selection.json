@@ -2,6 +2,23 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7cCrewDiagnosticRetirement": [
+      "test_o7_production_report",
+      "test_o6_production_panel",
+      "test_o4_crew_target_queue",
+      "test_o4_crew_wonder_site",
+      "test_refactor_s4b.StandardizationRetention",
+      "test_refactor_s7d5",
+      "test_pu11_package_absence.ActualRoots",
+      "test_refactor_s3.Adapters",
+      "test_b237_crew_continuity.PrecisionIsolation",
+      "test_b238_crew_modifiers.Presentation.test_runtime_description_and_observation_have_no_exact_final_claim",
+      "test_refactor_s9c2.Startup",
+      "test_refactor_s9c2.RealOwners",
+      "test_pu05a_receipts.CrossCity",
+      "test_o6_unit_panel",
+      "test_o7_crew_retirement"
+    ],
     "O7aProductionReport": [
       "test_o7_production_report",
       "test_o6_production_panel",

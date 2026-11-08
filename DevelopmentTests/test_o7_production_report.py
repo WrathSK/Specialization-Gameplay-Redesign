@@ -4,6 +4,7 @@ from collections import deque
 import unittest
 
 from refactor_harness import Context, PackageVFS, measure
+from retired_crew_sources import RETIRED, RETIRED_GLOBALS, gameplay as historical_gameplay, package as historical_package
 from test_o6_production_panel import panel
 from test_pu11_package_absence import NATIVE, scalars
 from test_refactor_s4b import standard
@@ -126,46 +127,76 @@ class StandardizationReport(unittest.TestCase):
                 self.assertNotIn('当前生产进度：', report)
                 gameplay.execute('assert(stdValue(1)==14 and propertyWrites==0)')
 
-    def test_real_dispatch_runs_with_the_dev_probe_absent(self):
+    def test_real_dispatch_is_identical_before_and_after_retirement(self):
         reports = []
-        for mode in ('present', 'throw', 'silent_nil'):
-            with self.subTest(mode=mode):
-                vfs = (PackageVFS() if mode=='present' else
-                       PackageVFS(absent=['ConstructionProbe'], missing_include=mode,
-                                  forbidden_globals=['SPCConstructionProbe']))
+        with historical_package() as checkout:
+            for mode in ('present', 'throw', 'silent_nil'):
+                with self.subTest(mode=mode):
+                    if mode == 'present':
+                        gameplay = historical_gameplay(checkout)
+                    else:
+                        gameplay = historical_gameplay(checkout, absent=['ConstructionProbe'],
+                            missing_include=mode, forbidden_globals=['SPCConstructionProbe'])
+                    reports.append(self.read_dispatch(gameplay))
+                    if mode == 'present':
+                        gameplay.execute("""
+                            local s=ExposedMembers.SPC_P0
+                            assert(s.StartStatus.ConstructionProbe.state=='OK' and s.StartStatus.CrewPrecision.state=='OK')
+                        """)
+                    else:
+                        self.assertTrue(any(row['module']=='ConstructionProbe.lua' and row['status']=='ABSENT'
+                                            for row in gameplay.loads))
+                        gameplay.execute("""
+                            local s=ExposedMembers.SPC_P0
+                            assert(s.ConstructionProbe==nil and s.StartStatus.CrewPrecision.state=='SKIPPED_DEPENDENCY')
+                        """)
+
+        for hd in (False, True):
+            with self.subTest(profile='HD' if hd else 'official'):
+                vfs = PackageVFS(forbidden_globals=RETIRED_GLOBALS)
+                self.assertFalse(set(RETIRED) & (vfs.files | vfs.imports))
                 gameplay = Context(vfs=vfs)
-                gameplay.loads = deque(maxlen=512)
-                gameplay.execute(NATIVE)
-                gameplay.load('Gameplay')
-                if mode != 'present':
-                    self.assertTrue(any(row['module']=='ConstructionProbe.lua' and row['status']=='ABSENT'
-                                        for row in gameplay.loads))
-                    gameplay.execute("""
-                        local s=ExposedMembers.SPC_P0
-                        assert(s.ConstructionProbe==nil and s.StartStatus.CrewPrecision.state=='SKIPPED_DEPENDENCY')
-                    """)
+                reports.append(self.read_dispatch(gameplay, hd))
+                self.assertFalse(set(RETIRED) & {row['module'] for row in gameplay.loads})
+                self.assertEqual(gameplay.load_counts['missing'], 0)
                 gameplay.execute("""
                     local s=ExposedMembers.SPC_P0
-                    assert(s.StartStatus.StandardizationEffects.state=='OK')
-                    assert(s.StartStatus.UnitActions.state=='OK')
-                    local q={CurrentlyBuilding=function()return 'BUILDING_GRANARY'end}
-                    c={GetOwner=function()return 0 end,GetID=function()return 9 end,GetX=function()return 10 end,
-                       GetY=function()return 11 end,GetProperty=function()return 'REF'end,GetName=function()return 'City'end,
-                       GetBuildQueue=function()return q end}
-                    Players[0].GetCities=function()
-                     return {FindID=function(_,id)assert(id==9);return c end,Members=function()error('CITY_ENUMERATION')end}
+                    assert(s.StartStatus.ConstructionProbe==nil and s.StartStatus.CrewPrecision==nil)
+                    assert(s.StartStatus.PlayerActionReplies.state=='OK' and s.StartStatus.CrewProjects.state=='OK')
+                    local saved=s.Snapshot
+                    for _,action in ipairs({'CONSTRUCTION_PREVIEW','CONSTRUCTION_APPLY'})do
+                        GameEvents.SPC_P0_Request.Fire(0,{Action=action,CityID=9,Token='retired'})
+                        assert(s.Snapshot==saved and s.LastToken=='detail')
                     end
-                    s.StandardizationEffects.records['0:9']={applied={},sources={},reference=SPCNetworkInput.Reference(c)}
-                    Game.SetProperty=function()error('REPORT_WROTE_PROPERTY')end
                 """)
-                ui, _ = panel()
-                connect(gameplay.lua, ui, 'c')
-                gameplay.execute("""
-                    local s=ExposedMembers.SPC_P0
-                    GameEvents.SPC_P0_Request.Fire(0,{Action='DISCOUNT_READ',CityID=9,Token='detail'})
-                    assert(s.LastToken=='detail')
-                """)
-                reports.append(gameplay.eval('ExposedMembers.SPC_P0.Snapshot'))
-                self.assertIn('当前生产进度：13.25 / 66', reports[-1])
-                ui.execute('assert(costReads==1 and progressReads==1)')
-        self.assertEqual(reports, [reports[0]] * 3)
+        self.assertEqual(reports, [reports[0]] * 5)
+
+    def read_dispatch(self, gameplay, hd=False):
+        gameplay.loads = deque(maxlen=512)
+        gameplay.execute(NATIVE)
+        gameplay.load('Gameplay')
+        gameplay.execute("""
+            local s=ExposedMembers.SPC_P0
+            assert(s.StartStatus.StandardizationEffects.state=='OK')
+            assert(s.StartStatus.UnitActions.state=='OK')
+            local q={CurrentlyBuilding=function()return 'BUILDING_GRANARY'end}
+            c={GetOwner=function()return 0 end,GetID=function()return 9 end,GetX=function()return 10 end,
+               GetY=function()return 11 end,GetProperty=function()return 'REF'end,GetName=function()return 'City'end,
+               GetBuildQueue=function()return q end}
+            Players[0].GetCities=function()
+             return {FindID=function(_,id)assert(id==9);return c end,Members=function()error('CITY_ENUMERATION')end}
+            end
+            s.StandardizationEffects.records['0:9']={applied={},sources={},reference=SPCNetworkInput.Reference(c)}
+            Game.SetProperty=function()error('REPORT_WROTE_PROPERTY')end
+        """)
+        ui, _ = panel(hd)
+        connect(gameplay.lua, ui, 'c')
+        gameplay.execute("""
+            local s=ExposedMembers.SPC_P0
+            GameEvents.SPC_P0_Request.Fire(0,{Action='DISCOUNT_READ',CityID=9,Token='detail'})
+            assert(s.LastToken=='detail')
+        """)
+        report = gameplay.eval('ExposedMembers.SPC_P0.Snapshot')
+        self.assertIn('当前生产进度：13.25 / 66', report)
+        ui.execute('assert(costReads==1 and progressReads==1)')
+        return report

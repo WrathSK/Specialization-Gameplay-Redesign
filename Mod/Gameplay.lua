@@ -667,7 +667,7 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Receive(playerID,params) end
     return
   end
-  if params.Action~="UNIT_SITE_READ" and params.Action~="CONSTRUCTION_PREVIEW" and params.Action~="CONSTRUCTION_APPLY" and params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="CARRIER_STEP" and params.Action~="CARRIER_OFF" and params.Action~="SOURCE_YIELDS" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="ENVELOPE_READ" and params.Action~="ENVELOPE_NEXT" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="TRADE_EVENTS" and params.Action~="STORAGE_READ" and params.Action~="STORAGE_WRITE" and params.Action~="BINDING_READ" and params.Action~="COMPLETION_RECORD_READ" and params.Action~="CITY_JOURNAL_READ" then return end
+  if params.Action~="UNIT_SITE_READ" and params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="CARRIER_STEP" and params.Action~="CARRIER_OFF" and params.Action~="SOURCE_YIELDS" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="ENVELOPE_READ" and params.Action~="ENVELOPE_NEXT" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="TRADE_EVENTS" and params.Action~="STORAGE_READ" and params.Action~="STORAGE_WRITE" and params.Action~="BINDING_READ" and params.Action~="COMPLETION_RECORD_READ" and params.Action~="CITY_JOURNAL_READ" then return end
   if not P.IsTestPlayer(playerID) then return end
   shared.LastToken=nil
   shared.RequestToken=params.Token
@@ -689,10 +689,6 @@ local function request(playerID,params)
   local player=Players[playerID]
   local city=type(params.CityID)=="number" and player:GetCities():FindID(params.CityID)
   if not city or city:GetOwner()~=playerID then stage("REJECT_CITY");return end
-  if params.Action=="CONSTRUCTION_PREVIEW" or params.Action=="CONSTRUCTION_APPLY" then
-    shared.Snapshot=params.Action=="CONSTRUCTION_PREVIEW" and shared.ConstructionProbe.Prepare(playerID,city) or shared.ConstructionProbe.Apply(playerID,city)
-    shared.LastToken=params.Token;stage("ACK CONSTRUCTION_PROBE");return
-  end
   if params.Action=="INVEST_PREPARE" or params.Action=="INVEST_CONFIRM" then
     local result
     if params.Action=="INVEST_PREPARE" then
@@ -943,8 +939,6 @@ composition.Run('Lv3Support',{'RuntimeRetirement','EffectiveFacts','LegacyCleanu
 
 composition.Run('Lv3Effects',{'RuntimeRetirement','EffectiveFacts','NativeFacts','LegacyCleanup'},{'Lv3Effects'},function() include('Lv3Effects');SPCLv3Effects.Start(P,shared,{retireCommerce=true,centralExit=true}) end)
 
-composition.Run('ConstructionProbe',{},{'ConstructionProbe'},function() include('ConstructionProbe');SPCConstructionProbe.Start(P,shared) end)
-
 composition.Run('UnitSiteProbe',{},{'UnitSiteProbe'},function() include('UnitActionSitePolicy');include('UnitSiteProbe');SPCUnitSiteProbe.Start(P,shared) end)
 
 composition.Run('UnitTargets',{'EffectiveFacts'},{'UnitTargets'},function() include('UnitTargets');SPCUnitTargets.Start(P,shared) end)
@@ -958,8 +952,6 @@ composition.Run('CrewProjects',{'CityProgressionStore','EffectiveFacts'},{'CrewP
 pcall(function()if crewCompletionObservation then crewCompletionObservation.After()end end)
 
 composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'},function() include('PlayerActionReplies');SPCPlayerActionReplies.Start(P,shared) end)
-
-composition.Run('CrewPrecision',{'UnitActions','UnitTargets','CrewProjects','ConstructionProbe'},{'CrewPrecision'},function() include('CrewPrecision');SPCCrewPrecision.Start(P,shared) end,{{shared.UnitActions,'Run'}})
 
 composition.Run('Lv4Percent',{'RuntimeRetirement','EffectiveFacts'},{'Lv4Percent'},function() include('Lv4Percent');SPCLv4Percent.Start(P,shared,{centralExit=true}) end)
 

@@ -8,6 +8,7 @@ import subprocess
 import unittest
 from unittest.mock import patch
 from refactor_harness import ROOT,TrackedLua51,SOURCES,legacy_source_observation,measure
+from retired_crew_sources import source as retired_source
 import test_store_write_boundaries as cities
 import test_b236_crews as crews
 import test_b238_crew_modifiers as modifiers
@@ -109,7 +110,7 @@ class Observers(unittest.TestCase):
   assert(observed.observed==nil and observed.note:find('ACTION_NOT_COMPLETED')and C.units[20001])
   """)
  def test_actual_investment_receipt_and_outcome_survive_observer(self):
-  vm=investment();vm.globals().include('CrewPrecision');vm.execute("""
+  vm=investment();vm.execute(retired_source('CrewPrecision.lua'));vm.execute("""
   local u,t=makePreview(920);SPCCrewPrecision.Start(P,shared)
   local text,receipt,outcome=confirm(920,t)
   assert(text:find('INVESTED')and receipt.status=='COMMITTED'and outcome.kind=='INVESTMENT'and outcome.status=='COMMITTED')

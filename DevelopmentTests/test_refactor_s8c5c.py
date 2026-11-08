@@ -4,6 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
+from retired_crew_sources import RETIRED_GLOBALS
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -58,7 +59,7 @@ def production(extra='',failure=None,late=None):
 
 
 class Production(unittest.TestCase):
- def test_real_production_options_register_one_gate_and_preserve_all_old_start_order(self,reply_service=True):
+ def test_real_production_options_register_one_gate_and_preserve_all_old_start_order(self,reply_service=True,retired=True):
   s=(ROOT/'Mod/Gameplay.lua').read_text();old=subprocess.check_output(['git','show',BASE+':Mod/Gameplay.lua'],cwd=ROOT,text=True)
   pattern=r'(SPC\w+)\.Start\(P,shared'
   names=re.findall(pattern,s);self.assertEqual(names.count('SPCLegacyCleanup'),1)
@@ -66,6 +67,9 @@ class Production(unittest.TestCase):
   # Keep the complete prior order assertion, now including that approved addition.
   expected=re.findall(pattern,old)
   if reply_service:expected.insert(expected.index('SPCCrewPrecision'),'SPCPlayerActionReplies')
+  if retired:
+   expected.append('SPCPlaytestBoundaryDiagnostics') # The approved B397 observer remains packaged.
+   for name in RETIRED_GLOBALS:expected.remove(name)
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"));self.assertLess(s.index("composition.Run('LegacyCleanup'"),s.index("composition.Run('BindingProbe'"))
   self.assertNotIn("composition.Run('YieldCarrierExit'",s)
