@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0969",
+    "status": "S0970",
     "runtime": "B453.480 / modinfo480",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "26dfcbd0f7baf8a17e52de2bfcb57071da651a6b",
-  "current_batch": "EMPTY_PRODUCTION_PROBE_RETIRED_LOCAL",
-  "next_batch": "Verify the guarded B453 switch, then wait for a short HD end-turn check with and without a city production blocker. Positive Culture Network cold restore remains separate.",
+  "runtime_commit": "62d89798af67ee37b38027d6b0cfc8ef258c9a5f",
+  "current_batch": "EMPTY_PRODUCTION_PROBE_RETIRED_AWAITING_HD_CHECK",
+  "next_batch": "Wait for the short HD end-turn check. Confirm the production blocker opens a city production list without advancing and a normal end turn advances once after the blocker is cleared. Positive Culture Network cold restore is separate.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B452.479 / modinfo479 temporary develop from 26dfcbd0f7baf8a17e52de2bfcb57071da651a6b, 356/356 MATCH, SHA256 338831622ea4b2e77b66b851f6c154e1bd356d23dceb9027abcbd0607166bd19. Receipt B452.479-26dfcbd-playtest.json DEVELOP_ACTIVE. B451 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B453.480 / modinfo480 temporary develop from 62d89798af67ee37b38027d6b0cfc8ef258c9a5f, 354/354 MATCH, SHA256 511a44fbcc629617dbb02eb0644b8f56c213d429ca45daa6ec2f4b59175f7d7f. Receipt B453.480-62d8979-playtest.json DEVELOP_ACTIVE. B452 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0969 verifies exact B116 retirement, formal project regressions and package rollback.",
+  "context_review_status": "S0970 verifies B453 deployment, the exact retired pair and both recovery packages.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-empty-production-turn-experiment--s0969",
-  "source_status": "B453.480 / modinfo480 locally verified at SHA256 511a44fbcc629617dbb02eb0644b8f56c213d429ca45daa6ec2f4b59175f7d7f. B452.479 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b453-development-deployment-verified--s0970",
+  "source_status": "B453.480 / modinfo480 deployed at SHA256 511a44fbcc629617dbb02eb0644b8f56c213d429ca45daa6ec2f4b59175f7d7f. Native HD end-turn verification is pending.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

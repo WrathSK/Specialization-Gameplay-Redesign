@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0969",
+    "status": "S0970",
     "runtime": "B453.480 / modinfo480",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify exact empty-production experiment retirement and the short HD end-turn check.",
+  "goal": "Record the verified B453 retirement deployment and the focused pending HD end-turn check.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B453 development deployment verified — S0970",
+      "reason": "Verified exact two-path runtime retirement and native check boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -246,6 +252,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B453 installed 354/354 MATCH. B452 and B307 recovery verified. The HD end-turn check is pending.",
     "B453 passes 42 scoped methods and 312 historical replays. HD end-turn native check remains pending.",
     "B452 installed 356/356 MATCH with the same file set as B451. Both recovery packages match.",
     "B452 passes 59 selected methods covering identical wire/ACK, sender work and eight presentation observer profiles.",
@@ -1227,6 +1234,23 @@
       "local_evidence_sha256": "4ddffbf33b1e9abef62d679a92614b292e4295125b511dc4a4a8b7e824b72401",
       "native": "USER_GAME_TEST_REQUIRED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-empty-production-turn-experiment--s0969"
+    },
+    "b453_deployment": {
+      "version": "B453.480 / modinfo480",
+      "source_commit": "62d89798af67ee37b38027d6b0cfc8ef258c9a5f",
+      "digest": "511a44fbcc629617dbb02eb0644b8f56c213d429ca45daa6ec2f4b59175f7d7f",
+      "files": 354,
+      "receipt": "B453.480-62d8979-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [
+        "TimedProductionProbe.lua",
+        "UI/TimedTurnProbe.lua"
+      ],
+      "pending": false,
+      "outgoing": "B452.479, 356/356 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "USER_GAME_TEST_REQUIRED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b453-development-deployment-verified--s0970"
     }
   }
 }

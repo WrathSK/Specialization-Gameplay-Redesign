@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "26dfcbd0f7baf8a17e52de2bfcb57071da651a6b",
-  "runtime": "B452.479 / modinfo479 temporary develop deployed, 356/356 MATCH. Stable/main B307.334.",
+  "runtime_commit": "62d89798af67ee37b38027d6b0cfc8ef258c9a5f",
+  "runtime": "B453.480 / modinfo480 temporary develop deployed, 354/354 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1776,7 +1776,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0969 verifies exact B116 retirement, formal project regressions and package rollback.",
-  "source_runtime": "B453.480 / modinfo480 local candidate, 354 files. B452.479 remains installed.",
+  "source_review": "S0970 verifies B453 deployment, the exact retired pair and both recovery packages.",
+  "source_runtime": "B453.480 / modinfo480 deployed from 62d8979 with the two B116 experiment files removed.",
   "tested_source_snapshot_sha256": "9031bacf4fead6221bfa99ef2f6b714a53aad1ad9e13753b44b989a12a035a5c"
 }

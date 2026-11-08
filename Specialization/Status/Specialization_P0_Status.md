@@ -1,17 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0969
-Implementation Build: source B453.480 / modinfo480. Live B452.479 from 26dfcbd. Stable/main B307.334.
+Status Revision: S0970
+Implementation Build: source B453.480 / modinfo480. Live B453.480 from 62d8979. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: EMPTY_PRODUCTION_PROBE_RETIRED_LOCAL
+Work State: EMPTY_PRODUCTION_PROBE_RETIRED_AWAITING_HD_CHECK
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B453 development deployment verified — S0970
+
+B453.480 is installed from `62d89798af67ee37b38027d6b0cfc8ef258c9a5f`. All 354 files match SHA256 `511a44fbcc629617dbb02eb0644b8f56c213d429ca45daa6ec2f4b59175f7d7f`. The runtime has exactly two fewer files than B452. Receipt `B453.480-62d8979-playtest.json` is DEVELOP_ACTIVE. The outgoing B452 and stable B307 recovery packages match their recorded hashes. The game process was absent during the guarded switch, and the transaction journal is clear.
+
+**USER_GAME_TEST_REQUIRED.** In the HD configuration, leave one city with an empty production queue and clear other end-turn blockers. Press Enter or click the end-turn button. The production list should open and the game should stay on the same turn. Pick production, clear any remaining blockers, and end the turn using the other control. The turn should advance once. This checks live ActionPanel ownership and interaction. Existing formal project passes carry forward. Positive Culture Network cold restore remains a separate gate.
 
 ### Retire the old empty-production turn experiment — S0969
 
