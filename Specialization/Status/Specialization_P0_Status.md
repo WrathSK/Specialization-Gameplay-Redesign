@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1013
-Implementation Build: source B474.501 / modinfo501. Live B473.500 from fce8db9. Stable/main B307.334.
+Status Revision: S1014
+Implementation Build: source B474.501 / modinfo501. Live B474.501 from 735f6ad. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRED_COMMERCE_EXPERIMENT_CONTROLS_RETIRED_LOCAL
+Work State: REDUNDANT_INDUSTRIAL_REPORT_CONTROLS_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B474 deployment verified and the hidden industrial report aliases reviewed — S1014
+
+B474.501 is installed from `735f6ada29e1e893796507ae874c38c074d0c6a9`. All 337 files match SHA256 `c0e128312e2b05ce02e29f7b4ad5601d616e58c1ba7219573fe28427b37a4d03`. Receipt `B474.501-735f6ad-playtest.json` is DEVELOP_ACTIVE. The three approved hidden Commerce controls have retired. The B473 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** Three hidden controls provide separate template and discount reports. The visible industrial control already uses its left click for the combined history, crew and paginated template report and its right click for the paginated standardization discount report. The projection removes DiscountsButton, NextDiscountsButton and NextTemplatesButton, the old caption setup and their callbacks in `Mod/UI/P0Panel.lua` and `Mod/UI/P0Panel.xml`. The existing Gameplay requests and report owners retain their roles.
+
+The disposable comparison uses the real P0 initializer, both click routes and two pages per route. With six modeled template receipts, the real combined report includes the exact text of both standalone template pages, with zero permanent writes in the report comparison. The existing native-interface fixture also returns the same configured discount report and current production progress. Panel listener counts and the disposable switch and restore match. Evidence `local/refactor/B474-RetiredIndustrialReportAliasesReview/result.json` SHA256 `6a8bf417b983805ad9b3bf3c0ac1f22a79c1175ba3a3d0152c584bf78b2337d3` with replay script SHA256 `5ae2d83754bc053fd713017ad48d3f8d8b539a1b2d4d41d14365219ac6ad11e1` alongside. Reproduce with CPython 3.14/Lupa 2.8, the named source's DevelopmentTests on PYTHONPATH and official Assets on SPC_OFFICIAL_ASSETS. In a clean scratch directory run `python3.14 -B review.py --source 735f6ada29e1e893796507ae874c38c074d0c6a9 --package c0e128312e2b05ce02e29f7b4ad5601d616e58c1ba7219573fe28427b37a4d03`.
+
+The exact industrial report alias retirement awaits approval. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the three hidden Commerce test controls — S1013
 

@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1013",
+    "status": "S1014",
     "runtime": "B474.501 / modinfo501",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify retirement of the three rejected Commerce test buttons with the report, dashboard and stale guard preserved.",
+  "goal": "Record B474 deployment and review the redundant industrial controls with the current left/right reports and paging preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B474 deployment verified and the hidden industrial report aliases reviewed — S1014",
+      "reason": "Verified B474 deployment and exact redundant industrial report boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -510,6 +516,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B474 installed 337/337 MATCH with both recovery packages verified. The industrial projection preserves both report routes, two template pages, current production progress and listener counts.",
     "B474 passes 14 selected and 14/64 carried checks. The Commerce report, scoped selection, stale guard and route proofs match.",
     "B473 installed 337/337 MATCH with both recovery packages verified. The Commerce projection preserves the report, configuration request, stale guard and listener counts.",
     "B473 passes 14 selected and 14/64 carried checks. The retained Dialogue reports, local restoration, collection receipts and nonempty route proofs match.",
@@ -3492,6 +3499,73 @@
       "package_sha256": "c0e128312e2b05ce02e29f7b4ad5601d616e58c1ba7219573fe28427b37a4d03",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-three-hidden-commerce-test-controls--s1013"
+    },
+    "b474_deployment": {
+      "version": "B474.501 / modinfo501",
+      "source_commit": "735f6ada29e1e893796507ae874c38c074d0c6a9",
+      "digest": "c0e128312e2b05ce02e29f7b4ad5601d616e58c1ba7219573fe28427b37a4d03",
+      "files": 337,
+      "receipt": "B474.501-735f6ad-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B473.500, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b474-deployment-verified-and-the-hidden-industrial-report-aliases-reviewed--s1014"
+    },
+    "b474_retired_industrial_report_aliases_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "735f6ada29e1e893796507ae874c38c074d0c6a9",
+      "removed": [],
+      "modified": [
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "UI/P0Panel.lua": "13f8db034887c0fa2ee25c3ff51202e556bf2a7edc0bba2613504f43ca6acbaf",
+        "UI/P0Panel.xml": "01b94028b4586f8876b0d85fa94adcbcce96f9529bf01f9f796376e395fe6fec"
+      },
+      "hidden_controls": [
+        "DiscountsButton",
+        "NextDiscountsButton",
+        "NextTemplatesButton"
+      ],
+      "modeled_alias_bindings": [
+        3,
+        0
+      ],
+      "retained_page_requests": [
+        [
+          "INDUSTRY_HISTORY_READ",
+          1
+        ],
+        [
+          "INDUSTRY_HISTORY_READ",
+          2
+        ],
+        [
+          "DISCOUNT_READ",
+          1
+        ],
+        [
+          "DISCOUNT_READ",
+          2
+        ]
+      ],
+      "template_pages_matched": 2,
+      "retained_progress_report": "MATCH",
+      "property_writes": [
+        0,
+        0
+      ],
+      "panel_listener_counts": "MATCH",
+      "local_evidence": "local/refactor/B474-RetiredIndustrialReportAliasesReview/result.json",
+      "local_evidence_sha256": "6a8bf417b983805ad9b3bf3c0ac1f22a79c1175ba3a3d0152c584bf78b2337d3",
+      "local_replay_sha256": "5ae2d83754bc053fd713017ad48d3f8d8b539a1b2d4d41d14365219ac6ad11e1",
+      "local_transcript_sha256": "7947cc11e8d646d5700f5965ccfa25b88bd594ef71f60a6c3a352766b76c532d",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b474-deployment-verified-and-the-hidden-industrial-report-aliases-reviewed--s1014"
     }
   }
 }

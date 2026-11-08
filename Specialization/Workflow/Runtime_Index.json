@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "fce8db9cc6b09d7894554b2d27eecdabcadc2982",
-  "runtime": "B473.500 / modinfo500 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
+  "runtime_commit": "735f6ada29e1e893796507ae874c38c074d0c6a9",
+  "runtime": "B474.501 / modinfo501 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1013 verifies removal of the three rejected Commerce controls with the current report, configuration panel and stale-request guard preserved.",
-  "source_runtime": "B474.501 / modinfo501 local candidate, 337 files. B473.500 remains installed.",
+  "source_review": "S1014 verifies B474 deployment and both recovery packages. The current industrial control covers both template history and standardization discount paging.",
+  "source_runtime": "B474.501 / modinfo501 deployed from 735f6ad with the three approved hidden Commerce controls removed.",
   "tested_source_snapshot_sha256": "9fe81e89f30db8dda5a199324ff2550e53bb84d1ed0f80dbe47759ab9f9a1080"
 }
