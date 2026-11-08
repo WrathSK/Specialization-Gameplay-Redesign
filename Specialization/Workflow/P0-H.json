@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0981",
+    "status": "S0982",
     "runtime": "B458.485 / modinfo485",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify hidden manual carrier retirement while retaining exact plot cleanup, SQL and current P0 reports.",
+  "goal": "Record verified B458 deployment and the exact inactive Meaning experiment retirement proposal.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B458 deployment verified and inactive Meaning experiment reviewed — S0982",
+      "reason": "Verified B458 deployment and exact inactive Meaning probe boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -318,6 +324,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B458 installed 346/346 MATCH with B457 and B307 recovery verified. Five local Meaning regression scenarios pass before and after the projected old Lua and binding removal.",
     "B458 passes 19 selected methods and 15/41 carried checks. The actual cleanup fixture still clears the exact two plot flags.",
     "B457 installed 347/347 MATCH with B456 and B307 recovery verified. The hidden carrier experiment projection preserves exact city-exit cleanup, current reports and nonempty route proof.",
     "B457 passes 15 selected methods and 41 carried checks. Existing report and carrier reset and three nonempty route proofs match.",
@@ -1681,6 +1688,42 @@
       "package_sha256": "9b8fffbcf9e7c7f31e3b911972065a1dad99b75fad0540968c0a4f698bb4e8e7",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-hidden-manual-yield-carrier-experiment--s0981"
+    },
+    "b458_deployment": {
+      "version": "B458.485 / modinfo485",
+      "source_commit": "0adc089452b57f5e6faed845ae0da237c49971da",
+      "digest": "9b8fffbcf9e7c7f31e3b911972065a1dad99b75fad0540968c0a4f698bb4e8e7",
+      "files": 346,
+      "receipt": "B458.485-0adc089-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [
+        "YieldCarrierProbe.lua"
+      ],
+      "pending": false,
+      "outgoing": "B457.484, 347/347 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b458-deployment-verified-and-inactive-meaning-experiment-reviewed--s0982"
+    },
+    "b458_meaning_experiment_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "0adc089452b57f5e6faed845ae0da237c49971da",
+      "removed_sha256": {
+        "CultureMeaningProbe.lua": "c7b738aa0179fd97280dd3766a73ae936590f27f116af435fd89b3b0ed98207b"
+      },
+      "modified": [
+        "FactConsumerBindings.lua",
+        "SpecializationP0.modinfo"
+      ],
+      "modeled_removed_subscriptions": [
+        "fact/Binding_CultureMeaningProbe",
+        "district/Binding_CultureMeaningProbe"
+      ],
+      "positive_scenarios_per_package": 5,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "local_evidence": "local/refactor/B458-CultureMeaningExperimentRetirementReview/result.json",
+      "local_evidence_sha256": "33991ca854a157e9cd86655a909947763a7e0ffc082c390d7b560fc5d435dfd0",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b458-deployment-verified-and-inactive-meaning-experiment-reviewed--s0982"
     }
   }
 }
