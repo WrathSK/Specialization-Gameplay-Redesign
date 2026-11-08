@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0938
+Status Revision: S0939
 Implementation Build: source and live B437.464 / modinfo464 from a24b327. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: DEVELOPMENT_DEPLOYMENT_ACTIVE_NETWORK_COLD_NATIVE_PENDING
+Work State: NETWORK_COLD_STANDARDIZATION_ACCEPTED_CULTURE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### HD Standardization survives the B437 cold reload — S0939
+
+- **USER_GAME_TEST_PASS in scope.** The Owner established capital distribution before connecting the Industry source in the fixed HD profile. The first recipient turn showed 15 Granary production from a city displaying 14. The Industry IV city earned one Engineering Study level from its already recorded Wonder era, and the project became unavailable when that era's allowance was spent. On the saved T4 the recipient's Monument quote was 195 Gold. On the same-build cold reload the Owner saw one Study level, 12% Standardization and the same quote.
+- **Installed effect and restored proof.** The pre-restart T3 proof confirmed two routes and the recipient read 10% (seq 1089 and 1093). T4 recorded the Study completion and 12% (seq 1160–1161). A fresh engine startup and save deserialization precede the new T4 trace epoch. The recipient's installed effect read back at 12% while proof was pending and no source contribution had been reconstructed (cold seq 77). Both routes verified at seq 124 and the receiver reported ready at 12% at seq 128, before advancing. T5 again reported 12% at seq 207. The engine queue records Boston's Granary adding 15.6 and reaching 31.0 on T5 (line 20). The Owner saw 30 in the UI. The precise display rounding and engine modifier restore instant are unmeasured.
+- **Profile and evidence.** B437.464 from a24b327 matches the installed 352-file package. The 94 actual gameplay targets match the pinned B413 HD list. The read-only engine DB shows HD assembly with 162 buildings and 175 Standardization targets. Its three Gameplay SQL error messages also occur in the pinned B413 log. Current Gameplay foreign key validation passes. Collector and native logs, receipt, Owner observations and checksums are retained locally at `local/legacy-workspace/Specialization/Status/Validation/Evidence/B437_Standardization_Cold_20261107/manifest.json` (manifest SHA256 `07b253d334710837e8e59e77eb7eb707e6a1ad5dd8e2c584c8db5ca117c40ac0`).
+
+User decision is none. User testing is complete for this Standardization checkpoint. A positive Culture Network cold restore remains deferred until an ordinary test has the required insights. Primary next is eligible work under the existing plan. Shared pending-network protection stays subject to its remaining native evidence and retirement gates.
 
 ### B437 deployed for the next cold restore checkpoint — S0938
 

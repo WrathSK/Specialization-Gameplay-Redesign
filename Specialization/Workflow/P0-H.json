@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0938",
+    "status": "S0939",
     "runtime": "B437.464 / modinfo464",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B437 deployment and the bounded native cold restore checkpoint.",
+  "goal": "Record the scoped B437 HD Standardization cold restore and remaining network evidence boundary.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### HD Standardization survives the B437 cold reload — S0939",
+      "reason": "Owner observations, native route reconciliation and remaining scope"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -62,7 +68,7 @@
   "validation": [
     "20 focused proof and owner tests pass; fixed B436 runtime reproduced five corrected cases.",
     "132 of 140 wider regressions pass with the same eight reproduced nonpassing cases. Restricted roots and static package pass.",
-    "Current-build native restore and sequencing remain pending. Preserve prior B413 and B435 evidence.",
+    "The B437 HD Standardization cold restore passed in the observed scenario. Positive Culture Network restoration and unobserved native timing remain pending. Preserve prior B413 and B435 evidence.",
     "B437 deployment: 352/352 installed, retained B435 and B307 hashes verified."
   ],
   "full_audit_triggers": [
@@ -470,6 +476,16 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "USER_GAME_TEST_REQUIRED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b437-deployed-for-the-next-cold-restore-checkpoint--s0938"
+    },
+    "standardization_cold_restore": {
+      "native": "USER_GAME_TEST_PASS_SCOPED_STANDARDIZATION",
+      "build": "B437.464 / modinfo464",
+      "source_commit": "a24b3275c376c5f47b5d81fda4b65bdbaec35cb8",
+      "gameplay_targets_matched": 94,
+      "local_manifest": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B437_Standardization_Cold_20261107/manifest.json",
+      "local_manifest_sha256": "07b253d334710837e8e59e77eb7eb707e6a1ad5dd8e2c584c8db5ca117c40ac0",
+      "report": "Specialization/Status/Specialization_P0_Status.md#hd-standardization-survives-the-b437-cold-reload--s0939",
+      "culture_network": "USER_GAME_TEST_REQUIRED_DEFERRED"
     }
   }
 }
