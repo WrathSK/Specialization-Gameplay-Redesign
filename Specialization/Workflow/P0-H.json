@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0970",
+    "status": "S0971",
     "runtime": "B453.480 / modinfo480",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the verified B453 retirement deployment and the focused pending HD end-turn check.",
+  "goal": "Carry forward the verified two-profile B453 end-turn check and continue scoped diagnostic retirement.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### End-turn interaction verified in both environments — S0971",
+      "reason": "Owner interaction acceptance and native loader/turn evidence"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -252,6 +258,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B453 end-turn interaction passed in both the official and HD profiles. Both native loads and T7 to T8 transitions were observed.",
     "B453 installed 354/354 MATCH. B452 and B307 recovery verified. The HD end-turn check is pending.",
     "B453 passes 42 scoped methods and 312 historical replays. HD end-turn native check remains pending.",
     "B452 installed 356/356 MATCH with the same file set as B451. Both recovery packages match.",
@@ -1251,6 +1258,19 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "USER_GAME_TEST_REQUIRED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b453-development-deployment-verified--s0970"
+    },
+    "b453_end_turn_native": {
+      "build": "B453.480",
+      "source_commit": "62d89798af67ee37b38027d6b0cfc8ef258c9a5f",
+      "status": "USER_GAME_TEST_PASS_SCOPED",
+      "profiles": [
+        "OFFICIAL",
+        "HD"
+      ],
+      "evidence": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B453_EndTurn_20261108/manifest.json",
+      "evidence_sha256": "74b683bcb52a31d9fe1099e523ef6cfd0d276a19a528fd8230c72716bef3b5a9",
+      "scope": "End-turn controls and production blocker; owner interaction corroborated by native loader and turn sequence.",
+      "report": "Specialization/Status/Specialization_P0_Status.md#end-turn-interaction-verified-in-both-environments--s0971"
     }
   }
 }

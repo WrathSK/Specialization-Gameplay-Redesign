@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0970
+Status Revision: S0971
 Implementation Build: source B453.480 / modinfo480. Live B453.480 from 62d8979. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: EMPTY_PRODUCTION_PROBE_RETIRED_AWAITING_HD_CHECK
+Work State: EMPTY_PRODUCTION_PROBE_RETIRED_ACCEPTED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### End-turn interaction verified in both environments — S0971
+
+**USER_GAME_TEST_PASS in the reported end-turn interaction scope.** The Owner verified B453.480 in both the HD and no-HD Gathering Storm profiles. The native log shows two separate loads. The first applied `Expansion2_ActionPanel` and the official production panel (lines 2873 and 3624). The second applied `HD_ActionPanel` and the HD project order panel (lines 10287 and 10304). The retired wrapper is absent in both loads. The collector identifies B453.480 and records T7 local end followed by T8 local begin in both loads (seq 154→180 and 370→381). The Owner's observation covers the controls and the production-list interaction. The collector corroborates the turn transition.
+
+The generic readiness observation still reports `TPR|DP` unknown in both loads, as previously recorded at S0935. Both production UI readers registered (seq 38 and 258). This check closes the empty-production experiment retirement. Each load confirmed two trade routes (seq 122 and 344). Positive Culture Network restoration remains outside this result.
+
+The Enhanced Mod Manager profiles were renamed locally after the test. The HD profile changed from “原版” to “HD区域扩展”. The no-HD profile changed from “完全纯净” to “原版”. All 572 mod membership and enablement rows and the selected profile ID matched before and after. Historical references to profile names refer to their labels at capture.
+
+Native log snapshot and collector evidence locator `local/legacy-workspace/Specialization/Status/Validation/Evidence/B453_EndTurn_20261108/manifest.json`, SHA256 `74b683bcb52a31d9fe1099e523ef6cfd0d276a19a528fd8230c72716bef3b5a9`. The B453 package and receipt still match. Continue the existing exact diagnostic retirement review. The unused network recovery prototype remains a separate candidate requiring an exact dependency and removal review.
 
 ### B453 development deployment verified — S0970
 
