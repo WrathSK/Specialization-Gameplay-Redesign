@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "1ca379171ca347c6ef28ef70b8f0409032c3742409897f005db0e8cd914f3e40",
+      "sha256": "d5018fa12c97a8c4ca682563bd574e038a2785982d5b18d6491fd8a77d756907",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1007 B471 four hidden boost experiment control retirement."
+      "provenance": "S1009 B472 old Great Work adjacency command retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "4d3b72cc62b770e7d25990fece24b83302dade51efa1f438c1dcc640252c1e6f",
+      "sha256": "dbcca424af23db9eeeb79744d06253d1031ca4b11e4c8ae5622a95c695d081ac",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1007 B471 four hidden boost experiment control retirement."
+      "provenance": "S1009 B472 old Great Work adjacency command retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "67d7a25e24c80f2e2679931825ad3ee18e9df325f09846abc550d0ae52499b68",
+      "sha256": "e5af50089a01f07cd202e959e73af553cfa09bb466797e63e96c76b8dbba8047",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1007 B471 four hidden boost experiment control retirement."
+      "provenance": "S1009 B472 old Great Work adjacency command retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1081,9 +1081,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/BoostGreatWorkRead.lua": {
-      "sha256": "ae17bdd63047da547cf13dbe0fa1bca230146dbec882d0475a2339a4d293976c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md",
-      "provenance": "B165 authorized remaining native gates: loaded-set proof/current normal Dialogue/progress READ, reviewed direct source and55 targeted methods; native multiplier/settlement pending. No formal all-city cutover."
+      "sha256": "9515a650f28ff2b0ea8a9be52ef9bed8cbec733ac6c43f7c008066dd8f125c9e",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1009 B472 old Great Work adjacency command retirement."
     },
     "Mod/UI/BoostRefresh.lua": {
       "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "a72f61ba4e6f914a1828f4eec29fef7eb668f3ef932f6dbdb834dd70f7bf7893",
+      "sha256": "2b695fc2cc23f342588419e22544c16d9bb97deae04cbf743c640cc304641202",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1007 B471 four hidden boost experiment control retirement."
+      "provenance": "S1009 B472 old Great Work adjacency command retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "7267c20c405e279c32030791c7e4ceda4366d7f8d8676b53ecf812abe388a97b",
+      "sha256": "74154a1ec6007e7c53e29b8e02263c9fcf1dbf43aed0bda0340e0feee19b4cd6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1007 B471 four hidden boost experiment control retirement."
+      "provenance": "S1009 B472 old Great Work adjacency command retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1008 verifies B471 deployment and both recovery packages. The old Great Work adjacency controls, requests and retry path are separate from memory, automatic Meaning and legacy withdrawal.",
-  "source_runtime": "B471.498 / modinfo498 deployed from 3574404 with the four approved hidden boost tests removed.",
-  "tested_source_snapshot_sha256": "14b6a598c90fbaf68a1200f3366663134c50aa73ea63540200607d35cd183390"
+  "source_review": "S1009 verifies the approved old Great Work adjacency retirement with the reused memory control, automatic Meaning and legacy withdrawal preserved.",
+  "source_runtime": "B472.499 / modinfo499 local candidate, 337 files. B471.498 remains installed.",
+  "tested_source_snapshot_sha256": "85e10cfefa0decc3fd81a8f62fa652e6718051d44ef1c36dd9d9820402486152"
 }

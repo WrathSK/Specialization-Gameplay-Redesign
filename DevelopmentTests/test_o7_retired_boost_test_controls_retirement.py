@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B470, package
+from retired_crew_sources import B470, B471, package
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE, scalars
 
@@ -131,11 +131,13 @@ def panel(root, *, retired):
 
 class RetiredBoostTestControls(unittest.TestCase):
     def test_real_background_init_cleanup_and_reports_match(self):
-        with package(B470) as previous:
+        with package(B470) as previous, package(B471) as retired:
             before = boost_startup(previous, B470)
             for name in ('NetworkBoost.lua', 'LegacyCleanup.lua', 'LegacyCleanupCatalog.lua', 'UI/BoostRefresh.lua',
                          'UI/BoostGreatWorkRead.lua', 'GreatWorkProbe.lua', 'BoostConfig.lua', 'BoostIntegerConfig.lua'):
-                self.assertEqual((previous/'Mod'/name).read_bytes(), (ROOT/'Mod'/name).read_bytes())
+                # The reader's byte identity belongs to the published B470/B471 transition.
+                candidate = retired if name == 'UI/BoostGreatWorkRead.lua' else ROOT
+                self.assertEqual((previous/'Mod'/name).read_bytes(), (candidate/'Mod'/name).read_bytes())
         after = boost_startup(ROOT, None)
         self.assertEqual(before[:-1], after[:-1])
         self.assertEqual((before[-1], after[-1]), (4, 0))
@@ -145,9 +147,9 @@ class RetiredBoostTestControls(unittest.TestCase):
             ordinary_building_preserved=True, retained_boost_reports='MATCH'))
 
     def test_only_the_four_hidden_experimental_controls_retire(self):
-        with package(B470) as previous:
+        with package(B470) as previous, package(B471) as retired:
             old_buttons, old_requests = panel(previous, retired=False)
-        new_buttons, new_requests = panel(ROOT, retired=True)
+            new_buttons, new_requests = panel(retired, retired=True)
         for control in CONTROLS:
             self.assertTrue(old_buttons.pop(control))
         self.assertEqual(old_buttons, new_buttons)

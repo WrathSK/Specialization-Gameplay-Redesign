@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1008
-Implementation Build: source B471.498 / modinfo498. Live B471.498 from 3574404. Stable/main B307.334.
+Status Revision: S1009
+Implementation Build: source B472.499 / modinfo499. Live B471.498 from 3574404. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRED_GREAT_WORK_ADJACENCY_COMMANDS_REVIEWED
+Work State: RETIRED_GREAT_WORK_ADJACENCY_COMMANDS_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the old Great Work adjacency manual commands — S1009
+
+The Owner approved the exact S1008 retirement. Remove GWA_READ/OFF/AUTO, the two hidden controls, the overwritten read callback, the dedicated UI retry listener and the old UI-only adjacency comparison. The previous implementation is recoverable from `3574404f0f484345c469f480531919785781d961`. The package path set stays identical.
+
+- **Runtime Impact Contract (L3, T06/T07/T08).** The old read called the retired owner's description and could request a separate native six-yield comparison. Its dedicated UI update listener is gone, from two to one registered listeners in the P0 panel fixture. The manual read calls fall from one to zero. Both memory controls and reports remain in use. Culture Meaning and its legacy withdrawal path continue to run.
+- **LOCAL_SIMULATION_PASS in scope.** All 14 selected checks pass. A seeded B060 carrier is withdrawn on cold load and the actual Meaning owner configures +3 Science in each fixture city in both arms. The negative withdrawal fixture leaves the unaffected city intact. Both memory commands return matching reports from a populated Store. Three nonempty route proofs match. The carried boost, GC and route suites pass 13, 84 and 64 checks. The old full panel suite has the same two visibility/industrial-history assertion failures on B471 and B472. A historical Meaning fixture fails the same GovernorEstablished assertion on both versions because its standalone setup does not compose the current FactChanges delivery. That assertion and its source remain intact. The comparative cold-load test exercises the current owner separately. The older boost byte-identity comparison for the intentionally edited reader stays pinned to the original B470/B471 transition, with the current background startup and exact withdrawal rechecked.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7adRetiredGreatWorkAdjacencyRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7acRetiredBoostTestControlsRetirement, O7fRuntimeGC and O7hRouteObserverRetirement. Tested source SHA256 `85e10cfefa0decc3fd81a8f62fa652e6718051d44ef1c36dd9d9820402486152`, package SHA256 `f68abfff25298626fa4d186ee0337a8846ef086bc1729ac0117f69a23b970dbb`. Local closure `local/refactor/B472-O7adRetiredGreatWorkAdjacencyRetirement-r2/closure.json` SHA256 `135e7540f7ec874ea20fddc2cd994c99a49bfaa662186c21f8064a55af71537a` with both sets of comparison logs alongside.
+
+B471 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B471 deployment verified and the retired Great Work adjacency requests reviewed — S1008
 

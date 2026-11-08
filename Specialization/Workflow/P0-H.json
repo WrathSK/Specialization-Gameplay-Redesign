@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1008",
-    "runtime": "B471.498 / modinfo498",
+    "status": "S1009",
+    "runtime": "B472.499 / modinfo499",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B471 deployment and review the retired Great Work adjacency path with memory, current Meaning and carrier withdrawal preserved.",
+  "goal": "Verify retirement of the old Great Work adjacency commands while retaining memory observations, current Meaning and legacy withdrawal.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the old Great Work adjacency manual commands — S1009",
+      "reason": "Approved Great Work adjacency command retirement with memory and current Meaning preserved"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -480,6 +486,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B472 passes 14 selected and 13/84/64 carried checks. Both memory reports, Meaning cold withdrawal and three nonempty route proofs match.",
     "B471 installed 337/337 MATCH with both recovery packages verified. The projection preserves the memory control and reports, current Meaning, old carrier withdrawal and three nonempty route proofs.",
     "B471 passes 13 selected and 13/64 carried checks. Actual BoostRefresh request, exact cleanup, readouts and current route proofs match.",
     "B470 installed 337/337 MATCH with both recovery packages verified. The boost test projection preserves the real background init, exact legacy carrier cleanup, current reports and route proofs.",
@@ -3127,6 +3134,91 @@
       "local_transcript_sha256": "f064fb07506f1de3b560774ff2392f5bbe4d66135d9b3c3538cb21fd3873ef10",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b471-deployment-verified-and-the-retired-great-work-adjacency-requests-reviewed--s1008"
+    },
+    "b472_retired_great_work_adjacency_retirement": {
+      "build": "B472.499 / modinfo499",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7adRetiredGreatWorkAdjacencyRetirement": {
+          "tests": 14,
+          "path": "local/refactor/B472-O7adRetiredGreatWorkAdjacencyRetirement-r2/closure.json",
+          "sha256": "135e7540f7ec874ea20fddc2cd994c99a49bfaa662186c21f8064a55af71537a",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "0bc8885fbbfabad1e7ba32c12601e2cd17e7a79d10b37d6cd75e8d9928c41a96"
+          }
+        },
+        "O7acRetiredBoostTestControlsRetirement": {
+          "tests": 13,
+          "path": "local/refactor/B472-CarriedO7ac-r2/closure.json",
+          "sha256": "3a5485bbf3a29c62f3be31749133d3a7b52f5c3cc92e4b6bedeed4c8d54a4a93",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "f30a9fedd0e6d609cb3d20acc763ee21c11ddd4d8c26657f36543a3715047a64"
+          }
+        },
+        "O7fRuntimeGC": {
+          "tests": 84,
+          "path": "local/refactor/B472-CarriedO7f-r2/closure.json",
+          "sha256": "4ad83311de4b10037b7c35f283e27b18da6e4c8a3869a46d74d4693ca037a72c",
+          "transcripts": {
+            ".stdout.log": "85acd17151c652bc9e68cd06ed3acef30f2f3de1f063e770b6553304a4fbcb51",
+            ".stderr.log": "928c38c17a0d29e6d2c1c5789b42eacd6fb100b9ccd0062a7750609a9c40a1f5"
+          }
+        },
+        "O7hRouteObserverRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B472-CarriedO7h-r2/closure.json",
+          "sha256": "4f01201851322803fe57a1a23195cc53657bec0513ce3567d3fae7006a75fd12",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "42390cec936af0745837e9625027da4499d0cfb09a23aa7b1215e56c9ba47465"
+          }
+        }
+      },
+      "files": 337,
+      "removed": [],
+      "prior_source": "3574404f0f484345c469f480531919785781d961",
+      "matching_route_packets": 3,
+      "manual_read_calls": [
+        1,
+        0
+      ],
+      "system_update_listeners": [
+        2,
+        1
+      ],
+      "retained_memory_reports": "MATCH",
+      "meaning_cold": {
+        "old_carriers": 0,
+        "science_values": [
+          3,
+          3
+        ]
+      },
+      "historical_comparisons": {
+        "B471-panel-comparison.log": {
+          "path": "local/refactor/B472-O7adRetiredGreatWorkAdjacencyRetirement-r2/B471-panel-comparison.log",
+          "sha256": "be5e5e0948624d8980e8394d4c4750b1bb5e4e297445621ff0c2721caa7a9be0"
+        },
+        "B471-meaning-fixture.log": {
+          "path": "local/refactor/B472-O7adRetiredGreatWorkAdjacencyRetirement-r2/B471-meaning-fixture.log",
+          "sha256": "1f59ef2d155a7e54a62ea1e265269616eaf1b606209d22cc10cab8fd3eabc1bf"
+        },
+        "B472-panel-comparison.log": {
+          "path": "local/refactor/B472-O7adRetiredGreatWorkAdjacencyRetirement-r2/B472-panel-comparison.log",
+          "sha256": "91193a9113123cacfacdd8ed187b40fd03421cedb2058a657d3225a40a6fc7f5"
+        },
+        "B472-meaning-fixture.log": {
+          "path": "local/refactor/B472-O7adRetiredGreatWorkAdjacencyRetirement-r2/B472-meaning-fixture.log",
+          "sha256": "1747dc84efbe6fda57e849aa979c1bfa8bb6b98c3dc4603258ed73604dc8944e"
+        }
+      },
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "85e10cfefa0decc3fd81a8f62fa652e6718051d44ef1c36dd9d9820402486152",
+      "package_sha256": "f68abfff25298626fa4d186ee0337a8846ef086bc1729ac0117f69a23b970dbb",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-great-work-adjacency-manual-commands--s1009"
     }
   }
 }

@@ -38,6 +38,7 @@ B467 = '5efdc9e9e946b5504d214309e358278b4faf0eb0'
 B468 = '4ac113246dacc257cbe4a4e10aa352308417dcaf'
 B469 = '6c3c4ce874998fb6498768f3b9dc7bb742aa4a2f'
 B470 = '3f7ba47bde7f8bdbacbf13010dc308196d5872d5'
+B471 = '3574404f0f484345c469f480531919785781d961'
 RETIRED = ('ConstructionProbe.lua', 'CrewPrecision.lua')
 RETIRED_GLOBALS = tuple('SPC' + Path(path).stem for path in RETIRED)
 

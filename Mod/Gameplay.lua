@@ -455,22 +455,6 @@ local function request(playerID,params)
     shared.Snapshot=ok and out or ('商业化暂不可用：'..(tostring(out):match('COM_[A-Z_]+') or 'COM_STATE_UNKNOWN'))
     shared.LastToken=params.Token;return
   end
-  if params.Action=='GWA_READ' or params.Action=='GWA_OFF' or params.Action=='GWA_AUTO' then
-    shared.RequestToken=params.Token
-    local ok,out=pcall(function()
-      assert(P.IsTestPlayer(playerID),'GWA_NOT_TEST_PLAYER')
-      local c=Players[playerID]:GetCities():FindID(params.CityID)
-      assert(c and c:GetOwner()==playerID,'GWA_CITY_UNAVAILABLE')
-      local d=assert(shared.GreatWorkAdjacency,'GWA_MODULE_NOT_LOADED')
-      assert(type(d.Describe)=='function','GWA_MODULE_INCOMPLETE')
-      assert(not d.retired or params.Action=='GWA_READ','GWA_RETIRED')
-      if params.Action~='GWA_READ' then d.off[playerID]=params.Action=='GWA_OFF';d.Audit(playerID) end
-      return d.Describe(playerID,c)
-    end)
-    shared.Snapshot=ok and out or ('巨作相邻请求失败：'..tostring(out))
-    shared.LastToken=params.Token
-    return
-  end
   if params.Action=='GW_READ' or params.Action=='GW_BASELINE' or params.Action=='DIALOGUE_OFF' or params.Action=='DIALOGUE_AUTO' or params.Action=='DIALOGUE_TEST25' or params.Action=='DIALOGUE_TEST50' or params.Action=='DIALOGUE_TEST100' then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID);if not c then return end

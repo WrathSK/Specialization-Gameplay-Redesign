@@ -26,12 +26,6 @@ end
 local pendingAction
 local meaningReadReference
 local meaningResponseToken,meaningResponseText,meaningResponseReference,meaningResponseTurn
-local gwaFlight
-local function gwaDiagnostics()
-  local d=ExposedMembers.SPC_P0 or {};local i=d.RequestIngress or {}
-  local bg=ExposedMembers.SPC_DialogueBackground or {}
-  return "后台模块="..tostring(d.GreatWorkAdjacency~=nil).." / 最近收到="..tostring(i.action).." / 本次已收到="..tostring(i.token==pendingToken).."[NEWLINE]相邻采样="..tostring(bg.adjacencyError or "未报告错误")
-end
 local function displayResponse()
   local data=ExposedMembers.SPC_P0 or {}
   if pendingToken and data.Version==P.VERSION and data.LastToken==pendingToken then
@@ -100,15 +94,6 @@ local function displayResponse()
         end
       end
       localReport=report
-    elseif pendingAction and pendingAction:find('^GWA_') then
-      gwaFlight=nil
-      local ok,native=pcall(function()
-        local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
-        return c and SPCBoostGreatWorkRead.Adjacency(P,c) or '城市不可用'
-      end)
-      report=report..'\n'..tostring(native)
-      report=report..'\n'..gwaDiagnostics()
-      localReport=report
     elseif pendingAction and (pendingAction:find('^GW_') or pendingAction:find('^DIALOGUE_')) then
       local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
       if c then report=report..'\n'..SPCBoostGreatWorkRead.Works(P,c,pendingAction=='GW_BASELINE') end
@@ -125,26 +110,6 @@ local function displayResponse()
     return true
   end
   return false
-end
--- B060 read/control requests are idempotent. Only an outstanding click may retry;
--- event pulses do not collect works or adjacency and never create a scan loop.
-local function gwaPulse()
-  local f=gwaFlight;if not f then return end
-  if f.busy then P.Count('busy_skip');return end
-  if displayResponse() then gwaFlight=nil;ContextPtr:ClearUpdate();return end
-  f.pulses=f.pulses+1
-  if f.pulses<3 then return end
-  f.pulses=0
-  if f.retries>=2 then
-    gwaFlight=nil;ContextPtr:ClearUpdate()
-    status(P.VERSION.." | 相邻请求未收到回复[NEWLINE]"..gwaDiagnostics())
-    return
-  end
-  f.retries=f.retries+1;f.busy=true
-  local ok,err=pcall(UI.RequestPlayerOperation,f.pid,PlayerOperations.EXECUTE_SCRIPT,f.packet)
-  f.busy=false
-  if displayResponse() then gwaFlight=nil;ContextPtr:ClearUpdate()
-  elseif not ok then status('相邻发送失败：'..tostring(err)..'[NEWLINE]'..gwaDiagnostics()) end
 end
 local function waitForResponse()
   if displayResponse() then return end
@@ -164,7 +129,6 @@ request=function(action,advance)
   meaningReadReference=nil
   if (pendingAction=='CULTURE_MEANING_READ' or pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ') then readings.CULTURE_MEANING=nil;localReport=nil end
   ContextPtr:ClearUpdate()
-  gwaFlight=nil
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
@@ -203,12 +167,9 @@ request=function(action,advance)
     packet.Epoch=epoch
   end
   if action=='DIALOGUE_CARRIER_NEXT' then packet.Reference=SPCNetworkInput.Reference(city)end
-  if action:find('^GWA_') then gwaFlight={pid=playerID,packet=packet,pulses=0,retries=0,busy=true} end
   local ok,err=pcall(UI.RequestPlayerOperation,playerID,PlayerOperations.EXECUTE_SCRIPT,packet)
-  if gwaFlight then gwaFlight.busy=false end
   trace(ok and ("READING "..action) or ("DISPATCH_ERROR "..P.Scalar(err)))
   if ok then waitForResponse() end
-  if gwaFlight then status(P.VERSION.." | READING "..action.."[NEWLINE]"..gwaDiagnostics()) end
 end
 local function legacyCopy(asBaseline)
   if localReport then
@@ -328,8 +289,6 @@ local function initialize()
   Controls.AestheticButton:SetToolTipString('左键：本城时代数、普通建筑与旅游配置；右键：时代和建筑组成，继续右键翻页。配置不是原生实测。')
   Controls.GWReadButtonCaption:SetText(Locale.Lookup('LOC_SPC_GREAT_WORK_FACTS'))
   Controls.GWReadButton:SetToolTipString('左键：本城巨作件数与历史时代；右键：作品组成和国内来源，继续右键翻页。只读确认缓存，不重新采集。')
-  Controls.GWAReadButtonCaption:SetText('巨作相邻')
-  Controls.GWAReadButton:SetToolTipString('巨作相邻')
   Controls.Lv4CopyButtonCaption:SetText('四级区域收益')
   Controls.Lv4CopyButton:SetToolTipString('四级区域收益')
   Controls.BackgroundRoutesButtonCaption:SetText('当前商路')
@@ -401,9 +360,6 @@ local function initialize()
   Controls.DialogueTest25Button:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_TEST25') end)
   Controls.DialogueTest50Button:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_TEST50') end)
   Controls.DialogueTest100Button:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_TEST100') end)
-  Controls.GWAReadButton:RegisterCallback(Mouse.eLClick,function() request('GWA_READ') end)
-  Controls.GWAOffButton:RegisterCallback(Mouse.eLClick,function() request('GWA_OFF') end)
-  Controls.GWAAutoButton:RegisterCallback(Mouse.eLClick,function() request('GWA_AUTO') end)
   Controls.GWBaselineButton:RegisterCallback(Mouse.eLClick,function() request('GW_BASELINE') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eLClick,function() request('INSPIRE_STATUS') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eRClick,function() request('INSPIRE_DETAIL') end)
@@ -485,7 +441,7 @@ initialize=function()
  end)
  Controls.PerformanceSnapshotButton:SetToolTipString('受控自动GC试运行。左键只读结果；右键开启/关闭本次加载的自动调用，不会立即回收。不修改专业数据；失败后保持停用。')
  local function projectAction(fn)
-  ContextPtr:ClearUpdate();gwaFlight=nil;pendingToken=nil;pendingAction=nil;fn()
+  ContextPtr:ClearUpdate();pendingToken=nil;pendingAction=nil;fn()
  end
  Controls.PerformanceReadButton:RegisterCallback(Mouse.eLClick,function()projectAction(timer.Read)end)
  Controls.PerformanceReadButton:RegisterCallback(Mouse.eRClick,function()projectAction(timer.Cancel)end)
@@ -494,6 +450,5 @@ initialize=function()
 end
 ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)
-Events.SystemUpdateUI.Add(gwaPulse)
 Events.SystemUpdateUI.Add(placeEntry)
-ContextPtr:SetShutdown(function() SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead();meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil;if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)
+ContextPtr:SetShutdown(function() SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead();meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil;if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)

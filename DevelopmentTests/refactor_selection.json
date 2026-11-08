@@ -2,6 +2,14 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7adRetiredGreatWorkAdjacencyRetirement": [
+      "test_o7_retired_great_work_adjacency_retirement",
+      "test_culture_meaning_automatic.AutomaticMeaningTests.test_exact_legacy_cleanup_failure_blocks_only_affected_city",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_four_rows_and_report_do_not_overlap",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_visibility_cleanup_does_not_execute_probe_or_change_runtime_state",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_unique_xml_control_ids_and_current_lua_parse",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7acRetiredBoostTestControlsRetirement": [
       "test_o7_retired_boost_test_controls_retirement",
       "test_refactor_s9e3.CentralLegacy",
