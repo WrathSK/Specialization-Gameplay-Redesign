@@ -1,17 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0934
+Status Revision: S0935
 Implementation Build: source and live B435.462 / modinfo462 from 35d5998. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: DEVELOPMENT_DEPLOYMENT_ACTIVE_NATIVE_CONFIRMATION_DEFERRED
+Work State: DEVELOPMENT_DEPLOYMENT_ACTIVE_OFFICIAL_LOAD_VERIFIED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Official-profile assembly and startup passed — S0935
+
+- **USER_GAME_TEST_PASS in scope.** The Owner ran one fresh B435.462 load in the fixed official Gathering Storm environment. The actual gameplay target set matched the 25 official targets plus SPC, and the installed tree matched the 352 source files. Gameplay SQL validation passed. The assembly table contains exactly `(1, 'OFFICIAL', 1)` with 82 inventory rows. Gated definitions contain 95 Standardization targets, 855 levels, 256 discount targets, 27 Industry Wonder effects and 16 Development Investment effects.
+- **Startup evidence.** The collector identifies B435.462 and contains contiguous sequence 1–72. It records the Development context, the startup seal and the first local-turn summary without a failed or skipped startup entry. The B434 catalog failure is absent. The initially pending Standardization view reaches `STD_READY` after empty-route verification. `TPR|DP` remains UNKNOWN in the generic readiness sample, separate from the startup error list.
+- **Scope.** The previously accepted five native panels carry forward from S0932. The new evidence covers one official-profile load, assembled definitions and first-turn startup. Native ability effects, nonempty trade routes, transactions, save/load and O6 UI interactions retain their separate gates.
+- **Evidence locator.** Native logs and the database snapshot are in ignored `local/legacy-workspace/Specialization/Status/Validation/Evidence/B435_Official_Assembly_Check_20261107`. Manifest SHA256 `1bdf54d750d48e91aebb65bbec2ce1db72a4451dc1a1eb0c068305f5a8747880`. The manifest identifies the matching B205 collector session and its file hashes.
+
+User decision and user testing are complete for this load check. Primary next is the next dependency-ready development slice under the existing plan and review gates.
 
 ### B435 deployed in autonomous development mode — S0934
 

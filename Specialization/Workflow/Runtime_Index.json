@@ -1767,6 +1767,6 @@
     }
   },
   "source_review": "S0933 SQL compatibility validated locally. S0934 confirms receipt-bound deployment.",
-  "source_runtime": "B435.462 / modinfo462 deployed from 35d5998. Official-profile native confirmation deferred.",
+  "source_runtime": "B435.462 / modinfo462 deployed from 35d5998. Fixed official-profile load and startup verified in S0935.",
   "tested_source_snapshot_sha256": "d537a9808767460fbd45efe7bf97d0193f08ab5631629a0fc9d537de8d1701f4"
 }
