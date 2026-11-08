@@ -1,8 +1,8 @@
 """Remove the retired B050 shell while keeping the current cleanup owner."""
 import unittest
 
-from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B459, gameplay, package
+from refactor_harness import ROOT, measure
+from retired_crew_sources import B459, B460, gameplay, package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_manual_yield_carrier_retirement import panel_controls
 from test_o7_route_observer_retirement import exercise_proof
@@ -68,11 +68,11 @@ def request_scenario(game, removed):
 
 class HalfYieldExperimentRetirement(unittest.TestCase):
     def test_real_roots_keep_route_packets_and_only_drop_retired_acknowledgments(self):
-        profile = PackageVFS(forbidden_globals=('SPCHalfYieldProbe',))
-        self.assertNotIn(REMOVED, profile.files | profile.imports)
-        current_game = Context(vfs=profile)
-        current_ui = Context(name='UI/BackgroundRoutes',vfs=profile)
-        with package(B459) as previous:
+        with package(B459) as previous, package(B460) as retired:
+            current_game = gameplay(retired,revision=B460,forbidden_globals=('SPCHalfYieldProbe',))
+            current_ui = gameplay(retired,revision=B460,name='UI/BackgroundRoutes',
+                                  forbidden_globals=('SPCHalfYieldProbe',))
+            self.assertNotIn(REMOVED,current_game.vfs.files | current_game.vfs.imports)
             old_game = gameplay(previous,revision=B459)
             old_ui = gameplay(previous,revision=B459,name='UI/BackgroundRoutes')
             packets = exercise_proof(old_game,old_ui)
@@ -91,9 +91,9 @@ class HalfYieldExperimentRetirement(unittest.TestCase):
             'matching_route_packets':len(packets),'request_city_accesses':0})
 
     def test_only_three_hidden_controls_leave_the_panel(self):
-        with package(B459) as previous:
+        with package(B459) as previous, package(B460) as retired:
             old_buttons, old_requests = panel_controls(previous)
-            new_buttons, new_requests = panel_controls(ROOT)
+            new_buttons, new_requests = panel_controls(retired)
             for button in CONTROLS:
                 self.assertTrue(old_buttons.pop(button))
             self.assertEqual(new_buttons,old_buttons)
@@ -133,5 +133,5 @@ class HalfYieldExperimentRetirement(unittest.TestCase):
             'existing_Store_retry':'CONFIRMED_IN_FIXTURE'})
 
     def test_exact_temporary_switch_and_recovery(self):
-        with package(B459) as previous:
-            verify_package_round_trip(self,previous/'Mod',ROOT/'Mod',(REMOVED,),'LegacyCleanup.lua')
+        with package(B459) as previous, package(B460) as retired:
+            verify_package_round_trip(self,previous/'Mod',retired/'Mod',(REMOVED,),'LegacyCleanup.lua')

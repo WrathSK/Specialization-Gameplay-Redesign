@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0986
-Implementation Build: source B460.487 / modinfo487. Live B460.487 from 4c2c17c. Stable/main B307.334.
+Status Revision: S0987
+Implementation Build: source B461.488 / modinfo488. Live B460.487 from 4c2c17c. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: COMPLETION_EVENT_OBSERVER_RETIREMENT_REVIEWED
+Work State: COMPLETION_EVENT_OBSERVER_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the old completion event observer — S0987
+
+The Owner approved the exact retirement reviewed in S0986. Remove the read-only `Mod/CompletionProbe.lua`, its two manifest declarations, one Gameplay startup, and two hidden P0 event viewers with their callbacks and private renderer. The Lua is recoverable from `4c2c17ca0936c7777a1063c8921b3656811b4596:Mod/CompletionProbe.lua` at SHA256 `ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b`. The distinct CompletionRecordProbe request and the formal Store and Claim owners retain their paths.
+
+- **Runtime Impact Contract (L3, T01/T04/T08).** The old observer sampled founding and district events and retained a bounded trace in memory. Four modeled observer registrations and their `[COMPLETION]` output retire. In the actual Store fixture, modeled district lookups go from seven to four. No new listeners, writers, retries, timers or persisted records enter this batch.
+- **LOCAL_SIMULATION_PASS in scope.** All 49 selected methods pass. The first valid Campus, later Theater handling, Claim eligibility, persisted bytes and Store write counts match in the paired scenarios. The current source-attribution tests cover confirmed, scoped and unattributed input. Actual Gameplay/UI roots retain the three matching nonempty proof packets and separate completion-record query. Only the two approved hidden controls leave P0. Exact disposable activation and restoration pass. The 64 half-point and 22 Meaning regression checks pass. Historical startup order and half-point boundaries still replay from their published packages.
+- **STATIC_CONFIRMED and reproduction.** 214 Lua 5.1 compiles, 32 XML-family parses, 678 file references and 10 replacements across 343 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7sCompletionEventObserverRetirement` with CPython 3.14/Lupa 2.8, the official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7rHalfYieldExperimentRetirement and O7qMeaningExperimentRetirement. Tested source SHA256 `a36a128212396506c4529fa0e0a7ff350cb6a5416c611abf2d9bdeafc8a24461`, package SHA256 `8fd190186a6b925e268ca428584043cbc075f51da60af6c2cdeeb450f7cd37bb`. Local closure `local/refactor/B461-O7sCompletionEventObserverRetirement-r2/closure.json` SHA256 `76b86021b6b5c57c42042ff8e2de844fbe0fd56a5d6765ad2ebdf00fa3bc4e4a`. Four older PU07a expectations on unattributed input failed identically in the initial B461 selection and at B460. The final selection exercises the later accepted scoped and unattributed guards without editing the historical assertions. Native behavior remains unmeasured in this batch.
+
+B460 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B460 deployment verified and completion event observer reviewed — S0986
 

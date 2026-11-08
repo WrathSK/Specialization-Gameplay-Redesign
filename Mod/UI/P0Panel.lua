@@ -287,26 +287,6 @@ local function copy()
   status('诊断报告已输出到游戏 Lua.log。[NEWLINE]请保存该日志后回传；不依赖剪贴板。[NEWLINE]包含已读取报告与当前后台缓存，不会重建或修改游戏状态。')
 end
 
-local completionPage=1
-local function showCompletion(older)
-  ContextPtr:ClearUpdate();pendingToken=nil
-  local pid=Game.GetLocalPlayer()
-  if not P.IsTestPlayer(pid) then return end
-  local data=(ExposedMembers.SPC_P0 or {}).CompletionProbe
-  if not data or data.version~=P.VERSION then status(P.VERSION.." | 尚无完成事件探针记录；请截图版本号。");return end
-  local b=data.players[pid] or {rows={},built=0,constructed=0,added=0,dropped=0,errors=0}
-  local pages=math.max(1,math.ceil(#b.rows/2))
-  completionPage=older and (completionPage%pages+1) or 1
-  local lines={P.VERSION.." | 完成事件（只读已有记录） "..completionPage.."/"..pages,
-    "建城="..b.built.." 完成通知="..b.constructed.." 区域加入="..b.added.." 错误="..b.errors.." 丢弃旧条目="..b.dropped,
-    "CityBuilt="..tostring(data.hooks.CityBuilt).." Constructed="..tostring(data.hooks.OnDistrictConstructed),
-    "Added="..tostring(data.hooks.DistrictAddedToMap).." Load="..tostring(data.hooks.LoadScreenClose).." / "..data.phase}
-  local last=#b.rows-(completionPage-1)*2
-  for i=last,math.max(1,last-1),-1 do lines[#lines+1]=b.rows[i].text end
-  if #b.rows==0 then lines[#lines+1]="本次脚本加载后无记录；不代表城市从未建过区域。" end
-  lines[#lines+1]="计数每次读档重置；未写专业/Potential。截图即可。"
-  localReport=table.concat(lines,"\n");status(localReport:gsub("\n","[NEWLINE]"))
-end
 local entryHeader,entryWidth,anchorWarning
 local function placeEntry()
   if not entryHeader then
@@ -502,8 +482,6 @@ local function initialize()
   Controls.EnvelopeNextButton:RegisterCallback(Mouse.eLClick,function() request("ENVELOPE_NEXT") end)
   Controls.StorageReadButton:RegisterCallback(Mouse.eLClick,function() request("STORAGE_READ") end)
   Controls.StorageWriteButton:RegisterCallback(Mouse.eLClick,function() request("STORAGE_WRITE") end)
-  Controls.CompletionButton:RegisterCallback(Mouse.eLClick,function() showCompletion(false) end)
-  Controls.CompletionNextButton:RegisterCallback(Mouse.eLClick,function() showCompletion(true) end)
   Controls.CaptureButton:RegisterCallback(Mouse.eLClick,function() request("CAPTURE") end)
   Controls.BoostTestZeroButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_ZERO') end)
   Controls.BoostTestHalfButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_TEST_HALF') end)

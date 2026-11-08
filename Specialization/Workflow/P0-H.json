@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0986",
-    "runtime": "B460.487 / modinfo487",
+    "status": "S0987",
+    "runtime": "B461.488 / modinfo488",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B460 deployment and the exact B011 observer proposal with Store first completion and Claim preserved.",
+  "goal": "Verify B011 observer removal and preserve first completion, Claim, route proof and the separate completion-record read.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the old completion event observer — S0987",
+      "reason": "Approved one-path retirement with retained Store and Claim owners"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -348,6 +354,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B461 passes 49 selected checks and 64/22 carried checks. Actual Store and Claim outcomes match and four modeled observer registrations disappear.",
     "B460 installed 344/344 MATCH with B459 and B307 recovery verified. Projected B011 observer removal preserves first completion, Claim, current route proof and separate completion-record request.",
     "B460 passes 64 selected methods and 22/19 carried checks. The actual Store fixture retains the exact 32-carrier exit and same-ticket recovery.",
     "B459 installed 345/345 MATCH with B458 and B307 recovery verified. The projected half-point retirement preserves the 32 exact central removals, city and route reports, and visible P0 controls.",
@@ -1908,6 +1915,43 @@
       "local_evidence": "local/refactor/B460-CompletionEventObserverRetirementReview/result.json",
       "local_evidence_sha256": "52f7d4b5fc40526c0b15b53fac4dbe7aa5e7289ec73157c30e2e1eccc83d2643",
       "report": "Specialization/Status/Specialization_P0_Status.md#b460-deployment-verified-and-completion-event-observer-reviewed--s0986"
+    },
+    "b461_completion_event_observer_retirement": {
+      "build": "B461.488 / modinfo488",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7sCompletionEventObserverRetirement": {
+          "tests": 49,
+          "path": "local/refactor/B461-O7sCompletionEventObserverRetirement-r2/closure.json",
+          "sha256": "76b86021b6b5c57c42042ff8e2de844fbe0fd56a5d6765ad2ebdf00fa3bc4e4a"
+        },
+        "O7rHalfYieldExperimentRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B461-CarriedO7r-r2/closure.json",
+          "sha256": "048022dbff8e734c00ce7e82e9ca4a4e53107d8eca44e22421b1899a22d7e758"
+        },
+        "O7qMeaningExperimentRetirement": {
+          "tests": 22,
+          "path": "local/refactor/B461-CarriedO7q-r2/closure.json",
+          "sha256": "8708d7af0e42146a9eff5f1cdb0e5ab6276744465aa0fb9beaf0188508a9250c"
+        }
+      },
+      "files": 343,
+      "removed": {
+        "Mod/CompletionProbe.lua": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b"
+      },
+      "prior_source": "4c2c17ca0936c7777a1063c8921b3656811b4596",
+      "modeled_removed_listeners": 4,
+      "modeled_district_reads": [
+        7,
+        4
+      ],
+      "matching_route_packets": 3,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "a36a128212396506c4529fa0e0a7ff350cb6a5416c611abf2d9bdeafc8a24461",
+      "package_sha256": "8fd190186a6b925e268ca428584043cbc075f51da60af6c2cdeeb450f7cd37bb",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-completion-event-observer--s0987"
     }
   }
 }

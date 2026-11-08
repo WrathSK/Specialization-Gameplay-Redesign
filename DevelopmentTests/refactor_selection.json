@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7sCompletionEventObserverRetirement": [
+      "test_o7_completion_event_observer_retirement",
+      "test_pu07_source_attribution.NormalSource",
+      "test_pu07_source_attribution.ScopedFailureComposition",
+      "test_pu07_source_attribution.AttributionOnly",
+      "test_pu07_source_attribution.UnattributedBoundary",
+      "test_pu07a_completion_scope.PersistedGuards",
+      "test_refactor_s9c2.Startup",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7rHalfYieldExperimentRetirement": [
       "test_o7_half_yield_experiment_retirement",
       "test_refactor_s9e4",

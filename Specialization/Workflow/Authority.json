@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0986",
-    "runtime": "B460.487 / modinfo487",
+    "status": "S0987",
+    "runtime": "B461.488 / modinfo488",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "4c2c17ca0936c7777a1063c8921b3656811b4596",
-  "current_batch": "COMPLETION_EVENT_OBSERVER_RETIREMENT_REVIEWED",
-  "next_batch": "Await exact approval to remove CompletionProbe.lua, its two manifest entries, one Gameplay startup and the two hidden event viewer controls, callbacks and private renderer. Retain Store, Claim, CompletionRecordProbe and the completion-record request.",
+  "current_batch": "COMPLETION_EVENT_OBSERVER_RETIRED_LOCAL",
+  "next_batch": "Verify the guarded B461 switch and review the opt-in city sequence observation separately from Store admission and existing event-order controls.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B460.487 / modinfo487 temporary develop from 4c2c17ca0936c7777a1063c8921b3656811b4596, 344/344 MATCH, SHA256 b33c23567b705b77e349baa555f5bc06dc70d671b06ab05de47bf76779908882. Receipt B460.487-4c2c17c-playtest.json DEVELOP_ACTIVE. B459 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0986 verifies B460 deployment and both recovery packages and isolates the B011 completion event observer from Store and Claim.",
+  "context_review_status": "S0987 verifies the old completion event observer removal, retained Store, Claim and completion query, and exact package restoration.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b460-deployment-verified-and-completion-event-observer-reviewed--s0986",
-  "source_status": "B460.487 / modinfo487 deployed at SHA256 b33c23567b705b77e349baa555f5bc06dc70d671b06ab05de47bf76779908882. Exact retired half-point shell removal verified.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-completion-event-observer--s0987",
+  "source_status": "B461.488 / modinfo488 locally verified at SHA256 8fd190186a6b925e268ca428584043cbc075f51da60af6c2cdeeb450f7cd37bb. B460.487 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

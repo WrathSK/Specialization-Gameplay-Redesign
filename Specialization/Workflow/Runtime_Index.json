@@ -135,11 +135,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
     },
-    "Mod/CompletionProbe.lua": {
-      "sha256": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
     "Mod/CompletionRecordProbe.lua": {
       "sha256": "3cc597823cf066869769d2646ace389d7c087d4cb8926ee7c7fd8de849df1e72",
       "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
@@ -626,9 +621,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "3ad85698507476e529d1e790773b456c7b473585e8878baabe8f5b45bc242736",
+      "sha256": "c46d89b420a5dab6bff3be5667d03d72019cc213456f7c1b7fd937d9a3006516",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0985 B460 retired B050 half-point experiment shell removal."
+      "provenance": "S0987 B461 old completion event observer retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -761,9 +756,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "38ea18208af003f0996de9e4948b99390532ff42a869f7f3b2144d725fda6450",
+      "sha256": "35fc1701f50b9dfe6194575120b4bdc45c0545b129d0f28be7f174f632f7f5d9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0985 B460 retired B050 half-point experiment shell removal."
+      "provenance": "S0987 B461 old completion event observer retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -891,9 +886,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "3ef54cc978c2f8032c8798c0d0125d4e30221dd5d17ca94c8b0116d2b449761e",
+      "sha256": "c31118a0dc6ba5f1de5bba031fa48e45dc3c742fa58cab4f6f855eb3b253cda5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0985 B460 retired B050 half-point experiment shell removal."
+      "provenance": "S0987 B461 old completion event observer retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1391,14 +1386,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "7f8f29e9a510321bb3fffeac322cf6cce99a66a0c5a423920277719ebc1b31a9",
+      "sha256": "3788172efa4170d316376423a5770786fb397aa07efd43b0e821dc89b5fc0876",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0985 B460 retired B050 half-point experiment shell removal."
+      "provenance": "S0987 B461 old completion event observer retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "1cfc93c91ec8c3cb789575f3928f17cefa90883f60c8264c92e7f1a37b3e8ad3",
+      "sha256": "2e06999861db17c18a631e758b73b38f5e291fdaba115e10c2bd5aac2059c415",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0985 B460 retired B050 half-point experiment shell removal."
+      "provenance": "S0987 B461 old completion event observer retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1726,7 +1721,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0986 verifies B460 deployment and both recovery packages and isolates the B011 completion event observer from Store and Claim.",
-  "source_runtime": "B460.487 / modinfo487 deployed from 4c2c17c with the approved retired half-point shell removed.",
-  "tested_source_snapshot_sha256": "4e04cf6bd86ac826a0790ab91d21d1dbf44b91162ae93aac7cadb627b66ef03b"
+  "source_review": "S0987 verifies the old completion event observer removal, retained Store, Claim and completion query, and exact package restoration.",
+  "source_runtime": "B461.488 / modinfo488 local candidate, 343 files. B460.487 remains installed.",
+  "tested_source_snapshot_sha256": "a36a128212396506c4529fa0e0a7ff350cb6a5416c611abf2d9bdeafc8a24461"
 }

@@ -797,7 +797,6 @@ else stage("TRADE_ACTIVITY_EVENT_ABSENT") end
 
 -- Explicit ordered startup entries. Failure containment does not reorder dependencies.
 
-composition.Run('CompletionProbe',{},{'CompletionProbe'},function() include('CompletionProbe');SPCCompletionProbe.Start(P,shared) end)
 
 composition.Run('StorageProbe',{},{'StorageProbe'},function() include('StorageProbe');SPCStorageProbe.Start(P,shared) end)
 
