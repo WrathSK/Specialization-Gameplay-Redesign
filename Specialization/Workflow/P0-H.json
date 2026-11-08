@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0949",
-    "runtime": "B443.470 / modinfo470",
+    "status": "S0950",
+    "runtime": "B444.471 / modinfo471",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B443 official interaction and route the next dependent production-read retirement preparation.",
+  "goal": "Verify the report-only production read transfer and prepare scoped diagnostic retirement.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### The Standardization report reads the selected production queue — S0950",
+      "reason": "Report-only queue read, absent-probe test and remaining DEV responsibilities"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -126,6 +132,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B444 passes all 51 selected local checks, including official and HD report detail and both actual ConstructionProbe absence modes. The report detail has no native confirmation.",
     "B443 official native interaction passes the observed institution, Study and Crew scope. The raw queue records 0.9 Overflow, with no subsequent inheritance observed.",
     "B443 HD native observation passes production reader, Study queue/timing, Gold and applied carrier update, and Crew formation/use in scope. Native queue shows 0.2 residue.",
     "B443 deployment: 359/359 MATCH, receipt DEVELOP_ACTIVE, both retained recovery packages verified and no pending transaction. Native production interaction remains required.",
@@ -762,6 +769,18 @@
       "native_evidence_sha256": "5ba6f7a1fea49e516ee608ca3237bdceb2979f3a68e0a3da2210a87a6b099f8d",
       "db_extract_sha256": "1f9761d89d1e6c6bc0dff8d98f806df8817448d7fbacb18054bb883eae8ac141",
       "report": "Specialization/Status/Specialization_P0_Status.md#official-production-interaction-verified-on-b443--s0949"
+    },
+    "b444_production_report": {
+      "build": "B444.471 / modinfo471",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": 51,
+      "package_sha256": "7d7e4a5a8126f5bf26877a8686624baa4e214afdf62f7c4c92fa8327125f97b7",
+      "source_snapshot_sha256": "31ad807506f5a2e22040a83f5d0bcf927f8ed1b3e62e6f43f7aeaf46d074d236",
+      "local_evidence": "local/refactor/B444-O7aProductionReport/closure.json",
+      "local_evidence_sha256": "5d9145d6b5b622a26b5667d55f15b57686ebe1f20fc12357949ffe9daaa581e4",
+      "deployed": false,
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#the-standardization-report-reads-the-selected-production-queue--s0950"
     }
   }
 }

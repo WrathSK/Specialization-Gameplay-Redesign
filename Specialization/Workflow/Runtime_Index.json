@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "399f0cc57b33d2d1b2a9ab3e6936fa1c22a2655160c4a4a1a7fd7ed6d92f019b",
+      "sha256": "1bd0b26c9327ed4cb8a935c2d7b32d1f54dce3f897fde7694f20d47fbbb81e61",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0946 B443 direct binding of the selected production panel callback. B443 native verification pending."
+      "provenance": "S0950 B444 verified Standardization report queue read migration."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "11a4d57f1ffe96fc636940b5c5d9015b329efc9e31cd00c0b363ec8c682bbce9",
+      "sha256": "207590d500d9b21feecb2f977c3e308fc1ed16c2db10626bfba9cd335ba32809",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0946 B443 direct binding of the selected production panel callback. B443 native verification pending."
+      "provenance": "S0950 B444 verified Standardization report queue read migration."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -946,9 +946,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/StandardizationEffects.lua": {
-      "sha256": "8c135b2888b072230713d183b471b9c490ab2a53237af16111ae1050efd1f0c4",
+      "sha256": "5e4db568e7c368efc1d29fe978dd1237413721170eb791ddfae2ceafea9fdaef",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
+      "provenance": "S0950 B444 verified Standardization report queue read migration."
     },
     "Mod/StorageProbe.lua": {
       "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
@@ -1251,9 +1251,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "157c3cad381edd765f87e39ce4cc73042646363ef549b2ec58fba91fcb3343a4",
+      "sha256": "60b67c420d887f075c6c7973fdc61df25afd5b373c4381cd517090139cf33e33",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0946 B443 direct binding of the selected production panel callback. B443 native verification pending."
+      "provenance": "S0950 B444 verified Standardization report queue read migration."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "cd9e915db1b6b33ce67d2ac3fa4d74d836c82db32823d700c50e158315293e1b",
@@ -1801,7 +1801,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0949 verifies the scoped B443 official interaction. The HD interaction at S0948 remains accepted. Production dependency retirement preparation is next.",
-  "source_runtime": "B443.470 / modinfo470 deployed from 45206f6. HD and official native production interactions passed in their observed scope.",
-  "tested_source_snapshot_sha256": "4ed9fc17d677b5bc0a78b02fd2b551e973cab3cd8fd12139c1e2f7553ad18cfa"
+  "source_review": "S0950 verifies the explicit Standardization production read in both actual panel entries and the scoped missing ConstructionProbe comparison.",
+  "source_runtime": "B444.471 / modinfo471 local candidate, 359 files. B443.470 remains installed.",
+  "tested_source_snapshot_sha256": "31ad807506f5a2e22040a83f5d0bcf927f8ed1b3e62e6f43f7aeaf46d074d236"
 }

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0949
-Implementation Build: source B443.470 / modinfo470. Live B443.470 from 45206f6. Stable/main B307.334.
+Status Revision: S0950
+Implementation Build: source B444.471 / modinfo471. Live B443.470 from 45206f6. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: PRODUCTION_DEPENDENCY_RETIREMENT_PREPARATION
+Work State: DIAGNOSTIC_RETIREMENT_PREPARATION
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### The Standardization report reads the selected production queue — S0950
+
+The explicit Standardization discount report used ConstructionProbe to append current production progress and cost. Crew authorization had already moved to its own production UI read. On an official profile the old report helper was unavailable. The selected official or HD production panel now supplies the report's queue detail from the same native getters documented in Engine Reference ER02. A missing reader or a changed city or target leaves the existing applied-effect report readable and marks current progress unavailable.
+
+- **Runtime Impact Contract (L2, T04/T07/T08).** Only the existing explicit report invokes this read. The UI resolves one owned city and its current queue item, checks at most four known type lookups, and reads one cost and one progress. The Gameplay report checks the scoped city reference, turn, current target and reader before adding scalar detail. The panel withdraws its own reader on shutdown. The report detail does not drive rewards, carrier writes or Crew admission. There are no new native listeners, scans, retries, saved fields or GC changes.
+- **LOCAL_SIMULATION_PASS in scope.** All 51 selected tests pass. The fixed B443 comparison lacks progress in both real panel entries and in the real report dispatcher. The new checks cover the four previously reported item kinds, target/reference change, and panel shutdown. The actual Gameplay entry attempts to load ConstructionProbe in both absent-file models. The report returns the same values as the present-file case. One cost and progress read per report and zero additional reads across 1,000 idle publications per panel profile. The selection also covers the real Crew reader, unique debit/grant receipts, exact Standardization behavior and production UI containment.
+- **STATIC_CONFIRMED and reproduction.** 230 Lua 5.1 compilations, 32 XML-family parses, 710 File references and 11 LuaReplace targets across 359 runtime files. CPython 3.14/Lupa 2.8 with the pinned `SPC_OFFICIAL_ASSETS`. Run `python3.14 DevelopmentTests/run_refactor.py --stage O7aProductionReport`. Tested source SHA256 `31ad807506f5a2e22040a83f5d0bcf927f8ed1b3e62e6f43f7aeaf46d074d236`. Package SHA256 `7d7e4a5a8126f5bf26877a8686624baa4e214afdf62f7c4c92fa8327125f97b7`. Full local result `local/refactor/B444-O7aProductionReport/closure.json` at SHA256 `5d9145d6b5b622a26b5667d55f15b57686ebe1f20fc12357949ffe9daaa581e4`. The fixed B443 report comparison is retained beside it.
+
+The report transfer closes one production dependency. The manual DEV injection and the old Crew precision measurement still use ConstructionProbe. They are separate from the standard Crew path and require exact retirement review. The scoped B443 official and HD results carry forward. This report detail is locally verified and may be spot-checked in a later session. Live remains B443 until the development deployment completes.
 
 ### Official production interaction verified on B443 — S0949
 

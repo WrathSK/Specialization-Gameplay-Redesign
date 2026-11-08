@@ -323,6 +323,22 @@ function SPCStandardizationEffects.Start(P,shared)
   local todo=dirty;dirty={}
   for pid,q in pairs(todo)do d.Audit({player=pid,changed=not q.all and q.cities or nil})end
  end
+ local function readProgress(pid,c,r)
+  local read=ExposedMembers.SPC_StandardizationProgressRead
+  assert(type(read)=='function' and c:GetOwner()==pid,'STD_PROGRESS_UNAVAILABLE')
+  local id,x,y,turn=c:GetID(),c:GetX(),c:GetY(),Game.GetCurrentGameTurn()
+  assert(ref(c)==r.reference,'STD_PROGRESS_CHANGED')
+  local current=c:GetBuildQueue():CurrentlyBuilding()
+  local q=read(pid,id,current)
+  assert(type(q)=='table' and getmetatable(q)==nil and q.owner==pid and q.city==id and q.x==x and q.y==y
+   and q.turn==turn and type(q.target)=='string' and type(q.hash)=='number' and q.hash~=0
+   and (q.target==current or q.hash==current) and ExposedMembers.SPC_StandardizationProgressRead==read
+   and d.records[key(pid,id)]==r and ref(c)==r.reference and Game.GetCurrentGameTurn()==turn
+   and c:GetBuildQueue():CurrentlyBuilding()==current,'STD_PROGRESS_CHANGED')
+  assert(type(q.cost)=='number' and q.cost>0 and q.cost<math.huge
+   and type(q.progress)=='number' and q.progress>=0 and q.progress<math.huge,'STD_PROGRESS_INVALID')
+  return q
+ end
  function d.Describe(pid,c,page)
   local r=d.records[key(pid,c:GetID())];local reason=d.errors[key(pid,c:GetID())] or d.error
   if not r then return '工业标准化 | '..c:GetName()..'\n等待：'..tostring(reason or 'STD_NOT_READY')end
@@ -342,14 +358,15 @@ function SPCStandardizationEffects.Start(P,shared)
   out[#out+1]='仅加速本来合法的普通建筑／区域；不含奇观，不授予建造或购买权限。'
   out[#out+1]='各模板只取实际持有者最大值；区域逐模板购买折扣未接入。配置须与原生进度／价格核对。'
   observe(pid,c,r,reason,true)
-  if shared.ConstructionProbe and shared.ConstructionProbe.ReadSnapshot then
-   local ok,q=pcall(shared.ConstructionProbe.ReadSnapshot,pid,c)
-   if ok then
-    out[#out+1]='当前生产进度：'..q.progress..' / '..q.cost
-    if trace then trace.Record('INDUSTRY_CONSTRUCTION_REPORT',{owner=pid,city=c:GetID(),eventKind=q.kind,
-     requested=q.target,nativeProgress=q.progress,nativeCost=q.cost,expected=r.applied[(q.kind=='Buildings' and 'BUILDING:' or 'DISTRICT:')..q.target] or 0})end
-   else out[#out+1]='当前生产进度未读取；请以原生生产列表为准。'end
-  end
+  local ok,q=pcall(readProgress,pid,c,r)
+  if ok then
+   out[#out+1]='当前生产进度：'..q.progress..' / '..q.cost
+   if trace then
+    local prefix=q.kind=='Buildings' and 'BUILDING:' or q.kind=='Districts' and 'DISTRICT:'
+    trace.Record('INDUSTRY_CONSTRUCTION_REPORT',{owner=pid,city=c:GetID(),eventKind=q.kind,
+     requested=q.target,nativeProgress=q.progress,nativeCost=q.cost,expected=prefix and r.applied[prefix..q.target] or 0})
+   end
+  else out[#out+1]='当前生产进度未读取；请以原生生产列表为准。'end
   return table.concat(out,'\n')
  end
  local function hook(src,n,f)local e=P.Field(src,n);if e and e.Add then e.Add(f)end end

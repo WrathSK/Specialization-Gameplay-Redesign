@@ -79,6 +79,43 @@ local function crew(item)
  -- Generated speed variants exist only for the exact packaged base IDs.
  return base~=nil and crewTypes[base]==true and GameInfo and GameInfo.Projects and GameInfo.Projects[item.Type]~=nil or false
 end
+-- Report-only native progress. The HD helper used these same unmodified cost getters.
+adapters.Add('StandardizationProgressRead',function()return false end,{'SPC_StandardizationProgressRead'},function()
+ local kinds={
+  {'Buildings','BuildingType','GetBuildingCost','GetBuildingProgress'},
+  {'Districts','DistrictType','GetDistrictCost','GetDistrictProgress'},
+  {'Units','UnitType','GetUnitCost','GetUnitProgress'},
+  {'Projects','ProjectType','GetProjectCost','GetProjectProgress'},
+ }
+ ExposedMembers.SPC_StandardizationProgressRead=function(pid,id,current)
+  assert(pid==Game.GetLocalPlayer() and SPCP0.IsTestPlayer(pid),'STD_PROGRESS_OWNER')
+  local c=assert(Players[pid]:GetCities():FindID(id),'STD_PROGRESS_CITY')
+  assert(c:GetOwner()==pid and c:GetID()==id,'STD_PROGRESS_OWNER')
+  local x,y,turn=c:GetX(),c:GetY(),Game.GetCurrentGameTurn()
+  local q=c:GetBuildQueue()
+  local hash=q:GetCurrentProductionTypeHash()
+  assert(type(hash)=='number' and hash~=0,'STD_PROGRESS_TARGET')
+  local row,kind
+  for _,definition in ipairs(kinds)do
+   local catalog=GameInfo[definition[1]]
+   local candidate=catalog and catalog[hash]
+   if candidate then
+    assert(not row,'STD_PROGRESS_TARGET')
+    row,kind=candidate,definition
+   end
+  end
+  assert(row and type(row.Index)=='number','STD_PROGRESS_TARGET')
+  local target=row[kind[2]]
+  assert(type(target)=='string' and (target==current or hash==current),'STD_PROGRESS_TARGET')
+  local cost=q[kind[3]](q,row.Index)
+  local progress=q[kind[4]](q,row.Index)
+  assert(c:GetOwner()==pid and c:GetID()==id and c:GetX()==x and c:GetY()==y
+   and Game.GetCurrentGameTurn()==turn and c:GetBuildQueue():GetCurrentProductionTypeHash()==hash,
+   'STD_PROGRESS_CHANGED')
+  return {owner=pid,city=id,x=x,y=y,turn=turn,kind=kind[1],target=target,hash=hash,cost=cost,progress=progress}
+ end
+ return {}
+end)
 adapters.Add('ProjectTurnRead',function()return false end,{'SPC_ProjectTurnRead'},function()
  include('ProjectTurnRead');return SPCProjectTurnRead.New(SPCP0,function()end,function()end)
 end)

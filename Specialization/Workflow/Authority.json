@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0949",
-    "runtime": "B443.470 / modinfo470",
+    "status": "S0950",
+    "runtime": "B444.471 / modinfo471",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "45206f6479bdf1697e3229755cc81d429efe8193",
-  "current_batch": "PRODUCTION_DEPENDENCY_RETIREMENT_PREPARATION",
-  "next_batch": "Move the explicit Standardization production detail to the existing production UI composition. Verify the affected report and Crew paths with the DEV ConstructionProbe absent before any exact deletion proposal.",
+  "current_batch": "DIAGNOSTIC_RETIREMENT_PREPARATION",
+  "next_batch": "Review the remaining DEV injection and Crew precision dependencies and prepare the exact retirement and package rollback gates. Preserve native evidence limits and the independently gated network work.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B443.470 / modinfo470 temporary develop from 45206f6479bdf1697e3229755cc81d429efe8193, 359/359 MATCH, SHA256 3aca80c010fd0f84759d0a56e04b397c09f3549f2be89209590b0e959926da21. Receipt B443.470-45206f6-playtest.json DEVELOP_ACTIVE. B442 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0949 verifies the scoped B443 official interaction. The HD interaction at S0948 remains accepted. Production dependency retirement preparation is next.",
+  "context_review_status": "S0950 verifies the explicit Standardization production read in both actual panel entries and the scoped missing ConstructionProbe comparison.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#official-production-interaction-verified-on-b443--s0949",
-  "source_status": "B443.470 / modinfo470 remains installed. Scoped HD and official production interactions passed. Production dependency retirement preparation is next.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#the-standardization-report-reads-the-selected-production-queue--s0950",
+  "source_status": "B444.471 / modinfo471 locally verified at SHA256 7d7e4a5a8126f5bf26877a8686624baa4e214afdf62f7c4c92fa8327125f97b7. B443.470 remains installed until the guarded development replacement. The scoped official and HD interactions remain accepted.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

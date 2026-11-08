@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7aProductionReport": [
+      "test_o7_production_report",
+      "test_o6_production_panel",
+      "test_o4_crew_target_queue",
+      "test_o4_crew_wonder_site",
+      "test_refactor_s4b.StandardizationRetention",
+      "test_refactor_s7d5",
+      "test_pu11_package_absence.ActualRoots",
+      "test_refactor_s3.Adapters"
+    ],
     "O6cCityPanel": [
       "test_o6_city_panel",
       "test_environment_assembly.UIBaseSelection",
@@ -2150,7 +2160,8 @@
     "Mod/StandardizationEffects.lua": [
       "test_refactor_s4b",
       "test_refactor_s6d",
-      "test_refactor_s9e3"
+      "test_refactor_s9e3",
+      "test_o7_production_report"
     ],
     "Mod/DevelopmentInvestment.lua": [
       "test_refactor_s4b",
@@ -2468,7 +2479,8 @@
       "test_o6_production_panel",
       "test_environment_assembly.UIBaseSelection",
       "test_refactor_s3.Adapters",
-      "test_refactor_s9a3e.ActualUI"
+      "test_refactor_s9a3e.ActualUI",
+      "test_o7_production_report"
     ],
     "Mod/UI/CrewProjectUI.lua": [
       "test_o4_crew_wonder_site",
