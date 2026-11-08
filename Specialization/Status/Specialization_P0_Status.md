@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0932
-Implementation Build: source and live B434.461 / modinfo461 from 3274798. Stable/main B307.334.
+Status Revision: S0933
+Implementation Build: source B435.462 / modinfo462, local SQL compatibility candidate. Live B434.461 from 3274798. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OFFICIAL_LOAD_UI_PASS_ASSEMBLY_FAILED
+Work State: OFFICIAL_ASSEMBLY_COMPATIBILITY_LOCALLY_VERIFIED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Environment assembly completion uses compatible SQLite syntax — S0933
+
+The shared environment loader now uses a filtered scalar profile lookup for its completion row. Exactly one selected profile and a nonempty building inventory remain required. Missing, conflicting or empty input yields NULL and fails the existing Profile constraint, so dependent generators stay gated. The repair runs during database assembly. It preserves the schema, loading order, readers and effect rules.
+
+- **LOCAL_SIMULATION_PASS.** SQLite 3.38.5 reproduces the B434 parser rejection. The same parser accepts the new SQL for both profile selections and rejects all three invalid input cases. The fixed official and HD database replays produce 82 and 162 inventory rows and the expected exact effect definitions. Current Tier, catalog and Development definitions checks are included. 15 selected tests passed. Two supplementary older fixture suites produced the same 47 error entries on the pre-fix and candidate sources.
+- **STATIC_CONFIRMED.** 223 Lua 5.1 compiles, 32 XML/artdef/dep/modinfo parses and 352 resolved package files. Candidate SHA256 `3649bb5b0406f740ea18f54058967048e8ee5552f50c3543b8e353a905535d9b`. Exact tested Mod/DevelopmentTests/tools snapshot SHA256 `d537a9808767460fbd45efe7bf97d0193f08ab5631629a0fc9d537de8d1701f4`.
+- **Reproduce.** CPython 3.14/Lupa 2.8 and SQLite 3.53.4. With DevelopmentTests on PYTHONPATH, configure `SPC_OFFICIAL_DB`, `SPC_HD_DB`, `SPC_OFFICIAL_ASSETS` and `SPC_LEGACY_SQLITE` as required by the assembly suite. Set the last variable to the [official SQLite 3.38.5 CLI](https://sqlite.org/releaselog/3_38_5.html). Run `python3.14 -m unittest test_environment_assembly test_effective_building_tiers test_b246_development_ui.Definitions`. Full local evidence `local/refactor/B435_Assembly_SQLite_Compatibility-706322ecfdce4d0c99d73395850b81de/closure.json`, SHA256 `1187287fdd838a4dc744b8eb1b69df7bbe1454cc4d485e52aaba2b0f561b3289`.
+
+The five native panel results from S0932 carry forward. Live remains B434.461. User decision is whether to approve the separate temporary B435.462 deployment. User testing after that switch is one official-profile fresh load with an OFFICIAL completion row, populated gated definitions and confirmed Development Investment startup. Primary next is the deployment approval boundary.
 
 ### Official UI smoke passed with a database assembly failure — S0932
 

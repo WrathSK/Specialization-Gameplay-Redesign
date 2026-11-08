@@ -2,13 +2,15 @@
 
 Set SPC_OFFICIAL_DB, SPC_HD_DB and SPC_OFFICIAL_ASSETS explicitly. Manifest
 criteria and ordering are modeled locally. Native selection and effects are
-separate gates.
+separate gates. Set SPC_LEGACY_SQLITE to the SQLite 3.38.5 CLI to check the
+assembly statement against a parser that requires GROUP BY with HAVING.
 """
 from contextlib import closing
 from hashlib import sha256
 import os
 from pathlib import Path
 import sqlite3
+import subprocess
 import unittest
 from xml.etree import ElementTree as ET
 import zlib
@@ -147,6 +149,38 @@ def strip_replayed_outputs(db, outputs):
 
 
 class Assembly(unittest.TestCase):
+    @unittest.skipUnless(os.environ.get('SPC_LEGACY_SQLITE'), 'Set SPC_LEGACY_SQLITE for the legacy parser check')
+    def test_legacy_parser_preserves_assembly_guard(self):
+        fixture = """
+            PRAGMA foreign_keys=ON;
+            SELECT sqlite_version();
+            CREATE TABLE Districts(DistrictType TEXT PRIMARY KEY,InternalOnly INTEGER);
+            CREATE TABLE Buildings(BuildingType TEXT PRIMARY KEY,PrereqDistrict TEXT,InternalOnly INTEGER,IsWonder INTEGER);
+            CREATE TABLE HD_DUMMY_BUILDINGS(BuildingType TEXT PRIMARY KEY);
+            INSERT INTO Districts VALUES ('DISTRICT_CAMPUS',0);
+        """
+        cases = (
+            (('Official',), False, 'OFFICIAL'), (('HD',), False, 'HD'),
+            ((), False, None), (('Official', 'HD'), False, None), (('Official',), True, None),
+        )
+        for profiles, empty_inventory, expected in cases:
+            with self.subTest(profiles=profiles, empty_inventory=empty_inventory):
+                scripts = ['EnvironmentSchema', *(f'Environment{profile}' for profile in profiles), 'EnvironmentBuildings']
+                building = "" if empty_inventory else "INSERT INTO Buildings VALUES ('BUILDING_LIBRARY','DISTRICT_CAMPUS',0,0);"
+                sql = '\n'.join((fixture, building, *((MOD / f'Data/{name}.sql').read_text(encoding='utf-8') for name in scripts),
+                                 'SELECT Id,Profile,SchemaVersion FROM SPC_EnvironmentAssembly;'))
+                run = subprocess.run([os.environ['SPC_LEGACY_SQLITE'], '-init', os.devnull, '-batch', ':memory:'],
+                                     input=sql, capture_output=True, text=True, timeout=10)
+                lines = run.stdout.splitlines()
+                self.assertEqual(lines[:1], ['3.38.5'], run.stderr)
+                if expected:
+                    self.assertEqual(run.returncode, 0, run.stderr)
+                    self.assertEqual(lines[1:], [f'1|{expected}|1'])
+                else:
+                    self.assertNotEqual(run.returncode, 0)
+                    self.assertIn('NOT NULL constraint failed: SPC_EnvironmentAssembly.Profile', run.stderr)
+                    self.assertEqual(lines[1:], [])
+
     def check_integrity(self, db, profile):
         self.assertEqual(rows(db, 'SELECT * FROM SPC_EnvironmentAssembly'), {(1, profile, 1)})
         self.assertEqual(rows(db, 'PRAGMA foreign_key_check'), set())
@@ -206,15 +240,18 @@ class Assembly(unittest.TestCase):
             for part in expected:
                 self.assertEqual(actual[part], expected[part], part)
 
-    def test_missing_or_conflicting_selection_blocks_target_generation(self):
-        for profile_count in (0, 2):
-            with self.subTest(profiles=profile_count), closing(snapshot('SPC_OFFICIAL_DB')) as db:
+    def test_invalid_selection_or_empty_inventory_blocks_target_generation(self):
+        for profile_count, empty_inventory in ((0, False), (2, False), (1, True)):
+            with self.subTest(profiles=profile_count, empty_inventory=empty_inventory), closing(snapshot('SPC_OFFICIAL_DB')) as db:
                 execute_data(db, 'EnvironmentSchema.sql')
                 execute_data(db, 'EnvironmentModifiers.sql')
+                if profile_count:
+                    execute_data(db, 'EnvironmentOfficial.sql')
                 if profile_count == 2:
                     db.execute('CREATE TABLE HD_DUMMY_BUILDINGS(BuildingType TEXT PRIMARY KEY)')
-                    execute_data(db, 'EnvironmentOfficial.sql')
                     execute_data(db, 'EnvironmentHD.sql')
+                if empty_inventory:
+                    db.execute('INSERT INTO SPC_EnvironmentExcludedBuildings SELECT BuildingType FROM Buildings')
                 with self.assertRaisesRegex(sqlite3.IntegrityError, r'SPC_EnvironmentAssembly\.Profile'):
                     execute_data(db, 'EnvironmentBuildings.sql')
                 self.assertEqual(rows(db, 'SELECT * FROM SPC_EnvironmentAssembly'), set())

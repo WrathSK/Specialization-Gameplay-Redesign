@@ -11,21 +11,21 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0932",
-    "runtime": "B434.461 / modinfo461",
+    "status": "S0933",
+    "runtime": "B435.462 / modinfo462 source candidate",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the native split outcome for the fixed official profile and retain the SQL compatibility counterexample.",
+  "goal": "Repair the shared database completion statement for the native parser while preserving the assembly gate and profile outputs.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Official UI smoke passed with a database assembly failure — S0932",
-      "reason": "Current native evidence, scoped UI acceptance and assembly blocker"
+      "selector": "### Environment assembly completion uses compatible SQLite syntax — S0933",
+      "reason": "Current compatible SQL, profile verification and deployment boundary"
     },
     {
       "path": "Specialization/Design/Content/Shared_D0060.json",
@@ -51,10 +51,10 @@
       "reason": "Final projection and marker"
     },
     {
-      "path": "DevelopmentTests/test_refactor_s3.py",
+      "path": "DevelopmentTests/test_environment_assembly.py",
       "kind": "head",
       "selector": 28,
-      "reason": "Rerunnable scoped delivery regression"
+      "reason": "Rerunnable SQL compatibility and pinned-profile checks"
     }
   ],
   "dependencies": [
@@ -74,11 +74,9 @@
     "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
   ],
   "validation": [
-    "615 selected Lua 5.1 checks, 609 passing and six nonpassing cases reproduced on fixed B433.",
-    "True Gameplay startup, existing mandatory exit owner, reentrant native registration model and retained readback tests.",
-    "Four supplemental restricted PackageVFS Gameplay and BackgroundRoutes tests.",
-    "Lua51, XML/manifest and Context Lock.",
-    "Receipt-bound temporary switch verified 352/352 and both recovery packages. Official-profile smoke remains USER_GAME_TEST_REQUIRED."
+    "15 selected tests with both pinned profiles, the SQLite 3.38.5 check and current catalog consumers.",
+    "Legacy parser reproduces the native rejection on B434. Supplementary fixture errors match the fixed baseline.",
+    "Lua 5.1, XML/package, Context Lock and source identity. Targeted native official load pending."
   ],
   "full_audit_triggers": [
     "Reopen affected scope if the selected native profile differs, a fixed-HD target or primitive changes, or a later source/cutover changes ordinary admission, exact exits, history or irreversible behavior."
@@ -365,6 +363,16 @@
       "report": "Specialization/Status/Specialization_P0_Status.md#official-ui-smoke-passed-with-a-database-assembly-failure--s0932",
       "evidence": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B434_Official_Load_Smoke_20261107",
       "local_manifest_sha256": "1b4db70739e22088ea7bcf3d0a7acc7acbd985c31e899cdeb9c760f5a95a707f"
+    },
+    "b435_assembly_sqlite_compatibility": {
+      "status": "LOCAL_SIMULATION_PASS",
+      "version": "B435.462 / modinfo462",
+      "report": "Specialization/Status/Specialization_P0_Status.md#environment-assembly-completion-uses-compatible-sqlite-syntax--s0933",
+      "package_sha256": "3649bb5b0406f740ea18f54058967048e8ee5552f50c3543b8e353a905535d9b",
+      "source_snapshot_sha256": "d537a9808767460fbd45efe7bf97d0193f08ab5631629a0fc9d537de8d1701f4",
+      "local_evidence": "local/refactor/B435_Assembly_SQLite_Compatibility-706322ecfdce4d0c99d73395850b81de/closure.json",
+      "local_evidence_sha256": "1187287fdd838a4dc744b8eb1b69df7bbe1454cc4d485e52aaba2b0f561b3289",
+      "deployed": false
     }
   }
 }
