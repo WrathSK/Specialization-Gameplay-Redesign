@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0989
-Implementation Build: source B462.489 / modinfo489. Live B461.488 from f24b000. Stable/main B307.334.
+Status Revision: S0990
+Implementation Build: source B462.489 / modinfo489. Live B462.489 from cab3de1. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CITY_SEQUENCE_OBSERVER_RETIRED_LOCAL
+Work State: LEGACY_ELIGIBILITY_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B462 deployment verified and legacy eligibility diagnostics reviewed — S0990
+
+B462.489 is installed from `cab3de1d0b755b3a65a3f21c0cf5b685dda2dc03`. All 342 files match SHA256 `c01118768251c67bfda92a7019767baa50aa51a91b814f0fb6b621b961530471`. Receipt `B462.489-cab3de1-playtest.json` is DEVELOP_ACTIVE. The old city trace is absent. The B461 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review (P3 §2a).** The old EligibilityProbe and QualificationProbe independently sample trait and roster observations for the three hidden P0 reports. The proposal removes the two Lua files, their four manifest declarations and two startup entries, and those three hidden controls and their callbacks and private report state. The active `Probe.lua` test-player predicate and EnvelopeProbe retain their existing owners. Reviewed files and hashes are `Mod/EligibilityProbe.lua` `6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e` and `Mod/QualificationProbe.lua` `ba50636c2b083a9787126295470572561e10d405eb998d117492bef89a728a59`.
+
+The disposable comparison preserves eight actual predicate cases, including both supported human pairs, AI, identity mismatch, unknown and multiplayer handling. It also preserves the separate Envelope load read and modeled property values and writes. In the five-slot fixture, roster reads go from four to one and trait iteration starts from twenty-five to zero. Two diagnostic load callbacks retire. These are modeled counts. Three identical nonempty route proof packets and the other P0 controls and requests match. Exact temporary activation and full restoration pass in disposable packages. Evidence `local/refactor/B462-LegacyEligibilityRetirementReview/result.json` SHA256 `baacdd151265cf80a8c93150ef72b407ac28c7d4271332ff0e24625a13feb6e2` with the replay script alongside.
+
+The exact two-path retirement awaits approval. Positive Culture Network cold restoration remains a separate native gate.
 
 ### Retire the opt-in city sequence observer — S0989
 

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "f24b000847377e90bb856fb4483ed88ee15297b1",
-  "runtime": "B461.488 / modinfo488 temporary develop deployed, 343/343 MATCH. Stable/main B307.334.",
+  "runtime_commit": "cab3de1d0b755b3a65a3f21c0cf5b685dda2dc03",
+  "runtime": "B462.489 / modinfo489 temporary develop deployed, 342/342 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1716,7 +1716,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0989 verifies the opt-in city trace removal, retained Store founding, Claim and P0 requests, and exact restoration.",
-  "source_runtime": "B462.489 / modinfo489 local candidate, 342 files. B461.488 remains installed.",
+  "source_review": "S0990 verifies B462 deployment and both recovery packages and isolates the legacy eligibility and roster diagnostics from the active test-player predicate.",
+  "source_runtime": "B462.489 / modinfo489 deployed from cab3de1 with the approved opt-in city sequence observer removed.",
   "tested_source_snapshot_sha256": "5b1c262baf193e32ecd5c71b13fbb78a4f269b0fecc11ff5a67960ca93580c2a"
 }

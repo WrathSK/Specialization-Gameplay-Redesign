@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0989",
+    "status": "S0990",
     "runtime": "B462.489 / modinfo489",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "f24b000847377e90bb856fb4483ed88ee15297b1",
-  "current_batch": "CITY_SEQUENCE_OBSERVER_RETIRED_LOCAL",
-  "next_batch": "Verify the guarded B462 switch and review the old roster and eligibility diagnostics separately from the live test-player gate.",
+  "runtime_commit": "cab3de1d0b755b3a65a3f21c0cf5b685dda2dc03",
+  "current_batch": "LEGACY_ELIGIBILITY_RETIREMENT_REVIEWED",
+  "next_batch": "Await exact approval to remove EligibilityProbe.lua and QualificationProbe.lua, four manifest entries, their two Gameplay starts and three hidden P0 report controls and callbacks. Preserve the active test-player predicate and EnvelopeProbe.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B461.488 / modinfo488 temporary develop from f24b000847377e90bb856fb4483ed88ee15297b1, 343/343 MATCH, SHA256 8fd190186a6b925e268ca428584043cbc075f51da60af6c2cdeeb450f7cd37bb. Receipt B461.488-f24b000-playtest.json DEVELOP_ACTIVE. B460 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B462.489 / modinfo489 temporary develop from cab3de1d0b755b3a65a3f21c0cf5b685dda2dc03, 342/342 MATCH, SHA256 c01118768251c67bfda92a7019767baa50aa51a91b814f0fb6b621b961530471. Receipt B462.489-cab3de1-playtest.json DEVELOP_ACTIVE. B461 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0989 verifies the opt-in city trace removal, retained Store founding, Claim and P0 requests, and exact restoration.",
+  "context_review_status": "S0990 verifies B462 deployment and both recovery packages and isolates the legacy eligibility and roster diagnostics from the active test-player predicate.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-opt-in-city-sequence-observer--s0989",
-  "source_status": "B462.489 / modinfo489 locally verified at SHA256 c01118768251c67bfda92a7019767baa50aa51a91b814f0fb6b621b961530471. B461.488 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b462-deployment-verified-and-legacy-eligibility-diagnostics-reviewed--s0990",
+  "source_status": "B462.489 / modinfo489 deployed at SHA256 c01118768251c67bfda92a7019767baa50aa51a91b814f0fb6b621b961530471. Exact opt-in city trace removal verified.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0989",
+    "status": "S0990",
     "runtime": "B462.489 / modinfo489",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify city trace removal and preserve Store founding, first completion, Claim, route proof and the independent event-order switch.",
+  "goal": "Record B462 deployment and the exact two-probe proposal with the formal eligibility predicate preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B462 deployment verified and legacy eligibility diagnostics reviewed — S0990",
+      "reason": "Verified B462 deployment and legacy diagnostic eligibility boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -366,6 +372,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B462 installed 342/342 MATCH with both recovery packages verified. Projected diagnostic retirement preserves eight actual predicate results, Envelope and current route proofs.",
     "B462 passes 25 selected checks and 49/64 carried checks. Store and Claim match with the previous trace armed and ten modeled trace registrations removed.",
     "B461 installed 343/343 MATCH with both recovery packages verified. Projected city sequence trace removal preserves Store founding/first completion, peer Claims and current route proofs.",
     "B461 passes 49 selected checks and 64/22 carried checks. Actual Store and Claim outcomes match and four modeled observer registrations disappear.",
@@ -2049,6 +2056,53 @@
       "package_sha256": "c01118768251c67bfda92a7019767baa50aa51a91b814f0fb6b621b961530471",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-opt-in-city-sequence-observer--s0989"
+    },
+    "b462_deployment": {
+      "version": "B462.489 / modinfo489",
+      "source_commit": "cab3de1d0b755b3a65a3f21c0cf5b685dda2dc03",
+      "digest": "c01118768251c67bfda92a7019767baa50aa51a91b814f0fb6b621b961530471",
+      "files": 342,
+      "receipt": "B462.489-cab3de1-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [
+        "CitySequenceProbe.lua"
+      ],
+      "pending": false,
+      "outgoing": "B461.488, 343/343 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b462-deployment-verified-and-legacy-eligibility-diagnostics-reviewed--s0990"
+    },
+    "b462_legacy_eligibility_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "cab3de1d0b755b3a65a3f21c0cf5b685dda2dc03",
+      "removed_sha256": {
+        "EligibilityProbe.lua": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
+        "QualificationProbe.lua": "ba50636c2b083a9787126295470572561e10d405eb998d117492bef89a728a59"
+      },
+      "modified": [
+        "Gameplay.lua",
+        "SpecializationP0.modinfo",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "hidden_controls": [
+        "QualificationButton",
+        "EligibilityUnknownButton",
+        "EligibilityButton"
+      ],
+      "matching_gate_cases": 8,
+      "modeled_roster_reads": [
+        4,
+        1
+      ],
+      "modeled_trait_scans": [
+        25,
+        0
+      ],
+      "local_evidence": "local/refactor/B462-LegacyEligibilityRetirementReview/result.json",
+      "local_evidence_sha256": "baacdd151265cf80a8c93150ef72b407ac28c7d4271332ff0e24625a13feb6e2",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b462-deployment-verified-and-legacy-eligibility-diagnostics-reviewed--s0990"
     }
   }
 }
