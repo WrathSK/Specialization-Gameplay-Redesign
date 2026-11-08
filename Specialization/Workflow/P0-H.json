@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1012",
-    "runtime": "B473.500 / modinfo500",
+    "status": "S1013",
+    "runtime": "B474.501 / modinfo501",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B473 deployment and review the old Commerce test buttons with the current readout, dashboard and stale-command guard preserved.",
+  "goal": "Verify retirement of the three rejected Commerce test buttons with the report, dashboard and stale guard preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the three hidden Commerce test controls — S1013",
+      "reason": "Approved Commerce test button retirement with current reports and requests preserved"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -504,6 +510,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B474 passes 14 selected and 14/64 carried checks. The Commerce report, scoped selection, stale guard and route proofs match.",
     "B473 installed 337/337 MATCH with both recovery packages verified. The Commerce projection preserves the report, configuration request, stale guard and listener counts.",
     "B473 passes 14 selected and 14/64 carried checks. The retained Dialogue reports, local restoration, collection receipts and nonempty route proofs match.",
     "B472 installed 337/337 MATCH with both recovery packages verified. The Dialogue projection preserves current reports, restored carriers, collection acknowledgement and three nonempty route proofs.",
@@ -3421,6 +3428,70 @@
       "local_transcript_sha256": "f52f0bc2e2ff736cbc04009a49bc55d3d0a52e4afd0952f7a72e22d45abc4bcd",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b473-deployment-verified-and-the-old-commerce-test-controls-reviewed--s1012"
+    },
+    "b474_retired_commerce_controls_retirement": {
+      "build": "B474.501 / modinfo501",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7afRetiredCommerceControlsRetirement": {
+          "tests": 14,
+          "path": "local/refactor/B474-O7afRetiredCommerceControlsRetirement/closure.json",
+          "sha256": "1c12a52ba1edba6ba5cc2659223eeade1913f0b542cd0225cc2b01a883e56b25",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "76ef519fd609e13f8583830d71b85543f0c801f0876e05b7f3966382825d2d77"
+          }
+        },
+        "O7aeRetiredDialogueOverridesRetirement": {
+          "tests": 14,
+          "path": "local/refactor/B474-CarriedO7ae/closure.json",
+          "sha256": "ad5168ce2daa0d709fd30e5b9335eaf1d8bee404ed86628c1e7f22c2fd682c68",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "f0fe14d3d089ec170a4b998d0dcc2c8506c1f19ee45e710c3c940d7f9e6f6c1c"
+          }
+        },
+        "O7hRouteObserverRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B474-CarriedO7h/closure.json",
+          "sha256": "c64505331c4a8a2ec1008f915d1aaa9c542f83703c0f052e70aac3f1a4ad06da",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "bd11631f26b0d63ad3e28258979258766f5ba63bf29521666dc557c62bbce026"
+          }
+        }
+      },
+      "files": 337,
+      "removed": [],
+      "prior_source": "fce8db9cc6b09d7894554b2d27eecdabcadc2982",
+      "matching_route_packets": 3,
+      "modeled_manual_packets": [
+        3,
+        0
+      ],
+      "stale_requests_blocked": 3,
+      "property_writes": [
+        0,
+        0
+      ],
+      "retained_reports": "MATCH",
+      "production_dashboard_request": "MATCH",
+      "panel_listener_counts": "MATCH",
+      "historical_comparisons": {
+        "B473-panel-comparison.log": {
+          "path": "local/refactor/B474-O7afRetiredCommerceControlsRetirement/B473-panel-comparison.log",
+          "sha256": "a2bb1900108457bb3fc4ad89aa8d07d82d8a471d1fd2d9685670f0b774450448"
+        },
+        "B474-panel-comparison.log": {
+          "path": "local/refactor/B474-O7afRetiredCommerceControlsRetirement/B474-panel-comparison.log",
+          "sha256": "db6ee3a6f67352b8808ecfa8bdccd64bdb7c51d90271012f09b245e514cd4235"
+        }
+      },
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "9fe81e89f30db8dda5a199324ff2550e53bb84d1ed0f80dbe47759ab9f9a1080",
+      "package_sha256": "c0e128312e2b05ce02e29f7b4ad5601d616e58c1ba7219573fe28427b37a4d03",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-three-hidden-commerce-test-controls--s1013"
     }
   }
 }

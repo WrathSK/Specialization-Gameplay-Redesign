@@ -335,7 +335,7 @@ local function initialize()
     closeWindow()
   end)
   Controls.CarrierStepButton:RegisterCallback(Mouse.eLClick,function() request("NETWORK_DETAIL",true) end)
-  for _,a in ipairs({"READ","OFF","AUTO","TEST5"}) do local action=a;Controls["Commerce"..a.."Button"]:RegisterCallback(Mouse.eLClick,function() request("COMMERCE_"..action) end) end
+  Controls.CommerceREADButton:RegisterCallback(Mouse.eLClick,function() request("COMMERCE_READ") end)
   Controls.InheritRecordButton:RegisterCallback(Mouse.eLClick,function() request("IDENTITY_RECORD") end)
   Controls.InheritRecordButton:RegisterCallback(Mouse.eRClick,function() request("PROGRESSION_IMPORT") end)
   Controls.InheritReadButton:RegisterCallback(Mouse.eLClick,function() request("PROGRESSION_STORE_READ") end)

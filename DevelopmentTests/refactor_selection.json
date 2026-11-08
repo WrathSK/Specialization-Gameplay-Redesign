@@ -2,6 +2,15 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7afRetiredCommerceControlsRetirement": [
+      "test_o7_retired_commerce_controls_retirement",
+      "test_b261_commerce.Sidebar.test_order_preservation_reopen_and_suspended",
+      "test_b261_commerce.Sidebar.test_invalid_city_held_and_shutdown",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_four_rows_and_report_do_not_overlap",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_visibility_cleanup_does_not_execute_probe_or_change_runtime_state",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_unique_xml_control_ids_and_current_lua_parse",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7aeRetiredDialogueOverridesRetirement": [
       "test_o7_retired_dialogue_overrides_retirement",
       "test_b398_queue_recovery.Rounds.test_one_award_after_recovery",

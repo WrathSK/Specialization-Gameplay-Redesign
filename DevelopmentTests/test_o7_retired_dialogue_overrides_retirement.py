@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch
 
 from refactor_harness import ROOT, measure
-from retired_crew_sources import B472, package
+from retired_crew_sources import B472, B473, package
 from test_o7_legacy_completion_record_retirement import load_cold_store, save_fixture, stored_records
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_p0_panel_current_layout import panel_runtime
@@ -146,9 +146,12 @@ class RetiredDialogueOverrides(unittest.TestCase):
             modeled_carrier_bonuses=list(after[:2]),collection_ack=after[2]))
 
     def test_only_four_hidden_controls_leave_the_panel(self):
-        with package(B472) as previous:
+        with package(B472) as previous, package(B473) as retired:
             before,old_requests=panel(previous,retired=False)
-        after,new_requests=panel(ROOT,retired=True)
+            after,new_requests=panel(retired,retired=True)
+        current_buttons,current_requests=panel(ROOT,retired=True)
+        self.assertTrue(CONTROLS.keys().isdisjoint(current_buttons))
+        self.assertEqual(current_requests,new_requests)
         for control in CONTROLS:
             self.assertTrue(before.pop(control))
         self.assertEqual(before,after)

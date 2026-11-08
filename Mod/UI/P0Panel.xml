@@ -8,11 +8,8 @@
     <GridButton Hidden="1" ID="Lv2GPPButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read Lv2 GPP" />
     <GridButton Hidden="1" ID="InvestPrepareButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Prepare investment" />
     <GridButton Hidden="1" ID="InvestConfirmButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Confirm investment" />
-    <GridButton Hidden="1" ID="CommerceOFFButton" Anchor="L,B" Offset="18,150" Size="240,32" Style="MainButton" String="Commerce OFF / baseline" />
-    <GridButton Hidden="1" ID="CommerceTEST5Button" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="Commerce TEST +5" />
     <GridButton ID="InheritRecordButton" Anchor="L,B" Offset="280,138" Size="240,32" Style="MainButton" Hidden="1"><Label ID="InheritRecordButtonCaption" Anchor="C,C" Style="FontNormal14" String="记录城市身份" Color="255,255,255,255" /></GridButton>
     <GridButton ID="InheritReadButton" Anchor="L,B" Offset="542,138" Size="240,32" Style="MainButton" Hidden="1"><Label ID="InheritReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="实验对照" Color="255,255,255,255" /></GridButton>
-    <GridButton ID="CommerceAUTOButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Commerce AUTO" Hidden="1" />
     <GridButton Hidden="1" ID="ResearchReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read auto Lv1" />
     <GridButton Hidden="1" ID="PurchaseBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Purchase BASE" />
     <GridButton Hidden="1" ID="PurchaseOnButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Purchase -20% ON" />

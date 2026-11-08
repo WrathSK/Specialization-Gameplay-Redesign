@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1012",
-    "runtime": "B473.500 / modinfo500",
+    "status": "S1013",
+    "runtime": "B474.501 / modinfo501",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "fce8db9cc6b09d7894554b2d27eecdabcadc2982",
-  "current_batch": "RETIRED_COMMERCE_EXPERIMENT_CONTROLS_REVIEWED",
-  "next_batch": "Await exact approval to remove CommerceOFFButton, CommerceAUTOButton and CommerceTEST5Button and their callbacks. Keep the COMMERCE_READ control, the current production dashboard and Gameplay rejection of stale test requests.",
+  "current_batch": "RETIRED_COMMERCE_EXPERIMENT_CONTROLS_RETIRED_LOCAL",
+  "next_batch": "Verify the guarded B474 switch and review the hidden industrial report aliases against the current left and right report paths.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B473.500 / modinfo500 temporary develop from fce8db9cc6b09d7894554b2d27eecdabcadc2982, 337/337 MATCH, SHA256 376fae1dad65b9efbc679f2fc023ef4447aa431eac26d691bd90e6f1b321fbfb. Receipt B473.500-fce8db9-playtest.json DEVELOP_ACTIVE. B472 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S1012 verifies B473 deployment and both recovery packages. Three hidden Commerce controls are separate from the P0 readout, production dashboard and stale-request guard.",
+  "context_review_status": "S1013 verifies removal of the three rejected Commerce controls with the current report, configuration panel and stale-request guard preserved.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b473-deployment-verified-and-the-old-commerce-test-controls-reviewed--s1012",
-  "source_status": "B473.500 / modinfo500 deployed at SHA256 376fae1dad65b9efbc679f2fc023ef4447aa431eac26d691bd90e6f1b321fbfb. Exact retirement of the old Dialogue experiments verified.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-three-hidden-commerce-test-controls--s1013",
+  "source_status": "B474.501 / modinfo501 locally verified at SHA256 c0e128312e2b05ce02e29f7b4ad5601d616e58c1ba7219573fe28427b37a4d03. B473.500 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1012
-Implementation Build: source B473.500 / modinfo500. Live B473.500 from fce8db9. Stable/main B307.334.
+Status Revision: S1013
+Implementation Build: source B474.501 / modinfo501. Live B473.500 from fce8db9. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRED_COMMERCE_EXPERIMENT_CONTROLS_REVIEWED
+Work State: RETIRED_COMMERCE_EXPERIMENT_CONTROLS_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the three hidden Commerce test controls — S1013
+
+The Owner approved the exact S1012 retirement. Remove the hidden Off, Auto and +5 test controls and register the visible Commerce readout directly. The prior panel is recoverable from `fce8db9cc6b09d7894554b2d27eecdabcadc2982`. The package path set stays identical.
+
+- **Runtime Impact Contract (L2, T07/T08).** The three explicit old clicks previously sent requests already refused by Gameplay. The panel comparison goes from three old packets to zero and keeps the listener counts. All three stale request shapes still stop before the real Commerce owner, with zero persistent writes. The current report and production-menu configuration keep their existing ownership and reference checks. The exact old Dialogue panel comparison stays pinned to B472/B473, with current readout callbacks checked separately.
+- **LOCAL_SIMULATION_PASS in scope.** All 14 selected checks pass. The real report matches with the same restored Store. The configuration panel sends the same scoped selection packet once. The held-state and domain-order checks pass. The carried Dialogue and route stages pass 14 and 64 checks. The full panel suite repeats the same two inherited visibility/industrial-history assertion failures on B473 and B474.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7afRetiredCommerceControlsRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7aeRetiredDialogueOverridesRetirement and O7hRouteObserverRetirement. Tested source SHA256 `9fe81e89f30db8dda5a199324ff2550e53bb84d1ed0f80dbe47759ab9f9a1080`, package SHA256 `c0e128312e2b05ce02e29f7b4ad5601d616e58c1ba7219573fe28427b37a4d03`. Local closure `local/refactor/B474-O7afRetiredCommerceControlsRetirement/closure.json` SHA256 `1c12a52ba1edba6ba5cc2659223eeade1913f0b542cd0225cc2b01a883e56b25` with the panel comparison logs alongside.
+
+B473 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B473 deployment verified and the old Commerce test controls reviewed — S1012
 

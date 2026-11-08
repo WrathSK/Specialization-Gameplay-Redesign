@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "812021134e80a9aca59be386f32e9c1ad5f861a70247eae647aeba3a2c3c8981",
+      "sha256": "73a570c0a73ea08dc5bf7e08886d743a9220cbb3d4b3e43342a356e067be6058",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1011 B473 old Dialogue override experiment retirement."
+      "provenance": "S1013 B474 retired Commerce experiment control retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "2bae67b179f43a686c6fbf45da7d5d1f77cca4328c7a4fb9e0cb3fb10ecf3d1e",
+      "sha256": "82a052015d0f6abaa2de52a352f784b05bed66d588ae247dacdeca58e6c2bfe4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1011 B473 old Dialogue override experiment retirement."
+      "provenance": "S1013 B474 retired Commerce experiment control retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "8ef5f01150d43a4624c93cb04aa5927feaf7da2b1df5bad7a0affb38f85fbdf1",
+      "sha256": "13f8db034887c0fa2ee25c3ff51202e556bf2a7edc0bba2613504f43ca6acbaf",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1011 B473 old Dialogue override experiment retirement."
+      "provenance": "S1013 B474 retired Commerce experiment control retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "4f63aa23e4e301ff8d777fcc554bafcc1d4d30b7709f2f0aea205f358bb1b41a",
+      "sha256": "01b94028b4586f8876b0d85fa94adcbcce96f9529bf01f9f796376e395fe6fec",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1011 B473 old Dialogue override experiment retirement."
+      "provenance": "S1013 B474 retired Commerce experiment control retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1012 verifies B473 deployment and both recovery packages. Three hidden Commerce controls are separate from the P0 readout, production dashboard and stale-request guard.",
-  "source_runtime": "B473.500 / modinfo500 deployed from fce8db9 with the approved old Dialogue override experiments removed.",
-  "tested_source_snapshot_sha256": "d7f78eedf96461593bfa0f904df884d466776f37b3785256f091119ff0a86b1c"
+  "source_review": "S1013 verifies removal of the three rejected Commerce controls with the current report, configuration panel and stale-request guard preserved.",
+  "source_runtime": "B474.501 / modinfo501 local candidate, 337 files. B473.500 remains installed.",
+  "tested_source_snapshot_sha256": "9fe81e89f30db8dda5a199324ff2550e53bb84d1ed0f80dbe47759ab9f9a1080"
 }
