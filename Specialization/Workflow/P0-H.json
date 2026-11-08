@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1009",
+    "status": "S1010",
     "runtime": "B472.499 / modinfo499",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify retirement of the old Great Work adjacency commands while retaining memory observations, current Meaning and legacy withdrawal.",
+  "goal": "Record B472 deployment and review the old Dialogue overrides with the current project, effect, readouts and collection preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B472 deployment verified and the old Dialogue override requests reviewed — S1010",
+      "reason": "Verified B472 deployment and exact old Dialogue override boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -486,6 +492,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B472 installed 337/337 MATCH with both recovery packages verified. The Dialogue projection preserves current reports, restored carriers, collection acknowledgement and three nonempty route proofs.",
     "B472 passes 14 selected and 13/84/64 carried checks. Both memory reports, Meaning cold withdrawal and three nonempty route proofs match.",
     "B471 installed 337/337 MATCH with both recovery packages verified. The projection preserves the memory control and reports, current Meaning, old carrier withdrawal and three nonempty route proofs.",
     "B471 passes 13 selected and 13/64 carried checks. Actual BoostRefresh request, exact cleanup, readouts and current route proofs match.",
@@ -3219,6 +3226,66 @@
       "package_sha256": "f68abfff25298626fa4d186ee0337a8846ef086bc1729ac0117f69a23b970dbb",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-great-work-adjacency-manual-commands--s1009"
+    },
+    "b472_deployment": {
+      "version": "B472.499 / modinfo499",
+      "source_commit": "0eab91b55aa608ff833c330dcf0e8aac9516e329",
+      "digest": "f68abfff25298626fa4d186ee0337a8846ef086bc1729ac0117f69a23b970dbb",
+      "files": 337,
+      "receipt": "B472.499-0eab91b-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B471.498, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b472-deployment-verified-and-the-old-dialogue-override-requests-reviewed--s1010"
+    },
+    "b472_retired_dialogue_overrides_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "0eab91b55aa608ff833c330dcf0e8aac9516e329",
+      "removed": [],
+      "modified": [
+        "Gameplay.lua",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "Gameplay.lua": "d5018fa12c97a8c4ca682563bd574e038a2785982d5b18d6491fd8a77d756907",
+        "UI/P0Panel.lua": "2b695fc2cc23f342588419e22544c16d9bb97deae04cbf743c640cc304641202",
+        "UI/P0Panel.xml": "74154a1ec6007e7c53e29b8e02263c9fcf1dbf43aed0bda0340e0feee19b4cd6"
+      },
+      "hidden_controls": [
+        "GWOffButton",
+        "DialogueTest25Button",
+        "DialogueTest50Button",
+        "DialogueTest100Button"
+      ],
+      "retired_actions": [
+        "DIALOGUE_OFF",
+        "DIALOGUE_TEST25",
+        "DIALOGUE_TEST50",
+        "DIALOGUE_TEST100",
+        "DIALOGUE_AUTO"
+      ],
+      "retired_audit_calls": [
+        5,
+        0
+      ],
+      "retained_readouts": "MATCH",
+      "modeled_dialogue_carriers": [
+        5,
+        10
+      ],
+      "collection_ack": 2,
+      "external_db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "production_route_packets": 3,
+      "local_evidence": "local/refactor/B472-RetiredDialogueOverridesReview/result.json",
+      "local_evidence_sha256": "80f72d954122253638b93e6aa455c5336204a41ec69e7e5daf40a129846c074c",
+      "local_replay_sha256": "05252a41e12b029e8afd5bd224779e71cd257cbdbc8b4e1f754349b5671761c0",
+      "local_transcript_sha256": "a3e135d6b654eb43c4a5df9ad525673608849cdc4fc3d7b9fdda1842838143fd",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b472-deployment-verified-and-the-old-dialogue-override-requests-reviewed--s1010"
     }
   }
 }

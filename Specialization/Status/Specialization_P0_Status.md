@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1009
-Implementation Build: source B472.499 / modinfo499. Live B471.498 from 3574404. Stable/main B307.334.
+Status Revision: S1010
+Implementation Build: source B472.499 / modinfo499. Live B472.499 from 0eab91b. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRED_GREAT_WORK_ADJACENCY_COMMANDS_RETIRED_LOCAL
+Work State: RETIRED_DIALOGUE_OVERRIDE_COMMANDS_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B472 deployment verified and the old Dialogue override requests reviewed — S1010
+
+B472.499 is installed from `0eab91b55aa608ff833c330dcf0e8aac9516e329`. All 337 files match SHA256 `f68abfff25298626fa4d186ee0337a8846ef086bc1729ac0117f69a23b970dbb`. Receipt `B472.499-0eab91b-playtest.json` is DEVELOP_ACTIVE. The approved Great Work adjacency commands and dedicated retry path have retired. The B471 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The four hidden Dialogue Off and +25/+50/+100% experiment controls still send requests. The separate Auto request also remains registered in the dispatcher. All five can set old session flags and call a retired writer that returns before any effect change. The proposed removal takes out those controls and their callbacks, the five requests and their flag mutations. Only `Mod/Gameplay.lua`, `Mod/UI/P0Panel.lua` and `Mod/UI/P0Panel.xml` change. Preserve the current era project, earned effect, all existing readouts, background Great Work collection and exact legacy carrier withdrawal.
+
+The disposable comparison takes those legacy calls from five to zero. The current project report, baseline and Great Work report match with a populated Store and no property writes. Local cold reconstruction withdraws a seeded B059 carrier and configures the same +5% and +10% carriers. A separate collection fixture confirms both packets and the same applied values. Three nonempty route proofs and strict transaction qualification match. Disposable switch and restore pass. Evidence `local/refactor/B472-RetiredDialogueOverridesReview/result.json` SHA256 `80f72d954122253638b93e6aa455c5336204a41ec69e7e5daf40a129846c074c` with replay script SHA256 `05252a41e12b029e8afd5bd224779e71cd257cbdbc8b4e1f754349b5671761c0` alongside. Reproduce with CPython 3.14/Lupa 2.8, the named source's DevelopmentTests on PYTHONPATH and `SPC_DEBUG_GAMEPLAY_DB` set to the read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. In a clean scratch directory run `python3.14 -B review.py --source 0eab91b55aa608ff833c330dcf0e8aac9516e329 --package f68abfff25298626fa4d186ee0337a8846ef086bc1729ac0117f69a23b970dbb`.
+
+The exact Dialogue override retirement awaits approval. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the old Great Work adjacency manual commands — S1009
 

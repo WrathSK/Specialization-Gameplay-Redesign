@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1009",
+    "status": "S1010",
     "runtime": "B472.499 / modinfo499",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "3574404f0f484345c469f480531919785781d961",
-  "current_batch": "RETIRED_GREAT_WORK_ADJACENCY_COMMANDS_RETIRED_LOCAL",
-  "next_batch": "Verify the guarded B472 switch and review old Dialogue override requests separately from the current project, effects, reports and collection transport.",
+  "runtime_commit": "0eab91b55aa608ff833c330dcf0e8aac9516e329",
+  "current_batch": "RETIRED_DIALOGUE_OVERRIDE_COMMANDS_REVIEWED",
+  "next_batch": "Await exact approval to remove GWOffButton and DialogueTest25/50/100Button, their callbacks and DIALOGUE_OFF/AUTO/TEST25/TEST50/TEST100 dispatch. Preserve current Dialogue project, effects and collection owners, legacy cleanup and the read-only reports.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B471.498 / modinfo498 temporary develop from 3574404f0f484345c469f480531919785781d961, 337/337 MATCH, SHA256 d829658b19ebbb6dcd0bd7a22afe603db43989f2d9301fb27a87895efa241243. Receipt B471.498-3574404-playtest.json DEVELOP_ACTIVE. B470 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B472.499 / modinfo499 temporary develop from 0eab91b55aa608ff833c330dcf0e8aac9516e329, 337/337 MATCH, SHA256 f68abfff25298626fa4d186ee0337a8846ef086bc1729ac0117f69a23b970dbb. Receipt B472.499-0eab91b-playtest.json DEVELOP_ACTIVE. B471 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S1009 verifies the approved old Great Work adjacency retirement with the reused memory control, automatic Meaning and legacy withdrawal preserved.",
+  "context_review_status": "S1010 verifies B472 deployment and both recovery packages. The old Dialogue override commands are separate from the current projects, reports, effect and collection transport.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-great-work-adjacency-manual-commands--s1009",
-  "source_status": "B472.499 / modinfo499 locally verified at SHA256 f68abfff25298626fa4d186ee0337a8846ef086bc1729ac0117f69a23b970dbb. B471.498 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b472-deployment-verified-and-the-old-dialogue-override-requests-reviewed--s1010",
+  "source_status": "B472.499 / modinfo499 deployed at SHA256 f68abfff25298626fa4d186ee0337a8846ef086bc1729ac0117f69a23b970dbb. Exact retirement of the old Great Work adjacency commands verified.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

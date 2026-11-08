@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "3574404f0f484345c469f480531919785781d961",
-  "runtime": "B471.498 / modinfo498 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
+  "runtime_commit": "0eab91b55aa608ff833c330dcf0e8aac9516e329",
+  "runtime": "B472.499 / modinfo499 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1009 verifies the approved old Great Work adjacency retirement with the reused memory control, automatic Meaning and legacy withdrawal preserved.",
-  "source_runtime": "B472.499 / modinfo499 local candidate, 337 files. B471.498 remains installed.",
+  "source_review": "S1010 verifies B472 deployment and both recovery packages. The old Dialogue override commands are separate from the current projects, reports, effect and collection transport.",
+  "source_runtime": "B472.499 / modinfo499 deployed from 0eab91b with the approved old Great Work adjacency commands and dedicated retry path removed.",
   "tested_source_snapshot_sha256": "85e10cfefa0decc3fd81a8f62fa652e6718051d44ef1c36dd9d9820402486152"
 }
