@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0954",
-    "runtime": "B445.472 / modinfo472",
+    "status": "S0955",
+    "runtime": "B446.473 / modinfo473",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the verified B445 exact retirement deployment and retained recovery.",
+  "goal": "Separate route transport flight safety from measurement and prepare exact unit-site report retirement review.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Route transport owns the in-flight safety flag — S0955",
+      "reason": "Route transport safety transfer, retained GC semantics and exact next removal proposal"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -156,6 +162,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B446 passes all 72 selected local checks. Route proof and GC guard survive unavailable metric taps. The full counter file is still a production dependency.",
     "B445 installed 357/357 MATCH. Exact two removals, B444 outgoing and B307 stable recovery verified; no native run.",
     "B445 passes 75 selected local checks, including the old observers and actual package absence, same Crew effects and report, and exact two-file package restoration.",
     "S0952 locally verifies exact path removal and guarded rollback in both deployment tools. No runtime removal has been applied.",
@@ -875,6 +882,28 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b445-development-deployment-verified--s0954"
+    },
+    "b446_route_flight_owner": {
+      "build": "B446.473 / modinfo473",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": 72,
+      "files": 357,
+      "package_sha256": "47c9b11d52812ef177c718fdccf56e20715c6344b739cc8db20a65b229e3ae90",
+      "source_snapshot_sha256": "782edffb581939405efbb0658cd2509784b3e2dbe9b50e08d38331a710cb32a2",
+      "local_evidence": "local/refactor/B446-O7dNetworkFlight-verified/closure.json",
+      "local_evidence_sha256": "9932f6295c2d100e7bb1e9256321fc2aa2fd89bc65fd168d4bee94ecc4f0e164",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#route-transport-owns-the-in-flight-safety-flag--s0955"
+    },
+    "unit_site_report_review": {
+      "status": "OWNER_EXACT_APPROVAL_REQUIRED",
+      "proposed_removals": {
+        "Mod/UnitSiteProbe.lua": "2398a3af7567fbf58498eee3e95f91ff3e1c44574ad601cb75b38bb398a9d0fc",
+        "Mod/UnitActionSitePolicy.lua": "2ff1d9e151678a564e91a45a8324e320917eff617f86db8789b7ce068479dd7d"
+      },
+      "retrieval_commit": "238cf182af66056eeae0da4e4797114a2a04d73f",
+      "placement_checks": 15,
+      "report": "Specialization/Status/Specialization_P0_Status.md#route-transport-owns-the-in-flight-safety-flag--s0955"
     }
   }
 }

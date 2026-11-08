@@ -1,11 +1,17 @@
 -- B397: complete proof publication, signal-aware deduplication and bounded lifecycle recovery.
 SPCNetworkSender={}
+local function publishFlight(active)
+ -- The transport owns the safety flag. Keep the old diagnostic metric as a tap.
+ ExposedMembers.SPC_NetworkRequestInFlight=active
+ local observe=SPCPerformance and SPCPerformance.Flight
+ if type(observe)=='function'then pcall(observe,active and 1 or 0)end
+end
 function SPCNetworkSender.New(P)
  local result='NOT_STARTED';local seq=0;local flight;local lastEpoch;local failedTurn;local lastFailure;local stopped=false
  local recoveryTurn;local recoveryUsed={}
  local function stop(public)
   stopped=true;flight=nil;failedTurn=nil;lastEpoch=nil;lastFailure=nil;recoveryTurn=nil;recoveryUsed={}
-  public.awaitingNetwork=false;public.awaitingTurn=false;SPCPerformance.Flight(0)
+  public.awaitingNetwork=false;public.awaitingTurn=false;publishFlight(false)
  end
  local function send(public,wake)
   if stopped then public.awaitingNetwork=false;result='STOPPED';return end
@@ -16,7 +22,7 @@ function SPCNetworkSender.New(P)
   if not bridge or not bridge.ready or g.Version~=P.VERSION then public.awaitingNetwork=true;result='BRIDGE_WAIT';return end
   local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid) then result='NOT_OWNER';return end
   local b=bridge.players and bridge.players[pid]
-  if bridge.epoch~=lastEpoch then flight=nil;lastEpoch=bridge.epoch;failedTurn=nil;lastFailure=nil;recoveryTurn=nil;recoveryUsed={};SPCPerformance.Flight(0) end
+  if bridge.epoch~=lastEpoch then flight=nil;lastEpoch=bridge.epoch;failedTurn=nil;lastFailure=nil;recoveryTurn=nil;recoveryUsed={};publishFlight(false) end
   local turn=Game.GetCurrentGameTurn()
   if recoveryTurn~=turn then recoveryTurn=turn;recoveryUsed={} end
   local lifecycle=wake=='LoadScreenClose' or wake=='LocalPlayerTurnBegin'
@@ -26,13 +32,13 @@ function SPCNetworkSender.New(P)
     if flight.valid~=false and (not b.routes or b.fingerprint~=flight.fingerprint or (b.acceptedSeq or -1)<flight.seq) then
      failedTurn=flight.turn;P.Count('send_timeout')
     end
-    flight=nil;SPCPerformance.Flight(0)
+    flight=nil;publishFlight(false)
    elseif turn==flight.turn then
     -- Only a new lifecycle witness can replace an unacknowledged request.
     -- Ordinary publish/playback/frame pulses never reopen a flight.
     if lifecycle and not recoveryUsed[wake] then retry=true
     else P.Count('send_inflight');result='IN_FLIGHT';return end
-   else P.Count('send_timeout');flight=nil;SPCPerformance.Flight(0) end
+   else P.Count('send_timeout');flight=nil;publishFlight(false) end
   end
   public.awaitingNetwork=false
   if public.status~='COMPLETE_UI_SHADOW' or not public.snapshot then result='SHADOW_WAIT';return end
@@ -68,14 +74,14 @@ function SPCNetworkSender.New(P)
   if lifecycle then recoveryUsed[wake]=true end
   if retry then P.Count('send_timeout') end
   seq=math.max(seq,b and b.seq or 0)+1
-  public.awaitingNetwork=true;flight={seq=seq,turn=s.turn,fingerprint=s.fingerprint,valid=not failure};SPCPerformance.Flight(1);P.Count('net_send')
+  public.awaitingNetwork=true;flight={seq=seq,turn=s.turn,fingerprint=s.fingerprint,valid=not failure};publishFlight(true);P.Count('net_send')
   result=failure and 'TRANSPORT_LIMIT' or 'SENT'
   local ok=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,
    {OnStart='SPC_P0_Request',Action='NETWORK_PUSH',Token=P.VERSION..':net:'..seq,
     Epoch=bridge.epoch,Seq=seq,Turn=s.turn,Signal=s.signal,Valid=failure and 0 or 1,Failure=failure,
     Count=s.count,WireCount=not failure and s.count+1 or nil,Data=not failure and payload~='' and payload or 'EMPTY'})
   if stopped then public.awaitingNetwork=false;result='STOPPED';return end
-  if not ok then result='SEND_ERROR';public.awaitingNetwork=false;failedTurn=s.turn;flight=nil;SPCPerformance.Flight(0);P.Count('send_timeout') end
+  if not ok then result='SEND_ERROR';public.awaitingNetwork=false;failedTurn=s.turn;flight=nil;publishFlight(false);P.Count('send_timeout') end
  end
  local function observe(public)
   if SPCExpeditionTrainingDiagnostics and not SPCExpeditionTrainingDiagnostics.ENABLED then return end

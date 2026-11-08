@@ -210,8 +210,7 @@ function M.StartMemory(P,shared)
   if not net or not net.ready then return false,'NETWORK_NOT_READY' end
   local b=net.players and net.players[pid]
   if b and b.refreshing then return false,'NETWORK_REFRESHING' end
-  local p=ExposedMembers.SPC_Performance
-  if p and (p.inflight or 0)>0 then return false,'NETWORK_INFLIGHT' end
+  if ExposedMembers.SPC_NetworkRequestInFlight==true then return false,'NETWORK_INFLIGHT' end
   -- Module public busy flags only; this is not proof that every native transaction ended.
   for key,m in pairs(shared)do if type(m)=='table' and m.busy then return false,'MODULE_BUSY:'..key end end
   local routes=ExposedMembers.SPC_P0_BackgroundRoutes
@@ -313,8 +312,7 @@ function M.StartMemory(P,shared)
    local t=pendingTurn
    if t~=Game.GetCurrentGameTurn() or not a.enabled or a.failure then pendingTurn=nil;return end
    if waitingNetwork then
-    local counters=ExposedMembers.SPC_Performance
-    if counters and (counters.inflight or 0)>0 then return end -- scalar-only wait, no heap/log spam
+    if ExposedMembers.SPC_NetworkRequestInFlight==true then return end -- scalar-only wait, no heap/log spam
     -- The same deferred safety window may include several concurrent UI requests.
     for _,key in ipairs({'SPC_CopyBackground','SPC_IndustryBackground','SPC_ResearchCrossBackground','SPC_DiscountEligibility'})do
      local ui=ExposedMembers[key];if ui and ui.pending and ui.pending~=0 then return end

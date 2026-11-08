@@ -1,17 +1,36 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0954
-Implementation Build: source B445.472 / modinfo472. Live B445.472 from 238cf18. Stable/main B307.334.
+Status Revision: S0955
+Implementation Build: source B446.473 / modinfo473. Live B445.472 from 238cf18. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CREW_DIAGNOSTICS_RETIRED_DEPLOYED
+Work State: ROUTE_FLIGHT_OWNER_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Route transport owns the in-flight safety flag — S0955
+
+The route sender used the performance counter to publish whether a request was still awaiting an acknowledgment. Gameplay's existing GC gate also read that metric. The sender now publishes one session-only boolean at the same transition points. The numeric metric and peak stay available for diagnostics through a protected tap.
+
+- **Runtime Impact Contract (L3, T04/T06/T08).** Gameplay initializes the scalar alongside the former counter state. The existing UI sender sets it before dispatch and clears it on acknowledgment, expiry, epoch replacement, dispatch error and stop. GC reads it in its existing idle guard and deferred check. Waiting for a usable bridge is still a distinct UI condition. Each existing transition adds one boolean assignment and isolates the existing metric call. There are no new engine reads, listeners, scans, queues, retries, saved values or GC policy changes. Route validation and strict transaction proof follow the original Bridge.
+- **LOCAL_SIMULATION_PASS in scope.** All 72 selected methods pass under CPython 3.14.8/Lupa 2.8 Lua 5.1. Two new checks fail with the B445 runtime. Injecting a missing or throwing metric hook demonstrates an actual blocked sender in the old composition. On B446 the actual UI sender and Gameplay Bridge produce one request, no idle resend, strict proof before/after ACK, and one deferred GC evaluation after acknowledgment. The test mirrors the production scalar between the two Lua contexts. The old metric still reports the flight in counted and count-disabled mode. The distinct bridge-wait case still skips without a same-turn GC retry, and a late acknowledgment cannot clear a newer flight. The retained signal test now presents the current Commerce acceptance receipt to the real binding layer. The same corrected fixture passes on B445. Complete `PerformanceCounters.lua` absence remains a required-startup counterexample.
+- **STATIC_CONFIRMED and reproduction.** 228 Lua 5.1 compiles, 32 XML-family parses, 706 file and 11 replacement references across 357 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7dNetworkFlight`. Tested source SHA256 `782edffb581939405efbb0658cd2509784b3e2dbe9b50e08d38331a710cb32a2`, package SHA256 `47c9b11d52812ef177c718fdccf56e20715c6344b739cc8db20a65b229e3ae90`. Local evidence `local/refactor/B446-O7dNetworkFlight-verified/closure.json` at SHA256 `9932f6295c2d100e7bb1e9256321fc2aa2fd89bc65fd168d4bee94ecc4f0e164`; fixed B445 comparisons beside it. Native cross-context timing and performance remain unmeasured.
+
+**Next exact review.** The old unit-site report and its private site policy are a separate ready retirement. The policy's only runtime caller is the report. Formal unit targets, investment and Crew use their own production facts. The actual Gameplay root starts UnitTargets, UnitActions, InvestmentAction, CrewProjects and PlayerActionReplies with both proposed files absent in the throw and silent-nil include models. Fifteen selected placement, preparation and consumption checks also pass, using the real official and HD panel sources where selected. This is preparation for exact deletion review.
+
+| Proposed file | Published SHA256 |
+|---|---|
+| `Mod/UnitSiteProbe.lua` | `2398a3af7567fbf58498eee3e95f91ff3e1c44574ad601cb75b38bb398a9d0fc` |
+| `Mod/UnitActionSitePolicy.lua` | `2ff1d9e151678a564e91a45a8324e320917eff617f86db8789b7ce068479dd7d` |
+
+Both originals are available with `git show 238cf182af66056eeae0da4e4797114a2a04d73f:<path>`. After Owner approval, remove just these files, their declarations, the `UNIT_SITE_READ` request and the matching hidden reads in UnitSites and P0. Preserve the separate right-click City Sequence action, the other unit controls and the formal action path. Verify true package absence, retained actions and the exact two-path swap/rollback before shipping. The proposed files are still in B446.
+
+B445 remains installed at this source checkpoint. User testing is unnecessary for this local transfer. The pending-network withdrawal remains separately gated on positive Culture Network cold-restore evidence.
 
 ### B445 development deployment verified — S0954
 

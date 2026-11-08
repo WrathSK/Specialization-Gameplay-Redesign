@@ -14,20 +14,20 @@ class GCRepairTests(unittest.TestCase):
         self.l.execute("rawReads=0;base=collectgarbage;collectgarbage=function(m)if m=='count'then rawReads=rawReads+1 end;return base(m)end;Events.LoadScreenClose.Fire();turn=3;heap=700*1024")
     def test_one_ack_retry_and_scalar_wait(self):
         self.l.execute('''
-          ExposedMembers.SPC_Performance.inflight=1;Events.PlayerTurnActivated.Fire(0);Events.GameCoreEventPublishComplete.Fire()
+          ExposedMembers.SPC_NetworkRequestInFlight=true;Events.PlayerTurnActivated.Fire(0);Events.GameCoreEventPublishComplete.Fire()
           local r,p=rawReads,prints
           for i=1,10000 do Events.GameCoreEventPublishComplete.Fire()end
           assert(rawReads==r and prints==p and collections==0)
-          Events.PlayerTurnActivated.Fire(0);ExposedMembers.SPC_Performance.inflight=0
+          Events.PlayerTurnActivated.Fire(0);ExposedMembers.SPC_NetworkRequestInFlight=false
           Events.GameCoreEventPublishComplete.Fire();assert(collections==1)
           heap=900*1024;Events.PlayerTurnActivated.Fire(0);Events.GameCoreEventPublishComplete.Fire();assert(collections==1)
         ''')
     def test_foreign_activation_and_deactivation_cancel_retry(self):
         for event in ('Events.PlayerTurnActivated.Fire(7)','Events.PlayerTurnDeactivated.Fire(0)'):
-            self.setUp();self.l.execute('ExposedMembers.SPC_Performance.inflight=1;Events.PlayerTurnActivated.Fire(0);Events.GameCoreEventPublishComplete.Fire();'+event+';ExposedMembers.SPC_Performance.inflight=0;Events.GameCoreEventPublishComplete.Fire();assert(collections==0)')
+            self.setUp();self.l.execute('ExposedMembers.SPC_NetworkRequestInFlight=true;Events.PlayerTurnActivated.Fire(0);Events.GameCoreEventPublishComplete.Fire();'+event+';ExposedMembers.SPC_NetworkRequestInFlight=false;Events.GameCoreEventPublishComplete.Fire();assert(collections==0)')
     def test_retry_keeps_all_guards_and_is_spent_once(self):
-        self.l.execute('''ExposedMembers.SPC_Performance.inflight=1;Events.PlayerTurnActivated.Fire(0);Events.GameCoreEventPublishComplete.Fire()
-          ExposedMembers.SPC_Performance.inflight=0;shared.RequestDepth=1;Events.GameCoreEventPublishComplete.Fire()
+        self.l.execute('''ExposedMembers.SPC_NetworkRequestInFlight=true;Events.PlayerTurnActivated.Fire(0);Events.GameCoreEventPublishComplete.Fire()
+          ExposedMembers.SPC_NetworkRequestInFlight=false;shared.RequestDepth=1;Events.GameCoreEventPublishComplete.Fire()
           shared.RequestDepth=0;Events.GameCoreEventPublishComplete.Fire();assert(collections==0)
           turn=4;Events.PlayerTurnActivated.Fire(0);Events.GameCoreEventPublishComplete.Fire();assert(collections==1)
         ''')

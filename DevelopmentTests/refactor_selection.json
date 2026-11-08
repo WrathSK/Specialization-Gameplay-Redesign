@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7dNetworkFlight": [
+      "test_pu11_package_absence.ActualRoots",
+      "test_pu11_package_absence.ActualTransport",
+      "test_pu11_package_absence.RetainedGC",
+      "test_b397_network_transport",
+      "test_b270_memory_repair.GCRepairTests",
+      "test_refactor_s4a.GarbageCollection",
+      "test_refactor_s4b.NetworkProof",
+      "test_network_effect_fact_receipts"
+    ],
     "O7cCrewDiagnosticRetirement": [
       "test_o7_production_report",
       "test_o6_production_panel",

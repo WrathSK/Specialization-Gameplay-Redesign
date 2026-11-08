@@ -80,7 +80,10 @@ class SignalCatchUp(unittest.TestCase):
          assert(requests==0 and net.TransactionCurrent(0))
          local fp=net.players[0].fingerprint;local rev=net.Input(0).inputVersion
          local proof=net.ProofRevision(0);local writes=created+removed
-         wakes=0;shared.Commerce={Mark=function(pid)assert(pid==0);wakes=wakes+1 end}
+         wakes=0;shared.Commerce={AcceptFact=function(event)
+          assert(event.player==0);wakes=wakes+1
+          return shared.FactChanges.Receipt(event,'REGISTERED')
+         end}
          GP.UnitOperationStarted.Fire(0,10)
          assert(net.players[0].revalidation=='VERIFIED' and not net.TransactionCurrent(0))
          UP.GameCoreEventPublishComplete.Fire();gpDrain();UP.GameCoreEventPublishComplete.Fire()
@@ -224,9 +227,9 @@ class LifecycleRecovery(unittest.TestCase):
         l=pipeline(cold=True,hold=True);l.execute('''
          UP.LoadScreenClose.Fire();assert(requests==2)
          deliver(1);gpDrain();UP.GameCoreEventPublishComplete.Fire()
-         assert(requests==2 and pub.awaitingNetwork and inFlight==1)
+         assert(requests==2 and pub.awaitingNetwork and inFlight==1 and ExposedMembers.SPC_NetworkRequestInFlight==true)
          deliver(2);gpDrain();UP.GameCoreEventPublishComplete.Fire()
-         assert(not pub.awaitingNetwork and inFlight==0)
+         assert(not pub.awaitingNetwork and inFlight==0 and ExposedMembers.SPC_NetworkRequestInFlight==false)
          local seq=net.players[0].acceptedSeq;deliver(1);assert(net.players[0].acceptedSeq==seq)
         ''')
 

@@ -42,14 +42,21 @@ def mirror_bridge(g,u):
         signal=b.signal,routes=b.routes and {}}}or{}}}end)()""")
     u.globals().ExposedMembers.SPC_P0=u.table(scalars(packet))
 
-def pair(enabled=True):
+def pair(enabled=True, *, flight_observer=None, gameplay_setup=None):
     g=root();g.execute('Events.LoadScreenClose.Fire();publish()')
     assert g.eval('ExposedMembers.SPC_P0.NetworkBridge.ready')
+    if gameplay_setup:
+        gameplay_setup(g)
     u=root('UI/BackgroundRoutes');mirror_bridge(g,u)
+    u.execute('turn=...',g.eval('turn'))
     # Factory really ran in Gameplay; copy only its scalar exposed state into the
     # separate UI VM. No SPCPerformance/Probe/Sender replacement is installed.
     u.globals().ExposedMembers.SPC_Performance=u.table(scalars(g.eval('ExposedMembers.SPC_Performance')))
     u.execute('ExposedMembers.SPC_Performance.enabled=...',enabled)
+    if flight_observer == 'absent':
+        u.execute('SPCPerformance=nil;ExposedMembers.SPC_Performance=nil')
+    elif flight_observer == 'throws':
+        u.execute("SPCPerformance.Flight=function()error('DIAGNOSTIC_OBSERVER_FAILED')end")
     packets=[]
     def request(pid,operation,payload):
         assert pid==0 and operation==1
@@ -161,22 +168,24 @@ class ActualTransport(unittest.TestCase):
         for enabled in (True,False):
             g,u,packets=pair(enabled)
             self.assertEqual(u.eval('ExposedMembers.SPC_Performance.inflight'),1)
+            self.assertIs(u.eval('ExposedMembers.SPC_NetworkRequestInFlight'),True)
             self.assertFalse(g.eval('ExposedMembers.SPC_P0.NetworkBridge.TransactionCurrent(0)'))
             p=packets[0];g.execute('ExposedMembers.SPC_P0.NetworkBridge.Receive(0,...)',g.table(p))
             self.assertTrue(g.eval('ExposedMembers.SPC_P0.NetworkBridge.TransactionCurrent(0)'))
             mirror_bridge(g,u);u.execute('publish()')
             self.assertEqual(u.eval('ExposedMembers.SPC_Performance.inflight'),0)
+            self.assertIs(u.eval('ExposedMembers.SPC_NetworkRequestInFlight'),False)
             self.assertEqual(len(packets),1)
             self.assertEqual(u.eval('ExposedMembers.SPC_Performance.entries.net_send.total'),1 if enabled else 0)
             u.execute('for i=1,1000 do publish()end');self.assertEqual(len(packets),1)
             u.execute('shutdown()');self.assertEqual(u.eval('ExposedMembers.SPC_Performance.inflight'),0)
+            self.assertIs(u.eval('ExposedMembers.SPC_NetworkRequestInFlight'),False)
     def test_unacked_proof_does_not_retry_on_idle_and_stop_clears_real_flight(self):
         g,u,packets=pair(False);u.execute('for i=1,1000 do publish()end')
         self.assertEqual(len(packets),1);self.assertEqual(u.eval('ExposedMembers.SPC_Performance.inflight'),1)
         self.assertFalse(g.eval('ExposedMembers.SPC_P0.NetworkBridge.TransactionCurrent(0)'))
         u.execute('shutdown()');self.assertEqual(u.eval('ExposedMembers.SPC_Performance.inflight'),0)
-    def test_actual_gc_waits_for_ui_flight_with_counters_disabled(self):
-        g,u,packets=pair(False)
+    def prepare_gc(self,g):
         g.execute("""
          heap=200*1024;gcCalls=0;cpu=0;wall=0
          collectgarbage=function(mode)if mode=='count'then return heap elseif mode=='isrunning'then return true end
@@ -186,15 +195,67 @@ class ActualTransport(unittest.TestCase):
          ExposedMembers.SPC_Performance.enabled=false;Events.LoadScreenClose.Fire()
          turn=3;heap=400*1024
         """)
-        g.execute('ExposedMembers.SPC_Performance.inflight=...',u.eval('ExposedMembers.SPC_Performance.inflight'))
+
+    def mirror_flight(self,g,u):
+        # Copy the actual production scalar, not the optional counter or table.
+        g.execute('ExposedMembers.SPC_NetworkRequestInFlight=...',u.eval('ExposedMembers.SPC_NetworkRequestInFlight'))
+
+    def test_actual_gc_waits_for_ui_flight_with_counters_disabled(self):
+        g,u,packets=pair(False,gameplay_setup=self.prepare_gc)
+        self.mirror_flight(g,u)
         g.execute('Events.PlayerTurnActivated.Fire(0);publish()')
         self.assertEqual(g.eval('gcCalls'),0)
         self.assertEqual(g.eval('shared.MemoryObservation.AutoGC.reason'),'SKIP:NETWORK_INFLIGHT')
         g.execute('ExposedMembers.SPC_P0.NetworkBridge.Receive(0,...)',g.table(packets[0]))
+        self.assertTrue(g.eval('ExposedMembers.SPC_P0.NetworkBridge.TransactionCurrent(0)'))
         mirror_bridge(g,u);u.execute('publish()')
-        g.execute('ExposedMembers.SPC_Performance.inflight=...',u.eval('ExposedMembers.SPC_Performance.inflight'))
+        self.mirror_flight(g,u)
         g.execute('publish();publish()');self.assertEqual(g.eval('gcCalls'),1)
         self.assertEqual(g.eval('shared.MemoryObservation.AutoGC.reason'),'AUTO_GROWTH')
+
+    def test_actual_request_ack_and_gc_survive_unavailable_flight_observer(self):
+        for observer in ('absent','throws'):
+            with self.subTest(observer=observer):
+                g,u,packets=pair(False,flight_observer=observer,gameplay_setup=self.prepare_gc)
+                self.assertIs(u.eval('ExposedMembers.SPC_NetworkRequestInFlight'),True)
+                self.assertFalse(g.eval('ExposedMembers.SPC_P0.NetworkBridge.TransactionCurrent(0)'))
+                g.execute('ExposedMembers.SPC_Performance=nil')
+                self.mirror_flight(g,u)
+                g.execute('Events.PlayerTurnActivated.Fire(0);publish()')
+                self.assertEqual(g.eval('shared.MemoryObservation.AutoGC.reason'),'SKIP:NETWORK_INFLIGHT')
+                g.execute('for i=1,1000 do publish()end;assert(gcCalls==0)')
+                u.execute('for i=1,1000 do publish()end')
+                self.assertEqual(len(packets),1)
+                g.execute('ExposedMembers.SPC_P0.NetworkBridge.Receive(0,...)',g.table(packets[0]))
+                self.assertTrue(g.eval('ExposedMembers.SPC_P0.NetworkBridge.TransactionCurrent(0)'))
+                mirror_bridge(g,u);u.execute('publish()')
+                self.assertIs(u.eval('ExposedMembers.SPC_NetworkRequestInFlight'),False)
+                self.mirror_flight(g,u)
+                g.execute('publish();publish();assert(gcCalls==1)')
+                self.assertEqual(g.eval('shared.MemoryObservation.AutoGC.reason'),'AUTO_GROWTH')
+
+    def test_actual_waiting_for_bridge_is_not_an_inflight_gc_retry(self):
+        g,u,packets=pair()
+        g.execute('ExposedMembers.SPC_P0.NetworkBridge.Receive(0,...)',g.table(packets[0]))
+        mirror_bridge(g,u);u.execute('publish()')
+        u.execute("""
+          ExposedMembers.SPC_P0.NetworkBridge.ready=false
+          Events.TradeRouteActivityChanged.Fire();publish()
+          assert(ExposedMembers.SPC_P0_BackgroundRoutes.awaitingNetwork)
+          assert(ExposedMembers.SPC_NetworkRequestInFlight==false)
+        """)
+        self.assertEqual(len(packets),1)
+        self.prepare_gc(g)
+        self.mirror_flight(g,u)
+        g.execute("""
+          -- A stale measurement is ignored, but the existing UI pending guard remains.
+          ExposedMembers.SPC_Performance.inflight=1
+          ExposedMembers.SPC_P0_BackgroundRoutes={awaitingNetwork=true}
+          Events.PlayerTurnActivated.Fire(0);publish()
+          assert(gcCalls==0 and shared.MemoryObservation.AutoGC.reason=='SKIP:ROUTES_PENDING')
+          ExposedMembers.SPC_P0_BackgroundRoutes.awaitingNetwork=false
+          publish();assert(gcCalls==0)
+        """)
 
 class RetainedGC(unittest.TestCase):
     # Frozen standalone safety tests are retained regression, NOT absence proof.

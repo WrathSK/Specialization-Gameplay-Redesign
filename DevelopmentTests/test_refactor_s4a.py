@@ -91,12 +91,12 @@ class GarbageCollection(unittest.TestCase):
     def test_mixed_blockers_wait_scalar_only_then_collect_once(self):
         l=gc();l.execute("""
         heapReads=0;local read=SPCPerformance.Heap;SPCPerformance.Heap=function()heapReads=heapReads+1;return read()end
-        ExposedMembers.SPC_Performance.inflight=1
+        ExposedMembers.SPC_NetworkRequestInFlight=true
         ExposedMembers.SPC_IndustryBackground={pending=1};ExposedMembers.SPC_CopyBackground={pending=true}
         Events.PlayerTurnActivated.Fire(0);publish=Events.GameCoreEventPublishComplete.Fire;publish()
         local reads,p=heapReads,prints
         for i=1,10000 do publish()end;assert(heapReads==reads and prints==p and collections==0)
-        ExposedMembers.SPC_Performance.inflight=0;publish();assert(collections==0)
+        ExposedMembers.SPC_NetworkRequestInFlight=false;publish();assert(collections==0)
         ExposedMembers.SPC_IndustryBackground.pending=0;publish();assert(collections==0)
         ExposedMembers.SPC_CopyBackground.pending=0;assert(collections==0);publish();assert(collections==1)
         for i=1,1000 do publish()end;Events.PlayerTurnActivated.Fire(0);publish();assert(collections==1)

@@ -22,6 +22,7 @@ local composition=SPCRuntimeComposition.New(shared)
 local readiness
 pcall(function()include('ExpeditionTrainingDiagnostics');include('ReadinessSummary');readiness=SPCReadinessSummary.Start(P,shared)end)
 ExposedMembers.SPC_Performance=SPCPerformance.New()
+ExposedMembers.SPC_NetworkRequestInFlight=false
 local function stage(value)
   shared.Stage=value
   local line="[SPC]["..P.VERSION.."][GAMEPLAY] "..value

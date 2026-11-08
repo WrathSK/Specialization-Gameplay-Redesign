@@ -631,9 +631,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "437be6e878e49cd9420de2b9767a419ff6e471d6a40d1847f102b275001227d5",
+      "sha256": "9fb0f180869d7c14829a3d613240fc31d26ec3ddc840a636b0102c49a534f4ea",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
+      "provenance": "S0955 B446 verified production route flight flag and retained GC guards."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -756,9 +756,9 @@
       "provenance": "B239 user-authorized paid-paused Crew occupancy and Commercialization/Reputation, D0054 per-domain Floor. Direct source and336 targeted checks reviewed; exact legacy retirement/current dependencies and failure boundaries. No timers/GC, other profession rules or main changes; native pending."
     },
     "Mod/NetworkSender.lua": {
-      "sha256": "824b284791f9637d2f839d88a736e6796e6ba30019b350aff87e9e40c3f0f17e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B397_Network_Proof_Transport.md",
-      "provenance": "B397.424 scoped NET-1/NET-2 signal and bounded lifecycle proof transport;87targeted methods/restricted Lua51/package checks PASS,native/deployment pending;D1 and transaction gates unchanged."
+      "sha256": "06a6ece8c5119e6ab6a5491eda9a64d1dad6d2cd78ffb1589787b12f2d7f73ea",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0955 B446 verified production route flight flag and retained GC guards."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
       "sha256": "871658d702a9990d5299f73343f6f8832e3ef956c3afba584ab66dcf7ed761fa",
@@ -771,14 +771,14 @@
       "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "8d80f53f097e31f6435d196af3fbcde3fff586e7f24c6d4aa5ce25b9f3a90ff0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
-      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
+      "sha256": "00f8d0921bbc0c35b1a12307a6c501c0afcf40c940f97deed73793a141d5d775",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0955 B446 verified production route flight flag and retained GC guards."
     },
     "Mod/Probe.lua": {
-      "sha256": "51892247b440245654508f8b8391d06962d55b546062a822f31bfc9f6ab2bb8a",
+      "sha256": "6249542d83dcf71d9ce06cafe3e31af8431cb34f17e3f670e3b8a284bfe0fd23",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
+      "provenance": "S0955 B446 verified production route flight flag and retained GC guards."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -916,9 +916,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e68e74d855aaa9503f7188f7c87326ccbe12ed2661086c7d723c0fa46c347650",
+      "sha256": "416f2559afbd11b6b03faff8f0006d8492f8c52c9b4c9d13d87ba0391b917a99",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
+      "provenance": "S0955 B446 verified production route flight flag and retained GC guards."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1791,7 +1791,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0954 verifies B445 exact two-path development replacement and both retained rollback packages.",
-  "source_runtime": "B445.472 / modinfo472 deployed from 238cf18 with both exact approved paths retired.",
-  "tested_source_snapshot_sha256": "f5c7ad961efe933cd3acb621eea181e81a244cbc8a6a462ea7956968806cd193"
+  "source_review": "S0955 verifies the scoped route Flight transfer and identifies the next exact diagnostic removal for Owner review.",
+  "source_runtime": "B446.473 / modinfo473 local candidate, 357 files. B445.472 remains installed.",
+  "tested_source_snapshot_sha256": "782edffb581939405efbb0658cd2509784b3e2dbe9b50e08d38331a710cb32a2"
 }
