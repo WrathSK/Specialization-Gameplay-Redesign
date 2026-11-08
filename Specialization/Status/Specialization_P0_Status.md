@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0946
-Implementation Build: source B443.470 / modinfo470. Live B442.469 from 65ccad2. Stable/main B307.334.
+Status Revision: S0947
+Implementation Build: source B443.470 / modinfo470. Live B443.470 from 45206f6. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: PRODUCTION_BINDING_REPAIR_LOCAL
+Work State: PRODUCTION_BINDING_NATIVE_CHECKPOINT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B443 deployed for the focused production panel check — S0947
+
+The Owner clarified that development deployment is still active during focused user checks. A targeted reproduction or verification does not by itself switch the project to long-play testing. Locally verified and pushed develop packages use the existing guarded deployment after confirmed game exit, without a new per-build approval. The Owner decides when the mode ends.
+
+B443.470 is installed from `45206f6479bdf1697e3229755cc81d429efe8193`. Receipt `B443.470-45206f6-playtest.json` is DEVELOP_ACTIVE. All 359 files match the candidate at SHA256 `3aca80c010fd0f84759d0a56e04b397c09f3549f2be89209590b0e959926da21`. The outgoing B442 package and the B307 stable package were verified against their receipts. The Mod UUID is unique and no transaction remains pending.
+
+**USER_GAME_TEST_REQUIRED.** The preceding reproduction still ran B442. For B443, first check the build and production reader registration in HD. Then confirm the list filters and one eligible Study through next-turn completion. A normal Crew order checks formation before the already scoped Wonder-spending check. The independent official-profile interaction checkpoint remains open.
 
 ### Production panel readers bind in both game environments — S0946
 

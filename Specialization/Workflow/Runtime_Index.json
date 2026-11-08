@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "65ccad261997211511314d84da1cbcb16ce56026",
-  "runtime": "B442.469 / modinfo469 temporary develop deployed, 359/359 MATCH. Stable/main B307.334.",
+  "runtime_commit": "45206f6479bdf1697e3229755cc81d429efe8193",
+  "runtime": "B443.470 / modinfo470 temporary develop deployed, 359/359 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1801,7 +1801,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0946 records the HD B442 production failure, a restricted Lua reproduction, and the locally verified B443 panel binding repair.",
-  "source_runtime": "B443.470 / modinfo470 local candidate, 359 files. B442 remains installed.",
+  "source_review": "S0946 verifies the production callback binding locally. S0947 confirms receipt-bound deployment.",
+  "source_runtime": "B443.470 / modinfo470 deployed from 45206f6. Native production interaction awaits user-game evidence.",
   "tested_source_snapshot_sha256": "4ed9fc17d677b5bc0a78b02fd2b551e973cab3cd8fd12139c1e2f7553ad18cfa"
 }

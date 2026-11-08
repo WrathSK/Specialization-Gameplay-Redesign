@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0946",
+    "status": "S0947",
     "runtime": "B443.470 / modinfo470",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "65ccad261997211511314d84da1cbcb16ce56026",
-  "current_batch": "PRODUCTION_BINDING_REPAIR_LOCAL",
-  "next_batch": "After the Owner authorizes replacement of the active playtest package, verify the B443 production list, timed project and normal Crew formation/spending. Keep official-profile interaction and dependent retirement subject to their native evidence gates.",
+  "runtime_commit": "45206f6479bdf1697e3229755cc81d429efe8193",
+  "current_batch": "PRODUCTION_BINDING_NATIVE_CHECKPOINT",
+  "next_batch": "Verify the installed B443 production panel, timed project and normal Crew formation/spending. Keep the separate official-profile interaction and production-dependent retirement subject to their native evidence gates.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B442.469 / modinfo469 temporary develop from 65ccad261997211511314d84da1cbcb16ce56026, 359/359 MATCH, SHA256 f1716ab8a4d2561e6566d6613592784e25e0fc24e72da8d415d5d0ad73cd9d1c. Receipt B442.469-65ccad2-playtest.json DEVELOP_ACTIVE. B437 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B443.470 / modinfo470 temporary develop from 45206f6479bdf1697e3229755cc81d429efe8193, 359/359 MATCH, SHA256 3aca80c010fd0f84759d0a56e04b397c09f3549f2be89209590b0e959926da21. Receipt B443.470-45206f6-playtest.json DEVELOP_ACTIVE. B442 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -48,8 +48,8 @@
     "Specialization/Architecture/v2/Event_Catalog.tsv"
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
-  "deployment_authorization": "2026-11-07 Owner approved autonomous deployment during the development phase. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. Active until the Owner resumes playtesting or revokes it. Game launch and main promotion retain their separate authorization.",
-  "context_review_status": "S0946 records the HD B442 production failure, a restricted Lua reproduction, and the locally verified B443 panel binding repair.",
+  "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
+  "context_review_status": "S0947 verifies the guarded B443 development deployment and records the Owner clarification that focused bug checks do not end development deployment mode.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#production-panel-readers-bind-in-both-game-environments--s0946",
-  "source_status": "B443.470 / modinfo470 local candidate at SHA256 3aca80c010fd0f84759d0a56e04b397c09f3549f2be89209590b0e959926da21. B442 remains installed. Scoped B442 HD production failure and city-view pass are recorded. B443 native interaction remains USER_GAME_TEST_REQUIRED.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b443-deployed-for-the-focused-production-panel-check--s0947",
+  "source_status": "B443.470 / modinfo470 locally verified and installed at SHA256 3aca80c010fd0f84759d0a56e04b397c09f3549f2be89209590b0e959926da21. The B443 native production interaction remains USER_GAME_TEST_REQUIRED.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

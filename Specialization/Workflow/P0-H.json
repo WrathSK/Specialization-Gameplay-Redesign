@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0946",
+    "status": "S0947",
     "runtime": "B443.470 / modinfo470",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the HD production panel regression and verify the minimal callback repair in both profile entries.",
+  "goal": "Record verified B443 deployment and its focused native production panel checkpoint.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B443 deployed for the focused production panel check — S0947",
+      "reason": "Installed B443, verified recovery and the development deployment clarification"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -108,6 +114,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B443 deployment: 359/359 MATCH, receipt DEVELOP_ACTIVE, both retained recovery packages verified and no pending transaction. Native production interaction remains required.",
     "B443: 51 production, 48 city presentation and 44 Crew/placement local checks pass with overlapping selections. Two restricted-context fixed-B442 cases fail before reader registration. B443 native interaction awaits verification.",
     "B442 deployment: 359/359 installed, retained B437 and B307 hashes verified. No native interaction claim.",
     "B442 city panel: 47 scoped local checks and 12 integration checks pass. Three fixed-B441 subcases now pass. Native interaction remains pending.",
@@ -655,6 +662,20 @@
       },
       "deployed": false,
       "report": "Specialization/Status/Specialization_P0_Status.md#production-panel-readers-bind-in-both-game-environments--s0946"
+    },
+    "b443_deployment": {
+      "version": "B443.470 / modinfo470",
+      "source_commit": "45206f6479bdf1697e3229755cc81d429efe8193",
+      "digest": "3aca80c010fd0f84759d0a56e04b397c09f3549f2be89209590b0e959926da21",
+      "files": 359,
+      "identical": true,
+      "receipt": "B443.470-45206f6-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "pending": false,
+      "outgoing": "B442.469, 359/359 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "USER_GAME_TEST_REQUIRED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b443-deployed-for-the-focused-production-panel-check--s0947"
     }
   }
 }
