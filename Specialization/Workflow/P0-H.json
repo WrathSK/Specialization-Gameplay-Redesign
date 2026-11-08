@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0948",
+    "status": "S0949",
     "runtime": "B443.470 / modinfo470",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record observed B443 HD production interaction and the separate official-profile native gate.",
+  "goal": "Record B443 official interaction and route the next dependent production-read retirement preparation.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Official production interaction verified on B443 — S0949",
+      "reason": "Official native interaction, numeric evidence and remaining retirement gates"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -120,7 +126,8 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
-    "B443 HD native observation passes production reader, Study queue/timing, Gold and applied carrier update, and Crew formation/use in scope. Native queue shows 0.2 residue. Official interaction pending.",
+    "B443 official native interaction passes the observed institution, Study and Crew scope. The raw queue records 0.9 Overflow, with no subsequent inheritance observed.",
+    "B443 HD native observation passes production reader, Study queue/timing, Gold and applied carrier update, and Crew formation/use in scope. Native queue shows 0.2 residue.",
     "B443 deployment: 359/359 MATCH, receipt DEVELOP_ACTIVE, both retained recovery packages verified and no pending transaction. Native production interaction remains required.",
     "B443: 51 production, 48 city presentation and 44 Crew/placement local checks pass with overlapping selections. Two restricted-context fixed-B442 cases fail before reader registration. B443 native interaction awaits verification.",
     "B442 deployment: 359/359 installed, retained B437 and B307 hashes verified. No native interaction claim.",
@@ -722,6 +729,39 @@
       "native_evidence_sha256": "245384ee1229caccb7dd145ece6f0d8c2304afa4e5201b12b694184419e95175",
       "report": "Specialization/Status/Specialization_P0_Status.md#hd-production-interaction-verified-on-b443--s0948",
       "official_native": "USER_GAME_TEST_REQUIRED"
+    },
+    "b443_official_production_interaction": {
+      "build": "B443.470 / modinfo470",
+      "profile": "OFFICIAL_WITH_TEST_HELPERS",
+      "status": "USER_GAME_TEST_PASS_SCOPED",
+      "turns": [
+        1,
+        7
+      ],
+      "save_origin_build": "UNKNOWN",
+      "study_level": 1,
+      "standardization_applied_percent": [
+        10,
+        12
+      ],
+      "monument_production_deltas": [
+        11.9,
+        12.0,
+        12.0
+      ],
+      "crew_orders_bound": 4,
+      "wonder_production_deltas": [
+        337.2,
+        337.2,
+        278.8
+      ],
+      "native_overflow_field": 0.9,
+      "overflow_inheritance": "NOT_OBSERVED",
+      "next_crew_cost": 364,
+      "native_evidence": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B443_Official_Production_20261107/manifest.json",
+      "native_evidence_sha256": "5ba6f7a1fea49e516ee608ca3237bdceb2979f3a68e0a3da2210a87a6b099f8d",
+      "db_extract_sha256": "1f9761d89d1e6c6bc0dff8d98f806df8817448d7fbacb18054bb883eae8ac141",
+      "report": "Specialization/Status/Specialization_P0_Status.md#official-production-interaction-verified-on-b443--s0949"
     }
   }
 }

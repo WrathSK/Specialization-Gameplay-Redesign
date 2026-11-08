@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0948
+Status Revision: S0949
 Implementation Build: source B443.470 / modinfo470. Live B443.470 from 45206f6. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OFFICIAL_INTERACTION_NATIVE_CHECKPOINT
+Work State: PRODUCTION_DEPENDENCY_RETIREMENT_PREPARATION
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Official production interaction verified on B443 — S0949
+
+**USER_GAME_TEST_PASS in the observed official interaction scope.** The T1–T7 trace identifies B443.470. The loaded database selects OFFICIAL and the native log applies the official production panel. The Owner observed normal investment and institution display. The InGame target list includes Advanced Cheat Menu (Light) and Larger MODinUse Area. Enhanced Mod Manager was enabled in the front end. This is the no-HD Gathering Storm profile with testing aids. The exact campaign save origin is unverified.
+
+- **Study and Standardization.** Study counted on T4, held while another item shared the queue, resumed and settled at level 1 on T5 (seq 652, 657, 665, 836–843). The Owner saw the institution update and purchase quotes of 240→235 and 260→250. New York had the 10% Standardization projection before its first Monument turn and 12% after Study (seq 743 and 842). The native queue added 11.9, 12.0 and 12.0 on T5–T7 (lines 74, 99 and 124). The city panel showed 11, 23 and 35 cumulative. There is no evidence of a missing first-turn bonus. The exact modifier arithmetic is unmeasured.
+- **Crew formation and spending.** Four formation receipts bound units. Three distinct Crew uses added 337.2, 337.2 and 278.8 to the placed Forbidden City from 31.5 initial progress (seq 1039–1040, 1163–1164 and 1228–1229, queue lines 97, 101, 126 and 128). The last use took 215 base Production against cost 920 and completed the Wonder. Native queue logging reports 0.9 Overflow. The Owner saw no inherited progress and no later target gain is present in the trace. The two initial no-response preparations have no rejection record. A changed current target is plausible, and the successful same-turn use establishes that no universal one-turn wait is required. The Wonder recorded Renaissance, reopened Study and lowered the next Crew order from 390 to 364 (seq 1231–1233 and 1279).
+
+The no-HD production and Crew interaction checkpoint closes at this scope. The wider integration gate retains unobserved paths and the separate positive Culture Network cold restore boundary. The earlier HD production witness remains valid. The next ready retirement work is to move the explicit Standardization report's queue progress off the DEV construction probe and exercise actual package absence. Exact cleanup, historical retrieval and deployment removal review remain required before deleting files.
+
+The original logs are retained locally at `local/legacy-workspace/Specialization/Status/Validation/Evidence/B443_Official_Production_20261107/manifest.json`, SHA256 `5ba6f7a1fea49e516ee608ca3237bdceb2979f3a68e0a3da2210a87a6b099f8d`. The accompanying assembly query extract is SHA256 `1f9761d89d1e6c6bc0dff8d98f806df8817448d7fbacb18054bb883eae8ac141`.
 
 ### HD production interaction verified on B443 — S0948
 
