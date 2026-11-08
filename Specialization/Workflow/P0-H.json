@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1003",
+    "status": "S1004",
     "runtime": "B469.496 / modinfo496",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the approved City Flow report retirement with current Store, legacy recovery and shared facts preserved.",
+  "goal": "Record B469 deployment and review the exact manual Journal and Binding report retirement with legacy load audits and current Store preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B469 deployment verified and the two manual city record reports reviewed — S1004",
+      "reason": "Verified B469 deployment and exact hidden city record report retirement boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -450,6 +456,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B469 installed 337/337 MATCH with both recovery packages verified. The projection preserves the two legacy cold audits, current Store records, identity and route proofs.",
     "B469 passes 13 selected and 28/64 carried checks. Cold Store, first completion, retained SupportFacts, reports and network proofs match.",
     "B468 installed 337/337 MATCH with both recovery packages verified. The manual City Flow projection preserves Store cold restore, SupportFacts, the legacy resume, City Journal and current route proofs.",
     "B468 passes 28 selected and 26/64 carried checks. Saved marker readout, current Store guards, reports and network proofs match.",
@@ -2788,6 +2795,72 @@
       "package_sha256": "92130906da6c7cb2bfa95f8243d7fae84b2a8a835532473873ce2ec48999e6ec",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-hidden-manual-city-flow-report--s1003"
+    },
+    "b469_deployment": {
+      "version": "B469.496 / modinfo496",
+      "source_commit": "6c3c4ce874998fb6498768f3b9dc7bb742aa4a2f",
+      "digest": "92130906da6c7cb2bfa95f8243d7fae84b2a8a835532473873ce2ec48999e6ec",
+      "files": 337,
+      "receipt": "B469.496-6c3c4ce-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B468.495, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b469-deployment-verified-and-the-two-manual-city-record-reports-reviewed--s1004"
+    },
+    "b469_manual_city_record_reports_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "6c3c4ce874998fb6498768f3b9dc7bb742aa4a2f",
+      "removed": [],
+      "modified": [
+        "Gameplay.lua",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "Gameplay.lua": "f0befaaaf4c1a112e2a871daf2aca00e524d5016b4a17f8d3bbcbf7fe068f401",
+        "UI/P0Panel.lua": "954bccb16e2bccc946081d0545473db1f12e1ddaf10adb03fa8b3dc6e78b5d89",
+        "UI/P0Panel.xml": "f40b674dc0ea5c9297300599de0a17577005beee6df6313f4ab712bb3c0b6ca5"
+      },
+      "hidden_controls": [
+        "CityJournalButton",
+        "BindingReadButton"
+      ],
+      "retired_actions": [
+        "CITY_JOURNAL_READ",
+        "BINDING_READ"
+      ],
+      "manual_read_calls": {
+        "journal": [
+          2,
+          0
+        ],
+        "binding": [
+          2,
+          0
+        ]
+      },
+      "legacy_cold_audits": {
+        "binding": [
+          1,
+          1
+        ],
+        "journal": [
+          1,
+          1
+        ]
+      },
+      "store_cold_and_first_completion": "MATCH",
+      "identity_resolution_and_store_report": "MATCH",
+      "production_route_packets": 3,
+      "local_evidence": "local/refactor/B469-ManualCityRecordReportsRetirementReview/result.json",
+      "local_evidence_sha256": "926229e5a0cf4a9f95acea5bcd7ee416e038744f60ff6f384dc1ccea4dbc0b96",
+      "local_replay_sha256": "3b31e7d6d381dc7ed9f5bfb7e3f02ebec5864a27a7e117302097bc29c57febd5",
+      "local_transcript_sha256": "55cf5f2bc65d984eb44341755c88725997033570f5d2c5d3c4c13771d8b89b04",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b469-deployment-verified-and-the-two-manual-city-record-reports-reviewed--s1004"
     }
   }
 }

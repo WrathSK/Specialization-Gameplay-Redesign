@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "4ac113246dacc257cbe4a4e10aa352308417dcaf",
-  "runtime": "B468.495 / modinfo495 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
+  "runtime_commit": "6c3c4ce874998fb6498768f3b9dc7bb742aa4a2f",
+  "runtime": "B469.496 / modinfo496 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1003 verifies the exact manual City Flow report retirement with current Store, legacy recovery and shared facts preserved.",
-  "source_runtime": "B469.496 / modinfo496 local candidate, 337 files. B468.495 remains installed.",
+  "source_review": "S1004 verifies B469 deployment and both recovery packages. The two hidden manual city record reports can retire separately from the legacy load audits and current Store and identity paths.",
+  "source_runtime": "B469.496 / modinfo496 deployed from 6c3c4ce with the approved hidden manual City Flow report removed.",
   "tested_source_snapshot_sha256": "09fecdf2a8f6c1942afe2f8f9d6c1d3f2afc0d8cf2d181ba30753c610afa09c1"
 }

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1003
-Implementation Build: source B469.496 / modinfo496. Live B468.495 from 4ac1132. Stable/main B307.334.
+Status Revision: S1004
+Implementation Build: source B469.496 / modinfo496. Live B469.496 from 6c3c4ce. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: MANUAL_CITY_FLOW_REPORT_RETIRED_LOCAL
+Work State: MANUAL_CITY_RECORD_REPORTS_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B469 deployment verified and the two manual city record reports reviewed — S1004
+
+B469.496 is installed from `6c3c4ce874998fb6498768f3b9dc7bb742aa4a2f`. All 337 files match SHA256 `92130906da6c7cb2bfa95f8243d7fae84b2a8a835532473873ce2ec48999e6ec`. Receipt `B469.496-6c3c4ce-playtest.json` is DEVELOP_ACTIVE. The hidden manual City Flow report has retired. The B468 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The hidden City Journal button reports that the legacy journal is frozen for a city owned by the current Store. The hidden Binding button uses the Store's general report in the current authority mode. The projection removes the two hidden controls, callbacks and CITY_JOURNAL_READ and BINDING_READ branches in `Mod/Gameplay.lua`, `Mod/UI/P0Panel.lua` and `Mod/UI/P0Panel.xml`. The current progress report stays available. The two owner modules and their Read methods stay in full for legacy load audits, binding resolution, foundation and inheritance.
+
+The disposable comparison removes both manual reads of each report across two owned cities. Each legacy automatic audit still runs once on cold load. Current Store cold records, first completion, binding resolution, progress report, other UI requests and three nonempty route proofs with strict transaction qualification match. The package path set is identical and the disposable switch and restore pass. Evidence `local/refactor/B469-ManualCityRecordReportsRetirementReview/result.json` SHA256 `926229e5a0cf4a9f95acea5bcd7ee416e038744f60ff6f384dc1ccea4dbc0b96` with replay script SHA256 `3b31e7d6d381dc7ed9f5bfb7e3f02ebec5864a27a7e117302097bc29c57febd5` alongside. Reproduce in a clean scratch directory with CPython 3.14/Lupa 2.8 and the named source's DevelopmentTests on PYTHONPATH by running `python3.14 -B review.py --source 6c3c4ce874998fb6498768f3b9dc7bb742aa4a2f --package 92130906da6c7cb2bfa95f8243d7fae84b2a8a835532473873ce2ec48999e6ec`.
+
+The exact two-report retirement awaits approval. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the hidden manual City Flow report — S1003
 
