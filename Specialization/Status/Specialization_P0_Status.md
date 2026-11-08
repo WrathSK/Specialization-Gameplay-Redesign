@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0996
-Implementation Build: source B465.492 / modinfo492. Live B465.492 from 49450c0. Stable/main B307.334.
+Status Revision: S0997
+Implementation Build: source B466.493 / modinfo493. Live B465.492 from 49450c0. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RAW_TRADE_ACTIVITY_RETIREMENT_REVIEWED
+Work State: RAW_TRADE_ACTIVITY_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the hidden raw trade activity log — S0997
+
+The Owner approved the exact diagnostic retirement reviewed in S0996. Remove the raw Gameplay activity listener, its bounded observation buffer and log, the TRADE_EVENTS request, and the hidden RouteEventsButton and callback. The previous three runtime files are recoverable from `49450c069bc3a76626abbf033c5ece7fab84d87c`. The two production route owners and their proof consumers stay at the same entrypoints. The package path set remains identical.
+
+- **Runtime Impact Contract (L3, T01/T06/T08).** The raw activity handler served a session-only log and the hidden report. In the 40-event fixture it retained 32 rows. One Gameplay listener and the raw rows disappear. Production invalidation, strict transaction qualification and the authoritative report keep their original paths. The removal adds no saved value, observer, writer or scheduler.
+- **LOCAL_SIMULATION_PASS in scope.** All 9 selected methods pass. Three nonempty route proof packets, their signal and transaction behavior, and retained P0 commands match. The 64 earlier route/proof checks and 28 completion/Store checks also pass. The earlier hidden-control comparisons now replay the published B449/B450 and B464/B465 packages. The reviewed disposable package update and restoration pass, and the final candidate has the reviewed path set. These results do not measure native performance or prove a new game acceptance.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7xRawTradeActivityRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7hRouteObserverRetirement and O7wLegacyCompletionRecordRetirement. Tested source SHA256 `6976be51fbdaa02ec5c1d616fffebd681e0315a4106c8c9b67cfee4cdeb70996`, package SHA256 `359efd9dcc78586f8b1d02449cd21634ab8c39a7435dedd528add7286952b09c`. Local closure `local/refactor/B466-O7xRawTradeActivityRetirement-r2/closure.json` SHA256 `01df4ae1090f9ce5cbe1708a1d98449a7e8541e8ff13cd28e087f3c84f94d373`.
+
+B465 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B465 deployment verified and the raw trade activity observer reviewed — S0996
 

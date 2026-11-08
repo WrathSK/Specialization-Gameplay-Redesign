@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "381fe74e86f00856f100960fb0c4b030b0a80a7cbebf1e935b147bb2f4671ccf",
+      "sha256": "260e158714986208260384cd5dfcd9bdc6630545e7ec2d0922e5b2363021c165",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0995 B465 old completion record report retirement."
+      "provenance": "S0997 B466 hidden raw trade activity log retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "68e33fc0ca8db08c76e7b4ef164c44a7a70879f3621f0ac595104b8b1a886431",
+      "sha256": "49b4ce8e2e64ada195672727de9e90be6666bc3e7f3a1ea2965b4d84baf22b86",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0995 B465 old completion record report retirement."
+      "provenance": "S0997 B466 hidden raw trade activity log retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "7af41413a1dc0acdc31209c99f6c84f0eec4e94a17ea526bcf2ed9b387557b4f",
+      "sha256": "83df961f1eb6e3872b893510d2a1a54ceba945c2b1ee21ebd3f9cf6f900f2781",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0995 B465 old completion record report retirement."
+      "provenance": "S0997 B466 hidden raw trade activity log retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "9a57488869a416ab7f95105fa21ee2823ebf81c07c09f48b3dc267558a7d5790",
+      "sha256": "46470b2a434dce46edc198e5883d3e028b9ea93c71a6edb9f4b3f7cb80ad4923",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0995 B465 old completion record report retirement."
+      "provenance": "S0997 B466 hidden raw trade activity log retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "4fa8dcc8c31dbd64e7f63e91632bdf29783864f1973198f4f7884fc7dc9e6f8f",
+      "sha256": "e29cf1d581ad66db753b9054169f5e75954d9c06e5360814785a52c568c23d10",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0995 B465 old completion record report retirement."
+      "provenance": "S0997 B466 hidden raw trade activity log retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0996 verifies B465 deployment and both recovery packages. The hidden raw trade activity observer is independent of current route proofs and transaction qualification.",
-  "source_runtime": "B465.492 / modinfo492 deployed from 49450c0 with the approved B014 report removed.",
-  "tested_source_snapshot_sha256": "21cb6830500c7ffa3ab6d7e164881e341faa782b2873dd51c6949d1ddbe8c667"
+  "source_review": "S0997 verifies the exact raw activity retirement with current route proofs, invalidation, transaction gate and package identity covered.",
+  "source_runtime": "B466.493 / modinfo493 local candidate, 337 files. B465.492 remains installed.",
+  "tested_source_snapshot_sha256": "6976be51fbdaa02ec5c1d616fffebd681e0315a4106c8c9b67cfee4cdeb70996"
 }

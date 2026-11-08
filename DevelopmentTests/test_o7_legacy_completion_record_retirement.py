@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B464, package
+from retired_crew_sources import B464, B465, package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -162,7 +162,7 @@ def routes(root):
     return packets,gp.load_counts,ui.load_counts
 
 
-def panel(root):
+def panel(root, *, retired):
     doc,ui=panel_runtime(root/'Mod/UI')
     controls=ui.globals().Controls
     buttons={n.get('ID'):controls[n.get('ID')].hidden for n in doc.iter('GridButton') if n.get('ID')}
@@ -172,7 +172,7 @@ def panel(root):
       Controls.CityJournalButton.callbacks[Mouse.eLClick]()
       Controls.OpenButton.callbacks[Mouse.eRClick]()
       if ... then Controls.CompletionRecordButton.callbacks[Mouse.eLClick]()end
-    """,root!=ROOT)
+    """,not retired)
     return buttons,[dict(p.items()) for p in ui.globals().requests.values()]
 
 
@@ -203,9 +203,9 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
         measure('legacy_completion_record_routes',dict(matching_route_packets=3))
 
     def test_only_the_hidden_completion_record_request_retires(self):
-        with package(B464) as previous:
-            old_buttons,old_requests=panel(previous)
-            new_buttons,new_requests=panel(ROOT)
+        with package(B464) as previous, package(B465) as retired:
+            old_buttons,old_requests=panel(previous,retired=False)
+            new_buttons,new_requests=panel(retired,retired=True)
         self.assertTrue(old_buttons.pop(CONTROL))
         self.assertEqual(old_buttons,new_buttons)
         self.assertEqual(old_requests[-1]['Action'],ACTION)

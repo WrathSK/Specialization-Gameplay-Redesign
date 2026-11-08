@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0996",
-    "runtime": "B465.492 / modinfo492",
+    "status": "S0997",
+    "runtime": "B466.493 / modinfo493",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B465 deployment and the exact hidden raw activity observer retirement proposal with current route proof preserved.",
+  "goal": "Verify hidden raw trade activity report retirement with current route proofs, invalidation and strict transaction gating.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the hidden raw trade activity log — S0997",
+      "reason": "Approved hidden raw activity report retirement with production proofs and signal preserved"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -408,6 +414,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B466 passes 9 selected checks and 64/28 carried checks. Actual route proof, invalidation, transaction gating and retained reports match.",
     "B465 installed 337/337 MATCH with both recovery packages verified. The raw trade activity projection preserves actual route proof, invalidation and strict transaction gating.",
     "B465 passes 28 selected checks and 23/49/25 carried checks. Populated Store cold load, first completion, saved B014 and route proof match.",
     "B464 installed 338/338 MATCH with both recovery packages verified. The projected B014 report retirement preserves populated Store cold load, first specialization, old evidence and route proofs.",
@@ -2404,6 +2411,41 @@
       "local_evidence_sha256": "cd639fb714dc20cac9dc9128da2f0dd5506dee0698a0e17c410924273c84a17a",
       "local_replay_sha256": "9dc26b68dd14939be2476854aa7bed363aee20b83d3f528772e7083b3f84c910",
       "report": "Specialization/Status/Specialization_P0_Status.md#b465-deployment-verified-and-the-raw-trade-activity-observer-reviewed--s0996"
+    },
+    "b466_raw_trade_activity_retirement": {
+      "build": "B466.493 / modinfo493",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7xRawTradeActivityRetirement": {
+          "tests": 9,
+          "path": "local/refactor/B466-O7xRawTradeActivityRetirement-r2/closure.json",
+          "sha256": "01df4ae1090f9ce5cbe1708a1d98449a7e8541e8ff13cd28e087f3c84f94d373"
+        },
+        "O7hRouteObserverRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B466-CarriedO7h-r2/closure.json",
+          "sha256": "7654df24f0ceaa09e9f1d1971585718daffaa9c99704ce2867889dfd3e2cb391"
+        },
+        "O7wLegacyCompletionRecordRetirement": {
+          "tests": 28,
+          "path": "local/refactor/B466-CarriedO7w-r2/closure.json",
+          "sha256": "c1f3f39d538e32f84f5271995e58fd26590b294c64b2fe782700e1dc7f981724"
+        }
+      },
+      "files": 337,
+      "removed": {},
+      "prior_source": "49450c069bc3a76626abbf033c5ece7fab84d87c",
+      "modeled_removed_listeners": 1,
+      "matching_route_packets": 3,
+      "modeled_raw_rows_after_burst": [
+        32,
+        0
+      ],
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "6976be51fbdaa02ec5c1d616fffebd681e0315a4106c8c9b67cfee4cdeb70996",
+      "package_sha256": "359efd9dcc78586f8b1d02449cd21634ab8c39a7435dedd528add7286952b09c",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-hidden-raw-trade-activity-log--s0997"
     }
   }
 }

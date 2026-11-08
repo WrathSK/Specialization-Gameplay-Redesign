@@ -2,6 +2,11 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7xRawTradeActivityRetirement": [
+      "test_o7_raw_trade_activity_retirement",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_unique_xml_control_ids_and_current_lua_parse",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7wLegacyCompletionRecordRetirement": [
       "test_o7_legacy_completion_record_retirement",
       "test_pu07_source_attribution.NormalSource",

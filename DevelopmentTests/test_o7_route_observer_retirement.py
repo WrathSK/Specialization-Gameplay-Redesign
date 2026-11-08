@@ -169,7 +169,8 @@ class RouteObserverRetirement(unittest.TestCase):
                 assert(Controls.Status.text:find('OLD_ROUTE_CACHE') and #requests==0)
                 assert(ExposedMembers.SPC_P0.AutoRouteProbe[0].sequence==17)
             """)
-        tree, current = panel_runtime()
+        with historical_package(B450) as retired:
+            tree, current = panel_runtime(retired/'Mod/UI')
         def controls(doc):
             return {el.get('ID') for el in doc.iter() if el.get('ID')}
         self.assertEqual(controls(old_tree)-controls(tree), {'RouteStateButton'})

@@ -41,7 +41,6 @@
       <GridButton ID="AdjacencyButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read adjacency (UI)" Hidden="1" />
       <GridButton ID="TradeButton" Anchor="L,B" Offset="280,106" Size="240,32" Style="MainButton" String="Read routes (UI)" Hidden="1" />
       <GridButton ID="NextButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Next district / route" Hidden="1" />
-      <GridButton ID="RouteEventsButton" Anchor="L,B" Offset="542,62" Size="240,32" Style="MainButton" String="Route events (Game)" Hidden="1" />
       <GridButton ID="CaptureButton" Anchor="L,B" Offset="18,18" Size="160,32" Style="MainButton" String="Read marker" Hidden="1" />
       <GridButton ID="MarkButton" Anchor="L,B" Offset="365,18" Size="200,32" Style="MainButton" String="Mark selected city" Hidden="1" />
       <GridButton ID="BaselineButton" Anchor="L,B" Offset="585,18" Size="200,32" Style="MainButton" String="Baseline + Copy" Hidden="1" />

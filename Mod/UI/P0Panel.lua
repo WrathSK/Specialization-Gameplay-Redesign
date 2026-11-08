@@ -456,7 +456,6 @@ local function initialize()
       ..((data and data.version==P.VERSION and data.text) or "没有后台记录。请截图；此按钮不会启动读取。")
     status(localReport:gsub("\n","[NEWLINE]"))
   end)
-  Controls.RouteEventsButton:RegisterCallback(Mouse.eLClick,function() request("TRADE_EVENTS") end)
   Controls.TradeButton:RegisterCallback(Mouse.eLClick,function() request("TRADE") end)
   Controls.NextButton:RegisterCallback(Mouse.eLClick,function()
     if pageAction=="ADJACENCY" or pageAction=="TRADE" then request(pageAction,true) end

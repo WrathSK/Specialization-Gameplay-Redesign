@@ -643,7 +643,7 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Receive(playerID,params) end
     return
   end
-  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="TRADE_EVENTS" and params.Action~="BINDING_READ" and params.Action~="CITY_JOURNAL_READ" then return end
+  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="BINDING_READ" and params.Action~="CITY_JOURNAL_READ" then return end
   if not P.IsTestPlayer(playerID) then return end
   shared.LastToken=nil
   shared.RequestToken=params.Token
@@ -700,21 +700,6 @@ local function request(playerID,params)
     shared.Snapshot=shared.BindingProbe.Read(playerID,city)
     shared.LastToken=params.Token;stage("ACK BINDING");return
   end
-  if params.Action=="TRADE_EVENTS" then
-    local lines={"GAMEPLAY EVENT OBSERVATION city="..params.CityID,"Events observed since this script loaded; NOT an active-route list"}
-    local entries=shared.TradeEvents or {}
-    local shown=0
-    for i=#entries,1,-1 do
-      local e=entries[i]
-      if (e.op==playerID and e.oc==params.CityID) or (e.dp==playerID and e.dc==params.CityID) then
-        lines[#lines+1]=e.text;shown=shown+1
-        if shown>=3 then break end
-      end
-    end
-    if shown==0 then lines[#lines+1]="NO_MATCHING_EVENT_OBSERVED (existing route may predate load)" end
-    shared.Snapshot=table.concat(lines,"\n")
-    shared.LastToken=params.Token;stage("ACK TRADE_EVENTS");return
-  end
   if params.Action=="GOVERNOR" or params.Action=="SPECIALISTS" then
     shared.Snapshot=P.FocusProbe(city,params.Action,stage)
     if params.Action=="SPECIALISTS" then
@@ -749,27 +734,6 @@ GameEvents.SPC_P0_Request.Add(function(...)
   if not ok then shared.FailureAt=shared.Stage;stage("ERROR "..P.Scalar(err)) end
 end)
 -- Completion status is reported by the protected startup epilogue.
-
--- Installed HD Gameplay/Buildings.lua:147 uses these first five parameters.
--- Preserve evidence only; do not infer creation/destruction from activity callbacks.
-shared.TradeEvents={}
-local function onTradeActivity(actor,op,oc,dp,dc,...)
-  if not P.IsTestPlayer(op) and not P.IsTestPlayer(dp) then return end
-  local tail={...};local extra={}
-  for i=1,math.min(select("#",...),6) do extra[#extra+1]=P.Scalar(tail[i]) end
-  local line="turn="..Game.GetCurrentGameTurn().." actor="..P.Scalar(actor).." FROM "..P.Scalar(op)..":"..P.Scalar(oc)
-    .." TO "..P.Scalar(dp)..":"..P.Scalar(dc).." extra="..table.concat(extra,",")
-  shared.TradeEvents[#shared.TradeEvents+1]={op=op,oc=oc,dp=dp,dc=dc,text=line}
-  if #shared.TradeEvents>32 then table.remove(shared.TradeEvents,1) end
-  print("[SPC]["..P.VERSION.."][TRADE_EVENT_RAW] "..line)
-end
-local tradeEvent=P.Field(Events,"TradeRouteActivityChanged")
-if tradeEvent and type(tradeEvent.Add)=="function" then
-  tradeEvent.Add(function(...)
-    local ok,err=pcall(onTradeActivity,...)
-    if not ok then print("[SPC][TRADE_EVENT_ERROR] "..P.Scalar(err)) end
-  end)
-else stage("TRADE_ACTIVITY_EVENT_ABSENT") end
 
 -- Explicit ordered startup entries. Failure containment does not reorder dependencies.
 
