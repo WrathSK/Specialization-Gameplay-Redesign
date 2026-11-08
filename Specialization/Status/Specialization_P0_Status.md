@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1023
-Implementation Build: source B479.506 / modinfo506. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1024
+Implementation Build: source B480.507 / modinfo507. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: COMMERCE_PROOF_STATUS_LOCAL_COMPLETE
+Work State: NETWORK_DIAGNOSTIC_READ_BOUNDARY_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Use published network proof for the old Industrial copy report — S1024
+
+The hidden Industrial copy diagnostic still called the old query that refreshes the network. Its ordinary Gameplay request could resample every city and recheck route endpoints just to show a report about the retired copy effect. B480.507 asks the Bridge for the already-published sources. While proof is pending or a selected reference has changed, it reports the unavailable network result.
+
+- **Runtime Impact Contract (L2, T01/T07/T08).** [Lv4CopyRead](../../Mod/Lv4CopyRead.lua) uses the current recipient query. [NetworkBridge](../../Mod/NetworkBridge.lua) shares the existing exact recipient/source reference check with Capital's projection. Each keeps its own proof gate and error reason. The diagnostic reads the selected city and the listed references. It never starts a network capture, a negative reconciliation or an effect write. The current network overview, gameplay benefit owners and legacy module cleanup retain their respective paths. No listener or state is added.
+- **LOCAL_SIMULATION_PASS in scope.** All 133 selected Lua 5.1 checks pass. A real Gameplay request with a proved two-city fixture changes from one owner refresh, two endpoint verification calls and three effective-role reads to zero, zero and one. Three matching nonempty packets, current report text and strict transactions are covered. The positive industry source remains listed when confirmed. Pending proof and an old source reference return unavailable while the applied Standardization result remains in place.
+- **Reproduce and recover.** Run `python3 DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/B480-NReadOnlyNetworkDiagnostic/closure.json` with Python 3.14.8, Lupa 2.8 / Lua 5.1 on arm64 macOS and the existing HD regression DB (SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`). Tested source SHA256 `f14506b6a51ebeec5ff634b58811fe0f859642d648909fb16026c245fbc724cb`. The ignored Closure and transcripts are local evidence (Closure SHA256 `97427f8a9207a3ef72b39ddc7d51102f7595dca0be125221ed153259290f072b`). The test extracts the exact B479 package from Git for comparison.
+- **STATIC_CONFIRMED.** 208 Lua 5.1 chunks, 32 XML-family files, 666 file references and ten Lua replacements checked. All 337 package paths match the baseline. Candidate package SHA256 `27451da3473e6c561efde54851385b673ec5abf7fd481a20de12409384d53b81`. Live B476.503 retains its existing record. B480 is locally verified source.
+
+The remaining automatic refresh review examines the load and turn callbacks against the current proof and negative-work owners. Any broader retirement requires evidence of its replacement at the exact call sites.
 
 ### Publish Commercialization proof wait without resampling applied Gold — S1023
 

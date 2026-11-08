@@ -706,17 +706,18 @@ function SPCNetworkBridge.Start(P,shared)
  function d.CurrentEffectPartners(pid,selected)return domesticPartners(pid,selected,false,true)end
  function d.CurrentDomesticPartners(pid,selected)return domesticPartners(pid,selected,false)end
  function d.CurrentOutgoingDomestic(pid,selected)return domesticPartners(pid,selected,true)end
- -- B241 Capital consumes the existing center/recipient topology, not the
- -- direct-pair Commercialization pool. Require current proof before selecting S.
- function d.CurrentCapitalSources(pid,selected,kind)
-  local b=d.players[pid]
-  assert(d.TransactionCurrent(pid),'CAPITAL_NETWORK_PENDING')
+ local function confirmedRecipients(pid,selected,kind,referenceError)
   local v=currentView(pid,true);local id=selected:GetID()
-  assert(selected:GetOwner()==pid and v.references[id]==SPCNetworkInput.Reference(city(pid,id)),'CAPITAL_REFERENCE_CHANGED')
+  assert(selected:GetOwner()==pid and v.references[id]==SPCNetworkInput.Reference(city(pid,id)),referenceError)
   local out={};for sid in pairs((v.recipients[kind] or {})[id] or {})do
-   assert(v.references[sid]==SPCNetworkInput.Reference(city(pid,sid)),'CAPITAL_REFERENCE_CHANGED')
+   assert(v.references[sid]==SPCNetworkInput.Reference(city(pid,sid)),referenceError)
    out[#out+1]=sid
   end;table.sort(out);return out
+ end
+ -- B241 Capital consumes the center/recipient topology after strict proof.
+ function d.CurrentCapitalSources(pid,selected,kind)
+  assert(d.TransactionCurrent(pid),'CAPITAL_NETWORK_PENDING')
+  return confirmedRecipients(pid,selected,kind,'CAPITAL_REFERENCE_CHANGED')
  end
  function d.CurrentConnectedKinds(pid,selected)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')
@@ -728,9 +729,8 @@ function SPCNetworkBridge.Start(P,shared)
  end
  function d.CurrentRecipientSources(pid,selected,kind)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')
-  local v=currentView(pid,true);local ids={}
-  for id in pairs((v.recipients[kind] or {})[selected:GetID()] or {}) do ids[#ids+1]=id end
-  table.sort(ids);return ids
+  assert(d.TransactionCurrent(pid),'NETWORK_REFRESH_PENDING')
+  return confirmedRecipients(pid,selected,kind,'NETWORK_REFERENCE_CHANGED')
  end
  function d.ConnectedKinds(pid,selected)
   assert(d.ready and selected:GetOwner()==pid,'NETWORK_NOT_READY_OR_OWNER')

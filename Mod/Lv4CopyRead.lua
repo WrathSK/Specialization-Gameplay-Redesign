@@ -14,7 +14,7 @@ function SPCLv4CopyRead.Metadata(P,shared,pid,c,token)
  local ok,err=pcall(function()
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'OWNER_CHANGED')
   local f=shared.EffectiveFacts.Read(pid,c);out.kind=f.specialization;out.active=f.active
-  local good,ids=pcall(shared.NetworkBridge.RecipientSources,pid,c,'INDUSTRY')
+  local good,ids=pcall(shared.NetworkBridge.CurrentRecipientSources,pid,c,'INDUSTRY')
   if not good then out.networkError=tostring(ids);print('[SPC][B049][COPY_NETWORK_DETAIL] '..out.networkError);return end
   out.industryRecipient=#ids>0
   for _,id in ipairs(ids) do

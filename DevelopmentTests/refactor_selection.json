@@ -2,6 +2,17 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "NReadOnlyNetworkDiagnostic": [
+      "test_network_effect_fact_receipts",
+      "test_network_readonly_diagnostic",
+      "test_refactor_s4b",
+      "test_pu01_fact_use",
+      "test_b397_network_transport",
+      "test_refactor_s5propagation",
+      "test_refactor_s5c1.NetworkSignals",
+      "test_o7_network_trace.NetworkTrace.test_actual_gameplay_and_ui_proof_ack_without_observer_file",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
     "NCommerceProofStatus": [
       "test_network_effect_fact_receipts",
       "test_refactor_s4b",

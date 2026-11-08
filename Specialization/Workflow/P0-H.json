@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1023",
-    "runtime": "B479.506 / modinfo506",
+    "status": "S1024",
+    "runtime": "B480.507 / modinfo507",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Separate the warm Commercialization proof wait from applied Gold reconciliation.",
+  "goal": "Make the legacy Industrial report read current proof and exact references without starting network work.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Use published network proof for the old Industrial copy report — S1024",
+      "reason": "Read-only Industrial diagnostic and retained exact capital/source proof checks"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -570,6 +576,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B480 passes 133 scoped Lua 5.1 checks. The old Industrial diagnostic uses the published route view without a network refresh.",
     "B479 passes 130 scoped Lua 5.1 checks. Pure warm proof wait projects applied Commercialization without effect reads. Prepublication quote rejection and proven changes remain covered.",
     "B478 passes 104 scoped Lua 5.1 checks. The two passive audits are idle for pure warm route status. Same-value proof, true loss and retained delivery remain covered.",
     "B476 positive Culture Network cold reload is USER_GAME_TEST_PASS in the observed scope. The B477 production path matches per S1020.",
@@ -4071,6 +4078,36 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#publish-commercialization-proof-wait-without-resampling-applied-gold--s1023"
+    },
+    "b480_readonly_network_diagnostic": {
+      "build": "B480.507 / modinfo507",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "baseline": "6932e768644308849a761343c458bb4bc6c649b2",
+      "tests": 133,
+      "source_snapshot_sha256": "f14506b6a51ebeec5ff634b58811fe0f859642d648909fb16026c245fbc724cb",
+      "package_sha256": "27451da3473e6c561efde54851385b673ec5abf7fd481a20de12409384d53b81",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "before": {
+          "verify": 2,
+          "refresh": 1,
+          "role": 3
+        },
+        "after": {
+          "verify": 0,
+          "refresh": 0,
+          "role": 1
+        }
+      },
+      "evidence": {
+        "local/refactor/B480-NReadOnlyNetworkDiagnostic/closure.json": "97427f8a9207a3ef72b39ddc7d51102f7595dca0be125221ed153259290f072b",
+        "local/refactor/B480-NReadOnlyNetworkDiagnostic/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B480-NReadOnlyNetworkDiagnostic/closure.stderr.log": "9f765590c5297ce83cf92e21dc62a308d861df3ba3ef16f3e092062f2e47f367"
+      },
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#use-published-network-proof-for-the-old-industrial-copy-report--s1024"
     }
   }
 }
