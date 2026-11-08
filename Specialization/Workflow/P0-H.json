@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1015",
+    "status": "S1016",
     "runtime": "B475.502 / modinfo502",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the removal of the three redundant industrial controls with both current report routes preserved.",
+  "goal": "Record B475 deployment and review a layout-only correction for the two P0 report overlaps.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B475 deployment verified and the P0 report overlaps reviewed — S1016",
+      "reason": "Verified B475 deployment and exact report layout boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -522,6 +528,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B475 installed 337/337 MATCH with both recovery packages verified. The layout projection resolves both existing overlaps with seven matching click packets and unchanged listener counts.",
     "B475 passes 14 selected and 14/64 carried checks. Both report routes, template pages, progress read and route proofs match.",
     "B474 installed 337/337 MATCH with both recovery packages verified. The industrial projection preserves both report routes, two template pages, current production progress and listener counts.",
     "B474 passes 14 selected and 14/64 carried checks. The Commerce report, scoped selection, stale guard and route proofs match.",
@@ -3636,6 +3643,64 @@
       "package_sha256": "8b380a2f9a34da4b3cbc80eb6965f2ff45210d776d4c767646ea500c327f4c80",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-three-hidden-industrial-report-aliases--s1015"
+    },
+    "b475_deployment": {
+      "version": "B475.502 / modinfo502",
+      "source_commit": "28c04ef022466248ce5584b5767c9646dc8dd032",
+      "digest": "8b380a2f9a34da4b3cbc80eb6965f2ff45210d776d4c767646ea500c327f4c80",
+      "files": 337,
+      "receipt": "B475.502-28c04ef-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B474.501, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b475-deployment-verified-and-the-p0-report-overlaps-reviewed--s1016"
+    },
+    "b475_p0_report_overlap_review": {
+      "status": "AWAITING_LAYOUT_APPROVAL",
+      "source": "28c04ef022466248ce5584b5767c9646dc8dd032",
+      "removed": [],
+      "modified": [
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "UI/P0Panel.lua": "34d09a87c85c612b47527c814e481bb4a569ac835d6290d510609a1abb4e678e",
+        "UI/P0Panel.xml": "4e68be87e1a9d72b2d2662a0bd6a923f869c08879e922dd845920df02d6f98a5"
+      },
+      "baseline_source": "735f6ada29e1e893796507ae874c38c074d0c6a9",
+      "visible_controls": 14,
+      "window_size": [
+        840,
+        664
+      ],
+      "overlap_pairs_before": [
+        [
+          "CommerceREADButton",
+          "ReportScroll"
+        ],
+        [
+          "GWCityButton",
+          "TemplatesButton"
+        ]
+      ],
+      "overlap_pairs_after": [],
+      "report_height": [
+        420,
+        380
+      ],
+      "report_gap": 16,
+      "matched_request_packets": 7,
+      "panel_bindings": "MATCH",
+      "panel_listeners": "MATCH",
+      "local_evidence": "local/refactor/B475-P0ReportOverlapReview/result.json",
+      "local_evidence_sha256": "837a9f73c667811365eff8c6b156567ff6ff43596f5832a433ad426ac65d16e8",
+      "local_replay_sha256": "d0ef2bd36c96de30b6e33ffbaa44331a8bfc086635cc9cd696c3a847f374298d",
+      "local_transcript_sha256": "500b835834079ba891a129e4a94a257d6199fd633caabced793913f2fbcbcc42",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b475-deployment-verified-and-the-p0-report-overlaps-reviewed--s1016"
     }
   }
 }

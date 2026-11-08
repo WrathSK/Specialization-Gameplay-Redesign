@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "735f6ada29e1e893796507ae874c38c074d0c6a9",
-  "runtime": "B474.501 / modinfo501 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
+  "runtime_commit": "28c04ef022466248ce5584b5767c9646dc8dd032",
+  "runtime": "B475.502 / modinfo502 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1015 verifies removal of the three redundant industrial controls with both current report routes preserved.",
-  "source_runtime": "B475.502 / modinfo502 local candidate, 337 files. B474.501 remains installed.",
+  "source_review": "S1016 verifies B475 deployment and both recovery packages. The two existing P0 overlaps reproduce in B474 and B475 and resolve in the layout-only projection.",
+  "source_runtime": "B475.502 / modinfo502 deployed from 28c04ef with the three approved redundant industrial controls removed.",
   "tested_source_snapshot_sha256": "797957b7aef064de3c4e4229cfa95c0325b83f56d9b7f1ed0f6d3f0b3cb1431c"
 }

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1015
-Implementation Build: source B475.502 / modinfo502. Live B474.501 from 735f6ad. Stable/main B307.334.
+Status Revision: S1016
+Implementation Build: source B475.502 / modinfo502. Live B475.502 from 28c04ef. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: REDUNDANT_INDUSTRIAL_REPORT_CONTROLS_RETIRED_LOCAL
+Work State: P0_REPORT_LAYOUT_OVERLAP_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B475 deployment verified and the P0 report overlaps reviewed — S1016
+
+B475.502 is installed from `28c04ef022466248ce5584b5767c9646dc8dd032`. All 337 files match SHA256 `8b380a2f9a34da4b3cbc80eb6965f2ff45210d776d4c767646ea500c327f4c80`. Receipt `B475.502-28c04ef-playtest.json` is DEVELOP_ACTIVE. The approved redundant industrial report controls have retired. The B474 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact layout review.** The initialized P0 layout contains two pre-existing overlaps in both B474 and B475. The industrial history and Era Dialogue buttons share the same 240×32 rectangle. The Commerce button intersects the report viewport by 24 layout units. The former four-row test checks the original twelve controls and misses both added positions. It also retains an older expectation for the industrial left-click request. The geometric counterexamples use XML and the actual initializer. Native hit testing has not been observed.
+
+The projection moves the industrial report beside Commerce, declares the existing final Commerce position and visibility in XML, and reduces the scroll viewport height from 420 to 380 layout units. The viewport keeps its scroll behavior and the original 840×664 window. All fourteen controls fit with a 16-unit gap between the report and the new row and no intersections. The two industrial click routes, Era Dialogue and Commerce produce seven identical packets in the comparison. Listener counts and the disposable switch and restore match. The proposed batch also updates the exact initialized visibility, full layout and click assertions. Evidence `local/refactor/B475-P0ReportOverlapReview/result.json` SHA256 `837a9f73c667811365eff8c6b156567ff6ff43596f5832a433ad426ac65d16e8` with replay script SHA256 `d0ef2bd36c96de30b6e33ffbaa44331a8bfc086635cc9cd696c3a847f374298d` alongside. Reproduce with CPython 3.14/Lupa 2.8 and the named source's DevelopmentTests on PYTHONPATH. In a clean scratch directory run `python3.14 -B review.py --source 28c04ef022466248ce5584b5767c9646dc8dd032 --package 8b380a2f9a34da4b3cbc80eb6965f2ff45210d776d4c767646ea500c327f4c80`.
+
+The layout correction awaits approval. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the three hidden industrial report aliases — S1015
 
