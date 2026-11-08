@@ -24,14 +24,17 @@ function M.Start(P,shared)
  local trace=SPCSafeCallbacks.OpenTrace(logger,P,'COMMERCE')
  local function key(pid,id)return pid..':'..id end
  local function generation(pid,id)return shared.FactChanges and shared.FactChanges.Generation(pid,'COMMERCE',id) or 0 end
+ local function sourcesCurrent(pid,v)
+  for source,epoch in pairs(v.sourceGenerations or {})do if epoch~=generation(pid,source)then return false end end
+  return true
+ end
  function d.TransactionCurrent(pid,id)
   local v=views[key(pid,id)]
   if not v or v.stage~='READY' or (v.factGeneration or 0)~=generation(pid)then return false end
   local bridge=shared.NetworkBridge
   if bridge and bridge.ProofRevision and (v.networkProofRevision or 0)~=bridge.ProofRevision(pid)then return false end
   if bridge and bridge.TransactionCurrent and not bridge.TransactionCurrent(pid)then return false end
-  for source,epoch in pairs(v.sourceGenerations or {})do if epoch~=generation(pid,source)then return false end end
-  return true
+  return sourcesCurrent(pid,v)
  end
  local function city(pid,id)local p=Players[pid];return p and p:GetCities() and p:GetCities():FindID(id)end
  local function ref(c)return c:GetOwner()..':'..c:GetID()..':'..c:GetX()..':'..c:GetY()end
@@ -333,6 +336,10 @@ function M.Start(P,shared)
   x.samples=nextSamples
   if mixed then x.v.stage='RETAINED';x.v.reason='COMMERCE_MIXED_FACTS';x.v.canConfigure=false end
  end
+ local function retainProvenance(v)
+  for _,domain in pairs(v.sourceProvenance or {})do for _,f in pairs(domain)do if f.status=='CONFIRMED'then f.status='RETAINED'end end end
+  for _,f in pairs(v.networkProvenance or {})do if f.status=='CONFIRMED'then f.status='RETAINED'end end
+ end
  local function hold(x,old,reason)
   -- Keep the exact installed result, including a cold-load value whose source
   -- decomposition is unavailable. Never make this a new-transaction credential.
@@ -343,15 +350,35 @@ function M.Start(P,shared)
   value.reputationUse={status='UNKNOWN',reason='COMMERCE_PURPOSE_INPUTS_PENDING',
    historyStatus=x.v.reputationUse and x.v.reputationUse.historyStatus or 'UNKNOWN'}
   value.reputationMessage='商业信誉用途尚待完整事实核验；保留已应用收益，不用于新投资。'
-  for _,domain in pairs(value.sourceProvenance)do for _,f in pairs(domain)do if f.status=='CONFIRMED'then f.status='RETAINED'end end end
-  for _,f in pairs(value.networkProvenance or {})do if f.status=='CONFIRMED'then f.status='RETAINED'end end
+  retainProvenance(value)
   x.v=value;x.hold=true;x.rows=nil
+ end
+ local function publishProofWait(pid,revision)
+  local bridge=shared.NetworkBridge
+  if not initialized or not bridge.ProofRevision or bridge.ProofRevision(pid)~=revision then return false end
+  local current=generation(pid);local affected={}
+  for k,pair in pairs(known)do if pair[1]==pid then
+   local v=views[k]
+   if not v or v.factGeneration~=current or not sourcesCurrent(pid,v)then return false end
+   if v.stage=='READY' and v.networkProofRevision==revision-1 then
+    affected[#affected+1]={id=pair[2],view=v}
+   elseif v.stage~='INELIGIBLE'then return false end
+  end end
+  -- Only display and configuration state change. A missed stamp, older
+  -- effect or independent dirty cause keeps the normal reconciliation.
+  for _,entry in ipairs(affected)do
+   local v=cp(entry.view)
+   v.stage='RETAINED';v.reason='COMMERCE_MIXED_FACTS';v.canConfigure=false
+   v.networkProofRevision=revision;retainProvenance(v)
+   publish(pid,entry.id,v)
+  end
+  return true
  end
  local function addTargets(ids,pid,cid)
   if cid~=nil then ids[key(pid,cid)]={pid,cid};for k,v in pairs(dependencies[key(pid,cid)] or {})do ids[k]=v end
   else for k,v in pairs(known)do if v[1]==pid then ids[k]=v end end end
  end
- function d.Mark(pid,id,responsibility)
+ function d.Mark(pid,id,responsibility,proofRevision)
   if pid==nil then
    local accepted,eligible,unknown=false,false,false
    for owner in pairs(Players)do
@@ -368,19 +395,21 @@ function M.Start(P,shared)
   local eligible,_,status=P.IsTestPlayer(pid)
   if not eligible then return false,status=='INELIGIBLE'and 'UNSUPPORTED_PLAYER'or 'PLAYER_UNAVAILABLE'end
   if isolated(pid)then return false,'ISOLATED'end
-  dirty[pid]=dirty[pid] or heldDeliveries[pid] or {cities={}};heldDeliveries[pid]=nil
-  if id==nil then dirty[pid].all=true;dirty[pid].cities={}
-  elseif not dirty[pid].all then dirty[pid].cities[id]=true end
-  if responsibility then dirty[pid].factDuty=true end
+  local work=dirty[pid] or heldDeliveries[pid]
+  if work then work.proofRevision=nil else work={cities={},proofRevision=proofRevision}end
+  dirty[pid]=work;heldDeliveries[pid]=nil
+  if id==nil then work.all=true;work.cities={}
+  elseif not work.all then work.cities[id]=true end
+  if responsibility then work.factDuty=true end
   return true -- exact scope is registered before a delivery ACK may be made
  end
- function d.AcceptFact(event)
+ function d.AcceptFact(event,proofStatus)
   local registry=shared.FactChanges
   if not registry or type(event)~='table' then return false end
   local network=event.kinds and event.kinds.NETWORK
   if type(event.player)~='number'and (event.player~=nil or event.city~=nil or network)then return false end
   local receipt=registry.Receipt(event,'REGISTERED')
-  local accepted,reason=d.Mark(event.player,event.city,true)
+  local accepted,reason=d.Mark(event.player,event.city,true,proofStatus and event.revision or nil)
   if accepted==true then return receipt end
   -- Optional isolation still suppresses ordinary marks. Network proof duty
   -- remains unacknowledged during isolation, as on the original proof route.
@@ -398,6 +427,7 @@ function M.Start(P,shared)
   end
   busy=true;d.busy=true;d.error=nil
   local ok,why=pcall(function()
+   if scope and scope.proofRevision and publishProofWait(scope.player,scope.proofRevision)then return end
    if not initialize()then return end
    local ids={}
    for pid in pairs(Players)do if P.IsTestPlayer(pid) and not isolated(pid) and (not scope or scope.player==nil or scope.player==pid)then
@@ -606,7 +636,7 @@ function M.Start(P,shared)
  local function flush()
   if busy then return end;local todo=dirty;dirty={}
   for pid,v in pairs(todo)do
-   local accepted=d.Audit({player=pid,changed=not v.all and v.cities or nil})
+   local accepted=d.Audit({player=pid,changed=not v.all and v.cities or nil,proofRevision=v.proofRevision})
    if v.factDuty and not accepted then
     -- A real reentrant cause keeps its next snapshot armed. Otherwise retain
     -- the accepted responsibility dormant; never retry it on idle publish.

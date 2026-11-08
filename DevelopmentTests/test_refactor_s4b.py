@@ -121,6 +121,158 @@ assert(ownedGold(c)==18 and commerceWrites==0 and propertyWrites==0)
         l=commerce();l.execute("assert(toggle(2,'DISTRICT_CAMPUS',true));commerceStates[2].reputation={version=1,start=0,cursor=20,age=20,receipt='P4',state='COUNTING'};cities[2].active=4;cities[2].potential=4;com.SourceChanged(0,2);assert(ownedGold(cities[2])==16);net.CheckEvidence(false);cities[2].active=3;com.SourceChanged(0,2);assert(ownedGold(cities[2])==15)")
 
 
+def warm_commerce():
+    lua = commerce()
+    lua.execute("""
+routeRows='0,4,0,2,10;0,2,0,1,11;0,2,0,5,12'
+send(routeRows,3)
+assert(toggle(2,'DISTRICT_CAMPUS',true))
+assert(net.TransactionCurrent(0) and com.TransactionCurrent(0,2) and ownedGold(cities[2])==15)
+""")
+    return lua
+
+
+class CommercePendingNotice(unittest.TestCase):
+    def test_status_only_fences_configuration_without_reading_effect_inputs(self):
+        lua = warm_commerce()
+        lua.execute("""
+local c=cities[2];local old=view(2);local reads,observing=0,false
+local audit,facts,depth,state,has=com.Audit,shared.EffectiveFacts.Read,
+ shared.DistrictCompleteness.ReadFacts,shared.CityProgressionStore.CommerceState,P.HasBuilding
+local function count(fn)return function(...)
+ if observing then reads=reads+1 end;return fn(...)
+end end
+com.Audit=function(...)
+ observing=true;local accepted=audit(...);observing=false;return accepted
+end
+shared.EffectiveFacts.Read=count(facts);shared.DistrictCompleteness.ReadFacts=count(depth)
+shared.CityProgressionStore.CommerceState=count(state);P.HasBuilding=count(has)
+local n,writes=created+removed,commerceWrites
+fixtureDrain=true;Events.TradeRouteActivityChanged.Fire(0)
+assert(not net.TransactionCurrent(0) and not com.TransactionCurrent(0,2) and view(2).revision==old.revision)
+fixtureDrain=false;fixturePublication()
+local pending=view(2)
+assert(reads==0 and pending.stage=='RETAINED' and not pending.canConfigure)
+assert(pending.revision~=old.revision and pending.totalGold==15 and ownedGold(c)==15)
+assert(pending.sourceProvenance.DISTRICT_CAMPUS[1].status=='RETAINED')
+assert(created+removed==n and commerceWrites==writes)
+for i=1,100 do fixturePublication()end
+assert(reads==0 and view(2).revision==pending.revision)
+assert(not com.Request(0,{Action='COMMERCE_SELECT',CityID=2,Domain='DISTRICT_CAMPUS',Enabled=false,
+ Reference=old.reference,CityToken=old.token,Revision=old.revision,Token='STALE'}))
+assert(commerceWrites==writes and ownedGold(c)==15)
+send(routeRows,3)
+assert(net.TransactionCurrent(0) and com.TransactionCurrent(0,2) and view(2).stage=='READY')
+assert(view(2).canConfigure and view(2).revision~=pending.revision and ownedGold(c)==15)
+assert(created+removed==n and commerceWrites==writes)
+""")
+
+    def test_actual_panel_shows_applied_gold_but_cannot_send_while_waiting(self):
+        from lupa.lua51 import lua_type
+        from unittest.mock import patch
+        import test_b261_commerce as dashboard
+
+        game = warm_commerce()
+        with patch.object(dashboard, 'LuaRuntime', TrackedLua51), legacy_source_observation():
+            ui = dashboard.ui()
+        ui.execute("""
+ContextPtr.input(2,27)
+c.GetID=function()return 2 end;c.GetX=function()return 2 end;c.GetY=function()return 10 end
+Players[0].GetCities=function()return {FindID=function(_,id)if id==2 then return c end end}end
+""")
+
+        def detached(value):
+            if lua_type(value) != 'table':
+                return value
+            return {key: detached(entry) for key, entry in value.items()}
+
+        def publish():
+            view = detached(game.eval('view(2)'))
+            ui.globals().commerceView = ui.table_from(view, recursive=True)
+            ui.execute("ExposedMembers.SPC_P0.Commerce.views['0:2']=commerceView;Events.GameCoreEventPublishComplete.Fire()")
+
+        publish()
+        ui.execute("LuaEvents.SPC_CommerceOpen(0,2);rows.items[1].Root.click();assert(not Controls.Confirm.disabled)")
+        game.execute("fire('TradeRouteActivityChanged',0)")
+        publish()
+        ui.execute("""
+assert(Controls.Confirm.disabled and Controls.Value.text:find('15',1,true))
+assert(Controls.Status.text:find('COMMERCE_MIXED_FACTS',1,true))
+Controls.Confirm.click();assert(#sent==0)
+""")
+        game.execute("send(routeRows,3)")
+        publish()
+        ui.execute("assert(not Controls.Confirm.disabled and #sent==0)")
+
+    def test_worker_fact_after_pending_receipt_still_updates_effect(self):
+        lua = warm_commerce()
+        lua.execute("""
+fixtureDrain=true;Events.TradeRouteActivityChanged.Fire(0)
+local fc=shared.FactChanges
+fc.Flush();shared.FactBindings.Flush()
+cities[2].workers=0
+assert(shared.NativeFacts.Workers({player=0,city=2},'NATIVE_WORKER_CHANGED'))
+fc.Flush();shared.FactBindings.Flush()
+Events.GameCoreEventPublishComplete.Fire();fixtureDrain=false
+assert(ownedGold(cities[2])==0 and view(2).workers==0 and not view(2).canConfigure)
+assert(not net.TransactionCurrent(0) and not com.TransactionCurrent(0,2))
+""")
+
+    def test_committed_depth_stamp_without_a_delivery_keeps_normal_reconciliation(self):
+        lua = warm_commerce()
+        lua.execute("""
+cities[2].depths.DISTRICT_CAMPUS=2
+shared.FactChanges.InvalidateCommitted(0,2,{'D'})
+assert(not com.TransactionCurrent(0,2))
+fire('TradeRouteActivityChanged',0)
+assert(ownedGold(cities[2])==10 and view(2).stage=='RETAINED' and not view(2).canConfigure)
+""")
+
+    def test_actual_capital_rejects_the_old_quote_before_the_pending_view_is_published(self):
+        lua = warm_commerce()
+        lua.globals().include('CapitalInvestment')
+        lua.execute("""
+local store=shared.CityProgressionStore
+store.CapitalState=function()return {}end
+store.CapitalReference=function(token)
+ for _,c in pairs(cities)do if c.token==token then
+  return {owner=0,cityID=c.id,x=c:GetX(),y=c:GetY(),token=token,stage='ACTIVE',changes=0}
+ end end
+end
+store.InstitutionHistory=function()return {[3]=0,[4]=0}end
+local writes,rolls,debits=0,0,0
+store.WriteCapital=function()writes=writes+1;error('UNEXPECTED_CAPITAL_WRITE')end
+Game.GetRandNum=function()rolls=rolls+1;return 0 end
+Players[0].GetTreasury=function()return {
+ GetGoldBalance=function()return 1000 end,ChangeGoldBalance=function()debits=debits+1 end}end
+SPCCapitalInvestment.Start(P,shared);local cap=shared.CapitalInvestment
+local function open()
+ return cap.Request(0,{Action='CAPITAL_OPEN',CityID=2,Token='OPEN'})
+end
+assert(open())
+local quote=cap.views['0:2'];assert(quote.canSign and quote.domains[1].canSign)
+fixtureDrain=true;Events.TradeRouteActivityChanged.Fire(0)
+assert(view(2).stage=='READY' and not com.TransactionCurrent(0,2))
+local ok,reason=cap.Request(0,{Action='CAPITAL_CONFIRM',CityID=2,Token='OLD',Mode='VENTURE',
+ Domain='DISTRICT_CAMPUS',Revision=quote.revision,CityToken=quote.token})
+assert(not ok and reason=='CAPITAL_COMMERCE_PENDING')
+assert(writes==0 and rolls==0 and debits==0)
+fixtureDrain=false;fixturePublication();assert(view(2).stage=='RETAINED')
+assert(not cap.views['0:2'].canSign)
+send(routeRows,3);assert(open() and cap.views['0:2'].canSign)
+assert(writes==0 and rolls==0 and debits==0)
+""")
+
+    def test_confirmed_drop_after_pending_reduces_the_existing_gold(self):
+        lua = warm_commerce()
+        lua.execute("""
+units[11]=nil
+fire('TradeRouteRemovedFromMap',0)
+assert(net.Input(0).continuityOnly and not com.TransactionCurrent(0,2))
+assert(ownedGold(cities[2])==6 and view(2).stage=='RETAINED')
+""")
+
+
 class CultureRetention(unittest.TestCase):
     def test_mixed_union_and_equal_history_recovery(self):
         l=culture();l.execute("cities[3].kind='CULTURE';cities[3].potential=4;cities[3].active=4;complete(3,1);complete(4,2);send('0,4,0,2,10;0,3,0,2,11;0,2,0,1,12',3);assert(amount(cities[1])==2);cities[4].historyUnknown=true;complete(3,3);cn.SourceChanged(0,3);assert(amount(cities[1])==3);assert(cn.records['0:1'].provenance[4].status=='RETAINED');cities[4].historyUnknown=false;cn.SourceChanged(0,4);assert(cn.records['0:1'].provenance[4].status=='CONFIRMED')")

@@ -111,9 +111,9 @@
       "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/Commerce.lua": {
-      "sha256": "e0add15a378743d5df71f687f60a60ef5f45247eb685720e99c92c49f263696a",
+      "sha256": "00b62d6a39488ebb4a622aef90a0507229159c4716d7d818c570a06ee6611be4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
+      "provenance": "S1023 B479 proof-only Commercialization waiting view and preserved strict gates."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "5218cf1acca0282405fd7f0360b4a3c7def0aa26fee3e2d33ac8b62b29dda25f",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "ae88b113ef0b7ca0dac163f23ca6b7fe424747ea27c953e37dccbfb8a77ad040",
+      "sha256": "0a68edb436e84bb6aea7ce212b920acef23758f49211d815fe6837d9d92a6915",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
+      "provenance": "S1023 B479 proof-only Commercialization waiting view and preserved strict gates."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "78dd5698bb26e89e32bfe559dad987a5b91cd3a0799007b2ee3c05d57dea152f",
+      "sha256": "854efc2969fdbd03945a08380ad06b8b8185dc7160104dcf3c3432dde89f5604",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
+      "provenance": "S1023 B479 proof-only Commercialization waiting view and preserved strict gates."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1481,9 +1481,9 @@
       "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "7b0a4a18d86a4bf43b4ff65a2176ec617b07284726a5a9b03500eeaa9c1ddc19",
+      "sha256": "93b44f84d09f0d2eb8409578bffcf96ba9d4b805bb3528bb918a955d7ed638fc",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
+      "provenance": "S1023 B479 proof-only Commercialization waiting view and preserved strict gates."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1022 verifies proof-only warm route routing for Culture Network and Standardization. B476 remains installed.",
-  "source_runtime": "B478.505 / modinfo505 local candidate, 337 files. B476.503 remains installed.",
-  "tested_source_snapshot_sha256": "cb3f90ba09117438b605aba6d970570c30458cdd82518d025ae45174ffb8aed9"
+  "source_review": "S1023 verifies the waiting Commercialization view and prepublication transaction fence on B479. B476 remains installed.",
+  "source_runtime": "B479.506 / modinfo506 local candidate, 337 files. B476.503 remains installed.",
+  "tested_source_snapshot_sha256": "0d779b5b9edd6acf1aa86de430acc780430c94768be35b7c1a96e168ad6e65ff"
 }

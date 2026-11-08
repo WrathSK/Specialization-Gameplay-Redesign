@@ -41,7 +41,7 @@ function SPCFactConsumerBindings.New(shared)
   {target='CultureNetwork',method='Audit',ordered='AcceptFact',source=true,request=true,skipPendingProof=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D','NETWORK','HISTORY'},topics={'INSIGHTS'}},
   {target='EngineeringStudy',method='CreditChanged',kinds={'HISTORY'},topics={'WONDER_CREDIT'}},
   {target='DialogueProjects',method='RefreshAccess',cityOnly=true,kinds=role},
-  {target='Commerce',takeover='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','HISTORY','NETWORK'},topics={'COMMERCE'}},
+  {target='Commerce',takeover='AcceptFact',proofStatus=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','HISTORY','NETWORK'},topics={'COMMERCE'}},
   {target='CapitalInvestment',takeover='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'CAPITAL_RECOVERY'}},
   {target='DevelopmentInvestment',takeover='AcceptFact',kinds={'NETWORK'}},
  }
@@ -50,11 +50,14 @@ function SPCFactConsumerBindings.New(shared)
   for cause in pairs(row.ownerCauses)do if e.causes[cause]then return true end end
   return false
  end
+ -- A held or co-delivered real change still belongs to the effect owner
+ -- even if the latest arrival only dirtied proof.
+ local function proofStatusOnly(e)
+  return e.city==nil and next(e.kinds)=='NETWORK' and not next(e.kinds,'NETWORK')
+   and next(e.causes)=='NETWORK_PROOF_PENDING' and not next(e.causes,'NETWORK_PROOF_PENDING')
+ end
  local function collect(row,e,resolve,signal)
-  -- Check the full merged cause set. A held or co-delivered real change still
-  -- belongs to the effect owner even if the latest arrival only dirtied proof.
-  if resolve and row.skipPendingProof and next(e.kinds)=='NETWORK' and not next(e.kinds,'NETWORK')
-   and next(e.causes)=='NETWORK_PROOF_PENDING' and not next(e.causes,'NETWORK_PROOF_PENDING')then
+  if resolve and row.skipPendingProof and proofStatusOnly(e)then
    return registry.Receipt(e,'IRRELEVANT','PROOF_STATUS_ONLY')
   end
   if row.ownerCauses and e.city==nil and not ownerAllowed(row,e)then
@@ -88,7 +91,7 @@ function SPCFactConsumerBindings.New(shared)
   local value=target(row.target);local receipt
   local ok,err=pcall(function()
    assert(value and type(value[row.takeover])=='function','FACT_BINDING_TARGET_UNAVAILABLE')
-   receipt=value[row.takeover](e)
+   receipt=value[row.takeover](e,row.proofStatus and proofStatusOnly(e))
    assert(registry.AcceptsReceipt(e,receipt),'FACT_BINDING_NOT_REGISTERED')
   end)
   if not ok then

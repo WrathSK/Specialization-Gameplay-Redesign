@@ -1,17 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1022
-Implementation Build: source B478.505 / modinfo505. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1023
+Implementation Build: source B479.506 / modinfo506. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: WARM_NETWORK_PROOF_FANOUT_LOCAL_COMPLETE
+Work State: COMMERCE_PROOF_STATUS_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Publish Commercialization proof wait without resampling applied Gold — S1023
+
+When a warm route loses its proof, Commercialization must display the last applied Gold and reject stale configuration. Rebuilding its effect plan solely for that notice repeats native building, specialist and history reads. B479.506 publishes the waiting view from the existing applied view at the same publication boundary. The capital service can reject a stale quote before that view is delivered.
+
+- **Runtime Impact Contract (L3, T01/T02/T05/T08).** The [binding](../../Mod/FactConsumerBindings.lua) checks the entire merged kind and cause set. [Commerce](../../Mod/Commerce.lua) uses the status-only work in its existing owner queue. The Bridge revision must still match, and each known view must have current owner/source stamps and be previously READY on the preceding proof or already ineligible. Existing or co-delivered work, an unmatched view, a confirmed loss and a changed city still take normal reconciliation. The waiting view copies last applied values, marks source provenance retained and disables configuration. Its normal publication still wakes investment views. Strict confirmation continues to use fresh purpose-required proof. There is no new listener, persisted record, timer or stored fact authority.
+- **LOCAL_SIMULATION_PASS in scope.** All 130 selected Lua 5.1 checks pass. The same five-city fixture on baseline `65c6e3f8450354600e6803ec8b363109c96fa343` and B479 shows 51 → 0 building presence reads, 1 → 0 each for effective facts, depth and Commerce history in the proof-only effect path. Both arms retain 15 Gold with zero carrier or property writes and restore READY on the same-value proof. Real Commerce and the separate current dashboard show applied Gold and disable sending. Real Capital rejects an old quote even before the dashboard changes, with zero random rolls, writes and debits. The worker-change overlap, stale stamp without delivery, confirmed route loss and existing strict Development checks pass. This is a local work count.
+- **Baseline fixture disposition.** The first exploratory run selected the pre-sidebar B239 UI harness. Its twelve errors and one markup failure match the B478 baseline for that harness. The selected suite uses the current sidebar with the actual B479 view and preserves the frozen assertions. The initial Closure and B478 comparison are retained locally.
+- **Reproduce and recover.** Run `python3 DevelopmentTests/run_refactor.py --stage NCommerceProofStatus --output local/refactor/B479-NCommerceProofStatus-published/closure.json` with Python 3.14.8, Lupa 2.8 / Lua 5.1 on arm64 macOS and the existing HD regression DB (SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`). Tested source SHA256 `0d779b5b9edd6acf1aa86de430acc780430c94768be35b7c1a96e168ad6e65ff`. The ignored Closure and transcripts are local evidence (Closure SHA256 `997f2a5b80305ca5f23efdc77028d00435f90c2fd5a5919796d73f35c16cd12f`). The same-directory comparison script accepts each exact source with its `DevelopmentTests` import path.
+- **STATIC_CONFIRMED.** 208 Lua 5.1 chunks, 32 XML-family files, 666 file references and ten Lua replacements checked. All 337 package paths match the baseline. Candidate package SHA256 `699437a08d4ebb7793638ab33ed88f2d272daf087ed121ab911c814436a76075`. Live B476.503 and its scoped native evidence retain their existing record. B479 is locally verified source.
+
+The next investigation follows the legacy network query and recovery paths to identify which reads still drive actual production. Keep the accepted negative, cold and transaction duties attached to their owners.
 
 ### Keep passive effects idle while a warm route proof is pending — S1022
 

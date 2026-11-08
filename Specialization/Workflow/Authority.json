@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1022",
-    "runtime": "B478.505 / modinfo505",
+    "status": "S1023",
+    "runtime": "B479.506 / modinfo506",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "df9461790079ef858f4df11944c78dfc7e0877f3",
-  "current_batch": "WARM_NETWORK_PROOF_FANOUT_LOCAL_COMPLETE",
-  "next_batch": "Review the remaining commercial proof-status and passive-effect responsibilities before retiring any wider hold branch. Keep strict trades, current confirmed exits and accepted cold recovery.",
+  "current_batch": "COMMERCE_PROOF_STATUS_LOCAL_COMPLETE",
+  "next_batch": "Review legacy network reads and recovery against actual production ownership. Preserve confirmed loss, cold restoration and strict transaction protection.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B476.503 / modinfo503 temporary develop from df9461790079ef858f4df11944c78dfc7e0877f3, 337/337 MATCH, SHA256 31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e. Receipt B476.503-df94617-playtest.json DEVELOP_ACTIVE. B475 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1022 verifies proof-only warm route routing for Culture Network and Standardization. B476 remains installed.",
+  "context_review_status": "S1023 verifies the waiting Commercialization view and prepublication transaction fence on B479. B476 remains installed.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#keep-passive-effects-idle-while-a-warm-route-proof-is-pending--s1022",
-  "source_status": "B478.505 / modinfo505 locally verified at SHA256 93eee4d8463bdce3f327b6c35bb811d734cb38a8584dd3bc7ce70b388475a44e. B476.503 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#publish-commercialization-proof-wait-without-resampling-applied-gold--s1023",
+  "source_status": "B479.506 / modinfo506 locally verified at SHA256 699437a08d4ebb7793638ab33ed88f2d272daf087ed121ab911c814436a76075. B476.503 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

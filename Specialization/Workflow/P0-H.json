@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1022",
-    "runtime": "B478.505 / modinfo505",
+    "status": "S1023",
+    "runtime": "B479.506 / modinfo506",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Keep passive Culture Network and Standardization output idle during ordinary warm route-proof invalidation.",
+  "goal": "Separate the warm Commercialization proof wait from applied Gold reconciliation.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Publish Commercialization proof wait without resampling applied Gold — S1023",
+      "reason": "Commercialization waiting view, confirmed losses and prepublication strict transaction fence"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -564,6 +570,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B479 passes 130 scoped Lua 5.1 checks. Pure warm proof wait projects applied Commercialization without effect reads. Prepublication quote rejection and proven changes remain covered.",
     "B478 passes 104 scoped Lua 5.1 checks. The two passive audits are idle for pure warm route status. Same-value proof, true loss and retained delivery remain covered.",
     "B476 positive Culture Network cold reload is USER_GAME_TEST_PASS in the observed scope. The B477 production path matches per S1020.",
     "B477 passes 25 cold-network readiness checks. The positive native Culture Network reload remains open.",
@@ -4019,6 +4026,51 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#keep-passive-effects-idle-while-a-warm-route-proof-is-pending--s1022"
+    },
+    "b479_commerce_proof_wait": {
+      "build": "B479.506 / modinfo506",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "baseline": "65c6e3f8450354600e6803ec8b363109c96fa343",
+      "tests": 130,
+      "source_snapshot_sha256": "0d779b5b9edd6acf1aa86de430acc780430c94768be35b7c1a96e168ad6e65ff",
+      "package_sha256": "699437a08d4ebb7793638ab33ed88f2d272daf087ed121ab911c814436a76075",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "T0": {
+          "building_presence": 51,
+          "depth": 1,
+          "facts": 1,
+          "gold_after_confirmation": 15,
+          "history": 1,
+          "pending_carrier_writes": 0,
+          "pending_property_writes": 0
+        },
+        "T1": {
+          "building_presence": 0,
+          "depth": 0,
+          "facts": 0,
+          "gold_after_confirmation": 15,
+          "history": 0,
+          "pending_carrier_writes": 0,
+          "pending_property_writes": 0
+        }
+      },
+      "evidence": {
+        "local/refactor/B479-NCommerceProofStatus-published/closure.json": "997f2a5b80305ca5f23efdc77028d00435f90c2fd5a5919796d73f35c16cd12f",
+        "local/refactor/B479-NCommerceProofStatus-published/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B479-NCommerceProofStatus-published/closure.stderr.log": "742c94cc5fb2bb1f0e1ba5c8aabac925126b6a591d5417e7066229a88a29b1fe",
+        "local/refactor/B479-NCommerceProofStatus-published/compare_commerce.py": "81cb469d4a8f7222434719e3cc93ccfc2426039e38c0ce35cc257b01c536fcea",
+        "local/refactor/B479-NCommerceProofStatus-published/T0.json": "d2b039da856ec5cad751ad1b091b27ffc27bc8210b8b70711a0797aed918b664",
+        "local/refactor/B479-NCommerceProofStatus-published/T1.json": "2130ff8bbdebebfc1673283928e493b754ec350dad521e36157d56889705fc46",
+        "local/refactor/B479-NCommerceProofStatus-published/ui-t0.log": "a6842847d7483d7dcdaa54aa8e1541d5082b99ddd454d26f05430928f1420857",
+        "local/refactor/B479-NCommerceProofStatus/closure.json": "87a4b0d6e9361fb3cb6794dad156bdda6e947ec835ba38f18f2ae769f1ae88b7",
+        "local/refactor/B479-NCommerceProofStatus/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B479-NCommerceProofStatus/closure.stderr.log": "a241761b3deffa9734db37cb4e41d83f0deff63e0508c82e191ecc9e6322b1d3"
+      },
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#publish-commercialization-proof-wait-without-resampling-applied-gold--s1023"
     }
   }
 }
