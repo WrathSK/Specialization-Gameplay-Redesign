@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0971",
+    "status": "S0972",
     "runtime": "B453.480 / modinfo480",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Carry forward the verified two-profile B453 end-turn check and continue scoped diagnostic retirement.",
+  "goal": "Review the exact unused network save prototype removal and preserve historical regression access.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Review the unused network save prototype for retirement — S0972",
+      "reason": "Exact candidate removal, native scope and inherited test repair"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -258,6 +264,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B453 network recovery retirement projection passes 84 targeted methods before and after plus exact stable and temporary package rollback.",
     "B453 end-turn interaction passed in both the official and HD profiles. Both native loads and T7 to T8 transitions were observed.",
     "B453 installed 354/354 MATCH. B452 and B307 recovery verified. The HD end-turn check is pending.",
     "B453 passes 42 scoped methods and 312 historical replays. HD end-turn native check remains pending.",
@@ -1271,6 +1278,27 @@
       "evidence_sha256": "74b683bcb52a31d9fe1099e523ef6cfd0d276a19a528fd8230c72716bef3b5a9",
       "scope": "End-turn controls and production blocker; owner interaction corroborated by native loader and turn sequence.",
       "report": "Specialization/Status/Specialization_P0_Status.md#end-turn-interaction-verified-in-both-environments--s0971"
+    },
+    "b453_network_recovery_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "f75263880fdb10c2f71abc6260790d5080238aee",
+      "runtime": "62d89798af67ee37b38027d6b0cfc8ef258c9a5f",
+      "removed_sha256": {
+        "NetworkRecoveryCell.lua": "dadd05d415e39d9aaa53e49d378fbcd90fb08ab8bca167fc4ff29ffc0174a569",
+        "NetworkRecoveryModel.lua": "90931c3ba0434f3c1ecd7c68ff396355660dbb3bc84af84d546ba6009ec251f0",
+        "NetworkRecoveryStore.lua": "b10a2b98d693f9c7f7ecfa7dc269e843cd1c9da114b4e4a107fbee6f6defd778"
+      },
+      "files": [
+        354,
+        351
+      ],
+      "focused_tests_each": 84,
+      "direct_s9b3_tests": 52,
+      "inherited_s9b3_failures": 7,
+      "inherited_s9b3_errors": 31,
+      "evidence": "local/refactor/B453-NetworkRecoveryRetirementReview/summary.json",
+      "evidence_sha256": "f783054e640c62dbd682dd2f89f8353233501bf4b89bf402a731b0b1e4282c01",
+      "report": "Specialization/Status/Specialization_P0_Status.md#review-the-unused-network-save-prototype-for-retirement--s0972"
     }
   }
 }

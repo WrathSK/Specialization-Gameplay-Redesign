@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0971",
+    "status": "S0972",
     "runtime": "B453.480 / modinfo480",
     "military": "D0037",
     "harbor": "D0037",
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "62d89798af67ee37b38027d6b0cfc8ef258c9a5f",
-  "current_batch": "EMPTY_PRODUCTION_PROBE_RETIRED_ACCEPTED",
-  "next_batch": "Continue the exact retirement review of the unused network recovery prototype under the existing plan. Positive Culture Network cold restoration remains separate.",
+  "current_batch": "NETWORK_RECOVERY_RETIREMENT_REVIEWED",
+  "next_batch": "Wait for exact removal approval for NetworkRecoveryCell, NetworkRecoveryModel and NetworkRecoveryStore and their prototype-only package/Store entries. Positive Culture Network cold restoration remains separate.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B453.480 / modinfo480 temporary develop from 62d89798af67ee37b38027d6b0cfc8ef258c9a5f, 354/354 MATCH, SHA256 511a44fbcc629617dbb02eb0644b8f56c213d429ca45daa6ec2f4b59175f7d7f. Receipt B453.480-62d8979-playtest.json DEVELOP_ACTIVE. B452 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0971 closes the B453 end-turn interaction gate in both environments.",
+  "context_review_status": "S0972 verifies the exact network prototype retirement projection and restores an inherited test import.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#end-turn-interaction-verified-in-both-environments--s0971",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#review-the-unused-network-save-prototype-for-retirement--s0972",
   "source_status": "B453.480 / modinfo480 deployed at SHA256 511a44fbcc629617dbb02eb0644b8f56c213d429ca45daa6ec2f4b59175f7d7f. Owner end-turn check passed in both HD and no-HD profiles.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

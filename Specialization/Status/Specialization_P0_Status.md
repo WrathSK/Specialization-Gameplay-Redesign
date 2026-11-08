@@ -1,17 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0971
+Status Revision: S0972
 Implementation Build: source B453.480 / modinfo480. Live B453.480 from 62d8979. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: EMPTY_PRODUCTION_PROBE_RETIRED_ACCEPTED
+Work State: NETWORK_RECOVERY_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Review the unused network save prototype for retirement — S0972
+
+- **STATIC_CONFIRMED (P3-23).** The three prototype files are present as imports and package entries. Their storage adapter is the only caller of the two `NetworkRecoveryStamp` functions in `CityProgressionStore.lua`. The current Bridge and effect owners read current facts and per-session witnesses. The Store's `CarrierReferenceStamp`, native-effect reconciliation, permanent records and deferred lifecycle recovery have their own callers. The experimental namespace `SPC_DERIVED_NETWORK_RECOVERY_V1_` is only accessed by the prototype.
+- **LOCAL_SIMULATION_PASS in the proposed removal scope.** The real background sender and Gameplay Bridge generate the same three nonempty-route proof packets with the files present, missing under both include modes and absent from the actual manifest in a disposable package. A stale ACK stays blocked, the same route on a new signal confirms, and a later topology change confirms separately. Both roots complete the same 297 Gameplay and 7 UI loads with zero prototype Property reads or writes. An opaque sample key survives byte-for-byte. All 84 targeted methods pass both before and after the projection, including cold and warm effect handling, strict transaction checks, the live Carrier reference stamp, and deferred Store recovery. Stable and temporary exact-removal exercises reject incomplete or excess path lists and restore all 354 original files from verified local fixtures.
+- **Test import correction.** B453's historical pin removed the root export that B119's fixture still imported. B119 now reads the shared test root directly. All 52 direct S9b3 methods load and pass. The inherited S9b3 selection still has 7 failures and 31 errors, with no new failure IDs against pre-B453 under the same unconfigured external-DB profile. The four original S9g stages replay separately at 20/44/63/75 methods; their original source and assertions remain recoverable. Keep the live Carrier reference regression in the future selected suite.
+- **Exact removal awaiting Owner review.** Remove only `Mod/NetworkRecoveryCell.lua`, `Mod/NetworkRecoveryModel.lua` and `Mod/NetworkRecoveryStore.lua`, their six package/import entries, and the two prototype-only stamp functions. Freeze the prototype-specific test inputs to published history and update current reference hashes. The original files resolve from `62d89798af67ee37b38027d6b0cfc8ef258c9a5f` and match all three pre-removal SHA256 values in the evidence. The installed build remains B453.480. This local projection covers the proposed retirement. The positive Culture Network cold-restore interaction remains a separate native gate.
+
+Local reproducibility record `local/refactor/B453-NetworkRecoveryRetirementReview/summary.json`, SHA256 `f783054e640c62dbd682dd2f89f8353233501bf4b89bf402a731b0b1e4282c01`. CPython 3.14 and Lupa Lua 5.1. It records the focused command, output identities, failed inherited results and exact recovery locators.
 
 ### End-turn interaction verified in both environments — S0971
 

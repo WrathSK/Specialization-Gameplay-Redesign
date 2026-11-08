@@ -1,8 +1,8 @@
 """Native FinishProgress experiment: no Cheat Panel dependency; no engine proof."""
 import unittest, xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
+from refactor_harness import ROOT
 import test_b118_exact_progress as prev
-ROOT=prev.ROOT
 GP=(ROOT/'Mod/OverflowStorageProbe.lua').read_text(); UI=(ROOT/'Mod/UI/OverflowStorageRead.lua').read_text()
 EXTRA=r'''
 GameInfo.Buildings[1].Hash=9
