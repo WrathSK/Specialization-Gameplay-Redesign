@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B471, package
+from retired_crew_sources import B471, B472, package
 from test_o7_legacy_completion_record_retirement import load_cold_store, save_fixture, stored_records
 from test_o7_route_observer_retirement import exercise_proof
 from test_o7_runtime_gc import GC_NATIVE
@@ -151,9 +151,12 @@ class RetiredGreatWorkAdjacency(unittest.TestCase):
         measure('retired_gwa_meaning', dict(old_carriers=after[0], science_values=list(after[1:])))
 
     def test_panel_retains_memory_and_removes_only_one_update_listener(self):
-        with package(B471) as previous:
+        with package(B471) as previous, package(B472) as retired:
             old_buttons, old_requests, old_updates = panel(previous, retired=False)
-        new_buttons, new_requests, new_updates = panel(ROOT, retired=True)
+            new_buttons, new_requests, new_updates = panel(retired, retired=True)
+        current_buttons, current_requests, current_updates = panel(ROOT, retired=True)
+        self.assertTrue(CONTROLS.keys().isdisjoint(current_buttons))
+        self.assertEqual((current_requests, current_updates), (new_requests, new_updates))
         for control in CONTROLS:
             self.assertTrue(old_buttons.pop(control))
         self.assertEqual(old_buttons, new_buttons)

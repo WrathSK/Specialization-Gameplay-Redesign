@@ -455,13 +455,9 @@ local function request(playerID,params)
     shared.Snapshot=ok and out or ('商业化暂不可用：'..(tostring(out):match('COM_[A-Z_]+') or 'COM_STATE_UNKNOWN'))
     shared.LastToken=params.Token;return
   end
-  if params.Action=='GW_READ' or params.Action=='GW_BASELINE' or params.Action=='DIALOGUE_OFF' or params.Action=='DIALOGUE_AUTO' or params.Action=='DIALOGUE_TEST25' or params.Action=='DIALOGUE_TEST50' or params.Action=='DIALOGUE_TEST100' then
+  if params.Action=='GW_READ' or params.Action=='GW_BASELINE' then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID);if not c then return end
-    if params.Action~='GW_READ' and params.Action~='GW_BASELINE' then
-      local percent=({DIALOGUE_TEST25=25,DIALOGUE_TEST50=50,DIALOGUE_TEST100=100})[params.Action]
-      shared.Dialogue.test[playerID]=percent and {city=c:GetID(),percent=percent} or nil
-      shared.Dialogue.off[playerID]=params.Action=='DIALOGUE_OFF';shared.Dialogue.Audit(playerID) end
     shared.Snapshot=shared.Dialogue.Describe(playerID,c);shared.LastToken=params.Token;return
   end
   if params.Action=='BOOST_INIT' then

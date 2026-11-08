@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1010
-Implementation Build: source B472.499 / modinfo499. Live B472.499 from 0eab91b. Stable/main B307.334.
+Status Revision: S1011
+Implementation Build: source B473.500 / modinfo500. Live B472.499 from 0eab91b. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRED_DIALOGUE_OVERRIDE_COMMANDS_REVIEWED
+Work State: RETIRED_DIALOGUE_OVERRIDE_COMMANDS_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the old Dialogue override experiments — S1011
+
+The Owner approved the exact S1010 retirement. Remove the four hidden Off and percentage controls, five legacy requests and their session flag mutations. The previous implementation is recoverable from `0eab91b55aa608ff833c330dcf0e8aac9516e329`. The package path set stays identical.
+
+- **Runtime Impact Contract (L3, T06/T07/T08).** Five explicit old requests previously wrote flags and called the retired writer's guard. The before/after fixture records five versus zero calls and zero persistent writes in each arm. The actual era project, effect and collection owners retain the same package bytes. The prior adjacency layout comparison stays pinned to the original B471/B472 transition, with current memory/readout callbacks and listener count checked separately.
+- **LOCAL_SIMULATION_PASS in scope.** All 14 selected checks pass, including the real Gameplay reports with a restored Store, one project award after queue recovery and refusal to restart an exhausted project. The cold fixture withdraws an old B059 carrier and reconstructs the same +5% and +10% carriers. The real Great Work receivers acknowledge both packets and preserve the configured totals. The carried adjacency and route stages pass 14 and 64 checks. The full panel suite repeats the same two inherited visibility/industrial-history assertion failures in the B472 and B473 comparison.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7aeRetiredDialogueOverridesRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7adRetiredGreatWorkAdjacencyRetirement and O7hRouteObserverRetirement. Tested source SHA256 `d7f78eedf96461593bfa0f904df884d466776f37b3785256f091119ff0a86b1c`, package SHA256 `376fae1dad65b9efbc679f2fc023ef4447aa431eac26d691bd90e6f1b321fbfb`. Local closure `local/refactor/B473-O7aeRetiredDialogueOverridesRetirement/closure.json` SHA256 `2ea316f4c0b2a410175d424dcea97ebb11fa2f464562ce2bfa647a43e458165d` with the panel comparison logs alongside.
+
+B472 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B472 deployment verified and the old Dialogue override requests reviewed — S1010
 

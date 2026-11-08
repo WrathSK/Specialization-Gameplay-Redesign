@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1010",
-    "runtime": "B472.499 / modinfo499",
+    "status": "S1011",
+    "runtime": "B473.500 / modinfo500",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B472 deployment and review the old Dialogue overrides with the current project, effect, readouts and collection preserved.",
+  "goal": "Verify retirement of the old Dialogue override experiments with the current project, effects, reports and collection preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the old Dialogue override experiments — S1011",
+      "reason": "Approved Dialogue override experiment retirement with current projects and effects preserved"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -492,6 +498,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B473 passes 14 selected and 14/64 carried checks. The retained Dialogue reports, local restoration, collection receipts and nonempty route proofs match.",
     "B472 installed 337/337 MATCH with both recovery packages verified. The Dialogue projection preserves current reports, restored carriers, collection acknowledgement and three nonempty route proofs.",
     "B472 passes 14 selected and 13/84/64 carried checks. Both memory reports, Meaning cold withdrawal and three nonempty route proofs match.",
     "B471 installed 337/337 MATCH with both recovery packages verified. The projection preserves the memory control and reports, current Meaning, old carrier withdrawal and three nonempty route proofs.",
@@ -3286,6 +3293,72 @@
       "local_transcript_sha256": "a3e135d6b654eb43c4a5df9ad525673608849cdc4fc3d7b9fdda1842838143fd",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b472-deployment-verified-and-the-old-dialogue-override-requests-reviewed--s1010"
+    },
+    "b473_retired_dialogue_overrides_retirement": {
+      "build": "B473.500 / modinfo500",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7aeRetiredDialogueOverridesRetirement": {
+          "tests": 14,
+          "path": "local/refactor/B473-O7aeRetiredDialogueOverridesRetirement/closure.json",
+          "sha256": "2ea316f4c0b2a410175d424dcea97ebb11fa2f464562ce2bfa647a43e458165d",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "7e2c37051e68e6ae5c178025d05dc06c2e1f46edab2576c4d95446264117f877"
+          }
+        },
+        "O7adRetiredGreatWorkAdjacencyRetirement": {
+          "tests": 14,
+          "path": "local/refactor/B473-CarriedO7ad/closure.json",
+          "sha256": "65a55adccadfb0cbb08bfb1100712b069d43ff0253664f9eb7ac385c86f3e410",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "2fc39e3f8aef9b5298170637a3e7f81a9c8cf696bbc0349c63af356e425da7aa"
+          }
+        },
+        "O7hRouteObserverRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B473-CarriedO7h/closure.json",
+          "sha256": "8e583094b5f77bc4f0f1dbfafb808c13a97221ac30935c170ef9dfdf5f2b996c",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "274a737c9f5429b9c9b6954ae1efc9377c258a3ac7cfe23120bf6075877eacb3"
+          }
+        }
+      },
+      "files": 337,
+      "removed": [],
+      "prior_source": "0eab91b55aa608ff833c330dcf0e8aac9516e329",
+      "matching_route_packets": 3,
+      "retired_audit_calls": [
+        5,
+        0
+      ],
+      "retained_readouts": "MATCH",
+      "property_writes": [
+        0,
+        0
+      ],
+      "modeled_dialogue_carriers": [
+        5,
+        10
+      ],
+      "collection_ack": 2,
+      "historical_comparisons": {
+        "B472-panel-comparison.log": {
+          "path": "local/refactor/B473-O7aeRetiredDialogueOverridesRetirement/B472-panel-comparison.log",
+          "sha256": "91193a9113123cacfacdd8ed187b40fd03421cedb2058a657d3225a40a6fc7f5"
+        },
+        "B473-panel-comparison.log": {
+          "path": "local/refactor/B473-O7aeRetiredDialogueOverridesRetirement/B473-panel-comparison.log",
+          "sha256": "a2bb1900108457bb3fc4ad89aa8d07d82d8a471d1fd2d9685670f0b774450448"
+        }
+      },
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "d7f78eedf96461593bfa0f904df884d466776f37b3785256f091119ff0a86b1c",
+      "package_sha256": "376fae1dad65b9efbc679f2fc023ef4447aa431eac26d691bd90e6f1b321fbfb",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-dialogue-override-experiments--s1011"
     }
   }
 }

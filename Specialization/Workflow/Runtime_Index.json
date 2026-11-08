@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "d5018fa12c97a8c4ca682563bd574e038a2785982d5b18d6491fd8a77d756907",
+      "sha256": "895f9a56f47ddd4402c2ef594faf3c9c980bde2b80d6d6f0921d68837c4673a2",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1009 B472 old Great Work adjacency command retirement."
+      "provenance": "S1011 B473 old Dialogue override experiment retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "dbcca424af23db9eeeb79744d06253d1031ca4b11e4c8ae5622a95c695d081ac",
+      "sha256": "812021134e80a9aca59be386f32e9c1ad5f861a70247eae647aeba3a2c3c8981",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1009 B472 old Great Work adjacency command retirement."
+      "provenance": "S1011 B473 old Dialogue override experiment retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e5af50089a01f07cd202e959e73af553cfa09bb466797e63e96c76b8dbba8047",
+      "sha256": "2bae67b179f43a686c6fbf45da7d5d1f77cca4328c7a4fb9e0cb3fb10ecf3d1e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1009 B472 old Great Work adjacency command retirement."
+      "provenance": "S1011 B473 old Dialogue override experiment retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "2b695fc2cc23f342588419e22544c16d9bb97deae04cbf743c640cc304641202",
+      "sha256": "8ef5f01150d43a4624c93cb04aa5927feaf7da2b1df5bad7a0affb38f85fbdf1",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1009 B472 old Great Work adjacency command retirement."
+      "provenance": "S1011 B473 old Dialogue override experiment retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "74154a1ec6007e7c53e29b8e02263c9fcf1dbf43aed0bda0340e0feee19b4cd6",
+      "sha256": "4f63aa23e4e301ff8d777fcc554bafcc1d4d30b7709f2f0aea205f358bb1b41a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1009 B472 old Great Work adjacency command retirement."
+      "provenance": "S1011 B473 old Dialogue override experiment retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1010 verifies B472 deployment and both recovery packages. The old Dialogue override commands are separate from the current projects, reports, effect and collection transport.",
-  "source_runtime": "B472.499 / modinfo499 deployed from 0eab91b with the approved old Great Work adjacency commands and dedicated retry path removed.",
-  "tested_source_snapshot_sha256": "85e10cfefa0decc3fd81a8f62fa652e6718051d44ef1c36dd9d9820402486152"
+  "source_review": "S1011 verifies the approved old Dialogue override retirement with the current project, effects, reports and collection transport preserved.",
+  "source_runtime": "B473.500 / modinfo500 local candidate, 337 files. B472.499 remains installed.",
+  "tested_source_snapshot_sha256": "d7f78eedf96461593bfa0f904df884d466776f37b3785256f091119ff0a86b1c"
 }
