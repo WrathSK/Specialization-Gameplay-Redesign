@@ -489,12 +489,6 @@ local function request(playerID,params)
     if not ok then print('[SPC][B055][INIT] '..tostring(err)) end
     return
   end
-  if params.Action=='BOOST_TEST_ZERO' or params.Action=='BOOST_TEST_HALF' or params.Action=='BOOST_TEST_HIGH' or params.Action=='BOOST_TEST_AUTO' then
-    if not P.IsTestPlayer(playerID) then return end
-    local raw=({BOOST_TEST_ZERO=0,BOOST_TEST_HALF=1.5,BOOST_TEST_HIGH=3.8})[params.Action]
-    local ok,out=pcall(shared.NetworkBoost.Test,playerID,raw)
-    shared.Snapshot=ok and out or ('整数实验未启用：'..tostring(out));shared.LastToken=params.Token;return
-  end
   if params.Action=='BOOST_READ' or params.Action=='BOOST_BASELINE' then
     if not P.IsTestPlayer(playerID) then return end
     shared.Snapshot=shared.NetworkBoost.Describe(playerID);shared.LastToken=params.Token;return

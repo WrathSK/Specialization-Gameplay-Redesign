@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1006
-Implementation Build: source B470.497 / modinfo497. Live B470.497 from 3f7ba47. Stable/main B307.334.
+Status Revision: S1007
+Implementation Build: source B471.498 / modinfo498. Live B470.497 from 3f7ba47. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRED_BOOST_TEST_CONTROLS_REVIEWED
+Work State: RETIRED_BOOST_TEST_CONTROLS_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the four hidden boost experiment controls — S1007
+
+The Owner approved the exact four-control retirement reviewed in S1006. Remove the four hidden B057 integer test buttons, their callbacks and the dedicated BOOST_TEST branch in Gameplay. The previous paths are recoverable from `3f7ba47bde7f8bdbacbf13010dc308196d5872d5`. The package path set stays identical.
+
+- **Runtime Impact Contract (L3, T06/T07/T08).** The four manual commands previously reached the retired boost module's test guard. The fixture calls fall from four to zero with zero carrier writes on either side. BOOST_INIT still uses the real background request. BOOST_READ and BOOST_BASELINE still display cleanup status. The NetworkBoost module and the startup and ownership exit paths retain their duties.
+- **LOCAL_SIMULATION_PASS in scope.** All 13 selected methods pass. The actual initialization packet, removal of the seeded B057 and B055 carriers, preservation of an ordinary Monument and both retained reports match. Existing central ownership-exit checks pass. The city record and route stages pass 13 and 64 checks respectively, with three nonempty route proofs. The historical city record panel comparison replays the B469/B470 transition. The full panel suite reproduces the two recorded visibility and industrial history command assertion failures on B470 and B471. S1006 also records the disposable package switch and restoration.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7acRetiredBoostTestControlsRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7abManualCityRecordReportsRetirement and O7hRouteObserverRetirement. Tested source SHA256 `14b6a598c90fbaf68a1200f3366663134c50aa73ea63540200607d35cd183390`, package SHA256 `d829658b19ebbb6dcd0bd7a22afe603db43989f2d9301fb27a87895efa241243`. Local closure `local/refactor/B471-O7acRetiredBoostTestControlsRetirement/closure.json` SHA256 `8fb800abce7c4ce115ce98d7577a4bbbf6a1832baa2576c4de7ff40f661562ca` with both panel logs alongside.
+
+B470 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B470 deployment verified and the retired boost test controls reviewed — S1006
 

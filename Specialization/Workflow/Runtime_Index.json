@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "2d2e892d1420aa1c13698d6757b1a7dc711f20e5746254418132fc5292833db4",
+      "sha256": "1ca379171ca347c6ef28ef70b8f0409032c3742409897f005db0e8cd914f3e40",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1005 B470 two hidden city record reports retirement."
+      "provenance": "S1007 B471 four hidden boost experiment control retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "41f806f69d3ac93e3d6493d701f4bb68000a801d51e124047b3a04eddd4ff300",
+      "sha256": "4d3b72cc62b770e7d25990fece24b83302dade51efa1f438c1dcc640252c1e6f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1005 B470 two hidden city record reports retirement."
+      "provenance": "S1007 B471 four hidden boost experiment control retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "ad58f70d6b804c367609ee8da421e64c55389c2c4cdba043b8a15cd369c5b9d4",
+      "sha256": "67d7a25e24c80f2e2679931825ad3ee18e9df325f09846abc550d0ae52499b68",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1005 B470 two hidden city record reports retirement."
+      "provenance": "S1007 B471 four hidden boost experiment control retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "79c823e9a76c7365a62f3621f67c53d035cb7c9fe605910bc8d4d69915d053a2",
+      "sha256": "a72f61ba4e6f914a1828f4eec29fef7eb668f3ef932f6dbdb834dd70f7bf7893",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1005 B470 two hidden city record reports retirement."
+      "provenance": "S1007 B471 four hidden boost experiment control retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "63ca1c12662faa92e6879dbc109ae39944f82b8551c3c00eb60b2a2cce0241d3",
+      "sha256": "7267c20c405e279c32030791c7e4ceda4366d7f8d8676b53ecf812abe388a97b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1005 B470 two hidden city record reports retirement."
+      "provenance": "S1007 B471 four hidden boost experiment control retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1006 verifies B470 deployment and both recovery packages. Four retired boost tests can leave the panel and request handler while background initialization, cleanup and reports remain.",
-  "source_runtime": "B470.497 / modinfo497 deployed from 3f7ba47 with the two approved hidden city record reports removed.",
-  "tested_source_snapshot_sha256": "d616f837ce20eab389060c110eaf7af0cc357eb880e92b73b987d52c3ac4652a"
+  "source_review": "S1007 verifies the four hidden boost test retirements while background initialization, exact legacy carrier removal and read-only reports continue.",
+  "source_runtime": "B471.498 / modinfo498 local candidate, 337 files. B470.497 remains installed.",
+  "tested_source_snapshot_sha256": "14b6a598c90fbaf68a1200f3366663134c50aa73ea63540200607d35cd183390"
 }

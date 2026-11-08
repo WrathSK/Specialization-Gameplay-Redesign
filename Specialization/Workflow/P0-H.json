@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1006",
-    "runtime": "B470.497 / modinfo497",
+    "status": "S1007",
+    "runtime": "B471.498 / modinfo498",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B470 deployment and review retiring only the four boost test controls with initialization, cleanup and readouts preserved.",
+  "goal": "Verify the approved retired boost controls with background initialization, exact carrier removal and retained readouts preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the four hidden boost experiment controls — S1007",
+      "reason": "Approved retired boost controls with startup and cleanup preserved"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -468,6 +474,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B471 passes 13 selected and 13/64 carried checks. Actual BoostRefresh request, exact cleanup, readouts and current route proofs match.",
     "B470 installed 337/337 MATCH with both recovery packages verified. The boost test projection preserves the real background init, exact legacy carrier cleanup, current reports and route proofs.",
     "B470 passes 13 selected checks and carried city flow, marker, first-completion and route suites. Cold records, current reports and identity match.",
     "B469 installed 337/337 MATCH with both recovery packages verified. The projection preserves the two legacy cold audits, current Store records, identity and route proofs.",
@@ -2999,6 +3006,58 @@
       "local_transcript_sha256": "99fe9653e0808b98901dcb782d0120955b80293b8faa36a7e581327701447477",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b470-deployment-verified-and-the-retired-boost-test-controls-reviewed--s1006"
+    },
+    "b471_retired_boost_test_controls_retirement": {
+      "build": "B471.498 / modinfo498",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7acRetiredBoostTestControlsRetirement": {
+          "tests": 13,
+          "path": "local/refactor/B471-O7acRetiredBoostTestControlsRetirement/closure.json",
+          "sha256": "8fb800abce7c4ce115ce98d7577a4bbbf6a1832baa2576c4de7ff40f661562ca"
+        },
+        "O7abManualCityRecordReportsRetirement": {
+          "tests": 13,
+          "path": "local/refactor/B471-CarriedO7ab/closure.json",
+          "sha256": "f819867fa6fabb7d43e08c517b2600808526831767fa565783e376a7ea6fd9e7"
+        },
+        "O7hRouteObserverRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B471-CarriedO7h/closure.json",
+          "sha256": "ba5167d0aec64c11c8cf145fc081732e2548b473d64cb076752d2deac86086a6"
+        }
+      },
+      "files": 337,
+      "removed": [],
+      "prior_source": "3f7ba47bde7f8bdbacbf13010dc308196d5872d5",
+      "matching_route_packets": 3,
+      "manual_test_calls": [
+        4,
+        0
+      ],
+      "stale_commands_carrier_writes": [
+        0,
+        0
+      ],
+      "confirmed_carrier_removals": [
+        "BUILDING_SPC_B057_RESEARCH_2",
+        "BUILDING_SPC_B055_GW_CITY"
+      ],
+      "panel_baseline_issue": {
+        "B470": {
+          "path": "local/refactor/B471-O7acRetiredBoostTestControlsRetirement/B470-panel-comparison.log",
+          "sha256": "e2c3d01828038fe2dbfa261a5c84e2f23642279c9ceefbefb672375e1b4cba5d"
+        },
+        "B471": {
+          "path": "local/refactor/B471-O7acRetiredBoostTestControlsRetirement/B471-panel-comparison.log",
+          "sha256": "be5e5e0948624d8980e8394d4c4750b1bb5e4e297445621ff0c2721caa7a9be0"
+        }
+      },
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "14b6a598c90fbaf68a1200f3366663134c50aa73ea63540200607d35cd183390",
+      "package_sha256": "d829658b19ebbb6dcd0bd7a22afe603db43989f2d9301fb27a87895efa241243",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-four-hidden-boost-experiment-controls--s1007"
     }
   }
 }

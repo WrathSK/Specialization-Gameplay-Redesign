@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B469, package
+from retired_crew_sources import B469, B470, package
 from test_o7_legacy_completion_record_retirement import complete_second_city, load_cold_store, save_fixture, stored_records
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import scalars
@@ -88,9 +88,9 @@ class ManualCityRecordReportsRetirement(unittest.TestCase):
             binding_resolution_matches=True, manual_read_calls={'binding': [2,0], 'journal': [2,0]}))
 
     def test_only_the_two_hidden_city_record_controls_retire(self):
-        with package(B469) as previous:
+        with package(B469) as previous, package(B470) as retired:
             old_buttons, old_requests = panel(previous, retired=False)
-        new_buttons, new_requests = panel(ROOT, retired=True)
+            new_buttons, new_requests = panel(retired, retired=True)
         for control in CONTROLS:
             self.assertTrue(old_buttons.pop(control))
         self.assertEqual(old_buttons, new_buttons)
