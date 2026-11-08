@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "e178d14a1693ae83cd45c19afd9fcdc9f0b9ecd4",
-  "runtime": "B447.474 / modinfo474 temporary develop deployed, 355/355 MATCH. Stable/main B307.334.",
+  "runtime_commit": "cefa39ff73a71d070e9072be7c41690bc6f6ccc1",
+  "runtime": "B448.475 / modinfo475 temporary develop deployed, 356/356 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1786,7 +1786,7 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     }
   },
-  "source_review": "S0959 verifies B448 GC ownership, the startup/write fence and genuine counter-file absence in scope.",
-  "source_runtime": "B448.475 / modinfo475 local candidate, 356 files. B447.474 remains installed.",
+  "source_review": "S0960 verifies B448 development deployment and the next scoped commercial observer transfer.",
+  "source_runtime": "B448.475 / modinfo475 deployed from cefa39f, with independent GC ownership and optional counters still packaged.",
   "tested_source_snapshot_sha256": "9ff6698fb4713692e96d0f165ccb9478d437a88baccccedd9bf9e4a9b7fafaf5"
 }

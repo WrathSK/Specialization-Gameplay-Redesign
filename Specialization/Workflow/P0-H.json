@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0959",
+    "status": "S0960",
     "runtime": "B448.475 / modinfo475",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the existing GC coordinator and its heap trust latch independently of performance reporting.",
+  "goal": "Record verified B448 deployment and the next commercial observer scope.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B448 development deployment verified — S0960",
+      "reason": "Verified runtime, addition-only package delta and next commercial observer scope"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -186,6 +192,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B448 installed 356/356 MATCH. RuntimeGC is the only new path and both recovery packages match.",
     "B448 passes 84 selected methods, including the actual B447 decision/sample comparisons, route proof and write-fence behavior without PerformanceCounters.",
     "B447 installed 355/355 MATCH. The two approved diagnostic paths are absent and both recovery packages match.",
     "B447 passes all 33 selected methods. Both retired files are genuinely absent from the candidate and the actual City Sequence right-click results agree with B446.",
@@ -995,6 +1002,20 @@
       "local_evidence_sha256": "e1545b5ad8b45d6f8a438223f5180f4c220e09306a38dff4192da2dc8795bf69",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#separate-gc-control-from-performance-diagnostics--s0959"
+    },
+    "b448_deployment": {
+      "version": "B448.475 / modinfo475",
+      "source_commit": "cefa39ff73a71d070e9072be7c41690bc6f6ccc1",
+      "digest": "60cb4a7c371861490cdba403ae6e8418f36e2876bc9bf0c2c3682aa601b4cfe4",
+      "files": 356,
+      "receipt": "B448.475-cefa39f-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B447.474, 355/355 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b448-development-deployment-verified--s0960"
     }
   }
 }

@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0959",
+    "status": "S0960",
     "runtime": "B448.475 / modinfo475",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "e178d14a1693ae83cd45c19afd9fcdc9f0b9ecd4",
-  "current_batch": "GC_CONTROL_SEPARATED_LOCAL",
-  "next_batch": "Verify the guarded B448 switch and continue the independent production-error and diagnostic observer ownership work. Positive Culture Network cold restore remains separate.",
+  "runtime_commit": "cefa39ff73a71d070e9072be7c41690bc6f6ccc1",
+  "current_batch": "GC_CONTROL_SEPARATED_DEPLOYED",
+  "next_batch": "Protect commercial trace observer construction and use while preserving transactions and their errors. Positive Culture Network cold restore remains separate.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B447.474 / modinfo474 temporary develop from e178d14a1693ae83cd45c19afd9fcdc9f0b9ecd4, 355/355 MATCH, SHA256 0ea85cd5ff8ea74248cdc2c64276596f95f222bf5cc8a74e3e48d29f7f99fb45. Receipt B447.474-e178d14-playtest.json DEVELOP_ACTIVE. B446 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B448.475 / modinfo475 temporary develop from cefa39ff73a71d070e9072be7c41690bc6f6ccc1, 356/356 MATCH, SHA256 60cb4a7c371861490cdba403ae6e8418f36e2876bc9bf0c2c3682aa601b4cfe4. Receipt B448.475-cefa39f-playtest.json DEVELOP_ACTIVE. B447 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0959 verifies B448 GC ownership, the startup/write fence and genuine counter-file absence in scope.",
+  "context_review_status": "S0960 verifies B448 development deployment and the next scoped commercial observer transfer.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#separate-gc-control-from-performance-diagnostics--s0959",
-  "source_status": "B448.475 / modinfo475 locally verified at SHA256 60cb4a7c371861490cdba403ae6e8418f36e2876bc9bf0c2c3682aa601b4cfe4. B447.474 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b448-development-deployment-verified--s0960",
+  "source_status": "B448.475 / modinfo475 deployed and verified at SHA256 60cb4a7c371861490cdba403ae6e8418f36e2876bc9bf0c2c3682aa601b4cfe4. Native GC timing and latency were not measured.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

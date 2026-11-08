@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0959
-Implementation Build: source B448.475 / modinfo475. Live B447.474 from e178d14. Stable/main B307.334.
+Status Revision: S0960
+Implementation Build: source B448.475 / modinfo475. Live B448.475 from cefa39f. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: GC_CONTROL_SEPARATED_LOCAL
+Work State: GC_CONTROL_SEPARATED_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B448 development deployment verified — S0960
+
+B448.475 is installed from `cefa39ff73a71d070e9072be7c41690bc6f6ccc1`. All 356 files match SHA256 `60cb4a7c371861490cdba403ae6e8418f36e2876bc9bf0c2c3682aa601b4cfe4`. Receipt `B448.475-cefa39f-playtest.json` is DEVELOP_ACTIVE. The outgoing B447 and stable B307 packages both match their reviewed hashes. The only added path relative to B447 is RuntimeGC.lua. Game exit, the unique UUID and the clear transaction boundary were verified.
+
+Deployment is verified. No new GC latency, peak memory or other native outcome was measured.
+
+**Next independent slice (L3, T04/T06/T08, P3-18).** Guard the existing optional TRAIN observation at the Commerce, Capital Investment and Development Investment boundaries. Verify present, disabled, failed construction/record and missing-include arms. On/off/absent may affect only observations. The Commerce turn report must do no diagnostic Treasury or city reads without a usable sink. Keep the actual source qualification, Carrier writes, pricing, request replies, exact receipts, money changes and independent production error paths. Keep the separately used Capital error/readback projection in this slice. No new native event, persisted state, removal, or transport change.
 
 ### Separate GC control from performance diagnostics — S0959
 
