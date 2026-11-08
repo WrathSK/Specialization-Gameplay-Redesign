@@ -1,17 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0961
-Implementation Build: source B449.476 / modinfo476. Live B448.475 from cefa39f. Stable/main B307.334.
+Status Revision: S0962
+Implementation Build: source B449.476 / modinfo476. Live B449.476 from fc51d0d. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: COMMERCIAL_TRACE_ISOLATED_LOCAL
+Work State: COMMERCIAL_TRACE_ISOLATED_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B449 development deployment verified — S0962
+
+B449.476 is installed from `fc51d0df7de10425c3272c009849e11c1ad3948d`. All 356 files match SHA256 `2e039bed576c9f6e47fd081dbc61b5cec93b9c7c8a7fd6543c044aca5f270eb3`. Receipt `B449.476-fc51d0d-playtest.json` is DEVELOP_ACTIVE. The installed path set matches B448. The outgoing B448 package and the stable B307 recovery both match their reviewed hashes. Game exit, the unique UUID and the clear transaction boundary were verified.
+
+The transaction changes are locally verified at the scope recorded below. There is no immediate user game test for this slice. The next Owner decision is limited to retiring the old speculative Gameplay trade-route sampler and its hidden display. Formal background proof and the positive Culture Network cold-restore gate retain their separate evidence requirements.
 
 ### Make the commercial trace sink optional — S0961
 

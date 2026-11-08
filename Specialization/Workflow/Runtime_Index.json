@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "cefa39ff73a71d070e9072be7c41690bc6f6ccc1",
-  "runtime": "B448.475 / modinfo475 temporary develop deployed, 356/356 MATCH. Stable/main B307.334.",
+  "runtime_commit": "fc51d0df7de10425c3272c009849e11c1ad3948d",
+  "runtime": "B449.476 / modinfo476 temporary develop deployed, 356/356 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1786,7 +1786,7 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     }
   },
-  "source_review": "S0961 verifies commercial trace isolation, retained money/receipt paths and the exact old route observer review.",
-  "source_runtime": "B449.476 / modinfo476 local candidate, 356 files. B448.475 remains installed.",
+  "source_review": "S0962 verifies B449 development deployment and the exact pending old route observer review.",
+  "source_runtime": "B449.476 / modinfo476 deployed from fc51d0d, with optional commercial tracing and the pending old route observer still packaged.",
   "tested_source_snapshot_sha256": "7c1b340e5cdc658cdf5db40154dcd18b50054074b66b39f2c7b864241643e63c"
 }

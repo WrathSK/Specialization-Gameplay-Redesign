@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0961",
+    "status": "S0962",
     "runtime": "B449.476 / modinfo476",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "cefa39ff73a71d070e9072be7c41690bc6f6ccc1",
-  "current_batch": "COMMERCIAL_TRACE_ISOLATED_LOCAL",
-  "next_batch": "Verify the guarded B449 switch. Request exact removal review for the redundant Gameplay route sampler. Positive Culture Network cold restore remains separate.",
+  "runtime_commit": "fc51d0df7de10425c3272c009849e11c1ad3948d",
+  "current_batch": "COMMERCIAL_TRACE_ISOLATED_DEPLOYED",
+  "next_batch": "Review the exact removal of Mod/TradeRouteProbe.lua and its exclusively diagnostic entry, display and unused comparison. Positive Culture Network cold restore remains separate.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B448.475 / modinfo475 temporary develop from cefa39ff73a71d070e9072be7c41690bc6f6ccc1, 356/356 MATCH, SHA256 60cb4a7c371861490cdba403ae6e8418f36e2876bc9bf0c2c3682aa601b4cfe4. Receipt B448.475-cefa39f-playtest.json DEVELOP_ACTIVE. B447 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B449.476 / modinfo476 temporary develop from fc51d0df7de10425c3272c009849e11c1ad3948d, 356/356 MATCH, SHA256 2e039bed576c9f6e47fd081dbc61b5cec93b9c7c8a7fd6543c044aca5f270eb3. Receipt B449.476-fc51d0d-playtest.json DEVELOP_ACTIVE. B448 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0961 verifies commercial trace isolation, retained money/receipt paths and the exact old route observer review.",
+  "context_review_status": "S0962 verifies B449 development deployment and the exact pending old route observer review.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#make-the-commercial-trace-sink-optional--s0961",
-  "source_status": "B449.476 / modinfo476 locally verified at SHA256 2e039bed576c9f6e47fd081dbc61b5cec93b9c7c8a7fd6543c044aca5f270eb3. B448.475 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b449-development-deployment-verified--s0962",
+  "source_status": "B449.476 / modinfo476 deployed and verified at SHA256 2e039bed576c9f6e47fd081dbc61b5cec93b9c7c8a7fd6543c044aca5f270eb3. Commercial results are locally scoped and this adds no native acceptance.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
