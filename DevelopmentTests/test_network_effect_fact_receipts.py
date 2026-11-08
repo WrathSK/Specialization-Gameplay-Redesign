@@ -5,8 +5,8 @@ from refactor_harness import measure
 from test_refactor_s4b import standard
 
 
-def composition():
-    lua = standard()
+def composition(ready=True):
+    lua = standard(ready=ready)
     lua.execute("""
 fc=shared.FactChanges;bindings=shared.FactBindings
 local eligible=P.IsTestPlayer
@@ -27,10 +27,70 @@ function historyFact(id,topic)
 end
 function drain()fc.Flush();bindings.Flush()end
 routes='0,4,0,2,10;0,5,0,2,11;0,2,0,1,12'
-send(routes,3);drain()
-assert(net.TransactionCurrent(0) and stdValue(1)==14)
 """)
+    if ready:
+        lua.execute("send(routes,3);drain();assert(net.TransactionCurrent(0) and stdValue(1)==14)")
     return lua
+
+
+class CultureColdRestoration(unittest.TestCase):
+    def test_existing_history_notice_reconciles_once_after_all_sources_are_readable(self):
+        lua = composition(ready=False)
+        lua.execute("""
+cities[3].kind='CULTURE';cities[3].potential=4;cities[3].active=4
+complete(3,1);complete(4,2);cities[4].historyUnknown=true
+local c=cities[1];local id='BUILDING_SPC_CULTURE_NETWORK_RESEARCH_1'
+c.present[id]=true;c.locations[id]=100
+local rawCreate,rawRemove=P.CreateBuilding,P.RemoveBuilding
+local writes=0
+P.CreateBuilding=function(q,id)if id:find('CULTURE_NETWORK',1,true) then writes=writes+1 end;return rawCreate(q,id)end
+P.RemoveBuilding=function(b,id)if id:find('CULTURE_NETWORK',1,true) then writes=writes+1 end;return rawRemove(b,id)end
+send('0,3,0,2,10;0,4,0,2,11;0,2,0,1,12',3);drain()
+assert(net.TransactionCurrent(0) and amount(c)==2 and amount(cities[2])==0 and writes==0)
+assert(cn.records['0:1'].loaded and next(cn.records['0:1'].contributions)==nil)
+local n=historyReads[4]
+for i=1,100 do drain()end
+assert(historyReads[4]==n and writes==0)
+cities[4].historyUnknown=false
+historyFact(4,'INSIGHTS');drain()
+assert(amount(c)==2 and amount(cities[2])==2 and writes==1)
+assert(not cn.records['0:1'].loaded and not cn.errors['0:1'])
+assert(cn.records['0:1'].provenance[3].status=='CONFIRMED' and cn.records['0:1'].provenance[4].status=='CONFIRMED')
+complete(4,3);historyFact(4,'INSIGHTS');drain()
+assert(amount(c)==3 and amount(cities[2])==3 and writes==3 and propertyWrites==0)
+""")
+
+    def test_confirmed_route_loss_fences_proof_before_the_cold_aggregate_can_reconcile(self):
+        lua = composition(ready=False)
+        lua.execute("""
+cities[3].kind='CULTURE';cities[3].potential=4;cities[3].active=4
+complete(3,1);complete(4,2);cities[4].historyUnknown=true
+local c=cities[1];local id='BUILDING_SPC_CULTURE_NETWORK_RESEARCH_1'
+c.present[id]=true;c.locations[id]=100
+send('0,3,0,2,10;0,4,0,2,11;0,2,0,1,12',3);drain()
+assert(amount(c)==2 and cn.records['0:1'].loaded and net.TransactionCurrent(0))
+units[10]=nil
+net.CheckEvidence(false);drain()
+assert(not net.TransactionCurrent(0) and net.Input(0).continuityOnly and amount(c)==2)
+cities[4].historyUnknown=false
+historyFact(4,'INSIGHTS');drain()
+assert(not net.TransactionCurrent(0) and amount(c)==2 and cn.records['0:1'].loaded)
+send('0,4,0,2,11;0,2,0,1,12',2);drain()
+assert(net.TransactionCurrent(0) and amount(c)==1 and not cn.records['0:1'].loaded)
+assert(not cn.records['0:1'].contributions[3] and propertyWrites==0)
+""")
+
+    def test_confirmed_receiver_exit_precedes_incomplete_source_history(self):
+        lua = composition(ready=False)
+        lua.execute("""
+local c=cities[1];local id='BUILDING_SPC_CULTURE_NETWORK_RESEARCH_0'
+c.present[id]=true;c.locations[id]=100
+cities[4].historyUnknown=true
+fire('LoadScreenClose');assert(amount(c)==1)
+c.pillaged=true
+cn.Audit({player=0,city=1})
+assert(amount(c)==0 and not cn.records['0:1'].loaded and propertyWrites==0)
+""")
 
 
 class NetworkEffectFactReceipts(unittest.TestCase):

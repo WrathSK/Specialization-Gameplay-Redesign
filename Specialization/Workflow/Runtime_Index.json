@@ -116,9 +116,9 @@
       "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/Commerce.lua": {
-      "sha256": "51724baed112c0117a7fe018996d0dccb6834a7565e5e8687ed2c86ad0d25fed",
+      "sha256": "0bcc49f60d0b2d7ad50e554af0761dedb223e4edb65256f33c9de2e4449aba82",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B420.447 / S0914 explicit native eligibility availability for ordinary and proof fact receipts."
+      "provenance": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "5218cf1acca0282405fd7f0360b4a3c7def0aa26fee3e2d33ac8b62b29dda25f",
@@ -226,9 +226,9 @@
       "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "8470763e7bbfea6962fe6cd0e735ecbf06d62674fb9ed447a4bf1dfbee701a55",
+      "sha256": "b7e01ea202cabf0171accc4baec7d06228dfc90ff15e3406a491749865449390",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0924 B430.457 verifies real Bridge delivery to Standardization and the Culture network effect, with independent hold and recovery."
+      "provenance": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "c577cdb9f6e07b79f798185525a8da51a2828eee291409b2fb7ccd3c8bcaeb50",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "616a36bb4f5aa5be8f888b340e36bd94497747bd2ba2d5f44ec5533af860b5e8",
+      "sha256": "66175b955b1b6521b4b467593e79fc31fef4517e01cff72e75ab9e9b952804f2",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0933 verifies the B435 SQL grammar repair with the legacy parser, pinned profiles and catalog consumers."
+      "provenance": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "ed901948a9d7c868dc0ff69b615a3d0f09750b526d0ef0ffb9003734afa14f8f",
+      "sha256": "f1c9c86fae6023571d503fb0fa67656bff2cb021d259091b64150d23aba756e7",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0933 verifies the B435 SQL grammar repair with the legacy parser, pinned profiles and catalog consumers."
+      "provenance": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -946,9 +946,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/StandardizationEffects.lua": {
-      "sha256": "a3a88278974c23357e8af2a2cb12d91f81862432607945dc19e4687f7a2fb523",
+      "sha256": "b03f079e1c65bcc34bf0abca419186056dce955c7ef0a333af4f868e39d04033",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0924 B430.457 verifies real Bridge delivery to Standardization and the Culture network effect, with independent hold and recovery."
+      "provenance": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436."
     },
     "Mod/StorageProbe.lua": {
       "sha256": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f",
@@ -1766,7 +1766,7 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     }
   },
-  "source_review": "S0933 SQL compatibility validated locally. S0934 confirms receipt-bound deployment.",
-  "source_runtime": "B435.462 / modinfo462 deployed from 35d5998. Fixed official-profile load and startup verified in S0935.",
-  "tested_source_snapshot_sha256": "d537a9808767460fbd45efe7bf97d0193f08ab5631629a0fc9d537de8d1701f4"
+  "source_review": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436.",
+  "source_runtime": "B436.463 / modinfo463 source candidate. B435.462 remains installed and receipt-bound.",
+  "tested_source_snapshot_sha256": "279a356b1a517795a41ec558a7524eb3b6e5aa6cceb8bb19e564985b9b39830a"
 }

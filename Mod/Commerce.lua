@@ -288,7 +288,8 @@ function M.Start(P,shared)
  local function resolve(batch,x)
   if not x.rows then return end
   local k=key(x.pid,x.id);local previous=samples[k]
-  if not previous or previous.reference~=x.v.reference or previous.token~=x.v.token then previous={reference=x.v.reference,token=x.v.token,domains={}}end
+  local matched=previous and previous.reference==x.v.reference and previous.token==x.v.token
+  if not matched then previous={domains={}}end
   local nextSamples={reference=x.v.reference,token=x.v.token,domains={}};local values={};local mixed=x.v.stage=='RETAINED'
   x.v.sourceProvenance={}
   for _,r in ipairs(x.rows)do if r.effective then
@@ -323,6 +324,9 @@ function M.Start(P,shared)
    end
    values[r.id]=assert(best,'COMMERCE_SOURCE_UNKNOWN')
   end end
+  -- The first complete plan for this reference must reconcile any restored Gold.
+  -- A mixed plan may reuse a matching session's already applied source samples.
+  assert(matched or not mixed,'COMMERCE_COLD_SOURCE_PENDING')
   local result=C.Finish(x.rows,values,x.v.reputation.effective)
   x.v.domains=result.domains;x.v.totalRaw=result.totalRaw;x.v.totalGold=result.totalGold
   x.samples=nextSamples

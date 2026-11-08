@@ -188,6 +188,9 @@ function M.Start(P,shared)
   local kind,plot=anchor(batch,pid,c);local p={kind=kind,plot=plot,n=0,set={},sources={},contributors={},contributions={},provenance={}}
   if not kind then return p end
   local view=network(batch,pid)
+  local restoring=old and old.loaded
+  -- Restored bits describe the aggregate, never the contributing sources.
+  assert(not restoring or not view.input.continuityOnly,'CN_COLD_TOPOLOGY_PENDING')
   for id in pairs(view.recipients[c:GetID()] or {})do
    local s=source(batch,pid,id)
    if view.input.continuityOnly and s.eligible then
@@ -195,7 +198,10 @@ function M.Start(P,shared)
     if prior and prior.reference==s.reference then s={reference=prior.reference,set=prior.set,eligible=prior.eligible,provenance='RETAINED'} else s={set={},reference=s.reference,provenance='UNKNOWN'}end
     p.reason='CN_RETAINED_TOPOLOGY'
    end
-   if s.provenance~='CONFIRMED' then p.reason=s.error or 'CN_MIXED_FACTS' end
+   if s.provenance~='CONFIRMED' then
+    assert(not restoring,'CN_COLD_SOURCE_PENDING')
+    p.reason=s.error or 'CN_MIXED_FACTS'
+   end
    p.provenance[id]={reference=s.reference,status=s.provenance}
    p.contributions[id]={reference=s.reference,set=s.set,eligible=s.eligible,provenance=s.provenance}
    p.sources[id]=s.reference or false

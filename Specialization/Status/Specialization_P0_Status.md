@@ -1,17 +1,26 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0935
-Implementation Build: source and live B435.462 / modinfo462 from 35d5998. Stable/main B307.334.
+Status Revision: S0936
+Implementation Build: source B436.463 / modinfo463, local reconciliation candidate. Live B435.462 from 35d5998. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: DEVELOPMENT_DEPLOYMENT_ACTIVE_OFFICIAL_LOAD_VERIFIED
+Work State: NETWORK_COLD_FIRST_SOURCE_RECONCILIATION_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Network effects wait for listed source facts on cold load — S0936
+
+- **Implemented.** Commerce keeps the observed Gold carriers while the first plan for a receiver reference and token has incomplete source samples. Culture leaves restored network carriers alone while a listed source is unreadable or the only topology is a retained negative view. Standardization treats the empty aggregate at startup as unreconciled too. Complete inputs use the original per-domain max and floor, civilization union and per-target max. Confirmed receiver exits and the independent strict transaction checks retain their existing paths.
+- **Runtime Impact Contract (L3, T01/T02/T05/T08).** The same Bridge, city/reference guards, Store and native reads feed the existing owner drains. Commerce uses its existing matching samples, Culture the loaded record, and Standardization a startup scalar on the existing batch. Only the first incomplete plan is prevented from writing. Existing proof, history and source-change causes re-evaluate the same scopes. No new subscriptions, timers, scans, persistent data or capacity. Warm source retention and exact cleanup owners remain in place.
+- **LOCAL_SIMULATION_PASS in scope.** All 26 focused cases pass in Lua 5.1. With identical assertions on fixed B435, five counterexamples fail. The real Bridge and effect owners with engine/Store doubles verify no partial first write, no cold eligibility from retained Gold, no idle retry, same-value recovery without rewriting matching Culture or Gold carriers, independent receiver exit, confirmed route-loss fencing and a later same-turn change. In the wider reverse-index, transport and restricted-package selection, 126 of 135 pass. The same nine nonpassing cases reproduce on B435, including the existing unresolved role-projection assertion and older fixture/version assertions. This result establishes neither native restore timing nor complete role projection.
+- **Reproduce and evidence.** CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. Run `python3.14 -m unittest test_refactor_s4b.CommerceRetention test_refactor_s4b.CultureRetention test_refactor_s4b.StandardizationRetention test_network_effect_fact_receipts`. Static checks compile 223 Lua 5.1 files, parse 32 XML-family files and resolve the 352-file package. Package SHA256 `9e2b156ae9e6c59308ccb08248d796e6d33cdda03cb2fad21dc0ef4539022a21`. Tested source SHA256 `279a356b1a517795a41ec558a7524eb3b6e5aa6cceb8bb19e564985b9b39830a`. Local result and fixed-runtime counterexample comparison at `local/refactor/B436_Cold_Network_Reconciliation-279a356b1a517795/closure.json`, SHA256 `f3c88df65e03c8f565980e62145080f2d7a520c5871962bb239698394c386409`.
+
+User decision: none for this slice. User testing: none at this local checkpoint. Primary next: distinguish unreadable route roles that can affect a receiver from unrelated incomplete city facts. Same-build native restore and D1 retirement gates remain open. B435 is still installed.
 
 ### Official-profile assembly and startup passed — S0935
 

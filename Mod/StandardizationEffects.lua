@@ -229,7 +229,9 @@ function SPCStandardizationEffects.Start(P,shared)
   if not old or old.reference~=reference then
    retire(c) -- A failed exact withdrawal prevents the replacement writer.
    local installed=present(c)
-   old={owner=pid,city=c:GetID(),reference=reference,applied=installed,sources={},loaded=next(installed)~=nil};d.records[k]=old;dependents.Remove(pid,c:GetID())
+   -- A cold empty aggregate also needs a complete first plan before applying.
+   old={owner=pid,city=c:GetID(),reference=reference,applied=installed,sources={},loaded=batch.restoring or next(installed)~=nil}
+   d.records[k]=old;dependents.Remove(pid,c:GetID())
   end
   local wanted,sources,reason,loaded,held=plan(batch,pid,c,old)
   assert(c:GetOwner()==pid and ref(c)==reference,'STD_RECEIVER_CHANGED')
@@ -254,6 +256,7 @@ function SPCStandardizationEffects.Start(P,shared)
    return false
   end
   d.busy=true
+  local restoring=not initialized
   local good,why=pcall(function()
    validate()
    if not initialized then
@@ -269,7 +272,7 @@ function SPCStandardizationEffects.Start(P,shared)
    end
    return SPCRuntimeWork.AuditOwners(P,scope,function(pid,p)
     local accepted=true
-    local batch={sources={}};local ok,view=pcall(network,batch,pid)
+    local batch={sources={},restoring=restoring};local ok,view=pcall(network,batch,pid)
     if ok then batch.view=view else batch.networkError=code(view)end
     local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true});local live={}
     local affected={};local indexed=true

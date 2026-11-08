@@ -11,74 +11,52 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0935",
-    "runtime": "B435.462 / modinfo462",
+    "status": "S0936",
+    "runtime": "B436.463 / modinfo463",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the B435.462 official-profile load and startup acceptance and retain the scoped evidence.",
+  "goal": "Review the first-reconciliation guards in the three current network effect owners and the remaining topology and native limits.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Official-profile assembly and startup passed — S0935",
-      "reason": "Current native assembly and startup acceptance, evidence and limits"
+      "selector": "### Network effects wait for listed source facts on cold load — S0936",
+      "reason": "Current local implementation, measured boundaries and next gate"
     },
     {
-      "path": "Specialization/Design/Content/Shared_D0060.json",
-      "kind": "json",
-      "selector": "/concepts/DISTRICT_DEVELOPMENT",
-      "reason": "Accepted Tier overrides and shared D contract"
+      "path": "Specialization/Design/Network.md",
+      "kind": "full",
+      "reason": "Accepted pending and same-build recovery semantics"
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "### Environment assembly and shared depth — A0185",
-      "reason": "Approved assembly inputs and O1/O5b responsibilities"
-    },
-    {
-      "path": "Mod/SpecializationP0.modinfo",
-      "kind": "head",
-      "selector": 44,
-      "reason": "Selected profile and data component entry"
-    },
-    {
-      "path": "Mod/Data/EnvironmentBuildings.sql",
-      "kind": "full",
-      "reason": "Final projection and marker"
-    },
-    {
-      "path": "DevelopmentTests/test_environment_assembly.py",
-      "kind": "head",
-      "selector": 28,
-      "reason": "Rerunnable SQL compatibility and pinned-profile checks"
+      "selector": "### Network pending hold and confirmation recovery",
+      "reason": "Accepted passive, proof, exit and transaction separation"
     }
   ],
   "dependencies": [
-    "S0907 independent official and S0903 fixed HD databases, exact file hashes in the replay tests.",
-    "Gathering Storm ModInUse criteria; HD input component supplies only virtual-building exclusions.",
-    "D0060 explicit Tier exceptions; effective-chain resolution and consumer cutover are O1.",
-    "Official modern Great Merchant asset references and retained RawIcons override."
+    "B435.462 fixed official profile load and startup acceptance S0935; fixed HD native comparison S0903.",
+    "O1 shared facts, O2 independent responsibility and scoped queue, existing Bridge proof plus Store history. Build or boot alone does not certify actual restored effects."
   ],
   "old_writers": [
-    "Current effect, history, transaction and exit owners are retained; static catalogue projections now share the effective-chain input."
+    "Commerce, CultureNetwork and StandardizationEffects retain their exact native carrier ownership and warm paths. The O3 retirement of previous pending-topology and recovery duties is a separate gate."
   ],
   "conditional_context": [
-    "Follow Engine_Reference ER03/05/06/07, pinned actual action list and matching manifests for loader and native primitive evidence.",
-    "Review current Store and exact exit owners only if advancing the later O5b/startup or O1 dependency boundary."
+    "Follow Engine Reference ER04 and the D1 branch/NET cold dispositions for native timing and unproved role scope.",
+    "For role changes, review direct Commerce and investment proof independently of hub/source roles and preserve unrelated recipients."
   ],
   "non_scope": [
-    "Remaining O2 owner cutovers, O3–O8, native/UI validation, deployment and main promotion."
+    "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
-    "15 selected tests with both pinned profiles, the SQLite 3.38.5 check and current catalog consumers.",
-    "Legacy parser reproduces the native rejection on B434. Supplementary fixture errors match the fixed baseline.",
-    "Lua 5.1, XML/package, Context Lock and source identity passed in S0933.",
-    "Verified 352/352 live and both recovery packages in S0934.",
-    "One B435.462 native official-profile new-game load, exact gameplay targets, assembled gated definitions and Development Investment startup."
+    "26 focused Lua 5.1 local passes; five fixed B435 counterexamples using the same tests.",
+    "126 of 135 wider cases pass with the same nine reproduced nonpassing cases. Restricted actual package-root tests and static package checks included.",
+    "Native first-load comparison already recorded for B435. Same-build restored native effect timing and affected behavior still require independent evidence."
   ],
   "full_audit_triggers": [
     "Reopen affected scope if the selected native profile differs, a fixed-HD target or primitive changes, or a later source/cutover changes ordinary admission, exact exits, history or irreversible behavior."
@@ -413,6 +391,35 @@
       "report": "Specialization/Status/Specialization_P0_Status.md#official-profile-assembly-and-startup-passed--s0935",
       "evidence": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B435_Official_Assembly_Check_20261107",
       "local_manifest_sha256": "1bdf54d750d48e91aebb65bbec2ce1db72a4451dc1a1eb0c068305f5a8747880"
+    },
+    "b436_cold_first_reconciliation": {
+      "build": "B436.463 / modinfo463",
+      "status": "LOCAL_SIMULATION_PASS",
+      "scope": "First reconciliation with incomplete listed source facts in Commerce, Culture and Standardization",
+      "focused_cases": 26,
+      "fixed_before_runtime": "37f0801",
+      "before_counterexamples": 5,
+      "broader_cases": 135,
+      "broader_passing": 126,
+      "reproduced_baseline_nonpassing": 9,
+      "suites": [
+        "test_refactor_s4b",
+        "test_refactor_s6d",
+        "test_refactor_s6g.ScopedTopology",
+        "test_culture_network",
+        "test_network_effect_fact_receipts",
+        "test_b397_network_transport",
+        "test_commerce_fact_responsibility",
+        "test_investment_fact_responsibility",
+        "test_pu03_delivery.ReadAndOrder",
+        "test_pu11_package_absence.ActualRoots"
+      ],
+      "package_sha256": "9e2b156ae9e6c59308ccb08248d796e6d33cdda03cb2fad21dc0ef4539022a21",
+      "source_snapshot_sha256": "279a356b1a517795a41ec558a7524eb3b6e5aa6cceb8bb19e564985b9b39830a",
+      "local_evidence": "local/refactor/B436_Cold_Network_Reconciliation-279a356b1a517795/closure.json",
+      "local_evidence_sha256": "f3c88df65e03c8f565980e62145080f2d7a520c5871962bb239698394c386409",
+      "report": "Specialization/Status/Specialization_P0_Status.md#network-effects-wait-for-listed-source-facts-on-cold-load--s0936",
+      "native": "USER_GAME_TEST_REQUIRED"
     }
   }
 }

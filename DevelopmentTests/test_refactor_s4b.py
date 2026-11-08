@@ -80,6 +80,27 @@ class CommerceRetention(unittest.TestCase):
         l=commerce();l.execute("cities[5].kind='RESEARCH';cities[5].yields.SCIENCE=80;send('0,1,0,2,10;0,5,0,2,11',2);assert(toggle(2,'DISTRICT_CAMPUS',true));cities[5].yieldFail='SCIENCE';cities[1].kind='NONE';com.SourceChanged(0,1);assert(ownedGold(cities[2])==12 and view(2).stage=='RETAINED');assert(view(2).sourceProvenance.DISTRICT_CAMPUS[5].status=='RETAINED');assert(not toggle(2,'DISTRICT_CAMPUS',false));cities[5].kind='NONE';cities[5].yieldFail=nil;com.SourceChanged(0,5);assert(ownedGold(cities[2])==6);cities[5].kind='RESEARCH';cities[5].identityFail=true;com.SourceChanged(0,5);assert(ownedGold(cities[2])==6)")
     def test_cold_pending_installed_gold_kept_without_property_write(self):
         l=cold_commerce();l.execute("assert(ownedGold(cities[2])==15 and propertyWrites==0 and commerceWrites==0);assert(com.views['0:2'].stage=='HELD');local n=created+removed;for i=1,1000 do fire('GameCoreEventPublishComplete')end;assert(created+removed==n)")
+    def test_cold_confirmed_routes_do_not_apply_an_incomplete_gold_maximum(self):
+        l=cold_commerce()
+        l.execute("""
+local c=cities[2]
+commerceStates[2]=SPCCommerceModel.New(0)
+commerceStates[2].selected={'DISTRICT_CAMPUS'}
+cities[1].yieldFail='SCIENCE'
+assert(not net.TransactionCurrent(0) and not com.TransactionCurrent(0,2))
+send('0,1,0,2,10',1)
+local v=com.views['0:2']
+assert(net.TransactionCurrent(0) and not com.TransactionCurrent(0,2))
+assert(ownedGold(c)==15 and v.stage=='HELD' and v.reason=='COMMERCE_COLD_SOURCE_PENDING')
+assert(created==0 and removed==0 and commerceWrites==0 and propertyWrites==0)
+cities[1].yieldFail=nil
+com.SourceChanged(0,1)
+assert(ownedGold(c)==15 and created==1 and removed==0 and com.TransactionCurrent(0,2))
+cities[1].yields.SCIENCE=120
+com.SourceChanged(0,1)
+assert(ownedGold(c)==18 and commerceWrites==0 and propertyWrites==0)
+""")
+
     def test_unknown_source_or_receiver_reference_never_clears_applied_gold(self):
         l=commerce();l.execute("assert(toggle(2,'DISTRICT_CAMPUS',true));local read=cities[1].GetProperty;cities[1].GetProperty=function()error('REFERENCE_UNAVAILABLE')end;com.SourceChanged(0,1);assert(ownedGold(cities[2])==15);cities[1].GetProperty=read;cities[2].fail=true;com.SourceChanged(0,2);assert(ownedGold(cities[2])==15 and view(2).stage=='HELD')")
     def test_pending_active_iv_to_iii_removes_reputation_bonus(self):
@@ -96,7 +117,24 @@ class CultureRetention(unittest.TestCase):
     def test_whole_hold_demotes_source_provenance(self):
         l=culture();l.execute("complete(4,1);cn.SourceChanged(0,4);net.CheckEvidence(false);cn.SourceChanged(0,4);assert(cn.records['0:1'].provenance[4].status=='RETAINED' and amount(cities[1])==1)")
     def test_cold_confirmed_topology_never_invents_unknown_source_history(self):
-        l=culture(False);l.execute("cities[1].present.BUILDING_SPC_CULTURE_NETWORK_RESEARCH_0=true;cities[1].locations.BUILDING_SPC_CULTURE_NETWORK_RESEARCH_0=100;cities[4].historyUnknown=true;send('0,4,0,2,10;0,2,0,1,11;0,2,0,5,12',3);assert(amount(cities[1])==0 and cn.records['0:1'].provenance[4].status=='UNKNOWN')")
+        l=culture(False)
+        l.execute("""
+local c=cities[1];local id='BUILDING_SPC_CULTURE_NETWORK_RESEARCH_0'
+c.present[id]=true;c.locations[id]=100
+cities[4].historyUnknown=true
+fire('LoadScreenClose')
+assert(not net.TransactionCurrent(0))
+send('0,4,0,2,10;0,2,0,1,11;0,2,0,5,12',3)
+assert(net.TransactionCurrent(0))
+local restored=cn.records['0:1']
+assert(amount(c)==1 and restored.loaded and restored.retained)
+assert(next(restored.contributions)==nil and created==0 and removed==0 and propertyWrites==0)
+assert(cn.errors['0:1']:find('CN_COLD_SOURCE_PENDING',1,true))
+cities[4].historyUnknown=false
+cn.SourceChanged(0,4)
+assert(amount(c)==0 and not cn.records['0:1'].loaded)
+assert(removed==1 and propertyWrites==0 and not cn.errors['0:1'])
+""")
     def test_cold_no_topology_preserves_installed_set(self):
         l=culture(False);l.execute("cities[1].present.BUILDING_SPC_CULTURE_NETWORK_RESEARCH_0=true;cities[1].locations.BUILDING_SPC_CULTURE_NETWORK_RESEARCH_0=100;fire('LoadScreenClose');assert(amount(cities[1])==1 and propertyWrites==0);local n=created+removed;for i=1,1000 do fire('GameCoreEventPublishComplete')end;assert(created+removed==n)")
 
@@ -112,6 +150,18 @@ class StandardizationRetention(unittest.TestCase):
         l=standard();l.execute("net.CheckEvidence(false);cities[5].active=3;std.SourceChanged(0,5);assert(stdValue(1)==12);cities[3].active=3;std.SourceChanged(0,3);assert(stdValue(1)==10);assert(std.records['0:1'].sources[3].provenance=='RETAINED')")
     def test_pending_source_provenance_is_retained_and_unknown_owner_holds(self):
         l=standard();l.execute("net.CheckEvidence(false);std.SourceChanged(0,5);assert(std.records['0:1'].sources[5].provenance=='RETAINED');cities[5].GetOwner=function()return nil end;std.SourceChanged(0,5);assert(stdValue(1)==14)")
+    def test_cold_empty_aggregate_waits_for_all_sources_before_the_first_apply(self):
+        l=standard(ready=False)
+        l.execute("""
+knowledge[3]=false
+send('0,5,0,2,10;0,3,0,2,11;0,2,0,1,12',3)
+assert(net.TransactionCurrent(0) and stdValue(1)==0)
+assert(std.records['0:1'].loaded and std.records['0:1'].retained)
+knowledge[3]={learned={},districts={learned={}}}
+std.SourceChanged(0,3)
+assert(stdValue(1)==14 and not std.records['0:1'].loaded and propertyWrites==0)
+""")
+
     def test_cold_exception_A_exact_hold_then_event_recompute(self):
         l=standard(False,True);l.execute("cities[3].active=2;knowledge[5]=false;send('0,5,0,2,10;0,3,0,2,11;0,2,0,1,12',3);assert(stdValue(1)==14 and std.records['0:1'].loaded and std.records['0:1'].retained);knowledge[5]={learned={},districts={learned={}}};std.SourceChanged(0,5);assert(stdValue(1)==0 and not std.records['0:1'].loaded and propertyWrites==0)")
 
