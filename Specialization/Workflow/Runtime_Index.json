@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1020 verifies the local cold-network readiness selection. A positive Culture Network cold reload awaits a same-build user witness.",
+  "source_review": "S1021 accepts the observed positive Culture Network same-build reload on B476. The B477 path equivalence remains scoped to S1020.",
   "source_runtime": "B477.504 / modinfo504 local candidate, 337 files. B476.503 remains installed.",
   "tested_source_snapshot_sha256": "76b668432712c28f6e3fca104c47af7c20f90a511dcda63510d8c1d7759b3d4f"
 }

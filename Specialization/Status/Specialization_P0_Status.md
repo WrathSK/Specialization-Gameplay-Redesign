@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1020
+Status Revision: S1021
 Implementation Build: source B477.504 / modinfo504. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CULTURE_NETWORK_COLD_LOCAL_READINESS_COMPLETE
+Work State: CULTURE_NETWORK_COLD_NATIVE_PASS_SCOPED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Positive Culture Network survives the B476 cold reload — S1021
+
+**USER_GAME_TEST_PASS in the observed scope.** The Owner saw positive Culture Network output on the turn the route connected and after a full application restart on B476.503. Boston displayed 0.2 Culture from population and 1.2 with one locked specialist. Washington's capital tooltip displayed 3 Culture from three specialists. The total city Culture in Washington was not measured. Specialists in districts outside the receiving city's specialization showed no Culture Network bonus. The Owner kept P0 closed throughout. The captured records contain no matching P0 report request.
+
+- **Before and after on T32.** Both collectors identify B476.503 and record distinct game processes and load epochs. Before restart the route count moves from two to three after the activity change (seq 1129 and 1148). Both positive city records reach a count of one at seq 1189 and 1192, and the final verified view keeps the same counts (seq 1241, 1242 and 1245). In the new process, the same two city records wait on initial proof at seq 107 and 110. The first verified sample contains three routes at seq 133. The two cities again project one completed civilization each at seq 141 and 144. Culture Network reports ready at seq 148. These observations all occur on T32.
+- **Evidence boundary.** The UI readings are the Owner's native observations. The trace corroborates the automatic proof and per-city configuration. Exact physical carrier state in the interval before proof is unmeasured. The latest engine startup and database files are from a later process, so the exact loaded target list for these two collector sessions remains unverified. S1020 identifies the equivalent B477 production path. The wider integration gate stays separate.
+- **Local archive.** Both collector sessions and the verified B476 deployment receipt are preserved at `local/legacy-workspace/Specialization/Status/Validation/Evidence/B476_Culture_Network_Cold_20261108/manifest.json`, SHA256 `904c01629864924d012876a53923469e2f31e2423acf0350b9f153f560815b76`. The manifest records source and archived file hashes, line and sequence locations and the Owner's observations.
+
+This closes the positive Culture Network reload check within its observed scope. The next review traces the old pending-proof fan-out and distinguishes incomplete proof from confirmed withdrawal. Keep the established cold continuity and transaction requirements as the comparison basis.
 
 ### Prepare the positive Culture Network cold reload check — S1020
 
