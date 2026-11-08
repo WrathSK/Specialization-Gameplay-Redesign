@@ -7,10 +7,21 @@ from pathlib import Path
 import unittest,xml.etree.ElementTree as ET
 import sqlite3,zlib
 from project_paths import external_database
+from retired_crew_sources import B458, source as historical_source
 import test_culture_aesthetic as ae
 from test_p0_k import Fixture
 
 R=Path(__file__).resolve().parents[1];M=R/'Mod'
+
+def fixture_source(relative):
+ if relative=='CultureMeaningProbe.lua':
+  return historical_source(relative,B458)
+ return (M/relative).read_text()
+
+
+def legacy_manifest():
+ return ET.fromstring(historical_source('SpecializationP0.modinfo',B458))
+
 
 def require_meaning_imports(root):
  imports=[e.text for e in root.findall("./InGameActions/ImportFiles[@id='SPCP0_Common']/File")]
@@ -71,11 +82,11 @@ class MeaningProbeTests(unittest.TestCase):
    cur=self.sql.execute('SELECT * FROM '+table);columns=[a[0]for a in cur.description];rows=[dict(zip(columns,r))for r in cur]
    for i,r in enumerate(rows):r['Index']=i+1
    l.globals().GameInfo[table]=l.globals().db(ae.lua_table(l,rows),key)
-  imports=require_meaning_imports(ET.parse(M/'SpecializationP0.modinfo').getroot())
+  imports=require_meaning_imports(legacy_manifest())
   def imported_include(n):
    # Model action visibility only. This cannot prove native VFS/include behavior.
    assert n+'.lua' in imports, 'Not visible in ImportFiles: '+n
-   l.execute((M/(n+'.lua')).read_text())
+   l.execute(fixture_source(n+'.lua'))
   l.globals().include=imported_include
   for n in ['Dialogue','GreatWorkAdjacency','CultureMeaningProbe']:imported_include(n)
   if real_samples:imported_include('GreatWorkFacts')
@@ -353,7 +364,7 @@ class MeaningProbeTests(unittest.TestCase):
    probe.End(0,a);assert(SPCBoostGreatWorkRead.Meaning(P,a,probe.View(0,a),false):find('测试已关闭'))
   """)
  def test_import_registry_rejects_each_missing_action_import(self):
-  root=ET.parse(M/'SpecializationP0.modinfo').getroot();require_meaning_imports(root)
+  root=legacy_manifest();require_meaning_imports(root)
   for name in ['CultureMeaningModel.lua','CultureMeaningProbe.lua']:
    with self.subTest(missing=name):
     copy=ET.fromstring(ET.tostring(root));imports=copy.find("./InGameActions/ImportFiles[@id='SPCP0_Common']")
@@ -438,7 +449,7 @@ class MeaningProbeTests(unittest.TestCase):
   ui=(M/'UI/P0Panel.lua').read_text();self.assertIn("request('CULTURE_MEANING_ADVANCE')",ui);self.assertIn("request('CULTURE_MEANING_READ')",ui)
   text=(M/'Text/TestText.sql').read_text()
   for key in ['LOC_SPC_CULTURE_MEANING_PROBE','LOC_SPC_CULTURE_MEANING_PROBE_HINT','LOC_SPC_MEANING_PROBE_CARRIER']:self.assertEqual(text.count("'"+key+"'"),2)
-  src=(M/'CultureMeaningProbe.lua').read_text()
+  src=fixture_source('CultureMeaningProbe.lua')
   for forbidden in ['collectgarbage','SetProperty','SetUpdate','GameCoreEventPublishComplete','CityWorkerChanged','OnHover']:self.assertNotIn(forbidden,src)
   self.assertIn("RegisterExit('CultureMeaningProbe'",src)
   self.assertIn("include('CultureMeaningProbe')",(M/'Gameplay.lua').read_text())

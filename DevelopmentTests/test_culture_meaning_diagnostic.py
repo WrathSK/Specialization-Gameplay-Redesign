@@ -587,7 +587,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
  def test_packaging_and_lua_syntax(self):
   lua=self.runtime()
   for name in ['CultureMeaningProbe.lua','Gameplay.lua','UI/BoostGreatWorkRead.lua','UI/P0Panel.lua']:
-   lua.execute('assert(load(...))',(R/'Mod'/name).read_text())
+   lua.execute('assert(load(...))',legacy.fixture_source(name))
   panel=(R/'Mod/UI/P0Panel.lua').read_text()
   for mouse,action in [('eLClick','CULTURE_MEANING_ADVANCE'),('eRClick','CULTURE_MEANING_READ')]:
    self.assertIn("Controls.MeaningProbeButton:RegisterCallback(Mouse."+mouse+",function() request('"+action+"') end)",panel)

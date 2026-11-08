@@ -2,6 +2,19 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7qMeaningExperimentRetirement": [
+      "test_o7_meaning_experiment_retirement",
+      "test_culture_meaning_probe.MeaningProbeTests.test_import_registry_rejects_each_missing_action_import",
+      "test_refactor_s5d4c5.CultureProjection.test_real_building_D_updates_three_consumers_once",
+      "test_refactor_s5d4c5.CultureProjection.test_meaning_read_failure_holds_its_duty_without_replaying_inspiration",
+      "test_refactor_s5d4c5.CultureProjection.test_real_provider_both_failed_consumers_recover_on_equal_fresh_sample",
+      "test_refactor_s5d4c5.CultureProjection.test_missed_load_real_sample_initializes_each_independently",
+      "test_refactor_s5d4c5.CultureProjection.test_both_exact_losses_only_target_owner_and_city_no_D_capture",
+      "test_culture_meaning_automatic.AutomaticMeaningTests.test_no_probe_can_start_while_normal_owner_is_registered",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_meaning_both_clicks_are_read_only_status",
+      "test_refactor_s9c2.Startup",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7pManualYieldCarrierRetirement": [
       "test_o7_manual_yield_carrier_retirement",
       "test_refactor_s8c4.PureCatalogue",
@@ -2733,8 +2746,6 @@
     "Mod/CultureAesthetic.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/CultureInspiration.lua|MEASURED_MISSING_EVENT": 2,
     "Mod/CultureMeaning.lua|MEASURED_MISSING_EVENT": 3,
-    "Mod/CultureMeaningProbe.lua|DETAIL_READER_BUSINESS": 1,
-    "Mod/CultureMeaningProbe.lua|MEASURED_MISSING_EVENT": 4,
     "Mod/CultureNetwork.lua|MEASURED_MISSING_EVENT": 2,
     "Mod/DialogueEffects.lua|MEASURED_MISSING_EVENT": 1,
     "Mod/DistrictCompleteness.lua|MEASURED_MISSING_EVENT": 4,

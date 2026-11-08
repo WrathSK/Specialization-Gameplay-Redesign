@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B457, gameplay, package
+from retired_crew_sources import B457, B458, gameplay, package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -112,5 +112,5 @@ class ManualYieldCarrierRetirement(unittest.TestCase):
         measure('manual_yield_carrier_exit', {'plot_writes':2,'other_city_and_flags_preserved':True})
 
     def test_exact_temporary_switch_and_recovery(self):
-        with package(B457) as previous:
-            verify_package_round_trip(self, previous/'Mod', ROOT/'Mod', (REMOVED,), 'LegacyCleanup.lua')
+        with package(B457) as previous, package(B458) as retired:
+            verify_package_round_trip(self, previous/'Mod', retired/'Mod', (REMOVED,), 'LegacyCleanup.lua')

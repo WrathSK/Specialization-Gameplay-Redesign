@@ -210,11 +210,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
-    "Mod/CultureMeaningProbe.lua": {
-      "sha256": "c7b738aa0179fd97280dd3766a73ae936590f27f116af435fd89b3b0ed98207b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B166_Meaning_Automatic_Local.md",
-      "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
-    },
     "Mod/CultureNetwork.lua": {
       "sha256": "11011c541e2396e36eb35a27c30f90cf51cf498d3b1e0c3e62a12c2f2392497c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
@@ -771,9 +766,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "88bf85c32d6b501337b1fe99a6abe6aac6d77e7eedcd169cbf4fda33b73694fb",
+      "sha256": "1a834ea101ca738ff231688b48a9025b6719f902997ce3dcb777add6d09ae8d9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0981 B458 exact hidden manual yield carrier retirement."
+      "provenance": "S0983 B459 inactive Culture Meaning experiment retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -901,9 +896,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "20d7d6f31954c9b56c8c2d575116828470916b92dba1da4cbcd4d5da8e62d58b",
+      "sha256": "0c882cb5ae8412f29749b9e3194817a3aa22a5ea0609be7091f0e71356ecbf77",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0981 B458 exact hidden manual yield carrier retirement."
+      "provenance": "S0983 B459 inactive Culture Meaning experiment retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1526,9 +1521,9 @@
       "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "a241a6aead8ab0244ec98c0cba090fdc15e3072ecc23c863a528a5dc1d9c1c1b",
+      "sha256": "cbe907250864b8b816611290b8bb8278fa2a35270e4a3f4a90a49e5b805d6358",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0928 verifies scoped Restructuring synchronization, selected-city completion reporting and the approved Owner communication update."
+      "provenance": "S0983 B459 inactive Culture Meaning experiment retirement."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",
@@ -1736,7 +1731,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0982 verifies B458 deployment and both recovery packages, and reviews the inactive Meaning experiment separately from its live successor.",
-  "source_runtime": "B458.485 / modinfo485 deployed from 0adc089 with the approved hidden manual yield carrier experiment removed.",
-  "tested_source_snapshot_sha256": "a36d720eba156a33ad3b89836e51ca0a960fb3d15170a3274cdb0e7c9bb71ff2"
+  "source_review": "S0983 verifies the inactive Meaning probe and binding retirement, active effect and status report, and exact package restoration.",
+  "source_runtime": "B459.486 / modinfo486 local candidate, 345 files. B458.485 remains installed.",
+  "tested_source_snapshot_sha256": "dee5243bde6935eff0decefd0b219ad8833ad7c8f825d7796eaa3ee54d5a3202"
 }

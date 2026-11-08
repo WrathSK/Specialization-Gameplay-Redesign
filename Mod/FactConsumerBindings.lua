@@ -33,7 +33,6 @@ function SPCFactConsumerBindings.New(shared)
   {target='ResearchChair',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='CultureAesthetic',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='CultureMeaning',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
-  {target='CultureMeaningProbe',method='Audit',kinds={'ACTIVE','D'}},
   {target='CultureInspiration',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='CultureInsightsTourism',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'INSIGHTS'}},
   {target='DialogueEffects',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'DIALOGUE'}},

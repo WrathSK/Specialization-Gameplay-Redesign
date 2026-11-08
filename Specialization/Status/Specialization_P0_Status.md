@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0982
-Implementation Build: source B458.485 / modinfo485. Live B458.485 from 0adc089. Stable/main B307.334.
+Status Revision: S0983
+Implementation Build: source B459.486 / modinfo486. Live B458.485 from 0adc089. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CULTURE_MEANING_EXPERIMENT_RETIREMENT_REVIEWED
+Work State: CULTURE_MEANING_EXPERIMENT_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the inactive Culture Meaning experiment — S0983
+
+The Owner approved removal of the inactive `Mod/CultureMeaningProbe.lua`, its two manifest entries and its unused ACTIVE/D consumer declaration. The former Lua is recoverable from `0adc089452b57f5e6faed845ae0da237c49971da:Mod/CultureMeaningProbe.lua` at SHA256 `c7b738aa0179fd97280dd3766a73ae936590f27f116af435fd89b3b0ed98207b`. The active Meaning owner, shared model, carrier SQL, collection protocol and P0 report keep their existing paths.
+
+- **Runtime Impact Contract (L3, T01/T04/T08).** No production loader started the old experiment. Removing one declaration removes its two modeled fact subscription edges, while current consumer registration order and the other bindings are identical. No native reads, writes, listeners, retry or persisted data are added.
+- **LOCAL_SIMULATION_PASS in scope.** All 22 selected methods pass. The actual Gameplay and P0 fixtures preserve the active Meaning owner, report, Great Work provider, D/depth updates and carrier repair. The active Lua, model, SQL and P0 files are byte-identical. Frozen B458 preserves the historical module-owned assertions. The exact one-path temporary deployment and restoration pass in disposable packages. All 19 carried hidden yield-carrier retirement methods also pass.
+- **STATIC_CONFIRMED and reproduction.** 216 Lua 5.1 compiles, 32 XML-family parses, 682 file references and 10 replacements across 345 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7qMeaningExperimentRetirement` with CPython 3.14/Lupa 2.8, installed official Assets and the read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. The carried stage is O7pManualYieldCarrierRetirement. Tested source SHA256 `dee5243bde6935eff0decefd0b219ad8833ad7c8f825d7796eaa3ee54d5a3202`, package SHA256 `b9da74b5b917d900e5456df5422974f1fa27f129aff7027053e7ca9f381e2a71`. Local closure `local/refactor/B459-O7qMeaningExperimentRetirement-final/closure.json` SHA256 `bbd385d1f8ab64081e233c0cf52d3480a157b93fffe9ad56bf37a3f504004d60`. Native behavior remains unmeasured in this batch.
+
+B458 remains installed at this source checkpoint. Deployment verification and positive Culture Network cold restoration retain separate evidence boundaries.
 
 ### B458 deployment verified and inactive Meaning experiment reviewed — S0982
 
