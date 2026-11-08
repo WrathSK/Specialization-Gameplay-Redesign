@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1021",
-    "runtime": "B477.504 / modinfo504",
+    "status": "S1022",
+    "runtime": "B478.505 / modinfo505",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the observed positive Culture Network cold reload and preserve the two collector sessions locally.",
+  "goal": "Keep passive Culture Network and Standardization output idle during ordinary warm route-proof invalidation.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Keep passive effects idle while a warm route proof is pending — S1022",
+      "reason": "Warm proof-only routing, held delivery safety, and retained native scope"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -558,6 +564,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B478 passes 104 scoped Lua 5.1 checks. The two passive audits are idle for pure warm route status. Same-value proof, true loss and retained delivery remain covered.",
     "B476 positive Culture Network cold reload is USER_GAME_TEST_PASS in the observed scope. The B477 production path matches per S1020.",
     "B477 passes 25 cold-network readiness checks. The positive native Culture Network reload remains open.",
     "B477 passes 33 targeted checks and verifies exact old-effect withdrawal and current reports. Package paths remain identical.",
@@ -3967,6 +3974,51 @@
       "archive": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B476_Culture_Network_Cold_20261108/manifest.json",
       "archive_sha256": "904c01629864924d012876a53923469e2f31e2423acf0350b9f153f560815b76",
       "report": "Specialization/Status/Specialization_P0_Status.md#positive-culture-network-survives-the-b476-cold-reload--s1021"
+    },
+    "b478_warm_pending_proof_fanout": {
+      "build": "B478.505 / modinfo505",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "baseline": "e3e66c46c49e7dc9aee3fe9b9fa2db306636da51",
+      "tests": 104,
+      "source_snapshot_sha256": "cb3f90ba09117438b605aba6d970570c30458cdd82518d025ae45174ffb8aed9",
+      "package_sha256": "93eee4d8463bdce3f327b6c35bb811d734cb38a8584dd3bc7ce70b388475a44e",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "T0": {
+          "pending_carrier_writes": 0,
+          "pending_culture_audits": 1,
+          "pending_culture_effective_fact_reads": 5,
+          "pending_standardization_audits": 1,
+          "pending_standardization_effective_fact_reads": 5,
+          "pending_ui_requests": 1,
+          "same_value_carrier_writes": 0,
+          "same_value_culture_audits": 1,
+          "same_value_standardization_audits": 1
+        },
+        "T1": {
+          "pending_carrier_writes": 0,
+          "pending_culture_audits": 0,
+          "pending_culture_effective_fact_reads": 0,
+          "pending_standardization_audits": 0,
+          "pending_standardization_effective_fact_reads": 0,
+          "pending_ui_requests": 1,
+          "same_value_carrier_writes": 0,
+          "same_value_culture_audits": 1,
+          "same_value_standardization_audits": 1
+        }
+      },
+      "evidence": {
+        "local/refactor/B478-NPendingProofFanout/closure.json": "16428da726a43b1e2179e756cbe995135630f9f33d06372d4a8632bcd9bc052d",
+        "local/refactor/B478-NPendingProofFanout/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B478-NPendingProofFanout/closure.stderr.log": "40318847303ae549ea0f48630c5f15b4a5944182078855079455ef076cc724c0",
+        "local/refactor/B478-NPendingProofFanout/compare_pending_fanout.py": "d94803e1c1642216ece65713ff6db50d46b738a95fce88cb1d0f289ace0bb046",
+        "local/refactor/B478-NPendingProofFanout/T0.json": "1e62d474973f7e4c42c457af21d340dddebc8c512979869d64123942c6a34723",
+        "local/refactor/B478-NPendingProofFanout/T1.json": "a031a1d46d06590784fe97ec6fef5b513758f67d6dba21f0ee410e8baf7afbb6"
+      },
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#keep-passive-effects-idle-while-a-warm-route-proof-is-pending--s1022"
     }
   }
 }

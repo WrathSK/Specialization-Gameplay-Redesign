@@ -135,8 +135,17 @@ function SPCNetworkBridge.Start(P,shared)
  -- This callback only marks work; it never scans or sends a command inline.
  local function pendingProof(pid,b,request,cause)
   local first=b.revalidation~='NEEDS_REVALIDATION'
+  -- A warm route event can invalidate proof without changing any effect input.
+  -- Unregistered publications, lifecycle work and confirmed losses keep full delivery.
+  local proofOnly=(cause=='TradeRouteActivityChanged' or cause=='TradeRouteRemovedFromMap')
+   and b.revalidation=='VERIFIED' and b.availability=='AVAILABLE' and b.effectAvailability=='AVAILABLE'
+   and b.lastNotifiedProof and not b.notificationIntent and not b.queuedWork and not b.negativeHeld
+   and not b.continuityOnly and currentGeneration(pid,b)
   b.proofPending=true;b.revalidation='NEEDS_REVALIDATION';b.availability=b.input and 'NEEDS_REVALIDATION' or 'UNAVAILABLE';b.effectAvailability='PENDING'
-  if first then state('NETWORK_PENDING',pid,b,cause or 'READ_OR_SIGNAL');if notify then notify(pid)end end
+  if first then
+   state('NETWORK_PENDING',pid,b,cause or 'READ_OR_SIGNAL')
+   if notify then notify(pid,proofOnly and 'NETWORK_PROOF_PENDING' or nil)end
+  end
   if request==true or request==nil and first then
    local ui=ExposedMembers.SPC_P0_BackgroundRoutes
    if ui and type(ui.RequestRevalidation)=='function' then pcall(ui.RequestRevalidation,d.epoch,pid) end
@@ -163,12 +172,12 @@ function SPCNetworkBridge.Start(P,shared)
   for _,id in ipairs(ids)do local f=b.input.provenance[id];parts[#parts+1]=id..':'..f.reference..':'..f.status end
   return table.concat(parts,'|')
  end
- notify=function(pid)
+ notify=function(pid,cause)
   local b=bucket(pid);local signature=proofSignature(b);local intent=b.notificationIntent
   if not intent and b.lastNotifiedProof==signature then return false end
   if not intent or intent.signature~=signature then
    d.proofRevisions[pid]=(d.proofRevisions[pid] or 0)+1
-   intent={signature=signature,event={owner=pid,kinds={'NETWORK'},cause='NETWORK_PROOF_PUBLISHED',revision=d.proofRevisions[pid],
+   intent={signature=signature,event={owner=pid,kinds={'NETWORK'},cause=cause or 'NETWORK_PROOF_PUBLISHED',revision=d.proofRevisions[pid],
     evidence={epoch=d.epoch,inputVersion=b.inputRevision,proofRevision=d.proofRevisions[pid],validity=b.validity,
      availability=(b.queuedWork or b.negativeHeld) and 'NEEDS_REVALIDATION' or b.availability,effectAvailability=(b.queuedWork or b.negativeHeld) and 'PENDING' or b.effectAvailability,revalidation=b.revalidation,continuityOnly=b.continuityOnly==true}}}
    b.notificationIntent=intent -- one scalar latest-proof intent per existing owner bucket

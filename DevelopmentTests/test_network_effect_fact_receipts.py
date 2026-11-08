@@ -179,6 +179,112 @@ assert(amount(cities[1])==1 and stdValue(1)==14 and not net.TransactionCurrent(0
 """)
 
 
+class PendingProofFanout(unittest.TestCase):
+    def test_warm_route_status_skips_only_passive_recomputation(self):
+        lua = composition()
+        result = lua.execute("""
+complete(4,1);historyFact(4,'INSIGHTS');drain()
+assert(amount(cities[1])==1 and stdValue(1)==14 and net.TransactionCurrent(0))
+local audits={CultureNetwork=0,StandardizationEffects=0}
+for name in pairs(audits)do
+ local effect=shared[name];local accept=effect.AcceptFact
+ effect.AcceptFact=function(scope)audits[name]=audits[name]+1;return accept(scope)end
+end
+local notices={}
+for _,name in ipairs({'Commerce','CapitalInvestment','DevelopmentInvestment'})do
+ local owner=shared[name];local accept=owner.AcceptFact
+ owner.AcceptFact=function(e)notices[name]=e.cause;return accept(e)end
+end
+local requests=0
+ExposedMembers.SPC_P0_BackgroundRoutes={RequestRevalidation=function(epoch,pid)
+ assert(epoch==net.epoch and pid==0 and not net.TransactionCurrent(pid));requests=requests+1
+end}
+local before=created+removed;local version=net.Input(0).inputVersion
+local revision=net.ProofRevision(0);local c=cities[1]
+Locale={Lookup=function(s)return s end}
+fire('TradeRouteActivityChanged',0);drain()
+assert(net.ProofRevision(0)>revision and net.Input(0).inputVersion==version)
+assert(not net.TransactionCurrent(0) and not pcall(net.CurrentCapitalSources,0,c,'CULTURE'))
+assert(net.CurrentOutgoingDomestic(0,c).validity=='UNKNOWN')
+assert(audits.CultureNetwork==0 and audits.StandardizationEffects==0 and fc.retained==0)
+assert(requests==1 and amount(c)==1 and stdValue(1)==14 and created+removed==before)
+for _,name in ipairs({'Commerce','CapitalInvestment','DevelopmentInvestment'})do
+ assert(notices[name]=='NETWORK_PROOF_PENDING')
+end
+assert(cn.Describe(0,c):find('CN_NETWORK_PENDING',1,true))
+assert(std.Describe(0,c):find('STD_NETWORK_PENDING',1,true))
+for i=1,100 do drain()end
+assert(audits.CultureNetwork==0 and audits.StandardizationEffects==0 and requests==1)
+send(routes,3);drain()
+assert(net.TransactionCurrent(0) and net.Input(0).inputVersion==version)
+assert(audits.CultureNetwork==1 and audits.StandardizationEffects==1)
+assert(amount(c)==1 and stdValue(1)==14 and created+removed==before and fc.retained==0)
+assert(not cn.Describe(0,c):find('CN_NETWORK_PENDING',1,true))
+assert(not std.Describe(0,c):find('STD_NETWORK_PENDING',1,true))
+return {pending_owner_audits=0, ui_proof_requests=requests, same_value_owner_audits=2, carrier_writes=created+removed-before}
+""")
+        measure('warm_pending_proof_fanout', dict(result.items()))
+
+    def test_confirmed_route_loss_merged_with_pending_is_delivered(self):
+        lua = composition()
+        lua.execute("""
+complete(4,1);historyFact(4,'INSIGHTS');drain()
+assert(amount(cities[1])==1 and stdValue(1)==14)
+local causes
+fc.RegisterConsumer('PendingLossWitness',function(e)causes=e.causes end,{kinds={'NETWORK'}})
+units[10]=nil;units[11]=nil
+fire('TradeRouteRemovedFromMap',0);drain()
+assert(causes.NETWORK_PROOF_PENDING and causes.NETWORK_PROOF_PUBLISHED)
+assert(not net.TransactionCurrent(0) and net.Input(0).continuityOnly)
+assert(amount(cities[1])==0 and stdValue(1)==0 and fc.retained==0)
+""")
+
+    def test_local_fact_changes_still_withdraw_while_proof_is_pending(self):
+        lua = composition()
+        lua.execute('''
+complete(4,1);historyFact(4,'INSIGHTS');drain()
+assert(amount(cities[1])==1 and amount(cities[2])==1 and stdValue(1)==14)
+fire('TradeRouteActivityChanged',0);drain()
+cities[1].pillaged=true
+fc.Emit({owner=0,cityID=1,kinds={'D'},cause='DISTRICT_FACTS_DIRTY'})
+cities[5].active=2
+fc.Emit({owner=0,cityID=5,kinds={'ACTIVE'},cause='ACTIVE_CHANGED'})
+drain()
+assert(not net.TransactionCurrent(0) and net.Input(0).continuityOnly)
+assert(amount(cities[1])==0 and amount(cities[2])==1 and stdValue(1)==0 and fc.retained==0)
+''')
+
+    def test_pending_never_acknowledges_a_held_effect_delivery(self):
+        lua = composition()
+        lua.execute("""
+local newRoutes=routes..';0,1,0,3,13';units[13]={}
+std.busy=true;send(newRoutes,4);drain()
+assert(net.TransactionCurrent(0) and fc.errors.Binding_StandardizationEffects and fc.retained==1)
+fire('TradeRouteActivityChanged',0);drain()
+assert(not net.TransactionCurrent(0) and fc.errors.Binding_StandardizationEffects and fc.retained==1)
+std.busy=false;send(newRoutes,4);drain()
+assert(net.TransactionCurrent(0) and not fc.errors.Binding_StandardizationEffects and fc.retained==0)
+""")
+
+    def test_pending_does_not_supersede_unregistered_proof_with_status_only(self):
+        lua = composition()
+        lua.execute("""
+local newRoutes=routes..';0,1,0,3,13';units[13]={}
+local emit=fc.EmitDerived
+fc.EmitDerived=function()error('INJECTED_NOTIFICATION_CAPACITY')end
+send(newRoutes,4);drain()
+assert(net.TransactionCurrent(0) and net.players[0].notificationIntent)
+fc.EmitDerived=emit
+local cause
+fc.RegisterConsumer('PendingIntentWitness',function(e)cause=e.cause end,{kinds={'NETWORK'}})
+fire('TradeRouteActivityChanged',0);drain()
+assert(cause=='NETWORK_PROOF_PUBLISHED' and not net.players[0].notificationIntent)
+assert(not net.TransactionCurrent(0) and fc.retained==0)
+send(newRoutes,4);drain()
+assert(net.TransactionCurrent(0) and fc.retained==0)
+""")
+
+
 class NetworkEffectFactReceipts(unittest.TestCase):
     def test_standardization_refusal_holds_only_its_own_receipt_and_proof_is_not_rerequested(self):
         lua = composition()
@@ -220,7 +326,7 @@ assert(stdAudits==2 and cnAudits==1 and proofRequests==2)
 studies[5]=0;historyFact(5,'ENGINEERING')
 complete(4,1);historyFact(4,'INSIGHTS');drain()
 assert(amount(cities[1])==1 and stdValue(1)==10)
-net.CheckEvidence(false)
+fire('TradeRouteActivityChanged',0)
 assert(not net.TransactionCurrent(0))
 local previous=created+removed
 complete(4,2);studies[5]=2

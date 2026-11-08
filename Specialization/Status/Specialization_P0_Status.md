@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1021
-Implementation Build: source B477.504 / modinfo504. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1022
+Implementation Build: source B478.505 / modinfo505. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CULTURE_NETWORK_COLD_NATIVE_PASS_SCOPED
+Work State: WARM_NETWORK_PROOF_FANOUT_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Keep passive effects idle while a warm route proof is pending — S1022
+
+After a previously verified route snapshot, ordinary route activity or removal can put proof in a waiting state before the game supplies a new route list. The old notification made Culture Network and Standardization inspect their cities at that point. B478.505 separates this narrow status change from effect work. Each module keeps the last applied result while its report shows the wait. A confirmed loss, local fact change or completed proof still follows the existing owner path.
+
+- **Runtime Impact Contract (L3, T01/T02/T05/T08).** [NetworkBridge](../../Mod/NetworkBridge.lua) classifies the transition only for the existing native route activity/removal entries after a healthy published proof, with current role generation and no outstanding Bridge publication, queued work or held negative. The [bindings](../../Mod/FactConsumerBindings.lua) skip the two passive audits only when the complete merged receipt contains that single cause and kind. A previous unaccepted effect receipt, a newly proven route loss or another fact remains deliverable. Commerce and both investment services still receive the proof notice. The existing synchronous transaction fence, proof revision, collection request, startup and same-value confirmation remain in place. Reports read the Bridge status without resampling. No listener, retry, retained state or native write is added.
+- **LOCAL_SIMULATION_PASS in scope.** All 104 selected Lua 5.1 checks passed. The same warm scenario on full baseline `e3e66c46c49e7dc9aee3fe9b9fa2db306636da51` and this build reduced pending audits from one to zero per passive owner and their effective-fact reads from five to zero each. Both arms requested one proof, wrote zero carriers during the wait and audited both owners once after same-value confirmation. Tests also cover co-delivered confirmed route loss, receiver/source eligibility changes, delayed and unregistered receipts, cold recovery, strict transaction gates and real Sender/Bridge composition. Counts are from the fixture.
+- **Reproduce and recover.** Run `python3 DevelopmentTests/run_refactor.py --stage NPendingProofFanout --output local/refactor/B478-NPendingProofFanout/closure.json` with Python 3.14.8, Lupa 2.8 / Lua 5.1 on arm64 macOS and the existing HD regression DB (SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`). Tested source SHA256 `cb3f90ba09117438b605aba6d970570c30458cdd82518d025ae45174ffb8aed9`. The ignored Closure and transcripts are local evidence (Closure SHA256 `16428da726a43b1e2179e756cbe995135630f9f33d06372d4a8632bcd9bc052d`). The same-directory comparison script can be run with `DevelopmentTests` on the Python import path against each exact source. It compares the native doubles with the real Bridge, bindings and effects. Full machine artifacts are reproducible in kind and kept locally. Git preserves this summary and the source.
+- **STATIC_CONFIRMED.** 208 Lua 5.1 chunks, 32 XML-family files, 666 file references and ten Lua replacement references checked. The candidate has the same 337 paths and package SHA256 `93eee4d8463bdce3f327b6c35bb811d734cb38a8584dd3bc7ce70b388475a44e`. The live package is still B476.503. The scoped B476 native cold-reload pass below carries forward as evidence for that build. B478 has local validation only.
+
+The next network slice examines the commercial view and passive effects that still consume proof status, together with the exact responsibilities of any old hold branch proposed for retirement. No new user test is needed for this source checkpoint.
 
 ### Positive Culture Network survives the B476 cold reload — S1021
 

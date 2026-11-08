@@ -37,8 +37,8 @@ function SPCFactConsumerBindings.New(shared)
   {target='CultureInsightsTourism',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'INSIGHTS'}},
   {target='DialogueEffects',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'DIALOGUE'}},
   {target='ResearchTraditionEffects',takeover='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'TRADITION'}},
-  {target='StandardizationEffects',method='Audit',ordered='AcceptFact',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'TEMPLATES','ENGINEERING'}},
-  {target='CultureNetwork',method='Audit',ordered='AcceptFact',source=true,request=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D','NETWORK','HISTORY'},topics={'INSIGHTS'}},
+  {target='StandardizationEffects',method='Audit',ordered='AcceptFact',source=true,request=true,skipPendingProof=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','NETWORK','HISTORY'},topics={'TEMPLATES','ENGINEERING'}},
+  {target='CultureNetwork',method='Audit',ordered='AcceptFact',source=true,request=true,skipPendingProof=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D','NETWORK','HISTORY'},topics={'INSIGHTS'}},
   {target='EngineeringStudy',method='CreditChanged',kinds={'HISTORY'},topics={'WONDER_CREDIT'}},
   {target='DialogueProjects',method='RefreshAccess',cityOnly=true,kinds=role},
   {target='Commerce',takeover='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','HISTORY','NETWORK'},topics={'COMMERCE'}},
@@ -51,6 +51,12 @@ function SPCFactConsumerBindings.New(shared)
   return false
  end
  local function collect(row,e,resolve,signal)
+  -- Check the full merged cause set. A held or co-delivered real change still
+  -- belongs to the effect owner even if the latest arrival only dirtied proof.
+  if resolve and row.skipPendingProof and next(e.kinds)=='NETWORK' and not next(e.kinds,'NETWORK')
+   and next(e.causes)=='NETWORK_PROOF_PENDING' and not next(e.causes,'NETWORK_PROOF_PENDING')then
+   return registry.Receipt(e,'IRRELEVANT','PROOF_STATUS_ONLY')
+  end
   if row.ownerCauses and e.city==nil and not ownerAllowed(row,e)then
    if resolve then return registry.Receipt(e,'IRRELEVANT','OUTSIDE_AUDIT_SCOPE')end
    return

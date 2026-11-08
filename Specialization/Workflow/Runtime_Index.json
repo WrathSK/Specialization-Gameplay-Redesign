@@ -196,9 +196,9 @@
       "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "11011c541e2396e36eb35a27c30f90cf51cf498d3b1e0c3e62a12c2f2392497c",
+      "sha256": "cf668b95eafda79864105105168dce3755c1bb204c8147c05f6d8d4432f34a6f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0965 B451 independent failure classification and optional network trace."
+      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "c577cdb9f6e07b79f798185525a8da51a2828eee291409b2fb7ccd3c8bcaeb50",
@@ -706,9 +706,9 @@
       "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "391036459ff997fab7566aaf9b05e830359a0cedca3eaba94c633b9927ce340c",
+      "sha256": "fab23c79d961b3a5968c7bbfef0327d205e5e69c3e5df66cc1bdae6374e0ab3e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0965 B451 independent failure classification and optional network trace."
+      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "398b639f4e935dcce4a6d258d4ede18bcc95c2d150a777a95190c657d3168046",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "352d82accf4c9d12bf9f30c79719f0c7decd1e4a0a28e0310401f8801bfce059",
+      "sha256": "ae88b113ef0b7ca0dac163f23ca6b7fe424747ea27c953e37dccbfb8a77ad040",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1019 B477 consolidated P0 experiment and duplicate report retirement."
+      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "94a18531105002e37736a3133e332bc6b052f7d6800646d457eb9b0ac7a153ff",
+      "sha256": "78dd5698bb26e89e32bfe559dad987a5b91cd3a0799007b2ee3c05d57dea152f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1019 B477 consolidated P0 experiment and duplicate report retirement."
+      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -881,9 +881,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/StandardizationEffects.lua": {
-      "sha256": "5e4db568e7c368efc1d29fe978dd1237413721170eb791ddfae2ceafea9fdaef",
+      "sha256": "b05ddc83157e30441ebd777146c4d8c54628d78e400e80c8a1d6104c61eb4e4b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0950 B444 verified Standardization report queue read migration."
+      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
     },
     "Mod/Text/ClaimProjects.sql": {
       "sha256": "a31dbfc5862df58c043a03adc68423dbabf299e6c389955207dfe21c8b68559c",
@@ -1481,9 +1481,9 @@
       "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "cbe907250864b8b816611290b8bb8278fa2a35270e4a3f4a90a49e5b805d6358",
+      "sha256": "7b0a4a18d86a4bf43b4ff65a2176ec617b07284726a5a9b03500eeaa9c1ddc19",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0983 B459 inactive Culture Meaning experiment retirement."
+      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1021 accepts the observed positive Culture Network same-build reload on B476. The B477 path equivalence remains scoped to S1020.",
-  "source_runtime": "B477.504 / modinfo504 local candidate, 337 files. B476.503 remains installed.",
-  "tested_source_snapshot_sha256": "76b668432712c28f6e3fca104c47af7c20f90a511dcda63510d8c1d7759b3d4f"
+  "source_review": "S1022 verifies proof-only warm route routing for Culture Network and Standardization. B476 remains installed.",
+  "source_runtime": "B478.505 / modinfo505 local candidate, 337 files. B476.503 remains installed.",
+  "tested_source_snapshot_sha256": "cb3f90ba09117438b605aba6d970570c30458cdd82518d025ae45174ffb8aed9"
 }

@@ -341,6 +341,9 @@ function SPCStandardizationEffects.Start(P,shared)
  end
  function d.Describe(pid,c,page)
   local r=d.records[key(pid,c:GetID())];local reason=d.errors[key(pid,c:GetID())] or d.error
+  local bridge=shared.NetworkBridge;local b=bridge and bridge.players and bridge.players[pid]
+  if not reason and b and b.effectAvailability=='PENDING'
+   and b.revalidation=='NEEDS_REVALIDATION' and not b.continuityOnly then reason='STD_NETWORK_PENDING'end
   if not r then return '工业标准化 | '..c:GetName()..'\n等待：'..tostring(reason or 'STD_NOT_READY')end
   local ids={};for t in pairs(r.applied)do ids[#ids+1]=t end;table.sort(ids)
   local pages=math.max(1,math.ceil(#ids/5));page=(math.max(1,tonumber(page) or 1)-1)%pages+1

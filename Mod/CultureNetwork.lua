@@ -419,7 +419,7 @@ function M.Start(P,shared)
  local function pendingReport(pid,c,p,err,workerError,quiet)
   local bridge=shared.NetworkBridge;local b=bridge and bridge.players and bridge.players[pid]
   local layer=not d.ready and 'MODULE' or d.errors[key(pid,c:GetID())] and 'CITY' or d.error and 'MODULE'
-   or d.playerError and d.playerError[pid] and 'NETWORK'
+   or (workerError=='CN_NETWORK_PENDING' or d.playerError and d.playerError[pid]) and 'NETWORK'
    or not p and 'NO_RECORD' or 'CURRENT_FACTS'
   local failure=d.failure or classifyFailure(err or workerError,
    layer=='CITY' and 'CITY_RECONCILIATION' or layer=='NETWORK' and 'NETWORK_INPUT' or 'REPORT_FACTS')
@@ -470,6 +470,11 @@ function M.Start(P,shared)
  end
  function d.Describe(pid,c)
   local k=key(pid,c:GetID());local p=d.records[k];local error=d.errors[k] or d.error or d.playerError and d.playerError[pid]
+  local bridge=shared.NetworkBridge;local b=bridge and bridge.players and bridge.players[pid]
+  if not error and d.ready and p and b and b.effectAvailability=='PENDING'
+   and b.revalidation=='NEEDS_REVALIDATION' and not b.continuityOnly then
+   return pendingReport(pid,c,p,nil,'CN_NETWORK_PENDING')
+  end
   local ok,workers=pcall(function()
    assert(d.ready and p and p.reference==ref(c) and not error,'CN_REPORT_PENDING')
    if not p.plot then return 0 end
