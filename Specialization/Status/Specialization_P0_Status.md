@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1018
-Implementation Build: source B476.503 / modinfo503. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1019
+Implementation Build: source B477.504 / modinfo504. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRED_B055_GREAT_WORK_INGRESS_REVIEWED
+Work State: LEGACY_PANEL_CLEANUP_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Consolidate the old P0 experiment and report retirement — S1019
+
+The Owner approved one combined batch for obsolete experiment entrances and duplicate reports. B477.504 retires ten hidden controls covering the B055 Great Work experiment, the B053 currency experiment, the old migration entrance, the retired Inspiration stop, the inert district Science control, and duplicate GPP and log export. The live reports retain their existing buttons and gestures, including Specialists right-click, the combined Industrial history and discount pages, and the two Inspiration views. The old script requests for the retired experiments, migrations and duplicate aliases stop at the common dispatcher. The prior source remains recoverable from `df9461790079ef858f4df11944c78dfc7e0877f3`.
+
+- **Runtime Impact Contract (L3, T06/T07/T08).** The ten retired controls include the sole panel reference to the unused City Identity Evidence constructor. Removing it drops three idle UI event callbacks. No native listener or recovery trigger is added. The Purchase load callback, BoostRefresh handshake, existing B055 bounded retry, and central ownership cleanup retain their exact owners and building IDs. The B053 and B055 modules and definitions remain available to those paths. Distinct native comparison readers, current profession owners, save layout, transaction qualification and the existing package path set are preserved.
+- **LOCAL_SIMULATION_PASS in scope.** The 33 selected checks pass. Fifteen retained panel packets and all fourteen visible control rectangles match. The two old effect sequences produce eight carrier mutations on B476 and zero on B477. Both arms withdraw the same seven seeded old carriers across the purchase load and boost initialization tests. One injected B055 removal failure leaves readiness pending until the existing retry. Exact central ownership cleanup, both template pages, current configured discounts and production progress, two Great Work acknowledgements, the modeled Dialogue effects, and three nonempty route packets are covered. The initial run found duplicate definitions in two memory-copy fixtures and a Lua table conversion in the panel comparison. The fixtures now use the existing exact projection reset and compare scalar packets. The earlier Industrial and Commerce byte comparisons are pinned to their published package pairs, and the current reports still run.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7aiLegacyPanelCleanup` with CPython 3.14/Lupa 2.8, official Assets and the read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Tested source SHA256 `3bafe6539331af5148b66411e1798e634905f4bbe0f8345b1b3824d026ff158d`. The commit introducing this record pins the tested source. Package SHA256 `496a5fa94c3d802ed13259f99170783f8b95c01734245364a93de91bdfdf9bc1`. Local closure `local/refactor/B477-O7aiLegacyPanelCleanup-published/closure.json` SHA256 `588c15813cb0d6d860dbfc52c414f31e318b2f44e926211632e6065d9acc033e`, with transcripts and the initial fixture-failure run kept locally.
+
+The Owner directed that batches with sufficient local verification be published to develop without a local installation switch. The B476.503 package remains installed. This retirement requires no separate native run. Positive Culture Network cold restoration retains its existing native checkpoint. The consolidated panel cleanup ends here.
 
 ### B476 deployment verified and the old B055 Great Work commands reviewed — S1018
 

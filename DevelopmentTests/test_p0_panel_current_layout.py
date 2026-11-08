@@ -21,7 +21,7 @@ ROWS = (
 VISIBLE = frozenset(button for row in ROWS for button in row)
 
 
-def panel_runtime(panel=PANEL):
+def panel_runtime(panel=PANEL, *, real_identity_evidence=False):
     """Execute the whole current panel, including its late initializer wrapper.
 
     Uses the same control/event stand-in pattern as test_b068_ui.py, but keeps
@@ -95,6 +95,9 @@ def panel_runtime(panel=PANEL):
         control_id = element.get('ID')
         if control_id:
             lua.globals().makeControl(control_id, element.get('Hidden') == '1')
+    if real_identity_evidence:
+        lua.execute('SPCP0.Field=function(t,k)return t and t[k] end')
+        lua.execute((panel / 'CityIdentityEvidence.lua').read_text())
     lua.execute((panel / 'P0Panel.lua').read_text())
     lua.execute('init()')
     return tree, lua
@@ -116,7 +119,7 @@ class CurrentPanelTests(unittest.TestCase):
         self.assertEqual(final_visible, VISIBLE)
         self.assertTrue(lua.globals().Controls.LegacyProbeButtons.hidden)
         for control_id in ('GWAReadButton', 'PerformanceSnapshotButton', 'PerformanceReadButton',
-                           'InheritRecordButton', 'InheritReadButton', 'BackgroundRoutesButton',
+                           'InheritReadButton', 'BackgroundRoutesButton',
                            'DPReadButton','CompletenessButton','DP03Button',
                            'DP05Button','CopyButton'):
             with self.subTest(retired=control_id):
@@ -179,7 +182,7 @@ class CurrentPanelTests(unittest.TestCase):
                 Controls.GWCityButton.callbacks[event]()
                 assert(requests[#requests].Action=='DIALOGUE_PROJECT_READ')
             end
-            assert(#requests==4 and Controls.InspirationEndButton.hidden)
+            assert(#requests==4 and Controls.InspirationEndButton==nil)
         ''')
 
     def test_expedition_entry_waits_for_ready_ui_and_sends_no_gameplay_action(self):
@@ -290,6 +293,7 @@ class CurrentPanelTests(unittest.TestCase):
             ('TemplatesButton', 2, 'DISCOUNT_READ'),
             ('CommerceREADButton', 1, 'COMMERCE_READ'),
             ('InheritReadButton', 1, 'PROGRESSION_STORE_READ'),
+            ('SpecialistsButton', 2, 'LV2_GPP_READ'),
         )
         for control_id, event, expected in pairs:
             with self.subTest(control=control_id, event=event):

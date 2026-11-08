@@ -141,7 +141,7 @@ class PackageAndPanel(unittest.TestCase):
         from test_p0_panel_current_layout import panel_runtime
         tree,l=panel_runtime();controls=l.globals().Controls
         self.assertFalse(controls.GWCityButton.hidden)
-        self.assertTrue(controls.InspirationEndButton.hidden)
+        self.assertIsNone(controls.InspirationEndButton)
         l.execute("Controls.GWCityButton.callbacks[Mouse.eLClick]();assert(requests[#requests].Action=='DIALOGUE_PROJECT_READ')")
         rects=[]
         for e in tree.getroot().find("Container[@ID='Window']").findall('GridButton'):

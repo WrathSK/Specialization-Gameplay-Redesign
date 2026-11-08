@@ -5,22 +5,14 @@
     <Box Size="840,664" Color="12,19,27,250" />
     <Label ID="Title" Anchor="L,T" Offset="18,15" Style="FontNormal18" String="Specialization diagnostics" />
     <GridButton ID="CloseButton" Anchor="R,T" Offset="12,8" Size="90,32" Style="MainButton"><Label ID="CloseButtonCaption" Anchor="C,C" Style="FontNormal14" String="关闭" Color="255,255,255,255" /></GridButton>
-    <GridButton Hidden="1" ID="Lv2GPPButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read Lv2 GPP" />
     <GridButton Hidden="1" ID="InvestPrepareButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Prepare investment" />
     <GridButton Hidden="1" ID="InvestConfirmButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Confirm investment" />
-    <GridButton ID="InheritRecordButton" Anchor="L,B" Offset="280,138" Size="240,32" Style="MainButton" Hidden="1"><Label ID="InheritRecordButtonCaption" Anchor="C,C" Style="FontNormal14" String="记录城市身份" Color="255,255,255,255" /></GridButton>
     <GridButton ID="InheritReadButton" Anchor="L,B" Offset="542,138" Size="240,32" Style="MainButton" Hidden="1"><Label ID="InheritReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="实验对照" Color="255,255,255,255" /></GridButton>
     <GridButton Hidden="1" ID="ResearchReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read auto Lv1" />
-    <GridButton Hidden="1" ID="PurchaseBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Purchase BASE" />
-    <GridButton Hidden="1" ID="PurchaseOnButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Purchase -20% ON" />
-    <GridButton Hidden="1" ID="PurchaseOffButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Purchase OFF" />
-    <GridButton Hidden="1" ID="PurchaseReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read purchase" />
     <GridButton Hidden="1" ID="BoostBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Boost baseline" />
     <GridButton ID="GWBaselineButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Record GW baseline" Hidden="1" />
     <GridButton ID="GWCityButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" Hidden="0"><Label ID="DialogueProjectCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_DIALOGUE_PROJECT_REPORT" Color="255,255,255,255" /></GridButton>
-    <GridButton Hidden="1" ID="GWObjectButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="GW per work +2C" />
     <Container ID="LegacyProbeButtons" Size="840,664" Hidden="1">
-      <GridButton ID="BaselineButton" Anchor="L,B" Offset="585,18" Size="200,32" Style="MainButton" String="Baseline + Copy" Hidden="1" />
       <GridButton ID="Lv2HousingButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv2 housing" Hidden="1" />
       </Container>
     <GridButton Hidden="1" ID="Lv4PercentButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv4 percent" />
@@ -42,13 +34,11 @@
     <GridButton ID="AestheticButton" Anchor="L,B" Offset="280,58" Size="240,32" Style="MainButton" Hidden="0"><Label ID="AestheticButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_CULTURE_AESTHETIC" Color="255,255,255,255" /></GridButton>
     <GridButton ID="MeaningConfigButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" Hidden="0"><Label ID="MeaningConfigButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_INSPIRATION_BUTTON" Color="255,255,255,255" /></GridButton>
     <GridButton ID="MeaningProbeButton" Anchor="L,B" Offset="542,58" Size="240,32" Style="MainButton" Hidden="0"><Label ID="MeaningProbeButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_CULTURE_MEANING_PROBE" Color="255,255,255,255" /></GridButton>
-    <GridButton ID="InspirationEndButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" Hidden="1"><Label ID="InspirationEndCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_INSPIRE_END_BUTTON" Color="255,255,255,255" /></GridButton>
     <GridButton ID="ExpeditionGateButton" Anchor="L,B" Offset="542,18" Size="240,32" Style="MainButton" Hidden="0"><Label ID="ExpeditionGateButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_EXPEDITION_GATE_OPEN" Color="255,255,255,255" /></GridButton>
     <GridButton ID="CultureInsightsButton" Anchor="L,B" Offset="18,138" Size="240,32" Style="MainButton" Hidden="0"><Label ID="CultureInsightsButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_CULTURE_INSIGHTS_BUTTON" Color="255,255,255,255" /></GridButton>
     <ScrollPanel ID="ReportScroll" Anchor="L,T" Offset="18,58" Size="804,380" Vertical="1" AutoScrollBar="1"><Label ID="Status" Anchor="L,T" Offset="0,0" Style="FontNormal14" WrapWidth="775" String="选中己方城市查看专业报告；单位报告需先选中单位。巨作启迪等能力自动生效，报告按钮只用于查看。" />
     </ScrollPanel><GridButton ID="CompletenessButton" Anchor="L,B" Offset="18,58" Size="240,32" Style="MainButton" Hidden="1"><Label ID="CompletenessButtonCaption" Anchor="C,C" Style="FontNormal14" String="科研基础设施" Color="255,255,255,255" /></GridButton><GridButton ID="DPReadButton" Anchor="L,B" Offset="18,98" Size="240,32" Style="MainButton" Hidden="1"><Label ID="DPReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="跨学科研究" Color="255,255,255,255" /></GridButton>
 <GridButton ID="DP03Button" Hidden="1" Anchor="L,B" Offset="280,98" Size="240,32" Style="MainButton"><Label ID="DP03ButtonCaption" Anchor="C,C" Style="FontNormal14" String="学以致用" Color="255,255,255,255" /></GridButton>
 <GridButton ID="DP05Button" Hidden="1" Anchor="L,B" Offset="542,98" Size="240,32" Style="MainButton"><Label ID="DP05ButtonCaption" Anchor="C,C" Style="FontNormal14" String="学术主持" Color="255,255,255,255" /></GridButton>
-<GridButton ID="DP1Button" Hidden="1" Anchor="L,B" Offset="542,58" Size="240,32" Style="MainButton"><Label ID="DP1ButtonCaption" Anchor="C,C" Style="FontNormal14" String="实验：区域科技 +1" Color="255,255,255,255" /></GridButton>
 </Container>
 </Context>

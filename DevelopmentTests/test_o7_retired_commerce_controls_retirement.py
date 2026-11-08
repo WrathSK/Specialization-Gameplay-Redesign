@@ -105,11 +105,11 @@ class RetiredCommerceControls(unittest.TestCase):
 
     def test_real_report_and_stale_ingress_guard_stay_read_only(self):
         saved=save_fixture()
-        with package(B473) as previous:
+        with package(B473) as previous, package(B474) as retired:
             before=report_and_stale_guard(previous,B473,saved)
             for name in ('Gameplay.lua','Commerce.lua','CommerceModel.lua','UI/CommerceUI.lua',
                          'UI/CommercePanel.lua','UI/CommercePanel.xml','CityProgressionStore.lua'):
-                self.assertEqual((ROOT/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
+                self.assertEqual((retired/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
         after=report_and_stale_guard(ROOT,None,saved)
         self.assertEqual(before,after)
         measure('retired_commerce_guard',dict(stale_requests_blocked=3,property_writes=[0,0],report='MATCH'))

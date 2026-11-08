@@ -12,7 +12,10 @@ R=Path(__file__).resolve().parents[1]
 class Effects(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        from test_refactor_a8 import reset_projection
         cls.sql=legacy.database()
+        reset_projection(cls.sql,'BUILDING_SPC_DIALOGUE_TOTAL_','SPC_DIALOGUE_TOTAL_')
+        cls.sql.execute('DROP TABLE IF EXISTS SPC_DialogueTotals')
         cls.sql.executescript((R/'Mod/Data/DialogueEffects.sql').read_text())
     @classmethod
     def tearDownClass(cls):cls.sql.close()
@@ -96,7 +99,20 @@ class Effects(unittest.TestCase):
     def test_real_transport_ack_and_meaning_unchanged(self):
         l=self.runtime(real=True);l.execute("sample(1,1,1);assert(total(a)==5);local n=finalAmount(a,'SCIENCE');sample(2,2,1);assert(total(a)==5 and finalAmount(a,'SCIENCE')==n);assert(dialogue.seq[0]==2 and shared.GreatWorkFacts.ack==2);assert(not pcall(dialogue.HoldMeaningProbe,0,a,100))")
     def test_stale_manual_ingress_is_read_only(self):
-        l=self.runtime(real=True);l.execute("sample(1,1,1);local before=writes;local reads=0;shared.DialogueProjects={Describe=function()reads=reads+1;return '累计+5%'end};meaningRequest(0,{Action='DIALOGUE_CARRIER_NEXT',CityID=1,Token='old'});assert(reads==1 and writes==before and total(a)==5 and not dialogue.carrierTest)")
+        l=self.runtime(real=True);l.execute(r"""
+          sample(1,1,1)
+          local before,reads=writes,0
+          shared.DialogueProjects={Describe=function()reads=reads+1;return '累计+5%'end}
+          meaningRequest(0,{Action='DIALOGUE_PROJECT_READ',CityID=1,Token='read'})
+          assert(reads==1 and shared.LastToken=='read' and shared.Snapshot=='累计+5%')
+          local effectOwner=shared.DialogueEffects
+          for _,ready in ipairs({true,false}) do
+            shared.DialogueEffects=ready and effectOwner or nil
+            meaningRequest(0,{Action='DIALOGUE_CARRIER_NEXT',CityID=1,Token='old'})
+            assert(shared.LastToken=='read' and shared.Snapshot=='累计+5%')
+            assert(reads==1 and writes==before and total(a)==5 and not dialogue.carrierTest)
+          end
+        """)
     def test_inactive_other_profession_does_not_read_missing_history(self):
         l=self.runtime();l.execute("a.identity='NONE';a.active=0;a.history=nil;local reads=0;shared.CityProgressionStore.DialogueState=function()reads=reads+1;error('not registered')end;one();local before=writes;one();assert(reads==0 and writes==before and total(a)==0 and not effects.errors['0:1'])")
     def test_ordinary_building_event_does_not_rescan_history_and_damage_recovers(self):

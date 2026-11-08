@@ -100,24 +100,13 @@ local function request(playerID,params)
       if params.Action=='ENGINEERING_STUDY_SYNC'then d.Sync(playerID,params.CityID,params.Token)else d.Request(playerID,params)end
     end;return
   end
-  if params.Action=='DIALOGUE_CARRIER_NEXT' and shared.DialogueEffects then
-    params.Action='DIALOGUE_PROJECT_READ' -- stale UI cannot re-enable the retired test writer
-  end
-  if params.Action=='DIALOGUE_CARRIER_NEXT' then
-    local ok,out=pcall(function()
-      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'请选择己方城市')
-      shared.Dialogue.CarrierTestNext(playerID,c,params.Token,params.Reference)
-      return shared.Dialogue.DescribeCarrierTest(playerID,c)
-    end)
-    shared.Snapshot=ok and out or ('倍率对照暂停：'..tostring(out)..'；回到原测试城市右键结束。');shared.LastToken=params.Token;return
-  end
   if params.Action=='DIALOGUE_PROJECT_BEGIN' or params.Action=='DIALOGUE_PROJECT_SYNC' or params.Action=='DIALOGUE_PROJECT_READ' then
     local ok,out=pcall(function()
       local d=assert(shared.DialogueProjects,'时代对话未初始化');assert(not d.startupError,d.startupError)
       if params.Action=='DIALOGUE_PROJECT_SYNC' then d.Sync(playerID,params.CityID,params.Token);return end
       if params.Action=='DIALOGUE_PROJECT_BEGIN' then d.Request(playerID,params);return end
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'请选择己方城市')
-      return d.Describe(playerID,c)..(shared.DialogueEffects and '' or '\n\n'..shared.Dialogue.DescribeCarrierTest(playerID,c))
+      return d.Describe(playerID,c)
     end)
     if params.Action=='DIALOGUE_PROJECT_BEGIN'then cultureObserve('DIALOGUE_INGRESS_RESULT',function()local e=not ok and SPCCultureDiagnostics.Error(out)or {};e.owner=playerID;e.city=params.CityID;e.taskStart=params.StartTurn;e.requestResult=ok and 'HANDLER_RETURNED'or 'HANDLER_THREW';return e end)end
     if params.Action=='DIALOGUE_PROJECT_READ' then shared.Snapshot=ok and out or ('时代对话暂停：'..tostring(out));shared.LastToken=params.Token end
@@ -134,11 +123,10 @@ local function request(playerID,params)
     shared.TimedProject.Request(playerID,params);return
   end
   -- B068 presentation is a disposable mirror, never a source of city state.
-  if params.Action=='PROGRESSION_IMPORT' or params.Action=='PROGRESSION_STORE_READ' then
+  if params.Action=='PROGRESSION_STORE_READ' then
     if not P.IsTestPlayer(playerID) then return end
     local ok,out=pcall(function()
       local c=params.CityID and Players[playerID]:GetCities():FindID(params.CityID)
-      if params.Action=='PROGRESSION_IMPORT' then return shared.CityProgressionStore.Import(playerID,c) end
       return (shared.CityProgressionStore.NativeDescribe or shared.CityProgressionStore.Describe)(playerID,c)
     end)
     shared.Snapshot=ok and out or ('进度保存暂停：'..tostring(out));shared.LastToken=params.Token;return
@@ -285,7 +273,7 @@ local function request(playerID,params)
     end)
     return
   end
-  if type(params.Action)=='string' and params.Action:find('^INSPIRE_') then
+  if params.Action=='INSPIRE_STATUS' or params.Action=='INSPIRE_DETAIL' then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     shared.CultureInspirationView=nil
@@ -473,14 +461,6 @@ local function request(playerID,params)
     if not P.IsTestPlayer(playerID) then return end
     shared.Snapshot=shared.NetworkBoost.Describe(playerID);shared.LastToken=params.Token;return
   end
-  if params.Action=='GW_READ' or params.Action=='GW_CITY' or params.Action=='GW_OBJECT' or params.Action=='GW_OFF' then
-    if not P.IsTestPlayer(playerID) then return end
-    local c=Players[playerID]:GetCities():FindID(params.CityID)
-    if not c or c:GetOwner()~=playerID then return end
-    local ok,out=pcall(shared.GreatWorkProbe.Run,playerID,c,params.Action)
-    if not ok then print('[SPC][B055][GW] '..tostring(out)) end
-    shared.Snapshot=ok and out or '巨作实验未完成，请回传报告/日志。';shared.LastToken=params.Token;return
-  end
   if params.Action=='DISCOUNT_INIT' then
     if shared.StandardizationDiscount then shared.StandardizationDiscount.Initialize(playerID,params) end
     return
@@ -499,23 +479,12 @@ local function request(playerID,params)
     if shared.CopyYields then shared.CopyYields.Receive(playerID,params) end
     return
   end
-  if params.Action=='PURCHASE_BASE' or params.Action=='PURCHASE_ON' or params.Action=='PURCHASE_OFF' or params.Action=='PURCHASE_READ' then
-    if not P.IsTestPlayer(playerID) then return end
-    local c=Players[playerID]:GetCities():FindID(params.CityID)
-    if not c or c:GetOwner()~=playerID then return end
-    local ok,v=pcall(shared.PurchaseProbe.Run,playerID,c,params.Action)
-    shared.Snapshot=ok and v or ('B053实验未完成：'..(tostring(v):match('B053_[A-Z_]+') or 'UNKNOWN'))
-    if not ok then print('[SPC][B053] '..tostring(v)) end
-    shared.LastToken=params.Token;return
-  end
-  if params.Action=="STANDARDIZATION_READ" or params.Action=="INDUSTRY_HISTORY_READ" then
+  if params.Action=="INDUSTRY_HISTORY_READ" then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     if not c or c:GetOwner()~=playerID then return end
     shared.Snapshot=shared.Standardization.Describe(playerID,c,params.Page)
-    if params.Action=="INDUSTRY_HISTORY_READ" then
-      shared.Snapshot=shared.IndustryHistory.Describe(playerID,c)..'\n\n'..shared.CrewProjects.Describe(playerID,c)..'\n\n'..shared.Snapshot
-    end
+    shared.Snapshot=shared.IndustryHistory.Describe(playerID,c)..'\n\n'..shared.CrewProjects.Describe(playerID,c)..'\n\n'..shared.Snapshot
     shared.LastToken=params.Token;return
   end
   if params.Action=="LV4_COPY_READ" then
@@ -617,7 +586,7 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Receive(playerID,params) end
     return
   end
-  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" then return end
+  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_READ" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" then return end
   if not P.IsTestPlayer(playerID) then return end
   shared.LastToken=nil
   shared.RequestToken=params.Token
@@ -654,7 +623,7 @@ local function request(playerID,params)
     shared.Snapshot=shared.NetworkBridge.Report(playerID,city,params.Action=="NETWORK_DETAIL",params.Page)
     shared.LastToken=params.Token;stage("ACK NETWORK");return
   end
-  if params.Action=="RESEARCH_ON" or params.Action=="RESEARCH_OFF" or params.Action=="RESEARCH_READ" then
+  if params.Action=="RESEARCH_READ" then
     local f=shared.EffectiveFacts.Read(playerID,city)
     if f.specialization=='INDUSTRY' then shared.Snapshot=shared.IndustrySupport.Describe(playerID,city)
     else shared.Snapshot=shared.ResearchSupport.Run(playerID,city,params.Action) end

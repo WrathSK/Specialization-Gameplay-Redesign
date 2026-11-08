@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import ROOT, measure
-from retired_crew_sources import B474, package
+from retired_crew_sources import B474, B475, package
 from test_o7_legacy_completion_record_retirement import load_cold_store, save_fixture, stored_records
 import test_o7_production_report as production_report
 from test_o7_retired_great_work_adjacency_retirement import context
@@ -33,7 +33,7 @@ def panel(root, *, retired):
             dict(vm.globals().eventAdds.items()))
 
 
-def template_reports(root,source,saved):
+def template_reports(root,source,saved,*,has_alias=True):
     vm=context(root,source)
     cold=load_cold_store(vm,saved)
     # Provide six confirmed template receipts at the input boundary. The
@@ -63,15 +63,23 @@ def template_reports(root,source,saved):
         assert(s.LastToken==token and s.RequestDepth==0 and s.FailureAt==nil)
         return s.Snapshot
       end
-      local p1,p2=request('STANDARDIZATION_READ',1),request('STANDARDIZATION_READ',2)
+      local hasAlias=...
+      local p1,p2
+      if hasAlias then p1,p2=request('STANDARDIZATION_READ',1),request('STANDARDIZATION_READ',2) end
       local combined1,combined2=request('INDUSTRY_HISTORY_READ',1),request('INDUSTRY_HISTORY_READ',2)
-      assert(p1:find('页 1/2',1,true) and p1:find('TEMPLATE_1',1,true) and not p1:find('TEMPLATE_6',1,true),p1)
-      assert(p2:find('页 2/2',1,true) and p2:find('TEMPLATE_6',1,true) and not p2:find('TEMPLATE_1',1,true),p2)
-      assert(combined1:sub(-#p1)==p1 and combined2:sub(-#p2)==p2)
+      if hasAlias then
+        assert(p1:find('页 1/2',1,true) and p1:find('TEMPLATE_1',1,true) and not p1:find('TEMPLATE_6',1,true),p1)
+        assert(p2:find('页 2/2',1,true) and p2:find('TEMPLATE_6',1,true) and not p2:find('TEMPLATE_1',1,true),p2)
+        assert(combined1:sub(-#p1)==p1 and combined2:sub(-#p2)==p2)
+      else
+        local token=s.LastToken
+        GameEvents.SPC_P0_Request.Fire(0,{Action='STANDARDIZATION_READ',Token='retired',CityID=city1:GetID(),Page=1})
+        assert(s.LastToken==token and s.Snapshot==combined2 and s.RequestDepth==0 and s.FailureAt==nil)
+      end
       assert(combined1:find('工业历史',1,true) and combined1:find('施工队',1,true))
       assert(#writeKeys==before and cityWrites==0)
       return p1,p2,combined1,combined2
-    """)
+    """,has_alias)
     assert stored_records(vm)==cold
     assert vm.load_counts['missing']+vm.load_counts['failed']==0
     return reports
@@ -79,9 +87,12 @@ def template_reports(root,source,saved):
 
 class IndustrialReportAliases(unittest.TestCase):
     def test_current_left_and_right_clicks_keep_their_page_requests(self):
-        with package(B474) as previous:
+        with package(B474) as previous, package(B475) as retired:
             old_buttons,old_packets,old_listeners=panel(previous,retired=False)
-        new_buttons,new_packets,new_listeners=panel(ROOT,retired=True)
+            new_buttons,new_packets,new_listeners=panel(retired,retired=True)
+        current_buttons,current_packets,current_listeners=panel(ROOT,retired=True)
+        self.assertTrue(set(CONTROLS).isdisjoint(current_buttons))
+        self.assertEqual((current_packets,current_listeners),(new_packets,new_listeners))
         for control in CONTROLS:
             self.assertTrue(old_buttons.pop(control))
         self.assertEqual(old_buttons,new_buttons)
@@ -97,12 +108,13 @@ class IndustrialReportAliases(unittest.TestCase):
 
     def test_real_combined_report_contains_both_standalone_template_pages(self):
         saved=save_fixture()
-        with package(B474) as previous:
+        with package(B474) as previous, package(B475) as retired:
             before=template_reports(previous,B474,saved)
             for name in ('Gameplay.lua','Standardization.lua','StandardizationEffects.lua','IndustryHistory.lua',
                          'CrewProjects.lua','CityProgressionStore.lua'):
-                self.assertEqual((ROOT/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
-        self.assertEqual(before,template_reports(ROOT,None,saved))
+                self.assertEqual((retired/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
+            self.assertEqual(before,template_reports(retired,B475,saved))
+        self.assertEqual(before[2:],template_reports(ROOT,None,saved,has_alias=False)[2:])
         measure('retired_industrial_templates',dict(pages_matched=2,property_writes=[0,0],report='MATCH'))
 
     def test_native_progress_fixture_keeps_the_same_discount_report(self):

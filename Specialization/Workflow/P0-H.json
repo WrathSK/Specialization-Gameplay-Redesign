@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1018",
-    "runtime": "B476.503 / modinfo503",
+    "status": "S1019",
+    "runtime": "B477.504 / modinfo504",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B476 deployment and review the old B055 manual effect commands with startup cleanup and current reports preserved.",
+  "goal": "Record the approved combined retirement of old P0 experiment commands and duplicate report controls.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Consolidate the old P0 experiment and report retirement — S1019",
+      "reason": "Combined retirement, retained reports and cleanup proof, and source-only delivery"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -540,6 +546,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B477 passes 33 targeted checks and verifies exact old-effect withdrawal and current reports. Package paths remain identical.",
     "B476 installed 337/337 MATCH with both recovery packages verified. The B055 projection preserves cleanup and retry, current reports and collection receipts.",
     "B476 passes 11 full panel and 28 carried checks. Both overlaps resolve and report requests match.",
     "B475 installed 337/337 MATCH with both recovery packages verified. The layout projection resolves both existing overlaps with seven matching click packets and unchanged listener counts.",
@@ -3843,6 +3850,64 @@
       "local_transcript_sha256": "ec8b60067eeef5933cdca9cfc3feb0279d4c423a1092376f5976624206d627bf",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b476-deployment-verified-and-the-old-b055-great-work-commands-reviewed--s1018"
+    },
+    "b477_legacy_panel_cleanup": {
+      "build": "B477.504 / modinfo504",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "prior_source": "df9461790079ef858f4df11944c78dfc7e0877f3",
+      "files": 337,
+      "removed_package_paths": [],
+      "evidence": {
+        "O7aiLegacyPanelCleanup": {
+          "tests": 33,
+          "path": "local/refactor/B477-O7aiLegacyPanelCleanup-published/closure.json",
+          "sha256": "588c15813cb0d6d860dbfc52c414f31e318b2f44e926211632e6065d9acc033e",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "655baac63bb183a3f2fb7b6c43dbf0f46865ff7768b5e120ef254eae3cf14d3e"
+          }
+        },
+        "initial_fixture_correction": {
+          "status": "FIXTURE_FAILURE",
+          "path": "local/refactor/B477-O7aiLegacyPanelCleanup/closure.json",
+          "sha256": "ff213273083c5248255b1c4f88d8fe24d8964ea0d90cb0da8fe9779e53a67df2",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "43a0c5100c5aa5c654bd371006035c2375b9f2b23242b9b26f552656d04a480c"
+          }
+        }
+      },
+      "source_snapshot_sha256": "3bafe6539331af5148b66411e1798e634905f4bbe0f8345b1b3824d026ff158d",
+      "package_sha256": "496a5fa94c3d802ed13259f99170783f8b95c01734245364a93de91bdfdf9bc1",
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "panel": {
+          "hidden_controls_removed": 10,
+          "retained_request_packets": 15,
+          "idle_identity_listeners_removed": 3
+        },
+        "effects": {
+          "manual_carrier_writes": [
+            8,
+            0
+          ],
+          "saved_carrier_removals": 7,
+          "b055_bounded_retry": true,
+          "ordinary_building_preserved": true,
+          "permanent_writes": [
+            0,
+            0
+          ],
+          "retained_reports": "MATCH",
+          "old_command_probes": 15
+        },
+        "matching_route_packets": 3,
+        "great_work_ack": 2,
+        "visible_controls": 14
+      },
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#consolidate-the-old-p0-experiment-and-report-retirement--s1019"
     }
   }
 }

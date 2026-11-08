@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "895f9a56f47ddd4402c2ef594faf3c9c980bde2b80d6d6f0921d68837c4673a2",
+      "sha256": "e6e156d95eddd3945db7f3dfeb842e730d0ccf236d89b5b1d08ffff6964201e1",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1011 B473 old Dialogue override experiment retirement."
+      "provenance": "S1019 B477 consolidated P0 experiment and duplicate report retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "cca48c8afaaa940a0c65963ae233a9ce66eb4834ded93ca48f0db285191b1e91",
+      "sha256": "352d82accf4c9d12bf9f30c79719f0c7decd1e4a0a28e0310401f8801bfce059",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1017 B476 P0 report layout correction."
+      "provenance": "S1019 B477 consolidated P0 experiment and duplicate report retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "58a350dfbe6906a0869c435ee9633fb9fbe53c2ce1ef2f266fbe9b0bd43f50df",
+      "sha256": "94a18531105002e37736a3133e332bc6b052f7d6800646d457eb9b0ac7a153ff",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1017 B476 P0 report layout correction."
+      "provenance": "S1019 B477 consolidated P0 experiment and duplicate report retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "d419ddaf391f664727b0f1bd680f0008f2f930c73981a5904c3d59ea7c58ff19",
+      "sha256": "d80e0a70a30c709c674980bcde63ff1022bb300dbebd16898708c87cca602ef7",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1017 B476 P0 report layout correction."
+      "provenance": "S1019 B477 consolidated P0 experiment and duplicate report retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "134622ae56c352ee5f104b6b9b2ebfdb4dc6d476a5bf662f34490894938b3c62",
+      "sha256": "751ec4ec11255d77b68d22ab942c5a2e5a5967d056f9e16665ab31dd64b84f44",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1017 B476 P0 report layout correction."
+      "provenance": "S1019 B477 consolidated P0 experiment and duplicate report retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1018 verifies B476 deployment and both recovery packages. The old B055 manual effect commands are separate from retained startup cleanup, Great Work collection and current reports.",
-  "source_runtime": "B476.503 / modinfo503 deployed from df94617 with the two approved P0 report layout intersections corrected.",
-  "tested_source_snapshot_sha256": "253a4545204de31802bf81d7b0720f1ba1f31d11881b1697de176e39a35c4ce6"
+  "source_review": "S1019 verifies the consolidated P0 retirement, retained reports and exact cleanup. The B476 package remains installed.",
+  "source_runtime": "B477.504 / modinfo504 local candidate, 337 files. B476.503 remains installed.",
+  "tested_source_snapshot_sha256": "3bafe6539331af5148b66411e1798e634905f4bbe0f8345b1b3824d026ff158d"
 }

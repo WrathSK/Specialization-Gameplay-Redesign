@@ -1,16 +1,13 @@
 include("BoostGreatWorkRead")
-include("PurchaseProbeRead")
 include("Probe")
 include("RuntimeGC")
 include("GPPReadout")
 pcall(include,"CultureDiagnostics") -- optional, never used by report/business decisions
 include("InspirationReadout")
 include("Lv4CopyRead")
-include("CityIdentityEvidence")
 local P=SPCP0
-local identityEvidence=SPCCityIdentityEvidence.New(P)
 local projectReadPulse
-local pendingToken,baseline
+local pendingToken
 local readings={}
 local localReport
 local page=1
@@ -58,11 +55,6 @@ local function displayResponse()
       if m and m.token==pendingToken and m.cityID==pageCity then report=report.."\n\n"..SPCLv4CopyRead.Render(P,m)
       else report='Lv4读取未完成：城市或请求已变化。' end
       localReport=report;print('[SPC][B049][COPY] '..report)
-    end
-    if pendingAction and pendingAction:find('^PURCHASE_') then
-      local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
-      if c then report=report.."\n"..SPCPurchaseProbeRead.Render(P,c) end
-      localReport=report;print("[SPC][B053][PRICES] "..report)
     end
     if pendingAction=='BOOST_READ' or pendingAction=='BOOST_BASELINE' then
       report=report..'\n'..SPCBoostGreatWorkRead.Boost(P,pendingAction=='BOOST_BASELINE');localReport=report
@@ -166,37 +158,9 @@ request=function(action,advance)
     if not ok then pendingToken=nil;status('Network隔离未启动；停止本次对照，冷启动原存档。\n'..tostring(err));return end
     packet.Epoch=epoch
   end
-  if action=='DIALOGUE_CARRIER_NEXT' then packet.Reference=SPCNetworkInput.Reference(city)end
   local ok,err=pcall(UI.RequestPlayerOperation,playerID,PlayerOperations.EXECUTE_SCRIPT,packet)
   trace(ok and ("READING "..action) or ("DISPATCH_ERROR "..P.Scalar(err)))
   if ok then waitForResponse() end
-end
-local function legacyCopy(asBaseline)
-  if localReport then
-    print(localReport)
-    P.Call(UIManager,"SetClipboardString",localReport)
-    status(localReport:gsub("\n","[NEWLINE]").."[NEWLINE]Clipboard delivery UNVERIFIED; screenshot is sufficient.")
-    return
-  end
-  if not pendingToken then status("No reading requested. Select a city, then click Read governor or Read specialists.");return end
-  local data=ExposedMembers.SPC_P0 or {}
-  local matched=pendingToken~=nil and data.LastToken==pendingToken and data.Version==P.VERSION
-  local full="SPC_P0_EXPORT_BEGIN\n"..P.VERSION.." ISOLATED_PROBES\n[UI] "..uiStage
-    .."\nrequest="..P.Scalar(pendingToken).."\nresponse="..P.Scalar(data.LastToken)
-    .."\nmatched="..tostring(matched).."\n[GAMEPLAY] stage="..P.Scalar(data.Stage)
-    .."\n"..(matched and tostring(data.Snapshot) or "PENDING_OR_ERROR: previous snapshot excluded")
-    .."\n"..table.concat(data.Events or {},"\n").."\nSPC_P0_EXPORT_END\n"
-  if asBaseline and matched then baseline=full end
-  local output=(baseline and not asBaseline and ("BASELINE\n"..baseline.."\nAFTER\n") or "")..full
-  -- Export is small and scalar-only. Console logging is a fallback when available;
-  -- a successful API invocation is not proof of OS clipboard delivery.
-  print(output)
-  local ok,result=P.Call(UIManager,"SetClipboardString",output)
-  local delivery=(ok and result~=false) and "Clipboard requested; delivery UNVERIFIED. Screenshot ACK if paste is empty."
-    or "Clipboard unavailable/rejected. Screenshot ACK; console export attempted."
-  status((matched and "ACK | "..tostring(data.Snapshot):gsub("\n","[NEWLINE]") or "PENDING_OR_ERROR | "..P.Scalar(data.Stage))
-    .."[NEWLINE]"..delivery)
-
 end
 local function copy()
   if (pendingAction=='CULTURE_MEANING_READ' or pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ') then
@@ -332,16 +296,10 @@ local function initialize()
   end)
   Controls.CarrierStepButton:RegisterCallback(Mouse.eLClick,function() request("NETWORK_DETAIL",true) end)
   Controls.CommerceREADButton:RegisterCallback(Mouse.eLClick,function() request("COMMERCE_READ") end)
-  Controls.InheritRecordButton:RegisterCallback(Mouse.eLClick,function() request("IDENTITY_RECORD") end)
-  Controls.InheritRecordButton:RegisterCallback(Mouse.eRClick,function() request("PROGRESSION_IMPORT") end)
   Controls.InheritReadButton:RegisterCallback(Mouse.eLClick,function() request("PROGRESSION_STORE_READ") end)
-  Controls.InheritRecordButtonCaption:SetText('旧记录核对')
-  Controls.InheritRecordButton:SetHide(true) -- retired migration UI; Gameplay rejects import too
   Controls.InheritReadButtonCaption:SetText('E2往返')
-  Controls.InheritRecordButton:SetToolTipString('历史诊断入口已隐藏；本版本不提供旧档迁移。')
   Controls.InheritReadButton:SetToolTipString('左键：读取选中城市的专业、潜力和投资；新城自动登记，无需迁移。')
   Controls.SourceYieldButton:RegisterCallback(Mouse.eLClick,function() request("PROGRESSION_READ") end)
-  Controls.Lv2GPPButton:RegisterCallback(Mouse.eLClick,function() request("LV2_GPP_READ") end)
   Controls.Lv2HousingButton:RegisterCallback(Mouse.eLClick,function() request("LV2_HOUSING_READ") end)
   Controls.InvestPrepareButton:RegisterCallback(Mouse.eLClick,function() request("INVEST_PREPARE") end)
   Controls.InvestConfirmButton:RegisterCallback(Mouse.eLClick,function() request("INVEST_CONFIRM") end)
@@ -356,9 +314,6 @@ local function initialize()
   Controls.GWBaselineButton:RegisterCallback(Mouse.eLClick,function() request('GW_BASELINE') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eLClick,function() request('INSPIRE_STATUS') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eRClick,function() request('INSPIRE_DETAIL') end)
-  Controls.InspirationEndButton:RegisterCallback(Mouse.eLClick,function() request('INSPIRE_END') end)
-  Controls.InspirationEndButton:RegisterCallback(Mouse.eRClick,function() request('INSPIRE_END') end)
-  Controls.InspirationEndCaption:SetText(Locale.Lookup('LOC_SPC_INSPIRE_END_BUTTON'))
   Controls.MeaningProbeButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_STATUS') end)
   Controls.MeaningProbeButton:RegisterCallback(Mouse.eRClick,function() request('CULTURE_MEANING_STATUS') end)
   Controls.AestheticButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_AESTHETIC_READ') end)
@@ -369,11 +324,6 @@ local function initialize()
   Controls.GWCityButton:SetToolTipString(Locale.Lookup('LOC_SPC_DIALOGUE_CARRIER_HINT'))
   Controls.GWCityButton:RegisterCallback(Mouse.eLClick,function() request('DIALOGUE_PROJECT_READ') end)
   Controls.GWCityButton:RegisterCallback(Mouse.eRClick,function() request('DIALOGUE_PROJECT_READ') end)
-  Controls.GWObjectButton:RegisterCallback(Mouse.eLClick,function() request('GW_OBJECT') end)
-  Controls.PurchaseBaseButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_BASE') end)
-  Controls.PurchaseOnButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_ON') end)
-  Controls.PurchaseOffButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_OFF') end)
-  Controls.PurchaseReadButton:RegisterCallback(Mouse.eLClick,function() request('PURCHASE_READ') end)
   Controls.TemplatesButton:RegisterCallback(Mouse.eLClick,function() request("INDUSTRY_HISTORY_READ",true) end)
   Controls.TemplatesButton:RegisterCallback(Mouse.eRClick,function() request("DISCOUNT_READ",true) end)
   Controls.Lv4CopyButton:RegisterCallback(Mouse.eLClick,function() request("LV4_COPY_READ") end)
@@ -389,8 +339,7 @@ local function initialize()
   Controls.SpecialistsButton:RegisterCallback(Mouse.eLClick,function() request("SPECIALISTS") end)
   Controls.SpecialistsButton:RegisterCallback(Mouse.eRClick,function() request('LV2_GPP_READ') end)
   Controls.SpecialistsButton:SetToolTipString('左键：专家与岗位。右键：二级伟人点数与实际/锁定人数只读对照。')
-  Controls.CopyButton:RegisterCallback(Mouse.eLClick,function() copy(false) end)
-  Controls.BaselineButton:RegisterCallback(Mouse.eLClick,function() copy(true) end)
+  Controls.CopyButton:RegisterCallback(Mouse.eLClick,copy)
   status(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_PANEL_HINT'))
 end
 local oldInitialize=initialize
