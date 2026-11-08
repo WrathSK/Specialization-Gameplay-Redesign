@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0991",
+    "status": "S0992",
     "runtime": "B463.490 / modinfo490",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify removal of the two read-only roster diagnostics and preserve formal player eligibility, Envelope, Store and route proof.",
+  "goal": "Record B463 deployment and the exact synthetic storage retirement proposal with current Store and saved experiment values preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B463 deployment verified and synthetic storage diagnostics reviewed — S0992",
+      "reason": "Verified B463 deployment and exact synthetic storage retirement boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -378,6 +384,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B463 installed 340/340 MATCH with both recovery packages verified. The projected synthetic storage retirement preserves Store initialization, saved experiment values, current P0 and route proofs.",
     "B463 passes 19 selected checks and 25/49 carried checks. Eight formal gate cases and the Envelope load read match.",
     "B462 installed 342/342 MATCH with both recovery packages verified. Projected diagnostic retirement preserves eight actual predicate results, Envelope and current route proofs.",
     "B462 passes 25 selected checks and 49/64 carried checks. Store and Claim match with the previous trace armed and ten modeled trace registrations removed.",
@@ -2145,6 +2152,67 @@
       "package_sha256": "272e8e95ef9407f9920a376ae75fda9ecbe1de60228986a832303645d659ee4b",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-eligibility-and-roster-diagnostics--s0991"
+    },
+    "b463_deployment": {
+      "version": "B463.490 / modinfo490",
+      "source_commit": "719bde4bd8b5324abbc978528c0965d874b7b538",
+      "digest": "272e8e95ef9407f9920a376ae75fda9ecbe1de60228986a832303645d659ee4b",
+      "files": 340,
+      "receipt": "B463.490-719bde4-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [
+        "EligibilityProbe.lua",
+        "QualificationProbe.lua"
+      ],
+      "pending": false,
+      "outgoing": "B462.489, 342/342 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b463-deployment-verified-and-synthetic-storage-diagnostics-reviewed--s0992"
+    },
+    "b463_synthetic_storage_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "719bde4bd8b5324abbc978528c0965d874b7b538",
+      "removed_sha256": {
+        "EnvelopeProbe.lua": "2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf",
+        "StorageProbe.lua": "49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f"
+      },
+      "modified": [
+        "Gameplay.lua",
+        "SpecializationP0.modinfo",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "hidden_controls": [
+        "EnvelopeReadButton",
+        "EnvelopeNextButton",
+        "StorageReadButton",
+        "StorageWriteButton"
+      ],
+      "retired_actions": [
+        "ENVELOPE_READ",
+        "ENVELOPE_NEXT",
+        "STORAGE_READ",
+        "STORAGE_WRITE"
+      ],
+      "modeled_load_listeners_removed": 1,
+      "modeled_roster_reads": [
+        1,
+        0
+      ],
+      "modeled_legacy_load_reads": [
+        2,
+        0
+      ],
+      "modeled_manual_writes": [
+        2,
+        0
+      ],
+      "store_and_legacy_values": "MATCH",
+      "local_evidence": "local/refactor/B463-SyntheticStorageRetirementReview/result.json",
+      "local_evidence_sha256": "fb474eb3b1cc4e6cf86b8ef4f1f78a2e547cbafa34c61938e8a81196bbdffce4",
+      "local_replay_sha256": "6ef2cc743a62d50bdd7390729839105cb21a4a9e20971b62b3f5109b2386d45a",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b463-deployment-verified-and-synthetic-storage-diagnostics-reviewed--s0992"
     }
   }
 }

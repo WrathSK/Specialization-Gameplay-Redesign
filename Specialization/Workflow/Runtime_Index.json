@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "cab3de1d0b755b3a65a3f21c0cf5b685dda2dc03",
-  "runtime": "B462.489 / modinfo489 temporary develop deployed, 342/342 MATCH. Stable/main B307.334.",
+  "runtime_commit": "719bde4bd8b5324abbc978528c0965d874b7b538",
+  "runtime": "B463.490 / modinfo490 temporary develop deployed, 340/340 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1706,7 +1706,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0991 verifies the two diagnostic retirements, the formal eligibility gate and Envelope load read, and exact restoration.",
-  "source_runtime": "B463.490 / modinfo490 local candidate, 340 files. B462.489 remains installed.",
+  "source_review": "S0992 verifies B463 deployment and both recovery packages. The two proposed synthetic storage tools are separate from the current Store and their existing experiment values remain untouched.",
+  "source_runtime": "B463.490 / modinfo490 deployed from 719bde4 with both approved legacy eligibility diagnostics removed.",
   "tested_source_snapshot_sha256": "70fe3439a8b1de2dc6a3ab7763934328537d4ff633b05eb52dcda77eefd61c58"
 }

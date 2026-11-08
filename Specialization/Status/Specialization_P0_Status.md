@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0991
-Implementation Build: source B463.490 / modinfo490. Live B462.489 from cab3de1. Stable/main B307.334.
+Status Revision: S0992
+Implementation Build: source B463.490 / modinfo490. Live B463.490 from 719bde4. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: LEGACY_ELIGIBILITY_RETIRED_LOCAL
+Work State: SYNTHETIC_STORAGE_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B463 deployment verified and synthetic storage diagnostics reviewed — S0992
+
+B463.490 is installed from `719bde4bd8b5324abbc978528c0965d874b7b538`. All 340 files match SHA256 `272e8e95ef9407f9920a376ae75fda9ecbe1de60228986a832303645d659ee4b`. Receipt `B463.490-719bde4-playtest.json` is DEVELOP_ACTIVE. The two old eligibility diagnostics are absent. The B462 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The StorageProbe and EnvelopeProbe own only the early B012 and B019 experiment properties. The proposal removes `Mod/EnvelopeProbe.lua` (`2d48e35e287b3502c1a3e44bf10f77f12ee1da391228d2b4145e709153ed51cf`) and `Mod/StorageProbe.lua` (`49834f4b4f360feafba9185081041dca55a450f1eeee67fae7bd1ce3bab85d4f`), their four manifest declarations and two Gameplay starts, the two request branches for STORAGE_READ/WRITE and ENVELOPE_READ/NEXT and their four hidden P0 controls/callbacks, and the private expected-stage packet field and experiment routing expressions. The current Store, City Journal, Completion Record and other P0 actions keep their existing paths. Existing experiment property values stay in the save.
+
+The disposable Gameplay comparison preserves current Store initialization for an empty new index and a preexisting empty index, the exact ordinary property write keys, and the retained City Journal reply. One experiment load callback, one roster read and two synthetic property reads retire in the single-player fixture. Old explicit write/advance requests produced two writes and rejected duplicates. The projected requests produce zero writes or diagnostic acknowledgments and preserve the seeded experiment values. Three nonempty UI-to-Gameplay route proofs and strict transaction checks match, the other P0 controls and requests match, and exact disposable activation and full restoration pass. These are bounded local fixtures. Evidence `local/refactor/B463-SyntheticStorageRetirementReview/result.json` SHA256 `fb474eb3b1cc4e6cf86b8ef4f1f78a2e547cbafa34c61938e8a81196bbdffce4`, with replay script SHA256 `6ef2cc743a62d50bdd7390729839105cb21a4a9e20971b62b3f5109b2386d45a` alongside. Reproduce from the named source with CPython 3.14/Lupa 2.8 by including its DevelopmentTests on PYTHONPATH and running `python3.14 -B review.py` in a clean scratch directory.
+
+The exact two-path retirement awaits approval. Positive Culture Network cold restoration remains a separate native gate.
 
 ### Retire the old eligibility and roster diagnostics — S0991
 
