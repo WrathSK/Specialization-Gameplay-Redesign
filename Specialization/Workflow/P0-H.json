@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0943",
-    "runtime": "B441.468 / modinfo468",
+    "status": "S0944",
+    "runtime": "B442.469 / modinfo469",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the locally verified native Wonder-site read, true optional site-probe absence and next presentation dependency.",
+  "goal": "Record the locally verified city panel and building overview plus the integrated native interaction gate.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Native city panels show the institutions and project timer — S0944",
+      "reason": "Selected native UI bases, applied city display, and next focused native verification"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -90,6 +96,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B442 city panel: 47 scoped local checks and 12 integration checks pass. Three fixed-B441 subcases now pass. Native interaction remains pending.",
     "B441 Wonder site: all 43 selected tests pass. Four new cases fail on fixed B440 and pass here. Native Crew interaction remains pending.",
     "B440 Crew queue: 51 local checks pass. The wider 59-case B439 comparison reproduces all seven remaining historical nonpasses. Native interaction remains pending.",
     "B439 ProductionPanel: 50 local checks pass, with five fixed-B438 counterexamples across three cases. No native interaction or deployment claim.",
@@ -569,6 +576,20 @@
       "local_evidence": "local/refactor/O4bCrewWonderSite-fb9dacd9d08b46ca99b0094ef625949e/closure.json",
       "local_evidence_sha256": "da14f0f9913a213999a567b59a23392daeabe7acf85754df84a00f210f832e55",
       "report": "Specialization/Status/Specialization_P0_Status.md#crew-locates-the-current-wonder-through-the-native-ui--s0943",
+      "native": "USER_GAME_TEST_REQUIRED",
+      "deployed": false
+    },
+    "official_city_panel_presentation": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "build": "B442.469 / modinfo469",
+      "tests": 47,
+      "additional_integration_tests": 12,
+      "fixed_b441_subcases": 3,
+      "package_sha256": "f1716ab8a4d2561e6566d6613592784e25e0fc24e72da8d415d5d0ad73cd9d1c",
+      "source_snapshot_sha256": "29dc6cf2c10643286992314c4d8308f26141598e3083ca8a086de02015a69f78",
+      "local_evidence": "local/refactor/O6cCityPanel-00c017ba0aec438493607e1f37874c96/closure.json",
+      "local_evidence_sha256": "b470c356c660f07affc114139b5b2564f301ff3aab8912ee606b63e32d52c46d",
+      "report": "Specialization/Status/Specialization_P0_Status.md#native-city-panels-show-the-institutions-and-project-timer--s0944",
       "native": "USER_GAME_TEST_REQUIRED",
       "deployed": false
     }

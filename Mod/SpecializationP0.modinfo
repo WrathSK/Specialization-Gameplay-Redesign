@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="468">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="469">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B441.468：施工队使用原生在建奇观地块。</Description>
+    <Description>B442.469：接通原版城市项目倒计时与机构概览。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -78,10 +78,12 @@
     <UpdateDatabase id="SPC_DialogueEffects"><Properties><LoadOrder>10001040</LoadOrder></Properties><File>Data/DialogueEffects.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_DialogueProjects"><Properties><LoadOrder>2000006</LoadOrder></Properties><File>Data/DialogueProjects.sql</File></UpdateDatabase>
     <UpdateText id="SPC_DialogueProjectText"><File>Text/DialogueProjects.sql</File></UpdateText>
-    <ReplaceUIScript id="SPC_TimedProjectCityPanel" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/TimedProjectCityPanel.lua</LuaReplace></Properties></ReplaceUIScript>
+    <ReplaceUIScript id="SPC_TimedProjectCityPanel" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/SPCCityPanelHD.lua</LuaReplace></Properties></ReplaceUIScript>
+    <ReplaceUIScript id="SPC_OfficialCityPanel" criteria="SPC_OfficialEnvironment"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/SPCCityPanelOfficial.lua</LuaReplace></Properties></ReplaceUIScript>
     <UpdateDatabase id="SPC_OverflowSinkTest"><File>Data/OverflowSinkTest.sql</File></UpdateDatabase>
     <ReplaceUIScript id="SPC_TimedTurnProbe" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000004</LoadOrder><LuaContext>ActionPanel</LuaContext><LuaReplace>UI/TimedTurnProbe.lua</LuaReplace></Properties></ReplaceUIScript>
-    <ReplaceUIScript id="SPC_InstitutionOverview" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/InstitutionOverview.lua</LuaReplace></Properties></ReplaceUIScript>
+    <ReplaceUIScript id="SPC_InstitutionOverview" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/SPCCityOverviewHD.lua</LuaReplace></Properties></ReplaceUIScript>
+    <ReplaceUIScript id="SPC_OfficialCityOverview" criteria="SPC_OfficialEnvironment"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/SPCCityOverviewOfficial.lua</LuaReplace></Properties></ReplaceUIScript>
     <AddUserInterfaces id="SPC_LevelBanners"><Properties><Context>InGame</Context></Properties><File>UI/LevelBanners.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_Institutions"><Properties><Context>InGame</Context></Properties><File>UI/Institutions.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_ResearchChair"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/ResearchChair.sql</File></UpdateDatabase>
@@ -670,6 +672,10 @@
       <File>CityIdentityRead.lua</File>
     <File>InstitutionPresentation.lua</File>
     <File>UI/InstitutionOverview.lua</File>
+    <File>UI/SPCCityPanelHD.lua</File>
+    <File>UI/SPCCityPanelOfficial.lua</File>
+    <File>UI/SPCCityOverviewHD.lua</File>
+    <File>UI/SPCCityOverviewOfficial.lua</File>
     <File>LevelBannerState.lua</File>
       <File>UI/LevelBannerModel.lua</File>
       <File>UI/CityBannerManager_SPC_Levels.lua</File>

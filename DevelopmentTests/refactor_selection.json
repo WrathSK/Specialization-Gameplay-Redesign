@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O6cCityPanel": [
+      "test_o6_city_panel",
+      "test_environment_assembly.UIBaseSelection",
+      "test_refactor_s9c6b.Consumer",
+      "test_refactor_s9c6b.EventPresentation",
+      "test_refactor_s9c6b.NativeOverview",
+      "test_refactor_s9c6b.NewCityLifecycle",
+      "test_refactor_s9c6b.CultureDisplay",
+      "test_o6_production_panel"
+    ],
     "O4bCrewWonderSite": [
       "test_o4_crew_wonder_site",
       "test_o4_crew_target_queue",
@@ -2468,6 +2478,30 @@
     ],
     "Mod/UI/SPCProductionPanelOfficial.lua": [
       "test_o6_production_panel",
+      "test_environment_assembly.UIBaseSelection"
+    ],
+    "Mod/UI/InstitutionOverview.lua": [
+      "test_o6_city_panel",
+      "test_environment_assembly.UIBaseSelection"
+    ],
+    "Mod/UI/TimedProjectCityPanel.lua": [
+      "test_o6_city_panel",
+      "test_environment_assembly.UIBaseSelection"
+    ],
+    "Mod/UI/SPCCityPanelHD.lua": [
+      "test_o6_city_panel",
+      "test_environment_assembly.UIBaseSelection"
+    ],
+    "Mod/UI/SPCCityPanelOfficial.lua": [
+      "test_o6_city_panel",
+      "test_environment_assembly.UIBaseSelection"
+    ],
+    "Mod/UI/SPCCityOverviewHD.lua": [
+      "test_o6_city_panel",
+      "test_environment_assembly.UIBaseSelection"
+    ],
+    "Mod/UI/SPCCityOverviewOfficial.lua": [
+      "test_o6_city_panel",
       "test_environment_assembly.UIBaseSelection"
     ],
     "Mod/UI/SPCUnitPanelOfficial.lua": [

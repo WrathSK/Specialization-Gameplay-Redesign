@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0943
-Implementation Build: source B441.468 / modinfo468. Live B437.464 from a24b327. Stable/main B307.334.
+Status Revision: S0944
+Implementation Build: source B442.469 / modinfo469. Live B437.464 from a24b327. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NATIVE_WONDER_SITE_LOCAL
+Work State: OFFICIAL_CITY_PRESENTATION_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Native city panels show the institutions and project timer — S0944
+
+The Gathering Storm profile now attaches the existing city presentation to its shipped CityPanel and CityPanelOverview. The HD profile keeps the selected HD bases. The ACTIVE shortcut opens the native buildings tab with the same institution rows, and the production display shows the existing timed-project status. The native tab, layout and numeric production inputs retain their roles.
+
+- **Runtime Impact Contract (L2, T01/T02/T05/T08).** Existing profile criteria choose one entry per context at the current priority. The overview uses the existing accepted selected-city presentation, including readiness replay without a second gameplay request. The city panel refresh notification remains restricted to the matching owner and city and is removed at shutdown before delegating to native shutdown. There is no new fact owner, timer, polling or persisted state.
+- **LOCAL_SIMULATION_PASS in scope.** All 47 selected tests pass, including the actual wrappers, stock open/close/tab and production display fragments, actual presentation reply and institution rendering, normal selection/close, negative and stale replies, and the production panel regression. Fixed B441 shows the two missing official presentation paths and the old HD timed-display listener remaining after simulated shutdown. The integrated UnitPanel, Crew location and queue, and profile selection check separately passes 12 cases. The temporary switch/restore test passes in local temporary directories. The native geometry and engine delivery remain USER_GAME_TEST_REQUIRED.
+- **STATIC_CONFIRMED and reproduction.** Pinned official base and Expansion2 chain, plus `ActionStack` and `BreakdownStack` in the shipped control files. 230 Lua 5.1 compiles, 32 package XML-family parses, 359 runtime files, 721 manifest references and no new static alarms. Package SHA256 `f1716ab8a4d2561e6566d6613592784e25e0fc24e72da8d415d5d0ad73cd9d1c`. With CPython 3.14/Lupa 2.8, DevelopmentTests on PYTHONPATH and the pinned official asset root in `SPC_OFFICIAL_ASSETS`, run `python3.14 DevelopmentTests/run_refactor.py --stage O6cCityPanel`. The before/after logs are stored locally with full evidence `local/refactor/O6cCityPanel-00c017ba0aec438493607e1f37874c96/closure.json`, SHA256 `b470c356c660f07affc114139b5b2564f301ff3aab8912ee606b63e32d52c46d`. Tested source SHA256 `29dc6cf2c10643286992314c4d8308f26141598e3083ca8a086de02015a69f78`.
+
+Primary next is a single targeted official-profile interaction checkpoint for the integrated candidate. Use the same fixed no-HD Gathering Storm profile as the B435 smoke and a campaign started with this build. The representative actions are opening the institution tab, showing one legal timed project, and forming and spending one Crew on a currently unfinished Wonder. Inspect the selected production actions if naturally available. Prior HD Standardization acceptance and the deferred positive Culture Network restore carry forward. Shared pending-network retirement and production-dependent cleanup retain their evidence and exact deletion gates.
 
 ### Crew locates the current Wonder through the native UI — S0943
 

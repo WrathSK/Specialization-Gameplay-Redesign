@@ -273,8 +273,8 @@ class UIBaseSelection(unittest.TestCase):
         hd_overrides = {
             'ProductionPanel': ('UI/CrewProjectOrder.lua', 150100),
             'UnitPanel': ('UI/SPCUnitPanelHD.lua', 2000006),
-            'CityPanel': ('UI/TimedProjectCityPanel.lua', 2000005),
-            'CityPanelOverview': ('UI/InstitutionOverview.lua', 2000003),
+            'CityPanel': ('UI/SPCCityPanelHD.lua', 2000005),
+            'CityPanelOverview': ('UI/SPCCityOverviewHD.lua', 2000003),
             'ActionPanel': ('UI/TimedTurnProbe.lua', 2000004),
         }
         shared = {
@@ -284,6 +284,8 @@ class UIBaseSelection(unittest.TestCase):
         official_overrides = {
             'UnitPanel': ('UI/SPCUnitPanelOfficial.lua', 2000006),
             'ProductionPanel': ('UI/SPCProductionPanelOfficial.lua', 150100),
+            'CityPanel': ('UI/SPCCityPanelOfficial.lua', 2000005),
+            'CityPanelOverview': ('UI/SPCCityOverviewOfficial.lua', 2000003),
         }
         for hd, expected in ((False, official_overrides | shared), (True, hd_overrides | shared)):
             with self.subTest(hd=hd):

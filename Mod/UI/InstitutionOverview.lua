@@ -1,9 +1,4 @@
--- Preserve installed HD implementation (including its city-policy/Suk chain).
--- This prototype targets the tested HD environment; it is not a universal UI adapter.
-include('DL_CityPanelOverview')
-if not ViewPanelBreakdown then
- include('CityPanelOverview_Expansion2')
-end
+-- Reuse the selected overview's native building tab and open/close behavior.
 include('InstitutionPresentation')
 local M=SPCInstitutionPresentation
 local original=ViewPanelBreakdown

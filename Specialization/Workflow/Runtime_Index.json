@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "37ebf95588f4f2b79db692cbad144c2144895abedebf2e4c1f50044381a3ee02",
+      "sha256": "e07ac25d7be68319314f0676ff20607a512fc40c4c621e95f6052ec3175b8f20",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
+      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "92652157abe08f85d4430865dc861a5010c06e9b71b8b949c6ae53e53a5adb85",
+      "sha256": "d64cfbc60dd680b2fafbbd2d9f07fa5c85db1eb22a281e9fcecd516c7b5c1207",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
+      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1406,9 +1406,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/InstitutionOverview.lua": {
-      "sha256": "5883f751f2d0a45e6caf64118d286e4caf1a84256c2e5022ac33f091b664ebac",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B364_Refactor_S9c6b.md",
-      "provenance": "B364.391 Route institution displays through one ordered accepted reply; local/static evidence only; no deployment/native PASS."
+      "sha256": "c099fa8538b4780e51aefadfbea0b94cb5316cadc33ff2fa950452da8a302177",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     },
     "Mod/UI/Institutions.lua": {
       "sha256": "f239ef9364fbbeb9d1b7574fd236253c51df7ffd5fed44da6df42373b9919864",
@@ -1476,9 +1476,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/TimedProjectCityPanel.lua": {
-      "sha256": "501eeb530040a2369f7b965e3b5afc6deff3cb079c6efcdff8e4c331ae33fe52",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "sha256": "934317757e5067a3d025f24595fd03a99644b1a64969b8628affe51a5280f76f",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     },
     "Mod/UI/TimedProjectDisplay.lua": {
       "sha256": "37b7a40fe88b530682b88f8b9434cc0b3ccd26fe91475e388665512602e23423",
@@ -1779,9 +1779,29 @@
       "sha256": "69bfec2adfd665cc3102d2c48d25c0e42d67d84b067e58e8f78f1e8dc76333fe",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0941 B439 scopes production actions to the selected official and HD UI bases. Native interaction pending."
+    },
+    "Mod/UI/SPCCityOverviewHD.lua": {
+      "sha256": "5806ea67236f68fae560663b75f02d94a41aa864b6ed489e61939117558bba32",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
+    },
+    "Mod/UI/SPCCityOverviewOfficial.lua": {
+      "sha256": "cb7e24c8fa3bfbe045057096cd4a9549e47565d29f2caa3ee3f12c30761499d8",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
+    },
+    "Mod/UI/SPCCityPanelHD.lua": {
+      "sha256": "d5f8ef286f9e33680a5df7436c197d8b523df229d9770b530ae64c6f8029c14d",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
+    },
+    "Mod/UI/SPCCityPanelOfficial.lua": {
+      "sha256": "55348aa09061d6ccdfd4f8316663a6936ff4f642a9b02a9fb6aaf98d85c2b3c8",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "Specialization/Status/Specialization_P0_Status.md#crew-locates-the-current-wonder-through-the-native-ui--s0943",
-  "source_runtime": "B441.468 / modinfo468 local candidate, 355 files",
-  "tested_source_snapshot_sha256": "110fcfb2574863a13c77e4de8eeff7376f5da7fe08d466a8a69f016d282cc07f"
+  "source_review": "Specialization/Status/Specialization_P0_Status.md#native-city-panels-show-the-institutions-and-project-timer--s0944",
+  "source_runtime": "B442.469 / modinfo469 local candidate, 359 files",
+  "tested_source_snapshot_sha256": "29dc6cf2c10643286992314c4d8308f26141598e3083ca8a086de02015a69f78"
 }
