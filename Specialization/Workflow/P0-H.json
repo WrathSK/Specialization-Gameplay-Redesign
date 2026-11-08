@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0960",
-    "runtime": "B448.475 / modinfo475",
+    "status": "S0961",
+    "runtime": "B449.476 / modinfo476",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B448 deployment and the next commercial observer scope.",
+  "goal": "Verify isolated commercial trace observations and prepare exact review of the obsolete Gameplay route sampler.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Make the commercial trace sink optional — S0961",
+      "reason": "Commercial trace boundaries, retained receipts and next exact removal review"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -192,6 +198,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B449 passes 209 selected methods. Commercial results match in seven observer modes. Broad inherited failures are identical on B448 and B449.",
     "B448 installed 356/356 MATCH. RuntimeGC is the only new path and both recovery packages match.",
     "B448 passes 84 selected methods, including the actual B447 decision/sample comparisons, route proof and write-fence behavior without PerformanceCounters.",
     "B447 installed 355/355 MATCH. The two approved diagnostic paths are absent and both recovery packages match.",
@@ -1016,6 +1023,27 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b448-development-deployment-verified--s0960"
+    },
+    "b449_commercial_trace": {
+      "build": "B449.476 / modinfo476",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": 209,
+      "files": 356,
+      "package_sha256": "2e039bed576c9f6e47fd081dbc61b5cec93b9c7c8a7fd6543c044aca5f270eb3",
+      "new_runtime_paths": [],
+      "broad_baseline": "9cf36e6e277b1f3ce327ee2de0e727431362cd5a",
+      "broad_inherited_errors": 17,
+      "broad_inherited_failures": 2,
+      "proposed_route_observer": {
+        "path": "Mod/TradeRouteProbe.lua",
+        "sha256": "9e4a18510e839fc1e6e91a2ee200b1f595e443c8fc0e11f90dbc1d050c284ba0",
+        "readiness_sha256": "f1e0c5b38b6acabda9606021f029d5cc6fc5d4e28febb217e1e6b1d814cbf039"
+      },
+      "source_snapshot_sha256": "7c1b340e5cdc658cdf5db40154dcd18b50054074b66b39f2c7b864241643e63c",
+      "local_evidence": "local/refactor/B449-O7gCommercialTrace-verified/closure.json",
+      "local_evidence_sha256": "2b434c0ed9e35b61b0011bf0ac00e1d74552a1d016b2ac93d9e0dd21e5198a8f",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#make-the-commercial-trace-sink-optional--s0961"
     }
   }
 }

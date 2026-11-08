@@ -1,6 +1,15 @@
 -- Finite declared observer edges. Errors never reverse an already committed write.
 SPCSafeCallbacks={}
 local M=SPCSafeCallbacks
+-- An optional scalar trace can fail before any business listener is installed.
+function M.OpenTrace(factory,P,role)
+ if not factory then return nil end
+ local ok,record=pcall(function()
+  local trace=factory.New(P,role)
+  return trace and trace.Record
+ end)
+ if ok and type(record)=='function'then return record end
+end
 function M.Call(shared,label,fn,...)
  if type(fn)~='function'then return false,'CALLBACK_ABSENT'end
  local ok,value=pcall(fn,...)

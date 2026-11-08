@@ -4,7 +4,7 @@ include('CommerceModel')
 include('CommerceCalculation')
 include('FactUse')
 include('NetworkInput')
-include('ExpeditionTrainingDiagnostics')
+local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
 -- B240: one current-effect owner. No timer, persisted derived output, generic
 -- output-revision subscription, or second route authority.
 SPCCommerce={Owned={'BUILDING_SPC_COMMERCIALIZATION_ACCESS'}}
@@ -20,7 +20,8 @@ function M.Start(P,shared)
  local ownedIndex={}
  local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.Mark(scope.player,scope.city)end)
  local ownNames={};for _,id in ipairs(M.Owned)do ownNames[id]=true end
- local trace=SPCExpeditionTrainingDiagnostics.New(P,'COMMERCE')
+ local logger=traceLoaded and SPCExpeditionTrainingDiagnostics
+ local trace=SPCSafeCallbacks.OpenTrace(logger,P,'COMMERCE')
  local function key(pid,id)return pid..':'..id end
  local function generation(pid,id)return shared.FactChanges and shared.FactChanges.Generation(pid,'COMMERCE',id) or 0 end
  function d.TransactionCurrent(pid,id)
@@ -42,7 +43,7 @@ function M.Start(P,shared)
  local function code(e)return tostring(e):match('(COMMERCE_[A-Z0-9_]+)') or tostring(e):match('(NETWORK_[A-Z0-9_]+)') or 'COMMERCE_STATE_UNKNOWN'end
  local function integer(n)return type(n)=='number' and n>=0 and n<math.huge and n%1==0 end
  local function isolated(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
- local function emit(stage,data)if trace then pcall(trace.Record,stage,data)end end
+ local function emit(stage,data)if trace then pcall(trace,stage,data)end end
  local function publish(pid,id,v)
   local k=key(pid,id);local old=views[k]
   if v then v.revision=old and old.revision or 0 end
@@ -560,7 +561,7 @@ function M.Start(P,shared)
   return table.concat(rows,'\n')
  end
  -- B267 observes existing publications/carriers only; never reconciles effects.
- local turnTrace=SPCExpeditionTrainingDiagnostics.New(P,'COMMERCE_TURN')
+ local turnTrace=SPCSafeCallbacks.OpenTrace(logger,P,'COMMERCE_TURN')
  local turnStates={}
  local function diagnosticRead(object,method)
   local ok,v=pcall(function()local fn=object and object[method];if type(fn)~='function'then return 'UNAVAILABLE'end;P.Count('observer_native_attempt');P.Count('observer_commerce_attempt');return fn(object)end)
@@ -568,7 +569,7 @@ function M.Start(P,shared)
   if type(v)=='number' or type(v)=='boolean' or v=='UNAVAILABLE'then return v end;return 'UNKNOWN'
  end
  local function turnSample(stage,pid)
-  if not SPCExpeditionTrainingDiagnostics.ENABLED then return end
+  if not turnTrace or not (SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.ENABLED) then return end
   if not P.IsTestPlayer(pid)then return end
   local player=Players[pid];local treasuryOK,treasury=pcall(function()P.Count('observer_native_attempt');P.Count('observer_commerce_attempt');return player:GetTreasury()end)
   if not treasuryOK then treasury=nil end
@@ -582,14 +583,14 @@ function M.Start(P,shared)
    local signature=table.concat({v and v.stage or 'NONE',v and v.reason or 'NONE',tostring(want),good and tostring(n) or 'UNKNOWN'},':')
    local k=ref(c)
    if turnStates[k]~=signature or not good or n~=want then
-    turnTrace.Record('COMMERCE_TURN_CITY',{owner=pid,city=id,expected=want,carrierGold=good and n or 'UNKNOWN',
+    turnTrace('COMMERCE_TURN_CITY',{owner=pid,city=id,expected=want,carrierGold=good and n or 'UNKNOWN',
      phase=v and v.stage or 'NONE',reason=v and v.reason or 'NONE',readStatus=good and 'VERIFIED' or 'UNKNOWN'})
    end
    turnStates[k]=signature
   end
   local bridge=shared.NetworkBridge;local b=bridge and bridge.players and bridge.players[pid]
   local sender=ExposedMembers.SPC_P0_BackgroundRoutes or {}
-  turnTrace.Record(stage,{owner=pid,goldBalance=diagnosticRead(treasury,'GetGoldBalance'),
+  turnTrace(stage,{owner=pid,goldBalance=diagnosticRead(treasury,'GetGoldBalance'),
    goldYield=diagnosticRead(treasury,'GetGoldYield'),maintenance=diagnosticRead(treasury,'GetTotalMaintenance'),
    ownerTurnActive=diagnosticRead(player,'IsTurnActive'),ready=d.ready,coreBusy=busy,commerceWrites=d.writes,
    expected=expected,carrierGold=unknown==0 and actual or 'UNKNOWN',heldCount=held,reason=firstReason or 'NONE',
@@ -600,7 +601,7 @@ function M.Start(P,shared)
  end
  local function diagnosticTurn(stage,pid)
   local ok=pcall(turnSample,stage,pid)
-  if not ok then pcall(turnTrace.Record,'COMMERCE_TURN_FAILURE',{owner=pid,reason='TURN_READ_ERROR'})end
+  if not ok and turnTrace then pcall(turnTrace,'COMMERCE_TURN_FAILURE',{owner=pid,reason='TURN_READ_ERROR'})end
  end
  local function flush()
   if busy then return end;local todo=dirty;dirty={}

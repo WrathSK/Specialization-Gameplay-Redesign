@@ -46,9 +46,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CapitalInvestment.lua": {
-      "sha256": "3ac7008c34899a8255ae5939607272a00da25fd5a5175f53bb7760145e952f71",
+      "sha256": "d3d9be1fb22e9659fb19b44ca383edf01bc166bb15adc65a041163b8756abd9d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B420.447 / S0914 explicit native eligibility availability for ordinary and proof fact receipts."
+      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
     },
     "Mod/CapitalInvestmentDiagnostics.lua": {
       "sha256": "0ab8a511f180736f2d3d4a129d8fc9a15174e381a4ceaae1da6f78c7720542f9",
@@ -116,9 +116,9 @@
       "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/Commerce.lua": {
-      "sha256": "0bcc49f60d0b2d7ad50e554af0761dedb223e4edb65256f33c9de2e4449aba82",
+      "sha256": "e0add15a378743d5df71f687f60a60ef5f45247eb685720e99c92c49f263696a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0936 reviews first reconciliation with incomplete listed source facts in Commerce, Culture and Standardization on B436."
+      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "5218cf1acca0282405fd7f0360b4a3c7def0aa26fee3e2d33ac8b62b29dda25f",
@@ -491,9 +491,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "ed15dc1115177f1dffb62bdb79c05e7cbf42e562b0e03d12ec2fa16f2be9f093",
+      "sha256": "e75631d67c5c4e8bb6774ae4e78138e266d7955815c95ae327ace2c675ef94b7",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B420.447 / S0914 explicit native eligibility availability for ordinary and proof fact receipts."
+      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "fa05facb8b55e559d47ab10580e9aa3c465ef247efb09579ffe15ba03f865f5a",
@@ -776,9 +776,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "448dd1f8b9bb5c5d0c17b60ef6f34930994fffb270f74e55f8f7c32a20ca5bba",
+      "sha256": "333546c19886176b4490c7bb91e732ac2f1b63ca52ab8822451daae0f78d69b8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
+      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -916,9 +916,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9ecdd14dda104deba19481c8b4de10dd7062e868857ef1eef988793311ab9eb2",
+      "sha256": "6b24d67ffde90f362a2e1e73bf4dea9567903295258f346fab4751a6018c492d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
+      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1551,9 +1551,9 @@
       "provenance": "S0930 verifies the audited native subscription boundary and the local evidence for the fixed official-profile load smoke candidate."
     },
     "Mod/SafeCallbacks.lua": {
-      "sha256": "59f119acc1a5c0171607de9be6d94e05f230b34b4cb316af545ef4a74b87c321",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "d3612f234aa1c8b4c2fef3cf254d60aa142bcefe67472aac00c4861d3e1cd95d",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
     },
     "Mod/UI/SafeAdapters.lua": {
       "sha256": "5ce86e802bfdea2edd562a1978a9e731d28b25a7e74572ac1fcc68626c622d52",
@@ -1786,7 +1786,7 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     }
   },
-  "source_review": "S0960 verifies B448 development deployment and the next scoped commercial observer transfer.",
-  "source_runtime": "B448.475 / modinfo475 deployed from cefa39f, with independent GC ownership and optional counters still packaged.",
-  "tested_source_snapshot_sha256": "9ff6698fb4713692e96d0f165ccb9478d437a88baccccedd9bf9e4a9b7fafaf5"
+  "source_review": "S0961 verifies commercial trace isolation, retained money/receipt paths and the exact old route observer review.",
+  "source_runtime": "B449.476 / modinfo476 local candidate, 356 files. B448.475 remains installed.",
+  "tested_source_snapshot_sha256": "7c1b340e5cdc658cdf5db40154dcd18b50054074b66b39f2c7b864241643e63c"
 }

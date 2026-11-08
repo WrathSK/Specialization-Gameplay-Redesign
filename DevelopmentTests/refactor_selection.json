@@ -2,6 +2,27 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7gCommercialTrace": [
+      "test_o7_commercial_trace",
+      "test_b239_commerce.Commercialization.test_direct_pool_local_depth_and_per_domain_floor",
+      "test_b239_commerce.Commercialization.test_reputation_multiplier_only_while_active_iv_and_backend_never_ticks_it",
+      "test_refactor_s4b.CommerceRetention",
+      "test_refactor_s4b.DevelopmentContainment",
+      "test_refactor_s6e.LazyQuotes",
+      "test_refactor_s6e.RetainedCapital",
+      "test_refactor_s6e.RetainedGuards",
+      "test_refactor_s6e.RetainedReceipts",
+      "test_refactor_s6f",
+      "test_refactor_s7c.FrozenD6",
+      "test_refactor_s7c.CommerceFallback",
+      "test_pu06c_capital_terms",
+      "test_b267_preplaytest.CommerceNetwork.test_commerce_sampler_preserves_business_and_zero",
+      "test_b267_preplaytest.CommerceNetwork.test_business_outputs_match_with_diagnostics_disabled_at_start",
+      "test_b267_preplaytest.CommerceNetwork.test_repeated_failed_requests_remain_bounded_without_money_write",
+      "test_b267_preplaytest.CommerceNetwork.test_missing_carrier_visible_without_repair",
+      "test_b397_network_transport",
+      "test_refactor_s9c2.Startup"
+    ],
     "O7fRuntimeGC": [
       "test_o7_runtime_gc",
       "test_pu11_package_absence",
@@ -2131,6 +2152,7 @@
       "test_refactor_s4a.GarbageCollection"
     ],
     "Mod/Commerce.lua": [
+      "test_o7_commercial_trace",
       "test_refactor_defects.Defects",
       "test_refactor_s4b",
       "test_refactor_s5d1",
@@ -2361,10 +2383,17 @@
       "test_refactor_s6d"
     ],
     "Mod/CapitalInvestment.lua": [
+      "test_o7_commercial_trace",
       "test_refactor_s6e.LazyQuotes",
       "test_refactor_s6e.RetainedCapital",
       "test_refactor_s6e.RetainedReceipts",
       "test_refactor_s6e.RetainedGuards"
+    ],
+    "Mod/DevelopmentInvestment.lua": [
+      "test_o7_commercial_trace",
+      "test_refactor_s6f.Consumers",
+      "test_refactor_s6f.RetainedDevelopment",
+      "test_refactor_s6f.RetainedGuards"
     ],
     "Mod/UI/CapitalInvestmentPanel.lua": [
       "test_refactor_s6e.UIQuotes",

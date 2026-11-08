@@ -1,17 +1,32 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0960
-Implementation Build: source B448.475 / modinfo475. Live B448.475 from cefa39f. Stable/main B307.334.
+Status Revision: S0961
+Implementation Build: source B449.476 / modinfo476. Live B448.475 from cefa39f. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: GC_CONTROL_SEPARATED_DEPLOYED
+Work State: COMMERCIAL_TRACE_ISOLATED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Make the commercial trace sink optional — S0961
+
+Commerce, Capital Investment and Development Investment now protect the shared TRAIN logger's import, construction and invocation. The earlier B448 import was mandatory at each owner. A missing or unusable constructor can no longer stop these three owners. The Capital failure and receipt projection used by the transaction and its report remains a required implementation dependency.
+
+- **Runtime Impact Contract (L3, T04/T06/T08, P3-18).** No new native hook, read, scan, retry, saved field or changed role. Existing Treasury/city observations are skipped before native work when disabled, missing or without a usable Record callback. A fault after an observation is attempted remains contained. The ordinary logger remains in the package and enabled under its existing rules. Failure payloads, eligibility, native money, Carrier writes and receipt handling retain their original owners.
+- **LOCAL_SIMULATION_PASS in scope.** All 209 selected methods pass in CPython 3.14/Lupa 2.8 Lua 5.1. The actual three commercial owners with the actual Store and explicit route/native doubles produce equal effects, debits, credits and saved receipt values with the trace present, disabled, throwing/malformed constructor, throwing Record, or genuinely absent in both include models. The original B448 package fails the explicit missing-import checks. Post-mutation Treasury exceptions remain held and cannot cause a second attempt. Successful Commerce turn observation keeps both rows. Disabled, absent or unavailable constructors generate zero observer reads at those boundaries. Other users of TRAIN still have independent migration obligations, including Bridge and Culture Network.
+- **Additional comparison.** The wider selection ran 252 old methods on B448 and the same methods plus three on B449. It reproduces the same 17 error entries and two assertion failures in both, including repeated subtests within individual methods. These are the old B239 eligibility/retention fixture, S6e UI fixture and old dispatcher/network assertions. They are not part of the passing count. Their original assertions are retained. The full comparison is beside the focused result at `local/refactor/B449-O7gCommercialTrace-verified`.
+- **STATIC_CONFIRMED and reproduction.** 227 Lua 5.1 compiles, 32 XML-family parses, 704 file and 11 replacement references across 356 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7gCommercialTrace`. Source SHA256 `7c1b340e5cdc658cdf5db40154dcd18b50054074b66b39f2c7b864241643e63c`, package SHA256 `2e039bed576c9f6e47fd081dbc61b5cec93b9c7c8a7fd6543c044aca5f270eb3`. Local evidence `local/refactor/B449-O7gCommercialTrace-verified/closure.json` at SHA256 `2b434c0ed9e35b61b0011bf0ac00e1d74552a1d016b2ac93d9e0dd21e5198a8f`. No engine incidence or performance measurement is claimed.
+
+**Next exact retirement review.** The old Gameplay trade-route observer only exposes its speculative unit-operation sample to the hidden P0 Route State report. The only other read is inside the uncalled `comparison` function in BackgroundRoutes. The real UI collection, proof validation, sequence/ACK and transaction eligibility do not consume it. On B449 the actual Gameplay root's four old sampling passes at initialization/load/local enter/leave drop to zero when the file is unavailable. The actual BackgroundRoutes and Bridge produce the identical complete empty-route packet in both absence modes, keep strict pre-ACK gating and send no extra packet in 100 idle publications. This is a readiness check, not native confirmation of every nonempty route. Local proof `local/refactor/B449-O7gCommercialTrace-verified/trade-probe-readiness.json` at SHA256 `f1e0c5b38b6acabda9606021f029d5cc6fc5d4e28febb217e1e6b1d814cbf039`.
+
+Request approval to retire only `Mod/TradeRouteProbe.lua` at SHA256 `9e4a18510e839fc1e6e91a2ee200b1f595e443c8fc0e11f90dbc1d050c284ba0`, its Gameplay entry, the hidden P0 button and callback, and the dead comparison. The original is recoverable with `git show 9cf36e6e277b1f3ce327ee2de0e727431362cd5a:Mod/TradeRouteProbe.lua`. Verify current nonempty route proof/revalidation and the exact one-path switch/rollback before a removal deployment. Preserve the official background proof, existing network controls and the separate positive Culture Network cold-restore gate.
+
+B448 remains installed at this source checkpoint. The proposed route file is present in B449.
 
 ### B448 development deployment verified — S0960
 

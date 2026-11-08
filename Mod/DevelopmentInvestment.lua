@@ -3,14 +3,14 @@ include('DevelopmentInvestmentModel')
 include('DevelopmentInvestmentCatalog')
 include('DevelopmentInvestmentTargets')
 include('CommerceModel')
-include('ExpeditionTrainingDiagnostics')
+local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
 SPCDevelopmentInvestment={ACCESS='BUILDING_SPC_DEVELOPMENT_ACCESS'}
 function SPCDevelopmentInvestment.Start(P,shared)
  local M=SPCDevelopmentInvestmentModel;local cp,same=M.Copy,M.Same
  local store=assert(shared.CityProgressionStore,'DEVELOPMENT_STORE_REQUIRED')
  local d={views={},revision=0};shared.DevelopmentInvestment=d
- local trace=SPCExpeditionTrainingDiagnostics.New(P,'DEVELOPMENT')
- local function emit(stage,v)if trace then pcall(trace.Record,stage,v)end end
+ local trace=SPCSafeCallbacks.OpenTrace(traceLoaded and SPCExpeditionTrainingDiagnostics,P,'DEVELOPMENT')
+ local function emit(stage,v)if trace then pcall(trace,stage,v)end end
  local function code(e)return tostring(e):match('(DEVELOPMENT_[A-Z0-9_]+)') or tostring(e):match('(STORE_[A-Z0-9_]+)') or 'DEVELOPMENT_STATE_UNKNOWN'end
  local function failure(e,pid,id,phase)
   local reason=code(e);emit('DEVELOPMENT_FAILURE',{owner=pid,city=id,phase=phase,reason=reason});return reason

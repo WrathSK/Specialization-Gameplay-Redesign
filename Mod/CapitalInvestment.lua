@@ -1,7 +1,8 @@
+include('SafeCallbacks')
 include('CapitalInvestmentModel')
 include('CapitalInvestmentDiagnostics')
 include('CommerceModel')
-include('ExpeditionTrainingDiagnostics')
+local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
 SPCCapitalInvestment={ACCESS='BUILDING_SPC_CAPITAL_ACCESS'}
 function SPCCapitalInvestment.Start(P,shared)
  local M=SPCCapitalInvestmentModel;local cp=M.Copy;local same=M.Same
@@ -10,8 +11,8 @@ function SPCCapitalInvestment.Start(P,shared)
  local busy=false;local dirty={};local known={};local quotes={};local sequence=0
  ExposedMembers.SPC_CapitalEpoch=(ExposedMembers.SPC_CapitalEpoch or 0)+1
  local epoch=ExposedMembers.SPC_CapitalEpoch
- local trace=SPCExpeditionTrainingDiagnostics.New(P,'CAPITAL')
- local function emit(stage,v)if trace then pcall(trace.Record,stage,v)end end
+ local trace=SPCSafeCallbacks.OpenTrace(traceLoaded and SPCExpeditionTrainingDiagnostics,P,'CAPITAL')
+ local function emit(stage,v)if trace then pcall(trace,stage,v)end end
  local D=SPCCapitalInvestmentDiagnostics
  local function code(err)return D.Error(err).errorCode end
  local function failure(err,pid,id,domain,attempt)
