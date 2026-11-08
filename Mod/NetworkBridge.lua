@@ -2,7 +2,10 @@ include('RuntimeWork')
 include('ReverseDependencies')
 -- AV2-B: one private derived view per accepted complete input; no consumer-yield cache.
 include("NetworkInput")
-include("ExpeditionTrainingDiagnostics")
+include('ReadFailure')
+include('SafeCallbacks')
+local classifyFailure=SPCReadFailure.Classify
+local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
 SPCNetworkBridge={}
 function SPCNetworkBridge.Start(P,shared)
  local d={ready=false,players={},proofRevisions={}};shared.NetworkBridge=d
@@ -37,16 +40,16 @@ function SPCNetworkBridge.Start(P,shared)
  local derive
  local inputProviders={} -- one call-local service identity/turn witness per accepted owner input
  local views={} -- private, at most one view per player; never keyed by historical versions
- local reportTrace
- local traceOK,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'NETWORK_REPORT')
- if traceOK then reportTrace=value end
- local stateTrace=SPCExpeditionTrainingDiagnostics.New(P,'NETWORK_STATE')
+ local logger=traceLoaded and SPCExpeditionTrainingDiagnostics
+ local reportTrace=SPCSafeCallbacks.OpenTrace(logger,P,'NETWORK_REPORT')
+ local stateTrace=SPCSafeCallbacks.OpenTrace(logger,P,'NETWORK_STATE')
  local function state(stage,pid,b,reason,packet)
   if stage=='NETWORK_VERIFIED' and shared.EventTiming then pcall(shared.EventTiming.Verified,pid,b)end
+  if not stateTrace then return end
   pcall(function()
    -- Fixed token only; never retain raw engine errors or route payloads.
    local token=type(reason)=='string' and (reason:match('NETWORK_[A-Z0-9_]+') or reason:match(':%d+: ([A-Z][A-Z0-9_]+)') or reason:match('^([A-Z][A-Z0-9_]+)$') or reason:match('^[A-Za-z][A-Za-z0-9_]+$') and reason:upper()) or nil
-   stateTrace.Record(stage,{owner=pid,reason=token or 'READ_ERROR',ready=d.ready,
+   stateTrace(stage,{owner=pid,reason=token or 'READ_ERROR',ready=d.ready,
     networkAvailability=b and b.availability,networkRevalidation=b and b.revalidation,
     networkInputRevision=b and b.inputRevision,networkSignal=b and b.signal,routeSignal=shared.RouteSignalRevision or 0,
     routeCount=b and b.routes and #b.routes,packetSeq=packet and packet.Seq,packetTurn=packet and packet.Turn,
@@ -757,10 +760,10 @@ function SPCNetworkBridge.Start(P,shared)
   local function safeName(owner,cid)
    local ok,title=pcall(name,owner,cid);return ok and title or ('城市#'..tostring(cid)..'（玩家'..tostring(owner)..'）')
   end
-  local function emit(stage,fields)if reportTrace then pcall(reportTrace.Record,stage,fields)end end
+  local function emit(stage,fields)if reportTrace then pcall(reportTrace,stage,fields)end end
   local sources=coherent and v.sources or {};local centers=coherent and v.centers or {};local recipients=coherent and v.recipients or {}
   local receivers={};for _,set in pairs(recipients)do for cid in pairs(set)do receivers[cid]=true end end
-  local err=b and b.error and SPCExpeditionTrainingDiagnostics.Failure(b.error,'SHARED_INPUT')
+  local err=b and b.error and classifyFailure(b.error,'SHARED_INPUT')
   local header=reason=='NETWORK_AVAILABLE' and '已就绪' or reason=='NETWORK_REVALIDATION_PENDING' and '上次已发布拓扑；当前待核验' or '尚无可用当前拓扑'
   local lines={'公共网络｜'..safeName(pid,id)..'｜'..header,
    '输入 '..tostring(b and b.validity or 'UNKNOWN')..' / '..tostring(b and b.availability or 'UNAVAILABLE')
@@ -818,16 +821,16 @@ function SPCNetworkBridge.Start(P,shared)
  function d.Report(pid,selected,details,page)
   local ok,public=pcall(d.ReadSnapshot,pid,selected,details,page)
   if not ok then
-   local f=SPCExpeditionTrainingDiagnostics.Failure(public,'PUBLIC_REPORT')
+   local f=classifyFailure(public,'PUBLIC_REPORT')
    public='公共网络读取失败：'..f.errorCode..'；'..f.errorFile..':'..tostring(f.errorLine or '?')
-   if reportTrace then pcall(reportTrace.Record,'NETWORK_REPORT_ERROR',f)end
+   if reportTrace then pcall(reportTrace,'NETWORK_REPORT_ERROR',f)end
   end
   local consumer=shared.CultureNetwork
   if not consumer then return public..'\n文化收益模块：未建立。'end
   local good,culture=pcall(consumer.Describe,pid,selected)
   if good then return public..'\n\n'..culture end
-  local f=SPCExpeditionTrainingDiagnostics.Failure(culture,'CULTURE_REPORT')
-  if reportTrace then pcall(reportTrace.Record,'NETWORK_REPORT_ERROR',f)end
+  local f=classifyFailure(culture,'CULTURE_REPORT')
+  if reportTrace then pcall(reportTrace,'NETWORK_REPORT_ERROR',f)end
   return public..'\n文化收益报告失败：'..f.errorCode..'；'..f.errorFile..':'..tostring(f.errorLine or '?')
  end
  local detailPage={}

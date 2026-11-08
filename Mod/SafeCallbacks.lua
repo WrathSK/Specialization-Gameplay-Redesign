@@ -5,6 +5,7 @@ local M=SPCSafeCallbacks
 function M.OpenTrace(factory,P,role)
  if not factory then return nil end
  local ok,record=pcall(function()
+  if factory.ENABLED==false then return nil end
   local trace=factory.New(P,role)
   return trace and trace.Record
  end)

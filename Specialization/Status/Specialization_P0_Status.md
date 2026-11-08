@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0964
-Implementation Build: source B450.477 / modinfo477. Live B450.477 from 0224c01. Stable/main B307.334.
+Status Revision: S0965
+Implementation Build: source B451.478 / modinfo478. Live B450.477 from 0224c01. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OBSOLETE_ROUTE_OBSERVER_RETIRED_DEPLOYED
+Work State: NETWORK_TRACE_ISOLATED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Isolate network failure reporting from TRAIN — S0965
+
+Network Bridge and Culture Network now build their safe failure records in `ReadFailure`. A missing, disabled or faulty TRAIN logger leaves startup, currentness, passive reconciliation and the player-visible reason available. Enabled observers receive the same bounded rows. The diagnostic API keeps its existing Failure entry for reporting callers.
+
+- **Runtime Impact Contract (L3, T04/T06/T08, P3-18).** Classify the same failure text at the existing read and report boundaries. The parser keeps the same code, phase, filename and symbol allowlists. It neither reads the engine nor owns any network fact. The enabled logger receives the existing scalar payloads. The independent turn timing hook keeps its existing call. No new native listener, scan, timer, retry, saved field or eligibility rule.
+- **LOCAL_SIMULATION_PASS in scope.** All 99 selected methods pass. The real Bridge, Culture Network and fact dispatch compare enabled B450 with eight candidate profiles, including both package-absence modes and throwing construction, recording and formatting. The initialization failure still has its original phase, owner and safe filename/line. Current proof and strict transaction access recover on the same evidence. Culture Carrier changes match, the existing value holds during pending proof and the new value appears after confirmation. Saved property writes remain zero. The actual Gameplay and UI roots send and acknowledge a complete empty proof without the file, while the two selected owners start. The complete package still has other TRAIN dependencies. Culture cold restore with a positive in-game effect remains a separate native gate.
+- **STATIC_CONFIRMED and reproduction.** 227 Lua 5.1 compiles, 32 XML-family parses, 704 file and 11 replacement references across 356 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7iNetworkTrace` with CPython 3.14/Lupa 2.8. Source SHA256 `4ecf66a61523bfcbdc1c902ff2be89d4c0fa8bd526ef8bbc33845092057a2d9e`, package SHA256 `a52baca9908f24fe9c62694d908ae3b8b7a53ce32a1994b29edd37afe7c8dc86`. Local evidence `local/refactor/B451-O7iNetworkTrace-first/closure.json` at SHA256 `15126a7733435fa58d63c9b8203af8ec1fa77cbb501939ca8add83f2e0de284b`. The separate 121-method old-fixture comparison has the same 31 error entries and one failing assertion on B450 and B451. These remain outside the pass count.
+
+B450 remains installed at this source checkpoint. Continue with the existing sender observation in the route UI, where a missing logger currently causes observation reads to run.
 
 ### B450 development deployment verified — S0964
 

@@ -45,6 +45,7 @@ def fixture():
     function last()return trace().entries[#trace().entries]end
     function unchanged()assert(propertyWrites==0 and nativeWrites==0 and gcCalls==0)end
     ''')
+    lua.globals().include = lambda name: lua.execute((SOURCE.parent / (name + '.lua')).read_text())
     lua.execute(SOURCE.read_text())
     lua.execute('M=SPCExpeditionTrainingDiagnostics; a=M.New(P,"GAMEPLAY")')
     return lua

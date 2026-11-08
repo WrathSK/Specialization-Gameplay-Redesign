@@ -216,9 +216,9 @@
       "provenance": "B166 authorized automatic Meaning: direct normal writer, exact retired GWA/producer and readonly UI/registration reviewed;44 targeted local methods PASS. Current source review only; liveB165 receipt unchanged, strict clean gate defers deployment. Native automatic/load integration pending."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "b222a683c2b2c352e15144fe68ea37c029caf2a19ad093a523be643dc960a782",
+      "sha256": "11011c541e2396e36eb35a27c30f90cf51cf498d3b1e0c3e62a12c2f2392497c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
+      "provenance": "S0965 B451 independent failure classification and optional network trace."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "c577cdb9f6e07b79f798185525a8da51a2828eee291409b2fb7ccd3c8bcaeb50",
@@ -616,9 +616,9 @@
       "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
-      "sha256": "e30a3fbe5c4c7e5fc823bd1d60cc910c72904af89c3e8fec1c3f44e4a1dc84f1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
-      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
+      "sha256": "99711e0fc6e6d070518600f4596fb1d5eb3eb1231b21e065248f565bbdbe374b",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0965 B451 independent failure classification and optional network trace."
     },
     "Mod/FreshBindingHook.lua": {
       "sha256": "03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285",
@@ -741,9 +741,9 @@
       "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "1abf0e8d4faae370569bbbadcb133ac8c6a6e9c8a90d3f9ba6040cf276bac344",
+      "sha256": "391036459ff997fab7566aaf9b05e830359a0cedca3eaba94c633b9927ce340c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
+      "provenance": "S0965 B451 independent failure classification and optional network trace."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "398b639f4e935dcce4a6d258d4ede18bcc95c2d150a777a95190c657d3168046",
@@ -776,9 +776,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "eaddabacbe8243c9dcb0757b082ea81a6684ba78562bf60ef3d2614402715d42",
+      "sha256": "ff6401ec1ef0b6422edda2868225f6ec046e13ba3c810a4113cf4042de92c145",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
+      "provenance": "S0965 B451 independent failure classification and optional network trace."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -916,9 +916,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "7cee59b82470f26f13171a2cb5d570db2a6b0f8ec771fd68341194362ba3b910",
+      "sha256": "14d6436ec95f7b13dc34f969e4607927e029d3972a11a07c53dd1ea367354562",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
+      "provenance": "S0965 B451 independent failure classification and optional network trace."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1546,9 +1546,9 @@
       "provenance": "S0930 verifies the audited native subscription boundary and the local evidence for the fixed official-profile load smoke candidate."
     },
     "Mod/SafeCallbacks.lua": {
-      "sha256": "d3612f234aa1c8b4c2fef3cf254d60aa142bcefe67472aac00c4861d3e1cd95d",
+      "sha256": "2503b8f6377238efcc3f5c4f0921b71bcbdec87bfa13bf3d2f4fff7931b8b1d8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
+      "provenance": "S0965 B451 independent failure classification and optional network trace."
     },
     "Mod/UI/SafeAdapters.lua": {
       "sha256": "5ce86e802bfdea2edd562a1978a9e731d28b25a7e74572ac1fcc68626c622d52",
@@ -1779,9 +1779,14 @@
       "sha256": "524389873b563152119f789b5dc70ba54cc16be4489474cf624c2fe6836fe344",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
+    },
+    "Mod/ReadFailure.lua": {
+      "sha256": "be804d102e5a3db0c15cb8400159c848e99180d750cc47527bc00b857b1a0cb9",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0964 verifies B450 development deployment and the exact pending old route observer review.",
-  "source_runtime": "B450.477 / modinfo477 deployed from 0224c01, with the exact approved route observer retired.",
-  "tested_source_snapshot_sha256": "cb01e4fd018c956f25f5cf9df0c841165814844d22020c5c341050bda33bf215"
+  "source_review": "S0965 verifies independent Network Bridge and Culture Network reports, proof and passive effects.",
+  "source_runtime": "B451.478 / modinfo478 local candidate, 356 files. B450.477 remains installed.",
+  "tested_source_snapshot_sha256": "4ecf66a61523bfcbdc1c902ff2be89d4c0fa8bd526ef8bbc33845092057a2d9e"
 }

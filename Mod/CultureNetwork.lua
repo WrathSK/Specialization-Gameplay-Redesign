@@ -2,7 +2,10 @@ include('CurrentSpecializationFacts')
 include('RuntimeWork')
 include('NetworkInput')
 include('ReverseDependencies')
-include('ExpeditionTrainingDiagnostics')
+include('ReadFailure')
+include('SafeCallbacks')
+local classifyFailure=SPCReadFailure.Classify
+local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
 -- B226: current network projection only. Store owns history; Bridge owns topology;
 -- native district workers own the yield count. No received history or timer.
 SPCCultureNetwork={Bits=8,Owned={},Districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER',INDUSTRY='DISTRICT_INDUSTRIAL_ZONE',COMMERCE='DISTRICT_COMMERCIAL_HUB'}}
@@ -41,22 +44,20 @@ function M.Start(P,shared)
  local definitions,dirty,sourceSamples,sourceCounts={},{},{},{};local initialized=false
  local ownedIndex={}
  local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.Mark(scope.player,scope.city)end)
- local trace;local lastWait;local lastHealth;local observe
- if SPCExpeditionTrainingDiagnostics then
-  local ok,value=pcall(SPCExpeditionTrainingDiagnostics.New,P,'CULTURE_NETWORK')
-  if ok then trace=value end
- end
+ local trace=SPCSafeCallbacks.OpenTrace(traceLoaded and SPCExpeditionTrainingDiagnostics,P,'CULTURE_NETWORK')
+ local lastWait;local lastHealth;local observe
  local function health(pid,reason,failure)
+  if not trace then return end
   local bridge=shared.NetworkBridge;local b=bridge and bridge.players and bridge.players[pid]
   local signature=table.concat({tostring(pid),tostring(d.ready),reason,diagnosticCode(b and b.availability),diagnosticCode(b and b.inputRevision),failure and failure.phase or '',failure and failure.errorFile or '',failure and tostring(failure.errorLine) or ''},':')
   if signature==lastHealth then return end
-  if trace then pcall(trace.Record,'NETWORK_HEALTH',{owner=pid,ready=d.ready,reason=reason,
+  pcall(trace,'NETWORK_HEALTH',{owner=pid,ready=d.ready,reason=reason,
    bridgeReady=bridge and bridge.ready==true,networkError=reason=='CN_READY' and 'NONE' or reason,
    phase=failure and failure.phase,errorCode=failure and failure.errorCode,errorClass=failure and failure.errorClass,
    errorFile=failure and failure.errorFile,errorLine=failure and failure.errorLine,eventOwner=failure and failure.owner,
    eventCity=failure and failure.city,
    networkValidity=diagnosticCode(b and b.validity),networkAvailability=diagnosticCode(b and b.availability),
-   networkInputRevision=diagnosticCode(b and b.inputRevision),networkDerivedFor=diagnosticCode(b and b.derivedFor)})end
+   networkInputRevision=diagnosticCode(b and b.inputRevision),networkDerivedFor=diagnosticCode(b and b.derivedFor)})
   lastHealth=signature
  end
  local function key(pid,id)return tostring(pid)..':'..tostring(id)end
@@ -392,7 +393,7 @@ function M.Start(P,shared)
   end)
   d.busy=false;d.error=not good and tostring(why):sub(1,180) or nil
   if not good then
-   d.failure=SPCExpeditionTrainingDiagnostics.Failure(why,phase)
+   d.failure=classifyFailure(why,phase)
    d.failure.owner=failureOwner;d.failure.city=failureCity
    health(scope and scope.player,d.failure.errorCode,d.failure)
   end
@@ -420,7 +421,7 @@ function M.Start(P,shared)
   local layer=not d.ready and 'MODULE' or d.errors[key(pid,c:GetID())] and 'CITY' or d.error and 'MODULE'
    or d.playerError and d.playerError[pid] and 'NETWORK'
    or not p and 'NO_RECORD' or 'CURRENT_FACTS'
-  local failure=d.failure or SPCExpeditionTrainingDiagnostics.Failure(err or workerError,
+  local failure=d.failure or classifyFailure(err or workerError,
    layer=='CITY' and 'CITY_RECONCILIATION' or layer=='NETWORK' and 'NETWORK_INPUT' or 'REPORT_FACTS')
   local reason=err and failure.errorCode or not d.ready and 'CN_NOT_READY' or diagnosticCode(workerError or 'CN_REPORT_PENDING')
   local fields={'kind=NETWORK_WAIT','owner='..pid,'city='..c:GetID(),
@@ -434,15 +435,17 @@ function M.Start(P,shared)
   end
   if not quiet then print('[SPC][B191][N1_INSIGHT] '..table.concat(fields,' '))end
   -- One replaceable signature, no per-city history. Existing ring/budget only.
-  local signature=pid..':'..c:GetID()..':'..layer..':'..reason..':'..tostring(d.ready)..':'..tostring(bridge and bridge.ready==true)..':'..table.concat(fields,' ')
-  if signature~=lastWait and trace then
-   local ok=pcall(trace.Record,'NETWORK_WAIT',{owner=pid,city=c:GetID(),networkLayer=layer,
-    reason=reason,ready=d.ready,bridgeReady=bridge and bridge.ready==true,
-    phase=failure.phase,errorCode=failure.errorCode,errorClass=failure.errorClass,errorFile=failure.errorFile,errorLine=failure.errorLine,
-    networkValidity=diagnosticCode(b and b.validity),networkAvailability=diagnosticCode(b and b.availability),
-    networkInputRevision=diagnosticCode(b and b.inputRevision),networkDerivedFor=diagnosticCode(b and b.derivedFor),
-    networkRevalidation=diagnosticCode(b and b.revalidation),networkError=diagnosticCode(b and b.error)})
-   if ok then lastWait=signature end
+  if trace then
+   local signature=pid..':'..c:GetID()..':'..layer..':'..reason..':'..tostring(d.ready)..':'..tostring(bridge and bridge.ready==true)..':'..table.concat(fields,' ')
+   if signature~=lastWait then
+    local ok=pcall(trace,'NETWORK_WAIT',{owner=pid,city=c:GetID(),networkLayer=layer,
+     reason=reason,ready=d.ready,bridgeReady=bridge and bridge.ready==true,
+     phase=failure.phase,errorCode=failure.errorCode,errorClass=failure.errorClass,errorFile=failure.errorFile,errorLine=failure.errorLine,
+     networkValidity=diagnosticCode(b and b.validity),networkAvailability=diagnosticCode(b and b.availability),
+     networkInputRevision=diagnosticCode(b and b.inputRevision),networkDerivedFor=diagnosticCode(b and b.derivedFor),
+     networkRevalidation=diagnosticCode(b and b.revalidation),networkError=diagnosticCode(b and b.error)})
+    if ok then lastWait=signature end
+   end
   end
   local labels={CITY='城市事实或收益应用',MODULE='文化网络初始化',NETWORK='网络输入或拓扑',NO_RECORD='尚无城市计算结果',CURRENT_FACTS='当前城市或专家事实'}
   return '文化网络：等待确认｜'..labels[layer]..'（'..reason..'）\n输入：'
@@ -452,15 +455,16 @@ function M.Start(P,shared)
  end
  -- Observational only; no Refresh, initialization, fact rebuild or native write.
  observe=function(pid,c,previous,workers)
+  if not trace then return end
   local p=d.records[key(pid,c:GetID())];local b=shared.NetworkBridge and shared.NetworkBridge.players[pid]
   local err=d.errors[key(pid,c:GetID())] or d.error or d.playerError and d.playerError[pid]
   if not d.ready or not p or err then return pendingReport(pid,c,p,err,'CN_REPORT_PENDING',true)end
   local signature=table.concat({tostring(p.n),diagnosticCode(b and b.validity),diagnosticCode(b and b.availability),diagnosticCode(b and b.inputRevision),diagnosticCode(b and b.derivedFor)},':')
   if signature~=(previous or p.diagnosticSignature) or workers~=nil then
-   if trace then pcall(trace.Record,'NETWORK_STATE',{owner=pid,city=c:GetID(),ready=d.ready,
+   pcall(trace,'NETWORK_STATE',{owner=pid,city=c:GetID(),ready=d.ready,
     networkValidity=diagnosticCode(b and b.validity),networkAvailability=diagnosticCode(b and b.availability),
     networkInputRevision=diagnosticCode(b and b.inputRevision),networkDerivedFor=diagnosticCode(b and b.derivedFor),
-    count=p.n,workers=workers,expected=workers and workers*p.n,reason='CN_PROJECTED'})end
+    count=p.n,workers=workers,expected=workers and workers*p.n,reason='CN_PROJECTED'})
   end
   p.diagnosticSignature=signature
  end
@@ -487,7 +491,7 @@ function M.Start(P,shared)
     local source=Players[pid]:GetCities():FindID(id)
     local title=source and source.GetName and source:GetName() or tostring(id)
     lines[#lines+1]='来源 '..title..(p.contributors[id] and '：提供完整文明' or '：当前未提供完整文明')
-    if trace then pcall(trace.Record,'NETWORK_SOURCE',{owner=pid,city=c:GetID(),sourceCity=id,owned=reference~=false,
+    if trace then pcall(trace,'NETWORK_SOURCE',{owner=pid,city=c:GetID(),sourceCity=id,owned=reference~=false,
       reason=p.contributors[id] and 'CN_CONTRIBUTOR' or 'CN_NO_COMPLETE_SET'})end
    end
    table.sort(lines)

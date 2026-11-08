@@ -2,6 +2,18 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7iNetworkTrace": [
+      "test_o7_network_trace",
+      "test_network_effect_fact_receipts",
+      "test_b397_network_transport",
+      "test_o7_route_observer_retirement",
+      "test_o7_commercial_trace",
+      "test_refactor_s4b.NetworkProof",
+      "test_refactor_s4b.CultureRetention",
+      "test_refactor_s5c1.NetworkSignals",
+      "test_refactor_s6j",
+      "test_b393_observer_isolation.FailureEvidence"
+    ],
     "O7hRouteObserverRetirement": [
       "test_o7_route_observer_retirement",
       "test_b397_network_transport",
@@ -2171,6 +2183,7 @@
       "test_refactor_s7c"
     ],
     "Mod/NetworkBridge.lua": [
+      "test_o7_network_trace",
       "test_refactor_defects.Defects",
       "test_refactor_s4b",
       "test_refactor_s5c1",
@@ -2241,6 +2254,7 @@
       "test_refactor_s6j"
     ],
     "Mod/CultureNetwork.lua": [
+      "test_o7_network_trace",
       "test_refactor_s4b",
       "test_refactor_s6d",
       "test_refactor_s6g.ScopedTopology"

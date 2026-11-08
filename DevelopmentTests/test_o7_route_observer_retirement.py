@@ -5,7 +5,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B449, gameplay as historical_context, package as historical_package
+from retired_crew_sources import B449, B450, gameplay as historical_context, package as historical_package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE, mirror_bridge, scalars
@@ -189,5 +189,5 @@ class RouteObserverRetirement(unittest.TestCase):
         """)
 
     def test_exact_route_removal_and_complete_old_package_recovery(self):
-        with historical_package(B449) as before:
-            verify_package_round_trip(self, before/'Mod', ROOT/'Mod', (RETIRED,), 'NetworkBridge.lua')
+        with historical_package(B449) as before, historical_package(B450) as after:
+            verify_package_round_trip(self, before/'Mod', after/'Mod', (RETIRED,), 'NetworkBridge.lua')

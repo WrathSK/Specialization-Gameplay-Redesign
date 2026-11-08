@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0964",
-    "runtime": "B450.477 / modinfo477",
+    "status": "S0965",
+    "runtime": "B451.478 / modinfo478",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B450 deployment with the exact old route observer removal and full rollback backup.",
+  "goal": "Keep Network Bridge and Culture Network business and failure reports available without optional TRAIN.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Isolate network failure reporting from TRAIN — S0965",
+      "reason": "Scoped proof, passive effect and failure-report isolation"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -216,6 +222,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B451 passes 99 selected methods including eight trace profiles and real proof/ACK under package absence.",
     "B450 installed 355/355 MATCH with the exact removal. Both recovery packages match.",
     "B450 passes 64 selected methods including nonempty actual roots and full exact-path rollback.",
     "B449 installed 356/356 MATCH with the same file set as B448 and both recovery packages match.",
@@ -1111,6 +1118,21 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b449-development-deployment-verified--s0964"
+    },
+    "b451_network_trace": {
+      "build": "B451.478 / modinfo478",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "added": [
+        "Mod/ReadFailure.lua"
+      ],
+      "tests": 99,
+      "files": 356,
+      "package_sha256": "a52baca9908f24fe9c62694d908ae3b8b7a53ce32a1994b29edd37afe7c8dc86",
+      "source_snapshot_sha256": "4ecf66a61523bfcbdc1c902ff2be89d4c0fa8bd526ef8bbc33845092057a2d9e",
+      "local_evidence": "local/refactor/B451-O7iNetworkTrace-first/closure.json",
+      "local_evidence_sha256": "15126a7733435fa58d63c9b8203af8ec1fa77cbb501939ca8add83f2e0de284b",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#isolate-network-failure-reporting-from-train--s0965"
     }
   }
 }
