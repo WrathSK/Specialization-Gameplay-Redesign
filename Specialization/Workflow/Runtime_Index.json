@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "62d89798af67ee37b38027d6b0cfc8ef258c9a5f",
-  "runtime": "B453.480 / modinfo480 temporary develop deployed, 354/354 MATCH. Stable/main B307.334.",
+  "runtime_commit": "3fa7527b768207a8f210136749001584b42e5940",
+  "runtime": "B454.481 / modinfo481 temporary develop deployed, 351/351 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1761,7 +1761,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0973 verifies the exact network prototype removal, live Store and route behavior, and historical replay.",
-  "source_runtime": "B454.481 / modinfo481 local candidate, 351 files. B453.480 remains installed.",
+  "source_review": "S0974 verifies B454 deployment, both recovery packages and the separate project-turn observer retirement proposal.",
+  "source_runtime": "B454.481 / modinfo481 deployed from 3fa7527 with the exact three prototype paths removed.",
   "tested_source_snapshot_sha256": "8bfbce08b25bfeb397e3a46b79110b87c9de06febb610df84127029ea660f312"
 }

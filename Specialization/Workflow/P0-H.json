@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0973",
+    "status": "S0974",
     "runtime": "B454.481 / modinfo481",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify exact unused network prototype retirement and preserve current Store, route and historical evidence.",
+  "goal": "Record the verified B454 deployment and the exact separate project-turn observer proposal.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B454 deployment verified and next project observer reviewed — S0974",
+      "reason": "Verified B454 replacement and next observer boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -270,6 +276,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B454 installed 351/351 MATCH, with B453 and B307 recovery verified. The separate observer projection preserves both production UI readers and the P0 timer report.",
     "B454 passes 88 selected methods plus all four pinned historical stages. Both local deployment recovery paths restore the exact outgoing package.",
     "B453 network recovery retirement projection passes 84 targeted methods before and after plus exact stable and temporary package rollback.",
     "B453 end-turn interaction passed in both the official and HD profiles. Both native loads and T7 to T8 transitions were observed.",
@@ -1342,6 +1349,42 @@
       "local_evidence_sha256": "874670a278f2277c1248471f8851704d3967e727e1e1f4a2eabab7c290bd80ab",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-unused-network-save-prototype--s0973"
+    },
+    "b454_deployment": {
+      "version": "B454.481 / modinfo481",
+      "source_commit": "3fa7527b768207a8f210136749001584b42e5940",
+      "digest": "8445b8476c315c7a814f9ff05915310fca241f78c2fddd8ea131a699b8284f7e",
+      "files": 351,
+      "receipt": "B454.481-3fa7527-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [
+        "NetworkRecoveryCell.lua",
+        "NetworkRecoveryModel.lua",
+        "NetworkRecoveryStore.lua"
+      ],
+      "pending": false,
+      "outgoing": "B453.480, 354/354 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b454-deployment-verified-and-next-project-observer-reviewed--s0974"
+    },
+    "b454_project_turn_observer_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "3fa7527b768207a8f210136749001584b42e5940",
+      "removed_sha256": {
+        "ProjectTurnObservation.lua": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34"
+      },
+      "modified": [
+        "Gameplay.lua",
+        "SpecializationP0.modinfo",
+        "UI/CrewProjectOrder.lua",
+        "UI/P0Panel.lua",
+        "UI/ProjectTurnRead.lua"
+      ],
+      "modeled_listener_delta": 9,
+      "local_evidence": "local/refactor/B454-ProjectTurnObserverReview/result.json",
+      "local_evidence_sha256": "1ba2cb945d41b16c63840381f67d9c123192926e4275741d93069c551f7f8db4",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b454-deployment-verified-and-next-project-observer-reviewed--s0974"
     }
   }
 }

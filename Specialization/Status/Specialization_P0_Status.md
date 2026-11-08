@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0973
-Implementation Build: source B454.481 / modinfo481. Live B453.480 from 62d8979. Stable/main B307.334.
+Status Revision: S0974
+Implementation Build: source B454.481 / modinfo481. Live B454.481 from 3fa7527. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_RECOVERY_PROTOTYPE_RETIRED_LOCAL
+Work State: PROJECT_TURN_OBSERVER_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B454 deployment verified and next project observer reviewed — S0974
+
+B454.481 is installed from `3fa7527b768207a8f210136749001584b42e5940`. All 351 files match SHA256 `8445b8476c315c7a814f9ff05915310fca241f78c2fddd8ea131a699b8284f7e`. Receipt `B454.481-3fa7527-playtest.json` is DEVELOP_ACTIVE. The exact three approved paths are absent. The outgoing B453 and stable B307 recovery packages match their recorded hashes. Game exit, UUID uniqueness and the clear transaction boundary were verified.
+
+**Next exact retirement review (P3-19/Q2).** The B120 `Mod/ProjectTurnObservation.lua` (`4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34`) handles the former manual start/end observer. Its UI methods share a file with the still-used `SPC_ProjectTurnRead` queue export. Current panel initializers register the export and leave the four old observer methods unbound. The active auto-project report and timer still consume the queue export. The formal Claim, Dialogue, Engineering Study and Crew providers own their separate queue and completion paths.
+
+In the local projection, remove the one Gameplay file, its two manifest entries, Startup and PROJECT_TURN_BEGIN/END, and the old Read/Pulse/Begin/End observer methods in ProjectTurnRead. Keep the queue read body, update its two constructors, and retain the P0 timing report, timer/selection and project definitions. The exact B454 originals are recoverable from `3fa7527b768207a8f210136749001584b42e5940`. Both actual production entry fixtures return the same queue scalars and one matching timer start request. The P0 report text and cancel request match. Actual Gameplay roots lose exactly nine modeled listener registrations while the current project controllers still load. The exact one-path temporary switch and full restoration pass in disposable directories. Local reproduction uses the installed official Assets source excerpts and Lua test doubles. Native performance is unmeasured. Evidence `local/refactor/B454-ProjectTurnObserverReview/result.json` SHA256 `1ba2cb945d41b16c63840381f67d9c123192926e4275741d93069c551f7f8db4` with the replay script alongside.
+
+The Owner's approval of the exact observer removal is pending. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the unused network save prototype — S0973
 
