@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0985",
+    "status": "S0986",
     "runtime": "B460.487 / modinfo487",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify retired B050 shell removal and preserve exact city-exit withdrawal, retry and current P0 reports.",
+  "goal": "Record verified B460 deployment and the exact B011 observer proposal with Store first completion and Claim preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B460 deployment verified and completion event observer reviewed — S0986",
+      "reason": "Verified B460 deployment and exact completion observer retirement boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -342,6 +348,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B460 installed 344/344 MATCH with B459 and B307 recovery verified. Projected B011 observer removal preserves first completion, Claim, current route proof and separate completion-record request.",
     "B460 passes 64 selected methods and 22/19 carried checks. The actual Store fixture retains the exact 32-carrier exit and same-ticket recovery.",
     "B459 installed 345/345 MATCH with B458 and B307 recovery verified. The projected half-point retirement preserves the 32 exact central removals, city and route reports, and visible P0 controls.",
     "B459 passes 22 selected methods and 19 carried checks. Two old fact registrations disappear and active Meaning keeps its production owners.",
@@ -1855,6 +1862,52 @@
       "package_sha256": "b33c23567b705b77e349baa555f5bc06dc70d671b06ab05de47bf76779908882",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-half-point-experiment-shell--s0985"
+    },
+    "b460_deployment": {
+      "version": "B460.487 / modinfo487",
+      "source_commit": "4c2c17ca0936c7777a1063c8921b3656811b4596",
+      "digest": "b33c23567b705b77e349baa555f5bc06dc70d671b06ab05de47bf76779908882",
+      "files": 344,
+      "receipt": "B460.487-4c2c17c-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [
+        "HalfYieldProbe.lua"
+      ],
+      "pending": false,
+      "outgoing": "B459.486, 345/345 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b460-deployment-verified-and-completion-event-observer-reviewed--s0986"
+    },
+    "b460_completion_event_observer_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "4c2c17ca0936c7777a1063c8921b3656811b4596",
+      "removed_sha256": {
+        "CompletionProbe.lua": "ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b"
+      },
+      "modified": [
+        "Gameplay.lua",
+        "SpecializationP0.modinfo",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "hidden_controls": [
+        "CompletionButton",
+        "CompletionNextButton"
+      ],
+      "removed_modeled_listeners": [
+        "GameEvents.CityBuilt",
+        "GameEvents.OnDistrictConstructed",
+        "Events.DistrictAddedToMap",
+        "Events.LoadScreenClose"
+      ],
+      "modeled_district_reads": [
+        7,
+        4
+      ],
+      "local_evidence": "local/refactor/B460-CompletionEventObserverRetirementReview/result.json",
+      "local_evidence_sha256": "52f7d4b5fc40526c0b15b53fac4dbe7aa5e7289ec73157c30e2e1eccc83d2643",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b460-deployment-verified-and-completion-event-observer-reviewed--s0986"
     }
   }
 }

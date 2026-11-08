@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "68565bc8d50d141c1a21e64d3c15f392f012a196",
-  "runtime": "B459.486 / modinfo486 temporary develop deployed, 345/345 MATCH. Stable/main B307.334.",
+  "runtime_commit": "4c2c17ca0936c7777a1063c8921b3656811b4596",
+  "runtime": "B460.487 / modinfo487 temporary develop deployed, 344/344 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1726,7 +1726,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0985 verifies the retired B050 shell removal, retained city-exit cleanup and same-ticket recovery, and exact package restoration.",
-  "source_runtime": "B460.487 / modinfo487 local candidate, 344 files. B459.486 remains installed.",
+  "source_review": "S0986 verifies B460 deployment and both recovery packages and isolates the B011 completion event observer from Store and Claim.",
+  "source_runtime": "B460.487 / modinfo487 deployed from 4c2c17c with the approved retired half-point shell removed.",
   "tested_source_snapshot_sha256": "4e04cf6bd86ac826a0790ab91d21d1dbf44b91162ae93aac7cadb627b66ef03b"
 }

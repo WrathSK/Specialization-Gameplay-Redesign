@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0985
-Implementation Build: source B460.487 / modinfo487. Live B459.486 from 68565bc. Stable/main B307.334.
+Status Revision: S0986
+Implementation Build: source B460.487 / modinfo487. Live B460.487 from 4c2c17c. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: HALF_YIELD_EXPERIMENT_RETIRED_LOCAL
+Work State: COMPLETION_EVENT_OBSERVER_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B460 deployment verified and completion event observer reviewed — S0986
+
+B460.487 is installed from `4c2c17ca0936c7777a1063c8921b3656811b4596`. All 344 files match SHA256 `b33c23567b705b77e349baa555f5bc06dc70d671b06ab05de47bf76779908882`. Receipt `B460.487-4c2c17c-playtest.json` is DEVELOP_ACTIVE. The retired half-point shell is absent and its SQL and central cleanup are present. The B459 and B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review (P3 §2a).** `Mod/CompletionProbe.lua` (SHA256 `ef57f13f62a300f0cc06b7871ac038a5d1aad303f9aeb56ea0e16d88d6030c0b`) is the B011 read-only observer for city founding, district completion and district addition. It records observations in memory and prints the `[COMPLETION]` lines. The only explicit reader is the two hidden P0 event-viewer controls. The proposal removes this one Lua file, its two manifest declarations, one Gameplay startup entry, two hidden XML controls and their Lua callbacks and private renderer. The separate CompletionRecordProbe and its request, actual Store and Claim owners and transport keep their existing paths.
+
+The disposable comparison removes four modeled observer callbacks, including its load phase marker, while the actual Gameplay and UI roots complete three identical nonempty route proof packets. In the actual Store/Claim fixture with native doubles, a new city's first Campus records the same identity and first evidence after a later Theater completion, both unrelated Claim candidates retain the same view, and saved records and write counts match. Observer rows go from four to zero and the specific fixture's district reads go from seven to four. The P0 progression, network and separate completion-record requests match. Exact activation and full restoration pass in disposable packages. Evidence `local/refactor/B460-CompletionEventObserverRetirementReview/result.json` SHA256 `52f7d4b5fc40526c0b15b53fac4dbe7aa5e7289ec73157c30e2e1eccc83d2643` with the replay script alongside.
+
+The exact retirement awaits approval. Positive Culture Network cold restoration remains a separate native gate.
 
 ### Retire the half-point experiment shell — S0985
 
