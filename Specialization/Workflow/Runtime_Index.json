@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "73a570c0a73ea08dc5bf7e08886d743a9220cbb3d4b3e43342a356e067be6058",
+      "sha256": "50d24a2a6e2810e657b8cfe8e50e355126de8e3202a208ef7eb08b2259ecad37",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1013 B474 retired Commerce experiment control retirement."
+      "provenance": "S1015 B475 retired hidden industrial report aliases."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "82a052015d0f6abaa2de52a352f784b05bed66d588ae247dacdeca58e6c2bfe4",
+      "sha256": "8e784d02e314ecda1356e673daa9661d89904ee7d79050e545de4d3234bc7ef7",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1013 B474 retired Commerce experiment control retirement."
+      "provenance": "S1015 B475 retired hidden industrial report aliases."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "13f8db034887c0fa2ee25c3ff51202e556bf2a7edc0bba2613504f43ca6acbaf",
+      "sha256": "34d09a87c85c612b47527c814e481bb4a569ac835d6290d510609a1abb4e678e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1013 B474 retired Commerce experiment control retirement."
+      "provenance": "S1015 B475 retired hidden industrial report aliases."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "01b94028b4586f8876b0d85fa94adcbcce96f9529bf01f9f796376e395fe6fec",
+      "sha256": "4e68be87e1a9d72b2d2662a0bd6a923f869c08879e922dd845920df02d6f98a5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1013 B474 retired Commerce experiment control retirement."
+      "provenance": "S1015 B475 retired hidden industrial report aliases."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1014 verifies B474 deployment and both recovery packages. The current industrial control covers both template history and standardization discount paging.",
-  "source_runtime": "B474.501 / modinfo501 deployed from 735f6ad with the three approved hidden Commerce controls removed.",
-  "tested_source_snapshot_sha256": "9fe81e89f30db8dda5a199324ff2550e53bb84d1ed0f80dbe47759ab9f9a1080"
+  "source_review": "S1015 verifies removal of the three redundant industrial controls with both current report routes preserved.",
+  "source_runtime": "B475.502 / modinfo502 local candidate, 337 files. B474.501 remains installed.",
+  "tested_source_snapshot_sha256": "797957b7aef064de3c4e4229cfa95c0325b83f56d9b7f1ed0f6d3f0b3cb1431c"
 }

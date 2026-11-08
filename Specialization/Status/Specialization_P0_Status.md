@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1014
-Implementation Build: source B474.501 / modinfo501. Live B474.501 from 735f6ad. Stable/main B307.334.
+Status Revision: S1015
+Implementation Build: source B475.502 / modinfo502. Live B474.501 from 735f6ad. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: REDUNDANT_INDUSTRIAL_REPORT_CONTROLS_REVIEWED
+Work State: REDUNDANT_INDUSTRIAL_REPORT_CONTROLS_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the three hidden industrial report aliases — S1015
+
+The Owner approved the exact S1014 retirement. Remove the three hidden standalone template and discount controls and their initialization. The prior panel is recoverable from `735f6ada29e1e893796507ae874c38c074d0c6a9`. The package path set stays identical.
+
+- **Runtime Impact Contract (L2, T07/T08).** Both current click routes retain their page sequences and report owners. Three redundant manual bindings retire. The report comparison runs with the same restored Store, six modeled template receipts and zero permanent writes. The panel listener counts match. The exact old Commerce panel comparison stays pinned to B473/B474 and the current report and listener checks still run.
+- **LOCAL_SIMULATION_PASS in scope.** All 14 selected checks pass. The combined report includes both standalone template pages. The discount report returns the same configured result and modeled production progress, with the prior unavailable-progress protection. The carried Commerce and route stages pass 14 and 64 checks. The full panel suite repeats the same two inherited visibility/industrial-history assertion failures on B474 and B475. The initialized control rectangles also reproduce the same two layout overlaps in both versions. See the separate layout review.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7agRetiredIndustrialReportAliases` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7afRetiredCommerceControlsRetirement and O7hRouteObserverRetirement. Tested source SHA256 `797957b7aef064de3c4e4229cfa95c0325b83f56d9b7f1ed0f6d3f0b3cb1431c`, package SHA256 `8b380a2f9a34da4b3cbc80eb6965f2ff45210d776d4c767646ea500c327f4c80`. Local closure `local/refactor/B475-O7agRetiredIndustrialReportAliases-r2/closure.json` SHA256 `dd710f8832f61259f9b0227564b23b5a641e0bc11cbde08cf293b28387dd8004` with the panel comparison logs alongside.
+
+B474 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B474 deployment verified and the hidden industrial report aliases reviewed — S1014
 

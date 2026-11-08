@@ -2,6 +2,15 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7agRetiredIndustrialReportAliases": [
+      "test_o7_retired_industrial_report_aliases",
+      "test_o7_production_report.StandardizationReport.test_actual_panels_read_only_one_current_target_without_hd_helpers",
+      "test_o7_production_report.StandardizationReport.test_changed_or_missing_progress_leaves_applied_report_available",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_four_rows_and_report_do_not_overlap",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_visibility_cleanup_does_not_execute_probe_or_change_runtime_state",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_unique_xml_control_ids_and_current_lua_parse",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7afRetiredCommerceControlsRetirement": [
       "test_o7_retired_commerce_controls_retirement",
       "test_b261_commerce.Sidebar.test_order_preservation_reopen_and_suspended",

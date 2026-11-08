@@ -15,8 +15,6 @@
     <GridButton Hidden="1" ID="PurchaseOnButton" Anchor="L,B" Offset="18,18" Size="240,32" Style="MainButton" String="Purchase -20% ON" />
     <GridButton Hidden="1" ID="PurchaseOffButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Purchase OFF" />
     <GridButton Hidden="1" ID="PurchaseReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read purchase" />
-    <GridButton Hidden="1" ID="NextDiscountsButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Next discounts" />
-    <GridButton Hidden="1" ID="NextTemplatesButton" Anchor="L,B" Offset="280,62" Size="240,32" Style="MainButton" String="Next templates" />
     <GridButton Hidden="1" ID="BoostBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Boost baseline" />
     <GridButton ID="GWBaselineButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Record GW baseline" Hidden="1" />
     <GridButton ID="GWCityButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" Hidden="0"><Label ID="DialogueProjectCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_DIALOGUE_PROJECT_REPORT" Color="255,255,255,255" /></GridButton>
@@ -37,7 +35,6 @@
     <GridButton ID="CarrierStepButton" Anchor="L,B" Offset="542,138" Size="240,32" Style="MainButton" Hidden="0"><Label ID="CarrierStepButtonCaption" Anchor="C,C" Style="FontNormal14" String="网络来源 / 接收" Color="255,255,255,255" /></GridButton>
       <GridButton Hidden="1" ID="BoostReadButton" Anchor="L,B" Offset="18,58" Size="240,32" Style="MainButton"><Label ID="BoostReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="尤里卡 / 鼓舞" Color="255,255,255,255" /></GridButton>
     <GridButton ID="CommerceREADButton" Anchor="L,B" Offset="280,58" Size="240,32" Style="MainButton" Hidden="1"><Label ID="CommerceREADButtonCaption" Anchor="C,C" Style="FontNormal14" String="商业四汇聚" Color="255,255,255,255" /></GridButton>
-    <GridButton Hidden="1" ID="DiscountsButton" Anchor="L,B" Offset="542,58" Size="240,32" Style="MainButton"><Label ID="DiscountsButtonCaption" Anchor="C,C" Style="FontNormal14" String="工业网络折扣" Color="255,255,255,255" /></GridButton>
     <GridButton Hidden="0" ID="TemplatesButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton"><Label ID="TemplatesButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_INDUSTRY_HISTORY_BUTTON" Color="255,255,255,255" /></GridButton>
     <GridButton ID="CopyButton" Anchor="L,B" Offset="542,18" Size="240,32" Style="MainButton" Hidden="1"><Label ID="CopyButtonCaption" Anchor="C,C" Style="FontNormal14" String="写入诊断日志" Color="255,255,255,255" /></GridButton>
       <GridButton ID="PerformanceReadButton" Anchor="L,B" Offset="280,220" Size="240,32" Style="MainButton" Hidden="1"><Label ID="TurnProbeReadCaption" Anchor="C,C" Style="FontNormal14" String="回合原型报告" Color="255,255,255,255" /></GridButton>

@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch
 
 from refactor_harness import ROOT, measure
-from retired_crew_sources import B473, package
+from retired_crew_sources import B473, B474, package
 from test_o7_legacy_completion_record_retirement import load_cold_store, save_fixture, stored_records
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_p0_panel_current_layout import panel_runtime
@@ -88,9 +88,12 @@ def production_dashboard(root):
 
 class RetiredCommerceControls(unittest.TestCase):
     def test_only_three_hidden_buttons_leave_and_current_callbacks_match(self):
-        with package(B473) as previous:
+        with package(B473) as previous, package(B474) as retired:
             old_buttons,old_packets,old_listeners=panel(previous,retired=False)
-        new_buttons,new_packets,new_listeners=panel(ROOT,retired=True)
+            new_buttons,new_packets,new_listeners=panel(retired,retired=True)
+        current_buttons,current_packets,current_listeners=panel(ROOT,retired=True)
+        self.assertTrue(CONTROLS.keys().isdisjoint(current_buttons))
+        self.assertEqual((current_packets,current_listeners),(new_packets,new_listeners))
         for control in CONTROLS:
             self.assertTrue(old_buttons.pop(control))
         self.assertEqual(old_buttons,new_buttons)

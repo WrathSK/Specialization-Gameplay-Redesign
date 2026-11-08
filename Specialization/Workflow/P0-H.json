@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1014",
-    "runtime": "B474.501 / modinfo501",
+    "status": "S1015",
+    "runtime": "B475.502 / modinfo502",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B474 deployment and review the redundant industrial controls with the current left/right reports and paging preserved.",
+  "goal": "Verify the removal of the three redundant industrial controls with both current report routes preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the three hidden industrial report aliases — S1015",
+      "reason": "Approved industrial report alias retirement with left/right paging preserved"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -516,6 +522,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B475 passes 14 selected and 14/64 carried checks. Both report routes, template pages, progress read and route proofs match.",
     "B474 installed 337/337 MATCH with both recovery packages verified. The industrial projection preserves both report routes, two template pages, current production progress and listener counts.",
     "B474 passes 14 selected and 14/64 carried checks. The Commerce report, scoped selection, stale guard and route proofs match.",
     "B473 installed 337/337 MATCH with both recovery packages verified. The Commerce projection preserves the report, configuration request, stale guard and listener counts.",
@@ -3566,6 +3573,69 @@
       "local_transcript_sha256": "7947cc11e8d646d5700f5965ccfa25b88bd594ef71f60a6c3a352766b76c532d",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b474-deployment-verified-and-the-hidden-industrial-report-aliases-reviewed--s1014"
+    },
+    "b475_retired_industrial_report_aliases": {
+      "build": "B475.502 / modinfo502",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7agRetiredIndustrialReportAliases": {
+          "tests": 14,
+          "path": "local/refactor/B475-O7agRetiredIndustrialReportAliases-r2/closure.json",
+          "sha256": "dd710f8832f61259f9b0227564b23b5a641e0bc11cbde08cf293b28387dd8004",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "1c9455c8143e3c0c5d40f5dc05a68757de85f3cfe73228002903d847e79458c6"
+          }
+        },
+        "O7afRetiredCommerceControlsRetirement": {
+          "tests": 14,
+          "path": "local/refactor/B475-CarriedO7af-r2/closure.json",
+          "sha256": "3bb0ce6c8698dd40b84e0e5a98dc2f02b24dc2c63b52b83fc95d12220079e9a0",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "e44ec09d68468069d78473cee896d6978a1705c0462e04449c4add65ada9be7c"
+          }
+        },
+        "O7hRouteObserverRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B475-CarriedO7h-r2/closure.json",
+          "sha256": "51ec6dffad935a698d907b167b19059b031d352dfba8f9fa3ca55dd79408ed77",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "79eaf3dd1b4670fa65b2fb5e2d6372ddaad865c700d92319e6ce36c3bfaefc97"
+          }
+        }
+      },
+      "files": 337,
+      "removed": [],
+      "prior_source": "735f6ada29e1e893796507ae874c38c074d0c6a9",
+      "matching_route_packets": 3,
+      "modeled_alias_bindings": [
+        3,
+        0
+      ],
+      "template_pages_matched": 2,
+      "property_writes": [
+        0,
+        0
+      ],
+      "retained_progress_report": "MATCH",
+      "panel_listener_counts": "MATCH",
+      "historical_comparisons": {
+        "B474-panel-comparison.log": {
+          "path": "local/refactor/B475-O7agRetiredIndustrialReportAliases-r2/B474-panel-comparison.log",
+          "sha256": "db6ee3a6f67352b8808ecfa8bdccd64bdb7c51d90271012f09b245e514cd4235"
+        },
+        "B475-panel-comparison.log": {
+          "path": "local/refactor/B475-O7agRetiredIndustrialReportAliases-r2/B475-panel-comparison.log",
+          "sha256": "c137fcc547117afeb25e3901b3be6836c39a54f150f59fee6defd7dc0f646258"
+        }
+      },
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "797957b7aef064de3c4e4229cfa95c0325b83f56d9b7f1ed0f6d3f0b3cb1431c",
+      "package_sha256": "8b380a2f9a34da4b3cbc80eb6965f2ff45210d776d4c767646ea500c327f4c80",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-three-hidden-industrial-report-aliases--s1015"
     }
   }
 }
