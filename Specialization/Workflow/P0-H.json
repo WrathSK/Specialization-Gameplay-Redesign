@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1004",
-    "runtime": "B469.496 / modinfo496",
+    "status": "S1005",
+    "runtime": "B470.497 / modinfo497",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B469 deployment and review the exact manual Journal and Binding report retirement with legacy load audits and current Store preserved.",
+  "goal": "Verify the approved manual Journal and Binding report retirement with legacy cold audits, current Store, identity and route proof preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the two hidden manual city record reports — S1005",
+      "reason": "Approved manual city record report retirement with automatic audits and current progress preserved"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -456,6 +462,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B470 passes 13 selected checks and carried city flow, marker, first-completion and route suites. Cold records, current reports and identity match.",
     "B469 installed 337/337 MATCH with both recovery packages verified. The projection preserves the two legacy cold audits, current Store records, identity and route proofs.",
     "B469 passes 13 selected and 28/64 carried checks. Cold Store, first completion, retained SupportFacts, reports and network proofs match.",
     "B468 installed 337/337 MATCH with both recovery packages verified. The manual City Flow projection preserves Store cold restore, SupportFacts, the legacy resume, City Journal and current route proofs.",
@@ -2861,6 +2868,67 @@
       "local_transcript_sha256": "55cf5f2bc65d984eb44341755c88725997033570f5d2c5d3c4c13771d8b89b04",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b469-deployment-verified-and-the-two-manual-city-record-reports-reviewed--s1004"
+    },
+    "b470_manual_city_record_reports_retirement": {
+      "build": "B470.497 / modinfo497",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7abManualCityRecordReportsRetirement": {
+          "tests": 13,
+          "path": "local/refactor/B470-O7abManualCityRecordReportsRetirement/closure.json",
+          "sha256": "e89fb151f83649d7df2f3e74876fb74a7d25a743e56dbae2c0e0de9e34f1fd84"
+        },
+        "O7aaManualCityFlowRetirement": {
+          "tests": 13,
+          "path": "local/refactor/B470-CarriedO7aa/closure.json",
+          "sha256": "66f2dfc87974ce24b7a293222c958ce5b3669edbe79a9c44b635eb4c66f95253"
+        },
+        "O7zCityMarkerRetirement": {
+          "tests": 28,
+          "path": "local/refactor/B470-CarriedO7z/closure.json",
+          "sha256": "8181e5f924206a10048e483c76b7f19191176c4dce0fa07c0aa2b55e4d07d6a1"
+        },
+        "O7wLegacyCompletionRecordRetirement": {
+          "tests": 28,
+          "path": "local/refactor/B470-CarriedO7w/closure.json",
+          "sha256": "37077701c61bb148de3e77c03af469e00107804eee9abc443a5afb9a4f93c5db"
+        },
+        "O7hRouteObserverRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B470-CarriedO7h/closure.json",
+          "sha256": "09a70ba4ecf8d876157cd812d1b862d3a970797dd0bb3d737342db5f130cc6ab"
+        }
+      },
+      "files": 337,
+      "removed": [],
+      "prior_source": "6c3c4ce874998fb6498768f3b9dc7bb742aa4a2f",
+      "matching_route_packets": 3,
+      "manual_read_calls": {
+        "journal": [
+          2,
+          0
+        ],
+        "binding": [
+          2,
+          0
+        ]
+      },
+      "legacy_audit_evidence": "S1004 reviewed projection",
+      "panel_baseline_issue": {
+        "B469": {
+          "path": "local/refactor/B470-O7abManualCityRecordReportsRetirement/B469-panel-comparison.log",
+          "sha256": "33c6d236377bdd5d2596b4a7d8f78584776f34a486ba56b6e8bd5b6fb480fa16"
+        },
+        "B470": {
+          "path": "local/refactor/B470-O7abManualCityRecordReportsRetirement/B470-panel-comparison.log",
+          "sha256": "e2c3d01828038fe2dbfa261a5c84e2f23642279c9ceefbefb672375e1b4cba5d"
+        }
+      },
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "d616f837ce20eab389060c110eaf7af0cc357eb880e92b73b987d52c3ac4652a",
+      "package_sha256": "66e50d8f18c8ee89140ecc2af30a43973d66814e87a0c0937abfc3066c5877d6",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-two-hidden-manual-city-record-reports--s1005"
     }
   }
 }

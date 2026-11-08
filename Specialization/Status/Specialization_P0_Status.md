@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1004
-Implementation Build: source B469.496 / modinfo496. Live B469.496 from 6c3c4ce. Stable/main B307.334.
+Status Revision: S1005
+Implementation Build: source B470.497 / modinfo497. Live B469.496 from 6c3c4ce. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: MANUAL_CITY_RECORD_REPORTS_RETIREMENT_REVIEWED
+Work State: MANUAL_CITY_RECORD_REPORTS_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the two hidden manual city record reports — S1005
+
+The Owner approved the exact two-report retirement reviewed in S1004. Remove the hidden CityJournalButton and BindingReadButton, their callbacks, and the CITY_JOURNAL_READ and BINDING_READ branches in Gameplay. The previous paths are recoverable from `6c3c4ce874998fb6498768f3b9dc7bb742aa4a2f`. The package path set stays identical.
+
+- **Runtime Impact Contract (L3, T06/T07/T08).** The two selected-city commands served manual reports. Their modeled calls fall from two to zero each. CityJournalProbe and BindingProbe retain their Read methods for legacy cold audits and the actual foundation, inheritance and identity duties. The Store's current progress report keeps its existing route. S1004 verifies both legacy audits and the disposable round trip with the exact removal.
+- **LOCAL_SIMULATION_PASS in scope.** All 13 selected methods pass. Two populated cold records, subsequent first completion, identity resolution, other controls, current Store reports and three nonempty route proofs match. The city flow, marker, first-completion and route stages pass 13, 28, 28 and 64 checks respectively. The older City Flow and marker UI comparisons replay their original package pairs. The full panel comparison reproduces the same two visibility and industrial history command assertion failures on B469 and B470.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7abManualCityRecordReportsRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7aaManualCityFlowRetirement, O7zCityMarkerRetirement, O7wLegacyCompletionRecordRetirement and O7hRouteObserverRetirement. Tested source SHA256 `d616f837ce20eab389060c110eaf7af0cc357eb880e92b73b987d52c3ac4652a`, package SHA256 `66e50d8f18c8ee89140ecc2af30a43973d66814e87a0c0937abfc3066c5877d6`. Local closure `local/refactor/B470-O7abManualCityRecordReportsRetirement/closure.json` SHA256 `e89fb151f83649d7df2f3e74876fb74a7d25a743e56dbae2c0e0de9e34f1fd84` with both panel logs alongside.
+
+B469 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B469 deployment verified and the two manual city record reports reviewed — S1004
 

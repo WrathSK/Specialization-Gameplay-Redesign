@@ -1,7 +1,7 @@
 """Retire the old marker commands while keeping saved markers and current reports."""
 import unittest
 
-from refactor_harness import Context, PackageVFS, ROOT, measure
+from refactor_harness import Context, PackageVFS, measure
 from retired_crew_sources import B467, B468, package
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -10,8 +10,8 @@ from test_pu11_package_absence import scalars
 CONTROLS = {'CaptureButton': 'CAPTURE', 'MarkButton': 'MARK_CITY'}
 
 
-def roots(root, revision=None):
-    history = (root, revision) if revision else None
+def roots(root, revision, *, retired):
+    history = (root, revision)
     vfs = PackageVFS(manifest=root/'Mod/SpecializationP0.modinfo')
     gp, ui = (Context(name=name, vfs=vfs, history=history) for name in ('Gameplay', 'UI/BackgroundRoutes'))
     packets = exercise_proof(gp, ui)
@@ -70,7 +70,7 @@ def roots(root, revision=None):
       send('NETWORK_READ',1,'after-network')
       assert(s.LastToken=='after-network' and net.TransactionCurrent(0) and s.Snapshot==network)
       retained={network=network,journal=journal,summary=summary}
-    """, revision is None)
+    """, retired)
     version = gp.eval('SPCP0.VERSION')
     reports = {key: value.removeprefix(version+' | ') for key, value in gp.eval('retained').items()}
     assert all(vm.load_counts['missing'] + vm.load_counts['failed'] == 0 for vm in (gp, ui))
@@ -97,9 +97,9 @@ def panel(root, *, retired):
 
 class CityMarkerRetirement(unittest.TestCase):
     def test_stale_requests_leave_saved_markers_and_current_reports_intact(self):
-        with package(B467) as previous:
-            before = roots(previous, B467)
-        after = roots(ROOT)
+        with package(B467) as previous, package(B468) as retired:
+            before = roots(previous, B467, retired=False)
+            after = roots(retired, B468, retired=True)
         self.assertEqual(before[:-1], after[:-1])
         self.assertEqual((before[-1], after[-1]), ((5, 1), (0, 0)))
         self.assertEqual(len(after[0]), 3)

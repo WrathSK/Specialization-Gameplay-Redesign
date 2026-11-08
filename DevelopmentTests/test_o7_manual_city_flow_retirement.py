@@ -3,14 +3,14 @@ import unittest
 from unittest.mock import patch
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B468, package
+from retired_crew_sources import B468, B469, package
 from test_p0_panel_current_layout import panel_runtime
 import test_o7_legacy_completion_record_retirement as store_fixture
 
 
-def store_and_request(root, saved, revision=None):
+def store_and_request(root, saved, revision, *, retired):
     vfs = PackageVFS(manifest=root/'Mod/SpecializationP0.modinfo')
-    history = (root, revision) if revision else None
+    history = (root, revision)
     vm = Context(name='Gameplay', vfs=vfs, history=history)
     with patch.multiple(store_fixture, ROOT=root, context=lambda path: vm):
         completed = store_fixture.load_and_complete(root, saved)
@@ -46,7 +46,7 @@ def store_and_request(root, saved, revision=None):
       else assert(s.LastToken==nil and s.Stage=='REJECT_CITY') end
       assert(cityWrites==beforeCityWrites and #writeKeys==beforeGameWrites)
       manualReads=reads
-    """, revision is None)
+    """, retired)
     return completed, vm.eval('manualReads')
 
 
@@ -67,12 +67,12 @@ def panel(root, *, retired):
 class ManualCityFlowRetirement(unittest.TestCase):
     def test_cold_store_and_support_facts_survive_stale_city_flow_requests(self):
         saved = store_fixture.save_fixture()
-        with package(B468) as previous:
-            old, old_reads = store_and_request(previous, saved, B468)
+        with package(B468) as previous, package(B469) as after:
+            old, old_reads = store_and_request(previous, saved, B468, retired=False)
             for name in ('CityFlowProbe.lua', 'CityJournalProbe.lua', 'BindingProbe.lua', 'FreshBindingHook.lua',
                          'CityInheritance.lua', 'EffectiveFacts.lua', 'CityProgressionStore.lua', 'NetworkInput.lua'):
                 self.assertEqual((previous/'Mod'/name).read_bytes(), (ROOT/'Mod'/name).read_bytes())
-        new, new_reads = store_and_request(ROOT, saved)
+            new, new_reads = store_and_request(after, saved, B469, retired=True)
         self.assertEqual(old, new)
         self.assertEqual((old_reads, new_reads), (2, 0))
         measure('manual_city_flow_retirement', dict(
@@ -80,9 +80,9 @@ class ManualCityFlowRetirement(unittest.TestCase):
             manual_flow_read_calls=[2, 0]))
 
     def test_only_the_hidden_city_flow_control_retires(self):
-        with package(B468) as previous:
+        with package(B468) as previous, package(B469) as after:
             old_buttons, old_requests = panel(previous, retired=False)
-        new_buttons, new_requests = panel(ROOT, retired=True)
+            new_buttons, new_requests = panel(after, retired=True)
         self.assertTrue(old_buttons.pop('CityFlowButton'))
         self.assertEqual(old_buttons, new_buttons)
         self.assertEqual(old_requests[:-1], new_requests)

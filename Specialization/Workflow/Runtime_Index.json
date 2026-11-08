@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "f0befaaaf4c1a112e2a871daf2aca00e524d5016b4a17f8d3bbcbf7fe068f401",
+      "sha256": "2d2e892d1420aa1c13698d6757b1a7dc711f20e5746254418132fc5292833db4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1003 B469 hidden manual City Flow report retirement."
+      "provenance": "S1005 B470 two hidden city record reports retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "e53616f573b83f2a5bb29f6dcd929be1e3ba9ef67b2843c7779a56eca57928f6",
+      "sha256": "41f806f69d3ac93e3d6493d701f4bb68000a801d51e124047b3a04eddd4ff300",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1003 B469 hidden manual City Flow report retirement."
+      "provenance": "S1005 B470 two hidden city record reports retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "98c9626f318f5141d812823551f7a0aa45141f546420f0d7dc402d1fc51ebfa7",
+      "sha256": "ad58f70d6b804c367609ee8da421e64c55389c2c4cdba043b8a15cd369c5b9d4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1003 B469 hidden manual City Flow report retirement."
+      "provenance": "S1005 B470 two hidden city record reports retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "954bccb16e2bccc946081d0545473db1f12e1ddaf10adb03fa8b3dc6e78b5d89",
+      "sha256": "79c823e9a76c7365a62f3621f67c53d035cb7c9fe605910bc8d4d69915d053a2",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1003 B469 hidden manual City Flow report retirement."
+      "provenance": "S1005 B470 two hidden city record reports retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "f40b674dc0ea5c9297300599de0a17577005beee6df6313f4ab712bb3c0b6ca5",
+      "sha256": "63ca1c12662faa92e6879dbc109ae39944f82b8551c3c00eb60b2a2cce0241d3",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1003 B469 hidden manual City Flow report retirement."
+      "provenance": "S1005 B470 two hidden city record reports retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1004 verifies B469 deployment and both recovery packages. The two hidden manual city record reports can retire separately from the legacy load audits and current Store and identity paths.",
-  "source_runtime": "B469.496 / modinfo496 deployed from 6c3c4ce with the approved hidden manual City Flow report removed.",
-  "tested_source_snapshot_sha256": "09fecdf2a8f6c1942afe2f8f9d6c1d3f2afc0d8cf2d181ba30753c610afa09c1"
+  "source_review": "S1005 verifies the exact retirement of the two hidden city record reports with legacy audits and current Store and identity preserved.",
+  "source_runtime": "B470.497 / modinfo497 local candidate, 337 files. B469.496 remains installed.",
+  "tested_source_snapshot_sha256": "d616f837ce20eab389060c110eaf7af0cc357eb880e92b73b987d52c3ac4652a"
 }

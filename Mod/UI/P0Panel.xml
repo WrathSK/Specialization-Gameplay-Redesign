@@ -35,8 +35,6 @@
     <GridButton Hidden="1" ID="GWAOffButton" Anchor="L,B" Offset="280,150" Size="240,32" Style="MainButton" String="GW adjacency Off" />
     <GridButton Hidden="1" ID="GWAAutoButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="GW adjacency Auto" />
     <Container ID="LegacyProbeButtons" Size="840,664" Hidden="1">
-      <GridButton ID="CityJournalButton" Anchor="L,B" Offset="18,238" Size="240,32" Style="MainButton" String="Read city journal" Hidden="1" />
-      <GridButton ID="BindingReadButton" Anchor="L,B" Offset="542,194" Size="240,32" Style="MainButton" String="Read binding" Hidden="1" />
       <GridButton ID="BaselineButton" Anchor="L,B" Offset="585,18" Size="200,32" Style="MainButton" String="Baseline + Copy" Hidden="1" />
       <GridButton ID="Lv2HousingButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv2 housing" Hidden="1" />
       </Container>

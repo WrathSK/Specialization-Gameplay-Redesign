@@ -40,8 +40,11 @@ def save_fixture():
     return scalars(fixture.eval('saved'))
 
 
-def load_and_complete(root,saved):
-    ctx=context(root)
+def stored_records(ctx):
+    return tuple(scalars(ctx.eval(expr)) for expr in ('currentIndex()', 'currentRecord(1)', 'currentRecord(2)'))
+
+
+def load_cold_store(ctx,saved):
     ctx.execute(NATIVE)
     ctx.execute("""
       local saved=...
@@ -99,7 +102,6 @@ def load_and_complete(root,saved):
     """,ctx.table(saved))
     ctx.load('Gameplay')
     ctx.execute("""
-      local projected=...
       local s=ExposedMembers.SPC_P0
       local store=s.CityProgressionStore
       Events.LoadScreenClose.Fire();publish()
@@ -110,6 +112,35 @@ def load_and_complete(root,saved):
       local b=store.Base(0,city1)
       assert(b.specialization=='RESEARCH' and b.potential==1)
       assert(store.Base(0,city2).specialization=='NONE')
+    """)
+    cold=stored_records(ctx)
+    assert cold == (saved['properties']['SPC_PROGRESSION_INDEX_V3'],
+        *(saved['properties']['SPC_PROGRESSION_CITY_V3_'+saved['cities'][i]['token']] for i in (1,2)))
+    assert not any(k.startswith('SPC_PROGRESSION_') for k in scalars(ctx.eval('writeKeys')).values())
+    assert ctx.eval('cityWrites') == 0
+    return cold
+
+
+def complete_second_city(ctx,saved,cold):
+    ctx.execute("""
+      complete(city2,18)
+      complete(city2,17)
+      local store=ExposedMembers.SPC_P0.CityProgressionStore
+      local b=store.Base(0,city2)
+      assert(b.specialization=='CULTURE' and b.potential==1)
+      assert(currentRecord(2).base.first.type=='DISTRICT_THEATER')
+    """)
+    assert scalars(ctx.eval('currentIndex()'))==cold[0] and scalars(ctx.eval('currentRecord(1)'))==cold[1]
+    assert scalars(ctx.eval('existingOldRecord()'))==saved['cities'][1]['legacy']
+    assert ctx.eval('cityWrites')==0 and ctx.load_counts['missing']+ctx.load_counts['failed']==0
+
+
+def load_and_complete(root,saved, *, journal_retired=False):
+    ctx=context(root)
+    cold=load_cold_store(ctx,saved)
+    ctx.execute("""
+      local projected,journalRetired=...
+      local s=ExposedMembers.SPC_P0
       if projected then
         assert(s.CompletionRecordProbe==nil and s.StartStatus.CompletionRecordProbe==nil)
       else
@@ -124,31 +155,24 @@ def load_and_complete(root,saved):
       assert(s.LastToken=='retained-store' and s.Snapshot:find('已登记',1,true),s.Snapshot)
       retainedStoreReport=s.Snapshot
       request('CITY_JOURNAL_READ','retained-journal')
-      assert(s.LastToken=='retained-journal' and s.Snapshot=='Game进度记录；旧Journal冻结')
+      if journalRetired then
+        assert(s.LastToken=='retained-store' and s.Snapshot==retainedStoreReport)
+      else
+        assert(s.LastToken=='retained-journal' and s.Snapshot=='Game进度记录；旧Journal冻结')
+      end
+      local previousToken,previousReport=s.LastToken,s.Snapshot
       request('COMPLETION_RECORD_READ','retired-report')
       if projected then
-        assert(s.LastToken=='retained-journal' and s.Snapshot=='Game进度记录；旧Journal冻结')
+        assert(s.LastToken==previousToken and s.Snapshot==previousReport)
       else
         assert(s.LastToken=='retired-report' and s.Snapshot:find('OBSERVED_RECORD_MATCH',1,true),s.Snapshot)
       end
       assert(s.FailureAt==nil)
-    """,root==ROOT)
-    cold=(scalars(ctx.eval('currentIndex()')),scalars(ctx.eval('currentRecord(1)')),scalars(ctx.eval('currentRecord(2)')))
-    assert cold == (saved['properties']['SPC_PROGRESSION_INDEX_V3'],
-        *(saved['properties']['SPC_PROGRESSION_CITY_V3_'+saved['cities'][i]['token']] for i in (1,2)))
+    """,root==ROOT,journal_retired)
+    assert stored_records(ctx) == cold
     assert not any(k.startswith('SPC_PROGRESSION_') for k in scalars(ctx.eval('writeKeys')).values())
     assert ctx.eval('cityWrites') == 0
-    ctx.execute("""
-      complete(city2,18)
-      complete(city2,17)
-      local store=ExposedMembers.SPC_P0.CityProgressionStore
-      local b=store.Base(0,city2)
-      assert(b.specialization=='CULTURE' and b.potential==1)
-      assert(currentRecord(2).base.first.type=='DISTRICT_THEATER')
-    """)
-    assert scalars(ctx.eval('currentIndex()'))==cold[0] and scalars(ctx.eval('currentRecord(1)'))==cold[1]
-    assert scalars(ctx.eval('existingOldRecord()'))==saved['cities'][1]['legacy']
-    assert ctx.eval('cityWrites')==0 and ctx.load_counts['missing']+ctx.load_counts['failed']==0
+    complete_second_city(ctx,saved,cold)
     report=ctx.eval('retainedStoreReport').removeprefix(ctx.eval('SPCP0.VERSION')+' | ')
     return (scalars(ctx.eval('properties')),scalars(ctx.eval('writeKeys')),report,
             ctx.eval('oldRecordReads'),ctx.eval('Events.LoadScreenClose.Count()'),
@@ -180,7 +204,8 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
     def test_populated_Store_and_first_completion_survive_with_old_value(self):
         saved=save_fixture()
         with package(B464) as previous:
-            before,after=(load_and_complete(root,saved) for root in (previous,ROOT))
+            before=load_and_complete(previous,saved)
+            after=load_and_complete(ROOT,saved,journal_retired=True)
             for name in ('CityProgressionStore.lua','ClaimProjects.lua','CityJournalProbe.lua',
                          'BindingProbe.lua','CityFlowProbe.lua','FreshBindingHook.lua','EffectiveFacts.lua'):
                 self.assertEqual((ROOT/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())

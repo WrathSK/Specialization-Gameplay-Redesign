@@ -643,7 +643,7 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Receive(playerID,params) end
     return
   end
-  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="BINDING_READ" and params.Action~="CITY_JOURNAL_READ" then return end
+  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" then return end
   if not P.IsTestPlayer(playerID) then return end
   shared.LastToken=nil
   shared.RequestToken=params.Token
@@ -687,14 +687,6 @@ local function request(playerID,params)
     if shared.Lv3Support then shared.Snapshot=shared.Snapshot..shared.Lv3Support.Describe(playerID,city) end
     if shared.Lv3Effects then shared.Snapshot=shared.Snapshot..shared.Lv3Effects.Describe(playerID,city) end
     shared.LastToken=params.Token;stage("ACK RESEARCH_SUPPORT");return
-  end
-  if params.Action=="CITY_JOURNAL_READ" then
-    shared.Snapshot=shared.CityJournalProbe.Read(playerID,city)
-    shared.LastToken=params.Token;stage("ACK CITY_JOURNAL");return
-  end
-  if params.Action=="BINDING_READ" then
-    shared.Snapshot=shared.BindingProbe.Read(playerID,city)
-    shared.LastToken=params.Token;stage("ACK BINDING");return
   end
   if params.Action=="GOVERNOR" or params.Action=="SPECIALISTS" then
     shared.Snapshot=P.FocusProbe(city,params.Action,stage)
