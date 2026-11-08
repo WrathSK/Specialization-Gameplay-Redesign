@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0979
-Implementation Build: source B457.484 / modinfo484. Live B456.483 from fbb1a96. Stable/main B307.334.
+Status Revision: S0980
+Implementation Build: source B457.484 / modinfo484. Live B457.484 from 30a0749. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: SOURCE_YIELD_PROTOTYPE_RETIRED_LOCAL
+Work State: MANUAL_YIELD_CARRIER_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B457 deployment verified and hidden carrier experiment reviewed — S0980
+
+B457.484 is installed from `30a0749815b1a953f31101207a4a44e2cd3c1a89`. All 347 files match SHA256 `653e294b0bf80ca0913ae4f23fa43602cdb39e51442d25f990b83a8439803209`. Receipt `B457.484-30a0749-playtest.json` is DEVELOP_ACTIVE. The approved reader path is absent. The outgoing B456 and stable B307 recovery packages match their recorded hashes. Game exit, UUID uniqueness and the clear transaction boundary were verified.
+
+**Next exact retirement review (P3-22).** The B029 `Mod/YieldCarrierProbe.lua` (`df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21`) retains three direct manual request handlers for advancing, reading and resetting the old yield experiment. The only P0 caller is the hidden Carrier OFF control. The visible city progression and network detail controls already use separate requests. Automatic city-exit withdrawal runs through the central cleanup and its own exact plot-flag descriptors.
+
+The disposable projection removes the one Lua file, its Gameplay include and two manifest declarations, CARRIER_STEP/SOURCE_YIELDS/CARRIER_OFF and their allowlist entries, and the hidden control and its callback. Retain the experiment SQL and the central cleanup. This retires manual reset for a city that remains in play. Existing flagged plots continue to follow the existing exit path. The old manual sequence makes four modeled writes before and zero after projection. The central exit fixture clears exactly the two flags of the departing city, preserving other properties and the second city. The current city report and visible P0 control behavior match, as do three nonempty route proof packets. The exact one-path temporary switch and full restoration pass in disposable directories. Evidence `local/refactor/B457-ManualYieldCarrierRetirementReview/result.json` SHA256 `d7a0ae540c281c5dbc414c3d93fd9ee35e5dbb062bc25ef36cb95d2cdc7d0d62` with the replay script alongside.
+
+The one-path removal and its manual reset consequence await approval. The separate P0 layout issue remains recorded in S0977. Positive Culture Network cold restoration retains its native gate.
 
 ### Retire the unused city-yield reader — S0979
 

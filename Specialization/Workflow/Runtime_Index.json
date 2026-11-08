@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "fbb1a963d2b5b2afe8218e5f933a09be442e6186",
-  "runtime": "B456.483 / modinfo483 temporary develop deployed, 348/348 MATCH. Stable/main B307.334.",
+  "runtime_commit": "30a0749815b1a953f31101207a4a44e2cd3c1a89",
+  "runtime": "B457.484 / modinfo484 temporary develop deployed, 347/347 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1741,7 +1741,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0979 verifies the exact unused reader removal, retained reports and legacy cleanup, frozen reader replay, and rollback.",
-  "source_runtime": "B457.484 / modinfo484 local candidate, 347 files. B456.483 remains installed.",
+  "source_review": "S0980 verifies B457 deployment and both recovery packages, and reviews the hidden B029 manual carrier experiment independently of central exit cleanup.",
+  "source_runtime": "B457.484 / modinfo484 deployed from 30a0749 with the approved unused city-yield reader removed.",
   "tested_source_snapshot_sha256": "3d423167b9fdac20d5c8e38b69b760e18d36713f260a55c76fc5ac1a39d7abb2"
 }
