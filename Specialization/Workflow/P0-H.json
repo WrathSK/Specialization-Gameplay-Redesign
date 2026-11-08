@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1019",
+    "status": "S1020",
     "runtime": "B477.504 / modinfo504",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the approved combined retirement of old P0 experiment commands and duplicate report controls.",
+  "goal": "Verify local cold-network readiness and document the existing one-route positive Culture Network native gate.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Prepare the positive Culture Network cold reload check — S1020",
+      "reason": "25 local readiness checks and the pending one-route native Culture check"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -546,6 +552,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B477 passes 25 cold-network readiness checks. The positive native Culture Network reload remains open.",
     "B477 passes 33 targeted checks and verifies exact old-effect withdrawal and current reports. Package paths remain identical.",
     "B476 installed 337/337 MATCH with both recovery packages verified. The B055 projection preserves cleanup and retry, current reports and collection receipts.",
     "B476 passes 11 full panel and 28 carried checks. Both overlaps resolve and report requests match.",
@@ -3908,6 +3915,28 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#consolidate-the-old-p0-experiment-and-report-retirement--s1019"
+    },
+    "b477_network_cold_readiness": {
+      "build": "B477.504 / modinfo504",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "native": "USER_GAME_TEST_REQUIRED",
+      "native_scope": "positive Culture Network same-build cold reload",
+      "installed_build": "B476.503",
+      "installed_source": "df9461790079ef858f4df11944c78dfc7e0877f3",
+      "baseline": "b955dbc5e52bf00975721b8a48fbfb7ef744cf60",
+      "source_snapshot_sha256": "76b668432712c28f6e3fca104c47af7c20f90a511dcda63510d8c1d7759b3d4f",
+      "package_sha256": "496a5fa94c3d802ed13259f99170783f8b95c01734245364a93de91bdfdf9bc1",
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "evidence": {
+        "tests": 25,
+        "path": "local/refactor/B477-NColdNetworkReadiness/closure.json",
+        "sha256": "95f9607b03388696766f633e0fd807945df007f17c0e4db3a9f85ba6bf13355f",
+        "transcripts": {
+          ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          ".stderr.log": "5c3724fa99ed25aee040f6e2998b995e6f6a30f7d49ddd37e6fefe64f5ac4ed7"
+        }
+      },
+      "report": "Specialization/Status/Specialization_P0_Status.md#prepare-the-positive-culture-network-cold-reload-check--s1020"
     }
   }
 }

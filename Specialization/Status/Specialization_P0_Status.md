@@ -1,17 +1,32 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1019
+Status Revision: S1020
 Implementation Build: source B477.504 / modinfo504. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: LEGACY_PANEL_CLEANUP_LOCAL_COMPLETE
+Work State: CULTURE_NETWORK_COLD_LOCAL_READINESS_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Prepare the positive Culture Network cold reload check — S1020
+
+The pending proof concerns positive Culture Network output across a full application restart. B395 records positive projection at T33 during play. The B437 Standardization cold reload and both B443 production witnesses contain zero Culture Network contributions. Keep their accepted scopes. The positive Culture Network cold case remains `USER_GAME_TEST_REQUIRED`.
+
+- **LOCAL_SIMULATION_PASS in scope.** The 25 cases exercise the real Bridge and effect owners with native and Store doubles. A saved positive aggregate stays in place through pending topology or unreadable source history. Existing fact recovery reconciles it without replacing matching carriers. A second change, a confirmed receiver exit and a verified route loss have distinct outcomes. The existing Sender handles a lost first proof and signal-only changes. Unknown proof keeps transactions closed. The actual Gameplay and UI roots confirm nonempty routes, and optional trace absence preserves the proof and acknowledgement.
+- **STATIC_CONFIRMED and reproduction.** The B477.504 package remains at 337 files, SHA256 `496a5fa94c3d802ed13259f99170783f8b95c01734245364a93de91bdfdf9bc1`. Installed B476.503 at SHA256 `31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e` has identical network, source history and effect owner files. Compare B476 `df9461790079ef858f4df11944c78dfc7e0877f3` and B477 `b955dbc5e52bf00975721b8a48fbfb7ef744cf60`: Gameplay startup, proof ingress and the two relevant report bodies match. Probe and modinfo differ only by version stamps. S1019 verifies the retained panel requests. An eligible same-build B476 save can supply this narrow cold witness. Record the exact build and profile of the test. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage NColdNetworkReadiness` with CPython 3.14/Lupa 2.8 and the read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Tested source SHA256 `76b668432712c28f6e3fca104c47af7c20f90a511dcda63510d8c1d7759b3d4f`. Local closure `local/refactor/B477-NColdNetworkReadiness/closure.json` SHA256 `95f9607b03388696766f633e0fd807945df007f17c0e4db3a9f85ba6bf13355f` and transcripts are retained locally.
+
+**One native check when the save is ready**
+
+1. Use a campaign from the installed build and its fixed HD regression profile. A Culture ACTIVE IV city must own all three completed insight categories for one foreign civilization. Use one domestic route. A Culture IV capital can send to a second specialized city. A noncapital Culture IV source can send to a specialized capital or commercial hub. In the recipient keep one specialist working the intact anchor district. One complete civilization gives that worker +1 Culture. The recipient can qualify through its confirmed specialty and intact anchor.
+2. Start the existing collector and record the recipient city, turn and native Culture reading for its anchor. The Culture Insights report can identify the complete civilization count and working specialists. Save with the route and the positive output in place. Keep the same specialist, population and target while comparing. Use a prior no-route value or a native breakdown that identifies the bonus if the displayed total alone cannot establish positive output.
+3. Quit the entire game and reopen the same save on the same build and profile. Restart the collector if it exited. Observe the same native value before advancing the turn or opening the trade panel. Use the read-only Culture Insights report to confirm the recovered projection. Collect the pre-save and cold-session logs and the two native readings or screenshots. The expected match is the same positive native output and a verified nonempty route followed by the same Culture Network count. If the collector misses the interval before proof, that interval remains unknown. A projection count or a pending trace alone does not establish native yield restoration.
+
+The current build requires no package switch for this narrow witness. Wait for a suitable save if the insight set is still incomplete. Standardization and Commerce retain their existing cold evidence. Pending-network protection and the wider integration acceptance retain their separate gates.
 
 ### Consolidate the old P0 experiment and report retirement — S1019
 
