@@ -47,7 +47,7 @@ function SPCNetworkIsolation.Start(P,shared)
    lines[#lines+1]='保留本地能力、身份/投资、模板及其它后台；不是关闭整个 Mod。'
    lines[#lines+1]='不要保存/继续正式游玩；冷启动重载原存档恢复，不在本会话重开。'
   end
-  local heap=SPCPerformance and SPCPerformance.Heap and SPCPerformance.Heap()
+  local heap=SPCRuntimeGC and SPCRuntimeGC.Heap()
   lines[#lines+1]='Lua调用处用量='..(heap and string.format('%.2f MiB',heap) or '不可读')..'（非本Mod独占；未执行GC）'
   return table.concat(lines,'\n')
  end

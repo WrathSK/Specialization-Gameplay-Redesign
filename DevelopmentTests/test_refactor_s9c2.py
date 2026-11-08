@@ -3,7 +3,7 @@ import json,re,subprocess,unittest
 from unittest.mock import patch
 from pathlib import Path
 from refactor_harness import Context,ROOT,legacy_source_observation,measure
-from retired_crew_sources import B446, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B446, B447, RETIRED_GLOBALS, source as retired_source
 from refactor_defect_fixtures import request_context,startup
 from test_refactor_s5d4b2 import load_request
 from test_refactor_s7d5 import fixture as crew,FAULTS
@@ -67,6 +67,8 @@ class Startup(unittest.TestCase):
   for name in RETIRED_GLOBALS:expected.remove(name)
   self.assertEqual(re.findall(pattern,retired_source('Gameplay.lua',B446)),expected)
   expected.remove('SPCUnitSiteProbe')
+  self.assertEqual(re.findall(pattern,retired_source('Gameplay.lua',B447)),expected)
+  expected.insert(expected.index('SPCNetworkIsolation')+1,'SPCRuntimeGC')
   self.assertEqual(re.findall(pattern,current),expected)
   self.assertIn("composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'}",current)
   c=startup();c.load('Gameplay');c.execute("assert(ExposedMembers.SPC_P0.StartStatus.PlayerActionReplies.state=='OK')")

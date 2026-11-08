@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0958
-Implementation Build: source B447.474 / modinfo474. Live B447.474 from e178d14. Stable/main B307.334.
+Status Revision: S0959
+Implementation Build: source B448.475 / modinfo475. Live B447.474 from e178d14. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: UNIT_SITE_DIAGNOSTICS_RETIRED_DEPLOYED
+Work State: GC_CONTROL_SEPARATED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Separate GC control from performance diagnostics — S0959
+
+The existing Lua collection coordinator and per-context heap trust latch now live in `RuntimeGC`. The count and manual memory report remain packaged in `PerformanceCounters`. Gameplay starts the coordinator in the former startup slot, including the existing load/turn boundary samples that can revoke heap trust. The UI memory report still samples its own calling context.
+
+- **Runtime Impact Contract (L3, T05/T06/T08, P3-01/02/16/17).** Same native reads, listener ordering and boundaries, 128 MiB growth threshold, two-turn interval, two-second stop, and single existing full-collection primitive. Network flight and other UI-pending checks retain the single same-turn deferred evaluation. The observer receives scalars after heap sampling and can be absent. The write wrappers and before/after invalidation still run if metrics are unavailable. No new automatic native callback, scan, saved data, or collection mode. The only runtime path added is `Mod/RuntimeGC.lua`.
+- **LOCAL_SIMULATION_PASS in scope.** All 84 selected methods pass. Four real B447 vs candidate event/heap comparisons preserve GC decisions, native read and collection counts, failure latches and the evidence rows when enabled. They cover ACK/other UI pending, 1,000 idle publications, duplicate/reentrant dispatch, an unsafe negative turn-end sample followed by a positive value, late load/local activation and the slow-collection stop. Candidate arms run with the observer present, counters disabled, and the file genuinely absent with both modeled include behaviors. Real Sender/Bridge composition still rejects a transaction before proof, accepts the ACK once, releases the GC wait, and reads the GC report. The real native write fence invalidates both sides of a write that applied and then threw. Empty-world startup is scoped to loading. It has one expected incomplete catalogue entry without a real game database. No native heap timing or GC latency claim is made.
+- **STATIC_CONFIRMED and reproduction.** 227 Lua 5.1 compiles, 32 XML-family parses, 704 file and 11 replacement references across 356 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7fRuntimeGC` with CPython 3.14/Lupa 2.8. The P0 UI layout check uses the existing Lua 5.5 harness. Source SHA256 `9ff6698fb4713692e96d0f165ccb9478d437a88baccccedd9bf9e4a9b7fafaf5`, package SHA256 `60cb4a7c371861490cdba403ae6e8418f36e2876bc9bf0c2c3682aa601b4cfe4`. Local evidence `local/refactor/B448-O7fRuntimeGC-verified/closure.json` at SHA256 `e1545b5ad8b45d6f8a438223f5180f4c220e09306a38dff4192da2dc8795bf69`. Counter-file absence is tested for the GC/transport/write boundary, without extending that conclusion to other diagnostic factories.
+
+B447 remains installed at this source checkpoint. This slice does not retire another observer. The positive Culture Network cold-restore gate remains separate.
 
 ### B447 development deployment verified — S0958
 

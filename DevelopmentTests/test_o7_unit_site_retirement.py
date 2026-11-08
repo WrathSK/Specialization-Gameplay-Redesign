@@ -6,7 +6,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from refactor_harness import Context, PackageVFS, ROOT
-from retired_crew_sources import B446, gameplay as historical_gameplay, package as historical_package
+from retired_crew_sources import B446, B447, gameplay as historical_gameplay, package as historical_package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE
@@ -145,5 +145,5 @@ class UnitSiteRetirement(unittest.TestCase):
         """)
 
     def test_exact_site_diagnostic_round_trip_on_the_real_packages(self):
-        with historical_package(B446) as before:
-            verify_package_round_trip(self, before/'Mod', ROOT/'Mod', RETIRED, 'UnitSiteFacts.lua')
+        with historical_package(B446) as before, historical_package(B447) as after:
+            verify_package_round_trip(self, before/'Mod', after/'Mod', RETIRED, 'UnitSiteFacts.lua')

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="474">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="475">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
     <Description>B443.470：恢复专业项目生产面板接入。</Description>
@@ -207,6 +207,7 @@
       <File>UI/Institutions.lua</File>
       <File>UI/Institutions.xml</File>
       <File>PerformanceCounters.lua</File>
+      <File>RuntimeGC.lua</File>
       <File>EventTimingDiagnostics.lua</File>
     <File>PlaytestBoundaryDiagnostics.lua</File>
     <File>CrewCompletionDiagnostics.lua</File>
@@ -685,6 +686,7 @@
       <File>UI/Institutions.lua</File>
     <File>UI/Institutions.xml</File>
     <File>PerformanceCounters.lua</File>
+    <File>RuntimeGC.lua</File>
     <File>RuntimeAuditCore.lua</File>
     <File>UI/RuntimeAudit.lua</File>
     <File>UI/RuntimeAudit.xml</File>

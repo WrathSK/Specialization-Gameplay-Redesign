@@ -90,7 +90,7 @@ class IndustryReentry(unittest.TestCase):
 class GarbageCollection(unittest.TestCase):
     def test_mixed_blockers_wait_scalar_only_then_collect_once(self):
         l=gc();l.execute("""
-        heapReads=0;local read=SPCPerformance.Heap;SPCPerformance.Heap=function()heapReads=heapReads+1;return read()end
+        heapReads=0;local read=SPCRuntimeGC.Heap;SPCRuntimeGC.Heap=function()heapReads=heapReads+1;return read()end
         ExposedMembers.SPC_NetworkRequestInFlight=true
         ExposedMembers.SPC_IndustryBackground={pending=1};ExposedMembers.SPC_CopyBackground={pending=true}
         Events.PlayerTurnActivated.Fire(0);publish=Events.GameCoreEventPublishComplete.Fire;publish()

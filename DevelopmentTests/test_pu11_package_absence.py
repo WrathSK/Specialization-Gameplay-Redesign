@@ -10,6 +10,7 @@ import unittest
 from unittest.mock import patch
 from lupa.lua51 import lua_type
 from refactor_harness import Context,PackageVFS,ROOT,RUN,measure
+from retired_crew_sources import B447, gameplay as historical_gameplay, package as historical_package
 
 NATIVE=r"""
 print=function()end
@@ -42,17 +43,19 @@ def mirror_bridge(g,u):
         signal=b.signal,routes=b.routes and {}}}or{}}}end)()""")
     u.globals().ExposedMembers.SPC_P0=u.table(scalars(packet))
 
-def pair(enabled=True, *, flight_observer=None, gameplay_setup=None):
-    g=root();g.execute('Events.LoadScreenClose.Fire();publish()')
+def pair(enabled=True, *, flight_observer=None, gameplay_setup=None, profile=None):
+    g=root(profile=profile);g.execute('Events.LoadScreenClose.Fire();publish()')
     assert g.eval('ExposedMembers.SPC_P0.NetworkBridge.ready')
     if gameplay_setup:
         gameplay_setup(g)
-    u=root('UI/BackgroundRoutes');mirror_bridge(g,u)
+    u=root('UI/BackgroundRoutes',profile=profile);mirror_bridge(g,u)
     u.execute('turn=...',g.eval('turn'))
     # Factory really ran in Gameplay; copy only its scalar exposed state into the
     # separate UI VM. No SPCPerformance/Probe/Sender replacement is installed.
-    u.globals().ExposedMembers.SPC_Performance=u.table(scalars(g.eval('ExposedMembers.SPC_Performance')))
-    u.execute('ExposedMembers.SPC_Performance.enabled=...',enabled)
+    counters=scalars(g.eval('ExposedMembers.SPC_Performance'))
+    if counters is not None:
+        u.globals().ExposedMembers.SPC_Performance=u.table(counters)
+    u.execute('if ExposedMembers.SPC_Performance then ExposedMembers.SPC_Performance.enabled=... end',enabled)
     if flight_observer == 'absent':
         u.execute('SPCPerformance=nil;ExposedMembers.SPC_Performance=nil')
     elif flight_observer == 'throws':
@@ -151,17 +154,20 @@ class ActualRoots(unittest.TestCase):
         self.assertFalse(any(row['module']=='CultureDiagnostics.lua'for row in c.loads))
         self.assertIsNone(c.globals().SPCCultureDiagnostics)
     def test_absent_performance_is_current_required_coupling_not_independence_pass(self):
-        for name in ('Gameplay','UI/BackgroundRoutes'):
-            for mode in ('throw','silent_nil'):
-                c=Context(name=name,vfs=PackageVFS(absent=['PerformanceCounters'],missing_include=mode,forbidden_globals=['SPCPerformance']))
-                c.execute(NATIVE)
-                with self.assertRaises(Exception) as got:c.load(name)
-                self.assertTrue('PerformanceCounters' in str(got.exception) or 'SPCPerformance' in str(got.exception))
-                self.assertIsNone(c.globals().SPCPerformance)
-                missing=[row for row in c.loads if row['status']=='ABSENT'];self.assertEqual(len(missing),1)
-                self.assertEqual(missing[0]['parent'],'Mod/Probe.lua')
-                self.assertEqual(c.load_counts['failed'],2)
-                self.assertEqual(RUN['executed']['Mod/'+name+'.lua']['execution_by_test'][RUN.get('active_test')or'fixture'],'FAILED_PARTWAY')
+        with historical_package(B447) as checkout:
+            for name in ('Gameplay','UI/BackgroundRoutes'):
+                for mode in ('throw','silent_nil'):
+                    c=historical_gameplay(checkout,revision=B447,name=name,absent=['PerformanceCounters'],
+                        missing_include=mode,forbidden_globals=['SPCPerformance'])
+                    c.execute(NATIVE)
+                    with self.assertRaises(Exception) as got:c.load(name)
+                    self.assertTrue('PerformanceCounters' in str(got.exception) or 'SPCPerformance' in str(got.exception))
+                    self.assertIsNone(c.globals().SPCPerformance)
+                    missing=[row for row in c.loads if row['status']=='ABSENT'];self.assertEqual(len(missing),1)
+                    self.assertEqual(missing[0]['parent'],'historical/'+B447+'/Mod/Probe.lua')
+                    self.assertEqual(c.load_counts['failed'],2)
+                    key='historical/'+B447+'/Mod/'+name+'.lua'
+                    self.assertEqual(RUN['executed'][key]['execution_by_test'][RUN.get('active_test')or'fixture'],'FAILED_PARTWAY')
 
 class ActualTransport(unittest.TestCase):
     def test_ui_sender_real_bridge_ack_and_flight_survive_counting_disabled(self):
@@ -191,7 +197,7 @@ class ActualTransport(unittest.TestCase):
          collectgarbage=function(mode)if mode=='count'then return heap elseif mode=='isrunning'then return true end
           assert(mode=='collect');gcCalls=gcCalls+1;heap=100*1024 end
          os={clock=function()cpu=cpu+0.01;return cpu end,time=function()wall=wall+0.01;return wall end}
-         shared=ExposedMembers.SPC_P0;SPCPerformance.StartMemory(SPCP0,shared)
+         shared=ExposedMembers.SPC_P0;SPCRuntimeGC.Start(SPCP0,shared,SPCPerformance.PrepareMemoryObserver)
          ExposedMembers.SPC_Performance.enabled=false;Events.LoadScreenClose.Fire()
          turn=3;heap=400*1024
         """)

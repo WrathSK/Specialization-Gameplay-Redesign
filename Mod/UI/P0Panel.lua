@@ -2,6 +2,7 @@ include("OverflowStorageRead")
 include("BoostGreatWorkRead")
 include("PurchaseProbeRead")
 include("Probe")
+include("RuntimeGC")
 include("GPPReadout")
 pcall(include,"CultureDiagnostics") -- optional, never used by report/business decisions
 include("InspirationReadout")
@@ -41,7 +42,7 @@ local function displayResponse()
     local report=tostring(data.Snapshot)
     if pendingAction and pendingAction:find('^INSPIRE_') then report=report..'\n'..SPCInspirationReadout.RenderAutomatic(P,data.CultureInspirationView,pendingToken,pendingAction=='INSPIRE_DETAIL') end
     if pendingAction=='MEMORY_BEGIN' or pendingAction=='MEMORY_READ' then
-     local heap=SPCPerformance.Heap and SPCPerformance.Heap()
+     local heap=SPCRuntimeGC and SPCRuntimeGC.Heap()
      report=report..'\nUI调用处 Lua（堆是否独立未证，勿相加）：'..(heap and string.format('%.2f MiB',heap) or '不可用')
     end
     if pendingAction=="LV2_GPP_READ" then

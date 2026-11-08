@@ -13,6 +13,7 @@ from refactor_harness import Context, PackageVFS, ROOT, SOURCES
 B444 = '72947b5596825e030ad07b77f41bac6d65809cfe'
 B445 = '238cf182af66056eeae0da4e4797114a2a04d73f'
 B446 = 'af75e329546f583b94a90169d8af68ebb7e4b559'
+B447 = 'e178d14a1693ae83cd45c19afd9fcdc9f0b9ecd4'
 RETIRED = ('ConstructionProbe.lua', 'CrewPrecision.lua')
 RETIRED_GLOBALS = tuple('SPC' + Path(path).stem for path in RETIRED)
 
@@ -37,6 +38,6 @@ def package(revision=B444):
         yield checkout
 
 
-def gameplay(checkout, *, revision=B444, **options):
+def gameplay(checkout, *, revision=B444, name='Gameplay', **options):
     vfs = PackageVFS(manifest=checkout/'Mod/SpecializationP0.modinfo', **options)
-    return Context(vfs=vfs, history=(checkout, revision))
+    return Context(name=name, vfs=vfs, history=(checkout, revision))

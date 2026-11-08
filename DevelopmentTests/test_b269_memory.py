@@ -25,11 +25,21 @@ class LuaTests(unittest.TestCase):
    shared={NetworkBridge={ready=true}};ExposedMembers.SPC_P0=shared
   ''')
   self.l.execute(getattr(self,'source',(R/'Mod/PerformanceCounters.lua').read_text()))
-  self.l.execute('ExposedMembers.SPC_Performance=SPCPerformance.New();SPCPerformance.StartMemory(P,shared)')
+  if self.l.eval('SPCPerformance.StartMemory==nil'):
+   self.l.execute((R/'Mod/RuntimeGC.lua').read_text())
+  self.l.execute('ExposedMembers.SPC_Performance=SPCPerformance.New()')
+  self.start_memory()
+ def start_memory(self):
+  self.l.execute("""
+   if SPCRuntimeGC then SPCRuntimeGC.Start(P,shared,SPCPerformance.PrepareMemoryObserver)
+   else SPCPerformance.StartMemory(P,shared)end
+  """)
  def test_duplicates_foreign_and_reload(self):
   self.l.execute('Events.PlayerTurnActivated.Fire(1);Events.PlayerTurnActivated.Fire(0);Events.PlayerTurnActivated.Fire(0)')
   self.assertEqual(self.l.eval('#shared.MemoryEvidence.rows'),2) # boundary + GC baseline
-  self.l.execute('old=shared.MemoryEvidence;SPCPerformance.StartMemory(P,shared);Events.PlayerTurnActivated.Fire(0)')
+  self.l.execute('old=shared.MemoryEvidence')
+  self.start_memory()
+  self.l.execute('Events.PlayerTurnActivated.Fire(0)')
   self.assertEqual(self.l.eval('#old.rows'),2)
   self.assertEqual(self.l.eval('#shared.MemoryEvidence.rows'),2)
  def test_gc_after_print_budget_and_ring_bound(self):

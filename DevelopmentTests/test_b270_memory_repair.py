@@ -32,8 +32,8 @@ class GCRepairTests(unittest.TestCase):
           turn=4;Events.PlayerTurnActivated.Fire(0);Events.GameCoreEventPublishComplete.Fire();assert(collections==1)
         ''')
     def test_negative_and_wrapped_positive_remain_untrusted(self):
-        self.l.execute('''heap=-1024;local n,s,r=SPCPerformance.ReadHeap();assert(n==nil and s=='NATIVE_NEGATIVE' and r==-1024)
-          heap=56*1024;local v,q=SPCPerformance.ReadHeap();assert(v==nil and q=='RANGE_UNTRUSTED')
+        self.l.execute('''heap=-1024;local n,s,r=SPCRuntimeGC.ReadHeap();assert(n==nil and s=='NATIVE_NEGATIVE' and r==-1024)
+          heap=56*1024;local v,q=SPCRuntimeGC.ReadHeap();assert(v==nil and q=='RANGE_UNTRUSTED')
           Events.PlayerTurnActivated.Fire(0);Events.GameCoreEventPublishComplete.Fire();assert(collections==0 and shared.MemoryObservation.AutoGC.failure=='COUNT_UNAVAILABLE')
         ''')
     def test_raw_invalid_status_roundtrip(self):

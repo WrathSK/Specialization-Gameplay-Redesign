@@ -2,6 +2,17 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7fRuntimeGC": [
+      "test_o7_runtime_gc",
+      "test_pu11_package_absence",
+      "test_b269_memory.LuaTests",
+      "test_b270_memory_repair.GCRepairTests",
+      "test_refactor_s4a.GarbageCollection",
+      "test_refactor_s5b.Phase",
+      "test_b397_network_transport",
+      "test_refactor_s9c2.Startup",
+      "test_o7_unit_site_retirement.UnitSiteRetirement.test_p0_right_click_still_reaches_actual_city_sequence_for_unit_and_city"
+    ],
     "O7eUnitSiteRetirement": [
       "test_o7_unit_site_retirement",
       "test_o4_crew_wonder_site",
@@ -2088,6 +2099,7 @@
       "test_refactor_s7a2"
     ],
     "Mod/Gameplay.lua": [
+      "test_o7_runtime_gc",
       "test_o4_crew_wonder_site",
       "test_o4_crew_target_queue",
       "test_refactor_defects.Defects",
@@ -2105,10 +2117,18 @@
       "test_refactor_s5d3"
     ],
     "Mod/PerformanceCounters.lua": [
+      "test_o7_runtime_gc",
+      "test_b269_memory.LuaTests",
       "test_refactor_defects",
       "test_refactor_attribution",
       "test_refactor_s4a",
       "test_refactor_s9e2b"
+    ],
+    "Mod/RuntimeGC.lua": [
+      "test_o7_runtime_gc",
+      "test_pu11_package_absence.RetainedGC",
+      "test_b270_memory_repair.GCRepairTests",
+      "test_refactor_s4a.GarbageCollection"
     ],
     "Mod/Commerce.lua": [
       "test_refactor_defects.Defects",
@@ -2486,6 +2506,7 @@
       "test_refactor_s9c4b"
     ],
     "Mod/Probe.lua": [
+      "test_o7_runtime_gc",
       "test_refactor_s9e1"
     ],
     "Mod/ResearchCrossSample.lua": [

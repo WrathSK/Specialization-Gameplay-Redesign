@@ -7,6 +7,7 @@ local function cultureObserve(point,build)
  end)
 end
 include("Probe")
+include("RuntimeGC")
 include("SafeCallbacks")
 include("RuntimeComposition")
 include("SourceYieldProbe")
@@ -21,7 +22,8 @@ local composition=SPCRuntimeComposition.New(shared)
 -- Diagnostic observers are protected and never control startup or reconciliation.
 local readiness
 pcall(function()include('ExpeditionTrainingDiagnostics');include('ReadinessSummary');readiness=SPCReadinessSummary.Start(P,shared)end)
-ExposedMembers.SPC_Performance=SPCPerformance.New()
+local perfOK,counters=pcall(function()if SPCPerformance then return SPCPerformance.New()end end)
+ExposedMembers.SPC_Performance=perfOK and counters or nil
 ExposedMembers.SPC_NetworkRequestInFlight=false
 local function stage(value)
   shared.Stage=value
@@ -87,7 +89,11 @@ local function request(playerID,params)
     shared.Snapshot=ok and out or '事件诊断不可用';shared.LastToken=params.Token;return
   end
   if params.Action=='MEMORY_BEGIN' or params.Action=='MEMORY_READ' then
-    local ok,out=pcall(shared.MemoryObservation.Read,playerID,params.Action=='MEMORY_BEGIN')
+    local d=shared.MemoryObservation
+    local ok,out=pcall(function()
+      if not d or not d.Read then return '内存观测未启用。'end
+      return d.Read(playerID,params.Action=='MEMORY_BEGIN')
+    end)
     shared.Snapshot=ok and out or ('内存观测不可用：'..tostring(out));shared.LastToken=params.Token;return
   end
   if params.Action=='ENGINEERING_STUDY_BEGIN' or params.Action=='ENGINEERING_STUDY_SYNC' then
@@ -1040,7 +1046,9 @@ composition.Run('TimedProject',{},{'TimedProject'},function() include('TimedProj
 
 composition.Run('NetworkIsolation',{'NetworkBridge'},{'NetworkIsolation'},function() include('NetworkIsolation');SPCNetworkIsolation.Start(P,shared) end)
 
-composition.Run('MemoryObservation',{},{'MemoryObservation','MemoryEvidence'},function() SPCPerformance.StartMemory(P,shared) end)
+composition.Run('MemoryObservation',{},{'MemoryObservation','MemoryEvidence'},function()
+ SPCRuntimeGC.Start(P,shared,SPCPerformance and SPCPerformance.PrepareMemoryObserver)
+end)
 
 composition.Run('CultureInsightsTourism',{'CityProgressionStore','EffectiveFacts','NativeFacts'},{'CultureInsightsTourism'},function() include('CultureInsightsTourism');SPCCultureInsightsTourism.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 

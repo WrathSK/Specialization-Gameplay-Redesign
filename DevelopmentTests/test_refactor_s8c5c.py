@@ -71,6 +71,7 @@ class Production(unittest.TestCase):
    expected.append('SPCPlaytestBoundaryDiagnostics') # The approved B397 observer remains packaged.
    for name in RETIRED_GLOBALS:expected.remove(name)
    expected.remove('SPCUnitSiteProbe') # B447 removed only the diagnostic startup.
+   expected.insert(expected.index('SPCNetworkIsolation')+1,'SPCRuntimeGC')
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"));self.assertLess(s.index("composition.Run('LegacyCleanup'"),s.index("composition.Run('BindingProbe'"))
   self.assertNotIn("composition.Run('YieldCarrierExit'",s)

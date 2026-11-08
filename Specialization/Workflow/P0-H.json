@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0958",
-    "runtime": "B447.474 / modinfo474",
+    "status": "S0959",
+    "runtime": "B448.475 / modinfo475",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B447 deployment and the next GC ownership scope.",
+  "goal": "Verify the existing GC coordinator and its heap trust latch independently of performance reporting.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Separate GC control from performance diagnostics — S0959",
+      "reason": "GC ownership and matching local controls with optional counter-file absence"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -180,6 +186,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B448 passes 84 selected methods, including the actual B447 decision/sample comparisons, route proof and write-fence behavior without PerformanceCounters.",
     "B447 installed 355/355 MATCH. The two approved diagnostic paths are absent and both recovery packages match.",
     "B447 passes all 33 selected methods. Both retired files are genuinely absent from the candidate and the actual City Sequence right-click results agree with B446.",
     "B446 installed 357/357 MATCH. B445 outgoing and B307 stable recovery verified. No native run.",
@@ -973,6 +980,21 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b447-development-deployment-verified--s0958"
+    },
+    "b448_runtime_gc": {
+      "build": "B448.475 / modinfo475",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": 84,
+      "files": 356,
+      "package_sha256": "60cb4a7c371861490cdba403ae6e8418f36e2876bc9bf0c2c3682aa601b4cfe4",
+      "new_runtime_paths": [
+        "Mod/RuntimeGC.lua"
+      ],
+      "source_snapshot_sha256": "9ff6698fb4713692e96d0f165ccb9478d437a88baccccedd9bf9e4a9b7fafaf5",
+      "local_evidence": "local/refactor/B448-O7fRuntimeGC-verified/closure.json",
+      "local_evidence_sha256": "e1545b5ad8b45d6f8a438223f5180f4c220e09306a38dff4192da2dc8795bf69",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#separate-gc-control-from-performance-diagnostics--s0959"
     }
   }
 }
