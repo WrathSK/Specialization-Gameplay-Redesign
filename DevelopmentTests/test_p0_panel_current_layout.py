@@ -12,6 +12,7 @@ from lupa.lua55 import LuaRuntime
 ROOT = Path(__file__).resolve().parents[1]
 PANEL = ROOT / 'Mod' / 'UI'
 ROWS = (
+    ('CommerceREADButton', 'TemplatesButton'),
     ('CultureInsightsButton', 'NetworkButton', 'CarrierStepButton'),
     ('SourceYieldButton', 'GovernorButton', 'SpecialistsButton'),
     ('GWReadButton', 'AestheticButton', 'MeaningProbeButton'),
@@ -116,32 +117,39 @@ class CurrentPanelTests(unittest.TestCase):
         self.assertTrue(lua.globals().Controls.LegacyProbeButtons.hidden)
         for control_id in ('GWAReadButton', 'PerformanceSnapshotButton', 'PerformanceReadButton',
                            'InheritRecordButton', 'InheritReadButton', 'BackgroundRoutesButton',
-                           'DiscountsButton',
-                           'DPReadButton','CompletenessButton','DP03Button','TemplatesButton',
+                           'DPReadButton','CompletenessButton','DP03Button',
                            'DP05Button','CopyButton'):
             with self.subTest(retired=control_id):
                 self.assertTrue(lua.globals().Controls[control_id].hidden)
 
-    def test_four_rows_and_report_do_not_overlap(self):
-        tree = ET.parse(PANEL / 'P0Panel.xml')
+    def test_visible_buttons_and_report_do_not_overlap(self):
+        tree, lua = panel_runtime()
+        controls = lua.globals().Controls
         window = tree.getroot().find("Container[@ID='Window']")
         self.assertEqual(window.get('Size'), '840,664')
         buttons = {button.get('ID'): button for button in window.findall('GridButton')}
+        visible = {name for name in buttons if name != 'CloseButton' and not controls[name].hidden}
+        self.assertEqual(visible, VISIBLE)
         rectangles = []
         for row_number, row in enumerate(ROWS):
             for column, control_id in enumerate(row):
                 button = buttons[control_id]
                 self.assertEqual(button.get('Anchor'), 'L,B')
-                self.assertEqual(button.get('Offset'), f'{18 + column * 262},{138 - row_number * 40}')
+                self.assertEqual(button.get('Offset'), f'{18 + column * 262},{178 - row_number * 40}')
                 self.assertEqual(button.get('Size'), '240,32')
                 x, bottom = map(int, button.get('Offset').split(','))
+                control = controls[control_id]
+                if control.offsetX is not None:
+                    x, bottom = control.offsetX, control.offsetY
                 width, height = map(int, button.get('Size').split(','))
                 y = 664 - bottom - height
                 rectangles.append((control_id, x, y, x + width, y + height))
         report = window.find("ScrollPanel[@ID='ReportScroll']")
         self.assertEqual(report.get('Offset'), '18,58')
-        self.assertEqual(report.get('Size'), '804,420')
-        report_bottom = 58 + 420
+        self.assertEqual(report.get('Size'), '804,380')
+        self.assertEqual((report.get('Vertical'), report.get('AutoScrollBar')), ('1', '1'))
+        report_bottom = 58 + 380
+        self.assertEqual(min(rectangle[2] for rectangle in rectangles) - report_bottom, 16)
         for control_id, x1, y1, x2, y2 in rectangles:
             with self.subTest(control=control_id):
                 self.assertGreaterEqual(x1, 0)
@@ -278,7 +286,9 @@ class CurrentPanelTests(unittest.TestCase):
             ('DP05Button', 2, 'RESEARCH_TRADITION_READ'),
             ('CompletenessButton', 1, 'COMPLETENESS_READ'),
             ('CompletenessButton', 2, 'RESEARCH_INFRA_DETAIL'),
-            ('TemplatesButton', 1, 'STANDARDIZATION_READ'),
+            ('TemplatesButton', 1, 'INDUSTRY_HISTORY_READ'),
+            ('TemplatesButton', 2, 'DISCOUNT_READ'),
+            ('CommerceREADButton', 1, 'COMMERCE_READ'),
             ('InheritReadButton', 1, 'PROGRESSION_STORE_READ'),
         )
         for control_id, event, expected in pairs:

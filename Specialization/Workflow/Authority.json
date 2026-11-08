@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1016",
-    "runtime": "B475.502 / modinfo502",
+    "status": "S1017",
+    "runtime": "B476.503 / modinfo503",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "28c04ef022466248ce5584b5767c9646dc8dd032",
-  "current_batch": "P0_REPORT_LAYOUT_OVERLAP_REVIEWED",
-  "next_batch": "Await approval for the P0 report layout correction. Move the industrial report beside Commerce, declare the current Commerce geometry in XML, reduce the scroll viewport by 40 layout units and update the exact visibility, geometry and request assertions.",
+  "current_batch": "P0_REPORT_LAYOUT_FIXED_LOCAL",
+  "next_batch": "Verify the guarded B476 switch and review the old B055 manual Great Work effect requests separately from startup cleanup and current reports.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B475.502 / modinfo502 temporary develop from 28c04ef022466248ce5584b5767c9646dc8dd032, 337/337 MATCH, SHA256 8b380a2f9a34da4b3cbc80eb6965f2ff45210d776d4c767646ea500c327f4c80. Receipt B475.502-28c04ef-playtest.json DEVELOP_ACTIVE. B474 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S1016 verifies B475 deployment and both recovery packages. The two existing P0 overlaps reproduce in B474 and B475 and resolve in the layout-only projection.",
+  "context_review_status": "S1017 verifies the approved layout correction and all fourteen initialized report controls.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b475-deployment-verified-and-the-p0-report-overlaps-reviewed--s1016",
-  "source_status": "B475.502 / modinfo502 deployed at SHA256 8b380a2f9a34da4b3cbc80eb6965f2ff45210d776d4c767646ea500c327f4c80. Exact retirement of the three hidden industrial report aliases verified.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#separate-the-overlapping-p0-report-controls--s1017",
+  "source_status": "B476.503 / modinfo503 locally verified at SHA256 31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e. B475.502 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

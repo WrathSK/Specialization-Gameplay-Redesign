@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1016",
-    "runtime": "B475.502 / modinfo502",
+    "status": "S1017",
+    "runtime": "B476.503 / modinfo503",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B475 deployment and review a layout-only correction for the two P0 report overlaps.",
+  "goal": "Verify the approved P0 report layout correction and retained click requests.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Separate the overlapping P0 report controls — S1017",
+      "reason": "Approved P0 report layout correction with all fourteen initialized controls checked"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -528,6 +534,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B476 passes 11 full panel and 28 carried checks. Both overlaps resolve and report requests match.",
     "B475 installed 337/337 MATCH with both recovery packages verified. The layout projection resolves both existing overlaps with seven matching click packets and unchanged listener counts.",
     "B475 passes 14 selected and 14/64 carried checks. Both report routes, template pages, progress read and route proofs match.",
     "B474 installed 337/337 MATCH with both recovery packages verified. The industrial projection preserves both report routes, two template pages, current production progress and listener counts.",
@@ -3701,6 +3708,68 @@
       "local_transcript_sha256": "500b835834079ba891a129e4a94a257d6199fd633caabced793913f2fbcbcc42",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b475-deployment-verified-and-the-p0-report-overlaps-reviewed--s1016"
+    },
+    "b476_p0_report_layout": {
+      "build": "B476.503 / modinfo503",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7ahP0ReportLayout": {
+          "tests": 11,
+          "path": "local/refactor/B476-O7ahP0ReportLayout/closure.json",
+          "sha256": "017998c6e9d5a53b2a8af27085ea3cb15518276215df26472db2d6744e65909d",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "7341041d279f131da0c7d614bf7840093e2c9b16fe104b6b359fb8f9ee0e058a"
+          }
+        },
+        "O7agRetiredIndustrialReportAliases": {
+          "tests": 14,
+          "path": "local/refactor/B476-CarriedO7ag/closure.json",
+          "sha256": "7786e60ae35a3332b899f97f5435078254ab7091cd25b2c6511c6d3abfd8e8aa",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "328e86bbf3b1999224b88d1afd60276f8b18e9842f0a66de55f878ba11175f2a"
+          }
+        },
+        "O7afRetiredCommerceControlsRetirement": {
+          "tests": 14,
+          "path": "local/refactor/B476-CarriedO7af/closure.json",
+          "sha256": "eaabf0640e5d82f4ec301aa9f6a80098d48cb2531978e640aa1164a9a75bb0bf",
+          "transcripts": {
+            ".stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            ".stderr.log": "bfd95dd9a0c67ef8aa09d1af096ed4f89068f7979c2fbdeeb1b498a47dca04d6"
+          }
+        }
+      },
+      "files": 337,
+      "removed": [],
+      "prior_source": "28c04ef022466248ce5584b5767c9646dc8dd032",
+      "visible_controls": 14,
+      "window_size": [
+        840,
+        664
+      ],
+      "overlaps": [
+        2,
+        0
+      ],
+      "report_height": [
+        420,
+        380
+      ],
+      "report_gap": 16,
+      "matched_request_packets": 7,
+      "historical_comparisons": {
+        "B475-panel-comparison.log": {
+          "path": "local/refactor/B476-O7ahP0ReportLayout/B475-panel-comparison.log",
+          "sha256": "c137fcc547117afeb25e3901b3be6836c39a54f150f59fee6defd7dc0f646258"
+        }
+      },
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "253a4545204de31802bf81d7b0720f1ba1f31d11881b1697de176e39a35c4ce6",
+      "package_sha256": "31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#separate-the-overlapping-p0-report-controls--s1017"
     }
   }
 }

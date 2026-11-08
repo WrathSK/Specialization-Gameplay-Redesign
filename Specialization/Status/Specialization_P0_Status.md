@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1016
-Implementation Build: source B475.502 / modinfo502. Live B475.502 from 28c04ef. Stable/main B307.334.
+Status Revision: S1017
+Implementation Build: source B476.503 / modinfo503. Live B475.502 from 28c04ef. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: P0_REPORT_LAYOUT_OVERLAP_REVIEWED
+Work State: P0_REPORT_LAYOUT_FIXED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Separate the overlapping P0 report controls — S1017
+
+The Owner approved the S1016 layout correction. Move the industrial report beside Commerce, declare Commerce's final geometry and visibility in XML, and shorten the scroll viewport from 420 to 380 layout units. The 840×664 window retains its scroll behavior. The prior panel is recoverable from `28c04ef022466248ce5584b5767c9646dc8dd032`.
+
+- **Runtime Impact Contract (L1).** The two layout intersections resolve with a 16-unit gap between the viewport and the first row. The current initialization, visibility and geometry checks now cover all fourteen controls. Both industrial click routes, their page sequence, the Commerce read and the Era Dialogue read remain on their existing request paths.
+- **LOCAL_SIMULATION_PASS in scope.** All 11 full panel checks pass on B476, including the updated visibility and industrial left-click assertions. The carried industrial report and Commerce stages each pass 14 checks, covering pagination, production progress, configuration and rejection of old requests. S1016 recorded the two B475 layout counterexamples and the seven matching packets. Native rendering and hit testing remain outside the local checks.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7ahP0ReportLayout` with CPython 3.14/Lupa 2.8. For the carried stages O7agRetiredIndustrialReportAliases and O7afRetiredCommerceControlsRetirement use official Assets and the read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Tested source SHA256 `253a4545204de31802bf81d7b0720f1ba1f31d11881b1697de176e39a35c4ce6`, package SHA256 `31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e`. Local closure `local/refactor/B476-O7ahP0ReportLayout/closure.json` SHA256 `017998c6e9d5a53b2a8af27085ea3cb15518276215df26472db2d6744e65909d` with the B475 panel comparison log alongside.
+
+B475 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B475 deployment verified and the P0 report overlaps reviewed — S1016
 
