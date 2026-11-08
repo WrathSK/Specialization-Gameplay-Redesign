@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0983
-Implementation Build: source B459.486 / modinfo486. Live B458.485 from 0adc089. Stable/main B307.334.
+Status Revision: S0984
+Implementation Build: source B459.486 / modinfo486. Live B459.486 from 68565bc. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CULTURE_MEANING_EXPERIMENT_RETIRED_LOCAL
+Work State: HALF_YIELD_EXPERIMENT_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B459 deployment verified and retired half-point shell reviewed — S0984
+
+B459.486 is installed from `68565bc8d50d141c1a21e64d3c15f392f012a196`. All 345 files match SHA256 `b9da74b5b917d900e5456df5422974f1fa27f129aff7027053e7ca9f381e2a71`. Receipt `B459.486-68565bc-playtest.json` is DEVELOP_ACTIVE. The inactive Meaning script is absent and the formal Meaning Lua, model and carrier SQL are present. The outgoing B458 and stable B307 recovery packages match their recorded hashes. Game exit, UUID uniqueness and the clear transaction boundary were verified.
+
+**Next exact retirement review (P3-13/Q8).** `Mod/HalfYieldProbe.lua` (SHA256 `01ffce7e57e7d4cb79d03ec0e4bb8f2756f312a5253114e815d8d98c5c8e4679`) currently starts in explicit retired mode. That branch returns a fixed retirement report before reading city properties or attaching native listeners. The three P0 controls are hidden. The proposal removes this Lua file, its two manifest declarations, its one retired startup entry and request branch for HALF_READ/ON/OFF, and the three hidden XML controls and Lua callbacks. The formal yield paths, the old saved flag and its guard readers, the two SQL declarations and the central catalogue retain their existing bytes. The old warning to disable the flag predates this proposal and the retired production branch has no flag writer.
+
+The disposable projection removes exactly one package path. Gameplay and BackgroundRoutes keep three identical nonempty proof packets and a working transaction guard. The current P0 progression and network controls keep their requests and the other controls keep their visibility. The three retired request acknowledgments drop from three to zero with no property, yield or building access in the tested requests. The actual Store and central cleanup composition withdraw the same 32 B050 carriers on confirmed target city exit. The other city, ordinary building and seeded flags are preserved in both fixtures. Exact temporary switch and full restoration pass in disposable packages. Evidence `local/refactor/B459-HalfYieldExperimentRetirementReview/result.json` SHA256 `038aad84ca3ebb45831a62be3cc7cd53f334717528a3e1526479b5a7ed83ff86` with the replay script alongside.
+
+The exact retirement awaits approval. Positive Culture Network cold restoration remains a separate native gate.
 
 ### Retire the inactive Culture Meaning experiment — S0983
 
