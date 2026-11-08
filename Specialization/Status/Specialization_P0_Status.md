@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0974
-Implementation Build: source B454.481 / modinfo481. Live B454.481 from 3fa7527. Stable/main B307.334.
+Status Revision: S0975
+Implementation Build: source B455.482 / modinfo482. Live B454.481 from 3fa7527. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: PROJECT_TURN_OBSERVER_RETIREMENT_REVIEWED
+Work State: PROJECT_TURN_OBSERVER_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the old project turn observer — S0975
+
+The Owner approved the exact removal of the B120 manual project observation entry. Remove `Mod/ProjectTurnObservation.lua`, its two manifest declarations, the startup and PROJECT_TURN_BEGIN/END routes, and the four unbound methods in `UI/ProjectTurnRead.lua`. The existing queue export body is byte-identical and the two constructors register it directly. The automatic timer, P0 report/cancel, overflow experiment definition and four formal project providers retain their paths. Recover the removed source from `3fa7527b768207a8f210136749001584b42e5940:Mod/ProjectTurnObservation.lua` (SHA256 `4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34`).
+
+- **Runtime Impact Contract (L3, T01/T03/T04/T08).** The retired observer only sampled its selected city when explicitly armed. The Gameplay fixture registers nine fewer callbacks, with its formal startup order preserved. No new queue read, listener, write or persistent state is introduced. The active timer still admits the current queue through the retained UI export and completes via its existing guarded call. The module removal is independent of the current save schema.
+- **LOCAL_SIMULATION_PASS in scope.** The 41 selected methods include actual Gameplay ingress, exactly one completion under reentrant events, matching official and HD production queue exports and timer requests, P0 report and cancel parity, a three-packet nonempty trade-route check, and exact B454 package rollback. B120 observer assertions replay published B120 source; the B454 prototype-retirement package checks replay their original snapshots. The carried ActionPanel and network stages pass 42 and 88 methods. These runs use native doubles and installed official UI source excerpts. The selected legacy timer fixture loads real UI dependencies; its older standalone Gameplay fragment check still needs a full composition fixture and is outside these passing counts.
+- **STATIC_CONFIRMED and reproduction.** 221 Lua 5.1 compiles, 32 XML-family parses, 692 file references and 10 replacement references across 350 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7mProjectTurnObserverRetirement` on macOS with CPython 3.14/Lupa 2.8 and the installed official Assets path available to the fixtures. The two carried stage commands use O7kTimedTurnRetirement and O7lNetworkRecoveryRetirement. Tested source SHA256 `e3070c6ebc13ded0604ce264b2ad291d3276453b1aab433b207d77c28469a848`, package SHA256 `48bcdc913bd79147519f61ae7589430102ac2c20bfe90a1234425eb099f83999`. Local closure `local/refactor/B455-O7mProjectTurnObserverRetirement-verified/closure.json` SHA256 `cc626bfe27854408a83b167d9c5bc1012c8891a24047d5f5419a53eb73dbbb01`.
+
+B454 remains installed at this source checkpoint. The package switch is separately verified. Positive Culture Network cold restoration remains a separate native gate.
 
 ### B454 deployment verified and next project observer reviewed — S0974
 

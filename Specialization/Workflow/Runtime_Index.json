@@ -631,9 +631,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "b1ad9c1ec6f004bbe5b2e735d49047836c6b7ce518d34ab169b104081fbb9307",
+      "sha256": "52bdc5571db7a53920594cb484b198d9de0e5e768973ad486e46ea3c87a62d4e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0969 B453 exact empty-production experiment retirement."
+      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -776,14 +776,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "d3face475c759dcb9795bbdee9936b5d5b7a1c191ad07ebeb2cd0f4a6e9739b0",
+      "sha256": "45259776f5af847b7c1fcc5dc79aec988bc2afed7e574f86460bfba1da60bf3b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0973 B454 exact import-only network recovery prototype retirement."
-    },
-    "Mod/ProjectTurnObservation.lua": {
-      "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
+      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -916,9 +911,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "401fa5b713867871bdf6a711a68228f68f3c99ca0b857466aa69b0f25af29bdb",
+      "sha256": "8808a426f0c27c50c8f52730970236c152cee28b3d133735bcc4d185628467d1",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0973 B454 exact import-only network recovery prototype retirement."
+      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1231,9 +1226,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "60b67c420d887f075c6c7973fdc61df25afd5b373c4381cd517090139cf33e33",
+      "sha256": "aa5bde64190698d9c651ee3ecdc685afa8d348c0a04180ef5e81da60d83d81ef",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0950 B444 verified Standardization report queue read migration."
+      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "cd9e915db1b6b33ce67d2ac3fa4d74d836c82db32823d700c50e158315293e1b",
@@ -1421,9 +1416,9 @@
       "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "f277a56ce593e6cba02d36769af62d88e24067ceb554666bf1e2f03e36b0d28d",
+      "sha256": "fbbd59089fc1d8fd7357cb13459d89af172fb70828eff18282bfa29d9d225816",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
+      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "2fdfb6342730f70f84362dcc93521158a19542f14ddebb0e5d97dfc00e2f7f62",
@@ -1431,9 +1426,9 @@
       "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
     },
     "Mod/UI/ProjectTurnRead.lua": {
-      "sha256": "ee9a0714f727f49821ef17998960e4577fbcdb34e5980420f35ccced594df3ad",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B120 authorized one-city observation; 104 targeted local tests; native event order pending"
+      "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
     },
     "Mod/UI/ResearchCrossRefresh.lua": {
       "sha256": "eaa746ed4fb69620442ebef640d0569d9ff7e6899794073242b249c64d29f5de",
@@ -1761,7 +1756,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0974 verifies B454 deployment, both recovery packages and the separate project-turn observer retirement proposal.",
-  "source_runtime": "B454.481 / modinfo481 deployed from 3fa7527 with the exact three prototype paths removed.",
-  "tested_source_snapshot_sha256": "8bfbce08b25bfeb397e3a46b79110b87c9de06febb610df84127029ea660f312"
+  "source_review": "S0975 verifies exact observer removal, retained UI readers and project timing, frozen observer replay and rollback.",
+  "source_runtime": "B455.482 / modinfo482 local candidate, 350 files. B454.481 remains installed.",
+  "tested_source_snapshot_sha256": "e3070c6ebc13ded0604ce264b2ad291d3276453b1aab433b207d77c28469a848"
 }

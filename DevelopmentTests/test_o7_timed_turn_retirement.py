@@ -42,7 +42,7 @@ class TimedTurnRetirement(unittest.TestCase):
         shared = game.globals().ExposedMembers.SPC_P0
         self.assertIsNone(shared.StartStatus.TimedProductionProbe)
         for name in ('ClaimProjects', 'DialogueProjects', 'EngineeringStudyProjects',
-                     'CrewProjects', 'ProjectTurnObservation', 'TimedProject'):
+                     'CrewProjects', 'TimedProject'):
             self.assertEqual(shared.StartStatus[name].state, 'OK', name)
         shared.LastToken = 'previous-valid-request'
         properties = dict(game.globals().properties.items())

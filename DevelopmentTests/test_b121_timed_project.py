@@ -8,9 +8,15 @@ class Timer(unittest.TestCase):
   self.lua=LuaRuntime(unpack_returned_tuples=True)
   self.runlua(previous.old.prev.old.FIXTURE);self.runlua(previous.old.prev.EXTRA);self.runlua(previous.old.EXTRA)
   self.runlua("Events.PlayerTurnActivated=event();Events.PlayerTurnDeactivated=event();Events.GameCoreEventPublishComplete=event();GameEvents={PlayerTurnStarted=event(),PlayerTurnStartComplete=event()}")
+  def include(name):
+   for directory in (ROOT/'Mod/UI',ROOT/'Mod'):
+    source=directory/(name+'.lua')
+    if source.is_file():return self.runlua(source.read_text())
+   raise FileNotFoundError(name)
+  self.lua.globals().include=include
   for f in ['Mod/TimedProject.lua','Mod/UI/ProjectTurnRead.lua','Mod/UI/TimedProjectRead.lua','Mod/UI/TimedProjectDisplay.lua']:
    self.runlua((ROOT/f).read_text())
-  self.runlua("SPCTimedProject.Start(P,shared);SPCProjectTurnRead.New(P,function()end,function()end);function send(pid,op,p)packets[#packets+1]=p;if not defer then shared.TimedProject.Request(pid,p)end end;ui=SPCTimedProjectRead.New(P,function(s)shown=s end,send)")
+  self.runlua("SPCTimedProject.Start(P,shared);SPCProjectTurnRead.New();function send(pid,op,p)packets[#packets+1]=p;if not defer then shared.TimedProject.Request(pid,p)end end;ui=SPCTimedProjectRead.New(P,function(s)shown=s end,send)")
  def runlua(self,s):return self.lua.execute(s)
  def get(self,s):return self.lua.eval(s)
  def state(self):return self.get('shared.TimedProjectState.status')

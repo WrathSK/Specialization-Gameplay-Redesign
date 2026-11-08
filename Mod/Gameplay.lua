@@ -135,9 +135,6 @@ local function request(playerID,params)
   if params.Action=='TIMED_PROJECT_BEGIN' or params.Action=='TIMED_PROJECT_CANCEL' then
     shared.TimedProject.Request(playerID,params);return
   end
-  if params.Action=='PROJECT_TURN_BEGIN' or params.Action=='PROJECT_TURN_END' then
-    shared.ProjectTurnObservation.Request(playerID,params);return
-  end
   if params.Action=='OVERFLOW_PREPARE' or params.Action=='OVERFLOW_APPLY' then
     shared.OverflowStorageProbe.Request(playerID,params);return
   end
@@ -1033,8 +1030,6 @@ composition.Run('CityIdentityRead',{},{'CityIdentityRead'},function() SPCCityIde
 composition.Run('CityIdentityMapping',{},{'CityIdentityExperiment'},function() include('CityIdentityExperiment');include('CityIdentityMapping');SPCCityIdentityMapping.Start(P,shared) end)
 
 composition.Run('OverflowStorageProbe',{},{'OverflowStorageProbe'},function() include('OverflowStorageProbe');SPCOverflowStorageProbe.Start(P,shared) end)
-
-composition.Run('ProjectTurnObservation',{},{'ProjectTurnObservation'},function() include('ProjectTurnObservation');SPCProjectTurnObservation.Start(P,shared) end)
 
 composition.Run('TimedProject',{},{'TimedProject'},function() include('TimedProject');SPCTimedProject.Start(P,shared) end)
 

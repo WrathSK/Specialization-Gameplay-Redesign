@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -76,6 +76,8 @@ class Production(unittest.TestCase):
    expected.remove('SPCTradeRouteProbe')
    self.assertEqual([n for n in re.findall(pattern,retired_source('Gameplay.lua',B452)) if n!='SPCLegacyCleanup'],expected)
    expected.remove('SPCTimedProductionProbe')
+   self.assertEqual([n for n in re.findall(pattern,retired_source('Gameplay.lua',B454)) if n!='SPCLegacyCleanup'],expected)
+   expected.remove('SPCProjectTurnObservation')
    if not reply_service:expected.remove('SPCPlayerActionReplies')
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"));self.assertLess(s.index("composition.Run('LegacyCleanup'"),s.index("composition.Run('BindingProbe'"))

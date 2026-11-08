@@ -117,7 +117,7 @@ adapters.Add('StandardizationProgressRead',function()return false end,{'SPC_Stan
  return {}
 end)
 adapters.Add('ProjectTurnRead',function()return false end,{'SPC_ProjectTurnRead'},function()
- include('ProjectTurnRead');return SPCProjectTurnRead.New(SPCP0,function()end,function()end)
+ include('ProjectTurnRead');return SPCProjectTurnRead.New()
 end)
 local projectSelection=adapters.Add('TimedProjectSelection',one('PROJECT_SPC_OVERFLOW_SINK_TEST'),{'SPC_TimedProjectSelection'},function()
  include('TimedProjectSelection');return SPCTimedProjectSelection.New(SPCP0,send,notify)

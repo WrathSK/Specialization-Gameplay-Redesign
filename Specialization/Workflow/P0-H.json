@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0974",
-    "runtime": "B454.481 / modinfo481",
+    "status": "S0975",
+    "runtime": "B455.482 / modinfo482",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the verified B454 deployment and the exact separate project-turn observer proposal.",
+  "goal": "Verify exact project turn observer retirement and preserve the queue reader, timer and formal project paths.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the old project turn observer — S0975",
+      "reason": "Approved observer retirement and actual local continuity checks"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -276,6 +282,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B455 passes 41 selected methods and the 42/88 carried checks, with exact outgoing rollback.",
     "B454 installed 351/351 MATCH, with B453 and B307 recovery verified. The separate observer projection preserves both production UI readers and the P0 timer report.",
     "B454 passes 88 selected methods plus all four pinned historical stages. Both local deployment recovery paths restore the exact outgoing package.",
     "B453 network recovery retirement projection passes 84 targeted methods before and after plus exact stable and temporary package rollback.",
@@ -1385,6 +1392,37 @@
       "local_evidence": "local/refactor/B454-ProjectTurnObserverReview/result.json",
       "local_evidence_sha256": "1ba2cb945d41b16c63840381f67d9c123192926e4275741d93069c551f7f8db4",
       "report": "Specialization/Status/Specialization_P0_Status.md#b454-deployment-verified-and-next-project-observer-reviewed--s0974"
+    },
+    "b455_project_turn_observer_retirement": {
+      "build": "B455.482 / modinfo482",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7mProjectTurnObserverRetirement": {
+          "tests": 41,
+          "path": "local/refactor/B455-O7mProjectTurnObserverRetirement-verified/closure.json",
+          "sha256": "cc626bfe27854408a83b167d9c5bc1012c8891a24047d5f5419a53eb73dbbb01"
+        },
+        "O7kTimedTurnRetirement": {
+          "tests": 42,
+          "path": "local/refactor/B455-CarriedO7k-verified/closure.json",
+          "sha256": "13eefbb81a5f4776a915aea35a4494c3582ce5bc7ec9843506710edeea190f55"
+        },
+        "O7lNetworkRecoveryRetirement": {
+          "tests": 88,
+          "path": "local/refactor/B455-CarriedO7l-verified/closure.json",
+          "sha256": "e4fa55e4487fdf3ce5c3f074fce5977cfb75ec6750f060cd32c0ba8d066c2fbc"
+        }
+      },
+      "files": 350,
+      "removed": {
+        "Mod/ProjectTurnObservation.lua": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34"
+      },
+      "prior_source": "3fa7527b768207a8f210136749001584b42e5940",
+      "modeled_listener_delta": 9,
+      "source_snapshot_sha256": "e3070c6ebc13ded0604ce264b2ad291d3276453b1aab433b207d77c28469a848",
+      "package_sha256": "48bcdc913bd79147519f61ae7589430102ac2c20bfe90a1234425eb099f83999",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-project-turn-observer--s0975"
     }
   }
 }

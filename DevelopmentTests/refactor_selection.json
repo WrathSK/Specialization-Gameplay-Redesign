@@ -2,6 +2,17 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7mProjectTurnObserverRetirement": [
+      "test_o7_project_turn_observer_retirement",
+      "test_b120_project_turn_observer.Observer",
+      "test_b120_project_turn_observer.OldObserverRegression.test_static",
+      "test_b121_timed_project.Timer.test_normal_b120_sequence",
+      "test_b121_timed_project.Timer.test_reentrant_native_notifications",
+      "test_b121_timed_project.Timer.test_duplicate_activation",
+      "test_b121_timed_project.Timer.test_ui_unavailable_after_admission",
+      "test_o7_route_observer_retirement.RouteObserverRetirement.test_actual_nonempty_transport_before_and_after_retirement",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7lNetworkRecoveryRetirement": [
       "test_o7_network_recovery_retirement",
       "test_refactor_s4b",
@@ -2717,7 +2728,6 @@
     "Mod/Lv3Effects.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1,
     "Mod/Lv3Support.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1,
     "Mod/Probe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
-    "Mod/ProjectTurnObservation.lua|MEASURED_MISSING_EVENT": 1,
     "Mod/ResearchApply.lua|MEASURED_MISSING_EVENT": 3,
     "Mod/ResearchApply.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1,
     "Mod/ResearchChair.lua|MEASURED_MISSING_EVENT": 3,

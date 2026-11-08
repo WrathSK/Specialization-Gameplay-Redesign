@@ -601,8 +601,7 @@ initialize=function()
  Controls.GWAReadButton:RegisterCallback(Mouse.eRClick,function()request('MEMORY_READ')end)
  Controls.GWAReadButton:SetToolTipString('左键开始一次短观测；右键读取事件用量。最多6回合，不清内存、不改存档。')
  include("ProjectTurnRead")
- -- Retain its independent UI queue reader; B120 observer still exists for reference.
- SPCProjectTurnRead.New(P,function()end,function(...)return UI.RequestPlayerOperation(...)end)
+ SPCProjectTurnRead.New()
  include("TimedProjectRead")
  local timer=SPCTimedProjectRead.New(P,function(s) localReport=s;status(s) end,function(...)return UI.RequestPlayerOperation(...)end)
  projectReadPulse=timer.Pulse

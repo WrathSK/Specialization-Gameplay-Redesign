@@ -6,8 +6,8 @@ import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
-from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B453, gameplay as historical_gameplay, package as historical_package
+from refactor_harness import measure
+from retired_crew_sources import B453, B454, gameplay as historical_gameplay, package as historical_package
 from test_deployment_removals import commit, deploy
 from test_o7_crew_retirement import verify_package_round_trip
 import test_o7_route_observer_retirement as route
@@ -34,7 +34,7 @@ end
 
 class NetworkRecoveryRetirement(unittest.TestCase):
     def test_exact_manifest_and_store_scope(self):
-        with historical_package(B453) as previous:
+        with historical_package(B453) as previous, historical_package(B454) as retired:
             doc = ET.parse(previous/'Mod/SpecializationP0.modinfo')
             for section in (doc.find('./Files'), doc.find('./InGameActions/ImportFiles')):
                 removed = [n for n in section.findall('File') if n.text in REMOVED]
@@ -43,7 +43,7 @@ class NetworkRecoveryRetirement(unittest.TestCase):
                     section.remove(n)
             self.assertEqual(doc.getroot().get('version'), '480')
             doc.getroot().set('version', '481')
-            current = ET.parse(ROOT/'Mod/SpecializationP0.modinfo')
+            current = ET.parse(retired/'Mod/SpecializationP0.modinfo')
             self.assertEqual(ET.canonicalize(ET.tostring(doc.getroot()), strip_text=True),
                              ET.canonicalize(ET.tostring(current.getroot()), strip_text=True))
 
@@ -59,16 +59,16 @@ class NetworkRecoveryRetirement(unittest.TestCase):
                 begin,finish = old_store.index(start),old_store.index(end)
                 self.assertIn('NetworkRecoveryStamp', old_store[begin:finish])
                 old_store = old_store[:begin] + old_store[finish:]
-            self.assertEqual(old_store, (ROOT/'Mod/CityProgressionStore.lua').read_text())
+            self.assertEqual(old_store, (retired/'Mod/CityProgressionStore.lua').read_text())
 
     def test_real_route_roots_ignore_the_experimental_slot(self):
-        profile = PackageVFS(forbidden_globals=GLOBALS)
-        self.assertFalse(set(REMOVED) & (profile.files | profile.imports))
-        with historical_package(B453) as previous, patch.object(route,'NATIVE',route.NATIVE+OLD_SLOT_GUARD):
+        with historical_package(B453) as previous, historical_package(B454) as retired, \
+             patch.object(route,'NATIVE',route.NATIVE+OLD_SLOT_GUARD):
             old_game = historical_gameplay(previous,revision=B453,forbidden_globals=GLOBALS)
             old_ui = historical_gameplay(previous,revision=B453,name='UI/BackgroundRoutes',forbidden_globals=GLOBALS)
-            new_game = Context(vfs=profile)
-            new_ui = Context(name='UI/BackgroundRoutes',vfs=profile)
+            new_game = historical_gameplay(retired,revision=B454,forbidden_globals=GLOBALS)
+            self.assertFalse(set(REMOVED) & (new_game.vfs.files | new_game.vfs.imports))
+            new_ui = historical_gameplay(retired,revision=B454,name='UI/BackgroundRoutes',forbidden_globals=GLOBALS)
             expected = route.exercise_proof(old_game,old_ui)
             observed = route.exercise_proof(new_game,new_ui)
 
@@ -85,15 +85,16 @@ class NetworkRecoveryRetirement(unittest.TestCase):
         })
 
     def test_exact_temporary_package_round_trip(self):
-        with historical_package(B453) as previous:
-            verify_package_round_trip(self,previous/'Mod',ROOT/'Mod',REMOVED,'NetworkBridge.lua')
+        with historical_package(B453) as previous, historical_package(B454) as retired:
+            verify_package_round_trip(self,previous/'Mod',retired/'Mod',REMOVED,'NetworkBridge.lua')
 
     def test_stable_receipt_and_recovery_cover_all_three_paths(self):
-        with historical_package(B453) as previous, tempfile.TemporaryDirectory(prefix='spc-stable-network-retirement-') as directory:
+        with historical_package(B453) as previous, historical_package(B454) as retired, \
+             tempfile.TemporaryDirectory(prefix='spc-stable-network-retirement-') as directory:
             root = Path(directory).resolve()
             stable = root/'Main/Mod'
             target = root/'Game/Mods/SpecializationP0'
-            shutil.copytree(ROOT/'Mod',stable)
+            shutil.copytree(retired/'Mod',stable)
             shutil.copytree(previous/'Mod',target)
             commit(stable.parent,'main')
             before, after = deploy.snapshot(target),deploy.snapshot(stable)
