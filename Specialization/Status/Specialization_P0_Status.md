@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0942
-Implementation Build: source B440.467 / modinfo467. Live B437.464 from a24b327. Stable/main B307.334.
+Status Revision: S0943
+Implementation Build: source B441.468 / modinfo468. Live B437.464 from a24b327. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CREW_CONSTRUCTION_QUEUE_READER_LOCAL
+Work State: NATIVE_WONDER_SITE_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Crew locates the current Wonder through the native UI — S0943
+
+Map markers and Crew action preparation now identify the current, incomplete Wonder through the same native UI context in the official and HD profiles. The stock CityBannerManager uses the plot's Wonder type and completion state for its construction display. The existing Gameplay action still confirms the owned city, its current target and the unit's exact plot. The formal target owner can start without the old DEV site probe.
+
+- **Runtime Impact Contract (L3, T01/T02/T05/T08).** Add one fixed mode to the existing Crew target reader. A location call samples one current target and that city's purchased plots once, returning one matching owned plot index. Duplicate indexes are harmless and two matching plots reject that city. Gameplay confirms the same city, turn, target and returned plot without assuming native Wonder methods are available in Gameplay. The existing selected-unit marker request can still discover cities, while preparation and confirmation at a known location keep their single-city scope. The cost/progress mode reads no plots. No new listener, persisted state, retry or periodic sampling.
+- **LOCAL_SIMULATION_PASS in scope.** All 43 selected checks passed. The same targeted 25-case comparison passes here and fails on B440 for the four new no-HD location/absence cases. The real selected panel, target owner, Crew, Store and native-shaped doubles cover wrong, completed and ambiguous plots, stale Gameplay or UI facts, missing UnitSiteProbe and one actual Crew debit/progress call. A marker read and one prepare/confirm pair took three plot-list samples and three cost/progress samples, with zero extra samples over 1,000 idle publications. The observed 8/32/64-city fixtures keep current-site work constant. These counts are local, not engine timing.
+- **STATIC_CONFIRMED and reproduction.** Installed official sources `Base/Assets/UI/CitySupport.lua:600–611` and `Base/Assets/UI/WorldView/CityBannerManager.lua:525–551` establish UI purchased-plot, type and incomplete-Wonder reads. The production path no longer reads the HD marker or helper. The separate DEV observer remains on its original path. 226 Lua 5.1 compiles, 32 XML-family parses, 355 files, 715 manifest references and no new static alarms. Package SHA256 `4c983832fc311b9c2a96def29d2f824530a1ed2b393e75dc4c2e41d988a1d971`. With CPython 3.14/Lupa 2.8, DevelopmentTests on PYTHONPATH and the pinned official asset root in `SPC_OFFICIAL_ASSETS`, run `python3.14 DevelopmentTests/run_refactor.py --stage O4bCrewWonderSite`. Tested source SHA256 `110fcfb2574863a13c77e4de8eeff7376f5da7fe08d466a8a69f016d282cc07f`. Full local evidence `local/refactor/O4bCrewWonderSite-fb9dacd9d08b46ca99b0094ef625949e/closure.json`, SHA256 `da14f0f9913a213999a567b59a23392daeabe7acf85754df84a00f210f832e55`. The before/after logs are local alongside it.
+
+User decision and testing are unnecessary at this local checkpoint. Live remains B437.464. Primary next is attaching the existing selected-city institution and full-turn project presentation to the shipped CityPanel and CityPanelOverview. The official Crew action still needs native validation of a placed Wonder, preview and one actual progress grant. Formation attribution outside the accepted B413 observed sequence remains open.
 
 ### Crew construction reads native cost and progress through the production UI — S0942
 

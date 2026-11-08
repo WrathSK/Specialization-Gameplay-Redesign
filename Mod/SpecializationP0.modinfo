@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="467">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="468">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B440.467：施工队使用项目自己的原生奇观进度读取。</Description>
+    <Description>B441.468：施工队使用原生在建奇观地块。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>

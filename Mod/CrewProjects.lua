@@ -308,18 +308,8 @@ function SPCCrewProjects.Start(P,shared,readQueue)
  -- Cross-context reads return only scalars and must match this live queue.
  local function constructionSnapshot(pid,c)
   assert(c and c:GetOwner()==pid and P.IsTestPlayer(pid),'OWN_TEST_CITY_REQUIRED')
-  local id,x,y,turn=c:GetID(),c:GetX(),c:GetY(),Game.GetCurrentGameTurn()
   local target=c:GetBuildQueue():CurrentlyBuilding()
-  local row=P.Info('Buildings',target)
-  assert(row and (row.IsWonder==true or row.IsWonder==1) and type(row.Hash)=='number','CREW_WONDER_REQUIRED')
-  local read=ExposedMembers.SPC_CrewTargetRead
-  assert(type(read)=='function','CREW_TARGET_READER_UNAVAILABLE')
-  local snapshot=read(pid,id,row.Hash)
-  assert(type(snapshot)=='table' and getmetatable(snapshot)==nil and ExposedMembers.SPC_CrewTargetRead==read
-   and snapshot.owner==pid and snapshot.city==id and snapshot.x==x and snapshot.y==y
-   and snapshot.turn==turn and snapshot.target==row.Hash and c:GetOwner()==pid and c:GetID()==id
-   and c:GetX()==x and c:GetY()==y and Game.GetCurrentGameTurn()==turn
-   and c:GetBuildQueue():CurrentlyBuilding()==target,'CREW_TARGET_CHANGED')
+  local snapshot=SPCUnitSiteFacts.ReadWonder(pid,c,target,P.Info('Buildings',target))
   local cost,progress=snapshot.cost,snapshot.progress
   assert(type(cost)=='number' and cost>0 and cost<math.huge
    and type(progress)=='number' and progress>=0 and progress<math.huge,'QUEUE_NUMBERS_INVALID')

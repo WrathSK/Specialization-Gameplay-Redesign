@@ -10,7 +10,7 @@ from test_refactor_s7d5 import fixture as crew_transaction
 
 
 UI_QUEUE = """
-local id,x,y,turn,wonder=...
+local id,x,y,turn,wonder,index=...
 c.GetID=function()return id end
 c.GetX=function()return x end
 c.GetY=function()return y end
@@ -19,21 +19,21 @@ Players[0].GetCities=function()
  return {FindID=function(_,city)assert(city==id,'UNRELATED_CITY_READ');return c end,
   Members=function()error('CITY_ENUMERATION')end}
 end
-GameInfo.Buildings={[wonder]={Index=17,IsWonder=true}}
+GameInfo.Buildings={[wonder]={Index=index,IsWonder=true}}
 costReads,progressReads=0,0
 local queue={}
 function queue:GetCurrentProductionTypeHash()
  local hash=readNativeQueue()
  return forcedTarget or hash
 end
-function queue:GetBuildingCost(index)
- assert(index==17)
+function queue:GetBuildingCost(building)
+ assert(building==index)
  costReads=costReads+1
  local _,cost=readNativeQueue()
  return cost
 end
-function queue:GetBuildingProgress(index)
- assert(index==17)
+function queue:GetBuildingProgress(building)
+ assert(building==index)
  progressReads=progressReads+1
  local _,_,progress=readNativeQueue()
  if changeDuringRead then forcedTarget=-1 end
@@ -55,7 +55,8 @@ def paired(hd=False):
         io=nil;os=nil;debug=nil;package=nil;require=nil
     """)
     identity = gameplay.eval("""function()
-        return c:GetID(),c:GetX(),c:GetY(),Game.GetCurrentGameTurn(),P.Info('Buildings',q.target).Hash
+        local row=P.Info('Buildings',q.target)
+        return c:GetID(),c:GetX(),c:GetY(),Game.GetCurrentGameTurn(),row.Hash,row.Index
     end""")
     native_queue = gameplay.eval("""function()
         local row=P.Info('Buildings',q.target)
@@ -65,10 +66,10 @@ def paired(hd=False):
     ui.execute(UI_QUEUE, *identity())
 
     # Model ExposedMembers transport by copying only scalar response fields.
-    def read_ui(pid, city, target):
+    def read_ui(pid, city, target, mode=None):
         reader = ui.globals().ExposedMembers.SPC_CrewTargetRead
         assert reader is not None, 'CREW_TARGET_SLOT_MISSING'
-        row = dict(reader(pid, city, target).items())
+        row = dict(reader(pid, city, target, mode).items())
         assert all(isinstance(value, (bool, int, float, str)) for value in row.values())
         return gameplay.table_from(row)
 

@@ -1,6 +1,6 @@
 """S6i actual Store/Investment/UnitActions and Crew/targets with native site doubles."""
 import unittest
-from refactor_harness import TrackedLua51, legacy_source_observation, measure
+from refactor_harness import ROOT, TrackedLua51, legacy_source_observation, measure
 import test_store_write_boundaries as stores
 import test_b236_crews as crews
 from test_refactor_s6h import ActualProfile
@@ -71,7 +71,10 @@ def crew_site(n=8):
       plots={};function plot(id)
        local p={id=id,owner=0,mark=P.Info('Buildings','BUILDING_WONDER_2').Index}
        function p:GetOwner()return self.owner end;function p:GetIndex()return self.id end;function p:GetDistrictType()return 999 end
-       function p:GetProperty()return self.mark end;return p
+       function p:GetProperty()return self.mark end
+       function p:GetWonderType()return self.mark end
+       function p:IsWonderComplete()return false end
+       return p
       end
       plots[500]=plot(500);plots[501]=plot(501)
       Map={GetPlot=function(x,y)return plots[x]end,GetPlotByIndex=function(id)return plots[id]end}
@@ -79,6 +82,17 @@ def crew_site(n=8):
       CityManager.GetDistrictAt=function()if locatorFailure then error('LOCATOR_UNKNOWN')end;return nil end
       Cities={GetPlotPurchaseCity=function(p)return purchaseCity or c end}
       ExposedMembers.DLHD={Utils={GetCityPlots=function(pid,id)return hdPlots or {500,500}end}}
+      local wonder=P.Info('Buildings','BUILDING_WONDER_2')
+      GameInfo.Buildings={[wonder.Hash]=wonder}
+      GameInfo.Districts=C.rows.Districts
+      Game.GetLocalPlayer=function()return 0 end
+      function queue:GetCurrentProductionTypeHash()
+       local row=P.Info('Buildings',self.target)
+       return row and row.Hash or -1
+      end
+      function queue:GetBuildingCost()return self.cost end
+      function queue:GetBuildingProgress()return self.progress end
+      Map.GetCityPlots=function()return {GetPurchasedPlots=function()return hdPlots or {500,500}end}end
       siteWork={ownerDistricts=0,ownerCities=0,localDistricts=0,cities=0}
       local pd=Players[0].GetDistricts;local pc=Players[0].GetCities
       Players[0].GetDistricts=function()siteWork.ownerDistricts=siteWork.ownerDistricts+1;if forbidOwner then error('OWNER_DISTRICTS_FORBIDDEN')end;return pd()end
@@ -86,8 +100,17 @@ def crew_site(n=8):
       P.Count=function(k)if k=='district_scan'then siteWork.localDistricts=siteWork.localDistricts+1 elseif k=='city_scan'then siteWork.cities=siteWork.cities+1 end end
       function resetWork()for k in pairs(siteWork)do siteWork[k]=0 end end
     ''')
-    with legacy_source_observation():l.globals().include('UnitTargets')
-    l.execute("SPCUnitTargets.Start(P,shared);shared.UnitTargetSnapshot={token='MARKER_KEEP'};resetWork()")
+    with legacy_source_observation():
+        l.execute((ROOT/'Mod/UI/CrewProjectUI.lua').read_text())
+        l.globals().include('UnitTargets')
+    l.execute("""
+      local formation=ExposedMembers.SPC_CrewNativeRead
+      SPCCrewProjectUI.New(P)
+      ExposedMembers.SPC_CrewNativeRead=formation
+      SPCUnitTargets.Start(P,shared)
+      shared.UnitTargetSnapshot={token='MARKER_KEEP'}
+      resetWork()
+    """)
     return l
 
 

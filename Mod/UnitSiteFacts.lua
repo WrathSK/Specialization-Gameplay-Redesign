@@ -47,6 +47,21 @@ function M.CityAt(P,pid,u)
  return c,true
 end
 
+-- Both position and cost reads use the same live city and queue witness.
+function M.ReadWonder(pid,c,target,row,mode)
+ assert(row and (row.IsWonder==true or row.IsWonder==1) and type(row.Hash)=='number','CREW_WONDER_REQUIRED')
+ local id,x,y,turn=c:GetID(),c:GetX(),c:GetY(),Game.GetCurrentGameTurn()
+ local read=ExposedMembers.SPC_CrewTargetRead
+ assert(type(read)=='function','CREW_TARGET_READER_UNAVAILABLE')
+ local snapshot=read(pid,id,row.Hash,mode)
+ assert(type(snapshot)=='table' and getmetatable(snapshot)==nil and ExposedMembers.SPC_CrewTargetRead==read
+  and snapshot.owner==pid and snapshot.city==id and snapshot.x==x and snapshot.y==y
+  and snapshot.turn==turn and snapshot.target==row.Hash and c:GetOwner()==pid and c:GetID()==id
+  and c:GetX()==x and c:GetY()==y and Game.GetCurrentGameTurn()==turn,'CREW_TARGET_CHANGED')
+ assert(c:GetBuildQueue():CurrentlyBuilding()==target,'QUEUE_CHANGED')
+ return snapshot
+end
+
 function M.TargetCity(shared,pid,u)
   local params={UnitID=u:GetID(),Token='ACTION_SITE',BuilderPreview=false};local s
   if shared.UnitTargets.ReadAtSite then s=shared.UnitTargets.ReadAtSite(pid,params)

@@ -254,6 +254,12 @@ class ActualTargets(unittest.TestCase):
    Map={GetPlotByIndex=function(id)if id==500 then return plot end end}
    Cities={GetPlotPurchaseCity=function()return c end}
    ExposedMembers.DLHD={Utils={GetCityPlots=function()return {500,500}end}}
+   local wonder=P.Info('Buildings','BUILDING_WONDER_2')
+   wonder.Hash=wonder.Hash or wonder.Index
+   ExposedMembers.SPC_CrewTargetRead=function(pid,id,hash,mode)
+    assert(pid==0 and id==c:GetID() and hash==wonder.Hash and mode=='PLOT')
+    return {owner=pid,city=id,x=c:GetX(),y=c:GetY(),turn=Game.GetCurrentGameTurn(),target=hash,plot=500}
+   end
    SPCUnitTargets.Start(P,shared)
    shared.UnitTargets.Refresh(0,{UnitID=20001,Token='wonder'})
    assert(not shared.UnitTargetSnapshot.error and #shared.UnitTargetSnapshot.plots==1)

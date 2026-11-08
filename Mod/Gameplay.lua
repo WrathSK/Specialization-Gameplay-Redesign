@@ -947,7 +947,7 @@ composition.Run('ConstructionProbe',{},{'ConstructionProbe'},function() include(
 
 composition.Run('UnitSiteProbe',{},{'UnitSiteProbe'},function() include('UnitActionSitePolicy');include('UnitSiteProbe');SPCUnitSiteProbe.Start(P,shared) end)
 
-composition.Run('UnitTargets',{'EffectiveFacts','UnitSiteProbe'},{'UnitTargets'},function() include('UnitTargets');SPCUnitTargets.Start(P,shared) end)
+composition.Run('UnitTargets',{'EffectiveFacts'},{'UnitTargets'},function() include('UnitTargets');SPCUnitTargets.Start(P,shared) end)
 
 composition.Run('UnitActions',{'CityProgressionStore','InvestmentAction','UnitTargets'},{'UnitActions'},function() include('UnitActions');SPCUnitActions.Start(P,shared) end)
 

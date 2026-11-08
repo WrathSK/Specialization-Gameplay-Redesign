@@ -46,23 +46,20 @@ function SPCUnitTargets.Start(P,shared)
       local current=c:GetBuildQueue():CurrentlyBuilding()
       local b=P.Info('Buildings',current);local dr=P.Info('Districts',current)
       if not b and not dr then return nil end
-      if crew and not (b and (b.IsWonder==true or b.IsWonder==1))then return nil end
+      local wonder=b and (b.IsWonder==true or b.IsWonder==1)
+      if crew and not wonder then return nil end
       if b and P.HasBuilding(c:GetBuildings(),b.Index) then return nil end
-      if b and b.IsWonder then
+      if wonder then
        local wi=P.Info('Districts','DISTRICT_WONDER');assert(wi,'WONDER_TYPE_UNKNOWN')
-       local utils=ExposedMembers.DLHD and ExposedMembers.DLHD.Utils
-       assert(utils and type(utils.GetCityPlots)=='function','HD_CITY_PLOTS_HELPER_UNAVAILABLE')
-       local indexes=utils.GetCityPlots(pid,c:GetID())
-       assert(type(indexes)=='table','HD_CITY_PLOTS_LIST_UNKNOWN')
-       local scanned={}
-       for _,index in pairs(indexes) do
-        assert(type(index)=='number' and index>=0 and index%1==0,'CITY_PLOT_INDEX_INVALID')
-        local p=Map.GetPlotByIndex(index)
-        if not scanned[index] and p and p:GetOwner()==pid and p:GetDistrictType()==wi.Index and p:GetProperty('HD_UNCOMPLETED_WONDER')==b.Index then
-         local pc=Cities.GetPlotPurchaseCity(p)
-         if pc and pc:GetOwner()==pid and pc:GetID()==c:GetID() then candidates[#candidates+1]=p;scanned[index]=true end
-        end
-       end
+       local site=SPCUnitSiteFacts.ReadWonder(pid,c,current,b,'PLOT')
+       local index=site.plot
+       assert(type(index)=='number' and index>=0 and index<math.huge and index%1==0,'CITY_PLOT_INDEX_INVALID')
+       local p=Map.GetPlotByIndex(index)
+       local pc=p and Cities.GetPlotPurchaseCity(p)
+       assert(p and p:GetIndex()==index and p:GetOwner()==pid and p:GetDistrictType()==wi.Index
+        and pc and pc:GetOwner()==pid and pc:GetID()==c:GetID() and pc:GetX()==site.x and pc:GetY()==site.y,
+        'TARGET_LOCATION_UNKNOWN_OR_AMBIGUOUS')
+       candidates[#candidates+1]=p
       else
        local expected=b and b.PrereqDistrict or dr.DistrictType
        for _,d in ipairs(ds) do

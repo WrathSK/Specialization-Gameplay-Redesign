@@ -34,8 +34,28 @@ function SPCCrewProjectUI.New(P,send,notify,build)
   end end
   return v
  end
- -- Crew spending only needs the current Wonder's native cost and progress.
- ExposedMembers.SPC_CrewTargetRead=function(pid,id,target)
+ local function wonderPlot(pid,c,row)
+  local wonder=assert(GameInfo.Districts['DISTRICT_WONDER'],'WONDER_TYPE_UNKNOWN')
+  local plots=Map.GetCityPlots():GetPurchasedPlots(c)
+  assert(type(plots)=='table','CITY_PLOTS_UNKNOWN')
+  local selected
+  for _,index in pairs(plots)do
+   assert(M.Int(index),'CITY_PLOT_INDEX_INVALID')
+   local plot=Map.GetPlotByIndex(index)
+   if selected~=index and plot and plot:GetOwner()==pid and plot:GetDistrictType()==wonder.Index
+    and plot:GetWonderType()==row.Index and plot:IsWonderComplete()==false then
+    local owner=Cities.GetPlotPurchaseCity(plot)
+    if owner and owner:GetOwner()==pid and owner:GetID()==c:GetID() then
+     assert(selected==nil,'TARGET_LOCATION_UNKNOWN_OR_AMBIGUOUS')
+     selected=index
+    end
+   end
+  end
+  return assert(selected,'TARGET_LOCATION_UNKNOWN_OR_AMBIGUOUS')
+ end
+ -- The same native queue witness supports either a location or a progress read.
+ ExposedMembers.SPC_CrewTargetRead=function(pid,id,target,mode)
+  assert(mode==nil or mode=='PLOT','CREW_TARGET_READ_MODE')
   assert(pid==Game.GetLocalPlayer() and P.IsTestPlayer(pid),'CREW_UI_OWNER')
   local c=assert(Players[pid]:GetCities():FindID(id),'CREW_UI_CITY')
   assert(c:GetOwner()==pid and c:GetID()==id,'CREW_UI_OWNER')
@@ -44,12 +64,17 @@ function SPCCrewProjectUI.New(P,send,notify,build)
   assert(q:GetCurrentProductionTypeHash()==target,'CREW_TARGET_CHANGED')
   local row=GameInfo.Buildings[target]
   assert(row and (row.IsWonder==true or row.IsWonder==1),'CREW_WONDER_REQUIRED')
-  local cost=q:GetBuildingCost(row.Index)
-  local progress=q:GetBuildingProgress(row.Index)
+  local snapshot={owner=pid,city=id,x=x,y=y,turn=turn,target=target}
+  if mode=='PLOT' then
+   snapshot.plot=wonderPlot(pid,c,row)
+  else
+   snapshot.cost=q:GetBuildingCost(row.Index)
+   snapshot.progress=q:GetBuildingProgress(row.Index)
+  end
   assert(c:GetOwner()==pid and c:GetID()==id and c:GetX()==x and c:GetY()==y
    and Game.GetCurrentGameTurn()==turn and c:GetBuildQueue():GetCurrentProductionTypeHash()==target,
    'CREW_TARGET_CHANGED')
-  return {owner=pid,city=id,x=x,y=y,turn=turn,target=target,cost=cost,progress=progress}
+  return snapshot
  end
  function a.Items(data)
   local c=data.City;if not localCity(c)then return end

@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O4bCrewWonderSite": [
+      "test_o4_crew_wonder_site",
+      "test_o4_crew_target_queue",
+      "test_refactor_s6i.CrewSites",
+      "test_refactor_s6i.InvestmentSites",
+      "test_refactor_s7d5.Transaction",
+      "test_refactor_s9c2.RealOwners",
+      "test_pu05a_receipts.CrossCity",
+      "test_o6_production_panel"
+    ],
     "O4aCrewTargetQueue": [
       "test_o4_crew_target_queue",
       "test_o6_production_panel",
@@ -2021,6 +2031,7 @@
       "test_refactor_s7a2"
     ],
     "Mod/Gameplay.lua": [
+      "test_o4_crew_wonder_site",
       "test_o4_crew_target_queue",
       "test_refactor_defects.Defects",
       "test_refactor_s5d2",
@@ -2296,6 +2307,7 @@
       "test_refactor_s6h.ActualConsumption"
     ],
     "Mod/UnitTargets.lua": [
+      "test_o4_crew_wonder_site",
       "test_refactor_s6h.Panel",
       "test_refactor_s6h.Markers",
       "test_refactor_s6h.ActualTargets",
@@ -2303,6 +2315,7 @@
       "test_refactor_s6i"
     ],
     "Mod/UnitSiteFacts.lua": [
+      "test_o4_crew_wonder_site",
       "test_refactor_s6i",
       "test_refactor_s7d5"
     ],
@@ -2334,6 +2347,7 @@
       "test_refactor_s7b1"
     ],
     "Mod/CrewProjects.lua": [
+      "test_o4_crew_wonder_site",
       "test_o4_crew_target_queue",
       "test_refactor_s7b2",
       "test_refactor_s7d5",
@@ -2447,6 +2461,7 @@
       "test_refactor_s9a3e.ActualUI"
     ],
     "Mod/UI/CrewProjectUI.lua": [
+      "test_o4_crew_wonder_site",
       "test_o4_crew_target_queue",
       "test_o6_production_panel",
       "test_refactor_s9e1.CrewReadback"

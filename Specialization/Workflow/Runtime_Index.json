@@ -176,9 +176,9 @@
       "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "0fe7424e5005da821ec11180c57bc831fa70afd1802725c0b979e3945dcd16e4",
+      "sha256": "7ce1c6ecf64e095b0da2073875b55cf5b74a876e395ef74179689df3142a36df",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
+      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "76b7c148d8c5aac6779f360ac5d83c33c106cd5d2b8c3cf67f8863deca9263f1",
@@ -641,9 +641,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "0971f9db282d0932bd6d1cd6487c6acf90c32aabe393aa2b404e2fb35aca6ea4",
+      "sha256": "b20e04a124ad01f9e5abfbf5fd4faf48c66d4c5d782958bccdc4a58669521dd5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
+      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "aab24cab2c76235f8d02f8639354e10afd343feae0af268fc626a40ac2957417",
+      "sha256": "37ebf95588f4f2b79db692cbad144c2144895abedebf2e4c1f50044381a3ee02",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
+      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "316498d4c0d746ef3c741801abf922884203fc085ee756d817bc788c0fb29fad",
+      "sha256": "92652157abe08f85d4430865dc861a5010c06e9b71b8b949c6ae53e53a5adb85",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
+      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1256,9 +1256,9 @@
       "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
     },
     "Mod/UI/CrewProjectUI.lua": {
-      "sha256": "52b9a28d8485dd63c8b423ad705dbb8ab1325b91f6dc916d1f89e191b214c810",
+      "sha256": "cd9e915db1b6b33ce67d2ac3fa4d74d836c82db32823d700c50e158315293e1b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
+      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.lua": {
       "sha256": "8ec0d4a6506e480c3801b652b7dff3a4e37768e8b6c8cc96e97f6b6ddba2d140",
@@ -1546,9 +1546,9 @@
       "provenance": "B237 approved tier-I260 and retained native paused progress/start-locked admission.223 targeted local tests; native continuation pending. Fixed injection remains BLOCKED and is rejected before debit; no amplified fallback. Stable IDs and saved completed-unit capacity retained. No new timers, Store core or GC change."
     },
     "Mod/UnitTargets.lua": {
-      "sha256": "429b561e1cd9522997c5ce666bacf6ccb707398e2578b81b9e8821f358626b4f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B361_Refactor_S9c5a.md",
-      "provenance": "B361.388 Publish fixed bounded target replies independently of action and view; local/static evidence only; no deployment/native PASS."
+      "sha256": "2fc049d186cbd684b3f7cf5c8d780ae11ed409d295234e80cae758ce29df7b8b",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
     },
     "Mod/YieldCarrierProbe.lua": {
       "sha256": "df555d3ab5b74aa801cd7b912766360512bd5941c532a2fd16e76546bcbd0a21",
@@ -1601,9 +1601,9 @@
       "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UnitSiteFacts.lua": {
-      "sha256": "e8b6bcd4d8d68f1b49f7ce240cfa02faeef43950de0f734807209ece078b5be0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
-      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "c0fa76322f2e6f7189424137bc2d68cdf7b37244f0821b312cf77b186d0347d1",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
     },
     "Mod/CarrierSet.lua": {
       "sha256": "c338c177088e9e0fa22601b1d5a8f93b07a15e76557178dcf93a08c094395421",
@@ -1781,7 +1781,7 @@
       "provenance": "S0941 B439 scopes production actions to the selected official and HD UI bases. Native interaction pending."
     }
   },
-  "source_review": "Specialization/Status/Specialization_P0_Status.md#crew-construction-reads-native-cost-and-progress-through-the-production-ui--s0942",
-  "source_runtime": "B440.467 / modinfo467 local candidate, 355 files",
-  "tested_source_snapshot_sha256": "1b660cb8dd57f649683af04491a08c8b24c16ca7e12f235fd294ec4fbe1ba025"
+  "source_review": "Specialization/Status/Specialization_P0_Status.md#crew-locates-the-current-wonder-through-the-native-ui--s0943",
+  "source_runtime": "B441.468 / modinfo468 local candidate, 355 files",
+  "tested_source_snapshot_sha256": "110fcfb2574863a13c77e4de8eeff7376f5da7fe08d466a8a69f016d282cc07f"
 }
