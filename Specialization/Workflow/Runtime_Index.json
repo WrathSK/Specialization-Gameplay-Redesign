@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "fc51d0df7de10425c3272c009849e11c1ad3948d",
-  "runtime": "B449.476 / modinfo476 temporary develop deployed, 356/356 MATCH. Stable/main B307.334.",
+  "runtime_commit": "0224c014aeb0718a0b6f5bad37ad867561c89250",
+  "runtime": "B450.477 / modinfo477 temporary develop deployed, 355/355 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1781,7 +1781,7 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     }
   },
-  "source_review": "S0963 verifies the exact approved route observer removal, retained proof and complete rollback.",
-  "source_runtime": "B450.477 / modinfo477 local candidate, 355 files. B449.476 remains installed.",
+  "source_review": "S0964 verifies B450 development deployment and the exact pending old route observer review.",
+  "source_runtime": "B450.477 / modinfo477 deployed from 0224c01, with the exact approved route observer retired.",
   "tested_source_snapshot_sha256": "cb01e4fd018c956f25f5cf9df0c841165814844d22020c5c341050bda33bf215"
 }

@@ -1,17 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0963
-Implementation Build: source B450.477 / modinfo477. Live B449.476 from fc51d0d. Stable/main B307.334.
+Status Revision: S0964
+Implementation Build: source B450.477 / modinfo477. Live B450.477 from 0224c01. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OBSOLETE_ROUTE_OBSERVER_RETIRED_LOCAL
+Work State: OBSOLETE_ROUTE_OBSERVER_RETIRED_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B450 development deployment verified — S0964
+
+B450.477 is installed from `0224c014aeb0718a0b6f5bad37ad867561c89250`. All 355 files match SHA256 `7d1c923d5248a6a172fafe0d8cdcde3f9d1ab475143ab087aae273ae2f30b0b5`. Receipt `B450.477-0224c01-playtest.json` is DEVELOP_ACTIVE. The only removed file relative to B449 is TradeRouteProbe.lua. The full outgoing B449 backup includes that file and matches the original package digest. The stable B307 recovery also matches. Game exit, the unique UUID and the clear transaction boundary were verified.
+
+The nonempty-route comparison and package recovery are locally verified. There is no immediate user game test. Separate the production Network and Culture Network failure records from optional TRAIN output. Positive Culture Network cold restore remains separate.
 
 ### Retire the obsolete Gameplay route observer — S0963
 
