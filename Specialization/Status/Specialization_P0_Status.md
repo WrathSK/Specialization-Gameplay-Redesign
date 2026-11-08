@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0957
-Implementation Build: source B447.474 / modinfo474. Live B446.473 from af75e32. Stable/main B307.334.
+Status Revision: S0958
+Implementation Build: source B447.474 / modinfo474. Live B447.474 from e178d14. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: UNIT_SITE_DIAGNOSTICS_RETIRED_LOCAL
+Work State: UNIT_SITE_DIAGNOSTICS_RETIRED_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B447 development deployment verified — S0958
+
+B447.474 is installed from `e178d14a1693ae83cd45c19afd9fcdc9f0b9ecd4`. All 355 files match SHA256 `0ea85cd5ff8ea74248cdc2c64276596f95f222bf5cc8a74e3e48d29f7f99fb45`. Receipt `B447.474-e178d14-playtest.json` is DEVELOP_ACTIVE. The outgoing B446 to B447 delta is exactly the two approved files, and the stable-base activation preserves the earlier approved Crew exclusions. Both the outgoing B446 package and the B307 stable recovery match. Game exit, the unique UUID and the clear transaction boundary were verified.
+
+The evidence here is deployment plus scoped local verification. No immediate user game test is needed for this removal.
+
+**Next independent slice (L3, T05/T06/T08).** Give the existing GC coordinator and its native heap trust latch a production owner. Preserve callback order, the pre-scheduling heap samples that can invalidate trust, load or local-activation baseline, busy and UI/route gates, thresholds, single deferred evaluation, and bounded evidence. The optional observation may collect counters and format rows. It must not own any input necessary to stop a collection. Compare the same event and heap sequences on the actual B447 and candidate packages, including the missing-observer case. This does not include another file removal, persisted change, or new native hook.
 
 ### Retire the old unit-site diagnostics — S0957
 

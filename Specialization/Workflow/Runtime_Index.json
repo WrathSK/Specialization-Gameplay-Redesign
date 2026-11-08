@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "af75e329546f583b94a90169d8af68ebb7e4b559",
-  "runtime": "B446.473 / modinfo473 temporary develop deployed, 357/357 MATCH. Stable/main B307.334.",
+  "runtime_commit": "e178d14a1693ae83cd45c19afd9fcdc9f0b9ecd4",
+  "runtime": "B447.474 / modinfo474 temporary develop deployed, 355/355 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1781,7 +1781,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0957 verifies the two approved site diagnostic removals, retained actions and exact rollback.",
-  "source_runtime": "B447.474 / modinfo474 local candidate, 355 files. B446.473 remains installed.",
+  "source_review": "S0958 verifies the B447 deployment and the independent GC ownership boundary.",
+  "source_runtime": "B447.474 / modinfo474 deployed from e178d14, with the two exact approved diagnostics retired.",
   "tested_source_snapshot_sha256": "bf1b3f53cef5b6c5882009f8ee94185655f603d18274dbab2dafb9f394ca2d37"
 }
