@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0937",
+    "status": "S0938",
     "runtime": "B437.464 / modinfo464",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Review receiver-scoped network role proof, first reconciliation and the same-build native gate.",
+  "goal": "Record verified B437 deployment and the bounded native cold restore checkpoint.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B437 deployed for the next cold restore checkpoint — S0938",
+      "reason": "Verified runtime identity, rollback and next native gate"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -56,7 +62,8 @@
   "validation": [
     "20 focused proof and owner tests pass; fixed B436 runtime reproduced five corrected cases.",
     "132 of 140 wider regressions pass with the same eight reproduced nonpassing cases. Restricted roots and static package pass.",
-    "Current-build native restore and sequencing remain pending. Preserve prior B413 and B435 evidence."
+    "Current-build native restore and sequencing remain pending. Preserve prior B413 and B435 evidence.",
+    "B437 deployment: 352/352 installed, retained B435 and B307 hashes verified."
   ],
   "full_audit_triggers": [
     "Reopen affected scope if the selected native profile differs, a fixed-HD target or primitive changes, or a later source/cutover changes ordinary admission, exact exits, history or irreversible behavior."
@@ -449,6 +456,20 @@
       "local_evidence_sha256": "3180b4872fa520f5708eb1c7993b499c204f632bb1cf101c9b9c5464d49b5504",
       "report": "Specialization/Status/Specialization_P0_Status.md#network-reconciliation-scopes-unresolved-route-roles--s0937",
       "native": "USER_GAME_TEST_REQUIRED"
+    },
+    "b437_deployment": {
+      "version": "B437.464 / modinfo464",
+      "source_commit": "a24b3275c376c5f47b5d81fda4b65bdbaec35cb8",
+      "digest": "ab1613960e0b3d9cc7b6a0dafcd460d031db6675123f677a24fb4c3fe1b98c9c",
+      "files": 352,
+      "identical": true,
+      "receipt": "B437.464-a24b327-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "pending": false,
+      "outgoing": "B435.462, 352/352 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "USER_GAME_TEST_REQUIRED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b437-deployed-for-the-next-cold-restore-checkpoint--s0938"
     }
   }
 }

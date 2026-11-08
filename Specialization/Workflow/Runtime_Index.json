@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "35d5998bb68b1f5ac5419c093a1264da7b9e6ac6",
-  "runtime": "B435.462 / modinfo462 temporary develop deployed, 352/352 MATCH. Stable/main B307.334.",
+  "runtime_commit": "a24b3275c376c5f47b5d81fda4b65bdbaec35cb8",
+  "runtime": "B437.464 / modinfo464 temporary develop deployed, 352/352 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1766,7 +1766,7 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     }
   },
-  "source_review": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437.",
-  "source_runtime": "B437.464 / modinfo464 source candidate. B435.462 remains installed and receipt-bound.",
+  "source_review": "S0937 verifies the scoped network-role repair locally. S0938 confirms receipt-bound deployment.",
+  "source_runtime": "B437.464 / modinfo464 deployed from a24b327. Current-build cold restore verification pending.",
   "tested_source_snapshot_sha256": "4d2338ef75fbbb088f041366d0bd67f40b54cbe576ffd89fceccf083cfd917a0"
 }

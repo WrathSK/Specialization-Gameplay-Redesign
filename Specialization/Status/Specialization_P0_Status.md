@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0937
-Implementation Build: source B437.464 / modinfo464, local network candidate. Live B435.462 from 35d5998. Stable/main B307.334.
+Status Revision: S0938
+Implementation Build: source and live B437.464 / modinfo464 from a24b327. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_ROUTE_ROLE_RECONCILIATION_LOCAL_NATIVE_GATE_PENDING
+Work State: DEVELOPMENT_DEPLOYMENT_ACTIVE_NETWORK_COLD_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B437 deployed for the next cold restore checkpoint — S0938
+
+The development-mode switch completed after verified game exit. Receipt `B437.464-a24b327-playtest.json` is DEVELOP_ACTIVE. All 352 files match source `a24b3275c376c5f47b5d81fda4b65bdbaec35cb8` and package SHA256 `ab1613960e0b3d9cc7b6a0dafcd460d031db6675123f677a24fb4c3fe1b98c9c`. B435.462 remains recoverable at 352/352 MATCH and the B307.334 stable package at 312/312 MATCH. The Mod UUID is unique and the transaction marker is absent.
+
+The next native check is the focused current-build save/restart in S0937. Use the fixed HD regression profile where the existing actions can establish the effects. Compare the same Culture and Standardization recipients before and after loading. The B413 Commercialization restore and B435 official launch remain accepted within their original scope. Any event timing absent from the collector stays unknown. The installed hash verifies deployment, while native effect restoration remains USER_GAME_TEST_REQUIRED.
+
+User decision: none on current rules. User testing: the focused same-build restore when taking this checkpoint. Primary next: compare the logs and observed effects against the installed package before any pending-network retirement.
 
 ### Network reconciliation scopes unresolved route roles — S0937
 
