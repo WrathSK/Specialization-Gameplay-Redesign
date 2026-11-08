@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "719bde4bd8b5324abbc978528c0965d874b7b538",
-  "runtime": "B463.490 / modinfo490 temporary develop deployed, 340/340 MATCH. Stable/main B307.334.",
+  "runtime_commit": "623903a017788ecec013d1a2c97d98c4ebb87c04",
+  "runtime": "B464.491 / modinfo491 temporary develop deployed, 338/338 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1696,7 +1696,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0993 verifies the exact B012/B019 retirement, retained experiment values, current Store and route transport, and exact package restoration.",
-  "source_runtime": "B464.491 / modinfo491 local candidate, 338 files. B463.490 remains installed.",
+  "source_review": "S0994 verifies B464 deployment and both recovery packages. The old B014 completion record report is separate from first-completion authority in the current Store.",
+  "source_runtime": "B464.491 / modinfo491 deployed from 623903a with both approved synthetic storage tools removed.",
   "tested_source_snapshot_sha256": "d5aa226520596060f6f584ff3d01d7d906a52c5d67c3d92c5b2b93c939a63300"
 }

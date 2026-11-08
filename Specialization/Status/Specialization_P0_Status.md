@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0993
-Implementation Build: source B464.491 / modinfo491. Live B463.490 from 719bde4. Stable/main B307.334.
+Status Revision: S0994
+Implementation Build: source B464.491 / modinfo491. Live B464.491 from 623903a. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: SYNTHETIC_STORAGE_RETIRED_LOCAL
+Work State: LEGACY_COMPLETION_RECORD_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B464 deployment verified and the old completion record reviewed — S0994
+
+B464.491 is installed from `623903a017788ecec013d1a2c97d98c4ebb87c04`. All 338 files match SHA256 `ccd82ab6e77eda35efbed0c5506e8515aae9eaa03aaa8d52bc5b8f0a6b9a3350`. Receipt `B464.491-623903a-playtest.json` is DEVELOP_ACTIVE. The two old storage experiments are absent. The B463 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The B014 report displays the old first observed completion from its separate City Property. The current production Store owns the actual first qualifying district. Its `UsesNewAuthority` flag already suppresses the observer's construction listener. The proposal removes `Mod/CompletionRecordProbe.lua` (SHA256 `3cc597823cf066869769d2646ace389d7c087d4cb8926ee7c7fd8de849df1e72`), its two manifest entries, one Gameplay start, the COMPLETION_RECORD_READ request route and the matching hidden P0 control and callback. The old B014 property values remain in saves. The separate City Journal is still referenced by City Flow and FreshBindingHook and is outside this proposal.
+
+In the disposable Gameplay comparison, the current Store cold-loads two real fixture-generated records. The established Research city retains its saved record. The other city selects Culture when its qualifying Theater Square completes, and a later Campus does not replace that first completion. The two packages produce identical Game Property values and write keys. The old hidden report reads its seeded B014 record once. The projected action leaves the previous report and the stored record intact. One modeled load callback disappears and the construction listener count is identical. Three nonempty route proofs, strict transaction gates, other P0 requests and exact disposable activation/restoration match. Evidence `local/refactor/B464-CompletionRecordRetirementReview/result.json` SHA256 `f97d6fd771db9a7c28e1b64a3e7ba7ecfd9c9f29eefe3bd495de7ab8e8995612` with replay script SHA256 `694adc750f27f01b0fba294f1eea889f617872d0b43c227d22ef1d7bf473179b` alongside. Reproduce from the named source with CPython 3.14/Lupa 2.8 by including its DevelopmentTests on PYTHONPATH and running `python3.14 -B review.py` in a clean scratch directory.
+
+The exact one-path retirement awaits approval. Positive Culture Network cold restoration remains a separate native gate.
 
 ### Retire the synthetic storage diagnostics — S0993
 

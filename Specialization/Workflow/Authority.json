@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0993",
+    "status": "S0994",
     "runtime": "B464.491 / modinfo491",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "719bde4bd8b5324abbc978528c0965d874b7b538",
-  "current_batch": "SYNTHETIC_STORAGE_RETIRED_LOCAL",
-  "next_batch": "Verify the guarded B464 switch and review the independent old completion-record report against the current Store and city binding paths.",
+  "runtime_commit": "623903a017788ecec013d1a2c97d98c4ebb87c04",
+  "current_batch": "LEGACY_COMPLETION_RECORD_RETIREMENT_REVIEWED",
+  "next_batch": "Await exact approval to remove CompletionRecordProbe.lua, its two manifest entries and Gameplay start, the COMPLETION_RECORD_READ route and its hidden P0 control and callback. Preserve saved B014 values, City Journal, Binding and City Flow, and the current Store, Claim and route proof.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B463.490 / modinfo490 temporary develop from 719bde4bd8b5324abbc978528c0965d874b7b538, 340/340 MATCH, SHA256 272e8e95ef9407f9920a376ae75fda9ecbe1de60228986a832303645d659ee4b. Receipt B463.490-719bde4-playtest.json DEVELOP_ACTIVE. B462 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B464.491 / modinfo491 temporary develop from 623903a017788ecec013d1a2c97d98c4ebb87c04, 338/338 MATCH, SHA256 ccd82ab6e77eda35efbed0c5506e8515aae9eaa03aaa8d52bc5b8f0a6b9a3350. Receipt B464.491-623903a-playtest.json DEVELOP_ACTIVE. B463 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0993 verifies the exact B012/B019 retirement, retained experiment values, current Store and route transport, and exact package restoration.",
+  "context_review_status": "S0994 verifies B464 deployment and both recovery packages. The old B014 completion record report is separate from first-completion authority in the current Store.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-synthetic-storage-diagnostics--s0993",
-  "source_status": "B464.491 / modinfo491 locally verified at SHA256 ccd82ab6e77eda35efbed0c5506e8515aae9eaa03aaa8d52bc5b8f0a6b9a3350. B463.490 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b464-deployment-verified-and-the-old-completion-record-reviewed--s0994",
+  "source_status": "B464.491 / modinfo491 deployed at SHA256 ccd82ab6e77eda35efbed0c5506e8515aae9eaa03aaa8d52bc5b8f0a6b9a3350. Exact B012/B019 diagnostic removal verified.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
