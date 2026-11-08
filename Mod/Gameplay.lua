@@ -823,7 +823,6 @@ if tradeEvent and type(tradeEvent.Add)=="function" then
 else stage("TRADE_ACTIVITY_EVENT_ABSENT") end
 
 -- Explicit ordered startup entries. Failure containment does not reorder dependencies.
-composition.Run('TradeRouteProbe',{},{'AutoRouteProbe'},function() include('TradeRouteProbe');SPCTradeRouteProbe.Start(P,shared) end)
 
 composition.Run('CompletionProbe',{},{'CompletionProbe'},function() include('CompletionProbe');SPCCompletionProbe.Start(P,shared) end)
 

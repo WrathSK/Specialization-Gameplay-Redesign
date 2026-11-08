@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0962",
-    "runtime": "B449.476 / modinfo476",
+    "status": "S0963",
+    "runtime": "B450.477 / modinfo477",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "fc51d0df7de10425c3272c009849e11c1ad3948d",
-  "current_batch": "COMMERCIAL_TRACE_ISOLATED_DEPLOYED",
-  "next_batch": "Review the exact removal of Mod/TradeRouteProbe.lua and its exclusively diagnostic entry, display and unused comparison. Positive Culture Network cold restore remains separate.",
+  "current_batch": "OBSOLETE_ROUTE_OBSERVER_RETIRED_LOCAL",
+  "next_batch": "Verify the guarded B450 switch. Separate the production Network and Culture Network failure records from optional TRAIN output. Positive Culture Network cold restore remains separate.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B449.476 / modinfo476 temporary develop from fc51d0df7de10425c3272c009849e11c1ad3948d, 356/356 MATCH, SHA256 2e039bed576c9f6e47fd081dbc61b5cec93b9c7c8a7fd6543c044aca5f270eb3. Receipt B449.476-fc51d0d-playtest.json DEVELOP_ACTIVE. B448 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0962 verifies B449 development deployment and the exact pending old route observer review.",
+  "context_review_status": "S0963 verifies the exact approved route observer removal, retained proof and complete rollback.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b449-development-deployment-verified--s0962",
-  "source_status": "B449.476 / modinfo476 deployed and verified at SHA256 2e039bed576c9f6e47fd081dbc61b5cec93b9c7c8a7fd6543c044aca5f270eb3. Commercial results are locally scoped and this adds no native acceptance.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-obsolete-gameplay-route-observer--s0963",
+  "source_status": "B450.477 / modinfo477 locally verified at SHA256 7d1c923d5248a6a172fafe0d8cdcde3f9d1ab475143ab087aae273ae2f30b0b5. B449.476 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

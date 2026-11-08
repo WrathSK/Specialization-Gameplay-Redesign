@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import RETIRED_GLOBALS
+from retired_crew_sources import B449, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -66,12 +66,15 @@ class Production(unittest.TestCase):
   # B357 subsequently added the accepted reply service at this exact point.
   # Keep the complete prior order assertion, now including that approved addition.
   expected=re.findall(pattern,old)
-  if reply_service:expected.insert(expected.index('SPCCrewPrecision'),'SPCPlayerActionReplies')
+  if reply_service or retired:expected.insert(expected.index('SPCCrewPrecision'),'SPCPlayerActionReplies')
   if retired:
    expected.append('SPCPlaytestBoundaryDiagnostics') # The approved B397 observer remains packaged.
    for name in RETIRED_GLOBALS:expected.remove(name)
    expected.remove('SPCUnitSiteProbe') # B447 removed only the diagnostic startup.
    expected.insert(expected.index('SPCNetworkIsolation')+1,'SPCRuntimeGC')
+   self.assertEqual([n for n in re.findall(pattern,retired_source('Gameplay.lua',B449)) if n!='SPCLegacyCleanup'],expected)
+   expected.remove('SPCTradeRouteProbe')
+   if not reply_service:expected.remove('SPCPlayerActionReplies')
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"));self.assertLess(s.index("composition.Run('LegacyCleanup'"),s.index("composition.Run('BindingProbe'"))
   self.assertNotIn("composition.Run('YieldCarrierExit'",s)

@@ -562,18 +562,6 @@ local function initialize()
       ..((data and data.version==P.VERSION and data.text) or "没有后台记录。请截图；此按钮不会启动读取。")
     status(localReport:gsub("\n","[NEWLINE]"))
   end)
-  Controls.RouteStateButton:RegisterCallback(Mouse.eLClick,function()
-    ContextPtr:ClearUpdate();pendingToken=nil
-    local pid=Game.GetLocalPlayer()
-    if not P.IsTestPlayer(pid) then return end
-    local data=ExposedMembers.SPC_P0 or {}
-    local snapshot=data.AutoRouteProbe and data.AutoRouteProbe[pid]
-    localReport=P.VERSION.." | GAMEPLAY 自动探针（只查看缓存）\n"
-      ..((data.Version==P.VERSION and snapshot and snapshot.text)
-        or (data.Version==P.VERSION and data.AutoRouteProbeError and ("自动采样失败："..P.Scalar(data.AutoRouteProbeError)))
-        or "尚无自动记录；截图即可。此按钮不会触发采样。")
-    status(localReport:gsub("\n","[NEWLINE]"))
-  end)
   Controls.RouteEventsButton:RegisterCallback(Mouse.eLClick,function() request("TRADE_EVENTS") end)
   Controls.TradeButton:RegisterCallback(Mouse.eLClick,function() request("TRADE") end)
   Controls.NextButton:RegisterCallback(Mouse.eLClick,function()

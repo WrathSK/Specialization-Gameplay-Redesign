@@ -1,6 +1,7 @@
 """Actual E2 storage/facts/investment and Network bridge; local mocks, no native claim."""
 from pathlib import Path
 import runpy
+from retired_crew_sources import B449, source as retired_source
 R=Path(__file__).resolve().parents[1];M=R/'Mod'
 l=runpy.run_path(str(R/'DevelopmentTests/test_p0_e2.py'))['l']
 l.globals().include=lambda n:l.execute((M/(n+'.lua')).read_text())
@@ -91,5 +92,5 @@ assert(e2Record().stage=='ACTIVE')
 assert(shared.EffectiveFacts.Read(0,c).potential==2 and not pcall(d.ReadTemplates,c))
 print('Industry LOCAL_SIMULATION_PASS: saved own templates retained with absent old City property; no foreign-period backfill; separate ongoing ledger updates')
 """)
-assert '"CityTransfered"' in (M/'TradeRouteProbe.lua').read_text()
+assert '"CityTransfered"' in retired_source('TradeRouteProbe.lua',B449)
 print('Recapture compile/regression PASS; native token survival/engine event ordering USER_GAME_TEST_REQUIRED')

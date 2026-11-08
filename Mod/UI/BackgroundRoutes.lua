@@ -81,18 +81,6 @@ local function collect(pid)
   return {signal=bridgeSignal,routes=routes,keys=keys,count=#keys,traders=traders,fingerprint=table.concat(keys,"\n"),player=pid,
     status="COMPLETE_UI_SHADOW",sourceContext="UI",authority="UI_SHADOW_ONLY",turn=Game.GetCurrentGameTurn()}
 end
-local function comparison(s)
-  local game=ExposedMembers.SPC_P0
-  local g=game and game.AutoRouteProbe and game.AutoRouteProbe[s.player]
-  if not game or game.Version~=P.VERSION or not g or not g.success or g.turn~=s.turn
-    or g.signalRevision~=game.RouteSignalRevision then return "PENDING（Gameplay对照未就绪/已变旧）" end
-  if g.unknownOperations~=0 then return "UNKNOWN（Gameplay任务类型缺失）" end
-  local n=0
-  for id in pairs(g.matchingTraderIDs or {}) do n=n+1;if not s.traders[id] then return "MISMATCH（商人集合不同）" end end
-  if n~=s.count or g.engineCount~=s.count then return "MISMATCH（数量不同）" end
-  return "MATCH（仅数量与商人ID，不证明端点权威性）"
-end
-
 local function render()
  local snapshot=public.snapshot
  public.text='B069 route state='..public.status..' | '..(public.revalidation or 'IDLE')

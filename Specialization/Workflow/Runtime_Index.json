@@ -631,9 +631,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "69eca4d638c0d16e887cdaee2418461592df78df213b52cb067d3122f10e6be7",
+      "sha256": "46072b5f8187e8709dafd95fc9f1831e5cd6559f4ec540cc0a6c300392cf3062",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
+      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -776,9 +776,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "333546c19886176b4490c7bb91e732ac2f1b63ca52ab8822451daae0f78d69b8",
+      "sha256": "eaddabacbe8243c9dcb0757b082ea81a6684ba78562bf60ef3d2614402715d42",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
+      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -916,9 +916,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6b24d67ffde90f362a2e1e73bf4dea9567903295258f346fab4751a6018c492d",
+      "sha256": "7cee59b82470f26f13171a2cb5d570db2a6b0f8ec771fd68341194362ba3b910",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
+      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1135,15 +1135,10 @@
       "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
-    "Mod/TradeRouteProbe.lua": {
-      "sha256": "9e4a18510e839fc1e6e91a2ee200b1f595e443c8fc0e11f90dbc1d050c284ba0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B372_Refactor_S9e1.md",
-      "provenance": "B372.399 Filter removed units by accepted trader IDs and stabilize Crew receipt readback; local/static evidence only; no deployment/native PASS."
-    },
     "Mod/UI/BackgroundRoutes.lua": {
-      "sha256": "bc491f9e993a8ca991b3a01eae6fac8daee973a448dd2a6f30b3070d83573cae",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B397_Network_Proof_Transport.md",
-      "provenance": "B397.424 scoped NET-1/NET-2 signal and bounded lifecycle proof transport;87targeted methods/restricted Lua51/package checks PASS,native/deployment pending;D1 and transaction gates unchanged."
+      "sha256": "8775855d83caa0e2aa670442447a86ed10e07b632dda0e099cf44a92fb28df15",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
     },
     "Mod/UI/BackgroundRoutes.xml": {
       "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",
@@ -1431,14 +1426,14 @@
       "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "7bd94a537dd71ae571582e7dda0d905ca3fc61947a602fc146b2ccfb1daa3f5a",
+      "sha256": "f277a56ce593e6cba02d36769af62d88e24067ceb554666bf1e2f03e36b0d28d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
+      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "c2d17b72c6c06f700bcc613b9d0dc25b7425f3092c51da3f982b44fedf66218c",
+      "sha256": "2fdfb6342730f70f84362dcc93521158a19542f14ddebb0e5d97dfc00e2f7f62",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0957 B447 exact site diagnostic retirement and retained City Sequence routing."
+      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "ee9a0714f727f49821ef17998960e4577fbcdb34e5980420f35ccced594df3ad",
@@ -1786,7 +1781,7 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     }
   },
-  "source_review": "S0962 verifies B449 development deployment and the exact pending old route observer review.",
-  "source_runtime": "B449.476 / modinfo476 deployed from fc51d0d, with optional commercial tracing and the pending old route observer still packaged.",
-  "tested_source_snapshot_sha256": "7c1b340e5cdc658cdf5db40154dcd18b50054074b66b39f2c7b864241643e63c"
+  "source_review": "S0963 verifies the exact approved route observer removal, retained proof and complete rollback.",
+  "source_runtime": "B450.477 / modinfo477 local candidate, 355 files. B449.476 remains installed.",
+  "tested_source_snapshot_sha256": "cb01e4fd018c956f25f5cf9df0c841165814844d22020c5c341050bda33bf215"
 }

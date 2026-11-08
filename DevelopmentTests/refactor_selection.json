@@ -2,6 +2,15 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7hRouteObserverRetirement": [
+      "test_o7_route_observer_retirement",
+      "test_b397_network_transport",
+      "test_pu11_package_absence.ActualRoots",
+      "test_pu11_package_absence.ActualTransport",
+      "test_refactor_s4b.NetworkProof",
+      "test_refactor_s5c1.NetworkSignals",
+      "test_refactor_s9c2.Startup"
+    ],
     "O7gCommercialTrace": [
       "test_o7_commercial_trace",
       "test_b239_commerce.Commercialization.test_direct_pool_local_depth_and_per_domain_floor",
@@ -2248,11 +2257,8 @@
       "test_refactor_s6f.RetainedDevelopment",
       "test_refactor_s6f.RetainedGuards"
     ],
-    "Mod/TradeRouteProbe.lua": [
-      "test_refactor_s4b",
-      "test_refactor_s9e1"
-    ],
     "Mod/UI/BackgroundRoutes.lua": [
+      "test_o7_route_observer_retirement",
       "test_refactor_s4b",
       "test_refactor_s9e1",
       "test_refactor_s9e3"

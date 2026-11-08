@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0962
-Implementation Build: source B449.476 / modinfo476. Live B449.476 from fc51d0d. Stable/main B307.334.
+Status Revision: S0963
+Implementation Build: source B450.477 / modinfo477. Live B449.476 from fc51d0d. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: COMMERCIAL_TRACE_ISOLATED_DEPLOYED
+Work State: OBSOLETE_ROUTE_OBSERVER_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the obsolete Gameplay route observer — S0963
+
+The Owner approved removal of the speculative Gameplay trade-route observer and its private wiring. This slice removes `Mod/TradeRouteProbe.lua`, its Gameplay startup, both package declarations, the hidden Route State control and the unused UI comparison. The formal background collector, proof owner, signal filters, ACK and trade controls are still present.
+
+- **Runtime Impact Contract (L3, T06/T07/T08).** Removes four old player and four old unit enumerations in the initialization/load/local enter/leave fixture. No new native read, event, retry, saved state or derived fact. The UI collector still provides complete route evidence and Gameplay still verifies the count, endpoints, sequence, signal and currentness before granting transaction access.
+- **LOCAL_SIMULATION_PASS in scope.** All 64 selected methods pass. Separate actual Gameplay and UI roots with explicit native doubles produce the same three valid one-route packets across cold proof, equal-content signal change and changed endpoints. Each old ACK leaves the transaction closed. The matching new ACK opens the current outgoing view and clears flight. The three intervals of 100 idle publishes per version send nothing further. The existing Sender and Bridge regressions exercise bounded load and turn recovery, rejected packets and retained passive effects. The real package round trip rejects missing and extra removal permission, then verifies the complete B449 bytes including the deleted file. Current P0 retains the background cache and both remaining trade reports.
+- **STATIC_CONFIRMED and reproduction.** 226 Lua 5.1 compiles, 32 XML-family parses, 702 file and 11 replacement references across 355 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7hRouteObserverRetirement` with CPython 3.14/Lupa 2.8. The existing P0 controls harness uses Lua 5.5. The old standalone observer assertion passes against published B449. Two older standalone scripts, B069 performance and E2 recapture, reproduce the same prior fixture errors and are outside the passing count. Source SHA256 `cb01e4fd018c956f25f5cf9df0c841165814844d22020c5c341050bda33bf215`, package SHA256 `7d1c923d5248a6a172fafe0d8cdcde3f9d1ab475143ab087aae273ae2f30b0b5`. Local evidence `local/refactor/B450-O7hRouteObserverRetirement-final/closure.json` at SHA256 `062e1760a5c2a9c99b8b11a0e448ac361e42e210c2180de28ed7545a7e086225`.
+- **Historical retrieval.** `git show fc51d0df7de10425c3272c009849e11c1ad3948d:Mod/TradeRouteProbe.lua` yields SHA256 `9e4a18510e839fc1e6e91a2ee200b1f595e443c8fc0e11f90dbc1d050c284ba0`.
+
+B449 remains installed at this source checkpoint. Continue with the shared Network and Culture Network failure record and optional trace boundary. The positive Culture Network cold-restore test remains an independent native gate.
 
 ### B449 development deployment verified — S0962
 

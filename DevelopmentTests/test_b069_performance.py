@@ -1,6 +1,7 @@
 """B069 real Lua event pipeline; no Civ VI launch. Counters and native writes compared."""
 from pathlib import Path
 from lupa.lua55 import LuaRuntime
+from retired_crew_sources import B449, source as retired_source
 import xml.etree.ElementTree as ET
 R=Path(__file__).resolve().parents[1];M=R/'Mod'
 l=LuaRuntime(unpack_returned_tuples=True)
@@ -40,7 +41,8 @@ P=SPCP0;P.Info=function(t,k) if t=='Units' then return GameInfo.Units[k] end;if 
 ExposedMembers.SPC_Performance=SPCPerformance.New()
 shared={Version=P.VERSION,RouteSignalRevision=0,EffectiveFacts={Read=function(pid,c) return {specialization=c.kind,active=c.active,potential=4} end}};ExposedMembers.SPC_P0=shared
 """)
-for f in ['NetworkBridge.lua','CommerceConvergence.lua','TradeRouteProbe.lua']:l.execute((M/f).read_text())
+for f in ['NetworkBridge.lua','CommerceConvergence.lua']:l.execute((M/f).read_text())
+l.execute(retired_source('TradeRouteProbe.lua',B449))
 l.execute("""
 SPCNetworkBridge.Start(P,shared);n=shared.NetworkBridge;n.ready=true
 SPCCommerceConvergence.Start(P,shared);commerce=shared.CommerceConvergence

@@ -51,7 +51,7 @@ def verify_package_round_trip(case, before_mod, after_mod, removed, kept_path):
         commit(stable, 'main')
         source = commit(develop, 'develop')
         args = (develop/'Mod', target, receipt, stable, after['digest'], before['digest'])
-        for allowed in ((), removed[:1], (*removed, kept_path)):
+        for allowed in dict.fromkeys(((), removed[:-1], (*removed, kept_path))):
             with case.subTest(allowed=allowed), case.assertRaisesRegex(ValueError, 'removal list mismatch'):
                 temporary.switch(*args, check_only=True, allow_remove=allowed)
         case.assertEqual(deploy.snapshot(target), before)

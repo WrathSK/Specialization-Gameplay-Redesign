@@ -1,6 +1,7 @@
 """Provider registration, normalized invalidation, official signal ownership; no native PASS."""
 import unittest
 from refactor_harness import Context,ROOT,measure,legacy_source_observation
+from retired_crew_sources import B449, package as retired_package, source as retired_source
 from refactor_fixtures import depth_context
 from refactor_defect_fixtures import commerce,startup
 
@@ -46,11 +47,13 @@ class NetworkSignals(unittest.TestCase):
         l=commerce();l.execute("P.RouteUnitRelevant=function(pid,id)return id~=99 end;local value=shared.RouteSignalRevision;Events.UnitOperationStarted.Fire(1,10);Events.UnitOperationStarted.Fire(0,99);assert(shared.RouteSignalRevision==value);Events.UnitOperationStarted.Fire(0,10);Events.UnitOperationDeactivated.Fire(0,10);Events.UnitOperationsCleared.Fire(0,10);Events.CityTransfered.Fire(0,2,1);Events.TradeRouteRemovedFromMap.Fire(0,10);assert(shared.RouteSignalRevision==value+5 and not net.TransactionCurrent(0))")
     def test_diagnostic_start_cannot_reset_or_double_increment(self):
         l=commerce();l.execute("P.RouteUnitRelevant=function()return true end;Events.UnitOperationStarted.Fire(0,10);signalBefore=shared.RouteSignalRevision")
-        with legacy_source_observation():l.globals().include('TradeRouteProbe')
+        l.execute(retired_source('TradeRouteProbe.lua',B449))
         l.execute("P.Scalar=tostring;SPCTradeRouteProbe.Start(P,shared);assert(shared.RouteSignalRevision==signalBefore);Events.UnitOperationStarted.Fire(0,10);assert(shared.RouteSignalRevision==signalBefore+1)")
     def test_provider_register_routes_once_and_isolates_failure(self):
         l=commerce();l.execute("calls=0;net.RegisterConsumer('bad',function()error('BAD_NET_TARGET')end);net.RegisterConsumer('good',function(e)assert(e.kinds.NETWORK);calls=calls+1 end);shared.FactChanges.Emit({owner=0,kinds={'NETWORK'},cause='NEW_PROOF'});shared.FactChanges.Flush();assert(calls==1 and shared.FactChanges.errors.NET_bad)")
     def test_actual_startup_diagnostic_failure_is_not_network_dependency(self):
-        c=startup();c.execute("SPCTradeRouteProbe.Start=function()error('DIAGNOSTIC_FAILED')end");c.load('Gameplay');c.execute("local s=ExposedMembers.SPC_P0;assert(s.StartStatus.TradeRouteProbe.state=='FAILED' and s.StartStatus.NetworkBridge.state=='OK' and sealed)")
+        # This failure can only be exercised at the published, pre-retirement startup.
+        with retired_package(B449) as checkout:
+            c=startup((checkout,B449));c.execute("SPCTradeRouteProbe.Start=function()error('DIAGNOSTIC_FAILED')end");c.load('Gameplay');c.execute("local s=ExposedMembers.SPC_P0;assert(s.StartStatus.TradeRouteProbe.state=='FAILED' and s.StartStatus.NetworkBridge.state=='OK' and sealed)")
 
 if __name__=='__main__':unittest.main()

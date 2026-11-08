@@ -52,8 +52,8 @@ def request_context():
     c.execute(c.fragment('Mod/Gameplay.lua','local function request(playerID,params)','GameEvents.SPC_P0_Request.Add')+'\nrunRequest=function(...)request(...);shared.FactChanges.Flush();shared.FactBindings.Flush()end')
     return c
 
-def startup():
-    c=Context();c.execute(r"""
+def startup(history=None):
+    c=Context(history=history);c.execute(r"""
 starts={};lateWrites=0;sealed=false
 SPCP0={VERSION='S2',Scalar=tostring,Field=function(t,k)return t and t[k]end,IsTestPlayer=function(p)return p==0 end}
 SPCPerformance={New=function()return {}end,StartMemory=function()end}
@@ -71,13 +71,13 @@ function module(name,export)
  end,RegisterExit=function()end}
 end
 """)
-    source=(ROOT/'Mod/Gameplay.lua').read_text()
+    source=(c.root/'Mod/Gameplay.lua').read_text()
     symbols=set(re.findall(r'(SPC\w+)\.Start\(',source))
     for symbol in symbols:
         c.execute('_G[...]=module(select(2,...))',symbol,symbol[3:])
     # Includes are isolated module doubles except the composition helper introduced by S3.
     def include(name):
-        if name in ('RuntimeComposition','SafeCallbacks','ReadinessLatch','FactChanges','FactConsumerBindings','EffectiveFacts','RuntimeWork','NativeFacts','TimedProjectReaders') and (ROOT/'Mod'/f'{name}.lua').exists():return c.load(name)
+        if name in ('RuntimeComposition','SafeCallbacks','ReadinessLatch','FactChanges','FactConsumerBindings','EffectiveFacts','RuntimeWork','NativeFacts','TimedProjectReaders') and (c.root/'Mod'/f'{name}.lua').exists():return c.load(name)
         if name=='Probe':return
         if name=='ReadinessSummary':
             c.execute('SPCReadinessSummary={Start=function()return {Seal=function()sealed=true end}end}')
