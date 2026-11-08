@@ -38,9 +38,6 @@
       <GridButton ID="CityFlowButton" Anchor="L,B" Offset="18,326" Size="240,32" Style="MainButton" String="Read city flow (B021)" Hidden="1" />
       <GridButton ID="EnvelopeReadButton" Anchor="L,B" Offset="280,282" Size="240,32" Style="MainButton" String="Read envelope (B019)" Hidden="1" />
       <GridButton ID="EnvelopeNextButton" Anchor="L,B" Offset="542,282" Size="240,32" Style="MainButton" String="Next envelope stage" Hidden="1" />
-      <GridButton ID="QualificationButton" Anchor="L,B" Offset="18,282" Size="240,32" Style="MainButton" String="Runtime eligibility" Hidden="1" />
-      <GridButton ID="EligibilityUnknownButton" Anchor="L,B" Offset="542,238" Size="240,32" Style="MainButton" String="Eligibility unknowns" Hidden="1" />
-      <GridButton ID="EligibilityButton" Anchor="L,B" Offset="280,238" Size="240,32" Style="MainButton" String="Read eligibility" Hidden="1" />
       <GridButton ID="CityJournalButton" Anchor="L,B" Offset="18,238" Size="240,32" Style="MainButton" String="Read city journal" Hidden="1" />
       <GridButton ID="BindingReadButton" Anchor="L,B" Offset="542,194" Size="240,32" Style="MainButton" String="Read binding" Hidden="1" />
       <GridButton ID="StorageReadButton" Anchor="L,B" Offset="18,194" Size="240,32" Style="MainButton" String="Read storage" Hidden="1" />

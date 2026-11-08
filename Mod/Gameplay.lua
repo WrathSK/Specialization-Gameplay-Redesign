@@ -862,10 +862,6 @@ composition.Run('CompletionRecordProbe',{'CityProgressionStore'},{'CompletionRec
 
 composition.Run('CityJournalProbe',{'CityProgressionStore'},{'CityJournalProbe'},function() include('CityJournalProbe');SPCCityJournalProbe.Start(P,shared) end)
 
-composition.Run('EligibilityProbe',{},{'EligibilityProbe'},function() include('EligibilityProbe');SPCEligibilityProbe.Start(P,shared) end)
-
-composition.Run('QualificationProbe',{},{'QualificationProbe'},function() include('QualificationProbe');SPCQualificationProbe.Start(P,shared) end)
-
 composition.Run('EnvelopeProbe',{},{'EnvelopeProbe'},function() include('EnvelopeProbe');SPCEnvelopeProbe.Start(P,shared) end)
 
 composition.Run('CityFlowProbe',{'CityProgressionStore'},{'CityFlowProbe'},function() include('FreshBindingHook');include('CityFlowProbe');SPCCityFlowProbe.Start(P,shared) end)

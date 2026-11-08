@@ -540,11 +540,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "B417.444 / S0911 scoped D write barrier, actual owner/write and in-flight regression locally verified."
     },
-    "Mod/EligibilityProbe.lua": {
-      "sha256": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
     "Mod/EngineeringStudyModel.lua": {
       "sha256": "2a4ee2568ba5eb3c4db5412c9545a71bbe41bd2ab5cc5a53cd5b9ecdc7dae479",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B235_Engineering_Local.md",
@@ -616,9 +611,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "1fccfa5c25c53ebff2ff19c2307bf946164cea310123bbd97968f80163a9c6da",
+      "sha256": "fd3fadfa29a5562fe13cd3ebbd7edfb2d39b41aeb995cdfe7003c071c6344bf5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0989 B462 opt-in city sequence observer retirement."
+      "provenance": "S0991 B463 legacy eligibility and roster diagnostic retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -751,9 +746,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "cdec9d6fcf8d5a1ca4f992cece5b2d96d327242e7408ba4c3e7843b86932ab5e",
+      "sha256": "00cfe7f11bb1c170d947b9fe168b92078e4a8502354f8657903f77b247049072",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0989 B462 opt-in city sequence observer retirement."
+      "provenance": "S0991 B463 legacy eligibility and roster diagnostic retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -762,11 +757,6 @@
     },
     "Mod/PurchaseProbeRead.lua": {
       "sha256": "8b01b03284548636d531d2305cdd70cdfc11a3f7f25f4acb5e0d53269c64ea24",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
-    "Mod/QualificationProbe.lua": {
-      "sha256": "ba50636c2b083a9787126295470572561e10d405eb998d117492bef89a728a59",
       "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
       "provenance": "B076 unchanged inherited inventory"
     },
@@ -881,9 +871,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a431feabbf57f56e81fbf752f4a7106af87340668b1b1e50fe5cc51478666634",
+      "sha256": "5f628968f6b6335afffa0d3df00bdea08fec9cd68b67e552d834e4bed3fb0f42",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0989 B462 opt-in city sequence observer retirement."
+      "provenance": "S0991 B463 legacy eligibility and roster diagnostic retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1381,14 +1371,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "8d703e5eb93cd7e56994647cf48b17f61995c1f47ae616cf50e00995debf8ad5",
+      "sha256": "fbd0be800253e0b6bf1fc6845fdbb8b7c7482a386f460edda12ebcfdf326ece5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0989 B462 opt-in city sequence observer retirement."
+      "provenance": "S0991 B463 legacy eligibility and roster diagnostic retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "e6c2d2a5a2c52a8d007f53947c14fc58ed4f0fe37182e31c9246ac5b483ff1bd",
+      "sha256": "d84df517ecf79876599a1994ce185559be3a5196d7f8fab2399d7d5665f8eedd",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0989 B462 opt-in city sequence observer retirement."
+      "provenance": "S0991 B463 legacy eligibility and roster diagnostic retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1716,7 +1706,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0990 verifies B462 deployment and both recovery packages and isolates the legacy eligibility and roster diagnostics from the active test-player predicate.",
-  "source_runtime": "B462.489 / modinfo489 deployed from cab3de1 with the approved opt-in city sequence observer removed.",
-  "tested_source_snapshot_sha256": "5b1c262baf193e32ecd5c71b13fbb78a4f269b0fecc11ff5a67960ca93580c2a"
+  "source_review": "S0991 verifies the two diagnostic retirements, the formal eligibility gate and Envelope load read, and exact restoration.",
+  "source_runtime": "B463.490 / modinfo490 local candidate, 340 files. B462.489 remains installed.",
+  "tested_source_snapshot_sha256": "70fe3439a8b1de2dc6a3ab7763934328537d4ff633b05eb52dcda77eefd61c58"
 }

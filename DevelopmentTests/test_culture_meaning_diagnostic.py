@@ -167,7 +167,7 @@ class ProductionDiagnosticTests(unittest.TestCase):
   start=source.index('local function cancelMeaningReply()')
   cancellation=source[start:source.index('local function initialize()',start)]
   start=source.index('  Controls.CloseButton:RegisterCallback(')
-  close=source[start:source.index('  Controls.QualificationButton:RegisterCallback(',start)]
+  close=source[start:source.index('\n',start)+1]
   lua.execute(r"""
    P.VERSION='DIAGNOSTIC_PANEL_TEST'
    panelSelected=a;UI.GetHeadSelectedCity=function()return panelSelected end

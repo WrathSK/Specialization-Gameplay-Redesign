@@ -384,68 +384,6 @@ local function initialize()
     end
     closeWindow()
   end)
-  Controls.QualificationButton:RegisterCallback(Mouse.eLClick,function()
-    ContextPtr:ClearUpdate();pendingToken=nil
-    local shared=ExposedMembers.SPC_P0 or {}
-    local d=shared.QualificationProbe
-    local pid=Game.GetLocalPlayer()
-    localReport=P.VERSION.." | 当前名单与诊断许可（只看自动记录）\n"
-    if shared.Version==P.VERSION and d and d.version==P.VERSION then
-      localReport=localReport.."本玩家="..tostring(pid).." 诊断许可="..tostring(d.permissions[pid]).."\n"..d.text
-    else localReport=localReport.."没有当前版本自动记录；按钮不会采样。" end
-    status(localReport:gsub("\n","[NEWLINE]"))
-  end)
-  local unknownPage=0
-  Controls.EligibilityUnknownButton:RegisterCallback(Mouse.eLClick,function()
-    ContextPtr:ClearUpdate();pendingToken=nil
-    local shared=ExposedMembers.SPC_P0 or {}
-    local d=shared.EligibilityProbe
-    local sample=d and d.samples.LOAD_CLOSE
-    local lines={P.VERSION.." | 未知槽位（仅查看LOAD_CLOSE缓存）"}
-    if shared.Version~=P.VERSION or not d or d.version~=P.VERSION or not sample then
-      lines[#lines+1]="无当前版本加载结束记录；此按钮不会采样。"
-    else
-      local ids={}
-      for pid,row in pairs(sample.rows) do if row.status=="UNKNOWN" then ids[#ids+1]=pid end end
-      table.sort(ids)
-      local pages=math.max(1,math.ceil(#ids/8))
-      unknownPage=unknownPage%pages+1
-      lines[#lines+1]="汇总="..sample.status.." 未知="..sample.unknown.." 页="..unknownPage.."/"..pages
-      for i=(unknownPage-1)*8+1,math.min(#ids,unknownPage*8) do
-        local pid=ids[i];local row=sample.rows[pid]
-        local raw=tostring(row.reason or "NO_REASON")
-        -- Known assert codes stay compact; full original reason stays in the cache/log.
-        local code=raw:match("(CIV_NOT_READY)") or raw:match("(CONFIG_NOT_READY)")
-          or raw:match("(PLAYER_NOT_READY)") or raw:match("(CARRIER_NOT_DEFINED)") or raw:match("(BAD_TRAIT_ROW)")
-        lines[#lines+1]="player="..pid.." | "..(code or raw:sub(1,90))
-      end
-      if #ids==0 then lines[#lines+1]=sample.reason or "没有逐槽位UNKNOWN记录。" end
-    end
-    localReport=table.concat(lines,"\n");status(localReport:gsub("\n","[NEWLINE]"))
-  end)
-  Controls.EligibilityButton:RegisterCallback(Mouse.eLClick,function()
-    ContextPtr:ClearUpdate();pendingToken=nil
-    local pid=Game.GetLocalPlayer()
-    local shared=ExposedMembers.SPC_P0 or {}
-    local d=shared.EligibilityProbe
-    local lines={P.VERSION.." | 启用资格（只看自动记录） 玩家="..tostring(pid)}
-    if shared.Version~=P.VERSION or not d or d.version~=P.VERSION then
-      lines[#lines+1]="没有当前版本记录；此按钮不会启动采样。"
-    else
-      lines[#lines+1]="LoadScreenClose="..tostring(d.hooks.LoadScreenClose)
-      for _,phase in ipairs({"INITIALIZE","LOAD_CLOSE"}) do
-        local sample=d.samples[phase]
-        local row=sample and sample.rows[pid]
-        lines[#lines+1]=phase.." | "..(row and row.status or "NO_RECORD")
-          .." | "..(row and row.reason or (sample and sample.reason) or "等待自动采样")
-        if sample then
-          lines[#lines+1]="汇总="..sample.status.." 启用="..sample.enabled.." 未启用="..sample.disabled.." 未知="..sample.unknown
-        end
-      end
-    end
-    lines[#lines+1]="只读；未写资格或城市成果。截图即可。"
-    localReport=table.concat(lines,"\n");status(localReport:gsub("\n","[NEWLINE]"))
-  end)
   Controls.CityJournalButton:RegisterCallback(Mouse.eLClick,function() request("CITY_JOURNAL_READ") end)
   Controls.CompletionRecordButton:RegisterCallback(Mouse.eLClick,function() request("COMPLETION_RECORD_READ") end)
   Controls.BindingReadButton:RegisterCallback(Mouse.eLClick,function() request("BINDING_READ") end)

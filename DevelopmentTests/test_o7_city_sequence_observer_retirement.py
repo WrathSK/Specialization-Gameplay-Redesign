@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B461, package, source
+from retired_crew_sources import B461, B462, package, source
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -16,10 +16,10 @@ HOOKS = ('GameEvents.CityBuilt','GameEvents.CityConquered','Events.CityAddedToMa
          'Events.GameCoreEventPublishComplete','Events.GameCoreEventPlaybackComplete','Events.LoadScreenClose')
 
 
-def roots(root, projected):
+def roots(root, revision, projected):
     profile=PackageVFS(manifest=root/'Mod/SpecializationP0.modinfo',
                        forbidden_globals=('SPCCitySequenceProbe',) if projected else ())
-    history=None if projected else (root,B461)
+    history=(root,revision)
     gp,ui=(Context(name=name,vfs=profile,history=history) for name in ('Gameplay','UI/BackgroundRoutes'))
     packets=exercise_proof(gp,ui)
     gp.execute("""
@@ -128,8 +128,8 @@ def panel(root, projected):
 
 class CitySequenceObserverRetirement(unittest.TestCase):
     def test_real_roots_keep_route_proof_and_store_query(self):
-        with package(B461) as previous:
-            old,new=roots(previous,False),roots(ROOT,True)
+        with package(B461) as previous, package(B462) as retired:
+            old,new=roots(previous,B461,False),roots(retired,B462,True)
         self.assertEqual(old[0],new[0])
         self.assertEqual(len(new[0]),3)
         self.assertEqual([a-b for a,b in zip(old[1],new[1],strict=True)],[1]*len(HOOKS))
@@ -148,13 +148,13 @@ class CitySequenceObserverRetirement(unittest.TestCase):
         measure('city_sequence_store',{'old_trace_armed':True,'persisted_state_and_writes_match':True})
 
     def test_panel_retires_the_two_trace_actions_and_keeps_current_requests(self):
-        with package(B461) as previous:
+        with package(B461) as previous, package(B462) as retired:
             old_buttons,old_requests=panel(previous,False)
-            new_buttons,new_requests=panel(ROOT,True)
+            new_buttons,new_requests=panel(retired,True)
         self.assertTrue(old_buttons.pop('UnitReadButton'))
         self.assertEqual(old_buttons,new_buttons)
         self.assertEqual(old_requests,new_requests)
 
     def test_exact_temporary_switch_and_recovery(self):
-        with package(B461) as previous:
-            verify_package_round_trip(self,previous/'Mod',ROOT/'Mod',(REMOVED,),'CityProgressionStore.lua')
+        with package(B461) as previous, package(B462) as retired:
+            verify_package_round_trip(self,previous/'Mod',retired/'Mod',(REMOVED,),'CityProgressionStore.lua')

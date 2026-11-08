@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0990",
-    "runtime": "B462.489 / modinfo489",
+    "status": "S0991",
+    "runtime": "B463.490 / modinfo490",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B462 deployment and the exact two-probe proposal with the formal eligibility predicate preserved.",
+  "goal": "Verify removal of the two read-only roster diagnostics and preserve formal player eligibility, Envelope, Store and route proof.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the old eligibility and roster diagnostics — S0991",
+      "reason": "Approved two-path retirement with retained formal eligibility and Envelope"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -372,6 +378,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B463 passes 19 selected checks and 25/49 carried checks. Eight formal gate cases and the Envelope load read match.",
     "B462 installed 342/342 MATCH with both recovery packages verified. Projected diagnostic retirement preserves eight actual predicate results, Envelope and current route proofs.",
     "B462 passes 25 selected checks and 49/64 carried checks. Store and Claim match with the previous trace armed and ten modeled trace registrations removed.",
     "B461 installed 343/343 MATCH with both recovery packages verified. Projected city sequence trace removal preserves Store founding/first completion, peer Claims and current route proofs.",
@@ -2103,6 +2110,41 @@
       "local_evidence": "local/refactor/B462-LegacyEligibilityRetirementReview/result.json",
       "local_evidence_sha256": "baacdd151265cf80a8c93150ef72b407ac28c7d4271332ff0e24625a13feb6e2",
       "report": "Specialization/Status/Specialization_P0_Status.md#b462-deployment-verified-and-legacy-eligibility-diagnostics-reviewed--s0990"
+    },
+    "b463_legacy_eligibility_retirement": {
+      "build": "B463.490 / modinfo490",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7uLegacyEligibilityRetirement": {
+          "tests": 19,
+          "path": "local/refactor/B463-O7uLegacyEligibilityRetirement-final/closure.json",
+          "sha256": "848e6fac703fad7dcbae743f9122aa027b983e13f2058ce018bf33b483bf96ec"
+        },
+        "O7tCitySequenceObserverRetirement": {
+          "tests": 25,
+          "path": "local/refactor/B463-CarriedO7t-final/closure.json",
+          "sha256": "72548d8785f6540d4495ba0d5f0aa85c2fb043bcff5ed294d379ae32eb18aa1a"
+        },
+        "O7sCompletionEventObserverRetirement": {
+          "tests": 49,
+          "path": "local/refactor/B463-CarriedO7s-final/closure.json",
+          "sha256": "b43cd5f2d608d6cd9252ff089b7e63b888264acc99a871eb8c5b35d988479b28"
+        }
+      },
+      "files": 340,
+      "removed": {
+        "Mod/EligibilityProbe.lua": "6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e",
+        "Mod/QualificationProbe.lua": "ba50636c2b083a9787126295470572561e10d405eb998d117492bef89a728a59"
+      },
+      "prior_source": "cab3de1d0b755b3a65a3f21c0cf5b685dda2dc03",
+      "matching_gate_cases": 8,
+      "modeled_removed_listeners": 2,
+      "matching_route_packets": 3,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "70fe3439a8b1de2dc6a3ab7763934328537d4ff633b05eb52dcda77eefd61c58",
+      "package_sha256": "272e8e95ef9407f9920a376ae75fda9ecbe1de60228986a832303645d659ee4b",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-eligibility-and-roster-diagnostics--s0991"
     }
   }
 }

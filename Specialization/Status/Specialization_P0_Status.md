@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0990
-Implementation Build: source B462.489 / modinfo489. Live B462.489 from cab3de1. Stable/main B307.334.
+Status Revision: S0991
+Implementation Build: source B463.490 / modinfo490. Live B462.489 from cab3de1. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: LEGACY_ELIGIBILITY_RETIREMENT_REVIEWED
+Work State: LEGACY_ELIGIBILITY_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the old eligibility and roster diagnostics — S0991
+
+The Owner approved the exact retirement reviewed in S0990. Remove the two legacy read-only Lua diagnostics, their four manifest declarations, two Gameplay starts, and the three hidden reports and callback state. Recover `Mod/EligibilityProbe.lua` and `Mod/QualificationProbe.lua` from `cab3de1d0b755b3a65a3f21c0cf5b685dda2dc03`. Their SHA256 values are `6904268ee4a306c4bfeffb4d40f55b046d807a74d66c0c62a253e5e2b602385e` and `ba50636c2b083a9787126295470572561e10d405eb998d117492bef89a728a59`. The formal test-player predicate and the independent Envelope load read retain their paths.
+
+- **Runtime Impact Contract (L3, T01/T04/T08).** The old observers sampled trait rows and player rosters at initialization and load. In the five-slot fixture two diagnostic load callbacks retire. Roster reads go from four to one and trait iteration starts go from twenty-five to zero. The remaining roster read belongs to EnvelopeProbe. These are modeled counts. No new listener, writer, timer, retry or saved data enters this batch.
+- **LOCAL_SIMULATION_PASS in scope.** All 19 selected methods pass. The real predicate matches in eight supported, denied and unavailable scenarios, including both supported human pairs. The fact-owner eligibility consumers, Envelope load and property values and writes match. Three nonempty route proof packets and all retained P0 controls and requests match. Exact disposable activation and restoration pass. The 25 city trace and 49 completion observer checks pass. The old city trace comparisons remain on their published package pair, and the late-ack panel closure check now extracts the exact close callback.
+- **STATIC_CONFIRMED and reproduction.** 211 Lua 5.1 compiles, 32 XML-family parses, 672 file references and 10 replacements across 340 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7uLegacyEligibilityRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7tCitySequenceObserverRetirement and O7sCompletionEventObserverRetirement. Tested source SHA256 `70fe3439a8b1de2dc6a3ab7763934328537d4ff633b05eb52dcda77eefd61c58`, package SHA256 `272e8e95ef9407f9920a376ae75fda9ecbe1de60228986a832303645d659ee4b`. Local closure `local/refactor/B463-O7uLegacyEligibilityRetirement-final/closure.json` SHA256 `848e6fac703fad7dcbae743f9122aa027b983e13f2058ce018bf33b483bf96ec`. Native behavior remains unmeasured in this batch.
+
+B462 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B462 deployment verified and legacy eligibility diagnostics reviewed — S0990
 
