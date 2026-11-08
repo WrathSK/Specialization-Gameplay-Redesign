@@ -1,17 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0953
-Implementation Build: source B445.472 / modinfo472. Live B444.471 from 72947b5. Stable/main B307.334.
+Status Revision: S0954
+Implementation Build: source B445.472 / modinfo472. Live B445.472 from 238cf18. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CREW_DIAGNOSTICS_RETIRED
+Work State: CREW_DIAGNOSTICS_RETIRED_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B445 development deployment verified — S0954
+
+The temporary development runtime is B445.472 from `238cf182af66056eeae0da4e4797114a2a04d73f`. All 357 files match SHA256 `a1d01995ef303325a9977ba978f0ddb91129001b30680ede07a8890cbe1f1724`. Receipt `B445.472-238cf18-playtest.json` records DEVELOP_ACTIVE and exactly `ConstructionProbe.lua` and `CrewPrecision.lua` as removed. The outgoing B444 and the stable B307 recovery packages match all 359 and 312 files, respectively. Game exit was verified before the replacement. The installed UUID is unique and there is no pending transaction.
+
+This is deployment verification. The earlier scoped native evidence and the B445 local comparison are recorded separately. No immediate game test is needed for this exact retirement. The positive Culture Network restore and other gated retirement responsibilities retain their existing evidence requirements.
 
 ### Retire the two old Crew diagnostic paths — S0953
 

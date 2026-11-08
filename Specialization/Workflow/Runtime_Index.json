@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "72947b5596825e030ad07b77f41bac6d65809cfe",
-  "runtime": "B444.471 / modinfo471 temporary develop deployed, 359/359 MATCH. Stable/main B307.334.",
+  "runtime_commit": "238cf182af66056eeae0da4e4797114a2a04d73f",
+  "runtime": "B445.472 / modinfo472 temporary develop deployed, 357/357 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1791,7 +1791,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0953 verifies exact Crew diagnostic retirement, retained gameplay and package rollback in local simulation.",
-  "source_runtime": "B445.472 / modinfo472 local candidate, 357 files. B444.471 remains installed.",
+  "source_review": "S0954 verifies B445 exact two-path development replacement and both retained rollback packages.",
+  "source_runtime": "B445.472 / modinfo472 deployed from 238cf18 with both exact approved paths retired.",
   "tested_source_snapshot_sha256": "f5c7ad961efe933cd3acb621eea181e81a244cbc8a6a462ea7956968806cd193"
 }

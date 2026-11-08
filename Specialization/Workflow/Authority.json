@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0953",
+    "status": "S0954",
     "runtime": "B445.472 / modinfo472",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "72947b5596825e030ad07b77f41bac6d65809cfe",
-  "current_batch": "CREW_DIAGNOSTICS_RETIRED",
-  "next_batch": "Verify the guarded B445.472 development replacement and retained recovery. Further retirement stays subject to its own scoped evidence and approval.",
+  "runtime_commit": "238cf182af66056eeae0da4e4797114a2a04d73f",
+  "current_batch": "CREW_DIAGNOSTICS_RETIRED_DEPLOYED",
+  "next_batch": "Retain the separate evidence and exact-scope gates for future retirement. Positive Culture Network cold restore remains to be observed when adequate insights are available.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B444.471 / modinfo471 temporary develop from 72947b5596825e030ad07b77f41bac6d65809cfe, 359/359 MATCH, SHA256 7d7e4a5a8126f5bf26877a8686624baa4e214afdf62f7c4c92fa8327125f97b7. Receipt B444.471-72947b5-playtest.json DEVELOP_ACTIVE. B443 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B445.472 / modinfo472 temporary develop from 238cf182af66056eeae0da4e4797114a2a04d73f, 357/357 MATCH, SHA256 a1d01995ef303325a9977ba978f0ddb91129001b30680ede07a8890cbe1f1724. Receipt B445.472-238cf18-playtest.json DEVELOP_ACTIVE. Exact two approved paths absent. B444 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0953 verifies exact Crew diagnostic retirement, retained gameplay and package rollback in local simulation.",
+  "context_review_status": "S0954 verifies B445 exact two-path development replacement and both retained rollback packages.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-two-old-crew-diagnostic-paths--s0953",
-  "source_status": "B445.472 / modinfo472 locally verified at SHA256 a1d01995ef303325a9977ba978f0ddb91129001b30680ede07a8890cbe1f1724. The Owner approved the two exact removals. B444.471 remains installed until the guarded replacement.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b445-development-deployment-verified--s0954",
+  "source_status": "B445.472 / modinfo472 deployed and verified at SHA256 a1d01995ef303325a9977ba978f0ddb91129001b30680ede07a8890cbe1f1724. Native behavior for this removal was not measured.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
