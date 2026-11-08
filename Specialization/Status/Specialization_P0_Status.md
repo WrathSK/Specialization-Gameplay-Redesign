@@ -1,17 +1,23 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0955
-Implementation Build: source B446.473 / modinfo473. Live B445.472 from 238cf18. Stable/main B307.334.
+Status Revision: S0956
+Implementation Build: source B446.473 / modinfo473. Live B446.473 from af75e32. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ROUTE_FLIGHT_OWNER_LOCAL
+Work State: REVIEW_EXACT_UNIT_SITE_REPORT_RETIREMENT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B446 development deployment verified — S0956
+
+B446.473 is installed from `af75e329546f583b94a90169d8af68ebb7e4b559`. All 357 runtime files match SHA256 `47c9b11d52812ef177c718fdccf56e20715c6344b739cc8db20a65b229e3ae90` and the same path set as B445. Receipt `B446.473-af75e32-playtest.json` is DEVELOP_ACTIVE. The outgoing B445 and stable B307 recovery packages were verified. The stable-to-development activation used the previously reviewed exclusions. Game exit, the unique runtime UUID and the clear transaction boundary were verified.
+
+This is deployment verification. The route flight transfer has the scoped local evidence below. No immediate user game test is requested. The next Owner decision is the exact pair of unit-site diagnostics below. The positive Culture Network cold-restore gate remains separate.
 
 ### Route transport owns the in-flight safety flag — S0955
 

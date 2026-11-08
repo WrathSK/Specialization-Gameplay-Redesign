@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0955",
+    "status": "S0956",
     "runtime": "B446.473 / modinfo473",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Separate route transport flight safety from measurement and prepare exact unit-site report retirement review.",
+  "goal": "Record verified B446 deployment and the next scoped exact removal review.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B446 development deployment verified — S0956",
+      "reason": "Verified runtime/receipt and next exact removal checkpoint"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -162,6 +168,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B446 installed 357/357 MATCH. B445 outgoing and B307 stable recovery verified. No native run.",
     "B446 passes all 72 selected local checks. Route proof and GC guard survive unavailable metric taps. The full counter file is still a production dependency.",
     "B445 installed 357/357 MATCH. Exact two removals, B444 outgoing and B307 stable recovery verified; no native run.",
     "B445 passes 75 selected local checks, including the old observers and actual package absence, same Crew effects and report, and exact two-file package restoration.",
@@ -904,6 +911,20 @@
       "retrieval_commit": "238cf182af66056eeae0da4e4797114a2a04d73f",
       "placement_checks": 15,
       "report": "Specialization/Status/Specialization_P0_Status.md#route-transport-owns-the-in-flight-safety-flag--s0955"
+    },
+    "b446_deployment": {
+      "version": "B446.473 / modinfo473",
+      "source_commit": "af75e329546f583b94a90169d8af68ebb7e4b559",
+      "digest": "47c9b11d52812ef177c718fdccf56e20715c6344b739cc8db20a65b229e3ae90",
+      "files": 357,
+      "receipt": "B446.473-af75e32-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B445.472, 357/357 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b446-development-deployment-verified--s0956"
     }
   }
 }

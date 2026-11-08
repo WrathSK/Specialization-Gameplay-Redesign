@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0955",
+    "status": "S0956",
     "runtime": "B446.473 / modinfo473",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "238cf182af66056eeae0da4e4797114a2a04d73f",
-  "current_batch": "ROUTE_FLIGHT_OWNER_LOCAL",
-  "next_batch": "Verify the guarded B446 development switch, then request exact review for the unused unit-site report and its private policy. Retain the positive Culture Network cold-restore gate.",
+  "runtime_commit": "af75e329546f583b94a90169d8af68ebb7e4b559",
+  "current_batch": "REVIEW_EXACT_UNIT_SITE_REPORT_RETIREMENT",
+  "next_batch": "Owner exact approval for removing Mod/UnitSiteProbe.lua and Mod/UnitActionSitePolicy.lua and their DEV-only left-click reads. Positive Culture Network cold restore remains separate.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B445.472 / modinfo472 temporary develop from 238cf182af66056eeae0da4e4797114a2a04d73f, 357/357 MATCH, SHA256 a1d01995ef303325a9977ba978f0ddb91129001b30680ede07a8890cbe1f1724. Receipt B445.472-238cf18-playtest.json DEVELOP_ACTIVE. Exact two approved paths absent. B444 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B446.473 / modinfo473 temporary develop from af75e329546f583b94a90169d8af68ebb7e4b559, 357/357 MATCH, SHA256 47c9b11d52812ef177c718fdccf56e20715c6344b739cc8db20a65b229e3ae90. Receipt B446.473-af75e32-playtest.json DEVELOP_ACTIVE. B445 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0955 verifies the scoped route Flight transfer and identifies the next exact diagnostic removal for Owner review.",
+  "context_review_status": "S0956 verifies deployed B446 and routes the next two exact diagnostic removals to the Owner.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#route-transport-owns-the-in-flight-safety-flag--s0955",
-  "source_status": "B446.473 / modinfo473 locally verified at SHA256 47c9b11d52812ef177c718fdccf56e20715c6344b739cc8db20a65b229e3ae90. B445.472 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b446-development-deployment-verified--s0956",
+  "source_status": "B446.473 / modinfo473 deployed and verified at SHA256 47c9b11d52812ef177c718fdccf56e20715c6344b739cc8db20a65b229e3ae90. Native timing for this transfer was not measured.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
