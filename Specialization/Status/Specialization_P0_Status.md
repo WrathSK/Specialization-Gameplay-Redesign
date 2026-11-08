@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0987
-Implementation Build: source B461.488 / modinfo488. Live B460.487 from 4c2c17c. Stable/main B307.334.
+Status Revision: S0988
+Implementation Build: source B461.488 / modinfo488. Live B461.488 from f24b000. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: COMPLETION_EVENT_OBSERVER_RETIRED_LOCAL
+Work State: CITY_SEQUENCE_OBSERVER_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B461 deployment verified and opt-in city sequence observer reviewed — S0988
+
+B461.488 is installed from `f24b000847377e90bb856fb4483ed88ee15297b1`. All 343 files match SHA256 `8fd190186a6b925e268ca428584043cbc075f51da60af6c2cdeeb450f7cd37bb`. Receipt `B461.488-f24b000-playtest.json` is DEVELOP_ACTIVE. The B011 observer is absent and the formal Store and independent completion-record query are present. The B460 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review (P3 §2a).** `Mod/CitySequenceProbe.lua` (SHA256 `4578c1bcfb1005d82d42a72c4adf1b1512660cbf8d4bd5c4eca591d95e2431fb`) is the opt-in one-location city sequence trace. It holds bounded scalar observations in the session for two old right-click actions. The proposal removes the Lua file, two manifest entries, the startup and CITY_SEQUENCE_BEGIN/READ dispatcher. P0 drops the hidden UnitReadButton and its label and bindings, the InheritReadButton trace right-click and tooltip clause, and the now-unused sequence-specific request targeting and paging. The InheritReadButton left-click progression query, diagnostic entry's separate event-order toggle, Store, Claim and the completion-record path keep their current owners.
+
+The disposable comparison removes ten modeled trace callbacks and preserves three identical nonempty route proof packets. The actual Store/Claim fixture gives the same persisted founding, first Campus and unaffected peer Claim results with the previous trace armed and with it absent. The old trace shows its bounded founding events. The two retired actions leave the prior Store report alone and do not read the traced location in the projected package. The other controls and the progression, Store and separate event-order requests match. Exact temporary activation and full restoration pass in disposable packages. Evidence `local/refactor/B461-CitySequenceObserverRetirementReview/result.json` SHA256 `1bde199cd7965e179856c445332501f217c11bcacead5a906088679e8ccb9f9e` with the replay script alongside.
+
+The exact retirement awaits approval. Positive Culture Network cold restoration remains a separate native gate.
 
 ### Retire the old completion event observer — S0987
 

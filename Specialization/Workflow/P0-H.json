@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0987",
+    "status": "S0988",
     "runtime": "B461.488 / modinfo488",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify B011 observer removal and preserve first completion, Claim, route proof and the separate completion-record read.",
+  "goal": "Record B461 deployment and the exact city sequence trace proposal with actual founding, Store and Claim preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B461 deployment verified and opt-in city sequence observer reviewed — S0988",
+      "reason": "Verified B461 deployment and opt-in city trace boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -354,6 +360,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B461 installed 343/343 MATCH with both recovery packages verified. Projected city sequence trace removal preserves Store founding/first completion, peer Claims and current route proofs.",
     "B461 passes 49 selected checks and 64/22 carried checks. Actual Store and Claim outcomes match and four modeled observer registrations disappear.",
     "B460 installed 344/344 MATCH with B459 and B307 recovery verified. Projected B011 observer removal preserves first completion, Claim, current route proof and separate completion-record request.",
     "B460 passes 64 selected methods and 22/19 carried checks. The actual Store fixture retains the exact 32-carrier exit and same-ticket recovery.",
@@ -1952,6 +1959,56 @@
       "package_sha256": "8fd190186a6b925e268ca428584043cbc075f51da60af6c2cdeeb450f7cd37bb",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-completion-event-observer--s0987"
+    },
+    "b461_deployment": {
+      "version": "B461.488 / modinfo488",
+      "source_commit": "f24b000847377e90bb856fb4483ed88ee15297b1",
+      "digest": "8fd190186a6b925e268ca428584043cbc075f51da60af6c2cdeeb450f7cd37bb",
+      "files": 343,
+      "receipt": "B461.488-f24b000-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [
+        "CompletionProbe.lua"
+      ],
+      "pending": false,
+      "outgoing": "B460.487, 344/344 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b461-deployment-verified-and-opt-in-city-sequence-observer-reviewed--s0988"
+    },
+    "b461_city_sequence_observer_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "f24b000847377e90bb856fb4483ed88ee15297b1",
+      "removed_sha256": {
+        "CitySequenceProbe.lua": "4578c1bcfb1005d82d42a72c4adf1b1512660cbf8d4bd5c4eca591d95e2431fb"
+      },
+      "modified": [
+        "Gameplay.lua",
+        "SpecializationP0.modinfo",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "retired_actions": [
+        "CITY_SEQUENCE_BEGIN",
+        "CITY_SEQUENCE_READ"
+      ],
+      "hidden_control": "UnitReadButton",
+      "retired_right_click": "InheritReadButton",
+      "removed_modeled_listeners": [
+        "GameEvents.CityBuilt",
+        "GameEvents.CityConquered",
+        "Events.CityAddedToMap",
+        "Events.CityInitialized",
+        "Events.CityRemovedFromMap",
+        "Events.CityTransfered",
+        "Events.UnitActivate",
+        "Events.GameCoreEventPublishComplete",
+        "Events.GameCoreEventPlaybackComplete",
+        "Events.LoadScreenClose"
+      ],
+      "local_evidence": "local/refactor/B461-CitySequenceObserverRetirementReview/result.json",
+      "local_evidence_sha256": "1bde199cd7965e179856c445332501f217c11bcacead5a906088679e8ccb9f9e",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b461-deployment-verified-and-opt-in-city-sequence-observer-reviewed--s0988"
     }
   }
 }

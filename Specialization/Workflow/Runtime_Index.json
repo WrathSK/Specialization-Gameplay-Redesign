@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "4c2c17ca0936c7777a1063c8921b3656811b4596",
-  "runtime": "B460.487 / modinfo487 temporary develop deployed, 344/344 MATCH. Stable/main B307.334.",
+  "runtime_commit": "f24b000847377e90bb856fb4483ed88ee15297b1",
+  "runtime": "B461.488 / modinfo488 temporary develop deployed, 343/343 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1721,7 +1721,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0987 verifies the old completion event observer removal, retained Store, Claim and completion query, and exact package restoration.",
-  "source_runtime": "B461.488 / modinfo488 local candidate, 343 files. B460.487 remains installed.",
+  "source_review": "S0988 verifies B461 deployment and both recovery packages and isolates the B106 opt-in city trace from Store and Claim.",
+  "source_runtime": "B461.488 / modinfo488 deployed from f24b000 with the approved old completion event observer removed.",
   "tested_source_snapshot_sha256": "a36a128212396506c4529fa0e0a7ff350cb6a5416c611abf2d9bdeafc8a24461"
 }
