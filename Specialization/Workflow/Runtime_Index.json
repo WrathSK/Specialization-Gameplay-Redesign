@@ -756,9 +756,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/NetworkSender.lua": {
-      "sha256": "06a6ece8c5119e6ab6a5491eda9a64d1dad6d2cd78ffb1589787b12f2d7f73ea",
+      "sha256": "7c8cd5237215aeb09345e9ac15b7356b83b3389d68f9957df36d8ead1a201675",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0955 B446 verified production route flight flag and retained GC guards."
+      "provenance": "S0967 B452 route UI and city presentation observation isolated from production."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
       "sha256": "871658d702a9990d5299f73343f6f8832e3ef956c3afba584ab66dcf7ed761fa",
@@ -776,9 +776,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "ff6401ec1ef0b6422edda2868225f6ec046e13ba3c810a4113cf4042de92c145",
+      "sha256": "c3787df8ca1e28ed1ac0fae4aac61f50f458d5e2c2031a594c7602e385f9e5d4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0965 B451 independent failure classification and optional network trace."
+      "provenance": "S0967 B452 route UI and city presentation observation isolated from production."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -916,9 +916,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "14d6436ec95f7b13dc34f969e4607927e029d3972a11a07c53dd1ea367354562",
+      "sha256": "77b98f417c2e5396ad5c994753004414a41f7e62c5af2837cd3edebf166fea5b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0965 B451 independent failure classification and optional network trace."
+      "provenance": "S0967 B452 route UI and city presentation observation isolated from production."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1136,9 +1136,9 @@
       "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
     },
     "Mod/UI/BackgroundRoutes.lua": {
-      "sha256": "8775855d83caa0e2aa670442447a86ed10e07b632dda0e099cf44a92fb28df15",
+      "sha256": "6cebd7415ff62c6976e20a0d71442add3a36f0d88e194699dfa5fc22a0339ec6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
+      "provenance": "S0967 B452 route UI and city presentation observation isolated from production."
     },
     "Mod/UI/BackgroundRoutes.xml": {
       "sha256": "d86bed8bc82700a8571bca01f429d8a0ed382ed9fa46f10555f9eea0102b8547",
@@ -1191,9 +1191,9 @@
       "provenance": "B091 UI evidence supplement; no identity authority changes"
     },
     "Mod/UI/CityPotential.lua": {
-      "sha256": "daa113bf3c2335d3a410454c5b3131bc48ae51f9dd1a7bfd1feaa413dad8b5fb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "sha256": "3e98a4a7255892c3d32d692ba7301c2d1a9c069cf5ce5f1e3a7ca937730b6a7b",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0967 B452 route UI and city presentation observation isolated from production."
     },
     "Mod/UI/CityPotential.xml": {
       "sha256": "ee21aabc5a688151475978bc1fbd261edfeb64368c8f73e7f91789ed35e24043",
@@ -1786,7 +1786,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0966 verifies B451 development deployment and the exact pending old route observer review.",
-  "source_runtime": "B451.478 / modinfo478 deployed from 414edd5, with independent network failure reporting.",
-  "tested_source_snapshot_sha256": "4ecf66a61523bfcbdc1c902ff2be89d4c0fa8bd526ef8bbc33845092057a2d9e"
+  "source_review": "S0967 verifies independent route transport and city presentation plus the pending exact B116 removal.",
+  "source_runtime": "B452.479 / modinfo479 local candidate, 356 files. B451.478 remains installed.",
+  "tested_source_snapshot_sha256": "e275d07526f088ee0cf6f7390a59e709ff887205e9b893d15d454458881882b7"
 }

@@ -5,13 +5,15 @@ local sameIdentity=SPCIdentityEqual.Same
 include('Probe')
 include('InstitutionPresentation')
 include('LevelBannerModel')
-include('ExpeditionTrainingDiagnostics')
+include('SafeCallbacks')
+local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
+local logger=traceLoaded and SPCExpeditionTrainingDiagnostics
 local P=SPCP0;local M=SPCInstitutionPresentation;local B=SPCLevelBannerModel
 local parent,key,pending,pendingMeta,view,observed,backend,backendVersion,shown,targetPort
 local stopped=false;local causeVersion=0;local latest;local sourceSequence=0;local deliverySequence=0
 local dirty=true;local pumping=false;local bindings={};local phase='IDLE'
 local failureOwner,failureCity
-local diag=SPCExpeditionTrainingDiagnostics.New(P,'CITY_PRESENTATION_UI')
+local diag=SPCSafeCallbacks.OpenTrace(logger,P,'CITY_PRESENTATION_UI')
 local function signal()causeVersion=causeVersion+1;dirty=true end
 local function clearPending()
  local m=pendingMeta;pending=nil;pendingMeta=nil
@@ -43,7 +45,7 @@ local function record(stage,c,extra)
  if not diag then return end
  pcall(function()
   local v=extra or {};if c then v.owner=c:GetOwner();v.city=c:GetID()end
-  diag.Record(stage,v)
+  diag(stage,v)
  end)
 end
 local function layout()
@@ -182,14 +184,14 @@ local function pump()
  -- Always release, including native-control and subscriber exceptions. This
  -- does not mark facts dirty or retry a request on unchanged publish events.
  pumping=false
- if not ok then
+ if not ok and diag then
   local failure={errorCode='PRESENTATION_CALLBACK_FAILED',readStatus='UNAVAILABLE',viewStage=phase,
    owner=failureOwner,city=failureCity}
   -- Reuse bounded/redacted diagnostic metadata; never print a raw exception.
-  if SPCExpeditionTrainingDiagnostics.Failure then
-   local good,details=pcall(SPCExpeditionTrainingDiagnostics.Failure,err,'CITY_PRESENTATION')
-   if good then failure.errorClass=details.errorClass;failure.errorFile=details.errorFile;failure.errorLine=details.errorLine end
-  end
+  pcall(function()
+   local details=logger.Failure(err,'CITY_PRESENTATION')
+   failure.errorClass=details.errorClass;failure.errorFile=details.errorFile;failure.errorLine=details.errorLine
+  end)
   record('INSTITUTION_UI_FAILURE',nil,failure)
  end
  phase='IDLE'

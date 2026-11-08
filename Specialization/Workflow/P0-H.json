@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0966",
-    "runtime": "B451.478 / modinfo478",
+    "status": "S0967",
+    "runtime": "B452.479 / modinfo479",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B451 deployment with independent network failure reporting and rollback backup.",
+  "goal": "Keep route sending and CityPotential independent of optional observation, and prepare the next exact B116 review.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Separate UI observation from route sending and city presentation — S0967",
+      "reason": "Scoped UI proof and exact pending B116 retirement"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -228,6 +234,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B452 passes 59 selected methods covering identical wire/ACK, sender work and eight presentation observer profiles.",
     "B451 installed 356/356 MATCH with the one parser addition. Both recovery packages match.",
     "B451 passes 99 selected methods including eight trace profiles and real proof/ACK under package absence.",
     "B450 installed 355/355 MATCH with the exact removal. Both recovery packages match.",
@@ -1154,6 +1161,24 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b449-development-deployment-verified--s0966"
+    },
+    "b452_ui_trace": {
+      "build": "B452.479 / modinfo479",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": 59,
+      "files": 356,
+      "proposed_timed_turn_observers": {
+        "Mod/UI/TimedTurnProbe.lua": "c95456d666bf3636494d2f99460121cb19193d97f271d1292ac170ce62ef8245",
+        "Mod/TimedProductionProbe.lua": "08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d"
+      },
+      "readiness": "local/refactor/B452-O7jUITrace/timed-turn-readiness.json",
+      "readiness_sha256": "ed2d3d5ed5b67bbb4c7c65f8ebdb55c10631a943b001053d38037a9e117baae3",
+      "package_sha256": "338831622ea4b2e77b66b851f6c154e1bd356d23dceb9027abcbd0607166bd19",
+      "source_snapshot_sha256": "e275d07526f088ee0cf6f7390a59e709ff887205e9b893d15d454458881882b7",
+      "local_evidence": "local/refactor/B452-O7jUITrace/closure.json",
+      "local_evidence_sha256": "f1fab050473e18ef111dec9340c4ced5608ec0cc9a55ec6202ccb10115183220",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#separate-ui-observation-from-route-sending-and-city-presentation--s0967"
     }
   }
 }

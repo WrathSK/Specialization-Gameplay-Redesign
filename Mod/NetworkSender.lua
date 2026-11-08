@@ -6,7 +6,7 @@ local function publishFlight(active)
  local observe=SPCPerformance and SPCPerformance.Flight
  if type(observe)=='function'then pcall(observe,active and 1 or 0)end
 end
-function SPCNetworkSender.New(P)
+function SPCNetworkSender.New(P,logger)
  local result='NOT_STARTED';local seq=0;local flight;local lastEpoch;local failedTurn;local lastFailure;local stopped=false
  local recoveryTurn;local recoveryUsed={}
  local function stop(public)
@@ -84,7 +84,7 @@ function SPCNetworkSender.New(P)
   if not ok then result='SEND_ERROR';public.awaitingNetwork=false;failedTurn=s.turn;flight=nil;publishFlight(false);P.Count('send_timeout') end
  end
  local function observe(public)
-  if SPCExpeditionTrainingDiagnostics and not SPCExpeditionTrainingDiagnostics.ENABLED then return end
+  if not (logger and logger.ENABLED) then return end
   public.senderResult=result;public.senderFailedTurn=failedTurn or 'NONE'
   local ok,turn=pcall(Game.GetCurrentGameTurn);public.senderTurn=ok and turn or 'UNAVAILABLE'
   local activeOK,active=pcall(function()return Players[Game.GetLocalPlayer()]:IsTurnActive()end)

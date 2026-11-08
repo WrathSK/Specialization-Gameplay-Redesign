@@ -161,7 +161,7 @@ class Sender(unittest.TestCase):
          a={originPlayer=0,originCityID=4,destinationPlayer=0,destinationCityID=2,traderUnitID=10},
          b={originPlayer=0,originCityID=2,destinationPlayer=0,destinationCityID=1,traderUnitID=11},
          c={originPlayer=0,originCityID=2,destinationPlayer=0,destinationCityID=5,traderUnitID=12}}}}
-        net.players[0].revalidation='NEEDS_REVALIDATION';net.players[0].refreshing=true;local pulse=SPCNetworkSender.New(P)
+        net.players[0].revalidation='NEEDS_REVALIDATION';net.players[0].refreshing=true;local pulse=SPCNetworkSender.New(P,SPCExpeditionTrainingDiagnostics)
         pulse(public);assert(flight==1 and net.players[0].seq==beforeSeq);pulse(public)
         assert(flight==1 and not counts.send_timeout and public.senderFailedTurn=='NONE')
         net.players[0].refreshing=false;net.FlushPending();pulse(public)

@@ -4,7 +4,7 @@ include("ShadowRouteState")
 local normalized=SPCShadowRouteState.New()
 local P=SPCP0
 include("NetworkSender")
-local sendNetwork,stopSender=SPCNetworkSender.New(P)
+local sendNetwork,stopSender
 local networkStopped=false
 local timingObserver
 local active=false
@@ -190,8 +190,9 @@ local function bind(name,fn)
  local e=P.Field(Events,name)
  if e and e.Add then e.Add(fn);hooks[#hooks+1]={event=e,callback=fn} end
 end
-local function initialize()
+local function initialize(logger)
  if active then return end;active=true
+ sendNetwork,stopSender=SPCNetworkSender.New(P,logger)
  public={version=P.VERSION,status='UNKNOWN',sourceContext='UI',authority='UI_SHADOW_ONLY'}
  public.ReadNormalizedRoutes=function() return normalized:Read() end
  public.StopNetwork=requestStop
@@ -234,8 +235,11 @@ local function initialize()
  -- No recurring full-scan timer. Events and local turn boundaries remain primary.
 end
 ContextPtr:SetInitHandler(function()
- initialize()
- pcall(function()include('ExpeditionTrainingDiagnostics');include('EventTimingDiagnostics');timingObserver=SPCEventTimingDiagnostics.Start(P,nil,'UI')end)
+ local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
+ initialize(traceLoaded and SPCExpeditionTrainingDiagnostics)
+ if traceLoaded then
+  pcall(function()include('EventTimingDiagnostics');timingObserver=SPCEventTimingDiagnostics.Start(P,nil,'UI')end)
+ end
 end)
 ContextPtr:SetShutdown(function()
  if timingObserver then timingObserver.Stop()end

@@ -1,17 +1,31 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0966
-Implementation Build: source B451.478 / modinfo478. Live B451.478 from 414edd5. Stable/main B307.334.
+Status Revision: S0967
+Implementation Build: source B452.479 / modinfo479. Live B451.478 from 414edd5. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_TRACE_ISOLATED_DEPLOYED
+Work State: UI_TRACE_ISOLATED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Separate UI observation from route sending and city presentation — S0967
+
+The background collector chooses its optional sender observation before its first collection. The sender's authorization still uses its original single turn-activity read. When tracing is unavailable, the UI no longer repeats that read just to fill observer fields. The city institution shortcut and presentation request now load without the TRAIN factory.
+
+- **Runtime Impact Contract (L3, T04/T06/T08, P3-18).** Keep proof payload, sequence, ACK, strict gating, bounded recovery, shutdown and production Flight unchanged. The UI observer's load uses the same single include and the existing enable switch. Its clock and activity samples run only when enabled. City presentation keeps its selected reference, request/reply port, invalidation and exception recovery. No new native event, timer, stored field or cross-context authority.
+- **LOCAL_SIMULATION_PASS in scope.** All 59 selected methods pass. The actual route UI and Gameplay proof produce an identical packet and release the same Flight after the ACK. The fixture observes four activity reads on B451 with the logger absent, two when disabled, and one for each B452 absent/disabled profile. Enabled evidence retains four reads and its original result fields. The actual city shortcut and reply port survive eight observer modes, same-turn promotion, failed-send recovery on a related event and teardown. This is a workload count in the fixture. The old B267 unknown-trader signal test still hits its inherited assertion and is outside this passing selection.
+- **STATIC_CONFIRMED and reproduction.** 227 Lua 5.1 compiles, 32 XML-family parses, 704 file and 11 replacement references across 356 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7jUITrace` with CPython 3.14/Lupa 2.8. The existing CityPotential presentation assertions use their actual UI source and fixed control fixtures. Source SHA256 `e275d07526f088ee0cf6f7390a59e709ff887205e9b893d15d454458881882b7`, package SHA256 `338831622ea4b2e77b66b851f6c154e1bd356d23dceb9027abcbd0607166bd19`. Local evidence `local/refactor/B452-O7jUITrace/closure.json` at SHA256 `f1fab050473e18ef111dec9340c4ced5608ec0cc9a55ec6202ccb10115183220`.
+
+**Next exact removal review.** B116 is an older opt-in empty-production experiment. Its UI wrapper sits above HD's own ActionPanel; both HD and the official GS package declare their own ActionPanel sources. The replacement is already excluded by SPC's official environment criteria. The active P0 project report uses TimedProjectRead and ProjectTurnRead. Formal project, order, and reply readers are on the separate production panel/Gameplay paths. The remaining B116 Begin/Cancel request and its Gameplay observer have only the old UI wrapper as a caller.
+
+Request approval to remove only `Mod/UI/TimedTurnProbe.lua` (`c95456d666bf3636494d2f99460121cb19193d97f271d1292ac170ce62ef8245`), `Mod/TimedProductionProbe.lua` (`08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d`) and their exact replacement, import, package, startup and Begin/Cancel wiring. Local evidence `local/refactor/B452-O7jUITrace/timed-turn-readiness.json` at SHA256 `ed2d3d5ed5b67bbb4c7c65f8ebdb55c10631a943b001053d38037a9e117baae3` verifies the actual manifests and replays the relevant stock/HD source excerpts. Click, Enter and the bound action give the same one end-turn request or one blocking-notification opening. The HD native action also plays its usual click sound. Native loader and event delivery have not been tested in this candidate. After approval, replay the formal project/queue regressions and full package rollback before replacing the runtime. A short HD check of the turn button/Enter and production blocker is the only new native interaction proposed for the removal.
+
+B451 remains installed at this source checkpoint. Positive Culture Network cold restoration is a separate gate.
 
 ### B451 development deployment verified — S0966
 

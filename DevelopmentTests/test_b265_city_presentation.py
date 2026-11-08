@@ -8,7 +8,7 @@ from test_expedition_training_ui import ui
 R=Path(__file__).resolve().parents[1]
 
 
-def presentation(setup=None):
+def presentation(setup=None, load=None):
  l=display()
  l.execute("""
   function event()
@@ -75,7 +75,12 @@ def presentation(setup=None):
  """)
  l.execute((R/'Mod/UI/LevelBannerModel.lua').read_text())
  if setup:l.execute(setup)
- l.execute((R/'Mod/UI/CityPotential.lua').read_text())
+ if load:
+  load(l)
+ else:
+  l.execute((R/'Mod/IdentityEqual.lua').read_text())
+  l.execute((R/'Mod/SafeCallbacks.lua').read_text())
+  l.execute((R/'Mod/UI/CityPotential.lua').read_text())
  l.execute('startBridge()')
  return l
 

@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7jUITrace": [
+      "test_o7_ui_trace",
+      "test_o7_network_trace",
+      "test_o7_route_observer_retirement",
+      "test_b397_network_transport",
+      "test_pu11_package_absence.ActualTransport",
+      "test_refactor_s5c2.Sender",
+      "test_b265_city_presentation.EventPresentation",
+      "test_b393_observer_isolation.Isolation.test_actual_ui_requests_replies_and_same_turn_promotion"
+    ],
     "O7iNetworkTrace": [
       "test_o7_network_trace",
       "test_network_effect_fact_receipts",
@@ -2272,6 +2282,7 @@
       "test_refactor_s6f.RetainedGuards"
     ],
     "Mod/UI/BackgroundRoutes.lua": [
+      "test_o7_ui_trace",
       "test_o7_route_observer_retirement",
       "test_refactor_s4b",
       "test_refactor_s9e1",
