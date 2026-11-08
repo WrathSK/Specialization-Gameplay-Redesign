@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1005
-Implementation Build: source B470.497 / modinfo497. Live B469.496 from 6c3c4ce. Stable/main B307.334.
+Status Revision: S1006
+Implementation Build: source B470.497 / modinfo497. Live B470.497 from 3f7ba47. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: MANUAL_CITY_RECORD_REPORTS_RETIRED_LOCAL
+Work State: RETIRED_BOOST_TEST_CONTROLS_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B470 deployment verified and the retired boost test controls reviewed — S1006
+
+B470.497 is installed from `3f7ba47bde7f8bdbacbf13010dc308196d5872d5`. All 337 files match SHA256 `66e50d8f18c8ee89140ecc2af30a43973d66814e87a0c0937abfc3066c5877d6`. Receipt `B470.497-3f7ba47-playtest.json` is DEVELOP_ACTIVE. The hidden manual Journal and Binding reports have retired. The B469 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The four hidden B057 boost tests submit raw values of zero, 1.5, 3.8 or a return to automatic behavior. Gameplay already runs NetworkBoost in retired mode under the accepted v0.1 Research network isolation. Its guard rejects all four commands before any effect write. The projection removes the four buttons, callbacks and BOOST_TEST request branch in `Mod/Gameplay.lua`, `Mod/UI/P0Panel.lua` and `Mod/UI/P0Panel.xml`. The NetworkBoost module, its cleanup duties and the distinct BOOST_INIT, BOOST_READ and BOOST_BASELINE paths remain in scope for preservation.
+
+In the disposable comparison the four manual calls into NetworkBoost.Test fall to zero, with zero carrier writes in either arm. The real BoostRefresh and Gameplay roots exchange the same initialization packet, remove the seeded retired Research boost and Great Work experiment carriers and retain the ordinary Monument. The two boost readouts, other selected controls and three nonempty route proofs with strict qualification match. The package path set is identical and the disposable switch and restore pass. Evidence `local/refactor/B470-RetiredBoostTestControlsReview/result.json` SHA256 `e31107b6df3f246f7f8423bb725993f5a3146d6088d77fd7f482d8e895279c6b` with replay script SHA256 `84bd6f0b7439519f0c4fc2ceaf31de5f4eb404e04df732da6ad8c04edbe3e27e` alongside. Reproduce in a clean scratch directory with CPython 3.14/Lupa 2.8 and the named source's DevelopmentTests on PYTHONPATH by running `python3.14 -B review.py --source 3f7ba47bde7f8bdbacbf13010dc308196d5872d5 --package 66e50d8f18c8ee89140ecc2af30a43973d66814e87a0c0937abfc3066c5877d6`.
+
+The exact four-control retirement awaits approval. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the two hidden manual city record reports — S1005
 

@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1005",
+    "status": "S1006",
     "runtime": "B470.497 / modinfo497",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the approved manual Journal and Binding report retirement with legacy cold audits, current Store, identity and route proof preserved.",
+  "goal": "Record B470 deployment and review retiring only the four boost test controls with initialization, cleanup and readouts preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B470 deployment verified and the retired boost test controls reviewed — S1006",
+      "reason": "Verified B470 deployment and exact retired boost test control boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -462,6 +468,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B470 installed 337/337 MATCH with both recovery packages verified. The boost test projection preserves the real background init, exact legacy carrier cleanup, current reports and route proofs.",
     "B470 passes 13 selected checks and carried city flow, marker, first-completion and route suites. Cold records, current reports and identity match.",
     "B469 installed 337/337 MATCH with both recovery packages verified. The projection preserves the two legacy cold audits, current Store records, identity and route proofs.",
     "B469 passes 13 selected and 28/64 carried checks. Cold Store, first completion, retained SupportFacts, reports and network proofs match.",
@@ -2929,6 +2936,69 @@
       "package_sha256": "66e50d8f18c8ee89140ecc2af30a43973d66814e87a0c0937abfc3066c5877d6",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-two-hidden-manual-city-record-reports--s1005"
+    },
+    "b470_deployment": {
+      "version": "B470.497 / modinfo497",
+      "source_commit": "3f7ba47bde7f8bdbacbf13010dc308196d5872d5",
+      "digest": "66e50d8f18c8ee89140ecc2af30a43973d66814e87a0c0937abfc3066c5877d6",
+      "files": 337,
+      "receipt": "B470.497-3f7ba47-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B469.496, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b470-deployment-verified-and-the-retired-boost-test-controls-reviewed--s1006"
+    },
+    "b470_retired_boost_test_controls_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "3f7ba47bde7f8bdbacbf13010dc308196d5872d5",
+      "removed": [],
+      "modified": [
+        "Gameplay.lua",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "Gameplay.lua": "2d2e892d1420aa1c13698d6757b1a7dc711f20e5746254418132fc5292833db4",
+        "UI/P0Panel.lua": "79c823e9a76c7365a62f3621f67c53d035cb7c9fe605910bc8d4d69915d053a2",
+        "UI/P0Panel.xml": "63ca1c12662faa92e6879dbc109ae39944f82b8551c3c00eb60b2a2cce0241d3"
+      },
+      "hidden_controls": [
+        "BoostTestZeroButton",
+        "BoostTestHalfButton",
+        "BoostTestHighButton",
+        "BoostTestAutoButton"
+      ],
+      "retired_actions": [
+        "BOOST_TEST_ZERO",
+        "BOOST_TEST_HALF",
+        "BOOST_TEST_HIGH",
+        "BOOST_TEST_AUTO"
+      ],
+      "manual_test_calls": [
+        4,
+        0
+      ],
+      "stale_commands_carrier_writes": [
+        0,
+        0
+      ],
+      "matching_background_init_packets": 1,
+      "confirmed_carrier_removals": [
+        "BUILDING_SPC_B057_RESEARCH_2",
+        "BUILDING_SPC_B055_GW_CITY"
+      ],
+      "ordinary_building_preserved": true,
+      "retained_boost_reports": "MATCH",
+      "production_route_packets": 3,
+      "local_evidence": "local/refactor/B470-RetiredBoostTestControlsReview/result.json",
+      "local_evidence_sha256": "e31107b6df3f246f7f8423bb725993f5a3146d6088d77fd7f482d8e895279c6b",
+      "local_replay_sha256": "84bd6f0b7439519f0c4fc2ceaf31de5f4eb404e04df732da6ad8c04edbe3e27e",
+      "local_transcript_sha256": "99fe9653e0808b98901dcb782d0120955b80293b8faa36a7e581327701447477",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b470-deployment-verified-and-the-retired-boost-test-controls-reviewed--s1006"
     }
   }
 }

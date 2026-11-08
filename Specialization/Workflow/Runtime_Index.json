@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "6c3c4ce874998fb6498768f3b9dc7bb742aa4a2f",
-  "runtime": "B469.496 / modinfo496 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
+  "runtime_commit": "3f7ba47bde7f8bdbacbf13010dc308196d5872d5",
+  "runtime": "B470.497 / modinfo497 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1005 verifies the exact retirement of the two hidden city record reports with legacy audits and current Store and identity preserved.",
-  "source_runtime": "B470.497 / modinfo497 local candidate, 337 files. B469.496 remains installed.",
+  "source_review": "S1006 verifies B470 deployment and both recovery packages. Four retired boost tests can leave the panel and request handler while background initialization, cleanup and reports remain.",
+  "source_runtime": "B470.497 / modinfo497 deployed from 3f7ba47 with the two approved hidden city record reports removed.",
   "tested_source_snapshot_sha256": "d616f837ce20eab389060c110eaf7af0cc357eb880e92b73b987d52c3ac4652a"
 }
