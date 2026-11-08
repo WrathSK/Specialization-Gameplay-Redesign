@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1017
-Implementation Build: source B476.503 / modinfo503. Live B475.502 from 28c04ef. Stable/main B307.334.
+Status Revision: S1018
+Implementation Build: source B476.503 / modinfo503. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: P0_REPORT_LAYOUT_FIXED_LOCAL
+Work State: RETIRED_B055_GREAT_WORK_INGRESS_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B476 deployment verified and the old B055 Great Work commands reviewed — S1018
+
+B476.503 is installed from `df9461790079ef858f4df11944c78dfc7e0877f3`. All 337 files match SHA256 `31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e`. Receipt `B476.503-df94617-playtest.json` is DEVELOP_ACTIVE. The B475 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear. The approved P0 layout fix passed the full panel suite and both carried stages. Native rendering and hit testing remain outside those checks.
+
+**Next exact retirement review.** The old B055 test can still put a fixed city or per-work Culture carrier in a selected test city. Its hidden GWObjectButton sends one of the three experimental commands. The proposal removes that control, callback and the legacy GW_CITY/GW_OBJECT/GW_OFF branch in `Mod/Gameplay.lua`, `Mod/UI/P0Panel.lua` and `Mod/UI/P0Panel.xml`. The earlier GW_READ/GW_BASELINE report path, the current Great Work and Era Dialogue reports, the B055 owner and both startup and ownership cleanup paths retain their roles.
+
+In the disposable comparison, a city/object/off sequence causes four experimental writes before the change and zero after it. Both arms remove the same B057 and two B055 carriers through the existing background startup. An injected failure removing the second B055 carrier leaves readiness false until the next bounded retry. The ordinary Monument survives. Retained reports, listener counts, both collection acknowledgements and the modeled Dialogue carrier totals match. Disposable switch and restore pass. Evidence `local/refactor/B476-RetiredB055GreatWorkIngressReview/result.json` SHA256 `38a5b5e9d71ef72a9d68ff2a0e1ec8a4797e69d3c7789dd37baaae2207d02d40` with replay script SHA256 `b89a81e27e98d8c6a7062ad7438cdb9af71dd0af71bf964f6d84a0dfcae576c0` alongside. Reproduce with CPython 3.14/Lupa 2.8, the named source's DevelopmentTests on PYTHONPATH and `SPC_DEBUG_GAMEPLAY_DB` set to the read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. In a clean scratch directory run `python3.14 -B review.py --source df9461790079ef858f4df11944c78dfc7e0877f3 --package 31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e`.
+
+The B055 game-request retirement awaits approval. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Separate the overlapping P0 report controls — S1017
 

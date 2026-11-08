@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1017",
+    "status": "S1018",
     "runtime": "B476.503 / modinfo503",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the approved P0 report layout correction and retained click requests.",
+  "goal": "Record B476 deployment and review the old B055 manual effect commands with startup cleanup and current reports preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B476 deployment verified and the old B055 Great Work commands reviewed — S1018",
+      "reason": "Verified B476 deployment and exact B055 request retirement boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -534,6 +540,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B476 installed 337/337 MATCH with both recovery packages verified. The B055 projection preserves cleanup and retry, current reports and collection receipts.",
     "B476 passes 11 full panel and 28 carried checks. Both overlaps resolve and report requests match.",
     "B475 installed 337/337 MATCH with both recovery packages verified. The layout projection resolves both existing overlaps with seven matching click packets and unchanged listener counts.",
     "B475 passes 14 selected and 14/64 carried checks. Both report routes, template pages, progress read and route proofs match.",
@@ -3770,6 +3777,72 @@
       "package_sha256": "31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#separate-the-overlapping-p0-report-controls--s1017"
+    },
+    "b476_deployment": {
+      "version": "B476.503 / modinfo503",
+      "source_commit": "df9461790079ef858f4df11944c78dfc7e0877f3",
+      "digest": "31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e",
+      "files": 337,
+      "receipt": "B476.503-df94617-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B475.502, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b476-deployment-verified-and-the-old-b055-great-work-commands-reviewed--s1018"
+    },
+    "b476_b055_great_work_ingress_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "df9461790079ef858f4df11944c78dfc7e0877f3",
+      "removed": [],
+      "modified": [
+        "Gameplay.lua",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "Gameplay.lua": "895f9a56f47ddd4402c2ef594faf3c9c980bde2b80d6d6f0921d68837c4673a2",
+        "UI/P0Panel.lua": "d419ddaf391f664727b0f1bd680f0008f2f930c73981a5904c3d59ea7c58ff19",
+        "UI/P0Panel.xml": "134622ae56c352ee5f104b6b9b2ebfdb4dc6d476a5bf662f34490894938b3c62"
+      },
+      "hidden_controls": [
+        "GWObjectButton"
+      ],
+      "retired_actions": [
+        "GW_CITY",
+        "GW_OBJECT",
+        "GW_OFF"
+      ],
+      "modeled_manual_carrier_writes": [
+        4,
+        0
+      ],
+      "property_writes": [
+        0,
+        0
+      ],
+      "confirmed_cleanup": [
+        "BUILDING_SPC_B057_RESEARCH_2",
+        "BUILDING_SPC_B055_GW_CITY",
+        "BUILDING_SPC_B055_GW_OBJECT"
+      ],
+      "startup_packets": 2,
+      "injected_unconfirmed_cleanup_retry": "MATCH",
+      "retained_readouts": "MATCH",
+      "collection_ack": 2,
+      "modeled_dialogue_carriers": [
+        5,
+        10
+      ],
+      "external_db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "panel_listeners": "MATCH",
+      "local_evidence": "local/refactor/B476-RetiredB055GreatWorkIngressReview/result.json",
+      "local_evidence_sha256": "38a5b5e9d71ef72a9d68ff2a0e1ec8a4797e69d3c7789dd37baaae2207d02d40",
+      "local_replay_sha256": "b89a81e27e98d8c6a7062ad7438cdb9af71dd0af71bf964f6d84a0dfcae576c0",
+      "local_transcript_sha256": "ec8b60067eeef5933cdca9cfc3feb0279d4c423a1092376f5976624206d627bf",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b476-deployment-verified-and-the-old-b055-great-work-commands-reviewed--s1018"
     }
   }
 }

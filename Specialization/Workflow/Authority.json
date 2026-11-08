@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1017",
+    "status": "S1018",
     "runtime": "B476.503 / modinfo503",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "28c04ef022466248ce5584b5767c9646dc8dd032",
-  "current_batch": "P0_REPORT_LAYOUT_FIXED_LOCAL",
-  "next_batch": "Verify the guarded B476 switch and review the old B055 manual Great Work effect requests separately from startup cleanup and current reports.",
+  "runtime_commit": "df9461790079ef858f4df11944c78dfc7e0877f3",
+  "current_batch": "RETIRED_B055_GREAT_WORK_INGRESS_REVIEWED",
+  "next_batch": "Await exact approval to remove the hidden GWObjectButton and GW_CITY/GW_OBJECT/GW_OFF game requests and the unreachable GW_READ arm of that branch. Keep GreatWorkProbe, startup and ownership cleanup, and the current Great Work and Era Dialogue reports.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B475.502 / modinfo502 temporary develop from 28c04ef022466248ce5584b5767c9646dc8dd032, 337/337 MATCH, SHA256 8b380a2f9a34da4b3cbc80eb6965f2ff45210d776d4c767646ea500c327f4c80. Receipt B475.502-28c04ef-playtest.json DEVELOP_ACTIVE. B474 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B476.503 / modinfo503 temporary develop from df9461790079ef858f4df11944c78dfc7e0877f3, 337/337 MATCH, SHA256 31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e. Receipt B476.503-df94617-playtest.json DEVELOP_ACTIVE. B475 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S1017 verifies the approved layout correction and all fourteen initialized report controls.",
+  "context_review_status": "S1018 verifies B476 deployment and both recovery packages. The old B055 manual effect commands are separate from retained startup cleanup, Great Work collection and current reports.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#separate-the-overlapping-p0-report-controls--s1017",
-  "source_status": "B476.503 / modinfo503 locally verified at SHA256 31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e. B475.502 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b476-deployment-verified-and-the-old-b055-great-work-commands-reviewed--s1018",
+  "source_status": "B476.503 / modinfo503 deployed at SHA256 31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e. Approved P0 report layout correction verified locally.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
