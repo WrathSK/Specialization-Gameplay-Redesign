@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0999",
+    "status": "S1000",
     "runtime": "B467.494 / modinfo494",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify hidden manual adjacency and route reader retirement with current shared adjacency, route proof and network paging preserved.",
+  "goal": "Record B467 deployment and review retiring the exact hidden marker commands with saved data and current facts preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B467 deployment verified and the old city marker commands reviewed — S1000",
+      "reason": "Verified B467 deployment and exact hidden city marker command retirement boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -426,6 +432,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B467 installed 337/337 MATCH with both recovery packages verified. The marker projection preserves existing marker values, generic reports and current route proofs.",
     "B467 passes 26 selected checks and 64/9 carried checks. Real shared adjacency, formal network paging and route proof match. The existing layout comparison remains separate.",
     "B466 installed 337/337 MATCH with both recovery packages verified. The manual UI projection preserves shared production adjacency, actual route proofs and formal Network Detail paging.",
     "B466 passes 9 selected checks and 64/28 carried checks. Actual route proof, invalidation, transaction gating and retained reports match.",
@@ -2565,6 +2572,60 @@
       "package_sha256": "1cb786b2c323880e9dac36478498bc273f7301cc0b224d62065d87095456d1a6",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-hidden-manual-adjacency-and-route-readers--s0999"
+    },
+    "b467_deployment": {
+      "version": "B467.494 / modinfo494",
+      "source_commit": "5efdc9e9e946b5504d214309e358278b4faf0eb0",
+      "digest": "1cb786b2c323880e9dac36478498bc273f7301cc0b224d62065d87095456d1a6",
+      "files": 337,
+      "receipt": "B467.494-5efdc9e-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [],
+      "pending": false,
+      "outgoing": "B466.493, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b467-deployment-verified-and-the-old-city-marker-commands-reviewed--s1000"
+    },
+    "b467_city_marker_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "5efdc9e9e946b5504d214309e358278b4faf0eb0",
+      "removed": [],
+      "modified": [
+        "Gameplay.lua",
+        "UI/P0Panel.lua",
+        "UI/P0Panel.xml"
+      ],
+      "prior_sha256": {
+        "Gameplay.lua": "260e158714986208260384cd5dfcd9bdc6630545e7ec2d0922e5b2363021c165",
+        "UI/P0Panel.lua": "05a85f876ecbe13dd53f396721097e6a626134d8c7e0dd2d1c08056b22f8fae2",
+        "UI/P0Panel.xml": "7fe2d0179b03370fa61928678c48e7d39f55a7149dcfb0eaf51fcb9341d2b048"
+      },
+      "hidden_controls": [
+        "CaptureButton",
+        "MarkButton"
+      ],
+      "retired_actions": [
+        "CAPTURE",
+        "MARK_CITY"
+      ],
+      "modeled_marker_reads": [
+        5,
+        0
+      ],
+      "modeled_marker_writes": [
+        1,
+        0
+      ],
+      "existing_marker_value_preserved": true,
+      "summary_and_current_requests": "MATCH",
+      "production_route_packets": 3,
+      "local_evidence": "local/refactor/B467-CityMarkerRetirementReview/result.json",
+      "local_evidence_sha256": "9a28ef28095947bd05654e82c72f2a49705d97c36d1354d96e1fd0e7479765a1",
+      "local_replay_sha256": "8694ca21d6db77042c690f85ab334b39b4a42698a705f43f726009d96478cafa",
+      "local_transcript_sha256": "fd39646e47a6f0b7ad53b7f46c7f55d02fa7dc373de8075ae1ed041d665f05dd",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b467-deployment-verified-and-the-old-city-marker-commands-reviewed--s1000"
     }
   }
 }

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0999
-Implementation Build: source B467.494 / modinfo494. Live B466.493 from 130867e. Stable/main B307.334.
+Status Revision: S1000
+Implementation Build: source B467.494 / modinfo494. Live B467.494 from 5efdc9e. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: MANUAL_NETWORK_UI_RETIRED_LOCAL
+Work State: LEGACY_CITY_MARKER_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B467 deployment verified and the old city marker commands reviewed — S1000
+
+B467.494 is installed from `5efdc9e9e946b5504d214309e358278b4faf0eb0`. All 337 files match SHA256 `1cb786b2c323880e9dac36478498bc273f7301cc0b224d62065d87095456d1a6`. Receipt `B467.494-5efdc9e-playtest.json` is DEVELOP_ACTIVE. The two hidden manual adjacency and route reports and their dedicated pager have retired. The B466 and stable B307 recovery packages match their recorded hashes. The transaction boundary is clear.
+
+**Next exact retirement review.** The hidden CaptureButton reads an old diagnostic city marker. MarkButton writes a marker only when one is absent. The proposal removes these two controls, their CAPTURE and MARK_CITY requests, and the corresponding marker branch in Gameplay. The projection touches `Mod/Gameplay.lua`, `Mod/UI/P0Panel.lua` and `Mod/UI/P0Panel.xml` with the same package paths. Existing marker values stay in the save. The generic Probe.Summary and Probe.Snapshot readouts stay in place. Current city identity, Store progression, binding, and network proof have separate owners.
+
+In the disposable comparison, five stale requests for valid and invalid cities go from five marker reads and one write to zero. The seeded marker remains readable in Summary. The formerly blank city stays blank. The Gameplay network and city journal reports, the four selected P0 requests, the other controls and their visibility, and three nonempty route proofs with strict transaction qualification match. The disposable package switch and restore pass. Evidence `local/refactor/B467-CityMarkerRetirementReview/result.json` SHA256 `9a28ef28095947bd05654e82c72f2a49705d97c36d1354d96e1fd0e7479765a1` with replay script SHA256 `8694ca21d6db77042c690f85ab334b39b4a42698a705f43f726009d96478cafa` alongside. Reproduce in a clean scratch directory with CPython 3.14/Lupa 2.8 and the named source's DevelopmentTests on PYTHONPATH by running `python3.14 -B review.py --source 5efdc9e9e946b5504d214309e358278b4faf0eb0 --package 1cb786b2c323880e9dac36478498bc273f7301cc0b224d62065d87095456d1a6`.
+
+The exact city marker command retirement awaits approval. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the hidden manual adjacency and route readers — S0999
 

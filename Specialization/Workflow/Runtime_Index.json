@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "130867e1fc6f6fc3c216673a998aac7cf365aa96",
-  "runtime": "B466.493 / modinfo493 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
+  "runtime_commit": "5efdc9e9e946b5504d214309e358278b4faf0eb0",
+  "runtime": "B467.494 / modinfo494 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0999 verifies the exact B003 manual UI retirement with shared adjacency, current route proofs and the formal network pager covered.",
-  "source_runtime": "B467.494 / modinfo494 local candidate, 337 files. B466.493 remains installed.",
+  "source_review": "S1000 verifies B467 deployment and both recovery packages. The two hidden marker commands are separate from city identity, Store progression, and current route proof.",
+  "source_runtime": "B467.494 / modinfo494 deployed from 5efdc9e with the approved hidden manual adjacency and route readers removed.",
   "tested_source_snapshot_sha256": "5546d8e45ddb1880605963486cd08d416b409e1e8b1b36b856da22bfcbda62ed"
 }
