@@ -15,7 +15,7 @@ from lupa.lua55 import LuaRuntime
 
 R = Path(__file__).resolve().parents[1]
 BASELINE = "cdd3ceb8b401c5cbe4d58cbbdbc7998b1edddeb7"
-MODULES = ["CityIdentityRead", "CityProgressionStore", "BindingProbe", "CompletionRecordProbe",
+MODULES = ["CityIdentityRead", "CityProgressionStore", "BindingProbe",
            "CityJournalProbe", "FreshBindingHook", "CityFlowProbe", "EffectiveFacts", "InvestmentAction"]
 
 
@@ -50,7 +50,6 @@ end
     e2 = (R / "DevelopmentTests/test_p0_e2.py").read_text()
     base = e2[e2.index("local function event()"):e2.index("for _,kind in ipairs({'RESEARCH'")]
     base = base.replace("SPCCityProgressionStore.StartLegacyTest(P,shared)", "SPCCityProgressionStore.Start(P,shared)")
-    base = base.replace("SPCBindingProbe.Start(P,shared);SPCCityJournalProbe", "SPCBindingProbe.Start(P,shared);SPCCompletionRecordProbe.Start(P,shared);SPCCityJournalProbe")
     base = base.replace("CityRoleFacts=function(c)return {owner=c:GetOwner(),cityID=c:GetID(),governorGateStatus='KNOWN',governorLevelCeiling=governor}end,", "GovernorGate=function(c)return c:GetOwner(),c:GetID(),'KNOWN',governor end,")
     b108 = (R / "DevelopmentTests/test_b108_e2_multicity.py").read_text()
     helpers = b108[b108.index("local INDEX=SPCCityProgressionStore.INDEX"):b108.index("-- Scale and write locality")]

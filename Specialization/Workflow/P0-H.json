@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0994",
-    "runtime": "B464.491 / modinfo491",
+    "status": "S0995",
+    "runtime": "B465.492 / modinfo492",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B464 deployment and the exact old completion-record retirement proposal with current Store and saved experiment values preserved.",
+  "goal": "Verify the B014 report retirement with current Store first completion, cold records, legacy value and route proof preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the old completion record report — S0995",
+      "reason": "Approved one-path retirement with preserved legacy record and actual first completion"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -396,6 +402,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B465 passes 28 selected checks and 23/49/25 carried checks. Populated Store cold load, first completion, saved B014 and route proof match.",
     "B464 installed 338/338 MATCH with both recovery packages verified. The projected B014 report retirement preserves populated Store cold load, first specialization, old evidence and route proofs.",
     "B464 passes 23 selected checks and 19/49 carried checks. Current Store, retained experiment values and route proof match.",
     "B463 installed 340/340 MATCH with both recovery packages verified. The projected synthetic storage retirement preserves Store initialization, saved experiment values, current P0 and route proofs.",
@@ -2306,6 +2313,46 @@
       "local_evidence_sha256": "f97d6fd771db9a7c28e1b64a3e7ba7ecfd9c9f29eefe3bd495de7ab8e8995612",
       "local_replay_sha256": "694adc750f27f01b0fba294f1eea889f617872d0b43c227d22ef1d7bf473179b",
       "report": "Specialization/Status/Specialization_P0_Status.md#b464-deployment-verified-and-the-old-completion-record-reviewed--s0994"
+    },
+    "b465_completion_record_retirement": {
+      "build": "B465.492 / modinfo492",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7wLegacyCompletionRecordRetirement": {
+          "tests": 28,
+          "path": "local/refactor/B465-O7wLegacyCompletionRecordRetirement-r2/closure.json",
+          "sha256": "5175c151336b1a21e3e26a1a8787ac8100b9c39a8ea1bcbc9f2b1d601a3dd259"
+        },
+        "O7vSyntheticStorageRetirement": {
+          "tests": 23,
+          "path": "local/refactor/B465-CarriedO7v-r2/closure.json",
+          "sha256": "f35192491a7164af99c2992c2c3c081f14cdcde63f055d87b24afb8be17dd968"
+        },
+        "O7sCompletionEventObserverRetirement": {
+          "tests": 49,
+          "path": "local/refactor/B465-CarriedO7s-r2/closure.json",
+          "sha256": "1ee255db385e5d6fa116a3216d3f2bb9de6f3d78801224cbea0f98db9be17b01"
+        },
+        "O7tCitySequenceObserverRetirement": {
+          "tests": 25,
+          "path": "local/refactor/B465-CarriedO7t-r2/closure.json",
+          "sha256": "cadd75e068579aef74ecd1050a51ddf87aae162e6535300fd6897c2d10eba659"
+        }
+      },
+      "files": 337,
+      "removed": {
+        "Mod/CompletionRecordProbe.lua": "3cc597823cf066869769d2646ace389d7c087d4cb8926ee7c7fd8de849df1e72"
+      },
+      "prior_source": "623903a017788ecec013d1a2c97d98c4ebb87c04",
+      "modeled_removed_listeners": 1,
+      "matching_route_packets": 3,
+      "saved_B014_value": "PRESERVED",
+      "populated_cold_records": 2,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "21cb6830500c7ffa3ab6d7e164881e341faa782b2873dd51c6949d1ddbe8c667",
+      "package_sha256": "48a7adb45b42e5730987f0a5bd92626440a28e8dc186846da1b7b9c12276d676",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-completion-record-report--s0995"
     }
   }
 }

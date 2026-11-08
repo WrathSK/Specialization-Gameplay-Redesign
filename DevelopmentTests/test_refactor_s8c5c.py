@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -90,6 +90,8 @@ class Production(unittest.TestCase):
    for name in ('SPCEligibilityProbe','SPCQualificationProbe'):expected.remove(name)
    self.assertEqual([n for n in re.findall(pattern,retired_source('Gameplay.lua',B463)) if n!='SPCLegacyCleanup'],expected)
    for name in ('SPCStorageProbe','SPCEnvelopeProbe'):expected.remove(name)
+   self.assertEqual([n for n in re.findall(pattern,retired_source('Gameplay.lua',B464)) if n!='SPCLegacyCleanup'],expected)
+   expected.remove('SPCCompletionRecordProbe')
    if not reply_service:expected.remove('SPCPlayerActionReplies')
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"));self.assertLess(s.index("composition.Run('LegacyCleanup'"),s.index("composition.Run('BindingProbe'"))

@@ -643,7 +643,7 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Receive(playerID,params) end
     return
   end
-  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="TRADE_EVENTS" and params.Action~="BINDING_READ" and params.Action~="COMPLETION_RECORD_READ" and params.Action~="CITY_JOURNAL_READ" then return end
+  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="TRADE_EVENTS" and params.Action~="BINDING_READ" and params.Action~="CITY_JOURNAL_READ" then return end
   if not P.IsTestPlayer(playerID) then return end
   shared.LastToken=nil
   shared.RequestToken=params.Token
@@ -695,10 +695,6 @@ local function request(playerID,params)
   if params.Action=="CITY_JOURNAL_READ" then
     shared.Snapshot=shared.CityJournalProbe.Read(playerID,city)
     shared.LastToken=params.Token;stage("ACK CITY_JOURNAL");return
-  end
-  if params.Action=="COMPLETION_RECORD_READ" then
-    shared.Snapshot=shared.CompletionRecordProbe.Read(playerID,city)
-    shared.LastToken=params.Token;stage("ACK COMPLETION_RECORD");return
   end
   if params.Action=="BINDING_READ" then
     shared.Snapshot=shared.BindingProbe.Read(playerID,city)
@@ -847,8 +843,6 @@ composition.Run('LegacyCleanup',{'CityProgressionStore'},{'LegacyCleanup'},funct
 end)
 
 composition.Run('BindingProbe',{'CityProgressionStore'},{'BindingProbe'},function() include('BindingProbe');SPCBindingProbe.Start(P,shared) end)
-
-composition.Run('CompletionRecordProbe',{'CityProgressionStore'},{'CompletionRecordProbe'},function() include('CompletionRecordProbe');SPCCompletionRecordProbe.Start(P,shared) end)
 
 composition.Run('CityJournalProbe',{'CityProgressionStore'},{'CityJournalProbe'},function() include('CityJournalProbe');SPCCityJournalProbe.Start(P,shared) end)
 

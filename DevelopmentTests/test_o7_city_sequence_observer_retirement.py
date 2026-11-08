@@ -140,8 +140,10 @@ class CitySequenceObserverRetirement(unittest.TestCase):
             'matching_route_packets':len(new[0]),'store_read_matches':True})
 
     def test_foundation_first_completion_and_claim_peers_match_with_trace_armed(self):
-        with package(B461) as previous:
-            for path in ('CityProgressionStore.lua','ClaimProjects.lua','CompletionRecordProbe.lua',
+        with package(B461) as previous, package(B462) as retired:
+            self.assertEqual((retired/'Mod/CompletionRecordProbe.lua').read_bytes(),
+                             (previous/'Mod/CompletionRecordProbe.lua').read_bytes())
+            for path in ('CityProgressionStore.lua','ClaimProjects.lua',
                          'FreshBindingHook.lua','EffectiveFacts.lua','LegacyCleanup.lua'):
                 self.assertEqual((ROOT/'Mod'/path).read_bytes(),(previous/'Mod'/path).read_bytes())
             self.assertEqual(actual_foundation(previous,False),actual_foundation(ROOT,True))

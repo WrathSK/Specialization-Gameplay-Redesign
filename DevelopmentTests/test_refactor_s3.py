@@ -99,8 +99,9 @@ class Composition(unittest.TestCase):
     def test_failed_store_skips_legacy_mode_selectors(self):
         c=startup();c.execute("SPCCityProgressionStore.Start=function()error('STORE_FAILED')end")
         c.load('Gameplay')
-        for name in ('BindingProbe','CompletionRecordProbe','CityJournalProbe','CityFlowProbe','EffectiveFacts','ClaimProjects'):
+        for name in ('BindingProbe','CityJournalProbe','CityFlowProbe','EffectiveFacts','ClaimProjects'):
             self.assertEqual(c.eval("ExposedMembers.SPC_P0.StartStatus['%s'].state"%name),'SKIPPED_DEPENDENCY')
+        self.assertIsNone(c.eval('ExposedMembers.SPC_P0.StartStatus.CompletionRecordProbe'))
         self.assertTrue(c.eval('sealed'));self.assertIn('INITIALIZED_PARTIAL',c.eval('ExposedMembers.SPC_P0.Stage'))
     def test_retired_dialogue_never_restored_by_failed_new_effect(self):
         c=startup();c.execute("SPCDialogueEffects.Start=function(P,s)s.DialogueEffects={};error('EFFECT_FAILED')end");c.load('Gameplay')

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0994
-Implementation Build: source B464.491 / modinfo491. Live B464.491 from 623903a. Stable/main B307.334.
+Status Revision: S0995
+Implementation Build: source B465.492 / modinfo492. Live B464.491 from 623903a. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: LEGACY_COMPLETION_RECORD_RETIREMENT_REVIEWED
+Work State: LEGACY_COMPLETION_RECORD_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the old completion record report — S0995
+
+The Owner approved the exact B014 retirement reviewed in S0994. Remove `Mod/CompletionRecordProbe.lua`, its two manifest declarations, one Gameplay start, the COMPLETION_RECORD_READ route and the matching hidden P0 control and callback. The original is recoverable from `623903a017788ecec013d1a2c97d98c4ebb87c04:Mod/CompletionRecordProbe.lua` at SHA256 `3cc597823cf066869769d2646ace389d7c087d4cb8926ee7c7fd8de849df1e72`. Existing B014 city values remain in saves. The separate City Journal and current Store, Binding, City Flow and Claim remain active at their existing entrypoints.
+
+- **Runtime Impact Contract (L3, T01/T06/T08).** The current Store already owned first-completion selection. Under its current authority, B014 only registered one load callback and read its own saved sample on explicit request. The modeled load callback and the explicit read retire. The construction listener count and all current owners match. No new writer, timer, retry, save schema or historical repair enters this batch.
+- **LOCAL_SIMULATION_PASS in scope.** All 28 selected methods pass. Real Gameplay package roots reload two populated fixture records. A new Theater Square establishes the second city's first specialization, a later Campus preserves it, and the Research peer's earlier record remains unchanged. Game Property values and write keys match, with the existing B014 city value preserved. Three nonempty route proofs, strict transaction gating, other P0 requests and exact disposable activation/restoration pass. The 23 storage, 49 completion-event and 25 city-sequence checks also pass. The earlier B463/B464 comparison stays on its published pair, current Store fixtures follow the actual observer-free startup, and the B136 integration replay matches before and after under Lua 5.1.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7wLegacyCompletionRecordRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7vSyntheticStorageRetirement, O7sCompletionEventObserverRetirement and O7tCitySequenceObserverRetirement. Tested source SHA256 `21cb6830500c7ffa3ab6d7e164881e341faa782b2873dd51c6949d1ddbe8c667`, package SHA256 `48a7adb45b42e5730987f0a5bd92626440a28e8dc186846da1b7b9c12276d676`. Local closure `local/refactor/B465-O7wLegacyCompletionRecordRetirement-r2/closure.json` SHA256 `5175c151336b1a21e3e26a1a8787ac8100b9c39a8ea1bcbc9f2b1d601a3dd259`. Native behavior remains unmeasured in this batch.
+
+B464 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B464 deployment verified and the old completion record reviewed — S0994
 

@@ -38,7 +38,6 @@
       <GridButton ID="CityFlowButton" Anchor="L,B" Offset="18,326" Size="240,32" Style="MainButton" String="Read city flow (B021)" Hidden="1" />
       <GridButton ID="CityJournalButton" Anchor="L,B" Offset="18,238" Size="240,32" Style="MainButton" String="Read city journal" Hidden="1" />
       <GridButton ID="BindingReadButton" Anchor="L,B" Offset="542,194" Size="240,32" Style="MainButton" String="Read binding" Hidden="1" />
-      <GridButton ID="CompletionRecordButton" Anchor="L,B" Offset="542,150" Size="240,32" Style="MainButton" String="Read completion record" Hidden="1" />
       <GridButton ID="AdjacencyButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Read adjacency (UI)" Hidden="1" />
       <GridButton ID="TradeButton" Anchor="L,B" Offset="280,106" Size="240,32" Style="MainButton" String="Read routes (UI)" Hidden="1" />
       <GridButton ID="NextButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Next district / route" Hidden="1" />

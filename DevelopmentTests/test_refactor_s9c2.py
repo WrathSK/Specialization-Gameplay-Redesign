@@ -3,7 +3,7 @@ import json,re,subprocess,unittest
 from unittest.mock import patch
 from pathlib import Path
 from refactor_harness import Context,ROOT,legacy_source_observation,measure
-from retired_crew_sources import B446, B447, B449, B452, B454, B455, B459, B460, B461, B462, B463, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B446, B447, B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, RETIRED_GLOBALS, source as retired_source
 from refactor_defect_fixtures import request_context,startup
 from test_refactor_s5d4b2 import load_request
 from test_refactor_s7d5 import fixture as crew,FAULTS
@@ -87,6 +87,8 @@ class Startup(unittest.TestCase):
   for name in ('SPCEligibilityProbe','SPCQualificationProbe'):expected.remove(name)
   self.assertEqual(re.findall(pattern,retired_source('Gameplay.lua',B463)),expected)
   for name in ('SPCStorageProbe','SPCEnvelopeProbe'):expected.remove(name)
+  self.assertEqual(re.findall(pattern,retired_source('Gameplay.lua',B464)),expected)
+  expected.remove('SPCCompletionRecordProbe')
   self.assertEqual(re.findall(pattern,current),expected)
   self.assertIn("composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'}",current)
   c=startup();c.load('Gameplay');c.execute("assert(ExposedMembers.SPC_P0.StartStatus.PlayerActionReplies.state=='OK')")

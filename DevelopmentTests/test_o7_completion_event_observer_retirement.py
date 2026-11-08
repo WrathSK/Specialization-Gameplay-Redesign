@@ -131,8 +131,10 @@ class CompletionEventObserverRetirement(unittest.TestCase):
             'matching_route_packets':len(after[0]),'completion_record_matches':True})
 
     def test_real_Store_and_Claim_keep_first_valid_completion(self):
-        with package(B460) as previous:
-            for path in ('CityProgressionStore.lua','ClaimProjects.lua','CompletionRecordProbe.lua',
+        with package(B460) as previous, package(B461) as retired:
+            self.assertEqual((retired/'Mod/CompletionRecordProbe.lua').read_bytes(),
+                             (previous/'Mod/CompletionRecordProbe.lua').read_bytes())
+            for path in ('CityProgressionStore.lua','ClaimProjects.lua',
                          'FreshBindingHook.lua','EffectiveFacts.lua','LegacyCleanup.lua'):
                 self.assertEqual((ROOT/'Mod'/path).read_bytes(),(previous/'Mod'/path).read_bytes())
             before,after=actual_first_completion(previous,False),actual_first_completion(ROOT,True)

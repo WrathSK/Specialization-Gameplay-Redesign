@@ -130,11 +130,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
     },
-    "Mod/CompletionRecordProbe.lua": {
-      "sha256": "3cc597823cf066869769d2646ace389d7c087d4cb8926ee7c7fd8de849df1e72",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
-    },
     "Mod/Config/Players.sql": {
       "sha256": "3483a8e6119486bb11032306501fff90e834e6f5a2a1d11ff88c533229d83284",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
@@ -606,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "bae3410a7f7546773e72fae3e0464bf98590058d4be5b04691ea9b1c0054c47c",
+      "sha256": "381fe74e86f00856f100960fb0c4b030b0a80a7cbebf1e935b147bb2f4671ccf",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0993 B464 synthetic storage diagnostic retirement."
+      "provenance": "S0995 B465 old completion record report retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -741,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "1ccd68f364b6a6bc4acf33dc5a3d229b82b91ded13d679b7bb388aa38b4e9d53",
+      "sha256": "68e33fc0ca8db08c76e7b4ef164c44a7a70879f3621f0ac595104b8b1a886431",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0993 B464 synthetic storage diagnostic retirement."
+      "provenance": "S0995 B465 old completion record report retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -866,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a08294652d600178cccc49874f0caafd93095e4dea39ca1d5f0fe95939516812",
+      "sha256": "7af41413a1dc0acdc31209c99f6c84f0eec4e94a17ea526bcf2ed9b387557b4f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0993 B464 synthetic storage diagnostic retirement."
+      "provenance": "S0995 B465 old completion record report retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1361,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "dc3c2b2d5f9fc76f7b6f29f51feb8bcd54e91b395812cd8b663388631b9b227d",
+      "sha256": "9a57488869a416ab7f95105fa21ee2823ebf81c07c09f48b3dc267558a7d5790",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0993 B464 synthetic storage diagnostic retirement."
+      "provenance": "S0995 B465 old completion record report retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "176043ec3befbbfae56a0ed72939345a20eb529cb1edb9e72b52beab6a0ed45d",
+      "sha256": "4fa8dcc8c31dbd64e7f63e91632bdf29783864f1973198f4f7884fc7dc9e6f8f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0993 B464 synthetic storage diagnostic retirement."
+      "provenance": "S0995 B465 old completion record report retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1696,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0994 verifies B464 deployment and both recovery packages. The old B014 completion record report is separate from first-completion authority in the current Store.",
-  "source_runtime": "B464.491 / modinfo491 deployed from 623903a with both approved synthetic storage tools removed.",
-  "tested_source_snapshot_sha256": "d5aa226520596060f6f584ff3d01d7d906a52c5d67c3d92c5b2b93c939a63300"
+  "source_review": "S0995 verifies the exact B014 retirement, populated Store cold load and first-completion authority, and exact package restoration.",
+  "source_runtime": "B465.492 / modinfo492 local candidate, 337 files. B464.491 remains installed.",
+  "tested_source_snapshot_sha256": "21cb6830500c7ffa3ab6d7e164881e341faa782b2873dd51c6949d1ddbe8c667"
 }

@@ -1,8 +1,8 @@
 """Scoped package replay for the B012/B019 experiment retirement."""
 import unittest
 
-from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B463, package
+from refactor_harness import Context, PackageVFS, measure
+from retired_crew_sources import B463, B464, package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -15,14 +15,14 @@ ACTIONS = ('ENVELOPE_READ', 'ENVELOPE_NEXT', 'STORAGE_READ', 'STORAGE_WRITE')
 EXPERIMENT_KEYS = {'SPC_DEV_STORAGE_B012_P0', 'SPC_DEV_ENVELOPE_B019_P0'}
 
 
-def context(root, name='Gameplay'):
-    retired = root == ROOT
+def context(root, revision, name='Gameplay'):
+    retired = revision == B464
     profile = PackageVFS(manifest=root/'Mod/SpecializationP0.modinfo', forbidden_globals=GLOBALS if retired else ())
-    return Context(name=name, vfs=profile, history=None if retired else (root,B463))
+    return Context(name=name, vfs=profile, history=(root,revision))
 
 
-def store_session(root, seed, fresh):
-    ctx = context(root)
+def store_session(root, revision, seed, fresh):
+    ctx = context(root, revision)
     ctx.execute(NATIVE)
     ctx.execute("""
       local seed,fresh=...
@@ -81,7 +81,7 @@ def store_session(root, seed, fresh):
       request('CITY_JOURNAL_READ','journal',nil,11)
       assert(s.LastToken=='journal' and s.Snapshot=='Game进度记录；旧Journal冻结')
       control={history=store.HistoryStartStatus(),store=description,journal=s.Snapshot}
-    """, root == ROOT, fresh)
+    """, revision == B464, fresh)
     loaded = scalars(ctx.eval('properties'))
     writes = scalars(ctx.eval('ordinaryWrites'))
     observations = [ctx.eval(name) for name in ('legacyReads','rosterReads','Events.LoadScreenClose.Count()')]
@@ -108,20 +108,20 @@ def store_session(root, seed, fresh):
       end
       assert(legacyWrites==(retired and 0 or 2))
       if retired then assert(legacyReads==0)end
-    """, root == ROOT)
+    """, revision == B464)
     assert ctx.load_counts['missing']+ctx.load_counts['failed']==0
     assert scalars(ctx.eval('ordinaryWrites'))==writes
     return loaded, scalars(ctx.eval('properties')), writes, observations, scalars(ctx.eval('control'))
 
 
-def routes(root):
-    gp,ui = (context(root,name) for name in ('Gameplay','UI/BackgroundRoutes'))
+def routes(root, revision):
+    gp,ui = (context(root,revision,name) for name in ('Gameplay','UI/BackgroundRoutes'))
     packets = exercise_proof(gp,ui)
     assert all(c.load_counts['missing']+c.load_counts['failed']==0 for c in (gp,ui))
     return packets,gp.load_counts,ui.load_counts
 
 
-def panel(root):
+def panel(root, revision):
     doc,ui = panel_runtime(root/'Mod/UI')
     controls = ui.globals().Controls
     buttons = {e.get('ID'):controls[e.get('ID')].hidden for e in doc.iter('GridButton') if e.get('ID')}
@@ -138,19 +138,20 @@ def panel(root):
           Controls[name].callbacks[Mouse.eLClick]()
         end
       end
-    """, root != ROOT)
+    """, revision == B463)
     return buttons,[dict(p.items()) for p in ui.globals().requests.values()]
 
 
 class SyntheticStorageRetirement(unittest.TestCase):
     def test_current_store_and_saved_experiment_values_survive(self):
-        with package(B463) as previous:
-            seed = context(previous)
+        with package(B463) as previous, package(B464) as retired:
+            seed = context(previous,B463)
             seed.load('EnvelopeProbe')
             stored = scalars(seed.eval('SPCEnvelopeProbe.Expected(0,1)'))
             for fresh in (False,True):
                 with self.subTest(fresh=fresh):
-                    old,new = (store_session(root,stored,fresh) for root in (previous,ROOT))
+                    old = store_session(previous,B463,stored,fresh)
+                    new = store_session(retired,B464,stored,fresh)
                     self.assertEqual(old[0],new[0])
                     self.assertEqual(new[0],new[1])
                     self.assertEqual(old[2],new[2])
@@ -163,14 +164,14 @@ class SyntheticStorageRetirement(unittest.TestCase):
                     self.assertEqual(changed,EXPERIMENT_KEYS)
                     self.assertEqual(old[1]['SPC_DEV_ENVELOPE_B019_P0']['storageRevision'],2)
             for name in ('CityProgressionStore.lua','CityJournalProbe.lua','CompletionRecordProbe.lua','ClaimProjects.lua'):
-                self.assertEqual((ROOT/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
+                self.assertEqual((retired/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
         measure('synthetic_storage_retirement',dict(modeled_load_listeners_removed=1,
             modeled_legacy_load_reads=[2,0],modeled_roster_reads=[1,0],modeled_manual_writes=[2,0],
             store_index_write_counts_fresh_and_existing=[1,0],saved_experiment_values_preserved=True))
 
     def test_real_roots_keep_nonempty_route_proofs(self):
-        with package(B463) as previous:
-            old,new = routes(previous),routes(ROOT)
+        with package(B463) as previous, package(B464) as retired:
+            old,new = routes(previous,B463),routes(retired,B464)
         self.assertEqual(old[0],new[0])
         self.assertEqual(len(new[0]),3)
         self.assertEqual(old[2],new[2])
@@ -178,9 +179,9 @@ class SyntheticStorageRetirement(unittest.TestCase):
         measure('synthetic_storage_route_proof',dict(matching_route_packets=3))
 
     def test_only_the_four_hidden_controls_and_requests_retire(self):
-        with package(B463) as previous:
-            old_buttons,old_requests = panel(previous)
-            new_buttons,new_requests = panel(ROOT)
+        with package(B463) as previous, package(B464) as retired:
+            old_buttons,old_requests = panel(previous,B463)
+            new_buttons,new_requests = panel(retired,B464)
         for name in CONTROLS:
             self.assertTrue(old_buttons.pop(name))
         self.assertEqual(old_buttons,new_buttons)
@@ -193,5 +194,5 @@ class SyntheticStorageRetirement(unittest.TestCase):
         self.assertTrue(all('ExpectedStage' not in p for p in new_requests))
 
     def test_exact_temporary_switch_and_recovery(self):
-        with package(B463) as previous:
-            verify_package_round_trip(self,previous/'Mod',ROOT/'Mod',REMOVED,'CityProgressionStore.lua')
+        with package(B463) as previous, package(B464) as retired:
+            verify_package_round_trip(self,previous/'Mod',retired/'Mod',REMOVED,'CityProgressionStore.lua')
