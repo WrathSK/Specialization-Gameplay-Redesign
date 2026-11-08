@@ -32,8 +32,8 @@ end
 pcall(include,'CrewModel')
 local ranks=setmetatable({},{__index=function(_,id)if SPCCrewModel and SPCCrewModel.Parse then return SPCCrewModel.Parse(id)end end})
 adapters.Barrier('Render',20,function(data)SPCRestructuringUI.ObserveTraining(SPCP0,data)end)
-local dataReader=official and 'GetData' or 'GetDataHelper'
-local baseGetData=_G[dataReader]
+local baseGetData
+if official then baseGetData=GetData else baseGetData=GetDataHelper end
 local function getProductionData(...)
  local data=baseGetData(...)
  if not data or not data.ProjectItems then return data end
@@ -60,7 +60,7 @@ local function getProductionData(...)
  end
  data.ProjectItems=result;return data
 end
-_G[dataReader]=getProductionData
+if official then GetData=getProductionData else GetDataHelper=getProductionData end
 
 -- Normal native project operation is retained; start only after the selected target is readable.
 include('Probe')

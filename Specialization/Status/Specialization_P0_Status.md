@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0945
-Implementation Build: source B442.469 / modinfo469. Live B442.469 from 65ccad2. Stable/main B307.334.
+Status Revision: S0946
+Implementation Build: source B443.470 / modinfo470. Live B442.469 from 65ccad2. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OFFICIAL_INTERACTION_NATIVE_CHECKPOINT
+Work State: PRODUCTION_BINDING_REPAIR_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Production panel readers bind in both game environments — S0946
+
+The Owner's B442 HD interaction check passed the city action shortcut and institution building view. The production list showed disabled Claim rows and internal Crew cost variants, Engineering Study stayed unarmed, and Crew could not be formed after a forced completion. The HD component application and T5 native queue entries agree with the trace. Engineering Study reported AVAILABLE at seq 149 and the two Crew completion callbacks at seq 169 and 179 had no order record and no production UI reader. No Crew spending interaction was observed. The loaded profile was HD, so the separate official interaction gate remains open.
+
+- **Cause and repair.** The native evidence establishes missing production readers. The common production wrapper introduced an indirect `_G` lookup before attaching render and request handlers. With the named callbacks present but `_G` absent, both fixed-B442 entry points fail there in Lua 5.1. The engine logs do not include the exact Lua stack. The HD entry now binds `GetDataHelper` directly, as it did before B439. The official entry binds its own `GetData` in the same way. Existing list filters and project admission are thereby reachable in the local model. The extra 311/629 rows are existing speed-conversion definitions, and the database prices remain as packaged.
+- **Runtime Impact Contract (L2, T01/T02/T05/T08).** One local callback bind in the selected panel. The list still calls its own native reader once and uses the existing filters. No change to input, work scope, listener order, recovery, timer, pricing, completion rules, Store or proof requirements.
+- **LOCAL_SIMULATION_PASS in scope.** Production panel 51/51, city panel 48/48 and Crew target/placement 44/44, with overlap across the three selections. The new test fails at startup in both fixed-B442 cases. B443 exports the project readers and shows a 1-turn Study preview, retains legitimate rows and hides disabled Claim and nonselected Crew variants in both cases. Existing tests cover normal Crew reservation and its native-shaped readback and spending. Lua 5.1 compile 230/230, package XML-family parse 32/32, 721 manifest references across 359 files and no new static alarms.
+- **Evidence.** Native logs retained locally at `local/legacy-workspace/Specialization/Status/Validation/Evidence/B442_HD_Production_20261107/manifest.json` (manifest SHA256 `f5357752e28019167bbaa84d8c75e50f6ed8676701c496c3d854308591e75560`). Local CPython 3.14/Lupa 2.8 with the existing pinned `SPC_OFFICIAL_ASSETS`, running `python3.14 DevelopmentTests/run_refactor.py --stage <stage>` for O6bProductionPanel, O6cCityPanel and O4bCrewWonderSite. Tested source SHA256 `4ed9fc17d677b5bc0a78b02fd2b551e973cab3cd8fd12139c1e2f7553ad18cfa` and package SHA256 `3aca80c010fd0f84759d0a56e04b397c09f3549f2be89209590b0e959926da21`. Full machine results remain local at `local/refactor/B443-O6bProductionPanel/closure.json` (SHA256 `4664f89ec6a597a94dfc3c3dc3d41a824676f7d8beb9b6ad0e1de73d4a438b16`), `local/refactor/B443-O6cCityPanel/closure.json` (SHA256 `5e83b66a02049606d839da2cc445e90a9e07b43f4d3bf5e0f630edb24952acc6`), `local/refactor/B443-O4bCrewWonderSite/closure.json` (SHA256 `59a0806c96aa6bec9d78eed34eac599e4f6772c810d15341bec2b8daebd82b67`). The fixed-B442 startup comparison is kept alongside O6bProductionPanel.
+
+B443 is a local candidate and B442 remains installed. After a separately approved replacement, check one eligible Study from list preview through next-turn completion and one ordinary Crew order through formation and Wonder spending. The institution shortcut already passed in HD. The official native profile still needs its targeted interaction evidence. Production-dependent retirement waits on the corrected path.
 
 ### B442 deployed for the focused official interaction checkpoint — S0945
 

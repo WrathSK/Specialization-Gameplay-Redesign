@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "e07ac25d7be68319314f0676ff20607a512fc40c4c621e95f6052ec3175b8f20",
+      "sha256": "399f0cc57b33d2d1b2a9ab3e6936fa1c22a2655160c4a4a1a7fd7ed6d92f019b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
+      "provenance": "S0946 B443 direct binding of the selected production panel callback. B443 native verification pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d64cfbc60dd680b2fafbbd2d9f07fa5c85db1eb22a281e9fcecd516c7b5c1207",
+      "sha256": "11a4d57f1ffe96fc636940b5c5d9015b329efc9e31cd00c0b363ec8c682bbce9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
+      "provenance": "S0946 B443 direct binding of the selected production panel callback. B443 native verification pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1251,9 +1251,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "48ada8a0554fc661d3ee39fa52e11a61682eca15bffe0461cdfb84df756d4fed",
+      "sha256": "157c3cad381edd765f87e39ce4cc73042646363ef549b2ec58fba91fcb3343a4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0942 B440 transfers production Crew queue sampling off ConstructionProbe. Native interaction pending."
+      "provenance": "S0946 B443 direct binding of the selected production panel callback. B443 native verification pending."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "cd9e915db1b6b33ce67d2ac3fa4d74d836c82db32823d700c50e158315293e1b",
@@ -1801,7 +1801,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "S0944 verifies the city display locally. S0945 confirms receipt-bound deployment and the pending native interaction gate.",
-  "source_runtime": "B442.469 / modinfo469 deployed from 65ccad2. Official interaction awaits user-game evidence.",
-  "tested_source_snapshot_sha256": "29dc6cf2c10643286992314c4d8308f26141598e3083ca8a086de02015a69f78"
+  "source_review": "S0946 records the HD B442 production failure, a restricted Lua reproduction, and the locally verified B443 panel binding repair.",
+  "source_runtime": "B443.470 / modinfo470 local candidate, 359 files. B442 remains installed.",
+  "tested_source_snapshot_sha256": "4ed9fc17d677b5bc0a78b02fd2b551e973cab3cd8fd12139c1e2f7553ad18cfa"
 }

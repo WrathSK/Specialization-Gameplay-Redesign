@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0945",
-    "runtime": "B442.469 / modinfo469",
+    "status": "S0946",
+    "runtime": "B443.470 / modinfo470",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B442 deployment and the bounded native official interaction checkpoint.",
+  "goal": "Record the HD production panel regression and verify the minimal callback repair in both profile entries.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Production panel readers bind in both game environments — S0946",
+      "reason": "B442 HD playtest findings, B443 narrow repair and native verification boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -102,6 +108,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B443: 51 production, 48 city presentation and 44 Crew/placement local checks pass with overlapping selections. Two restricted-context fixed-B442 cases fail before reader registration. B443 native interaction awaits verification.",
     "B442 deployment: 359/359 installed, retained B437 and B307 hashes verified. No native interaction claim.",
     "B442 city panel: 47 scoped local checks and 12 integration checks pass. Three fixed-B441 subcases now pass. Native interaction remains pending.",
     "B441 Wonder site: all 43 selected tests pass. Four new cases fail on fixed B440 and pass here. Native Crew interaction remains pending.",
@@ -613,6 +620,41 @@
       "stable_recovery": "B307.334, 312/312 MATCH",
       "native": "USER_GAME_TEST_REQUIRED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b442-deployed-for-the-focused-official-interaction-checkpoint--s0945"
+    },
+    "production_binding_repair": {
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "build": "B443.470 / modinfo470",
+      "installed": "B442.469 / modinfo469",
+      "fixed_b442_subcases": 2,
+      "source_snapshot_sha256": "4ed9fc17d677b5bc0a78b02fd2b551e973cab3cd8fd12139c1e2f7553ad18cfa",
+      "package_sha256": "3aca80c010fd0f84759d0a56e04b397c09f3549f2be89209590b0e959926da21",
+      "native_evidence": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B442_HD_Production_20261107/manifest.json",
+      "native_evidence_sha256": "f5357752e28019167bbaa84d8c75e50f6ed8676701c496c3d854308591e75560",
+      "b442_hd_city_view": "USER_GAME_TEST_PASS_SCOPED",
+      "b442_hd_production": "USER_GAME_TEST_FAIL_SCOPED",
+      "b443_native": "USER_GAME_TEST_REQUIRED",
+      "suites": {
+        "O6bProductionPanel": {
+          "tests": 51,
+          "artifact": "local/refactor/B443-O6bProductionPanel/closure.json",
+          "sha256": "4664f89ec6a597a94dfc3c3dc3d41a824676f7d8beb9b6ad0e1de73d4a438b16",
+          "source": "4ed9fc17d677b5bc0a78b02fd2b551e973cab3cd8fd12139c1e2f7553ad18cfa"
+        },
+        "O6cCityPanel": {
+          "tests": 48,
+          "artifact": "local/refactor/B443-O6cCityPanel/closure.json",
+          "sha256": "5e83b66a02049606d839da2cc445e90a9e07b43f4d3bf5e0f630edb24952acc6",
+          "source": "4ed9fc17d677b5bc0a78b02fd2b551e973cab3cd8fd12139c1e2f7553ad18cfa"
+        },
+        "O4bCrewWonderSite": {
+          "tests": 44,
+          "artifact": "local/refactor/B443-O4bCrewWonderSite/closure.json",
+          "sha256": "59a0806c96aa6bec9d78eed34eac599e4f6772c810d15341bec2b8daebd82b67",
+          "source": "4ed9fc17d677b5bc0a78b02fd2b551e973cab3cd8fd12139c1e2f7553ad18cfa"
+        }
+      },
+      "deployed": false,
+      "report": "Specialization/Status/Specialization_P0_Status.md#production-panel-readers-bind-in-both-game-environments--s0946"
     }
   }
 }

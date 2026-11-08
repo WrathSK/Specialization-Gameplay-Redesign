@@ -19,7 +19,7 @@ BASE_FILES = {
 }
 FIXTURE = r"""
 Game.GetCurrentGameTurn=function()return 6 end
-GameInfo={Projects={}}
+GameInfo={Projects={},Buildings=function()return function()end end}
 GameConfiguration={GetValue=function(id)assert(id=='GAMEMODE_HEROES');return heroes end}
 UI.PlaySound=function()end
 nativeOps={};CityOperationTypes={BUILD='BUILD',PARAM_PROJECT_TYPE='project',PARAM_UNIT_TYPE='unit',
@@ -45,6 +45,7 @@ function nativeData()
   projects[i]={Type=kind,Name=kind,Hash=100+i,Cost=600,Progress=0,TurnsLeft=25,IsCurrentProduction=false,
    Disabled=i>1 and i<5,ToolTip='NATIVE'}
  end
+ for _,item in ipairs(extraProjectItems or {})do projects[#projects+1]=item end
  return {City=c,Owner=0,ProjectItems=projects,UnitItems={{Type='UNIT_NATIVE',Hash=201}}}
 end
 local shared=ExposedMembers.SPC_P0
@@ -58,7 +59,7 @@ LuaEvents.SPC_DevelopmentOpen.Add(function()developmentOpens=developmentOpens+1 
 """
 
 
-def panel(hd=False, heroes=False):
+def panel(hd=False, heroes=False, *, without_global_table=False):
     doc = manifest()
     criteria = {e.get('id'): e for e in doc.findall('./ActionCriteria/Criteria')}
     entries = [
@@ -110,6 +111,8 @@ def panel(hd=False, heroes=False):
         context.load(hits[0], included=True)
 
     context.globals().include = include
+    if without_global_table:
+        context.execute('_G=nil')
     if entries:
         context.load(entries[0])
     else:
@@ -118,6 +121,36 @@ def panel(hd=False, heroes=False):
 
 
 class ProductionPanelProfiles(unittest.TestCase):
+    def test_project_binding_without_global_table(self):
+        for hd in (False, True):
+            with self.subTest(hd=hd):
+                context, _ = panel(hd, without_global_table=True)
+                context.execute("""
+                    for _,name in ipairs({'SPC_ClaimQueueRead','SPC_DialogueProjectRead',
+                        'SPC_EngineeringStudyRead','SPC_CrewNativeRead','SPC_CrewTargetRead'})do
+                        assert(type(ExposedMembers[name])=='function',name)
+                    end
+                    local study='PROJECT_SPC_ENGINEERING_STUDY'
+                    local claim='PROJECT_SPC_CLAIM_RESEARCH'
+                    local crewVariant='PROJECT_SPC_CREW_420_S67'
+                    GameInfo.Projects[study]={Hash=301}
+                    GameInfo.Projects[claim]={Hash=302}
+                    GameInfo.Projects[crewVariant]={Hash=303}
+                    c.GetBuildQueue=function()
+                        return {GetCurrentProductionTypeHash=function()return 0 end}
+                    end
+                    extraProjectItems={
+                        {Type=study,TurnsLeft=33,Disabled=false},
+                        {Type=claim,TurnsLeft=33,Disabled=true},
+                        {Type=crewVariant,TurnsLeft=33,Disabled=true},
+                    }
+                    local items={}
+                    for _,item in ipairs(GetData().ProjectItems)do items[item.Type]=item end
+                    assert(items[study].TurnsLeft=='1','ENGINEERING_PREVIEW_UNDECORATED')
+                    assert(not items[claim] and not items[crewVariant],'INELIGIBLE_PROJECT_VISIBLE')
+                    assert(items.PROJECT_NATIVE and items.PROJECT_SPC_CREW_420,'LEGAL_PROJECT_HIDDEN')
+                """)
+
     def test_native_lists_preserve_visible_items_and_attach_applied_actions(self):
         for hd, heroes in ((False, False), (False, True), (False, 1), (True, False)):
             with self.subTest(hd=hd, heroes=heroes):
