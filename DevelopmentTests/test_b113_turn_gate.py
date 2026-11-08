@@ -1,11 +1,11 @@
 """B113 actual UI Lua, isolated native fixtures. No Civ VI engine claims."""
-from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 from test_b112_turn_probe import FIXTURE
-ROOT=Path(__file__).resolve().parents[1]
-SOURCE=(ROOT/'Mod/UI/TimedTurnProbe.lua').read_text()
+from retired_crew_sources import package, source
+REVISION='217fe27982d04cee12de192cb3ef56a00cc1823f'
+SOURCE=source('UI/TimedTurnProbe.lua',REVISION)
 EXTRA=r"""
 for _,n in ipairs({'EndTurnDirty','EndTurnBlockingChanged','CityProductionChanged','NotificationAdded','NotificationDismissed','ResearchChanged','UnitOperationSegmentComplete','UnitOperationsCleared','UserOptionChanged','CityRemovedFromMap'}) do Events[n]=event() end
 refreshes=0; requests=0; selectedUnit=0; selectedCity=0; openedPolicies=0
@@ -107,10 +107,11 @@ class GateTests(unittest.TestCase):
   self.arm();self.runlua('queue=1');self.click();self.assertEqual(self.get('requests'),0)
   self.setUp();self.arm();self.runlua('human=false');self.click();self.assertEqual(self.get('requests'),0)
  def test_static(self):
-  for p in ['Mod/UI/TimedTurnProbe.lua','Mod/UI/P0Panel.lua','Mod/Probe.lua']:self.lua.execute('assert(load(...))',(ROOT/p).read_text())
-  doc=ET.parse(ROOT/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'140')
-  self.assertTrue(all((ROOT/'Mod'/n.text).is_file() for n in doc.findall('./Files/File')))
-  ui=ET.parse(ROOT/'Mod/UI/P0Panel.xml')
+  for p in ['UI/TimedTurnProbe.lua','UI/P0Panel.lua','Probe.lua']:self.lua.execute('assert(load(...))',source(p,REVISION))
+  with package(REVISION) as root:
+   doc=ET.parse(root/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'140')
+   self.assertTrue(all((root/'Mod'/n.text).is_file() for n in doc.findall('./Files/File')))
+   ui=ET.parse(root/'Mod/UI/P0Panel.xml')
   for name in ['TurnProbeReadCaption','TurnProbeArmCaption']:self.assertIsNotNone(ui.find(".//Label[@ID='"+name+"']"))
   for write in [':SetProperty(',':AddProgress(',':RequestOperation(',':SetUpdate(']:self.assertNotIn(write,SOURCE)
 if __name__=='__main__':unittest.main()

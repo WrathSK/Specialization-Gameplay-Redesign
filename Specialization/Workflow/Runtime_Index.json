@@ -631,9 +631,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "46072b5f8187e8709dafd95fc9f1831e5cd6559f4ec540cc0a6c300392cf3062",
+      "sha256": "b1ad9c1ec6f004bbe5b2e735d49047836c6b7ce518d34ab169b104081fbb9307",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0963 B450 exact route observer retirement with formal transport retained."
+      "provenance": "S0969 B453 exact empty-production experiment retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -776,9 +776,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "c3787df8ca1e28ed1ac0fae4aac61f50f458d5e2c2031a594c7602e385f9e5d4",
+      "sha256": "cf0f70b9d65a2bb450b190be4d63003db4b520aa67c3ab35b3f9d6f529015920",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0967 B452 route UI and city presentation observation isolated from production."
+      "provenance": "S0969 B453 exact empty-production experiment retirement."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -916,9 +916,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "77b98f417c2e5396ad5c994753004414a41f7e62c5af2837cd3edebf166fea5b",
+      "sha256": "4824a8c7c99a25fd2eb70b04bba0ad88dfa0a6d5b7eab116a22257d8be2e9b80",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0967 B452 route UI and city presentation observation isolated from production."
+      "provenance": "S0969 B453 exact empty-production experiment retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1124,11 +1124,6 @@
       "sha256": "76a382c269dc7caff70c976235ccd5e08acb096972560296b8a03192080ce1ba",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
-    },
-    "Mod/TimedProductionProbe.lua": {
-      "sha256": "08f896c0704372bfbe45a7f87b2e9e70bba085620d95602269d3190341f55b9d",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
     },
     "Mod/TimedProject.lua": {
       "sha256": "5fd1eda331046746024664c65030114505988ef9b305884b3373f90ef17f5779",
@@ -1480,11 +1475,6 @@
       "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
-    "Mod/UI/TimedTurnProbe.lua": {
-      "sha256": "c95456d666bf3636494d2f99460121cb19193d97f271d1292ac170ce62ef8245",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B116 authorized NONE/concise diagnostic repair; 53 local tests; native pending"
-    },
     "Mod/UI/UnitPanelActions.lua": {
       "sha256": "9865d420ca7c89ddaf632f0995cd299f013c1af46fe7aa4223a1fec0ded81e4a",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
@@ -1786,7 +1776,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0968 verifies B452 development deployment and the exact pending old route observer review.",
-  "source_runtime": "B452.479 / modinfo479 deployed from 26dfcbd, with route and city presentation UI observation isolated.",
-  "tested_source_snapshot_sha256": "e275d07526f088ee0cf6f7390a59e709ff887205e9b893d15d454458881882b7"
+  "source_review": "S0969 verifies exact B116 retirement, formal project regressions and package rollback.",
+  "source_runtime": "B453.480 / modinfo480 local candidate, 354 files. B452.479 remains installed.",
+  "tested_source_snapshot_sha256": "9031bacf4fead6221bfa99ef2f6b714a53aad1ad9e13753b44b989a12a035a5c"
 }

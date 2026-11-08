@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="479">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="480">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
     <Description>B443.470：恢复专业项目生产面板接入。</Description>
@@ -81,7 +81,6 @@
     <ReplaceUIScript id="SPC_TimedProjectCityPanel" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/SPCCityPanelHD.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_OfficialCityPanel" criteria="SPC_OfficialEnvironment"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/SPCCityPanelOfficial.lua</LuaReplace></Properties></ReplaceUIScript>
     <UpdateDatabase id="SPC_OverflowSinkTest"><File>Data/OverflowSinkTest.sql</File></UpdateDatabase>
-    <ReplaceUIScript id="SPC_TimedTurnProbe" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000004</LoadOrder><LuaContext>ActionPanel</LuaContext><LuaReplace>UI/TimedTurnProbe.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_InstitutionOverview" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/SPCCityOverviewHD.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_OfficialCityOverview" criteria="SPC_OfficialEnvironment"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/SPCCityOverviewOfficial.lua</LuaReplace></Properties></ReplaceUIScript>
     <AddUserInterfaces id="SPC_LevelBanners"><Properties><Context>InGame</Context></Properties><File>UI/LevelBanners.xml</File></AddUserInterfaces>
@@ -163,7 +162,6 @@
       <File>UI/ExpeditionGateWindow.lua</File>
       <File>OverflowStorageProbe.lua</File>
       <File>UI/OverflowStorageRead.lua</File>
-      <File>TimedProductionProbe.lua</File>
       <File>ProjectTurnObservation.lua</File>
       <File>ClaimProjects.lua</File>
       <File>DialogueProjectModel.lua</File>
@@ -178,7 +176,6 @@
       <File>UI/CityBannerManager_SPC_TimedProject.lua</File>
       <File>UI/TimedProjectCityPanel.lua</File>
       <File>UI/ProjectTurnRead.lua</File>
-      <File>UI/TimedTurnProbe.lua</File>
       <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityMapping.lua</File>
       <File>UI/CityIdentityEvidence.lua</File>
@@ -633,7 +630,6 @@
     <File>Data/OverflowSinkTest.sql</File>
     <File>OverflowStorageProbe.lua</File>
     <File>UI/OverflowStorageRead.lua</File>
-    <File>TimedProductionProbe.lua</File>
     <File>ProjectTurnObservation.lua</File>
     <File>ClaimProjects.lua</File>
     <File>DialogueProjectModel.lua</File>
@@ -653,7 +649,6 @@
     <File>UI/CityBannerManager_SPC_TimedProject.lua</File>
     <File>UI/TimedProjectCityPanel.lua</File>
     <File>UI/ProjectTurnRead.lua</File>
-    <File>UI/TimedTurnProbe.lua</File>
     <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityMapping.lua</File>
       <File>UI/CityIdentityEvidence.lua</File>

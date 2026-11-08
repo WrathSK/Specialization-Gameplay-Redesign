@@ -4,8 +4,9 @@ import xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 import test_b114_notification_target as previous
 prior=previous.prior
-GP=(prior.ROOT/'Mod/TimedProductionProbe.lua').read_text()
-UI=(prior.ROOT/'Mod/UI/TimedTurnProbe.lua').read_text()
+from retired_crew_sources import package, source
+
+REVISION = "96bf8ea6ebcb5a2196de32978e523dd22af26ef0"
 BRIDGE=r'''
 for _,n in ipairs({'CityProductionQueueChanged','CityProductionUpdated','CityProductionCompleted','PlayerTurnDeactivated','GameCoreEventPublishComplete'}) do Events[n]=event() end
 GameEvents={PlayerTurnStarted=event()};PlayerOperations={EXECUTE_SCRIPT=1}
@@ -22,18 +23,22 @@ end
 GameInfo.Buildings={};GameInfo.Districts={};GameInfo.Units={};GameInfo.Projects={}
 '''
 class ObserverTests(previous.TargetTests):
+ revision=REVISION
  def setUp(self):
   self.lua=LuaRuntime(unpack_returned_tuples=True)
   self.lua.execute(prior.FIXTURE+prior.EXTRA+previous.TARGET+BRIDGE)
-  self.lua.execute(GP);self.lua.execute('SPCTimedProductionProbe.Start(SPCP0,ExposedMembers.SPC_P0)');self.lua.execute(UI)
+  self.gp=source('TimedProductionProbe.lua',self.revision)
+  self.lua.execute(self.gp);self.lua.execute('SPCTimedProductionProbe.Start(SPCP0,ExposedMembers.SPC_P0)')
+  self.lua.execute(source('UI/TimedTurnProbe.lua',self.revision))
  def status(self):return self.get('ExposedMembers.SPC_P0.TimedProduction.status')
  def test_static(self):
-  for f in ['Mod/Gameplay.lua','Mod/TimedProductionProbe.lua','Mod/UI/TimedTurnProbe.lua','Mod/Probe.lua']:
-   self.lua.execute('assert(load(...))',(prior.ROOT/f).read_text())
-  doc=ET.parse(prior.ROOT/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'142')
-  self.assertTrue(all((prior.ROOT/'Mod'/n.text).is_file() for n in doc.findall('./Files/File')))
+  for f in ['Gameplay.lua','TimedProductionProbe.lua','UI/TimedTurnProbe.lua','Probe.lua']:
+   self.lua.execute('assert(load(...))',source(f,self.revision))
+  with package(self.revision) as root:
+   doc=ET.parse(root/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'142')
+   self.assertTrue(all((root/'Mod'/n.text).is_file() for n in doc.findall('./Files/File')))
   for x in ['SetProperty','AddProgress','FinishProgress','RequestOperation','SetUpdate']:
-   self.assertNotIn(x,GP)
+   self.assertNotIn(x,self.gp)
  def test_lifecycle_and_save_session(self):
   # B115 adds a gameplay observation; reload must begin without a saved activity.
   self.arm();self.click();self.runlua('Events.PlayerTurnDeactivated(0);turn=21;GameEvents.PlayerTurnStarted(0);Events.PlayerTurnActivated(0);refreshHandler()')
@@ -83,17 +88,17 @@ class ObserverTests(previous.TargetTests):
   self.arm();self.click();self.assertEqual(self.get('requests'),0);self.assertEqual(self.status(),'STOPPED')
  def test_actual_request_dispatch(self):
   # Execute the real Gameplay request function, with startup and unrelated writers uninvoked.
-  source=(prior.ROOT/'Mod/Gameplay.lua').read_text().split('GameEvents.SPC_P0_Request.Add(function(...)')[0]
+  gameplay=source('Gameplay.lua',self.revision).split('GameEvents.SPC_P0_Request.Add(function(...)')[0]
   self.runlua("SPCP0.VERSION='B115';SPCP0.Scalar=tostring;SPCPerformance={New=function() return {} end}")
-  dispatch=self.lua.execute(source+'\nreturn request')
+  dispatch=self.lua.execute(gameplay+'\nreturn request')
   self.runlua('SPCTimedProductionProbe.Start(SPCP0,ExposedMembers.SPC_P0)')
   packet=self.lua.table_from({'Action':'TIMED_PRODUCTION_BEGIN','Token':'dispatch','CityID':10,'StartTurn':20})
   dispatch(0,packet);self.assertEqual(self.status(),'ACTIVE')
   packet['Action']='TIMED_PRODUCTION_CANCEL';dispatch(0,packet);self.assertEqual(self.status(),'STOPPED')
  def test_actual_request_rejects_bad_token(self):
-  source=(prior.ROOT/'Mod/Gameplay.lua').read_text().split('GameEvents.SPC_P0_Request.Add(function(...)')[0]
+  gameplay=source('Gameplay.lua',self.revision).split('GameEvents.SPC_P0_Request.Add(function(...)')[0]
   self.runlua("SPCP0.VERSION='B115';SPCP0.Scalar=tostring;SPCPerformance={New=function() return {} end}")
-  dispatch=self.lua.execute(source+'\nreturn request')
+  dispatch=self.lua.execute(gameplay+'\nreturn request')
   self.runlua('SPCTimedProductionProbe.Start(SPCP0,ExposedMembers.SPC_P0)')
   dispatch(0,self.lua.table_from({'Action':'TIMED_PRODUCTION_BEGIN','CityID':10,'StartTurn':20}))
   self.assertIsNone(self.get('ExposedMembers.SPC_P0.TimedProduction'))

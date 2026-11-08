@@ -1,10 +1,10 @@
 """Actual B112 Lua with native API fixtures; not Civ VI engine confirmation."""
-from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
-ROOT = Path(__file__).resolve().parents[1]
-SOURCE = (ROOT / "Mod/UI/TimedTurnProbe.lua").read_text()
+from retired_crew_sources import package, source
+REVISION = 'd7318f213628ef0ef70ff433cf8e8699b692d512'
+SOURCE = source('UI/TimedTurnProbe.lua', REVISION)
 FIXTURE = r"""
 function event()
  local list={}
@@ -88,18 +88,19 @@ class ProbeTests(unittest.TestCase):
   self.runlua('blockers={777}');self.arm();self.click();self.assertIn('UNKNOWN(777)',self.report());self.assertIn('未满足',self.report())
   self.runlua('cities={};for i=1,129 do cities[i]=a end');self.arm();self.click();self.assertIn('上限128',self.report())
  def test_manifest_ui_and_no_write_surface(self):
-  doc=ET.parse(ROOT/'Mod/SpecializationP0.modinfo');top=doc.getroot()
-  self.assertEqual(top.attrib['version'],'139')
-  files=[n.text for n in top.findall('./Files/File')]
-  self.assertEqual(files.count('UI/TimedTurnProbe.lua'),1)
-  self.assertTrue(all((ROOT/'Mod'/p).is_file() for p in files))
-  hook=top.find("./InGameActions/ReplaceUIScript[@id='SPC_TimedTurnProbe']")
-  self.assertEqual(hook.findtext('./Properties/LuaContext'),'ActionPanel')
-  ET.parse(ROOT/'Mod/UI/P0Panel.xml')
+  with package(REVISION) as root:
+   doc=ET.parse(root/'Mod/SpecializationP0.modinfo');top=doc.getroot()
+   self.assertEqual(top.attrib['version'],'139')
+   files=[n.text for n in top.findall('./Files/File')]
+   self.assertEqual(files.count('UI/TimedTurnProbe.lua'),1)
+   self.assertTrue(all((root/'Mod'/p).is_file() for p in files))
+   hook=top.find("./InGameActions/ReplaceUIScript[@id='SPC_TimedTurnProbe']")
+   self.assertEqual(hook.findtext('./Properties/LuaContext'),'ActionPanel')
+   ET.parse(root/'Mod/UI/P0Panel.xml')
   for forbidden in ['UI.RequestAction(',':SetProperty(',':AddProgress(',':SetUpdate(',':RequestOperation(']:
    self.assertNotIn(forbidden,SOURCE)
   # Syntax only for touched UI/common Lua; mocked execution above covers the actual observer.
-  for p in ['Mod/UI/P0Panel.lua','Mod/Probe.lua']:
-   self.lua.execute('assert(load(...))',(ROOT/p).read_text())
+  for p in ['UI/P0Panel.lua','Probe.lua']:
+   self.lua.execute('assert(load(...))',source(p,REVISION))
 
 if __name__=='__main__': unittest.main()

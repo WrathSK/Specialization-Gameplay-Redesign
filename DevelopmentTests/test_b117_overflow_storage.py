@@ -1,22 +1,25 @@
 """B117 primitive guard/UI tests. Engine storage/clamp semantics remain native-only."""
 import unittest
 import xml.etree.ElementTree as ET
-from pathlib import Path
 from lupa.lua55 import LuaRuntime
 import test_b116_empty_target as prior
-ROOT=Path(__file__).resolve().parents[1]
-GP=(ROOT/'Mod/OverflowStorageProbe.lua').read_text()
-UI=(ROOT/'Mod/UI/OverflowStorageRead.lua').read_text()
+from retired_crew_sources import package, source
+
+REVISION = "c4889422abcd8c9d0c55cc23ee562451a4bc20ee"
+GP=source("OverflowStorageProbe.lua", REVISION)
+UI=source("UI/OverflowStorageRead.lua", REVISION)
 class ObserverRegression(prior.EmptyTargetTests):
+ revision=REVISION
  def test_static(self):
-  for f in ['Mod/Gameplay.lua','Mod/TimedProductionProbe.lua','Mod/UI/TimedTurnProbe.lua','Mod/UI/P0Panel.lua','Mod/Probe.lua','Mod/OverflowStorageProbe.lua','Mod/UI/OverflowStorageRead.lua']:
-   self.lua.execute('assert(load(...))',(ROOT/f).read_text())
-  doc=ET.parse(ROOT/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'144')
-  files=[n.text for n in doc.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
-  self.assertTrue(all((ROOT/'Mod'/n).is_file() for n in files))
-  for x in ['SetProperty','AddProgress','FinishProgress','RequestOperation','SetUpdate']:self.assertNotIn(x,prior.previous.GP)
+  for f in ['Gameplay.lua','TimedProductionProbe.lua','UI/TimedTurnProbe.lua','UI/P0Panel.lua','Probe.lua','OverflowStorageProbe.lua','UI/OverflowStorageRead.lua']:
+   self.lua.execute('assert(load(...))',source(f,self.revision))
+  with package(self.revision) as root:
+   doc=ET.parse(root/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'144')
+   files=[n.text for n in doc.findall('./Files/File')];self.assertEqual(len(files),len(set(files)))
+   self.assertTrue(all((root/'Mod'/n).is_file() for n in files))
+  for x in ['SetProperty','AddProgress','FinishProgress','RequestOperation','SetUpdate']:self.assertNotIn(x,self.gp)
   self.assertNotIn('SetUpdate',UI)
-  self.assertIn('Controls.GWAReadButtonCaption:SetText("溢出清除试验")',(ROOT/'Mod/UI/P0Panel.lua').read_text())
+  self.assertIn('Controls.GWAReadButtonCaption:SetText("溢出清除试验")',source('UI/P0Panel.lua', REVISION))
 FIXTURE=r'''
 function event() local t={f={}};t.Add=function(f)table.insert(t.f,f)end;return setmetatable(t,{__call=function(_,...)for _,f in ipairs(t.f)do f(...)end end})end
 Events={};for _,n in ipairs({'CityProductionChanged','CityProductionQueueChanged','CityProductionUpdated','CityProductionCompleted','CityRemovedFromMap'})do Events[n]=event()end
@@ -94,14 +97,14 @@ class OverflowTests(unittest.TestCase):
   self.runlua('ui.Click();ui.Click();progress=-3;ui.Read()');self.assertIn('=-3',self.get('shown'))
  def test_actual_panel_report_scope(self):
   self.runlua('SPCP0=P;include=function()end;SPCCityIdentityEvidence={New=function()return {}end};Events.GameCoreEventPublishComplete=event();Controls={Status={SetText=function(_,s)shown=s end}};UI.RequestPlayerOperation=send')
-  prefix=(ROOT/'Mod/UI/P0Panel.lua').read_text().split('local function trace(s)')[0]
+  prefix=source('UI/P0Panel.lua', REVISION).split('local function trace(s)')[0]
   panel=self.lua.execute(prefix+'\nreturn overflowRead')
   panel.Click();self.assertIn('尚未执行',self.get('shown'))
   panel.Click();self.assertIn('未变化',self.get('shown'));self.assertEqual(self.get('writes'),1)
  def test_actual_dispatch(self):
   self.runlua('SPCP0=P;P.Scalar=tostring;P.VERSION="B117";SPCPerformance={New=function()return {}end};include=function()end')
-  source=(ROOT/'Mod/Gameplay.lua').read_text().split('GameEvents.SPC_P0_Request.Add(function(...)')[0]
-  fn=self.lua.execute(source+'\nreturn request')
+  gameplay=source('Gameplay.lua', REVISION).split('GameEvents.SPC_P0_Request.Add(function(...)')[0]
+  fn=self.lua.execute(gameplay+'\nreturn request')
   self.runlua('SPCOverflowStorageProbe.Start(P,ExposedMembers.SPC_P0)')
   packet=self.lua.table_from({'Action':'OVERFLOW_PREPARE','Token':'dispatch','CityID':10,'StartTurn':20})
   fn(0,packet);packet['Action']='OVERFLOW_APPLY';fn(0,packet);self.assertEqual(self.get('writes'),1)

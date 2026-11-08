@@ -275,7 +275,6 @@ class UIBaseSelection(unittest.TestCase):
             'UnitPanel': ('UI/SPCUnitPanelHD.lua', 2000006),
             'CityPanel': ('UI/SPCCityPanelHD.lua', 2000005),
             'CityPanelOverview': ('UI/SPCCityOverviewHD.lua', 2000003),
-            'ActionPanel': ('UI/TimedTurnProbe.lua', 2000004),
         }
         shared = {
             'EspionageChooser': ('UI/ExpeditionSpyChooser.lua', 2000006),
@@ -310,7 +309,7 @@ class UIBaseSelection(unittest.TestCase):
             action.findtext('Properties/LuaContext'): action.findtext('Properties/LuaReplace')
             for action in xp2.findall('./InGameActions/ReplaceUIScript') if action.get('criteria') == 'Expansion2'
         }
-        for context in hd_overrides.keys() - {'ProductionPanel'}:
+        for context in (hd_overrides.keys() - {'ProductionPanel'}) | {'ActionPanel'}:
             expected = f'UI/Replacements/{context}_Expansion2.lua'
             self.assertEqual(replacements.get(context), expected)
             self.assertTrue((expansion / expected).is_file())

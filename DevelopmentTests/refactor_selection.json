@@ -2,6 +2,17 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7kTimedTurnRetirement": [
+      "test_o7_timed_turn_retirement",
+      "test_environment_assembly.UIBaseSelection",
+      "test_o6_production_panel",
+      "test_b398_queue_recovery.QueueRecovery",
+      "test_b398_queue_recovery.NativeSelection",
+      "test_b398_queue_recovery.Rounds",
+      "test_b399_queue_boundaries.QueueCancellation",
+      "test_refactor_s8c5c.Production.test_real_production_options_register_one_gate_and_preserve_all_old_start_order",
+      "test_refactor_s9c2.Startup"
+    ],
     "O7jUITrace": [
       "test_o7_ui_trace",
       "test_o7_network_trace",

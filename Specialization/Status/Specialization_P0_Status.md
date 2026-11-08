@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0968
-Implementation Build: source B452.479 / modinfo479. Live B452.479 from 26dfcbd. Stable/main B307.334.
+Status Revision: S0969
+Implementation Build: source B453.480 / modinfo480. Live B452.479 from 26dfcbd. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: UI_TRACE_ISOLATED_DEPLOYED
+Work State: EMPTY_PRODUCTION_PROBE_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the old empty-production turn experiment — S0969
+
+The Owner approved the exact B116 removal. `UI/TimedTurnProbe.lua` and `TimedProductionProbe.lua` leave the package with their ActionPanel replacement, import entries, Gameplay startup, and Begin/Cancel request branch. Gathering Storm uses its shipped ActionPanel in the official profile. HD uses its own ActionPanel at load order 150000. Formal queue readers, the P0 project report, and Claim, Dialogue, Engineering Study and Crew project modules are byte-identical to B452.
+
+- **Runtime Impact Contract (L3, T04/T06/T08, P3-19/Q2).** Return end-turn UI ownership to the previously selected base. Remove the old experiment's subscriptions, extra input wrapper, and request receiver. The ordinary production panel continues to read its existing provider. The change adds no event, scan, timer, recovery path or saved field. Retired requests leave the normal request ACK and stored state alone.
+- **LOCAL_SIMULATION_PASS in scope.** 42 selected methods cover exact manifest changes, actual Gameplay startup and request handling in the local fixture, both formal production panel profiles, timed project queue transitions and whole-package rollback. Wrong removal lists are rejected before writes; restoring B452 recovers both files and the whole package hash. The pinned official and HD ActionPanel excerpts each issue one end-turn request with no blocker, or open the production notification with zero end-turn requests, for click, Enter and the bound action. The HD bound action uses its original click sound. 312 historical experiment methods pass separately on the original versioned sources.
+- **STATIC_CONFIRMED and reproduction.** 225 Lua 5.1 compiles, 32 XML-family parses, 700 file references and 10 replacement references across 354 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7kTimedTurnRetirement` with CPython 3.14, Lupa 2.8 and `SPC_OFFICIAL_ASSETS` set to the installed Assets directory. Historical replay uses `python3.14 -B -m unittest test_b112_turn_probe test_b113_turn_gate test_b114_notification_target test_b115_production_observer test_b116_empty_target test_b117_overflow_storage test_b118_exact_progress` from `DevelopmentTests/` with Lupa Lua 5.5. It is historical evidence only. Input SHA256 `9031bacf4fead6221bfa99ef2f6b714a53aad1ad9e13753b44b989a12a035a5c`, package SHA256 `511a44fbcc629617dbb02eb0644b8f56c213d429ca45daa6ec2f4b59175f7d7f`. Local closure `local/refactor/B453-O7kTimedTurnRetirement-verified/closure.json` SHA256 `4ddffbf33b1e9abef62d679a92614b292e4295125b511dc4a4a8b7e824b72401`. ActionPanel excerpts and exact input identities `local/refactor/B453-O7kTimedTurnRetirement-verified/action-panel-excerpts.json` SHA256 `95a907be0cda372c9b34e1a2544614dba68d91759370e68213edafe51e972be9`. Historical transcript `local/refactor/B453-O7kTimedTurnRetirement-verified/historical-experiments.log` SHA256 `61a67e17d5252653474d2a0fd56a5c226c59caf15e1c63390357661e79e97aa7`.
+
+B452 remains installed at this source checkpoint. After switching to B453, only the live HD end-turn blocker and normal advance need checking for this removal. Native ActionPanel selection and delivery are unmeasured. The positive Culture Network cold restoration remains a separate gate.
 
 ### B452 development deployment verified — S0968
 

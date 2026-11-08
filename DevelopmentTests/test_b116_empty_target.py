@@ -2,15 +2,18 @@
 import unittest
 import xml.etree.ElementTree as ET
 import test_b115_production_observer as previous
+from retired_crew_sources import package, source
 class EmptyTargetTests(previous.ObserverTests):
+ revision="b7ee8f992d3b4bdcacf4d2b867e5601fcb8f73b2"
  def setUp(self):
   super().setUp();self.runlua("gpTarget='NONE'")
  def test_static(self):
-  for f in ['Mod/Gameplay.lua','Mod/TimedProductionProbe.lua','Mod/UI/TimedTurnProbe.lua','Mod/Probe.lua']:
-   self.lua.execute('assert(load(...))',(previous.prior.ROOT/f).read_text())
-  doc=ET.parse(previous.prior.ROOT/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'143')
-  self.assertTrue(all((previous.prior.ROOT/'Mod'/n.text).is_file() for n in doc.findall('./Files/File')))
-  for x in ['SetProperty','AddProgress','FinishProgress','RequestOperation','SetUpdate']:self.assertNotIn(x,previous.GP)
+  for f in ['Gameplay.lua','TimedProductionProbe.lua','UI/TimedTurnProbe.lua','Probe.lua']:
+   self.lua.execute('assert(load(...))',source(f,self.revision))
+  with package(self.revision) as root:
+   doc=ET.parse(root/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'143')
+   self.assertTrue(all((root/'Mod'/n.text).is_file() for n in doc.findall('./Files/File')))
+  for x in ['SetProperty','AddProgress','FinishProgress','RequestOperation','SetUpdate']:self.assertNotIn(x,self.gp)
  def report(self):
   self.runlua("LuaEvents.SPC_TimedTurnProbe('READ')");return self.get('ExposedMembers.SPC_TimedTurnProbeReport')
  def test_none_start_sample_and_end(self):
