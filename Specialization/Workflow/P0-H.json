@@ -11,21 +11,21 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0933",
-    "runtime": "B435.462 / modinfo462 source candidate",
+    "status": "S0934",
+    "runtime": "B435.462 / modinfo462",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Repair the shared database completion statement for the native parser while preserving the assembly gate and profile outputs.",
+  "goal": "Record the verified B435 deployment and active development deployment permission. Keep the official-profile native delta queued for the next playtest phase.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Environment assembly completion uses compatible SQLite syntax — S0933",
-      "reason": "Current compatible SQL, profile verification and deployment boundary"
+      "selector": "### B435 deployed in autonomous development mode — S0934",
+      "reason": "Current deployment receipt, active development mode and deferred native scope"
     },
     {
       "path": "Specialization/Design/Content/Shared_D0060.json",
@@ -76,7 +76,8 @@
   "validation": [
     "15 selected tests with both pinned profiles, the SQLite 3.38.5 check and current catalog consumers.",
     "Legacy parser reproduces the native rejection on B434. Supplementary fixture errors match the fixed baseline.",
-    "Lua 5.1, XML/package, Context Lock and source identity. Targeted native official load pending."
+    "Lua 5.1, XML/package, Context Lock and source identity. Targeted native official load pending.",
+    "Verified 352/352 live and both recovery packages. The official-profile native delta is deferred and remains required."
   ],
   "full_audit_triggers": [
     "Reopen affected scope if the selected native profile differs, a fixed-HD target or primitive changes, or a later source/cutover changes ordinary admission, exact exits, history or irreversible behavior."
@@ -373,6 +374,21 @@
       "local_evidence": "local/refactor/B435_Assembly_SQLite_Compatibility-706322ecfdce4d0c99d73395850b81de/closure.json",
       "local_evidence_sha256": "1187287fdd838a4dc744b8eb1b69df7bbe1454cc4d485e52aaba2b0f561b3289",
       "deployed": false
+    },
+    "b435_development_deployment": {
+      "version": "B435.462 / modinfo462",
+      "source_commit": "35d5998bb68b1f5ac5419c093a1264da7b9e6ac6",
+      "files": 352,
+      "identical": true,
+      "digest": "3649bb5b0406f740ea18f54058967048e8ee5552f50c3543b8e353a905535d9b",
+      "receipt": "B435.462-35d5998-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "pending": false,
+      "outgoing": "B434.461, 352/352 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "USER_GAME_TEST_REQUIRED",
+      "native_schedule": "DEFERRED_OUTSIDE_PLAYTEST_PHASE",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b435-deployed-in-autonomous-development-mode--s0934"
     }
   }
 }

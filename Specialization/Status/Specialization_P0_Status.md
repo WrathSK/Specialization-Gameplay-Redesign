@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0933
-Implementation Build: source B435.462 / modinfo462, local SQL compatibility candidate. Live B434.461 from 3274798. Stable/main B307.334.
+Status Revision: S0934
+Implementation Build: source and live B435.462 / modinfo462 from 35d5998. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OFFICIAL_ASSEMBLY_COMPATIBILITY_LOCALLY_VERIFIED
+Work State: DEVELOPMENT_DEPLOYMENT_ACTIVE_NATIVE_CONFIRMATION_DEFERRED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B435 deployed in autonomous development mode — S0934
+
+The Owner approved this B435.462 deployment and resumed autonomous deployment during the development phase. Completed, locally verified develop packages may switch after confirmed game exit, committed and pushed source, and the existing exact hash, receipt, backup and rollback checks. This mode applies until the Owner resumes playtesting or revokes it. Game launch and main promotion retain their separate authorization. [Deployment procedure](../Architecture/Playtest_Workflow.md#current-development-deployment-authorization--2026-10-27)
+
+The approved switch completed after verified game exit. Receipt `B435.462-35d5998-playtest.json` is DEVELOP_ACTIVE. All 352 installed files match source `35d5998bb68b1f5ac5419c093a1264da7b9e6ac6` and package SHA256 `3649bb5b0406f740ea18f54058967048e8ee5552f50c3543b8e353a905535d9b`. Outgoing B434.461 is retained at 352/352 MATCH and the B307.334 recovery package at 312/312 MATCH. The installed UUID is unique and the transaction marker is absent.
+
+The five-panel native acceptance carries forward. Official-profile completion, gated definitions and Development Investment startup remain USER_GAME_TEST_REQUIRED and are deferred to the next playtest phase. User decision is complete for this deployment and mode. User testing is deferred. Primary next is ordinary authorized development with existing local and native gates.
 
 ### Environment assembly completion uses compatible SQLite syntax — S0933
 

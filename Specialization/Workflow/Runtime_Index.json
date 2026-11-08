@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "3274798cca313b41adacf64f65a9b161f416d210",
-  "runtime": "B434.461 / modinfo461 temporary develop deployed, 352/352 MATCH. Stable/main B307.334.",
+  "runtime_commit": "35d5998bb68b1f5ac5419c093a1264da7b9e6ac6",
+  "runtime": "B435.462 / modinfo462 temporary develop deployed, 352/352 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1766,7 +1766,7 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     }
   },
-  "source_review": "S0933 verifies the B435 SQL grammar repair with the legacy parser, pinned profiles and catalog consumers.",
-  "source_runtime": "B435.462 / modinfo462 source candidate. B434.461 is the separately verified installed build.",
+  "source_review": "S0933 SQL compatibility validated locally. S0934 confirms receipt-bound deployment.",
+  "source_runtime": "B435.462 / modinfo462 deployed from 35d5998. Official-profile native confirmation deferred.",
   "tested_source_snapshot_sha256": "d537a9808767460fbd45efe7bf97d0193f08ab5631629a0fc9d537de8d1701f4"
 }
