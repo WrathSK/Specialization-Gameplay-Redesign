@@ -2,6 +2,17 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7nManualOverflowRetirement": [
+      "test_o7_manual_overflow_retirement",
+      "test_b119_finish_sink.FinishTests",
+      "test_b119_finish_sink.Regression.test_static",
+      "test_b121_timed_project.Timer.test_manual_exclusion",
+      "test_b121_timed_project.Timer.test_manual_pending_before_timer_excluded",
+      "test_b121_timed_project.Timer.test_static_and_manifest",
+      "test_o7_project_turn_observer_retirement.ProjectTurnObserverRetirement.test_real_timer_request_finishes_once_under_reentrant_events",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_visibility_cleanup_does_not_execute_probe_or_change_runtime_state",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7mProjectTurnObserverRetirement": [
       "test_o7_project_turn_observer_retirement",
       "test_b120_project_turn_observer.Observer",

@@ -4,7 +4,7 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B454, gameplay, package
+from retired_crew_sources import B454, B455, gameplay, package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE, scalars
@@ -67,10 +67,10 @@ def panel_timer(root):
 
 
 class ProjectTurnObserverRetirement(unittest.TestCase):
-    def test_current_gameplay_preserves_project_starts_and_retires_nine_modeled_hooks(self):
-        with package(B454) as previous:
+    def test_b455_gameplay_preserves_project_starts_and_retires_nine_modeled_hooks(self):
+        with package(B454) as previous, package(B455) as retired:
             before = gameplay(previous, revision=B454)
-            after = Context(vfs=PackageVFS(forbidden_globals=('SPCProjectTurnObservation',)))
+            after = gameplay(retired, revision=B455, forbidden_globals=('SPCProjectTurnObservation',))
             self.assertNotIn(REMOVED, after.vfs.files | after.vfs.imports)
             for context in (before, after):
                 context.execute(NATIVE)
@@ -97,16 +97,16 @@ class ProjectTurnObserverRetirement(unittest.TestCase):
         measure('project_turn_observer_retirement', {'removed_modeled_registrations': len(HOOKS)})
 
     def test_real_production_contexts_and_p0_keep_queue_reader_and_timer_controls(self):
-        with package(B454) as previous:
+        with package(B454) as previous, package(B455) as retired:
             for hd in (False, True):
                 with self.subTest(hd=hd):
                     before = production_input(previous, hd, (previous, B454))
-                    after = production_input(ROOT, hd)
+                    after = production_input(retired, hd, (retired, B455))
                     self.assertEqual(after, before)
                     self.assertEqual(after[1]['value'], 8)
                     self.assertEqual(after[1]['size'], 1)
                     self.assertTrue(after[1]['isProject'])
-            self.assertEqual(panel_timer(ROOT), panel_timer(previous))
+            self.assertEqual(panel_timer(retired), panel_timer(previous))
 
     def test_real_timer_request_finishes_once_under_reentrant_events(self):
         game = Context(vfs=PackageVFS(forbidden_globals=('SPCProjectTurnObservation',)))
@@ -148,5 +148,5 @@ class ProjectTurnObserverRetirement(unittest.TestCase):
         ''', PROJECT)
 
     def test_temporary_switch_and_rollback_restore_the_exact_predecessor(self):
-        with package(B454) as previous:
-            verify_package_round_trip(self, previous/'Mod', ROOT/'Mod', (REMOVED,), 'UI/ProjectTurnRead.lua')
+        with package(B454) as previous, package(B455) as retired:
+            verify_package_round_trip(self, previous/'Mod', retired/'Mod', (REMOVED,), 'UI/ProjectTurnRead.lua')

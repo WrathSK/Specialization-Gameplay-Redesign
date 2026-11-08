@@ -2,6 +2,7 @@
 import unittest, xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 import test_b120_project_turn_observer as previous
+from retired_crew_sources import B121, package, source
 ROOT=previous.ROOT
 class Timer(unittest.TestCase):
  def setUp(self):
@@ -73,9 +74,9 @@ class Timer(unittest.TestCase):
    self.setUp();self.runlua(code+';ui.Begin()');self.assertEqual(self.get('writes'),0);self.assertNotEqual(self.get('shared.TimedProjectState and shared.TimedProjectState.status'),'ACTIVE')
   self.setUp();self.runlua('Events.PlayerTurnDeactivated=nil;SPCTimedProject.Start(P,shared);ui.Begin()');self.assertEqual(self.state(),'STOPPED')
  def test_manual_exclusion(self):
-  self.runlua(previous.old.GP);self.runlua('SPCOverflowStorageProbe.Start(P,shared);ui.Begin();prep()');self.assertEqual(self.get('shared.OverflowStorage.status'),'REJECTED');self.assertEqual(self.get('writes'),0)
+  self.runlua(source('OverflowStorageProbe.lua',B121));self.runlua('SPCOverflowStorageProbe.Start(P,shared);ui.Begin();prep()');self.assertEqual(self.get('shared.OverflowStorage.status'),'REJECTED');self.assertEqual(self.get('writes'),0)
  def test_manual_pending_before_timer_excluded(self):
-  self.runlua(previous.old.GP);self.runlua(previous.old.UI);self.runlua('SPCOverflowStorageProbe.Start(P,shared);SPCOverflowStorageRead.New(P,function()end,function()end);prep();ui.Begin();apply()');self.assertEqual(self.get('writes'),0);self.assertEqual(self.state(),'ACTIVE')
+  self.runlua(source('OverflowStorageProbe.lua',B121));self.runlua(source('UI/OverflowStorageRead.lua',B121));self.runlua('SPCOverflowStorageProbe.Start(P,shared);SPCOverflowStorageRead.New(P,function()end,function()end);prep();ui.Begin();apply()');self.assertEqual(self.get('writes'),0);self.assertEqual(self.state(),'ACTIVE')
  def test_pending_ui_no_repeat(self):
   self.runlua('defer=true;ui.Begin();ui.Begin();ui.Read()');self.assertEqual(self.get('#packets'),1)
  def test_cancel_scoped(self):
@@ -106,12 +107,13 @@ class Timer(unittest.TestCase):
   self.runlua('turn=22;Events.PlayerTurnActivated(0)');self.assertEqual(self.get('(SPCTimedProjectDisplay.Text(0,10))'),'已暂停')
  def test_static_and_manifest(self):
   paths=['Mod/TimedProject.lua','Mod/UI/TimedProjectRead.lua','Mod/UI/TimedProjectDisplay.lua','Mod/UI/CrewProjectOrder.lua','Mod/Gameplay.lua','Mod/UI/P0Panel.lua','Mod/OverflowStorageProbe.lua']
-  for p in paths:self.lua.execute('assert(load(...))',(ROOT/p).read_text())
-  tree=ET.parse(ROOT/'Mod/SpecializationP0.modinfo');self.assertEqual(tree.getroot().get('version'),'148')
-  for parent in [tree.find('./Files'),tree.find("./InGameActions/ImportFiles[@id='SPCP0_Common']")]:
-   files=[x.text for x in parent.findall('File')];self.assertEqual(len(files),len(set(files)));self.assertTrue(all((ROOT/'Mod'/p).exists() for p in files))
-  source=(ROOT/'Mod/TimedProject.lua').read_text();self.assertNotIn('AddProgress',source);self.assertNotIn('SetProperty',source);self.assertEqual(source.count('q:FinishProgress()'),1)
-  for p in ['Mod/UI/TimedProjectDisplay.lua','Mod/UI/TimedProjectRead.lua']:self.assertNotIn('SetUpdate',(ROOT/p).read_text())
+  for p in paths:self.lua.execute('assert(load(...))',source(p.removeprefix('Mod/'),B121))
+  with package(B121) as historical:
+   tree=ET.parse(historical/'Mod/SpecializationP0.modinfo');self.assertEqual(tree.getroot().get('version'),'148')
+   for parent in [tree.find('./Files'),tree.find("./InGameActions/ImportFiles[@id='SPCP0_Common']")]:
+    files=[x.text for x in parent.findall('File')];self.assertEqual(len(files),len(set(files)));self.assertTrue(all((historical/'Mod'/p).exists() for p in files))
+  timer=source('TimedProject.lua',B121);self.assertNotIn('AddProgress',timer);self.assertNotIn('SetProperty',timer);self.assertEqual(timer.count('q:FinishProgress()'),1)
+  for p in ['UI/TimedProjectDisplay.lua','UI/TimedProjectRead.lua']:self.assertNotIn('SetUpdate',source(p,B121))
 # Direct old writers and event observers, not a full gameplay regression.
 class FinishRegression(previous.old.FinishTests):pass
 class ObservationRegression(previous.Observer):

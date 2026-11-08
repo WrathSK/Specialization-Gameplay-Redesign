@@ -1,4 +1,3 @@
-include("OverflowStorageRead")
 include("BoostGreatWorkRead")
 include("PurchaseProbeRead")
 include("Probe")
@@ -19,9 +18,6 @@ local pageAction,pageCity
 local request
 local uiStage="READY"
 local function status(s) Controls.Status:SetText(s);if Controls.ReportScroll then Controls.ReportScroll:CalculateSize();Controls.ReportScroll:ReprocessAnchoring() end end
-local overflowRead=SPCOverflowStorageRead.New(P,function(s) localReport=s;status(s) end,function(...) return UI.RequestPlayerOperation(...) end)
-local function overflowPulse() overflowRead.Pulse() end
-Events.GameCoreEventPublishComplete.Add(overflowPulse)
 local function trace(s)
   uiStage=s
   print("[SPC]["..P.VERSION.."][UI] "..s)
@@ -626,4 +622,4 @@ ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)
 Events.SystemUpdateUI.Add(gwaPulse)
 Events.SystemUpdateUI.Add(placeEntry)
-ContextPtr:SetShutdown(function() SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead();meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil;if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Events.GameCoreEventPublishComplete.Remove(overflowPulse);Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)
+ContextPtr:SetShutdown(function() SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead();meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil;if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);gwaFlight=nil;Events.SystemUpdateUI.Remove(gwaPulse);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)

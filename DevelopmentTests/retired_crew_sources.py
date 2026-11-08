@@ -10,7 +10,9 @@ import tempfile
 
 from refactor_harness import Context, PackageVFS, ROOT, SOURCES
 
+B119 = 'b3667b20b0fab2c9361a347701785ad330ec34ed'
 B120 = '5f8f02fd3a5b4a58587b83cd2b37b3ae114f94ac'
+B121 = 'b46cd02857ea3d5c3d30700f4fd36a8ae8d0c9d8'
 B444 = '72947b5596825e030ad07b77f41bac6d65809cfe'
 B445 = '238cf182af66056eeae0da4e4797114a2a04d73f'
 B446 = 'af75e329546f583b94a90169d8af68ebb7e4b559'
@@ -20,6 +22,7 @@ B450 = '0224c014aeb0718a0b6f5bad37ad867561c89250'
 B452 = '26dfcbd0f7baf8a17e52de2bfcb57071da651a6b'
 B453 = '62d89798af67ee37b38027d6b0cfc8ef258c9a5f'
 B454 = '3fa7527b768207a8f210136749001584b42e5940'
+B455 = 'e5c5afaf3aeb223861b107a220f910da3d8edf98'
 RETIRED = ('ConstructionProbe.lua', 'CrewPrecision.lua')
 RETIRED_GLOBALS = tuple('SPC' + Path(path).stem for path in RETIRED)
 

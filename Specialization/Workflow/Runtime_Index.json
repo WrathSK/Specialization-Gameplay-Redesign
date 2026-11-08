@@ -631,9 +631,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "52bdc5571db7a53920594cb484b198d9de0e5e768973ad486e46ea3c87a62d4e",
+      "sha256": "463388a05058a8590597ede38cf89d100e0a65e3f811cb484b423741e9451bc9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
+      "provenance": "S0977 B456 exact manual overflow experiment retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -765,20 +765,15 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
-    "Mod/OverflowStorageProbe.lua": {
-      "sha256": "90e72d14d83d0cef47b559d3fe7a2e038f972fc6ea9c1d761fa9699ff5aa641c",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B121 approved single-city timed native completion/UI; local85, native pending"
-    },
     "Mod/PerformanceCounters.lua": {
       "sha256": "298c7c9a468ed2c2d1496580a7144e2d21bcdd6d97f5af099f6cc7d60abe5d67",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "45259776f5af847b7c1fcc5dc79aec988bc2afed7e574f86460bfba1da60bf3b",
+      "sha256": "fb2235518906ad257cd93f5aa7668f0048e2b8f668002a24e5e8fce195e24974",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
+      "provenance": "S0977 B456 exact manual overflow experiment retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -911,9 +906,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8808a426f0c27c50c8f52730970236c152cee28b3d133735bcc4d185628467d1",
+      "sha256": "4bb52a95e8f500a8e617bf74c21dae41f0c387be4e3eadb8f763690fe41fb132",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
+      "provenance": "S0977 B456 exact manual overflow experiment retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1410,15 +1405,10 @@
       "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
-    "Mod/UI/OverflowStorageRead.lua": {
-      "sha256": "832f026fd726c618ac816f2134f03958779d2430bbe70b92236056e5efb8646c",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B119 native completion primitive and fresh diagnostics; local79 PASS; native pending"
-    },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "fbbd59089fc1d8fd7357cb13459d89af172fb70828eff18282bfa29d9d225816",
+      "sha256": "354518cebd3370454ab532aa4706dad93dba599d60333a251d2a6a0ccd52fb28",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
+      "provenance": "S0977 B456 exact manual overflow experiment retirement."
     },
     "Mod/UI/P0Panel.xml": {
       "sha256": "2fdfb6342730f70f84362dcc93521158a19542f14ddebb0e5d97dfc00e2f7f62",
@@ -1461,9 +1451,9 @@
       "provenance": "B383.410 Separate Dialogue candidate preview from current timer status; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/TimedProjectRead.lua": {
-      "sha256": "4fdd50853302ca414249532becbdd17f052b31ebaa5860438a888f80d5e83214",
-      "review_source": "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md",
-      "provenance": "B123 authorized bounded queue confirmation/diagnostic repair; local112; native pending"
+      "sha256": "33c374e58a90279ee72ac5afc34f306cc26deb22386a974f22c6cbbda8880b17",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0977 B456 exact manual overflow experiment retirement."
     },
     "Mod/UI/TimedProjectSelection.lua": {
       "sha256": "84a55612bc7f7752e3e2b158785556e2e9ce56f402c689d22ba8e80f3c96ae9f",
@@ -1756,7 +1746,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0976 verifies B455 deployment and both recovery packages, and reviews the separate manual overflow experiment.",
-  "source_runtime": "B455.482 / modinfo482 deployed from e5c5afa with the approved project turn observer removed.",
-  "tested_source_snapshot_sha256": "e3070c6ebc13ded0604ce264b2ad291d3276453b1aab433b207d77c28469a848"
+  "source_review": "S0977 verifies both manual overflow file removals, preserved automatic timing and P0 behavior, frozen historical tests, and rollback.",
+  "source_runtime": "B456.483 / modinfo483 local candidate, 348 files. B455.482 remains installed.",
+  "tested_source_snapshot_sha256": "e25836b09802b60b1ffddece1f4d6f8864f9b663fe166f3265d782330edd68b6"
 }

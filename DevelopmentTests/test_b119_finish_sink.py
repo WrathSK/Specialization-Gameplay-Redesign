@@ -3,7 +3,10 @@ import unittest, xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 from refactor_harness import ROOT
 import test_b118_exact_progress as prev
-GP=(ROOT/'Mod/OverflowStorageProbe.lua').read_text(); UI=(ROOT/'Mod/UI/OverflowStorageRead.lua').read_text()
+from retired_crew_sources import B119, package, source
+
+GP=source('OverflowStorageProbe.lua',B119)
+UI=source('UI/OverflowStorageRead.lua',B119)
 EXTRA=r'''
 GameInfo.Buildings[1].Hash=9
 q.FinishProgress=function()writes=writes+1;if fail then error('native exception')end
@@ -42,15 +45,16 @@ class FinishTests(unittest.TestCase):
   self.runlua('CheatPanel=nil;CompleteProduction=nil;ui.Click();ui.Click()');self.assertEqual(self.get('writes'),1)
  def test_actual_panel(self):
   self.runlua('SPCP0=P;include=function()end;SPCCityIdentityEvidence={New=function()return {}end};Events.GameCoreEventPublishComplete=prevEvent or event();Controls={Status={SetText=function(_,s)shown=s end}};UI.RequestPlayerOperation=send')
-  panel=self.lua.execute((ROOT/'Mod/UI/P0Panel.lua').read_text().split('local function trace(s)')[0]+'\nreturn overflowRead');panel.Click();self.assertIn('不是扣生产力',self.get('shown'));panel.Click();panel.Read();self.assertIn('无生产目标',self.get('shown'))
+  panel=self.lua.execute(source('UI/P0Panel.lua',B119).split('local function trace(s)')[0]+'\nreturn overflowRead');panel.Click();self.assertIn('不是扣生产力',self.get('shown'));panel.Click();panel.Read();self.assertIn('无生产目标',self.get('shown'))
 # Preserve directly relevant guards, using this fixture and actual current code.
 for name in ['test_prepare_no_write','test_wrong_target_queue','test_changed_progress','test_changed_other_progress','test_guard_changes','test_event_invalidates_even_back','test_unrelated_event','test_no_prepare_or_bad_token','test_missing_reader','test_delayed_request_rechecks_progress','test_native_error_no_retry','test_ui_wait_no_retry','test_reader_survives_gameplay_shared_replacement','test_missing_project','test_dispatch']:
  setattr(FinishTests,name,getattr(prev.ExactTests,name))
 class Regression(prev.old.prior.EmptyTargetTests):
  def test_static(self):
   for f in ['Mod/OverflowStorageProbe.lua','Mod/UI/OverflowStorageRead.lua','Mod/UI/P0Panel.lua','Mod/Gameplay.lua','Mod/Probe.lua']:
-   self.lua.execute('assert(load(...))',(ROOT/f).read_text())
-  doc=ET.parse(ROOT/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'146');files=[n.text for n in doc.findall('./Files/File')];self.assertEqual(len(files),len(set(files)));self.assertTrue(all((ROOT/'Mod'/f).is_file() for f in files))
+   self.lua.execute('assert(load(...))',source(f.removeprefix('Mod/'),B119))
+  with package(B119) as historical:
+   doc=ET.parse(historical/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'146');files=[n.text for n in doc.findall('./Files/File')];self.assertEqual(len(files),len(set(files)));self.assertTrue(all((historical/'Mod'/f).is_file() for f in files))
   self.assertNotIn('AddProgress',GP);self.assertIn('q:FinishProgress()',GP);self.assertNotIn('SetUpdate',UI)
-  panel=(ROOT/'Mod/UI/P0Panel.lua').read_text();self.assertIn('完成承接试验',panel);self.assertNotIn('再次左键调用−1000',panel);self.assertNotIn('再次左键只扣',UI)
+  panel=source('UI/P0Panel.lua',B119);self.assertIn('完成承接试验',panel);self.assertNotIn('再次左键调用−1000',panel);self.assertNotIn('再次左键只扣',UI)
 if __name__=='__main__':unittest.main()

@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0976
-Implementation Build: source B455.482 / modinfo482. Live B455.482 from e5c5afa. Stable/main B307.334.
+Status Revision: S0977
+Implementation Build: source B456.483 / modinfo483. Live B455.482 from e5c5afa. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: MANUAL_OVERFLOW_RETIREMENT_REVIEWED
+Work State: MANUAL_OVERFLOW_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the manual overflow completion tool — S0977
+
+The Owner approved the exact two-path retirement of the unused B119 manual completion experiment. Remove `Mod/OverflowStorageProbe.lua` and `Mod/UI/OverflowStorageRead.lua`, their four manifest declarations, startup, manual PREPARE/APPLY requests, P0 publication and shutdown hookup, and the obsolete report sentence. The automatic timer still reads the active queue and controls its own guarded completion. Its production providers, SQL, localization, icon and P0 layout are byte-identical. Recover both removed files from the published B455 source `e5c5afaf3aeb223861b107a220f910da3d8edf98`.
+
+- **Runtime Impact Contract (L3, T01/T03/T04/T08).** The manual path registered five Gameplay callbacks and one P0 publication callback in the fixture. Its exact progress reader served only manual requests. The retired PREPARE/APPLY sequence performs zero modeled writes after removal. Automatic timing still completes once under reentrant events and uses the original session state and save boundary.
+- **LOCAL_SIMULATION_PASS in scope.** 41 selected methods cover actual Gameplay request handling, matching HD and official production readers, automatic timer report/cancel, the same P0 button positions/visibility and callback slots, exact B455 rollback and both deployment tool contracts. The B119 fixture is pinned to its original published release. The manual/automatic mutual exclusion checks retain the B121 guarded manual source. The preceding project observer and ActionPanel checks pass 41 and 42 methods, including pinned historical comparisons and the live startup checks.
+- **P0 baseline issue.** The separate 11-method layout suite has the same two failures on B455 and B456. The visible-set expectation predates the current Industry/Commerce entries, and its TemplatesButton left-click expectation predates the Industry History route. The visible TemplatesButton and GWCityButton share an offset in the current local panel fixture. Keep the original assertions and record this separately from the retirement gate. Reproduce with `python3.14 -B -m unittest test_p0_panel_current_layout` with DevelopmentTests on the import path. Both comparison logs are stored alongside the local closure.
+- **STATIC_CONFIRMED and reproduction.** 219 Lua 5.1 compiles, 32 XML-family parses, 688 file references and 10 replacement references across 348 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7nManualOverflowRetirement` with CPython 3.14/Lupa 2.8 and the installed official Assets input. The carried stages use O7mProjectTurnObserverRetirement and O7kTimedTurnRetirement. Tested source SHA256 `e25836b09802b60b1ffddece1f4d6f8864f9b663fe166f3265d782330edd68b6`, package SHA256 `4299185b631dc8bd3556112a727c1eac844bf679e9fe493e70c5874d66311b34`. Local closure `local/refactor/B456-O7nManualOverflowRetirement-final/closure.json` SHA256 `790fa430d1f4fd7ed2d3b61524846afd9ccbb54d320b3b26ef2a558fc24e19a9`. Native behavior and performance remain unmeasured for this batch.
+
+B455 remains installed at this source checkpoint. Deployment verification and positive Culture Network cold restoration keep their separate evidence boundaries.
 
 ### B455 deployment verified and manual overflow retirement reviewed — S0976
 

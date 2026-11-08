@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0976",
-    "runtime": "B455.482 / modinfo482",
+    "status": "S0977",
+    "runtime": "B456.483 / modinfo483",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B455 deployment and the separate exact manual overflow experiment proposal.",
+  "goal": "Verify exact manual overflow retirement while preserving automatic timing, P0 controls and formal projects.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the manual overflow completion tool — S0977",
+      "reason": "Approved two-path removal and focused timer/UI/deployment regression"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -288,6 +294,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B456 passes 41 selected methods and 41/42 carried checks. Both versions retain the same two separate P0 layout suite failures.",
     "B455 installed 350/350 MATCH with B454 and B307 recovery verified. The manual overflow projection preserves the automatic timer and both production readers.",
     "B455 passes 41 selected methods and the 42/88 carried checks, with exact outgoing rollback.",
     "B454 installed 351/351 MATCH, with B453 and B307 recovery verified. The separate observer projection preserves both production UI readers and the P0 timer report.",
@@ -1465,6 +1472,56 @@
       "local_evidence": "local/refactor/B455-ManualOverflowRetirementReview/result.json",
       "local_evidence_sha256": "4fca907d72aa62d4273adbdc752d6613ef9aa612bb737d7a0235e7feebe3174c",
       "report": "Specialization/Status/Specialization_P0_Status.md#b455-deployment-verified-and-manual-overflow-retirement-reviewed--s0976"
+    },
+    "b456_manual_overflow_retirement": {
+      "build": "B456.483 / modinfo483",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7nManualOverflowRetirement": {
+          "tests": 41,
+          "path": "local/refactor/B456-O7nManualOverflowRetirement-final/closure.json",
+          "sha256": "790fa430d1f4fd7ed2d3b61524846afd9ccbb54d320b3b26ef2a558fc24e19a9"
+        },
+        "O7mProjectTurnObserverRetirement": {
+          "tests": 41,
+          "path": "local/refactor/B456-CarriedO7m-final/closure.json",
+          "sha256": "d37e3c4efc5cdd393536d24b21c169c004eda8e98979aa197717c82e2cc95408"
+        },
+        "O7kTimedTurnRetirement": {
+          "tests": 42,
+          "path": "local/refactor/B456-CarriedO7k-final/closure.json",
+          "sha256": "814aabb220610fb5fea0fc05421e65e30eac75f8654972c813ec882cce1a87c0"
+        }
+      },
+      "files": 348,
+      "removed": {
+        "Mod/OverflowStorageProbe.lua": "90e72d14d83d0cef47b559d3fe7a2e038f972fc6ea9c1d761fa9699ff5aa641c",
+        "Mod/UI/OverflowStorageRead.lua": "832f026fd726c618ac816f2134f03958779d2430bbe70b92236056e5efb8646c"
+      },
+      "prior_source": "e5c5afaf3aeb223861b107a220f910da3d8edf98",
+      "modeled_gameplay_listener_delta": 5,
+      "modeled_ui_listener_delta": 1,
+      "panel_layout_baseline": {
+        "tests_per_build": 11,
+        "failures": [
+          "FAIL: test_core_read_and_detail_callbacks_keep_current_actions (test_p0_panel_current_layout.CurrentPanelTests.test_core_read_and_detail_callbacks_keep_current_actions) (control='TemplatesButton', event=1)",
+          "FAIL: test_exact_visible_set_survives_entire_initializer (test_p0_panel_current_layout.CurrentPanelTests.test_exact_visible_set_survives_entire_initializer)"
+        ],
+        "logs": {
+          "B455": {
+            "path": "local/refactor/B456-O7nManualOverflowRetirement-final/panel-B455-comparison.log",
+            "sha256": "8da76a054bf20d8ea5f2c7a1abff7199ee9ceb2754f6fa188ea81995143ac450"
+          },
+          "B456": {
+            "path": "local/refactor/B456-O7nManualOverflowRetirement-final/panel-B456-comparison.log",
+            "sha256": "90b3686b7d8d77051d1bd758b79045b133bde0ffd170169aa4ffc3ffe7584277"
+          }
+        }
+      },
+      "source_snapshot_sha256": "e25836b09802b60b1ffddece1f4d6f8864f9b663fe166f3265d782330edd68b6",
+      "package_sha256": "4299185b631dc8bd3556112a727c1eac844bf679e9fe493e70c5874d66311b34",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-manual-overflow-completion-tool--s0977"
     }
   }
 }

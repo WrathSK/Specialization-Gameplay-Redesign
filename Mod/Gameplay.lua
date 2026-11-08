@@ -135,9 +135,6 @@ local function request(playerID,params)
   if params.Action=='TIMED_PROJECT_BEGIN' or params.Action=='TIMED_PROJECT_CANCEL' then
     shared.TimedProject.Request(playerID,params);return
   end
-  if params.Action=='OVERFLOW_PREPARE' or params.Action=='OVERFLOW_APPLY' then
-    shared.OverflowStorageProbe.Request(playerID,params);return
-  end
   if params.Action=='CITY_SEQUENCE_BEGIN' or params.Action=='CITY_SEQUENCE_READ' then
     local ok,out=pcall(function()
       if params.Action=='CITY_SEQUENCE_READ' then return shared.CitySequenceProbe.Read(playerID,params.Page)end
@@ -1028,8 +1025,6 @@ composition.Run('DialogueEffects',{'CityProgressionStore','Dialogue','EffectiveF
 composition.Run('CityIdentityRead',{},{'CityIdentityRead'},function() SPCCityIdentityRead.Start(P,shared) end)
 
 composition.Run('CityIdentityMapping',{},{'CityIdentityExperiment'},function() include('CityIdentityExperiment');include('CityIdentityMapping');SPCCityIdentityMapping.Start(P,shared) end)
-
-composition.Run('OverflowStorageProbe',{},{'OverflowStorageProbe'},function() include('OverflowStorageProbe');SPCOverflowStorageProbe.Start(P,shared) end)
 
 composition.Run('TimedProject',{},{'TimedProject'},function() include('TimedProject');SPCTimedProject.Start(P,shared) end)
 
