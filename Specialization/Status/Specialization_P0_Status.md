@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0939
-Implementation Build: source and live B437.464 / modinfo464 from a24b327. Stable/main B307.334.
+Status Revision: S0940
+Implementation Build: source B438.465 / modinfo465. Live B437.464 from a24b327. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_COLD_STANDARDIZATION_ACCEPTED_CULTURE_PENDING
+Work State: OFFICIAL_UNIT_PANEL_ACTIONS_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Professional unit actions use the official and HD panels — S0940
+
+The Gathering Storm profile now loads the shipped UnitPanel before installing SPC's existing action policy. The pinned HD profile loads its existing HD UnitPanel at the same priority. Both use the same adapter for Crew action filtering, Restructuring preparation and confirmation, and Expedition controls. The separate Gathering Storm adjacent-improvement callback checks the current selected unit before entering the placement mode. Ordinary Builders retain the native callback.
+
+- **Runtime Impact Contract (L2, T01/T02/T05/T08).** The existing profile criteria choose exactly one UnitPanel entry. The shared adapter attaches the existing action hooks to that context and removes its own listeners at shutdown. In the official profile this enables the same selected-unit listeners as HD, up to ten engine subscriptions and one Lua notification. The handlers read only the selected unit or matching movement/selection arguments. The existing Restructuring view request and confirmed command retain their original owner, reference checks and receipt. No new automatic scan, timer, saved data, write authority or retry. The two UI entry files are loaded once by the manifest.
+- **LOCAL_SIMULATION_PASS in scope.** The selected profile roots reach the real action adapter. Crew harvesting is filtered before row/hotkey registration, stock adjacent-placement checks the current selection, and the official Restructuring adapter reaches the real dispatcher and Store with one confirm despite repeated clicks. All 75 scoped cases passed, including the fixed HD rendering fragments, stale actions, Expedition idle and selection handling, Crew request replies and restricted package roots. Three new counterexamples fail on fixed B437 and pass here. A supplemental historical selection ran 892 cases. All 40 remaining nonpassing cases also occur on the fixed B437 comparison. The local reports preserve the full details.
+- **STATIC_CONFIRMED and reproduction.** 225 Lua 5.1 compiles, 32 XML-family parses, 354 runtime files and 712 manifest references. Package SHA256 `1e638e3e6c0db7749a325fcd73828cc151c507dff736b79a90b4f40dce1b50bc`. CPython 3.14/Lupa 2.8 with DevelopmentTests on PYTHONPATH. Configure `SPC_OFFICIAL_ASSETS`, `SPC_UNIT_PANEL_LUA` and `SPC_HD_UNIT_PANEL_LUA` with the existing pinned local asset paths. Run `python3.14 DevelopmentTests/run_refactor.py --stage O6aUnitPanel`. Tested source SHA256 `d91faeded9d859019eb67532962390749a71d3f4e0bacbb6e3aac187e179c61e`. Full local evidence `local/refactor/O6aUnitPanel-e8cfc197c3a04ff2bd29915c7a8ac4ec/closure.json`, SHA256 `bef283edc8b5862e782a1021d93718a663dc806da1f47beadf1d490762234bd7`. The named stock adjacent-placement function and HD panel fragments are local replay inputs. Native row rendering and clicks remain USER_GAME_TEST_REQUIRED.
+
+User decision and user testing are unnecessary at this local checkpoint. Live remains B437.464. Primary next is the official production panel's project list and selection adapter. That path must preserve native queue behavior and any applicable official base. Combine native UnitPanel verification with the dependent production/action paths in the later targeted official session. Positive Culture Network restoration and shared network retirement remain separate.
 
 ### HD Standardization survives the B437 cold reload — S0939
 

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="464">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="465">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B435.462：修复建筑目录装配标记的 SQLite 兼容性。</Description>
+    <Description>B438.465：接通官方与 HD 环境的专业单位行动栏。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -58,8 +58,9 @@
     <UpdateDatabase id="SPC_ExpeditionGate"><Properties><LoadOrder>10001050</LoadOrder></Properties><File>Data/ExpeditionGate.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_ExpeditionSpyGate"><Properties><LoadOrder>10001051</LoadOrder></Properties><File>Data/ExpeditionSpyGate.sql</File></UpdateDatabase>
     <UpdateText id="SPC_ExpeditionGateText"><File>Text/ExpeditionGate.sql</File></UpdateText>
-    <!-- Without HD, the engine supplies these five official UI contexts. -->
-    <ReplaceUIScript id="SPC_ExpeditionSpyUnitPanel" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>UnitPanel</LuaContext><LuaReplace>UI/ExpeditionSpyUnitPanel.lua</LuaReplace></Properties></ReplaceUIScript>
+    <!-- Each UnitPanel entry loads its selected base before the common action policy. -->
+    <ReplaceUIScript id="SPC_ExpeditionSpyUnitPanel" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>UnitPanel</LuaContext><LuaReplace>UI/SPCUnitPanelHD.lua</LuaReplace></Properties></ReplaceUIScript>
+    <ReplaceUIScript id="SPC_OfficialUnitPanel" criteria="SPC_OfficialEnvironment"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>UnitPanel</LuaContext><LuaReplace>UI/SPCUnitPanelOfficial.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_ExpeditionSpyChooser"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>EspionageChooser</LuaContext><LuaReplace>UI/ExpeditionSpyChooser.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_ExpeditionSpyPopup"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>EspionagePopup</LuaContext><LuaReplace>UI/ExpeditionSpyPopup.lua</LuaReplace></Properties></ReplaceUIScript>
     <AddUserInterfaces id="SPC_ExpeditionTrainingName"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionTrainingName.xml</File></AddUserInterfaces>
@@ -587,6 +588,8 @@
       <File>ExpeditionMovementProbe.lua</File>
     <File>ExpeditionSpyUI.lua</File>
     <File>UI/ExpeditionSpyUnitPanel.lua</File>
+    <File>UI/SPCUnitPanelHD.lua</File>
+    <File>UI/SPCUnitPanelOfficial.lua</File>
     <File>UI/ExpeditionSpyChooser.lua</File>
     <File>UI/ExpeditionSpyPopup.lua</File>
     <File>ExpeditionSpyRead.lua</File>

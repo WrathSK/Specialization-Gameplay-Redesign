@@ -2,6 +2,15 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O6aUnitPanel": [
+      "test_o6_unit_panel",
+      "test_b414_crew_unit_panel",
+      "test_environment_assembly.UIBaseSelection",
+      "test_pu02_restructuring_ui",
+      "test_pu11_package_absence.ActualRoots",
+      "test_refactor_s9c3.Consumer",
+      "test_refactor_s9c3.Integration"
+    ],
     "S2a": [
       "test_refactor_baseline"
     ],
@@ -2397,6 +2406,19 @@
     ],
     "Mod/GreatWorkProbe.lua": [
       "test_refactor_s9e3"
+    ],
+    "Mod/UI/ExpeditionSpyUnitPanel.lua": [
+      "test_o6_unit_panel",
+      "test_b414_crew_unit_panel",
+      "test_pu02_restructuring_ui"
+    ],
+    "Mod/UI/SPCUnitPanelHD.lua": [
+      "test_o6_unit_panel",
+      "test_environment_assembly.UIBaseSelection"
+    ],
+    "Mod/UI/SPCUnitPanelOfficial.lua": [
+      "test_o6_unit_panel",
+      "test_environment_assembly.UIBaseSelection"
     ]
   },
   "exclusions": {

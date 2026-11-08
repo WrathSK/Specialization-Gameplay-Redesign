@@ -267,12 +267,12 @@ class Assembly(unittest.TestCase):
 
 
 class UIBaseSelection(unittest.TestCase):
-    def test_hd_replacements_keep_order_and_official_uses_shipped_bases(self):
+    def test_profile_replacements_keep_order_and_use_selected_bases(self):
         root = manifest()
         criteria = {entry.get('id'): entry for entry in root.findall('./ActionCriteria/Criteria')}
         hd_overrides = {
             'ProductionPanel': ('UI/CrewProjectOrder.lua', 150100),
-            'UnitPanel': ('UI/ExpeditionSpyUnitPanel.lua', 2000006),
+            'UnitPanel': ('UI/SPCUnitPanelHD.lua', 2000006),
             'CityPanel': ('UI/TimedProjectCityPanel.lua', 2000005),
             'CityPanelOverview': ('UI/InstitutionOverview.lua', 2000003),
             'ActionPanel': ('UI/TimedTurnProbe.lua', 2000004),
@@ -281,7 +281,8 @@ class UIBaseSelection(unittest.TestCase):
             'EspionageChooser': ('UI/ExpeditionSpyChooser.lua', 2000006),
             'EspionagePopup': ('UI/ExpeditionSpyPopup.lua', 2000006),
         }
-        for hd, expected in ((False, shared), (True, hd_overrides | shared)):
+        official_overrides = {'UnitPanel': ('UI/SPCUnitPanelOfficial.lua', 2000006)}
+        for hd, expected in ((False, official_overrides | shared), (True, hd_overrides | shared)):
             with self.subTest(hd=hd):
                 active = {}
                 for action in root.findall('./InGameActions/ReplaceUIScript'):

@@ -1,12 +1,10 @@
--- Keep HD/native rendering and ordinary-unit callbacks intact.
-include('DL_UnitPanel')
+-- Install specialization actions over the base loaded by this environment's entry.
 include('ExpeditionSpyUI')
 include('RestructuringUI')
 local R=SPCExpeditionSpyUI
 local baseActions=GetUnitActionsTable
 local baseAddAction=AddActionToTable
 local baseClick=OnUnitActionClicked
-local baseBuildImprovement=OnUnitActionClicked_BuildImprovement
 
 -- Crew construction uses the separate UnitPanelActions controls. Preserve
 -- ordinary native controls and omit unit abilities, including charge actions.
@@ -166,9 +164,16 @@ function OnUnitActionClicked(...)
  end
  return baseClick(...)
 end
-function OnUnitActionClicked_BuildImprovement(...)
- if isCrew(UI.GetHeadSelectedUnit())then return end
- return baseBuildImprovement(...)
+local function guardCrewImprovement(callback)
+ return function(...)
+  if isCrew(UI.GetHeadSelectedUnit())then return end
+  return callback(...)
+ end
+end
+OnUnitActionClicked_BuildImprovement=guardCrewImprovement(OnUnitActionClicked_BuildImprovement)
+-- Gathering Storm has a separate callback that enters the adjacent-build mode.
+if type(OnUnitActionClicked_BuildImprovementAdjacent)=='function'then
+ OnUnitActionClicked_BuildImprovementAdjacent=guardCrewImprovement(OnUnitActionClicked_BuildImprovementAdjacent)
 end
 local baseCancel=OnUnitActionClicked_CancelSpyMission
 function OnUnitActionClicked_CancelSpyMission(...)

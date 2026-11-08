@@ -119,7 +119,7 @@ def owned(lua, name, source=None):
     return lua.execute(text)
 
 
-def ui(native=False):
+def ui(native=False, unit_panel_entry='UI/ExpeditionSpyUnitPanel'):
     with patch.object(store, 'LuaRuntime', TrackedLua51), legacy_source_observation():
         l = old.runtime(True)
         source = (ROOT / 'Mod/Gameplay.lua').read_text()
@@ -132,15 +132,18 @@ def ui(native=False):
             native_fragments(l)
         baseline = os.environ.get('SPC_PU02_UI_BASELINE') == BASE
         def include(name):
-            if name == 'DL_UnitPanel':
-                return  # actual selected builders/fragments already installed, or explicit native double
+            if name in ('DL_UnitPanel', 'UnitPanel_Expansion2'):
+                return  # selected base fragments or a native double are already installed
+            if name == 'ExpeditionSpyUnitPanel':
+                name = 'UI/ExpeditionSpyUnitPanel'
             if name == 'RestructuringUI' and baseline:
                 text = subprocess.check_output(['git', 'show', BASE + ':Mod/RestructuringUI.lua'], cwd=ROOT).decode()
                 executed('baseline:RestructuringUI.lua', sha256(text.encode()).hexdigest(), 'complete_module', commit=BASE)
                 return owned(l, name, text)
             return owned(l, name)
         l.globals().include = include
-        owned(l, 'UI/ExpeditionSpyUnitPanel')
+        if unit_panel_entry:
+            owned(l, unit_panel_entry)
         l.execute('read()')
         return l
 

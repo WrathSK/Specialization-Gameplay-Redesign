@@ -786,9 +786,9 @@
       "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
     },
     "Mod/Probe.lua": {
-      "sha256": "07f8dce21a8fe26328dc40475b44fe86ad4f5b9f8833c5b1b38584511b131d8c",
+      "sha256": "0e8b23c6afd0d33842dc69994a94bfd1ca01b9b640c75e7bb76239ba11c27543",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
+      "provenance": "S0940 B438 scopes the unit action adapter to the two selected UI bases. Native interaction pending."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -926,9 +926,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "aae79d21d9f139bdd75aa2db83c415afbd2912a99d36a04840e4a65e855b1fa0",
+      "sha256": "88c75ae8166e29f8220fbe5114af9cc8107454d5d5e745802b07f7df40805e47",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
+      "provenance": "S0940 B438 scopes the unit action adapter to the two selected UI bases. Native interaction pending."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1351,9 +1351,9 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
-      "sha256": "357677051bf53941ebb038906babe230429b7770d3d3dc926c9b9d80a64d7aa4",
+      "sha256": "bce506d8382a40f9410e186e407c6bc6087ee6af036aa16537d1780d7db12f36",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0904 B414 local review. Crew UnitPanel filtering and build markers only. B413 stays deployed."
+      "provenance": "S0940 B438 scopes the unit action adapter to the two selected UI bases. Native interaction pending."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
       "sha256": "8c0a5b6a203afc77c086b9193f55ffae205068b02f1afc38c541518d98550b58",
@@ -1764,9 +1764,19 @@
       "sha256": "f7a8cf880d2a70d88efccfeb0c57b88b18debe8e4380a8331124ba59dc7c7e32",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
+    },
+    "Mod/UI/SPCUnitPanelHD.lua": {
+      "sha256": "5132cfe292e070ae6b83e3c2ea587e7104237c3750ed163681d9d140b2890e71",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0940 B438 scopes the unit action adapter to the two selected UI bases. Native interaction pending."
+    },
+    "Mod/UI/SPCUnitPanelOfficial.lua": {
+      "sha256": "c471e8fee764cdd8716c0b22ec4e58cd7943579e784b3ee344f64a43ec894b19",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S0940 B438 scopes the unit action adapter to the two selected UI bases. Native interaction pending."
     }
   },
-  "source_review": "S0937 verifies the scoped network-role repair locally. S0938 confirms receipt-bound deployment.",
-  "source_runtime": "B437.464 / modinfo464 deployed from a24b327. Current-build cold restore verification pending.",
-  "tested_source_snapshot_sha256": "4d2338ef75fbbb088f041366d0bd67f40b54cbe576ffd89fceccf083cfd917a0"
+  "source_review": "Specialization/Status/Specialization_P0_Status.md#professional-unit-actions-use-the-official-and-hd-panels--s0940",
+  "source_runtime": "B438.465 / modinfo465 local candidate, 354 files",
+  "tested_source_snapshot_sha256": "d91faeded9d859019eb67532962390749a71d3f4e0bacbb6e3aac187e179c61e"
 }
