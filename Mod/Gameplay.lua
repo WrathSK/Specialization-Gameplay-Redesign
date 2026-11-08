@@ -10,7 +10,6 @@ include("Probe")
 include("RuntimeGC")
 include("SafeCallbacks")
 include("RuntimeComposition")
-include("SourceYieldProbe")
 include("Lv4CopyRead")
 include("YieldCarrierProbe")
 local P=SPCP0

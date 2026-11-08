@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B455, gameplay, package
+from retired_crew_sources import B455, B456, gameplay, package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_project_turn_observer_retirement import PROJECT, panel_timer, production_input
 from test_p0_panel_current_layout import panel_runtime
@@ -100,5 +100,5 @@ class ManualOverflowRetirement(unittest.TestCase):
         measure('manual_overflow_p0_lifecycle', {'removed_modeled_publication_hooks':1})
 
     def test_temporary_switch_and_rollback_restore_the_exact_predecessor(self):
-        with package(B455) as previous:
-            verify_package_round_trip(self, previous/'Mod', ROOT/'Mod', REMOVED, 'UI/ProjectTurnRead.lua')
+        with package(B455) as previous, package(B456) as retired:
+            verify_package_round_trip(self, previous/'Mod', retired/'Mod', REMOVED, 'UI/ProjectTurnRead.lua')

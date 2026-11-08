@@ -631,9 +631,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "463388a05058a8590597ede38cf89d100e0a65e3f811cb484b423741e9451bc9",
+      "sha256": "62c269f6a112f97914caa5589c97219aadb4720f662609edca325b5ada26cb70",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0977 B456 exact manual overflow experiment retirement."
+      "provenance": "S0979 B457 exact unused city-yield reader retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -771,9 +771,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "fb2235518906ad257cd93f5aa7668f0048e2b8f668002a24e5e8fce195e24974",
+      "sha256": "e9d52279fe77e9d17cb11240c83c4829c2f55f2180074e73f903483b7230f8ce",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0977 B456 exact manual overflow experiment retirement."
+      "provenance": "S0979 B457 exact unused city-yield reader retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -890,11 +890,6 @@
       "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
       "provenance": "B076 unchanged inherited inventory"
     },
-    "Mod/SourceYieldProbe.lua": {
-      "sha256": "64d9e41633024f4db8526d3c74504a6aeae3bc4b4bbd1e142fafa91a75cc3a4e",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
     "Mod/SpecialistSupport.lua": {
       "sha256": "476341541fc0284fe1164ac4c155593b9bb883342679106ccceebe37c9126ea9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
@@ -906,9 +901,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "4bb52a95e8f500a8e617bf74c21dae41f0c387be4e3eadb8f763690fe41fb132",
+      "sha256": "c7afc480d9d67d9a9dc87a67023c329168badc370f1c9a70ca86e74a9e1deca5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0977 B456 exact manual overflow experiment retirement."
+      "provenance": "S0979 B457 exact unused city-yield reader retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1746,7 +1741,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0978 verifies B456 deployment and both recovery packages, and reviews the unused SourceYieldProbe import.",
-  "source_runtime": "B456.483 / modinfo483 deployed from fbb1a96 with the two approved manual overflow paths removed.",
-  "tested_source_snapshot_sha256": "e25836b09802b60b1ffddece1f4d6f8864f9b663fe166f3265d782330edd68b6"
+  "source_review": "S0979 verifies the exact unused reader removal, retained reports and legacy cleanup, frozen reader replay, and rollback.",
+  "source_runtime": "B457.484 / modinfo484 local candidate, 347 files. B456.483 remains installed.",
+  "tested_source_snapshot_sha256": "3d423167b9fdac20d5c8e38b69b760e18d36713f260a55c76fc5ac1a39d7abb2"
 }

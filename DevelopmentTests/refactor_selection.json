@@ -2,6 +2,12 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7oSourceYieldPrototypeRetirement": [
+      "test_o7_source_yield_prototype_retirement",
+      "test_refactor_s8c5c.Production.test_real_production_options_register_one_gate_and_preserve_all_old_start_order",
+      "test_refactor_s9c2.Startup",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7nManualOverflowRetirement": [
       "test_o7_manual_overflow_retirement",
       "test_b119_finish_sink.FinishTests",

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0978
-Implementation Build: source B456.483 / modinfo483. Live B456.483 from fbb1a96. Stable/main B307.334.
+Status Revision: S0979
+Implementation Build: source B457.484 / modinfo484. Live B456.483 from fbb1a96. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: SOURCE_YIELD_PROTOTYPE_RETIREMENT_REVIEWED
+Work State: SOURCE_YIELD_PROTOTYPE_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the unused city-yield reader — S0979
+
+The Owner approved the exact removal of the unused B028 city totals prototype. Remove `Mod/SourceYieldProbe.lua`, its one Gameplay include and two manifest declarations. The current city profession and potential report uses the existing progression request. The separate carrier experiment report, its manual reset, and exact city-exit cleanup keep their paths. Recover the retired reader from `fbb1a963d2b5b2afe8218e5f933a09be442e6186:Mod/SourceYieldProbe.lua` at SHA256 `64d9e41633024f4db8526d3c74504a6aeae3bc4b4bbd1e142fafa91a75cc3a4e`.
+
+- **Runtime Impact Contract (L3, T01/T04/T08).** The unused file defined one read-only function. The fixture completes one fewer Gameplay load, with the same BackgroundRoutes loads. The exact SQL, plot-flag cleanup, and visible P0 controls are byte-identical. There are zero added listeners, fact reads, writes or save fields.
+- **LOCAL_SIMULATION_PASS in scope.** The 15 selected methods cover real Gameplay and BackgroundRoutes entry points, three matching nonempty route proofs, progression presentation, carrier report and manual two-flag reset, central exit, and exact B456 package restoration. The old reader's numeric, missing-read and owner checks replay from the published B456 source. The original B028 standalone package script requires its historical runtime. The carried manual overflow and automatic timer stage passes 41 methods.
+- **STATIC_CONFIRMED and reproduction.** 218 Lua 5.1 compiles, 32 XML-family parses, 686 file references and 10 replacement references across 347 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7oSourceYieldPrototypeRetirement` with CPython 3.14/Lupa 2.8. For the carried stage run O7nManualOverflowRetirement with the installed official Assets input. Tested source SHA256 `3d423167b9fdac20d5c8e38b69b760e18d36713f260a55c76fc5ac1a39d7abb2`, package SHA256 `653e294b0bf80ca0913ae4f23fa43602cdb39e51442d25f990b83a8439803209`. Local closure `local/refactor/B457-O7oSourceYieldPrototypeRetirement-final/closure.json` SHA256 `43fd984e925a8c8c2ec591e37bf628d021d42f1b5ce8173bc69f75e8e9770878`.
+
+B456 remains installed at this source checkpoint. Deployment verification and positive Culture Network cold restoration retain separate evidence boundaries.
 
 ### B456 deployment verified and unused city-yield probe reviewed — S0978
 

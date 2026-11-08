@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0978",
-    "runtime": "B456.483 / modinfo483",
+    "status": "S0979",
+    "runtime": "B457.484 / modinfo484",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record verified B456 deployment and the exact unused city-yield probe proposal.",
+  "goal": "Verify the exact unused city-yield reader retirement and retain the active reports, reset and central cleanup.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the unused city-yield reader — S0979",
+      "reason": "Approved one-path removal and focused report/network/cleanup regression"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -300,6 +306,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B457 passes 15 selected methods and 41 carried checks. Existing report and carrier reset and three nonempty route proofs match.",
     "B456 installed 348/348 MATCH with B455 and B307 recovery verified. The SourceYieldProbe projection preserves city and carrier reports, carrier reset and nonempty route proof.",
     "B456 passes 41 selected methods and 41/42 carried checks. Both versions retain the same two separate P0 layout suite failures.",
     "B455 installed 350/350 MATCH with B454 and B307 recovery verified. The manual overflow projection preserves the automatic timer and both production readers.",
@@ -1561,6 +1568,32 @@
       "local_evidence": "local/refactor/B456-SourceYieldPrototypeRetirementReview/result.json",
       "local_evidence_sha256": "4bbbe554d023adeeb7197569250716e6e870da4fd775bc64036b9068744e688c",
       "report": "Specialization/Status/Specialization_P0_Status.md#b456-deployment-verified-and-unused-city-yield-probe-reviewed--s0978"
+    },
+    "b457_source_yield_retirement": {
+      "build": "B457.484 / modinfo484",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7oSourceYieldPrototypeRetirement": {
+          "tests": 15,
+          "path": "local/refactor/B457-O7oSourceYieldPrototypeRetirement-final/closure.json",
+          "sha256": "43fd984e925a8c8c2ec591e37bf628d021d42f1b5ce8173bc69f75e8e9770878"
+        },
+        "O7nManualOverflowRetirement": {
+          "tests": 41,
+          "path": "local/refactor/B457-CarriedO7n-final/closure.json",
+          "sha256": "beacb343af209f37ce9706054a2e3d10e52315e209bd193f6a28a90e1cbe2965"
+        }
+      },
+      "files": 347,
+      "removed": {
+        "Mod/SourceYieldProbe.lua": "64d9e41633024f4db8526d3c74504a6aeae3bc4b4bbd1e142fafa91a75cc3a4e"
+      },
+      "prior_source": "fbb1a963d2b5b2afe8218e5f933a09be442e6186",
+      "modeled_gameplay_load_delta": 1,
+      "source_snapshot_sha256": "3d423167b9fdac20d5c8e38b69b760e18d36713f260a55c76fc5ac1a39d7abb2",
+      "package_sha256": "653e294b0bf80ca0913ae4f23fa43602cdb39e51442d25f990b83a8439803209",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-unused-city-yield-reader--s0979"
     }
   }
 }
