@@ -105,11 +105,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0973 B454 exact import-only network recovery prototype retirement."
     },
-    "Mod/CitySequenceProbe.lua": {
-      "sha256": "4578c1bcfb1005d82d42a72c4adf1b1512660cbf8d4bd5c4eca591d95e2431fb",
-      "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0957 B447 exact site diagnostic retirement and retained City Sequence routing."
-    },
     "Mod/ClaimProjects.lua": {
       "sha256": "84f28fdc61391fe9aaafdc60a78a3b476428f7c2fef39a8d8e9df75f16355608",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
@@ -621,9 +616,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "c46d89b420a5dab6bff3be5667d03d72019cc213456f7c1b7fd937d9a3006516",
+      "sha256": "1fccfa5c25c53ebff2ff19c2307bf946164cea310123bbd97968f80163a9c6da",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0987 B461 old completion event observer retirement."
+      "provenance": "S0989 B462 opt-in city sequence observer retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -756,9 +751,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "35fc1701f50b9dfe6194575120b4bdc45c0545b129d0f28be7f174f632f7f5d9",
+      "sha256": "cdec9d6fcf8d5a1ca4f992cece5b2d96d327242e7408ba4c3e7843b86932ab5e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0987 B461 old completion event observer retirement."
+      "provenance": "S0989 B462 opt-in city sequence observer retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -886,9 +881,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c31118a0dc6ba5f1de5bba031fa48e45dc3c742fa58cab4f6f855eb3b253cda5",
+      "sha256": "a431feabbf57f56e81fbf752f4a7106af87340668b1b1e50fe5cc51478666634",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0987 B461 old completion event observer retirement."
+      "provenance": "S0989 B462 opt-in city sequence observer retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1386,14 +1381,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "3788172efa4170d316376423a5770786fb397aa07efd43b0e821dc89b5fc0876",
+      "sha256": "8d703e5eb93cd7e56994647cf48b17f61995c1f47ae616cf50e00995debf8ad5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0987 B461 old completion event observer retirement."
+      "provenance": "S0989 B462 opt-in city sequence observer retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "2e06999861db17c18a631e758b73b38f5e291fdaba115e10c2bd5aac2059c415",
+      "sha256": "e6c2d2a5a2c52a8d007f53947c14fc58ed4f0fe37182e31c9246ac5b483ff1bd",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0987 B461 old completion event observer retirement."
+      "provenance": "S0989 B462 opt-in city sequence observer retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1721,7 +1716,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0988 verifies B461 deployment and both recovery packages and isolates the B106 opt-in city trace from Store and Claim.",
-  "source_runtime": "B461.488 / modinfo488 deployed from f24b000 with the approved old completion event observer removed.",
-  "tested_source_snapshot_sha256": "a36a128212396506c4529fa0e0a7ff350cb6a5416c611abf2d9bdeafc8a24461"
+  "source_review": "S0989 verifies the opt-in city trace removal, retained Store founding, Claim and P0 requests, and exact restoration.",
+  "source_runtime": "B462.489 / modinfo489 local candidate, 342 files. B461.488 remains installed.",
+  "tested_source_snapshot_sha256": "5b1c262baf193e32ecd5c71b13fbb78a4f269b0fecc11ff5a67960ca93580c2a"
 }

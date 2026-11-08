@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0988",
-    "runtime": "B461.488 / modinfo488",
+    "status": "S0989",
+    "runtime": "B462.489 / modinfo489",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B461 deployment and the exact city sequence trace proposal with actual founding, Store and Claim preserved.",
+  "goal": "Verify city trace removal and preserve Store founding, first completion, Claim, route proof and the independent event-order switch.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the opt-in city sequence observer — S0989",
+      "reason": "Approved one-path retirement with retained city founding and P0 requests"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -360,6 +366,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B462 passes 25 selected checks and 49/64 carried checks. Store and Claim match with the previous trace armed and ten modeled trace registrations removed.",
     "B461 installed 343/343 MATCH with both recovery packages verified. Projected city sequence trace removal preserves Store founding/first completion, peer Claims and current route proofs.",
     "B461 passes 49 selected checks and 64/22 carried checks. Actual Store and Claim outcomes match and four modeled observer registrations disappear.",
     "B460 installed 344/344 MATCH with B459 and B307 recovery verified. Projected B011 observer removal preserves first completion, Claim, current route proof and separate completion-record request.",
@@ -2009,6 +2016,39 @@
       "local_evidence": "local/refactor/B461-CitySequenceObserverRetirementReview/result.json",
       "local_evidence_sha256": "1bde199cd7965e179856c445332501f217c11bcacead5a906088679e8ccb9f9e",
       "report": "Specialization/Status/Specialization_P0_Status.md#b461-deployment-verified-and-opt-in-city-sequence-observer-reviewed--s0988"
+    },
+    "b462_city_sequence_observer_retirement": {
+      "build": "B462.489 / modinfo489",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7tCitySequenceObserverRetirement": {
+          "tests": 25,
+          "path": "local/refactor/B462-O7tCitySequenceObserverRetirement-r2/closure.json",
+          "sha256": "9c86379851037f1e8aff12e979473bf438c7ec14b4dc25922c0ef9c11e536d4f"
+        },
+        "O7sCompletionEventObserverRetirement": {
+          "tests": 49,
+          "path": "local/refactor/B462-CarriedO7s-r2/closure.json",
+          "sha256": "4f89abedc29b54cab9a4408c2e8a5d14a0f9d5e15f173635287519364a42ed40"
+        },
+        "O7rHalfYieldExperimentRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B462-CarriedO7r-r2/closure.json",
+          "sha256": "2d8048cc9b17ad09b261df9784045a37f25e6ddc36db272b03682b291af78cc4"
+        }
+      },
+      "files": 342,
+      "removed": {
+        "Mod/CitySequenceProbe.lua": "4578c1bcfb1005d82d42a72c4adf1b1512660cbf8d4bd5c4eca591d95e2431fb"
+      },
+      "prior_source": "f24b000847377e90bb856fb4483ed88ee15297b1",
+      "modeled_removed_listeners": 10,
+      "matching_route_packets": 3,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "5b1c262baf193e32ecd5c71b13fbb78a4f269b0fecc11ff5a67960ca93580c2a",
+      "package_sha256": "c01118768251c67bfda92a7019767baa50aa51a91b814f0fb6b621b961530471",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-opt-in-city-sequence-observer--s0989"
     }
   }
 }

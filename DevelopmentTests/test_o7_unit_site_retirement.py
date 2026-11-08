@@ -6,7 +6,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from refactor_harness import Context, PackageVFS, ROOT
-from retired_crew_sources import B446, B447, gameplay as historical_gameplay, package as historical_package
+from retired_crew_sources import B446, B447, B461, gameplay as historical_gameplay, package as historical_package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE
@@ -56,12 +56,12 @@ class UnitSiteRetirement(unittest.TestCase):
         """)
 
     def test_p0_right_click_still_reaches_actual_city_sequence_for_unit_and_city(self):
-        with historical_package(B446) as checkout:
+        with historical_package(B446) as checkout, historical_package(B461) as retained_trace:
             old = historical_gameplay(checkout, revision=B446)
-            current = Context(vfs=PackageVFS(forbidden_globals=GLOBALS))
+            after_site_retirement = historical_gameplay(retained_trace, revision=B461, forbidden_globals=GLOBALS)
             reports = []
             for previous,gameplay,panel in (
-                (True,old,checkout/'Mod/UI'), (False,current,ROOT/'Mod/UI'),
+                (True,old,checkout/'Mod/UI'), (False,after_site_retirement,retained_trace/'Mod/UI'),
             ):
                 gameplay.execute(NATIVE)
                 gameplay.load('Gameplay')

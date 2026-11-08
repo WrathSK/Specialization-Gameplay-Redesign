@@ -118,7 +118,7 @@ class CurrentPanelTests(unittest.TestCase):
                            'InheritRecordButton', 'InheritReadButton', 'BackgroundRoutesButton',
                            'DiscountsButton',
                            'DPReadButton','CompletenessButton','DP03Button','TemplatesButton',
-                           'DP05Button','UnitReadButton','CopyButton'):
+                           'DP05Button','CopyButton'):
             with self.subTest(retired=control_id):
                 self.assertTrue(lua.globals().Controls[control_id].hidden)
 
@@ -279,17 +279,17 @@ class CurrentPanelTests(unittest.TestCase):
             ('CompletenessButton', 1, 'COMPLETENESS_READ'),
             ('CompletenessButton', 2, 'RESEARCH_INFRA_DETAIL'),
             ('TemplatesButton', 1, 'STANDARDIZATION_READ'),
-            ('UnitReadButton', 2, 'CITY_SEQUENCE_BEGIN'),
+            ('InheritReadButton', 1, 'PROGRESSION_STORE_READ'),
         )
         for control_id, event, expected in pairs:
             with self.subTest(control=control_id, event=event):
                 lua.globals().Controls[control_id].callbacks[event]()
                 request = lua.globals().requests[len(lua.globals().requests)]
                 self.assertEqual(request.Action, expected)
-                self.assertEqual(request.UnitID if control_id == 'UnitReadButton' else request.CityID,
-                                 17 if control_id == 'UnitReadButton' else 11)
+                self.assertEqual(request.CityID, 11)
         lua.execute('local n=#requests;Controls.CopyButton.callbacks[Mouse.eLClick]();assert(#requests==n);assert(Controls.Status.text:find("Lua.log"))')
-        self.assertIsNone(lua.globals().Controls.UnitReadButton.callbacks[1])
+        self.assertIsNone(lua.globals().Controls.UnitReadButton)
+        self.assertIsNone(lua.globals().Controls.InheritReadButton.callbacks[2])
 
     def test_visibility_cleanup_does_not_execute_probe_or_change_runtime_state(self):
         _, lua = panel_runtime()

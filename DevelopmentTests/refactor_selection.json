@@ -2,6 +2,15 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7tCitySequenceObserverRetirement": [
+      "test_o7_city_sequence_observer_retirement",
+      "test_refactor_s9c2.Startup",
+      "test_pu07_source_attribution.NormalSource",
+      "test_o7_unit_site_retirement.UnitSiteRetirement.test_p0_right_click_still_reaches_actual_city_sequence_for_unit_and_city",
+      "test_b121_timed_project.Timer.test_actual_dispatch",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_unique_xml_control_ids_and_current_lua_parse",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7sCompletionEventObserverRetirement": [
       "test_o7_completion_event_observer_retirement",
       "test_pu07_source_attribution.NormalSource",
@@ -2759,7 +2768,6 @@
     "Mod/CityJournalProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/CityProgressionStore.lua|MEASURED_MISSING_EVENT": 2,
     "Mod/CityProgressionStore.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
-    "Mod/CitySequenceProbe.lua|MEASURED_MISSING_EVENT": 1,
     "Mod/Commerce.lua|MEASURED_MISSING_EVENT": 6,
     "Mod/CompletionRecordProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/CopyYields.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1,

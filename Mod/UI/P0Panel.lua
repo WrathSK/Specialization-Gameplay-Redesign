@@ -168,14 +168,9 @@ request=function(action,advance)
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
-  local storageAction=action=='EVENT_ORDER_TOGGLE' or action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="CITY_SEQUENCE_READ" or action=="CITY_SEQUENCE_BEGIN" or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
+  local storageAction=action=='EVENT_ORDER_TOGGLE' or action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="SHADOW_READ" or action=="INHERIT_READ" or action=="STORAGE_READ" or action=="STORAGE_WRITE" or action=="ENVELOPE_READ" or action=="ENVELOPE_NEXT"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
-  if action=='CITY_SEQUENCE_BEGIN' then
-    local u=UI.GetHeadSelectedUnit()
-    if u and u:GetOwner()==playerID then investmentUnitID=u:GetID()
-    else city=UI.GetHeadSelectedCity();if not city or city:GetOwner()~=playerID then status('先选中己方移民或城市。');return end end
-  end
   if action=="INVEST_PREPARE" then
     local unit=UI.GetHeadSelectedUnit()
     if not unit or unit:GetOwner()~=playerID then trace("Select an owned Settler at a city center.");return end
@@ -186,7 +181,7 @@ request=function(action,advance)
     city=Players[playerID]:GetCities():FindID(preview.cityID);investmentPlanToken=preview.token
   end
   if not storageAction and (not city or city:GetOwner()~=playerID) then trace("Select an owned test city.");return end
-  if advance and pageAction==action and ((action=="CITY_SEQUENCE_READ") or (city and pageCity==city:GetID())) then page=page%512+1 else page=1 end
+  if advance and pageAction==action and city and pageCity==city:GetID() then page=page%512+1 else page=1 end
   pageAction=action;pageCity=city and city:GetID();localReport=nil
   if action=="ADJACENCY" or action=="TRADE" then
     pendingToken=nil
@@ -362,7 +357,6 @@ local function initialize()
   Controls.DiscountsButton:SetHide(true)
   Controls.TemplatesButtonCaption:SetText(Locale.Lookup('LOC_SPC_INDUSTRY_HISTORY_BUTTON'))
   Controls.TemplatesButton:SetToolTipString(Locale.Lookup('LOC_SPC_INDUSTRY_HISTORY_HINT')..'\n左键同时查看工程传统研习L/E与巨构工程学；右键：工业标准化，再次右键翻页。')
-  Controls.UnitReadButtonCaption:SetText('城市事件观察')
   Controls.CopyButtonCaption:SetText('写入诊断日志')
   Controls.CopyButton:SetToolTipString('写入诊断日志')
   showRoot();Controls.Window:SetHide(true)
@@ -460,12 +454,11 @@ local function initialize()
   Controls.InheritRecordButton:RegisterCallback(Mouse.eLClick,function() request("IDENTITY_RECORD") end)
   Controls.InheritRecordButton:RegisterCallback(Mouse.eRClick,function() request("PROGRESSION_IMPORT") end)
   Controls.InheritReadButton:RegisterCallback(Mouse.eLClick,function() request("PROGRESSION_STORE_READ") end)
-  Controls.InheritReadButton:RegisterCallback(Mouse.eRClick,function() request('CITY_SEQUENCE_READ',true) end)
   Controls.InheritRecordButtonCaption:SetText('旧记录核对')
   Controls.InheritRecordButton:SetHide(true) -- retired migration UI; Gameplay rejects import too
   Controls.InheritReadButtonCaption:SetText('E2往返')
   Controls.InheritRecordButton:SetToolTipString('历史诊断入口已隐藏；本版本不提供旧档迁移。')
-  Controls.InheritReadButton:SetToolTipString('左键：读取选中城市的专业、潜力和投资；新城自动登记，无需迁移。右键：事件证据，只读/翻页。')
+  Controls.InheritReadButton:SetToolTipString('左键：读取选中城市的专业、潜力和投资；新城自动登记，无需迁移。')
   Controls.SourceYieldButton:RegisterCallback(Mouse.eLClick,function() request("PROGRESSION_READ") end)
   Controls.Lv2GPPButton:RegisterCallback(Mouse.eLClick,function() request("LV2_GPP_READ") end)
   Controls.Lv2HousingButton:RegisterCallback(Mouse.eLClick,function() request("LV2_HOUSING_READ") end)
@@ -544,8 +537,6 @@ local function initialize()
   Controls.MarkButton:RegisterCallback(Mouse.eLClick,function() request("MARK_CITY") end)
   Controls.CopyButton:RegisterCallback(Mouse.eLClick,function() copy(false) end)
   Controls.BaselineButton:RegisterCallback(Mouse.eLClick,function() copy(true) end)
-  Controls.UnitReadButton:RegisterCallback(Mouse.eRClick,function() request('CITY_SEQUENCE_BEGIN') end)
-  Controls.UnitReadButton:SetToolTipString('右键：旧城市事件观察，仅供排障（替换会话观察，不建专业记录）。')
   status(Locale.Lookup('LOC_SPC_EXPEDITION_GATE_PANEL_HINT'))
 end
 local oldInitialize=initialize

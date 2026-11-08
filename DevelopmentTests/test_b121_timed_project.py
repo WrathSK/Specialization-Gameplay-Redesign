@@ -82,8 +82,12 @@ class Timer(unittest.TestCase):
  def test_cancel_scoped(self):
   self.runlua("ui.Begin();shared.TimedProject.Request(0,{Action='TIMED_PROJECT_CANCEL',CityID=11,Token=packets[1].Token})");self.assertEqual(self.state(),'ACTIVE');self.runlua('ui.Cancel()');self.cycle();self.assertEqual(self.get('writes'),0)
  def test_actual_dispatch(self):
-  code=(ROOT/'Mod/Gameplay.lua').read_text().split("  if params.Action=='CITY_SEQUENCE_BEGIN'")[0]
+  gameplay_source=(ROOT/'Mod/Gameplay.lua').read_text()
+  marker="  -- B068 presentation is a disposable mirror"
+  self.assertEqual(gameplay_source.count(marker),1)
+  code=gameplay_source.split(marker,1)[0]
   self.runlua('include=function()end;SPCP0=P;SPCPerformance={New=function()return {}end};P.Scalar=tostring')
+  self.runlua((ROOT/'Mod/RuntimeComposition.lua').read_text())
   fn=self.lua.execute(code+'\nend\nreturn request');self.runlua('shared=ExposedMembers.SPC_P0;SPCTimedProject.Start(P,shared)')
   fn(0,self.lua.table_from(dict(Action='TIMED_PROJECT_BEGIN',Token='actual',CityID=10,StartTurn=20)));self.assertEqual(self.state(),'ACTIVE')
  def test_actual_buttons(self):

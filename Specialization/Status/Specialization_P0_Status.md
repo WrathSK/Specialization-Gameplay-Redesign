@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0988
-Implementation Build: source B461.488 / modinfo488. Live B461.488 from f24b000. Stable/main B307.334.
+Status Revision: S0989
+Implementation Build: source B462.489 / modinfo489. Live B461.488 from f24b000. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CITY_SEQUENCE_OBSERVER_RETIREMENT_REVIEWED
+Work State: CITY_SEQUENCE_OBSERVER_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the opt-in city sequence observer — S0989
+
+The Owner approved the exact retirement reviewed in S0988. Remove `Mod/CitySequenceProbe.lua`, its two manifest entries and startup, BEGIN/READ dispatcher, the hidden city trace control and label, the second trace-only right click, and the unused trace request and tooltip code. Recover the Lua from `f24b000847377e90bb856fb4483ed88ee15297b1:Mod/CitySequenceProbe.lua` at SHA256 `4578c1bcfb1005d82d42a72c4adf1b1512660cbf8d4bd5c4eca591d95e2431fb`. The progression Store left click and the separate event-order switch retain their paths.
+
+- **Runtime Impact Contract (L3, T01/T04/T08).** The old opt-in trace stored bounded session-only scalar observations. Ten modeled trace registrations and its two hidden actions retire. The existing load and publication owners remain active. No new event, writer, retry, timer or persisted field is introduced.
+- **LOCAL_SIMULATION_PASS in scope.** All 25 selected methods pass. The real Store and Claim fixture matches founding, first Campus, persisted writes and peer Claim outcomes with the old trace armed and with it absent. Three identical nonempty route packets and the same Store report are delivered. P0 keeps the other controls and progression, Store and separate event-order requests. Exact disposable activation and restoration pass. The 49 completion observer and 64 half-point regression checks pass. Frozen B461 keeps the previous site-retirement and observer assertions against the correct source, and the current timed-project dispatch fixture reads the new exact dispatcher boundary.
+- **STATIC_CONFIRMED and reproduction.** 213 Lua 5.1 compiles, 32 XML-family parses, 676 file references and 10 replacements across 342 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7tCitySequenceObserverRetirement` with CPython 3.14/Lupa 2.8, the official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7sCompletionEventObserverRetirement and O7rHalfYieldExperimentRetirement. Tested source SHA256 `5b1c262baf193e32ecd5c71b13fbb78a4f269b0fecc11ff5a67960ca93580c2a`, package SHA256 `c01118768251c67bfda92a7019767baa50aa51a91b814f0fb6b621b961530471`. Local closure `local/refactor/B462-O7tCitySequenceObserverRetirement-r2/closure.json` SHA256 `9c86379851037f1e8aff12e979473bf438c7ec14b4dc25922c0ef9c11e536d4f`. The two unrelated legacy layout assertions identified in S0977 still fail against the B461 and B462 panel fixtures. The paired current P0 check compares the actual controls and requests. Native behavior remains unmeasured in this batch.
+
+B461 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B461 deployment verified and opt-in city sequence observer reviewed — S0988
 
