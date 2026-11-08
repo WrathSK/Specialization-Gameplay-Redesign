@@ -2,6 +2,19 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7lNetworkRecoveryRetirement": [
+      "test_o7_network_recovery_retirement",
+      "test_refactor_s4b",
+      "test_network_effect_fact_receipts",
+      "test_refactor_s9d1b.Witness",
+      "test_refactor_s9d1b.WriteBarrier",
+      "test_refactor_s9f4.AtomicRecovery",
+      "test_refactor_s9f4.OriginalAbilityRules",
+      "test_refactor_s9f4.WriteFaults",
+      "test_refactor_s9f4.ProductionClosure.test_real_Development_skipped_loss_and_return_terminates_paid_contract_and_withdraws_target",
+      "test_refactor_s9g4.LifecycleScope.test_old_carrier_stamp_output_unchanged_on_actual_store_through_ordinary_investments",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7kTimedTurnRetirement": [
       "test_o7_timed_turn_retirement",
       "test_environment_assembly.UIBaseSelection",
@@ -2730,8 +2743,7 @@
     "Mod/YieldCarrierProbe.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/NetworkBridge.lua|MEASURED_MISSING_EVENT": 2,
     "Mod/CrewProjects.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
-    "Mod/LegacyCleanup.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
-    "Mod/NetworkRecoveryStore.lua|PROPERTY_PRODUCER_OWNERSHIP": 1
+    "Mod/LegacyCleanup.lua|PROPERTY_PRODUCER_OWNERSHIP": 1
   },
   "static_review_boundary": "S2 reviewed current runtime debt; counts are heuristic alarms, not compliance. New/widened alarms block pending human review; later removal of old debt is allowed.",
   "resolved_counterexamples": {

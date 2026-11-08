@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="480">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="481">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
     <Description>B443.470：恢复专业项目生产面板接入。</Description>
@@ -183,9 +183,6 @@
       <File>StoreSubrecords.lua</File>
       <File>StoreDeferredLifecycle.lua</File>
       <File>StoreLifecycleRecovery.lua</File>
-      <File>NetworkRecoveryModel.lua</File>
-      <File>NetworkRecoveryCell.lua</File>
-      <File>NetworkRecoveryStore.lua</File>
       <File>ResearchTradition.lua</File>
       <File>ResearchTraditionEffects.lua</File>
       <File>CitySequenceProbe.lua</File>
@@ -656,9 +653,6 @@
     <File>StoreSubrecords.lua</File>
     <File>StoreDeferredLifecycle.lua</File>
     <File>StoreLifecycleRecovery.lua</File>
-    <File>NetworkRecoveryModel.lua</File>
-    <File>NetworkRecoveryCell.lua</File>
-    <File>NetworkRecoveryStore.lua</File>
       <File>ResearchTradition.lua</File>
       <File>ResearchTraditionEffects.lua</File>
       <File>CitySequenceProbe.lua</File>

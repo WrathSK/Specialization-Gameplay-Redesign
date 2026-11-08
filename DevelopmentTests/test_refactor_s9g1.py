@@ -1,6 +1,7 @@
 """Bounded derived network framing only; no actual persistence or consumer wiring."""
 import json,unittest
-from refactor_harness import Context,ROOT,measure
+from refactor_harness import measure
+from retired_crew_sources import B453, gameplay, package, source
 from test_refactor_s9f1 import plain
 
 SETUP="""
@@ -22,7 +23,9 @@ function roundtrip(v)local encoded=M.Encode(v);local out=M.Decode(encoded);asser
 function frame(value)return #value..':'..value end
 """
 def context():
- v=Context();v.load('NetworkRecoveryModel');v.execute(SETUP);return v
+ with package(B453) as old:
+  v=gameplay(old,revision=B453);v.load('NetworkRecoveryModel');v.execute(SETUP)
+ return v
 
 class Codec(unittest.TestCase):
  def test_exact_commerce_facts_shape_and_three_provenance_states_roundtrip(self):
@@ -76,8 +79,8 @@ class Codec(unittest.TestCase):
   v=context();v.execute("local w=M.Encode(commerce());for _,b in ipairs({'01:x','-1:x','1.0:x','10000000:x','9999999:'})do assert(not pcall(M.Decode,b))end;local v=w:gsub(frame('SPC_NETWORK_RECOVERY')..frame('1'),frame('SPC_NETWORK_RECOVERY')..frame('2'),1);assert(not pcall(M.Decode,v));v=w:gsub(frame('COMMERCE')..frame('1'),frame('COMMERCE')..frame('01'),1);assert(not pcall(M.Decode,v))")
  def test_only_library_is_packaged_no_production_reader_or_writer_includes_it(self):
   import xml.etree.ElementTree as ET
-  name='NetworkRecoveryModel.lua';tree=ET.parse(ROOT/'Mod/SpecializationP0.modinfo');self.assertEqual([n.text for n in tree.findall('./Files/File')].count(name),1);self.assertIn(name,[n.text for n in tree.findall('./InGameActions/ImportFiles/File')])
+  name='NetworkRecoveryModel.lua';tree=ET.fromstring(source('SpecializationP0.modinfo',B453));self.assertEqual([n.text for n in tree.findall('./Files/File')].count(name),1);self.assertIn(name,[n.text for n in tree.findall('./InGameActions/ImportFiles/File')])
   for p in ('CityProgressionStore.lua','Commerce.lua','CultureNetwork.lua','Gameplay.lua'):
-   self.assertNotIn("include('NetworkRecoveryModel')",(ROOT/'Mod'/p).read_text())
+   self.assertNotIn("include('NetworkRecoveryModel')",source(p,B453))
 
 if __name__=='__main__':unittest.main()

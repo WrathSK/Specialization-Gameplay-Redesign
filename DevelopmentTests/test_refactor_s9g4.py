@@ -6,6 +6,7 @@ from hashlib import sha256
 import subprocess,unittest
 from refactor_harness import ROOT,TrackedLua51,SOURCES,measure
 from test_refactor_s9g2 import fixture as cell
+from test_refactor_s9g3 import prototype_store
 from test_refactor_s8b2 import fixture as store
 
 @contextmanager
@@ -49,15 +50,15 @@ class LifecycleScope(unittest.TestCase):
    outputs.append(v.eval('result'))
   self.assertEqual(outputs[0],outputs[1])
  def test_actual_potential_and_history_revision_changes_keep_same_narrow_scope(self):
-  v=store();v.execute(SCOPE_SETUP+"local start=stamp(ca);assert(type(start)=='string');for i=1,3 do T.invest(ca,78000+i);assert(stamp(ca)==start)end;local n=M.Copy(T.record(ca));n.revision=n.revision+1;assert(saveCandidate(ca,n)and stamp(ca)==start)")
+  v=prototype_store();v.execute(SCOPE_SETUP+"local start=stamp(ca);assert(type(start)=='string');for i=1,3 do T.invest(ca,78000+i);assert(stamp(ca)==start)end;local n=M.Copy(T.record(ca));n.revision=n.revision+1;assert(saveCandidate(ca,n)and stamp(ca)==start)")
   measure('S9g4_actual_store_scope',{'actual_Potential_upgrade':'stable','ordinary_history_revision':'stable','lifecycle_and_identity_fences':'retained','old_carrier_stamp_output':'unchanged'})
  def test_pure_scope_has_no_getter_scan_or_write_in_thousand_calls(self):
-  v=store();v.execute(SCOPE_SETUP+"local r=T.record(ca);local expected=stamp(ca);local w=T.writes();local get=ca.GetProperty;ca.GetProperty=function()error('NATIVE_GETTER_FORBIDDEN')end;local at=CityManager.GetCityAt;CityManager.GetCityAt=function()error('NATIVE_LOOKUP_FORBIDDEN')end;for i=1,1000 do assert(shared.CityProgressionStore.NetworkRecoveryStamp(0,ca:GetID(),ca:GetX(),ca:GetY(),r.base.token)==expected)end;assert(T.writes()==w);ca.GetProperty=get;CityManager.GetCityAt=at")
+  v=prototype_store();v.execute(SCOPE_SETUP+"local r=T.record(ca);local expected=stamp(ca);local w=T.writes();local get=ca.GetProperty;ca.GetProperty=function()error('NATIVE_GETTER_FORBIDDEN')end;local at=CityManager.GetCityAt;CityManager.GetCityAt=function()error('NATIVE_LOOKUP_FORBIDDEN')end;for i=1,1000 do assert(shared.CityProgressionStore.NetworkRecoveryStamp(0,ca:GetID(),ca:GetX(),ca:GetY(),r.base.token)==expected)end;assert(T.writes()==w);ca.GetProperty=get;CityManager.GetCityAt=at")
  def test_confirmed_loss_return_and_wrong_reference_token_invalidate_old_scope(self):
-  v=store();v.execute(SCOPE_SETUP+"local old=stamp(ca);local token=T.record(ca).base.token;local id=ca:GetID();local s=shared.CityProgressionStore;s.RegisterExit('Fixture',function()end);assert(not s.NetworkRecoveryStamp(0,id,ca:GetX(),ca:GetY(),'OTHER'));T.loss(ca,9,900);assert(not s.NetworkRecoveryStamp(0,id,ca:GetX(),ca:GetY(),token));ca.s.ref.owner=0;ca.s.ref.cityID=id;Events.CityTransfered.Fire(0,id,9);assert(stamp(ca)and stamp(ca)~=old)")
+  v=prototype_store();v.execute(SCOPE_SETUP+"local old=stamp(ca);local token=T.record(ca).base.token;local id=ca:GetID();local s=shared.CityProgressionStore;s.RegisterExit('Fixture',function()end);assert(not s.NetworkRecoveryStamp(0,id,ca:GetX(),ca:GetY(),'OTHER'));T.loss(ca,9,900);assert(not s.NetworkRecoveryStamp(0,id,ca:GetX(),ca:GetY(),token));ca.s.ref.owner=0;ca.s.ref.cityID=id;Events.CityTransfered.Fire(0,id,9);assert(stamp(ca)and stamp(ca)~=old)")
  def test_begin_real_restructuring_invalidates_even_before_native_reference_changes(self):
-  v=store();v.execute(SCOPE_SETUP+"T.invest(ca,79001);local old=stamp(ca);local native=ca:GetProperty(M.Keys.TOKEN);local team={owner=0,id=777,uid='TEAM:777'};shared.CityProgressionStore.BeginRestructuring(0,ca,team,'NREC_SCOPE');assert(stamp(ca)and stamp(ca)~=old and ca:GetProperty(M.Keys.TOKEN)==native)")
+  v=prototype_store();v.execute(SCOPE_SETUP+"T.invest(ca,79001);local old=stamp(ca);local native=ca:GetProperty(M.Keys.TOKEN);local team={owner=0,id=777,uid='TEAM:777'};shared.CityProgressionStore.BeginRestructuring(0,ca,team,'NREC_SCOPE');assert(stamp(ca)and stamp(ca)~=old and ca:GetProperty(M.Keys.TOKEN)==native)")
  def test_new_scope_is_unavailable_during_actual_permanent_commit(self):
-  v=store();v.execute(SCOPE_SETUP+"local r=T.record(ca);local put=Game.SetProperty;local seen=false;Game.SetProperty=function(o,key,value)if key==T.key(ca)then seen=true;assert(not shared.CityProgressionStore.NetworkRecoveryStamp(0,ca:GetID(),ca:GetX(),ca:GetY(),r.base.token))end;return put(o,key,value)end;local n=M.Copy(r);n.revision=n.revision+1;assert(saveCandidate(ca,n)and seen and stamp(ca))")
+  v=prototype_store();v.execute(SCOPE_SETUP+"local r=T.record(ca);local put=Game.SetProperty;local seen=false;Game.SetProperty=function(o,key,value)if key==T.key(ca)then seen=true;assert(not shared.CityProgressionStore.NetworkRecoveryStamp(0,ca:GetID(),ca:GetX(),ca:GetY(),r.base.token))end;return put(o,key,value)end;local n=M.Copy(r);n.revision=n.revision+1;assert(saveCandidate(ca,n)and seen and stamp(ca))")
 
 if __name__=='__main__':unittest.main()

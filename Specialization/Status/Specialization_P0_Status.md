@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0972
-Implementation Build: source B453.480 / modinfo480. Live B453.480 from 62d8979. Stable/main B307.334.
+Status Revision: S0973
+Implementation Build: source B454.481 / modinfo481. Live B453.480 from 62d8979. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_RECOVERY_RETIREMENT_REVIEWED
+Work State: NETWORK_RECOVERY_PROTOTYPE_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the unused network save prototype — S0973
+
+The Owner approved the exact P3-23 removal. The codec, cell and storage adapter leave the package along with their six declarations and two private-purpose `NetworkRecoveryStamp` functions. City progress, the live `CarrierReferenceStamp` and the separate deferred lifecycle service continue through their existing owners. The prior prototype sources are recoverable at `62d89798af67ee37b38027d6b0cfc8ef258c9a5f`.
+
+- **Runtime Impact Contract (L3, T01/T04/T06/T08).** The retired prototype was import-only. Normal startup and proof exercise the same Gameplay and UI loads. Actual network facts, source witnesses, transaction gates, cold reconciliation and permanent Store recovery use their current paths. A sample opaque prototype key survives without read or write. The removal creates no new dependency, listener, scan, retry or migration.
+- **LOCAL_SIMULATION_PASS in scope.** All 88 methods pass with the installed-path projection. The real nonempty sender/Bridge exercise has three identical normalized packets, preserves stale-ACK rejection and confirms a same-content signal change and a later route change. The active Carrier reference regression and deferred lifecycle/paid-contract tests pass. Both deployment tools reject wrong removal lists and restore the complete B453 package in disposable fixtures. The separately scoped S9g1–4 replays pass at 20/44/63/75 methods using published prototype inputs. Current Store reference behavior retains its live regression. The previous 42-method ActionPanel stage also passes. Its exact old package comparison is pinned to B452 and B453, and its Gameplay check runs against B454. S0972 records the older inherited suite failures.
+- **STATIC_CONFIRMED and reproduction.** 222 Lua 5.1 compiles, 32 XML-family parses, 694 file and 10 replacement references across 351 files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7lNetworkRecoveryRetirement` with CPython 3.14/Lupa 2.8. Replay S9g1, S9g2, S9g3 and S9g4 individually. Tested source SHA256 `8bfbce08b25bfeb397e3a46b79110b87c9de06febb610df84127029ea660f312`, package SHA256 `8445b8476c315c7a814f9ff05915310fca241f78c2fddd8ea131a699b8284f7e`. Local closure `local/refactor/B454-O7lNetworkRecoveryRetirement-verified/closure.json` at SHA256 `874670a278f2277c1248471f8851704d3967e727e1e1f4a2eabab7c290bd80ab`. The historical stage closures are in `local/refactor/B454-O7lNetworkRecoveryRetirement-verified/history/`.
+
+B453 remains installed at this source checkpoint. The actual package switch and the separate positive Culture Network cold restore each retain their own evidence boundary.
 
 ### Review the unused network save prototype for retirement — S0972
 

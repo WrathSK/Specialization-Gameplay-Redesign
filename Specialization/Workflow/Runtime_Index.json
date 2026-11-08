@@ -101,9 +101,9 @@
       "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "cb5c8d4953aaa2209f80517bbc8fa05575d8080c883a262552edc83772c7faa4",
+      "sha256": "3f32b49e7d461c1baaa8556e3d0b3453b16afd01032f3c68f05cb72d25976f6f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0928 verifies scoped Restructuring synchronization, selected-city completion reporting and the approved Owner communication update."
+      "provenance": "S0973 B454 exact import-only network recovery prototype retirement."
     },
     "Mod/CitySequenceProbe.lua": {
       "sha256": "4578c1bcfb1005d82d42a72c4adf1b1512660cbf8d4bd5c4eca591d95e2431fb",
@@ -776,9 +776,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "cf0f70b9d65a2bb450b190be4d63003db4b520aa67c3ab35b3f9d6f529015920",
+      "sha256": "d3face475c759dcb9795bbdee9936b5d5b7a1c191ad07ebeb2cd0f4a6e9739b0",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0969 B453 exact empty-production experiment retirement."
+      "provenance": "S0973 B454 exact import-only network recovery prototype retirement."
     },
     "Mod/ProjectTurnObservation.lua": {
       "sha256": "4eb2a0a0c08ac614857a9158ceabab4143c2cfb18440c20d0207127406a36b34",
@@ -916,9 +916,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "4824a8c7c99a25fd2eb70b04bba0ad88dfa0a6d5b7eab116a22257d8be2e9b80",
+      "sha256": "401fa5b713867871bdf6a711a68228f68f3c99ca0b857466aa69b0f25af29bdb",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0969 B453 exact empty-production experiment retirement."
+      "provenance": "S0973 B454 exact import-only network recovery prototype retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1655,21 +1655,6 @@
       "review_source": "Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md",
       "provenance": "B385.412 Prove fixed lifecycle delegates and independent reputation scope; local/static evidence only; no deployment/native PASS."
     },
-    "Mod/NetworkRecoveryModel.lua": {
-      "sha256": "90931c3ba0434f3c1ecd7c68ff396355660dbb3bc84af84d546ba6009ec251f0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md",
-      "provenance": "B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope; local/static evidence only; no deployment/native PASS."
-    },
-    "Mod/NetworkRecoveryCell.lua": {
-      "sha256": "dadd05d415e39d9aaa53e49d378fbcd90fb08ab8bca167fc4ff29ffc0174a569",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md",
-      "provenance": "B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope; local/static evidence only; no deployment/native PASS."
-    },
-    "Mod/NetworkRecoveryStore.lua": {
-      "sha256": "b10a2b98d693f9c7f7ecfa7dc269e843cd1c9da114b4e4a107fbee6f6defd778",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B391_Refactor_S9g4.md",
-      "provenance": "B391.418 Represent mixed per-domain source facts and declare pure derived lifecycle scope; local/static evidence only; no deployment/native PASS."
-    },
     "Mod/IdentityEqual.lua": {
       "sha256": "ebe8c7ff6c39c59a9fd1507a20ed1fb43e34080cf92bdfd95aa10e306e7efac2",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
@@ -1776,7 +1761,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0970 verifies B453 deployment, the exact retired pair and both recovery packages.",
-  "source_runtime": "B453.480 / modinfo480 deployed from 62d8979 with the two B116 experiment files removed.",
-  "tested_source_snapshot_sha256": "9031bacf4fead6221bfa99ef2f6b714a53aad1ad9e13753b44b989a12a035a5c"
+  "source_review": "S0973 verifies the exact network prototype removal, live Store and route behavior, and historical replay.",
+  "source_runtime": "B454.481 / modinfo481 local candidate, 351 files. B453.480 remains installed.",
+  "tested_source_snapshot_sha256": "8bfbce08b25bfeb397e3a46b79110b87c9de06febb610df84127029ea660f312"
 }

@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0972",
-    "runtime": "B453.480 / modinfo480",
+    "status": "S0973",
+    "runtime": "B454.481 / modinfo481",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Review the exact unused network save prototype removal and preserve historical regression access.",
+  "goal": "Verify exact unused network prototype retirement and preserve current Store, route and historical evidence.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the unused network save prototype — S0973",
+      "reason": "Approved exact removal and current regression/rollback result"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -264,6 +270,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B454 passes 88 selected methods plus all four pinned historical stages. Both local deployment recovery paths restore the exact outgoing package.",
     "B453 network recovery retirement projection passes 84 targeted methods before and after plus exact stable and temporary package rollback.",
     "B453 end-turn interaction passed in both the official and HD profiles. Both native loads and T7 to T8 transitions were observed.",
     "B453 installed 354/354 MATCH. B452 and B307 recovery verified. The HD end-turn check is pending.",
@@ -1299,6 +1306,42 @@
       "evidence": "local/refactor/B453-NetworkRecoveryRetirementReview/summary.json",
       "evidence_sha256": "f783054e640c62dbd682dd2f89f8353233501bf4b89bf402a731b0b1e4282c01",
       "report": "Specialization/Status/Specialization_P0_Status.md#review-the-unused-network-save-prototype-for-retirement--s0972"
+    },
+    "b454_network_recovery_retirement": {
+      "build": "B454.481 / modinfo481",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": 88,
+      "history": {
+        "S9g1": {
+          "tests": 20,
+          "sha256": "23b07f906b5837fb1ebdeb99413bdbdf35349b63b9c98858e282cb5ee6e95373"
+        },
+        "S9g2": {
+          "tests": 44,
+          "sha256": "ba44d7f21551d2e2c85ea1e3901f12edc14de65f949b760e5da9955831c1e5ef"
+        },
+        "S9g3": {
+          "tests": 63,
+          "sha256": "369815479911766b6dad460ca9db180fea99d7d431e03e5bbaaea847041e3d04"
+        },
+        "S9g4": {
+          "tests": 75,
+          "sha256": "13fe92c4f82437b9a7139e6040a873351b01d5ce7afb8208dc37b7944af51268"
+        }
+      },
+      "files": 351,
+      "removed": {
+        "Mod/NetworkRecoveryCell.lua": "dadd05d415e39d9aaa53e49d378fbcd90fb08ab8bca167fc4ff29ffc0174a569",
+        "Mod/NetworkRecoveryModel.lua": "90931c3ba0434f3c1ecd7c68ff396355660dbb3bc84af84d546ba6009ec251f0",
+        "Mod/NetworkRecoveryStore.lua": "b10a2b98d693f9c7f7ecfa7dc269e843cd1c9da114b4e4a107fbee6f6defd778"
+      },
+      "prior_source": "62d89798af67ee37b38027d6b0cfc8ef258c9a5f",
+      "source_snapshot_sha256": "8bfbce08b25bfeb397e3a46b79110b87c9de06febb610df84127029ea660f312",
+      "package_sha256": "8445b8476c315c7a814f9ff05915310fca241f78c2fddd8ea131a699b8284f7e",
+      "local_evidence": "local/refactor/B454-O7lNetworkRecoveryRetirement-verified/closure.json",
+      "local_evidence_sha256": "874670a278f2277c1248471f8851704d3967e727e1e1f4a2eabab7c290bd80ab",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-unused-network-save-prototype--s0973"
     }
   }
 }

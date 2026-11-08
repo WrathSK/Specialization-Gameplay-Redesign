@@ -1,8 +1,10 @@
 """Actual Store/Probe wrapper with explicit derived-slot adapter; no consumer wiring."""
-from contextlib import contextmanager
+from pathlib import Path
+import subprocess
 from unittest.mock import patch
 import unittest
-from refactor_harness import ROOT,Context,legacy_source_observation,measure
+from refactor_harness import ROOT,measure
+from retired_crew_sources import B453, package, source
 from test_refactor_s8b2 import fixture as store_fixture
 from test_refactor_s5b import probe
 
@@ -24,9 +26,18 @@ end
 function baseBytes()local v={};for k,r in pairs(T.props())do if k~=nativeKey and not k:find('SPC_DERIVED_NETWORK_RECOVERY_V1_',1,true)then v[k]=r end end;return T.encode(v)end
 function meta()return Game:GetProperty(nativeKey)end
 """
+def prototype_store():
+ path=ROOT/'Mod/CityProgressionStore.lua'
+ historical=source('CityProgressionStore.lua',B453)
+ read=Path.read_text
+ with patch.object(Path,'read_text',lambda p,*a,**kw:historical if p==path else read(p,*a,**kw)):
+  return store_fixture()
+
+
 def fixture():
- v=store_fixture()
- with legacy_source_observation():v.globals().include('NetworkRecoveryStore')
+ v=prototype_store()
+ for name in ('NetworkRecoveryModel.lua','NetworkRecoveryCell.lua','NetworkRecoveryStore.lua'):
+  v.execute(source(name,B453))
  v.execute('ca,cb=a,b')
  # The old strict native double only accepts permanent Store/index keys. Extend
  # this fixture to exactly the four new family/city keys;other writes still fail.
@@ -100,13 +111,15 @@ class NativeFaults(unittest.TestCase):
  def test_unreviewed_new_writer_still_blocks_real_static_gate_until_explicit_review(self):
   import json,copy
   from refactor_static import check
-  selection=json.loads((ROOT/'DevelopmentTests/refactor_selection.json').read_text());key='Mod/NetworkRecoveryStore.lua|PROPERTY_PRODUCER_OWNERSHIP'
+  selection=json.loads(subprocess.check_output(['git','show',B453+':DevelopmentTests/refactor_selection.json'],cwd=ROOT))
+  key='Mod/NetworkRecoveryStore.lua|PROPERTY_PRODUCER_OWNERSHIP'
   unreviewed=copy.deepcopy(selection);unreviewed['static_alarm_baseline'].pop(key)
-  result=check(unreviewed);self.assertEqual(result['widened'][key],{'before':0,'after':1});self.assertEqual(result['status'],'FAIL_NEW_OR_WIDENED_ALARM')
-  self.assertEqual(check(selection)['widened'],{})
+  with package(B453) as old:
+   result=check(unreviewed,root=old);self.assertEqual(result['widened'][key],{'before':0,'after':1});self.assertEqual(result['status'],'FAIL_NEW_OR_WIDENED_ALARM')
+   self.assertEqual(check(selection,root=old)['widened'],{})
  def test_production_import_only_and_no_generic_setter_bypass(self):
-  text=(ROOT/'Mod/NetworkRecoveryStore.lua').read_text();self.assertIn('P.SetProperty(Game,key,value)',text);self.assertNotIn('Game:SetProperty',text)
+  text=source('NetworkRecoveryStore.lua',B453);self.assertIn('P.SetProperty(Game,key,value)',text);self.assertNotIn('Game:SetProperty',text)
   for p in ('CityProgressionStore.lua','Commerce.lua','CultureNetwork.lua','Gameplay.lua'):
-   self.assertNotIn("include('NetworkRecoveryStore')",(ROOT/'Mod'/p).read_text())
+   self.assertNotIn("include('NetworkRecoveryStore')",source(p,B453))
 
 if __name__=='__main__':unittest.main()

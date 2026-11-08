@@ -2,8 +2,8 @@
 import unittest
 import xml.etree.ElementTree as ET
 
-from refactor_harness import PackageVFS, ROOT
-from retired_crew_sources import B452, package as historical_package
+from refactor_harness import PackageVFS
+from retired_crew_sources import B452, B453, package as historical_package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_pu11_package_absence import root as gameplay_root
 
@@ -12,7 +12,7 @@ REMOVED = ('TimedProductionProbe.lua', 'UI/TimedTurnProbe.lua')
 
 class TimedTurnRetirement(unittest.TestCase):
     def test_exact_manifest_change_leaves_native_action_panel_selection(self):
-        with historical_package(B452) as before:
+        with historical_package(B452) as before, historical_package(B453) as after:
             manifest = before/'Mod/SpecializationP0.modinfo'
             doc = ET.parse(manifest)
             self.assertEqual(doc.getroot().get('version'), '479')
@@ -28,9 +28,9 @@ class TimedTurnRetirement(unittest.TestCase):
                 for node in nodes:
                     section.remove(node)
             doc.getroot().set('version', '480')
-            current = ET.parse(ROOT/'Mod/SpecializationP0.modinfo')
+            retired = ET.parse(after/'Mod/SpecializationP0.modinfo')
             self.assertEqual(ET.canonicalize(ET.tostring(doc.getroot()), strip_text=True),
-                             ET.canonicalize(ET.tostring(current.getroot()), strip_text=True))
+                             ET.canonicalize(ET.tostring(retired.getroot()), strip_text=True))
 
     def test_real_gameplay_starts_project_paths_and_ignores_old_commands(self):
         profile = PackageVFS()
@@ -54,5 +54,5 @@ class TimedTurnRetirement(unittest.TestCase):
         self.assertEqual(dict(game.globals().properties.items()), properties)
 
     def test_whole_package_rollback_restores_both_removed_files(self):
-        with historical_package(B452) as before:
-            verify_package_round_trip(self, before/'Mod', ROOT/'Mod', REMOVED, 'UI/ProjectTurnRead.lua')
+        with historical_package(B452) as before, historical_package(B453) as after:
+            verify_package_round_trip(self, before/'Mod', after/'Mod', REMOVED, 'UI/ProjectTurnRead.lua')

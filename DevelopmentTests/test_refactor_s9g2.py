@@ -1,6 +1,7 @@
 """Callback-only cell ordering before native slot/consumer wiring."""
 import unittest
-from refactor_harness import ROOT,Context,measure
+from refactor_harness import measure
+from retired_crew_sources import B453, gameplay, package, source
 from test_refactor_s9g1 import SETUP,Codec
 
 SETUP_CELL="""
@@ -22,7 +23,9 @@ function seed()
 end
 """
 def fixture():
- v=Context();v.load('NetworkRecoveryModel');v.load('NetworkRecoveryCell');v.execute(SETUP+SETUP_CELL);return v
+ with package(B453) as old:
+  v=gameplay(old,revision=B453);v.load('NetworkRecoveryModel');v.load('NetworkRecoveryCell');v.execute(SETUP+SETUP_CELL)
+ return v
 
 class Ordering(unittest.TestCase):
  def test_new_cell_invalidates_without_candidate_facts_before_one_verified_applied_publish(self):
@@ -85,9 +88,9 @@ class FailureDirections(unittest.TestCase):
   v=fixture();v.execute("local old=seed();local w=writeCalls;assert(not d.Begin(fresh(20,2),function()raw='A'..M.Encode(fresh(99,2));return true end));assert(writeCalls==w and raw=='A'..M.Encode(fresh(99,2)))")
  def test_actual_production_has_no_cell_inclusion_and_unchanged_permanent_Copy(self):
   import xml.etree.ElementTree as ET
-  tree=ET.parse(ROOT/'Mod/SpecializationP0.modinfo');name='NetworkRecoveryCell.lua';self.assertEqual([n.text for n in tree.findall('./Files/File')].count(name),1)
+  tree=ET.fromstring(source('SpecializationP0.modinfo',B453));name='NetworkRecoveryCell.lua';self.assertEqual([n.text for n in tree.findall('./Files/File')].count(name),1)
   for p in ('CityProgressionStore.lua','Commerce.lua','CultureNetwork.lua','Gameplay.lua'):
-   self.assertNotIn("include('NetworkRecoveryCell')",(ROOT/'Mod'/p).read_text())
-  text=(ROOT/'Mod/CityIdentityRead.lua').read_text();self.assertIn('8192',text);self.assertIn('65536',text)
+   self.assertNotIn("include('NetworkRecoveryCell')",source(p,B453))
+  text=source('CityIdentityRead.lua',B453);self.assertIn('8192',text);self.assertIn('65536',text)
 
 if __name__=='__main__':unittest.main()
