@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1024 verifies the Industrial diagnostic uses the published network view. B476 remains installed.",
+  "source_review": "S1025 records both live Bridge turn responsibilities under controlled comparison. The B480 runtime remains unchanged and ready for scoped retirement review.",
   "source_runtime": "B480.507 / modinfo507 local candidate, 337 files. B476.503 remains installed.",
   "tested_source_snapshot_sha256": "f14506b6a51ebeec5ff634b58811fe0f859642d648909fb16026c245fbc724cb"
 }

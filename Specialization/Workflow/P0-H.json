@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1024",
+    "status": "S1025",
     "runtime": "B480.507 / modinfo507",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Make the legacy Industrial report read current proof and exact references without starting network work.",
+  "goal": "Preserve and audit the actual network recovery duties before retiring old turn work.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Review network turn recovery before retiring old callbacks — S1025",
+      "reason": "Scoped external review entry and actual turn recovery comparisons"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -576,6 +582,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1025 passes 50 local checks. Removing only the Bridge turn invocation leaves silent role readiness and a failed confirmed withdrawal unhandled in controlled comparisons.",
     "B480 passes 133 scoped Lua 5.1 checks. The old Industrial diagnostic uses the published route view without a network refresh.",
     "B479 passes 130 scoped Lua 5.1 checks. Pure warm proof wait projects applied Commercialization without effect reads. Prepublication quote rejection and proven changes remain covered.",
     "B478 passes 104 scoped Lua 5.1 checks. The two passive audits are idle for pure warm route status. Same-value proof, true loss and retained delivery remain covered.",
@@ -4108,6 +4115,51 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#use-published-network-proof-for-the-old-industrial-copy-report--s1024"
+    },
+    "network_recovery_retirement_review": {
+      "build": "B480.507 / modinfo507",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "baseline": "7e86f5932a62ea4f0f39f024be508beb2f1169c9",
+      "tests": 50,
+      "source_snapshot_sha256": "157b369cb53c234425f828d1f10078b4373d9dbe90d2b701c2a69f251bc47364",
+      "package_sha256": "27451da3473e6c561efde54851385b673ec5abf7fd481a20de12409384d53b81",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "bridge_turn_readiness_boundary": {
+          "current": {
+            "culture": 1,
+            "trade_ready": true,
+            "proof_changed": true
+          },
+          "turn_suppressed": {
+            "culture": 0,
+            "trade_ready": false,
+            "proof_changed": false
+          }
+        },
+        "bridge_turn_negative_boundary": {
+          "current": {
+            "trade_ready": false,
+            "negative_held": false,
+            "gold": 6
+          },
+          "turn_suppressed": {
+            "trade_ready": false,
+            "negative_held": true,
+            "gold": 15
+          }
+        }
+      },
+      "evidence": {
+        "local/refactor/S1025-NNetworkRecoveryBoundary/closure.json": "02ce6712e6b0a9c6dcc066b052f166703d8e5e4534dbb77ac4a33931370715e2",
+        "local/refactor/S1025-NNetworkRecoveryBoundary/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/S1025-NNetworkRecoveryBoundary/closure.stderr.log": "40e43788ea19d260f85712ed9cba79b896edec3b558ff00e3ec7e5c386b397da"
+      },
+      "native": "NOT_MEASURED",
+      "gate": "SCOPED_REVIEW_AND_OWNER_RETIREMENT_APPROVAL",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#review-network-turn-recovery-before-retiring-old-callbacks--s1025"
     }
   }
 }

@@ -2,6 +2,17 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "NNetworkRecoveryBoundary": [
+      "test_network_turn_recovery_boundary",
+      "test_refactor_s5c2.Negative",
+      "test_refactor_s5c2.Busy.test_many_busy_refreshes_merge_once_then_thousand_idle_do_nothing",
+      "test_network_effect_fact_receipts.CultureColdRestoration",
+      "test_network_effect_fact_receipts.PendingProofFanout",
+      "test_refactor_s4b.CommercePendingNotice",
+      "test_b397_network_transport.SignalCatchUp",
+      "test_b397_network_transport.LifecycleRecovery",
+      "test_b397_network_transport.StrictTransactions"
+    ],
     "NReadOnlyNetworkDiagnostic": [
       "test_network_effect_fact_receipts",
       "test_network_readonly_diagnostic",

@@ -1,17 +1,46 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1024
+Status Revision: S1025
 Implementation Build: source B480.507 / modinfo507. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_DIAGNOSTIC_READ_BOUNDARY_LOCAL_COMPLETE
+Work State: NETWORK_RECOVERY_RETIREMENT_REVIEW_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Review network turn recovery before retiring old callbacks — S1025
+
+The first network convergence slices are complete locally. Ordinary warm proof invalidation keeps the applied output and closes stale configuration and transactions. The old Industrial diagnostic reads the current publication. The next step would replace live turn-based recovery, so it reaches the separate retirement gate in the [current manifest](../Workflow/P0-H.json). Use the D1-E6/E7 checks in the [branch disposition](../Reports/Technical/Investigations/Architecture_Reconstruction/Convergence_PreDesign_v3_Final/External_Audit_Disposition/D1_Branch_Disposition.md#d1-e1e7-修订门禁). The B480 runtime is the unchanged subject of this checkpoint.
+
+**Why the remaining callback has work.** [NetworkBridge](../../Mod/NetworkBridge.lua) still checks already-installed topology when the player becomes active. The current availability and failed-negative work are different duties. [Commerce](../../Mod/Commerce.lua), [Culture Network](../../Mod/CultureNetwork.lua) and [Standardization](../../Mod/StandardizationEffects.lua) also have their own turn entries. A proof-only optimization does not establish a replacement for their independent local/history sampling.
+
+| Scoped case | Current turn entry | Only the Bridge turn invocation suppressed |
+|---|---|---|
+| A previously unreadable Culture role becomes readable with no new packet or change notification | Proof recovers in the same accepted packet sequence. The recipient applies +1 Culture and strict eligibility reopens. | Proof remains pending. The recipient stays at zero and strict eligibility stays closed. |
+| A confirmed route loss whose first negative projection was deliberately failed | The retained withdrawal completes. Commercialization falls from 15 to 6 Gold while fresh transactions stay blocked. | The withdrawal remains held at 15 Gold while fresh transactions stay blocked. |
+
+These are controlled local cases with native doubles. The first changes a getter from unavailable to readable. The second deliberately fails the projection. They establish current ownership and the consequence of removing the entry. The B476 same-build native witness established ordinary positive cold restoration. Its observation does not isolate either failure or silent readiness window.
+
+| Branches | Scoped disposition at B480 |
+|---|---|
+| D1-01 | B478 and B479 separate ordinary proof status from effect work. Keep immediate strict invalidation, the existing collection request and full delivery for mixed, failed, new and recovered proof. |
+| D1-02 | Existing Bridge intent and registry receipts own proof delivery. Preserve the distinction between publication and completed effects. |
+| D1-03 to D1-06 | Keep the bounded queue, failed confirmed-negative work, exact route/ref pruning and separate effect/transaction availability until the specific replacement is proved. Idle publication does not retry dormant work. |
+| D1-07 to D1-10 | Keep real warm and cold effect ownership. Current requirements still include the unreconciled applied result, source-local provenance and exact eligibility exits. Reconcile the old branches against accepted D0059 before any retirement. |
+| D1-11 | Review the automatic readiness and negative-retry owners above before removing a turn entry. The new local counterexamples block blanket removal. |
+| D1-12 | The unused save prototype was retired in [S0973](#retire-the-unused-network-save-prototype--s0973). No new derived save record is needed for this review. |
+
+**External review entry for the Owner.** Review the production range `e3e66c46..7e86f593` and this test-only checkpoint. Read the [current Architecture network contract](../Architecture/Specialization_v0.1_Architecture.md#network-pending-hold-and-confirmation-recovery), the branch disposition above and [the two turn comparisons](../../DevelopmentTests/test_network_turn_recovery_boundary.py). Follow actual Gameplay and UI proof consumers. Check that the three scoped changes cannot erase merged or held duties, authorize stale transactions or advertise stale sources as current. For each proposed old recovery removal, identify the exact completion signal, owner, bounded scope and consequence if the signal is absent. Where a replacement is unproved, retain the named duty and mark the evidence gap. This request is scoped to network convergence. Apply the current formal rules and native acceptance gates within this scope.
+
+- **LOCAL_SIMULATION_PASS in scope.** All 50 checks passed. Both comparisons and existing busy delivery, same-value proof, strict confirmation and cold recovery checks run with Python 3.14.8, Lua 5.1 / Lupa 2.8, arm64 macOS and the existing HD regression DB (SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`). Run `python3 DevelopmentTests/run_refactor.py --stage NNetworkRecoveryBoundary --output local/refactor/S1025-NNetworkRecoveryBoundary/closure.json`. Tested source SHA256 `157b369cb53c234425f828d1f10078b4373d9dbe90d2b701c2a69f251bc47364`. Closure SHA256 `02ce6712e6b0a9c6dcc066b052f166703d8e5e4534dbb77ac4a33931370715e2` identifies the ignored local artifact.
+- **STATIC_CONFIRMED.** B480's 337-file runtime SHA256 remains `27451da3473e6c561efde54851385b673ec5abf7fd481a20de12409384d53b81`. Package paths and production bytes match B480 exactly. Live B476.503 remains the existing native evidence baseline.
+
+User decision after scoped review is the exact retirement disposition if a safe successor exists. User testing is unnecessary for this review. Primary next is to ingest the Owner-returned review and continue the approved scope.
 
 ### Use published network proof for the old Industrial copy report — S1024
 
