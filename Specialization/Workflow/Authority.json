@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0944",
+    "status": "S0945",
     "runtime": "B442.469 / modinfo469",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "a24b3275c376c5f47b5d81fda4b65bdbaec35cb8",
-  "current_batch": "OFFICIAL_CITY_PRESENTATION_LOCAL",
-  "next_batch": "Prepare the integrated candidate under the standing guarded deployment mode and run only the Owner-scoped official interaction checkpoint. Keep evidence and deletion gates before dependent retirement.",
+  "runtime_commit": "65ccad261997211511314d84da1cbcb16ce56026",
+  "current_batch": "OFFICIAL_INTERACTION_NATIVE_CHECKPOINT",
+  "next_batch": "Review the focused B442 official-profile city/production/UnitPanel and Crew interaction evidence, then continue dependent retirement under the exact review gates.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B437.464 / modinfo464 temporary develop from a24b3275c376c5f47b5d81fda4b65bdbaec35cb8, 352/352 MATCH, SHA256 ab1613960e0b3d9cc7b6a0dafcd460d031db6675123f677a24fb4c3fe1b98c9c. Receipt B437.464-a24b327-playtest.json DEVELOP_ACTIVE. B435 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B442.469 / modinfo469 temporary develop from 65ccad261997211511314d84da1cbcb16ce56026, 359/359 MATCH, SHA256 f1716ab8a4d2561e6566d6613592784e25e0fc24e72da8d415d5d0ad73cd9d1c. Receipt B442.469-65ccad2-playtest.json DEVELOP_ACTIVE. B437 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner approved autonomous deployment during the development phase. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. Active until the Owner resumes playtesting or revokes it. Game launch and main promotion retain their separate authorization.",
-  "context_review_status": "S0944 verifies official and HD city presentation entry points and retains the integrated native interaction gate.",
+  "context_review_status": "S0945 verifies receipt-bound B442 deployment and separates the pending native interaction evidence from local and load-smoke acceptance.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#native-city-panels-show-the-institutions-and-project-timer--s0944",
-  "source_status": "B442.469 / modinfo469 locally verified package SHA256 f1716ab8a4d2561e6566d6613592784e25e0fc24e72da8d415d5d0ad73cd9d1c. The installed package remains B437.464 until a receipt-bound switch. Official interactions still require native confirmation.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b442-deployed-for-the-focused-official-interaction-checkpoint--s0945",
+  "source_status": "B442.469 / modinfo469 source and deployed package verified at SHA256 f1716ab8a4d2561e6566d6613592784e25e0fc24e72da8d415d5d0ad73cd9d1c. The official interaction checkpoint remains USER_GAME_TEST_REQUIRED.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

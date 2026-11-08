@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "a24b3275c376c5f47b5d81fda4b65bdbaec35cb8",
-  "runtime": "B437.464 / modinfo464 temporary develop deployed, 352/352 MATCH. Stable/main B307.334.",
+  "runtime_commit": "65ccad261997211511314d84da1cbcb16ce56026",
+  "runtime": "B442.469 / modinfo469 temporary develop deployed, 359/359 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1801,7 +1801,7 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     }
   },
-  "source_review": "Specialization/Status/Specialization_P0_Status.md#native-city-panels-show-the-institutions-and-project-timer--s0944",
-  "source_runtime": "B442.469 / modinfo469 local candidate, 359 files",
+  "source_review": "S0944 verifies the city display locally. S0945 confirms receipt-bound deployment and the pending native interaction gate.",
+  "source_runtime": "B442.469 / modinfo469 deployed from 65ccad2. Official interaction awaits user-game evidence.",
   "tested_source_snapshot_sha256": "29dc6cf2c10643286992314c4d8308f26141598e3083ca8a086de02015a69f78"
 }

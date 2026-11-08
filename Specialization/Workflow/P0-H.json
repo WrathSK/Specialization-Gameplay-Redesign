@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0944",
+    "status": "S0945",
     "runtime": "B442.469 / modinfo469",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the locally verified city panel and building overview plus the integrated native interaction gate.",
+  "goal": "Record verified B442 deployment and the bounded native official interaction checkpoint.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B442 deployed for the focused official interaction checkpoint — S0945",
+      "reason": "Installed candidate, recovery and next user verification"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -96,6 +102,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B442 deployment: 359/359 installed, retained B437 and B307 hashes verified. No native interaction claim.",
     "B442 city panel: 47 scoped local checks and 12 integration checks pass. Three fixed-B441 subcases now pass. Native interaction remains pending.",
     "B441 Wonder site: all 43 selected tests pass. Four new cases fail on fixed B440 and pass here. Native Crew interaction remains pending.",
     "B440 Crew queue: 51 local checks pass. The wider 59-case B439 comparison reproduces all seven remaining historical nonpasses. Native interaction remains pending.",
@@ -592,6 +599,20 @@
       "report": "Specialization/Status/Specialization_P0_Status.md#native-city-panels-show-the-institutions-and-project-timer--s0944",
       "native": "USER_GAME_TEST_REQUIRED",
       "deployed": false
+    },
+    "b442_deployment": {
+      "version": "B442.469 / modinfo469",
+      "source_commit": "65ccad261997211511314d84da1cbcb16ce56026",
+      "digest": "f1716ab8a4d2561e6566d6613592784e25e0fc24e72da8d415d5d0ad73cd9d1c",
+      "files": 359,
+      "identical": true,
+      "receipt": "B442.469-65ccad2-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "pending": false,
+      "outgoing": "B437.464, 352/352 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "USER_GAME_TEST_REQUIRED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b442-deployed-for-the-focused-official-interaction-checkpoint--s0945"
     }
   }
 }

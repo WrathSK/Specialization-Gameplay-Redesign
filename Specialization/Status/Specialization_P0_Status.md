@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0944
-Implementation Build: source B442.469 / modinfo469. Live B437.464 from a24b327. Stable/main B307.334.
+Status Revision: S0945
+Implementation Build: source B442.469 / modinfo469. Live B442.469 from 65ccad2. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: OFFICIAL_CITY_PRESENTATION_LOCAL
+Work State: OFFICIAL_INTERACTION_NATIVE_CHECKPOINT
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B442 deployed for the focused official interaction checkpoint — S0945
+
+The combined UnitPanel, production panel, Crew input and city presentation changes are installed under the existing development deployment procedure. Receipt `B442.469-65ccad2-playtest.json` is DEVELOP_ACTIVE. All 359 files match source `65ccad261997211511314d84da1cbcb16ce56026` and package SHA256 `f1716ab8a4d2561e6566d6613592784e25e0fc24e72da8d415d5d0ad73cd9d1c`. B437.464 and B307.334 are recoverable from their verified retained packages. The Mod UUID is unique and there is no pending transaction.
+
+- **USER_GAME_TEST_REQUIRED for the changed interaction.** Use the fixed no-HD Gathering Storm profile from B435 and a campaign started with B442, using the dedicated test Roosevelt. One Industry city suffices. Select an eligible one-turn project such as Claim and compare the production list and city panel timer. Then open the institution shortcut in the city's action row and confirm it selects the building tab with the applied institution status. If a commercial action is already available, opening its own window is sufficient here.
+- **Crew witness.** Form a Crew through its own production project. Make an unfinished owned Wonder the current production target, move the Crew onto the marked plot, then prepare and confirm once. Record the preview and native progress before/after. The same unit should be removed once and the Wonder should gain production. Applicable native modifiers can change the observed gain. Existing logs can corroborate the completed project, unit debit and one returned progress request. Visual tab selection, map marker and displayed progress need the Owner's observation.
+- **Inherited evidence and next dependency.** B435's official load/assembly and B437's HD Standardization cold restore retain their scoped acceptance. The positive Culture Network cold restore can wait for naturally available insights. Use the new interaction evidence before any dependent production-reader or diagnostic retirement. Exact deletion review, remaining network retirement and final acceptance gates remain separate.
+
+User decision is none on design. User testing is the focused interaction above when convenient. Primary next is to read the evidence and continue dependent retirement only where it supports cutover.
 
 ### Native city panels show the institutions and project timer — S0944
 
