@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "3fa7527b768207a8f210136749001584b42e5940",
-  "runtime": "B454.481 / modinfo481 temporary develop deployed, 351/351 MATCH. Stable/main B307.334.",
+  "runtime_commit": "e5c5afaf3aeb223861b107a220f910da3d8edf98",
+  "runtime": "B455.482 / modinfo482 temporary develop deployed, 350/350 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1756,7 +1756,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S0975 verifies exact observer removal, retained UI readers and project timing, frozen observer replay and rollback.",
-  "source_runtime": "B455.482 / modinfo482 local candidate, 350 files. B454.481 remains installed.",
+  "source_review": "S0976 verifies B455 deployment and both recovery packages, and reviews the separate manual overflow experiment.",
+  "source_runtime": "B455.482 / modinfo482 deployed from e5c5afa with the approved project turn observer removed.",
   "tested_source_snapshot_sha256": "e3070c6ebc13ded0604ce264b2ad291d3276453b1aab433b207d77c28469a848"
 }

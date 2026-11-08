@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0975",
+    "status": "S0976",
     "runtime": "B455.482 / modinfo482",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify exact project turn observer retirement and preserve the queue reader, timer and formal project paths.",
+  "goal": "Record verified B455 deployment and the separate exact manual overflow experiment proposal.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B455 deployment verified and manual overflow retirement reviewed — S0976",
+      "reason": "Verified B455 deployment and bounded next review"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -282,6 +288,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B455 installed 350/350 MATCH with B454 and B307 recovery verified. The manual overflow projection preserves the automatic timer and both production readers.",
     "B455 passes 41 selected methods and the 42/88 carried checks, with exact outgoing rollback.",
     "B454 installed 351/351 MATCH, with B453 and B307 recovery verified. The separate observer projection preserves both production UI readers and the P0 timer report.",
     "B454 passes 88 selected methods plus all four pinned historical stages. Both local deployment recovery paths restore the exact outgoing package.",
@@ -1423,6 +1430,41 @@
       "package_sha256": "48bcdc913bd79147519f61ae7589430102ac2c20bfe90a1234425eb099f83999",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-project-turn-observer--s0975"
+    },
+    "b455_deployment": {
+      "version": "B455.482 / modinfo482",
+      "source_commit": "e5c5afaf3aeb223861b107a220f910da3d8edf98",
+      "digest": "48bcdc913bd79147519f61ae7589430102ac2c20bfe90a1234425eb099f83999",
+      "files": 350,
+      "receipt": "B455.482-e5c5afa-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "new_removals": [
+        "ProjectTurnObservation.lua"
+      ],
+      "pending": false,
+      "outgoing": "B454.481, 351/351 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b455-deployment-verified-and-manual-overflow-retirement-reviewed--s0976"
+    },
+    "b455_manual_overflow_retirement_review": {
+      "status": "AWAITING_EXACT_REMOVAL_APPROVAL",
+      "source": "e5c5afaf3aeb223861b107a220f910da3d8edf98",
+      "removed_sha256": {
+        "OverflowStorageProbe.lua": "90e72d14d83d0cef47b559d3fe7a2e038f972fc6ea9c1d761fa9699ff5aa641c",
+        "UI/OverflowStorageRead.lua": "832f026fd726c618ac816f2134f03958779d2430bbe70b92236056e5efb8646c"
+      },
+      "modified": [
+        "Gameplay.lua",
+        "SpecializationP0.modinfo",
+        "UI/P0Panel.lua",
+        "UI/TimedProjectRead.lua"
+      ],
+      "modeled_gameplay_listener_delta": 5,
+      "modeled_ui_listener_delta": 1,
+      "local_evidence": "local/refactor/B455-ManualOverflowRetirementReview/result.json",
+      "local_evidence_sha256": "4fca907d72aa62d4273adbdc752d6613ef9aa612bb737d7a0235e7feebe3174c",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b455-deployment-verified-and-manual-overflow-retirement-reviewed--s0976"
     }
   }
 }

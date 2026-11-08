@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S0975
-Implementation Build: source B455.482 / modinfo482. Live B454.481 from 3fa7527. Stable/main B307.334.
+Status Revision: S0976
+Implementation Build: source B455.482 / modinfo482. Live B455.482 from e5c5afa. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: PROJECT_TURN_OBSERVER_RETIRED_LOCAL
+Work State: MANUAL_OVERFLOW_RETIREMENT_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B455 deployment verified and manual overflow retirement reviewed — S0976
+
+B455.482 is installed from `e5c5afaf3aeb223861b107a220f910da3d8edf98`. All 350 files match SHA256 `48bcdc913bd79147519f61ae7589430102ac2c20bfe90a1234425eb099f83999`. Receipt `B455.482-e5c5afa-playtest.json` is DEVELOP_ACTIVE. The one approved path is absent. The outgoing B454 and stable B307 recovery packages match their recorded hashes. Game exit, UUID uniqueness and the clear transaction boundary were verified.
+
+**Next exact retirement review (P3-19/Q2).** The old manual overflow experiment retains its Gameplay startup/request receiver and a P0 publication callback. The P0 panel creates the old UI reader but calls only Pulse. No button or other runtime caller reaches its Click or Read, and the private exact read export is consumed only by the old manual request. This is separate from selecting the no-reward overflow project as the sole queue target, which uses the automatic timer and a different queue export. The current timing report still tells players to use an obsolete right-click action.
+
+The disposable projection removes `Mod/OverflowStorageProbe.lua` (`90e72d14d83d0cef47b559d3fe7a2e038f972fc6ea9c1d761fa9699ff5aa641c`), `Mod/UI/OverflowStorageRead.lua` (`832f026fd726c618ac816f2134f03958779d2430bbe70b92236056e5efb8646c`), their four manifest entries, the startup, OVERFLOW_PREPARE/APPLY routes, the P0 publication callback and its shutdown removal, and the obsolete report sentence. It retains the automatic timer and its guards, the active queue reader, the test project's definition and text, and the formal project providers. The current B455 package is recoverable from `e5c5afaf3aeb223861b107a220f910da3d8edf98`. The projected package has five fewer modeled Gameplay registrations and one fewer P0 publication registration. Official and HD production queue inputs match. The timer still completes exactly once under modeled reentry. P0 report/cancel behavior matches apart from the obsolete sentence. The exact two-path temporary switch and full restoration pass in disposable directories. Evidence `local/refactor/B455-ManualOverflowRetirementReview/result.json` SHA256 `4fca907d72aa62d4273adbdc752d6613ef9aa612bb737d7a0235e7feebe3174c` with the replay script alongside. These results do not measure native performance.
+
+Only the disposable package was projected. Implementation needs approval of the two exact paths. Freeze the B119 fixture at its published source before removing its current file inputs, and retain the historical startup checks and live timer regressions. Positive Culture Network cold restoration retains its separate native gate.
 
 ### Retire the old project turn observer — S0975
 

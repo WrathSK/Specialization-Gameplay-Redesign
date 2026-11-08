@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S0975",
+    "status": "S0976",
     "runtime": "B455.482 / modinfo482",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,11 +34,11 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "3fa7527b768207a8f210136749001584b42e5940",
-  "current_batch": "PROJECT_TURN_OBSERVER_RETIRED_LOCAL",
-  "next_batch": "Verify the guarded B455 switch and review the separate hidden manual overflow completion experiment. Positive Culture Network cold restoration retains its native gate.",
+  "runtime_commit": "e5c5afaf3aeb223861b107a220f910da3d8edf98",
+  "current_batch": "MANUAL_OVERFLOW_RETIREMENT_REVIEWED",
+  "next_batch": "Await exact removal approval for OverflowStorageProbe.lua and UI/OverflowStorageRead.lua with their startup, requests, P0 publication hook and obsolete report hint. Retain the automatic test timer, its queue bridge and SQL, and all formal project providers.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B454.481 / modinfo481 temporary develop from 3fa7527b768207a8f210136749001584b42e5940, 351/351 MATCH, SHA256 8445b8476c315c7a814f9ff05915310fca241f78c2fddd8ea131a699b8284f7e. Receipt B454.481-3fa7527-playtest.json DEVELOP_ACTIVE. B453 outgoing and B307 stable recovery MATCH. No pending transaction.",
+  "live": "B455.482 / modinfo482 temporary develop from e5c5afaf3aeb223861b107a220f910da3d8edf98, 350/350 MATCH, SHA256 48bcdc913bd79147519f61ae7589430102ac2c20bfe90a1234425eb099f83999. Receipt B455.482-e5c5afa-playtest.json DEVELOP_ACTIVE. B454 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
   "historical_only": [
     "Specialization/Design/Revisions/",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization.",
-  "context_review_status": "S0975 verifies exact observer removal, retained UI readers and project timing, frozen observer replay and rollback.",
+  "context_review_status": "S0976 verifies B455 deployment and both recovery packages, and reviews the separate manual overflow experiment.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#retire-the-old-project-turn-observer--s0975",
-  "source_status": "B455.482 / modinfo482 locally verified at SHA256 48bcdc913bd79147519f61ae7589430102ac2c20bfe90a1234425eb099f83999. B454.481 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b455-deployment-verified-and-manual-overflow-retirement-reviewed--s0976",
+  "source_status": "B455.482 / modinfo482 deployed at SHA256 48bcdc913bd79147519f61ae7589430102ac2c20bfe90a1234425eb099f83999. Exact project turn observer retirement verified.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
