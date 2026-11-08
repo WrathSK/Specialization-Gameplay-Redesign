@@ -2,6 +2,17 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7zCityMarkerRetirement": [
+      "test_o7_city_marker_retirement",
+      "test_pu07_source_attribution.NormalSource",
+      "test_pu07a_completion_scope.PersistedGuards",
+      "test_refactor_s3.Composition.test_failed_store_skips_legacy_mode_selectors",
+      "test_refactor_s9c2.Startup",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_four_rows_and_report_do_not_overlap",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_visibility_cleanup_does_not_execute_probe_or_change_runtime_state",
+      "test_p0_panel_current_layout.CurrentPanelTests.test_unique_xml_control_ids_and_current_lua_parse",
+      "test_deployment_removals.ReviewedRemoval"
+    ],
     "O7yManualNetworkUIRetirement": [
       "test_o7_manual_network_ui_retirement",
       "test_refactor_s9e2b",

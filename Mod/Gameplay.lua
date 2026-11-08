@@ -643,7 +643,7 @@ local function request(playerID,params)
     if shared.NetworkBridge then shared.NetworkBridge.Receive(playerID,params) end
     return
   end
-  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="BINDING_READ" and params.Action~="CITY_JOURNAL_READ" then return end
+  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="BINDING_READ" and params.Action~="CITY_JOURNAL_READ" then return end
   if not P.IsTestPlayer(playerID) then return end
   shared.LastToken=nil
   shared.RequestToken=params.Token
@@ -713,19 +713,6 @@ local function request(playerID,params)
     stage("ACK "..params.Action)
     return
   end
-  stage("BEFORE_GET city="..tostring(params.CityID))
-  local marker=city:GetProperty("SPC_P0_MARKER")
-  stage("AFTER_GET marker="..P.Scalar(marker))
-  if params.Action=="MARK_CITY" and marker==nil then
-    stage("BEFORE_SET")
-    P.SetProperty(city,"SPC_P0_MARKER",params.Token)
-    stage("AFTER_SET")
-    marker=city:GetProperty("SPC_P0_MARKER")
-    if marker~=params.Token then stage("ERROR_ROUNDTRIP");return end
-  end
-  shared.Snapshot="city="..tostring(params.CityID).." marker="..P.Scalar(marker)
-  shared.LastToken=params.Token
-  stage("ACK "..shared.Snapshot)
 end
 GameEvents.SPC_P0_Request.Add(function(...)
   shared.RequestDepth=(shared.RequestDepth or 0)+1 -- GC scheduling guard only; not transaction authority

@@ -1,17 +1,27 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1000
-Implementation Build: source B467.494 / modinfo494. Live B467.494 from 5efdc9e. Stable/main B307.334.
+Status Revision: S1001
+Implementation Build: source B468.495 / modinfo495. Live B467.494 from 5efdc9e. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: LEGACY_CITY_MARKER_RETIREMENT_REVIEWED
+Work State: LEGACY_CITY_MARKER_RETIRED_LOCAL
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Retire the hidden city marker commands — S1001
+
+The Owner approved the exact marker retirement reviewed in S1000. Remove the hidden CaptureButton and MarkButton, their CAPTURE and MARK_CITY requests, and the dedicated marker branch in Gameplay. The previous paths are recoverable from `5efdc9e9e946b5504d214309e358278b4faf0eb0`. The package path set stays identical.
+
+- **Runtime Impact Contract (L3, T06/T07/T08).** Two explicit P0 clicks previously read or wrote the diagnostic marker for the selected owned city. The five-request comparison goes from five marker reads and one write to zero. Generic Summary and Snapshot keep their existing marker reads, and saved marker values stay in place. Store, identity and binding retain ownership. No lifecycle hook, native fact provider or automatic workload changes.
+- **LOCAL_SIMULATION_PASS in scope.** All 28 selected methods pass. An existing marker remains readable and the blank city stays blank after stale requests. Three nonempty route proofs, strict transaction qualification, city journal and retained panel requests match. Current first-completion attribution and persisted guards pass. Carried stages pass 26 manual-reader and 64 route-proof checks. The manual reader retirement comparison replays its original B466/B467 transition. Both B467 and B468 reproduce the two existing panel assertion failures on the full 11-method comparison. The expected visible set and industrial history button command stay separately recorded.
+- **STATIC_CONFIRMED and reproduction.** 208 Lua 5.1 compiles, 32 XML-family parses, 666 file references and 10 replacements across 337 package files. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7zCityMarkerRetirement` with CPython 3.14/Lupa 2.8, official Assets and read-only B413 HD baseline DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Carried stages are O7yManualNetworkUIRetirement and O7hRouteObserverRetirement. Tested source SHA256 `a59184bb45cfcd4c327c680c24e16e91cb61d36113b733e2701eaf4ca3fff8e8`, package SHA256 `375c60a05177040d633616cad23415768670dcc31992bdafd69a7ed56af66d67`. Local closure `local/refactor/B468-O7zCityMarkerRetirement/closure.json` SHA256 `aa967f91abcb7a6d9159a3d30e35403cd621439b7d7c0e356beb88930729d7a4` with the two panel comparison logs alongside.
+
+B467 remains installed at this source checkpoint. Positive Culture Network cold restoration retains its separate native gate.
 
 ### B467 deployment verified and the old city marker commands reviewed — S1000
 

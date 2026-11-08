@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "260e158714986208260384cd5dfcd9bdc6630545e7ec2d0922e5b2363021c165",
+      "sha256": "f707ee3529ae088475300520d2ec16cacb49440a6e55657a3b12d79488dd04e6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0997 B466 hidden raw trade activity log retirement."
+      "provenance": "S1001 B468 hidden city marker command retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "7e9cfedf28588a55a08ed690e9967a3baeb09aa8586d20a2a4b332db50eec547",
+      "sha256": "8b3b5d0a40cf6e4396b406e94ffea896833eae67034f86236fda529514106062",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0999 B467 manual adjacency and route reader retirement."
+      "provenance": "S1001 B468 hidden city marker command retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "261c37e4e1c4ac50842b06121c87402f7ee36df6d5a60ab9646df3593e8de45e",
+      "sha256": "768011937d1942d2459324a93fc0cb44236696a8923baca30dab8536a4947501",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0999 B467 manual adjacency and route reader retirement."
+      "provenance": "S1001 B468 hidden city marker command retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1356,14 +1356,14 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/P0Panel.lua": {
-      "sha256": "05a85f876ecbe13dd53f396721097e6a626134d8c7e0dd2d1c08056b22f8fae2",
+      "sha256": "e71efa8ce6aa575603faaa9366acd8cf35fed567f5f96d51590e76d357d482d5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0999 B467 manual adjacency and route reader retirement."
+      "provenance": "S1001 B468 hidden city marker command retirement."
     },
     "Mod/UI/P0Panel.xml": {
-      "sha256": "7fe2d0179b03370fa61928678c48e7d39f55a7149dcfb0eaf51fcb9341d2b048",
+      "sha256": "09c2b4f0523e47a387e0e0a883de150dd86e02a67de24a50859b509a80510d3a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0999 B467 manual adjacency and route reader retirement."
+      "provenance": "S1001 B468 hidden city marker command retirement."
     },
     "Mod/UI/ProjectTurnRead.lua": {
       "sha256": "bc1da1838096e017f93c61a07f9d7eeb68ff2694cd30c938d21fe478b6e8c093",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1000 verifies B467 deployment and both recovery packages. The two hidden marker commands are separate from city identity, Store progression, and current route proof.",
-  "source_runtime": "B467.494 / modinfo494 deployed from 5efdc9e with the approved hidden manual adjacency and route readers removed.",
-  "tested_source_snapshot_sha256": "5546d8e45ddb1880605963486cd08d416b409e1e8b1b36b856da22bfcbda62ed"
+  "source_review": "S1001 verifies the exact city marker command retirement with saved marker reads, current reports and route proof preserved.",
+  "source_runtime": "B468.495 / modinfo495 local candidate, 337 files. B467.494 remains installed.",
+  "tested_source_snapshot_sha256": "a59184bb45cfcd4c327c680c24e16e91cb61d36113b733e2701eaf4ca3fff8e8"
 }

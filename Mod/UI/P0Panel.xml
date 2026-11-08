@@ -38,8 +38,6 @@
       <GridButton ID="CityFlowButton" Anchor="L,B" Offset="18,326" Size="240,32" Style="MainButton" String="Read city flow (B021)" Hidden="1" />
       <GridButton ID="CityJournalButton" Anchor="L,B" Offset="18,238" Size="240,32" Style="MainButton" String="Read city journal" Hidden="1" />
       <GridButton ID="BindingReadButton" Anchor="L,B" Offset="542,194" Size="240,32" Style="MainButton" String="Read binding" Hidden="1" />
-      <GridButton ID="CaptureButton" Anchor="L,B" Offset="18,18" Size="160,32" Style="MainButton" String="Read marker" Hidden="1" />
-      <GridButton ID="MarkButton" Anchor="L,B" Offset="365,18" Size="200,32" Style="MainButton" String="Mark selected city" Hidden="1" />
       <GridButton ID="BaselineButton" Anchor="L,B" Offset="585,18" Size="200,32" Style="MainButton" String="Baseline + Copy" Hidden="1" />
       <GridButton ID="Lv2HousingButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv2 housing" Hidden="1" />
       </Container>

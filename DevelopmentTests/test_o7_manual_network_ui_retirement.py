@@ -1,8 +1,8 @@
 """The hidden manual readers leave the package, with the formal P0 pager intact."""
 import unittest
 
-from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B466, package
+from refactor_harness import Context, PackageVFS, measure
+from retired_crew_sources import B466, B467, package
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
 
@@ -42,22 +42,22 @@ def panel(root, *, retired):
     return hidden, [dict(p.items()) for p in ui.globals().requests.values()]
 
 
-def proof(root, revision=None):
+def proof(root, revision, *, retired=False):
     vfs = PackageVFS(manifest=root/'Mod/SpecializationP0.modinfo')
-    history = (root,revision) if revision else None
+    history = (root,revision)
     gp,ui = (Context(name=name,vfs=vfs,history=history) for name in ('Gameplay','UI/BackgroundRoutes'))
     packets = exercise_proof(gp,ui)
     for vm in (gp,ui):
-        assert vm.eval('type(SPCP0.NetworkProbe)') == ('function' if revision else 'nil')
+        assert vm.eval('type(SPCP0.NetworkProbe)') == ('nil' if retired else 'function')
         assert vm.load_counts['missing'] + vm.load_counts['failed'] == 0
     return packets,gp.load_counts,ui.load_counts
 
 
 class ManualNetworkUIRetirement(unittest.TestCase):
     def test_formal_network_detail_pagination_and_other_commands_match(self):
-        with package(B466) as previous:
+        with package(B466) as previous, package(B467) as retired:
             old_buttons,old_requests = panel(previous,retired=False)
-        new_buttons,new_requests = panel(ROOT,retired=True)
+            new_buttons,new_requests = panel(retired,retired=True)
         for control in CONTROLS:
             self.assertTrue(old_buttons.pop(control))
         self.assertEqual(old_buttons,new_buttons)
@@ -69,12 +69,12 @@ class ManualNetworkUIRetirement(unittest.TestCase):
             retained_network_detail_pages=[1,2,3],background_report_matches=True))
 
     def test_route_transport_and_shared_adjacency_owners_remain(self):
-        with package(B466) as previous:
+        with package(B466) as previous, package(B467) as retired:
             old = proof(previous,B466)
             for path in ('Gameplay.lua','SampleLifecycle.lua','UI/IndustryRefresh.lua','UI/ResearchCrossRefresh.lua',
                          'UI/BackgroundRoutes.lua','NetworkSender.lua','NetworkBridge.lua','NetworkInput.lua'):
-                self.assertEqual((previous/'Mod'/path).read_bytes(),(ROOT/'Mod'/path).read_bytes())
-        new = proof(ROOT)
+                self.assertEqual((previous/'Mod'/path).read_bytes(),(retired/'Mod'/path).read_bytes())
+            new = proof(retired,B467,retired=True)
         self.assertEqual(old,new)
         self.assertEqual(len(new[0]),3)
         measure('manual_network_ui_route_proof',dict(matching_production_packets=3))

@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1000",
-    "runtime": "B467.494 / modinfo494",
+    "status": "S1001",
+    "runtime": "B468.495 / modinfo495",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record B467 deployment and review retiring the exact hidden marker commands with saved data and current facts preserved.",
+  "goal": "Verify the approved hidden marker command retirement with saved marker values and current facts preserved.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the hidden city marker commands — S1001",
+      "reason": "Approved marker retirement with current identity, city reports and route proof preserved"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -432,6 +438,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B468 passes 28 selected and 26/64 carried checks. Saved marker readout, current Store guards, reports and network proofs match.",
     "B467 installed 337/337 MATCH with both recovery packages verified. The marker projection preserves existing marker values, generic reports and current route proofs.",
     "B467 passes 26 selected checks and 64/9 carried checks. Real shared adjacency, formal network paging and route proof match. The existing layout comparison remains separate.",
     "B466 installed 337/337 MATCH with both recovery packages verified. The manual UI projection preserves shared production adjacency, actual route proofs and formal Network Detail paging.",
@@ -2626,6 +2633,54 @@
       "local_transcript_sha256": "fd39646e47a6f0b7ad53b7f46c7f55d02fa7dc373de8075ae1ed041d665f05dd",
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b467-deployment-verified-and-the-old-city-marker-commands-reviewed--s1000"
+    },
+    "b468_city_marker_retirement": {
+      "build": "B468.495 / modinfo495",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "evidence": {
+        "O7zCityMarkerRetirement": {
+          "tests": 28,
+          "path": "local/refactor/B468-O7zCityMarkerRetirement/closure.json",
+          "sha256": "aa967f91abcb7a6d9159a3d30e35403cd621439b7d7c0e356beb88930729d7a4"
+        },
+        "O7yManualNetworkUIRetirement": {
+          "tests": 26,
+          "path": "local/refactor/B468-CarriedO7y/closure.json",
+          "sha256": "115e6bb15a4652d6b2a2923c734681ee3e86bfb4e63bfdf5847e09a4794b4116"
+        },
+        "O7hRouteObserverRetirement": {
+          "tests": 64,
+          "path": "local/refactor/B468-CarriedO7h/closure.json",
+          "sha256": "8792fa48ff32edb25e35870fc33b1461f317647a51d72b052050760cbeea27a5"
+        }
+      },
+      "files": 337,
+      "removed": [],
+      "prior_source": "5efdc9e9e946b5504d214309e358278b4faf0eb0",
+      "matching_route_packets": 3,
+      "legacy_marker_reads": [
+        5,
+        0
+      ],
+      "legacy_marker_writes": [
+        1,
+        0
+      ],
+      "panel_baseline_issue": {
+        "B467": {
+          "path": "local/refactor/B468-O7zCityMarkerRetirement/B467-panel-comparison.log",
+          "sha256": "1caf50dcb22f4df489f8e60a5832888b953084db591cdb9930a01e683e2f70a0"
+        },
+        "B468": {
+          "path": "local/refactor/B468-O7zCityMarkerRetirement/B468-panel-comparison.log",
+          "sha256": "c4b273a4eabda3c7a559bbd5d5a5fbca03e6444bfc7451aa89cfb8795f1df621"
+        }
+      },
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "source_snapshot_sha256": "a59184bb45cfcd4c327c680c24e16e91cb61d36113b733e2701eaf4ca3fff8e8",
+      "package_sha256": "375c60a05177040d633616cad23415768670dcc31992bdafd69a7ed56af66d67",
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-hidden-city-marker-commands--s1001"
     }
   }
 }
