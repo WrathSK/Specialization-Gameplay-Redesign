@@ -1,17 +1,28 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1037
-Implementation Build: source B489.516 / modinfo516. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1038
+Implementation Build: source B489.516 / modinfo516. Live B489.516 from 47b9971. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: INTEGRATION_CANDIDATE_LOCAL_VERIFIED_NATIVE_PENDING
+Work State: INTEGRATION_NATIVE_TEST_REQUIRED_B489_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### B489 deployed for focused two-profile acceptance — S1038
+
+The Owner authorized the temporary B489.516 switch for the existing two-profile acceptance. The game-exit checks preceded the receipt-bound restore and activation. The installed source is `47b9971000c70deefb559ec2fd07ba20ffc6eae7`. All 337 files match the reviewed package SHA256 `fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30`. Receipt `B489.516-47b9971-playtest.json` is DEVELOP_ACTIVE. The outgoing B476.503 and stable B307.334 recovery packages match all 337 and 312 files respectively. The transaction marker is absent.
+
+**USER_GAME_TEST_REQUIRED.** Use separate B489.516 saves for the fixed HD and official Gathering Storm profiles. Start the existing collector with `tuner -300` before each session, keep P0 closed during normal play and retain each profile's actual loaded target log before switching.
+
+- **HD regression.** Use one ordinary domestic route to establish one observable network benefit, such as Industrial Standardization on a matching building. Observe the recipient's actual benefit, then save, exit the application, and load the same save. The route and recipient benefit should recover automatically. Existing HD transaction and action acceptance carries forward.
+- **Official profile.** Sample one actual Research application yield and one Culture Meaning yield at the effective official building tiers. In a Commerce IV city observe positive Commercialization, sign one Development Investment on a direct outbound route, then remove the last working Commercial Hub specialist or withdraw the governor. Verify the actual Gold change and single debit, the existing contract's continued effect and the gate on new signing. Commercialization selections remain saved. A positive official Culture Network test awaits a suitable source with all three insight kinds. Prior official Industry and ordinary action results carry forward at their observed scope.
+
+The existing turn checks remain available. The next step is to match the user's observations to the two collector sessions and loaded profile evidence. The deployment establishes the package identity for the next tests.
 
 ### Prepare the two-profile integration candidate for native acceptance — S1037
 

@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "df9461790079ef858f4df11944c78dfc7e0877f3",
-  "runtime": "B476.503 / modinfo503 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
+  "runtime_commit": "47b9971000c70deefb559ec2fd07ba20ffc6eae7",
+  "runtime": "B489.516 / modinfo516 temporary develop deployed, 337/337 MATCH. Stable/main B307.334.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1037 verifies the exact B489 package as an integration candidate in both pinned profile replays. Historical startup comparisons retain their exact PU08 source endpoints. Existing native scope and turn duties remain.",
-  "source_runtime": "B489.516 / modinfo516 local candidate, 337 files. B476.503 remains installed.",
+  "source_review": "S1038 records the verified B489 deployment for the existing HD and official acceptance gate. Prior native acceptance retains its observed scope.",
+  "source_runtime": "B489.516 / modinfo516 verified deployment from 47b9971.",
   "tested_source_snapshot_sha256": "7f048381b330507efe758f6d668437fe04fe0322216b5773ca1b152d1114edec"
 }

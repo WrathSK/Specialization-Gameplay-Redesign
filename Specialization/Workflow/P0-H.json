@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1037",
+    "status": "S1038",
     "runtime": "B489.516 / modinfo516",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Prepare the B489 candidate and scoped evidence at the existing HD and official integration acceptance boundary.",
+  "goal": "Verify the B489 deployment and prepare the focused HD and official native acceptance.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B489 deployed for focused two-profile acceptance — S1038",
+      "reason": "Exact B489 deployment, recovery and targeted native verification scope"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -654,6 +660,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B489.516 deployment 337/337 MATCH, with B476 and B307 recovery verified. The focused native check is pending.",
     "S1037 checks 15 environment assembly and Tier cases, 11 panel cases, 47 shared fact cases, 26 startup and cleanup cases, 33 retired-path checks and six exact-removal rollback cases. Prior native evidence retains its original scope.",
     "B489 passes 90 Commerce, 128 Culture and 118 Standardization selected checks; the cold zero-worker case fails on B488, with no new reverse-index failures in B489.",
     "B488 passes the selected 89 Commerce, 127 Culture and 117 Standardization checks and nine Commercialization sidebar checks; no new reverse-index failures.",
@@ -4805,6 +4812,20 @@
         "older_shared_probe_nonpassing_each": 1
       },
       "native_acceptance": "OPEN_INTEGRATION; inherited PASS observations retain their source, profile and scenario scope"
+    },
+    "b489_integration_deployment": {
+      "version": "B489.516 / modinfo516",
+      "source_commit": "47b9971000c70deefb559ec2fd07ba20ffc6eae7",
+      "digest": "fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30",
+      "files": 337,
+      "receipt": "B489.516-47b9971-playtest.json",
+      "phase": "DEVELOP_ACTIVE",
+      "outgoing": "B476.503, 337/337 MATCH",
+      "stable_recovery": "B307.334, 312/312 MATCH",
+      "pending": false,
+      "new_removals": [],
+      "native": "USER_GAME_TEST_REQUIRED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b489-deployed-for-focused-two-profile-acceptance--s1038"
     }
   }
 }
