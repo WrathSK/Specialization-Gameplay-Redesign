@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1028",
+    "status": "S1029",
     "runtime": "B482.509 / modinfo509",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Recover existing proof notification registration after proven scope capacity and document the open turn recovery boundary.",
+  "goal": "Retain approved turn-boundary checks and continue the independent applied-effect recovery work.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Keep the turn-boundary network checks pending a natural replacement — S1029",
+      "reason": "Owner decision on turn checks and routing to the independent write/readback slice"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -600,6 +606,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1029 records the current turn checks as retained pending dependable natural recovery evidence. The B482 package has no source differences.",
     "B482 passes 113 local checks, including real scope limits, one bounded registration recovery, stale proof and complete packet supersession of a failed negative projection.",
     "S1027 passes 91 local checks. A UI lifecycle packet repairs the modeled silent route loss. A silent template recovery still uses the Standardization turn.",
     "B481 passes 89 scoped Lua 5.1 checks. A genuine newer role event or accepted equal-value packet closes the recorded generation. Idle publications leave it dormant.",
@@ -4335,6 +4342,14 @@
       "gate": "ALL_FOUR_TURN_ENTRIES_RETAINED_D1_E6_E7_OPEN",
       "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#deliver-accepted-proof-after-the-existing-notification-capacity-is-freed--s1028"
+    },
+    "s1029_turn_checks_retained": {
+      "status": "OWNER_SCOPE_CONFIRMED_STATIC",
+      "baseline": "0a11b7e9e0e2b50be8c1bc44aa222880a73148a4",
+      "package_sha256": "5af14ea86edfd79f2b552293065b04f0f936341a2dcdefbbc6e2dbd54fbd0501",
+      "files": 337,
+      "gate": "KEEP_FOUR_TURN_ENTRIES_UNTIL_OWNER_REVIEWS_NATURAL_TRIGGER_EVIDENCE",
+      "report": "Specialization/Status/Specialization_P0_Status.md#keep-the-turn-boundary-network-checks-pending-a-natural-replacement--s1029"
     }
   }
 }

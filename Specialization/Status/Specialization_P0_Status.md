@@ -1,17 +1,25 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1028
+Status Revision: S1029
 Implementation Build: source B482.509 / modinfo509. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_PROOF_CAPACITY_LOCAL_COMPLETE_TURN_GATE_OPEN
+Work State: NETWORK_TURN_CHECKS_RETAINED_CONTINUE_EFFECT_RECOVERY
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Keep the turn-boundary network checks pending a natural replacement — S1029
+
+2026-11-08 Owner 决定暂时保留每回合开始的主动商路核对及现有回合兜底。以后若发现能自然触发遗漏／待确认事项的可靠时点或事件，先以具体证据说明覆盖范围，再由 Owner 决定是否收窄相应入口。四个 Gameplay 回合入口保留，D1-E6/E7 继续开放。
+
+The independent network effect-write contract (A12 / NET06) can proceed. Begin with Commercialization's failure path. The current code attempts a family-wide clear after an unconfirmed write. Use the existing policy to report readable residuals or UNKNOWN while keeping transaction proof strict. Validate the real writer and display, and retain the current effect owners and turn duties.
+
+STATIC_CONFIRMED for the decision-only checkpoint. The 337 source package files match B482.509 at SHA256 5af14ea86edfd79f2b552293065b04f0f936341a2dcdefbbc6e2dbd54fbd0501. B476.503 retains its existing live record. The next local effect-write counterexample is an engineering check; user testing is unnecessary for this checkpoint.
 
 ### Deliver accepted proof after the existing notification capacity is freed — S1028
 
