@@ -2,6 +2,22 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "NCultureNetworkEffectReadback": [
+      "test_network_effect_write_boundary.CultureNetworkReadback",
+      "test_network_effect_write_boundary.CommercializationReadback",
+      "test_network_effect_fact_receipts",
+      "test_refactor_s4b",
+      "test_refactor_s5d4c9",
+      "test_refactor_s6d",
+      "test_refactor_s6g.ScopedTopology",
+      "test_refactor_s9e6.SourceLocal.test_unknown_city_is_not_added_as_source_until_new_reliable_fact",
+      "test_refactor_s9e6.SourceLocal.test_partial_retained_source_and_new_readable_source_can_update_same_receiver",
+      "test_refactor_s9e6.SourceLocal.test_known_source_loss_and_other_positive_change_do_not_become_whole_continuity",
+      "test_refactor_s9e6.SourceLocal.test_topology_pending_and_Standardization_whole_hold_remain",
+      "test_o7_network_trace",
+      "test_network_turn_recovery_boundary",
+      "test_b397_network_transport.StrictTransactions"
+    ],
     "NCommerceEffectReadback": [
       "test_network_effect_write_boundary.CommercializationReadback",
       "test_refactor_s4b",
@@ -2573,6 +2589,7 @@
       "test_refactor_s6j"
     ],
     "Mod/CultureNetwork.lua": [
+      "test_network_effect_write_boundary.CultureNetworkReadback",
       "test_o7_network_trace",
       "test_refactor_s4b",
       "test_refactor_s6d",

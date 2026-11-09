@@ -92,6 +92,17 @@ function M.Start(P,shared)
   carrierHealth.Remove(c,row.id)
   assert(P.HasBuilding(c:GetBuildings(),row.id)==false,'CN_REMOVE_UNCONFIRMED');d.changes=d.changes+1
  end
+ local function installed(c)
+  local kind,n=nil,0;local b=c:GetBuildings()
+  for _,row in ipairs(definitions)do
+   local has=P.HasBuilding(b,row.id);assert(type(has)=='boolean','CN_PRESENCE_UNKNOWN')
+   if has then
+    assert(not kind or kind==row.kind,'CN_MULTIPLE_INSTALLED_KINDS')
+    kind=row.kind;n=n+2^row.bit
+   end
+  end
+  return kind,n
+ end
  local function clear(c)
   d.writing=key(c:GetOwner(),c:GetID())
   local ok,why=pcall(function()
@@ -241,11 +252,23 @@ function M.Start(P,shared)
   for _ in pairs(p.set)do p.n=p.n+1 end;return p
  end
  local function reconcile(batch,pid,c)
-  local k=key(pid,c:GetID());local reference=ref(c);local old=d.records[k]
-  if old and old.reference~=reference then clear(c);d.records[k]=nil;dependents.Remove(pid,c:GetID());old=nil end
+  local id=c:GetID();local k=key(pid,id);local reference=ref(c);local old=d.records[k]
+  if old and old.reference~=reference then clear(c);d.records[k]=nil;dependents.Remove(pid,id);old=nil end
   local ok,p=pcall(plan,batch,pid,c,old)
+  local view=batch.network
+  local pending=batch.networkFailed or view and view.input.continuityOnly
+  local previousFailure=old and old.writeUnconfirmed
+  if previousFailure and ok and p.kind and (pending or view and view.rolesPending and view.rolesPending[id])then
+   ok,p=false,'CN_WRITE_PROOF_PENDING'
+  end
   if not ok then
    local reason=p;p=negativePlan(batch,pid,c,old)
+   if p and previousFailure and p.n>0 then
+    -- An unconfirmed aggregate cannot reconstruct a positive amount on old proof.
+    -- Only a proved reduction below both the old plan and readable residue can write.
+    if not (previousFailure.kind==p.kind and previousFailure.n
+     and p.n<previousFailure.n and p.n<old.n)then p=nil end
+   end
    if not p then
     if old then
      old.retained=true;old.reason=tostring(reason);local provenance={}
@@ -256,11 +279,11 @@ function M.Start(P,shared)
    end
   end
   assert(c:GetOwner()==pid and ref(c)==reference,'CN_RECEIVER_CHANGED')
+  local x,y=c:GetX(),c:GetY()
   d.writing=k
   -- A health cause cannot turn retained topology into a new positive fact.
   -- Confirmed logical changes (including anchor/source loss) still reconcile.
-  local pending=batch.networkFailed or batch.network and batch.network.input.continuityOnly
-  local held=pending and old and p.kind~=nil and old.kind==p.kind and old.plot==p.plot and old.n==p.n
+  local held=pending and old and not previousFailure and p.kind~=nil and old.kind==p.kind and old.plot==p.plot and old.n==p.n
   local mutating=false
   local wrote,why=pcall(function()
    if held then return end
@@ -285,10 +308,23 @@ function M.Start(P,shared)
   end)
   d.writing=nil
   if not wrote then
-   if mutating then d.records[k]=nil;dependents.Remove(pid,c:GetID());pcall(clear,c)end
-   error(why)
+   if mutating then
+    local read,kind,n=pcall(function()
+     assert(c:GetOwner()==pid and ref(c)==reference,'CN_RECEIVER_CHANGED')
+     local observedKind,observedN=installed(c)
+     assert(c:GetOwner()==pid and ref(c)==reference,'CN_RECEIVER_CHANGED')
+     return observedKind,observedN
+    end)
+    -- Keep the last reliable source witnesses and store physical readback separately.
+    old=old or {owner=pid,id=id,x=x,y=y,reference=reference,sources={}}
+    old.writeUnconfirmed={kind=read and kind or nil,n=read and n or nil}
+    d.records[k]=old
+   end
+   d.errors[k]=tostring(why):sub(1,180)
+   error(why,0)
   end
-  p.retained=held or nil;p.reference=reference;p.owner=pid;p.id=c:GetID();p.x=c:GetX();p.y=c:GetY();d.records[k]=p;replaceDependencies(pid,c:GetID(),p.sources);d.errors[k]=p.reason
+  p.retained=held or nil;p.reference=reference;p.owner=pid;p.id=id;p.x=x;p.y=y
+  d.records[k]=p;replaceDependencies(pid,id,p.sources);d.errors[k]=p.reason
  end
  function d.Mark(pid,cid)
   if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then d.Mark(owner,cid)end end;return end
@@ -320,11 +356,8 @@ function M.Start(P,shared)
       if not P.IsTestPlayer(owner)then clear(c)
       else
        local success,err=pcall(function()
-        local r={owner=owner,id=c:GetID(),x=c:GetX(),y=c:GetY(),reference=ref(c),n=0,sources={},contributors={},contributions={},provenance={},loaded=true}
-        for _,row in ipairs(definitions)do
-         local has=P.HasBuilding(c:GetBuildings(),row.id);assert(type(has)=='boolean','CN_PRESENCE_UNKNOWN')
-         if has then assert(not r.kind or r.kind==row.kind,'CN_MULTIPLE_INSTALLED_KINDS');r.kind=row.kind;r.n=r.n+2^row.bit end
-        end
+        local r={owner=owner,id=c:GetID(),x=c:GetX(),y=c:GetY(),reference=ref(c),sources={},contributors={},contributions={},provenance={},loaded=true}
+        r.kind,r.n=installed(c)
         d.records[key(owner,c:GetID())]=r
        end)
        if not success then d.errors[key(owner,c:GetID())]=tostring(err)end
@@ -480,7 +513,15 @@ function M.Start(P,shared)
    if not p.plot then return 0 end
    local n=Map.GetPlotByIndex(p.plot):GetWorkerCount();assert(int(n),'CN_WORKERS_UNKNOWN');return n
   end)
-  if not ok then return pendingReport(pid,c,p,error,workers)end
+  if not ok then
+   local text=pendingReport(pid,c,p,error,workers)
+   if p and p.writeUnconfirmed then
+    local same,reference=pcall(ref,c)
+    local n=same and reference==p.reference and p.writeUnconfirmed.n or nil
+    text=text..'\n收益更新未确认｜每名专家文化载体配置读回：'..tostring(n or '未知')..'。'
+   end
+   return text
+  end
   pcall(observe,pid,c,nil,workers)
   lastWait=nil -- Permit a later report; the shared ring still applies its own dedup/budget.
   print('[SPC][B191][N1_INSIGHT] kind=NETWORK owner='..pid..' city='..c:GetID()..' civilizations='..p.n..' workers='..workers..' expected='..p.n*workers)
@@ -492,7 +533,7 @@ function M.Start(P,shared)
   out[#out+1]='网络输入：'..diagnosticCode(b and b.validity)..' / '..diagnosticCode(b and b.availability)
   if details then
    local p=d.records[key(pid,c:GetID())];local lines={}
-   for id,reference in pairs(p and p.sources or {})do
+   for id,reference in pairs(p and not p.writeUnconfirmed and p.sources or {})do
     local source=Players[pid]:GetCities():FindID(id)
     local title=source and source.GetName and source:GetName() or tostring(id)
     lines[#lines+1]='来源 '..title..(p.contributors[id] and '：提供完整文明' or '：当前未提供完整文明')
@@ -500,7 +541,9 @@ function M.Start(P,shared)
       reason=p.contributors[id] and 'CN_CONTRIBUTOR' or 'CN_NO_COMPLETE_SET'})end
    end
    table.sort(lines)
-   if #lines==0 then lines[1]='本城暂无文化网络来源记录。'end
+   if #lines==0 then
+    lines[1]=p and p.writeUnconfirmed and '收益更新待确认，来源明细等待核对。' or '本城暂无文化网络来源记录。'
+   end
    for _,line in ipairs(lines)do out[#out+1]=line end
    out[#out+1]='完整文明需同一来源城完成三类考察；重复文明只计一次。'
    out[#out+1]='输入版本 '..diagnosticCode(b and b.inputRevision)..' / 计算版本 '..diagnosticCode(b and b.derivedFor)..'；拓扑错误 '..diagnosticCode(b and b.error)

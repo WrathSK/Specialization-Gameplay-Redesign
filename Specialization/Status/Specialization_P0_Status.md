@@ -1,17 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1030
-Implementation Build: source B483.510 / modinfo510. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1031
+Implementation Build: source B484.511 / modinfo511. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: COMMERCIALIZATION_EFFECT_READBACK_LOCAL_COMPLETE
+Work State: CULTURE_NETWORK_EFFECT_READBACK_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Read back a partial Culture Network effect write — S1031
+
+A Culture Network update can replace several bits in a recipient's own specialty district. If it stops partway, the city now keeps the remaining carrier configuration and reports it separately from the last reliable contributors. A valid route proof can coexist with an unconfirmed native effect in one recipient.
+
+- **Runtime Impact Contract (L3, T01/T03/T04/T05/T08).** Use the existing Culture Network owner, exact 32 defined bits and current recipient reference. A mutation failure adds one bounded presence sample for that city, with reference checked before and after. Ambiguous or unreadable configuration is UNKNOWN. The last reliable source witness and its existing reverse links stay separate from the residual; no new history, shared receipt, saved data or scheduler. Incomplete topology does not reconstruct a positive aggregate. Confirmed recipient exit and a proved reduction below both the old plan and the readable residual retain their existing scope. Recovery uses the next existing relevant callback.
+- **LOCAL_SIMULATION_PASS in scope.** Five actual Culture writer comparisons and 119 related checks. On a 3 → 6 update with one create injected as a no-op, B483 attempts two removals and leaves zero. B484 attempts one removal and reads back 2, preserves the old witness of 3, and the sibling reaches 6. The city report exposes the unconfirmed readback and withholds the old contribution lines. Unreadable and changed references report UNKNOWN. Pending proof and 100 idle publications add no writes. Later valid proof reaches 6. The separate cold case preserves the saved aggregate until input is usable and never derives a source contribution from its bits. Confirmed recipient loss and a separately proved source reduction still withdraw, and property writes stay at zero.
+- **Regression limits.** Nine overlapping Lua 5.1 groups each ran 122 checks on baseline and candidate. The same nine inherited failure/error records remain with no new failures or skips. Two inherited S9e6 failures from the initial wider selection also reproduce in isolation before and after. The targeted PASS selection includes the four Culture/retention assertions from that module. Full reverse results remain separate.
+- **Reproduction.** Run `python3 DevelopmentTests/run_refactor.py --stage NCultureNetworkEffectReadback --output local/refactor/B484-Culture-Network-Readback-Verified/closure.json` with Python 3.14.8, Lupa 2.8 / Lua 5.1, arm64 macOS, and the existing HD regression DB (SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439). Tested source SHA256 736286a383350f7bb4c62e9a1b11bcb7e58fe16b529b9fa527c63599b968217e. Ignored local Closure `local/refactor/B484-Culture-Network-Readback-Verified/closure.json` SHA256 169cb026d1fa05159c462d9ac26511e5090ab61319fe4884c704feb990092002. Baseline and reverse comparison are in the same ignored directory and can be regenerated with the pinned source and DB.
+- **STATIC_CONFIRMED.** 208 Lua chunks, 32 XML-family files, 666 file references, ten replacements and the same 337 runtime paths. Source package SHA256 947d64e1c9c8459fdb6caa8067a8f12ac4bd6e1eff31ce468ac84256e27383cf. The injected no-op establishes the software outcome. Its engine incidence and actual native Culture output are unmeasured. Live B476.503 keeps its separate evidence.
+
+No Owner decision or native test is needed for this source slice. Primary next checks whether a single Industrial Standardization target can interrupt other targets or misstate its installed value. The existing turn duties remain.
 
 ### Read back a partial Commercialization effect write — S1030
 

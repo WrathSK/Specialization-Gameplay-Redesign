@@ -196,9 +196,9 @@
       "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
     },
     "Mod/CultureNetwork.lua": {
-      "sha256": "cf668b95eafda79864105105168dce3755c1bb204c8147c05f6d8d4432f34a6f",
+      "sha256": "f27e27f535720018e9de1630b5e22195432776c411b5206ee1f0f3d74729b7a0",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
+      "provenance": "S1031 B484 same-reference Culture Network residual after partial native mutation."
     },
     "Mod/CurrentSpecializationFacts.lua": {
       "sha256": "c577cdb9f6e07b79f798185525a8da51a2828eee291409b2fb7ccd3c8bcaeb50",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "64cb1938d54c6cc7e359d21c31a0dc3ec7bc6b9c6490d1d5b62eb764a8bbd119",
+      "sha256": "d1c0854a4601441cbe96babaaaba90a318a866f9446dd74f2881d6dcd1f3caf6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1030 B483 exact Commercialization readback for an unconfirmed effect write."
+      "provenance": "S1031 B484 same-reference Culture Network residual after partial native mutation."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a75ca1fc673e2afed669fc12b9d8964efc6d44dc9dc415dc948ed4e58a537ba9",
+      "sha256": "b211e6bfd86b0569a448f113e49c7ce3066fdbc71b16d4f58e8042532756403b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1030 B483 exact Commercialization readback for an unconfirmed effect write."
+      "provenance": "S1031 B484 same-reference Culture Network residual after partial native mutation."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1030 verifies Commercialization partial effect readback within A12 / NET06. The four existing turn duties remain and B476 is still installed.",
-  "source_runtime": "B483.510 / modinfo510 local candidate, 337 files. B476.503 remains installed.",
-  "tested_source_snapshot_sha256": "7d35a67a1659bbb6aaff24bdbaa28488d382b87c3e6561faafa78301ad9a794a"
+  "source_review": "S1031 verifies Culture Network partial effect readback within A12 / NET06. The four existing turn duties remain and B476 is still installed.",
+  "source_runtime": "B484.511 / modinfo511 local candidate, 337 files. B476.503 remains installed.",
+  "tested_source_snapshot_sha256": "736286a383350f7bb4c62e9a1b11bcb7e58fe16b529b9fa527c63599b968217e"
 }

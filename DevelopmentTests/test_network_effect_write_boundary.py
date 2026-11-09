@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 from refactor_harness import TrackedLua51, legacy_source_observation, measure
 from test_pu11_package_absence import scalars
-from test_refactor_s4b import warm_commerce
+from test_refactor_s4b import culture, warm_commerce
 
 
 COMMERCE_PARTIAL = """
@@ -150,4 +150,155 @@ LuaEvents.SPC_CommerceOpen(0,2);rows.items[1].Root.click()
 assert(Controls.Confirm.disabled and Controls.Status.text:find('WRITE_UNCONFIRMED',1,true))
 assert(Controls.Status.text:find('14',1,true) and Controls.Summary.text:find('WAITING',1,true))
 Controls.Confirm.click();assert(#sent==0)
+""")
+
+
+CULTURE_PARTIAL = """
+local c=cities[1]
+for i=1,3 do complete(4,i)end
+cn.SourceChanged(0,4)
+assert(amount(c)==3 and amount(cities[5])==3)
+local create,remove=P.CreateBuilding,P.RemoveBuilding
+local attemptedRemovals=0
+function restoreCultureWriter()
+ P.CreateBuilding=create;P.RemoveBuilding=remove
+end
+P.CreateBuilding=function(q,id)
+ if q.city==c and id=='BUILDING_SPC_CULTURE_NETWORK_RESEARCH_2'then
+  if onCultureWriteFailure then onCultureWriteFailure(c)end
+  return
+ end
+ return create(q,id)
+end
+P.RemoveBuilding=function(b,id)
+ if b.city==c then attemptedRemovals=attemptedRemovals+1 end
+ return remove(b,id)
+end
+for i=4,6 do complete(4,i)end
+cn.SourceChanged(0,4)
+local r=cn.records['0:1']
+return {physical=amount(c),shown=r and r.writeUnconfirmed and r.writeUnconfirmed.n,
+ last_confirmed=r and r.n,attempted_removals=attemptedRemovals,
+ sibling=amount(cities[5]),error=cn.errors['0:1']~=nil,
+ route_ready=net.TransactionCurrent(0),properties=propertyWrites}
+"""
+
+
+class CultureNetworkReadback(unittest.TestCase):
+    def test_partial_write_reports_residual_and_keeps_independent_receiver(self):
+        game = culture()
+        result = scalars(game.execute(CULTURE_PARTIAL))
+        self.assertEqual(result, {
+            'physical': 2, 'shown': 2, 'last_confirmed': 3,
+            'attempted_removals': 1, 'sibling': 6, 'error': True,
+            'route_ready': True, 'properties': 0,
+        })
+        measure('culture_failed_effect_readback', result)
+        game.execute("""
+local c=cities[1]
+local writes=created+removed
+local text=cn.Describe(0,c)
+assert(text:find('载体配置读回：2',1,true) and not text:find('完整文明 3',1,true))
+net.CheckEvidence(false);cn.SourceChanged(0,4)
+assert(created+removed==writes and cn.records['0:1'].writeUnconfirmed.n==2 and amount(c)==2)
+for i=1,100 do fixturePublication()end
+assert(created+removed==writes)
+restoreCultureWriter()
+send('0,4,0,2,10;0,2,0,1,11;0,2,0,5,12',3)
+assert(amount(c)==6 and not cn.records['0:1'].writeUnconfirmed and not cn.errors['0:1'])
+assert(cn.records['0:1'].contributions[4].provenance=='CONFIRMED')
+""")
+
+    def test_unreadable_or_replaced_receiver_reports_unknown(self):
+        for replaced in (False, True):
+            with self.subTest(replaced=replaced):
+                game = culture()
+                game.execute("""
+local replace=...
+local read=P.HasBuilding
+failedCultureWriteReads=0
+function onCultureWriteFailure(c)
+ if replace then c.token='REPLACEMENT' end
+ P.HasBuilding=function(b,id)
+  if b.city==c then failedCultureWriteReads=failedCultureWriteReads+1;return nil end
+  return read(b,id)
+ end
+end
+""", replaced)
+                result = scalars(game.execute(CULTURE_PARTIAL))
+                self.assertNotIn('shown', result)
+                self.assertEqual((result['physical'], result['sibling']), (2, 6))
+                # The create attempt already has one confirmation read. Only a
+                # still-matching receiver may take the additional residue read.
+                self.assertEqual(game.eval('failedCultureWriteReads'), 1 if replaced else 2)
+                game.execute("""
+local c=cities[1]
+local text=cn.Report(0,c,true)
+assert(text:find('载体配置读回：未知',1,true) and not text:find('：提供完整文明',1,true))
+""")
+
+    def test_cold_interrupted_reconciliation_keeps_observation_separate_from_saved_aggregate(self):
+        game = culture(False)
+        game.execute("""
+local c=cities[1]
+for bit=0,1 do
+ local id='BUILDING_SPC_CULTURE_NETWORK_RESEARCH_'..bit
+ c.present[id]=true;c.locations[id]=100
+end
+fire('LoadScreenClose')
+assert(amount(c)==3 and cn.records['0:1'].loaded and created==0 and removed==0)
+for i=1,6 do complete(4,i)end
+local create=P.CreateBuilding
+P.CreateBuilding=function(q,id)
+ if q.city==c and id=='BUILDING_SPC_CULTURE_NETWORK_RESEARCH_2'then return end
+ return create(q,id)
+end
+local routes='0,4,0,2,10;0,2,0,1,11;0,2,0,5,12'
+send(routes,3)
+local r=cn.records['0:1']
+assert(amount(c)==2 and r.n==3 and r.loaded and r.writeUnconfirmed.n==2)
+assert(next(r.contributions)==nil and amount(cities[5])==6 and propertyWrites==0)
+net.CheckEvidence(false);cn.Audit({player=0,city=1})
+assert(amount(c)==2 and cn.records['0:1'].writeUnconfirmed.n==2 and propertyWrites==0)
+P.CreateBuilding=create
+send(routes,3)
+assert(amount(c)==6 and not cn.records['0:1'].loaded and not cn.records['0:1'].writeUnconfirmed)
+assert(not cn.errors['0:1'] and propertyWrites==0)
+""")
+
+    def test_confirmed_receiver_loss_withdraws_during_proof_wait(self):
+        game = culture()
+        game.execute(CULTURE_PARTIAL)
+        game.execute("""
+local c=cities[1]
+restoreCultureWriter();net.CheckEvidence(false)
+c.incomplete=true
+cn.Audit({player=0,city=1})
+assert(amount(c)==0 and cn.records['0:1'].n==0 and not cn.records['0:1'].writeUnconfirmed)
+assert(not cn.errors['0:1'] and amount(cities[5])==6 and not net.TransactionCurrent(0))
+""")
+
+    def test_confirmed_source_loss_can_reduce_a_readable_residual(self):
+        game = culture()
+        game.execute("""
+local c=cities[1]
+cities[3].kind='CULTURE';cities[3].potential=4;cities[3].active=4
+complete(4,1);complete(4,2);complete(3,7)
+send('0,4,0,2,10;0,3,0,2,13;0,2,0,1,11',3)
+assert(amount(c)==3)
+local create=P.CreateBuilding
+P.CreateBuilding=function(q,id)
+ if q.city==c and id=='BUILDING_SPC_CULTURE_NETWORK_RESEARCH_2'then return end
+ return create(q,id)
+end
+for i=3,5 do complete(4,i)end
+cn.SourceChanged(0,4)
+assert(amount(c)==2 and cn.records['0:1'].writeUnconfirmed.n==2)
+P.CreateBuilding=create
+net.CheckEvidence(false)
+cities[4].active=3
+cn.SourceChanged(0,4)
+local r=cn.records['0:1']
+assert(amount(c)==1 and r.n==1 and not r.writeUnconfirmed and r.contributions[4]==nil)
+assert(r.contributions[3] and not net.TransactionCurrent(0))
 """)
