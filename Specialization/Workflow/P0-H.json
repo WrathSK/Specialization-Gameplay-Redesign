@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1032",
-    "runtime": "B485.512 / modinfo512",
+    "status": "S1033",
+    "runtime": "B486.513 / modinfo513",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the three passive effect write-readback changes for scoped review while keeping the existing turn entries.",
+  "goal": "Resolve the focused S1032 effect write review findings without changing the existing turn duties.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Finish Industrial Standardization startup with non-test cities — S1033",
+      "reason": "Foreign-city initialization repair and active test selection after independent review"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -624,6 +630,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B486 passes 112 selected Lua 5.1 checks, including non-test-city initialization with and without a saved carrier. The original B234 foreign-city regression also passes independently.",
     "B485 passes 111 local checks, including actual Standardization target isolation, exact readback, strict transactions and pinned native-source UI composition.",
     "B484 passes 124 local checks for Culture Network residual readback, independent cities, cold confirmation, and reliable withdrawal.",
     "B483 passes 86 local checks for actual Commerce write failure/readback, strict investment, independent receivers and existing turn boundaries.",
@@ -4496,6 +4503,44 @@
       "gate": "FOCUSED_A12_NET06_REVIEW_ENTRY_TURN_ENTRIES_RETAINED",
       "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#contain-an-unconfirmed-industrial-standardization-target--s1032"
+    },
+    "b486_standardization_foreign_city_startup": {
+      "build": "B486.513 / modinfo513",
+      "baseline": "941e3d00edbdedda1b3f3d4a8c917ea4da191f2a",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": {
+        "NStandardizationEffectReadback": 112
+      },
+      "source_snapshot_sha256": "7a9c484f3e21bdad446f686f50dc2da30460c6ab205f1c6ca63e5a5e055982f6",
+      "package_sha256": "92e380f0f3973e8a9ae28d1d9818baaa88669d0ac4d4afc76c8203b29d5a3db5",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "standardization_cold_non_test_city": {
+          "ready": true,
+          "error": "NONE",
+          "recipient": 14,
+          "stale_carrier": false,
+          "monument": true,
+          "followup_foreign_reads": 0,
+          "properties": 0
+        }
+      },
+      "evidence": {
+        "local/refactor/B486-Standardization-Cold-Startup/closure.json": "110791b25ba57aafd28ed10b510a4bd35d1c5c2e88e95918f258c9ec92c4165e",
+        "local/refactor/B486-Standardization-Cold-Startup/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B486-Standardization-Cold-Startup/closure.stderr.log": "f2ad3c363b4116cd02992f119f7396d3b2056e9d1a1a1d989cf3c032ca437999",
+        "local/refactor/B486-Standardization-Cold-Startup/baseline.log": "5dddd68abafd310c49b5e85c5109b317d5caf843a01e3c17c88b973df438e70f",
+        "local/refactor/B486-Standardization-Cold-Startup/historical.log": "38e342e26d30a4ed7304a4f307a9c67d660a2575d547aa9c83a72ae440d2ef64",
+        "local/refactor/B486-Standardization-Cold-Startup/historical_before.log": "3e55fc62e993995e721fc400716c45beba4c8939076d669926b3cb9b7cc0ecff"
+      },
+      "native": "NOT_MEASURED",
+      "gate": "F1_F3_LOCAL_FIXED_F2_AND_REPORT_WORDING_REMAIN",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#finish-industrial-standardization-startup-with-non-test-cities--s1033",
+      "audit_sha256": "0cee98ab402978a4678da7f5fb68daff76d9d46a3fe9d2809608ce5c15873c72",
+      "baseline_followup_foreign_reads": 69,
+      "historical_b234_foreign_regression": "FAIL_BEFORE_PASS_AFTER"
     }
   }
 }

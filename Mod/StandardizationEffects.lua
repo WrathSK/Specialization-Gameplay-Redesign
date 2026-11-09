@@ -313,7 +313,7 @@ function SPCStandardizationEffects.Start(P,shared)
      local cities=p:GetCities()
      if cities then for _,c in cities:Members()do
       retire(c)
-      if not P.IsTestPlayer(pid)then write(c,present(c),{})end
+      if not P.IsTestPlayer(pid)then write(c,{reference=ref(c),applied=present(c)},{})end
      end end
     end
     initialized=true;d.ready=true;SPCRuntimeWork.WakeFactOwner(shared,'StandardizationEffects')

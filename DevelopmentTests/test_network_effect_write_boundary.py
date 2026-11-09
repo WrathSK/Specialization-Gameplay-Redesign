@@ -366,6 +366,47 @@ return {granary=stdValue(1),monument=monument(c),failed_readback=r.applied[faile
 
 
 class StandardizationReadback(unittest.TestCase):
+    def test_cold_start_finishes_with_a_non_test_city(self):
+        for saved_carrier in (False, True):
+            with self.subTest(saved_carrier=saved_carrier):
+                game = standard(ready=False)
+                result = scalars(game.execute("""
+local savedCarrier=...
+local ai=equip({id=90,owner=1,token='AI90',kind='NONE',active=0,potential=0})
+function ai:GetID()return self.id end
+function ai:GetOwner()return self.owner end
+function ai:GetX()return 90 end
+function ai:GetY()return 10 end
+function ai:GetProperty(key)if key=='SPC_DEV_BINDING_B013_TOKEN'then return self.token end end
+local buildings=ai.GetBuildings
+function ai:GetBuildings()local b=buildings(self);b.city=self;return b end
+ai.present.BUILDING_MONUMENT=true
+if savedCarrier then ai.present.BUILDING_SPC_STD_12=true end
+local foreignCities={[90]=ai}
+Players[1]={GetCities=function()
+ return {FindID=function(_,id)return foreignCities[id]end,Members=function()return pairs(foreignCities)end}
+end}
+local read=P.HasBuilding;local foreignReads=0
+P.HasBuilding=function(b,id)
+ if b.city==ai and id:find('BUILDING_SPC_STD_',1,true)then foreignReads=foreignReads+1 end
+ return read(b,id)
+end
+send('0,5,0,2,10;0,3,0,2,11;0,2,0,1,12',3);fire('LoadScreenClose')
+local before=foreignReads
+for i=1,20 do fixturePublication()end
+fire('PlayerTurnActivated',0)
+return {ready=std.ready,error=std.error or 'NONE',recipient=stdValue(1),
+ stale_carrier=ai.present.BUILDING_SPC_STD_12==true,monument=ai.present.BUILDING_MONUMENT==true,
+ followup_foreign_reads=foreignReads-before,properties=propertyWrites}
+""", saved_carrier))
+                self.assertEqual(result, {
+                    'ready': True, 'error': 'NONE', 'recipient': 14,
+                    'stale_carrier': False, 'monument': True,
+                    'followup_foreign_reads': 0, 'properties': 0,
+                })
+                if saved_carrier:
+                    measure('standardization_cold_non_test_city', result)
+
     def test_mutated_then_thrown_target_does_not_stop_sibling_target(self):
         game = two_standardization_targets()
         result = scalars(game.execute(STANDARDIZATION_PARTIAL))

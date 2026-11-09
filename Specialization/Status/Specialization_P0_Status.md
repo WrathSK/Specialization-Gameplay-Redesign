@@ -1,17 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1032
-Implementation Build: source B485.512 / modinfo512. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1033
+Implementation Build: source B486.513 / modinfo513. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_EFFECT_WRITE_READBACK_LOCAL_REVIEW_READY
+Work State: STANDARDIZATION_FOREIGN_CITY_STARTUP_LOCAL_FIXED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Finish Industrial Standardization startup with non-test cities — S1033
+
+The Owner approved the scoped implementation after reading the independent S1032 review. The review identifies the normal cold startup regression (F-1), its test selection gap (F-3), the older stale-source counterexamples (F-2), and two presentation details. This slice addresses startup and coverage first. The Advisor report remains a local artifact, SHA256 `0cee98ab402978a4678da7f5fb68daff76d9d46a3fe9d2809608ce5c15873c72`.
+
+- **Runtime Impact Contract (L3, T01/T03/T04/T05/T08).** The existing foreign-city initialization cleanup now passes its existing receiver reference and installed carrier map to the current writer. The normal one-time exact owned-ID cleanup, ready notification, lifecycle entries and confirmed Store exit are reused. No new listener, timer, save field, native operation or persistent work queue.
+- **LOCAL_SIMULATION_PASS in scope.** With a non-test city at first initialization, B485 kept the Standardization owner unready, left its old carrier installed, and returned a 0% Granary projection for a valid recipient. The first twenty idle publications and one turn then made 69 extra foreign carrier reads in the three-carrier fixture. B486 clears only the owned stale carrier, leaves the foreign Monument, reaches +14% in the valid recipient, and makes zero follow-up foreign reads. A city without a stale carrier also starts. The new case is part of the existing Lua 5.1 stage and its reverse-indexed writer class. All 112 selected checks pass. The original B234 foreign-city test fails before and passes after in its original Lua 5.5 environment. No native startup or frame-cost evidence was collected.
+
+- **Reproduction.** `python3 DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/B486-Standardization-Cold-Startup/closure.json` (local Closure SHA256 110791b25ba57aafd28ed10b510a4bd35d1c5c2e88e95918f258c9ec92c4165e). Use CPython 3.14.8, Lupa 2.8 / Lua 5.1 on arm64 macOS, the pinned HD regression DB (SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439), and the pinned official production-panel source fragments when selected. Tested source SHA256 7a9c484f3e21bdad446f686f50dc2da30460c6ab205f1c6ca63e5a5e055982f6. Full artifacts remain in ignored local storage.
+- **STATIC_CONFIRMED.** 208 Lua chunks, 32 XML-family files, 666 file references and ten replacements for the same 337-path package. Source package SHA256 92e380f0f3973e8a9ae28d1d9818baaa88669d0ac4d4afc76c8203b29d5a3db5. Live B476.503 keeps its separate acceptance.
+
+No Owner decision or new game test is needed for this slice. Primary next verifies the stale source/membership cases. The current turn duties remain.
 
 ### Contain an unconfirmed Industrial Standardization target — S1032
 
