@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1027",
-    "runtime": "B481.508 / modinfo508",
+    "status": "S1028",
+    "runtime": "B482.509 / modinfo509",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Isolate the existing UI route repair and Standardization turn recovery duties in composed local comparisons.",
+  "goal": "Recover existing proof notification registration after proven scope capacity and document the open turn recovery boundary.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Deliver accepted proof after the existing notification capacity is freed — S1028",
+      "reason": "Capacity-driven notification repair and exact remaining retirement duties"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -594,6 +600,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B482 passes 113 local checks, including real scope limits, one bounded registration recovery, stale proof and complete packet supersession of a failed negative projection.",
     "S1027 passes 91 local checks. A UI lifecycle packet repairs the modeled silent route loss. A silent template recovery still uses the Standardization turn.",
     "B481 passes 89 scoped Lua 5.1 checks. A genuine newer role event or accepted equal-value packet closes the recorded generation. Idle publications leave it dormant.",
     "S1025 passes 50 local checks. Removing only the Bridge turn invocation leaves silent role readiness and a failed confirmed withdrawal unhandled in controlled comparisons.",
@@ -4261,6 +4268,73 @@
       "gate": "ALL_FOUR_TURN_ENTRIES_RETAINED_D1_E6_E7_OPEN",
       "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#compare-missed-routes-and-silent-industrial-history-recovery--s1027"
+    },
+    "b482_proof_capacity_delivery": {
+      "build": "B482.509 / modinfo509",
+      "baseline": "85ae757d21a61b42c565d9476009dda5a10242d7",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": 113,
+      "source_snapshot_sha256": "ebc395aca6fe309a0e8a320afbdfd909695fc424038e4d122bd253c5146f4516",
+      "package_sha256": "5af14ea86edfd79f2b552293065b04f0f936341a2dcdefbbc6e2dbd54fbd0501",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "real_proof_notification_capacity_recovery": {
+          "full_queue": {
+            "delivered": 1,
+            "intent_pending": false,
+            "captures": 1,
+            "held_scope_count": 1,
+            "attempts": 3
+          },
+          "held_scopes": {
+            "delivered": 1,
+            "intent_pending": false,
+            "captures": 1,
+            "held_scope_count": 2048,
+            "attempts": 3
+          },
+          "retry_rejected": {
+            "delivered": 0,
+            "intent_pending": true,
+            "captures": 1,
+            "held_scope_count": 0,
+            "attempts": 3
+          },
+          "stale_generation": {
+            "delivered": 0,
+            "intent_pending": true,
+            "captures": 1,
+            "held_scope_count": 0,
+            "attempts": 2
+          }
+        },
+        "complete_packet_supersedes_held_negative": {
+          "failed_projection_attempts_on_turns": 3,
+          "turns": 3,
+          "additional_failed_projection_attempts_after_packet": 0,
+          "gold": 6
+        }
+      },
+      "evidence": {
+        "local/refactor/B482-Scoped-Registration/closure.json": "e927f6f358e6df91c715233577f467806dce9a03b98a0122bf270016885a32e9",
+        "local/refactor/B482-Scoped-Registration/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B482-Scoped-Registration/closure.stderr.log": "e353c5b4bc41e8fe403445dea202a296f380d7f63c686c0a89daa175e4cb8748",
+        "local/refactor/B482-Scoped-Registration/baseline.log": "1a4316ffa4cc971262ccb8d81a0bb6ba9ed768ed63f69a7e40fc1a5740bde117",
+        "local/refactor/B482-Scoped-Registration/reverse.log": "a68f405f7fc3abf8f67a031f24ca0ccd6e833d4743c46893a2018c057fc7f827",
+        "local/refactor/B482-Scoped-Registration/reverse_isolated.json": "be891d432a3576db39665538674cc0d6ef888fa18be53d916cd61e6797b8c106"
+      },
+      "native": "NOT_MEASURED",
+      "reverse_index": {
+        "results_each": {
+          "tests": 2875,
+          "not_pass": 207
+        },
+        "not_run_groups": []
+      },
+      "gate": "ALL_FOUR_TURN_ENTRIES_RETAINED_D1_E6_E7_OPEN",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#deliver-accepted-proof-after-the-existing-notification-capacity-is-freed--s1028"
     }
   }
 }

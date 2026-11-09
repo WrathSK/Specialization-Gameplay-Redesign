@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1027",
-    "runtime": "B481.508 / modinfo508",
+    "status": "S1028",
+    "runtime": "B482.509 / modinfo509",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "df9461790079ef858f4df11944c78dfc7e0877f3",
-  "current_batch": "NETWORK_RECOVERY_CAUSES_LOCAL_REVIEWED",
-  "next_batch": "Verify real proof notification capacity failure and its existing completion boundary. Keep turn entries until each duty has proved successors and required retirement approval.",
+  "current_batch": "NETWORK_PROOF_CAPACITY_LOCAL_COMPLETE_TURN_GATE_OPEN",
+  "next_batch": "Review the exact remaining network turn duties at the retirement boundary. Existing triggers remain in production until an accepted availability boundary or a deliberate retained scope is established.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B476.503 / modinfo503 temporary develop from df9461790079ef858f4df11944c78dfc7e0877f3, 337/337 MATCH, SHA256 31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e. Receipt B476.503-df94617-playtest.json DEVELOP_ACTIVE. B475 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1027 compares the UI turn recovery and silent Industrial history using local controls. B481 runtime is unchanged.",
+  "context_review_status": "S1028 verifies scope-capacity recovery of already accepted proof and the remaining exact turn boundary. All four entries stay; B476 remains installed.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#compare-missed-routes-and-silent-industrial-history-recovery--s1027",
-  "source_status": "B481.508 / modinfo508 locally verified at SHA256 7994d7d42a0d7c3f681d5d46d795e27b916d2b7ee2d4199b39d388bc454f5c1b. B476.503 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#deliver-accepted-proof-after-the-existing-notification-capacity-is-freed--s1028",
+  "source_status": "B482.509 / modinfo509 locally verified at SHA256 5af14ea86edfd79f2b552293065b04f0f936341a2dcdefbbc6e2dbd54fbd0501. B476.503 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

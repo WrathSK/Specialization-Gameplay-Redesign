@@ -19,6 +19,7 @@ function SPCNetworkBridge.Start(P,shared)
  local function isolatedForProof(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local notify
  local pending,dormant={},{};local draining=false
+ local capacityWait={} -- index of already retained proof intents blocked by scope limits
  function d.ProofRevision(pid)return d.proofRevisions[pid] or 0 end
  function d.TransactionCurrent(pid)
   local b=d.players[pid]
@@ -173,6 +174,27 @@ function SPCNetworkBridge.Start(P,shared)
   for _,id in ipairs(ids)do local f=b.input.provenance[id];parts[#parts+1]=id..':'..f.reference..':'..f.status end
   return table.concat(parts,'|')
  end
+ local function registerProof(pid,b,intent)
+  local registry=shared.FactChanges
+  if not registry then
+   capacityWait[pid]=nil;b.consumerError='NETWORK_NOTIFICATION_REGISTRY_UNAVAILABLE';return false
+  end
+  local ok,seq=pcall(registry.EmitDerived,intent.event)
+  local registered=ok and type(seq)=='number' and seq>=1 and seq%1==0 and shared.FactChanges==registry and not registry.closed
+  if b.notificationIntent==intent then
+   capacityWait[pid]=nil
+   if registered then b.lastNotifiedProof=intent.signature;b.notificationIntent=nil;b.consumerError=nil
+   else
+    b.consumerError=not ok and short(seq) or 'NETWORK_NOTIFICATION_UNCONFIRMED'
+    local code=b.consumerError:match('[A-Z_]+$')
+    if shared.FactChanges==registry and not registry.closed and not intent.capacityWakeUsed
+     and (code=='FACT_QUEUE_LIMIT' or code=='FACT_DELIVERY_SCOPE_LIMIT')then
+     intent.capacityEpoch=registry.epoch;capacityWait[pid]=intent
+    end
+   end
+  end
+  return registered
+ end
  notify=function(pid,cause)
   local b=bucket(pid);local signature=proofSignature(b);local intent=b.notificationIntent
   if not intent and b.lastNotifiedProof==signature then return false end
@@ -184,15 +206,22 @@ function SPCNetworkBridge.Start(P,shared)
    b.notificationIntent=intent -- one scalar latest-proof intent per existing owner bucket
   end
   if b.effectAvailability=='AVAILABLE'then b.proofPending=false end
-  local registry=shared.FactChanges
-  if not registry then b.consumerError='NETWORK_NOTIFICATION_REGISTRY_UNAVAILABLE';return false end
-  local ok,seq=pcall(registry.EmitDerived,intent.event)
-  local registered=ok and type(seq)=='number' and seq>=1 and seq%1==0 and shared.FactChanges==registry and not registry.closed
-  if b.notificationIntent==intent then
-   if registered then b.lastNotifiedProof=signature;b.notificationIntent=nil;b.consumerError=nil
-   else b.consumerError=not ok and short(seq) or 'NETWORK_NOTIFICATION_UNCONFIRMED'end
+  return registerProof(pid,b,intent)
+ end
+ -- Run after a real registry drain and all ordered consumers. Registration goes
+ -- to the next snapshot and never starts a topology capture or a second drain.
+ function d.ResumeProofRegistration(registry)
+  if shared.FactChanges~=registry then return end
+  for pid,intent in pairs(capacityWait)do
+   if not registry.HasScopeCapacity()then break end
+   capacityWait[pid]=nil
+   local b=d.players[pid]
+   if b and b.notificationIntent==intent and intent.capacityEpoch==registry.epoch and not isolated(pid)
+    and intent.signature==proofSignature(b)
+    and (intent.event.evidence.availability~='AVAILABLE' or currentGeneration(pid,b))then
+    intent.capacityWakeUsed=true;registerProof(pid,b,intent)
+   end
   end
-  return registered
  end
  local function mergeWork(dst,src)
   dst.losses=dst.losses or {};dst.drops=dst.drops or {}
@@ -786,7 +815,7 @@ function SPCNetworkBridge.Start(P,shared)
    and b.derivedFor==b.inputRevision and v.signature==b.inputSignature
   local reason=isolated(pid) and 'NETWORK_ISOLATED' or not d.ready and 'NETWORK_NOT_READY'
    or not b and 'NETWORK_NO_INPUT' or not coherent and 'NETWORK_VIEW_UNAVAILABLE'
-   or b.pendingRoleGeneration and 'NETWORK_ROLE_REFRESH_PENDING'
+   or not currentGeneration(pid,b) and 'NETWORK_ROLE_REFRESH_PENDING'
    or b.availability~='AVAILABLE' and 'NETWORK_REVALIDATION_PENDING' or 'NETWORK_AVAILABLE'
   local function safeName(owner,cid)
    local ok,title=pcall(name,owner,cid);return ok and title or ('城市#'..tostring(cid)..'（玩家'..tostring(owner)..'）')
@@ -809,6 +838,9 @@ function SPCNetworkBridge.Start(P,shared)
    phase=err and err.phase,errorCode=err and err.errorCode,errorClass=err and err.errorClass,
    errorFile=err and err.errorFile,errorLine=err and err.errorLine})
   if reason~='NETWORK_AVAILABLE'then lines[#lines+1]='状态：'..reason..(err and ('；错误 '..err.errorCode) or '')end
+  if b and b.consumerError then
+   lines[#lines+1]='下游通知待登记｜'..(b.consumerError:match('FACT_[A-Z_]+$') or 'NETWORK_NOTIFICATION_UNCONFIRMED')
+  end
   if not details then
    lines[#lines+1]='已发布商路 '..tostring(b and b.routes and #b.routes or '未知')
     ..'｜来源城 '..(coherent and size(sources) or '未知')..'｜中心 '..(coherent and size(centers) or '未知')
@@ -927,6 +959,7 @@ function SPCNetworkBridge.Start(P,shared)
   local b=bucket(pid);assert(not b.refreshing,'NETWORK_EXPERIMENT_BUSY')
   views[pid]=nil;inputProviders[pid]=nil;pending[pid]=nil;dormant[pid]=nil;b.queuedWork=nil;b.negativeHeld=nil
   b.pendingRoleGeneration=nil;b.roleRefreshError=nil
+  capacityWait[pid]=nil
   b.routes=nil;b.fingerprint=nil;b.routeReferences=nil;b.candidate=nil;b.input=nil;b.inputSignature=nil
   b.sources=nil;b.centers=nil;b.recipients=nil;b.derivedFor=nil
   b.validity='EXPERIMENT_ISOLATED';b.availability='EXPERIMENT_ISOLATED';b.reason='EXPERIMENT_ISOLATED'

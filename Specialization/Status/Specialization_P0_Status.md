@@ -1,17 +1,30 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1027
-Implementation Build: source B481.508 / modinfo508. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1028
+Implementation Build: source B482.509 / modinfo509. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_RECOVERY_CAUSES_LOCAL_REVIEWED
+Work State: NETWORK_PROOF_CAPACITY_LOCAL_COMPLETE_TURN_GATE_OPEN
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Deliver accepted proof after the existing notification capacity is freed — S1028
+
+A verified route set and a delivered notification are separate. At the configured limit the Bridge can accept complete proof while the registry refuses the owner notice. The latest intent then waits for another Bridge entry even after the registry has freed space.
+
+- **Runtime Impact Contract (L3, T01/T02/T04/T05/T08).** Bridge retains its existing latest proof intent and indexes only the intents blocked by the existing queue or retained-scope limits. The completed Gameplay FactChanges and ordered Binding drain is the availability witness. The registry exposes a scalar room check using the same limits. Bridge can register the unchanged current intent once at that boundary. A superseded intent, registry epoch change or newly stale strict proof cannot be replayed. Normal phase-zero publication order is unchanged; the recovered notice goes to the next ordinary fact snapshot. No new capture, proof revision, callback, write, timer, queue increase or persistent field. Other registration failures retain existing handling. The read-only network report shows the sanitized registration error separately from proof availability.
+- **LOCAL_SIMULATION_PASS in scope.** With actual Gameplay and registry code, B481 hits both the 2,048 queued-scope and retained-scope limits. On B482 the existing drain permits one extra registration attempt, one notification reaches the next snapshot, and there is no extra capture. The retained-scope control explicitly releases only one old scope. A second injected failure remains visible without rearming on unrelated drains. An undelivered newer committed role generation keeps strict proof closed and is not advertised as fresh. All 113 selected checks pass.
+- **Confirmed-loss boundary remains open (T2/R-2).** With negative projection deliberately failing, three turn activations each retry the same unresolved loss. Gold remains 15 and strict use stays closed. A complete current packet omitting the lost route supersedes that pending loss while the injected projection fault is still installed. Gold becomes 6, the two surviving routes remain, and no further negative attempt is needed. The new packet can complete this exact responsibility; the test does not establish that it always arrives natively before the old fallback is needed.
+- **Remaining turn duties.** S1027 establishes a route-removal successor after UI proof acceptance in the modeled boundary. The existing reference, Store and producers still do not establish a notification for a city role or source history silently becoming readable without a write. Commerce also has routine turn-boundary native yield reads. Generic registration exceptions, a delivered role failure with no later evidence and a confirmed loss with no fresh packet retain their current recovery paths. Do not treat these as replaceable by the capacity fix or the test controls. D1-E6/E7 remain open.
+- **Reproduce and recover.** `python3 DevelopmentTests/run_refactor.py --stage NNetworkRecoveryBoundary --output local/refactor/B482-Scoped-Registration/closure.json`. Python 3.14.8, Lupa 2.8 / Lua 5.1 on arm64 macOS, existing HD regression DB SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439. Tested source SHA256 ebc395aca6fe309a0e8a320afbdfd909695fc424038e4d122bd253c5146f4516; local Closure `local/refactor/B482-Scoped-Registration/closure.json` SHA256 e927f6f358e6df91c715233577f467806dce9a03b98a0122bf270016885a32e9. Independent Lua 5.1 processes per reverse-index group yielded 2,875 executions per side across 20 overlapping groups, with the same 207 inherited failure/error records including subtests; no new failures or skips. The first combined process produced 12 candidate-only failures in two modules. Those two modules passed in isolation on each side. Local full artifacts and transcripts are Git-ignored evidence.
+- **STATIC_CONFIRMED.** 208 Lua 5.1 chunks, 32 XML-family files, 666 file references and ten replacements checked. The package has the same 337 paths, SHA256 5af14ea86edfd79f2b552293065b04f0f936341a2dcdefbbc6e2dbd54fbd0501. Live B476.503 retains its prior evidence scope.
+
+User testing is unnecessary for this checkpoint. Owner review is required before making the old turn recovery permanent by design or removing it without a proven replacement. The current behavior remains the fallback. The next implementation would require either a named dependable readiness boundary for the remaining duties or an explicit scope decision. No D1 retirement, new native evidence, deployment or promotion is recorded.
 
 ### Compare missed routes and silent Industrial history recovery — S1027
 

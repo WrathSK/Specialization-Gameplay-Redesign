@@ -88,6 +88,35 @@ return {negative_held=held,trade_ready=net.TransactionCurrent(0),gold=ownedGold(
         })
         measure('bridge_turn_negative_boundary', outcomes)
 
+    def test_complete_new_packet_supersedes_a_failed_confirmed_negative(self):
+        lua = bridge_commerce()
+        result = lua.execute("""
+assert(toggle(2,'DISTRICT_CAMPUS',true) and ownedGold(cities[2])==15)
+local signature=SPCNetworkInput.Signature
+local failures=0
+SPCNetworkInput.Signature=function(input)
+ if input.negativeProof then failures=failures+1;error('INJECTED_NEGATIVE_PROJECTION',0)end
+ return signature(input)
+end
+local function settle()
+ shared.FactChanges.Flush();shared.FactBindings.Flush();Events.GameCoreEventPublishComplete.Fire()
+end
+units[11]=nil;net.CheckEvidence(false,'TradeRouteRemovedFromMap');settle()
+local b=net.players[0];local initial=failures
+for i=1,3 do
+ assert(b.negativeHeld and not net.TransactionCurrent(0) and ownedGold(cities[2])==15)
+ turn=turn+1;Events.PlayerTurnActivated.Fire(0);settle()
+end
+assert(failures==initial+3 and b.negativeHeld and not net.TransactionCurrent(0) and ownedGold(cities[2])==15)
+local attempts,seq=failures,b.seq
+send('0,4,0,2,10;0,2,0,5,12',2,seq+1);settle()
+assert(b.acceptedSeq==seq+1 and not b.negativeHeld and net.TransactionCurrent(0) and #b.routes==2)
+assert(ownedGold(cities[2])==6 and failures==attempts)
+return {turns=3,failed_projection_attempts_on_turns=attempts-initial,
+ additional_failed_projection_attempts_after_packet=failures-attempts,gold=ownedGold(cities[2])}
+""")
+        measure('complete_packet_supersedes_held_negative', dict(result.items()))
+
 
 def compare_turn(lua, *, bridge=True, owner=None, owner_turn=True):
     lua.execute("""
@@ -446,3 +475,95 @@ return {carrier=stdValue(1),provenance=std.records['0:1'].sources[5].provenance,
             'turn_suppressed': {'carrier': 14, 'provenance': 'RETAINED', 'ready': True},
         })
         measure('industry_silent_template_turn_dependency', outcomes)
+
+
+class ProofRegistrationCapacity(unittest.TestCase):
+    def test_real_capacity_release_retries_only_the_existing_proof_notification(self):
+        outcomes = {}
+        for scenario in ('full_queue', 'held_scopes', 'retry_rejected', 'stale_generation'):
+            with self.subTest(scenario=scenario):
+                game = Context()
+                game.execute(NATIVE)
+                game.load('Gameplay')
+                game.execute('Events.LoadScreenClose.Fire();publish()')
+                game.execute(TWO_CITIES)
+                result = game.execute("""
+local scenario=...
+local held=scenario=='held_scopes'
+local rejectRetry=scenario=='retry_rejected'
+local stale=scenario=='stale_generation'
+local fc=ExposedMembers.SPC_P0.FactChanges
+local delivered,attempts,captures=0,0,0
+local released=false
+fc.RegisterConsumer('NetworkDeliveryControl',function(e)
+ assert(e.player==0 and e.kinds.NETWORK)
+ delivered=delivered+1
+end,{kinds={'NETWORK'}})
+if held then
+ fc.RegisterConsumer('CapacityControl',function(e)
+  if released and e.city==1 then return fc.Receipt(e,'REGISTERED')end
+ end,{kinds={'HISTORY'},topics={'CAPACITY_CONTROL'},delivery='RESPONSIBILITY'})
+end
+for city=1,2048 do
+ fc.Emit({owner=63,cityID=city,kinds={'HISTORY'},topic='CAPACITY_CONTROL',cause='CAPACITY_CONTROL'})
+end
+assert(fc.pending==2048)
+if held then publish();assert(fc.pending==0 and fc.retainedScopes==2048)end
+
+local capture,emit=SPCNetworkInput.Capture,fc.EmitDerived
+SPCNetworkInput.Capture=function(...)captures=captures+1;return capture(...)end
+local function countRegistration(...)attempts=attempts+1;return emit(...)end
+fc.EmitDerived=countRegistration
+GameEvents.SPC_P0_Request.Fire(0,{Action='NETWORK_PUSH',Token=SPCP0.VERSION..':net:1',Epoch=net.epoch,
+ Seq=1,Turn=turn,Signal=ExposedMembers.SPC_P0.RouteSignalRevision,Valid=1,Count=1,Data='0,1,0,2,10'})
+local b=net.players[0]
+assert(net.TransactionCurrent(0) and b.acceptedSeq==1 and #b.routes==1)
+local proof=net.ProofRevision(0)
+local expected=held and 'FACT_DELIVERY_SCOPE_LIMIT' or 'FACT_QUEUE_LIMIT'
+assert(b.consumerError:find(expected,1,true) and attempts==2 and delivered==0 and captures==1,
+ tostring(b.consumerError)..' attempts='..attempts..' captures='..captures)
+if held then
+ fc.Emit({owner=62,cityID=1,kinds={'HISTORY'},topic='OTHER_CAUSE',cause='OTHER_CAUSE'});publish()
+ for i=1,100 do publish()end
+ assert(attempts==2 and delivered==0 and fc.retainedScopes==2048)
+ released=true
+ assert(fc.WakeConsumer('CapacityControl','EXPLICIT_RELEASE',1,{player=63,city=1}))
+end
+assert(net.ReadSnapshot(0,city1,false):find(expected,1,true))
+if stale then fc.InvalidateCommitted(0,1,{'ACTIVE'})end
+if rejectRetry then
+ fc.EmitDerived=function()attempts=attempts+1;error('FACT_QUEUE_LIMIT',0)end
+end
+publish() -- actual registry/Binding drain releases the capacity
+local afterRelease=attempts
+fc.EmitDerived=countRegistration
+publish() -- deliver the newly registered scope in its own snapshot
+local deliveredAfterRelease=delivered
+if rejectRetry then
+ for i=1,5 do
+  fc.Emit({owner=62,cityID=i,kinds={'HISTORY'},topic='OTHER_CAUSE',cause='OTHER_CAUSE'});publish()
+ end
+end
+for i=1,100 do publish()end
+assert(attempts==afterRelease and delivered==deliveredAfterRelease)
+assert(net.TransactionCurrent(0)==not stale and b.acceptedSeq==1 and net.ProofRevision(0)==proof and captures==1)
+assert((b.consumerError~=nil)==(rejectRetry or stale))
+assert((net.ReadSnapshot(0,city1,false):find(expected,1,true)~=nil)==(rejectRetry or stale))
+assert(not stale or net.ReadSnapshot(0,city1,false):find('NETWORK_ROLE_REFRESH_PENDING',1,true))
+return {attempts=attempts,delivered=delivered,captures=captures,
+ held_scope_count=fc.retainedScopes,intent_pending=b.notificationIntent~=nil}
+""", scenario)
+                outcomes[scenario] = dict(result.items())
+        # The actual effects keep one receipt in these minimal native fixtures.
+        # Only the one explicitly released old scope can be reused by the proof.
+        self.assertEqual(outcomes, {
+            'full_queue': {'attempts': 3, 'delivered': 1, 'captures': 1,
+                           'held_scope_count': 1, 'intent_pending': False},
+            'held_scopes': {'attempts': 3, 'delivered': 1, 'captures': 1,
+                            'held_scope_count': 2048, 'intent_pending': False},
+            'retry_rejected': {'attempts': 3, 'delivered': 0, 'captures': 1,
+                               'held_scope_count': 0, 'intent_pending': True},
+            'stale_generation': {'attempts': 2, 'delivered': 0, 'captures': 1,
+                                 'held_scope_count': 0, 'intent_pending': True},
+        })
+        measure('real_proof_notification_capacity_recovery', outcomes)

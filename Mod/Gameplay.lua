@@ -664,7 +664,12 @@ composition.Run('FactChanges',{}, {'FactChanges'},function()
  local draining=false
  local function drain()
   if not composition.sealed or draining then return end;draining=true
-  local function run()changes.Flush();if shared.FactBindings then shared.FactBindings.Flush()end end
+  local function run()
+   local flushed=changes.Flush()
+   if shared.FactBindings then shared.FactBindings.Flush()end
+   local network=shared.NetworkBridge
+   if flushed and network and type(network.ResumeProofRegistration)=='function'then network.ResumeProofRegistration(changes)end
+  end
   local facts=shared.EffectiveFacts
   local ok,err=pcall(function()if facts and facts.WithPhase then facts.WithPhase('FACT_PROPAGATION',run)else run()end end)
   draining=false

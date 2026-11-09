@@ -14,6 +14,7 @@
       "test_b397_network_transport.StrictTransactions",
       "test_refactor_s5propagation",
       "test_refactor_s5c1.NetworkSignals",
+      "test_refactor_s6j",
       "test_pu01_fact_use.StatusProjection",
       "test_network_readonly_diagnostic",
       "test_o7_network_trace.NetworkTrace.test_actual_gameplay_and_ui_proof_ack_without_observer_file"
@@ -2443,6 +2444,7 @@
       "test_refactor_s7a2"
     ],
     "Mod/Gameplay.lua": [
+      "test_network_turn_recovery_boundary.ProofRegistrationCapacity",
       "test_o7_runtime_gc",
       "test_o4_crew_wonder_site",
       "test_o4_crew_target_queue",
@@ -2610,6 +2612,7 @@
       "test_refactor_a8"
     ],
     "Mod/FactChanges.lua": [
+      "test_network_turn_recovery_boundary.ProofRegistrationCapacity",
       "test_refactor_s5a",
       "test_refactor_s6j"
     ],

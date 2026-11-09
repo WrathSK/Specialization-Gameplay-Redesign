@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "e6e156d95eddd3945db7f3dfeb842e730d0ccf236d89b5b1d08ffff6964201e1",
+      "sha256": "224fcb0e0eeb92bdb5008ff2c36ee0c1d27bd2cde7654b82e9b486e41208919b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1019 B477 consolidated P0 experiment and duplicate report retirement."
+      "provenance": "S1028 B482 capacity-driven proof notification registration after the ordered fact drain."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -706,9 +706,9 @@
       "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "ed4c0b39feb905ac61bc4d78017053d6dccafc088f25922bf9589793639612d5",
+      "sha256": "26f7a5dc1f46e28004aa406b742aed4490c59c7801b128182fcfa2ea8cce6469",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1026 B481 delivered role refresh ownership and proof boundary."
+      "provenance": "S1028 B482 capacity-driven proof notification registration after the ordered fact drain."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "398b639f4e935dcce4a6d258d4ede18bcc95c2d150a777a95190c657d3168046",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "afdbeea5481e2e0cd7fce140db60e276f7f65ea605e26fd6523be7a86b588a3c",
+      "sha256": "1bd74dc2bb6762e8e7142aa737ae9ba8d48413b97990ec16cfbc092371cbc299",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1026 B481 delivered role refresh ownership and proof boundary."
+      "provenance": "S1028 B482 capacity-driven proof notification registration after the ordered fact drain."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9d104668209b1894d19b7bae7a69c5e20f019dfb6febe3c86d1b9995a72f7d70",
+      "sha256": "fa7a4012ad542bb11369447dfdd17e51c405bc5e9626d4c86a01d83bcacb53ac",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1026 B481 delivered role refresh ownership and proof boundary."
+      "provenance": "S1028 B482 capacity-driven proof notification registration after the ordered fact drain."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1476,9 +1476,9 @@
       "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
     },
     "Mod/FactChanges.lua": {
-      "sha256": "3d5068d69dfefa3f55f1a8725348602990e5ce8c57c6b260d7d922ca240e18a4",
+      "sha256": "93e482db5d48bc1820b7bb54995c3c3e5afa0aaea9bb162713e4729134756e62",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
+      "provenance": "S1028 B482 capacity-driven proof notification registration after the ordered fact drain."
     },
     "Mod/FactConsumerBindings.lua": {
       "sha256": "349c8549806dd6fe6ba4e6987475901449161151d99c2adf37a15a6d1f7793d5",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1027 compares the UI turn recovery and silent Industrial history using local controls. B481 runtime is unchanged.",
-  "source_runtime": "B481.508 / modinfo508 local candidate, 337 files. B476.503 remains installed.",
-  "tested_source_snapshot_sha256": "2470dc2c21c521983f86878f79f48e651e407f1973eaa00a336233e655cdc8c3"
+  "source_review": "S1028 verifies scope-capacity recovery of already accepted proof and the remaining exact turn boundary. All four entries stay; B476 remains installed.",
+  "source_runtime": "B482.509 / modinfo509 local candidate, 337 files. B476.503 remains installed.",
+  "tested_source_snapshot_sha256": "ebc395aca6fe309a0e8a320afbdfd909695fc424038e4d122bd253c5146f4516"
 }

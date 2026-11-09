@@ -120,6 +120,9 @@ function M.New(shared)
   assert(d.retainedScopes+scopes<=SCOPE_LIMIT,'FACT_DELIVERY_SCOPE_LIMIT')
  end
  function d.ReceiptSlotsPerReceiver()return RECEIPTS_PER_RECEIVER end
+ function d.HasScopeCapacity()
+  return not d.closed and #keys<SCOPE_LIMIT and d.retainedScopes<SCOPE_LIMIT
+ end
  local interested
  local function merged(previous,row)
   if not previous then return row end
