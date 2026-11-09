@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1026 records S1025 audit dispositions and gives delivered role refreshes one existing owner. All turn entries remain; B476 remains installed.",
+  "source_review": "S1027 compares the UI turn recovery and silent Industrial history using local controls. B481 runtime is unchanged.",
   "source_runtime": "B481.508 / modinfo508 local candidate, 337 files. B476.503 remains installed.",
-  "tested_source_snapshot_sha256": "763fbd391861035eba9dfc3aa461c621b78054f1c796e6447f5cb33b9af9b0ad"
+  "tested_source_snapshot_sha256": "2470dc2c21c521983f86878f79f48e651e407f1973eaa00a336233e655cdc8c3"
 }

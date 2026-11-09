@@ -2,8 +2,10 @@
 
 import unittest
 
-from refactor_harness import measure
+from refactor_harness import Context, measure
 from test_network_effect_fact_receipts import composition
+from test_o7_route_observer_retirement import TWO_CITIES
+from test_pu11_package_absence import NATIVE, mirror_bridge, scalars
 from test_refactor_s4b import warm_commerce
 from test_refactor_s5c2 import fixture as bridge_commerce
 
@@ -300,3 +302,147 @@ drain()
 assert(captures==2 and b.factGeneration==fc.Generation(0,'NETWORK') and net.TransactionCurrent(0))
 assert(not net.Input(0).pendingRoleGeneration and stdValue(1)==0)
 """)
+
+
+class IndependentTurnBoundaries(unittest.TestCase):
+    def test_ui_turn_sample_repairs_silent_route_loss_without_gameplay_turn_refresh(self):
+        outcomes = {}
+        for ui_activation in (True, False):
+            game, ui = Context(), Context(name='UI/BackgroundRoutes')
+            for ctx in (game, ui):
+                ctx.execute('os=nil;io=nil;debug=nil;package=nil;require=nil;rawget=nil;loadfile=nil;dofile=nil')
+                ctx.execute(NATIVE)
+            game.load('Gameplay')
+            game.execute('Events.LoadScreenClose.Fire();publish()')
+            for ctx in (game, ui):
+                ctx.execute(TWO_CITIES)
+                ctx.execute("""
+routes[2]={OriginCityPlayer=0,OriginCityID=2,DestinationCityPlayer=0,DestinationCityID=1,TraderUnitID=11}
+local trader={GetType=function()return 10 end}
+Players[0].GetUnits=function()
+ return {FindID=function(_,id)if id==11 or id==10 and not lostTrader then return trader end end}
+end
+""")
+            ui.load('UI/BackgroundRoutes')
+            mirror_bridge(game, ui)
+            packets = []
+
+            def request(pid, operation, payload):
+                self.assertEqual((pid, operation), (0, 1))
+                packets.append(scalars(payload))
+
+            def mirror_receipt():
+                # Keep the UI's existing context identity. A context reset would
+                # cause a separate collection even when the turn hook is silent.
+                source = game.eval('net.players[0]')
+                ui.execute("""
+local b=ExposedMembers.SPC_P0.NetworkBridge
+local seq,accepted,fp,revalidation,signal=...
+b.players[0]={seq=seq,acceptedSeq=accepted,fingerprint=fp,revalidation=revalidation,signal=signal,routes={}}
+""", *(source[key] for key in ('seq', 'acceptedSeq', 'fingerprint', 'revalidation', 'signal')))
+
+            ui.globals().UI.RequestPlayerOperation = request
+            ui.execute('init()')
+            self.assertEqual(len(packets), 1)
+            self.assertEqual(packets[0]['Count'], 2)
+            game.execute("""
+function deliver(packet)GameEvents.SPC_P0_Request.Fire(0,packet);publish()end
+function routeState()
+ local view=net.CurrentOutgoingDomestic(0,city1)
+ return {ready=net.TransactionCurrent(0),route_count=#net.players[0].routes,
+  city_one_partners=#assert(view.partners),trader=net.players[0].routes[1].trader}
+end
+deliver(...)
+local initial=routeState()
+assert(initial.ready and initial.route_count==2 and initial.city_one_partners==1)
+""", game.table(packets[0]))
+            mirror_receipt()
+            ui.execute('publish();assert(not ExposedMembers.SPC_NetworkRequestInFlight)')
+            for ctx in (game, ui):
+                ctx.execute('table.remove(routes,1);lostTrader=true')
+            game.execute("""
+local refresh=net.Refresh
+local invocations=0
+net.Refresh=function(pid)assert(pid==0);invocations=invocations+1 end
+turn=turn+1;Events.PlayerTurnActivated.Fire(0);net.Refresh=refresh
+publish();assert(invocations==1 and net.TransactionCurrent(0))
+""")
+            ui.execute("""
+turn=turn+1
+local p=ExposedMembers.SPC_P0_BackgroundRoutes;beforeLossSample=p.generation
+for i=1,100 do publish()end
+assert(p.generation==beforeLossSample and p.snapshot.count==2)
+""")
+            self.assertEqual(len(packets), 1)
+            if ui_activation:
+                ui.execute('Events.PlayerTurnActivated.Fire(0)')
+                self.assertEqual(len(packets), 2)
+                self.assertEqual((packets[-1]['Count'], packets[-1]['Data']), (1, '0,2,0,1,11'))
+                # The old packet is a replay. Only the newly validated set removes the lost partner.
+                self.assertTrue(ui.eval('ExposedMembers.SPC_NetworkRequestInFlight'))
+                game.execute('deliver(...);assert(#net.players[0].routes==2)', game.table(packets[0]))
+                game.execute('deliver(...)', game.table(packets[-1]))
+                self.assertEqual(game.eval('net.players[0].acceptedSeq'), packets[-1]['Seq'])
+            result = dict(game.eval('routeState()').items())
+            result['new_packets'] = len(packets) - 1
+            result['lifecycle_scans'] = ui.eval('ExposedMembers.SPC_P0_BackgroundRoutes.generation-beforeLossSample')
+            outcomes['ui_turn' if ui_activation else 'neither_turn'] = result
+            if ui_activation:
+                mirror_receipt()
+            ui.execute('local p=ExposedMembers.SPC_P0_BackgroundRoutes;local n=p.generation;for i=1,100 do publish()end;assert(p.generation==n)')
+            self.assertEqual(len(packets), 2 if ui_activation else 1)
+            self.assertFalse(ui.eval('ExposedMembers.SPC_NetworkRequestInFlight'))
+        self.assertEqual(outcomes, {
+            'ui_turn': {'ready': True, 'route_count': 1, 'city_one_partners': 0, 'trader': 11,
+                        'new_packets': 1, 'lifecycle_scans': 1},
+            'neither_turn': {'ready': True, 'route_count': 2, 'city_one_partners': 1, 'trader': 10,
+                             'new_packets': 0, 'lifecycle_scans': 0},
+        })
+        measure('silent_route_loss_with_ui_lifecycle', outcomes)
+
+    def test_silently_readable_industry_templates_still_need_their_turn_entry(self):
+        outcomes = {}
+        for industry_turn in (True, False):
+            lua = composition()
+            lua.execute("""
+assert(stdValue(1)==14 and net.TransactionCurrent(0))
+local knowledgeRead=shared.Standardization.ReadKnowledge
+templateReads=0
+shared.Standardization.ReadKnowledge=function(pid,c)
+ if c.id==5 then templateReads=templateReads+1 end
+ return knowledgeRead(pid,c)
+end
+knowledge[5]=false
+historyFact(5,'TEMPLATES');drain()
+assert(stdValue(1)==14 and std.records['0:1'].sources[5].provenance=='RETAINED')
+knowledge[5]={learned={},districts={learned={}}}
+local n=templateReads
+for i=1,100 do Events.GameCoreEventPublishComplete.Fire();drain()end
+assert(templateReads==n and stdValue(1)==14)
+""")
+            if not industry_turn:
+                # B481's hook calls this owner only for its own turn audit here.
+                lua.execute("""
+local audit=std.Audit
+local skipped=0
+std.Audit=function(scope)
+ if scope.player==0 and scope.changed==nil then skipped=skipped+1;return end
+ return audit(scope)
+end
+function restoreIndustryTurn()
+ std.Audit=audit;assert(skipped==1)
+end
+""")
+            activation(lua, suppress=True)
+            result = lua.execute("""
+if restoreIndustryTurn then restoreIndustryTurn()end
+drain();Events.GameCoreEventPublishComplete.Fire();drain()
+return {carrier=stdValue(1),provenance=std.records['0:1'].sources[5].provenance,
+ ready=net.TransactionCurrent(0)}
+""")
+            outcomes['current' if industry_turn else 'turn_suppressed'] = dict(result.items())
+        self.assertEqual(outcomes, {
+            'current': {'carrier': 0, 'provenance': 'CONFIRMED', 'ready': True},
+            'turn_suppressed': {'carrier': 14, 'provenance': 'RETAINED', 'ready': True},
+        })
+        measure('industry_silent_template_turn_dependency', outcomes)

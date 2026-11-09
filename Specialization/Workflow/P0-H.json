@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1026",
+    "status": "S1027",
     "runtime": "B481.508 / modinfo508",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Make delivered role refresh responsibility observable and prove completion on existing relevant evidence without retiring turn duties.",
+  "goal": "Isolate the existing UI route repair and Standardization turn recovery duties in composed local comparisons.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Compare missed routes and silent Industrial history recovery — S1027",
+      "reason": "Current distinct UI lifecycle and Industrial history dependency evidence"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -588,6 +594,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1027 passes 91 local checks. A UI lifecycle packet repairs the modeled silent route loss. A silent template recovery still uses the Standardization turn.",
     "B481 passes 89 scoped Lua 5.1 checks. A genuine newer role event or accepted equal-value packet closes the recorded generation. Idle publications leave it dormant.",
     "S1025 passes 50 local checks. Removing only the Bridge turn invocation leaves silent role readiness and a failed confirmed withdrawal unhandled in controlled comparisons.",
     "B480 passes 133 scoped Lua 5.1 checks. The old Industrial diagnostic uses the published route view without a network refresh.",
@@ -4203,6 +4210,57 @@
         "inherited_not_pass_each": 3,
         "new_failures": 0
       }
+    },
+    "s1027_independent_turn_causes": {
+      "build": "B481.508 / modinfo508",
+      "baseline": "9e1381dee2134c499d67aeaca6637ef5090d4696",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": 91,
+      "source_snapshot_sha256": "2470dc2c21c521983f86878f79f48e651e407f1973eaa00a336233e655cdc8c3",
+      "package_sha256": "7994d7d42a0d7c3f681d5d46d795e27b916d2b7ee2d4199b39d388bc454f5c1b",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "silent_route_loss_with_ui_lifecycle": {
+          "ui_turn": {
+            "city_one_partners": 0,
+            "trader": 11,
+            "route_count": 1,
+            "ready": true,
+            "new_packets": 1,
+            "lifecycle_scans": 1
+          },
+          "neither_turn": {
+            "city_one_partners": 1,
+            "trader": 10,
+            "route_count": 2,
+            "ready": true,
+            "new_packets": 0,
+            "lifecycle_scans": 0
+          }
+        },
+        "industry_silent_template_turn_dependency": {
+          "current": {
+            "carrier": 0,
+            "provenance": "CONFIRMED",
+            "ready": true
+          },
+          "turn_suppressed": {
+            "carrier": 14,
+            "provenance": "RETAINED",
+            "ready": true
+          }
+        }
+      },
+      "evidence": {
+        "local/refactor/S1027-NNetworkRecoveryBoundary/closure.json": "ab5311f7e4fad99432ad62f4c4a9246f195d44c947f8973241c984e82d70c1c2",
+        "local/refactor/S1027-NNetworkRecoveryBoundary/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/S1027-NNetworkRecoveryBoundary/closure.stderr.log": "81420247a8a3c9888f4355460e3c815e5fad1c9ffd4ec1e00d23bc998dad6be2"
+      },
+      "native": "NOT_MEASURED",
+      "gate": "ALL_FOUR_TURN_ENTRIES_RETAINED_D1_E6_E7_OPEN",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#compare-missed-routes-and-silent-industrial-history-recovery--s1027"
     }
   }
 }

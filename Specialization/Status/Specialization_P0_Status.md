@@ -1,17 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1026
+Status Revision: S1027
 Implementation Build: source B481.508 / modinfo508. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_ROLE_REFRESH_LOCAL_COMPLETE
+Work State: NETWORK_RECOVERY_CAUSES_LOCAL_REVIEWED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Compare missed routes and silent Industrial history recovery — S1027
+
+The S1025 review left two specific recovery paths without composed evidence. Neither experiment removes an entry or changes the B481 package.
+
+- **Missed route removal (T3).** In separate real Gameplay and UI roots, the mocked engine removes one of two routes and its trader without sending a route event. The test suppresses only the Gameplay Bridge's turn refresh. The existing UI PlayerTurnActivated sample sends one packet. Gameplay validates and accepts it during that turn, removes the lost outgoing partner and leaves the other route. Replaying the old packet does not replace proof. When the UI entry is also omitted, 100 idle publications leave the stale two-route proof in place. This proves a successor for that modeled loss **after** UI proof acceptance. The pre-ACK interval, native callback order and same-turn silent losses with no further lifecycle event remain outside this conclusion.
+- **Silent template readability (M3).** The real Standardization writer retains the 14% carrier when a known source's template read fails. After that read becomes available with no matching template and no notification, its turn audit withdraws the old output. With only that audit suppressed, the carrier remains at 14% and provenance remains RETAINED. A hundred idle publications make no further template read. This is the local counterpart of the Culture history boundary, not evidence of its native incidence.
+- **Evidence.** LOCAL_SIMULATION_PASS for 91 checks using `python3 DevelopmentTests/run_refactor.py --stage NNetworkRecoveryBoundary --output local/refactor/S1027-NNetworkRecoveryBoundary/closure.json`. Python 3.14.8, Lupa 2.8 / Lua 5.1, arm64 macOS and the existing HD regression DB (SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439). Tested source SHA256 2470dc2c21c521983f86878f79f48e651e407f1973eaa00a336233e655cdc8c3. Ignored local Closure `local/refactor/S1027-NNetworkRecoveryBoundary/closure.json` SHA256 ab5311f7e4fad99432ad62f4c4a9246f195d44c947f8973241c984e82d70c1c2. STATIC_CONFIRMED for the unchanged 337-path B481 package (SHA256 7994d7d42a0d7c3f681d5d46d795e27b916d2b7ee2d4199b39d388bc454f5c1b). Live B476.503 retains the existing record.
+
+The [current engine reference](../Reports/Technical/Engine_Reference.md#er04--cold-restore-and-persistent-facts) separates saved history and runtime readiness. The existing Store publishes confirmed INSIGHTS and TEMPLATES writes. An isolated read failure followed by readability with no new write does not itself publish an event. Store initialization status is owner-wide. It cannot attest to the readability of a specific source record or city role.
+
+User decision and testing are unnecessary for this checkpoint. Primary next is to verify the actual proof registration capacity path separately from the synthetic failure. Keep the four turn entries while their remaining roles are investigated.
 
 ### Keep a failed delivered role refresh under Bridge ownership — S1026
 
