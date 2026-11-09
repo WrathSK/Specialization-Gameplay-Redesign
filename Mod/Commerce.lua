@@ -108,6 +108,17 @@ function M.Start(P,shared)
   assert(observed(c)==n,'COMMERCE_WRITE_UNCONFIRMED')
  end
  local function clear(c)applyGold(c,0);set(c,definitions[1].id,false)end
+ local function confirmTarget(x)
+  local h=store.HistoricalReference(x.c)
+  assert(h.owner==x.pid and h.cityID==x.id and h.token==x.v.token,'COMMERCE_BINDING_UNAVAILABLE')
+  assert(ref(x.c)==x.v.reference,'COMMERCE_REFERENCE_CHANGED')
+ end
+ local function readTargetGold(x)
+  confirmTarget(x)
+  local gold=observed(x.c)
+  confirmTarget(x)
+  return gold
+ end
  local function initialize()
   if initialized then return true end
   if store.HistoryStartStatus then local status=store.HistoryStartStatus();if status=='WAITING' or status=='HELD'then return false end end
@@ -239,6 +250,13 @@ function M.Start(P,shared)
   if network.validity~='VERIFIED' then
    local previous=views[key(pid,id)];local retained=samples[key(pid,id)]
    assert(previous and retained and retained.reference==v.reference and retained.token==v.token,network.reason or 'COMMERCE_NETWORK_UNKNOWN')
+   if previous.writeUnconfirmed and previous.reference==v.reference and previous.token==v.token then
+    -- A failed effect view disables its domain rows for display. It cannot
+    -- prove those domains have lost eligibility or decompose the residual.
+    for _,row in ipairs(v.domains)do if row.effective then
+     out.unavailable=previous.reason;return out
+    end end
+   end
    -- No positive recalculation while topology is pending. A confirmed local
    -- qualification/capacity/reputation reduction still withdraws its own share.
    network={continuityOnly=true,partners={},references={},provenance=cp(previous.networkProvenance)}
@@ -345,7 +363,11 @@ function M.Start(P,shared)
   -- decomposition is unavailable. Never make this a new-transaction credential.
   local value=old and old.reference==ref(x.c) and old.token==x.v.token and cp(old) or x.v
   value.factStatus=x.v.factStatus or {status='UNKNOWN'}
-  value.totalGold=observed(x.c);value.stage='HELD';value.reason=reason;value.canConfigure=false
+  if value.writeUnconfirmed then
+   local read,gold=pcall(readTargetGold,x)
+   value.totalGold=read and gold or nil
+  else value.totalGold=observed(x.c)end
+  value.stage='HELD';value.reason=reason;value.canConfigure=false
   value.appliedRetained=true;value.sourceProvenance=value.sourceProvenance or {}
   value.reputationUse={status='UNKNOWN',reason='COMMERCE_PURPOSE_INPUTS_PENDING',
    historyStatus=x.v.reputationUse and x.v.reputationUse.historyStatus or 'UNKNOWN'}
@@ -491,27 +513,25 @@ function M.Start(P,shared)
      if before~=nil and before~=generation(x.pid,sid)then stale=true end
     end
     if stale then hold(x,views[k],'COMMERCE_INPUT_CHANGED_DURING_READ')end
-    local binding=false
     local good,err=pcall(function()
-     local h=store.HistoricalReference(x.c)
-     assert(h.owner==x.pid and h.cityID==x.id and h.token==x.v.token,'COMMERCE_BINDING_UNAVAILABLE')
-     binding=true
-     assert(ref(x.c)==x.v.reference,'COMMERCE_REFERENCE_CHANGED')
+     confirmTarget(x)
      if not x.hold then
       -- Retained topology is not a positive reconstruction credential. A
       -- confirmed reduction still replaces its encoding through the normal path.
       local previous=views[k]
+      local previousGold=previous and previous.totalGold
       local held=x.network and x.network.continuityOnly and previous and previous.reference==x.v.reference
-       and previous.token==x.v.token and x.v.totalGold>=previous.totalGold
-      if not held then applyGold(x.c,x.v.totalGold);set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)end
-      samples[k]=x.samples
+       and previous.token==x.v.token and (previousGold and x.v.totalGold>=previousGold or previousGold==nil and x.v.totalGold>0)
+      if held and previous.writeUnconfirmed then hold(x,previous,previous.reason)
+      elseif not held then applyGold(x.c,x.v.totalGold);set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)end
+      if not x.hold then samples[k]=x.samples end
      end
     end)
     if not good then
-     if binding and not x.hold then pcall(clear,x.c)end
-     local read,remaining=pcall(observed,x.c)
-     x.v.cleanupConfirmed=read and remaining==0;x.v.remainingCarrierGold=read and remaining or nil
-     x.v.stage='HELD';x.v.reason=code(err);x.v.totalGold=0;x.v.totalRaw=0;x.v.canConfigure=false;x.v.effective={}
+     -- Keep the physical result and only describe readback from the same binding.
+     local read,remaining=pcall(readTargetGold,x)
+     x.v.writeUnconfirmed=true;x.v.totalGold=read and remaining or nil;x.v.totalRaw=nil
+     x.v.stage='HELD';x.v.reason=code(err);x.v.canConfigure=false;x.v.effective={}
      for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
     end
     x.v.factGeneration=sampledGenerations[x.pid];x.v.networkProofRevision=sampledProofs[x.pid];x.v.sourceGenerations={}
@@ -537,6 +557,7 @@ function M.Start(P,shared)
     local v=cp(views[key(pid,c:GetID())])
     if v then
      v.stage='HELD';v.reason='COMMERCE_EXPERIMENT_ISOLATED';v.totalGold=0;v.totalRaw=0;v.canConfigure=false;v.effective={}
+     v.writeUnconfirmed=nil
      for _,r in ipairs(v.domains or {})do r.effective=false;r.suspended=r.selected;r.gold=0;r.floor=0;r.raw=0 end
      publish(pid,c:GetID(),v)
     end
@@ -573,8 +594,10 @@ function M.Start(P,shared)
  function d.Describe(pid,c)
   local v=views[key(pid,c:GetID())]
   if not v then return '商业化：等待城市记录。'end
+  local amount=v.writeUnconfirmed and '领域收益待确认｜载体当前配置的基础金币：'..tostring(v.totalGold or '未知')
+   or '生效领域 '..#(v.effective or {})..'｜合计 +'..v.totalGold..' 基础金币/回合'
   local rows={'商业化｜'..title(c)..'｜'..(v.stage=='READY' and '已就绪' or v.reason),
-   '工作专家 '..v.workers..'｜生效领域 '..#(v.effective or {})..'｜合计 +'..v.totalGold..' 基础金币/回合',
+   '工作专家 '..v.workers..'｜'..amount,
    v.reputationMessage or model.ReputationText(v.reputationUse)}
   for _,r in ipairs(v.domains or {})do
    local n=Locale and Locale.Lookup and Locale.Lookup(r.nameKey) or r.id
@@ -584,7 +607,6 @@ function M.Start(P,shared)
    rows[#rows+1]=n..(r.yield=='FOOD' and '（总粮食，非余粮）' or '')..'：'..(r.effective and string.format('D%d × X%.3f × 5%% × %.3f = %.3f → +%d',r.localD,r.X,1+.005*v.reputation.effective,r.raw,r.gold) or (reasons[r.reason] or '暂不可用：'..tostring(r.reason)))
    if r.effective then rows[#rows+1]='来源：'..r.sourceName end
   end
-  if v.cleanupConfirmed==false then rows[#rows+1]='收益清理尚未确认；残留载体配置：'..tostring(v.remainingCarrierGold or '未知')end
   rows[#rows+1]='来源：本城，或直接国内商路连接的对应专业城市。'
   rows[#rows+1]='配置入口：城市生产列表 → 商业化 / 商业信誉；P0这里只读。'
   rows[#rows+1]='各领域分别向下取整后相加；城市既有金币倍率可能进一步调整实际收益。'
@@ -607,13 +629,14 @@ function M.Start(P,shared)
   for _,c in player:GetCities():Members()do
    P.Count('observer_city_scan')
    local id=c:GetID();local v=views[key(pid,id)];local good,n=pcall(observed,c,true)
-   local want=v and v.totalGold or 0
-   expected=expected+want;if good then actual=actual+n else unknown=unknown+1 end
+   local want=0;if v then want=v.totalGold end
+   if expected~=nil and want~=nil then expected=expected+want else expected=nil end
+   if good then actual=actual+n else unknown=unknown+1 end
    if v and v.stage=='HELD'then held=held+1;firstReason=firstReason or v.reason end
    local signature=table.concat({v and v.stage or 'NONE',v and v.reason or 'NONE',tostring(want),good and tostring(n) or 'UNKNOWN'},':')
    local k=ref(c)
-   if turnStates[k]~=signature or not good or n~=want then
-    turnTrace('COMMERCE_TURN_CITY',{owner=pid,city=id,expected=want,carrierGold=good and n or 'UNKNOWN',
+   if turnStates[k]~=signature or not good or want~=nil and n~=want then
+    turnTrace('COMMERCE_TURN_CITY',{owner=pid,city=id,expected=want or 'UNKNOWN',carrierGold=good and n or 'UNKNOWN',
      phase=v and v.stage or 'NONE',reason=v and v.reason or 'NONE',readStatus=good and 'VERIFIED' or 'UNKNOWN'})
    end
    turnStates[k]=signature
@@ -623,7 +646,7 @@ function M.Start(P,shared)
   turnTrace(stage,{owner=pid,goldBalance=diagnosticRead(treasury,'GetGoldBalance'),
    goldYield=diagnosticRead(treasury,'GetGoldYield'),maintenance=diagnosticRead(treasury,'GetTotalMaintenance'),
    ownerTurnActive=diagnosticRead(player,'IsTurnActive'),ready=d.ready,coreBusy=busy,commerceWrites=d.writes,
-   expected=expected,carrierGold=unknown==0 and actual or 'UNKNOWN',heldCount=held,reason=firstReason or 'NONE',
+   expected=expected or 'UNKNOWN',carrierGold=unknown==0 and actual or 'UNKNOWN',heldCount=held,reason=firstReason or 'NONE',
    unreadableCount=unknown,networkRevalidation=b and b.revalidation,networkAvailability=b and b.availability,
    networkSignal=b and b.signal,routeSignal=shared.RouteSignalRevision or 0,
    senderResult=sender.senderResult or 'UNAVAILABLE',senderFailedTurn=sender.senderFailedTurn,

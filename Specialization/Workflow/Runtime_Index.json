@@ -111,9 +111,9 @@
       "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/Commerce.lua": {
-      "sha256": "00b62d6a39488ebb4a622aef90a0507229159c4716d7d818c570a06ee6611be4",
+      "sha256": "c41a704cb7b93bd2294a3e99b92515189b072e133f972a901943bd392d562ede",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1023 B479 proof-only Commercialization waiting view and preserved strict gates."
+      "provenance": "S1030 B483 exact Commercialization readback for an unconfirmed effect write."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "5218cf1acca0282405fd7f0360b4a3c7def0aa26fee3e2d33ac8b62b29dda25f",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "1bd74dc2bb6762e8e7142aa737ae9ba8d48413b97990ec16cfbc092371cbc299",
+      "sha256": "64cb1938d54c6cc7e359d21c31a0dc3ec7bc6b9c6490d1d5b62eb764a8bbd119",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1028 B482 capacity-driven proof notification registration after the ordered fact drain."
+      "provenance": "S1030 B483 exact Commercialization readback for an unconfirmed effect write."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "fa7a4012ad542bb11369447dfdd17e51c405bc5e9626d4c86a01d83bcacb53ac",
+      "sha256": "a75ca1fc673e2afed669fc12b9d8964efc6d44dc9dc415dc948ed4e58a537ba9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1028 B482 capacity-driven proof notification registration after the ordered fact drain."
+      "provenance": "S1030 B483 exact Commercialization readback for an unconfirmed effect write."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -891,9 +891,9 @@
       "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/Text/Commerce.sql": {
-      "sha256": "db8fe2e2b2aad65b648d3c385adf614f0b67e95d3f84e98bfc893e4b04ec73cd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
-      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+      "sha256": "b06db63c4abf025b4ec7cb2e7fda6ded7ce2190a327dbf3eeec69f68e155115a",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1030 B483 exact Commercialization readback for an unconfirmed effect write."
     },
     "Mod/Text/DevelopmentInvestment.sql": {
       "sha256": "3b705eb02457d81262653d9c10d04aa5019d34fc9b61ab8df14f6dc3d6189a1c",
@@ -1146,9 +1146,9 @@
       "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CommercePanel.lua": {
-      "sha256": "c59dc031532038af76fd6e280071afca9398a73c6a353fcc4d033a8c2d099a16",
+      "sha256": "7a4b9225d1f690d3d3b4ad321c58e5cda48139ef8a273de9ea3a1d0b1145e1b5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0880/B406.433 PU06b:Store evidence/pure use projection to real Commerce;copied sidebar explanation.105of106localPASS incl28new,1pre-D6 raw assertion NOT_PASS;normal Gold unchanged,history read-only.2labels only;Capital follow-up OPEN,no deployment/native claim."
+      "provenance": "S1030 B483 exact Commercialization readback for an unconfirmed effect write."
     },
     "Mod/UI/CommercePanel.xml": {
       "sha256": "0ed8ca0ccec0289637c39110edec10cf75413c559549ee8e1789a61ec1f28396",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1028 verifies scope-capacity recovery of already accepted proof and the remaining exact turn boundary. All four entries stay; B476 remains installed.",
-  "source_runtime": "B482.509 / modinfo509 local candidate, 337 files. B476.503 remains installed.",
-  "tested_source_snapshot_sha256": "ebc395aca6fe309a0e8a320afbdfd909695fc424038e4d122bd253c5146f4516"
+  "source_review": "S1030 verifies Commercialization partial effect readback within A12 / NET06. The four existing turn duties remain and B476 is still installed.",
+  "source_runtime": "B483.510 / modinfo510 local candidate, 337 files. B476.503 remains installed.",
+  "tested_source_snapshot_sha256": "7d35a67a1659bbb6aaff24bdbaa28488d382b87c3e6561faafa78301ad9a794a"
 }

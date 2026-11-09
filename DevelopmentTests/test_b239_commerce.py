@@ -1,6 +1,9 @@
 """B239 actual consumer/calculation with engine-shaped Lua mocks. LOCAL only."""
+from hashlib import sha256
 from pathlib import Path
+import subprocess
 import unittest
+from unittest.mock import patch
 
 from test_culture_network import fixture as network_fixture
 
@@ -17,7 +20,7 @@ def bind_commerce(lua):
         lua.execute('SPCFactConsumerBindings.New(shared)')
 
 
-def fixture(attach=True):
+def fixture(attach=True, *, effect_source=None):
     lua = network_fixture()
     lua.execute((MOD/'CommerceModel.lua').read_text())
     lua.execute(r'''
@@ -102,7 +105,7 @@ def fixture(attach=True):
         Events.BuildingAddedToMap.Fire(c:GetX(),c:GetY(),id,c.owner)
       end
     ''')
-    lua.execute((MOD/'Commerce.lua').read_text())
+    lua.execute((MOD/'Commerce.lua').read_text() if effect_source is None else effect_source)
     lua.execute('''
       SPCCommerce.Start(P,shared);com=shared.Commerce
       com.Audit()
@@ -117,6 +120,18 @@ def fixture(attach=True):
     if attach:
         bind_commerce(lua)
     return lua
+
+
+def historical_effect_failure():
+    # These assertions describe the superseded clear-on-failure path. Replay
+    # the last source that owned it while testing today's writer separately.
+    import test_culture_network
+    from refactor_harness import SOURCES, TrackedLua51, legacy_source_observation
+    revision = '0a11b7e9e0e2b50be8c1bc44aa222880a73148a4'
+    source = subprocess.check_output(['git', 'show', f'{revision}:Mod/Commerce.lua'], cwd=ROOT, text=True)
+    SOURCES[sha256(source.encode()).hexdigest()] = f'historical/{revision}/Mod/Commerce.lua'
+    with patch.object(test_culture_network, 'LuaRuntime', TrackedLua51), legacy_source_observation():
+        return fixture(effect_source=source)
 
 
 class Commercialization(unittest.TestCase):
@@ -316,7 +331,7 @@ class Commercialization(unittest.TestCase):
         ''')
 
     def test_failed_effect_readback_clears_partial_candidate_and_reports_held(self):
-        lua=fixture();lua.execute('''
+        lua=historical_effect_failure();lua.execute('''
           assert(toggle(2,'DISTRICT_CAMPUS',true));local original=P.CreateBuilding
           P.CreateBuilding=function(q,id)if id=='BUILDING_SPC_COMMERCE_GOLD_4'then return end;original(q,id)end
           cities[1].yields.SCIENCE=200;com.SourceChanged(0,1)
@@ -325,7 +340,7 @@ class Commercialization(unittest.TestCase):
         ''')
 
     def test_failed_withdrawal_does_not_claim_native_cleanup_pass(self):
-        lua=fixture();lua.execute('''
+        lua=historical_effect_failure();lua.execute('''
           assert(toggle(2,'DISTRICT_CAMPUS',true));local original=P.RemoveBuilding
           P.RemoveBuilding=function(b,id)if id:find('BUILDING_SPC_COMMERCE_GOLD_',1,true)then return end;original(b,id)end
           cities[2].active=2;com.SourceChanged(0,2)
@@ -342,7 +357,7 @@ class Commercialization(unittest.TestCase):
         """)
 
     def test_unknown_owned_carrier_reports_unconfirmed_cleanup(self):
-        lua=fixture();lua.execute("""
+        lua=historical_effect_failure();lua.execute("""
           assert(toggle(2,'DISTRICT_HARBOR',true));local original=P.HasBuilding
           P.HasBuilding=function(b,id)if b.city.id==2 and id=='BUILDING_SPC_COMMERCE_GOLD_0'then return nil end;return original(b,id)end
           com.Refresh(0,2)

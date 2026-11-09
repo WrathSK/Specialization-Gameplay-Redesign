@@ -1,17 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1029
-Implementation Build: source B482.509 / modinfo509. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1030
+Implementation Build: source B483.510 / modinfo510. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_TURN_CHECKS_RETAINED_CONTINUE_EFFECT_RECOVERY
+Work State: COMMERCIALIZATION_EFFECT_READBACK_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Read back a partial Commercialization effect write — S1030
+
+A failed carrier change is a city-local, unconfirmed outcome. The Commercialization calculation still requires its current inputs and owns the same Gold bits. Its report now distinguishes a readable installed value from an unreadable outcome. Investment gates keep requiring a current READY view and strict route proof.
+
+- **Runtime Impact Contract (L3, T01/T03/T04/T05/T08).** Reuse the existing Commerce write, owned carrier IDs and city binding. A failed write performs one bounded presence read of the city's 31 Gold bits, bracketed by the same owner/city/token/reference checks. No additional native scan occurs on a successful normal write. Until a valid existing cause permits reconciliation, an unconfirmed result cannot be relabelled an applied plan or authorize a new transaction. A known loss of all workers or ACTIVE eligibility can still withdraw. There is no new trigger, Store entry, cross-module state owner or irreversible operation.
+- **LOCAL_SIMULATION_PASS in scope.** Six actual-writer/UI comparisons and 80 related checks. With a 15 → 30 update and a no-op for one create, B482 cleared the installed value to 0 and attempted five removals. B483 reads and shows the remaining 14, attempts one removal and leaves a verified route insufficient to authorize new transactions in that city. An unavailable read and a changed reference both show UNKNOWN. A sibling receiver reaches 20, one hundred idle publications add no writes, and new reliable proof restores 30. Zero workers still withdraw with pending proof. Existing cold retention, strict transaction and normal turn/reputation tests retain their assertions.
+- **Regression limits.** Separate same-selection Lua 5.1 processes ran 198 checks per side across 12 overlapping groups, with the same 17 inherited failure/error records and no new skips. The initial combined selection also reproduced two inherited S7c errors in the reverse comparison. The targeted PASS selection runs the Commerce fallback and frozen D6 cases from that suite, and the broader failures remain recorded as nonpassing. Three assertions describing the old clear policy replay exact B482 source, preserving the former behavior as historical evidence.
+- **Reproduction.** Run `python3 DevelopmentTests/run_refactor.py --stage NCommerceEffectReadback --output local/refactor/B483-Commerce-Readback-Verified/closure.json` using Python 3.14.8, Lupa 2.8 / Lua 5.1, arm64 macOS, and the existing HD regression DB (SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439). Tested source snapshot SHA256 7d35a67a1659bbb6aaff24bdbaa28488d382b87c3e6561faafa78301ad9a794a. The ignored Closure `local/refactor/B483-Commerce-Readback-Verified/closure.json` is SHA256 8f4eb5ccb63343d78d79a17a0cb4a7384f1681d50e8f4df77ccbfc41b3520418. Baseline counterexample and reverse-index comparison are in the same ignored directory. They are local evidence and can be reproduced with the pinned source and DB.
+- **STATIC_CONFIRMED.** 208 Lua chunks, 32 XML-family files, 666 file references, ten replacements, and the two localization rows checked. All 337 runtime paths match B482. Source package SHA256 97620e04e9434c1553bcefc492c846c4fd73aa31078560ecd721e8e8eeeef498. Native write failure incidence and actual Gold yield are unmeasured. Live B476.503 retains its existing evidence.
+
+User decision and native testing are unnecessary for this source checkpoint. Primary next checks the separate Culture Network writer and the Standardization target readback under the same existing contract. The turn entries remain in scope for future investigation when there is new natural-trigger evidence.
 
 ### Keep the turn-boundary network checks pending a natural replacement — S1029
 

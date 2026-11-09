@@ -66,8 +66,8 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_COMMERCE_TOTAL','基础金币合计');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
-('zh_Hans_CN','LOC_SPC_COMMERCE_CLEANUP_ERROR','收益清理尚未确认；残留载体基础金币：{1}。请回传日志。'),
-('en_US','LOC_SPC_COMMERCE_CLEANUP_ERROR','收益清理尚未确认；残留载体基础金币：{1}。请回传日志。');
+('zh_Hans_CN','LOC_SPC_COMMERCE_WRITE_UNCONFIRMED','收益更新尚未确认。[NEWLINE]载体基础金币读回：{1}。'),
+('en_US','LOC_SPC_COMMERCE_WRITE_UNCONFIRMED','收益更新尚未确认。[NEWLINE]载体基础金币读回：{1}。');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_COMMERCE_LOCAL_DISTRICT_REQUIRED','本城缺少对应区域'),

@@ -2,6 +2,19 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "NCommerceEffectReadback": [
+      "test_network_effect_write_boundary.CommercializationReadback",
+      "test_refactor_s4b",
+      "test_pu01_fact_use",
+      "test_b397_network_transport.StrictTransactions",
+      "test_refactor_s7c.CommerceFallback",
+      "test_refactor_s7c.FrozenD6",
+      "test_o7_commercial_trace",
+      "test_network_turn_recovery_boundary",
+      "test_b239_commerce.Commercialization.test_failed_effect_readback_clears_partial_candidate_and_reports_held",
+      "test_b239_commerce.Commercialization.test_failed_withdrawal_does_not_claim_native_cleanup_pass",
+      "test_b239_commerce.Commercialization.test_unknown_owned_carrier_reports_unconfirmed_cleanup"
+    ],
     "NNetworkRecoveryBoundary": [
       "test_network_turn_recovery_boundary",
       "test_refactor_s5c2.Negative",
@@ -2477,6 +2490,7 @@
       "test_refactor_s4a.GarbageCollection"
     ],
     "Mod/Commerce.lua": [
+      "test_network_effect_write_boundary.CommercializationReadback",
       "test_o7_commercial_trace",
       "test_refactor_defects.Defects",
       "test_refactor_s4b",
