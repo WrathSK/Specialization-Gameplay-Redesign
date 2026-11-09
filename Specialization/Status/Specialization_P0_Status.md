@@ -1,17 +1,30 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1033
-Implementation Build: source B486.513 / modinfo513. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1034
+Implementation Build: source B487.514 / modinfo514. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: STANDARDIZATION_FOREIGN_CITY_STARTUP_LOCAL_FIXED
+Work State: NETWORK_SOURCE_WITNESS_FAILURE_LOCAL_FIXED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Preserve confirmed source losses across failed effect writes — S1034
+
+A reliable source fact can supersede its old contribution even when a native effect write fails. Commercialization now keeps its checked session samples before attempting the write. Standardization separates the latest source witnesses from the last reconciled dependency edges while a write is incomplete. Culture removes a proved lost source or receiver link from its warm contribution record and keeps the prior wake edge until actual reconciliation. No decomposition is inferred from a cold carrier aggregate.
+
+- **Runtime Impact Contract (L3, T01/T03/T04/T05/T08).** Continue to use the current matching receiver/source references, proof and read phases. The Standardization writer can hold one latest source map alongside the existing last reconciled map for a failing receiver. It replaces that map on the next qualified attempt and releases it on successful write or existing reference/owner cleanup. A pending-topology reduction is bounded by already read-back per-target amounts and creates no previously absent target. Culture visits only its previous contribution set on a failed reconcile. The old notification edges carry unfinished work, never source authority. Normal native read scope, declared capacity, max/union/Floor and strict transaction proof stay as before. No new notification, native read, retry loop or saved field.
+- **LOCAL_SIMULATION_PASS in scope.** The four independent review cases fail in the baseline with the injected fault and pass with the repair. Commercialization stays at 6 instead of restoring 15 and becomes READY only after a fresh eligible source read. Industrial Monument settles at 0 or 12 instead of restoring 14. Culture removes the final point and retains the wake edge until the withdrawal finishes. A fifth case reproduces an absent Monument carrier being recreated at 12% during pending proof after a failed 14% write. B487 holds it at 0 until valid proof and then configures 14%. These cases write no Store properties. The three selected stages pass 87/125/115 checks, with overlap.
+- **Affected regression comparison.** The initial candidate also replaced old Standardization reverse edges on failure. The existing S6d recovery assertion caught the lost wake. The final change keeps those edges until completion. The same-selection comparison in isolated Lua 5.1 processes ran 304 checks per side. The 27 inherited nonpassing records match, with no new failures or skips. Fault incidence and native yield totals remain unmeasured.
+
+- **Reproduction.** `python3 DevelopmentTests/run_refactor.py --stage NCommerceEffectReadback --output local/refactor/B487-Network-Source-Witness-Verified/Commerce/closure.json` (local Closure SHA256 42fdbe45ab4aa2cc19dff4280df19054074c91d30d065ab7e3ac9303fd57b0be) · `python3 DevelopmentTests/run_refactor.py --stage NCultureNetworkEffectReadback --output local/refactor/B487-Network-Source-Witness-Verified/Culture/closure.json` (local Closure SHA256 e65dfc7c7330e219eb0455f2a2c686e49c39410c3acfb4d760df3ad28bd1f125) · `python3 DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/B487-Network-Source-Witness-Verified/Industry/closure.json` (local Closure SHA256 e4d85160e692806d91d51837d390356596a639cf933e404de33449df6c23aec2). Use CPython 3.14.8, Lupa 2.8 / Lua 5.1 on arm64 macOS, the pinned HD regression DB (SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439), and the pinned official production-panel source fragments when selected. Tested source SHA256 baf41cfaac109df3e4770773b5497b1cea3e35e9652ed292bca611e6569f9a9d. Full artifacts remain in ignored local storage.
+- **STATIC_CONFIRMED.** 208 Lua chunks, 32 XML-family files, 666 file references and ten replacements for the same 337-path package. Source package SHA256 5935092672f700bf3fd4fa1a367190e1ea5b95f6656b846172c49025cff90c78. Live B476.503 keeps its separate acceptance.
+
+No Owner decision or new game test is needed for this slice. Primary next aligns the two Commercialization status messages identified by the review. The current turn duties remain.
 
 ### Finish Industrial Standardization startup with non-test cities — S1033
 

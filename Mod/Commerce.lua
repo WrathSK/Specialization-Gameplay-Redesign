@@ -328,7 +328,7 @@ function M.Start(P,shared)
      local kind=sid==x.id and 'SELF' or sourceIdentity(batch,x.pid,c)
      local qualifies=sid==x.id or sourceKinds[r.id] and kind==sourceKinds[r.id]
      -- During a confirmed-negative continuity pass, only remove proven lost
-     -- qualifications. Other inputs remain their last actually applied samples.
+     -- qualifications. Other inputs use their latest reliable session samples.
      if x.network.continuityOnly then
       if not qualifies then return {reference=reference,eligible=false}end
       error('COMMERCE_CONTINUITY_ONLY')
@@ -347,7 +347,7 @@ function M.Start(P,shared)
    values[r.id]=assert(best,'COMMERCE_SOURCE_UNKNOWN')
   end end
   -- The first complete plan for this reference must reconcile any restored Gold.
-  -- A mixed plan may reuse a matching session's already applied source samples.
+  -- A mixed plan may reuse reliable source samples from the matching session.
   assert(matched or not mixed,'COMMERCE_COLD_SOURCE_PENDING')
   local result=C.Finish(x.rows,values,x.v.reputation.effective)
   x.v.domains=result.domains;x.v.totalRaw=result.totalRaw;x.v.totalGold=result.totalGold
@@ -516,6 +516,9 @@ function M.Start(P,shared)
     local good,err=pcall(function()
      confirmTarget(x)
      if not x.hold then
+      -- Source facts passed the read phase and the binding check. A later native
+      -- failure must not bring back a source this plan has already ruled out.
+      samples[k]=x.samples
       -- Retained topology is not a positive reconstruction credential. A
       -- confirmed reduction still replaces its encoding through the normal path.
       local previous=views[k]
@@ -524,7 +527,6 @@ function M.Start(P,shared)
        and previous.token==x.v.token and (previousGold and x.v.totalGold>=previousGold or previousGold==nil and x.v.totalGold>0)
       if held and previous.writeUnconfirmed then hold(x,previous,previous.reason)
       elseif not held then applyGold(x.c,x.v.totalGold);set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)end
-      if not x.hold then samples[k]=x.samples end
      end
     end)
     if not good then

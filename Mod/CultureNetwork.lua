@@ -251,6 +251,21 @@ function M.Start(P,shared)
   if not changed then return nil end
   for _ in pairs(p.set)do p.n=p.n+1 end;return p
  end
+ local function discardConfirmedLosses(id,old,p,view,negative)
+  if not old or old.loaded or not old.contributions then return end
+  local knownLinks=view and not view.input.continuityOnly and not(view.rolesPending and view.rolesPending[id])
+  local links=knownLinks and view.recipients[id]
+  for source,prior in pairs(old.contributions)do
+   local current=p.contributions[source]
+   local disconnected=knownLinks and not(links and links[source])
+   local sourceLost=current and (current.reference and current.reference~=prior.reference
+    or current.provenance=='CONFIRMED' and not current.eligible)
+   if disconnected or sourceLost or negative and not current then
+    old.contributions[source]=nil
+    old.provenance[source]=nil;old.contributors[source]=nil
+   end
+  end
+ end
  local function reconcile(batch,pid,c)
   local id=c:GetID();local k=key(pid,id);local reference=ref(c);local old=d.records[k]
   if old and old.reference~=reference then clear(c);d.records[k]=nil;dependents.Remove(pid,id);old=nil end
@@ -308,6 +323,9 @@ function M.Start(P,shared)
   end)
   d.writing=nil
   if not wrote then
+   -- A confirmed loss no longer contributes. Keep old wake edges until the
+   -- receiver has finished withdrawing its old carrier configuration.
+   discardConfirmedLosses(id,old,p,view,not ok)
    if mutating then
     local read,kind,n=pcall(function()
      assert(c:GetOwner()==pid and ref(c)==reference,'CN_RECEIVER_CHANGED')
@@ -315,7 +333,7 @@ function M.Start(P,shared)
      assert(c:GetOwner()==pid and ref(c)==reference,'CN_RECEIVER_CHANGED')
      return observedKind,observedN
     end)
-    -- Keep the last reliable source witnesses and store physical readback separately.
+    -- Keep remaining reliable source witnesses and store physical readback separately.
     old=old or {owner=pid,id=id,x=x,y=y,reference=reference,sources={}}
     old.writeUnconfirmed={kind=read and kind or nil,n=read and n or nil}
     d.records[k]=old

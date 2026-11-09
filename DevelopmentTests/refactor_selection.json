@@ -4,6 +4,7 @@
   "stages": {
     "NStandardizationEffectReadback": [
       "test_network_effect_write_boundary",
+      "test_network_source_witness.Standardization",
       "test_network_effect_fact_receipts",
       "test_refactor_s4b",
       "test_refactor_s6d",
@@ -14,6 +15,7 @@
     ],
     "NCultureNetworkEffectReadback": [
       "test_network_effect_write_boundary.CultureNetworkReadback",
+      "test_network_source_witness.Culture",
       "test_network_effect_write_boundary.CommercializationReadback",
       "test_network_effect_fact_receipts",
       "test_refactor_s4b",
@@ -30,6 +32,7 @@
     ],
     "NCommerceEffectReadback": [
       "test_network_effect_write_boundary.CommercializationReadback",
+      "test_network_source_witness.Commerce",
       "test_refactor_s4b",
       "test_pu01_fact_use",
       "test_b397_network_transport.StrictTransactions",
@@ -2516,6 +2519,7 @@
       "test_refactor_s4a.GarbageCollection"
     ],
     "Mod/Commerce.lua": [
+      "test_network_source_witness.Commerce",
       "test_network_effect_write_boundary.CommercializationReadback",
       "test_o7_commercial_trace",
       "test_refactor_defects.Defects",
@@ -2599,6 +2603,7 @@
       "test_refactor_s6j"
     ],
     "Mod/CultureNetwork.lua": [
+      "test_network_source_witness.Culture",
       "test_network_effect_write_boundary.CultureNetworkReadback",
       "test_o7_network_trace",
       "test_refactor_s4b",
@@ -2606,6 +2611,7 @@
       "test_refactor_s6g.ScopedTopology"
     ],
     "Mod/StandardizationEffects.lua": [
+      "test_network_source_witness.Standardization",
       "test_network_effect_write_boundary.StandardizationReadback",
       "test_refactor_s4b",
       "test_refactor_s6d",

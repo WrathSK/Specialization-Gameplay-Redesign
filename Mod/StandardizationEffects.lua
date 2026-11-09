@@ -113,7 +113,7 @@ function SPCStandardizationEffects.Start(P,shared)
   local has=P.HasBuilding(b,row.index);assert(type(has)=='boolean','STD_ADD_PRESENCE_UNKNOWN')
   if not has then carrierHealth.Create(c,row.index);assert(P.HasBuilding(b,row.index)==true,'STD_ADD_UNCONFIRMED')end
  end
- local function write(c,record,want,missing)
+ local function write(c,record,want,missing,reductionOnly)
   -- Remove before adding; changed entries only after initial ownership read.
   local b=c:GetBuildings();local old=record.applied;local failed=record.writeUnconfirmed
   local firstError
@@ -121,6 +121,14 @@ function SPCStandardizationEffects.Start(P,shared)
    for t,outcome in pairs(failed)do
     if observeAttempt(c,record,b,byTarget[t].levels[outcome.amount])then failed[t]=nil
     else firstError=firstError or 'STD_TARGET_READBACK_UNKNOWN'end
+   end
+  end
+  if reductionOnly then
+   -- A current source witness can outlive a failed write. Pending proof may
+   -- withdraw from the actual configuration, but cannot install that plan.
+   for t,amount in pairs(want)do
+    local installed=old[t]
+    want[t]=installed and math.min(installed,amount) or nil
    end
   end
   for t,amount in pairs(old)do if want[t]~=amount and not(failed and failed[t])then
@@ -211,13 +219,14 @@ function SPCStandardizationEffects.Start(P,shared)
  end
  local function plan(batch,pid,c,old)
   local wanted,sources,ids={}, {},{[c:GetID()]=true};local reason=batch.networkError
+  local witnesses=old.sourceWitnesses or old.sources
   local continuity=batch.networkError~=nil or batch.view and batch.view.input.continuityOnly
   if batch.view and batch.view.rolesPending and batch.view.rolesPending[c:GetID()] then reason='STD_NETWORK_ROLE_PENDING'end
   if batch.view then for id in pairs(batch.view.recipients[c:GetID()] or {})do ids[id]=true end
-  else for id in pairs(old.sources or {})do ids[id]=true end end
+  else for id in pairs(witnesses)do ids[id]=true end end
   local removed=false
   for id in pairs(ids)do
-   local s=source(batch,pid,id);local prior=old.sources[id];local targets=s.targets;local status='CONFIRMED'
+   local s=source(batch,pid,id);local prior=witnesses[id];local targets=s.targets;local status='CONFIRMED'
    if s.error then
     reason=s.error;local retain=prior and not s.confirmedLoss and (s.reference==nil or prior.reference==s.reference)
     targets=retain and prior.targets or {}
@@ -238,13 +247,13 @@ function SPCStandardizationEffects.Start(P,shared)
   end
   if continuity then
    reason=reason or 'STD_RETAINED_TOPOLOGY'
-   for id in pairs(old.sources)do if not ids[id]then removed=true end end
+   for id in pairs(witnesses)do if not ids[id]then removed=true end end
    -- The local/network physical result is inseparable. Pending topology never
    -- adds newly calculated self values; only a confirmed negative may withdraw
    -- decomposed contributions. A cold installed aggregate uses exception A.
    if old.loaded or not removed then
     local retained={}
-    for id,prior in pairs(old.sources)do
+    for id,prior in pairs(witnesses)do
      local targets={};for t,amount in pairs(prior.targets)do targets[t]=amount end
      retained[id]={reference=prior.reference,targets=targets,provenance=prior.provenance=='UNKNOWN' and 'UNKNOWN' or 'RETAINED',reason=reason}
     end
@@ -252,7 +261,7 @@ function SPCStandardizationEffects.Start(P,shared)
    end
   end
   if old.loaded and reason then return old.applied,sources,'STD_COLD_AGGREGATE_RETAINED',true,true end
-  return wanted,sources,reason,false,false
+  return wanted,sources,reason,false,false,continuity
  end
  local function observe(pid,c,r,reason,force)
   local b,n,src,maxAmount=0,0,0,0
@@ -281,17 +290,26 @@ function SPCStandardizationEffects.Start(P,shared)
    old={owner=pid,city=c:GetID(),reference=reference,applied=installed,sources={},loaded=batch.restoring or next(installed)~=nil}
    d.records[k]=old;dependents.Remove(pid,c:GetID())
   end
-  local wanted,sources,reason,loaded,held=plan(batch,pid,c,old)
+  local wanted,sources,reason,loaded,held,reductionOnly=plan(batch,pid,c,old)
   assert(c:GetOwner()==pid and ref(c)==reference,'STD_RECEIVER_CHANGED')
   local ticket=old.healthTicket
   local repair=ticket and not held and not reason and not batch.networkError
    and batch.view and not batch.view.input.continuityOnly
   local missing=repair and missingWanted(c,old.applied,wanted) or nil
   assert(c:GetOwner()==pid and ref(c)==reference,'STD_RECEIVER_CHANGED')
-  if not held then write(c,old,wanted,missing)end
+  if not held then
+   -- Keep the new facts even on write failure. Old dependency edges still
+   -- wake unfinished work and retire only after the writer completes.
+   old.sourceWitnesses=sources
+   write(c,old,wanted,missing,reductionOnly)
+   old.sourceWitnesses=nil
+  end
+  if not old.sourceWitnesses then
+   old.sources=sources;replaceDependencies(pid,c:GetID(),sources)
+  end
   -- A native callback during the write owns a later ticket and cannot be ACKed.
   if repair and old.healthTicket==ticket then old.healthTicket=nil end
-  old.sources=sources;replaceDependencies(pid,c:GetID(),sources);old.loaded=loaded;old.retained=held;d.errors[k]=reason
+  old.loaded=loaded;old.retained=held;d.errors[k]=reason
   observe(pid,c,old,reason)
  end
  local function audit(scope,taking)

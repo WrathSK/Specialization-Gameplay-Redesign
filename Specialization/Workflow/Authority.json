@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1033",
-    "runtime": "B486.513 / modinfo513",
+    "status": "S1034",
+    "runtime": "B487.514 / modinfo514",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "df9461790079ef858f4df11944c78dfc7e0877f3",
-  "current_batch": "STANDARDIZATION_FOREIGN_CITY_STARTUP_LOCAL_FIXED",
-  "next_batch": "Keep reliable source and recipient membership witnesses current independently of a failed effect write. Reproduce the four S1032 F-2 cases and keep the four existing turn duties.",
+  "current_batch": "NETWORK_SOURCE_WITNESS_FAILURE_LOCAL_FIXED",
+  "next_batch": "Align Commercialization's unreadable carrier readback and pre-write city binding presentation from S1032 I-1/I-2. The existing turn duties remain.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B476.503 / modinfo503 temporary develop from df9461790079ef858f4df11944c78dfc7e0877f3, 337/337 MATCH, SHA256 31e58b2742013d23d0b96dd32f479dc370051a77f882ea3416bc9579650c080e. Receipt B476.503-df94617-playtest.json DEVELOP_ACTIVE. B475 outgoing and B307 stable recovery MATCH. No pending transaction.",
   "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1033 fixes the Standardization cold initialization regression identified by S1032 F-1 and closes its test selection gap. Confirmed-source witnesses remain the next slice.",
+  "context_review_status": "S1034 resolves the four reproduced S1032 F-2 cases locally and preserves recovery wake edges independently of factual witnesses.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#finish-industrial-standardization-startup-with-non-test-cities--s1033",
-  "source_status": "B486.513 / modinfo513 locally verified at SHA256 92e380f0f3973e8a9ae28d1d9818baaa88669d0ac4d4afc76c8203b29d5a3db5. B476.503 remains installed.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#preserve-confirmed-source-losses-across-failed-effect-writes--s1034",
+  "source_status": "B487.514 / modinfo514 locally verified at SHA256 5935092672f700bf3fd4fa1a367190e1ea5b95f6656b846172c49025cff90c78. B476.503 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

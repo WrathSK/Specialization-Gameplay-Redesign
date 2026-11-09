@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1033",
-    "runtime": "B486.513 / modinfo513",
+    "status": "S1034",
+    "runtime": "B487.514 / modinfo514",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Resolve the focused S1032 effect write review findings without changing the existing turn duties.",
+  "goal": "Finish the focused S1032 effect write review follow-up, preserving current network semantics and turn duties.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Preserve confirmed source losses across failed effect writes — S1034",
+      "reason": "Confirmed source losses, exact native effect outcomes and independent recovery edges"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -630,6 +636,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B487 passes the selected 87 Commerce, 125 Culture and 115 Standardization checks with the five new real-writer counterexamples and existing recovery edges.",
     "B486 passes 112 selected Lua 5.1 checks, including non-test-city initialization with and without a saved carrier. The original B234 foreign-city regression also passes independently.",
     "B485 passes 111 local checks, including actual Standardization target isolation, exact readback, strict transactions and pinned native-source UI composition.",
     "B484 passes 124 local checks for Culture Network residual readback, independent cities, cold confirmation, and reliable withdrawal.",
@@ -4541,6 +4548,82 @@
       "audit_sha256": "0cee98ab402978a4678da7f5fb68daff76d9d46a3fe9d2809608ce5c15873c72",
       "baseline_followup_foreign_reads": 69,
       "historical_b234_foreign_regression": "FAIL_BEFORE_PASS_AFTER"
+    },
+    "b487_confirmed_source_witness_after_failed_write": {
+      "build": "B487.514 / modinfo514",
+      "baseline": "902e6aab0c638f6b13f020751ecda19cca9433cf",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": {
+        "NCommerceEffectReadback": 87,
+        "NCultureNetworkEffectReadback": 125,
+        "NStandardizationEffectReadback": 115
+      },
+      "source_snapshot_sha256": "baf41cfaac109df3e4770773b5497b1cea3e35e9652ed292bca611e6569f9a9d",
+      "package_sha256": "5935092672f700bf3fd4fa1a367190e1ea5b95f6656b846172c49025cff90c78",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "commerce_confirmed_source_loss_after_failed_write": {
+          "gold": 6,
+          "source": 2,
+          "stage": "RETAINED",
+          "strict": false,
+          "proof": true,
+          "properties": 0
+        },
+        "culture_confirmed_link_loss_after_failed_write": {
+          "culture": 0,
+          "removed_source": true,
+          "strict": false,
+          "properties": 0
+        },
+        "standardization_confirmed_route_loss_after_failed_write": {
+          "granary": 0,
+          "monument": 0,
+          "removed_source": true,
+          "strict": false,
+          "properties": 0
+        },
+        "standardization_confirmed_role_loss_after_failed_write": {
+          "monument": 12,
+          "granary": 12,
+          "stale_target": false,
+          "properties": 0
+        },
+        "standardization_unapplied_positive_waits_for_proof": {
+          "while_pending": 0,
+          "after_proof": 14,
+          "granary": 0,
+          "properties": 0
+        }
+      },
+      "evidence": {
+        "local/refactor/B487-Network-Source-Witness-Verified/Commerce/closure.json": "42fdbe45ab4aa2cc19dff4280df19054074c91d30d065ab7e3ac9303fd57b0be",
+        "local/refactor/B487-Network-Source-Witness-Verified/Commerce/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B487-Network-Source-Witness-Verified/Commerce/closure.stderr.log": "abb9b061eae3acc1d9fe3edc98178752851890dbb66ed944c2c98978368468c1",
+        "local/refactor/B487-Network-Source-Witness-Verified/Culture/closure.json": "e65dfc7c7330e219eb0455f2a2c686e49c39410c3acfb4d760df3ad28bd1f125",
+        "local/refactor/B487-Network-Source-Witness-Verified/Culture/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B487-Network-Source-Witness-Verified/Culture/closure.stderr.log": "01f2a52a353c0877b2fae15ccc9524bf7bab56277b75bf290806dbbdf53277b1",
+        "local/refactor/B487-Network-Source-Witness-Verified/Industry/closure.json": "e4d85160e692806d91d51837d390356596a639cf933e404de33449df6c23aec2",
+        "local/refactor/B487-Network-Source-Witness-Verified/Industry/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B487-Network-Source-Witness-Verified/Industry/closure.stderr.log": "98d6642905a8544e0ee0fb60e570752286e614ab3893cd92eece80f55d7a8cd4",
+        "local/refactor/B487-Network-Source-Witness-Verified/baseline.log": "bfdecb90cf8d9bfec32dfb675ba3b422384f714253712d9b0afc03dc1d3d106c",
+        "local/refactor/B487-Network-Source-Witness-Verified/reverse.log": "65ea93e170cc6ac1299b59f44ac7e8452b2e767d883489b5db10373ca29190b0",
+        "local/refactor/B487-Network-Source-Witness-Verified/reverse_final.log": "f948ac5f48319b8fb87fb4c9dd2b2d920a188f5150ff22b0287ae05474dc2d7b",
+        "local/refactor/B487-Network-Source-Witness-Verified/reverse_isolated.json": "131041589093aa3c309c9f25e9fb500014c1835eb4f204a2a5eb0098e9b8f0e0",
+        "local/refactor/B487-Network-Source-Witness-Verified/reverse_isolated.py": "40e6e2abfef620eb3cebcf655e63c7f2de4526e3bbe97f40ed223c0833b75c9c"
+      },
+      "native": "NOT_MEASURED",
+      "gate": "F2_LOCAL_FIXED_REPORT_WORDING_REMAINS",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#preserve-confirmed-source-losses-across-failed-effect-writes--s1034",
+      "reverse_index": {
+        "tests_each": 304,
+        "inherited_nonpassing_each": 27,
+        "new_failures": 0,
+        "new_skips": 0
+      },
+      "evidence_limit": "Injected native write faults only; no native incidence measured."
     }
   }
 }
