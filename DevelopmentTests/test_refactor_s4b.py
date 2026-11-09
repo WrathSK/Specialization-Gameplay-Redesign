@@ -94,6 +94,37 @@ class CommerceRetention(unittest.TestCase):
         l=commerce();l.execute("cities[5].kind='RESEARCH';cities[5].yields.SCIENCE=80;send('0,1,0,2,10;0,5,0,2,11',2);assert(toggle(2,'DISTRICT_CAMPUS',true));cities[5].yieldFail='SCIENCE';cities[1].kind='NONE';com.SourceChanged(0,1);assert(ownedGold(cities[2])==12 and view(2).stage=='RETAINED');assert(view(2).sourceProvenance.DISTRICT_CAMPUS[5].status=='RETAINED');assert(not toggle(2,'DISTRICT_CAMPUS',false));cities[5].kind='NONE';cities[5].yieldFail=nil;com.SourceChanged(0,5);assert(ownedGold(cities[2])==6);cities[5].kind='RESEARCH';cities[5].identityFail=true;com.SourceChanged(0,5);assert(ownedGold(cities[2])==6)")
     def test_cold_pending_installed_gold_kept_without_property_write(self):
         l=cold_commerce();l.execute("assert(ownedGold(cities[2])==15 and propertyWrites==0 and commerceWrites==0);assert(com.views['0:2'].stage=='HELD');local n=created+removed;for i=1,1000 do fire('GameCoreEventPublishComplete')end;assert(created+removed==n)")
+    def test_cold_pending_zero_workers_withdraws_gold_without_network_proof(self):
+        l=cold_commerce()
+        l.execute("""
+local c=cities[2]
+local access='BUILDING_SPC_COMMERCIALIZATION_ACCESS'
+c.present[access]=true
+commerceStates[2]=SPCCommerceModel.New(0)
+commerceStates[2].selected={'DISTRICT_CAMPUS','DISTRICT_THEATER'}
+local function workers(n)
+ c.workers=n
+ fire('CityWorkerChanged',0,2)
+ return com.views['0:2']
+end
+assert(workers(2).stage=='HELD' and ownedGold(c)==15)
+assert(workers(nil).reason=='COMMERCE_WORKERS_UNKNOWN' and ownedGold(c)==15)
+assert(created==0 and removed==0 and next(nativeReads)==nil)
+local v=workers(0)
+assert(ownedGold(c)==0,'confirmed zero workers left old Commercialization Gold installed')
+assert(v.totalGold==0 and v.factStatus.workers=='CONFIRMED' and not v.canConfigure)
+assert(#v.effective==0 and v.domains[1].suspended and v.domains[2].suspended)
+assert(c.present[access] and created==0 and removed==4 and next(nativeReads)==nil)
+assert(not net.TransactionCurrent(0) and not com.TransactionCurrent(0,2))
+assert(workers(1).stage=='HELD' and ownedGold(c)==0 and created==0 and removed==4)
+send('0,1,0,2,10',1)
+v=com.views['0:2']
+assert(ownedGold(c)==15 and v.stage=='READY' and com.TransactionCurrent(0,2))
+assert(#v.effective==1 and v.effective[1]=='DISTRICT_CAMPUS')
+assert(#commerceStates[2].selected==2 and commerceStates[2].selected[2]=='DISTRICT_THEATER')
+assert(commerceWrites==0 and propertyWrites==0)
+""")
+
     def test_cold_confirmed_routes_do_not_apply_an_incomplete_gold_maximum(self):
         l=cold_commerce()
         l.execute("""

@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1035",
-    "runtime": "B488.515 / modinfo515",
+    "status": "S1036",
+    "runtime": "B489.516 / modinfo516",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Close the authorized local S1032 follow-up with accurate Commercialization outcome presentation.",
+  "goal": "Separate a confirmed local zero Commercialization capacity from unknown network sources on cold startup.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Apply the confirmed zero Commercialization capacity during cold proof wait — S1036",
+      "reason": "Confirmed local capacity loss can withdraw Gold before first proof; preserve ordered choices, access and strict transaction gates"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -642,6 +648,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B489 passes 90 Commerce, 128 Culture and 118 Standardization selected checks; the cold zero-worker case fails on B488, with no new reverse-index failures in B489.",
     "B488 passes the selected 89 Commerce, 127 Culture and 117 Standardization checks and nine Commercialization sidebar checks; no new reverse-index failures.",
     "B487 passes the selected 87 Commerce, 125 Culture and 115 Standardization checks with the five new real-writer counterexamples and existing recovery edges.",
     "B486 passes 112 selected Lua 5.1 checks, including non-test-city initialization with and without a saved carrier. The original B234 foreign-city regression also passes independently.",
@@ -4685,6 +4692,57 @@
       },
       "sidebar_checks": 9,
       "evidence_limit": "Local input and native write doubles only."
+    },
+    "b489_commercialization_cold_zero_workers": {
+      "build": "B489.516 / modinfo516",
+      "baseline": "6199d4479a38cd2356bbe2343ad125ca175c25ab",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": {
+        "NCommerceEffectReadback": 90,
+        "NCultureNetworkEffectReadback": 128,
+        "NStandardizationEffectReadback": 118
+      },
+      "source_snapshot_sha256": "2b0bac20699035d70414537bff49487717854a471cda3fc704a5fc518961c437",
+      "package_sha256": "fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {},
+      "evidence": {
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/Commerce/closure.json": "74db2bb043b9225708903b07975fe7e3890cabd5e8ec371bb5b181772f90f3be",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/Commerce/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/Commerce/closure.stderr.log": "57d92599e37ca83644aa86e682dc7273fb7d3708589d0125adc783c6cd6e0e70",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/Culture/closure.json": "9adea997bfe1f60e6a838384fbefd1cbb0d0dac228a5a8addd6141f37cedb7c2",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/Culture/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/Culture/closure.stderr.log": "4903c3631afbf0352c2cb768e9cb756edc3ae77aa92101cbc5b4342a30d4dd16",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/Industry/closure.json": "1ad21caa474b3a28d2d387aab638d7c486bfa528356c4ea03622a60df94cdb9b",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/Industry/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/Industry/closure.stderr.log": "1b1c1d8ff1207ac9ca4feba272cd931aa7f52904e933683f7448b61bf7573f80",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/baseline.log": "74e1f03ca9f984671d1724ff7c194c931073de2f44f7a2f20f55017dfdb1eb32",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/reverse.log": "b1561a48399570cf4f8c275de2e1d1be34bf1a7d2fa3ef20e0b6098ca52f8541",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/reverse_isolated.json": "6ba9536adb5c65b18471f9ae4455466fea3d0eab1d6d21bca270323a0adfc052",
+        "local/refactor/B489-Commerce-Cold-Zero-Workers/reverse_isolated.py": "38dc60e9d1f2b1f1c62bf35eb7430f6713fab9cb5f337802e58816b73d2019b8"
+      },
+      "native": "NOT_MEASURED",
+      "gate": "LOCAL_ONLY_NETWORK_TURN_AND_INTEGRATION_GATES_RETAINED",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#apply-the-confirmed-zero-commercialization-capacity-during-cold-proof-wait--s1036",
+      "reverse_index": {
+        "baseline_tests": 208,
+        "candidate_tests": 209,
+        "inherited_nonpassing_each": 17,
+        "new_failures": 0,
+        "new_skips": 0
+      },
+      "cold_worker_transition": {
+        "installed_gold_before_proof": 15,
+        "unknown_workers_keeps_gold": 15,
+        "confirmed_zero_workers_gold": 0,
+        "carrier_removals": 4,
+        "source_yield_reads_before_proof": 0,
+        "property_writes": 0,
+        "gold_after_proof_with_one_worker": 15
+      },
+      "evidence_limit": "Real Bridge, Commerce, and shared delivery with native and Store doubles. Native incidence unmeasured."
     }
   }
 }

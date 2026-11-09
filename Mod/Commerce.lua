@@ -249,7 +249,14 @@ function M.Start(P,shared)
   local network=(bridge.CurrentEffectPartners or bridge.CurrentDomesticPartners)(pid,c)
   if network.validity~='VERIFIED' then
    local previous=views[key(pid,id)];local retained=samples[key(pid,id)]
-   assert(previous and retained and retained.reference==v.reference and retained.token==v.token,network.reason or 'COMMERCE_NETWORK_UNKNOWN')
+   if not (previous and retained and retained.reference==v.reference and retained.token==v.token)then
+    assert(v.workers==0,network.reason or 'COMMERCE_NETWORK_UNKNOWN')
+    -- No domain can operate with confirmed zero workers, even before the
+    -- first reliable source samples. The network still gates configuration.
+    v.stage='HELD';v.reason=code(network.reason or 'COMMERCE_NETWORK_UNKNOWN');v.canConfigure=false
+    out.keepAccess=true
+    return out
+   end
    if (previous.writeUnconfirmed or previous.bindingUnconfirmed) and previous.reference==v.reference and previous.token==v.token then
     -- An unconfirmed view disables its domain rows for display. It cannot
     -- prove those domains have lost eligibility or decompose the residual.
@@ -531,7 +538,7 @@ function M.Start(P,shared)
       elseif not held then
        attempted=true
        applyGold(x.c,x.v.totalGold)
-       set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)
+       if not x.keepAccess then set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)end
       end
      end
     end)

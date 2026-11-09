@@ -1,17 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1035
-Implementation Build: source B488.515 / modinfo515. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1036
+Implementation Build: source B489.516 / modinfo516. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_EFFECT_WRITE_REVIEW_FOLLOWUP_LOCAL_COMPLETE
+Work State: NETWORK_COLD_ZERO_WORKERS_LOCAL_VERIFIED
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Apply the confirmed zero Commercialization capacity during cold proof wait — S1036
+
+A Commercialization city can lose its last working specialist while its cold-start trade proof is still pending. At that point every selected domain is suspended by the existing capacity rule. B488 held the restored Gold because it required prior session source samples even for this exact zero. B489 clears the Gold through the existing guarded writer and readback. The selection order, access marker and pending proof remain independent.
+
+- **Runtime Impact Contract (L3, T01/T03/T04/T05/T08).** Reuses the current city-scoped worker invalidation, guarded effective-fact phase, reference and proof stamps, and owned Gold writer. No new listeners, enumeration, source-yield reads, retries or saved fields. The case is limited to confirmed zero workers with no matching source witness and unverified topology. Unreadable required inputs still hold the previous result. Normal positive evaluation and strict trade proof still use the Bridge.
+- **LOCAL_SIMULATION_PASS in scope.** The new composed test drives the existing worker callback through real shared delivery, Commerce and Bridge. B488 keeps 15 Gold when workers reach zero. B489 keeps 15 while workers are unreadable, then removes four Gold carriers and reads back zero at confirmed zero workers. No source-yield reads, choice writes or access change precede proof. One working specialist can resume the first selected domain when valid proof arrives. The three overlapping selections pass 90/128/118 checks. The isolated reverse comparison runs 208 versus 209 checks with the same 17 inherited nonpassing records and no new failures or skips.
+
+- **Reproduction.** `python3 DevelopmentTests/run_refactor.py --stage NCommerceEffectReadback --output local/refactor/B489-Commerce-Cold-Zero-Workers/Commerce/closure.json` (local Closure SHA256 74db2bb043b9225708903b07975fe7e3890cabd5e8ec371bb5b181772f90f3be) · `python3 DevelopmentTests/run_refactor.py --stage NCultureNetworkEffectReadback --output local/refactor/B489-Commerce-Cold-Zero-Workers/Culture/closure.json` (local Closure SHA256 9adea997bfe1f60e6a838384fbefd1cbb0d0dac228a5a8addd6141f37cedb7c2) · `python3 DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/B489-Commerce-Cold-Zero-Workers/Industry/closure.json` (local Closure SHA256 1ad21caa474b3a28d2d387aab638d7c486bfa528356c4ea03622a60df94cdb9b). Use CPython 3.14.8, Lupa 2.8 / Lua 5.1 on arm64 macOS, the pinned HD regression DB (SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439), and the pinned official production-panel source fragments when selected. Tested source SHA256 2b0bac20699035d70414537bff49487717854a471cda3fc704a5fc518961c437. Full artifacts remain in ignored local storage.
+- **STATIC_CONFIRMED.** 208 Lua chunks, 32 XML-family files, 666 file references and ten replacements for the same 337-path package. Source package SHA256 fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30. Live B476.503 keeps its separate acceptance.
+
+No new Owner decision or game test is required for this local correction. Pending proof and the existing turn responsibilities keep their separate gates.
 
 ### Distinguish Commercialization binding wait from a carrier write — S1035
 
