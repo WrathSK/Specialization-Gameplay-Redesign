@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "NStandardizationEffectReadback": [
+      "test_network_effect_write_boundary",
+      "test_network_effect_fact_receipts",
+      "test_refactor_s4b",
+      "test_refactor_s6d",
+      "test_refactor_s9e3",
+      "test_o7_production_report",
+      "test_network_turn_recovery_boundary",
+      "test_b397_network_transport.StrictTransactions"
+    ],
     "NCultureNetworkEffectReadback": [
       "test_network_effect_write_boundary.CultureNetworkReadback",
       "test_network_effect_write_boundary.CommercializationReadback",
@@ -2596,6 +2606,7 @@
       "test_refactor_s6g.ScopedTopology"
     ],
     "Mod/StandardizationEffects.lua": [
+      "test_network_effect_write_boundary.StandardizationReadback",
       "test_refactor_s4b",
       "test_refactor_s6d",
       "test_refactor_s9e3",

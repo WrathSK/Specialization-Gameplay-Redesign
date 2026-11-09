@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 from refactor_harness import TrackedLua51, legacy_source_observation, measure
 from test_pu11_package_absence import scalars
-from test_refactor_s4b import culture, warm_commerce
+from test_refactor_s4b import culture, standard, warm_commerce
 
 
 COMMERCE_PARTIAL = """
@@ -301,4 +301,159 @@ cn.SourceChanged(0,4)
 local r=cn.records['0:1']
 assert(amount(c)==1 and r.n==1 and not r.writeUnconfirmed and r.contributions[4]==nil)
 assert(r.contributions[3] and not net.TransactionCurrent(0))
+""")
+
+
+def two_standardization_targets():
+    game = standard(ready=False)
+    game.execute("""
+local rows=P.Rows
+P.Rows=function(tab)
+ local result=rows(tab)
+ if tab=='SPC_StandardizationTargets'then
+  result[#result+1]={Kind='BUILDING',TargetType='BUILDING_MONUMENT',CarrierType='BUILDING_SPC_STD_MONUMENT_10'}
+ elseif tab=='SPC_StandardizationLevels'then
+  for level=1,2 do
+   result[#result+1]={Kind='BUILDING',TargetType='BUILDING_MONUMENT',CarrierType='BUILDING_SPC_STD_MONUMENT_'..(10+2*level),Level=level}
+  end
+ end
+ return result
+end
+for _,n in ipairs({10,12,14})do
+ local id='BUILDING_SPC_STD_MONUMENT_'..n
+ info[id]={Index=id,BuildingType=id,InternalOnly=1,PrereqDistrict='DISTRICT_CITY_CENTER',CitizenSlots=0,Housing=0}
+end
+local catalog=SPCStandardizationCatalog.Build
+SPCStandardizationCatalog.Build=function(P)
+ local result=catalog(P)
+ result.buildings.BUILDING_MONUMENT={enabled=true,group='M',district='DISTRICT_CITY_CENTER',tier=1,name='Monument'}
+ return result
+end
+knowledge[3].learned.BUILDING_MONUMENT={district='DISTRICT_CITY_CENTER',tier=1}
+Locale={Lookup=function(s)return s end}
+standardRoutes='0,3,0,2,10;0,2,0,1,11'
+function monument(c)
+ for _,n in ipairs({10,12,14})do
+  if c.present['BUILDING_SPC_STD_MONUMENT_'..n]then return n end
+ end
+ return 0
+end
+send(standardRoutes,2);fire('LoadScreenClose')
+assert(stdValue(1)==12 and monument(cities[1])==12)
+""")
+    return game
+
+
+STANDARDIZATION_PARTIAL = """
+local c=cities[1];local create=P.CreateBuilding
+function restoreStandardWriter()P.CreateBuilding=create end
+P.CreateBuilding=function(q,id)
+ if q.city==c and id:match('BUILDING_SPC_STD_.*14$')and not failedTarget then
+  failedTarget=id=='BUILDING_SPC_STD_14' and 'BUILDING:BUILDING_GRANARY' or 'BUILDING:BUILDING_MONUMENT'
+  create(q,id)
+  if afterStandardFailure then afterStandardFailure(id)end
+  error('STD_INJECTED_AFTER_WRITE',0)
+ end
+ return create(q,id)
+end
+studies[3]=2;std.SourceChanged(0,3)
+local r=std.records['0:1']
+local other=failedTarget=='BUILDING:BUILDING_GRANARY' and 'BUILDING:BUILDING_MONUMENT' or 'BUILDING:BUILDING_GRANARY'
+return {granary=stdValue(1),monument=monument(c),failed_readback=r.applied[failedTarget],
+ sibling_readback=r.applied[other],unconfirmed=r.writeUnconfirmed and r.writeUnconfirmed[failedTarget]~=nil,
+ error=std.errors['0:1'],route_ready=net.TransactionCurrent(0),properties=propertyWrites}
+"""
+
+
+class StandardizationReadback(unittest.TestCase):
+    def test_mutated_then_thrown_target_does_not_stop_sibling_target(self):
+        game = two_standardization_targets()
+        result = scalars(game.execute(STANDARDIZATION_PARTIAL))
+        self.assertEqual(result, {
+            'granary': 14, 'monument': 14, 'failed_readback': 14,
+            'sibling_readback': 14, 'unconfirmed': True,
+            'error': 'STD_INJECTED_AFTER_WRITE', 'route_ready': True, 'properties': 0,
+        })
+        measure('standardization_partial_target_readback', result)
+        game.execute("""
+local c=cities[1]
+local text=std.Describe(0,c,1)
+assert(text:find('载体配置读回：14%',1,true) and text:find('建造 +14%',1,true))
+local writes=created+removed
+net.CheckEvidence(false);std.SourceChanged(0,3)
+for i=1,100 do fixturePublication()end
+assert(created+removed==writes and std.records['0:1'].writeUnconfirmed[failedTarget])
+restoreStandardWriter();send(standardRoutes,2)
+assert(created+removed==writes and not std.records['0:1'].writeUnconfirmed and not std.errors['0:1'])
+""")
+
+    def test_failed_withdrawal_blocks_only_that_targets_replacement(self):
+        game = two_standardization_targets()
+        game.execute("""
+local c=cities[1]
+local remove=P.RemoveBuilding
+P.RemoveBuilding=function(b,id)
+ if b.city==c and id=='BUILDING_SPC_STD_12'then return end
+ return remove(b,id)
+end
+studies[3]=2;std.SourceChanged(0,3)
+local r=std.records['0:1'];local granary='BUILDING:BUILDING_GRANARY'
+assert(stdValue(1)==12 and not c.present.BUILDING_SPC_STD_14 and monument(c)==14)
+assert(r.applied[granary]==12 and r.writeUnconfirmed[granary].known)
+assert(std.errors['0:1']=='STD_REMOVE_UNCONFIRMED')
+assert(std.Describe(0,c,1):find('载体配置读回：12%',1,true))
+P.RemoveBuilding=remove;std.SourceChanged(0,3)
+assert(stdValue(1)==14 and not c.present.BUILDING_SPC_STD_12 and monument(c)==14)
+assert(not r.writeUnconfirmed and not std.errors['0:1'])
+""")
+
+    def test_unknown_attempted_level_is_not_replaced_until_exact_read_recovers(self):
+        game = two_standardization_targets()
+        game.execute("""
+standardReads=0
+local read=P.HasBuilding
+function restoreStandardRead()P.HasBuilding=read end
+function afterStandardFailure(index)
+ P.HasBuilding=function(b,id)
+  if b.city==cities[1] and id==index then standardReads=standardReads+1;return nil end
+  return read(b,id)
+ end
+end
+""")
+        result = scalars(game.execute(STANDARDIZATION_PARTIAL))
+        self.assertNotIn('failed_readback', result)
+        self.assertEqual((result['granary'], result['monument'], result['sibling_readback']), (14, 14, 14))
+        game.execute("""
+local c=cities[1];local r=std.records['0:1']
+assert(standardReads==1 and not r.writeUnconfirmed[failedTarget].known)
+assert(std.Describe(0,c,1):find('载体配置读回：未知',1,true) and standardReads==1)
+restoreStandardWriter();studies[3]=1;std.SourceChanged(0,3)
+local monumentFailed=failedTarget=='BUILDING:BUILDING_MONUMENT'
+assert(standardReads==2 and r.writeUnconfirmed[failedTarget] and not r.applied[failedTarget])
+assert(stdValue(1)==(monumentFailed and 12 or 14) and monument(c)==(monumentFailed and 14 or 12))
+restoreStandardRead();std.SourceChanged(0,3)
+assert(stdValue(1)==12 and monument(c)==12 and not c.present.BUILDING_SPC_STD_14
+ and not c.present.BUILDING_SPC_STD_MONUMENT_14 and not r.writeUnconfirmed and not std.errors['0:1'])
+""")
+
+    def test_replaced_receiver_has_no_foreign_readback_or_later_writes(self):
+        game = two_standardization_targets()
+        game.execute("""
+standardReads=0
+local read=P.HasBuilding
+function afterStandardFailure()
+ cities[1].token='REPLACED'
+ P.HasBuilding=function(b,id)
+  if b.city==cities[1]then standardReads=standardReads+1 end
+  return read(b,id)
+ end
+end
+""")
+        result = scalars(game.execute(STANDARDIZATION_PARTIAL))
+        self.assertNotIn('failed_readback', result)
+        self.assertEqual(sorted((result['granary'], result['monument'])), [0, 14])
+        self.assertEqual(result['error'], 'STD_RECEIVER_CHANGED')
+        game.execute("""
+assert(standardReads==0)
+assert(std.Describe(0,cities[1],1):find('城市绑定待确认',1,true))
 """)

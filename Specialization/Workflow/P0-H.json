@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1031",
-    "runtime": "B484.511 / modinfo511",
+    "status": "S1032",
+    "runtime": "B485.512 / modinfo512",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Check independently owned passive effects and truthful native write outcomes while retaining the existing turn entries.",
+  "goal": "Verify the three passive effect write-readback changes for scoped review while keeping the existing turn entries.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Contain an unconfirmed Industrial Standardization target — S1032",
+      "reason": "Industrial target independence and focused review of the three effect owners"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -618,6 +624,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B485 passes 111 local checks, including actual Standardization target isolation, exact readback, strict transactions and pinned native-source UI composition.",
     "B484 passes 124 local checks for Culture Network residual readback, independent cities, cold confirmation, and reliable withdrawal.",
     "B483 passes 86 local checks for actual Commerce write failure/readback, strict investment, independent receivers and existing turn boundaries.",
     "S1029 records the current turn checks as retained pending dependable natural recovery evidence. The B482 package has no source differences.",
@@ -4448,6 +4455,47 @@
       "gate": "TURN_ENTRIES_RETAINED_INDUSTRIAL_TARGET_READBACK_NEXT",
       "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#read-back-a-partial-culture-network-effect-write--s1031"
+    },
+    "b485_industry_effect_readback": {
+      "build": "B485.512 / modinfo512",
+      "baseline": "8fb3a1fe81655f91756a01fbe0f1efea54b52c9c",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": 111,
+      "source_snapshot_sha256": "3f2d2237351ac67c65675235783d9221e0c45f5b36dec614279c7d03e40ca2b0",
+      "package_sha256": "b9cf68039a3b92c6db3a26431e48ba1d629889d9e8d0308f78882345ea2c4e4e",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "granary": 14,
+        "monument": 14,
+        "sibling_readback": 14,
+        "properties": 0,
+        "failed_readback": 14,
+        "route_ready": true,
+        "error": "STD_INJECTED_AFTER_WRITE",
+        "unconfirmed": true
+      },
+      "evidence": {
+        "local/refactor/B485-Standardization-Readback-Verified/closure.json": "8a235f359b9a167589a5c9e2445fcfb02812fd48dde0275d4535b8ac7d61d0f2",
+        "local/refactor/B485-Standardization-Readback-Verified/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B485-Standardization-Readback-Verified/closure.stderr.log": "31068153bc31cef57348ab6d90c35ac88ebd0ec701142b5dad5ccb34d9f3f6ba",
+        "local/refactor/B485-Standardization-Readback-Verified/baseline.log": "1fa1d0cca4e292e8ca06fc5e1e1ecccd3fe242bab67355993a69b1ed4dd0e784",
+        "local/refactor/B485-Standardization-Readback-Verified/reverse_final.log": "64457d3e9333eae6046ed1d68896cb1c4aa55c22701964b9426359724433b974",
+        "local/refactor/B485-Standardization-Readback-Verified/reverse_isolated.json": "00f92965e809f97cfd01db48baffeffcf3e8eb1e3c5d3c241a51c2496aab344e",
+        "local/refactor/B485-Standardization-Readback-Verified/reverse_isolated.py": "01511bd26487cec9d0cf8b7d60f747b1a57ee7d23ce82237dc90819e3f4f8934",
+        "local/refactor/B485-Standardization-Readback-Verified/first-missing-assets-closure.json": "57b349312b92f15b2a97bc9b9fa7f07c07f65ddf7d57b3109e75f7ec0896c029"
+      },
+      "native": "NOT_MEASURED",
+      "reverse_index": {
+        "results_each": {
+          "tests": 90,
+          "not_pass": 1
+        },
+        "groups": 7
+      },
+      "gate": "FOCUSED_A12_NET06_REVIEW_ENTRY_TURN_ENTRIES_RETAINED",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#contain-an-unconfirmed-industrial-standardization-target--s1032"
     }
   }
 }

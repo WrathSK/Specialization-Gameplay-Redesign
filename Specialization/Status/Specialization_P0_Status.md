@@ -1,17 +1,31 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1031
-Implementation Build: source B484.511 / modinfo511. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1032
+Implementation Build: source B485.512 / modinfo512. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CULTURE_NETWORK_EFFECT_READBACK_LOCAL_COMPLETE
+Work State: NETWORK_EFFECT_WRITE_READBACK_LOCAL_REVIEW_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Contain an unconfirmed Industrial Standardization target — S1032
+
+Two template targets can change in the same recipient city. Previously a failure on the first one aborted the whole write after both old carriers had been removed. A matching recipient can now continue with independently writable targets. Each failed target reports the exact configuration read back, or UNKNOWN, separately from its unconfirmed application status.
+
+- **Runtime Impact Contract (L3, T01/T03/T04/T05/T08).** Reuse the city's existing Standardization writer, the two write phases and the single owned level per target. A failed remove blocks that target's replacement. One exact attempted carrier ID is observed in the existing record, bracketed by matching reference checks. A changed receiver aborts the remaining city work. The sparse result is bounded by the declared catalog, which has 175 distinct targets and 1,750 distinct carrier IDs in the pinned HD database. An ordinary successful target uses its existing reads and writes. A later existing reconciliation can verify the exact level before changing it. Read-only reports make no carrier scan. No added lifecycle callbacks, periodic retries, scan of all levels on failure, or persistent fields.
+- **LOCAL_SIMULATION_PASS in scope.** Four new actual Standardization write cases and 107 related checks including the three effect owners, strict investment, cold continuity, and production reports using pinned official UI source fragments. With a 12% → 14% update, an injected error after creating one carrier previously left the other target at zero. B485 reads back 14% for the failed target and completes the other at 14%. The failed withdrawal case keeps 12% and adds no overlapping level. Unreadable presence stays UNKNOWN while the sibling can update; later exact readback permits removing the attempted level. A replaced reference produces zero foreign readback and stops further writes in that city. One hundred idle publications produce no additional writes.
+- **Regression limits.** Seven overlapping Lua 5.1 groups ran 90 checks per side. The same inherited missing-level assertion in the B235 suite remains nonpassing. No new failure or skip. The first invocation omitted the official assets variable and is recorded separately as an incomplete environment run. The full targeted suite passes with the pinned UI resources.
+- **Reproduction.** Run `python3 DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/B485-Standardization-Readback-Verified/closure.json` with Python 3.14.8, Lupa 2.8 / Lua 5.1, arm64 macOS, the existing HD regression DB (SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439) and `SPC_OFFICIAL_ASSETS` set to the local official `Civ6.app/Contents/Assets` root. The [production fixture](../../DevelopmentTests/test_o6_production_panel.py) verifies the relevant source hashes. Tested source SHA256 3f2d2237351ac67c65675235783d9221e0c45f5b36dec614279c7d03e40ca2b0. Ignored local Closure `local/refactor/B485-Standardization-Readback-Verified/closure.json` SHA256 8a235f359b9a167589a5c9e2445fcfb02812fd48dde0275d4535b8ac7d61d0f2. Baseline and reverse comparison are in the same ignored directory and can be regenerated with the pinned inputs.
+- **STATIC_CONFIRMED.** 208 Lua chunks, 32 XML-family files, 666 file references, ten replacements and all 337 existing runtime paths. Candidate SHA256 b9cf68039a3b92c6db3a26431e48ba1d629889d9e8d0308f78882345ea2c4e4e. The injected write errors demonstrate the code's response. Native incidence and native effect totals under these errors remain unmeasured. Live B476.503 keeps its separate acceptance scope.
+
+**Focused review entry.** Review `79a9def8` through the commit adding S1032. Start with the [three-writer test selection](../../DevelopmentTests/test_network_effect_write_boundary.py), the [accepted pending and recovery rules](../Architecture/Specialization_v0.1_Architecture.md#network-pending-hold-and-confirmation-recovery), and [the independent write finding](../Reports/Technical/Investigations/Architecture_Reconstruction/Convergence_PreDesign_v3_Final/External_Audit_Disposition/Audit_Finding_Disposition.md#a12). Check matching reference readback, independent receivers and targets, and whether a pending topology or unavailable source can be mistaken for current applied proof after a partial write. Verify confirmed exits and strict transactions remain independent. Scope the review to the three changed effect owners and their reports. It does not select a new policy for entirely unreadable Commerce domains, request a forced engine error, or reconsider retirement of the turn callbacks. A12 retains these separate limits.
+
+No new Owner gameplay decision or game test is needed at this checkpoint. The Owner can pass the entry above to the external reviewer for the planned write-boundary review. Keep the current turn entries while evidence for a natural replacement remains open.
 
 ### Read back a partial Culture Network effect write — S1031
 

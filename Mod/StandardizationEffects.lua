@@ -17,6 +17,10 @@ function SPCStandardizationEffects.Start(P,shared)
  local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'INDUSTRY_STANDARDIZATION')
  local function key(pid,cid)return tostring(pid)..':'..tostring(cid)end
  local function ref(c)return SPCNetworkInput.Reference(c)end
+ local function sameReceiver(c,r)
+  local ok,reference=pcall(ref,c)
+  return ok and reference==r.reference
+ end
  local function code(s)return type(s)=='string' and (s:match('(STD_[A-Z_]+)') or s:match('(NETWORK_[A-Z_]+)') or s:match('(STORE_[A-Z_]+)') or s:match('(EST_[A-Z_]+)')) or 'STD_READ_PENDING'end
  local function mark(pid,cid)
   if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then mark(owner,cid)end end;return end
@@ -81,21 +85,64 @@ function SPCStandardizationEffects.Start(P,shared)
   end end
   return missing
  end
- local function write(c,old,want,missing)
+ local function observeAttempt(c,record,b,row)
+  local same=sameReceiver(c,record);local ok,has
+  if same then
+   ok,has=pcall(P.HasBuilding,b,row.index)
+   same=sameReceiver(c,record)
+  end
+  local known=same and ok and type(has)=='boolean' or false
+  record.writeUnconfirmed[row.key].known=known
+  record.applied[row.key]=known and has and row.amount or nil
+  assert(same,'STD_RECEIVER_CHANGED')
+  return known
+ end
+ local function recordFailure(c,record,b,row)
+  local failed=record.writeUnconfirmed or {};record.writeUnconfirmed=failed
+  failed[row.key]={amount=row.amount}
+  observeAttempt(c,record,b,row)
+  return failed
+ end
+ local function withdraw(c,b,row)
+  assert(row,'STD_OWNED_TARGET_UNKNOWN')
+  local has=P.HasBuilding(b,row.index);assert(type(has)=='boolean','STD_REMOVE_PRESENCE_UNKNOWN')
+  if has then carrierHealth.Remove(c,row.index);assert(P.HasBuilding(b,row.index)==false,'STD_REMOVE_UNCONFIRMED')end
+ end
+ local function install(c,b,row)
+  assert(row,'STD_LEVEL_DEFINITION_MISSING')
+  local has=P.HasBuilding(b,row.index);assert(type(has)=='boolean','STD_ADD_PRESENCE_UNKNOWN')
+  if not has then carrierHealth.Create(c,row.index);assert(P.HasBuilding(b,row.index)==true,'STD_ADD_UNCONFIRMED')end
+ end
+ local function write(c,record,want,missing)
   -- Remove before adding; changed entries only after initial ownership read.
-  local b=c:GetBuildings()
-  for t,amount in pairs(old)do if want[t]~=amount then
-   local r=assert(byTarget[t] and byTarget[t].levels[amount],'STD_OWNED_TARGET_UNKNOWN')
-   local has=P.HasBuilding(b,r.index);assert(type(has)=='boolean','STD_REMOVE_PRESENCE_UNKNOWN')
-   if has then carrierHealth.Remove(c,r.index);assert(P.HasBuilding(b,r.index)==false,'STD_REMOVE_UNCONFIRMED')end
-   old[t]=nil;d.changes=d.changes+1
+  local b=c:GetBuildings();local old=record.applied;local failed=record.writeUnconfirmed
+  local firstError
+  if failed then
+   for t,outcome in pairs(failed)do
+    if observeAttempt(c,record,b,byTarget[t].levels[outcome.amount])then failed[t]=nil
+    else firstError=firstError or 'STD_TARGET_READBACK_UNKNOWN'end
+   end
+  end
+  for t,amount in pairs(old)do if want[t]~=amount and not(failed and failed[t])then
+   local row=byTarget[t] and byTarget[t].levels[amount]
+   local ok,why=pcall(withdraw,c,b,row)
+   if ok then old[t]=nil;d.changes=d.changes+1
+   else
+    firstError=firstError or code(why)
+    if row then failed=recordFailure(c,record,b,row)end
+   end
   end end
-  for t,amount in pairs(want)do if old[t]~=amount or missing and missing[t]then
-   local r=assert(byTarget[t] and byTarget[t].levels[amount],'STD_LEVEL_DEFINITION_MISSING')
-   local has=P.HasBuilding(b,r.index);assert(type(has)=='boolean','STD_ADD_PRESENCE_UNKNOWN')
-   if not has then carrierHealth.Create(c,r.index);assert(P.HasBuilding(b,r.index)==true,'STD_ADD_UNCONFIRMED')end
-   old[t]=amount;d.changes=d.changes+1
+  for t,amount in pairs(want)do if not(failed and failed[t])and (old[t]~=amount or missing and missing[t])then
+   local row=byTarget[t] and byTarget[t].levels[amount]
+   local ok,why=pcall(install,c,b,row)
+   if ok then old[t]=amount;d.changes=d.changes+1
+   else
+    firstError=firstError or code(why)
+    if row then failed=recordFailure(c,record,b,row)end
+   end
   end end
+  if failed and not next(failed)then record.writeUnconfirmed=nil end
+  if firstError then error(firstError,0)end
  end
  local function retire(c)
   local k=key(c:GetOwner(),c:GetID());local reference=ref(c)
@@ -241,7 +288,7 @@ function SPCStandardizationEffects.Start(P,shared)
    and batch.view and not batch.view.input.continuityOnly
   local missing=repair and missingWanted(c,old.applied,wanted) or nil
   assert(c:GetOwner()==pid and ref(c)==reference,'STD_RECEIVER_CHANGED')
-  if not held then write(c,old.applied,wanted,missing)end
+  if not held then write(c,old,wanted,missing)end
   -- A native callback during the write owns a later ticket and cannot be ACKed.
   if repair and old.healthTicket==ticket then old.healthTicket=nil end
   old.sources=sources;replaceDependencies(pid,c:GetID(),sources);old.loaded=loaded;old.retained=held;d.errors[k]=reason
@@ -345,17 +392,29 @@ function SPCStandardizationEffects.Start(P,shared)
   if not reason and b and b.effectAvailability=='PENDING'
    and b.revalidation=='NEEDS_REVALIDATION' and not b.continuityOnly then reason='STD_NETWORK_PENDING'end
   if not r then return '工业标准化 | '..c:GetName()..'\n等待：'..tostring(reason or 'STD_NOT_READY')end
-  local ids={};for t in pairs(r.applied)do ids[#ids+1]=t end;table.sort(ids)
+  local failed=r.writeUnconfirmed
+  if failed and not sameReceiver(c,r)then return '工业标准化 | '..c:GetName()..'\n载体配置读回：未知（城市绑定待确认）'end
+  local ids={}
+  for t in pairs(r.applied)do ids[#ids+1]=t end
+  for t in pairs(failed or {})do if not r.applied[t]then ids[#ids+1]=t end end
+  table.sort(ids)
   local pages=math.max(1,math.ceil(#ids/5));page=(math.max(1,tonumber(page) or 1)-1)%pages+1
   local names={};for id in pairs(r.sources)do
    local sourceCity=Players[pid]:GetCities():FindID(id)
    names[#names+1]=sourceCity and sourceCity:GetName() or tostring(id)
   end;table.sort(names)
   local out={'工业标准化 | '..c:GetName(),'三级建造 +10% / 购买折扣 0%；四级持有者每层研习各 +2 个百分点',
-   '来源：'..(#names>0 and table.concat(names,'、') or '无合格模板来源'),
+   (failed and '上次确认来源：' or '来源：')..(#names>0 and table.concat(names,'、') or '无合格模板来源'),
    '匹配目标 '..#ids..' | 页 '..page..'/'..pages}
   for i=(page-1)*5+1,math.min(page*5,#ids)do
-   local row=byTarget[ids[i]];out[#out+1]=(row.kind=='DISTRICT' and '区域：' or '建筑：')..Locale.Lookup(row.name)..' 建造 +'..r.applied[ids[i]]..'% / '..(row.kind=='BUILDING' and ('购买折扣 '..(r.applied[ids[i]]-10)..'%') or '区域购买折扣待接口')
+   local t=ids[i];local row=byTarget[t];local applied=r.applied[t]
+   local label=(row.kind=='DISTRICT' and '区域：' or '建筑：')..Locale.Lookup(row.name)
+   local outcome=failed and failed[t]
+   if outcome then
+    out[#out+1]=label..' 更新未确认｜载体配置读回：'..(outcome.known and (applied or 0)..'%' or '未知')
+   else
+    out[#out+1]=label..' 建造 +'..applied..'% / '..(row.kind=='BUILDING' and ('购买折扣 '..(applied-10)..'%') or '区域购买折扣待接口')
+   end
   end
   out[#out+1]='状态：'..tostring(reason or '正常')
   out[#out+1]='仅加速本来合法的普通建筑／区域；不含奇观，不授予建造或购买权限。'
@@ -366,8 +425,10 @@ function SPCStandardizationEffects.Start(P,shared)
    out[#out+1]='当前生产进度：'..q.progress..' / '..q.cost
    if trace then
     local prefix=q.kind=='Buildings' and 'BUILDING:' or q.kind=='Districts' and 'DISTRICT:'
+    local target=prefix and prefix..q.target
     trace.Record('INDUSTRY_CONSTRUCTION_REPORT',{owner=pid,city=c:GetID(),eventKind=q.kind,
-     requested=q.target,nativeProgress=q.progress,nativeCost=q.cost,expected=prefix and r.applied[prefix..q.target] or 0})
+     requested=q.target,nativeProgress=q.progress,nativeCost=q.cost,
+     expected=target and failed and failed[target] and 'UNKNOWN' or target and r.applied[target] or 0})
    end
   else out[#out+1]='当前生产进度未读取；请以原生生产列表为准。'end
   return table.concat(out,'\n')

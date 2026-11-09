@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "d1c0854a4601441cbe96babaaaba90a318a866f9446dd74f2881d6dcd1f3caf6",
+      "sha256": "32b41e554a4720de69d096a0674f01f4a65c8cb21b61b65d357f1e71e8cd7a78",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1031 B484 same-reference Culture Network residual after partial native mutation."
+      "provenance": "S1032 B485 isolated Standardization target operation and exact same-reference readback."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b211e6bfd86b0569a448f113e49c7ce3066fdbc71b16d4f58e8042532756403b",
+      "sha256": "e45e8be8a939fe03666ca252b6786809c5b09fa353dd31212960e029568c6105",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1031 B484 same-reference Culture Network residual after partial native mutation."
+      "provenance": "S1032 B485 isolated Standardization target operation and exact same-reference readback."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -881,9 +881,9 @@
       "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
     },
     "Mod/StandardizationEffects.lua": {
-      "sha256": "b05ddc83157e30441ebd777146c4d8c54628d78e400e80c8a1d6104c61eb4e4b",
+      "sha256": "c73797a2bfc276fd1be4bc22071f8f86d48063d9057590bf0e343d08e321f706",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1022 B478 warm network proof-status delivery and scoped passive-work reduction."
+      "provenance": "S1032 B485 isolated Standardization target operation and exact same-reference readback."
     },
     "Mod/Text/ClaimProjects.sql": {
       "sha256": "a31dbfc5862df58c043a03adc68423dbabf299e6c389955207dfe21c8b68559c",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1031 verifies Culture Network partial effect readback within A12 / NET06. The four existing turn duties remain and B476 is still installed.",
-  "source_runtime": "B484.511 / modinfo511 local candidate, 337 files. B476.503 remains installed.",
-  "tested_source_snapshot_sha256": "736286a383350f7bb4c62e9a1b11bcb7e58fe16b529b9fa527c63599b968217e"
+  "source_review": "S1032 verifies the three passive network write-readback slices locally and records the focused A12 / NET06 review entry. The four existing turn duties remain and B476 is still installed.",
+  "source_runtime": "B485.512 / modinfo512 local candidate, 337 files. B476.503 remains installed.",
+  "tested_source_snapshot_sha256": "3f2d2237351ac67c65675235783d9221e0c45f5b36dec614279c7d03e40ca2b0"
 }
