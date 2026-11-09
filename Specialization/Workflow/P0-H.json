@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1025",
-    "runtime": "B480.507 / modinfo507",
+    "status": "S1026",
+    "runtime": "B481.508 / modinfo508",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Preserve and audit the actual network recovery duties before retiring old turn work.",
+  "goal": "Make delivered role refresh responsibility observable and prove completion on existing relevant evidence without retiring turn duties.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Keep a failed delivered role refresh under Bridge ownership — S1026",
+      "reason": "S1025 audit disposition and Bridge ownership of an unconfirmed role generation"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -582,6 +588,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B481 passes 89 scoped Lua 5.1 checks. A genuine newer role event or accepted equal-value packet closes the recorded generation. Idle publications leave it dormant.",
     "S1025 passes 50 local checks. Removing only the Bridge turn invocation leaves silent role readiness and a failed confirmed withdrawal unhandled in controlled comparisons.",
     "B480 passes 133 scoped Lua 5.1 checks. The old Industrial diagnostic uses the published route view without a network refresh.",
     "B479 passes 130 scoped Lua 5.1 checks. Pure warm proof wait projects applied Commercialization without effect reads. Prepublication quote rejection and proven changes remain covered.",
@@ -4160,6 +4167,42 @@
       "gate": "SCOPED_REVIEW_AND_OWNER_RETIREMENT_APPROVAL",
       "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#review-network-turn-recovery-before-retiring-old-callbacks--s1025"
+    },
+    "b481_delivered_role_refresh": {
+      "build": "B481.508 / modinfo508",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "baseline": "0b7a6027997c426d1dc59b87c4d5bbb5dbddf993",
+      "tests": 89,
+      "source_snapshot_sha256": "763fbd391861035eba9dfc3aa461c621b78054f1c796e6447f5cb33b9af9b0ad",
+      "package_sha256": "7994d7d42a0d7c3f681d5d46d795e27b916d2b7ee2d4199b39d388bc454f5c1b",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "role_refresh_recovers_on_delivered_fact": {
+          "idle_attempts": 0,
+          "captures_on_next_role_change": 1,
+          "same_turn": true,
+          "accepted_sequence_unchanged": true,
+          "idle_publishes": 100
+        }
+      },
+      "evidence": {
+        "local/refactor/B481-NNetworkRecoveryBoundary/closure.json": "dc6b5b66dac0dd922c7442cc24a6d67c4f7cf971bebce0dd250e37938b2acb4e",
+        "local/refactor/B481-NNetworkRecoveryBoundary/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B481-NNetworkRecoveryBoundary/closure.stderr.log": "6c735424e6082d3c620767f13b6014ae6afbad6b76893936d205c0f1055aee30",
+        "local/refactor/B481-NNetworkRecoveryBoundary/baseline.log": "218e41405b02f94323bfc69eb958767a0d87f2cb511cc016cd3c4012138d9a1f",
+        "local/refactor/B481-NNetworkRecoveryBoundary/reverse.log": "5a121e181710b511c52497a2b3f607c1088f9d1954483b99cb9cd42a40dff6d2"
+      },
+      "external_review_sha256": "b6fb0a335cbc78fa7b94c3361799c141228fce91aabcfcbd53a43d690ac69e88",
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "gate": "ALL_FOUR_TURN_ENTRIES_RETAINED_D1_E6_E7_OPEN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#keep-a-failed-delivered-role-refresh-under-bridge-ownership--s1026",
+      "reverse_index": {
+        "run_each": 231,
+        "inherited_not_pass_each": 3,
+        "new_failures": 0
+      }
     }
   }
 }

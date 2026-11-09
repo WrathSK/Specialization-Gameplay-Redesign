@@ -163,7 +163,8 @@ function SPCNetworkBridge.Start(P,shared)
    validity=b.validity,availability=(b.queuedWork or b.negativeHeld) and 'NEEDS_REVALIDATION' or b.availability,routeRevision=b.revision,routeValidity=b.routes and 'VERIFIED' or b.validity,revalidation=b.revalidation,
    derivedRevision=b.derivedRevision,derivedFor=b.derivedFor,withdrawal=b.withdrawal==true,transportFailure=b.transportFailure,
    factAvailability=b.input and b.input.factAvailability or 'UNKNOWN',provenance=b.input and copy(b.input.provenance),
-   effectAvailability=(b.queuedWork or b.negativeHeld) and 'PENDING' or b.effectAvailability,continuityOnly=b.continuityOnly==true}
+   effectAvailability=(b.queuedWork or b.negativeHeld) and 'PENDING' or b.effectAvailability,continuityOnly=b.continuityOnly==true,
+   pendingRoleGeneration=b.pendingRoleGeneration,roleRefreshError=b.roleRefreshError}
  end
  local function proofSignature(b)
   local parts={tostring(b.inputRevision),tostring(b.validity),tostring(b.withdrawal),tostring(b.availability),tostring(b.effectAvailability),tostring(b.revalidation),
@@ -422,6 +423,10 @@ function SPCNetworkBridge.Start(P,shared)
     -- A proved route set does not resolve unreadable city facts.
     inputProviders[pid]={registry=provider,effective=effective,reader=reader,store=store,base=store and store.Base,stamp=store and store.FactStamp,turn=now}
     b.factGeneration=sampledGeneration
+    -- Unchanged content can still confirm the latest role generation.
+    if b.pendingRoleGeneration and sampledGeneration>=b.pendingRoleGeneration and currentGeneration(pid,b)then
+     b.pendingRoleGeneration=nil;b.roleRefreshError=nil
+    end
     b.continuityOnly=not candidate and b.continuityOnly==true or withdrawal and b.revalidation=='NEEDS_REVALIDATION' or false
     local fresh=b.revalidation=='VERIFIED' and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b)
     -- Topology proof permits source-local D2 effects; MIXED remains unfit for transactions.
@@ -482,6 +487,22 @@ function SPCNetworkBridge.Start(P,shared)
  end
  -- Only the declared role-fact binding opts in. Every other entry stays full.
  function d.RefreshFacts(pid)return d.Refresh(pid,false,true)end
+ function d.RoleFactsChanged(pid)
+  local b=d.players[pid]
+  -- An owner without prior proof or a candidate still needs its normal first packet.
+  if not (b and (b.routes or b.candidate)) or isolated(pid)then return d.RefreshFacts(pid)end
+  local revision=generation(pid)
+  if revision==(b.factGeneration or 0)then return d.RefreshFacts(pid)end
+  -- One delivered generation per owner. Existing real causes can finish it.
+  -- Keeping the obligation alone must not arm the idle publish callback.
+  b.pendingRoleGeneration=revision
+  local ok,value=pcall(d.RefreshFacts,pid)
+  if not ok then
+   if b.pendingRoleGeneration then b.roleRefreshError='NETWORK_ROLE_REFRESH_FAILED' end
+   error(value,0) -- FactChanges still reports the phase-0 exception.
+  end
+  return value
+ end
  local function receiveImpl(pid,p,deferred)
 
   if isolated(pid) then state('NETWORK_RECEIVE_DROP',pid,nil,'ISOLATED',p);return end -- includes delayed pre-experiment packets
@@ -765,6 +786,7 @@ function SPCNetworkBridge.Start(P,shared)
    and b.derivedFor==b.inputRevision and v.signature==b.inputSignature
   local reason=isolated(pid) and 'NETWORK_ISOLATED' or not d.ready and 'NETWORK_NOT_READY'
    or not b and 'NETWORK_NO_INPUT' or not coherent and 'NETWORK_VIEW_UNAVAILABLE'
+   or b.pendingRoleGeneration and 'NETWORK_ROLE_REFRESH_PENDING'
    or b.availability~='AVAILABLE' and 'NETWORK_REVALIDATION_PENDING' or 'NETWORK_AVAILABLE'
   local function safeName(owner,cid)
    local ok,title=pcall(name,owner,cid);return ok and title or ('城市#'..tostring(cid)..'（玩家'..tostring(owner)..'）')
@@ -772,8 +794,10 @@ function SPCNetworkBridge.Start(P,shared)
   local function emit(stage,fields)if reportTrace then pcall(reportTrace,stage,fields)end end
   local sources=coherent and v.sources or {};local centers=coherent and v.centers or {};local recipients=coherent and v.recipients or {}
   local receivers={};for _,set in pairs(recipients)do for cid in pairs(set)do receivers[cid]=true end end
-  local err=b and b.error and classifyFailure(b.error,'SHARED_INPUT')
-  local header=reason=='NETWORK_AVAILABLE' and '已就绪' or reason=='NETWORK_REVALIDATION_PENDING' and '上次已发布拓扑；当前待核验' or '尚无可用当前拓扑'
+  local err=b and (b.roleRefreshError or b.error) and classifyFailure(b.roleRefreshError or b.error,b.roleRefreshError and 'ROLE_REFRESH' or 'SHARED_INPUT')
+  local pendingRole=reason=='NETWORK_ROLE_REFRESH_PENDING'
+  local header=reason=='NETWORK_AVAILABLE' and '已就绪'
+   or (reason=='NETWORK_REVALIDATION_PENDING' or pendingRole) and '上次已发布拓扑；当前待核验' or '尚无可用当前拓扑'
   local lines={'公共网络｜'..safeName(pid,id)..'｜'..header,
    '输入 '..tostring(b and b.validity or 'UNKNOWN')..' / '..tostring(b and b.availability or 'UNAVAILABLE')
     ..'；版本 '..tostring(b and b.inputRevision or '无')..' → '..tostring(b and b.derivedFor or '无')}
@@ -902,6 +926,7 @@ function SPCNetworkBridge.Start(P,shared)
   assert(isolated(pid),'NETWORK_EXPERIMENT_NOT_ARMED')
   local b=bucket(pid);assert(not b.refreshing,'NETWORK_EXPERIMENT_BUSY')
   views[pid]=nil;inputProviders[pid]=nil;pending[pid]=nil;dormant[pid]=nil;b.queuedWork=nil;b.negativeHeld=nil
+  b.pendingRoleGeneration=nil;b.roleRefreshError=nil
   b.routes=nil;b.fingerprint=nil;b.routeReferences=nil;b.candidate=nil;b.input=nil;b.inputSignature=nil
   b.sources=nil;b.centers=nil;b.recipients=nil;b.derivedFor=nil
   b.validity='EXPERIMENT_ISOLATED';b.availability='EXPERIMENT_ISOLATED';b.reason='EXPERIMENT_ISOLATED'

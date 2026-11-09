@@ -706,9 +706,9 @@
       "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "f133fc4696f529cb1e537a40d529d0bd8c7a639f69e23eb60335624fc7695483",
+      "sha256": "ed4c0b39feb905ac61bc4d78017053d6dccafc088f25922bf9589793639612d5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1024 B480 published network diagnostic and shared exact recipient references."
+      "provenance": "S1026 B481 delivered role refresh ownership and proof boundary."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "398b639f4e935dcce4a6d258d4ede18bcc95c2d150a777a95190c657d3168046",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "856fab6e11f776f8af879e80b1e98f3213206845a8798c27c67709eab22347a9",
+      "sha256": "afdbeea5481e2e0cd7fce140db60e276f7f65ea605e26fd6523be7a86b588a3c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1024 B480 published network diagnostic and shared exact recipient references."
+      "provenance": "S1026 B481 delivered role refresh ownership and proof boundary."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "5fd165091eb90bb5998ddb2ae1f758bad6db7dbeccb3058183e9d01d142c8f45",
+      "sha256": "9d104668209b1894d19b7bae7a69c5e20f019dfb6febe3c86d1b9995a72f7d70",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1024 B480 published network diagnostic and shared exact recipient references."
+      "provenance": "S1026 B481 delivered role refresh ownership and proof boundary."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1481,9 +1481,9 @@
       "provenance": "S0918 B424.451 verifies ordered Research Infrastructure receipts, real shared depth use, and original writer order."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "93b44f84d09f0d2eb8409578bffcf96ba9d4b805bb3528bb918a955d7ed638fc",
+      "sha256": "349c8549806dd6fe6ba4e6987475901449161151d99c2adf37a15a6d1f7793d5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1023 B479 proof-only Commercialization waiting view and preserved strict gates."
+      "provenance": "S1026 B481 delivered role refresh ownership and proof boundary."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",
@@ -1691,7 +1691,7 @@
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     }
   },
-  "source_review": "S1025 records both live Bridge turn responsibilities under controlled comparison. The B480 runtime remains unchanged and ready for scoped retirement review.",
-  "source_runtime": "B480.507 / modinfo507 local candidate, 337 files. B476.503 remains installed.",
-  "tested_source_snapshot_sha256": "f14506b6a51ebeec5ff634b58811fe0f859642d648909fb16026c245fbc724cb"
+  "source_review": "S1026 records S1025 audit dispositions and gives delivered role refreshes one existing owner. All turn entries remain; B476 remains installed.",
+  "source_runtime": "B481.508 / modinfo508 local candidate, 337 files. B476.503 remains installed.",
+  "tested_source_snapshot_sha256": "763fbd391861035eba9dfc3aa461c621b78054f1c796e6447f5cb33b9af9b0ad"
 }

@@ -11,7 +11,12 @@
       "test_refactor_s4b.CommercePendingNotice",
       "test_b397_network_transport.SignalCatchUp",
       "test_b397_network_transport.LifecycleRecovery",
-      "test_b397_network_transport.StrictTransactions"
+      "test_b397_network_transport.StrictTransactions",
+      "test_refactor_s5propagation",
+      "test_refactor_s5c1.NetworkSignals",
+      "test_pu01_fact_use.StatusProjection",
+      "test_network_readonly_diagnostic",
+      "test_o7_network_trace.NetworkTrace.test_actual_gameplay_and_ui_proof_ack_without_observer_file"
     ],
     "NReadOnlyNetworkDiagnostic": [
       "test_network_effect_fact_receipts",
@@ -2480,6 +2485,7 @@
       "test_refactor_s7c"
     ],
     "Mod/NetworkBridge.lua": [
+      "test_network_turn_recovery_boundary",
       "test_o7_network_trace",
       "test_refactor_defects.Defects",
       "test_refactor_s4b",
@@ -2645,6 +2651,7 @@
       "test_refactor_s5d3"
     ],
     "Mod/FactConsumerBindings.lua": [
+      "test_network_turn_recovery_boundary",
       "test_refactor_s5propagation",
       "test_refactor_s5d4a",
       "test_refactor_s5d4b1",

@@ -1,17 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1025
-Implementation Build: source B480.507 / modinfo507. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1026
+Implementation Build: source B481.508 / modinfo508. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_RECOVERY_RETIREMENT_REVIEW_READY
+Work State: NETWORK_ROLE_REFRESH_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Keep a failed delivered role refresh under Bridge ownership — S1026
+
+A committed change to a city's identity, Potential or ACTIVE already invalidates the network proof used by transactions. If the Bridge's phase-zero callback fails, the shared dispatch reports the error and moves on. A later valid proof or role change can repair the proof. Previously the Bridge had no record of the delivered generation that failed to refresh.
+
+- **Runtime Impact Contract (L3, T01/T02/T04/T05/T08).** The [existing phase-zero binding](../../Mod/FactConsumerBindings.lua) still samples once per affected owner after RestructuringSync. The [Bridge](../../Mod/NetworkBridge.lua) retains one scalar generation and a bounded error code in the owner's existing route bucket. The entry clears after that generation or a newer one is captured and is still current. A duplicate input can satisfy it. This uses the existing refresh entry, validated packets and lifecycle boundaries. It adds no native source, idle wake, native reads on the failure path, property, shared dispatch receipt or new source of facts. A newer generation invalidates proof immediately. Confirmed losses and source-local reductions retain priority.
+- **LOCAL_SIMULATION_PASS in scope.** All 89 selected checks pass. In the injected failure comparison the next related role change completes the refresh in the same turn with one capture and no new route packet. The read-only report exposes the failure. One hundred idle publications add no attempts. A validated same-value packet also completes the outstanding capture. A newer generation arriving during capture stays blocked until the later delivery. The existing phase ordering, strict investment paths and real Gameplay/UI transport also run in this selection.
+- **External review disposition.** The local S1025 review (SHA256 b6fb0a335cbc78fa7b94c3361799c141228fce91aabcfcbd53a43d690ac69e88) is ingested at its scoped evidence level. Its four comparisons also pass against B480 before the runtime change. Without new evidence, suppressing the Bridge turn still prevents recovery after the injected role failure (T4). Suppressing the Commerce turn leaves Gold at 15 after worker loss (M1). Suppressing the Culture turn leaves the contribution at 1 after silent history recovery (M2). When proof registration fails, either Bridge or Culture's turn restores the Culture contribution to 1, with neither leaving it at 0 (T5). Endpoint loss via a lifecycle resend still needs an actual Gameplay/UI comparison (T3). Standardization's analogous silent history recovery (M3) is still a static inference. The dormant confirmed-negative path can retry on every later Refresh, a separate open limit (R-2). The latent Commerce merge hardening (R-3) remains unimplemented. All four turn callbacks and the retirement gate remain.
+- **Reproduce and recover.** Run `python3 DevelopmentTests/run_refactor.py --stage NNetworkRecoveryBoundary --output local/refactor/B481-NNetworkRecoveryBoundary/closure.json` with Python 3.14.8, Lupa 2.8 / Lua 5.1 on arm64 macOS and the existing HD regression DB (SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439). Command arguments are [in the test selection](../../DevelopmentTests/refactor_selection.json) and the local record at `local/refactor/B481-NNetworkRecoveryBoundary/closure.json`. The tested source SHA256 is 763fbd391861035eba9dfc3aa461c621b78054f1c796e6447f5cb33b9af9b0ad, local Closure SHA256 dc6b5b66dac0dd922c7442cc24a6d67c4f7cf971bebce0dd250e37938b2acb4e. A separate equal-selection Lua 5.1 comparison from the changed files' reverse index ran 231 checks per side, with the same three inherited failures and no skips. See the local companion reverse transcript for their IDs. Local full artifacts identify the runs without representing permanent backups.
+- **STATIC_CONFIRMED.** 208 Lua 5.1 chunks, 32 XML-family files, 666 file references and ten replacements checked. All 337 runtime paths match the baseline. Candidate package SHA256 7994d7d42a0d7c3f681d5d46d795e27b916d2b7ee2d4199b39d388bc454f5c1b. Live B476.503 and its prior native evidence retain their existing scope.
+
+User decision and native testing are unnecessary for this source slice. Primary next is to prove which existing lifecycle boundaries close missed route proof and source availability, then return only if a concrete remaining duty requires an Owner decision.
 
 ### Review network turn recovery before retiring old callbacks — S1025
 
