@@ -30,6 +30,50 @@ return {physical=ownedGold(c),shown=v.totalGold,unconfirmed=v.writeUnconfirmed==
 
 
 class CommercializationReadback(unittest.TestCase):
+    def test_binding_unavailable_before_write_keeps_the_actual_effect(self):
+        game = warm_commerce()
+        result = scalars(game.execute("""
+local c=cities[2];local store=shared.CityProgressionStore
+local read=store.HistoricalReference;local bindingReads=0
+store.HistoricalReference=function(q)
+ if q==c then bindingReads=bindingReads+1 end
+ return read(q)
+end
+local writes=created+removed
+c.bindingFail=true;com.Refresh(0,2)
+local v=view(2);local text=com.Describe(0,c)
+return {physical=ownedGold(c),stage=v.stage,binding_pending=v.bindingUnconfirmed==true,
+ write_pending=v.writeUnconfirmed==true,attempted_writes=created+removed-writes,binding_reads=bindingReads,
+ binding_label=text:find('城市绑定待确认',1,true)~=nil,strict=com.TransactionCurrent(0,2)}
+"""))
+        self.assertEqual(result, {
+            'physical': 15, 'stage': 'HELD', 'binding_pending': True, 'write_pending': False,
+            'attempted_writes': 0, 'binding_reads': 1, 'binding_label': True, 'strict': False,
+        })
+        measure('commercialization_binding_wait_before_write', result)
+        game.execute("""
+local c=cities[2];local writes=created+removed
+c.bindingFail=false;net.CheckEvidence(false)
+for _=1,2 do com.SourceChanged(0,2)end
+assert(ownedGold(c)==15 and created+removed==writes and not com.TransactionCurrent(0,2))
+send(routeRows,3)
+assert(ownedGold(c)==15 and not view(2).bindingUnconfirmed and not view(2).writeUnconfirmed)
+assert(com.TransactionCurrent(0,2))
+""")
+
+    def test_binding_hold_does_not_discard_an_earlier_unconfirmed_write(self):
+        game = warm_commerce()
+        game.execute(COMMERCE_PARTIAL)
+        game.execute("""
+local c=cities[2];local writes=created+removed
+c.bindingFail=true;com.Refresh(0,2)
+assert(view(2).bindingUnconfirmed and view(2).writeUnconfirmed and view(2).totalGold==nil)
+c.bindingFail=false;net.CheckEvidence(false);com.SourceChanged(0,2)
+assert(ownedGold(c)==14 and created+removed==writes and view(2).writeUnconfirmed)
+restoreCommerceWriter();send(routeRows,3)
+assert(ownedGold(c)==30 and com.TransactionCurrent(0,2))
+""")
+
     def test_partial_write_reports_installed_gold_and_waits_for_an_existing_audit(self):
         game = warm_commerce()
         result = scalars(game.execute(COMMERCE_PARTIAL))

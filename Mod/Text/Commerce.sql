@@ -67,7 +67,11 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_COMMERCE_WRITE_UNCONFIRMED','收益更新尚未确认。[NEWLINE]载体基础金币读回：{1}。'),
-('en_US','LOC_SPC_COMMERCE_WRITE_UNCONFIRMED','收益更新尚未确认。[NEWLINE]载体基础金币读回：{1}。');
+('en_US','LOC_SPC_COMMERCE_WRITE_UNCONFIRMED','收益更新尚未确认。[NEWLINE]载体基础金币读回：{1}。'),
+('zh_Hans_CN','LOC_SPC_COMMERCE_READBACK_UNKNOWN','未知'),
+('en_US','LOC_SPC_COMMERCE_READBACK_UNKNOWN','未知'),
+('zh_Hans_CN','LOC_SPC_COMMERCE_BINDING_WAIT','收益更新等待城市绑定确认。'),
+('en_US','LOC_SPC_COMMERCE_BINDING_WAIT','收益更新等待城市绑定确认。');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_COMMERCE_LOCAL_DISTRICT_REQUIRED','本城缺少对应区域'),

@@ -56,7 +56,7 @@ render=function()
  local c=city();if not c then close();return end
  local b,v=backendView();local good=U.Available(v) and v.reference==current.reference
  Controls.CityName:SetText(Locale.Lookup(c:GetName()))
- Controls.Summary:SetText(good and not v.writeUnconfirmed and L('SIDEBAR_CAPACITY',#(v.effective or {}),number(v.workers)) or L('WAITING'))
+ Controls.Summary:SetText(good and not(v.writeUnconfirmed or v.bindingUnconfirmed) and L('SIDEBAR_CAPACITY',#(v.effective or {}),number(v.workers)) or L('WAITING'))
  local reputation=good and v.reputation or {}
  local reputationText
  if not good then reputationText=L('WAITING')
@@ -80,7 +80,11 @@ render=function()
  Controls.Source:SetText(row and row.effective and L('SOURCE_DETAIL',row.sourceName and Locale.Lookup(row.sourceName) or L('NO_SOURCE'),number(row.X),number(row.localD),number(reputation.effective)) or L('SOURCE_AFTER_ENABLE'))
  Controls.Rules:SetText(L('FORMULA')..'[NEWLINE][NEWLINE]'..L('LIFO_HELP'))
  local message=requestError and reason(requestError) or pending and L('REQUEST_WAIT') or good and v.stage~='READY' and reason(v.reason) or ''
- if good and v.writeUnconfirmed then message=message..'[NEWLINE]'..L('WRITE_UNCONFIRMED',number(v.totalGold))end
+ if good and v.bindingUnconfirmed then message=message..'[NEWLINE]'..L('BINDING_WAIT')
+ elseif good and v.writeUnconfirmed then
+  local amount=v.totalGold==nil and L('READBACK_UNKNOWN') or number(v.totalGold)
+  message=message..'[NEWLINE]'..L('WRITE_UNCONFIRMED',amount)
+ end
  Controls.Status:SetText(state..(message~='' and '[NEWLINE][NEWLINE]'..message or ''))
  Controls.ConfirmCaption:SetText(L(row and row.selected and 'STOP' or 'START'))
  Controls.Confirm:SetDisabled(not(good and v.canConfigure and row and (row.selected or row.eligible)) or pending~=nil)

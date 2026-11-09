@@ -250,8 +250,8 @@ function M.Start(P,shared)
   if network.validity~='VERIFIED' then
    local previous=views[key(pid,id)];local retained=samples[key(pid,id)]
    assert(previous and retained and retained.reference==v.reference and retained.token==v.token,network.reason or 'COMMERCE_NETWORK_UNKNOWN')
-   if previous.writeUnconfirmed and previous.reference==v.reference and previous.token==v.token then
-    -- A failed effect view disables its domain rows for display. It cannot
+   if (previous.writeUnconfirmed or previous.bindingUnconfirmed) and previous.reference==v.reference and previous.token==v.token then
+    -- An unconfirmed view disables its domain rows for display. It cannot
     -- prove those domains have lost eligibility or decompose the residual.
     for _,row in ipairs(v.domains)do if row.effective then
      out.unavailable=previous.reason;return out
@@ -363,7 +363,7 @@ function M.Start(P,shared)
   -- decomposition is unavailable. Never make this a new-transaction credential.
   local value=old and old.reference==ref(x.c) and old.token==x.v.token and cp(old) or x.v
   value.factStatus=x.v.factStatus or {status='UNKNOWN'}
-  if value.writeUnconfirmed then
+  if value.writeUnconfirmed or value.bindingUnconfirmed then
    local read,gold=pcall(readTargetGold,x)
    value.totalGold=read and gold or nil
   else value.totalGold=observed(x.c)end
@@ -513,8 +513,10 @@ function M.Start(P,shared)
      if before~=nil and before~=generation(x.pid,sid)then stale=true end
     end
     if stale then hold(x,views[k],'COMMERCE_INPUT_CHANGED_DURING_READ')end
+    local bound,attempted=false,false
     local good,err=pcall(function()
      confirmTarget(x)
+     bound=true
      if not x.hold then
       -- Source facts passed the read phase and the binding check. A later native
       -- failure must not bring back a source this plan has already ruled out.
@@ -525,14 +527,23 @@ function M.Start(P,shared)
       local previousGold=previous and previous.totalGold
       local held=x.network and x.network.continuityOnly and previous and previous.reference==x.v.reference
        and previous.token==x.v.token and (previousGold and x.v.totalGold>=previousGold or previousGold==nil and x.v.totalGold>0)
-      if held and previous.writeUnconfirmed then hold(x,previous,previous.reason)
-      elseif not held then applyGold(x.c,x.v.totalGold);set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)end
+      if held and (previous.writeUnconfirmed or previous.bindingUnconfirmed)then hold(x,previous,previous.reason)
+      elseif not held then
+       attempted=true
+       applyGold(x.c,x.v.totalGold)
+       set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)
+      end
      end
     end)
     if not good then
-     -- Keep the physical result and only describe readback from the same binding.
-     local read,remaining=pcall(readTargetGold,x)
-     x.v.writeUnconfirmed=true;x.v.totalGold=read and remaining or nil;x.v.totalRaw=nil
+     local previous=views[k]
+     local priorWrite=previous and previous.reference==x.v.reference and previous.token==x.v.token
+      and previous.writeUnconfirmed
+     local read,remaining
+     if bound and (attempted or priorWrite)then read,remaining=pcall(readTargetGold,x)end
+     x.v.bindingUnconfirmed=not bound or nil
+     x.v.writeUnconfirmed=attempted or priorWrite or nil
+     x.v.totalGold=read and remaining or nil;x.v.totalRaw=nil
      x.v.stage='HELD';x.v.reason=code(err);x.v.canConfigure=false;x.v.effective={}
      for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
     end
@@ -559,7 +570,7 @@ function M.Start(P,shared)
     local v=cp(views[key(pid,c:GetID())])
     if v then
      v.stage='HELD';v.reason='COMMERCE_EXPERIMENT_ISOLATED';v.totalGold=0;v.totalRaw=0;v.canConfigure=false;v.effective={}
-     v.writeUnconfirmed=nil
+     v.writeUnconfirmed=nil;v.bindingUnconfirmed=nil
      for _,r in ipairs(v.domains or {})do r.effective=false;r.suspended=r.selected;r.gold=0;r.floor=0;r.raw=0 end
      publish(pid,c:GetID(),v)
     end
@@ -596,8 +607,11 @@ function M.Start(P,shared)
  function d.Describe(pid,c)
   local v=views[key(pid,c:GetID())]
   if not v then return '商业化：等待城市记录。'end
-  local amount=v.writeUnconfirmed and '领域收益待确认｜载体当前配置的基础金币：'..tostring(v.totalGold or '未知')
-   or '生效领域 '..#(v.effective or {})..'｜合计 +'..v.totalGold..' 基础金币/回合'
+  local amount
+  if v.bindingUnconfirmed then amount='城市绑定待确认｜收益更新尚未执行'
+  elseif v.writeUnconfirmed or v.totalGold==nil then
+   amount='领域收益待确认｜载体当前配置的基础金币：'..tostring(v.totalGold or '未知')
+  else amount='生效领域 '..#(v.effective or {})..'｜合计 +'..v.totalGold..' 基础金币/回合' end
   local rows={'商业化｜'..title(c)..'｜'..(v.stage=='READY' and '已就绪' or v.reason),
    '工作专家 '..v.workers..'｜'..amount,
    v.reputationMessage or model.ReputationText(v.reputationUse)}

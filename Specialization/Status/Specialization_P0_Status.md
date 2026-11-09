@@ -1,17 +1,29 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1034
-Implementation Build: source B487.514 / modinfo514. Live B476.503 from df94617. Stable/main B307.334.
+Status Revision: S1035
+Implementation Build: source B488.515 / modinfo515. Live B476.503 from df94617. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: NETWORK_SOURCE_WITNESS_FAILURE_LOCAL_FIXED
+Work State: NETWORK_EFFECT_WRITE_REVIEW_FOLLOWUP_LOCAL_COMPLETE
 
 ## CURRENT AUTHORITATIVE STATE
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
+
+### Distinguish Commercialization binding wait from a carrier write — S1035
+
+The scoped S1032 review follow-up includes the foreign-city startup repair and test (S1033), the confirmed-source/wake separation (S1034), and the two Commercialization status observations (S1035). The panel and city report now use an explicit unknown readback amount and distinguish an attempted carrier change from an unavailable receiver binding before that change.
+
+- **Runtime Impact Contract (L3, T01/T03/T04/T05/T08).** The existing city view adds a session-only binding-wait label. A failed pre-write binding check makes no second binding attempt for a carrier observation. A prior real write failure on the same reference retains its separate incomplete result. The existing hold, strict transaction gate, matching-reference readback, and normal future audit remain the owners of recovery. No added native read, listener, retry or persistent data.
+- **LOCAL_SIMULATION_PASS in scope.** The binding fault leaves 15 installed Gold and does zero carrier writes, using one binding check instead of two. The city report and panel identify a binding wait. An earlier partial write retains its 14 Gold residual through binding and proof wait. Complete current proof can still reconcile to 30. The sidebar distinguishes unknown readback from generic waiting and sends no request when held. The final three scoped stages pass 89/127/117 checks and the Lua 5.1 sidebar fixture passes all nine checks. The selections overlap. The isolated Commerce/Probe reverse comparison runs 205 baseline and 208 candidate checks, with the same 17 inherited nonpassing records and no new failures or skips. S1034 retains the broader three-owner comparison. No native incidence or native PASS is inferred.
+
+- **Reproduction.** `python3 DevelopmentTests/run_refactor.py --stage NCommerceEffectReadback --output local/refactor/B488-Commerce-Effect-Status/Commerce/closure.json` (local Closure SHA256 a05e91e1c043609fcd8655291f22690a95b15158450cadbe5072635d628dcbae) · `python3 DevelopmentTests/run_refactor.py --stage NCultureNetworkEffectReadback --output local/refactor/B488-Commerce-Effect-Status/Culture/closure.json` (local Closure SHA256 9b4e2e6ce52cf6fae6bc2fa9743416f70874a1a494e7a06f5112b1be557a8d4c) · `python3 DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/B488-Commerce-Effect-Status/Industry/closure.json` (local Closure SHA256 6740b92baf5d811e8bc89441ee2ce410734b3e18b204bcc844fec26f79712755). Use CPython 3.14.8, Lupa 2.8 / Lua 5.1 on arm64 macOS, the pinned HD regression DB (SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439), and the pinned official production-panel source fragments when selected. Tested source SHA256 edd1a1be12d97a4cdd738f7e1749082af31967cfa8c14598fdebf31c56d0d960. Full artifacts remain in ignored local storage.
+- **STATIC_CONFIRMED.** 208 Lua chunks, 32 XML-family files, 666 file references and ten replacements for the same 337-path package. Source package SHA256 ce6f04d1d239debd08cc67ac88c2ed9b787feba5fe8a32a757c3469873c408b2. Live B476.503 keeps its separate acceptance.
+
+The authorized follow-up is locally complete at B488. No new Owner decision or user-game test is required for this checkpoint. The current turn duties remain while their separate natural-trigger evidence is open.
 
 ### Preserve confirmed source losses across failed effect writes — S1034
 

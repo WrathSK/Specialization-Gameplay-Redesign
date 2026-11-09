@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1034",
-    "runtime": "B487.514 / modinfo514",
+    "status": "S1035",
+    "runtime": "B488.515 / modinfo515",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Finish the focused S1032 effect write review follow-up, preserving current network semantics and turn duties.",
+  "goal": "Close the authorized local S1032 follow-up with accurate Commercialization outcome presentation.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Distinguish Commercialization binding wait from a carrier write — S1035",
+      "reason": "Distinguish a pre-write binding wait from a same-reference carrier readback and finish the scoped review"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -636,6 +642,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B488 passes the selected 89 Commerce, 127 Culture and 117 Standardization checks and nine Commercialization sidebar checks; no new reverse-index failures.",
     "B487 passes the selected 87 Commerce, 125 Culture and 115 Standardization checks with the five new real-writer counterexamples and existing recovery edges.",
     "B486 passes 112 selected Lua 5.1 checks, including non-test-city initialization with and without a saved carrier. The original B234 foreign-city regression also passes independently.",
     "B485 passes 111 local checks, including actual Standardization target isolation, exact readback, strict transactions and pinned native-source UI composition.",
@@ -4624,6 +4631,60 @@
         "new_skips": 0
       },
       "evidence_limit": "Injected native write faults only; no native incidence measured."
+    },
+    "b488_commercialization_binding_and_readback_status": {
+      "build": "B488.515 / modinfo515",
+      "baseline": "e234ee4d7dced4ff91f0928553f869be197e0845",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": {
+        "NCommerceEffectReadback": 89,
+        "NCultureNetworkEffectReadback": 127,
+        "NStandardizationEffectReadback": 117
+      },
+      "source_snapshot_sha256": "edd1a1be12d97a4cdd738f7e1749082af31967cfa8c14598fdebf31c56d0d960",
+      "package_sha256": "ce6f04d1d239debd08cc67ac88c2ed9b787feba5fe8a32a757c3469873c408b2",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {
+        "commercialization_binding_wait_before_write": {
+          "physical": 15,
+          "stage": "HELD",
+          "binding_pending": true,
+          "write_pending": false,
+          "attempted_writes": 0,
+          "binding_reads": 1,
+          "binding_label": true,
+          "strict": false
+        }
+      },
+      "evidence": {
+        "local/refactor/B488-Commerce-Effect-Status/Commerce/closure.json": "a05e91e1c043609fcd8655291f22690a95b15158450cadbe5072635d628dcbae",
+        "local/refactor/B488-Commerce-Effect-Status/Commerce/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B488-Commerce-Effect-Status/Commerce/closure.stderr.log": "42f0de6b2656c597f7221b73af340f40dd6d832b7f8429c3c0213d8225b93abc",
+        "local/refactor/B488-Commerce-Effect-Status/Culture/closure.json": "9b4e2e6ce52cf6fae6bc2fa9743416f70874a1a494e7a06f5112b1be557a8d4c",
+        "local/refactor/B488-Commerce-Effect-Status/Culture/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B488-Commerce-Effect-Status/Culture/closure.stderr.log": "e3ffa5ce91b50b060a7f6946759694e8c10fe9ba89d9f4642dcc1876f82f9c3a",
+        "local/refactor/B488-Commerce-Effect-Status/Industry/closure.json": "6740b92baf5d811e8bc89441ee2ce410734b3e18b204bcc844fec26f79712755",
+        "local/refactor/B488-Commerce-Effect-Status/Industry/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/B488-Commerce-Effect-Status/Industry/closure.stderr.log": "608753cbd5791a56301b1c58abc447dab3ce4ee7f16bc617b4a9b98e9955d674",
+        "local/refactor/B488-Commerce-Effect-Status/baseline.log": "53bb581b4955633654c9d6eb3e6d9b17258c0e4cbb9a25068577e02713e395ab",
+        "local/refactor/B488-Commerce-Effect-Status/reverse.log": "7010b6f0434df8474ecee9b6ff78ac787b04dc9923d80b2d6c8e7946ac726502",
+        "local/refactor/B488-Commerce-Effect-Status/reverse_isolated.json": "795c54bb79d34ee39021c36ef2043ee1a6110a35f3f3265c9207d184f0ec1833",
+        "local/refactor/B488-Commerce-Effect-Status/reverse_isolated.py": "38dc60e9d1f2b1f1c62bf35eb7430f6713fab9cb5f337802e58816b73d2019b8"
+      },
+      "native": "NOT_MEASURED",
+      "gate": "S1032_FOLLOWUP_LOCAL_COMPLETE_TURN_ENTRIES_RETAINED",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#distinguish-commercialization-binding-wait-from-a-carrier-write--s1035",
+      "reverse_index": {
+        "baseline_tests": 205,
+        "candidate_tests": 208,
+        "inherited_nonpassing_each": 17,
+        "new_failures": 0,
+        "new_skips": 0
+      },
+      "sidebar_checks": 9,
+      "evidence_limit": "Local input and native write doubles only."
     }
   }
 }
