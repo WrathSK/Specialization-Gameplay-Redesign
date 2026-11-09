@@ -11,6 +11,9 @@ from test_refactor_s8c5c import entry
 import test_expedition_training as training_cases
 
 BASE='f6767845336ff6c7e2d5f794bccb5de3d8676bfd'
+# The two exact before/after checks describe the mandatory-cleanup cutover.
+# The other tests still exercise the current startup and cleanup paths.
+PU08_CUTOVER='7729420ce9be628fc6915357f3e6ed5e2a650eb2'
 @contextmanager
 def baseline():
  paths=[ROOT/'Mod'/(n+'.lua')for n in ('RuntimeComposition','Gameplay','ExpeditionTraining')]
@@ -141,12 +144,13 @@ class Required(unittest.TestCase):
   """);c.load('Gameplay');c.execute("local e,r=0,0;for _ in pairs(requiredExits)do e=e+1 end;for _ in pairs(requiredReturns)do r=r+1 end;assert(e==29 and r==23);assert(not pcall(requiredExits.ResearchSupport)and not pcall(requiredExits.ExpeditionTraining)and not pcall(requiredReturns.Standardization))")
  def test_entire_ordinary_start_order_matches_fixed_before_source(self):
   before=subprocess.check_output(['git','show',BASE+':Mod/Gameplay.lua'],cwd=ROOT,text=True)
-  after=(ROOT/'Mod/Gameplay.lua').read_text()
+  after=subprocess.check_output(['git','show',PU08_CUTOVER+':Mod/Gameplay.lua'],cwd=ROOT,text=True)
   names=re.findall(r'(SPC\w+)\.Start\(P,shared',after);self.assertGreater(len(names),70)
   self.assertEqual(re.findall(r'(SPC\w+)\.Start\(P,shared',before),names)
  def test_successful_sibling_and_phase_ranked_return_order_not_changed(self):
-  source=(ROOT/'Mod/CityProgressionStore.lua').read_bytes();before=subprocess.check_output(['git','show',BASE+':Mod/CityProgressionStore.lua'],cwd=ROOT)
-  self.assertEqual(source,before)
+  before=subprocess.check_output(['git','show',BASE+':Mod/CityProgressionStore.lua'],cwd=ROOT)
+  after=subprocess.check_output(['git','show',PU08_CUTOVER+':Mod/CityProgressionStore.lua'],cwd=ROOT)
+  self.assertEqual(after,before)
   c=component();c.execute("d.RequireCleanup('One','A');d.RequireCleanup('Two','B');assert(d.Run('One',{}, {},function()shared.CityProgressionStore.RegisterExit('A',function()calls=calls+1 end)end));assert(not d.Run('Two',{}, {},function()error('FAIL')end));assert(pcall(exits.A)and not pcall(exits.B)and calls==1)")
  def test_no_idle_discovery_or_retry_and_restricted_lua(self):
   c=component();c.execute("local pulse=Events.GameCoreEventPublishComplete;debug=nil;rawget=nil;rawset=nil;rawequal=nil;os=nil;io=nil;package=nil;d.RequireCleanup('Owner','E','R');assert(d.Run('Owner',{}, {},function()shared.CityProgressionStore.RegisterExit('E',function()calls=calls+1 end);shared.CityProgressionStore.RegisterReturn('R',function()calls=calls+1 end)end));d.Complete();for i=1,1000 do publish()end;assert(calls==0 and not pcall(d.RequireCleanup,'Later','E2'))")

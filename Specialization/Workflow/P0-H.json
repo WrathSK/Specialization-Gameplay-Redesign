@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1036",
+    "status": "S1037",
     "runtime": "B489.516 / modinfo516",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Separate a confirmed local zero Commercialization capacity from unknown network sources on cold startup.",
+  "goal": "Prepare the B489 candidate and scoped evidence at the existing HD and official integration acceptance boundary.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Prepare the two-profile integration candidate for native acceptance — S1037",
+      "reason": "Current integration candidate, baseline comparisons, open native boundaries and minimal user-game scope"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -648,6 +654,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1037 checks 15 environment assembly and Tier cases, 11 panel cases, 47 shared fact cases, 26 startup and cleanup cases, 33 retired-path checks and six exact-removal rollback cases. Prior native evidence retains its original scope.",
     "B489 passes 90 Commerce, 128 Culture and 118 Standardization selected checks; the cold zero-worker case fails on B488, with no new reverse-index failures in B489.",
     "B488 passes the selected 89 Commerce, 127 Culture and 117 Standardization checks and nine Commercialization sidebar checks; no new reverse-index failures.",
     "B487 passes the selected 87 Commerce, 125 Culture and 115 Standardization checks with the five new real-writer counterexamples and existing recovery edges.",
@@ -4743,6 +4750,61 @@
         "gold_after_proof_with_one_worker": 15
       },
       "evidence_limit": "Real Bridge, Commerce, and shared delivery with native and Store doubles. Native incidence unmeasured."
+    },
+    "s1037_two_profile_local_integration": {
+      "build": "B489.516 / modinfo516",
+      "baseline": "be0b051efd7fffb364e9f0d6e0f1ffc12276ec1f",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "tests": {
+        "O7aiLegacyPanelCleanup": 33
+      },
+      "source_snapshot_sha256": "7f048381b330507efe758f6d668437fe04fe0322216b5773ca1b152d1114edec",
+      "package_sha256": "fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30",
+      "files": 337,
+      "db_sha256": "d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439",
+      "measurements": {},
+      "evidence": {
+        "local/refactor/S1037-Integration/Final/closure.json": "43bc8bcd327f2d7781c7cdf06bf84f13a9994d75805429ed9652d6f700056bdf",
+        "local/refactor/S1037-Integration/Final/closure.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "local/refactor/S1037-Integration/Final/closure.stderr.log": "db9313cc1442eaffa89f90eac9832fba4aaf1b25a8bf6a333d429d1b76395d3f",
+        "local/refactor/S1037-Integration/baseline-assembly.log": "b5ed8a525b854a0379a9cbd32fd046586a58d87f54759dd3eb7bc666dc37155b",
+        "local/refactor/S1037-Integration/tree-assembly.log": "a359a77420b6ce45b87363722e3f0fe9bd6060b3055d11b51a95b648b76405e5",
+        "local/refactor/S1037-Integration/baseline-panels.log": "1ccf888d7345a25c8baf4bf7ad10afa26011ae407dc28306a3fc69838d494da7",
+        "local/refactor/S1037-Integration/tree-panels.log": "511034c2e2df9624103bd74f0268f65f8025afe20445f4e79b6cc9f4ee1390a8",
+        "local/refactor/S1037-Integration/baseline-current-reuse.log": "660ffd10ac46aa18d054308d655f27b49ad46c5c89d1e524ef2129d7295abbe1",
+        "local/refactor/S1037-Integration/tree-current-reuse.log": "7e1dd90c40422e8507d82675ed0de215cd4c376b6036d10809135f8aeedcd52f",
+        "local/refactor/S1037-Integration/baseline-shared.log": "8b97b1ca813e22395b7b42c192951a6902fccaf5bef8b640653bfca167469d41",
+        "local/refactor/S1037-Integration/tree-shared.log": "cf1f205641f7f4ffa395ea2ae884df01d54ec143a39b53ddbcf50366eea97338",
+        "local/refactor/S1037-Integration/baseline-action.log": "610ebf05fe767a7414bead86e016a4ccaf619ccca0b24dcb687423103da10b56",
+        "local/refactor/S1037-Integration/tree-action.log": "cc6b6c23706a0f3e6f0af16f190144914eabf731b90440ba1f7028e5d8619576",
+        "local/refactor/S1037-Integration/tree-action-final.log": "ae72fc4639a9d9dc526ea58ca28a4682fb8547178c63d4e1cf8f1b391edebde2",
+        "local/refactor/S1037-Integration/tree-cleanup.log": "4f13816edacc5bdd96f036eb3ad2dbe7f7144e533d9f02caec25319741cda4be",
+        "local/refactor/S1037-Integration/tree-removal.log": "e31ea31a03a98f3061d656fff1ebafb7b4a0a779bf516dff669262d9c339d298",
+        "local/refactor/S1037-Integration/integration_comparison.json": "34cdebf937890b74dc0b02fa9a086c815eacb2446f920dc17355bb87d9ed4ad8"
+      },
+      "native": "NOT_MEASURED",
+      "gate": "LOCAL_CANDIDATE_NATIVE_ACCEPTANCE_OPEN",
+      "deployment": "SOURCE_ONLY_B476_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#prepare-the-two-profile-integration-candidate-for-native-acceptance--s1037",
+      "comparison_baseline": "45206f6479bdf1697e3229755cc81d429efe8193",
+      "historical_cleanup_comparison": "f6767845336ff6c7e2d5f794bccb5de3d8676bfd..7729420ce9be628fc6915357f3e6ed5e2a650eb2",
+      "official_db_sha256": "a37e505731f433bbaf2507ec4cf1f0867019813d645c8c7943c3ceae1691bb32",
+      "scoped_checks": {
+        "assembly_per_side": 15,
+        "panels_per_side": 11,
+        "current_shared_facts_per_side": 47,
+        "current_required_cleanup": 26,
+        "disposable_package_rollback": 6,
+        "retired_package_paths": 33
+      },
+      "broader_comparison": {
+        "action_baseline": 184,
+        "action_baseline_nonpassing": 6,
+        "action_candidate": 185,
+        "action_candidate_nonpassing": 5,
+        "older_shared_probe_nonpassing_each": 1
+      },
+      "native_acceptance": "OPEN_INTEGRATION; inherited PASS observations retain their source, profile and scenario scope"
     }
   }
 }
