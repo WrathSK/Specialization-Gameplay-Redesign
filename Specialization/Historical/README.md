@@ -99,3 +99,45 @@ From the repository root, use `git show fb7be65b664b78f2c692cdc9d661511f37823b2e
 | `Convergence_PreDesign_v3_Final/README.md` | `af5d009127d8355cede1548d440ad86dd062ddd03d0ec0232c843df0a28f6daa` |
 
 </details>
+
+## Early README and AGENTS snapshots in Git history
+
+The 13 early README and 13 AGENTS snapshots are available in the [original snapshots directory](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/1c0b97fdd62ead58e1580c6b274614f6e0d02280/Specialization/Historical/DocumentSnapshots) at commit `1c0b97fdd62ead58e1580c6b274614f6e0d02280`. All 26 files were retrieved from GitHub and matched by SHA256.
+
+The retained `Phase1_before_README.md` refers to the pre-migration navigation. Follow its earlier README citation to [the original file](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1c0b97fdd62ead58e1580c6b274614f6e0d02280/Specialization/Historical/DocumentSnapshots/README_before_fresh_agent_handoff.md). The [Phase 1 copy manifest](../Reports/Proposals/Phase1_Copy_Manifest.json) retains the original migration inventory.
+
+From the repository root, use `git show 1c0b97fdd62ead58e1580c6b274614f6e0d02280:<original-path>`. Prepend `Specialization/Historical/DocumentSnapshots/` to the filename and compare `shasum -a 256` against the table.
+
+<details>
+<summary>Original filenames and SHA256 for the 26 snapshots</summary>
+
+| Original filename | SHA256 |
+|---|---|
+| `AGENTS_before_A0009.md` | `dd2ad3bf2b2417cb16633b19ae927b80d25066b1b2bfdbc51f32ece6665b0c1c` |
+| `AGENTS_before_A0010.md` | `e7c1d974cbf14d0f3246119790f4bf8ec6d40714a0abd573288bed0dcb8cc270` |
+| `AGENTS_before_B011_user_review_20260911.md` | `db63a76fd7198f61d4e0608dfd6ddb3756ca8060ba6103da7c68bce64a411bde` |
+| `AGENTS_before_B012.md` | `66a579a89ffde1330429bf9f20f64b1a9b71adde6745e57bb62303ae429b301d` |
+| `AGENTS_before_B012_user_review.md` | `f4b515d706161a31f333e9befae2ba6f574c52142e4b82835c27c548bb584c0e` |
+| `AGENTS_before_B013.md` | `120b18240245991049c6b31ed49df1123dc3fb0c7096790615e8450b4cb2985f` |
+| `AGENTS_before_B013_user_review.md` | `507d18740b05ccca44c1b11c5b8771cc94368a66330180a57370807db70da7a6` |
+| `AGENTS_before_B014.md` | `1de5e5562adf732ee36c6ac63138655ce2f978eb7b98b4b308fb6bed039eacec` |
+| `AGENTS_before_B014_user_review.md` | `62a1d661f6301321a8944c550b27bcb01d63da612d9735f295114bcd0a72866c` |
+| `AGENTS_before_B015_user_review.md` | `b2a194276b04293aa321caddbf4679ce0ec126f3b0fa097d4188cd68a26e4d66` |
+| `AGENTS_before_archive_binding.md` | `b61d2f29af4ca6d3bc0c32329ee78ae674ec4caea0b1150688e4636a2aac32cf` |
+| `AGENTS_before_completion_history_review.md` | `8cdf6da4438c01907ea8950c8171198442608437a158171b938e568cc3e13ef4` |
+| `AGENTS_before_fresh_agent_handoff.md` | `70c06bba9221c1724df146b9d5cb9acebafe58f2868394ebb1705a0aef88ff68` |
+| `README_before_A0009.md` | `fd684903276b9e6adf21bcdac62369ea9c00cc1fa9a0ad043b41f35c902ed615` |
+| `README_before_A0010.md` | `3e026e5da1879f8631fb44093235e41e2606312d3e220fd54a419af2fc6b4867` |
+| `README_before_B011_user_review_20260911.md` | `336b427263174de683bf507f9e497dec90bce2b540e6510f0e5ea4943cf16d04` |
+| `README_before_B012.md` | `8a85fc2df0e36186dc98f5dd6b0899bde862e456342b964d072c6ad77a1965c9` |
+| `README_before_B012_user_review.md` | `3f81ba1a185af26b1f4e2106ffe55ca7088ae06973fabf711196dda4ecd261b6` |
+| `README_before_B013.md` | `e49b97b797b0dda85b07776b2fcd952ffda6ee0bb52275eb77e1478d530f3428` |
+| `README_before_B013_user_review.md` | `15da7f5cabb03b8893056a507c3017ff0bdbb0a62992ccf156deb35ecd8e662d` |
+| `README_before_B014.md` | `45848d114c438cd384c6a213b18417958e466dc340fe137e1106e236c7a21c0b` |
+| `README_before_B014_user_review.md` | `b542a009307ff9fc470979690142413b582c1fd82e8aff7ba7bb33d33a294912` |
+| `README_before_B015_user_review.md` | `858f14040785bfc9795c1603cfc569312888837f0faacccf2493ccc7cc1396ee` |
+| `README_before_archive_binding.md` | `a068c8f8e1fdeb14a3eb880f0e631d53b1e2a3d2d58f9ce9e99be94dc072cdde` |
+| `README_before_completion_history_review.md` | `58c1c783964e26570256796171310558e3c40dd5d1793ec29a8cf74dc82ca99e` |
+| `README_before_fresh_agent_handoff.md` | `1266642548d1b8f0d9e20016b1377e6c7228bbb2aeecd7284e0b3b449ad7560f` |
+
+</details>
