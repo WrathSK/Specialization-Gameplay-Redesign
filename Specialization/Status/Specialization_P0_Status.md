@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1040
+Status Revision: S1041
 Implementation Build: source B489.516 / modinfo516. Live B489.516 from 47b9971. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: INTEGRATION_NATIVE_TEST_REQUIRED_B489_DEPLOYED
 | Develop and installed | B489.516 / modinfo516. The installed package matches source `47b9971` across all 337 files. |
 | Stable | `main` B307.334 / modinfo334. |
 | Validation | The selected [local integration checks](#prepare-the-two-profile-integration-candidate-for-native-acceptance--s1037) passed. Native acceptance in the HD and official Gathering Storm profiles is pending. |
-| Next action | The Owner has paused playtesting. When testing resumes, use the [B489 checklist](#b489-deployed-for-focused-two-profile-acceptance--s1038) and match each profile's loaded targets and observations to its collector session. During the pause, continue the [authorized documentation review](#documentation-lifecycle-first-pass--s1040). |
+| Next action | The Owner has paused playtesting. When testing resumes, use the [B489 checklist](#b489-deployed-for-focused-two-profile-acceptance--s1038) and match each profile's loaded targets and observations to its collector session. During the pause, continue the [documentation maintenance](#legacy-workspace-navigation-and-convergence-review--s1041). |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Legacy workspace navigation and convergence review — S1041
+
+The external monitor guide now points to the current workspace mapping. The Phase 1 materials page identifies its original migration scope and points to the current screenshot inbox and evidence locations.
+
+The early architecture v1 and v2 candidate families contain 13 reports. All were retrieved by original path from published commit `9addf8d01dcbcb46d28e59ffa5625950f4540e57` and matched by SHA256. The tracked reference review found only links within those two families and no current runtime, test or integrity consumer. They are candidates for history-only retention pending the Owner's approval of the exact paths. The later v3-final review cites individual v3 passages, so v3 needs its own reference review. Current contracts remain in Design and Architecture. Native acceptance remains pending.
 
 ### Documentation lifecycle first pass — S1040
 

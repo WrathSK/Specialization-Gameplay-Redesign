@@ -2,6 +2,8 @@
 
 Document Owner: Codex
 
+> **Phase 1 migration record, 2026-09-12.** The locations below describe the original migration. For the current screenshot inbox, archived evidence and external paths, use the [legacy workspace mapping](Legacy_Workspace_Relocation.md#当前入口).
+
 Repository root R contains canonical Mod, documents and tests. The legacy workspace W is an external location configured by `local/config.json:legacy_workspace`; it is not this repository's parent. The existing W/AGENTS.md is untouched. Old W docs/source are retained for rollback, not continuing parallel editing. Future agents must open R and follow R/AGENTS.md.
 
 ## Deliberately local-only

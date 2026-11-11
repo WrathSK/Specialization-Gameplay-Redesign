@@ -5,7 +5,7 @@ Scope: optional macOS developer tooling, not Mod content. Never deploy or add to
 
 ## Start / stop
 
-Python3 standard library only. Start Civ VI yourself, then open a terminal **at your repository root** (`R` in the [external-materials convention](../../Specialization/Reports/Proposals/Phase1_External_Materials.md)). No machine-specific checkout path is required.
+Python3 standard library only. Start Civ VI yourself, then open a terminal **at your repository root** ([project checkout and path mapping](../../Specialization/Reports/Proposals/Legacy_Workspace_Relocation.md#当前入口)). No machine-specific checkout path is required.
 
 The commands below are templates: replace `YOUR_VERIFIED_BUILD` with the deployed package label from your deployment record, and `/PATH/TO/SESSION` with the session path printed by the monitor. Do not infer the live package from the branch or HEAD.
 

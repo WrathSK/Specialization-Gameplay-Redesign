@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1040",
+    "status": "S1041",
     "runtime": "B489.516 / modinfo516",
     "military": "D0037",
     "harbor": "D0037",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1040 corrects document navigation and records the two Phase 1 artifact recovery paths. S1038 retains the pending B489.516 native acceptance checklist.",
+  "context_review_status": "S1041 corrects the active external-materials route and reviews the early architecture candidates for Git recovery. S1038 retains the pending B489.516 native acceptance checklist.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
