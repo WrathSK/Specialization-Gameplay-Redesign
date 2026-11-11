@@ -9,7 +9,7 @@
 | 问题 | 资料 | 角色与边界 |
 |---|---|---|
 | 当前保存切片、授权、最小验收 | [E2当前路由](P0_E2_Plan.md#current-slice--recovery-and-action-routing) | 当前实施合同与结果；建议不等于新授权 |
-| 科研传统如何开始保存与计龄 | [P0-F计划](P0_F_Research_Tradition.md) | F1年龄/影子、F2实际收益；计划待授权，跨Owner与旧P4起点不猜测 |
+| 科研传统如何开始保存与计龄 | [P0-F检查点](P0_F_Research_Tradition.md) | F1年龄/影子、F2实际收益及当时验证边界；当前进度查Status |
 | Identity/Potential/ACTIVE、永久成果及Shared服务应如何分层 | [状态/服务目标](D0032_Adaptation.md) | 目标合同，结合后续切片；其中规划时版本/下一步不是今天的任务 |
 | 依赖顺序、单writer切换、存档支持 | [实施计划](D0032_Implementation_Plan.md) | 批次依赖和迁移合同，完成状态查Status |
 | 哪些接口还需要原型/实机 | [技术spike登记](D0032_Technical_Spikes.md) | 技术未知不授权简化Design；具体已关闭项查后续切片 |
@@ -37,10 +37,10 @@
 
 ## 收益应用与精度
 
-- [Commerce preparation](Commerce_Preparation.md): D0055 source Identity/Harbor total Food with retained per-domain Floor and D0050 contracts. [B240 implementation](Commerce_Preparation.md#b240-implementation-and-validation) removes recurring Gold sampling and explains local prerequisites; local checks and the B240 tested native scope pass. Crew acceptance is retained; [B241 Capital implementation](Commerce_Preparation.md#b241-implementation-and-validation) adds locked stable/venture contracts; local checks pass, native money/reload/settlement pending. Development and Restructuring remain unapproved.
-- [工业模块准备](Industry_Preparation.md)：G奇观历史、H标准化、I工程、J队伍；记录每模板holder、N/E/L、III/IV成本及D0053允许原生倍率的基础施工。工业当前落地与合并验收见其B238收尾段；商业仍按自己的计划状态。此导航不派发实施，不加入日常全量context。
+- [Commerce preparation](Commerce_Preparation.md) records the D0055 source Identity and Harbor total Food rules, per-domain Floor and the D0050 baseline. The [B240](Commerce_Preparation.md#b240-implementation-and-validation) and [B241](Commerce_Preparation.md#b241-implementation-and-validation) entries retain their original validation scope. For current rules and acceptance, use [Commerce Design](../../Design/Commerce.md) and [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state).
+- [工业模块准备](Industry_Preparation.md)：G奇观历史、H标准化、I工程、J队伍；记录每模板holder、N/E/L、III/IV成本及D0053允许原生倍率的基础施工。B238收尾段保留当时的实施与验收范围，当前状态查Status。
 
-- [文化后续模块准备入口](Culture_Preparation.md)：L2意义延展、L3巨作启迪、M时代对话、N1–3人文考察/见闻/Network及U2馆藏展示的计划与只读调查。现行Culture D0049：L2自动能力已验，L3百分比自动路径本地完成、原生待验；M/N/U2仍逐批审核/授权，不加入日常全量context。
+- [文化模块准备与检查点](Culture_Preparation.md)记录L2意义延展、L3巨作启迪、M时代对话、N1–3人文考察/见闻/Network及U2馆藏展示的早期计划与调查。当时采用Culture D0049，原验证范围见各检查点。现行规则与验收见[文化Design](../../Design/Culture.md)及[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 - [人文考察团UI计划](P0_N_Expedition_UI.md)：训练、独立管理、目标／任务、失效后重挂靠、城市见闻及Network呈现；仅提案，借UI不等于复用Spy引擎。
 
 - [文化风雅熏陶L1已测结算](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)：所测逐栋加值与结算已通过；[原始实施检查点](P0_L1_Aesthetic.md#b148175--implementation-checkpoint)保留技术依据，当前任务/下一授权仍看Status。

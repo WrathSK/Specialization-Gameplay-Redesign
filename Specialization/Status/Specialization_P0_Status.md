@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1039
+Status Revision: S1040
 Implementation Build: source B489.516 / modinfo516. Live B489.516 from 47b9971. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: INTEGRATION_NATIVE_TEST_REQUIRED_B489_DEPLOYED
 | Develop and installed | B489.516 / modinfo516. The installed package matches source `47b9971` across all 337 files. |
 | Stable | `main` B307.334 / modinfo334. |
 | Validation | The selected [local integration checks](#prepare-the-two-profile-integration-candidate-for-native-acceptance--s1037) passed. Native acceptance in the HD and official Gathering Storm profiles is pending. |
-| Next action | The Owner has paused playtesting. When testing resumes, use the [B489 checklist](#b489-deployed-for-focused-two-profile-acceptance--s1038) and match each profile's loaded targets and observations to its collector session. |
+| Next action | The Owner has paused playtesting. When testing resumes, use the [B489 checklist](#b489-deployed-for-focused-two-profile-acceptance--s1038) and match each profile's loaded targets and observations to its collector session. During the pause, continue the [authorized documentation review](#documentation-lifecycle-first-pass--s1040). |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Documentation lifecycle first pass — S1040
+
+The Owner authorized documentation and historical evidence maintenance during the B489.516 playtest pause. Workflow now points to the accepted network recovery contract. The Architecture and Design content indexes distinguish past checkpoints from current rules. The [historical navigation](../Historical/README.md#phase-1-generated-artifacts-in-git-history) locates two Phase 1 generated artifacts by original path, published commit and verified SHA256. The four pre-migration snapshots, original migration reports and current evidence remain available.
+
+Validation scope is document and Git integrity. The change leaves the source and deployed package at B489.516. The HD and official native acceptance gate remains pending. Next documentation work reviews historical candidate families and their current dependencies.
 
 ### B489 deployed for focused two-profile acceptance — S1038
 
