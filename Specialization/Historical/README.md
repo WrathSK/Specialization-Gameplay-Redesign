@@ -52,3 +52,50 @@ From the repository root, use `git show 9addf8d01dcbcb46d28e59ffa5625950f4540e57
 | `Convergence_PreDesign_v2/Pre_U5_Worklist.md` | `d25a58a4bce4c4bf1f650045e653d224c958f978d1e1ab6f3c80c0e40282684f` |
 
 </details>
+
+## Third architecture candidate and audit trail in Git history
+
+The [nine v3 reports](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/fb7be65b664b78f2c692cdc9d661511f37823b2e/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Convergence_PreDesign_v3) and [24 follow-up reports](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/fb7be65b664b78f2c692cdc9d661511f37823b2e/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Convergence_PreDesign_v3_Final) share commit `fb7be65b664b78f2c692cdc9d661511f37823b2e`. Read both groups at this snapshot to follow the original links between the candidate, review and dispositions. All 33 originals were retrieved from GitHub and matched by SHA256. See [Architecture](../Architecture/Specialization_v0.1_Architecture.md#current-authoritative-state) for accepted technical rules and [Status](../Status/Specialization_P0_Status.md#current-authoritative-state) for the current work and evidence boundary.
+
+From the repository root, use `git show fb7be65b664b78f2c692cdc9d661511f37823b2e:<original-path>`. Prepend `Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/` to the path in the table. Compare the output of `shasum -a 256` with the recorded value.
+
+<details>
+<summary>Original paths and SHA256 for the 33 reports</summary>
+
+| Path under Architecture_Reconstruction | SHA256 |
+|---|---|
+| `Convergence_PreDesign_v3/Decision_Closure_Register.md` | `99561e047bd14828a37515871a7bf1805be553a57dea602b879826539c763a1f` |
+| `Convergence_PreDesign_v3/Executive_Architecture_Map.md` | `584755e93374a914e4433415ed8055fcb5f096651ca4bf6da990a45f24ece6af` |
+| `Convergence_PreDesign_v3/External_Audit_Package.md` | `1ae03f6544a66cb8eefde67225944f382e5e93646c56a055bb752f73a0b0d5e8` |
+| `Convergence_PreDesign_v3/Fact_Subscription_Contract.md` | `d008244a278b238f809b9a354a852e7ddfb5db00718f0234ee1c6402bbe1814b` |
+| `Convergence_PreDesign_v3/Formal_Authority_Sync_Delta.md` | `6db0ee25ae884caac7caa703cc897785a8c47b9d50c13ce25b48b4c53a3c4bbc` |
+| `Convergence_PreDesign_v3/Gap_Matrix_v3.md` | `a6cf940a971ac047826f0f922a868ddb45d2440a71c685e3c7b704a9dc87dffe` |
+| `Convergence_PreDesign_v3/Option_B_Final_Candidate_Plan.md` | `1da3b3005be845f50a0223baa2951b4462f3bcbf858dc1104c049e4cb117d3ea` |
+| `Convergence_PreDesign_v3/Owner_Gate_Stop_Report.md` | `6ca50406cd2fd26b65113720e30d170dbf073b0d44c26add3a21f9c0218d00ec` |
+| `Convergence_PreDesign_v3/Pre_U5_Final_Candidate.md` | `702e87a15397438731c51f7efaec1f6e16379a0d40d7c1dd7adac55b1fa03cda` |
+| `Convergence_PreDesign_v3_Final/Architecture_Convergence_Integrated_Roadmap_DRAFT.md` | `df98c918ff812cb628b0e4fa96c5eaa0cbed9725f742882a85da061edb60e447` |
+| `Convergence_PreDesign_v3_Final/Decision_Closure_Register.md` | `0e813b495a27ee220a8ac0794ad5e9e84eae923964d2a0d699ffdae6c6b1e83b` |
+| `Convergence_PreDesign_v3_Final/Executive_Architecture_Map.md` | `8f025cf8852f2bd44a1f79479b6a758264d314112c5a174764e59cec2975aec7` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/Audit_Finding_Disposition.md` | `4a962f9a0c628879a308bd700b0cf57eb4aa904e0fe00f29c2775f19f7cc59b3` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/Claude_Targeted_Reaudit_Package.md` | `170456b4d421ecfaae2886b32b23ee9fe69aeee8df9ccf8801d0f99e0e00bb9b` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/Completion_Wake_Responsibility.md` | `e100c9bd963724ea0511a650890cea01ef8f0f21d89dd4db69efb368e5dc43b3` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/D1_Branch_Disposition.md` | `304efe04e0c528364210e0087aaa73278da7489999430b79099ad26e7624a0a3` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/Decision_Closure_Revised.md` | `8c9729df8080e2546c8b5e557438128902df87bae58deead2326179c6886432e` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/Evidence_Debt_Coverage.md` | `23a3bb17079f8a28029e8f42f7385bced6f0a5e0a6a5c4e1947c122dfb284028` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/Formal_Authority_Sync_Delta.md` | `44b14b080e180b730359428b619e69987d0f42506a727c965a615db56a2d44b4` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/NET_Cold_Load_Contract.md` | `156803440239181bf0924bd472999fff62cc43a1b62eb515468c1b9b8ebf8334` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/Owner_Gate_Remaining_Decisions.md` | `3e6b4ce048f884e853d8a10689611220143d4c233887d8f9670344dcea603347` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/Owner_Handoff_20261104.md` | `be655cc5e99ee97ba77e51749809152cd24b164f69c4f580f70d1ff2f788b04b` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/P3_Production_Dependency_Inventory.md` | `919bb434f25f51c6f6028bb883e4be54ad2175c8aac0f3ef1a5f7f2b9f67804f` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/PU_Option_B_Revised_Plan.md` | `3fd08fad7b157d761a585462cd5d34b5b31c51a6a86378c1644bb2a5a94a4eff` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Disposition/README.md` | `4a0dab50df590de28e111e2728723424a7ab47537c9e545cb3a6a560e3eba266` |
+| `Convergence_PreDesign_v3_Final/External_Audit_Package.md` | `40f4b46a4c0d6e542740baf25f52c8014bf3552bca18619b79824f372b43b9f0` |
+| `Convergence_PreDesign_v3_Final/Fact_Subscription_Contract.md` | `8b7bd3665129fcf3f6e7eafc7678c81416ea0e5570cf6a1b8bd75840d3523b2d` |
+| `Convergence_PreDesign_v3_Final/Formal_Authority_Sync_Delta.md` | `0d7cd0411d695772a92d75d75c6cfd69ce67b7a54e0f5ab1c38b81d2636ec4d7` |
+| `Convergence_PreDesign_v3_Final/Gap_Matrix_v3.md` | `a1331bb13783abf2006bb8cabac7398b1292e307c2daeb2c5c03dee197aba4d8` |
+| `Convergence_PreDesign_v3_Final/Option_B_Final_Candidate_Plan.md` | `7518591d01ab8f18614e7b94f437127b77fd3eb2b889f6331c79ef42e0b8d0c4` |
+| `Convergence_PreDesign_v3_Final/Owner_Gate_Stop_Report.md` | `f55df0e68115787c52e68da67cb91f05193cef3ff3d4ec07798194e66d9d45f1` |
+| `Convergence_PreDesign_v3_Final/Pre_U5_Final_Candidate.md` | `98cbb7c87c3567cb25a76d33aa7c7fa937d2928bdbe4d45cba185fcae638eb8e` |
+| `Convergence_PreDesign_v3_Final/README.md` | `af5d009127d8355cede1548d440ad86dd062ddd03d0ec0232c843df0a28f6daa` |
+
+</details>

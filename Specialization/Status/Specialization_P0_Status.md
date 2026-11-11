@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1042
+Status Revision: S1043
 Implementation Build: source B489.516 / modinfo516. Live B489.516 from 47b9971. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
@@ -16,13 +16,17 @@ Work State: INTEGRATION_NATIVE_TEST_REQUIRED_B489_DEPLOYED
 | Develop and installed | B489.516 / modinfo516. The installed package matches source `47b9971` across all 337 files. |
 | Stable | `main` B307.334 / modinfo334. |
 | Validation | The selected [local integration checks](#prepare-the-two-profile-integration-candidate-for-native-acceptance--s1037) passed. Native acceptance in the HD and official Gathering Storm profiles is pending. |
-| Next action | The Owner has paused playtesting. When testing resumes, use the [B489 checklist](#b489-deployed-for-focused-two-profile-acceptance--s1038) and match each profile's loaded targets and observations to its collector session. During the pause, continue the [documentation maintenance](#early-architecture-candidates-retained-in-git-history--s1042). |
+| Next action | The Owner has paused playtesting. When testing resumes, use the [B489 checklist](#b489-deployed-for-focused-two-profile-acceptance--s1038) and match each profile's loaded targets and observations to its collector session. During the pause, continue the [documentation maintenance](#third-architecture-candidate-and-audit-retained-in-git-history--s1043). |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Third architecture candidate and audit retained in Git history — S1043
+
+The Owner approved retiring the 33 v3 and v3-final reports from the develop tree. The [historical index](../Historical/README.md#third-architecture-candidate-and-audit-trail-in-git-history) pins both groups to the same published snapshot. All 33 originals matched by SHA256. Six surviving citations point to their original sections at that snapshot. The B489.516 HD and official native acceptance remains pending.
 
 ### Early architecture candidates retained in Git history — S1042
 
@@ -125,7 +129,7 @@ Two template targets can change in the same recipient city. Previously a failure
 - **Reproduction.** Run `python3 DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/B485-Standardization-Readback-Verified/closure.json` with Python 3.14.8, Lupa 2.8 / Lua 5.1, arm64 macOS, the existing HD regression DB (SHA256 d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439) and `SPC_OFFICIAL_ASSETS` set to the local official `Civ6.app/Contents/Assets` root. The [production fixture](../../DevelopmentTests/test_o6_production_panel.py) verifies the relevant source hashes. Tested source SHA256 3f2d2237351ac67c65675235783d9221e0c45f5b36dec614279c7d03e40ca2b0. Ignored local Closure `local/refactor/B485-Standardization-Readback-Verified/closure.json` SHA256 8a235f359b9a167589a5c9e2445fcfb02812fd48dde0275d4535b8ac7d61d0f2. Baseline and reverse comparison are in the same ignored directory and can be regenerated with the pinned inputs.
 - **STATIC_CONFIRMED.** 208 Lua chunks, 32 XML-family files, 666 file references, ten replacements and all 337 existing runtime paths. Candidate SHA256 b9cf68039a3b92c6db3a26431e48ba1d629889d9e8d0308f78882345ea2c4e4e. The injected write errors demonstrate the code's response. Native incidence and native effect totals under these errors remain unmeasured. Live B476.503 keeps its separate acceptance scope.
 
-**Focused review entry.** Review `79a9def8` through the commit adding S1032. Start with the [three-writer test selection](../../DevelopmentTests/test_network_effect_write_boundary.py), the [accepted pending and recovery rules](../Architecture/Specialization_v0.1_Architecture.md#network-pending-hold-and-confirmation-recovery), and [the independent write finding](../Reports/Technical/Investigations/Architecture_Reconstruction/Convergence_PreDesign_v3_Final/External_Audit_Disposition/Audit_Finding_Disposition.md#a12). Check matching reference readback, independent receivers and targets, and whether a pending topology or unavailable source can be mistaken for current applied proof after a partial write. Verify confirmed exits and strict transactions remain independent. Scope the review to the three changed effect owners and their reports. It does not select a new policy for entirely unreadable Commerce domains, request a forced engine error, or reconsider retirement of the turn callbacks. A12 retains these separate limits.
+**Focused review entry.** Review `79a9def8` through the commit adding S1032. Start with the [three-writer test selection](../../DevelopmentTests/test_network_effect_write_boundary.py), the [accepted pending and recovery rules](../Architecture/Specialization_v0.1_Architecture.md#network-pending-hold-and-confirmation-recovery), and [the independent write finding](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/fb7be65b664b78f2c692cdc9d661511f37823b2e/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Convergence_PreDesign_v3_Final/External_Audit_Disposition/Audit_Finding_Disposition.md#a12). Check matching reference readback, independent receivers and targets, and whether a pending topology or unavailable source can be mistaken for current applied proof after a partial write. Verify confirmed exits and strict transactions remain independent. Scope the review to the three changed effect owners and their reports. It does not select a new policy for entirely unreadable Commerce domains, request a forced engine error, or reconsider retirement of the turn callbacks. A12 retains these separate limits.
 
 No new Owner gameplay decision or game test is needed at this checkpoint. The Owner can pass the entry above to the external reviewer for the planned write-boundary review. Keep the current turn entries while evidence for a natural replacement remains open.
 
@@ -200,7 +204,7 @@ User decision and native testing are unnecessary for this source slice. Primary 
 
 ### Review network turn recovery before retiring old callbacks — S1025
 
-The first network convergence slices are complete locally. Ordinary warm proof invalidation keeps the applied output and closes stale configuration and transactions. The old Industrial diagnostic reads the current publication. The next step would replace live turn-based recovery, so it reaches the separate retirement gate in the [current manifest](../Workflow/P0-H.json). Use the D1-E6/E7 checks in the [branch disposition](../Reports/Technical/Investigations/Architecture_Reconstruction/Convergence_PreDesign_v3_Final/External_Audit_Disposition/D1_Branch_Disposition.md#d1-e1e7-修订门禁). The B480 runtime is the unchanged subject of this checkpoint.
+The first network convergence slices are complete locally. Ordinary warm proof invalidation keeps the applied output and closes stale configuration and transactions. The old Industrial diagnostic reads the current publication. The next step would replace live turn-based recovery, so it reaches the separate retirement gate in the [current manifest](../Workflow/P0-H.json). Use the D1-E6/E7 checks in the [branch disposition](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/fb7be65b664b78f2c692cdc9d661511f37823b2e/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Convergence_PreDesign_v3_Final/External_Audit_Disposition/D1_Branch_Disposition.md#d1-e1e7-%E4%BF%AE%E8%AE%A2%E9%97%A8%E7%A6%81). The B480 runtime is the unchanged subject of this checkpoint.
 
 **Why the remaining callback has work.** [NetworkBridge](../../Mod/NetworkBridge.lua) still checks already-installed topology when the player becomes active. The current availability and failed-negative work are different duties. [Commerce](../../Mod/Commerce.lua), [Culture Network](../../Mod/CultureNetwork.lua) and [Standardization](../../Mod/StandardizationEffects.lua) also have their own turn entries. A proof-only optimization does not establish a replacement for their independent local/history sampling.
 
