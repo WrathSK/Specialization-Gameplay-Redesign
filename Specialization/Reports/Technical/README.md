@@ -59,7 +59,7 @@
 | Boost | [sqrt](Specialization_P0_Network_Sqrt.md) | 浮点Lua强度≠Modifier表达式/小数百分点支持 |
 | Conquest/ELIG | [D0010](Specialization_D0010_Architecture_Sync.md)、[D0007](Specialization_D0007_Architecture_Sync.md) | 玩法已定、适配未完整；不要把原owner不匹配“修复”为清空成果 |
 
-[旧完整索引](../../Historical/DocumentSnapshots/Technical_Index_before_fresh_agent_handoff.md)保留早期专项定位；不要求新代理先读每个历史探针。Great Work线索在剩余研究中，不是已经实现完整作品效果。
+[旧完整索引](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/ca540456ff1d0610281085ba6026b21f636933e9/Specialization/Historical/DocumentSnapshots/Technical_Index_before_fresh_agent_handoff.md)保留早期专项定位；不要求新代理先读每个历史探针。Great Work线索在剩余研究中，不是已经实现完整作品效果。
 
 - [B052标准化永久账本](Specialization_B052_Standardization_Ledger.md)：D0015运行分类/一次补录/事件增量；无购买效果，实机待用户。
 

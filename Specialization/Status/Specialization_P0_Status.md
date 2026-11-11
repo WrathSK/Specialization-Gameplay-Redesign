@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1044
+Status Revision: S1045
 Implementation Build: source B489.516 / modinfo516. Live B489.516 from 47b9971. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
@@ -16,13 +16,17 @@ Work State: INTEGRATION_NATIVE_TEST_REQUIRED_B489_DEPLOYED
 | Develop and installed | B489.516 / modinfo516. The installed package matches source `47b9971` across all 337 files. |
 | Stable | `main` B307.334 / modinfo334. |
 | Validation | The selected [local integration checks](#prepare-the-two-profile-integration-candidate-for-native-acceptance--s1037) passed. Native acceptance in the HD and official Gathering Storm profiles is pending. |
-| Next action | The Owner has paused playtesting. When testing resumes, use the [B489 checklist](#b489-deployed-for-focused-two-profile-acceptance--s1038) and match each profile's loaded targets and observations to its collector session. During the pause, continue the [documentation maintenance](#early-readme-and-agents-snapshots-retained-in-git-history--s1044). |
+| Next action | The Owner has paused playtesting. When testing resumes, use the [B489 checklist](#b489-deployed-for-focused-two-profile-acceptance--s1038) and match each profile's loaded targets and observations to its collector session. During the pause, continue the [documentation maintenance](#early-status-and-architecture-snapshots-retained-in-git-history--s1045). |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Early Status and Architecture snapshots retained in Git history — S1045
+
+The Owner approved removing 49 early Status, Architecture and technical index snapshots from the develop tree. The [historical index](../Historical/README.md#early-status-architecture-and-technical-index-snapshots-in-git-history) records the verified originals. Three surviving citations open the corresponding files at the common published commit, where their older relative references stay together. The four Phase 1 originals retain their tracked paths. The B489.516 native acceptance remains pending.
 
 ### Early README and AGENTS snapshots retained in Git history — S1044
 
@@ -4482,7 +4486,7 @@ B155两个flat候选已失败，停止继续原生阶段；下一工程建议为
 
 [技术索引](../Reports/Technical/README.md)、[交接审计](../Reports/Technical/Specialization_Fresh_Agent_Handoff_Audit.md)、[测试运行](../../DevelopmentTests/README.md)。测试原始结果冻结，纠正写新结果。ScreenShots仅待投递，不代替Evidence；用户无图但明确口述可按范围记PASS。
 
-[此前S0115全文](../Historical/DocumentSnapshots/Specialization_P0_Status_before_fresh_agent_handoff.md)保存早期A001–B051矩阵、每批历史及完整证据索引；该文件所有“下一项/待测”均为历史，不与本队列并存。
+[此前S0115全文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/ca540456ff1d0610281085ba6026b21f636933e9/Specialization/Historical/DocumentSnapshots/Specialization_P0_Status_before_fresh_agent_handoff.md)保存早期A001–B051矩阵、每批历史及完整证据索引；该文件所有“下一项/待测”均为历史，不与本队列并存。
 
 ## Phase 1停止点（历史）
 

@@ -608,7 +608,7 @@ Conquest三分支/ELIG通用系统已有离线模型，未接完整原生流程�
 
 ## HISTORICAL NOTES
 
-[此前A0110全文](../Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_fresh_agent_handoff.md)保留全部旧调查/阶段与来源链接；其中A000x等待、纯Gameplay阻塞、无正式收益、四区域复制限制等不再代表当前。精确原字节另存本轮DevelopmentBackups。既有Historical及结果原件未改。
+[此前A0110全文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/ca540456ff1d0610281085ba6026b21f636933e9/Specialization/Historical/DocumentSnapshots/Specialization_v0.1_Architecture_before_fresh_agent_handoff.md)保留全部旧调查/阶段与来源链接；其中A000x等待、纯Gameplay阻塞、无正式收益、四区域复制限制等不再代表当前。精确原字节另存本轮DevelopmentBackups。既有Historical及结果原件未改。
 
 ## 可移植源码与部署
 

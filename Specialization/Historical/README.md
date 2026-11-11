@@ -141,3 +141,66 @@ From the repository root, use `git show 1c0b97fdd62ead58e1580c6b274614f6e0d02280
 | `README_before_fresh_agent_handoff.md` | `1266642548d1b8f0d9e20016b1377e6c7228bbb2aeecd7284e0b3b449ad7560f` |
 
 </details>
+
+## Early Status, Architecture and technical index snapshots in Git history
+
+The [snapshot directory](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/ca540456ff1d0610281085ba6026b21f636933e9/Specialization/Historical/DocumentSnapshots) at `ca540456ff1d0610281085ba6026b21f636933e9` preserves the 49 originals listed below. Read the earlier status, architecture and technical index files at this same commit to keep their relative references together. All 49 originals matched the published bytes by SHA256. The four Phase 1 snapshots retain their tracked paths.
+
+From the repository root, use `git show ca540456ff1d0610281085ba6026b21f636933e9:<original-path>`. Prepend `Specialization/Historical/DocumentSnapshots/` to the filename and compare `shasum -a 256` with the table.
+
+<details>
+<summary>Original filenames and SHA256 for the 49 snapshots</summary>
+
+| Original filename | SHA256 |
+|---|---|
+| `README_technical_before_A0009.md` | `deb3f2b838e14f98e599b6ad4be73909dfb86d53b62735a149e644f3560146d0` |
+| `README_technical_before_A0010.md` | `7a5c6f602f7d7449499a186bbc94e55e571ed3003a37934901e6ba5f70fd2ec2` |
+| `Specialization_P0_Status_S0003_before_D0001_sync.md` | `85f3e08f8e1174d7c540b02b2ab86133d835b4a9e95a322b300b2586886d1d78` |
+| `Specialization_P0_Status_S0004_before_multisource.md` | `6ed23f2313251b81e9045b5610c9e69920ae95ad48849927d3e2b3cd19a81512` |
+| `Specialization_P0_Status_S0005_before_route_audit.md` | `b4e6ae00ad333a6b5a2429de4f5390cc477a5b464e97dfb27bc68c00ccea19f4` |
+| `Specialization_P0_Status_S0006_before_city_state.md` | `66410db39a7f6c05aab4faa51796815b53073d1ceb47d5bfd80094e90c0b78e6` |
+| `Specialization_P0_Status_S0007_before_completion_adapter.md` | `a687c39f4a1eafbc1ba91c1ca69bc409f0e13369305b7d76d4efe726bfd18136` |
+| `Specialization_P0_Status_S0008_before_B011.md` | `c3c8e52e1fd407880f0e411b3c08ef4efa3b6986cbb8bc2bd107f5d86fc75ab2` |
+| `Specialization_P0_Status_S0112_before_B051_failure.md` | `91ae1763b55204bf5a264cf073d4d186bd4eec99cb88d2b4fde0de47408d8c8e` |
+| `Specialization_P0_Status_before_A0009.md` | `97e2a7fc848558ade121285addc310521f10992a16403bbf73b5d10e283740e9` |
+| `Specialization_P0_Status_before_A0010.md` | `b0e9342030630b2cbe2c1f169b3b796d72d61c84b8318999d9a78801703502b6` |
+| `Specialization_P0_Status_before_B011_user_review_20260911.md` | `dcf1931daaa8ef5e9c3ca87fde35b109c20d283b3d6ae2cb6647dc459e279dd9` |
+| `Specialization_P0_Status_before_B012.md` | `4878924b09caf7bdaacaead6efec40e93bf86354c9649bff90e7d415c3d8e7c9` |
+| `Specialization_P0_Status_before_B012_user_review.md` | `08ea147056850c42e5b6e1d560d7560f2bb3e62b564078d81ec70771ee6a2ccd` |
+| `Specialization_P0_Status_before_B013.md` | `afb6a073396a356130560450be195f49a620b64213a1b3a20d39cf7349e0c4a6` |
+| `Specialization_P0_Status_before_B013_user_review.md` | `dcb0e67e3edaf5eceaff39b06341395a779cdd7197455b097d3e6d7813d92cbf` |
+| `Specialization_P0_Status_before_B014.md` | `40a1ff81d3f3378d50778a62088fef1cf22a9bc3e5fefe168602388d8adb6dac` |
+| `Specialization_P0_Status_before_B014_user_review.md` | `f39e069930ebfe0da31eaa02705d50039740ac730d9271afcaee5e5183bc9caf` |
+| `Specialization_P0_Status_before_B015_user_review.md` | `1dfac502659d9ca6ff167f1daf7a09ddcf546e06bae8d1947e79280c5f94f851` |
+| `Specialization_P0_Status_before_B069.md` | `1e85254d313d39d582a90ec69ab08bbb4737865d68b563ee19b217313086d2a8` |
+| `Specialization_P0_Status_before_archive_binding.md` | `8d3b097030e6a17d45de25f36126a92421a6c4d1620082140e6ab11bb4257ddd` |
+| `Specialization_P0_Status_before_completion_history_review.md` | `6226b5087481c5d80a66830b51eab5fdb71a2b3e85b508c64e7d81f16bd0d72a` |
+| `Specialization_P0_Status_before_fresh_agent_handoff.md` | `ac84b76962de163c5c33c137b6c572a3a737a55a59cd21361176aea072be2b73` |
+| `Specialization_P0_Status_before_phase1_B010.md` | `c1f846d5211290455da9b1cbf656332b21fda6105d15c8632bebc5732707c3e0` |
+| `Specialization_P0_Status_through_B003.md` | `b51328d9b3ba04977c7b1a858539925d45ecb4f68aa19935af60fd64287c5144` |
+| `Specialization_v0.1_Architecture_A0001_before_D0001_sync.md` | `e15cc943f480225bedba39051ad09c331f660c8411c286723105238147190820` |
+| `Specialization_v0.1_Architecture_A0002_before_multisource.md` | `d082a190fadd8e86c0221a90b87b4c72dcad78bcb1f8a9d9a26e62c2d98d8581` |
+| `Specialization_v0.1_Architecture_A0003_before_route_audit.md` | `d85de5cd22a2834eff5022d60c63060b0f266c73bfa614d106fe77214f18482a` |
+| `Specialization_v0.1_Architecture_A0004_before_city_state.md` | `568e9dd6bcd38a8d0b74950f06f76e8e9a1e561e098cb96a7dbfeb524e863deb` |
+| `Specialization_v0.1_Architecture_A0005_before_completion_adapter.md` | `42916e75b5cb28b2a06d5a1b14e49503049c8bbdf3f4b2d2d43c842b576c4d74` |
+| `Specialization_v0.1_Architecture_A0006_before_B011.md` | `bb9fff7d248a78340f4d1228639b758bbe42ca30ffa7042988a209d2d949d6ac` |
+| `Specialization_v0.1_Architecture_before_A0009.md` | `eebe546950ae6abaed805ff878ced45141b4e16c5c97724c0ed42d95819f69e0` |
+| `Specialization_v0.1_Architecture_before_A0010.md` | `4c586284ca0ec69079a88b6d324f825670d162c26f0d587005a72ac7ff19374b` |
+| `Specialization_v0.1_Architecture_before_B011_user_review_20260911.md` | `b6bfbf6b4a477a57a677588d337e8ae7068bb60967da983ff3c6eeb5e04eaa0f` |
+| `Specialization_v0.1_Architecture_before_B012.md` | `b76dac0d21bb5f2d01dc2850c7c50e1e4d9e7a115929d44ccc546b73caf45643` |
+| `Specialization_v0.1_Architecture_before_B012_user_review.md` | `dde40c2d0b200d9f3f5a1fd46ba9f9803d0a17722419d2094fa1a399ae75c709` |
+| `Specialization_v0.1_Architecture_before_B013.md` | `9eeb61d449e4e4b7527f96fbbf2f23fa0e95c9b59c6766ccaa53ea8e7815a986` |
+| `Specialization_v0.1_Architecture_before_B013_user_review.md` | `42ae34a5e83561236f57ea82271a277d7a355fc41b4752c28622fc6707a19417` |
+| `Specialization_v0.1_Architecture_before_B014.md` | `e3fe6a7edbe36fe56fc9efbc6a858d2a4747eda524eed2fb377623dcea1f840b` |
+| `Specialization_v0.1_Architecture_before_B014_user_review.md` | `c7d50e53997ce4e21f9f18725f644f502141fdc5c1d5f788b3d3353f920d828f` |
+| `Specialization_v0.1_Architecture_before_B015_user_review.md` | `cbf9f1f9215abc92956ce98b7b311c4a79ea570297f039e3e8f112a5635435d8` |
+| `Specialization_v0.1_Architecture_before_B069.md` | `6c2a6f30b2682ffc7e4fc8336b95a1ac0d11d19e953364bedb8faa801256d0fe` |
+| `Specialization_v0.1_Architecture_before_archive_binding.md` | `d1e5873403583dd6ac7254d5e34089b7633f0c5f77dfcf83b72484be2d288551` |
+| `Specialization_v0.1_Architecture_before_completion_history_review.md` | `15e198a451f81b887f21d040476d390ba80f3433dcac8c1d67966fae832ab87d` |
+| `Specialization_v0.1_Architecture_before_fresh_agent_handoff.md` | `ff58a8fa5e9daf46fcd0994eb30222f5b6af03dfce077af98db1ddc5687c195f` |
+| `Specialization_v0.1_Architecture_before_phase1_B010.md` | `a43517577b3cef5ac249efbf99a257d500518f2cec2fea2d3f0cae6b9cbc8a8a` |
+| `Specialization_v0.1_Architecture_through_B003.md` | `6f7566c8da739cf8ac5effac532036d8a8895d7ecbb2bc97f3c8e14ea883813f` |
+| `Technical_Index_before_completion_history_review.md` | `e8dfda9f28dbf4be2f8b39bfe4c12276b80647d03109f48ee7ab12c31a0328d2` |
+| `Technical_Index_before_fresh_agent_handoff.md` | `4b58fd9b9e089c26841c39f882ada95579300c6d93fc90cfaf8d11802409f178` |
+
+</details>
