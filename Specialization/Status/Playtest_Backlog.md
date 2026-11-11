@@ -1,6 +1,13 @@
 # v0.1 Playtest Backlog
 
 Document Owner: Codex
+
+## Current playtest
+
+The [current status](Specialization_P0_Status.md#current-authoritative-state) records the deployed build and pending acceptance. Resume with the [B489.516 HD and official checklist](Specialization_P0_Status.md#b489-deployed-for-focused-two-profile-acceptance--s1038).
+
+## Historical issue intake
+
 Baseline: B069.96 / modinfo96
 This is the issue intake linked by the current Status; validation results remain in Status/Validation. Unknown turns are not invented. A baseline designation is not bug-free certification.
 
