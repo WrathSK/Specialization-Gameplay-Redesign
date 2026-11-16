@@ -64,7 +64,6 @@ end
 function district(id,kind)ledgers[id].districts.learned[kind]={observedType=kind}end
 function has(id,kind,target)return cities[id].built[assert(P.Info('Buildings','BUILDING_SPC_STD_BASE_'..(kind=='BUILDING' and 'B_' or 'D_')..target)).Index]==true end
 function start()
- SPCStandardizationDiscount.Start(P,shared,{retired=true});SPCCopyYields.Start(P,shared,{retired=true})
  SPCStandardizationEffects.Start(P,shared);d=shared.StandardizationEffects
  emit('LoadScreenClose');assert(not d.error,d.error)
 end
@@ -103,7 +102,7 @@ class Standardization(unittest.TestCase):
         self.l.execute('DB='+lua(self.tables))
         self.l.execute(SETUP)
         self.l.execute('print=function()end')
-        for n in ['StandardizationCatalog','StandardizationDiscount','CopyYields','StandardizationEffects','NetworkBoost']:
+        for n in ['StandardizationCatalog','StandardizationEffects','NetworkBoost']:
             self.l.execute((M/(n+'.lua')).read_text())
     def runlua(self,s):self.l.execute(s)
 
@@ -134,15 +133,52 @@ class Standardization(unittest.TestCase):
     def test_batch_reads_each_holder_once(self):
         self.runlua("industry(1,3);learn(1,'BUILDING_GRANARY');for i=2,4 do recipients[i]={[1]=true}end;start();ledgerReads={};factReads={};d.Audit({player=0});assert(ledgerReads[1]==1 and factReads[1]==1)")
     def test_exact_legacy_cleanup_and_no_resurrection(self):
-        self.runlua("industry(1,3);learn(1,'BUILDING_GRANARY');local b=cities[1].built;local old=P.Info('Buildings','BUILDING_SPC_B054_BUILDING_GRANARY_1').Index;local copy=P.Info('Buildings','BUILDING_SPC_B051_PRODUCTION_POS_0').Index;b[old]=true;b[copy]=true;b.EXTERNAL=true;start();assert(not b[old] and not b[copy] and b.EXTERNAL);local w=writes;shared.StandardizationDiscount.Receive(0,{});shared.StandardizationDiscount.Initialize(0,{});shared.CopyYields.Receive(0,{});shared.CopyYields.Audit();assert(writes==w);emit('LoadScreenClose');assert(not b[old] and not b[copy])")
+        self.runlua("""
+          industry(1,3);learn(1,'BUILDING_GRANARY')
+          local b=cities[1].built
+          local old=P.Info('Buildings','BUILDING_SPC_B054_BUILDING_GRANARY_1').Index
+          local copy=P.Info('Buildings','BUILDING_SPC_B051_PRODUCTION_POS_0').Index
+          b[old]=true;b[copy]=true;b.EXTERNAL=true
+          assert(SPCStandardizationDiscount==nil and SPCCopyYields==nil)
+          start()
+          assert(not b[old] and not b[copy] and b.EXTERNAL and has(1,'BUILDING','BUILDING_GRANARY'))
+          local w=writes
+          include('StandardizationDiscount');SPCStandardizationDiscount.Start(P,shared,{retired=true})
+          include('CopyYields');SPCCopyYields.Start(P,shared,{retired=true})
+          shared.StandardizationDiscount.Receive(0,{});shared.StandardizationDiscount.Initialize(0,{})
+          shared.CopyYields.Receive(0,{});shared.CopyYields.Audit()
+          emit('LoadScreenClose')
+          assert(writes==w and not b[old] and not b[copy])
+        """)
     def test_unconfirmed_legacy_removal_blocks_replacement(self):
-        self.runlua("industry(1,3);learn(1,'BUILDING_GRANARY');removalFailure=P.Info('Buildings','BUILDING_SPC_B054_BUILDING_GRANARY_1').Index;cities[1].built[removalFailure]=true;SPCStandardizationDiscount.Start(P,shared,{retired=true});SPCCopyYields.Start(P,shared,{retired=true});SPCStandardizationEffects.Start(P,shared);d=shared.StandardizationEffects;emit('LoadScreenClose');assert(d.error=='STD_OLD_DISCOUNT_REMOVE');assert(not has(1,'BUILDING','BUILDING_GRANARY'));removalFailure=nil;emit('PlayerTurnActivated',0);assert(has(1,'BUILDING','BUILDING_GRANARY'))")
+        self.runlua("""
+          industry(1,3);learn(1,'BUILDING_GRANARY')
+          local b=cities[1].built
+          local old=P.Info('Buildings','BUILDING_SPC_B054_BUILDING_GRANARY_1').Index
+          local copy=P.Info('Buildings','BUILDING_SPC_B051_PRODUCTION_POP_7').Index
+          b[old]=true;b[copy]=true;removalFailure=old
+          SPCStandardizationEffects.Start(P,shared);d=shared.StandardizationEffects
+          emit('LoadScreenClose')
+          assert(d.error=='STD_OLD_DISCOUNT_REMOVE' and b[old] and b[copy] and not has(1,'BUILDING','BUILDING_GRANARY'))
+          removalFailure=copy;emit('PlayerTurnActivated',0)
+          assert(d.error=='STD_OLD_COPY_REMOVE' and not b[old] and b[copy] and not has(1,'BUILDING','BUILDING_GRANARY'))
+          removalFailure=nil;emit('PlayerTurnActivated',0)
+          assert(not b[copy] and has(1,'BUILDING','BUILDING_GRANARY'))
+        """)
     def test_reload_rebuilds_current_projection_no_permanent_writes(self):
         self.runlua("industry(1,3);learn(1,'BUILDING_GRANARY');start();industry(1,2);SPCStandardizationEffects.Start(P,shared);d=shared.StandardizationEffects;d.Audit();assert(not has(1,'BUILDING','BUILDING_GRANARY'));assert(ledgers[1].learned.BUILDING_GRANARY)")
     def test_loaded_unknown_projection_then_current_recovery(self):
         self.runlua("industry(1,3);learn(1,'BUILDING_GRANARY');start();unknown[1]=true;SPCStandardizationEffects.Start(P,shared);d=shared.StandardizationEffects;d.Audit();assert(has(1,'BUILDING','BUILDING_GRANARY'));unknown[1]=nil;industry(1,1);d.SourceChanged(0,1);assert(not has(1,'BUILDING','BUILDING_GRANARY'))")
     def test_exit_removes_owned_only(self):
-        self.runlua("industry(1,3);learn(1,'BUILDING_GRANARY');start();cities[1].built.EXTERNAL=true;exits.StandardizationEffects(cities[1],{origin={owner=0,cityID=1}});assert(not has(1,'BUILDING','BUILDING_GRANARY'));assert(cities[1].built.EXTERNAL)")
+        self.runlua("""
+          industry(1,3);learn(1,'BUILDING_GRANARY');start()
+          local c=cities[1];local b=c.built
+          local old=P.Info('Buildings','BUILDING_SPC_B054_BUILDING_GRANARY_1').Index
+          local copy=P.Info('Buildings','BUILDING_SPC_B051_PRODUCTION_NEG_15').Index
+          b[old]=true;b[copy]=true;b.EXTERNAL=true
+          exits.StandardizationEffects(c,{origin={owner=0,cityID=1}})
+          assert(not b[old] and not b[copy] and not has(1,'BUILDING','BUILDING_GRANARY') and b.EXTERNAL)
+        """)
     def test_report_is_read_only(self):
         self.runlua("industry(1,3);learn(1,'BUILDING_GRANARY');start();local w=writes;local r=d.Describe(0,cities[1],1);assert(r:find('+10%%') and r:find('0%%'));assert(writes==w)")
     def test_research_network_exact_exit_and_test_rejection(self):

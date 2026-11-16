@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1071
-Implementation Build: B509.536 / modinfo536 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1072
+Implementation Build: B510.537 / modinfo537 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: REVIEWED_BILINGUAL_CATALOGUE_LOCAL_PASS
+Work State: STANDARDIZATION_LEGACY_CLEANUP_OWNERSHIP_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B509.536 on develop](#complete-reviewed-bilingual-catalogue-integration--s1070). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B510.537 on develop](#move-retired-industrial-carrier-cleanup-to-standardization--s1072). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | All 220 methods in the focused B509.536 presentation regression selection pass after fixture maintenance. The independent legacy training UI selection retains six fixture errors. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Use B509.536 as the locally validated develop localization candidate. Verify native bilingual layout and the mod-list entry during the next scheduled in-game UI review. Stable play uses the installed B489.516 baseline. |
+| Validation | The Standardization effect regression passes 118 methods under the Lua 5.1 runner, with 19 additional focused checks passing. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Continue the approved transfer of remaining production duties from old diagnostic modules. Standardization now owns withdrawal of its retired B054 and B051 Production carriers. Review remaining diagnostic report callers before proposing package removal. Use the next in-game UI review for the deferred bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Move retired industrial carrier cleanup to Standardization — S1072
+
+**LOCAL_SIMULATION_PASS in scope.** Current Standardization owns withdrawal of the mounted B054 discount targets and the 40 B051 Production IDs. The same-reference marker records completion after both ordered groups have confirmed removal. The real Gameplay startup and fact bindings run in Lua 5.1 when both old writer modules are unavailable. The populated fixture loads the real effect owner with neither legacy module loaded. It checks cold-load removal, failure in each group before new application, later confirmation on the existing activation path, exact exit and preservation of an unrelated building. The old diagnostics and their readers are a separate package-retirement boundary.
+
+**Runtime impact (T01, T03, T06).** Reuse the current catalog and the same bounded ID lists, build-presence checks and native mutation wrapper. Resolve each group before caching its IDs. Existing load, reference admission and exact loss paths own work. Same-reference repeat checks and unrelated lifecycle scopes remain idle in the covered fixture. No new subscriber, save data, effect formula, native retry, or city walk. Both SQL source families remain in the package.
+
+**Reproduction.** Use CPython 3.14.8, Lupa 2.8, the read-only B413 HD DB SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439` via `SPC_DEBUG_GAMEPLAY_DB`, official Steam/Aspyr Assets via `SPC_OFFICIAL_ASSETS`, and `DevelopmentTests` on `PYTHONPATH`. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback` (118/118; Lua 5.1). Run `python3.14 -B -m unittest test_b234_standardization.Standardization.test_exact_legacy_cleanup_and_no_resurrection test_b234_standardization.Standardization.test_unconfirmed_legacy_removal_blocks_replacement test_b234_standardization.Standardization.test_exit_removes_owned_only test_pu11_package_absence.Package test_network_readonly_diagnostic.NetworkDiagnostic test_o7_retired_industrial_report_aliases.IndustrialReportAliases` (19/19; includes actual Lua 5.1 Gameplay and pinned HD SQL fixtures). The independent comparison used `python3.14 -B -m unittest test_b234_standardization test_refactor_s4b test_refactor_s9e3 test_refactor_s8c4 test_refactor_s8c5c test_network_effect_fact_receipts test_network_effect_write_boundary test_network_readonly_diagnostic test_o7_retired_industrial_report_aliases` on `0d6524ca` and the tested source. Both runs report the same seven failures and 30 errors across 723 collected methods. That direct historical replay is a comparison, with no new non-passing case. Tested source SHA256 `5d8bbf641c47a50abce501576b716f19cc182e122b1d2fb77c9da3499821e374`. Local Closure `local/refactor/S1072-StandardizationLegacyWithdrawal/closure.json` SHA256 `f526fb69fd6391b3102b61a1f89eb837bdce92d88b7309958471504d2767060c`.
+
+**STATIC_CONFIRMED.** 208 Lua 5.1 compiles, 34 XML-family parses and 670 File / 10 LuaReplace references. The 339-file package SHA256 is `0aa8babeda76e77660f81f5bfb27bb4936adbe6d513bd673404f64a5567d03df`. Tests cover source behavior; the installed playtest source and native evidence remain B489.516.
 
 ### Restore current presentation regression coverage — S1071
 

@@ -15,15 +15,23 @@ def culture(ready=True):
 
 def standard(ready=True,cold=False):
     l=culture(False)
+    l.globals().include("StandardizationCatalog")
     l.execute(r"""
       local rows=P.Rows
       P.Rows=function(tab)
+       if tab=='SPC_B054_Targets'then return {{CarrierType='BUILDING_SPC_B054_BUILDING_GRANARY_1'}}end
        if tab=='SPC_StandardizationTargets'then return {{Kind='BUILDING',TargetType='BUILDING_GRANARY',CarrierType='BUILDING_SPC_STD_10'}}end
        if tab=='SPC_StandardizationLevels'then return {{Kind='BUILDING',TargetType='BUILDING_GRANARY',CarrierType='BUILDING_SPC_STD_12',Level=1},{Kind='BUILDING',TargetType='BUILDING_GRANARY',CarrierType='BUILDING_SPC_STD_14',Level=2}}end
        return rows(tab)
       end
       for _,n in ipairs({10,12,14})do local name='BUILDING_SPC_STD_'..n;info[name]={Index=name,BuildingType=name,InternalOnly=1,PrereqDistrict='DISTRICT_CITY_CENTER',CitizenSlots=0,Housing=0}end
-      SPCStandardizationCatalog={Build=function()return {buildings={BUILDING_GRANARY={enabled=true,group='G',district='DISTRICT_CITY_CENTER',tier=1,name='Granary'}},districts={}}end}
+      local function retiredBuilding(name)info[name]={Index=name,BuildingType=name,InternalOnly=1}end
+      retiredBuilding('BUILDING_SPC_B054_BUILDING_GRANARY_1')
+      for _,part in ipairs({'POS','NEG','POP'})do
+       for bit=0,(part=='POP' and 7 or 15)do retiredBuilding('BUILDING_SPC_B051_PRODUCTION_'..part..'_'..bit)end
+      end
+      SPCStandardizationCatalog.Build=function()return {buildings={BUILDING_GRANARY={enabled=true,group='G',district='DISTRICT_CITY_CENTER',tier=1,name='Granary'}},districts={}}end
+      -- Frozen Standardization source still calls the retired owners.
       shared.StandardizationDiscount={retired=true,changes=0,Withdraw=function()return true end}
       shared.CopyYields={retired=true,changes=0,Withdraw=function()return true end}
       knowledge={};studies={};for id in pairs(cities)do knowledge[id]={learned={},districts={learned={}}};studies[id]=0 end

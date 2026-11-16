@@ -32,7 +32,12 @@ def observed():
  if std.AcceptFact then std.AcceptFact=observe(std.AcceptFact)end
  shared.StandardizationDiscount.Withdraw=function()legacy=legacy+1;return true end
  shared.CopyYields.Withdraw=function()legacy=legacy+1;return true end
- local has=P.HasBuilding;P.HasBuilding=function(b,id)if tostring(id):find('BUILDING_SPC_STD_',1,true)then carrierReads=carrierReads+1 end;return has(b,id)end
+ local has=P.HasBuilding;P.HasBuilding=function(b,id)
+  local name=tostring(id)
+  if name:find('BUILDING_SPC_STD_',1,true)then carrierReads=carrierReads+1 end
+  if name:find('BUILDING_SPC_B054_',1,true)or name:find('BUILDING_SPC_B051_PRODUCTION_',1,true)then legacy=legacy+1 end
+  return has(b,id)
+ end
  """);return v
 
 

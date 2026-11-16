@@ -141,9 +141,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/CopyYields.lua": {
-      "sha256": "4c16707fd696b873ccc3121b12bf5e2848df97791bc3c943f1011ffab82e204c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "58102508509ed2457bb6269a005b51ad167bbfb5a2abd7522bf1211e7e406b35",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1072/B510.537 Standardization owns its existing exact B054/B051 cleanup with the current catalog; preserve explicit diagnostic access until reviewed retirement."
     },
     "Mod/CrewModel.lua": {
       "sha256": "a789494fd538a59d216a7a407a944e9c7ce07386bb235a25526f213f1afeca20",
@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "224fcb0e0eeb92bdb5008ff2c36ee0c1d27bd2cde7654b82e9b486e41208919b",
+      "sha256": "ca33198dec35d943f7d7f499db3c3060238e5f641920749d19cc3e9e3cc96832",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1028 B482 capacity-driven proof notification registration after the ordered fact drain."
+      "provenance": "S1072/B510.537 Standardization owns its existing exact B054/B051 cleanup with the current catalog; preserve explicit diagnostic access until reviewed retirement."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "7ac07521fa1a67fac26cd7b4fcb4fc05410f8bb9e2b46980b325a014b54f36db",
+      "sha256": "20fd51f28ec30b7503dc5d94a45e62e6f460227d28cc9704be508d7336a04fbf",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1070/B509.536 Final Terra draft entries used by the Expedition window, Era Dialogue report and effect names."
+      "provenance": "S1072/B510.537 Standardization owns its existing exact B054/B051 cleanup with the current catalog; preserve explicit diagnostic access until reviewed retirement."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "04eab55419e1ceac000e8b9056c5c89510086ad267864b62d19abeed4786db29",
+      "sha256": "32abb8b14bd1efaec36fc67cf501c2b6e6fd4655637e141ab69b791ea127804c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1070/B509.536 Final Terra draft entries used by the Expedition window, Era Dialogue report and effect names."
+      "provenance": "S1072/B510.537 Standardization owns its existing exact B054/B051 cleanup with the current catalog; preserve explicit diagnostic access until reviewed retirement."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -871,19 +871,19 @@
       "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS."
     },
     "Mod/StandardizationCatalog.lua": {
-      "sha256": "cebac1083374f43463f00f2deae97e1b2f304c1710ec3f754a9cdf0befca11b9",
+      "sha256": "de5b99ccbab52890dcd8bfb790d21fce23f62bb4e354fd05c01d9b7a469bc000",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
+      "provenance": "S1072/B510.537 Standardization owns its existing exact B054/B051 cleanup with the current catalog; preserve explicit diagnostic access until reviewed retirement."
     },
     "Mod/StandardizationDiscount.lua": {
-      "sha256": "66ccdeff5c18cb95f5c2491e16995fae389317b3f56e4aedd3714f58ebf8f307",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B234_Industry_Standardization_Local.md",
-      "provenance": "B234 user-authorized Industry support readiness, III construction baseline and exact old Industry/Research-network effect retirement. Reviewed actual source, targeted Lua/SQL failure cases and inherited behavior. Common topology, other profession writers, permanent schema and GC unchanged; native pending."
+      "sha256": "5b5024bcb454197f955c131d197e654a6cc1823b9991dee1cfdae7a7465a11cc",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1072/B510.537 Standardization owns its existing exact B054/B051 cleanup with the current catalog; preserve explicit diagnostic access until reviewed retirement."
     },
     "Mod/StandardizationEffects.lua": {
-      "sha256": "808c7da450f9a0b4339e15996f55554c7d10eae1869872feaaf5c62cf817af86",
+      "sha256": "9853870ba496ffc00ccb2bf876c5bdde65a59bd35a2ebdacb2bddad54984cb29",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1034 resolves the four reproduced S1032 F-2 cases locally and preserves recovery wake edges independently of factual witnesses."
+      "provenance": "S1072/B510.537 Standardization owns its existing exact B054/B051 cleanup with the current catalog; preserve explicit diagnostic access until reviewed retirement."
     },
     "Mod/Text/ClaimProjects.sql": {
       "sha256": "9c09ed2006193bf3154e40bc632ce214201566e8523937fce7c4546f4bec1859",

@@ -15,22 +15,13 @@ end
 function SPCCopyYields.Start(P,shared,options)
  if options and options.retired then
   local d={retired=true,ready=false,errors={},changes=0};shared.CopyYields=d
-  local rows
+  local withdraw
   function d.Withdraw(c)
-   if not rows then
-    rows={};for _,part in ipairs({'POS','NEG','POP'})do
-     for bit=0,(part=='POP' and 7 or 15)do
-      local r=assert(P.Info('Buildings','BUILDING_SPC_B051_PRODUCTION_'..part..'_'..bit),'STD_OLD_COPY_ROW')
-      assert(r.InternalOnly==1 or r.InternalOnly==true,'STD_OLD_COPY_NOT_INTERNAL');rows[#rows+1]=r.Index
-     end
-    end
+   if not withdraw then
+    if not SPCStandardizationCatalog then include('StandardizationCatalog')end
+    withdraw=SPCStandardizationCatalog.LegacyWithdrawal(P,'COPY',d)
    end
-   local b=c:GetBuildings()
-   for _,id in ipairs(rows)do
-    local has=P.HasBuilding(b,id);assert(type(has)=='boolean','STD_OLD_COPY_UNKNOWN')
-    if has then P.RemoveBuilding(b,id);assert(P.HasBuilding(b,id)==false,'STD_OLD_COPY_REMOVE');d.changes=d.changes+1 end
-   end
-   return true
+   return withdraw(c)
   end
   function d.Audit()return false,'STD_LEGACY_RETIRED'end
   d.Receive=d.Audit

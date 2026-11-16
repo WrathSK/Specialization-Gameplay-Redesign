@@ -3,20 +3,13 @@ SPCStandardizationDiscount={}
 function SPCStandardizationDiscount.Start(P,shared,options)
  if options and options.retired then
   local d={retired=true,ready=false,changes=0,errors={}};shared.StandardizationDiscount=d
-  local rows
+  local withdraw
   function d.Withdraw(c)
-   if not rows then
-    rows={};for _,r in ipairs(P.Rows('SPC_B054_Targets'))do
-     local b=assert(P.Info('Buildings',r.CarrierType),'STD_OLD_DISCOUNT_ROW')
-     assert(b.InternalOnly==1 or b.InternalOnly==true,'STD_OLD_DISCOUNT_NOT_INTERNAL');rows[#rows+1]=b.Index
-    end;assert(#rows>0,'STD_OLD_DISCOUNT_CATALOG_EMPTY')
+   if not withdraw then
+    if not SPCStandardizationCatalog then include('StandardizationCatalog')end
+    withdraw=SPCStandardizationCatalog.LegacyWithdrawal(P,'DISCOUNT',d)
    end
-   local b=c:GetBuildings()
-   for _,id in ipairs(rows)do
-    local has=P.HasBuilding(b,id);assert(type(has)=='boolean','STD_OLD_DISCOUNT_UNKNOWN')
-    if has then P.RemoveBuilding(b,id);assert(P.HasBuilding(b,id)==false,'STD_OLD_DISCOUNT_REMOVE');d.changes=d.changes+1 end
-   end
-   return true
+   return withdraw(c)
   end
   function d.Audit()return false,'STD_LEGACY_RETIRED'end
   d.Initialize=d.Audit;d.Receive=d.Audit;d.MarkDirty=d.Audit;d.EnsureReady=d.Audit

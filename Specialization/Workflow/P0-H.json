@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1071",
-    "runtime": "B509.536 / modinfo536",
+    "status": "S1072",
+    "runtime": "B510.537 / modinfo537",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Restore the four focused methods that were red due to stale local presentation and training fixtures.",
+  "goal": "Decouple the current Standardization writer and owned-carrier exit from the retired CopyYields and StandardizationDiscount writer modules.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Move retired industrial carrier cleanup to Standardization — S1072",
+      "reason": "S1072 transfers exact old industrial carrier withdrawal to the current Standardization owner. The mounted Lua 5.1 production start succeeds with both retired modules absent in the modeled package. Existing eligibility and reporting remain in scope."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -810,6 +816,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1072 verifies the normal Standardization path, exact old-ID withdrawal and readback, current Carrier application and scoped exit, and actual Gameplay startup with both old modules unavailable. The broad direct historical replay has the same 37 non-passing cases on base and candidate.",
     "S1071 passes all 220 methods from the exact S1070 selection with the same 339-file B509 package. The additional 109-method Expedition training selection has six already-reproduced fixture errors; the test-only changes introduce no additional failing case.",
     "B509 resolves all 370 tagged English draft rows and 55 tagged Chinese draft rows, plus all 16 institution names and descriptions per language. The combined 220-method selection has 216 passes and four already reproduced legacy fixture failures. Disposable package tests pass.",
     "B508 verifies alternate-language biography lookups and the package text manifest. Nine of ten selected methods pass; the legacy Expedition training fixture still errors under both source baselines.",
@@ -5389,6 +5396,30 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#restore-current-presentation-regression-coverage--s1071"
+    },
+    "s1072_standardization_legacy_cleanup_ownership": {
+      "build": "B510.537 / modinfo537",
+      "baseline": "0d6524ca298fb619f0581ef5c51dcd7f93193da3",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage": "NStandardizationEffectReadback",
+      "stage_pass": 118,
+      "supplemental_pass": 19,
+      "broad_test_comparison": 723,
+      "broad_baseline_failures": 7,
+      "broad_baseline_errors": 30,
+      "broad_new_nonpassing": 0,
+      "source_sha256": "5d8bbf641c47a50abce501576b716f19cc182e122b1d2fb77c9da3499821e374",
+      "lua51_compiles": 208,
+      "xml_family_parses": 34,
+      "legacy_absence_modes": [
+        "throw",
+        "silent_nil"
+      ],
+      "package_sha256": "0aa8babeda76e77660f81f5bfb27bb4936adbe6d513bd673404f64a5567d03df",
+      "files": 339,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#move-retired-industrial-carrier-cleanup-to-standardization--s1072"
     }
   }
 }
