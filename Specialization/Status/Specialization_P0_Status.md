@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1070
+Status Revision: S1071
 Implementation Build: B509.536 / modinfo536 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: REVIEWED_BILINGUAL_CATALOGUE_LOCAL_PASS_SCOPED
+Work State: REVIEWED_BILINGUAL_CATALOGUE_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,14 +15,22 @@ Work State: REVIEWED_BILINGUAL_CATALOGUE_LOCAL_PASS_SCOPED
 |---|---|
 | Build and installation | [B509.536 on develop](#complete-reviewed-bilingual-catalogue-integration--s1070). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B509.536 has scoped bilingual mounted-catalogue coverage and combined presentation regressions. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Use B509.536 as the locally verified develop localization candidate. Carry native bilingual layout and mod-list rendering into the next scheduled in-game UI review. Continue to use B489.516 for stable play. |
+| Validation | All 220 methods in the focused B509.536 presentation regression selection pass after fixture maintenance. The independent legacy training UI selection retains six fixture errors. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Use B509.536 as the locally validated develop localization candidate. Verify native bilingual layout and the mod-list entry during the next scheduled in-game UI review. Stable play uses the installed B489.516 baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Restore current presentation regression coverage — S1071
+
+**LOCAL_SIMULATION_PASS in scope.** The Development Investment test measures the scroll/confirmation boundary using the real mounted XML and the current card model. The old `QuoteScroll` and explicit `Confirm.y` assumptions date to earlier layouts. The replacement still exercises unrelated event suppression, resize, visible quote errors, and the disabled confirmation without extra requests. Expedition icon tests now expect the selected Works asset introduced in B268 while retaining the individual Wonder and generic fallback assertions. The training fixture loads the actual `IdentityEqual.lua` helper used by the current production owner. The two test identities still bind to their source and complete name confirmation once.
+
+**Reproduction.** Run the same 220-method selection and pinned environment from S1070. All 220 pass. Run `python3.14 -B -m unittest test_expedition_training test_expedition_training_ui test_expedition_training_name_events test_expedition_training_name_recovery` for the shared fixture dependents. 103 of 109 methods pass. The remaining six errors use old mock contexts without `SPCSafeAdapters` or `SPCRestructuringUI` and reproduce on the B506 source. These legacy paths remain outside scoped passing evidence.
+
+**STATIC_CONFIRMED.** Test and record files only. Candidate B509.536 SHA256 `300f6e42fd87be500e377e8422ae2faab94c476621d621947229d9b4fe717fc1` across 339 files. Native language rendering remains a separate observation for the next in-game UI review.
 
 ### Complete reviewed bilingual catalogue integration — S1070
 

@@ -143,7 +143,7 @@ class LocationPresentation(unittest.TestCase):
                   gateOpen('TRAVEL',40);chooseCity()
                   local icons=instanceManagers.SPCExpeditionDestination.instances[1].iconPool.instances
                   assert(icons[1].CivilizationIcon.icon=='ICON_CIVILIZATION_TARGET')
-                  assert(icons[2].WorksIcon.icon=='ICON_GREATWORKOBJECT_WRITING')
+                  assert(icons[2].WorksIcon.icon=='ICON_SPC_RAW_WORKS')
                   assert(icons[3].WonderIcon.icon==expectedWonderIcon)
                   assert(icons[3].DistrictIcon.tooltip==Locale.Lookup('LOC_BUILDING_PYRAMIDS'))
                   assert(not Controls.NormalConfirmButton.disabled and properties==0 and nativeCalls==0)
@@ -168,11 +168,11 @@ class MissionIconAndUnknownDisplay(unittest.TestCase):
           local icons=instanceManagers.SPCExpeditionDestination.instances[1].iconPool.instances
           assert(icons[1].CivilizationIcon.icon=='ICON_CIVILIZATION_TARGET' and not icons[1].CivilizationIcon.hidden)
           assert(icons[1].WorksIcon.hidden and icons[1].WonderIcon.hidden)
-          assert(icons[2].WorksIcon.icon=='ICON_GREATWORKOBJECT_WRITING' and not icons[2].WorksIcon.hidden)
+          assert(icons[2].WorksIcon.icon=='ICON_SPC_RAW_WORKS' and not icons[2].WorksIcon.hidden)
           assert(icons[3].WonderIcon.icon=='ICON_BUILDING_PYRAMIDS' and not icons[3].WonderIcon.hidden)
           local cards=instanceManagers.SPCExpeditionMission.instances
           assert(cards[1].MissionCivilizationIcon.icon=='ICON_CIVILIZATION_TARGET' and cards[1].MissionIcon.hidden)
-          assert(cards[2].MissionIcon.icon=='ICON_GREATWORKOBJECT_WRITING')
+          assert(cards[2].MissionIcon.icon=='ICON_SPC_RAW_WORKS')
           assert(cards[3].MissionIcon.icon=='ICON_BUILDING_PYRAMIDS')
           assert(properties==0 and nativeCalls==0)
         """)

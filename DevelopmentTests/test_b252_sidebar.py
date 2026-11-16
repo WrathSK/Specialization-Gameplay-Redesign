@@ -62,7 +62,31 @@ class Sidebar(unittest.TestCase):
  def test_foreign_source_owner_load_and_shutdown_close(self):
   ui().execute("LuaEvents.SPC_DevelopmentOpen(1,9);assert(#sent==0);LuaEvents.SPC_DevelopmentOpen(0,9);ack();owner=1;Events.GameCoreEventPublishComplete.Fire();assert(Controls.Window.hidden);owner=0;LuaEvents.SPC_DevelopmentOpen(0,9);ack();Events.LoadScreenClose.Fire();assert(Controls.Window.hidden);ContextPtr.shutdown();LuaEvents.SPC_DevelopmentOpen(0,9);assert(#sent==2)")
  def test_only_resize_event_reflows_without_transport(self):
-  ui().execute("LuaEvents.SPC_DevelopmentOpen(0,9);ack();local n=cityRows.resets;for i=1,100 do Events.SystemUpdateUI.Fire(99);Events.GameCoreEventPublishComplete.Fire()end;assert(n==cityRows.resets);width=960;height=600;Events.SystemUpdateUI.Fire(7);assert(not Controls.CityColumn.hidden and not Controls.DetailColumn.hidden and Controls.Window.width<=width and Controls.QuoteScroll.height>0 and Controls.QuoteCard.height==Controls.HelpCard.height and #sent==1);pick(1);assert(Controls.Confirm.y>=Controls.Error:GetSizeY()+8)")
+  layout=ET.parse(MOD/'UI/DevelopmentInvestmentPanel.xml')
+  scroll=layout.find(".//ScrollPanel[@ID='DetailScroll']")
+  footer=layout.find(".//Grid[@ID='Footer']")
+  self.assertIsNotNone(scroll.find(".//Label[@ID='Error']"))
+  self.assertIsNotNone(footer.find(".//GridButton[@ID='Confirm']"))
+  self.assertEqual(footer.get('Anchor'),'C,B')
+  l=ui()
+  l.globals().scrollTop=int(scroll.get('Offset').split(',')[1])
+  l.execute("""
+   LuaEvents.SPC_DevelopmentOpen(0,9);ack()
+   local resets=cityRows.resets
+   for i=1,100 do
+    Events.SystemUpdateUI.Fire(99);Events.GameCoreEventPublishComplete.Fire()
+   end
+   assert(resets==cityRows.resets)
+   width=960;height=600;Events.SystemUpdateUI.Fire(7)
+   assert(not Controls.CityColumn.hidden and not Controls.DetailColumn.hidden and Controls.Window.width<=width)
+   assert(Controls.DetailScroll.height>0 and #sent==1)
+   assert(Controls.QuoteCard.y+Controls.QuoteCard.height<Controls.TermsCard.y)
+   assert(Controls.TermsCard.y+Controls.TermsCard.height<Controls.HelpCard.y)
+   pick(2)
+   assert(not Controls.Error.hidden and Controls.Confirm.disabled and #sent==1)
+   assert(Controls.CurrentBody.height>=Controls.Error:GetSizeY())
+   assert(scrollTop+Controls.DetailScroll.height+Controls.Footer.height<=Controls.DetailColumn.height)
+  """)
  def test_narrow_navigation_keeps_refresh_and_close_available(self):
   ui().execute("width=700;LuaEvents.SPC_DevelopmentOpen(0,9);ack();assert(not Controls.CityColumn.hidden and Controls.DetailColumn.hidden and not Controls.CompactBar.hidden);cityRows.items[1].Root.click();assert(Controls.CityColumn.hidden and not Controls.DistrictColumn.hidden);domainRows.items[1].Root.click();assert(not Controls.DetailColumn.hidden and not Controls.DetailBack.hidden);Controls.DetailBack.click();assert(not Controls.DistrictColumn.hidden and Controls.Confirm.disabled);Controls.DistrictBack.click();assert(not Controls.CityColumn.hidden);Controls.CompactRefresh.click();assert(#sent==2);ack();Controls.CompactClose.click();assert(Controls.Window.hidden)")
 class Package(unittest.TestCase):

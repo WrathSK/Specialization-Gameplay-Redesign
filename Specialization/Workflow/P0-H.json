@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1070",
+    "status": "S1071",
     "runtime": "B509.536 / modinfo536",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Finish the reviewed player-facing text and verify its language routing and package boundary together.",
+  "goal": "Restore the four focused methods that were red due to stale local presentation and training fixtures.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Restore current presentation regression coverage — S1071",
+      "reason": "S1071 brings the selected layout, Expedition icon and training identity tests into line with already-approved code and reruns the entire copy selection."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -804,6 +810,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1071 passes all 220 methods from the exact S1070 selection with the same 339-file B509 package. The additional 109-method Expedition training selection has six already-reproduced fixture errors; the test-only changes introduce no additional failing case.",
     "B509 resolves all 370 tagged English draft rows and 55 tagged Chinese draft rows, plus all 16 institution names and descriptions per language. The combined 220-method selection has 216 passes and four already reproduced legacy fixture failures. Disposable package tests pass.",
     "B508 verifies alternate-language biography lookups and the package text manifest. Nine of ten selected methods pass; the legacy Expedition training fixture still errors under both source baselines.",
     "B507 runs 99 local methods, with the same two pre-existing Expedition icon methods failing as on B506. Both language callback exercises confirm three distinct mission statuses.",
@@ -5368,6 +5375,20 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#complete-reviewed-bilingual-catalogue-integration--s1070"
+    },
+    "s1071_current_presentation_regressions": {
+      "build": "B509.536 / modinfo536",
+      "baseline": "060d4d050498ff691a9f99a5aab4a98f79e84fd3",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "main_regression_methods_pass": 220,
+      "training_followup_methods_pass": 103,
+      "training_followup_preexisting_fixture_errors": 6,
+      "previous_test_only_errors_resolved": 4,
+      "package_sha256": "300f6e42fd87be500e377e8422ae2faab94c476621d621947229d9b4fe717fc1",
+      "files": 339,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#restore-current-presentation-regression-coverage--s1071"
     }
   }
 }

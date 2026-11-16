@@ -6,6 +6,7 @@ R=Path(__file__).resolve().parents[1]
 
 def fixture():
     l=gate()
+    l.execute((R/'Mod/IdentityEqual.lua').read_text())
     l.execute('''
     hooks={};function event(name)return {Add=function(fn)hooks[name]=fn end}end
     for _,n in ipairs({'UnitAddedToMap','CityProductionCompleted','CityProductionChanged','CityProductionQueueChanged','GameCoreEventPublishComplete','PlayerTurnActivated','LoadScreenClose','CityTransfered'})do Events[n]=event(n)end
