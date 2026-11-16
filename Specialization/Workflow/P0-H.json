@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1063",
-    "runtime": "B502.529 / modinfo529",
+    "status": "S1064",
+    "runtime": "B503.530 / modinfo530",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Adopt the checked Terra tooltips and confirmation caption for the existing Crew and Settler action buttons.",
+  "goal": "Apply the reviewed Terra copy to the existing Capital Investment panel without changing transaction behavior.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Adopt reviewed Capital Investment panel copy — S1064",
+      "reason": "S1064 checks the Capital Investment language table against actual quotes, locked contract terms and distinct payment receipt stages."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -762,6 +768,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B503 passes 65 selected sidebar, contract term and receipt methods. The mounted catalogue contains all 83 English Capital keys with their original parameters.",
     "B502 passes 68 selected action, receipt, HD and official panel methods. Both English action tooltip cases fail against B501.",
     "B501 passes 119 selected display, queue, panel and project controller methods. Three English display subcases fail against B500.",
     "B500 passes 71 selected queue, panel and role methods. The English city caption check fails with the previous source in both profiles.",
@@ -5208,6 +5215,21 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#adopt-terra-copy-for-crew-construction-and-settler-investment-actions--s1063"
+    },
+    "b503_capital_investment_copy": {
+      "build": "B503.530 / modinfo530",
+      "baseline": "4596e718d7f8b704e8e77b0f57bb0072a5f0d669",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 65,
+      "changed_locale_rows": 101,
+      "english_rows": 83,
+      "simplified_chinese_rows": 18,
+      "baseline_english_quote_failure": 1,
+      "package_sha256": "326e75a2bc1ad72d08e1c51880e0b4801465a8a6c4c8f516fdfb7f4f8c938743",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#adopt-reviewed-capital-investment-panel-copy--s1064"
     }
   }
 }

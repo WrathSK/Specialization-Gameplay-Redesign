@@ -5,14 +5,15 @@ import sqlite3,subprocess,unittest,re,xml.etree.ElementTree as E
 from unittest.mock import patch
 from test_b261_commerce import ui as commerce
 ROOT=Path(__file__).resolve().parents[1]
-def ui(*,language='zh_Hans_CN'):
+def ui(*,language='zh_Hans_CN',all_capital_text=False):
  l=commerce();l.execute('ContextPtr.shutdown()');l.execute((ROOT/'Mod/UI/CapitalInvestmentUI.lua').read_text())
  with closing(sqlite3.connect(':memory:')) as db:
   db.execute('CREATE TABLE LocalizedText(Language TEXT, Tag TEXT, Text TEXT, PRIMARY KEY (Language,Tag))')
   db.executescript((ROOT/'Mod/Text/Commerce.sql').read_text())
   rows=db.execute("SELECT Tag,Text FROM LocalizedText WHERE Language=?",(language,))
   scoped=('LOC_SPC_CAPITAL_REASON_','LOC_SPC_CAPITAL_STAGE_','LOC_SPC_CAPITAL_REPUTATION_','LOC_SPC_CAPITAL_SIGNED_REPUTATION')
-  l.globals().capitalPanelText=l.table_from({key:value for key,value in rows if key.startswith(scoped)})
+  prefixes=('LOC_SPC_CAPITAL_',) if all_capital_text else scoped
+  l.globals().capitalPanelText=l.table_from({key:value for key,value in rows if key.startswith(prefixes)})
  l.execute("""
  local defaultLookup=Locale.Lookup
  Locale.Lookup=function(key,...)
@@ -40,12 +41,42 @@ def ui(*,language='zh_Hans_CN'):
  """)
  l.execute((ROOT/'Mod/UI/CapitalInvestmentPanel.lua').read_text());l.execute('ContextPtr.initialize();LuaEvents.SPC_CapitalOpen(0,9);ack()');return l
 class LocalizedCopy(unittest.TestCase):
- def test_existing_reasons_stages_and_reputation_match_on_both_locales(self):
+ def test_published_english_quote_locked_terms_and_payment_uncertainty(self):
+  ui(language='en_US',all_capital_text=True).execute("""
+   pick(1,2)
+   assert(Controls.Quote.text:find('Principal: 250 [ICON_Gold]',1,true))
+   assert(Controls.Quote.text:find('Matures on turn 10',1,true))
+   assert(Controls.Returns.text:find('Success chance: 41%',1,true))
+   capitalView.contracts.DISTRICT_CAMPUS={mode='STABLE',stage='ACTIVE',
+    principal=200,debited=199.999,due=8,D=2,S=3,C=4,sSourceName='LOCKED_CITY'}
+   capitalView.stage='HELD'
+   capitalView.failure={phase='NATIVE_DEBIT'}
+   capitalView.canSign=false
+   notify()
+   local text=Controls.Current.text
+   assert(text:find('Contract status: Active',1,true)and text:find('Gold paid: 199.999',1,true)
+    and text:find('Maturity: Turn 8',1,true)and text:find('Strength source at signing: LOCKED_CITY',1,true))
+   assert(text:find('The Gold payment is awaiting confirmation.',1,true)and Controls.Confirm.disabled)
+   Controls.Confirm.click();assert(#sent==2)
+   capitalView.failure={phase='DEBIT_CALLING_WRITE'}
+   notify()
+   assert(Controls.Current.text:find('This attempt stopped before charging Gold.',1,true))
+  """)
+
+ def test_b497_reasons_stages_and_reputation_match_on_both_locales(self):
   panel=ROOT/'Mod/UI/CapitalInvestmentPanel.lua'
   before=subprocess.check_output(['git','show','9aaf3b74:Mod/UI/CapitalInvestmentPanel.lua'],cwd=ROOT,text=True)
   read=Path.read_text
-  def old_source(path,*args,**kwargs):
-   return before if path==panel else read(path,*args,**kwargs)
+  locale=ROOT/'Mod/Text/Commerce.sql'
+  successor='3ead05df'
+  locale_sql=subprocess.check_output(['git','show',successor+':Mod/Text/Commerce.sql'],cwd=ROOT,text=True)
+  localized_panel=subprocess.check_output(['git','show',successor+':Mod/UI/CapitalInvestmentPanel.lua'],cwd=ROOT,text=True)
+  def trace_source(panel_text):
+   def source(path,*args,**kwargs):
+    if path==panel:return panel_text
+    if path==locale:return locale_sql
+    return read(path,*args,**kwargs)
+   return source
   def trace(vm):
    vm.execute("""
     trace={}
@@ -75,9 +106,10 @@ class LocalizedCopy(unittest.TestCase):
    return tuple(result[index] for index in range(1,len(result)+1))
   for language in ('zh_Hans_CN','en_US'):
    with self.subTest(language=language):
-    with patch.object(Path,'read_text',old_source):
+    with patch.object(Path,'read_text',trace_source(before)):
      baseline=trace(ui(language=language))
-    self.assertEqual(trace(ui(language=language)),baseline)
+    with patch.object(Path,'read_text',trace_source(localized_panel)):
+     self.assertEqual(trace(ui(language=language)),baseline)
 
  def test_selected_text_does_not_release_held_admission_or_change_confirm(self):
   ui(language='en_US').execute("""

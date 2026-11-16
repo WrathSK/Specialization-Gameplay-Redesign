@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "7ce8bb6912481d5d12ed05658a3af4567a6badeae766b30b0b6985ab9c510288",
+      "sha256": "64f5db438bc0cb3a6eaece0a881abf5fd54967ca9caf79267ca4b0f618fbb7e3",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1063/B502.529 Terra construction and settler action copy with positional operands and original control layout."
+      "provenance": "S1064/B503.530 Terra Capital Investment names, terms and payment state text checked against real panel output."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "b1883345c170501d9cb2f4af72e9fe4368088ee38aaab844222dd2a6ca15222e",
+      "sha256": "cdbf9c97a95523533604396c0f9107842045542ca11bde2176d9e1711a7239ed",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1063/B502.529 Terra construction and settler action copy with positional operands and original control layout."
+      "provenance": "S1064/B503.530 Terra Capital Investment names, terms and payment state text checked against real panel output."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -891,9 +891,9 @@
       "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/Text/Commerce.sql": {
-      "sha256": "98240f3189f8d98f4f5598e3044ae5a97b02f339d512b0471f60879937dd226b",
+      "sha256": "71778bb2113d2ca790349ab76fa83e46f3fcd60ea1b8a2e32246de6b3d6b501e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1058/B497.524 Capital Investment UI status and scoped language changes with exact render comparisons."
+      "provenance": "S1064/B503.530 Terra Capital Investment names, terms and payment state text checked against real panel output."
     },
     "Mod/Text/DevelopmentInvestment.sql": {
       "sha256": "3b705eb02457d81262653d9c10d04aa5019d34fc9b61ab8df14f6dc3d6189a1c",

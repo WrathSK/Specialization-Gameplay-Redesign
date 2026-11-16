@@ -108,7 +108,7 @@ class UIQuotes(Profile,unittest.TestCase):
         l=ui();l.execute("pick(1,1);capitalView.quoteStale=true;notify();local n=#sent;assert(Controls.Confirm.disabled);Controls.Confirm.click();assert(#sent==n and Controls.Quote.text:find('250'));capitalView.quoteStale=nil;notify();assert(not Controls.Confirm.disabled)")
 
     def test_stale_does_not_mask_qualification_or_held_reason(self):
-        l=ui();l.execute("pick(1,1);capitalView.quoteStale=true;capitalView.canSign=false;capitalView.reason='CAPITAL_ACTIVE_III_REQUIRED';notify();assert(Controls.Current.text:find('ACTIVE III'));capitalView.stage='HELD';capitalView.failure={phase='NATIVE_DEBIT'};notify();assert(Controls.Current.text:find('PAUSE_DEBIT'))")
+        l=ui();l.execute("pick(1,1);capitalView.quoteStale=true;capitalView.canSign=false;capitalView.reason='CAPITAL_ACTIVE_III_REQUIRED';notify();assert(Controls.Current.text:find('商业启用等级达到三级',1,true));capitalView.stage='HELD';capitalView.failure={phase='NATIVE_DEBIT'};notify();assert(Controls.Current.text:find('PAUSE_DEBIT'))")
 
 
 class RetainedCapital(Profile,capital_cases.Runtime):
