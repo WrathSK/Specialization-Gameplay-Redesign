@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1059",
-    "runtime": "B498.525 / modinfo525",
+    "status": "S1060",
+    "runtime": "B499.526 / modinfo526",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Apply and verify the approved 16 bilingual institution descriptions and their presentation labels.",
+  "goal": "Use the reviewed Terra Chinese and English project copy for the six registered one-turn projects.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Adopt Terra descriptions for the one-turn production projects — S1060",
+      "reason": "S1060 verifies the Terra copy for four specialization claim projects, Era Dialogue and Engineering Tradition Study."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -738,6 +744,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B499 passes 114 selected project, queue, production-panel and receipt methods. Mounted SQL resolves both languages for all six registered definitions and changes exactly 18 rows.",
     "B498 passes 68 scoped current tests and 352 Lua 5.1 tooltip renders. The mounted text scripts change exactly 85 rows and retain their complete key set.",
     "B497 passes 63 selected display and Capital transaction methods. Fifty-eight Capital display comparisons match the baseline. The 32 draft bodies pass the institution renderer trial in memory.",
     "B496 passes 67 selected unit UI, transport, native-fragment and policy methods. Sixteen tooltip comparisons match B495.",
@@ -5123,6 +5130,19 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#adopt-the-approved-terra-institution-copy--s1059"
+    },
+    "b499_one_turn_project_copy": {
+      "build": "B499.526 / modinfo526",
+      "baseline": "5da93d488fd385740271d89eeb6b0e32f359f22f",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 114,
+      "changed_locale_rows": 18,
+      "registered_project_definitions": 6,
+      "package_sha256": "73fa62c604c1e56ac8c183bb2848ef43ff56026ec2d03e6f593f4ece603647db",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#adopt-terra-descriptions-for-the-one-turn-production-projects--s1060"
     }
   }
 }

@@ -1,8 +1,8 @@
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_PROJECT_SPC_ERA_DIALOGUE_NAME','时代对话'),
-('en_US','LOC_PROJECT_SPC_ERA_DIALOGUE_NAME','时代对话'),
-('zh_Hans_CN','LOC_PROJECT_SPC_ERA_DIALOGUE_DESCRIPTION','需本城具备文化专业身份且启用等级达到 3 级。开启后将作为唯一当前生产目标，连续占用完整的 1 个回合（每城按项目启动时的游戏时代计算，每个时代最多成功完成一次）。完成时，本城合格馆藏每覆盖一个不同的作品时代，便为巨作原生旅游业绩倍率永久累加 5 个百分点（不放大「意义延展」的追加产出）。若中途打断将取消本轮项目，但不会消耗该时代的成功次数；项目开启前未分配的生产力及项目期间产生的生产力均不会结转至后续目标。'),
-('en_US','LOC_PROJECT_SPC_ERA_DIALOGUE_DESCRIPTION','需本城具备文化专业身份且启用等级达到 3 级。开启后将作为唯一当前生产目标，连续占用完整的 1 个回合（每城按项目启动时的游戏时代计算，每个时代最多成功完成一次）。完成时，本城合格馆藏每覆盖一个不同的作品时代，便为巨作原生旅游业绩倍率永久累加 5 个百分点（不放大「意义延展」的追加产出）。若中途打断将取消本轮项目，但不会消耗该时代的成功次数；项目开启前未分配的生产力及项目期间产生的生产力均不会结转至后续目标。'),
+('en_US','LOC_PROJECT_SPC_ERA_DIALOGUE_NAME','Dialogue of Eras'),
+('zh_Hans_CN','LOC_PROJECT_SPC_ERA_DIALOGUE_DESCRIPTION','完成后，本城合格馆藏每涵盖一个不同的作品时代，巨作原生 [ICON_Tourism] 旅游业绩倍率永久累积 5 个百分点。文化启用等级达到三级时生效。[NEWLINE][NEWLINE]需要文化专业及三级启用。项目须作为唯一当前生产目标持续 1 个完整回合。每城按启动时的游戏时代计算，每时代最多成功一次。中断不消耗次数，未分配及项目期间产生的生产力不会结转。'),
+('en_US','LOC_PROJECT_SPC_ERA_DIALOGUE_DESCRIPTION','On completion, permanently adds 5 percentage points to this city''s bonus to original [ICON_Tourism] Tourism from Great Works for each distinct era in its eligible collection. The bonus applies while Culture is active at Level 3 or higher.[NEWLINE][NEWLINE]Requires Culture active at Level 3 or higher. Keep this as the only item in the Production queue for 1 full turn. Each city can complete it once per game era, counted from the start of the project.[NEWLINE][NEWLINE]Interrupting the project leaves that era’s opportunity available. Unassigned [ICON_Production] Production and Production earned during the project do not carry over.'),
 ('zh_Hans_CN','LOC_SPC_DIALOGUE_PROJECT_REPORT','时代对话'),
 ('en_US','LOC_SPC_DIALOGUE_PROJECT_REPORT','时代对话');
 

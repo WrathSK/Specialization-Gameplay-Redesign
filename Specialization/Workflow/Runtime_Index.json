@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "325d5cfecd4c08ed328224798c161becfc3c1c97fb8fea537b5766b9277c3c8c",
+      "sha256": "7bacedc351afbe2179e5e4f60e3824118d440b8468cea0ff79bbbdda5065d3de",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1059/B498.525 Owner-approved bilingual Terra institution descriptions and presentation labels."
+      "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "0581f9b1fc96a0031afa28adbada04556756a8b4909818a02c71545b7eebcc06",
+      "sha256": "d86aa177ea0541470e90c40c63dc658526c23ccd2df24dbb9dbb045e071c2130",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1059/B498.525 Owner-approved bilingual Terra institution descriptions and presentation labels."
+      "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -886,9 +886,9 @@
       "provenance": "S1034 resolves the four reproduced S1032 F-2 cases locally and preserves recovery wake edges independently of factual witnesses."
     },
     "Mod/Text/ClaimProjects.sql": {
-      "sha256": "a31dbfc5862df58c043a03adc68423dbabf299e6c389955207dfe21c8b68559c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+      "sha256": "9c09ed2006193bf3154e40bc632ce214201566e8523937fce7c4546f4bec1859",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/Text/Commerce.sql": {
       "sha256": "98240f3189f8d98f4f5598e3044ae5a97b02f339d512b0471f60879937dd226b",
@@ -901,14 +901,14 @@
       "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/Text/DialogueProjects.sql": {
-      "sha256": "d39a72198100362a08385b632061a043974a9528ffa03e667fd021dc02f5fac3",
+      "sha256": "894d151192f1bb081742693985ec7c9eb73bddf260d6a749c1c363a2a0c28752",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1056/B495.522 the corrected shipped Era Dialogue project fallback and source build identity."
+      "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/Text/EngineeringStudy.sql": {
-      "sha256": "5865a1136028a230e5acbf2d38012fa1e9d0155d5550d8a354f2d9b165917ef4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+      "sha256": "a0416a7b407e01c9343c49e08c58e7065679ac5bbe027cfc2db2ac459d1cd7e4",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/Text/ExpeditionGate.sql": {
       "sha256": "56b6a772a68d3389dd5ccadcecad119beed63d8993367877a27966bd7af57858",

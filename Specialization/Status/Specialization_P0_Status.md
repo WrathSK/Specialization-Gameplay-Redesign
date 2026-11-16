@@ -1,28 +1,36 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1059
-Implementation Build: B498.525 / modinfo525 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1060
+Implementation Build: B499.526 / modinfo526 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: APPROVED_INSTITUTION_COPY_LOCAL_PASS
+Work State: ONE_TURN_PROJECT_COPY_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B498.525 on develop](#adopt-the-approved-terra-institution-copy--s1059). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B499.526 on develop](#adopt-terra-descriptions-for-the-one-turn-production-projects--s1060). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B498.525 has local bilingual institution presentation, era limits and shared unit tooltip coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Verify the remaining Terra production-project text against the current queue and reward rules for a separate copy selection. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B499.526 has local bilingual one-turn project text, queue and receipt coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Adopt Terra wording for the existing one-turn project queue, progress and preview labels. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Adopt Terra descriptions for the one-turn production projects — S1060
+
+**Owner direction and implementation.** This slice adopts the Terra draft's six English project names and twelve descriptions for the four specialization claims, Era Dialogue and Engineering Tradition Study. Claim text describes recovery after a qualifying reload and a fresh timer after a changed production target. Era Dialogue identifies the original Great Work Tourism bonus and the Level 3 or higher gate. Both Study descriptions identify the single queued project requirement. They retain the existing city study level and the two percentage-point increases for matching construction and eligible building discounts.
+
+**Runtime impact (L1).** Existing UpdateText actions load the names and descriptions. The actual project definitions, prerequisites, queue readers, eligible turn boundaries, completion proofs, awards, and saved timer state follow the existing controllers. No new event, scan, or write path.
+
+**STATIC_CONFIRMED and LOCAL_SIMULATION_PASS in scope.** In a disposable SQLite LocalizedText table, load all in-game text SQL listed in the package on `5da93d48` and B499. The same key set loads and only the 18 selected rows change. Each actual project definition has a resolvable name and description in Chinese and English. Use CPython 3.14.8, Lupa 2.8, DevelopmentTests on PYTHONPATH and the pinned official assets via `SPC_OFFICIAL_ASSETS`. Run `python3.14 -B -m unittest test_o6_production_panel test_refactor_s9e10 test_b398_queue_recovery test_b399_queue_boundaries.QueueCancellation test_refactor_s7d3b test_refactor_s7d4` for 114 methods. All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace checks pass. B499.526 package SHA256 `73fa62c604c1e56ac8c183bb2848ef43ff56026ec2d03e6f593f4ece603647db` across 337 files. B489.516 retains its installed and native evidence scope.
 
 ### Adopt the approved Terra institution copy — S1059
 

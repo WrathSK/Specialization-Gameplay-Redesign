@@ -1,6 +1,6 @@
 -- Descriptive project label, not a new frozen institution/ability name.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_PROJECT_SPC_ENGINEERING_STUDY_NAME','工程传统研习'),
-('en_US','LOC_PROJECT_SPC_ENGINEERING_STUDY_NAME','工程传统研习'),
-('zh_Hans_CN','LOC_PROJECT_SPC_ENGINEERING_STUDY_DESCRIPTION','需本城工业启用等级达到 4 级，且本城已完成的研习层数（L）少于本文明奇观历史覆盖的时代数（E）。开启后将连续占用 1 个完整的生产回合，完成后本城研习层数（L）永久 +1。当工业启用等级为 4 级时，每层研习成果使本城持有可靠模板的建造生产力加成与合格建筑金币购买折扣各提高 2 个百分点（当前版本暂未实装目标区域的逐模板购买折扣）。若中途打断、城市易主或启用等级下降，将取消未完成的当前轮次，但已积累的历史层数不会清零。项目将吸收开启前未分配的生产力及项目期间产生的生产力，不会结转至后续目标。'),
-('en_US','LOC_PROJECT_SPC_ENGINEERING_STUDY_DESCRIPTION','工业ACTIVE IV，且本城已完成研习层数L小于全国奇观时代知识E时可用。完整占用一个生产回合，完成后本城L永久+1。ACTIVE IV时每层令持有模板的建造与合法建筑购买折扣各增加2个百分点。中断、易主或资格下降取消未完成轮次；历史层数不清零。项目吸收已有未分配及期间生产，不转给后续目标。区域逐模板购买折扣本批尚未接入。');
+('en_US','LOC_PROJECT_SPC_ENGINEERING_STUDY_NAME','Engineering Tradition Study'),
+('zh_Hans_CN','LOC_PROJECT_SPC_ENGINEERING_STUDY_DESCRIPTION','需要本城工业启用等级达到四级，且研习层数少于本文明亲建奇观所覆盖的时代数。[NEWLINE][NEWLINE]项目须作为唯一生产目标持续 1 个完整回合。每次完成后累计 1 层。四级启用时，每层使匹配模板的建造加成及原本可购买的合格建筑购买折扣各提高 2 个百分点。[NEWLINE][NEWLINE]中断、城市易主或启用等级下降会取消未完成的研习，已积累层数保留。未分配及项目期间产生的生产力不会结转。'),
+('en_US','LOC_PROJECT_SPC_ENGINEERING_STUDY_DESCRIPTION','Gain 1 permanent study level in this city. At Industry Active Level 4, each level adds 2 percentage points to Standardization’s [ICON_Production] Production bonus and purchase discount for eligible buildings.[NEWLINE][NEWLINE]Requires Industry active at Level 4. This city can complete one study for each distinct era of Wonders your civilization built. Keep this as the only item in the Production queue for 1 full turn.[NEWLINE][NEWLINE]Interrupting the project, losing eligibility, or a change of city ownership cancels this attempt. Completed studies are retained. Unassigned Production and Production earned during the project do not carry over.');
