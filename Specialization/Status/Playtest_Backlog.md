@@ -4,7 +4,7 @@ Document Owner: Codex
 
 ## Current playtest
 
-The focused B489.516 HD and official playtest is complete. See the [scoped native result](Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047) for accepted scenarios. The official positive Culture Network observation awaits a suitable same-build source.
+B489.516 is the [active stable playtest baseline](Specialization_P0_Status.md#b489-stable-playtest-package-deployed--s1048). See the [scoped native result](Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047) for accepted scenarios. Positive official Culture Network output and the exact HD Engineering Study uplift remain open observations.
 
 ## Historical issue intake
 

@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1047
-Implementation Build: source B489.516 / modinfo516. Live B489.516 from 47b9971. Stable/main B307.334.
+Status Revision: S1048
+Implementation Build: B489.516 / modinfo516. Live stable package from main merge ce497054. Tested runtime source 47b9971.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: INTEGRATION_NATIVE_ACCEPTED_B489_SCOPED
+Work State: STABLE_PLAYTEST_B489_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Develop and installed | B489.516 / modinfo516. The installed package matches source `47b9971` across all 337 files. |
-| Stable | `main` B307.334 / modinfo334. |
+| Build and installation | [B489.516 / modinfo516](#b489-stable-playtest-package-deployed--s1048). The installed package matches the merged main source `ce497054` across all 337 files. |
+| Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
 | Validation | The planned HD and official Gathering Storm checks are [USER_GAME_TEST_PASS in the observed scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation remains open until a suitable source is available. |
-| Next action | The focused playtest is complete. Promotion awaits separate Owner approval. |
+| Next action | Use B489.516 as the stable playtest baseline. Continue development on `develop` under the existing task and evidence gates. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### B489 stable playtest package deployed — S1048
+
+**STATIC_CONFIRMED stable deployment.** The Owner approved deployment after [PR #8](https://github.com/WrathSK/Specialization-Gameplay-Redesign/pull/8) merged at `ce497054ed0ba440a03c5a7a66dfafc0d5721c3d`. Its parents are the B307 stable record `bc49dab5` and reviewed candidate `775b07d4`. Its tree matches the candidate and its runtime matches tested source `47b9971`.
+
+With the game closed, the original temporary receipt `B489.516-47b9971-playtest.json` reached `STABLE_RESTORED`. The installed B307.334 and the retained B489.516 temporary backup matched 312/312 and 337/337 files respectively. After advancing local main, the stable deployment checked the exact 21 reviewed removals and verified game exit again. The installed B489.516 matches all 337 source files at SHA256 `fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30`. Stable receipt `.SpecializationP0-backup-umgmu6q5.receipt.json` is `DEPLOYED` and records the 21 paths. The B307 rollback package matches 312/312 files at SHA256 `b9aa4ad7aeeae7a3584c5d8a9b0dfb6ca6f5918095789a46e3e87871cc026146`. The transaction marker is absent.
+
+**Development Investment evidence clarification.** In the [official playtest](#b489-two-profile-native-acceptance-complete--s1047), on T9 and before the first contract, the Owner removed the last Commercial Hub specialist and saw an empty destination selector. The collector shows zero workers, a capacity-full panel open, worker reassignment and the first successful contract in that order (sequences 1621, 1630, 1634 and 1646). This establishes the zero-worker interface gate. The T13 Gold withdrawal and continuation of the existing contract through restart have separate observations.
+
+The scoped native result carries forward for the identical runtime. Supported play uses B489.516 games under their matching profile. Positive official Culture Network output and the exact HD Engineering Study uplift remain open observations. Subsequent development continues on `develop`.
 
 ### B489 two-profile native acceptance complete — S1047
 

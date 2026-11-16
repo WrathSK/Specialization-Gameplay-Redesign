@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1047",
+    "status": "S1048",
     "runtime": "B489.516 / modinfo516",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,12 +34,12 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "47b9971000c70deefb559ec2fd07ba20ffc6eae7",
-  "current_batch": "INTEGRATION_NATIVE_ACCEPTED_B489_SCOPED",
-  "next_batch": "The scoped B489.516 playtest is complete. Retain the official positive Culture Network observation and existing turn duties. Main promotion awaits separate Owner approval.",
+  "runtime_commit": "ce497054ed0ba440a03c5a7a66dfafc0d5721c3d",
+  "current_batch": "STABLE_PLAYTEST_B489_DEPLOYED",
+  "next_batch": "Use B489.516 as the stable playtest baseline. Continue scoped development on develop, retaining the recorded native observation limits and existing turn duties.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B489.516 / modinfo516 temporary develop from 47b9971000c70deefb559ec2fd07ba20ffc6eae7, 337/337 MATCH, SHA256 fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30. Receipt B489.516-47b9971-playtest.json DEVELOP_ACTIVE. B476 outgoing and B307 stable recovery MATCH. No pending transaction.",
-  "stable": "main B307.334 / modinfo334; approved PR #7 merged and deployed",
+  "live": "B489.516 / modinfo516 stable from ce497054ed0ba440a03c5a7a66dfafc0d5721c3d, 337/337 MATCH, SHA256 fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30. Receipt .SpecializationP0-backup-umgmu6q5.receipt.json DEPLOYED with 21 reviewed removals. B307 rollback 312/312 MATCH. No pending transaction.",
+  "stable": "main B489.516 / modinfo516 from approved PR #8 merge ce497054ed0ba440a03c5a7a66dfafc0d5721c3d, deployed and verified",
   "historical_only": [
     "Specialization/Design/Revisions/",
     "Specialization/Architecture/v2/State_Ownership_Save.md",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1047 records scoped B489.516 native acceptance across the fixed HD and official profiles. The official positive Culture Network observation remains open.",
+  "context_review_status": "S1048 verifies the B489.516 stable deployment after PR #8 and records the Owner's T9 Development Investment observation.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047",
-  "source_status": "B489.516 / modinfo516 at SHA256 fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30. The scoped HD and official native checks passed. Positive official Culture Network output awaits evidence.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#b489-stable-playtest-package-deployed--s1048",
+  "source_status": "B489.516 / modinfo516 on main at SHA256 fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30 matches the tested runtime. Scoped HD and official native acceptance carries forward. Positive official Culture Network output and the exact HD Engineering Study uplift await evidence.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }
