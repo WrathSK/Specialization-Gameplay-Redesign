@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1055
-Implementation Build: B494.521 / modinfo521 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1056
+Implementation Build: B495.522 / modinfo522 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: TIMED_PROJECT_DISPLAY_LOCALIZATION_LOCAL_PASS
+Work State: ERA_DIALOGUE_DESCRIPTION_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B494.521 on develop](#localize-timed-project-previews-and-progress-labels--s1055). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B495.522 on develop](#correct-the-shipped-era-dialogue-project-description--s1056). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B494.521 has local display, city panel and timer coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Reconcile the stale shipped Era Dialogue description with the implemented Tourism rule, then check the institution copy for targeted review. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B495.522 has local Era Dialogue text, project and completion coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Verify the institution review drafts in the current renderer and prepare the first copy selection. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Correct the shipped Era Dialogue project description — S1056
+
+**STATIC_CONFIRMED and LOCAL_SIMULATION_PASS in scope.** The English-locale fallback for the Era Dialogue project reported that cumulative Tourism had yet to be implemented. It now resolves to the same shipped description as Simplified Chinese. The project adds five percentage points per distinct eligible era at completion to original Great Work Tourism. The text still identifies the start-era quota, interruption behavior and the separate Meaning Extension output.
+
+**Runtime impact.** The existing UpdateText action loads one corrected row. The gameplay effect, project eligibility, history, completion and native writes follow their existing paths. The two source build markers advance for this text change.
+
+**Reproduction.** In an in-memory SQLite LocalizedText table, run the modinfo-selected DialogueProjects text SQL from `4a2b5451` and B495. The English-locale project description is the sole changed row and equals the existing Chinese text. Use CPython 3.14.8, Lupa 2.8 and the SHA256-pinned read-only B413 HD gameplay database described in S0903. With DevelopmentTests on PYTHONPATH run `python3.14 -B -m unittest test_refactor_s9b2.Catalogue test_refactor_s9b2.CurrentUI test_refactor_s9b2.Completion test_pu09_marker_roots.DialogueMarkers test_refactor_a8.EightEras test_refactor_s9e10` (39 methods pass). The separate legacy Dialogue Effects suite reports the same five failing methods against B494 and B495. Those methods are outside the passing selection.
+
+All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace checks pass. B495.522 package SHA256 `2eee46dafa9d59091c4e3f9fccf68dc32d0009536f184f6d3b1cc5c82ead3319` across 337 files. The existing stable B489.516 native evidence remains scoped to its installed build.
 
 ### Localize timed project previews and progress labels — S1055
 

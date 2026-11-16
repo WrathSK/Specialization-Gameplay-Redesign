@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1055",
-    "runtime": "B494.521 / modinfo521",
+    "status": "S1056",
+    "runtime": "B495.522 / modinfo522",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Localize the fixed preview, status and progress text of Claim, Era Dialogue and Engineering Study in the existing presentation path.",
+  "goal": "Correct the single obsolete project help row using the existing shipped Chinese description.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Correct the shipped Era Dialogue project description — S1056",
+      "reason": "S1056 verifies the correction of the obsolete English-locale fallback for the Era Dialogue project."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -714,6 +720,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B495 passes 39 selected current Dialogue, marker, eight-era and timed-project display methods. In-memory SQL comparison verifies one changed row.",
     "B494 passes 73 display, queue and panel methods and 123 timer methods. Forty-eight existing renders match B493 exactly.",
     "B493 passes 59 queue/production-panel methods and 53 UI permit/client methods. All 28 shipped queue messages match B492 in both languages.",
     "B492 passes 44 scoped presentation methods and matches 352 B491 tooltip strings byte-for-byte. Twelve draft placements were tested in memory.",
@@ -5031,6 +5038,19 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#localize-timed-project-previews-and-progress-labels--s1055"
+    },
+    "b495_dialogue_project_description": {
+      "build": "B495.522 / modinfo522",
+      "baseline": "4a2b545111c07eae32f8e121d40de0f22f6138ce",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 39,
+      "changed_text_rows": 1,
+      "inherited_legacy_effect_suite_failures": 5,
+      "package_sha256": "2eee46dafa9d59091c4e3f9fccf68dc32d0009536f184f6d3b1cc5c82ead3319",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#correct-the-shipped-era-dialogue-project-description--s1056"
     }
   }
 }

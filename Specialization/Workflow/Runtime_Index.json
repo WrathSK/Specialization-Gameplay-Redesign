@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "2b546a0a8383fdd9c201e6d947c161e0602c1053a946f9440d66e0b0848d0888",
+      "sha256": "14efe09c3553251b6c1528b2c49c880be89ce8eda8b9b7bd21c51b42be0e2037",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
+      "provenance": "S1056/B495.522 the corrected shipped Era Dialogue project fallback and source build identity."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "2336f596e65f34919de909067ec41a1293e5f4d6091900973042df5d5bfc126b",
+      "sha256": "d91885cbdcbce4bac43ca513f534d3f13e3bf3d08457fc159f8fa2c323cf730a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
+      "provenance": "S1056/B495.522 the corrected shipped Era Dialogue project fallback and source build identity."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -901,9 +901,9 @@
       "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
     },
     "Mod/Text/DialogueProjects.sql": {
-      "sha256": "59d6a739740d9ab93cb5a87d93ef0d729168ef16c1c257962fb0e0971ee94a17",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+      "sha256": "d39a72198100362a08385b632061a043974a9528ffa03e667fd021dc02f5fac3",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1056/B495.522 the corrected shipped Era Dialogue project fallback and source build identity."
     },
     "Mod/Text/EngineeringStudy.sql": {
       "sha256": "5865a1136028a230e5acbf2d38012fa1e9d0155d5550d8a354f2d9b165917ef4",
