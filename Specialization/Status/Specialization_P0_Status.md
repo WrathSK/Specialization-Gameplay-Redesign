@@ -1,28 +1,40 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1057
-Implementation Build: B496.523 / modinfo523 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1058
+Implementation Build: B497.524 / modinfo524 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: UNIT_ACTION_TOOLTIP_LOCAL_PASS
+Work State: LOCALIZATION_ENGINEERING_LOCAL_PASS_COPY_REVIEW_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B496.523 on develop](#localize-construction-crew-and-settler-action-tooltips--s1057). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B497.524 on develop](#localize-capital-investment-status-and-prepare-the-institution-copy-review--s1058). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B496.523 has local Crew and Settler tooltip and action coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Finish the Capital Investment panel's fixed status and reputation text, then present the ready institution descriptions for Owner copy selection. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B497.524 has local Capital Investment display, transaction and unit tooltip coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Owner copy selection is ready for the sixteen institution descriptions in both languages. Apply only approved text in the subsequent slice. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Localize Capital Investment status and prepare the institution copy review — S1058
+
+**LOCAL_SIMULATION_PASS in scope.** Capital Investment statuses, unavailable reasons, and current and locked reputation descriptions resolve through the existing Commerce language table. The English locale also gains the two existing mode-comparison briefs as fallback text. All existing locale rows are preserved. Twenty-nine existing render cases per locale match B496. A synthetic language change leaves a blocked confirmation blocked, then sends exactly one request after the existing view restores eligibility. Unknown reasons and stages keep their existing presentation fallback.
+
+**Runtime impact.** Fixed messages are looked up in the current sidebar render. Quotes, locked terms, admission, reply handling, native events, deductions, settlements and their triggers belong to their existing owners. There are no new game reads, requests, refresh triggers or persisted fields.
+
+**Reproduction.** Use CPython 3.14.8, SQLite, Lupa 2.8 and DevelopmentTests on PYTHONPATH. Run `python3.14 -B -m unittest test_b262_capital_sidebar test_refactor_s6e.UIQuotes test_refactor_s6e.RetainedSidebar test_pu06c_capital_terms test_refactor_s9c4b.Localization` (63 methods). The test sidebar supplies the existing per-mode admission fields, which restores five failing test invocations on the earlier shared fixture without altering their assertions. The historical B241 package assertion for fixed sidebar control IDs predates the instance-based sidebar and fails on both versions. The two new locale methods also pass under the S6e restricted Lua 5.1 profile. The B496 source fails the new localized-output check.
+
+**Copy review.** The local Chinese and English review drafts supply 16 help bodies apiece. Rendering 352 tooltips with the real Lua 5.1 presentation code covers active, inactive, preview, unresolved and legacy states. All six live readings per language have a valid insertion location, and the 15 icon names used in the help bodies exist in the official font data. The drafts remain local review inputs. The proposed Commercialization wording can retain local depth as a decision-relevant input, and Standardization can identify the domestic network as its route boundary. Selecting the final copy belongs to the Owner.
+
+**STATIC_CONFIRMED.** All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace checks pass. B497.524 package SHA256 `071dc23ffd16647d2557f52b4fb6c363606ba4f8685e58f46295a06e26e3ec76` across 337 files. The installed B489.516 hash and scoped native evidence remain the current stable baseline.
 
 ### Localize Construction Crew and Settler action tooltips — S1057
 

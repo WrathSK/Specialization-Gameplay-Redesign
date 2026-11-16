@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1057",
-    "runtime": "B496.523 / modinfo523",
+    "status": "S1058",
+    "runtime": "B497.524 / modinfo524",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Localize fixed Crew and Settler action tooltips in their existing UI renderer.",
+  "goal": "Localize fixed Capital Investment UI status and validate the institution review surface.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Localize Capital Investment status and prepare the institution copy review — S1058",
+      "reason": "S1058 verifies localized Capital Investment UI status and locked terms, and prepares the sixteen institution descriptions for separate Owner review."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -726,6 +732,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B497 passes 63 selected display and Capital transaction methods. Fifty-eight Capital display comparisons match the baseline. The 32 draft bodies pass the institution renderer trial in memory.",
     "B496 passes 67 selected unit UI, transport, native-fragment and policy methods. Sixteen tooltip comparisons match B495.",
     "B495 passes 39 selected current Dialogue, marker, eight-era and timed-project display methods. In-memory SQL comparison verifies one changed row.",
     "B494 passes 73 display, queue and panel methods and 123 timer methods. Forty-eight existing renders match B493 exactly.",
@@ -5073,6 +5080,22 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#localize-construction-crew-and-settler-action-tooltips--s1057"
+    },
+    "b497_capital_ui_localization": {
+      "build": "B497.524 / modinfo524",
+      "baseline": "9aaf3b74548e736eb2347ffac25cde09a691b6ee",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 63,
+      "identical_shipped_capital_render_traces": 58,
+      "fixed_localized_entries": 28,
+      "additional_english_locale_fallbacks": 2,
+      "review_only_institution_help_entries": 32,
+      "review_only_institution_tooltip_renders": 352,
+      "package_sha256": "071dc23ffd16647d2557f52b4fb6c363606ba4f8685e58f46295a06e26e3ec76",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#localize-capital-investment-status-and-prepare-the-institution-copy-review--s1058"
     }
   }
 }

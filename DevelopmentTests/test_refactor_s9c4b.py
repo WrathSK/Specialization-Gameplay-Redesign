@@ -1,5 +1,5 @@
 """UNIT_VIEW consumer and negative delivery; independent of terminal ACTION."""
-from contextlib import contextmanager,nullcontext
+from contextlib import closing,contextmanager,nullcontext
 from hashlib import sha256
 from pathlib import Path
 from unittest.mock import patch
@@ -40,7 +40,7 @@ class Differential(unittest.TestCase):
   self.assertEqual(helpers(old),helpers(current))
 
 def unit_translations(language):
- with sqlite3.connect(':memory:') as db:
+ with closing(sqlite3.connect(':memory:')) as db:
   db.execute('CREATE TABLE LocalizedText(Language TEXT, Tag TEXT, Text TEXT, PRIMARY KEY (Language,Tag))')
   db.executescript((ROOT/'Mod/Text/TestText.sql').read_text())
   return dict(db.execute("SELECT Tag, Text FROM LocalizedText WHERE Language=? AND (Tag GLOB 'LOC_SPC_UNIT_*' OR Tag GLOB 'LOC_SPC_CREW_BASE_*' OR Tag GLOB 'LOC_SPC_INST_*')",(language,)))

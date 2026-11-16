@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "2e6c9e7e03f749b0bf1bcae8afc2e638e6da93f7298c55441596aa9c3c5dfeeb",
+      "sha256": "2c1b5dbdeb5c5dcd5d1dca6a63d26da287c74c213415ba9fb342c625e51672e1",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1057/B496.523 unit action tooltip locale keys and test-verified unchanged display values and work."
+      "provenance": "S1058/B497.524 Capital Investment UI status and scoped language changes with exact render comparisons."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "04dbc9ce14065d470822a383832ea27455a04dd94437fa990e7df066aa998b3f",
+      "sha256": "5517492adbb92a13d616534636f959fda719a00b43402ea8f44bfa953a94c657",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1057/B496.523 unit action tooltip locale keys and test-verified unchanged display values and work."
+      "provenance": "S1058/B497.524 Capital Investment UI status and scoped language changes with exact render comparisons."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -891,9 +891,9 @@
       "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/Text/Commerce.sql": {
-      "sha256": "52615f5837a62467847741ae01f37d30fe2d0035581e6c6c6216cd6b8474cb9e",
+      "sha256": "98240f3189f8d98f4f5598e3044ae5a97b02f339d512b0471f60879937dd226b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1035 completes the local S1032 follow-up through B488. The cold startup, confirmed-source and status cases remain covered. The current turn duties and live B476 remain."
+      "provenance": "S1058/B497.524 Capital Investment UI status and scoped language changes with exact render comparisons."
     },
     "Mod/Text/DevelopmentInvestment.sql": {
       "sha256": "3b705eb02457d81262653d9c10d04aa5019d34fc9b61ab8df14f6dc3d6189a1c",
@@ -1096,9 +1096,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CapitalInvestmentPanel.lua": {
-      "sha256": "33b4e7344b71045931e4444903cefc39623b170f3f0f9a8d2238c5aea5963fce",
+      "sha256": "40c8dd8789f35d5ef13f87561c06b2e52e905954ead0b330b1421e59c9c29d65",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0882/B407.434 PU06c:typed per-mode terms,shared current R and locked source,Capital3 requires new campaign.113local PASS incl37new,strict once-only cash retained;exact legacy test-only profiles documented.2labels only;no deployment/native claim."
+      "provenance": "S1058/B497.524 Capital Investment UI status and scoped language changes with exact render comparisons."
     },
     "Mod/UI/CapitalInvestmentPanel.xml": {
       "sha256": "ff0bcf91a2c7725fa69f717f55b1305d97bac389c9617442d311d8e59b1d4dfc",
