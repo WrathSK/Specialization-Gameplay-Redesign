@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1052",
-    "runtime": "B491.518 / modinfo518",
+    "status": "S1053",
+    "runtime": "B492.519 / modinfo519",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Restore version-specific test replays and retain live regression scope.",
+  "goal": "Give institution headings and requirements a localized level label while preserving shipped presentation.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Localize institution level labels — S1053",
+      "reason": "Localized level rendering, exact comparison and stable evidence boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -696,6 +702,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B492 passes 44 scoped presentation methods and matches 352 B491 tooltip strings byte-for-byte. Twelve draft placements were tested in memory.",
     "S1052 passes 123 timed-project, 43 institution and 19 return/marker methods. Four source pins separate historical assertions from current checks.",
     "S1051 passes 112 scoped queue and acquisition methods. The 123-method comparison goes from 49 case errors to 3 inherited errors.",
     "B491 passes 40 scoped presentation checks and matches 352 baseline tooltip strings byte-for-byte. Twelve draft placements were checked in memory.",
@@ -4962,6 +4969,19 @@
       "runtime_package_changed": false,
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#replay-version-specific-claim-dialogue-and-institution-assertions--s1052"
+    },
+    "b492_institution_level_localization": {
+      "build": "B492.519 / modinfo519",
+      "baseline": "d62239e279e603b1ab2c0366f85ba002954c507a",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 44,
+      "identical_shipped_renders": 352,
+      "review_draft_placements": 12,
+      "package_sha256": "f30b006568dcaf7b80f3468e564bd88944a01d293543d7afa2f403cad695a6ba",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#localize-institution-level-labels--s1053"
     }
   }
 }

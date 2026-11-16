@@ -103,6 +103,20 @@ class MetricPlacement(unittest.TestCase):
     end
     ''')
 
+ def test_translated_heading_and_requirement_share_the_localized_level(self):
+  display('en_US').execute('''
+  loc.LOC_SPC_INST_CULTURE='Culture'
+  loc.LOC_SPC_INST_CATEGORY='{1} Specialization · Level {2} Institution'
+  loc.LOC_SPC_INST_REQUIREMENT='Requires {1} active at Level {2}.'
+  local render=SPCInstitutionPresentation.Tooltip
+  for level=1,4 do
+   loc['LOC_SPC_INST_LEVEL_'..level]=tostring(level)
+   local tip=render(level,v)
+   assert(tip:find('Culture Specialization · Level '..level..' Institution',1,true))
+   assert(tip:find('Requires Culture active at Level '..level..'.',1,true))
+  end
+  ''')
+
  def test_reworded_help_and_missing_or_duplicate_slots_keep_the_metric_visible_once(self):
   display('en_US').execute('''
   v.institutionSummary={known=true,dialogue=35,insights=6}

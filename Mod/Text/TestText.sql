@@ -368,6 +368,14 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC
 
 -- B264: native-style institution presentation; no gameplay definitions.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_INST_LEVEL_1','一'),
+('en_US','LOC_SPC_INST_LEVEL_1','一'),
+('zh_Hans_CN','LOC_SPC_INST_LEVEL_2','二'),
+('en_US','LOC_SPC_INST_LEVEL_2','二'),
+('zh_Hans_CN','LOC_SPC_INST_LEVEL_3','三'),
+('en_US','LOC_SPC_INST_LEVEL_3','三'),
+('zh_Hans_CN','LOC_SPC_INST_LEVEL_4','四'),
+('en_US','LOC_SPC_INST_LEVEL_4','四'),
 ('zh_Hans_CN','LOC_SPC_INST_CATEGORY','{1}专业·{2}级机构'),
 ('en_US','LOC_SPC_INST_CATEGORY','{1}专业·{2}级机构'),
 ('zh_Hans_CN','LOC_SPC_INST_REQUIREMENT','启用需求：{1}专业启用等级达到{2}级。'),

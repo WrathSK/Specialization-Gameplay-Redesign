@@ -121,7 +121,9 @@ function M.Tooltip(index,v)
  elseif type(v.active)=='number' and v.activeStatus~='UNKNOWN' then
   state=v.active>=entry.level and loc('ACTIVE_HELP') or loc('INACTIVE_HELP')
  end
- local level=({'一','二','三','四'})[entry.level] or tostring(entry.level)
+ local levelKey='LOC_SPC_INST_LEVEL_'..entry.level
+ local level=Locale.Lookup(levelKey)
+ if level==nil or level==levelKey then level=tostring(entry.level) end
  local kind=loc(entry.kind)
  return M.Label(entry,'name')..'[NEWLINE]'..loc('CATEGORY',kind,level)
   ..'[NEWLINE][NEWLINE]'..help(entry,v)

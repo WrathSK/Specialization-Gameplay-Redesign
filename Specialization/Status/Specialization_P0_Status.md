@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1052
-Implementation Build: B491.518 / modinfo518 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1053
+Implementation Build: B492.519 / modinfo519 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: VERSION_SPECIFIC_TEST_REPLAYS_LOCAL_PASS
+Work State: INSTITUTION_LEVEL_LOCALIZATION_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B491.518 on develop](#place-live-institution-values-in-localized-descriptions--s1050). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B492.519 on develop](#localize-institution-level-labels--s1053). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B491.518 has local institution, project queue and [version-specific replay coverage](#replay-version-specific-claim-dialogue-and-institution-assertions--s1052). B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Verify that translated institution headings and requirements can format their own tier labels. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B492.519 has local presentation coverage. The [project and historical replay checks](#replay-version-specific-claim-dialogue-and-institution-assertions--s1052) retain their recorded scope. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Continue scoped development on develop. B489.516 remains the stable playtest baseline. Candidate localization copy remains available for the Owner to review. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Localize institution level labels — S1053
+
+**LOCAL_SIMULATION_PASS in scope.** Translated institution category and requirement strings now share the level label supplied by the language table. The B491 renderer uses a Chinese numeral even with an English body and title. The B492 rendering fixture supplies digits 1 through 4 and checks both lines. Both shipped language tables retain their existing level labels and copy. All 352 current tooltip strings match the baseline byte-for-byte in the Lua 5.1 render matrix. Temporary render trials of twelve draft descriptions include the correct numbered headings and requirements in the English samples. Draft adoption belongs to content review.
+
+**Runtime impact.** One locale lookup runs when an existing institution tooltip renders. Missing labels resolve to the numeric tier. The existing institution row, fact and eligibility paths apply and the two output templates share the resolved label.
+
+**Reproduction.** Use CPython 3.14.8, SQLite and Lupa 2.8. With DevelopmentTests on PYTHONPATH, run `python3.14 -B -m unittest test_b251_institutions test_culture_institutions test_b265_city_presentation.EventPresentation test_b265_city_presentation.NativeOverview test_b266_institution_recovery` (44 methods). The run also passes with the display and Store fixtures bound to Lua 5.1. Repeat the S1050 matrix with baseline `d62239e2` and B492; both SQL locale tables extend the baseline by the eight level-label rows.
+
+**STATIC_CONFIRMED.** All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File references and 10 LuaReplace references pass. B492.519 package SHA256 `f30b006568dcaf7b80f3468e564bd88944a01d293543d7afa2f403cad695a6ba` across 337 files. This is a source-only checkpoint. The installed B489.516 package retains the scoped S1047 native evidence.
 
 ### Replay version-specific Claim, Dialogue and institution assertions — S1052
 

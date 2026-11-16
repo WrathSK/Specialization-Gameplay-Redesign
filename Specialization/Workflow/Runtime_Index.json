@@ -656,9 +656,9 @@
       "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "349dd563d18d6f650fd79b0a1f40d3047263d6b9894773081d9b961908f1ccd5",
+      "sha256": "7b15b7e139a7caf9f6e70017583d08172a969136854b232dd9917b5b3f7ad847",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1050/B491.518 scoped institution tooltip placement and exact render validation."
+      "provenance": "S1053/B492.519 institution level label localization and exact rendering comparison."
     },
     "Mod/InvestmentAction.lua": {
       "sha256": "c172e8793367032401f886b511bf9c0523e34ded1a1cccfa8921b9c5d60b3cb6",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "46cbfed524ce3a2b4c945825792ec0f5af929e3af1ef9c083535fd3314a00f8e",
+      "sha256": "f772d7d35736d0caf6bfdc4605d17d5e1caff25abca32ed557bfb18a9f636974",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1050/B491.518 scoped institution tooltip placement and exact render validation."
+      "provenance": "S1053/B492.519 institution level label localization and exact rendering comparison."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "8347a330444c370ce4370946acb2724ad8777cb87b6d75f022d219829040c555",
+      "sha256": "723b77522f5a3c8782bf36368c30cd4666750db61cadf8448f8d2d5002326fa5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1050/B491.518 scoped institution tooltip placement and exact render validation."
+      "provenance": "S1053/B492.519 institution level label localization and exact rendering comparison."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "ddbf9d5ff111d9a44663ac751b2c20bf73d199961c9359224833c59fd160df9a",
+      "sha256": "bd526612a473cd5dab9aba7cb4c33f5fd4224c9bc6afe57fef98a8c4e6afbb0b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1050/B491.518 scoped institution tooltip placement and exact render validation."
+      "provenance": "S1053/B492.519 institution level label localization and exact rendering comparison."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",
