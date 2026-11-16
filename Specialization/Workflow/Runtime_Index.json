@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "f06e7539ef19b39a020ff2c8ee456429270812fce34697a089a0ba45d7280ba3",
+      "sha256": "e6cb34c081de8ac139063662e787ed57271570da57a78a582c149fab9ed5c321",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1065/B504.531 Terra commercial panel wording reviewed against source yields, theoretical prices and the current confirmation states."
+      "provenance": "S1066/B505.532 Terra project and unit names, formation descriptions and restructuring tooltips checked against current owners."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "bba7c63b51e26becfd8299c9f204d8486ede967d27c1102f5b503d10e20178fe",
+      "sha256": "fcffa40597e72602d3454548e31258b50215c2f666877b493de4700b19d3d02f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1065/B504.531 Terra commercial panel wording reviewed against source yields, theoretical prices and the current confirmation states."
+      "provenance": "S1066/B505.532 Terra project and unit names, formation descriptions and restructuring tooltips checked against current owners."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -921,9 +921,9 @@
       "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/Text/Restructuring.sql": {
-      "sha256": "ddd768e49eea61124eb4cf9bbcaf1eaafae6330d1a986125f317789438d8766f",
+      "sha256": "acb5638d7cd07677dab5cded899bb6baf4bda50bb39d68a454e42234bedb7a6b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1059/B498.525 Owner-approved bilingual Terra institution descriptions and presentation labels."
+      "provenance": "S1066/B505.532 Terra project and unit names, formation descriptions and restructuring tooltips checked against current owners."
     },
     "Mod/Text/TestAmerica.sql": {
       "sha256": "1b25966fdccf9fee4f82c81110f841551e168b971dd57139d822ef1ee54b4dd0",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "d04ba16b0369500e3e1e72149b76b6f125e82018a1f78e4942b87f199b0176af",
+      "sha256": "31432536dbe422f3919cf3f5c74dacd9617296e98042ce3fe879ff1fda7fcde1",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1063/B502.529 Terra construction and settler action copy with positional operands and original control layout."
+      "provenance": "S1066/B505.532 Terra project and unit names, formation descriptions and restructuring tooltips checked against current owners."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",

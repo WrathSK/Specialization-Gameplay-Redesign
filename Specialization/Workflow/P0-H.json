@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1065",
-    "runtime": "B504.531 / modinfo531",
+    "status": "S1066",
+    "runtime": "B505.532 / modinfo532",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Apply the reviewed Terra copy to Commercialization and Development Investment.",
+  "goal": "Apply reviewed player-facing Crew and Asset Restructuring text.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Adopt reviewed Crew and Asset Restructuring descriptions — S1066",
+      "reason": "S1066 checks the Crew formation and unit descriptions and the existing Asset Restructuring tooltips against their approved rules and real callbacks."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -774,6 +780,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B505 passes 35 targeted Crew and Asset Restructuring methods. SQLite resolves 30 Crew definition rows in both languages with the correct transfer capacities.",
     "B504 compares the mounted locale catalogue, exercises both current panels in two languages and repeats the commercial contract and routing regressions. One old Development sidebar layout fixture fails identically at B503.",
     "B503 passes 65 selected sidebar, contract term and receipt methods. The mounted catalogue contains all 83 English Capital keys with their original parameters.",
     "B502 passes 68 selected action, receipt, HD and official panel methods. Both English action tooltip cases fail against B501.",
@@ -5253,6 +5260,21 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#adopt-reviewed-commercialization-and-development-investment-copy--s1065"
+    },
+    "b505_crew_restructuring_copy": {
+      "build": "B505.532 / modinfo532",
+      "baseline": "a1a592c81e907300ec89bf3c9cc6cb9f1c86a599",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "regression_methods_pass": 35,
+      "crew_sql_definitions": 30,
+      "changed_locale_rows": 58,
+      "english_rows": 40,
+      "simplified_chinese_rows": 18,
+      "package_sha256": "1f616ae6b7032964a7fd99cb0a0722e73f92934912cf4f8f71e029532d0972b3",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#adopt-reviewed-crew-and-asset-restructuring-descriptions--s1066"
     }
   }
 }

@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1065
-Implementation Build: B504.531 / modinfo531 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1066
+Implementation Build: B505.532 / modinfo532 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: COMMERCIALIZATION_DEVELOPMENT_COPY_LOCAL_PASS_SCOPED
+Work State: CREW_AND_RESTRUCTURING_COPY_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B504.531 on develop](#adopt-reviewed-commercialization-and-development-investment-copy--s1065). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B505.532 on develop](#adopt-reviewed-crew-and-asset-restructuring-descriptions--s1066). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B504.531 has scoped bilingual Commercialization and Development Investment panel coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Review unit and project descriptions for Construction Crews and Asset Restructuring. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B505.532 has local Crew catalogue and Asset Restructuring action coverage in both languages. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Apply the reviewed wording to institution status, city tooltips and banners, then check the current Humanities Expedition text against its mission and travel states. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Adopt reviewed Crew and Asset Restructuring descriptions — S1066
+
+**LOCAL_SIMULATION_PASS in scope.** The five tiers use distinct formation and unit descriptions. The first three unlock at Industry III and the last two at Industry IV. The project copy distinguishes the locked formation cost from the Crew’s base transfer capacity. The unit copy identifies the current Wonder as the target and the no-overflow rule. The formation slot footer counts paused work. Asset Restructuring describes the Potential cost, current penalty, full-turn wait and separate manual allocation.
+
+**Runtime impact (L1).** Existing keys change values. Production costs, admission variants, grants, eligible sites, consumption, identity writes and carrier readback keep their current paths.
+
+**Reproduction.** Use CPython 3.14.8, Lupa 2.8 and the pinned official assets through `SPC_OFFICIAL_ASSETS`. Run `python3.14 -B -m unittest test_pu02_restructuring_ui.Actions test_pu02_restructuring_ui.Restricted test_restructuring_completion test_o4_crew_target_queue test_o4_crew_wonder_site test_b414_crew_unit_panel` (35 methods). A minimal SQLite projection of the current Crew unit and project SQL with the selected speed multipliers resolves every base and speed-variant key in both languages, including base capacity 260 for the legacy tier-I ID. Both localized restructuring tooltips display the correct preview numbers and retain single confirmation after two clicks.
+
+**STATIC_CONFIRMED.** 58 catalogue rows change from `a1a592c8`. 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace references pass. B505.532 package SHA256 `1f616ae6b7032964a7fd99cb0a0722e73f92934912cf4f8f71e029532d0972b3` across 337 files. Source only.
 
 ### Adopt reviewed Commercialization and Development Investment copy — S1065
 
