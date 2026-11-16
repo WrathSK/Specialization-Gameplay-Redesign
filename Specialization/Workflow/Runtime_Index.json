@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "ef0bf0f26fc2b961f5f04162196e3c953373cfa2ce31a60a36224d528ca1da9e",
+      "sha256": "967c851fc0b62f9532b05d2ce0c282ce227417e9c70fcddc242108208750a13f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1061/B500.527 Terra queue and progress copy, plus locale keys for the city panel captions."
+      "provenance": "S1062/B501.528 read-only one-turn project tooltip translation of known reasons and numeric queue counts."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "73ba40019b076f35f76c1b2b7e86ed71ab668f4f193cb7d03aae64ecafe5f0da",
+      "sha256": "6702702c0030bf91056a7f4c6d4b2a01c7c7e20dd79c5eed4a20ac2217d4ba18",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1061/B500.527 Terra queue and progress copy, plus locale keys for the city panel captions."
+      "provenance": "S1062/B501.528 read-only one-turn project tooltip translation of known reasons and numeric queue counts."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "3dc27ac1fb88b0002c09d2858a807bccef4c851662027ff311ff1a5d5cef6d5b",
+      "sha256": "63067e2e448d5d604c177d9943c010e3f999fc97e31ca3089d630fe6dc90cee8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1061/B500.527 Terra queue and progress copy, plus locale keys for the city panel captions."
+      "provenance": "S1062/B501.528 read-only one-turn project tooltip translation of known reasons and numeric queue counts."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",
@@ -1396,9 +1396,9 @@
       "provenance": "S1061/B500.527 Terra queue and progress copy, plus locale keys for the city panel captions."
     },
     "Mod/UI/TimedProjectDisplay.lua": {
-      "sha256": "d6f096bea26a1bc5a74a787e5b6382a536f3357314a3f7c9f904b425a911b3ba",
+      "sha256": "9e9411bf53b3d811177ddbd5f8da3e35e8a6585806e24781241eb7fcd9daff30",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
+      "provenance": "S1062/B501.528 read-only one-turn project tooltip translation of known reasons and numeric queue counts."
     },
     "Mod/UI/TimedProjectRead.lua": {
       "sha256": "33c374e58a90279ee72ac5afc34f306cc26deb22386a974f22c6cbbda8880b17",

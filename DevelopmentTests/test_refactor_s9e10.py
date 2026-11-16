@@ -5,11 +5,59 @@ from refactor_harness import ROOT,Context,measure
 from test_refactor_s7d2 import ui_actual
 
 
-def display(kind='Dialogue'):
- v=ui_actual(kind);v.globals().include('TimedProjectDisplay');return v
+def display(kind='Dialogue', *, language='zh_Hans_CN'):
+ v=ui_actual(kind)
+ if language != 'zh_Hans_CN':
+  from timed_project_ui_fixture import install_project_text
+  install_project_text(v,language)
+ v.globals().include('TimedProjectDisplay')
+ return v
 
 
 class Roles(unittest.TestCase):
+ def test_known_controller_notes_translate_at_the_final_display(self):
+  cases=(
+   ('Claim','1回合；保存读档继续计时','1 full turn. An eligible saved timer can resume after loading.'),
+   ('Dialogue','完整一回合计时中','The 1-turn timer has started.'),
+  )
+  for kind,reason,expected in cases:
+   with self.subTest(kind=kind):
+    display(kind,language='en_US').execute("""
+     local reason,expected=...
+     local w=T.writes()
+     local id=c:GetID()
+     q.target=project
+     local view={stage='ACTIVE',project=project,reason=reason}
+     shared[backendKey].views['0:'..id]=view
+     local turns,note=SPCTimedProjectDisplay.Text(0,id)
+     assert(turns=='1'and note==expected)
+     local item={Type=project,IsCurrentProduction=true,ToolTip='Project description'}
+     SPCTimedProjectDisplay.Items({Owner=0,City=c,ProjectItems={item}})
+     assert(item.TurnsLeft=='1'and item.ToolTip==expected..'[NEWLINE]Project description')
+     assert(view.reason==reason and T.writes()==w and uiBegins==0)
+     view.reason='NATIVE_REASON_UNRECOGNIZED'
+     _,note=SPCTimedProjectDisplay.Text(0,id)
+     assert(note=='NATIVE_REASON_UNRECOGNIZED')
+    """, reason, expected)
+
+ def test_claim_display_preserves_queue_count_and_source_failure_detail(self):
+  display('Claim',language='en_US').execute("""
+   local id=c:GetID()
+   local k='0:'..id
+   local w=T.writes()
+   q.target=project
+   shared.ClaimProjects.views[k]=nil
+   local raw='认领必须为唯一当前目标；队列数量=2'
+   ExposedMembers.SPC_ClaimSelection[k]=raw
+   local label,note=SPCTimedProjectDisplay.Text(0,id)
+   assert(label=='Confirming'and note=='Keep the claim project alone in the Production queue. Items queued: 2')
+   assert(ExposedMembers.SPC_ClaimSelection[k]==raw)
+   raw='启动请求失败：NATIVE_OUTCOME_UNKNOWN'
+   ExposedMembers.SPC_ClaimSelection[k]=raw
+   _,note=SPCTimedProjectDisplay.Text(0,id)
+   assert(note==raw and T.writes()==w and uiBegins==0)
+  """)
+
  def test_localized_project_help_and_timer_are_read_only(self):
   for kind,key in (('Claim','CLAIM'),('Dialogue','DIALOGUE'),('Engineering','STUDY')):
    with self.subTest(kind=kind):

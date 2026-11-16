@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1061",
-    "runtime": "B500.527 / modinfo527",
+    "status": "S1062",
+    "runtime": "B501.528 / modinfo528",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Apply bilingual text for fixed one-turn queue and presentation labels on both supported panels.",
+  "goal": "Use English for the known one-turn project explanations the player sees while retaining the source reason and numeric queue counts.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Localize known one-turn project status explanations — S1062",
+      "reason": "S1062 verifies translation of known Claim and Era Dialogue explanations at the last display step."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -750,6 +756,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B501 passes 119 selected display, queue, panel and project controller methods. Three English display subcases fail against B500.",
     "B500 passes 71 selected queue, panel and role methods. The English city caption check fails with the previous source in both profiles.",
     "B499 passes 114 selected project, queue, production-panel and receipt methods. Mounted SQL resolves both languages for all six registered definitions and changes exactly 18 rows.",
     "B498 passes 68 scoped current tests and 352 Lua 5.1 tooltip renders. The mounted text scripts change exactly 85 rows and retain their complete key set.",
@@ -5165,6 +5172,21 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#adopt-bilingual-production-queue-and-timer-copy--s1061"
+    },
+    "b501_one_turn_project_note_localization": {
+      "build": "B501.528 / modinfo528",
+      "baseline": "173dada200970fbd7a7129dd7ba56b1a9a6475e7",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 119,
+      "known_fixed_reasons": 24,
+      "formatted_queue_reason_types": 2,
+      "new_locale_rows": 52,
+      "baseline_english_subcases": 3,
+      "package_sha256": "6670b7463c6ffd927e73d108b38c946b8431bcf537d742aee4fdadbdaf27f8de",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#localize-known-one-turn-project-status-explanations--s1062"
     }
   }
 }
