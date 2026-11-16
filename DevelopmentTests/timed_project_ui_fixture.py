@@ -21,7 +21,7 @@ def _project_text(sql, language):
   db.execute('CREATE TABLE LocalizedText (Language TEXT, Tag TEXT, Text TEXT, PRIMARY KEY (Language, Tag))')
   db.executescript(sql)
   return dict(db.execute(
-      "SELECT Tag, Text FROM LocalizedText WHERE Language=? AND Tag GLOB 'LOC_SPC_TIMED_QUEUE_*'",
+      "SELECT Tag, Text FROM LocalizedText WHERE Language=? AND (Tag GLOB 'LOC_SPC_TIMED_QUEUE_*' OR Tag GLOB 'LOC_SPC_TIMED_PROJECT_*')",
       (language,),
   ))
 
@@ -33,13 +33,20 @@ def install_project_text(vm, language='zh_Hans_CN'):
  local lookup=Locale and Locale.Lookup
  Locale=Locale or {}
  Locale.Lookup=function(tag,...)
-  return projectTranslations[tag] or (lookup and lookup(tag,...)) or tag
+  local value=projectTranslations[tag]
+  if not value then return (lookup and lookup(tag,...)) or tag end
+  for i=1,select('#',...)do
+   local arg=tostring(select(i,...))
+   value=value:gsub('{'..i..'}',function()return arg end)
+  end
+  return value
  end
  """)
 
 
-def fixture(kind,gp_first=True,connect=False):
+def fixture(kind,gp_first=True,connect=False,*,language='zh_Hans_CN'):
  vm=actual(kind)
+ install_project_text(vm,language)
  def include(name):
   candidates=(ROOT/'Mod/UI'/(name+'.lua'), ROOT/'Mod'/(name+'.lua'))
   p=next((x for x in candidates if x.is_file()),None)

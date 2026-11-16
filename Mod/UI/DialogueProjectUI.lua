@@ -18,17 +18,17 @@ function M.Current(c)
  return c and c:GetOwner()==Game.GetLocalPlayer() and row and c:GetBuildQueue():GetCurrentProductionTypeHash()==row.Hash and M.PROJECT or nil
 end
 function M.Preview()
- return '1','时代对话：需连续占用完整的 1 个回合；完成后按本城合格馆藏覆盖的作品时代数，永久累计巨作原生旅游业绩倍率。'
+ return '1',Locale.Lookup('LOC_SPC_TIMED_PROJECT_DIALOGUE_PREVIEW')
 end
 function M.Text(pid,id)
  local d=(ExposedMembers.SPC_P0 or {}).DialogueProjects;local v=d and d.views[pid..':'..id]
  if v and v.stage=='ACTIVE' then return '1',v.reason end
- if v and v.stage=='CALLING' then return '待确认',v.reason end
- if v and v.stage=='HELD' then return '已暂停',v.reason end
+ if v and v.stage=='CALLING' then return Locale.Lookup('LOC_SPC_TIMED_QUEUE_LABEL_UNCONFIRMED'),v.reason end
+ if v and v.stage=='HELD' then return Locale.Lookup('LOC_SPC_TIMED_QUEUE_LABEL_PAUSED'),v.reason end
  local queueStatus=ExposedMembers.SPC_DialogueQueueStatus
  if type(queueStatus)=='function'then local ok,label,note=pcall(queueStatus,pid,id);if ok and label then return label,note end end
  local c=Players[pid] and Players[pid]:GetCities():FindID(id)
- if M.Current(c)then return '待计时','此项目须独占生产队列并连续占用完整的 1 个回合；计时等待Gameplay确认，未确认时不会完成项目。'end
+ if M.Current(c)then return Locale.Lookup('LOC_SPC_TIMED_PROJECT_DIALOGUE_TIMER_PENDING'),Locale.Lookup('LOC_SPC_TIMED_PROJECT_DIALOGUE_START_PENDING')end
  return M.Preview()
 end
 function M.New(P,send,notify)

@@ -15,14 +15,14 @@ function M.Text(pid,id,project)
  local s=(ExposedMembers.SPC_P0 or {}).ClaimProjects
  local view=s and s.views[tostring(pid)..':'..tostring(id)]
  if view and view.stage=='ACTIVE' and view.project==project then return '1',view.reason end
- if view and (view.stage=='STOPPED' or view.stage=='CALLING')then return '已暂停',view.reason end
+ if view and (view.stage=='STOPPED' or view.stage=='CALLING')then return Locale.Lookup('LOC_SPC_TIMED_QUEUE_LABEL_PAUSED'),view.reason end
  local c=Players[pid] and Players[pid]:GetCities():FindID(id)
  if M.Current(c)==project then
   local v=ExposedMembers.SPC_ClaimSelection and ExposedMembers.SPC_ClaimSelection[tostring(pid)..':'..tostring(id)]
   local sync=ExposedMembers.SPC_ClaimSync and ExposedMembers.SPC_ClaimSync[tostring(pid)..':'..tostring(id)]
-  return '确认中',v or sync or '等待Gameplay确认；若持续如此请查看当前项目提示'
+  return Locale.Lookup('LOC_SPC_TIMED_QUEUE_LABEL_CONFIRMING'),v or sync or Locale.Lookup('LOC_SPC_TIMED_PROJECT_CLAIM_START_PENDING')
  end
- return '1','认领需完整一回合；完成才建立专业。已有未分配生产与项目期间生产不留给后续目标。'
+ return '1',Locale.Lookup('LOC_SPC_TIMED_PROJECT_CLAIM_PREVIEW')
 end
 function M.New(P,send,notify)
  local api={};local pending={};local seen={};local pendingText={}

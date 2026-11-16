@@ -155,12 +155,15 @@ function isOpen()return m_isShowingPanel end
 
 class CityPanelProfiles(unittest.TestCase):
     def test_timed_city_panel_reuses_native_numeric_data_and_scopes_refresh(self):
+        from timed_project_ui_fixture import install_project_text
+
         stock = official('Base/Assets/UI/Panels/CityPanel.lua', 'source_fragments_only')
         production = strip_types(stock[stock.index('\t--Production\n'):stock.index('\t-- Tutorial lockdown')])
         for hd in (False, True):
             with self.subTest(hd=hd):
                 lua = TrackedLua51(unpack_returned_tuples=True)
                 lua.execute(TIMED_SETUP)
+                install_project_text(lua)
                 def base():
                     lua.execute('local MAX_BEFORE_TRUNC_TURN_LABELS=100\nfunction ViewMain(data)\n local widthNumLabel\n' +
                                 production + '\nend')

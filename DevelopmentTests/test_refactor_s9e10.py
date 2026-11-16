@@ -5,11 +5,42 @@ from refactor_harness import ROOT,Context,measure
 from test_refactor_s7d2 import ui_actual
 
 
-def display():
- v=ui_actual('Dialogue');v.globals().include('TimedProjectDisplay');return v
+def display(kind='Dialogue'):
+ v=ui_actual(kind);v.globals().include('TimedProjectDisplay');return v
 
 
 class Roles(unittest.TestCase):
+ def test_localized_project_help_and_timer_are_read_only(self):
+  for kind,key in (('Claim','CLAIM'),('Dialogue','DIALOGUE'),('Engineering','STUDY')):
+   with self.subTest(kind=kind):
+    display(kind).execute("""
+    local kind=...
+    local w=T.writes()
+    projectTranslations['LOC_SPC_TIMED_PROJECT_'..kind..'_PREVIEW']='Localized preview'
+    projectTranslations.LOC_SPC_TIMED_PROJECT_TIMER_ACTIVE='Timer started: one turn'
+    projectTranslations.LOC_SPC_TIMED_PROJECT_TIMER_STATUS='Timer: {1}'
+    local cityKey='0:'..c:GetID()
+    local rows=shared[backendKey].views
+    rows[cityKey]=nil
+    local item={Type=project,IsCurrentProduction=false,ToolTip='Original'}
+    SPCTimedProjectDisplay.Items({Owner=0,City=c,ProjectItems={item}})
+    assert(item.TurnsLeft=='1'and item.Progress==0 and item.ToolTip=='Localized preview[NEWLINE]Original')
+    local function control()return {
+     SetText=function(self,text)self.text=text end,SetPercent=function()end,
+     SetShadowPercent=function()end,SetToolTipString=function(self,note)self.note=note end
+    }end
+    local parent={CurrentProductionCost=control(),CurrentProductionProgressString=control(),
+     CurrentProductionProgress=control(),ProductionIcon=control()}
+    q.target=project
+    rows[cityKey]={stage='ACTIVE',project=project,reason='Authoritative'}
+    SPCTimedProjectDisplay.Current(parent,0,c:GetID())
+    assert(parent.CurrentProductionProgressString.text=='Timer started: one turn')
+    rows[cityKey]={stage='CALLING',project=project,reason='Authoritative'}
+    SPCTimedProjectDisplay.Current(parent,0,c:GetID())
+    assert(parent.CurrentProductionProgressString.text=='Timer: '..(kind=='CLAIM'and '已暂停'or '待确认'))
+    assert(T.writes()==w and uiBegins==0)
+    """,key)
+
  def test_noncurrent_candidate_never_borrows_running_or_held_timer_state(self):
   v=display();v.execute("""
   local views=shared.DialogueProjects.views;local key='0:'..c:GetID();local writes=T.writes()

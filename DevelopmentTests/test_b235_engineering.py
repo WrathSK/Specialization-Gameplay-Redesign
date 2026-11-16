@@ -201,7 +201,9 @@ class Projection(unittest.TestCase):
 
 class StudyUI(unittest.TestCase):
  def setUp(self):
+  from timed_project_ui_fixture import install_project_text
   self.l=study_runtime();self.l.execute('c=S.make();ExposedMembers.SPC_P0=shared')
+  install_project_text(self.l)
   def include(n):
    p=M/(n+'.lua')
    if not p.exists():p=M/'UI'/(n+'.lua')

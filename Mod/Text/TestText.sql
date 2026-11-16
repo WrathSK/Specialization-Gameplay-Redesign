@@ -470,3 +470,32 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_TIMED_QUEUE_HELP_START_REQUEST_UNCONFIRMED','启动请求结果未知；不会盲目重发，请保留日志。'),
 ('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_AWAITING_PROJECT_FACTS','等待专业资格与计时状态确认。'),
 ('en_US','LOC_SPC_TIMED_QUEUE_HELP_AWAITING_PROJECT_FACTS','等待专业资格与计时状态确认。');
+
+-- Timed project previews, current status and production progress text.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_CLAIM_PREVIEW','认领需完整一回合；完成才建立专业。已有未分配生产与项目期间生产不留给后续目标。'),
+('en_US','LOC_SPC_TIMED_PROJECT_CLAIM_PREVIEW','认领需完整一回合；完成才建立专业。已有未分配生产与项目期间生产不留给后续目标。'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_CLAIM_START_PENDING','等待Gameplay确认；若持续如此请查看当前项目提示'),
+('en_US','LOC_SPC_TIMED_PROJECT_CLAIM_START_PENDING','等待Gameplay确认；若持续如此请查看当前项目提示'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_DIALOGUE_PREVIEW','时代对话：需连续占用完整的 1 个回合；完成后按本城合格馆藏覆盖的作品时代数，永久累计巨作原生旅游业绩倍率。'),
+('en_US','LOC_SPC_TIMED_PROJECT_DIALOGUE_PREVIEW','时代对话：需连续占用完整的 1 个回合；完成后按本城合格馆藏覆盖的作品时代数，永久累计巨作原生旅游业绩倍率。'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_DIALOGUE_TIMER_PENDING','待计时'),
+('en_US','LOC_SPC_TIMED_PROJECT_DIALOGUE_TIMER_PENDING','待计时'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_DIALOGUE_START_PENDING','此项目须独占生产队列并连续占用完整的 1 个回合；计时等待Gameplay确认，未确认时不会完成项目。'),
+('en_US','LOC_SPC_TIMED_PROJECT_DIALOGUE_START_PENDING','此项目须独占生产队列并连续占用完整的 1 个回合；计时等待Gameplay确认，未确认时不会完成项目。'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_ACTIVE','工程传统研习：完整一回合后，本城历史层数 +1。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_ACTIVE','工程传统研习：完整一回合后，本城历史层数 +1。'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_COMPLETION_PENDING','原生完成回执待确认；不会重复发放。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_COMPLETION_PENDING','原生完成回执待确认；不会重复发放。'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_REQUIRES_SOLE_ENTRY','工程传统研习必须独占生产队列；移除其他项后自动核对计时。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_REQUIRES_SOLE_ENTRY','工程传统研习必须独占生产队列；移除其他项后自动核对计时。'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_PAUSED','研习未确认，请查看工业历史报告。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_PAUSED','研习未确认，请查看工业历史报告。'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_START_PENDING','请选择为唯一当前项目；中断后需要重新选择。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_START_PENDING','请选择为唯一当前项目；中断后需要重新选择。'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_PREVIEW','需要工业 ACTIVE IV 且本城 L 小于全国 E；中断取消本轮。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_PREVIEW','需要工业 ACTIVE IV 且本城 L 小于全国 E；中断取消本轮。'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_TIMER_ACTIVE','计时已开启：1回合'),
+('en_US','LOC_SPC_TIMED_PROJECT_TIMER_ACTIVE','计时已开启：1回合'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_TIMER_STATUS','计时：{1}'),
+('en_US','LOC_SPC_TIMED_PROJECT_TIMER_STATUS','计时：{1}');

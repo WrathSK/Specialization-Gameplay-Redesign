@@ -10,17 +10,17 @@ function M.Current(c)
 end
 function M.Text(pid,id)
  local d=(ExposedMembers.SPC_P0 or {}).EngineeringStudy;local v=d and d.views[pid..':'..id]
- if v and v.stage=='ACTIVE'then return '1','工程传统研习：完整一回合后，本城历史层数 +1。'end
- if v and v.stage=='CALLING'then return '待确认','原生完成回执待确认；不会重复发放。'end
+ if v and v.stage=='ACTIVE'then return '1',Locale.Lookup('LOC_SPC_TIMED_PROJECT_STUDY_ACTIVE')end
+ if v and v.stage=='CALLING'then return Locale.Lookup('LOC_SPC_TIMED_QUEUE_LABEL_UNCONFIRMED'),Locale.Lookup('LOC_SPC_TIMED_PROJECT_STUDY_COMPLETION_PENDING')end
  if v and v.stage=='HELD'then
-  if v.reason=='EST_SINGLE_PROJECT_REQUIRED'then return '已暂停','工程传统研习必须独占生产队列；移除其他项后自动核对计时。'end
-  return '已暂停','研习未确认，请查看工业历史报告。'
+  if v.reason=='EST_SINGLE_PROJECT_REQUIRED'then return Locale.Lookup('LOC_SPC_TIMED_QUEUE_LABEL_PAUSED'),Locale.Lookup('LOC_SPC_TIMED_PROJECT_STUDY_REQUIRES_SOLE_ENTRY')end
+  return Locale.Lookup('LOC_SPC_TIMED_QUEUE_LABEL_PAUSED'),Locale.Lookup('LOC_SPC_TIMED_PROJECT_STUDY_PAUSED')
  end
  local queueStatus=ExposedMembers.SPC_EngineeringStudyQueueStatus
  if type(queueStatus)=='function'then local ok,label,note=pcall(queueStatus,pid,id);if ok and label then return label,note end end
  local c=Players[pid] and Players[pid]:GetCities():FindID(id)
- if M.Current(c)then return '确认中','请选择为唯一当前项目；中断后需要重新选择。'end
- return '1','需要工业 ACTIVE IV 且本城 L 小于全国 E；中断取消本轮。'
+ if M.Current(c)then return Locale.Lookup('LOC_SPC_TIMED_QUEUE_LABEL_CONFIRMING'),Locale.Lookup('LOC_SPC_TIMED_PROJECT_STUDY_START_PENDING')end
+ return '1',Locale.Lookup('LOC_SPC_TIMED_PROJECT_STUDY_PREVIEW')
 end
 function M.New(P,send,notify)
  local a={};local pending,seen={},{};local revision=-1

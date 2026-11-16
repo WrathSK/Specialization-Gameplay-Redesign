@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1054",
-    "runtime": "B493.520 / modinfo520",
+    "status": "S1055",
+    "runtime": "B494.521 / modinfo521",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Give shared production queue labels and fixed help text locale keys with no lookup on the queue control path.",
+  "goal": "Localize the fixed preview, status and progress text of Claim, Era Dialogue and Engineering Study in the existing presentation path.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Localize timed project previews and progress labels — S1055",
+      "reason": "S1055 verifies locale keys for the three timed-project display adapters and the existing current-production timer label."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -708,6 +714,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B494 passes 73 display, queue and panel methods and 123 timer methods. Forty-eight existing renders match B493 exactly.",
     "B493 passes 59 queue/production-panel methods and 53 UI permit/client methods. All 28 shipped queue messages match B492 in both languages.",
     "B492 passes 44 scoped presentation methods and matches 352 B491 tooltip strings byte-for-byte. Twelve draft placements were tested in memory.",
     "S1052 passes 123 timed-project, 43 institution and 19 return/marker methods. Four source pins separate historical assertions from current checks.",
@@ -5006,6 +5013,24 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#localize-read-only-production-queue-hints--s1054"
+    },
+    "b494_timed_project_display_localization": {
+      "build": "B494.521 / modinfo521",
+      "baseline": "5f733dd8347f6f0de9a8b42ea799d4b7840dd6bf",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": {
+        "display_and_panels": 73,
+        "timer_and_replay": 123
+      },
+      "baseline_counterexample_subcases": 3,
+      "identical_shipped_renders": 48,
+      "fixed_localized_entries": 13,
+      "retained_b235_fixture_failure": 1,
+      "package_sha256": "45509618fecb33025d04b083f5bcea69c4cbf59c25d56be61bcdcead449d4f64",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#localize-timed-project-previews-and-progress-labels--s1055"
     }
   }
 }

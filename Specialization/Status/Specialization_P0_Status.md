@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1054
-Implementation Build: B493.520 / modinfo520 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1055
+Implementation Build: B494.521 / modinfo521 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: PROJECT_QUEUE_HINT_LOCALIZATION_LOCAL_PASS
+Work State: TIMED_PROJECT_DISPLAY_LOCALIZATION_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B493.520 on develop](#localize-read-only-production-queue-hints--s1054). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B494.521 on develop](#localize-timed-project-previews-and-progress-labels--s1055). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B493.520 has local production queue and localized hint coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Localize fixed one-turn project help in the existing render entry. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B494.521 has local display, city panel and timer coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Reconcile the stale shipped Era Dialogue description with the implemented Tourism rule, then check the institution copy for targeted review. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Localize timed project previews and progress labels — S1055
+
+**LOCAL_SIMULATION_PASS in scope.** The existing production list notes and selected-production status for Claim, Era Dialogue and Engineering Study resolve fixed copy from the language table. The current timer label formats its status as one parameter. Eight display inputs per project and two shipped locale tables produce 48 identical render traces against B493. All three synthetic replacement subcases fail on the B493 renderers and pass here.
+
+**Runtime impact.** Locale access runs inside the existing view/render entrypoints. The source, queue and owner state, preview/current selection rules, receipt fields and refresh causes remain with their existing owners. Owner-authored or saved diagnostic reasons continue to reach the authorized display as before.
+
+**Reproduction.** Use CPython 3.14.8, SQLite, Lupa 2.8 and DevelopmentTests on PYTHONPATH. With the official asset input pinned by the profile tests, run `test_b398_queue_recovery test_b399_queue_boundaries.QueueCancellation test_o7_timed_turn_retirement test_o6_production_panel test_o6_city_panel test_refactor_s9e10` plus the three StudyUI methods for load, interrupted click and unchanged publication. This selection runs 73 methods. The fourth standalone B235 StudyUI method fails at the same assertion on both branches. Run `python3.14 -B -m unittest test_refactor_s7d1 test_refactor_s7d2 test_refactor_s7d3b test_refactor_s7d4` for all 123 timer and archived replay methods. For the exact trace compare, render each project in outside queue, unconfirmed current, available, active, calling, held, stopped and sole-entry-required views against the B493 renderers from `5f733dd8`.
+
+**STATIC_CONFIRMED.** All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace references pass. B494.521 package SHA256 `45509618fecb33025d04b083f5bcea69c4cbf59c25d56be61bcdcead449d4f64` across 337 files. Stable B489.516 retains its scoped native evidence.
 
 ### Localize read-only production queue hints — S1054
 

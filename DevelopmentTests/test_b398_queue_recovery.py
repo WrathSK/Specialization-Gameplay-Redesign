@@ -6,14 +6,12 @@ from pathlib import Path
 from unittest.mock import patch
 from refactor_harness import ROOT, Context, TrackedLua51, SOURCES, executed, completion
 from hashlib import sha256
-from test_refactor_s7d2 import ui_actual
-from timed_project_ui_fixture import install_project_text
+from timed_project_ui_fixture import fixture as project_fixture
 from refactor_defect_fixtures import panel
 
 KINDS=('Engineering','Dialogue')
 def fixture(kind, language='zh_Hans_CN'):
-    v=ui_actual(kind)
-    install_project_text(v, language)
+    v=project_fixture(kind,connect=True,language=language)
     v.execute('''
     Players[0].IsTurnActive=function()phaseReads=(phaseReads or 0)+1;if phaseUnknown then error('UNKNOWN_PHASE')end;return phaseActive~=false end
     CityProductionDirectives={PROJECT=3,TRAIN=1}

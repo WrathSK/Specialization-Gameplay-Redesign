@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "9b63c1c7913e5698c8a1d44ae8fe8fd82e7b3d9166cabf9285c3246bad133f29",
+      "sha256": "2b546a0a8383fdd9c201e6d947c161e0602c1053a946f9440d66e0b0848d0888",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1054/B493.520 locale lookup on the existing queue status read and scoped timer and panel regression."
+      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "26622bcfc19e54d226ae579ce64f3276db633b686f2769dbcd115f1639ccef81",
+      "sha256": "2336f596e65f34919de909067ec41a1293e5f4d6091900973042df5d5bfc126b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1054/B493.520 locale lookup on the existing queue status read and scoped timer and panel regression."
+      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "2433b2e470ef62780b4369c7767d2dd5a3a9f798e0e0ee1da069266a38d1c267",
+      "sha256": "e5273e914818769d860f3f518de0f25184b85de1146896a38fff7b2018ec480f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1054/B493.520 locale lookup on the existing queue status read and scoped timer and panel regression."
+      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",
@@ -1141,9 +1141,9 @@
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
     "Mod/UI/ClaimProjectUI.lua": {
-      "sha256": "c727c46d9eaebfb21717ff243a4ed519f90c2e50be8f9bcb65257e914e0ba383",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B327_Refactor_S7d3b.md",
-      "provenance": "B327.354 Replace project SYNC retries with explicit readiness; local/static evidence only; no deployment/native PASS."
+      "sha256": "3c81e736fd27d268e4897f8264a5acb1d43785b4a13df5ade4ab71d6a83ab167",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
     },
     "Mod/UI/CommercePanel.lua": {
       "sha256": "244b77b6b3bef22734dcd8cd945aea010f1cd92e0a2539d4a2cb26e68704983d",
@@ -1201,9 +1201,9 @@
       "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/DialogueProjectUI.lua": {
-      "sha256": "2399b85f2661871cf642087f3b31270008e07de1f8a58f3ef5153fc7e94cab29",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-      "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas."
+      "sha256": "d570f52eb51bbd5e7b9040f7dc75a850e64ba5fc654a08728b38398d50de3526",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
     },
     "Mod/UI/DialogueRefresh.lua": {
       "sha256": "274d7491240789affb0ac7d47e222c0180c1b7489a700afa745dc0f3e5ba5876",
@@ -1226,9 +1226,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/EngineeringStudyUI.lua": {
-      "sha256": "6253382de02b9dc2be45c8c97ac2f9613c4bf1efe957a8cd042292fc8b2e42f1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-      "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas."
+      "sha256": "8105be168e9756643e4f18808a7b92abdaa592b72d1cb863947ebc8a29c3e558",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
     },
     "Mod/UI/ExpeditionGateWindow.lua": {
       "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
@@ -1396,9 +1396,9 @@
       "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
     },
     "Mod/UI/TimedProjectDisplay.lua": {
-      "sha256": "37b7a40fe88b530682b88f8b9434cc0b3ccd26fe91475e388665512602e23423",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B383_Refactor_S9e10.md",
-      "provenance": "B383.410 Separate Dialogue candidate preview from current timer status; local/static evidence only; no deployment/native PASS."
+      "sha256": "d6f096bea26a1bc5a74a787e5b6382a536f3357314a3f7c9f904b425a911b3ba",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
     },
     "Mod/UI/TimedProjectRead.lua": {
       "sha256": "33c374e58a90279ee72ac5afc34f306cc26deb22386a974f22c6cbbda8880b17",
