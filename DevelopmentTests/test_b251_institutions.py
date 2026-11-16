@@ -71,6 +71,55 @@ class Presentation(unittest.TestCase):
    ViewPanelBreakdown({Owner=0,City=city,BuildingsAndDistricts={}});assert(Controls.InstitutionContainer.hidden)
   """)
 
+class MetricPlacement(unittest.TestCase):
+ def test_each_shipped_language_places_one_metric_at_its_slot(self):
+  for language in ('zh_Hans_CN','en_US'):
+   with self.subTest(language=language):
+    display(language).execute('''
+    local m=SPCInstitutionPresentation
+    local abilities={
+     RESEARCH={[4]=true}, COMMERCE={[4]=true},
+     CULTURE={[3]=true,[4]=true}, INDUSTRY={[3]=true,[4]=true}
+    }
+    v.institutionSummary={known=false}
+    local slot='@SPC_METRIC@'
+    for kind,levels in pairs(abilities)do
+     v.specialization=kind
+     for level,row in ipairs(m.GetRows(v))do
+      local help=loc[row.text]
+      local tip=m.Tooltip(level,v)
+      assert(not tip:find(slot,1,true),row.text)
+      if levels[level]then
+       local at=assert(help:find(slot,1,true),row.text)
+       assert(not help:find(slot,at+#slot,true),row.text)
+       local prefix=help:sub(1,at-1)
+       local actual=assert(tip:find(prefix,1,true),row.text)
+       assert(tip:sub(actual+#prefix):find('[NEWLINE][COLOR:',1,true)==1,row.text)
+      else
+       assert(not help:find(slot,1,true),row.text)
+      end
+     end
+    end
+    ''')
+
+ def test_reworded_help_and_missing_or_duplicate_slots_keep_the_metric_visible_once(self):
+  display('en_US').execute('''
+  v.institutionSummary={known=true,dialogue=35,insights=6}
+  local tag='LOC_SPC_CULTURE_INSTITUTION_3_HELP'
+  local slot='@SPC_METRIC@'
+  local render=SPCInstitutionPresentation.Tooltip
+  local value=Locale.Lookup('LOC_SPC_INST_DIALOGUE_VALUE',35)
+  loc[tag]='Dialogue of Eras:[NEWLINE]Completion adds Tourism.'..slot
+    ..'[NEWLINE][NEWLINE]Cultivated Taste[NEWLINE]Other benefits.'..slot
+  local tip=render(3,v)
+  local at=assert(tip:find(value,1,true))
+  assert(at<tip:find('Cultivated Taste',1,true))
+  assert(not tip:find(value,at+#value,true)and not tip:find(slot,1,true))
+  loc[tag]='Older translation without a slot.'
+  tip=render(3,v)
+  assert(tip:find(loc[tag],1,true)<tip:find(value,1,true))
+  ''')
+
 class StoreSummary(unittest.TestCase):
  def runtime(self):
   l=fixture();l.execute('T.start();c=T.research(1);other=T.fresh(2);T.register(other);T.complete(other,"DISTRICT_THEATER");st=shared.CityProgressionStore');return l

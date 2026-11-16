@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1049
-Implementation Build: B490.517 / modinfo517 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1050
+Implementation Build: B491.518 / modinfo518 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: TIMED_PROJECT_QUEUE_STATE_LOCAL_PASS
+Work State: INSTITUTION_TOOLTIP_PLACEMENT_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B490.517 on develop](#separate-timed-project-queue-recovery-from-display-text--s1049). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B491.518 on develop](#place-live-institution-values-in-localized-descriptions--s1050). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B490.517 has scoped local queue and production-panel coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Give dynamic institution values explicit placement in localized tooltips. B489.516 remains the stable playtest baseline. |
+| Validation | B491.518 has scoped local institution rendering and presentation coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Continue scoped development on develop. B489.516 remains the stable playtest baseline. The localization drafts remain available for content review. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Place live institution values in localized descriptions — S1050
+
+**LOCAL_SIMULATION_PASS in scope.** The localized description sets the position of the live value for Academic Tradition, Commercial Reputation, Dialogue of Eras, Humanities Expedition, Standardization and Engineering Tradition. A missing marker displays the value at the end. An extra marker produces one value at the first position. The same selected-city render uses the existing figures, pending state, colors and formatting. Chinese and English review paragraphs place all six values correctly in an in-memory trial.
+
+**Runtime impact.** The same institution detail and overview callers pass their existing read-only view into the renderer. A literal search in the existing help string replaces the heading lookup. The renderer still draws one value block for each applicable row. The existing refresh, factual inputs, capacity, persistence and engine entrypoints apply. The twelve shipped locale rows change only by a presentation marker.
+
+**Reproduction.** Use CPython 3.14.8, Lupa 2.8 and SQLite on arm64 macOS. With DevelopmentTests on PYTHONPATH, run `python3.14 -B -m unittest test_b251_institutions.Presentation test_b251_institutions.MetricPlacement test_b251_institutions.StoreSummary test_culture_institutions.CultureInstitutionDisplay test_b265_city_presentation.EventPresentation test_b265_city_presentation.NativeOverview test_b266_institution_recovery` (40 methods). The same selection passes when the institution display and Store test fixtures use Lua 5.1. The two new methods reproduce three baseline subcase failures. Two historical B251 package assertions still expect version 278 and a retired display control and fail on both sources.
+
+**Render and package evidence.** Load the two shipped locale tables and run the baseline `ada19ee7` and candidate renderers against identical city views in Lua 5.1. All 352 tooltip strings match byte-for-byte across four professions, both shipped locale tables, known/zero/unknown values, partial facts, paused and preview states, and historic institutions. All 208 Lua files compile with Lua 5.1 and all 32 XML-family files parse. All 666 File and 10 LuaReplace references exist. B491.518 package SHA256 `176aa5f31ea63dfdae23f3f2d069fe676791a5375494fc8691e2da5514b6f822` across 337 files. Stable B489.516 remains installed. This source-only change adds no separate native validation gate.
 
 ### Separate timed-project queue recovery from display text — S1049
 

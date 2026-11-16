@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1049",
-    "runtime": "B490.517 / modinfo517",
+    "status": "S1050",
+    "runtime": "B491.518 / modinfo518",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Separate one-turn project queue recovery from translated display text and preserve the existing admission and turn boundaries.",
+  "goal": "Separate institution value placement from the localized headings while preserving shipped presentation.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Place live institution values in localized descriptions — S1050",
+      "reason": "Scope, exact render comparison, draft placement and local presentation verification"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -678,6 +684,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B491 passes 40 scoped presentation checks and matches 352 baseline tooltip strings byte-for-byte. Twelve draft placements were checked in memory.",
     "B490 passes 58 scoped queue and production-panel checks and 11 Culture catalogue/receipt checks. Three new checks fail on B489. Native validation belongs to a later build test.",
     "S1048 records the stable B489.516 deployment with 337/337 matching files, 21 exact reviewed removals, and the verified B307 rollback package.",
     "S1047 records scoped USER_GAME_TEST_PASS for the B489 HD regression and official focused checks. The official positive Culture Network observation remains open.",
@@ -4896,6 +4903,20 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#separate-timed-project-queue-recovery-from-display-text--s1049"
+    },
+    "b491_institution_tooltip_placement": {
+      "build": "B491.518 / modinfo518",
+      "baseline": "ada19ee7c51c4a8775fbd05a37b6d6caff3e2883",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_tests": 40,
+      "baseline_counterexample_subcases": 3,
+      "identical_shipped_renders": 352,
+      "review_draft_placements": 12,
+      "package_sha256": "176aa5f31ea63dfdae23f3f2d069fe676791a5375494fc8691e2da5514b6f822",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#place-live-institution-values-in-localized-descriptions--s1050"
     }
   }
 }

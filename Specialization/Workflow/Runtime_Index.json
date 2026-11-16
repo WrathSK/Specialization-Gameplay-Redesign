@@ -656,9 +656,9 @@
       "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
     },
     "Mod/InstitutionPresentation.lua": {
-      "sha256": "f3a0a416628100695579faed6fd46251100276023b05935432708851420b32c7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B347_Refactor_S8b7b.md",
-      "provenance": "B347.374 Isolate unavailable Commerce reputation while preserving base Gold; local/static evidence only; no deployment/native PASS."
+      "sha256": "349dd563d18d6f650fd79b0a1f40d3047263d6b9894773081d9b961908f1ccd5",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1050/B491.518 scoped institution tooltip placement and exact render validation."
     },
     "Mod/InvestmentAction.lua": {
       "sha256": "c172e8793367032401f886b511bf9c0523e34ded1a1cccfa8921b9c5d60b3cb6",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "4897ad8828b16ca4fdab71bd5fd6ec3d5d9e3d5022bf1e6ab63bf95475072b12",
+      "sha256": "46cbfed524ce3a2b4c945825792ec0f5af929e3af1ef9c083535fd3314a00f8e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1049/B490.517 typed queue recovery and scoped local build validation."
+      "provenance": "S1050/B491.518 scoped institution tooltip placement and exact render validation."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e28e2eef353f659707ae9c85b57fd6082844aba8a608233831bc944cf6746717",
+      "sha256": "8347a330444c370ce4370946acb2724ad8777cb87b6d75f022d219829040c555",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1049/B490.517 typed queue recovery and scoped local build validation."
+      "provenance": "S1050/B491.518 scoped institution tooltip placement and exact render validation."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -921,9 +921,9 @@
       "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/Text/Restructuring.sql": {
-      "sha256": "ba463cb8f4d3310b8157f0381506cce3f750c49a79678a887dced2b562dbef89",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B264_Institution_Tooltips.md",
-      "provenance": "B264 presentation only: native-style 16 institution descriptions, native icons/Gold metric formatting, unchanged facts/events.12 targeted display methods and scoped local checks PASS; native pending."
+      "sha256": "a05bcb79c9ad61e072948b292d4ef4fa9746df86d4fb51256f0ccd5c9644179d",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1050/B491.518 scoped institution tooltip placement and exact render validation."
     },
     "Mod/Text/TestAmerica.sql": {
       "sha256": "1b25966fdccf9fee4f82c81110f841551e168b971dd57139d822ef1ee54b4dd0",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "875bda6ff408d6a53bc94786425d92fcc1d1c48f3e32901108285327603f23e9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
-      "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
+      "sha256": "ddbf9d5ff111d9a44663ac751b2c20bf73d199961c9359224833c59fd160df9a",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1050/B491.518 scoped institution tooltip placement and exact render validation."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",

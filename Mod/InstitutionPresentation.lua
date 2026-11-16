@@ -59,8 +59,7 @@ local function loc(key,...)return Locale.Lookup('LOC_SPC_INST_'..key,...)end
 local function metric(entry,v)
  local s=v.institutionSummary
  local available=s and s.known==true
- local results={}
- local function add(ability,value)results[#results+1]={title=loc(ability),text=value or loc('PENDING')}end
+ local function display(ability,value)return {title=loc(ability),text=value or loc('PENDING')}end
  if entry.kind=='RESEARCH' and entry.level==4 then
   local t=available and s.traditionKnown~=false and s.tradition
   local value
@@ -70,7 +69,7 @@ local function metric(entry,v)
    if t.nextAge then value=value..'[NEWLINE]'..loc('TRADITION_NEXT',t.nextAge-t.age)end
    if t.state~='COUNTING' then value=value..'[NEWLINE]'..loc('ACCUMULATION_PAUSED')end
   end
-  add('TRADITION',value)
+  return display('TRADITION',value)
  elseif entry.kind=='COMMERCE' and entry.level==4 then
   local t=available and s.reputationKnown~=false and s.reputation;local value
   if available and s.reputationKnown~=false and t==false then value=loc('NOT_STARTED')
@@ -78,10 +77,10 @@ local function metric(entry,v)
    value=loc('REPUTATION_VALUE',t.age,t.age/2)
    if t.state~='COUNTING'then value=value..'[NEWLINE]'..loc('ACCUMULATION_PAUSED')end
   end
-  add('REPUTATION',value)
+  return display('REPUTATION',value)
  elseif entry.kind=='CULTURE' then
-  if entry.level==3 then add('DIALOGUE',available and s.dialogueKnown~=false and loc('DIALOGUE_VALUE',s.dialogue))
-  elseif entry.level==4 then add('EXPEDITION',available and s.insightsKnown~=false and loc('INSIGHTS_VALUE',s.insights))end
+  if entry.level==3 then return display('DIALOGUE',available and s.dialogueKnown~=false and loc('DIALOGUE_VALUE',s.dialogue))
+  elseif entry.level==4 then return display('EXPEDITION',available and s.insightsKnown~=false and loc('INSIGHTS_VALUE',s.insights))end
  elseif entry.kind=='INDUSTRY' then
   if entry.level==3 then
    local value
@@ -95,23 +94,24 @@ local function metric(entry,v)
      end
     else value=value..'[NEWLINE]'..loc('PENDING')end
    end
-   add('STANDARDIZATION',value)
-  elseif entry.level==4 then add('ENGINEERING',available and s.engineeringKnown~=false and loc('ENGINEERING_VALUE',s.engineering,2*s.engineering))end
+   return display('STANDARDIZATION',value)
+  elseif entry.level==4 then return display('ENGINEERING',available and s.engineeringKnown~=false and loc('ENGINEERING_VALUE',s.engineering,2*s.engineering))end
  end
- return results
 end
 local metricColors={RESEARCH='ResScienceLabelCS',CULTURE='ResCultureLabelCS',COMMERCE='ResGoldLabelCS',INDUSTRY='ResProductionLabelCS'}
+-- Place this marker after the relevant ability's localized description.
+local metricSlot='@SPC_METRIC@'
 local function help(entry,v)
  local text=M.Label(entry,'text')
- for _,m in ipairs(metric(entry,v))do
-  local needle=m.title..'：[NEWLINE]';local first=text:find(needle,1,true)
-  local extra='[NEWLINE][COLOR:'..metricColors[entry.kind]..']'..m.text..'[ENDCOLOR]'
-  if first then
-   local finish=text:find('[NEWLINE][NEWLINE]',first+#needle,true) or #text+1
-   text=text:sub(1,finish-1)..extra..text:sub(finish)
-  else text=text..'[NEWLINE][NEWLINE]'..m.title..'：'..extra end
+ local m=metric(entry,v)
+ if not m then return text end
+ local extra='[NEWLINE][COLOR:'..metricColors[entry.kind]..']'..m.text..'[ENDCOLOR]'
+ local first,last=text:find(metricSlot,1,true)
+ if first then
+  local rest=text:sub(last+1):gsub(metricSlot,'')
+  return text:sub(1,first-1)..extra..rest
  end
- return text
+ return text..'[NEWLINE][NEWLINE]'..m.title..'：'..extra
 end
 function M.Tooltip(index,v)
  local entry=M.GetRows(v)[index];if not entry then return '' end

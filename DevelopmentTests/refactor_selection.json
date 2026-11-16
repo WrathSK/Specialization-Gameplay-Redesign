@@ -2657,7 +2657,18 @@
     "Mod/Data/DialogueEffects.sql": [
       "test_refactor_a8"
     ],
+    "Mod/InstitutionPresentation.lua": [
+      "test_b251_institutions.MetricPlacement",
+      "test_b251_institutions.Presentation",
+      "test_culture_institutions.CultureInstitutionDisplay",
+      "test_b265_city_presentation.EventPresentation"
+    ],
+    "Mod/Text/Restructuring.sql": [
+      "test_b251_institutions.MetricPlacement",
+      "test_b251_institutions.Presentation"
+    ],
     "Mod/Text/TestText.sql": [
+      "test_b251_institutions.MetricPlacement",
       "test_refactor_a8"
     ],
     "Mod/FactChanges.lua": [
