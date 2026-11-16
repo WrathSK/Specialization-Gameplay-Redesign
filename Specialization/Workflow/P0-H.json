@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1058",
-    "runtime": "B497.524 / modinfo524",
+    "status": "S1059",
+    "runtime": "B498.525 / modinfo525",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Localize fixed Capital Investment UI status and validate the institution review surface.",
+  "goal": "Apply and verify the approved 16 bilingual institution descriptions and their presentation labels.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Adopt the approved Terra institution copy — S1059",
+      "reason": "S1059 records the Owner-approved Terra institution copy in the two language tables and checks its live readout placement."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -732,6 +738,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B498 passes 68 scoped current tests and 352 Lua 5.1 tooltip renders. The mounted text scripts change exactly 85 rows and retain their complete key set.",
     "B497 passes 63 selected display and Capital transaction methods. Fifty-eight Capital display comparisons match the baseline. The 32 draft bodies pass the institution renderer trial in memory.",
     "B496 passes 67 selected unit UI, transport, native-fragment and policy methods. Sixteen tooltip comparisons match B495.",
     "B495 passes 39 selected current Dialogue, marker, eight-era and timed-project display methods. In-memory SQL comparison verifies one changed row.",
@@ -5096,6 +5103,26 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#localize-capital-investment-status-and-prepare-the-institution-copy-review--s1058"
+    },
+    "b498_approved_terra_institution_copy": {
+      "build": "B498.525 / modinfo525",
+      "baseline": "3ead05dfd9d5d850b90f1b86b7a7c567b812d854",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 68,
+      "restricted_current_presentation_methods": 16,
+      "baseline_counterexamples": 2,
+      "changed_locale_rows": 85,
+      "replaced_help_bodies": 32,
+      "english_names": 16,
+      "lua51_tooltip_renders": 352,
+      "lua51_tooltips_with_metrics": 132,
+      "verified_official_font_icons": 15,
+      "inherited_crew_copy_assertions": 2,
+      "package_sha256": "a44d79718a296c030b261f7791d43bfe8c07ab40446ec079ce65df645ab4a321",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#adopt-the-approved-terra-institution-copy--s1059"
     }
   }
 }

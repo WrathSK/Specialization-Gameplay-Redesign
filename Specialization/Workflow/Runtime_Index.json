@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "2c1b5dbdeb5c5dcd5d1dca6a63d26da287c74c213415ba9fb342c625e51672e1",
+      "sha256": "325d5cfecd4c08ed328224798c161becfc3c1c97fb8fea537b5766b9277c3c8c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1058/B497.524 Capital Investment UI status and scoped language changes with exact render comparisons."
+      "provenance": "S1059/B498.525 Owner-approved bilingual Terra institution descriptions and presentation labels."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "5517492adbb92a13d616534636f959fda719a00b43402ea8f44bfa953a94c657",
+      "sha256": "0581f9b1fc96a0031afa28adbada04556756a8b4909818a02c71545b7eebcc06",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1058/B497.524 Capital Investment UI status and scoped language changes with exact render comparisons."
+      "provenance": "S1059/B498.525 Owner-approved bilingual Terra institution descriptions and presentation labels."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -921,9 +921,9 @@
       "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
     },
     "Mod/Text/Restructuring.sql": {
-      "sha256": "a05bcb79c9ad61e072948b292d4ef4fa9746df86d4fb51256f0ccd5c9644179d",
+      "sha256": "ddd768e49eea61124eb4cf9bbcaf1eaafae6330d1a986125f317789438d8766f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1050/B491.518 scoped institution tooltip placement and exact render validation."
+      "provenance": "S1059/B498.525 Owner-approved bilingual Terra institution descriptions and presentation labels."
     },
     "Mod/Text/TestAmerica.sql": {
       "sha256": "1b25966fdccf9fee4f82c81110f841551e168b971dd57139d822ef1ee54b4dd0",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "b5a538f1fdf0e9297ad658774d176e8f6b9b3c7a836407b7accd26809891f448",
+      "sha256": "0e6f1e07a661ae9a4db9537315b2f494f8e3de42b0f1f5ad46405b1f34f3de07",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1057/B496.523 unit action tooltip locale keys and test-verified unchanged display values and work."
+      "provenance": "S1059/B498.525 Owner-approved bilingual Terra institution descriptions and presentation labels."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",

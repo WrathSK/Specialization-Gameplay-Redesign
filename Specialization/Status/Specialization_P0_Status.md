@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1058
-Implementation Build: B497.524 / modinfo524 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1059
+Implementation Build: B498.525 / modinfo525 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: LOCALIZATION_ENGINEERING_LOCAL_PASS_COPY_REVIEW_READY
+Work State: APPROVED_INSTITUTION_COPY_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B497.524 on develop](#localize-capital-investment-status-and-prepare-the-institution-copy-review--s1058). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B498.525 on develop](#adopt-the-approved-terra-institution-copy--s1059). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B497.524 has local Capital Investment display, transaction and unit tooltip coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Owner copy selection is ready for the sixteen institution descriptions in both languages. Apply only approved text in the subsequent slice. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B498.525 has local bilingual institution presentation, era limits and shared unit tooltip coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Verify the remaining Terra production-project text against the current queue and reward rules for a separate copy selection. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Adopt the approved Terra institution copy — S1059
+
+**Owner decision and implementation.** The Owner approved the latest 6.1 Terra Chinese and English drafts for all 16 institutions. The existing language tables now load the selected introductions and help. This includes the English names, institution state badges, levels, and live reading labels for that surface. English specialization names also reach the existing shared Settler preview label. The agreed descriptions mention local infrastructure depth for Commercialization and the domestic specialization network for Standardization. The English Academic Tradition and Commercial Reputation readouts explicitly name the Active Level 4 condition when displaying accrued values.
+
+**Runtime impact (L1).** Copy and build identity change. The existing city presentation and unit hover paths read these locale rows through their existing keys and place all six metrics through the existing markers. Institution identity, icons, state classification, fact and value sources, eligibility, production timing and package load actions remain with their existing owners. No new reads, listeners, state or writes.
+
+**LOCAL_SIMULATION_PASS in scope.** Use CPython 3.14.8, SQLite, Lupa 2.8, DevelopmentTests on PYTHONPATH and the pinned read-only B413 HD gameplay DB. Run `python3.14 -B -m unittest test_b251_institutions test_culture_institutions test_b265_city_presentation.EventPresentation test_b265_city_presentation.NativeOverview test_b266_institution_recovery test_refactor_a8.EightEras test_refactor_s9c4b.Differential test_refactor_s9c4b.Localization test_refactor_s9c4b.Consumer test_refactor_s9c4b.Producer`. All 68 methods pass. The 16 current presentation methods also pass under Lua 5.1. Both new English cases fail with the B497 SQL. The original unchanged-copy unit evidence replays the B495/B496 pair. Current unit assertions use the approved English specialization label. The current A8 copy check confirms +3% per era and the eight-era +24% equivalent in both locales. The two pre-existing B238 English token assertions fail on B497 and B498 and are outside the passing selection.
+
+**STATIC_CONFIRMED.** Apply the manifest's text SQL in an empty in-memory LocalizedText table and compare the resulting key/value map with `3ead05df`. Only 85 existing rows differ. All 15 icon names exist in the official font definitions. The real institution renderer produces 352 tooltips across the two languages, including 132 with one live reading at its intended position. The matrix covers current, inactive, preview, unresolved and historical states. All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace references pass. B498.525 package SHA256 `a44d79718a296c030b261f7791d43bfe8c07ab40446ec079ce65df645ab4a321` across 337 files. The verified installed build is B489.516. Native typography and layout have no new evidence in this source-only slice.
 
 ### Localize Capital Investment status and prepare the institution copy review — S1058
 

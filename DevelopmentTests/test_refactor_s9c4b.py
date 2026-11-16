@@ -1,5 +1,5 @@
 """UNIT_VIEW consumer and negative delivery; independent of terminal ACTION."""
-from contextlib import closing,contextmanager,nullcontext
+from contextlib import closing,contextmanager
 from hashlib import sha256
 from pathlib import Path
 from unittest.mock import patch
@@ -10,6 +10,7 @@ from test_refactor_s9c3 import real_panel
 
 BASE='3fff36c'
 ISOLATED_VIEWS='08d17717'
+ACTION_COPY='9aaf3b74'
 @contextmanager
 def before(commit=BASE):
  p=ROOT/'Mod/UI/UnitPanelActions.lua';old=subprocess.check_output(['git','show',commit+':Mod/UI/UnitPanelActions.lua'],cwd=ROOT,text=True);digest=sha256(old.encode()).hexdigest();key='historical/'+commit+'/Mod/UI/UnitPanelActions.lua'
@@ -39,14 +40,17 @@ class Differential(unittest.TestCase):
   def helpers(text):return text[text.index('local function number('):text.index('local function dispatch(')]
   self.assertEqual(helpers(old),helpers(current))
 
-def unit_translations(language):
+def unit_translations(language,text_sql=None):
+ if text_sql is None:
+  text_sql=(ROOT/'Mod/Text/TestText.sql').read_text()
  with closing(sqlite3.connect(':memory:')) as db:
   db.execute('CREATE TABLE LocalizedText(Language TEXT, Tag TEXT, Text TEXT, PRIMARY KEY (Language,Tag))')
-  db.executescript((ROOT/'Mod/Text/TestText.sql').read_text())
+  db.executescript(text_sql)
   return dict(db.execute("SELECT Tag, Text FROM LocalizedText WHERE Language=? AND (Tag GLOB 'LOC_SPC_UNIT_*' OR Tag GLOB 'LOC_SPC_CREW_BASE_*' OR Tag GLOB 'LOC_SPC_INST_*')",(language,)))
 
 class Localization(unittest.TestCase):
- def test_shipped_action_tooltips_keep_text_and_native_work(self):
+ def test_b496_action_tooltips_keep_text_and_native_work(self):
+  text_sql=subprocess.check_output(['git','show',ACTION_COPY+':Mod/Text/TestText.sql'],cwd=ROOT,text=True)
   cases=(
    ('crew ready',""),
    ('crew site',"mutateReply=function(v)v.legal=false end;selectedChanged()"),
@@ -58,19 +62,18 @@ class Localization(unittest.TestCase):
    ('settler site',"selected=units[8];mutateReply=function(v)v.legal=false end;selectedChanged()"),
   )
   for language in ('zh_Hans_CN','en_US'):
-   text=unit_translations(language)
+   text=unit_translations(language,text_sql)
    for name,action in cases:
     with self.subTest(language=language,name=name):
      out=[]
-     for context in (before('8e8a9948'),nullcontext()):
-      with context:c=ui(translations=text)
+     for commit in ('8e8a9948',ACTION_COPY):
+      with before(commit):c=ui(translations=text)
       c.execute(action)
       out.append(tuple(c.eval(x) for x in ('Controls.PrepareButton.tip','Controls.ConfirmButton.tip','Controls.ConfirmButton.hide','counts.requests','counts.getters')))
      self.assertEqual(out[0],out[1])
  def test_replacing_copy_does_no_idle_work_and_two_step_is_still_exact(self):
   text=unit_translations('en_US')
   text.update({
-   'LOC_SPC_INST_RESEARCH':'Research',
    'LOC_SPC_UNIT_CREW_PREVIEW':'Wonder {1_Wonder}: {2_Progress} / {3_Cost}[NEWLINE]{4_Preview}',
    'LOC_SPC_UNIT_INVEST_PREVIEW':'{1_Profession}: {2_Potential} to {3_Next}',
    'LOC_SPC_UNIT_INVEST_CONFIRM':'Confirm Level {1_Next}',

@@ -103,18 +103,44 @@ class MetricPlacement(unittest.TestCase):
     end
     ''')
 
- def test_translated_heading_and_requirement_share_the_localized_level(self):
+ def test_shipped_english_names_and_tooltip_levels_use_the_same_locale(self):
   display('en_US').execute('''
-  loc.LOC_SPC_INST_CULTURE='Culture'
-  loc.LOC_SPC_INST_CATEGORY='{1} Specialization · Level {2} Institution'
-  loc.LOC_SPC_INST_REQUIREMENT='Requires {1} active at Level {2}.'
-  local render=SPCInstitutionPresentation.Tooltip
-  for level=1,4 do
-   loc['LOC_SPC_INST_LEVEL_'..level]=tostring(level)
-   local tip=render(level,v)
-   assert(tip:find('Culture Specialization · Level '..level..' Institution',1,true))
-   assert(tip:find('Requires Culture active at Level '..level..'.',1,true))
+  local names={
+   RESEARCH={'Scholarly Circle','Institute of Inquiry','Research Consortium','Academic Directorate'},
+   CULTURE={'Arts Society','Patrons’ Guild','Humanities Federation','Academy of the Liberal Arts'},
+   INDUSTRY={'Artisans’ Workshop','Guildhall','Engineering Bureau','Directorate of Civil Engineering'},
+   COMMERCE={'Merchant Settlement','Merchants’ Guild','Exchange','Capital Trust'}
+  }
+  for kind,entries in pairs(names)do
+   v.specialization=kind;LuaEvents.SPC_PresentationChanged()
+   local profession=Locale.Lookup('LOC_SPC_INST_'..kind)
+   assert(#rows.items==4 and Controls.InstitutionHeader.text=='Institutions')
+   for level,name in ipairs(entries)do
+    local row=rows.items[level]
+    local tip=row.Top.tip
+    assert(row.Name.text==name and row.Icon.icon=='ICON_SPC_LEVEL_'..kind..'_'..level)
+    assert(tip:find(profession..' Specialization · Level '..level..' Institution',1,true))
+    assert(tip:find('Requires '..profession..' active at Level '..level..'.',1,true))
+    assert(not tip:find('LOC_SPC_',1,true) and not tip:find('@SPC_METRIC@',1,true))
+   end
   end
+  ''')
+
+ def test_english_preview_and_historical_rows_show_distinct_status_and_accrued_value(self):
+  display('en_US').execute('''
+  v.active=2;v.potential=3
+  v.institutionArchive={RESEARCH=4}
+  v.institutionSummary={known=true,tradition={age=10,percent=10,state='COUNTING'},dialogue=15,insights=2}
+  LuaEvents.SPC_PresentationChanged()
+  local history=rows.items[4]
+  assert(history.Name.text=='Academic Directorate' and history.State.text=='Historical Institution')
+  assert(history.Top.tip:find('Academic Tradition at Active Level 4: +10%',1,true))
+  assert(history.Top.tip:find('Its abilities are not active.',1,true))
+  assert(rows.items[7].State.text=='Inactive')
+  assert(rows.items[8].State.text=='Not yet established')
+  v.active=nil;v.activeStatus='UNKNOWN';LuaEvents.SPC_PresentationChanged()
+  assert(rows.items[7].State.text=='Pending')
+  assert(rows.items[7].Top.tip:find('Active Level awaiting confirmation',1,true))
   ''')
 
  def test_reworded_help_and_missing_or_duplicate_slots_keep_the_metric_visible_once(self):

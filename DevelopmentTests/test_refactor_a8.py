@@ -1,6 +1,7 @@
 """Approved eight-era successor tests. Lua51 + explicit read-only DB memory copy."""
 from pathlib import Path
 import json
+import re
 import sqlite3
 import unittest
 from refactor_harness import Context,ROOT,TrackedLua51,legacy_source_observation,measure
@@ -72,7 +73,19 @@ class EightEras(unittest.TestCase):
     def test_tooltip_both_locales_matches_accepted_maximum(self):
         d=sqlite3.connect(':memory:');d.execute('CREATE TABLE LocalizedText(Language,Tag,Text,PRIMARY KEY(Language,Tag))');d.executescript((ROOT/'Mod/Text/TestText.sql').read_text())
         rows=d.execute("SELECT Language,Text FROM LocalizedText WHERE Tag='LOC_SPC_CULTURE_INSTITUTION_4_HELP'").fetchall();self.assertEqual(len(rows),2)
-        for _,text in rows:self.assertIn('最多8个时代，最高+24%',text);self.assertNotIn('最多7个时代',text)
+        headings={
+            'zh_Hans_CN':('巨作启迪：','每涵盖一个作品时代'),
+            'en_US':('Great Works Inspiration:','for each era represented'),
+        }
+        for language,text in rows:
+            with self.subTest(language=language):
+                heading,per_era=headings[language]
+                ability=text.split(heading+'[NEWLINE]',1)[1].split('[NEWLINE][NEWLINE]',1)[0]
+                self.assertIn(per_era,ability)
+                self.assertIn('[ICON_GreatPerson]',ability)
+                rate,maximum=map(int,re.findall(r'\+(\d+)%',ability))
+                self.assertEqual(rate,3)
+                self.assertEqual(maximum,8*rate)
         d.close()
 
 if __name__=='__main__':unittest.main()
