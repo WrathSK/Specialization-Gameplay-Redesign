@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1048",
-    "runtime": "B489.516 / modinfo516",
+    "status": "S1049",
+    "runtime": "B490.517 / modinfo517",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the verified B489.516 stable deployment and retain the effective native acceptance boundaries.",
+  "goal": "Separate one-turn project queue recovery from translated display text and preserve the existing admission and turn boundaries.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Separate timed-project queue recovery from display text — S1049",
+      "reason": "Scope, baseline counterexamples and local queue and production-panel validation"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -672,6 +678,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B490 passes 58 scoped queue and production-panel checks and 11 Culture catalogue/receipt checks. Three new checks fail on B489. Native validation belongs to a later build test.",
     "S1048 records the stable B489.516 deployment with 337/337 matching files, 21 exact reviewed removals, and the verified B307 rollback package.",
     "S1047 records scoped USER_GAME_TEST_PASS for the B489 HD regression and official focused checks. The official positive Culture Network observation remains open.",
     "B489.516 deployment 337/337 MATCH, with B476 and B307 recovery verified.",
@@ -4873,6 +4880,22 @@
       "pending": false,
       "native": "S1047 USER_GAME_TEST_PASS_SCOPED, identical runtime",
       "report": "Specialization/Status/Specialization_P0_Status.md#b489-stable-playtest-package-deployed--s1048"
+    },
+    "b490_timed_project_queue_state": {
+      "build": "B490.517 / modinfo517",
+      "baseline": "8a6aaa29293fc41ff0250efa3bfcab8cfa0e0726",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_tests": {
+        "queue_and_production_panel": 58,
+        "culture_catalogue_and_receipt": 11
+      },
+      "baseline_counterexamples": 3,
+      "inherited_legacy_fixture_errors_per_side": 16,
+      "package_sha256": "46fc1dee8bb801db8b47c52acceb4f79c2f20c9627215abb334271dcd67b7aa7",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#separate-timed-project-queue-recovery-from-display-text--s1049"
     }
   }
 }

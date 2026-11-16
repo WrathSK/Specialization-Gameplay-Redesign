@@ -14,9 +14,13 @@ function M.New(P,client,kind,send,notify)
   if generation~=client.Generation()then rows,hints,hintKeys={},{},{};hintNext=1;count=0;generation=client.Generation();work=false;localPlayer=nil;seenBackend=nil;seenRevision=nil;seenClosed=nil;seenOpen=nil end
  end
  local function view(k)local b=backend();return b and b.views and b.views[k]end
+ local function reasonCode(v)
+  if kind=='DialogueProjects'then return v.reasonCode end
+  return v.reason -- Engineering Study already publishes stable reason codes.
+ end
  local function viewKey(v)
   if not v then return 'UNKNOWN'end
-  return tostring(v.stage)..':'..tostring(v.reason)..':'..tostring(v.start)..':'..tostring(v.L)..':'..tostring(v.E)..':'..tostring(v.era)..':'..tostring(v.token)..':'..tostring(v.completedID)..':'..tostring(v.cancelledID)
+  return tostring(v.stage)..':'..tostring(reasonCode(v))..':'..tostring(v.start)..':'..tostring(v.L)..':'..tostring(v.E)..':'..tostring(v.era)..':'..tostring(v.token)..':'..tostring(v.completedID)..':'..tostring(v.cancelledID)
  end
  local function window(pid)
   local b=backend();return b and tostring(b.beginClosedTurns and b.beginClosedTurns[pid])..':'..tostring(b.beginOpenTurns and b.beginOpenTurns[pid])or 'UNKNOWN'
@@ -82,7 +86,7 @@ function M.New(P,client,kind,send,notify)
   return v and (v.stage=='USED'or v.stage=='INELIGIBLE')
  end
  local function exhaustedText(v)
-  if v and (v.stage=='USED'or v.reason=='EST_KNOWLEDGE_REACHED')then
+  if v and (v.stage=='USED'or reasonCode(v)=='EST_KNOWLEDGE_REACHED')then
    return kind=='EngineeringStudy'and '已达到当前可研习知识；若队列中仍有项目，请移除。'or '本游戏时代的时代对话机会已使用；若队列中仍有项目，请移除。'
   end
   return '当前专业资格不满足；不会计时或发放奖励。'
@@ -139,10 +143,10 @@ function M.New(P,client,kind,send,notify)
  local function allowedView(v)
   if not v or exhausted(v)or v.stage=='CALLING'then return false end
   if v.stage=='HELD'then
-   local why=v.reason or ''
+   local why=reasonCode(v)
+   if kind=='DialogueProjects'then return why=='DIALOGUE_RELATED_FACT_REQUIRED'end
    return why=='EST_SINGLE_PROJECT_REQUIRED'or why=='EST_RELATED_FACT_REQUIRED'or why=='EST_QUEUE_UNKNOWN'
-    or why:find('生产未确认',1,true)~=nil or why:find('队列必须只有',1,true)~=nil
-   end
+  end
   return v.stage=='AVAILABLE'or v.stage=='ACTIVE'
  end
  local function process(k,p)
@@ -184,7 +188,7 @@ function M.New(P,client,kind,send,notify)
    hint(p,s.index==0 and '已暂停'or '排队中',s.index==0 and '项目必须独占生产队列；移除其他项后自动核对计时。'or '尚未成为唯一当前项目，不计时；轮到后自动核对。')
    p.queue=s.signature;return
   end
-  if not allowedView(v)then hint(p,'待确认',v and v.reason or '等待专业资格与计时状态确认。');return end
+  if not allowedView(v)then hint(p,'待确认');return end
   if v.stage=='ACTIVE'and v.start==s.turn and not p.force then hints[k]=nil;p.waitWindow=nil;p.queue=s.signature;return end
   local b=backend()
   if b.beginClosedTurns and b.beginClosedTurns[p.pid]==s.turn then
@@ -215,7 +219,10 @@ function M.New(P,client,kind,send,notify)
  end
  local status=function(pid,id)
   if not owned()then return end;reset();local k=key(pid,id);local h=hints[k]
-  if h and h.view==viewKey(view(k))then return h.label,h.text end
+  local v=view(k)
+  if h and h.view==viewKey(v)then
+   return h.label,h.text or (v and v.reason) or '等待专业资格与计时状态确认。'
+  end
  end
  ExposedMembers[spec.status]=status
  function d.Close()

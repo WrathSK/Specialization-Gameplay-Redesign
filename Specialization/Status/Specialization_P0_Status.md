@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1048
-Implementation Build: B489.516 / modinfo516. Live stable package from main merge ce497054. Tested runtime source 47b9971.
+Status Revision: S1049
+Implementation Build: B490.517 / modinfo517 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: STABLE_PLAYTEST_B489_DEPLOYED
+Work State: TIMED_PROJECT_QUEUE_STATE_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B489.516 / modinfo516](#b489-stable-playtest-package-deployed--s1048). The installed package matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B490.517 on develop](#separate-timed-project-queue-recovery-from-display-text--s1049). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The planned HD and official Gathering Storm checks are [USER_GAME_TEST_PASS in the observed scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation remains open until a suitable source is available. |
-| Next action | Use B489.516 as the stable playtest baseline. Continue development on `develop` under the existing task and evidence gates. |
+| Validation | B490.517 has scoped local queue and production-panel coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Give dynamic institution values explicit placement in localized tooltips. B489.516 remains the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Separate timed-project queue recovery from display text — S1049
+
+**LOCAL_SIMULATION_PASS in scope.** The Era Dialogue controller publishes a session-only reason code when an active round awaits a relevant fact. The UI uses the code for queue recovery and request deduplication. An error message containing the former trigger phrase cannot grant a begin request. A copy edit cannot resample the queue or resend an unconfirmed begin. A supported queue change still recovers the blocked round and grants a single reward after the confirmed full turn. All three checks fail with the B489 owner and UI source.
+
+**Runtime impact.** The existing owner view supplies one optional scalar to the two opt-in queue policies. These use the existing accepted candidate, city reference, queue reads and lifecycle triggers. Claim, Engineering Study's coded reasons, saved timers, qualification, rewards and completion receipts retain their existing paths. The tooltip reads the latest display reason independently of the queue's request identity. No new listeners, automatic consumers, native reads or persisted fields are introduced.
+
+**Reproduction.** Use CPython 3.14.8 and Lupa 2.8 / Lua 5.1 on arm64 macOS. With DevelopmentTests on PYTHONPATH and the hash-pinned official production panel sources selected via `SPC_OFFICIAL_ASSETS`, run `python3.14 -B -m unittest test_b398_queue_recovery test_b399_queue_boundaries.QueueCancellation test_o7_timed_turn_retirement test_o6_production_panel` (58 methods). Run `python3.14 -B -m unittest test_refactor_s9b2.Catalogue test_refactor_s9b2.CurrentUI test_refactor_s9b2.Completion` (11 methods). The standalone legacy S7d2 selection reproduces 16 old fixture errors on both sources due to its retired CompletionRecordProbe input. It is outside the 69 passing methods.
+
+**STATIC_CONFIRMED.** All 208 package Lua files compile with Lua 5.1 and all 32 XML-family files parse. All 666 File and 10 LuaReplace references exist. B490.517 package SHA256 `46fc1dee8bb801db8b47c52acceb4f79c2f20c9627215abb334271dcd67b7aa7` across 337 files. The source stays on develop. Stable B489.516 remains installed. This batch has no separate native test gate.
 
 ### B489 stable playtest package deployed — S1048
 

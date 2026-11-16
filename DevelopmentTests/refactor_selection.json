@@ -2645,6 +2645,7 @@
       "test_refactor_a8"
     ],
     "Mod/DialogueProjects.lua": [
+      "test_b398_queue_recovery.DialogueQueueView",
       "test_refactor_a8",
       "test_refactor_s7d4",
       "test_refactor_s9b2"
@@ -2858,6 +2859,11 @@
     "Mod/TimedProjects.lua": [
       "test_refactor_s7d1",
       "test_refactor_s7d4"
+    ],
+    "Mod/UI/TimedProjectQueueIntent.lua": [
+      "test_b398_queue_recovery",
+      "test_b399_queue_boundaries.QueueCancellation",
+      "test_o6_production_panel"
     ],
     "Mod/UI/TimedProjectSelectionClient.lua": [
       "test_refactor_s7d2",

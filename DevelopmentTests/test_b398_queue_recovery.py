@@ -243,6 +243,55 @@ def _case(body):
 class Rounds(unittest.TestCase):pass
 for _name,_body in CASES.items():setattr(Rounds,'test_'+_name,_case(_body))
 
+class DialogueQueueView(unittest.TestCase):
+    def test_available_copy_change_does_not_reread_or_resend_an_unknown_begin(self):
+        fixture('Dialogue').execute('''
+        assert(selectList());queue({project});failBegin=true;changedQueue();pumpUI()
+        assert(uiBegins==1 and not pending())
+        local n=entryReads;local v=view(c)
+        assert(v.stage=='AVAILABLE')
+        v.reason='Choose Era Dialogue in the production list.'
+        dp.revision=dp.revision+1;failBegin=false;pumpUI()
+        assert(entryReads==n and uiBegins==1 and not pending())
+        ''')
+
+    def test_unclassified_display_error_cannot_authorize_a_begin(self):
+        fixture('Dialogue').execute('''
+        local read=shared.EffectiveFacts.Read
+        shared.EffectiveFacts.Read=function()error('生产未确认：仅供显示的异常信息')end
+        dp.RefreshAccess(0,c:GetID());shared.EffectiveFacts.Read=read
+        local v=view(c)
+        assert(v.stage=='HELD'and not v.reasonCode and v.reason:find('生产未确认',1,true))
+        assert(selectList());queue({project});ownEventUI();pumpUI()
+        assert(uiBegins==0 and not pending())
+        local label,help=ExposedMembers.SPC_DialogueQueueStatus(0,c:GetID())
+        assert(label=='待确认'and help==v.reason)
+        v.reason='Eligibility is unavailable.'
+        dp.revision=dp.revision+1
+        local n=entryReads;pumpUI()
+        label,help=ExposedMembers.SPC_DialogueQueueStatus(0,c:GetID())
+        assert(label=='待确认'and help==v.reason and entryReads==n and uiBegins==0)
+        ''')
+
+    def test_owner_blocked_round_recovers_from_queue_event_with_reworded_help(self):
+        fixture('Dialogue').execute('''
+        assert(selectList());queue({project});changedQueue();pumpUI();pumpUI()
+        local old=pending().id
+        queue({'WORKER',project});ownEventUI();pumpUI()
+        queue({project,'WORKER'});changedQueue();pumpUI()
+        local v=view(c)
+        assert(v.stage=='HELD'and v.reasonCode=='DIALOGUE_RELATED_FACT_REQUIRED')
+        assert(v.reason=='当前资格或生产未确认；等待相关事件，不完成项目')
+        v.reason='Waiting for a related production event.'
+        queue({project});ownEventUI();pumpUI();pumpUI()
+        assert(uiBegins==2 and pending().stage=='ACTIVE'and pending().id==old)
+        assert(finishes==0 and not ledger(c).used.ERA_CLASSICAL)
+        changedQueue();pumpUI();assert(view(c).stage=='ACTIVE')
+        Events.PlayerTurnDeactivated.Fire(0);T.turn(1);pumpUI()
+        for i=1,10 do ownEventUI();pumpUI()end
+        assert(uiBegins==2 and finishes==1 and ledger(c).used.ERA_CLASSICAL)
+        ''')
+
 class ScopeAndFailure(unittest.TestCase):
     def test_idle_publishes_do_not_even_rescan_candidate_views(self):
         for kind in KINDS:
