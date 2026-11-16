@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1069
-Implementation Build: B508.535 / modinfo535 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1070
+Implementation Build: B509.536 / modinfo536 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: TEST_CIVILIZATION_AND_MOD_LIST_COPY_LOCAL_PASS_SCOPED
+Work State: REVIEWED_BILINGUAL_CATALOGUE_LOCAL_PASS_SCOPED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B508.535 on develop](#adopt-reviewed-test-america-and-mod-list-localization--s1069). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B509.536 on develop](#complete-reviewed-bilingual-catalogue-integration--s1070). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B508.535 has scoped test civilization, Civilopedia alias and bilingual package-metadata coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Compare the adopted release-facing catalogue with the reviewed drafts and the mounted UI text. Close verified remaining copy gaps before updating the current handoff. |
+| Validation | B509.536 has scoped bilingual mounted-catalogue coverage and combined presentation regressions. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Use B509.536 as the locally verified develop localization candidate. Carry native bilingual layout and mod-list rendering into the next scheduled in-game UI review. Continue to use B489.516 for stable play. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Complete reviewed bilingual catalogue integration — S1070
+
+**LOCAL_SIMULATION_PASS in scope.** The final Expedition close/empty-state copy, Era Dialogue readout and effect names load in both languages. The 370 tagged English and 55 tagged Chinese candidate rows resolve against the actual in-game SQL mount order, together with all 16 institution names and descriptions in each locale. Relative to B503, 322 in-game catalogue rows changed and the package gained four metadata strings. The reviewed introductions and ability boundaries remain visible in the current UI.
+
+**Runtime impact (L1).** Updates are to locale values and build identity, with the B508 native package-text registration. Existing mechanics, saved values and raw technical statuses retain their current owners. Known pending and confirmed states still use separate text.
+
+**Reproduction.** Combine the S1065 through S1069 unittest selections, omitting the two Development sidebar `Package` methods and `test_pu02_restructuring_ui.Restricted`. Use CPython 3.14.8, Lupa 2.8, the pinned official assets and B413 HD database. Of 220 methods, 216 pass. The same four methods reproduce the old footer-coordinate stub, two Expedition icon expectations and the old training include stub (eight errors including subcases). The disposable deployment simulation and six removal/rollback tests also pass.
+
+**STATIC_CONFIRMED.** Against `d10def68`, nine final SQL locale rows change and all placeholders are preserved. 208 Lua 5.1 compiles, 34 XML-family parses, 670 File and 10 LuaReplace references pass. B509.536 source SHA256 `300f6e42fd87be500e377e8422ae2faab94c476621d621947229d9b4fe717fc1` across 339 files. The installed 337-file package still matches B489.516. Native rendering and line wrapping of the new language package remain unmeasured.
 
 ### Adopt reviewed Test America and mod-list localization — S1069
 

@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "9a3510281848e6eae0100977aa22adc19b632c9e997865e7fa236e8449121aef",
+      "sha256": "7ac07521fa1a67fac26cd7b4fcb4fc05410f8bb9e2b46980b325a014b54f36db",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
+      "provenance": "S1070/B509.536 Final Terra draft entries used by the Expedition window, Era Dialogue report and effect names."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "e8eb1152b542f17145c412cb3d052f80a2a437f0db52fa1d0091dbc1a02f0fa4",
+      "sha256": "04eab55419e1ceac000e8b9056c5c89510086ad267864b62d19abeed4786db29",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
+      "provenance": "S1070/B509.536 Final Terra draft entries used by the Expedition window, Era Dialogue report and effect names."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -901,9 +901,9 @@
       "provenance": "S1065/B504.531 Terra commercial panel wording reviewed against source yields, theoretical prices and the current confirmation states."
     },
     "Mod/Text/DialogueProjects.sql": {
-      "sha256": "894d151192f1bb081742693985ec7c9eb73bddf260d6a749c1c363a2a0c28752",
+      "sha256": "f857cdf9115e5cf92a3f50339488a072ab2e2a56e68d45c2477b61131b4553fb",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
+      "provenance": "S1070/B509.536 Final Terra draft entries used by the Expedition window, Era Dialogue report and effect names."
     },
     "Mod/Text/EngineeringStudy.sql": {
       "sha256": "a0416a7b407e01c9343c49e08c58e7065679ac5bbe027cfc2db2ac459d1cd7e4",
@@ -911,9 +911,9 @@
       "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "e959a4c75b6e470cd48a97348c534643fb966f605940b2b6b83e2511c1ab4a22",
+      "sha256": "20b2fb28d13d38830266f596cf9037e1322b321efa6c6a5122ccf9b2c82aebd8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1068/B507.534 Terra Expedition wording with the exact current mission eligibility and unknown states."
+      "provenance": "S1070/B509.536 Final Terra draft entries used by the Expedition window, Era Dialogue report and effect names."
     },
     "Mod/Text/LevelBanners.sql": {
       "sha256": "33260475fbc5f197eb0042a9692840932e4a8a9eb7cf3ed9054932089071fa9a",
@@ -931,9 +931,9 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "4cd222e3ba5b34ea0a468dd057b07447101562a3054798bf3dee8f9517be16ac",
+      "sha256": "d77430d814308ad6bd231fd76dac168e14ad3f26c4bec6ecbcaa24eebb04a4cf",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1067/B506.533 Terra tooltip wording with explicit active, potential and pre-rounding context."
+      "provenance": "S1070/B509.536 Final Terra draft entries used by the Expedition window, Era Dialogue report and effect names."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",

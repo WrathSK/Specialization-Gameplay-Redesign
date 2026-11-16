@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1069",
-    "runtime": "B508.535 / modinfo535",
+    "status": "S1070",
+    "runtime": "B509.536 / modinfo536",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Localize the current test civilization, neutral Civilopedia introduction and package metadata in both supported languages.",
+  "goal": "Finish the reviewed player-facing text and verify its language routing and package boundary together.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Complete reviewed bilingual catalogue integration — S1070",
+      "reason": "S1070 closes the reviewed bilingual draft and checks the mounted entries and combined regression scope without changing the installed stable package."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -798,6 +804,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B509 resolves all 370 tagged English draft rows and 55 tagged Chinese draft rows, plus all 16 institution names and descriptions per language. The combined 220-method selection has 216 passes and four already reproduced legacy fixture failures. Disposable package tests pass.",
     "B508 verifies alternate-language biography lookups and the package text manifest. Nine of ten selected methods pass; the legacy Expedition training fixture still errors under both source baselines.",
     "B507 runs 99 local methods, with the same two pre-existing Expedition icon methods failing as on B506. Both language callback exercises confirm three distinct mission statuses.",
     "B506 passes 42 selected institution and city-panel methods and its mounted text catalogue check.",
@@ -5342,6 +5349,25 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#adopt-reviewed-test-america-and-mod-list-localization--s1069"
+    },
+    "b509_bilingual_catalogue_integration": {
+      "build": "B509.536 / modinfo536",
+      "baseline": "d10def68d13ea1a1aeb4fa65fe3685aa44fbcee4",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "regression_methods_pass": 216,
+      "regression_methods_run": 220,
+      "preexisting_fixture_methods": 4,
+      "preexisting_fixture_errors_including_subtests": 8,
+      "changed_locale_rows_this_batch": 9,
+      "changed_ingame_sql_locale_rows_since_b503": 322,
+      "english_draft_keys": 370,
+      "chinese_draft_keys": 55,
+      "metadata_rows": 4,
+      "package_sha256": "300f6e42fd87be500e377e8422ae2faab94c476621d621947229d9b4fe717fc1",
+      "files": 339,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#complete-reviewed-bilingual-catalogue-integration--s1070"
     }
   }
 }
