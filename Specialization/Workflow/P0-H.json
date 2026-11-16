@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1056",
-    "runtime": "B495.522 / modinfo522",
+    "status": "S1057",
+    "runtime": "B496.523 / modinfo523",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Correct the single obsolete project help row using the existing shipped Chinese description.",
+  "goal": "Localize fixed Crew and Settler action tooltips in their existing UI renderer.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Localize Construction Crew and Settler action tooltips — S1057",
+      "reason": "S1057 verifies localized unit-action display templates and the exact existing action flow."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -720,6 +726,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B496 passes 67 selected unit UI, transport, native-fragment and policy methods. Sixteen tooltip comparisons match B495.",
     "B495 passes 39 selected current Dialogue, marker, eight-era and timed-project display methods. In-memory SQL comparison verifies one changed row.",
     "B494 passes 73 display, queue and panel methods and 123 timer methods. Forty-eight existing renders match B493 exactly.",
     "B493 passes 59 queue/production-panel methods and 53 UI permit/client methods. All 28 shipped queue messages match B492 in both languages.",
@@ -5051,6 +5058,21 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#correct-the-shipped-era-dialogue-project-description--s1056"
+    },
+    "b496_unit_action_tooltip_localization": {
+      "build": "B496.523 / modinfo523",
+      "baseline": "8e8a994896d5be196c0a04c380e56bb67e850065",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 67,
+      "fixed_localized_entries": 14,
+      "identical_shipped_ui_traces": 16,
+      "baseline_counterexample_subcases": 2,
+      "inherited_legacy_icon_fixture_errors": 3,
+      "package_sha256": "733b354c8fe63f6290aed528316868ecd0e155c3cacfa057fb638f54076d3e14",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#localize-construction-crew-and-settler-action-tooltips--s1057"
     }
   }
 }

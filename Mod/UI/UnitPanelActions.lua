@@ -119,29 +119,34 @@ end
 local function number(n) return tostring(n):gsub('%.0+$','') end
 local function crewTips(v)
  if v and v.prepared then
-  local name=Locale.Lookup(v.targetName)
-  return '施工预览[NEWLINE]当前目标：'..name..'[NEWLINE]当前进度：'..number(v.progress)..' / '..number(v.cost)
-   ..'[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_BASE_PREVIEW',v.amount,v.baseInput,v.baseUnused),
-   '确认施工[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_BASE_CONFIRM',v.baseInput)
+  local previewText=Locale.Lookup('LOC_SPC_CREW_BASE_PREVIEW',v.amount,v.baseInput,v.baseUnused)
+  local confirmText=Locale.Lookup('LOC_SPC_CREW_BASE_CONFIRM',v.baseInput)
+  return Locale.Lookup('LOC_SPC_UNIT_CREW_PREVIEW',Locale.Lookup(v.targetName),number(v.progress),number(v.cost),previewText),
+   Locale.Lookup('LOC_SPC_UNIT_CREW_CONFIRM',confirmText)
  end
- if v and v.legal then return '施工[NEWLINE]'..Locale.Lookup('LOC_SPC_CREW_BASE_READY',v.amount) end
- return '施工[NEWLINE]将施工队移动至正在建造奇观的单元格，即可进行施工。'
+ if v and v.legal then
+  return Locale.Lookup('LOC_SPC_UNIT_CREW_READY',Locale.Lookup('LOC_SPC_CREW_BASE_READY',v.amount))
+ end
+ return Locale.Lookup('LOC_SPC_UNIT_CREW_SITE')
 end
+local investmentNames={
+ RESEARCH='LOC_SPC_INST_RESEARCH',CULTURE='LOC_SPC_INST_CULTURE',
+ COMMERCE='LOC_SPC_INST_COMMERCE',INDUSTRY='LOC_SPC_INST_INDUSTRY',
+ GOVERNMENT='LOC_SPC_UNIT_INVEST_GOVERNMENT',MILITARY='LOC_SPC_UNIT_INVEST_MILITARY',
+}
 local function investmentTips(v)
- local names={RESEARCH='科研',CULTURE='文化',COMMERCE='商业',INDUSTRY='工业',GOVERNMENT='政府',MILITARY='军事'}
  if v and v.prepared then
-  return '专业投资预览[NEWLINE]当前专业：'..(names[v.specialization] or v.specialization)
-   ..'[NEWLINE]当前潜力：'..v.potential..'级[NEWLINE]投资后潜力：'..v.nextPotential..'级'
-   ..'[NEWLINE]本次消耗：1 名移民[NEWLINE][NEWLINE]提示：更高阶的专业能力仍需满足对应的总督就职与晋升条件方可启用。',
-   '确认专业投资[NEWLINE]消耗此移民，使本城的专业潜力永久提升至 '..v.nextPotential..' 级。[NEWLINE]此操作一旦确认无法撤销。'
+  local nameKey=investmentNames[v.specialization]
+  local name=nameKey and Locale.Lookup(nameKey) or v.specialization
+  return Locale.Lookup('LOC_SPC_UNIT_INVEST_PREVIEW',name,v.potential,v.nextPotential),
+   Locale.Lookup('LOC_SPC_UNIT_INVEST_CONFIRM',v.nextPotential)
  end
- if v and v.legal then return '投资专业化[NEWLINE]消耗 1 名移民，使本城的专业潜力永久提升 1 级。'
-  ..'[NEWLINE]潜力变化：'..v.potential..' 级 → '..v.nextPotential..' 级[NEWLINE]点击以预览投资结果并进行最终确认。' end
- if v and v.reason and v.reason:find('POTENTIAL_CAP_4',1,true) then return '投资专业化[NEWLINE]专业潜力已达到4级，无法继续投资。' end
+ if v and v.legal then return Locale.Lookup('LOC_SPC_UNIT_INVEST_READY',v.potential,v.nextPotential) end
+ if v and v.reason and v.reason:find('POTENTIAL_CAP_4',1,true) then return Locale.Lookup('LOC_SPC_UNIT_INVEST_FULL') end
  if v and v.reason and (v.reason:find('HELD',1,true) or v.reason:find('PENDING',1,true) or v.reason:find('RESERVED',1,true)) then
-  return '投资专业化[NEWLINE]此前专业投资的结果尚待确认，暂时无法再次投资。'
+  return Locale.Lookup('LOC_SPC_UNIT_INVEST_PENDING')
  end
- return '投资专业化[NEWLINE]将移民移动至本城的专业区域，即可投资城市专业化。'
+ return Locale.Lookup('LOC_SPC_UNIT_INVEST_SITE')
 end
 local function dispatch(confirm)
  if stopped then return end
@@ -218,7 +223,7 @@ local function refresh()
   Controls.ActionGroup:SetSizeX(confirmed and 90 or 44)
   Controls.ActionSlot:SetSizeX(confirmed and 93 or 47)
   Controls.PrepareButton:SetOffsetX(confirmed and 46 or 0);Controls.ConfirmButton:SetOffsetX(0)
-  Controls.PrepareButton:SetToolTipString(a);Controls.ConfirmButton:SetToolTipString(b or (invest and '确认投资' or '确认施工'))
+  Controls.PrepareButton:SetToolTipString(a);Controls.ConfirmButton:SetToolTipString(b or Locale.Lookup(invest and 'LOC_SPC_UNIT_INVEST_CONFIRM_TITLE' or 'LOC_SPC_UNIT_CREW_CONFIRM_TITLE'))
   Controls.ConfirmButton:SetHide(not confirmed)
   Controls.PrepareButton:SetDisabled(pending~=nil)
   Controls.ConfirmButton:SetDisabled(pending~=nil)

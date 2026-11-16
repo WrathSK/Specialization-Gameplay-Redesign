@@ -71,8 +71,19 @@ function deliver()local q=queued;queued={};for _,p in ipairs(q)do reply(p)end;pu
 '''
 
 
-def ui(markers=False,before=""):
+def ui(markers=False,before="",*,translations=None):
     c=Context('unit-target-ui'if markers else'unit-action-ui');c.execute(SETUP);c.load('PlayerActionReplies');c.execute('SPCPlayerActionReplies.Start(P,ExposedMembers.SPC_P0)');c.execute(before)
+    if translations is not None:
+        c.globals().unitTranslations=c.lua.table_from(translations)
+        c.execute("""
+        counts.locale=0
+        Locale.Lookup=function(tag,...)
+          counts.locale=counts.locale+1
+          local value=unitTranslations[tag] or tag
+          local arguments={...}
+          return (value:gsub('{(%d+)[^}]*}',function(index)return tostring(arguments[tonumber(index)])end))
+        end
+        """)
     c.load('UI/UnitTargetMarkers'if markers else'UI/UnitPanelActions');c.execute('init()');return c
 
 

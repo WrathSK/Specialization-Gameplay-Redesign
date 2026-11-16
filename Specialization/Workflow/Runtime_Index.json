@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "14efe09c3553251b6c1528b2c49c880be89ce8eda8b9b7bd21c51b42be0e2037",
+      "sha256": "2e6c9e7e03f749b0bf1bcae8afc2e638e6da93f7298c55441596aa9c3c5dfeeb",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1056/B495.522 the corrected shipped Era Dialogue project fallback and source build identity."
+      "provenance": "S1057/B496.523 unit action tooltip locale keys and test-verified unchanged display values and work."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d91885cbdcbce4bac43ca513f534d3f13e3bf3d08457fc159f8fa2c323cf730a",
+      "sha256": "04dbc9ce14065d470822a383832ea27455a04dd94437fa990e7df066aa998b3f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1056/B495.522 the corrected shipped Era Dialogue project fallback and source build identity."
+      "provenance": "S1057/B496.523 unit action tooltip locale keys and test-verified unchanged display values and work."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "e5273e914818769d860f3f518de0f25184b85de1146896a38fff7b2018ec480f",
+      "sha256": "b5a538f1fdf0e9297ad658774d176e8f6b9b3c7a836407b7accd26809891f448",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
+      "provenance": "S1057/B496.523 unit action tooltip locale keys and test-verified unchanged display values and work."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",
@@ -1411,9 +1411,9 @@
       "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
     },
     "Mod/UI/UnitPanelActions.lua": {
-      "sha256": "9865d420ca7c89ddaf632f0995cd299f013c1af46fe7aa4223a1fec0ded81e4a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "sha256": "78a3b4eb07b5c044ce4e6853c6d84e591958780bd562401fcb05a55df79ac075",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1057/B496.523 unit action tooltip locale keys and test-verified unchanged display values and work."
     },
     "Mod/UI/UnitPanelActions.xml": {
       "sha256": "7a48eaa0f2c9ef58d84a27547e78431407c840d14fb76332d702594546b61145",

@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1056
-Implementation Build: B495.522 / modinfo522 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1057
+Implementation Build: B496.523 / modinfo523 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ERA_DIALOGUE_DESCRIPTION_LOCAL_PASS
+Work State: UNIT_ACTION_TOOLTIP_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B495.522 on develop](#correct-the-shipped-era-dialogue-project-description--s1056). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B496.523 on develop](#localize-construction-crew-and-settler-action-tooltips--s1057). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B495.522 has local Era Dialogue text, project and completion coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Verify the institution review drafts in the current renderer and prepare the first copy selection. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B496.523 has local Crew and Settler tooltip and action coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Finish the Capital Investment panel's fixed status and reputation text, then present the ready institution descriptions for Owner copy selection. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Localize Construction Crew and Settler action tooltips — S1057
+
+**LOCAL_SIMULATION_PASS in scope.** Crew and Settler action hover text now supplies its fixed display strings and parameter ordering through the language table. Sixteen comparisons against B495 cover the current Chinese and English locale rows across both button pairs. Synthetic English copy changes the display while the existing two-step action still prepares and confirms exactly once. Both replacement cases fail on B495. Confirmed idle behavior performs zero locale calls, native reads, layout work and requests across 1,000 idle publishes in each case.
+
+**Runtime impact.** The existing refresh path substitutes the published target, values and quantities into locale templates. Its work stays with the selected unit and the same read/reply boundary. The prepared Crew tooltip makes at most five language lookups. The reply, preparation, authorization, availability checks, callbacks and diagnostics keep their current owners and triggers.
+
+**Reproduction.** Use CPython 3.14.8, Lupa 2.8 and DevelopmentTests on PYTHONPATH. With the pinned official UI assets selected via `SPC_OFFICIAL_ASSETS`, run `python3.14 -B -m unittest test_refactor_s6h test_refactor_s9c3.Consumer test_refactor_s9c3.Integration test_refactor_s9c4b.Differential test_refactor_s9c4b.Localization test_refactor_s9c4b.Consumer test_refactor_s9c4b.Producer test_o4_crew_target_queue test_o6_unit_panel test_b414_crew_unit_panel`. The S9c4b display-equivalence and byte-identity assertions replay the two original transport checkpoints. The current display matrix compares B495 and B496 with the actual locale SQL. The distinct B268 ActualUI fixture reports the same three historical fixture errors on both versions and is outside the passing selection.
+
+**STATIC_CONFIRMED.** All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace references pass. B496.523 package SHA256 `733b354c8fe63f6290aed528316868ecd0e155c3cacfa057fb638f54076d3e14` across 337 files. The existing B489.516 installation and native evidence remain scoped to that stable build.
 
 ### Correct the shipped Era Dialogue project description — S1056
 

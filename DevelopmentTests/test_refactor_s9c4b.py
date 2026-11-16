@@ -3,15 +3,16 @@ from contextlib import contextmanager,nullcontext
 from hashlib import sha256
 from pathlib import Path
 from unittest.mock import patch
-import json,subprocess,unittest
+import json,sqlite3,subprocess,unittest
 from refactor_harness import ROOT,Context,TrackedLua51,SOURCES,executed,completion,legacy_source_observation,measure
 from test_refactor_s6h import ui
 from test_refactor_s9c3 import real_panel
 
 BASE='3fff36c'
+ISOLATED_VIEWS='08d17717'
 @contextmanager
-def before():
- p=ROOT/'Mod/UI/UnitPanelActions.lua';old=subprocess.check_output(['git','show',BASE+':Mod/UI/UnitPanelActions.lua'],cwd=ROOT,text=True);digest=sha256(old.encode()).hexdigest();key='historical/'+BASE+'/Mod/UI/UnitPanelActions.lua'
+def before(commit=BASE):
+ p=ROOT/'Mod/UI/UnitPanelActions.lua';old=subprocess.check_output(['git','show',commit+':Mod/UI/UnitPanelActions.lua'],cwd=ROOT,text=True);digest=sha256(old.encode()).hexdigest();key='historical/'+commit+'/Mod/UI/UnitPanelActions.lua'
  read,load=Path.read_text,Context.load
  def source(path,*a,**kw):return old if path==p else read(path,*a,**kw)
  def module(c,name):
@@ -28,15 +29,68 @@ class Differential(unittest.TestCase):
   for body in cases:
    out=[]
    for old in (True,False):
-    with before()if old else nullcontext():c=ui()
+    with before(BASE if old else ISOLATED_VIEWS):c=ui()
     c.execute(body)
     out.append(tuple(c.eval(x)for x in ('Controls.PrepareIcon.icon','Controls.ConfirmIcon.icon','Controls.ConfirmButton.hide','Controls.PrepareButton.tip','Controls.ConfirmButton.tip','counts.requests','counts.getters')))
    self.assertEqual(out[0],out[1],body)
   measure('S9c4b_valid_UI_differential',{'baseline':BASE,'cases':6,'same_tooltips_icons_requests_native_getters':True,'current_transport':'UNIT_VIEW','extra_native_sampling':0})
  def test_existing_number_crew_and_investment_formatting_helpers_are_byte_identical(self):
-  old=subprocess.check_output(['git','show',BASE+':Mod/UI/UnitPanelActions.lua'],cwd=ROOT,text=True);current=(ROOT/'Mod/UI/UnitPanelActions.lua').read_text()
+  old=subprocess.check_output(['git','show',BASE+':Mod/UI/UnitPanelActions.lua'],cwd=ROOT,text=True);current=subprocess.check_output(['git','show',ISOLATED_VIEWS+':Mod/UI/UnitPanelActions.lua'],cwd=ROOT,text=True)
   def helpers(text):return text[text.index('local function number('):text.index('local function dispatch(')]
   self.assertEqual(helpers(old),helpers(current))
+
+def unit_translations(language):
+ with sqlite3.connect(':memory:') as db:
+  db.execute('CREATE TABLE LocalizedText(Language TEXT, Tag TEXT, Text TEXT, PRIMARY KEY (Language,Tag))')
+  db.executescript((ROOT/'Mod/Text/TestText.sql').read_text())
+  return dict(db.execute("SELECT Tag, Text FROM LocalizedText WHERE Language=? AND (Tag GLOB 'LOC_SPC_UNIT_*' OR Tag GLOB 'LOC_SPC_CREW_BASE_*' OR Tag GLOB 'LOC_SPC_INST_*')",(language,)))
+
+class Localization(unittest.TestCase):
+ def test_shipped_action_tooltips_keep_text_and_native_work(self):
+  cases=(
+   ('crew ready',""),
+   ('crew site',"mutateReply=function(v)v.legal=false end;selectedChanged()"),
+   ('crew preview',"mutateReply=function(v)v.progress=20.0;v.cost=400.0 end;Controls.PrepareButton.click();publish()"),
+   ('settler ready',"selected=units[8];selectedChanged()"),
+   ('settler preview',"selected=units[8];selectedChanged();Controls.PrepareButton.click();publish()"),
+   ('settler cap',"selected=units[8];mutateReply=function(v)v.legal=false;v.reason='POTENTIAL_CAP_4'end;selectedChanged()"),
+   ('settler pending',"selected=units[8];mutateReply=function(v)v.legal=false;v.reason='ACTION_HELD'end;selectedChanged()"),
+   ('settler site',"selected=units[8];mutateReply=function(v)v.legal=false end;selectedChanged()"),
+  )
+  for language in ('zh_Hans_CN','en_US'):
+   text=unit_translations(language)
+   for name,action in cases:
+    with self.subTest(language=language,name=name):
+     out=[]
+     for context in (before('8e8a9948'),nullcontext()):
+      with context:c=ui(translations=text)
+      c.execute(action)
+      out.append(tuple(c.eval(x) for x in ('Controls.PrepareButton.tip','Controls.ConfirmButton.tip','Controls.ConfirmButton.hide','counts.requests','counts.getters')))
+     self.assertEqual(out[0],out[1])
+ def test_replacing_copy_does_no_idle_work_and_two_step_is_still_exact(self):
+  text=unit_translations('en_US')
+  text.update({
+   'LOC_SPC_INST_RESEARCH':'Research',
+   'LOC_SPC_UNIT_CREW_PREVIEW':'Wonder {1_Wonder}: {2_Progress} / {3_Cost}[NEWLINE]{4_Preview}',
+   'LOC_SPC_UNIT_INVEST_PREVIEW':'{1_Profession}: {2_Potential} to {3_Next}',
+   'LOC_SPC_UNIT_INVEST_CONFIRM':'Confirm Level {1_Next}',
+  })
+  for kind in ('crew','settler'):
+   with self.subTest(kind=kind):
+    c=ui(translations=text)
+    if kind=='settler':c.execute("selected=units[8];selectedChanged()")
+    c.execute("Controls.PrepareButton.click();publish();assert(not Controls.ConfirmButton.hide)")
+    if kind=='crew':
+     self.assertTrue(c.eval("Controls.PrepareButton.tip").startswith('Wonder WONDER: 20 / 400'))
+    else:
+     self.assertEqual(c.eval("Controls.PrepareButton.tip"),'Research: 1 to 2')
+     self.assertEqual(c.eval("Controls.ConfirmButton.tip"),'Confirm Level 2')
+    c.execute("""
+     resetCounts();idle(1000)
+     assert(counts.getters==0 and counts.requests==0 and counts.layout==0 and counts.locale==0)
+     Controls.PrepareButton.click();Controls.ConfirmButton.click();Controls.ConfirmButton.click();publish()
+     assert(confirmed==1 and actionCount('UNIT_ACTION_PREPARE')==1 and actionCount('UNIT_ACTION_CONFIRM')==1)
+    """)
 
 class Consumer(unittest.TestCase):
  def test_global_matching_token_cannot_answer_typed_view(self):
