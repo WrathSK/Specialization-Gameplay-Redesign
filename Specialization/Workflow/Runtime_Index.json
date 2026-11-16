@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "e6cb34c081de8ac139063662e787ed57271570da57a78a582c149fab9ed5c321",
+      "sha256": "d49ce06c4eddd8b3e660ed3b8f6dcc0b4f1367b6beb6357bd9593977454ca8d4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1066/B505.532 Terra project and unit names, formation descriptions and restructuring tooltips checked against current owners."
+      "provenance": "S1067/B506.533 Terra tooltip wording with explicit active, potential and pre-rounding context."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "fcffa40597e72602d3454548e31258b50215c2f666877b493de4700b19d3d02f",
+      "sha256": "7d36d1930365d2f93a7917047b7e5e7951a05d8ecceb0e2f16c06841abce74d5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1066/B505.532 Terra project and unit names, formation descriptions and restructuring tooltips checked against current owners."
+      "provenance": "S1067/B506.533 Terra tooltip wording with explicit active, potential and pre-rounding context."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -916,9 +916,9 @@
       "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
     },
     "Mod/Text/LevelBanners.sql": {
-      "sha256": "987834d688846f7bd78afa0085f2c3a3d1502933b1b640eb26b7db7f2b97d73e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+      "sha256": "33260475fbc5f197eb0042a9692840932e4a8a9eb7cf3ed9054932089071fa9a",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1067/B506.533 Terra tooltip wording with explicit active, potential and pre-rounding context."
     },
     "Mod/Text/Restructuring.sql": {
       "sha256": "acb5638d7cd07677dab5cded899bb6baf4bda50bb39d68a454e42234bedb7a6b",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "31432536dbe422f3919cf3f5c74dacd9617296e98042ce3fe879ff1fda7fcde1",
+      "sha256": "4cd222e3ba5b34ea0a468dd057b07447101562a3054798bf3dee8f9517be16ac",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1066/B505.532 Terra project and unit names, formation descriptions and restructuring tooltips checked against current owners."
+      "provenance": "S1067/B506.533 Terra tooltip wording with explicit active, potential and pre-rounding context."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",

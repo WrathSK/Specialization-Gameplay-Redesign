@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1066",
-    "runtime": "B505.532 / modinfo532",
+    "status": "S1067",
+    "runtime": "B506.533 / modinfo533",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Apply reviewed player-facing Crew and Asset Restructuring text.",
+  "goal": "Clarify the already localized institution readouts, ACTIVE map badges and city-details shortcut.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Apply bilingual institution status and city map hints — S1067",
+      "reason": "S1067 reviews the institution readouts and city hints after adoption of the full institution help."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -780,6 +786,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B506 passes 42 selected institution and city-panel methods and its mounted text catalogue check.",
     "B505 passes 35 targeted Crew and Asset Restructuring methods. SQLite resolves 30 Crew definition rows in both languages with the correct transfer capacities.",
     "B504 compares the mounted locale catalogue, exercises both current panels in two languages and repeats the commercial contract and routing regressions. One old Development sidebar layout fixture fails identically at B503.",
     "B503 passes 65 selected sidebar, contract term and receipt methods. The mounted catalogue contains all 83 English Capital keys with their original parameters.",
@@ -5275,6 +5282,20 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#adopt-reviewed-crew-and-asset-restructuring-descriptions--s1066"
+    },
+    "b506_institution_status_city_hints": {
+      "build": "B506.533 / modinfo533",
+      "baseline": "1409ba955e7d58fb64c2aacb7b177443304890c6",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "regression_methods_pass": 42,
+      "changed_locale_rows": 14,
+      "english_rows": 5,
+      "simplified_chinese_rows": 9,
+      "package_sha256": "149c83c2e0323ff559646a4417b209a22ac5d2f2dde6d862e2d7be1ba7a421f5",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#apply-bilingual-institution-status-and-city-map-hints--s1067"
     }
   }
 }

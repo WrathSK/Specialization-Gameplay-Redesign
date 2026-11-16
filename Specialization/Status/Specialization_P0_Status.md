@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1066
-Implementation Build: B505.532 / modinfo532 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1067
+Implementation Build: B506.533 / modinfo533 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CREW_AND_RESTRUCTURING_COPY_LOCAL_PASS
+Work State: INSTITUTION_STATUS_AND_BANNER_COPY_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B505.532 on develop](#adopt-reviewed-crew-and-asset-restructuring-descriptions--s1066). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B506.533 on develop](#apply-bilingual-institution-status-and-city-map-hints--s1067). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B505.532 has local Crew catalogue and Asset Restructuring action coverage in both languages. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Apply the reviewed wording to institution status, city tooltips and banners, then check the current Humanities Expedition text against its mission and travel states. |
+| Validation | B506.533 has local institution status, city overview and text catalogue coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Apply the reviewed Humanities Expedition wording to the existing player-facing travel, identity and mission views. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Apply bilingual institution status and city map hints — S1067
+
+**LOCAL_SIMULATION_PASS in scope.** The city-details shortcut resolves to English and the map hint distinguishes the active, unlocked and locked pips. The institution status text identifies the Potential requirement for future institutions. The revised readouts distinguish the accrued levels from the Active Level 4 conditions, the Commerce multiplier before rounding, and the eligible building discount from the construction bonus.
+
+**Runtime impact (L1).** The existing renderers use the same placeholders, same fact status and metric slots. No renderer, request, raw state or economic value changes. The two Chinese copy-sensitive tests retain their status, counts and bonus assertions.
+
+**Reproduction.** With CPython 3.14.8, Lupa 2.8, pinned B413 HD gameplay DB via `SPC_DEBUG_GAMEPLAY_DB` and the official assets through `SPC_OFFICIAL_ASSETS`, run `python3.14 -B -m unittest test_b251_institutions test_b265_city_presentation.EventPresentation test_b265_city_presentation.NativeOverview test_b266_institution_recovery test_o6_city_panel` (42 methods). Tests exercise known, preview, inactive, pending and historical institution views and both city panel integrations.
+
+**STATIC_CONFIRMED.** The mounted catalogue changes 14 rows from `1409ba95`. 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace references pass. B506.533 package SHA256 `149c83c2e0323ff559646a4417b209a22ac5d2f2dde6d862e2d7be1ba7a421f5` across 337 files. Source only.
 
 ### Adopt reviewed Crew and Asset Restructuring descriptions — S1066
 
