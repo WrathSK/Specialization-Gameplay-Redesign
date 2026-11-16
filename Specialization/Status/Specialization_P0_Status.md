@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1050
+Status Revision: S1051
 Implementation Build: B491.518 / modinfo518 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: INSTITUTION_TOOLTIP_PLACEMENT_LOCAL_PASS
+Work State: CLAIM_TIMER_TEST_FIXTURE_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,14 +15,20 @@ Work State: INSTITUTION_TOOLTIP_PLACEMENT_LOCAL_PASS
 |---|---|
 | Build and installation | [B491.518 on develop](#place-live-institution-values-in-localized-descriptions--s1050). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B491.518 has scoped local institution rendering and presentation coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Continue scoped development on develop. B489.516 remains the stable playtest baseline. The localization drafts remain available for content review. |
+| Validation | B491.518 has local institution rendering coverage and a [working Claim timer regression path](#restore-the-current-claim-timer-test-fixture--s1051). B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Restore the version-specific test replays exposed during the queue and institution work. B489.516 remains the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Restore the current Claim timer test fixture — S1051
+
+**LOCAL_SIMULATION_PASS in scope.** The one-turn Claim tests previously loaded a fixture that requested the retired B014 completion observer before testing the queue. The shared timer fixture now starts the actual Store and Claim controller through the maintained acquisition fixture, then supplies the same queue and completion event sequence. Existing permit, completion, cancellation, UNKNOWN recovery and historical read-count assertions remain intact. The change is confined to DevelopmentTests and the checkpoint record. The B491.518 runtime package retains the S1050 digest.
+
+**Reproduction.** Use CPython 3.14.8 and Lupa 2.8 / Lua 5.1 with DevelopmentTests on PYTHONPATH. Run `python3.14 -B -m unittest test_refactor_s7d1.Classification test_refactor_s7d1.RealOwners test_refactor_s7d2 test_refactor_s7d3b test_refactor_s7d4 test_pu07_source_attribution` (112 methods pass). An additional 123-method comparison of the four complete S7d modules at `3ca47dc3` and this checkpoint resolves 46 fixture errors. Three inherited case errors remain in the older retained group. Two invoke the pre-retirement B127 replay and one asserts pre-isolation treatment of invalid Dialogue history. The source-only fixture repair adds no native gate.
 
 ### Place live institution values in localized descriptions — S1050
 

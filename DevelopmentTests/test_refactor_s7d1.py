@@ -45,21 +45,31 @@ def composed_industry():
     """);return l
 
 def claim_runtime():
-    path=ROOT/'DevelopmentTests/test_b140_templates.py';source=path.read_text();ns={'__file__':str(path)}
-    exec(compile(source[:source.index("extra=r"+chr(39)*3)],str(path),'exec'),ns)
-    header=ns['header'].replace('l=LuaRuntime()', 'l=LuaRuntime()\nl.globals().print=lambda *parts:None')
-    body="""
-    start();c=conquered(1,'DISTRICT_CAMPUS');request(c,'RESEARCH')
-    function pending()return record(c).claimTimer end
-    function snapshot()return encode(record(c))end
-    function pulse()flush()end
-    ExposedMembers=ExposedMembers or {};q=c.q;project='PROJECT_SPC_CLAIM_RESEARCH'
-    function nextTurn()turn=turn+1;Events.PlayerTurnActivated.Fire(0)end
-    function finished()return record(c).claim~=nil end
-    function changed(id)Events.CityProductionChanged.Fire(0,id or c:GetID());flush()end
-    """
-    exec(compile(header+ns['helpers']+ns['claim_setup']+body+"\n"+chr(39)*3+")",str(path),'exec'),ns)
-    return ns['l']
+    from test_pu07a_completion_scope import claims
+
+    vm = claims()
+    vm.execute("""
+    c=aCity;q=c.q;project='PROJECT_SPC_CLAIM_RESEARCH'
+    local row=assert(P.Info('Projects',project))
+    q.GetCurrentProductionTypeHash=function()return q.target==project and row.Hash or 0 end
+    function q:FinishProgress()
+     local order=assert(P.Info('Projects',self.target))
+     self.target='NONE';self.size=0
+     Events.CityProductionChanged.Fire(c:GetOwner(),c:GetID())
+     Events.CityProjectCompleted.Fire(c:GetOwner(),c:GetID(),order.Index)
+    end
+    function pending()return T.record(c).claimTimer end
+    function snapshot()return T.encode(T.record(c))end
+    function pulse()Events.GameCoreEventPublishComplete.Fire()end
+    ExposedMembers=ExposedMembers or {}
+    function nextTurn()T.turn(1)end
+    function finished()return T.record(c).claim~=nil end
+    function changed(id)Events.CityProductionChanged.Fire(0,id or c:GetID());pulse()end
+    q.target=project;q.size=1
+    shared.ClaimProjects.Request(0,{CityID=c:GetID(),Project=project,StartTurn=T.now()})
+    assert(pending()and pending().stage=='ACTIVE')
+    """)
+    return vm
 
 def actual(kind):
     with profile():

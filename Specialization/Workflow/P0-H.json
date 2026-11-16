@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1050",
+    "status": "S1051",
     "runtime": "B491.518 / modinfo518",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Separate institution value placement from the localized headings while preserving shipped presentation.",
+  "goal": "Restore Claim timer regression through the actual current acquisition and Store fixture.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Restore the current Claim timer test fixture — S1051",
+      "reason": "Restored current Claim fixture, passing scope and separately retained replay limits"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -684,6 +690,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1051 passes 112 scoped queue and acquisition methods. The 123-method comparison goes from 49 case errors to 3 inherited errors.",
     "B491 passes 40 scoped presentation checks and matches 352 baseline tooltip strings byte-for-byte. Twelve draft placements were checked in memory.",
     "B490 passes 58 scoped queue and production-panel checks and 11 Culture catalogue/receipt checks. Three new checks fail on B489. Native validation belongs to a later build test.",
     "S1048 records the stable B489.516 deployment with 337/337 matching files, 21 exact reviewed removals, and the verified B307 rollback package.",
@@ -4917,6 +4924,18 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#place-live-institution-values-in-localized-descriptions--s1050"
+    },
+    "s1051_claim_timer_fixture": {
+      "build": "B491.518 / modinfo518",
+      "baseline": "3ca47dc306d3f58ee6294a4a099c1c0dd8566bee",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 112,
+      "comparison_methods_per_side": 123,
+      "baseline_case_errors": 49,
+      "remaining_case_errors": 3,
+      "runtime_package_changed": false,
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#restore-the-current-claim-timer-test-fixture--s1051"
     }
   }
 }
