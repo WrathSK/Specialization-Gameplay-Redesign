@@ -1,46 +1,42 @@
 include('RuntimeWork')
 include('SpecialistSupport')
+include('CarrierSet')
 -- P0-B1: existing native +3F/+3P carriers at all ACTIVE levels; no III top-up.
 SPCResearchSupport={}
 function SPCResearchSupport.Start(P,shared)
  local batch
  local data={ready=false,busy=false,changes=0,errors={},ruleset=SPCSpecialistSupport.RULESET};shared.ResearchSupport=data
  local kinds={'RESEARCH','CULTURE','COMMERCE'}
+ local entries={};for _,kind in ipairs(kinds)do entries[#entries+1]={key=kind,name='BUILDING_SPC_DEV_'..kind..'_SUPPORT'}end
+ local carriersSet=SPCCarrierSet.Define(P,entries,function(name)
+  return assert(P.Info('Buildings',name),'B1_SUPPORT_DEFINITION_MISSING').Index
+ end,{read='B1_SUPPORT_READ_UNKNOWN',write='B1_SUPPORT_WRITE_UNCONFIRMED'})
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,carriersSet.Owns,function(scope)data.MarkAudit(scope)end)
+ local function validate()carriersSet.Initialize()end
  local function desired(pid,c,batch)
-  local kind,d=SPCSpecialistSupport.Anchor(P,shared,pid,c,batch)
+  local kind,d=SPCSpecialistSupport.Anchor(P,shared,pid,c,batch,true)
   if kind=='INDUSTRY' then return nil end
   return kind,d
  end
  local function carriers(c,wanted,write)
-  local have,plan={},{}
-  for _,kind in ipairs(kinds) do
-   local row=assert(P.Info('Buildings','BUILDING_SPC_DEV_'..kind..'_SUPPORT'),'B1_SUPPORT_DEFINITION_MISSING')
-   local present=P.HasBuilding(c:GetBuildings(),row.Index)
-   assert(type(present)=='boolean','B1_SUPPORT_READ_UNKNOWN')
-   plan[#plan+1]={kind=kind,id=row.Index,present=present,wanted=kind==wanted}
-  end
-  if write then
-   for _,adding in ipairs({false,true}) do for _,v in ipairs(plan) do
-    if v.wanted==adding and v.present~=v.wanted then
-     if adding then P.CreateBuilding(c:GetBuildQueue(),v.id) else P.RemoveBuilding(c:GetBuildings(),v.id) end
-     assert(P.HasBuilding(c:GetBuildings(),v.id)==v.wanted,'B1_SUPPORT_WRITE_UNCONFIRMED')
-     data.changes=data.changes+1;v.present=v.wanted
-    end
-   end end
-  end
-  for _,v in ipairs(plan) do if v.present then have[#have+1]=v.kind end end
+  local requested={};if wanted then requested[wanted]=true end
+  local plan
+  if write then plan=carriersSet.Apply(c,requested,health,function()data.changes=data.changes+1 end)
+  else plan=carriersSet.Observe(c,requested)end
+  local have={};for _,v in ipairs(plan)do if v.present then have[#have+1]=v.key end end
   return table.concat(have,',')
  end
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   SPCSpecialistSupport.Retire(P,c,shared);local kind=desired(pid,c,batch);carriers(c,kind,true)
  end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
- function data.Audit(scope)
-  if P.Observe then P.Observe('audit','ResearchSupport') end
-  if not data.ready or data.busy then P.Count('busy_skip');return end
-  data.busy=true;batch=SPCRuntimeWork.New(P,shared)
-  targets.Run(scope)
-  data.busy=false;batch=nil
+ local function audit(scope,taking)
+  local ok,result=pcall(function()
+   validate();batch=SPCRuntimeWork.New(P,shared);return targets.Run(scope,taking)
+  end)
+  batch=nil;if not ok then error(result,0)end
+  return result
  end
+ data.Audit,data.MarkAudit,data.FlushAudit,data.AcceptFact=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchSupport',audit,{targets=true,receipts=true})
  function data.Run(pid,c,action)
   local ok,kind,d=pcall(desired,pid,c,SPCRuntimeWork.New(P,shared))
   local known,have=pcall(carriers,c,nil,false)
@@ -52,16 +48,15 @@ function SPCResearchSupport.Start(P,shared)
    ..'\nRead only; ON/OFF aliases cannot enable the retired III upgrade.'
  end
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
- hook(Events,'LoadScreenClose',function() data.ready=true;data.errors={};data.Audit({load=true}) end)
- for _,n in ipairs({'PlayerTurnActivated','CityTransfered','DistrictRemovedFromMap','DistrictBuildProgressChanged',
-  'GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','DistrictPillaged','DistrictRepaired'}) do
-  SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchSupport',function()data.ready=true;data.errors={};data.Audit({load=true})end,true)
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
+ if not shared.DistrictCompleteness then
+  for _,n in ipairs({'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
+  for _,n in ipairs({'OnDistrictConstructed','CityBuilt','OnPillage'})do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit)end
  end
- for _,n in ipairs({'OnDistrictConstructed','CityBuilt','OnPillage'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchSupport',targets.Exit(function(c,loss)
-   local ids={};for _,k in ipairs(kinds)do ids[#ids+1]='BUILDING_SPC_DEV_'..k..'_SUPPORT'end
-   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end))end
+   carriersSet.Exit(shared,c,loss)
+ end,'ResearchSupport'))end
 
 end

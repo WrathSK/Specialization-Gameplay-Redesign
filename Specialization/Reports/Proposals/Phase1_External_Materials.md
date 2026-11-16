@@ -2,6 +2,8 @@
 
 Document Owner: Codex
 
+> **Phase 1 migration record, 2026-09-12.** The locations below describe the original migration. For the current screenshot inbox, archived evidence and external paths, use the [legacy workspace mapping](Legacy_Workspace_Relocation.md#当前入口).
+
 Repository root R contains canonical Mod, documents and tests. The legacy workspace W is an external location configured by `local/config.json:legacy_workspace`; it is not this repository's parent. The existing W/AGENTS.md is untouched. Old W docs/source are retained for rollback, not continuing parallel editing. Future agents must open R and follow R/AGENTS.md.
 
 ## Deliberately local-only
@@ -16,6 +18,6 @@ Repository root R contains canonical Mod, documents and tests. The legacy worksp
 
 Accepted Design, historical snapshots and validation result originals retain bytes and historical/hash meaning. Absolute `/Users/...` strings in those preserved documents are historical provenance, not executable current paths. Technical reports may also describe historical commands; only current root README/AGENTS, Architecture/Status and DevelopmentTests/README define active paths/commands. Future agents must not execute a historical command without adapting it explicitly.
 
-`Phase1_Link_Audit.json` classifies every local Markdown link: bundled, omitted local evidence, legacy/external or unresolved historical. An unresolved historical link is not newly proven evidence; no stub is fabricated. Root README, AGENTS, active Architecture/Status and technical index links are checked separately. Historical source routing is superseded, not rewritten in original records.
+The [Phase 1 link audit in Git history](../../Historical/README.md#phase-1-generated-artifacts-in-git-history) records the migration-time classification of bundled, external, omitted and unresolved links. Use the [legacy path mapping](Legacy_Workspace_Relocation.md) for current access to the relocated material.
 
 All small Results JSON are preserved provenance only, not authoritative gameplay state. Phase1_Path_Map.json describes the previous document migration, not the current repository boundary.

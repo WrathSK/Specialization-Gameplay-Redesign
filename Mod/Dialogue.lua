@@ -1,7 +1,7 @@
 include('DialogueModel')
 include('NetworkInput')
 SPCDialogue={}
-function SPCDialogue.Start(P,shared)
+function SPCDialogue.Start(P,shared,options)
  local d={ready=false,busy=false,seq={},samples={},paired={},off={},test={},last={},errors={},changes=0,received={},generation=1};shared.Dialogue=d
  local levels={};for _ in GameInfo.Eras() do levels[#levels+1]=true end
  local function set(c,id,want)
@@ -122,7 +122,7 @@ function SPCDialogue.Start(P,shared)
   d.meaningOverride=nil;d.meaningQualification=nil;return d.Audit(pid,c:GetID()) -- current AUTO; no saved effect replay
  end
  function d.Audit(pid,cid)
-  if d.retired then return shared.DialogueEffects and shared.DialogueEffects.Audit and shared.DialogueEffects.Audit({player=pid,city=cid}) end
+  if d.retired then return false,'DIALOGUE_LEGACY_WRITER_RETIRED' end
   if P.Observe then P.Observe('audit','Dialogue') end
   if not d.ready then return false,'NOT_READY' end
   if d.busy then return false,'BUSY' end
@@ -323,7 +323,7 @@ function SPCDialogue.Start(P,shared)
    for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan'); assert(cities[c:GetID()],'DIALOGUE_CITY_MISSING') end
    return {turn=a.Turn,cities=cities,seq=a.Seq,generation=a.Generation,factsEpoch=a.FactsEpoch,factsInput=a.FactsInput}
   end)
-  d.samples[pid]=ok and res or nil;d.errors[pid]=not ok and tostring(res) or nil;d.received[pid].stage=ok and 'ACCEPTED' or 'REJECTED_SAMPLE';d.Audit(pid)
+  d.samples[pid]=ok and res or nil;d.errors[pid]=not ok and tostring(res) or nil;d.received[pid].stage=ok and 'ACCEPTED' or 'REJECTED_SAMPLE';if not d.retired then d.Audit(pid)end
   if shared.GreatWorkAdjacency then shared.GreatWorkAdjacency.Receive(pid,a) end
   return ok -- Accepted collection, independent of legacy projection success.
  end
@@ -356,17 +356,16 @@ function SPCDialogue.Start(P,shared)
  end end
  for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged'}) do
   local e=P.Field(Events,name);if e and e.Add then e.Add(function(pid)
+   if d.retired then return end
    if type(pid)=='number' and pid>=0 then
     if not P.IsTestPlayer(pid) then return end
     d.Audit(pid);if shared.GreatWorkAdjacency then shared.GreatWorkAdjacency.Audit(pid) end
    else auditAll() end -- unknown signature retains prior conservative scope
   end) end
  end
- local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() if d.retired then d.samples={};d.paired={};auditAll();return end;if d.carrierTest then d.carrierTest=nil;d.meaningOverride=nil;d.meaningQualification=nil end;d.ready=false;d.samples={};d.paired={};d.last={};d.Init();auditAll() end) end
+ local e=P.Field(Events,'CityTransfered');if e and e.Add then e.Add(function() if d.retired then d.samples={};d.paired={};return end;if d.carrierTest then d.carrierTest=nil;d.meaningOverride=nil;d.meaningQualification=nil end;d.ready=false;d.samples={};d.paired={};d.last={};d.Init();auditAll() end) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Dialogue',function(c,loss)
-   local ids={};for n=2,#levels do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,n in ipairs({25,50,100,200})do ids[#ids+1]='BUILDING_SPC_B059_TEST'..n end
-   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+ local function exitPost(c,loss)
    local t=d.carrierTest
    if t and t.owner==loss.origin.owner then
     -- Exit has already proved its exact target. Drop only the matching hold.
@@ -375,7 +374,16 @@ function SPCDialogue.Start(P,shared)
      d.carrierTest=nil;d.meaningOverride=nil;d.meaningQualification=nil
     end
    end
+ end
+ if options and options.centralExit then
+  assert(shared.LegacyCleanup,'LEGACY_CLEANUP_UNAVAILABLE').RegisterPostCleanup('Dialogue',exitPost)
+ else
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Dialogue',function(c,loss)
+   local ids={};for n=2,#levels do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id)then ids[#ids+1]=id end end;for _,n in ipairs({25,50,100,200})do ids[#ids+1]='BUILDING_SPC_B059_TEST'..n end
+   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
+   exitPost(c,loss)
  end)end
+ end
 
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('Dialogue',function(pid)d.generation=d.generation+1;d.samples={};d.paired={};d.seq={};d.last={};d.test={} end)end
 

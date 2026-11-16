@@ -12,9 +12,12 @@ lupa.lua55.LuaRuntime=LuaRuntime # Nested fixture imports also execute under Lua
 R=Path(__file__).resolve().parents[1]
 T=R/'DevelopmentTests'
 
-def execute_prefix(filename,cutoff):
+def execute_prefix(filename,cutoff,setup_profile=()):
     p=T/filename; src=p.read_text().split(cutoff)[0]
     ns={'__file__':str(p)}
+    for before,after in setup_profile:
+     assert src.count(before)==1,'FIXTURE_PROFILE_SOURCE_CHANGED'
+     src=src.replace(before,after)
     exec(compile(src,str(p)+'[selected frozen prefix]','exec'),ns)
     return ns
 
@@ -54,7 +57,7 @@ with patch('ctypes.CDLL',side_effect=OSError('Native process access disabled')):
         l.execute("local w=writes;for i=1,10000 do fire('GameCoreEventPublishComplete');fire('GameCoreEventPlaybackComplete');fire('SystemUpdateUI');fire('UnitOperationStarted');fire('CityBuildingsChanged',0,1) end;assert(writes==w);fire('PlayerTurnActivated',0);local r,w=reads,writes;for i=1,10000 do fire('PlayerTurnActivated',0) end;assert(reads==r and writes==w);c.active=1;turn=turn+1;fire('PlayerTurnActivated',0);noErrors();assert(housing(c)==0 and gpp(c,'RESEARCH')==0)")
         print('B2 scaling/idle/once-turn',n,'cities PASS',flush=True)
 
-    pc=execute_prefix('test_p0_c.py','# Old public writers cannot recreate')
+    pc=execute_prefix('test_p0_c.py','# Old public writers cannot recreate',[("c.token='NEW';fire('LoadScreenClose')","c.token='NEW';fire('PlayerTurnActivated',0)")])
     for n in [1,2,4,8]:
         l=pc['runtime'](n);l.execute("counters={};for _,c in pairs(cities) do setBuildings(c.ds[1],{'BUILDING_LIBRARY'}) end;audit();good()")
         assert l.eval('counters.facts')==n and l.eval('counters.dc_capture')==n and l.eval('counters.district_scan')==n

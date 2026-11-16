@@ -276,7 +276,7 @@ class FinalYieldTests(unittest.TestCase):
   from lupa.lua55 import LuaRuntime
   l=LuaRuntime(unpack_returned_tuples=True)
   for p in ['CultureMeaningModel.lua','CultureMeaningProbe.lua','UI/BoostGreatWorkRead.lua','UI/P0Panel.lua','Probe.lua']:
-   with self.subTest(lua=p):self.assertIsNotNone(l.eval('function(s)return assert(load(s))end')((R/'Mod'/p).read_text()))
+   with self.subTest(lua=p):self.assertIsNotNone(l.eval('function(s)return assert(load(s))end')(legacy.fixture_source(p)))
   root=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(root.attrib['version'],'190')
   for f in root.findall('.//File'): self.assertTrue((R/'Mod'/f.text).is_file(),f.text)
   self.assertEqual((R/'Specialization/Design/Revisions/Specialization_Design_Spec_D0045.md').read_bytes(),subprocess.check_output(['git','show','b9c6bb7:Specialization/Design/Specialization_v0.1_Design_Spec.md'],cwd=R))

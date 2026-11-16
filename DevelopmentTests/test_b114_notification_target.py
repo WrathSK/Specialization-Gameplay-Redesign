@@ -3,6 +3,10 @@ import unittest
 import xml.etree.ElementTree as ET
 import test_b113_turn_gate as prior
 from lupa.lua55 import LuaRuntime
+from retired_crew_sources import package, source
+
+REVISION = "a28159059ef4ddbd5546e608dfb467165127bb61"
+SOURCE = source("UI/TimedTurnProbe.lua", REVISION)
 TARGET=r'''
 targetValid=true;targetOwner=0;targetID=10;targetType=7;targetReads=0
 PlayerComponentTypes={CITY=7,UNIT=8}
@@ -15,7 +19,7 @@ NotificationManager.FindEndTurnBlocking=function() return {
 class TargetTests(prior.GateTests):
  def setUp(self):
   self.lua=LuaRuntime(unpack_returned_tuples=True)
-  self.lua.execute(prior.FIXTURE+prior.EXTRA+TARGET);self.lua.execute(prior.SOURCE)
+  self.lua.execute(prior.FIXTURE+prior.EXTRA+TARGET);self.lua.execute(SOURCE)
  def test_unknown_location_stops(self):
   # Supersedes B113: unavailable camera coordinates do not invalidate a valid CITY target.
   self.runlua('notifyX=nil');self.arm();self.click();self.assertEqual(self.get('requests'),1)
@@ -23,13 +27,14 @@ class TargetTests(prior.GateTests):
   # Supersedes B113: camera location and target object serve separate native purposes.
   self.runlua('notifyX=99');self.arm();self.click();self.assertEqual(self.get('requests'),1)
  def test_static(self):
-  for p in ['Mod/UI/TimedTurnProbe.lua','Mod/UI/P0Panel.lua','Mod/Probe.lua']:
-   self.lua.execute('assert(load(...))',(prior.ROOT/p).read_text())
-  doc=ET.parse(prior.ROOT/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'141')
-  self.assertTrue(all((prior.ROOT/'Mod'/n.text).is_file() for n in doc.findall('./Files/File')))
-  ui=ET.parse(prior.ROOT/'Mod/UI/P0Panel.xml')
+  for p in ['UI/TimedTurnProbe.lua','UI/P0Panel.lua','Probe.lua']:
+   self.lua.execute('assert(load(...))',source(p, REVISION))
+  with package(REVISION) as root:
+   doc=ET.parse(root/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'141')
+   self.assertTrue(all((root/'Mod'/n.text).is_file() for n in doc.findall('./Files/File')))
+   ui=ET.parse(root/'Mod/UI/P0Panel.xml')
   for name in ['TurnProbeReadCaption','TurnProbeArmCaption']:self.assertIsNotNone(ui.find(".//Label[@ID='"+name+"']"))
-  for write in [':SetProperty(',':AddProgress(',':RequestOperation(',':SetUpdate(']:self.assertNotIn(write,prior.SOURCE)
+  for write in [':SetProperty(',':AddProgress(',':RequestOperation(',':SetUpdate(']:self.assertNotIn(write,SOURCE)
  def test_invalid_target_not_read(self):
   self.runlua('targetValid=false');self.arm();self.click()
   self.assertEqual(self.get('requests'),0);self.assertEqual(self.get('targetReads'),0)

@@ -1,5 +1,8 @@
 """B237 actual writer/UI regression. Fixed injection remains a guarded blocker."""
+from pathlib import Path
 import unittest
+from unittest.mock import patch
+from retired_crew_sources import source as retired_source
 from test_b236_crews import crew_runtime, ACTION, M
 from test_b236_crew_ui import fixture
 
@@ -99,7 +102,7 @@ class Continuity(unittest.TestCase):
 
 class PrecisionIsolation(unittest.TestCase):
  def test_diagnostic_failure_does_not_replace_action_return(self):
-  l=crew_runtime();l.execute((M/'UnitActions.lua').read_text());l.execute(ACTION);l.execute((M/'CrewPrecision.lua').read_text())
+  l=crew_runtime();l.execute((M/'UnitActions.lua').read_text());l.execute(ACTION);l.execute(retired_source('CrewPrecision.lua'))
   l.execute("""
    local c=C.make();local p=C.begin(c);C.complete(c,p);C.actions(c)
    crew.RecordPrecision=function()error('diagnostic unavailable')end
@@ -108,7 +111,12 @@ class PrecisionIsolation(unittest.TestCase):
    assert(result:find('REJECTED') and C.count(c)==1 and #c:GetBuildQueue().adds==0)
   """)
  def test_missing_target_diagnostic_does_not_query_nil_city(self):
-  l=crew_runtime();l.execute("""
+  read=Path.read_text
+  def historical_crew(path,*args,**kwargs):
+   if path==M/'CrewProjects.lua':return retired_source('CrewProjects.lua')
+   return read(path,*args,**kwargs)
+  with patch.object(Path,'read_text',historical_crew):l=crew_runtime()
+  l.execute("""
    local c=C.make();local get=Players[0].GetCities
    Players[0].GetCities=function()local cities=get();local find=cities.FindID;cities.FindID=function(self,id)assert(id~=nil,'nil city');return find(self,id)end;return cities end
    crew.RecordPrecision(0,{error='NO_CURRENT_TARGET'})

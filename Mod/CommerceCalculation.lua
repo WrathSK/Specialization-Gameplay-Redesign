@@ -19,7 +19,7 @@ function M.Layout(selected,workers,active,localDomains)
  local rows={}
  for _,def in ipairs(M.Domains)do
   local depth=localDomains[def.id]
-  assert(depth==nil or finite(depth) and depth<=10 and depth%1==0,'COMMERCE_DEPTH_UNKNOWN')
+  assert(depth==nil or finite(depth) and depth%1==0,'COMMERCE_DEPTH_UNKNOWN')
   local selectedHere=chosen[def.id]~=nil;local enabled=effective[def.id]==true
   local reason=depth==nil and 'COMMERCE_LOCAL_DISTRICT_REQUIRED' or active<3 and 'COMMERCE_ACTIVE_III_REQUIRED'
    or not selectedHere and 'COMMERCE_NOT_SELECTED' or not enabled and 'COMMERCE_CAPACITY' or 'COMMERCE_EFFECTIVE'

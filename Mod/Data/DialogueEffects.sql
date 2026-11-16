@@ -1,9 +1,9 @@
 -- B177: all reachable earned totals, one Tourism-only final carrier per city.
--- Game Era quota (once each) * at most seven collection eras * five points.
+-- Game Era quota (once each) * at most eight collection eras * five points.
 CREATE TABLE SPC_DialogueTotals (Bonus INTEGER PRIMARY KEY);
 INSERT INTO SPC_DialogueTotals WITH RECURSIVE values_(n) AS (
  SELECT 5 WHERE (SELECT COUNT(*) FROM Eras)>0
- UNION ALL SELECT n+5 FROM values_ WHERE n<35*(SELECT COUNT(*) FROM Eras)
+ UNION ALL SELECT n+5 FROM values_ WHERE n<40*(SELECT COUNT(*) FROM Eras)
 ) SELECT n FROM values_;
 CREATE TEMP TABLE SPC_DialogueKinds (Kind TEXT PRIMARY KEY);
 INSERT INTO SPC_DialogueKinds VALUES ('WRITING'),('MUSIC'),('SCULPTURE'),('PORTRAIT'),('LANDSCAPE'),('RELIGIOUS'),('ARTIFACT');

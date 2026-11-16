@@ -80,11 +80,10 @@ INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_
 
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index") SELECT 'ICON_PROJECT_SPC_DEVELOPMENT_INVESTMENT',Atlas,"Index" FROM IconDefinitions WHERE Name='ICON_PROJECT_ENHANCE_DISTRICT_COMMERCIAL_HUB';
 
--- Reuse the installed Monopoly++ Investor atlas entries, including white flag
--- and civilization portrait variants. No external textures are redistributed.
+-- Official Great Merchant fallbacks. RawIcons retains the custom SPC art.
 INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
- SELECT REPLACE(Name,'UNIT_LEU_INVESTOR','UNIT_SPC_RESTRUCTURING_TEAM'),Atlas,"Index"
- FROM IconDefinitions WHERE Name='ICON_UNIT_LEU_INVESTOR' OR Name LIKE 'ICON_UNIT_LEU_INVESTOR\_%' ESCAPE '\';
+ SELECT REPLACE(Name,'UNIT_GREAT_MERCHANT','UNIT_SPC_RESTRUCTURING_TEAM'),Atlas,"Index"
+ FROM IconDefinitions WHERE Name='ICON_UNIT_GREAT_MERCHANT' OR Name GLOB 'ICON_UNIT_GREAT_MERCHANT_*';
 
 -- B251 user-supplied institution artwork; row order R/C/I/Commerce, stages I-IV.
 INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_INSTITUTIONS',32,4,4,'SPC_Institutions_32.dds');

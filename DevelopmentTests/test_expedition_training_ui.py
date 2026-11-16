@@ -9,6 +9,8 @@ def ui():
  Game.GetLocalPlayer=function()return 2 end;P.VERSION='test';UI={GetHeadSelectedCity=function()return selectedCity end};selectedCity=city
  PlayerOperations={EXECUTE_SCRIPT=1};CheckQueueItemSelected=function()return queueSelected end
  CityProductionDirectives={TRAIN=1};GameInfo.Units=info
+ shared.CityProgressionStore={TrainingInputStamp=function()return 'LEGACY_FIXTURE_INPUT','LEGACY_FIXTURE_CORE'end}
+ ExposedMembers.SPC_P0=shared
  info[100].Index=100;info[100].Hash=100
  queue={GetSize=function()return #entries end,GetAt=function(self,i)return entries[i+1]end,
  GetUnitCost=function()return 60 end,GetUnitProgress=function()return 0 end,GetTurnsLeft=function()return 5 end,

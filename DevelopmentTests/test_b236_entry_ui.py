@@ -1,6 +1,7 @@
 """B236 actual investment transport plus existing institution controls. No native claim."""
 import unittest
-from test_investment_update_propagation import fixture, source
+from retired_crew_sources import source as retired_source
+from test_investment_update_propagation import fixture
 from test_culture_institutions import display
 
 class EntryPropagation(unittest.TestCase):
@@ -8,7 +9,7 @@ class EntryPropagation(unittest.TestCase):
         for normal in (True, False):
             with self.subTest(normal=normal):
                 lua=fixture(3)
-                lua.execute(source('CrewPrecision'));lua.execute('SPCCrewPrecision.Start(P,shared)')
+                lua.execute(retired_source('CrewPrecision.lua'));lua.execute('SPCCrewPrecision.Start(P,shared)')
                 lua.execute("""
                  c.identity='INDUSTRY';d.type=GameInfo.Districts.DISTRICT_INDUSTRIAL_ZONE.Index
                  events={};shared.EngineeringStudy={Refresh=function(pid,id)
@@ -34,7 +35,7 @@ class EntryPropagation(unittest.TestCase):
                 lua.execute("local n=#events;runRequest(0,{Action='UNIT_ACTION_CONFIRM',UnitID=703,Token='duplicate'});assert(#events==n and kills==3)")
 
     def test_observer_failure_retains_commit_and_noncommit_nil(self):
-        lua=fixture();lua.execute(source('CrewPrecision'))
+        lua=fixture();lua.execute(retired_source('CrewPrecision.lua'))
         lua.execute("""
           SPCCrewPrecision.Start(P,shared);t=prepare(c,704,true)
           P.CrewBase=function()error('OBSERVER_READ_FAILED')end

@@ -66,6 +66,11 @@ def runtime(repo, setup='', start=True):
       end
     ''')
     lua.execute((repo / 'Mod/PerformanceCounters.lua').read_text())
+    runtime_gc = repo / 'Mod/RuntimeGC.lua'
+    if runtime_gc.is_file():
+        lua.execute(runtime_gc.read_text())
+        # Keep the frozen standalone invocation shape while using the actual current owner.
+        lua.execute('SPCPerformance.StartMemory=function(P,s)SPCRuntimeGC.Start(P,s,SPCPerformance.PrepareMemoryObserver)end')
     lua.execute('ExposedMembers.SPC_Performance=SPCPerformance.New()')
     if setup:
         lua.execute(setup)

@@ -1,13 +1,44 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="334">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="516">
   <Properties>
     <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B307.334：停用B271时序探针，保留内部载体不可掠夺。</Description>
+    <Description>B443.470：恢复专业项目生产面板接入。</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
   </Properties>
+  <ActionCriteria>
+    <Criteria id="SPC_OfficialEnvironment">
+      <RuleSetInUse>RULESET_EXPANSION_2</RuleSetInUse>
+      <ModInUse inverse="1">521b8777-0977-4859-a5ee-3e411a732e5c</ModInUse>
+    </Criteria>
+    <Criteria id="SPC_HDEnvironment">
+      <RuleSetInUse>RULESET_EXPANSION_2</RuleSetInUse>
+      <ModInUse>521b8777-0977-4859-a5ee-3e411a732e5c</ModInUse>
+    </Criteria>
+  </ActionCriteria>
   <InGameActions>
+    <UpdateDatabase id="SPC_EnvironmentSchema">
+      <Properties><LoadOrder>10003000</LoadOrder></Properties>
+      <File>Data/EnvironmentSchema.sql</File>
+      <File>Data/EnvironmentModifiers.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_EnvironmentOfficial" criteria="SPC_OfficialEnvironment">
+      <Properties><LoadOrder>10003010</LoadOrder></Properties>
+      <File>Data/EnvironmentOfficial.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_EnvironmentHD" criteria="SPC_HDEnvironment">
+      <Properties><LoadOrder>10003010</LoadOrder></Properties>
+      <File>Data/EnvironmentHD.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_EnvironmentBuildings">
+      <Properties><LoadOrder>10003020</LoadOrder></Properties>
+      <File>Data/EnvironmentBuildings.sql</File>
+    </UpdateDatabase>
+    <UpdateDatabase id="SPC_DevelopmentInvestmentEffects">
+      <Properties><LoadOrder>10003130</LoadOrder></Properties>
+      <File>Data/DevelopmentInvestmentEffects.sql</File>
+    </UpdateDatabase>
     <UpdateDatabase id="SPC_B247_Restructuring"><Properties><LoadOrder>10001090</LoadOrder></Properties><File>Data/Restructuring.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B247_RestructuringText"><File>Text/Restructuring.sql</File></UpdateText>
     <UpdateDatabase id="SPC_B246_Development"><Properties><LoadOrder>10001080</LoadOrder></Properties><File>Data/DevelopmentInvestment.sql</File></UpdateDatabase>
@@ -18,16 +49,18 @@
     <UpdateText id="SPC_B239_CommerceText"><File>Text/Commerce.sql</File></UpdateText>
     <AddUserInterfaces id="SPC_B241_CapitalPanel"><Properties><Context>InGame</Context></Properties><File>UI/CapitalInvestmentPanel.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_B239_CommercePanel"><Properties><Context>InGame</Context></Properties><File>UI/CommercePanel.xml</File></AddUserInterfaces>
-    <UpdateDatabase id="SPC_B235_EngineeringStudy"><Properties><LoadOrder>2000003</LoadOrder></Properties><File>Data/EngineeringStudy.sql</File></UpdateDatabase>
+    <UpdateDatabase id="SPC_B235_EngineeringStudy"><Properties><LoadOrder>10003120</LoadOrder></Properties><File>Data/EngineeringStudy.sql</File></UpdateDatabase>
     <UpdateText id="SPC_B235_EngineeringStudyText"><File>Text/EngineeringStudy.sql</File></UpdateText>
     <UpdateDatabase id="SPC_B234_Standardization">
-      <Properties><LoadOrder>2000002</LoadOrder></Properties>
+      <Properties><LoadOrder>10003110</LoadOrder></Properties>
       <File>Data/StandardizationEffects.sql</File>
     </UpdateDatabase>
     <UpdateDatabase id="SPC_ExpeditionGate"><Properties><LoadOrder>10001050</LoadOrder></Properties><File>Data/ExpeditionGate.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_ExpeditionSpyGate"><Properties><LoadOrder>10001051</LoadOrder></Properties><File>Data/ExpeditionSpyGate.sql</File></UpdateDatabase>
     <UpdateText id="SPC_ExpeditionGateText"><File>Text/ExpeditionGate.sql</File></UpdateText>
-    <ReplaceUIScript id="SPC_ExpeditionSpyUnitPanel"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>UnitPanel</LuaContext><LuaReplace>UI/ExpeditionSpyUnitPanel.lua</LuaReplace></Properties></ReplaceUIScript>
+    <!-- Each UnitPanel entry loads its selected base before the common action policy. -->
+    <ReplaceUIScript id="SPC_ExpeditionSpyUnitPanel" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>UnitPanel</LuaContext><LuaReplace>UI/SPCUnitPanelHD.lua</LuaReplace></Properties></ReplaceUIScript>
+    <ReplaceUIScript id="SPC_OfficialUnitPanel" criteria="SPC_OfficialEnvironment"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>UnitPanel</LuaContext><LuaReplace>UI/SPCUnitPanelOfficial.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_ExpeditionSpyChooser"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>EspionageChooser</LuaContext><LuaReplace>UI/ExpeditionSpyChooser.lua</LuaReplace></Properties></ReplaceUIScript>
     <ReplaceUIScript id="SPC_ExpeditionSpyPopup"><Properties><LoadOrder>2000006</LoadOrder><LuaContext>EspionagePopup</LuaContext><LuaReplace>UI/ExpeditionSpyPopup.lua</LuaReplace></Properties></ReplaceUIScript>
     <AddUserInterfaces id="SPC_ExpeditionTrainingName"><Properties><Context>InGame</Context></Properties><File>UI/ExpeditionTrainingName.xml</File></AddUserInterfaces>
@@ -45,15 +78,16 @@
     <UpdateDatabase id="SPC_DialogueEffects"><Properties><LoadOrder>10001040</LoadOrder></Properties><File>Data/DialogueEffects.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_DialogueProjects"><Properties><LoadOrder>2000006</LoadOrder></Properties><File>Data/DialogueProjects.sql</File></UpdateDatabase>
     <UpdateText id="SPC_DialogueProjectText"><File>Text/DialogueProjects.sql</File></UpdateText>
-    <ReplaceUIScript id="SPC_TimedProjectCityPanel"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/TimedProjectCityPanel.lua</LuaReplace></Properties></ReplaceUIScript>
+    <ReplaceUIScript id="SPC_TimedProjectCityPanel" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/SPCCityPanelHD.lua</LuaReplace></Properties></ReplaceUIScript>
+    <ReplaceUIScript id="SPC_OfficialCityPanel" criteria="SPC_OfficialEnvironment"><Properties><LoadOrder>2000005</LoadOrder><LuaContext>CityPanel</LuaContext><LuaReplace>UI/SPCCityPanelOfficial.lua</LuaReplace></Properties></ReplaceUIScript>
     <UpdateDatabase id="SPC_OverflowSinkTest"><File>Data/OverflowSinkTest.sql</File></UpdateDatabase>
-    <ReplaceUIScript id="SPC_TimedTurnProbe"><Properties><LoadOrder>2000004</LoadOrder><LuaContext>ActionPanel</LuaContext><LuaReplace>UI/TimedTurnProbe.lua</LuaReplace></Properties></ReplaceUIScript>
-    <ReplaceUIScript id="SPC_InstitutionOverview"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/InstitutionOverview.lua</LuaReplace></Properties></ReplaceUIScript>
+    <ReplaceUIScript id="SPC_InstitutionOverview" criteria="SPC_HDEnvironment"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/SPCCityOverviewHD.lua</LuaReplace></Properties></ReplaceUIScript>
+    <ReplaceUIScript id="SPC_OfficialCityOverview" criteria="SPC_OfficialEnvironment"><Properties><LoadOrder>2000003</LoadOrder><LuaContext>CityPanelOverview</LuaContext><LuaReplace>UI/SPCCityOverviewOfficial.lua</LuaReplace></Properties></ReplaceUIScript>
     <AddUserInterfaces id="SPC_LevelBanners"><Properties><Context>InGame</Context></Properties><File>UI/LevelBanners.xml</File></AddUserInterfaces>
     <AddUserInterfaces id="SPC_Institutions"><Properties><Context>InGame</Context></Properties><File>UI/Institutions.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_ResearchChair"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/ResearchChair.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_ResearchApply"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/ResearchApply.sql</File></UpdateDatabase>
-    <UpdateDatabase id="SPC_ResearchCross"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/ResearchCross.sql</File></UpdateDatabase>
+    <UpdateDatabase id="SPC_ResearchCross"><Properties><LoadOrder>10003150</LoadOrder></Properties><File>Data/ResearchCross.sql</File></UpdateDatabase>
     <AddUserInterfaces id="SPC_ResearchCrossRefresh"><Properties><Context>InGame</Context></Properties><File>UI/ResearchCrossRefresh.xml</File></AddUserInterfaces>
     <UpdateDatabase id="SPC_B082_DistrictPrecision"><Properties><LoadOrder>2000002</LoadOrder></Properties><File>Data/DistrictPrecisionProbe.sql</File></UpdateDatabase>
     <AddUserInterfaces id="SPC_RuntimeAudit">
@@ -62,13 +96,13 @@
     </AddUserInterfaces>
     <UpdateDatabase id="SPC_B054_Discounts">
       <Properties>
-        <LoadOrder>2000001</LoadOrder>
+        <LoadOrder>10003100</LoadOrder>
       </Properties>
       <File>Data/StandardizationDiscount.sql</File>
     </UpdateDatabase>
     <UpdateDatabase id="SPC_B053_Purchase">
       <Properties>
-        <LoadOrder>2000000</LoadOrder>
+        <LoadOrder>10003140</LoadOrder>
       </Properties>
       <File>Data/PurchaseProbe.sql</File>
     </UpdateDatabase>
@@ -90,6 +124,7 @@
       <File>CapitalInvestment.lua</File>
       <File>DevelopmentInvestmentModel.lua</File>
       <File>DevelopmentInvestmentCatalog.lua</File>
+      <File>DevelopmentInvestmentTargets.lua</File>
       <File>DevelopmentInvestment.lua</File>
       <File>UI/DevelopmentInvestmentRead.lua</File>
       <File>UI/DevelopmentInvestmentUI.lua</File>
@@ -105,11 +140,13 @@
       <File>UI/EngineeringStudyUI.lua</File>
       <File>ExpeditionTraining.lua</File>
       <File>ExpeditionTrainingDiagnostics.lua</File>
+      <File>ReadFailure.lua</File>
       <File>ReadinessSummary.lua</File>
       <File>CarrierHealthTrace.lua</File>
       <File>UI/ExpeditionTrainingUI.lua</File>
       <File>UI/ExpeditionTrainingName.lua</File>
       <File>ExpeditionSpyStore.lua</File>
+      <File>ExpeditionEntry.lua</File>
       <File>ExpeditionSpyGate.lua</File>
       <File>ExpeditionMovementProbe.lua</File>
       <File>ExpeditionSpyUI.lua</File>
@@ -123,15 +160,11 @@
       <File>ExpeditionGate.lua</File>
       <File>ExpeditionGateRead.lua</File>
       <File>UI/ExpeditionGateWindow.lua</File>
-      <File>OverflowStorageProbe.lua</File>
-      <File>UI/OverflowStorageRead.lua</File>
-      <File>TimedProductionProbe.lua</File>
-      <File>ProjectTurnObservation.lua</File>
       <File>ClaimProjects.lua</File>
       <File>DialogueProjectModel.lua</File>
       <File>DialogueProjects.lua</File>
     <File>DialogueEffects.lua</File>
-      <File>UI/ClaimProjectUI.lua</File>
+      <File>UI/TimedProjectSelectionClient.lua</File><File>UI/TimedProjectQueueIntent.lua</File><File>UI/ClaimProjectUI.lua</File>
       <File>UI/DialogueProjectUI.lua</File>
       <File>TimedProject.lua</File>
       <File>UI/TimedProjectRead.lua</File>
@@ -140,14 +173,15 @@
       <File>UI/CityBannerManager_SPC_TimedProject.lua</File>
       <File>UI/TimedProjectCityPanel.lua</File>
       <File>UI/ProjectTurnRead.lua</File>
-      <File>UI/TimedTurnProbe.lua</File>
       <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityMapping.lua</File>
       <File>UI/CityIdentityEvidence.lua</File>
       <File>CityProgressionStore.lua</File>
+      <File>StoreSubrecords.lua</File>
+      <File>StoreDeferredLifecycle.lua</File>
+      <File>StoreLifecycleRecovery.lua</File>
       <File>ResearchTradition.lua</File>
       <File>ResearchTraditionEffects.lua</File>
-      <File>CitySequenceProbe.lua</File>
       <File>CityIdentityRead.lua</File>
       <File>InstitutionPresentation.lua</File>
       <File>UI/InstitutionOverview.lua</File>
@@ -164,7 +198,10 @@
       <File>UI/Institutions.lua</File>
       <File>UI/Institutions.xml</File>
       <File>PerformanceCounters.lua</File>
+      <File>RuntimeGC.lua</File>
       <File>EventTimingDiagnostics.lua</File>
+    <File>PlaytestBoundaryDiagnostics.lua</File>
+    <File>CrewCompletionDiagnostics.lua</File>
       <File>RuntimeAuditCore.lua</File>
       <File>UI/RuntimeAudit.lua</File>
       <File>UI/RuntimeAudit.xml</File>
@@ -180,6 +217,12 @@
       <File>CopyYields.lua</File>
       <File>SampleLifecycle.lua</File>
       <File>RuntimeWork.lua</File>
+      <File>CityReference.lua</File>
+      <File>Tombstones.lua</File>
+      <File>LegacyCleanupCatalog.lua</File>
+      <File>LegacyCleanup.lua</File>
+      <File>ReverseDependencies.lua</File>
+      <File>NativeFacts.lua</File>
       <File>OrdinaryBuildingCatalog.lua</File>
       <File>DistrictCompleteness.lua</File>
       <File>CurrentSpecializationFacts.lua</File>
@@ -197,18 +240,13 @@
 
       <File>UI/CopyYieldRefresh.lua</File>
       <File>UI/CopyYieldRefresh.xml</File>
-      <File>HalfYieldProbe.lua</File>
       <File>DistrictPrecisionProbe.lua</File>
       <File>DistrictPrecisionRead.lua</File>
       <File>Lv4CopyRead.lua</File>
       <File>Probe.lua</File>
-      <File>TradeRouteProbe.lua</File>
-      <File>CompletionProbe.lua</File>
-      <File>StorageProbe.lua</File>
-      <File>EnvelopeProbe.lua</File>
       <File>FreshBindingHook.lua</File>
       <File>CityFlowProbe.lua</File>
-      <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File>
+      <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File><File>TimedProjectModel.lua</File><File>TimedProjects.lua</File><File>TimedProjectReaders.lua</File>
       <File>IndustrySupport.lua</File>
       <File>UI/IndustryRefresh.lua</File>
       <File>UI/IndustryRefresh.xml</File>
@@ -216,7 +254,6 @@
       <File>Lv2GPP.lua</File>
       <File>Lv3Support.lua</File>
       <File>Lv3Effects.lua</File>
-      <File>ConstructionProbe.lua</File>
       <File>GPPReadout.lua</File>
       <File>InvestmentAction.lua</File>
       <File>EffectiveFacts.lua</File>
@@ -225,25 +262,20 @@
       <File>NetworkInput.lua</File>
       <File>NetworkSender.lua</File>
       <File>BindingProbe.lua</File>
-      <File>CompletionRecordProbe.lua</File>
       <File>CityJournalProbe.lua</File>
-      <File>EligibilityProbe.lua</File>
-      <File>QualificationProbe.lua</File>
       <File>ShadowRouteState.lua</File>
-      <File>SourceYieldProbe.lua</File>
       <File>CommerceConvergence.lua</File>
       <File>CityInheritanceRead.lua</File>
       <File>InheritanceShadow.lua</File>
       <File>CityInheritance.lua</File>
-      <File>YieldCarrierProbe.lua</File>
-      <File>UnitActionSitePolicy.lua</File>
-      <File>UnitSiteProbe.lua</File>
+      <File>UnitSiteFacts.lua</File>
       <File>UnitTargets.lua</File>
+      <File>PlayerActionReplies.lua</File>
       <File>UnitActions.lua</File>
       <File>CrewModel.lua</File>
     <File>UI/CrewProjectUI.lua</File>
+      <File>UI/CrewProjectOrder.lua</File>
     <File>CrewProjects.lua</File>
-      <File>CrewPrecision.lua</File>
       <File>Lv4Percent.lua</File>
       <File>BoostConfig.lua</File>
       <File>NetworkBoost.lua</File>
@@ -256,7 +288,6 @@
       <File>GreatWorkCatalog.lua</File>
       <File>GreatWorkFacts.lua</File>
       <File>CultureMeaningModel.lua</File>
-      <File>CultureMeaningProbe.lua</File>
     <File>CultureMeaning.lua</File>
     <File>CultureInspirationProbe.lua</File>
     <File>CultureInspirationModel.lua</File>
@@ -273,6 +304,7 @@
     <File>UI/CityPotential.lua</File><File>DiagnosticLog.lua</File>
       <File>CommerceModel.lua</File>
       <File>CommerceCalculation.lua</File>
+      <File>FactUse.lua</File>
       <File>Commerce.lua</File>
       <File>UI/CommerceUI.lua</File>
       <File>Restructuring.lua</File>
@@ -301,6 +333,13 @@
       <File>Textures/SPC_Raw_Icons_16.dds</File>
       <File>Textures/SPC_Raw_Icons_24.dds</File>
       <File>Textures/SPC_Raw_Icons_48.dds</File>
+      <File>SafeCallbacks.lua</File>
+      <File>IdentityEqual.lua</File>
+      <File>RuntimeComposition.lua</File>
+      <File>UI/SafeAdapters.lua</File>
+      <File>FactChanges.lua</File>
+      <File>FactConsumerBindings.lua</File>
+      <File>CultureDiagnostics.lua</File>
     </ImportFiles>
     <UpdateDatabase id="SPC_B029_Carrier">
       <Properties>
@@ -432,7 +471,7 @@
       </Properties>
       <File>Data/CrewProjects.sql</File>
     </UpdateDatabase>
-    <ReplaceUIScript id="SPC_B046_ProjectOrder">
+    <ReplaceUIScript id="SPC_B046_ProjectOrder" criteria="SPC_HDEnvironment">
       <Properties>
         <LoadOrder>150100</LoadOrder>
         <LuaContext>ProductionPanel</LuaContext>
@@ -443,6 +482,13 @@
       <Properties><LoadOrder>10001020</LoadOrder></Properties>
       <File>Data/ResearchInfrastructure.sql</File>
     </UpdateDatabase>
+    <ReplaceUIScript id="SPC_OfficialProductionPanel" criteria="SPC_OfficialEnvironment">
+      <Properties>
+        <LoadOrder>150100</LoadOrder>
+        <LuaContext>ProductionPanel</LuaContext>
+        <LuaReplace>UI/SPCProductionPanelOfficial.lua</LuaReplace>
+      </Properties>
+    </ReplaceUIScript>
     <UpdateDatabase id="SPC_B048_Lv4Percent">
       <Properties>
         <LoadOrder>10001006</LoadOrder>
@@ -478,10 +524,18 @@
     <UpdateIcons id="SPC_B263_IG_Icons"><Properties><LoadOrder>10001100</LoadOrder></Properties><File>Data/TestAmericaIcons.sql</File></UpdateIcons>
     <UpdateColors id="SPC_B263_IG_Colors"><Properties><LoadOrder>10001100</LoadOrder></Properties><File>Data/TestAmericaColors.xml</File></UpdateColors>
     <UpdateIcons id="SPC_B268_IG_RawIcons"><Properties><LoadOrder>10001200</LoadOrder></Properties><File>Data/RawIcons.sql</File></UpdateIcons>
-    <UpdateDatabase id="SPC_InternalCarrierPillage"><Properties><LoadOrder>10002000</LoadOrder></Properties><File>Data/InternalCarrierPillage.sql</File></UpdateDatabase>
+    <UpdateDatabase id="SPC_InternalCarrierPillage"><Properties><LoadOrder>10004000</LoadOrder></Properties><File>Data/InternalCarrierPillage.sql</File></UpdateDatabase>
   </InGameActions>
   <Files>
+    <File>Data/EnvironmentSchema.sql</File>
+    <File>Data/EnvironmentModifiers.sql</File>
+    <File>Data/EnvironmentOfficial.sql</File>
+    <File>Data/EnvironmentHD.sql</File>
+    <File>Data/EnvironmentBuildings.sql</File>
+    <File>Data/DevelopmentInvestmentEffects.sql</File>
     <File>EventTimingDiagnostics.lua</File>
+    <File>PlaytestBoundaryDiagnostics.lua</File>
+    <File>CrewCompletionDiagnostics.lua</File>
     <File>Data/InternalCarrierPillage.sql</File>
     <File>Restructuring.lua</File>
     <File>RestructuringModel.lua</File>
@@ -493,6 +547,7 @@
       <File>CapitalInvestment.lua</File>
       <File>DevelopmentInvestmentModel.lua</File>
       <File>DevelopmentInvestmentCatalog.lua</File>
+      <File>DevelopmentInvestmentTargets.lua</File>
       <File>DevelopmentInvestment.lua</File>
       <File>UI/DevelopmentInvestmentRead.lua</File>
       <File>UI/DevelopmentInvestmentUI.lua</File>
@@ -510,15 +565,19 @@
     <File>Text/EngineeringStudy.sql</File>
     <File>ExpeditionTraining.lua</File>
       <File>ExpeditionTrainingDiagnostics.lua</File>
+      <File>ReadFailure.lua</File>
       <File>ReadinessSummary.lua</File>
       <File>CarrierHealthTrace.lua</File>
       <File>UI/ExpeditionTrainingUI.lua</File>
       <File>UI/ExpeditionTrainingName.lua</File>
       <File>ExpeditionSpyStore.lua</File>
+    <File>ExpeditionEntry.lua</File>
     <File>ExpeditionSpyGate.lua</File>
       <File>ExpeditionMovementProbe.lua</File>
     <File>ExpeditionSpyUI.lua</File>
     <File>UI/ExpeditionSpyUnitPanel.lua</File>
+    <File>UI/SPCUnitPanelHD.lua</File>
+    <File>UI/SPCUnitPanelOfficial.lua</File>
     <File>UI/ExpeditionSpyChooser.lua</File>
     <File>UI/ExpeditionSpyPopup.lua</File>
     <File>ExpeditionSpyRead.lua</File>
@@ -537,7 +596,6 @@
     <File>UI/ExpeditionGateWindow.lua</File>
     <File>UI/ExpeditionGateWindow.xml</File>
     <File>CultureMeaningModel.lua</File>
-    <File>CultureMeaningProbe.lua</File>
     <File>CultureMeaning.lua</File>
     <File>CultureInspirationProbe.lua</File>
     <File>CultureInspirationModel.lua</File>
@@ -552,15 +610,11 @@
     <File>CultureAesthetic.lua</File>
     <File>Data/ResearchTradition.sql</File>
     <File>Data/OverflowSinkTest.sql</File>
-    <File>OverflowStorageProbe.lua</File>
-    <File>UI/OverflowStorageRead.lua</File>
-    <File>TimedProductionProbe.lua</File>
-    <File>ProjectTurnObservation.lua</File>
     <File>ClaimProjects.lua</File>
     <File>DialogueProjectModel.lua</File>
     <File>DialogueProjects.lua</File>
     <File>DialogueEffects.lua</File>
-    <File>UI/ClaimProjectUI.lua</File>
+    <File>UI/TimedProjectSelectionClient.lua</File><File>UI/TimedProjectQueueIntent.lua</File><File>UI/ClaimProjectUI.lua</File>
     <File>UI/DialogueProjectUI.lua</File>
     <File>Data/ClaimProjects.sql</File>
     <File>Text/ClaimProjects.sql</File>
@@ -574,17 +628,22 @@
     <File>UI/CityBannerManager_SPC_TimedProject.lua</File>
     <File>UI/TimedProjectCityPanel.lua</File>
     <File>UI/ProjectTurnRead.lua</File>
-    <File>UI/TimedTurnProbe.lua</File>
     <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityMapping.lua</File>
       <File>UI/CityIdentityEvidence.lua</File>
     <File>CityProgressionStore.lua</File>
+    <File>StoreSubrecords.lua</File>
+    <File>StoreDeferredLifecycle.lua</File>
+    <File>StoreLifecycleRecovery.lua</File>
       <File>ResearchTradition.lua</File>
       <File>ResearchTraditionEffects.lua</File>
-      <File>CitySequenceProbe.lua</File>
       <File>CityIdentityRead.lua</File>
     <File>InstitutionPresentation.lua</File>
     <File>UI/InstitutionOverview.lua</File>
+    <File>UI/SPCCityPanelHD.lua</File>
+    <File>UI/SPCCityPanelOfficial.lua</File>
+    <File>UI/SPCCityOverviewHD.lua</File>
+    <File>UI/SPCCityOverviewOfficial.lua</File>
     <File>LevelBannerState.lua</File>
       <File>UI/LevelBannerModel.lua</File>
       <File>UI/CityBannerManager_SPC_Levels.lua</File>
@@ -598,6 +657,7 @@
       <File>UI/Institutions.lua</File>
     <File>UI/Institutions.xml</File>
     <File>PerformanceCounters.lua</File>
+    <File>RuntimeGC.lua</File>
     <File>RuntimeAuditCore.lua</File>
     <File>UI/RuntimeAudit.lua</File>
     <File>UI/RuntimeAudit.xml</File>
@@ -616,6 +676,12 @@
     <File>CopyYields.lua</File>
     <File>SampleLifecycle.lua</File>
     <File>RuntimeWork.lua</File>
+    <File>CityReference.lua</File>
+    <File>Tombstones.lua</File>
+    <File>LegacyCleanupCatalog.lua</File>
+    <File>LegacyCleanup.lua</File>
+    <File>ReverseDependencies.lua</File>
+    <File>NativeFacts.lua</File>
     <File>OrdinaryBuildingCatalog.lua</File>
     <File>DistrictCompleteness.lua</File>
     <File>CurrentSpecializationFacts.lua</File>
@@ -634,7 +700,6 @@
     <File>Data/CopyYields.sql</File>
     <File>UI/CopyYieldRefresh.lua</File>
     <File>UI/CopyYieldRefresh.xml</File>
-    <File>HalfYieldProbe.lua</File>
       <File>DistrictPrecisionProbe.lua</File>
       <File>DistrictPrecisionRead.lua</File>
     <File>Data/HalfYieldProbe.sql</File>
@@ -647,21 +712,15 @@
     <File>UI/GPPRefresh.xml</File>
     <File>UI/GPPRefresh.lua</File>
     <File>Data/Lv2Housing.sql</File>
-    <File>YieldCarrierProbe.lua</File>
     <File>Data/YieldCarrierProbe.sql</File>
-    <File>SourceYieldProbe.lua</File>
       <File>CommerceConvergence.lua</File>
       <File>CityInheritanceRead.lua</File>
       <File>InheritanceShadow.lua</File>
       <File>CityInheritance.lua</File>
     <File>Probe.lua</File>
-    <File>TradeRouteProbe.lua</File>
-    <File>CompletionProbe.lua</File>
-    <File>StorageProbe.lua</File>
-    <File>EnvelopeProbe.lua</File>
     <File>FreshBindingHook.lua</File>
     <File>CityFlowProbe.lua</File>
-    <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File>
+    <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File><File>TimedProjectModel.lua</File><File>TimedProjects.lua</File><File>TimedProjectReaders.lua</File>
     <File>IndustrySupport.lua</File>
     <File>UI/IndustryRefresh.lua</File>
     <File>UI/IndustryRefresh.xml</File>
@@ -669,7 +728,6 @@
     <File>Lv2GPP.lua</File>
     <File>Lv3Support.lua</File>
     <File>Lv3Effects.lua</File>
-    <File>ConstructionProbe.lua</File>
     <File>GPPReadout.lua</File>
     <File>InvestmentAction.lua</File>
     <File>EffectiveFacts.lua</File>
@@ -678,10 +736,7 @@
     <File>NetworkInput.lua</File>
     <File>NetworkSender.lua</File>
     <File>BindingProbe.lua</File>
-    <File>CompletionRecordProbe.lua</File>
     <File>CityJournalProbe.lua</File>
-    <File>EligibilityProbe.lua</File>
-    <File>QualificationProbe.lua</File>
     <File>ShadowRouteState.lua</File>
     <File>Gameplay.lua</File>
     <File>UI/P0Panel.xml</File>
@@ -696,15 +751,15 @@
     <File>Data/Icons.sql</File>
     <File>Data/Colors.sql</File>
     <File>Text/TestText.sql</File>
-    <File>UnitActionSitePolicy.lua</File>
-    <File>UnitSiteProbe.lua</File>
     <File>UI/UnitSites.xml</File>
     <File>UI/UnitSites.lua</File>
+    <File>UnitSiteFacts.lua</File>
     <File>UnitTargets.lua</File>
     <File>UI/UnitTargetMarkers.lua</File>
     <File>UI/CityPotential.xml</File>
     <File>UI/CityPotential.lua</File>
     <File>UI/UnitTargetMarkers.xml</File>
+    <File>PlayerActionReplies.lua</File>
     <File>UnitActions.lua</File>
     <File>Data/Crew.sql</File>
     <File>Specialization.dep</File>
@@ -715,8 +770,8 @@
     <File>UI/CrewProjectUI.lua</File>
     <File>CrewProjects.lua</File>
     <File>Data/CrewProjects.sql</File>
-    <File>CrewPrecision.lua</File>
     <File>UI/CrewProjectOrder.lua</File>
+    <File>UI/SPCProductionPanelOfficial.lua</File>
     <File>Lv4Percent.lua</File>
     <File>Data/Lv4Percent.sql</File>
     <File>Data/ResearchInfrastructure.sql</File>
@@ -752,6 +807,7 @@
     <File>Data/CultureInsightsTourism.sql</File>
       <File>CommerceModel.lua</File>
     <File>CommerceCalculation.lua</File>
+    <File>FactUse.lua</File>
     <File>Commerce.lua</File>
     <File>UI/CommerceUI.lua</File>
     <File>Data/Commerce.sql</File>
@@ -793,11 +849,17 @@
     <File>Textures/SPC_Raw_Icons_16.dds</File>
     <File>Textures/SPC_Raw_Icons_24.dds</File>
     <File>Textures/SPC_Raw_Icons_48.dds</File>
+    <File>FactChanges.lua</File>
+      <File>FactConsumerBindings.lua</File>
+    <File>SafeCallbacks.lua</File>
+    <File>IdentityEqual.lua</File>
+    <File>RuntimeComposition.lua</File>
+    <File>UI/SafeAdapters.lua</File>
+    <File>CultureDiagnostics.lua</File>
   </Files>
   <Dependencies>
     <Mod id="1B28771A-C749-434B-9053-D1380C553DE9" title="Rise and Fall (Scotland assets)" />
     <Mod id="4873eb62-8ccc-4574-b784-dda455e74e68" title="Gathering Storm" />
-    <Mod id="b248a322-3e2a-4a6a-830a-6b0d1f3435fc" title="Leugi Monopoly++: Tycoons and Investors (reused unit art)" />
     <Mod id="113D9459-0A3B-4FCB-A49C-483F40303575" title="Teddy Roosevelt Persona Pack (Bull Moose presentation)" />
   </Dependencies>
   <FrontEndActions>

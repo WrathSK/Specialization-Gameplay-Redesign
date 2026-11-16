@@ -5,9 +5,15 @@ function SPCReadinessSummary.Start(P,shared)
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'READINESS')
  local d={sealed=false,loadSeen=false,loadBeforeSeal=false};shared.ReadinessSummary=d
  local first=false;local afterLoad=false;local localPending=false;local localSeen=false
- local live={{'FR','CityProgressionStore'},{'NB','NetworkBridge'},{'RS','ResearchSupport'},
-  {'H2','Lv2Housing'},{'G2','Lv2GPP'},{'RI','ResearchInfrastructure'},{'RX','ResearchCross'},
-  {'RA','ResearchApply'},{'RC','ResearchChair'},{'RT','ResearchTraditionEffects'}}
+ local live={{'FR','CityProgressionStore'}}
+ local registered,aliases={},{}
+ function d.Register(name)
+  if not registered[name]then
+   local alias=name:gsub('%l',''):gsub('[^%w]','')
+   if alias=='' or aliases[alias]then alias='W'..#live end
+   registered[name]=true;aliases[alias]=true;live[#live+1]={alias,name}
+  end
+ end
  local controls={{'REST','Restructuring'},{'CN','CultureNetwork'},{'CA','CultureAesthetic'},
   {'S3_CLEANUP','Lv3Support'},{'E3_CLEANUP','Lv3Effects'}}
  local function value(pair)
@@ -23,6 +29,8 @@ function SPCReadinessSummary.Start(P,shared)
   local states,missing,control={},{},{}
   for _,pair in ipairs(live)do local v=value(pair);states[#states+1]=pair[1]..':'..v;if v~='READY'then missing[#missing+1]=pair[1]end end
   for _,pair in ipairs(controls)do control[#control+1]=pair[1]..':'..value(pair)end
+  local failed=0;for _,e in pairs(shared.StartStatus or {})do if e.state=='FAILED' or e.state=='SKIPPED_DEPENDENCY'then failed=failed+1 end end
+  if failed>0 then missing[#missing+1]='STARTUP_'..failed end
   trace.Record('READINESS_SUMMARY',{reason=reason,sealed=d.sealed,loadSeen=d.loadSeen,
    loadBeforeSeal=d.loadBeforeSeal,notReady=#missing==0 and 'NONE' or table.concat(missing,'|'),
    writerState=table.concat(states,'|'),controlState=table.concat(control,'|')})
@@ -42,6 +50,11 @@ function SPCReadinessSummary.Start(P,shared)
   if afterLoad then afterLoad=false;sample('AFTER_LOAD')end
   if localPending then localPending=false;sample('FIRST_LOCAL_TURN')end
  end)
- function d.Seal()d.sealed=true;pcall(trace.Record,'READINESS_SEALED',{sealed=true,loadSeen=d.loadSeen,loadBeforeSeal=d.loadBeforeSeal})end
+ function d.Seal()
+  d.sealed=true;pcall(trace.Record,'READINESS_SEALED',{sealed=true,loadSeen=d.loadSeen,loadBeforeSeal=d.loadBeforeSeal})
+  for name,e in pairs(shared.StartStatus or {})do if e.state~='OK'then
+   pcall(trace.Record,'READINESS_START',{recordType=name,writeStatus=e.state,reason=e.code})
+  end end
+ end
  return d
 end

@@ -89,7 +89,7 @@ class StoreSummary(unittest.TestCase):
  def test_actual_presentation_request_publishes_values_and_isolates_read_failure(self):
   l=self.runtime()
   source=(ROOT/'Mod/Gameplay.lua').read_text()
-  branch=source.split("  if params.Action=='CITY_PRESENTATION_READ' then",1)[1].split("  if type(params.Action)=='string' and params.Action:find('^INSPIRE_')",1)[0]
+  branch=source.split("  if params.Action=='CITY_PRESENTATION_READ' then",1)[1].split("  if params.Action=='INSPIRE_STATUS'",1)[0]
   l.execute("function presentation(params)local playerID=0;if params.Action=='CITY_PRESENTATION_READ' then"+branch+"end")
   l.execute("""
    GameConfiguration.GetGameSpeedType=function()return 'GAMESPEED_STANDARD'end

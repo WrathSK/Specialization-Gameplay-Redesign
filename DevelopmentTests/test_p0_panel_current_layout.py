@@ -12,6 +12,7 @@ from lupa.lua55 import LuaRuntime
 ROOT = Path(__file__).resolve().parents[1]
 PANEL = ROOT / 'Mod' / 'UI'
 ROWS = (
+    ('CommerceREADButton', 'TemplatesButton'),
     ('CultureInsightsButton', 'NetworkButton', 'CarrierStepButton'),
     ('SourceYieldButton', 'GovernorButton', 'SpecialistsButton'),
     ('GWReadButton', 'AestheticButton', 'MeaningProbeButton'),
@@ -20,14 +21,14 @@ ROWS = (
 VISIBLE = frozenset(button for row in ROWS for button in row)
 
 
-def panel_runtime():
+def panel_runtime(panel=PANEL, *, real_identity_evidence=False):
     """Execute the whole current panel, including its late initializer wrapper.
 
     Uses the same control/event stand-in pattern as test_b068_ui.py, but keeps
     left/right callbacks separate and seeds hidden flags from the actual XML.
     It requires no external database and never runs gameplay or probe writers.
     """
-    tree = ET.parse(PANEL / 'P0Panel.xml')
+    tree = ET.parse(panel / 'P0Panel.xml')
     lua = LuaRuntime(unpack_returned_tuples=True)
     lua.execute(r'''
         requests={}; printed={}; included={}; eventAdds={}
@@ -94,7 +95,10 @@ def panel_runtime():
         control_id = element.get('ID')
         if control_id:
             lua.globals().makeControl(control_id, element.get('Hidden') == '1')
-    lua.execute((PANEL / 'P0Panel.lua').read_text())
+    if real_identity_evidence:
+        lua.execute('SPCP0.Field=function(t,k)return t and t[k] end')
+        lua.execute((panel / 'CityIdentityEvidence.lua').read_text())
+    lua.execute((panel / 'P0Panel.lua').read_text())
     lua.execute('init()')
     return tree, lua
 
@@ -115,33 +119,40 @@ class CurrentPanelTests(unittest.TestCase):
         self.assertEqual(final_visible, VISIBLE)
         self.assertTrue(lua.globals().Controls.LegacyProbeButtons.hidden)
         for control_id in ('GWAReadButton', 'PerformanceSnapshotButton', 'PerformanceReadButton',
-                           'InheritRecordButton', 'InheritReadButton', 'BackgroundRoutesButton',
-                           'DiscountsButton',
-                           'DPReadButton','CompletenessButton','DP03Button','TemplatesButton',
-                           'DP05Button','UnitReadButton','CopyButton'):
+                           'InheritReadButton', 'BackgroundRoutesButton',
+                           'DPReadButton','CompletenessButton','DP03Button',
+                           'DP05Button','CopyButton'):
             with self.subTest(retired=control_id):
                 self.assertTrue(lua.globals().Controls[control_id].hidden)
 
-    def test_four_rows_and_report_do_not_overlap(self):
-        tree = ET.parse(PANEL / 'P0Panel.xml')
+    def test_visible_buttons_and_report_do_not_overlap(self):
+        tree, lua = panel_runtime()
+        controls = lua.globals().Controls
         window = tree.getroot().find("Container[@ID='Window']")
         self.assertEqual(window.get('Size'), '840,664')
         buttons = {button.get('ID'): button for button in window.findall('GridButton')}
+        visible = {name for name in buttons if name != 'CloseButton' and not controls[name].hidden}
+        self.assertEqual(visible, VISIBLE)
         rectangles = []
         for row_number, row in enumerate(ROWS):
             for column, control_id in enumerate(row):
                 button = buttons[control_id]
                 self.assertEqual(button.get('Anchor'), 'L,B')
-                self.assertEqual(button.get('Offset'), f'{18 + column * 262},{138 - row_number * 40}')
+                self.assertEqual(button.get('Offset'), f'{18 + column * 262},{178 - row_number * 40}')
                 self.assertEqual(button.get('Size'), '240,32')
                 x, bottom = map(int, button.get('Offset').split(','))
+                control = controls[control_id]
+                if control.offsetX is not None:
+                    x, bottom = control.offsetX, control.offsetY
                 width, height = map(int, button.get('Size').split(','))
                 y = 664 - bottom - height
                 rectangles.append((control_id, x, y, x + width, y + height))
         report = window.find("ScrollPanel[@ID='ReportScroll']")
         self.assertEqual(report.get('Offset'), '18,58')
-        self.assertEqual(report.get('Size'), '804,420')
-        report_bottom = 58 + 420
+        self.assertEqual(report.get('Size'), '804,380')
+        self.assertEqual((report.get('Vertical'), report.get('AutoScrollBar')), ('1', '1'))
+        report_bottom = 58 + 380
+        self.assertEqual(min(rectangle[2] for rectangle in rectangles) - report_bottom, 16)
         for control_id, x1, y1, x2, y2 in rectangles:
             with self.subTest(control=control_id):
                 self.assertGreaterEqual(x1, 0)
@@ -171,7 +182,7 @@ class CurrentPanelTests(unittest.TestCase):
                 Controls.GWCityButton.callbacks[event]()
                 assert(requests[#requests].Action=='DIALOGUE_PROJECT_READ')
             end
-            assert(#requests==4 and Controls.InspirationEndButton.hidden)
+            assert(#requests==4 and Controls.InspirationEndButton==nil)
         ''')
 
     def test_expedition_entry_waits_for_ready_ui_and_sends_no_gameplay_action(self):
@@ -278,18 +289,21 @@ class CurrentPanelTests(unittest.TestCase):
             ('DP05Button', 2, 'RESEARCH_TRADITION_READ'),
             ('CompletenessButton', 1, 'COMPLETENESS_READ'),
             ('CompletenessButton', 2, 'RESEARCH_INFRA_DETAIL'),
-            ('TemplatesButton', 1, 'STANDARDIZATION_READ'),
-            ('UnitReadButton', 1, 'UNIT_SITE_READ'),
-            ('UnitReadButton', 2, 'CITY_SEQUENCE_BEGIN'),
+            ('TemplatesButton', 1, 'INDUSTRY_HISTORY_READ'),
+            ('TemplatesButton', 2, 'DISCOUNT_READ'),
+            ('CommerceREADButton', 1, 'COMMERCE_READ'),
+            ('InheritReadButton', 1, 'PROGRESSION_STORE_READ'),
+            ('SpecialistsButton', 2, 'LV2_GPP_READ'),
         )
         for control_id, event, expected in pairs:
             with self.subTest(control=control_id, event=event):
                 lua.globals().Controls[control_id].callbacks[event]()
                 request = lua.globals().requests[len(lua.globals().requests)]
                 self.assertEqual(request.Action, expected)
-                self.assertEqual(request.UnitID if control_id == 'UnitReadButton' else request.CityID,
-                                 17 if control_id == 'UnitReadButton' else 11)
+                self.assertEqual(request.CityID, 11)
         lua.execute('local n=#requests;Controls.CopyButton.callbacks[Mouse.eLClick]();assert(#requests==n);assert(Controls.Status.text:find("Lua.log"))')
+        self.assertIsNone(lua.globals().Controls.UnitReadButton)
+        self.assertIsNone(lua.globals().Controls.InheritReadButton.callbacks[2])
 
     def test_visibility_cleanup_does_not_execute_probe_or_change_runtime_state(self):
         _, lua = panel_runtime()

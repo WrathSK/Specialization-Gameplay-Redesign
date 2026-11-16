@@ -179,7 +179,7 @@ class NativeGateTests(unittest.TestCase):
           probe.GateAdvance(0,a,'base');probe.GateAdvance(0,a,'active');probe.Audit();probe.View(0,a);probe.End(0,a,'end')
           probe.GateAdvance(0,a,'base2');assert(count==1)
         """)
-        source=(R/'Mod/CultureMeaningProbe.lua').read_text()
+        source=legacy.fixture_source('CultureMeaningProbe.lua')
         self.assertNotIn('collectgarbage',source)
         self.assertNotIn('SetProperty',source)
         old=__import__('subprocess').check_output(['git','show','09d35a0:Mod/CultureMeaningProbe.lua'],cwd=R,text=True)
@@ -197,7 +197,7 @@ class NativeGateTests(unittest.TestCase):
         legacy.require_meaning_imports(root)
         l=LuaRuntime(unpack_returned_tuples=True)
         for path in ('CultureMeaningModel.lua','CultureMeaningProbe.lua','Dialogue.lua','Gameplay.lua','UI/BoostGreatWorkRead.lua','UI/P0Panel.lua','Probe.lua'):
-            src=(R/'Mod'/path).read_text()
+            src=legacy.fixture_source(path)
             l.execute('assert(load(...))',src)
         text=(R/'Mod/Text/TestText.sql').read_text();self.assertIn('意义延展·接入门禁',text)
         panel=(R/'Mod/UI/P0Panel.lua').read_text();self.assertIn("request('CULTURE_MEANING_GATE_ADVANCE')",panel)

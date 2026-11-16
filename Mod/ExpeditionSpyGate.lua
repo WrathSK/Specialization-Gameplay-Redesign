@@ -1,15 +1,37 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_GP',point,build)end
+ end)
+end
 -- B201: bounded player-owned identity/intent, exact Property readback.
 -- Native unit/travel/activity are fresh facts; no native mission or reward.
 -- Native name assignment and travel survival remain explicit user-game gates.
 if include and not SPCGreatWorkCatalog then include('GreatWorkCatalog')end
 if include and not SPCExpeditionTrainingDiagnostics then include('ExpeditionTrainingDiagnostics')end
+-- B399 optional observer. Removing its module/startup leaves this tap inert.
+local function boundaryObserve(point,build)
+ pcall(function()
+  local d=SPCPlaytestBoundaryDiagnostics
+  if d and d.ENABLED then d.Observe(point,build)end
+ end)
+end
 SPCExpeditionSpyGate={KIND='UNIT_SPC_EXPEDITION_SPY',LEGACY='UNIT_SPC_EXPEDITION_GATE',ZERO='UNIT_SPC_EXPEDITION_ZERO'}
+if include and not SPCExpeditionEntry then include('ExpeditionEntry')end
 function SPCExpeditionSpyGate.Start(P,shared)
  local M=SPCExpeditionSpyGate
+ local selectEntry=assert(SPCExpeditionEntry and SPCExpeditionEntry.Select,'ENTRY_RULE_UNAVAILABLE')
  -- v0.1 supports standard speed only; Design floor(2 x speed multiplier) is deferred.
  local TASK_TURNS=2
  local returnToCentre
- local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
+ local capacityOwner;local capacityEvents=0;local capacityObserverFailed=false
+ local function unitCapacityChanged(pid)
+  if pid~=capacityOwner then return false end
+  capacityEvents=capacityEvents+1;capacityObserverFailed=false;return true
+ end
+ local state={};local envelope;local loaded=false;local storeBlocked=false;local restored=false;local loadReady=false;local recovering=false;local busy=false;local mutating=false;local lastToken;local lastReply;local lastActivityToken;local lastActivityReply;local step='REQUEST'
  local preparingKey,preparingTurn -- Session observation only; never a saved clock or native permission.
  local movementProbeLocked=false
  local missionStatus,missionReason,missionRetryKey,missionUnknownReads
@@ -34,7 +56,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end
  local function load(pid)
   if loaded then return end
-  loaded=true
+  loaded=true;capacityOwner=pid
   local err;envelope,err=Store.Read(pid)
   if err then
    storeBlocked=true;state={owner=pid,phase='HELD',stop=err,activityMode='BLOCKED'};return
@@ -84,7 +106,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  local revision=0;local published={}
  local function publishActivity()
   local v={trainingToken=state.trainingToken,owner=state.owner,unitID=state.unitID,expectedName=state.expectedName,x=state.x,y=state.y,
-   teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase or 'IDLE',mode=recovering and 'RECOVER' or state.activityMode or 'NONE',recovering=recovering,sleepConfirmed=state.sleepConfirmed==true,
+   teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase or 'IDLE',mode=recovering and 'RECOVER' or state.activityMode or 'NONE',recovering=recovering,loadReady=loadReady,sleepConfirmed=state.sleepConfirmed==true,
    owned=state.activityOwned==true,releasePending=state.activityPending==true,taskStart=state.taskStart,taskDue=state.taskDue,
    taskCompleted=state.taskCompleted,taskCompletions=state.taskCompletions,missionStatus=missionStatus,missionReason=missionReason,error=state.stop,activityFailure=state.activityFailure,
    trainingReceipt=state.phase=='TRAINING' and (state.trainingBorn~=nil or state.trainingCompleted==true) or nil,
@@ -502,8 +524,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
     state.taskCount=(state.taskCount or 0)+1 -- Successful tasks only; never used as an attempt identifier.
     releaseActivity();if state.activityMode=='NONE' then returnToCentre()end;save()
     print('[SPC][B191][N1_TASK] mission='..m.category..' outcome=SUCCESS civ='..civ..' insight='..(added and 'NEW' or 'EXISTING'))
-    if shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=state.owner,city=archive:GetID()})end
-    if shared.CultureNetwork then shared.CultureNetwork.SourceChanged(state.owner,archive:GetID())end
+    -- Only a new confirmed Store insight emits INSIGHTS; task release/ACK is independent.
    end
   end
  end
@@ -804,6 +825,12 @@ function SPCExpeditionSpyGate.Start(P,shared)
  for pid in pairs(Players)do if P.IsTestPlayer(pid)then load(pid);break end end
  publishActivity() -- Restored activity is observation-only until a fresh UI sample.
  local data={};shared.ExpeditionGate=data
+ -- Explicit read-only rule call: no load(), Store access, reservation or scan.
+ function data.ChooseEntry(pid,raw)
+  assert(P.IsTestPlayer(pid) and type(raw)=='table' and raw.observer==pid
+   and raw.turn==Game.GetCurrentGameTurn(),'ENTRY_RAW_STALE')
+  return selectEntry(raw)
+ end
  -- B219 disposable-save experiment: read exact idle binding, then suspend this
  -- Gate in memory before movement. Never amend saved coordinates or history.
  function data.MovementProbeRead(pid)
@@ -823,6 +850,15 @@ function SPCExpeditionSpyGate.Start(P,shared)
  -- adapter owns native event correlation; it cannot write this record directly.
  data.Training={}
  local T=data.Training
+ -- Pure session input, never a substitute for Available's fresh native unit read.
+ function T.CapacityInputStamp(pid)
+  if not loaded then return 'UNLOADED'end
+  if pid~=capacityOwner then return 'OWNER_MISMATCH'end
+  return table.concat({storeBlocked and 'BLOCKED'or 'READABLE',busy and 'BUSY'or 'IDLE',
+   state.phase or 'NONE',capacityEvents,capacityObserverFailed and 'OBSERVER_FAILED'or 'OBSERVED'},':')
+ end
+ T.MarkUnitCapacity=unitCapacityChanged
+ function T.CapacityObservationFailed(failed)capacityObserverFailed=failed==true end
  function T.Read(pid)
   load(pid);local v=savedState();v.blocked=storeBlocked;return v
  end
@@ -883,8 +919,13 @@ function SPCExpeditionSpyGate.Start(P,shared)
    ExposedMembers.SPC_ExpeditionGateReply={owner=pid,token=p.Token,phase=state.phase,error='MOVEMENT_PROBE_RELOAD_REQUIRED'}
    return
   end
-  if busy then return end
+  local function ingress(reason)
+   if p.Action=='ACTIVITY'then cultureObserve('EXPEDITION_ACK_INGRESS',function()return {owner=pid,eventUnit=p.UnitID,
+    activityKey=p.ActivityKey,requestKey=p.Token,requestResult=p.Result,reason=reason}end)end
+  end
+  if busy then ingress('BUSY');return end
   local activity=p.Action=='ACTIVITY'
+  ingress(activity and p.Token==lastActivityToken and 'DUPLICATE'or 'HANDLING')
   if activity and p.Token==lastActivityToken then ExposedMembers.SPC_ExpeditionActivityReply=lastActivityReply;return end
   if not activity and p.Token==lastToken then ExposedMembers.SPC_ExpeditionGateReply=lastReply;return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
@@ -947,6 +988,15 @@ function SPCExpeditionSpyGate.Start(P,shared)
   if movementProbeLocked then return end
   if placementWatch and pid==placementWatch.owner then closePlacement('TURN_CLOSE')end
   if P.IsTestPlayer(pid)then load(pid)end
+  cultureObserve('EXPEDITION_TURN_STATE',function()
+   if state.owner~=pid or not state.unitID then return end
+   return {owner=pid,eventUnit=state.unitID,phase=state.phase,mode=state.activityMode,activityKey=state.activityKey,ready=not busy,reason=loadOnly and 'LOAD_BOUNDARY'or 'TURN_BOUNDARY',readStatus=recovering and 'RECOVERING'or 'RUNNING',x=state.x,y=state.y,taskStart=state.taskStart,taskDue=state.taskDue}
+  end)
+  boundaryObserve('EXPEDITION_TURN',function()
+   if state.owner~=pid then return end
+   return {owner=pid,eventUnit=state.unitID,phase=state.phase,x=state.x,y=state.y,
+    targetOwner=state.target and state.target.owner,targetCity=state.target and state.target.id}
+  end)
   if busy or not P.IsTestPlayer(pid) or state.owner~=pid or not state.unitID or state.phase=='HELD' or state.phase=='ENDED' then return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
   step='TURN';local ok,err=pcall(function()
@@ -958,8 +1008,10 @@ function SPCExpeditionSpyGate.Start(P,shared)
   publishActivity()
  end
  if Events.LoadScreenClose then Events.LoadScreenClose.Add(function()
+  loadReady=true
   closePlacement('LOAD_CLOSE')
   if state.owner then data.Turn(state.owner,true)end
+  publishActivity()
  end)end
  Events.PlayerTurnActivated.Add(function(pid)data.Turn(pid,false)end) -- Owned endpoints/unit; pending travel adds one player-unit collection read; no task-turn scan.
  if Events.CityTransfered then Events.CityTransfered.Add(function()
@@ -970,6 +1022,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   end
  end)end
  if Events.UnitRemovedFromMap then Events.UnitRemovedFromMap.Add(function(pid,id)
+  unitCapacityChanged(pid) -- private observer; no type lookup or public callback before cleanup
   if placementWatch and pid==placementWatch.owner and id==placementWatch.id then closePlacement('REMOVED_CLOSE')end
   if pid==state.owner and id==state.unitID then state.removedEvents=math.min(99,(state.removedEvents or 0)+1)end
  end)end

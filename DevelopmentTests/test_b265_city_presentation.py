@@ -8,7 +8,7 @@ from test_expedition_training_ui import ui
 R=Path(__file__).resolve().parents[1]
 
 
-def presentation(setup=None):
+def presentation(setup=None, load=None):
  l=display()
  l.execute("""
   function event()
@@ -18,7 +18,8 @@ def presentation(setup=None):
    return setmetatable(e,{__call=function(_,...)for _,f in ipairs(e.handlers)do f(...)end end})
   end
   Events=setmetatable({},{__index=function(t,k)local e=event();t[k]=e;return e end})
-  LuaEvents.CityPanel_LiveCityDataChanged=event();LuaEvents.SPC_OpenInstitutions=event()
+  LuaEvents.CityPanel_LiveCityDataChanged=event();LuaEvents.SPC_OpenInstitutions=event();LuaEvents.SPC_PresentationConsumerReady=event()
+  displayAccepted=false
   local function control()
    local c={hidden=true}
    function c:SetHide(v)self.hidden=v end
@@ -51,15 +52,35 @@ def presentation(setup=None):
    local q={owner=0,cityID=p.CityID,x=8,y=9,token=p.Token,specialization='CULTURE',
     active=nativeActive,potential=nativePotential,activeStatus='KNOWN',institutionSummary={known=true,dialogue=0,insights=0}}
    ExposedMembers.SPC_P0.CityPresentationView=q
+   publishPresentation(p,q)
   end
   UI.RequestPlayerOperation=function(pid,op,p)
+   requestPorts[p]=ExposedMembers.SPC_P0.PlayerActionReplies.Presentations
    requests[#requests+1]=p;if throwing then error('send failed')end
    if not deferred then reply(p)end
   end
  """)
+ l.execute((R/'Mod/PlayerActionReplies.lua').read_text())
+ l.execute("""
+  requestPorts=setmetatable({},{__mode='k'})
+  function newPresentationBackend(s)
+   ExposedMembers.SPC_P0=s;s.Version=SPCP0.VERSION
+   SPCPlayerActionReplies.Start(SPCP0,s);return s
+  end
+  newPresentationBackend(ExposedMembers.SPC_P0)
+  function publishPresentation(p,v)
+   local d=requestPorts[p]or ExposedMembers.SPC_P0.PlayerActionReplies.Presentations
+   if p.ReplyChannel then if not d.PublishPresentation(0,p,v)then d.FailPresentation(0,p)end end
+  end
+ """)
  l.execute((R/'Mod/UI/LevelBannerModel.lua').read_text())
  if setup:l.execute(setup)
- l.execute((R/'Mod/UI/CityPotential.lua').read_text())
+ if load:
+  load(l)
+ else:
+  l.execute((R/'Mod/IdentityEqual.lua').read_text())
+  l.execute((R/'Mod/SafeCallbacks.lua').read_text())
+  l.execute((R/'Mod/UI/CityPotential.lua').read_text())
  l.execute('startBridge()')
  return l
 
@@ -127,10 +148,11 @@ class EventPresentation(unittest.TestCase):
   """)
  def test_reload_equal_values_and_unknown_reply_do_not_reuse_foreign_state(self):
   presentation().execute("""
-   local prior=ExposedMembers.SPC_P0;ExposedMembers.SPC_P0={LevelBanners=prior.LevelBanners}
+   local prior=ExposedMembers.SPC_P0;newPresentationBackend({LevelBanners=prior.LevelBanners})
    Events.GameCoreEventPlaybackComplete();assert(#requests==2)
    deferred=true;Events.GovernorChanged(0);Events.GameCoreEventPublishComplete()
-   ExposedMembers.SPC_P0.CityPresentationView={owner=0,cityID=4,token=requests[#requests].Token,error='UNKNOWN'}
+   local p=requests[#requests];local v={owner=0,cityID=4,token=p.Token,error='UNKNOWN'}
+   ExposedMembers.SPC_P0.CityPresentationView=v;publishPresentation(p,v)
    Events.GameCoreEventPlaybackComplete();assert(Controls.ActiveShortcut.hidden and rows.items[4].State.text=='待确认')
   """)
  def test_shortcut_uses_current_active_local_city_and_shutdown_detaches(self):
@@ -156,7 +178,7 @@ class TrainingRefresh(unittest.TestCase):
   """)
  def test_projection_change_after_first_boundary_refreshes_and_idle_is_free(self):
   ui().execute("""
-   ExposedMembers.SPC_P0={LevelBanners={views={['2:1']={active=3,potential=4,activeStatus='KNOWN',specialization='CULTURE'}}}}
+   ExposedMembers.SPC_P0.LevelBanners={views={['2:1']={active=3,potential=4,activeStatus='KNOWN',specialization='CULTURE'}}}
    active=3;adapter.Sync(city);adapter.Pulse();active=4;adapter.Pulse();assert(#sentPackets==1)
    ExposedMembers.SPC_P0.LevelBanners.views['2:1'].active=4
    adapter.RefreshFacts();local d={City=city};adapter.Items(d);assert(#d.UnitItems==1 and #sentPackets==2)

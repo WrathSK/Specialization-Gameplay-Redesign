@@ -1,0 +1,39 @@
+# B375.402 — S9e3 / R09a transfer scope (partial)
+
+## Actual trigger chains
+
+Standardization previously set initialized=false,discarded every clean marker,then ran all/flush for any CityTransfered. This re-ran world legacy retirement and local reconciliation for AI→AI. It now preserves initialization/clean markers;new supported owner uses the new city ID,former supported owner retains owner recovery because the event does not supply its old city ID. Unknown signatures stay conservative. Store-confirmed exit now marks the exact old origin and current target IDs. Actual foreign→foreign with no route relationship does no direct Std audit/legacy withdrawal/carrier read;needed local incoming still reconciles without legacy re-scan.
+
+Bridge separately had two raw lifecycle callbacks:signal revision then CheckEvidence→PENDING/census/consumer publication. Its pure RouteLifecycleRelevant inspects existing accepted route rows/participant identities only,with no native getters,new snapshot/cache or authority. Current unrelated foreign transfer/removal returns before either callback and before BackgroundRoutes mark. For transfer,foreign endpoint owner matching is conservative because the event's new city ID is not the former city ID;removal has exact owner/city scope. No accepted snapshot,stale signal,unverified/reentrant/busy/negative proof remains conservative. A real foreign route endpoint loss still increments the signal,withdraws that route through original verified negative evidence and blocks transactions.
+
+NetworkBoost and GreatWorkProbe each still ran world Clean on CityTransfered despite production centralExit already delegating exact cleanup. Only those production callbacks are gated off. Standalone/manual callbacks and initialization remain. Actual mandatory LegacyCleanup owns all reviewed physical IDs/flags and still proves1409 removals+2 flag writes on confirmed loss;no SQL/save IDs/files are deleted.
+
+## Runtime Impact Contract and evidence
+
+Intake plan preceded code. T01/T02/T04/T05/T08,L3. No native read on routing,automatic dependency,new cache,timer,poll,save/transaction/qualification or ownership rule. Route iteration is bounded by existing accepted route capacity. Unknown or old-owner ambiguity is not silently narrowed. Native N9/N14 delivery/hitch remains U5.
+
+11 new cases exercise actual Bridge+Std,known unrelated foreign transfer/removal,accepted empty versus missing snapshot,stale/queued/refreshing/receiving proof,actual international endpoint loss,current incoming/cold markers,malformed payload,confirmed old-ID exit,new UI gate with the real Bridge method body,production central cleanup and standalone legacy compatibility. Ten foreign transfers compare B374/current counts below;current has0 audits/legacy calls/Std carrier reads/route signals/census in this measured closure. This is **not** zero work across all current modules:Research/Culture raw hooks and the B373 coordinate-unknown adjacency fallback are explicitly still open.
+
+The explicit S8 startup-order test had become stale after accepted B357 inserted PlayerActionReplies before CrewPrecision. Its current default now expects that exact addition while preserving the entire original order. Two deliberate B356/no-reply projection fixtures explicitly request the old profile,with their full assertions retained;projection measurement gets a distinct name instead of overwriting the current result. No runtime startup order changed. Initial fixture expectations used the wrong insertion point and assumed one local transfer audit;current tracing showed network-notification plus direct changed-city audits. New test now explicitly asserts those two real scopes,records the duplicate as next-slice work,and preserves the no-legacy-rescan requirement.
+
+## Remaining R09 closure
+
+ResearchApply/Chair/Cross still have scope-dropping native lifecycle hooks;CultureNetwork has its direct global transfer mark. Seven NewTargets owners require pending/foreign-holder-safe adoption of typed transfer metadata,or an explicit justified closure of that old S5d item. Do not remove their recovery blindly. Known local incoming currently has network publication plus direct transfer auditing. Former-owner destination-ID ambiguity and full membership validation also remain. Continue this scoped work;R09 is PARTIAL,not a completed all-module performance claim.
+
+User decision:none. User testing:final U5. Primary next:remaining R09,then R18/R11 and accepted S9/U4/S10. No deployment/main promotion/game launch/native PASS.
+
+### Machine validation evidence
+
+- Stage/status: `S9e3` / `LOCAL_SIMULATION_PASS`; tests=100, passing=100, registered-open=0.
+- Source: base `55c00638737bac147d98bf54c6492431eb4fa82d`; dirty=True; input SHA256 `fcca77677d69954d11e5c39a96d7cf27a0e63c2f44058786c22e65b898254f59`; stable=True.
+- Source scope: Mod/DevelopmentTests/tools, including tracked and nonignored new files. The containing commit must match this input digest; parent HEAD alone is not the tested snapshot.
+- Command: `python3 DevelopmentTests/run_refactor.py --stage S9e3 --output local/refactor/S9e3-B375-final/closure.json`.
+- Environment: `{"backend": "Lua 5.1", "implementation": "CPython", "lupa": "2.8", "machine": "arm64", "platform": "Darwin", "python": "3.10.13", "python_hash_seed": "UNSET", "sqlite": "3.43.2"}`.
+- External input: `{"configured": true, "recovery": "EXTERNAL_INPUT_NOT_ARCHIVED", "sha256": {"database": "fa7578c3c2e2f19dee918b3801c627ce6edf526ce6d94e04c71a83038c2c215b"}}`.
+- Full artifact: `local/refactor/S9e3-B375-final/closure.json`; SHA256 `411f86e55da5f1cef16d41c7f4804ad044197cef296723a7440788974665d09d`; stdout/stderr alongside it.
+- Retention: LOCAL_ONLY, not a permanent backup. A hash identifies bytes but cannot recover them. Re-running creates comparable new evidence, not the old execution.
+- Executed modules/fragments: 63; this is observed loading/completion, not full function/path coverage. Detailed mappings remain in the artifact.
+- Measurements (changed from prior artifact): `{"S5c2_busy_refresh_budget": {"initial_captures": 1, "ten_reentrant_causes_additional_captures": 1, "thousand_idle_additional_captures": 0}, "S6d_reverse_index_bound": {"capacity_failure": "UNAVAILABLE; original consumer scan fallback until new context", "edges": 2048, "native_reads": 0, "single_source_returned_targets": 1, "targets": 2048, "timers": 0}, "S8c5c_actual_production_cleanup": {"building_removals": 1409, "current_legacy_exit_gates": 1, "native_effect_cleanup": "USER_GAME_TEST_REQUIRED", "new_events_timers": 0, "plot_writes": 2, "prior_legacy_exits": 11}, "S8c5c_actual_production_cleanup_B356": {"building_removals": 1409, "current_legacy_exit_gates": 1, "native_effect_cleanup": "USER_GAME_TEST_REQUIRED", "new_events_timers": 0, "plot_writes": 2, "prior_legacy_exits": 11}, "S8c5c_actual_production_cleanup_WITHOUT_REPLY_SERVICE": {"building_removals": 1409, "current_legacy_exit_gates": 1, "native_effect_cleanup": "USER_GAME_TEST_REQUIRED", "new_events_timers": 0, "plot_writes": 2, "prior_legacy_exits": 11}, "S9e3_foreign_transfers": {"after": {"audits": 0, "carriers": 0, "census": 0, "legacy": 0, "signals": 0}, "baseline": "B374", "before": {"audits": 20, "carriers": 0, "census": 50, "legacy": 100, "signals": 10}, "events": 10, "scope": "actual Bridge+Std only;remaining Research/Culture and coordinate-unknown adjacency paths explicitly not closed"}}`.
+- Limits/mocks: `{"exclusions": {"historical_unrelated_suites": "Selected program scenarios only; inherited stage regressions are named when selected. No old assertions modified."}, "native_mocks": ["synthetic owner/city/district/building methods", "explicit catalogue stub for D workload fixtures", "B270 seven real writers with native doubles"]}`; LOCAL_SIMULATION only.
+
+Static package: {"Lua51": 212, "XML": 25, "package_files": 334, "modinfo": 402}

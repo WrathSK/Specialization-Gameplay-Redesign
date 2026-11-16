@@ -16,7 +16,7 @@ function SPCTimedProjectRead.New(P,show,send)
   local labels={ACTIVE="计时已开启",CONFIRMING="正在确认完成",COMPLETED="项目已退出",STOPPED="已暂停",EARLY_END="提前结束"}
   show("自动项目｜"..(labels[s.status] or s.status).."｜城"..tostring(s.id).."[NEWLINE]启动T"..tostring(s.start)..
    "｜结束回合确认："..(s.deactivated and "是" or "否").."｜调用"..s.attempts.."次[NEWLINE]"..s.reason..
-   "[NEWLINE]无正式奖励；目标退出不等于无溢出验收。查看后续目标进度请右键“完成承接试验”。")
+   "[NEWLINE]无正式奖励；目标退出不等于无溢出验收。")
  end
  function api.Pulse()
   local s=state()

@@ -8,7 +8,7 @@ from test_expedition_spy_task import gate
 R = Path(__file__).resolve().parents[1]
 
 
-def integrated(window=False):
+def integrated(window=False, load_closed=True):
     l = gate(ui=True, window=window)
     l.execute(r"""
       print=function()end;include=function()end;SPCP0=P
@@ -23,7 +23,8 @@ def integrated(window=False):
         for _,f in ipairs(copy)do f(...)end
        end})
       end
-      local previousPublish=publish;local previousTurn=turnBegin;local previousChanged=activityChanged
+      local previousPublish=publish;local previousTurn=turnBegin;local previousChanged=activityChanged;local previousLoad=loadScreen
+      Events.LoadScreenClose=event();if previousLoad then Events.LoadScreenClose.Add(previousLoad)end
       Events.GameCoreEventPublishComplete=event();Events.LocalPlayerTurnBegin=event();Events.UnitActivityChanged=event()
       LuaEvents=LuaEvents or {};LuaEvents.SPC_ExpeditionActivityChanged=event()
       if previousPublish then Events.GameCoreEventPublishComplete.Add(previousPublish)end
@@ -89,6 +90,7 @@ def integrated(window=False):
     l.eval("function(source)assert(load(source,'ExpeditionSpyActivity','t',activityEnvironment))()end")(
         (R / 'Mod/UI/ExpeditionSpyActivity.lua').read_text())
     l.execute('activityInit();Events.GameCoreEventPublishComplete();drainRefreshFrames()')
+    if load_closed:l.execute('Events.LoadScreenClose();Events.GameCoreEventPublishComplete()')
     from refresh_fixture import install_native_events
     install_native_events(l)
     return l
@@ -258,7 +260,7 @@ class PersistentActivityIntegration(unittest.TestCase):
     def restart_bridge(self,l):
         l.execute("activityShutdown();SPCExpeditionSpyGate.Start(P,shared)")
         l.eval("function(source)assert(load(source,'ExpeditionSpyActivity','t',activityEnvironment))()end")((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
-        l.execute('activityInit();Events.GameCoreEventPublishComplete();drainRefreshFrames()')
+        l.execute('activityInit();Events.LoadScreenClose();Events.GameCoreEventPublishComplete();drainRefreshFrames()')
 
     def test_durable_arm_precedes_native_sleep_and_cold_running_keeps_due(self):
         l=integrated();l.execute("""

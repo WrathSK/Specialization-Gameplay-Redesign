@@ -1,0 +1,27 @@
+# B279.306 — S5a2b history producer migration
+
+State: HISTORY_PROPAGATION_COMPLETE / S5a_REQUEST_AND_NETWORK_REMAINDER_AUTHORIZED. Basis2a03ca4. Scope is confirmed historical results and their existing observer edges; it is not an Expedition functional fix or full S5a completion.
+
+## Runtime Impact Contract
+
+Actual CityProgressionStore write/readback remains the authority. It publishes HISTORY topics after confirmed template writes (including equal contents plus reconciliation-availability recovery), new Engineering L, a newly used Dialogue era (including zero-X gain), first insight key, changed Commerce selection/reputation and changed tradition age. Begin/ended/CALLING/HELD/timer saves are not completed project results. Duplicate success/history/no-op writes do not invent new results. Existing record fields, validation, receipt/native FinishProgress order and irreversible action handling are unchanged. In particular, neither failed readback nor a later observer failure can become a successful completion.
+
+IndustryHistory emits WONDER_CREDIT only after a new unique civilization receipt commits; its recipient remains player scope because E is civilization-wide. Store history emission protects evidence construction and delivery and uses the existing scalar transaction barrier for Commerce before fallible enqueue. No native reads are added by Emit or the barrier. No HISTORY payload copies complete records, native objects or candidate numeric results; subscribers read the real owner at delivery.
+
+One explicit FactConsumerBindings factory is composed after the existing relevant modules and before seal. It has only the FactChanges startup dependency, rather than making every healthy subscriber depend on every optional writer. Six finite adapters declare exact topics: template/engineering→StandardizationEffects; Dialogue→DialogueEffects; insights→InsightsTourism/CultureNetwork; Wonder credit→EngineeringStudy; tradition→TraditionEffects. Commerce retains its own scoped history subscription. Each callback is isolated by the registry/S3 registration guard and checks missing/failed targets separately. No automatic target discovery or fallback writer activation is introduced.
+
+Direct successful-result cross-writer calls in Standardization, Engineering, Dialogue completion, Expedition completion and IndustryHistory are removed. Native completion/mission release/return/save/ACK remains synchronous. An insight retry with an existing key no longer sends a duplicate successful history notification. The isolated obsolete template-property path has no production access under the mandatory Store composition; its old hand-wired observer fallback is removed, not silently revived.
+
+The same bounded registry owns pending scopes (2048), subscribers (128) and topics (32); this adds six declared consumers and no native event subscription, timer, frame, periodic scan, native cache or persistent state. During the existing publish boundary, only the affected topic's consumers run; Standardization/CultureNetwork retain their existing source-dependency scope. Wonder credit alone retains the necessary player-wide project mark. Reentrant new history waits for the next publication snapshot; no idle failure retry. Full network publication/manual request lists remain the next migration, so their previous paths are not counted as removed here.
+
+## Evidence
+
+**LOCAL_SIMULATION_PASS:**14 new actual Lua5.1 tests. The real StandardizationCatalog/Standardization/IndustryHistory/Store fixture proves initial/new template commit, no-op duplicate, equal-valued availability recovery and failed-readback suppression. The real Engineering controller+Store proves one confirmed L/unique native finish, no Begin result, failed result save/no replay. The real Dialogue controller+Store proves zero-X still creates one used-era receipt, one sample/finish, duplicate suppression and UNKNOWN completion without resampling. Real insight Store proves first key/duplicate/new category and failed save. Real Wonder receipts prove player-wide first credit only and failed commit suppression. Declared adapter tests cover sibling failure, no1000 idle retry, missing/failed optional target isolation and actual S3 late-registration quarantine. Native queue/treasury/completion are explicit doubles; no native/live PASS.
+
+Full selected program136 cases:132 properties PASS/4 laterOPEN; [exact closure](Specialization_B279_Refactor_S5_History_Closure.json). Old whole-suite immediate `S.notifications` assertions are not used to claim the new deferred observer boundary; successor cases preserve receipt/final value/native-once invariants and explicitly flush. No frozen evidence is rewritten. Prior A8 SQL evidence is unchanged and separate. Current static/package/context/publication checks cover194 Lua51/25 XML/316 package files plus modinfo306.
+
+**Remaining:** Gameplay investment/UI/manual request lists, Claim derived latch, Restructuring publication fanout and Bridge publication list; then S5b read-phase/barriers, S5c registry/invalidation/busy merge and S5d consumer/native hook locality. Four later counterexamples remain registered, not waived.
+
+- **User decision:** none.
+- **User testing:** final U5 unless a concrete blocking native fact appears; no new test request or automatic deployment.
+- **Primary next:** complete remaining S5a request/network propagation, then S5b→c→d and S6–S10. Stable/live/main remain B271.298.

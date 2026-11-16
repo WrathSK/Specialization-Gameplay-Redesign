@@ -1,4 +1,6 @@
 include('RuntimeWork')
+include('SpecialistSupport')
+include('CarrierSet')
 include('ResearchApplyModel')
 -- Sole RES_L3_APPLY writer. Native Campus specialist yield, never city flat compensation.
 SPCResearchApply={}
@@ -7,20 +9,26 @@ M.Bits=5 -- max current Gold coefficient30; rejects overflow, never clamps
 local function name(y,i) return 'BUILDING_SPC_RESEARCH_APPLY_'..y..'_'..i end
 function M.Start(P,shared)
  local data={ready=false,busy=false,errors={},changes=0};shared.ResearchApply=data
+ local ownedRegistry
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(index)return ownedRegistry~=nil and ownedRegistry.Owns(index) end,function(scope)data.MarkAudit(scope)end)
  local definitions
  local function validate()
   if definitions then return end
-  local rows=assert(P.Rows('Building_CitizenYieldChanges'),'AP_DATABASE_UNKNOWN')
+  local rows=assert(P.Rows('Building_CitizenYieldChanges'),'AP_DATABASE_UNKNOWN');local nextOwned={}
   for _,y in ipairs(SPCResearchApplyModel.Yields) do for i=0,M.Bits-1 do
    local r=assert(P.Info('Buildings',name(y,i)),'AP_BUILDING_MISSING')
+   nextOwned[#nextOwned+1]={id=r.Index,name=name(y,i)}
    assert(r.PrereqDistrict=='DISTRICT_CAMPUS' and r.CitizenSlots==0 and r.Housing==0,'AP_BUILDING_MISMATCH')
    local n=0;for _,v in ipairs(rows) do if v.BuildingType==name(y,i) then
     assert(v.YieldType=='YIELD_'..y and v.YieldChange==2^i,'AP_YIELD_MISMATCH');n=n+1
    end end;assert(n==1,'AP_YIELD_MISSING')
-  end end;definitions=true
+  end end;ownedRegistry=SPCCarrierSet.Registry(nextOwned);definitions=true
  end
  local function inspect(pid,c,detail)
-  local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
+  return SPCCurrentSpecializationFacts.Inspect(P,shared,pid,c,function(f,readWorkers,anchors)
+  if f.identity=='RESEARCH' and SPCCurrentSpecializationFacts.AnchorUnavailable(P,shared,pid,c,f,anchors)then
+   return SPCResearchApplyModel.Plan({validity='VERIFIED',identity='NONE'},nil,nil)
+  end
   local inactive=SPCResearchApplyModel.Plan(f,nil,nil)
   if inactive.status~='NEEDS_DEPTH' then return inactive end
   local reader=detail and shared.DistrictCompleteness.Read or shared.DistrictCompleteness.ReadFacts
@@ -29,9 +37,10 @@ function M.Start(P,shared)
   local campus,n=nil,0;local warnings={}
   for _,d in ipairs(v.value.districts) do
    if d.domain=='DISTRICT_CAMPUS' then campus=d;n=n+1 end
-   for _,b in ipairs(d.buildings) do
-    assert(not (b.ordinary and b.depthEligible~=false and b.complete and not b.pillaged and (b.tier==nil or b.reason=='BUILDING_LOCATION_DOMAIN_CONFLICT')),'AP_BUILDING_FACT_UNKNOWN')
-    if detail and b.reason=='UNREVIEWED_BUILDING' then warnings[#warnings+1]=b.name or b.type end
+   if detail then
+    for _,b in ipairs(d.buildings)do
+     if b.reason=='UNREVIEWED_BUILDING'then warnings[#warnings+1]=b.name or b.type end
+    end
    end
   end
   assert(n<=1,'AP_MULTIPLE_CAMPUSES')
@@ -39,11 +48,15 @@ function M.Start(P,shared)
    local p=SPCResearchApplyModel.Plan({validity='VERIFIED',identity='NONE'},nil,nil);p.reason='学院不可用';return p
   end
   assert(f.first and f.first.districtID==campus.id and f.first.type==campus.type,'AP_REFERENCE_UNKNOWN')
-  local workers=assert(Map.GetPlotByIndex(campus.plot),'AP_PLOT_UNKNOWN'):GetWorkerCount()
+  local workers=readWorkers({id=campus.id,type=campus.type,plot=campus.plot},function()
+   local n=assert(Map.GetPlotByIndex(campus.plot),'AP_PLOT_UNKNOWN'):GetWorkerCount()
+   assert(type(n)=='number'and n>=0 and n<math.huge and n%1==0,'AP_WORKERS_UNKNOWN');return n
+  end)
   local p=SPCResearchApplyModel.Plan(f,v,workers)
   p.depth=v;p.plot=campus.plot;p.district=campus.id;p.active=f.active;p.warnings=warnings
   for _,y in ipairs(SPCResearchApplyModel.Yields) do assert(p.per[y]>=0 and p.per[y]<2^M.Bits,'AP_ENCODING_RANGE') end
   return p
+  end,true)
  end
  local function installed(c)
   local b=c:GetBuildings();local rows={};local amounts={}
@@ -61,37 +74,21 @@ function M.Start(P,shared)
   end
   return rows,amounts
  end
- local function remove(c,row)
-  P.RemoveBuilding(c:GetBuildings(),row.id);assert(P.HasBuilding(c:GetBuildings(),row.id)==false,'AP_REMOVE_FAILED');row.yes=false;data.changes=data.changes+1
- end
  local function reconcile(pid,c)
   local p=inspect(pid,c);local rows=installed(c)
-  for _,v in ipairs(rows) do
-   v.want=math.floor(p.per[v.y]/2^v.bit)%2==1
-   if v.yes and (not v.want or v.plot~=p.plot or v.pillaged) then remove(c,v) end
-  end
-  for _,v in ipairs(rows) do if v.want and not v.yes then
-   P.CreateBuilding(c:GetBuildQueue(),v.id)
-   local b=c:GetBuildings();assert(P.HasBuilding(b,v.id)==true and b:GetBuildingLocation(v.id)==p.plot and b:IsPillaged(v.id)==false,'AP_CREATE_LOCATION_FAILED');data.changes=data.changes+1
-  end end
+  for _,v in ipairs(rows)do v.want=math.floor(p.per[v.y]/2^v.bit)%2==1 end
+  SPCCarrierSet.ApplyLocated(P,c,rows,p.plot,health,
+   {observedRemoval=true,removeError='AP_REMOVE_FAILED',createError='AP_CREATE_LOCATION_FAILED'},function()data.changes=data.changes+1 end)
  end
- function data.Audit(scope)
-  if P.Observe then P.Observe('audit','ResearchApply') end
-  if not data.ready or data.busy then return end
-  data.busy=true
-  local ok,err=pcall(function()
+ local function audit(scope,taking)
+  local ok,accepted=pcall(function()
    validate();data.definitionError=nil
-   for pid,player in pairs(Players) do if SPCRuntimeWork.Player(scope,pid) and P.IsTestPlayer(pid) then
-    data.errors[pid]={};local cities=player:GetCities()
-    if cities then for _,c in cities:Members() do
-     P.Count('city_scan');local good,why=pcall(reconcile,pid,c)
-     if not good then data.errors[pid][c:GetID()]=tostring(why) end
-    end end
-   end end
+   return SPCRuntimeWork.AuditCities(P,scope,data.errors,reconcile,taking)
   end)
-  if not ok then data.definitionError=tostring(err) end
-  data.busy=false
+  if not ok then data.definitionError=tostring(accepted)end
+  return ok and accepted
  end
+ data.Audit,data.MarkAudit,data.FlushAudit,data.AcceptFact=SPCRuntimeWork.NewAudit(P,shared,data,'ResearchApply',audit,{receipts=true})
  function data.Describe(pid,c,detail)
   local ok,text=pcall(function()
    assert(data.ready,'AP_NOT_READY');validate()
@@ -126,18 +123,21 @@ function M.Start(P,shared)
   return ok and text or ('学以致用：暂不可确认，保留上次配置。\n'..(tostring(text):match('AP_[A-Z_]+') or '接口未就绪'))
  end
  local function bind(src,n,f) local e=P.Field(src,n);if e and e.Add then e.Add(f) end end
- bind(Events,'LoadScreenClose',function() definitions=nil;data.ready=true;data.errors={};data.Audit() end)
+ SPCRuntimeWork.StartReady(P,shared,'ResearchApply',function()definitions=nil;data.ready=true;data.errors={};data.Audit()end,true)
  -- Shared D/P0-C registers first and owns depth invalidation. Do not re-dirty a
  -- fresh snapshot here: both consumers reuse it during the same native event.
- for _,n in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
-  'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired','CityTransfered','CityRemovedFromMap',
-  'CityWorkerChanged','CityFocusChanged','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','PlayerTurnActivated'}) do
-  SPCRuntimeWork.Hook(P,Events,n,data.Audit)
+ -- Ordinary structural input is owned by scoped DC D; health is exact above.
+ SPCRuntimeWork.Hook(P,Events,'PlayerTurnActivated',data.Audit)
+ if not(shared.FactChanges and shared.DistrictCompleteness and type(shared.DistrictCompleteness.RegisterConsumer)=='function')then
+  SPCRuntimeWork.TargetHook(P,Events,'CityTransfered',function(scope)SPCRuntimeWork.LifecycleScopes(P,scope,data.MarkAudit)end)
+  SPCRuntimeWork.TargetHook(P,Events,'CityRemovedFromMap',data.MarkAudit)
  end
- for _,n in ipairs({'OnDistrictConstructed','BuildingConstructed','CityBuilt','OnPillage'}) do bind(GameEvents,n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ResearchApply',function(c,loss)
-   local ids={};for _,y in ipairs(SPCResearchApplyModel.Yields)do for bit=0,M.Bits-1 do ids[#ids+1]=name(y,bit)end end
+   local ids
+   if ownedRegistry then ids=ownedRegistry.Names()else
+    ids={};for _,y in ipairs(SPCResearchApplyModel.Yields)do for bit=0,M.Bits-1 do ids[#ids+1]=name(y,bit)end end
+   end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
  end)end
 

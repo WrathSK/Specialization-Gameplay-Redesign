@@ -1,5 +1,7 @@
 # Commerce implementation preparation
 
+Current successor: [A0184 accepted convergence and PU01](../Specialization_v0.1_Architecture.md#accepted-convergence-boundaries--2026-11-04) and D0059 override the older pending/cold/Reputation clauses below. Earlier B239/B240 schedules remain historical evidence, not the current task. Read Status for actual implementation and authorization.
+
 State: B246_NATIVE_ACCEPTED_SCOPED / B248_ACCESS_FOLLOWUP_LOCALLY_VERIFIED_NATIVE_ENTRY_UNRESOLVED. Updated 2026-10-18: [B246 native review](../../Status/Validation/Results/Specialization_B246_Native_Review.md) accepts the submitted Development cases; simultaneous Standardization remains unexercised. [B247 implementation](#b247-implementation-and-validation) is explicitly authorized and locally verified. Actual source/live deployment remains in Status.
 
 ## 当前范围与停止点
@@ -160,6 +162,10 @@ After deployment, the one combined flow covers Crew pause/resume occupancy, two 
 
 The current speed must reliably resolve to Standard by GameSpeedType. Other/unknown speeds hold Commerce effects and do not start/tick Reputation, without blocking ordinary investment commits or erasing existing business history. No guessed speed scaling.
 
+
+## Network pending rule supersession
+
+The accepted [network pending/confirmation contract](../Specialization_v0.1_Architecture.md#network-pending-hold-and-confirmation-recovery) supersedes B240's implemented withdrawal of Commercialization Gold when network inputs are temporarily unavailable. The B240 table distinguishes source-Identity UNKNOWN but did not specify the broader pending-network branch precisely; the old native/local reports remain frozen evidence, not the new rule. Keep last-applied network-derived carriers while pending, including cold load; confirmed eligibility loss and confirmed route loss retain their respective exact exits. Capital/Development transaction requirements and signed-contract survival rules remain unchanged. See [Design waiting rule](../../Design/Network.md#未确认不等于失效). Runtime adoption and native evidence are recorded by stage in Status.
 
 ## B240 implementation and validation
 

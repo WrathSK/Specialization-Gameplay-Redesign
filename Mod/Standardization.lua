@@ -48,12 +48,10 @@ function SPCStandardization.Start(P,shared)
   local store=shared.CityProgressionStore
   if store and (store.UsesNewAuthority or store.Owns(c))then store.WriteTemplates(c,old,nextValue)else P.SetProperty(c,KEY,nextValue)end
   assert(same(read(c),nextValue),'STD_WRITE_UNCONFIRMED')
-  if not same(old,nextValue) and shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Standardization.lua') end
   data.writes=data.writes+1
   if not same(old,nextValue) then
    log('INDUSTRY_TEMPLATES_COMMITTED',c,nextValue)
-   if shared.StandardizationEffects then shared.StandardizationEffects.SourceChanged(c:GetOwner(),c:GetID())
-   elseif shared.StandardizationDiscount and not same(old and old.learned,nextValue.learned) then shared.StandardizationDiscount.MarkDirty(c:GetOwner(),'template') end
+   -- Store publishes TEMPLATES after the confirmed write, including availability recovery.
   end
  end
  local function facts(pid,c)
@@ -89,13 +87,7 @@ function SPCStandardization.Start(P,shared)
   assert(type(n)=='number' and n>=0 and n%1==0,'STD_DISTRICT_COUNT_UNAVAILABLE')
   for i=0,n-1 do learnDistrict(c,v,assert(list:GetDistrictByIndex(i),'STD_DISTRICT_ENTRY_UNAVAILABLE'),evidence)end
  end
- local function initialize(pid,c)
-  local old,pending=read(c)
-  if old~=nil then history(c,old)end
-  local h=shared.IndustryHistory;local needs=false
-  if h then local ok,value=pcall(h.NeedsReconcile,c);needs=not ok or value end
-  if old and not pending and old.districts and not needs then return false end
-  local f=facts(pid,c);if f.specialization~='INDUSTRY' then return false end
+ local function reconcileWonder(h,pid,c)
   if h then
    local ok,err=pcall(h.Reconcile,pid,c)
    local k=key(pid,c:GetID())
@@ -105,6 +97,30 @@ function SPCStandardization.Start(P,shared)
     data.warnings[k]=reason -- Wonder history failure does not suspend ordinary templates.
    elseif data.warnings[k] and data.warnings[k]:match('^IH_')then data.warnings[k]=nil end
   end
+ end
+ local function templateRead(c)
+  local old,pending=read(c);if old~=nil then history(c,old)end;return old,pending
+ end
+ local function initialize(pid,c)
+  local ok,old,pending=pcall(templateRead,c)
+  local h=shared.IndustryHistory
+  if not ok then
+   -- Independent current-wonder union may recover at this existing related
+   -- boundary. Never reconstruct template history or civilization-era E.
+   if h then
+    local known,f=pcall(facts,pid,c)
+    if known and f.specialization=='INDUSTRY'then
+     local available,needs=pcall(h.NeedsReconcile,c)
+     if not available or needs then reconcileWonder(h,pid,c)end
+    end
+   end
+   error(old,0) -- preserve the original template failure for its own owner
+  end
+  local needs=false
+  if h then local ok,value=pcall(h.NeedsReconcile,c);needs=not ok or value end
+  if old and not pending and old.districts and not needs then return false end
+  local f=facts(pid,c);if f.specialization~='INDUSTRY' then return false end
+  reconcileWonder(h,pid,c)
   if old and not pending and old.districts then return false end
   assert(type(f.token)=='string','STD_FOUNDATION_MISSING')
   if old then assert(old.foundation==f.token,'STD_FOUNDATION_CHANGED')end

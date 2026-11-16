@@ -1,16 +1,28 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_GP',point,build)end
+ end)
+end
 include("Probe")
-include("SourceYieldProbe")
+include("RuntimeGC")
+include("SafeCallbacks")
+include("RuntimeComposition")
 include("Lv4CopyRead")
-include("YieldCarrierProbe")
 local P=SPCP0
 -- Legacy requests remain isolated: no broad snapshot, district history, or engine-object encoding.
 -- B004 adds bounded automatic trader-operation diagnostics at the bottom.
-ExposedMembers.SPC_P0={Version=P.VERSION,Stage="INITIALIZED",Events={}}
+ExposedMembers.SPC_P0={Version=P.VERSION,Stage="STARTING",Events={}}
 local shared=ExposedMembers.SPC_P0
+local composition=SPCRuntimeComposition.New(shared)
 -- Diagnostic observers are protected and never control startup or reconciliation.
 local readiness
 pcall(function()include('ExpeditionTrainingDiagnostics');include('ReadinessSummary');readiness=SPCReadinessSummary.Start(P,shared)end)
-ExposedMembers.SPC_Performance=SPCPerformance.New()
+local perfOK,counters=pcall(function()if SPCPerformance then return SPCPerformance.New()end end)
+ExposedMembers.SPC_Performance=perfOK and counters or nil
+ExposedMembers.SPC_NetworkRequestInFlight=false
 local function stage(value)
   shared.Stage=value
   local line="[SPC]["..P.VERSION.."][GAMEPLAY] "..value
@@ -18,39 +30,17 @@ local function stage(value)
   shared.Events[#shared.Events+1]=line
   if #shared.Events>32 then table.remove(shared.Events,1) end
 end
--- One post-investment contract, shared by DEV and normal Settler confirmation.
--- Only a proved new receipt narrows these consumers; other actions retain
--- the old player fallback. No facts/cache or native object survives this call.
+-- Request-caused dirty notification; committed receipts are revalidated by the real action.
 local function refreshInvestmentSupport(playerID,result)
- if type(result)=='table' and result.status=='COMMITTED' and shared.StandardizationEffects then
-  local consumer=shared.StandardizationEffects
-  local ok,err=pcall(consumer.SourceChanged,playerID,result.city)
-  consumer.errors['investment-notify:'..tostring(playerID)]=not ok and tostring(err) or nil
- end
- for _,name in ipairs({'Lv2Housing','Lv2GPP'})do
-  local consumer=shared[name]
-  if consumer then
-   local scope={player=playerID}
-   if type(result)=='table' and result.status=='COMMITTED' then scope.investment=result end
-   local ok,err=pcall(consumer.Audit,scope)
-   local key='investment-notify:'..tostring(playerID)
-   consumer.errors[key]=not ok and tostring(err) or nil
-  end
- end
- if type(result)=='table' and result.status=='COMMITTED' then
-  for _,name in ipairs({'EngineeringStudy','IndustryWonderEffects','CrewProjects','Restructuring','LevelBanners'})do
-   local d=shared[name];if d then local ok,err=pcall(d.Refresh,playerID,result.city);if not ok then print('[SPC][Investment entry '..name..'] '..tostring(err))end end
-  end
- end
- if type(result)=='table' and result.status=='COMMITTED' and shared.Commerce then
-  local ok,err=pcall(shared.Commerce.Refresh,playerID,result.city)
-  if not ok then print('[SPC][Commerce investment entry] '..tostring(err))end
- end
- if type(result)=='table' and result.status=='COMMITTED' and shared.DialogueProjects
-  and not shared.DialogueProjects.startupError and shared.DialogueProjects.Refresh then
-  local ok,err=pcall(shared.DialogueProjects.Refresh,playerID,result.city) -- target entry only
-  if not ok then print('[SPC][Dialogue investment entry] '..tostring(err))end
- end
+ if not shared.FactChanges then return end
+ local committed=type(result)=='table' and result.cause=='INVESTMENT_COMMITTED' and (result.status=='COMMITTED' or result.status=='ALREADY_COMMITTED')
+ local reference=committed and result.reference
+ local event={owner=playerID,cityID=committed and result.city or nil,
+  reference=reference and table.concat({reference.owner,reference.cityID,reference.x,reference.y,result.anchor.token},':') or nil,
+  kinds=committed and {'POTENTIAL','ACTIVE'} or {'ACTIVE','D','WORKERS'},
+  cause=committed and (result.status=='COMMITTED' and 'INVESTMENT_COMMITTED' or 'INVESTMENT_RECOVERY') or 'REQUEST_FACTS_DIRTY',
+  revision=committed and result.revision or nil,investment=committed and result.status=='COMMITTED' and result or nil}
+ shared.FactChanges.Emit(event)
 end
 local function request(playerID,params)
   shared.RequestIngress=shared.RequestIngress or {count=0}
@@ -97,22 +87,18 @@ local function request(playerID,params)
     shared.Snapshot=ok and out or '事件诊断不可用';shared.LastToken=params.Token;return
   end
   if params.Action=='MEMORY_BEGIN' or params.Action=='MEMORY_READ' then
-    local ok,out=pcall(shared.MemoryObservation.Read,playerID,params.Action=='MEMORY_BEGIN')
+    local d=shared.MemoryObservation
+    local ok,out=pcall(function()
+      if not d or not d.Read then return '内存观测未启用。'end
+      return d.Read(playerID,params.Action=='MEMORY_BEGIN')
+    end)
     shared.Snapshot=ok and out or ('内存观测不可用：'..tostring(out));shared.LastToken=params.Token;return
   end
-  if params.Action=='ENGINEERING_STUDY_BEGIN' then
-    if shared.EngineeringStudy then shared.EngineeringStudy.Request(playerID,params)end;return
-  end
-  if params.Action=='DIALOGUE_CARRIER_NEXT' and shared.DialogueEffects then
-    params.Action='DIALOGUE_PROJECT_READ' -- stale UI cannot re-enable the retired test writer
-  end
-  if params.Action=='DIALOGUE_CARRIER_NEXT' then
-    local ok,out=pcall(function()
-      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'请选择己方城市')
-      shared.Dialogue.CarrierTestNext(playerID,c,params.Token,params.Reference)
-      return shared.Dialogue.DescribeCarrierTest(playerID,c)
-    end)
-    shared.Snapshot=ok and out or ('倍率对照暂停：'..tostring(out)..'；回到原测试城市右键结束。');shared.LastToken=params.Token;return
+  if params.Action=='ENGINEERING_STUDY_BEGIN' or params.Action=='ENGINEERING_STUDY_SYNC' then
+    local d=shared.EngineeringStudy
+    if d and not d.startupError then
+      if params.Action=='ENGINEERING_STUDY_SYNC'then d.Sync(playerID,params.CityID,params.Token)else d.Request(playerID,params)end
+    end;return
   end
   if params.Action=='DIALOGUE_PROJECT_BEGIN' or params.Action=='DIALOGUE_PROJECT_SYNC' or params.Action=='DIALOGUE_PROJECT_READ' then
     local ok,out=pcall(function()
@@ -120,8 +106,9 @@ local function request(playerID,params)
       if params.Action=='DIALOGUE_PROJECT_SYNC' then d.Sync(playerID,params.CityID,params.Token);return end
       if params.Action=='DIALOGUE_PROJECT_BEGIN' then d.Request(playerID,params);return end
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'请选择己方城市')
-      return d.Describe(playerID,c)..(shared.DialogueEffects and '' or '\n\n'..shared.Dialogue.DescribeCarrierTest(playerID,c))
+      return d.Describe(playerID,c)
     end)
+    if params.Action=='DIALOGUE_PROJECT_BEGIN'then cultureObserve('DIALOGUE_INGRESS_RESULT',function()local e=not ok and SPCCultureDiagnostics.Error(out)or {};e.owner=playerID;e.city=params.CityID;e.taskStart=params.StartTurn;e.requestResult=ok and 'HANDLER_RETURNED'or 'HANDLER_THREW';return e end)end
     if params.Action=='DIALOGUE_PROJECT_READ' then shared.Snapshot=ok and out or ('时代对话暂停：'..tostring(out));shared.LastToken=params.Token end
     return
   end
@@ -135,33 +122,11 @@ local function request(playerID,params)
   if params.Action=='TIMED_PROJECT_BEGIN' or params.Action=='TIMED_PROJECT_CANCEL' then
     shared.TimedProject.Request(playerID,params);return
   end
-  if params.Action=='PROJECT_TURN_BEGIN' or params.Action=='PROJECT_TURN_END' then
-    shared.ProjectTurnObservation.Request(playerID,params);return
-  end
-  if params.Action=='OVERFLOW_PREPARE' or params.Action=='OVERFLOW_APPLY' then
-    shared.OverflowStorageProbe.Request(playerID,params);return
-  end
-  if params.Action=='TIMED_PRODUCTION_BEGIN' or params.Action=='TIMED_PRODUCTION_CANCEL' then
-    shared.TimedProductionProbe.Request(playerID,params);return
-  end
-  if params.Action=='CITY_SEQUENCE_BEGIN' or params.Action=='CITY_SEQUENCE_READ' then
-    local ok,out=pcall(function()
-      if params.Action=='CITY_SEQUENCE_READ' then return shared.CitySequenceProbe.Read(playerID,params.Page)end
-      local player=Players[playerID]
-      local c=params.CityID and player:GetCities():FindID(params.CityID)
-      local u=params.UnitID and player:GetUnits():FindID(params.UnitID)
-      assert(not params.UnitID or u,'SELECTED_UNIT_UNAVAILABLE')
-      return shared.CitySequenceProbe.Begin(playerID,c,u,params.Token)
-    end)
-    shared.Snapshot=ok and out or '事件观察读取失败；没有修改专业记录。'
-    shared.LastToken=params.Token;return
-  end
   -- B068 presentation is a disposable mirror, never a source of city state.
-  if params.Action=='PROGRESSION_IMPORT' or params.Action=='PROGRESSION_STORE_READ' then
+  if params.Action=='PROGRESSION_STORE_READ' then
     if not P.IsTestPlayer(playerID) then return end
     local ok,out=pcall(function()
       local c=params.CityID and Players[playerID]:GetCities():FindID(params.CityID)
-      if params.Action=='PROGRESSION_IMPORT' then return shared.CityProgressionStore.Import(playerID,c) end
       return (shared.CityProgressionStore.NativeDescribe or shared.CityProgressionStore.Describe)(playerID,c)
     end)
     shared.Snapshot=ok and out or ('进度保存暂停：'..tostring(out));shared.LastToken=params.Token;return
@@ -248,6 +213,11 @@ local function request(playerID,params)
   end
   if params.Action=='CITY_PRESENTATION_READ' then
     if not P.IsTestPlayer(playerID) then return end
+    local service=shared.PlayerActionReplies;local replies
+    if params.ReplyChannel~=nil then
+      replies=service and service.Presentations
+      if not replies or not replies.Accepts(playerID,params)then return end
+    end
     local ok,f=pcall(function()
       local c=Players[playerID]:GetCities():FindID(params.CityID)
       assert(c and c:GetOwner()==playerID,'PRESENTATION_CITY_UNAVAILABLE')
@@ -265,25 +235,45 @@ local function request(playerID,params)
         if ready then s.tradition.percent=percent;s.tradition.nextAge=nextAge end
        end
       else f.institutionSummary={known=false}end
+      -- Bind to this same selected native city inside the protected read.
+      f.presentationX=c:GetX();f.presentationY=c:GetY()
+      assert(c:GetOwner()==playerID and c:GetID()==params.CityID,'PRESENTATION_REFERENCE_CHANGED')
       return f
     end)
-    shared.CityPresentationView={token=params.Token,owner=playerID,cityID=params.CityID,
+    local view={token=params.Token,owner=playerID,cityID=params.CityID,
       specialization=ok and f.specialization or nil,potential=ok and f.potential or nil,
       progression=ok and f.progression or nil,institutionArchive=ok and f.institutionArchive or nil,
       institutionSummary=ok and f.institutionSummary or nil,
       investments=ok and f.investmentCount or nil,active=ok and f.active or nil,activeStatus=ok and f.activeStatus or nil,
-      x=ok and Players[playerID]:GetCities():FindID(params.CityID):GetX() or nil,
-      y=ok and Players[playerID]:GetCities():FindID(params.CityID):GetY() or nil,error=not ok and tostring(f) or nil}
-    -- Existing bounded trace, scalar results only; no extra native reads.
-    if SPCExpeditionTrainingDiagnostics then
-      if not shared.PresentationDiagnostics then shared.PresentationDiagnostics=SPCExpeditionTrainingDiagnostics.New(P,'PRESENTATION_GAMEPLAY')end
-      local d=shared.PresentationDiagnostics;local v=shared.CityPresentationView
-      if d then pcall(d.Record,'INSTITUTION_FACTS',{owner=playerID,city=params.CityID,requestKey=params.Token,
-        specialization=v.specialization,potential=v.potential,active=v.active,activeStatus=v.activeStatus,readStatus=ok and 'READY' or 'UNAVAILABLE'})end
+      x=ok and f.presentationX or nil,
+      y=ok and f.presentationY or nil,error=not ok and tostring(f) or nil}
+    shared.CityPresentationView=view -- legacy/DEV mirror, not the typed consumer's reply
+    if replies then
+      local good,accepted=false,false
+      if shared.PlayerActionReplies==service and service.Presentations==replies then good,accepted=pcall(replies.PublishPresentation,playerID,params,view)end
+      shared.ObserverErrors=shared.ObserverErrors or {}
+      shared.ObserverErrors['city-presentation-reply']=not(good and accepted==true)and 'PLAYER_PRESENTATION_REPLY_UNAVAILABLE'or nil
+      if not(good and accepted==true)and shared.PlayerActionReplies==service and service.Presentations==replies then pcall(replies.FailPresentation,playerID,params)end
     end
+    -- Existing bounded trace, scalar results only; no extra native reads.
+    pcall(function()
+      if SPCExpeditionTrainingDiagnostics then
+        if not shared.PresentationDiagnostics then shared.PresentationDiagnostics=SPCExpeditionTrainingDiagnostics.New(P,'PRESENTATION_GAMEPLAY')end
+        local d=shared.PresentationDiagnostics;local v=view
+        if d then
+          local row={owner=playerID,city=params.CityID,requestKey=params.Token,
+            specialization=v.specialization,potential=v.potential,active=v.active,activeStatus=v.activeStatus,readStatus=ok and 'READY' or 'UNAVAILABLE'}
+          if not ok then
+            local failure=SPCExpeditionTrainingDiagnostics.Failure(f,'CITY_FACTS')
+            for _,key in ipairs({'errorCode','errorClass','errorFile','errorLine','errorSymbol'})do row[key]=failure[key]end
+          end
+          d.Record('INSTITUTION_FACTS',row)
+        end
+      end
+    end)
     return
   end
-  if type(params.Action)=='string' and params.Action:find('^INSPIRE_') then
+  if params.Action=='INSPIRE_STATUS' or params.Action=='INSPIRE_DETAIL' then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     shared.CultureInspirationView=nil
@@ -453,29 +443,9 @@ local function request(playerID,params)
     shared.Snapshot=ok and out or ('商业化暂不可用：'..(tostring(out):match('COM_[A-Z_]+') or 'COM_STATE_UNKNOWN'))
     shared.LastToken=params.Token;return
   end
-  if params.Action=='GWA_READ' or params.Action=='GWA_OFF' or params.Action=='GWA_AUTO' then
-    shared.RequestToken=params.Token
-    local ok,out=pcall(function()
-      assert(P.IsTestPlayer(playerID),'GWA_NOT_TEST_PLAYER')
-      local c=Players[playerID]:GetCities():FindID(params.CityID)
-      assert(c and c:GetOwner()==playerID,'GWA_CITY_UNAVAILABLE')
-      local d=assert(shared.GreatWorkAdjacency,'GWA_MODULE_NOT_LOADED')
-      assert(type(d.Describe)=='function','GWA_MODULE_INCOMPLETE')
-      assert(not d.retired or params.Action=='GWA_READ','GWA_RETIRED')
-      if params.Action~='GWA_READ' then d.off[playerID]=params.Action=='GWA_OFF';d.Audit(playerID) end
-      return d.Describe(playerID,c)
-    end)
-    shared.Snapshot=ok and out or ('巨作相邻请求失败：'..tostring(out))
-    shared.LastToken=params.Token
-    return
-  end
-  if params.Action=='GW_READ' or params.Action=='GW_BASELINE' or params.Action=='DIALOGUE_OFF' or params.Action=='DIALOGUE_AUTO' or params.Action=='DIALOGUE_TEST25' or params.Action=='DIALOGUE_TEST50' or params.Action=='DIALOGUE_TEST100' then
+  if params.Action=='GW_READ' or params.Action=='GW_BASELINE' then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID);if not c then return end
-    if params.Action~='GW_READ' and params.Action~='GW_BASELINE' then
-      local percent=({DIALOGUE_TEST25=25,DIALOGUE_TEST50=50,DIALOGUE_TEST100=100})[params.Action]
-      shared.Dialogue.test[playerID]=percent and {city=c:GetID(),percent=percent} or nil
-      shared.Dialogue.off[playerID]=params.Action=='DIALOGUE_OFF';shared.Dialogue.Audit(playerID) end
     shared.Snapshot=shared.Dialogue.Describe(playerID,c);shared.LastToken=params.Token;return
   end
   if params.Action=='BOOST_INIT' then
@@ -487,23 +457,9 @@ local function request(playerID,params)
     if not ok then print('[SPC][B055][INIT] '..tostring(err)) end
     return
   end
-  if params.Action=='BOOST_TEST_ZERO' or params.Action=='BOOST_TEST_HALF' or params.Action=='BOOST_TEST_HIGH' or params.Action=='BOOST_TEST_AUTO' then
-    if not P.IsTestPlayer(playerID) then return end
-    local raw=({BOOST_TEST_ZERO=0,BOOST_TEST_HALF=1.5,BOOST_TEST_HIGH=3.8})[params.Action]
-    local ok,out=pcall(shared.NetworkBoost.Test,playerID,raw)
-    shared.Snapshot=ok and out or ('整数实验未启用：'..tostring(out));shared.LastToken=params.Token;return
-  end
   if params.Action=='BOOST_READ' or params.Action=='BOOST_BASELINE' then
     if not P.IsTestPlayer(playerID) then return end
     shared.Snapshot=shared.NetworkBoost.Describe(playerID);shared.LastToken=params.Token;return
-  end
-  if params.Action=='GW_READ' or params.Action=='GW_CITY' or params.Action=='GW_OBJECT' or params.Action=='GW_OFF' then
-    if not P.IsTestPlayer(playerID) then return end
-    local c=Players[playerID]:GetCities():FindID(params.CityID)
-    if not c or c:GetOwner()~=playerID then return end
-    local ok,out=pcall(shared.GreatWorkProbe.Run,playerID,c,params.Action)
-    if not ok then print('[SPC][B055][GW] '..tostring(out)) end
-    shared.Snapshot=ok and out or '巨作实验未完成，请回传报告/日志。';shared.LastToken=params.Token;return
   end
   if params.Action=='DISCOUNT_INIT' then
     if shared.StandardizationDiscount then shared.StandardizationDiscount.Initialize(playerID,params) end
@@ -523,31 +479,12 @@ local function request(playerID,params)
     if shared.CopyYields then shared.CopyYields.Receive(playerID,params) end
     return
   end
-  if params.Action=='HALF_ON' or params.Action=='HALF_OFF' or params.Action=='HALF_READ' then
-    if not P.IsTestPlayer(playerID) then return end
-    local c=Players[playerID]:GetCities():FindID(params.CityID)
-    if not c or c:GetOwner()~=playerID then return end
-    local ok,result=pcall(shared.HalfYieldProbe.Run,playerID,c,params.Action)
-    if not ok then print('[SPC][B050][REQUEST] '..tostring(result)) end
-    shared.Snapshot=ok and result or '半点实验未完成，请回传日志。';shared.LastToken=params.Token;return
-  end
-  if params.Action=='PURCHASE_BASE' or params.Action=='PURCHASE_ON' or params.Action=='PURCHASE_OFF' or params.Action=='PURCHASE_READ' then
-    if not P.IsTestPlayer(playerID) then return end
-    local c=Players[playerID]:GetCities():FindID(params.CityID)
-    if not c or c:GetOwner()~=playerID then return end
-    local ok,v=pcall(shared.PurchaseProbe.Run,playerID,c,params.Action)
-    shared.Snapshot=ok and v or ('B053实验未完成：'..(tostring(v):match('B053_[A-Z_]+') or 'UNKNOWN'))
-    if not ok then print('[SPC][B053] '..tostring(v)) end
-    shared.LastToken=params.Token;return
-  end
-  if params.Action=="STANDARDIZATION_READ" or params.Action=="INDUSTRY_HISTORY_READ" then
+  if params.Action=="INDUSTRY_HISTORY_READ" then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     if not c or c:GetOwner()~=playerID then return end
     shared.Snapshot=shared.Standardization.Describe(playerID,c,params.Page)
-    if params.Action=="INDUSTRY_HISTORY_READ" then
-      shared.Snapshot=shared.IndustryHistory.Describe(playerID,c)..'\n\n'..shared.CrewProjects.Describe(playerID,c)..'\n\n'..shared.Snapshot
-    end
+    shared.Snapshot=shared.IndustryHistory.Describe(playerID,c)..'\n\n'..shared.CrewProjects.Describe(playerID,c)..'\n\n'..shared.Snapshot
     shared.LastToken=params.Token;return
   end
   if params.Action=="LV4_COPY_READ" then
@@ -565,33 +502,57 @@ local function request(playerID,params)
   end
   if params.Action=="UNIT_ACTION_VIEW" then
     if P.IsTestPlayer(playerID) and type(params.UnitID)=="number" and shared.UnitActions then
-      shared.UnitActions.ReadView(playerID,params.UnitID,params.Token)
+      local service=shared.PlayerActionReplies;local replies
+      if params.ReplyChannel~=nil then
+        replies=service and service.Views
+        if not replies or not replies.Accepts(playerID,params)then return end
+      end
+      local view=shared.UnitActions.ReadView(playerID,params.UnitID,params.Token)
+      if replies then
+        local ok,accepted=false,false
+        if shared.PlayerActionReplies==service and service.Views==replies then ok,accepted=pcall(replies.PublishView,playerID,params,view)end
+        shared.ObserverErrors=shared.ObserverErrors or {}
+        shared.ObserverErrors['unit-view-reply']=not(ok and accepted==true)and 'PLAYER_VIEW_REPLY_UNAVAILABLE'or nil
+        if not(ok and accepted==true)and shared.PlayerActionReplies==service and service.Views==replies then pcall(replies.FailView,playerID,params)end
+      end
     end
     return
   end
   if params.Action=="UNIT_ACTION_SPAWN" or params.Action=="UNIT_ACTION_PREPARE" or params.Action=="UNIT_ACTION_CONFIRM" then
     if not P.IsTestPlayer(playerID) then return end
-    local result
-    shared.Snapshot,result=shared.UnitActions.Run(playerID,params);shared.LastToken=params.Token
-    if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    refreshInvestmentSupport(playerID,result)
-    if shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
-    if shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
-    if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
-    if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
-    if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
-    if shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
-    if shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID,city=params.CityID})end
-    if shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=playerID,city=params.CityID})end
-    if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
-    if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
-    if shared.Lv3Effects then shared.Lv3Effects.Audit() end
-    if shared.NetworkBoost then shared.NetworkBoost.Audit() end
-    if shared.Dialogue then shared.Dialogue.Audit(playerID) end
+    local replies
+    if params.ReplyChannel~=nil then
+      replies=shared.PlayerActionReplies
+      if not replies or not replies.Accepts(playerID,params)then return end
+    end
+    local text,result,outcome=shared.UnitActions.Run(playerID,params)
+    if replies then
+      local ok,accepted=false,false
+      if shared.PlayerActionReplies==replies then ok,accepted=pcall(replies.Publish,playerID,params,text,outcome)end
+      shared.ObserverErrors=shared.ObserverErrors or {}
+      shared.ObserverErrors['unit-action-reply']=not(ok and accepted==true)and 'PLAYER_REPLY_UNAVAILABLE'or nil
+    else
+      shared.Snapshot=text;shared.LastToken=params.Token -- Explicit DEV/legacy compatibility.
+    end
+    SPCSafeCallbacks.Call(shared,'request-facts',refreshInvestmentSupport,playerID,result)
     return
   end
   if params.Action=="UNIT_TARGETS_READ" then
-    if shared.UnitTargets then shared.UnitTargets.Refresh(playerID,params) end
+    if shared.UnitTargets then
+      local service=shared.PlayerActionReplies;local replies
+      if params.ReplyChannel~=nil then
+        replies=service and service.Targets
+        if not replies or not replies.Accepts(playerID,params)then return end
+      end
+      local targets=shared.UnitTargets.Refresh(playerID,params)
+      if replies then
+        local ok,accepted=false,false
+        if shared.PlayerActionReplies==service and service.Targets==replies then ok,accepted=pcall(replies.PublishTargets,playerID,params,targets)end
+        shared.ObserverErrors=shared.ObserverErrors or {}
+        shared.ObserverErrors['unit-target-reply']=not(ok and accepted==true)and 'PLAYER_TARGET_REPLY_UNAVAILABLE'or nil
+        if not(ok and accepted==true)and shared.PlayerActionReplies==service and service.Targets==replies then pcall(replies.FailTargets,playerID,params)end
+      end
+    end
     return
   end
   if params.Action=="INDUSTRY_BASE" then
@@ -600,56 +561,41 @@ local function request(playerID,params)
   end
   if params.Action=="LV2_GPP_DIRTY" then
     P.Observe('ui','received')
-    if params.FactsChanged and shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
-    if params.FactsChanged and shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID})end
-    if params.FactsChanged and shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=playerID})end
-    if params.FactsChanged and shared.DialogueEffects then shared.DialogueEffects.Audit({player=playerID})end
-    if params.FactsChanged and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(playerID)end
-    if params.FactsChanged and shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    if params.FactsChanged and shared.CultureNetwork then shared.CultureNetwork.Mark(playerID)end
-    if params.FactsChanged and P.IsTestPlayer(playerID) and shared.Lv2Housing then shared.Lv2Housing.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.Lv2GPP then shared.Lv2GPP.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.Lv3Effects then shared.Lv3Effects.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.Lv4Percent then shared.Lv4Percent.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
-    if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
-    if not (params.WorkerOnly==true and params.FactsChanged==false) and shared.CultureMeaningProbe then shared.CultureMeaningProbe.Audit({player=playerID})end
-    -- Cross has no worker/focus input. Missing/mixed/contradictory provenance retains the fallback.
-    if not (params.WorkerOnly==true and params.FactsChanged==false) and P.IsTestPlayer(playerID) and shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
-    if P.IsTestPlayer(playerID) and shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
+    pcall(function()local d=SPCCultureDiagnostics;if d and d.ENABLED then
+     d.Emit('CULTURE_GPP_DIRTY','GPP_DIRTY_INGRESS',function()return {owner=playerID,city=params.CityID,requestKey=params.Token,
+      observerSide='GAMEPLAY',ready=shared.NativeFacts~=nil,recordType=params.FactsChanged==true and 'FACTS_AND_WORKERS'or params.WorkerOnly==true and params.FactsChanged==false and 'WORKERS_ONLY'or 'CONSERVATIVE'}end)
+    end end)
+    if shared.NativeFacts then
+     local workerOnly=params.WorkerOnly==true and params.FactsChanged==false
+     if not workerOnly then
+      local ok,err=pcall(function()
+       local depth=assert(shared.DistrictCompleteness,'UI_DEPTH_PROVIDER_UNAVAILABLE')
+       depth.MarkDirty(playerID,nil,'UI_FACTS_DIRTY')
+      end)
+      shared.ObserverErrors=shared.ObserverErrors or {}
+      local safe,text=pcall(tostring,err)
+      shared.ObserverErrors.UI_DEPTH_FACTS=not ok and (safe and text:sub(1,180) or 'UI_DEPTH_MARK_FAILED') or nil
+     end
+     local cid=params.CityID
+     if not(workerOnly and type(cid)=='number'and cid>=0 and cid<2147483648 and cid%1==0)then cid=nil end
+     shared.NativeFacts.Workers({player=playerID,city=cid},workerOnly and 'UI_WORKERS_DIRTY' or 'UI_FACTS_DIRTY')
+    end
     return
   end
   if params.Action=="NETWORK_PUSH" then
     if shared.NetworkBridge then shared.NetworkBridge.Receive(playerID,params) end
     return
   end
-  if params.Action~="UNIT_SITE_READ" and params.Action~="CONSTRUCTION_PREVIEW" and params.Action~="CONSTRUCTION_APPLY" and params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="CARRIER_STEP" and params.Action~="CARRIER_OFF" and params.Action~="SOURCE_YIELDS" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_ON" and params.Action~="RESEARCH_OFF" and params.Action~="RESEARCH_READ" and params.Action~="CITY_FLOW_READ" and params.Action~="ENVELOPE_READ" and params.Action~="ENVELOPE_NEXT" and params.Action~="CAPTURE" and params.Action~="MARK_CITY" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" and params.Action~="TRADE_EVENTS" and params.Action~="STORAGE_READ" and params.Action~="STORAGE_WRITE" and params.Action~="BINDING_READ" and params.Action~="COMPLETION_RECORD_READ" and params.Action~="CITY_JOURNAL_READ" then return end
+  if params.Action~="LV2_GPP_READ" and params.Action~="LV2_HOUSING_READ" and params.Action~="INVEST_PREPARE" and params.Action~="INVEST_CONFIRM" and params.Action~="PROGRESSION_READ" and params.Action~="NETWORK_DETAIL" and params.Action~="NETWORK_READ" and params.Action~="RESEARCH_READ" and params.Action~="GOVERNOR" and params.Action~="SPECIALISTS" then return end
   if not P.IsTestPlayer(playerID) then return end
   shared.LastToken=nil
   shared.RequestToken=params.Token
   shared.Action=params.Action
   shared.FailureAt=nil
   stage("RECEIVED "..params.Action)
-  if params.Action=="STORAGE_READ" or params.Action=="STORAGE_WRITE" then
-    shared.Snapshot=shared.StorageProbe.Run(playerID,params.Action=="STORAGE_WRITE")
-    shared.LastToken=params.Token;stage("ACK STORAGE");return
-  end
-  if params.Action=="ENVELOPE_READ" or params.Action=="ENVELOPE_NEXT" then
-    shared.Snapshot=shared.EnvelopeProbe.Run(playerID,params.Action,params.ExpectedStage)
-    shared.LastToken=params.Token;stage("ACK ENVELOPE");return
-  end
-  if params.Action=="UNIT_SITE_READ" then
-    shared.Snapshot=shared.UnitSiteProbe.Read(playerID,params.UnitID)
-    shared.LastToken=params.Token;stage("ACK UNIT_SITE_READ");return
-  end
   local player=Players[playerID]
   local city=type(params.CityID)=="number" and player:GetCities():FindID(params.CityID)
   if not city or city:GetOwner()~=playerID then stage("REJECT_CITY");return end
-  if params.Action=="CONSTRUCTION_PREVIEW" or params.Action=="CONSTRUCTION_APPLY" then
-    shared.Snapshot=params.Action=="CONSTRUCTION_PREVIEW" and shared.ConstructionProbe.Prepare(playerID,city) or shared.ConstructionProbe.Apply(playerID,city)
-    shared.LastToken=params.Token;stage("ACK CONSTRUCTION_PROBE");return
-  end
   if params.Action=="INVEST_PREPARE" or params.Action=="INVEST_CONFIRM" then
     local result
     if params.Action=="INVEST_PREPARE" then
@@ -657,23 +603,12 @@ local function request(playerID,params)
     elseif type(params.PlanToken)=="string" and #params.PlanToken<=400 then
       shared.Snapshot,result=shared.InvestmentAction.Confirm(playerID,city,params.PlanToken)
     else shared.Snapshot="B033 REJECTED: PREPARE_FIRST" end
-    if shared.NetworkBridge then shared.NetworkBridge.Refresh(playerID) end
-    refreshInvestmentSupport(playerID,result)
-    if shared.ResearchInfrastructure then shared.ResearchInfrastructure.Audit({player=playerID}) end
-    if shared.ResearchCross then shared.ResearchCross.Audit({player=playerID}) end
-    if shared.ResearchApply then shared.ResearchApply.Audit({player=playerID}) end
-    if shared.ResearchChair then shared.ResearchChair.Audit({player=playerID}) end
-    if shared.CultureAesthetic then shared.CultureAesthetic.Audit({player=playerID}) end
-    if shared.CultureMeaning then shared.CultureMeaning.Audit({player=playerID})end
-    if shared.CultureInspiration then shared.CultureInspiration.Audit({player=playerID,city=params.CityID})end
-    if shared.CultureInsightsTourism then shared.CultureInsightsTourism.Audit({player=playerID,city=params.CityID})end
-    if shared.ResearchSupport then shared.ResearchSupport.Audit({player=playerID}) end
-    if shared.IndustrySupport then shared.IndustrySupport.Audit({player=playerID}) end
-    if shared.Lv3Effects then shared.Lv3Effects.Audit() end
+    shared.LastToken=params.Token -- primary result already returned; observers cannot revoke ACK
+    SPCSafeCallbacks.Call(shared,'request-facts',refreshInvestmentSupport,playerID,result)
     shared.LastToken=params.Token;stage("ACK INVESTMENT");return
   end
   if params.Action=="LV2_GPP_READ" then
-    shared.Snapshot=shared.Lv2GPP.Describe(playerID,city)
+    shared.Snapshot=shared.Lv2GPP.Describe(playerID,city,params.Token,params.CityID)
     shared.LastToken=params.Token;stage("ACK LV2_GPP");return
   end
   if params.Action=="LV2_HOUSING_READ" then
@@ -684,56 +619,17 @@ local function request(playerID,params)
     shared.Snapshot=shared.EffectiveFacts.Describe(playerID,city)
     shared.LastToken=params.Token;stage("ACK PROGRESSION");return
   end
-  if params.Action=="CARRIER_STEP" or params.Action=="CARRIER_OFF" then
-    shared.Snapshot=SPCYieldCarrierProbe.Run(playerID,city,params.Action=="CARRIER_STEP" and "STEP" or "OFF")
-    shared.LastToken=params.Token;stage("ACK CARRIER");return
-  end
-  if params.Action=="SOURCE_YIELDS" then
-    shared.Snapshot=SPCYieldCarrierProbe.Describe(playerID,city)
-    shared.LastToken=params.Token;stage("ACK SOURCE_YIELDS");return
-  end
   if params.Action=="NETWORK_READ" or params.Action=="NETWORK_DETAIL" then
     shared.Snapshot=shared.NetworkBridge.Report(playerID,city,params.Action=="NETWORK_DETAIL",params.Page)
     shared.LastToken=params.Token;stage("ACK NETWORK");return
   end
-  if params.Action=="RESEARCH_ON" or params.Action=="RESEARCH_OFF" or params.Action=="RESEARCH_READ" then
+  if params.Action=="RESEARCH_READ" then
     local f=shared.EffectiveFacts.Read(playerID,city)
     if f.specialization=='INDUSTRY' then shared.Snapshot=shared.IndustrySupport.Describe(playerID,city)
     else shared.Snapshot=shared.ResearchSupport.Run(playerID,city,params.Action) end
     if shared.Lv3Support then shared.Snapshot=shared.Snapshot..shared.Lv3Support.Describe(playerID,city) end
     if shared.Lv3Effects then shared.Snapshot=shared.Snapshot..shared.Lv3Effects.Describe(playerID,city) end
     shared.LastToken=params.Token;stage("ACK RESEARCH_SUPPORT");return
-  end
-  if params.Action=="CITY_FLOW_READ" then
-    shared.Snapshot=shared.CityFlowProbe.Read(playerID,city)
-    shared.LastToken=params.Token;stage("ACK CITY_FLOW");return
-  end
-  if params.Action=="CITY_JOURNAL_READ" then
-    shared.Snapshot=shared.CityJournalProbe.Read(playerID,city)
-    shared.LastToken=params.Token;stage("ACK CITY_JOURNAL");return
-  end
-  if params.Action=="COMPLETION_RECORD_READ" then
-    shared.Snapshot=shared.CompletionRecordProbe.Read(playerID,city)
-    shared.LastToken=params.Token;stage("ACK COMPLETION_RECORD");return
-  end
-  if params.Action=="BINDING_READ" then
-    shared.Snapshot=shared.BindingProbe.Read(playerID,city)
-    shared.LastToken=params.Token;stage("ACK BINDING");return
-  end
-  if params.Action=="TRADE_EVENTS" then
-    local lines={"GAMEPLAY EVENT OBSERVATION city="..params.CityID,"Events observed since this script loaded; NOT an active-route list"}
-    local entries=shared.TradeEvents or {}
-    local shown=0
-    for i=#entries,1,-1 do
-      local e=entries[i]
-      if (e.op==playerID and e.oc==params.CityID) or (e.dp==playerID and e.dc==params.CityID) then
-        lines[#lines+1]=e.text;shown=shown+1
-        if shown>=3 then break end
-      end
-    end
-    if shown==0 then lines[#lines+1]="NO_MATCHING_EVENT_OBSERVED (existing route may predate load)" end
-    shared.Snapshot=table.concat(lines,"\n")
-    shared.LastToken=params.Token;stage("ACK TRADE_EVENTS");return
   end
   if params.Action=="GOVERNOR" or params.Action=="SPECIALISTS" then
     shared.Snapshot=P.FocusProbe(city,params.Action,stage)
@@ -748,19 +644,6 @@ local function request(playerID,params)
     stage("ACK "..params.Action)
     return
   end
-  stage("BEFORE_GET city="..tostring(params.CityID))
-  local marker=city:GetProperty("SPC_P0_MARKER")
-  stage("AFTER_GET marker="..P.Scalar(marker))
-  if params.Action=="MARK_CITY" and marker==nil then
-    stage("BEFORE_SET")
-    P.SetProperty(city,"SPC_P0_MARKER",params.Token)
-    stage("AFTER_SET")
-    marker=city:GetProperty("SPC_P0_MARKER")
-    if marker~=params.Token then stage("ERROR_ROUNDTRIP");return end
-  end
-  shared.Snapshot="city="..tostring(params.CityID).." marker="..P.Scalar(marker)
-  shared.LastToken=params.Token
-  stage("ACK "..shared.Snapshot)
 end
 GameEvents.SPC_P0_Request.Add(function(...)
   shared.RequestDepth=(shared.RequestDepth or 0)+1 -- GC scheduling guard only; not transaction authority
@@ -768,273 +651,245 @@ GameEvents.SPC_P0_Request.Add(function(...)
   shared.RequestDepth=shared.RequestDepth-1
   if not ok then shared.FailureAt=shared.Stage;stage("ERROR "..P.Scalar(err)) end
 end)
-stage("INITIALIZED ISOLATED_PROBES USER_GAME_TEST_REQUIRED")
+-- Completion status is reported by the protected startup epilogue.
 
--- Installed HD Gameplay/Buildings.lua:147 uses these first five parameters.
--- Preserve evidence only; do not infer creation/destruction from activity callbacks.
-shared.TradeEvents={}
-local function onTradeActivity(actor,op,oc,dp,dc,...)
-  if not P.IsTestPlayer(op) and not P.IsTestPlayer(dp) then return end
-  local tail={...};local extra={}
-  for i=1,math.min(select("#",...),6) do extra[#extra+1]=P.Scalar(tail[i]) end
-  local line="turn="..Game.GetCurrentGameTurn().." actor="..P.Scalar(actor).." FROM "..P.Scalar(op)..":"..P.Scalar(oc)
-    .." TO "..P.Scalar(dp)..":"..P.Scalar(dc).." extra="..table.concat(extra,",")
-  shared.TradeEvents[#shared.TradeEvents+1]={op=op,oc=oc,dp=dp,dc=dc,text=line}
-  if #shared.TradeEvents>32 then table.remove(shared.TradeEvents,1) end
-  print("[SPC]["..P.VERSION.."][TRADE_EVENT_RAW] "..line)
-end
-local tradeEvent=P.Field(Events,"TradeRouteActivityChanged")
-if tradeEvent and type(tradeEvent.Add)=="function" then
-  tradeEvent.Add(function(...)
-    local ok,err=pcall(onTradeActivity,...)
-    if not ok then print("[SPC][TRADE_EVENT_ERROR] "..P.Scalar(err)) end
-  end)
-else stage("TRADE_ACTIVITY_EVENT_ABSENT") end
+-- Explicit ordered startup entries. Failure containment does not reorder dependencies.
 
--- B004: automatic, read-only operation candidate diagnostics. No route authority.
-include("TradeRouteProbe")
-SPCTradeRouteProbe.Start(P,shared)
 
--- B011 read-only completion lifecycle evidence. No state transitions.
-include("CompletionProbe")
-SPCCompletionProbe.Start(P,shared)
+composition.Run('CityIdentityDefinition',{}, {},function()include('CityIdentityRead')end)
 
-include("StorageProbe")
-SPCStorageProbe.Start(P,shared)
 
-include("CityIdentityRead")
-include("CitySequenceProbe")
-SPCCitySequenceProbe.Start(P,shared)
+composition.Run('FactChanges',{}, {'FactChanges'},function()
+ include('FactChanges');local changes=SPCFactChanges.New(shared)
+ local draining=false
+ local function drain()
+  if not composition.sealed or draining then return end;draining=true
+  local function run()
+   local flushed=changes.Flush()
+   if shared.FactBindings then shared.FactBindings.Flush()end
+   local network=shared.NetworkBridge
+   if flushed and network and type(network.ResumeProofRegistration)=='function'then network.ResumeProofRegistration(changes)end
+  end
+  local facts=shared.EffectiveFacts
+  local ok,err=pcall(function()if facts and facts.WithPhase then facts.WithPhase('FACT_PROPAGATION',run)else run()end end)
+  draining=false
+  if not ok then local safe,text=pcall(tostring,err);shared.FactPropagationError=safe and text:sub(1,180) or 'FACT_PROPAGATION_FAILED'end
+ end
+ local event=P.Field(Events,'GameCoreEventPublishComplete');if event and event.Add then event.Add(drain)end
+end,nil,{deferNativeSubscriptions=true})
 
-include("CityProgressionStore")
-SPCCityProgressionStore.Start(P,shared)
-SPCYieldCarrierProbe.RegisterExit(shared)
+composition.Run('CityProgressionStore',{'CityIdentityDefinition','FactChanges'},{'CityProgressionStore'},function()
+ include('CityProgressionStore');SPCCityProgressionStore.Start(P,shared)
+ -- Current production duties only:29 exits,23 returns. Exact cleanup stays in
+ -- each existing owner; retired positive writers/optional observers add no gate.
+ for _,row in ipairs({
+  {'LegacyCleanup','LegacyCleanup'},
+  {'ResearchTraditionEffects','ResearchTradition'},
+  {'DistrictCompleteness',nil,'DistrictCompleteness'},
+  {'InvestmentAction',nil,'InvestmentAction'},
+  {'ResearchSupport','ResearchSupport'},
+  {'Lv2Housing','Lv2Housing'},
+  {'Lv2GPP','Lv2GPP'},
+  {'NetworkBridge','NetworkBridge','NetworkBridge'},
+  {'IndustrySupport','IndustrySupport','IndustrySupport'},
+  {'CrewProjects','CrewProjects','CrewProjects'},
+  {'ResearchInfrastructure','ResearchInfrastructure'},
+  {'ResearchCross','ResearchCross'},
+  {'ResearchApply','ResearchApply'},
+  {'ResearchChair','ResearchChair'},
+  {'Standardization',nil,'Standardization'},
+  {'StandardizationEffects','StandardizationEffects','StandardizationEffects'},
+  {'GreatWorkFacts','GreatWorkFacts','GreatWorkFacts'},
+  {'CultureAesthetic','CultureAesthetic','CultureAesthetic'},
+  {'Dialogue',nil,'Dialogue'},
+  {'GreatWorkAdjacency',nil,'GreatWorkAdjacency'},
+  {'CultureMeaning','CultureMeaning','CultureMeaning'},
+  {'CultureInspiration','CultureInspiration','CultureInspiration'},
+  {'ClaimProjects','ClaimProjects'},
+  {'EngineeringStudyProjects','EngineeringStudy','EngineeringStudy'},
+  {'IndustryWonderEffects','IndustryWonderEffects','IndustryWonderEffects'},
+  {'Commerce','Commerce','Commerce'},
+  {'CapitalInvestment','CapitalInvestment','CapitalInvestment'},
+  {'DevelopmentInvestment','DevelopmentInvestment','DevelopmentInvestment'},
+  {'DialogueProjects','DialogueProjects','DialogueProjects'},
+  {'DialogueEffects','DialogueEffects','DialogueEffects'},
+  {'CultureInsightsTourism','CultureInsightsTourism','CultureInsightsTourism'},
+  {'CultureNetwork','CultureNetwork','CultureNetwork'},
+  {'ExpeditionTraining','ExpeditionTraining'},
+  {'Restructuring','Restructuring','Restructuring'}
+ })do composition.RequireCleanup(row[1],row[2],row[3])end
+end)
 
-include("BindingProbe")
-SPCBindingProbe.Start(P,shared)
+composition.Run('LegacyCleanup',{'CityProgressionStore'},{'LegacyCleanup'},function()
+ -- Register before include/Start: a failed owner must never remove the mandatory exit gate.
+ local exit
+ shared.CityProgressionStore.RegisterExit('LegacyCleanup',function(...)
+  assert(exit,'LEGACY_CLEANUP_UNAVAILABLE');return exit(...)
+ end)
+ include('LegacyCleanup');local owner=SPCLegacyCleanup.Start(P,shared);exit=owner.Exit
+end)
 
-include("CompletionRecordProbe")
-SPCCompletionRecordProbe.Start(P,shared)
+composition.Run('BindingProbe',{'CityProgressionStore'},{'BindingProbe'},function() include('BindingProbe');SPCBindingProbe.Start(P,shared) end)
 
-include("CityJournalProbe")
-SPCCityJournalProbe.Start(P,shared)
+composition.Run('CityJournalProbe',{'CityProgressionStore'},{'CityJournalProbe'},function() include('CityJournalProbe');SPCCityJournalProbe.Start(P,shared) end)
 
--- B016: automatic read-only qualification evidence; does not replace legacy gates.
-include("EligibilityProbe")
-SPCEligibilityProbe.Start(P,shared)
+composition.Run('CityFlowProbe',{'CityProgressionStore'},{'CityFlowProbe'},function() include('FreshBindingHook');include('CityFlowProbe');SPCCityFlowProbe.Start(P,shared) end)
 
-include("QualificationProbe")
-SPCQualificationProbe.Start(P,shared)
+composition.Run('EffectiveFacts',{'CityFlowProbe','CityProgressionStore'},{'EffectiveFacts'},function() include('EffectiveFacts');SPCEffectiveFacts.Start(P,shared) end)
 
-include("EnvelopeProbe")
-SPCEnvelopeProbe.Start(P,shared)
+composition.Run('ResearchTradition',{'CityProgressionStore'},{'ResearchTradition'},function() SPCResearchTradition.Start(P,shared) end)
 
-include("FreshBindingHook")
-include("CityFlowProbe")
-SPCCityFlowProbe.Start(P,shared)
+composition.Run('NativeFacts',{'FactChanges'},{'NativeFacts'},function()include('NativeFacts');SPCNativeFacts.New(P,shared)end)
 
-include("EffectiveFacts")
-SPCEffectiveFacts.Start(P,shared)
-SPCResearchTradition.Start(P,shared)
-include('ResearchTraditionEffects')
-SPCResearchTraditionEffects.Start(P,shared)
+composition.Run('ResearchTraditionEffects',{'CityProgressionStore','ResearchTradition','EffectiveFacts','NativeFacts'},{'ResearchTraditionEffects'},function() include('ResearchTraditionEffects');SPCResearchTraditionEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
--- P0-A shared facts and pure shadow consumer; no old writer is replaced.
-include("OrdinaryBuildingCatalog")
-include("DistrictCompleteness")
-include("CurrentSpecializationFacts")
-include("ResearchInfrastructureShadow")
-SPCDistrictCompleteness.Start(P,shared)
+composition.Run('DistrictCompleteness',{},{'DistrictCompleteness'},function() include('OrdinaryBuildingCatalog');include('DistrictCompleteness');include('CurrentSpecializationFacts');include('ResearchInfrastructureShadow');SPCDistrictCompleteness.Start(P,shared) end)
 
-include("InvestmentAction")
-SPCInvestmentAction.Start(P,shared)
+composition.Run('InvestmentAction',{'CityProgressionStore','EffectiveFacts'},{'InvestmentAction'},function() include('InvestmentAction');SPCInvestmentAction.Start(P,shared) end)
 
-include("ResearchSupport")
-SPCResearchSupport.Start(P,shared)
-include("Lv2Housing")
-SPCLv2Housing.Start(P,shared)
-include("Lv2GPP")
-SPCLv2GPP.Start(P,shared)
-pcall(function()include('CarrierHealthTrace');SPCCarrierHealthTrace.Start(P,shared)end)
+composition.Run('RuntimeRetirement',{'CityProgressionStore'}, {'RuntimeRetirement'},function()include('RuntimeWork');SPCRuntimeWork.StartRetirement(P,shared)end)
 
-include("NetworkBridge")
-SPCNetworkBridge.Start(P,shared)
+composition.Run('ResearchSupport',{'RuntimeRetirement','EffectiveFacts','NativeFacts'},{'ResearchSupport'},function() include('ResearchSupport');SPCResearchSupport.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-include("IndustrySupport")
-SPCIndustrySupport.Start(P,shared)
+composition.Run('Lv2Housing',{'RuntimeRetirement','EffectiveFacts','DistrictCompleteness','NativeFacts'},{'Lv2Housing'},function() include('Lv2Housing');SPCLv2Housing.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-include("Lv3Support")
-SPCLv3Support.Start(P,shared)
+composition.Run('Lv2GPP',{'RuntimeRetirement','EffectiveFacts','NativeFacts'},{'Lv2GPP'},function() include('Lv2GPP');SPCLv2GPP.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-include("Lv3Effects")
-SPCLv3Effects.Start(P,shared,{retireCommerce=true})
+composition.Run('CarrierHealthTrace',{},{'CarrierHealthTrace'},function() include('CarrierHealthTrace');SPCCarrierHealthTrace.Start(P,shared) end)
 
-include("ConstructionProbe")
-SPCConstructionProbe.Start(P,shared)
+composition.Run('NetworkBridge',{'EffectiveFacts','NativeFacts'},{'NetworkBridge','RouteSignalRevision'},function() include('NetworkBridge');SPCNetworkBridge.Start(P,shared) end)
 
-include("UnitActionSitePolicy")
-include("UnitSiteProbe")
-SPCUnitSiteProbe.Start(P,shared)
+composition.Run('IndustrySupport',{'RuntimeRetirement','EffectiveFacts','CityProgressionStore','NativeFacts'},{'IndustrySupport'},function() include('IndustrySupport');SPCIndustrySupport.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-include("UnitTargets")
-SPCUnitTargets.Start(P,shared)
+composition.Run('Lv3Support',{'RuntimeRetirement','EffectiveFacts','LegacyCleanup'},{'Lv3Support'},function() include('Lv3Support');SPCLv3Support.Start(P,shared,{centralExit=true}) end)
 
-include("UnitActions")
-SPCUnitActions.Start(P,shared)
+composition.Run('Lv3Effects',{'RuntimeRetirement','EffectiveFacts','NativeFacts','LegacyCleanup'},{'Lv3Effects'},function() include('Lv3Effects');SPCLv3Effects.Start(P,shared,{retireCommerce=true,centralExit=true}) end)
 
-include("CrewProjects")
-SPCCrewProjects.Start(P,shared)
+composition.Run('UnitTargets',{'EffectiveFacts'},{'UnitTargets'},function() include('UnitTargets');SPCUnitTargets.Start(P,shared) end)
 
-include("CrewPrecision")
-SPCCrewPrecision.Start(P,shared)
+composition.Run('UnitActions',{'CityProgressionStore','InvestmentAction','UnitTargets'},{'UnitActions'},function() include('UnitActions');SPCUnitActions.Start(P,shared) end)
 
-include("Lv4Percent")
-SPCLv4Percent.Start(P,shared)
-include("ResearchInfrastructure")
-SPCResearchInfrastructure.Start(P,shared)
+-- B412 removable observation seams only; neither result controls Crew startup.
+local crewCompletionObservation
+pcall(function()include('CrewCompletionDiagnostics');crewCompletionObservation=SPCCrewCompletionDiagnostics.Start(P,'GAMEPLAY')end)
+composition.Run('CrewProjects',{'CityProgressionStore','EffectiveFacts'},{'CrewProjects'},function() include('CrewProjects');SPCCrewProjects.Start(P,shared) end)
+pcall(function()if crewCompletionObservation then crewCompletionObservation.After()end end)
 
-include("ResearchCross")
-SPCResearchCross.Start(P,shared)
-include("ResearchApply")
-SPCResearchApply.Start(P,shared)
-include("ResearchChair")
-SPCResearchChair.Start(P,shared)
-include("HalfYieldProbe")
-SPCHalfYieldProbe.Start(P,shared)
+composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'},function() include('PlayerActionReplies');SPCPlayerActionReplies.Start(P,shared) end)
 
-include("CopyYields")
-SPCCopyYields.Start(P,shared,{retired=true})
+composition.Run('Lv4Percent',{'RuntimeRetirement','EffectiveFacts'},{'Lv4Percent'},function() include('Lv4Percent');SPCLv4Percent.Start(P,shared,{centralExit=true}) end)
 
-include("IndustryHistory")
-SPCIndustryHistory.Start(P,shared)
+composition.Run('ResearchInfrastructure',{'RuntimeRetirement','EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchInfrastructure'},function() include('ResearchInfrastructure');SPCResearchInfrastructure.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-include("StandardizationCatalog")
-include("Standardization")
-SPCStandardization.Start(P,shared)
+composition.Run('ResearchCross',{'RuntimeRetirement','EffectiveFacts','NativeFacts'},{'ResearchCross'},function() include('ResearchCross');SPCResearchCross.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-include("PurchaseProbe")
-SPCPurchaseProbe.Start(P,shared)
+composition.Run('ResearchApply',{'EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchApply'},function() include('ResearchApply');SPCResearchApply.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-include("StandardizationDiscount")
-SPCStandardizationDiscount.Start(P,shared,{retired=true})
-include("StandardizationEffects")
-SPCStandardizationEffects.Start(P,shared)
+composition.Run('ResearchChair',{'EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchChair'},function() include('ResearchChair');SPCResearchChair.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-include("NetworkBoost")
-SPCNetworkBoost.Start(P,shared,{retired=true})
-include("GreatWorkProbe")
-SPCGreatWorkProbe.Start(P,shared)
 
-include("GreatWorkFacts")
-SPCGreatWorkFacts.Start(P,shared)
-include('CultureAesthetic')
-SPCCultureAesthetic.Start(P,shared)
+composition.Run('CopyYields',{},{'CopyYields'},function() include('CopyYields');SPCCopyYields.Start(P,shared,{retired=true}) end)
 
-include("Dialogue")
-SPCDialogue.Start(P,shared)
+composition.Run('IndustryHistory',{'CityProgressionStore'},{'IndustryHistory'},function() include('IndustryHistory');SPCIndustryHistory.Start(P,shared) end)
 
-include("GreatWorkAdjacency")
-SPCGWAdjacency.Start(P,shared,{retired=true})
-include('CultureMeaning')
-SPCCultureMeaning.Start(P,shared)
-include('CultureInspirationProbe')
-SPCCultureInspirationProbe.Start(P,shared,{retired=true})
-include('CultureInspiration')
-SPCCultureInspiration.Start(P,shared)
+composition.Run('Standardization',{'CityProgressionStore','EffectiveFacts'},{'Standardization'},function() include('StandardizationCatalog');include('Standardization');SPCStandardization.Start(P,shared) end)
 
-include("CommerceConvergence")
-SPCCommerceConvergence.Start(P,shared,{retired=true})
+composition.Run('PurchaseProbe',{},{'PurchaseProbe'},function() include('PurchaseProbe');SPCPurchaseProbe.Start(P,shared,{centralExit=true}) end)
 
--- B067: ownership work is isolated for the self-founded-city playable scope.
--- Keep source and saved ledgers intact; no inheritance/backup listeners are installed.
+composition.Run('StandardizationDiscount',{},{'StandardizationDiscount'},function() include('StandardizationDiscount');SPCStandardizationDiscount.Start(P,shared,{retired=true}) end)
+
+composition.Run('StandardizationEffects',{'CityProgressionStore','Standardization','NetworkBridge','EffectiveFacts','CopyYields','StandardizationDiscount','NativeFacts'},{'StandardizationEffects'},function() include('StandardizationEffects');SPCStandardizationEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+
+composition.Run('NetworkBoost',{},{'NetworkBoost'},function() include('NetworkBoost');SPCNetworkBoost.Start(P,shared,{retired=true,centralExit=true}) end)
+
+composition.Run('GreatWorkProbe',{},{'GreatWorkProbe'},function() include('GreatWorkProbe');SPCGreatWorkProbe.Start(P,shared,{centralExit=true}) end)
+
+composition.Run('GreatWorkFacts',{},{'GreatWorkFacts'},function() include('GreatWorkFacts');SPCGreatWorkFacts.Start(P,shared) end)
+
+composition.Run('CultureAesthetic',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Lv3Effects','Lv4Percent','NativeFacts'},{'CultureAesthetic'},function() include('CultureAesthetic');SPCCultureAesthetic.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+
+composition.Run('Dialogue',{'GreatWorkFacts','LegacyCleanup'},{'Dialogue'},function() include('Dialogue');SPCDialogue.Start(P,shared,{centralExit=true}) end)
+
+composition.Run('GreatWorkAdjacency',{},{'GreatWorkAdjacency'},function() include('GreatWorkAdjacency');SPCGWAdjacency.Start(P,shared,{retired=true,centralExit=true}) end)
+
+composition.Run('CultureMeaning',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','GreatWorkAdjacency','Dialogue','NativeFacts'},{'CultureMeaning'},function() include('CultureMeaning');SPCCultureMeaning.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+
+composition.Run('CultureInspirationProbe',{},{'CultureInspirationProbe'},function() include('CultureInspirationProbe');SPCCultureInspirationProbe.Start(P,shared,{retired=true}) end)
+
+composition.Run('CultureInspiration',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','CultureInspirationProbe','NativeFacts'},{'CultureInspiration'},function() include('CultureInspiration');SPCCultureInspiration.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+
+composition.Run('CommerceConvergence',{'RuntimeRetirement'},{'CommerceConvergence'},function() include('CommerceConvergence');SPCCommerceConvergence.Start(P,shared,{retired=true,centralExit=true}) end)
+
+
+-- Preserve the deliberate legacy-inheritance isolation boundary and observer order.
 shared.CityInheritanceRead=nil
 shared.InheritanceShadow=nil
 shared.CityInheritance=nil
 shared.OnPermanentCityWrite=nil
 shared.InheritanceIsolation=true
 
--- Formal Claim must not depend on initialization of optional historical experiments.
-local claimOK,claimError=pcall(function()include("ClaimProjects");SPCClaimProjects.Start(P,shared)end)
-if not claimOK then
- shared.ClaimProjects=shared.ClaimProjects or {views={},revision=0}
- shared.ClaimProjects.startupError=tostring(claimError):gsub('^.-:%d+: ',''):match('[^\r\n]+')
- print('[SPC][Claim startup] '..tostring(claimError))
-end
 
--- Register after the explicit legacy-inheritance reset and Claim's wrapper.
-shared.IndustrySupport.BindPermanentWrites()
-include('EngineeringStudyProjects')
-SPCEngineeringStudyProjects.Start(P,shared)
-include('IndustryWonderEffects')
-SPCIndustryWonderEffects.Start(P,shared)
-shared.CrewProjects.BindPermanentWrites()
-include('Commerce')
-SPCCommerce.Start(P,shared)
-shared.Commerce.BindPermanentWrites()
-include('CapitalInvestment')
-SPCCapitalInvestment.Start(P,shared)
-include('DevelopmentInvestment')
-SPCDevelopmentInvestment.Start(P,shared)
+composition.Run('TimedProjectReaders',{'CityProgressionStore'},{'TimedProjectReaders'},function()include('TimedProjectReaders');SPCTimedProjectReaders.New(P,shared)end)
 
-local dialogueOK,dialogueError=pcall(function()include('DialogueProjects');SPCDialogueProjects.Start(P,shared)end)
-if not dialogueOK then
- shared.DialogueProjects=shared.DialogueProjects or {views={},syncAck={},revision=0}
- shared.DialogueProjects.startupError=tostring(dialogueError)
- print('[SPC][Dialogue project startup] '..tostring(dialogueError))
-end
+composition.Run('ClaimProjects',{'CityProgressionStore'},{'ClaimProjects'},function() include('ClaimProjects');SPCClaimProjects.Start(P,shared) end)
 
--- New effect failure must not restore the retired dynamic writer.
-shared.Dialogue.retired=true
-local effectOK,effectError=pcall(function()include('DialogueEffects');SPCDialogueEffects.Start(P,shared)end)
-if not effectOK then
- shared.DialogueEffects=shared.DialogueEffects or {}
- shared.DialogueEffects.startupError=tostring(effectError)
- print('[SPC][Dialogue effect startup] '..tostring(effectError))
-end
+composition.Run('IndustrySupportBind',{'IndustrySupport'},{},function() shared.IndustrySupport.BindPermanentWrites() end)
 
--- Independent read-only evidence; never start the isolated inheritance writers.
-SPCCityIdentityRead.Start(P,shared)
+composition.Run('EngineeringStudyProjects',{'CityProgressionStore','EffectiveFacts','IndustryHistory'},{'EngineeringStudy'},function() include('EngineeringStudyProjects');SPCEngineeringStudyProjects.Start(P,shared) end)
 
-include("CityIdentityExperiment")
-include("CityIdentityMapping")
-SPCCityIdentityMapping.Start(P,shared)
+composition.Run('IndustryWonderEffects',{'CityProgressionStore','EffectiveFacts','NativeFacts'},{'IndustryWonderEffects'},function() include('IndustryWonderEffects');SPCIndustryWonderEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-include("TimedProductionProbe")
-SPCTimedProductionProbe.Start(P,shared)
+composition.Run('CrewProjectsBind',{'CrewProjects'},{},function() shared.CrewProjects.BindPermanentWrites() end)
 
-include("OverflowStorageProbe")
-SPCOverflowStorageProbe.Start(P,shared)
+composition.Run('Commerce',{'CityProgressionStore','EffectiveFacts','NetworkBridge','CommerceConvergence','NativeFacts'},{'Commerce'},function() include('Commerce');SPCCommerce.Start(P,shared) end)
 
-include("ProjectTurnObservation")
-SPCProjectTurnObservation.Start(P,shared)
-include("TimedProject")
-SPCTimedProject.Start(P,shared)
+composition.Run('CapitalInvestment',{'CityProgressionStore','EffectiveFacts','Commerce','NetworkBridge'},{'CapitalInvestment'},function() include('CapitalInvestment');SPCCapitalInvestment.Start(P,shared) end)
 
-include("NetworkIsolation")
-SPCNetworkIsolation.Start(P,shared)
-SPCPerformance.StartMemory(P,shared)
+composition.Run('DevelopmentInvestment',{'CityProgressionStore','EffectiveFacts','NetworkBridge'},{'DevelopmentInvestment'},function() include('DevelopmentInvestment');SPCDevelopmentInvestment.Start(P,shared) end)
 
--- N2 derived local Tourism; permanent Insight history stays in CityProgressionStore.
-include('CultureInsightsTourism')
-SPCCultureInsightsTourism.Start(P,shared)
-include('CultureNetwork')
-SPCCultureNetwork.Start(P,shared)
--- Existing Expedition request/task lifecycle; no automatic mission dispatch.
-include('ExpeditionSpyStore')
-include('ExpeditionSpyGate')
-SPCExpeditionSpyGate.Start(P,shared)
--- B220: B219 movement experiment retained as inactive research; no request handler.
-include('ExpeditionTraining')
-SPCExpeditionTraining.Start(P,shared)
+composition.Run('DialogueProjects',{'CityProgressionStore','EffectiveFacts','GreatWorkFacts'},{'DialogueProjects'},function() include('DialogueProjects');SPCDialogueProjects.Start(P,shared) end)
 
-include("Restructuring")
-SPCRestructuring.Start(P,shared)
+-- New effect failure never reactivates the retired Dialogue writer.
+if shared.Dialogue then shared.Dialogue.retired=true end
 
--- B254 read-only banner projection, installed after existing permanent-write observers.
-include('LevelBannerState')
-SPCLevelBannerState.Start(P,shared)
+composition.Run('DialogueEffects',{'CityProgressionStore','Dialogue','EffectiveFacts','GreatWorkFacts','NativeFacts'},{'DialogueEffects'},function() include('DialogueEffects');SPCDialogueEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
+composition.Run('CityIdentityRead',{},{'CityIdentityRead'},function() SPCCityIdentityRead.Start(P,shared) end)
+
+composition.Run('CityIdentityMapping',{},{'CityIdentityExperiment'},function() include('CityIdentityExperiment');include('CityIdentityMapping');SPCCityIdentityMapping.Start(P,shared) end)
+
+composition.Run('TimedProject',{},{'TimedProject'},function() include('TimedProject');SPCTimedProject.Start(P,shared) end)
+
+composition.Run('NetworkIsolation',{'NetworkBridge'},{'NetworkIsolation'},function() include('NetworkIsolation');SPCNetworkIsolation.Start(P,shared) end)
+
+composition.Run('MemoryObservation',{},{'MemoryObservation','MemoryEvidence'},function()
+ SPCRuntimeGC.Start(P,shared,SPCPerformance and SPCPerformance.PrepareMemoryObserver)
+end)
+
+composition.Run('CultureInsightsTourism',{'CityProgressionStore','EffectiveFacts','NativeFacts'},{'CultureInsightsTourism'},function() include('CultureInsightsTourism');SPCCultureInsightsTourism.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+
+composition.Run('CultureNetwork',{'CityProgressionStore','EffectiveFacts','NetworkBridge','NativeFacts'},{'CultureNetwork'},function() include('CultureNetwork');SPCCultureNetwork.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+
+composition.Run('ExpeditionSpyGate',{'CityProgressionStore','EffectiveFacts'},{'ExpeditionGate'},function() include('ExpeditionSpyStore');include('ExpeditionSpyGate');SPCExpeditionSpyGate.Start(P,shared) end)
+
+composition.Run('ExpeditionTraining',{'ExpeditionSpyGate','CityProgressionStore','EffectiveFacts'},{'ExpeditionTraining'},function() include('ExpeditionTraining');SPCExpeditionTraining.Start(P,shared) end)
+
+composition.Run('Restructuring',{'CityProgressionStore','EffectiveFacts'},{'Restructuring'},function() include('Restructuring');SPCRestructuring.Start(P,shared) end,{{ExposedMembers,'SPC_RestructuringViews'}})
+
+composition.Run('LevelBannerState',{'CityProgressionStore','EffectiveFacts'},{'LevelBanners'},function() include('LevelBannerState');SPCLevelBannerState.Start(P,shared) end)
+
+
+composition.Run('FactConsumerBindings',{'FactChanges'},{'FactBindings'},function()include('FactConsumerBindings');SPCFactConsumerBindings.New(shared)end)
+
+-- Composition completion is diagnostic; it does not assert Store/effects readiness.
+local startupFailures=composition.Complete()
+if shared.TimedProjectReaders then pcall(shared.TimedProjectReaders.Seal)end
+pcall(stage,startupFailures==0 and 'INITIALIZED ISOLATED_PROBES USER_GAME_TEST_REQUIRED'
+ or ('INITIALIZED_PARTIAL STARTUP_FAILURES='..startupFailures..' USER_GAME_TEST_REQUIRED'))
 if readiness then pcall(readiness.Seal)end
 
 -- Install after original listeners; observational append only.
 pcall(function()include('EventTimingDiagnostics');SPCEventTimingDiagnostics.Start(P,shared,'GAMEPLAY')end)
+
+-- B399 optional read-only boundary observer; no composition/business dependency.
+pcall(function()include('PlaytestBoundaryDiagnostics');SPCPlaytestBoundaryDiagnostics.Start(P,shared)end)

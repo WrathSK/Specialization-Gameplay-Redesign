@@ -1,7 +1,10 @@
+include('SafeCallbacks')
+include('RuntimeWork')
 include('CommerceModel')
 include('CommerceCalculation')
+include('FactUse')
 include('NetworkInput')
-include('ExpeditionTrainingDiagnostics')
+local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
 -- B240: one current-effect owner. No timer, persisted derived output, generic
 -- output-revision subscription, or second route authority.
 SPCCommerce={Owned={'BUILDING_SPC_COMMERCIALIZATION_ACCESS'}}
@@ -9,13 +12,30 @@ local M=SPCCommerce
 for bit=0,30 do M.Owned[#M.Owned+1]='BUILDING_SPC_COMMERCE_GOLD_'..bit end
 function M.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'COMMERCE_STORE_REQUIRED')
- local C=SPCCommerceCalculation;local model=SPCCommerceModel;local cp=model.Copy
+ local C=SPCCommerceCalculation;local Use=SPCFactUse;local model=SPCCommerceModel;local cp=model.Copy
  local d={views={},revision=0,ready=false,writes=0};shared.Commerce=d
- local views,dependencies,byTarget,dirty,known={},{},{},{},{}
- local definitions,legacy,sourceKinds={},{},{};local initialized=false;local busy=false;local writing=false;local permanentBound=false
+ local views,dependencies,byTarget,dirty,known,samples={},{},{},{},{},{}
+ local heldDeliveries={} -- only failed work already accepted from the fact-delivery owner
+ local definitions,legacy,sourceKinds={},{},{};local initialized=false;local busy=false
+ local ownedIndex={}
+ local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.Mark(scope.player,scope.city)end)
  local ownNames={};for _,id in ipairs(M.Owned)do ownNames[id]=true end
- local trace=SPCExpeditionTrainingDiagnostics.New(P,'COMMERCE')
+ local logger=traceLoaded and SPCExpeditionTrainingDiagnostics
+ local trace=SPCSafeCallbacks.OpenTrace(logger,P,'COMMERCE')
  local function key(pid,id)return pid..':'..id end
+ local function generation(pid,id)return shared.FactChanges and shared.FactChanges.Generation(pid,'COMMERCE',id) or 0 end
+ local function sourcesCurrent(pid,v)
+  for source,epoch in pairs(v.sourceGenerations or {})do if epoch~=generation(pid,source)then return false end end
+  return true
+ end
+ function d.TransactionCurrent(pid,id)
+  local v=views[key(pid,id)]
+  if not v or v.stage~='READY' or (v.factGeneration or 0)~=generation(pid)then return false end
+  local bridge=shared.NetworkBridge
+  if bridge and bridge.ProofRevision and (v.networkProofRevision or 0)~=bridge.ProofRevision(pid)then return false end
+  if bridge and bridge.TransactionCurrent and not bridge.TransactionCurrent(pid)then return false end
+  return sourcesCurrent(pid,v)
+ end
  local function city(pid,id)local p=Players[pid];return p and p:GetCities() and p:GetCities():FindID(id)end
  local function ref(c)return c:GetOwner()..':'..c:GetID()..':'..c:GetX()..':'..c:GetY()end
  local function same(a,b)
@@ -26,7 +46,7 @@ function M.Start(P,shared)
  local function code(e)return tostring(e):match('(COMMERCE_[A-Z0-9_]+)') or tostring(e):match('(NETWORK_[A-Z0-9_]+)') or 'COMMERCE_STATE_UNKNOWN'end
  local function integer(n)return type(n)=='number' and n>=0 and n<math.huge and n%1==0 end
  local function isolated(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
- local function emit(stage,data)if trace then pcall(trace.Record,stage,data)end end
+ local function emit(stage,data)if trace then pcall(trace,stage,data)end end
  local function publish(pid,id,v)
   local k=key(pid,id);local old=views[k]
   if v then v.revision=old and old.revision or 0 end
@@ -50,31 +70,33 @@ function M.Start(P,shared)
  end
  local function validate()
   if definitions[1]then return end
-  local nextDefinitions,nextLegacy={},{}
-  for _,id in ipairs(M.Owned)do local r=assert(P.Info('Buildings',id),'COMMERCE_DEFINITION_MISSING');nextDefinitions[#nextDefinitions+1]={name=id,id=r.Index}end
+  local nextDefinitions,nextLegacy,nextOwned={},{},{}
+  for _,id in ipairs(M.Owned)do local r=assert(P.Info('Buildings',id),'COMMERCE_DEFINITION_MISSING');nextDefinitions[#nextDefinitions+1]={name=id,id=r.Index};nextOwned[r.Index]=true end
   for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY'})do
    nextLegacy[#nextLegacy+1]=assert(P.Info('Buildings','BUILDING_SPC_DEV_LV3_COM_'..kind),'COMMERCE_LEGACY_DEFINITION_MISSING').Index
   end
   for _,y in ipairs({'SCIENCE','CULTURE','PRODUCTION'})do for bit=0,15 do
    nextLegacy[#nextLegacy+1]=assert(P.Info('Buildings','BUILDING_SPC_B061_'..y..'_'..bit),'COMMERCE_LEGACY_DEFINITION_MISSING').Index
   end end
-  definitions=nextDefinitions;legacy=nextLegacy
+  definitions=nextDefinitions;legacy=nextLegacy;ownedIndex=nextOwned
   -- Reuse implemented identity mapping; future professions are not enabled here.
   for _,domain in ipairs(C.Domains)do sourceKinds[domain.id]=P.Family(domain.id) or false end
  end
  local function present(c,id)local yes=P.HasBuilding(c:GetBuildings(),id);assert(type(yes)=='boolean','COMMERCE_CARRIER_UNKNOWN');return yes end
  local function set(c,id,want)
   if present(c,id)==want then return end
-  writing=true
   local ok,err=pcall(function()
-   if want then P.CreateBuilding(c:GetBuildQueue(),id)else P.RemoveBuilding(c:GetBuildings(),id)end
+   if want then carrierHealth.Create(c,id)else carrierHealth.Remove(c,id)end
    assert(present(c,id)==want,'COMMERCE_WRITE_UNCONFIRMED');d.writes=d.writes+1
   end)
-  writing=false;assert(ok,err)
+  assert(ok,err)
  end
- local function observed(c)
+ local function observed(c,observer)
   local total=0
-  for bit=0,30 do if present(c,definitions[bit+2].id)then total=total+2^bit end end
+  for bit=0,30 do
+   if observer then P.Count('observer_native_attempt');P.Count('observer_commerce_attempt')end
+   if present(c,definitions[bit+2].id)then total=total+2^bit end
+  end
   return total
  end
  local function applyGold(c,n)
@@ -86,6 +108,17 @@ function M.Start(P,shared)
   assert(observed(c)==n,'COMMERCE_WRITE_UNCONFIRMED')
  end
  local function clear(c)applyGold(c,0);set(c,definitions[1].id,false)end
+ local function confirmTarget(x)
+  local h=store.HistoricalReference(x.c)
+  assert(h.owner==x.pid and h.cityID==x.id and h.token==x.v.token,'COMMERCE_BINDING_UNAVAILABLE')
+  assert(ref(x.c)==x.v.reference,'COMMERCE_REFERENCE_CHANGED')
+ end
+ local function readTargetGold(x)
+  confirmTarget(x)
+  local gold=observed(x.c)
+  confirmTarget(x)
+  return gold
+ end
  local function initialize()
   if initialized then return true end
   if store.HistoryStartStatus then local status=store.HistoryStartStatus();if status=='WAITING' or status=='HELD'then return false end end
@@ -94,20 +127,25 @@ function M.Start(P,shared)
   -- Confirmed owner-loss cleanup is Store's separate exact-owned exit callback.
   for pid,p in pairs(Players)do if P.IsTestPlayer(pid)then local cs=p:GetCities();if cs then for _,c in cs:Members()do
    local ok,h=pcall(store.HistoricalReference,c)
-   if ok and h.owner==pid and h.cityID==c:GetID()then clear(c);known[key(pid,c:GetID())]={pid,c:GetID()}end
+   if ok and h.owner==pid and h.cityID==c:GetID()then known[key(pid,c:GetID())]={pid,c:GetID()}end
   end end end end
-  initialized=true;d.ready=true;return true
+  initialized=true;d.ready=true
+  if shared.FactBindings and shared.FactBindings.Wake and shared.FactChanges then
+   shared.FactBindings.Wake('Commerce','OWNER_READY',shared.FactChanges.sequence)
+  end
+  return true
  end
- local function facts(batch,pid,c)
-  local k=key(pid,c:GetID());if not batch.facts[k]then batch.facts[k]=shared.EffectiveFacts.Read(pid,c)end
-  return batch.facts[k]
+ local function stamp(batch,pid,id)
+  local k=key(pid,id);batch.epochs=batch.epochs or {}
+  if batch.epochs[k]==nil then batch.epochs[k]=generation(pid,id)end
+  return batch.epochs[k]
  end
+
  local function depth(batch,pid,c,token)
   local k=key(pid,c:GetID())
   if not batch.depth[k]then
    local s=shared.DistrictCompleteness.ReadFacts(pid,c,token)
-   assert(s.validity=='VERIFIED' and s.availability=='READY' and s.value,'COMMERCE_DISTRICT_FACTS_UNKNOWN')
-   batch.depth[k]=s.value
+   batch.depth[k]=s
   end
   return batch.depth[k]
  end
@@ -115,44 +153,136 @@ function M.Start(P,shared)
   local n=c:GetName();if Locale and Locale.Lookup then n=Locale.Lookup(n)end
   return tostring(n):gsub('[\r\n]',' ')
  end
+ local function readWorking(anchor,workers)
+  if anchor.pillaged or not anchor.complete then return {status='CONFIRMED',value=0}end
+  return Use.Number(function()
+   return workers(anchor,function()
+    local plot=assert(Map.GetPlotByIndex(anchor.plot),'COMMERCE_WORKERS_UNKNOWN')
+    local n=plot:GetWorkerCount();assert(integer(n),'COMMERCE_WORKERS_UNKNOWN');return n
+   end)
+  end,true,nil,'COMMERCE_WORKERS_UNKNOWN')
+ end
  local function prepare(batch,pid,id)
+  stamp(batch,pid,id)
   local c=assert(city(pid,id),'COMMERCE_CITY_UNKNOWN');assert(c:GetOwner()==pid,'COMMERCE_OWNER_CHANGED')
-  local f=facts(batch,pid,c);local v={reference=ref(c),token=f.token,identity=f.specialization,potential=f.potential,
+  local function localInputs(f,workers)
+  local v={reference=ref(c),token=f.token,identity=f.specialization,potential=f.potential,
    active=f.active,activeStatus=f.activeStatus,workers=0,selected={},effective={},domains={},totalRaw=0,totalGold=0,
-   stage='INELIGIBLE',reason='COMMERCE_IDENTITY_REQUIRED',canConfigure=false,reputation={age=0,effective=0}}
+   stage='INELIGIBLE',reason='COMMERCE_IDENTITY_REQUIRED',canConfigure=false,reputationKnown=false,reputation={state='UNKNOWN',effective=0},
+   factStatus={domains={}}}
   local out={pid=pid,id=id,c=c,v=v,sources={[id]=true}}
-  if f.specialization~='COMMERCE'then return out end
+  local qualified=Use.Qualification(f,'COMMERCE',3);v.factStatus.qualification=qualified.status
+  if qualified.status=='UNKNOWN'then
+   -- A reliable same-city negative proves zero for every ACTIVE value. Read
+   -- through the existing guarded phase;UNKNOWN itself never means zero.
+   if f.activeStatus=='UNKNOWN_GOVERNOR'and not f.investmentPending
+    and f.owner==pid and f.cityID==id and type(f.token)=='string'and type(f.first)=='table'then
+    local anchor=Use.Anchor(depth(batch,pid,c,f.token),f.first);v.factStatus.anchor=anchor.status
+    if anchor.status=='CONFIRMED'then
+     local n=readWorking(anchor.value,workers);v.factStatus.workers=n.status
+     if n.status=='CONFIRMED'and n.value==0 then
+      local previous=views[key(pid,id)]
+      if previous and previous.reference==v.reference and previous.token==v.token then v.selected=cp(previous.selected)end
+      v.reason=(anchor.value.pillaged or not anchor.value.complete)and 'COMMERCE_ANCHOR_UNAVAILABLE'or 'COMMERCE_NO_WORKERS'
+      return out -- no configuration,network sampling or positive transaction
+     end
+    end
+   end
+   out.unavailable='COMMERCE_QUALIFICATION_UNKNOWN';return out
+  end
+  if qualified.status=='NOT_APPLICABLE'then
+   v.reason=f.specialization~='COMMERCE'and 'COMMERCE_IDENTITY_REQUIRED'or 'COMMERCE_ACTIVE_III_REQUIRED'
+   -- Confirmed loss is independent of now irrelevant D/workers/configuration.
+   local previous=views[key(pid,id)]
+   if previous and previous.reference==v.reference and previous.token==v.token then v.selected=cp(previous.selected)end
+   return out
+  end
   local standard,speedReason=model.IsStandardSpeed()
-  assert(standard,speedReason or 'COMMERCE_STANDARD_SPEED_ONLY')
+  if not standard then
+   v.reason=speedReason or 'COMMERCE_SPEED_UNKNOWN';v.stage='HELD'
+   if speedReason~='COMMERCE_STANDARD_SPEED_ONLY'then out.unavailable=v.reason end
+   return out -- a confirmed unsupported speed is distinct from an unreadable one
+  end
   assert(f.owner==pid and f.cityID==id and type(f.token)=='string','COMMERCE_REFERENCE_CHANGED')
   local state=store.CommerceState(pid,c)
   assert(state.token==f.token,'COMMERCE_REFERENCE_CHANGED')
   local value=state.value or model.New(pid);model.Validate(value);assert(value.owner==pid,'COMMERCE_OWNER_CHANGED')
-  v.selected=cp(value.selected);v.reputation=cp(value.reputation or {age=0,state='NOT_ESTABLISHED'});v.reputation.effective=0
-  assert(f.activeStatus=='KNOWN' and integer(f.active) and not f.investmentPending,'COMMERCE_QUALIFICATION_UNKNOWN')
-  if f.potential==4 then assert(value.reputation,'COMMERCE_REPUTATION_UNKNOWN')end
-  if f.active==4 then
-   assert(v.reputation.state=='COUNTING','COMMERCE_REPUTATION_UNKNOWN')
-   v.reputation.effective=v.reputation.age
+  v.selected=cp(value.selected);v.reputationUse=model.ReputationUse(state.reputationInput,f)
+  v.reputationKnown=state.reputationKnown~=false and v.reputationUse.status~='UNKNOWN'and v.reputationUse.status~='POLICY_ZERO'
+  v.reputation=not v.reputationKnown and {state='UNKNOWN'}or cp(value.reputation or {age=0,state='NOT_ESTABLISHED'})
+  -- D6 passive Gold retains independently confirmed value without an unknown
+  -- reputation bonus. This numeric clamp is never a transaction R credential.
+  v.reputation.effective=v.reputationUse.effective or 0
+  v.reputationMessage=model.ReputationText(v.reputationUse)
+  local dc=depth(batch,pid,c,f.token);local localDomains={};local selected={}
+  for _,domain in ipairs(v.selected)do selected[domain]=true end
+  for _,def in ipairs(C.Domains)do
+   local fact=Use.Depth(dc,def.id);v.factStatus.domains[def.id]=fact.status
+   if fact.status=='CONFIRMED'then localDomains[def.id]=fact.value
+   elseif fact.status=='UNKNOWN'and selected[def.id]then out.unavailable='COMMERCE_DISTRICT_FACTS_UNKNOWN' end
   end
-  local dc=depth(batch,pid,c,f.token);local localDomains={}
-  for domain,r in pairs(dc.domains)do localDomains[domain]=r.value end
-  local anchor
-  for _,r in ipairs(dc.districts)do if f.first and r.id==f.first.districtID and r.type==f.first.type then anchor=r;break end end
-  assert(anchor and anchor.complete==true,'COMMERCE_ANCHOR_UNKNOWN')
-  if anchor.pillaged~=true then
-   local plot=assert(Map.GetPlotByIndex(anchor.plot),'COMMERCE_WORKERS_UNKNOWN')
-   local n=plot:GetWorkerCount();assert(integer(n),'COMMERCE_WORKERS_UNKNOWN');v.workers=n
+  if out.unavailable then return out end
+  local anchor=Use.Anchor(dc,f.first);v.factStatus.anchor=anchor.status
+  if anchor.status~='CONFIRMED'or not anchor.value.complete then out.unavailable='COMMERCE_ANCHOR_UNKNOWN';return out end
+  anchor=anchor.value
+  local working=readWorking(anchor,workers);v.factStatus.workers=working.status
+  if working.status~='CONFIRMED'then out.unavailable=working.reason;return out end
+  v.workers=working.value;v.canConfigure=true;v.domains=C.Layout(v.selected,v.workers,f.active,localDomains)
+  for _,row in ipairs(v.domains)do
+   row.inputStatus=v.factStatus.domains[row.id]
+   if row.inputStatus=='UNKNOWN'then row.eligible=false;row.reason='COMMERCE_DISTRICT_FACTS_UNKNOWN'end
   end
-  v.canConfigure=f.active>=3;v.domains=C.Layout(v.selected,v.workers,f.active,localDomains)
-  if f.active<3 then v.reason='COMMERCE_ACTIVE_III_REQUIRED';return out end
-  if shared.CommerceConvergence and shared.CommerceConvergence.Withdraw then shared.CommerceConvergence.Withdraw(c)end
+  out.localReady=true;return out
+  end
+  -- Keep the old HELD diagnostic facts only after the full EF read is certified.
+  -- No convergence withdrawal or carrier write is permitted in this projection.
+  local function project(f,workers)return f,pcall(localInputs,f,workers)end
+  local f,ok,out
+  if shared.EffectiveFacts.Inspect then f,ok,out=shared.EffectiveFacts.Inspect(pid,c,project)
+  else f,ok,out=project(shared.EffectiveFacts.Read(pid,c),function(_,read)return read()end)end
+  batch.facts[key(pid,id)]=f
+  if not ok then error(out,0)end
+  if out.unavailable or not out.localReady then return out end
+  out.localReady=nil;local v=out.v
   for _,index in ipairs(legacy)do assert(not present(c,index),'COMMERCE_LEGACY_REMAINS')end
-  local network=shared.NetworkBridge.CurrentDomesticPartners(pid,c)
-  assert(network.validity=='VERIFIED',network.reason or 'COMMERCE_NETWORK_UNKNOWN')
+  local bridge=shared.NetworkBridge
+  local network=(bridge.CurrentEffectPartners or bridge.CurrentDomesticPartners)(pid,c)
+  if network.validity~='VERIFIED' then
+   local previous=views[key(pid,id)];local retained=samples[key(pid,id)]
+   if not (previous and retained and retained.reference==v.reference and retained.token==v.token)then
+    assert(v.workers==0,network.reason or 'COMMERCE_NETWORK_UNKNOWN')
+    -- No domain can operate with confirmed zero workers, even before the
+    -- first reliable source samples. The network still gates configuration.
+    v.stage='HELD';v.reason=code(network.reason or 'COMMERCE_NETWORK_UNKNOWN');v.canConfigure=false
+    out.keepAccess=true
+    return out
+   end
+   if (previous.writeUnconfirmed or previous.bindingUnconfirmed) and previous.reference==v.reference and previous.token==v.token then
+    -- An unconfirmed view disables its domain rows for display. It cannot
+    -- prove those domains have lost eligibility or decompose the residual.
+    for _,row in ipairs(v.domains)do if row.effective then
+     out.unavailable=previous.reason;return out
+    end end
+   end
+   -- No positive recalculation while topology is pending. A confirmed local
+   -- qualification/capacity/reputation reduction still withdraws its own share.
+   network={continuityOnly=true,partners={},references={},provenance=cp(previous.networkProvenance)}
+   local ids={}
+   for _,domain in pairs(retained.domains)do for sid,sample in pairs(domain)do
+    if sid~=id then ids[sid]=true;network.references[sid]=sample.reference end
+   end end
+   for sid in pairs(ids)do network.partners[#network.partners+1]=sid end
+   for _,r in ipairs(v.domains)do
+    local prior;for _,row in ipairs(previous.domains or {})do if row.id==r.id then prior=row;break end end
+    if not prior or not prior.effective then r.effective=false;r.suspended=r.selected
+    else r.localD=math.min(r.localD or 0,prior.localD or 0)end
+   end
+   v.reputation.effective=math.min(v.reputation.effective,previous.reputation and previous.reputation.effective or 0)
+  end
   out.network=network
-  for _,sid in ipairs(network.partners)do out.sources[sid]=true end
-  v.stage='READY';v.reason='COMMERCE_READY'
+  for _,sid in ipairs(network.partners)do out.sources[sid]=true;stamp(batch,pid,sid)end
+  v.stage='READY';v.reason='COMMERCE_READY';v.networkProvenance=cp(network.provenance)
+  if network.continuityOnly then v.stage='RETAINED';v.reason='COMMERCE_MIXED_FACTS';v.canConfigure=false end
   for _,r in ipairs(v.domains)do if r.effective then v.effective[#v.effective+1]=r.id end end
   out.rows=v.domains;return out
  end
@@ -170,7 +300,12 @@ function M.Start(P,shared)
   if batch.identities[k]~=nil then return batch.identities[k]end
   local ok,kind=pcall(function()
    local owns=store.Owns(c);assert(type(owns)=='boolean','COMMERCE_SOURCE_IDENTITY_UNKNOWN')
-   if not owns then return 'NONE' end
+   if not owns then
+    -- Modern Store not-yet-admitted is UNKNOWN, not a confirmed identity exit.
+    -- Only the existing explicit legacy exclusion can prove a non-source.
+    assert(store.BlocksLegacy and store.BlocksLegacy(c)==false,'COMMERCE_SOURCE_UNADMITTED')
+    return 'NONE'
+   end
    local f=store.Base(pid,c)
    assert(f.owner==pid and f.cityID==c:GetID() and type(f.token)=='string'
     and type(f.specialization)=='string','COMMERCE_SOURCE_IDENTITY_UNKNOWN')
@@ -181,102 +316,256 @@ function M.Start(P,shared)
  end
  local function resolve(batch,x)
   if not x.rows then return end
-  local values={}
+  local k=key(x.pid,x.id);local previous=samples[k]
+  local matched=previous and previous.reference==x.v.reference and previous.token==x.v.token
+  if not matched then previous={domains={}}end
+  local nextSamples={reference=x.v.reference,token=x.v.token,domains={}};local values={};local mixed=x.v.stage=='RETAINED'
+  x.v.sourceProvenance={}
   for _,r in ipairs(x.rows)do if r.effective then
-   local best
+   local best;local prior=previous.domains[r.id] or {};local current={};nextSamples.domains[r.id]=current
    for sid in pairs(x.sources)do
-    local c=assert(city(x.pid,sid),'COMMERCE_SOURCE_UNKNOWN');assert(c:GetOwner()==x.pid,'COMMERCE_SOURCE_OWNER_CHANGED')
-    if sid~=x.id then assert(SPCNetworkInput.Reference(c)==x.network.references[sid],'COMMERCE_SOURCE_REFERENCE_CHANGED')end
-    if sid==x.id or sourceKinds[r.id] and sourceIdentity(batch,x.pid,c)==sourceKinds[r.id]then
-     local n=sourceYield(batch,x.pid,c,r.yield)
-     if not best or n>best.X or n==best.X and sid<best.city then best={city=sid,owner=x.pid,name=title(c),X=n}end
-    end
+    local old=prior[sid];local reference;local confirmedLoss=false
+    local status='CONFIRMED';local sample
+    local ok,value=pcall(function()
+     local c=city(x.pid,sid)
+     if c then assert(type(c:GetOwner())=='number','COMMERCE_SOURCE_OWNER_UNKNOWN')end
+     if not c or c:GetOwner()~=x.pid then confirmedLoss=true;return {eligible=false}end
+     reference=SPCNetworkInput.Reference(c)
+     if sid~=x.id then assert(reference==x.network.references[sid],'COMMERCE_SOURCE_REFERENCE_CHANGED')end
+     local kind=sid==x.id and 'SELF' or sourceIdentity(batch,x.pid,c)
+     local qualifies=sid==x.id or sourceKinds[r.id] and kind==sourceKinds[r.id]
+     -- During a confirmed-negative continuity pass, only remove proven lost
+     -- qualifications. Other inputs use their latest reliable session samples.
+     if x.network.continuityOnly then
+      if not qualifies then return {reference=reference,eligible=false}end
+      error('COMMERCE_CONTINUITY_ONLY')
+     end
+     return {reference=reference,eligible=qualifies==true,city=sid,owner=x.pid,name=title(c),
+      X=qualifies and sourceYield(batch,x.pid,c,r.yield) or nil}
+    end)
+    if ok then sample=value
+    elseif old and not confirmedLoss and (reference==nil or old.reference==reference)then sample=cp(old);reference=reference or old.reference;status='RETAINED';mixed=true
+    else status='UNKNOWN';mixed=true end
+    current[sid]=sample
+    x.v.sourceProvenance[r.id]=x.v.sourceProvenance[r.id] or {}
+    x.v.sourceProvenance[r.id][sid]={status=status,reference=reference}
+    if sample and sample.eligible and (not best or sample.X>best.X or sample.X==best.X and sid<best.city)then best=sample end
    end
    values[r.id]=assert(best,'COMMERCE_SOURCE_UNKNOWN')
   end end
+  -- The first complete plan for this reference must reconcile any restored Gold.
+  -- A mixed plan may reuse reliable source samples from the matching session.
+  assert(matched or not mixed,'COMMERCE_COLD_SOURCE_PENDING')
   local result=C.Finish(x.rows,values,x.v.reputation.effective)
   x.v.domains=result.domains;x.v.totalRaw=result.totalRaw;x.v.totalGold=result.totalGold
+  x.samples=nextSamples
+  if mixed then x.v.stage='RETAINED';x.v.reason='COMMERCE_MIXED_FACTS';x.v.canConfigure=false end
+ end
+ local function retainProvenance(v)
+  for _,domain in pairs(v.sourceProvenance or {})do for _,f in pairs(domain)do if f.status=='CONFIRMED'then f.status='RETAINED'end end end
+  for _,f in pairs(v.networkProvenance or {})do if f.status=='CONFIRMED'then f.status='RETAINED'end end
+ end
+ local function hold(x,old,reason)
+  -- Keep the exact installed result, including a cold-load value whose source
+  -- decomposition is unavailable. Never make this a new-transaction credential.
+  local value=old and old.reference==ref(x.c) and old.token==x.v.token and cp(old) or x.v
+  value.factStatus=x.v.factStatus or {status='UNKNOWN'}
+  if value.writeUnconfirmed or value.bindingUnconfirmed then
+   local read,gold=pcall(readTargetGold,x)
+   value.totalGold=read and gold or nil
+  else value.totalGold=observed(x.c)end
+  value.stage='HELD';value.reason=reason;value.canConfigure=false
+  value.appliedRetained=true;value.sourceProvenance=value.sourceProvenance or {}
+  value.reputationUse={status='UNKNOWN',reason='COMMERCE_PURPOSE_INPUTS_PENDING',
+   historyStatus=x.v.reputationUse and x.v.reputationUse.historyStatus or 'UNKNOWN'}
+  value.reputationMessage='商业信誉用途尚待完整事实核验；保留已应用收益，不用于新投资。'
+  retainProvenance(value)
+  x.v=value;x.hold=true;x.rows=nil
+ end
+ local function publishProofWait(pid,revision)
+  local bridge=shared.NetworkBridge
+  if not initialized or not bridge.ProofRevision or bridge.ProofRevision(pid)~=revision then return false end
+  local current=generation(pid);local affected={}
+  for k,pair in pairs(known)do if pair[1]==pid then
+   local v=views[k]
+   if not v or v.factGeneration~=current or not sourcesCurrent(pid,v)then return false end
+   if v.stage=='READY' and v.networkProofRevision==revision-1 then
+    affected[#affected+1]={id=pair[2],view=v}
+   elseif v.stage~='INELIGIBLE'then return false end
+  end end
+  -- Only display and configuration state change. A missed stamp, older
+  -- effect or independent dirty cause keeps the normal reconciliation.
+  for _,entry in ipairs(affected)do
+   local v=cp(entry.view)
+   v.stage='RETAINED';v.reason='COMMERCE_MIXED_FACTS';v.canConfigure=false
+   v.networkProofRevision=revision;retainProvenance(v)
+   publish(pid,entry.id,v)
+  end
+  return true
  end
  local function addTargets(ids,pid,cid)
   if cid~=nil then ids[key(pid,cid)]={pid,cid};for k,v in pairs(dependencies[key(pid,cid)] or {})do ids[k]=v end
   else for k,v in pairs(known)do if v[1]==pid then ids[k]=v end end end
  end
- function d.Mark(pid,id)
-  if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then d.Mark(owner,id)end end;return end
-  if not P.IsTestPlayer(pid) or isolated(pid)then return end
-  dirty[pid]=dirty[pid] or {cities={}}
-  if id==nil then dirty[pid].all=true else dirty[pid].cities[id]=true end
+ function d.Mark(pid,id,responsibility,proofRevision)
+  if pid==nil then
+   local accepted,eligible,unknown=false,false,false
+   for owner in pairs(Players)do
+    local allowed,_,status=P.IsTestPlayer(owner)
+    if allowed then
+     eligible=true
+     local marked,reason=d.Mark(owner,id,responsibility)
+     if marked==true then accepted=true
+     elseif reason~='ISOLATED'then return false,reason end
+    elseif status~='INELIGIBLE'then unknown=true end
+   end
+   return accepted,not eligible and unknown and 'PLAYER_UNAVAILABLE'or 'NO_ELIGIBLE_OWNER'
+  end
+  local eligible,_,status=P.IsTestPlayer(pid)
+  if not eligible then return false,status=='INELIGIBLE'and 'UNSUPPORTED_PLAYER'or 'PLAYER_UNAVAILABLE'end
+  if isolated(pid)then return false,'ISOLATED'end
+  local work=dirty[pid] or heldDeliveries[pid]
+  if work then work.proofRevision=nil else work={cities={},proofRevision=proofRevision}end
+  dirty[pid]=work;heldDeliveries[pid]=nil
+  if id==nil then work.all=true;work.cities={}
+  elseif not work.all then work.cities[id]=true end
+  if responsibility then work.factDuty=true end
+  return true -- exact scope is registered before a delivery ACK may be made
+ end
+ function d.AcceptFact(event,proofStatus)
+  local registry=shared.FactChanges
+  if not registry or type(event)~='table' then return false end
+  local network=event.kinds and event.kinds.NETWORK
+  if type(event.player)~='number'and (event.player~=nil or event.city~=nil or network)then return false end
+  local receipt=registry.Receipt(event,'REGISTERED')
+  local accepted,reason=d.Mark(event.player,event.city,true,proofStatus and event.revision or nil)
+  if accepted==true then return receipt end
+  -- Optional isolation still suppresses ordinary marks. Network proof duty
+  -- remains unacknowledged during isolation, as on the original proof route.
+  if reason=='UNSUPPORTED_PLAYER' or reason=='NO_ELIGIBLE_OWNER' or not network and reason=='ISOLATED'then
+   return registry.Receipt(event,'IRRELEVANT',reason)
+  end
+  return false
  end
  function d.Audit(scope)
   if scope and scope.player~=nil and (not P.IsTestPlayer(scope.player) or isolated(scope.player))then return end
-  if busy then d.Mark(scope and scope.player,scope and scope.city);return end
+  if busy then
+   if scope and scope.changed then for cid in pairs(scope.changed)do d.Mark(scope.player,cid)end
+   else d.Mark(scope and scope.player,scope and scope.city)end
+   return
+  end
   busy=true;d.busy=true;d.error=nil
   local ok,why=pcall(function()
+   if scope and scope.proofRevision and publishProofWait(scope.player,scope.proofRevision)then return end
    if not initialize()then return end
    local ids={}
    for pid in pairs(Players)do if P.IsTestPlayer(pid) and not isolated(pid) and (not scope or scope.player==nil or scope.player==pid)then
     local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true})
     if changed then for cid in pairs(changed)do addTargets(ids,pid,cid)end else addTargets(ids,pid)end
    end end
-   local batch={facts={},depth={},yields={},identities={}};local plans={}
+   local batch={facts={},depth={},yields={},identities={}};local plans={};local sampledGenerations={};local sampledProofs={}
+   local facts=shared.EffectiveFacts
+   local readVersion=facts.Version and facts.Version()
+   local function collect()
+    -- Retire exact legacy effects before capturing any plan. If retirement
+    -- writes, the existing fence invalidates preflight reads, then all plans
+    -- sample the post-write phase. Never write inside EF's projection body.
+    local retired={}
+    if shared.CommerceConvergence and shared.CommerceConvergence.Withdraw then
+     for k,pair in pairs(ids)do
+      local c=city(pair[1],pair[2])
+      if c and c:GetOwner()==pair[1]then
+       local ok,why=pcall(function()
+        local f=facts.Read(pair[1],c)
+        if Use.Qualification(f,'COMMERCE',3).status=='CONFIRMED'then shared.CommerceConvergence.Withdraw(c)end
+       end)
+       if not ok then retired[k]=why end
+      end
+     end
+    end
+    readVersion=facts.Version and facts.Version()
+    for _,pair in pairs(ids)do sampledGenerations[pair[1]]=generation(pair[1]);sampledProofs[pair[1]]=shared.NetworkBridge.ProofRevision and shared.NetworkBridge.ProofRevision(pair[1])or 0 end
    for k,pair in pairs(ids)do
     local pid,id=pair[1],pair[2];local c=city(pid,id)
     if c and c:GetOwner()==pid then
-     local good,x=pcall(prepare,batch,pid,id)
+     local good,x=pcall(function()if retired[k]then error(retired[k],0)end;return prepare(batch,pid,id)end)
      if not good then
       local f=batch.facts[k];local old=views[k]
       x={pid=pid,id=id,c=c,v={reference=ref(c),token=f and f.token or old and old.token,
        identity=f and f.specialization or old and old.identity,potential=f and f.potential,active=f and f.active,
        activeStatus=f and f.activeStatus,selected=old and cp(old.selected) or {},effective={},domains=old and cp(old.domains) or {},
-       workers=0,reputation=old and cp(old.reputation) or {age=0,effective=0},totalRaw=0,totalGold=0,
+       workers=0,reputationKnown=old and old.reputationKnown or false,reputation=old and cp(old.reputation) or {state='UNKNOWN',effective=0},totalRaw=0,totalGold=0,
        stage='HELD',reason=code(x),canConfigure=false}}
-      for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
+      hold(x,old,x.v.reason) -- errors are unavailable input, never evidence of zero
+     elseif x.unavailable then hold(x,views[k],x.unavailable)
      else setDependencies(pid,id,x.v.identity=='COMMERCE' and x.sources or {})end
+     if not x.hold and (x.v.identity~='COMMERCE' or type(x.v.active)=='number' and x.v.active<3)then samples[k]=nil end
      plans[k]=x;known[k]=(x.v.identity=='COMMERCE' or x.v.stage=='HELD') and {pid,id} or nil
-    else publish(pid,id,nil);setDependencies(pid,id,{});known[k]=nil end
+    else publish(pid,id,nil);setDependencies(pid,id,{});known[k]=nil;samples[k]=nil end
    end
    for _,x in pairs(plans)do
     local good,err=pcall(resolve,batch,x)
-    if not good then x.v.stage='HELD';x.v.reason=code(err);x.v.totalGold=0;x.v.totalRaw=0;x.v.canConfigure=false
-     x.v.effective={};for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
-    end
+    if not good then hold(x,views[key(x.pid,x.id)],code(err))end
    end
+   end
+   if facts.WithPhase then facts.WithPhase('COMMERCE_INPUTS',collect)else collect()end
+   local writeDuringRead=facts.Version and facts.Version()~=readVersion
    -- D0055 inputs exclude Gold. Apply only differences; unchanged reads never
    -- dismantle effects or write to a remote source merely to sample its yield.
    for k,x in pairs(plans)do
-    local binding=false
+    local stale=writeDuringRead or sampledGenerations[x.pid]~=generation(x.pid)
+     or sampledProofs[x.pid]~=(shared.NetworkBridge.ProofRevision and shared.NetworkBridge.ProofRevision(x.pid)or 0)
+    for sid in pairs(x.sources or {[x.id]=true})do
+     local before=batch.epochs and batch.epochs[key(x.pid,sid)]
+     if before~=nil and before~=generation(x.pid,sid)then stale=true end
+    end
+    if stale then hold(x,views[k],'COMMERCE_INPUT_CHANGED_DURING_READ')end
+    local bound,attempted=false,false
     local good,err=pcall(function()
-     local h=store.HistoricalReference(x.c)
-     assert(h.owner==x.pid and h.cityID==x.id and h.token==x.v.token,'COMMERCE_BINDING_UNAVAILABLE')
-     binding=true
-     assert(ref(x.c)==x.v.reference,'COMMERCE_REFERENCE_CHANGED')
-     applyGold(x.c,x.v.totalGold);set(x.c,definitions[1].id,x.v.stage=='READY' and x.v.canConfigure)
+     confirmTarget(x)
+     bound=true
+     if not x.hold then
+      -- Source facts passed the read phase and the binding check. A later native
+      -- failure must not bring back a source this plan has already ruled out.
+      samples[k]=x.samples
+      -- Retained topology is not a positive reconstruction credential. A
+      -- confirmed reduction still replaces its encoding through the normal path.
+      local previous=views[k]
+      local previousGold=previous and previous.totalGold
+      local held=x.network and x.network.continuityOnly and previous and previous.reference==x.v.reference
+       and previous.token==x.v.token and (previousGold and x.v.totalGold>=previousGold or previousGold==nil and x.v.totalGold>0)
+      if held and (previous.writeUnconfirmed or previous.bindingUnconfirmed)then hold(x,previous,previous.reason)
+      elseif not held then
+       attempted=true
+       applyGold(x.c,x.v.totalGold)
+       if not x.keepAccess then set(x.c,definitions[1].id,(x.v.stage=='READY' or x.v.stage=='RETAINED') and x.v.active>=3)end
+      end
+     end
     end)
     if not good then
-     if binding then pcall(clear,x.c)end
-     local read,remaining=pcall(observed,x.c)
-     x.v.cleanupConfirmed=read and remaining==0;x.v.remainingCarrierGold=read and remaining or nil
-     x.v.stage='HELD';x.v.reason=code(err);x.v.totalGold=0;x.v.totalRaw=0;x.v.canConfigure=false;x.v.effective={}
+     local previous=views[k]
+     local priorWrite=previous and previous.reference==x.v.reference and previous.token==x.v.token
+      and previous.writeUnconfirmed
+     local read,remaining
+     if bound and (attempted or priorWrite)then read,remaining=pcall(readTargetGold,x)end
+     x.v.bindingUnconfirmed=not bound or nil
+     x.v.writeUnconfirmed=attempted or priorWrite or nil
+     x.v.totalGold=read and remaining or nil;x.v.totalRaw=nil
+     x.v.stage='HELD';x.v.reason=code(err);x.v.canConfigure=false;x.v.effective={}
      for _,r in ipairs(x.v.domains)do r.effective=false;r.suspended=r.selected;r.reason=x.v.reason;r.raw=0;r.gold=0;r.floor=0 end
     end
+    x.v.factGeneration=sampledGenerations[x.pid];x.v.networkProofRevision=sampledProofs[x.pid];x.v.sourceGenerations={}
+    for sid in pairs(x.sources or {[x.id]=true})do x.v.sourceGenerations[sid]=batch.epochs and batch.epochs[key(x.pid,sid)] or generation(x.pid,sid)end
     publish(x.pid,x.id,x.v)
    end
 
   end)
   if not ok then d.error=code(why)end
   busy=false;d.busy=false
+  return ok and initialized
  end
  function d.Refresh(pid,id)d.Audit({player=pid,city=id});return cp(views[key(pid,id)])end
  function d.SourceChanged(pid,id)d.Audit({player=pid,changed={[id]=true}})end
- function d.BindPermanentWrites()
-  if permanentBound then return end
-  local prior=shared.OnPermanentCityWrite
-  shared.OnPermanentCityWrite=function(c,reason)
-   if prior then prior(c,reason)end
-   if c then d.Mark(c:GetOwner(),c:GetID())end
-  end
-  permanentBound=true
- end
  function d.ExperimentalNetworkWithdraw(pid)
   assert(isolated(pid) and P.IsTestPlayer(pid) and not busy,'COMMERCE_ISOLATION_REQUIRED')
   validate()
@@ -288,6 +577,7 @@ function M.Start(P,shared)
     local v=cp(views[key(pid,c:GetID())])
     if v then
      v.stage='HELD';v.reason='COMMERCE_EXPERIMENT_ISOLATED';v.totalGold=0;v.totalRaw=0;v.canConfigure=false;v.effective={}
+     v.writeUnconfirmed=nil;v.bindingUnconfirmed=nil
      for _,r in ipairs(v.domains or {})do r.effective=false;r.suspended=r.selected;r.gold=0;r.floor=0;r.raw=0 end
      publish(pid,c:GetID(),v)
     end
@@ -324,9 +614,14 @@ function M.Start(P,shared)
  function d.Describe(pid,c)
   local v=views[key(pid,c:GetID())]
   if not v then return '商业化：等待城市记录。'end
+  local amount
+  if v.bindingUnconfirmed then amount='城市绑定待确认｜收益更新尚未执行'
+  elseif v.writeUnconfirmed or v.totalGold==nil then
+   amount='领域收益待确认｜载体当前配置的基础金币：'..tostring(v.totalGold or '未知')
+  else amount='生效领域 '..#(v.effective or {})..'｜合计 +'..v.totalGold..' 基础金币/回合' end
   local rows={'商业化｜'..title(c)..'｜'..(v.stage=='READY' and '已就绪' or v.reason),
-   '工作专家 '..v.workers..'｜生效领域 '..#(v.effective or {})..'｜合计 +'..v.totalGold..' 基础金币/回合',
-   '商业信誉 '..tostring(v.reputation and v.reputation.age or 0)..'；当前使用 '..tostring(v.reputation and v.reputation.effective or 0)}
+   '工作专家 '..v.workers..'｜'..amount,
+   v.reputationMessage or model.ReputationText(v.reputationUse)}
   for _,r in ipairs(v.domains or {})do
    local n=Locale and Locale.Lookup and Locale.Lookup(r.nameKey) or r.id
    local reasons={COMMERCE_LOCAL_DISTRICT_REQUIRED='本城缺少对应区域',COMMERCE_NOT_SELECTED='未开启',
@@ -335,45 +630,46 @@ function M.Start(P,shared)
    rows[#rows+1]=n..(r.yield=='FOOD' and '（总粮食，非余粮）' or '')..'：'..(r.effective and string.format('D%d × X%.3f × 5%% × %.3f = %.3f → +%d',r.localD,r.X,1+.005*v.reputation.effective,r.raw,r.gold) or (reasons[r.reason] or '暂不可用：'..tostring(r.reason)))
    if r.effective then rows[#rows+1]='来源：'..r.sourceName end
   end
-  if v.cleanupConfirmed==false then rows[#rows+1]='收益清理尚未确认；残留载体配置：'..tostring(v.remainingCarrierGold or '未知')end
   rows[#rows+1]='来源：本城，或直接国内商路连接的对应专业城市。'
   rows[#rows+1]='配置入口：城市生产列表 → 商业化 / 商业信誉；P0这里只读。'
   rows[#rows+1]='各领域分别向下取整后相加；城市既有金币倍率可能进一步调整实际收益。'
   return table.concat(rows,'\n')
  end
  -- B267 observes existing publications/carriers only; never reconciles effects.
- local turnTrace=SPCExpeditionTrainingDiagnostics.New(P,'COMMERCE_TURN')
+ local turnTrace=SPCSafeCallbacks.OpenTrace(logger,P,'COMMERCE_TURN')
  local turnStates={}
  local function diagnosticRead(object,method)
-  local ok,v=pcall(function()local fn=object and object[method];if type(fn)~='function'then return 'UNAVAILABLE'end;return fn(object)end)
+  local ok,v=pcall(function()local fn=object and object[method];if type(fn)~='function'then return 'UNAVAILABLE'end;P.Count('observer_native_attempt');P.Count('observer_commerce_attempt');return fn(object)end)
   if not ok then return 'READ_ERROR'end
   if type(v)=='number' or type(v)=='boolean' or v=='UNAVAILABLE'then return v end;return 'UNKNOWN'
  end
  local function turnSample(stage,pid)
-  if not SPCExpeditionTrainingDiagnostics.ENABLED then return end
+  if not turnTrace or not (SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.ENABLED) then return end
   if not P.IsTestPlayer(pid)then return end
-  local player=Players[pid];local treasuryOK,treasury=pcall(function()return player:GetTreasury()end)
+  local player=Players[pid];local treasuryOK,treasury=pcall(function()P.Count('observer_native_attempt');P.Count('observer_commerce_attempt');return player:GetTreasury()end)
   if not treasuryOK then treasury=nil end
   local expected,actual,held,unknown=0,0,0,0;local firstReason
   for _,c in player:GetCities():Members()do
-   local id=c:GetID();local v=views[key(pid,id)];local good,n=pcall(observed,c)
-   local want=v and v.totalGold or 0
-   expected=expected+want;if good then actual=actual+n else unknown=unknown+1 end
+   P.Count('observer_city_scan')
+   local id=c:GetID();local v=views[key(pid,id)];local good,n=pcall(observed,c,true)
+   local want=0;if v then want=v.totalGold end
+   if expected~=nil and want~=nil then expected=expected+want else expected=nil end
+   if good then actual=actual+n else unknown=unknown+1 end
    if v and v.stage=='HELD'then held=held+1;firstReason=firstReason or v.reason end
    local signature=table.concat({v and v.stage or 'NONE',v and v.reason or 'NONE',tostring(want),good and tostring(n) or 'UNKNOWN'},':')
    local k=ref(c)
-   if turnStates[k]~=signature or not good or n~=want then
-    turnTrace.Record('COMMERCE_TURN_CITY',{owner=pid,city=id,expected=want,carrierGold=good and n or 'UNKNOWN',
+   if turnStates[k]~=signature or not good or want~=nil and n~=want then
+    turnTrace('COMMERCE_TURN_CITY',{owner=pid,city=id,expected=want or 'UNKNOWN',carrierGold=good and n or 'UNKNOWN',
      phase=v and v.stage or 'NONE',reason=v and v.reason or 'NONE',readStatus=good and 'VERIFIED' or 'UNKNOWN'})
    end
    turnStates[k]=signature
   end
   local bridge=shared.NetworkBridge;local b=bridge and bridge.players and bridge.players[pid]
   local sender=ExposedMembers.SPC_P0_BackgroundRoutes or {}
-  turnTrace.Record(stage,{owner=pid,goldBalance=diagnosticRead(treasury,'GetGoldBalance'),
+  turnTrace(stage,{owner=pid,goldBalance=diagnosticRead(treasury,'GetGoldBalance'),
    goldYield=diagnosticRead(treasury,'GetGoldYield'),maintenance=diagnosticRead(treasury,'GetTotalMaintenance'),
    ownerTurnActive=diagnosticRead(player,'IsTurnActive'),ready=d.ready,coreBusy=busy,commerceWrites=d.writes,
-   expected=expected,carrierGold=unknown==0 and actual or 'UNKNOWN',heldCount=held,reason=firstReason or 'NONE',
+   expected=expected or 'UNKNOWN',carrierGold=unknown==0 and actual or 'UNKNOWN',heldCount=held,reason=firstReason or 'NONE',
    unreadableCount=unknown,networkRevalidation=b and b.revalidation,networkAvailability=b and b.availability,
    networkSignal=b and b.signal,routeSignal=shared.RouteSignalRevision or 0,
    senderResult=sender.senderResult or 'UNAVAILABLE',senderFailedTurn=sender.senderFailedTurn,
@@ -381,11 +677,23 @@ function M.Start(P,shared)
  end
  local function diagnosticTurn(stage,pid)
   local ok=pcall(turnSample,stage,pid)
-  if not ok then pcall(turnTrace.Record,'COMMERCE_TURN_FAILURE',{owner=pid,reason='TURN_READ_ERROR'})end
+  if not ok and turnTrace then pcall(turnTrace,'COMMERCE_TURN_FAILURE',{owner=pid,reason='TURN_READ_ERROR'})end
  end
  local function flush()
   if busy then return end;local todo=dirty;dirty={}
-  for pid,v in pairs(todo)do d.Audit({player=pid,changed=not v.all and v.cities or nil})end
+  for pid,v in pairs(todo)do
+   local accepted=d.Audit({player=pid,changed=not v.all and v.cities or nil,proofRevision=v.proofRevision})
+   if v.factDuty and not accepted then
+    -- A real reentrant cause keeps its next snapshot armed. Otherwise retain
+    -- the accepted responsibility dormant; never retry it on idle publish.
+    local nextWork=dirty[pid] or heldDeliveries[pid]
+    if nextWork then
+     nextWork.factDuty=true
+     if v.all then nextWork.all=true;nextWork.cities={}
+     elseif not nextWork.all then for id in pairs(v.cities)do nextWork.cities[id]=true end end
+    else heldDeliveries[pid]=v end
+   end
+  end
  end
  local function hook(source,event,fn)local e=P.Field(source,event);if e and e.Add then e.Add(fn)end end
  hook(Events,'LoadScreenClose',function()d.Audit()end)
@@ -393,34 +701,71 @@ function M.Start(P,shared)
  hook(GameEvents,'PlayerTurnStarted',function(pid)diagnosticTurn('COMMERCE_TURN_STARTED',pid)end)
  hook(Events,'GameCoreEventPublishComplete',flush)
  hook(Events,'PlayerTurnActivated',function(pid)d.Mark(pid)end)
- for _,event in ipairs({'CityWorkerChanged','CityPopulationChanged','CityFocusChanged','CityBuildingsChanged','CityYieldChanged','CityYieldsChanged'})do
-  hook(Events,event,function(pid,id)if not writing then d.Mark(pid,type(id)=='number' and id or nil)end end)
+ SPCRuntimeWork.TargetHook(P,Events,'CityPopulationChanged',function(scope)d.Mark(scope.player,scope.city)end)
+ for _,event in ipairs({'GovernmentPolicyChanged','GovernmentChanged','ResearchCompleted','CivicCompleted'})do
+  hook(Events,event,function(pid)d.Mark(type(pid)=='number' and pid or nil)end)
  end
- for _,event in ipairs({'GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted','GovernmentPolicyChanged','GovernmentChanged','ResearchCompleted','CivicCompleted'})do
-  hook(Events,event,function(pid)if not writing then d.Mark(type(pid)=='number' and pid or nil)end end)
+ -- Transfer/loss ownership semantics remain with the existing owner census.
+ hook(Events,'CityTransfered',function()d.Mark()end)
+ SPCRuntimeWork.TargetHook(P,Events,'CityRemovedFromMap',function(scope)d.Mark(scope.player)end)
+ SPCRuntimeWork.TargetHook(P,Events,'CityTileOwnershipChanged',function(scope)d.Mark(scope.player,scope.city)end)
+ local hasD=shared.DistrictCompleteness and type(shared.DistrictCompleteness.RegisterConsumer)=='function'
+ if not hasD then
+  for _,event in ipairs({'DistrictAddedToMap','DistrictRemovedFromMap','DistrictPillaged'})do
+   SPCRuntimeWork.TargetHook(P,Events,event,function(scope)d.Mark(scope.player,scope.city)end)
+  end
  end
- for _,event in ipairs({'CityTransfered','CityRemovedFromMap','DistrictAddedToMap','DistrictRemovedFromMap','DistrictPillaged','DistrictRepaired','BuildingPillaged','BuildingRepaired','CityTileOwnershipChanged'})do
-  hook(Events,event,function()if not writing then d.Mark()end end)
+ -- Other specialties change the total native yields used as Commerce inputs.
+ -- D deliberately filters all internal carriers, so keep this explicit edge.
+ local function outputRow(index)
+  local ok,row=pcall(P.Info,'Buildings',index)
+  return ok and row or nil
+ end
+ local function outputRelevant(row)
+  if row and ownNames[row.BuildingType]then return false end
+  if hasD and row and type(row.BuildingType)=='string' and not row.BuildingType:match('^BUILDING_SPC_')then return false end
+  return true -- unknown metadata remains conservative, never a guessed city
+ end
+ local function outputAt(x,y,index,owner)
+  if ownedIndex[index]then return end
+  if type(owner)=='number' and owner>=0 and not P.IsTestPlayer(owner)then return end
+  if not outputRelevant(outputRow(index))then return end
+  local ok,c=pcall(function()
+   local district=CityManager and CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)
+   return district and district:GetCity() or CityManager and CityManager.GetCityAt and CityManager.GetCityAt(x,y)
+  end)
+  if ok and c then
+   local good,pid,cid=pcall(function()return c:GetOwner(),c:GetID()end)
+   if good and type(pid)=='number' and type(cid)=='number' and (type(owner)~='number' or owner<0 or owner==pid)then d.Mark(pid,cid);return end
+  end
+  d.Mark(type(owner)=='number' and owner>=0 and owner or nil)
+ end
+ local function guardedOutput(fn,...)
+  local ok,err=pcall(fn,...)
+  if not ok then local good,text=pcall(tostring,err);d.sourceError=good and text:sub(1,180) or 'COMMERCE_OUTPUT_MARK_FAILED'end
  end
  for _,event in ipairs({'BuildingAddedToMap','BuildingRemovedFromMap'})do
-  hook(Events,event,function(x,y,index,owner)
-   local row=P.Info('Buildings',index)
-   if writing or row and ownNames[row.BuildingType]then return end
-   local ok,c=pcall(function()return CityManager and CityManager.GetCityAt(x,y)end)
-   if ok and c then d.Mark(c:GetOwner(),c:GetID());return end
-   d.Mark(type(owner)=='number' and owner or nil)
-  end)
+  hook(Events,event,function(...)guardedOutput(outputAt,...)end)
  end
+ hook(GameEvents,'BuildingPillageStateChanged',function(pid,cid,index)
+  if ownedIndex[index]then return end
+  guardedOutput(function()
+   if outputRelevant(outputRow(index))then
+    local valid=type(pid)=='number' and pid>=0 and pid%1==0
+    d.Mark(valid and pid or nil,valid and type(cid)=='number' and cid>=0 and cid%1==0 and cid or nil)
+   end
+  end)
+ end)
  for _,event in ipairs({'CityBuilt','OnBuildingConstructed','OnDistrictConstructed'})do
-  -- Construction events are not uniformly (owner,cityID). In particular
-  -- OnDistrictConstructed is (owner,districtType,x,y); do not route its type as a city.
-  hook(GameEvents,event,function(pid)if not writing then d.Mark(type(pid)=='number' and pid or nil)end end)
+  -- Retain guarded original optional construction sources until their own
+  -- signature/producer closure is reviewed; never route district type as cityID.
+  hook(GameEvents,event,function(pid)d.Mark(type(pid)=='number' and pid or nil)end)
  end
  store.RegisterExit('Commerce',function(c,loss)
   assert(store.IsExitTarget(c,loss),'COMMERCE_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,M.Owned)
   for k,pair in pairs(known)do if pair[1]==loss.origin.owner then
    local v=views[k]
-   if v and v.reference==loss.origin.owner..':'..pair[2]..':'..c:GetX()..':'..c:GetY()then publish(pair[1],pair[2],nil);setDependencies(pair[1],pair[2],{});known[k]=nil end
+   if v and v.reference==loss.origin.owner..':'..pair[2]..':'..c:GetX()..':'..c:GetY()then publish(pair[1],pair[2],nil);setDependencies(pair[1],pair[2],{});known[k]=nil;samples[k]=nil end
   end end
   d.Mark(loss.origin.owner)
  end)

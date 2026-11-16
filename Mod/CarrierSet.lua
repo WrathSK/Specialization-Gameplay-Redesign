@@ -1,0 +1,97 @@
+-- Ordered exact carrier mechanics only; caller owns eligibility, events and loss policy.
+SPCCarrierSet={}
+-- Exact scalar ownership only. Caller validates schema and publishes atomically.
+-- Names retain order/duplicates; Store owns exit-list validation.
+function SPCCarrierSet.Registry(entries)
+ local ids,names={},{}
+ for _,v in ipairs(entries)do ids[v.id]=true;names[#names+1]=v.name end
+ local registry={}
+ function registry.Owns(id)return ids[id]==true end
+ function registry.Names()local out={};for _,n in ipairs(names)do out[#out+1]=n end;return out end
+ return registry
+end
+function SPCCarrierSet.Define(P,entries,resolve,errors)
+ local d={};local descriptors={};local names,keys={},{}
+ for _,v in ipairs(entries)do
+  assert(v.key~=nil and type(v.name)=='string'and not names[v.name]and not keys[v.key],'CARRIER_DESCRIPTOR_INVALID')
+  descriptors[#descriptors+1]={key=v.key,name=v.name};names[v.name]=true;keys[v.key]=true
+ end
+ local definitions,owned
+ local function initialize()
+  if definitions then return end
+  local nextDefinitions,entries={},{}
+  for _,v in ipairs(descriptors)do local id=resolve(v.name,v.key);nextDefinitions[v.key]=id;entries[#entries+1]={id=id,name=v.name}end
+  local nextOwned=SPCCarrierSet.Registry(entries)
+  definitions,owned=nextDefinitions,nextOwned -- publish only a complete definition set
+ end
+ function d.Initialize()initialize()end
+ function d.Index(key)initialize();return definitions[key]end
+ function d.Owns(id)return owned~=nil and owned.Owns(id)end -- health hooks never resolve rows
+ function d.Names()
+  local out={};for _,v in ipairs(descriptors)do out[#out+1]=v.name end;return out
+ end
+ function d.Observe(city,wanted)
+  initialize();local plan={}
+  for _,v in ipairs(descriptors)do
+   local id=definitions[v.key];local present=P.HasBuilding(city:GetBuildings(),id)
+   assert(type(present)=='boolean',errors.read)
+   plan[#plan+1]={key=v.key,id=id,present=present,wanted=wanted[v.key]==true}
+  end
+  return plan -- fresh complete preflight; no city/native handles retained by the set
+ end
+ function d.Apply(city,wanted,health,confirmed,freshBeforeWrite)
+  local plan=d.Observe(city,wanted)
+  for _,adding in ipairs({false,true})do for _,v in ipairs(plan)do
+   if v.wanted==adding and v.present~=v.wanted then
+    local buildings
+    if freshBeforeWrite then
+     buildings=city:GetBuildings();v.present=P.HasBuilding(buildings,v.id)
+     assert(type(v.present)=='boolean',errors.read)
+    end
+    if v.present~=v.wanted then
+     if adding then health.Create(city,v.id)else health.Remove(city,v.id)end
+     assert(P.HasBuilding(buildings or city:GetBuildings(),v.id)==v.wanted,errors.write)
+     if confirmed then confirmed(v.key,v.id,v.wanted)end
+     v.present=v.wanted
+    end
+   end
+  end end
+  return plan
+ end
+ -- Industry's established per-bit transaction order, including partial success.
+ function d.ApplySequential(city,wanted,health,confirmed)
+  initialize();local result={}
+  for _,v in ipairs(descriptors)do
+   local id=definitions[v.key];local b=city:GetBuildings();local present=P.HasBuilding(b,id)
+   assert(type(present)=='boolean',errors.read);local want=wanted[v.key]==true
+   if present~=want then
+    if want then health.Create(city,id)else health.Remove(city,id)end
+    assert(P.HasBuilding(b,id)==want,errors.write)
+    if confirmed then confirmed(v.key,id,want)end;present=want
+   end
+   result[#result+1]={key=v.key,id=id,present=present,wanted=want}
+  end
+  return result
+ end
+ function d.Exit(shared,city,loss)
+  return shared.CityProgressionStore.RemoveOwned(city,loss,d.Names())
+ end
+ return d
+end
+
+-- Owners supply a complete fresh preflight and their own desired bits/plot.
+-- No eligibility, definition, legacy retirement or retry policy lives here.
+function SPCCarrierSet.ApplyLocated(P,city,rows,plot,health,options,confirmed)
+ for _,r in ipairs(rows)do
+  if r.yes and (not r.want or r.plot~=plot)then
+   if options.observedRemoval then health.Remove(city,r.id,r.plot)else health.Remove(city,r.id)end
+   assert(P.HasBuilding(city:GetBuildings(),r.id)==false,options.removeError)
+   r.yes=false;confirmed()
+  end
+ end
+ for _,r in ipairs(rows)do if r.want and not r.yes then
+  health.Create(city,r.id,plot);local b=city:GetBuildings()
+  assert(P.HasBuilding(b,r.id)==true and b:GetBuildingLocation(r.id)==plot and b:IsPillaged(r.id)==false,options.createError)
+  confirmed()
+ end end
+end

@@ -2,6 +2,8 @@
 
 从[架构系统说明](../../Architecture/Specialization_v0.1_Architecture.md#系统如何组成)了解结构；这里回答“依据在哪里、结论能用到哪一步”。当前任务/授权/待测只看[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。文件较旧不代表结论无效，较新也不自动覆盖不同接口的证据。
 
+[Engine Reference](Engine_Reference.md) — read the relevant question sections alongside existing project evidence for native events, Modifiers, cold load, SQL/UI and environment dependencies. Reference evidence is not accepted Design/Architecture or implementation permission; no full-library reading requirement.
+
 ## 独立并行调查
 
 [General Investigation Zone / 通用调查区](Investigations/README.md) holds non-authoritative research within user-authorized topics. Investigation writes only its own topic Markdown and has read-only Git access. Primary may publish reviewed Stable checkpoints under [W0005 standing publication permission](../../Workflow/README.md#advisory-and-investigation-local-checkpoints), without per-report approval. Publication is not acceptance of conclusions, Design authority, implementation permission or mandatory context.
@@ -44,6 +46,8 @@
 
 | 问题 | 优先资料 | 已知结论/不要重复 |
 |---|---|---|
+| 早期架构图与直接监听 | [B393 逻辑架构总览](Investigations/Architecture_Reconstruction/Logical_Architecture_Overview.md)、[B396 监听审计](Investigations/Architecture_Reconstruction/Direct_Event_Listener_Audit.md) | 按各自源码基线查当时的模块与事件。现行约束见[正式架构](../../Architecture/Specialization_v0.1_Architecture.md#current-authoritative-state)。 |
+| 载体与 Modifier 足迹 | [2026-11-02 定义清单与复现办法](Investigations/Carrier_Modifier_Footprint/README.md) | 数字是当时的源码定义统计。实际安装数量和性能需要各自的测量。 |
 | 旧科研复制范围调查 | [D0014](Specialization_D0014_All_District_Copy.md)、[B051.66用户结果](../../Status/Validation/Results/Specialization_B051_66_User_Result.md) | [B051.67](../../Status/Validation/Results/Specialization_B051_67_User_Result.md)最小补测口头通过，非全部组合；旧四类白名单已废弃 |
 | B051自动刷新 | [实现](Specialization_B051_Automatic_Copy_Yields.md)、[事件修正](Specialization_B051_Background_Fix.md) | 65失败、66收益用户通过；不能只凭只读计算值认定载体已挂 |
 | 早期标准化目录/账本研究 | [目录快照：范围见D0015](Specialization_Standardization_Catalog_Candidate.md)、 [记录研究](Specialization_Standardization_Storage_Research.md)、[剩余研究](Specialization_v01_Remaining_Work_Review.md) | 该行描述早期研究时点；后续账本/折扣见下方B052–B054报告，当前任务不由此派发 |
@@ -57,7 +61,7 @@
 | Boost | [sqrt](Specialization_P0_Network_Sqrt.md) | 浮点Lua强度≠Modifier表达式/小数百分点支持 |
 | Conquest/ELIG | [D0010](Specialization_D0010_Architecture_Sync.md)、[D0007](Specialization_D0007_Architecture_Sync.md) | 玩法已定、适配未完整；不要把原owner不匹配“修复”为清空成果 |
 
-[旧完整索引](../../Historical/DocumentSnapshots/Technical_Index_before_fresh_agent_handoff.md)保留早期专项定位；不要求新代理先读每个历史探针。Great Work线索在剩余研究中，不是已经实现完整作品效果。
+[旧完整索引](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/ca540456ff1d0610281085ba6026b21f636933e9/Specialization/Historical/DocumentSnapshots/Technical_Index_before_fresh_agent_handoff.md)保留早期专项定位；不要求新代理先读每个历史探针。Great Work线索在剩余研究中，不是已经实现完整作品效果。
 
 - [B052标准化永久账本](Specialization_B052_Standardization_Ledger.md)：D0015运行分类/一次补录/事件增量；无购买效果，实机待用户。
 

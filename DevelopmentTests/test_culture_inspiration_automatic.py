@@ -14,10 +14,8 @@ class InspirationAutomaticTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   old.InspirationTests.setUpClass();cls.sql=old.InspirationTests.sql
-  carriers=[f'BUILDING_SPC_INSPIRATION_ERA_{e}' for e in range(1,8)]
-  modifiers=[f'SPC_INSPIRATION_ERA_{e}' for e in range(1,8)]
-  for table,col,values in [('BuildingModifiers','BuildingType',carriers),('Buildings','BuildingType',carriers),('Types','Type',carriers),('ModifierArguments','ModifierId',modifiers),('Modifiers','ModifierId',modifiers)]:
-   cls.sql.executemany(f'DELETE FROM {table} WHERE {col}=?',[(v,)for v in values])
+  from test_refactor_a8 import reset_projection
+  reset_projection(cls.sql,'BUILDING_SPC_INSPIRATION_ERA_','SPC_INSPIRATION_ERA_')
   cls.sql.executescript((R/'Mod/Data/CultureInspiration.sql').read_text())
  @classmethod
  def tearDownClass(cls):cls.sql.close()
@@ -101,8 +99,13 @@ class InspirationAutomaticTests(unittest.TestCase):
   l=self.runtime();l.execute(r"""
    assert(ip.retired and ip.Request==nil and exits.CultureInspirationProbe==nil)
    local n=writes
-   for _,action in ipairs({'INSPIRE_NEXT','INSPIRE_READ','INSPIRE_END','INSPIRE_STATUS','INSPIRE_DETAIL'})do
+   for _,action in ipairs({'INSPIRE_STATUS','INSPIRE_DETAIL'})do
     meaningRequest(0,{Action=action,CityID=1,Token=action});assert(shared.LastToken==action and shared.CultureInspirationView.percent==6)
+   end
+   local report,view=shared.Snapshot,shared.CultureInspirationView
+   for _,action in ipairs({'INSPIRE_NEXT','INSPIRE_READ','INSPIRE_END'})do
+    meaningRequest(0,{Action=action,CityID=1,Token=action})
+    assert(shared.LastToken=='INSPIRE_DETAIL' and shared.Snapshot==report and shared.CultureInspirationView==view)
    end
    assert(writes==n and retired(a)==0 and inspiration(a)==6)
   """)
@@ -200,10 +203,10 @@ class InspirationAutomaticTests(unittest.TestCase):
    SPCInspirationReadout.RenderAutomatic(P,view,'d',true);assert(nativeCalls==1 and writes==n)
    GameEffects=nil;view.token='e';out=SPCInspirationReadout.RenderAutomatic(P,view,'e',true);assert(out:find('DIAG_UNKNOWN') and not out:find('DIAG_NONE'))
   """)
- def test_panel_actual_callbacks_are_readonly_and_end_hidden(self):
+ def test_panel_actual_callbacks_are_readonly_and_end_retired(self):
   from test_p0_panel_current_layout import panel_runtime
   _,l=panel_runtime();l.execute(r"""
-   assert(Controls.InspirationEndButton.hidden)
+   assert(Controls.InspirationEndButton==nil)
    Controls.MeaningConfigButton.callbacks[Mouse.eLClick]();assert(requests[#requests].Action=='INSPIRE_STATUS')
    Controls.MeaningConfigButton.callbacks[Mouse.eRClick]();assert(requests[#requests].Action=='INSPIRE_DETAIL')
   """)

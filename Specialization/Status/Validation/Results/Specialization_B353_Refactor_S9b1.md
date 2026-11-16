@@ -1,0 +1,37 @@
+# B353.380 — S9b1 Gameplay-owned Development target policy
+
+## Plan and Runtime Impact Contract
+
+Accepted U1/D10/D15,S9/F15; base B352.379/0bf5fd5. The new pure Gameplay-only DevelopmentInvestmentTargets receives explicit raw facts plus the same existing catalogue. It selects minimum eligible tier (including0),then minimum price among that tier,then stable ID tie; any unreadable/nonpositive/nonfinite/non-numeric equal-tier price makes only that domain unavailable. Other domains remain legal. Catalogue dummy/InternalOnly/Wonder/MustPurchase exclusions,replacement normalization and HD tier policy are unchanged. No ordinary-building ontology expansion.
+
+UI first exposes raw complete-domain/presence/CanProduce facts. Gameplay computes only lowest-tier candidate IDs. A second UI export batches native price reads for exactly those IDs; it neither selects tier nor target nor converts currency. Separate Raw/Price exports preserve the existing Raw(pid,id) diagnostic control-count boundary. Candidate IDs alone use bounded length-prefixed text (no ambiguous delimiter); currency remains raw numeric. Payload capacity derives from the existing static catalogue. Each price has its own RETURNED/UNAVAILABLE status; a native price exception does not erase other domains.
+
+Both samples require protocol2/phase,reader generation,exact owner/id/x/y/turn; price echoes the ID request and must contain exactly the requested set. One bounded scalar UI reader-allocation sequence distinguishes context generations; it is session allocation metadata,not a fact cache or save field. Gameplay captures the same function pair,verifies it remains installed after reads,and rechecks current owner/reference. UI stamps also verify final owner. A stale/missing/mixed reader cannot quote; recovery is the next explicit request,with no automatic reread/retry. The pair is continuous sampling,not an engine atomic snapshot.
+
+nativeTarget consumes protocol fields privately and returns only original options/existing. Locked financial quote/contract comparison gains no sequence,phase or raw eligibility table. Fresh CONFIRM still samples only the selected target and compares the original full quote before intent/native debit. Existing source/target reference,occupancy,precision and unknown native outcome protections remain unchanged. No new gameplay amount/qualification/cancellation rule.
+
+No new event,timer,poll,save schema,automatic consumer or native-object cache. Same target catalogue,HasBuilding and CanProduce scope; GetPurchaseCost count is identical to before because only original lowest-tier candidates are priced. The explicit extra cost is one additional synchronous control call/exact-city lookup and bounded scalar reference/owner readbacks per quoted target. No extra other-city confirmation or idle sampling. Pure candidate/price grouping adds fixed bounded catalogue/set work; no native performance gain claim. Raw/Price exports share the existing SafeAdapters constructor rollback,identity-safe close and ownership list.
+
+T04/T05/T08:13 focused Lua5.1 cases plus41 existing RetainedDevelopment/RetainedGuards pass.20 exact B352 before/current cases cover tier0,ties,existing building branches,nonpurchasable constructible candidates,price failures and higher-tier ignored prices; options,costs,source history and native purchase-price counts match. One target uses1 raw+1 price control call and3 native prices before/after;1000 idle publishes add0 controls/writes. Tests cover per-domain unknowns,zero/negative/string/NaN/infinite prices,raw-only UI outputs,no price-phase construction rescans,wrong protocol/phase/generation/reference/turn,missing/extra rows,bad echo,malformed/duplicate IDs,context replacement,next-explicit-open recovery,fresh price/eligibility changes and selected-target-only confirmation before the existing post-confirm refresh.
+
+Independent review reproduced owner loss after price return being published READY; current owner is now checked on Gameplay readback and at the final raw boundary,plus UI stamp owner confirmation. Two real regressions prove stale target cannot be advertised/signable. No money replay had occurred because original pre-debit reference guards already rejected it. Independent read-only review reran all13 focused cases and found no remaining blocker.
+
+An initial direct run used historical Lua55 fixtures and hit their missing Lua51 unpack compatibility; the next unprofiled Lua51 run passed40/41 but lacked the old test binary32 primitive. The project existing S6f MoneyLua51/Retained profiles then ran all41 unchanged financial assertions successfully; no production assertion or test requirement was weakened.
+
+Remaining training global-revision removal is explicitly deferred until an owner output covers pending-only,binding/readability and capacity facts; LevelBanner/Activity mirrors alone are insufficient. This is a scoped dependency gap,not an Expedition feature repair. Dialogue/Expedition rules,request channels,applied display,adjacency and S10 are not claimed complete. D7 history/money proof boundaries and D5 native attribution remain OPEN. No deployment/main/game launch or native PASS.
+
+### Machine validation evidence
+
+- Stage/status: `S9b1` / `LOCAL_SIMULATION_PASS`; tests=773, passing=773, registered-open=0.
+- Source: base `0bf5fd56e8094a468d93b48bba603fdf7c7b739f`; dirty=True; input SHA256 `98123558f5f68dc200055b4f7507a0f1790c4c0ebe4604d1e9eea6481630473b`; stable=True.
+- Source scope: Mod/DevelopmentTests/tools, including tracked and nonignored new files. The containing commit must match this input digest; parent HEAD alone is not the tested snapshot.
+- Command: `python3 DevelopmentTests/run_refactor.py --stage S9b1 --output local/refactor/S9b1-B353-final/closure.json`.
+- Environment: `{"backend": "Lua 5.1", "implementation": "CPython", "lupa": "2.8", "machine": "arm64", "platform": "Darwin", "python": "3.10.13", "python_hash_seed": "UNSET", "sqlite": "3.43.2"}`.
+- External input: `{"configured": true, "recovery": "EXTERNAL_INPUT_NOT_ARCHIVED", "sha256": {"database": "fa7578c3c2e2f19dee918b3801c627ce6edf526ce6d94e04c71a83038c2c215b"}}`.
+- Full artifact: `local/refactor/S9b1-B353-final/closure.json`; SHA256 `c50d65fe21c3ed2d595db71b3b7025257215393fa0648caab03493e43cbba993`; stdout/stderr alongside it.
+- Retention: LOCAL_ONLY, not a permanent backup. A hash identifies bytes but cannot recover them. Re-running creates comparable new evidence, not the old execution.
+- Executed modules/fragments: 183; this is observed loading/completion, not full function/path coverage. Detailed mappings remain in the artifact.
+- Measurements (changed from prior artifact): `{"S9b1_native_quote_work": {"additional_exact_city_lookup": 1, "all_price_tiers_read": false, "idle_extra_control_calls": 0, "price_control_calls": 1, "purchase_cost_calls_before_after": [3, 3], "raw_control_calls": 1, "targets": 1}, "S9b1_target_policy_differential": {"cases": 20, "same_native_purchase_cost_calls": true, "same_options_price_cost_and_source_history": true, "tier_zero_and_tie_rule": true}}`.
+- Limits/mocks: `{"exclusions": {"historical_unrelated_suites": "Selected program scenarios only; inherited stage regressions are named when selected. No old assertions modified."}, "native_mocks": ["synthetic owner/city/district/building methods", "explicit catalogue stub for D workload fixtures", "B270 seven real writers with native doubles"]}`; LOCAL_SIMULATION only.
+
+Static package: {"Lua51": 210, "XML": 25, "package_files": 332, "modinfo": 380}

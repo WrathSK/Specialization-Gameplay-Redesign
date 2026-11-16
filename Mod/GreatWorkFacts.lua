@@ -60,6 +60,30 @@ function F.Start(P,shared)
  local cities,index={},{};local signature;local hooks={}
  -- Static session subscribers only; no chained callback, persistent queue or bus.
  local consumers,order={},{};local serial=0;local publishing=false;local closed=false
+ -- Interpret a fresh detached slot sample with this already-built Gameplay
+ -- catalogue. No background ACK, city read, consumer notification or saved write.
+ function d.InterpretCompletion(raw)
+  assert(not closed and type(raw)=='table' and getmetatable(raw)==nil,'GW_COMPLETION_SAMPLE')
+  local count=0
+  for k in pairs(raw)do
+   assert(type(k)=='number' and k%1==0 and k>=1 and k<=4096,'GW_COMPLETION_INDEX')
+   count=count+1
+  end
+  local seen,slots={},{}
+  local function integer(n)return type(n)=='number' and n>=0 and n<math.huge and n%1==0 end
+  for i=1,count do
+   local w=raw[i]
+   assert(type(w)=='table' and getmetatable(w)==nil and integer(w.id)
+    and integer(w.building) and integer(w.slot) and w.slot<256
+    and type(w.type)=='string' and #w.type>0 and #w.type<=256,'GW_COMPLETION_ROW')
+   local slot=w.building..':'..w.slot
+   assert(not seen[w.id] and not slots[slot],'GW_COMPLETION_DUPLICATE')
+   seen[w.id]=true;slots[slot]=true
+  end
+  local x=F.Plan(catalog,raw).eraCount
+  assert(type(x)=='number' and x%1==0 and x>=0 and x<=8,'GW_COMPLETION_ERAS')
+  return x
+ end
  local function clearNotifications()
   for _,s in pairs(consumers)do s.pending={};s.error=nil end
   d.consumerError=nil

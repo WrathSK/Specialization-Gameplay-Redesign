@@ -4,12 +4,13 @@ Simulated multipliers prove one-call/no-normalization behavior, not engine stack
 from pathlib import Path
 import sqlite3
 import unittest
+from retired_crew_sources import source as retired_source
 from test_b236_crews import crew_runtime, ACTION
 R=Path(__file__).resolve().parents[1]
 M=R/'Mod'
 def fixture(observer=False):
  l=crew_runtime();l.execute((M/'UnitActions.lua').read_text());l.execute(ACTION)
- if observer:l.execute((M/'CrewPrecision.lua').read_text())
+ if observer:l.execute(retired_source('CrewPrecision.lua'))
  return l
 class AcceptedInjection(unittest.TestCase):
  def test_remaining_clips_base_request_not_a_guessed_bonus_inverse(self):
@@ -72,7 +73,7 @@ class Presentation(unittest.TestCase):
   self.assertFalse(db.execute("select 1 from LocalizedText where Tag='LOC_SPC_CREW_INJECTION_HELD'").fetchall())
  def test_runtime_description_and_observation_have_no_exact_final_claim(self):
   text=(M/'UI/UnitPanelActions.lua').read_text();self.assertNotIn('施工后：',text);self.assertNotIn('v.after',text)
-  diagnostic=(M/'UI/UnitSites.lua').read_text();self.assertIn('sample.baseInput',diagnostic);self.assertNotIn('sample.expected',diagnostic);self.assertNotIn('sample.difference',diagnostic)
-  self.assertIn('baseInput=r.baseInput',(M/'CrewProjects.lua').read_text())
+  diagnostic=retired_source('UI/UnitSites.lua');self.assertIn('sample.baseInput',diagnostic);self.assertNotIn('sample.expected',diagnostic);self.assertNotIn('sample.difference',diagnostic)
+  self.assertIn('baseInput=r.baseInput',retired_source('CrewProjects.lua'))
   self.assertIn("'baseCapacity','baseInput'",(M/'ExpeditionTrainingDiagnostics.lua').read_text())
 if __name__=='__main__':unittest.main()

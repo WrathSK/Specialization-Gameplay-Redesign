@@ -29,7 +29,7 @@ function M.Signature(v)
  local parts={tostring(v.specialization),tostring(v.potential),tostring(v.active),tostring(v.activeStatus),tostring(v.progression)}
  for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do parts[#parts+1]=tostring(v.institutionArchive and v.institutionArchive[kind] or '')end
  local s=v.institutionSummary or {}
- for _,k in ipairs({'known','dialogue','engineering','insights','templatesKnown','buildingTemplates','districtTemplates'})do parts[#parts+1]=tostring(s[k])end
+ for _,k in ipairs({'known','reputationKnown','traditionKnown','dialogueKnown','engineeringKnown','dialogue','engineering','insights','insightsKnown','templatesKnown','buildingTemplates','districtTemplates'})do parts[#parts+1]=tostring(s[k])end
  for _,k in ipairs({'tradition','reputation'})do
   local t=s[k];parts[#parts+1]=tostring(type(t))
   for _,field in ipairs({'age','state','cursor','percent','nextAge'})do parts[#parts+1]=tostring(type(t)=='table' and t[field] or nil)end
@@ -62,9 +62,9 @@ local function metric(entry,v)
  local results={}
  local function add(ability,value)results[#results+1]={title=loc(ability),text=value or loc('PENDING')}end
  if entry.kind=='RESEARCH' and entry.level==4 then
-  local t=available and s.tradition
+  local t=available and s.traditionKnown~=false and s.tradition
   local value
-  if available and t==false then value=loc('NOT_STARTED')
+  if available and s.traditionKnown~=false and t==false then value=loc('NOT_STARTED')
   elseif type(t)=='table' and t.percent then
    value=loc('TRADITION_VALUE',t.age,t.percent)
    if t.nextAge then value=value..'[NEWLINE]'..loc('TRADITION_NEXT',t.nextAge-t.age)end
@@ -72,16 +72,16 @@ local function metric(entry,v)
   end
   add('TRADITION',value)
  elseif entry.kind=='COMMERCE' and entry.level==4 then
-  local t=available and s.reputation;local value
-  if available and t==false then value=loc('NOT_STARTED')
+  local t=available and s.reputationKnown~=false and s.reputation;local value
+  if available and s.reputationKnown~=false and t==false then value=loc('NOT_STARTED')
   elseif type(t)=='table' then
    value=loc('REPUTATION_VALUE',t.age,t.age/2)
    if t.state~='COUNTING'then value=value..'[NEWLINE]'..loc('ACCUMULATION_PAUSED')end
   end
   add('REPUTATION',value)
  elseif entry.kind=='CULTURE' then
-  if entry.level==3 then add('DIALOGUE',available and loc('DIALOGUE_VALUE',s.dialogue))
-  elseif entry.level==4 then add('EXPEDITION',available and loc('INSIGHTS_VALUE',s.insights))end
+  if entry.level==3 then add('DIALOGUE',available and s.dialogueKnown~=false and loc('DIALOGUE_VALUE',s.dialogue))
+  elseif entry.level==4 then add('EXPEDITION',available and s.insightsKnown~=false and loc('INSIGHTS_VALUE',s.insights))end
  elseif entry.kind=='INDUSTRY' then
   if entry.level==3 then
    local value
@@ -89,13 +89,14 @@ local function metric(entry,v)
     value=loc('TEMPLATES_VALUE',s.buildingTemplates,s.districtTemplates~=nil and tostring(s.districtTemplates) or loc('PENDING_SHORT'))
     if v.activeStatus=='KNOWN' and type(v.active)=='number' then
      if entry.historical or v.active<3 then value=value..'[NEWLINE]'..loc('STANDARDIZATION_PAUSED')
+     elseif v.active>=4 and s.engineeringKnown==false then value=value..'[NEWLINE]'..loc('PENDING')
      else local boost=v.active>=4 and 2*s.engineering or 0
       value=value..'[NEWLINE]'..loc('STANDARDIZATION_VALUE',10+boost,boost)
      end
     else value=value..'[NEWLINE]'..loc('PENDING')end
    end
    add('STANDARDIZATION',value)
-  elseif entry.level==4 then add('ENGINEERING',available and loc('ENGINEERING_VALUE',s.engineering,2*s.engineering))end
+  elseif entry.level==4 then add('ENGINEERING',available and s.engineeringKnown~=false and loc('ENGINEERING_VALUE',s.engineering,2*s.engineering))end
  end
  return results
 end

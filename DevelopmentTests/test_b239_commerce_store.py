@@ -30,7 +30,7 @@ def runtime():
 
 class Model(unittest.TestCase):
  def check(self,text):
-  lua=LuaRuntime(unpack_returned_tuples=True);lua.execute((ROOT/'Mod/CommerceModel.lua').read_text());lua.execute('M=SPCCommerceModel;'+text)
+  lua=LuaRuntime(unpack_returned_tuples=True);lua.execute((ROOT/'Mod/TurnLedger.lua').read_text());lua.execute((ROOT/'Mod/CommerceModel.lua').read_text());lua.execute('M=SPCCommerceModel;'+text)
  def test_lifo_suspend_resume_and_manual_reopen_order(self):
   self.check("local v=M.New(0);for _,d in ipairs({'DISTRICT_CAMPUS','DISTRICT_THEATER','DISTRICT_HOLY_SITE'})do v=M.Select(v,d,true)end;local one=M.EffectiveSelections(v,1);assert(#one.effective==1 and #one.suspended==2 and one.suspended[1]=='DISTRICT_THEATER');assert(#M.EffectiveSelections(v,3).effective==3);v=M.Select(v,'DISTRICT_CAMPUS',false);v=M.Select(v,'DISTRICT_CAMPUS',true);assert(v.selected[3]=='DISTRICT_CAMPUS' and M.EffectiveSelections(v,1).effective[1]=='DISTRICT_THEATER')")
  def test_duplicate_select_and_copies_do_not_mutate_authority(self):

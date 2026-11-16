@@ -4,8 +4,10 @@ import xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 import test_b119_finish_sink as old
 ROOT=old.ROOT
-GP=(ROOT/'Mod/ProjectTurnObservation.lua').read_text()
-UI=(ROOT/'Mod/UI/ProjectTurnRead.lua').read_text()
+from retired_crew_sources import B120, package, source
+
+GP=source('ProjectTurnObservation.lua',B120)
+UI=source('UI/ProjectTurnRead.lua',B120)
 class Observer(unittest.TestCase):
  def setUp(self):
   self.lua=LuaRuntime(unpack_returned_tuples=True)
@@ -66,7 +68,7 @@ class Observer(unittest.TestCase):
  def test_bad_end(self):
   self.run("ui.Begin();shared.ProjectTurnObservation.Request(0,{Action='PROJECT_TURN_END',Token='wrong',CityID=10})");self.assertEqual(self.state(),'ACTIVE')
  def test_actual_dispatch(self):
-  code=(ROOT/'Mod/Gameplay.lua').read_text().split("  if params.Action=='CITY_SEQUENCE_BEGIN'")[0]
+  code=source('Gameplay.lua',B120).split("  if params.Action=='CITY_SEQUENCE_BEGIN'")[0]
   self.run("include=function()end;SPCP0=P;SPCPerformance={New=function()return {}end};P.Scalar=tostring")
   fn=self.lua.execute(code+'\nend\nreturn request')
   self.run('shared=ExposedMembers.SPC_P0;SPCProjectTurnObservation.Start(P,shared)')
@@ -74,7 +76,7 @@ class Observer(unittest.TestCase):
   self.assertEqual(self.state(),'ACTIVE')
  def test_actual_panel_buttons(self):
   self.run("include=function()end;Events.GameCoreEventPublishComplete=event();ContextPtr={ClearUpdate=function()end};Mouse={eLClick=1,eRClick=2};UI.RequestPlayerOperation=send;Controls=setmetatable({},{__index=function(t,k)local c={callbacks={},SetText=function()end,SetToolTipString=function()end,RegisterCallback=function(self,k,f)self.callbacks[k]=f end};rawset(t,k,c);return c end})")
-  panel=(ROOT/'Mod/UI/P0Panel.lua').read_text();block=panel.split(' include("ProjectTurnRead")')[1].split('\nend\nContextPtr:SetInitHandler')[0]
+  panel=source('UI/P0Panel.lua',B120);block=panel.split(' include("ProjectTurnRead")')[1].split('\nend\nContextPtr:SetInitHandler')[0]
   self.run('local function status(s)shown=s end;'+block)
   self.run('Controls.PerformanceSnapshotButton.callbacks[1]();turn=21;GameEvents.PlayerTurnStarted(0);Controls.PerformanceReadButton.callbacks[2]()');self.assertEqual(self.state(),'ACTIVE')
   self.run('Controls.PerformanceReadButton.callbacks[1]()');self.assertEqual(self.state(),'ENDED');self.assertEqual(self.get('writes'),0)
@@ -84,11 +86,12 @@ class FinishRegression(old.FinishTests):pass
 class OldObserverRegression(old.Regression):
  def test_static(self):
   for path in ['Mod/ProjectTurnObservation.lua','Mod/UI/ProjectTurnRead.lua','Mod/UI/P0Panel.lua','Mod/Gameplay.lua','Mod/Probe.lua','Mod/OverflowStorageProbe.lua','Mod/UI/OverflowStorageRead.lua']:
-   self.lua.execute('assert(load(...))',(ROOT/path).read_text())
-  doc=ET.parse(ROOT/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'147')
-  files=[e.text for e in doc.findall('./Files/File')];self.assertEqual(len(files),len(set(files)));self.assertTrue(all((ROOT/'Mod'/f).is_file() for f in files))
+   self.lua.execute('assert(load(...))',source(path.removeprefix('Mod/'),B120))
+  with package(B120) as historical:
+   doc=ET.parse(historical/'Mod/SpecializationP0.modinfo');self.assertEqual(doc.getroot().get('version'),'147')
+   files=[e.text for e in doc.findall('./Files/File')];self.assertEqual(len(files),len(set(files)));self.assertTrue(all((historical/'Mod'/f).is_file() for f in files))
   for text in ['SetProperty','AddProgress','FinishProgress','RequestOperation','SetUpdate']:
    self.assertNotIn(text,GP)
   self.assertNotIn('SetUpdate',UI);self.assertIn('q:FinishProgress()',old.GP);self.assertNotIn('AddProgress',old.GP)
-  panel=(ROOT/'Mod/UI/P0Panel.lua').read_text();self.assertIn('开始项目观察',panel);self.assertIn('完成承接试验',panel)
+  panel=source('UI/P0Panel.lua',B120);self.assertIn('开始项目观察',panel);self.assertIn('完成承接试验',panel)
 if __name__=='__main__':unittest.main()

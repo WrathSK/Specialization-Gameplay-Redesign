@@ -3,8 +3,56 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0057
+Latest Accepted Design Revision: D0060
 Document State: ACCEPTED
+
+## Accepted D0060 — 2026-11-07
+
+用户确认静修院（BUILDING_JNR_HOSPITIUM）和花园（BUILDING_JNR_GARDEN）为T4，作为有效升级链的两项明确例外。数据中心按实际链为T5，合格时贡献5点深度。区域基础设施深度仍封顶10，三层D6与四层D10规则保持。学术主持适用范围仍为T1–T4。
+
+[Shared D0060](Content/Shared_D0060.json)记录这次增量，D0059各专业正文及旧Shared保留为相应版本。共同事实层负责解释升级链、例外、权重及D上限，能力消费已确认的D事实和各自所需的资格。用户批准首片环境装配及原版现代大商人美术替代。实现进度与实机门禁由Status记录。
+
+Accepted Spec SHA256: `782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39`
+Frozen D0059 Spec SHA256: `2ba50adf66bf9251430cec392480a23597848b899a4c785fb0d47d5a0f98ae4f`
+Shared D0060 SHA256: `d4ba4cc8ab619cd0364253af3b727c00f592d574206aeebe5252b018695fc1ea`
+
+## Accepted D0059 — 2026-11-04
+
+用户接受Claude分范围复审、C1–C5计划闭合及N1–N3，并明确授权可靠发布→首次正式规范同步（含有限工作流／现行信息A集合）→仅PU01。必要候选及四份原审已发布于`fcf61e2bbbd74394490cbd40af033c3e3529bf3a`；独立远程重取19份内容的SHA256与字节数全部一致。发布／计划闭合不证明运行修复或实机通过。
+
+本修订正式记录OD-1至4、ODP01=B／ODP02=A：正常同构建恢复和首个完整可消费事实幂等对账；会话有界来源见证取代派生网络保存接线及旧标准化冷例外A；可靠负事实先阻严格资格并登记整体对账责任；NET05为严重错误可见的临时no-write，未选择永久旧支付、K-only或清空政策。真实历史／延迟生命周期保护不撤销。
+
+独立信誉叶的窄政策R0仅投影且来源可见，合法Commerce身份退出的信誉初始化与坏记录修复分开。明确取代D0058 SAFE-004一般不可恢复后初始基线许可：可靠确定性重建优先，否则显式阻止受影响不安全能力，有效兄弟继续；新损失／重建／不可逆结果政策另需用户决定。项目资格／结算独立，Crew唯一归因凭据与不重放保持。
+
+Tier取当前环境真实同区域升级链位置；区外、虚拟或非升级门槛不自动递增，工业水磨坊为T1；真实缺链／循环／分支歧义不可静默T0/T1。HD旧Tier仅对照，不拟合旧cap/bump；撤回跨环境固定Tier表方向。D公式、权重、cap及三层D6／四层D10不变。四专业其它数值／公式／资格／归属、A8八时代、原GC保持；当前同步不实施Tier或HD解耦。
+
+[Shared D0059](Content/Shared_D0059.json)、[Research D0059](Content/Research_D0059.json)、[Industry D0059](Content/Industry_D0059.json)、[Culture D0059](Content/Culture_D0059.json)、[Commerce D0059](Content/Commerce_D0059.json)是后继正文；D0058 Content原字节及[D0058 Spec](Revisions/Specialization_Design_Spec_D0058.md)冻结。候选退出默认阅读，正式Markdown接管；代码／实机结果及下一授权边界只查Status。后续PU/O、U5、main、部署与历史删除均不在本次PU01授权内。
+
+Accepted Spec SHA256: `2ba50adf66bf9251430cec392480a23597848b899a4c785fb0d47d5a0f98ae4f`
+Frozen D0058 Spec SHA256: `da691d7797733f6b689012f0cf2e4721fd3fcf34580b44c1bede396ba0d7cc77`
+Shared D0059 SHA256: `b8bdacc9d91b67fa9208a03528346197d6349916ccf026611f73ce5d16eda7b6`
+Research D0059 SHA256: `ef438f18fcd15cc106f695b9f76e58b55de3f56a6b6b1dc712d41f0b5a43ebb9`
+Industry D0059 SHA256: `e24317fb61ae2bbe77f844a4ac015c97d97dd3345e67ff71b2cc54791cc8b380`
+Culture D0059 SHA256: `697b7db40881d8a4662b8160059563e3de4c916b42435a8c1cee374112dbdcd3`
+Commerce D0059 SHA256: `adc54b97f7f2220a58275d05f2ae7bb6f7f8d9ea7671c94254858b325fd2acad`
+
+## Accepted D0058 — 2026-10-24
+
+用户U1 handoff明确接受D-1至D-15并修订原推荐值。网络PENDING／UNKNOWN保持已有物理载体，确认资格退出优先；拓扑确认后逐来源confirmed／retained／unknown，不能以旧输出批准新不可逆交易。标准化合并载体整体保持；冷加载不可拆分、部分来源失效而其它必要事实未知时，明确选择**例外A：暂留旧组合值，事实恢复后事件驱动重算／撤除**，接收城自身失效仍立即退出，不永久保留。
+
+D-4保留三项目独立玩法，只抽公共技术机制；UNKNOWN不是取消／完成，不增加周期轮询、全城回合兜底或无变化重试。D-5施工队每次结算需唯一请求／单位／来源／完成凭据，累计差值仅发现遗漏。D-6未知间隔不补计、恢复续计；未知信誉只取消加成，不取消其它合法商业化。D-7单能力隔离，可靠事实确定性重建；已确认永久不可恢复且无其它可靠证据时回合法初始基线，不永久停用／要求玩家处理。实现前须有能力级判据，不凭UNKNOWN、一次异常、次数或时间覆盖原记录。
+
+D-8至D-12及D-15按用户范围记录于A0182／Workflow。D-13改为本地工程检查点、必要原生问题才请求最小实机；无自动部署／main晋升。D-14先新增A8定域评估；评估后用户明确确认全部按8时代统一，原7为用户计数遗漏。启迪E0–8／最高24%，对话X0–8／单次最高40个百分点；扩对应校验／载体，作品池／自身时代／游戏时代额度／城市历史归属不变。城市易主玩法、考察团功能修复及其它排除项保持。S2–S10已授权按依赖顺序推进；Design接受不构成新实机PASS。
+
+[Shared D0058](Content/Shared_D0058.json)、[Research D0058](Content/Research_D0058.json)、[Industry D0058](Content/Industry_D0058.json)、[Culture D0058](Content/Culture_D0058.json)、[Commerce D0058](Content/Commerce_D0058.json)与当前Spec／实际受影响阅读页同步。旧Content原字节及[D0057 Spec](Revisions/Specialization_Design_Spec_D0057.md)保留；未列公式、数值、资格、A–G归属与未来范围不变。
+
+Accepted Spec SHA256: `da691d7797733f6b689012f0cf2e4721fd3fcf34580b44c1bede396ba0d7cc77`
+Frozen D0057 Spec SHA256: `f5a1f82d9bf7207e50672e3ea3ea108ddbd6527116d99259c81235109239dd1d`
+Shared D0058 SHA256: `9423be2a2afd362d96e53c4820a8d0e7aa4fae9d9dd7db01b3bf50c6fe8ff865`
+Research D0058 SHA256: `0638d016d3d7a58a8c5665137c118c738a69022ee71c7884ec3ca76a914eed90`
+Industry D0058 SHA256: `0f951fb4782f0f1c0805d0abef5305bfd61593db31526c2d291ddc79482ff800`
+Culture D0058 SHA256: `767b0ae62b9da92009bd7be9474d5d590f99f20e8ad90cddce6fa7208fdfd07e`
+Commerce D0058 SHA256: `7a1bdee459a31910b5540f835069853eda1f435759d06a37c89dbd4fac545d66`
 
 ## Accepted D0057 — 2026-10-18
 

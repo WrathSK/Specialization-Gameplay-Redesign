@@ -1,12 +1,19 @@
+include('SafeCallbacks')
+include('UnitSiteFacts')
+if not SPCPropertyCell then include('PropertyCell')end
 include('CrewModel')
 include('ExpeditionTrainingDiagnostics')
 -- B239: paid native projects retain one capacity admission while paused; actual queue entries stay separate.
 -- Saved admission/grant proof and native living inventory remain the only capacity sources.
 -- This writer never guesses a source from a new unit's position or name.
 SPCCrewProjects={}
-function SPCCrewProjects.Start(P,shared)
+function SPCCrewProjects.Start(P,shared,readQueue)
  local M=SPCCrewModel;local cp,same=M.Copy,M.Same;local store=assert(shared.CityProgressionStore)
+ local queueReader=readQueue
+ if queueReader==nil then queueReader=function(pid,id)return assert(ExposedMembers.SPC_CrewNativeRead,'CREW_UI_READER_UNAVAILABLE')(pid,id)end end
+ assert(type(queueReader)=='function','CREW_QUEUE_PROVIDER_INVALID')
  local d={ready=false,busy=false,errors={},views={},revision=0};shared.CrewProjects=d
+ local consuming={}
  local dirty,settling,failed,issued={}, {}, {}, {};local knownUnits={};local lastRequest,lastReply;local trace=SPCExpeditionTrainingDiagnostics.New(P,'CREW')
  local function key(pid,id)return pid..':'..id end
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
@@ -43,12 +50,15 @@ function SPCCrewProjects.Start(P,shared)
  end
  local function save(c,old,v)
   assert(same(c:GetProperty(M.ORDER_PROPERTY),old),'CREW_STALE_ORDER')
-  local ok=pcall(P.SetProperty,c,M.ORDER_PROPERTY,cp(v))
-  assert(same(c:GetProperty(M.ORDER_PROPERTY),v),'CREW_ORDER_WRITE_UNCONFIRMED')
-  return ok -- readback, not a setter's return, establishes the saved value
+  local setter=P.SetProperty;local payload=cp(v) -- clone errors precede the attempted write
+  local result=SPCPropertyCell.WriteReadback(function()return setter(c,M.ORDER_PROPERTY,payload)end,
+   function()return c:GetProperty(M.ORDER_PROPERTY)end)
+  if not result.readReturned then error(result.observed,0)end
+  assert(same(result.observed,v),'CREW_ORDER_WRITE_UNCONFIRMED')
+  return result.writeReturned -- readback, not a setter's return, establishes the saved value
  end
  local function queue(pid,c)
-  local r=assert(ExposedMembers.SPC_CrewNativeRead,'CREW_UI_READER_UNAVAILABLE')(pid,c:GetID())
+  local r=queueReader(pid,c:GetID())
   assert(type(r)=='table' and r.owner==pid and r.city==c:GetID() and r.x==c:GetX() and r.y==c:GetY()
    and r.turn==Game.GetCurrentGameTurn() and type(r.projects)=='table' and type(r.completed)=='table' and type(r.progress)=='table','CREW_QUEUE_UNKNOWN')
   local count=0;for id,n in pairs(r.projects)do assert(M.Parse(id) and M.Int(n),'CREW_QUEUE_UNKNOWN');count=count+n end
@@ -75,16 +85,15 @@ function SPCCrewProjects.Start(P,shared)
   knownUnits[pid]=units;return counts
  end
  local function receipts(pid)
-  local v=Players[pid]:GetProperty(M.RECEIPT_PROPERTY) or {};assert(type(v)=='table','CREW_RECEIPT_INVALID')
-  for id,r in pairs(v)do assert(M.Parse(id) and type(r)=='table' and M.Int(r.count) and r.count>0
-   and type(r.source)=='string' and (r.stage=='CALLING' or r.stage=='BOUND')
-   and (r.stage=='CALLING' or M.Int(r.unitID)),'CREW_RECEIPT_INVALID')end
-  return cp(v)
+  return M.ReceiptState(Players[pid]:GetProperty(M.RECEIPT_PROPERTY),pid)
  end
  local function receiptSave(pid,old,v)
-  assert(same(Players[pid]:GetProperty(M.RECEIPT_PROPERTY) or {},old),'CREW_STALE_RECEIPT')
-  pcall(P.SetProperty,Players[pid],M.RECEIPT_PROPERTY,cp(v))
-  assert(same(Players[pid]:GetProperty(M.RECEIPT_PROPERTY),v),'CREW_RECEIPT_WRITE_UNCONFIRMED')
+  assert(same(receipts(pid),old),'CREW_STALE_RECEIPT')
+  local setter=P.SetProperty;local target=Players[pid];local payload=cp(v)
+  local result=SPCPropertyCell.WriteReadback(function()return setter(target,M.RECEIPT_PROPERTY,payload)end,
+   function()return Players[pid]:GetProperty(M.RECEIPT_PROPERTY)end)
+  if not result.readReturned then error(result.observed,0)end
+  assert(same(result.observed,v),'CREW_RECEIPT_WRITE_UNCONFIRMED')
  end
  local function safe(pid,id,fn)
   local ok,err=pcall(fn);local k=key(pid,id)
@@ -147,7 +156,7 @@ function SPCCrewProjects.Start(P,shared)
   v,old=reconcile(pid,c,v,old,q)
   local count=assert(inventory)[a.token] or 0;local held=failed[k]
   for _,o in ipairs(v.orders)do if o.stage=='HELD' or o.stage=='CALLING'then held=true end end
-  for _,r in pairs(receipts(pid))do if r.stage=='CALLING' and r.source==a.token then held=true end end
+  for _,r in pairs(receipts(pid).pending)do if r.stage=='CALLING' and r.source==a.token then held=true end end
   local ratio,active,N=qualified(pid,c,a)
   local slots=reserved(v);local occupied=count+slots;local queueKnown=n==queued(v)
   local room=not held and queueKnown and occupied<2
@@ -218,7 +227,7 @@ function SPCCrewProjects.Start(P,shared)
      local wanted,active=qualified(pid,c,a);assert(ratio==wanted and tier<=(active==4 and 5 or 3),'CREW_PROJECT_NOT_CURRENT_PRICE')
     end
     local count=d.Inventory(pid)[a.token] or 0
-    for _,r in pairs(receipts(pid))do assert(r.source~=a.token or r.stage~='CALLING','CREW_GRANT_UNRESOLVED')end
+    for _,r in pairs(receipts(pid).pending)do assert(r.source~=a.token or r.stage~='CALLING','CREW_GRANT_UNRESOLVED')end
     assert(n==queued(v),'CREW_CAPACITY_FULL_OR_QUEUE_UNKNOWN')
     assert(resume and count+n<2 or not resume and count+reserved(v)<2,'CREW_CAPACITY_FULL_OR_QUEUE_UNKNOWN')
     local capacity=resume and resume.capacity or M.Amount(tier,speed())
@@ -259,17 +268,22 @@ function SPCCrewProjects.Start(P,shared)
   local ok=safe(pid,id,function()
    local c=assert(city(pid,id),'CREW_CITY_UNKNOWN');local v,old,a=orders(pid,c);local q=queue(pid,c)
    local native=q.completed[row.ProjectType];assert(M.Int(native),'CREW_NATIVE_COMPLETION_COUNTER_UNKNOWN')
-   local all=receipts(pid);local prior=all[row.ProjectType]
-   if prior and native<=prior.count then return end -- duplicate/reordered notification, no second grant
+   local all=receipts(pid);local prior=all.water[row.ProjectType]
+   if prior and native<=prior then return end -- duplicate/reordered notification, no second grant
    local which;for i,o in ipairs(v.orders)do if o.project==row.ProjectType and o.stage~='PAUSED'then which=i;break end end
    assert(which,'CREW_COMPLETION_WITHOUT_ADMISSION');local o=v.orders[which]
    assert((o.stage=='QUEUED' or o.stage=='RESERVED') and native>o.base,'CREW_COMPLETION_NOT_PROVED')
-   assert(not prior or prior.stage=='BOUND','CREW_PREVIOUS_GRANT_UNRESOLVED')
-   assert(native==(prior and prior.count or o.base)+1,'CREW_COMPLETION_SEQUENCE_AMBIGUOUS')
+   local request=M.ReceiptKey(a.token,o.serial)
+   assert(not all.pending[request],'CREW_PREVIOUS_GRANT_UNRESOLVED')
+   assert(native==(prior or o.base)+1,'CREW_COMPLETION_SEQUENCE_AMBIGUOUS')
    local live=d.Inventory(pid)[a.token] or 0;assert(live<2,'CREW_COMPLETION_CAPACITY_FULL')
-   -- Persist BEFORE native creation. A missing return or binding write never replays InitUnit.
+   local proof={owner=pid,source=a.token,cityID=id,x=a.x,y=a.y,serial=o.serial,project=row.ProjectType,count=native,stage='CALLING'}
+   local next=cp(all);next.water[row.ProjectType]=native;next.pending[request]=proof
+   M.ReceiptState(next,pid) -- capacity/shape failure precedes any new attempted write/call
+   -- Persist BOTH consumed ordinal and exact pending request before native creation.
+   -- Missing return/binding never replays InitUnit; another source's +1 stays independent.
    o.stage='CALLING';save(c,old,v);old=cp(v)
-   local next=cp(all);next[row.ProjectType]={count=native,source=a.token,stage='CALLING'};receiptSave(pid,all,next)
+   receiptSave(pid,all,next)
    local grant=pid..':'..row.ProjectType..':'..native
    assert(source(pid,c).token==a.token,'CREW_SOURCE_CHANGED_DURING_GRANT')
    local u=UnitManager.InitUnit(pid,'UNIT_SPC_CREW_'..M.IDS[tier],c:GetX(),c:GetY())
@@ -279,19 +293,80 @@ function SPCCrewProjects.Start(P,shared)
    assert(u:GetProperty(M.UNIT_PROPERTY)==nil,'CREW_GRANT_ALREADY_BOUND')
    local binding={version=1,owner=pid,source=a.token,x=a.x,y=a.y,tier=tier,capacity=o.capacity,grant=grant}
    pcall(P.SetProperty,u,M.UNIT_PROPERTY,cp(binding));assert(same(u:GetProperty(M.UNIT_PROPERTY),binding),'CREW_BINDING_UNCONFIRMED')
-   local bound=cp(next);bound[row.ProjectType].stage='BOUND';bound[row.ProjectType].unitID=u:GetID();receiptSave(pid,next,bound)
+   assert(source(pid,c).token==a.token,'CREW_SOURCE_CHANGED_DURING_GRANT')
    table.remove(v.orders,which);save(c,old,v);issued[k..':'..o.serial]=nil
+   -- A different city's completion may have run during the native call. Merge
+   -- only this exact completed request into the fresh envelope; keep its proof.
+   local current=receipts(pid)
+   assert(same(current.pending[request],proof) and current.water[row.ProjectType]>=native,'CREW_STALE_RECEIPT')
+   local complete=cp(current);complete.pending[request]=nil;receiptSave(pid,current,complete)
    observe('CREW_BOUND',pid,c,{born=u:GetID(),count=live+1,expected=binding.capacity,reservation=o.serial,readStatus='VERIFIED'})
   end)
   if not ok then failed[k]=d.errors[k] or 'CREW_GRANT_UNCONFIRMED' end
   settling[k]=nil;mark(pid,id) -- normal publish handles removal after completion callbacks
  end
+ -- Cross-context reads return only scalars and must match this live queue.
+ local function constructionSnapshot(pid,c)
+  assert(c and c:GetOwner()==pid and P.IsTestPlayer(pid),'OWN_TEST_CITY_REQUIRED')
+  local target=c:GetBuildQueue():CurrentlyBuilding()
+  local snapshot=SPCUnitSiteFacts.ReadWonder(pid,c,target,P.Info('Buildings',target))
+  local cost,progress=snapshot.cost,snapshot.progress
+  assert(type(cost)=='number' and cost>0 and cost<math.huge
+   and type(progress)=='number' and progress>=0 and progress<math.huge,'QUEUE_NUMBERS_INVALID')
+  return {target=target,kind='Buildings',cost=cost,progress=progress}
+ end
+ function d.UseTarget(pid,u)
+  d.Unit(pid,u) -- strict permanent source and locked capacity
+  assert(u:GetBuildCharges()==1,'CREW_REQUIRES_EXACTLY_ONE_CHARGE')
+  assert(u:GetProperty('SPC_CREW_RESERVED')==nil,'CREW_RESERVED')
+  local c=SPCUnitSiteFacts.TargetCity(shared,pid,u)
+  local s=constructionSnapshot(pid,c)
+  assert(s.progress<s.cost,'CREW_WONDER_REQUIRED')
+  -- D0053 accepts native Production modifiers. Keep base input bounded;
+  -- receipt, target and debit checks remain authoritative.
+  return c,s
+ end
+
+ function d.Consume(pid,u,c,plan)
+  if consuming[pid]then return {status='BUSY',kind='CREW_USE',phase='PRECHECK'}end
+  consuming[pid]=true;local destructive=false;local phase='PRECHECK'
+  local ok,result=pcall(function()
+   assert(P.IsTestPlayer(pid)and u and u:GetOwner()==pid,'OWN_UNIT_REQUIRED')
+   local current=Players[pid]:GetUnits():FindID(u:GetID());assert(current and current:GetOwner()==pid,'OWN_UNIT_REQUIRED');u=current
+   assert(type(plan)=='table'and plan.unitID==u:GetID(),'PREPARE_THIS_UNIT_FIRST');plan=cp(plan)
+   assert(c and c:GetOwner()==pid and c:GetID()==plan.cityID,'OWNER_CHANGED')
+   local binding=d.Unit(pid,u);local amount=binding.capacity;assert(amount==plan.amount and binding.grant==plan.grant,'TARGET_CHANGED_PREPARE_AGAIN')
+   local now,s=d.UseTarget(pid,u)
+   assert(now:GetID()==c:GetID() and plan.turn==Game.GetCurrentGameTurn() and s.target==plan.target and s.cost==plan.cost and s.progress==plan.progress,'TARGET_CHANGED_PREPARE_AGAIN')
+   local receipts=cp(Players[pid]:GetProperty(M.USE_RECEIPT_PROPERTY) or {});assert(type(receipts)=='table','CREW_USE_HISTORY_INVALID');assert(not receipts[binding.grant],'RECEIPT_EXISTS')
+   local function record(state)
+    receipts[binding.grant]={state=state,unitID=plan.unitID,cityID=c:GetID(),target=s.target,amount=math.floor(math.min(amount,s.cost-s.progress)+0.5)}
+    -- Evidence amount only: integer readback survives binary32 Property storage.
+    -- Reservation/debit and the actual fractional AddProgress below stay exact.
+    pcall(P.SetProperty,Players[pid],M.USE_RECEIPT_PROPERTY,receipts)
+    assert(same(Players[pid]:GetProperty(M.USE_RECEIPT_PROPERTY),receipts),'CREW_USE_RECEIPT_UNCONFIRMED')
+   end
+   destructive=true;phase='INTENT';record('INTENT');P.SetProperty(u,'SPC_CREW_RESERVED',plan.token)
+   assert(u:GetProperty('SPC_CREW_RESERVED')==plan.token,'RESERVATION_UNCONFIRMED')
+   Players[pid]:GetUnits():Destroy(u)
+   assert(not Players[pid]:GetUnits():FindID(plan.unitID),'UNIT_DEBIT_UNCONFIRMED')
+   local after=constructionSnapshot(pid,c)
+   assert(after.target==s.target and after.progress==s.progress and after.cost==s.cost,'TARGET_CHANGED_AFTER_DEBIT')
+   phase='GRANT_ATTEMPTED';record('GRANT_ATTEMPTED') -- Never automatically replay an uncertain engine grant.
+   d.RecordUse(pid,c,plan.unitID,'CREW_USE_ATTEMPT',amount,s.progress,s.cost,math.min(amount,s.cost-s.progress))
+   c:GetBuildQueue():AddProgress(math.min(amount,s.cost-s.progress)) -- One native call; accepted modifiers apply. No correction/replay.
+   phase='GRANT_RETURNED';record('GRANT_RETURNED')
+   d.RecordUse(pid,c,plan.unitID,'CREW_USE_RETURNED',amount,s.progress,s.cost,math.min(amount,s.cost-s.progress))
+   return {status='COMMITTED',kind='CREW_USE',phase=phase,baseInput=math.min(amount,s.cost-s.progress),unusedBase=math.max(0,amount-(s.cost-s.progress))}
+  end)
+  consuming[pid]=nil
+  if ok then return result end
+  local printable,text=pcall(tostring,result)
+  text=printable and text or 'CREW_USE_ERROR'
+  return {status=destructive and 'HELD'or 'REJECTED',kind='CREW_USE',phase=phase,error=text}
+ end
  function d.RecordUse(pid,c,uid,stage,capacity,progress,cost,amount)
   observe(stage,pid,c,{eventUnit=uid,baseCapacity=capacity,nativeProgress=progress,nativeCost=cost,baseInput=amount})
- end
- function d.RecordPrecision(pid,r)
-  observe('CREW_PRECISION',pid,r.cityID and city(pid,r.cityID) or nil,{eventUnit=r.unitID,nativeProgress=r.before,afterProgress=r.after,
-   baseCapacity=r.amount,baseInput=r.baseInput,actualDelta=r.observed,targetChanged=not r.afterReadError and r.afterTarget~=r.target or nil,readStatus=(r.error or r.afterReadError) and 'UNKNOWN' or r.observed~=nil and 'OBSERVED' or 'NOT_MEASURED'})
  end
  function d.Describe(pid,c)
   d.Refresh(pid,c:GetID());local v=d.views[key(pid,c:GetID())];local err=d.errors[key(pid,c:GetID())]
@@ -304,8 +379,7 @@ function SPCCrewProjects.Start(P,shared)
    ..'\n施工仅用于在建奇观；基础施工力可受适用生产力加成，余量不结转。'..(v.held and '\n存在未确认发放，停止本城新组建并回传日志。' or '')
  end
  function d.BindPermanentWrites()
-  local prior=shared.OnPermanentCityWrite
-  shared.OnPermanentCityWrite=function(c,reason)if prior then prior(c,reason)end;if c then d.Refresh(c:GetOwner(),c:GetID())end end
+  if shared.FactChanges then shared.FactChanges.RegisterConsumer('CrewProjects',function(e)mark(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
  end
  local function hook(n,fn)local e=P.Field(Events,n);if e and e.Add then e.Add(fn)end end
  hook('CityProjectCompleted',completion)

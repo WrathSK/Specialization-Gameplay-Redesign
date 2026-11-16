@@ -7,7 +7,7 @@ from lupa.lua55 import LuaRuntime
 R=Path(__file__).resolve().parents[1]
 
 
-def bridge(with_trace=False):
+def bridge(with_trace=False, load_closed=True):
     l=LuaRuntime(unpack_returned_tuples=True)
     l.execute(r'''
       include=function()end
@@ -15,7 +15,7 @@ def bridge(with_trace=False):
       ExposedMembers={};turn=81;localOwner=2;packets={};allRequests={};arms=0;sleepCalls=0;wakeCalls=0;changed=0
       function event()local e={listeners={}};function e.Add(f)e.listeners[f]=true end;function e.Remove(f)e.listeners[f]=nil end
        return setmetatable(e,{__call=function(self,...)for f in pairs(self.listeners)do f(...)end end})end
-      Events={GameCoreEventPublishComplete=event(),UnitActivityChanged=event(),UnitMoveComplete=event(),LocalPlayerTurnBegin=event(),UnitOperationAdded=event(),UnitOperationDeactivated=event(),UnitOperationsCleared=event(),UnitCommandStarted=event(),UnitMovementPointsChanged=event()}
+      Events={LoadScreenClose=event(),GameCoreEventPublishComplete=event(),UnitActivityChanged=event(),UnitMoveComplete=event(),LocalPlayerTurnBegin=event(),UnitOperationAdded=event(),UnitOperationDeactivated=event(),UnitOperationsCleared=event(),UnitCommandStarted=event(),UnitMovementPointsChanged=event()}
       LuaEvents={SPC_ExpeditionActivityChanged=event()};LuaEvents.SPC_ExpeditionActivityChanged.Add(function()changed=changed+1 end)
       ContextPtr={SetInitHandler=function(self,f)init=f end,SetShutdown=function(self,f)shutdown=f end,
        SetUpdate=function(self,f)update=function(dt)return refreshEvent(f,dt)end end,ClearUpdate=function()update=nil end}
@@ -96,6 +96,7 @@ def bridge(with_trace=False):
         l.execute((R/'Mod/ExpeditionTrainingDiagnostics.lua').read_text())
     l.execute((R/'Mod/UI/ExpeditionSpyActivity.lua').read_text())
     l.execute('init();drainRefreshFrames()')
+    if load_closed:l.execute('Events.LoadScreenClose();Events.GameCoreEventPublishComplete()')
     from refresh_fixture import install_native_events
     install_native_events(l)
     return l

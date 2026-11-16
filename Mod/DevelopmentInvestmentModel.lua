@@ -50,8 +50,7 @@ function M.Decode(v)
  for _,c in pairs(out.contracts)do
   assert(type(c)=='table','DEVELOPMENT_CONTRACT_INVALID')
   for k,required in pairs(amounts)do if c[k]~=nil or required then
-   local s=c[k];assert(type(s)=='string' and #s<=32,'DEVELOPMENT_NUMBER_INVALID')
-   local n=tonumber(s);assert(M.Finite(n) and string.format('%.17g',n)==s,'DEVELOPMENT_NUMBER_INVALID');c[k]=n
+   c[k]=assert(SPCPropertyCell.CanonicalDecimal17(c[k]),'DEVELOPMENT_NUMBER_INVALID')
   end end
  end;return M.Validate(out)
 end

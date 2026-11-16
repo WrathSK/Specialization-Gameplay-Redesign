@@ -15,12 +15,6 @@ def git_root(root, branch):
         raise ValueError('Commit/review worktree before switch')
     return git('rev-parse','HEAD')
 
-def write_json(path,value):
-    tmp=path.with_name(path.name+'.tmp')
-    with tmp.open('x') as f:
-        json.dump(value,f,indent=2);f.flush();os.fsync(f.fileno())
-    tmp.replace(path)
-
 def boundary(target):
     target=d.no_symlinks(target)
     if target.name!='SpecializationP0' or target.parent.name!='Mods':
@@ -34,8 +28,10 @@ def boundary(target):
         if identity.lower()==d.UUID:raise ValueError('Duplicate runtime UUID')
     return marker
 
-def switch(source,target,receipt,stable_root,expected_source,expected_runtime,*,restore=False,authorized=False,failpoint=None):
-    if not authorized:raise ValueError('Explicit temporary switch/restore authorization required')
+def switch(source,target,receipt,stable_root,expected_source,expected_runtime,*,
+           restore=False,authorized=False,failpoint=None,allow_remove=(),check_only=False):
+    if not check_only and not authorized:raise ValueError('Explicit temporary switch/restore authorization required')
+    if restore and allow_remove:raise ValueError('Restore uses only the original receipt, not a removal override')
     source=d.no_symlinks(source);target=d.no_symlinks(target);receipt=d.no_symlinks(receipt)
     stable_root=d.no_symlinks(stable_root)
     stable_commit=git_root(stable_root,'main')
@@ -52,14 +48,21 @@ def switch(source,target,receipt,stable_root,expected_source,expected_runtime,*,
         if source!=Path(record['stable_backup']):raise ValueError('Restore only the recorded stable backup')
         if before['digest']!=record['develop_hash'] or after['digest']!=record['stable_hash'] or stable['digest']!=record['stable_hash']:
             raise ValueError('Runtime/backup/main changed; review required')
+        removed = sorted(before['files'].keys() - after['files'].keys())
+        record['restore_removed_paths']=removed
     else:
         commit=git_root(source.parent,'develop')
         if source.name!='Mod' or receipt.exists():raise ValueError('Wrong source or existing receipt')
         if before['digest']!=stable['digest']:raise ValueError('Runtime must match stable before temporary test')
+        removed=d.reviewed_removals(target,before,after,allow_remove)
         record={'schema':1,'phase':'PREPARED','target':str(target),'stable_root':str(stable_root),
                 'develop_root':str(source.parent),'stable_commit':stable_commit,'develop_commit':commit,
                 'stable_hash':before['digest'],'develop_hash':after['digest'],
-                'stable_version':before['version'],'develop_version':after['version']}
+                'stable_version':before['version'],'develop_version':after['version'],
+                'activate_removed_paths':removed}
+    if check_only:
+        return {'source':str(source),'target':str(target),'source_hash':after['digest'],
+                'runtime_hash':before['digest'],'removed_paths':removed,'mode':'CHECK_ONLY'}
     archive.mkdir(exist_ok=True)
     with marker.open('x') as f:
         json.dump({'receipt':str(receipt),'phase':'STARTED'},f);f.flush();os.fsync(f.fileno())
@@ -74,15 +77,15 @@ def switch(source,target,receipt,stable_root,expected_source,expected_runtime,*,
         else:record['develop_backup']=str(backup)
         record['phase']='RESTORE_PENDING' if restore else 'SWITCH_PENDING'
         record['stage']=str(stage);record['rollback_backup']=str(backup)
-        write_json(receipt,record)
-        write_json(marker,{'receipt':str(receipt),'stage':str(stage),'backup':str(backup),'phase':'SWAP_PENDING'})
+        d.write_json(receipt,record)
+        d.write_json(marker,{'receipt':str(receipt),'stage':str(stage),'backup':str(backup),'phase':'SWAP_PENDING'})
         target.rename(backup);moved=True
         if failpoint:failpoint()
         stage.rename(target)
         if d.snapshot(target)['digest']!=expected_source or d.snapshot(backup)['digest']!=expected_runtime:
             raise RuntimeError('Post-swap verification failed')
         record['phase']='STABLE_RESTORED' if restore else 'DEVELOP_ACTIVE'
-        write_json(receipt,record);marker.unlink()
+        d.write_json(receipt,record);marker.unlink()
         return record
     except BaseException:
         if moved:
@@ -90,7 +93,7 @@ def switch(source,target,receipt,stable_root,expected_source,expected_runtime,*,
             backup.rename(target)
         if d.snapshot(target)['digest']!=expected_runtime:raise RuntimeError('Rollback unresolved; marker retained')
         record['phase']='DEVELOP_ACTIVE' if restore else 'FAILED_ROLLED_BACK'
-        write_json(receipt,record);marker.unlink(missing_ok=True)
+        d.write_json(receipt,record);marker.unlink(missing_ok=True)
         raise
 
 def main():
@@ -103,12 +106,12 @@ def main():
     p.add_argument('--apply',action='store_true')
     p.add_argument('--authorize-temporary-switch',action='store_true')
     p.add_argument('--confirmed-game-exited',action='store_true')
+    p.add_argument('--allow-remove',action='append',default=[],metavar='MOD_RELATIVE_PATH',
+                   help='Activate only. Repeat for the exact reviewed outgoing paths.')
     a=p.parse_args();target=Path(json.loads(a.config.read_text())['runtime_dir'])
     source=Path(json.loads(a.receipt.read_text())['stable_backup']) if a.action=='restore' else Path(__file__).resolve().parents[1]/'Mod'
-    if not a.apply:
-        print(json.dumps({'source':str(source),'target':str(target),'source_hash':d.snapshot(source)['digest'],
-                          'runtime_hash':d.snapshot(target)['digest'],'mode':'CHECK_ONLY'},indent=2));return
-    if not a.confirmed_game_exited:p.error('User must confirm Civilization VI fully exited')
+    if a.apply and not a.confirmed_game_exited:p.error('User must confirm Civilization VI fully exited')
     print(json.dumps(switch(source,target,a.receipt,a.stable_root,a.expected_source,a.expected_runtime,
-          restore=a.action=='restore',authorized=a.authorize_temporary_switch),indent=2))
+          restore=a.action=='restore',authorized=a.authorize_temporary_switch,allow_remove=a.allow_remove,
+          check_only=not a.apply),indent=2))
 if __name__=='__main__':main()

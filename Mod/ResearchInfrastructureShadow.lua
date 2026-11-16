@@ -3,7 +3,7 @@ SPCResearchInfrastructureShadow={}
 local M=SPCResearchInfrastructureShadow
 -- Only the shadow reader needs workers. Use the already indexed city districts;
 -- D is highest single Campus, while working Campus specialists are counted once each.
-function M.WithWorkers(f,d)
+function M.WithWorkers(f,d,readWorkers)
  local input=SPCDistrictCompleteness.Clone(f)
  if f.validity~='VERIFIED' or f.identity~='RESEARCH' or f.active~=4
   or d.validity~='VERIFIED' or d.availability~='READY' then return input end
@@ -11,9 +11,12 @@ function M.WithWorkers(f,d)
   local total=0
   for _,r in ipairs(d.value.districts) do
    if r.domain=='DISTRICT_CAMPUS' and r.complete and not r.pillaged then
-    local plot=assert(Map.GetPlotByIndex(r.plot),'RI_CAMPUS_PLOT_UNAVAILABLE')
-    local count=plot:GetWorkerCount()
-    assert(type(count)=='number' and count>=0 and count<math.huge and count%1==0,'RI_WORKERS_UNKNOWN')
+    local function read()
+     local plot=assert(Map.GetPlotByIndex(r.plot),'RI_CAMPUS_PLOT_UNAVAILABLE')
+     local n=plot:GetWorkerCount()
+     assert(type(n)=='number'and n>=0 and n<math.huge and n%1==0,'RI_WORKERS_UNKNOWN');return n
+    end
+    local count=readWorkers and readWorkers({id=r.id,type=r.type,plot=r.plot},read)or read()
     total=total+count
    end
   end
@@ -30,6 +33,7 @@ function M.Plan(f,d)
  if f.workers==nil then p.status='UNKNOWN_WORKERS';p.reason=f.workerError;return p end
  local campus=d.value.domains.DISTRICT_CAMPUS
  if not campus then p.status='NO_ELIGIBLE_CAMPUS';p.science=0;return p end
+ if campus.value==nil then p.status='HELD_COMPLETENESS';p.reason=campus.depthError;return p end
  p.status='READY';p.workers=f.workers;p.d=campus.value;p.selectedDistrict=campus.districtID;p.science=p.d*p.workers
  return p
 end
@@ -51,7 +55,7 @@ function M.Describe(P,shared,pid,city)
     lines[#lines+1]='  '..label..' ['..b.type..'] Tier='..tostring(b.tier)..' contribution='..b.contribution
      ..' pillaged='..tostring(b.pillaged)..' reason='..tostring(b.reason)..' tierSource='..tostring(b.tierSource)
    end
-   lines[#lines+1]='  cap前='..r.uncapped..' cap后='..r.value..' /10；最高单区域='..tostring(selected and selected.districtID==r.id or false)
+   lines[#lines+1]='  cap前='..r.uncapped..' cap后='..tostring(r.value or 'UNKNOWN')..'；最高单区域='..tostring(selected and selected.districtID==r.id or false)
   end
   for _,b in ipairs(d.value.excluded) do lines[#lines+1]=b.type..' contribution=0 pillaged='..tostring(b.pillaged)..' reason='..b.reason end
  end

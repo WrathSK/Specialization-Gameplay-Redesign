@@ -1,3 +1,5 @@
+include('TimedProjects')
+include('SafeCallbacks')
 include('EngineeringStudyModel')
 include('ExpeditionTrainingDiagnostics')
 -- B235: one owner for city study attempts. Reuses Store transaction boundaries
@@ -6,8 +8,8 @@ SPCEngineeringStudyProjects={}
 function SPCEngineeringStudyProjects.Start(P,shared)
  local M=SPCEngineeringStudyModel;local cp=M.Copy;local store=assert(shared.CityProgressionStore)
  local PROJECT='PROJECT_SPC_ENGINEERING_STUDY';local MARKER='BUILDING_SPC_ENGINEERING_STUDY_ACCESS'
- local d={views={},revision=0};shared.EngineeringStudy=d
- local ready,busy=false,false;local dirty,active,settling,interrupted,finishing,armed={},{},{},{},{},{}
+ local d={views={},syncAck={},revision=0,beginClosedTurns={},beginOpenTurns={}};shared.EngineeringStudy=d
+ local ready,busy=false,false;local rounds=SPCTimedProjects.WorkSet(cp);local advance;local dirty,settling,interrupted,finishing,armed={},{},{},{},{}
  local trace=SPCExpeditionTrainingDiagnostics.New(P,'ENGINEERING_STUDY')
  local function key(pid,id)return pid..':'..id end
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
@@ -18,8 +20,9 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   for k in pairs(b)do if a[k]==nil then return false end end;return true
  end
  local function code(e)return tostring(e):match('EST_[A-Z_]+') or tostring(e):match('IH_[A-Z_]+') or 'EST_STATE_UNAVAILABLE'end
- local function mark(pid,id)if P.IsTestPlayer(pid) and type(id)=='number'then dirty[key(pid,id)]={pid,id}end end
- local function markPlayer(pid)if P.IsTestPlayer(pid)then for _,c in Players[pid]:GetCities():Members()do mark(pid,c:GetID())end end end
+ local function mark(pid,id,qualificationOnly)if P.IsTestPlayer(pid) and type(id)=='number'then local k=key(pid,id);local old=dirty[k];dirty[k]={pid,id,qualificationOnly==true and (not old or old[3]==true)}end end
+ local function markPlayer(pid,qualificationOnly)if P.IsTestPlayer(pid)then for _,c in Players[pid]:GetCities():Members()do mark(pid,c:GetID(),qualificationOnly)end end end
+ local function wake(pid,id)rounds.Wake(pid,id);mark(pid,id)end
  local function publish(pid,id,v)
   local k=key(pid,id)
   if same(d.views[k],v)then return end;d.views[k]=v;d.revision=d.revision+1
@@ -28,11 +31,11 @@ function SPCEngineeringStudyProjects.Start(P,shared)
  end
  local function safe(pid,id,fn)
   local ok,err=pcall(fn)
-  if not ok then local old=d.views[key(pid,id)];publish(pid,id,{stage='HELD',reason=code(err),reference=old and old.reference,token=old and old.token})end
+  if not ok then rounds.Block(pid,id);local old=d.views[key(pid,id)];publish(pid,id,{stage='HELD',reason=code(err),reference=old and old.reference,token=old and old.token})end
   return ok
  end
- local function read(pid,c)
-  local s=store.EngineeringState(pid,c);local f=shared.EffectiveFacts.Read(pid,c)
+ local function read(pid,c,s)
+  s=s or store.EngineeringState(pid,c);local f=shared.EffectiveFacts.Read(pid,c)
   assert(f.token==s.token and f.owner==pid and f.cityID==c:GetID(),'EST_REFERENCE_CHANGED')
   local known=f.activeStatus=='KNOWN' and not f.investmentPending
   return s,known,known and f.specialization=='INDUSTRY' and f.active==4
@@ -45,22 +48,21 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   return actual
  end
  local function queue(c)
-  local q=c:GetBuildQueue();local ok,target=P.Call(q,'CurrentlyBuilding');assert(ok,'EST_QUEUE_UNKNOWN')
-  if target~=PROJECT then return q,false end
-  local good,n=P.Call(q,'GetSize')
-  if not good then
+  return SPCTimedProjects.Queue(P,c,PROJECT,function(target)
    local v=assert(ExposedMembers.SPC_EngineeringStudyRead,'EST_UI_NOT_READY')(c:GetOwner(),c:GetID())
-   assert(same(v.reference,ref(c)) and v.turn==Game.GetCurrentGameTurn() and v.project==PROJECT,'EST_QUEUE_REFERENCE');n=v.size
-  end
-  assert(type(n)=='number' and n==1,'EST_SINGLE_PROJECT_REQUIRED');return q,true
+   local matches=target==PROJECT and v.project==PROJECT or target~=PROJECT and (v.project==nil or v.project=='')
+   assert(same(v.reference,ref(c)) and v.turn==Game.GetCurrentGameTurn() and matches,'EST_QUEUE_REFERENCE');return v.size
+  end,{read='EST_QUEUE_UNKNOWN',unique='EST_SINGLE_PROJECT_REQUIRED'})
  end
  local function cancel(pid,c,s,why)
-  if s.value and s.value.pending then write(pid,c,s,M.Cancel(s.value,why))end
-  local k=key(pid,c:GetID());active[k]=nil;interrupted[k]=nil;armed[k]=nil;mark(pid,c:GetID())
+  if s.value and s.value.pending then s=write(pid,c,s,M.Cancel(s.value,why))end
+  local k=key(pid,c:GetID());rounds.Forget(pid,c:GetID());interrupted[k]=nil;armed[k]=nil;mark(pid,c:GetID())
+  return s -- already-confirmed post-write value; no extra Store/native read
  end
- local function audit(pid,id)
+ local function audit(pid,id,qualificationOnly)
   local c=city(pid,id);local k=key(pid,id)
-  if not c or c:GetOwner()~=pid then active[k]=nil;publish(pid,id,nil);return end
+  if not qualificationOnly then rounds.Defer(pid,id)end
+  if not c or c:GetOwner()~=pid then rounds.Forget(pid,id);publish(pid,id,nil);return end
   local ok,s,known,eligible=pcall(read,pid,c)
   local good,e=pcall(credit,pid);local L=ok and s.value and s.value.L or 0
   local p=ok and s.value and s.value.pending
@@ -76,18 +78,23 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   end
   if not ok then error(s)end
   if p then
-   active[k]={pid,id}
-   if interrupted[k]then cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');p=nil
-   elseif known and not eligible then cancel(pid,c,s,'EST_QUALIFICATION_LOST');p=nil
-   elseif known then
+   rounds.Track(pid,id,p.stage)
+   if interrupted[k]then s=cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');p=nil
+   elseif known and not eligible then s=cancel(pid,c,s,'EST_QUALIFICATION_LOST');p=nil
+   elseif known and good and e.known and p.stage=='ACTIVE'and not qualificationOnly and rounds.CanRead(pid,id)then
     local _,matches=queue(c)
-    if not matches and p.stage=='ACTIVE'then cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');p=nil end
+    if not matches and p.stage=='ACTIVE'then s=cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');p=nil end
    end
-  else active[k]=nil end
+  else rounds.Forget(pid,id)end
+  if p and (not known or not good or not e.known)then rounds.Block(pid,id)end
   local stage=p and p.stage or (eligible and good and e.known and L<e.E and 'AVAILABLE' or 'INELIGIBLE')
   local why=p and p.reason or (not eligible and 'EST_ACTIVE_IV_REQUIRED' or good and e.known and L>=e.E and 'EST_KNOWLEDGE_REACHED' or 'EST_SELECT_PROJECT')
   if not known or not good or not e.known then stage='HELD';why=not known and 'EST_QUALIFICATION_UNKNOWN' or 'EST_E_UNKNOWN'end
-  publish(pid,id,{stage=stage,reason=why,L=L,E=good and e.E or nil,start=p and p.start,reference=s.reference,token=s.token})
+  if p and p.stage=='ACTIVE'and not rounds.CanRead(pid,id)then stage='HELD';why='EST_RELATED_FACT_REQUIRED'end
+  local completed=s.value and s.value.receipts and s.value.receipts[L]
+  local last=s.value and s.value.last
+  local cancelledID=not p and last and last.id>(completed and completed.id or 0)and last.id or 0
+  publish(pid,id,{stage=stage,reason=why,L=L,E=good and e.E or nil,start=p and p.start,reference=s.reference,token=s.token,completedID=completed and completed.id or 0,completedTurn=completed and completed.completed,cancelledID=cancelledID})
  end
  local function initialize()
   if ready then return true end
@@ -96,20 +103,34 @@ function SPCEngineeringStudyProjects.Start(P,shared)
  end
  function d.Flush()
   if busy or not initialize()then return end;busy=true
-  local work=dirty;dirty={};for _,v in pairs(work)do safe(v[1],v[2],function()audit(v[1],v[2])end)end
+  local work=dirty;dirty={};for _,v in pairs(work)do safe(v[1],v[2],function()audit(v[1],v[2],v[3])end)end
   busy=false
+  for _,v in pairs(rounds.TakeRecovery())do advance(v[1],false,v[2])end
  end
- function d.Refresh(pid,id)mark(pid,id);d.Flush()end
- function d.CreditChanged(pid)markPlayer(pid)end -- confirmed history commit, no immediate cross-writer reentry
+ function d.Refresh(pid,id)wake(pid,id);d.Flush()end
+ function d.CreditChanged(pid)for _,v in pairs(rounds.All())do if v[1]==pid then rounds.Wake(pid,v[2])end end;markPlayer(pid)end -- confirmed history commit, no immediate cross-writer reentry
+ local function beginWindow(pid,turn)
+  if turn~=Game.GetCurrentGameTurn()or d.beginClosedTurns[pid]==turn then return false end
+  local ok,active=pcall(function()return Players[pid]:IsTurnActive()end)
+  return ok and active==true and turn==Game.GetCurrentGameTurn()and d.beginClosedTurns[pid]~=turn
+ end
  function d.Request(pid,p)
   if not initialize() or busy or not P.IsTestPlayer(pid) or type(p.CityID)~='number'then return end
+  if not beginWindow(pid,p.StartTurn)then return end
+  rounds.Wake(pid,p.CityID)
   safe(pid,p.CityID,function()
    local c=assert(city(pid,p.CityID),'EST_CITY_UNKNOWN');local s,known,eligible=read(pid,c)
-   if interrupted[key(pid,p.CityID)]then cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');s=store.EngineeringState(pid,c)end
+   if interrupted[key(pid,p.CityID)]then cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');s,known,eligible=read(pid,c)end
+   local prior=s.value and s.value.pending
+   local due=prior and SPCTimedProjectModel.Boundary(prior.start,prior.ended,Game.GetCurrentGameTurn(),false)=='DUE'
+   advance(pid,false,p.CityID) -- confirmed interruption wins before DUE/missed normalization
+   c=assert(city(pid,p.CityID),'TIMED_ENTRY_CITY_CHANGED');s,known,eligible=read(pid,c)
+   if due then return end -- old completion needs a distinct new queue/selection proof
    local e=credit(pid);assert(known and eligible and e.known,'EST_ENTRY_UNKNOWN')
    assert(p.StartTurn==Game.GetCurrentGameTurn(),'EST_START_STALE')
    local q,matches=queue(c);assert(matches,'EST_PROJECT_NOT_CURRENT');assert(type(P.Field(q,'FinishProgress'))=='function','EST_FINISH_UNAVAILABLE')
    if s.value and s.value.pending then assert(s.value.pending.stage=='ACTIVE','EST_ABANDON_REQUIRED');return end
+   if not beginWindow(pid,p.StartTurn)then mark(pid,p.CityID);return end
    write(pid,c,s,M.Begin(s.value,s.token,s.reference,p.StartTurn,e.E));mark(pid,p.CityID)
   end);d.Flush()
  end
@@ -129,25 +150,29 @@ function SPCEngineeringStudyProjects.Start(P,shared)
    assert(eligible and s.value.L<e.E,'EST_COMPLETION_INELIGIBLE')
    if p.stage=='ACTIVE'then local _,matches=queue(c);assert(not matches,'EST_COMPLETION_NOT_EXITED')end
    armed[k]=nil -- no replay after ambiguous Store commit or native reentry
-   write(pid,c,s,M.Complete(s.value,p.id,now));active[k]=nil;interrupted[k]=nil;mark(pid,id)
-   if shared.StandardizationEffects then shared.StandardizationEffects.SourceChanged(pid,id)end
+   write(pid,c,s,M.Complete(s.value,p.id,now));rounds.Forget(pid,id);interrupted[k]=nil;mark(pid,id)
+   -- Confirmed Store history publishes the ENGINEERING topic after readback.
   end)
   settling[k]=nil
  end
- local function advance(pid,ending)
+ advance=function(pid,ending,onlyID)
   if not initialize() or busy or not P.IsTestPlayer(pid)then return end
-  for _,v in pairs(cp(active))do if v[1]==pid then safe(pid,v[2],function()
-   local c=assert(city(pid,v[2]),'EST_CITY_UNKNOWN');local s,known,eligible=read(pid,c);local p=s.value and s.value.pending
-   if not p then active[key(pid,v[2])]=nil;return end
+  for _,v in pairs(rounds.Active())do if v[1]==pid and (onlyID==nil or v[2]==onlyID)and rounds.Runnable(pid,v[2])then safe(pid,v[2],function()
+   local c=assert(city(pid,v[2]),'EST_CITY_UNKNOWN');local s=store.EngineeringState(pid,c);local p=s.value and s.value.pending
+   if not p or p.stage~='ACTIVE'then rounds.Track(pid,v[2],p and p.stage);return end
+   local _,known,eligible=read(pid,c,s)
    if known and not eligible then cancel(pid,c,s,'EST_QUALIFICATION_LOST');return end
-   if not known then return end
+   if not known then rounds.Block(pid,v[2]);return end
+   if not rounds.Runnable(pid,v[2])then return end
    local q,matches=queue(c)
+   if not rounds.Runnable(pid,v[2])then return end
    if not matches and p.stage=='ACTIVE'then cancel(pid,c,s,'EST_PRODUCTION_INTERRUPTED');return end
    if p.stage~='ACTIVE'then return end
    local now=Game.GetCurrentGameTurn()
-   if ending and now==p.start then if not p.ended then write(pid,c,s,M.EndTurn(s.value,now))end
-   elseif not ending and now>p.start then
-    if now~=p.start+1 or not p.ended then cancel(pid,c,s,'EST_FULL_TURN_UNCONFIRMED')
+   local boundary=SPCTimedProjectModel.Boundary(p.start,p.ended,now,ending)
+   if boundary=='END'then if not p.ended then write(pid,c,s,M.EndTurn(s.value,now))end
+   elseif boundary=='DUE'or boundary=='MISSED'then
+    if boundary=='MISSED'then cancel(pid,c,s,'EST_FULL_TURN_UNCONFIRMED')
     else
      assert(type(P.Field(q,'FinishProgress'))=='function','EST_FINISH_UNAVAILABLE')
      write(pid,c,s,M.Calling(s.value,now))
@@ -157,12 +182,20 @@ function SPCEngineeringStudyProjects.Start(P,shared)
    end
   end)end end;d.Flush()
  end
+ function d.Sync(pid,id,token)
+  if not P.IsTestPlayer(pid)or type(id)~='number'or not city(pid,id)then return end
+  if not initialize()then return end
+  d.Refresh(pid,id);advance(pid,false,id)
+  if type(token)=='string'then d.syncAck[key(pid,id)]=token end
+ end
  local function production(pid,id)
   if not ready or not P.IsTestPlayer(pid)then return end
   local k=key(pid,id)
-  if active[k] and not settling[k]then safe(pid,id,function()
+  rounds.Wake(pid,id)
+  if rounds.Has(pid,id)and not settling[k]then safe(pid,id,function()
    local c=assert(city(pid,id),'EST_CITY_UNKNOWN');local s,known,eligible=read(pid,c);local p=s.value and s.value.pending
    if p and known and not eligible then cancel(pid,c,s,'EST_QUALIFICATION_LOST')
+   elseif p and not known then rounds.Block(pid,id)
    elseif p then
     local _,matches=queue(c)
     if not matches and p.stage=='ACTIVE'then interrupted[k]=true
@@ -183,14 +216,20 @@ function SPCEngineeringStudyProjects.Start(P,shared)
  local function hook(n,f)local e=P.Field(Events,n);if e and e.Add then e.Add(f)end end
  hook('CityProjectCompleted',completion);hook('CityProductionChanged',production);hook('CityProductionQueueChanged',production)
  hook('GameCoreEventPublishComplete',d.Flush)
- hook('PlayerTurnDeactivated',function(pid)d.Flush();advance(pid,true)end)
- hook('PlayerTurnActivated',function(pid)d.Flush();advance(pid,false)end)
+ hook('PlayerTurnDeactivated',function(pid)
+  if P.IsTestPlayer(pid)then d.beginClosedTurns[pid]=Game.GetCurrentGameTurn();d.beginOpenTurns[pid]=nil end
+  d.Flush();advance(pid,true)
+ end)
+ hook('PlayerTurnActivated',function(pid)
+  if P.IsTestPlayer(pid)then d.beginClosedTurns[pid]=nil;d.beginOpenTurns[pid]=Game.GetCurrentGameTurn()end
+  d.Flush();advance(pid,false)
+ end)
  for _,n in ipairs({'GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged'})do hook(n,function(pid)
   for p in pairs(Players)do if P.IsTestPlayer(p) and (type(pid)~='number' or pid<0 or p==pid)then
-   for _,v in pairs(cp(active))do if v[1]==p then safe(p,v[2],function()audit(p,v[2])end)end end;markPlayer(p)
+   for _,v in pairs(rounds.All())do if v[1]==p then safe(p,v[2],function()audit(p,v[2],true)end)end end;markPlayer(p,true)
   end end
  end)end
- hook('CityInitialized',mark);hook('CityRemovedFromMap',mark)
+ hook('CityInitialized',wake);hook('CityRemovedFromMap',wake)
  hook('LoadScreenClose',function()initialize();for pid in pairs(Players)do markPlayer(pid)end;d.Flush();for pid in pairs(Players)do advance(pid,false)end end)
  store.RegisterExit('EngineeringStudy',function(c,loss)
   store.RemoveOwned(c,loss,{MARKER})
@@ -198,13 +237,10 @@ function SPCEngineeringStudyProjects.Start(P,shared)
   -- reference, not the original ID which may since belong to another city.
   for k,v in pairs(d.views)do if v.reference and v.reference.owner==loss.origin.owner
    and v.reference.x==loss.origin.x and v.reference.y==loss.origin.y then
-   active[k]=nil;dirty[k]=nil;interrupted[k]=nil;armed[k]=nil;publish(v.reference.owner,v.reference.cityID,nil)
+   rounds.Forget(v.reference.owner,v.reference.cityID);dirty[k]=nil;interrupted[k]=nil;armed[k]=nil;publish(v.reference.owner,v.reference.cityID,nil)
   end end
  end)
- store.RegisterReturn('EngineeringStudy',function(pid,c)mark(pid,c:GetID())end)
- local prior=shared.OnPermanentCityWrite
- shared.OnPermanentCityWrite=function(c,reason)
-  if prior then prior(c,reason)end
-  if c then d.Refresh(c:GetOwner(),c:GetID());if shared.IndustryWonderEffects then shared.IndustryWonderEffects.Refresh(c:GetOwner(),c:GetID())end end
- end
+ store.RegisterReturn('EngineeringStudy',function(pid,c)wake(pid,c:GetID())end)
+ if shared.FactChanges then shared.FactChanges.RegisterConsumer('EngineeringStudy',function(e)wake(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE'}})end
+ if shared.TimedProjectReaders then shared.TimedProjectReaders.Attach('EngineeringStudy',d)end
 end

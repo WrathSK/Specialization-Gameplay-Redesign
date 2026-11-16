@@ -1,10 +1,10 @@
-"""Automatic Gameplay probe with no UI or game process. No authoritative promotion."""
-from pathlib import Path
-from lupa import LuaRuntime
-root=Path(__file__).resolve().parents[1]/"Sid Meier's Civilization VI/Mods/SpecializationP0"
+"""Replay the retired Gameplay observer against its last published source."""
+from lupa.lua51 import LuaRuntime
+from retired_crew_sources import B449, source
 lua=LuaRuntime(unpack_returned_tuples=True)
-lua.execute((root/'Probe.lua').read_text())
-lua.execute((root/'TradeRouteProbe.lua').read_text())
+lua.globals().include=lambda name:lua.execute(source(name+'.lua',B449))
+lua.execute(source('Probe.lua',B449))
+lua.execute(source('TradeRouteProbe.lua',B449))
 lua.execute(r'''
 local function event()
  local callbacks={};return {Add=function(f) callbacks[#callbacks+1]=f end,

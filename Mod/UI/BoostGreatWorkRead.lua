@@ -79,20 +79,6 @@ function SPCBoostGreatWorkRead.Works(P,c,mark)
  return ok and out or ('巨作读取失败：'..tostring(out))
 end
 
-function SPCBoostGreatWorkRead.Adjacency(P,c)
- local ok,result=pcall(function()
-  local totals={};local b=c:GetBuildings();local ys={'FOOD','PRODUCTION','GOLD','SCIENCE','CULTURE','FAITH'}
-  for _,y in ipairs(ys) do totals[y]=0 end
-  for r in GameInfo.Buildings() do if P.HasBuilding(b,r.Index) and b:GetNumGreatWorkSlots(r.Index)>0 then
-   for _,y in ipairs(ys) do totals[y]=totals[y]+b:GetBuildingYieldFromGreatWorks(P.Info('Yields','YIELD_'..y).Index,r.Index) end
-  end end
-  local rows={'原生作品收益 / 整城产出率（含其它来源与倍率）：'}
-  for _,y in ipairs(ys) do rows[#rows+1]=string.format('%s %.4f / %.4f',y,totals[y],c:GetYield(P.Info('Yields','YIELD_'..y).Index)) end
-  return table.concat(rows,'\n')
- end)
- return ok and result or ('原生六收益读取未完成：'..tostring(result))
-end
-
 -- One on-demand comparison for the current single-city fixture. Never persisted,
 -- never a Gameplay source, and no native handles survive a read.
 local function productionAbsolute(P,c)

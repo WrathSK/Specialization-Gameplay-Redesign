@@ -18,7 +18,7 @@ Follow [root guidance](../AGENTS.md). The user is the final semantic authority; 
 
 ## 用户交付与诊断
 
-Follow the [language convention](Workflow/README.md#language-convention). Use a concise, self-contained development summary covering the outcome, gameplay impact, blockers and next steps; add technical detail when useful. If a technical limitation requires a Design change, explain the implications and alternatives for the user to decide.
+Follow the [language convention](Workflow/README.md#language-convention). Begin important-stage reports with the short Chinese Owner summary specified there; keep it self-contained and distinguish planning, implementation, local evidence and native acceptance. If a technical limitation requires a Design change, explain the implications and alternatives for the user to decide.
 
 证据首次出现时说明：STATIC_CONFIRMED=代码/数据库证据；LOCAL_SIMULATION_PASS=本地模拟；USER_GAME_TEST_PASS/FAIL=用户实机已测场景；USER_GAME_TEST_REQUIRED=待实机；BLOCKED=需技术突破或用户决定。不扩大未测范围，不把外部建议当验收。
 

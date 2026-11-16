@@ -1,3 +1,13 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_GP',point,build)end
+ end)
+end
+if not SPCIdentityEqual then include('IdentityEqual')end
+local sameIdentity=SPCIdentityEqual.Same
 -- B202: one saved queue reservation; native queue/completion/birth are evidence,
 -- never an instruction to create a unit. No periodic all-city collection.
 if include then include('ExpeditionTrainingDiagnostics')end
@@ -7,7 +17,7 @@ function SPCExpeditionTraining.Start(P,shared)
  local d={};shared.ExpeditionTraining=d
  local diag=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'GAMEPLAY')
  local function observe(stage,c,s,extra)if diag then pcall(diag.Event,stage,c,s,extra)end end
- local busy=false;local dirty=false;local waitingReader;local readerAttempts=0;local lastToken,lastReply
+ local busy=false;local dirty=false;local waitingReader;local readerAttempts=0;local lastToken,lastReply,latestRequest
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
  local function observeAt(stage,pid,id,s,extra)
   if diag then pcall(function()observe(stage,id~=nil and city(pid,id) or nil,s,extra)end)end
@@ -48,6 +58,48 @@ function SPCExpeditionTraining.Start(P,shared)
    type(v.count)=='number' and v.count>=0 and v.count%1==0,'TRAINING_QUEUE_UNKNOWN')
   return v.count
  end
+ -- Passive observation only; never substitutes for the original final getter.
+ local function finalBinding(c,f)
+  local store=shared.CityProgressionStore;local ticket
+  local begin=store and store.BeginTrainingBindingObservation;local finish=store and store.FinishTrainingBindingObservation
+  local live=shared.ExpeditionTraining==d
+  if live and type(begin)=='function'and type(finish)=='function'then
+   local ok,value=pcall(begin,f.owner,f.cityID,f.x,f.y,f.token);if ok then ticket=value end
+  end
+  local ok,value=pcall(c.GetProperty,c,'SPC_DEV_BINDING_B013_TOKEN') -- original single native read
+  if ticket and shared.ExpeditionTraining==d and shared.CityProgressionStore==store
+   and store.BeginTrainingBindingObservation==begin and store.FinishTrainingBindingObservation==finish then
+   local good=pcall(finish,f.owner,f.cityID,f.x,f.y,ticket,ok,value)
+   d.bindingObservationError=not good and 'TRAINING_BINDING_OBSERVATION_FAILED'or nil
+  end
+  if not ok then error(value,0)end
+  return value
+ end
+ local function integer(v)return type(v)=='number'and v==v and v>=0 and v<1000000000 and v%1==0 end
+ local function syncInputs(pid,id,c)
+  local store=shared.CityProgressionStore;local gate=shared.ExpeditionGate;local facts=shared.EffectiveFacts
+  local read=store and store.TrainingInputStamp;local capacity=T.CapacityInputStamp
+  if shared.ExpeditionTraining~=d or not gate or gate.Training~=T or type(read)~='function'or type(capacity)~='function'or not c then return nil end
+  local a={store=store,gate=gate,facts=facts,read=read,capacity=capacity,owner=pid,cityID=c:GetID(),x=c:GetX(),y=c:GetY(),turn=Game.GetCurrentGameTurn()}
+  if a.cityID~=id or not(integer(a.cityID)and integer(a.x)and integer(a.y)and integer(a.turn))then return nil end
+  a.before,a.core=read(pid,id,a.x,a.y);a.capacityInput=capacity(pid);a.factsRead=facts and facts.Read;a.available=T.Available;a.gateRead=T.Read
+  if type(a.before)~='string'or type(a.core)~='string'or type(a.capacityInput)~='string'then return nil end
+  return a
+ end
+ local function sameInputs(a)
+  return a and shared.ExpeditionTraining==d and shared.CityProgressionStore==a.store and a.store.TrainingInputStamp==a.read
+   and shared.EffectiveFacts==a.facts and a.facts and a.facts.Read==a.factsRead and shared.ExpeditionGate==a.gate
+   and a.gate.Training==T and T.CapacityInputStamp==a.capacity and T.Available==a.available and T.Read==a.gateRead
+ end
+ local function coveredInputs(a)
+  if not a or not a.after then return nil end
+  local turn=Game.GetCurrentGameTurn() -- last native boundary, followed only by pure source/input checks
+  if not sameInputs(a)then return nil end
+  local capacity=a.capacity(a.owner);local post,core=a.read(a.owner,a.cityID,a.x,a.y)
+  if not sameInputs(a)or type(post)~='string'or type(core)~='string'or core~=a.core or post~=a.after
+   or capacity~=a.capacityInput or turn~=a.turn then return nil end
+  return {version=1,owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,turn=a.turn,storeInput=post,capacityInput=a.capacityInput}
+ end
  local function eligible(pid,c,observation)
   assert(c and c:GetOwner()==pid,'OWN_CITY_REQUIRED')
   local f=shared.EffectiveFacts.Read(pid,c)
@@ -56,7 +108,7 @@ function SPCExpeditionTraining.Start(P,shared)
    observation.active=f.active;observation.activeStatus=f.activeStatus
   end
   assert(f.specialization=='CULTURE' and f.active==4 and not f.investmentPending,'CULTURE_ACTIVE_IV_REQUIRED')
-  assert(f.token and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')==f.token,'SOURCE_REFERENCE_UNKNOWN')
+  assert(f.token and finalBinding(c,f)==f.token,'SOURCE_REFERENCE_UNKNOWN')
  end
  local function failure(pid,err)
   local s=T.Read(pid)
@@ -80,12 +132,18 @@ function SPCExpeditionTraining.Start(P,shared)
   if not P.IsTestPlayer(pid) or type(p)~='table' or type(p.Token)~='string' or #p.Token==0 or #p.Token>100 then return end
   if p.Token==lastToken then ExposedMembers.SPC_ExpeditionTrainingReply=lastReply;return end
   if busy then return end
-  local mutation=false
+  local attempt={};latestRequest=attempt
+  local mutation=false;local inputObservation
   local ok,value=run(pid,function()
    local s=T.Read(pid);local c=city(pid,p.CityID)
    if p.Action=='SYNC' then
     local sample={owner=pid,city=p.CityID,requestKey=p.Token}
+    local sampled,a=pcall(syncInputs,pid,p.CityID,c);if sampled then inputObservation=a end
     local valid=pcall(eligible,pid,c,sample)
+    if sameInputs(inputObservation)then
+     local good,stamp,core=pcall(inputObservation.read,pid,p.CityID,inputObservation.x,inputObservation.y)
+     if good and core==inputObservation.core then inputObservation.after=stamp end
+    end
     local allowed=valid and T.Available(pid)
     sample.eligibility=allowed;sample.reason=not valid and 'FACTS_INELIGIBLE' or not allowed and 'CAPACITY_UNAVAILABLE' or 'AVAILABLE'
     if diag then pcall(diag.Record,'TRAINING_SYNC_FACTS',sample)end
@@ -110,14 +168,22 @@ function SPCExpeditionTraining.Start(P,shared)
   end,function()return mutation end)
   -- A rejected competing RESERVE must not hold someone else's valid queue.
   local v=ok and value or {error=value};v.token=p.Token;v.owner=pid;v.city=p.CityID
+  if p.Action=='SYNC'then local good,input=pcall(coveredInputs,inputObservation);if good then v.input=input end end
+  if not sameIdentity(latestRequest,attempt)then return end -- a newer accepted request owns publication
   lastToken=p.Token;lastReply=v;ExposedMembers.SPC_ExpeditionTrainingReply=v
  end
  function d.Birth(pid,id)
   if not P.IsTestPlayer(pid)then return end
+  if T.MarkUnitCapacity then
+   local ok=pcall(T.MarkUnitCapacity,pid)
+   if T.CapacityObservationFailed then pcall(T.CapacityObservationFailed,not ok)end
+  end
   local u=Players[pid]:GetUnits():FindID(id);local r=u and P.Info('Units',u:GetType())
+  if r and (r.UnitType==M.KIND or r.UnitType=='UNIT_SPY')then cultureObserve('UNIT_ADDED_OBSERVED',function()return {eventOwner=pid,eventUnit=id,unitType=r.UnitType,unitIndex=r.Index}end)end
   if not r or r.UnitType~=M.KIND then return end
   run(pid,function()
    local s=T.Read(pid)
+   cultureObserve('EXPEDITION_BIRTH_STATE',function()return {owner=pid,eventUnit=id,phase=s.phase,reservation=s.trainingToken,ready=s.phase=='TRAINING'}end)
    if s.phase~='TRAINING' then return end
    popFlush('POP_SUMMARY',pid);observeAt('BIRTH_ENTRY',pid,s.sourceCity,s,{eventOwner=pid,eventUnit=id})
    -- B209: an order completed immediately (carried overflow) in the reservation
@@ -129,7 +195,13 @@ function SPCExpeditionTraining.Start(P,shared)
   end)
  end
  function d.Complete(pid,id,kind,index,cancelled)
-  if not P.IsTestPlayer(pid) or kind~=0 then return end
+  if not P.IsTestPlayer(pid)then return end
+  cultureObserve('DIPLOMATIC_BUILDING_COMPLETED',function()
+   if kind~=1 then return end
+   local r=GameInfo.Buildings[index]
+   if r and (r.BuildingType=='BUILDING_CONSULATE'or r.BuildingType=='BUILDING_CHANCERY')then return {owner=pid,city=id,eventKind=kind,eventIndex=index,recordType=r.BuildingType,requestAccepted=not cancelled}end
+  end)
+  if kind~=0 then return end
   local r=P.Info('Units',index);if not r or r.UnitType~=M.KIND then return end
   run(pid,function()
    popFlush('POP_SUMMARY',pid);observeAt('COMPLETE_CALLBACK',pid,id,nil,{eventOwner=pid,eventCity=id,eventKind=kind,eventIndex=index,cancelled=cancelled})
@@ -225,9 +297,25 @@ function SPCExpeditionTraining.Start(P,shared)
  end)
  hook('CityTransfered',function()current(false)end)
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ExpeditionTraining',function(c,loss)
-  local pid=loss.origin.owner;local s=T.Read(pid)
-  if s.phase=='TRAINING' and s.sourceCity==loss.origin.cityID then
-   run(pid,function()shared.CityProgressionStore.RemoveOwned(c,loss,{M.MARKER});error('TRAINING_SOURCE_LOST')end)
-  end
+  local pid=loss.origin.owner
+  local ok,value=run(pid,function()
+   local s=T.Read(pid);assert(not s.blocked,'TRAINING_STATE_UNAVAILABLE')
+   -- Physical ownership is independent of the current reservation/profession.
+   shared.CityProgressionStore.RemoveOwned(c,loss,{M.MARKER})
+   if s.phase=='TRAINING'and s.sourceCity==loss.origin.cityID then
+    assert(s.owner==pid and s.x==loss.origin.x and s.y==loss.origin.y,'TRAINING_SOURCE_CHANGED')
+    local current=T.Read(pid) -- RemoveOwned crosses a native notification boundary.
+    assert(not current.blocked and current.phase=='TRAINING'and current.owner==s.owner
+     and current.sourceCity==s.sourceCity and current.x==s.x and current.y==s.y
+     and current.trainingToken==s.trainingToken and current.sourceRef==s.sourceRef,'TRAINING_EXIT_CHANGED')
+    T.Hold('TRAINING_SOURCE_LOST') -- existing lawful source-loss transition
+    local after=T.Read(pid)
+    assert(not after.blocked and after.phase=='HELD'and after.owner==pid
+     and after.sourceCity==s.sourceCity and after.x==s.x and after.y==s.y
+     and after.trainingToken==s.trainingToken and after.sourceRef==s.sourceRef,'TRAINING_EXIT_UNCONFIRMED')
+   end
+   return true
+  end,function()return false end) -- an unrelated saved team is never held by this cleanup's failure
+  return ok==true and value==true
  end)end
 end

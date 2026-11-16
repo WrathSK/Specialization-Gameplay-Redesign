@@ -1,3 +1,11 @@
+-- B394 optional observer: deleting/disabling its module leaves this tap inert.
+pcall(include,'CultureDiagnostics')
+local function cultureObserve(point,build)
+ pcall(function()
+  local d=SPCCultureDiagnostics
+  if d and d.ENABLED then d.Emit('CULTURE_ACTIVITY_UI',point,build)end
+ end)
+end
 -- B201: fresh recovery observations and durable arming before one native Sleep request.
 -- No persistent state, native espionage mission, or dependency on the management window.
 include('Probe')
@@ -5,7 +13,7 @@ include('ExpeditionTrainingDiagnostics')
 include('ExpeditionSpyRead')
 local P=SPCP0
 local KIND='UNIT_SPC_EXPEDITION_SPY'
-local initialized=false;local stopped=false;local busy=false
+local initialized=false;local stopped=false;local busy=false;local loadSeen=false
 local pending=false;local pendingMonitor=false;local pendingTurn=false
 local signal='INIT';local coreState='UNAVAILABLE';local operationEvent='NONE';local operationHash='NIL'
 local schedule
@@ -92,10 +100,14 @@ local function acknowledge(n,result,reason,sleeping,awake)
  if result~='FAILED' then args.NativeOperation=-1 end
  if result=='RECOVERED' or result=='ARMED' or result=='REJECTED'then args.Sleeping=sleeping;args.Awake=awake end
  if result=='REJECTED'then args.Requested=false;args.Attempted=false end
+ cultureObserve('EXPEDITION_ACK_SEND',function()return {owner=n.owner,eventUnit=n.unitID,activityKey=n.activityKey,
+  requestKey=args.Token,requestResult=result,mode=n.mode,ready=loadSeen or current.loadReady==true}end)
  local ok,err=pcall(function()
   assert(UI and type(UI.RequestPlayerOperation)=='function' and PlayerOperations,'ACTIVITY_REQUEST_UNAVAILABLE')
-  UI.RequestPlayerOperation(n.owner,PlayerOperations.EXECUTE_SCRIPT,args)
+  return UI.RequestPlayerOperation(n.owner,PlayerOperations.EXECUTE_SCRIPT,args)
  end)
+ cultureObserve('EXPEDITION_ACK_RETURN',function()return {owner=n.owner,eventUnit=n.unitID,activityKey=n.activityKey,
+  requestKey=args.Token,requestResult=not ok and 'THREW'or err==false and 'FALSE'or err==true and 'TRUE'or err==nil and 'NIL'or 'OTHER'}end)
  if not ok then
   -- The request may already have executed: never retry or submit another native operation.
   print('[SPC][B191][ACTIVITY_ACK_UNKNOWN] '..detail(err))
@@ -286,6 +298,10 @@ end
 local function evaluate(n)
  local ok,u,activity=pcall(read,n)
  n.readStatus=not ok and 'READ_ERROR' or (u and 'READ_OK' or 'POSITION_PENDING')
+ cultureObserve('EXPEDITION_ACTIVITY_READ',function()
+  local e=not ok and SPCCultureDiagnostics.Error(u)or {};e.owner=n.owner;e.eventUnit=n.unitID;e.phase=n.phase;e.mode=n.mode;e.activityKey=n.activityKey
+  e.readStatus=n.readStatus;e.x=n.x;e.y=n.y;e.actualX=n.actualX;e.actualY=n.actualY;e.activity=ok and activity or nil;e.activitySampleTurn=n.sampleTurn;e.operationEvent=operationEvent;return e
+ end)
  if not ok then fail(n,u);return end
  if not u then return end -- Initial placement still invisible in this UI context.
  if n.mode=='ASLEEP' then
@@ -431,6 +447,9 @@ local function refresh(monitor)
  if v.mode~='SLEEP' and v.mode~='ARMED' and v.mode~='RECOVER' and v.mode~='RELEASE' then cancel();return end
  if v.mode=='RELEASE' and v.owned~=true and v.releasePending~=true then cancel();return end
  if seen[v.mode]then cancel();return end
+ -- Do not consume the one-shot recovery ACK or start its timeout on the loader stack.
+ -- Readiness is business state; the optional observer is not consulted.
+ if v.mode=='RECOVER' and not (loadSeen or v.loadReady==true)then cancel();return end
  if not job or not same(v,job)then cancel();start(v)end
  evaluate(job)
 end
@@ -490,22 +509,37 @@ end
 local function published()event('PUBLICATION',false)end
 local function activityChanged(pid,id)
  local v=view()
- if type(v)=='table' and pid==v.owner and id==v.unitID then event('ACTIVITY_OR_MOVE',true)end
+ if type(v)=='table' and pid==v.owner and id==v.unitID then
+  cultureObserve('EXPEDITION_ACTIVITY_EVENT',function()return {owner=pid,eventUnit=id,phase=v.phase,mode=v.mode,activityKey=v.activityKey,operationEvent='ACTIVITY_OR_MOVE'}end)
+  event('ACTIVITY_OR_MOVE',true)
+ end
+end
+local function moved(pid,id,x,y)
+ local v=view()
+ if type(v)=='table'and pid==v.owner and id==v.unitID then
+  cultureObserve('EXPEDITION_MOVE_EVENT',function()return {owner=pid,eventUnit=id,phase=v.phase,mode=v.mode,activityKey=v.activityKey,eventX=x,eventY=y}end)
+ end
+ activityChanged(pid,id) -- original callback exactly once, same registration slot
 end
 local function nativeOperation(name)
  return function(pid,id,hash)
   local v=view()
   if type(v)=='table' and pid==v.owner and id==v.unitID then
    operationEvent=name;operationHash=type(hash)=='number' and hash or 'NIL'
+   cultureObserve('EXPEDITION_OPERATION_EVENT',function()return {owner=pid,eventUnit=id,phase=v.phase,mode=v.mode,activityKey=v.activityKey,operationEvent=name,operationHash=operationHash}end)
    event(name,true)
   end
  end
 end
 local operationHooks={}
+local function loaded()
+ loadSeen=true
+ schedule('LOAD_READY',true) -- next existing safe event pumps; never send inside LoadScreenClose
+end
 local function turn()event('LOCAL_TURN',true,true)end
 local function initialize()
  if initialized then return end
- initialized=true;stopped=false
+ initialized=true;stopped=false;loadSeen=false
  workReader=SPCExpeditionSpyRead and SPCExpeditionSpyRead.WorksCity
  ExposedMembers.SPC_ExpeditionWorkRead=workReader
  if SPCExpeditionTrainingDiagnostics then
@@ -516,8 +550,9 @@ local function initialize()
  ExposedMembers.SPC_ExpeditionActivityFailureDiagnostic=nil
  Events.GameCoreEventPublishComplete.Add(published)
  Events.LocalPlayerTurnBegin.Add(turn)
+ if Events.LoadScreenClose then Events.LoadScreenClose.Add(loaded)end
  if Events.UnitActivityChanged then Events.UnitActivityChanged.Add(activityChanged)end
- if Events.UnitMoveComplete then Events.UnitMoveComplete.Add(activityChanged)end
+ if Events.UnitMoveComplete then Events.UnitMoveComplete.Add(moved)end
  for _,name in ipairs({'UnitOperationAdded','UnitOperationDeactivated','UnitOperationsCleared','UnitCommandStarted','UnitMovementPointsChanged'})do
   local e=Events[name]
   if e then local fn=nativeOperation(name);e.Add(fn);operationHooks[#operationHooks+1]={event=e,fn=fn}end
@@ -526,7 +561,7 @@ local function initialize()
 end
 ContextPtr:SetInitHandler(initialize)
 ContextPtr:SetShutdown(function()
- stopped=true;pending=false;pendingMonitor=false;pendingTurn=false;cancel()
+ stopped=true;loadSeen=false;pending=false;pendingMonitor=false;pendingTurn=false;cancel()
  if ExposedMembers.SPC_ExpeditionWorkRead==workReader then ExposedMembers.SPC_ExpeditionWorkRead=nil end
  workReader=nil
  ExposedMembers.SPC_ExpeditionActivityDiagnostic=nil
@@ -534,8 +569,9 @@ ContextPtr:SetShutdown(function()
  if initialized then
   Events.GameCoreEventPublishComplete.Remove(published)
   Events.LocalPlayerTurnBegin.Remove(turn)
+  if Events.LoadScreenClose then Events.LoadScreenClose.Remove(loaded)end
   if Events.UnitActivityChanged then Events.UnitActivityChanged.Remove(activityChanged)end
-  if Events.UnitMoveComplete then Events.UnitMoveComplete.Remove(activityChanged)end
+  if Events.UnitMoveComplete then Events.UnitMoveComplete.Remove(moved)end
  end
  for _,h in ipairs(operationHooks)do h.event.Remove(h.fn)end;operationHooks={}
  initialized=false

@@ -10,9 +10,99 @@ function SPCEffectiveFacts.Start(P,shared)
   for k in pairs(b) do if a[k]==nil then return false end end;return true
  end
  local data={};shared.EffectiveFacts=data
- function data.Read(pid,city) P.Count('facts');
+ -- One synchronous declared read window, never a turn/global native-object cache.
+ local phase;local generation,districtGeneration,writes=0,0,0;local tickets={}
+ local function pack(...)return {n=select('#',...),...}end
+ local function finish(result)
+  if not result[1]then error(result[2],0)end
+  return unpack(result,2,result.n)
+ end
+ local function scopeID(n)return type(n)=='number'and n>=0 and n<2147483648 and n%1==0 end
+ function data.Version()return generation end
+ function data.DistrictWriteVersion(pid,cid)
+  if writes>0 then
+   for _,scope in pairs(tickets)do
+    if not scope or scope.provider~=shared.DistrictCompleteness or (scope.owner==pid and scope.city==cid)then return districtGeneration,generation,true end
+   end
+  end
+  return districtGeneration,generation,false
+ end
+ local function invalidate(scope)
+  generation=generation+1;if phase then phase.values={};phase.count=0;phase.workers={};phase.workerCount=0;phase.anchors={};phase.anchorCount=0 end
+  local dc=shared.DistrictCompleteness
+  if scope and dc==scope.provider then
+   local ok=pcall(dc.FenceCarrierWrite,scope.owner,scope.city)
+   if ok then return true end
+  end
+  districtGeneration=districtGeneration+1
+  return false
+ end
+ function data.Invalidate()invalidate()end
+ function data.BeginWrite(_,carrier)
+  local dc=shared.DistrictCompleteness
+  local scope=false
+  if carrier and dc and dc.FenceCarrierWrite and scopeID(carrier.owner) and scopeID(carrier.city)then
+   scope={owner=carrier.owner,city=carrier.city,provider=dc}
+  end
+  writes=writes+1;local ticket={};tickets[ticket]=false
+  if invalidate(scope)then tickets[ticket]=scope end
+  return ticket
+ end
+ function data.EndWrite(ticket)
+  local scope=tickets[ticket]
+  assert(scope~=nil,'FACT_WRITE_TICKET_INVALID');tickets[ticket]=nil;writes=writes-1;invalidate(scope)
+ end
+ function data.WithPhase(label,fn,...)
+  assert(type(fn)=='function','FACT_PHASE_CALLBACK_INVALID')
+  if phase then return fn(...)end
+  phase={values={},count=0,label=label};local result=pack(pcall(fn,...));phase=nil
+  return finish(result)
+ end
+ local function stamp(pid,city)
+  local store=shared.CityProgressionStore
+  -- The isolated legacy Flow authority has different recovery guards; do not cache it.
+  if not (store and store.FactStamp)then return nil end
+  local value=store.FactStamp(pid,city);if value==nil then return nil end
+  return table.concat({city:GetOwner(),city:GetID(),city:GetX(),city:GetY(),Game.GetCurrentGameTurn(),value},':')
+ end
+ local function gate(city)return {P.GovernorGate(city)}end
+ -- Fixed passive observation, scoped to this synchronous read stack only.
+ local trainingFrame;local trainingDepth=0;local trainingSerial=0
+ local trainingIssuer={};data.TrainingObservationIssuer=trainingIssuer -- tiny session identity
+ local function trainingInt(v)return type(v)=='number'and v==v and v>=0 and v<1000000000 and v%1==0 end
+ local function scope(pid,id,x,y,token)
+  return trainingInt(pid)and trainingInt(id)and trainingInt(x)and trainingInt(y)and type(token)=='string'and #token>0 and #token<=256
+ end
+ local function observationOverflow(frame,pid,city,a,token)
+  while frame do
+   if frame.pid==pid and(frame.city==city or(a and frame.reference and frame.owner==a.owner and frame.cityID==a.cityID
+    and frame.x==a.x and frame.y==a.y and frame.token==token))then frame.budgetUnknown=true end
+   frame=frame.previous
+  end
+ end
+ function data.NoteTrainingReference(city,a,token)
+  local f=trainingFrame
+  if trainingDepth>8 then observationOverflow(f,type(a)=='table'and a.owner or nil,city,a,token);return false end
+  if not f or f.city~=city or type(a)~='table'or a.owner~=f.pid or not scope(a.owner,a.cityID,a.x,a.y,token)then return false end
+  f.reference=true;f.owner,f.cityID,f.x,f.y,f.token=a.owner,a.cityID,a.x,a.y,token
+  return true
+ end
+ local function noteTrainingBase(value)
+  local f=trainingFrame
+  if trainingDepth>8 then
+   if type(value)=='table'then observationOverflow(f,value.owner,nil,value,value.token)end;return
+  end
+  if not f or type(value)~='table'or value.owner~=f.pid or not scope(value.owner,value.cityID,value.x,value.y,value.token)then return end
+  f.base=true;f.baseOwner,f.baseCity,f.baseX,f.baseY,f.baseToken=value.owner,value.cityID,value.x,value.y,value.token
+  f.activeStatus=value.activeStatus
+  f.input=table.concat({tostring(value.specialization),tostring(value.potential),tostring(value.active),tostring(value.activeStatus),tostring(value.investmentPending)},':')
+  if not f.reference then
+   f.reference=true;f.owner,f.cityID,f.x,f.y,f.token=value.owner,value.cityID,value.x,value.y,value.token
+  end
+ end
+ local function capture(pid,city) P.Count('facts');
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
-  local f=shared.CityFlowProbe.SupportFacts(pid,city)
+  local f,referenceWitness=shared.CityFlowProbe.SupportFacts(pid,city)
   assert(f.owner==pid and f.cityID==city:GetID() and type(f.token)=='string','EFFECTIVE_FOUNDATION_IDENTITY')
   local store=shared.CityProgressionStore
   local ledger
@@ -55,8 +145,186 @@ function SPCEffectiveFacts.Start(P,shared)
     out.active=math.min(out.potential,ceiling)
    else out.active=nil;out.activeStatus='UNKNOWN_GOVERNOR' end
   end
-  return out
+  return out,referenceWitness
  end
+ -- Read-only projections run inside the same existing full authority checks.
+ -- Only raw worker counts share a phase; eligibility remains in each projection.
+ local workerBusy={};local workerBusyCount=0
+ local function projectValue(value,parent,project,slotKey,slotValue,referenceWitness)
+  noteTrainingBase(value)
+  if not project then return clone(value),referenceWitness end
+  local window=phase;local version=generation;local changes=shared.FactChanges
+  local function epochs()
+   if not(changes and changes.Generation)then return nil,nil end
+   return changes.Generation(value.owner,'COMMERCE'),changes.Generation(value.owner,'COMMERCE',value.cityID)
+  end
+  local ownerEpoch,cityEpoch=epochs();local active=true
+  local function unchanged()
+   local a,b=epochs()
+   return phase==window and generation==version and shared.FactChanges==changes and a==ownerEpoch and b==cityEpoch
+    and(not slotKey or window.values[slotKey]==slotValue)
+  end
+  local function workers(anchor,readNative)
+   assert(active and type(readNative)=='function','WORKER_READER_EXPIRED')
+   assert(type(anchor)=='table'and getmetatable(anchor)==nil,'WORKER_ANCHOR_INVALID')
+   local id,kind,plot=anchor.id,anchor.type,anchor.plot
+   assert(type(id)=='number'and id>=0 and id%1==0 and type(kind)=='string'and type(plot)=='number'and plot>=0 and plot%1==0,'WORKER_ANCHOR_INVALID')
+   -- Legacy/no-phase/unconfirmed identity retains the original fresh path.
+   if not(window and parent and changes and changes.Generation)or writes>0 then return readNative()end
+   assert(unchanged(),'WORKER_FACTS_CHANGED_DURING_READ')
+   window.workers=window.workers or {};window.workerCount=window.workerCount or 0
+   local key=tostring(value.owner)..':'..tostring(value.cityID)..':'..tostring(plot)
+   local cached=window.workers[key]
+   if cached and cached.parent==parent and cached.changes==changes and cached.id==id and cached.kind==kind and cached.ownerEpoch==ownerEpoch and cached.cityEpoch==cityEpoch then
+    return cached.value
+   end
+   if cached then window.workers[key]=nil;window.workerCount=window.workerCount-1 end
+   assert(not workerBusy[key]and workerBusyCount<8,'WORKER_CAPTURE_IN_PROGRESS')
+   workerBusy[key]=true;workerBusyCount=workerBusyCount+1
+   local result=pack(pcall(readNative))
+   workerBusy[key]=nil;workerBusyCount=workerBusyCount-1
+   local count=finish(result)
+   assert(type(count)=='number'and count>=0 and count<math.huge and count%1==0,'WORKER_COUNT_INVALID')
+   assert(unchanged()and writes==0,'WORKER_FACTS_CHANGED_DURING_READ')
+   if window.workerCount<2048 then
+    window.workerCount=window.workerCount+1
+    window.workers[key]={parent=parent,changes=changes,id=id,kind=kind,value=count,ownerEpoch=ownerEpoch,cityEpoch=cityEpoch}
+   end
+   return count
+  end
+  local function anchor(first,readNative,geometry)
+   assert(active and type(readNative)=='function','ANCHOR_READER_EXPIRED')
+   assert(type(first)=='table'and type(first.districtID)=='number'and first.districtID>=0 and first.districtID%1==0 and type(first.type)=='string','ANCHOR_REFERENCE_INVALID')
+   if not(window and parent and changes and changes.Generation)or writes>0 then return readNative()end
+   assert(unchanged(),'ANCHOR_FACTS_CHANGED_DURING_READ')
+   window.anchors=window.anchors or {};window.anchorCount=window.anchorCount or 0
+   local key=tostring(value.owner)..':'..tostring(value.cityID)..':'..tostring(geometry==true)
+   local cached=window.anchors[key]
+   if cached and cached.parent==parent and cached.changes==changes and cached.id==first.districtID and cached.kind==first.type and cached.ownerEpoch==ownerEpoch and cached.cityEpoch==cityEpoch then return clone(cached.value)end
+   if cached then window.anchors[key]=nil;window.anchorCount=window.anchorCount-1 end
+   local busyKey='ANCHOR:'..key
+   assert(not workerBusy[busyKey]and workerBusyCount<8,'ANCHOR_CAPTURE_IN_PROGRESS')
+   workerBusy[busyKey]=true;workerBusyCount=workerBusyCount+1
+   local result=pack(pcall(readNative));workerBusy[busyKey]=nil;workerBusyCount=workerBusyCount-1
+   local raw=finish(result)
+   assert(type(raw)=='table'and getmetatable(raw)==nil,'ANCHOR_SAMPLE_INVALID')
+   local allowed=geometry and {x=true,y=true}or {present=true,id=true,owner=true,cityID=true,type=true,typeIndex=true,complete=true,pillaged=true}
+   for k,v in pairs(raw)do assert(allowed[k]and(type(v)=='boolean'or type(v)=='string'or type(v)=='number'and v==v and math.abs(v)<math.huge),'ANCHOR_SAMPLE_INVALID')end
+   if geometry then assert(type(raw.x)=='number'and type(raw.y)=='number','ANCHOR_GEOMETRY_UNKNOWN')
+   else assert(type(raw.present)=='boolean','ANCHOR_SAMPLE_INVALID')end
+   assert(unchanged()and writes==0,'ANCHOR_FACTS_CHANGED_DURING_READ')
+   if window.anchorCount<2048 then window.anchorCount=window.anchorCount+1
+    window.anchors[key]={parent=parent,changes=changes,id=first.districtID,kind=first.type,value=clone(raw),ownerEpoch=ownerEpoch,cityEpoch=cityEpoch}
+   end
+   return clone(raw)
+  end
+  local result=pack(pcall(project,clone(value),workers,anchor));active=false
+  -- A typed mutation during any part of the read-only projection cannot certify
+  -- its old plan. This is separate from the base fact's own full Store witness.
+  if window and not unchanged()then return pack(false,'WORKER_FACTS_CHANGED_DURING_READ')end
+  return result
+ end
+ local function phasedRead(pid,city,project)
+  if not phase or writes>0 then local value,witness=capture(pid,city);return projectValue(value,nil,project,nil,nil,witness)end
+  assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
+  local before=generation;local identity=stamp(pid,city)
+  if not identity then local value,witness=capture(pid,city);return projectValue(value,nil,project,nil,nil,witness)end
+  local key=tostring(pid)..':'..tostring(city:GetID());local cached=phase.values[key]
+  if cached and cached.identity==identity then
+   local projected,referenceWitness=projectValue(cached.value,cached,project,key,cached,cached.referenceWitness)
+   -- Certify governor AFTER the read-only body, with the original one gate read.
+   local current=cached.gate and gate(city)or nil
+   if not cached.gate or same(current,cached.gate)then
+    assert(stamp(pid,city)==identity and generation==before and writes==0,'EFFECTIVE_FACTS_CHANGED_DURING_READ')
+    if phase.values[key]~=cached then
+     if project then return pack(false,'WORKER_FACTS_CHANGED_DURING_READ')end
+     error('EFFECTIVE_FACTS_CHANGED_DURING_READ',0)
+    end
+    P.Count('facts_reuse');return projected,referenceWitness
+   end
+  end
+  if cached then phase.values[key]=nil;phase.count=phase.count-1 end
+  local value,referenceWitness=capture(pid,city)
+  local candidate=value.activeStatus=='KNOWN'and not value.investmentPending and phase.count<2048 and {identity=identity,value=clone(value),referenceWitness=referenceWitness}or nil
+  local projected,witness=projectValue(value,candidate,project,key,nil,referenceWitness)
+  -- A getter may reenter native code. Never publish old confirmed facts across a write/reference boundary.
+  assert(stamp(pid,city)==identity and generation==before and writes==0,'EFFECTIVE_FACTS_CHANGED_DURING_READ')
+  -- A reentrant read may publish a newer governor/base witness. Never overwrite it.
+  if phase.values[key]~=nil then
+   if project then return pack(false,'WORKER_FACTS_CHANGED_DURING_READ')end
+   error('EFFECTIVE_FACTS_CHANGED_DURING_READ',0)
+  end
+  if value.activeStatus=='KNOWN' and not value.investmentPending then
+   local witness
+   if value.specialization~='NONE' and value.potential>1 then
+    witness=gate(city)
+    assert(witness[1]==pid and witness[2]==value.cityID and witness[3]=='KNOWN'
+     and value.active==math.min(value.potential,witness[4]),'EFFECTIVE_GOVERNOR_CHANGED_DURING_READ')
+   end
+   assert(stamp(pid,city)==identity and generation==before and writes==0,'EFFECTIVE_FACTS_CHANGED_DURING_READ')
+   if phase.count<2048 and phase.values[key]==nil then
+    phase.count=phase.count+1
+    candidate=candidate or {identity=identity,value=clone(value),referenceWitness=referenceWitness};candidate.gate=witness;phase.values[key]=candidate
+   end
+  end
+  return projected,witness
+ end
+ local function read(pid,city,project,withCarrierReference)
+  local store=shared.CityProgressionStore
+  local previous=trainingFrame;local frame
+  local observed,observer=pcall(function()return store and store.ObserveTrainingFacts end)
+  local hasObserver=observed and type(observer)=='function'
+  if hasObserver and trainingDepth<8 then
+   trainingSerial=trainingSerial+1;frame={pid=pid,city=city,store=store,serial=trainingSerial,previous=previous}
+  end
+  local overflow=hasObserver and trainingDepth>=8
+  if overflow then
+   observationOverflow(previous,pid,city)
+   pcall(function()data.trainingObservationOverflows=math.min(2147483647,(data.trainingObservationOverflows or 0)+1)end)
+  end
+  trainingDepth=trainingDepth+1;trainingFrame=overflow and previous or frame -- only bounded matching ancestors are downgraded
+  local result=pack(pcall(phasedRead,pid,city,project))
+  trainingFrame=previous;trainingDepth=trainingDepth-1 -- release even when the original read throws
+  if not result[1]then data.Invalidate()end
+  -- Preserve the original result even if observer lookup or its diagnostic setter throws.
+  pcall(function()
+   if frame and shared.CityProgressionStore==store then
+    if frame.reference then
+     local confirmed=result[1]and frame.base and frame.owner==frame.baseOwner and frame.cityID==frame.baseCity
+      and frame.x==frame.baseX and frame.y==frame.baseY and frame.token==frame.baseToken
+     local state=frame.budgetUnknown and 'FACTS_BUDGET_UNKNOWN'or not confirmed and 'FACTS_UNAVAILABLE'or frame.activeStatus=='KNOWN'and 'FACTS_CONFIRMED'or 'FACTS_UNKNOWN'
+     local ok=pcall(store.ObserveTrainingFacts,frame.owner,frame.cityID,frame.x,frame.y,frame.token,state,trainingIssuer,frame.serial,frame.input)
+     data.trainingObservationError=not ok and 'TRAINING_OBSERVATION_FAILED'or nil
+    end
+   end
+  end)
+  if not project and result[1]then
+   if withCarrierReference then return result[2],result[3]end
+   return result[2] -- original public Read arity/shape, no witness field in facts
+  end
+  return finish(result)
+ end
+ -- Explicit same-base scalar witness; default Read/Inspect contracts stay unchanged.
+ function data.ReadWithCarrierReference(pid,city)return read(pid,city,nil,true)end
+ function data.Read(pid,city)return read(pid,city)end
+ function data.Inspect(pid,city,project)
+  assert(type(project)=='function','FACT_PROJECTION_INVALID')
+  -- Projection failures do not invalidate independent confirmed base facts.
+  return finish(read(pid,city,project))
+ end
+ -- A RuntimeWork audit keeps its existing local reuse, but every lookup now revalidates.
+ -- Detached scope is owned only by that short-lived batch; no registry retains it.
+ function data.NewReader()
+  local scope={values={},count=0,version=generation}
+  return function(pid,city,project)
+   local reader=project and data.Inspect or data.Read
+   if phase then return reader(pid,city,project)end
+   if scope.version~=generation then scope.values={};scope.count=0;scope.workers={};scope.workerCount=0;scope.anchors={};scope.anchorCount=0 end
+   phase=scope;local result=pack(pcall(reader,pid,city,project));phase=nil;scope.version=generation
+   return finish(result)
+  end
+ end
+ P.FactReadService=data
  function data.Describe(pid,city)
   local store=shared.CityProgressionStore
   local failure=store and store.FailureReport and store.FailureReport()

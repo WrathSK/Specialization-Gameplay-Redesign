@@ -1,5 +1,6 @@
 include('RuntimeWork')
 include('SpecialistSupport')
+include('CarrierSet')
 -- P0-B2: shared ordinary eligibility, distinct Tier presence in the actual anchor.
 -- D's weighted sum/highest-domain choice is deliberately not a housing input.
 SPCLv2Housing={}
@@ -7,23 +8,27 @@ function SPCLv2Housing.Start(P,shared)
  local batch
  local data={ready=false,busy=false,changes=0,errors={},events=0};shared.Lv2Housing=data
  local kinds={RESEARCH=true,CULTURE=true,COMMERCE=true,INDUSTRY=true}
- local function carrier(i)
-  local row=P.Info('Buildings','BUILDING_SPC_DEV_LV2_HOUSING_'..i)
-  assert(row and type(row.Index)=='number' and row.Housing==1,'B2_HOUSING_DATABASE_MISMATCH')
+ local entries={};for i=0,8 do entries[#entries+1]={key=i,name='BUILDING_SPC_DEV_LV2_HOUSING_'..i}end
+ local carriersSet=SPCCarrierSet.Define(P,entries,function(name)
+  local row=P.Info('Buildings',name)
+  assert(row and type(row.Index)=='number'and row.Housing==1,'B2_HOUSING_DATABASE_MISMATCH')
   return row.Index
- end
+ end,{read='B2_HOUSING_CARRIER_UNKNOWN',write='B2_HOUSING_WRITE_UNCONFIRMED'})
+ local health=SPCRuntimeWork.NativeHealth(P,shared,data,carriersSet.Owns,function(scope)data.MarkAudit(scope)end)
+ local function validate()carriersSet.Initialize()end
+ local function carrier(i)return carriersSet.Index(i)end
  local function expected(pid,city,batch)
   local wanted={}
-  local kind,d,f=SPCSpecialistSupport.Anchor(P,shared,pid,city,batch)
+  local kind,d,f=SPCSpecialistSupport.Anchor(P,shared,pid,city,batch,true)
   if not kinds[kind] then return wanted,'CONFIRMED_INELIGIBLE',{} end
   if f.active<2 then return wanted,'ACTIVE='..f.active,{} end
   local svc=assert(shared.DistrictCompleteness,'B2_ORDINARY_FACTS_UNAVAILABLE')
   -- The shared producer owns invalidation and per-turn reconciliation.
   -- Same persistent token as Research consumers: do not replace its cache reference.
-  local sample=svc.Read(pid,city,f.token)
+  local sample=svc.ReadFacts(pid,city,f.token)
   assert(sample.validity=='VERIFIED' and sample.availability=='READY',sample.error or 'B2_BUILDINGS_UNAVAILABLE')
   local anchor
-  for _,r in ipairs(sample.value.districts) do if r.id==d:GetID() then anchor=r;break end end
+  for _,r in ipairs(sample.value.districts) do if r.id==d.id then anchor=r;break end end
   assert(anchor and anchor.type==f.first.type,'B2_ANCHOR_SAMPLE_MISMATCH')
   assert(anchor.complete and not anchor.pillaged,'B2_ANCHOR_CHANGED_DURING_READ')
   wanted[0]=true
@@ -34,48 +39,36 @@ function SPCLv2Housing.Start(P,shared)
     if b.tier>0 then wanted[b.tier]=true end
    end
   end
-  return wanted,kind..' ACTIVE='..f.active..' anchor='..d:GetID(),anchor.buildings
- end
- local function plan(city,wanted)
-  local result={}
-  for i=0,8 do
-   local id=carrier(i);local present=P.HasBuilding(city:GetBuildings(),id)
-   assert(type(present)=='boolean','B2_HOUSING_CARRIER_UNKNOWN')
-   result[#result+1]={id=id,present=present,wanted=wanted[i]==true}
-  end
-  return result -- all inputs and carrier reads verified before the first write
+  return wanted,kind..' ACTIVE='..f.active..' anchor='..d.id,anchor.buildings
  end
  local function process(pid,city,batch)
-  local wanted=expected(pid,city,batch);local changes=plan(city,wanted)
-  for _,adding in ipairs({false,true}) do for _,v in ipairs(changes) do
-   if v.wanted==adding and v.present~=v.wanted then
-    if adding then P.CreateBuilding(city:GetBuildQueue(),v.id) else P.RemoveBuilding(city:GetBuildings(),v.id) end
-    assert(P.HasBuilding(city:GetBuildings(),v.id)==v.wanted,'B2_HOUSING_WRITE_UNCONFIRMED')
-    data.changes=data.changes+1
-   end
-  end end
+  local wanted=expected(pid,city,batch)
+  carriersSet.Apply(city,wanted,health,function()data.changes=data.changes+1 end)
  end
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
   process(pid,c,batch)
  end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
- function data.Audit(scope)
-  if P.Observe then P.Observe('audit','Lv2Housing') end
-  if not data.ready or data.busy then P.Count('busy_skip');return end
-  data.busy=true;data.events=data.events+1;batch=SPCRuntimeWork.New(P,shared)
+ local function runAudit(scope,taking)
+  validate()
+  data.events=data.events+1;batch=SPCRuntimeWork.New(P,shared)
   if type(scope)=='table' and scope.investment~=nil then
    local pid=scope.player;local key='investment:'..tostring(pid)
-   local ok,city=pcall(SPCRuntimeWork.InvestmentCity,P,shared,scope,batch)
-   data.errors[key]=not ok and tostring(city) or nil
-   if ok then
-    P.Count('city_scan');local good,why=pcall(function() process(pid,city,batch) end)
-    data.errors[pid..':'..city:GetID()]=not good and tostring(why) or nil
-   end
-   data.busy=false;batch=nil;return
+   local ok,city,obsolete=pcall(SPCRuntimeWork.InvestmentCity,P,shared,scope,batch,taking)
+   data.errors[key]=not ok and tostring(city) or obsolete
+   if not ok then return false end
+   if not city then return obsolete~=nil end -- the checked reference has been superseded
+   P.Count('city_scan');local good,why=pcall(function()process(pid,city,batch)end)
+   data.errors[pid..':'..city:GetID()]=not good and tostring(why) or nil
+   return good
   end
   if type(scope)~='table' or scope.player==nil then data.errors={} end
-  targets.Run(scope)
-  data.busy=false;batch=nil
+  return targets.Run(scope,taking)
  end
+ local function audit(scope,taking)
+  local ok,result=pcall(runAudit,scope,taking);batch=nil;if not ok then error(result,0)end
+  return result
+ end
+ data.Audit,data.MarkAudit,data.FlushAudit,data.AcceptFact=SPCRuntimeWork.NewAudit(P,shared,data,'Lv2Housing',audit,{targets=true,receipts=true})
  function data.Describe(pid,city)
   local ok,out=pcall(function()
    assert(data.ready,'B2_HOUSING_NOT_READY')
@@ -95,19 +88,11 @@ function SPCLv2Housing.Start(P,shared)
   return 'P0-B2 Lv2 Housing | '..(ok and out or ('UNKNOWN / installed housing retained: '..tostring(out)))
  end
  local function bind(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
- bind(Events,'LoadScreenClose',function() data.ready=true;data.errors={};data.Audit({load=true}) end)
- for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorEstablished','GovernorChanged','GovernorPromoted',
-  'CityTransfered','CityRemovedFromMap','BuildingAddedToMap','BuildingRemovedFromMap','BuildingPillaged','BuildingRepaired',
-  'DistrictRemovedFromMap','DistrictBuildProgressChanged','DistrictPillaged','DistrictRepaired'}) do
-  SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)
- end
- -- CityBuildingsChanged can be raised by our own carriers. Structural events
- -- above + once/player/turn reconciliation cover it without a feedback loop.
- for _,n in ipairs({'BuildingConstructed','OnDistrictConstructed','CityBuilt','OnPillage'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
+ SPCRuntimeWork.StartReady(P,shared,'Lv2Housing',function()data.ready=true;data.errors={};data.Audit({load=true})end,true)
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityRemovedFromMap'})do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit)end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
  if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv2Housing',targets.Exit(function(c,loss)
-   local ids={};for bit=0,8 do ids[#ids+1]='BUILDING_SPC_DEV_LV2_HOUSING_'..bit end
-   shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end))end
+   carriersSet.Exit(shared,c,loss)
+ end,'Lv2Housing'))end
 
 end

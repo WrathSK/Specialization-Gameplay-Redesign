@@ -1,3 +1,4 @@
+include('RuntimeWork')
 include('CurrentSpecializationFacts')
 include('NetworkInput')
 -- City history is owned by CityProgressionStore; this module owns only derived carriers.
@@ -22,6 +23,8 @@ end
 function M.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'INSIGHT_STORE_REQUIRED')
  local d={records={},errors={},ready=false,busy=false};shared.CultureInsightsTourism=d
+ local ownedIndex={}
+ local health=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.MarkAudit(scope)end)
  local ids,owned={},{};for _,name in ipairs(M.Owned)do owned[name]=true end
  local function key(c)return tostring(c:GetOwner())..':'..tostring(c:GetID())end
  local function ref(c)return SPCNetworkInput.Reference(c)end
@@ -36,22 +39,22 @@ function M.Start(P,shared)
   for _,a in ipairs(P.Rows('BuildingModifiers'))do if owned[a.BuildingType]then
    links[a.BuildingType]=links[a.BuildingType] or {};table.insert(links[a.BuildingType],a.ModifierId)
   end end
-  local nextIDs={}
+  local nextIDs,nextOwned={},{}
   for n,name in ipairs(M.Owned)do
    local b=assert(P.Info('Buildings',name),'INSIGHT_CARRIER_MISSING');local mid='SPC_INSIGHT_TOURISM_'..n
    local m=assert(P.Info('Modifiers',mid),'INSIGHT_MODIFIER_MISSING');local a=args[mid];local l=links[name]
    assert((b.InternalOnly==true or b.InternalOnly==1) and b.PrereqDistrict=='DISTRICT_CITY_CENTER' and b.CitizenSlots==0 and b.Housing==0,'INSIGHT_CARRIER_INVALID')
    assert(m.ModifierType=='MODIFIER_SINGLE_CITY_ADJUST_TOURISM_LATE_ERAS' and not m.OwnerRequirementSetId and not m.SubjectRequirementSetId,'INSIGHT_MODIFIER_INVALID')
    assert(a and tonumber(a.Modifier)==2*n and a.MinimumEra=='ERA_ANCIENT' and not a.GreatWorkObjectType,'INSIGHT_ARGUMENT_INVALID')
-   assert(l and #l==1 and l[1]==mid,'INSIGHT_ATTACHMENT_INVALID');nextIDs[n]=b.Index
+   assert(l and #l==1 and l[1]==mid,'INSIGHT_ATTACHMENT_INVALID');nextIDs[n]=b.Index;nextOwned[b.Index]=true
   end
-  ids=nextIDs
+  ids=nextIDs;ownedIndex=nextOwned
  end
  local function has(c,n)
   local yes=P.HasBuilding(c:GetBuildings(),ids[n]);assert(type(yes)=='boolean','INSIGHT_PRESENCE_UNKNOWN');return yes
  end
  local function remove(c,n)
-  if n and n>0 and has(c,n)then P.RemoveBuilding(c:GetBuildings(),ids[n]);assert(not has(c,n),'INSIGHT_REMOVE_UNCONFIRMED')end
+  if n and n>0 and has(c,n)then health.Remove(c,ids[n]);assert(not has(c,n),'INSIGHT_REMOVE_UNCONFIRMED')end
  end
  local function clear(c)
   -- Full owned-ID cleanup only on first observation/load, fault recovery or confirmed exit.
@@ -79,7 +82,7 @@ function M.Start(P,shared)
      local damaged=c:GetBuildings():IsPillaged(ids[n]);assert(type(damaged)=='boolean','INSIGHT_HEALTH_UNKNOWN')
      if damaged then remove(c,n);present=false end
     end
-    if not present then P.CreateBuilding(c:GetBuildQueue(),ids[n]);assert(has(c,n),'INSIGHT_CREATE_UNCONFIRMED')end
+    if not present then health.Create(c,ids[n]);assert(has(c,n),'INSIGHT_CREATE_UNCONFIRMED')end
    end
    assert(c:GetOwner()==pid and ref(c)==reference,'INSIGHT_REFERENCE_CHANGED')
   end)
@@ -87,47 +90,64 @@ function M.Start(P,shared)
   if not ok then d.records[k]=nil;local cleared,why=pcall(clear,c);error(cleared and err or why)end
   old.n=n;d.errors[k]=nil
  end
- function d.Audit(scope)
-  if scope and scope.player~=nil and not P.IsTestPlayer(scope.player)then return end
-  if d.busy then
-   local nextScope={player=scope and scope.player,city=scope and scope.city}
-   if d.pending then
-    if d.pending.player~=nextScope.player then nextScope={}elseif d.pending.city~=nextScope.city then nextScope.city=nil end
-   end
-   d.pending=nextScope;return
-  end
-  d.busy=true
-  local ok,err=pcall(function()
+ local function ready()
+  if d.ready then return true end
+  if d.initializing then return false end
+  d.initializing=true
+  local ok,why=pcall(function()
    validate()
-   if not d.ready then
     -- Remove saved derived effects, including cities now owned by unsupported players.
     d.records={};d.errors={}
     for _,p in pairs(Players)do local cities=p:GetCities();if cities then for _,c in cities:Members()do
      clear(c)
      if P.IsTestPlayer(c:GetOwner())then d.records[key(c)]={reference=ref(c),n=0,x=c:GetX(),y=c:GetY(),owner=c:GetOwner()}end
     end end end
-    d.ready=true
-   end
+   d.ready=true
+  end)
+  d.initializing=false;d.error=not ok and tostring(why):sub(1,180) or nil
+  if ok then SPCRuntimeWork.WakeFactOwner(shared,'CultureInsightsTourism')end
+  return ok
+ end
+ local function audit(scope,taking)
+  local complete=true
+  local ok,err=pcall(function()
    local seen={}
-   for pid,p in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or scope.player==nil or scope.player==pid)then
+   local covered=SPCRuntimeWork.AuditOwners(P,scope,function(pid,p)
     local function visit(c)
      local k=key(c);seen[k]=true
-     local good,why=pcall(reconcile,pid,c);if not good then d.errors[k]=tostring(why):sub(1,180)end
+     local good,why=pcall(reconcile,pid,c);if not good then d.errors[k]=tostring(why):sub(1,180);complete=false end
     end
-    if scope and scope.city~=nil then local c=p:GetCities():FindID(scope.city);if c and c:GetOwner()==pid then visit(c)end
+    if scope and scope.city~=nil then
+     local c=p:GetCities():FindID(scope.city)
+     if c and SPCRuntimeWork.AuditCityOwned(c,pid,taking)then visit(c)end
     else for _,c in p:GetCities():Members()do if store.Owns(c)then visit(c)end end end
-   end end
-   if not scope or scope.city==nil then
+   end,taking)
+   if (not taking or covered) and (not scope or scope.city==nil)then
     for k,p in pairs(d.records)do if (not scope or scope.player==nil or p.owner==scope.player) and not seen[k]then d.records[k]=nil;d.errors[k]=nil end end
     for k in pairs(d.errors)do
      local pid=tonumber(k:match('^(%d+):'))
      if (not scope or scope.player==nil or pid==scope.player) and not seen[k]then d.errors[k]=nil end
     end
    end
+   return covered and complete
   end)
-  d.busy=false;d.error=not ok and tostring(err):sub(1,180) or nil
-  if d.pending and not d.draining then local pending=d.pending;d.pending=nil;d.draining=true;d.Audit(pending);d.draining=false end
+  d.error=not ok and tostring(err):sub(1,180) or nil
+  return ok and err
  end
+ local direct,mark,flush,accept=SPCRuntimeWork.NewAudit(P,shared,d,'CultureInsightsTourism',audit,{receipts=true})
+ d.MarkAudit=mark;d.FlushAudit=flush
+ local function refresh(scope,taking)
+  if d.initializing then if not taking then mark(scope)end;return false end
+  if scope and scope.player~=nil then
+   local eligible,_,status=P.IsTestPlayer(scope.player)
+   if not eligible then return taking and status=='INELIGIBLE' or false end
+  end
+  if not d.ready and not ready()then return false end
+  if taking then return accept(scope)end
+  return direct(scope)
+ end
+ function d.Audit(scope)return refresh(scope,false)end
+ function d.AcceptFact(scope)return refresh(scope,true)end
  function d.Describe(pid,c)
   local k=key(c);local p=d.records[k];local err=d.errors[k] or d.error
   local known=p and p.reference==ref(c) and not err
@@ -137,15 +157,13 @@ function M.Start(P,shared)
  end
  local function bind(name,fn)local e=P.Field(Events,name);if e and e.Add then e.Add(fn)end end
  bind('LoadScreenClose',function()d.ready=false;d.records={};d.errors={};ids={};d.Audit()end)
- for _,name in ipairs({'GovernorAssigned','GovernorChanged','GovernorPromoted','GovernorEstablished'})do
-  bind(name,function(pid) d.Audit({player=type(pid)=='number' and pid or nil})end)
- end
+ -- NativeFacts owns governor qualification causes; declared ACTIVE delivery is deferred.
  bind('PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then d.Audit({player=pid})end end)
- bind('CityBuildingsChanged',function(pid,cid)if d.writing~=tostring(pid)..':'..tostring(cid)then d.Audit({player=pid,city=cid})end end)
+ -- Exact live carrier health is owned above; no dead city-buildings signal.
  store.RegisterExit('CultureInsightsTourism',function(c,loss)
   assert(store.IsExitTarget(c,loss),'INSIGHT_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,M.Owned)
   for k,p in pairs(d.records)do if p.owner==loss.origin.owner and p.x==c:GetX() and p.y==c:GetY()then d.records[k]=nil;d.errors[k]=nil end end
  end)
- store.RegisterReturn('CultureInsightsTourism',function(pid,c)d.Audit({player=pid,city=c:GetID()})end)
+ store.RegisterReturn('CultureInsightsTourism',function(pid,c)d.MarkAudit({player=pid,city=c:GetID()})end)
  return d
 end

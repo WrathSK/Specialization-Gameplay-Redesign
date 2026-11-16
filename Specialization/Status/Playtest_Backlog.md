@@ -1,6 +1,13 @@
 # v0.1 Playtest Backlog
 
 Document Owner: Codex
+
+## Current playtest
+
+The focused B489.516 HD and official playtest is complete. See the [scoped native result](Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047) for accepted scenarios. The official positive Culture Network observation awaits a suitable same-build source.
+
+## Historical issue intake
+
 Baseline: B069.96 / modinfo96
 This is the issue intake linked by the current Status; validation results remain in Status/Validation. Unknown turns are not invented. A baseline designation is not bug-free certification.
 
@@ -347,3 +354,115 @@ Supersedes unchanged B188 retest instructions. [Local result and exact minimal s
 ## B268 T5–T35内存增长（2026-10-21实机；2026-10-22诊断实施）
 
 同PID23529，Activity Monitor10.82→14.36GB，+3.54GB；T5→T28专业确立前已+1.90GB，T35首次科研P1/A1。644条诊断无断号，但无同窗口Lua/GC/分类内存。根因UNKNOWN，继续v0.1正常游玩。[B269](Validation/Results/Specialization_B269_Memory_Diagnostics.md)增加随行证据，尚未部署。原8图/日志及SHA清单保存在ignored证据批B268_Memory_T5_T35_20261021。测试项目缺失图标82次是单独维护项，尚无GB级因果证据。
+
+## B393.420 部分实机验收 — 2026-10-28记录
+
+[覆盖表与证据](Validation/Results/Specialization_B393_Partial_Playtest.md)：文化／科研“大部分验收”保留为用户概括，待补单项例外；四专业基础读取在本轮六城恢复，173事实READY、98专业UI数据READY。文化／商业／科研到四级，工业仅一级；人文考察团训练完成与派遣提交已测，任务结果未闭合。原B391 T1–T8按报告保留部分／未覆盖，不改冻结清单或宣称最终U5。
+
+| ID | Category | Found build | Turn | Issue / evidence | Current long game impact | Stable hotfix | Develop only / next step |
+|---|---|---|---|---|---|---|---|
+| PT015 | BUG / BLOCKED triage | B393.420 | 5–6 | Capital:5次CAPITAL_COMMERCE_PENDING，11次打开／刷新均HELD、canSign=false；Development:DEVELOPMENT_OUTGOING_PENDING。网络曾确认1路线后重新待确认，末次signal26/28；见覆盖报告seq751–906 | 本轮商业合同入口受阻；根因未裁定，不能推及所有商业能力 | 本次无main热修／晋升 | 后续定域调查事实更新与恢复传播；不得靠放宽交易资格消除提示。商业化非零入账、合同结算和信誉／重组尚未验收闭合 |
+
+User decision：无新的玩法决定。User testing：不为记录重复已证实步骤；文化／科研例外可直接补充。Primary next：本次只记录；下次授权工作先带入PT015，再继续原S9/S10边界。
+
+
+## PT015 follow-up — B397 NET-1 / NET-2 local repair, native pending
+
+2026-10-31. [B397 result](Validation/Results/Specialization_B397_Network_Proof_Transport.md) repairs the independently confirmed equal-content/stale-signal sender latch and bounded first-load missing-receipt recovery.87selected local methods pass;Bridge/transaction/D-1/formulas stay unchanged. PT015 remains USER_GAME_TEST_REQUIRED,not PASS:in the planned commercial session,one reload and the next ordinary unchanged-route turn should verify proof recovery,Commerce READY,and eligible Capital/Development quotation/confirmation. Other zero-revenue/HELD causes are not presumed fixed. Accepted Option B convergence stays after U5;no new architecture migration or deliberate pillage/repeated accepted Research/Culture tests.
+
+
+## B397 third Industry playtest — 2026-10-31
+
+[Evidence review](Validation/Results/Specialization_B397_Industry_Playtest_20261031.md) records the user's normal Industry acceptance and precise limits. No new implementation/deployment. Passed cases do not require repetition;ownership,pillage and HD GPP are not reopened.
+
+| ID | Category | Found build | Turn | Issue / evidence | Current long game impact | Stable hotfix | Develop only / next step |
+|---|---|---|---|---|---|---|---|
+| PT016 | BUG / project entry | B397.424 | 49–51 | Engineering Study reordered to queue head or naturally advanced remains confirming;explicit selection creates BEGIN but queue notifications only wake existing requests. Dialogue has the same user-observed symptom;qualification/reward owners remain independent. Report provides source and exact timer/reward records. | Cannot count that round until queue cleared and project explicitly reselected;ordinary/reloaded single-project completion and one reward pass | None authorized | Plan smallest same-city event-driven re-entry repair;preserve full turn,UNKNOWN,qualification and unique receipts. Whole-queue clearing is a backup,not permanent acceptance. Do not silently change the multi-item queue contract. |
+
+PT015 partial native progress: B397 four loads confirm routes within their loaded turns;unchanged routeCount/inputRevision signals catch up;new routes apply18% Standardization to receivers/forwarding in the same turn. The earlier missing initial proof is B396. This does not prove deliberate dropped-first-send recovery,byte-identical payloads,Commerce READY,nonzero revenue or Capital/Development transactions;PT015 remains open for those actual commercial outcomes.
+
+PT001 bounded evidence: same-load counter deltas show real carrier-call bursts (T45+52/-123,T52+111/-33),not proof of exact frame cost or unconditional rebuild. T39 unit-deletion turn has net0/0 and carrier0/0;later pending is explicitly trader-route removal. GC moments are separately recorded;no new performance/GC fix or probe is authorized by the review.
+
+
+PT016 plan review — 2026-10-31: [Queue recovery and remaining playtest proposal](../Reports/Proposals/Timed_Project_Queue_Recovery_and_Remaining_Playtest.md) is unimplemented. Preserve sole-project timing;propose source-proven queued candidates/re-entry and duplicate-copy prevention for Study/Dialogue. The queued UI parameter means selected existing slot,not queue mode. L/E is checked on actual start and completion;no queued reservation. Exhausted session candidates stop,while native leftover deletion remains unverified/excluded. No automatic multi-item-policy change. Remaining shared REALLOCATING recovery can accompany asset restructuring;opportunistic items and user deferrals are explicitly separated from mandatory repair validation and engineering duties.
+
+
+PT016 B398.425 — 2026-10-31: [Local repair/result](Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md) has85selected passing methods and restricted/package proof. Native re-entry remains USER_GAME_TEST_REQUIRED,not closed by simulation. Study/Dialogue only;sole-current full-turn,unique rewards,UNKNOWN and no native queue deletion remain. Duplicate/unconfirmed native insertions are blocked;explicit replacement/removal may abandon a provisional insertion. Completed receipt metadata retires old candidates;an ambiguous same-turn completed queue item requires explicit reselection. Minimal native delta is natural advancement plus reorder-to-sole and convenient queued-before-start reload. User's recent no-P0 operation already has evidence;do not request it again.
+
+PT016 deployment checkpoint — B398.425 from73bf5b5 is verified343/343 MATCH;receipt `B398.425-73bf5b5-playtest.json`. Local repair remains distinct from pending native acceptance. No new no-P0 campaign or repeated accepted-ability tests.
+
+
+## B398 fourth playtest — 2026-11-01
+
+[Evidence review](Validation/Results/Specialization_B398_Fourth_Playtest_20261101.md):different handwritten/replayed balances remain separate. Commerce floors/depth/source/capacity and two Capital entries/debits have scoped acceptance;T58contracts are dueT68,not settled byT61. Development/Reputation/Restructuring and full national income remain open;GPP explicitly untested. No runtime change.
+
+PT015 partial progress:proof recovery allows two real valid Capital confirmations. Eleven pending refresh guards are not eleven failed debit calls. No complete maturity/reload/Development acceptance;strict transaction proof is retained.
+
+PT016 remains USER_REPORTED_FAIL for reorder→remove recovery despite natural advancement success. Current actual-module/native-double replay confirms a canceled accepted round can return to the same attempted signature and block a legitimate sole-queue restart for both projects. Proposed narrow correction distinguishes confirmed cancellation/new queue evidence from unknown sends;no arbitrary latch clearing,polling,single-item-policy change or reward relaxation.
+
+| ID | Category | Found build | Turn | Issue / evidence | Current long game impact | Stable hotfix | Develop only / next step |
+|---|---|---|---|---|---|---|---|
+| PT017 | Treasury accounting / UNKNOWN origin | B398.425 |58–61|Several measured END→STARTED gains are exactly52,followed by ordinary income;T60also has a10residual against its start-point net estimate,not a proved separate transaction. Handwritten earlier balances differ. No captured Capital credit;contracts not due. | Cannot close Commercialization national-income acceptance or attribute the difference from UI alone | None authorized | Narrowly identify posting origin/phase from existing evidence;any new observer must stay removable and isolated;no speculative amount/formula change |
+| PT018 | Expedition border displacement | B398.425 recurrence |60|Two reload branches show native Open Borders expiry,activity/move event and TEAM_DISPLACED_STOP;thenHELD. Loaded Spy/IgnoreMoves flags match UNIT_SPY. | Affected prototype loses task/actions;old deleted-save cause still unproved | None authorized | Investigate exact native ejection/state path;retain exact-unit/position safety,no guessed teleport or ignored guard;no new deliberate test requested |
+
+
+PT016 B399.426 — 2026-11-01: [Authorized follow-up](Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md) adds confirmed canceled-round evidence to temporary views and request identities. Started→reorder→sole restarts locally for both owners,including repeated same-turn cycles;unknown send/unconfirmed cancellation stays held. 178selected methods pass,with four inherited failures separately reproduced;native acceptance remains USER_GAME_TEST_REQUIRED. Sole-project timing/qualification/rewards and no queue deletion remain unchanged.
+
+PT017/PT018 B399 observation opportunity:optional read-only Treasury/maintenance and exact tracked-unit position/border samples are isolated from business,default at most6consecutive turns per load,and independently removable. Existing broad B271 remains disabled. Collector keeps received rows and explicitly caps its summary. No posting-origin,border-cause or functional repair is claimed. Ordinary next2–3turns and the already planned T68investment/reload may supply evidence;no forced border/pillage/GPP or accepted-ability campaign.
+
+PT016/PT017/PT018 B399 deployment checkpoint:source `4915170`,344/344MATCH,receipt `B399.426-4915170-playtest.json`,exact B398/B307 recovery,no pending marker. Package deployment is confirmed;native queue acceptance/sample delivery and Treasury/border causes remain pending.
+
+
+## B399 fifth playtest — 2026-11-01
+
+See [native review](Validation/Results/Specialization_B399_Fifth_Playtest_20261101.md). Capital maturity is now observed for three new58Tcontracts due68T(one stable/two successful ventures),with pre-maturity cold restart/governor absence,one credit each and exact screenshot reconciliation through72T. Commercialization58/domain floors,reputation growth/withdrawal/resume,Development continuity/completion/re-entry,Standardization purchase max/withdrawal and Restructuring cold wait/manual new-Campus Research3configuration have scoped acceptance. This does not mechanically close all historical PT015or all U5branches;GPP remains deferred.
+
+- PT016:sole-project recovery is USER_GAME_TEST_PASS in the reported Dialogue sequence;cross-era reward/next-era opportunity also user-confirmed. Multi-item queue-head timing remains excluded by the present sole-project contract and is a user-deferred,nonblocking later consideration;do not create an independent blocking batch or silently change the timing rule.
+- PT017:68TCapital payout arithmetic closes exactly. Additional native credit is41on the main branch,52on another;observed before LOCAL_BEGIN. Posting origin remains UNKNOWN;not proof of duplicate Commercialization or a universal52. Keep separate from accepted contract settlement.
+- PT018:exact-unit samples now show UnitTeleported and(23,25)→(23,24)before TEAM_DISPLACED_STOP;activity/Spy/border getters unavailable. Root ejection rule remains unknown;no guessed teleport/guard bypass or deliberate border test.
+- Development Police semantics are parked by user. The CityCenter contract was quoted against Granary and closes on Granary at67T;do not label the user's62Tcurrent-production reset as that confirmed contract close.
+
+| ID | Category | Found build | Turn | Issue / evidence | Current long game impact | Stable hotfix | Develop only / next step |
+|---|---|---|---|---|---|---|---|
+| PT019 | UI action mapping / USER_REPORTED | B399.426 |66|User reports left liquidation-confirm button inert while the action-labeled button completes. Trace proves one valid liquidation and later configuration,with no failed request;clicked callback identity is not recorded. Both current entries reuse the icon but have distinct PREPARE/CONFIRM callbacks. | Confusing confirmation affordance;business outcome succeeded in this case | None authorized | Scoped click/action mapping investigation when scheduled;do not infer bypass/root cause or patch from the label alone |
+
+
+## B401 action-pair source repair — 2026-11-05
+
+PT019 code repair is locally complete in source B401.428. Actual native Right-growth plus A-then-B insertion moved the preparation slot left;the adapter now inserts B before A,keeps prepared A inert and guards fresh exact-unit/plan callbacks and duplicate outstanding requests. Actual owned UI→service and pinned native/HD fragment tests pass;see [current result](Specialization_P0_Status.md#pu02-evidence-and-limits--s0870) for the112selected108pass/four unchanged historical-error limits. This is not a native click PASS. Future separately authorized window needs only one liquidation/configuration action-pair check;no immediate deployment,U5 or new full-ability retest. Earlier B399 observations remain frozen below.
+
+## B399 user clarification and pre-U5 disposition — 2026-11-01
+
+[Scoped investigation](Validation/Results/Specialization_B399_Button_Treasury_U5_Review.md) supersedes the timing/uncertainty of earlier PT017/PT019notes without rewriting frozen evidence.
+
+- PT019expected flow:A always visible/informational;first click prepares;prepared A click is inert;B appears to its left and alone confirms. Actual missing A guard reproduces as repeated PREPARE in native-helper Lua51 replay;A-confirm/B-inert visual mapping remains user-reported/unreproduced by the helper model. Do not fix by assuming the declarations are reversed or same icon causes collision.
+- PT017NONBLOCKING by explicit user direction:41persists with Commerce0/27/58,52with other totals;31loaded Commerce bits have exactly one correct link;only Capital/Development directly mutate Treasury and captured calls reconcile. Duplicate Commerce carrier/direct SPC payment paths are excluded for these intervals. Ultimate posting origin remains UNKNOWN;may stop tracing it,no extra probe or user test.
+- Keep prior ordinary ability,Commerce/contract/reputation/restructuring and sole-project acceptance. Possible later native delta:repaired A/B;Claim full-round/reload if no prior adequate receipt;Crew supported two-city completion and use-after-load/no-replay;final integrated package load/turn/idle/performance smoke. Engineering attribution/cold recovery/duty retirement/deletion-safety work comes first and must not be labelled incomplete player testing.
+- No pre-U5Option B migration,forced pillage,HD GPPrepeat,undecided ownership/Police rule,forced venture failure or standalone multi-item queue batch added. Unexercised branches remain documented limits,not automatic new gates.
+
+
+## B399 narrowed route/project coverage and U5 hold — 2026-11-01
+
+[Reconciliation](Validation/Results/Specialization_B399_Network_Project_Coverage_Reconciliation.md) supersedes earlier native-test suggestions where they imply more route-loss or repeated Claim timing testing is required.
+
+- Ordinary route creation/expiry/re-establishment,source ACTIVE/identity exit/return,source value/template changes,multiple-source max/forwarding and normal cold recovery have scoped native acceptance. Do not require removing a city or waiting for AI to kill/plunder a trader. Distinct native event delivery is an untested entry-point limit,not missing shared disconnection coverage.
+- Strong eligible source loss while a weaker eligible source survives is not independently measured in the latest summary;local composition first,opportunistic native observation only. The second industrial source was already liquidated when the strong route expired.
+- Partial unreadable-source/cold UNKNOWN recovery and dropped/late proofs belong to existing local/engineering obligations,not player-generated fault scenarios. Do not expand normal reload PASS to unfinished cold consumers.
+- Remove standalone Claim shared full-turn/reload repetition from current mandatory testing. Actual Queue/WorkSet/Boundary are shared and actual-owner local regressions include all three. Eligibility/receipts remain independent;B398/B399automatic UI re-entry remains a two-owner opt-in. No invented Claim native PASS or new opt-in behavior.
+- **User explicitly defers starting U5 and will assign other work.** Wait after this record;no implementation/deployment/test campaign now. PT017nonblocking,PT019A/Band other existing limits remain tracked.
+
+## B413 focused native evidence — 2026-11-06
+
+[Current native result](Specialization_P0_Status.md#focused-b413-native-evidence-reviewed--s0902): the Owner confirms both repaired restructuring button flows, with matching T26 liquidation and T31 configuration receipts. **PT019 passes for those flows.** Capital (one stable, two successful ventures) debited and settled once per contract across the T17 context reload. Three development contracts closed and withdrew their effects on building completion. Commercialization returned to the same yield after proof recovered, and the Owner confirms ordinary Claim. Both same-tier Crew orders completed in distinct cities at T10 with one verified bind and receipt per order; other counter orders and late duplication remain open. No repeat of these successful cases or general U5 acceptance.
+
+## B413 HD baseline and U5 review scope — 2026-11-06
+
+The actual loaded HD profile and current-build references are pinned. The startup and load logs corroborate the T17 cold load. Keep the previously accepted scenarios at their existing scope. One optional same-build cold-load Crew spending check is presented for Owner review. The other Crew attribution and Claim fault cases stay in their respective engineering slices. [Minimum U5 checklist](Specialization_P0_Status.md#current-hd-baseline-and-minimum-u5-review--s0903)
+
+## B413 U5 acceptance and Crew action bar — 2026-11-07
+
+The Owner accepts the pinned HD regression baseline and prior scoped results. T32 cold-loaded Crew use consumed one bound unit, added 260 production once to the Forbidden City and left the other unit. The reported Harvest Resource button is a separate native UI defect. The B414 candidate has local validation. Its only proposed user confirmation is the action bar after separately approved deployment. [Current result](Specialization_P0_Status.md#u5-hd-baseline-acceptance-and-crew-unitpanel-follow-up--s0904)
+
+## B414 Crew action bar acceptance — 2026-11-07
+
+**USER_GAME_TEST_PASS** for the B414.441 Crew action bar. The Owner confirms Harvest Resource is absent and generic unit controls, Construction and Confirm Construction work normally. The B413.440 HD regression baseline and prior scoped coverage carry forward. [Acceptance record](Specialization_P0_Status.md#b414-crew-action-bar-accepted--s0906)

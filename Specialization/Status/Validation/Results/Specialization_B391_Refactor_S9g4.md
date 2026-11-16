@@ -1,0 +1,25 @@
+# B391.418 — S9g4 / precise domain provenance and derived lifecycle scope
+
+Before real consumers are connected,the prior whole-source Cell comparison would reject a legitimate Commerce city whose one domain retains an old raw yield while another domain has a newly confirmed value. The initial undeployed v1 format now records optional per-domain status (omitted input inherits source status),rejects fabricated UNKNOWN data and false all-fresh source labels. A mixed source cannot be labelled as all currently confirmed. Cell verifies each retained domain against that exact prior APPLIED domain plus source reference/lifecycle;independent fresh domains may update. Cultural complete-civilization sets keep their unchanged whole-source proof. This is an initial predeployment format refinement;no production network save exists to migrate.
+
+Store now exposes a pure NetworkRecoveryStamp limited to token/reference/ownerChanges/restructuring serial+phase+identity. The existing exact live-scope predicate is shared with CarrierReferenceStamp,whose original output stays byte-for-byte unchanged. The explicit derived adapter uses the narrow stamp with unchanged native reference/owner/raw-binding and post-read lifecycle fences. All qualification remains consumer-owned. Actual ordinary Potential investments already keep the former carrier stamp stable;the new API declares the distinct source-continuity scope and is not a claimed repair of a reproduced upgrade regression. No native read/cache/listener/automatic consumer or permanent saved field is added.
+
+Runtime Impact/P04/T01/T02/T03/T04/T05/T08,L3 is recorded before code.12 new cases plus63 inherited codec/Cell/actual Store adapter cases cover mixed same-source domains,UNKNOWN/no-data,stale/missing/value/reference/lifecycle retained proofs,unchanged Culture sets,actual Store investment/history stability,old-carrier-string differential againstc52eb43,1000pure scope calls with no property/city lookup/write,owner loss/return,identity exit and ongoing permanent commit. Existing actual Store/Probe write failure/permission/phase budgets remain. No weakened original assertion,aggregate inversion,transaction credential,new gameplay or native save/CPU claim.
+
+User decision:none pending. User testing:U5 after actual consumer integration. Primary next:actual Commerce then Culture restoration,source/carrier proof/failure/normal workload closure,then remaining D7/applied-owner/U4/S10. No deployment/main/game launch.
+
+### Machine validation evidence
+
+- Stage/status: `S9g4` / `LOCAL_SIMULATION_PASS`; tests=75, passing=75, registered-open=0.
+- Source: base `c52eb434d641c83cc8d05f70c213f66c1c668948`; dirty=True; input SHA256 `dddb462e50b9d3cb5cd2b7a9e45873184ed621a45c8566748de9662cf75959c3`; stable=True.
+- Source scope: Mod/DevelopmentTests/tools, including tracked and nonignored new files. The containing commit must match this input digest; parent HEAD alone is not the tested snapshot.
+- Command: `python3 DevelopmentTests/run_refactor.py --stage S9g4 --output local/refactor/S9g4-B391-final/closure.json`.
+- Environment: `{"backend": "Lua 5.1", "implementation": "CPython", "lupa": "2.8", "machine": "arm64", "platform": "Darwin", "python": "3.10.13", "python_hash_seed": "UNSET", "sqlite": "3.43.2"}`.
+- External input: `{"configured": true, "recovery": "EXTERNAL_INPUT_NOT_ARCHIVED", "sha256": {"database": "fa7578c3c2e2f19dee918b3801c627ce6edf526ce6d94e04c71a83038c2c215b"}}`.
+- Full artifact: `local/refactor/S9g4-B391-final/closure.json`; SHA256 `600e7187004b3fe06288580f06ff03a2463eac0ce30783f1ae0ae7be8010bfd0`; stdout/stderr alongside it.
+- Retention: LOCAL_ONLY, not a permanent backup. A hash identifies bytes but cannot recover them. Re-running creates comparable new evidence, not the old execution.
+- Executed modules/fragments: 26; this is observed loading/completion, not full function/path coverage. Detailed mappings remain in the artifact.
+- Measurements (changed from prior artifact): `{"S9g1_maximum_commerce_bundle": {"automatic_calls": 0, "base_Copy_budget_changed": false, "domains_each": 5, "reference_and_stamp_bytes_each": 512, "sources": 512, "wire_bytes": 648177, "wire_cap_bytes": 1048576}, "S9g4_actual_store_scope": {"actual_Potential_upgrade": "stable", "lifecycle_and_identity_fences": "retained", "old_carrier_stamp_output": "unchanged", "ordinary_history_revision": "stable"}, "S9g4_same_source_domain_provenance": {"fresh_sibling": "updated independently", "new_native_or_automatic_calls": 0, "retained_domain": "unchanged prior APPLIED fact", "source_old_fact_relabelled_fresh": false}}`.
+- Limits/mocks: `{"exclusions": {"historical_unrelated_suites": "Selected program scenarios only; inherited stage regressions are named when selected. No old assertions modified."}, "native_mocks": ["synthetic owner/city/district/building methods", "explicit catalogue stub for D workload fixtures", "B270 seven real writers with native doubles"]}`; LOCAL_SIMULATION only.
+
+Static package: {"Lua51": 217, "XML": 25, "package_files": 339, "modinfo": 418}

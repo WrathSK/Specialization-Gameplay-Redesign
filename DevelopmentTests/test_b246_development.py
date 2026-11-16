@@ -22,6 +22,21 @@ defs={
 GameInfo.Buildings=tableInfo(defs,'BuildingType')
 GameInfo.Districts=tableInfo({{DistrictType='DISTRICT_CAMPUS',Index=1,Name='Campus'},{DistrictType='DISTRICT_INDUSTRIAL_ZONE',Index=2,Name='Industry'}},'DistrictType')
 GameInfo.HD_BuildingTiers=tableInfo(defs,'BuildingType');GameInfo.DistrictReplaces=tableInfo({},'CivUniqueDistrictType');GameInfo.HD_DUMMY_BUILDINGS=tableInfo({},'BuildingType')
+-- This transaction fixture supplies detached synthetic definitions. The actual
+-- SQL and native upgrade graph are exercised in test_effective_building_tiers.
+if SPCOrdinaryBuildingCatalog and SPCOrdinaryBuildingCatalog.Read then
+ SPCOrdinaryBuildingCatalog.Read=function()
+  local out={districts={},effectBuildings={}}
+  for row in GameInfo.Districts()do out.districts[row.DistrictType]={base=row.DistrictType}end
+  for _,b in ipairs(defs)do
+   if not b.InternalOnly and not b.IsWonder then
+    out.effectBuildings[b.BuildingType]={index=b.Index,hash=b.Hash,name=b.Name,base=b.PrereqDistrict,
+     tier=b.Tier,mustPurchase=b.MustPurchase}
+   end
+  end
+  return out
+ end
+end
 GameInfo.SPC_DevelopmentEffects=tableInfo({{DistrictType='DISTRICT_CAMPUS',CarrierType='BUILDING_SPC_DEVELOPMENT_DISTRICT_CAMPUS'},
  {DistrictType='DISTRICT_INDUSTRIAL_ZONE',CarrierType='BUILDING_SPC_DEVELOPMENT_DISTRICT_INDUSTRIAL_ZONE'}},'DistrictType')
 P.Info=function(tab,id)

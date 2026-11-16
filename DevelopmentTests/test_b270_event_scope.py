@@ -4,7 +4,7 @@ from lupa.lua51 import LuaRuntime
 MOD = Path(__file__).resolve().parents[1] / 'Mod'
 MODULES = ['Lv2Housing', 'Lv2GPP', 'ResearchSupport', 'IndustrySupport', 'Lv3Effects', 'ResearchInfrastructure', 'Lv3Support']
 
-def make_fixture(n_ai=50, supported=False, mod=MOD):
+def make_fixture(n_ai=50, supported=False, mod=MOD, initial_load=True):
     lua = LuaRuntime(unpack_returned_tuples=True)
     lua.globals().include = lambda name: lua.execute((mod / (name + '.lua')).read_text())
     lua.execute(r'''
@@ -78,7 +78,9 @@ function resetCounts()counts={};byModule={}end
         lua.execute((mod / (module + '.lua')).read_text())
         lua.execute('active="%s"; SPC%s.Start(P,shared%s)' % (
             module, module, ',{retireCommerce=true}' if module == 'Lv3Effects' else ''))
-    lua.execute("P.Observe=function(group,name)if group=='audit'then active=name end end;Events.LoadScreenClose.Fire();resetCounts()")
+    lua.execute("P.Observe=function(group,name)if group=='audit'then active=name end end")
+    if initial_load:lua.execute("Events.LoadScreenClose.Fire()")
+    lua.execute("resetCounts()")
     reset_counts = lua.globals().resetCounts
     def counts():
         return dict(lua.globals().counts)
@@ -101,7 +103,7 @@ class EventScopeTests(unittest.TestCase):
             self.assertEqual(count().get('city_scan', 0), 0)
 
     def test_known_city_does_not_read_other_participant_city(self):
-        lua, reset, count = make_fixture(50, True)
+        lua, reset, count = make_fixture(50, True, initial_load=False)
         lua.execute('other=addCity(0,2,2,2);Events.LoadScreenClose.Fire();other.bad=true;resetCounts();Events.DistrictBuildProgressChanged.Fire(0,1,0,0,0,1)')
         self.assertEqual(count()['city_scan'], 5)
         self.assertEqual(count()['building_check'], 57)
@@ -115,7 +117,7 @@ class EventScopeTests(unittest.TestCase):
         self.assertLessEqual(count().get('building_check', 0), 57)
 
     def test_cold_foreign_cleanup_unknown_then_recovery(self):
-        lua, reset, count = make_fixture(1)
+        lua, reset, count = make_fixture(1, initial_load=False)
         lua.execute("local id=P.Info('Buildings','BUILDING_SPC_DEV_LV2_HOUSING_0').Index;cities[1][1].values[id]=true;cities[1][1].bad=true;Events.LoadScreenClose.Fire()")
         self.assertTrue(lua.eval("cities[1][1].values[P.Info('Buildings','BUILDING_SPC_DEV_LV2_HOUSING_0').Index]"))
         lua.execute('cities[1][1].bad=false;Events.PlayerTurnActivated.Fire(1)')

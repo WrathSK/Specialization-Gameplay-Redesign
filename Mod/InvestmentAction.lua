@@ -1,3 +1,4 @@
+include('UnitSiteFacts')
 -- B033 bounded test-civ investment. One Gameplay request owns the entire debit.
 SPCInvestmentAction={}
 function SPCInvestmentAction.Start(P,shared)
@@ -26,7 +27,12 @@ function SPCInvestmentAction.Start(P,shared)
   assert(info and info.UnitType=='UNIT_SETTLER','NOT_A_SETTLER')
   if site then
    local f=facts(pid,c);local found=false
-   for _,d in Players[pid]:GetDistricts():Members() do P.Count('district_scan');
+   local districts
+   if SPCUnitSiteFacts then districts=SPCUnitSiteFacts.Districts(P,pid,c)
+   else
+    districts={};for _,d in Players[pid]:GetDistricts():Members()do P.Count('district_scan');districts[#districts+1]=d end
+   end
+   for _,d in ipairs(districts)do
     local dc=d:GetCity();local di=P.Info('Districts',d:GetType())
     if dc and dc:GetOwner()==pid and dc:GetID()==c:GetID() and f.first and d:GetID()==f.first.districtID
      and di and di.DistrictType==f.first.type and d:IsComplete() and u:GetX()==d:GetX() and u:GetY()==d:GetY() then found=true end

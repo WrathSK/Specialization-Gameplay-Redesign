@@ -1,0 +1,33 @@
+# B377.404 — S9e4 / R18 automatic Half experiment retirement
+
+## Current runtime and retained duties
+
+The old HalfYieldProbe.Audit traversed every player and city on load,each PlayerTurnActivated,population change and any city transfer even when every experiment flag was false. No formal ability consumes its output. Gameplay now explicitly starts it retired: it returns a visibly retired read-only compatibility object before any callback registration. HALF_ON/OFF/READ therefore only reports unavailability;it cannot enable a test,enumerate cities,read native values or write properties. This temporary compatibility shell preserves the startup sequence and prevents stale DEV requests from dereferencing a missing service. The historical standalone implementation is not started by normal runtime.
+
+All32 exact B050 building IDs already belong to the mandatory LegacyCleanup group. That actual owner validates and readbacks each withdrawal under the original Store ticket and can recover a failed group independently of Half initialization. It is not replaced with a prefix scan or an optimistic success. LegacyCleanup still proves1409 building removals+2 plot-flag writes;an unreadable Half group leaves exactly32 buildings and recovers through the original Store exit. A failed Half Start cannot disable physical cleanup. SQL definitions,the existing flag key,diagnostic contamination warnings and source file remain;no save migration is claimed. Historical saves with an active precision experiment are not silently cleared or treated as supported current-version test inputs.
+
+Physical file/import/DEV-route retirement waits for S10's reviewed deployment removal/rollback path and full Q1–Q8 migration. R18's automatic world scanning is closed here;physical package cleanup is not falsely declared complete.
+
+## Evidence and limits
+
+T01/T02/T04/T05/T08,L3. Six new cases execute the exact production entry and real Half module,including100 world cities/31 load-turn-population-transfer boundaries,1000idle publications,all three legacy DEV actions,zero callbacks/reads/writes,actual central cleanup with probe failure,group failure->same original ticket recovery,and unchanged SQL/exact catalogue. The baseline is B376/65c46ca;its3100 city visits/6200getter calls become0 while both have0building writes. These are observed native-double calls for this owner,not whole-game CPU/heap measurements.
+
+The selected original startup,physical cleanup,rollback/return and catalog checks remain. The explicitly superseded B339 assertion that no LegacyCleanup production entry exists is exercised unchanged by S8c5c.FrozenBefore on its precise old source;its current replacement verifies the one mandatory central owner. It is not a valid current-source absence requirement. The first local artifact preserved that selection mismatch as FAIL;no runtime rule or historical assertion was weakened to pass. Current catalogue assertions still run against current definitions. Historical/current Context source loading uses distinct evidence keys,so no provenance hash is overwritten.
+
+User decision:none. User testing:final U5/native effect readback. Primary next:R11 and accepted remaining S9/U4/S10. No deployment,main promotion or game launch.
+
+### Machine validation evidence
+
+- Stage/status: `S9e4` / `LOCAL_SIMULATION_PASS`; tests=54, passing=54, registered-open=0.
+- Source: base `65c46cae1965d3ffe059c55145823117895eb099`; dirty=True; input SHA256 `adcd4b19a6290e7dc8a948fd5368230c32586b7eb1b3cefc74fbbf3dcabe4318`; stable=True.
+- Source scope: Mod/DevelopmentTests/tools, including tracked and nonignored new files. The containing commit must match this input digest; parent HEAD alone is not the tested snapshot.
+- Command: `python3 DevelopmentTests/run_refactor.py --stage S9e4 --output local/refactor/S9e4-B377-final/closure.json`.
+- Environment: `{"backend": "Lua 5.1", "implementation": "CPython", "lupa": "2.8", "machine": "arm64", "platform": "Darwin", "python": "3.10.13", "python_hash_seed": "UNSET", "sqlite": "3.43.2"}`.
+- External input: `{"configured": true, "recovery": "EXTERNAL_INPUT_NOT_ARCHIVED", "sha256": {"database": "fa7578c3c2e2f19dee918b3801c627ce6edf526ce6d94e04c71a83038c2c215b"}}`.
+- Full artifact: `local/refactor/S9e4-B377-final/closure.json`; SHA256 `e04a8a1b682b71a73aa8d320e9e4d41c9eb71d3c16dfefeb0f165406fe9ab2c8`; stdout/stderr alongside it.
+- Retention: LOCAL_ONLY, not a permanent backup. A hash identifies bytes but cannot recover them. Re-running creates comparable new evidence, not the old execution.
+- Executed modules/fragments: 54; this is observed loading/completion, not full function/path coverage. Detailed mappings remain in the artifact.
+- Measurements (changed from prior artifact): `{"S8c4_actual_current_legacy_catalogue": {"SQL_modifier_links": {"CommerceConvergence": 48, "Dialogue": 168, "GreatWorkAdjacency": 1092, "GreatWorkProbe": 8, "HalfYieldProbe": 32, "Lv3Effects": 0, "Lv3Support": 0, "Lv4Percent": 0, "NetworkBoost": 1126, "PurchaseProbe": 3}, "actual_exits": 11, "buildings": 1409, "groups": {"CommerceConvergence": 48, "Dialogue": 12, "GreatWorkAdjacency": 156, "GreatWorkProbe": 2, "HalfYieldProbe": 32, "Lv3Effects": 11, "Lv3Support": 12, "Lv4Percent": 8, "NetworkBoost": 1126, "PurchaseProbe": 2}, "native_effect_cleanup": "USER_GAME_TEST_REQUIRED", "plot_flags": 2, "production_exit_migration": "NOT_YET_WIRED", "unreachable_source_exit_live_Withdraw_ids": 620}, "S8c5c_actual_production_cleanup_B356": {"building_removals": 1409, "current_legacy_exit_gates": 1, "native_effect_cleanup": "USER_GAME_TEST_REQUIRED", "new_events_timers": 0, "plot_writes": 2, "prior_legacy_exits": 11}, "S8c5c_actual_production_cleanup_WITHOUT_REPLY_SERVICE": {"building_removals": 1409, "current_legacy_exit_gates": 1, "native_effect_cleanup": "USER_GAME_TEST_REQUIRED", "new_events_timers": 0, "plot_writes": 2, "prior_legacy_exits": 11}, "S9e4_Half_production_retirement": {"after": {"city_scans": 0, "reads": 0, "writes": 0}, "baseline": "B376", "before": {"city_scans": 3100, "reads": 6200, "writes": 0}, "load_turn_population_transfer_boundaries": 31, "scope": "actual Half module using actual Gameplay startup entry; other modules not implied", "world_cities": 100}}`.
+- Limits/mocks: `{"exclusions": {"historical_unrelated_suites": "Selected program scenarios only; inherited stage regressions are named when selected. No old assertions modified."}, "native_mocks": ["synthetic owner/city/district/building methods", "explicit catalogue stub for D workload fixtures", "B270 seven real writers with native doubles"]}`; LOCAL_SIMULATION only.
+
+Static package: {"Lua51": 212, "XML": 25, "package_files": 334, "modinfo": 404}

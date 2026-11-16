@@ -1,3 +1,6 @@
+if not SPCIdentityEqual then include('IdentityEqual')end
+local sameIdentity=SPCIdentityEqual.Same
+if not SPCPropertyCell then include('PropertyCell')end
 if not SPCRestructuringModel then include('RestructuringModel') end
 if not SPCResearchTradition then include('ResearchTradition') end
 if not SPCDialogueProjectModel then include('DialogueProjectModel') end
@@ -5,17 +8,89 @@ if not SPCEngineeringStudyModel then include('EngineeringStudyModel') end
 if not SPCCommerceModel then include('CommerceModel') end
 if not SPCCapitalInvestmentModel then include('CapitalInvestmentModel') end
 if not SPCDevelopmentInvestmentModel then include('DevelopmentInvestmentModel') end
+if not SPCStoreSubrecords then include('StoreSubrecords')end
+if not SPCStoreDeferredLifecycle then include('StoreDeferredLifecycle')end
+if not SPCStoreLifecycleRecovery then include('StoreLifecycleRecovery')end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
+local function publishFact(shared,c,cause,r,investment,topic)
+ if not shared.FactChanges then return end -- isolated legacy import/tests have no automatic consumers
+ local ok,err=pcall(function()
+  local a=r and (r.current or r.origin) or {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}
+  local kinds=topic and {'HISTORY'} or {'IDENTITY','POTENTIAL','ACTIVE'}
+  shared.FactChanges.InvalidateCommitted(a.owner,a.cityID,kinds,topic)
+  shared.FactChanges.Emit({owner=a.owner,cityID=a.cityID,
+   reference=table.concat({a.owner,a.cityID,a.x,a.y,r and r.base.token or ''},':'),
+   revision=r and r.revision,cause=cause,kinds=kinds,topic=topic,
+   investment=type(investment)=='function' and investment(a) or investment})
+ end)
+ if not ok then shared.PermanentWriteObserverError=tostring(err)end
+end
+-- Fixed pre-commit return duties; all unlisted marks run in the final phase.
+local returnPhase={DistrictCompleteness=1,NetworkBridge=1,GreatWorkFacts=1,
+ InvestmentAction=2,IndustrySupport=2,Dialogue=2,GreatWorkAdjacency=2,DevelopmentInvestment=2,
+ CopyYields=2,StandardizationDiscount=2}
 local function CreateProgressionRecord(P,shared,storage)
  local M=SPCCityIdentityRead;local cp=M.Copy;local R=SPCRestructuringModel
+ local Deferred=SPCStoreDeferredLifecycle
  local d={exitStatus="NOT_CONFIRMED",exitErrors={}}
+ local isolated={} -- session-only observations; original ability bytes remain in root
+ local partialReputation -- plain bounded observation, never a copy of the saved history
+ local isolationKeys={'expeditionInsights','researchTradition','dialogue','engineering','capital','development','claimTimer','commerce','templateLifecycle'} -- fixed reviewed owner scope
+ local isolationFields={};for _,key in ipairs(isolationKeys)do isolationFields[key]=SPCStoreSubrecords.Fields(key)end
+ local root,fault,busy;local ready=false;local committing=false
+ -- A pending saved duty uses the same private API/write protection as an opaque
+ -- payload. It is evidence of skipped work, never proof of permanent corruption.
+ local lossDuties={researchTradition=true,dialogue=true,engineering=true,capital=true,development=true,claimTimer=true,commerce=true}
+ local function pendingProtection(r,failures,reputationFailure)
+  for key,e in pairs(r.deferredLifecycle and r.deferredLifecycle.entries or {})do
+   if key=='commerce'and e.scope=='REPUTATION'and not failures.commerce then
+    reputationFailure=reputationFailure or {state='ISOLATED',status='DEFERRED_LIFECYCLE',reason='CONFIRMED_OWNER_TRANSITION_PENDING'}
+   else failures[key]=failures[key]or {state='ISOLATED',status='DEFERRED_LIFECYCLE',reason='CONFIRMED_OWNER_TRANSITION_PENDING'}end
+  end
+  return failures,reputationFailure
+ end
+ local function deferredSelection(returned)
+  local wanted={}
+  for _,key in ipairs(isolationKeys)do
+   if isolated[key]and(lossDuties[key]or returned and key=='templateLifecycle')then wanted[key]=true end
+  end
+  if partialReputation and not wanted.commerce then wanted.commerce='REPUTATION'end
+  return wanted
+ end
+ local function captureDeferred(n,returned)
+  local wanted=deferredSelection(returned)
+  if n.deferredLifecycle~=nil or next(wanted)then
+   local previous=root;local turn=Game.GetCurrentGameTurn()
+   assert(root==previous and n.revision==root.revision+(returned and 0 or 1),'DEFERRED_CAPTURE_SUPERSEDED')
+   n.deferredLifecycle=Deferred[returned and 'Return'or'Loss'](n.deferredLifecycle,n,wanted,turn)
+  end
+ end
+ -- Session-only, two bounded scalar summaries; never history or age authority.
+ local timing={}
+ local function noteTiming(name,before,value)
+  local old=timing[name]
+  timing[name]={count=math.min(2147483647,(old and old.count or 0)+1),from=before.cursor,to=value.cursor,
+   reason=before.state=='UNKNOWN_INTERVAL'and '旧未知区间恢复'or '缺失可靠回合边界'}
+ end
+ function d.TimingDescribe()
+  local rows={}
+  for _,v in ipairs({{'research','科研'},{'commerce','商业'}})do local t=timing[v[1]];if t then
+   rows[#rows+1]=v[2]..' '..t.count..'次，最近T'..t.from..'→T'..t.to..'（'..t.reason..'）'
+  end end
+  return #rows>0 and ('\n计龄跳过（本次加载）：'..table.concat(rows,'；')..'；未补计，持续出现请保留日志调查。')or ''
+ end
  local exits,finished,attempts={},{},{};local exitBusy=false;local runningExit;local exitReads={}
- local returns={};function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn end
+ local exitTickets={} -- one opaque capability per registered exit/current loss; never saved
+ local autoGeneration=exitTickets;local autoCount=0;local lastSiteTurn
+ local returns={};local returnRevision=0;local returnBusy=false
+ function d.RegisterReturn(name,fn)assert(not returns[name]);returns[name]=fn;returnRevision=returnRevision+1 end
  -- Fixed latest slot per native event; session-only evidence, never identity authority.
  local eventNames={'CityTransfered','CityConquered','CityAddedToMap','CityRemovedFromMap','CityInitialized','CityBuilt'}
  local nativeEvents={};local eventSequence=0
- local root,fault,busy;local ready=false;local committing=false
+ local function errorText(why,fallback)
+  local ok,text=pcall(tostring,why);return ok and type(text)=='string'and text or fallback
+ end
  local foreignSeen=false;local transition;local transitionFault;local conquest;local foundation;local firstTransitionFault
  local function observe(name,...)
   if not root then return end
@@ -32,6 +107,19 @@ local function CreateProgressionRecord(P,shared,storage)
   if type(a)~=type(b) then return false end;if type(a)~='table' then return a==b end
   for k,v in pairs(a) do if not same(v,b[k]) then return false end end
   for k in pairs(b) do if a[k]==nil then return false end end;return true
+ end
+ -- Configuration projections never replace the storage old value or saved reputation.
+ local function commerceProjection(r)
+  if not partialReputation then return r.commerce end -- existing outer copy/comparison policy
+  local value={};for key,v in pairs(r.commerce)do if key~='reputation'then value[key]=v end end
+  return cp(value) -- do not copy an unusable archive into a disposable read projection
+ end
+ local function commerceMerge(value,r)
+  if not partialReputation then return value end
+  local out=cp(value);out.reputation=cp(r.commerce.reputation);return out
+ end
+ local function commerceTransition(r,method,...)
+  return commerceMerge(SPCCommerceModel[method](commerceProjection(r),...),r)
  end
  local function ref(c)return {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}end
  local function validTransition(proof,loss,current)
@@ -54,6 +142,12 @@ local function CreateProgressionRecord(P,shared,storage)
   for _,n in ipairs({'TOKEN','JOURNAL','FLOW','INVEST','TEMPLATES'}) do s.values[n]=c:GetProperty(M.Keys[n])end
   s.ledger=Game:GetProperty('SPC_DEV_BINDING_B013_P'..s.ref.owner)
   return cp(s)
+ end
+ -- Masking an unavailable ability must not hide this original base invariant.
+ local function unassignedTemplates(r)
+  if (r.schema==2 or r.schema==3)and r.progression=='UNASSIGNED'then
+   assert(r.templates==nil,'STORE_UNASSIGNED')
+  end
  end
  local function validate(r)
   assert(type(r)=='table' and (r.schema==1 or r.schema==2 or r.schema==3) and (r.stage=='PREPARED' or r.stage=='ACTIVE' or r.stage=='HELD_TRANSFER')
@@ -91,44 +185,8 @@ local function CreateProgressionRecord(P,shared,storage)
    else assert(r.progression=='SPECIALIZED' and kinds[r.base.specialization] and r.base.potential==1,'STORE_SCOPE')end
   end
   if r.restructuring then R.Validate(r.restructuring,r)end
-  -- B140: missing history is not proof of first initialization. The optional
-  -- extension adopts only validated existing ledgers; old ambiguous nil stays held.
-  if r.templateLifecycle then
-   local t=r.templateLifecycle
-   assert((r.base.specialization=='INDUSTRY' or r.restructuring and r.restructuring.established.INDUSTRY) and type(t)=='table' and t.version==1
-    and (t.state=='UNINITIALIZED' or t.state=='INITIALIZED') and type(t.reconcilePending)=='boolean','TEMPLATES_LIFECYCLE_INVALID')
-   assert(t.districtsKnown==nil or (t.districtsKnown==true and r.templates and r.templates.knowledgeVersion==1 and r.templates.districts),'TEMPLATES_DISTRICT_HISTORY_UNAVAILABLE')
-   assert(t.state~='UNINITIALIZED' or (r.templates==nil and t.reconcilePending),'TEMPLATES_LIFECYCLE_CONFLICT')
-  end
-  if r.researchTradition then SPCResearchTradition.Validate(r.researchTradition,r) end
-  if r.dialogueKnown~=nil or r.dialogue~=nil then
-   assert(r.dialogueKnown==true and type(r.dialogue)=='table','DIALOGUE_HISTORY_UNAVAILABLE')
-   SPCDialogueProjectModel.Validate(r.dialogue,r)
-  end
-  if r.engineeringKnown~=nil or r.engineering~=nil then
-   assert(r.engineeringKnown==true and type(r.engineering)=='table','EST_HISTORY_UNAVAILABLE')
-   SPCEngineeringStudyModel.Validate(r.engineering,r)
-  end
-  if r.commerceKnown~=nil or r.commerce~=nil then
-   assert(r.commerceKnown==true and type(r.commerce)=='table','COMMERCE_HISTORY_UNAVAILABLE')
-   SPCCommerceModel.Validate(r.commerce,r)
-  end
-  if r.capitalKnown~=nil or r.capital~=nil then
-   assert(r.capitalKnown==true and type(r.capital)=='table','CAPITAL_HISTORY_UNAVAILABLE')
-   local capital=SPCCapitalInvestmentModel.Decode(r.capital)
-   for _,c in pairs(capital.contracts)do
-    assert(c.source.token==r.base.token and c.source.owner==r.origin.owner
-     and c.source.x==r.origin.x and c.source.y==r.origin.y,'CAPITAL_SOURCE_REFERENCE_INVALID')
-   end
-  end
-  if r.developmentKnown~=nil or r.development~=nil then
-   assert(r.developmentKnown==true and type(r.development)=='table','DEVELOPMENT_HISTORY_UNAVAILABLE')
-   local value=SPCDevelopmentInvestmentModel.Decode(r.development)
-   for _,c in pairs(value.contracts)do
-    assert(c.source.token==r.base.token and c.source.owner==r.origin.owner
-     and c.source.x==r.origin.x and c.source.y==r.origin.y,'DEVELOPMENT_SOURCE_REFERENCE_INVALID')
-   end
-  end
+  if r.deferredLifecycle~=nil then Deferred.Validate(r.deferredLifecycle,r)end
+  SPCStoreSubrecords.Validate(r,'PROFESSION',same)
   if r.ownerChanges~=nil then assert(type(r.ownerChanges)=='number' and r.ownerChanges>=0 and r.ownerChanges%1==0,'CAPITAL_OWNER_HISTORY_INVALID')end
   if r.institutionTurns~=nil then
    assert(type(r.institutionTurns)=='table','INSTITUTION_HISTORY_INVALID')
@@ -137,31 +195,7 @@ local function CreateProgressionRecord(P,shared,storage)
      and turn>=r.base.first.turn and turn%1==0,'INSTITUTION_HISTORY_INVALID')
    end
   end
-  -- B212: city-owned Expedition Insight history (Design: source city x foreign civ x
-  -- category, first success only). History follows the city; never deleted here.
-  if r.expeditionInsights~=nil then
-   local e=r.expeditionInsights
-   assert(type(e)=='table' and e.version==1 and type(e.records)=='table','EXPEDITION_INSIGHTS_INVALID')
-   local n=0
-   for k,v in pairs(e.records)do
-    local civ,cat=tostring(k):match('^(CIVILIZATION_[A-Z0-9_]+):([A-Z]+)$')
-    assert(civ and (cat=='PEOPLE' or cat=='WORKS' or cat=='PLACES') and type(v)=='table' and v.civ==civ and v.category==cat
-     and type(v.turn)=='number' and v.turn>=0 and v.turn%1==0,'EXPEDITION_INSIGHT_RECORD_INVALID')
-    n=n+1
-   end
-   assert(n<=3*64,'EXPEDITION_INSIGHTS_BOUND')
-  end
-  if r.claimTimer then
-   local t=r.claimTimer
-   local restored=r.restructuring and r.restructuring.phase=='UNASSIGNED' and next(r.restructuring.candidates)~=nil
-   local candidates=restored and r.restructuring.candidates or r.acquisition and r.acquisition.legacySet
-   assert((restored or r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED')
-    and t.version==1 and t.token==r.base.token and same(t.reference,r.current or r.origin)
-    and candidates[t.kind] and t.project=='PROJECT_SPC_CLAIM_'..t.kind
-    and type(t.start)=='number' and t.start%1==0 and t.start>=(restored and r.restructuring.recaptureTurn or r.acquisition.turn)
-    and type(t.deactivated)=='boolean' and (t.stage=='ACTIVE' or t.stage=='CALLING' or t.stage=='STOPPED')
-    and type(t.reason)=='string','CLAIM_TIMER_INVALID')
-  end
+  SPCStoreSubrecords.Validate(r,'EPISODES',same)
   -- Reuse the established bounded structural validator; live pending debit is checked
   -- by EffectiveFacts and InvestmentAction, not interpreted as a fresh import.
   local inv=cp(r.investment);if inv then inv.pending=nil end
@@ -195,15 +229,110 @@ local function CreateProgressionRecord(P,shared,storage)
   return c and c:GetX()==r.x and c:GetY()==r.y or false -- old cityID may be reused elsewhere
  end
  function d.IsRecaptured(c)return root and root.current~=nil and d.Owns(c) or false end
+ -- Pure training refresh provenance. This does not grant admission or read native state.
+ local bindingObservation,bindingOwner,bindingCity,bindingX,bindingY,bindingToken,bindingChanges
+ local factObservation,factOwner,factCity,factX,factY,factToken,factIssuer,factSerial,factInput
+ local function trainingReference(a)
+  if type(a)~='table'then return nil end
+  return tostring(a.owner)..':'..tostring(a.cityID)..':'..tostring(a.x)..':'..tostring(a.y)
+ end
+ local bindingTicket
+ function d.BeginTrainingBindingObservation(pid,id,x,y,token)
+  if not ready or fault or committing or not root or not root.base then return nil end
+  local a=root.current or root.origin
+  if not a or a.owner~=pid or a.cityID~=id or a.x~=x or a.y~=y or root.base.token~=token then return nil end
+  bindingOwner,bindingCity,bindingX,bindingY,bindingToken=pid,id,x,y,token
+  bindingChanges=root.ownerChanges or 0;bindingObservation='READING';bindingTicket={};return bindingTicket
+ end
+ function d.FinishTrainingBindingObservation(ticket,ok,value)
+  if not ticket or not sameIdentity(ticket,bindingTicket)then return false end
+  bindingTicket=nil
+  local a=root and(root.current or root.origin)
+  if not ready or fault or committing or not a or not root.base or a.owner~=bindingOwner or a.cityID~=bindingCity
+   or a.x~=bindingX or a.y~=bindingY or root.base.token~=bindingToken or(root.ownerChanges or 0)~=bindingChanges then bindingObservation='UNOBSERVED';return false end
+  bindingObservation=not ok and 'UNAVAILABLE'or value==nil and 'ABSENT'or value==bindingToken and 'MATCH'or 'MISMATCH'
+  return true
+ end
+ local function binding(c,a)
+  -- Optional observation cannot mask the authoritative read, including lookup failures.
+  local observed,ticket=pcall(function()return d.BeginTrainingBindingObservation(a.owner,a.cityID,a.x,a.y,root and root.base and root.base.token)end)
+  local ok,value=pcall(c.GetProperty,c,M.Keys.TOKEN) -- the original single read
+  if observed then pcall(function()d.FinishTrainingBindingObservation(ticket,ok,value)end)end
+  if not ok then error(value,0)end -- same exception/UNKNOWN protection, never reset history
+  return value
+ end
+ function d.ObserveTrainingFacts(pid,id,x,y,token,state,issuer,serial,input)
+  local facts=shared.EffectiveFacts
+  if not facts or facts.TrainingObservationIssuer~=issuer or type(issuer)~='table'
+   or type(serial)~='number'or serial<1 or serial%1~=0 or serial>=9007199254740992 then return false end
+  if state~='FACTS_CONFIRMED'and state~='FACTS_UNKNOWN'and state~='FACTS_UNAVAILABLE'and state~='FACTS_BUDGET_UNKNOWN'then return false end
+  if input~=nil and(type(input)~='string'or #input>512)then return false end
+  if not ready or fault or committing or not root or not root.base then return false end
+  local a=root.current or root.origin
+  if not a or a.owner~=pid or a.cityID~=id or a.x~=x or a.y~=y or root.base.token~=token then return false end
+  if factIssuer==issuer and factSerial and serial<=factSerial then return false end
+  factOwner,factCity,factX,factY,factToken=pid,id,x,y,token
+  factObservation,factIssuer,factSerial,factInput=state,issuer,serial,input
+  return true
+ end
+ function d.TrainingInputStamp(pid,id,x,y)
+  if not ready or fault then return 'WORKER_UNAVAILABLE'end
+  if committing then return 'WORKER_COMMITTING'end
+  local r=root;local a=r and(r.current or r.origin)
+  if not r or type(a)~='table'or type(r.base)~='table'then return 'UNAVAILABLE'end
+  local reference=trainingReference(a)
+  if a.owner~=pid or a.cityID~=id or a.x~=x or a.y~=y then return 'REFERENCE_MISMATCH'end
+  local token=r.base.token
+  if type(token)~='string'or #token>256 then return 'IDENTITY_UNAVAILABLE'end
+  local observed=bindingOwner==a.owner and bindingCity==a.cityID and bindingX==a.x and bindingY==a.y
+   and bindingToken==token and bindingChanges==(r.ownerChanges or 0)and bindingObservation or 'UNOBSERVED'
+  local rest=r.restructuring;local inv
+  if rest then inv=rest.investment else inv=r.investment end
+  local pending=inv and inv.pending~=nil or false
+  local service=shared.EffectiveFacts
+  local facts=service and service.TrainingObservationIssuer==factIssuer and factOwner==a.owner and factCity==a.cityID
+   and factX==a.x and factY==a.y and factToken==token and factObservation or 'FACTS_UNOBSERVED'
+  local identity=rest and rest.identity or r.base.specialization
+  local potential=rest and rest.potential or r.base.potential
+  local core=table.concat({ready and 'READY'or 'NOT_READY',fault and 'FAILED'or 'READABLE',committing and 'COMMITTING'or 'IDLE',
+   tostring(r.stage),tostring(r.progression),r.referenceInvalidated and 'REMOVED'or 'PRESENT',r.completionError and 'COMPLETION_HELD'or 'COMPLETE_READABLE',
+   #token..':'..token,reference,pending and 'INVESTMENT_PENDING'or 'INVESTMENT_IDLE',rest and tostring(rest.phase)or 'NO_RESTRUCTURING',
+   tostring(identity),tostring(potential),tostring(inv and inv.revision or 1),tostring(rest and rest.serial),tostring(r.ownerChanges or 0)},'|')
+  return core..'|'..observed..'|'..facts..(facts~='FACTS_UNOBSERVED'and factInput and ':'..factInput or ''),core
+ end
+ -- Pure reference/write witness only; each ability still owns its qualification.
+ local function currentCarrierScope(pid,id,x,y,token)
+  if not ready or fault or committing or not root or root.stage~='ACTIVE'or root.referenceInvalidated or root.completionError then return nil end
+  local a=root.current or root.origin;local b=root.base
+  if not a or not b or a.owner~=pid or a.cityID~=id or a.x~=x or a.y~=y or b.token~=token then return nil end
+  return root,b
+ end
+ function d.CarrierReferenceStamp(pid,id,x,y,token)
+  local value,b=currentCarrierScope(pid,id,x,y,token);if not value then return nil end
+  local r=value.restructuring
+  return table.concat({pid,id,x,y,#token..':'..token,value.ownerChanges or 0,r and r.serial or 0,
+   r and r.phase or 'NO_RESTRUCTURING',r and r.identity or b.specialization,r and r.potential or b.potential},'|')
+ end
  local function active(pid,c)
   storage.Check()
   assert(ready and not fault and root and root.stage=='ACTIVE','PROGRESSION_HELD')
-  assert(P.IsTestPlayer(pid) and pid==root.origin.owner and same(ref(c),root.current or root.origin),'PROGRESSION_REFERENCE_CHANGED')
+  local allowed=P.IsTestPlayer(pid)and pid==root.origin.owner
+  local current=allowed and ref(c)or nil
+  assert(allowed and same(current,root.current or root.origin),'PROGRESSION_REFERENCE_CHANGED')
+  -- Protect observer lookup, callback and error publication as one non-authoritative edge.
+  -- Restricted game Lua need not expose raw helpers; never patch globals to supply them.
+  pcall(function()
+   local facts=shared.EffectiveFacts
+   if facts and facts.NoteTrainingReference then
+    local good=pcall(facts.NoteTrainingReference,c,current,root.base.token)
+    if type(facts)=='table'then facts.trainingReferenceObservationError=not good and 'TRAINING_REFERENCE_NOTE_FAILED'or nil end
+   end
+  end)
   assert(not root.referenceInvalidated,'PROGRESSION_REFERENCE_REMOVED')
   assert(not root.completionError,root.completionError)
-  if root.schema>=2 and not root.current then assert(c:GetProperty(M.Keys.TOKEN)==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
+  if root.schema>=2 and not root.current then assert(binding(c,current)==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
   if root.current then
-   local token=c:GetProperty(M.Keys.TOKEN)
+   local token=binding(c,current)
    if root.returnEvidence=='NATIVE_TRANSITION_V1' then
     assert(validTransition(root.returnProof,root.lastLoss,root.current) and (token==nil or token==root.base.token),'PROGRESSION_BINDING_CONFLICT')
    else assert(token==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
@@ -221,34 +350,125 @@ local function CreateProgressionRecord(P,shared,storage)
   return {token=root.base.token,foundationTurn=root.base.foundationTurn,
    founded=root.schema==2,owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}
  end
- function d.Base(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local b=R.Current(r);return projected(r,b,false)end
+ -- Readiness identity for the existing lawful Industry-entry reconciliation.
+ -- Separate from HistoricalReference: callers storing unit bindings keep that schema.
+ function d.IndustryHistoryStamp(c)
+  local r=active(c:GetOwner(),c)
+  return {token=r.base.token,x=r.origin.x,y=r.origin.y,ownerChanges=r.ownerChanges or 0,
+   industryEpoch=r.restructuring and r.restructuring.serial or 0}
+ end
+ function d.Base(pid,c)
+  assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local b=projected(r,R.Current(r),false)
+  return b,d.CarrierReferenceStamp(b.owner,b.cityID,b.x,b.y,b.token)
+ end
+ function d.FactStamp(pid,c)
+  assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  return table.concat({r.base.token,r.revision},':')
+ end
  function d.Investment(pid,c)assert(not committing,'IDENTITY_COMMIT_IN_PROGRESS');local r=active(pid,c);local _,i=R.Current(r);return projected(r,i,true)end
- local function save(nextValue,observeFailure)
-  assert(not fault,'STORE_WRITE_HELD');validate(nextValue)
-  local previous=root;root=cp(nextValue) -- protect target before engine callbacks
+ local noRecovery={}
+ local recoveryCapability={} -- private: no API accepts or returns it
+ local commerceExitCapability={} -- one synchronous lawful business transition,not a repair API
+ local function recoveryPermit(nextValue,permit)
+  if not permit then return noRecovery end
+  if permit.capability==commerceExitCapability then
+   assert(root==permit.previous and nextValue==permit.candidate and not committing
+    and partialReputation and not isolated.commerce,'COMMERCE_EXIT_SUPERSEDED')
+   local b=R.Current(root);local rest=nextValue.restructuring
+   assert(b.specialization=='COMMERCE'and rest and rest.phase=='REALLOCATING'and rest.previous=='COMMERCE'
+    and same(rest,permit.transition)and nextValue.revision==root.revision+1,'COMMERCE_EXIT_UNCONFIRMED')
+   R.Validate(rest,nextValue)
+   assert(nextValue.commerceKnown==true and same(nextValue.commerce,SPCCommerceModel.Exit(commerceProjection(root))),
+    'COMMERCE_EXIT_VALUE_CHANGED')
+   local evidence=root.deferredLifecycle
+   local witness=Deferred.Entry(evidence,'commerce',root)
+   if witness then
+    assert(witness.scope=='REPUTATION','COMMERCE_EXIT_DEFERRED_SCOPE_CHANGED')
+    evidence=Deferred.Clear(evidence,'commerce',witness,root)
+   end
+   assert(same(evidence,nextValue.deferredLifecycle),'COMMERCE_EXIT_DEFERRED_CHANGED')
+   return {commerce=true}
+  end
+  assert(permit.capability==recoveryCapability and root==permit.previous and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
+  assert(nextValue.revision==root.revision+1,'DEFERRED_RECOVERY_REVISION_CHANGED')
+  local evidence=root.deferredLifecycle;local released,fields={},{}
+  for _,plan in ipairs(permit.plans)do
+   assert(not released[plan.key],'DEFERRED_RECOVERY_DUPLICATE')
+   evidence=Deferred.Clear(evidence,plan.key,plan.witness,root)
+   released[plan.key]=true
+   for _,field in ipairs(isolationFields[plan.key])do fields[field]=true
+    if plan.remove[field]then assert(nextValue[field]==nil,'DEFERRED_RECOVERY_VALUE_CHANGED')
+    elseif plan.set[field]~=nil then assert(same(nextValue[field],plan.set[field]),'DEFERRED_RECOVERY_VALUE_CHANGED')
+    else assert(same(nextValue[field],root[field]),'DEFERRED_RECOVERY_VALUE_CHANGED')end
+   end
+   if plan.witness.scope=='REPUTATION'then
+    local a,b=cp(nextValue.commerce),cp(root.commerce);a.reputation=nil;b.reputation=nil
+    assert(same(a,b),'DEFERRED_RECOVERY_CONFIGURATION_CHANGED')
+   end
+  end
+  assert(next(released)and same(evidence,nextValue.deferredLifecycle),'DEFERRED_RECOVERY_CLEAR_CHANGED')
+  fields.revision=true;fields.deferredLifecycle=true
+  for k,v in pairs(root)do if not fields[k]then assert(same(v,nextValue[k]),'DEFERRED_RECOVERY_PARENT_CHANGED')end end
+  for k,v in pairs(nextValue)do if not fields[k]then assert(same(v,root[k]),'DEFERRED_RECOVERY_PARENT_CHANGED')end end
+  return released
+ end
+ local function save(nextValue,observeFailure,permit)
+  assert(not fault,'STORE_WRITE_HELD')
+  local released=recoveryPermit(nextValue,permit)
+  if root and root.deferredLifecycle then for key in pairs(root.deferredLifecycle.entries)do
+   assert(released[key]or nextValue.deferredLifecycle and nextValue.deferredLifecycle.entries[key],'DEFERRED_CLEAR_REQUIRES_RECOVERY')
+  end end
+  if next(isolated)or partialReputation then
+   -- Normalize before comparison: metatable fallback cannot forge preservation.
+   local checked=cp(nextValue);unassignedTemplates(checked)
+   for _,key in ipairs(isolationKeys)do if isolated[key]and not released[key]then
+    for _,field in ipairs(isolationFields[key])do
+     assert(root and same(checked[field],root[field]),'ISOLATED_SUBRECORD_CANNOT_CHANGE_'..field)
+     checked[field]=nil
+    end
+   end end
+   if partialReputation and not released.commerce then
+    assert(not isolated.commerce and type(checked.commerce)=='table','COMMERCE_PARTIAL_SCOPE_CHANGED')
+    assert(same(checked.commerce.reputation,root.commerce.reputation)and same(checked.commerceKnown,root.commerceKnown),'ISOLATED_REPUTATION_CANNOT_CHANGE')
+    checked.commerce.reputation=nil;checked.commerceKnown=true -- validation projection only; never saved
+   end
+   validate(checked) -- complete base and all remaining abilities remain strict
+  else validate(nextValue)end
+  local previous=root;local nextRoot=cp(nextValue)
+  local facts=shared.EffectiveFacts;local ticket=facts and facts.BeginWrite and facts.BeginWrite('STORE_COMMIT')
+  root=nextRoot -- protect target before engine callbacks, after the read barrier
   committing=true
   local ok,err=pcall(storage.Write,previous,nextValue,observeFailure)
   committing=false
-  if not ok then fault=tostring(err);error(fault)end
+  if not ok then fault=errorText(err,'STORE_WRITE_FAILED')end
+  if ticket then facts.EndWrite(ticket)end
+  if not ok then error(fault)end
+  if permit and(root~=nextRoot or fault)then
+   fault=fault or (permit.capability==commerceExitCapability and 'COMMERCE_EXIT_SUPERSEDED_DURING_WRITE'or 'DEFERRED_RECOVERY_SUPERSEDED_DURING_WRITE');error(fault)
+  end
+  for key in pairs(released)do isolated[key]=nil;if key=='commerce'then partialReputation=nil end end
  end
  -- Dialogue history shares the existing record's commit/readback and failure boundary.
  function d.DialogueState(pid,c)
-  local r=active(pid,c)
+  local r=active(pid,c);assert(not isolated.dialogue,'DIALOGUE_HISTORY_ISOLATED')
   return cp({value=r.dialogue,token=r.base.token,reference=r.current or r.origin})
  end
  function d.WriteDialogue(pid,c,old,value)
-  local r=active(pid,c);assert(same(r.dialogue,old),'DIALOGUE_HISTORY_STALE')
+  local r=active(pid,c);assert(not isolated.dialogue,'DIALOGUE_HISTORY_ISOLATED');assert(same(r.dialogue,old),'DIALOGUE_HISTORY_STALE')
   assert(value~=nil,'DIALOGUE_HISTORY_CANNOT_DELETE');SPCDialogueProjectModel.Validate(value,r)
   if same(old,value)then return end
   local n=cp(r);n.dialogueKnown=true;n.dialogue=cp(value);n.revision=n.revision+1;save(n)
+  for era in pairs(value.used or {})do if not (old and old.used and old.used[era])then
+   publishFact(shared,c,'DIALOGUE_COMMITTED',n,nil,'DIALOGUE');break
+  end end
  end
  -- B241 APIs never expose an optimistic candidate during a native setter.
  function d.CapitalState(pid,c)
-  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c);assert(not isolated.capital,'CAPITAL_HISTORY_ISOLATED')
   return {value=SPCCapitalInvestmentModel.Decode(r.capital),token=r.base.token}
  end
  function d.WriteCapital(pid,c,old,value,observeFailure)
-  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(not committing,'CAPITAL_COMMIT_IN_PROGRESS');local r=active(pid,c);assert(not isolated.capital,'CAPITAL_HISTORY_ISOLATED')
   assert(same(SPCCapitalInvestmentModel.Decode(r.capital),old),'CAPITAL_HISTORY_STALE')
   assert(value~=nil,'CAPITAL_HISTORY_CANNOT_DELETE');SPCCapitalInvestmentModel.Validate(value)
   if same(old,value)then return end
@@ -260,11 +480,11 @@ local function CreateProgressionRecord(P,shared,storage)
   return {owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=root.base.token,changes=root.ownerChanges or 0,stage=root.stage,identity=R.Current(root).specialization}
  end
  function d.DevelopmentState(pid,c)
-  assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c);assert(not isolated.development,'DEVELOPMENT_HISTORY_ISOLATED')
   return {value=SPCDevelopmentInvestmentModel.Decode(r.development),token=r.base.token}
  end
  function d.WriteDevelopment(pid,c,old,value,observeFailure)
-  assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c)
+  assert(not committing,'DEVELOPMENT_COMMIT_IN_PROGRESS');local r=active(pid,c);assert(not isolated.development,'DEVELOPMENT_HISTORY_ISOLATED')
   assert(same(SPCDevelopmentInvestmentModel.Decode(r.development),old),'DEVELOPMENT_HISTORY_STALE')
   assert(value~=nil,'DEVELOPMENT_HISTORY_CANNOT_DELETE');SPCDevelopmentInvestmentModel.Validate(value)
   if same(old,value)then return end
@@ -273,6 +493,7 @@ local function CreateProgressionRecord(P,shared,storage)
  function d.VisitDevelopment(pid,fn)
   storage.Check();assert(ready and not fault and root,'DEVELOPMENT_HISTORY_UNAVAILABLE')
   if root.origin.owner~=pid then return end
+  assert(not isolated.development,'DEVELOPMENT_HISTORY_ISOLATED')
   assert(not root.developmentKnown or root.development,'DEVELOPMENT_HISTORY_UNAVAILABLE')
   if root.development then fn(SPCDevelopmentInvestmentModel.Decode(root.development),d.CapitalReference())end
  end
@@ -281,72 +502,91 @@ local function CreateProgressionRecord(P,shared,storage)
   if r.restructuring then return cp(r.restructuring.institutions[r.restructuring.identity] or {})end
   local times=cp(r.institutionTurns or {});times[1]=r.base.first and r.base.first.turn
   -- These existing first-P4 receipts prove a historical time; never use load time.
-  if times[4]==nil and r.researchTradition then times[4]=r.researchTradition.start end
-  if times[4]==nil and r.commerce and r.commerce.reputation then times[4]=r.commerce.reputation.start end
+  if times[4]==nil and not isolated.researchTradition and r.researchTradition then times[4]=r.researchTradition.start end
+  if times[4]==nil and not isolated.commerce and not partialReputation and r.commerce and r.commerce.reputation then times[4]=r.commerce.reputation.start end
   return times
  end
  function d.VisitCapital(pid,fn)
-  if not root or root.origin.owner~=pid or not root.capital then return end
+  if not root or root.origin.owner~=pid then return end
+  assert(not isolated.capital,'CAPITAL_HISTORY_ISOLATED')
+  if not root.capital then return end
   local reference=d.CapitalReference();fn(SPCCapitalInvestmentModel.Decode(root.capital),reference)
  end
  -- Engineering owns its business schema; Store owns exact city persistence and
  -- confirmed-loss cancellation. No candidate L escapes native write callbacks.
  function d.EngineeringState(pid,c)
   assert(not committing,'EST_COMMIT_IN_PROGRESS')
-  local r=active(pid,c)
+  local r=active(pid,c);assert(not isolated.engineering,'EST_HISTORY_ISOLATED')
   return cp({value=r.engineering,token=r.base.token,reference=r.current or r.origin})
  end
  function d.WriteEngineering(pid,c,old,value)
   assert(not committing,'EST_COMMIT_IN_PROGRESS')
-  local r=active(pid,c);assert(same(r.engineering,old),'EST_HISTORY_STALE')
+  local r=active(pid,c);assert(not isolated.engineering,'EST_HISTORY_ISOLATED');assert(same(r.engineering,old),'EST_HISTORY_STALE')
   assert(value~=nil,'EST_HISTORY_CANNOT_DELETE');SPCEngineeringStudyModel.Validate(value,r)
   if same(old,value)then return end
   local n=cp(r);n.engineeringKnown=true;n.engineering=cp(value);n.revision=n.revision+1;save(n)
+  if value.L>(old and old.L or 0)then publishFact(shared,c,'ENGINEERING_COMMITTED',n,nil,'ENGINEERING')end
  end
  -- Commerce configuration shares the existing per-record failure boundary.
  -- Reputation is written only by proven P4 admission/turn/ownership transitions.
  function d.CommerceState(pid,c)
   assert(not committing,'COMMERCE_COMMIT_IN_PROGRESS')
-  local r=active(pid,c)
-  return cp({value=r.commerce,token=r.base.token,reference=r.current or r.origin})
+  local r=active(pid,c);assert(not isolated.commerce,'COMMERCE_HISTORY_ISOLATED')
+  local input=SPCCommerceModel.ReputationInput(r.commerce,r,partialReputation,
+   r.deferredLifecycle and r.deferredLifecycle.entries.commerce)
+  return cp({value=commerceProjection(r),token=r.base.token,reference=r.current or r.origin,
+   reputationKnown=not partialReputation,reputationInput=input})
  end
  function d.WriteCommerce(pid,c,old,value)
   assert(not committing,'COMMERCE_COMMIT_IN_PROGRESS')
-  local r=active(pid,c);assert(same(r.commerce,old),'COMMERCE_HISTORY_STALE')
+  local r=active(pid,c);assert(not isolated.commerce,'COMMERCE_HISTORY_ISOLATED')
+  if partialReputation then old=cp(old);value=cp(value)end
+  assert(same(commerceProjection(r),old),'COMMERCE_HISTORY_STALE')
   assert(value~=nil,'COMMERCE_HISTORY_CANNOT_DELETE');SPCCommerceModel.Validate(value,r)
-  assert(R.Current(r).specialization=='COMMERCE' and value.owner==pid,'COMMERCE_IDENTITY_CHANGED')
-  assert(same(old and old.reputation,value.reputation),'COMMERCE_REPUTATION_STORE_OWNED')
+  assert(R.Current(r).specialization=='COMMERCE'and value.owner==pid,'COMMERCE_IDENTITY_CHANGED')
+  if partialReputation then assert(value.reputation==nil,'COMMERCE_REPUTATION_ISOLATED')
+  else assert(same(old and old.reputation,value.reputation),'COMMERCE_REPUTATION_STORE_OWNED')end
   if same(old,value)then return end
-  local n=cp(r);n.commerceKnown=true;n.commerce=cp(value);n.revision=n.revision+1;save(n)
+  local n=cp(r);if not partialReputation then n.commerceKnown=true end
+  n.commerce=cp(commerceMerge(value,r));n.revision=n.revision+1;save(n)
+  publishFact(shared,c,'COMMERCE_COMMITTED',n,nil,'COMMERCE')
  end
  function d.TickCommerce(pid,turn)
-  if not ready or fault or not root or root.origin.owner~=pid or not root.commerce or root.stage~='ACTIVE' then return end
+  if not ready or fault or not root or root.origin.owner~=pid or not root.commerce or isolated.commerce or partialReputation or root.stage~='ACTIVE' then return end
   if not SPCCommerceModel.IsStandardSpeed()then return end
   local t=root.commerce.reputation
-  if R.Current(root).specialization=='COMMERCE' and (not t or t.age==40 or t.state~='COUNTING')then return end
+  if R.Current(root).specialization=='COMMERCE' and (not t or t.state=='DORMANT_OWNER' or t.state=='COUNTING'and t.age==40)then return end
   local ok,err=pcall(function()
    local a=root.current or root.origin
    local c=assert(CityManager.GetCityAt(a.x,a.y),'COMMERCE_CITY_UNKNOWN')
-   local r=active(pid,c);local value=SPCCommerceModel.Advance(r.commerce,turn,R.Current(r).specialization)
-   if not same(value,r.commerce)then local n=cp(r);n.commerce=value;n.revision=n.revision+1;save(n)end
+   local r=active(pid,c);local value,skipped=SPCCommerceModel.Advance(r.commerce,turn,R.Current(r).specialization)
+   if not same(value,r.commerce)then local n=cp(r);n.commerce=value;n.revision=n.revision+1;save(n)
+    if skipped then noteTiming('commerce',r.commerce.reputation,value.reputation)end
+    publishFact(shared,c,'REPUTATION_COMMITTED',n,nil,'COMMERCE')end
   end)
   d.commerceError=not ok and tostring(err) or nil
  end
  -- B212: Expedition Insight history shares the record's commit/readback boundary.
  function d.ExpeditionInsights(pid,c)
-  local e=active(pid,c).expeditionInsights;return cp(e and e.records or {})
+  local r=active(pid,c);assert(not isolated.expeditionInsights,'EXPEDITION_INSIGHTS_ISOLATED')
+  local e=r.expeditionInsights;return cp(e and e.records or {})
  end
  function d.AddExpeditionInsight(pid,c,civ,category,turn)
-  local r=active(pid,c);local key=tostring(civ)..':'..tostring(category)
+  local r=active(pid,c);assert(not isolated.expeditionInsights,'EXPEDITION_INSIGHTS_ISOLATED')
+  local key=tostring(civ)..':'..tostring(category)
   local e=r.expeditionInsights
   if e and e.records[key] then return false end -- first success only; repeat is idempotent
   local n=cp(r);n.expeditionInsights=n.expeditionInsights or {version=1,records={}}
   n.expeditionInsights.records[key]={civ=civ,category=category,turn=turn};n.revision=n.revision+1;save(n)
+  publishFact(shared,c,'INSIGHTS_COMMITTED',n,nil,'INSIGHTS')
   return true
  end
- function d.ReadTradition(pid,c)return cp(active(pid,c).researchTradition)end
+ function d.ReadTradition(pid,c)
+  local r=active(pid,c);assert(not isolated.researchTradition,'TRADITION_HISTORY_ISOLATED');return cp(r.researchTradition)
+ end
  function d.VisitTradition(pid,fn)
   if not ready or fault or not root or root.stage~='ACTIVE' or root.origin.owner~=pid or not root.researchTradition then return end
+  -- Locate even an isolated history: the effect owner must still process a confirmed qualification loss.
   local a=root.current or root.origin
   local c=CityManager.GetCityAt(a.x,a.y)
   if c and c:GetOwner()==pid then fn(c)end -- consumer revalidates exact persistent reference
@@ -354,14 +594,16 @@ local function CreateProgressionRecord(P,shared,storage)
  -- Only this record owns age writes. No diagnostics/effect writers participate.
  function d.TickTradition(pid,turn)
   if not ready or fault or not root or root.origin.owner~=pid or not root.researchTradition
-   or root.stage~='ACTIVE' then return end
+   or isolated.researchTradition or root.stage~='ACTIVE' then return end
   local ok,err=pcall(function()
    local a=root.current or root.origin
    local c=assert(CityManager.GetCityAt(a.x,a.y),'TRADITION_CITY_UNKNOWN')
    local r=active(pid,c)
-   local value=SPCResearchTradition.Advance(r.researchTradition,turn,R.Current(r).specialization)
+   local value,skipped=SPCResearchTradition.Advance(r.researchTradition,turn,R.Current(r).specialization)
    if not same(value,r.researchTradition) then
     local n=cp(r);n.researchTradition=value;n.revision=n.revision+1;save(n)
+    if skipped then noteTiming('research',r.researchTradition,value)end
+    publishFact(shared,c,'TRADITION_COMMITTED',n,nil,'TRADITION')
    end
   end)
   d.traditionError=not ok and tostring(err) or nil
@@ -444,17 +686,23 @@ local function CreateProgressionRecord(P,shared,storage)
    times[level]=times[level] or turn
    if level==4 then
     local q=n.restructuring and R.Qualification(n,base,target.investment,op.receipt)
-    if base.specialization=='RESEARCH' and not r.researchTradition then
+    if base.specialization=='RESEARCH' and not isolated.researchTradition and not r.researchTradition then
      n.researchTradition=SPCResearchTradition.Begin(turn,op.receipt);n.researchTradition.qualification=q
     end
-    if base.specialization=='COMMERCE' and SPCCommerceModel.IsStandardSpeed() and not (r.commerce and r.commerce.reputation) then
+    if base.specialization=='COMMERCE' and not isolated.commerce and not partialReputation and SPCCommerceModel.IsStandardSpeed() and not (r.commerce and r.commerce.reputation) then
      n.commerceKnown=true;n.commerce=SPCCommerceModel.BeginReputation(r.commerce or SPCCommerceModel.New(pid),turn,op.receipt)
      n.commerce.reputation.qualification=q
     end
    end
   end
   n.revision=n.revision+1;save(n)
-  if n.researchTradition and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(pid)end
+  if R.Count(nextValue)==R.Count(old)+1 then
+   publishFact(shared,c,'INVESTMENT_COMMITTED',n,function(a)
+    local op=old.pending;return {status='COMMITTED',cause='INVESTMENT_COMMITTED',player=pid,city=a.cityID,
+     anchor=cp(nextValue.anchor),receipt=op.receipt,unitUID=op.unitUID,revision=nextValue.revision,reference=cp(a)}
+   end)
+  end
+  if not isolated.researchTradition and n.researchTradition and shared.ResearchTraditionEffects then shared.ResearchTraditionEffects.Mark(pid)end
  end
  -- The record owns current Identity, the one-time Potential debit and the native
  -- consumption intent. Callers provide proved native references, not UI authority.
@@ -465,15 +713,21 @@ local function CreateProgressionRecord(P,shared,storage)
  -- ledger initialization, native scans or writes, including UNKNOWN templates.
  function d.InstitutionSummary(pid,c)
   assert(not committing,'PRESENTATION_COMMIT_IN_PROGRESS');local r=active(pid,c)
-  local t=r.researchTradition;local rep=r.commerce and r.commerce.reputation
-  local out={known=true,token=r.base.token,reference=cp(r.current or r.origin),revision=r.revision,
+  local t=not isolated.researchTradition and r.researchTradition;local rep=not isolated.commerce and not partialReputation and r.commerce and r.commerce.reputation
+  local out={known=true,reputationKnown=not isolated.commerce and not partialReputation,traditionKnown=not isolated.researchTradition,token=r.base.token,reference=cp(r.current or r.origin),revision=r.revision,
    tradition=t and {age=t.age,state=t.state,cursor=t.cursor} or false,
    reputation=rep and {age=rep.age,state=rep.state} or false,
-   dialogue=r.dialogue and r.dialogue.total or 0,engineering=r.engineering and r.engineering.L or 0,
-   insights=0,templatesKnown=false}
-  for _ in pairs(r.expeditionInsights and r.expeditionInsights.records or {})do out.insights=out.insights+1 end
-  local lifecycle=r.templateLifecycle
-  if r.templatesCaptured and r.templates and lifecycle and not lifecycle.reconcilePending
+   dialogueKnown=not isolated.dialogue,engineeringKnown=not isolated.engineering,
+   insightsKnown=not isolated.expeditionInsights,templatesKnown=false}
+  if out.dialogueKnown then out.dialogue=r.dialogue and r.dialogue.total or 0 end
+  if out.engineeringKnown then out.engineering=r.engineering and r.engineering.L or 0 end
+  if not out.traditionKnown then out.tradition=nil end
+  if not out.reputationKnown then out.reputation=nil end
+  if out.insightsKnown then
+   out.insights=0;for _ in pairs(r.expeditionInsights and r.expeditionInsights.records or {})do out.insights=out.insights+1 end
+  end
+  local lifecycle=not isolated.templateLifecycle and r.templateLifecycle
+  if not isolated.templateLifecycle and r.templatesCaptured and r.templates and lifecycle and not lifecycle.reconcilePending
    and shared.Standardization and shared.Standardization.ValidateHistory then
    local ok=pcall(shared.Standardization.ValidateHistory,c,r.templates)
    if ok then
@@ -491,19 +745,32 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c);return r.restructuring and cp(r.restructuring.established) or nil
  end
  local function publishIdentity(c)
-  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'Restructuring')end
+  publishFact(shared,c,'RESTRUCTURING_COMMITTED',root)
  end
  function d.BeginRestructuring(pid,c,team,receipt)
   assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c)
   if r.restructuring and r.restructuring.receipt==receipt and same(r.restructuring.team,team) then return cp(r.restructuring)end
   local f=shared.EffectiveFacts.Read(pid,c);local n=cp(r);local turn=Game.GetCurrentGameTurn()
   n.restructuring=R.Begin(r,f,team,receipt,turn)
-  if n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,turn,'NONE')end
-  if n.commerce then n.commerce=SPCCommerceModel.Exit(n.commerce);n.commerceKnown=true end
-  if n.capital then n.capital=SPCCapitalInvestmentModel.Encode(SPCCapitalInvestmentModel.ResetProtection(SPCCapitalInvestmentModel.Decode(n.capital)))end
-  if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'专业重组取消未完成对话；历史保留')end
-  if n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_IDENTITY_EXIT')end
-  n.revision=n.revision+1;save(n);publishIdentity(c);return cp(n.restructuring)
+  if not isolated.researchTradition and n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,turn,'NONE')end
+  local exitPermit
+  if not isolated.commerce and n.commerce then
+   if partialReputation and f.specialization=='COMMERCE'then
+    -- Confirmed identity exit has its own rule. Never merge the opaque old age
+    -- into the new identity,or use this capability for ordinary config/owner writes.
+    n.commerce=SPCCommerceModel.Exit(commerceProjection(r));n.commerceKnown=true
+    local witness=Deferred.Entry(r.deferredLifecycle,'commerce',r)
+    if witness then
+     assert(witness.scope=='REPUTATION','COMMERCE_EXIT_DEFERRED_SCOPE_CHANGED')
+     n.deferredLifecycle=Deferred.Clear(r.deferredLifecycle,'commerce',witness,r)
+    end
+    exitPermit={capability=commerceExitCapability,previous=r,candidate=n,transition=cp(n.restructuring)}
+   else n.commerce=commerceTransition(n,'Exit');if not partialReputation then n.commerceKnown=true end end
+  end
+  if not isolated.capital and n.capital then n.capital=SPCCapitalInvestmentModel.Encode(SPCCapitalInvestmentModel.ResetProtection(SPCCapitalInvestmentModel.Decode(n.capital)))end
+  if not isolated.dialogue and n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'专业重组取消未完成对话；历史保留')end
+  if not isolated.engineering and n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_IDENTITY_EXIT')end
+  n.revision=n.revision+1;save(n,nil,exitPermit);publishIdentity(c);return cp(n.restructuring)
  end
  function d.ConfigureRestructuring(pid,c,team,kind,first)
   assert(not committing,'REST_COMMIT_IN_PROGRESS');local r=active(pid,c)
@@ -527,8 +794,8 @@ local function CreateProgressionRecord(P,shared,storage)
   if s.phase=='SETTLED' then return false end
   assert(not Players[pid]:GetUnits():FindID(team.id),'REST_UNIT_STILL_PRESENT')
   local n=cp(r);n.restructuring=R.Finish(s)
-  if n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,Game.GetCurrentGameTurn(),n.restructuring.identity)end
-  if n.restructuring.identity=='INDUSTRY' then
+  if not isolated.researchTradition and n.researchTradition then n.researchTradition=SPCResearchTradition.Advance(n.researchTradition,Game.GetCurrentGameTurn(),n.restructuring.identity)end
+  if n.restructuring.identity=='INDUSTRY' and not isolated.templateLifecycle then
    if n.templateLifecycle then n.templateLifecycle.reconcilePending=true
    elseif n.templates then n.templateLifecycle={version=1,state='INITIALIZED',reconcilePending=true}
    elseif not s.established.INDUSTRY and r.base.specialization~='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
@@ -537,7 +804,9 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  -- Only the existing Standardization module owns interpretation of this ledger.
  function d.ReadTemplates(c)
-  local r=active(c:GetOwner(),c)
+  local r=active(c:GetOwner(),c);assert(not isolated.templateLifecycle,'TEMPLATES_HISTORY_ISOLATED')
+  -- Never replace an already saved ledger from the obsolete City property.
+  assert(r.templates==nil or r.templatesCaptured,'TEMPLATES_CAPTURE_HISTORY_UNAVAILABLE')
   if not r.templatesCaptured then
    assert(not r.current,'TEMPLATES_HISTORY_UNAVAILABLE')
    local n=cp(r);n.templates=c:GetProperty(M.Keys.TEMPLATES);n.templatesCaptured=true;n.revision=n.revision+1;save(n)
@@ -550,7 +819,7 @@ local function CreateProgressionRecord(P,shared,storage)
   return cp(root.templates),false
  end
  function d.WriteTemplates(c,old,value)
-  local r=active(c:GetOwner(),c)
+  local r=active(c:GetOwner(),c);assert(not isolated.templateLifecycle,'TEMPLATES_HISTORY_ISOLATED')
   local current=d.ReadTemplates(c) -- same missing-history guard for every writer
   r=active(c:GetOwner(),c) -- a legacy capture may have replaced the record
   assert(R.Current(r).specialization=='INDUSTRY' and r.templatesCaptured and same(current,old),'TEMPLATES_STALE')
@@ -559,6 +828,7 @@ local function CreateProgressionRecord(P,shared,storage)
   local n=cp(root);n.templates=cp(value)
   n.templateLifecycle={version=1,state='INITIALIZED',reconcilePending=false};if value.districts then n.templateLifecycle.districtsKnown=true end
   n.revision=n.revision+1;save(n) -- ledger and initialization acknowledgement share one city-record write
+  publishFact(shared,c,'TEMPLATES_COMMITTED',n,nil,'TEMPLATES')
  end
  -- Fresh records use the same fact shape but never create legacy City journals.
  function d.Found(c,proof,binding)
@@ -575,9 +845,18 @@ local function CreateProgressionRecord(P,shared,storage)
    base={schema=1,kind='DEV_FOUNDATION_JOURNAL',owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,token=c:GetProperty(M.Keys.TOKEN),
     foundationTurn=proof.turn,revision=0,health='TRACKING',specialization='NONE',potential=0},templatesCaptured=true})
  end
- function d.HoldCompletion(reason)
+ function d.HoldCompletion(reason,completionOwner,completionCity)
   if not ready or fault or not root or root.schema<2 or root.progression~='UNASSIGNED' or root.completionError or root.stage~='ACTIVE' or root.referenceInvalidated then return end
-  local n=cp(root);n.completionError=reason;n.revision=n.revision+1;save(n)
+  if completionOwner~=nil then
+   local a=root.current or root.origin
+   if a.owner~=completionOwner or completionCity~=nil and a.cityID~=completionCity then return end
+   -- Construction cannot change an already fixed Claim candidate set. Generic
+   -- admission failure (no completionOwner) still holds an incomplete foundation.
+   if root.restructuring then
+    if root.restructuring.phase~='UNASSIGNED' or next(root.restructuring.candidates)~=nil then return end
+   elseif root.acquisition and root.acquisition.mode=='LEGACY_CLAIM' then return end
+  end
+  local n=cp(root);n.completionError=reason;n.revision=n.revision+1;save(n);return true
  end
  function d.Complete(pid,c,e)
   if root and root.restructuring then
@@ -585,7 +864,7 @@ local function CreateProgressionRecord(P,shared,storage)
    if s.phase=='UNASSIGNED' and next(s.candidates)==nil then
     local r=active(pid,c);assert(same(e.reference,r.current or r.origin),'COMPLETION_REFERENCE_CHANGED')
     local n=cp(r);n.restructuring=R.Claim(s,e.specialization,{districtID=e.districtID,type=e.type,turn=e.turn})
-    if e.specialization=='INDUSTRY' then
+    if e.specialization=='INDUSTRY' and not isolated.templateLifecycle then
      if n.templateLifecycle then n.templateLifecycle.reconcilePending=true
      elseif not s.established.INDUSTRY and r.base.specialization~='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
     end
@@ -599,15 +878,15 @@ local function CreateProgressionRecord(P,shared,storage)
   if root.stage~='ACTIVE' or root.referenceInvalidated then return end
   local r=active(pid,c);assert(same(e.reference,r.current or r.origin),'COMPLETION_REFERENCE_CHANGED')
   local n=cp(r);n.progression='SPECIALIZED';n.base.specialization=e.specialization;n.base.potential=1
-  if e.specialization=='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
+  if e.specialization=='INDUSTRY' and not isolated.templateLifecycle then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
   if n.current then n.currentFirst=cp(n.base.first)end
   n.revision=n.revision+1;save(n)
-  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'CityProgressionStore.lua')end
+  publishFact(shared,c,'IDENTITY_COMMITTED',n)
  end
  -- Claim state belongs to the existing city record, not UI or a second property.
  function d.ClaimState(pid,c)
-  local r=active(pid,c)
+  local r=active(pid,c);assert(not isolated.claimTimer,'CLAIM_TIMER_ISOLATED')
   if r.restructuring then
    local s=r.restructuring
    if s.phase~='UNASSIGNED' or next(s.candidates)==nil then return nil end
@@ -618,20 +897,20 @@ local function CreateProgressionRecord(P,shared,storage)
    eligible=r.progression=='UNASSIGNED',timer=r.claimTimer,receipt=r.claim,revision=r.revision})
  end
  function d.WriteClaimTimer(pid,c,old,value)
-  local r=active(pid,c)
+  local r=active(pid,c);assert(not isolated.claimTimer,'CLAIM_TIMER_ISOLATED')
   assert((r.restructuring and r.restructuring.phase=='UNASSIGNED' and next(r.restructuring.candidates)~=nil) or (not r.restructuring and r.schema==3 and r.acquisition.mode=='LEGACY_CLAIM' and r.progression=='UNASSIGNED'),'CLAIM_INELIGIBLE')
   assert(same(r.claimTimer,old),'CLAIM_TIMER_STALE')
   if same(old,value) then return end
   local n=cp(r);n.claimTimer=cp(value);n.revision=n.revision+1;save(n)
  end
  function d.ClaimComplete(pid,c,e)
-  local r=active(pid,c)
+  local r=active(pid,c);assert(not isolated.claimTimer,'CLAIM_TIMER_ISOLATED')
   if r.restructuring then
    local s=r.restructuring;if s.phase=='SETTLED' then return false end
    assert(s.phase=='UNASSIGNED' and s.candidates[e.kind] and e.token==r.base.token and same(e.reference,r.current or r.origin)
     and e.project=='PROJECT_SPC_CLAIM_'..e.kind and e.turn==Game.GetCurrentGameTurn(),'REST_CLAIM_PROOF')
    local n=cp(r);n.restructuring=R.Claim(s,e.kind,{districtID=e.districtID,type=e.type,turn=e.turn});n.claimTimer=nil
-   if e.kind=='INDUSTRY' then
+   if e.kind=='INDUSTRY' and not isolated.templateLifecycle then
     if n.templateLifecycle then n.templateLifecycle.reconcilePending=true
     elseif not s.established.INDUSTRY and r.base.specialization~='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
    end
@@ -643,13 +922,13 @@ local function CreateProgressionRecord(P,shared,storage)
    and e.project=='PROJECT_SPC_CLAIM_'..e.kind and e.turn==Game.GetCurrentGameTurn(),'CLAIM_PROOF_INVALID')
   assert(type(e.districtID)=='number' and type(e.type)=='string','CLAIM_DISTRICT_INVALID')
   local n=cp(r);n.progression='SPECIALIZED';n.base.specialization=e.kind;n.base.potential=1
-  if e.kind=='INDUSTRY' then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
+  if e.kind=='INDUSTRY' and not isolated.templateLifecycle then n.templateLifecycle={version=1,state='UNINITIALIZED',reconcilePending=true}end
   n.base.first={districtID=e.districtID,type=e.type,turn=e.turn};n.base.revision=n.base.revision+1
   if n.current then n.currentFirst=cp(n.base.first)end
   -- Receipt retains the historical record anchor; active requests use current reference.
   n.claim={version=1,token=e.token,reference=cp(r.origin),kind=e.kind,project=e.project,turn=e.turn}
   n.claimTimer=nil;n.revision=n.revision+1;save(n)
-  if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'ClaimProjects.lua')end
+  publishFact(shared,c,'CLAIM_COMMITTED',n)
   return true
  end
  local function activate(c)
@@ -683,9 +962,17 @@ local function CreateProgressionRecord(P,shared,storage)
   if not ok then return '进度记录已保存；当前事实未确认：'..tostring(f)end
   if root.restructuring then
    local s=root.restructuring;local names={RESEARCH='科研',CULTURE='文化',INDUSTRY='工业',COMMERCE='商业',NONE='无当前专业'}
-   local phase={REALLOCATING='资产重组中',CONSUMING='配置确认中；结果不明时不重复操作',SETTLED='资产配置完成',UNASSIGNED='重组已因易主终止；等待重新认领'}
+   local phase={REALLOCATING='资产重组中',CONSUMING='配置确认中；结果不明时不重复操作',SETTLED='新专业身份已提交',UNASSIGNED='重组已因易主终止；等待重新认领'}
+   local cleanupUnconfirmed
+   local service=shared.Restructuring
+   if s.phase=='SETTLED' and service and service.ConfigurationCleanupError then
+    local a=root.current or root.origin
+    local stamp=d.CarrierReferenceStamp(a.owner,a.cityID,a.x,a.y,root.base.token)
+    cleanupUnconfirmed=service.ConfigurationCleanupError(a.x,a.y,stamp)
+   end
    return P.VERSION..' | '..(phase[s.phase] or s.phase)..'\n'..(names[f.specialization] or f.specialization)
     ..' | Potential '..f.potential..' | ACTIVE '..tostring(f.active)
+    ..(cleanupUnconfirmed and '\n混乱减益撤除未确认。' or '')
     ..((s.phase=='REALLOCATING' or s.phase=='CONSUMING') and ('\n清算前 '..s.before..' 级 → 保留 '..s.potential..' 级；尚需 '..math.max(0,s.started+5-Game.GetCurrentGameTurn())..' 个完整回合。\n期满不会自动配置；同一团队须前往同城另一个合格专业区域。') or '')
     ..'\n各专业历史分别保留；历史机构不代表当前能力生效。'
   end
@@ -706,6 +993,28 @@ local function CreateProgressionRecord(P,shared,storage)
   return P.VERSION..' | 城市进度保存\n'..f.specialization..' | Potential '..f.potential..' | ACTIVE '..tostring(f.active)
    ..'\n已完成投资：'..f.investmentCount..' | 待完成事务：'..tostring(f.investmentPending)
    ..'\n来源：独立Game记录；旧City账本冻结。\nACTIVE依当前事实；Network等待当前路线；回滚使用迁移前存档。'
+ end
+ -- Existing observations only: no revalidation or repair during presentation.
+ local describeProgress=d.Describe
+ function d.Describe(pid,c)
+  local text=describeProgress(pid,c);local protected,recovered={},{}
+  local names={expeditionInsights='考察见闻',researchTradition='学术传统',dialogue='时代对话',engineering='工程研习',capital='资本投资',development='发展投资',claimTimer='认领计时',commerce='商业化',templateLifecycle='工业模板'}
+  for _,key in ipairs(isolationKeys)do if isolated[key]then
+   protected[#protected+1]=names[key]..(isolated[key].status=='CHECK_UNKNOWN'and '（暂时无法验证）'or '')
+  end end
+  if partialReputation then protected[#protected+1]='商业信誉'..(partialReputation.status=='CHECK_UNKNOWN'and '（暂时无法验证）'or '')end
+  for _,change in ipairs(d.subrecordRecovery and d.subrecordRecovery.fields or {})do
+   local name=names[change.key]or change.field
+   local found=false;for _,old in ipairs(recovered)do if old==name then found=true end end
+   if not found then recovered[#recovered+1]=name end
+  end
+  local deferred={}
+  for _,key in ipairs(isolationKeys)do if root and root.deferredLifecycle and root.deferredLifecycle.entries[key]then deferred[#deferred+1]=names[key]end end
+  if #deferred>0 then text=text..'\n易主处理待恢复：'..table.concat(deferred,'、')..'。保留已确认边界和原记录；等待可靠加载事实，不按回合重试。'end
+  if d.deferredRecovery then text=text..'\n已恢复遗漏的易主处理；历史保留，未重放金币或完成操作。'end
+  if #protected>0 then text=text..'\n记录不可用（已保护）：'..table.concat(protected,'、')..'。原记录完整保留；未隔离能力独立核验，不据此清零或重复结算。'end
+  if #recovered>0 then text=text..'\n已验证修复：'..table.concat(recovered,'、')..'。仅恢复已被保存凭据证明的元数据；未重放完成或金币操作。'end
+  return text
  end
  -- On-demand evidence only. No state writes, refresh, requests or effect application.
  function d.NativeDescribe(pid)
@@ -790,15 +1099,120 @@ local function CreateProgressionRecord(P,shared,storage)
   local report=ok and out or ('E2诊断 UNKNOWN：'..tostring(out))
   print('[SPC][E2_NATIVE] '..report);return report
  end
+ local recovering=false
+ local function recoverDeferred(cause)
+  if recovering or not ready or fault or committing or not root or not root.deferredLifecycle then return end
+  recovering=true
+  local ok,why=pcall(function()
+   storage.Check();local previous=root
+   local turn=Game.GetCurrentGameTurn();assert(root==previous and not fault and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
+   local city
+   if previous.stage=='ACTIVE'then
+    city=assert(CityManager.GetCityAt(previous.origin.x,previous.origin.y),'DEFERRED_RECOVERY_CITY_UNAVAILABLE')
+    active(previous.origin.owner,city) -- original exact live reference/binding gate
+    assert(root==previous,'DEFERRED_RECOVERY_SUPERSEDED')
+   end
+   local candidate=previous;local plans,errors={},{}
+   for _,key in ipairs(isolationKeys)do
+    local witness=Deferred.Entry(previous.deferredLifecycle,key,previous)
+    if witness then
+     local good,value=pcall(function()
+      assert(root==previous and not fault and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
+      local n=cp(candidate);local plan=SPCStoreLifecycleRecovery.Plan(n,key,witness,turn)
+      for field,v in pairs(plan.set)do n[field]=v end
+      for field in pairs(plan.remove)do n[field]=nil end
+      n.deferredLifecycle=plan.nextEvidence
+      if plan.requiresTemplateValidation then
+       assert(city and shared.Standardization and shared.Standardization.ValidateHistory,'RETURN_TEMPLATE_VALIDATOR_UNAVAILABLE')
+       shared.Standardization.ValidateHistory(city,n.templates)
+      end
+      assert(SPCStoreSubrecords.CheckOne(key,n,same).status=='PASS','DEFERRED_RECOVERY_PAYLOAD_UNAVAILABLE')
+      assert(root==previous and not fault and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
+      return {candidate=n,plan=plan}
+     end)
+     if good then candidate=value.candidate;plans[#plans+1]=value.plan
+     else errors[key]=errorText(value,'DEFERRED_RECOVERY_UNKNOWN'):sub(1,180)end
+    end
+   end
+   d.deferredRecoveryErrors=next(errors)and errors or nil
+   if #plans==0 then return end
+   assert(root==previous and not fault and not committing,'DEFERRED_RECOVERY_SUPERSEDED')
+   candidate.revision=previous.revision+1
+   save(candidate,nil,{capability=recoveryCapability,previous=previous,plans=plans})
+   local names={};for _,plan in ipairs(plans)do names[#names+1]=plan.key end
+   d.deferredRecovery={cause=cause,keys=names,revision=candidate.revision}
+   if candidate.stage=='ACTIVE'then for _,plan in ipairs(plans)do if plan.topic then
+    publishFact(shared,city,'DEFERRED_LIFECYCLE_RECOVERED',candidate,nil,plan.topic)
+   end end end
+  end)
+  recovering=false
+  if not ok then d.deferredRecoveryError=errorText(why,'DEFERRED_RECOVERY_UNKNOWN'):sub(1,180)
+   if fault and cause=='RESTORE'then error(fault)end -- load faults stay private; native callbacks never escape
+  else d.deferredRecoveryError=nil end
+ end
  local function restore()
   local ok,err=pcall(function()
-   root=storage.Read();if root then validate(root)end;ready=true
+   root=storage.Read()
+   if root then
+    local valid,why=pcall(validate,root)
+    if not valid or SPCStoreSubrecords.NeedsTemplateMetadata(root)or SPCStoreSubrecords.NeedsCompletedClaimCleanup(root)then
+     -- First construct redundant known markers without publishing them. Only
+     -- independently valid owners may commit those markers after the full proof.
+     local candidate,changes=SPCStoreSubrecords.KnownCandidate(root,cp)
+     local templateCandidate,templateFields=SPCStoreSubrecords.TemplateMetadataCandidate(candidate or root,cp)
+     if templateCandidate then candidate=templateCandidate end
+     local claimCandidate,claimFields=SPCStoreSubrecords.CompletedClaimCandidate(candidate or root,cp)
+     if claimCandidate then candidate=claimCandidate end
+     local checked=cp(candidate or root);unassignedTemplates(checked);local failures={};local reputationFailure
+     for _,key in ipairs(isolationKeys)do
+      local check=SPCStoreSubrecords.CheckOne(key,checked,same)
+      if check.status=='CHECK_FAILED'or check.status=='CHECK_UNKNOWN'then
+       local configuration=key=='commerce'and pcall(SPCCommerceModel.ValidateConfiguration,checked.commerce,checked)
+       local repOK,repWhy=true
+       if configuration then repOK,repWhy=pcall(SPCCommerceModel.ValidateReputation,checked.commerce.reputation,checked)end
+       if configuration and not repOK then
+        reputationFailure={state='ISOLATED',status=check.status,reason=errorText(repWhy,'COMMERCE_REPUTATION_UNKNOWN'):sub(1,180)}
+        checked.commerce.reputation=nil;checked.commerceKnown=true -- no mutation of root/candidate
+       else
+        for _,field in ipairs(isolationFields[key])do checked[field]=nil end
+        failures[key]={state='ISOLATED',status=check.status,reason=check.reason}
+       end
+      end
+     end
+     local parentOK=pcall(validate,checked);assert(parentOK,why)
+     isolated,partialReputation=pendingProtection(root,failures,reputationFailure) -- observations, never irrecoverability.
+     local repaired,fields;local templateApplied,claimApplied=false,false
+     for _,change in ipairs(changes or {})do if not isolated[change.key]and not(change.key=='commerce'and partialReputation)then
+      repaired=repaired or cp(root);fields=fields or {}
+      repaired[change.field]=true;fields[#fields+1]=change
+     end end
+     if templateFields and not isolated.templateLifecycle then
+      templateApplied=true
+      repaired=repaired or cp(root);fields=fields or {}
+      repaired.templatesCaptured=templateCandidate.templatesCaptured;repaired.templateLifecycle=cp(templateCandidate.templateLifecycle)
+      for _,field in ipairs(templateFields)do fields[#fields+1]=field end
+     end
+     if claimFields and not isolated.claimTimer then
+      repaired=repaired or cp(root);fields=fields or {};repaired.claimTimer=nil;claimApplied=true
+      for _,field in ipairs(claimFields)do fields[#fields+1]=field end
+     end
+     if repaired then
+      repaired.revision=root.revision+1
+      assert(repaired.revision>root.revision,'SUBRECORD_RECOVERY_REVISION_UNAVAILABLE')
+      save(repaired) -- complete remaining-parent validation, exact native CAS/readback
+      d.subrecordRecovery={kind=claimApplied and(templateApplied and 'PROVEN_SUBRECORD_REBUILT'or'COMPLETED_CLAIM_TIMER_CLEARED')or templateApplied and 'PROVEN_METADATA_REBUILT'or'KNOWN_FLAGS_REBUILT',fields=fields,revision=repaired.revision}
+     end
+    end
+   end
+   if root and root.deferredLifecycle then isolated,partialReputation=pendingProtection(root,isolated,partialReputation)end
+   ready=true
+   recoverDeferred('RESTORE')
   end)
-  if not ok then fault=tostring(err);ready=false end
+  if not ok then fault=errorText(err,'STORE_RESTORE_FAILED');ready=false end
  end
  function d.Ready()return ready and not fault end
  function d.Status()return cp(d and {exitStatus=d.exitStatus,exitErrors=d.exitErrors,observation=d.observation,
-  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,lastTransfer=d.lastTransfer})end
+  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,returnErrors=d.returnErrors,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery,subrecordIsolation=isolated,reputationIsolation=partialReputation,deferredRecovery=d.deferredRecovery,deferredRecoveryErrors=d.deferredRecoveryErrors,deferredRecoveryError=d.deferredRecoveryError})end
  restore() -- before Binding/Journal/Flow/Investment register load callbacks
  -- No absence/failed getter is confirmation. A matched native ownership event is required.
  function d.IsExitTarget(c,loss)
@@ -828,25 +1242,118 @@ local function CreateProgressionRecord(P,shared,storage)
   end end
   if runningExit then exitReads[runningExit]={checked=#rows,removed=found}end
  end
+ local function summarizeExit()
+  local count=0;local pending=false
+  for name in pairs(exits)do count=count+1;if not finished[name]then pending=true end end
+  d.exitStatus=count==0 and 'NO_EXIT_MODULES'or pending and 'PARTIAL_HELD'or'WITHDRAWN'
+ end
+ local function currentExit(generation,loss)
+  local safe,allowed=pcall(storage.CanExit)
+  return safe and allowed==true and not committing and ready and not fault and exitTickets==generation
+   and root and root.stage=='HELD_TRANSFER'and same(root.loss,loss)
+ end
+ local function confirmedExit(generation,c,loss)
+  if not currentExit(generation,loss)then return false end
+  local matched=d.IsExitTarget(c,loss) -- native reference getters may reenter
+  return matched and currentExit(generation,loss)
+ end
+ function d.IsExitCurrent(name,c,loss,ticket,current)
+  if committing or type(name)~='string'or not exits[name]or ticket==nil or not sameIdentity(exitTickets[name],ticket)then return false end
+  local generation=exitTickets
+  if not confirmedExit(generation,c,loss)then return false end
+  if current then local ok,value=pcall(current);if not ok or value~=true then return false end end
+  if not currentExit(generation,loss)then return false end
+  return true
+ end
+ function d.ExitCompleted(name,c,loss,ticket,current)
+  if not d.IsExitCurrent(name,c,loss,ticket,current)then return false end
+  -- The current callback must return successfully before it can finish. An ACK
+  -- inside it cannot let reentrant recapture cross the unfinished cleanup barrier.
+  if runningExit~=name then finished[name]=true;d.exitErrors[name]=nil;summarizeExit()end
+  return true
+ end
+ local function syncExitRetry()
+  if autoGeneration~=exitTickets then autoGeneration=exitTickets;autoCount=0;lastSiteTurn=nil end
+ end
+ local function validExitTurn(turn)return type(turn)=='number'and turn>=0 and turn<2147483648 and turn%1==0 end
+ function d.HeldExitPending(pid,turn)
+  if exitBusy or not validExitTurn(turn)or not root or not root.loss or root.origin.owner~=pid
+   or not currentExit(exitTickets,root.loss)then return false end
+  syncExitRetry()
+  if autoCount>=3 or type(lastSiteTurn)=='number'and turn<=lastSiteTurn then return false end
+  for name in pairs(exits)do if not finished[name]and(attempts[name]or 0)<3 then return true end end
+  return false
+ end
+ function d.RetryHeldExit(pid,turn)
+  if not d.HeldExitPending(pid,turn)then return false end
+  if lastSiteTurn==false then lastSiteTurn=turn;return false end -- reliable baseline only
+  autoCount=autoCount+1;lastSiteTurn=turn -- consume before any reentrant native getter
+  d.ExitConfirmed();return true
+ end
  function d.ExitConfirmed()
-  if exitBusy or not ready or fault or not root or not root.loss then return end
-  local ok,c=pcall(CityManager.GetCityAt,root.origin.x,root.origin.y)
-  if not ok or not c or not d.IsExitTarget(c,root.loss) then d.exitStatus='TARGET_UNAVAILABLE';return end
-  foreignSeen=true
-  exitBusy=true;local names={};for name in pairs(exits)do names[#names+1]=name end
-  table.sort(names,function(a,b)if a=='NetworkBridge' then return b~='NetworkBridge' end;if b=='NetworkBridge' then return false end;return a<b end)
-  for _,name in ipairs(names)do if not finished[name] and (attempts[name] or 0)<3 then
-   attempts[name]=(attempts[name] or 0)+1
-   runningExit=name;local good,err=pcall(exits[name],c,cp(root.loss));runningExit=nil
-   if good then finished[name]=true;d.exitErrors[name]=nil else d.exitErrors[name]=tostring(err)end
-  end end
-  d.exitStatus=#names>0 and 'WITHDRAWN' or 'NO_EXIT_MODULES'
-  for _,name in ipairs(names)do if not finished[name] then d.exitStatus='PARTIAL_HELD' end end
-  exitBusy=false
+  if exitBusy or committing or not ready or fault or not root or not root.loss then return end
+  local generation=exitTickets;local loss=cp(root.loss)
+  if not currentExit(generation,loss)then return end
+  exitBusy=true -- before the first native getter, including initial site lookup
+  local good,why=pcall(function()
+   syncExitRetry()
+   local clockOK,turn=pcall(Game.GetCurrentGameTurn)
+   if not currentExit(generation,loss)then return end
+   if clockOK and validExitTurn(turn)then lastSiteTurn=math.max(type(lastSiteTurn)=='number'and lastSiteTurn or turn,turn)
+   elseif lastSiteTurn==nil then lastSiteTurn=false end
+   local ok,c=pcall(CityManager.GetCityAt,root.origin.x,root.origin.y)
+   if not currentExit(generation,loss)then return end
+   local matched=ok and c and confirmedExit(generation,c,loss)
+   if not currentExit(generation,loss)then return end
+   if not matched then d.exitStatus='TARGET_UNAVAILABLE';return end
+   foreignSeen=true
+   local names={};for name in pairs(exits)do names[#names+1]=name end
+   table.sort(names,function(a,b)if a=='NetworkBridge'then return b~='NetworkBridge'end;if b=='NetworkBridge'then return false end;return a<b end)
+   for _,name in ipairs(names)do
+    if not confirmedExit(generation,c,loss)then return end
+    if not finished[name]and(attempts[name]or 0)<3 then
+     exitTickets[name]=exitTickets[name]or{};local ticket=exitTickets[name]
+     attempts[name]=(attempts[name]or 0)+1
+     runningExit=name;local done,err=pcall(exits[name],c,cp(loss),ticket);runningExit=nil
+     if not confirmedExit(generation,c,loss)then return end
+     if done and err~=false then finished[name]=true;d.exitErrors[name]=nil
+     else d.exitErrors[name]=done and 'EXIT_CLEANUP_UNCONFIRMED'or errorText(err,'EXIT_CLEANUP_FAILED')end
+    end
+   end
+   if not currentExit(generation,loss)then return end
+   d.exitErrors.RUNTIME=nil;summarizeExit() -- includes registrations made during callbacks
+  end)
+  runningExit=nil;exitBusy=false -- diagnostic/observer failures cannot latch the owner
+  if not good and currentExit(generation,loss)then
+   d.exitErrors.RUNTIME=errorText(why,'EXIT_RUNTIME_FAILED');d.exitStatus='PARTIAL_HELD'
+  end
+ end
+ local function returnCurrent(generation,revision,loss,c,current,registration)
+  if not currentExit(generation,loss)or root.revision~=revision or returnRevision~=registration then return false end
+  local ok,observed=pcall(ref,c)
+  return ok and same(observed,current)and currentExit(generation,loss)and root.revision==revision and returnRevision==registration
+ end
+ local function runReturns(generation,revision,loss,c,current,registration)
+  local names={};for name in pairs(returns)do names[#names+1]=name end
+  table.sort(names,function(a,b)
+   local ap,bp=returnPhase[a]or 3,returnPhase[b]or 3
+   if ap~=bp then return ap<bp end;return a<b
+  end)
+  local errors={};d.returnErrors=errors
+  for _,name in ipairs(names)do
+   assert(returnCurrent(generation,revision,loss,c,current,registration),'RETURN_CONTEXT_CHANGED')
+   local ok,value=pcall(returns[name],loss.origin.owner,c)
+   if not ok or value==false then errors[name]=ok and 'RETURN_CALLBACK_UNCONFIRMED'or errorText(value,'RETURN_CALLBACK_FAILED'):sub(1,180)end
+  end
+  assert(returnCurrent(generation,revision,loss,c,current,registration),'RETURN_CONTEXT_CHANGED')
+  assert(returnRevision==registration,'RETURN_REGISTRATION_CHANGED')
+  local failed={};for name in pairs(errors)do failed[#failed+1]=name end;table.sort(failed)
+  assert(#failed==0,'RETURN_CALLBACK_FAILED '..table.concat(failed,','))
  end
  local function recapture(c,current,newOwner,newID,oldOwner)
   if not root.loss or root.stage~='HELD_TRANSFER' or newOwner~=root.origin.owner
    or oldOwner~=root.loss.target.owner or newID~=current.cityID or current.owner~=newOwner then return false end
+  local generation,revision,loss,registration=exitTickets,root.revision,cp(root.loss),returnRevision
   d.returnCandidate=current.owner..'/'..current.cityID..' from '..tostring(oldOwner)
   d.returnRejection=nil -- latest matched attempt; diagnostics only
   assert(P.IsTestPlayer(newOwner),'RETURN_PLAYER_UNCONFIRMED')
@@ -882,7 +1389,7 @@ local function CreateProgressionRecord(P,shared,storage)
   assert(first,'RETURN_DISTRICT_UNAVAILABLE')
   end -- P0 has no historical professional district to rebind.
   local n=cp(root)
-  if R.Current(n).specialization=='INDUSTRY' then
+  if R.Current(n).specialization=='INDUSTRY' and not isolated.templateLifecycle then
    -- Preserve reliable city experience; current eligible buildings are unioned
    -- by Standardization only after the authoritative return is committed.
    if n.templatesCaptured and n.templates then
@@ -916,15 +1423,25 @@ local function CreateProgressionRecord(P,shared,storage)
    end
   end
   -- Reset samples/quotes before making facts available. No callback applies yields.
-  for _,fn in pairs(returns)do fn(root.origin.owner,c)end
-  if n.commerce then n.commerce=SPCCommerceModel.Resume(n.commerce,newOwner,Game.GetCurrentGameTurn())end
+  runReturns(generation,revision,loss,c,current,registration)
+  if not isolated.commerce and n.commerce then n.commerce=commerceTransition(n,'Resume',newOwner,Game.GetCurrentGameTurn())end
+  local resumedTradition=false
+  if not isolated.researchTradition and n.researchTradition then
+   n.researchTradition=SPCResearchTradition.ResumeOwner(n.researchTradition,Game.GetCurrentGameTurn(),R.Current(n).specialization)
+   resumedTradition=true
+  end
   n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence=proof and 'NATIVE_TRANSITION_V1' or 'CityTransfered+original_binding';n.returnProof=proof;n.referenceInvalidated=nil
+  captureDeferred(n,true)
+  assert(returnCurrent(generation,revision,loss,c,current,registration),'RETURN_CONTEXT_CHANGED')
   n.revision=n.revision+1;save(n)
-  finished={};attempts={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false;d.exitErrors={};d.exitStatus='NOT_CONFIRMED';d.returnStatus='CONFIRMED_CURRENT_FACTS_REQUIRED'
+  finished={};attempts={};exitTickets={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false;d.exitErrors={};d.exitStatus='NOT_CONFIRMED';d.returnStatus='CONFIRMED_CURRENT_FACTS_REQUIRED'
+  if resumedTradition then publishFact(shared,c,'TRADITION_COMMITTED',n,nil,'TRADITION')end
   return true
  end
- local function reconcile(newOwner,newID,oldOwner)
+ local function reconcile(newOwner,newID,oldOwner,returnGuarded)
   if not ready or fault or not root then return end
+  local returning=root.loss and root.stage=='HELD_TRANSFER'and newOwner==root.origin.owner and oldOwner==root.loss.target.owner
+  if returning and not returnGuarded then if returnBusy then return end;returnBusy=true end
   if newOwner~=nil then d.lastTransfer=tostring(oldOwner)..' → '..tostring(newOwner)..'/'..tostring(newID)end
   local ok,err=pcall(function()
    local c=CityManager.GetCityAt(root.origin.x,root.origin.y)
@@ -935,34 +1452,48 @@ local function CreateProgressionRecord(P,shared,storage)
    elseif same(current,root.origin) and root.stage=='PREPARED' then activate(c)
    elseif not root.loss and current.owner~=root.origin.owner and oldOwner==root.origin.owner
     and newOwner==current.owner and newID==current.cityID then
-    local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;n.claimTimer=nil;n.revision=n.revision+1
+    local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;if not isolated.claimTimer then n.claimTimer=nil end;n.revision=n.revision+1
     if n.restructuring and (n.restructuring.phase=='REALLOCATING' or n.restructuring.phase=='CONSUMING')then n.restructuring=R.Discard(n.restructuring)end
-    if n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
-    if n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
-    if n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
+    if not isolated.engineering and n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
+    if not isolated.dialogue and n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
+    if not isolated.researchTradition and n.researchTradition then n.researchTradition.state='OWNER_POLICY_UNRESOLVED' end
     n.ownerChanges=(n.ownerChanges or 0)+1
-    if n.capital then
+    if not isolated.capital and n.capital then
      local C=SPCCapitalInvestmentModel
      n.capital=C.Encode(C.Terminate(C.Decode(n.capital),'CAPITAL_OWNER_CHANGED'))
     end
-    if n.development then
+    if not isolated.development and n.development then
      local D=SPCDevelopmentInvestmentModel
      n.development=D.Encode(D.Terminate(D.Decode(n.development),'DEVELOPMENT_OWNER_CHANGED'))
     end
-    if n.commerce then n.commerce=SPCCommerceModel.OwnerChanged(n.commerce,current.owner,Game.GetCurrentGameTurn())end
-    n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};save(n)
-    finished={};attempts={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
+    if not isolated.commerce and n.commerce then n.commerce=commerceTransition(n,'OwnerChanged',current.owner,Game.GetCurrentGameTurn())end
+    n.loss={origin=cp(root.origin),target=current,evidence='CityTransfered+live_reference'};captureDeferred(n,false);save(n)
+    finished={};attempts={};exitTickets={};d.exitErrors={};transition=nil;transitionFault=nil;firstTransitionFault=nil;conquest=nil;foundation=nil;foreignSeen=false
    end
    d.observation='READABLE'
   end)
-  if not ok then d.observation='UNKNOWN: '..tostring(err);d.returnRejection=tostring(err):match('RETURN_[A-Z_]+') or d.returnRejection end
+  if returning and not returnGuarded then returnBusy=false end
+  if not ok then local text=errorText(err,'RETURN_READ_FAILED');d.observation='UNKNOWN: '..text;d.returnRejection=text:match('RETURN_[A-Z_]+') or d.returnRejection end
   d.ExitConfirmed()
  end
  -- Manager forwards bounded native events; each record retains its own state.
  function d.Handle(name,...)
-  if name=='LoadScreenClose' then reconcile();return end
+  if name=='LoadScreenClose' then reconcile();recoverDeferred('LOAD_COMPLETE');return end
   if not ready or fault or not root then return end
   local owner,id,x,y=...
+  if name=='CityTransfered'and root.loss and root.stage=='HELD_TRANSFER'and owner==root.origin.owner and x==root.loss.target.owner then
+   if returnBusy then return end;returnBusy=true -- protects Handle's relevance lookup too
+   local arguments={...};local argumentCount=select('#',...)
+   local ok,why=pcall(function()
+    local c=CityManager.GetCityAt(root.origin.x,root.origin.y);if not c then return end
+    local r=ref(c);if r.owner~=owner or r.cityID~=id then return end
+    pcall(observe,name,unpack(arguments,1,argumentCount))
+    reconcile(owner,id,x,true)
+   end)
+   returnBusy=false
+   if not ok then local text=errorText(why,'RETURN_READ_FAILED');d.observation='UNKNOWN: '..text;d.returnRejection='RETURN_READ_FAILED'end
+   return
+  end
   local relevant=false
   if name=='CityConquered' then local _,_,_,cx,cy=...;relevant=cx==root.origin.x and cy==root.origin.y
   elseif name=='CityTransfered' then
@@ -979,7 +1510,7 @@ local function CreateProgressionRecord(P,shared,storage)
   elseif name=='CityConquered' then
    if not pcall(trackConquest,...) then transitionFault='RETURN_CHAIN_READ_FAILED'end
    rememberFault(name)
-  else trackSafely(name,...);reconcile()end
+  else trackSafely(name,...);reconcile();if name=='CityInitialized'then recoverDeferred('CITY_INITIALIZED')end end
  end
  return d
 end
@@ -989,6 +1520,23 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  local M=SPCCityIdentityRead;local cp=M.Copy;local KEY=SPCCityProgressionStore.KEY
  local store={UsesNewAuthority=not legacyTest};shared.CityProgressionStore=store
  local envelope,raw,fault,writing;local workers={};local exits,returns={},{}
+ -- A terminal first-selection fault is session-local, not a saved recovery log.
+ -- It never changes another city's record or disables established ability reads.
+ local completionSourceFailure;local completionErrorPrints=0
+ local function completionText(value)
+  local ok,text=pcall(tostring,value)
+  return ok and type(text)=='string' and text:gsub('[\r\n]',' '):sub(1,180) or 'COMPLETION_CALLBACK_ERROR'
+ end
+ local function completionError(pid,id,why,terminal)
+  local reason=completionText(why)
+  if terminal and not completionSourceFailure then
+   completionSourceFailure={owner=pid,reason=reason}
+   pcall(print,'[SPC][STORE_COMPLETION_ERROR] owner='..tostring(pid)..' scope=UNATTRIBUTED first_selection=STOPPED reason='..reason)
+  elseif not terminal and completionErrorPrints<8 then
+   completionErrorPrints=completionErrorPrints+1
+   pcall(print,'[SPC][STORE_COMPLETION_ERROR] owner='..tostring(pid)..' city='..tostring(id)..' scope=CITY reason='..reason)
+  end
+ end
  local modern=not legacyTest;local index,positions,capacity;local initialized=false;local freshHistoryStart=false
  local INDEX=SPCCityProgressionStore.INDEX;local PREFIX=SPCCityProgressionStore.RECORD
  local initializeNew
@@ -1062,6 +1610,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  local function make(token,admitting)
   local storage={}
   storage.Check=check
+  storage.CanExit=function()return not fault and not writing end -- pure collection barrier
   function storage.Read()
    check()
    if modern and not admitting then
@@ -1086,9 +1635,11 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     -- committed endpoints skip the cross-record uniqueness walk.
     if current~=referenceKey(before) then checkReference(token,current)end
     writing=true
-    local ok,err=pcall(function()P.SetProperty(Game,key,cp(value))end)
     -- Even a throwing setter may have applied. Read once while the lock is held.
-    readOK,observed=pcall(function()return cp(Game:GetProperty(key))end)
+    local result=SPCPropertyCell.WriteReadback(function()P.SetProperty(Game,key,cp(value))end,
+     function()return cp(Game:GetProperty(key))end)
+    local ok,err=result.writeReturned,result.writeResult
+    readOK,observed=result.readReturned,result.observed
     local confirmed=ok and readOK and same(observed,value)
     if not confirmed then
      -- Diagnostics use the already obtained readback. Observer failure cannot alter guards.
@@ -1218,7 +1769,58 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.ClaimState(pid,c)return requireCity(c).ClaimState(pid,c)end
  function store.WriteClaimTimer(pid,c,old,value)return requireCity(c).WriteClaimTimer(pid,c,old,value)end
  function store.ClaimComplete(pid,c,e)return requireCity(c).ClaimComplete(pid,c,e)end
+ -- Locator only: a reliable index token can identify a held/former-holder site.
+ -- It grants no ACTIVE/history/transaction eligibility and never follows a raw
+ -- City Property. Existing worker/current-native checks still govern every use.
+ function store.ReferenceToken(c)
+  check();assert(not writing,'STORE_COLLECTION_BUSY')
+  local x,y=c:GetX(),c:GetY()
+  if modern then
+   assert(initialized and positions,'STORE_REFERENCE_NOT_READY')
+   return positions[x..':'..y]
+  end
+  -- Frozen two-record legacy test adapter, not the modern runtime route.
+  for token,row in pairs(envelope.records)do if row.origin.x==x and row.origin.y==y then return token end end
+ end
+ -- Existing position/worker indexes only; no native getter, storage.Check, fact read or scan.
+ local function trainingWorker(pid,id,x,y)
+  if not(int(pid)and int(id)and int(x)and int(y))then return nil,'INVALID_REFERENCE'end
+  if fault then return nil,'COLLECTION_FAILED'end
+  if modern and not initialized then return nil,'COLLECTION_NOT_READY'end
+  local token
+  if modern then token=positions and positions[tostring(x)..':'..tostring(y)]
+  else
+   -- Explicit frozen two-record adapter; no production fallback enumeration.
+   for name,r in pairs(envelope.records)do local a=r.current or r.origin
+    if a and a.x==x and a.y==y then token=name;break end
+   end
+  end
+  local w=token and workers[token]
+  return w,w and nil or 'UNREGISTERED'
+ end
+ function store.TrainingInputStamp(pid,id,x,y)
+  local w,why=trainingWorker(pid,id,x,y)
+  if w then return w.TrainingInputStamp(pid,id,x,y)end;return why
+ end
+ function store.CarrierReferenceStamp(pid,id,x,y,token)
+  if writing then return nil end
+  local w=trainingWorker(pid,id,x,y)
+  return w and w.CarrierReferenceStamp(pid,id,x,y,token)or nil
+ end
+ function store.ObserveTrainingFacts(pid,id,x,y,token,state,issuer,serial,input)
+  local w=trainingWorker(pid,id,x,y)
+  return w and w.ObserveTrainingFacts(pid,id,x,y,token,state,issuer,serial,input)or false
+ end
+ function store.BeginTrainingBindingObservation(pid,id,x,y,token)
+  local w=trainingWorker(pid,id,x,y)
+  return w and w.BeginTrainingBindingObservation(pid,id,x,y,token)or nil
+ end
+ function store.FinishTrainingBindingObservation(pid,id,x,y,ticket,ok,value)
+  local w=trainingWorker(pid,id,x,y)
+  return w and w.FinishTrainingBindingObservation(ticket,ok,value)or false
+ end
  function store.HistoricalReference(c)return requireCity(c).HistoricalReference(c)end
+ function store.IndustryHistoryStamp(c)return requireCity(c).IndustryHistoryStamp(c)end
  function store.HistoryStartStatus()
   if fault then return 'HELD' end
   if not modern or not initialized then return 'WAITING' end
@@ -1232,6 +1834,10 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.BeginRestructuring(pid,c,team,receipt)return requireCity(c).BeginRestructuring(pid,c,team,receipt)end
  function store.ConfigureRestructuring(pid,c,team,kind,first)return requireCity(c).ConfigureRestructuring(pid,c,team,kind,first)end
  function store.FinishRestructuring(pid,c,team)return requireCity(c).FinishRestructuring(pid,c,team)end
+ function store.FactStamp(pid,c)
+  if not store.Owns(c)then return nil end
+  return requireCity(c).FactStamp(pid,c)
+ end
  function store.Base(pid,c)return requireCity(c).Base(pid,c)end
  function store.Investment(pid,c)return requireCity(c).Investment(pid,c)end
  function store.WriteInvestment(pid,c,old,value)return requireCity(c).WriteInvestment(pid,c,old,value)end
@@ -1270,14 +1876,22 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   for _,w in pairs(workers)do local ok,err=pcall(w.VisitTradition,pid,fn);if not ok then firstError=firstError or err end end
   assert(not firstError,firstError) -- an unreadable city must not prevent other records from updating
  end
- local function traditionTick(pid)
+ local function traditionTick(pid,allowExitRetry)
   if fault or not P.IsTestPlayer(pid)then return end
-  local turn=Game.GetCurrentGameTurn()
+  local turn=Game.GetCurrentGameTurn();local localChecked,localAllowed=false,false
   -- Existing registered records only: no world/city/building scan or fact packet.
-  for _,w in pairs(workers)do w.TickTradition(pid,turn);w.TickCommerce(pid,turn)end
+  for _,w in pairs(workers)do
+   w.TickTradition(pid,turn);w.TickCommerce(pid,turn)
+   if allowExitRetry and w.HeldExitPending(pid,turn)then
+    if not localChecked then
+     localChecked=true;local ok,owner=pcall(Game.GetLocalPlayer);localAllowed=ok and owner==pid
+    end
+    if localAllowed then w.RetryHeldExit(pid,turn)end
+   end
+  end
  end
  local turnEvent=P.Field(Events,'PlayerTurnActivated')
- if turnEvent and turnEvent.Add then turnEvent.Add(traditionTick)end
+ if turnEvent and turnEvent.Add then turnEvent.Add(function(pid)traditionTick(pid,true)end)end
  local loadEvent=P.Field(Events,'LoadScreenClose')
  if loadEvent and loadEvent.Add then loadEvent.Add(function()
   for pid in pairs(Players)do if P.IsTestPlayer(pid)then traditionTick(pid)end end
@@ -1293,11 +1907,22 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   for _,w in pairs(workers)do w.RegisterExit(name,fn)end
  end
  function store.RegisterReturn(name,fn)
+  assert(not writing,'RETURN_REGISTRATION_DURING_WRITE')
   assert(type(fn)=='function' and not returns[name],'RETURN_REGISTRATION_CONFLICT');returns[name]=fn
   for _,w in pairs(workers)do w.RegisterReturn(name,fn)end
  end
  function store.ExitConfirmed()
-  if fault then return end;for _,w in pairs(workers)do w.ExitConfirmed()end
+  if fault or writing then return end;for _,w in pairs(workers)do w.ExitConfirmed()end
+ end
+ function store.IsExitCurrent(name,c,loss,ticket,current)
+  if fault or writing then return false end
+  local ok,w=pcall(find,c)
+  return ok and w~=nil and w.IsExitCurrent(name,c,loss,ticket,current)==true or false
+ end
+ function store.ExitCompleted(name,c,loss,ticket,current)
+  if fault or writing then return false end
+  local ok,w=pcall(find,c)
+  return ok and w~=nil and w.ExitCompleted(name,c,loss,ticket,current)==true or false
  end
  -- Read-only, copied per-city diagnostic status; never expose mutable worker authority.
  function store.Status(c)
@@ -1305,6 +1930,11 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   return w and w.Status() or {unregistered=true}
  end
  function store.FailureReport()
+  if not fault and completionSourceFailure then
+   return P.VERSION..' | 首次专业确认暂停（本次会话）\n区域通知未能可靠定位城市；该通知没有写入任何城市。'
+    ..'\n为避免误选后来的区域，后续首次专业自动确认已停止。已有专业、投资和固定认领候选未因此撤除。'
+    ..'\n原因：'..completionSourceFailure.reason..'\n请保留日志；该异常后的跨读档恢复尚未验证。'
+  end
   if not fault then return nil end
   local first=tostring(fault):match('^[^\r\n]+') or ''
   local message=first:match('.*:%d+: (.*)') or first
@@ -1314,17 +1944,17 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    ..'\n请停止投资并保留此报告；不会回退旧账本。'
  end
  function store.Describe(pid,c)
-  if fault then return store.FailureReport() end
+  if fault or completionSourceFailure then return store.FailureReport() end
   if not c then return '请选择一座城市；不会默认读取另一城。'end
   local w=find(c)
   if not w and modern then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n正常建城须收到确认事件；征服须确认完整事件与无专业历史，不能自动认领。'end
   if not w then return '所选城市未登记；仍使用旧保存路径。右键迁移进度可登记完整的己方专业城。\n本批最多显式登记两城；先保留转换前存档。'end
-  return w.Describe(pid,c)..'\n已登记：'..count()..(modern and ' | 所选城 ' or '/2 | 所选城 ')..c:GetOwner()..'/'..c:GetID()
+  return w.Describe(pid,c)..w.TimingDescribe()..'\n已登记：'..count()..(modern and ' | 所选城 ' or '/2 | 所选城 ')..c:GetOwner()..'/'..c:GetID()
  end
  function store.NativeDescribe(pid,c)
-  if fault or not c then return store.Describe(pid,c)end
+  if fault or completionSourceFailure or not c then return store.Describe(pid,c)end
   local w=find(c);if not w then return store.Describe(pid,c)end
-  return w.NativeDescribe(pid)..'\n所选城 '..c:GetOwner()..'/'..c:GetID()..' | 已登记 '..count()..(modern and '' or '/2')
+  return w.NativeDescribe(pid)..w.TimingDescribe()..'\n所选城 '..c:GetOwner()..'/'..c:GetID()..' | 已登记 '..count()..(modern and '' or '/2')
  end
  function store.Import(pid,c)
   if modern then return '本版本只支持新测试局；旧进度迁移入口已关闭。请左键查看当前进度。'end
@@ -1403,15 +2033,52 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   end
   error('COMPLETION_MAPPING_LIMIT')
  end
- local function completion(pid,index,x,y)
+ -- Keep the ordinary district->city route. A single independent plot association
+ -- can scope a failure; it is never a substitute for the full completion proof.
+ local function completionCity(pid,index,x,y)
+  local object
+  local good,city=pcall(function()
+   object=CityManager.GetDistrictAt(x,y)
+   return object and object:GetCity()
+  end)
+  if good and city then return city end
+  if object then
+   local known,incomplete=pcall(function()
+    return object:GetOwner()==pid and object:GetType()==index and object:IsComplete()==false
+   end)
+   if known and incomplete then return nil,'INCOMPLETE' end
+  end
+  local associated,value=pcall(function()
+   assert(integer(x) and integer(y),'COMPLETION_COORDINATES_UNAVAILABLE')
+   local plot=assert(Map.GetPlot(x,y),'COMPLETION_PLOT_UNAVAILABLE')
+   assert(plot:GetOwner()==pid and plot:GetDistrictType()==index,'COMPLETION_PLOT_CHANGED')
+   local c=assert(Cities.GetPlotPurchaseCity(plot),'COMPLETION_PLOT_CITY_UNAVAILABLE')
+   assert(c:GetOwner()==pid and integer(c:GetID()),'COMPLETION_PLOT_CITY_CHANGED')
+   -- Purchase-city association alone is not district ownership. Require the
+   -- city's own location lookup; no collection enumeration or HD helper.
+   local collection=assert(c:GetDistricts(),'COMPLETION_CITY_DISTRICTS_UNAVAILABLE')
+   local member=assert(collection:GetDistrictAtLocation(x,y),'COMPLETION_CITY_MEMBERSHIP_UNAVAILABLE')
+   assert(member:GetOwner()==pid and member:GetType()==index,'COMPLETION_CITY_MEMBERSHIP_CHANGED')
+   return c
+  end)
+  if associated then return value end
+  return nil,'UNATTRIBUTED',completionText(value)
+ end
+ local function completion(pid,index,x,y,expected)
   local district=assert(CityManager.GetDistrictAt(x,y),'COMPLETION_DISTRICT_UNAVAILABLE')
   local c=assert(district:GetCity(),'COMPLETION_CITY_UNAVAILABLE')
-  assert(c:GetOwner()==pid and district:GetOwner()==pid and district:GetType()==index,'COMPLETION_REFERENCE_CHANGED')
+  local owner,id=c:GetOwner(),c:GetID()
+  if expected and (owner~=expected.owner or id~=expected.cityID)then return nil,nil,'SOURCE_DISAGREEMENT'end
+  local current={owner=owner,cityID=id,x=c:GetX(),y=c:GetY()}
+  if expected and not same(current,expected)then return nil,nil,'SOURCE_DISAGREEMENT'end
+  assert(owner==pid and district:GetOwner()==pid and district:GetType()==index,'COMPLETION_REFERENCE_CHANGED')
   local info=assert(P.Info('Districts',index),'COMPLETION_TYPE_UNAVAILABLE')
   local kind=family(info.DistrictType)
-  if not kind or district:IsComplete()~=true then return c end
+  if not kind then return c end
+  local complete=district:IsComplete();assert(type(complete)=='boolean','COMPLETION_STATUS_UNAVAILABLE')
+  if not complete then return c end
   local id=district:GetID();assert(integer(id),'COMPLETION_ID_UNAVAILABLE')
-  return c,{reference=reference(c),specialization=kind,type=info.DistrictType,districtID=id,turn=Game.GetCurrentGameTurn()}
+  return c,{reference=current,specialization=kind,type=info.DistrictType,districtID=id,turn=Game.GetCurrentGameTurn()}
  end
  local function admit(q)
   if not q or q.error or q.committing then return end
@@ -1503,7 +2170,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     break -- all buffered rows were qualified at delivery; only the first can lock
    end
    assert(not q.error,q.error)
-   if shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'CityProgressionStore.lua')end
+   publishFact(shared,c,'CITY_ADMITTED',envelope.records[token])
   end)
   q.committing=false
   if not ok then
@@ -1530,18 +2197,35 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  end
  local function constructed(pid,index,x,y)
   if not freshReady or not P.IsTestPlayer(pid)then return end
-  local object=CityManager.GetDistrictAt(x,y);local target=object and object:GetCity()
-  if not target then
-   -- Cannot assign this missing native reference to one city. Retain history and
-   -- hold only fresh UNASSIGNED records, never pick a later completion on load.
-   for _,w in pairs(workers)do w.HoldCompletion('COMPLETION_CITY_UNAVAILABLE')end
-   for _,q in ipairs(pending)do q.error='COMPLETION_CITY_UNAVAILABLE'end
-   return
-  end
-  local q=target and at(target:GetX(),target:GetY());local w=target and find(target)
-  if not q and not w then return end
+  -- No later-first inference after an unassignable observation. Established
+  -- identities and the separate fixed-candidate Claim path stay independent.
+  if completionSourceFailure and completionSourceFailure.owner==pid then return end
+  local target,q,w,sourceID
   local ok,err=pcall(function()
-   local c,e=completion(pid,index,x,y);if not e then return end
+   local mapped,kind=pcall(function()
+    local info=assert(P.Info('Districts',index),'COMPLETION_TYPE_UNAVAILABLE')
+    return family(info.DistrictType)
+   end)
+   if mapped and not kind then return end
+   local status,why
+   target,status,why=completionCity(pid,index,x,y)
+   if status=='INCOMPLETE' then return end
+   if not target then
+    completionError(pid,nil,'COMPLETION_SOURCE_UNAVAILABLE: '..completionText(why),true)
+    return
+   end
+   if target:GetOwner()~=pid then return end
+   sourceID=target:GetID();assert(integer(sourceID),'COMPLETION_CITY_ID_UNAVAILABLE')
+   local xCity,yCity=target:GetX(),target:GetY()
+   local expected={owner=pid,cityID=sourceID,x=xCity,y=yCity}
+   q=at(xCity,yCity)
+   if q and (q.reference.owner~=pid or q.reference.cityID~=nil and q.reference.cityID~=sourceID)then q=nil end
+   w=find(target)
+   if not q and not w then return end
+   if not mapped then error(kind,0)end
+   local c,e,changed=completion(pid,index,x,y,expected)
+   if changed then completionError(pid,nil,'COMPLETION_SOURCE_DISAGREEMENT',true);return end
+   if not e then return end
    if q then
     if q.error then return end
     if q.reference.cityID==nil and q.reference.owner==e.reference.owner and q.reference.x==e.reference.x and q.reference.y==e.reference.y then q.reference.cityID=e.reference.cityID end
@@ -1549,12 +2233,28 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
     for _,v in ipairs(q.completions)do if same(v.fact,e)then return end end
     if #q.completions>=COMPLETIONS then q.error='EARLY_COMPLETION_LIMIT';return end
     q.completions[#q.completions+1]={owner=pid,index=index,x=x,y=y,fact=e}
-    return -- reentrant callbacks during admission are consumed by its ordered replay
+    return
    end
    w.Complete(pid,c,e)
   end)
   if not ok then
-   if q then q.error=tostring(err) elseif w then w.HoldCompletion('COMPLETION_EVIDENCE_UNAVAILABLE')end
+   local reason=completionText(err)
+   if q then
+    if not q.error then q.error=reason;completionError(pid,sourceID,reason)end
+   elseif w then
+    local saved,changed=pcall(w.HoldCompletion,'COMPLETION_EVIDENCE_UNAVAILABLE',pid,sourceID)
+    if not saved or changed then completionError(pid,sourceID,reason)end
+   elseif sourceID~=nil then
+    -- City identity is independently known even when a coordinate/binding read
+    -- failed. Visit existing scalar records only; never mark another city.
+    for _,candidate in ipairs(pending)do
+     if candidate.reference.owner==pid and candidate.reference.cityID==sourceID and not candidate.error then candidate.error=reason end
+    end
+    for _,writer in pairs(workers)do pcall(writer.HoldCompletion,'COMPLETION_EVIDENCE_UNAVAILABLE',pid,sourceID)end
+    completionError(pid,sourceID,reason)
+   else
+    completionError(pid,nil,reason,true)
+   end
   end
  end
  local function freshHook(ns,name,fn)

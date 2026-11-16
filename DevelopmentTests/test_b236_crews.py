@@ -189,6 +189,16 @@ ACTION=r"""
 function C.actions(c)
  local q=c:GetBuildQueue();q.target='BUILDING_WONDER_2';q.progress=10;q.cost=1000;q.adds={}
  q.AddProgress=function(_,n)q.adds[#q.adds+1]=n;q.progress=q.progress+n end
+ q.CurrentlyBuilding=function()return q.target end
+ local wonder=P.Info('Buildings',q.target)
+ wonder.Hash=wonder.Hash or wonder.Index
+ ExposedMembers.SPC_CrewTargetRead=function(pid,id,target)
+  local city=Players[pid]:GetCities():FindID(id)
+  local queue=city:GetBuildQueue()
+  assert(P.Info('Buildings',queue.target).Hash==target,'FIXTURE_TARGET_CHANGED')
+  return {owner=pid,city=id,x=city:GetX(),y=city:GetY(),turn=Game.GetCurrentGameTurn(),
+   target=target,cost=queue.cost,progress=queue.progress}
+ end
  shared.ConstructionProbe={ReadSnapshot=function(pid,city)
   local q=city:GetBuildQueue();return {kind='Buildings',target=q.target,progress=q.progress,cost=q.cost}
  end}
@@ -244,6 +254,12 @@ class ActualTargets(unittest.TestCase):
    Map={GetPlotByIndex=function(id)if id==500 then return plot end end}
    Cities={GetPlotPurchaseCity=function()return c end}
    ExposedMembers.DLHD={Utils={GetCityPlots=function()return {500,500}end}}
+   local wonder=P.Info('Buildings','BUILDING_WONDER_2')
+   wonder.Hash=wonder.Hash or wonder.Index
+   ExposedMembers.SPC_CrewTargetRead=function(pid,id,hash,mode)
+    assert(pid==0 and id==c:GetID() and hash==wonder.Hash and mode=='PLOT')
+    return {owner=pid,city=id,x=c:GetX(),y=c:GetY(),turn=Game.GetCurrentGameTurn(),target=hash,plot=500}
+   end
    SPCUnitTargets.Start(P,shared)
    shared.UnitTargets.Refresh(0,{UnitID=20001,Token='wonder'})
    assert(not shared.UnitTargetSnapshot.error and #shared.UnitTargetSnapshot.plots==1)

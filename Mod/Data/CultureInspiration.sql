@@ -34,3 +34,10 @@ INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,Citizen
 INSERT INTO Modifiers(ModifierId,ModifierType) VALUES ('SPC_INSPIRATION_ERA_7','MODIFIER_CITY_INCREASE_GREAT_PERSON_POINT_BONUS');
 INSERT INTO ModifierArguments(ModifierId,Name,Value) VALUES ('SPC_INSPIRATION_ERA_7','Amount','21');
 INSERT INTO BuildingModifiers(BuildingType,ModifierId) VALUES ('BUILDING_SPC_INSPIRATION_ERA_7','SPC_INSPIRATION_ERA_7');
+
+-- D0058 approved eight-era correction.
+INSERT INTO Types(Type,Kind) VALUES ('BUILDING_SPC_INSPIRATION_ERA_8','KIND_BUILDING');
+INSERT INTO Buildings(BuildingType,Name,Cost,PrereqDistrict,InternalOnly,CitizenSlots,Housing) VALUES ('BUILDING_SPC_INSPIRATION_ERA_8','LOC_SPC_INSPIRATION_AUTO',1,'DISTRICT_CITY_CENTER',1,0,0);
+INSERT INTO Modifiers(ModifierId,ModifierType) VALUES ('SPC_INSPIRATION_ERA_8','MODIFIER_CITY_INCREASE_GREAT_PERSON_POINT_BONUS');
+INSERT INTO ModifierArguments(ModifierId,Name,Value) VALUES ('SPC_INSPIRATION_ERA_8','Amount','24');
+INSERT INTO BuildingModifiers(BuildingType,ModifierId) VALUES ('BUILDING_SPC_INSPIRATION_ERA_8','SPC_INSPIRATION_ERA_8');

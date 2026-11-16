@@ -1,23 +1,47 @@
 include('NetworkInput')
+include('ReverseDependencies')
+include('RuntimeWork')
 include('ExpeditionTrainingDiagnostics')
 -- B235: template-holder-specific III/IV projection. Store owns knowledge/L;
 -- Bridge owns topology. One final-value carrier per target, no purchase unlock.
 SPCStandardizationEffects={}
 function SPCStandardizationEffects.Start(P,shared)
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.StandardizationEffects=d
+ local dependents=SPCReverseDependencies.New()
+ local function replaceDependencies(pid,cid,sources)
+  local ok,why=dependents.Replace(pid,cid,sources)
+  if not ok then d.dependencyIndexError=why end -- scalar cache degradation, not a business failure
+ end
  local catalog,definitions,byTarget;local dirty={};local initialized=false;local cleaned={}
+ local ownedIndex={};local healthSequence=0
  local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'INDUSTRY_STANDARDIZATION')
  local function key(pid,cid)return tostring(pid)..':'..tostring(cid)end
  local function ref(c)return SPCNetworkInput.Reference(c)end
+ local function sameReceiver(c,r)
+  local ok,reference=pcall(ref,c)
+  return ok and reference==r.reference
+ end
  local function code(s)return type(s)=='string' and (s:match('(STD_[A-Z_]+)') or s:match('(NETWORK_[A-Z_]+)') or s:match('(STORE_[A-Z_]+)') or s:match('(EST_[A-Z_]+)')) or 'STD_READ_PENDING'end
  local function mark(pid,cid)
+  if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then mark(owner,cid)end end;return end
   if not P.IsTestPlayer(pid)then return end
   local q=dirty[pid] or {cities={}};dirty[pid]=q
   if cid==nil then q.all=true else q.cities[cid]=true end
  end
+ local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)
+  healthSequence=healthSequence+1
+  local function owner(pid)
+   if not P.IsTestPlayer(pid)then return end
+   if scope.city~=nil then
+    local r=d.records[key(pid,scope.city)];if r then r.healthTicket=healthSequence end
+   else for _,r in pairs(d.records)do if r.owner==pid then r.healthTicket=healthSequence end end end
+   mark(pid,scope.city)
+  end
+  if scope.player~=nil then owner(scope.player)else for pid in pairs(Players)do owner(pid)end end
+ end)
  local function validate()
   if definitions then return end
-  local cat=SPCStandardizationCatalog.Build(P);local rows,map={},{}
+  local cat=SPCStandardizationCatalog.Build(P);local rows,map,nextOwned={},{},{}
   for _,r in ipairs(P.Rows('SPC_StandardizationTargets'))do
    assert(r.Kind=='BUILDING' or r.Kind=='DISTRICT','STD_TARGET_KIND')
    local t=r.Kind..':'..r.TargetType;assert(not map[t],'STD_TARGET_DUPLICATE')
@@ -27,7 +51,7 @@ function SPCStandardizationEffects.Start(P,shared)
    assert((b.InternalOnly==true or b.InternalOnly==1) and b.PrereqDistrict=='DISTRICT_CITY_CENTER'
     and b.CitizenSlots==0 and b.Housing==0,'STD_CARRIER_INVALID')
    local row={index=b.Index,id=r.CarrierType,kind=r.Kind,target=r.TargetType,key=t,name=entry.name}
-   row.amount=10;row.levels={[10]=row};rows[#rows+1]=row;map[t]=row
+   nextOwned[row.index]=true;row.amount=10;row.levels={[10]=row};rows[#rows+1]=row;map[t]=row
   end
   for id,b in pairs(cat.buildings)do if b.enabled then assert(map['BUILDING:'..id],'STD_BUILDING_TARGET_MISSING')end end
   for id in pairs(cat.districts)do assert(map['DISTRICT:'..id],'STD_DISTRICT_TARGET_MISSING')end
@@ -38,9 +62,9 @@ function SPCStandardizationEffects.Start(P,shared)
    assert((b.InternalOnly==true or b.InternalOnly==1) and b.PrereqDistrict=='DISTRICT_CITY_CENTER'
     and b.CitizenSlots==0 and b.Housing==0 and not base.levels[amount],'STD_LEVEL_INVALID')
    local row={index=b.Index,id=r.CarrierType,kind=r.Kind,target=r.TargetType,key=t,name=base.name,amount=amount}
-   base.levels[amount]=row;rows[#rows+1]=row
+   base.levels[amount]=row;rows[#rows+1]=row;nextOwned[row.index]=true
   end
-  assert(#rows>0,'STD_TARGETS_EMPTY');catalog,definitions,byTarget=cat,rows,map
+  assert(#rows>0,'STD_TARGETS_EMPTY');catalog,definitions,byTarget,ownedIndex=cat,rows,map,nextOwned
  end
  local function present(c)
   local out={};local b=c:GetBuildings()
@@ -50,21 +74,83 @@ function SPCStandardizationEffects.Start(P,shared)
   end
   return out
  end
- local function write(c,old,want)
+ local function missingWanted(c,old,want)
+  local missing={};local b=c:GetBuildings()
+  -- Sample every requested equal-value slot before any native mutation. This is
+  -- proportional to wanted targets, never all level definitions.
+  for t,amount in pairs(want)do if old[t]==amount then
+   local row=assert(byTarget[t] and byTarget[t].levels[amount],'STD_LEVEL_DEFINITION_MISSING')
+   local has=P.HasBuilding(b,row.index);assert(type(has)=='boolean','STD_HEALTH_PRESENCE_UNKNOWN')
+   if not has then missing[t]=true end
+  end end
+  return missing
+ end
+ local function observeAttempt(c,record,b,row)
+  local same=sameReceiver(c,record);local ok,has
+  if same then
+   ok,has=pcall(P.HasBuilding,b,row.index)
+   same=sameReceiver(c,record)
+  end
+  local known=same and ok and type(has)=='boolean' or false
+  record.writeUnconfirmed[row.key].known=known
+  record.applied[row.key]=known and has and row.amount or nil
+  assert(same,'STD_RECEIVER_CHANGED')
+  return known
+ end
+ local function recordFailure(c,record,b,row)
+  local failed=record.writeUnconfirmed or {};record.writeUnconfirmed=failed
+  failed[row.key]={amount=row.amount}
+  observeAttempt(c,record,b,row)
+  return failed
+ end
+ local function withdraw(c,b,row)
+  assert(row,'STD_OWNED_TARGET_UNKNOWN')
+  local has=P.HasBuilding(b,row.index);assert(type(has)=='boolean','STD_REMOVE_PRESENCE_UNKNOWN')
+  if has then carrierHealth.Remove(c,row.index);assert(P.HasBuilding(b,row.index)==false,'STD_REMOVE_UNCONFIRMED')end
+ end
+ local function install(c,b,row)
+  assert(row,'STD_LEVEL_DEFINITION_MISSING')
+  local has=P.HasBuilding(b,row.index);assert(type(has)=='boolean','STD_ADD_PRESENCE_UNKNOWN')
+  if not has then carrierHealth.Create(c,row.index);assert(P.HasBuilding(b,row.index)==true,'STD_ADD_UNCONFIRMED')end
+ end
+ local function write(c,record,want,missing,reductionOnly)
   -- Remove before adding; changed entries only after initial ownership read.
-  local b=c:GetBuildings()
-  for t,amount in pairs(old)do if want[t]~=amount then
-   local r=assert(byTarget[t] and byTarget[t].levels[amount],'STD_OWNED_TARGET_UNKNOWN')
-   local has=P.HasBuilding(b,r.index);assert(type(has)=='boolean','STD_REMOVE_PRESENCE_UNKNOWN')
-   if has then P.RemoveBuilding(b,r.index);assert(P.HasBuilding(b,r.index)==false,'STD_REMOVE_UNCONFIRMED')end
-   old[t]=nil;d.changes=d.changes+1
+  local b=c:GetBuildings();local old=record.applied;local failed=record.writeUnconfirmed
+  local firstError
+  if failed then
+   for t,outcome in pairs(failed)do
+    if observeAttempt(c,record,b,byTarget[t].levels[outcome.amount])then failed[t]=nil
+    else firstError=firstError or 'STD_TARGET_READBACK_UNKNOWN'end
+   end
+  end
+  if reductionOnly then
+   -- A current source witness can outlive a failed write. Pending proof may
+   -- withdraw from the actual configuration, but cannot install that plan.
+   for t,amount in pairs(want)do
+    local installed=old[t]
+    want[t]=installed and math.min(installed,amount) or nil
+   end
+  end
+  for t,amount in pairs(old)do if want[t]~=amount and not(failed and failed[t])then
+   local row=byTarget[t] and byTarget[t].levels[amount]
+   local ok,why=pcall(withdraw,c,b,row)
+   if ok then old[t]=nil;d.changes=d.changes+1
+   else
+    firstError=firstError or code(why)
+    if row then failed=recordFailure(c,record,b,row)end
+   end
   end end
-  for t,amount in pairs(want)do if old[t]~=amount then
-   local r=assert(byTarget[t] and byTarget[t].levels[amount],'STD_LEVEL_DEFINITION_MISSING')
-   local has=P.HasBuilding(b,r.index);assert(type(has)=='boolean','STD_ADD_PRESENCE_UNKNOWN')
-   if not has then P.CreateBuilding(c:GetBuildQueue(),r.index);assert(P.HasBuilding(b,r.index)==true,'STD_ADD_UNCONFIRMED')end
-   old[t]=amount;d.changes=d.changes+1
+  for t,amount in pairs(want)do if not(failed and failed[t])and (old[t]~=amount or missing and missing[t])then
+   local row=byTarget[t] and byTarget[t].levels[amount]
+   local ok,why=pcall(install,c,b,row)
+   if ok then old[t]=amount;d.changes=d.changes+1
+   else
+    firstError=firstError or code(why)
+    if row then failed=recordFailure(c,record,b,row)end
+   end
   end end
+  if failed and not next(failed)then record.writeUnconfirmed=nil end
+  if firstError then error(firstError,0)end
  end
  local function retire(c)
   local k=key(c:GetOwner(),c:GetID());local reference=ref(c)
@@ -79,22 +165,25 @@ function SPCStandardizationEffects.Start(P,shared)
  end
  local function source(batch,pid,id)
   if batch.sources[id]then return batch.sources[id]end
-  local result={targets={}};batch.sources[id]=result
+  local result={targets={},eligible=false,provenance='CONFIRMED'};batch.sources[id]=result
   local ok,why=pcall(function()
    local c=Players[pid]:GetCities():FindID(id)
-   if not c or c:GetOwner()~=pid then return end
+   if c then assert(type(c:GetOwner())=='number','STD_SOURCE_OWNER_UNKNOWN')end
+   if not c or c:GetOwner()~=pid then result.confirmedLoss=true;return end
    result.reference=ref(c)
    local f=shared.EffectiveFacts.Read(pid,c)
    assert(type(f.specialization)=='string','STD_SOURCE_UNKNOWN')
    if f.specialization~='INDUSTRY'then return end
    assert(type(f.active)=='number' and f.active%1==0 and f.active>=0 and f.active<=4,'STD_ACTIVE_UNKNOWN')
    if f.active<3 then return end
+   result.eligible=true
    local amount=10
    if f.active==4 then
     local state=shared.CityProgressionStore.EngineeringState(pid,c)
     assert(state.token==f.token,'STD_SOURCE_REFERENCE_CHANGED')
     amount=10+2*(state.value and state.value.L or 0)
    end
+   result.ceiling=amount
    local ledger=shared.Standardization.ReadKnowledge(pid,c)
    local groups,bases={},{}
    for id,row in pairs(ledger.learned)do
@@ -125,33 +214,54 @@ function SPCStandardizationEffects.Start(P,shared)
   local input=bridge.Input(pid)
   if input.validity=='CONFIRMED_INVALID'then return {input=input,recipients={}}end
   local view=bridge.CurrentIndustryBatch(pid)
-  assert(view.input.validity=='VERIFIED' and view.input.availability=='AVAILABLE','STD_NETWORK_PENDING')
+  assert(view.input.validity=='VERIFIED' and (view.input.effectAvailability=='AVAILABLE' or view.input.effectAvailability==nil and view.input.availability=='AVAILABLE' or view.input.continuityOnly),'STD_NETWORK_PENDING')
   return view
  end
  local function plan(batch,pid,c,old)
   local wanted,sources,ids={}, {},{[c:GetID()]=true};local reason=batch.networkError
+  local witnesses=old.sourceWitnesses or old.sources
+  local continuity=batch.networkError~=nil or batch.view and batch.view.input.continuityOnly
+  if batch.view and batch.view.rolesPending and batch.view.rolesPending[c:GetID()] then reason='STD_NETWORK_ROLE_PENDING'end
   if batch.view then for id in pairs(batch.view.recipients[c:GetID()] or {})do ids[id]=true end
-  else for id in pairs(old and old.sources or {})do ids[id]=true end end
+  else for id in pairs(witnesses)do ids[id]=true end end
+  local removed=false
   for id in pairs(ids)do
-   local s=source(batch,pid,id);local prior=old and old.sources and old.sources[id]
-   local targets=s.targets
+   local s=source(batch,pid,id);local prior=witnesses[id];local targets=s.targets;local status='CONFIRMED'
    if s.error then
-    reason=s.error
-    -- UNKNOWN can retain only a previously confirmed, same-reference contribution.
+    reason=s.error;local retain=prior and not s.confirmedLoss and (s.reference==nil or prior.reference==s.reference)
+    targets=retain and prior.targets or {}
+    status=retain and 'RETAINED' or 'UNKNOWN'
+    if retain and s.reference==nil then s.reference=prior.reference end
+   elseif continuity and s.eligible then
     targets=prior and prior.reference==s.reference and prior.targets or {}
+    status=prior and prior.reference==s.reference and 'RETAINED' or 'UNKNOWN'
    elseif s.warning then reason=s.warning end
-   if next(targets)then
-    sources[id]={reference=s.reference,targets=targets}
-    for t,amount in pairs(targets)do wanted[t]=math.max(wanted[t] or 0,amount)end
+   if prior and s.ceiling then
+    local limited={}
+    for t,amount in pairs(targets)do limited[t]=math.min(amount,s.ceiling);if limited[t]<amount then removed=true end end
+    targets=limited
+   end
+   if prior and next(prior.targets) and (s.confirmedLoss or not s.error and not s.eligible or s.reference and prior.reference~=s.reference)then removed=true end
+   sources[id]={reference=s.reference,targets=targets,provenance=status,reason=s.error}
+   for t,amount in pairs(targets)do wanted[t]=math.max(wanted[t] or 0,amount)end
+  end
+  if continuity then
+   reason=reason or 'STD_RETAINED_TOPOLOGY'
+   for id in pairs(witnesses)do if not ids[id]then removed=true end end
+   -- The local/network physical result is inseparable. Pending topology never
+   -- adds newly calculated self values; only a confirmed negative may withdraw
+   -- decomposed contributions. A cold installed aggregate uses exception A.
+   if old.loaded or not removed then
+    local retained={}
+    for id,prior in pairs(witnesses)do
+     local targets={};for t,amount in pairs(prior.targets)do targets[t]=amount end
+     retained[id]={reference=prior.reference,targets=targets,provenance=prior.provenance=='UNKNOWN' and 'UNKNOWN' or 'RETAINED',reason=reason}
+    end
+    return old.applied,retained,reason,old.loaded,true
    end
   end
-  -- At load, installed carriers are not source authority. Keep the projection
-  -- only until the first complete proof, then reconcile from current sources.
-  if old and old.loaded and reason then
-   local held={};for t,a in pairs(old.applied)do held[t]=a end;for t,a in pairs(wanted)do held[t]=a end
-   return held,sources,reason,true
-  end
-  return wanted,sources,reason,false
+  if old.loaded and reason then return old.applied,sources,'STD_COLD_AGGREGATE_RETAINED',true,true end
+  return wanted,sources,reason,false,false,continuity
  end
  local function observe(pid,c,r,reason,force)
   local b,n,src,maxAmount=0,0,0,0
@@ -176,18 +286,43 @@ function SPCStandardizationEffects.Start(P,shared)
   if not old or old.reference~=reference then
    retire(c) -- A failed exact withdrawal prevents the replacement writer.
    local installed=present(c)
-   old={owner=pid,city=c:GetID(),reference=reference,applied=installed,sources={},loaded=next(installed)~=nil};d.records[k]=old
+   -- A cold empty aggregate also needs a complete first plan before applying.
+   old={owner=pid,city=c:GetID(),reference=reference,applied=installed,sources={},loaded=batch.restoring or next(installed)~=nil}
+   d.records[k]=old;dependents.Remove(pid,c:GetID())
   end
-  local wanted,sources,reason,held=plan(batch,pid,c,old)
+  local wanted,sources,reason,loaded,held,reductionOnly=plan(batch,pid,c,old)
   assert(c:GetOwner()==pid and ref(c)==reference,'STD_RECEIVER_CHANGED')
-  write(c,old.applied,wanted);old.sources=sources;old.loaded=held;d.errors[k]=reason
+  local ticket=old.healthTicket
+  local repair=ticket and not held and not reason and not batch.networkError
+   and batch.view and not batch.view.input.continuityOnly
+  local missing=repair and missingWanted(c,old.applied,wanted) or nil
+  assert(c:GetOwner()==pid and ref(c)==reference,'STD_RECEIVER_CHANGED')
+  if not held then
+   -- Keep the new facts even on write failure. Old dependency edges still
+   -- wake unfinished work and retire only after the writer completes.
+   old.sourceWitnesses=sources
+   write(c,old,wanted,missing,reductionOnly)
+   old.sourceWitnesses=nil
+  end
+  if not old.sourceWitnesses then
+   old.sources=sources;replaceDependencies(pid,c:GetID(),sources)
+  end
+  -- A native callback during the write owns a later ticket and cannot be ACKed.
+  if repair and old.healthTicket==ticket then old.healthTicket=nil end
+  old.loaded=loaded;old.retained=held;d.errors[k]=reason
   observe(pid,c,old,reason)
  end
- function d.Audit(scope)
+ local function audit(scope,taking)
   local store=shared.CityProgressionStore
-  if store and store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return end
-  if d.busy then if scope and scope.player~=nil then mark(scope.player,scope.city)end;return end
+  if store and store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return false end
+  if d.busy then
+   if taking then return false end
+   if scope and scope.changed then for cid in pairs(scope.changed)do mark(scope.player,cid)end
+   else mark(scope and scope.player,scope and scope.city)end
+   return false
+  end
   d.busy=true
+  local restoring=not initialized
   local good,why=pcall(function()
    validate()
    if not initialized then
@@ -196,35 +331,50 @@ function SPCStandardizationEffects.Start(P,shared)
      local cities=p:GetCities()
      if cities then for _,c in cities:Members()do
       retire(c)
-      if not P.IsTestPlayer(pid)then write(c,present(c),{})end
+      if not P.IsTestPlayer(pid)then write(c,{reference=ref(c),applied=present(c)},{})end
      end end
     end
-    initialized=true;d.ready=true
+    initialized=true;d.ready=true;SPCRuntimeWork.WakeFactOwner(shared,'StandardizationEffects')
    end
-   for pid,p in pairs(Players)do if P.IsTestPlayer(pid) and (not scope or scope.player==nil or scope.player==pid)then
-    local batch={sources={}};local ok,view=pcall(network,batch,pid)
+   return SPCRuntimeWork.AuditOwners(P,scope,function(pid,p)
+    local accepted=true
+    local batch={sources={},restoring=restoring};local ok,view=pcall(network,batch,pid)
     if ok then batch.view=view else batch.networkError=code(view)end
-    local changed=scope and scope.changed;local live={}
+    local changed=scope and (scope.changed or scope.city~=nil and {[scope.city]=true});local live={}
+    local affected={};local indexed=true
+    if changed then
+     for source,isChanged in pairs(changed)do if isChanged then
+      affected[source]=true;local prior=dependents.Dependents(pid,source)
+      if prior then for cid in pairs(prior)do affected[cid]=true end else indexed=false end
+     end end
+     if ok and indexed then for cid,sources in pairs(view.recipients)do for source in pairs(sources)do if changed[source]then affected[cid]=true;break end end end end
+    end
     for _,c in p:GetCities():Members()do
      local cid=c:GetID();local k=key(pid,cid);live[k]=true;local old=d.records[k]
-     local visit=not changed or changed[cid] or not old
-     if changed then
+     local visit=not changed or affected[cid] or not old
+     if changed and not indexed then
       for id in pairs(ok and view.recipients[cid] or {})do if changed[id]then visit=true end end
       for id in pairs(old and old.sources or {})do if changed[id]then visit=true end end
      end
      if visit then
-      local success,err=pcall(reconcile,batch,pid,c)
-      if not success then d.errors[k]=code(err)
+      local success,err=pcall(function()
+       if not taking or SPCRuntimeWork.AuditCityOwned(c,pid,true)then reconcile(batch,pid,c)end
+      end)
+      if not success then accepted=false;d.errors[k]=code(err)
        if trace then trace.Record('INDUSTRY_STANDARDIZATION',{owner=pid,city=cid,readStatus='PENDING',reason=d.errors[k]})end
       end
      end
     end
-    for k,r in pairs(d.records)do if r.owner==pid and not live[k]then d.records[k]=nil;d.errors[k]=nil;cleaned[k]=nil end end
-   end end
+    for k,r in pairs(d.records)do if r.owner==pid and not live[k]then d.records[k]=nil;dependents.Remove(pid,r.city);d.errors[k]=nil;cleaned[k]=nil end end
+    return accepted
+   end,taking)
   end)
   d.error=not good and code(why) or nil;d.busy=false
   if d.error and trace then trace.Record('INDUSTRY_STANDARDIZATION',{readStatus='PENDING',reason=d.error})end
+  return good and why==true
  end
+ function d.Audit(scope)audit(scope,false)end
+ function d.AcceptFact(scope)return audit(scope,true)end
  function d.SourceChanged(pid,cid)
   if not P.IsTestPlayer(pid)then return end
   d.Audit({player=pid,changed={[cid]=true}})
@@ -238,33 +388,67 @@ function SPCStandardizationEffects.Start(P,shared)
   local todo=dirty;dirty={}
   for pid,q in pairs(todo)do d.Audit({player=pid,changed=not q.all and q.cities or nil})end
  end
+ local function readProgress(pid,c,r)
+  local read=ExposedMembers.SPC_StandardizationProgressRead
+  assert(type(read)=='function' and c:GetOwner()==pid,'STD_PROGRESS_UNAVAILABLE')
+  local id,x,y,turn=c:GetID(),c:GetX(),c:GetY(),Game.GetCurrentGameTurn()
+  assert(ref(c)==r.reference,'STD_PROGRESS_CHANGED')
+  local current=c:GetBuildQueue():CurrentlyBuilding()
+  local q=read(pid,id,current)
+  assert(type(q)=='table' and getmetatable(q)==nil and q.owner==pid and q.city==id and q.x==x and q.y==y
+   and q.turn==turn and type(q.target)=='string' and type(q.hash)=='number' and q.hash~=0
+   and (q.target==current or q.hash==current) and ExposedMembers.SPC_StandardizationProgressRead==read
+   and d.records[key(pid,id)]==r and ref(c)==r.reference and Game.GetCurrentGameTurn()==turn
+   and c:GetBuildQueue():CurrentlyBuilding()==current,'STD_PROGRESS_CHANGED')
+  assert(type(q.cost)=='number' and q.cost>0 and q.cost<math.huge
+   and type(q.progress)=='number' and q.progress>=0 and q.progress<math.huge,'STD_PROGRESS_INVALID')
+  return q
+ end
  function d.Describe(pid,c,page)
   local r=d.records[key(pid,c:GetID())];local reason=d.errors[key(pid,c:GetID())] or d.error
+  local bridge=shared.NetworkBridge;local b=bridge and bridge.players and bridge.players[pid]
+  if not reason and b and b.effectAvailability=='PENDING'
+   and b.revalidation=='NEEDS_REVALIDATION' and not b.continuityOnly then reason='STD_NETWORK_PENDING'end
   if not r then return '工业标准化 | '..c:GetName()..'\n等待：'..tostring(reason or 'STD_NOT_READY')end
-  local ids={};for t in pairs(r.applied)do ids[#ids+1]=t end;table.sort(ids)
+  local failed=r.writeUnconfirmed
+  if failed and not sameReceiver(c,r)then return '工业标准化 | '..c:GetName()..'\n载体配置读回：未知（城市绑定待确认）'end
+  local ids={}
+  for t in pairs(r.applied)do ids[#ids+1]=t end
+  for t in pairs(failed or {})do if not r.applied[t]then ids[#ids+1]=t end end
+  table.sort(ids)
   local pages=math.max(1,math.ceil(#ids/5));page=(math.max(1,tonumber(page) or 1)-1)%pages+1
   local names={};for id in pairs(r.sources)do
    local sourceCity=Players[pid]:GetCities():FindID(id)
    names[#names+1]=sourceCity and sourceCity:GetName() or tostring(id)
   end;table.sort(names)
   local out={'工业标准化 | '..c:GetName(),'三级建造 +10% / 购买折扣 0%；四级持有者每层研习各 +2 个百分点',
-   '来源：'..(#names>0 and table.concat(names,'、') or '无合格模板来源'),
+   (failed and '上次确认来源：' or '来源：')..(#names>0 and table.concat(names,'、') or '无合格模板来源'),
    '匹配目标 '..#ids..' | 页 '..page..'/'..pages}
   for i=(page-1)*5+1,math.min(page*5,#ids)do
-   local row=byTarget[ids[i]];out[#out+1]=(row.kind=='DISTRICT' and '区域：' or '建筑：')..Locale.Lookup(row.name)..' 建造 +'..r.applied[ids[i]]..'% / '..(row.kind=='BUILDING' and ('购买折扣 '..(r.applied[ids[i]]-10)..'%') or '区域购买折扣待接口')
+   local t=ids[i];local row=byTarget[t];local applied=r.applied[t]
+   local label=(row.kind=='DISTRICT' and '区域：' or '建筑：')..Locale.Lookup(row.name)
+   local outcome=failed and failed[t]
+   if outcome then
+    out[#out+1]=label..' 更新未确认｜载体配置读回：'..(outcome.known and (applied or 0)..'%' or '未知')
+   else
+    out[#out+1]=label..' 建造 +'..applied..'% / '..(row.kind=='BUILDING' and ('购买折扣 '..(applied-10)..'%') or '区域购买折扣待接口')
+   end
   end
   out[#out+1]='状态：'..tostring(reason or '正常')
   out[#out+1]='仅加速本来合法的普通建筑／区域；不含奇观，不授予建造或购买权限。'
   out[#out+1]='各模板只取实际持有者最大值；区域逐模板购买折扣未接入。配置须与原生进度／价格核对。'
   observe(pid,c,r,reason,true)
-  if shared.ConstructionProbe and shared.ConstructionProbe.ReadSnapshot then
-   local ok,q=pcall(shared.ConstructionProbe.ReadSnapshot,pid,c)
-   if ok then
-    out[#out+1]='当前生产进度：'..q.progress..' / '..q.cost
-    if trace then trace.Record('INDUSTRY_CONSTRUCTION_REPORT',{owner=pid,city=c:GetID(),eventKind=q.kind,
-     requested=q.target,nativeProgress=q.progress,nativeCost=q.cost,expected=r.applied[(q.kind=='Buildings' and 'BUILDING:' or 'DISTRICT:')..q.target] or 0})end
-   else out[#out+1]='当前生产进度未读取；请以原生生产列表为准。'end
-  end
+  local ok,q=pcall(readProgress,pid,c,r)
+  if ok then
+   out[#out+1]='当前生产进度：'..q.progress..' / '..q.cost
+   if trace then
+    local prefix=q.kind=='Buildings' and 'BUILDING:' or q.kind=='Districts' and 'DISTRICT:'
+    local target=prefix and prefix..q.target
+    trace.Record('INDUSTRY_CONSTRUCTION_REPORT',{owner=pid,city=c:GetID(),eventKind=q.kind,
+     requested=q.target,nativeProgress=q.progress,nativeCost=q.cost,
+     expected=target and failed and failed[target] and 'UNKNOWN' or target and r.applied[target] or 0})
+   end
+  else out[#out+1]='当前生产进度未读取；请以原生生产列表为准。'end
   return table.concat(out,'\n')
  end
  local function hook(src,n,f)local e=P.Field(src,n);if e and e.Add then e.Add(f)end end
@@ -274,19 +458,25 @@ function SPCStandardizationEffects.Start(P,shared)
   if not initialized then all()end;flush()
  end)
  hook(Events,'PlayerTurnActivated',function(pid)mark(pid);flush()end)
- for _,name in ipairs({'GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted'})do
-  hook(Events,name,function(pid)mark(pid);flush()end)
- end
- hook(Events,'CityTransfered',function()initialized=false;cleaned={};all();flush()end)
+ -- NativeFacts owns governor qualification causes; declared ACTIVE delivery is deferred.
+ hook(Events,'CityTransfered',function(owner,cid,oldOwner)
+  local function valid(v)return type(v)=='number'and v>=0 and v<2147483648 and v%1==0 end
+  if not(valid(owner)and valid(cid)and valid(oldOwner))then all();flush();return end
+  -- Keep initialization/clean markers. A different reference retires only that
+  -- receiver; native destination ID must never be aliased to its former owner.
+  if P.IsTestPlayer(owner)then mark(owner,cid)end
+  if oldOwner~=owner and P.IsTestPlayer(oldOwner)then mark(oldOwner)end
+  flush()
+ end)
  -- Store confirmed loss owns destination reference proof; no guessed coordinates.
  local store=shared.CityProgressionStore
  if store then
   store.RegisterExit('StandardizationEffects',function(c,loss)
    validate();cleaned[key(c:GetOwner(),c:GetID())]=nil;retire(c);local ids={};for _,r in ipairs(definitions)do ids[#ids+1]=r.id end
    store.RemoveOwned(c,loss,ids)
-   d.records[key(loss.origin.owner,loss.origin.cityID)]=nil;d.errors[key(loss.origin.owner,loss.origin.cityID)]=nil
+   d.records[key(loss.origin.owner,loss.origin.cityID)]=nil;dependents.Remove(loss.origin.owner,loss.origin.cityID);d.errors[key(loss.origin.owner,loss.origin.cityID)]=nil
    cleaned[key(loss.origin.owner,loss.origin.cityID)]=nil
-   mark(loss.origin.owner);mark(c:GetOwner())
+   mark(loss.origin.owner,loss.origin.cityID);mark(c:GetOwner(),c:GetID())
   end)
   store.RegisterReturn('StandardizationEffects',function(pid,c)mark(pid,c:GetID())end)
  end

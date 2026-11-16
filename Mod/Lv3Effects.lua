@@ -1,4 +1,5 @@
 include('RuntimeWork')
+include('Tombstones')
 -- B038: native population yield per specialist; Commerce direct connected types.
 SPCLv3Effects={}
 function SPCLv3Effects.Start(P,shared,options)
@@ -10,8 +11,7 @@ function SPCLv3Effects.Start(P,shared,options)
  local data={ready=false,busy=false,errors={},changes=0,observed={}};shared.Lv3Effects=data
  local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER',COMMERCE='DISTRICT_COMMERCIAL_HUB',INDUSTRY='DISTRICT_INDUSTRIAL_ZONE'}
- local names={}
- for _,k in ipairs({'CULTURE'}) do for i=0,7 do names[#names+1]='BUILDING_SPC_DEV_LV3_POP_'..k..'_'..i end end
+ local cultureNames=SPCTombstones.Names('Lv3Culture');local names=SPCTombstones.Names('Lv3Culture')
  for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'}) do names[#names+1]='BUILDING_SPC_DEV_LV3_COM_'..k end
  local function desired(pid,c)
   local wanted={}
@@ -49,11 +49,14 @@ function SPCLv3Effects.Start(P,shared,options)
   return coefficients,flags
  end
  function data.WithdrawCulture(c)
-  for bit=0,7 do
-   local r=assert(P.Info('Buildings','BUILDING_SPC_DEV_LV3_POP_CULTURE_'..bit),'B038_DATABASE_MISSING')
+  SPCRuntimeWork.RetireOnce(P,shared,c,'Lv3Culture',function()
+  for _,name in ipairs(cultureNames)do
+   local r=assert(P.Info('Buildings',name),'B038_DATABASE_MISSING')
    local b=c:GetBuildings();local present=P.HasBuilding(b,r.Index);assert(type(present)=='boolean','LV3_CARRIER_UNKNOWN')
    if present then P.RemoveBuilding(b,r.Index);assert(P.HasBuilding(b,r.Index)==false,'LV3_REMOVE_UNCONFIRMED');data.changes=data.changes+1 end
   end
+  return 0
+  end)
   return true
  end
  local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
@@ -150,12 +153,16 @@ function SPCLv3Effects.Start(P,shared,options)
  end
  local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
  hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit({load=true}) end)
- for _,n in ipairs({'PlayerTurnActivated','GovernorAssigned','GovernorChanged','GovernorEstablished','GovernorPromoted','CityTransfered','CityWorkerChanged','CityFocusChanged','CityPopulationChanged'}) do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit) end
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityPopulationChanged'}) do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit) end
  for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
  -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Effects',targets.Exit(function(c,loss)
+ if options and options.centralExit then
+  assert(shared.LegacyCleanup,'LEGACY_CLEANUP_UNAVAILABLE').RegisterRunner('Lv3Effects',function(clean,ack)
+   return targets.Exit(clean,'LegacyCleanup',ack)
+  end)
+ elseif shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('Lv3Effects',targets.Exit(function(c,loss)
    local ids={};for _,id in ipairs(names)do ids[#ids+1]=id end
    shared.CityProgressionStore.RemoveOwned(c,loss,ids)
- end))end
+ end,'Lv3Effects'))end
 
 end

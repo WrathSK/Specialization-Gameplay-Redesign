@@ -1,11 +1,16 @@
+include('CityReference')
 -- D2: ephemeral batch indexes, never persisted or shared across writes/batches.
 SPCRuntimeWork={}
 function SPCRuntimeWork.New(P,shared)
- local b={};local facts,byPlayer,live={}, {}, {}
+ local b={};local byPlayer,live={}, {}
+ local effective=shared.EffectiveFacts;local scoped=effective.NewReader and effective.NewReader();local read=scoped or effective.Read
  function b.Facts(pid,c)
-  facts[pid]=facts[pid] or {};local t=facts[pid];local id=c:GetID()
-  if not t[id] then t[id]=shared.EffectiveFacts.Read(pid,c) end
-  return t[id]
+  -- Every lookup revalidates the shared phase's authority/governor/write witness.
+  return read(pid,c)
+ end
+ function b.Inspect(pid,c,project)
+  if effective.Inspect then return (scoped or effective.Inspect)(pid,c,project)end
+  return project(b.Facts(pid,c),function(_,fn)return fn()end,function(_,fn)return fn()end)
  end
  function b.Districts(pid,c)
   if not byPlayer[pid] then
@@ -30,31 +35,173 @@ end
 function SPCRuntimeWork.Player(scope,pid)
  return type(scope)~='table' or scope.player==nil or scope.player==pid
 end
--- Only the named, synchronous investment result may narrow these two writers.
+-- Known-city traversal performs no all-city enumeration. Native owner/reference
+-- checks remain the individual writer's responsibility.
+function SPCRuntimeWork.Cities(collection,scope)
+ if type(scope)=='table' and scope.city~=nil then
+  local done=false
+  return function()
+   if done then return end;done=true
+   local c
+   if collection.FindID then c=collection:FindID(scope.city)
+   else for _,candidate in collection:Members()do if candidate:GetID()==scope.city then c=candidate;break end end end
+   if c then return 1,c end
+  end
+ end
+ return collection:Members()
+end
+-- Scope admission is independent of each owner's calculation and writes.
+function SPCRuntimeWork.AuditOwners(P,scope,visit,taking)
+ local accepted=true;local foundOwner=false
+ for pid,player in pairs(Players)do
+  if SPCRuntimeWork.Player(scope,pid)then
+   foundOwner=true
+   local eligible,_,status=P.IsTestPlayer(pid)
+   if eligible then
+    if visit(pid,player)==false then accepted=false end
+   elseif taking and status~='INELIGIBLE'then accepted=false end
+  end
+ end
+ return accepted and (not scope or scope.player==nil or foundOwner)
+end
+function SPCRuntimeWork.AuditCityOwned(city,pid,taking)
+ local owner=city:GetOwner()
+ if taking then assert(type(owner)=='number','RUNTIME_AUDIT_OWNER_UNAVAILABLE')end
+ return owner==pid
+end
+-- The two Research city writers share traversal and scope accounting.
+function SPCRuntimeWork.AuditCities(P,scope,errors,reconcile,taking)
+ return SPCRuntimeWork.AuditOwners(P,scope,function(pid,player)
+  if not (scope and scope.city~=nil)then errors[pid]={}end
+  errors[pid]=errors[pid] or {}
+  local cities=player:GetCities();if not cities then return false end
+  local accepted=true
+  for _,c in SPCRuntimeWork.Cities(cities,scope)do
+   local ok,why=pcall(function()
+    if SPCRuntimeWork.AuditCityOwned(c,pid,taking)then P.Count('city_scan');reconcile(pid,c)end
+   end)
+   errors[pid][c:GetID()]=not ok and tostring(why) or nil
+   if not ok then accepted=false end
+  end
+  return accepted
+ end,taking)
+end
+-- Scope-only busy work: no native objects, automatic retry, timers or UNKNOWN
+-- recovery. A real reentrant cause arms one later existing publish snapshot.
+function SPCRuntimeWork.NewAudit(P,shared,data,label,run,options)
+ local pending,transfers={},{};local total=0;local draining=false
+ local targetOwner=options and options.targets==true
+ local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
+ local function mark(scope)
+  local transfer=type(scope)=='table' and scope.transfer
+  if type(transfer)=='table' and valid(transfer.owner) and valid(transfer.city) and valid(transfer.oldOwner)then
+   local k=transfer.owner..':'..transfer.city..':'..transfer.oldOwner
+   if not transfers[k]then assert(total<2048,'RUNTIME_AUDIT_SCOPE_LIMIT');total=total+1 end
+   transfers[k]={owner=transfer.owner,city=transfer.city,oldOwner=transfer.oldOwner};return true
+  end
+  local pid=type(scope)=='table' and scope.player or nil
+  if pid~=nil and not targetOwner and not P.IsTestPlayer(pid)then return false end
+  local key=pid==nil and '*' or pid;local q=pending[key]
+  if not q then assert(total<2048,'RUNTIME_AUDIT_SCOPE_LIMIT');q={player=pid,cities={}};pending[key]=q;total=total+1 end
+  local cid=type(scope)=='table' and scope.city or nil
+  if pid==nil or cid==nil then q.all=true;q.cities={}
+  elseif not q.all and not q.cities[cid]then
+   assert(type(cid)=='number' and cid>=0 and cid%1==0 and total<2048,'RUNTIME_AUDIT_SCOPE_LIMIT')
+   q.cities[cid]=true;total=total+1
+  end
+  return true
+ end
+ local function runAudit(scope,taking)
+  if type(scope)~='table'then scope=nil end
+  if not data.ready then return false end
+  if type(scope)=='table' and scope.player~=nil and not targetOwner then
+   local eligible,_,status=P.IsTestPlayer(scope.player)
+   if not eligible then return taking and status=='INELIGIBLE' or false end
+  end
+  if data.busy then
+   if P.Count then P.Count('busy_skip')end
+   if not taking then mark(scope)end
+   return false
+  end
+  data.busy=true;if P.Observe then pcall(P.Observe,'audit',label)end
+  local ok,why=pcall(run,scope,taking);data.busy=false
+  local safe,text=pcall(tostring,why)
+  data.auditError=not ok and (safe and text:sub(1,180) or 'RUNTIME_AUDIT_FAILED') or nil
+  return ok and (not taking or why==true)
+ end
+ local function audit(scope)return runAudit(scope,false)end
+ local function flush()
+  if draining or data.busy or not data.ready or not next(pending) and not next(transfers)then return false end
+  draining=true;local work,moved=pending,transfers;pending={};transfers={};total=0
+  for _,v in pairs(moved)do audit({transfer=v})end
+  if work['*']then audit()else
+   for _,q in pairs(work)do
+    if q.all then audit({player=q.player})
+    else for cid in pairs(q.cities)do audit({player=q.player,city=cid})end end
+   end
+  end
+  draining=false;return true
+ end
+ local e=P.Field(Events,'GameCoreEventPublishComplete');if e and e.Add then e.Add(flush)end
+ local load=P.Field(Events,'LoadScreenClose');if load and load.Add then load.Add(function()pending={};transfers={};total=0 end)end
+ local accept
+ if options and options.receipts then accept=function(scope)return runAudit(scope,true)end end
+ return audit,mark,flush,accept
+end
+-- Only a named, committed investment result may narrow these two writers.
 -- Native hooks/player scopes remain unchanged. Facts belong to this writer's
 -- batch; the next writer must revalidate rather than reuse post-write inputs.
-function SPCRuntimeWork.InvestmentCity(P,shared,scope,batch)
+function SPCRuntimeWork.InvestmentCity(P,shared,scope,batch,taking)
  local function same(a,b)
   if type(a)~=type(b) then return false end;if type(a)~='table' then return a==b end
   for k,v in pairs(a)do if not same(v,b[k])then return false end end
   for k in pairs(b)do if a[k]==nil then return false end end;return true
  end
+ local function integer(value)return type(value)=='number' and value>=0 and value<2147483648 and value%1==0 end
+ local function located(r)
+  return type(r)=='table' and integer(r.owner) and integer(r.cityID) and integer(r.x) and integer(r.y)
+ end
+ local function obsolete(reason)
+  if taking then return nil,reason end
+  error(reason,0)
+ end
  local e=scope.investment;local pid=scope.player
  assert(type(e)=='table' and e.status=='COMMITTED' and e.cause=='INVESTMENT_COMMITTED'
-  and type(pid)=='number' and pid==e.player and P.IsTestPlayer(pid),'INVESTMENT_SCOPE_UNKNOWN')
- assert(type(e.city)=='number' and e.city>=0 and e.city%1==0 and type(e.anchor)=='table'
+  and integer(pid) and pid==e.player,'INVESTMENT_SCOPE_UNKNOWN')
+ local eligible,_,status=P.IsTestPlayer(pid)
+ if not eligible and status=='INELIGIBLE'then return obsolete('INVESTMENT_SCOPE_UNKNOWN')end
+ assert(eligible,'INVESTMENT_SCOPE_UNKNOWN')
+ assert(integer(e.city) and scope.city==e.city and type(e.anchor)=='table'
   and e.anchor.owner==pid and e.anchor.cityID==e.city and type(e.anchor.token)=='string' and #e.anchor.token>0
   and type(e.receipt)=='string' and #e.receipt>0 and type(e.unitUID)=='string'
+  and located(e.reference) and e.reference.owner==pid and e.reference.cityID==e.city
   and type(e.revision)=='number' and e.revision>=2 and e.revision<=4 and e.revision%1==0,'INVESTMENT_EVIDENCE_UNKNOWN')
  local player=assert(Players[pid],'INVESTMENT_PLAYER_UNAVAILABLE')
  local city=assert(player:GetCities():FindID(e.city),'INVESTMENT_CITY_UNAVAILABLE')
- assert(same(e.reference,{owner=city:GetOwner(),cityID=city:GetID(),x=city:GetX(),y=city:GetY()})
-  and city:GetOwner()==pid,'INVESTMENT_REFERENCE_CHANGED')
+ local function readReference()
+  local r={owner=city:GetOwner(),cityID=city:GetID(),x=city:GetX(),y=city:GetY()}
+  assert(located(r),'INVESTMENT_REFERENCE_UNAVAILABLE');return r
+ end
+ if not same(e.reference,readReference())then return obsolete('INVESTMENT_REFERENCE_CHANGED')end
  local f=batch.Facts(pid,city)
- assert(same(e.anchor,{owner=f.owner,cityID=f.cityID,token=f.token,first=f.first,specialization=f.specialization})
-  and not f.investmentPending and f.investmentCount>=e.revision-1,'INVESTMENT_BINDING_CHANGED')
- assert(same(e.reference,{owner=city:GetOwner(),cityID=city:GetID(),x=city:GetX(),y=city:GetY()}),'INVESTMENT_CHANGED_DURING_READ')
+ assert(same(e.reference,readReference()),'INVESTMENT_CHANGED_DURING_READ')
+ assert(type(f)=='table' and f.owner==pid and f.cityID==e.city and type(f.token)=='string'
+  and #f.token>0 and type(f.specialization)=='string' and (f.specialization=='NONE' or type(f.first)=='table'),
+  'INVESTMENT_BINDING_UNAVAILABLE')
+ if not same(e.anchor,{owner=f.owner,cityID=f.cityID,token=f.token,first=f.first,specialization=f.specialization})then
+  return obsolete('INVESTMENT_BINDING_CHANGED')
+ end
+ assert(f.investmentPending==false and integer(f.investmentCount) and f.investmentCount>=e.revision-1,'INVESTMENT_BINDING_CHANGED')
  return city
+end
+-- Fixed scalar attribution only. No native lookup, retained scope or event history.
+function SPCRuntimeWork.NoteScope(P,source,scope)
+ if not P.Count then return end
+ local native=SPCRuntimeComposition and SPCRuntimeComposition.Native(source) or source
+ P.Count('scope_dispatch');P.Count(native==(SPCRuntimeComposition and SPCRuntimeComposition.Native(GameEvents) or GameEvents) and 'scope_gameevents' or 'scope_events')
+ local kind=type(scope)=='table' and (scope.transfer and 'transfer' or scope.plot and 'plot' or scope.city~=nil and 'city' or scope.player~=nil and 'player')
+ P.Count(kind and ('scope_'..kind) or 'scope_fallback')
+ if not kind then P.Count('scope_unknown_signature')elseif kind=='player'then P.Count('scope_player_signature')end
 end
 function SPCRuntimeWork.Hook(P,source,name,fn)
  local e=P.Field(source,name);if not e or not e.Add then return end
@@ -65,29 +212,53 @@ function SPCRuntimeWork.Hook(P,source,name,fn)
    local row=P.Info('Buildings',building)
    if row and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_') then return end
    if P.Observe then P.Observe('dispatch',name) end
-   fn({player=type(owner)=='number' and owner or nil});return
+   local scope={player=type(owner)=='number' and owner or nil};SPCRuntimeWork.NoteScope(P,source,scope);fn(scope);return
   end
   if name=='PlayerTurnActivated' then
    if type(pid)~='number' then return end
    local turn=Game.GetCurrentGameTurn();if lastTurn[pid]==turn then return end
-   lastTurn[pid]=turn;if P.Observe then P.Observe('dispatch',name) end;fn({player=pid});return
+   lastTurn[pid]=turn;if P.Observe then P.Observe('dispatch',name) end;local scope={player=pid};SPCRuntimeWork.NoteScope(P,source,scope);fn(scope);return
   end
   -- Civ VI native city/worker/governor events start with player ID. Events with
   -- plot-first or transfer signatures intentionally retain a full safety scope.
   if P.Observe then P.Observe('dispatch',name) end
   if name:match('^Governor') or name=='CityWorkerChanged' or name=='CityFocusChanged'
-   or name=='CityPopulationChanged' then fn({player=pid});return end
-  fn()
+   or name=='CityPopulationChanged' then local scope={player=pid};SPCRuntimeWork.NoteScope(P,source,scope);fn(scope);return end
+  SPCRuntimeWork.NoteScope(P,source,nil);fn()
  end)
+end
+
+-- Exact native destination metadata is a routing hint, not exit authority.
+local function lifecycleTransfer(scope)
+ if type(scope)~='table'then return end
+ local value=scope.transfer
+ if value==nil then return end
+ assert(type(value)=='table'and getmetatable(value)==nil,'RUNTIME_TRANSFER_STRUCTURE')
+ local allowed={owner=true,city=true,oldOwner=true};local n=0
+ for k,v in pairs(value)do
+  n=n+1;assert(allowed[k]and type(v)=='number'and v>=0 and v<2147483648 and v%1==0,'RUNTIME_TRANSFER_FIELD')
+ end
+ assert(n==3 and value.owner~=nil and value.city~=nil and value.oldOwner~=nil,'RUNTIME_TRANSFER_FIELDS')
+ return {owner=value.owner,city=value.city,oldOwner=value.oldOwner}
+end
+function SPCRuntimeWork.LifecycleScopes(P,scope,visit)
+ local t=lifecycleTransfer(scope)
+ if not t then return visit(scope)end
+ local failed,why=false,nil
+ local function notify(value)local ok,err=pcall(visit,value);if not ok and not failed then failed=true;why=err end end
+ if P.IsTestPlayer(t.owner)then notify({player=t.owner,city=t.owner~=t.oldOwner and t.city or nil})end
+ if t.oldOwner~=t.owner and P.IsTestPlayer(t.oldOwner)then notify({player=t.oldOwner})end
+ if failed then error(why,0)end -- one failed side cannot erase the other mark
 end
 
 -- B270 opt-in target owner. Existing Player/Hook contracts stay unchanged for
 -- other consumers. Only scalar references survive a synchronous audit.
 function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
  local t={pending={},exits={},known={},transfers={}}
+ local function errorText(value)local ok,text=pcall(tostring,value);return ok and type(text)=='string'and text or 'RUNTIME_TARGET_FAILED'end
  local function report(pid,cid,err)
   local ok,why=pcall(onError,pid,cid,err)
-  if not ok then t.error=tostring(why)end
+  if not ok then t.error=errorText(why)end
  end
  local function reference(c)
   local r={owner=c:GetOwner(),city=c:GetID()}
@@ -101,6 +272,7 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
  end
  local function selected(scope,r)
   if type(scope)~='table' then return true end
+  if scope.transfer then local v=scope.transfer;return r.owner==v.oldOwner or r.owner==v.owner and r.city==v.city end
   return (scope.player==nil or scope.player==r.owner) and (scope.city==nil or scope.city==r.city)
  end
  local function lookup(cs,id)
@@ -122,21 +294,60 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
   if P.IsTestPlayer(pid)then put(t.known,k,r)end
   local ok,err=pcall(visit,pid,c)
   if ok then t.pending[k]=nil else put(t.pending,k,r)end
-  report(pid,r.city,not ok and tostring(err) or nil)
+  report(pid,r.city,not ok and errorText(err) or nil)
   return k
+ end
+ local function acknowledge(e,c)
+  if not e.name then return true end -- explicit standalone/legacy helper use
+  local store=shared.CityProgressionStore
+  if e.completion then
+   assert(store and type(store.IsExitCurrent)=='function','RUNTIME_EXIT_CURRENT_UNAVAILABLE')
+   local current=function()return t.exits[key(e.ref)]==e end
+   assert(store.IsExitCurrent(e.name,c,e.loss,e.ticket,current)==true,'RUNTIME_EXIT_CURRENT_UNCONFIRMED')
+   assert(e.completion(c,e.loss,e.ticket,current)==true,'RUNTIME_EXIT_GROUP_UNCONFIRMED')
+   return true -- only the aggregate owner may acknowledge the whole Store exit
+  end
+  if not(store and type(store.ExitCompleted)=='function')then
+   assert(not(store and store.UsesNewAuthority==true),'RUNTIME_EXIT_ACK_UNAVAILABLE')
+   return true -- isolated pre-Store fixtures only, not current Gameplay
+  end
+  assert(store.ExitCompleted(e.name,c,e.loss,e.ticket,function()return t.exits[key(e.ref)]==e end)==true,'RUNTIME_EXIT_ACK_UNCONFIRMED')
+  return true
+ end
+ local function cleanExit(e,c)
+  if e.completion then return e.fn(c,e.loss,e.ticket,function()return t.exits[key(e.ref)]==e end)end
+  return e.fn(c,e.loss) -- ordinary exit argument contract remains unchanged
+ end
+ local function relevantTransfer(v)
+  if P.IsTestPlayer(v.owner)or P.IsTestPlayer(v.oldOwner)then return true end
+  local function related(r)return r.owner==v.owner or r.owner==v.oldOwner end
+  for _,r in pairs(t.known)do if related(r)then return true end end
+  for _,r in pairs(t.pending)do if related(r)then return true end end
+  for _,e in pairs(t.exits)do if related(e.ref)then return true end end
+  for _,q in pairs(t.transfers)do if related(q)or q.oldOwner==v.owner or q.oldOwner==v.oldOwner then return true end end
+  return false
  end
  local transfers
  function t.Retry(scope)
   if transfers then transfers(scope)end
   local seen={}
-  for k,e in pairs(t.exits)do if selected(scope,e.ref)then
+  local exitSnapshot={};for k,e in pairs(t.exits)do exitSnapshot[k]=e end
+  for k,e in pairs(exitSnapshot)do if t.exits[k]==e and selected(scope,e.ref)then
    local ok,c=pcall(resolve,e.ref)
    -- Keep UNKNOWN/reference changes; only the store's original loss proof can
    -- authorize withdrawal. Never follow a reused ID or coordinate to a new city.
-   if ok and c then
-    local good,err=pcall(e.fn,c,e.loss)
-    report(e.ref.owner,e.ref.city,not good and tostring(err) or nil)
-    if good then t.exits[k]=nil;t.pending[k]=nil end
+   if ok and c and t.exits[k]==e then
+    local priorPending=t.pending[k]
+    local good,err=pcall(function()
+     assert(cleanExit(e,c)~=false,'RUNTIME_EXIT_UNCONFIRMED')
+     if t.exits[k]~=e then return false end
+     return acknowledge(e,c)
+    end)
+    if t.exits[k]==e then
+     good=good and err~=false
+     report(e.ref.owner,e.ref.city,not good and errorText(err)or nil)
+     if good and t.exits[k]==e then t.exits[k]=nil;if t.pending[k]==priorPending then t.pending[k]=nil end end
+    end
     seen[k]=true
    end
   end end
@@ -161,108 +372,291 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
     return true
    end)
    if ok and done then t.transfers[k]=nil
-   elseif not ok then report(v.owner,v.city,tostring(done))end
+   elseif not ok then report(v.owner,v.city,errorText(done))end
   end end
  end
- function t.Run(scope)
+ function t.Run(scope,taking)
+  local moved=lifecycleTransfer(scope)
+  if moved then
+   if not relevantTransfer(moved)then return true end
+   scope={transfer=moved} -- detach before any native qualification/recovery work
+  end
   local seen=t.Retry(scope)
+  local covered=true;local foundOwner=false
   for pid,p in pairs(Players)do
-   if SPCRuntimeWork.Player(scope,pid) and (type(scope)=='table' and scope.load or P.IsTestPlayer(pid))then
-    local ok,err=pcall(function()
-     local cs=p:GetCities();if not cs then return end
-     if type(scope)=='table' and scope.city~=nil then
-      local c=lookup(cs,scope.city);if c and not seen[key(reference(c))]then run(pid,c)end
-     else
-      for _,c in cs:Members()do
-       if not seen[key(reference(c))]then
-        run(pid,c) -- plot/unknown metadata falls back only to participants, never guessed radii
+   if (not moved or pid==moved.owner or pid==moved.oldOwner)and SPCRuntimeWork.Player(scope,pid)then
+    foundOwner=true
+    local eligible,status
+    if type(scope)=='table' and scope.load then eligible=true
+    else local why;eligible,why,status=P.IsTestPlayer(pid)end
+    if eligible then
+     local ok,visited=pcall(function()
+      local cs=p:GetCities();if not cs then return false end
+      local selectedCity=moved and pid==moved.owner and moved.owner~=moved.oldOwner and moved.city or type(scope)=='table'and scope.city
+      if selectedCity~=nil and selectedCity~=false then
+       local c=lookup(cs,selectedCity);if c and not seen[key(reference(c))]then run(pid,c)end
+      else
+       for _,c in cs:Members()do
+        if not seen[key(reference(c))]then
+         run(pid,c) -- plot/unknown metadata falls back only to participants, never guessed radii
+        end
        end
       end
-     end
-    end)
-    if not ok then report(pid,'player',tostring(err))end
+      return true
+     end)
+     if not ok then report(pid,'player',errorText(visited))end
+     if taking and (not ok or not visited)then covered=false end
+    elseif taking and status~='INELIGIBLE'then covered=false end
    end
   end
+  return covered and (not taking or type(scope)~='table' or scope.player==nil or foundOwner)
  end
  local runImpl,retryImpl=t.Run,t.Retry
- function t.Run(scope)
-  local ok,err=pcall(runImpl,scope)
-  if not ok then t.error=tostring(err);report(type(scope)=='table' and scope.player or 'runtime','player',t.error)end
+ function t.Run(scope,taking)
+  local ok,err=pcall(runImpl,scope,taking)
+  if not ok then t.error=errorText(err);report(type(scope)=='table' and scope.player or 'runtime','player',t.error)end
+  if taking then return ok and err end
  end
  function t.Retry(scope)
   local ok,out=pcall(function()
-   if type(scope)=='table' and scope.transfer then
-    local v=scope.transfer;put(t.transfers,tostring(v.owner)..':'..tostring(v.city),v)
+   local v=lifecycleTransfer(scope)
+   if v then
+    if not relevantTransfer(v)then return {}end
+    scope={transfer=v}
+    put(t.transfers,tostring(v.owner)..':'..tostring(v.city)..':'..tostring(v.oldOwner),v)
    end
    return retryImpl(scope)
   end)
-  if not ok then t.error=tostring(out);report(type(scope)=='table' and scope.player or 'runtime','player',t.error);return {}end
+  if not ok then t.error=errorText(out);report(type(scope)=='table' and scope.player or 'runtime','player',t.error);return {}end
   return out
  end
- function t.Exit(fn)
-  return function(c,loss)
+ function t.Exit(fn,name,completion)
+  assert(completion==nil or type(completion)=='function'and type(name)=='string'and #name>0,'RUNTIME_EXIT_COMPLETION_ADAPTER_INVALID')
+  return function(c,loss,ticket)
    local r=reference(c);local k=key(r)
-   put(t.exits,k,{ref=r,loss=loss,fn=fn}) -- retain before the first possibly failing read
-   local ok,err=pcall(fn,c,loss)
-   if ok then t.exits[k]=nil;t.pending[k]=nil else error(err)end
+   local priorPending=t.pending[k];local entry={ref=r,loss=loss,fn=fn,name=name,ticket=ticket,completion=completion}
+   put(t.exits,k,entry) -- retain before the first possibly failing native read
+   local ok,err=pcall(function()
+    assert(cleanExit(entry,c)~=false,'RUNTIME_EXIT_UNCONFIRMED')
+    assert(t.exits[k]==entry,'RUNTIME_EXIT_SUPERSEDED')
+    acknowledge(entry,c)
+    assert(t.exits[k]==entry,'RUNTIME_EXIT_SUPERSEDED')
+   end)
+   if ok then
+    if t.exits[k]==entry then t.exits[k]=nil;if t.pending[k]==priorPending then t.pending[k]=nil end end
+   else error(err)end
   end
  end
  function t.Forget(pid,cid)
   local k=tostring(pid)..':'..tostring(cid);t.pending[k]=nil;t.exits[k]=nil;t.known[k]=nil
  end
- -- Shared reset is registered before the first consumer load callback.
- if not shared.RuntimeRetirementHook then
-  shared.RuntimeRetirementHook=true
-  local e=P.Field(Events,'LoadScreenClose')
-  if e and e.Add then e.Add(function()shared.RuntimeRetirementCache={}end)end
- end
- local removed=P.Field(Events,'CityRemovedFromMap')
- if removed and removed.Add then removed.Add(function(pid,cid)
-  -- Removal is also emitted during transfers. Invalidate clean stamps only;
-  -- exact pending/exit proofs are retained until confirmed cleanup succeeds.
-  local all=shared.RuntimeRetirementCache or {};local prefix=tostring(pid)..':'..tostring(cid)..':'
-  for _,cache in pairs(all)do for k,stamp in pairs(cache)do
-   if stamp:sub(1,#prefix)==prefix then cache[k]=nil end
-  end end
- end)end
  return t
 end
 
--- Exact inert tombstones are verified once per current city reference/load.
+-- Composition-owned; never installed lazily under a possibly failed consumer.
+function SPCRuntimeWork.StartRetirement(P,shared)
+ local d={index={},slots={},count=0};shared.RuntimeRetirement=d
+ local function ownerKey(pid,cid)return tostring(pid)..':'..tostring(cid)end
+ local function drop(slot)
+  local rows=d.index[slot.owner];if rows then rows[slot.key]=nil;if not next(rows)then d.index[slot.owner]=nil end end
+ end
+ function d.Remember(tag,location,stamp,pid,cid)
+  local byTag=d.slots[tag];if not byTag then byTag={};d.slots[tag]=byTag end
+  local old=byTag[location]
+  if old then drop(old)else assert(d.count<8192,'RETIREMENT_INDEX_LIMIT');d.count=d.count+1 end
+  local owner=ownerKey(pid,cid);local slot={tag=tag,location=location,stamp=stamp,owner=owner,key=tag..'|'..location}
+  d.index[owner]=d.index[owner] or {};d.index[owner][slot.key]=slot;byTag[location]=slot
+ end
+ local function clear()
+  shared.RuntimeRetirementCache={};d.index={};d.slots={};d.count=0
+ end
+ local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(clear)end
+ local removed=P.Field(Events,'CityRemovedFromMap')
+ if removed and removed.Add then removed.Add(function(pid,cid)
+  local k=ownerKey(pid,cid);local rows=d.index[k];if not rows then return end
+  d.index[k]=nil
+  for _,slot in pairs(rows)do
+   local cache=shared.RuntimeRetirementCache and shared.RuntimeRetirementCache[slot.tag]
+   if cache and cache[slot.location]==slot.stamp then cache[slot.location]=nil end
+   local byTag=d.slots[slot.tag]
+   if byTag and byTag[slot.location]==slot then byTag[slot.location]=nil;d.count=d.count-1 end
+  end
+ end)end
+ return d
+end
+
+-- Exact retired IDs are cleaned once per current city reference/load.
 -- Failure never publishes a clean marker; positive effects remain blocked.
 function SPCRuntimeWork.RetireOnce(P,shared,c,tag,fn)
  shared.RuntimeRetirementCache=shared.RuntimeRetirementCache or {}
  local all=shared.RuntimeRetirementCache;all[tag]=all[tag] or {};local cache=all[tag]
- local x,y=c.GetX and c:GetX(),c.GetY and c:GetY()
- local k=x~=nil and (x..':'..y) or (c:GetOwner()..':'..c:GetID())
- local token=c.GetProperty and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN') or ''
- local stamp=table.concat({c:GetOwner(),c:GetID(),tostring(x),tostring(y),tostring(token)},':')
+ local ref=SPCCityReference.Read(shared,c);local owner,cid,x,y=ref.owner,ref.cityID,ref.x,ref.y
+ local k=x~=nil and (x..':'..y)or(owner..':'..cid)
+ local stamp=SPCCityReference.Key(ref)
  if cache[k]==stamp then return 0 end
- local n=fn()
+ local n=fn();assert(n~=false,'RETIREMENT_NOT_CONFIRMED')
+ -- A callback may synchronously replace a city binding or clear the load cache.
+ -- Never publish success for a reference/load that was not actually cleaned.
+ assert(SPCCityReference.Equal(ref,SPCCityReference.Read(shared,c))
+  and shared.RuntimeRetirementCache==all,'RETIREMENT_REFERENCE_CHANGED')
  if cache[k]==nil then local count=0;for _ in pairs(cache)do count=count+1 end;assert(count<2048,'RETIREMENT_CACHE_LIMIT')end
+ if shared.RuntimeRetirement then shared.RuntimeRetirement.Remember(tag,k,stamp,owner,cid)end
  cache[k]=stamp;return n
 end
 
 function SPCRuntimeWork.TargetHook(P,source,name,fn)
  local e=P.Field(source,name);if not e or not e.Add then return end
- -- These signatures are verified in native CityBannerManager/ObserverCamera
- -- and the existing progression completion owner; unknown forms stay bounded.
- if name=='DistrictBuildProgressChanged' or name=='DistrictAddedToMap'
-  or name=='DistrictPillaged' or name=='DistrictRepaired' then
-  e.Add(function(pid,did,cid)
-   fn({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})
-  end)
+ local function native(v)return SPCRuntimeComposition and SPCRuntimeComposition.Native(v) or v end
+ local gameplay=native(source)==native(GameEvents)
+ local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
+ local function scope(pid,cid)
+  return {player=valid(pid) and pid or nil,city=valid(pid) and valid(cid) and cid or nil}
+ end
+ local function scoped(value)if P.Observe then pcall(P.Observe,'dispatch',name)end;pcall(SPCRuntimeWork.NoteScope,P,source,value);return fn(value)end
+ if gameplay then
+  if name=='BuildingConstructed' or name=='BuildingPillageStateChanged' or name=='CityBuilt'then
+   e.Add(function(pid,cid)scoped(scope(pid,cid))end)
+  elseif name=='OnDistrictConstructed'then
+   e.Add(function(pid)scoped(scope(pid))end) -- district type is NOT cityID
+  elseif name=='OnPillage'then
+   e.Add(function(actor,unit,improvement,building,district,plotId)
+    local ok,owner=pcall(function()return Map.GetPlotByIndex(plotId):GetOwner()end)
+    scoped(scope(ok and owner or nil)) -- acting player is not the damaged city owner
+   end)
+  else e.Add(function()scoped(nil)end)end -- no Events-name inference across namespaces
+ elseif name=='DistrictBuildProgressChanged' or name=='DistrictAddedToMap'
+  or name=='DistrictPillaged' or name=='DistrictRemovedFromMap' or name=='DistrictRepaired' then
+  e.Add(function(pid,did,cid)scoped(scope(pid,cid))end)
  elseif name=='CityTransfered' then
   e.Add(function(owner,cid,oldOwner)
-   if type(owner)=='number' and type(cid)=='number' and type(oldOwner)=='number'then
-    fn({transfer={owner=owner,city=cid,oldOwner=oldOwner}})
-   else fn({})end
+   if valid(owner) and valid(cid) and valid(oldOwner)then scoped({transfer={owner=owner,city=cid,oldOwner=oldOwner}})
+   else scoped({})end
   end)
+ elseif name=='GovernorAssigned' or name=='GovernorEstablished'then
+  e.Add(function(owner,cid,governorOwner)
+   local ok,err=pcall(scoped,scope(owner,name=='GovernorEstablished' and cid or nil))
+   if valid(governorOwner) and governorOwner~=owner then
+    local good,why=pcall(scoped,scope(governorOwner));if not good and ok then ok=false;err=why end
+   end
+   if not ok then error(err,0)end
+  end)
+ elseif name=='GovernorChanged' or name=='GovernorPromoted'then
+  e.Add(function(pid)scoped(scope(pid))end)
+ elseif name=='PlayerTurnActivated'then SPCRuntimeWork.Hook(P,source,name,fn)
  elseif name=='ImprovementAddedToMap' or name=='ImprovementRemovedFromMap' or name=='FeatureRemovedFromMap' then
-  e.Add(function(x,y)fn(type(x)=='number' and type(y)=='number' and {plot={x,y}} or {})end)
- elseif name=='CityWorkerChanged' or name=='CityFocusChanged' or name=='CityPopulationChanged' then
-  e.Add(function(pid,cid)fn({player=type(pid)=='number' and pid or nil,city=type(cid)=='number' and cid or nil})end)
- elseif source==GameEvents and name=='OnDistrictConstructed' then
-  e.Add(function(pid)fn({player=type(pid)=='number' and pid or nil})end)
+  e.Add(function(x,y)scoped(type(x)=='number' and type(y)=='number' and {plot={x,y}} or {})end)
+ elseif name=='CityWorkerChanged' or name=='CityFocusChanged' or name=='CityPopulationChanged'
+  or name=='CityRemovedFromMap' or name=='CityTileOwnershipChanged'then
+  e.Add(function(pid,cid)scoped(scope(pid,cid))end)
+ elseif name=='BuildingAddedToMap' or name=='BuildingRemovedFromMap'then
+  e.Add(function(x,y,index,owner)
+   local ok,row=pcall(P.Info,'Buildings',index)
+   if ok and row and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_')then return end
+   local found,c=pcall(function()
+    local d=CityManager and CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)
+    return d and d:GetCity() or CityManager and CityManager.GetCityAt and CityManager.GetCityAt(x,y)
+   end)
+   if found and c then
+    local good,pid,cid=pcall(function()return c:GetOwner(),c:GetID()end)
+    if good then scoped(scope(pid,cid));return end
+   end
+   scoped(scope(owner))
+  end)
  else SPCRuntimeWork.Hook(P,source,name,fn)end
+end
+
+function SPCRuntimeWork.WakeFactOwner(shared,name)
+ local bindings,changes=shared.FactBindings,shared.FactChanges
+ if bindings and bindings.Wake and changes then return bindings.Wake(name,'OWNER_READY',changes.sequence)end
+end
+-- One initialization latch. Fallback checks only the Store's scalar lifecycle state.
+function SPCRuntimeWork.StartReady(P,shared,name,start,wakeFacts)
+ local latched=false
+ local function attempt(fromLoad)
+  if latched then return end
+  local store=shared.CityProgressionStore
+  if store and type(store.HistoryStartStatus)=='function'then
+   local ok,state=pcall(store.HistoryStartStatus)
+   if not ok or state=='WAITING'then return end
+  elseif not fromLoad then return end
+  latched=true -- never repeat initialization/Audit after a callback exception
+  start()
+  if wakeFacts then SPCRuntimeWork.WakeFactOwner(shared,name)end
+ end
+ local function bind(event,fn)local e=P.Field(Events,event);if e and e.Add then e.Add(fn)end end
+ bind('LoadScreenClose',function()attempt(true)end)
+ bind('GameCoreEventPublishComplete',function()attempt(false)end)
+ bind('PlayerTurnActivated',function()attempt(false)end)
+ if shared.ReadinessSummary and shared.ReadinessSummary.Register then pcall(shared.ReadinessSummary.Register,name)end
+ return function()return latched end
+end
+
+-- Exact live carrier health only. No policy, prefix ownership or periodic audit.
+function SPCRuntimeWork.NativeHealth(P,shared,data,owns,mark,beforeWrite)
+ local h={};local removing,creating
+ local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
+ local function guarded(fn,...)
+  local ok,err=pcall(fn,...)
+  if not ok then local safe,text=pcall(tostring,err);data.healthError=safe and text:sub(1,180) or 'CARRIER_HEALTH_MARK_FAILED'end
+ end
+ local function scoped(pid,cid)
+  if not valid(pid)then pid=nil;cid=nil elseif not valid(cid)then cid=nil end
+  if pid~=nil and not P.IsTestPlayer(pid)then return end
+  mark({player=pid,city=cid})
+ end
+ local function coordinate(x,y)
+  if Map.GetPlotIndex then return Map.GetPlotIndex(x,y)end
+  return Map.GetPlot(x,y):GetIndex()
+ end
+ local function removed(x,y,index,owner)
+  if not owns(index) or valid(owner) and not P.IsTestPlayer(owner)then return end
+  local w=removing
+  if w and w.owner==owner and w.index==index and valid(w.plot)then
+   local ok,plot=pcall(coordinate,x,y);if ok and plot==w.plot then return end
+  end
+  local ok,c=pcall(function()
+   local d=CityManager and CityManager.GetDistrictAt and CityManager.GetDistrictAt(x,y)
+   return d and d:GetCity() or CityManager and CityManager.GetCityAt and CityManager.GetCityAt(x,y)
+  end)
+  if ok and c then
+   local good,pid,cid=pcall(function()return c:GetOwner(),c:GetID()end)
+   if good and valid(pid) and valid(cid) and (not valid(owner) or owner==pid)then scoped(pid,cid);return end
+  end
+  scoped(owner) -- identity/location UNKNOWN never means harmless or city zero
+ end
+ local e=P.Field(Events,'BuildingRemovedFromMap')
+ if e and e.Add then e.Add(function(...)guarded(removed,...)end)end
+ e=P.Field(GameEvents,'BuildingPillageStateChanged')
+ if e and e.Add then e.Add(function(pid,cid,index,state)
+  guarded(function()
+   if not owns(index)then return end
+   local w=creating
+   if state==false and w and w.owner==pid and w.city==cid and w.index==index then return end
+   scoped(pid,cid) -- confirmed true/UNKNOWN state is never hidden by a busy flag
+  end)
+ end)end
+ local function witness(c,index,plot)
+  return {owner=c:GetOwner(),city=c:GetID(),index=index,plot=plot}
+ end
+ function h.Remove(c,index,plot)
+  if plot==nil then
+   local ok,value=pcall(function()return c:GetBuildings():GetBuildingLocation(index)end)
+   if ok then plot=value end -- optional proof; do not add a new qualification failure
+  end
+  local prior,w=removing,witness(c,index,plot);removing=w
+  local ok,value=pcall(function()
+   if not beforeWrite then return P.RemoveBuilding(c:GetBuildings(),index,w)end
+   local remove=P.RemoveBuilding;local b=c:GetBuildings();beforeWrite();return remove(b,index)
+  end);removing=prior
+  if not ok then error(value,0)end;return value
+ end
+ function h.Create(c,index,plot)
+  local prior,w=creating,witness(c,index,plot);creating=w
+  local ok,value=pcall(function()
+   if not beforeWrite then return P.CreateBuilding(c:GetBuildQueue(),index,w)end
+   local create=P.CreateBuilding;local q=c:GetBuildQueue();beforeWrite();return create(q,index)
+  end);creating=prior
+  if not ok then error(value,0)end;return value
+ end
+ return h
 end

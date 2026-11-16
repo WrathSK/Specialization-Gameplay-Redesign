@@ -347,7 +347,7 @@ class QuarantineTests(unittest.TestCase):
         lua = LuaRuntime(unpack_returned_tuples=True)
         for path in ("CultureMeaningModel.lua", "CultureMeaningProbe.lua", "UI/BoostGreatWorkRead.lua", "UI/P0Panel.lua", "Probe.lua"):
             with self.subTest(lua=path):
-                self.assertIsNotNone(lua.eval("function(s)return assert(load(s))end")((R / "Mod" / path).read_text()))
+                self.assertIsNotNone(lua.eval("function(s)return assert(load(s))end")(legacy.fixture_source(path))
         root = ET.parse(R / "Mod/SpecializationP0.modinfo").getroot()
         self.assertEqual(root.attrib["version"], "191")
         legacy.require_meaning_imports(root)

@@ -203,7 +203,7 @@ class AutomaticMeaningTests(unittest.TestCase):
           assert(shared.GreatWorkFacts.Read(0,7).count==1 and ui.scans==scans+1)
         """)
     def test_no_probe_can_start_while_normal_owner_is_registered(self):
-        l=self.runtime();l.globals().include('CultureMeaningProbe');l.execute("assert(not pcall(SPCCultureMeaningProbe.Start,P,shared))")
+        l=self.runtime();l.execute(legacy.fixture_source('CultureMeaningProbe.lua'));l.execute("assert(not pcall(SPCCultureMeaningProbe.Start,P,shared))")
     def test_package_and_sql_are_unchanged_native_family(self):
         root=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'193')
         imports=[e.text for e in root.findall("./InGameActions/ImportFiles[@id='SPCP0_Common']/File")];files=[e.text for e in root.find('Files')]
@@ -213,7 +213,7 @@ class AutomaticMeaningTests(unittest.TestCase):
         panel=(R/'Mod/UI/P0Panel.lua').read_text();self.assertIn("request('CULTURE_MEANING_STATUS')",panel);self.assertNotIn("request('CULTURE_MEANING_GATE_ADVANCE')",panel)
         l=LuaRuntime();
         for path in ['CultureMeaning.lua','CultureMeaningProbe.lua','GreatWorkAdjacency.lua','Gameplay.lua','CultureAesthetic.lua','UI/DialogueRefresh.lua','UI/P0Panel.lua','Probe.lua']:
-            l.execute('assert(load(...))',(R/'Mod'/path).read_text())
+            l.execute('assert(load(...))',legacy.fixture_source(path))
 
 def load_tests(loader,tests,pattern):
     # Current native DB already contains L1 SQL. Rebuild only exact owned

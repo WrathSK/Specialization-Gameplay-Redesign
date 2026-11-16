@@ -152,14 +152,12 @@ assert(e2Record().stage=='HELD_TRANSFER' and d.Status(c).returnRejection=='RETUR
     current.globals().include = lambda name: current.execute((mod / (name + '.lua')).read_text())
     current.execute('print=function()end')
     for name in ['Probe', 'CityIdentityRead', 'CityProgressionStore', 'BindingProbe',
-                 'CompletionRecordProbe', 'CityJournalProbe', 'FreshBindingHook',
+                 'CityJournalProbe', 'FreshBindingHook',
                  'CityFlowProbe', 'EffectiveFacts', 'InvestmentAction', 'NetworkInput']:
         current.execute((mod / (name + '.lua')).read_text())
     current.execute('SPCP0.IsTestPlayer=function(pid)return pid==0 end')
     current.execute('M=SPCCityIdentityRead\n' + source[source.index('function fixture()'):source.index('function expect(')])
     production = fixture.replace('SPCCityProgressionStore.StartLegacyTest(P,shared)', 'SPCCityProgressionStore.Start(P,shared)')
-    production = production.replace('SPCBindingProbe.Start(P,shared);SPCCityJournalProbe',
-                                    'SPCBindingProbe.Start(P,shared);SPCCompletionRecordProbe.Start(P,shared);SPCCityJournalProbe')
     b108 = (tests / 'test_b108_e2_multicity.py').read_text()
     helpers = b108.split("l.execute(h+r'''", 1)[1].split('-- Scale and write locality', 1)[0]
     current.execute(production + helpers + r'''

@@ -1,5 +1,4 @@
--- Preserve HD's city panel and its native view; no numeric turns data is replaced by strings.
-include("DL_CityPanel")
+-- Decorate the selected native CityPanel without replacing its numeric turns data.
 include("TimedProjectDisplay")
 local baseView=ViewMain
 function ViewMain(data)
@@ -16,6 +15,13 @@ function ViewMain(data)
  Controls.ProductionNum:SetToolTipString(note)
  Controls.ProductionTurnsBar:SetPercent(0);Controls.ProductionTurnsBar:SetShadowPercent(0)
 end
-LuaEvents.SPC_TimedProjectDisplayChanged.Add(function(pid,id)
+local changed=LuaEvents.SPC_TimedProjectDisplayChanged
+local function refreshSelected(pid,id)
  if g_pCity and g_pCity:GetOwner()==pid and g_pCity:GetID()==id then Refresh()end
+end
+changed.Add(refreshSelected)
+local nativeShutdown=OnShutdown
+ContextPtr:SetShutdown(function()
+ changed.Remove(refreshSelected)
+ if nativeShutdown then nativeShutdown()end
 end)

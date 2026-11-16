@@ -46,6 +46,22 @@ local function setup()
  GameInfo.HD_BuildingTiers=iterator({{BuildingType='BUILDING_A',PrereqDistrict='DISTRICT_CITY_CENTER',Tier=0},
   {BuildingType='BUILDING_B',PrereqDistrict='DISTRICT_INDUSTRIAL_ZONE',Tier=1}})
  GameInfo.HD_DUMMY_BUILDINGS=iterator({})
+ -- Keep synthetic template IDs for stored-history assertions. The real
+ -- environment catalogue and its projection are checked by the O1 tests.
+ if SPCOrdinaryBuildingCatalog and SPCOrdinaryBuildingCatalog.Read then
+  SPCOrdinaryBuildingCatalog.Read=function()
+   local out={districts={},effectBuildings={}}
+   for _,row in ipairs(dr)do
+    out.districts[row.DistrictType]={index=row.Index,name=row.Name,
+     base=row.DistrictType=='DISTRICT_SEOWON'and 'DISTRICT_CAMPUS'or row.DistrictType}
+   end
+   for row in GameInfo.HD_BuildingTiers()do
+    local b=buildings[row.BuildingType]
+    out.effectBuildings[b.BuildingType]={index=b.Index,name=b.Name,district=b.PrereqDistrict,tier=row.Tier}
+   end
+   return out
+  end
+ end
  local setter=Game.SetProperty
  Game.SetProperty=function(o,k,v)
   if k==KEY then H.historyWrites=H.historyWrites+1;if H.failure=='drop'then return end
