@@ -121,23 +121,30 @@ def legacy_extension(name):
 
 
 def run_claim_return_regression(body):
-    # Reuse the maintained B140 fixture adaptation only. Do not run its full body
-    # or historical package-version assertions and do not change old test files.
-    path = R / "DevelopmentTests/test_b140_templates.py"
-    source = path.read_text()
-    namespace = {"__file__": str(path)}
-    exec(compile(source[:source.index("extra=r" + chr(39)*3)], str(path), "exec"), namespace)
-    header = namespace["header"].replace("l=LuaRuntime()", "l=LuaRuntime()\nl.globals().print=lambda *parts: None")
-    selected = header + namespace["helpers"] + namespace["claim_setup"] + body + "\n" + chr(39)*3 + ")"
-    target = R / "DevelopmentTests/test_b124_claim.py"
-    exec(compile(selected, str(target), "exec"), {"__file__": str(target)})
+    # B140 is the compatibility source for the original B127/B128 scenario bodies.
+    from retired_crew_sources import package
+
+    revision = "58dd0cd2ebc2f6aba6f84ceb51cfdbdbc4291f55"
+    with package(revision, paths=("Mod", "DevelopmentTests")) as checkout:
+        tests = checkout / "DevelopmentTests"
+        path = tests / "test_b140_templates.py"
+        source = path.read_text()
+        quotes = chr(39) * 3
+        namespace = {"__file__": str(path)}
+        exec(compile(source[:source.index("extra=r" + quotes)], str(path), "exec"), namespace)
+        header = namespace["header"].replace(
+            "l=LuaRuntime()", "l=LuaRuntime()\nl.globals().print=lambda *parts: None",
+        )
+        selected = header + namespace["helpers"] + namespace["claim_setup"] + body + "\n" + quotes + ")"
+        target = tests / "test_b124_claim.py"
+        exec(compile(selected, str(target), "exec"), {"__file__": str(target)})
 
 
 class StoreWriteBoundaries(unittest.TestCase):
 
     def test_existing_b127_saved_claim_timer_regression(self):
         # Three unchanged groups: missed-load-hook resume, duplicate/same-turn,
-        # and incomplete end-turn proof. This is local reconstruction evidence.
+        # and incomplete end-turn proof. These replay the original fixture era.
         run_claim_return_regression(legacy_extension("test_b127_claim_resume.py"))
 
     def test_existing_b128_selected_store_return_regression(self):

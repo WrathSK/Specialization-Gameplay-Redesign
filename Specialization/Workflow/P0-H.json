@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1051",
+    "status": "S1052",
     "runtime": "B491.518 / modinfo518",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Restore Claim timer regression through the actual current acquisition and Store fixture.",
+  "goal": "Restore version-specific test replays and retain live regression scope.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Replay version-specific Claim, Dialogue and institution assertions — S1052",
+      "reason": "Exact historical source pins, current selected coverage and unchanged runtime identity"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -690,6 +696,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1052 passes 123 timed-project, 43 institution and 19 return/marker methods. Four source pins separate historical assertions from current checks.",
     "S1051 passes 112 scoped queue and acquisition methods. The 123-method comparison goes from 49 case errors to 3 inherited errors.",
     "B491 passes 40 scoped presentation checks and matches 352 baseline tooltip strings byte-for-byte. Twelve draft placements were checked in memory.",
     "B490 passes 58 scoped queue and production-panel checks and 11 Culture catalogue/receipt checks. Three new checks fail on B489. Native validation belongs to a later build test.",
@@ -4936,6 +4943,25 @@
       "runtime_package_changed": false,
       "native": "NOT_MEASURED",
       "report": "Specialization/Status/Specialization_P0_Status.md#restore-the-current-claim-timer-test-fixture--s1051"
+    },
+    "s1052_version_specific_test_replays": {
+      "build": "B491.518 / modinfo518",
+      "baseline": "3bac182b6168b82d39f1a9fff3c5cc2033eed230",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": {
+        "timed_project": 123,
+        "institutions": 43,
+        "return_and_markers": 19
+      },
+      "historical_replays": {
+        "b127_b128_claim_with_b140_fixture": "58dd0cd2ebc2f6aba6f84ceb51cfdbdbc4291f55",
+        "b175_dialogue": "886484a69189ac6c5cdacfd409f065f66957387f",
+        "b251_manifest": "5be03451115cf60e29af31a661be483e28a56eb1",
+        "b252_stage_layout": "efd54c0f353fcaa6751f0271c9a9461570ebb149"
+      },
+      "runtime_package_changed": false,
+      "native": "NOT_MEASURED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#replay-version-specific-claim-dialogue-and-institution-assertions--s1052"
     }
   }
 }

@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1051
+Status Revision: S1052
 Implementation Build: B491.518 / modinfo518 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CLAIM_TIMER_TEST_FIXTURE_LOCAL_PASS
+Work State: VERSION_SPECIFIC_TEST_REPLAYS_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,14 +15,20 @@ Work State: CLAIM_TIMER_TEST_FIXTURE_LOCAL_PASS
 |---|---|
 | Build and installation | [B491.518 on develop](#place-live-institution-values-in-localized-descriptions--s1050). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B491.518 has local institution rendering coverage and a [working Claim timer regression path](#restore-the-current-claim-timer-test-fixture--s1051). B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Restore the version-specific test replays exposed during the queue and institution work. B489.516 remains the stable playtest baseline. |
+| Validation | B491.518 has local institution, project queue and [version-specific replay coverage](#replay-version-specific-claim-dialogue-and-institution-assertions--s1052). B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Verify that translated institution headings and requirements can format their own tier labels. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Replay version-specific Claim, Dialogue and institution assertions — S1052
+
+**LOCAL_SIMULATION_PASS in scope.** The B127 and B128 save/return scenarios replay the original assertions in their B140 fixture and package from `58dd0cd2`. The pre-isolation Dialogue assertion runs the exact B175 test and package from `886484a6`. Current Dialogue still uses the B411 retention and known-marker rules. The current tests exercise those rules directly. The original B251 manifest stamp and B252 stage styling read `5be03451` and `efd54c0f` respectively. Institute icons, package closure, live layout fields, summary read-only behavior and localized rendering still check the current source. All four pins are reachable from published develop.
+
+**Reproduction.** Use CPython 3.14.8 and Lupa 2.8 with DevelopmentTests on PYTHONPATH. Run `python3.14 -B -m unittest test_refactor_s7d1 test_refactor_s7d2 test_refactor_s7d3b test_refactor_s7d4` (123 methods). Run `python3.14 -B -m unittest test_b251_institutions test_culture_institutions test_b265_city_presentation.EventPresentation test_b265_city_presentation.NativeOverview test_b266_institution_recovery` (43 methods). Run `python3.14 -B -m unittest test_store_write_boundaries.StoreWriteBoundaries.test_existing_b128_selected_store_return_regression test_pu09_marker_roots.ClaimMarkers test_pu09_marker_roots.DialogueMarkers` (19 methods). All selected checks pass. Old save/return and pre-isolation assertions establish their historical scope. The live package and native playtest gates retain the S1048 identities and limits.
 
 ### Restore the current Claim timer test fixture — S1051
 

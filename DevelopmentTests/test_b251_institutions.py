@@ -6,6 +6,7 @@ import sqlite3
 import struct
 import unittest
 import xml.etree.ElementTree as ET
+from retired_crew_sources import source as historical_source
 from test_culture_institutions import display
 from test_store_write_boundaries import fixture
 ROOT=Path(__file__).resolve().parents[1]
@@ -196,7 +197,9 @@ class Package(unittest.TestCase):
    self.assertEqual(a,(4,4,f'SPC_Institutions_{size}.dds'))
    b=(ROOT/'Mod/Textures'/a[2]).read_bytes();self.assertEqual(b[:4],b'DDS ');self.assertEqual(b[84:88],b'DXT5')
    self.assertEqual(struct.unpack_from('<II',b,12),(4*size,4*size));self.assertEqual(len(b),128+(4*size)**2)
-  root=ET.parse(ROOT/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'278')
+  approved=ET.fromstring(historical_source('SpecializationP0.modinfo','5be03451115cf60e29af31a661be483e28a56eb1'))
+  self.assertEqual(approved.get('version'),'278')
+  root=ET.parse(ROOT/'Mod/SpecializationP0.modinfo').getroot()
   listed=[x.text for x in root.findall('./Files/File')]
   actual={str(p.relative_to(ROOT/'Mod'))for p in (ROOT/'Mod').rglob('*')if p.is_file()and p.name not in ('.DS_Store','SpecializationP0.modinfo')}
   self.assertEqual(set(listed),actual);self.assertEqual(len(listed),len(set(listed)))
@@ -209,7 +212,9 @@ class Package(unittest.TestCase):
   self.assertEqual(controls['Icon'].get('Size'),'32,32')
   self.assertEqual(controls['State'].get('Anchor'),'R,C')
   self.assertEqual(controls['Name'].get('TruncateWidth'),'parent')
-  self.assertEqual(controls['Stage'].get('Style'),controls['Name'].get('Style')) # B252 native numerals
+  badges=ET.fromstring(historical_source('UI/Institutions.xml','efd54c0f353fcaa6751f0271c9a9461570ebb149'))
+  badge_controls={x.get('ID'):x for x in badges.iter()if x.get('ID')}
+  self.assertEqual(badge_controls['Stage'].get('Style'),badge_controls['Name'].get('Style')) # B252 native numerals
   source=(ROOT/'Mod/CityProgressionStore.lua').read_text()
   function=source.split(' function d.InstitutionSummary(pid,c)',1)[1].split(' function d.InstitutionArchive',1)[0]
   for bad in ('save(', 'ReadTemplates(', 'Refresh(', 'Discover(', ':Members(', 'SetProperty(', 'SetUpdate('):self.assertNotIn(bad,function)

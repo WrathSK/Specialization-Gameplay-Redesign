@@ -57,11 +57,11 @@ def source(relative, revision=B444):
 
 
 @contextmanager
-def package(revision=B444):
+def package(revision=B444, *, paths=('Mod',)):
     with tempfile.TemporaryDirectory(prefix='spc-package-history-') as directory:
         checkout = Path(directory)
         archive = checkout / 'package.tar'
-        subprocess.run(['git', 'archive', '-o', str(archive), revision, 'Mod'],
+        subprocess.run(['git', 'archive', '-o', str(archive), revision, *paths],
                        cwd=ROOT, check=True)
         with tarfile.open(archive) as tar:
             tar.extractall(checkout, filter='data')
