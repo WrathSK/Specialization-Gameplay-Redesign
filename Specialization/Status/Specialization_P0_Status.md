@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1064
-Implementation Build: B503.530 / modinfo530 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1065
+Implementation Build: B504.531 / modinfo531 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CAPITAL_INVESTMENT_COPY_LOCAL_PASS
+Work State: COMMERCIALIZATION_DEVELOPMENT_COPY_LOCAL_PASS_SCOPED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B503.530 on develop](#adopt-reviewed-capital-investment-panel-copy--s1064). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B504.531 on develop](#adopt-reviewed-commercialization-and-development-investment-copy--s1065). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B503.530 has local bilingual production, unit action and Capital Investment presentation coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Carry the same contract-led copy review to Commercialization and Development Investment. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B504.531 has scoped bilingual Commercialization and Development Investment panel coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Review unit and project descriptions for Construction Crews and Asset Restructuring. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Adopt reviewed Commercialization and Development Investment copy — S1065
+
+**LOCAL_SIMULATION_PASS in scope.** Both panels render the reviewed English and Chinese catalogue with their existing values. Commercialization distinguishes the city confirmation wait from pending yield writes and reports the last known Commercialization base Gold readback. Development Investment describes the outgoing route, theoretical Gold price, 15% quote, +50% Production and contract completion. The payment message covers both debit and contract receipt confirmation.
+
+**Runtime impact (L1).** Existing panels use localized catalogue values. Gameplay predicates, stored contract terms, transaction commands, read scopes and carrier writes are unchanged.
+
+**Reproduction.** With CPython 3.14.8 and Lupa 2.8, run `python3.14 -B -m unittest test_b261_commerce test_b252_sidebar.Sidebar test_b252_sidebar.Package.test_controls_and_chinese_keys test_b252_sidebar.Package.test_native_language_compilation_and_no_gameplay_writer test_o7_commercial_trace.CommercialTrace test_refactor_s6f.Composition test_refactor_s6f.Consumers`. 36 of 37 methods pass. `test_only_resize_event_reflows_without_transport` compares a missing fixture coordinate `Controls.Confirm.y` on both B503 and B504. SQLite-backed callbacks exercised both languages for each panel, including retained contract inspection and blocked confirmation while a receipt is pending.
+
+**STATIC_CONFIRMED.** The mounted catalogue diff against `2b33698a` changes 126 rows, including 55 English tags for each panel and 16 Chinese refinements. Formats retain their placeholder arguments. All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace references pass. B504.531 package SHA256 `cd44fcef2d92db0304275b426e00579123082cc4039d5c66bfc5bf8d092a80d1` across 337 files. Source only.
 
 ### Adopt reviewed Capital Investment panel copy — S1064
 

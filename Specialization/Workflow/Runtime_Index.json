@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "64f5db438bc0cb3a6eaece0a881abf5fd54967ca9caf79267ca4b0f618fbb7e3",
+      "sha256": "f06e7539ef19b39a020ff2c8ee456429270812fce34697a089a0ba45d7280ba3",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1064/B503.530 Terra Capital Investment names, terms and payment state text checked against real panel output."
+      "provenance": "S1065/B504.531 Terra commercial panel wording reviewed against source yields, theoretical prices and the current confirmation states."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "cdbf9c97a95523533604396c0f9107842045542ca11bde2176d9e1711a7239ed",
+      "sha256": "bba7c63b51e26becfd8299c9f204d8486ede967d27c1102f5b503d10e20178fe",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1064/B503.530 Terra Capital Investment names, terms and payment state text checked against real panel output."
+      "provenance": "S1065/B504.531 Terra commercial panel wording reviewed against source yields, theoretical prices and the current confirmation states."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -891,14 +891,14 @@
       "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/Text/Commerce.sql": {
-      "sha256": "71778bb2113d2ca790349ab76fa83e46f3fcd60ea1b8a2e32246de6b3d6b501e",
+      "sha256": "0bd85f3426c607d1128880da116c740cd009c10ce4ba3a1b816ed5c6e67d5c22",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1064/B503.530 Terra Capital Investment names, terms and payment state text checked against real panel output."
+      "provenance": "S1065/B504.531 Terra commercial panel wording reviewed against source yields, theoretical prices and the current confirmation states."
     },
     "Mod/Text/DevelopmentInvestment.sql": {
-      "sha256": "3b705eb02457d81262653d9c10d04aa5019d34fc9b61ab8df14f6dc3d6189a1c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+      "sha256": "3cb69c096fff7d4247105e9f212558c686fc67f57fce6bcb41d78190f3f95a21",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1065/B504.531 Terra commercial panel wording reviewed against source yields, theoretical prices and the current confirmation states."
     },
     "Mod/Text/DialogueProjects.sql": {
       "sha256": "894d151192f1bb081742693985ec7c9eb73bddf260d6a749c1c363a2a0c28752",

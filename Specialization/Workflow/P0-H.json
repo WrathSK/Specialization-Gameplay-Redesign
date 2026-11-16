@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1064",
-    "runtime": "B503.530 / modinfo530",
+    "status": "S1065",
+    "runtime": "B504.531 / modinfo531",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Apply the reviewed Terra copy to the existing Capital Investment panel without changing transaction behavior.",
+  "goal": "Apply the reviewed Terra copy to Commercialization and Development Investment.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Adopt reviewed Commercialization and Development Investment copy — S1065",
+      "reason": "S1065 verifies Commercialization and Development Investment copy against the panel values, admission and payment states."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -768,6 +774,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B504 compares the mounted locale catalogue, exercises both current panels in two languages and repeats the commercial contract and routing regressions. One old Development sidebar layout fixture fails identically at B503.",
     "B503 passes 65 selected sidebar, contract term and receipt methods. The mounted catalogue contains all 83 English Capital keys with their original parameters.",
     "B502 passes 68 selected action, receipt, HD and official panel methods. Both English action tooltip cases fail against B501.",
     "B501 passes 119 selected display, queue, panel and project controller methods. Three English display subcases fail against B500.",
@@ -5230,6 +5237,22 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#adopt-reviewed-capital-investment-panel-copy--s1064"
+    },
+    "b504_commercial_panel_copy": {
+      "build": "B504.531 / modinfo531",
+      "baseline": "2b33698ad0d3e1b6d90607c110fb9c3569879edf",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "regression_methods_pass": 36,
+      "baseline_layout_fixture_error": 1,
+      "changed_locale_rows": 126,
+      "english_rows": 110,
+      "simplified_chinese_rows": 16,
+      "locale_panel_scenarios": 4,
+      "package_sha256": "cd44fcef2d92db0304275b426e00579123082cc4039d5c66bfc5bf8d092a80d1",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#adopt-reviewed-commercialization-and-development-investment-copy--s1065"
     }
   }
 }
