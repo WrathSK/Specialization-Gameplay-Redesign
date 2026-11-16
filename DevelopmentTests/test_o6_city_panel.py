@@ -159,32 +159,38 @@ class CityPanelProfiles(unittest.TestCase):
 
         stock = official('Base/Assets/UI/Panels/CityPanel.lua', 'source_fragments_only')
         production = strip_types(stock[stock.index('\t--Production\n'):stock.index('\t-- Tutorial lockdown')])
+        captions = {
+            'zh_Hans_CN': ('回合后完成', '计时项目', '已暂停'),
+            'en_US': ('turn remaining', 'Project Timer', 'Paused'),
+        }
         for hd in (False, True):
-            with self.subTest(hd=hd):
-                lua = TrackedLua51(unpack_returned_tuples=True)
-                lua.execute(TIMED_SETUP)
-                install_project_text(lua)
-                def base():
-                    lua.execute('local MAX_BEFORE_TRUNC_TURN_LABELS=100\nfunction ViewMain(data)\n local widthNumLabel\n' +
-                                production + '\nend')
-                attach(lua, 'CityPanel', hd, base)
-                lua.execute("""
-                    ViewMain(data)
-                    assert(Controls.ProductionNum.text=='1' and Controls.ProductionLabel.text=='回合后完成',
-                        'NATIVE_TIMED_PROJECT_PRESENTATION_MISSING')
-                    assert(data.CurrentTurnsLeft==12 and Controls.ProductionTurnsBar.percent==0)
-                    LuaEvents.SPC_TimedProjectDisplayChanged(1,7)
-                    LuaEvents.SPC_TimedProjectDisplayChanged(0,8)
-                    assert(refreshCount()==0)
-                    ExposedMembers.SPC_P0.EngineeringStudy.views['0:7'].stage='HELD'
-                    LuaEvents.SPC_TimedProjectDisplayChanged(0,7)
-                    assert(refreshCount()==1 and Controls.ProductionNum.text=='已暂停')
-                    target=-1
-                    LuaEvents.SPC_TimedProjectDisplayChanged(0,7)
-                    assert(refreshCount()==2 and Controls.ProductionNum.text==12 and Controls.ProductionTurnsBar.percent==.5)
-                """)
-                lua.execute('shutdown();assert(nativeShutdown==1)')
-                lua.execute('LuaEvents.SPC_TimedProjectDisplayChanged(0,7);assert(refreshCount()==2)')
+            for language, (remaining, title, paused) in captions.items():
+                with self.subTest(hd=hd, language=language):
+                    lua = TrackedLua51(unpack_returned_tuples=True)
+                    lua.execute(TIMED_SETUP)
+                    install_project_text(lua, language)
+                    def base():
+                        lua.execute('local MAX_BEFORE_TRUNC_TURN_LABELS=100\nfunction ViewMain(data)\n local widthNumLabel\n' +
+                                    production + '\nend')
+                    attach(lua, 'CityPanel', hd, base)
+                    lua.execute("""
+                        local remaining, title, paused = ...
+                        ViewMain(data)
+                        assert(Controls.ProductionNum.text=='1' and Controls.ProductionLabel.text==remaining,
+                            'NATIVE_TIMED_PROJECT_PRESENTATION_MISSING')
+                        assert(data.CurrentTurnsLeft==12 and Controls.ProductionTurnsBar.percent==0)
+                        LuaEvents.SPC_TimedProjectDisplayChanged(1,7)
+                        LuaEvents.SPC_TimedProjectDisplayChanged(0,8)
+                        assert(refreshCount()==0)
+                        ExposedMembers.SPC_P0.EngineeringStudy.views['0:7'].stage='HELD'
+                        LuaEvents.SPC_TimedProjectDisplayChanged(0,7)
+                        assert(refreshCount()==1 and Controls.ProductionNum.text==paused and Controls.ProductionLabel.text==title)
+                        target=-1
+                        LuaEvents.SPC_TimedProjectDisplayChanged(0,7)
+                        assert(refreshCount()==2 and Controls.ProductionNum.text==12 and Controls.ProductionTurnsBar.percent==.5)
+                    """, remaining, title, paused)
+                    lua.execute('shutdown();assert(nativeShutdown==1)')
+                    lua.execute('LuaEvents.SPC_TimedProjectDisplayChanged(0,7);assert(refreshCount()==2)')
 
     def test_overview_shortcut_and_native_toggle_share_the_applied_building_tab(self):
         path = ROOT / 'Mod/UI/InstitutionOverview.lua'

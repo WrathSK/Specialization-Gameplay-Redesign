@@ -10,7 +10,7 @@ function ViewMain(data)
  if not SPCTimedProjectDisplay.IsCurrent(c) then return end
  local turns,note=SPCTimedProjectDisplay.Text(c:GetOwner(),c:GetID())
  Controls.ProductionNum:SetHide(false);Controls.ProductionNum:SetText(turns)
- Controls.ProductionLabel:SetText(turns=="1" and "回合后完成" or "计时项目")
+ Controls.ProductionLabel:SetText(Locale.Lookup(turns=="1" and "LOC_SPC_TIMED_PROJECT_CITY_PANEL_TURNS" or "LOC_SPC_TIMED_PROJECT_CITY_PANEL_TITLE"))
  Controls.ProductionLabel:SetToolTipString(note)
  Controls.ProductionNum:SetToolTipString(note)
  Controls.ProductionTurnsBar:SetPercent(0);Controls.ProductionTurnsBar:SetShadowPercent(0)

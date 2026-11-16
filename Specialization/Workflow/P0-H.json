@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1060",
-    "runtime": "B499.526 / modinfo526",
+    "status": "S1061",
+    "runtime": "B500.527 / modinfo527",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Use the reviewed Terra Chinese and English project copy for the six registered one-turn projects.",
+  "goal": "Apply bilingual text for fixed one-turn queue and presentation labels on both supported panels.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Adopt bilingual production queue and timer copy — S1061",
+      "reason": "S1061 verifies Terra queue and progress wording through the real production and city panel adapters."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -744,6 +750,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B500 passes 71 selected queue, panel and role methods. The English city caption check fails with the previous source in both profiles.",
     "B499 passes 114 selected project, queue, production-panel and receipt methods. Mounted SQL resolves both languages for all six registered definitions and changes exactly 18 rows.",
     "B498 passes 68 scoped current tests and 352 Lua 5.1 tooltip renders. The mounted text scripts change exactly 85 rows and retain their complete key set.",
     "B497 passes 63 selected display and Capital transaction methods. Fifty-eight Capital display comparisons match the baseline. The 32 draft bodies pass the institution renderer trial in memory.",
@@ -5143,6 +5150,21 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#adopt-terra-descriptions-for-the-one-turn-production-projects--s1060"
+    },
+    "b500_production_queue_copy": {
+      "build": "B500.527 / modinfo527",
+      "baseline": "b5c1065addff3b85f294eef9cde706d7a0b4a915",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 71,
+      "changed_locale_rows": 69,
+      "new_locale_rows": 4,
+      "city_profile_locale_combinations": 4,
+      "baseline_english_panel_failures": 2,
+      "package_sha256": "fa1d9fb4a787c99e0ed261861ff4d8572b05135ff8aa0e4474ca39fe81ba2b40",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#adopt-bilingual-production-queue-and-timer-copy--s1061"
     }
   }
 }

@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1060
-Implementation Build: B499.526 / modinfo526 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1061
+Implementation Build: B500.527 / modinfo527 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ONE_TURN_PROJECT_COPY_LOCAL_PASS
+Work State: PRODUCTION_QUEUE_COPY_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B499.526 on develop](#adopt-terra-descriptions-for-the-one-turn-production-projects--s1060). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B500.527 on develop](#adopt-bilingual-production-queue-and-timer-copy--s1061). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B499.526 has local bilingual one-turn project text, queue and receipt coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Adopt Terra wording for the existing one-turn project queue, progress and preview labels. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B500.527 has local bilingual queue, preview, timer and city panel coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Localize the known Claim and Era Dialogue explanations that reach player tooltips from the existing controllers. Preserve original reason and transition fields. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Adopt bilingual production queue and timer copy — S1061
+
+**LOCAL_SIMULATION_PASS in scope.** English queue, preview and progress text and the matching Chinese draft revisions load through the existing language keys. Wording describes a timing check when the queued project becomes the sole target. A separate confirmed start still determines whether it can begin. Era Dialogue preview names original Great Work Tourism. The native city panel's active caption and paused heading now select their own localized strings in both the HD and official paths.
+
+**Runtime impact (L1).** The city panel makes one Locale lookup in its existing timed-project render. Native turns data, scoped refresh, project readers, queue decisions, start requests, and receipts use their existing paths. There is no new native read, write, subscription, or retry.
+
+**Reproduction.** Use CPython 3.14.8, Lupa 2.8, DevelopmentTests on PYTHONPATH and the pinned official assets via `SPC_OFFICIAL_ASSETS`. Run `python3.14 -B -m unittest test_b398_queue_recovery test_b399_queue_boundaries.QueueCancellation test_refactor_s9e10 test_o6_production_panel test_o6_city_panel test_environment_assembly.UIBaseSelection test_o7_timed_turn_retirement` for 71 methods. Both English city panel combinations fail under the B499 renderer. The queue localization case changes a live language value and preserves the earlier native read and one-start checks. Owner-side reasons still follow the existing rules and have separate presentation coverage.
+
+**STATIC_CONFIRMED.** Comparing the full mounted text table with `b5c1065a` gives 65 replacements and 4 new locale rows. All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace checks pass. B500.527 package SHA256 `fa1d9fb4a787c99e0ed261861ff4d8572b05135ff8aa0e4474ca39fe81ba2b40` across 337 files. The existing B489.516 native acceptance remains scoped to its installed package.
 
 ### Adopt Terra descriptions for the one-turn production projects — S1060
 

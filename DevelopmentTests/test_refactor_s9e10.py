@@ -55,7 +55,7 @@ class Roles(unittest.TestCase):
   assert(T.writes()==writes and uiBegins==0)
   """)
  def test_current_without_timer_is_explicitly_not_yet_timed(self):
-  v=display();v.execute("q.target=project;shared.DialogueProjects.views['0:'..c:GetID()]=nil;local text,note=SPCDialogueProjectUI.Text(0,c:GetID());assert(text=='待计时'and note:find('独占生产队列',1,true)and note:find('未确认时不会完成',1,true));assert(not pending()and uiBegins==0)")
+  v=display();v.execute("q.target=project;shared.DialogueProjects.views['0:'..c:GetID()]=nil;local text,note=SPCDialogueProjectUI.Text(0,c:GetID());assert(text=='待计时'and note:find('独占生产队列',1,true)and note:find('确认前不会完成',1,true));assert(not pending()and uiBegins==0)")
  def test_current_active_calling_held_labels_and_reasons_remain_exact(self):
   v=display();v.execute("q.target=project;for stage,label in pairs({ACTIVE='1',CALLING='待确认',HELD='已暂停'})do shared.DialogueProjects.views['0:'..c:GetID()]={stage=stage,reason='Authoritative'};local text,note=SPCDialogueProjectUI.Text(0,c:GetID());assert(text==label and note=='Authoritative')end")
  def test_real_queued_selection_cannot_start_or_rearm_from_display(self):

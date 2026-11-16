@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "7bacedc351afbe2179e5e4f60e3824118d440b8468cea0ff79bbbdda5065d3de",
+      "sha256": "ef0bf0f26fc2b961f5f04162196e3c953373cfa2ce31a60a36224d528ca1da9e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
+      "provenance": "S1061/B500.527 Terra queue and progress copy, plus locale keys for the city panel captions."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "d86aa177ea0541470e90c40c63dc658526c23ccd2df24dbb9dbb045e071c2130",
+      "sha256": "73ba40019b076f35f76c1b2b7e86ed71ab668f4f193cb7d03aae64ecafe5f0da",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
+      "provenance": "S1061/B500.527 Terra queue and progress copy, plus locale keys for the city panel captions."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "0e6f1e07a661ae9a4db9537315b2f494f8e3de42b0f1f5ad46405b1f34f3de07",
+      "sha256": "3dc27ac1fb88b0002c09d2858a807bccef4c851662027ff311ff1a5d5cef6d5b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1059/B498.525 Owner-approved bilingual Terra institution descriptions and presentation labels."
+      "provenance": "S1061/B500.527 Terra queue and progress copy, plus locale keys for the city panel captions."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",
@@ -1391,9 +1391,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/TimedProjectCityPanel.lua": {
-      "sha256": "934317757e5067a3d025f24595fd03a99644b1a64969b8628affe51a5280f76f",
+      "sha256": "ab393ed836eaefc46e092b00751e0b3efd87be7ca979b55471415510552dda7a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0944 B442 connects the existing city presentation to the selected official and HD bases. Native interaction pending."
+      "provenance": "S1061/B500.527 Terra queue and progress copy, plus locale keys for the city panel captions."
     },
     "Mod/UI/TimedProjectDisplay.lua": {
       "sha256": "d6f096bea26a1bc5a74a787e5b6382a536f3357314a3f7c9f904b425a911b3ba",

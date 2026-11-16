@@ -175,12 +175,12 @@ class QueueLocalization(unittest.TestCase):
                     and 'SPC_EngineeringStudyQueueStatus'or 'SPC_DialogueQueueStatus']
                 assert(selectList()and localeReads==0)
                 local label,help=status(0,c:GetID())
-                assert(label=='待入队'and help=='等待生产队列确认；尚未开始计时。')
+                assert(label=='Awaiting queue'and help=='Waiting for the queue. The timer has not started.')
                 local reads,packets=entryReads,#uiPackets
-                projectTranslations.LOC_SPC_TIMED_QUEUE_LABEL_WAITING_TO_QUEUE='Awaiting queue'
+                projectTranslations.LOC_SPC_TIMED_QUEUE_LABEL_WAITING_TO_QUEUE='Queue request pending'
                 projectTranslations.LOC_SPC_TIMED_QUEUE_HELP_QUEUE_INSERT_PENDING='Waiting for the queue.'
                 label,help=status(0,c:GetID())
-                assert(label=='Awaiting queue'and help=='Waiting for the queue.')
+                assert(label=='Queue request pending'and help=='Waiting for the queue.')
                 assert(entryReads==reads and #uiPackets==packets and not pending())
                 local before=localeReads
                 queue({project});changedQueue();pumpUI();pumpUI()
