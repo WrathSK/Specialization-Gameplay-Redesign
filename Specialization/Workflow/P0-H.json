@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1067",
-    "runtime": "B506.533 / modinfo533",
+    "status": "S1068",
+    "runtime": "B507.534 / modinfo534",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Clarify the already localized institution readouts, ACTIVE map badges and city-details shortcut.",
+  "goal": "Adopt Terra Expedition wording in the active training, travel, identity and mission displays.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Adopt reviewed Humanities Expedition player-facing text — S1068",
+      "reason": "S1068 aligns player-facing Expedition text with the confirmed target, source, mission and failure states."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -786,6 +792,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B507 runs 99 local methods, with the same two pre-existing Expedition icon methods failing as on B506. Both language callback exercises confirm three distinct mission statuses.",
     "B506 passes 42 selected institution and city-panel methods and its mounted text catalogue check.",
     "B505 passes 35 targeted Crew and Asset Restructuring methods. SQLite resolves 30 Crew definition rows in both languages with the correct transfer capacities.",
     "B504 compares the mounted locale catalogue, exercises both current panels in two languages and repeats the commercial contract and routing regressions. One old Development sidebar layout fixture fails identically at B503.",
@@ -5296,6 +5303,22 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#apply-bilingual-institution-status-and-city-map-hints--s1067"
+    },
+    "b507_expedition_copy": {
+      "build": "B507.534 / modinfo534",
+      "baseline": "1ed66d490d3cac0cb0a53130198cf7b0d7503441",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "regression_methods_pass": 97,
+      "preexisting_icon_methods": 2,
+      "preexisting_icon_errors_including_subtests": 5,
+      "changed_locale_rows": 97,
+      "english_rows": 73,
+      "simplified_chinese_rows": 24,
+      "package_sha256": "c0688ca91508b17ef53acaa485706627c2cdd34791aa7a9313ddf4870f2f7d7b",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#adopt-reviewed-humanities-expedition-player-facing-text--s1068"
     }
   }
 }

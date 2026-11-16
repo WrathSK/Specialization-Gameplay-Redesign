@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1067
-Implementation Build: B506.533 / modinfo533 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1068
+Implementation Build: B507.534 / modinfo534 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: INSTITUTION_STATUS_AND_BANNER_COPY_LOCAL_PASS
+Work State: EXPEDITION_COPY_LOCAL_PASS_SCOPED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B506.533 on develop](#apply-bilingual-institution-status-and-city-map-hints--s1067). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B507.534 on develop](#adopt-reviewed-humanities-expedition-player-facing-text--s1068). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B506.533 has local institution status, city overview and text catalogue coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Apply the reviewed Humanities Expedition wording to the existing player-facing travel, identity and mission views. |
+| Validation | B507.534 has scoped bilingual Expedition catalogue and UI callback coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Localize the existing test civilization, Civilopedia introduction and mod-list metadata. Verify the two language paths and the scope of remaining copy. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Adopt reviewed Humanities Expedition player-facing text — S1068
+
+**LOCAL_SIMULATION_PASS in scope.** The existing Expedition training and action UI describes the Culture IV training requirement, civilization cap, source binding, travel, and three different mission targets. Each mission’s first success is scoped to its source city and the visited civilization. The texts distinguish pending target facts, an expired start and a declined start. No automatic resumption or new native recovery is implied.
+
+**Runtime impact (L1).** Existing text keys change values. Native travel, target sampling, sleep and wake handling, opportunity accounting, history and request guards keep their current paths. The diagnostic panel keys used for prior verification remain available.
+
+**Reproduction.** With CPython 3.14.8, Lupa 2.8 and the pinned official assets through `SPC_OFFICIAL_ASSETS`, run `python3.14 -B -m unittest test_expedition_spy_selection_ui test_expedition_spy_sidebar_ui test_expedition_spy_activity_ui test_expedition_spy_name.NativeNameWindow test_o6_unit_panel test_pu02_restructuring_ui.ExistingIdleActions test_pu02_restructuring_ui.ExistingArrivalRefresh`. 97 of 99 methods pass. The same Wonder atlas method (four subcases) and mission icon method fail at B506. A scratch SQLite-backed replay of the actual window checks the three distinct statuses in each language without a native operation or property write.
+
+**STATIC_CONFIRMED.** The mounted catalogue changes 97 rows compared with `1ed66d49`. All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace references pass. B507.534 package SHA256 `c0688ca91508b17ef53acaa485706627c2cdd34791aa7a9313ddf4870f2f7d7b` across 337 files. Source only. Existing native Expedition recovery limitations retain their earlier status.
 
 ### Apply bilingual institution status and city map hints — S1067
 

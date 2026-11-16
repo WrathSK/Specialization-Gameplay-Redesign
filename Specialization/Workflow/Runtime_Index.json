@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "d49ce06c4eddd8b3e660ed3b8f6dcc0b4f1367b6beb6357bd9593977454ca8d4",
+      "sha256": "0e0d26b080be71c25227133a4747f00154da2ed8a11fb794e300d4df01206b66",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1067/B506.533 Terra tooltip wording with explicit active, potential and pre-rounding context."
+      "provenance": "S1068/B507.534 Terra Expedition wording with the exact current mission eligibility and unknown states."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "7d36d1930365d2f93a7917047b7e5e7951a05d8ecceb0e2f16c06841abce74d5",
+      "sha256": "0f9f519ebd0d1ad6152ea30ee3abd769e3ce70805c0f8ae654d38dde3ba76e9d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1067/B506.533 Terra tooltip wording with explicit active, potential and pre-rounding context."
+      "provenance": "S1068/B507.534 Terra Expedition wording with the exact current mission eligibility and unknown states."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -911,9 +911,9 @@
       "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "56b6a772a68d3389dd5ccadcecad119beed63d8993367877a27966bd7af57858",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md",
-      "provenance": "B250 approved Chinese copy-only integration/build stamp. Local localization/Lua/token/display checks; no gameplay, timer, persistence or native acceptance change."
+      "sha256": "e959a4c75b6e470cd48a97348c534643fb966f605940b2b6b83e2511c1ab4a22",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1068/B507.534 Terra Expedition wording with the exact current mission eligibility and unknown states."
     },
     "Mod/Text/LevelBanners.sql": {
       "sha256": "33260475fbc5f197eb0042a9692840932e4a8a9eb7cf3ed9054932089071fa9a",
