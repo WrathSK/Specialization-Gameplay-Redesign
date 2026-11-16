@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1046",
+    "status": "S1047",
     "runtime": "B489.516 / modinfo516",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Verify the B489 deployment and prepare the focused HD and official native acceptance.",
+  "goal": "Close the planned B489.516 HD and official native acceptance and retain the scoped evidence.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B489 two-profile native acceptance complete — S1047",
+      "reason": "Current B489 actual loaded targets, scoped native observations and remaining evidence boundary"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -660,7 +666,8 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
-    "B489.516 deployment 337/337 MATCH, with B476 and B307 recovery verified. The focused native check is pending.",
+    "S1047 records scoped USER_GAME_TEST_PASS for the B489 HD regression and official focused checks. The official positive Culture Network observation remains open.",
+    "B489.516 deployment 337/337 MATCH, with B476 and B307 recovery verified.",
     "S1037 checks 15 environment assembly and Tier cases, 11 panel cases, 47 shared fact cases, 26 startup and cleanup cases, 33 retired-path checks and six exact-removal rollback cases. Prior native evidence retains its original scope.",
     "B489 passes 90 Commerce, 128 Culture and 118 Standardization selected checks; the cold zero-worker case fails on B488, with no new reverse-index failures in B489.",
     "B488 passes the selected 89 Commerce, 127 Culture and 117 Standardization checks and nine Commercialization sidebar checks; no new reverse-index failures.",
@@ -4826,6 +4833,19 @@
       "new_removals": [],
       "native": "USER_GAME_TEST_REQUIRED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b489-deployed-for-focused-two-profile-acceptance--s1038"
+    },
+    "b489_two_profile_native_acceptance": {
+      "status": "USER_GAME_TEST_PASS_SCOPED",
+      "source_commit": "47b9971000c70deefb559ec2fd07ba20ffc6eae7",
+      "runtime": "B489.516 / modinfo516",
+      "hd_gameplay_targets": 94,
+      "official_gameplay_targets": 28,
+      "profile_manifests": {
+        "local/legacy-workspace/Specialization/Status/Validation/Evidence/B489_HD_Standardization_Cold_20261114/manifest.json": "13b360586cb5c79cdba19b4006f8963911d7a5d0ae6984db6fd1857e08be134f",
+        "local/legacy-workspace/Specialization/Status/Validation/Evidence/B489_Official_Integration_20261115/manifest.json": "43d7804916a9a37ff25b22504ad490aabf169e14b603fa5942565897d9355ca1"
+      },
+      "official_positive_culture_network": "USER_GAME_TEST_REQUIRED_WHEN_SOURCE_AVAILABLE",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047"
     }
   }
 }

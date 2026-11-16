@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1046
+Status Revision: S1047
 Implementation Build: source B489.516 / modinfo516. Live B489.516 from 47b9971. Stable/main B307.334.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: INTEGRATION_NATIVE_TEST_REQUIRED_B489_DEPLOYED
+Work State: INTEGRATION_NATIVE_ACCEPTED_B489_SCOPED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,14 +15,26 @@ Work State: INTEGRATION_NATIVE_TEST_REQUIRED_B489_DEPLOYED
 |---|---|
 | Develop and installed | B489.516 / modinfo516. The installed package matches source `47b9971` across all 337 files. |
 | Stable | `main` B307.334 / modinfo334. |
-| Validation | The selected [local integration checks](#prepare-the-two-profile-integration-candidate-for-native-acceptance--s1037) passed. Native acceptance in the HD and official Gathering Storm profiles is pending. |
-| Next action | The Owner has paused playtesting. When testing resumes, use the [B489 checklist](#b489-deployed-for-focused-two-profile-acceptance--s1038) and match each profile's loaded targets and observations to its collector session. During the pause, continue the [documentation maintenance](#retained-investigation-evidence-indexed-by-source-baseline--s1046). |
+| Validation | The planned HD and official Gathering Storm checks are [USER_GAME_TEST_PASS in the observed scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation remains open until a suitable source is available. |
+| Next action | The focused playtest is complete. Promotion awaits separate Owner approval. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### B489 two-profile native acceptance complete — S1047
+
+**USER_GAME_TEST_PASS in the planned native scope.** The Owner tested B489.516 from `47b9971` in the fixed HD profile and in official Gathering Storm with the two in-game testing aids. The build marker appears in the collector sessions. The read-only package check matched all 337 installed files to the B489.516 receipt and source digest.
+
+- **HD.** The actual 94 loaded gameplay targets match the fixed [HD baseline](#current-hd-baseline-and-minimum-u5-review--s0903). Before restart the collector confirms two routes. The cold T4 context confirms the same route count and Standardization for the receiving cities. The Owner observed sustained production and the purchase quote after restart. The T5 engine queue records +20.7 Production for the Washington Granary and +18.7 for the Charleston Water Mill. The panel showed 12% and one Study. The cold trace shows a maximum applied amount of 10, leaving the exact Study uplift in this run unresolved. The live benefit and recovery meet the scheduled HD check.
+- **Official Gathering Storm.** Gameplay loaded 25 official targets, Specialization, Advanced Cheat Menu (Light) and Larger MODinUse Area. The Owner confirmed actual Research output and Culture Meaning, including +1 Gold at the T1 Market and +4 per work at D3. Aesthetic recognized two city-local eras and five buildings for +10 base Tourism. Computers and Environmentalism add 25% each, giving the observed 6, 6 and 3 Tourism by district. The city's 9 Great Work Tourism and another city's 3 give an empire total of 27. The screenshots capture this observed scope.
+- **Official Commerce and cold load.** Harbor Commercialization had positive Gold at the turn boundary. Losing the sole working specialist withdrew the Gold and blocked new signing. The same Harbor selection resumed on reassigning an expert after the restart. The Research Lab contract had one 264 Gold debit, persisted with its production effect through the restart, and closed on completion. A later contract had one 36 Gold debit and closed at Water Mill completion. The sampled T17 Water Mill queue added 10.8 total Production. The next Monument added 8.0 Production. The three Capital contracts each settled once on T19. The Owner identified the separately logged +25 Gold as an AI embassy.
+
+**Open native observation.** The official Culture Network still needs a same-build source with all three insight kinds from the same civilization. The earlier [positive Culture Network test](#positive-culture-network-survives-the-b476-cold-reload--s1021) retains its observed scope and profile-evidence limit. Prior HD transaction/action and official Industry results carry forward at their recorded scope. Follow the recorded limits for exceptional Claim and Crew scenarios and the retained turn duties.
+
+**Evidence.** The two profile manifests at `local/legacy-workspace/Specialization/Status/Validation/Evidence/B489_HD_Standardization_Cold_20261114/manifest.json` and `local/legacy-workspace/Specialization/Status/Validation/Evidence/B489_Official_Integration_20261115/manifest.json` pin the native logs, three collector sessions, receipt and five previously frozen screenshots by SHA256. Raw material is retained in the ignored local archive. This record closes the focused playtest. Promotion remains a separate Owner decision.
 
 ### Retained investigation evidence indexed by source baseline — S1046
 
