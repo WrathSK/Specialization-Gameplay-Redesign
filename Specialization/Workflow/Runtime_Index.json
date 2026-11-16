@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "f772d7d35736d0caf6bfdc4605d17d5e1caff25abca32ed557bfb18a9f636974",
+      "sha256": "9b63c1c7913e5698c8a1d44ae8fe8fd82e7b3d9166cabf9285c3246bad133f29",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1053/B492.519 institution level label localization and exact rendering comparison."
+      "provenance": "S1054/B493.520 locale lookup on the existing queue status read and scoped timer and panel regression."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "723b77522f5a3c8782bf36368c30cd4666750db61cadf8448f8d2d5002326fa5",
+      "sha256": "26622bcfc19e54d226ae579ce64f3276db633b686f2769dbcd115f1639ccef81",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1053/B492.519 institution level label localization and exact rendering comparison."
+      "provenance": "S1054/B493.520 locale lookup on the existing queue status read and scoped timer and panel regression."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "bd526612a473cd5dab9aba7cb4c33f5fd4224c9bc6afe57fef98a8c4e6afbb0b",
+      "sha256": "2433b2e470ef62780b4369c7767d2dd5a3a9f798e0e0ee1da069266a38d1c267",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1053/B492.519 institution level label localization and exact rendering comparison."
+      "provenance": "S1054/B493.520 locale lookup on the existing queue status read and scoped timer and panel regression."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",
@@ -1596,9 +1596,9 @@
       "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
     },
     "Mod/UI/TimedProjectQueueIntent.lua": {
-      "sha256": "9c7df3636186d33612e7966acfc5f6424dde17e1ab58401b82944fb8d04b6a51",
+      "sha256": "2cad430da38d791707a47e054860900a0c3acd753cdea780e714b21f5edd391e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1049/B490.517 typed queue recovery and scoped local build validation."
+      "provenance": "S1054/B493.520 locale lookup on the existing queue status read and scoped timer and panel regression."
     },
     "Mod/PlaytestBoundaryDiagnostics.lua": {
       "sha256": "e7b2512454f7dd52a7b21e952de67b7d3c8d9d253248c363058aa65ca9a5a5c1",

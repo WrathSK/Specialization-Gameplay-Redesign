@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1053",
-    "runtime": "B492.519 / modinfo519",
+    "status": "S1054",
+    "runtime": "B493.520 / modinfo520",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Give institution headings and requirements a localized level label while preserving shipped presentation.",
+  "goal": "Give shared production queue labels and fixed help text locale keys with no lookup on the queue control path.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Localize read-only production queue hints — S1054",
+      "reason": "S1054 verifies the queue hint locale lookup at the display boundary and preserves the existing queue actions and turn evidence."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -702,6 +708,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B493 passes 59 queue/production-panel methods and 53 UI permit/client methods. All 28 shipped queue messages match B492 in both languages.",
     "B492 passes 44 scoped presentation methods and matches 352 B491 tooltip strings byte-for-byte. Twelve draft placements were tested in memory.",
     "S1052 passes 123 timed-project, 43 institution and 19 return/marker methods. Four source pins separate historical assertions from current checks.",
     "S1051 passes 112 scoped queue and acquisition methods. The 123-method comparison goes from 49 case errors to 3 inherited errors.",
@@ -4982,6 +4989,23 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#localize-institution-level-labels--s1053"
+    },
+    "b493_queue_hint_localization": {
+      "build": "B493.520 / modinfo520",
+      "baseline": "f429d09cabb27b8eae1b95b00df3e14725d3534b",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": {
+        "queue_and_panel": 59,
+        "ui_permit_and_client": 53
+      },
+      "baseline_counterexample_subcases": 2,
+      "shipped_labels": 10,
+      "shipped_help_messages": 18,
+      "package_sha256": "44ca2732bab18cba12385f7f3395270b02979d6f6f683ce4c4e19babfe5169fe",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#localize-read-only-production-queue-hints--s1054"
     }
   }
 }

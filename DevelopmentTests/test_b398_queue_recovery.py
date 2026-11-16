@@ -7,11 +7,13 @@ from unittest.mock import patch
 from refactor_harness import ROOT, Context, TrackedLua51, SOURCES, executed, completion
 from hashlib import sha256
 from test_refactor_s7d2 import ui_actual
+from timed_project_ui_fixture import install_project_text
 from refactor_defect_fixtures import panel
 
 KINDS=('Engineering','Dialogue')
-def fixture(kind):
+def fixture(kind, language='zh_Hans_CN'):
     v=ui_actual(kind)
+    install_project_text(v, language)
     v.execute('''
     Players[0].IsTurnActive=function()phaseReads=(phaseReads or 0)+1;if phaseUnknown then error('UNKNOWN_PHASE')end;return phaseActive~=false end
     CityProductionDirectives={PROJECT=3,TRAIN=1}
@@ -162,6 +164,31 @@ class QueueRecovery(unittest.TestCase):
                 changedQueue();pumpUI();assert(uiBegins==0)
                 queue({project});changedQueue();pumpUI();assert(uiBegins==1)
                 ''')
+
+class QueueLocalization(unittest.TestCase):
+    def test_changed_translation_only_changes_the_read_only_queue_status(self):
+        for kind in KINDS:
+            with self.subTest(kind=kind):
+                fixture(kind, 'en_US').execute("""
+                local lookup=Locale.Lookup
+                localeReads=0
+                Locale.Lookup=function(...)localeReads=localeReads+1;return lookup(...)end
+                local status=ExposedMembers[fixtureKind=='Engineering'
+                    and 'SPC_EngineeringStudyQueueStatus'or 'SPC_DialogueQueueStatus']
+                assert(selectList()and localeReads==0)
+                local label,help=status(0,c:GetID())
+                assert(label=='待入队'and help=='等待生产队列确认；尚未开始计时。')
+                local reads,packets=entryReads,#uiPackets
+                projectTranslations.LOC_SPC_TIMED_QUEUE_LABEL_WAITING_TO_QUEUE='Awaiting queue'
+                projectTranslations.LOC_SPC_TIMED_QUEUE_HELP_QUEUE_INSERT_PENDING='Waiting for the queue.'
+                label,help=status(0,c:GetID())
+                assert(label=='Awaiting queue'and help=='Waiting for the queue.')
+                assert(entryReads==reads and #uiPackets==packets and not pending())
+                local before=localeReads
+                queue({project});changedQueue();pumpUI();pumpUI()
+                assert(uiBegins==1 and pending().stage=='ACTIVE'and localeReads==before)
+                """)
+
 
 class NativeSelection(unittest.TestCase):
     def test_selected_queue_slot_is_consumed_once_without_native_build(self):

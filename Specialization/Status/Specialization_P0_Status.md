@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1053
-Implementation Build: B492.519 / modinfo519 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1054
+Implementation Build: B493.520 / modinfo520 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: INSTITUTION_LEVEL_LOCALIZATION_LOCAL_PASS
+Work State: PROJECT_QUEUE_HINT_LOCALIZATION_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B492.519 on develop](#localize-institution-level-labels--s1053). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B493.520 on develop](#localize-read-only-production-queue-hints--s1054). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B492.519 has local presentation coverage. The [project and historical replay checks](#replay-version-specific-claim-dialogue-and-institution-assertions--s1052) retain their recorded scope. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Continue scoped development on develop. B489.516 remains the stable playtest baseline. Candidate localization copy remains available for the Owner to review. |
+| Validation | B493.520 has local production queue and localized hint coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Localize fixed one-turn project help in the existing render entry. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Localize read-only production queue hints — S1054
+
+**LOCAL_SIMULATION_PASS in scope.** The Era Dialogue and Engineering Study queue store label and help identifiers. Only the existing status read resolves the locale. Both shipped language tables reproduce all 28 B492 fixed labels and explanations exactly. The synthetic language switch changes the status label and note without reading more native queue rows or sending more requests. The two regressions fail on B492.
+
+**Runtime impact.** Source, queue reads, turn gate, candidate caps, reentry, request identity, saved timing and native completion keep their existing owners and callers. Localization resolves at most two existing status strings per read. A live backend reason remains available when no specific queue help was selected. The display lookup does no selection, polling, saving or reward work.
+
+**Reproduction.** Use CPython 3.14.8, SQLite, Lupa 2.8 / Lua 5.1 and DevelopmentTests on PYTHONPATH. With the existing pinned fragments selected via `SPC_OFFICIAL_ASSETS`, run `python3.14 -B -m unittest test_b398_queue_recovery test_b399_queue_boundaries.QueueCancellation test_o7_timed_turn_retirement test_o6_production_panel` (59 methods). Run `python3.14 -B -m unittest test_refactor_s7d2 test_refactor_s7d3b` (53 methods). Compare the two SQL locale tables against the fixed strings in `f429d09c`. Existing locale rows match exactly.
+
+**STATIC_CONFIRMED.** All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace references pass. B493.520 package SHA256 `44ca2732bab18cba12385f7f3395270b02979d6f6f683ce4c4e19babfe5169fe` across 337 files. Stable B489.516 retains the scoped native evidence.
 
 ### Localize institution level labels — S1053
 
