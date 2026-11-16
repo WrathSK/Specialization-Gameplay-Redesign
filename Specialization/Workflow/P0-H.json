@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1068",
-    "runtime": "B507.534 / modinfo534",
+    "status": "S1069",
+    "runtime": "B508.535 / modinfo535",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Adopt Terra Expedition wording in the active training, travel, identity and mission displays.",
+  "goal": "Localize the current test civilization, neutral Civilopedia introduction and package metadata in both supported languages.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Adopt reviewed Test America and mod-list localization — S1069",
+      "reason": "S1069 adopts the reviewed test-shell names and replaces the stale mod-list description using the stock package text format."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -792,6 +798,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B508 verifies alternate-language biography lookups and the package text manifest. Nine of ten selected methods pass; the legacy Expedition training fixture still errors under both source baselines.",
     "B507 runs 99 local methods, with the same two pre-existing Expedition icon methods failing as on B506. Both language callback exercises confirm three distinct mission statuses.",
     "B506 passes 42 selected institution and city-panel methods and its mounted text catalogue check.",
     "B505 passes 35 targeted Crew and Asset Restructuring methods. SQLite resolves 30 Crew definition rows in both languages with the correct transfer capacities.",
@@ -5319,6 +5326,22 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#adopt-reviewed-humanities-expedition-player-facing-text--s1068"
+    },
+    "b508_test_shell_mod_metadata_copy": {
+      "build": "B508.535 / modinfo535",
+      "baseline": "5464e583886807585d2b0750dcd4914a89072ea1",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "regression_methods_pass": 9,
+      "preexisting_training_fixture_methods": 1,
+      "preexisting_training_fixture_errors": 2,
+      "changed_sql_locale_rows": 18,
+      "metadata_locale_rows": 4,
+      "stock_biography_aliases_verified": 52,
+      "package_sha256": "a96823d7210889102edb003a70459dd693edcf040e60f029aaf6eb6caa7f13ba",
+      "files": 339,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#adopt-reviewed-test-america-and-mod-list-localization--s1069"
     }
   }
 }

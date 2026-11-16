@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1068
-Implementation Build: B507.534 / modinfo534 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1069
+Implementation Build: B508.535 / modinfo535 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: EXPEDITION_COPY_LOCAL_PASS_SCOPED
+Work State: TEST_CIVILIZATION_AND_MOD_LIST_COPY_LOCAL_PASS_SCOPED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B507.534 on develop](#adopt-reviewed-humanities-expedition-player-facing-text--s1068). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B508.535 on develop](#adopt-reviewed-test-america-and-mod-list-localization--s1069). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B507.534 has scoped bilingual Expedition catalogue and UI callback coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Localize the existing test civilization, Civilopedia introduction and mod-list metadata. Verify the two language paths and the scope of remaining copy. |
+| Validation | B508.535 has scoped test civilization, Civilopedia alias and bilingual package-metadata coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Compare the adopted release-facing catalogue with the reviewed drafts and the mounted UI text. Close verified remaining copy gaps before updating the current handoff. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Adopt reviewed Test America and mod-list localization — S1069
+
+**LOCAL_SIMULATION_PASS in scope.** The test civilization and leader read their own localized names and neutral introductions in English and Chinese. Existing installed histories are referenced in their own language. Original strategy and unique traits remain with their original identities. The mod list uses the supported package-localization layout, with a version-independent description and no old build caption.
+
+**Runtime impact (L1).** Existing front-end and in-game text SQL retains its load actions. Two package metadata XML files are listed in the manifest through the same top-level `LocalizedText` entry shape as the installed Portugal DLC. ID, compatibility criteria, tests of access, and gameplay identity configuration have the same production owners. No new game-state read, event or save field.
+
+**Reproduction.** With CPython 3.14.8 and Lupa 2.8 run `python3.14 -B -m unittest test_b263_test_civilization.Identity test_b263_test_civilization.Access test_b263_test_civilization.Package.test_leader_model_fallback_and_civilization_art_use_only_new_identity test_b263_test_civilization.Package.test_front_end_package_metadata_uses_both_supported_languages`. Nine methods pass; the existing two-identity legacy training method encounters a missing mock `include` in both subcases, also reproduced on B506. The SQLite alias replay with the installed English and Chinese reference tables verifies 52 same-language aliases, stable on a second application. Native mod-manager rendering remains unmeasured.
+
+**STATIC_CONFIRMED.** 18 in-game locale rows change from `5464e583` and four package metadata rows are registered for the two languages. 208 Lua 5.1 compiles, 34 XML-family parses, 670 File and 10 LuaReplace references pass. B508.535 package SHA256 `a96823d7210889102edb003a70459dd693edcf040e60f029aaf6eb6caa7f13ba` across 339 files. Source only.
 
 ### Adopt reviewed Humanities Expedition player-facing text — S1068
 

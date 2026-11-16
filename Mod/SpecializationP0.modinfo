@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="534">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="535">
   <Properties>
-    <Name>城市专业化（罗斯福进步党测试）</Name>
-    <Description>B443.470：恢复专业项目生产面板接入。</Description>
+    <Name>LOC_SPC_MOD_TITLE</Name>
+    <Description>LOC_SPC_MOD_DESCRIPTION</Description>
     <Authors>Local development</Authors>
     <CompatibleVersions>2.0</CompatibleVersions>
     <AffectsSavedGames>1</AffectsSavedGames>
@@ -526,6 +526,10 @@
     <UpdateIcons id="SPC_B268_IG_RawIcons"><Properties><LoadOrder>10001200</LoadOrder></Properties><File>Data/RawIcons.sql</File></UpdateIcons>
     <UpdateDatabase id="SPC_InternalCarrierPillage"><Properties><LoadOrder>10004000</LoadOrder></Properties><File>Data/InternalCarrierPillage.sql</File></UpdateDatabase>
   </InGameActions>
+  <LocalizedText>
+    <File>Text/PackageText.xml</File>
+    <File>Text/PackageText_Translations.xml</File>
+  </LocalizedText>
   <Files>
     <File>Data/EnvironmentSchema.sql</File>
     <File>Data/EnvironmentModifiers.sql</File>
@@ -825,6 +829,8 @@
     <File>Data/TestAmericaIcons.sql</File>
     <File>Data/TestAmericaColors.xml</File>
     <File>Text/TestAmerica.sql</File>
+    <File>Text/PackageText.xml</File>
+    <File>Text/PackageText_Translations.xml</File>
     <File>ArtDefs/Leaders.artdef</File>
     <File>ArtDefs/FallbackLeaders.artdef</File>
     <File>ArtDefs/Civilizations.artdef</File>

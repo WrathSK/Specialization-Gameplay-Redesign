@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "0e0d26b080be71c25227133a4747f00154da2ed8a11fb794e300d4df01206b66",
+      "sha256": "9a3510281848e6eae0100977aa22adc19b632c9e997865e7fa236e8449121aef",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1068/B507.534 Terra Expedition wording with the exact current mission eligibility and unknown states."
+      "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "0f9f519ebd0d1ad6152ea30ee3abd769e3ce70805c0f8ae654d38dde3ba76e9d",
+      "sha256": "e8eb1152b542f17145c412cb3d052f80a2a437f0db52fa1d0091dbc1a02f0fa4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1068/B507.534 Terra Expedition wording with the exact current mission eligibility and unknown states."
+      "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -926,9 +926,9 @@
       "provenance": "S1066/B505.532 Terra project and unit names, formation descriptions and restructuring tooltips checked against current owners."
     },
     "Mod/Text/TestAmerica.sql": {
-      "sha256": "1b25966fdccf9fee4f82c81110f841551e168b971dd57139d822ef1ee54b4dd0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "sha256": "6330038d5d0f04879a89bca428a142fca3c13ab5b263f00f8522c5829a6dc1cf",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     },
     "Mod/Text/TestText.sql": {
       "sha256": "4cd222e3ba5b34ea0a468dd057b07447101562a3054798bf3dee8f9517be16ac",
@@ -1689,6 +1689,16 @@
       "sha256": "be804d102e5a3db0c15cb8400159c848e99180d750cc47527bc00b857b1a0cb9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0965 B451 independent failure classification and optional network trace."
+    },
+    "Mod/Text/PackageText.xml": {
+      "sha256": "e3a7382e108cebb352c4d6daea57ec825eae516c0a05ccc4a0864d3b622708e1",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
+    },
+    "Mod/Text/PackageText_Translations.xml": {
+      "sha256": "f2a7f959ce2881019739686e3434285a379154e4c2765cd3db73fff404263ecc",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
   "source_review": "S1038 records the verified B489 deployment for the existing HD and official acceptance gate. Prior native acceptance retains its observed scope.",
