@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "967c851fc0b62f9532b05d2ce0c282ce227417e9c70fcddc242108208750a13f",
+      "sha256": "7ce8bb6912481d5d12ed05658a3af4567a6badeae766b30b0b6985ab9c510288",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1062/B501.528 read-only one-turn project tooltip translation of known reasons and numeric queue counts."
+      "provenance": "S1063/B502.529 Terra construction and settler action copy with positional operands and original control layout."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6702702c0030bf91056a7f4c6d4b2a01c7c7e20dd79c5eed4a20ac2217d4ba18",
+      "sha256": "b1883345c170501d9cb2f4af72e9fe4368088ee38aaab844222dd2a6ca15222e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1062/B501.528 read-only one-turn project tooltip translation of known reasons and numeric queue counts."
+      "provenance": "S1063/B502.529 Terra construction and settler action copy with positional operands and original control layout."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -931,9 +931,9 @@
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
     "Mod/Text/TestText.sql": {
-      "sha256": "63067e2e448d5d604c177d9943c010e3f999fc97e31ca3089d630fe6dc90cee8",
+      "sha256": "d04ba16b0369500e3e1e72149b76b6f125e82018a1f78e4942b87f199b0176af",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1062/B501.528 read-only one-turn project tooltip translation of known reasons and numeric queue counts."
+      "provenance": "S1063/B502.529 Terra construction and settler action copy with positional operands and original control layout."
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",
@@ -1416,9 +1416,9 @@
       "provenance": "S1057/B496.523 unit action tooltip locale keys and test-verified unchanged display values and work."
     },
     "Mod/UI/UnitPanelActions.xml": {
-      "sha256": "7a48eaa0f2c9ef58d84a27547e78431407c840d14fb76332d702594546b61145",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
-      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
+      "sha256": "3a2731ea36f269dc5e834061c5b27c6e27822ccab18a04e6fe946c486eb6adf6",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1063/B502.529 Terra construction and settler action copy with positional operands and original control layout."
     },
     "Mod/UI/UnitSites.lua": {
       "sha256": "68c0bf8d13363564a85bfaba9f84eccc642f4fdf13af3d0956ede3188fe2dcfe",

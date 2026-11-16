@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1062",
-    "runtime": "B501.528 / modinfo528",
+    "status": "S1063",
+    "runtime": "B502.529 / modinfo529",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Use English for the known one-turn project explanations the player sees while retaining the source reason and numeric queue counts.",
+  "goal": "Adopt the checked Terra tooltips and confirmation caption for the existing Crew and Settler action buttons.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Adopt Terra copy for Crew construction and Settler Investment actions — S1063",
+      "reason": "S1063 verifies Terra preparation and confirmation text in the real Crew and Settler action UI."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -756,6 +762,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "B502 passes 68 selected action, receipt, HD and official panel methods. Both English action tooltip cases fail against B501.",
     "B501 passes 119 selected display, queue, panel and project controller methods. Three English display subcases fail against B500.",
     "B500 passes 71 selected queue, panel and role methods. The English city caption check fails with the previous source in both profiles.",
     "B499 passes 114 selected project, queue, production-panel and receipt methods. Mounted SQL resolves both languages for all six registered definitions and changes exactly 18 rows.",
@@ -5187,6 +5194,20 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#localize-known-one-turn-project-status-explanations--s1062"
+    },
+    "b502_crew_and_settler_action_copy": {
+      "build": "B502.529 / modinfo529",
+      "baseline": "41e47c0a07d8700204fad48b2e262e8fe5c6e626",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "local_methods": 68,
+      "changed_locale_rows": 26,
+      "new_locale_rows": 2,
+      "baseline_english_preview_subcases": 2,
+      "package_sha256": "9dde2d30ce5ece9b0267c837992241465953742c8204c6c7ad5c58f643219529",
+      "files": 337,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#adopt-terra-copy-for-crew-construction-and-settler-investment-actions--s1063"
     }
   }
 }

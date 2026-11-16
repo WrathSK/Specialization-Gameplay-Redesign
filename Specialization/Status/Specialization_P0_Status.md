@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1062
-Implementation Build: B501.528 / modinfo528 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1063
+Implementation Build: B502.529 / modinfo529 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: ONE_TURN_PROJECT_PRESENTATION_LOCAL_PASS
+Work State: UNIT_ACTION_COPY_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B501.528 on develop](#localize-known-one-turn-project-status-explanations--s1062). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B502.529 on develop](#adopt-terra-copy-for-crew-construction-and-settler-investment-actions--s1063). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | B501.528 has local bilingual one-turn project presentation and controller coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Reconcile the Terra Construction Crew and Settler Investment text with their existing preview and confirm buttons for the next copy slice. Continue to use B489.516 as the stable playtest baseline. |
+| Validation | B502.529 has local bilingual production and unit action presentation coverage. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Reconcile the Terra Commerce panel copy with the current quote, agreement and receipt display, starting with Capital Investment. Continue to use B489.516 as the stable playtest baseline. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Adopt Terra copy for Crew construction and Settler Investment actions — S1063
+
+**LOCAL_SIMULATION_PASS in scope.** The Crew and Settler prepare and confirm buttons use Terra wording. The first hover explains how to preview, and confirmation identifies the consumed unit and destination effect. Both languages retain the numeric operands. All 26 changed rows are in this surface, including one new confirmation caption in each locale. The English Crew text retains the distinction between base Production and applicable modifiers.
+
+**Runtime impact (L1).** Unit tooltip text and one XML caption string are the display changes. The existing icon, button width, layout, numeric views, legal site checks, and prepare/confirm/receipt paths keep their assigned roles and triggers.
+
+**Reproduction.** Use CPython 3.14.8, Lupa 2.8, DevelopmentTests on PYTHONPATH and the hashed stock assets selected via `SPC_OFFICIAL_ASSETS`. Run `python3.14 -B -m unittest test_refactor_s6h test_refactor_s9c3.Consumer test_refactor_s9c3.Integration test_refactor_s9c4b.Differential test_refactor_s9c4b.Localization test_refactor_s9c4b.Consumer test_refactor_s9c4b.Producer test_o4_crew_target_queue test_o6_unit_panel test_b414_crew_unit_panel`. All 68 pass. The two new English cases fail with the B501 language SQL. Both current cases display the current preview and confirmation values and accept exactly one native action request on repeat confirm.
+
+**STATIC_CONFIRMED.** The mounted text comparison against `41e47c0a` changes 24 rows and adds 2 caption entries. XML differs only in that caption key. All 208 Lua 5.1 compiles, 32 XML-family parses, 666 File and 10 LuaReplace references pass. B502.529 package SHA256 `9dde2d30ce5ece9b0267c837992241465953742c8204c6c7ad5c58f643219529` across 337 files. The installed B489.516 hash and native evidence retain their earlier scope.
 
 ### Localize known one-turn project status explanations — S1062
 

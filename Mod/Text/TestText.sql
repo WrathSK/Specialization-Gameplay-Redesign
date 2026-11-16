@@ -299,11 +299,11 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_CREW_BASE_PREVIEW','已锁定基础施工力：{1_Capacity}[NEWLINE]本次投入基础施工力：{2_Input} ｜ 剩余未使用基础施工力：{3_Unused}[NEWLINE]实际转化的生产力可享受适用加成；未使用的余量不会结转。'),
-('en_US','LOC_SPC_CREW_BASE_PREVIEW','Locked base Production: {1_Capacity}[NEWLINE]Base input: {2_Input}; unused base: {3_Unused}[NEWLINE]Applicable modifiers can increase actual Production; surplus does not carry over.'),
+('en_US','LOC_SPC_CREW_BASE_PREVIEW','Base capacity: {1_Capacity} [ICON_Production] Production[NEWLINE]Base contribution: {2_Input}[NEWLINE]Unused: {3_Unused}[NEWLINE]Applicable Production modifiers can increase the contribution. Excess Production does not carry over.'),
 ('zh_Hans_CN','LOC_SPC_CREW_BASE_CONFIRM','消耗此施工队，为当前正在建造的奇观投入 {1_Input} 点基础生产力（实际转化量可享受适用生产力加成）。[NEWLINE]此操作一旦确认无法撤销。'),
-('en_US','LOC_SPC_CREW_BASE_CONFIRM','Consume this Crew to supply {1_Input} base Production to the current Wonder, subject to applicable modifiers.[NEWLINE]This cannot be undone.'),
+('en_US','LOC_SPC_CREW_BASE_CONFIRM','Consume this Construction Crew to contribute {1_Input} base [ICON_Production] Production to the Wonder the city is currently building. Applicable Production modifiers can increase the contribution.[NEWLINE]This cannot be undone.'),
 ('zh_Hans_CN','LOC_SPC_CREW_BASE_READY','已锁定基础施工力：{1_Capacity}（可享受适用的生产力加成）。[NEWLINE]点击以预览详情并确认施工。'),
-('en_US','LOC_SPC_CREW_BASE_READY','Locked base Production: {1_Capacity}, subject to applicable Production modifiers.[NEWLINE]Prepare and confirm construction.');
+('en_US','LOC_SPC_CREW_BASE_READY','Base capacity: {1_Capacity} [ICON_Production] Production. Applicable Production modifiers can increase the contribution.[NEWLINE]Select Construct to preview the contribution.');
 
 -- B239: unfinished paid formation retains capacity.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
@@ -503,33 +503,33 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 -- Construction Crew and Settler action tooltips.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_UNIT_CREW_PREVIEW','施工预览[NEWLINE]当前目标：{1_Wonder}[NEWLINE]当前进度：{2_Progress} / {3_Cost}[NEWLINE]{4_Preview}'),
-('en_US','LOC_SPC_UNIT_CREW_PREVIEW','施工预览[NEWLINE]当前目标：{1_Wonder}[NEWLINE]当前进度：{2_Progress} / {3_Cost}[NEWLINE]{4_Preview}'),
+('en_US','LOC_SPC_UNIT_CREW_PREVIEW','Construction Preview[NEWLINE]Current Wonder: {1_Wonder}[NEWLINE]Progress: {2_Progress} / {3_Cost}[NEWLINE]{4_Preview}'),
 ('zh_Hans_CN','LOC_SPC_UNIT_CREW_CONFIRM','确认施工[NEWLINE]{1_Confirmation}'),
-('en_US','LOC_SPC_UNIT_CREW_CONFIRM','确认施工[NEWLINE]{1_Confirmation}'),
+('en_US','LOC_SPC_UNIT_CREW_CONFIRM','Confirm Construction[NEWLINE]{1_Confirmation}'),
 ('zh_Hans_CN','LOC_SPC_UNIT_CREW_CONFIRM_TITLE','确认施工'),
-('en_US','LOC_SPC_UNIT_CREW_CONFIRM_TITLE','确认施工'),
+('en_US','LOC_SPC_UNIT_CREW_CONFIRM_TITLE','Confirm Construction'),
 ('zh_Hans_CN','LOC_SPC_UNIT_CREW_READY','施工[NEWLINE]{1_Ready}'),
-('en_US','LOC_SPC_UNIT_CREW_READY','施工[NEWLINE]{1_Ready}'),
-('zh_Hans_CN','LOC_SPC_UNIT_CREW_SITE','施工[NEWLINE]将施工队移动至正在建造奇观的单元格，即可进行施工。'),
-('en_US','LOC_SPC_UNIT_CREW_SITE','施工[NEWLINE]将施工队移动至正在建造奇观的单元格，即可进行施工。'),
-('zh_Hans_CN','LOC_SPC_UNIT_INVEST_PREVIEW','专业投资预览[NEWLINE]当前专业：{1_Profession}[NEWLINE]当前潜力：{2_Potential}级[NEWLINE]投资后潜力：{3_Next}级[NEWLINE]本次消耗：1 名移民[NEWLINE][NEWLINE]提示：更高阶的专业能力仍需满足对应的总督就职与晋升条件方可启用。'),
-('en_US','LOC_SPC_UNIT_INVEST_PREVIEW','专业投资预览[NEWLINE]当前专业：{1_Profession}[NEWLINE]当前潜力：{2_Potential}级[NEWLINE]投资后潜力：{3_Next}级[NEWLINE]本次消耗：1 名移民[NEWLINE][NEWLINE]提示：更高阶的专业能力仍需满足对应的总督就职与晋升条件方可启用。'),
-('zh_Hans_CN','LOC_SPC_UNIT_INVEST_CONFIRM','确认专业投资[NEWLINE]消耗此移民，使本城的专业潜力永久提升至 {1_Next} 级。[NEWLINE]此操作一旦确认无法撤销。'),
-('en_US','LOC_SPC_UNIT_INVEST_CONFIRM','确认专业投资[NEWLINE]消耗此移民，使本城的专业潜力永久提升至 {1_Next} 级。[NEWLINE]此操作一旦确认无法撤销。'),
+('en_US','LOC_SPC_UNIT_CREW_READY','Construct[NEWLINE]{1_Ready}'),
+('zh_Hans_CN','LOC_SPC_UNIT_CREW_SITE','施工[NEWLINE]将施工队移动至正在建造奇观的单元格，即可预览施工。'),
+('en_US','LOC_SPC_UNIT_CREW_SITE','Construct[NEWLINE]Move the Crew to the tile of the Wonder the city is building to preview its contribution.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_PREVIEW','专业投资预览[NEWLINE]当前专业：{1_Profession}[NEWLINE]当前潜力：{2_Potential}级[NEWLINE]投资后潜力：{3_Next}级[NEWLINE]本次消耗：1 名移民[NEWLINE][NEWLINE]更高等级的专业能力仍需满足相应的总督就职与晋升条件。'),
+('en_US','LOC_SPC_UNIT_INVEST_PREVIEW','Specialization Investment Preview[NEWLINE]Current specialization: {1_Profession}[NEWLINE]Current Potential: Level {2_Potential}[NEWLINE]Potential after investment: Level {3_Next}[NEWLINE]Cost: 1 Settler[NEWLINE][NEWLINE]Higher-level abilities still require an established Governor with the appropriate promotions.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_CONFIRM','确认专业投资[NEWLINE]消耗此移民，将本城专业潜力永久提升至 {1_Next} 级。[NEWLINE]确认后无法撤销。'),
+('en_US','LOC_SPC_UNIT_INVEST_CONFIRM','Confirm Specialization Investment[NEWLINE]Consume this Settler to permanently increase this city’s Potential to Level {1_Next}.[NEWLINE]This cannot be undone.'),
 ('zh_Hans_CN','LOC_SPC_UNIT_INVEST_CONFIRM_TITLE','确认投资'),
-('en_US','LOC_SPC_UNIT_INVEST_CONFIRM_TITLE','确认投资'),
-('zh_Hans_CN','LOC_SPC_UNIT_INVEST_READY','投资专业化[NEWLINE]消耗 1 名移民，使本城的专业潜力永久提升 1 级。[NEWLINE]潜力变化：{1_Potential} 级 → {2_Next} 级[NEWLINE]点击以预览投资结果并进行最终确认。'),
-('en_US','LOC_SPC_UNIT_INVEST_READY','投资专业化[NEWLINE]消耗 1 名移民，使本城的专业潜力永久提升 1 级。[NEWLINE]潜力变化：{1_Potential} 级 → {2_Next} 级[NEWLINE]点击以预览投资结果并进行最终确认。'),
-('zh_Hans_CN','LOC_SPC_UNIT_INVEST_FULL','投资专业化[NEWLINE]专业潜力已达到4级，无法继续投资。'),
-('en_US','LOC_SPC_UNIT_INVEST_FULL','投资专业化[NEWLINE]专业潜力已达到4级，无法继续投资。'),
-('zh_Hans_CN','LOC_SPC_UNIT_INVEST_PENDING','投资专业化[NEWLINE]此前专业投资的结果尚待确认，暂时无法再次投资。'),
-('en_US','LOC_SPC_UNIT_INVEST_PENDING','投资专业化[NEWLINE]此前专业投资的结果尚待确认，暂时无法再次投资。'),
-('zh_Hans_CN','LOC_SPC_UNIT_INVEST_SITE','投资专业化[NEWLINE]将移民移动至本城的专业区域，即可投资城市专业化。'),
-('en_US','LOC_SPC_UNIT_INVEST_SITE','投资专业化[NEWLINE]将移民移动至本城的专业区域，即可投资城市专业化。'),
+('en_US','LOC_SPC_UNIT_INVEST_CONFIRM_TITLE','Confirm Investment'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_READY','投资专业化[NEWLINE]消耗 1 名移民，使本城专业潜力永久提升 1 级。[NEWLINE]潜力变化：{1_Potential} 级 → {2_Next} 级[NEWLINE]点击查看投资预览，再确认投资。'),
+('en_US','LOC_SPC_UNIT_INVEST_READY','Invest in Specialization[NEWLINE]Consume 1 Settler to permanently raise this city’s Potential by 1 level.[NEWLINE]Potential: Level {1_Potential} → Level {2_Next}[NEWLINE]Select to preview the investment.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_FULL','投资专业化[NEWLINE]专业潜力已达 4 级，无法继续投资。'),
+('en_US','LOC_SPC_UNIT_INVEST_FULL','Invest in Specialization[NEWLINE]This city has reached Potential Level 4.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_PENDING','投资专业化[NEWLINE]上一次投资结果待确认，暂时无法再次投资。'),
+('en_US','LOC_SPC_UNIT_INVEST_PENDING','Invest in Specialization[NEWLINE]The previous investment is awaiting confirmation.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_SITE','投资专业化[NEWLINE]将移民移动至本城的专业区域，即可预览投资。'),
+('en_US','LOC_SPC_UNIT_INVEST_SITE','Invest in Specialization[NEWLINE]Move a Settler to this city’s specialization district to preview the investment.'),
 ('zh_Hans_CN','LOC_SPC_UNIT_INVEST_GOVERNMENT','政府'),
-('en_US','LOC_SPC_UNIT_INVEST_GOVERNMENT','政府'),
+('en_US','LOC_SPC_UNIT_INVEST_GOVERNMENT','Government'),
 ('zh_Hans_CN','LOC_SPC_UNIT_INVEST_MILITARY','军事'),
-('en_US','LOC_SPC_UNIT_INVEST_MILITARY','军事');
+('en_US','LOC_SPC_UNIT_INVEST_MILITARY','Military');
 
 -- Timed project captions in the native city panel.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
@@ -592,3 +592,7 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_SOLE_QUEUE_COUNT','Keep the claim project alone in the Production queue. Items queued: {1}'),
 ('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_QUEUE_COUNT_PENDING','等待队列确认；数量={1}'),
 ('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_QUEUE_COUNT_PENDING','Waiting for the Production queue. Items queued: {1}');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('en_US','LOC_SPC_UNIT_ACTION_CONFIRM_LABEL','Confirm'),
+('zh_Hans_CN','LOC_SPC_UNIT_ACTION_CONFIRM_LABEL','确认');

@@ -49,6 +49,29 @@ def unit_translations(language,text_sql=None):
   return dict(db.execute("SELECT Tag, Text FROM LocalizedText WHERE Language=? AND (Tag GLOB 'LOC_SPC_UNIT_*' OR Tag GLOB 'LOC_SPC_CREW_BASE_*' OR Tag GLOB 'LOC_SPC_INST_*')",(language,)))
 
 class Localization(unittest.TestCase):
+ def test_published_english_action_copy_displays_both_numeric_previews_and_confirmation(self):
+  for kind in ('crew','settler'):
+   with self.subTest(kind=kind):
+    c=ui(translations=unit_translations('en_US'))
+    c.execute("""
+     local kind=...
+     if kind=='settler'then selected=units[8];selectedChanged()end
+     assert(Controls.PrepareButton.tip:find(kind=='crew'and 'Construct'or 'Invest in Specialization',1,true))
+     Controls.PrepareButton.click();publish()
+     local preview,confirm=Controls.PrepareButton.tip,Controls.ConfirmButton.tip
+     if kind=='crew'then
+      assert(preview:find('Current Wonder: WONDER',1,true)and preview:find('Progress: 20 / 400',1,true))
+      assert(preview:find('Base contribution: 100',1,true)and preview:find('Unused: 0',1,true))
+      assert(confirm:find('100 base [ICON_Production] Production',1,true))
+     else
+      assert(preview:find('Current specialization: Research',1,true)and preview:find('Current Potential: Level 1',1,true))
+      assert(preview:find('Potential after investment: Level 2',1,true))
+      assert(confirm:find('permanently increase this city’s Potential to Level 2',1,true))
+     end
+     assert(confirmed==0 and actionCount('UNIT_ACTION_CONFIRM')==0 and not Controls.ConfirmButton.hide)
+     Controls.ConfirmButton.click();Controls.ConfirmButton.click();publish()
+     assert(confirmed==1 and actionCount('UNIT_ACTION_CONFIRM')==1)
+    """,kind)
  def test_b496_action_tooltips_keep_text_and_native_work(self):
   text_sql=subprocess.check_output(['git','show',ACTION_COPY+':Mod/Text/TestText.sql'],cwd=ROOT,text=True)
   cases=(
