@@ -8,7 +8,7 @@ import test_culture_aesthetic as ae
 import test_culture_meaning_probe as legacy
 import test_culture_meaning_automatic as meaning
 import test_culture_inspiration_probe as old
-from retired_crew_sources import B517, package, source
+from retired_crew_sources import B517, B518, package, source
 R=Path(__file__).resolve().parents[1]
 
 class InspirationAutomaticTests(unittest.TestCase):
@@ -165,9 +165,8 @@ class InspirationAutomaticTests(unittest.TestCase):
  def test_exact_inspiration_probe_removal_and_rollback(self):
   from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
   removed=('CultureInspirationProbe.lua',)
-  current=R/'Mod'
-  with package(B517) as baseline:
-   previous=baseline/'Mod'
+  with package(B517) as baseline, package(B518) as retired:
+   previous,current=baseline/'Mod',retired/'Mod'
    for name in ('Data/CultureInspirationProbe.sql','Data/CultureInspiration.sql',
                 'CultureInspirationModel.lua','CityProgressionStore.lua'):
     self.assertEqual((previous/name).read_bytes(),(current/name).read_bytes(),name)

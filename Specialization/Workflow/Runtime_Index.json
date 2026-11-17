@@ -161,9 +161,9 @@
       "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/CultureMeaning.lua": {
-      "sha256": "53304a51312bfd9ad6c8ffaf3d7cf4204c34917f66845154252fb3f2ceda25f9",
+      "sha256": "273e645981b385ffe021a8fb69984bc18419fa365c4b3836e39affcf71e2addb",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
+      "provenance": "S1081 moves exact cold B060 withdrawals to Culture Meaning, preserves the confirmed city exit owner and Dialogue packet, and removes the two retired adjacency Lua paths."
     },
     "Mod/CultureMeaningModel.lua": {
       "sha256": "90d37621b7e5a0bcc28c118a011473816ef8572432e426c08dd2c117844817cb",
@@ -466,9 +466,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Dialogue.lua": {
-      "sha256": "004413bde77836bde9fa94600e904f7f7ee0a939515fe0bde93e7142388ce179",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
+      "sha256": "dd6b5e14b40666c959e579e7520a245e18ca4cf7d5909dde6bd94965d11ee8c6",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1081 moves exact cold B060 withdrawals to Culture Meaning, preserves the confirmed city exit owner and Dialogue packet, and removes the two retired adjacency Lua paths."
     },
     "Mod/DialogueEffects.lua": {
       "sha256": "322cff09574c27386c108446959ca4f4d18bf5e8ee7832dbeb7467f09c45de74",
@@ -571,19 +571,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "ecddcda385a60901ceb3a95f96417638b2b76b86dafa22ff8fa2dd76edcb60a6",
+      "sha256": "205081bee16213cd325811d9e2fb86877df45e2e77c6db7005bf696d7d33c862",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1080 moves the four historical Inspiration carrier withdrawals to the current effect owner and retires the old probe Lua. Exact load and exit ordering, failed readback, scoped recovery, retained SQL and both disposable rollback paths are verified locally."
-    },
-    "Mod/GreatWorkAdjacency.lua": {
-      "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
-    },
-    "Mod/GreatWorkAdjacencyModel.lua": {
-      "sha256": "f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "provenance": "S1081 moves exact cold B060 withdrawals to Culture Meaning, preserves the confirmed city exit owner and Dialogue packet, and removes the two retired adjacency Lua paths."
     },
     "Mod/GreatWorkCatalog.lua": {
       "sha256": "c0669180efe21a4c2fd91289be9c0a1a4828ac785a3791ca1b059507cc2fec72",
@@ -701,9 +691,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "637000082f4c840fe381a13a389b7550505e1d049905d3c8c268d01289118d96",
+      "sha256": "f664068cb2be1ebcfd6c21c79ceba8a73d4a7594f52a93828503289aa22a165c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1080 moves the four historical Inspiration carrier withdrawals to the current effect owner and retires the old probe Lua. Exact load and exit ordering, failed readback, scoped recovery, retained SQL and both disposable rollback paths are verified locally."
+      "provenance": "S1081 moves exact cold B060 withdrawals to Culture Meaning, preserves the confirmed city exit owner and Dialogue packet, and removes the two retired adjacency Lua paths."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "0d9205f3f4543c200c3fb3787384e8f1d580fe2834831829822546c641356458",
@@ -816,9 +806,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "57bfd81d97b5ed0d31dcd0821c6f59c052bdb7dc3ddd932561f6013c0fdcc38a",
+      "sha256": "538653621a4a3ca461fc71d0378ff69b67552fa3b342ac97a5cb1e854d920118",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1080 moves the four historical Inspiration carrier withdrawals to the current effect owner and retires the old probe Lua. Exact load and exit ordering, failed readback, scoped recovery, retained SQL and both disposable rollback paths are verified locally."
+      "provenance": "S1081 moves exact cold B060 withdrawals to Culture Meaning, preserves the confirmed city exit owner and Dialogue packet, and removes the two retired adjacency Lua paths."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1146,9 +1136,9 @@
       "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
     },
     "Mod/UI/DialogueRefresh.lua": {
-      "sha256": "274d7491240789affb0ac7d47e222c0180c1b7489a700afa745dc0f3e5ba5876",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B286_Refactor_S5d3.md",
-      "provenance": "B286.313 independent Dialogue recovery and bounded UI marks; local/static evidence only; no deployment/native PASS."
+      "sha256": "a9d8b2b117030c5883d603fdb00cb48d6c907ea5e17ae42d8b3dae4a40264a3a",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1081 moves exact cold B060 withdrawals to Culture Meaning, preserves the confirmed city exit owner and Dialogue packet, and removes the two retired adjacency Lua paths."
     },
     "Mod/UI/DialogueRefresh.xml": {
       "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",

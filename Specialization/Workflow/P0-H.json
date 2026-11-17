@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1080",
-    "runtime": "B518.545 / modinfo545",
+    "status": "S1081",
+    "runtime": "B519.546 / modinfo546",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Hand the exact four historical Inspiration withdrawals to the current effect owner and retire the old probe with exact rollback and preserved current behavior.",
+  "goal": "Move the exact Meaning legacy withdrawal to its current owner and retire the old adjacency Lua while preserving the city exit and collection transport.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Hand off the old Meaning withdrawals and retire adjacency Lua — S1081",
+      "reason": "S1081 moves exact cold B060 withdrawals to Culture Meaning, preserves the confirmed city exit owner and Dialogue packet, and removes the two retired adjacency Lua paths."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -864,6 +870,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1081 covers Meaning cold and affected-city withdrawal, the existing B060 exit owner, Dialogue collection, and the exact two-path retirement with both disposable rollbacks.",
     "S1080 proves exact Inspiration load and exit ordering, failed and successful readback, distinct city outcomes, physical absence and both exact disposable rollback paths.",
     "S1079 verifies four physically absent city paths, true root startup/cold/founding, nonempty proof and exact stable and temporary rollback with preserved historical fixture input.",
     "S1078 verifies equivalent cold Store records, founding in both event orders, first completion, and nonempty proof in the absence of four legacy city includes.",
@@ -5744,6 +5751,55 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#hand-off-and-retire-the-old-inspiration-probe--s1080"
+    },
+    "s1081_meaning_adjacency_retirement": {
+      "build": "B519.546 / modinfo546",
+      "baseline": "b426b7898679908c664142ec81aaa34a1810cee2",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "O7MeaningCleanup": {
+          "path": "local/refactor/S1081-O7MeaningCleanup-verified/closure.json",
+          "sha256": "3dcf2031008c5976d8525a29a9bb98380c64722aaf3fbb0ddacdabd802f03d73",
+          "pass_count": 47
+        },
+        "O7InspirationCleanup": {
+          "path": "local/refactor/S1081-O7InspirationCleanup-verified/closure.json",
+          "sha256": "6e1cac0487dba2bb8a7b1cc35b71b8b3b3168f96d89ede1d9260f95d646a25fd",
+          "pass_count": 65
+        },
+        "O7wLegacyCompletionRecordRetirement": {
+          "path": "local/refactor/S1081-O7wLegacyCompletionRecordRetirement-verified/closure.json",
+          "sha256": "ddcd39368858bcfbdbab4c13d40b030d3e0dc3ff699caa3f5668434636c1e8e1",
+          "pass_count": 31
+        },
+        "NReadOnlyNetworkDiagnostic": {
+          "path": "local/refactor/S1081-NReadOnlyNetworkDiagnostic-verified/closure.json",
+          "sha256": "cdd3222e566f43f281446accf4bcda25260d24ccec3c6f64ce21c8b55c144c78",
+          "pass_count": 136
+        },
+        "NStandardizationEffectReadback": {
+          "path": "local/refactor/S1081-NStandardizationEffectReadback-verified/closure.json",
+          "sha256": "0a11515507d6519ef7b247eda629d39b730dbe03a64afdff25c3049641f5bb19",
+          "pass_count": 118
+        }
+      },
+      "removed_paths": {
+        "Mod/GreatWorkAdjacency.lua": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
+        "Mod/GreatWorkAdjacencyModel.lua": "f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4"
+      },
+      "retained_b060_carriers": 156,
+      "retired_ui_adjacency_hooks": 5,
+      "retired_noop_return_callbacks": 1,
+      "rollback": [
+        "temporary_switch_and_restore",
+        "stable_apply_and_rollback"
+      ],
+      "source_sha256": "1c925cac40f71c09851a55ce3a156fee868a8eb3e359eaaf003e50b34b69547e",
+      "package_sha256": "e21c19f3668d12ce72cd37bd49189b825fbc66b54f55aa518a9c74a9263a5d32",
+      "files": 323,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#hand-off-the-old-meaning-withdrawals-and-retire-adjacency-lua--s1081"
     }
   }
 }

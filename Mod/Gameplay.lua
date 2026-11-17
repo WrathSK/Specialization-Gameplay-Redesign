@@ -668,7 +668,7 @@ end,nil,{deferNativeSubscriptions=true})
 
 composition.Run('CityProgressionStore',{'CityIdentityDefinition','FactChanges'},{'CityProgressionStore'},function()
  include('CityProgressionStore');SPCCityProgressionStore.Start(P,shared)
- -- Current production duties only:29 exits,23 returns. Exact cleanup stays in
+ -- Current production duties only:29 exits,22 returns. Exact cleanup stays in
  -- each existing owner; retired positive writers/optional observers add no gate.
  for _,row in ipairs({
   {'LegacyCleanup','LegacyCleanup'},
@@ -690,7 +690,6 @@ composition.Run('CityProgressionStore',{'CityIdentityDefinition','FactChanges'},
   {'GreatWorkFacts','GreatWorkFacts','GreatWorkFacts'},
   {'CultureAesthetic','CultureAesthetic','CultureAesthetic'},
   {'Dialogue',nil,'Dialogue'},
-  {'GreatWorkAdjacency',nil,'GreatWorkAdjacency'},
   {'CultureMeaning','CultureMeaning','CultureMeaning'},
   {'CultureInspiration','CultureInspiration','CultureInspiration'},
   {'ClaimProjects','ClaimProjects'},
@@ -794,9 +793,7 @@ composition.Run('CultureAesthetic',{'CityProgressionStore','GreatWorkFacts','Eff
 
 composition.Run('Dialogue',{'GreatWorkFacts','LegacyCleanup'},{'Dialogue'},function() include('Dialogue');SPCDialogue.Start(P,shared,{centralExit=true}) end)
 
-composition.Run('GreatWorkAdjacency',{},{'GreatWorkAdjacency'},function() include('GreatWorkAdjacency');SPCGWAdjacency.Start(P,shared,{retired=true,centralExit=true}) end)
-
-composition.Run('CultureMeaning',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','GreatWorkAdjacency','Dialogue','NativeFacts'},{'CultureMeaning'},function() include('CultureMeaning');SPCCultureMeaning.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+composition.Run('CultureMeaning',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Dialogue','NativeFacts'},{'CultureMeaning'},function() include('CultureMeaning');SPCCultureMeaning.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
 composition.Run('CultureInspiration',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','NativeFacts'},{'CultureInspiration'},function() include('CultureInspiration');SPCCultureInspiration.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 

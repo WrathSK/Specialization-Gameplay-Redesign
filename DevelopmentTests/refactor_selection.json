@@ -2,6 +2,18 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7MeaningCleanup": [
+      "test_o7_retired_great_work_adjacency_retirement",
+      "test_culture_meaning_automatic.AutomaticMeaningTests.test_unknown_old_carrier_presence_cannot_be_treated_as_absence",
+      "test_culture_meaning_automatic.AutomaticMeaningTests.test_retired_ui_producer_keeps_facts_without_base_adjacency_reads",
+      "test_culture_meaning_automatic.AutomaticMeaningTests.test_exact_legacy_cleanup_failure_blocks_only_affected_city",
+      "test_refactor_s5d4c5",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
     "O7InspirationCleanup": [
       "test_culture_inspiration_automatic.InspirationAutomaticTests.test_transferred_withdrawal_matches_exact_cold_failure_and_exit_order",
       "test_culture_inspiration_automatic.InspirationAutomaticTests.test_exact_inspiration_probe_removal_and_rollback",

@@ -2,7 +2,7 @@
 import json,sqlite3,unittest
 from refactor_harness import Context,ROOT,measure
 from project_paths import external_database
-from retired_crew_sources import B457, B459, B511, B514, B517, source
+from retired_crew_sources import B457, B459, B511, B514, B517, B518, source
 
 OPTIONS={'Lv3Effects':'{retireCommerce=true}','NetworkBoost':'{retired=true}','GreatWorkAdjacency':'{retired=true}','CommerceConvergence':'{retired=true}','CopyYields':'{retired=true}','StandardizationDiscount':'{retired=true}','CultureInspirationProbe':'{retired=true}'}
 MODULES=('HalfYieldProbe','PurchaseProbe','GreatWorkProbe','Lv3Support','Lv3Effects','Lv4Percent','NetworkBoost','GreatWorkAdjacency','Dialogue','CommerceConvergence','CopyYields','StandardizationDiscount','CultureInspirationProbe')
@@ -74,6 +74,14 @@ class ActualCurrentOwners(unittest.TestCase):
   """)
   for module in MODULES:
    if module=='HalfYieldProbe':c.execute(source('HalfYieldProbe.lua',B459))
+   elif module=='GreatWorkAdjacency':
+    include=c.globals().include
+    def include_archived(name):
+     if name=='GreatWorkAdjacencyModel':return c.execute(source(name+'.lua',B518))
+     return include(name)
+    c.globals().include=include_archived
+    try:c.execute(source(module+'.lua',B518))
+    finally:c.globals().include=include
    elif module in ('PurchaseProbe','GreatWorkProbe'):c.execute(source(module+'.lua',B511))
    elif module in ('CopyYields','StandardizationDiscount'):c.execute(source(module+'.lua',B514))
    elif module=='CultureInspirationProbe':c.execute(source(module+'.lua',B517))

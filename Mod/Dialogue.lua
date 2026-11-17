@@ -324,7 +324,6 @@ function SPCDialogue.Start(P,shared,options)
    return {turn=a.Turn,cities=cities,seq=a.Seq,generation=a.Generation,factsEpoch=a.FactsEpoch,factsInput=a.FactsInput}
   end)
   d.samples[pid]=ok and res or nil;d.errors[pid]=not ok and tostring(res) or nil;d.received[pid].stage=ok and 'ACCEPTED' or 'REJECTED_SAMPLE';if not d.retired then d.Audit(pid)end
-  if shared.GreatWorkAdjacency then shared.GreatWorkAdjacency.Receive(pid,a) end
   return ok -- Accepted collection, independent of legacy projection success.
  end
  function d.Describe(pid,c)
@@ -352,14 +351,14 @@ function SPCDialogue.Start(P,shared,options)
   return table.concat(rows,'\n')
  end
  local function auditAll() for pid in pairs(Players) do
-  d.Audit(pid);if shared.GreatWorkAdjacency then shared.GreatWorkAdjacency.Audit(pid) end
+  d.Audit(pid)
  end end
  for _,name in ipairs({'GovernorAssigned','GovernorEstablished','GovernorPromoted','GovernorChanged'}) do
   local e=P.Field(Events,name);if e and e.Add then e.Add(function(pid)
    if d.retired then return end
    if type(pid)=='number' and pid>=0 then
     if not P.IsTestPlayer(pid) then return end
-    d.Audit(pid);if shared.GreatWorkAdjacency then shared.GreatWorkAdjacency.Audit(pid) end
+    d.Audit(pid)
    else auditAll() end -- unknown signature retains prior conservative scope
   end) end
  end

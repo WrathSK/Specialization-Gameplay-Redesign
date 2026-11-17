@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, B518, RETIRED_ADJACENCY_FILES, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -44,7 +44,7 @@ def old_gameplay_assertion():
  with patch.object(Path,'read_text',lambda path,*a,**kw:old if path==p else read(path,*a,**kw)):yield
 
 
-def production(extra='',failure=None,late=None,*,modules=MODULES):
+def production(extra='',failure=None,late=None,*,modules=None,gameplay=None):
  v=actual_store();v.execute('priorInfo=P.Info;priorGameInfo=GameInfo');v.execute(SETUP.split('coreBeforeTurns=')[0])
  v.execute("""
  P.Field=function(t,k)return t and t[k]end;P.Count=function()end
@@ -61,12 +61,15 @@ def production(extra='',failure=None,late=None,*,modules=MODULES):
   assert(composition.Run(name,{}, {},function()end))
  end
  """+extra)
- gameplay=(ROOT/'Mod/Gameplay.lua').read_text()
+ gameplay=gameplay or (ROOT/'Mod/Gameplay.lua').read_text()
+ if modules is None:
+  modules=tuple(name for name in MODULES if name!='GreatWorkAdjacency' or "composition.Run('GreatWorkAdjacency'" in gameplay)
  include=v.globals().include
  def wrapped(name):
   if failure==name:raise RuntimeError('INCLUDE_FAILURE_'+name)
   if name in EXPERIMENT_LOADS and startup_slot(name,gameplay)==name:
    out=v.execute(retired_source(name+'.lua',B511))
+  elif name+'.lua' in RETIRED_ADJACENCY_FILES:out=v.execute(retired_source(name+'.lua',B518))
   else:out=include(name)
   if late==name:
    sym=SYMBOL.get(name,'SPC'+name)
@@ -123,6 +126,8 @@ class Production(unittest.TestCase):
    for name in RETIRED_CITY_STARTS:expected.remove('SPC'+name)
    self.assertEqual([n for n in start_order(retired_source('Gameplay.lua',B517)) if n!='SPCLegacyCleanup'],expected)
    expected.remove('SPCCultureInspirationProbe')
+   self.assertEqual([n for n in start_order(retired_source('Gameplay.lua',B518)) if n!='SPCLegacyCleanup'],expected)
+   expected.remove('SPCGWAdjacency')
    if not reply_service:expected.remove('SPCPlayerActionReplies')
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"))
@@ -131,10 +136,15 @@ class Production(unittest.TestCase):
   self.assertNotIn("composition.Run('YieldCarrierExit'",s)
   for name in MODULES:
    slot=startup_slot(name,s)
-   if slot==name:self.assertIn('centralExit=true',entry(name,s))
+   if retired and name=='GreatWorkAdjacency':
+    self.assertNotIn("composition.Run('GreatWorkAdjacency'",s)
+    self.assertIn('centralExit=true',entry(name,retired_source('Gameplay.lua',B518)))
+   elif slot==name:self.assertIn('centralExit=true',entry(name,s))
    else:self.assertIn('SPCLegacyCleanup.'+EXPERIMENT_LOADS[name][1]+'(',entry(slot,s))
   self.assertIn('retireCommerce=true',entry('Lv3Effects'))
-  for name in ('NetworkBoost','GreatWorkAdjacency','CommerceConvergence'):self.assertIn('retired=true',entry(name))
+  for name in ('NetworkBoost','GreatWorkAdjacency','CommerceConvergence'):
+   archived=retired_source('Gameplay.lua',B518) if retired and name=='GreatWorkAdjacency' else s
+   self.assertIn('retired=true',entry(name,archived))
   for name in SUPPORT:
    if retired and name in RETIRED_INDUSTRIAL_STARTS:
     self.assertNotIn("composition.Run('"+name+"'",s)
@@ -145,7 +155,7 @@ class Production(unittest.TestCase):
    else:self.assertNotIn('centralExit',entry(name,s))
   v=production()
   v.execute("for _,name in ipairs({...})do assert(shared.StartStatus[name].state=='OK',name)end",
-            *(startup_slot(name,s) for name in MODULES))
+            *(startup_slot(name,s) for name in MODULES if not retired or name!='GreatWorkAdjacency'))
   v.execute("local n=0;for name in pairs(registered)do assert(name=='LegacyCleanup');n=n+1 end;assert(n==1);lose();assert(status()=='WITHDRAWN'and removeCalls==1409 and plotWrites==2);assert(ca.present[999999]and cb.present[999999]and ca.plotValues.OTHER=='keep');for id in pairs(byID)do assert(not ca.present[id]and cb.present[id])end")
   measure('S8c5c_actual_production_cleanup',{'prior_legacy_exits':11,'current_legacy_exit_gates':1,'building_removals':1409,'plot_writes':2,'native_effect_cleanup':'USER_GAME_TEST_REQUIRED','new_events_timers':0})
  def test_thunk_is_registered_before_include_or_Start_can_fail(self):
@@ -159,9 +169,27 @@ class Production(unittest.TestCase):
  def test_nonparticipant_start_failure_does_not_lose_its_physical_cleanup(self):
   source=(ROOT/'Mod/Gameplay.lua').read_text()
   for name in ('PurchaseProbe','GreatWorkProbe','Lv4Percent','NetworkBoost','GreatWorkAdjacency','CommerceConvergence'):
-   v=production(failure=name)
+   gameplay=retired_source('Gameplay.lua',B518) if name=='GreatWorkAdjacency' else source
+   v=production(failure=name,gameplay=gameplay)
    v.execute("assert(shared.StartStatus[...].state=='FAILED');lose();assert(status()=='WITHDRAWN'and removeCalls==1409 and plotWrites==2)",
              startup_slot(name,source))
+ def test_exact_adjacency_group_stays_in_confirmed_exit_without_the_old_module(self):
+  v=production();v.execute(r'''
+   assert(shared.GreatWorkAdjacency==nil and shared.StartStatus.GreatWorkAdjacency==nil)
+   faultGroup='GreatWorkAdjacency';lose()
+   assert(status()=='PARTIAL_HELD' and removeByGroup.GreatWorkAdjacency==nil and removeCalls==1253)
+   for _,name in ipairs(byGroup.GreatWorkAdjacency.names)do
+    local id=definitions[name].Index
+    assert(ca.present[id] and cb.present[id])
+   end
+   faultGroup=nil;s.ExitConfirmed()
+   assert(status()=='WITHDRAWN' and removeByGroup.GreatWorkAdjacency==156 and removeCalls==1409)
+   s.ExitConfirmed();assert(removeCalls==1409)
+   for _,name in ipairs(byGroup.GreatWorkAdjacency.names)do
+    local id=definitions[name].Index
+    assert(not ca.present[id] and cb.present[id])
+   end
+  ''')
  def test_actual_two_target_owners_recover_independently_after_Store_budget(self):
   v=production("""
   local has=P.HasBuilding;P.HasBuilding=function(b,id)local group=byID[id].group
@@ -210,7 +238,10 @@ class Production(unittest.TestCase):
   for name in SUPPORT:
    historical=retired_source('Gameplay.lua',B513 if name in RETIRED_INDUSTRIAL_STARTS else B517)
    v.execute(entry(name,historical))
-  v.execute("assert(type(shared.CopyYields.Withdraw)=='function'and type(shared.StandardizationDiscount.Withdraw)=='function'and type(shared.CultureInspirationProbe.Withdraw)=='function'and type(shared.Lv3Effects.WithdrawCulture)=='function'and type(shared.Lv4Percent.WithdrawCulture)=='function'and type(shared.GreatWorkAdjacency.Withdraw)=='function'and type(shared.CommerceConvergence.Withdraw)=='function'and type(shared.Dialogue.Init)=='function')")
+  v.execute("assert(shared.GreatWorkAdjacency==nil)")
+  original=production(gameplay=retired_source('Gameplay.lua',B518))
+  original.execute("assert(type(shared.GreatWorkAdjacency.Withdraw)=='function')")
+  v.execute("assert(type(shared.CopyYields.Withdraw)=='function'and type(shared.StandardizationDiscount.Withdraw)=='function'and type(shared.CultureInspirationProbe.Withdraw)=='function'and type(shared.Lv3Effects.WithdrawCulture)=='function'and type(shared.Lv4Percent.WithdrawCulture)=='function'and type(shared.CommerceConvergence.Withdraw)=='function'and type(shared.Dialogue.Init)=='function')")
   v.execute("assert(shared.PurchaseProbe==nil and shared.GreatWorkProbe==nil and type(shared.GreatWorkLoadCleanup.Clean)=='function')")
   path=ROOT/'Mod/Gameplay.lua';before=retired_source('Gameplay.lua',B511);read=Path.read_text
   with patch.object(Path,'read_text',lambda p,*a,**kw:before if p==path else read(p,*a,**kw)):

@@ -7,7 +7,7 @@ from pathlib import Path
 import unittest,xml.etree.ElementTree as ET
 import sqlite3,zlib
 from project_paths import external_database
-from retired_crew_sources import B458, source as historical_source
+from retired_crew_sources import B458, B518, RETIRED_ADJACENCY_FILES, source as historical_source
 import test_culture_aesthetic as ae
 from test_p0_k import Fixture
 
@@ -16,6 +16,8 @@ R=Path(__file__).resolve().parents[1];M=R/'Mod'
 def fixture_source(relative):
  if relative=='CultureMeaningProbe.lua':
   return historical_source(relative,B458)
+ if relative in RETIRED_ADJACENCY_FILES:
+  return historical_source(relative,B518)
  return (M/relative).read_text()
 
 
@@ -86,7 +88,7 @@ class MeaningProbeTests(unittest.TestCase):
   def imported_include(n):
    # Model action visibility only. This cannot prove native VFS/include behavior.
    assert n+'.lua' in imports, 'Not visible in ImportFiles: '+n
-   l.execute(fixture_source(n+'.lua'))
+   l.execute(historical_source('Dialogue.lua',B518) if n=='Dialogue' else fixture_source(n+'.lua'))
   l.globals().include=imported_include
   for n in ['Dialogue','GreatWorkAdjacency','CultureMeaningProbe']:imported_include(n)
   if real_samples:imported_include('GreatWorkFacts')

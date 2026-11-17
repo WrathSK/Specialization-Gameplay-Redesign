@@ -16,13 +16,15 @@ class AutomaticMeaningTests(unittest.TestCase):
     def setUpClass(cls): cls.sql=legacy.database()
     @classmethod
     def tearDownClass(cls): cls.sql.close()
-    def runtime(self, ready=True, real=False):
+    def runtime(self, ready=True, real=False, *, historical=False):
         helper=ae.AestheticTests(); helper.sql=self.sql; l=helper.runtime(ready=False)
         for table,key in [('GreatWorks','GreatWorkType'),('Yields','YieldType'),('GreatPersonIndividuals','GreatPersonIndividualType'),('Eras','EraType'),('GreatWork_YieldChanges','GreatWorkType')]:
             cur=self.sql.execute('SELECT * FROM '+table); columns=[x[0]for x in cur.description];rows=[dict(zip(columns,x))for x in cur]
             for i,row in enumerate(rows):row['Index']=i+1
             l.globals().GameInfo[table]=l.globals().db(ae.lua_table(l,rows),key)
-        for name in ['Dialogue','GreatWorkAdjacency','CultureMeaning']:l.globals().include(name)
+        modules = ['Dialogue','GreatWorkAdjacency','CultureMeaning'] if historical else ['Dialogue','CultureMeaning']
+        for name in modules:
+            l.globals().include(name)
         l.execute(r"""
           P.Scalar=function(v)return tostring(v)end
           for _,c in ipairs(cities)do
@@ -37,7 +39,8 @@ class AutomaticMeaningTests(unittest.TestCase):
               hasConfirmed=not c.neverConfirmed,reference=SPCNetworkInput.Reference(c),modifierExcludedCount=c.badCount,unknownCategoryCount=c.categoryUnknown}
           end
           SPCDialogue.Start(P,shared);dialogue=shared.Dialogue
-          SPCGWAdjacency.Start(P,shared,{retired=true});gwa=shared.GreatWorkAdjacency
+          if ... then SPCGWAdjacency.Start(P,shared,{retired=true})
+          else assert(SPCGWAdjacency==nil and not shared.GreatWorkAdjacency) end
           SPCCultureMeaning.Start(P,shared);meaning=shared.CultureMeaning
           assert(not shared.CultureMeaningProbe)
           function finalAmount(c,y)
@@ -45,11 +48,15 @@ class AutomaticMeaningTests(unittest.TestCase):
           end
           function seed(c,name)building(c,name,c.ds[1])end
           function meaningCount(c)local n=0;for _,name in ipairs(SPCCultureMeaningModel.Owned)do if c.present[GameInfo.Buildings[name].Index]then n=n+1 end end;return n end
-          function oldCount(c)local n=0;for _,y in ipairs(SPCGWAdjacencyModel.Yields)do for _,sign in ipairs({'P','N'})do for bit=0,12 do
-            if c.present[GameInfo.Buildings['BUILDING_SPC_B060_'..y..'_'..sign..bit].Index]then n=n+1 end
-          end end end;return n end
+          function oldCount(c)
+            local n=0
+            for row in GameInfo.Buildings()do
+              if row.BuildingType:match('^BUILDING_SPC_B060_') and c.present[row.Index]then n=n+1 end
+            end
+            return n
+          end
           function update(cid)meaning.Audit({player=0,city=cid or 1})end
-        """)
+        """, historical)
         if real:
             l.globals().include('GreatWorkFacts')
             l.execute('SPCGreatWorkFacts.Start(P,shared);for _,s in ipairs(fixtureConsumers)do shared.GreatWorkFacts.RegisterConsumer(s.name,s.callback)end')
@@ -192,10 +199,10 @@ class AutomaticMeaningTests(unittest.TestCase):
     def test_retired_ui_producer_keeps_facts_without_base_adjacency_reads(self):
         from test_p0_k import Fixture, PRODUCER
         fx=Fixture();fx.check(PRODUCER)
-        fx.check("shared.GreatWorkAdjacency.retired=true")
+        fx.check("shared.GreatWorkAdjacency=nil")
         fx.lua.execute((R/'Mod/UI/DialogueRefresh.lua').read_text())
         fx.check(r"""
-          SPCGWAdjacencyModel.Collect=function()error('RETIRED_BASE_ADJACENCY_READ')end
+          assert(SPCGWAdjacencyModel==nil)
           init();assert(lastPacket.Valid==1 and lastPacket.AdjData=='' and lastPacket.AdjCount==0)
           local ui=ExposedMembers.SPC_DialogueBackground;local scans=ui.scans
           fire('FeatureRemovedFromMap');fire('SystemUpdateUI');assert(ui.scans==scans)

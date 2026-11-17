@@ -3,7 +3,7 @@ from collections import Counter, deque
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B464, B465, B511, B513, B515, B516, B517, RETIRED_CITY_FILES, RETIRED_CITY_STARTS, package, source
+from retired_crew_sources import B464, B465, B511, B513, B515, B516, B517, B518, RETIRED_ADJACENCY_FILES, RETIRED_CITY_FILES, RETIRED_CITY_STARTS, package, source
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -199,21 +199,24 @@ def load_and_complete(root,saved, *, journal_retired=False):
             ctx.eval('GameEvents.OnDistrictConstructed.Count()'))
 
 
-def routes(root,revision=B464,*,inspiration_absent=False):
+def routes(root,revision=B464,*,retired_culture=False):
     gp,ui=context(root,revision=revision),context(root,'UI/BackgroundRoutes',revision)
-    if inspiration_absent:
-        vfs=PackageVFS(forbidden_globals=('SPCCultureInspirationProbe',))
-        assert 'CultureInspirationProbe.lua' not in vfs.files and 'CultureInspirationProbe.lua' not in vfs.imports
-        assert not (ROOT/'Mod/CultureInspirationProbe.lua').exists()
+    if retired_culture:
+        vfs=PackageVFS(forbidden_globals=('SPCCultureInspirationProbe','SPCGWAdjacency','SPCGWAdjacencyModel'))
+        for name in ('CultureInspirationProbe.lua',*RETIRED_ADJACENCY_FILES):
+            assert name not in vfs.files and name not in vfs.imports
+            assert not (ROOT/'Mod'/name).exists()
         gp=Context(name='Gameplay',vfs=vfs)
     gp.loads=deque(maxlen=768)
     packets=exercise_proof(gp,ui)
     assert all(c.load_counts['missing']+c.load_counts['failed']==0 for c in (gp,ui))
     assert len(gp.loads)==gp.load_counts['completed']
-    if inspiration_absent:
+    if retired_culture:
         gp.execute("""local s=ExposedMembers.SPC_P0
           assert(s.StartStatus.CultureInspiration.state=='OK' and s.StartStatus.CultureInspirationProbe==nil)
-          assert(s.CultureInspiration and s.CultureInspirationProbe==nil)""")
+          assert(s.CultureInspiration and s.CultureInspirationProbe==nil)
+          assert(s.StartStatus.CultureMeaning.state=='OK' and s.CultureMeaning)
+          assert(s.StartStatus.GreatWorkAdjacency==nil and s.GreatWorkAdjacency==nil)""")
     return packets,gp.load_counts,ui.load_counts,Counter(row['module'] for row in gp.loads)
 
 
@@ -350,9 +353,11 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
 
     def test_real_roots_keep_nonempty_route_proof(self):
         with (package(B464) as previous, package(B511) as pre_handoff,
-              package(B513) as no_experiments, package(B515) as no_writers, package(B517) as no_city_probes):
+              package(B513) as no_experiments, package(B515) as no_writers, package(B517) as no_city_probes,
+              package(B518) as no_inspiration_probe):
             stages = [routes(previous), routes(pre_handoff,B511), routes(no_experiments,B513),
-                      routes(no_writers,B515), routes(no_city_probes,B517), routes(ROOT,inspiration_absent=True)]
+                      routes(no_writers,B515), routes(no_city_probes,B517), routes(no_inspiration_probe,B518),
+                      routes(ROOT,retired_culture=True)]
         self.assertEqual(len(stages[0][0]),3)
         retirements=(
             ('CompletionRecordProbe.lua',),
@@ -360,6 +365,7 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             ('CopyYields.lua','StandardizationDiscount.lua','RuntimeWork.lua','CityReference.lua','SampleLifecycle.lua'),
             RETIRED_CITY_FILES,
             ('CultureInspirationProbe.lua','CurrentSpecializationFacts.lua','NetworkInput.lua'),
+            RETIRED_ADJACENCY_FILES,
         )
         for before, after, retired in zip(stages, stages[1:], retirements):
             self.assertEqual(before[0],after[0])
@@ -370,7 +376,8 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
                                        'completed':before[1]['completed']-len(retired)})
         measure('legacy_completion_record_routes',dict(matching_route_packets=3,
             experiment_module_loads_removed=2, industrial_module_loads_removed=5,
-            legacy_city_module_loads_removed=len(RETIRED_CITY_FILES), inspiration_includes_removed=3))
+            legacy_city_module_loads_removed=len(RETIRED_CITY_FILES), inspiration_includes_removed=3,
+            meaning_includes_removed=len(RETIRED_ADJACENCY_FILES)))
 
     def test_only_the_hidden_completion_record_request_retires(self):
         with package(B464) as previous, package(B465) as retired:

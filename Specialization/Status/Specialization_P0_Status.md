@@ -1,28 +1,51 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1080
-Implementation Build: B518.545 / modinfo545 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1081
+Implementation Build: B519.546 / modinfo546 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRE_INSPIRATION_CLEANUP_OWNER_LOCAL_PASS
+Work State: RETIRE_MEANING_ADJACENCY_OWNER_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B518.545 on develop](#hand-off-and-retire-the-old-inspiration-probe--s1080). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B519.546 on develop](#hand-off-the-old-meaning-withdrawals-and-retire-adjacency-lua--s1081). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | Current Inspiration owns the four historical withdrawals. Cold load, write order, confirmed exit, city, network and Standardization selections and both disposable rollback checks pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Trace the old per-work carrier cleanup used by Culture Meaning through cold admission and the current central city exit. Review independent responsibilities before detaching GreatWorkAdjacency. Retain the established Dialogue transport and native evidence gates. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | Meaning cold withdrawal, confirmed city exit and Dialogue collection pass locally. Both exact disposable rollback paths pass. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Trace the remaining retired Commerce Convergence load cleanup and Commerce preflight before moving their exact historical withdrawals. Preserve the write fence, actual confirmed exit and strict transaction gates. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Hand off the old Meaning withdrawals and retire adjacency Lua — S1081
+
+**LOCAL_SIMULATION_PASS in scope.** Culture Meaning clears the same 156 historical B060 carriers before applying current effects. It uses the exact catalogue that the confirmed Store exit already uses. Cold cleanup preserves the existing per-ID definition and presence checks, fail-fast readback and city-scoped retry. The new owner traverses the existing catalogue in its fixed order. The formal city exit continues through LegacyCleanup with the same ticket checks, per-group isolation and native readback. The old return callback cleared only disabled projection caches. Removing it leaves the Dialogue and Meaning return duties and Store source intact.
+
+**Runtime Impact Contract.** The existing cold city pass and existing affected-city wake remain the only Meaning legacy cleanup paths. No new native scan, timer, save state, retry trigger or effect rule. The real Gameplay root loads two fewer Lua files. The Dialogue UI stops loading the retired collector and attaching its five inactive adjacency listeners. The work slot collection, existing packet fields, accepted samples, ACK and generation checks remain in the established transport. Existing empty adjacency fields retain their values. The B060 SQL remains in the package for exact withdrawal.
+
+The Lua 5.5 city fixture cleared every B060 row from a supported city and the seeded old row from a foreign city while preserving ordinary and other-probe buildings. New value installation followed confirmed old withdrawal. Unknown presence and simulated remove failure each held only the affected city. In the restricted Store exit fixture an injected unreadable B060 group held the city exit while other groups cleared. The next existing exit attempt removed all 156 and preserved the unrelated city. Both actual-root routing and Dialogue UI fixtures retained their current results. Temporary switching and stable rollback used disposable packages and accepted exactly the two removed paths.
+
+Recover the retired sources with `git show b426b7898679908c664142ec81aaa34a1810cee2:<path>` and verify the hashes below. Historical experiment fixtures load those original bytes. The earlier command and Inspiration rollback tests retain their original assertions and compare the exact published endpoints for each step.
+
+- `Mod/GreatWorkAdjacency.lua` SHA256 `5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525`.
+- `Mod/GreatWorkAdjacencyModel.lua` SHA256 `f00c1b4a8fa056b86d44e8597ea3c193e46489f4ccfa8e12957c56ec61ad30e4`.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8, official Assets and read-only HD database SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7MeaningCleanup --output local/refactor/S1081-O7MeaningCleanup-verified/closure.json` (47/47), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7InspirationCleanup --output local/refactor/S1081-O7InspirationCleanup-verified/closure.json` (65/65), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7wLegacyCompletionRecordRetirement --output local/refactor/S1081-O7wLegacyCompletionRecordRetirement-verified/closure.json` (31/31), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1081-NReadOnlyNetworkDiagnostic-verified/closure.json` (136/136), `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/S1081-NStandardizationEffectReadback-verified/closure.json` (118/118). A supplemental old manual Meaning experiment, `test_dialogue_removal_failure_does_not_release_gwa`, fails at the same historical expectation on B518 and this batch and is outside the passing scope. Companion logs and evidence remain local.
+
+- `local/refactor/S1081-O7MeaningCleanup-verified/closure.json` SHA256 `3dcf2031008c5976d8525a29a9bb98380c64722aaf3fbb0ddacdabd802f03d73`.
+- `local/refactor/S1081-O7InspirationCleanup-verified/closure.json` SHA256 `6e1cac0487dba2bb8a7b1cc35b71b8b3b3168f96d89ede1d9260f95d646a25fd`.
+- `local/refactor/S1081-O7wLegacyCompletionRecordRetirement-verified/closure.json` SHA256 `ddcd39368858bcfbdbab4c13d40b030d3e0dc3ff699caa3f5668434636c1e8e1`.
+- `local/refactor/S1081-NReadOnlyNetworkDiagnostic-verified/closure.json` SHA256 `cdd3222e566f43f281446accf4bcda25260d24ccec3c6f64ce21c8b55c144c78`.
+- `local/refactor/S1081-NStandardizationEffectReadback-verified/closure.json` SHA256 `0a11515507d6519ef7b247eda629d39b730dbe03a64afdff25c3049641f5bb19`.
+
+**STATIC_CONFIRMED.** 194 Lua 5.1 compiles, 32 XML-family parses, 638 File references and 10 LuaReplace references. Source SHA256 `1c925cac40f71c09851a55ce3a156fee868a8eb3e359eaaf003e50b34b69547e`. Package SHA256 `e21c19f3668d12ce72cd37bd49189b825fbc66b54f55aa518a9c74a9263a5d32` across 323 files. Source-only checkpoint with no new native evidence.
 
 ### Hand off and retire the old Inspiration probe — S1080
 
