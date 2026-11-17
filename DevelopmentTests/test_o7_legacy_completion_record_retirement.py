@@ -3,8 +3,8 @@ from collections import Counter, deque
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B464, B465, B511, B513, B515, RETIRED_CITY_STARTS, package
-from test_o7_crew_retirement import verify_package_round_trip
+from retired_crew_sources import B464, B465, B511, B513, B515, B516, RETIRED_CITY_FILES, RETIRED_CITY_STARTS, package, source
+from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
 from test_pu07_source_attribution import runtime
@@ -13,7 +13,6 @@ from test_pu11_package_absence import NATIVE, scalars
 REMOVED = 'CompletionRecordProbe.lua'
 CONTROL = 'CompletionRecordButton'
 ACTION = 'COMPLETION_RECORD_READ'
-CITY_LOADS = (*RETIRED_CITY_STARTS, 'FreshBindingHook')
 
 
 def context(root,name='Gameplay',revision=B464):
@@ -231,9 +230,12 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             after=load_and_complete(ROOT,saved,journal_retired=True)
             for name in ('CityProgressionStore.lua','ClaimProjects.lua','CityJournalProbe.lua',
                          'BindingProbe.lua','CityFlowProbe.lua','FreshBindingHook.lua','EffectiveFacts.lua'):
+                if name in RETIRED_CITY_FILES:
+                    self.assertEqual(source(name,B516),(previous/'Mod'/name).read_text())
+                    continue
                 # EffectiveFacts moved to the Store after the B464/B465 retirement.
-                source = retired if name == 'EffectiveFacts.lua' else ROOT
-                self.assertEqual((source/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
+                owner = retired if name == 'EffectiveFacts.lua' else ROOT
+                self.assertEqual((owner/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
         self.assertEqual(before[:3],after[:3])
         self.assertEqual((before[3],after[3]),(1,0))
         # B465 removed the completion listener. The later startup detachment
@@ -321,15 +323,20 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             expected,prior_load_callbacks=exercise(context(baseline,revision=B515))
         for mode in ('throw','silent_nil'):
             with self.subTest(mode=mode):
-                profile=PackageVFS(absent=CITY_LOADS, forbidden_globals=tuple('SPC'+n for n in CITY_LOADS),
+                profile=PackageVFS(forbidden_globals=tuple('SPC'+n.removesuffix('.lua') for n in RETIRED_CITY_FILES),
                                    missing_include=mode)
+                for name in RETIRED_CITY_FILES:
+                    self.assertFalse((ROOT/'Mod'/name).exists())
+                    self.assertNotIn(name,profile.files)
+                    self.assertNotIn(name,profile.imports)
                 ctx=Context(name='Gameplay',vfs=profile)
                 result,callbacks=exercise(ctx)
                 self.assertEqual(result,expected)
                 self.assertEqual(prior_load_callbacks-callbacks,len(RETIRED_CITY_STARTS))
         measure('store_registration_without_legacy_city_starts',dict(
             populated_cold_records=2,fresh_registrations=2,first_completions=2,
-            old_files_requested=0,modeled_load_callbacks_removed=len(RETIRED_CITY_STARTS),
+            old_files_requested=0,physically_absent_paths=list(RETIRED_CITY_FILES),
+            modeled_load_callbacks_removed=len(RETIRED_CITY_STARTS),
             matched_index_token_records_and_writes=True,modeled_vfs=['throw','silent_nil']))
 
     def test_real_roots_keep_nonempty_route_proof(self):
@@ -342,7 +349,7 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             ('CompletionRecordProbe.lua',),
             ('PurchaseProbe.lua','GreatWorkProbe.lua'),
             ('CopyYields.lua','StandardizationDiscount.lua','RuntimeWork.lua','CityReference.lua','SampleLifecycle.lua'),
-            tuple(name+'.lua' for name in CITY_LOADS),
+            RETIRED_CITY_FILES,
         )
         for before, after, retired in zip(stages, stages[1:], retirements):
             self.assertEqual(before[0],after[0])
@@ -353,7 +360,7 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
                                        'completed':before[1]['completed']-len(retired)})
         measure('legacy_completion_record_routes',dict(matching_route_packets=3,
             experiment_module_loads_removed=2, industrial_module_loads_removed=5,
-            legacy_city_module_loads_removed=len(CITY_LOADS)))
+            legacy_city_module_loads_removed=len(RETIRED_CITY_FILES)))
 
     def test_only_the_hidden_completion_record_request_retires(self):
         with package(B464) as previous, package(B465) as retired:
@@ -369,3 +376,13 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
     def test_exact_temporary_switch_and_recovery(self):
         with package(B464) as previous, package(B465) as retired:
             verify_package_round_trip(self,previous/'Mod',retired/'Mod',(REMOVED,),'CityProgressionStore.lua')
+
+    def test_exact_legacy_city_package_switch_and_recovery(self):
+        current=ROOT/'Mod'
+        with package(B516) as previous:
+            prior=previous/'Mod'
+            for name in ('CityProgressionStore.lua','CityIdentityRead.lua','EffectiveFacts.lua',
+                         'ClaimProjects.lua','LegacyCleanup.lua','Gameplay.lua'):
+                self.assertEqual((prior/name).read_bytes(),(current/name).read_bytes(),name)
+            verify_package_round_trip(self,prior,current,RETIRED_CITY_FILES,'CityProgressionStore.lua')
+            verify_stable_round_trip(self,prior,current,RETIRED_CITY_FILES)

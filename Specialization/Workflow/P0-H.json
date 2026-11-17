@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1078",
-    "runtime": "B516.543 / modinfo543",
+    "status": "S1079",
+    "runtime": "B517.544 / modinfo544",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Remove three retired city startups after comparing real Store registration, saved facts and current network proof.",
+  "goal": "Remove the four detached city startup files with exact historical fixture access and both disposable rollback checks.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the detached city registration files — S1079",
+      "reason": "S1079 removes the four detached city Lua files and their manifest rows. The real package confirms cold reads, founding and nonempty route proof. Both exact disposable package rollback paths pass. Historical fixtures replay the fixed source."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -852,6 +858,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1079 verifies four physically absent city paths, true root startup/cold/founding, nonempty proof and exact stable and temporary rollback with preserved historical fixture input.",
     "S1078 verifies equivalent cold Store records, founding in both event orders, first completion, and nonempty proof in the absence of four legacy city includes.",
     "S1077 verifies six physically absent package files, exact temporary and stable transaction recovery, the retained isolation and report behavior and current network/Standardization regressions.",
     "S1076 proves the existing report, inert requests, isolation refusal, ordinary route evidence, strict transactions and current Standardization cleanup with the two old starts detached.",
@@ -5640,6 +5647,54 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#detach-the-three-legacy-city-startup-shells--s1078"
+    },
+    "s1079_city_package_retirement": {
+      "build": "B517.544 / modinfo544",
+      "baseline": "ac7b0cf86c45c46d7c4160f8aedd42c8a3a4e5c4",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "O7wLegacyCompletionRecordRetirement": {
+          "path": "local/refactor/S1079-O7wLegacyCompletionRecordRetirement-final/closure.json",
+          "sha256": "3cb22717b695be0a337d2abff4a880c06b415d86560a035a6e0d638aa9af4ed6",
+          "pass_count": 31
+        },
+        "NReadOnlyNetworkDiagnostic": {
+          "path": "local/refactor/S1079-NReadOnlyNetworkDiagnostic-final/closure.json",
+          "sha256": "fa2a3ffb3845f085564b95e7ed431388f24f8a5d537dc8321ab3edcff83205ba",
+          "pass_count": 136
+        },
+        "NStandardizationEffectReadback": {
+          "path": "local/refactor/S1079-NStandardizationEffectReadback-final/closure.json",
+          "sha256": "e649a955f4fe0a25da7a4cc1ca5929068b866f1b222c78ffe54fee86a6e95898",
+          "pass_count": 118
+        }
+      },
+      "focused_pass": 34,
+      "comparison": {
+        "methods_each": 123,
+        "prior_failures": 2,
+        "prior_errors": 5,
+        "skips_each": 18,
+        "new_events": 0
+      },
+      "removed_paths": {
+        "Mod/BindingProbe.lua": "0dba8b101c768738ccb300c9ff2266137b1053cfa0b0fcf82dca25dd3b21144c",
+        "Mod/CityFlowProbe.lua": "fafc371fb55c64763025a43ffcf46b91d4c76b44f831eff0092faa57d9961a99",
+        "Mod/CityJournalProbe.lua": "0f2dff3b0a8a3fcf8919f4c663b64d77a1e891b2eeadfdf837391e3e27085e68",
+        "Mod/FreshBindingHook.lua": "03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285"
+      },
+      "lines_removed": 565,
+      "bytes_removed": 31453,
+      "rollback": [
+        "temporary_switch_and_restore",
+        "stable_apply_and_rollback"
+      ],
+      "source_sha256": "9dae83554962d4055cbeed1311246b5bcfecc2331e91067c8e1c4babb02b5fb5",
+      "package_sha256": "1e7d1c79f6044df4ca549740478587de77fd5f9c30521bdcc1e08a27a5f434a7",
+      "files": 326,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-detached-city-registration-files--s1079"
     }
   }
 }

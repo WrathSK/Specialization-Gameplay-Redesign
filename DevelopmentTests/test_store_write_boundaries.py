@@ -12,6 +12,7 @@ import subprocess
 import unittest
 
 from lupa.lua55 import LuaRuntime
+from retired_crew_sources import B516, RETIRED_CITY_FILES, source as archived_source
 
 R = Path(__file__).resolve().parents[1]
 BASELINE = "cdd3ceb8b401c5cbe4d58cbbdbc7998b1edddeb7"
@@ -32,7 +33,14 @@ def instrument_store(source):
 def fixture(source=None):
     lua = LuaRuntime(unpack_returned_tuples=True)
     lua.globals().print = lambda *parts: None  # Expected injected hold diagnostics stay out of the summary.
-    lua.globals().include = lambda name: lua.execute((R / "Mod" / (name + ".lua")).read_text())
+    def fixture_source(name):
+        path = name + ".lua"
+        # The two-city adapter still exercises the retired foundation helpers.
+        # The normal package entry and its absence tests never use this loader.
+        if path in RETIRED_CITY_FILES:
+            return archived_source(path, B516)
+        return (R / "Mod" / path).read_text()
+    lua.globals().include = lambda name: lua.execute(fixture_source(name))
     lua.execute("""
 __store_storage={}; __store_snapshot={}; __store_visits=0
 function __store_pairs(t)
@@ -43,7 +51,7 @@ function __store_pairs(t)
 end
 """)
     for name in MODULES:
-        text = (R / "Mod" / (name + ".lua")).read_text()
+        text = fixture_source(name)
         lua.execute(instrument_store(source or text) if name == "CityProgressionStore" else text)
     e1 = (R / "DevelopmentTests/test_p0_e1.py").read_text()
     lua.execute("M=SPCCityIdentityRead\n" + e1[e1.index("function fixture()"):e1.index("function expect(")])

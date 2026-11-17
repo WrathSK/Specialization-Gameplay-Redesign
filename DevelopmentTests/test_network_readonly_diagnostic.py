@@ -3,7 +3,7 @@
 import unittest
 
 from refactor_harness import ROOT, measure
-from retired_crew_sources import B513, B514, package
+from retired_crew_sources import B513, B514, B515, package
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_network_effect_fact_receipts import composition
 from test_o7_retired_great_work_adjacency_retirement import context
@@ -85,9 +85,8 @@ return report
 
 class NetworkDiagnostic(unittest.TestCase):
     def test_exact_industrial_retirement_switch_and_rollback(self):
-        current = ROOT/'Mod'
-        with package(B514) as previous:
-            baseline = previous/'Mod'
+        with package(B514) as previous, package(B515) as retired:
+            baseline, current = previous/'Mod', retired/'Mod'
             for path in ('Data/CopyYields.sql','Data/StandardizationDiscount.sql',
                          'StandardizationEffects.lua','StandardizationCatalog.lua','Lv4CopyRead.lua'):
                 self.assertEqual((current/path).read_bytes(), (baseline/path).read_bytes(), path)

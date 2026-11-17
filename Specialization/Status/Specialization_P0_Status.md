@@ -1,28 +1,51 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1078
-Implementation Build: B516.543 / modinfo543 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1079
+Implementation Build: B517.544 / modinfo544 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: LEGACY_CITY_STARTS_DETACHED_LOCAL_PASS
+Work State: RETIRE_LEGACY_CITY_PACKAGE_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B516.543 on develop](#detach-the-three-legacy-city-startup-shells--s1078). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B517.544 on develop](#retire-the-detached-city-registration-files--s1079). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The current Store matches cold records and both new-city event orders with all four old modules absent. The scoped Claim, network and Standardization suites pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Audit the exact four detached city Lua paths against their remaining historical/local test dependencies before package removal. Preserve the Store identity keys and the original archived two-city adapter checks. Keep native observations on the existing integration gate. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | Four detached city files are absent from the current package. Cold records, founding, scoped Claim, transport, Standardization and exact disposable rollback checks pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Transfer the exact four historical Culture Inspiration carrier withdrawals to the current owner before detaching its retired probe. Keep the existing withdrawal order, per-city failure handling, SQL definitions, and B489 native evidence boundaries. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Retire the detached city registration files — S1079
+
+**LOCAL_SIMULATION_PASS in scope.** Remove the four detached legacy city scripts from both the source package and its eight manifest declarations. Current Gameplay and the Store, Claim, identity, facts and cleanup owners are byte-identical to B516. The physically absent scripts have zero load attempts. The real root matches the cold and new-city comparisons of S1078 with both missing-include models and produces the same three nonempty route packets. The temporary switch and stable-package tests accept exactly these four removals in disposable installations and restore both package hashes on rollback.
+
+**Source recovery.** Restore each of the following originals with `git show ac7b0cf86c45c46d7c4160f8aedd42c8a3a4e5c4:<path>` and verify its SHA256. The shared Store test fixture uses only these fixed historical paths when exercising the two-city adapter. Historical standalone scripts expecting the old files in `Mod/` use an appropriate historical checkout. The existing Store token, Property and identity keys stay available to the native package.
+
+- `Mod/BindingProbe.lua` SHA256 `0dba8b101c768738ccb300c9ff2266137b1053cfa0b0fcf82dca25dd3b21144c`.
+- `Mod/CityFlowProbe.lua` SHA256 `fafc371fb55c64763025a43ffcf46b91d4c76b44f831eff0092faa57d9961a99`.
+- `Mod/CityJournalProbe.lua` SHA256 `0f2dff3b0a8a3fcf8919f4c663b64d77a1e891b2eeadfdf837391e3e27085e68`.
+- `Mod/FreshBindingHook.lua` SHA256 `03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285`.
+
+**Runtime Impact Contract.** No further listener, read, writer, persistence, cache or recovery trigger changes after S1078. Package files 330 → 326. The four retired Lua files account for 565 lines and 31,453 bytes. Selected historical comparisons still verify the exact source bytes; this batch makes no new gameplay or native performance claim.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8 (Lua 5.1), official Assets and read-only HD database SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7wLegacyCompletionRecordRetirement --output local/refactor/S1079-O7wLegacyCompletionRecordRetirement-final/closure.json` (31/31), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1079-NReadOnlyNetworkDiagnostic-final/closure.json` (136/136), `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/S1079-NStandardizationEffectReadback-final/closure.json` (118/118). Focused startup, reports, ownership and package absence selection passes 34/34. The exploratory 123-method comparison of `test_pu02_restructuring_ui`, `test_b251_institutions.StoreSummary`, `test_pu07_source_attribution`, `test_pu07a_completion_scope`, `test_o7_city_sequence_observer_retirement` and `test_o7_completion_event_observer_retirement` reproduces the same 2 old failures, 5 old errors and 18 skips on both B516 and the candidate. These results provide delta evidence only.
+
+Local-only closure artifacts and companion transcripts
+
+- `local/refactor/S1079-O7wLegacyCompletionRecordRetirement-final/closure.json` SHA256 `3cb22717b695be0a337d2abff4a880c06b415d86560a035a6e0d638aa9af4ed6`.
+- `local/refactor/S1079-NReadOnlyNetworkDiagnostic-final/closure.json` SHA256 `fa2a3ffb3845f085564b95e7ed431388f24f8a5d537dc8321ab3edcff83205ba`.
+- `local/refactor/S1079-NStandardizationEffectReadback-final/closure.json` SHA256 `e649a955f4fe0a25da7a4cc1ca5929068b866f1b222c78ffe54fee86a6e95898`.
+
+**STATIC_CONFIRMED.** 197 Lua 5.1 compiles, 32 XML-family parses, 644 File references and 10 LuaReplace references. Source SHA256 `9dae83554962d4055cbeed1311246b5bcfecc2331e91067c8e1c4babb02b5fb5`. Package SHA256 `1e7d1c79f6044df4ca549740478587de77fd5f9c30521bdcc1e08a27a5f434a7` across 326 files. Source-only checkpoint. No new native observations.
 
 ### Detach the three legacy city startup shells — S1078
 

@@ -30,11 +30,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
-    "Mod/BindingProbe.lua": {
-      "sha256": "0dba8b101c768738ccb300c9ff2266137b1053cfa0b0fcf82dca25dd3b21144c",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
-    },
     "Mod/BoostConfig.lua": {
       "sha256": "05c07baa343ff4f97cee940a24d328051af41095bc9d134d1b92b2eb763f6ef5",
       "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
@@ -65,11 +60,6 @@
       "review_source": "Specialization/Status/Validation/Results/Specialization_B272_Refactor_S2.md",
       "provenance": "B272 S2 fixed scalar dispatch-scope/observer-attempt accounting and build identity only. No new native reads/events/scans, persistence or GC policy. Source review, targeted regressions and Lua5.1 syntax; no native acceptance/deployment."
     },
-    "Mod/CityFlowProbe.lua": {
-      "sha256": "fafc371fb55c64763025a43ffcf46b91d4c76b44f831eff0092faa57d9961a99",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
-    },
     "Mod/CityIdentityExperiment.lua": {
       "sha256": "844c16c777649e2ee7126dcb9084cd4e3620e63a1f841493174edcfdced3bb31",
       "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
@@ -94,11 +84,6 @@
       "sha256": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
       "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
       "provenance": "B076 unchanged inherited inventory"
-    },
-    "Mod/CityJournalProbe.lua": {
-      "sha256": "0f2dff3b0a8a3fcf8919f4c663b64d77a1e891b2eeadfdf837391e3e27085e68",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B108 authorized new-game multi-city cutover; scoped production local tests; native pending"
     },
     "Mod/CityProgressionStore.lua": {
       "sha256": "3f32b49e7d461c1baaa8556e3d0b3453b16afd01032f3c68f05cb72d25976f6f",
@@ -585,11 +570,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0965 B451 independent failure classification and optional network trace."
     },
-    "Mod/FreshBindingHook.lua": {
-      "sha256": "03e9f75cdf5762093f721d9a127dfe536dcafed8d95595cf3d02087049e03285",
-      "review_source": "Specialization/Architecture/v2/P0_E2_Plan.md",
-      "provenance": "B107 fresh-foundation registration scoped review; targeted local PASS; native registration pending"
-    },
     "Mod/GPPReadout.lua": {
       "sha256": "94e5f5543a50a751bb64c1bce17fb9d141cebb5e32d356b721f002a43364c243",
       "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
@@ -726,9 +706,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "69bcab82fdd237db3c28caec7065059dee456d9a08936e5d6c008c6da5f14d8e",
+      "sha256": "79020c48bdaa091ea16ca3355bb16cee1d467ad8c0d11d774bd6203d306d7213",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1078 detaches the old binding, journal and flow starts. The current Store registers and restores cities and supplies identity facts without these files. The archived test path and existing saved identifiers remain."
+      "provenance": "S1079 removes the four detached city Lua files and their manifest rows. The real package confirms cold reads, founding and nonempty route proof. Both exact disposable package rollback paths pass. Historical fixtures replay the fixed source."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "0d9205f3f4543c200c3fb3787384e8f1d580fe2834831829822546c641356458",
@@ -841,9 +821,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "89b2e147022b820065b13b18a40a5169d11e472c6002af2192ade2ce51cb0ee9",
+      "sha256": "cfac1caaef05facabfa6a7884b2ffa498a596f3a6ae28e58ced1034c77b28cfc",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1078 detaches the old binding, journal and flow starts. The current Store registers and restores cities and supplies identity facts without these files. The archived test path and existing saved identifiers remain."
+      "provenance": "S1079 removes the four detached city Lua files and their manifest rows. The real package confirms cold reads, founding and nonempty route proof. Both exact disposable package rollback paths pass. Historical fixtures replay the fixed source."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
