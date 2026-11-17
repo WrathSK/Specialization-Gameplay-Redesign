@@ -10,7 +10,7 @@ import zlib
 import xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 from project_paths import external_database
-from retired_crew_sources import B519, B520, package, source
+from retired_crew_sources import B519, B520, B521, package, source
 
 ROOT=Path(__file__).resolve().parents[1]
 MOD=ROOT/'Mod'
@@ -100,16 +100,16 @@ assert(cities[1].built.KEEP_EXTERNAL and cities[1].built.BUILDING_SPC_COMMERCE_G
   from refactor_harness import PackageVFS
   from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
   removed=('CommerceConvergence.lua',)
-  profile=PackageVFS(manifest=MOD/'SpecializationP0.modinfo')
-  self.assertNotIn(removed[0],profile.files)
-  self.assertNotIn(removed[0],profile.imports)
-  with package(B520) as baseline:
-   previous=baseline/'Mod'
+  with package(B520) as baseline, package(B521) as retirement:
+   previous,current=baseline/'Mod',retirement/'Mod'
+   profile=PackageVFS(manifest=current/'SpecializationP0.modinfo')
+   self.assertNotIn(removed[0],profile.files)
+   self.assertNotIn(removed[0],profile.imports)
    for path in ('LegacyCleanup.lua','LegacyCleanupCatalog.lua','Commerce.lua','Gameplay.lua',
                 'CityProgressionStore.lua','Data/CommerceConvergence.sql'):
-    self.assertEqual((previous/path).read_bytes(),(MOD/path).read_bytes(),path)
-   verify_package_round_trip(self,previous,MOD,removed,'Commerce.lua')
-   verify_stable_round_trip(self,previous,MOD,removed)
+    self.assertEqual((previous/path).read_bytes(),(current/path).read_bytes(),path)
+   verify_package_round_trip(self,previous,current,removed,'Commerce.lua')
+   verify_stable_round_trip(self,previous,current,removed)
  def test_current_load_callback_retains_the_same_city_scope_and_proof(self):
   original=retirement_runtime()
   current=LuaRuntime(unpack_returned_tuples=True)

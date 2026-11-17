@@ -2,20 +2,30 @@
 Read-only external DB -> memory; two-city fixture, no game/deployment/stress.
 """
 from pathlib import Path
-import json, os, sqlite3, subprocess, unittest, zlib, xml.etree.ElementTree as ET
+import os, sqlite3, subprocess, unittest, zlib, xml.etree.ElementTree as ET
+from project_paths import external_database
 from lupa.lua55 import LuaRuntime
 from test_environment_assembly import prepare_hd_inputs
+from retired_crew_sources import B521, source as retired_source
 R=Path(os.environ.get('SPC_L1_ROOT',Path(__file__).resolve().parents[1]))
 M=R/'Mod'
 
 def database():
-    path=os.environ.get('SPC_DEBUG_GAMEPLAY_DB')
-    if not path:
-        cfg=R/'local/config.json'
-        if cfg.exists():path=json.loads(cfg.read_text())['debug_gameplay_db']
-    if not path:raise RuntimeError('SPC_DEBUG_GAMEPLAY_DB required; never infer or weaken SQL tests')
-    ro=sqlite3.connect('file:'+path+'?mode=ro',uri=True);d=sqlite3.connect(':memory:');ro.backup(d);ro.close()
+    ro=sqlite3.connect(external_database(R).as_uri()+'?mode=ro',uri=True)
+    d=sqlite3.connect(':memory:');ro.backup(d);ro.close()
     d.create_function('Make_Hash',1,lambda text: zlib.crc32(text.encode()))  # fixture-only hash, not native hash evidence
+    # The configured captured database can already include these exact rows.
+    carrier='BUILDING_SPC_CULTURE_AESTHETIC'
+    for table,col,values in [
+     ('BuildingModifiers','BuildingType',[carrier]),('Buildings','BuildingType',[carrier]),('Types','Type',[carrier]),
+     ('ModifierArguments','ModifierId',[f'SPC_CULTURE_AESTHETIC_{i}'for i in range(16)]),
+     ('Modifiers','ModifierId',[f'SPC_CULTURE_AESTHETIC_{i}'for i in range(16)]),
+     ('RequirementArguments','RequirementId',[f'SPC_CULTURE_AESTHETIC_{i}_REQ'for i in range(16)]),
+     ('Requirements','RequirementId',[f'SPC_CULTURE_AESTHETIC_{i}_REQ'for i in range(16)]),
+     ('RequirementSetRequirements','RequirementSetId',[f'SPC_CULTURE_AESTHETIC_{i}_SET'for i in range(16)]),
+     ('RequirementSets','RequirementSetId',[f'SPC_CULTURE_AESTHETIC_{i}_SET'for i in range(16)])]:
+     d.executemany(f'DELETE FROM {table} WHERE {col}=?',[(x,)for x in values])
+    d.execute('DROP TABLE IF EXISTS SPC_CultureAestheticBits')
     d.executescript((M/'Data/CultureAesthetic.sql').read_text())
     return d
 
@@ -122,9 +132,9 @@ end
 class AestheticTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):cls.sql=database()
- def runtime(self,ready=True):
+ def runtime(self,ready=True,*,historical_lv4=False,runtime_type=None):
   prepare_hd_inputs(self.sql)
-  l=LuaRuntime(unpack_returned_tuples=True);l.execute(FIX)
+  l=(runtime_type or LuaRuntime)(unpack_returned_tuples=True);l.execute(FIX)
   def include(n):l.execute((M/(n+'.lua')).read_text())
   l.globals().include=include
   defs=['Buildings','Districts','DistrictReplaces','BuildingReplaces','HD_BuildingTiers','HD_DUMMY_BUILDINGS','Modifiers','Building_CitizenYieldChanges',
@@ -136,14 +146,19 @@ class AestheticTests(unittest.TestCase):
    if name in ['Buildings','Districts']:
     for i,r in enumerate(rows):r['Index']=i+1
    l.globals().GameInfo[name]=l.globals().db(lua_table(l,rows),key)
-  for name in ['OrdinaryBuildingCatalog','DistrictCompleteness','CurrentSpecializationFacts','Lv3Effects','Lv4Percent','CultureAesthetic']:
+  for name in ['OrdinaryBuildingCatalog','DistrictCompleteness','CurrentSpecializationFacts','Lv3Effects']:
    include(name)
+  if historical_lv4:
+   for name in ('Lv4Percent','CultureAesthetic'):l.execute(retired_source(name+'.lua',B521))
+  else:include('CultureAesthetic')
   l.execute('''a=city(1);b=city(2)
    for _,c in ipairs(cities)do
     district(c,1,'DISTRICT_CITY_CENTER');district(c,2,'DISTRICT_THEATER');district(c,3,'DISTRICT_COMMERCIAL_HUB');district(c,4,'DISTRICT_NEIGHBORHOOD');district(c,5,'DISTRICT_NEIGHBORHOOD')
     building(c,'BUILDING_MONUMENT',c.ds[1]);building(c,'BUILDING_WALLS',c.ds[1]);building(c,'BUILDING_PALACE',c.ds[1]);building(c,'BUILDING_AMPHITHEATER',c.ds[2]);building(c,'BUILDING_MARKET',c.ds[3]);building(c,'BUILDING_HD_VILLA',c.ds[4]);building(c,'BUILDING_HD_BUS_STOP',c.ds[5])
    end
-   SPCDistrictCompleteness.Start(P,shared);SPCLv3Effects.Start(P,shared);SPCLv4Percent.Start(P,shared);SPCCultureAesthetic.Start(P,shared)
+   SPCDistrictCompleteness.Start(P,shared);SPCLv3Effects.Start(P,shared)
+   if ... then SPCLv4Percent.Start(P,shared)end
+   SPCCultureAesthetic.Start(P,shared)
    data=shared.CultureAesthetic;svc=shared.DistrictCompleteness
    function audit()data.Audit({player=0})end
    function one()data.Audit({player=0,city=1})end
@@ -152,7 +167,7 @@ class AestheticTests(unittest.TestCase):
     local n=0;for bit=0,15 do if plots[plot].props['SPC_CULTURE_AESTHETIC_'..bit]==1 then n=n+2^bit end end;return n
    end
    function total(c)local n=0;for _,d in ipairs(c.ds)do n=n+amount(c,d.x)end;return n end
-  ''')
+  ''',historical_lv4)
   if ready:l.execute("fire('LoadScreenClose')")
   return l
  def test_formula_and_two_cities(self):
@@ -231,6 +246,70 @@ class AestheticTests(unittest.TestCase):
  def test_diagnostic_separates_raw_master_and_expected_without_writes(self):
   l=self.runtime()
   l.execute("local w=writes;assert(data.Describe(0,a):find('配置已进入'));assert(writes==w);local id=GameInfo.Buildings.BUILDING_SPC_CULTURE_AESTHETIC.Index;a.present[id]=nil;local t=data.Describe(0,a);assert(t:find('配置待核对') and t:find('载体：未建立') and t:find('标记 %+ 12'));assert(writes==w);one();assert(total(a)==12);a.pillaged[id]=true;local w=writes;local t=data.Describe(0,a);assert(t:find('配置待核对') and t:find('载体：不可用') and t:find('标记 %+ 12'));assert(writes==w);a.pillaged[id]=false;plots[a.ds[1].x].props.SPC_CULTURE_AESTHETIC_0=1;plots[a.ds[3].x].props.SPC_CULTURE_AESTHETIC_0=1;plots[a.ds[3].x].props.SPC_CULTURE_AESTHETIC_1=0;local t=data.Describe(0,a);assert(t:find('配置待核对') and not t:find('与预期一致'));assert(writes==w)")
+ def test_transferred_worker_percent_keeps_cold_and_failure_readback_order(self):
+  from refactor_harness import TrackedLua51
+  results=[]
+  for historical_lv4 in (True,False):
+   l=self.runtime(ready=False,historical_lv4=historical_lv4,runtime_type=TrackedLua51)
+   l.execute("""
+    local lv3='BUILDING_SPC_DEV_LV3_POP_CULTURE_0'
+    local lv4='BUILDING_SPC_LV4_PERCENT_CULTURE_'
+    local uncertain=GameInfo.Buildings[lv4..7].Index
+    local blocked=GameInfo.Buildings[lv4..1].Index
+    local other=GameInfo.Buildings.BUILDING_SPC_LV4_PERCENT_RESEARCH_0.Index
+    building(a,lv3,a.ds[1]);building(a,lv4..0,a.ds[1]);building(a,lv4..1,a.ds[1])
+    building(a,'BUILDING_SPC_LV4_PERCENT_RESEARCH_0',a.ds[1])
+    local trace={};local remove,create=P.RemoveBuilding,P.CreateBuilding
+    P.RemoveBuilding=function(b,id)trace[#trace+1]='R:'..b.city.id..':'..id;remove(b,id)end
+    P.CreateBuilding=function(q,id)trace[#trace+1]='C:'..q.city.id..':'..id;create(q,id)end
+    local has,unavailable=P.HasBuilding,true
+    P.HasBuilding=function(b,id)
+     if unavailable and b.city==a and id==uncertain then return nil end
+     return has(b,id)
+    end
+    fire('LoadScreenClose')
+    assert(total(a)==0 and total(b)==12 and a.present[blocked] and data.errors['0:1']:find('AE_LEGACY_WITHDRAWAL_UNKNOWN'))
+    assert(a.present[GameInfo.Buildings[lv4..0].Index])
+    unavailable=false;failRemove=blocked;one()
+    assert(total(a)==0 and a.present[blocked] and data.errors['0:1'])
+    failRemove=nil;one()
+    assert(total(a)==12 and total(b)==12 and not a.present[blocked] and a.present[other])
+    assert(not data.errors['0:1'] and not a.present[GameInfo.Buildings[lv3].Index])
+    local w=writes;one();assert(writes==w)
+    withdrawalTrace=table.concat(trace,',')
+   """)
+   results.append(l.eval('withdrawalTrace'))
+  self.assertEqual(*results)
+ def test_worker_percent_read_route_keeps_payload_and_is_read_only(self):
+  from refactor_harness import TrackedLua51
+  gameplay=(M/'Gameplay.lua').read_text()
+  fragment=gameplay.split('  if params.Action=="LV4_PERCENT_READ" then',1)[1].split('  if params.Action=="UNIT_ACTION_VIEW" then',1)[0]
+  old=retired_source('Gameplay.lua',B521).split('  if params.Action=="LV4_PERCENT_READ" then',1)[1].split('  if params.Action=="UNIT_ACTION_VIEW" then',1)[0]
+  def run(body,legacy):
+   l=self.runtime(historical_lv4=legacy,runtime_type=TrackedLua51)
+   l.execute('function read(playerID,params) if params.Action=="LV4_PERCENT_READ" then'+body+'end')
+   l.execute("""
+    local w=writes
+    local request={Action='LV4_PERCENT_READ',Token='READ',CityID=1}
+    read(0,request);assert(shared.LastToken=='READ' and shared.Snapshot==data.Describe(0,a))
+    report=shared.Snapshot
+    request.Token='BAD';read(3,request);assert(shared.LastToken=='READ' and shared.Snapshot==report)
+    request.CityID=999;read(0,request);assert(shared.LastToken=='READ' and shared.Snapshot==report)
+    shared.CultureAesthetic=nil;request.CityID=1;read(0,request)
+    assert(shared.LastToken=='BAD' and shared.Snapshot=='旧文化专家百分比已退休；新能力等待确认。')
+    assert(writes==w)
+   """)
+   return l.eval('report')
+  self.assertEqual(run(old,True),run(fragment,False))
+ def test_exact_worker_percent_package_retirement_and_rollback(self):
+  from retired_crew_sources import package
+  from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
+  removed=('Lv4Percent.lua',)
+  with package(B521) as before:
+   for name in ('LegacyCleanup.lua','LegacyCleanupCatalog.lua','Data/Lv4Percent.sql','Data/CultureAesthetic.sql','CultureAestheticModel.lua'):
+    self.assertEqual((before/'Mod'/name).read_bytes(),(M/name).read_bytes(),name)
+   verify_package_round_trip(self,before/'Mod',M,removed,'CultureAesthetic.lua')
+   verify_stable_round_trip(self,before/'Mod',M,removed)
  def test_registration_and_ui(self):
   root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'176')
   files={e.text for e in root.find('Files')};self.assertTrue({'CultureAestheticModel.lua','CultureAesthetic.lua','Data/CultureAesthetic.sql'}<=files)

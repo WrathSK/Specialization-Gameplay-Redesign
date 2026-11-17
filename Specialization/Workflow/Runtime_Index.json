@@ -131,9 +131,9 @@
       "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
     },
     "Mod/CultureAesthetic.lua": {
-      "sha256": "76b7c148d8c5aac6779f360ac5d83c33c106cd5d2b8c3cf67f8863deca9263f1",
+      "sha256": "bec9c327a270578761cb5bd07b94bee246e4d4f4aeae0070647b5b5db4ba0055",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
+      "provenance": "S1084 verifies two-city Aesthetic cleanup with the old Lv4 Lua and its no-op binding absent, preserves the read report and confirmed exits, and proves the exact source removal rolls back."
     },
     "Mod/CultureAestheticModel.lua": {
       "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
@@ -566,9 +566,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "d663a5ff48677dbc3b9980021b5ea6e6445e40e955b91125fdcb955aabc3729e",
+      "sha256": "dc981b58c05f135e6773599277fdbccbdc7859358d967dcaab80136c22a5c889",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1082 transfers the existing Commerce B061 load and preflight withdrawals to LegacyCleanup and verifies both without the old Lua mounted."
+      "provenance": "S1084 verifies two-city Aesthetic cleanup with the old Lv4 Lua and its no-op binding absent, preserves the read report and confirmed exits, and proves the exact source removal rolls back."
     },
     "Mod/GreatWorkCatalog.lua": {
       "sha256": "c0669180efe21a4c2fd91289be9c0a1a4828ac785a3791ca1b059507cc2fec72",
@@ -645,11 +645,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S1076 moves the existing copy report notice to the read-only report owner and drops two retired startups and their inert request aliases. Simulated network isolation admission and strict current proof match the prior build."
     },
-    "Mod/Lv4Percent.lua": {
-      "sha256": "ae937995aae63bfe07f3543a20f3cb15ee4070edeebd72de8530d75bd3cdf0a9",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B340_Refactor_S8c5c.md",
-      "provenance": "B340.367 Wire the mandatory composite legacy exit owner; local/static evidence only; no deployment/native PASS."
-    },
     "Mod/NetworkBoost.lua": {
       "sha256": "332f1c9f0d117ca3c0e559a3b1c5eda9f20502a165ce3d783723ef43544dee4d",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
@@ -686,9 +681,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "b32617193e04b6983d948aabb774a64facb39b1b30f545b54a7fad3a602a7594",
+      "sha256": "47ce484f89314d2b5d170f012f2a9de5fa31f5642db389fb316f893e77b3cbb4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1083 removes the detached Commerce Convergence Lua from the package and verifies real startup, the transferred Commerce path, strict proof and both exact disposable rollbacks."
+      "provenance": "S1084 verifies two-city Aesthetic cleanup with the old Lv4 Lua and its no-op binding absent, preserves the read report and confirmed exits, and proves the exact source removal rolls back."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "0d9205f3f4543c200c3fb3787384e8f1d580fe2834831829822546c641356458",
@@ -801,9 +796,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "989c026f32bd45d94298621f7600d64730465cb7e2e204ab460c9b1e319f6ab5",
+      "sha256": "b651833969b7a2f4ddbcd1e44ba3ecfeff8aebc459b9d82f0f1a32b520839dac",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1083 removes the detached Commerce Convergence Lua from the package and verifies real startup, the transferred Commerce path, strict proof and both exact disposable rollbacks."
+      "provenance": "S1084 verifies two-city Aesthetic cleanup with the old Lv4 Lua and its no-op binding absent, preserves the read report and confirmed exits, and proves the exact source removal rolls back."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1396,9 +1391,9 @@
       "provenance": "S1028 B482 capacity-driven proof notification registration after the ordered fact drain."
     },
     "Mod/FactConsumerBindings.lua": {
-      "sha256": "349c8549806dd6fe6ba4e6987475901449161151d99c2adf37a15a6d1f7793d5",
+      "sha256": "306efe2521e9ce7e9f97ab3a0888cc71124d3609f006f115d33a4d0520945d0e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1026 B481 delivered role refresh ownership and proof boundary."
+      "provenance": "S1084 verifies two-city Aesthetic cleanup with the old Lv4 Lua and its no-op binding absent, preserves the read report and confirmed exits, and proves the exact source removal rolls back."
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",

@@ -1,4 +1,5 @@
 include('RuntimeWork')
+include('Tombstones')
 include('CultureAestheticModel')
 include('CurrentSpecializationFacts')
 include('NetworkInput')
@@ -30,6 +31,25 @@ function M.Start(P,shared)
    assert(mod.ModifierType=='MODIFIER_CITY_DISTRICTS_ADJUST_TOURISM_CHANGE','AE_MODIFIER_INVALID')
   end
   carrier=r.Index
+ end
+ local legacyWorkerPercent=SPCTombstones.Names('Lv4Culture')
+ local function withdrawLegacyWorkerPercent(c)
+  SPCRuntimeWork.RetireOnce(P,shared,c,'Lv4Culture',function()
+   local rows={};local b=c:GetBuildings()
+   for _,name in ipairs(legacyWorkerPercent)do
+    local row=assert(P.Info('Buildings',name),'LV4_DATABASE_MISSING')
+    local present=P.HasBuilding(b,row.Index)
+    assert(type(present)=='boolean','LV4_CARRIER_UNKNOWN')
+    rows[#rows+1]={id=row.Index,present=present}
+   end
+   for _,row in ipairs(rows)do
+    if row.present then
+     P.RemoveBuilding(b,row.id)
+     assert(P.HasBuilding(b,row.id)==false,'LV4_REMOVE_UNCONFIRMED')
+    end
+   end
+   return 0
+  end)
  end
  local function cityKey(pid,c)return pid..':'..c:GetID()end
  local function plots(c)
@@ -98,9 +118,10 @@ function M.Start(P,shared)
   end
   assert(type(f.token)=='string','AE_REFERENCE_UNKNOWN')
   local present,healthy=installed(c)
-  -- Legacy writers own their exact withdrawal lists. No prefix enumeration.
+  -- Check both exact groups in their original order before applying Tourism.
   local withdrawn=pcall(function()
-   assert(shared.Lv3Effects.WithdrawCulture(c)==true and shared.Lv4Percent.WithdrawCulture(c)==true,'AE_LEGACY_WITHDRAWAL_UNKNOWN')
+   assert(shared.Lv3Effects.WithdrawCulture(c)==true,'AE_LEGACY_WITHDRAWAL_UNKNOWN')
+   withdrawLegacyWorkerPercent(c)
   end)
   if not withdrawn then removeCarrier(c);error('AE_LEGACY_WITHDRAWAL_UNKNOWN')end
   if p.status=='INACTIVE' and not old and not present then return end

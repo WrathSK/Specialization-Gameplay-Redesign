@@ -2,6 +2,18 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7AestheticCleanup": [
+      "test_culture_aesthetic.AestheticTests.test_transferred_worker_percent_keeps_cold_and_failure_readback_order",
+      "test_culture_aesthetic.AestheticTests.test_worker_percent_read_route_keeps_payload_and_is_read_only",
+      "test_culture_aesthetic.AestheticTests.test_exact_worker_percent_package_retirement_and_rollback",
+      "test_refactor_s5d4c4",
+      "test_refactor_s7e.Convergence",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
     "O7CommerceCleanup": [
       "test_b239_commerce_integration.Retirement",
       "test_refactor_s7e.Retirement",

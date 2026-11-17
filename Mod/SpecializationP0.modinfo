@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="548">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="549">
   <Properties>
     <Name>LOC_SPC_MOD_TITLE</Name>
     <Description>LOC_SPC_MOD_DESCRIPTION</Description>
@@ -263,7 +263,6 @@
     <File>UI/CrewProjectUI.lua</File>
       <File>UI/CrewProjectOrder.lua</File>
     <File>CrewProjects.lua</File>
-      <File>Lv4Percent.lua</File>
       <File>BoostConfig.lua</File>
       <File>NetworkBoost.lua</File>
       <File>UI/BoostGreatWorkRead.lua</File>
@@ -745,7 +744,6 @@
     <File>Data/CrewProjects.sql</File>
     <File>UI/CrewProjectOrder.lua</File>
     <File>UI/SPCProductionPanelOfficial.lua</File>
-    <File>Lv4Percent.lua</File>
     <File>Data/Lv4Percent.sql</File>
     <File>Data/ResearchInfrastructure.sql</File>
     <File>Data/ResearchCross.sql</File>

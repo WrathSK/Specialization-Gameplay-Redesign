@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1083",
-    "runtime": "B521.548 / modinfo548",
+    "status": "S1084",
+    "runtime": "B522.549 / modinfo549",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Retire the detached Commerce Lua file and verify real package absence, exact rollback and current Commerce without the retired source.",
+  "goal": "Transfer the old Culture worker-percent withdrawal to CultureAesthetic and verify real package absence, confirmed exits and exact rollback.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Move old Culture worker-percent withdrawal to Aesthetic — S1084",
+      "reason": "S1084 verifies two-city Aesthetic cleanup with the old Lv4 Lua and its no-op binding absent, preserves the read report and confirmed exits, and proves the exact source removal rolls back."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -882,6 +888,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1084 verifies two-city Aesthetic cleanup with the old Lv4 Lua and its no-op binding absent, preserves the read report and confirmed exits, and proves the exact source removal rolls back.",
     "S1083 verifies the actual missing Commerce Convergence path, the unchanged owner, exact rollback and strict route/transaction proofs.",
     "S1082 verifies equivalent B061 readback, cold/startup and scoped failures, current gold and strict proof with the old Lua unavailable.",
     "S1081 covers Meaning cold and affected-city withdrawal, the existing B060 exit owner, Dialogue collection, and the exact two-path retirement with both disposable rollbacks.",
@@ -5901,6 +5908,48 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-detached-commerce-convergence-lua--s1083"
+    },
+    "s1084_culture_aesthetic_lv4_cleanup_retirement": {
+      "build": "B522.549 / modinfo549",
+      "baseline": "809dfe5a1d1b5d3dea69bd075667be514923ff28",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "O7AestheticCleanup": {
+          "path": "local/refactor/S1084-O7AestheticCleanup-ready/closure.json",
+          "sha256": "b6d2e5b95663f8734dbeded3415f180c99ab3133f52bf2eab3f3a291c71fd124",
+          "pass_count": 39
+        },
+        "O7CommerceCleanup": {
+          "path": "local/refactor/S1084-O7CommerceCleanup-ready/closure.json",
+          "sha256": "462a065691477e9e1c6c600d8f67bc2dec82b39623e0a62475bfae6de8cc4b5d",
+          "pass_count": 46
+        },
+        "O7MeaningCleanup": {
+          "path": "local/refactor/S1084-O7MeaningCleanup-ready/closure.json",
+          "sha256": "d807ccb8d54d308cde5434ecad5fbbfc4af37e19a0f19e678af2f6f7cd13162e",
+          "pass_count": 47
+        },
+        "NReadOnlyNetworkDiagnostic": {
+          "path": "local/refactor/S1084-NReadOnlyNetworkDiagnostic-ready/closure.json",
+          "sha256": "cdd5586773ece2b348107d7dc6cffb1d0c53184d0995e57f5153efd63d56bc25",
+          "pass_count": 136
+        }
+      },
+      "removed_paths": {
+        "Mod/Lv4Percent.lua": "ae937995aae63bfe07f3543a20f3cb15ee4070edeebd72de8530d75bd3cdf0a9"
+      },
+      "legacy_worker_percent_ids": 8,
+      "gameplay_include_reduction": 3,
+      "rollback": [
+        "temporary_switch_and_restore",
+        "stable_apply_and_rollback"
+      ],
+      "source_sha256": "2295300f5e31a708303a3fd416d62d57ccafb2d9f75bb82e772a97d2fd2d4e09",
+      "package_sha256": "c12b8694999e9f9294affc212de4bd47ba0f1c8bbcc81d08d055728cb03ec522",
+      "files": 321,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#move-old-culture-worker-percent-withdrawal-to-aesthetic--s1084"
     }
   }
 }

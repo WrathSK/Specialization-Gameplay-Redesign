@@ -486,7 +486,8 @@ local function request(playerID,params)
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     if not c or c:GetOwner()~=playerID then return end
-    shared.Snapshot=shared.Lv4Percent.Describe(playerID,c);shared.LastToken=params.Token;return
+    shared.Snapshot=shared.CultureAesthetic and shared.CultureAesthetic.Describe(playerID,c) or '旧文化专家百分比已退休；新能力等待确认。'
+    shared.LastToken=params.Token;return
   end
   if params.Action=="UNIT_ACTION_VIEW" then
     if P.IsTestPlayer(playerID) and type(params.UnitID)=="number" and shared.UnitActions then
@@ -758,8 +759,6 @@ pcall(function()if crewCompletionObservation then crewCompletionObservation.Afte
 
 composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'},function() include('PlayerActionReplies');SPCPlayerActionReplies.Start(P,shared) end)
 
-composition.Run('Lv4Percent',{'RuntimeRetirement','EffectiveFacts'},{'Lv4Percent'},function() include('Lv4Percent');SPCLv4Percent.Start(P,shared,{centralExit=true}) end)
-
 composition.Run('ResearchInfrastructure',{'RuntimeRetirement','EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchInfrastructure'},function() include('ResearchInfrastructure');SPCResearchInfrastructure.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
 composition.Run('ResearchCross',{'RuntimeRetirement','EffectiveFacts','NativeFacts'},{'ResearchCross'},function() include('ResearchCross');SPCResearchCross.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
@@ -789,7 +788,7 @@ end)
 
 composition.Run('GreatWorkFacts',{},{'GreatWorkFacts'},function() include('GreatWorkFacts');SPCGreatWorkFacts.Start(P,shared) end)
 
-composition.Run('CultureAesthetic',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Lv3Effects','Lv4Percent','NativeFacts'},{'CultureAesthetic'},function() include('CultureAesthetic');SPCCultureAesthetic.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+composition.Run('CultureAesthetic',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Lv3Effects','RuntimeRetirement','NativeFacts'},{'CultureAesthetic'},function() include('CultureAesthetic');SPCCultureAesthetic.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
 composition.Run('Dialogue',{'GreatWorkFacts','LegacyCleanup'},{'Dialogue'},function() include('Dialogue');SPCDialogue.Start(P,shared,{centralExit=true}) end)
 

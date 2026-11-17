@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 from refactor_harness import Context,ROOT,TrackedLua51,SOURCES,executed,completion,legacy_source_observation,measure
 from project_paths import external_database
-from retired_crew_sources import B519, source as retired_source
+from retired_crew_sources import B519, B521, source as retired_source
 from test_refactor_s5d4c1 import actual_cross
 from refactor_defect_fixtures import startup
 import test_culture_aesthetic as aesthetic
@@ -213,12 +213,19 @@ class Convergence(unittest.TestCase):
   a.owner=9;assert(not pcall(d.Withdraw,a)and counts.reads==96)
   """)
  def test_start_failure_skips_new_real_dependencies_without_changing_order(self):
+  for historical in (True,False):
+   with self.subTest(historical=historical):
+    self.assert_start_failure(historical)
+ def assert_start_failure(self,historical):
   c=startup();include=c.globals().include
   def injected(name):
    out=include(name)
    if name=='RuntimeWork':c.execute("local start=SPCRuntimeWork.StartRetirement;SPCRuntimeWork.StartRetirement=function(...)start(...);error('OWNER_FAILED')end")
    return out
-  c.globals().include=injected;c.load('Gameplay')
-  c.execute("local s=ExposedMembers.SPC_P0;for _,n in ipairs({'ResearchCross','Lv4Percent','CommerceLegacyCleanup','Commerce','CultureAesthetic'})do assert(s.StartStatus[n].state=='SKIPPED_DEPENDENCY',n)end;assert(s.StartStatus.NetworkBridge.state=='OK'and not s.RuntimeRetirement)")
+  c.globals().include=injected
+  if historical:c.execute(retired_source('Gameplay.lua',B521))
+  else:c.load('Gameplay')
+  c.execute("local s=ExposedMembers.SPC_P0;for _,n in ipairs({'ResearchCross','CommerceLegacyCleanup','Commerce','CultureAesthetic'})do assert(s.StartStatus[n].state=='SKIPPED_DEPENDENCY',n)end;assert(s.StartStatus.NetworkBridge.state=='OK'and not s.RuntimeRetirement)")
+  c.execute("local s=ExposedMembers.SPC_P0;if ... then assert(s.StartStatus.Lv4Percent.state=='SKIPPED_DEPENDENCY')else assert(s.StartStatus.Lv4Percent==nil and s.Lv4Percent==nil)end",historical)
 
 if __name__=='__main__':unittest.main()

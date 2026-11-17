@@ -30,7 +30,6 @@ function SPCFactConsumerBindings.New(shared)
   {target='IndustrySupport',method='Audit',ordered='AcceptFact',cityOnly=true,ownerCauses={REQUEST_FACTS_DIRTY=true,DISTRICT_FACTS_DIRTY=true},kinds={'D'}},
   {target='Lv3Support',method='Audit',kinds=role},
   {target='Lv3Effects',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS','NETWORK'}},
-  {target='Lv4Percent',method='Audit',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='ResearchInfrastructure',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},
   {target='ResearchCross',method='Audit',ordered='AcceptFact',sample=true,kinds={'IDENTITY','POTENTIAL','ACTIVE','D'}},
   {target='ResearchApply',method='Audit',ordered='AcceptFact',kinds={'IDENTITY','POTENTIAL','ACTIVE','D','WORKERS'}},

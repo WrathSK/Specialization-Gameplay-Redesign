@@ -1,28 +1,45 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1083
-Implementation Build: B521.548 / modinfo548 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1084
+Implementation Build: B522.549 / modinfo549 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRE_COMMERCE_CONVERGENCE_PACKAGE_LOCAL_PASS
+Work State: CULTURE_AESTHETIC_LV4_CLEANUP_RETIREMENT_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B521.548 on develop](#retire-the-detached-commerce-convergence-lua--s1083). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B522.549 on develop](#move-old-culture-worker-percent-withdrawal-to-aesthetic--s1084). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The old Commerce Lua is absent. Actual startup, scoped Commerce, strict proof, Meaning, Standardization and both exact disposable rollback checks pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Trace the existing Culture Aesthetic withdrawals from Lv3Effects and Lv4Percent, including the panel report, no-work fact binding and confirmed exit, before retiring either old owner. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The Aesthetic owner now withdraws and confirms the eight historical Culture worker-percent IDs in the original sequence. The real roots, read reports, exit and exact rollback checks pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Move the remaining old Lv3 Effects and specialist-support cleanup duties, including exit acknowledgments and existing reports, before retiring their old scripts. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Move old Culture worker-percent withdrawal to Aesthetic — S1084
+
+**LOCAL_SIMULATION_PASS in scope.** CultureAesthetic uses the same eight exact Lv4 Culture IDs, successful-reference cache key and two-pass presence/removal readback. The Lv3 withdrawal still runs first. Paired Lua fixtures match the ordered writes during cold initialization with one unreadable presence, failed native removal and subsequent confirmed removal. The sibling city and the seeded Research building are preserved. The old hidden report returns the same current and fallback text, rejects an unsupported player or absent city and makes no writes. The separate Store exit continues to prove the full existing legacy catalogue. Both disposable transactions roll back the one-path removal.
+
+**Runtime Impact Contract.** Reuse the original Aesthetic application trigger and the retirement cache. Retain Lv4 SQL, the central Lv4 confirmed-exit group and the current Aesthetic model and SQL. The removed start and no-op fact consumer do not install a replacement listener. Real Gameplay makes three fewer includes and matches all three strict route packets. The cold fixture uses the same exact memory-only SQL preparation as Meaning against a database with existing SPC rows. The prior Commerce retirement test replays its two published packages.
+
+**Source recovery.** `git show 809dfe5a1d1b5d3dea69bd075667be514923ff28:Mod/Lv4Percent.lua` with SHA256 `ae937995aae63bfe07f3543a20f3cb15ee4070edeebd72de8530d75bd3cdf0a9`.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8 (Lua 5.1 scoped roots), official Assets and read-only HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7AestheticCleanup --output local/refactor/S1084-O7AestheticCleanup-ready/closure.json` (39/39), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7CommerceCleanup --output local/refactor/S1084-O7CommerceCleanup-ready/closure.json` (46/46), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7MeaningCleanup --output local/refactor/S1084-O7MeaningCleanup-ready/closure.json` (47/47), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1084-NReadOnlyNetworkDiagnostic-ready/closure.json` (136/136). Local-only machine artifacts and companion logs
+
+- `local/refactor/S1084-O7AestheticCleanup-ready/closure.json` SHA256 `b6d2e5b95663f8734dbeded3415f180c99ab3133f52bf2eab3f3a291c71fd124`.
+- `local/refactor/S1084-O7CommerceCleanup-ready/closure.json` SHA256 `462a065691477e9e1c6c600d8f67bc2dec82b39623e0a62475bfae6de8cc4b5d`.
+- `local/refactor/S1084-O7MeaningCleanup-ready/closure.json` SHA256 `d807ccb8d54d308cde5434ecad5fbbfc4af37e19a0f19e678af2f6f7cd13162e`.
+- `local/refactor/S1084-NReadOnlyNetworkDiagnostic-ready/closure.json` SHA256 `cdd5586773ece2b348107d7dc6cffb1d0c53184d0995e57f5153efd63d56bc25`.
+
+**STATIC_CONFIRMED.** 192 Lua 5.1 compiles, 32 XML-family parses, 634 File references and 10 LuaReplace references. Source SHA256 `2295300f5e31a708303a3fd416d62d57ccafb2d9f75bb82e772a97d2fd2d4e09`. Package SHA256 `c12b8694999e9f9294affc212de4bd47ba0f1c8bbcc81d08d055728cb03ec522` across 321 files. Source-only checkpoint without new native evidence.
 
 ### Retire the detached Commerce Convergence Lua — S1083
 
