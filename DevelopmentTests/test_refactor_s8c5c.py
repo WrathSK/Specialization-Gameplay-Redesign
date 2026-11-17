@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -191,6 +191,12 @@ class Production(unittest.TestCase):
   """)
  def test_live_Withdraw_and_manual_entry_points_remain_callable(self):
   v=production()
+  v.execute("assert(shared.CopyYields==nil and shared.StandardizationDiscount==nil)")
+  current_include=v.globals().include
+  def load_archived(name):
+   if name in RETIRED_INDUSTRIAL_STARTS:return v.execute(retired_source(name+'.lua',B514))
+   return current_include(name)
+  v.globals().include=load_archived
   for name in SUPPORT:
    historical=retired_source('Gameplay.lua',B513) if name in RETIRED_INDUSTRIAL_STARTS else None
    v.execute(entry(name,historical))

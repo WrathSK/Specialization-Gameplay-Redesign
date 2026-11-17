@@ -86,7 +86,10 @@ class Package(unittest.TestCase):
                     before = historical_gameplay(previous, revision=B513, **opts)
                     before.execute(NATIVE)
                     before.load('Gameplay')
-                    after = root(profile=PackageVFS(**opts))
+                    current = PackageVFS(missing_include=mode, forbidden_globals=globals_to_guard)
+                    self.assertTrue({name+'.lua' for name in names}.isdisjoint(current.files))
+                    self.assertFalse(any((ROOT/'Mod'/(name+'.lua')).exists() for name in names))
+                    after = root(profile=current)
                     for vm, state, attempts in ((before, 'FAILED', len(names)), (after, None, 0)):
                         vm.execute("""
                           local expected=...

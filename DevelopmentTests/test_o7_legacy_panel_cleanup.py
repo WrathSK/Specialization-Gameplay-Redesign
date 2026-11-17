@@ -1,13 +1,9 @@
 """Replay the old panel requests through real Lua entrypoints before and after removal."""
-from pathlib import Path
-import shutil
-import tempfile
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B476, B511, B512, package
-from test_deployment_removals import commit, deploy
-from test_o7_crew_retirement import verify_package_round_trip
+from retired_crew_sources import B476, B511, B512, B513, package
+from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE, scalars
@@ -252,33 +248,10 @@ def recover_and_request(root, revision=None):
 
 class LegacyPanelCleanup(unittest.TestCase):
     def test_exact_experiment_retirement_switch_and_rollback(self):
-        current = ROOT/'Mod'
-        with package(B512) as previous:
-            verify_package_round_trip(self, previous/'Mod', current, RETIRED_EXPERIMENT_FILES,
+        with package(B512) as previous, package(B513) as retired:
+            verify_package_round_trip(self, previous/'Mod', retired/'Mod', RETIRED_EXPERIMENT_FILES,
                                       'LegacyCleanup.lua')
-            self.verify_stable_round_trip(previous/'Mod', current)
-
-    def verify_stable_round_trip(self, before_mod, after_mod):
-        with tempfile.TemporaryDirectory(prefix='spc-experiment-stable-round-trip-') as directory:
-            root = Path(directory).resolve()
-            past, candidate = root/'Prior/Mod', root/'Candidate/Mod'
-            target = root/'Game/Mods/SpecializationP0'
-            shutil.copytree(before_mod, past)
-            shutil.copytree(after_mod, candidate)
-            shutil.copytree(past, target)
-            commit(past.parent, 'main')
-            commit(candidate.parent, 'main')
-            before, after = deploy.snapshot(past), deploy.snapshot(candidate)
-            args = (candidate, target, after['digest'], before['digest'])
-            with self.assertRaisesRegex(ValueError, 'removal list mismatch'):
-                deploy.apply(*args, authorized=True, allow_remove=RETIRED_EXPERIMENT_FILES[:-1])
-            result = deploy.apply(*args, authorized=True, allow_remove=RETIRED_EXPERIMENT_FILES)
-            self.assertEqual(result['removed_paths'], list(RETIRED_EXPERIMENT_FILES))
-            self.assertEqual(deploy.snapshot(target), after)
-            self.assertEqual(deploy.snapshot(Path(result['backup'])), before)
-            deploy.apply(past, target, before['digest'], after['digest'], authorized=True)
-            self.assertEqual(deploy.snapshot(target), before)
-            self.assertFalse((target.parent/'.specialization-deploy-pending.json').exists())
+            verify_stable_round_trip(self, previous/'Mod', retired/'Mod', RETIRED_EXPERIMENT_FILES)
 
     def test_all_retired_controls_were_hidden_and_retained_bindings_match(self):
         with package(B476) as previous:

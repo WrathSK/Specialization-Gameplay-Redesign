@@ -10,6 +10,7 @@ import zlib
 import xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 from project_paths import external_database
+from retired_crew_sources import B514, source
 from test_environment_assembly import prepare_hd_inputs
 
 R=Path(__file__).resolve().parents[1]
@@ -133,6 +134,14 @@ class Standardization(unittest.TestCase):
     def test_batch_reads_each_holder_once(self):
         self.runlua("industry(1,3);learn(1,'BUILDING_GRANARY');for i=2,4 do recipients[i]={[1]=true}end;start();ledgerReads={};factReads={};d.Audit({player=0});assert(ledgerReads[1]==1 and factReads[1]==1)")
     def test_exact_legacy_cleanup_and_no_resurrection(self):
+        production_include = self.l.globals().include
+
+        def load_archived_writer(name):
+            if name in ('CopyYields','StandardizationDiscount'):
+                return self.l.execute(source(name+'.lua', B514))
+            return production_include(name)
+
+        self.l.globals().include = load_archived_writer
         self.runlua("""
           industry(1,3);learn(1,'BUILDING_GRANARY')
           local b=cities[1].built

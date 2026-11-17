@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="541">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="542">
   <Properties>
     <Name>LOC_SPC_MOD_TITLE</Name>
     <Description>LOC_SPC_MOD_DESCRIPTION</Description>
@@ -205,14 +205,10 @@
       <File>RuntimeAuditCore.lua</File>
       <File>UI/RuntimeAudit.lua</File>
       <File>UI/RuntimeAudit.xml</File>
-      <File>StandardizationDiscount.lua</File>
-      <File>UI/DiscountEligibility.lua</File>
-      <File>UI/DiscountEligibility.xml</File>
       <File>IndustryHistory.lua</File>
       <File>StandardizationCatalog.lua</File>
       <File>Standardization.lua</File>
       <File>StandardizationEffects.lua</File>
-      <File>CopyYields.lua</File>
       <File>SampleLifecycle.lua</File>
       <File>RuntimeWork.lua</File>
       <File>CityReference.lua</File>
@@ -236,8 +232,6 @@
       <File>UI/ResearchCrossRefresh.lua</File>
       <File>UI/ResearchCrossRefresh.xml</File>
 
-      <File>UI/CopyYieldRefresh.lua</File>
-      <File>UI/CopyYieldRefresh.xml</File>
       <File>DistrictPrecisionProbe.lua</File>
       <File>DistrictPrecisionRead.lua</File>
       <File>Lv4CopyRead.lua</File>
@@ -662,9 +656,6 @@
     <File>RuntimeAuditCore.lua</File>
     <File>UI/RuntimeAudit.lua</File>
     <File>UI/RuntimeAudit.xml</File>
-    <File>StandardizationDiscount.lua</File>
-    <File>UI/DiscountEligibility.lua</File>
-    <File>UI/DiscountEligibility.xml</File>
     <File>Data/StandardizationDiscount.sql</File>
     <File>Data/PurchaseProbe.sql</File>
     <File>IndustryHistory.lua</File>
@@ -672,7 +663,6 @@
     <File>Standardization.lua</File>
     <File>StandardizationEffects.lua</File>
     <File>Data/StandardizationEffects.sql</File>
-    <File>CopyYields.lua</File>
     <File>SampleLifecycle.lua</File>
     <File>RuntimeWork.lua</File>
     <File>CityReference.lua</File>
@@ -697,8 +687,6 @@
       <File>UI/ResearchCrossRefresh.xml</File>
 
     <File>Data/CopyYields.sql</File>
-    <File>UI/CopyYieldRefresh.lua</File>
-    <File>UI/CopyYieldRefresh.xml</File>
       <File>DistrictPrecisionProbe.lua</File>
       <File>DistrictPrecisionRead.lua</File>
     <File>Data/HalfYieldProbe.sql</File>

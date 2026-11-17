@@ -3,12 +3,18 @@
 import unittest
 
 from refactor_harness import ROOT, measure
-from retired_crew_sources import B513, package
+from retired_crew_sources import B513, B514, package
+from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_network_effect_fact_receipts import composition
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_o7_route_observer_retirement import exercise_proof
 
 B479 = '6932e768644308849a761343c458bb4bc6c649b2'
+RETIRED_INDUSTRIAL_FILES = (
+    'CopyYields.lua', 'StandardizationDiscount.lua',
+    'UI/CopyYieldRefresh.lua', 'UI/CopyYieldRefresh.xml',
+    'UI/DiscountEligibility.lua', 'UI/DiscountEligibility.xml',
+)
 
 
 def read_production_report(root, revision=None):
@@ -78,6 +84,16 @@ return report
 
 
 class NetworkDiagnostic(unittest.TestCase):
+    def test_exact_industrial_retirement_switch_and_rollback(self):
+        current = ROOT/'Mod'
+        with package(B514) as previous:
+            baseline = previous/'Mod'
+            for path in ('Data/CopyYields.sql','Data/StandardizationDiscount.sql',
+                         'StandardizationEffects.lua','StandardizationCatalog.lua','Lv4CopyRead.lua'):
+                self.assertEqual((current/path).read_bytes(), (baseline/path).read_bytes(), path)
+            verify_package_round_trip(self, baseline, current, RETIRED_INDUSTRIAL_FILES, 'StandardizationEffects.lua')
+            verify_stable_round_trip(self, baseline, current, RETIRED_INDUSTRIAL_FILES)
+
     def test_retired_industrial_requests_preserve_report_and_strict_proof(self):
         with package(B513) as old:
             before = replay_retired_industrial_requests(old, B513)

@@ -140,11 +140,6 @@
       "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
       "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
     },
-    "Mod/CopyYields.lua": {
-      "sha256": "58102508509ed2457bb6269a005b51ad167bbfb5a2abd7522bf1211e7e406b35",
-      "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1072/B510.537 Standardization owns its existing exact B054/B051 cleanup with the current catalog; preserve explicit diagnostic access until reviewed retirement."
-    },
     "Mod/CrewModel.lua": {
       "sha256": "a789494fd538a59d216a7a407a944e9c7ce07386bb235a25526f213f1afeca20",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
@@ -731,9 +726,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "fa2b66f6fec6dfb87235156efd6b0ed73dc0e8b206584382b00f8079cd938c0b",
+      "sha256": "92a0340dc5d874e19fc373c45c20f032df0559bdda2493aa1842bd5d6fa46775",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1076 moves the existing copy report notice to the read-only report owner and drops two retired startups and their inert request aliases. Simulated network isolation admission and strict current proof match the prior build."
+      "provenance": "S1077 removes the six old industrial Lua and UI files after real-root absence and both exact disposable rollback checks. The formal effect and read-only report use current owners. Historical test scenarios replay the published sources."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "0d9205f3f4543c200c3fb3787384e8f1d580fe2834831829822546c641356458",
@@ -846,9 +841,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "a963304bd21c8f63a9651a6623882c37e1dd4275779738aab53e4ce496febad9",
+      "sha256": "c9555f6e3ee66e9228534062474442c339c45085d75f36283982d613970cc48e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1076 moves the existing copy report notice to the read-only report owner and drops two retired startups and their inert request aliases. Simulated network isolation admission and strict current proof match the prior build."
+      "provenance": "S1077 removes the six old industrial Lua and UI files after real-root absence and both exact disposable rollback checks. The formal effect and read-only report use current owners. Historical test scenarios replay the published sources."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -857,11 +852,6 @@
     },
     "Mod/StandardizationCatalog.lua": {
       "sha256": "de5b99ccbab52890dcd8bfb790d21fce23f62bb4e354fd05c01d9b7a469bc000",
-      "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1072/B510.537 Standardization owns its existing exact B054/B051 cleanup with the current catalog; preserve explicit diagnostic access until reviewed retirement."
-    },
-    "Mod/StandardizationDiscount.lua": {
-      "sha256": "5b5024bcb454197f955c131d197e654a6cc1823b9991dee1cfdae7a7465a11cc",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S1072/B510.537 Standardization owns its existing exact B054/B051 cleanup with the current catalog; preserve explicit diagnostic access until reviewed retirement."
     },
@@ -1145,16 +1135,6 @@
       "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
       "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
-    "Mod/UI/CopyYieldRefresh.lua": {
-      "sha256": "b2d133cd6860fb60e0f3398032d77575b4332cfe6ff7834d1079327b8a4c1032",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
-    },
-    "Mod/UI/CopyYieldRefresh.xml": {
-      "sha256": "2f1d2b86731feaafbd41e4e2b5d17b8efe21c53c3f3df0ffba4cbc0c260c87f9",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
     "Mod/UI/CrewProjectOrder.lua": {
       "sha256": "aa5bde64190698d9c651ee3ecdc685afa8d348c0a04180ef5e81da60d83d81ef",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
@@ -1197,16 +1177,6 @@
     },
     "Mod/UI/DialogueRefresh.xml": {
       "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
-    "Mod/UI/DiscountEligibility.lua": {
-      "sha256": "574e4ccc92c09b27ce57dcc9fa7bdd1aa99bea7e559eba1feb3829e3ace0a81b",
-      "review_source": "Specialization/Reports/Technical/Specialization_B129_Event_Memory_Investigation.md",
-      "provenance": "B137 authorized session Network isolation; exact owner withdrawals/UI closure reviewed, targeted local tests. Native pending; no Design/permanent state changes."
-    },
-    "Mod/UI/DiscountEligibility.xml": {
-      "sha256": "83f53d04f035643a3b31783ac2a49c94d34d530d3dbbe69105dac7fd403b67e2",
       "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
       "provenance": "B076 unchanged inherited inventory"
     },

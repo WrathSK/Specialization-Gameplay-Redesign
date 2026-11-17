@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1076",
-    "runtime": "B514.541 / modinfo541",
+    "status": "S1077",
+    "runtime": "B515.542 / modinfo542",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Eliminate the mounted retired industrial writer dependencies from current reports and old request ingress while preserving current effects and isolation admission.",
+  "goal": "Remove the two detached industrial Lua writers and four unmounted UI paths while retaining current read-only diagnostics and exact owned carrier cleanup.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the detached industrial writers and unmounted UI files — S1077",
+      "reason": "S1077 removes the six old industrial Lua and UI files after real-root absence and both exact disposable rollback checks. The formal effect and read-only report use current owners. Historical test scenarios replay the published sources."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -840,6 +846,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1077 verifies six physically absent package files, exact temporary and stable transaction recovery, the retained isolation and report behavior and current network/Standardization regressions.",
     "S1076 proves the existing report, inert requests, isolation refusal, ordinary route evidence, strict transactions and current Standardization cleanup with the two old starts detached.",
     "S1075 verifies the physical absence of the three old experiment Lua files, exact temporary and stable rollback paths, retained cleanup and scoped Standardization and route regressions.",
     "S1074 verifies both opened save cleanup paths without the two old modules, matching readiness/ACK and confirmed Store exit, with 118 passing Standardization carryover methods and 24 passing focused methods.",
@@ -5553,6 +5560,42 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#detach-the-old-industrial-report-and-transport-from-retired-writers--s1076"
+    },
+    "s1077_industrial_package_retirement": {
+      "build": "B515.542 / modinfo542",
+      "baseline": "e49ca22aff1a7ed0b8f877d5e3549bb21e17d837",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "NReadOnlyNetworkDiagnostic": {
+          "path": "local/refactor/S1077-NReadOnlyNetworkDiagnostic/closure.json",
+          "sha256": "ba7abb590c488e194ff1780527103c7883a464ca172f79119335e62332a49ff4",
+          "pass_count": 136
+        },
+        "NStandardizationEffectReadback": {
+          "path": "local/refactor/S1077-NStandardizationEffectReadback/closure.json",
+          "sha256": "91dd319dbbc8fe854eea0d9c0d7e680064473940bc90f32adfb66e4994c6a78e",
+          "pass_count": 118
+        }
+      },
+      "focused_pass": 45,
+      "removed_paths": {
+        "Mod/CopyYields.lua": "58102508509ed2457bb6269a005b51ad167bbfb5a2abd7522bf1211e7e406b35",
+        "Mod/StandardizationDiscount.lua": "5b5024bcb454197f955c131d197e654a6cc1823b9991dee1cfdae7a7465a11cc",
+        "Mod/UI/CopyYieldRefresh.lua": "b2d133cd6860fb60e0f3398032d77575b4332cfe6ff7834d1079327b8a4c1032",
+        "Mod/UI/CopyYieldRefresh.xml": "2f1d2b86731feaafbd41e4e2b5d17b8efe21c53c3f3df0ffba4cbc0c260c87f9",
+        "Mod/UI/DiscountEligibility.lua": "574e4ccc92c09b27ce57dcc9fa7bdd1aa99bea7e559eba1feb3829e3ace0a81b",
+        "Mod/UI/DiscountEligibility.xml": "83f53d04f035643a3b31783ac2a49c94d34d530d3dbbe69105dac7fd403b67e2"
+      },
+      "rollback": [
+        "temporary_switch_and_restore",
+        "stable_apply_and_rollback"
+      ],
+      "source_sha256": "fd15b34c1c7556c1c3d8865be9ad164fd65a927eeedfd5a98dfa5fa75ba06c35",
+      "package_sha256": "606c34a327c4a015cfb651c09ca75bbbf2af485bd07d3d62a7364ee0992bb0ab",
+      "files": 330,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-detached-industrial-writers-and-unmounted-ui-files--s1077"
     }
   }
 }
