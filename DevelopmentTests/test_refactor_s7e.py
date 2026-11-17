@@ -8,6 +8,7 @@ import unittest
 from unittest.mock import patch
 from refactor_harness import Context,ROOT,TrackedLua51,SOURCES,executed,completion,legacy_source_observation,measure
 from project_paths import external_database
+from retired_crew_sources import B519, source as retired_source
 from test_refactor_s5d4c1 import actual_cross
 from refactor_defect_fixtures import startup
 import test_culture_aesthetic as aesthetic
@@ -58,7 +59,7 @@ def culture():
  return vm
 
 
-def convergence():
+def convergence(*,old=False):
  c=Context();c.execute("""
  counts={reads=0,writes=0,references=0};present={};exits={};reference=true
  P={Field=function(t,k)return t and t[k]end,IsTestPlayer=function(pid)return pid==0 end,
@@ -74,7 +75,10 @@ def convergence():
  assert(c==a and loss==proof,'WRONG_EXIT');exitNames=ids
  for _,id in ipairs(ids)do if present[id]then P.RemoveBuilding({},id)end end end}
  Players={[0]={GetCities=function()return {Members=function()return ipairs({a})end}end}}
- """);c.load('RuntimeWork');c.execute('SPCRuntimeWork.StartRetirement(P,shared)');c.load('CommerceConvergence');c.execute("SPCCommerceConvergence.Start(P,shared,{retired=true});d=shared.CommerceConvergence")
+ """);c.load('RuntimeWork');c.execute('SPCRuntimeWork.StartRetirement(P,shared)')
+ if old:c.load('CommerceConvergence') # history() supplies the pinned pre-repair source
+ else:c.execute(retired_source('CommerceConvergence.lua',B519))
+ c.execute("SPCCommerceConvergence.Start(P,shared,{retired=true});d=shared.CommerceConvergence")
  return c
 
 
@@ -186,7 +190,7 @@ class Convergence(unittest.TestCase):
  def test_retired_48_read_hotpath_has_fresh_historical_proof_even_on_hit(self):
   results=[]
   for old in (True,False):
-   with history()if old else nullcontext():c=convergence()
+   with history()if old else nullcontext():c=convergence(old=old)
    c.execute("""
    assert(d.Withdraw(a));counts.reads=0;counts.references=0
    for i=1,20 do assert(d.Withdraw(a))end

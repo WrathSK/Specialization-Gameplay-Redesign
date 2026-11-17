@@ -204,9 +204,11 @@ def routes(root,revision=B464,*,retired_culture=False,old_commerce_absent=False)
     if retired_culture:
         forbidden=('SPCCultureInspirationProbe','SPCGWAdjacency','SPCGWAdjacencyModel')
         if old_commerce_absent:
-            vfs=PackageVFS(absent=('CommerceConvergence',),forbidden_globals=(*forbidden,'SPCCommerceConvergence'))
-        else:
-            vfs=PackageVFS(forbidden_globals=forbidden)
+            forbidden=(*forbidden,'SPCCommerceConvergence')
+        vfs=PackageVFS(forbidden_globals=forbidden)
+        if old_commerce_absent:
+            assert 'CommerceConvergence.lua' not in vfs.files and 'CommerceConvergence.lua' not in vfs.imports
+            assert not (ROOT/'Mod/CommerceConvergence.lua').exists()
         for name in ('CultureInspirationProbe.lua',*RETIRED_ADJACENCY_FILES):
             assert name not in vfs.files and name not in vfs.imports
             assert not (ROOT/'Mod'/name).exists()

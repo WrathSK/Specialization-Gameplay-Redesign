@@ -5,6 +5,7 @@
     "O7CommerceCleanup": [
       "test_b239_commerce_integration.Retirement",
       "test_refactor_s7e.Retirement",
+      "test_refactor_s7e.Convergence",
       "test_refactor_s8c5c.Production",
       "test_refactor_s8c5c.FrozenBefore",
       "test_refactor_s9c2.Startup",

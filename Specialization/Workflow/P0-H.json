@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1082",
-    "runtime": "B520.547 / modinfo547",
+    "status": "S1083",
+    "runtime": "B521.548 / modinfo548",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Transfer the existing Commerce B061 load and preflight withdrawals while preserving exact exit and all established Commerce views and transaction gates.",
+  "goal": "Retire the detached Commerce Lua file and verify real package absence, exact rollback and current Commerce without the retired source.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the detached Commerce Convergence Lua — S1083",
+      "reason": "S1083 removes the detached Commerce Convergence Lua from the package and verifies real startup, the transferred Commerce path, strict proof and both exact disposable rollbacks."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -876,6 +882,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1083 verifies the actual missing Commerce Convergence path, the unchanged owner, exact rollback and strict route/transaction proofs.",
     "S1082 verifies equivalent B061 readback, cold/startup and scoped failures, current gold and strict proof with the old Lua unavailable.",
     "S1081 covers Meaning cold and affected-city withdrawal, the existing B060 exit owner, Dialogue collection, and the exact two-path retirement with both disposable rollbacks.",
     "S1080 proves exact Inspiration load and exit ordering, failed and successful readback, distinct city outcomes, physical absence and both exact disposable rollback paths.",
@@ -5848,6 +5855,52 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#move-the-old-commerce-withdrawal-into-legacycleanup--s1082"
+    },
+    "s1083_commerce_lua_retirement": {
+      "build": "B521.548 / modinfo548",
+      "baseline": "8fdbfa885539a61fcbbaef16cebba62daf2b4edd",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "O7CommerceCleanup": {
+          "path": "local/refactor/S1083-O7CommerceCleanup-verified/closure.json",
+          "sha256": "84519ed5d2c6a0d85fe2335e877f1b3c257d8a246148b7841ce2235fd9858400",
+          "pass_count": 46
+        },
+        "NCommerceEffectReadback": {
+          "path": "local/refactor/S1083-NCommerceEffectReadback-verified/closure.json",
+          "sha256": "e46ce229a101e96f5513c986d3c113ddceb2a752353f98f4b586149d459472a0",
+          "pass_count": 90
+        },
+        "O7MeaningCleanup": {
+          "path": "local/refactor/S1083-O7MeaningCleanup-verified/closure.json",
+          "sha256": "7dc720bebae9da263cf2fe7633024d3efbfecfe1ec03f2885bd9bc487e5e59b4",
+          "pass_count": 47
+        },
+        "NReadOnlyNetworkDiagnostic": {
+          "path": "local/refactor/S1083-NReadOnlyNetworkDiagnostic-verified/closure.json",
+          "sha256": "031d6568a9d8644fd1d8703eae1dc4192d39d54ddde87eee7085de3f6dde4b3b",
+          "pass_count": 136
+        },
+        "NStandardizationEffectReadback": {
+          "path": "local/refactor/S1083-NStandardizationEffectReadback-verified/closure.json",
+          "sha256": "79a56619eda4c6c7fe87af5b7d3e07699aaa7a8861e414d280be620a358a4381",
+          "pass_count": 118
+        }
+      },
+      "removed_paths": {
+        "Mod/CommerceConvergence.lua": "e9a38b34e9f2fb5a1afa76c87dcc6ebca384b782a2f925cb9b26888026ab3be6"
+      },
+      "retained_b061_carriers": 48,
+      "rollback": [
+        "temporary_switch_and_restore",
+        "stable_apply_and_rollback"
+      ],
+      "source_sha256": "a6ed9c1e7267cf1b80e6c3f929fd5f4932012ee092f15847ab2701fa283e306d",
+      "package_sha256": "69774e114e5706346627bc058ecdbd3ac62a13b42910ef39e8d32259fef36702",
+      "files": 322,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-detached-commerce-convergence-lua--s1083"
     }
   }
 }

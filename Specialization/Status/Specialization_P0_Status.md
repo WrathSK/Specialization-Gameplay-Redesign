@@ -1,28 +1,44 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1082
-Implementation Build: B520.547 / modinfo547 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1083
+Implementation Build: B521.548 / modinfo548 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: COMMERCE_LEGACY_CLEANUP_TRANSFER_LOCAL_PASS
+Work State: RETIRE_COMMERCE_CONVERGENCE_PACKAGE_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B520.547 on develop](#move-the-old-commerce-withdrawal-into-legacycleanup--s1082). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B521.548 on develop](#retire-the-detached-commerce-convergence-lua--s1083). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The old Commerce load and preflight withdrawals match the published predecessor locally. Supported Commerce, strict network proof, Meaning and Standardization suites pass. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Verify the exact CommerceConvergence Lua removal with both disposable rollback paths and pin historical tests to the published source. Retain the B061 SQL and confirmed exit. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The old Commerce Lua is absent. Actual startup, scoped Commerce, strict proof, Meaning, Standardization and both exact disposable rollback checks pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Trace the existing Culture Aesthetic withdrawals from Lv3Effects and Lv4Percent, including the panel report, no-work fact binding and confirmed exit, before retiring either old owner. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Retire the detached Commerce Convergence Lua — S1083
+
+**LOCAL_SIMULATION_PASS in scope.** The detached historical Lua and its two manifest entries are removed. The real Gameplay root loads and proves Commerce with no old Lua or preinjected retired globals. The exact confirmed-exit checklist, transferred load callback, Commerce preflight and B061 SQL are byte-identical to B520. Both disposable package transactions accepted the exact one-path removal and restored the package hashes on rollback. The released source is recoverable with `git show 8fdbfa885539a61fcbbaef16cebba62daf2b4edd:Mod/CommerceConvergence.lua` and SHA256 `e9a38b34e9f2fb5a1afa76c87dcc6ebca384b782a2f925cb9b26888026ab3be6`. Historical fixtures pin the matching published source and preserve the earlier pre-repair comparison.
+
+**Runtime Impact Contract.** Package files reduce from 323 to 322. Since B520 already detached the retired writer, this package-only step adds no runtime work, listeners, facts, fields or recovery. Existing Commerce, city exit, readback and strict transaction behavior pass scoped regression against the identical production owners. The old B061 building definitions remain available for the exact 48-carrier withdrawal and subsequent confirmation.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8, official Assets and read-only HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7CommerceCleanup --output local/refactor/S1083-O7CommerceCleanup-verified/closure.json` (46/46), `python3.14 -B DevelopmentTests/run_refactor.py --stage NCommerceEffectReadback --output local/refactor/S1083-NCommerceEffectReadback-verified/closure.json` (90/90), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7MeaningCleanup --output local/refactor/S1083-O7MeaningCleanup-verified/closure.json` (47/47), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1083-NReadOnlyNetworkDiagnostic-verified/closure.json` (136/136), `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/S1083-NStandardizationEffectReadback-verified/closure.json` (118/118). Local-only machine artifacts and companion logs
+
+- `local/refactor/S1083-O7CommerceCleanup-verified/closure.json` SHA256 `84519ed5d2c6a0d85fe2335e877f1b3c257d8a246148b7841ce2235fd9858400`.
+- `local/refactor/S1083-NCommerceEffectReadback-verified/closure.json` SHA256 `e46ce229a101e96f5513c986d3c113ddceb2a752353f98f4b586149d459472a0`.
+- `local/refactor/S1083-O7MeaningCleanup-verified/closure.json` SHA256 `7dc720bebae9da263cf2fe7633024d3efbfecfe1ec03f2885bd9bc487e5e59b4`.
+- `local/refactor/S1083-NReadOnlyNetworkDiagnostic-verified/closure.json` SHA256 `031d6568a9d8644fd1d8703eae1dc4192d39d54ddde87eee7085de3f6dde4b3b`.
+- `local/refactor/S1083-NStandardizationEffectReadback-verified/closure.json` SHA256 `79a56619eda4c6c7fe87af5b7d3e07699aaa7a8861e414d280be620a358a4381`.
+
+**STATIC_CONFIRMED.** 193 Lua 5.1 compiles, 32 XML-family parses, 636 File references and 10 LuaReplace references. Source SHA256 `a6ed9c1e7267cf1b80e6c3f929fd5f4932012ee092f15847ab2701fa283e306d`. Package SHA256 `69774e114e5706346627bc058ecdbd3ac62a13b42910ef39e8d32259fef36702` across 322 files. Source-only retirement with no new native observation.
 
 ### Move the old Commerce withdrawal into LegacyCleanup — S1082
 

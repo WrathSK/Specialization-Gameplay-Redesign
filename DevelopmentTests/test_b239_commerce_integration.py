@@ -10,7 +10,7 @@ import zlib
 import xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 from project_paths import external_database
-from retired_crew_sources import B519, source
+from retired_crew_sources import B519, B520, package, source
 
 ROOT=Path(__file__).resolve().parents[1]
 MOD=ROOT/'Mod'
@@ -71,7 +71,7 @@ end
 def retirement_runtime():
  lua=LuaRuntime(unpack_returned_tuples=True)
  lua.globals().include=lambda name:lua.execute((MOD/(name+'.lua')).read_text())
- lua.execute(SETUP);lua.execute((MOD/'CommerceConvergence.lua').read_text())
+ lua.execute(SETUP);lua.execute(source('CommerceConvergence.lua',B519))
  lua.execute('SPCCommerceConvergence.Start(P,shared,{retired=true});d=shared.CommerceConvergence')
  return lua
 
@@ -96,6 +96,20 @@ SPCLv3Effects.Start(P,shared,{retireCommerce=true});emit('LoadScreenClose')
 for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY'})do assert(not cities[1].built['BUILDING_SPC_DEV_LV3_COM_'..kind])end
 assert(cities[1].built.KEEP_EXTERNAL and cities[1].built.BUILDING_SPC_COMMERCE_GOLD_2)
 """)
+ def test_exact_convergence_package_retirement_and_rollback(self):
+  from refactor_harness import PackageVFS
+  from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
+  removed=('CommerceConvergence.lua',)
+  profile=PackageVFS(manifest=MOD/'SpecializationP0.modinfo')
+  self.assertNotIn(removed[0],profile.files)
+  self.assertNotIn(removed[0],profile.imports)
+  with package(B520) as baseline:
+   previous=baseline/'Mod'
+   for path in ('LegacyCleanup.lua','LegacyCleanupCatalog.lua','Commerce.lua','Gameplay.lua',
+                'CityProgressionStore.lua','Data/CommerceConvergence.sql'):
+    self.assertEqual((previous/path).read_bytes(),(MOD/path).read_bytes(),path)
+   verify_package_round_trip(self,previous,MOD,removed,'Commerce.lua')
+   verify_stable_round_trip(self,previous,MOD,removed)
  def test_current_load_callback_retains_the_same_city_scope_and_proof(self):
   original=retirement_runtime()
   current=LuaRuntime(unpack_returned_tuples=True)
