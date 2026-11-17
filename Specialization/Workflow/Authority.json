@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1072",
-    "runtime": "B510.537 / modinfo537",
+    "status": "S1073",
+    "runtime": "B511.538 / modinfo538",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "ce497054ed0ba440a03c5a7a66dfafc0d5721c3d",
-  "current_batch": "STANDARDIZATION_LEGACY_CLEANUP_OWNERSHIP_LOCAL_PASS",
-  "next_batch": "Continue the approved transfer of remaining production duties from old diagnostic modules. Standardization now owns withdrawal of its retired B054 and B051 Production carriers. Review remaining diagnostic report callers before proposing package removal. Use the next in-game UI review for the deferred bilingual layout observation.",
+  "current_batch": "CITY_FACTS_STORE_ENTRY_LOCAL_PASS",
+  "next_batch": "Transfer the existing load cleanup of the retired B053 purchase and B055 Great Work experiment carriers. Preserve the selected city facts view, the existing B055 background readiness handshake, and the Store exit cleanup. Investigate the remaining industrial diagnostic readers before any package removal.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B489.516 / modinfo516 stable from ce497054ed0ba440a03c5a7a66dfafc0d5721c3d, 337/337 MATCH, SHA256 fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30. Receipt .SpecializationP0-backup-umgmu6q5.receipt.json DEPLOYED with 21 reviewed removals. B307 rollback 312/312 MATCH. No pending transaction.",
   "stable": "main B489.516 / modinfo516 from approved PR #8 merge ce497054ed0ba440a03c5a7a66dfafc0d5721c3d, deployed and verified",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1072 transfers exact old industrial carrier withdrawal to the current Standardization owner. The mounted Lua 5.1 production start succeeds with both retired modules absent in the modeled package. Existing eligibility and reporting remain in scope.",
+  "context_review_status": "S1073 reads the current foundation and carrier reference directly from the existing Store. Local replay covers two populated cold records and the real Gameplay root with CityFlowProbe absent.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#move-retired-industrial-carrier-cleanup-to-standardization--s1072",
-  "source_status": "B510.537 is locally verified on develop. Main and the installed package remain B489.516 with the recorded scoped HD and official acceptance.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#read-current-city-foundations-directly-from-the-store--s1073",
+  "source_status": "B511.538 is locally verified on develop. Main and the installed package are B489.516 with the recorded scoped HD and official acceptance.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

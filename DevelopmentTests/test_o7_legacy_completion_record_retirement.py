@@ -44,7 +44,7 @@ def stored_records(ctx):
     return tuple(scalars(ctx.eval(expr)) for expr in ('currentIndex()', 'currentRecord(1)', 'currentRecord(2)'))
 
 
-def load_cold_store(ctx,saved):
+def load_cold_store(ctx,saved, *, city_flow_missing=False):
     ctx.execute(NATIVE)
     ctx.execute("""
       local saved=...
@@ -105,14 +105,15 @@ def load_cold_store(ctx,saved):
       local s=ExposedMembers.SPC_P0
       local store=s.CityProgressionStore
       Events.LoadScreenClose.Fire();publish()
-      for _,name in ipairs({'CityProgressionStore','ClaimProjects','BindingProbe','CityJournalProbe','CityFlowProbe','EffectiveFacts'})do
+      for _,name in ipairs({'CityProgressionStore','ClaimProjects','BindingProbe','CityJournalProbe','EffectiveFacts'})do
         assert(s.StartStatus[name].state=='OK',name)
       end
       assert(store.UsesNewAuthority and store.FreshReady() and store.HistoryStartStatus()=='EXISTING')
       local b=store.Base(0,city1)
       assert(b.specialization=='RESEARCH' and b.potential==1)
       assert(store.Base(0,city2).specialization=='NONE')
-    """)
+      assert(s.StartStatus.CityFlowProbe.state==(... and 'FAILED' or 'OK'))
+    """,city_flow_missing)
     cold=stored_records(ctx)
     assert cold == (saved['properties']['SPC_PROGRESSION_INDEX_V3'],
         *(saved['properties']['SPC_PROGRESSION_CITY_V3_'+saved['cities'][i]['token']] for i in (1,2)))
@@ -203,12 +204,14 @@ def panel(root, *, retired):
 class LegacyCompletionRecordRetirement(unittest.TestCase):
     def test_populated_Store_and_first_completion_survive_with_old_value(self):
         saved=save_fixture()
-        with package(B464) as previous:
+        with package(B464) as previous, package(B465) as retired:
             before=load_and_complete(previous,saved)
             after=load_and_complete(ROOT,saved,journal_retired=True)
             for name in ('CityProgressionStore.lua','ClaimProjects.lua','CityJournalProbe.lua',
                          'BindingProbe.lua','CityFlowProbe.lua','FreshBindingHook.lua','EffectiveFacts.lua'):
-                self.assertEqual((ROOT/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
+                # EffectiveFacts moved to the Store after the B464/B465 retirement.
+                source = retired if name == 'EffectiveFacts.lua' else ROOT
+                self.assertEqual((source/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
         self.assertEqual(before[:3],after[:3])
         self.assertEqual((before[3],after[3]),(1,0))
         self.assertEqual(before[4]-after[4],1)
@@ -216,6 +219,41 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
         measure('legacy_completion_record_retirement',dict(populated_cold_records=2,matching_first_completion=True,
             saved_experiment_value_preserved=True,modeled_load_listeners_removed=1,
             modeled_construction_listeners_removed=0,modeled_explicit_legacy_reads=[1,0]))
+
+    def test_formal_facts_without_city_flow_probe(self):
+        saved=save_fixture()
+        expected=None
+        for mode in ('present','throw','silent_nil'):
+            with self.subTest(mode=mode):
+                missing=mode!='present'
+                profile=PackageVFS(absent=('CityFlowProbe',) if missing else (),
+                                   forbidden_globals=('SPCCityFlowProbe',) if missing else (),
+                                   missing_include=mode if missing else 'throw')
+                gp=Context(name='Gameplay',vfs=profile)
+                load_cold_store(gp,saved,city_flow_missing=missing)
+                result=scalars(gp.execute("""
+                  local s=ExposedMembers.SPC_P0
+                  local facts=s.EffectiveFacts;local writes=#writeKeys
+                  local research,proof=facts.ReadWithCarrierReference(0,city1)
+                  local unassigned=facts.Read(0,city2)
+                  assert(research.specialization=='RESEARCH' and research.active==1)
+                  assert(unassigned.specialization=='NONE' and unassigned.active==0)
+                  assert(type(proof)=='string' and proof==s.CityProgressionStore.CarrierReferenceStamp(
+                   0,city1:GetID(),city1:GetX(),city1:GetY(),research.token))
+                  local unknown={GetOwner=function()return 0 end,GetID=function()return 999 end,
+                   GetX=function()return 150 end,GetY=function()return 70 end}
+                  local ok,why=pcall(facts.Read,0,unknown)
+                  assert(not ok and why:find('FOUNDATION_EVIDENCE_PENDING',1,true))
+                  assert(#writeKeys==writes and cityWrites==0)
+                  return {research,unassigned,proof}
+                """))
+                self.assertEqual(gp.load_counts['missing'],int(missing))
+                if expected is None:
+                    expected=result
+                self.assertEqual(result,expected)
+        measure('formal_city_facts_without_legacy_probe',dict(cold_records=2,
+            matching_store_witness=True,unregistered_city='FOUNDATION_EVIDENCE_PENDING',
+            no_fact_write=True,modeled_vfs=['present','throw','silent_nil']))
 
     def test_real_roots_keep_nonempty_route_proof(self):
         with package(B464) as previous:

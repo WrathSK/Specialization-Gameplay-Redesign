@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1072",
-    "runtime": "B510.537 / modinfo537",
+    "status": "S1073",
+    "runtime": "B511.538 / modinfo538",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Decouple the current Standardization writer and owned-carrier exit from the retired CopyYields and StandardizationDiscount writer modules.",
+  "goal": "Route the current city foundation and carrier reference to the existing Store without requiring the old CityFlowProbe facade.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Read current city foundations directly from the Store — S1073",
+      "reason": "S1073 reads the current foundation and carrier reference directly from the existing Store. Local replay covers two populated cold records and the real Gameplay root with CityFlowProbe absent."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -816,6 +822,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1073 verifies the actual current city fact reads, Store reference witness, missing CityFlowProbe modes, and retained Claim and route paths.",
     "S1072 verifies the normal Standardization path, exact old-ID withdrawal and readback, current Carrier application and scoped exit, and actual Gameplay startup with both old modules unavailable. The broad direct historical replay has the same 37 non-passing cases on base and candidate.",
     "S1071 passes all 220 methods from the exact S1070 selection with the same 339-file B509 package. The additional 109-method Expedition training selection has six already-reproduced fixture errors; the test-only changes introduce no additional failing case.",
     "B509 resolves all 370 tagged English draft rows and 55 tagged Chinese draft rows, plus all 16 institution names and descriptions per language. The combined 220-method selection has 216 passes and four already reproduced legacy fixture failures. Disposable package tests pass.",
@@ -5420,6 +5427,26 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#move-retired-industrial-carrier-cleanup-to-standardization--s1072"
+    },
+    "s1073_current_city_fact_entry": {
+      "build": "B511.538 / modinfo538",
+      "baseline": "fbd11f66327d48c99ea4210daeaf406e430f12c9",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "selected_tests": 106,
+      "passing": 105,
+      "baseline_error": 1,
+      "cold_records": 2,
+      "nonempty_route_proofs": 3,
+      "legacy_absence_modes": [
+        "throw",
+        "silent_nil"
+      ],
+      "source_sha256": "53205c3f7ef4f00644c35803eccd8377957056952a58e79d48590716bcb14699",
+      "package_sha256": "ce5786edba9189d9b4826184b7ddb0b54093463c2ecb4a31e81e4e7f6c4e9aa5",
+      "files": 339,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#read-current-city-foundations-directly-from-the-store--s1073"
     }
   }
 }

@@ -102,7 +102,14 @@ function SPCEffectiveFacts.Start(P,shared)
  end
  local function capture(pid,city) P.Count('facts');
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
-  local f,referenceWitness=shared.CityFlowProbe.SupportFacts(pid,city)
+  local foundationStore=shared.CityProgressionStore
+  local f,referenceWitness
+  if foundationStore and foundationStore.UsesNewAuthority then
+   assert(foundationStore.Owns(city),'FOUNDATION_EVIDENCE_PENDING')
+   f,referenceWitness=foundationStore.Base(pid,city)
+  else
+   f,referenceWitness=shared.CityFlowProbe.SupportFacts(pid,city)
+  end
   assert(f.owner==pid and f.cityID==city:GetID() and type(f.token)=='string','EFFECTIVE_FOUNDATION_IDENTITY')
   local store=shared.CityProgressionStore
   local ledger

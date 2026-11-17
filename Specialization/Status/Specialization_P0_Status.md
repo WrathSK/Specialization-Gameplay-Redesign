@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1072
-Implementation Build: B510.537 / modinfo537 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1073
+Implementation Build: B511.538 / modinfo538 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: STANDARDIZATION_LEGACY_CLEANUP_OWNERSHIP_LOCAL_PASS
+Work State: CITY_FACTS_STORE_ENTRY_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B510.537 on develop](#move-retired-industrial-carrier-cleanup-to-standardization--s1072). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B511.538 on develop](#read-current-city-foundations-directly-from-the-store--s1073). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The Standardization effect regression passes 118 methods under the Lua 5.1 runner, with 19 additional focused checks passing. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Continue the approved transfer of remaining production duties from old diagnostic modules. Standardization now owns withdrawal of its retired B054 and B051 Production carriers. Review remaining diagnostic report callers before proposing package removal. Use the next in-game UI review for the deferred bilingual layout observation. |
+| Validation | The current city facts replay confirms cold and missing-probe reads under Lua 5.1. Standardization retains its scoped local verification. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Transfer the existing load cleanup of the retired B053 purchase and B055 Great Work experiment carriers. Preserve the selected city facts view, the existing B055 background readiness handshake, and the Store exit cleanup. Investigate the remaining industrial diagnostic readers before any package removal. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Read current city foundations directly from the Store — S1073
+
+**LOCAL_SIMULATION_PASS in scope.** EffectiveFacts takes the current city's foundation and carrier reference from the existing Store using the same Owns and Base checks. The real Gameplay root reads two populated cold records with CityFlowProbe present, absent with a throwing include, or absent with a nil include. Research ACTIVE I, the unassigned city, and the exact Store reference witness match across all three cases. The unregistered city still returns FOUNDATION_EVIDENCE_PENDING. These reads produce no save writes. The retained first-completion and three nonempty route-proof replays pass.
+
+**Runtime impact (T01, T04, T06).** Current readers skip the CityFlowProbe delegation and keep the same Store and governor checks. No additional native read, population scan, subscription, cache or persisted field is introduced. The older test-only authority still reads through its original CityFlow adapter. Existing CityFlow cold readiness, disabled inheritance compatibility and related historical test sources remain available.
+
+**Reproduction.** Use CPython 3.14.8, Lupa 2.8, the official Assets and read-only B413 HD database SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439` via the configured inputs. Run `python3.14 -B -m unittest test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_formal_facts_without_city_flow_probe test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_populated_Store_and_first_completion_survive_with_old_value test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_only_the_hidden_completion_record_request_retires test_refactor_baseline.RealConsumers.test_T04_real_writers_share_one_effective_fact_sample test_refactor_s5b test_refactor_s6b test_refactor_s6c test_refactor_s9d1b.Witness test_pu07_source_attribution test_pu11_package_absence.Package`. Of 106 methods, 105 pass. The older combined housing/GPP fixture `test_refactor_s5b.ActualWriters.test_real_store_and_two_real_writers_reuse_only_before_mutation` reproduces its error on B510 before this move. The full legacy completion-report suite also reproduces its old package path-set failure on both builds because the current package includes two later localization XML files. Those methods are outside passing evidence. The S5b fixture counts the same base reads at Store.Base and retains the original assertions and legacy mock tests.
+
+**STATIC_CONFIRMED.** 208 Lua 5.1 compiles, 34 XML-family parses and 670 File / 10 LuaReplace references. No new or widened static alarm. Source SHA256 `53205c3f7ef4f00644c35803eccd8377957056952a58e79d48590716bcb14699`. The 339-file package SHA256 is `ce5786edba9189d9b4826184b7ddb0b54093463c2ecb4a31e81e4e7f6c4e9aa5`. Source-only. Native behavior of this build remains unverified and the installed B489.516 evidence retains its existing scope.
 
 ### Move retired industrial carrier cleanup to Standardization — S1072
 

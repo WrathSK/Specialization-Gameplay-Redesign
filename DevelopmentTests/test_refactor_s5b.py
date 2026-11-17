@@ -12,7 +12,7 @@ def probe(l, governor=False):
 
 
 def store():
-    l=actual_store();l.execute("T.start();c=T.fresh(1);T.register(c);T.complete(c,'DISTRICT_CAMPUS');reads=0;counts={};P.Count=function(k)counts[k]=(counts[k]or 0)+1 end;local fn=shared.CityFlowProbe.SupportFacts;shared.CityFlowProbe.SupportFacts=function(...)reads=reads+1;return fn(...)end;f=shared.EffectiveFacts")
+    l=actual_store();l.execute("T.start();c=T.fresh(1);T.register(c);T.complete(c,'DISTRICT_CAMPUS');reads=0;counts={};P.Count=function(k)counts[k]=(counts[k]or 0)+1 end;local owner=shared.CityProgressionStore;local fn=owner.Base;owner.Base=function(...)reads=reads+1;return fn(...)end;f=shared.EffectiveFacts")
     probe(l);return l
 
 
