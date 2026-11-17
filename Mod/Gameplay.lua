@@ -452,7 +452,7 @@ local function request(playerID,params)
     if not P.IsTestPlayer(playerID) then return end
     local ok,err=pcall(function()
       shared.NetworkBoost.EnsureReady(playerID)
-      if not shared.GreatWorkProbe.ready then shared.GreatWorkProbe.Clean() end
+      if not shared.GreatWorkLoadCleanup.ready then shared.GreatWorkLoadCleanup.Clean() end
     end)
     if not ok then print('[SPC][B055][INIT] '..tostring(err)) end
     return
@@ -794,7 +794,10 @@ composition.Run('IndustryHistory',{'CityProgressionStore'},{'IndustryHistory'},f
 
 composition.Run('Standardization',{'CityProgressionStore','EffectiveFacts'},{'Standardization'},function() include('StandardizationCatalog');include('Standardization');SPCStandardization.Start(P,shared) end)
 
-composition.Run('PurchaseProbe',{},{'PurchaseProbe'},function() include('PurchaseProbe');SPCPurchaseProbe.Start(P,shared,{centralExit=true}) end)
+composition.Run('PurchaseLoadCleanup',{},{},function()
+ if not SPCLegacyCleanup then include('LegacyCleanup')end
+ SPCLegacyCleanup.InstallPurchaseLoad(P)
+end)
 
 composition.Run('StandardizationDiscount',{},{'StandardizationDiscount'},function() include('StandardizationDiscount');SPCStandardizationDiscount.Start(P,shared,{retired=true}) end)
 
@@ -802,7 +805,10 @@ composition.Run('StandardizationEffects',{'CityProgressionStore','Standardizatio
 
 composition.Run('NetworkBoost',{},{'NetworkBoost'},function() include('NetworkBoost');SPCNetworkBoost.Start(P,shared,{retired=true,centralExit=true}) end)
 
-composition.Run('GreatWorkProbe',{},{'GreatWorkProbe'},function() include('GreatWorkProbe');SPCGreatWorkProbe.Start(P,shared,{centralExit=true}) end)
+composition.Run('GreatWorkLoadCleanup',{},{'GreatWorkLoadCleanup'},function()
+ if not SPCLegacyCleanup then include('LegacyCleanup')end
+ SPCLegacyCleanup.StartGreatWorkLoad(P,shared)
+end)
 
 composition.Run('GreatWorkFacts',{},{'GreatWorkFacts'},function() include('GreatWorkFacts');SPCGreatWorkFacts.Start(P,shared) end)
 

@@ -4,11 +4,28 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
 BASE='49eee15'
+EXPERIMENT_LOADS={
+ 'PurchaseProbe':('PurchaseLoadCleanup','InstallPurchaseLoad'),
+ 'GreatWorkProbe':('GreatWorkLoadCleanup','StartGreatWorkLoad'),
+}
+
+def startup_slot(name,source):
+ replacement=EXPERIMENT_LOADS.get(name)
+ if replacement and "composition.Run('"+replacement[0]+"'" in source:
+  return replacement[0]
+ return name
+
+def start_order(source):
+ for name,(_,method) in EXPERIMENT_LOADS.items():
+  # Compare the replacement cleanup call at the original observer's position.
+  source=source.replace('SPCLegacyCleanup.'+method+'(', 'SPC'+name+'.Start(P,shared')
+ return re.findall(r'(SPC\w+)\.Start\(P,shared',source)
+
 MODULES=('Lv3Support','Lv3Effects','Lv4Percent','PurchaseProbe','NetworkBoost','GreatWorkProbe','Dialogue','GreatWorkAdjacency','CommerceConvergence')
 SUPPORT=('CopyYields','StandardizationDiscount','CultureInspirationProbe')
 SYMBOL={'GreatWorkAdjacency':'SPCGWAdjacency'}
@@ -52,8 +69,14 @@ def production(extra='',failure=None,late=None,*,modules=MODULES):
    v.execute('local module=_G[...];local start=module.Start;module.Start=function(...)local out=start(...);error("LATE_START_FAILURE")end',sym)
   return out
  v.globals().include=wrapped
- v.execute(entry('LegacyCleanup'))
- for name in modules:v.execute(entry(name))
+ gameplay=(ROOT/'Mod/Gameplay.lua').read_text()
+ v.execute(entry('LegacyCleanup',gameplay))
+ for name in modules:
+  slot=startup_slot(name,gameplay)
+  if slot!=name and failure==name:
+   method=EXPERIMENT_LOADS[name][1]
+   v.execute("SPCLegacyCleanup[...]=function()error('EXPERIMENT_START_FAILURE')end",method)
+  v.execute(entry(slot,gameplay))
  v.execute("if shared.Dialogue then shared.Dialogue.retired=true end;composition.Complete();s=shared.CityProgressionStore;function status()return s.Status(ca).exitStatus end;function lose()T.loss(ca,9,900)end")
  return v
 
@@ -62,7 +85,7 @@ class Production(unittest.TestCase):
  def test_real_production_options_register_one_gate_and_preserve_all_old_start_order(self,reply_service=True,retired=True):
   s=(ROOT/'Mod/Gameplay.lua').read_text();old=subprocess.check_output(['git','show',BASE+':Mod/Gameplay.lua'],cwd=ROOT,text=True)
   pattern=r'(SPC\w+)\.Start\(P,shared'
-  names=re.findall(pattern,s);self.assertEqual(names.count('SPCLegacyCleanup'),1)
+  names=start_order(s);self.assertEqual(names.count('SPCLegacyCleanup'),1)
   # B357 subsequently added the accepted reply service at this exact point.
   # Keep the complete prior order assertion, now including that approved addition.
   expected=re.findall(pattern,old)
@@ -96,11 +119,16 @@ class Production(unittest.TestCase):
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"));self.assertLess(s.index("composition.Run('LegacyCleanup'"),s.index("composition.Run('BindingProbe'"))
   self.assertNotIn("composition.Run('YieldCarrierExit'",s)
-  for name in MODULES:self.assertIn('centralExit=true',entry(name))
+  for name in MODULES:
+   slot=startup_slot(name,s)
+   if slot==name:self.assertIn('centralExit=true',entry(name,s))
+   else:self.assertIn('SPCLegacyCleanup.'+EXPERIMENT_LOADS[name][1]+'(',entry(slot,s))
   self.assertIn('retireCommerce=true',entry('Lv3Effects'))
   for name in ('NetworkBoost','GreatWorkAdjacency','CommerceConvergence'):self.assertIn('retired=true',entry(name))
   for name in SUPPORT:self.assertNotIn('centralExit',entry(name))
-  v=production();v.execute("for _,name in ipairs({...})do assert(shared.StartStatus[name].state=='OK',name)end",*MODULES)
+  v=production()
+  v.execute("for _,name in ipairs({...})do assert(shared.StartStatus[name].state=='OK',name)end",
+            *(startup_slot(name,s) for name in MODULES))
   v.execute("local n=0;for name in pairs(registered)do assert(name=='LegacyCleanup');n=n+1 end;assert(n==1);lose();assert(status()=='WITHDRAWN'and removeCalls==1409 and plotWrites==2);assert(ca.present[999999]and cb.present[999999]and ca.plotValues.OTHER=='keep');for id in pairs(byID)do assert(not ca.present[id]and cb.present[id])end")
   measure('S8c5c_actual_production_cleanup',{'prior_legacy_exits':11,'current_legacy_exit_gates':1,'building_removals':1409,'plot_writes':2,'native_effect_cleanup':'USER_GAME_TEST_REQUIRED','new_events_timers':0})
  def test_thunk_is_registered_before_include_or_Start_can_fail(self):
@@ -112,8 +140,11 @@ class Production(unittest.TestCase):
     v=production(failure=None if is_late else name,late=name if is_late else None)
     v.execute("failed=...;assert(shared.StartStatus[failed].state=='FAILED');lose();assert(status()=='PARTIAL_HELD'and plotWrites==2 and not ca.present[definitions[byGroup.NetworkBoost.names[1]].Index]);s.ExitConfirmed();s.ExitConfirmed();assert(status()=='PARTIAL_HELD')",name)
  def test_nonparticipant_start_failure_does_not_lose_its_physical_cleanup(self):
+  source=(ROOT/'Mod/Gameplay.lua').read_text()
   for name in ('PurchaseProbe','GreatWorkProbe','Lv4Percent','NetworkBoost','GreatWorkAdjacency','CommerceConvergence'):
-   v=production(failure=name);v.execute("assert(shared.StartStatus[...].state=='FAILED');lose();assert(status()=='WITHDRAWN'and removeCalls==1409 and plotWrites==2)",name)
+   v=production(failure=name)
+   v.execute("assert(shared.StartStatus[...].state=='FAILED');lose();assert(status()=='WITHDRAWN'and removeCalls==1409 and plotWrites==2)",
+             startup_slot(name,source))
  def test_actual_two_target_owners_recover_independently_after_Store_budget(self):
   v=production("""
   local has=P.HasBuilding;P.HasBuilding=function(b,id)local group=byID[id].group
@@ -153,7 +184,12 @@ class Production(unittest.TestCase):
  def test_live_Withdraw_and_manual_entry_points_remain_callable(self):
   v=production()
   for name in SUPPORT:v.execute(entry(name))
-  v.execute("assert(type(shared.CopyYields.Withdraw)=='function'and type(shared.StandardizationDiscount.Withdraw)=='function'and type(shared.CultureInspirationProbe.Withdraw)=='function'and type(shared.Lv3Effects.WithdrawCulture)=='function'and type(shared.Lv4Percent.WithdrawCulture)=='function'and type(shared.GreatWorkAdjacency.Withdraw)=='function'and type(shared.CommerceConvergence.Withdraw)=='function'and type(shared.Dialogue.Init)=='function'and type(shared.GreatWorkProbe.Run)=='function'and type(shared.PurchaseProbe.Run)=='function')")
+  v.execute("assert(type(shared.CopyYields.Withdraw)=='function'and type(shared.StandardizationDiscount.Withdraw)=='function'and type(shared.CultureInspirationProbe.Withdraw)=='function'and type(shared.Lv3Effects.WithdrawCulture)=='function'and type(shared.Lv4Percent.WithdrawCulture)=='function'and type(shared.GreatWorkAdjacency.Withdraw)=='function'and type(shared.CommerceConvergence.Withdraw)=='function'and type(shared.Dialogue.Init)=='function')")
+  v.execute("assert(shared.PurchaseProbe==nil and shared.GreatWorkProbe==nil and type(shared.GreatWorkLoadCleanup.Clean)=='function')")
+  path=ROOT/'Mod/Gameplay.lua';before=retired_source('Gameplay.lua',B511);read=Path.read_text
+  with patch.object(Path,'read_text',lambda p,*a,**kw:before if p==path else read(p,*a,**kw)):
+   old=production()
+  old.execute("assert(type(shared.GreatWorkProbe.Run)=='function'and type(shared.PurchaseProbe.Run)=='function')")
  def test_real_composition_late_module_failure_keeps_registered_runner_guarded(self):
   v=production(late='Lv3Support');v.execute("lose();assert(status()=='PARTIAL_HELD');for i=1,5 do s.ExitConfirmed()end;assert(status()=='PARTIAL_HELD'and removeByGroup.Lv3Support==nil and removeCalls==1397)")
 

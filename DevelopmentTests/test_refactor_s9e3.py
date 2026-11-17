@@ -97,8 +97,8 @@ class UI(unittest.TestCase):
 class CentralLegacy(unittest.TestCase):
  def test_production_central_options_do_not_run_world_Clean_on_transfer(self):
   v=production();v.execute("""
-  calls=0;shared.NetworkBoost.ready=true;shared.GreatWorkProbe.ready=true
-  shared.NetworkBoost.Clean=function()calls=calls+1 end;shared.GreatWorkProbe.Clean=function()calls=calls+1 end
+  calls=0;shared.NetworkBoost.ready=true;shared.GreatWorkLoadCleanup.ready=true
+  shared.NetworkBoost.Clean=function()calls=calls+1 end;shared.GreatWorkLoadCleanup.Clean=function()calls=calls+1 end
   Events.CityTransfered.Fire(9,900,10);assert(calls==0)
   lose();assert(status()=='WITHDRAWN'and removeCalls==1409 and plotWrites==2)
   """)

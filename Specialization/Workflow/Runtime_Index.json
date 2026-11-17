@@ -601,9 +601,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "70a8f337389a7a60433f828ddd9f1794b8ce6f9d7788c50be758d7785144084e",
+      "sha256": "f8a9ec7b8d3d6df89aa0b6d36e97a57e3c5b26988d6a42bf371d0e8eb9b8b7cd",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1073 reads the current foundation and carrier reference directly from the existing Store. Local replay covers two populated cold records and the real Gameplay root with CityFlowProbe absent."
+      "provenance": "S1074 moves exact B053 and B055 load withdrawal to LegacyCleanup at the original startup positions. The actual roots retain the same cold cleanup, bounded retry, reports and Store exit proof with both old modules absent."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -736,9 +736,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "04f33cd96f96bc59f098fa1628f92fc2dd70027127661b8071501c46afb70661",
+      "sha256": "c704f615fe3d5b1cc283c4d8333f76b9c9381142b0a272fca123e0d32b8852e9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1073 reads the current foundation and carrier reference directly from the existing Store. Local replay covers two populated cold records and the real Gameplay root with CityFlowProbe absent."
+      "provenance": "S1074 moves exact B053 and B055 load withdrawal to LegacyCleanup at the original startup positions. The actual roots retain the same cold cleanup, bounded retry, reports and Store exit proof with both old modules absent."
     },
     "Mod/PurchaseProbe.lua": {
       "sha256": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
@@ -861,9 +861,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "abeb70bf003fe35cea88c0ebaf54c0017a511f510944fdbc2f84a60bca3ba1b9",
+      "sha256": "09f55843c1b6ccce490ef1a6643aaf552e0056547cbbf82f41e7d24da54aacfc",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1073 reads the current foundation and carrier reference directly from the existing Store. Local replay covers two populated cold records and the real Gameplay root with CityFlowProbe absent."
+      "provenance": "S1074 moves exact B053 and B055 load withdrawal to LegacyCleanup at the original startup positions. The actual roots retain the same cold cleanup, bounded retry, reports and Store exit proof with both old modules absent."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1086,9 +1086,9 @@
       "provenance": "S1009 B472 old Great Work adjacency command retirement."
     },
     "Mod/UI/BoostRefresh.lua": {
-      "sha256": "7acc33062990bb861d666df7cc436bc5005b8e7e4f17e60566c80f2ca65b5e10",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "994dd7c036bbe4d3246dad099fdd40ba3d005d631d5454694ee1e151eec7e63f",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1074 moves exact B053 and B055 load withdrawal to LegacyCleanup at the original startup positions. The actual roots retain the same cold cleanup, bounded retry, reports and Store exit proof with both old modules absent."
     },
     "Mod/UI/BoostRefresh.xml": {
       "sha256": "ae33c200ecdfeffd91165035eac916d0d32759622607f5658f58a7500c7b3595",
@@ -1556,9 +1556,9 @@
       "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LegacyCleanup.lua": {
-      "sha256": "fac336744471beb59cabb12e4dd0949a443fe985148128abc35eaeff0b1b1f51",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
-      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
+      "sha256": "f69aac05a372e57202a268f55c013adbb88e4bd5b35773dd5227aa7538af8548",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1074 moves exact B053 and B055 load withdrawal to LegacyCleanup at the original startup positions. The actual roots retain the same cold cleanup, bounded retry, reports and Store exit proof with both old modules absent."
     },
     "Mod/DevelopmentInvestmentTargets.lua": {
       "sha256": "0af2689c6ae0e01b5f9e50683da32a19f1499f10b1ae7c7d566ee3b5c9b119f8",

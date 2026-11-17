@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B464, B465, package
+from retired_crew_sources import B464, B465, B511, package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -14,11 +14,11 @@ CONTROL = 'CompletionRecordButton'
 ACTION = 'COMPLETION_RECORD_READ'
 
 
-def context(root,name='Gameplay'):
+def context(root,name='Gameplay',revision=B464):
     retired=root==ROOT
     vfs=PackageVFS(manifest=root/'Mod/SpecializationP0.modinfo',
                    forbidden_globals=('SPCCompletionRecordProbe',) if retired else ())
-    return Context(name=name,vfs=vfs,history=None if retired else (root,B464))
+    return Context(name=name,vfs=vfs,history=None if retired else (root,revision))
 
 
 def save_fixture():
@@ -180,8 +180,8 @@ def load_and_complete(root,saved, *, journal_retired=False):
             ctx.eval('GameEvents.OnDistrictConstructed.Count()'))
 
 
-def routes(root):
-    gp,ui=context(root),context(root,'UI/BackgroundRoutes')
+def routes(root,revision=B464):
+    gp,ui=context(root,revision=revision),context(root,'UI/BackgroundRoutes',revision)
     packets=exercise_proof(gp,ui)
     assert all(c.load_counts['missing']+c.load_counts['failed']==0 for c in (gp,ui))
     return packets,gp.load_counts,ui.load_counts
@@ -256,14 +256,20 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             no_fact_write=True,modeled_vfs=['present','throw','silent_nil']))
 
     def test_real_roots_keep_nonempty_route_proof(self):
-        with package(B464) as previous:
-            before,after=(routes(root) for root in (previous,ROOT))
-        self.assertEqual(before[0],after[0])
+        with package(B464) as previous, package(B511) as pre_handoff:
+            before=routes(previous)
+            old=routes(pre_handoff,B511)
+            after=routes(ROOT)
+        self.assertEqual(before[0],old[0])
+        self.assertEqual(old[0],after[0])
         self.assertEqual(len(after[0]),3)
-        self.assertEqual(before[2],after[2])
-        self.assertEqual(after[1],{**before[1],'attempts':before[1]['attempts']-1,
-                                   'completed':before[1]['completed']-1})
-        measure('legacy_completion_record_routes',dict(matching_route_packets=3))
+        self.assertEqual(before[2],old[2])
+        self.assertEqual(old[2],after[2])
+        self.assertEqual(old[1],{**before[1],'attempts':before[1]['attempts']-1,
+                                 'completed':before[1]['completed']-1})
+        self.assertEqual(after[1],{**old[1],'attempts':old[1]['attempts']-2,
+                                   'completed':old[1]['completed']-2})
+        measure('legacy_completion_record_routes',dict(matching_route_packets=3, experiment_module_loads_removed=2))
 
     def test_only_the_hidden_completion_record_request_retires(self):
         with package(B464) as previous, package(B465) as retired:

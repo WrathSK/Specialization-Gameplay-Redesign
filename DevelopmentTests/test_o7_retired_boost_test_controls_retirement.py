@@ -28,7 +28,8 @@ def boost_startup(root, source):
       local retired=...
       local s=ExposedMembers.SPC_P0
       local boost=s.NetworkBoost
-      assert(boost.retired and not boost.ready and not s.GreatWorkProbe.ready)
+      local cleanup=s.GreatWorkLoadCleanup or s.GreatWorkProbe
+      assert(boost.retired and not boost.ready and not cleanup.ready)
       local defs,index={},0
       local function add(name)
         if defs[name] then return defs[name].Index end
@@ -74,8 +75,11 @@ def boost_startup(root, source):
     """, source is None)
     ui.load('UI/BoostRefresh')
     ui.execute("""
-      ExposedMembers.SPC_P0={Version=SPCP0.VERSION,NetworkBoost={ready=false},GreatWorkProbe={ready=false}}
-    """)
+      local s={Version=SPCP0.VERSION,NetworkBoost={ready=false}}
+      local key=... and 'GreatWorkProbe' or 'GreatWorkLoadCleanup'
+      s[key]={ready=false};ExposedMembers.SPC_P0=s
+      fixtureGreatWorkCleanup=s[key]
+    """, bool(source))
     packets = []
 
     def emit(pid, operation, packet):
@@ -88,7 +92,8 @@ def boost_startup(root, source):
     gp.execute('send(...)', gp.table(packets[0]))
     gp.execute("""
       local s=ExposedMembers.SPC_P0
-      assert(s.NetworkBoost.ready and s.GreatWorkProbe.ready and s.NetworkBoost.changes==1)
+      local cleanup=s.GreatWorkLoadCleanup or s.GreatWorkProbe
+      assert(s.NetworkBoost.ready and cleanup.ready and s.NetworkBoost.changes==1)
       assert(not present[boostID] and not present[gwID] and present[monumentID])
       assert(#removed==2 and removed[1]=='BUILDING_SPC_B057_RESEARCH_2' and removed[2]=='BUILDING_SPC_B055_GW_CITY')
       send({Action='BOOST_READ',Token='kept-read',CityID=1})
@@ -99,7 +104,7 @@ def boost_startup(root, source):
     """)
     ui.execute("""
       local s=ExposedMembers.SPC_P0
-      s.NetworkBoost.ready=true;s.GreatWorkProbe.ready=true
+      s.NetworkBoost.ready=true;fixtureGreatWorkCleanup.ready=true
       Events.GameCoreEventPlaybackComplete.Fire()
     """)
     assert len(packets) == 1
@@ -135,8 +140,9 @@ class RetiredBoostTestControls(unittest.TestCase):
             before = boost_startup(previous, B470)
             for name in ('NetworkBoost.lua', 'LegacyCleanup.lua', 'LegacyCleanupCatalog.lua', 'UI/BoostRefresh.lua',
                          'UI/BoostGreatWorkRead.lua', 'GreatWorkProbe.lua', 'BoostConfig.lua', 'BoostIntegerConfig.lua'):
-                # The reader's byte identity belongs to the published B470/B471 transition.
-                candidate = retired if name == 'UI/BoostGreatWorkRead.lua' else ROOT
+                # These later handoffs do not change the published B470/B471 byte comparison.
+                changed_later = {'UI/BoostGreatWorkRead.lua','LegacyCleanup.lua','UI/BoostRefresh.lua'}
+                candidate = retired if name in changed_later else ROOT
                 self.assertEqual((previous/'Mod'/name).read_bytes(), (candidate/'Mod'/name).read_bytes())
         after = boost_startup(ROOT, None)
         self.assertEqual(before[:-1], after[:-1])

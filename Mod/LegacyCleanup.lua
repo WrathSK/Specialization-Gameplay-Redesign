@@ -1,6 +1,46 @@
 if not SPCLegacyCleanupCatalog then include('LegacyCleanupCatalog')end
--- Explicit held cleanup only. No listeners, timers, scans or positive effects.
+-- Confirmed city exit cleanup and the established load-only experiment withdrawals.
 SPCLegacyCleanup={}
+
+local function withdrawExperiment(P,city,names,missing,unconfirmed)
+ for _,name in ipairs(names)do
+  local row=assert(P.Info('Buildings',name),missing)
+  local buildings=city:GetBuildings()
+  if P.HasBuilding(buildings,row.Index)~=false then P.RemoveBuilding(buildings,row.Index)end
+  assert(P.HasBuilding(buildings,row.Index)==false,unconfirmed)
+ end
+end
+
+function SPCLegacyCleanup.InstallPurchaseLoad(P)
+ local load=P.Field(Events,'LoadScreenClose')
+ if load and load.Add then
+  local names=SPCLegacyCleanupCatalog.Group('PurchaseProbe').names
+  load.Add(function()
+   for _,player in pairs(Players)do for _,city in player:GetCities():Members()do
+    P.Count('city_scan')
+    local ok,err=pcall(withdrawExperiment,P,city,names,'B053_DATABASE_MISSING','B053_CARRIER_UNCONFIRMED')
+    if not ok then print('[SPC][B053][CLEANUP] '..tostring(err))end
+   end end
+  end)
+ end
+end
+
+function SPCLegacyCleanup.StartGreatWorkLoad(P,shared)
+ local cleanup={ready=false}
+ local names=SPCLegacyCleanupCatalog.Group('GreatWorkProbe').names
+ function cleanup.Clean()
+  for _,player in pairs(Players)do
+   local cities=player:GetCities()
+   if cities then for _,city in cities:Members()do
+    P.Count('city_scan')
+    withdrawExperiment(P,city,names,'B055_GW_DATABASE_MISSING','B055_GW_WRITE_UNCONFIRMED')
+   end end
+  end
+  cleanup.ready=true
+ end
+ shared.GreatWorkLoadCleanup=cleanup
+end
+
 function SPCLegacyCleanup.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'LEGACY_STORE_UNAVAILABLE')
  assert(type(store.IsExitCurrent)=='function'and type(store.ExitCompleted)=='function','LEGACY_EXIT_PROOF_UNAVAILABLE')

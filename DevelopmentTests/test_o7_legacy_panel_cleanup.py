@@ -1,8 +1,8 @@
 """Replay the old panel requests through real Lua entrypoints before and after removal."""
 import unittest
 
-from refactor_harness import ROOT, measure
-from retired_crew_sources import B476, package
+from refactor_harness import Context, PackageVFS, ROOT, measure
+from retired_crew_sources import B476, B511, package
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE, scalars
@@ -49,32 +49,45 @@ def panel(root, *, legacy=False):
 
 
 def fixture(root, revision):
-    gp = context(root, revision)
+    if revision:
+        gp = context(root, revision)
+    else:
+        gp = Context(name='Gameplay', vfs=PackageVFS(absent=('PurchaseProbe','GreatWorkProbe'),
+            forbidden_globals=('SPCPurchaseProbe','SPCGreatWorkProbe')))
     gp.execute(NATIVE)
     load = gp.globals().include
 
     def include(name):
         result = load(name)
-        if name == 'PurchaseProbe':
+        if name == ('PurchaseProbe' if revision else 'LegacyCleanup'):
             # Use the callback actually installed by this owner. The native
             # doubles below cover carrier handling, not every LoadScreenClose consumer.
             gp.execute("""
-              local start=SPCPurchaseProbe.Start
-              function SPCPurchaseProbe.Start(...)
+              local legacy=...
+              local owner=legacy and SPCPurchaseProbe or SPCLegacyCleanup
+              local method=legacy and 'Start' or 'InstallPurchaseLoad'
+              local start=owner[method]
+              owner[method]=function(...)
                 local n=Events.LoadScreenClose.Count()
                 start(...)
                 purchaseClose=Events.LoadScreenClose.Count()
                 assert(purchaseClose==n+1)
               end
-            """)
+            """, bool(revision))
         return result
 
     gp.globals().include = include
     gp.load('Gameplay')
     gp.execute("""
       local s=ExposedMembers.SPC_P0
-      assert(s.StartStatus.GreatWorkProbe.state=='OK' and s.StartStatus.PurchaseProbe.state=='OK')
-      assert(s.NetworkBoost.retired and not s.NetworkBoost.ready and not s.GreatWorkProbe.ready)
+      if ... then
+        assert(s.StartStatus.GreatWorkProbe.state=='OK' and s.StartStatus.PurchaseProbe.state=='OK')
+      else
+        assert(s.StartStatus.GreatWorkLoadCleanup.state=='OK' and s.StartStatus.PurchaseLoadCleanup.state=='OK')
+        assert(not s.StartStatus.GreatWorkProbe and not s.StartStatus.PurchaseProbe)
+      end
+      local cleanup=s.GreatWorkLoadCleanup or s.GreatWorkProbe
+      assert(s.NetworkBoost.retired and not s.NetworkBoost.ready and not cleanup.ready)
       local definitions,index={},0
       local function add(name)
         if definitions[name] then return definitions[name].Index end
@@ -125,7 +138,8 @@ def fixture(root, revision):
       function request(action,token)
         return send({Action=action,Token=token,CityID=1,Page=1})
       end
-    """)
+    """, bool(revision))
+    assert gp.load_counts['missing']==0
     return gp
 
 
@@ -135,8 +149,11 @@ def recover_and_request(root, revision=None):
     ui.execute(NATIVE)
     ui.load('UI/BoostRefresh')
     ui.execute("""
-      ExposedMembers.SPC_P0={Version=SPCP0.VERSION,NetworkBoost={ready=false},GreatWorkProbe={ready=false}}
-    """)
+      local s={Version=SPCP0.VERSION,NetworkBoost={ready=false}}
+      local key=... and 'GreatWorkProbe' or 'GreatWorkLoadCleanup'
+      s[key]={ready=false};ExposedMembers.SPC_P0=s
+      fixtureGreatWorkCleanup=s[key]
+    """, bool(revision))
     packets = []
 
     def emit(pid, operation, packet):
@@ -149,7 +166,8 @@ def recover_and_request(root, revision=None):
     gp.execute('send(...)', gp.table(packets[0]))
     gp.execute("""
       local s=ExposedMembers.SPC_P0
-      assert(s.NetworkBoost.ready and not s.GreatWorkProbe.ready)
+      local cleanup=s.GreatWorkLoadCleanup or s.GreatWorkProbe
+      assert(s.NetworkBoost.ready and not cleanup.ready)
       assert(not localPresent[boostID] and not localPresent[cityWorkID] and localPresent[objectWorkID])
       assert(#changes==2 and localPresent[monumentID])
       rejectObject=false
@@ -159,7 +177,8 @@ def recover_and_request(root, revision=None):
     gp.execute('send(...)', gp.table(packets[1]))
     gp.execute("""
       local s=ExposedMembers.SPC_P0
-      assert(s.GreatWorkProbe.ready and not localPresent[objectWorkID] and #changes==3)
+      local cleanup=s.GreatWorkLoadCleanup or s.GreatWorkProbe
+      assert(cleanup.ready and not localPresent[objectWorkID] and #changes==3)
       Events.LoadScreenClose.Order({purchaseClose})
       Events.LoadScreenClose.Fire()
       Events.LoadScreenClose.Order(nil)
@@ -171,7 +190,7 @@ def recover_and_request(root, revision=None):
       Events.LoadScreenClose.Order(nil)
       assert(#changes==7)
     """)
-    ui.execute("ExposedMembers.SPC_P0.GreatWorkProbe.ready=true;Events.GameCoreEventPlaybackComplete.Fire()")
+    ui.execute("fixtureGreatWorkCleanup.ready=true;Events.GameCoreEventPlaybackComplete.Fire()")
     assert len(packets) == 2
     reports = gp.execute("""
       local legacy=...
@@ -214,10 +233,13 @@ def recover_and_request(root, revision=None):
       assert(not localPresent[cityWorkID] and not localPresent[objectWorkID])
       assert(not localPresent[purchaseFixtureID] and not localPresent[purchaseDiscountID])
       return gw,facts,boost
-    """, revision is not None)
+    """, revision == B476)
     assert all(vm.load_counts['missing'] + vm.load_counts['failed'] == 0 for vm in (gp, ui))
     changes = [scalars(gp.globals().changes[i]) for i in range(1, len(gp.globals().changes) + 1)]
-    return reports, changes[:7], len(changes) - 7
+    callbacks = (gp.eval('Events.LoadScreenClose.Count()'), gp.eval('purchaseClose'),
+                 *(ui.eval('Events.'+name+'.Count()')
+                   for name in ('SystemUpdateUI','LoadScreenClose','GameCoreEventPlaybackComplete')))
+    return reports, changes[:7], len(changes) - 7, callbacks
 
 
 class LegacyPanelCleanup(unittest.TestCase):
@@ -238,12 +260,15 @@ class LegacyPanelCleanup(unittest.TestCase):
             retained_request_packets=len(requests), idle_identity_listeners_removed=len(IDENTITY_EVENTS)))
 
     def test_old_effect_commands_stop_and_both_saved_experiments_still_withdraw(self):
-        with package(B476) as previous:
-            before, old_cleanup, old_writes = recover_and_request(previous, B476)
-        reports, cleanup, writes = recover_and_request(ROOT)
+        with package(B476) as previous, package(B511) as pre_handoff:
+            before, old_cleanup, old_writes, _ = recover_and_request(previous, B476)
+            baseline = recover_and_request(pre_handoff, B511)
+        reports, cleanup, writes, callbacks = recover_and_request(ROOT)
         self.assertEqual((reports, cleanup), (before, old_cleanup))
         self.assertEqual((old_writes, writes), (8, 0))
+        self.assertEqual((reports, cleanup, writes, callbacks), baseline)
         measure('legacy_panel_effects', dict(manual_carrier_writes=[old_writes, writes],
             saved_carrier_removals=len(cleanup), b055_bounded_retry=True,
             ordinary_building_preserved=True, permanent_writes=[0, 0],
-            retained_reports='MATCH', old_command_probes=15))
+            retained_reports='MATCH', old_command_probes=15,
+            load_callback_position_and_retry_callbacks='MATCH', experiment_modules_absent=True))

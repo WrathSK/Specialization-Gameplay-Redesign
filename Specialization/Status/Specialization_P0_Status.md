@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1073
-Implementation Build: B511.538 / modinfo538 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1074
+Implementation Build: B512.539 / modinfo539 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CITY_FACTS_STORE_ENTRY_LOCAL_PASS
+Work State: LEGACY_EXPERIMENT_LOAD_CLEANUP_OWNERSHIP_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B511.538 on develop](#read-current-city-foundations-directly-from-the-store--s1073). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B512.539 on develop](#move-early-experiment-load-cleanup-to-the-existing-cleanup-owner--s1074). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The current city facts replay confirms cold and missing-probe reads under Lua 5.1. Standardization retains its scoped local verification. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Transfer the existing load cleanup of the retired B053 purchase and B055 Great Work experiment carriers. Preserve the selected city facts view, the existing B055 background readiness handshake, and the Store exit cleanup. Investigate the remaining industrial diagnostic readers before any package removal. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The experiment cleanup handoff passes scoped Lua 5.1 replay with both old modules absent. The carried Standardization stage passes 118 methods. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Review path-level package retirement for the two detached experiment modules and their unused purchase report reader. Check the hidden industrial-copy report and legacy transport and isolation references separately. Keep the exact SQL carrier definitions used by current withdrawal. Native observations remain on the existing gate. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Move early experiment load cleanup to the existing cleanup owner — S1074
+
+**LOCAL_SIMULATION_PASS in scope.** LegacyCleanup withdraws the B053 discount then its purchase fixture through the existing load callback. The B055 readiness handshake still runs the earlier boost cleanup before withdrawing the CITY then OBJECT Great Work carriers. Completion follows confirmed readback. With both old experiment modules unavailable, the real Gameplay and UI replay matches the prior callback positions and count, seven ordered removals across owned and foreign cities, retained reports and the original bounded second attempt after an injected B055 failure. Repeated callbacks do no additional writes. Confirmed city exit retains its single Store gate and exact group catalogue. The two Lua sources and SQL definitions still ship. The old Lua entries are now absent from production startup.
+
+**Runtime impact (T01, T03, T06).** Both load duties use the existing exact names from LegacyCleanupCatalog. The same city scopes, iteration, readback calls, failure handling and callback ordering carry forward. The transient B055 readiness flag moves with its owner. The test observes two fewer script loads, zero additional callbacks or saved writes, and three identical nonempty network proof packets. The existing ordinary-turn network check and separate Crew diagnostics retain their own gates.
+
+**Reproduction.** Use CPython 3.14.8, Lupa 2.8 (Lua 5.1), configured official Assets and read-only B413 HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O7aiLegacyPanelCleanup` (32 of 33 pass). The older Dialogue report test compares a current Lua file with B472 byte-for-byte and fails identically on the B511 baseline. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback` (118/118). Run `python3.14 -B -m unittest test_refactor_s8c5c.Production test_refactor_s9c2.Startup test_refactor_s9e4.Retired test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_formal_facts_without_city_flow_probe test_o7_legacy_panel_cleanup` (24/24). Full local results `local/refactor/S1074-ExperimentLoadOwnership-verified/closure.json` SHA256 `87c26c6a25485ee100cccfefddcc7b2774e112fad4993e9b6d8b5218a044435b` and `local/refactor/S1074-StandardizationCarry/closure.json` SHA256 `d67048f552d6551426bd52caf0ca21f027a5bd61636b8896cd6cebd2a82b198c`.
+
+**STATIC_CONFIRMED.** 208 Lua 5.1 compiles, 34 XML-family parses, 670 file and 10 Lua replacement references, and no new static alarm. Tested source SHA256 `306e336dff04aee2c7505d6ba9cbe2db56793c18b0f6d7e3a1b034d1489aac15`. The 339-file package SHA256 is `cb97b6ca71a185b651d5354102acd10ac473717ac775ecde443670973441681f`. Source-only. Installed B489.516 byte identity is verified across 337 files. Native HD and official coverage of these new slices remains unmeasured.
 
 ### Read current city foundations directly from the Store — S1073
 

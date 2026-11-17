@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1073",
-    "runtime": "B511.538 / modinfo538",
+    "status": "S1074",
+    "runtime": "B512.539 / modinfo539",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Route the current city foundation and carrier reference to the existing Store without requiring the old CityFlowProbe facade.",
+  "goal": "Move exact legacy purchase and Great Work load withdrawal off the retired experiment modules while preserving the existing cleanup order and verification.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Move early experiment load cleanup to the existing cleanup owner — S1074",
+      "reason": "S1074 moves exact B053 and B055 load withdrawal to LegacyCleanup at the original startup positions. The actual roots retain the same cold cleanup, bounded retry, reports and Store exit proof with both old modules absent."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -822,6 +828,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1074 verifies both opened save cleanup paths without the two old modules, matching readiness/ACK and confirmed Store exit, with 118 passing Standardization carryover methods and 24 passing focused methods.",
     "S1073 verifies the actual current city fact reads, Store reference witness, missing CityFlowProbe modes, and retained Claim and route paths.",
     "S1072 verifies the normal Standardization path, exact old-ID withdrawal and readback, current Carrier application and scoped exit, and actual Gameplay startup with both old modules unavailable. The broad direct historical replay has the same 37 non-passing cases on base and candidate.",
     "S1071 passes all 220 methods from the exact S1070 selection with the same 339-file B509 package. The additional 109-method Expedition training selection has six already-reproduced fixture errors; the test-only changes introduce no additional failing case.",
@@ -5447,6 +5454,37 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#read-current-city-foundations-directly-from-the-store--s1073"
+    },
+    "s1074_experiment_load_cleanup_ownership": {
+      "build": "B512.539 / modinfo539",
+      "baseline": "7de0ba2ed10c64a6e61e0620b25ac308531e630b",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "selected_stage_results": {
+        "O7aiLegacyPanelCleanup": {
+          "path": "local/refactor/S1074-ExperimentLoadOwnership-verified/closure.json",
+          "sha256": "87c26c6a25485ee100cccfefddcc7b2774e112fad4993e9b6d8b5218a044435b",
+          "status": "FAIL",
+          "passed": 32,
+          "collected": 33
+        },
+        "NStandardizationEffectReadback": {
+          "path": "local/refactor/S1074-StandardizationCarry/closure.json",
+          "sha256": "d67048f552d6551426bd52caf0ca21f027a5bd61636b8896cd6cebd2a82b198c",
+          "status": "LOCAL_SIMULATION_PASS",
+          "passed": 118,
+          "collected": 118
+        }
+      },
+      "supplemental_pass": 24,
+      "baseline_dialogue_failure": 1,
+      "experiment_loads_removed": 2,
+      "legacy_cleanup_callback_position": "MATCH",
+      "source_sha256": "306e336dff04aee2c7505d6ba9cbe2db56793c18b0f6d7e3a1b034d1489aac15",
+      "package_sha256": "cb97b6ca71a185b651d5354102acd10ac473717ac775ecde443670973441681f",
+      "files": 339,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#move-early-experiment-load-cleanup-to-the-existing-cleanup-owner--s1074"
     }
   }
 }

@@ -89,7 +89,8 @@ class Startup(unittest.TestCase):
   for name in ('SPCStorageProbe','SPCEnvelopeProbe'):expected.remove(name)
   self.assertEqual(re.findall(pattern,retired_source('Gameplay.lua',B464)),expected)
   expected.remove('SPCCompletionRecordProbe')
-  self.assertEqual(re.findall(pattern,current),expected)
+  from test_refactor_s8c5c import start_order
+  self.assertEqual(start_order(current),expected)
   self.assertIn("composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'}",current)
   c=startup();c.load('Gameplay');c.execute("assert(ExposedMembers.SPC_P0.StartStatus.PlayerActionReplies.state=='OK')")
  def test_original_composite_start_order_and_cleanup_assertion_remains_at_B356(self):

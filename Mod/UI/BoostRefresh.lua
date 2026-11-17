@@ -8,7 +8,7 @@ local function refresh()
  if busy or not s or s.Version~=P.VERSION or not s.NetworkBoost or not P.IsTestPlayer(pid) then return end
  local turn=Game.GetCurrentGameTurn();if turn~=lastTurn then lastTurn=turn;tries=0 end
  if tries>=3 then return end
- if s.NetworkBoost.ready and s.GreatWorkProbe and s.GreatWorkProbe.ready then return end
+ if s.NetworkBoost.ready and s.GreatWorkLoadCleanup and s.GreatWorkLoadCleanup.ready then return end
  busy=true;tries=tries+1
  local ok,err=pcall(UI.RequestPlayerOperation,pid,PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action='BOOST_INIT',Token=P.VERSION..':boost:init'})
  busy=false;if not ok then print('[SPC][B055][INIT] '..tostring(err)) end
