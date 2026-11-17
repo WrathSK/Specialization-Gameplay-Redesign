@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, B518, B519, B521, RETIRED_ADJACENCY_FILES, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, B518, B519, B521, B522, RETIRED_ADJACENCY_FILES, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -13,13 +13,16 @@ EXPERIMENT_LOADS={
  'PurchaseProbe':('PurchaseLoadCleanup','InstallPurchaseLoad'),
  'GreatWorkProbe':('GreatWorkLoadCleanup','StartGreatWorkLoad'),
  'CommerceConvergence':('CommerceLegacyCleanup','StartCommerceLoad'),
+ 'Lv3Support':('Lv3Support','StartLv3Support'),
+ 'Lv3Effects':('Lv3Effects','StartLv3Effects'),
 }
 
-def startup_slot(name,source):
+def replacement_method(name,source):
  replacement=EXPERIMENT_LOADS.get(name)
- if replacement and "composition.Run('"+replacement[0]+"'" in source:
-  return replacement[0]
- return name
+ if replacement and 'SPCLegacyCleanup.'+replacement[1]+'(' in source:return replacement[1]
+
+def startup_slot(name,source):
+ return EXPERIMENT_LOADS[name][0] if replacement_method(name,source) else name
 
 def start_order(source):
  for name,(_,method) in EXPERIMENT_LOADS.items():
@@ -69,8 +72,8 @@ def production(extra='',failure=None,late=None,*,modules=None,gameplay=None):
  include=v.globals().include
  def wrapped(name):
   if failure==name:raise RuntimeError('INCLUDE_FAILURE_'+name)
-  if name in EXPERIMENT_LOADS and startup_slot(name,gameplay)==name:
-   original=B519 if name=='CommerceConvergence' else B511
+  if name in EXPERIMENT_LOADS and not replacement_method(name,gameplay):
+   original={'CommerceConvergence':B519,'Lv3Support':B522,'Lv3Effects':B522}.get(name,B511)
    out=v.execute(retired_source(name+'.lua',original))
   elif name+'.lua' in RETIRED_ADJACENCY_FILES:out=v.execute(retired_source(name+'.lua',B518))
   elif name=='Lv4Percent':out=v.execute(retired_source(name+'.lua',B521))
@@ -83,9 +86,11 @@ def production(extra='',failure=None,late=None,*,modules=None,gameplay=None):
  v.execute(entry('LegacyCleanup',gameplay))
  for name in modules:
   slot=startup_slot(name,gameplay)
-  if slot!=name and failure==name:
-   method=EXPERIMENT_LOADS[name][1]
-   v.execute("SPCLegacyCleanup[...]=function()error('EXPERIMENT_START_FAILURE')end",method)
+  method=replacement_method(name,gameplay)
+  if method and failure==name:
+   v.execute("SPCLegacyCleanup[...]=function()error('RELOCATED_START_FAILURE')end",method)
+  if method and late==name:
+   v.execute("local name=...;local start=SPCLegacyCleanup[name];SPCLegacyCleanup[name]=function(...)start(...);error('LATE_START_FAILURE')end",method)
   v.execute(entry(slot,gameplay))
  v.execute("if shared.Dialogue then shared.Dialogue.retired=true end;composition.Complete();s=shared.CityProgressionStore;function status()return s.Status(ca).exitStatus end;function lose()T.loss(ca,9,900)end")
  return v
@@ -145,9 +150,12 @@ class Production(unittest.TestCase):
    if retired and name in ('GreatWorkAdjacency','Lv4Percent'):
     self.assertNotIn("composition.Run('"+name+"'",s)
     self.assertIn('centralExit=true',entry(name,retired_source('Gameplay.lua',B518 if name=='GreatWorkAdjacency' else B521)))
-   elif slot==name:self.assertIn('centralExit=true',entry(name,s))
-   else:self.assertIn('SPCLegacyCleanup.'+EXPERIMENT_LOADS[name][1]+'(',entry(slot,s))
-  self.assertIn('retireCommerce=true',entry('Lv3Effects'))
+   elif replacement_method(name,s):
+    self.assertIn('SPCLegacyCleanup.'+replacement_method(name,s)+'(',entry(slot,s))
+    if name in ('Lv3Effects','Lv3Support'):
+     self.assertIn('centralExit=true',entry(name,retired_source('Gameplay.lua',B522)))
+   else:self.assertIn('centralExit=true',entry(name,s))
+  self.assertIn('retireCommerce=true',entry('Lv3Effects',retired_source('Gameplay.lua',B522)))
   for name in ('NetworkBoost','GreatWorkAdjacency','CommerceConvergence'):
    archived=retired_source('Gameplay.lua',B518) if retired and name=='GreatWorkAdjacency' else s
    if retired and name=='CommerceConvergence':archived=retired_source('Gameplay.lua',B519)

@@ -80,6 +80,139 @@ function SPCLegacyCleanup.StartCommerceLoad(P,shared)
  end)end
 end
 
+-- Load cleanup, scoped retries and confirmed-exit adapters for the old level-three groups.
+function SPCLegacyCleanup.StartLv3Support(P,shared)
+ include('RuntimeWork')
+ include('SpecialistSupport')
+ local data={ready=false,busy=false,errors={},changes=0,ruleset='RETIRED_D0032_P0B1'};shared.Lv3Support=data
+ local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
+  data.changes=data.changes+SPCSpecialistSupport.Retire(P,c,shared)
+ end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
+ function data.Audit(scope)
+  if not data.ready or data.busy then return end
+  data.busy=true
+  if type(scope)=='table' and scope.load then targets.Run(scope)else targets.Retry(scope)end
+  data.busy=false
+ end
+ function data.Describe(pid,c)
+  return '\n旧三级专家升级：RETIRED（额外2F/2P、工业Gold不再生效）'
+   ..'\nretiredRemoved='..data.changes..' error='..tostring(data.errors[pid..':'..c:GetID()] or 'NONE')
+ end
+ local e=P.Field(Events,'LoadScreenClose');if e and e.Add then e.Add(function() data.ready=true;data.Audit({load=true}) end) end
+ SPCRuntimeWork.TargetHook(P,Events,'CityTransfered',data.Audit)
+ -- No ordinary scan: only exact failed retirement/exit candidates are retried.
+ SPCRuntimeWork.TargetHook(P,Events,'PlayerTurnActivated',data.Audit)
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ assert(shared.LegacyCleanup,'LEGACY_CLEANUP_UNAVAILABLE').RegisterRunner('Lv3Support',function(clean,ack)
+  return targets.Exit(clean,'LegacyCleanup',ack)
+ end)
+end
+
+function SPCLegacyCleanup.StartLv3Effects(P,shared)
+ include('RuntimeWork')
+ include('Tombstones')
+ local batch
+ local function readFacts(pid,c) return batch and batch.Facts(pid,c) or shared.EffectiveFacts.Read(pid,c) end
+ local data={ready=false,busy=false,errors={},changes=0,observed={}};shared.Lv3Effects=data
+ local function isolated(pid) return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
+ local cultureNames=SPCTombstones.Names('Lv3Culture');local names=SPCTombstones.Names('Lv3Culture')
+ for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'}) do names[#names+1]='BUILDING_SPC_DEV_LV3_COM_'..k end
+ local function read(c)
+  local coefficients={RESEARCH=0,CULTURE=0};local flags={}
+  for _,name in ipairs(names) do
+   local row=P.Info('Buildings',name);assert(row and row.Index,'B038_DATABASE_MISSING')
+   if P.HasBuilding(c:GetBuildings(),row.Index) then
+    local k,bit=name:match('_POP_(%u+)_(%d+)$')
+    if k then coefficients[k]=coefficients[k]+0.5*2^tonumber(bit)
+    else flags[#flags+1]=name:match('_COM_(%u+)$') end
+   end
+  end
+  return coefficients,flags
+ end
+ function data.WithdrawCulture(c)
+  SPCRuntimeWork.RetireOnce(P,shared,c,'Lv3Culture',function()
+  for _,name in ipairs(cultureNames)do
+   local r=assert(P.Info('Buildings',name),'B038_DATABASE_MISSING')
+   local b=c:GetBuildings();local present=P.HasBuilding(b,r.Index);assert(type(present)=='boolean','LV3_CARRIER_UNKNOWN')
+   if present then P.RemoveBuilding(b,r.Index);assert(P.HasBuilding(b,r.Index)==false,'LV3_REMOVE_UNCONFIRMED');data.changes=data.changes+1 end
+  end
+  return 0
+  end)
+  return true
+ end
+ local targets=SPCRuntimeWork.NewTargets(P,shared,function(pid,c)
+  return SPCRuntimeWork.RetireOnce(P,shared,c,'Lv3Effects',function()
+   -- All current outputs are retired; preserve isolation-owned experiment bits.
+   for _,name in ipairs(names)do
+    if not (isolated(pid) and name:find('_COM_',1,true))then
+     local id=assert(P.Info('Buildings',name),'B038_DATABASE_MISSING').Index
+     local present=P.HasBuilding(c:GetBuildings(),id);assert(type(present)=='boolean','LV3_CARRIER_UNKNOWN')
+     if present then P.RemoveBuilding(c:GetBuildings(),id);assert(P.HasBuilding(c:GetBuildings(),id)==false,'LV3_WRITE_UNCONFIRMED');data.changes=data.changes+1 end
+    end
+   end
+   return 0
+  end)
+ end,function(pid,cid,why)data.errors[tostring(pid)..':'..cid]=why end)
+ function data.Audit(scope) P.Count('audit_lv3');
+  if P.Observe then P.Observe('audit','Lv3Effects') end
+  if not data.ready or data.busy then P.Count('busy_skip');return end;data.busy=true;batch=SPCRuntimeWork.New(P,shared)
+  if type(scope)=='table' and scope.load then targets.Run(scope)else targets.Retry(scope)end
+  data.busy=false;batch=nil
+ end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function data.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not data.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  data.busy=true
+  local ok,why=pcall(function()
+   local ids={};for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'}) do ids[#ids+1]='BUILDING_SPC_DEV_LV3_COM_'..k end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
+   end
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);data.changes=data.changes+1 end
+    end
+   end
+
+  end)
+  data.busy=false;data.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
+ end
+ function data.Describe(pid,c)
+  local ok,out=pcall(function()
+   local coef,flags=read(c);local pop=c:GetPopulation()
+   local f=readFacts(pid,c)
+   if f.specialization=='RESEARCH' then return shared.ResearchCross and shared.ResearchCross.Describe(pid,c) or '跨学科研究尚未初始化' end
+   local lines={}
+   if f.specialization=='CULTURE' then
+    return '\n'..(shared.CultureAesthetic and shared.CultureAesthetic.Describe(pid,c) or '风雅熏陶等待确认；旧人口文化已退休。')
+   else
+    lines[#lines+1]='Commerce specialist +2 per type: '..(#flags>0 and table.concat(flags,',') or 'NONE')
+   end
+   return '\n'..table.concat(lines,'\n')
+
+  end)
+  return (ok and out or ('\nLv3 effects ERROR '..tostring(out)))..'\nLv3 effects status: '..tostring(data.errors[pid..':'..c:GetID()] or (data.ready and 'READY' or 'PENDING'))
+ end
+ local function hook(source,n,fn) local e=P.Field(source,n);if e and e.Add then e.Add(fn) end end
+ hook(Events,'LoadScreenClose',function() data.ready=true;data.Audit({load=true}) end)
+ for _,n in ipairs({'PlayerTurnActivated','CityTransfered','CityPopulationChanged'}) do SPCRuntimeWork.TargetHook(P,Events,n,data.Audit) end
+ for _,n in ipairs({'OnDistrictConstructed','OnBuildingConstructed','CityBuilt'}) do SPCRuntimeWork.TargetHook(P,GameEvents,n,data.Audit) end
+ -- E2 confirmed exit: exact transient IDs owned by this writer; no prefix scan.
+ assert(shared.LegacyCleanup,'LEGACY_CLEANUP_UNAVAILABLE').RegisterRunner('Lv3Effects',function(clean,ack)
+  return targets.Exit(clean,'LegacyCleanup',ack)
+ end)
+end
+
 function SPCLegacyCleanup.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'LEGACY_STORE_UNAVAILABLE')
  assert(type(store.IsExitCurrent)=='function'and type(store.ExitCompleted)=='function','LEGACY_EXIT_PROOF_UNAVAILABLE')

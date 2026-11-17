@@ -743,9 +743,9 @@ composition.Run('NetworkBridge',{'EffectiveFacts','NativeFacts'},{'NetworkBridge
 
 composition.Run('IndustrySupport',{'RuntimeRetirement','EffectiveFacts','CityProgressionStore','NativeFacts'},{'IndustrySupport'},function() include('IndustrySupport');SPCIndustrySupport.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('Lv3Support',{'RuntimeRetirement','EffectiveFacts','LegacyCleanup'},{'Lv3Support'},function() include('Lv3Support');SPCLv3Support.Start(P,shared,{centralExit=true}) end)
+composition.Run('Lv3Support',{'RuntimeRetirement','EffectiveFacts','LegacyCleanup'},{'Lv3Support'},function() SPCLegacyCleanup.StartLv3Support(P,shared) end)
 
-composition.Run('Lv3Effects',{'RuntimeRetirement','EffectiveFacts','NativeFacts','LegacyCleanup'},{'Lv3Effects'},function() include('Lv3Effects');SPCLv3Effects.Start(P,shared,{retireCommerce=true,centralExit=true}) end)
+composition.Run('Lv3Effects',{'RuntimeRetirement','EffectiveFacts','NativeFacts','LegacyCleanup'},{'Lv3Effects'},function() SPCLegacyCleanup.StartLv3Effects(P,shared) end)
 
 composition.Run('UnitTargets',{'EffectiveFacts'},{'UnitTargets'},function() include('UnitTargets');SPCUnitTargets.Start(P,shared) end)
 

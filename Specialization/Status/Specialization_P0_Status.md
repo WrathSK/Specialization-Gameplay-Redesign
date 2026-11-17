@@ -1,28 +1,45 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1084
-Implementation Build: B522.549 / modinfo549 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1085
+Implementation Build: B523.550 / modinfo550 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CULTURE_AESTHETIC_LV4_CLEANUP_RETIREMENT_LOCAL_PASS
+Work State: RETIRED_LV3_CLEANUP_HANDOFF_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B522.549 on develop](#move-old-culture-worker-percent-withdrawal-to-aesthetic--s1084). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B523.550 on develop](#transfer-old-level-three-cleanup-and-exit-duties--s1085). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The Aesthetic owner now withdraws and confirms the eight historical Culture worker-percent IDs in the original sequence. The real roots, read reports, exit and exact rollback checks pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Move the remaining old Lv3 Effects and specialist-support cleanup duties, including exit acknowledgments and existing reports, before retiring their old scripts. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The old level-three specialist and network scripts are absent. Current cleanup, Culture Aesthetic, exact group exits, route proof and disposable rollback pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Transfer the remaining old Research boost cleanup, report and readiness duties before retiring the former writer. Keep the current initialization delivery until equivalent cleanup recovery is proven. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Transfer old level-three cleanup and exit duties — S1085
+
+**LOCAL_SIMULATION_PASS in scope.** The shared cleanup module takes over the original startup slots for the 12 specialist-support and 11 old effect IDs. The Aesthetic owner still checks the exact eight old Culture population-yield carriers before the eight worker-percent IDs. Cold and failed-readback fixtures preserve the same native removal order, reads, reports and scoped recovery. The real Store exit tests preserve independent group acknowledgments, including after startup or removal failures. Both disposable transactions accepted the exact two-path removal.
+
+**Runtime Impact Contract.** The two independent target ledgers, native wakeups, report keys, cache identities and existing legacy SQL remain in place. No new runtime read, listener, retry trigger, phase, store field or positive writer. The old positive and unused fallback implementations now replay only from Git. Two fewer Gameplay includes with all three route packets equal. The static loop alarm follows the existing explicit isolation-only city loop to its new location. Frozen Aesthetic comparisons now load the matched historical modules and reuse the exact in-memory SQL preparation, so the original warm-read assertions remain meaningful.
+
+**Source recovery.** `git show 723780deccccbddf757d4531b34084b38f7ec775:Mod/Lv3Effects.lua` with SHA256 `634d788697cb89f28333430af01b68cedb3aa724a42999a53bf992c2acb0f7f9`. `git show 723780deccccbddf757d4531b34084b38f7ec775:Mod/Lv3Support.lua` with SHA256 `c0d8de9f9454bd89e89c3bb86644246de653fc542c5ff4f0cd095cc5eaa22951`.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8 (Lua 5.1 scoped roots), official Assets and read-only HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7Level3Cleanup --output local/refactor/S1085-O7Level3Cleanup-verified/closure.json` (26/26), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7AestheticCleanup --output local/refactor/S1085-O7AestheticCleanup-verified/closure.json` (39/39), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7CommerceCleanup --output local/refactor/S1085-O7CommerceCleanup-verified/closure.json` (46/46), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7MeaningCleanup --output local/refactor/S1085-O7MeaningCleanup-verified/closure.json` (47/47). Local-only machine artifacts and companion logs
+
+- `local/refactor/S1085-O7Level3Cleanup-verified/closure.json` SHA256 `bfbb9c654d9a6df023c181ea1b54d5dc671eac0aeb1941fa9ce790b54d1955fd`.
+- `local/refactor/S1085-O7AestheticCleanup-verified/closure.json` SHA256 `a6bd6a7a46620cb677a28dbb66f2ea7703acca3b1d362e018caddb3561b167ef`.
+- `local/refactor/S1085-O7CommerceCleanup-verified/closure.json` SHA256 `4463f6d67e3246116af25dafa175cae8d4d0a0d67568c7e338c4216b94d66d86`.
+- `local/refactor/S1085-O7MeaningCleanup-verified/closure.json` SHA256 `7328aba28747d8252b5c0a45fa4ec01b78d812c6e3271d413002714f7bec4078`.
+
+**STATIC_CONFIRMED.** 190 Lua 5.1 compiles, 32 XML-family parses, 630 File references and 10 LuaReplace references. Source SHA256 `99f8a15be9e6410b1eaf52a0ab28cfa3cdc9897564cbbcf5a048d665b5825917`. Package SHA256 `711bab31428d68e30c2a1843b2b930323648b3afe72569cb789dadd1aa09da51` across 319 files. Source-only checkpoint without new native evidence.
 
 ### Move old Culture worker-percent withdrawal to Aesthetic — S1084
 

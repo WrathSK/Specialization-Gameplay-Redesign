@@ -16,8 +16,8 @@ class AutomaticMeaningTests(unittest.TestCase):
     def setUpClass(cls): cls.sql=legacy.database()
     @classmethod
     def tearDownClass(cls): cls.sql.close()
-    def runtime(self, ready=True, real=False, *, historical=False):
-        helper=ae.AestheticTests(); helper.sql=self.sql; l=helper.runtime(ready=False)
+    def runtime(self, ready=True, real=False, *, historical=None):
+        helper=ae.AestheticTests(); helper.sql=self.sql; l=helper.runtime(ready=False,historical=historical)
         for table,key in [('GreatWorks','GreatWorkType'),('Yields','YieldType'),('GreatPersonIndividuals','GreatPersonIndividualType'),('Eras','EraType'),('GreatWork_YieldChanges','GreatWorkType')]:
             cur=self.sql.execute('SELECT * FROM '+table); columns=[x[0]for x in cur.description];rows=[dict(zip(columns,x))for x in cur]
             for i,row in enumerate(rows):row['Index']=i+1

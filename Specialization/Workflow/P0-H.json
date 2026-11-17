@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1084",
-    "runtime": "B522.549 / modinfo549",
+    "status": "S1085",
+    "runtime": "B523.550 / modinfo550",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Transfer the old Culture worker-percent withdrawal to CultureAesthetic and verify real package absence, confirmed exits and exact rollback.",
+  "goal": "Transfer the retired level-three production cleanup, readiness and independent exit acknowledgments without changing triggers or current effects.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Transfer old level-three cleanup and exit duties — S1085",
+      "reason": "S1085 transfers the exact old level-three groups, scoped retries, reports and confirmed exit adapters, and tests the real package without either old Lua file."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -888,6 +894,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1085 transfers the exact old level-three groups, scoped retries, reports and confirmed exit adapters, and tests the real package without either old Lua file.",
     "S1084 verifies two-city Aesthetic cleanup with the old Lv4 Lua and its no-op binding absent, preserves the read report and confirmed exits, and proves the exact source removal rolls back.",
     "S1083 verifies the actual missing Commerce Convergence path, the unchanged owner, exact rollback and strict route/transaction proofs.",
     "S1082 verifies equivalent B061 readback, cold/startup and scoped failures, current gold and strict proof with the old Lua unavailable.",
@@ -5950,6 +5957,52 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#move-old-culture-worker-percent-withdrawal-to-aesthetic--s1084"
+    },
+    "s1085_level3_cleanup_handoff": {
+      "build": "B523.550 / modinfo550",
+      "baseline": "723780deccccbddf757d4531b34084b38f7ec775",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "O7Level3Cleanup": {
+          "path": "local/refactor/S1085-O7Level3Cleanup-verified/closure.json",
+          "sha256": "bfbb9c654d9a6df023c181ea1b54d5dc671eac0aeb1941fa9ce790b54d1955fd",
+          "pass_count": 26
+        },
+        "O7AestheticCleanup": {
+          "path": "local/refactor/S1085-O7AestheticCleanup-verified/closure.json",
+          "sha256": "a6bd6a7a46620cb677a28dbb66f2ea7703acca3b1d362e018caddb3561b167ef",
+          "pass_count": 39
+        },
+        "O7CommerceCleanup": {
+          "path": "local/refactor/S1085-O7CommerceCleanup-verified/closure.json",
+          "sha256": "4463f6d67e3246116af25dafa175cae8d4d0a0d67568c7e338c4216b94d66d86",
+          "pass_count": 46
+        },
+        "O7MeaningCleanup": {
+          "path": "local/refactor/S1085-O7MeaningCleanup-verified/closure.json",
+          "sha256": "7328aba28747d8252b5c0a45fa4ec01b78d812c6e3271d413002714f7bec4078",
+          "pass_count": 47
+        }
+      },
+      "removed_paths": {
+        "Mod/Lv3Effects.lua": "634d788697cb89f28333430af01b68cedb3aa724a42999a53bf992c2acb0f7f9",
+        "Mod/Lv3Support.lua": "c0d8de9f9454bd89e89c3bb86644246de653fc542c5ff4f0cd095cc5eaa22951"
+      },
+      "group_sizes": {
+        "Lv3Support": 12,
+        "Lv3Effects": 11
+      },
+      "gameplay_include_reduction": 2,
+      "rollback": [
+        "temporary_switch_and_restore",
+        "stable_apply_and_rollback"
+      ],
+      "source_sha256": "99f8a15be9e6410b1eaf52a0ab28cfa3cdc9897564cbbcf5a048d665b5825917",
+      "package_sha256": "711bab31428d68e30c2a1843b2b930323648b3afe72569cb789dadd1aa09da51",
+      "files": 319,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#transfer-old-level-three-cleanup-and-exit-duties--s1085"
     }
   }
 }

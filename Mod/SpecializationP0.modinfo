@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="549">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="550">
   <Properties>
     <Name>LOC_SPC_MOD_TITLE</Name>
     <Description>LOC_SPC_MOD_DESCRIPTION</Description>
@@ -242,8 +242,6 @@
       <File>UI/IndustryRefresh.xml</File>
       <File>Lv2Housing.lua</File>
       <File>Lv2GPP.lua</File>
-      <File>Lv3Support.lua</File>
-      <File>Lv3Effects.lua</File>
       <File>GPPReadout.lua</File>
       <File>InvestmentAction.lua</File>
       <File>EffectiveFacts.lua</File>
@@ -700,8 +698,6 @@
     <File>UI/IndustryRefresh.xml</File>
     <File>Lv2Housing.lua</File>
     <File>Lv2GPP.lua</File>
-    <File>Lv3Support.lua</File>
-    <File>Lv3Effects.lua</File>
     <File>GPPReadout.lua</File>
     <File>InvestmentAction.lua</File>
     <File>EffectiveFacts.lua</File>

@@ -94,7 +94,7 @@ def meaning_cold(root):
         test = meaning_fixture.AutomaticMeaningTests()
         test.sql = meaning_fixture.legacy.database()
         try:
-            vm = test.runtime(ready=False, historical=root != ROOT)
+            vm = test.runtime(ready=False, historical=B471 if root != ROOT else None)
             return vm.execute("""
               seed(a,'BUILDING_SPC_B060_SCIENCE_P1')
               assert(oldCount(a)==1)

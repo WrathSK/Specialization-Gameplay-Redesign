@@ -1,5 +1,5 @@
 """S7e exact retired IDs, reference-scoped success and actual owner hot paths."""
-from contextlib import contextmanager,nullcontext
+from contextlib import closing,contextmanager,nullcontext
 from hashlib import sha256
 from pathlib import Path
 import sqlite3
@@ -48,15 +48,11 @@ def retirement():
  """);return c
 
 
-def culture():
+def culture(*,old=False):
  with patch.object(aesthetic,'LuaRuntime',TrackedLua51),legacy_source_observation():
-  if not hasattr(aesthetic.AestheticTests,'sql'):
-   # This explicit engine copy already contains the configured SQL. Reapplying
-   # the frozen non-idempotent initial schema would duplicate its bit rows.
-   src=sqlite3.connect(external_database(ROOT).as_uri()+'?mode=ro',uri=True)
-   aesthetic.AestheticTests.sql=sqlite3.connect(':memory:');src.backup(aesthetic.AestheticTests.sql);src.close()
-  vm=aesthetic.AestheticTests().runtime()
- return vm
+  with closing(aesthetic.database()) as db:
+   fixture=aesthetic.AestheticTests();fixture.sql=db
+   return fixture.runtime(historical=BASE if old else None)
 
 
 def convergence(*,old=False):
@@ -164,7 +160,7 @@ class Culture(unittest.TestCase):
  def test_actual_aesthetic_legacy_reads_zero_after_warm_values_and_current_health_preserved(self):
   results=[]
   for old in (True,False):
-   with history()if old else nullcontext():vm=culture()
+   vm=culture(old=old)
    vm.execute("""
    oldReads=0;local has=P.HasBuilding;local old={}
    for bit=0,7 do for _,prefix in ipairs({'BUILDING_SPC_DEV_LV3_POP_CULTURE_','BUILDING_SPC_LV4_PERCENT_CULTURE_'})do old[GameInfo.Buildings[prefix..bit].Index]=true end end

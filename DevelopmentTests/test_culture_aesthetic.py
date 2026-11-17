@@ -6,7 +6,7 @@ import os, sqlite3, subprocess, unittest, zlib, xml.etree.ElementTree as ET
 from project_paths import external_database
 from lupa.lua55 import LuaRuntime
 from test_environment_assembly import prepare_hd_inputs
-from retired_crew_sources import B521, source as retired_source
+from retired_crew_sources import B521, B522, source as retired_source
 R=Path(os.environ.get('SPC_L1_ROOT',Path(__file__).resolve().parents[1]))
 M=R/'Mod'
 
@@ -132,10 +132,12 @@ end
 class AestheticTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):cls.sql=database()
- def runtime(self,ready=True,*,historical_lv4=False,runtime_type=None):
+ def runtime(self,ready=True,*,historical=None,runtime_type=None):
   prepare_hd_inputs(self.sql)
   l=(runtime_type or LuaRuntime)(unpack_returned_tuples=True);l.execute(FIX)
-  def include(n):l.execute((M/(n+'.lua')).read_text())
+  def include(n):
+   name=n+'.lua'
+   l.execute(retired_source(name,historical) if historical else (M/name).read_text())
   l.globals().include=include
   defs=['Buildings','Districts','DistrictReplaces','BuildingReplaces','HD_BuildingTiers','HD_DUMMY_BUILDINGS','Modifiers','Building_CitizenYieldChanges',
    'BuildingPrereqs','SPC_EnvironmentAssembly','SPC_EnvironmentBuildings','SPC_EnvironmentExcludedBuildings']
@@ -146,18 +148,27 @@ class AestheticTests(unittest.TestCase):
    if name in ['Buildings','Districts']:
     for i,r in enumerate(rows):r['Index']=i+1
    l.globals().GameInfo[name]=l.globals().db(lua_table(l,rows),key)
-  for name in ['OrdinaryBuildingCatalog','DistrictCompleteness','CurrentSpecializationFacts','Lv3Effects']:
+  for name in ['OrdinaryBuildingCatalog','DistrictCompleteness','CurrentSpecializationFacts']:
    include(name)
-  if historical_lv4:
-   for name in ('Lv4Percent','CultureAesthetic'):l.execute(retired_source(name+'.lua',B521))
-  else:include('CultureAesthetic')
+  if historical:
+   for name in ('Lv3Effects','Lv4Percent'):include(name)
+  else:include('LegacyCleanup')
+  include('CultureAesthetic')
   l.execute('''a=city(1);b=city(2)
    for _,c in ipairs(cities)do
     district(c,1,'DISTRICT_CITY_CENTER');district(c,2,'DISTRICT_THEATER');district(c,3,'DISTRICT_COMMERCIAL_HUB');district(c,4,'DISTRICT_NEIGHBORHOOD');district(c,5,'DISTRICT_NEIGHBORHOOD')
     building(c,'BUILDING_MONUMENT',c.ds[1]);building(c,'BUILDING_WALLS',c.ds[1]);building(c,'BUILDING_PALACE',c.ds[1]);building(c,'BUILDING_AMPHITHEATER',c.ds[2]);building(c,'BUILDING_MARKET',c.ds[3]);building(c,'BUILDING_HD_VILLA',c.ds[4]);building(c,'BUILDING_HD_BUS_STOP',c.ds[5])
    end
-   SPCDistrictCompleteness.Start(P,shared);SPCLv3Effects.Start(P,shared)
-   if ... then SPCLv4Percent.Start(P,shared)end
+   SPCDistrictCompleteness.Start(P,shared)
+   if ... then
+    SPCLv3Effects.Start(P,shared)
+    SPCLv4Percent.Start(P,shared)
+   else
+    shared.LegacyCleanup={RegisterRunner=function(name,runner)
+     assert(name=='Lv3Effects' and type(runner)=='function')
+    end}
+    SPCLegacyCleanup.StartLv3Effects(P,shared)
+   end
    SPCCultureAesthetic.Start(P,shared)
    data=shared.CultureAesthetic;svc=shared.DistrictCompleteness
    function audit()data.Audit({player=0})end
@@ -167,7 +178,7 @@ class AestheticTests(unittest.TestCase):
     local n=0;for bit=0,15 do if plots[plot].props['SPC_CULTURE_AESTHETIC_'..bit]==1 then n=n+2^bit end end;return n
    end
    function total(c)local n=0;for _,d in ipairs(c.ds)do n=n+amount(c,d.x)end;return n end
-  ''',historical_lv4)
+  ''',historical is not None)
   if ready:l.execute("fire('LoadScreenClose')")
   return l
  def test_formula_and_two_cities(self):
@@ -200,7 +211,7 @@ class AestheticTests(unittest.TestCase):
  def test_confirmed_loss_recapture_only_current(self):
   l=self.runtime();l.execute("audit();local keep=total(b);local before=writes;local no={origin={owner=0},targetID=1,confirmed=false};assert(not pcall(exits.CultureAesthetic,a,no));assert(writes==before);a.owner=3;local loss={origin={owner=0},targetID=1,confirmed=true};exits.CultureAesthetic(a,loss);assert(total(a)==0 and total(b)==keep);local w=writes;exits.CultureAesthetic(a,loss);assert(writes==w);a.owner=0;a.active=1;returns.CultureAesthetic(0,a);assert(total(a)==0);a.active=3;a.eras=1;returns.CultureAesthetic(0,a);assert(total(a)==6)")
  def test_legacy_exact_cutover_and_commerce(self):
-  l=self.runtime();l.execute("for bit=0,7 do building(a,'BUILDING_SPC_DEV_LV3_POP_CULTURE_'..bit,a.ds[1]);building(a,'BUILDING_SPC_LV4_PERCENT_CULTURE_'..bit,a.ds[1])end;b.identity='COMMERCE';audit();for bit=0,7 do assert(not a.present[GameInfo.Buildings['BUILDING_SPC_DEV_LV3_POP_CULTURE_'..bit].Index] and not a.present[GameInfo.Buildings['BUILDING_SPC_LV4_PERCENT_CULTURE_'..bit].Index])end;shared.Lv3Effects.ready=true;shared.Lv3Effects.Audit({player=0});assert(b.present[GameInfo.Buildings.BUILDING_SPC_DEV_LV3_COM_RESEARCH.Index] and b.present[GameInfo.Buildings.BUILDING_SPC_DEV_LV3_COM_CULTURE.Index]);assert(a.present[GameInfo.Buildings.BUILDING_MONUMENT.Index] and a.token=='persistent:1')")
+  l=self.runtime(historical=B521);l.execute("for bit=0,7 do building(a,'BUILDING_SPC_DEV_LV3_POP_CULTURE_'..bit,a.ds[1]);building(a,'BUILDING_SPC_LV4_PERCENT_CULTURE_'..bit,a.ds[1])end;b.identity='COMMERCE';audit();for bit=0,7 do assert(not a.present[GameInfo.Buildings['BUILDING_SPC_DEV_LV3_POP_CULTURE_'..bit].Index] and not a.present[GameInfo.Buildings['BUILDING_SPC_LV4_PERCENT_CULTURE_'..bit].Index])end;shared.Lv3Effects.ready=true;shared.Lv3Effects.Audit({player=0});assert(b.present[GameInfo.Buildings.BUILDING_SPC_DEV_LV3_COM_RESEARCH.Index] and b.present[GameInfo.Buildings.BUILDING_SPC_DEV_LV3_COM_CULTURE.Index]);assert(a.present[GameInfo.Buildings.BUILDING_MONUMENT.Index] and a.token=='persistent:1')")
   for file in ['Lv3Effects.sql','Lv4Percent.sql']:
    src=(M/'Data'/file).read_text()
    for line in src.splitlines():
@@ -250,7 +261,7 @@ class AestheticTests(unittest.TestCase):
   from refactor_harness import TrackedLua51
   results=[]
   for historical_lv4 in (True,False):
-   l=self.runtime(ready=False,historical_lv4=historical_lv4,runtime_type=TrackedLua51)
+   l=self.runtime(ready=False,historical=B521 if historical_lv4 else None,runtime_type=TrackedLua51)
    l.execute("""
     local lv3='BUILDING_SPC_DEV_LV3_POP_CULTURE_0'
     local lv4='BUILDING_SPC_LV4_PERCENT_CULTURE_'
@@ -286,7 +297,7 @@ class AestheticTests(unittest.TestCase):
   fragment=gameplay.split('  if params.Action=="LV4_PERCENT_READ" then',1)[1].split('  if params.Action=="UNIT_ACTION_VIEW" then',1)[0]
   old=retired_source('Gameplay.lua',B521).split('  if params.Action=="LV4_PERCENT_READ" then',1)[1].split('  if params.Action=="UNIT_ACTION_VIEW" then',1)[0]
   def run(body,legacy):
-   l=self.runtime(historical_lv4=legacy,runtime_type=TrackedLua51)
+   l=self.runtime(historical=B521 if legacy else None,runtime_type=TrackedLua51)
    l.execute('function read(playerID,params) if params.Action=="LV4_PERCENT_READ" then'+body+'end')
    l.execute("""
     local w=writes
@@ -305,11 +316,11 @@ class AestheticTests(unittest.TestCase):
   from retired_crew_sources import package
   from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
   removed=('Lv4Percent.lua',)
-  with package(B521) as before:
+  with package(B521) as before, package(B522) as after:
    for name in ('LegacyCleanup.lua','LegacyCleanupCatalog.lua','Data/Lv4Percent.sql','Data/CultureAesthetic.sql','CultureAestheticModel.lua'):
-    self.assertEqual((before/'Mod'/name).read_bytes(),(M/name).read_bytes(),name)
-   verify_package_round_trip(self,before/'Mod',M,removed,'CultureAesthetic.lua')
-   verify_stable_round_trip(self,before/'Mod',M,removed)
+    self.assertEqual((before/'Mod'/name).read_bytes(),(after/'Mod'/name).read_bytes(),name)
+   verify_package_round_trip(self,before/'Mod',after/'Mod',removed,'CultureAesthetic.lua')
+   verify_stable_round_trip(self,before/'Mod',after/'Mod',removed)
  def test_registration_and_ui(self):
   root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'176')
   files={e.text for e in root.find('Files')};self.assertTrue({'CultureAestheticModel.lua','CultureAesthetic.lua','Data/CultureAesthetic.sql'}<=files)

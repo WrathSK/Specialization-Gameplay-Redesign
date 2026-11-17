@@ -10,7 +10,7 @@ import zlib
 import xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 from project_paths import external_database
-from retired_crew_sources import B519, B520, B521, package, source
+from retired_crew_sources import B519, B520, B521, B522, package, source
 
 ROOT=Path(__file__).resolve().parents[1]
 MOD=ROOT/'Mod'
@@ -88,7 +88,7 @@ class Retirement(unittest.TestCase):
  def test_confirmed_loss_callback_exact_ids_only(self):
   self.check("seed(cities[3]);assert(not pcall(exits.CommerceConvergence,cities[3],{}));assert(remaining(cities[3])==48);exits.CommerceConvergence(cities[3],{confirmed=true});assert(remaining(cities[3])==0 and cities[3].built.KEEP_EXTERNAL and cities[3].built.BUILDING_SPC_COMMERCE_GOLD_0)")
  def test_three_old_specialist_carriers_retire_without_touching_new_gold(self):
-  lua=retirement_runtime();lua.execute((MOD/'Lv3Effects.lua').read_text())
+  lua=retirement_runtime();lua.execute(source('Lv3Effects.lua',B522))
   lua.execute("""
 for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY'})do cities[1].built['BUILDING_SPC_DEV_LV3_COM_'..kind]=true end
 cities[1].built.KEEP_EXTERNAL=true;cities[1].built.BUILDING_SPC_COMMERCE_GOLD_2=true
