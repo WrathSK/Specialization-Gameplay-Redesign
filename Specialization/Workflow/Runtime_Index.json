@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "ce497054ed0ba440a03c5a7a66dfafc0d5721c3d",
-  "runtime": "B489.516 / modinfo516 stable deployed from main PR #8 merge, 337/337 MATCH.",
+  "runtime_commit": "1495cbd1a32d2877df5aab8ecedcacbd733f35d9",
+  "runtime": "B527.554 / modinfo554 temporarily installed from develop, 314/314 MATCH. B489.516 recovery 337/337 MATCH.",
   "historical_inventory": "Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {

@@ -1,28 +1,34 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1089
-Implementation Build: B527.554 / modinfo554 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1090
+Implementation Build: B527.554 / modinfo554 on develop and in the temporary installation. Stable B489.516 is from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: INTEGRATION_CANDIDATE_LOCAL_PASS_NATIVE_PENDING
+Work State: INTEGRATION_NATIVE_TEST_REQUIRED_B527_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B527.554 on develop](#pin-the-retirement-candidate-for-native-integration--s1089). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
-| Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
+| Build and installation | [B527.554 temporarily installed](#b527-verified-temporary-deployment-for-native-acceptance--s1090) with 314/314 files verified against develop. |
+| Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | The candidate passed local package, real work-batch sender, close/turn cleanup and cumulative B489 switch/restore checks. The replacement startup sequence is awaiting native acceptance. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Obtain approval for the temporary candidate switch and run the two targeted native cold-load profiles once. Confirm the new startup boundary and one real Great Work update before further integration acceptance. Use the next scheduled UI review for the bilingual layout observation. |
+| Next action | Run one cold reload in each of the fixed HD/UC and official Gathering Storm profiles, plus one real Great Work update in either profile. Match the first successful startup boundary to the collected logs. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### B527 verified temporary deployment for native acceptance — S1090
+
+The temporary switch for the two-profile check was performed with Civilization VI exited. B527.554 matches all 314 files from develop `1495cbd1a32d2877df5aab8ecedcacbd733f35d9` at SHA256 `fc7bca2fd8799ca17f453ed1e9123aa64286f941712230ebcd82f39a31447a26`. Its Mod contents also match the locally tested source `5cf9b484`. The receipt `B527.554-1495cbd-playtest.json` is `DEVELOP_ACTIVE` with SHA256 `cbc24ab0dd2ab6c3c78b72011575a8e05ddd207cee643d92f874af61c96be963` and records the 25 reviewed outgoing paths. Its B489.516 recovery package matches all 337 files from stable main at SHA256 `fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30`. The transaction marker is absent.
+
+**USER_GAME_TEST_REQUIRED.** In the fixed HD/UC and official Gathering Storm profiles, start a separate B527.554 game, establish a city, save, fully exit, and reload the same-build save. Start `tuner -300` before relaunch and collect through the first local turn with P0 closed. Check the B527 marker, `READINESS_LOAD_RECEIVED`, and when `B055_GW:READY` first appears. In either profile, add or transfer one Great Work of an era not yet represented in a city with active Aesthetic Tourism and observe the change in the normal UI. Prior acceptance carries at its recorded scope. The temporary receipt is the restoration entry.
 
 ### Pin the retirement candidate for native integration — S1089
 
