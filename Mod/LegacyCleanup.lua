@@ -287,16 +287,25 @@ function SPCLegacyCleanup.StartBoostLoad(P,shared)
   return '科研网络鼓舞已按用户决定在 v0.1 隔离，重做留待后续。\n公共网络和科研本城能力保留。\n旧载体清理：'..(d.ready and '已确认' or '待完成')
  end
  local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
- -- Exact removal once per Gameplay context; failures retry only on a real turn.
- local attempted=false
- local function initialize()
-  if d.ready or d.busy then return end
-  local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid)then return end
-  attempted=true;d.EnsureReady(pid)
+ -- The earlier publish fallback is only a Research attempt.
+ -- Great Work cleanup waits for load close or an actual supported turn.
+ local attempted,initializing=false,false
+ local function initialize(afterLoad)
+  local cleanup=afterLoad and shared.GreatWorkLoadCleanup or nil
+  if initializing or d.busy or (d.ready and (not cleanup or cleanup.ready)) then return end
+  local pid=Game.GetLocalPlayer()
+  if not P.IsTestPlayer(pid)then return end
+  attempted=true;initializing=true
+  local ok,err=pcall(function()
+   d.EnsureReady(pid)
+   if cleanup and not cleanup.ready then cleanup.Clean()end
+  end)
+  initializing=false
+  if not ok then print('[SPC][B055][INIT] '..tostring(err))end
  end
- hook(Events,'LoadScreenClose',initialize)
- hook(Events,'GameCoreEventPublishComplete',function()if not attempted then initialize()end end)
- hook(Events,'PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then initialize()end end)
+ hook(Events,'LoadScreenClose',function()initialize(true)end)
+ hook(Events,'GameCoreEventPublishComplete',function()if not attempted then initialize(false)end end)
+ hook(Events,'PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then initialize(true)end end)
 end
 
 -- The old Dialogue carriers are removed before applying the current Tourism projection.

@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B476, B511, B512, B513, RETIRED_CITY_STARTS, package
+from retired_crew_sources import B476, B511, B512, B513, B525, RETIRED_CITY_STARTS, package
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_p0_panel_current_layout import panel_runtime
@@ -51,19 +51,21 @@ def panel(root, *, legacy=False):
 
 
 def fixture(root, revision):
-    if revision:
+    legacy=revision in (B476,B511)
+    if legacy:
         gp = context(root, revision)
     else:
-        profile = PackageVFS(forbidden_globals=('SPCPurchaseProbe', 'SPCGreatWorkProbe', 'SPCPurchaseProbeRead'))
+        profile = PackageVFS(manifest=root/'Mod/SpecializationP0.modinfo',
+                             forbidden_globals=('SPCPurchaseProbe', 'SPCGreatWorkProbe', 'SPCPurchaseProbeRead'))
         assert set(RETIRED_EXPERIMENT_FILES).isdisjoint(profile.files)
         assert not any((root/'Mod'/path).exists() for path in RETIRED_EXPERIMENT_FILES)
-        gp = Context(name='Gameplay', vfs=profile)
+        gp = Context(name='Gameplay', vfs=profile, history=(root,revision) if revision else None)
     gp.execute(NATIVE)
     load = gp.globals().include
 
     def include(name):
         result = load(name)
-        if name == ('PurchaseProbe' if revision else 'LegacyCleanup'):
+        if name == ('PurchaseProbe' if legacy else 'LegacyCleanup'):
             # Use the callback actually installed by this owner. The native
             # doubles below cover carrier handling, not every LoadScreenClose consumer.
             gp.execute("""
@@ -77,7 +79,16 @@ def fixture(root, revision):
                 purchaseClose=Events.LoadScreenClose.Count()
                 assert(purchaseClose==n+1)
               end
-            """, bool(revision))
+              if not legacy and owner.StartBoostLoad then
+                local startBoost=owner.StartBoostLoad
+                owner.StartBoostLoad=function(...)
+                  startBoost(...)
+                  boostClose=Events.LoadScreenClose.Count()
+                  boostPublish=Events.GameCoreEventPublishComplete.Count()
+                  boostTurn=Events.PlayerTurnActivated.Count()
+                end
+              end
+            """,legacy)
         return result
 
     gp.globals().include = include
@@ -142,12 +153,13 @@ def fixture(root, revision):
       function request(action,token)
         return send({Action=action,Token=token,CityID=1,Page=1})
       end
-    """, bool(revision))
+    """,legacy)
     assert gp.load_counts['missing']==0
     return gp
 
 
-def recover_and_request(root, revision=None):
+def recover_and_request(root, revision):
+    legacy=revision in (B476,B511)
     gp = fixture(root, revision)
     ui = context(root, revision, 'UI/BoostRefresh')
     ui.execute(NATIVE)
@@ -157,7 +169,7 @@ def recover_and_request(root, revision=None):
       local key=... and 'GreatWorkProbe' or 'GreatWorkLoadCleanup'
       s[key]={ready=false};ExposedMembers.SPC_P0=s
       fixtureGreatWorkCleanup=s[key]
-    """, bool(revision))
+    """,legacy)
     packets = []
 
     def emit(pid, operation, packet):
@@ -253,6 +265,54 @@ class LegacyPanelCleanup(unittest.TestCase):
                                       'LegacyCleanup.lua')
             verify_stable_round_trip(self, previous/'Mod', retired/'Mod', RETIRED_EXPERIMENT_FILES)
 
+    def test_absent_startup_ui_leaves_only_close_and_supported_turn_recovery(self):
+        for first in ('CLOSE','TURN'):
+            gp=fixture(ROOT,None)
+            gp.execute("""
+              local first=...
+              local s=ExposedMembers.SPC_P0
+              assert(not s.NetworkBoost.ready and not s.GreatWorkLoadCleanup.ready)
+              local prior,token=s.Snapshot,s.LastToken
+              assert(request('BOOST_INIT','retired-startup')==prior and s.LastToken==token)
+              assert(#changes==0 and localPresent[boostID] and localPresent[cityWorkID] and localPresent[objectWorkID])
+              local close,publish,turn=Events.LoadScreenClose,Events.GameCoreEventPublishComplete,Events.PlayerTurnActivated
+              close.Order({boostClose});publish.Order({boostPublish});turn.Order({boostTurn})
+              publish.Fire()
+              assert(s.NetworkBoost.ready and not s.GreatWorkLoadCleanup.ready and #changes==1)
+              for i=1,32 do publish.Fire()end
+              assert(#changes==1 and localPresent[cityWorkID] and localPresent[objectWorkID])
+              if first=='CLOSE' then close.Fire() else turn.Fire(0)end
+              assert(not s.GreatWorkLoadCleanup.ready and #changes==2 and localPresent[objectWorkID])
+              rejectObject=false;turn.Fire(1)
+              for i=1,32 do publish.Fire()end
+              assert(not s.GreatWorkLoadCleanup.ready and #changes==2 and localPresent[objectWorkID])
+              turn.Fire(0)
+              assert(s.GreatWorkLoadCleanup.ready and #changes==3 and not localPresent[objectWorkID])
+              close.Fire();turn.Fire(0);publish.Fire()
+              assert(#changes==3 and propertyWrites==0 and localPresent[monumentID] and foreignPresent[monumentID])
+              for _,entry in ipairs(changes)do assert(entry[1]=='REMOVE')end
+              assert(request('BOOST_READ','kept-report'):find('已确认',1,true) and s.LastToken=='kept-report')
+            """,first)
+            self.assertEqual(gp.load_counts['missing']+gp.load_counts['failed'],0)
+        measure('b055_gameplay_startup',dict(separate_research_attempt=True,
+            allowed_work_boundaries=['LoadScreenClose','PlayerTurnActivated'],
+            stale_request_writes=0,additional_writes_after_confirmation=0))
+
+    def test_exact_two_file_startup_ui_retirement_rolls_back(self):
+        removed=('UI/BoostRefresh.lua','UI/BoostRefresh.xml')
+        profile=PackageVFS()
+        for path in removed:
+            self.assertNotIn(path,profile.files)
+            self.assertNotIn(path,profile.imports)
+            self.assertFalse((ROOT/'Mod'/path).exists())
+        self.assertNotIn('SPC_B055_Background',(ROOT/'Mod/SpecializationP0.modinfo').read_text())
+        with package(B525) as prior:
+            for path in ('Data/GreatWorkProbe.sql','Data/NetworkBoost.sql','LegacyCleanupCatalog.lua',
+                         'GreatWorkFacts.lua','UI/DialogueRefresh.lua'):
+                self.assertEqual((prior/'Mod'/path).read_bytes(),(ROOT/'Mod'/path).read_bytes(),path)
+            verify_package_round_trip(self,prior/'Mod',ROOT/'Mod',removed,'LegacyCleanup.lua')
+            verify_stable_round_trip(self,prior/'Mod',ROOT/'Mod',removed)
+
     def test_all_retired_controls_were_hidden_and_retained_bindings_match(self):
         with package(B476) as previous:
             before, old_requests, old_events = panel(previous, legacy=True)
@@ -273,7 +333,8 @@ class LegacyPanelCleanup(unittest.TestCase):
         with package(B476) as previous, package(B511) as pre_handoff:
             before, old_cleanup, old_writes, _ = recover_and_request(previous, B476)
             baseline = recover_and_request(pre_handoff, B511)
-        reports, cleanup, writes, callbacks = recover_and_request(ROOT)
+        with package(B525) as final_ui_handshake:
+            reports, cleanup, writes, callbacks = recover_and_request(final_ui_handshake, B525)
         self.assertEqual((reports, cleanup), (before, old_cleanup))
         self.assertEqual((old_writes, writes), (8, 0))
         self.assertEqual((reports, cleanup, writes), baseline[:3])

@@ -448,15 +448,6 @@ local function request(playerID,params)
     local c=Players[playerID]:GetCities():FindID(params.CityID);if not c then return end
     shared.Snapshot=shared.Dialogue.Describe(playerID,c);shared.LastToken=params.Token;return
   end
-  if params.Action=='BOOST_INIT' then
-    if not P.IsTestPlayer(playerID) then return end
-    local ok,err=pcall(function()
-      shared.NetworkBoost.EnsureReady(playerID)
-      if not shared.GreatWorkLoadCleanup.ready then shared.GreatWorkLoadCleanup.Clean() end
-    end)
-    if not ok then print('[SPC][B055][INIT] '..tostring(err)) end
-    return
-  end
   if params.Action=='BOOST_READ' or params.Action=='BOOST_BASELINE' then
     if not P.IsTestPlayer(playerID) then return end
     shared.Snapshot=shared.NetworkBoost.Describe(playerID);shared.LastToken=params.Token;return

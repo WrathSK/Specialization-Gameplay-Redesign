@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="552">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="553">
   <Properties>
     <Name>LOC_SPC_MOD_TITLE</Name>
     <Description>LOC_SPC_MOD_DESCRIPTION</Description>
@@ -263,8 +263,6 @@
     <File>CrewProjects.lua</File>
       <File>BoostConfig.lua</File>
       <File>UI/BoostGreatWorkRead.lua</File>
-      <File>UI/BoostRefresh.lua</File>
-      <File>UI/BoostRefresh.xml</File>
       <File>BoostIntegerConfig.lua</File>
       <File>UI/GreatWorkBasis.lua</File>
       <File>GreatWorkCatalog.lua</File>
@@ -487,12 +485,6 @@
       </Properties>
       <File>Data/GreatWorkProbe.sql</File>
     </UpdateDatabase>
-    <AddUserInterfaces id="SPC_B055_Background">
-      <Properties>
-        <Context>InGame</Context>
-      </Properties>
-      <File>UI/BoostRefresh.xml</File>
-    </AddUserInterfaces>
     <UpdateDatabase id="SPC_B062_Commerce"><Properties><LoadOrder>2000005</LoadOrder></Properties><File>Data/CommerceConvergence.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_B060_Adjacency"><Properties><LoadOrder>2000004</LoadOrder></Properties><File>Data/GreatWorkAdjacency.sql</File></UpdateDatabase>
     <UpdateDatabase id="SPC_B059_Dialogue"><Properties><LoadOrder>2000003</LoadOrder></Properties><File>Data/Dialogue.sql</File></UpdateDatabase>
@@ -745,8 +737,6 @@
     <File>Data/ResearchChair.sql</File>
     <File>BoostConfig.lua</File>
     <File>UI/BoostGreatWorkRead.lua</File>
-    <File>UI/BoostRefresh.lua</File>
-    <File>UI/BoostRefresh.xml</File>
     <File>Data/NetworkBoost.sql</File>
       <File>Data/BoostIntegerTest.sql</File>
       <File>Data/NetworkBoostInteger.sql</File>

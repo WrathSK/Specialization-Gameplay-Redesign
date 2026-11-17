@@ -10,8 +10,8 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1087",
-    "runtime": "B525.552 / modinfo552",
+    "status": "S1088",
+    "runtime": "B526.553 / modinfo553",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -35,8 +35,8 @@
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "ce497054ed0ba440a03c5a7a66dfafc0d5721c3d",
-  "current_batch": "DIALOGUE_TRANSPORT_HANDOFF_LOCAL_PASS",
-  "next_batch": "Retire the old Boost startup UI handshake after replacing its cleanup trigger with the existing load and supported turn callbacks, then prepare targeted native admission.",
+  "current_batch": "BOOST_STARTUP_HANDOFF_LOCAL_PASS",
+  "next_batch": "Retire the unused historical Dialogue model import and prepare the fixed-profile native integration admission and B489 package rollback.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B489.516 / modinfo516 stable from ce497054ed0ba440a03c5a7a66dfafc0d5721c3d, 337/337 MATCH, SHA256 fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30. Receipt .SpecializationP0-backup-umgmu6q5.receipt.json DEPLOYED with 21 reviewed removals. B307 rollback 312/312 MATCH. No pending transaction.",
   "stable": "main B489.516 / modinfo516 from approved PR #8 merge ce497054ed0ba440a03c5a7a66dfafc0d5721c3d, deployed and verified",
@@ -49,7 +49,7 @@
   ],
   "stale_navigation": "Historical version/build prose in test/report introductions is not current authority; current Spec/Status and task-specific Architecture govern. Runtime inventory B076 remains historical; use Runtime_Index review provenance.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer.",
+  "context_review_status": "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -64,7 +64,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#transfer-dialogue-work-receipts-and-exact-old-withdrawal--s1087",
-  "source_status": "B525.552 has scoped local verification on develop. Main and the installed package are B489.516 with scoped HD and official acceptance.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#move-old-boost-startup-cleanup-to-gameplay-boundaries--s1088",
+  "source_status": "B526.553 has scoped local verification on develop. Main and the installed package are B489.516 with scoped HD and official acceptance.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published."
 }

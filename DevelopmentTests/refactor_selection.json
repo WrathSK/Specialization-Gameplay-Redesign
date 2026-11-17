@@ -2,6 +2,13 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7BoostStartupHandoff": [
+      "test_o7_legacy_panel_cleanup.LegacyPanelCleanup",
+      "test_o7_retired_boost_test_controls_retirement",
+      "test_refactor_s9e3.CentralLegacy",
+      "test_refactor_s8c5c.Production",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
     "O7DialogueTransport": [
       "test_o7_retired_dialogue_overrides_retirement",
       "test_refactor_s5d3",

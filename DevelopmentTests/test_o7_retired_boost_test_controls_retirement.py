@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B470, B471, B523, B524, package, source
+from retired_crew_sources import B470, B471, B523, B524, B525, package, source
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE, scalars
 
@@ -19,7 +19,7 @@ def context(root, source, name='Gameplay'):
     return Context(name=name, vfs=PackageVFS(manifest=root/'Mod/SpecializationP0.modinfo'), history=history)
 
 
-def boost_startup(root, source):
+def boost_startup(root, source, *, retired=False):
     gp, ui = (context(root, source, name) for name in ('Gameplay', 'UI/BoostRefresh'))
     for vm in (gp, ui):
         vm.execute(NATIVE)
@@ -72,14 +72,14 @@ def boost_startup(root, source):
         end
       end
       assert((not boost.testRaw or not next(boost.testRaw)) and #removed==0 and present[boostID] and present[gwID] and present[monumentID])
-    """, source is None)
+    """,retired)
     ui.load('UI/BoostRefresh')
     ui.execute("""
       local s={Version=SPCP0.VERSION,NetworkBoost={ready=false}}
       local key=... and 'GreatWorkProbe' or 'GreatWorkLoadCleanup'
       s[key]={ready=false};ExposedMembers.SPC_P0=s
       fixtureGreatWorkCleanup=s[key]
-    """, bool(source))
+    """,not retired)
     packets = []
 
     def emit(pid, operation, packet):
@@ -141,7 +141,8 @@ class RetiredBoostTestControls(unittest.TestCase):
             for name in ('NetworkBoost.lua', 'LegacyCleanup.lua', 'LegacyCleanupCatalog.lua', 'UI/BoostRefresh.lua',
                          'UI/BoostGreatWorkRead.lua', 'GreatWorkProbe.lua', 'BoostConfig.lua', 'BoostIntegerConfig.lua'):
                 self.assertEqual((previous/'Mod'/name).read_bytes(), (retired/'Mod'/name).read_bytes())
-        after = boost_startup(ROOT, None)
+        with package(B525) as prior_route:
+            after = boost_startup(prior_route, B525, retired=True)
         self.assertEqual(before[:-1], after[:-1])
         self.assertEqual((before[-1], after[-1]), (4, 0))
         measure('retired_boost_test_controls', dict(

@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1087",
-    "runtime": "B525.552 / modinfo552",
+    "status": "S1088",
+    "runtime": "B526.553 / modinfo553",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Transfer the remaining Dialogue transport and physical cleanup without changing saved era awards or current effects.",
+  "goal": "Replace the old Boost UI startup relay with the existing Gameplay lifecycle callbacks and verify exact cleanup, failure visibility and the full absence of the UI.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Move old Boost startup cleanup to Gameplay boundaries — S1088",
+      "reason": "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -906,6 +912,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent.",
     "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer.",
     "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer.",
     "S1085 transfers the exact old level-three groups, scoped retries, reports and confirmed exit adapters, and tests the real package without either old Lua file.",
@@ -6096,6 +6103,49 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#transfer-dialogue-work-receipts-and-exact-old-withdrawal--s1087"
+    },
+    "s1088_boost_startup_handoff": {
+      "build": "B526.553 / modinfo553",
+      "baseline": "1d1d0e284ea14ef6a03d45b6c201979c71b6853c",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "O7BoostStartupHandoff": {
+          "path": "local/refactor/S1088-O7BoostStartupHandoff-ready/closure.json",
+          "sha256": "a7aebb8cb5e934d894145de3538d379f8026b71ba33aef8eea0152d0cd4d4d71",
+          "pass_count": 23
+        },
+        "O7DialogueTransport": {
+          "path": "local/refactor/S1088-O7DialogueTransport-ready/closure.json",
+          "sha256": "0e48a31b9aa50c4de7c6edd445d661eb848f7e52f688e5f51a21ce885abcaa79",
+          "pass_count": 44
+        },
+        "NReadOnlyNetworkDiagnostic": {
+          "path": "local/refactor/S1088-NReadOnlyNetworkDiagnostic-ready/closure.json",
+          "sha256": "48a5d27442e4422b9d387ca65da672fff8c58d8cd3eef59b52218f3f0bf576d1",
+          "pass_count": 136
+        },
+        "NStandardizationEffectReadback": {
+          "path": "local/refactor/S1088-NStandardizationEffectReadback-ready/closure.json",
+          "sha256": "dfdd5b3179f4e8085e152477e607539866851e994fe64673dcb3fa3d1fc9dbc5",
+          "pass_count": 118
+        }
+      },
+      "removed_paths": {
+        "Mod/UI/BoostRefresh.lua": "994dd7c036bbe4d3246dad099fdd40ba3d005d631d5454694ee1e151eec7e63f",
+        "Mod/UI/BoostRefresh.xml": "ae33c200ecdfeffd91165035eac916d0d32759622607f5658f58a7500c7b3595"
+      },
+      "ui_callbacks_removed": 3,
+      "gameplay_callbacks_added": 0,
+      "rollback": [
+        "temporary_switch_and_restore",
+        "stable_apply_and_rollback"
+      ],
+      "source_sha256": "530ea46511a024e98ad28d530069542ef56e1c1d9b17b6d058017b98ba3d3367",
+      "package_sha256": "d517a35c0251d9c60b8ea66e262ea5e00956d3cb0dc4b08cd8ee70e7c2e764f8",
+      "files": 315,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#move-old-boost-startup-cleanup-to-gameplay-boundaries--s1088"
     }
   }
 }

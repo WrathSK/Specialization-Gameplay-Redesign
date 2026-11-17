@@ -561,9 +561,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "b45f5cd6dc48d9b054a0be3fe37147076f95eed88c0543c7ecb0c419955156c3",
+      "sha256": "b9647a10454a0bbca79ebb8db9125b6326fc3bd92de190cec5ae0c15356b35ad",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer."
+      "provenance": "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent."
     },
     "Mod/GreatWorkCatalog.lua": {
       "sha256": "c0669180efe21a4c2fd91289be9c0a1a4828ac785a3791ca1b059507cc2fec72",
@@ -661,14 +661,14 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "ccef90d1688ced48cf25f0d81978d85ee16a39d27c38d20c5154fbe972eed55c",
+      "sha256": "47ce46e85e1a5c295ad7529b0968d4ff0473b01ee63a53e3f05a0f1c3a334010",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer."
+      "provenance": "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent."
     },
     "Mod/ReadinessSummary.lua": {
-      "sha256": "0d9205f3f4543c200c3fb3787384e8f1d580fe2834831829822546c641356458",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B273_Refactor_S3.md",
-      "provenance": "B273 S3 approved ordered startup/callback/adapter failure containment and readiness latch; current commit/schema/formulas retained. Scope-specific local/static evidence; no native acceptance/deployment."
+      "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent."
     },
     "Mod/ResearchApply.lua": {
       "sha256": "61d2d0bc74d4b4a7d8216a68485bf4fe31b9251a58929ce7f283c34669d914ef",
@@ -776,9 +776,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "61576a677209862e33daa11076c9204b2db8cc5b8c76f4dbaef9314f8d84f585",
+      "sha256": "4629559de7345d550b894b7f53762212eaae2b43ca2d055b2a9680d72d217eb8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer."
+      "provenance": "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -994,16 +994,6 @@
       "sha256": "9515a650f28ff2b0ea8a9be52ef9bed8cbec733ac6c43f7c008066dd8f125c9e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S1009 B472 old Great Work adjacency command retirement."
-    },
-    "Mod/UI/BoostRefresh.lua": {
-      "sha256": "994dd7c036bbe4d3246dad099fdd40ba3d005d631d5454694ee1e151eec7e63f",
-      "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1074 moves exact B053 and B055 load withdrawal to LegacyCleanup at the original startup positions. The actual roots retain the same cold cleanup, bounded retry, reports and Store exit proof with both old modules absent."
-    },
-    "Mod/UI/BoostRefresh.xml": {
-      "sha256": "ae33c200ecdfeffd91165035eac916d0d32759622607f5658f58a7500c7b3595",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/UI/CapitalInvestmentPanel.lua": {
       "sha256": "40c8dd8789f35d5ef13f87561c06b2e52e905954ead0b330b1421e59c9c29d65",
@@ -1446,9 +1436,9 @@
       "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LegacyCleanup.lua": {
-      "sha256": "a8c2e08a7a08feadef1aff1faf0fbb7f945dcfd7f5f4a6d190ac72c478974977",
+      "sha256": "8e1923044adc277646290d55086eb04c44ea69a7695f783d602e331b1b6edb36",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer."
+      "provenance": "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent."
     },
     "Mod/DevelopmentInvestmentTargets.lua": {
       "sha256": "0af2689c6ae0e01b5f9e50683da32a19f1499f10b1ae7c7d566ee3b5c9b119f8",

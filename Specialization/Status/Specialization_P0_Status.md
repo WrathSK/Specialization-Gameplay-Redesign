@@ -1,28 +1,45 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1087
-Implementation Build: B525.552 / modinfo552 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1088
+Implementation Build: B526.553 / modinfo553 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: DIALOGUE_TRANSPORT_HANDOFF_LOCAL_PASS
+Work State: BOOST_STARTUP_HANDOFF_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B525.552 on develop](#transfer-dialogue-work-receipts-and-exact-old-withdrawal--s1087). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B526.553 on develop](#move-old-boost-startup-cleanup-to-gameplay-boundaries--s1088). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The retired Dialogue writer is absent. Current Gameplay and UI transport, paired acknowledgments, scope recovery, exit and exact package rollback pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Retire the old Boost startup UI handshake after replacing its cleanup trigger with the existing load and supported turn callbacks, then prepare targeted native admission. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The old Boost startup UI is absent. Named Gameplay events, readback, stale-request rejection and exact rollback pass locally. Candidate native startup still needs observation. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Retire the unused historical Dialogue model import and prepare the fixed-profile native integration admission and B489 package rollback. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Move old Boost startup cleanup to Gameplay boundaries — S1088
+
+**LOCAL_SIMULATION_PASS in scope.** The startup cleanup uses the existing Gameplay load-close and supported-turn listeners. The early publish fallback still attempts Research only. In real-root fixtures, a failed old Great Work removal leaves that cleanup pending after one successful sibling removal. Unrelated turns and repeated idle publications perform no additional writes. The next actual supported turn confirms the remaining removal, and successful cleanup stays idle. The retained read-only report matches the current effect state. Both disposable package transactions roll back the exact two-path removal.
+
+**Runtime Impact Contract.** Remove the old UI context, its init relay, three callbacks and stale BOOST_INIT handling. The same two B055 rows and Research list still use the existing readback functions. Existing Gameplay callbacks preserve separate readiness and use one transient reentry guard. A scalar B055_GW status is added to the existing bounded readiness summary for the native check. There is no new listener, timer, saved field, current effect rule or GC change. B489 observed load close in both pinned profiles but still had the UI relay, so the new startup order is not measured in native play.
+
+**Source recovery.** `git show 1d1d0e284ea14ef6a03d45b6c201979c71b6853c:Mod/UI/BoostRefresh.lua` with SHA256 `994dd7c036bbe4d3246dad099fdd40ba3d005d631d5454694ee1e151eec7e63f`. `git show 1d1d0e284ea14ef6a03d45b6c201979c71b6853c:Mod/UI/BoostRefresh.xml` with SHA256 `ae33c200ecdfeffd91165035eac916d0d32759622607f5658f58a7500c7b3595`.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8 (Lua 5.1 scoped roots), official Assets and read-only HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7BoostStartupHandoff --output local/refactor/S1088-O7BoostStartupHandoff-ready/closure.json` (23/23), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7DialogueTransport --output local/refactor/S1088-O7DialogueTransport-ready/closure.json` (44/44), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1088-NReadOnlyNetworkDiagnostic-ready/closure.json` (136/136), `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/S1088-NStandardizationEffectReadback-ready/closure.json` (118/118). Local-only machine artifacts and companion logs
+
+- `local/refactor/S1088-O7BoostStartupHandoff-ready/closure.json` SHA256 `a7aebb8cb5e934d894145de3538d379f8026b71ba33aef8eea0152d0cd4d4d71`.
+- `local/refactor/S1088-O7DialogueTransport-ready/closure.json` SHA256 `0e48a31b9aa50c4de7c6edd445d661eb848f7e52f688e5f51a21ce885abcaa79`.
+- `local/refactor/S1088-NReadOnlyNetworkDiagnostic-ready/closure.json` SHA256 `48a5d27442e4422b9d387ca65da672fff8c58d8cd3eef59b52218f3f0bf576d1`.
+- `local/refactor/S1088-NStandardizationEffectReadback-ready/closure.json` SHA256 `dfdd5b3179f4e8085e152477e607539866851e994fe64673dcb3fa3d1fc9dbc5`.
+
+**STATIC_CONFIRMED.** 187 Lua 5.1 compiles, 31 XML-family parses, 621 File references and 10 LuaReplace references. Source SHA256 `530ea46511a024e98ad28d530069542ef56e1c1d9b17b6d058017b98ba3d3367`. Package SHA256 `d517a35c0251d9c60b8ea66e262ea5e00956d3cb0dc4b08cd8ee70e7c2e764f8` across 315 files. Source-only checkpoint without new native evidence.
 
 ### Transfer Dialogue work receipts and exact old withdrawal — S1087
 

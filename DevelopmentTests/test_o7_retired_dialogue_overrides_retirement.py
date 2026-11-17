@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch
 
 from refactor_harness import ROOT, measure
-from retired_crew_sources import B472, B473, B524, package
+from retired_crew_sources import B472, B473, B524, B525, package
 from test_o7_legacy_completion_record_retirement import load_cold_store, save_fixture, stored_records
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_p0_panel_current_layout import panel_runtime
@@ -150,14 +150,14 @@ class RetiredDialogueOverrides(unittest.TestCase):
 
         saved=save_fixture()
         removed=('Dialogue.lua',)
-        with package(B524) as prior:
+        with package(B524) as prior, package(B525) as next_package:
             self.assertEqual(requests(prior,B524,saved,projected=True),
-                             requests(ROOT,None,saved,projected=True))
+                             requests(next_package,B525,saved,projected=True))
             for name in ('DialogueProjects.lua','DialogueEffects.lua','UI/DialogueRefresh.lua',
                          'LegacyCleanupCatalog.lua','Data/Dialogue.sql','Data/DialogueEffects.sql'):
-                self.assertEqual((prior/'Mod'/name).read_bytes(),(ROOT/'Mod'/name).read_bytes(),name)
-            verify_package_round_trip(self,prior/'Mod',ROOT/'Mod',removed,'GreatWorkFacts.lua')
-            verify_stable_round_trip(self,prior/'Mod',ROOT/'Mod',removed)
+                self.assertEqual((prior/'Mod'/name).read_bytes(),(next_package/'Mod'/name).read_bytes(),name)
+            verify_package_round_trip(self,prior/'Mod',next_package/'Mod',removed,'GreatWorkFacts.lua')
+            verify_stable_round_trip(self,prior/'Mod',next_package/'Mod',removed)
 
     def test_only_four_hidden_controls_leave_the_panel(self):
         with package(B472) as previous, package(B473) as retired:
