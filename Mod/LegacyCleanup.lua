@@ -299,6 +299,31 @@ function SPCLegacyCleanup.StartBoostLoad(P,shared)
  hook(Events,'PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then initialize()end end)
 end
 
+-- The old Dialogue carriers are removed before applying the current Tourism projection.
+function SPCLegacyCleanup.InstallDialogueLoad(P,d,eraCount)
+ local function remove(c,id)
+  local row=assert(P.Info('Buildings',id),'DIALOGUE_DATABASE_MISSING');local b=c:GetBuildings()
+  if P.HasBuilding(b,row.Index)~=false then
+   P.RemoveBuilding(b,row.Index)
+   assert(P.HasBuilding(b,row.Index)==false,'DIALOGUE_WRITE_FAILED');d.changes=d.changes+1
+  end
+ end
+ function d.Init()
+  if d.ready then return end
+  assert(not d.initializing,'DIALOGUE_INIT_BUSY');d.initializing=true
+  local ok,why=pcall(function()
+   for _,p in pairs(Players) do local cities=p:GetCities();if cities then for _,c in cities:Members() do P.Count('city_scan');
+    for n=2,eraCount do local id='BUILDING_SPC_B059_D'..n;if P.Info('Buildings',id) then remove(c,id) end end
+    for _,v in ipairs({25,50,100,200}) do local id='BUILDING_SPC_B059_TEST'..v;if P.Info('Buildings',id) then remove(c,id) end end
+    for _,m in ipairs({'CITY','OBJECT'}) do local id='BUILDING_SPC_B055_GW_'..m;if P.Info('Buildings',id) then remove(c,id) end end
+   end end end
+  end)
+  d.initializing=false -- Only the invocation which acquired this lock releases it.
+  if not ok then error(why)end
+  d.ready=true
+ end
+end
+
 function SPCLegacyCleanup.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'LEGACY_STORE_UNAVAILABLE')
  assert(type(store.IsExitCurrent)=='function'and type(store.ExitCompleted)=='function','LEGACY_EXIT_PROOF_UNAVAILABLE')

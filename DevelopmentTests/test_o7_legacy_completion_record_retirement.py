@@ -3,7 +3,7 @@ from collections import Counter, deque
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B464, B465, B511, B513, B515, B516, B517, B518, B519, B521, B522, B523, RETIRED_ADJACENCY_FILES, RETIRED_LEVEL3_FILES, RETIRED_CITY_FILES, RETIRED_CITY_STARTS, package, source
+from retired_crew_sources import B464, B465, B511, B513, B515, B516, B517, B518, B519, B521, B522, B523, B524, RETIRED_ADJACENCY_FILES, RETIRED_LEVEL3_FILES, RETIRED_CITY_FILES, RETIRED_CITY_STARTS, package, source
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -132,7 +132,7 @@ def load_cold_store(ctx,saved, *, city_flow_missing=False):
       local b=store.Base(0,city1)
       assert(b.specialization=='RESEARCH' and b.potential==1)
       assert(store.Base(0,city2).specialization=='NONE')
-    """,ctx.history is not None,city_flow_missing)
+    """,ctx.history is not None and "BindingProbe.lua" in ctx.vfs.files,city_flow_missing)
     cold=stored_records(ctx)
     assert cold == (saved['properties']['SPC_PROGRESSION_INDEX_V3'],
         *(saved['properties']['SPC_PROGRESSION_CITY_V3_'+saved['cities'][i]['token']] for i in (1,2)))
@@ -199,7 +199,7 @@ def load_and_complete(root,saved, *, journal_retired=False):
             ctx.eval('GameEvents.OnDistrictConstructed.Count()'))
 
 
-def routes(root,revision=B464,*,retired_culture=False,old_commerce_absent=False,worker_percent_absent=False,level3_absent=False,boost_absent=False):
+def routes(root,revision=B464,*,retired_culture=False,old_commerce_absent=False,worker_percent_absent=False,level3_absent=False,boost_absent=False,dialogue_absent=False):
     gp,ui=context(root,revision=revision),context(root,'UI/BackgroundRoutes',revision)
     if retired_culture:
         forbidden=('SPCCultureInspirationProbe','SPCGWAdjacency','SPCGWAdjacencyModel')
@@ -211,7 +211,12 @@ def routes(root,revision=B464,*,retired_culture=False,old_commerce_absent=False,
             forbidden=(*forbidden,'SPCLv3Effects','SPCLv3Support')
         if boost_absent:
             forbidden=(*forbidden,'SPCNetworkBoost')
+        if dialogue_absent:
+            forbidden=(*forbidden,'SPCDialogue','SPCDialogueModel')
         vfs=PackageVFS(forbidden_globals=forbidden)
+        if dialogue_absent:
+            assert 'Dialogue.lua' not in vfs.files and 'Dialogue.lua' not in vfs.imports
+            assert not (ROOT/'Mod/Dialogue.lua').exists()
         if boost_absent:
             assert 'NetworkBoost.lua' not in vfs.files and 'NetworkBoost.lua' not in vfs.imports
             assert not (ROOT/'Mod/NetworkBoost.lua').exists()
@@ -254,6 +259,10 @@ def routes(root,revision=B464,*,retired_culture=False,old_commerce_absent=False,
         gp.execute("""local s=ExposedMembers.SPC_P0
           assert(s.StartStatus.NetworkBoost.state=='OK' and s.NetworkBoost.retired)
           assert(not s.NetworkBoost.Plan and not s.NetworkBoost.Test)""")
+    if dialogue_absent:
+        gp.execute("""local s=ExposedMembers.SPC_P0
+          assert(s.StartStatus.Dialogue.state=='OK' and s.StartStatus.DialogueEffects.state=='OK')
+          assert(s.Dialogue.retired and s.Dialogue.Receive and not s.Dialogue.Audit)""")
     return packets,gp.load_counts,ui.load_counts,Counter(row['module'] for row in gp.loads)
 
 
@@ -392,13 +401,14 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
         with (package(B464) as previous, package(B511) as pre_handoff,
               package(B513) as no_experiments, package(B515) as no_writers, package(B517) as no_city_probes,
               package(B518) as no_inspiration_probe, package(B519) as no_adjacency, package(B521) as no_commerce,
-              package(B522) as no_worker_percent, package(B523) as no_level3):
+              package(B522) as no_worker_percent, package(B523) as no_level3,
+              package(B524) as no_boost):
             stages = [routes(previous), routes(pre_handoff,B511), routes(no_experiments,B513),
                       routes(no_writers,B515), routes(no_city_probes,B517), routes(no_inspiration_probe,B518),
                       routes(no_adjacency,B519), routes(no_commerce,B521),
-                      routes(no_worker_percent,B522), routes(no_level3,B523),
+                      routes(no_worker_percent,B522), routes(no_level3,B523), routes(no_boost,B524),
                       routes(ROOT,retired_culture=True,old_commerce_absent=True,
-                             worker_percent_absent=True,level3_absent=True,boost_absent=True)]
+                             worker_percent_absent=True,level3_absent=True,boost_absent=True,dialogue_absent=True)]
         self.assertEqual(len(stages[0][0]),3)
         retirements=(
             ('CompletionRecordProbe.lua',),
@@ -411,6 +421,7 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             ('Lv4Percent.lua','RuntimeWork.lua','CityReference.lua'),
             RETIRED_LEVEL3_FILES,
             ('NetworkBoost.lua',),
+            ('Dialogue.lua','DialogueModel.lua','NetworkInput.lua'),
         )
         for before, after, retired in zip(stages, stages[1:], retirements):
             self.assertEqual(before[0],after[0])
@@ -423,7 +434,7 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             experiment_module_loads_removed=2, industrial_module_loads_removed=5,
             legacy_city_module_loads_removed=len(RETIRED_CITY_FILES), inspiration_includes_removed=3,
             meaning_includes_removed=len(RETIRED_ADJACENCY_FILES),commerce_legacy_includes_removed=4,worker_percent_includes_removed=3,
-            level3_includes_removed=len(RETIRED_LEVEL3_FILES),boost_includes_removed=1))
+            level3_includes_removed=len(RETIRED_LEVEL3_FILES),boost_includes_removed=1,dialogue_includes_removed=3))
 
     def test_only_the_hidden_completion_record_request_retires(self):
         with package(B464) as previous, package(B465) as retired:

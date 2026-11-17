@@ -793,7 +793,7 @@ composition.Run('GreatWorkFacts',{},{'GreatWorkFacts'},function() include('Great
 
 composition.Run('CultureAesthetic',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Lv3Effects','RuntimeRetirement','NativeFacts'},{'CultureAesthetic'},function() include('CultureAesthetic');SPCCultureAesthetic.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('Dialogue',{'GreatWorkFacts','LegacyCleanup'},{'Dialogue'},function() include('Dialogue');SPCDialogue.Start(P,shared,{centralExit=true}) end)
+composition.Run('Dialogue',{'GreatWorkFacts','LegacyCleanup'},{'Dialogue'},function() SPCGreatWorkFacts.StartDialogueTransport(P,shared) end)
 
 composition.Run('CultureMeaning',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Dialogue','NativeFacts'},{'CultureMeaning'},function() include('CultureMeaning');SPCCultureMeaning.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
@@ -832,9 +832,6 @@ composition.Run('CapitalInvestment',{'CityProgressionStore','EffectiveFacts','Co
 composition.Run('DevelopmentInvestment',{'CityProgressionStore','EffectiveFacts','NetworkBridge'},{'DevelopmentInvestment'},function() include('DevelopmentInvestment');SPCDevelopmentInvestment.Start(P,shared) end)
 
 composition.Run('DialogueProjects',{'CityProgressionStore','EffectiveFacts','GreatWorkFacts'},{'DialogueProjects'},function() include('DialogueProjects');SPCDialogueProjects.Start(P,shared) end)
-
--- New effect failure never reactivates the retired Dialogue writer.
-if shared.Dialogue then shared.Dialogue.retired=true end
 
 composition.Run('DialogueEffects',{'CityProgressionStore','Dialogue','EffectiveFacts','GreatWorkFacts','NativeFacts'},{'DialogueEffects'},function() include('DialogueEffects');SPCDialogueEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 

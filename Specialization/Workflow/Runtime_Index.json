@@ -460,11 +460,6 @@
       "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
       "provenance": "B076 unchanged inherited inventory"
     },
-    "Mod/Dialogue.lua": {
-      "sha256": "dd6b5e14b40666c959e579e7520a245e18ca4cf7d5909dde6bd94965d11ee8c6",
-      "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1081 moves exact cold B060 withdrawals to Culture Meaning, preserves the confirmed city exit owner and Dialogue packet, and removes the two retired adjacency Lua paths."
-    },
     "Mod/DialogueEffects.lua": {
       "sha256": "322cff09574c27386c108446959ca4f4d18bf5e8ee7832dbeb7467f09c45de74",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
@@ -566,9 +561,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "916ef043954cac26f169a79495ad459524c8738d22f48b8b37aa6ba4f4b0ee4e",
+      "sha256": "b45f5cd6dc48d9b054a0be3fe37147076f95eed88c0543c7ecb0c419955156c3",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer."
+      "provenance": "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer."
     },
     "Mod/GreatWorkCatalog.lua": {
       "sha256": "c0669180efe21a4c2fd91289be9c0a1a4828ac785a3791ca1b059507cc2fec72",
@@ -576,9 +571,9 @@
       "provenance": "B147 P0-K authorized facts-only registry, scoped shared producer, independent bridge and diagnostic; targeted26 local PASS, native pending; no old writer retirement."
     },
     "Mod/GreatWorkFacts.lua": {
-      "sha256": "2577ef540ac0145b7e054ecfab03b57251a70f27d201250d53df913ae1340879",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B354_Refactor_S9b2.md",
-      "provenance": "B354.381 Interpret fresh Dialogue work slots in Gameplay; local/static evidence only; no deployment/native PASS."
+      "sha256": "1aa1a47ca439d4fe477f76f6bf73cf4e0ddb357071df5dc65b23b853dd8f3d71",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer."
     },
     "Mod/IndustryHistory.lua": {
       "sha256": "c361a4a8a9ea7a701fbec8bc45f391199da7886e6d06859245efb3e0257d1d76",
@@ -666,9 +661,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "8d2f10f66e7ba8eb6c2b778ab5c78abeb5e8d82c300b177eae5a3e93b673ee0e",
+      "sha256": "ccef90d1688ced48cf25f0d81978d85ee16a39d27c38d20c5154fbe972eed55c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer."
+      "provenance": "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "0d9205f3f4543c200c3fb3787384e8f1d580fe2834831829822546c641356458",
@@ -781,9 +776,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "ae214543cf06d8bf8c34039e188e4929ec17623a0305a0caf33bc6bc06af2d4b",
+      "sha256": "61576a677209862e33daa11076c9204b2db8cc5b8c76f4dbaef9314f8d84f585",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer."
+      "provenance": "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1451,9 +1446,9 @@
       "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LegacyCleanup.lua": {
-      "sha256": "4e7dd79dbb8c1414d471e78ec4fe8bf335b9efb5824bb4b5651e89cffd6e1f04",
+      "sha256": "a8c2e08a7a08feadef1aff1faf0fbb7f945dcfd7f5f4a6d190ac72c478974977",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer."
+      "provenance": "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer."
     },
     "Mod/DevelopmentInvestmentTargets.lua": {
       "sha256": "0af2689c6ae0e01b5f9e50683da32a19f1499f10b1ae7c7d566ee3b5c9b119f8",

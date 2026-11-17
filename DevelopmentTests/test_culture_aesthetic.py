@@ -150,9 +150,10 @@ class AestheticTests(unittest.TestCase):
    l.globals().GameInfo[name]=l.globals().db(lua_table(l,rows),key)
   for name in ['OrdinaryBuildingCatalog','DistrictCompleteness','CurrentSpecializationFacts']:
    include(name)
-  if historical:
-   for name in ('Lv3Effects','Lv4Percent'):include(name)
-  else:include('LegacyCleanup')
+  old_lv3=bool(historical) or (M/'Lv3Effects.lua').is_file()
+  old_lv4=bool(historical) or (M/'Lv4Percent.lua').is_file()
+  include('Lv3Effects' if old_lv3 else 'LegacyCleanup')
+  if old_lv4:include('Lv4Percent')
   include('CultureAesthetic')
   l.execute('''a=city(1);b=city(2)
    for _,c in ipairs(cities)do
@@ -160,15 +161,15 @@ class AestheticTests(unittest.TestCase):
     building(c,'BUILDING_MONUMENT',c.ds[1]);building(c,'BUILDING_WALLS',c.ds[1]);building(c,'BUILDING_PALACE',c.ds[1]);building(c,'BUILDING_AMPHITHEATER',c.ds[2]);building(c,'BUILDING_MARKET',c.ds[3]);building(c,'BUILDING_HD_VILLA',c.ds[4]);building(c,'BUILDING_HD_BUS_STOP',c.ds[5])
    end
    SPCDistrictCompleteness.Start(P,shared)
-   if ... then
-    SPCLv3Effects.Start(P,shared)
-    SPCLv4Percent.Start(P,shared)
+   local legacy3,legacy4=...
+   if legacy3 then SPCLv3Effects.Start(P,shared)
    else
     shared.LegacyCleanup={RegisterRunner=function(name,runner)
      assert(name=='Lv3Effects' and type(runner)=='function')
     end}
     SPCLegacyCleanup.StartLv3Effects(P,shared)
    end
+   if legacy4 then SPCLv4Percent.Start(P,shared)end
    SPCCultureAesthetic.Start(P,shared)
    data=shared.CultureAesthetic;svc=shared.DistrictCompleteness
    function audit()data.Audit({player=0})end
@@ -178,7 +179,7 @@ class AestheticTests(unittest.TestCase):
     local n=0;for bit=0,15 do if plots[plot].props['SPC_CULTURE_AESTHETIC_'..bit]==1 then n=n+2^bit end end;return n
    end
    function total(c)local n=0;for _,d in ipairs(c.ds)do n=n+amount(c,d.x)end;return n end
-  ''',historical is not None)
+  ''',old_lv3,old_lv4)
   if ready:l.execute("fire('LoadScreenClose')")
   return l
  def test_formula_and_two_cities(self):

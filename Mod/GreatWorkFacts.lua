@@ -383,3 +383,81 @@ function F.Start(P,shared)
  end
  return d
 end
+
+-- Retain the shared work-batch ACK and generation used by the UI sender.
+function F.StartDialogueTransport(P,shared)
+ local d={ready=false,busy=false,retired=true,seq={},samples={},paired={},off={},test={},last={},errors={},changes=0,received={},generation=1}
+ shared.Dialogue=d
+ local levels={};for _ in GameInfo.Eras()do levels[#levels+1]=true end
+ SPCLegacyCleanup.InstallDialogueLoad(P,d,#levels)
+ local owned={};for n=2,#levels do owned['BUILDING_SPC_B059_D'..n]=true end
+ for _,v in ipairs({25,50,100,200})do owned['BUILDING_SPC_B059_TEST'..v]=true end
+ function d.IsOwnedCarrier(name)return owned[name]==true or shared.DialogueEffects and shared.DialogueEffects.IsOwnedCarrier and shared.DialogueEffects.IsOwnedCarrier(name)==true end
+ -- One current accepted-pair receipt per supported player, never a history.
+ -- Only the actual request handler calls this after both receivers return true.
+ function d.ConfirmSamplePair(pid,packet)
+  local s=d.samples[pid];local f=shared.GreatWorkFacts
+  if not P.IsTestPlayer(pid) or not s or not f or s.seq~=packet.Seq or s.generation~=packet.Generation
+   or s.turn~=packet.Turn or s.factsEpoch~=packet.FactsEpoch or s.factsInput~=packet.FactsInput
+   or s.turn~=Game.GetCurrentGameTurn() or s.generation~=d.generation or s.seq~=d.seq[pid]
+   or s.seq~=f.ack or s.factsEpoch~=f.epoch or s.factsInput~=f.inputRevision then return false end
+  d.paired[pid]={seq=s.seq,generation=s.generation,turn=s.turn,factsEpoch=s.factsEpoch,factsInput=s.factsInput}
+  return true
+ end
+ function d.Receive(pid,a)
+  if not P.IsTestPlayer(pid) then return false end
+  d.received[pid]={seq=a.Seq,generation=a.Generation,stage='RECEIVED'}
+  if a.Generation~=d.generation then d.errors[pid]='DIALOGUE_GENERATION_MISMATCH';d.received[pid].stage='REJECTED_GENERATION';return false end
+  if type(a.Seq)~='number' or a.Seq%1~=0 or a.Seq<=(d.seq[pid] or 0) then return false end
+  -- ACK receipt even if initialization fails: failure must not create a resend storm.
+  d.seq[pid]=a.Seq
+  local initialized,initError=pcall(d.Init)
+  if not initialized then
+   d.samples[pid]=nil;d.errors[pid]='DIALOGUE_INIT_FAILED: '..tostring(initError);d.received[pid].stage='INIT_FAILED';return false
+  end
+  d.received[pid].stage='INITIALIZED'
+  local ok,res=pcall(function()
+   assert(a.Valid==1 and a.Turn==Game.GetCurrentGameTurn() and type(a.Data)=='string' and #a.Data<=100000,'DIALOGUE_SAMPLE_INVALID')
+   local cities,seen={},{};local count=0
+   for line in a.Data:gmatch('[^;]+') do
+    local cid,wid,typ=line:match('^(%d+),(%-?%d+),([A-Z0-9_]+)$');cid=tonumber(cid);wid=tonumber(wid)
+    local c=cid and Players[pid]:GetCities():FindID(cid);assert(c and c:GetOwner()==pid,'DIALOGUE_OWNER')
+    if wid==-1 then assert(not cities[cid] and typ=='EMPTY','DIALOGUE_CITY_DUPLICATE');cities[cid]={}
+    else assert(cities[cid] and wid and wid>=0 and not seen[wid],'DIALOGUE_DUPLICATE_WORK');seen[wid]=true
+     assert(P.Info('GreatWorks',typ),'DIALOGUE_WORK_TYPE');cities[cid][#cities[cid]+1]={id=wid,type=typ}
+    end
+    count=count+1
+   end
+   assert(count==a.Count,'DIALOGUE_COUNT')
+   for _,c in Players[pid]:GetCities():Members() do P.Count('city_scan'); assert(cities[c:GetID()],'DIALOGUE_CITY_MISSING') end
+   return {turn=a.Turn,cities=cities,seq=a.Seq,generation=a.Generation,factsEpoch=a.FactsEpoch,factsInput=a.FactsInput}
+  end)
+  d.samples[pid]=ok and res or nil;d.errors[pid]=not ok and tostring(res) or nil;d.received[pid].stage=ok and 'ACCEPTED' or 'REJECTED_SAMPLE'
+  return ok -- Accepted collection, independent of legacy projection success.
+ end
+ function d.Describe(pid,c)
+  return shared.DialogueEffects and shared.DialogueEffects.Describe and shared.DialogueEffects.Describe(pid,c) or '时代对话收益未就绪'
+ end
+ local transfer=P.Field(Events,'CityTransfered')
+ if transfer and transfer.Add then transfer.Add(function()
+  d.samples={};d.paired={}
+ end)end
+ local function exitPost(c,loss)
+   local t=d.carrierTest
+   if t and t.owner==loss.origin.owner then
+    -- Exit has already proved its exact target. Drop only the matching hold.
+    local h=d.meaningOverride
+    if h and h.reference==t.reference and h.city==loss.origin.cityID then
+     d.carrierTest=nil;d.meaningOverride=nil;d.meaningQualification=nil
+    end
+   end
+ end
+ assert(shared.LegacyCleanup,'LEGACY_CLEANUP_UNAVAILABLE').RegisterPostCleanup('Dialogue',exitPost)
+ if shared.CityProgressionStore then
+  shared.CityProgressionStore.RegisterReturn('Dialogue',function()
+   d.generation=d.generation+1
+   d.samples={};d.paired={};d.seq={};d.last={};d.test={}
+  end)
+ end
+ return d
+end

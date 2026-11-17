@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, B518, B519, B521, B522, B523, RETIRED_ADJACENCY_FILES, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, B518, B519, B521, B522, B523, B524, RETIRED_ADJACENCY_FILES, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -29,6 +29,7 @@ def start_order(source):
  for name,(_,method) in EXPERIMENT_LOADS.items():
   # Compare the replacement cleanup call at the original observer's position.
   source=source.replace('SPCLegacyCleanup.'+method+'(', 'SPC'+name+'.Start(P,shared')
+ source=source.replace('SPCGreatWorkFacts.StartDialogueTransport(', 'SPCDialogue.Start(P,shared')
  return re.findall(r'(SPC\w+)\.Start\(P,shared',source)
 
 MODULES=('Lv3Support','Lv3Effects','Lv4Percent','PurchaseProbe','NetworkBoost','GreatWorkProbe','Dialogue','GreatWorkAdjacency','CommerceConvergence')
@@ -78,6 +79,7 @@ def production(extra='',failure=None,late=None,*,modules=None,gameplay=None):
    out=v.execute(retired_source(name+'.lua',original))
   elif name+'.lua' in RETIRED_ADJACENCY_FILES:out=v.execute(retired_source(name+'.lua',B518))
   elif name=='Lv4Percent':out=v.execute(retired_source(name+'.lua',B521))
+  elif name=='Dialogue':out=v.execute(retired_source(name+'.lua',B524))
   else:out=include(name)
   if late==name:
    sym=SYMBOL.get(name,'SPC'+name)
@@ -87,6 +89,12 @@ def production(extra='',failure=None,late=None,*,modules=None,gameplay=None):
  v.execute(entry('LegacyCleanup',gameplay))
  for name in modules:
   slot=startup_slot(name,gameplay)
+  if name=='Dialogue' and 'SPCGreatWorkFacts.StartDialogueTransport(' in gameplay:
+   v.globals().include('GreatWorkFacts')
+   if failure==name:
+    v.execute("SPCGreatWorkFacts.StartDialogueTransport=function()error('DIALOGUE_START_FAILURE')end")
+   if late==name:
+    v.execute("local start=SPCGreatWorkFacts.StartDialogueTransport;SPCGreatWorkFacts.StartDialogueTransport=function(...)start(...);error('LATE_START_FAILURE')end")
   method=replacement_method(name,gameplay)
   if method and failure==name:
    v.execute("SPCLegacyCleanup[...]=function()error('RELOCATED_START_FAILURE')end",method)
@@ -155,6 +163,9 @@ class Production(unittest.TestCase):
     self.assertIn('SPCLegacyCleanup.'+replacement_method(name,s)+'(',entry(slot,s))
     if name in ('Lv3Effects','Lv3Support'):
      self.assertIn('centralExit=true',entry(name,retired_source('Gameplay.lua',B522)))
+   elif retired and name=='Dialogue':
+    self.assertIn('centralExit=true',entry(name,retired_source('Gameplay.lua',B524)))
+    self.assertIn('SPCGreatWorkFacts.StartDialogueTransport(P,shared)',entry(name,s))
    else:self.assertIn('centralExit=true',entry(name,s))
   self.assertIn('retireCommerce=true',entry('Lv3Effects',retired_source('Gameplay.lua',B522)))
   for name in ('NetworkBoost','GreatWorkAdjacency','CommerceConvergence'):

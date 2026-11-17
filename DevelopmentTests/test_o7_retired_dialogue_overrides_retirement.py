@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch
 
 from refactor_harness import ROOT, measure
-from retired_crew_sources import B472, B473, package
+from retired_crew_sources import B472, B473, B524, package
 from test_o7_legacy_completion_record_retirement import load_cold_store, save_fixture, stored_records
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_p0_panel_current_layout import panel_runtime
@@ -18,7 +18,7 @@ CONTROLS = {
 ACTIONS = list(CONTROLS.values())+['DIALOGUE_AUTO']
 
 
-def requests(root, source, saved):
+def requests(root, source, saved, *, projected=False):
     vm = context(root, source)
     cold = load_cold_store(vm, saved)
     vm.execute("""
@@ -32,12 +32,12 @@ def requests(root, source, saved):
       local audit=d.Audit
       local desc=d.Describe
       audits,reads=0,0
-      d.Audit=function(...)
+      if audit then d.Audit=function(...)
         audits=audits+1
         local applied,why=audit(...)
         assert(applied==false and why=='DIALOGUE_LEGACY_WRITER_RETIRED')
         return applied,why
-      end
+      end end
       d.Describe=function(...) reads=reads+1;return desc(...)end
       local function request(action,token)
         GameEvents.SPC_P0_Request.Fire(0,{Action=action,Token=token,CityID=city1:GetID(),Page=1})
@@ -66,7 +66,7 @@ def requests(root, source, saved):
       assert(request('DIALOGUE_PROJECT_READ','kept-project')==currentProject and s.LastToken=='kept-project')
       assert(request('GW_READ','kept-legacy-read')==currentBaseline and s.LastToken=='kept-legacy-read')
       assert(#writeKeys==beforeWrites and cityWrites==0)
-    """, source is None)
+    """,projected)
     assert stored_records(vm)==cold
     assert vm.load_counts['missing']+vm.load_counts['failed']==0
     return tuple(vm.eval(expr) for expr in ('currentProject','currentBaseline','currentWorks','audits','reads'))
@@ -125,13 +125,13 @@ def panel(root, *, retired):
 class RetiredDialogueOverrides(unittest.TestCase):
     def test_old_requests_stop_before_retired_writer_and_keep_current_readouts(self):
         saved=save_fixture()
-        with package(B472) as previous:
+        with package(B472) as previous, package(B473) as successor:
             before=requests(previous,B472,saved)
             for name in ('Dialogue.lua','DialogueProjects.lua','DialogueEffects.lua','DialogueProjectModel.lua',
                          'CityProgressionStore.lua','GreatWorkFacts.lua','UI/DialogueRefresh.lua',
                          'LegacyCleanup.lua','LegacyCleanupCatalog.lua','Data/DialogueEffects.sql'):
-                self.assertEqual((ROOT/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
-        after=requests(ROOT,None,saved)
+                self.assertEqual((successor/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
+            after=requests(successor,B473,saved,projected=True)
         self.assertEqual(before[:3],after[:3])
         self.assertEqual((before[3:],after[3:]),((5,7),(0,2)))
         measure('retired_dialogue_requests',dict(old_audits=[5,0],readouts='MATCH',property_writes=[0,0]))
@@ -144,6 +144,20 @@ class RetiredDialogueOverrides(unittest.TestCase):
         self.assertEqual(after,(5,10,2))
         measure('retired_dialogue_effects',dict(legacy_carrier_withdrawn=True,
             modeled_carrier_bonuses=list(after[:2]),collection_ack=after[2]))
+
+    def test_current_transport_keeps_reports_and_exact_removal_rolls_back(self):
+        from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
+
+        saved=save_fixture()
+        removed=('Dialogue.lua',)
+        with package(B524) as prior:
+            self.assertEqual(requests(prior,B524,saved,projected=True),
+                             requests(ROOT,None,saved,projected=True))
+            for name in ('DialogueProjects.lua','DialogueEffects.lua','UI/DialogueRefresh.lua',
+                         'LegacyCleanupCatalog.lua','Data/Dialogue.sql','Data/DialogueEffects.sql'):
+                self.assertEqual((prior/'Mod'/name).read_bytes(),(ROOT/'Mod'/name).read_bytes(),name)
+            verify_package_round_trip(self,prior/'Mod',ROOT/'Mod',removed,'GreatWorkFacts.lua')
+            verify_stable_round_trip(self,prior/'Mod',ROOT/'Mod',removed)
 
     def test_only_four_hidden_controls_leave_the_panel(self):
         with package(B472) as previous, package(B473) as retired:

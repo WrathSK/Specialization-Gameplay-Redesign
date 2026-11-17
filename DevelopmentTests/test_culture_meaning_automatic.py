@@ -22,7 +22,11 @@ class AutomaticMeaningTests(unittest.TestCase):
             cur=self.sql.execute('SELECT * FROM '+table); columns=[x[0]for x in cur.description];rows=[dict(zip(columns,x))for x in cur]
             for i,row in enumerate(rows):row['Index']=i+1
             l.globals().GameInfo[table]=l.globals().db(ae.lua_table(l,rows),key)
-        modules = ['Dialogue','GreatWorkAdjacency','CultureMeaning'] if historical else ['Dialogue','CultureMeaning']
+        # Historical paired fixtures use their archived receiver.
+        legacy_receiver=(ae.M/'Dialogue.lua').is_file()
+        modules=['Dialogue' if legacy_receiver else 'GreatWorkFacts']
+        if historical:modules.append('GreatWorkAdjacency')
+        modules.append('CultureMeaning')
         for name in modules:
             l.globals().include(name)
         l.execute(r"""
@@ -38,8 +42,16 @@ class AutomaticMeaningTests(unittest.TestCase):
             return c and {count=c.workCount,eraCount=c.eras,availability=c.worksUnknown and 'UNKNOWN' or 'KNOWN',
               hasConfirmed=not c.neverConfirmed,reference=SPCNetworkInput.Reference(c),modifierExcludedCount=c.badCount,unknownCategoryCount=c.categoryUnknown}
           end
-          SPCDialogue.Start(P,shared);dialogue=shared.Dialogue
-          if ... then SPCGWAdjacency.Start(P,shared,{retired=true})
+          local priorAdjacency,priorDialogue=...
+          if priorDialogue then SPCDialogue.Start(P,shared)
+          else
+            shared.LegacyCleanup.RegisterPostCleanup=function(name,fn)
+              assert(name=='Dialogue' and type(fn)=='function')
+            end
+            SPCGreatWorkFacts.StartDialogueTransport(P,shared)
+          end
+          dialogue=shared.Dialogue
+          if priorAdjacency then SPCGWAdjacency.Start(P,shared,{retired=true})
           else assert(SPCGWAdjacency==nil and not shared.GreatWorkAdjacency) end
           SPCCultureMeaning.Start(P,shared);meaning=shared.CultureMeaning
           assert(not shared.CultureMeaningProbe)
@@ -56,7 +68,7 @@ class AutomaticMeaningTests(unittest.TestCase):
             return n
           end
           function update(cid)meaning.Audit({player=0,city=cid or 1})end
-        """, historical)
+        """,bool(historical),legacy_receiver)
         if real:
             l.globals().include('GreatWorkFacts')
             l.execute('SPCGreatWorkFacts.Start(P,shared);for _,s in ipairs(fixtureConsumers)do shared.GreatWorkFacts.RegisterConsumer(s.name,s.callback)end')

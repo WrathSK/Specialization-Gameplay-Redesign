@@ -1,28 +1,45 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1086
-Implementation Build: B524.551 / modinfo551 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1087
+Implementation Build: B525.552 / modinfo552 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RESEARCH_BOOST_LEGACY_CLEANUP_HANDOFF_LOCAL_PASS
+Work State: DIALOGUE_TRANSPORT_HANDOFF_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B524.551 on develop](#transfer-old-research-boost-withdrawal-and-startup--s1086). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B525.552 on develop](#transfer-dialogue-work-receipts-and-exact-old-withdrawal--s1087). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The old boost writer is absent. Exact withdrawal, city exit, recovery, background handshake, route proof and both package rollbacks pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Separate the remaining Dialogue sample transport and exact legacy withdrawal from the retired effect writer. Keep the old Boost UI startup signal until equivalent native startup coverage is established. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The retired Dialogue writer is absent. Current Gameplay and UI transport, paired acknowledgments, scope recovery, exit and exact package rollback pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Retire the old Boost startup UI handshake after replacing its cleanup trigger with the existing load and supported turn callbacks, then prepare targeted native admission. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Transfer Dialogue work receipts and exact old withdrawal — S1087
+
+**LOCAL_SIMULATION_PASS in scope.** The Great Work transport retains Dialogue sample sequence, pair, generation, readiness and request report compatibility. LegacyCleanup owns the same exact B059 and B055 withdrawal, including readback, reentry and failure behavior. The current Dialogue effect and project owners, SQL and UI sender are byte-identical. The real report matches the immediately prior build using populated saved records. The exact removal rolls back in both disposable transactions.
+
+**Runtime Impact Contract.** Use the same startup slot and dependencies, with unchanged receipt and recovery boundaries. Four governor callbacks that already returned immediately in retired mode and three Gameplay includes are gone. The actual route proof still emits the same three packets and the current effect owner is still responsible for history recomputation. The migrated transport permanently omits the old positive path. Replay the frozen old override test with its matching published packages and exercise the existing flush in the return fixture. There is no persistent field or new timer, scan, retry or GC change.
+
+**Source recovery.** `git show 83fda621a2857423a325f295aa530e5937651f78:Mod/Dialogue.lua` with SHA256 `dd6b5e14b40666c959e579e7520a245e18ca4cf7d5909dde6bd94965d11ee8c6`.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8 (Lua 5.1 scoped roots), official Assets and read-only HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7DialogueTransport --output local/refactor/S1087-O7DialogueTransport-verified/closure.json` (44/44), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7MeaningCleanup --output local/refactor/S1087-O7MeaningCleanup-verified/closure.json` (47/47), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7AestheticCleanup --output local/refactor/S1087-O7AestheticCleanup-verified/closure.json` (39/39), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1087-NReadOnlyNetworkDiagnostic-verified/closure.json` (136/136). Local-only machine artifacts and companion logs
+
+- `local/refactor/S1087-O7DialogueTransport-verified/closure.json` SHA256 `7b555bbca598cb1b77df236c43a89ecc42991f822455ef263e88d716f8d4f1ad`.
+- `local/refactor/S1087-O7MeaningCleanup-verified/closure.json` SHA256 `49d9550a4a51265def89e79bd3a2ea794e55f46bfe8aef14a589ea4f7f8c6c57`.
+- `local/refactor/S1087-O7AestheticCleanup-verified/closure.json` SHA256 `fcaa932e4032797f1faef031f2810393bdb69b30211bc33599df04b0d180bde1`.
+- `local/refactor/S1087-NReadOnlyNetworkDiagnostic-verified/closure.json` SHA256 `be9fe800669407844d043e7d5d03db55999c281007b432581172e2b16f98ec95`.
+
+**STATIC_CONFIRMED.** 188 Lua 5.1 compiles, 32 XML-family parses, 626 File references and 10 LuaReplace references. Source SHA256 `7536df0b5650103b53ba1729078749d2f39adfee2dcc6e91f137047d97d5a210`. Package SHA256 `a1f195693695f14fab7332135c16811e4f25d5ff905b1f9f79a0886de87021ac` across 317 files. Source-only checkpoint without new native evidence.
 
 ### Transfer old Research boost withdrawal and startup — S1086
 

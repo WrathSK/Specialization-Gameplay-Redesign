@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B470, B471, B523, package, source
+from retired_crew_sources import B470, B471, B523, B524, package, source
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE, scalars
 
@@ -188,12 +188,12 @@ class RetiredBoostTestControls(unittest.TestCase):
         from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 
         paths = ('NetworkBoost.lua',)
-        with package(B523) as previous:
+        with package(B523) as previous, package(B524) as next_package:
             for name in ('Data/NetworkBoost.sql', 'Data/NetworkBoostInteger.sql', 'Data/BoostIntegerTest.sql',
                          'UI/BoostRefresh.lua', 'LegacyCleanupCatalog.lua'):
-                self.assertEqual((previous/'Mod'/name).read_bytes(), (ROOT/'Mod'/name).read_bytes(), name)
-            verify_package_round_trip(self, previous/'Mod', ROOT/'Mod', paths, 'LegacyCleanup.lua')
-            verify_stable_round_trip(self, previous/'Mod', ROOT/'Mod', paths)
+                self.assertEqual((previous/'Mod'/name).read_bytes(), (next_package/'Mod'/name).read_bytes(), name)
+            verify_package_round_trip(self, previous/'Mod', next_package/'Mod', paths, 'LegacyCleanup.lua')
+            verify_stable_round_trip(self, previous/'Mod', next_package/'Mod', paths)
 
     def test_only_the_four_hidden_experimental_controls_retire(self):
         with package(B470) as previous, package(B471) as retired:
