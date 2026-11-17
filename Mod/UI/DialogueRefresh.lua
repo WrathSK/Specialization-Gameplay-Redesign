@@ -1,7 +1,6 @@
 include('DiagnosticLog')
 local print=SPCDiagnosticLog and SPCDiagnosticLog.For('DialogueRefresh') or print
 include('Probe')
-include('DialogueModel')
 include('GreatWorkFacts')
 local P=SPCP0
 local busy,dirty,revision=false,true,0

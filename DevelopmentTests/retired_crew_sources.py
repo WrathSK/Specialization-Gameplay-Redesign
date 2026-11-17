@@ -59,6 +59,7 @@ B522 = '723780deccccbddf757d4531b34084b38f7ec775'
 B523 = '4e0e1b8490a3b7fe34954c3e24ba3d2ee432f193'
 B524 = '83fda621a2857423a325f295aa530e5937651f78'
 B525 = '1d1d0e284ea14ef6a03d45b6c201979c71b6853c'
+B526 = '49d028488bb5a08481d67d0ce6267e663489d094'
 RETIRED_LEVEL3_FILES = ('Lv3Effects.lua', 'Lv3Support.lua')
 RETIRED_ADJACENCY_FILES = ('GreatWorkAdjacency.lua', 'GreatWorkAdjacencyModel.lua')
 RETIRED_CITY_STARTS = ('BindingProbe', 'CityJournalProbe', 'CityFlowProbe')

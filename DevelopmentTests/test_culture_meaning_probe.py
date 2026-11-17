@@ -14,7 +14,7 @@ R=Path(__file__).resolve().parents[1];M=R/'Mod'
 def fixture_source(relative):
  if relative=='CultureMeaningProbe.lua':
   return historical_source(relative,B458)
- if relative in RETIRED_ADJACENCY_FILES:
+ if relative in (*RETIRED_ADJACENCY_FILES,'DialogueModel.lua'):
   return historical_source(relative,B518)
  return (M/relative).read_text()
 

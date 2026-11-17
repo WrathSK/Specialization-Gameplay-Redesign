@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B476, B511, B512, B513, B525, RETIRED_CITY_STARTS, package
+from retired_crew_sources import B476, B511, B512, B513, B525, B526, RETIRED_CITY_STARTS, package
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_p0_panel_current_layout import panel_runtime
@@ -300,18 +300,19 @@ class LegacyPanelCleanup(unittest.TestCase):
 
     def test_exact_two_file_startup_ui_retirement_rolls_back(self):
         removed=('UI/BoostRefresh.lua','UI/BoostRefresh.xml')
-        profile=PackageVFS()
-        for path in removed:
-            self.assertNotIn(path,profile.files)
-            self.assertNotIn(path,profile.imports)
-            self.assertFalse((ROOT/'Mod'/path).exists())
-        self.assertNotIn('SPC_B055_Background',(ROOT/'Mod/SpecializationP0.modinfo').read_text())
-        with package(B525) as prior:
+        with package(B525) as prior, package(B526) as successor:
+            mod=successor/'Mod'
+            profile=PackageVFS(manifest=mod/'SpecializationP0.modinfo')
+            for path in removed:
+                self.assertNotIn(path,profile.files)
+                self.assertNotIn(path,profile.imports)
+                self.assertFalse((mod/path).exists())
+            self.assertNotIn('SPC_B055_Background',(mod/'SpecializationP0.modinfo').read_text())
             for path in ('Data/GreatWorkProbe.sql','Data/NetworkBoost.sql','LegacyCleanupCatalog.lua',
                          'GreatWorkFacts.lua','UI/DialogueRefresh.lua'):
-                self.assertEqual((prior/'Mod'/path).read_bytes(),(ROOT/'Mod'/path).read_bytes(),path)
-            verify_package_round_trip(self,prior/'Mod',ROOT/'Mod',removed,'LegacyCleanup.lua')
-            verify_stable_round_trip(self,prior/'Mod',ROOT/'Mod',removed)
+                self.assertEqual((prior/'Mod'/path).read_bytes(),(mod/path).read_bytes(),path)
+            verify_package_round_trip(self,prior/'Mod',mod,removed,'LegacyCleanup.lua')
+            verify_stable_round_trip(self,prior/'Mod',mod,removed)
 
     def test_all_retired_controls_were_hidden_and_retained_bindings_match(self):
         with package(B476) as previous:

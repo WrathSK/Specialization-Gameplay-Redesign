@@ -79,7 +79,7 @@ def production(extra='',failure=None,late=None,*,modules=None,gameplay=None):
    out=v.execute(retired_source(name+'.lua',original))
   elif name+'.lua' in RETIRED_ADJACENCY_FILES:out=v.execute(retired_source(name+'.lua',B518))
   elif name=='Lv4Percent':out=v.execute(retired_source(name+'.lua',B521))
-  elif name=='Dialogue':out=v.execute(retired_source(name+'.lua',B524))
+  elif name in ('Dialogue','DialogueModel'):out=v.execute(retired_source(name+'.lua',B524))
   else:out=include(name)
   if late==name:
    sym=SYMBOL.get(name,'SPC'+name)

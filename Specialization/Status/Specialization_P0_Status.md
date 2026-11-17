@@ -1,28 +1,47 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1088
-Implementation Build: B526.553 / modinfo553 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1089
+Implementation Build: B527.554 / modinfo554 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: BOOST_STARTUP_HANDOFF_LOCAL_PASS
+Work State: INTEGRATION_CANDIDATE_LOCAL_PASS_NATIVE_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B526.553 on develop](#move-old-boost-startup-cleanup-to-gameplay-boundaries--s1088). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B527.554 on develop](#pin-the-retirement-candidate-for-native-integration--s1089). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The old Boost startup UI is absent. Named Gameplay events, readback, stale-request rejection and exact rollback pass locally. Candidate native startup still needs observation. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Retire the unused historical Dialogue model import and prepare the fixed-profile native integration admission and B489 package rollback. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The candidate passed local package, real work-batch sender, close/turn cleanup and cumulative B489 switch/restore checks. The replacement startup sequence is awaiting native acceptance. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Obtain approval for the temporary candidate switch and run the two targeted native cold-load profiles once. Confirm the new startup boundary and one real Great Work update before further integration acceptance. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Pin the retirement candidate for native integration — S1089
+
+**LOCAL_SIMULATION_PASS in scope.** Remove the unused historical Dialogue model and its two file declarations. The actual surviving UI producer sends the same two batches for initial collection and a new Great Work, and the real facts receiver confirms the update. Replay old experiments from their fixed releases. A disposable temporary install starts at the exact B489 hash, admits precisely 25 reviewed removals and two added text files, and restores both package hashes from the recorded receipt. A separate read-only check matches the real installed B489 across 337 files.
+
+**Runtime Impact Contract.** One redundant UI include and its inert Lua file leave. Actual Great Work collector, current era project rewards, effect calculations, shared delivery, GC and saves are retained. The S1088 load-close and supported-turn cleanup remains the one native sequencing change to observe. Its previous UI relay remains absent.
+
+**Source recovery.** `git show 49d028488bb5a08481d67d0ce6267e663489d094:Mod/DialogueModel.lua` with SHA256 `a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607`.
+
+**Native integration acceptance required.** Temporarily switch only after explicit approval and the existing clean-source, game-exit, exact-hash, removal-list and receipt checks. Use the fixed HD/UC and official Gathering Storm profiles from S1047. In each profile, begin a candidate-build game, establish a city, save, completely exit and reload that same-build save. Use the default collector from load through the first supported turn, with the diagnostic panel closed. Verify the B527 build marker, READINESS_LOAD_RECEIVED and B055_GW:READY at the after-load or first-local-turn checkpoints. Record the exact first confirmed boundary and any B055 cleanup error. In one profile with an eligible Culture city, move or add one Great Work and confirm the Aesthetic Tourism update in the normal UI. Carry the earlier scoped four-profession, transaction, and network evidence forward. The positive official Culture Network observation and previously recorded rare native attribution limits retain their existing status. Restoration uses the temporary receipt; the reviewed 25 paths are recoverable from the B489 source and are listed by the integration test measurement.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8 (Lua 5.1 scoped roots), official Assets and read-only HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O8IntegrationCandidate --output local/refactor/S1089-O8IntegrationCandidate-verified/closure.json` (41/41), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7DialogueTransport --output local/refactor/S1089-O7DialogueTransport-verified/closure.json` (44/44), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1089-NReadOnlyNetworkDiagnostic-verified/closure.json` (136/136), `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/S1089-NStandardizationEffectReadback-verified/closure.json` (118/118). Local-only machine artifacts and companion logs
+
+- `local/refactor/S1089-O8IntegrationCandidate-verified/closure.json` SHA256 `77d504fd4fccec1624961f2e2319a19c7c0e09dde9077a8032cadc68e61cd65a`.
+- `local/refactor/S1089-O7DialogueTransport-verified/closure.json` SHA256 `a0b291dc10259c80ce5fbf10f7081678a83c10d4500aa3144de9133146684b8b`.
+- `local/refactor/S1089-NReadOnlyNetworkDiagnostic-verified/closure.json` SHA256 `d335dcb5b5068da179f61d688a7ab93b94a05bcb406b754788e7786b8bf06805`.
+- `local/refactor/S1089-NStandardizationEffectReadback-verified/closure.json` SHA256 `f7ddd46b4a9634cb10bbfe0c825396c696126b523384137543b265f018b95e67`.
+
+**STATIC_CONFIRMED.** 186 Lua 5.1 compiles, 31 XML-family parses, 619 File references and 10 LuaReplace references. Source SHA256 `dcfeda1bea9f0be32734ccb0540b9558f64d5b956f24337e3cc9c837acdb1636`. Package SHA256 `fc7bca2fd8799ca17f453ed1e9123aa64286f941712230ebcd82f39a31447a26` across 314 files. Source-only checkpoint without new native evidence.
 
 ### Move old Boost startup cleanup to Gameplay boundaries — S1088
 

@@ -465,11 +465,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
-    "Mod/DialogueModel.lua": {
-      "sha256": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
     "Mod/DialogueProjectModel.lua": {
       "sha256": "26fa24d6d4a0bf669fb61c9c07d2952880290ff2ed253fac0cb8e7d62705d706",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
@@ -661,9 +656,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "47ce46e85e1a5c295ad7529b0968d4ff0473b01ee63a53e3f05a0f1c3a334010",
+      "sha256": "1c93b793bbcc4f91d688cba4d0c077b17f2a3524f5d54c4de06b493c16482fc7",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent."
+      "provenance": "S1089 pins the candidate for native integration after local package, live-work sender, startup, route proof and B489 disposable restore checks."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -776,9 +771,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "4629559de7345d550b894b7f53762212eaae2b43ca2d055b2a9680d72d217eb8",
+      "sha256": "104e01d02d14d7023b7f877cb0a5dee743517ec1208c7d9a3709bd903d45a620",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent."
+      "provenance": "S1089 pins the candidate for native integration after local package, live-work sender, startup, route proof and B489 disposable restore checks."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1096,9 +1091,9 @@
       "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
     },
     "Mod/UI/DialogueRefresh.lua": {
-      "sha256": "a9d8b2b117030c5883d603fdb00cb48d6c907ea5e17ae42d8b3dae4a40264a3a",
+      "sha256": "f5b8b0c4bf8427bac872bbc51ea046d52dbd2db49c4aaa844fa22067dae5f2a3",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1081 moves exact cold B060 withdrawals to Culture Meaning, preserves the confirmed city exit owner and Dialogue packet, and removes the two retired adjacency Lua paths."
+      "provenance": "S1089 pins the candidate for native integration after local package, live-work sender, startup, route proof and B489 disposable restore checks."
     },
     "Mod/UI/DialogueRefresh.xml": {
       "sha256": "3d057cb0cace85ccbe28a3a94199e135fcb22389736c26ec411ad775e6b909a0",

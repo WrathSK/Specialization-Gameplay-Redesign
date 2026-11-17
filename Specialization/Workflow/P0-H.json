@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1088",
-    "runtime": "B526.553 / modinfo553",
+    "status": "S1089",
+    "runtime": "B527.554 / modinfo554",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Replace the old Boost UI startup relay with the existing Gameplay lifecycle callbacks and verify exact cleanup, failure visibility and the full absence of the UI.",
+  "goal": "Pin an integration candidate with verified B489 restoration and an exact native acceptance gap.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Pin the retirement candidate for native integration — S1089",
+      "reason": "S1089 pins the candidate for native integration after local package, live-work sender, startup, route proof and B489 disposable restore checks."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -912,6 +918,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1089 pins the candidate for native integration after local package, live-work sender, startup, route proof and B489 disposable restore checks.",
     "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent.",
     "S1087 transfers Dialogue sample receipts to the Great Work transport and exact legacy withdrawal to LegacyCleanup and verifies the package without the former effect writer.",
     "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer.",
@@ -6146,6 +6153,48 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#move-old-boost-startup-cleanup-to-gameplay-boundaries--s1088"
+    },
+    "s1089_integration_candidate_ready_for_native": {
+      "build": "B527.554 / modinfo554",
+      "baseline": "49d028488bb5a08481d67d0ce6267e663489d094",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "O8IntegrationCandidate": {
+          "path": "local/refactor/S1089-O8IntegrationCandidate-verified/closure.json",
+          "sha256": "77d504fd4fccec1624961f2e2319a19c7c0e09dde9077a8032cadc68e61cd65a",
+          "pass_count": 41
+        },
+        "O7DialogueTransport": {
+          "path": "local/refactor/S1089-O7DialogueTransport-verified/closure.json",
+          "sha256": "a0b291dc10259c80ce5fbf10f7081678a83c10d4500aa3144de9133146684b8b",
+          "pass_count": 44
+        },
+        "NReadOnlyNetworkDiagnostic": {
+          "path": "local/refactor/S1089-NReadOnlyNetworkDiagnostic-verified/closure.json",
+          "sha256": "d335dcb5b5068da179f61d688a7ab93b94a05bcb406b754788e7786b8bf06805",
+          "pass_count": 136
+        },
+        "NStandardizationEffectReadback": {
+          "path": "local/refactor/S1089-NStandardizationEffectReadback-verified/closure.json",
+          "sha256": "f7ddd46b4a9634cb10bbfe0c825396c696126b523384137543b265f018b95e67",
+          "pass_count": 118
+        }
+      },
+      "removed_paths": {
+        "Mod/DialogueModel.lua": "a85b4ce35ef2a1558ce8462e65c401d30d4b1de8bca44f6488674a0b1240b607"
+      },
+      "stable_runtime_files": 337,
+      "candidate_activate_removals": 25,
+      "candidate_restore_removals": 2,
+      "observed_work_packets": 2,
+      "temporary_restore": "LOCAL_SIMULATION_PASS",
+      "fixed_profile_gate": "USER_GAME_TEST_REQUIRED",
+      "source_sha256": "dcfeda1bea9f0be32734ccb0540b9558f64d5b956f24337e3cc9c837acdb1636",
+      "package_sha256": "fc7bca2fd8799ca17f453ed1e9123aa64286f941712230ebcd82f39a31447a26",
+      "files": 314,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#pin-the-retirement-candidate-for-native-integration--s1089"
     }
   }
 }

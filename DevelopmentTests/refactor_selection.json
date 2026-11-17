@@ -2,6 +2,14 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O8IntegrationCandidate": [
+      "test_o8_integration_candidate",
+      "test_refactor_s5d3",
+      "test_o7_legacy_panel_cleanup.LegacyPanelCleanup",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
     "O7BoostStartupHandoff": [
       "test_o7_legacy_panel_cleanup.LegacyPanelCleanup",
       "test_o7_retired_boost_test_controls_retirement",

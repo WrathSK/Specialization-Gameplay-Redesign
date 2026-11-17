@@ -74,13 +74,14 @@ class ActualCurrentOwners(unittest.TestCase):
   """)
   for module in MODULES:
    if module=='HalfYieldProbe':c.execute(source('HalfYieldProbe.lua',B459))
-   elif module=='GreatWorkAdjacency':
+   elif module in ('GreatWorkAdjacency','Dialogue'):
     include=c.globals().include
     def include_archived(name):
-     if name=='GreatWorkAdjacencyModel':return c.execute(source(name+'.lua',B518))
+     history={'GreatWorkAdjacencyModel':B518,'DialogueModel':B524}.get(name)
+     if history:return c.execute(source(name+'.lua',history))
      return include(name)
     c.globals().include=include_archived
-    try:c.execute(source(module+'.lua',B518))
+    try:c.execute(source(module+'.lua',B518 if module=='GreatWorkAdjacency' else B524))
     finally:c.globals().include=include
    elif module in ('PurchaseProbe','GreatWorkProbe'):c.execute(source(module+'.lua',B511))
    elif module in ('CopyYields','StandardizationDiscount'):c.execute(source(module+'.lua',B514))
@@ -89,7 +90,6 @@ class ActualCurrentOwners(unittest.TestCase):
    elif module=='Lv4Percent':c.execute(source(module+'.lua',B521))
    elif module in ('Lv3Support','Lv3Effects'):c.execute(source(module+'.lua',B522))
    elif module=='NetworkBoost':c.execute(source(module+'.lua',B523))
-   elif module=='Dialogue':c.execute(source(module+'.lua',B524))
    else:c.load(module)
    symbol='SPCGWAdjacency'if module=='GreatWorkAdjacency'else'SPC'+module
    c.execute(symbol+'.Start(P,shared,'+OPTIONS.get(module,'nil')+')')
