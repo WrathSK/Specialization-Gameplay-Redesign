@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7CommerceCleanup": [
+      "test_b239_commerce_integration.Retirement",
+      "test_refactor_s7e.Retirement",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof",
+      "test_b397_network_transport.StrictTransactions",
+      "test_network_effect_write_boundary.CommercializationReadback"
+    ],
     "O7MeaningCleanup": [
       "test_o7_retired_great_work_adjacency_retirement",
       "test_culture_meaning_automatic.AutomaticMeaningTests.test_unknown_old_carrier_presence_cannot_be_treated_as_absence",

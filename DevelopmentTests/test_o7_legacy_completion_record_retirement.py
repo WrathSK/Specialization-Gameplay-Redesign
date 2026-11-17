@@ -3,7 +3,7 @@ from collections import Counter, deque
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B464, B465, B511, B513, B515, B516, B517, B518, RETIRED_ADJACENCY_FILES, RETIRED_CITY_FILES, RETIRED_CITY_STARTS, package, source
+from retired_crew_sources import B464, B465, B511, B513, B515, B516, B517, B518, B519, RETIRED_ADJACENCY_FILES, RETIRED_CITY_FILES, RETIRED_CITY_STARTS, package, source
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -199,10 +199,14 @@ def load_and_complete(root,saved, *, journal_retired=False):
             ctx.eval('GameEvents.OnDistrictConstructed.Count()'))
 
 
-def routes(root,revision=B464,*,retired_culture=False):
+def routes(root,revision=B464,*,retired_culture=False,old_commerce_absent=False):
     gp,ui=context(root,revision=revision),context(root,'UI/BackgroundRoutes',revision)
     if retired_culture:
-        vfs=PackageVFS(forbidden_globals=('SPCCultureInspirationProbe','SPCGWAdjacency','SPCGWAdjacencyModel'))
+        forbidden=('SPCCultureInspirationProbe','SPCGWAdjacency','SPCGWAdjacencyModel')
+        if old_commerce_absent:
+            vfs=PackageVFS(absent=('CommerceConvergence',),forbidden_globals=(*forbidden,'SPCCommerceConvergence'))
+        else:
+            vfs=PackageVFS(forbidden_globals=forbidden)
         for name in ('CultureInspirationProbe.lua',*RETIRED_ADJACENCY_FILES):
             assert name not in vfs.files and name not in vfs.imports
             assert not (ROOT/'Mod'/name).exists()
@@ -217,6 +221,10 @@ def routes(root,revision=B464,*,retired_culture=False):
           assert(s.CultureInspiration and s.CultureInspirationProbe==nil)
           assert(s.StartStatus.CultureMeaning.state=='OK' and s.CultureMeaning)
           assert(s.StartStatus.GreatWorkAdjacency==nil and s.GreatWorkAdjacency==nil)""")
+    if old_commerce_absent:
+        gp.execute("""local s=ExposedMembers.SPC_P0
+          assert(s.StartStatus.CommerceLegacyCleanup.state=='OK' and s.StartStatus.Commerce.state=='OK')
+          assert(s.StartStatus.CommerceConvergence==nil and s.CommerceConvergence==nil)""")
     return packets,gp.load_counts,ui.load_counts,Counter(row['module'] for row in gp.loads)
 
 
@@ -354,10 +362,10 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
     def test_real_roots_keep_nonempty_route_proof(self):
         with (package(B464) as previous, package(B511) as pre_handoff,
               package(B513) as no_experiments, package(B515) as no_writers, package(B517) as no_city_probes,
-              package(B518) as no_inspiration_probe):
+              package(B518) as no_inspiration_probe, package(B519) as no_adjacency):
             stages = [routes(previous), routes(pre_handoff,B511), routes(no_experiments,B513),
                       routes(no_writers,B515), routes(no_city_probes,B517), routes(no_inspiration_probe,B518),
-                      routes(ROOT,retired_culture=True)]
+                      routes(no_adjacency,B519), routes(ROOT,retired_culture=True,old_commerce_absent=True)]
         self.assertEqual(len(stages[0][0]),3)
         retirements=(
             ('CompletionRecordProbe.lua',),
@@ -366,6 +374,7 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             RETIRED_CITY_FILES,
             ('CultureInspirationProbe.lua','CurrentSpecializationFacts.lua','NetworkInput.lua'),
             RETIRED_ADJACENCY_FILES,
+            ('CommerceConvergence.lua','RuntimeWork.lua','CityReference.lua','Tombstones.lua'),
         )
         for before, after, retired in zip(stages, stages[1:], retirements):
             self.assertEqual(before[0],after[0])
@@ -377,7 +386,7 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
         measure('legacy_completion_record_routes',dict(matching_route_packets=3,
             experiment_module_loads_removed=2, industrial_module_loads_removed=5,
             legacy_city_module_loads_removed=len(RETIRED_CITY_FILES), inspiration_includes_removed=3,
-            meaning_includes_removed=len(RETIRED_ADJACENCY_FILES)))
+            meaning_includes_removed=len(RETIRED_ADJACENCY_FILES),commerce_legacy_includes_removed=4))
 
     def test_only_the_hidden_completion_record_request_retires(self):
         with package(B464) as previous, package(B465) as retired:

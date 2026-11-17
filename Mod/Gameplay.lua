@@ -797,7 +797,10 @@ composition.Run('CultureMeaning',{'CityProgressionStore','GreatWorkFacts','Effec
 
 composition.Run('CultureInspiration',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','NativeFacts'},{'CultureInspiration'},function() include('CultureInspiration');SPCCultureInspiration.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('CommerceConvergence',{'RuntimeRetirement'},{'CommerceConvergence'},function() include('CommerceConvergence');SPCCommerceConvergence.Start(P,shared,{retired=true,centralExit=true}) end)
+composition.Run('CommerceLegacyCleanup',{'RuntimeRetirement'},{'CommerceLegacyCleanup'},function()
+ if not SPCLegacyCleanup then include('LegacyCleanup')end
+ SPCLegacyCleanup.StartCommerceLoad(P,shared)
+end)
 
 
 -- Preserve the deliberate legacy-inheritance isolation boundary and observer order.
@@ -820,7 +823,7 @@ composition.Run('IndustryWonderEffects',{'CityProgressionStore','EffectiveFacts'
 
 composition.Run('CrewProjectsBind',{'CrewProjects'},{},function() shared.CrewProjects.BindPermanentWrites() end)
 
-composition.Run('Commerce',{'CityProgressionStore','EffectiveFacts','NetworkBridge','CommerceConvergence','NativeFacts'},{'Commerce'},function() include('Commerce');SPCCommerce.Start(P,shared) end)
+composition.Run('Commerce',{'CityProgressionStore','EffectiveFacts','NetworkBridge','CommerceLegacyCleanup','NativeFacts'},{'Commerce'},function() include('Commerce');SPCCommerce.Start(P,shared) end)
 
 composition.Run('CapitalInvestment',{'CityProgressionStore','EffectiveFacts','Commerce','NetworkBridge'},{'CapitalInvestment'},function() include('CapitalInvestment');SPCCapitalInvestment.Start(P,shared) end)
 

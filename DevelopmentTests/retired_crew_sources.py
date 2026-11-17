@@ -52,6 +52,7 @@ B515 = 'e776b4c9d0514cbc1f0c077b4256283b526f8b04'
 B516 = 'ac7b0cf86c45c46d7c4160f8aedd42c8a3a4e5c4'
 B517 = 'e8373a177d7dd1ef827277ffb2df223fec276c64'
 B518 = 'b426b7898679908c664142ec81aaa34a1810cee2'
+B519 = '808c9d0fc56673a83968471b4a786c9620a7f169'
 RETIRED_ADJACENCY_FILES = ('GreatWorkAdjacency.lua', 'GreatWorkAdjacencyModel.lua')
 RETIRED_CITY_STARTS = ('BindingProbe', 'CityJournalProbe', 'CityFlowProbe')
 RETIRED_CITY_FILES = tuple(sorted(name+'.lua' for name in (*RETIRED_CITY_STARTS, 'FreshBindingHook')))

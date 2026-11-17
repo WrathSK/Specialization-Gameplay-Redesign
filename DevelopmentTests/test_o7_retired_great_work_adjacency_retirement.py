@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B471, B472, B518, RETIRED_ADJACENCY_FILES, package
+from retired_crew_sources import B471, B472, B518, B519, RETIRED_ADJACENCY_FILES, package
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_legacy_completion_record_retirement import load_cold_store, save_fixture, stored_records
 from test_o7_route_observer_retirement import exercise_proof
@@ -199,9 +199,8 @@ class RetiredGreatWorkAdjacency(unittest.TestCase):
             no_positive_application_before_readback=True, unrelated_buildings_retained=True))
 
     def test_package_round_trips_remove_exactly_the_two_old_lua_files(self):
-        current=ROOT/'Mod'
-        with package(B518) as baseline:
-            previous=baseline/'Mod'
+        with package(B518) as baseline, package(B519) as retired:
+            previous,current=baseline/'Mod',retired/'Mod'
             for name in ('LegacyCleanup.lua','LegacyCleanupCatalog.lua','Data/GreatWorkAdjacency.sql',
                          'CultureMeaningModel.lua','GreatWorkFacts.lua'):
                 self.assertEqual((previous/name).read_bytes(),(current/name).read_bytes(),name)

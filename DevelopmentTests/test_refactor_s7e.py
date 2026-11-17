@@ -215,6 +215,6 @@ class Convergence(unittest.TestCase):
    if name=='RuntimeWork':c.execute("local start=SPCRuntimeWork.StartRetirement;SPCRuntimeWork.StartRetirement=function(...)start(...);error('OWNER_FAILED')end")
    return out
   c.globals().include=injected;c.load('Gameplay')
-  c.execute("local s=ExposedMembers.SPC_P0;for _,n in ipairs({'ResearchCross','Lv4Percent','CommerceConvergence','CultureAesthetic'})do assert(s.StartStatus[n].state=='SKIPPED_DEPENDENCY',n)end;assert(s.StartStatus.NetworkBridge.state=='OK'and not s.RuntimeRetirement)")
+  c.execute("local s=ExposedMembers.SPC_P0;for _,n in ipairs({'ResearchCross','Lv4Percent','CommerceLegacyCleanup','Commerce','CultureAesthetic'})do assert(s.StartStatus[n].state=='SKIPPED_DEPENDENCY',n)end;assert(s.StartStatus.NetworkBridge.state=='OK'and not s.RuntimeRetirement)")
 
 if __name__=='__main__':unittest.main()

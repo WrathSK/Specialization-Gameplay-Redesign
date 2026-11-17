@@ -41,6 +41,45 @@ function SPCLegacyCleanup.StartGreatWorkLoad(P,shared)
  shared.GreatWorkLoadCleanup=cleanup
 end
 
+function SPCLegacyCleanup.StartCommerceLoad(P,shared)
+ local d={busy=false,errors={},writes=0}
+ local names=SPCTombstones.Names('CommerceConvergence')
+ function d.Withdraw(c)
+  assert(c and P.IsTestPlayer(c:GetOwner()),'COM_LEGACY_OWNER_UNSUPPORTED')
+  assert(shared.CityProgressionStore.HistoricalReference(c),'COM_LEGACY_REFERENCE_UNKNOWN')
+  SPCRuntimeWork.RetireOnce(P,shared,c,'CommerceConvergence',function()
+   local rows={}
+   for _,name in ipairs(names)do
+    local row=assert(P.Info('Buildings',name),'COM_LEGACY_DEFINITION_UNKNOWN')
+    local has=P.HasBuilding(c:GetBuildings(),row.Index)
+    assert(type(has)=='boolean','COM_LEGACY_PRESENCE_UNKNOWN')
+    rows[#rows+1]={id=row.Index,has=has}
+   end
+   for _,row in ipairs(rows)do if row.has then
+    P.RemoveBuilding(c:GetBuildings(),row.id)
+    assert(P.HasBuilding(c:GetBuildings(),row.id)==false,'COM_LEGACY_REMOVE_UNCONFIRMED')
+    d.writes=d.writes+1
+   end end
+   return 0
+  end)
+  return true
+ end
+ shared.CommerceLegacyCleanup=d
+ local load=P.Field(Events,'LoadScreenClose')
+ if load and load.Add then load.Add(function()
+  if d.busy then return end
+  d.busy=true
+  for pid,player in pairs(Players)do if P.IsTestPlayer(pid)then
+   local cities=player:GetCities()
+   if cities then for _,city in cities:Members()do
+    local ok,why=pcall(d.Withdraw,city)
+    d.errors[pid..':'..city:GetID()]=not ok and tostring(why) or nil
+   end end
+  end end
+  d.busy=false
+ end)end
+end
+
 function SPCLegacyCleanup.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'LEGACY_STORE_UNAVAILABLE')
  assert(type(store.IsExitCurrent)=='function'and type(store.ExitCompleted)=='function','LEGACY_EXIT_PROOF_UNAVAILABLE')

@@ -1,28 +1,46 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1081
-Implementation Build: B519.546 / modinfo546 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1082
+Implementation Build: B520.547 / modinfo547 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRE_MEANING_ADJACENCY_OWNER_LOCAL_PASS
+Work State: COMMERCE_LEGACY_CLEANUP_TRANSFER_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B519.546 on develop](#hand-off-the-old-meaning-withdrawals-and-retire-adjacency-lua--s1081). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B520.547 on develop](#move-the-old-commerce-withdrawal-into-legacycleanup--s1082). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | Meaning cold withdrawal, confirmed city exit and Dialogue collection pass locally. Both exact disposable rollback paths pass. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Trace the remaining retired Commerce Convergence load cleanup and Commerce preflight before moving their exact historical withdrawals. Preserve the write fence, actual confirmed exit and strict transaction gates. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The old Commerce load and preflight withdrawals match the published predecessor locally. Supported Commerce, strict network proof, Meaning and Standardization suites pass. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Verify the exact CommerceConvergence Lua removal with both disposable rollback paths and pin historical tests to the published source. Retain the B061 SQL and confirmed exit. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Move the old Commerce withdrawal into LegacyCleanup — S1082
+
+**LOCAL_SIMULATION_PASS in scope.** The current cleanup module takes over the old Commerce Convergence production callback at the same startup slot. The existing load event still visits the same supported cities, requires a proven Store reference and checks all 48 exact B061 presences before any removal. Commerce's qualified preflight uses that same withdrawal before the existing fact sampling and write fence. Failed confirmation holds application and leaves the same reference-scoped retry available. The 51-ID positive-plan residual check, including three separate Lv3 legacy effects, and the Store confirmed exit both retain their previous authority. Network isolation uses the current Commerce withdrawal and has no dependency on the retired writer.
+
+**Runtime Impact Contract.** Reuse the existing subscription, bounds, exact Tombstones names and retirement cache identity. The transferred load callback preserves scoped errors and verified write counts. No new scan, retry trigger, persistent field, transaction rule, save write or GC change. Actual Gameplay and BackgroundRoutes retain the three strict route-proof packets with the old Lua unavailable, with four fewer Gameplay includes. The old Lua file and data remain in the package for the separate exact removal step.
+
+Paired tests load the published prior implementation and the transferred callback. They confirm that supported cities alone lose the old carriers, an unreadable reference or one unknown presence prevents that city's removal, and later confirmed reads allow the existing path to clear it. The actual Commerce writer blocks gold while legacy removal is unconfirmed, then applies the same 15 gold after recovery. Existing exit, proof, capital/development admission and exact Meaning rollback regressions also pass.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8, official Assets and read-only HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7CommerceCleanup --output local/refactor/S1082-O7CommerceCleanup-verified/closure.json` (41/41), `python3.14 -B DevelopmentTests/run_refactor.py --stage NCommerceEffectReadback --output local/refactor/S1082-NCommerceEffectReadback-verified/closure.json` (90/90), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7MeaningCleanup --output local/refactor/S1082-O7MeaningCleanup-verified/closure.json` (47/47), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1082-NReadOnlyNetworkDiagnostic-verified/closure.json` (136/136), `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/S1082-NStandardizationEffectReadback-verified/closure.json` (118/118). Full machine outputs and companion logs remain local.
+
+- `local/refactor/S1082-O7CommerceCleanup-verified/closure.json` SHA256 `cca50a97823bdb3c4c4dc3b4bbfb3e4a20dde68308a13d5382a295a167882f24`.
+- `local/refactor/S1082-NCommerceEffectReadback-verified/closure.json` SHA256 `7ea30d0190541b2bbdc7d529e7f933d00167f8bc5841eeaa336e9d3145d90007`.
+- `local/refactor/S1082-O7MeaningCleanup-verified/closure.json` SHA256 `49e8d17cbc54322701d08b57f90beb12bb30fe766baf084f05c4b3eae1c60da6`.
+- `local/refactor/S1082-NReadOnlyNetworkDiagnostic-verified/closure.json` SHA256 `71031c477c8271bc574b8dcdd3edbb4832a5b5ea178924216bfa58b1195e5d81`.
+- `local/refactor/S1082-NStandardizationEffectReadback-verified/closure.json` SHA256 `2ec9533785dc4e1e67873c11dfd928aa46fe4ad421ff7246562be02feb017046`.
+
+**STATIC_CONFIRMED.** 194 Lua 5.1 compiles, 32 XML-family parses, 638 File references and 10 LuaReplace references. Source SHA256 `fe1d93add7c12d0573afbde06db22f29889822e5a552b8babcd731552cb34624`. Package SHA256 `2b2f0b4290e76c17376ff9f6eeea643a9866071f8ff41da87d30f310ea931d46` across 323 files. This build has no new native evidence.
 
 ### Hand off the old Meaning withdrawals and retire adjacency Lua — S1081
 
