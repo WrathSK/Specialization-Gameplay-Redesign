@@ -461,23 +461,11 @@ local function request(playerID,params)
     if not P.IsTestPlayer(playerID) then return end
     shared.Snapshot=shared.NetworkBoost.Describe(playerID);shared.LastToken=params.Token;return
   end
-  if params.Action=='DISCOUNT_INIT' then
-    if shared.StandardizationDiscount then shared.StandardizationDiscount.Initialize(playerID,params) end
-    return
-  end
-  if params.Action=='DISCOUNT_ELIGIBILITY' then
-    if shared.StandardizationDiscount then shared.StandardizationDiscount.Receive(playerID,params) end
-    return
-  end
   if params.Action=='DISCOUNT_READ' then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     if not c or c:GetOwner()~=playerID then return end
     shared.Snapshot=shared.StandardizationEffects.Describe(playerID,c,params.Page);shared.LastToken=params.Token;return
-  end
-  if params.Action=='COPY_YIELD_SAMPLE' then
-    if shared.CopyYields then shared.CopyYields.Receive(playerID,params) end
-    return
   end
   if params.Action=="INDUSTRY_HISTORY_READ" then
     if not P.IsTestPlayer(playerID) then return end
@@ -492,7 +480,7 @@ local function request(playerID,params)
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     if not c or c:GetOwner()~=playerID then return end
     shared.Lv4CopyRead=SPCLv4CopyRead.Metadata(P,shared,playerID,c,params.Token)
-    shared.Snapshot=shared.CopyYields.Describe(playerID,c);shared.LastToken=params.Token;return
+    shared.Snapshot=SPCLv4CopyRead.RetirementNotice;shared.LastToken=params.Token;return
   end
   if params.Action=="LV4_PERCENT_READ" then
     if not P.IsTestPlayer(playerID) then return end
@@ -788,8 +776,6 @@ composition.Run('ResearchApply',{'EffectiveFacts','DistrictCompleteness','Native
 composition.Run('ResearchChair',{'EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchChair'},function() include('ResearchChair');SPCResearchChair.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
 
-composition.Run('CopyYields',{},{'CopyYields'},function() include('CopyYields');SPCCopyYields.Start(P,shared,{retired=true}) end)
-
 composition.Run('IndustryHistory',{'CityProgressionStore'},{'IndustryHistory'},function() include('IndustryHistory');SPCIndustryHistory.Start(P,shared) end)
 
 composition.Run('Standardization',{'CityProgressionStore','EffectiveFacts'},{'Standardization'},function() include('StandardizationCatalog');include('Standardization');SPCStandardization.Start(P,shared) end)
@@ -798,8 +784,6 @@ composition.Run('PurchaseLoadCleanup',{},{},function()
  if not SPCLegacyCleanup then include('LegacyCleanup')end
  SPCLegacyCleanup.InstallPurchaseLoad(P)
 end)
-
-composition.Run('StandardizationDiscount',{},{'StandardizationDiscount'},function() include('StandardizationDiscount');SPCStandardizationDiscount.Start(P,shared,{retired=true}) end)
 
 composition.Run('StandardizationEffects',{'CityProgressionStore','Standardization','NetworkBridge','EffectiveFacts','NativeFacts'},{'StandardizationEffects'},function() include('StandardizationEffects');SPCStandardizationEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 

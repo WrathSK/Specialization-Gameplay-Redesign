@@ -1,8 +1,9 @@
 """B014 report retirement with a populated Store and the real Gameplay roots."""
+from collections import Counter, deque
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B464, B465, B511, package
+from retired_crew_sources import B464, B465, B511, B513, package
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -182,9 +183,11 @@ def load_and_complete(root,saved, *, journal_retired=False):
 
 def routes(root,revision=B464):
     gp,ui=context(root,revision=revision),context(root,'UI/BackgroundRoutes',revision)
+    gp.loads=deque(maxlen=768)
     packets=exercise_proof(gp,ui)
     assert all(c.load_counts['missing']+c.load_counts['failed']==0 for c in (gp,ui))
-    return packets,gp.load_counts,ui.load_counts
+    assert len(gp.loads)==gp.load_counts['completed']
+    return packets,gp.load_counts,ui.load_counts,Counter(row['module'] for row in gp.loads)
 
 
 def panel(root, *, retired):
@@ -256,20 +259,23 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             no_fact_write=True,modeled_vfs=['present','throw','silent_nil']))
 
     def test_real_roots_keep_nonempty_route_proof(self):
-        with package(B464) as previous, package(B511) as pre_handoff:
-            before=routes(previous)
-            old=routes(pre_handoff,B511)
-            after=routes(ROOT)
-        self.assertEqual(before[0],old[0])
-        self.assertEqual(old[0],after[0])
-        self.assertEqual(len(after[0]),3)
-        self.assertEqual(before[2],old[2])
-        self.assertEqual(old[2],after[2])
-        self.assertEqual(old[1],{**before[1],'attempts':before[1]['attempts']-1,
-                                 'completed':before[1]['completed']-1})
-        self.assertEqual(after[1],{**old[1],'attempts':old[1]['attempts']-2,
-                                   'completed':old[1]['completed']-2})
-        measure('legacy_completion_record_routes',dict(matching_route_packets=3, experiment_module_loads_removed=2))
+        with package(B464) as previous, package(B511) as pre_handoff, package(B513) as no_experiments:
+            stages = [routes(previous), routes(pre_handoff,B511), routes(no_experiments,B513), routes(ROOT)]
+        self.assertEqual(len(stages[0][0]),3)
+        retirements=(
+            ('CompletionRecordProbe.lua',),
+            ('PurchaseProbe.lua','GreatWorkProbe.lua'),
+            ('CopyYields.lua','StandardizationDiscount.lua','RuntimeWork.lua','CityReference.lua','SampleLifecycle.lua'),
+        )
+        for before, after, retired in zip(stages, stages[1:], retirements):
+            self.assertEqual(before[0],after[0])
+            self.assertEqual(before[2],after[2])
+            self.assertEqual(before[3]-after[3],Counter(retired))
+            self.assertFalse(after[3]-before[3])
+            self.assertEqual(after[1],{**before[1],'attempts':before[1]['attempts']-len(retired),
+                                       'completed':before[1]['completed']-len(retired)})
+        measure('legacy_completion_record_routes',dict(matching_route_packets=3,
+            experiment_module_loads_removed=2, industrial_module_loads_removed=5))
 
     def test_only_the_hidden_completion_record_request_retires(self):
         with package(B464) as previous, package(B465) as retired:

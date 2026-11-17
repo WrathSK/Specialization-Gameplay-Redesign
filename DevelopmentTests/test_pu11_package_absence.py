@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 from lupa.lua51 import lua_type
 from refactor_harness import Context,PackageVFS,ROOT,RUN,measure
-from retired_crew_sources import B447, gameplay as historical_gameplay, package as historical_package
+from retired_crew_sources import B447, B513, gameplay as historical_gameplay, package as historical_package
 
 NATIVE=r"""
 print=function()end
@@ -78,18 +78,27 @@ class Package(unittest.TestCase):
         self.assertIsNone(c.globals().SPCP0)
     def test_standardization_starts_without_its_retired_writers(self):
         names = ('StandardizationDiscount', 'CopyYields')
-        for mode in ('throw', 'silent_nil'):
-            with self.subTest(mode=mode):
-                vm = root(profile=PackageVFS(absent=names, missing_include=mode,
-                                             forbidden_globals=('SPCStandardizationDiscount', 'SPCCopyYields')))
-                vm.execute("""
-                  local s=ExposedMembers.SPC_P0
-                  assert(s.StartStatus.StandardizationDiscount.state=='FAILED' and not s.StandardizationDiscount)
-                  assert(s.StartStatus.CopyYields.state=='FAILED' and not s.CopyYields)
-                  assert(s.StartStatus.StandardizationEffects.state=='OK' and s.StandardizationEffects)
-                  assert(s.StartStatus.FactConsumerBindings.state=='OK' and s.FactBindings)
-                """)
-                self.assertEqual(vm.load_counts['missing'], len(names))
+        globals_to_guard = ('SPCStandardizationDiscount', 'SPCCopyYields')
+        with historical_package(B513) as previous:
+            for mode in ('throw', 'silent_nil'):
+                with self.subTest(mode=mode):
+                    opts = dict(absent=names, missing_include=mode, forbidden_globals=globals_to_guard)
+                    before = historical_gameplay(previous, revision=B513, **opts)
+                    before.execute(NATIVE)
+                    before.load('Gameplay')
+                    after = root(profile=PackageVFS(**opts))
+                    for vm, state, attempts in ((before, 'FAILED', len(names)), (after, None, 0)):
+                        vm.execute("""
+                          local expected=...
+                          local s=ExposedMembers.SPC_P0
+                          for _,name in ipairs({'StandardizationDiscount','CopyYields'}) do
+                            local status=s.StartStatus[name]
+                            assert((status and status.state)==expected and not s[name])
+                          end
+                          assert(s.StartStatus.StandardizationEffects.state=='OK' and s.StandardizationEffects)
+                          assert(s.StartStatus.FactConsumerBindings.state=='OK' and s.FactBindings)
+                        """, state)
+                        self.assertEqual(vm.load_counts['missing'], attempts)
 
     def test_absent_typo_unsafe_paths_and_invalid_mode_are_rejected(self):
         for n in ('/Probe','../Probe','UI//Probe','Probe;error','Probe.lua.lua'):
