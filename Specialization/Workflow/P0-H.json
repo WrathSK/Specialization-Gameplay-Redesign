@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1085",
-    "runtime": "B523.550 / modinfo550",
+    "status": "S1086",
+    "runtime": "B524.551 / modinfo551",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Transfer the retired level-three production cleanup, readiness and independent exit acknowledgments without changing triggers or current effects.",
+  "goal": "Move legacy Research boost cold withdrawal, readiness and reports out of the retired positive writer.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Transfer old Research boost withdrawal and startup — S1086",
+      "reason": "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -894,6 +900,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer.",
     "S1085 transfers the exact old level-three groups, scoped retries, reports and confirmed exit adapters, and tests the real package without either old Lua file.",
     "S1084 verifies two-city Aesthetic cleanup with the old Lv4 Lua and its no-op binding absent, preserves the read report and confirmed exits, and proves the exact source removal rolls back.",
     "S1083 verifies the actual missing Commerce Convergence path, the unchanged owner, exact rollback and strict route/transaction proofs.",
@@ -6003,6 +6010,43 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#transfer-old-level-three-cleanup-and-exit-duties--s1085"
+    },
+    "s1086_research_boost_cleanup_handoff": {
+      "build": "B524.551 / modinfo551",
+      "baseline": "4e0e1b8490a3b7fe34954c3e24ba3d2ee432f193",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "O7BoostCleanup": {
+          "path": "local/refactor/S1086-O7BoostCleanup-ready/closure.json",
+          "sha256": "def1c48abaece59024f5a9e6ed9b4300e0c5f3f8602b0db272530746d9164046",
+          "pass_count": 27
+        },
+        "NReadOnlyNetworkDiagnostic": {
+          "path": "local/refactor/S1086-NReadOnlyNetworkDiagnostic-ready/closure.json",
+          "sha256": "e2b42e12ada941182c52f667fc113974d2c46e489ad4075f4f1593b3269c7353",
+          "pass_count": 136
+        },
+        "NStandardizationEffectReadback": {
+          "path": "local/refactor/S1086-NStandardizationEffectReadback-ready/closure.json",
+          "sha256": "e394d8f0102289f55a67ca4fba2b5a8f812ade0b9911668116af69d1fa21baf6",
+          "pass_count": 118
+        }
+      },
+      "removed_paths": {
+        "Mod/NetworkBoost.lua": "332f1c9f0d117ca3c0e559a3b1c5eda9f20502a165ce3d783723ef43544dee4d"
+      },
+      "legacy_boost_ids": 1126,
+      "gameplay_include_reduction": 1,
+      "rollback": [
+        "temporary_switch_and_restore",
+        "stable_apply_and_rollback"
+      ],
+      "source_sha256": "ce7632d80042fffb363780b4db13c2b0467f473147cf9a2c0fbfd99299905c6c",
+      "package_sha256": "96ea4aae933410477e0e4b64416c095ecdb115b28c1659d158f732b264a92ac1",
+      "files": 318,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#transfer-old-research-boost-withdrawal-and-startup--s1086"
     }
   }
 }

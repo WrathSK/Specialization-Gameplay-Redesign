@@ -779,7 +779,10 @@ end)
 
 composition.Run('StandardizationEffects',{'CityProgressionStore','Standardization','NetworkBridge','EffectiveFacts','NativeFacts'},{'StandardizationEffects'},function() include('StandardizationEffects');SPCStandardizationEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('NetworkBoost',{},{'NetworkBoost'},function() include('NetworkBoost');SPCNetworkBoost.Start(P,shared,{retired=true,centralExit=true}) end)
+composition.Run('NetworkBoost',{},{'NetworkBoost'},function()
+ if not SPCLegacyCleanup then include('LegacyCleanup')end
+ SPCLegacyCleanup.StartBoostLoad(P,shared)
+end)
 
 composition.Run('GreatWorkLoadCleanup',{},{'GreatWorkLoadCleanup'},function()
  if not SPCLegacyCleanup then include('LegacyCleanup')end

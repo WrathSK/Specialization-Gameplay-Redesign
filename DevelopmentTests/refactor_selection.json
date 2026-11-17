@@ -2,6 +2,16 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O7BoostCleanup": [
+      "test_o7_retired_boost_test_controls_retirement",
+      "test_refactor_s9e3.CentralLegacy",
+      "test_o7_legacy_panel_cleanup.LegacyPanelCleanup.test_old_effect_commands_stop_and_both_saved_experiments_still_withdraw",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
     "O7Level3Cleanup": [
       "test_o7_level3_cleanup",
       "test_refactor_s7e.Registry",

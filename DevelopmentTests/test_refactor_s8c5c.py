@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, B518, B519, B521, B522, RETIRED_ADJACENCY_FILES, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, B518, B519, B521, B522, B523, RETIRED_ADJACENCY_FILES, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -15,6 +15,7 @@ EXPERIMENT_LOADS={
  'CommerceConvergence':('CommerceLegacyCleanup','StartCommerceLoad'),
  'Lv3Support':('Lv3Support','StartLv3Support'),
  'Lv3Effects':('Lv3Effects','StartLv3Effects'),
+ 'NetworkBoost':('NetworkBoost','StartBoostLoad'),
 }
 
 def replacement_method(name,source):
@@ -73,7 +74,7 @@ def production(extra='',failure=None,late=None,*,modules=None,gameplay=None):
  def wrapped(name):
   if failure==name:raise RuntimeError('INCLUDE_FAILURE_'+name)
   if name in EXPERIMENT_LOADS and not replacement_method(name,gameplay):
-   original={'CommerceConvergence':B519,'Lv3Support':B522,'Lv3Effects':B522}.get(name,B511)
+   original={'CommerceConvergence':B519,'Lv3Support':B522,'Lv3Effects':B522,'NetworkBoost':B523}.get(name,B511)
    out=v.execute(retired_source(name+'.lua',original))
   elif name+'.lua' in RETIRED_ADJACENCY_FILES:out=v.execute(retired_source(name+'.lua',B518))
   elif name=='Lv4Percent':out=v.execute(retired_source(name+'.lua',B521))
@@ -159,6 +160,7 @@ class Production(unittest.TestCase):
   for name in ('NetworkBoost','GreatWorkAdjacency','CommerceConvergence'):
    archived=retired_source('Gameplay.lua',B518) if retired and name=='GreatWorkAdjacency' else s
    if retired and name=='CommerceConvergence':archived=retired_source('Gameplay.lua',B519)
+   if retired and name=='NetworkBoost':archived=retired_source('Gameplay.lua',B523)
    self.assertIn('retired=true',entry(name,archived))
   for name in SUPPORT:
    if retired and name in RETIRED_INDUSTRIAL_STARTS:

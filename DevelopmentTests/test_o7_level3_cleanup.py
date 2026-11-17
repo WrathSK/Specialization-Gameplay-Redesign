@@ -3,7 +3,7 @@
 import unittest
 
 from refactor_harness import ROOT, TrackedLua51, measure
-from retired_crew_sources import B522, RETIRED_LEVEL3_FILES, package, source
+from retired_crew_sources import B522, B523, RETIRED_LEVEL3_FILES, package, source
 from test_b239_commerce_integration import SETUP
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 
@@ -90,9 +90,8 @@ class Level3Cleanup(unittest.TestCase):
                 'exact_native_write_order_matches': True, 'warm_idle_extra_city_visits': 0})
 
     def test_exact_two_file_removal_round_trips(self):
-        mod = ROOT/'Mod'
-        with package(B522) as before:
-            original = before/'Mod'
+        with package(B522) as before, package(B523) as after:
+            original, mod = before/'Mod', after/'Mod'
             for path in ('CityProgressionStore.lua', 'LegacyCleanupCatalog.lua', 'Tombstones.lua',
                          'Data/Lv3Effects.sql', 'Data/Lv3Support.sql'):
                 self.assertEqual((original/path).read_bytes(), (mod/path).read_bytes(), path)

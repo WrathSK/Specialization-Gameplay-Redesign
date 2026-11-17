@@ -213,6 +213,92 @@ function SPCLegacyCleanup.StartLv3Effects(P,shared)
  end)
 end
 
+-- Deferred Research effects still need exact legacy cleanup on the original startup signals.
+function SPCLegacyCleanup.StartBoostLoad(P,shared)
+ include('RuntimeWork')
+ include('BoostConfig')
+ include('BoostIntegerConfig')
+ local d={ready=false,busy=false,retired=true,errors={},changes=0};shared.NetworkBoost=d
+ local function isolated(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
+ local testRows={}
+ for _,kind in ipairs({'RESEARCH','CULTURE'}) do for _,amount in ipairs({2,4}) do
+  testRows[#testRows+1]='BUILDING_SPC_B057_'..kind..'_'..amount
+ end end
+ local function remove(c,id)
+  local row=assert(P.Info('Buildings',id),'B055_DATABASE_MISSING')
+  local b=c:GetBuildings()
+  local present=P.HasBuilding(b,row.Index)
+  assert(type(present)=='boolean','B055_CARRIER_UNKNOWN')
+  if present then
+   P.RemoveBuilding(b,row.Index)
+   assert(P.HasBuilding(b,row.Index)==false,'B055_WRITE_UNCONFIRMED')
+   d.changes=d.changes+1
+  end
+ end
+ function d.Clean()
+  for _,player in pairs(Players) do local cities=player:GetCities();if cities then for _,c in cities:Members() do P.Count('city_scan');
+   for _,r in pairs(SPCBoostConfig.rows) do remove(c,r.building) end
+   for _,id in pairs(SPCBoostIntegerConfig.rows) do if P.Info('Buildings',id) then remove(c,id) end end
+   for _,id in ipairs(testRows) do if P.Info('Buildings',id) then remove(c,id) end end
+  end end end
+ end
+ function d.EnsureReady(pid)
+  if isolated(pid) then return end
+  if not P.IsTestPlayer(pid) or d.busy then P.Count('busy_skip');return end
+  if not d.ready then
+   d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
+   if not ok then d.errors[pid]=tostring(err);return end
+   d.ready=true
+   if SPCExpeditionTrainingDiagnostics then
+    local trace=SPCExpeditionTrainingDiagnostics.New(P,'RESEARCH_NETWORK_EXIT')
+    trace.Record('NETWORK_EFFECT_RETIRED',{owner=pid,networkKind='RESEARCH',readStatus='VERIFIED',count=d.changes,reason='DEFERRED_V01'})
+   end
+  end
+ end
+ -- B137 session-only isolation: this module owns the exact list and native withdrawal.
+ function d.ExperimentalNetworkWithdraw(pid)
+  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
+  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
+  assert(not d.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
+  d.busy=true
+  local ok,why=pcall(function()
+   local ids={};for _,r in pairs(SPCBoostConfig.rows) do ids[#ids+1]=r.building end;for _,id in pairs(SPCBoostIntegerConfig.rows) do ids[#ids+1]=id end;for _,id in ipairs(testRows) do ids[#ids+1]=id end
+   local indexes={};for _,id in ipairs(ids) do
+    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
+    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
+   end
+   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
+   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
+   for _,c in cities:Members() do
+    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
+    local b=c:GetBuildings()
+    for _,index in ipairs(indexes) do
+     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
+     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);d.changes=d.changes+1 end
+    end
+   end
+   d.errors[pid]=nil
+  end)
+  d.busy=false;d.isolationError=not ok and tostring(why) or nil
+  if not ok then error(why) end
+  return true
+ end
+ function d.Describe()
+  return '科研网络鼓舞已按用户决定在 v0.1 隔离，重做留待后续。\n公共网络和科研本城能力保留。\n旧载体清理：'..(d.ready and '已确认' or '待完成')
+ end
+ local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
+ -- Exact removal once per Gameplay context; failures retry only on a real turn.
+ local attempted=false
+ local function initialize()
+  if d.ready or d.busy then return end
+  local pid=Game.GetLocalPlayer();if not P.IsTestPlayer(pid)then return end
+  attempted=true;d.EnsureReady(pid)
+ end
+ hook(Events,'LoadScreenClose',initialize)
+ hook(Events,'GameCoreEventPublishComplete',function()if not attempted then initialize()end end)
+ hook(Events,'PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then initialize()end end)
+end
+
 function SPCLegacyCleanup.Start(P,shared)
  local store=assert(shared.CityProgressionStore,'LEGACY_STORE_UNAVAILABLE')
  assert(type(store.IsExitCurrent)=='function'and type(store.ExitCompleted)=='function','LEGACY_EXIT_PROOF_UNAVAILABLE')

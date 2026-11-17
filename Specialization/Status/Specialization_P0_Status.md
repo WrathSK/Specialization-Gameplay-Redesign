@@ -1,28 +1,44 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1085
-Implementation Build: B523.550 / modinfo550 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1086
+Implementation Build: B524.551 / modinfo551 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRED_LV3_CLEANUP_HANDOFF_LOCAL_PASS
+Work State: RESEARCH_BOOST_LEGACY_CLEANUP_HANDOFF_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B523.550 on develop](#transfer-old-level-three-cleanup-and-exit-duties--s1085). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B524.551 on develop](#transfer-old-research-boost-withdrawal-and-startup--s1086). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The old level-three specialist and network scripts are absent. Current cleanup, Culture Aesthetic, exact group exits, route proof and disposable rollback pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Transfer the remaining old Research boost cleanup, report and readiness duties before retiring the former writer. Keep the current initialization delivery until equivalent cleanup recovery is proven. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The old boost writer is absent. Exact withdrawal, city exit, recovery, background handshake, route proof and both package rollbacks pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Separate the remaining Dialogue sample transport and exact legacy withdrawal from the retired effect writer. Keep the old Boost UI startup signal until equivalent native startup coverage is established. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Transfer old Research boost withdrawal and startup — S1086
+
+**LOCAL_SIMULATION_PASS in scope.** LegacyCleanup takes over the old boost startup with the same exact 1,126 cleanup definitions and verification. The actual BoostRefresh to Gameplay path still sends the same request, clears the seeded Research and Great Work carriers in order, and waits for both readiness flags. Comparative fixtures confirm that a failed first publish is visible, idle publishes do no extra carrier sampling, a supported player turn retains the existing recovery, and reports remain read-only. The current central exit and strict network proof pass. Both disposable deployment transactions roll back the exact one-path removal.
+
+**Runtime Impact Contract.** The new cleanup owner runs at the previous slot and keeps the exact existing readiness signals, report and diagnostic withdrawal guards. The old positive plan and experiments are available as pinned historical fixtures. Gameplay uses one fewer include and produces the same three strict packets. No new scan, recovery trigger, save field, asset/SQL change or GC change. Existing UI startup delivery is retained pending evidence that the supported native load path can replace it.
+
+**Source recovery.** `git show 4e0e1b8490a3b7fe34954c3e24ba3d2ee432f193:Mod/NetworkBoost.lua` with SHA256 `332f1c9f0d117ca3c0e559a3b1c5eda9f20502a165ce3d783723ef43544dee4d`.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8 (Lua 5.1 scoped roots), official Assets and read-only HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7BoostCleanup --output local/refactor/S1086-O7BoostCleanup-ready/closure.json` (27/27), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1086-NReadOnlyNetworkDiagnostic-ready/closure.json` (136/136), `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/S1086-NStandardizationEffectReadback-ready/closure.json` (118/118). Local-only machine artifacts and companion logs
+
+- `local/refactor/S1086-O7BoostCleanup-ready/closure.json` SHA256 `def1c48abaece59024f5a9e6ed9b4300e0c5f3f8602b0db272530746d9164046`.
+- `local/refactor/S1086-NReadOnlyNetworkDiagnostic-ready/closure.json` SHA256 `e2b42e12ada941182c52f667fc113974d2c46e489ad4075f4f1593b3269c7353`.
+- `local/refactor/S1086-NStandardizationEffectReadback-ready/closure.json` SHA256 `e394d8f0102289f55a67ca4fba2b5a8f812ade0b9911668116af69d1fa21baf6`.
+
+**STATIC_CONFIRMED.** 189 Lua 5.1 compiles, 32 XML-family parses, 628 File references and 10 LuaReplace references. Source SHA256 `ce7632d80042fffb363780b4db13c2b0467f473147cf9a2c0fbfd99299905c6c`. Package SHA256 `96ea4aae933410477e0e4b64416c095ecdb115b28c1659d158f732b264a92ac1` across 318 files. Source-only checkpoint without new native evidence.
 
 ### Transfer old level-three cleanup and exit duties — S1085
 

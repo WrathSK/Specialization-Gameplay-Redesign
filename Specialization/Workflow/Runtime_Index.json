@@ -566,9 +566,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "396f0a2f27be7de5e7adacb51ba1c67daa8f9b3d46a4cc8e32cf9e2b8d535acc",
+      "sha256": "916ef043954cac26f169a79495ad459524c8738d22f48b8b37aa6ba4f4b0ee4e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1085 transfers the exact old level-three groups, scoped retries, reports and confirmed exit adapters, and tests the real package without either old Lua file."
+      "provenance": "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer."
     },
     "Mod/GreatWorkCatalog.lua": {
       "sha256": "c0669180efe21a4c2fd91289be9c0a1a4828ac785a3791ca1b059507cc2fec72",
@@ -635,11 +635,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S1076 moves the existing copy report notice to the read-only report owner and drops two retired startups and their inert request aliases. Simulated network isolation admission and strict current proof match the prior build."
     },
-    "Mod/NetworkBoost.lua": {
-      "sha256": "332f1c9f0d117ca3c0e559a3b1c5eda9f20502a165ce3d783723ef43544dee4d",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B375_Refactor_S9e3.md",
-      "provenance": "B375.402 Avoid unrelated transfer rebuilds in Bridge Standardization and retired probes; local/static evidence only; no deployment/native PASS."
-    },
     "Mod/NetworkBridge.lua": {
       "sha256": "26f7a5dc1f46e28004aa406b742aed4490c59c7801b128182fcfa2ea8cce6469",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
@@ -671,9 +666,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "8ddda942b98501c0da38d1d097a39fe61cab6d51399a7ce1539e69f019fa88e6",
+      "sha256": "8d2f10f66e7ba8eb6c2b778ab5c78abeb5e8d82c300b177eae5a3e93b673ee0e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1085 transfers the exact old level-three groups, scoped retries, reports and confirmed exit adapters, and tests the real package without either old Lua file."
+      "provenance": "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "0d9205f3f4543c200c3fb3787384e8f1d580fe2834831829822546c641356458",
@@ -786,9 +781,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c563cc98e910f8cd2f02f8a9943f0e325f4035dc344614adaa5ebb510e8bee04",
+      "sha256": "ae214543cf06d8bf8c34039e188e4929ec17623a0305a0caf33bc6bc06af2d4b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1085 transfers the exact old level-three groups, scoped retries, reports and confirmed exit adapters, and tests the real package without either old Lua file."
+      "provenance": "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1456,9 +1451,9 @@
       "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LegacyCleanup.lua": {
-      "sha256": "affce7866d854a3417cce49479992ec99ea554ea4b757a0d03b4963bcf7d4a49",
+      "sha256": "4e7dd79dbb8c1414d471e78ec4fe8bf335b9efb5824bb4b5651e89cffd6e1f04",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1085 transfers the exact old level-three groups, scoped retries, reports and confirmed exit adapters, and tests the real package without either old Lua file."
+      "provenance": "S1086 moves the exact Research boost cleanup and readiness to LegacyCleanup and tests the real package without the old writer."
     },
     "Mod/DevelopmentInvestmentTargets.lua": {
       "sha256": "0af2689c6ae0e01b5f9e50683da32a19f1499f10b1ae7c7d566ee3b5c9b119f8",
