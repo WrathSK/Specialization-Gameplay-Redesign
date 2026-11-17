@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1074",
-    "runtime": "B512.539 / modinfo539",
+    "status": "S1075",
+    "runtime": "B513.540 / modinfo540",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Move exact legacy purchase and Great Work load withdrawal off the retired experiment modules while preserving the existing cleanup order and verification.",
+  "goal": "Remove the three detached early experiment Lua paths after exact transaction review, with retained load and city-exit cleanup.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Retire the detached purchase and Great Work experiment Lua — S1075",
+      "reason": "S1075 removes three detached experiment Lua paths from the package after verified readback and disposal tests. Confirmed cleanup, the existing load retry and the current reports still run in the real Gameplay and UI fixtures."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -828,6 +834,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1075 verifies the physical absence of the three old experiment Lua files, exact temporary and stable rollback paths, retained cleanup and scoped Standardization and route regressions.",
     "S1074 verifies both opened save cleanup paths without the two old modules, matching readiness/ACK and confirmed Store exit, with 118 passing Standardization carryover methods and 24 passing focused methods.",
     "S1073 verifies the actual current city fact reads, Store reference witness, missing CityFlowProbe modes, and retained Claim and route paths.",
     "S1072 verifies the normal Standardization path, exact old-ID withdrawal and readback, current Carrier application and scoped exit, and actual Gameplay startup with both old modules unavailable. The broad direct historical replay has the same 37 non-passing cases on base and candidate.",
@@ -5485,6 +5492,33 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#move-early-experiment-load-cleanup-to-the-existing-cleanup-owner--s1074"
+    },
+    "s1075_retired_experiment_lua": {
+      "build": "B513.540 / modinfo540",
+      "baseline": "79c128c77e4a927b615c779f44a0e1e8d536bce1",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "removals": {
+        "Mod/GreatWorkProbe.lua": "4a481c84a80fb03023c8ea5dbc372a6d5f371a7c906ad2f6fa8bd36b4d676688",
+        "Mod/PurchaseProbe.lua": "19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0",
+        "Mod/PurchaseProbeRead.lua": "8b01b03284548636d531d2305cdd70cdfc11a3f7f25f4acb5e0d53269c64ea24"
+      },
+      "disposable_transactions": [
+        "temporary_switch_and_restore",
+        "stable_apply_and_rollback"
+      ],
+      "focused_pass": 31,
+      "additional_pass": 3,
+      "standardization_pass": 118,
+      "standardization_local_evidence": {
+        "path": "local/refactor/S1075-StandardizationCarry/closure.json",
+        "sha256": "a5219f715edae28f0e82a0080adb5ea8d4ff3177fd433ec8687b74267b8e81db"
+      },
+      "source_sha256": "82eedba1c9f3170c990e284419ab1a2cf3c72aed62b216643114204bac13b36f",
+      "package_sha256": "6ea2fefb0efc8b4045301b6926e6e3ba0e086f5a62e1067a6712a367b6c51df3",
+      "files": 336,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-detached-purchase-and-great-work-experiment-lua--s1075"
     }
   }
 }

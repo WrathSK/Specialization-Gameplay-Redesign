@@ -1,28 +1,44 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1074
-Implementation Build: B512.539 / modinfo539 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1075
+Implementation Build: B513.540 / modinfo540 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: LEGACY_EXPERIMENT_LOAD_CLEANUP_OWNERSHIP_LOCAL_PASS
+Work State: RETIRE_EXPERIMENT_LUA_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B512.539 on develop](#move-early-experiment-load-cleanup-to-the-existing-cleanup-owner--s1074). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B513.540 on develop](#retire-the-detached-purchase-and-great-work-experiment-lua--s1075). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The experiment cleanup handoff passes scoped Lua 5.1 replay with both old modules absent. The carried Standardization stage passes 118 methods. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Review path-level package retirement for the two detached experiment modules and their unused purchase report reader. Check the hidden industrial-copy report and legacy transport and isolation references separately. Keep the exact SQL carrier definitions used by current withdrawal. Native observations remain on the existing gate. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The three-path Lua retirement passes cold cleanup and both disposable rollback routes. The Standardization stage passes 118 methods. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Detach the hidden industrial-copy diagnostic from the retired production-copy shell. Check the old transport and Network Isolation admission paths before detaching the old industrial startup entries. Review precise package and rollback paths before removing those files. Native observations remain on the existing gate. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Retire the detached purchase and Great Work experiment Lua — S1075
+
+**LOCAL_SIMULATION_PASS in scope.** Remove the three old experiment scripts and their six manifest entries. The exact removed paths have no current Gameplay or UI caller. The actual cold-load and report replay checks the package with these files physically absent, the ordered B053/B055 removals across owned and foreign cities, and the existing bounded retry after an injected B055 failure. The B053/B055 SQL and the active cleanup catalogue are both runtime inputs. Current city fact reads, three nonempty route proof packets and the existing Store exit path pass their scoped checks. Both transaction paths accepted the exact list and restored the original complete package in disposable fixtures.
+
+The previous package is retrievable from published commit `79c128c77e4a927b615c779f44a0e1e8d536bce1`. For each listed path, use `git show 79c128c77e4a927b615c779f44a0e1e8d536bce1:<path>` and verify the corresponding SHA256. Historical links to the removed live paths can use that commit. The selected old writer and startup tests use explicitly archived code.
+
+- `Mod/GreatWorkProbe.lua` SHA256 `4a481c84a80fb03023c8ea5dbc372a6d5f371a7c906ad2f6fa8bd36b4d676688`.
+- `Mod/PurchaseProbe.lua` SHA256 `19143f9729859141448945b50e11981735b64b4937ed86302e148b57813045e0`.
+- `Mod/PurchaseProbeRead.lua` SHA256 `8b01b03284548636d531d2305cdd70cdfc11a3f7f25f4acb5e0d53269c64ea24`.
+
+**Runtime impact (T03, T06, T07).** These three import declarations did not trigger startup on B512. The package no longer includes their sources. The existing readback, callbacks and ordinary-turn network work retain their owners and scope. There are no native calls, scans, saved properties or new diagnostic listeners in this delta.
+
+**Reproduction.** Use CPython 3.14.8, Lupa 2.8 (Lua 5.1), the official Assets and the read-only B413 HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Run `python3.14 -B -m unittest test_o7_legacy_panel_cleanup test_o7_retired_boost_test_controls_retirement test_refactor_s8c5c.Production test_refactor_s8c5c.FrozenBefore test_refactor_s9e3.CentralLegacy test_refactor_s9e4.Retired test_deployment_removals.ReviewedRemoval` (31/31) and `python3.14 -B -m unittest test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_formal_facts_without_city_flow_probe test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group` (3/3). Run `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback` (118/118). Full local results are in `local/refactor/S1075-StandardizationCarry/closure.json`, SHA256 `a5219f715edae28f0e82a0080adb5ea8d4ff3177fd433ec8687b74267b8e81db`.
+
+**STATIC_CONFIRMED.** 205 Lua 5.1 compiles, 34 XML-family parses, 664 file and 10 Lua replacement references and no widened static alarm. Tested source SHA256 `82eedba1c9f3170c990e284419ab1a2cf3c72aed62b216643114204bac13b36f`. Package SHA256 `6ea2fefb0efc8b4045301b6926e6e3ba0e086f5a62e1067a6712a367b6c51df3` across 336 files. Source-only. B489.516 is the installed baseline and native acceptance of this delta remains unmeasured.
 
 ### Move early experiment load cleanup to the existing cleanup owner — S1074
 

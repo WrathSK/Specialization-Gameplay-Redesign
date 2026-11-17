@@ -60,16 +60,18 @@ def production(extra='',failure=None,late=None,*,modules=MODULES):
   assert(composition.Run(name,{}, {},function()end))
  end
  """+extra)
+ gameplay=(ROOT/'Mod/Gameplay.lua').read_text()
  include=v.globals().include
  def wrapped(name):
   if failure==name:raise RuntimeError('INCLUDE_FAILURE_'+name)
-  out=include(name)
+  if name in EXPERIMENT_LOADS and startup_slot(name,gameplay)==name:
+   out=v.execute(retired_source(name+'.lua',B511))
+  else:out=include(name)
   if late==name:
    sym=SYMBOL.get(name,'SPC'+name)
    v.execute('local module=_G[...];local start=module.Start;module.Start=function(...)local out=start(...);error("LATE_START_FAILURE")end',sym)
   return out
  v.globals().include=wrapped
- gameplay=(ROOT/'Mod/Gameplay.lua').read_text()
  v.execute(entry('LegacyCleanup',gameplay))
  for name in modules:
   slot=startup_slot(name,gameplay)

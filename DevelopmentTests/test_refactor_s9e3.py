@@ -6,6 +6,7 @@ from unittest.mock import patch
 import subprocess
 import unittest
 from refactor_harness import Context,ROOT,TrackedLua51,SOURCES,measure,legacy_source_observation
+from retired_crew_sources import B511, source
 from test_refactor_s4b import standard
 from test_refactor_s9e1 import ui
 from test_refactor_s8c5c import production
@@ -103,7 +104,7 @@ class CentralLegacy(unittest.TestCase):
   lose();assert(status()=='WITHDRAWN'and removeCalls==1409 and plotWrites==2)
   """)
  def test_standalone_legacy_callback_is_preserved_without_central_owner(self):
-  c=Context();c.load('NetworkBoost');c.load('GreatWorkProbe');c.execute("""
+  c=Context();c.load('NetworkBoost');c.execute(source('GreatWorkProbe.lua',B511));c.execute("""
   P={Field=function(t,k)return t and t[k]end};SPCNetworkBoost.Start(P,shared,{retired=true});SPCGreatWorkProbe.Start(P,shared)
   calls=0;shared.NetworkBoost.ready=true;shared.GreatWorkProbe.ready=true
   shared.NetworkBoost.Clean=function()calls=calls+1 end;shared.GreatWorkProbe.Clean=function()calls=calls+1 end

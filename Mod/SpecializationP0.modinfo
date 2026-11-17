@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="539">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="540">
   <Properties>
     <Name>LOC_SPC_MOD_TITLE</Name>
     <Description>LOC_SPC_MOD_DESCRIPTION</Description>
@@ -208,8 +208,6 @@
       <File>StandardizationDiscount.lua</File>
       <File>UI/DiscountEligibility.lua</File>
       <File>UI/DiscountEligibility.xml</File>
-      <File>PurchaseProbe.lua</File>
-      <File>PurchaseProbeRead.lua</File>
       <File>IndustryHistory.lua</File>
       <File>StandardizationCatalog.lua</File>
       <File>Standardization.lua</File>
@@ -279,7 +277,6 @@
       <File>Lv4Percent.lua</File>
       <File>BoostConfig.lua</File>
       <File>NetworkBoost.lua</File>
-      <File>GreatWorkProbe.lua</File>
       <File>UI/BoostGreatWorkRead.lua</File>
       <File>UI/BoostRefresh.lua</File>
       <File>UI/BoostRefresh.xml</File>
@@ -669,8 +666,6 @@
     <File>UI/DiscountEligibility.lua</File>
     <File>UI/DiscountEligibility.xml</File>
     <File>Data/StandardizationDiscount.sql</File>
-    <File>PurchaseProbe.lua</File>
-    <File>PurchaseProbeRead.lua</File>
     <File>Data/PurchaseProbe.sql</File>
     <File>IndustryHistory.lua</File>
     <File>StandardizationCatalog.lua</File>
@@ -784,7 +779,6 @@
     <File>Data/ResearchChair.sql</File>
     <File>BoostConfig.lua</File>
     <File>NetworkBoost.lua</File>
-    <File>GreatWorkProbe.lua</File>
     <File>UI/BoostGreatWorkRead.lua</File>
     <File>UI/BoostRefresh.lua</File>
     <File>UI/BoostRefresh.xml</File>

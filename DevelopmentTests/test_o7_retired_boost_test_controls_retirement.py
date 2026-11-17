@@ -141,7 +141,7 @@ class RetiredBoostTestControls(unittest.TestCase):
             for name in ('NetworkBoost.lua', 'LegacyCleanup.lua', 'LegacyCleanupCatalog.lua', 'UI/BoostRefresh.lua',
                          'UI/BoostGreatWorkRead.lua', 'GreatWorkProbe.lua', 'BoostConfig.lua', 'BoostIntegerConfig.lua'):
                 # These later handoffs do not change the published B470/B471 byte comparison.
-                changed_later = {'UI/BoostGreatWorkRead.lua','LegacyCleanup.lua','UI/BoostRefresh.lua'}
+                changed_later = {'GreatWorkProbe.lua','UI/BoostGreatWorkRead.lua','LegacyCleanup.lua','UI/BoostRefresh.lua'}
                 candidate = retired if name in changed_later else ROOT
                 self.assertEqual((previous/'Mod'/name).read_bytes(), (candidate/'Mod'/name).read_bytes())
         after = boost_startup(ROOT, None)
