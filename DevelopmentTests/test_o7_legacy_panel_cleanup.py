@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B476, B511, B512, B513, package
+from retired_crew_sources import B476, B511, B512, B513, RETIRED_CITY_STARTS, package
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_p0_panel_current_layout import panel_runtime
@@ -276,9 +276,12 @@ class LegacyPanelCleanup(unittest.TestCase):
         reports, cleanup, writes, callbacks = recover_and_request(ROOT)
         self.assertEqual((reports, cleanup), (before, old_cleanup))
         self.assertEqual((old_writes, writes), (8, 0))
-        self.assertEqual((reports, cleanup, writes, callbacks), baseline)
+        self.assertEqual((reports, cleanup, writes), baseline[:3])
+        expected_count, expected_position, *ui_callbacks = baseline[3]
+        self.assertEqual(callbacks, (expected_count-len(RETIRED_CITY_STARTS),
+                                    expected_position-len(RETIRED_CITY_STARTS), *ui_callbacks))
         measure('legacy_panel_effects', dict(manual_carrier_writes=[old_writes, writes],
             saved_carrier_removals=len(cleanup), b055_bounded_retry=True,
             ordinary_building_preserved=True, permanent_writes=[0, 0],
             retained_reports='MATCH', old_command_probes=15,
-            load_callback_position_and_retry_callbacks='MATCH', experiment_modules_absent=True))
+            relative_load_callback_order_and_retry_callbacks='MATCH', experiment_modules_absent=True))

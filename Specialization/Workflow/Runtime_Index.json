@@ -596,9 +596,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "c66fb371fc822e5a35b5f0b9abbf338b74ef93a6a4cced7c794ebb1a0cbbc06d",
+      "sha256": "2fe6bf28638cf76e3672d07970334ad10d3853eab27eca9b32aa7b59375f2758",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1076 moves the existing copy report notice to the read-only report owner and drops two retired startups and their inert request aliases. Simulated network isolation admission and strict current proof match the prior build."
+      "provenance": "S1078 detaches the old binding, journal and flow starts. The current Store registers and restores cities and supplies identity facts without these files. The archived test path and existing saved identifiers remain."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -726,9 +726,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "92a0340dc5d874e19fc373c45c20f032df0559bdda2493aa1842bd5d6fa46775",
+      "sha256": "69bcab82fdd237db3c28caec7065059dee456d9a08936e5d6c008c6da5f14d8e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1077 removes the six old industrial Lua and UI files after real-root absence and both exact disposable rollback checks. The formal effect and read-only report use current owners. Historical test scenarios replay the published sources."
+      "provenance": "S1078 detaches the old binding, journal and flow starts. The current Store registers and restores cities and supplies identity facts without these files. The archived test path and existing saved identifiers remain."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "0d9205f3f4543c200c3fb3787384e8f1d580fe2834831829822546c641356458",
@@ -841,9 +841,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c9555f6e3ee66e9228534062474442c339c45085d75f36283982d613970cc48e",
+      "sha256": "89b2e147022b820065b13b18a40a5169d11e472c6002af2192ade2ce51cb0ee9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1077 removes the six old industrial Lua and UI files after real-root absence and both exact disposable rollback checks. The formal effect and read-only report use current owners. Historical test scenarios replay the published sources."
+      "provenance": "S1078 detaches the old binding, journal and flow starts. The current Store registers and restores cities and supplies identity facts without these files. The archived test path and existing saved identifiers remain."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

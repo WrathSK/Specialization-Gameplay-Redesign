@@ -20,10 +20,13 @@ def store_and_reports(root, saved, revision=None):
       local s=ExposedMembers.SPC_P0
       local store=s.CityProgressionStore
       local journal,binding=s.CityJournalProbe,s.BindingProbe
-      local journalRead,bindingRead=journal.Read,binding.Read
       manual={journal=0,binding=0}
-      journal.Read=function(...) manual.journal=manual.journal+1;return journalRead(...)end
-      binding.Read=function(...) manual.binding=manual.binding+1;return bindingRead(...)end
+      if retired then assert(journal==nil and binding==nil)
+      else
+        local journalRead,bindingRead=journal.Read,binding.Read
+        journal.Read=function(...) manual.journal=manual.journal+1;return journalRead(...)end
+        binding.Read=function(...) manual.binding=manual.binding+1;return bindingRead(...)end
+      end
       local before=#writeKeys
       retainedReports={}
       local function request(action,city,token)
@@ -42,10 +45,14 @@ def store_and_reports(root, saved, revision=None):
         request('BINDING_READ',city,'old-binding')
         if retired then assert(s.LastToken==token and s.Snapshot==current)
         else assert(s.LastToken=='old-binding' and s.Snapshot==store.Describe(0,city)) end
-        local id,status=binding.Resolve(0,city)
-        assert(status=='BOUND_MATCH' and id==store.Base(0,city).token)
+        local base=store.Base(0,city)
+        assert(store.Owns(city) and store.ReferenceToken(city)==base.token)
+        if binding then
+          local id,status=binding.Resolve(0,city)
+          assert(status=='BOUND_MATCH' and id==base.token)
+        end
       end
-      journal.EnsureInherited(0)
+      if journal then journal.EnsureInherited(0) end
       assert(#writeKeys==before and cityWrites==0)
     """, revision is None)
     assert stored_records(vm) == cold
@@ -75,11 +82,11 @@ def panel(root, *, retired):
 class ManualCityRecordReportsRetirement(unittest.TestCase):
     def test_current_records_identity_and_stale_commands_after_cold_load(self):
         saved = save_fixture()
-        with package(B469) as previous:
+        with package(B469) as previous, package(B470) as retirement:
             before = store_and_reports(previous, saved, B469)
             for name in ('CityJournalProbe.lua', 'BindingProbe.lua', 'CityFlowProbe.lua', 'FreshBindingHook.lua',
                          'CityIdentityRead.lua', 'CityInheritance.lua', 'CityProgressionStore.lua', 'EffectiveFacts.lua'):
-                self.assertEqual((previous/'Mod'/name).read_bytes(), (ROOT/'Mod'/name).read_bytes())
+                self.assertEqual((previous/'Mod'/name).read_bytes(), (retirement/'Mod'/name).read_bytes())
         after = store_and_reports(ROOT, saved)
         self.assertEqual(before[:3], after[:3])
         self.assertEqual((before[3], after[3]), ({'binding': 2, 'journal': 2}, {'binding': 0, 'journal': 0}))

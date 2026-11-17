@@ -71,7 +71,7 @@ class ManualCityFlowRetirement(unittest.TestCase):
             old, old_reads = store_and_request(previous, saved, B468, retired=False)
             for name in ('CityFlowProbe.lua', 'CityJournalProbe.lua', 'BindingProbe.lua', 'FreshBindingHook.lua',
                          'CityInheritance.lua', 'EffectiveFacts.lua', 'CityProgressionStore.lua', 'NetworkInput.lua'):
-                self.assertEqual((previous/'Mod'/name).read_bytes(), (ROOT/'Mod'/name).read_bytes())
+                self.assertEqual((previous/'Mod'/name).read_bytes(), (after/'Mod'/name).read_bytes())
             new, new_reads = store_and_request(after, saved, B469, retired=True)
         self.assertEqual(old, new)
         self.assertEqual((old_reads, new_reads), (2, 0))

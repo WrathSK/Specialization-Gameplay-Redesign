@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -119,9 +119,13 @@ class Production(unittest.TestCase):
    self.assertEqual([n for n in re.findall(pattern,retired_source('Gameplay.lua',B464)) if n!='SPCLegacyCleanup'],expected)
    expected.remove('SPCCompletionRecordProbe')
    for name in RETIRED_INDUSTRIAL_STARTS:expected.remove('SPC'+name)
+   self.assertEqual([n for n in start_order(retired_source('Gameplay.lua',B515)) if n!='SPCLegacyCleanup'],expected)
+   for name in RETIRED_CITY_STARTS:expected.remove('SPC'+name)
    if not reply_service:expected.remove('SPCPlayerActionReplies')
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
-  self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"));self.assertLess(s.index("composition.Run('LegacyCleanup'"),s.index("composition.Run('BindingProbe'"))
+  self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"))
+  next_owner='EffectiveFacts' if retired else 'BindingProbe'
+  self.assertLess(s.index("composition.Run('LegacyCleanup'"),s.index(f"composition.Run('{next_owner}'"))
   self.assertNotIn("composition.Run('YieldCarrierExit'",s)
   for name in MODULES:
    slot=startup_slot(name,s)

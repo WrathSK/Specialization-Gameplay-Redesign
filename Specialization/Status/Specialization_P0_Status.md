@@ -1,28 +1,44 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1077
-Implementation Build: B515.542 / modinfo542 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1078
+Implementation Build: B516.543 / modinfo543 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRE_INDUSTRIAL_LEGACY_PACKAGE_LOCAL_PASS
+Work State: LEGACY_CITY_STARTS_DETACHED_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B515.542 on develop](#retire-the-detached-industrial-writers-and-unmounted-ui-files--s1077). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B516.543 on develop](#detach-the-three-legacy-city-startup-shells--s1078). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | The six-path industrial package retirement passes both disposable rollback routes, 136 network checks and 118 Standardization checks. B489.516 holds [USER_GAME_TEST_PASS in the observed HD and official scope](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Check the remaining old city-flow, journal and binding starts against real Store founding, Claim, owner changes and cold reads before detaching them. The archived two-city test adapter and existing identity keys remain necessary test and saved-state contracts. Keep native observations on the existing integration gate. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | The current Store matches cold records and both new-city event orders with all four old modules absent. The scoped Claim, network and Standardization suites pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Audit the exact four detached city Lua paths against their remaining historical/local test dependencies before package removal. Preserve the Store identity keys and the original archived two-city adapter checks. Keep native observations on the existing integration gate. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Detach the three legacy city startup shells — S1078
+
+**LOCAL_SIMULATION_PASS in scope.** In current Gameplay, Store already owns the city index, per-city record, founding admission and first valid district. EffectiveFacts reads its confirmed reference directly. The old BindingProbe and CityJournalProbe contribute load-stage callbacks in current mode. CityFlowProbe contributes one load callback and loads FreshBindingHook, whose live path returns under Store ownership. Remove these three startup entries. The four Lua files remain in the package pending review of direct historical test reads. Keep the exact saved token key `SPC_DEV_BINDING_B013_TOKEN`, existing Store keys and historic test adapter.
+
+**Runtime Impact Contract.** Current Events, Store writes and downstream fact notifications are reused. In the restricted real-root test there are four fewer includes and three fewer LoadScreenClose callbacks. Other startup and construction order is preserved. No new native reads, enumerations, state, caches, retry triggers or dependencies. Failed Store initialization still skips EffectiveFacts and Claim; retired entries have no startup status. Network transport, stable installation and gameplay formulas are unaffected.
+
+**Evidence.** The actual Gameplay roots restore two populated records with zero Store and City Property writes on load. Two fresh cities admitted afterward in opposite native event orders produce identical tokens, first-district records and write keys versus `e776b4c9d0514cbc1f0c077b4256283b526f8b04`. The old files are unavailable in both erroring and nil-return include models, and no load is attempted. Three nonempty route packets match across both roots. The selected program Claim, original B356 cleanup order, current production startup, and the existing ownership eligibility checks pass. Separate exploratory runs retain four pre-existing fixture failures, reproduced at the same assertions on B515: three in `test_pu07a_completion_scope.FixedCandidates` (replacement family and unavailable metadata) and one Lua 5.5 loss/recapture model in `test_store_write_boundaries`. Those model results carry no new engine claim.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8 (Lua 5.1), official Assets, and retained read-only HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7wLegacyCompletionRecordRetirement --output local/refactor/S1078-O7wLegacyCompletionRecordRetirement` (30/30), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1078-NReadOnlyNetworkDiagnostic` (136/136), `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/S1078-NStandardizationEffectReadback` (118/118). A separate focused startup, retained report, legacy load and owner eligibility selection passes 24/24. Local-only results and companion transcripts
+
+- `local/refactor/S1078-O7wLegacyCompletionRecordRetirement` SHA256 `f3a63b75bf227173f60cb24cf108e0a97902ef46819eb8698994fbc0c57365a8`.
+- `local/refactor/S1078-NReadOnlyNetworkDiagnostic` SHA256 `960e6eb7a0b60609a7ab4b25880c0f29cdc0b70a95c65267c9327d7d24adce37`.
+- `local/refactor/S1078-NStandardizationEffectReadback` SHA256 `5564181e3260e08a56d2686ae1239953863451cd020e3fcb8f35a42122fcdcce`.
+
+Source SHA256 `8183bbf999151ff764c129361eb8efb133f292ed06fdfc807f1864a9b06d2f07`, package SHA256 `0f43905db72183d467189e3139ac4591f2dc970f9f996112f35f0c2930c5fb00` across 330 files. Static checks compile 201 Lua scripts, parse 32 XML-family files and verify 652 manifest file references and 10 Lua replacements. No new native/installed evidence.
 
 ### Retire the detached industrial writers and unmounted UI files — S1077
 

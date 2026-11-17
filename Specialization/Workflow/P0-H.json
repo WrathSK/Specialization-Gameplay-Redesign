@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1077",
-    "runtime": "B515.542 / modinfo542",
+    "status": "S1078",
+    "runtime": "B516.543 / modinfo543",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Remove the two detached industrial Lua writers and four unmounted UI paths while retaining current read-only diagnostics and exact owned carrier cleanup.",
+  "goal": "Remove three retired city startups after comparing real Store registration, saved facts and current network proof.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Detach the three legacy city startup shells — S1078",
+      "reason": "S1078 detaches the old binding, journal and flow starts. The current Store registers and restores cities and supplies identity facts without these files. The archived test path and existing saved identifiers remain."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -846,6 +852,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1078 verifies equivalent cold Store records, founding in both event orders, first completion, and nonempty proof in the absence of four legacy city includes.",
     "S1077 verifies six physically absent package files, exact temporary and stable transaction recovery, the retained isolation and report behavior and current network/Standardization regressions.",
     "S1076 proves the existing report, inert requests, isolation refusal, ordinary route evidence, strict transactions and current Standardization cleanup with the two old starts detached.",
     "S1075 verifies the physical absence of the three old experiment Lua files, exact temporary and stable rollback paths, retained cleanup and scoped Standardization and route regressions.",
@@ -5596,6 +5603,43 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-detached-industrial-writers-and-unmounted-ui-files--s1077"
+    },
+    "s1078_city_startup_detachment": {
+      "build": "B516.543 / modinfo543",
+      "baseline": "e776b4c9d0514cbc1f0c077b4256283b526f8b04",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "O7wLegacyCompletionRecordRetirement": {
+          "path": "local/refactor/S1078-O7wLegacyCompletionRecordRetirement",
+          "sha256": "f3a63b75bf227173f60cb24cf108e0a97902ef46819eb8698994fbc0c57365a8",
+          "pass_count": 30
+        },
+        "NReadOnlyNetworkDiagnostic": {
+          "path": "local/refactor/S1078-NReadOnlyNetworkDiagnostic",
+          "sha256": "960e6eb7a0b60609a7ab4b25880c0f29cdc0b70a95c65267c9327d7d24adce37",
+          "pass_count": 136
+        },
+        "NStandardizationEffectReadback": {
+          "path": "local/refactor/S1078-NStandardizationEffectReadback",
+          "sha256": "5564181e3260e08a56d2686ae1239953863451cd020e3fcb8f35a42122fcdcce",
+          "pass_count": 118
+        }
+      },
+      "focused_pass": 24,
+      "known_old_fixture_errors": 4,
+      "starts_removed": [
+        "BindingProbe",
+        "CityJournalProbe",
+        "CityFlowProbe"
+      ],
+      "modeled_includes_removed": 4,
+      "modeled_load_callbacks_removed": 3,
+      "source_sha256": "8183bbf999151ff764c129361eb8efb133f292ed06fdfc807f1864a9b06d2f07",
+      "package_sha256": "0f43905db72183d467189e3139ac4591f2dc970f9f996112f35f0c2930c5fb00",
+      "files": 330,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#detach-the-three-legacy-city-startup-shells--s1078"
     }
   }
 }

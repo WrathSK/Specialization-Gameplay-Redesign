@@ -2,6 +2,7 @@
 import re,subprocess,unittest
 from refactor_harness import Context,ROOT
 from refactor_defect_fixtures import startup,panel,request_context
+from retired_crew_sources import B515, RETIRED_CITY_STARTS, package
 
 class Composition(unittest.TestCase):
     def make(self):
@@ -97,12 +98,20 @@ class Composition(unittest.TestCase):
         pattern=r'(SPC\w+)\.Start\(P,shared'
         self.assertEqual(re.findall(pattern,before),re.findall(pattern,after))
     def test_failed_store_skips_legacy_mode_selectors(self):
-        c=startup();c.execute("SPCCityProgressionStore.Start=function()error('STORE_FAILED')end")
-        c.load('Gameplay')
-        for name in ('BindingProbe','CityJournalProbe','CityFlowProbe','EffectiveFacts','ClaimProjects'):
-            self.assertEqual(c.eval("ExposedMembers.SPC_P0.StartStatus['%s'].state"%name),'SKIPPED_DEPENDENCY')
-        self.assertIsNone(c.eval('ExposedMembers.SPC_P0.StartStatus.CompletionRecordProbe'))
-        self.assertTrue(c.eval('sealed'));self.assertIn('INITIALIZED_PARTIAL',c.eval('ExposedMembers.SPC_P0.Stage'))
+        def verify(c, historical):
+            c.execute("SPCCityProgressionStore.Start=function()error('STORE_FAILED')end")
+            c.load('Gameplay')
+            status=c.eval('ExposedMembers.SPC_P0.StartStatus')
+            for name in ('EffectiveFacts','ClaimProjects'):
+                self.assertEqual(status[name].state,'SKIPPED_DEPENDENCY')
+            for name in RETIRED_CITY_STARTS:
+                if historical:self.assertEqual(status[name].state,'SKIPPED_DEPENDENCY')
+                else:self.assertIsNone(status[name])
+            self.assertIsNone(status.CompletionRecordProbe)
+            self.assertTrue(c.eval('sealed'));self.assertIn('INITIALIZED_PARTIAL',c.eval('ExposedMembers.SPC_P0.Stage'))
+        with package(B515) as baseline:
+            verify(startup(history=(baseline,B515)), historical=True)
+        verify(startup(), historical=False)
     def test_retired_dialogue_never_restored_by_failed_new_effect(self):
         c=startup();c.execute("SPCDialogueEffects.Start=function(P,s)s.DialogueEffects={};error('EFFECT_FAILED')end");c.load('Gameplay')
         self.assertTrue(c.eval('ExposedMembers.SPC_P0.Dialogue.retired'));self.assertIsNone(c.eval('ExposedMembers.SPC_P0.DialogueEffects'))

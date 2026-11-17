@@ -717,12 +717,6 @@ composition.Run('LegacyCleanup',{'CityProgressionStore'},{'LegacyCleanup'},funct
  include('LegacyCleanup');local owner=SPCLegacyCleanup.Start(P,shared);exit=owner.Exit
 end)
 
-composition.Run('BindingProbe',{'CityProgressionStore'},{'BindingProbe'},function() include('BindingProbe');SPCBindingProbe.Start(P,shared) end)
-
-composition.Run('CityJournalProbe',{'CityProgressionStore'},{'CityJournalProbe'},function() include('CityJournalProbe');SPCCityJournalProbe.Start(P,shared) end)
-
-composition.Run('CityFlowProbe',{'CityProgressionStore'},{'CityFlowProbe'},function() include('FreshBindingHook');include('CityFlowProbe');SPCCityFlowProbe.Start(P,shared) end)
-
 composition.Run('EffectiveFacts',{'CityProgressionStore'},{'EffectiveFacts'},function() include('EffectiveFacts');SPCEffectiveFacts.Start(P,shared) end)
 
 composition.Run('ResearchTradition',{'CityProgressionStore'},{'ResearchTradition'},function() SPCResearchTradition.Start(P,shared) end)
