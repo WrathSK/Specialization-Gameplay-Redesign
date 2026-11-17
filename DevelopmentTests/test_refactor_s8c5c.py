@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -121,6 +121,8 @@ class Production(unittest.TestCase):
    for name in RETIRED_INDUSTRIAL_STARTS:expected.remove('SPC'+name)
    self.assertEqual([n for n in start_order(retired_source('Gameplay.lua',B515)) if n!='SPCLegacyCleanup'],expected)
    for name in RETIRED_CITY_STARTS:expected.remove('SPC'+name)
+   self.assertEqual([n for n in start_order(retired_source('Gameplay.lua',B517)) if n!='SPCLegacyCleanup'],expected)
+   expected.remove('SPCCultureInspirationProbe')
    if not reply_service:expected.remove('SPCPlayerActionReplies')
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"))
@@ -137,6 +139,9 @@ class Production(unittest.TestCase):
    if retired and name in RETIRED_INDUSTRIAL_STARTS:
     self.assertNotIn("composition.Run('"+name+"'",s)
     self.assertNotIn('centralExit',entry(name,retired_source('Gameplay.lua',B513)))
+   elif retired and name=='CultureInspirationProbe':
+    self.assertNotIn("composition.Run('CultureInspirationProbe'",s)
+    self.assertNotIn('centralExit',entry(name,retired_source('Gameplay.lua',B517)))
    else:self.assertNotIn('centralExit',entry(name,s))
   v=production()
   v.execute("for _,name in ipairs({...})do assert(shared.StartStatus[name].state=='OK',name)end",
@@ -195,14 +200,15 @@ class Production(unittest.TestCase):
   """)
  def test_live_Withdraw_and_manual_entry_points_remain_callable(self):
   v=production()
-  v.execute("assert(shared.CopyYields==nil and shared.StandardizationDiscount==nil)")
+  v.execute("assert(shared.CopyYields==nil and shared.StandardizationDiscount==nil and shared.CultureInspirationProbe==nil)")
   current_include=v.globals().include
   def load_archived(name):
    if name in RETIRED_INDUSTRIAL_STARTS:return v.execute(retired_source(name+'.lua',B514))
+   if name=='CultureInspirationProbe':return v.execute(retired_source('CultureInspirationProbe.lua',B517))
    return current_include(name)
   v.globals().include=load_archived
   for name in SUPPORT:
-   historical=retired_source('Gameplay.lua',B513) if name in RETIRED_INDUSTRIAL_STARTS else None
+   historical=retired_source('Gameplay.lua',B513 if name in RETIRED_INDUSTRIAL_STARTS else B517)
    v.execute(entry(name,historical))
   v.execute("assert(type(shared.CopyYields.Withdraw)=='function'and type(shared.StandardizationDiscount.Withdraw)=='function'and type(shared.CultureInspirationProbe.Withdraw)=='function'and type(shared.Lv3Effects.WithdrawCulture)=='function'and type(shared.Lv4Percent.WithdrawCulture)=='function'and type(shared.GreatWorkAdjacency.Withdraw)=='function'and type(shared.CommerceConvergence.Withdraw)=='function'and type(shared.Dialogue.Init)=='function')")
   v.execute("assert(shared.PurchaseProbe==nil and shared.GreatWorkProbe==nil and type(shared.GreatWorkLoadCleanup.Clean)=='function')")

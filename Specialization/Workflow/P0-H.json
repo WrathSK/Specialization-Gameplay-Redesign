@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1079",
-    "runtime": "B517.544 / modinfo544",
+    "status": "S1080",
+    "runtime": "B518.545 / modinfo545",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Remove the four detached city startup files with exact historical fixture access and both disposable rollback checks.",
+  "goal": "Hand the exact four historical Inspiration withdrawals to the current effect owner and retire the old probe with exact rollback and preserved current behavior.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### Hand off and retire the old Inspiration probe — S1080",
+      "reason": "S1080 moves the four historical Inspiration carrier withdrawals to the current effect owner and retires the old probe Lua. Exact load and exit ordering, failed readback, scoped recovery, retained SQL and both disposable rollback paths are verified locally."
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -858,6 +864,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1080 proves exact Inspiration load and exit ordering, failed and successful readback, distinct city outcomes, physical absence and both exact disposable rollback paths.",
     "S1079 verifies four physically absent city paths, true root startup/cold/founding, nonempty proof and exact stable and temporary rollback with preserved historical fixture input.",
     "S1078 verifies equivalent cold Store records, founding in both event orders, first completion, and nonempty proof in the absence of four legacy city includes.",
     "S1077 verifies six physically absent package files, exact temporary and stable transaction recovery, the retained isolation and report behavior and current network/Standardization regressions.",
@@ -5695,6 +5702,48 @@
       "native": "NOT_MEASURED",
       "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-the-detached-city-registration-files--s1079"
+    },
+    "s1080_inspiration_cleanup_retirement": {
+      "build": "B518.545 / modinfo545",
+      "baseline": "e8373a177d7dd1ef827277ffb2df223fec276c64",
+      "status": "LOCAL_SIMULATION_PASS_SCOPED",
+      "stage_evidence": {
+        "O7InspirationCleanup": {
+          "path": "local/refactor/S1080-O7InspirationCleanup-final/closure.json",
+          "sha256": "7be26c7d9e12d8dfdf8f367b009b6d29c3c0187308ffe76cdb8f2d4fa2432056",
+          "pass_count": 64
+        },
+        "O7wLegacyCompletionRecordRetirement": {
+          "path": "local/refactor/S1080-O7wLegacyCompletionRecordRetirement-final/closure.json",
+          "sha256": "cd152be715f28e58e10b36aeb6583768b1eb8ac161f197e28e143fd4fa28240a",
+          "pass_count": 31
+        },
+        "NReadOnlyNetworkDiagnostic": {
+          "path": "local/refactor/S1080-NReadOnlyNetworkDiagnostic-final/closure.json",
+          "sha256": "3ce9eaa1842cb837f9b91d63e9eb2cd2616975f56c2786d59ffbeb52223964fb",
+          "pass_count": 136
+        },
+        "NStandardizationEffectReadback": {
+          "path": "local/refactor/S1080-NStandardizationEffectReadback-final/closure.json",
+          "sha256": "c282464af906ba763edbcaf44e5f5d04bc16c2baf318780cab8eb0799e804f19",
+          "pass_count": 118
+        }
+      },
+      "removed_paths": {
+        "Mod/CultureInspirationProbe.lua": "436bf4290966cddd03f084718c17c13aed282b62ad4423b8368a6b9c4f3fee31"
+      },
+      "retained_SPC_carriers": 4,
+      "modeled_includes_removed": 3,
+      "rollback": [
+        "temporary_switch_and_restore",
+        "stable_apply_and_rollback"
+      ],
+      "source_sha256": "34a65407e5f08a252e9b58c64d4d95e7229581fe0615c0f837a523241eea43fc",
+      "package_sha256": "223c59d757d63e43bea0e8c601d37935194a0a9fa307cd2a50cb5dbfd21e0ecb",
+      "files": 325,
+      "native": "NOT_MEASURED",
+      "deployment": "SOURCE_ONLY_B489_REMAINS_INSTALLED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#hand-off-and-retire-the-old-inspiration-probe--s1080"
     }
   }
 }

@@ -151,19 +151,14 @@
       "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
     },
     "Mod/CultureInspiration.lua": {
-      "sha256": "e197c0622b023cee9f6833fb9aa31c4ca25683cdec155b26deeada636c5923f4",
+      "sha256": "67c03c973ead39880252fdca0998697dd014ebaa3544e38593a11ea9b6316b5f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
+      "provenance": "S1080 moves the four historical Inspiration carrier withdrawals to the current effect owner and retires the old probe Lua. Exact load and exit ordering, failed readback, scoped recovery, retained SQL and both disposable rollback paths are verified locally."
     },
     "Mod/CultureInspirationModel.lua": {
       "sha256": "514fa59c5e95d9cd970b002892496f06f838b06706ee4b8ebf9d4e0018f59180",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B276_Eight_Eras.md",
       "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
-    },
-    "Mod/CultureInspirationProbe.lua": {
-      "sha256": "436bf4290966cddd03f084718c17c13aed282b62ad4423b8368a6b9c4f3fee31",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
     },
     "Mod/CultureMeaning.lua": {
       "sha256": "53304a51312bfd9ad6c8ffaf3d7cf4204c34917f66845154252fb3f2ceda25f9",
@@ -576,9 +571,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "2fe6bf28638cf76e3672d07970334ad10d3853eab27eca9b32aa7b59375f2758",
+      "sha256": "ecddcda385a60901ceb3a95f96417638b2b76b86dafa22ff8fa2dd76edcb60a6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1078 detaches the old binding, journal and flow starts. The current Store registers and restores cities and supplies identity facts without these files. The archived test path and existing saved identifiers remain."
+      "provenance": "S1080 moves the four historical Inspiration carrier withdrawals to the current effect owner and retires the old probe Lua. Exact load and exit ordering, failed readback, scoped recovery, retained SQL and both disposable rollback paths are verified locally."
     },
     "Mod/GreatWorkAdjacency.lua": {
       "sha256": "5c79604a63c9cb28697387cbfd586660cb2f0842890822a7c0065e4b9d86c525",
@@ -706,9 +701,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "79020c48bdaa091ea16ca3355bb16cee1d467ad8c0d11d774bd6203d306d7213",
+      "sha256": "637000082f4c840fe381a13a389b7550505e1d049905d3c8c268d01289118d96",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1079 removes the four detached city Lua files and their manifest rows. The real package confirms cold reads, founding and nonempty route proof. Both exact disposable package rollback paths pass. Historical fixtures replay the fixed source."
+      "provenance": "S1080 moves the four historical Inspiration carrier withdrawals to the current effect owner and retires the old probe Lua. Exact load and exit ordering, failed readback, scoped recovery, retained SQL and both disposable rollback paths are verified locally."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "0d9205f3f4543c200c3fb3787384e8f1d580fe2834831829822546c641356458",
@@ -821,9 +816,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "cfac1caaef05facabfa6a7884b2ffa498a596f3a6ae28e58ced1034c77b28cfc",
+      "sha256": "57bfd81d97b5ed0d31dcd0821c6f59c052bdb7dc3ddd932561f6013c0fdcc38a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1079 removes the four detached city Lua files and their manifest rows. The real package confirms cold reads, founding and nonempty route proof. Both exact disposable package rollback paths pass. Historical fixtures replay the fixed source."
+      "provenance": "S1080 moves the four historical Inspiration carrier withdrawals to the current effect owner and retires the old probe Lua. Exact load and exit ordering, failed readback, scoped recovery, retained SQL and both disposable rollback paths are verified locally."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",

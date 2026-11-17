@@ -5,7 +5,6 @@ include('NetworkInput')
 -- Current derived city effect. No Property, investment or historical GPP ledger.
 SPCCultureInspiration={}
 function SPCCultureInspiration.Start(P,shared)
- assert(shared.CultureInspirationProbe and shared.CultureInspirationProbe.retired,'INSP_PROBE_NOT_RETIRED')
  local M=SPCCultureInspirationModel
  local d={ready=false,busy=false,records={},errors={},changes=0};shared.CultureInspiration=d
  local ownedIndex={}
@@ -38,6 +37,50 @@ function SPCCultureInspiration.Start(P,shared)
  local function present(c,name)
   local v=P.HasBuilding(c:GetBuildings(),ids[name]);assert(type(v)=='boolean','INSP_PRESENCE_UNKNOWN');return v
  end
+ local legacySuffixes={1,3,6,10}
+ local legacyIDs
+ local function validateLegacy()
+  if legacyIDs then return end
+  local found={}
+  for _,suffix in ipairs(legacySuffixes)do
+   local name='BUILDING_SPC_INSPIRE_PROBE_'..suffix
+   local b=assert(P.Info('Buildings',name),'INSPIRE_DEFINITION_MISSING')
+   assert((b.InternalOnly==1 or b.InternalOnly==true) and b.PrereqDistrict=='DISTRICT_CITY_CENTER' and b.CitizenSlots==0 and b.Housing==0,'INSPIRE_CARRIER_INVALID')
+   local mid='SPC_INSPIRE_PROBE_'..suffix
+   local m=P.Info('Modifiers',mid)
+   assert(m and m.ModifierType=='MODIFIER_SINGLE_CITY_ADJUST_GREAT_PERSON_POINT','INSPIRE_MODIFIER_INVALID')
+   local a={}
+   for _,row in ipairs(assert(P.Rows('ModifierArguments'),'INSPIRE_DB_UNKNOWN'))do if row.ModifierId==mid then a[row.Name]=row.Value end end
+   assert(tonumber(a.Amount)==suffix/10 and a.GreatPersonClassType=='GREAT_PERSON_CLASS_SCIENTIST','INSPIRE_AMOUNT_INVALID')
+   local n=0
+   for _,row in ipairs(assert(P.Rows('BuildingModifiers'),'INSPIRE_DB_UNKNOWN'))do
+    if row.BuildingType==name then assert(row.ModifierId==mid,'INSPIRE_ATTACHMENT_INVALID');n=n+1 end
+   end
+   assert(n==1,'INSPIRE_ATTACHMENT_MISSING')
+   found[suffix]=b.Index
+  end
+  legacyIDs=found
+ end
+ local function legacyPresent(c,id)
+  local has=P.HasBuilding(c:GetBuildings(),id)
+  assert(type(has)=='boolean','INSPIRE_PRESENCE_UNKNOWN')
+  return has
+ end
+ local function withdrawLegacy(c)
+  validateLegacy()
+  local failure
+  for _,suffix in ipairs(legacySuffixes)do
+   local id=legacyIDs[suffix]
+   local ok,why=pcall(function()
+    if legacyPresent(c,id)then
+     P.RemoveBuilding(c:GetBuildings(),id)
+     assert(not legacyPresent(c,id),'INSPIRE_REMOVE_UNCONFIRMED')
+    end
+   end)
+   if not ok then failure=failure or why end
+  end
+  assert(not failure,failure)
+ end
  local function project(c,want,expected)
   validate();d.writing=key(c:GetOwner(),c:GetID())
   local function current()
@@ -66,8 +109,8 @@ function SPCCultureInspiration.Start(P,shared)
   d.writing=nil;assert(ok,why)
  end
  local function withdraw(c)
-  -- Both modules withdraw only exact owned IDs. A failure cannot authorize a new value.
-  local ok,why=pcall(shared.CultureInspirationProbe.Withdraw,c)
+  -- Attempt both exact groups; a failure cannot authorize a new value.
+  local ok,why=pcall(withdrawLegacy,c)
   local cleared,err=pcall(project,c,nil)
   assert(ok and cleared,not ok and why or err)
  end
@@ -203,7 +246,7 @@ function SPCCultureInspiration.Start(P,shared)
  if store then
   store.RegisterExit('CultureInspiration',function(c,loss)
    assert(store.IsExitTarget(c,loss),'INSP_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,M.Owned)
-   shared.CultureInspirationProbe.Withdraw(c)
+   withdrawLegacy(c)
    for k,p in pairs(d.records)do if p.owner==loss.origin.owner and p.x==c:GetX() and p.y==c:GetY()then d.records[k]=nil;d.errors[k]=nil;pendingCleanup[k]=nil end end
   end)
   store.RegisterReturn('CultureInspiration',function(pid,c)d.MarkAudit({player=pid,city=c:GetID()})end)

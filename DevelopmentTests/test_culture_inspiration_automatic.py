@@ -8,6 +8,7 @@ import test_culture_aesthetic as ae
 import test_culture_meaning_probe as legacy
 import test_culture_meaning_automatic as meaning
 import test_culture_inspiration_probe as old
+from retired_crew_sources import B517, package, source
 R=Path(__file__).resolve().parents[1]
 
 class InspirationAutomaticTests(unittest.TestCase):
@@ -19,16 +20,22 @@ class InspirationAutomaticTests(unittest.TestCase):
   cls.sql.executescript((R/'Mod/Data/CultureInspiration.sql').read_text())
  @classmethod
  def tearDownClass(cls):cls.sql.close()
- def runtime(self,ready=True,real=False):
+ def runtime(self,ready=True,real=False,*,historical=False):
   h=meaning.AutomaticMeaningTests();h.sql=self.sql;l=h.runtime(ready=False,real=real)
   for table,key in [('ModifierArguments','ModifierId'),('BuildingModifiers','BuildingType'),('GreatPersonClasses','GreatPersonClassType'),('DynamicModifiers','ModifierType')]:
    cur=self.sql.execute('SELECT * FROM '+table);cols=[x[0]for x in cur.description];rows=[dict(zip(cols,x))for x in cur]
    for i,row in enumerate(rows):row['Index']=i+1
    l.globals().GameInfo[table]=l.globals().db(ae.lua_table(l,rows),key)
-  for name in ['CultureInspirationProbe','CultureInspiration','InspirationReadout']:l.globals().include(name)
+  if historical:
+   l.execute(source('CultureInspirationProbe.lua',B517))
+   l.execute("SPCCultureInspirationProbe.Start(P,shared,{retired=true});ip=shared.CultureInspirationProbe")
+   l.execute(source('CultureInspiration.lua',B517))
+  else:
+   l.globals().include('CultureInspiration')
+   l.execute("assert(SPCCultureInspirationProbe==nil and shared.CultureInspirationProbe==nil)")
+  l.globals().include('InspirationReadout')
   l.execute(r"""
    Locale.Lookup=function(k,...)local t={k};for _,v in ipairs({...})do t[#t+1]=tostring(v)end;return table.concat(t,' | ')end
-   SPCCultureInspirationProbe.Start(P,shared,{retired=true});ip=shared.CultureInspirationProbe
    SPCCultureInspiration.Start(P,shared);ins=shared.CultureInspiration
    function inspiration(c)
     local n,value=0,0
@@ -96,7 +103,7 @@ class InspirationAutomaticTests(unittest.TestCase):
    with self.subTest(kind=kind):
     l=self.runtime();l.globals().kind=kind;l.execute("if kind=='active'then a.active=nil else a[kind]=true end;local before=writes;refresh();assert(inspiration(a)==6 and writes==before and ins.errors['0:1']);a.token='changed';refresh();assert(inspiration(a)==0 and ins.records['0:1']==nil)")
  def test_retired_probe_has_no_active_hooks_or_manual_path(self):
-  l=self.runtime();l.execute(r"""
+  l=self.runtime(historical=True);l.execute(r"""
    assert(ip.retired and ip.Request==nil and exits.CultureInspirationProbe==nil)
    local n=writes
    for _,action in ipairs({'INSPIRE_STATUS','INSPIRE_DETAIL'})do
@@ -109,6 +116,63 @@ class InspirationAutomaticTests(unittest.TestCase):
    end
    assert(writes==n and retired(a)==0 and inspiration(a)==6)
   """)
+ def test_transferred_withdrawal_matches_exact_cold_failure_and_exit_order(self):
+  from refactor_harness import measure
+  run=r"""
+   local names,tracked={},{}
+   for _,suffix in ipairs({1,3,6,10})do
+    local name='BUILDING_SPC_INSPIRE_PROBE_'..suffix
+    names[#names+1]=name;tracked[GameInfo.Buildings[name].Index]=name;seed(a,name)
+   end
+   local current='BUILDING_SPC_INSPIRATION_ERA_2'
+   tracked[GameInfo.Buildings[current].Index]=current;seed(a,current)
+   local remove,create=P.RemoveBuilding,P.CreateBuilding
+   local trace={}
+   P.RemoveBuilding=function(b,id)
+    if b.city==a and tracked[id]then trace[#trace+1]='remove:'..tracked[id]end
+    return remove(b,id)
+   end
+   P.CreateBuilding=function(q,id)
+    if q.city==a and tracked[id]then trace[#trace+1]='create:'..tracked[id]end
+    return create(q,id)
+   end
+   seed(a,'BUILDING_MONUMENT')
+   failRemove=GameInfo.Buildings[names[2]].Index
+   fire('LoadScreenClose')
+   assert(retired(a)==1 and inspiration(a)==0 and inspiration(b)==6)
+   assert(ins.errors['0:1']:find('INSPIRE_REMOVE_UNCONFIRMED',1,true))
+   for i,name in ipairs(names)do assert(trace[i]=='remove:'..name)end
+   assert(trace[5]=='remove:'..current)
+   failRemove=nil;refresh()
+   assert(retired(a)==0 and inspiration(a)==6 and not ins.errors['0:1'])
+   assert(trace[#trace]=='create:'..current)
+   seed(a,names[4]);a.owner=3
+   local loss={confirmed=false,targetID=1,origin={owner=0}}
+   assert(not pcall(exits.CultureInspiration,a,loss) and retired(a)==1 and inspiration(a)==6)
+   loss.confirmed=true;failRemove=GameInfo.Buildings[names[4]].Index
+   assert(not pcall(exits.CultureInspiration,a,loss) and retired(a)==1 and inspiration(a)==0)
+   failRemove=nil;exits.CultureInspiration(a,loss)
+   assert(retired(a)==0 and inspiration(b)==6 and not ins.records['0:1'])
+   assert(a.present[GameInfo.Buildings.BUILDING_MONUMENT.Index])
+   return table.concat(trace,'\n')
+  """
+  historical=self.runtime(ready=False,historical=True).execute(run)
+  current=self.runtime(ready=False).execute(run)
+  self.assertEqual(current,historical)
+  measure('inspiration_withdrawal_handoff',dict(exact_legacy_ids=4,
+       cold_native_write_order_matches=True,failed_removal_blocks_projection=True,
+       failed_exit_requires_confirmation=True,old_probe_absent=True))
+ def test_exact_inspiration_probe_removal_and_rollback(self):
+  from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
+  removed=('CultureInspirationProbe.lua',)
+  current=R/'Mod'
+  with package(B517) as baseline:
+   previous=baseline/'Mod'
+   for name in ('Data/CultureInspirationProbe.sql','Data/CultureInspiration.sql',
+                'CultureInspirationModel.lua','CityProgressionStore.lua'):
+    self.assertEqual((previous/name).read_bytes(),(current/name).read_bytes(),name)
+   verify_package_round_trip(self,previous,current,removed,'CultureInspiration.lua')
+   verify_stable_round_trip(self,previous,current,removed)
  def test_load_retires_old_then_uses_current_not_saved_value(self):
   l=self.runtime();l.execute(r"""
    seed(a,'BUILDING_SPC_INSPIRE_PROBE_10');a.eras=1;fire('LoadScreenClose')
@@ -128,7 +192,10 @@ class InspirationAutomaticTests(unittest.TestCase):
    a.owner=3;loss.confirmed=true;exits.CultureInspiration(a,loss);exits.CultureInspiration(a,loss)
    assert(inspiration(a)==0 and inspiration(b)==6 and a.present[ordinary] and a.token==token)
    a.owner=0;a.active=1;returns.CultureInspiration(0,a);assert(inspiration(a)==0)
-   a.active=4;a.eras=1;returns.CultureInspiration(0,a);assert(inspiration(a)==3)
+   -- This isolated fixture advances the production publication flush explicitly.
+   assert(ins.FlushAudit());assert(inspiration(a)==0)
+   a.active=4;a.eras=1;returns.CultureInspiration(0,a);assert(inspiration(a)==0)
+   assert(ins.FlushAudit());assert(inspiration(a)==3 and inspiration(b)==6)
   """)
  def test_remove_failure_cannot_add_new_value_or_contaminate_other_city(self):
   l=self.runtime();l.execute("failRemove=GameInfo.Buildings.BUILDING_SPC_INSPIRATION_ERA_2.Index;a.eras=3;refresh();assert(inspiration(a)==6 and ins.errors['0:1'] and inspiration(b)==6);failRemove=nil;refresh();assert(inspiration(a)==9 and not ins.errors['0:1'])")

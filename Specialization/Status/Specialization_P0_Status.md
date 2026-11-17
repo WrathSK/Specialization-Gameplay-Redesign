@@ -1,28 +1,43 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1079
-Implementation Build: B517.544 / modinfo544 on develop. Installed stable B489.516 from main merge ce497054.
+Status Revision: S1080
+Implementation Build: B518.545 / modinfo545 on develop. Installed stable B489.516 from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: RETIRE_LEGACY_CITY_PACKAGE_LOCAL_PASS
+Work State: RETIRE_INSPIRATION_CLEANUP_OWNER_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B517.544 on develop](#retire-the-detached-city-registration-files--s1079). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
+| Build and installation | [B518.545 on develop](#hand-off-and-retire-the-old-inspiration-probe--s1080). [Installed stable B489.516](#b489-stable-playtest-package-deployed--s1048) matches the merged main source `ce497054` across all 337 files. |
 | Stable | `main` B489.516 from PR #8. B307.334 is the verified rollback package. |
-| Validation | Four detached city files are absent from the current package. Cold records, founding, scoped Claim, transport, Standardization and exact disposable rollback checks pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Transfer the exact four historical Culture Inspiration carrier withdrawals to the current owner before detaching its retired probe. Keep the existing withdrawal order, per-city failure handling, SQL definitions, and B489 native evidence boundaries. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | Current Inspiration owns the four historical withdrawals. Cold load, write order, confirmed exit, city, network and Standardization selections and both disposable rollback checks pass locally. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
+| Next action | Trace the old per-work carrier cleanup used by Culture Meaning through cold admission and the current central city exit. Review independent responsibilities before detaching GreatWorkAdjacency. Retain the established Dialogue transport and native evidence gates. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Hand off and retire the old Inspiration probe — S1080
+
+**LOCAL_SIMULATION_PASS in scope.** Culture Inspiration now validates and withdraws only the four historical `BUILDING_SPC_INSPIRE_PROBE_1/3/6/10` carriers on its existing paths. Cold admission attempts all four withdrawals before clearing the current group and holds a city's new application until the legacy cleanup is confirmed. A confirmed exit clears the current group before the four historical carriers. City-scoped failure, the existing retry boundary, precise readback, and the historical SQL and current model bytes are preserved. The experimental Lua and its two manifest entries are absent. Retrieve the exact original with `git show e8373a177d7dd1ef827277ffb2df223fec276c64:Mod/CultureInspirationProbe.lua` and verify SHA256 `436bf4290966cddd03f084718c17c13aed282b62ad4423b8368a6b9c4f3fee31`. Historic tests run those original bytes by explicit selection. Temporary switching and stable deployment round trips ran only in disposable directories with the exact one-path removal.
+
+**Runtime Impact Contract.** The existing bounded cold city pass, prior lazy validation scope, confirmed writes and existing exit/return hooks continue to own cleanup. Use the original four names, original per-ID checks and readback, and original current-effect activation. The retired probe's three includes disappear in the real roots. No added producer, subscriber, retry trigger, periodic scan, save state, formula or GC change. In paired fixtures the original and transferred owners make identical ordered native calls for cold load with one removal failure, later success, unconfirmed exit and confirmed exit with a removal failure. Unrelated city and building values remain intact. The isolated return test now drives the actual publication flush before asserting the original application result.
+
+**Reproduction.** CPython 3.14.8, Lupa 2.8, official Assets and read-only HD input SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Commands `python3.14 -B DevelopmentTests/run_refactor.py --stage O7InspirationCleanup --output local/refactor/S1080-O7InspirationCleanup-final/closure.json` (64/64), `python3.14 -B DevelopmentTests/run_refactor.py --stage O7wLegacyCompletionRecordRetirement --output local/refactor/S1080-O7wLegacyCompletionRecordRetirement-final/closure.json` (31/31), `python3.14 -B DevelopmentTests/run_refactor.py --stage NReadOnlyNetworkDiagnostic --output local/refactor/S1080-NReadOnlyNetworkDiagnostic-final/closure.json` (136/136), `python3.14 -B DevelopmentTests/run_refactor.py --stage NStandardizationEffectReadback --output local/refactor/S1080-NStandardizationEffectReadback-final/closure.json` (118/118). The Inspiration suite uses its existing Lua 5.5 fixtures as well as the actual Lua 5.1 roots and explicit native doubles. Evidence and companion transcripts are local-only.
+
+- `local/refactor/S1080-O7InspirationCleanup-final/closure.json` SHA256 `7be26c7d9e12d8dfdf8f367b009b6d29c3c0187308ffe76cdb8f2d4fa2432056`.
+- `local/refactor/S1080-O7wLegacyCompletionRecordRetirement-final/closure.json` SHA256 `cd152be715f28e58e10b36aeb6583768b1eb8ac161f197e28e143fd4fa28240a`.
+- `local/refactor/S1080-NReadOnlyNetworkDiagnostic-final/closure.json` SHA256 `3ce9eaa1842cb837f9b91d63e9eb2cd2616975f56c2786d59ffbeb52223964fb`.
+- `local/refactor/S1080-NStandardizationEffectReadback-final/closure.json` SHA256 `c282464af906ba763edbcaf44e5f5d04bc16c2baf318780cab8eb0799e804f19`.
+
+**STATIC_CONFIRMED.** 196 Lua 5.1 compiles, 32 XML-family parses, 642 File references and 10 LuaReplace references. Source SHA256 `34a65407e5f08a252e9b58c64d4d95e7229581fe0615c0f837a523241eea43fc`. Package SHA256 `223c59d757d63e43bea0e8c601d37935194a0a9fa307cd2a50cb5dbfd21e0ecb` across 325 files. No new native observations or deployment.
 
 ### Retire the detached city registration files — S1079
 

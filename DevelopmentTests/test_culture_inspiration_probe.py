@@ -4,6 +4,7 @@ import unittest, xml.etree.ElementTree as ET
 import test_culture_aesthetic as ae
 import test_culture_meaning_probe as legacy
 from lupa.lua55 import LuaRuntime
+from retired_crew_sources import B517, source
 R=Path(__file__).resolve().parents[1]
 class InspirationTests(unittest.TestCase):
  @classmethod
@@ -24,7 +25,7 @@ class InspirationTests(unittest.TestCase):
    cur=self.sql.execute('select * from '+table);cols=[x[0] for x in cur.description];rows=[dict(zip(cols,row))for row in cur]
    for i,row in enumerate(rows):row['Index']=i+1
    l.globals().GameInfo[table]=l.globals().db(ae.lua_table(l,rows),key)
-  l.globals().include('CultureInspirationProbe')
+  l.execute(source('CultureInspirationProbe.lua',B517))
   l.execute("""
    a.active=4;b.active=4;seq=0
    Locale.Lookup=function(k,...)local out={k};for _,v in ipairs({...})do out[#out+1]=tostring(v)end;return table.concat(out,' | ')end

@@ -50,6 +50,7 @@ B513 = 'd376f6800c18024c660d0ce4e92e03fecf5f53f6'
 B514 = 'e49ca22aff1a7ed0b8f877d5e3549bb21e17d837'
 B515 = 'e776b4c9d0514cbc1f0c077b4256283b526f8b04'
 B516 = 'ac7b0cf86c45c46d7c4160f8aedd42c8a3a4e5c4'
+B517 = 'e8373a177d7dd1ef827277ffb2df223fec276c64'
 RETIRED_CITY_STARTS = ('BindingProbe', 'CityJournalProbe', 'CityFlowProbe')
 RETIRED_CITY_FILES = tuple(sorted(name+'.lua' for name in (*RETIRED_CITY_STARTS, 'FreshBindingHook')))
 RETIRED = ('ConstructionProbe.lua', 'CrewPrecision.lua')

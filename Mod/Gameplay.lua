@@ -798,9 +798,7 @@ composition.Run('GreatWorkAdjacency',{},{'GreatWorkAdjacency'},function() includ
 
 composition.Run('CultureMeaning',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','GreatWorkAdjacency','Dialogue','NativeFacts'},{'CultureMeaning'},function() include('CultureMeaning');SPCCultureMeaning.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('CultureInspirationProbe',{},{'CultureInspirationProbe'},function() include('CultureInspirationProbe');SPCCultureInspirationProbe.Start(P,shared,{retired=true}) end)
-
-composition.Run('CultureInspiration',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','CultureInspirationProbe','NativeFacts'},{'CultureInspiration'},function() include('CultureInspiration');SPCCultureInspiration.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+composition.Run('CultureInspiration',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','NativeFacts'},{'CultureInspiration'},function() include('CultureInspiration');SPCCultureInspiration.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
 composition.Run('CommerceConvergence',{'RuntimeRetirement'},{'CommerceConvergence'},function() include('CommerceConvergence');SPCCommerceConvergence.Start(P,shared,{retired=true,centralExit=true}) end)
 
