@@ -9,7 +9,7 @@ State: **U1_ACCEPTED — formal D0058 / A0182 synchronization before S2**
 
 ## Accepted U1 — 2026-10-24
 
-This record replaces the earlier pending decision sheet. The user explicitly approved S2–S10 after formal synchronization, without routine stage authorization. The accepted Design/Architecture/Workflow own their rules; the original [review diff](Refactor_Program_U1_Text.patch) is frozen proposal evidence, not an apply instruction. The [existing intake](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/aa1aa7567c26076659cb3b6b9843780f1f753067/Specialization/Reports/Proposals/Audit_Followup_Priorities.md#refactor-program-intake--2026-10-24) remains the sole stage/finding schedule. Advisor originals stay read-only and unpublished.
+This record replaces the earlier pending decision sheet. The user explicitly approved S2–S10 after formal synchronization, without routine stage authorization. The accepted Design/Architecture/Workflow own their rules; the original [review diff](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/2d130d9e7e4f20dae6a9e00c88d62933486e0c8c/Specialization/Reports/Proposals/Refactor_Program_U1_Text.patch) is frozen proposal evidence, not an apply instruction. The [existing intake](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/aa1aa7567c26076659cb3b6b9843780f1f753067/Specialization/Reports/Proposals/Audit_Followup_Priorities.md#refactor-program-intake--2026-10-24) remains the sole stage/finding schedule. Advisor originals stay read-only and unpublished.
 
 | Decision | Accepted disposition |
 |---|---|

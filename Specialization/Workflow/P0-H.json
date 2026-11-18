@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1103",
+    "status": "S1104",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Early migration proposals and generated inventories retired — S1103",
+      "selector": "### Delivered review inputs and superseded draft artifacts retired — S1104",
       "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
@@ -67,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1104: four original discussions/review inputs independently matched remote bytes/SHA256/Git blobs; current consumers absent, U1 patch locator repaired and frozen historical locators indexed. Existing rules/evidence and executable tooling unchanged.",
     "S1103: five migration originals remotely retrieved and byte/SHA256/Git-blob matched; 539-entry generated inventory and 35-move map are historical only. Current code/test/tool and provenance consumers absent; navigation, Context Lock and publication checked.",
     "S1102: old 711-line audit schedule preserved at fixed published source with matching remote bytes/SHA256/Git blob; five maintained link sources and explicit historical reading notes updated, seven frozen legacy-reference sources preserved. Documentation only.",
     "S1101: 58 pre-U5 local-stage originals independently matched remote bytes/SHA256/Git blobs; 19 actual review sources retained, two historical navigation documents corrected, one frozen legacy relative link explicitly located through the history index. Documentation only.",
@@ -5801,6 +5802,18 @@
       "runtime_test_change": false,
       "deployment": "NOT_RUN",
       "report": "Specialization/Status/Specialization_P0_Status.md#early-migration-proposals-and-generated-inventories-retired--s1103"
+    },
+    "s1104_document_retirement": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 4,
+      "retired_lines": 426,
+      "retired_bytes": 69135,
+      "original_commit": "2d130d9e7e4f20dae6a9e00c88d62933486e0c8c",
+      "historical_index": "Specialization/Historical/README.md#superseded-discussions-and-delivered-review-inputs-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#delivered-review-inputs-and-superseded-draft-artifacts-retired--s1104"
     }
   }
 }

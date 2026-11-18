@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S1103 retires five completed early migration artifacts with verified published originals; current external-material and legacy-evidence routing remain intact.",
+  "review_basis": "S1104 retires four superseded discussion/review artifacts with fixed published recovery; actual navigation dependencies of three older repair plans remain explicitly retained.",
   "files": {
     "AGENTS.md": "4f6d8f8e14c70b8a8fc50c90e92e23635c822d3353f3a7adf93b5559ca4973ab",
     "Art/Institutions/README.md": "23b7ace94796d7212ab848fb12a712a85ff2e837ec7daa0f3dcff1ad3efa7fcb",
@@ -644,7 +644,7 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
     "Specialization/Status/Playtest_Backlog.md": "7b556d42cef45434320f5457cbece083b0e2b0ba21134a8bc6db48f3b6ffa358",
-    "Specialization/Status/Specialization_P0_Status.md": "81fcdac6088d25d0e01cbc17fe15453579b1fe1d24c1706c233f3a91c0a47ce8",
+    "Specialization/Status/Specialization_P0_Status.md": "878c179f084bd45846d26af333f1296a92366b5dcf5217249cb7ad29f054ebe9",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -891,13 +891,13 @@
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md": "3ad3d5e3d7a0d7429ca62d3bf1b973bda0712dde3cae717511ec8477ed387467",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "9ca83b1801f92ed870facc0b2651ab1f956d877afcf6f5635564d01415d86371",
+    "Specialization/Workflow/Authority.json": "6a3e3aa94b9940724dafdc5ddfddb1342c0b6b9f0b1e7412579825494402e260",
     "Specialization/Workflow/Investment-Propagation.json": "dc2783bae2c863f3c1371011542078270aa54a4a8bb96f0a2ba8ad268536c4af",
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
     "Specialization/Workflow/P0-E2.json": "1e7b54d36ae9e71f9b60e0d9644c4775d7bf9ece87d6b22f084f548bcc5ed486",
     "Specialization/Workflow/P0-F2.json": "a245915f40bd094902dd24726b5f9ffdd1c705153e34d2964cdc67ddaa540611",
     "Specialization/Workflow/P0-GH1.json": "56633c47751cba8d0d20b1bc2d0e87cbd983399f2c43e77839843e37cc904dac",
-    "Specialization/Workflow/P0-H.json": "ff20936e765c07581b7f02e813b6820474ebe4db10d56d5457fad92c9d76c1d2",
+    "Specialization/Workflow/P0-H.json": "bf47adf3512c7ae5a3808b16e5d0dd799d5a6b19a4d262f2683c9fa877e00da0",
     "Specialization/Workflow/P0-L2A.json": "2672ad4f884394d991f66d81b1ff1155e1c965b305cf777682e21ffd7163cfc1",
     "Specialization/Workflow/P0-L2B.json": "926c796045cd9e6687fff4580b0bdd9796361e609581942c66fed47ed28a7475",
     "Specialization/Workflow/P0-L2C.json": "40aa6c8fddb51053f3c2aaa2b997fda70a53c4f1d61f78cd74372f938a50103b",
@@ -941,8 +941,7 @@
     "tools/turn_timing_evidence.py": "6250e4233e3c97e20a945cae186f6f570f6daf542e872487dbe71edd1280541c",
     "DevelopmentTests/test_b271_diagnostics.py": "019899c34ba0b1bd3944e5af2f57bc44f2ec90dade64f9daccc91280422ac371",
     "Specialization/Status/Validation/Results/Specialization_B271_Turn_Timing_Carrier_Pillage.md": "7979e94e84ae57e87d7f592c3142c99a2a2e3ffb0156c066f3bd3dd0d04a72f6",
-    "Specialization/Reports/Proposals/Refactor_Program_U1.md": "aa23839cf04ad61a1f20a5a3638d2749925fbf5d51ff1e801c6994bcbc3fef7d",
-    "Specialization/Reports/Proposals/Refactor_Program_U1_Text.patch": "363e97561fade38679a48d62e1c6364fb47a34d175b31f72e8f2393c58814c35",
+    "Specialization/Reports/Proposals/Refactor_Program_U1.md": "a34a72d68376abae345bd34c28a8919832c631bfd112a8665782024bcd00efb0",
     "Specialization/Design/Content/Shared_D0058.json": "9423be2a2afd362d96e53c4820a8d0e7aa4fae9d9dd7db01b3bf50c6fe8ff865",
     "Specialization/Design/Content/Research_D0058.json": "0638d016d3d7a58a8c5665137c118c738a69022ee71c7884ec3ca76a914eed90",
     "Specialization/Design/Content/Industry_D0058.json": "0f951fb4782f0f1c0805d0abef5305bfd61593db31526c2d291ddc79482ff800",
@@ -1006,7 +1005,6 @@
     "DevelopmentTests/test_refactor_evidence.py": "951f664a4abe03f95abe4dded51b71dfef81a5322cf9171379de96fb5a5581a4",
     "Specialization/Status/Validation/Results/Refactor_Closure_History.md": "688b081f4a63fe0dada310ae176681167e6ff42ff99b94a6802ac53898b7f8b1",
     "Specialization/Status/Validation/Results/Refactor_Closure_Storage_2026-10-24.md": "47b0103d1f21c5a315ec7c8b4fe95f40bec12cbddfca0d69b65ec431ca3fa0c8",
-    "Specialization/Reports/Proposals/Refactor_Closure_Storage_Proposal.md": "378e6303905cc55d10da7f1a103dce61a78bb9f9776b4c8f261b0c319c243305",
     "DevelopmentTests/test_refactor_s6a.py": "74238618ab9e09857858ed8d1f853fc9727b65035c9c2b83ed62f8d981846273",
     "DevelopmentTests/test_refactor_s6b.py": "af06f66bcffe5a5b1516c890ed2dfb1e63a286555a545c23786fc94b6beaaea4",
     "DevelopmentTests/test_refactor_s6c.py": "3ec54439c96e2b01f5d0963e9e761277893e3bcf3e0d50273cd718e63d066de4",
@@ -1199,7 +1197,6 @@
     "DevelopmentTests/test_pu11_package_absence.py": "67cc026fc08fc284608547be94696d24a3df3609d260520a30283f1dd9f8568b",
     "Mod/CrewCompletionDiagnostics.lua": "950a5ed9a10d6f2f365a82da92b4851c7020bec5004d66110592e6cc75b5943e",
     "DevelopmentTests/test_b412_crew_observation.py": "d006d4d2f589a4ff0bf0ef59d19d566b1caa5eeefa52f8123a573d4b3e31c9c1",
-    "Specialization/Reports/Proposals/Pre_U5_External_Review_Handoff.md": "88ff9c5bd79ead08b0ab034eecace0bdacb3b55231ee4c3c3c571d443a14f05d",
     "DevelopmentTests/run_pre_u5_review.py": "d2dc37921e8b2c1e417b515c94bcdf54f5b73c3d5465d827f0afdb7585e3c79e",
     "DevelopmentTests/test_b413_review_repairs.py": "a8a38acc118181193d26c9213cad3be20a3df6113dd1bf998bec5dc65c76f301",
     "DevelopmentTests/test_b414_crew_unit_panel.py": "6d54ea63d78bce16054b95cc8145fa3151e21edf0e0a511ae2bad1d579fcf715",
@@ -1286,6 +1283,6 @@
     "DevelopmentTests/test_b064_shadow.py": "c7537c953dd0c214a01a6edf0409ccd22cfb44b7ac3f387115a9285151ba9176",
     "DevelopmentTests/test_b066_inheritance.py": "4e49337caaffc7c14cbe309511790a3ba894462480af0803f14db207d5049449",
     "DevelopmentTests/test_o8_residual_cleanup.py": "1be55ea0b8982e291b8a0db532bfba2fb818f4d920349bbc99aea6b05b9d72e4",
-    "Specialization/Historical/README.md": "75a3b5ac6c4fc1172e426323fd4a5b9dfca6564f0ae1570ed59a8138fec16679"
+    "Specialization/Historical/README.md": "6fa9d31a84b7c18202b5c1c879329f1b248f084f1db9196113e8ab05a942cb8f"
   }
 }
