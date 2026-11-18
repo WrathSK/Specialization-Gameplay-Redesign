@@ -1,5 +1,7 @@
 # Phase 1 external materials and path interpretation
 
+**Inventory location (2026-11-18):** completed Phase 1 reports, the copy inventory and the old move map are now [retrievable from fixed Git history](../../Historical/README.md#completed-early-workspace-migrations-in-git-history). They describe the original migrations. The [legacy workspace mapping](Legacy_Workspace_Relocation.md) remains the current route to external originals.
+
 Document Owner: Codex
 
 > **Phase 1 migration record, 2026-09-12.** The locations below describe the original migration. For the current screenshot inbox, archived evidence and external paths, use the [legacy workspace mapping](Legacy_Workspace_Relocation.md#当前入口).

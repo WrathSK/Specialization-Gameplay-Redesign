@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1102",
+    "status": "S1103",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Old audit schedule leaves the current task tree — S1102",
+      "selector": "### Early migration proposals and generated inventories retired — S1103",
       "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
@@ -67,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1103: five migration originals remotely retrieved and byte/SHA256/Git-blob matched; 539-entry generated inventory and 35-move map are historical only. Current code/test/tool and provenance consumers absent; navigation, Context Lock and publication checked.",
     "S1102: old 711-line audit schedule preserved at fixed published source with matching remote bytes/SHA256/Git blob; five maintained link sources and explicit historical reading notes updated, seven frozen legacy-reference sources preserved. Documentation only.",
     "S1101: 58 pre-U5 local-stage originals independently matched remote bytes/SHA256/Git blobs; 19 actual review sources retained, two historical navigation documents corrected, one frozen legacy relative link explicitly located through the history index. Documentation only.",
     "S1100: 17 S5/S6 original reports independently matched remote bytes/SHA256/Git blobs; current consumers checked, two live review sources retained, links and Context Lock updated. Document-only, no new functional/native PASS.",
@@ -5788,6 +5789,18 @@
       "runtime_test_change": false,
       "deployment": "NOT_RUN",
       "report": "Specialization/Status/Specialization_P0_Status.md#old-audit-schedule-leaves-the-current-task-tree--s1102"
+    },
+    "s1103_document_retirement": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 5,
+      "retired_lines": 2764,
+      "retired_bytes": 180639,
+      "original_commit": "8fbc08ad97b503ad500ed3009e3c1f7867b90cd0",
+      "historical_index": "Specialization/Historical/README.md#completed-early-workspace-migrations-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#early-migration-proposals-and-generated-inventories-retired--s1103"
     }
   }
 }

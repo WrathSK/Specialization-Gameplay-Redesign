@@ -9,7 +9,7 @@
 
 历史不要求全部物理迁入本目录。Architecture与Reports入口已将旧阶段派工与现行合同分开；冻结文件的相对链接、路径映射及review provenance仍有用途时保留原路径。
 
-- [早期文件结构提案](../Reports/Proposals/Specialization_File_Structure_Proposal.md)含用户补充及迁移报告/路径映射引用，保留作为接受与迁移依据。
+- [早期文件结构提案](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/8fbc08ad97b503ad500ed3009e3c1f7867b90cd0/Specialization/Reports/Proposals/Specialization_File_Structure_Proposal.md)含用户补充及迁移报告/路径映射引用；原件在固定Git历史中保留，接受与迁移依据仍可精确取回。
 - [初次Design草案审阅](../Reports/Proposals/Specialization_D0001_Draft_Review.md)含来源缺口/候选状态，且旧冻结文档仍链接该路径；不是当前Design或待审批队列。
 - [早期架构调查计划](../Architecture/Architecture_v2_Plan.md)与v2原始调查地图保留合同形成语境；后续批次已取代旧进度，现行导航见[分类索引](../Architecture/v2/README.md)。
 
@@ -104,7 +104,7 @@ From the repository root, use `git show fb7be65b664b78f2c692cdc9d661511f37823b2e
 
 The 13 early README and 13 AGENTS snapshots are available in the [original snapshots directory](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/1c0b97fdd62ead58e1580c6b274614f6e0d02280/Specialization/Historical/DocumentSnapshots) at commit `1c0b97fdd62ead58e1580c6b274614f6e0d02280`. All 26 files were retrieved from GitHub and matched by SHA256.
 
-The pre-migration `Phase1_before_README.md` is now [history-only](#phase-1-before-navigation-snapshots-in-git-history). Follow its earlier README citation to [the original file](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1c0b97fdd62ead58e1580c6b274614f6e0d02280/Specialization/Historical/DocumentSnapshots/README_before_fresh_agent_handoff.md). The [Phase 1 copy manifest](../Reports/Proposals/Phase1_Copy_Manifest.json) retains the original migration inventory.
+The pre-migration `Phase1_before_README.md` is now [history-only](#phase-1-before-navigation-snapshots-in-git-history). Follow its earlier README citation to [the original file](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1c0b97fdd62ead58e1580c6b274614f6e0d02280/Specialization/Historical/DocumentSnapshots/README_before_fresh_agent_handoff.md). The [Phase 1 copy manifest](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/8fbc08ad97b503ad500ed3009e3c1f7867b90cd0/Specialization/Reports/Proposals/Phase1_Copy_Manifest.json) retains the original migration inventory.
 
 From the repository root, use `git show 1c0b97fdd62ead58e1580c6b274614f6e0d02280:<original-path>`. Prepend `Specialization/Historical/DocumentSnapshots/` to the filename and compare `shasum -a 256` against the table.
 
@@ -371,3 +371,19 @@ Original directory: `Specialization/Reports/Proposals`. All 1 originals were ind
 | [Audit_Followup_Priorities.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/aa1aa7567c26076659cb3b6b9843780f1f753067/Specialization/Reports/Proposals/Audit_Followup_Priorities.md) | `9e99e426faf6b9e25ef6ac165471e2b6cd8f54b00e2282b01972b2f0681133aa` |
 
 Five maintained navigation/preparation documents now link the immutable original (including original anchors); U1 and the recovery proposal also have explicit current-reading notes. Seven frozen documents retain historical relative locators: `Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/To_Be.md`; `Specialization/Status/Validation/Results/Specialization_B213_Expedition_Repair_Culture_UI.md`; `Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md`; `Specialization/Status/Validation/Results/Specialization_B250_UI_Copy_Polish.md`; `Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md`; `Specialization/Status/Validation/Results/Specialization_V01_Alpha1_Promotion.md`; `Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md`. Use the fixed original above for those locators; their bodies and historical scope remain unchanged. No runtime, test, tool, active context or Runtime_Index uses the retired plan as a live input. This is not an all-history-link PASS.
+
+## Completed early workspace migrations in Git history
+
+These five completed 2026-09-11/12 organization and repository-migration artifacts no longer define the workspace. They include the original directory proposal, two delivery reports, the 539-entry copy inventory and the 35-move map. Their old role rules, not-yet-Git instructions, staged migration plans and counts are historical, superseded by current AGENTS/Workflow and the canonical repository. Original approval supplements, checks and path/hash mappings remain preserved in the fixed source; no migration or old test is replayed.
+
+Original directory: `Specialization/Reports/Proposals`. All 5 originals were independently retrieved from GitHub and matched by bytes, SHA256 and Git blob at published `8fbc08ad97b503ad500ed3009e3c1f7867b90cd0`. Recover with `git show 8fbc08ad97b503ad500ed3009e3c1f7867b90cd0:Specialization/Reports/Proposals/<filename>`. Git history, test assertions and original failure details remain unchanged; local artifact hashes do not claim permanent raw-artifact preservation.
+
+| Original report (fixed published source) | SHA256 |
+|---|---|
+| [Specialization_File_Structure_Proposal.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/8fbc08ad97b503ad500ed3009e3c1f7867b90cd0/Specialization/Reports/Proposals/Specialization_File_Structure_Proposal.md) | `43e33361051ad8590dca1a3f6a6bbd22c67619ddcbf9c12ef149ff76b0b4872d` |
+| [Specialization_Repository_Phase1_Migration.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/8fbc08ad97b503ad500ed3009e3c1f7867b90cd0/Specialization/Reports/Proposals/Specialization_Repository_Phase1_Migration.md) | `c7e967b81365f0d6a717ed61f6402d8b657330d84638b7530670d2d77e8d12cf` |
+| [Specialization_Phase1_Migration_Report.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/8fbc08ad97b503ad500ed3009e3c1f7867b90cd0/Specialization/Reports/Proposals/Specialization_Phase1_Migration_Report.md) | `fefca3584678179c5f790073bda09b5d5f395436629b6cfc4d9e996a7c24043e` |
+| [Phase1_Copy_Manifest.json](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/8fbc08ad97b503ad500ed3009e3c1f7867b90cd0/Specialization/Reports/Proposals/Phase1_Copy_Manifest.json) | `db7b2294858747d5b8f905d8e02eb5d385d84c8ac6848daa223d44fac4ad319d` |
+| [Phase1_Path_Map.json](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/8fbc08ad97b503ad500ed3009e3c1f7867b90cd0/Specialization/Reports/Proposals/Phase1_Path_Map.json) | `a3e948cfb5da97451da2f7ac49ffa2f1ab977c4d6a2d354da34bdae91c008ae0` |
+
+Current runtime, tests, tools, active context and Runtime_Index do not consume these five artifacts. Historical navigation now targets their exact published versions. Phase1_External_Materials.md and Legacy_Workspace_Relocation.md remain directly available: the latter owns current access to relocated screenshots/raw evidence. The old 35-move map and copy inventory can still be consulted at the fixed source without maintaining them as current routing. External backups, raw files and original missing-evidence boundaries are untouched.

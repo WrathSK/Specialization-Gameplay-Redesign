@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1102
+Status Revision: S1103
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue qualified documentation maintenance under the standing responsibility/dependency/published-recovery criteria. The completed early refactor-result family and old audit schedule are history-only; current review sources, useful references, accepted decisions and unresolved native evidence remain. No runtime/deployment/main action. |
+| Next action | Continue scoped review of completed technical repair plans, their obsolete task manifests and delivered review handoffs. Preserve active rules, effective source provenance and native evidence; no runtime work, deployment or main promotion. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Early migration proposals and generated inventories retired — S1103
+
+Five completed early workspace artifacts leave HEAD: the directory proposal, two migration delivery reports and two generated maps/inventories (2,764 total lines / 180,639 bytes). Their no-Git instructions, old role ownership and migration next steps are obsolete. No runtime/test/tool, active-context or review-source input uses them. Each independently matches remote bytes, SHA256 and Git blob at published `8fbc08ad97b503ad500ed3009e3c1f7867b90cd0`; [historical recovery](../Historical/README.md#completed-early-workspace-migrations-in-git-history) preserves exact paths/hashes and original acceptance/migration context.
+
+Current external-material guidance and the live legacy-workspace mapping remain in HEAD. Navigation points to fixed originals instead of preserving obsolete routing as current instructions. Targeted restore, changed-link, JSON, Context Lock and publication checks apply. No runtime, tests/tools, formal semantics, raw evidence, installation or native acceptance changes. **User decision/testing:** none; continue eligible completed technical-plan and handoff families under the existing delegation.
 
 ### Old audit schedule leaves the current task tree — S1102
 
