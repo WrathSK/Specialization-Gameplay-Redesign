@@ -7,7 +7,7 @@ Evidence here: STATIC_CONFIRMED source observations only. No new implementation,
 
 ## D0035 revalidation — 2026-09-20
 
-[Executable context manifest](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/7da41bcea04a0c17283b71e26c7c37e4d14df372/Specialization/Workflow/P0-B2.json) and [review evidence](../../Workflow/P0-B2_Revalidation.md). Historical revalidation did not authorize implementation; user subsequently explicitly authorized P0-B2. v0.1 scope is exactly Research/Culture/Industry/Commerce. Military D0034 and other future Designs add no required consumers, dependencies, carriers or tests to B2.
+[Executable context manifest](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/7da41bcea04a0c17283b71e26c7c37e4d14df372/Specialization/Workflow/P0-B2.json) and [review evidence](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/45643d575bb5df49e8847d58c3b9e1cbd8fc9951/Specialization/Workflow/P0-B2_Revalidation.md). Historical revalidation did not authorize implementation; user subsequently explicitly authorized P0-B2. v0.1 scope is exactly Research/Culture/Industry/Commerce. Military D0034 and other future Designs add no required consumers, dependencies, carriers or tests to B2.
 
 Shared D0035 changes semantic/display interpretation of D, not ordinary eligibility or Lv2 rules. Housing uses distinct Tier existence, never weighted D/relative completion, and GPP uses actual workers. Do not import Military depth-efficiency or birth-buff rules. Existing scope, rollback B079.106 and exit gates stand.
 

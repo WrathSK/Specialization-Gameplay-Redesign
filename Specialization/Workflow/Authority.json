@@ -10,7 +10,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1112",
+    "status": "S1113",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -36,7 +36,7 @@
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "1495cbd1a32d2877df5aab8ecedcacbd733f35d9",
   "current_batch": "DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE",
-  "next_batch": "Continue responsibility-based documentation maintenance of retained plan/contract and reference families; preserve live review provenance and independent evidence. No runtime change, deployment or main promotion.",
+  "next_batch": "Continue documentation maintenance from actual retained responsibilities. Current rules, closeout/evidence, accepted-decision sources and future-design handoff remain available; no runtime change, deployment or main promotion.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B527.554 / modinfo554 temporary develop from 1495cbd1a32d2877df5aab8ecedcacbd733f35d9, 314/314 MATCH, SHA256 fc7bca2fd8799ca17f453ed1e9123aa64286f941712230ebcd82f39a31447a26. Receipt B527.554-1495cbd-playtest.json DEVELOP_ACTIVE. B489.516 stable recovery 337/337 MATCH. No pending transaction.",
   "stable": "main B489.516 / modinfo516 from approved PR #8 merge ce497054ed0ba440a03c5a7a66dfafc0d5721c3d, verified as the temporary switch recovery package",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose is not current authority; current Spec/Status and task-specific Architecture govern. B069 investigation maps and B076 inventory/validation are retrieved through the fixed Historical index; current module review provenance remains in Runtime_Index.files.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1112 keeps P0-H current and compact, with its complete prior result/validation history verified at a published fixed commit. Current rules, native evidence scopes and runtime review provenance remain unchanged.",
+  "context_review_status": "S1113 retires four delivered navigation/migration/queue preparation inputs with exact published recovery, while retaining current mapping/rules and original results. No runtime or native result changes.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -60,7 +60,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#current-task-manifest-separated-from-completed-batch-history--s1112",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#completed-navigation-reviews-and-queue-repair-preparation-retired--s1113",
   "source_status": "Develop B528.555 retires four inert/unloaded files with 35 targeted local tests and exact disposable rollback; candidate has 310 files and is not deployed. Temporary B527 and stable B489 remain unchanged. No new native result.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published. 2026-11-18: Primary may classify and retire eligible tracked document families without a file-count approval gate; preserve actual current responsibilities, verified published originals and existing evidence/role boundaries. 2026-11-18 Owner resumed document maintenance after the S1105 safe checkpoint; continue the existing delegated criteria and decision boundaries. No runtime/deployment/main action."
 }

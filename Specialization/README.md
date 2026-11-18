@@ -31,5 +31,5 @@
 ## 外部材料、截图投递与历史路径映射
 
 - **新截图投递：** 请投递到 `develop` 根目录下的 `ScreenShots/`（整个目录由 Git 忽略，不进版本库）。逐张读取并明确批次后，归档至 `local/legacy-workspace/Specialization/Status/Validation/Evidence/<Batch>/`。
-- **旧工作区迁移说明：** 原游戏支持目录下的旧 `Specialization` 资料已完整迁出，旧目录文档不再作为活动入口。如需按历史报告中的旧路径定位原件或截图证据，请查阅[旧工作区资料迁移与历史路径映射](Reports/Proposals/Legacy_Workspace_Relocation.md)（早期背景见 [Phase 1 外部材料记录](Reports/Proposals/Phase1_External_Materials.md)）。
+- **旧工作区迁移说明：** 原游戏支持目录下的旧 `Specialization` 资料已完整迁出，旧目录文档不再作为活动入口。如需按历史报告中的旧路径定位原件或截图证据，请查阅[旧工作区资料迁移与历史路径映射](Reports/Proposals/Legacy_Workspace_Relocation.md)（早期背景见 [Phase 1 外部材料记录](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/45643d575bb5df49e8847d58c3b9e1cbd8fc9951/Specialization/Reports/Proposals/Phase1_External_Materials.md)）。
 - **外部运行环境文件：** 游戏数据库、运行日志、存档与部署备份仍保存在 Git 之外的原位置。新会话或上下文压缩后恢复时，直接使用上方表格入口按任务读取，无需加载旧交接全文。

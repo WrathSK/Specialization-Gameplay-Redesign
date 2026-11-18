@@ -618,7 +618,7 @@ Conquest三分支/ELIG通用系统已有离线模型，未接完整原生流程�
 
 ## 可移植源码与部署
 
-仓库Mod/是唯一可编辑源码；外部runtime只由已授权部署产生。测试入口与7个基准均在仓库；游戏数据库只读外部配置。部署检查/事务边界见../../tools/README.md；旧截图/备份/历史路径见../Reports/Proposals/Phase1_External_Materials.md。
+仓库Mod/是唯一可编辑源码；外部runtime只由已授权部署产生。测试入口与7个基准均在仓库；游戏数据库只读外部配置。部署检查/事务边界见../../tools/README.md；旧截图/备份/历史路径见[现行历史路径映射](../Reports/Proposals/Legacy_Workspace_Relocation.md#当前入口)；[Phase 1 原迁移说明](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/45643d575bb5df49e8847d58c3b9e1cbd8fc9951/Specialization/Reports/Proposals/Phase1_External_Materials.md)保留当时位置。
 
 ## B052运行适配
 

@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1112",
+    "status": "S1113",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,8 +30,8 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Current task manifest separated from completed batch history — S1112",
-      "reason": "Current document-maintenance result, evidence preservation and next bounded work"
+      "selector": "### Completed navigation reviews and queue-repair preparation retired — S1113",
+      "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
       "path": "Specialization/Workflow/README.md",
@@ -67,6 +67,7 @@
     "Gameplay/runtime/test code changes, save/GC changes, raw evidence/backups, editing other-role outputs, game launch, deployment, main promotion and unapproved support expansion."
   ],
   "validation": [
+    "S1113: four completed navigation/migration/queue-plan originals independently matched published remote bytes/SHA256/Git blobs; no current executable or per-file review-source input. Existing current rules/results remain; new references, JSON, Context Lock and publication receive scoped checks. No new native result.",
     "Before retirement: trace current duties/consumers and verify exact published-original bytes, Git blob and SHA256; keep true evidence and resolve current links without rewriting frozen conclusions.",
     "For changed current documents/metadata: diff and JSON/reference checks, real context.py check/self-test/plan/read P0-H, stdlib helper tests when the active fixture changes, and explicit-path publication checks. Refresh only reviewed hashes.",
     "Local checks are document/tool integrity only. Do not infer new runtime, performance or user-game PASS; existing native acceptance and unobserved cases retain their recorded scopes."
@@ -76,12 +77,20 @@
   ],
   "result": {
     "current_checkpoint": {
-      "status": "STATIC_CONFIRMED_DOCUMENT_MAINTENANCE",
-      "report": "Specialization/Status/Specialization_P0_Status.md#current-task-manifest-separated-from-completed-batch-history--s1112",
-      "source_base": "4db9e56aa7b0776b84d2d29a3db75ca414a6bba7",
-      "validation": "LOCAL_TOOL_TEST_PASS_ONLY: Python3.14.8 stdlib helper tests3/3, real check/self-test/plan/read, 14 current locators/anchors and Context Lock PASS; no code/native/deployment validation claim.",
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 4,
+      "retired_lines": 342,
+      "retired_bytes": 47284,
+      "original_commit": "45643d575bb5df49e8847d58c3b9e1cbd8fc9951",
+      "historical_index": "Specialization/Historical/README.md#delivered-navigation-and-queue-repair-preparation-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#completed-navigation-reviews-and-queue-repair-preparation-retired--s1113",
       "runtime_change": false,
-      "deployment": "NOT_RUN"
+      "native_validation": "NOT_RUN",
+      "source_base": "45643d575bb5df49e8847d58c3b9e1cbd8fc9951",
+      "validation": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE: all4 published originals match; 3/3 stdlib helper tests, current check/plan/read, changed links/JSON and Context Lock PASS. Publication checked before commit; no new native result."
     },
     "runtime_identity": {
       "source": "B528.555 / modinfo555, 310 files; locally verified, not deployed",
