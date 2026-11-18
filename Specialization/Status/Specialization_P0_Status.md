@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1104
+Status Revision: S1105
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
+Work State: DOCUMENT_LIFECYCLE_USER_REQUESTED_SAFE_PAUSE
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -16,13 +16,19 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue responsibility/dependency review of completed preparation and handoff documents. Preserve declared historical navigation inputs until their real tool dependencies are handled; no runtime code, deployment or main promotion. |
+| Next action | Finish publishing this verified S1105 document checkpoint, then pause at the Owner's request. Resume qualified document maintenance only after the Owner asks to continue. No runtime work, deployment or main promotion. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Decided preparation proposals and initial draft review retired — S1105
+
+Three completed preparation/review inputs leave HEAD (258 lines / 36,584 bytes): environment assembly readiness, the Claim source-attribution options sheet and the first D0001 draft review. The environment candidate still proposed Holy Site T3 and awaited fifth-tier approval; current Shared D0060 already contains the Owner-approved T4 exceptions and T5 boundary. The Claim sheet records A selected/B unapproved and links its delivered S0886 result. The initial Design draft pending/OPEN list is historical. These originals no longer define current work or rules; [fixed history](../Historical/README.md#superseded-preparation-and-initial-design-review-in-git-history) preserves their complete decisions, source/evidence identities, alternatives and limits.
+
+The initial-review navigation now targets its published original; the old S0907 Status/P0-H environment locators are explicitly mapped in the history index without rewriting their frozen scope. Current Design, architecture principles, Engine Reference, raw database archives, Claim/Crew/Expedition boundaries and all native acceptance records remain. No new semantic decision, test result, runtime/test/tool change, deployment or main promotion. Restoration, new links, JSON, publication and Context Lock receive scoped checks. **User decision/testing:** none. The Owner requested the next safe stop during final verification: finish this batch's commit/push and pause before any further family. On resume, the three retained repair-plan/manifests still have declared context.py navigation dependencies; do not delete those inputs without handling that actual surface. Other retained preparation/accepted-decision documents have not been approved as unused by this checkpoint. No new runtime work or game test is pending from this document batch.
 
 ### Delivered review inputs and superseded draft artifacts retired — S1104
 

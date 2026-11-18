@@ -10,7 +10,7 @@
 历史不要求全部物理迁入本目录。Architecture与Reports入口已将旧阶段派工与现行合同分开；冻结文件的相对链接、路径映射及review provenance仍有用途时保留原路径。
 
 - [早期文件结构提案](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/8fbc08ad97b503ad500ed3009e3c1f7867b90cd0/Specialization/Reports/Proposals/Specialization_File_Structure_Proposal.md)含用户补充及迁移报告/路径映射引用；原件在固定Git历史中保留，接受与迁移依据仍可精确取回。
-- [初次Design草案审阅](../Reports/Proposals/Specialization_D0001_Draft_Review.md)含来源缺口/候选状态，且旧冻结文档仍链接该路径；不是当前Design或待审批队列。
+- [初次Design草案审阅](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/860fe6359ef98699dc75ab7dc5cdb84fb11d8207/Specialization/Reports/Proposals/Specialization_D0001_Draft_Review.md)保存最初来源缺口和候选审阅语境，原件从固定Git历史取回；当前规则与未决项以现行Design和Status为准。
 - [早期架构调查计划](../Architecture/Architecture_v2_Plan.md)与v2原始调查地图保留合同形成语境；后续批次已取代旧进度，现行导航见[分类索引](../Architecture/v2/README.md)。
 
 当前正式合同、接受记录/反证、仍未决候选、已接受未来设计都不能仅按文件名或版本号归为废弃过程材料。不改写冻结原件，不以Git可恢复为理由删唯一证据。
@@ -402,3 +402,17 @@ Original directory: `Specialization/Reports/Proposals`. All 4 originals were ind
 | [Refactor_Program_U1_Text.patch](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/2d130d9e7e4f20dae6a9e00c88d62933486e0c8c/Specialization/Reports/Proposals/Refactor_Program_U1_Text.patch) | `363e97561fade38679a48d62e1c6364fb47a34d175b31f72e8f2393c58814c35` |
 
 No runtime, test, tool, active-context or Runtime_Index consumes these four inputs. The accepted U1 record now links its original patch at the fixed commit. Historical relative references remain in Specialization_B023_Auto_Constant_Lv1.md, Refactor_Closure_Storage_2026-10-24.md and the two B412/B413 handoff links in the S0896/S0898 Status history; use this table for exact replacement locators. Their frozen bodies are unchanged and no all-history-link PASS is claimed. The current background-source decision, 31-Closure retrieval index, evidence rules, Crew proof-gap record and native evidence remain in HEAD.
+
+## Superseded preparation and initial Design review in Git history
+
+These three completed inputs are the pre-assembly environment proposal, the source-attribution options sheet and the first D0001 draft review. The current Tier definition and explicit Owner exceptions are already in Shared D0060; the earlier environment candidate is not a current Tier table or a renewed fifth-tier approval request. Claim source option A has its delivered S0886 outcome and evidence limits, while option B remains unapproved. The initial D0001 pending status, draft OPEN numbering and source gaps describe that first review, not current Design. Original decisions, candidate alternatives, evidence identities and limitations remain intact in Git; retirement does not close an unresolved engine boundary or approve a new fallback.
+
+Original directory: `Specialization/Reports/Proposals`. All 3 originals were independently retrieved from GitHub and matched by bytes, SHA256 and Git blob at published `860fe6359ef98699dc75ab7dc5cdb84fb11d8207`. Recover with `git show 860fe6359ef98699dc75ab7dc5cdb84fb11d8207:Specialization/Reports/Proposals/<filename>`. Git history, test assertions and original failure details remain unchanged; local artifact hashes do not claim permanent raw-artifact preservation.
+
+| Original report (fixed published source) | SHA256 |
+|---|---|
+| [Environment_Assembly_Readiness.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/860fe6359ef98699dc75ab7dc5cdb84fb11d8207/Specialization/Reports/Proposals/Environment_Assembly_Readiness.md) | `85b9c453ad7984c24ec37c526019d8ed179bbe81bfac10d16705aff618310092` |
+| [Claim_Completion_Recovery_Proposal.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/860fe6359ef98699dc75ab7dc5cdb84fb11d8207/Specialization/Reports/Proposals/Claim_Completion_Recovery_Proposal.md) | `5f54a1cdd98d8d192829d6650987b1b556e475b5c5f7e756f841ed9c20279d39` |
+| [Specialization_D0001_Draft_Review.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/860fe6359ef98699dc75ab7dc5cdb84fb11d8207/Specialization/Reports/Proposals/Specialization_D0001_Draft_Review.md) | `b5e0fa14d4a9b25b6d7f654e58e8c758807fb15a18e789a98bf9d545a6b17b6b` |
+
+No runtime, test, tool, active context or Runtime_Index consumes these three files. The Historical entry for the initial review now targets its exact original. The S0907 paragraph in Status and the historical s0907 P0-H proposal locator still name Environment_Assembly_Readiness.md; consult this table for the fixed original rather than rewriting that historical record. Current Shared Design, Engine Reference/source archives, S0886 attribution evidence and actual native acceptance remain available; no source DB, raw observation or accepted rule is deleted.
