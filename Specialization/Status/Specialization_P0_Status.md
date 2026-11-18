@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1091
+Status Revision: S1092
 Implementation Build: B527.554 / modinfo554 on develop and in the temporary installation. Stable B489.516 is from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: INTEGRATION_HD_ACCEPTED_OFFICIAL_FOLLOWUP
+Work State: CONVERGENCE_CLOSEOUT_REVIEW_READY
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -16,13 +16,21 @@ Work State: INTEGRATION_HD_ACCEPTED_OFFICIAL_FOLLOWUP
 | Build and installation | [B527.554 temporarily installed](#b527-verified-temporary-deployment-for-native-acceptance--s1090) with 314/314 files verified against develop. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [B527 HD Great Work and first-turn cleanup pass in the observed scope](#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091). The earlier cold capture ends before its first local-turn checkpoint. B489.516 retains [scoped two-profile acceptance](#b489-two-profile-native-acceptance-complete--s1047). |
-| Next action | In the next official-profile Culture Network session, retain the actual loaded target list and collect one first local turn after cold load. Positive Culture Network output still awaits a suitable source. Use the next scheduled UI review for the bilingual layout observation. |
+| Next action | Review the [unified closeout material](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md), including exact current-description corrections and retained responsibilities. Observe official positive Culture Network output and the missing cold first-turn sample during a later ordinary test session. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Architecture closeout review prepared — S1092
+
+The [closeout review](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md) maps the approved main responsibilities to actual implementation, scoped local and native evidence, and the exact retained boundaries. Code remains pinned to B527 `5cf9b484`; the installed source is `1495cbd1`. The review identifies five factual-description updates in Architecture's current implementation overview, including Store.Base, retired city shells, Great Work transport, industrial withdrawal and official/HD UI bases. These are precise synchronization candidates for review.
+
+The Owner accepted preparing closeout material after discussing opportunistic official Culture Network observation. That observation stays unmeasured and can share a future ordinary playtest with the missing B527 official cold first-turn sample and actual profile capture. The retained turn duties, rare Crew/Claim attribution limits, Expedition relocation issue and historical nonpassing fixtures remain explicit. This preparation does not award full native acceptance.
+
+**Verification scope.** Existing package and receipt hashes, the four S1089 scoped artifacts and all 19 S1091 raw files were rechecked. New document links, JSON references, publication checks and the Context Lock are verified for this batch. Functional results retain their original executed source and scope. External review, formal Architecture synchronization and stable promotion have their subsequent boundaries.
 
 ### B527 HD Great Work and cold-load evidence reviewed — S1091
 
