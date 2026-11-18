@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1110",
+    "status": "S1111",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Obsolete unit-action and fractional experiment procedures retired — S1110",
+      "selector": "### Retired task navigation inputs and delivered repair plans — S1111",
       "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
@@ -67,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1111: 30 remote originals/SHA256/Git blobs MATCH; Python3.14 stdlib helper tests3/3 PASS and real self-test/check/plan/read PASS; all27 retired IDs rejected for all4 commands (108/108); integrity guards and test assertions unchanged. No Mod/native/deployment result.",
     "S1110: four old unit-action procedure originals independently matched remote bytes/SHA256/Git blobs; no live code/tool/manifest/context/provenance consumer and one frozen technical-report locator indexed. No new functional/native result.",
     "S1109: six early step-sheet originals independently matched remote bytes/SHA256/Git blobs; no live dependency, independent native-result originals preserved and one historical bare locator indexed. No current/native test outcome changes.",
     "S1108: carrier JSON original remotely retrieved and byte/SHA256/Git-blob matched; 50 family counts/1,894 distinct IDs checked, no live consumer, fixed links and historical header clarified without changing PRES rules. No new functional/native result.",
@@ -5893,6 +5894,39 @@
       "runtime_test_change": false,
       "deployment": "NOT_RUN",
       "report": "Specialization/Status/Specialization_P0_Status.md#obsolete-unit-action-and-fractional-experiment-procedures-retired--s1110"
+    },
+    "s1111_document_retirement": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 30,
+      "retired_lines": 8192,
+      "retired_bytes": 367846,
+      "original_commit": "7da41bcea04a0c17283b71e26c7c37e4d14df372",
+      "historical_index": "Specialization/Historical/README.md#retired-task-navigation-snapshots-and-delivered-repair-plans-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": true,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retired-task-navigation-inputs-and-delivered-repair-plans--s1111",
+      "runtime_change": false,
+      "documentation_helper_change": true,
+      "test_change": "Two fixture inputs P0-E2 -> P0-H; no assertion changes. Targeted stdlib helper validation only.",
+      "navigation_validation": {
+        "evidence": "LOCAL_TOOL_TEST_PASS_ONLY",
+        "source_base": "7da41bcea04a0c17283b71e26c7c37e4d14df372",
+        "environment": "3.14.8",
+        "helper_tests": 3,
+        "self_test": "PASS",
+        "current_cli": [
+          "check",
+          "self-test",
+          "plan",
+          "read"
+        ],
+        "retired_cli_rejections": 108,
+        "runtime_unchanged": true,
+        "native_validation": "NOT_RUN",
+        "helper_sha256": "0ffff9d641a35bb6012a9882dcc7f0482bb0f27e47590151d491e20a81770a08",
+        "test_sha256": "e405c1272e0feee33465c94506d59b56c161e3925f1f319d3c6778a4c29f00a0"
+      }
     }
   }
 }

@@ -15,7 +15,7 @@ spec.loader.exec_module(c)
 
 class ContextTests(unittest.TestCase):
     def test_full_only_manifest_self_test(self):
-        manifest = copy.deepcopy(c.load('P0-E2.json'))
+        manifest = copy.deepcopy(c.load('P0-H.json'))
         manifest['context'] = [dict(path='AGENTS.md', kind='full', reason='fixture')]
         # Real version/schema/selectors are checked; check() integrity tested separately below.
         with patch.object(c, 'check', return_value={'check': 'PASS'}) as check:
@@ -60,7 +60,7 @@ class ContextTests(unittest.TestCase):
             for key, prefix in [('design', 'Design Revision:'), ('architecture', 'Architecture Revision:'), ('status', 'Status Revision:')]:
                 paths[key] = key + '.md'
                 (r / paths[key]).write_text(prefix + ' ' + versions[key])
-            manifest = c.load('P0-E2.json')
+            manifest = c.load('P0-H.json')
             schema = c.load('Batch.schema.json')
             manifest['authority_versions'] = versions
             manifest['context'] = [dict(path='review.md', kind='full', reason='fixture')]

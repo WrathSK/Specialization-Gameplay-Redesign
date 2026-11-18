@@ -23,7 +23,7 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 
 ### 实施依赖与按问题展开
 
-[P0-E2 manifest](../../Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前计划边界见[B142修复切片](#b142169--tier-zero-template-validation-repair)，沿用[B140生命周期](#b140167--industry-template-lifecycle-and-reconciliation)；快照结果见B111，Claim当前结果见B126与B127；不得继续下一切片。下一授权若改变切片，先更新适用集合，不能永远追加历史。
+[P0-E2 manifest](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/7da41bcea04a0c17283b71e26c7c37e4d14df372/Specialization/Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前计划边界见[B142修复切片](#b142169--tier-zero-template-validation-repair)，沿用[B140生命周期](#b140167--industry-template-lifecycle-and-reconciliation)；快照结果见B111，Claim当前结果见B126与B127；不得继续下一切片。下一授权若改变切片，先更新适用集合，不能永远追加历史。
 
 | 触发 / 直接合同 | 阅读范围与用途 |
 |---|---|

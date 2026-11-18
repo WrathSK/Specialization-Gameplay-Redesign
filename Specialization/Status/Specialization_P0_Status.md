@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1110
+Status Revision: S1111
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue scoped documentation maintenance and remaining navigation-dependency review. Preserve current rules, actual review sources and independent evidence; no gameplay/runtime changes, deployment or main promotion. |
+| Next action | Continue scoped documentation maintenance, including current task-summary duplication and retained contract/navigation roles. Preserve current rules, actual review sources and independent evidence; no gameplay/runtime changes, deployment or main promotion. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Retired task navigation inputs and delivered repair plans — S1111
+
+Twenty-seven obsolete task manifests and three delivered Store/shared-D/investment plans leave HEAD (8,192 lines / 367,846 bytes). Their B079–B233 version pins and old awaiting/next-step prose no longer describe current work. Each original independently matches published remote bytes, SHA256 and Git blobs; [exact recovery](../Historical/README.md#retired-task-navigation-snapshots-and-delivered-repair-plans-in-git-history) preserves full instructions, historical result limits and old invocations. Independent local/native result files and current rules remain. Historical links in frozen reports remain historical locators, with explicit recovery rather than a blanket link-validity claim.
+
+The only executable maintenance change is the read-only document helper's allowed task list/help: it exposes current P0-H and points old-task readers to history. Its existing schema/selector/version/branch/hash/file-set/review-source guards are unchanged; old commands were already rejected for stale versions. Two generic test fixture inputs move from P0-E2 to P0-H, with all assertions unchanged. No Mod, gameplay, save, GC, deployment or native-test behavior changes. **Maintenance impact:** no runtime dependency, scan, cache, event or retry change; the helper still reads only explicitly requested current context and verifies existing integrity. Verification: all30 published originals match; Python3.14 stdlib helper tests3/3 and real self-test/check/plan/read PASS; all27 retired IDs reject for all4 commands (108/108). Test assertions, integrity guard bodies, Mod/tools, current Runtime_Index and original native/local results are unchanged. New local links, JSON, Context Lock and publication receive scoped checks. **User decision/testing:** none; continue eligible documentation work.
 
 ### Obsolete unit-action and fractional experiment procedures retired — S1110
 
