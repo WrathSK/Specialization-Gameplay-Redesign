@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1093
+Status Revision: S1094
 Implementation Build: B527.554 / modinfo554 on develop and in the temporary installation. Stable B489.516 is from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CONVERGENCE_CLOSEOUT_REVIEW_READY
+Work State: CONVERGENCE_CLOSEOUT_EXTERNAL_AUDIT_PENDING
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -16,13 +16,19 @@ Work State: CONVERGENCE_CLOSEOUT_REVIEW_READY
 | Build and installation | [B527.554 temporarily installed](#b527-verified-temporary-deployment-for-native-acceptance--s1090) with 314/314 files verified against develop. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | B527 has [HD Great Work/cold-load acceptance](#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091) and [positive Culture Network plus first-turn readiness in the observed 69-target no-HD configuration](#b527-no-hd-culture-network-and-load-readiness-verified--s1093). The latter uses the official assembly and differs from the earlier 28-target profile. B489.516 retains its scoped acceptance. |
-| Next action | Review the [updated closeout material](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md), with the new observed no-HD profile and completed first-turn samples. The five factual Architecture description corrections and retained responsibilities remain the next documentation boundary. |
+| Next action | The Owner forwards the [bounded Claude audit handoff](../Reports/Proposals/Architecture_Convergence_Closeout_Audit_Handoff.md). Read the returned findings before final closeout and the five proposed factual Architecture description corrections. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### B527 closeout audit handoff prepared — S1094
+
+The Owner requested an independent closeout audit. The [handoff](../Reports/Proposals/Architecture_Convergence_Closeout_Audit_Handoff.md) fixes runtime source `5cf9b484` and the closeout/native evidence at `9a298a91`. It asks the Advisor to verify actual responsibility transfer, evidence inheritance, retained boundaries and the five factual Architecture description candidates. The 69-target no-HD observation remains distinct from the earlier 28-target profile. The Owner's later explanation of that configuration difference is included as an attributed explanation.
+
+The Owner forwards this entry to Claude. The report destination is the existing Advisory area under the scoped `Architecture_Convergence_Closeout` topic. The handoff preserves read-only source and Git boundaries and the current restriction on Advisor test/game execution. Source identity, available evidence hashes, document links and Context Lock are checked for preparation; the independent audit remains pending.
 
 ### B527 no-HD Culture Network and load readiness verified — S1093
 
