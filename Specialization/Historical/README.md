@@ -448,3 +448,15 @@ Original directory: `Specialization/Architecture/v2`. All 2 originals were indep
 | [D0032_Validation.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/28e257c4598ff1169444a13d1482acef40c6991c/Specialization/Architecture/v2/D0032_Validation.md) | `90df33b0aad4b6ac5f38630cb3bb15ca50ce797a70a0f921bdc987a91ae8094f` |
 
 No runtime code, test, tool, active-context projection or Runtime_Index.files review_source consumes either artifact. Runtime_Index.historical_inventory is a historical locator only: it now targets the exact published original, while every current per-file hash/provenance/review_source and source/runtime identity field remains byte-equivalent. Maintained Architecture/v2/History references use the same fixed originals; one frozen S0201-era Status validation link retains its historical path and resolves through this table. D0032 adaptation, archaeology, implementation and spike contracts remain in HEAD, and raw evidence/backups are untouched.
+
+## Original presentation carrier export in Git history
+
+This completed PAC-I001/B076 database export groups 1,894 unique building definitions into 50 families (1,886 internal, four institutional candidates and four unclear mappings). It is a static loaded-configuration classification, not a current carrier registry, restore/withdrawal input, native effect test or permission to expose technical buildings. The accepted presentation-only institution principles remain in the maintained Model, current Architecture/Design and actual implementation. Original IDs, source/Mod commits, definition-list fingerprint and classification uncertainty remain exactly preserved in the published JSON.
+
+Original directory: `Specialization/Architecture/v2`. All 1 originals were independently retrieved from GitHub and matched by bytes, SHA256 and Git blob at published `1b086700da44a3cf5d8557ac339425a26f80b6ef`. Recover with `git show 1b086700da44a3cf5d8557ac339425a26f80b6ef:Specialization/Architecture/v2/<filename>`. Git history, test assertions and original failure details remain unchanged; local artifact hashes do not claim permanent raw-artifact preservation.
+
+| Original report (fixed published source) | SHA256 |
+|---|---|
+| [Presentation_Carrier_Inventory.json](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1b086700da44a3cf5d8557ac339425a26f80b6ef/Specialization/Architecture/v2/Presentation_Carrier_Inventory.json) | `93187ff20ea6f54aeb71c0ffd4d541dbcd1c5b498fdd2760c16d88df7ab59004` |
+
+No runtime, test, tool, active-context projection or current Runtime_Index review source consumes the export. The presentation Model and v2 index now link the fixed original. The Model explicitly limits its original NOT_STARTED header and inventory counts to the PAC/B076 checkpoint, while all PRES-001–007 rules and existing tables remain unchanged. No current per-file review evidence, source/runtime identity, native evidence, SQL definition or raw database archive is replaced or removed.

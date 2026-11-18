@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1107
+Status Revision: S1108
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue scoped classification of completed document artifacts and obsolete process records. Preserve active Architecture contracts, effective review sources and real tool inputs; no runtime/test/tool changes, deployment or main promotion. |
+| Next action | Continue scoped review of obsolete process records and old plans, while retaining active contracts, actual provenance and distinct native evidence. No runtime/test/tool change, deployment or main promotion. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Old presentation export retired and checkpoint wording clarified — S1108
+
+The PAC-I001/B076 carrier export leaves HEAD (2,459 JSON lines / 96,421 bytes). Its 50 groups list 1,894 historical definition names; no current code/test/tool, active context or per-file review evidence consumes it. [Fixed recovery](../Historical/README.md#original-presentation-carrier-export-in-git-history) preserves the exact independently matched remote original and its source/configuration limits. Maintained Model/v2 links now target that version.
+
+The presentation Model still owns its accepted institution/ability/carrier separation rules. Only the old NOT_STARTED wording and inventory introduction are explicitly scoped to their original PAC checkpoint, with current Architecture/Status pointers. PRES-001–007 and existing classification tables are unchanged; no new visibility or UI rule is adopted. Current source review evidence, actual effects, raw database archives and native acceptance remain unchanged. Restore, references, JSON, publication and Context Lock receive scoped checks. **User decision/testing:** none; continue eligible process-document families, preserving actual current responsibilities.
 
 ### Old adaptation snapshot and planning validation retired — S1107
 

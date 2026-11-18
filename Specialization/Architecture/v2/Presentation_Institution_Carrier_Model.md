@@ -4,7 +4,7 @@ Document Owner: Codex
 Record: PAC-I001 / 2026-09-15
 Presentation Revision: PAC-R0002
 Principle / cumulative presentation-only direction: USER_CONFIRMED
-Implementation: NOT_STARTED; UI integration details pending review
+Implementation at the PAC-I001 checkpoint: NOT_STARTED; UI integration details were pending. Current implementation and native scope: [Architecture](../Specialization_v0.1_Architecture.md#收益应用与玩家呈现) and [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state).
 Baseline: av2-runtime-b076.103; Mod commit6a84027; Design D0025 unchanged
 Evidence: STATIC_CONFIRMED = code/database evidence, not in-game presentation acceptance
 Scope: inventory + mapping + tooltip research only; no source/deployment/gameplay changes
@@ -33,7 +33,9 @@ Scope: inventory + mapping + tooltip research only; no source/deployment/gamepla
 
 ## 2. Inventory coverage and classification
 
-Read-only external loaded DebugGameplay database, cross-checked against current Mod/Data SQL, manifest registration and Lua owners. All1894 SPC Buildings have InternalOnly=1. Counts can change with loaded HD building catalog/Eras: B054336=84 targets×4; Dialogue8 era selectors+3 probes. No owned ordinary infrastructure building is added by this Mod. Ordinary buildings below are external dependencies, not files to migrate. Full explicit IDs and disjoint family classification: [JSON inventory](Presentation_Carrier_Inventory.json).
+The following inventory records the B076/PAC-I001 snapshot. Its definition counts and candidate mappings do not describe the current package or authorize new visible buildings; the fixed original export remains available through the link below.
+
+Read-only external loaded DebugGameplay database, cross-checked against current Mod/Data SQL, manifest registration and Lua owners. All1894 SPC Buildings have InternalOnly=1. Counts can change with loaded HD building catalog/Eras: B054336=84 targets×4; Dialogue8 era selectors+3 probes. No owned ordinary infrastructure building is added by this Mod. Ordinary buildings below are external dependencies, not files to migrate. Full explicit IDs and disjoint family classification: [JSON inventory](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1b086700da44a3cf5d8557ac339425a26f80b6ef/Specialization/Architecture/v2/Presentation_Carrier_Inventory.json).
 
 Categories classify reuse potential, not current visibility. CANDIDATE is not permission to reveal; UNCLEAR is a semantic lifecycle decision, not an unidentified effect. None is a verified safe visible institution today. PAC-R0002后，这些候选只表示可复用的语义/映射素材；已接受的路线仍是presentation-only条目，绝不意味着把这4个候选真实建筑公开。
 

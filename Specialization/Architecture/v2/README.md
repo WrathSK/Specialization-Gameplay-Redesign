@@ -51,7 +51,7 @@
 
 ## 呈现与跨context界面
 
-- [Institution / Ability / Carrier合同](Presentation_Institution_Carrier_Model.md)、[载体分类调查](Presentation_Carrier_Inventory.json)：分层、累计presentation-only原则继续适用；旧命名/能力候选由当前Content决定。
+- [Institution / Ability / Carrier合同](Presentation_Institution_Carrier_Model.md)、[载体分类调查](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1b086700da44a3cf5d8557ac339425a26f80b6ef/Specialization/Architecture/v2/Presentation_Carrier_Inventory.json)：分层、累计presentation-only原则继续适用；旧命名/能力候选由当前Content决定。
 - [前置U1原型计划](P0_U1_Plan.md)、[科研显示原型](U1_Presentation_Prototype.md)：只覆盖指定surface和技术验证，不等于完整U1或所有专业UI。
 - [身份观察入口](P0_E1_Identity_Evidence.md)保留早期实际证据；当前保存/所有权接管以E2路由为准，不按E1旧待测描述恢复任务。
 
