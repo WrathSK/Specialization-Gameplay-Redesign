@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1090
+Status Revision: S1091
 Implementation Build: B527.554 / modinfo554 on develop and in the temporary installation. Stable B489.516 is from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: INTEGRATION_NATIVE_TEST_REQUIRED_B527_DEPLOYED
+Work State: INTEGRATION_HD_ACCEPTED_OFFICIAL_FOLLOWUP
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,14 +15,24 @@ Work State: INTEGRATION_NATIVE_TEST_REQUIRED_B527_DEPLOYED
 |---|---|
 | Build and installation | [B527.554 temporarily installed](#b527-verified-temporary-deployment-for-native-acceptance--s1090) with 314/314 files verified against develop. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
-| Validation | The candidate passed local package, real work-batch sender, close/turn cleanup and cumulative B489 switch/restore checks. The replacement startup sequence is awaiting native acceptance. B489.516 retains [observed HD and official native acceptance](#b489-two-profile-native-acceptance-complete--s1047). The official positive Culture Network observation awaits a suitable source. |
-| Next action | Run one cold reload in each of the fixed HD/UC and official Gathering Storm profiles, plus one real Great Work update in either profile. Match the first successful startup boundary to the collected logs. Use the next scheduled UI review for the bilingual layout observation. |
+| Validation | [B527 HD Great Work and first-turn cleanup pass in the observed scope](#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091). The earlier cold capture ends before its first local-turn checkpoint. B489.516 retains [scoped two-profile acceptance](#b489-two-profile-native-acceptance-complete--s1047). |
+| Next action | In the next official-profile Culture Network session, retain the actual loaded target list and collect one first local turn after cold load. Positive Culture Network output still awaits a suitable source. Use the next scheduled UI review for the bilingual layout observation. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### B527 HD Great Work and cold-load evidence reviewed — S1091
+
+**USER_GAME_TEST_PASS in the observed HD scope.** The Owner placed a Classical Great Work in the capital at Potential IV / ACTIVE I and observed no Aesthetic Tourism. After governor upgrades to ACTIVE IV, one City Center building and two Theater Square buildings gave 1 and 2 Tourism. Adding another Classical work from another city left those values unchanged. Creating a Medieval work elsewhere left the capital unchanged; transferring it into the capital changed the two contributions to 2 and 4. These observations confirm the tested activation, distinct-era and city-local update paths.
+
+The last collector session records a fresh and a restored B527 context. The restored context receives load close at seq54. Its after-load sample at seq59 has B055_GW pending; the first local turn at T2 seq183 confirms B055_GW, Culture Aesthetic and the existing cleanup controls READY. The native log's 94 gameplay targets exactly match the fixed HD baseline. The installed 314 files still match the deployment receipt.
+
+**Remaining evidence.** The earlier cold capture `session-20261118T013200Z-6569e2` receives load close at seq54 but stays at T1 with no first-local-turn sample; its final cleanup sample is pending. Its corresponding actual native target list was not retained. This is an unobserved checkpoint. Collect it during the next fixed official-profile positive Culture Network test. That positive benefit remains the outstanding ordinary ability observation. Prior Claim/Crew attribution limits and the Owner-retained turn checks keep their existing scope.
+
+**Evidence limits and location.** The three collector sessions, current native logs and deployment receipt are frozen in `local/legacy-workspace/Specialization/Status/Validation/Evidence/B527_Readiness_GreatWork_20261117/manifest.json`, SHA256 `65c30333af5863963276aed3ad9a37e45af96b4c1f09ce129dbeeacb348b1239`. The HD collector records a partial-frame gap and bounded diagnostic stops. The visual Tourism results are Owner observations. No screenshot was supplied. These limits are preserved in the manifest.
 
 ### B527 verified temporary deployment for native acceptance — S1090
 

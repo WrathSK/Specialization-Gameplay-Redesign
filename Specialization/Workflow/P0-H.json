@@ -11,16 +11,22 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0185",
-    "status": "S1090",
+    "status": "S1091",
     "runtime": "B527.554 / modinfo554",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the verified temporary B527.554 deployment and the two focused native integration checks.",
+  "goal": "Record scoped B527 HD acceptance and retain the exact remaining official-profile observation.",
   "implementation_authorized": false,
   "context": [
+    {
+      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "kind": "section",
+      "selector": "### B527 HD Great Work and cold-load evidence reviewed — S1091",
+      "reason": "Scoped HD activation/era update and actual cold-load readiness, plus the unobserved earlier first-turn checkpoint"
+    },
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
@@ -924,6 +930,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1091: HD B527 Great Work updates and first-local-turn cleanup observed; the earlier cold capture ends before its first-local-turn sample. Official positive Culture Network output remains open.",
     "B527.554 temporary deployment 314/314 MATCH; B489.516 recovery 337/337 MATCH. Native integration remains required.",
     "S1089 pins the candidate for native integration after local package, live-work sender, startup, route proof and B489 disposable restore checks.",
     "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent.",
@@ -6221,6 +6228,28 @@
       "pending_transaction": false,
       "native": "USER_GAME_TEST_REQUIRED",
       "report": "Specialization/Status/Specialization_P0_Status.md#b527-verified-temporary-deployment-for-native-acceptance--s1090"
+    },
+    "s1091_b527_scoped_native_acceptance": {
+      "build": "B527.554 / modinfo554",
+      "status": "USER_GAME_TEST_PASS_SCOPED_HD",
+      "source_commit": "1495cbd1a32d2877df5aab8ecedcacbd733f35d9",
+      "package_sha256": "fc7bca2fd8799ca17f453ed1e9123aa64286f941712230ebcd82f39a31447a26",
+      "files": 314,
+      "hd_gameplay_targets": 94,
+      "hd_baseline_match": true,
+      "hd_first_local_turn_cleanup": "READY",
+      "hd_cold_first_local_turn": {
+        "turn": 2,
+        "sequence": 183,
+        "cleanup": "READY"
+      },
+      "hd_great_work": "OWNER_CONFIRMED_ACTIVATION_LOCAL_ERAS_AND_UPDATE",
+      "earlier_cold_capture": "LOAD_RECEIVED_T1_NO_FIRST_LOCAL_TURN_SAMPLE",
+      "earlier_profile_identity": "ACTUAL_TARGET_LIST_NOT_RETAINED",
+      "official_positive_culture_network": "USER_GAME_TEST_REQUIRED_WHEN_SOURCE_AVAILABLE",
+      "manifest": "local/legacy-workspace/Specialization/Status/Validation/Evidence/B527_Readiness_GreatWork_20261117/manifest.json",
+      "manifest_sha256": "65c30333af5863963276aed3ad9a37e45af96b4c1f09ce129dbeeacb348b1239",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091"
     }
   }
 }
