@@ -477,3 +477,18 @@ Exact original repository paths are listed below. All 6 originals were independe
 | [Specialization/Status/Validation/Cases/Deferred_Mechanics.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/341165c5613e931d722f46d7c9284394491bef95/Specialization/Status/Validation/Cases/Deferred_Mechanics.md) | `3f853d6f5189e143c2f21a591f414b96b1f11d3d1517bee89c518c51ed3a4827` |
 
 No current code, test, tool, task manifest, active context or Runtime_Index review source consumes these six files. Deferred_Mechanics was an unreferenced placeholder and leaves with its old target; no new redirect is created. The frozen B006_Background_Routes report retains one bare Batch_B006 filename as a historical locator; consult this table. The original B005/B007/B008/B009 user result files, early failure reports, current Crew Design, modern scoped acceptance and native proof-gap records remain available. No previously unobserved boundary is marked passed.
+
+## Superseded unit-action experiment cases in Git history
+
+These four early case sheets describe free DEV injection, old map markers, a free 250-point Crew and fractional Quick-speed precision workflows at B039–B046. They are procedure inputs, not original user results. Current Industry rules restrict Crew to legal owned in-progress Wonders and use the accepted integer/floor/base-capacity policy; the old expected167.5/five initial costs do not become current criteria. Original instructions and failure/uncertainty conditions remain intact at the fixed source. Their retirement does not certify other game speeds, stacking combinations or native attribution.
+
+Original directory: `Specialization/Status/Validation/Cases`. All 4 originals were independently retrieved from GitHub and matched by bytes, SHA256 and Git blob at published `276598e86448a2c1f7b12ec43880e7395c2ec380`. Recover with `git show 276598e86448a2c1f7b12ec43880e7395c2ec380:Specialization/Status/Validation/Cases/<filename>`. Git history, test assertions and original failure details remain unchanged; local artifact hashes do not claim permanent raw-artifact preservation.
+
+| Original report (fixed published source) | SHA256 |
+|---|---|
+| [B039_Construction_Injection.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/276598e86448a2c1f7b12ec43880e7395c2ec380/Specialization/Status/Validation/Cases/B039_Construction_Injection.md) | `365c0ca8392f30fc2d1de520dc16e5f7c0fc39ad257ce3a6b589e2d2fdcbdb1c` |
+| [B041_Target_Markers.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/276598e86448a2c1f7b12ec43880e7395c2ec380/Specialization/Status/Validation/Cases/B041_Target_Markers.md) | `acd4c8211ad3de8bd761326f85ffb7a25e826e96dd1c9ea31ee6006eafdac73a` |
+| [B042_Crew_And_Investment.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/276598e86448a2c1f7b12ec43880e7395c2ec380/Specialization/Status/Validation/Cases/B042_Crew_And_Investment.md) | `f7dc6aa66174da5d449dc6ffc5fd8d3535ee3b88b90122d5f4b743ddde326f35` |
+| [B046_Crew_Precision.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/276598e86448a2c1f7b12ec43880e7395c2ec380/Specialization/Status/Validation/Cases/B046_Crew_Precision.md) | `7085b34d95d50f05dbc74c314ca1c0b1fcdc5bce364a733543052c17d8fa455f` |
+
+No runtime, test, tool, task manifest, active context or per-file Runtime_Index review source consumes these case sheets. B046_Project_Precision retains one historical relative case link; retrieve its original through this table. The technical precision investigation, actual game-result originals, current native evidence and still-unknown speed/precision limits remain. No new player test or retrospective PASS is introduced.

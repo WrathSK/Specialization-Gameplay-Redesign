@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1109",
+    "status": "S1110",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Obsolete probe instructions and deferred placeholders retired — S1109",
+      "selector": "### Obsolete unit-action and fractional experiment procedures retired — S1110",
       "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
@@ -67,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1110: four old unit-action procedure originals independently matched remote bytes/SHA256/Git blobs; no live code/tool/manifest/context/provenance consumer and one frozen technical-report locator indexed. No new functional/native result.",
     "S1109: six early step-sheet originals independently matched remote bytes/SHA256/Git blobs; no live dependency, independent native-result originals preserved and one historical bare locator indexed. No current/native test outcome changes.",
     "S1108: carrier JSON original remotely retrieved and byte/SHA256/Git-blob matched; 50 family counts/1,894 distinct IDs checked, no live consumer, fixed links and historical header clarified without changing PRES rules. No new functional/native result.",
     "S1107: two static adaptation originals independently matched remote bytes/SHA256/Git blobs; historical locator and maintained references repaired, current Runtime_Index per-file/provenance/identity fields unchanged, frozen Status locator indexed. No new functional/native result.",
@@ -5880,6 +5881,18 @@
       "runtime_test_change": false,
       "deployment": "NOT_RUN",
       "report": "Specialization/Status/Specialization_P0_Status.md#obsolete-probe-instructions-and-deferred-placeholders-retired--s1109"
+    },
+    "s1110_document_retirement": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 4,
+      "retired_lines": 78,
+      "retired_bytes": 8899,
+      "original_commit": "276598e86448a2c1f7b12ec43880e7395c2ec380",
+      "historical_index": "Specialization/Historical/README.md#superseded-unit-action-experiment-cases-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#obsolete-unit-action-and-fractional-experiment-procedures-retired--s1110"
     }
   }
 }
