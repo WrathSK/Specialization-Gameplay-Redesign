@@ -104,7 +104,7 @@ From the repository root, use `git show fb7be65b664b78f2c692cdc9d661511f37823b2e
 
 The 13 early README and 13 AGENTS snapshots are available in the [original snapshots directory](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/1c0b97fdd62ead58e1580c6b274614f6e0d02280/Specialization/Historical/DocumentSnapshots) at commit `1c0b97fdd62ead58e1580c6b274614f6e0d02280`. All 26 files were retrieved from GitHub and matched by SHA256.
 
-The retained `Phase1_before_README.md` refers to the pre-migration navigation. Follow its earlier README citation to [the original file](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1c0b97fdd62ead58e1580c6b274614f6e0d02280/Specialization/Historical/DocumentSnapshots/README_before_fresh_agent_handoff.md). The [Phase 1 copy manifest](../Reports/Proposals/Phase1_Copy_Manifest.json) retains the original migration inventory.
+The pre-migration `Phase1_before_README.md` is now [history-only](#phase-1-before-navigation-snapshots-in-git-history). Follow its earlier README citation to [the original file](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1c0b97fdd62ead58e1580c6b274614f6e0d02280/Specialization/Historical/DocumentSnapshots/README_before_fresh_agent_handoff.md). The [Phase 1 copy manifest](../Reports/Proposals/Phase1_Copy_Manifest.json) retains the original migration inventory.
 
 From the repository root, use `git show 1c0b97fdd62ead58e1580c6b274614f6e0d02280:<original-path>`. Prepend `Specialization/Historical/DocumentSnapshots/` to the filename and compare `shasum -a 256` against the table.
 
@@ -204,3 +204,31 @@ From the repository root, use `git show ca540456ff1d0610281085ba6026b21f636933e9
 | `Technical_Index_before_fresh_agent_handoff.md` | `4b58fd9b9e089c26841c39f882ada95579300c6d93fc90cfaf8d11802409f178` |
 
 </details>
+
+## Completed localization review and B527 audit handoff in Git history
+
+The three B489 localization review documents completed their delivery role. Adopted copy is maintained in the actual `Mod/Text/` SQL/XML and UI localization sources; S1070 records the acceptance and remaining historical-fixture/native-layout limits. This retirement does not claim that every proposed diagnostic/legacy rendering was adopted. Design still governs gameplay meaning. The B527 closeout handoff likewise completed its delivery role: the Stable independent audit is retained in its original report, the Owner-approved closeout record and A0187/Status carry current responsibilities and limits. None of these four files is a runtime, test, generator, deployment or recovery input.
+
+All four originals were independently retrieved from GitHub at published commit `a4b340b984af01774bc15bfcec8951ceb2b5b14a` and matched byte-for-byte before retirement. This is Git-history preservation, not a new local archive. Read one from the repository root with `git show a4b340b984af01774bc15bfcec8951ceb2b5b14a:<original-path>`.
+
+| Original repository path | SHA256 | Fixed GitHub source |
+|---|---|---|
+| `Specialization/Reports/Proposals/Chinese_Localization_Draft.md` | `c4629aa6a2830ac101f68b584270f9d7c0075530e0775ef706a485adfa8a982f` | [Original](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/a4b340b984af01774bc15bfcec8951ceb2b5b14a/Specialization/Reports/Proposals/Chinese_Localization_Draft.md) |
+| `Specialization/Reports/Proposals/English_Localization_Draft.md` | `932d2e13ed1fe5e40a1ffaec968dec54687a2ab9963043b2a8c6283763bedad2` | [Original](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/a4b340b984af01774bc15bfcec8951ceb2b5b14a/Specialization/Reports/Proposals/English_Localization_Draft.md) |
+| `Specialization/Reports/Proposals/English_Localization_Sample.md` | `861b70eabf798ad87163a6e629228d97b6f0e7595c3405d24a4667201fb29a46` | [Original](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/a4b340b984af01774bc15bfcec8951ceb2b5b14a/Specialization/Reports/Proposals/English_Localization_Sample.md) |
+| `Specialization/Reports/Proposals/Architecture_Convergence_Closeout_Audit_Handoff.md` | `fbc462cd9389ee0fb36b433517df6889df4265e23fd4f8f6d214d065224d0616` | [Original](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/a4b340b984af01774bc15bfcec8951ceb2b5b14a/Specialization/Reports/Proposals/Architecture_Convergence_Closeout_Audit_Handoff.md) |
+
+**Known historical locators:** the old S1094 Status paragraph retains one relative Markdown link to the now-retired handoff. Its original P0-H result and the Stable audit's Requested-by line also retain the old textual path. These are historical references, not live inputs; use this table's fixed source instead. Their original bodies/hashes are preserved, and this cleanup does not claim every historical relative link resolves in HEAD. The inter-draft links leave the current tree together with the drafts. No current authority or default context points to the retired files.
+
+## Phase 1 before-navigation snapshots in Git history
+
+The four snapshots were initially retained pending their dependency/relative-link review. That review is now complete: no current code, test, tool, authority, manifest or runtime index consumes them. Their old reading instructions, B051/S0116 state and A0111 implementation descriptions are superseded by the current AGENTS/Workflow, Status and Architecture; the accepted Design, original validation reports and migration path mapping remain in place. Their unique historical prose is preserved in Git rather than copied into a new archive. Intrinsic pre-migration relative paths retain their historical meaning and are not advertised as working current links.
+
+All four files were retrieved independently from GitHub at published commit `a4b340b984af01774bc15bfcec8951ceb2b5b14a` and matched by bytes/SHA256. Recover with `git show a4b340b984af01774bc15bfcec8951ceb2b5b14a:<original-path>`.
+
+| Original repository path | SHA256 | Fixed GitHub source |
+|---|---|---|
+| `Specialization/Historical/DocumentSnapshots/Phase1_before_README.md` | `4a6f981d7eb78bb5a1916666fc4718c1a9c896620a5759c8520b79ffc9aa5363` | [Original](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/a4b340b984af01774bc15bfcec8951ceb2b5b14a/Specialization/Historical/DocumentSnapshots/Phase1_before_README.md) |
+| `Specialization/Historical/DocumentSnapshots/Phase1_before_AGENTS.md` | `653317344bad81b8ecfd23108da0b96b49f8b76e0e343112e4ebf42bcaf4ee1b` | [Original](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/a4b340b984af01774bc15bfcec8951ceb2b5b14a/Specialization/Historical/DocumentSnapshots/Phase1_before_AGENTS.md) |
+| `Specialization/Historical/DocumentSnapshots/Phase1_before_Specialization_P0_Status.md` | `30b709a95f01b1ecb3eff29762376aedb142e381d30824914986f0f18b0567ae` | [Original](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/a4b340b984af01774bc15bfcec8951ceb2b5b14a/Specialization/Historical/DocumentSnapshots/Phase1_before_Specialization_P0_Status.md) |
+| `Specialization/Historical/DocumentSnapshots/Phase1_before_Specialization_v0.1_Architecture.md` | `87f2a8ec37c84b4994f9723e55b49094bb2bb2f47bdfce836bf649836978c1a9` | [Original](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/a4b340b984af01774bc15bfcec8951ceb2b5b14a/Specialization/Historical/DocumentSnapshots/Phase1_before_Specialization_v0.1_Architecture.md) |

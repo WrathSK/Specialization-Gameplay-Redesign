@@ -11,14 +11,14 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1096",
+    "status": "S1097",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Complete the authorized residual code cleanup, then continue existing documentation lifecycle maintenance within prior deletion and authority boundaries.",
+  "goal": "Continue the existing documentation lifecycle scope after verified residual code cleanup; retire completed small process families with exact recovery and preserve current authority/evidence boundaries.",
   "implementation_authorized": false,
   "context": [
     {
@@ -30,13 +30,13 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Residual diagnostic and unloaded city files — S1096",
-      "reason": "Completed narrow code retirement, exact old-file recovery and documentation maintenance next scope"
+      "selector": "### Retire completed process inputs and Phase1 snapshots — S1097",
+      "reason": "Completed small document retirement, accurate current evidence navigation and remaining scope boundary"
     },
     {
-      "path": "Specialization/Reports/Proposals/Architecture_Convergence_Closeout_Review.md",
+      "path": "Specialization/Historical/README.md",
       "kind": "full",
-      "reason": "Accepted responsibility/evidence summary and explicit follow-up limits; not a second normative authority"
+      "reason": "Existing Git-history index and exact replacement locators, not a new authority or cleanup queue"
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
@@ -66,6 +66,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1097: eight completed document originals independently fetched from fixed published GitHub commit and matched by bytes/SHA256; no current runtime/test/tool inputs. New local links and Context Lock validated. No full-history-link or new gameplay PASS.",
     "S1096: O8ResidualCleanup 35/35 local tests; 182 Lua compiles, 25 XML/modinfo parses and 611 File references. Four exact removals / disposable rollback verified; current route/effect/GC owners unchanged. Historical assertion bodies only, not full old wrapper PASS. No deployment or native result.",
     "S1095: Owner accepted engineering closeout; Claude C1–C3 corrections and A0186 factual sync are complete. Eleven targeted stages pass (332 distinct tests); the initial frozen-source assertion mismatch is preserved and repaired without changing either version-specific assertion or Mod code. No new native result.",
     "S1094 prepares a pinned handoff after verifying source identity, evidence hashes, document links and Context Lock. Independent audit findings are pending.",
@@ -5610,6 +5611,109 @@
       "inert_owner_seams_and_gc_guards": "PRESERVED",
       "deployment": "NOT_RUN",
       "report": "Specialization/Status/Specialization_P0_Status.md#residual-diagnostic-and-unloaded-city-files--s1096"
+    },
+    "s1097_completed_process_documents_history_only": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "source_commit": "e42caca061db9b50c3b3c869e1fe2fd1666220c1",
+      "removed": [
+        {
+          "path": "Specialization/Reports/Proposals/Chinese_Localization_Draft.md",
+          "commit": "a4b340b984af01774bc15bfcec8951ceb2b5b14a",
+          "sha256": "c4629aa6a2830ac101f68b584270f9d7c0075530e0775ef706a485adfa8a982f",
+          "git_blob_sha": "03fc059e31bac1a5e0d914d5701500bfd247f442",
+          "lines": 769,
+          "bytes": 67707,
+          "remote_retrieval": "MATCH"
+        },
+        {
+          "path": "Specialization/Reports/Proposals/English_Localization_Draft.md",
+          "commit": "a4b340b984af01774bc15bfcec8951ceb2b5b14a",
+          "sha256": "932d2e13ed1fe5e40a1ffaec968dec54687a2ab9963043b2a8c6283763bedad2",
+          "git_blob_sha": "2aa613ba9edf08838a7116b309990f467723596c",
+          "lines": 932,
+          "bytes": 108297,
+          "remote_retrieval": "MATCH"
+        },
+        {
+          "path": "Specialization/Reports/Proposals/English_Localization_Sample.md",
+          "commit": "a4b340b984af01774bc15bfcec8951ceb2b5b14a",
+          "sha256": "861b70eabf798ad87163a6e629228d97b6f0e7595c3405d24a4667201fb29a46",
+          "git_blob_sha": "4f7ad85a7b43fe8baccbd92b5d05b78ca57b7e64",
+          "lines": 313,
+          "bytes": 15078,
+          "remote_retrieval": "MATCH"
+        },
+        {
+          "path": "Specialization/Reports/Proposals/Architecture_Convergence_Closeout_Audit_Handoff.md",
+          "commit": "a4b340b984af01774bc15bfcec8951ceb2b5b14a",
+          "sha256": "fbc462cd9389ee0fb36b433517df6889df4265e23fd4f8f6d214d065224d0616",
+          "git_blob_sha": "65bbc8cb84d95be8fb1b36128267133e6e3a9f7d",
+          "lines": 100,
+          "bytes": 11224,
+          "remote_retrieval": "MATCH"
+        },
+        {
+          "path": "Specialization/Historical/DocumentSnapshots/Phase1_before_README.md",
+          "commit": "a4b340b984af01774bc15bfcec8951ceb2b5b14a",
+          "sha256": "4a6f981d7eb78bb5a1916666fc4718c1a9c896620a5759c8520b79ffc9aa5363",
+          "git_blob_sha": "f713b8d6dbaba5f5873d59d3fd7e9d3f174fc3a1",
+          "lines": 35,
+          "bytes": 2969,
+          "remote_retrieval": "MATCH"
+        },
+        {
+          "path": "Specialization/Historical/DocumentSnapshots/Phase1_before_AGENTS.md",
+          "commit": "a4b340b984af01774bc15bfcec8951ceb2b5b14a",
+          "sha256": "653317344bad81b8ecfd23108da0b96b49f8b76e0e343112e4ebf42bcaf4ee1b",
+          "git_blob_sha": "97644002859ffeac38c2accfe358e7b8f92d96f9",
+          "lines": 64,
+          "bytes": 6564,
+          "remote_retrieval": "MATCH"
+        },
+        {
+          "path": "Specialization/Historical/DocumentSnapshots/Phase1_before_Specialization_P0_Status.md",
+          "commit": "a4b340b984af01774bc15bfcec8951ceb2b5b14a",
+          "sha256": "30b709a95f01b1ecb3eff29762376aedb142e381d30824914986f0f18b0567ae",
+          "git_blob_sha": "85ba55b60196d8e2d58becc76859fd6dc8812013",
+          "lines": 61,
+          "bytes": 8567,
+          "remote_retrieval": "MATCH"
+        },
+        {
+          "path": "Specialization/Historical/DocumentSnapshots/Phase1_before_Specialization_v0.1_Architecture.md",
+          "commit": "a4b340b984af01774bc15bfcec8951ceb2b5b14a",
+          "sha256": "87f2a8ec37c84b4994f9723e55b49094bb2bb2f47bdfce836bf649836978c1a9",
+          "git_blob_sha": "638cee47a816ac498d81926bb71998ed33f989e5",
+          "lines": 65,
+          "bytes": 7440,
+          "remote_retrieval": "MATCH"
+        }
+      ],
+      "historical_index": "Specialization/Historical/README.md#completed-localization-review-and-b527-audit-handoff-in-git-history",
+      "markdown_before": {
+        "tracked_files": 2136,
+        "markdown_files": 1005,
+        "markdown_lines": 107628,
+        "markdown_bytes": 14542198
+      },
+      "markdown_after": {
+        "tracked_files": 2128,
+        "markdown_files": 997,
+        "markdown_lines": 105333,
+        "markdown_bytes": 14323909
+      },
+      "current_tree_delta": {
+        "tracked_files": -8,
+        "markdown_files": -8,
+        "markdown_lines": -2295,
+        "markdown_bytes": -218289
+      },
+      "known_historical_relative_links": 1,
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "default_context_token_reduction": "NOT_CLAIMED_DRAFTS_WERE_ALREADY_OUTSIDE_DEFAULT_CONTEXT",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-completed-process-inputs-and-phase1-snapshots--s1097",
+      "phase1_index": "Specialization/Historical/README.md#phase-1-before-navigation-snapshots-in-git-history"
     }
   }
 }

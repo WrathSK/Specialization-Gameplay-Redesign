@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1096
+Status Revision: S1097
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,23 @@ Work State: POST_CONVERGENCE_DOCUMENT_LIFECYCLE_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue the previously authorized documentation lifecycle work: current-entry accuracy, bounded family classification and safe small cleanup. New large history-only deletions still need an exact family proposal and Owner approval. No deployment or main promotion. |
+| Next action | Continue bounded documentation-family review under existing lifecycle rules. Eight completed process documents / snapshots are now [history-only](../Historical/README.md#completed-localization-review-and-b527-audit-handoff-in-git-history); no new runtime work. New large deletion families still require exact impact/recovery evidence and Owner approval. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Retire completed process inputs and Phase1 snapshots — S1097
+
+**Documentation lifecycle maintenance.** After pushing code cleanup `e42caca0`, the Owner-authorized document work retires the three delivered localization review files, completed B527 audit handoff and four reviewed Phase1-before snapshots from HEAD. They have no runtime/test/tool/deployment input; their conclusions and accepted copy have current owners. The formal Design, Architecture, Workflow rules, independent Stable audit, old acceptance/failure reports and raw evidence are unchanged. No gameplay/runtime change, native test or deployment occurs in this slice.
+
+**History and references.** Each original was fetched independently through GitHub at published `a4b340b984af01774bc15bfcec8951ceb2b5b14a`, compared byte-for-byte with the current file and local Git object, then recorded with exact original path/SHA256/fixed retrieval in [the existing Historical index](../Historical/README.md#completed-localization-review-and-b527-audit-handoff-in-git-history). The eight retired documents total 2,339 lines / 227,846 bytes. The four Phase1 snapshots have no current consumers; their unique historical context remains intact at the verified commit, and the former index wording is updated. The only remaining relative Markdown reference is the historical S1094 handoff link; the old result object and audit Requested-by path are textual locators. They retain their original scope and use the fixed history table as replacement. This is not an all-history-link PASS.
+
+**Current information quality.** The playtest entry now distinguishes stable B489, observed B527 official-assembly evidence, undeployed B528 and remaining numerical/cold-continuity limits. The accepted B527 review marks its initial preparation notes as historical and links the subsequent code retirement. Adopted language values remain in the actual source; undeployed/unused draft suggestions do not become a new task queue. The drafts were already outside default context, so tree-size reduction is not claimed as an equal automatic context-token saving.
+
+**Verification / next.** JSON and newly added local links, exact restoration, current runtime hashes, publication checks and P0-H Context Lock are checked. Markdown before/after totals and fixed file identities are in the existing P0-H result. The affected code and test source snapshot is unchanged from the verified B528 slice; no gameplay suite is rerun for this docs-only batch. Continue the next bounded family review, retaining the explicit Owner gate for new large removals.
 
 ### Residual diagnostic and unloaded city files — S1096
 

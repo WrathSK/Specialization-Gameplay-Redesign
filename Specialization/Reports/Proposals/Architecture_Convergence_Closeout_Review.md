@@ -2,6 +2,8 @@
 
 Owner approval: 2026-11-17. Audited runtime: B527.554 at `5cf9b48463cc5f875ebab562cc89c9cedb9d0bcb`; reviewed material: `9a298a91f5a5477851fe1189b3df8dacc9b4c6d2`. The original draft remains retrievable from that commit and this path. Formal factual synchronization is [Architecture A0186](../../Architecture/Specialization_v0.1_Architecture.md); gameplay Design is unchanged. Actual source, deployment and retained work remain in [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state).
 
+Subsequent maintenance: [S1096](../../Status/Specialization_P0_Status.md#residual-diagnostic-and-unloaded-city-files--s1096) removed the remaining three unloaded city files and inert NetworkIsolation controller. The B527 closeout evidence and retained list below describe their accepted checkpoint; current status is maintained separately. The completed review inputs are [retrievable from fixed Git history](../../Historical/README.md#completed-localization-review-and-b527-audit-handoff-in-git-history).
+
 ## Closeout decision and scope
 
 The Owner accepted engineering closeout after [Claude's Stable scoped audit](../Advisory/Architecture_Convergence_Closeout/B527_Closeout_Audit.md) returned CONDITIONALLY READY with no blocking runtime defect. The record corrections C1–C3 are now incorporated: the observed no-HD environment is identified accurately, the exact HD Study uplift remains an observation, and the five implementation descriptions plus superseded experiment sections are synchronized in A0186.
@@ -96,6 +98,8 @@ The original five candidates were independently confirmed as factual changes. Th
 2. The supported scope remains current-build new games and same-build saves. No old-version compatibility is introduced. Earlier native acceptance is inherited only for the owners and paths described above.
 3. The fixed 28-target B527 cold check and positive no-HD benefit cold continuity remain unperformed. Claude's proposed short check is optional and is not a closeout condition; a later promotion report must retain these boundaries unless new evidence is supplied.
 4. Main promotion and deployment require their separate release approvals. This closeout makes no package replacement and does not award full historical-test, bilingual-layout or performance acceptance.
+
+## Historical preparation notes — S1092–S1093
 
 本轮准备工作已复核现行 Context Lock、当前部署包哈希、四份 S1089 定域工件及 S1091 原始证据 manifest。功能测试沿用原执行记录，本轮没有重跑。完整机器工件保留在原本地忽略目录，源码与执行入口提供重跑依据。
 

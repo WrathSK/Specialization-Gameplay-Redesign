@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S1096 verifies four residual file retirements and preserves the accepted engineering closeout; documentation lifecycle maintenance follows.",
+  "review_basis": "S1097 retires eight completed process documents / Phase1 snapshots after remote byte verification and corrects current-versus-historical evidence navigation; B528 source remains unchanged.",
   "files": {
     "AGENTS.md": "101b1eb8f0ea587a38d9cb98d385b73edb1fc6e18ee7742f1bf4a69d32a5b7bf",
     "Art/Institutions/README.md": "23b7ace94796d7212ab848fb12a712a85ff2e837ec7daa0f3dcff1ad3efa7fcb",
@@ -644,8 +644,8 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md": "463e60a38f5cf7017026ea0ba7db912f7b33caadccab3e72d05bc90745a159bf",
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
-    "Specialization/Status/Playtest_Backlog.md": "0afdb20282804ae2411842dfbffb8f71ac3d188dc9717440c7b77f0b68fa936c",
-    "Specialization/Status/Specialization_P0_Status.md": "69efcfe2864fabb5fc5ca1e44ae41a658d92ab1639dd9f070fbcd542bf3e4d6e",
+    "Specialization/Status/Playtest_Backlog.md": "7b556d42cef45434320f5457cbece083b0e2b0ba21134a8bc6db48f3b6ffa358",
+    "Specialization/Status/Specialization_P0_Status.md": "489e6421e4394a121bff56c21ab658b67474820d24517308ab97f334e86ff9e7",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -892,13 +892,13 @@
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md": "3ad3d5e3d7a0d7429ca62d3bf1b973bda0712dde3cae717511ec8477ed387467",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "b6db770f1d0001bf55cb427b5ff91094caa8a40f682dc78f91d8c6cd1bca15f1",
+    "Specialization/Workflow/Authority.json": "20d0405f1a58e2597804e221d33b4cbd76a6f72c0115d6edd6c631941782ad11",
     "Specialization/Workflow/Investment-Propagation.json": "dc2783bae2c863f3c1371011542078270aa54a4a8bb96f0a2ba8ad268536c4af",
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
     "Specialization/Workflow/P0-E2.json": "1e7b54d36ae9e71f9b60e0d9644c4775d7bf9ece87d6b22f084f548bcc5ed486",
     "Specialization/Workflow/P0-F2.json": "a245915f40bd094902dd24726b5f9ffdd1c705153e34d2964cdc67ddaa540611",
     "Specialization/Workflow/P0-GH1.json": "56633c47751cba8d0d20b1bc2d0e87cbd983399f2c43e77839843e37cc904dac",
-    "Specialization/Workflow/P0-H.json": "7a85fc14cfba2f053e5281cac7ae3d2093e21c11ffff4dcbb39c57445178951b",
+    "Specialization/Workflow/P0-H.json": "dae424250283444d2a512a953dcaa7efe88cb0493fc132893167f8c279f968d9",
     "Specialization/Workflow/P0-L2A.json": "2672ad4f884394d991f66d81b1ff1155e1c965b305cf777682e21ffd7163cfc1",
     "Specialization/Workflow/P0-L2B.json": "926c796045cd9e6687fff4580b0bdd9796361e609581942c66fed47ed28a7475",
     "Specialization/Workflow/P0-L2C.json": "40aa6c8fddb51053f3c2aaa2b997fda70a53c4f1d61f78cd74372f938a50103b",
@@ -1371,12 +1371,12 @@
     "Mod/Text/PackageText_Translations.xml": "f2a7f959ce2881019739686e3434285a379154e4c2765cd3db73fff404263ecc",
     "DevelopmentTests/test_o7_level3_cleanup.py": "58645e782cd7b490151ee3c697d7ec6e31a5492dda72236fff9193e99944437c",
     "DevelopmentTests/test_o8_integration_candidate.py": "e7756b7d7512708365f6594e7d08247b97b0b9c33dd09e7c1abe09abc32d13df",
-    "Specialization/Reports/Proposals/Architecture_Convergence_Closeout_Review.md": "a79e4ea80f886de77168c42c60bea7a8df6acd579524a7229d5944f5ef481366",
-    "Specialization/Reports/Proposals/Architecture_Convergence_Closeout_Audit_Handoff.md": "fbc462cd9389ee0fb36b433517df6889df4265e23fd4f8f6d214d065224d0616",
+    "Specialization/Reports/Proposals/Architecture_Convergence_Closeout_Review.md": "77b9456a85d91bf5ab00d373271603032bf22b05f5cbf1d8fde514220cc270d0",
     "Specialization/Reports/Advisory/Architecture_Convergence_Closeout/B527_Closeout_Audit.md": "c4751e9498a6a184314283aece05cedd5ee71b1e6bdc032d7c3d77b4163b2c0a",
     "DevelopmentTests/test_b063_inheritance_read.py": "059cc39b055c99c5bde97ed5c00227b73898b0a3dc485ee81f0f531048d47535",
     "DevelopmentTests/test_b064_shadow.py": "c7537c953dd0c214a01a6edf0409ccd22cfb44b7ac3f387115a9285151ba9176",
     "DevelopmentTests/test_b066_inheritance.py": "4e49337caaffc7c14cbe309511790a3ba894462480af0803f14db207d5049449",
-    "DevelopmentTests/test_o8_residual_cleanup.py": "1be55ea0b8982e291b8a0db532bfba2fb818f4d920349bbc99aea6b05b9d72e4"
+    "DevelopmentTests/test_o8_residual_cleanup.py": "1be55ea0b8982e291b8a0db532bfba2fb818f4d920349bbc99aea6b05b9d72e4",
+    "Specialization/Historical/README.md": "de4a6ffc5fca40bcb36aa334fb161f91926e48910aa71727ed73b6471abd1b46"
   }
 }
