@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1092
+Status Revision: S1093
 Implementation Build: B527.554 / modinfo554 on develop and in the temporary installation. Stable B489.516 is from main merge ce497054.
 Architecture Revision Reviewed: A0185
 Design Revision Reviewed: D0060
@@ -15,14 +15,24 @@ Work State: CONVERGENCE_CLOSEOUT_REVIEW_READY
 |---|---|
 | Build and installation | [B527.554 temporarily installed](#b527-verified-temporary-deployment-for-native-acceptance--s1090) with 314/314 files verified against develop. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
-| Validation | [B527 HD Great Work and first-turn cleanup pass in the observed scope](#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091). The earlier cold capture ends before its first local-turn checkpoint. B489.516 retains [scoped two-profile acceptance](#b489-two-profile-native-acceptance-complete--s1047). |
-| Next action | Review the [unified closeout material](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md), including exact current-description corrections and retained responsibilities. Observe official positive Culture Network output and the missing cold first-turn sample during a later ordinary test session. |
+| Validation | B527 has [HD Great Work/cold-load acceptance](#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091) and [positive Culture Network plus first-turn readiness in the observed 69-target no-HD configuration](#b527-no-hd-culture-network-and-load-readiness-verified--s1093). The latter uses the official assembly and differs from the earlier 28-target profile. B489.516 retains its scoped acceptance. |
+| Next action | Review the [updated closeout material](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md), with the new observed no-HD profile and completed first-turn samples. The five factual Architecture description corrections and retained responsibilities remain the next documentation boundary. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### B527 no-HD Culture Network and load readiness verified — S1093
+
+**USER_GAME_TEST_PASS in this observed no-HD configuration.** The Owner reports that Culture Network benefit appeared immediately when dispatching the route. At T24, seq1277 verifies one route; seq1278 projects one qualified insight civilization for city65536. At seq1293, the route count becomes two; seq1296 gives city196610 the same positive count. The corresponding seq1281/1297 health rows report CN_READY. The positive changes and proof occur within T24. Exact displayed Culture amounts were not supplied.
+
+The initial saved-game context belongs to a new process relative to the earlier HD run and confirms B055_GW plus the existing cleanup controls at first-local-turn seq290. A second saved-game load in the same process receives load close at seq446 and confirms those controls on T2 seq526. These observations supply the previously missing first-supported-turn evidence for the current official branch. No failed/skipped startup row is captured.
+
+**Actual environment boundary.** The native log applies SPC_EnvironmentOfficial twice and contains no HD component application. Its final gameplay target set contains 69 entries, including all 28 from the prior fixed official profile plus 41 additional entries such as Better Trade Screen. The test demonstrates this actual no-HD configuration. The earlier 28-target profile identity and scope remain distinct. The installed 314 files still match B527's receipt.
+
+**Evidence.** The main collector is `session-20261118T021548Z-1c66ff`; the preceding attempt captured zero records. The two sessions, current native logs and receipt are preserved in `local/legacy-workspace/Specialization/Status/Validation/Evidence/B527_OfficialBranch_CultureNetwork_20261117/manifest.json`, SHA256 `63bf298e62edb5521439e69538a2ef37a1fa71ebe0623aa04262ec969450138f`. The manifest retains the partial-frame gap, diagnostic bounds and absence of a later reload after the positive benefit. The earlier positive HD cold-load evidence keeps its own scope.
 
 ### Architecture closeout review prepared — S1092
 
