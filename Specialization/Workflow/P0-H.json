@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1100",
+    "status": "S1101",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Completed projection and shared-fact stage summaries retired — S1100",
+      "selector": "### Completed pre-U5 implementation checkpoints retired — S1101",
       "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
@@ -67,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1101: 58 pre-U5 local-stage originals independently matched remote bytes/SHA256/Git blobs; 19 actual review sources retained, two historical navigation documents corrected, one frozen legacy relative link explicitly located through the history index. Documentation only.",
     "S1100: 17 S5/S6 original reports independently matched remote bytes/SHA256/Git blobs; current consumers checked, two live review sources retained, links and Context Lock updated. Document-only, no new functional/native PASS.",
     "S1099: 15 completed reports retired after published-byte/hash recovery verification; historical links and Context Lock updated, 31 original Closure blobs preserved. Documentation only; no runtime/native PASS.",
     "S1098: 15 complete reports read and fetched from fixed published GitHub source with matching bytes/SHA256. Two current provenance sources and three native-reference reports retained; no candidate deleted or new runtime/native result.",
@@ -5762,6 +5763,18 @@
       "runtime_test_change": false,
       "deployment": "NOT_RUN",
       "report": "Specialization/Status/Specialization_P0_Status.md#completed-projection-and-shared-fact-stage-summaries-retired--s1100"
+    },
+    "s1101_document_retirement": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 58,
+      "retired_lines": 1921,
+      "retired_bytes": 377317,
+      "original_commit": "e42caca061db9b50c3b3c869e1fe2fd1666220c1",
+      "historical_index": "Specialization/Historical/README.md#completed-s7-to-s9-local-results-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#completed-pre-u5-implementation-checkpoints-retired--s1101"
     }
   }
 }

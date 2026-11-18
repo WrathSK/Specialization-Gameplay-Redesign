@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1100
+Status Revision: S1101
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue responsibility/dependency review of subsequent completed refactor documents under the Owner-approved lifecycle delegation. Preserve actual review sources and unresolved native evidence; no runtime work, deployment or main promotion. |
+| Next action | Continue delegated documentation maintenance from actual remaining responsibilities, preserving current review provenance and native evidence. Completed pre-U5 local summaries now use fixed Git-history retrieval. No runtime work, deployment or main promotion. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Completed pre-U5 implementation checkpoints retired — S1101
+
+The next bounded family covers 77 S7–S9 local-stage records. Nineteen remain because current Runtime_Index entries still use their review provenance. The other 58 completed process summaries (1,921 lines / 377,317 bytes) leave HEAD after checking their local-only result status, consumers and original preservation. All 58 independently match remote bytes, SHA256 and Git blobs at published `e42caca061db9b50c3b3c869e1fe2fd1666220c1`. [Historical recovery](../Historical/README.md#completed-s7-to-s9-local-results-in-git-history) records the exact files/hashes and one known obsolete relative link in the frozen B391 deployment result. Follow-up-plan and timed-project links now target fixed originals; their historical prose and original unresolved boundaries are not reinterpreted.
+
+**Scope / verification.** The current engineering closeout, rare Crew/Claim attribution, Expedition border issue, retained turn work and measured/native scope limits remain unchanged. No Mod, test, tool, formal rule, save structure, raw evidence or deployment changes. Targeted restoration, new-link, JSON, publication and Context Lock checks apply; no all-history-link, gameplay or new native PASS is claimed. Ninety obsolete local-stage summaries have now left HEAD across this three-batch family review; current review sources and useful native-reference records remain directly available. **User decision/testing:** none for this maintenance batch.
 
 ### Completed projection and shared-fact stage summaries retired — S1100
 
