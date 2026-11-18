@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1108",
+    "status": "S1109",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Old presentation export retired and checkpoint wording clarified — S1108",
+      "selector": "### Obsolete probe instructions and deferred placeholders retired — S1109",
       "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
@@ -67,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1109: six early step-sheet originals independently matched remote bytes/SHA256/Git blobs; no live dependency, independent native-result originals preserved and one historical bare locator indexed. No current/native test outcome changes.",
     "S1108: carrier JSON original remotely retrieved and byte/SHA256/Git-blob matched; 50 family counts/1,894 distinct IDs checked, no live consumer, fixed links and historical header clarified without changing PRES rules. No new functional/native result.",
     "S1107: two static adaptation originals independently matched remote bytes/SHA256/Git blobs; historical locator and maintained references repaired, current Runtime_Index per-file/provenance/identity fields unchanged, frozen Status locator indexed. No new functional/native result.",
     "S1106: eight original AV2-I001 plan/maps/index/validation files remotely retrieved and byte/SHA256/Git-blob matched; no active code/test/tool/context/provenance input, current navigation repaired and historical textual locators recorded. No new gameplay/native result.",
@@ -5867,6 +5868,18 @@
       "runtime_test_change": false,
       "deployment": "NOT_RUN",
       "report": "Specialization/Status/Specialization_P0_Status.md#old-presentation-export-retired-and-checkpoint-wording-clarified--s1108"
+    },
+    "s1109_document_retirement": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 6,
+      "retired_lines": 205,
+      "retired_bytes": 22572,
+      "original_commit": "341165c5613e931d722f46d7c9284394491bef95",
+      "historical_index": "Specialization/Historical/README.md#superseded-early-experiment-steps-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#obsolete-probe-instructions-and-deferred-placeholders-retired--s1109"
     }
   }
 }

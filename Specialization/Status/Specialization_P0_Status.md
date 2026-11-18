@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1108
+Status Revision: S1109
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue scoped review of obsolete process records and old plans, while retaining active contracts, actual provenance and distinct native evidence. No runtime/test/tool change, deployment or main promotion. |
+| Next action | Continue documentation-only maintenance from actual remaining responsibilities. Preserve native results, failure evidence, accepted contracts and real tool inputs; no runtime/test/tool change, deployment or main promotion. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Obsolete probe instructions and deferred placeholders retired — S1109
+
+Six obsolete early instruction/placeholder documents leave HEAD (205 lines / 22,572 bytes). They prescribe old probe buttons, discarded route-source experiments or a NOT_IMPLEMENTED Crew sequence; ordinary-building/district Crew targets have since been explicitly excluded by current Industry Design. These are old step sheets, not independent native-result originals. Exact remotely matched sources and the remaining B006 bare-filename locator are in [historical recovery](../Historical/README.md#superseded-early-experiment-steps-in-git-history).
+
+No code/test/tool, manifest, active-context or current review-source consumer uses them. The unreferenced deferred wrapper is removed with its target. Original native results and failure reports, accepted Crew rules, current scoped acceptance and unresolved attribution limits remain untouched. No test request, native PASS, gameplay change, deployment or main promotion is introduced. Restoration, current references, JSON, publication and Context Lock are checked. **User decision/testing:** none; continue eligible process-document maintenance.
 
 ### Old presentation export retired and checkpoint wording clarified — S1108
 
