@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "PLANNED_NOT_AUTHORIZED",
+  "status": "AUTHORIZED",
   "authority_versions": {
     "design": "D0060",
     "research": "D0059",
@@ -11,14 +11,14 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1098",
+    "status": "S1099",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Obtain Owner approval for the exact 15-report history-only family; preserve completed code/doc cleanup and all retained evidence/authority boundaries.",
+  "goal": "Reduce obsolete current-tree documentation and stale reading paths under delegated lifecycle authority; preserve current rules, useful evidence, actual dependencies and verified published originals.",
   "implementation_authorized": false,
   "context": [
     {
@@ -30,14 +30,14 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Next local-result history family prepared for Owner review — S1098",
-      "reason": "Concrete next-family proposal and actual Owner decision boundary; no deletion authorization"
+      "selector": "### Delegated document maintenance and early local-result retirement — S1099",
+      "reason": "Accepted ongoing document scope, first completed family and actual decision boundaries"
     },
     {
-      "path": "Specialization/Historical/README.md",
+      "path": "Specialization/Workflow/README.md",
       "kind": "section",
-      "selector": "## Proposed next family: early local refactor results — Owner approval required",
-      "reason": "Exact candidate files/SHA256, fixed recovery, retained reports and approval-dependent implementation scope"
+      "selector": "### Delegated document lifecycle maintenance — accepted 2026-11-18",
+      "reason": "Standing Owner delegation, retirement criteria, recovery proof and preserved role/evidence boundaries"
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
@@ -67,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1099: 15 completed reports retired after published-byte/hash recovery verification; historical links and Context Lock updated, 31 original Closure blobs preserved. Documentation only; no runtime/native PASS.",
     "S1098: 15 complete reports read and fetched from fixed published GitHub source with matching bytes/SHA256. Two current provenance sources and three native-reference reports retained; no candidate deleted or new runtime/native result.",
     "S1097: eight completed document originals independently fetched from fixed published GitHub commit and matched by bytes/SHA256; no current runtime/test/tool inputs. New local links and Context Lock validated. No full-history-link or new gameplay PASS.",
     "S1096: O8ResidualCleanup 35/35 local tests; 182 Lua compiles, 25 XML/modinfo parses and 611 File references. Four exact removals / disposable rollback verified; current route/effect/GC owners unchanged. Historical assertion bodies only, not full old wrapper PASS. No deployment or native result.",
@@ -5735,6 +5736,19 @@
       "candidate_files_deleted": 0,
       "user_testing": "NONE",
       "report": "Specialization/Status/Specialization_P0_Status.md#next-local-result-history-family-prepared-for-owner-review--s1098"
+    },
+    "s1099_delegated_document_retirement": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "removed_files": 15,
+      "removed_lines": 404,
+      "removed_bytes": 72123,
+      "original_commit": "e42caca061db9b50c3b3c869e1fe2fd1666220c1",
+      "historical_index": "Specialization/Historical/README.md#early-local-refactor-results-in-git-history",
+      "recovery": "15_OF_15_REMOTE_AND_LOCAL_ORIGINAL_MATCH",
+      "role_boundaries": "PRESERVED",
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#delegated-document-maintenance-and-early-local-result-retirement--s1099"
     }
   }
 }
