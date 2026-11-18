@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1101
+Status Revision: S1102
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,21 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue delegated documentation maintenance from actual remaining responsibilities, preserving current review provenance and native evidence. Completed pre-U5 local summaries now use fixed Git-history retrieval. No runtime work, deployment or main promotion. |
+| Next action | Continue qualified documentation maintenance under the standing responsibility/dependency/published-recovery criteria. The completed early refactor-result family and old audit schedule are history-only; current review sources, useful references, accepted decisions and unresolved native evidence remain. No runtime/deployment/main action. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Old audit schedule leaves the current task tree — S1102
+
+The 711-line former audit/intake schedule mixes B204–B391 decisions and implementation snapshots, including obsolete current-HEAD/open/next-stage instructions. It now leaves HEAD as completed process history (207,694 bytes). Current Authority/Status already own the actual queue, and approved Design/Architecture/Workflow own rules and dependency-triggered review. No current runtime/test/tool/review-source input requires the old plan. Its complete bytes independently match the published original at `aa1aa7567c26076659cb3b6b9843780f1f753067`; [fixed recovery](../Historical/README.md#prior-audit-scheduling-and-intake-in-git-history) preserves the exact path/hash, original decisions, Primary qualifications, failure evidence and historical anchors.
+
+Five maintained preparation/proposal documents now point to that fixed source. Small reading notes distinguish the historical U1 record and original recovery-persistence approval from current rules: the later network persistence retirement remains governed by existing Design/Architecture, while genuine-history/deferred-lifecycle duties are preserved. Seven frozen reference documents retain their original relative locators and are explicitly listed in the recovery index; their bodies are not rewritten. No broad link-validity claim is made.
+
+**Verification / boundaries.** Restoration, changed links, JSON, publication and Context Lock are checked; Mod, tests/tools, accepted rule bodies, raw evidence, installation and Git history remain unchanged. Across these four batches, 91 obsolete process documents leave HEAD; 26 reviewed provenance/native-reference records remain directly available. No new gameplay/native acceptance, deployment or main promotion. **User decision/testing:** none. Continue normal document maintenance under the accepted delegation; remaining ambiguous or still-active records are not automatically retired.
 
 ### Completed pre-U5 implementation checkpoints retired — S1101
 

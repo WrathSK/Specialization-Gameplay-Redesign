@@ -1,5 +1,7 @@
 # Refactor program — accepted U1 decisions
 
+**Current reading note (2026-11-18):** this is the accepted 2026-10-24 decision/provenance record. Its source versions and stage instructions describe that checkpoint. The former intake is now [fixed Git history](../../Historical/README.md#prior-audit-scheduling-and-intake-in-git-history); current rules, implementation status and authorized work are determined by the approved Design/Architecture, [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state) and Authority. No old stage queue is reactivated.
+
 Date: 2026-10-24
 Maintainer: Primary, explicitly assigned by the user under W0005
 Review basis: develop `a6a51be`; original source review `25327e7`; runtime B271.298
@@ -7,7 +9,7 @@ State: **U1_ACCEPTED — formal D0058 / A0182 synchronization before S2**
 
 ## Accepted U1 — 2026-10-24
 
-This record replaces the earlier pending decision sheet. The user explicitly approved S2–S10 after formal synchronization, without routine stage authorization. The accepted Design/Architecture/Workflow own their rules; the original [review diff](Refactor_Program_U1_Text.patch) is frozen proposal evidence, not an apply instruction. The [existing intake](Audit_Followup_Priorities.md#refactor-program-intake--2026-10-24) remains the sole stage/finding schedule. Advisor originals stay read-only and unpublished.
+This record replaces the earlier pending decision sheet. The user explicitly approved S2–S10 after formal synchronization, without routine stage authorization. The accepted Design/Architecture/Workflow own their rules; the original [review diff](Refactor_Program_U1_Text.patch) is frozen proposal evidence, not an apply instruction. The [existing intake](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/aa1aa7567c26076659cb3b6b9843780f1f753067/Specialization/Reports/Proposals/Audit_Followup_Priorities.md#refactor-program-intake--2026-10-24) remains the sole stage/finding schedule. Advisor originals stay read-only and unpublished.
 
 | Decision | Accepted disposition |
 |---|---|

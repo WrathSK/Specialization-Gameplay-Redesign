@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1101",
+    "status": "S1102",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Completed pre-U5 implementation checkpoints retired — S1101",
+      "selector": "### Old audit schedule leaves the current task tree — S1102",
       "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
@@ -67,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1102: old 711-line audit schedule preserved at fixed published source with matching remote bytes/SHA256/Git blob; five maintained link sources and explicit historical reading notes updated, seven frozen legacy-reference sources preserved. Documentation only.",
     "S1101: 58 pre-U5 local-stage originals independently matched remote bytes/SHA256/Git blobs; 19 actual review sources retained, two historical navigation documents corrected, one frozen legacy relative link explicitly located through the history index. Documentation only.",
     "S1100: 17 S5/S6 original reports independently matched remote bytes/SHA256/Git blobs; current consumers checked, two live review sources retained, links and Context Lock updated. Document-only, no new functional/native PASS.",
     "S1099: 15 completed reports retired after published-byte/hash recovery verification; historical links and Context Lock updated, 31 original Closure blobs preserved. Documentation only; no runtime/native PASS.",
@@ -5775,6 +5776,18 @@
       "runtime_test_change": false,
       "deployment": "NOT_RUN",
       "report": "Specialization/Status/Specialization_P0_Status.md#completed-pre-u5-implementation-checkpoints-retired--s1101"
+    },
+    "s1102_document_retirement": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 1,
+      "retired_lines": 711,
+      "retired_bytes": 207694,
+      "original_commit": "aa1aa7567c26076659cb3b6b9843780f1f753067",
+      "historical_index": "Specialization/Historical/README.md#prior-audit-scheduling-and-intake-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#old-audit-schedule-leaves-the-current-task-tree--s1102"
     }
   }
 }
