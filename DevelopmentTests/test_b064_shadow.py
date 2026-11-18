@@ -1,4 +1,5 @@
 from pathlib import Path
+from retired_crew_sources import B527, source as retired_source
 from lupa.lua55 import LuaRuntime
 R=Path(__file__).resolve().parents[1];M=R/'Mod'
 s=(R/'DevelopmentTests/test_b063_inheritance_read.py').read_text().replace('89','90')
@@ -17,7 +18,7 @@ CityManager={GetCityAt=function() return alive and city or nil end}
 Players={[0]={GetCities=function() return {Members=function() return ipairs(owner==0 and {city} or {}) end} end}}
 shared={BindingProbe={Resolve=function(pid,c) return props.SPC_DEV_BINDING_B013_TOKEN,props.SPC_DEV_BINDING_B013_TOKEN and 'BOUND_MATCH' or 'PARTIAL' end}}
 ''')
-l.execute((M/'InheritanceShadow.lua').read_text())
+l.execute(retired_source('InheritanceShadow.lua',B527))
 l.execute('''
 SPCInheritanceShadow.Start(P,shared);Events.LoadScreenClose.Fire();local d=shared.InheritanceShadow
 assert(writes==1);assert(d.Select(0,city):find('投资=3 | 模板=6'));local n=writes

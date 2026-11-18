@@ -1,4 +1,5 @@
 from pathlib import Path
+from retired_crew_sources import B527, source as retired_source
 from lupa.lua55 import LuaRuntime
 R=Path(__file__).resolve().parents[1]
 s=(R/'DevelopmentTests/test_b062_commerce.py').read_text().replace('"78","88"','"78","89"').replace("'\\\"78\\\",\\\"88\\\"'","'\\\"78\\\",\\\"89\\\"'").replace("get('version')=='88'","get('version')=='89'")
@@ -11,7 +12,7 @@ city={GetOwner=function() return owner end,GetID=function() return id end,GetX=f
 Players={[0]={GetDistricts=function() return {Members=function() return ipairs({}) end} end},[1]={GetDistricts=function() return {Members=function() return ipairs({}) end} end}}
 P={IsTestPlayer=function(pid) return pid==0 end};CityManager={GetCityAt=function() return present and city or nil end};shared={}
 ''')
-l.execute((M/'CityInheritanceRead.lua').read_text())
+l.execute(retired_source('CityInheritanceRead.lua',B527))
 l.execute('''
 SPCCityInheritanceRead.Start(P,shared);local d=shared.CityInheritanceRead
 assert(not pcall(d.Read,0));assert(d.Record(0,city):find('投资笔数=1'))

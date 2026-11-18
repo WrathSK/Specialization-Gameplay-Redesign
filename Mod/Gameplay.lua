@@ -63,13 +63,6 @@ local function request(playerID,params)
   if type(params.Action)=='string' and params.Action:match('^REST_') then
     if shared.Restructuring then shared.Restructuring.Request(playerID,params)end;return
   end
-  if params.Action=='NETWORK_ISOLATE' or params.Action=='NETWORK_ISOLATION_READ' then
-    local ok,out=pcall(function()
-      if params.Action=='NETWORK_ISOLATE' then return shared.NetworkIsolation.Begin(playerID,params.Epoch) end
-      return shared.NetworkIsolation.Read(playerID)
-    end)
-    shared.Snapshot=ok and out or ('Network隔离未就绪；停止对照并冷启动原存档：'..P.Scalar(out));shared.LastToken=params.Token;return
-  end
   if params.Action=='MEMORY_GC_READ' or params.Action=='MEMORY_GC_COLLECT' or params.Action=='MEMORY_GC_AUTO_ON' or params.Action=='MEMORY_GC_AUTO_OFF' then
     local ok,out=pcall(function()
       local d=shared.MemoryObservation;assert(d,'GC diagnostic not initialized')
@@ -394,27 +387,6 @@ local function request(playerID,params)
       end
     end
     return
-  end
-  if params.Action=='SHADOW_SELECT' or params.Action=='SHADOW_READ' then
-    shared.RequestToken=params.Token
-    if shared.InheritanceIsolation then
-      shared.Snapshot='城市所有权/继承模块已暂停。已有备份保留；不再记录转移或执行恢复。其它专业诊断入口仍可使用。'
-      shared.LastToken=params.Token;return
-    end
-    local ok,out=pcall(function()
-      local d=assert(shared.InheritanceShadow,'SHADOW_MODULE_NOT_LOADED')
-      if params.Action=='SHADOW_SELECT' then return d.Select(playerID,Players[playerID]:GetCities():FindID(params.CityID)) end
-      return shared.CityInheritance and shared.CityInheritance.Describe(playerID) or d.Describe(playerID)
-    end)
-    shared.Snapshot=ok and out or ('继承备份读取失败：'..tostring(out));shared.LastToken=params.Token;return
-  end
-  if params.Action=='INHERIT_RECORD' or params.Action=='INHERIT_READ' then
-    local ok,out=pcall(function()
-      local d=assert(shared.CityInheritanceRead,'INHERIT_MODULE_NOT_LOADED')
-      if params.Action=='INHERIT_RECORD' then return d.Record(playerID,Players[playerID]:GetCities():FindID(params.CityID)) end
-      return d.Read(playerID)
-    end)
-    shared.Snapshot=ok and out or ('继承观察未完成：'..tostring(out));shared.LastToken=params.Token;return
   end
   if type(params.Action)=='string' and params.Action:find('^DEVELOPMENT_') then
     local ok,out=pcall(function()
@@ -831,8 +803,6 @@ composition.Run('CityIdentityRead',{},{'CityIdentityRead'},function() SPCCityIde
 composition.Run('CityIdentityMapping',{},{'CityIdentityExperiment'},function() include('CityIdentityExperiment');include('CityIdentityMapping');SPCCityIdentityMapping.Start(P,shared) end)
 
 composition.Run('TimedProject',{},{'TimedProject'},function() include('TimedProject');SPCTimedProject.Start(P,shared) end)
-
-composition.Run('NetworkIsolation',{'NetworkBridge'},{'NetworkIsolation'},function() include('NetworkIsolation');SPCNetworkIsolation.Start(P,shared) end)
 
 composition.Run('MemoryObservation',{},{'MemoryObservation','MemoryEvidence'},function()
  SPCRuntimeGC.Start(P,shared,SPCPerformance and SPCPerformance.PrepareMemoryObserver)

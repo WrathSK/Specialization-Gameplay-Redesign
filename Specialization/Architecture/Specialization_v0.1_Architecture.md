@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0186
+# Specialization v0.1 Architecture — A0187
 
 Document Owner: Codex
-Architecture Revision: A0186
+Architecture Revision: A0187
 Design Spec Synced Through: D0060
 Design Spec SHA256: 782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39
 Latest Accepted Design Revision: D0060
@@ -14,6 +14,8 @@ Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; 
 A0184 records the Owner-accepted convergence successor and finite workflow/current-information synchronization (2026-11-04). The reviewed evidence was published at `fcf61e2bbbd74394490cbd40af033c3e3529bf3a`; independent remote retrieval matched all 19 SHA256/byte counts. Current normative contracts below replace candidate routing. Source implementation and native acceptance remain separate in Status. That initial authorization covered PU01. Current slice and validation gates are recorded in Status.
 
 A0186 records the Owner's engineering closeout approval on 2026-11-17 after the Stable B527 scoped audit. It synchronizes the implemented responsibilities and identifies superseded experiment descriptions; it introduces no new gameplay, save contract, recovery policy or environment promise. The closed scope is the approved convergence program on B527.554, not every future Design capability or historical document-cleanup task. Evidence and retained observations remain in [Status CURRENT](../Status/Specialization_P0_Status.md#current-authoritative-state) and the [accepted closeout record](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md). Main promotion and deployment retain separate authorization.
+
+A0187 records the subsequent narrow retirement of those three unloaded city files and the inert NetworkIsolation controller/request entries. Current network/effect owners, retained turn checks, owner-local withdrawal seams and GC protections are unchanged. This does not reopen the accepted convergence scope or authorize new save compatibility.
 
 ### Accepted convergence boundaries — 2026-11-04
 
@@ -104,7 +106,7 @@ Meaningful records are separate from bounded optional native sampling. Identity-
 
 [当前E2合同](v2/P0_E2_Plan.md#b108-authorized-new-game-multi-city-cutover--contract-before-implementation)落地为一个紧凑Game索引和逐城Game记录。索引保存分配序号/原始身份依据；每城保存自身绑定证据、首次完成、投资收据、模板历史和所有权证据。既有记录更新只写该城；它不是把所有未来专业资产塞入一个通用数据库。
 
-[CityProgressionStore](../../Mod/CityProgressionStore.lua) production Start uses the current authority; StartLegacyTest is limited to explicit fixtures. The former Binding/Completion/Journal/Flow shells have left the runtime package. CityInheritance, InheritanceShadow and CityInheritanceRead remain packaged but are not included or started; this does not imply a live old authority. Strict identity, committed permanent history, new-game initialization, partial writes and HELD/rollback boundaries retain the accepted E2 contract. Missing records do not authorize reconstructing a specialization from existing districts or adding old-version save compatibility.
+[CityProgressionStore](../../Mod/CityProgressionStore.lua) production Start uses the current authority; StartLegacyTest is limited to explicit fixtures. The former Binding/Completion/Journal/Flow shells have left the runtime package. The remaining unloaded CityInheritance, InheritanceShadow and CityInheritanceRead files were removed in post-closeout B528 maintenance. Their original code remains in fixed Git history for explicit historical tests; it is not an additional production authority. Strict identity, committed permanent history, new-game initialization, partial writes and HELD/rollback boundaries retain the accepted E2 contract. Missing records do not authorize reconstructing a specialization from existing districts or adding old-version save compatibility.
 
 [EffectiveFacts](../../Mod/EffectiveFacts.lua)从基础进度与已确认投资得到Potential，再从当前总督门槛求ACTIVE；读取失败保留UNKNOWN语义。[Standardization](../../Mod/Standardization.lua)在新模式将自身模板读写路由至进度store，仍由该模块验证模板目录和学习证据。Identity/Potential/明确永久收据与当前总督、路线、收益载体分开。
 

@@ -1,28 +1,53 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1095
-Implementation Build: B527.554 / modinfo554 on develop and in the temporary installation. Stable B489.516 is from main merge ce497054.
-Architecture Revision Reviewed: A0186
+Status Revision: S1096
+Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
+Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CONVERGENCE_ENGINEERING_CLOSED_OWNER_ACCEPTED
+Work State: POST_CONVERGENCE_DOCUMENT_LIFECYCLE_MAINTENANCE
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B527.554 temporarily installed](#b527-verified-temporary-deployment-for-native-acceptance--s1090) with 314/314 files verified against develop. |
+| Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
-| Validation | Owner-accepted engineering closeout after the Stable scoped audit; final local evidence and retained limits are recorded in [S1095](#owner-accepted-architecture-convergence-closeout--s1095). B527 HD and observed 69-target official-branch acceptance remain scoped; no B527 28-target or new native PASS is implied. |
-| Next action | No active convergence implementation slice. Use the [accepted closeout record](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md) for retained observations and separate historical-document work. Future feature Design, main promotion and deployment retain their own authorization. |
+| Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
+| Next action | Continue the previously authorized documentation lifecycle work: current-entry accuracy, bounded family classification and safe small cleanup. New large history-only deletions still need an exact family proposal and Owner approval. No deployment or main promotion. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Residual diagnostic and unloaded city files — S1096
+
+**Owner authorization / pre-code plan.** The Owner authorized completing the four residual code retirements before continuing documentation lifecycle work. Exact files: `Mod/NetworkIsolation.lua`, `Mod/CityInheritance.lua`, `Mod/InheritanceShadow.lua`, `Mod/CityInheritanceRead.lua`. Three city files are packaged but never included or started. The hidden isolation controller starts, but cannot arm because its prerequisite writers/UI have retired. Remove these files, their manifest declarations and the controller/obsolete manual request entries. Preserve intentionally cleared legacy slots and the existing owner-local withdrawal seams / GC and network safety guards; this is not a redesign of shared effects or their recovery policy.
+
+**Runtime Impact Contract.** Target B528.555, no automatic consumers added, no new fact authority, save/schema, source sampling, scheduler, event frequency, gameplay, irreversible operation or GC-policy change. Startup loses only the inert controller, which has no native listeners or normal writes. Real Store, network proof, independent effect writers and exact legacy SQL/cleanup owners remain. Test the actual package and nonempty route proof, unchanged healthy startup order except that one removal, manual requests no longer touching old modules, original city fixtures against frozen source, and exact four-path disposable activation/rollback. Full local artifacts stay ignored. No live deployment, game launch or mandatory native retest is authorized by this cleanup.
+
+**Completed / LOCAL_SIMULATION_PASS.** Four files and eight modinfo declarations are removed. Gameplay no longer starts NetworkIsolation or dispatches its two commands / the four old inheritance commands; the hidden panel no longer arms the experiment. Existing cleared legacy slots and guarded owner-local withdrawal seams intentionally remain. Current Bridge/Sender/Input, background route collection, Commerce, CultureNetwork, StandardizationEffects, LegacyCleanup, Store and RuntimeGC match the B527 source byte-for-byte.
+
+The versioned `O8ResidualCleanup` stage passes 35 tests: real roots preserve three nonempty proof packets with retired globals forbidden and zero missing includes; removed requests make no retired calls or permanent writes; original three city assertion bodies use identical archived source; every historical startup-order comparison is retained before the one controller removal; exact four-path activation/restoration succeeds only with the reviewed list in disposable directories. No native package was replaced. Static checks compile 182 Lua 5.1 files, parse 25 XML/modinfo files and resolve 611 File entries across the 310-file candidate.
+
+**Historical-test boundary and first failures.** `r1` exposed the old wrappers' transitive B059 dispatcher extraction, whose delimiter is absent at B527 as well as current source. It is not a new runtime defect. The versioned test now executes only the three unchanged city assertion bodies, excluding that unrelated predecessor execution and its old PASS banners. `r2`/`r3` exposed the old inheritance fixture's unpaired current provider / missing instrumentation Count stub; the fixture now pins its original published EffectiveFacts API and supplies its read-only counter. All value, history, ownership and error assertions are unchanged. Whole old wrapper chains and the separate B137 experiment script are not claimed passing. The earlier attempts are retained under `local/refactor/S1096-O8ResidualCleanup-r1/` through `r3/`, including source snapshots and tracebacks; no assertions or failure artifacts were erased.
+
+**Reproduction and recovery.** CPython 3.14.8, Lupa 2.8 / Lua 5.1. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage O8ResidualCleanup --output local/refactor/<fresh-directory>/closure.json` with Lupa on PYTHONPATH and the explicit read-only HD database SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Final artifact `local/refactor/S1096-O8ResidualCleanup-r4/closure.json`, SHA256 `2cbeed95f4aa46311741d510cc04273d9db646d0568004628d8df9a2c99c39e8`; tested source snapshot `e10a426664e1a7f038d9d2f825abce54d6484d4a2e3dff3ad394f026ec48f31c`, parent `a4b340b9` / dirty=true. Verify that digest against the containing commit. Full artifacts are local execution records, not permanent backups.
+
+The exact old files are preserved at published commit `5cf9b48463cc5f875ebab562cc89c9cedb9d0bcb`; recover one with `git show 5cf9b48463cc5f875ebab562cc89c9cedb9d0bcb:<original-path>`. SHA256:
+
+| Original path | SHA256 |
+|---|---|
+| `Mod/CityInheritance.lua` | `98867d60bdc7d612842744e432d344743a05e2341b8b578458153b66d32a4618` |
+| `Mod/CityInheritanceRead.lua` | `1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446` |
+| `Mod/InheritanceShadow.lua` | `a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1` |
+| `Mod/NetworkIsolation.lua` | `44119c500cafce59b573e46ffcaadc750ef9359907c8d9cbed1c25a811e08366` |
+
+**User testing / Primary next.** No native retest is required for these unmounted/inert paths; no native PASS is added. B527's temporary runtime and B489 recovery remain untouched. Submit/push this batch and continue the existing documentation lifecycle scope, keeping new large history-family removals at their Owner approval boundary.
 
 ### Owner-accepted architecture convergence closeout — S1095
 

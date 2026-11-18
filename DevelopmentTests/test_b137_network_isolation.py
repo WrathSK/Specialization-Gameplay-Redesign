@@ -6,6 +6,7 @@ control/ownership behavior, never native memory improvement or gameplay PASS.
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/spc-b069-python /opt/homebrew/bin/python3.14 DevelopmentTests/test_b137_network_isolation.py
 """
 from pathlib import Path
+from retired_crew_sources import B527, source as retired_source
 import argparse
 import ast
 import json
@@ -26,6 +27,8 @@ def source(name, old=False):
     path = name + '.lua'
     if old:
         return subprocess.check_output(['git', 'show', f'{BASELINE}:Mod/{path}'], cwd=ROOT, text=True)
+    if path == 'NetworkIsolation.lua':
+        return retired_source(path,B527)
     return (MOD / path).read_text()
 
 

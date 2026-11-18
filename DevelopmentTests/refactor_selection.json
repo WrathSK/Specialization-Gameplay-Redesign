@@ -2537,6 +2537,14 @@
       "test_refactor_s9g4",
       "test_refactor_s9g3",
       "test_refactor_s9g2"
+    ],
+    "O8ResidualCleanup": [
+      "test_o8_residual_cleanup",
+      "test_refactor_s9c2.Startup",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_b397_network_transport.StrictTransactions",
+      "test_p0_panel_current_layout.CurrentPanelTests"
     ]
   },
   "counterexamples": {},
@@ -2600,7 +2608,8 @@
       "test_refactor_s5d4b2",
       "test_refactor_s9c2",
       "test_refactor_s9c4a",
-      "test_refactor_s9c4b"
+      "test_refactor_s9c4b",
+      "test_o8_residual_cleanup"
     ],
     "Mod/UI/DialogueRefresh.lua": [
       "test_refactor_defects.Defects",
@@ -2722,7 +2731,7 @@
       "test_o7_production_report"
     ],
     "Mod/DevelopmentInvestment.lua": [
-      "test_refactor_s4b",
+      "test_o7_commercial_trace",
       "test_refactor_s6f.Consumers",
       "test_refactor_s6f.RetainedDevelopment",
       "test_refactor_s6f.RetainedGuards"
@@ -2880,12 +2889,6 @@
       "test_refactor_s6e.RetainedReceipts",
       "test_refactor_s6e.RetainedGuards"
     ],
-    "Mod/DevelopmentInvestment.lua": [
-      "test_o7_commercial_trace",
-      "test_refactor_s6f.Consumers",
-      "test_refactor_s6f.RetainedDevelopment",
-      "test_refactor_s6f.RetainedGuards"
-    ],
     "Mod/UI/CapitalInvestmentPanel.lua": [
       "test_refactor_s6e.UIQuotes",
       "test_refactor_s6e.RetainedSidebar"
@@ -3032,7 +3035,8 @@
     ],
     "Mod/Probe.lua": [
       "test_o7_runtime_gc",
-      "test_refactor_s9e1"
+      "test_refactor_s9e1",
+      "test_o8_residual_cleanup"
     ],
     "Mod/ResearchCrossSample.lua": [
       "test_refactor_s9e2"
@@ -3102,6 +3106,24 @@
     "Mod/UI/SPCUnitPanelOfficial.lua": [
       "test_o6_unit_panel",
       "test_environment_assembly.UIBaseSelection"
+    ],
+    "Mod/UI/P0Panel.lua": [
+      "test_o8_residual_cleanup"
+    ],
+    "Mod/SpecializationP0.modinfo": [
+      "test_o8_residual_cleanup"
+    ],
+    "Mod/NetworkIsolation.lua": [
+      "test_o8_residual_cleanup"
+    ],
+    "Mod/CityInheritance.lua": [
+      "test_o8_residual_cleanup"
+    ],
+    "Mod/InheritanceShadow.lua": [
+      "test_o8_residual_cleanup"
+    ],
+    "Mod/CityInheritanceRead.lua": [
+      "test_o8_residual_cleanup"
     ]
   },
   "exclusions": {

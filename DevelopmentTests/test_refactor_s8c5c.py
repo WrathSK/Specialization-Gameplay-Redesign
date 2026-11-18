@@ -148,6 +148,9 @@ class Production(unittest.TestCase):
    expected.remove('SPCGWAdjacency')
    self.assertEqual([n for n in start_order(retired_source('Gameplay.lua',B521)) if n!='SPCLegacyCleanup'],expected)
    expected.remove('SPCLv4Percent')
+   from retired_crew_sources import B527
+   self.assertEqual([n for n in start_order(retired_source('Gameplay.lua',B527)) if n!='SPCLegacyCleanup'],expected)
+   expected.remove('SPCNetworkIsolation')
    if not reply_service:expected.remove('SPCPlayerActionReplies')
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"))

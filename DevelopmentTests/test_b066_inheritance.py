@@ -1,4 +1,5 @@
 from pathlib import Path
+from retired_crew_sources import B527, source as retired_source
 from lupa.lua55 import LuaRuntime
 R=Path(__file__).resolve().parents[1];M=R/'Mod'
 s=(R/'DevelopmentTests/test_b064_shadow.py').read_text().replace("replace('89','90')","replace('89','92')")
@@ -11,7 +12,7 @@ function make(pid,id) local c={owner=pid,id=id,props={}};function c:GetOwner() r
 Events={};GameEvents={};for _,ns in ipairs({Events,GameEvents}) do setmetatable(ns,{__index=function(t,k) local h={};local e={Add=function(f) h[#h+1]=f end,Fire=function(...) for _,f in ipairs(h) do f(...) end end};rawset(t,k,e);return e end}) end
 Game={GetProperty=function(_,k) return cp(store[k]) end,SetProperty=function(_,k,v) store[k]=cp(v) end,GetCurrentGameTurn=function() return turn end}
 CityManager={GetCity=function(pid,id) return cities[pid..':'..id] end}
-P={IsTestPlayer=function(p) return p==0 end,CityRoleFacts=function(c) return {owner=c.owner,cityID=c.id,governorGateStatus='KNOWN',governorLevelCeiling=2} end}
+P={Count=function() end,IsTestPlayer=function(p) return p==0 end,CityRoleFacts=function(c) return {owner=c.owner,cityID=c.id,governorGateStatus='KNOWN',governorLevelCeiling=2} end}
 local first={districtID=9,type='DISTRICT_INDUSTRIAL_ZONE',turn=1}
 local j={owner=0,cityID=11,token='uid',health='TRACKING',specialization='INDUSTRY',potential=1,first=first}
 local flow={owner=0,cityID=11,token='uid',stage='DONE',facts=cp(j),target=cp(j)}
@@ -23,8 +24,9 @@ shared.OnPermanentCityWrite=function(c) assert(shared.CityInheritance.AllowsShad
  for k,key in pairs({TOKEN='SPC_DEV_BINDING_B013_TOKEN',JOURNAL='SPC_DEV_CITY_JOURNAL_B015',FLOW='SPC_DEV_CITY_FLOW_B020',INVEST='SPC_DEV_INVESTMENT_LEDGER_V1',TEMPLATES='SPC_STANDARDIZATION_LEDGER_V1'}) do s.values[k]=c:GetProperty(key) end
  store.SPC_INHERITANCE_SHADOW_V1.records.uid=s end
 ''')
-l.execute((M/'EffectiveFacts.lua').read_text());l.execute('SPCEffectiveFacts.Start(P,shared)')
-l.execute((M/'CityInheritance.lua').read_text())
+# Keep the historical provider API paired with this original fixture.
+l.execute(retired_source('EffectiveFacts.lua','ca540456ff1d0610281085ba6026b21f636933e9'));l.execute('SPCEffectiveFacts.Start(P,shared)')
+l.execute(retired_source('CityInheritance.lua',B527))
 l.execute('''
 SPCCityInheritance.Start(P,shared);Events.LoadScreenClose.Fire();local d=shared.CityInheritance
 local ai=make(1,99);Events.CityTransfered.Fire(1,99);local key=SPCCityInheritance.KEY

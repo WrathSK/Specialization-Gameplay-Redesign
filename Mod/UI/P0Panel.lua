@@ -124,7 +124,7 @@ request=function(action,advance)
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
   if not eligible then trace("玩家资格检查未通过："..tostring(reason));return end
-  local storageAction=action=='EVENT_ORDER_TOGGLE' or action=='NETWORK_ISOLATE' or action=='NETWORK_ISOLATION_READ' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL" or action=="SHADOW_READ" or action=="INHERIT_READ"
+  local storageAction=action=='EVENT_ORDER_TOGGLE' or action=='MEMORY_GC_READ' or action=='MEMORY_GC_COLLECT' or action=='MEMORY_GC_AUTO_ON' or action=='MEMORY_GC_AUTO_OFF' or action=="IDENTITY_EXPERIMENT_READ" or action=="IDENTITY_COMPARE" or action=="IDENTITY_DETAIL"
   local city=not storageAction and UI.GetHeadSelectedCity() or nil
   local investmentUnitID,investmentPlanToken
   if action=="INVEST_PREPARE" then
@@ -145,19 +145,6 @@ request=function(action,advance)
   if action=='CULTURE_MEANING_READ' or action=='CULTURE_MEANING_DIAGNOSTIC_READ' then meaningReadReference=SPCNetworkInput.Reference(city)end
   trace("BEFORE_DISPATCH "..action.." city="..tostring(city and city:GetID()))
   local packet={OnStart="SPC_P0_Request",Action=action,Token=pendingToken,CityID=city and city:GetID(),Page=page,UnitID=investmentUnitID,PlanToken=investmentPlanToken}
-  if action=='NETWORK_ISOLATE' then
-    local g=ExposedMembers.SPC_P0;local bridge=g and g.NetworkBridge
-    local epoch=bridge and bridge.epoch
-    local ok,err=pcall(function()
-      assert(g and g.Version==P.VERSION and bridge.ready,'Gameplay尚未就绪')
-      for _,key in ipairs({'SPC_P0_BackgroundRoutes','SPC_CopyBackground','SPC_DiscountEligibility'}) do
-        local u=ExposedMembers[key];assert(u and type(u.StopNetwork)=='function','UI未就绪：'..key)
-        assert(u.StopNetwork(epoch)==true,'UI退出未确认：'..key)
-      end
-    end)
-    if not ok then pendingToken=nil;status('Network隔离未启动；停止本次对照，冷启动原存档。\n'..tostring(err));return end
-    packet.Epoch=epoch
-  end
   local ok,err=pcall(UI.RequestPlayerOperation,playerID,PlayerOperations.EXECUTE_SCRIPT,packet)
   trace(ok and ("READING "..action) or ("DISPATCH_ERROR "..P.Scalar(err)))
   if ok then waitForResponse() end

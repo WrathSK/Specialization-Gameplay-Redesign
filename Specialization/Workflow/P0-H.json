@@ -10,15 +10,15 @@
     "commerce": "D0059",
     "shared": "D0060",
     "presentation": "D0032",
-    "architecture": "A0186",
-    "status": "S1095",
-    "runtime": "B527.554 / modinfo554",
+    "architecture": "A0187",
+    "status": "S1096",
+    "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record Owner-accepted engineering closeout of the approved B527 convergence scope, factual Architecture synchronization and scoped final evidence without new runtime implementation or promotion.",
+  "goal": "Complete the authorized residual code cleanup, then continue existing documentation lifecycle maintenance within prior deletion and authority boundaries.",
   "implementation_authorized": false,
   "context": [
     {
@@ -30,8 +30,8 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Owner-accepted architecture convergence closeout — S1095",
-      "reason": "Owner decision, audit disposition, final local regressions and retained evidence boundaries"
+      "selector": "### Residual diagnostic and unloaded city files — S1096",
+      "reason": "Completed narrow code retirement, exact old-file recovery and documentation maintenance next scope"
     },
     {
       "path": "Specialization/Reports/Proposals/Architecture_Convergence_Closeout_Review.md",
@@ -66,6 +66,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1096: O8ResidualCleanup 35/35 local tests; 182 Lua compiles, 25 XML/modinfo parses and 611 File references. Four exact removals / disposable rollback verified; current route/effect/GC owners unchanged. Historical assertion bodies only, not full old wrapper PASS. No deployment or native result.",
     "S1095: Owner accepted engineering closeout; Claude C1–C3 corrections and A0186 factual sync are complete. Eleven targeted stages pass (332 distinct tests); the initial frozen-source assertion mismatch is preserved and repaired without changing either version-specific assertion or Mod code. No new native result.",
     "S1094 prepares a pinned handoff after verifying source identity, evidence hashes, document links and Context Lock. Independent audit findings are pending.",
     "S1093: Owner observed immediate Culture Network output; T24 seq1277/1278 and 1293/1296 corroborate proof and positive projections. Official-branch saved-load first turns at seq290 and 526 are ready. Actual no-HD target set is 69, distinct from the prior 28-target baseline.",
@@ -5589,6 +5590,26 @@
       "deployment": "NOT_RUN",
       "main_promotion": "NOT_AUTHORIZED",
       "report": "Specialization/Status/Specialization_P0_Status.md#owner-accepted-architecture-convergence-closeout--s1095"
+    },
+    "s1096_residual_code_cleanup": {
+      "status": "LOCAL_SIMULATION_PASS",
+      "source_runtime": "B528.555 / modinfo555",
+      "candidate_files": 310,
+      "removed_files": {
+        "Mod/CityInheritance.lua": "98867d60bdc7d612842744e432d344743a05e2341b8b578458153b66d32a4618",
+        "Mod/CityInheritanceRead.lua": "1ada898e632edcadc7ebfba549a6c312c47a98090f0838e3be999a1388d2b446",
+        "Mod/InheritanceShadow.lua": "a7a109b518a449ed31ab9d3a525fce929625de2a0235d5d50b4af3bf910a26e1",
+        "Mod/NetworkIsolation.lua": "44119c500cafce59b573e46ffcaadc750ef9359907c8d9cbed1c25a811e08366"
+      },
+      "recovery_commit": "5cf9b48463cc5f875ebab562cc89c9cedb9d0bcb",
+      "artifact": "local/refactor/S1096-O8ResidualCleanup-r4/closure.json",
+      "artifact_sha256": "2cbeed95f4aa46311741d510cc04273d9db646d0568004628d8df9a2c99c39e8",
+      "tested_source_snapshot_sha256": "e10a426664e1a7f038d9d2f825abce54d6484d4a2e3dff3ad394f026ec48f31c",
+      "tests": 35,
+      "historical_scope": "THREE_ORIGINAL_CITY_ASSERTION_BODIES_ONLY_NOT_TRANSITIVE_WRAPPERS",
+      "inert_owner_seams_and_gc_guards": "PRESERVED",
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#residual-diagnostic-and-unloaded-city-files--s1096"
     }
   }
 }
