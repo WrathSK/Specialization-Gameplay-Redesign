@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1094
+Status Revision: S1095
 Implementation Build: B527.554 / modinfo554 on develop and in the temporary installation. Stable B489.516 is from main merge ce497054.
-Architecture Revision Reviewed: A0185
+Architecture Revision Reviewed: A0186
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: CONVERGENCE_CLOSEOUT_EXTERNAL_AUDIT_PENDING
+Work State: CONVERGENCE_ENGINEERING_CLOSED_OWNER_ACCEPTED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,14 +15,44 @@ Work State: CONVERGENCE_CLOSEOUT_EXTERNAL_AUDIT_PENDING
 |---|---|
 | Build and installation | [B527.554 temporarily installed](#b527-verified-temporary-deployment-for-native-acceptance--s1090) with 314/314 files verified against develop. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
-| Validation | B527 has [HD Great Work/cold-load acceptance](#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091) and [positive Culture Network plus first-turn readiness in the observed 69-target no-HD configuration](#b527-no-hd-culture-network-and-load-readiness-verified--s1093). The latter uses the official assembly and differs from the earlier 28-target profile. B489.516 retains its scoped acceptance. |
-| Next action | The Owner forwards the [bounded Claude audit handoff](../Reports/Proposals/Architecture_Convergence_Closeout_Audit_Handoff.md). Read the returned findings before final closeout and the five proposed factual Architecture description corrections. |
+| Validation | Owner-accepted engineering closeout after the Stable scoped audit; final local evidence and retained limits are recorded in [S1095](#owner-accepted-architecture-convergence-closeout--s1095). B527 HD and observed 69-target official-branch acceptance remain scoped; no B527 28-target or new native PASS is implied. |
+| Next action | No active convergence implementation slice. Use the [accepted closeout record](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md) for retained observations and separate historical-document work. Future feature Design, main promotion and deployment retain their own authorization. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Owner-accepted architecture convergence closeout — S1095
+
+**User decision / engineering closeout.** On 2026-11-17 the Owner approved closing the accepted convergence scope after Claude's Stable scoped review returned CONDITIONALLY READY with no blocking runtime finding. [The accepted record](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md) now incorporates C1–C3. The unchanged [audit](../Reports/Advisory/Architecture_Convergence_Closeout/B527_Closeout_Audit.md), SHA256 `c4751e9498a6a184314283aece05cedd5ee71b1e6bdc032d7c3d77b4163b2c0a`, is published as Advisory, not a second authority. Architecture A0186 synchronizes Store.Base, retired city shells, Great Work transport, industrial withdrawal and official/HD UI ownership; five superseded experiment sections are labelled historical and the old-consumer sentence is corrected. Historical section bodies, Design and Mod bytes are unchanged.
+
+**Evidence corrections and retained boundaries.** S1093's 69-target run selected official assembly without HD, but the 41 extra targets include gameplay scripts and database updates. It is acceptance of that observed configuration, not a B527 pass for the pinned 28-target profile or general compatibility with those extras. The exact HD Study uplift remains open: B489's 12% panel / one Study is not matched by its maximum logged 10 application, and B527 supplies no positive uplift sample. Positive no-HD cold continuity, rare Crew/Claim attribution, Expedition border displacement, historical fixture non-passes, real-language layout and unmeasured performance retain their own scopes. The inert isolation diagnostic, three packaged-but-unloaded city files and separate historical-document cleanup are not hidden or declared complete. Optional fixed-profile native checking is not required for this engineering closeout. Supported saves remain current-build new games / same-build reloads; no old-version compatibility is added.
+
+**Runtime impact.** Documentation and one historical-test source-pairing correction only: no production module, event, read/write frequency, Carrier, save, transaction, GC, deployment or environment change. The prior 154-item accumulated P0-H reading list is replaced with five current closeout/authority entries; the old manifest and checkpoint results remain recoverable in Git and all prior result objects are retained.
+
+**LOCAL_SIMULATION_PASS in the selected scope.** Eleven versioned stages below pass; their union contains 332 distinct tests, not the sum of overlapping stage counts. The first nine unchanged suites ran against clean `7e69d80a`, source snapshot `dcfeda1bea9f0be32734ccb0540b9558f64d5b956f24337e3cc9c837acdb1636`. The repaired Inspiration stage and Dialogue regression ran with the single test change, snapshot `91d9e84c52635455fa6247e4d9d291947831529c3ba39f578a09c09000deee63`, with parent `7e69d80a` / dirty=true; the containing commit must match that scope digest. Mod remains byte-identical to `5cf9b484`.
+
+**Unique initial failure and repair.** `O7InspirationCleanup` first ran 65 tests with one ERROR in `test_refactor_s8c3.DeferredEffects.test_original_fake_store_inline_assertion_retained_on_exact_source`. It froze the Lua owners at `55b4b6c6`, but delegated to a current Dialogue test whose assertion had changed to deferred publication. `DevelopmentTests/test_refactor_s8c3.py` now compiles and invokes the original method from that exact frozen commit; the original inline assertion and the current deferred assertion both remain unchanged. Inspiration reruns 65/65 and the current Dialogue transport stage 44/44. Original failure: `local/refactor/S1095-O7InspirationCleanup-2a057e76/closure.json`, SHA256 `84779f8a96eaf01019cabdb870077fd911f506147c9baec330a8a8bd341be61c`, with the full traceback retained alongside it. This is a historical-test version mismatch, not evidence of a native runtime failure or old-save support.
+
+| Stage | Passing tests | Ignored local artifact | SHA256 |
+|---|---:|---|---|
+| NCommerceEffectReadback | 90 | `local/refactor/S1095-NCommerceEffectReadback-2a057e76/closure.json` | `95480f9144430a40b535eb7eeb003a2f56d35985e66219491b3017e3eca9f245` |
+| NCultureNetworkEffectReadback | 128 | `local/refactor/S1095-NCultureNetworkEffectReadback-2a057e76/closure.json` | `e9e3cd00730de849a73f8af9af266b626a5d97812622d3680765d839f45126a2` |
+| O7AestheticCleanup | 39 | `local/refactor/S1095-O7AestheticCleanup-2a057e76/closure.json` | `6d191814efd36d56c9f166b126614e4ea8822f88bab22fad02dba96661e91a39` |
+| O7BoostCleanup | 27 | `local/refactor/S1095-O7BoostCleanup-2a057e76/closure.json` | `3eb84c726723c052b251e895e35fea4b86fce064259118509541118d63e93291` |
+| O7BoostStartupHandoff | 23 | `local/refactor/S1095-O7BoostStartupHandoff-2a057e76/closure.json` | `3d0e556c5d7eff6467b3c774ac2ecf4b9166fa2c9b3ab50023f747252aff085f` |
+| O7CommerceCleanup | 46 | `local/refactor/S1095-O7CommerceCleanup-2a057e76/closure.json` | `20cc627ee0458369cfdfada92ef721a5779965afc1d7112a317169a5dcb9cfa7` |
+| O7DialogueTransport | 44 | `local/refactor/S1095-O7DialogueTransport-frozen-pair/closure.json` | `f1f92388251ec9f57a571cf02b94434c0bc9f803c8045bde7739efecffb5fc6b` |
+| O7InspirationCleanup | 65 | `local/refactor/S1095-O7InspirationCleanup-frozen-pair/closure.json` | `0f7a09e252eb353174f589f332a503ab6e58c662431232fea211415a10c54d69` |
+| O7Level3Cleanup | 26 | `local/refactor/S1095-O7Level3Cleanup-2a057e76/closure.json` | `a0291b770ec3e209078678e995bf523803a137f0d4325f27f3229086588f7b93` |
+| O7MeaningCleanup | 47 | `local/refactor/S1095-O7MeaningCleanup-2a057e76/closure.json` | `85a4aa8014a85d167e7a02860bcd68a42d3998c6cd06d6fe575a768b0aee4777` |
+| O7wLegacyCompletionRecordRetirement | 31 | `local/refactor/S1095-O7wLegacyCompletionRecordRetirement-2a057e76/closure.json` | `ad10c9b4c4410d67e3d405f6e62fc49d65e758291d3d451959ad32afe24a8b89` |
+
+**Reproduction / limits.** CPython 3.14.8, Lupa 2.8, Lua 5.1 backend, Darwin arm64; the frozen HD database SHA256 is `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Set `SPC_DEBUG_GAMEPLAY_DB` to that read-only captured database and `PYTHONPATH` to the Lupa installation; the captured DB was opened read-only and copied into fixture memory, not modified. Run `python3.14 -B DevelopmentTests/run_refactor.py --stage <Stage> --output local/refactor/<fresh-directory>/closure.json` for each named stage. Full artifacts/transcripts are local-only execution records, not permanent backups; source, versioned commands and input identities support comparable reruns. No new game test, deployment or full historical suite was run. Scoped publication/reference checks and P0-H Context Lock validation accompany this documentation batch.
+
+**User testing / Primary next.** No additional native test is required for the approved engineering closeout. No further Owner decision is pending in this slice. Stop at this completed boundary; historical-document retirement and future feature Design stay separate, and main promotion / stable deployment need their own authorization.
 
 ### B527 closeout audit handoff prepared — S1094
 

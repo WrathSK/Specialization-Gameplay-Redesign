@@ -1,18 +1,18 @@
-# 架构收敛结项审阅稿
+# Architecture convergence closeout — Owner accepted
 
-整理日期为 2026-11-17。本文件汇总当前实现与证据，供 Owner 结项审阅。正式规则沿用 [Architecture A0185](../../Architecture/Specialization_v0.1_Architecture.md) 和现行 Design。实际进度由 [Status](../../Status/Specialization_P0_Status.md#current-authoritative-state) 维护。
+Owner approval: 2026-11-17. Audited runtime: B527.554 at `5cf9b48463cc5f875ebab562cc89c9cedb9d0bcb`; reviewed material: `9a298a91f5a5477851fe1189b3df8dacc9b4c6d2`. The original draft remains retrievable from that commit and this path. Formal factual synchronization is [Architecture A0186](../../Architecture/Specialization_v0.1_Architecture.md); gameplay Design is unchanged. Actual source, deployment and retained work remain in [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state).
 
-## 负责人摘要
+## Closeout decision and scope
 
-本轮已经完成共享事实、变化通知、网络收益、独立行动与项目、HD／官方环境适配，以及旧实验模块的生产职责移交。B527 是这轮工程迁移的集成候选，HD 巨作更新和冷读档已有实机记录，本次无 HD 配置又补到了文化网络正向收益与加载后首回合清理。
+The Owner accepted engineering closeout after [Claude's Stable scoped audit](../Advisory/Architecture_Convergence_Closeout/B527_Closeout_Audit.md) returned CONDITIONALLY READY with no blocking runtime defect. The record corrections C1–C3 are now incorporated: the observed no-HD environment is identified accurately, the exact HD Study uplift remains an observation, and the five implementation descriptions plus superseded experiment sections are synchronized in A0186.
 
-当前可以审阅是否按已批准范围结束这一轮工程迁移。此前待观察的文化网络和首回合清理已有当前官方分支的实测结果。本次实际加载 69 个条目，与早期 28 条目的固定官方配置存在差异，按真实环境保留验收范围。正式架构中的几段实现说明仍需按下表作事实性同步。
+The closed work is the approved shared-fact, notification, network-effect, action/project, environment/UI and legacy-responsibility convergence scope. HD Great Work/cold-load evidence and the observed no-HD Culture Network/first-turn evidence retain their measured limits. The no-HD run used 69 targets, including third-party gameplay scripts and database updates; it is not a B527 result for the earlier pinned 28-target profile. No new native test or performance conclusion is awarded by this approval. Main promotion, stable deployment, future Design and historical-document retirement remain separate work.
 
 ## 固定审阅基线
 
 | 对象 | 已核对的定位 |
 |---|---|
-| 正式规范 | Architecture A0185、Design D0060，四个现行专业内容 D0059 |
+| 正式规范 | Audited A0185; factual sync A0186. Design D0060 and four-profession content D0059 are unchanged. |
 | 候选运行代码 | B527.554，源码提交 `5cf9b48463cc5f875ebab562cc89c9cedb9d0bcb` |
 | 当前安装来源 | `1495cbd1a32d2877df5aab8ecedcacbd733f35d9`，与上述候选的 Mod 字节一致 |
 | 本稿所汇总的证据检查点 | [HD 记录 S1091](../../Status/Specialization_P0_Status.md#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091) 与 [无 HD 记录 S1093](../../Status/Specialization_P0_Status.md#b527-no-hd-culture-network-and-load-readiness-verified--s1093)；代码基线仍为上述 B527 |
@@ -46,7 +46,7 @@
 | B527 无 HD 保存加载 | 新进程的首次加载在 seq290 确认首个本地回合清理完成；同一进程内再次加载后，T2 seq526 再次确认 B055_GW 等控制项 READY。补到了当前官方分支的首回合记录。 |
 | 无 HD 文化网络正向收益 | Owner 观察商路发出后立即生效。T24 两次路线证明分别带来两个接收城市的正向文化网络计数。实际配置走官方装配，加载 69 个条目。 |
 
-最新无 HD 配置包含早期官方基线的全部 28 个目标及额外 41 个目标，包括 Better Trade Screen。实测结果按这套配置记录；对额外 Mod 的完整兼容性以及精确 28 条目配置的该场景覆盖仍各有边界。当前会话在正向收益出现后未再次读档，既有 HD 正向收益冷恢复证据继续按原范围继承。
+The observed no-HD configuration contains all 28 targets of the earlier official baseline plus 41 additional targets, including Better Trade Screen. Those extras also load gameplay scripts and database updates. Acceptance is limited to official assembly in this observed configuration, not general compatibility with the extras or a B527 pass for the exact 28-target profile. The session was not reloaded after the positive benefit; earlier HD cold-continuity evidence retains its own scope.
 
 B527 原始材料位于忽略目录 `local/legacy-workspace/Specialization/Status/Validation/Evidence/B527_Readiness_GreatWork_20261117/manifest.json`，SHA256 `65c30333af5863963276aed3ad9a37e45af96b4c1f09ce129dbeeacb348b1239`。三个采集会话、19 份原始文件和部署回执的定位由该 manifest 提供。本批巨作收益来自 Owner 观察。采集中的断帧和诊断上限仍按原记录保留。
 
@@ -59,6 +59,9 @@ B527 原始材料位于忽略目录 `local/legacy-workspace/Specialization/Statu
 | 施工队特殊计数顺序、迟到回调和认领异常来源 | 两城同级同回合在已测计数路径下通过。其他路径沿用唯一凭据保护；真实异常发生时留证调查。[已测范围](../../Status/Specialization_P0_Status.md#focused-b413-native-evidence-reviewed--s0902) |
 | 人文考察团边境位移 | 独立的实机问题，沿用现有观察与异常调查安排。 |
 | 历史测试夹具与版本差异 | 旧归属、住房／GPP和训练替身中的非通过项保留各自基线及断言。影响到相关路径时再核对。本轮没有执行全历史测试，已有数目不能相加为当前缺陷总数。[最近覆盖说明](../../Status/Specialization_P0_Status.md#restore-current-presentation-regression-coverage--s1071) |
+| Exact HD Engineering Study uplift | The B489 panel showed 12% / one Study, but its captured application maximum was 10. B527 has no positive uplift sample. Keep this precise numerical observation open for ordinary HD play; the accepted project flow, Standardization benefits and official 10% → 12% evidence retain their scopes. |
+| Inert diagnostic and unloaded city files | The hidden B137 network-isolation diagnostic cannot arm with its retired dependencies. CityInheritance, InheritanceShadow and CityInheritanceRead remain packaged but unloaded. Neither is a production blocker; any later retirement requires its own scoped review. |
+| Historical document retirement | Engineering closeout does not complete the separate historical-document simplification. Continue its existing family-by-family responsibility and recovery review; no bulk removal is authorized by this record. |
 | 新双语文案排版 | 源码与本地呈现检查已有记录，真实语言下的布局可在后续 UI 查看时观察。 |
 | 支持范围 | 当前构建新档与同构建读档。未来专业、城市易主新玩法和额外环境支持按原有授权边界推进。 |
 
@@ -73,11 +76,11 @@ B527 原始材料位于忽略目录 `local/legacy-workspace/Specialization/Statu
 
 这些是源文件、局部工作量及静态结果。全局帧率、长局内存改善和原生耗时仍需各自测量。
 
-## 正式实现说明的最小同步候选
+## Formal implementation descriptions synchronized — A0186
 
-以下均对应 [架构总说明](../../Architecture/Specialization_v0.1_Architecture.md) 中的当前实现描述。正式语义和保存合同沿用现行已接受规则。
+The following five factual descriptions are synchronized in [Architecture A0186](../../Architecture/Specialization_v0.1_Architecture.md). The same sync qualifies the old-consumer sentence and adds historical banners to the B055, B052, B053, B054 and B054.71 sections. Their historical bodies and accepted numerical rules are unchanged; no new save or gameplay policy is introduced.
 
-| 所在段落 | 旧描述与拟同步内容 | 对照依据 |
+| 所在段落 | 已同步内容 | 对照依据 |
 |---|---|---|
 | “运行入口与职责”中的当前专业事实 | 将正常路径写为 Store.Base → EffectiveFacts → CurrentSpecializationFacts；旧 CityFlow 分支按实际隔离测试用途说明。 | [EffectiveFacts](../../../Mod/EffectiveFacts.lua)、[S1073](../../Status/Specialization_P0_Status.md#read-current-city-foundations-directly-from-the-store--s1073) |
 | “事实、保存与当前资格” | 将旧 Binding／Completion／Journal／Flow 外壳仍在运行树的描述，更新为当前 Store 入口及已完成的外壳退役；保留严格身份和永久历史要求。 | [城市外壳退出](../../Status/Specialization_P0_Status.md#retire-the-detached-city-registration-files--s1079) |
@@ -85,17 +88,17 @@ B527 原始材料位于忽略目录 `local/legacy-workspace/Specialization/Statu
 | “收益应用与玩家呈现” | 将 B234 旧 CopyYields／StandardizationDiscount Lua 清理外观，更新为 StandardizationEffects 自有撤除；其他旧实验由 LegacyCleanup 等既定 owner 承担。 | [S1072](../../Status/Specialization_P0_Status.md#move-retired-industrial-carrier-cleanup-to-standardization--s1072)、[LegacyCleanup](../../../Mod/LegacyCleanup.lua) |
 | UI 结构说明中的早期原型 | 补充官方／HD 基底与当前机构、生产、单位适配入口，引用各自实现和验收范围。 | [基底选择](../../Status/Specialization_P0_Status.md#official-and-hd-ui-bases-selected-separately--s0929)、[当前呈现回归](../../Status/Specialization_P0_Status.md#restore-current-presentation-regression-coverage--s1071) |
 
-本轮先形成上述精确候选。架构规范的正式同步随后按现行修订流程处理。
+The original five candidates were independently confirmed as factual changes. The audit remains unchanged; A0186 records the Owner-approved synchronization and current responsibility owners.
 
-## 审阅顺序与结项条件
+## Completion and release boundary
 
-1. 先核对本稿中的实现范围、证据边界和保留项是否符合已批准的收敛目标。
-2. 代码复核按职责展开。主干迁移证据沿表中各阶段入口读取；稳定基线后的运行包变化使用 `git diff ce497054 5cf9b484 -- Mod`，重点核对当前 Store、StandardizationEffects、LegacyCleanup、GreatWorkFacts 与 Gameplay 启动职责。
-3. 核对本次 69 条目无 HD 实测与早期固定官方配置的证据继承范围，并保留正向收益冷恢复及少见异常的准确边界。
-4. 审阅认可后，完成上节正式实现说明的事实同步，按已接受范围记录工程结项。main 晋升与稳定部署按发布流程另行处理。
-
-如需交给外部审阅者，由 Owner 转交本稿及对应固定提交。复核重点为实际职责是否全部接管、已移除路径是否仍有有效依赖、证据继承是否成立，以及保留项有无遗漏。本轮未执行新的外部审计。
+1. The Owner accepted the scoped engineering closeout and the C1–C3 documentation corrections. Status S1095 records the final targeted local reruns, the one frozen-test version-pairing correction and all original evidence locators.
+2. The supported scope remains current-build new games and same-build saves. No old-version compatibility is introduced. Earlier native acceptance is inherited only for the owners and paths described above.
+3. The fixed 28-target B527 cold check and positive no-HD benefit cold continuity remain unperformed. Claude's proposed short check is optional and is not a closeout condition; a later promotion report must retain these boundaries unless new evidence is supplied.
+4. Main promotion and deployment require their separate release approvals. This closeout makes no package replacement and does not award full historical-test, bilingual-layout or performance acceptance.
 
 本轮准备工作已复核现行 Context Lock、当前部署包哈希、四份 S1089 定域工件及 S1091 原始证据 manifest。功能测试沿用原执行记录，本轮没有重跑。完整机器工件保留在原本地忽略目录，源码与执行入口提供重跑依据。
 
 本稿更新时复核了 S1093 的两份采集会话及当前原生日志。新增证据 manifest 为 `local/legacy-workspace/Specialization/Status/Validation/Evidence/B527_OfficialBranch_CultureNetwork_20261117/manifest.json`，SHA256 `63bf298e62edb5521439e69538a2ef37a1fa71ebe0623aa04262ec969450138f`。[最新验收记录](../../Status/Specialization_P0_Status.md#b527-no-hd-culture-network-and-load-readiness-verified--s1093) 提供同回合收益和首回合清理的具体位置。
+
+Final local evidence and audit disposition: [S1095](../../Status/Specialization_P0_Status.md#owner-accepted-architecture-convergence-closeout--s1095). The original review and handoff hashes in earlier checkpoints identify their historical versions, not this accepted revision.

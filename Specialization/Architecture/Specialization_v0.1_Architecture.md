@@ -1,17 +1,19 @@
-# Specialization v0.1 Architecture — A0185
+# Specialization v0.1 Architecture — A0186
 
 Document Owner: Codex
-Architecture Revision: A0185
+Architecture Revision: A0186
 Design Spec Synced Through: D0060
 Design Spec SHA256: 782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39
 Latest Accepted Design Revision: D0060
 Latest Accepted Design SHA256: 782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39
-Sync Status: TARGET_ARCHITECTURE_ADAPTED_RUNTIME_PARTIAL
+Sync Status: ACCEPTED_CONVERGENCE_IMPLEMENTED_SCOPED_EVIDENCE
 Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; this document defines target contracts, not a parallel deployment ledger.
 
 ## CURRENT AUTHORITATIVE STATE
 
 A0184 records the Owner-accepted convergence successor and finite workflow/current-information synchronization (2026-11-04). The reviewed evidence was published at `fcf61e2bbbd74394490cbd40af033c3e3529bf3a`; independent remote retrieval matched all 19 SHA256/byte counts. Current normative contracts below replace candidate routing. Source implementation and native acceptance remain separate in Status. That initial authorization covered PU01. Current slice and validation gates are recorded in Status.
+
+A0186 records the Owner's engineering closeout approval on 2026-11-17 after the Stable B527 scoped audit. It synchronizes the implemented responsibilities and identifies superseded experiment descriptions; it introduces no new gameplay, save contract, recovery policy or environment promise. The closed scope is the approved convergence program on B527.554, not every future Design capability or historical document-cleanup task. Evidence and retained observations remain in [Status CURRENT](../Status/Specialization_P0_Status.md#current-authoritative-state) and the [accepted closeout record](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md). Main promotion and deployment retain separate authorization.
 
 ### Accepted convergence boundaries — 2026-11-04
 
@@ -91,10 +93,10 @@ Meaningful records are separate from bounded optional native sampling. Identity-
 |---|---|---|
 | 参与资格和引擎读数 | Probe | 测试文明/领袖、人类身份、单人模式核验；不假定人类一定是player0 |
 | 持久进度与行动 | CityProgressionStore、InvestmentAction | Game侧逐城记录与投资收据；保存失败保持可诊断状态，不补造成功 |
-| 当前专业事实 | CityFlowProbe.SupportFacts → EffectiveFacts → CurrentSpecializationFacts | 从保存authority取得基础与投资，结合当前总督派生ACTIVE；旧Flow写入路径在新模式受阻 |
+| 当前专业事实 | CityProgressionStore.Base → EffectiveFacts → CurrentSpecializationFacts | Production reads the owned Store foundation and committed investments, then derives ACTIVE from current governor facts. The old CityFlow branch is limited to explicit legacy-test mode; its module is not packaged. |
 | 普通建筑与深度 | OrdinaryBuildingCatalog、DistrictCompleteness | 单一目录/深度计算、缓存与按需明细；目录覆盖和D语义是两个问题 |
 | 网络输入与共享结果 | BackgroundRoutes/NetworkSender → NetworkBridge、NetworkInput | 当前路线快照、版本/引用验证、共享派生视图；专业consumer各自解释收益 |
-| 巨作事实 | DialogueRefresh → GreatWorkFacts / GreatWorkCatalog | 会话资格、时代、位置和国内索引；旧Dialogue独立投影保留；GWA在B166源码退役，新Meaning消费确认摘要 |
+| 巨作事实 | DialogueRefresh → GreatWorkFacts / GreatWorkCatalog | DialogueRefresh transports current work samples; GreatWorkFacts owns receipt, acknowledgement, sample pairing and confirmed collection facts. Its shared.Dialogue slot is a retired transport record, not a separate live effect projection. DialogueProjects / DialogueEffects retain earned project history and reward application. |
 | 原生收益 | ResearchSupport/IndustrySupport、Lv2Housing/GPP及各能力consumer | 模块拥有各自carrier和退出路径；保存记录不是收益快照 |
 | 玩家呈现与诊断 | CityPotential、P0Panel、InstitutionOverview/Institutions | 读取已确认结果；四个当前专业的机构行读取已确认事实；B247另区分历史机构与当前能力，不代表所有玩法已通过实机验收 |
 
@@ -102,7 +104,7 @@ Meaningful records are separate from bounded optional native sampling. Identity-
 
 [当前E2合同](v2/P0_E2_Plan.md#b108-authorized-new-game-multi-city-cutover--contract-before-implementation)落地为一个紧凑Game索引和逐城Game记录。索引保存分配序号/原始身份依据；每城保存自身绑定证据、首次完成、投资收据、模板历史和所有权证据。既有记录更新只写该城；它不是把所有未来专业资产塞入一个通用数据库。
 
-[CityProgressionStore](../../Mod/CityProgressionStore.lua)正式Start使用新authority；历史StartLegacyTest只供显式测试adapter。旧Binding/Completion/Journal/Flow仍有文件和调用外壳，但正常新模式的写入、加载扫描及迁移入口受guard隔离。未知/旧档不因“没有记录”就从现存区域反推专业；新档初始化资格、部分保留写入、HELD及回滚支持范围以完整E2合同为准。
+[CityProgressionStore](../../Mod/CityProgressionStore.lua) production Start uses the current authority; StartLegacyTest is limited to explicit fixtures. The former Binding/Completion/Journal/Flow shells have left the runtime package. CityInheritance, InheritanceShadow and CityInheritanceRead remain packaged but are not included or started; this does not imply a live old authority. Strict identity, committed permanent history, new-game initialization, partial writes and HELD/rollback boundaries retain the accepted E2 contract. Missing records do not authorize reconstructing a specialization from existing districts or adding old-version save compatibility.
 
 [EffectiveFacts](../../Mod/EffectiveFacts.lua)从基础进度与已确认投资得到Potential，再从当前总督门槛求ACTIVE；读取失败保留UNKNOWN语义。[Standardization](../../Mod/Standardization.lua)在新模式将自身模板读写路由至进度store，仍由该模块验证模板目录和学习证据。Identity/Potential/明确永久收据与当前总督、路线、收益载体分开。
 
@@ -152,7 +154,7 @@ The actual Settler transaction now returns call-local final-readback evidence th
 
 [NetworkInput](../../Mod/NetworkInput.lua)结合当前城市引用与EffectiveFacts形成逻辑输入；NetworkBridge发布共享视图。版本、epoch、引用、dirty signal和样本生命周期用于拒绝旧响应，重复读取不重新捕获整城事实。UNKNOWN、暂时等待、确认失效分别处理；source/recipient资格不是永久保存成果。
 
-[版本发布](v2/Batch_A_Input_Contract.md)、[共享视图](v2/Batch_B_Shared_Network.md)、[请求/撤销生命周期](v2/Batch_C2_Copy_Industry_Lifecycle.md)、[事件传播](v2/Batch_D2_Runtime_Propagation.md)是可复用技术合同。不同专业payload不强制套同一公式。当前仍保留部分旧专业consumer。B226已接入[文化完整文明集合并集与专家投影](v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出)，并精确退出旧文化尤里卡。B234按用户决定隔离旧科研网络鼓舞至v0.1之后；共同拓扑与科研本城能力保留，原生验收见Status。Commerce不同方向资格仍不能仅凭共同拓扑存在就宣称已接入。
+[版本发布](v2/Batch_A_Input_Contract.md)、[共享视图](v2/Batch_B_Shared_Network.md)、[请求/撤销生命周期](v2/Batch_C2_Copy_Industry_Lifecycle.md)、[事件传播](v2/Batch_D2_Runtime_Propagation.md)是可复用技术合同。不同专业payload不强制套同一公式。Current Commerce, CultureNetwork and StandardizationEffects own their independent passive-effect calculations; exact old-carrier withdrawal no longer depends on the retired writers. B226已接入[文化完整文明集合并集与专家投影](v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出)，并精确退出旧文化尤里卡。B234按用户决定隔离旧科研网络鼓舞至v0.1之后；共同拓扑与科研本城能力保留，原生验收见Status。Commerce uses the direct domestic-partner projection; Capital uses proved recipient sources; Development uses proved direct outgoing destinations. Their separate qualifications and irreversible-operation gates remain in their owners.
 
 ### Network pending hold and confirmation recovery
 
@@ -167,11 +169,11 @@ This accepted successor replaces B240 UNKNOWN-as-withdrawal and A0183's cold exc
 
 ### 收益应用与玩家呈现
 
-科研基础设施、跨学科研究、学以致用、学术主持已有正式consumer和各自cutover合同，见[v2收益应用导航](v2/README.md#收益应用与精度)。原生效果通过精确SQL定义和模块自有写入/撤销落地；旧效果按所属切片退出，不按BUILDING前缀全城删除。Legacy file presence does not prove a live writer: B234 starts CopyYields and StandardizationDiscount only as exact-withdrawal facades and disables normal NetworkBoost output. Remaining legacy consumers must be checked through their actual Start/guards, not mistaken for the whole accepted design. See [迁移矩阵](v2/D0032_Implementation_Plan.md#明确的旧效果切换责任)。
+Research Infrastructure, Interdisciplinary Research, Applied Learning and Academic Chair retain their formal consumers and [cutover contracts](v2/README.md#收益应用与精度). Exact SQL and each owner govern native writes and withdrawals; no broad BUILDING-prefix deletion is permitted. StandardizationCatalog / StandardizationEffects now identify, withdraw and read back the exact B051/B054 industrial carriers before applying current effects. LegacyCleanup owns the transferred purchase, old Great Work, Commerce, level-three, Boost and Dialogue cleanup groups; current Culture owners retain their assigned exact withdrawals. CopyYields, StandardizationDiscount and NetworkBoost are absent as Lua writers, while required SQL definitions and permanent histories remain. See the [responsibility matrix](v2/D0032_Implementation_Plan.md#明确的旧效果切换责任) and current Status for scoped verification.
 
 “每人口可产生小数”不证明“区域/每专家平坦收益可任意小数”；科研两条floor实现分别是汇总后取整、每专家取整，不能推广成全系统精度规则。具体原生路径与用户接受范围见[技术精度证据](../Reports/Technical/README.md#收益精度与原生效果)。
 
-Institution/Ability/Carrier的[分层目标](v2/Presentation_Institution_Carrier_Model.md)与[科研显示原型](v2/U1_Presentation_Prototype.md)分开：原型挂接HD城市详情、追加累计机构展示、过滤该surface已确认科研城的技术载体显示；不删除实际Building，也未完成所有专业、历史机构或所有Tooltip界面。hover使用展示内容，不建立新的Gameplay扫描请求。已有其他UI路径的轮询不能据此宣称全部消除。
+The [Institution/Ability/Carrier separation](v2/Presentation_Institution_Carrier_Model.md) remains the contract. The [Research display prototype](v2/U1_Presentation_Prototype.md) describes its historical HD-only checkpoint. Current modinfo selects environment-exclusive official / HD UI bases for UnitPanel, CityPanel, CityPanelOverview and ProductionPanel; institution, timed-project and unit-action adapters read current module results. Presentation does not own gameplay state or remove real buildings. Coverage and language-layout observations remain scoped in Status; an old prototype limitation is not a current implementation matrix or proof that every UI path is polling-free.
 
 B251 extends the selected-city institution surface: all configured levels of the **current** profession are visible, with unestablished rows explicitly treated as previews rather than persisted institutions. Historical other-profession rows retain actual established levels. A guarded Store scalar projection supplies retained history/counts to the existing presentation request, without lazy template initialization, native fact scans or writes; UI summaries and signatures remain disposable mirrors. Unknown reads do not become zero, and Standardization distinguishes this city's source offer from recipient effects. No new update scheduler or save schema. See [B251 contract and checks](../Status/Validation/Results/Specialization_B251_Institution_UI.md#read-and-lifetime-contract).
 
@@ -598,6 +600,8 @@ Conquest三分支/ELIG通用系统已有离线模型，未接完整原生流程�
 
 ## B055：网络Boost与巨作接口测试
 
+> Historical experiment checkpoint only; not current runtime authority. The original text and values below retain their period-specific meaning. Current responsibilities are described in [the runtime overview](#运行入口与职责), [effect ownership](#收益应用与玩家呈现) and Status.
+
 `BoostConfig.lua`/`Data/NetworkBoost.sql`由`tools/generate_boost.py`同源生成。现有桥接上限128条路线：每个recipient均为某条路线的目的地或首都self，因此当前上限129城。为每种网络、ACTIVE档与N保存一个原生Amount，避免分片Modifier各自截断改变总值；不是按来源/中心累加。超出上限明确报错并撤销该轮配置，不clamp N。独立k_R/k_C在生成器配置；改值须重生成SQL/Lua，非热修改。临时权重按Spec NET-RC-005，正式权重尚待测试结束后恢复。
 
 `NetworkBoost.lua`在首都放置每类型至多一个内部建筑，沿用Great Library的`MODIFIER_PLAYER_ADJUST_TECHNOLOGY_BOOST`/civic对应物。匹配HD的可撤销player property Modifier，只为兼容其额外Boost提示，不直接改写共享Property。来源/路线/总督/投资改变重新推导，旧载体先移除再加新；初始化清理保存的派生建筑并重建，读报告不启动收益。`UI/BoostRefresh`后台主动握手，避免只依赖一次LoadScreenClose。现行native科研/市政进度不由本Mod写入，不补发已触发Boost；最终封顶沿用引擎观察，仍非最终设计已确认。
@@ -616,19 +620,27 @@ Conquest三分支/ELIG通用系统已有离线模型，未接完整原生流程�
 
 ## B052运行适配
 
+> Historical experiment checkpoint only; not current runtime authority. The original text and values below retain their period-specific meaning. Current responsibilities are described in [the runtime overview](#运行入口与职责), [effect ownership](#收益应用与玩家呈现) and Status.
+
 详见[标准化记录实现](../Reports/Technical/Specialization_B052_Standardization_Ledger.md)。`SPC_STANDARDIZATION_LEDGER_V1`保存具体建筑和HD分类收据；LoadScreenClose/城市首次完成/玩家回合只发现尚无账本的Industry，已有账本不扫描城市建筑。建筑通知适配分开处理：GameEvents的player/city/building与Events的x/y/building/player不能混用。后者只对玩家城市检查通知指向的单个建筑。延后复核不构造缺失拥有事实；读取不触发写入。当前foundation token仍含既有身份约束，保存永久收据不等于已实现跨Owner继承；冲突保留旧账本并停止写入。
 
 运行catalog直接读取HD表，分类改变需迁移，不采用旧JSON快照作白名单。启用分组引用IND-NET-005；不把范围内记录数或PurchaseYield等同实际Gold资格。历史StandardizationLedger离线原型不是本次运行入口，不把它的Tier>=1限制应用到本批市中心Tier0记录。
 
 ## B053货币适配调查
 
+> Historical experiment checkpoint only; not current runtime authority. The original text and values below retain their period-specific meaning. Current responsibilities are described in [the runtime overview](#运行入口与职责), [effect ownership](#收益应用与玩家呈现) and Status.
+
 Accepted D0017 IND-NET-002允许Gold隔离困难时Faith同步打折；不扩大建筑或购买资格。PurchaseProbe/Data/PurchaseProbe.sql是独立手动实验，使用现有COLLECTION_OWNER指定建筑购买折扣，未添加无先例YieldType参数。临时双币条件只在测试按钮启用的城市生效，OFF/LoadScreenClose清除；没有接网络或账本匹配。PurchaseProbeRead在UI侧读取原版ProductionPanel使用的GetGold():GetPurchaseCost(yieldIndex,buildingHash)，不是当前购买许可判定。实际Gold/Faith行为仍须用户测试。详见[B053测试](../Status/Validation/Specialization_B053_User_Tests.md)。
 
 ## B054自动折扣运行适配
 
+> Historical experiment checkpoint only; not current runtime authority. The original text and values below retain their period-specific meaning. Current responsibilities are described in [the runtime overview](#运行入口与职责), [effect ownership](#收益应用与玩家呈现) and Status.
+
 StandardizationDiscount独立于永久账本；当前来源并集和最高ACTIVE→候选计划→后台原生金币购买许可→完整版本化回传→绝对载体。NetworkBridge只新增刷新通知，不改路线语义。Standardization只新增复核后的ReadLedger读取接口，不改学习规则。新SQL依HD范围生成单建筑四档内部载体，不修改原建筑。当前采用原生指定建筑购买成本Effect及D0017双币条件授权，保留引擎尾数，不做货币退款。详情见[B054](../Reports/Technical/Specialization_B054_Network_Discounts.md)。此前B053“未接网络”段落只描述独立历史实验，当前正式状态以本段及Status为准。
 
 ## B054.71启动补偿
+
+> Historical experiment checkpoint only; not current runtime authority. The original text and values below retain their period-specific meaning. Current responsibilities are described in [the runtime overview](#运行入口与职责), [effect ownership](#收益应用与玩家呈现) and Status.
 
 后台DiscountEligibility在Gameplay模块已存在但ready=false时发送DISCOUNT_INIT；游戏侧按测试文明授权调用幂等EnsureReady，清理失效载体并生成计划，不依赖打开面板。正常LoadScreenClose路径仍保留。Describe无副作用，仅补充ready/busy/generation定位。缺失一次加载事件及重复初始化已做真实Lua模拟；引擎实际漏事件原因尚未确认，不把推断写成实机已证明。
 

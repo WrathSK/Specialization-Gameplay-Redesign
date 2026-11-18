@@ -2,6 +2,7 @@
 from contextlib import contextmanager,nullcontext
 from hashlib import sha256
 from pathlib import Path
+import ast
 import subprocess
 import unittest
 from unittest.mock import patch
@@ -148,7 +149,14 @@ class DeferredEffects(unittest.TestCase):
   from test_refactor_s5d3 import Dialogue
   Dialogue.setUpClass()
   try:
-   with history():Dialogue().test_confirmed_store_exit_and_return_keep_history_and_recompute()
+   # Pair the original inline assertion with the same frozen runtime source.
+   # The current Dialogue test deliberately expects deferred publication.
+   path='DevelopmentTests/test_refactor_s5d3.py'
+   text=subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT,text=True)
+   case=next(n for n in ast.parse(text).body if isinstance(n,ast.ClassDef) and n.name=='Dialogue')
+   method=next(n for n in case.body if isinstance(n,ast.FunctionDef) and n.name=='test_confirmed_store_exit_and_return_keep_history_and_recompute')
+   namespace={};exec(compile(ast.Module(body=[method],type_ignores=[]),BASE+':'+path,'exec'),namespace)
+   with history():namespace[method.name](Dialogue())
   finally:Dialogue.tearDownClass()
  def test_actual_store_commit_then_existing_publish_restores_insight_carrier(self):
   v=actual_store();v.execute("""
