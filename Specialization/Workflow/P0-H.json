@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "PLANNED_NOT_AUTHORIZED",
   "authority_versions": {
     "design": "D0060",
     "research": "D0059",
@@ -11,14 +11,14 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1097",
+    "status": "S1098",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Continue the existing documentation lifecycle scope after verified residual code cleanup; retire completed small process families with exact recovery and preserve current authority/evidence boundaries.",
+  "goal": "Obtain Owner approval for the exact 15-report history-only family; preserve completed code/doc cleanup and all retained evidence/authority boundaries.",
   "implementation_authorized": false,
   "context": [
     {
@@ -30,13 +30,14 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Retire completed process inputs and Phase1 snapshots — S1097",
-      "reason": "Completed small document retirement, accurate current evidence navigation and remaining scope boundary"
+      "selector": "### Next local-result history family prepared for Owner review — S1098",
+      "reason": "Concrete next-family proposal and actual Owner decision boundary; no deletion authorization"
     },
     {
       "path": "Specialization/Historical/README.md",
-      "kind": "full",
-      "reason": "Existing Git-history index and exact replacement locators, not a new authority or cleanup queue"
+      "kind": "section",
+      "selector": "## Proposed next family: early local refactor results — Owner approval required",
+      "reason": "Exact candidate files/SHA256, fixed recovery, retained reports and approval-dependent implementation scope"
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
@@ -66,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1098: 15 complete reports read and fetched from fixed published GitHub source with matching bytes/SHA256. Two current provenance sources and three native-reference reports retained; no candidate deleted or new runtime/native result.",
     "S1097: eight completed document originals independently fetched from fixed published GitHub commit and matched by bytes/SHA256; no current runtime/test/tool inputs. New local links and Context Lock validated. No full-history-link or new gameplay PASS.",
     "S1096: O8ResidualCleanup 35/35 local tests; 182 Lua compiles, 25 XML/modinfo parses and 611 File references. Four exact removals / disposable rollback verified; current route/effect/GC owners unchanged. Historical assertion bodies only, not full old wrapper PASS. No deployment or native result.",
     "S1095: Owner accepted engineering closeout; Claude C1–C3 corrections and A0186 factual sync are complete. Eleven targeted stages pass (332 distinct tests); the initial frozen-source assertion mismatch is preserved and repaired without changing either version-specific assertion or Mod code. No new native result.",
@@ -5714,6 +5716,25 @@
       "default_context_token_reduction": "NOT_CLAIMED_DRAFTS_WERE_ALREADY_OUTSIDE_DEFAULT_CONTEXT",
       "report": "Specialization/Status/Specialization_P0_Status.md#retire-completed-process-inputs-and-phase1-snapshots--s1097",
       "phase1_index": "Specialization/Historical/README.md#phase-1-before-navigation-snapshots-in-git-history"
+    },
+    "s1098_local_result_family_proposal": {
+      "status": "PREPARED_NOT_AUTHORIZED",
+      "candidate_count": 15,
+      "lines": 404,
+      "bytes": 72123,
+      "fixed_source_commit": "e42caca061db9b50c3b3c869e1fe2fd1666220c1",
+      "remote_retrieval": "15_OF_15_BYTE_AND_SHA256_MATCH",
+      "proposal": "Specialization/Historical/README.md#proposed-next-family-early-local-refactor-results--owner-approval-required",
+      "retained_reports": [
+        "B273",
+        "B278",
+        "B283",
+        "B285",
+        "B287"
+      ],
+      "candidate_files_deleted": 0,
+      "user_testing": "NONE",
+      "report": "Specialization/Status/Specialization_P0_Status.md#next-local-result-history-family-prepared-for-owner-review--s1098"
     }
   }
 }

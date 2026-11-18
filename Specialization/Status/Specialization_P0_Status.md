@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1097
+Status Revision: S1098
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: POST_CONVERGENCE_DOCUMENT_LIFECYCLE_MAINTENANCE
+Work State: DOCUMENT_HISTORY_FAMILY_AWAITING_OWNER_APPROVAL
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -16,13 +16,21 @@ Work State: POST_CONVERGENCE_DOCUMENT_LIFECYCLE_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue bounded documentation-family review under existing lifecycle rules. Eight completed process documents / snapshots are now [history-only](../Historical/README.md#completed-localization-review-and-b527-audit-handoff-in-git-history); no new runtime work. New large deletion families still require exact impact/recovery evidence and Owner approval. |
+| Next action | Owner review of the [exact 15-report history-only proposal](../Historical/README.md#proposed-next-family-early-local-refactor-results--owner-approval-required). Completed code cleanup and eight-document retirement remain pushed; the proposed reports are still present. No deployment or main promotion. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Next local-result history family prepared for Owner review — S1098
+
+The completed small cleanup was pushed at `a6c75171`. A bounded review of 20 early S3/S4/S5 result reports identifies 15 completed local-stage reports (404 lines / 72,123 bytes) for the next history-only batch. Every candidate was read in full and independently fetched from published GitHub commit `e42caca0`, with matching original bytes/SHA256 and local Git object. Their exact filenames, hashes, preservation/retrieval and dependency changes are in [the existing Historical index](../Historical/README.md#proposed-next-family-early-local-refactor-results--owner-approval-required). **None of these 15 files is deleted or authorized for deletion yet.**
+
+Five reviewed reports remain outside the proposal: B273/B278 still own two Runtime_Index provenance references; B283/B285/B287 carry useful native namespace/signature and log-interpretation evidence. The 15 candidates have no live code/test/tool, default-context or runtime-review input. Only old follow-up-plan links, seven Closure-history textual locators and their Context Lock entries need bounded treatment; no current authority or test assertion is replaced. Full history and raw native evidence remain intact.
+
+**User decision:** approve or reject the precise 15-report family as one batch under the existing large-history-removal gate. Recommended: approve these 15, retain the other five. **User testing:** none; this is document-only. **Primary next:** stop the proposed removal pending Owner approval. No new gameplay, code, test, native acceptance, deployment or promotion is claimed by this preparation.
 
 ### Retire completed process inputs and Phase1 snapshots — S1097
 
