@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "AUTHORIZED",
   "authority_versions": {
     "design": "D0060",
     "research": "D0059",
@@ -11,14 +11,14 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1105",
+    "status": "S1106",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Publish the verified S1105 document-retirement checkpoint and stop at the Owner-requested safe pause; broader documentation cleanup is not declared complete.",
+  "goal": "Continue Owner-resumed delegated documentation maintenance: retire completed artifacts with verified published originals and correct current dependencies, without changing rules or runtime behavior.",
   "implementation_authorized": false,
   "context": [
     {
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Decided preparation proposals and initial draft review retired — S1105",
+      "selector": "### Resumed maintenance and original architecture maps retired — S1106",
       "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
@@ -67,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1106: eight original AV2-I001 plan/maps/index/validation files remotely retrieved and byte/SHA256/Git-blob matched; no active code/test/tool/context/provenance input, current navigation repaired and historical textual locators recorded. No new gameplay/native result.",
     "S1105: three original preparation/review files independently matched remote bytes/SHA256/Git blobs; no live code/test/tool/context/provenance consumer, historical navigation repaired and legacy S0907 locators indexed. No new gameplay/native result.",
     "S1104: four original discussions/review inputs independently matched remote bytes/SHA256/Git blobs; current consumers absent, U1 patch locator repaired and frozen historical locators indexed. Existing rules/evidence and executable tooling unchanged.",
     "S1103: five migration originals remotely retrieved and byte/SHA256/Git-blob matched; 539-entry generated inventory and 35-move map are historical only. Current code/test/tool and provenance consumers absent; navigation, Context Lock and publication checked.",
@@ -5828,6 +5829,18 @@
       "deployment": "NOT_RUN",
       "report": "Specialization/Status/Specialization_P0_Status.md#decided-preparation-proposals-and-initial-draft-review-retired--s1105",
       "continuation": "OWNER_REQUESTED_SAFE_PAUSE_AFTER_COMMIT_PUSH"
+    },
+    "s1106_document_retirement": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 8,
+      "retired_lines": 2361,
+      "retired_bytes": 211681,
+      "original_commit": "98131a7a6dec32c50cdfb1ac39d8f95af42f19f3",
+      "historical_index": "Specialization/Historical/README.md#original-architecture-v2-investigation-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#resumed-maintenance-and-original-architecture-maps-retired--s1106"
     }
   }
 }

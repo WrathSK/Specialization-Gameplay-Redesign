@@ -57,11 +57,11 @@
 
 ## 历史调查与审计来源
 
-以下保留在原路径：它们是审阅provenance和历史结构，不是当前源码地图。
+已完成的原始调查使用固定Git版本取回；它们保留审阅provenance和历史结构，不是当前源码地图。现行合同仍在上方对应入口。
 
-- AV2-I001 / B069： [状态归属](State_Ownership_Save.md)、[桥接依赖](Dependencies_Bridges.md)、[事件传播](Events_Dirty.md)、[当时发现与批次](Findings_Batches.md)、[事件目录](Event_Catalog.tsv)、[源码索引](Source_Index.md)。原调查基线`e3651f9`，STATIC_CONFIRMED；不是事件真实频率或泄漏证明。
+- AV2-I001 / B069： [状态归属](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/State_Ownership_Save.md)、[桥接依赖](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Dependencies_Bridges.md)、[事件传播](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Events_Dirty.md)、[当时发现与批次](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Findings_Batches.md)、[事件目录](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Event_Catalog.tsv)、[源码索引](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Source_Index.md)。原调查基线`e3651f9`，STATIC_CONFIRMED；不是事件真实频率或泄漏证明。
 - D0032适配时点：[源码/hash快照](D0032_Runtime_Inventory.json)、[文档验证](D0032_Validation.md)。实际当前review provenance仍由[Runtime_Index](../../Workflow/Runtime_Index.json)维护。
-- [早期Architecture v2调查计划](../Architecture_v2_Plan.md)：旧派工已被后续合同/当前切片取代；不重新执行其中的“下一步”。
+- [早期Architecture v2调查计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/Architecture_v2_Plan.md)：旧派工已被后续合同/当前切片取代；不重新执行其中的“下一步”。
 - [运行观测instrumentation调查](../../Reports/Technical/Specialization_B072_Runtime_Audit.md)：独立于玩法完成度；原生I/O能力不因本地模拟通过而自动确认。
 
 源码注册不证明原生API必定存在或事件顺序稳定；技术调查、目标合同、本地模拟、用户实测分开使用。按[W0001](../../Workflow/README.md)只读任务相关部分，本索引不扩大强制读取集合。

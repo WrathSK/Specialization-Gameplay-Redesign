@@ -11,7 +11,7 @@
 
 - [早期文件结构提案](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/8fbc08ad97b503ad500ed3009e3c1f7867b90cd0/Specialization/Reports/Proposals/Specialization_File_Structure_Proposal.md)含用户补充及迁移报告/路径映射引用；原件在固定Git历史中保留，接受与迁移依据仍可精确取回。
 - [初次Design草案审阅](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/860fe6359ef98699dc75ab7dc5cdb84fb11d8207/Specialization/Reports/Proposals/Specialization_D0001_Draft_Review.md)保存最初来源缺口和候选审阅语境，原件从固定Git历史取回；当前规则与未决项以现行Design和Status为准。
-- [早期架构调查计划](../Architecture/Architecture_v2_Plan.md)与v2原始调查地图保留合同形成语境；后续批次已取代旧进度，现行导航见[分类索引](../Architecture/v2/README.md)。
+- [早期架构调查计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/Architecture_v2_Plan.md)与v2原始调查地图已转为固定Git历史，保留合同形成语境；后续批次已取代旧进度，现行导航见[分类索引](../Architecture/v2/README.md)。
 
 当前正式合同、接受记录/反证、仍未决候选、已接受未来设计都不能仅按文件名或版本号归为废弃过程材料。不改写冻结原件，不以Git可恢复为理由删唯一证据。
 
@@ -416,3 +416,22 @@ Original directory: `Specialization/Reports/Proposals`. All 3 originals were ind
 | [Specialization_D0001_Draft_Review.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/860fe6359ef98699dc75ab7dc5cdb84fb11d8207/Specialization/Reports/Proposals/Specialization_D0001_Draft_Review.md) | `b5e0fa14d4a9b25b6d7f654e58e8c758807fb15a18e789a98bf9d545a6b17b6b` |
 
 No runtime, test, tool, active context or Runtime_Index consumes these three files. The Historical entry for the initial review now targets its exact original. The S0907 paragraph in Status and the historical s0907 P0-H proposal locator still name Environment_Assembly_Readiness.md; consult this table for the fixed original rather than rewriting that historical record. Current Shared Design, Engine Reference/source archives, S0886 attribution evidence and actual native acceptance remain available; no source DB, raw observation or accepted rule is deleted.
+
+## Original Architecture v2 investigation in Git history
+
+These eight B069/AV2-I001 documents are the original investigation plan, state/dependency/event maps, candidate findings, static validation and generated event/source indexes at e3651f9. They are historical source observations and proposed work, not current Architecture contracts or an outstanding implementation queue. The 298-row event list and 72-file hash index/56 source-excerpt blocks record source registration, not delivered native events or measured memory/CPU. Current Architecture, Runtime_Index and task-scoped source/evidence remain authoritative for their respective roles. The accepted Batch A–D2 technical contracts, Design and independent native evidence stay in HEAD; old risks are neither reopened nor declared solved by this retirement.
+
+Exact original repository paths are listed below. All 8 originals were independently retrieved from GitHub and matched by bytes, SHA256 and Git blob at published `98131a7a6dec32c50cdfb1ac39d8f95af42f19f3`. Recover with `git show 98131a7a6dec32c50cdfb1ac39d8f95af42f19f3:<original-path>`. Git history, test assertions and original failure details remain unchanged; local artifact hashes do not claim permanent raw-artifact preservation.
+
+| Original report (fixed published source) | SHA256 |
+|---|---|
+| [Specialization/Architecture/Architecture_v2_Plan.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/Architecture_v2_Plan.md) | `dc7f7df8b9ccee502b32c7cfc6ea37c5726dbde6e75df7e6ea3b4b5ca9a59366` |
+| [Specialization/Architecture/v2/Source_Index.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Source_Index.md) | `62233a625206dbe7adf59ff63151979b0b9c6faedbaa11a66caa51b31bdbece8` |
+| [Specialization/Architecture/v2/Event_Catalog.tsv](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Event_Catalog.tsv) | `3f585bbad8f6558434174e6f7cd14e7ea68c5b3ad12f8b9f6a98a8d01cbbd087` |
+| [Specialization/Architecture/v2/State_Ownership_Save.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/State_Ownership_Save.md) | `bc9501c135f3bdd85813453f03ff15025d3e1addcae7f0598f53342a68ef0314` |
+| [Specialization/Architecture/v2/Events_Dirty.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Events_Dirty.md) | `2facd54c436e089e99aaf6d55246912d85abfea4f17ee1404cab5896c005e986` |
+| [Specialization/Architecture/v2/Validation.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Validation.md) | `d34fc04ac92f9b2f18db4b297b4fc7107c8d8b95fdd9376575a39219d51a7e4f` |
+| [Specialization/Architecture/v2/Findings_Batches.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Findings_Batches.md) | `c03b8d84d2b501562b3442ea2b337758a8a73668b499137fb49dba8fb5d0c26d` |
+| [Specialization/Architecture/v2/Dependencies_Bridges.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Dependencies_Bridges.md) | `f74419ed4001c0174931d188e88eab015d948d314217f8a911688a59b7faa654` |
+
+No runtime code, test, tool, active manifest projection or Runtime_Index review source consumes these eight files. Maintained v2 and Historical navigation now targets fixed originals. The D0032_Runtime_Inventory historical hash table retains seven textual locators and the frozen Direct_Event_Listener_Audit retains its baseline statement that Events_Dirty was historical-only; retrieve original context from this table. Original content/hashes and accepted contracts are preserved. The four retired path entries leave Authority.historical_only, while the existing Design/Revisions classification remains; no current authority source is replaced.
