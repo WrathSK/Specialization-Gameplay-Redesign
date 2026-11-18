@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1106",
+    "status": "S1107",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Resumed maintenance and original architecture maps retired — S1106",
+      "selector": "### Old adaptation snapshot and planning validation retired — S1107",
       "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
@@ -67,6 +67,7 @@
     "Save authority, new transaction rules, D1 branch retirement, probes, game launch and main promotion."
   ],
   "validation": [
+    "S1107: two static adaptation originals independently matched remote bytes/SHA256/Git blobs; historical locator and maintained references repaired, current Runtime_Index per-file/provenance/identity fields unchanged, frozen Status locator indexed. No new functional/native result.",
     "S1106: eight original AV2-I001 plan/maps/index/validation files remotely retrieved and byte/SHA256/Git-blob matched; no active code/test/tool/context/provenance input, current navigation repaired and historical textual locators recorded. No new gameplay/native result.",
     "S1105: three original preparation/review files independently matched remote bytes/SHA256/Git blobs; no live code/test/tool/context/provenance consumer, historical navigation repaired and legacy S0907 locators indexed. No new gameplay/native result.",
     "S1104: four original discussions/review inputs independently matched remote bytes/SHA256/Git blobs; current consumers absent, U1 patch locator repaired and frozen historical locators indexed. Existing rules/evidence and executable tooling unchanged.",
@@ -5841,6 +5842,18 @@
       "runtime_test_change": false,
       "deployment": "NOT_RUN",
       "report": "Specialization/Status/Specialization_P0_Status.md#resumed-maintenance-and-original-architecture-maps-retired--s1106"
+    },
+    "s1107_document_retirement": {
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 2,
+      "retired_lines": 4751,
+      "retired_bytes": 148115,
+      "original_commit": "28e257c4598ff1169444a13d1482acef40c6991c",
+      "historical_index": "Specialization/Historical/README.md#d0032-static-adaptation-artifacts-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": false,
+      "deployment": "NOT_RUN",
+      "report": "Specialization/Status/Specialization_P0_Status.md#old-adaptation-snapshot-and-planning-validation-retired--s1107"
     }
   }
 }

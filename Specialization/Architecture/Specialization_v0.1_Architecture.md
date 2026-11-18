@@ -271,8 +271,8 @@ D0032 Architecture Adaptation / A0160 已完成文档与静态审查，**GATE B 
 - [实际runtime及KEEP/ADAPT/REPLACE/RETIRE](v2/D0032_Runtime_Archaeology.md)
 - [实施依赖 / 批次 / cutover / save门禁](v2/D0032_Implementation_Plan.md)
 - [技术spike门禁](v2/D0032_Technical_Spikes.md)
-- [完整源码索引及hash](v2/D0032_Runtime_Inventory.json)
-- [本轮静态验证](v2/D0032_Validation.md)
+- [完整源码索引及hash](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/28e257c4598ff1169444a13d1482acef40c6991c/Specialization/Architecture/v2/D0032_Runtime_Inventory.json)
+- [本轮静态验证](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/28e257c4598ff1169444a13d1482acef40c6991c/Specialization/Architecture/v2/D0032_Validation.md)
 
 上述文件是D0032目标架构入口；以下旧条款保留为历史runtime合同/证据。与新Design目标冲突时，不以旧条款推翻Design；实际代码尚未切换时，也不能把目标文档当作已部署事实。PAC累计presentation-only原则继续有效，其旧能力映射由当前各专业canonical取代。
 
