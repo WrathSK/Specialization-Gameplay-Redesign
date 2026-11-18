@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1111
+Status Revision: S1112
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,21 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue scoped documentation maintenance, including current task-summary duplication and retained contract/navigation roles. Preserve current rules, actual review sources and independent evidence; no gameplay/runtime changes, deployment or main promotion. |
+| Next action | Continue responsibility-based documentation maintenance of retained plan/contract and reference families; preserve live review provenance and independent evidence. No runtime change, deployment or main promotion. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Current task manifest separated from completed batch history — S1112
+
+The active P0-H manifest had accumulated 232 results and 168 validation notes, including obsolete earlier-stage dependencies and completed-stage next instructions. It now contains current task scope, five context projections, present maintenance gates, runtime/evidence pointers, retained native limits and the latest result. The complete prior version independently matches its published remote original; [fixed history](../Historical/README.md#previous-active-task-manifest-history-in-git) preserves all old key names, receipts, failures, artifact references and prior results without copying the archive into a new file.
+
+The manifest shrinks from 5,932 lines / 309,080 bytes to 119 lines / 7,702 bytes, including the latest compact validation. This reduces the current manifest read itself; it is separate from whole-tree file/line reduction and does not measure tokens, CPU or memory. Current Authority remains the routing owner, Status/evidence retain native scope, and Runtime_Index review provenance is unchanged. The helper/schema/test behavior, Mod, accepted Design/Architecture, raw evidence and frozen report bodies are untouched.
+
+Verification: Python3.14.8 stdlib tests3/3 and real helper check/self-test/plan/read PASS; all14 current locators/anchors resolve, JSON/schema and Context Lock PASS. Helper/protocol, test assertions and current Runtime_Index remain unchanged; publication is checked before commit. Future task updates replace the latest summary and link older results through existing Status/history rather than accumulating complete batch histories. **User decision/testing:** none; continue eligible document families without deployment or a new native claim.
 
 ### Retired task navigation inputs and delivered repair plans — S1111
 

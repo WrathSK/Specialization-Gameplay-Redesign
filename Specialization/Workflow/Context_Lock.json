@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S1111 retires 27 stale task manifests and three delivered plans with exact published recovery, retaining current integrity checks and original evidence; the read-only document helper and two generic fixture inputs receive targeted local checks.",
+  "review_basis": "S1112 keeps P0-H current and compact, with its complete prior result/validation history verified at a published fixed commit. Current rules, native evidence scopes and runtime review provenance remain unchanged.",
   "files": {
     "AGENTS.md": "4f6d8f8e14c70b8a8fc50c90e92e23635c822d3353f3a7adf93b5559ca4973ab",
     "Art/Institutions/README.md": "23b7ace94796d7212ab848fb12a712a85ff2e837ec7daa0f3dcff1ad3efa7fcb",
@@ -640,7 +640,7 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
     "Specialization/Status/Playtest_Backlog.md": "7b556d42cef45434320f5457cbece083b0e2b0ba21134a8bc6db48f3b6ffa358",
-    "Specialization/Status/Specialization_P0_Status.md": "cfd2da7452b8e7e31db8d0ea9c731c9707843340350b654972a1f6a419fd69a1",
+    "Specialization/Status/Specialization_P0_Status.md": "7ef50153eb66b410bb13d53dff93eafb9dc44f5a5382246e3b9281642c18d9b2",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -887,10 +887,10 @@
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md": "3ad3d5e3d7a0d7429ca62d3bf1b973bda0712dde3cae717511ec8477ed387467",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "c111616b1466e72179c58922245f9dc0d057d408a8bb173cc0fe9b66fd86d4de",
+    "Specialization/Workflow/Authority.json": "abda1f928d05e99049c9b2026e30f719b918ab9becbd7c7509e7f0de21cb2f26",
     "Specialization/Workflow/P0-B2_Revalidation.md": "ce6b64d2439e5d5c26866d5cbe666bfb399f1b2eff54c981ea828ff928a8b3dc",
-    "Specialization/Workflow/P0-H.json": "7a3eb1ccc7b22f379c3acaa6bccbde0d3afceecea18090eefd1394e46c40de08",
-    "Specialization/Workflow/README.md": "61d1ca5d0abc140be59e00685fb8903d5eb7a1db6ec8c08db662c607ac1dbb42",
+    "Specialization/Workflow/P0-H.json": "3a864a6a9e7784e4d20a36eb02a26c96babe6bf1351d3bec4cb0721c06bcb685",
+    "Specialization/Workflow/README.md": "a346e1c860a1d69518009f58fda29a054f1370f859e6f4c8880155fe70acf79d",
     "Specialization/Workflow/Runtime_Index.json": "f23dc4f8a8825525949aafccd3ebe62d528ae887a0829195627a8f9d8e6ffa59",
     "Specialization/Workflow/context.py": "0ffff9d641a35bb6012a9882dcc7f0482bb0f27e47590151d491e20a81770a08",
     "tools/build_raw_icons.py": "949ce17b8de6eedc9d99165d856668e69793dcfb48e70502b1b7c691164100ff",
@@ -1261,6 +1261,6 @@
     "DevelopmentTests/test_b064_shadow.py": "c7537c953dd0c214a01a6edf0409ccd22cfb44b7ac3f387115a9285151ba9176",
     "DevelopmentTests/test_b066_inheritance.py": "4e49337caaffc7c14cbe309511790a3ba894462480af0803f14db207d5049449",
     "DevelopmentTests/test_o8_residual_cleanup.py": "1be55ea0b8982e291b8a0db532bfba2fb818f4d920349bbc99aea6b05b9d72e4",
-    "Specialization/Historical/README.md": "393fe1fce764d6ae51ea19145dfe07b6d50c9d75b6a9922b62cb721eec6162a6"
+    "Specialization/Historical/README.md": "8dffa92d81088c4a41c20bfa4cef6c04a5ea5a69ef1d3c874048637600e2c1af"
   }
 }
