@@ -670,3 +670,14 @@ The originals were independently retrieved from GitHub and matched by bytes, SHA
 | [D0032_Implementation_Plan.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/af54b8cc22aefc2f647cfd5c0d50afc5e967bc59/Specialization/Architecture/v2/D0032_Implementation_Plan.md) | Original dependency graph, stage-by-stage work and native-test plan, first fact slice and early institution prototype ordering | `9ce4fef42d15fa6d48d65ef67b4dcc8a4f00150c5cb19a1aed05fcede0055739` |
 
 Historical Status references to the E2 inventory, proposed new-city registration and post-B106 plan use anchors from the full original. The current navigation points to the retained contract/checkpoint sections. The original Status history and frozen validation bodies retain their period wording.
+
+## Delivered Commerce and Industry implementation plans in Git history
+
+The historical B233–B236 and B238/B240/B246 technical and validation reports may refer to the proposal headings of their reviewed versions. Those headings are available at the exact originals below. The working pages retain actual implementation, separate risk/ownership contracts, limits and native/API findings, and lead from current rules to the relevant result.
+
+Independent retrieval from GitHub matched bytes, SHA256 and Git blobs at published `479c543bfffee73ac1bf3bd735075ab23e7306ca`. Read the exact original with `git show 479c543bfffee73ac1bf3bd735075ab23e7306ca:Specialization/Architecture/v2/<filename>`. The frozen reports retain their original relative links and recorded conclusions.
+
+| Full published original | Sections now in Git history | SHA256 |
+|---|---|---|
+| [Commerce_Preparation.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/479c543bfffee73ac1bf3bd735075ab23e7306ca/Specialization/Architecture/v2/Commerce_Preparation.md) | Original implementation order and the B239 Commercialization/Crew, B241 Capital and B247 restructuring proposals | `20d967542d363f3b128b472322eb6a69ac1c3836ede103f2a9fc624c0071d9db` |
+| [Industry_Preparation.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/479c543bfffee73ac1bf3bd735075ab23e7306ca/Specialization/Architecture/v2/Industry_Preparation.md) | Original module matrix, first four test groupings, B233–B236 proposals and initial slice-order table | `5c2a57e8f7170babe3b6544d7b42631c7937e55fda48cd02868bcebfb9c04d36` |

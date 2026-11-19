@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1120
+Status Revision: S1121
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Retain migration and source-review evidence that still has a current reader. Continue scoped cleanup of dated department implementation instructions where the accepted contract and distinct evidence remain available. |
+| Next action | Keep the current edition of Industry and Commerce contracts and their implementation evidence. Review the remaining Culture preparation headings for obsolete dispatch and preserve source/API evidence needed for Expedition and Culture yields. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Commerce and Industry implementation evidence separated from old work plans — S1121
+
+The Commerce and Industry preparation pages formerly opened on B238–B248 task boards. Their entry pages now lead to current rules and engineering roles, then to the actual past implementations and test evidence. Completed proposals and duplicated stage/order matrices move to recoverable history. The native financial receipts, restructuring transaction and startup boundaries, Industry history and purchase limits, and Crew continuation/injection observations remain in their original sections.
+
+The edited pages contain 183 fewer lines and 52,059 fewer UTF-8 bytes. [Fixed published originals](../Historical/README.md#delivered-commerce-and-industry-implementation-plans-in-git-history) preserve the full former versions and precise recovery paths. All 2 GitHub originals match bytes, Git blobs and SHA256. Retained contracts and evidence sections, current links and anchors, JSON, diff and Context Lock checks pass. Native evidence keeps its existing scope. No game test or Owner decision is needed for this maintenance.
 
 ### Current save and cutover references separated from delivered plans — S1120
 
