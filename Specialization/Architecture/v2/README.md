@@ -44,15 +44,15 @@
 - [人文考察团UI计划](P0_N_Expedition_UI.md)：训练、独立管理、目标／任务、失效后重挂靠、城市见闻及Network呈现；仅提案，借UI不等于复用Spy引擎。
 
 - [文化风雅熏陶L1已测结算](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)：所测逐栋加值与结算已通过；[原始实施检查点](P0_L1_Aesthetic.md#b148175--implementation-checkpoint)保留技术依据，当前任务/下一授权仍看Status。
-- [科研基础设施正式cutover](P0_C_Research_Infrastructure.md)、[此前计划](P0_C_Plan.md)、[原生门禁](P0_C_Primitive_Gate.md)：计划/门禁是来源，不重新派发旧测试。
-- [跨学科研究正式路径](P0_D1_Research_Cross_Cutover.md)：后续已接受floor实现；[原计划](P0_D1_Plan.md)、[早期门禁](P0_D1_Primitive_Gate.md)、[区域精度实验](P0_D1_District_Precision_Probe.md)保留反证与测试路径。
+- [科研基础设施正式cutover](P0_C_Research_Infrastructure.md)、[科研基础设施早期计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_C_Plan.md)、[原生门禁](P0_C_Primitive_Gate.md)：计划/门禁是来源，不重新派发旧测试。
+- [跨学科研究正式路径](P0_D1_Research_Cross_Cutover.md)：后续已接受floor实现；[跨学科研究早期计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_D1_Plan.md)、[早期门禁](P0_D1_Primitive_Gate.md)、[区域精度实验](P0_D1_District_Precision_Probe.md)保留反证与测试路径。
 - [学以致用](P0_D2_Research_Apply.md)：每专家floor；[学术主持](P0_D3_Research_Chair.md)：逐普通建筑consumer。
 - [精度待办](Yield_Precision_Backlog.md)：尚需研究/未批准的后续事项，不自动成为本轮实施任务。
 
 ## 呈现与跨context界面
 
 - [Institution / Ability / Carrier合同](Presentation_Institution_Carrier_Model.md)、[载体分类调查](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1b086700da44a3cf5d8557ac339425a26f80b6ef/Specialization/Architecture/v2/Presentation_Carrier_Inventory.json)：分层、累计presentation-only原则继续适用；旧命名/能力候选由当前Content决定。
-- [前置U1原型计划](P0_U1_Plan.md)、[科研显示原型](U1_Presentation_Prototype.md)：只覆盖指定surface和技术验证，不等于完整U1或所有专业UI。
+- [机构原型早期计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_U1_Plan.md)、[科研显示原型](U1_Presentation_Prototype.md)：只覆盖指定surface和技术验证，不等于完整U1或所有专业UI。
 - [身份观察入口](P0_E1_Identity_Evidence.md)保留早期实际证据；当前保存/所有权接管以E2路由为准，不按E1旧待测描述恢复任务。
 
 ## 历史调查与审计来源

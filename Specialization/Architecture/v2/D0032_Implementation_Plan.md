@@ -21,7 +21,7 @@ Gate: GATE B — READY FOR P0-A (only after user authorization)
 
 P0-A B078: user confirms D and working-specialist reads; pillage untested. P0-B1 separately authorized and completed in B079.106: [scope, retirement and local evidence](P0_B1_Specialist_Support.md). Only existing basic support cutover; no new Research Infrastructure effect. P0-B1 local PASS and user-reported game PASS including Industry; see Status validation record. P0-B2 explicitly authorized and locally completed in B080.107; user-reported P0-B2 game PASS. A0160 plan and frozen Design rules are unchanged.
 
-P0-B2具体计划：[Lv2住房/GPP资格](P0_B2_Plan.md)，LOCAL_SIMULATION_PASS，见[P0-B2实施报告](P0_B2_Lv2_Qualification.md)；不改变冻结规则，P0-C[具体计划](P0_C_Plan.md)已备，未授权实施。
+P0-B2具体计划：[Lv2住房/GPP资格](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_B2_Plan.md)，LOCAL_SIMULATION_PASS，见[P0-B2实施报告](P0_B2_Lv2_Qualification.md)；不改变冻结规则，P0-C[具体计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_C_Plan.md)已备，未授权实施。
 
 ## Dependency graph
 
@@ -163,6 +163,6 @@ Edges indicate prerequisites, not a profession-by-profession sequence. O can fol
 
 ## P0-D3验收后的顺序调整
 
-用户要求提前规划U1，详见[P0-U1具体计划](P0_U1_Plan.md)。当前机构/阶段说明/技术carrier隐藏可复用已有事实先行；历史机构仍需Historical State，不随本次提前实施。U2/U3及其它Gameplay批次未获授权，原依赖与Design不变。
+用户要求提前规划U1，详见[P0-U1具体计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_U1_Plan.md)。当前机构/阶段说明/技术carrier隐藏可复用已有事实先行；历史机构仍需Historical State，不随本次提前实施。U2/U3及其它Gameplay批次未获授权，原依赖与Design不变。
 
 用户后续澄清：提前U1仅做技术可行性与显示效果原型计划，不要求提前完整交付当前机构。具体以P0_U1_Plan顶部为准；一个Research城/一个主要surface，完整U1依赖不变。
