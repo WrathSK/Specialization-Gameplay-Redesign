@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1116",
+    "status": "S1117",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,7 +30,7 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Early candidate research and city/save probe procedures retired — S1116",
+      "selector": "### Remaining early manual playtest procedure sheets retired — S1117",
       "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
@@ -67,7 +67,7 @@
     "Gameplay/runtime/test code changes, save/GC changes, raw evidence/backups, editing other-role outputs, game launch, deployment, main promotion and unapproved support expansion."
   ],
   "validation": [
-    "S1116: All 18 published originals matched byte-for-byte, with verified Git blobs and SHA256. Local checks passed for changed links and anchors, JSON, git diff and Context Lock.",
+    "S1117: All 25 originals matched the published bytes, Git blobs and SHA256, including the frozen B035 case checksum. Local links and anchors, JSON, git diff and Context Lock pass.",
     "Before retirement: trace current duties/consumers and verify exact published-original bytes, Git blob and SHA256; keep true evidence and resolve current links without rewriting frozen conclusions.",
     "For changed current documents/metadata: diff and JSON/reference checks, real context.py check/self-test/plan/read P0-H, stdlib helper tests when the active fixture changes, and explicit-path publication checks. Refresh only reviewed hashes.",
     "Local checks are document/tool integrity only. Do not infer new runtime, performance or user-game PASS; existing native acceptance and unobserved cases retain their recorded scopes."
@@ -78,19 +78,21 @@
   "result": {
     "current_checkpoint": {
       "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
-      "retired_files": 18,
-      "retired_lines": 5474,
-      "retired_bytes": 216068,
-      "original_commit": "30f53c2f818574b424c6886e8da0c0976671e417",
-      "historical_index": "Specialization/Historical/README.md#early-research-candidates-and-probe-procedures-in-git-history",
+      "retired_files": 25,
+      "retired_lines": 610,
+      "retired_bytes": 58206,
+      "original_commit": "c85c030b849e8278b14768d8e100071042e305ef",
+      "historical_index": "Specialization/Historical/README.md#remaining-early-playtest-procedures-in-git-history",
       "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
       "runtime_test_change": false,
       "deployment": "NOT_RUN",
-      "report": "Specialization/Status/Specialization_P0_Status.md#early-candidate-research-and-citysave-probe-procedures-retired--s1116",
+      "report": "Specialization/Status/Specialization_P0_Status.md#remaining-early-manual-playtest-procedure-sheets-retired--s1117",
       "runtime_change": false,
       "native_validation": "NOT_RUN",
-      "source_base": "30f53c2f818574b424c6886e8da0c0976671e417",
-      "validation": "All 18 published originals matched byte-for-byte, with verified Git blobs and SHA256. Local checks passed for changed links and anchors, JSON, git diff and Context Lock."
+      "case_directory_retired": true,
+      "frozen_gpp_case_checksum": "MATCH",
+      "source_base": "c85c030b849e8278b14768d8e100071042e305ef",
+      "validation": "All 25 originals matched the published bytes, Git blobs and SHA256, including the frozen B035 case checksum. Local links and anchors, JSON, git diff and Context Lock pass."
     },
     "runtime_identity": {
       "source": "B528.555 / modinfo555, 310 files; locally verified, not deployed",
