@@ -11,7 +11,7 @@ Gate: GATE B — READY FOR P0-A (only after user authorization)
 
 ## 当前后续计划适用范围
 
-本页起源于D0032/A0160门禁，下列早期进度/推荐P0-A属于历史，不能当今天的授权。当前任务仍是[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)指向的B165 native待验。
+本页起源于D0032/A0160门禁。P0-A推荐、B165待验及其后的阶段说明均按当时版本阅读。共同迁移、单一写入者和旧效果移交的依据仍可逐项查阅。现行技术约束见[正式架构](../Specialization_v0.1_Architecture.md#current-authoritative-state)，当前任务与验收见[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
 
 商业O/P/Q/R/S/T采用[当前商业准备计划](Commerce_Preparation.md)，工业G/H/I/J采用[当前工业准备计划](Industry_Preparation.md)：已按Spec D0047及Commerce/Industry/Shared D0045重核。下表相关行更新为现行合同；旧target/spike里的已取代公式或deferred状态不再适用。共同迁移/单writer/UNKNOWN合同保留，具体实施仍须逐批授权；本次只调查与计划，没有新writer、部署或原生PASS。用户实机流程按现行W0004 native delta原则收敛，不机械重跑旧表全套load/退出步骤。
 

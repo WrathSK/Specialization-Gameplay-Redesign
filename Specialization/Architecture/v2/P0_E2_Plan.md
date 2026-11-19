@@ -1,5 +1,7 @@
 # P0-E2 — 进度保存适配：具体计划
 
+> 这是早期进度保存改造的实施与证据记录。下文的「Current slice」、部署版本、待授权及旧档试验都指当时的检查点。现行保存职责见[正式架构](../Specialization_v0.1_Architecture.md#事实保存与当前资格)，现行存档支持范围见[架构合同](../Specialization_v0.1_Architecture.md#accepted-convergence-boundaries--2026-11-04)，实际验收和任务见[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。下方锚点保留，供追查原实施、失败反例和源码审阅来源。
+
 Status: E2_PARTIAL / B141_TEMPLATE_TIER0_NATIVE_FAIL_REPAIR_PENDING. User authorized lifecycle completion after the model stop. B129 scoped Claim PASS and B139 performance closure retained; see current slice.
 Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
 

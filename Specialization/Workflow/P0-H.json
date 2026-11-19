@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1114",
+    "status": "S1115",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,8 +30,8 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Delivered early ability and presentation plans retired — S1114",
-      "reason": "Current delegated document family, evidence retained and next bounded work"
+      "selector": "### Current architecture and historical implementation routes separated — S1115",
+      "reason": "Current document-maintenance result and active navigation"
     },
     {
       "path": "Specialization/Workflow/README.md",
@@ -67,7 +67,7 @@
     "Gameplay/runtime/test code changes, save/GC changes, raw evidence/backups, editing other-role outputs, game launch, deployment, main promotion and unapproved support expansion."
   ],
   "validation": [
-    "S1114: Seven exact published originals, 9 changed Markdown links/anchors, JSON, git diff and the current Context Lock pass.",
+    "S1115: Local checks passed for current links and anchors, version/Context Lock integrity, the measured context projection, and exact preservation of the accepted contract block and E2 evidence body.",
     "Before retirement: trace current duties/consumers and verify exact published-original bytes, Git blob and SHA256; keep true evidence and resolve current links without rewriting frozen conclusions.",
     "For changed current documents/metadata: diff and JSON/reference checks, real context.py check/self-test/plan/read P0-H, stdlib helper tests when the active fixture changes, and explicit-path publication checks. Refresh only reviewed hashes.",
     "Local checks are document/tool integrity only. Do not infer new runtime, performance or user-game PASS; existing native acceptance and unobserved cases retain their recorded scopes."
@@ -77,20 +77,14 @@
   ],
   "result": {
     "current_checkpoint": {
-      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
-      "retired_files": 7,
-      "retired_lines": 558,
-      "retired_bytes": 69127,
-      "original_commit": "6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71",
-      "historical_index": "Specialization/Historical/README.md#delivered-early-ability-and-presentation-plans-in-git-history",
-      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
-      "runtime_test_change": false,
-      "deployment": "NOT_RUN",
-      "report": "Specialization/Status/Specialization_P0_Status.md#delivered-early-ability-and-presentation-plans-retired--s1114",
+      "status": "STATIC_CONFIRMED_DOCUMENT_ROUTING",
+      "source_base": "992c542fdbf4e7b4acbc26b528fc8fd3e505feba",
+      "report": "Specialization/Status/Specialization_P0_Status.md#current-architecture-and-historical-implementation-routes-separated--s1115",
+      "projection_bytes_before": 20103,
+      "projection_bytes_after": 9589,
       "runtime_change": false,
-      "native_validation": "NOT_RUN",
-      "source_base": "6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71",
-      "validation": "Seven exact published originals, 9 changed Markdown links/anchors, JSON, git diff and the current Context Lock pass."
+      "deployment": "NOT_RUN",
+      "validation": "LOCAL_DOCUMENT_CHECK_PASS"
     },
     "runtime_identity": {
       "source": "B528.555 / modinfo555, 310 files; locally verified, not deployed",

@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1114
+Status Revision: S1115
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,21 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Review remaining architecture and technical navigation against current contracts and engineering provenance. Retire completed material with exact history and keep active/deferred scope explicit. |
+| Next action | Continue the delegated document review by checking the purpose and ownership of older agent and technical evidence families. Current requirements and active observations remain in Architecture, Design and Status. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Current architecture and historical implementation routes separated — S1115
+
+The main Architecture, v2 and technical indexes now route current save and ownership questions to the formal contract. The early E2 plan retains its dated scope and all original anchors, including the review evidence for ClaimProjects.sql. The old migration plan now identifies its B165 pending note as a dated checkpoint. The Workflow entry starts with the accepted Architecture and leads to early implementation sources by question.
+
+The Architecture CURRENT projection now stops before the completed HD first slice and other early checkpoints (20,103 → 9,589 UTF-8 bytes in the projected section). All earlier sections remain available under their exact headings. This is a measured change in one context read, separate from working-tree size.
+
+Local checks passed for current links and anchors, version/Context Lock integrity, the measured context projection, and exact preservation of the accepted contract block and E2 evidence body. No user decision or game test is needed.
 
 ### Delivered early ability and presentation plans retired — S1114
 

@@ -38,6 +38,10 @@ O1 owns effective-chain resolution and the shared D fact. Resolve real upgrade e
 
 The supported independent baseline uses official Gathering Storm content with the existing official prerequisites. The fixed HD/UC configuration remains the comparison profile. The Restructuring Team uses the base game's modern Great Merchant member/audio and official icon fallbacks, with the SPC icon overrides and gameplay unit identity. The earlier retained-Leugi requirement is superseded. The O5b startup/exit and UI-base gates precede the fixed user-run no-HD smoke. Native behavior and O6 UI checks are recorded separately in Status.
 
+## Early convergence and pre-playtest checkpoints
+
+These checkpoints explain the first HD Commerce slice, the original implementation contracts and B267 diagnostics. Apply their still-relevant details alongside the [current Architecture contracts](#current-authoritative-state) and [current implementation responsibilities](#系统如何组成). Check [Status](../Status/Specialization_P0_Status.md#current-authoritative-state) for the outcome and active work.
+
 ### PU01 — authorized current-HD first slice
 
 Use the current HD provider to deliver environment-independent fact status and purpose-specific projections to the real Commerce consumer. Keep authoritative facts, current availability, per-field/domain status and actual applied output separate. A confirmed zero/negative differs from unavailable D/workers/eligibility/yield; unneeded domains must not block independent readable domains, while a required unknown cannot silently become zero. A read-only projection does not itself write carriers, history, native effects or dispatch events. Keep value and availability/ref/generation distinctions, copied values and no retained native objects. Use the existing shared synchronous read phase and real-write invalidation owner; extract only the production seam proved necessary here, not the whole O1/HD port or a temporary parallel hold framework.
@@ -50,7 +54,7 @@ The full later PU/O order is preserved as [published historical planning evidenc
 A0178保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期补充](v2/P0_E2_Plan.md#b140167--industry-template-lifecycle-and-reconciliation)按当前Authority和定域合同适用，不宣称整个目标架构已实现。v0.1仅科研、文化、商业、工业；未来专业Design不扩大实施范围。
 
 - [状态/Shared/Network/保存/展示/性能目标合同](v2/D0032_Adaptation.md)；[依赖与cutover合同](v2/D0032_Implementation_Plan.md)。
-- [E2当前切片及实际保存合同](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
+- [E2保存实现与历史检查点](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)：当前Game索引＋逐城记录，旧writer隔离；旧City Property模型不是当前production authority。
 - [B232 shared network recovery contract](v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出): event-driven route proof, coherent availability-before-notification, and recovery notification without a new logical input version. Culture history changes actively notify their projection; no persistent state or Gameplay change.
 - [B234 Industry projection and exact retirement](v2/Industry_Preparation.md#b234-implementation-and-validation): Store knowledge and current effect eligibility remain separate; event-driven support readiness, self/network III baseline, exact old Industry exit and user-approved v0.1 Research-network isolation preserve the common topology.
 - [B235 Engineering city history and effects](v2/Industry_Preparation.md#b235-implementation-and-validation): Store owns L/receipts, study owns the full-turn transaction, existing Standardization owns actual-holder enhancement, and a derived city consumer owns older-Wonder production. Target-specific District purchase remains a technical gap.
@@ -61,7 +65,7 @@ A0178保留D0032目标架构；D0035 Shared/Lv2澄清及[D0036模板生命周期
 - [B240 Commerce source/effect ownership](v2/Commerce_Preparation.md#b240-implementation-and-validation): D0055 matching-Identity direct partners and Harbor total Food; no recurring Gold sampling. Store selection/reputation, event-driven real changes, exact cleanup and per-domain Floor are retained; source/live/native evidence remain separate.
 - 实施/验证/下一授权边界只在[Status CURRENT](../Status/Specialization_P0_Status.md#current-authoritative-state)维护；部署另需receipt，源码存在不证明已部署。
 - [A–D2事件驱动传播合同](v2/README.md)及[机构/能力/carrier分层](v2/Presentation_Institution_Carrier_Model.md)继续适用；下面旧阶段状态不重启旧任务。
-- 仍有效约束：后台UI当前商路桥接是已接受路径，不强求纯Gameplay枚举；UNKNOWN不等于空网；持久成果不等于当前ACTIVE/路线/载体；不能从旧临时效果补造永久历史。具体接口与证据沿E2当前路由查阅。
+- 仍有效约束：后台UI当前商路桥接是已接受路径，不强求纯Gameplay枚举；UNKNOWN不等于空网；持久成果不等于当前ACTIVE/路线/载体；不能从旧临时效果补造永久历史。具体接口与证据沿E2保存记录查阅。
 
 科研传统：Store拥有可靠年龄，F2独立consumer仅从当前身份/ACTIVE与年龄重建五档瞬时科技百分比；module-owned退出不清年龄。实际合同及证据见[P0-F科研传统](v2/P0_F_Research_Tradition.md#b144171--f2-implementation-and-validation)。本地模拟不是原生验收；当前部署/授权仍以Status为准。
 
@@ -110,7 +114,7 @@ Meaningful records are separate from bounded optional native sampling. Identity-
 
 [EffectiveFacts](../../Mod/EffectiveFacts.lua)从基础进度与已确认投资得到Potential，再从当前总督门槛求ACTIVE；读取失败保留UNKNOWN语义。[Standardization](../../Mod/Standardization.lua)在新模式将自身模板读写路由至进度store，仍由该模块验证模板目录和学习证据。Identity/Potential/明确永久收据与当前总督、路线、收益载体分开。
 
-失城是确认后由各consumer撤销自身临时效果，永久记录保留；夺回需要同城证据，再派生当前ACTIVE和Network，不重放失城前快照。完整覆盖、尚未支持的销毁/重建与未专业城返回等边界见[E2当前切片](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)，不是无条件的全生命周期保证。
+失城是确认后由各consumer撤销自身临时效果，永久记录保留；夺回需要同城证据，再派生当前ACTIVE和Network，不重放失城前快照。完整覆盖、尚未支持的销毁/重建与未专业城返回等边界见[E2保存与所有权历史记录](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)，不是无条件的全生命周期保证。
 
 ### Industry history and typed knowledge (B233)
 
@@ -230,9 +234,11 @@ B138稳定化补充既有事件驱动合同，不重建事件总线。新/修改
 
 ### 目标合同与尚未落地部分
 
+> 此处保留早期目标合同及当时的实现范围。四专业的已落地职责见[系统组成](#系统如何组成)，现行支持边界见[现行合同](#current-authoritative-state)。
+
 [目标状态模型](v2/D0032_Adaptation.md#canonical-state-model--target-contracts-not-implemented-schemas)包含Historical State、REALLOCATING、专业永久成果与长期合同；这是依赖这些能力时必须满足的职责，不是当前已存在的全部保存schema。新通用cityKey、资产重组及Commerce长期合同，不能从旧模块同名或Game存储存在推断完成。Culture城市见闻已由CityProgressionStore保存；B226仅复用该历史派生当前网络，不新建长期记录。B175仅完成上方Dialogue项目/历史首段；科研传统实际实现见本页专属入口。各专业Legacy保持独立，未决项不由架构类推。
 
-[总实施计划](v2/D0032_Implementation_Plan.md)解释依赖与切换策略；[当前切片](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)限制现在做什么；[技术spike](v2/D0032_Technical_Spikes.md)记录未来必须验证的接口。目标文件中的旧“推荐下一批”是当时规划，授权只从Status及用户明确决定取得。
+[总实施计划](v2/D0032_Implementation_Plan.md)解释依赖与切换策略；[E2检查点](v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)记录当时的保存实施和验证边界；[技术spike](v2/D0032_Technical_Spikes.md)记录未来必须验证的接口。目标文件中的旧“推荐下一批”是当时规划，授权只从Status及用户明确决定取得。
 
 ## 仍适用的限制与重要反证
 

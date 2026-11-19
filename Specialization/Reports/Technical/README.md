@@ -12,7 +12,7 @@
 
 | 问题 | 优先资料 | 仍须保留的边界 |
 |---|---|---|
-| 当前进度怎样保存、哪些档受支持 | [E2当前切片及完整合同](../../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing) | 当前实现与历史adapter分开；不能用旧City Property说明覆盖Game侧新记录 |
+| 当前进度怎样保存、哪些档受支持 | [现行保存与资格职责](../../Architecture/Specialization_v0.1_Architecture.md#事实保存与当前资格)、[引擎冷恢复参考](Engine_Reference.md#er04--cold-restore-and-persistent-facts) | [E2保存改造记录](../../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)保留早期适配、支持边界和原生证据 |
 | 为何不能仅看事件“看起来连续” | [B105原生事件反证](../../Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md)、[B106正面建城证据](../../Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md) | 首个Publish不保证事务已结束；后续FoundCity证据只限所测路径 |
 | 其它Mod怎样处理生命周期 | [其它Mod参考](Specialization_E2_Other_Mod_City_Lifecycle_References.md) | STATIC证据，不是本项目所有原生事件路径PASS |
 | 已证明的夺回、双城和新城范围 | [夺回结果](../../Status/Validation/Results/Specialization_B103_E2_Recapture_Pass.md)、[双城结果](../../Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md)、[新城结果](../../Status/Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md) | 各检查点限定场景，不能合并宣称B108新局三城已验收 |
