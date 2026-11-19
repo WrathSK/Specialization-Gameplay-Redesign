@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1119
+Status Revision: S1120
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Preserve the remaining state and migration contracts, source-review locators and distinct technical/native findings. Further retirement of mixed files depends on tracing their live excerpts and retaining exact evidence. |
+| Next action | Retain migration and source-review evidence that still has a current reader. Continue scoped cleanup of dated department implementation instructions where the accepted contract and distinct evidence remain available. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Current save and cutover references separated from delivered plans — S1120
+
+The early city-save and D0032 migration pages mixed old implementation dispatch and native-test instructions with contracts still cited by current Architecture. The two pages now contain 647 fewer lines / 99,922 fewer UTF-8 bytes. Their current routes expose the retained save, Claim and cutover material. The E2 implementation checkpoints, original native failure records, Claim SQL review section, and the D0032 cutover and old-effect responsibility sections are unchanged. [Exact original files and superseded sections](../Historical/README.md#retired-sections-of-the-e2-and-d0032-plans-in-git-history) remain retrievable from the published commit.
+
+Static checks cover both original byte/blob/hash matches, current links and anchors, byte identity of the retained contracts and Runtime_Index, and Context Lock. The files remain in the tree. No game test or Owner decision is needed for this maintenance.
 
 ### Delivered early implementation and setup notes retired — S1119
 

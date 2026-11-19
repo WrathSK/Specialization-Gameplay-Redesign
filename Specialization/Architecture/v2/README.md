@@ -11,7 +11,7 @@
 | 城市身份、保存与当前支持范围 | [现行保存职责](../Specialization_v0.1_Architecture.md#事实保存与当前资格)、[E2历史记录](P0_E2_Plan.md#current-slice--recovery-and-action-routing) | 从现行架构开始，按需回查原始实现、反例及源码审阅依据 |
 | 科研传统如何开始保存与计龄 | [P0-F检查点](P0_F_Research_Tradition.md) | F1年龄/影子、F2实际收益及当时验证边界；当前进度查Status |
 | Identity/Potential/ACTIVE、永久成果及Shared服务应如何分层 | [状态/服务目标](D0032_Adaptation.md) | 目标合同，结合后续切片；其中规划时版本/下一步不是今天的任务 |
-| 依赖顺序、单writer切换、存档支持 | [实施计划](D0032_Implementation_Plan.md) | 批次依赖和迁移合同，完成状态查Status |
+| 单一写入者切换、存档支持 | [迁移与切换合同](D0032_Implementation_Plan.md#migration--cutover合同) | 共同合同及旧效果责任。早期依赖和实施批次见[已发布原计划](../../Historical/README.md#retired-sections-of-the-e2-and-d0032-plans-in-git-history) |
 | 早期接口门禁与后续进展 | [早期技术门禁](D0032_Technical_Spikes.md)、[Engine Reference](../../Reports/Technical/Engine_Reference.md) | 先按现行问题查引擎参考和相应验收。早期门禁保留当时的未知和反例 |
 | 哪些旧效果需要退出 | [原始考古矩阵](D0032_Runtime_Archaeology.md)、[切换责任](D0032_Implementation_Plan.md#明确的旧效果切换责任) | 考古是B076时点，不能作为当前逐模块清单 |
 

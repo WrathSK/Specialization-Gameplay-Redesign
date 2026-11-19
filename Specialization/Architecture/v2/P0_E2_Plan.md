@@ -1,45 +1,22 @@
-# P0-E2 — 进度保存适配：具体计划
+# P0-E2 — 进度保存适配的合同与实施证据
 
-> 这是早期进度保存改造的实施与证据记录。下文的「Current slice」、部署版本、待授权及旧档试验都指当时的检查点。现行保存职责见[正式架构](../Specialization_v0.1_Architecture.md#事实保存与当前资格)，现行存档支持范围见[架构合同](../Specialization_v0.1_Architecture.md#accepted-convergence-boundaries--2026-11-04)，实际验收和任务见[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。下方锚点保留，供追查原实施、失败反例和源码审阅来源。
-
-Status: E2_PARTIAL / B141_TEMPLATE_TIER0_NATIVE_FAIL_REPAIR_PENDING. User authorized lifecycle completion after the model stop. B129 scoped Claim PASS and B139 performance closure retained; see current slice.
-Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809. D0035/A0161; four-profession v0.1 only. Earlier B094–B106 sections below are chronological historical plans/results, not current task dispatch.
+> 现行规则从[正式架构的保存职责](../Specialization_v0.1_Architecture.md#事实保存与当前资格)和[支持范围](../Specialization_v0.1_Architecture.md#accepted-convergence-boundaries--2026-11-04)进入。实际验收和下一步见 [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。本页保留早期合同、已执行的检查点和反例，各段的版本和结论适用于当时范围。
 
 ## Current slice — recovery and action routing
 
-[B142模板修复限定验收](../../Status/Validation/Results/Specialization_B142_Template_Pass.md)完成：截图确认集市T1/粮仓T0正确初始化，用户确认重启保持。关闭本修复的最小USER_GAME_TEST门禁，不扩大到原生折扣、全部目录或所有E2边界。当前下一建议是[P0-F1年龄与影子计划](P0_F_Research_Tradition.md)，未授权实施；工业折扣补测与未定义E2边界不阻塞同Owner科研传统的独立计划。D0036、B129 Claim限定PASS与性能结项保持，实际运行仍B142.169。
-
-当前旁路已完成[B123项目限定验收](../../Status/Validation/Results/Specialization_B123_Project_Pass.md)。用户已明确授权[一回合Claim实施计划](#next-slice--one-turn-claim-plan-after-b123)，主流程已在[B126用户验收](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)通过；本轮授权[B127窄UI修复](#b127154--claim-load-and-project-visibility)，UI实机确认按用户要求并入后续测试。旧B112/B113空队列/过回合方案只属历史反证，不是当前项目使用前提。正式实现须处理持久计时、多城及Claim完成事务，不能把原型PASS扩大到任意未测边界。
-
-**B109三城及冷加载已验收；用户已授权的首次AI征服快照完成B110本地实现，B110原生读取失败已由B111修复；双城分流与完整重启现已限定验收。** snapshot与Claim主流程已限定验收；未专业城夺回由B128实现、B129读档修复限定验收。销毁/位置复用、F仍未授权。当前本地人类单人、四专业范围不变。文档维护授权不等于继续玩法实施。
-
-本次[B108两图失败证据](../../Status/Validation/Results/Specialization_B108_E2_Initialization_Failure.md)保留原结论；[B109修复及当前支持范围](#b109136--start-enabled-initialization-repair)覆盖此前IsSavedGame门槛。支持从开局启用Mod的新局及其正常存档，不承诺中途加入Mod或旧开发存档兼容。[三城可见状态已确认](../../Status/Validation/Results/Specialization_B109_E2_Three_City_Result.md)；[用户现已确认三图拍于完整重启读档之后](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md)，本次三城检查点关闭。E2报告左键读取，右键事件翻页，不要求右键重测。
-
-### 默认恢复 / 验收
-
-先看Status CURRENT与Authority，再按当前动作读取B142修复合同/B140模板合同/本次证据；触及保存时才展开以下B108合同：
-
-- [B108保存、旧writer切换、失败/回滚合同及三城测试](#b108-authorized-new-game-multi-city-cutover--contract-before-implementation)。包含新档资格、UNKNOWN/旧档不写、部分写入保持HELD、原生初始化未证实、最小三城一次冷加载流程。
-- 当前项目验收以B123结果和新Claim计划为准，B108三城流程不重复列为必测；缺截图不能说已重看，用户陈述与图像证据分开。归档不自动授权修复。
-- 已记录部署引用在Status/Authority；普通问答不读取外部包，涉及部署恢复才核receipt与实际包。
-
-### 实施依赖与按问题展开
-
-[P0-E2 manifest](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/7da41bcea04a0c17283b71e26c7c37e4d14df372/Specialization/Workflow/P0-E2.json)的context是**实施依赖上界**，不是每次恢复/问答必读全文。当前计划边界见[B142修复切片](#b142169--tier-zero-template-validation-repair)，沿用[B140生命周期](#b140167--industry-template-lifecycle-and-reconciliation)；快照结果见B111，Claim当前结果见B126与B127；不得继续下一切片。下一授权若改变切片，先更新适用集合，不能永远追加历史。
-
-| 触发 / 直接合同 | 阅读范围与用途 |
+| 追查的问题 | 留存的合同或证据 |
 |---|---|
-| 修改当前保存/投资/注册 | 完整B108合同＋正式Spec SCOPE/ELIG、PROG＋总计划Migration/cutover合同；manifest保留的完整直接源码/测试；精确核对writer入口及消费者，不以hash替代cutover审阅 |
-| ownership退出/夺回或Native顺序异常 | [B096模块自有退出清单](#b096123--confirmed-ownership-loss-scoped-exit-checkpoint)、[B097逐类永久/派生state](#b097124--原玩家同城夺回-partial-checkpoint)，再读B101/B102/B103后续修正；这些阶段上限/待测状态可能已过时，不能反向覆盖B108 |
-| founding或事件收尾问题 | [B105原生反证](../../Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md)、[B106正面建城证据](../../Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md)、[B107实现](#b107134--authorized-positive-founding-registration-implementation)及其原生结果；不得恢复“首个Publish即事务结束”假设 |
-| 既有测试fixture/兼容断言失败 | 对应历史阶段＋直接test依赖；历史adapter不是生产旧档支持承诺 |
-| 讨论后续工作 | [B110当前检查点](#b110137--authorized-conquest-snapshot-checkpoint)；原快照计划已授权并完成本地实施，Claim已获本轮授权；其它后续仅建议，不派工 |
+| 保存接管、单一写入者与回滚 | [B108 新局多城切换](#b108-authorized-new-game-multi-city-cutover--contract-before-implementation)、[B109 初始化修复](#b109136--start-enabled-initialization-repair)及[完整重启确认](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md) |
+| 易主、退出与同城夺回 | [B096 模块退出清单](#b096123--confirmed-ownership-loss-scoped-exit-checkpoint)、[B097 永久和派生状态](#b097124--原玩家同城夺回-partial-checkpoint)、[B101 原所有者证据](#b101128--authorized-original-owner-native-transition-adaptation)、[B128 未专业化城市夺回](#b128155--unassigned-return-checkpoint) |
+| 建城与首次完成的顺序 | [B105 首次事件发布并不收束事务](../../Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md)、[B106 正面建城证据](../../Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md)、[B107 实施](#b107134--authorized-positive-founding-registration-implementation) |
+| 冻结候选、认领身份及一回合计时 | [B111 快照修复](#b111138--indexed-district-snapshot-repair)、[B124 认领实现与 SQL 审阅](#b124151--authorized-one-turn-claim-checkpoint)、[B126 主流程实机](../../Status/Validation/Results/Specialization_B126_Claim_Core_Pass.md)、[B129 冷读档修复](#b129156--claim-cold-load-acknowledgement-repair) |
+| 工业模板的历史真值和落地 | [B140 模板生命周期](#b140167--industry-template-lifecycle-and-reconciliation)、[B141 原生反例](#b141-native-failure--tier-zero-template-validation)、[B142 限定验收](../../Status/Validation/Results/Specialization_B142_Template_Pass.md) |
 
-跨Owner永久成果仍逐专业定义；未实现的学术传统、文化永久ledger、商业合同不补造。名字/单独坐标/猜CityID不能证明同城；失效与临时UNKNOWN分离。旧实验代码可保留作反证/fixture，正式入口是否启用以当前切片与源码为准。
+早期单城导入、建城候选、快照和认领的规划步骤已退出当前文件，原计划全文和旧定位见[固定发布版本](../../Historical/README.md#retired-sections-of-the-e2-and-d0032-plans-in-git-history)。
 
 ## Historical plans and scoped evidence
 
-以下按形成顺序保留；不是整体默认读取集合。旧实施状态与测试任务由上方当前切片覆盖，仍适用合同经上表可达。
+下方是原样保留的实施检查点、失败与合同行文。早期 City Property 兼容、读档测试和下一批建议的适用范围以其记载的历史构建为准。
 
 ## 当前单人范围澄清（用户确认，2026-09-21）
 
@@ -76,117 +53,6 @@ Baseline: B107.134 / modinfo134, implementation c5bb3d9, native evidence d3ab809
 外方持有期间只保留可支持夺回的最少被动身份记录/定域生命周期观察，不维护外方ACTIVE、收益或专业网络。夺回时先证明同城，再恢复当前玩家读模型；不足则技术HELD，不能把永久成果删掉或把技术不支持写成新玩法。
 
 当前runtime `Probe.IsTestPlayer`只检查测试文明/领袖，不检查Human/local资格；这不是当前范围已被代码完整保证。后续首段要核对本地单人玩家门槛并统一路由，拒绝AI/多人启用；禁止偷偷扩展AI实现。为对退出的外方城市做必要清理而访问它，不等于给它启用专业资格。
-
-## 1. E1结论与本批切片
-
-E1已验证：独立Game记录可保存；Gameplay直接识别所测单次自由城转移；B094冷加载恢复单城映射。仅此原型范围USER_GAME_TEST_PASS。正式多城cityKey、收复/连续易主/征服/解放/同地重建、转移中断恢复没有普遍原生保证。
-
-因此不把E1实验编号直接升级为全局authority。本次推荐授权的E2首段为：**一座显式选择、原Owner/引用/旧凭据完整、已经建立四专业之一的城市，在同Owner范围迁移进度并继续既有移民投资，冷加载保持结果。** 其它城保持旧路径。
-
-这是E2的受限首段，不等于总计划中完整新城/跨Owner保存适配全部完成。后续新城首次专业、全城登记、跨Owner技术适配仍需收束（夺回Gameplay已由PROG-004明确）；不因首段PASS自动进入F。既有能力计算不改，既有收益仍由原consumer写入。
-
-## 2. 实际读取链与必须接管的边界
-
-| 当前模块 | 实际职责 | 本段处理 |
-|---|---|---|
-| BindingProbe | Game每Owner总账+City token；CityBuilt分配DEV序号（上限32） | 未迁移城保持；已登记城/位置及转移待确认范围先由新保存路由拦截，禁止当新建城再分配 |
-| CityJournalProbe | 首个合格专业区域锁Identity及基础Potential1；City记录 | 已迁移城的事件/加载/故障GAP写入跳过；保留冻结来源，不双写 |
-| FreshBindingHook / CityFlowProbe | 串接新城Journal；三阶段提交、load resume、SupportFacts | 新城仍旧路径；已迁移城所有写入口/resume提前跳过，避免冻结旧记录触发player-wide halted |
-| EffectiveFacts | Flow基础Potential + 已完成投资凭据数；Governor产生ACTIVE | 接入唯一保存路由：迁移后只读新记录；旧路径仍服务其它城；接口输出与收益语义保持 |
-| InvestmentAction | Prepare/Confirm、INTENT→单位标记/销毁→CONSUMED_CONFIRMED→receipt；load finish | 对迁移城替换读写后端与revision校验，保留单位消耗和receipt语义；旧City ledger不再写 |
-| CurrentSpecializationFacts | EffectiveFacts只读外观 | 复用，验证UNKNOWN/mode不会被解释成NONE |
-| NetworkInput / SampleLifecycle | 直接读旧token，Network还有“无Flow=未追踪城”分支 | 使用新路由的引用/参与状态检查；迁移有效城不得因旧Flow缺失被判NONE，HELD不得走新城默认值 |
-| SourceYieldProbe | 直接读取CityFlow.SupportFacts | 迁移城改读统一基础事实，未迁移城保持；不得继续越过路由 |
-| Standardization/模板及其它永久成果 | 独立专业ledger，并非全在EffectiveFacts中 | 本段不迁移模板/Dialogue等；不得声称易主后完整保存。所有权不推导 |
-| CityInheritance / InheritanceShadow | 被隔离旧继承writer | 保持隔离，不调用Start/继承projection |
-
-已完整阅读Journal/Flow/Investment/EffectiveFacts/CurrentFacts/FreshBindingHook，核对Binding写入段与Gameplay启动/分发，搜索所有直接旧key读取点。正式实施前按W0001补读精确受影响消费者，不默认全库重审。
-
-## 3. 新保存authority：小型专业进度记录，不建通用框架
-
-拟一个独立版本化Game Property `SPC_CITY_PROGRESSION_V1`，由一个Gameplay模块持有。本段只允许一个显式登记的测试城；后续扩容另审，不创建每帧同步或第二份可写历史。
-
-- root：schema、revision、单城record；new key不存在不等于迁移成功。
-- stable record key：由已验证原DEV token在本存档命名空间确定；仅支持本段受控登记，不宣称任意城市永久ID。
-- origin/current reference、迁移来源owner/token/关键revision与来源摘要；原锚点固定，当前寻址单独保存。
-- progression：Current Identity、Permanent Potential、first事实、mode；UNASSIGNED/SPECIALIZED/REALLOCATING区分。首段只导入SPECIALIZED；REALLOCATING仅合法类型和拒绝错误分支的合同，无创建Action。
-- historical maximum：只记录已有证据所支持的下界及provenance，过去更高值未知，不把当前P伪造成完整历史。未来投资更新当前专业已观察最高值。
-- investment：原receipt→unitUID集合、revision、可选pending；无单位/UI/carrier作为唯一authority。Potential与凭据数量必须一致。
-- migration state：PREPARED / ACTIVE / HELD，与Gameplay mode及事实validity独立。ACTIVE这里指存储接管状态，不是专业ACTIVE等级。
-- 专业ACTIVE不持久化，仍由当前Governor和Potential计算；数据暂不可用≠等级0。
-
-Game记录随save恢复，不用外部文件/城市名称作key。单位删除等引擎副作用不是一次Game Property写入所能原子覆盖的，保留现有失败暂停语义，不承诺任意崩溃exactly-once。
-
-## 4. 明确导入合同和切换顺序
-
-可导入：当前原Owner、当前引用/token/Binding唯一匹配，Journal TRACKING、Flow DONE且逐值一致、四专业Identity及基础P1、投资receipt有效且无pending。首测优先Research P1–P3，以便在同次测试继续投资；P4可本地验证导入。
-
-拒绝：未专业化/无追踪旧城、City记录已因易主丢失、任何pending/GAP/冲突、缺失历史、原Owner改变。**E1记录/截图/当前建筑不能代替缺失旧账本。** 有模板不代表本段导入模板；原模板继续其原Owner路径，不复制/扩散。
-
-顺序：
-1. 手动请求，读取不可变来源快照，验证资格；没有新效果，也不消耗单位。
-2. 写新key PREPARED（完整目标及来源锚点），读回确认；从PREPARED开始所有目标城旧进度writer必须暂停，避免来源在切换中继续变化。
-3. 再验证来源未变、目标仍同一城、无单位事务；提交ACTIVE并读回确认。
-4. 统一read route切到新记录，旧City值冻结留作证据，不删除、不写回、不作为自动fallback；不发布虚假的0或重复收益。
-5. 重复导入返回已完成，revision不增。PREPARED读档仅在同Owner/来源完整一致、无任何副作用时允许完成原导入，否则HELD；记录损坏、schema不识别、来源改变不自动重建。
-
-失败后不能自动回到旧writer。切换marker与目标记录必须在同一Game值内，避免多key提交顺序造成两个authority。Gameplay初始化必须在旧writer/旧load hook可以运行之前恢复路由；恢复未就绪时暂停目标写入，不将缺读解释为未迁移。
-
-## 5. 迁移后继续投资 / 发布
-
-Prepare读取路由提供的同Owner事实、record revision、receipt集合；不依赖冻结City ledger判断新投资是否变化。Confirm再次验证，沿用原INTENT/单位标记/销毁确认/receipt提交顺序；每步只写新后端，保持原消耗规则与Potential上限。
-
-读档：已确认消耗凭据可幂等完成；INTENT无法证明消耗则HELD，不自动销毁第二次或增加Potential。不放宽原单位ID复用保护。旧load恢复循环必须跳过迁移城，不能双finish。
-
-更新后复用既有事实变化通知，只有Identity/Potential/ACTIVE或相关输入实际改变才发布。迁移前后相同事实不产生额外carrier churn；Network继续共享derived view，引用加入保存generation/revision时只在需要的事实边界失效。无hover请求、无generic pulse保存/扫描。
-
-## 6. 易主和未支持范围
-
-当前AI/自由城Owner不获得本Mod效果或投资资格；永久成果按ELIG-005休眠保留。本段暂未实现玩家夺回时的自动恢复，不改变PROG-004恢复规则。迁移城发生已确认移除/易主后，Game记录保留，路由变为HELD_TRANSFER；旧source资格按真实owner/reference失效退出，不继续凭旧owner激活收益。当前读取失败不能冒充已确认失效。
-
-只识别同一坐标不足以领回历史；新Owner/收复时均不自动重锚专业账本。E1V2保留为独立实验，不在正式读链作继承许可证。对于已登记位置出现CityBuilt（可能是易主），先暂停新旧首次建立入口，不把它当从未专业化城市；本段不解决该位置后续真正新城的自动登记。
-
-必须本地证明：目标暂停不污染同player其它城市的旧bucket，不触发误清除无关城；确认失去owner/reference时不会残留其正式来源效果。若现有consumer不能区分临时UNKNOWN与已确认退出，实施时扩充必要的明确失效出口，不能靠统一抛错隐瞒。不得将已明确的PROG-004/006～009重新列为待定；仅超出这些规则的真实新Gameplay边界才报告，不替用户补Legacy。
-
-## 7. 最小文件范围
-
-当前单人/仅玩家资格需核对`Probe.IsTestPlayer`与现有调用入口；只收紧当前启用范围，不新增AI/多人实现。拟新`CityProgressionStore.lua`（或相同职责小模块）；ADAPT EffectiveFacts、InvestmentAction、Binding/Journal/Flow目标城门禁、SourceYieldProbe和NetworkInput的直接旧存储判断；SampleLifecycle只在引用语义确需时改。Gameplay负责正确初始化顺序和手动导入/摘要诊断；复用现有实验按钮位置、同步旧Tooltip，不新增诊断面板。
-
-收益SQL/carrier/Research公式/Design不变，CityIdentityMapping实验仍独立。旧writer不是全局删除，而是对迁移目标先停后切；其它城市旧行为不变。完整E2新城接管不塞入本段。
-
-## 8. 验证：W0004 L3，仅受影响链
-
-| 本地定向项目 | 验收 |
-|---|---|
-| P1/P2/P3/P4真实旧fixture导入 | Identity/P/first/receipt逐值等价；ACTIVE按Governor重新计算 |
-| PREPARED/ACTIVE重复、重入、冷load、读回失败 | 单authority；不覆写冲突、不丢凭据、不自动回退旧writer |
-| 移民投资/重复确认/单位ID复用/两阶段中断 | 只正确消耗一次；不确定阶段暂停；旧City ledger零新写 |
-| 同玩家一迁移城+一旧城 | 路由分离，旧城正常；所有写入口/load/GAP/恢复不可漏 |
-| 直接旧key读取回归 | Network不伪造NONE，SourceYieldProbe不越过路由；旧样本版本安全 |
-| SAME事实与idle/重复通知 | 无新增carrier写/全城扫描/周期请求；新key状态变化才写 |
-| 真实投资/Governor/owner事件 | 输入正确发布；UNKNOWN保留边界与confirmed withdrawal分开 |
-| History / REALLOCATING fixture | History不等于Current，REALLOCATING不能进入NONE首次建立 |
-
-全Lua/manifest/context、受影响收益/Network/投资/部署安全检查。无需机械重跑所有历史；针对持久中断与重复操作做有限压力/故障注入。原生版本环境同时覆盖缺少table.unpack，避免B093重复。
-
-## 9. 实施后一次最小用户测试
-
-一个独立测试档，一座完整旧科研P2或P3城市，另有一座旧城作为对照：按需迁移→看同样Identity/P/ACTIVE和已运行收益→用既有移民投资一次→另存冷加载→同一简明诊断确认新P、凭据数、存储来源；对照城仍旧路径。一次流程涵盖保存切换与单位事务，不要求用户手算hash或全模块收益。
-
-不默认重复自由城实验；实际易主后的正式玩法不在首段验收。若实现需要原生特定失效证据，本地先缩小后再提出，不能把范围扩成长期综合测试。
-
-## 10. 退出 / 回滚 / 授权
-
-首段退出：目标同Owner记录和投资读写正式由新Game记录承担、旧writer目标零写、收益逐值一致、冷加载成功；未迁移城不退化。报告明确USER_GAME_TEST与本地模拟边界。
-
-回滚使用B094完整包和**迁移前独立存档**。新投资后旧City账本已冻结，不能用旧包继续该档并声称无损；不提供自动反迁移。新key保留不清理，保留所有证据。
-
-无新的Gameplay设计问题阻塞这一个受限切片。需要用户审核的是上述**E2首段scope**；跨Owner/新城/全量兼容仍未包含。通过首段后先报告E2剩余边界与下一计划，不自动进入F。
-
-本轮只计划，runtime/Design/main/运行包均不改，无部署或Gameplay regression。
-
-计划检查：现有context.py CLI的batch枚举尚未包含E2；本轮直接调用同一工具的check(manifest)完成全部schema/hash/authority检查，PASS（151 runtime files）。未修改工具逻辑；实施时只需将E2加入既有CLI枚举，不建立新验证器。git diff --check通过；本轮无Gameplay测试。
-
 
 ## B095.122 — 首段实施检查点（未完成，不部署）
 
@@ -418,57 +284,6 @@ L3 targeted LOCAL_SIMULATION_PASS (not engine PASS): four identities; both forei
 Native gate remains USER_GAME_TEST_REQUIRED. Minimal test after deployment: cold-start the existing foreign-held save, conquer back, read E2 return + city specialization; only if accepted, save separately and cold-start to check retained progress/current ACTIVE/Network. No re-import/investment/trade repetition. Pre-return save remains the rollback boundary.
 
 
-## 2026-09-25 — E2 inventory and next-slice proposal (not authorized)
-
-Baseline B103.130, source e238584, acceptance96a7d05, D0035/A0161. This is planning only, not authorization for multi-city cutover, Claim or F. Current native evidence: [B103 scoped acceptance](../../Status/Validation/Results/Specialization_B103_E2_Recapture_Pass.md).
-
-### Implemented versus verified
-
-| Capability | Actual runtime | Evidence / limit |
-|---|---|---|
-| Explicit existing-city import | One Game record, PREPARED/ACTIVE, original reference/base/receipts, no old-writer fallback | Actual Lua local regression; tested Research record persisted through ownership cycle |
-| Settler investment | Migrated target uses Game ledger, existing debit/receipt lifecycle; others old backend | Local duplicate/recovery/new-investment tests; native one retained receipt, not a new post-return investment test |
-| Ownership loss | HELD_TRANSFER, permanent record retained;21 owned carrier groups plus Network/probe exits, no ordinary-building deletion | Local full allowlist/UNKNOWN/idempotence; native23/23 and Research observations; not four-profession full yield certification |
-| Original-owner recapture | Valid original token or strict saved foreign reference + native transition proof; new current reference persisted | Research conquest ACCEPTED with nil token, P2/receipt1, coldload PASS |
-| Current ACTIVE | Derived from current Governor/eligibility, not old snapshot | Native ACTIVE1 before governor; user confirms Lv1/Lv2 after governor; local other states |
-| Current Network | Invalidation/current facts and reset sample paths implemented | Native new reference MATCHED, source true/receiver false/routes0; nonzero-route effects only locally covered |
-| Own Industry templates | Migrated-city Game-backed own ledger retained, missing history held | Local only for cross-owner template retention; no inference about unimplemented Wonder credit |
-| Human eligibility / diagnostics | Actual Player.IsHuman, no player0 assumption; fixed latest events/first fault; on-demand reports | Basic reports/native and scoped acceptance; no AI/MP enablement |
-| Multi-city new backend | NOT IMPLEMENTED: root is one record; import cannot add a second | Other cities still old storage; one city's PASS does not certify global save safety |
-| New-city direct new-backend registration | NOT IMPLEMENTED | Existing new-city legacy flow remains; not a new Game-ledger registration system |
-| First no-history AI conquest | Snapshot/LegacySet/Claim modes NOT IMPLEMENTED | Never infer known-empty history from UNKNOWN; no Claim projects/cost selected |
-| General History / REALLOCATING | Architecture contract, NOT a completed runtime state machine | No restructuring actions or general historical maximum ledger |
-| Profession future permanent systems | Academic Tradition, new Culture observations/Dialogue ownership, Commerce contracts/reputation not supplied by E2 | Existing legacy abilities are not evidence of frozen-design implementation |
-
-### Recommended order within E2
-
-1. **Two-record isolation slice (recommended next)**: explicit registration of two already-specialized, fully evidenced own cities; no automatic all-city migration.
-2. **New self-founded city slice**: event-proven foundation/first completion into new storage, no load-time reconstruction; requires record routing first.
-3. **First AI conquest snapshot slice**: prove no prior specialization history, one-time completed four-domain set, persist mutually exclusive modes; no Claim action yet. Pending Claim cities remain unassigned as Design allows. Empty-set future-completion path needs its own targeted acceptance.
-4. **Claim action slice**: UI/project entry, authoritative one-choice completion, old first-completion exclusion; precise low-cost versus one-turn primitive/cost gate reviewed before implementation, no invented numeric balance.
-5. **E2 support-boundary closure**: confirm supported new/test saves and explicit old-save migration/rollback policy, remaining relevant native gates; only then review P0-F eligible-age scope.
-
-These are implementation slices of existing E2, not a new architecture program. Snapshot could be explored in isolation, but a usable implementation needs more than the existing occupied singleton root; solving routing first avoids disposable storage paths. No universal city identity or automatic whole-save migration is proposed.
-
-### Next slice: two existing cities, independent saved progress
-
-**Goal:** remove the singleton bottleneck with the smallest verifiable two-city experiment. Reuse current binding provenance and per-record recapture proof; never match by name, coordinates alone or guessed CityID. Existing validated token supplies identity for explicitly imported records; collision/ambiguous provenance holds. No new universal cityKey scheme.
-
-**Scope:** within the existing Game storage responsibility, add a versioned record collection and current-reference routing; preserve B103 singleton as a lossless first record on supported load, validate before committing any conversion, no duplicate writable authority. Keep each record's lifecycle, exit/retry state, transition proof and sample invalidation isolated. Explicitly import a second intact own specialized city. Unimported cities retain legacy backend. No source formula/new carrier/Legacy rewrite. Unknown or corrupt record must not select another city's record or silently fall back.
-
-**Likely modules:** CityProgressionStore; its startup/read/write routing in Gameplay, EffectiveFacts, InvestmentAction, NetworkInput, Standardization and existing Binding/Journal/Flow guards only where singleton assumptions require adjustment. On-demand diagnostic reports selected city's record, not the previous singleton regardless of selection. Exact file closure reviewed at implementation under W0001, not a full unrelated audit.
-
-**W0004 L3 local acceptance:** lossless schema conversion and repeated load; two imports with distinct tokens/references; investment affects only target; one lost/returned city while the other continues current abilities and ledger; separate event/exit/retry states; duplicate/UNKNOWN/collision and same-ID-different-owner rejection; accepted return coldload; no old/new double writes; untouched third legacy city; existing B103 ordering/hydration protections; current Network input invalidation only where appropriate. No broad historical/stress run by default.
-
-**Minimal future native test:** use a copy of the accepted B103 save, import one other intact own specialized city; invest once in that second city and verify first unchanged; separate save/coldload, read each city's concise state. Local tests cover transfer isolation; do not demand repeat conquest unless implementation introduces an unproven native event dependency. Missing intact second fixture is a test preparation boundary, not authority to reconstruct lost history.
-
-**Exit:** two records coexist, selected-city diagnostics and investment route correctly, saved progress survives reload, singleton compatibility proven locally and native two-city check reported. The test support remains explicit migrated cities, not all legacy saves/cities. Rollback uses B103 package plus pre-conversion save; no automatic reverse migration.
-
-**Explicit exclusions:** automatic full-city migration, new-city initialization, first AI snapshot/Claim, history/REALLOCATING actions, AI/MP, F/new abilities, Design and balance edits.
-
-No new Gameplay decision blocks this proposed slice. User scope approval is required before implementation. Nonzero-route native reapplication and old in-session reload crash stay separate evidence gaps; they do not justify claiming E2 fully complete or running unrelated regressions now.
-
-
 ## B104.131 — authorized two-existing-city persistence slice
 
 **Implemented, LOCAL_SIMULATION_PASS; scoped two-city USER_GAME_TEST_PASS ([evidence](../../Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md)).** User authorized the immediately preceding proposal. No new Gameplay/Design rule, new carrier, new-city registration, Claim, AI/MP, general cityKey, full-save migration or F. Canonical changes are CityProgressionStore, selected-city P0Panel request/tooltip, Probe/modinfo build identity and targeted tests. Existing consumers retain their method contracts.
@@ -498,82 +313,6 @@ E2往返 now reads the selected own city and UI actually sends its CityID. No se
 3. Save separately, exit/restart and reload. Read each selected city's report: two states retained. No repeat conquest required for this slice unless new native evidence contradicts the routing.
 
 Rollback is B103 complete runtime plus **pre-schema2 save**. No reverse migration; do not promise B103 can read a save changed by B104. Still E2 partial, next proposal after acceptance is new self-founded-city registration, not automatic Claim/F.
-
-
-## Next slice — new self-founded city registration (PLAN ONLY)
-
-User requested continuation after B104 acceptance; this authorizes this plan, not implementation. Runtime baseline B104.131 / source bfe7003; D0035/A0161 unchanged. PROG-001/002/003/005 govern normal first completion and investment. PROG-006..009 conquest initialization is explicitly excluded. Four professions/local human only.
-
-### Goal and narrow boundary
-
-Prove one newly founded own city can enter the Game progression backend while genuinely unassigned, survive a reload before its first qualifying district, lock the first valid completed four-profession district at Potential1, then accept one ordinary Settler investment with an existing registered city unchanged. No new yield formula/carrier. This is not merely an automatic import after old writers have already established a specialization.
-
-Keep the existing **two-record test cap** in this slice. Use a separate test save containing at most one registered existing control city before founding the new city. Do not delete either record from the accepted two-city save to make room. Full-cap attempts explicitly report outside this test slice and do not partially take ownership or silently claim registration; previously untouched legacy cities remain legacy. Removal of the test cap/general rollout is separate E2 closure work, not a permanent Gameplay city limit.
-
-### Current code findings and intended cutover
-
-| Path | Current B104 | Proposed work |
-|---|---|---|
-| BindingProbe / FreshBindingHook | CityBuilt → validated binding → foundation journal → Flow; finite original token allocation | Reuse existing binding identity, inspect exact source evidence and callback ordering; do not create universal cityKey or widen32-token limit |
-| CityProgressionStore | Inner validation requires four-profession identity/baseP1; Import requires full old specialized history | Add explicitly discriminated fresh-unassigned record with foundation provenance, NONE/P0/no receipts; preserve B103/B104 specialized record acceptance without guessing history |
-| CityJournalProbe / CityFlowProbe | Owns guard freezes registered-city writers; old normal completion writes City properties | Hand off only confirmed fresh target after foundation evidence; registered target's first-completion transition belongs to Game store, legacy completion/resume must skip it |
-| EffectiveFacts / current facts / Network | Existing migrated specialized Base contract | Validate explicit known-unassigned output: no abilities/investment/source; distinguish unknown/held from NONE; specialized result uses unchanged current facts |
-| InvestmentAction / consumers | Shared routed investment and current derivation | Reuse after first identity established; no second receipt backend, no temporary ACTIVE/Network snapshot restoration |
-| P0Panel / diagnostics | Selected-city progress and native report | Show city, registration origin, unassigned/locked state, first completion, Potential/receipts and actionable failure only |
-
-### Foundation classification — revised event-sequence plan
-
-User approves updating the plan from the read-only sequence investigation, **not implementation**. Prefer collecting the affected lifecycle sequence and classifying at a verified completion boundary; do not require a special destruction event or a Settler witness as the only possible proof. CityBuilt alone, empty districts, names, coordinates and a momentary absence of later events still do not prove foundation.
-
-#### Evidence and remaining technical check
-
-- B102 native report records CityBuilt → CityConquered → CityRemovedFromMap → CityAddedToMap → CityInitialized → CityTransfered for the tested conquest. This is observed order, not a universal engine ordering guarantee. See [original evidence](../../Status/Validation/Results/Specialization_B102_E2_Chain_Order.md).
-- Installed original `Base/Assets/UI/Choosers/ResearchChooser.lua:38,485` explicitly uses GameCoreEventPublishComplete to end a series of gamecore notifications; CityBannerManager uses the same flush pattern. STATIC_CONFIRMED for UI batch processing, **not** native confirmation that every Gameplay/GameEvents transfer fits one publish batch.
-- [GCO author source](https://github.com/Gedemon/Civ6-GCO/blob/master/Scripts/GCO_ModUtils.lua#L1176-L1235) correlates removal/addition/initialization to identify capture. Installed HD `2860503037/Lua/Assyria.lua:29–62` combines a current-turn conquest cache with removal/object absence for its own effect. These are STATIC implementation precedents, not universal identity contracts to copy.
-- Current Standardization already registers a Gameplay-side PublishComplete flush. Registration is not proof of the proposed ordering guarantee. Verify delivery in the intended context, relation to CityTransfered, loading, and whether one operation can span multiple publish batches before enabling negative-evidence classification. No UI report becomes sole authoritative identity proof.
-
-#### Bounded processing
-
-1. Record only affected references and essential lifecycle evidence. CityBuilt starts a candidate; it does not immediately enroll it. Matching transfer/conquest evidence associates old/new endpoints. Preserve accepted B103/B104 recapture proof and module-owned withdrawal rather than replace them with a generic classifier.
-2. An explicit, validated CityTransfered endpoint can close the corresponding transfer. Use PublishComplete as the **candidate** flush boundary for remaining cases, not as a presumed atomic transaction delimiter. If actual delivery cannot exclude a pending transfer, leave that candidate unresolved; do not assume a single flush or timeout proves no later events.
-3. At a verified boundary inspect only the affected location/current references and loading state. No player-wide city scan. Coordinate is an event-correlation/location-check field, never sole authority for inheritance.
-4. Empty pending set → immediate return. No timer, per-frame audit, fixed sleep, every-pulse Gameplay request or unbounded event history. Bound pending records and evidence per record; overflow/conflict produces a diagnosed hold without dropping evidence and manufacturing a clean new-city candidate.
-5. Do not let old Binding/Journal/Flow write a fresh identity before classification, then treat those writes as proof that the city was fresh. Add the narrow pre-write guard/handoff needed for participating candidates. Unaffected legacy cities retain their existing path.
-
-| Completed observation | Planned result |
-|---|---|
-| Matching old/new endpoints with confirmed transfer/conquest | Ownership transition; preserve existing same-city recapture checks; an unrecorded acquired AI city stays outside this slice, never fresh enrollment |
-| Removal, verified lifecycle boundary, confirmed no city at affected location, no unresolved replacement/transfer | End the old live reference, preserve historical record, forbid later automatic revival from location alone; not permanent-history deletion |
-| Genuine live build/add/init sequence, verified boundary, no associated acquisition/old active generation, local human ownership, outside load hydration | New unassigned record; reuse validated binding mechanism after classification |
-| New founding after a separately confirmed earlier destruction | Different lifecycle generation, cannot inherit the terminated record; if current bounded store cannot retain history and admit the new reference safely, report unsupported capacity/generation boundary rather than delete or reuse history |
-| Load hydration, incomplete/cross-batch sequence, inaccessible object, conflicting references | Restore known records or hold candidate; absence/UNKNOWN does not authorize destruction or foundation |
-
-The immediate objective remains one self-founded city → NONE/P0 → first completion → investment/save. Destruction/rebuild is a classification and non-inheritance guard, not authorization for general raze recovery, new universal cityKey or unlimited historical generations. If the native flush boundary is insufficient, stop that negative-evidence path as EVENT_BATCH_BOUNDARY and propose the smallest scoped evidence capture; preserve successful work/records. Do not automatically expand into a permanent debug system or new gameplay design.
-
-### State and write ordering
-
-1. Classify the completed foundation sequence, then confirm initial state and persist the target record/takeover before consumers use it. Existing validated binding bootstrap may supply identity evidence only after the pre-write gate; never treat legacy writes caused by an ambiguous CityBuilt as independent proof. No parallel writable progression authority after takeover.
-2. Record distinguishes normal first-completion eligibility from unknown old city, conquest candidate and REALLOCATING. NONE/P0 carries no specialization effects or investment eligibility.
-3. Persist registration/eligibility before reload; load is restoration, never a fabricated district-completion event. No scanning existing districts on load to choose Identity.
-4. If a district completion arrives while foundation classification is pending, retain its bounded event order/reference evidence and validate after admission; never discard it and reconstruct from a later district scan. Overflow/uncertainty holds explicitly. First live valid completion checks current city/reference, completed status and approved replacement family; lock identity/P1 and completion evidence in one confirmed Game mutation. Later/duplicate notifications cannot overwrite it. Preserve delivered event order, no end-turn aggregation or domain priority.
-5. After lock, use existing investment backend and current Governor/Network derivation. Unknown/write failure holds this target rather than falling back to frozen City records. Document exact schema compatibility before coding; no implicit in-place reinterpretation of missing fields.
-6. New unassigned city's ownership loss, destruction/re-foundation or ambiguous transfer must remain held/non-active, never enter Claim or be reconstructed from current districts. Do not claim full pre-specialization transfer support; recoverable diagnosed stop is an explicit slice boundary.
-
-### Validation and acceptance
-
-W0004 L3 because persistent authority and completion ordering change. Target only affected foundation/first-completion/store/investment lifecycle, plus B104 two-city and B103 recapture/withdrawal regressions where touched. No automatic full historical or10k stress suite.
-
-Local cases additionally cover CityBuilt-before-conquest; transfer split across flushes (no premature fresh/destruction decision); repeated/idle flush; disappearance versus inaccessible object; confirmed destruction followed by separate same-location founding (no inheritance); load hydration; completion before enrollment; and bounded evidence overflow. Simulated ordering tests cannot prove the native flush boundary. Local cases: genuine fresh enrollment; duplicate founding; conquest/load/rebuilt/unknown/AI/foreign rejection; NONE/P0 save/load; placement versus completed district; four approved families/replacements; first of competing notifications wins; duplicate completion; investment blocked before identity and once afterward; existing record unchanged; full-cap refusal; failed write/readback and reload; old schema preservation; idle notifications cause no repeated scan/write. Confirm no old/new concurrent writer and no new carrier/Design changes. Preserve module-owned confirmed-loss semantics for existing specialized records.
-
-Minimal native flow (after a separately authorized implementation/deployment): use a separate save with one registered control, found one new city, read brief unassigned report; save and restart/load **before** first district completion; finish one four-profession district, check P1, invest once for P2; compare unchanged control; separately save/restart/load and confirm. Cheat-assisted completion may be used as current workflow permits; do not claim natural-production timing beyond observed evidence. Two reload points test different states and cannot substitute for one another. No repeat conquest required for this slice.
-
-Exit: native boundary evidence sufficient for the enabled path (otherwise an evidence-only checkpoint, not general registration PASS); fresh provenance gate justified; local checks pass; minimum native flow passes; no legacy double-write or cross-city mutation. If native foundation evidence contradicts assumptions, stop and preserve evidence. Local PASS alone is not E2/native completion.
-
-Rollback: committed B104 runtime plus untouched pre-slice save; no promise that B104 reads saves containing a new unassigned schema. No automatic reverse conversion. No deployment during planning.
-
-### Exclusions / next dependency
-
-No first AI conquest snapshot/Claim, current two-city save record deletion, all-city migration, AI/MP, new cityKey, profession Legacy invention, Research Tradition/F or new gameplay effects. After scoped acceptance, separately plan remaining E2 enrollment/generalization and conquest snapshot/Claim gates. This plan is awaiting explicit implementation authorization.
 
 
 ## B105.132 — authorized event-batch evidence checkpoint
@@ -621,71 +360,6 @@ Validation: targeted event-order L3 scope, no full historical/stress suite. Actu
 Minimal native test after safe deployment: (1) select an own Settler already on the intended tile; right-click 移民/施工队, found normally, right-click E2往返 and capture all pages; (2) save those images, deselect unit/select own noncapital city, re-arm and trade it to AI, then capture all pages as negative control. If first arm reports missing UnitActivate or FOUND_CITY不可用, capture that report and stop; no need to perform both actions. Do not reload between arm/action/read; no repeated migration/investment/governor/save test. This validates only the new event, not permanent registration or all engine paths. B105 results need not be re-proved; the two actions add the missing founding-specific evidence.
 
 Rollback: tool-retained B105 runtime, no new save schema. Standing W0003 deployment only after clean committed source and confirmed game exit. Stop after evidence checkpoint; no automatic fresh enrollment or Claim/F.
-
-
-## Post-B106 plan — positive founding evidence / fresh registration
-
-Current proposal, prepared under the user's latest authorization to proceed with the registration plan. **PLAN_ONLY / implementation awaits review.** Baseline B106.133 source14b0681; native evidence commit9a55d05. D0035/A0161 unchanged. This section supersedes the earlier new-self-founded-city plan's foundation classifier, Publish boundary gate and baseline/rollback references; it does not replace B103/B104 ownership logic. B105/B106 remain historical evidence checkpoints.
-
-### Evidence and goal
-
-B106 natively delivered Gameplay Events.UnitActivate with reason equal to EventSubTypes.FOUND_CITY after Initialized, matching the preselected Settler in the observed founding; transfer control had Transfer without FoundCity. Use this **positive engine reason**, not an inferred absence of transfer. No fixed Publish count/delay/Playback-as-universal-boundary. Neither the observed numeric reason nor the observed callback order is hardcoded.
-
-Goal: one ordinary self-founded local-human city automatically enters Game storage as NONE/P0, survives coldload, locks its first valid completed four-profession district at P1, then accepts one normal investment to P2; an existing registered control stays unchanged. No new yields/carriers, no need to press a migration/arm button for this path.
-
-### Automatic evidence and ownership handoff
-
-1. Add a small foundation coordinator within the existing progression responsibility, initialized before legacy Binding/Journal/Flow callbacks. The manual CitySequenceProbe remains diagnostic only and cannot authorize registration. Do not reuse its capture toggle as the gameplay switch.
-2. After normal load readiness, correlate only local-human city Built/Initialized and UnitActivate/FOUND_CITY scalar events. The founding notification provides owner/unitID/location/reason; resolve the current city at that location and match its owner/ID to the city-initialization evidence. Require genuine positive founding evidence and no conflicting current recorded reference/history. Unit and city IDs are distinct. Do not require a surviving Settler object or preselect/scan all Settlers. Earlier manual Settler matching supports the native event's interpretation; automatic provenance relies on the engine's typed notification, not UI assertion.
-3. Both delivery orders are supported: a matching Initialized can complete an earlier founding candidate, or FOUND_CITY can complete an earlier initialized candidate. Do not assume the B106 order is universal. Match current-session/turn and explicit references; duplicates cannot allocate a second token/record. Load hydration never fabricates a founding signal. Missing/conflicting/cross-turn/incomplete evidence holds that candidate without guessing; later save/load does not reconstruct missing session evidence.
-4. Before old CityBuilt binding allocates a token or calls FreshBindingHook, consult an explicit fresh-candidate pre-write guard. Keep this separate from “durable store owns this city”: pending candidates do not yet have a readable authoritative record. Existing registered/held/recaptured records continue through their current workers. Unrelated legacy cities and old save restoration keep their existing paths. Unrecorded acquisition does not become a fresh candidate merely through Built; no Claim is added.
-5. For admitted fresh targets, reuse the existing token allocator/binding ledger with a narrow verified-foundation entry. Do not invoke the old FreshBindingHook→Journal→Flow chain to establish new authority. Their guards must exclude this target before any permanent write. Token/binding allocation retains existing write/readback discipline and32-token limit; partial allocation/record failure becomes a diagnosed recoverable hold, not an invitation to retry blindly or fall back to old writers. It is not one engine-atomic transaction across Game/City properties.
-6. Once the new Game record is committed/read back, the existing store read routes become authoritative and the candidate clears. Confirmed ownership loss before admission cancels admission and cannot create local specialization for a foreign city. An unassigned record transferred after admission remains held; full unassigned recapture is not silently inherited from specialized recapture code.
-
-### State, schema and first completion
-
-Current worker validate requires recognized specialization/baseP1; current Import requires existing specialized history. Neither is sufficient for new NONE/P0, and Import is not the new-city entry point.
-
-Proposed compatibility contract: retain the outer schema2 collection/key/two-record limit and existing inner schema1 records unchanged. Use an explicitly versioned inner schema2 for newly admitted foundation records, including a compact founding provenance, origin/token, revision, and an explicit UNASSIGNED or SPECIALIZED progression phase. Lifecycle stage is separate: ACTIVE here means record service state, not specialization ACTIVE level. Missing fields on an old record never imply UNASSIGNED. Mixed old/new inner records are validated explicitly; no general migration or full archive rewrite. After first completion, the new record keeps its version/provenance and supplies the existing specialized fact shape.
-
-- UNASSIGNED: specialization NONE, Potential0, no first completion, no investment receipts/pending debit; no abilities, investment eligibility or Network source. Confirm consumer behavior rather than representing this known state as read failure.
-- First completion: existing GameEvents.OnDistrictConstructed path, current district complete/owner/reference checks and the four authorized replacement families. Placement does not lock. Persist specialization, baseP1 and first event together with readback; next/duplicate completions cannot replace the first.
-- If a completion arrives during foundation admission, preserve its bounded scalar order/reference evidence for that target; validate/replay after admission in original delivery order. Do not discard then scan districts to choose identity. Reload cannot turn existing districts into new completion events. Missing evidence/overflow holds rather than selecting a convenient identity.
-- Ordinary investment then reuses existing authoritative receipt/debit route; current Governor and Network remain derived. No old ACTIVE/route/sample restoration. Explicitly keep original-owner recapture and module-owned withdrawal for existing specialized records unchanged.
-- Existing record at the location/reference, ambiguous token, full store, invalid binding or prior history prevents new admission. Do not delete/reuse former history or treat a razed-and-rebuilt location as the old city. This slice does not implement multiple historical generations per plot or destruction retirement.
-
-### Bounds / participation
-
-Keep the two-record test cap. Use at most one registered control before founding the new city; do not delete records from the accepted two-city save to make room. Capacity is checked before reserving a new writable registration, and rechecked before commit. Outside-cap cities are explicitly not part of this storage test; do not report them as registered or half-switch their writers.
-
-Pending evidence/early-completion buffers have fixed small caps and no engine-object retention. Freeze exact caps in implementation constants and test overflow; they are diagnostic safety limits, not Gameplay restrictions. No per-frame/timer/hover/request-driven scans, no full-player city or unit scan to identify the new city. Generic Publish is not an admission trigger. With no candidates, related reconciliation does no work. Isolate candidate failure from already accepted records; do not invent a universal transaction engine or rewrite all existing collection-fault handling.
-
-### Likely touched modules / retirement
-
-| Module | Narrow responsibility |
-|---|---|
-| CityProgressionStore | Positive evidence coordinator, fresh entry/versioned validator, NONE/P0 read, first completion, persistence and per-target holds |
-| BindingProbe | Reuse allocation after verified founding; prevent ambiguous CityBuilt pre-write for participating targets |
-| FreshBindingHook / CityJournalProbe / CityFlowProbe | Pending/admitted target exclusion before old write/whole-player failure logic; keep unrelated legacy path |
-| CityIdentityRead / EffectiveFacts / CurrentSpecializationFacts | Only if needed for explicit known-unassigned validation/read compatibility; no new rule/formula |
-| Gameplay initialization / InvestmentAction | Verify listener ordering and existing routed eligibility; adjust only proven integration gaps |
-| Existing diagnostics / P0Panel | Concise registration and first-completion result; no extra active request/polling/UI system |
-
-Retire old Journal/Flow as writers **only for an admitted new Game-backed target**. Preserve their data and existing migrated-city rules; no global old-writer shutdown. B106 observer is not converted into permanent authority. No technical carrier added or removed by this registration batch.
-
-### Validation and exit
-
-W0004 L3, targeted affected persistence/event-order/first-completion routes only. Run actual Lua handlers with fixtures: both founding/init orders; missing enum/event; duplicate/invisible/foreign/unrelated reason; Built-before-transfer and split Publish; load hydration; full cap/reference/history conflict; pending failure and coldload; no legacy writes during admission; NONE/P0 save/load; early district completion; placement/incomplete/wrong-owner/non-v0.1; first valid notification wins; one investment/receipt only; existing B104 pair and B103 withdrawal/recapture regressions when touched. All syntax/manifest/integrity. No full historical regression or10k stress by default.
-
-Minimal native scenario after implementation: separate test save with one registered control → found new city **without arming/migrating it** → report NONE/P0 → separate save/cold restart/load → complete one eligible district (Cheat allowed) → report P1 → invest once/report P2 → verify control unchanged → separate save/cold restart/load and verify. Two reload points cover distinct new states. No repeat trade/conquest unless implementation evidence justifies it. Diagnostic should show selected city, origin=normal founding, waiting/locked identity, Potential, receipts, and actionable reason; detailed event IDs remain optional.
-
-Local completion requires exact mixed-schema/failure behavior documented and all relevant assertions passing. USER_GAME_TEST_PASS only after the above native flow. A missing or contradictory source event pauses the affected path, not silent fallback. This does not certify full E2 or all raze/rebuild/AI-city cases.
-
-Rollback: B106 exact runtime plus untouched pre-implementation save. B106 is not promised to read inner schema2 records. No automatic reverse conversion. Future test deployment follows standing W0003 clean/exit/transaction/hash/recovery gates; **no deployment in this planning turn**.
-
-### Authorization and exclusions
-
-Plan ready for user review. No new Gameplay decision is required for this narrow slice. Runtime remains B106.133. Implementation is not started by the current planning authorization. No first AI-city snapshot/Claim, new cityKey, general migration, cap removal, AI/MP, Legacy invention, destruction-record cleanup, F or Design changes. After acceptance, propose remaining E2 work separately.
 
 
 ## B107.134 — authorized positive-founding registration implementation
@@ -819,43 +493,6 @@ Deployment: B109.136 source `2da80ce`, user confirmed game exited, W0003 exact B
 
 Native evidence update 2026-09-27: [three-city reports](../../Status/Validation/Results/Specialization_B109_E2_Three_City_Result.md) show A=P0/ACTIVE0/investments0, B=ResearchP2/ACTIVE1/investments1, C=CultureP1/ACTIVE1/investments0; registry3, no initialization failure. Scoped visible-state USER_GAME_TEST_PASS; full exit/restart/load confirmation pending, not inferred from screenshots. Left-click E2 reporting confirmed; no right-click retest. Prior native-gate prose above records the original test requirement. No implementation/deployment or next-slice authorization.
 
-## Next slice — first AI conquest snapshot (plan only)
-
-2026-09-27: user confirmed B109 full restart/load, then requested next plan. [Scoped acceptance](../../Status/Validation/Results/Specialization_B109_E2_Coldload_Confirmation.md) closes slice1; this section supersedes its historical “next” dispatch only. **PLAN_ONLY / IMPLEMENTATION_NOT_AUTHORIZED**. No new build assigned, no deployment. Formal rules: current Spec ELIG-004/005, PROG-004–010; four-profession/local-human/supported-start-enabled scope unchanged.
-
-### Goal and exact boundary
-
-For a genuinely no-specialization-history AI city first conquered by the local enabled human, persist a single conquest-completion snapshot of completed eligible district families. Nonempty LegacySet waits for future Claim; empty LegacySet enters normal subsequent first-completion. No automatic profession selection. This slice makes these mutually exclusive states reliable; it does not make the nonempty route playable through Claim yet.
-
-- Prior own persistent records, HELD/ambiguous references and reserved/incomplete records must be checked before enrollment. Missing City property/token/index entry alone never proves no prior history. Supported-session provenance, positive conquest/transfer evidence and absence of conflicting retained records are required together. Existing specialized recapture goes through its existing path unchanged.
-- Correlate positive conquest evidence with actual completed ownership transition and currently readable local-human city. Reuse existing native sequence evidence; never assume first PublishComplete is a transaction boundary. A partial/cross-turn/contradictory chain or district-read failure holds the candidate with a reason rather than scanning at arbitrary later time or guessing an empty set.
-- One snapshot of completed Campus/Theater/Industrial/Commercial families, including accepted replacements, deduplicated by specialization. Under-construction districts excluded. Do not manufacture building/Governor requirements or treat a completion/load pulse as prior history. Native completeness/ownership reads must be reviewed at implementation.
-- Persist conquest provenance, frozen candidate set and explicit initialization mode with the existing independent Game record/index authority. Do not create a new cityKey, copy historical snapshots, or fall back to old City-property writers. Define record-version/readback/partial-write handling before mutation; valid B109 start-enabled saves must retain existing records unchanged. No pre-Mod/old-development-save migration.
-- Nonempty: retain NONE/P0 with a clear “待认定” mode; later buildings/districts do not append candidates or lock Identity. Reject Settler investment until identity exists. No Claim UI/project/cost in this batch.
-- Empty: retain NONE/P0; only a valid completion after the confirmed acquisition boundary can lock one Identity/P1 in native delivered order. Duplicate/load notifications do not replay. Existing investment thereafter uses the normal path.
-- No AI activation, trade/gift acquisition generalization, Free City generalization, unassigned-origin recapture, destruction/location reuse, new Legacy policy, new yields/carriers, Claim or F. Deferred routes remain explicit; unsupported acquisition is not silently classified as conquest.
-
-### Implementation touch points and dependency review
-
-Current CityProgressionStore production founding admission requires FOUND_CITY+Initialized; conquest events currently route to existing workers. Adapt this exact store/admission/completion/save path rather than bypassing it with a new allocator. Inspect Gameplay request/start routing and existing EffectiveFacts, CurrentSpecializationFacts, InvestmentAction, NetworkInput and Standardization consumers of no-identity/unknown facts. Most should remain unchanged; add only explicit new-mode handling where required. Existing owned withdrawal/recapture routes remain intact. Confirm direct caller/old-writer closure and narrow the active manifest to this slice before authorized implementation; the prior manifest is not automatic authorization or a final reviewed dependency set for new code.
-
-Diagnostic uses existing left-click E2 entry: selected city, acquisition confirmed/pending, mode, frozen candidate names (or empty), Identity/Potential, and one actionable refusal reason. Event details remain right-click/on-demand. No continuous verbose report, per-frame/hover requests, recurring world scans or AI city registration. Event-bound candidate work and snapshot once; persist mode, not stale ACTIVE/Network.
-
-### Verification and exit
-
-W0004 **L3**, limited to affected persistence/lifecycle consumers:
-
-1. Static exact registration/writer/consumer routes, four-family mapping, build/version and save-schema checks.
-2. Local actual-handler simulation: completed/incomplete/duplicate replacement candidates; empty versus unreadable; no later append/mode switch; valid completion order only after acquisition; duplicate/reload idempotence; interrupted write/readback fails closed; retained specialized/HELD/reserved histories bypass or reject enrollment; unrelated B109 cities/receipts untouched; existing withdrawal/recapture and B109 founding/investment regression.
-3. Minimum native fixture after authorization/implementation: one controlled test game, two AI cities—one with a completed eligible district (ideally also one incomplete), one with no completed eligible district. Conquer using the actual conquest route, not trade. Left-click reports must show frozen candidates versus normal first-completion. In the candidate city complete a different eligible district: candidates unchanged/NONE; in the empty city finish one: corresponding P1. One full restart/load and both short reports verify persistence. If fixture creation is difficult, first review available controlled setup rather than asking for random AI behavior or redoing unrelated tests.
-4. Exit: local checks plus the scoped native reports demonstrate reliable acquisition-time snapshot, mutually exclusive modes and persistence. Until native timing is proven, label LOCAL_SIMULATION_PASS / USER_GAME_TEST_REQUIRED. Inability to prove transition completeness or no-history provenance is a technical stop, not permission to use name/coordinates or delayed guesses.
-
-Rollback: existing deployment recovery transaction; preserve pre-slice save and previous runtime. A new record mode must not be promised readable by B109—roll back package together with its pre-slice save. No deployment in planning.
-
-### Following slices and decision boundary
-
-After this checkpoint, separately plan Claim selection/completion (PROG-007/008), then remaining lifecycle gaps and E2 closure/F readiness. Claim's exact low-cost versus one-full-turn realization remains TBD and must be made concrete before that implementation, not invented here. No new Gameplay decision blocks this snapshot-only plan; any evidence ambiguity is a technical gate. Waiting for explicit user implementation authorization.
-
 ## B110.137 — authorized conquest snapshot checkpoint
 
 2026-09-27 user authorized the previous snapshot-only plan and reaffirmed PROG-007/008: **only completion of the corresponding city Claim Project establishes specialization, even with exactly one candidate; never auto-select**. This is existing-rule confirmation, not a new Design revision. Claim actions/cost/UI remain outside B110. Project-click/overflow investigation is [read-only and separate](../../Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md).
@@ -901,141 +538,6 @@ B111部署结果：用户确认游戏已退出；从clean source `0ffbfdb`完成
 [六图验收](../../Status/Validation/Results/Specialization_B111_E2_Conquest_Snapshot_Pass.md)：城市1商业单候选→后建工业区仍待Claim/P0；城市2空候选→剧院完成文化P1；用户确认完整重启后两城保持。USER_GAME_TEST_PASS仅上述范围，城市2投资可用另有用户陈述，图中仍投资0。当前最小门禁关闭，无需重复。原生未覆盖的多候选/异常/其它生命周期不扩大PASS。
 
 下一建议仅为Claim项目认定最小计划；用户审核后另行授权实施。现有候选资格不变，单候选也必须完成项目。E2仍partial，不自动Claim实施/销毁/未专业城夺回/F。本次只有证据归档与状态维护，没有runtime/Design/部署修改。
-
-## Next slice — Claim project plan after B111 acceptance
-
-Status: HISTORICAL_PROPOSAL / SUPERSEDED_BY_ONE_TURN_CLAIM_PLAN_AFTER_B123。以下Cost=1提案未实施；当前方案见文末一回合Claim计划。保留原提案用于追溯，不作为活动实施指令。基线B111.138，双城快照/后续完成/完整重启限定PASS；不重复该批测试。正式规则为当前Spec PROG-006～009，用户再次确认候选即使只有一个也须完成对应城市项目。
-
-### 目标与已接受合同
-
-仅对本地人类玩家的已确认ACTIVE记录、schema3 acquisition.mode=LEGACY_CLAIM、progression=UNASSIGNED、Identity NONE/P0且无保存/完成错误的城市开放。四专业候选只取保存的LegacySet；不按当前新建筑追加，不自动选单候选。玩家可以一直不选。空集城市、已有专业、自建城、UNKNOWN/HELD、AI/自由城均不能走Claim。
-
-每个候选对应一个真实生产项目。**完成**任意一项才建立对应Identity与Potential1；其余项目撤下。之后重新派生ACTIVE/当前网络，走既有local consumer，不直接写收益快照、不发额外投资成果。不恢复旧时代/历史成果或为AI补造专业。
-
-### 建议参数与操作呈现（待本计划批准）
-
-建议首轮采用四项目各 **基础Cost=1 Production / NO_PROGRESSION_MODEL**；名称使用功能性“认定科研／文化／工业／商业专业”作为开发测试文案，不升级成新正式能力名。PROG-008允许极低成本或1-turn确认，本方案选择前者；不是固定完整回合方案。原生游戏速度及项目完成行为需验证，不承诺任意环境下精确一回合。
-
-保留普通生产、既有溢出/收获等原生项目完成途径，不新增生产来源限制。若生产使项目同回合完成，仍以真实完成事件认定；点击/入队本身不写Identity。**Cost=1是待用户审核的实施/平衡建议，不修改当前Design TBD，不在本轮实施。** 不复用商业Project-as-trigger绕过生产，也不把时代对话完整回合门槛转嫁给Claim。
-
-### 最小技术路径与直接依赖
-
-| 模块 | 计划改动 / 必须核对的调用关系 |
-|---|---|
-| CityProgressionStore | 新增专用Claim提交入口，复用当前record-local保存/readback/revision及身份核验；保留旧acquisition与冻结set，不调用普通Complete冒充区域刚建成 |
-| 新ClaimProjects小模块 + SQL/Text | 四项目定义与准确的项目ID→专业映射，原生项目完成事件入口；无generic project engine、无新收益modifier |
-| Gameplay / modinfo | 接入单一完成监听及当前有界dirty audit；不增加轮询、hover请求或第二套保存authority |
-| EffectiveFacts / InvestmentAction / CrewProjects / Standardization | 核对base.first、专业区域引用和永久写后重算的真实依赖；相同数据合同可复用，不能只设置Identity字符串就宣布兼容 |
-| 精确退出 / 隐藏规则 | 若采用下述access marker，纳入module-owned撤销、呈现隐藏与ordinary-building排除，不能按前缀批量删建筑 |
-| 定向测试 | 新Claim实际handler模拟，复用B111已冻结候选/空集分流及既有投资/保存相关回归；只改版本断言，不削弱旧断言 |
-
-入口可见性的最小候选：复用CrewProjects已有 **Projects.RequiredBuilding + 无收益技术access marker** 路径，按四种冻结候选分别维护访问标记，避免单一总标记错误开放全部专业。标记只表达派生资格，不保存Identity/选择；不提供住房、岗位、普通建筑层级或其它收益。新建/加载/已确认ownership loss/Claim成功按scope核对并撤销；UNKNOWN停止允许操作，不能误删永久记录。实现前核对隐藏和ontology的精确名单及退出注册点。
-
-原生队列对资格撤销/已排入其它Claim如何处理需要最小prototype；Gameplay完成端必须再次拒绝所有过期/已专业化/非候选事件，即使UI仍暂存一行也不能重写Identity。若不能可靠阻止无资格项目继续供玩家建造/清除其它Claim，不以“收益端拒绝了”冒充完整UI验收；暂停具体路径报告。不得修改普通项目队列或清空整城生产来绕过。
-
-### 保存事务与区域引用
-
-完成事件只接受精确四项目ID，读取当前city/token/record，不信任UI选择缓存。对当前owner、正常参与资格、ACTIVE record stage（不是专业ACTIVE等级）、UNASSIGNED/NONE/P0、无pending错误及冻结候选逐项验证。重复完成、另一Claim晚到、已专业化读档重放必须无收益、无第二次revision写入。
-
-现有validate明确以CLAIM_NOT_IMPLEMENTED拒绝LEGACY_CLAIM下SPECIALIZED，必须改为验证明确Claim完成依据（project type、selected kind、completion turn、当前record/reference关联等最小字段），而不是删除保护。acquisition.mode仍记录征服时分流，progression转SPECIALIZED；冻结LegacySet保留。结构扩展使用明确可区分的record version或等价严格判别，实施时选最小方案并记录旧包不能读取新Claim成果的回退边界；不构造全城迁移。既有B111未认定记录和已通过的FIRST_COMPLETION记录继续可读。
-
-现有InvestmentAction/CrewProjects依赖base.first的districtID/type。Claim须从当前城市找到与所选冻结领域一致的完整区域，用已验证indexed Gameplay API形成技术锚点；完成时间记录为Claim时间，不伪称其为原Owner的首次建设历史。当前四专业没有社区式多同类区域。若正常Claim候选找不到可靠对应区域/替换类型，保留候选及记录并暂停，不擅自删除候选、选别的领域或补造districtID；若需改变玩家资格则报告DESIGN_DECISION_REQUIRED。不重置建筑完成/模板/Wonder等专业历史。
-
-一次record-local提交同时写Identity/P1及Claim依据，readback成功才发布OnPermanentCityWrite触发正常事实与收益重算。access markers及UI是可重建派生物；不能先发收益再写账本。失败保留已有保存的故障处理，禁止fallback到City旧journal。投资由既有入口执行，Claim不赠送投资receipt。
-
-### 证据与技术门禁
-
-STATIC_CONFIRMED：PROG-006～009上述规则；当前Store的阻断点与base.first依赖；CrewProjects.sql已有RequiredBuilding项目资格模式；本机HD Gameplay/Projects.lua的CityProjectCompleted(playerID, cityID, projectID)监听提供Gameplay先例。
-
-PROTOTYPE / USER_GAME_TEST_REQUIRED：本Mod四Claim项目在实际HD项目列表的资格过滤、完成事件、一次性退出、队列残留处理、项目完成后正常收益进入。原生先例不是本项目实机PASS。无须为Claim实现商业面板拦截或时代对话生产隔离。
-
-### W0004验证与最小用户测试
-
-L3（持久Identity写入），仅相关范围：
-
-- 本地：单候选/多候选/空集/已有专业/外方owner/UNKNOWN；点击入队无写入，只有合法完成P1；后建区域不扩候选；重复与乱序完成幂等；错误ID/非候选/失败保存不认定；两城隔离、冷加载、既有投资与loss/return路径；Claim区域锚点和no-replay；标记零收益、ordinary排除、owner loss退出。
-- 静态：Lua/XML/SQL、四项目映射与本地化、精确事件/退出调用点、manifest/context；无全历史stress。
-- 原生最小一次流程：复用城市1已有商业单候选存档。确认只有商业Claim（后建工业不出现）、点击/入队尚未完成时仍NONE、实际完成后Commerce/P1及项目退出；城市2文化不变；城市1正常投资可用。另用一个征服时已含两个候选的fixture验证“选一后另一个退出/不能重选”（不能由单候选截图替代）。在认定后保存并完整重启一次，复查专业/潜力/投资及不再出现Claim。可用Cheat准备第二fixture，但标明操作路径；真实项目完成必须由原生事件触发。
-- 任何重复认定/身份串城/保存异常/无资格项目仍可反复操作，停止，不推进F。没有实现前当前无需用户测试。
-
-### 完成条件、回滚与范围
-
-只有本地直接回归＋上述原生关键行为均通过，才关闭Claim切片；不等于E2所有生命周期完成。实现完成先commit/push，再遵守游戏退出/receipt/恢复点部署门禁；用户执行游戏，不由Codex启动。
-
-回滚代码来自B111已知commit，运行包由部署receipt恢复；使用Claim前独立存档，不承诺旧B111能读取新Claim完成记录。保留现有证据与备份，不为本计划制作新源码副本。
-
-不含：商业操作UI、时代对话、销毁/重建/位置复用、未专业化城市丢失再夺回、AI启用、多人、其它专业Legacy、F、新Design revision。当前用户需要审核Cost=1的真实项目方案并另行授权实施；其余技术门禁在授权实现时按最小prototype核验，不能先写成原生PASS。
-
-
-## Next slice — one-turn Claim plan after B123
-
-Status: USER_APPROVED / IMPLEMENTED_B124 / USER_GAME_TEST_REQUIRED。
-基线：develop B123.150 / source 5868061，原生限定PASS记录08dc8f4；当前文档状态以Status为准。Design D0035 PROG-006～009、ELIG及现行E2保存合同不变。本节替代上文未实施的Cost=1建议，不新建Design revision；下文保留当时计划措辞，随后用户“授权实施”已接受此范围，实际结果见B124。
-
-### 玩家操作与范围
-
-1. 征服时已有非空冻结LegacySet、仍未认定专业的己方城市，生产列表提供其中各专业对应的认领项目。仅科研/文化/工业/商业；单候选也不自动选择。后建区域不增加候选，空集继续原有first-completion流程。
-2. 玩家直接选一个项目作为当前唯一生产目标；三处显示1回合，不打开P0、不扫描其它待办、不强制结束回合。候选名称沿用功能性“认定科研／文化／工业／商业专业”，不冒充新正式能力名。
-3. 沿用已验收真实高成本项目路线：建议复用原型Cost=1,000,000作为技术容器，由正常完整回合后的原生FinishProgress完成；这是实现参数，不是玩家实际等待成本。进入项目接受既有未分配生产被放弃，期间生产/砍树进入项目，不应转给后续目标；不使用负AddProgress账本。不要声称B123已经证明任意资源收获/外部mod组合。
-4. 正常项目完成事件才建立选中Identity与Potential1，收回该城其它Claim入口；点击/启动只保存计时意图，不写专业、不发投资成果。极端生产或Cheat提前完成仍走合法完成事件，不另加阻止Cheat的门槛；正常用途须一回合完成。
-5. 成功保存后按当前事实派生ACTIVE与Network；没有额外奖励。已有身份、非本地人类、UNKNOWN/HELD、空候选/自建城不得误认领。允许一直不选择。
-
-### 正式计时：供本计划审核的明确行为
-
-- 多城彼此独立；每城最多一个当前Claim。只维护活动记录集合，不轮询所有城市。普通生产与其它专业不进入此集合。
-- 保存启动回合、项目/专业、现行persistent record/token/reference、结束回合确认及完成阶段。使用现有Game级record-local持久化入口，不新增cityKey、文件数据库或通用合同框架；UI与单位都不是authority。
-- 同一城同一项目启动后正常存档/读档保留已确认计时，不因读档重开、缩短或重复结算。加载时重新核对owner、记录资格、当前目标和回合阶段，不能凭“当前在造Claim”补造已占用回合。已有原型实验计时不迁入正式Claim。
-- 改选其它目标取消该次连续占用；重新选择Claim须重新开始一个完整回合。项目排在队列后面不开始计时；最小实现入口只允许唯一当前项目，不支持为Claim预排其它目标，提示须明确且不得清掉普通生产队列。
-- confirmed ownership loss撤销访问和未完成计时；UNKNOWN暂停动作，不删除永久历史或凭猜测恢复。未专业化城市再次夺回的未定生命周期仍不在本切片解决。
-- 持久阶段区分等待结算、准备原生完成、完成依据已确认/专业已提交。原生完成前先持久锁存；同步/延后完成回调均需幂等。读档遇到“曾准备调用但完成证据未知”须暂停并报告，不重复调用、不凭项目消失推断成功。正常保存/读档必须连续工作，异常中断不是补发理由。
-
-以上续算/中断细节是本次待审核实施合同，不把原型的session-only限制当正式玩法，也不自行写入Design。若底层不能可靠达成，停在具体技术边界，不更改玩法绕过。
-
-### Claim完成事务与访问资格
-
-沿用原计划的完整资格：当前本地人类，已确认ACTIVE record（不是专业ACTIVE等级），acquisition.mode=LEGACY_CLAIM、UNASSIGNED、NONE/P0、无保存错误；只认冻结set中精确项目ID→专业映射。读取现行同城依据和对应完整区域，不能根据名字/坐标单独认城，不以区域新建事件冒充认领。
-
-在CityProgressionStore内增加专用Claim提交方法：同一次record-local保存写Identity/P1、完成项目/回合依据及base.first技术区域锚点，保留acquisition/LegacySet和已有永久资料；readback成功才OnPermanentCityWrite。现有CLAIM_NOT_IMPLEMENTED校验改成明确的Claim记录结构校验，不直接删保护。保持尚未Claim的schema3和既有FIRST_COMPLETION正常可读；使用版本化扩展，不全城迁移。投资receipt不赠送、不覆盖。
-
-完成事件必须独立验资格并幂等：重复、迟到、其它Claim、旧owner或保存失败均不能第二次写身份。即使Cheat走同回合完成，也必须有真实合法完成事件；单凭UI或FinishProgress返回不能发放身份。保存失败保留故障证据，不回退City旧journal。找不到可信对应区域时停该城，不猜选另一个专业。
-
-建议沿用Projects.RequiredBuilding精确访问标记：四候选各自零收益marker，仅表示可派生入口，纳入ordinary排除、隐藏和module-owned退出；不是新的普通建筑/机构。认领完成后撤其它Claim并结束计时。需核验原生列表/队列刷新；不能只依赖“完成端拒绝重复”而放任失效项目可反复生产。无安全定域退出接口时停止，不清空普通队列或按前缀删建筑。
-
-### 实施顺序与直接模块
-
-同一授权切片内依次完成，本地逐段检查，不为每段另开用户验收：
-
-| 顺序 | 修改边界 | 完成标准 |
-|---|---|---|
-| 1. 身份事务 | CityProgressionStore及其直接validator/reader消费者 | 版本化Claim依据、record-local readback、重复拒绝、旧非Claim路径回归 |
-| 2. 项目与资格 | ClaimProjects、精确SQL/Text、Gameplay/modinfo、普通建筑/隐藏/退出名单 | 冻结候选生成入口，完成事件唯一提交，失效精确撤销 |
-| 3. 正式一回合路径 | 基于TimedProject与选择/显示薄包装，按精确四项目适配；Prototype保留但不同时拥有正式项目 | 多城独立、持久计时、连续回合、一次完成；不建generic ability/project engine |
-| 4. 派生与诊断 | EffectiveFacts、InvestmentAction、CrewProjects、Standardization/Network的base.first及OnPermanentCityWrite调用点 | 提交后当前事实重算；简短显示候选、计时/阻断、认领结果，按需查看 |
-
-正式writer与旧实验writer用精确项目ID隔离，旧P0按钮不成为生产入口。不改B123实验项目已通过行为；如正式适配必须共用函数，保留其直接回归。实施前对上表实际调用点扩展W0001 manifest闭包，只加入真实受影响依赖；本次未进行完整源码cutover审查，不以计划hash代替实施审阅。
-
-### 验证、用户流程与退出条件
-
-风险L3，仅保存/身份/计时及精确消费者相关验证；无无关历史全量/stress。
-
-本地：候选单/多/空、后建不扩候选、无权限不启动；队列更新顺序、重复事件、两城不同阶段互不串；启动前/启动后/结束确认后/认领后保存重载；改选重开、owner loss、UNKNOWN、错误reference；锁存及保存失败、回调乱序、Cheat合法完成与迟到事件；永久提交后P1/投资/ACTIVE重算；B111分流和B123计时相关回归。静态检查精确ID注册、SQL、Lua、UI、退出隐藏、schema和context。
-
-最小原生一次联合流程：
-
-1. 一个单商业候选城A、一个有两个冻结候选城B；确认A后建工业不新增入口，B可选择其一，点击尚未认领。
-2. 两城同回合各选Claim，检查1T；过回合前保存并完全退出重载，仍等待正常结算，不能仅加载即认领。
-3. 正常过回合，两城分别成为所选Identity/P1，其它Claim退出；后续普通目标无带入生产、投资可用且无串城。无需再测旧空队列/其它待办绕过。
-4. 认领后再保存冷加载，检查两城身份保持且不能重选。用此前Claim前存档单城检查一次“改选普通目标→重新开始Claim”的完整回合要求；不以正常路径PASS冒充中断路径已测。
-
-已通过的砍树无溢出作为可复用primitive证据；无需重复一整套溢出调查。若正式适配改变生产结算时点/调用，才补直接受影响生产隔离验证。save/load异常、身份串城、重复认领、入口撤销失效立即停止。
-
-本地与上述原生关键流程都通过后仅关闭Claim切片，不表示E2所有生命周期/F通过。实现commit/push后按W0003游戏退出、receipt与恢复点安全部署。回滚基线B123.150配Claim前独立存档；新完成/计时schema不承诺旧包可读取，不造兼容迁移。保留全部既有证据。
-
-### 用户审批与停止点
-
-本计划待用户审核及单独实施授权。建议采用高成本原生项目的一回合确认，不再采用旧Cost=1建议；同城读档续算、改选重开、多城独立、Cheat真实完成有效按上述合同一起审阅。没有另需补齐的Gameplay阻塞；不可靠的原生完成/资格退出归技术门禁，不能预写PASS。
-
-不包含时代对话或商业能力正式接入、收益新公式、AI/多人、其它专业Legacy、城市销毁/重建、未专业化失城夺回、F。当前无用户游戏测试，本轮无runtime/部署/Design变更；等待授权。
 
 ## B124.151 — authorized one-turn Claim checkpoint
 
@@ -1120,17 +622,6 @@ USER_GAME_TEST_REQUIRED：从日内瓦征服前存档重做征服，E2左键应�
 - USER_GAME_TEST_REQUIRED：上述UI路径，按用户决定留到下一实际测试顺手检查，不安排独立验收。B126核心PASS不撤销、不扩成B127实机PASS。
 - 回滚：既有部署receipt完整保留B126运行包；本批无schema变更，仍不承诺其它旧开发存档兼容。
 
-## Next plan — E2 closure and F readiness
-
-2026-09-29用户授权本节只读收尾核对；核对已完成，结果及下一最小计划见下文。此授权不包含新玩法实施。下一步不是立即实施学术传统：
-
-1. 只核对E2当前直接入口/消费者：新建、投资、失城休眠/退出、原专业城夺回、首次征服快照/认领的持久与派生分工；复用B109/B111/B126与先前原生证据，不重复全套历史调查。
-2. 明列尚未实现/未证实边界：未专业历史城夺回、真实销毁及同址重建引用隔离、未知外交取得。保留UNKNOWN/HELD保护，不将Removal自动视为销毁、不用名字/单独坐标补证，不因认领PASS宣称E2全完成。
-3. 检查正常入口是否仍依赖旧City Property或临时迁移操作；只读定位，若需修复再给最小切片范围供授权。不做全城迁移、统一Legacy或旧档兼容。
-4. 输出支持矩阵及P0-F readiness：能安全独立推进则准备学术传统eligible age、暂停/续算和ACTIVE门槛的具体manifest；否则指出直接阻塞及最小处理计划。不自行决定跨owner传统归属，不自动实施F。
-
-退出条件：已有证据、未实现边界与未来所需状态清晰，给出一个可授权的最小下一批。当前UI验收合并到下一实际实机流程：加载正在认领城，不先打开生产列表，观察1T和正常完成；顺手确认已认领城/无资格城不列无效Claim/Crew、合法入口仍在。没有新增独立用户测试轮次。
-
 ## E2 closure review — B127 baseline
 
 2026-09-29，基于develop 3e107db / runtime source ef481c6。本次仅直接源码/合同/既有结果核对，STATIC_CONFIRMED；没有重跑玩法模拟、没有重新查看历史原图或检查外部运行包，没有新的USER_GAME_TEST_PASS。B127 UI按用户要求并入后续测试。
@@ -1165,28 +656,6 @@ USER_GAME_TEST_REQUIRED：从日内瓦征服前存档重做征服，E2左键应�
 **E2不能整体关闭；本轮不把F标为可直接实施。** 下一优先补当前已明确的UNASSIGNED夺回缺口，再评估其它生命周期支持限制。该缺口不是学术传统同Owner计算公式的技术阻塞，但按现有E2收尾→F顺序不应静默跳过。
 
 F将需要新的、专业专属的持久年龄读写接口及module-owned退出，现有Store尚无该字段/API。首次Potential4的准确时间不能从旧投资receipt（receipt→unit标识，无投资turn）可靠补出；未来F计划应限定从首次P4之前启用记录的测试路径，不自动给已有P4补年龄。跨Owner传统归属仍未定义，不能照搬城市Potential或Culture；届时单列待决/保护边界，不在本轮作决定。
-
-## Next minimal slice — unassigned original-owner return
-
-**用户已授权实施；B128本地完成，原生待验。** 承接已有同城事件证据及冻结模式合同，不新增取得种类或Design规则。
-
-目标：原本地人类玩家重新取得自己已有记录、但尚无Identity的同一城，恢复该记录的UNASSIGNED模式，不重新取AI snapshot，不自动选择专业。覆盖：自建P0、征服空集FIRST_COMPLETION、非空LEGACY_CLAIM。
-
-范围及依赖：
-
-1. 沿用现有retained-token或完整conquest/removed/added/initialized/transferred同城证据、退出完成门禁和原Owner资格；不复制token、不用城市名/单独坐标补证。
-2. `CityProgressionStore`当前validate要求UNASSIGNED没有current，return又要求base.first，Complete/Claim也引用origin；必须一起适配current reference与历史origin分工，**不能只删除RETURN_UNASSIGNED_DEFERRED断言**。无Identity不要求不存在的专业区域first锚点。
-3. 原有P0、acquisition mode、冻结LegacySet保持；外国期间建筑不能回填first-completion或增加候选。First-completion模式等待夺回后有效完成通知；Claim模式仍由原冻结集合选择。若发现正式规则无法支持某个新增边界，停止该子路径并提DESIGN_DECISION_REQUIRED。
-4. 失城时现有reconcile已清claimTimer；夺回不能重放已中断计时。由现行完整一回合项目规则重新开始；不得仅因队列仍有项目就伪造已完成回合。具体重新选择可用性须在实际项目入口检查。
-5. Effects仍由当前facts与资格重算；P0无基础收益/Network资格。其它已专业城路径不重写。候选carrier由Claim模块按当前记录重建。
-
-预计文件：CityProgressionStore.lua；必要时ClaimProjects.lua及窄诊断/现有UI选择入口；新增定向测试，状态/索引正常维护。无新carrier、无schema全城迁移、无破坏性旧档清理。不包含销毁世代、任意外交取得、AI/多人、跨Owner传统/F。
-
-验证（L3，但仅相关范围）：三种UNASSIGNED模式loss→foreign-held save/load→证据确认return；NONE/P0与模式保持、候选不追加、国外完成不回填、夺回后合法首次完成/Claim一次生效；重复/未知/不同城不误恢复；失城计时不重放；对照已专业城receipt/ACTIVE/Network重算不回归。静态检查所有受current-reference变化影响的直接消费者，不跑无关全历史stress。
-
-未来最小实机：优先一座已有非空候选但尚未认领城，失去→foreign存档冷加载→取回→原候选→认领；同一流程顺手检查B127加载显示与灰项目隐藏。另两种模式先本地验证，不机械要求三轮实机；出现独有native风险才追加。不得为了造fixture默认实现交易取得/销毁。
-
-退出：三种模式本地隔离/幂等成立，最小原生已测范围明确；保持其它未实现生命周期清单，再单独审阅E2剩余限制与F。回滚使用前批源码/正式部署恢复点和修复前独立存档；记录结构若改变，不承诺向下兼容。仅本计划授权后才实施/部署，本轮无用户测试。
 
 ## B128.155 — unassigned return checkpoint
 

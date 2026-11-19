@@ -657,3 +657,16 @@ Original directory: `Specialization/Reports/Technical`. All 5 originals were ind
 | [Specialization_Playtest_Workflow_Setup.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6a01d72dfa9f1b8a05ab125335e6540d415aa56b/Specialization/Reports/Technical/Specialization_Playtest_Workflow_Setup.md) | `4335240b3613f77add53675296765aac907b4a344dcb799e0e62a6b3d91aa898` |
 
 The [B038 native comparison](../Status/Validation/Results/Specialization_B038_Population_User_Result.md) retains measured Getter and city-panel sequences, including the observed lag. The retained B035 results and immutable test copies remain available. The Architecture B067 implementation checkpoint links to the pinned preparation report. The frozen Status B067 reference retains its original path and is covered by the table above. No runtime, active task, test/tool or per-file review-source dependency uses these copies.
+
+## Retired sections of the E2 and D0032 plans in Git history
+
+The two mixed files remain in the tree. Their delivered and superseded planning sections are recoverable in the full published originals. E2 retains the scoped implementation, failure and acceptance checkpoints, including the exact B124.151 review source for Claim SQL. The D0032 document retains the common cutover and old-effect ownership tables.
+
+The originals were independently retrieved from GitHub and matched by bytes, SHA256 and Git blob at `af54b8cc22aefc2f647cfd5c0d50afc5e967bc59`. Recover with `git show af54b8cc22aefc2f647cfd5c0d50afc5e967bc59:Specialization/Architecture/v2/<filename>`.
+
+| Full published original | Sections available in the original | SHA256 |
+|---|---|---|
+| [P0_E2_Plan.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/af54b8cc22aefc2f647cfd5c0d50afc5e967bc59/Specialization/Architecture/v2/P0_E2_Plan.md) | Early import plan (sections 1–10), inventory and next-slice proposals, superseded founding and Claim proposals, closure and unassigned-return preparation | `bb98d791d2045f014f303407871b5dc5c4e9c466431a260668637aae76c08069` |
+| [D0032_Implementation_Plan.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/af54b8cc22aefc2f647cfd5c0d50afc5e967bc59/Specialization/Architecture/v2/D0032_Implementation_Plan.md) | Original dependency graph, stage-by-stage work and native-test plan, first fact slice and early institution prototype ordering | `9ce4fef42d15fa6d48d65ef67b4dcc8a4f00150c5cb19a1aed05fcede0055739` |
+
+Historical Status references to the E2 inventory, proposed new-city registration and post-B106 plan use anchors from the full original. The current navigation points to the retained contract/checkpoint sections. The original Status history and frozen validation bodies retain their period wording.
