@@ -3,6 +3,7 @@ include('CultureMeaningModel')
 include('GreatWorkCatalog')
 include('CurrentSpecializationFacts')
 include('NetworkInput')
+if not SPCLegacyCleanupCatalog then include('LegacyCleanupCatalog')end
 -- B166: current derived projection only. No saved ACTIVE/yield authority.
 SPCCultureMeaning={}
 function SPCCultureMeaning.Start(P,shared)
@@ -59,9 +60,19 @@ function SPCCultureMeaning.Start(P,shared)
   end)
   d.writing=nil;assert(ok,why)
  end
+ -- Cold admission and the confirmed Store exit use the same exact ownership set.
+ local legacyNames=SPCLegacyCleanupCatalog.Group('GreatWorkAdjacency').names
  local function retire(c)
-  assert(shared.GreatWorkAdjacency.retired,'ME_LEGACY_NOT_RETIRED')
-  shared.GreatWorkAdjacency.Withdraw(c) -- The legacy module owns its exact IDs.
+  for _,name in ipairs(legacyNames)do
+   local row=assert(P.Info('Buildings',name),'GWA_DATABASE_MISSING')
+   assert(row.InternalOnly==1 or row.InternalOnly==true,'GWA_NON_INTERNAL')
+   local buildings=c:GetBuildings()
+   local has=P.HasBuilding(buildings,row.Index);assert(type(has)=='boolean','GWA_CARRIER_UNKNOWN')
+   if has then
+    P.RemoveBuilding(buildings,row.Index)
+    assert(P.HasBuilding(buildings,row.Index)==false,'GWA_REMOVE_UNCONFIRMED')
+   end
+  end
  end
  local function ready()
   if d.ready then return true end

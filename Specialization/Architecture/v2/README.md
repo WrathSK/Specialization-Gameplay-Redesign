@@ -4,15 +4,15 @@
 
 最初Architecture v2的Batch A–D2是传播/性能基础改造；后续P0批次是在该基础上适配冻结玩法。例如Batch D1优化折扣传播，P0-D1实现科研跨学科研究。旧进度历史化不等于合同废止；不需要按编号顺序读完本目录。
 
-## 当前切片与目标合同
+## 保存、共享服务与早期实施记录
 
 | 问题 | 资料 | 角色与边界 |
 |---|---|---|
-| 当前保存切片、授权、最小验收 | [E2当前路由](P0_E2_Plan.md#current-slice--recovery-and-action-routing) | 当前实施合同与结果；建议不等于新授权 |
+| 城市身份、保存与当前支持范围 | [现行保存职责](../Specialization_v0.1_Architecture.md#事实保存与当前资格)、[E2历史记录](P0_E2_Plan.md#current-slice--recovery-and-action-routing) | 从现行架构开始，按需回查原始实现、反例及源码审阅依据 |
 | 科研传统如何开始保存与计龄 | [P0-F检查点](P0_F_Research_Tradition.md) | F1年龄/影子、F2实际收益及当时验证边界；当前进度查Status |
 | Identity/Potential/ACTIVE、永久成果及Shared服务应如何分层 | [状态/服务目标](D0032_Adaptation.md) | 目标合同，结合后续切片；其中规划时版本/下一步不是今天的任务 |
-| 依赖顺序、单writer切换、存档支持 | [实施计划](D0032_Implementation_Plan.md) | 批次依赖和迁移合同，完成状态查Status |
-| 哪些接口还需要原型/实机 | [技术spike登记](D0032_Technical_Spikes.md) | 技术未知不授权简化Design；具体已关闭项查后续切片 |
+| 单一写入者切换、存档支持 | [迁移与切换合同](D0032_Implementation_Plan.md#migration--cutover合同) | 共同合同及旧效果责任。早期依赖和实施批次见[已发布原计划](../../Historical/README.md#retired-sections-of-the-e2-and-d0032-plans-in-git-history) |
+| 早期接口门禁与后续进展 | [早期技术门禁](D0032_Technical_Spikes.md)、[Engine Reference](../../Reports/Technical/Engine_Reference.md) | 先按现行问题查引擎参考和相应验收。早期门禁保留当时的未知和反例 |
 | 哪些旧效果需要退出 | [原始考古矩阵](D0032_Runtime_Archaeology.md)、[切换责任](D0032_Implementation_Plan.md#明确的旧效果切换责任) | 考古是B076时点，不能作为当前逐模块清单 |
 
 ## 事件传播与网络基础合同
@@ -44,24 +44,24 @@
 - [人文考察团UI计划](P0_N_Expedition_UI.md)：训练、独立管理、目标／任务、失效后重挂靠、城市见闻及Network呈现；仅提案，借UI不等于复用Spy引擎。
 
 - [文化风雅熏陶L1已测结算](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)：所测逐栋加值与结算已通过；[原始实施检查点](P0_L1_Aesthetic.md#b148175--implementation-checkpoint)保留技术依据，当前任务/下一授权仍看Status。
-- [科研基础设施正式cutover](P0_C_Research_Infrastructure.md)、[此前计划](P0_C_Plan.md)、[原生门禁](P0_C_Primitive_Gate.md)：计划/门禁是来源，不重新派发旧测试。
-- [跨学科研究正式路径](P0_D1_Research_Cross_Cutover.md)：后续已接受floor实现；[原计划](P0_D1_Plan.md)、[早期门禁](P0_D1_Primitive_Gate.md)、[区域精度实验](P0_D1_District_Precision_Probe.md)保留反证与测试路径。
+- [科研基础设施正式cutover](P0_C_Research_Infrastructure.md)、[科研基础设施早期计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_C_Plan.md)、[原生门禁](P0_C_Primitive_Gate.md)：计划/门禁是来源，不重新派发旧测试。
+- [跨学科研究正式路径](P0_D1_Research_Cross_Cutover.md)：后续已接受floor实现；[跨学科研究早期计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_D1_Plan.md)、[早期门禁](P0_D1_Primitive_Gate.md)、[区域精度实验](P0_D1_District_Precision_Probe.md)保留反证与测试路径。
 - [学以致用](P0_D2_Research_Apply.md)：每专家floor；[学术主持](P0_D3_Research_Chair.md)：逐普通建筑consumer。
 - [精度待办](Yield_Precision_Backlog.md)：尚需研究/未批准的后续事项，不自动成为本轮实施任务。
 
 ## 呈现与跨context界面
 
-- [Institution / Ability / Carrier合同](Presentation_Institution_Carrier_Model.md)、[载体分类调查](Presentation_Carrier_Inventory.json)：分层、累计presentation-only原则继续适用；旧命名/能力候选由当前Content决定。
-- [前置U1原型计划](P0_U1_Plan.md)、[科研显示原型](U1_Presentation_Prototype.md)：只覆盖指定surface和技术验证，不等于完整U1或所有专业UI。
-- [身份观察入口](P0_E1_Identity_Evidence.md)保留早期实际证据；当前保存/所有权接管以E2路由为准，不按E1旧待测描述恢复任务。
+- [Institution / Ability / Carrier合同](Presentation_Institution_Carrier_Model.md)、[载体分类调查](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/1b086700da44a3cf5d8557ac339425a26f80b6ef/Specialization/Architecture/v2/Presentation_Carrier_Inventory.json)：分层、累计presentation-only原则继续适用；旧命名/能力候选由当前Content决定。
+- [机构原型早期计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_U1_Plan.md)、[科研显示原型](U1_Presentation_Prototype.md)：只覆盖指定surface和技术验证，不等于完整U1或所有专业UI。
+- [身份观察入口](P0_E1_Identity_Evidence.md)保留早期实际证据；现行保存与所有权职责见[正式架构](../Specialization_v0.1_Architecture.md#事实保存与当前资格)。
 
 ## 历史调查与审计来源
 
-以下保留在原路径：它们是审阅provenance和历史结构，不是当前源码地图。
+已完成的原始调查使用固定Git版本取回；它们保留审阅provenance和历史结构，不是当前源码地图。现行合同仍在上方对应入口。
 
-- AV2-I001 / B069： [状态归属](State_Ownership_Save.md)、[桥接依赖](Dependencies_Bridges.md)、[事件传播](Events_Dirty.md)、[当时发现与批次](Findings_Batches.md)、[事件目录](Event_Catalog.tsv)、[源码索引](Source_Index.md)。原调查基线`e3651f9`，STATIC_CONFIRMED；不是事件真实频率或泄漏证明。
-- D0032适配时点：[源码/hash快照](D0032_Runtime_Inventory.json)、[文档验证](D0032_Validation.md)。实际当前review provenance仍由[Runtime_Index](../../Workflow/Runtime_Index.json)维护。
-- [早期Architecture v2调查计划](../Architecture_v2_Plan.md)：旧派工已被后续合同/当前切片取代；不重新执行其中的“下一步”。
+- AV2-I001 / B069： [状态归属](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/State_Ownership_Save.md)、[桥接依赖](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Dependencies_Bridges.md)、[事件传播](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Events_Dirty.md)、[当时发现与批次](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Findings_Batches.md)、[事件目录](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Event_Catalog.tsv)、[源码索引](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/v2/Source_Index.md)。原调查基线`e3651f9`，STATIC_CONFIRMED；不是事件真实频率或泄漏证明。
+- D0032适配时点：[源码/hash快照](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/28e257c4598ff1169444a13d1482acef40c6991c/Specialization/Architecture/v2/D0032_Runtime_Inventory.json)、[文档验证](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/28e257c4598ff1169444a13d1482acef40c6991c/Specialization/Architecture/v2/D0032_Validation.md)。实际当前review provenance仍由[Runtime_Index](../../Workflow/Runtime_Index.json)维护。
+- [早期Architecture v2调查计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/98131a7a6dec32c50cdfb1ac39d8f95af42f19f3/Specialization/Architecture/Architecture_v2_Plan.md)：旧派工已被后续合同/当前切片取代；不重新执行其中的“下一步”。
 - [运行观测instrumentation调查](../../Reports/Technical/Specialization_B072_Runtime_Audit.md)：独立于玩法完成度；原生I/O能力不因本地模拟通过而自动确认。
 
 源码注册不证明原生API必定存在或事件顺序稳定；技术调查、目标合同、本地模拟、用户实测分开使用。按[W0001](../../Workflow/README.md)只读任务相关部分，本索引不扩大强制读取集合。

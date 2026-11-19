@@ -2,6 +2,7 @@
 from pathlib import Path
 import ast,subprocess,sqlite3,unittest,importlib.util,xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
+from retired_crew_sources import B523, source as retired_source
 R=Path(__file__).resolve().parents[1];M=R/'Mod'
 def literal(file,name):
  t=ast.parse((R/'DevelopmentTests'/file).read_text())
@@ -219,7 +220,7 @@ class DatabaseAndRetirement(unittest.TestCase):
 class RuntimeRetirement(unittest.TestCase):
  def boost(self,old=False):
   l=fixture();l.execute((M/'BoostConfig.lua').read_text());l.execute((M/'BoostIntegerConfig.lua').read_text())
-  source=subprocess.check_output(['git','show','224b679:Mod/NetworkBoost.lua'],cwd=R,text=True) if old else (M/'NetworkBoost.lua').read_text()
+  source=subprocess.check_output(['git','show','224b679:Mod/NetworkBoost.lua'],cwd=R,text=True) if old else retired_source('NetworkBoost.lua',B523)
   l.execute(source);l.execute('SPCNetworkBoost.Start(P,shared);boost=shared.NetworkBoost;boost.EnsureReady(0)');return l
  def test_normal_and_test_research_values_equal_previous_runtime(self):
   old,new=self.boost(True),self.boost()

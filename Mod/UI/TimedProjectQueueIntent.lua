@@ -14,16 +14,20 @@ function M.New(P,client,kind,send,notify)
   if generation~=client.Generation()then rows,hints,hintKeys={},{},{};hintNext=1;count=0;generation=client.Generation();work=false;localPlayer=nil;seenBackend=nil;seenRevision=nil;seenClosed=nil;seenOpen=nil end
  end
  local function view(k)local b=backend();return b and b.views and b.views[k]end
+ local function reasonCode(v)
+  if kind=='DialogueProjects'then return v.reasonCode end
+  return v.reason -- Engineering Study already publishes stable reason codes.
+ end
  local function viewKey(v)
   if not v then return 'UNKNOWN'end
-  return tostring(v.stage)..':'..tostring(v.reason)..':'..tostring(v.start)..':'..tostring(v.L)..':'..tostring(v.E)..':'..tostring(v.era)..':'..tostring(v.token)..':'..tostring(v.completedID)..':'..tostring(v.cancelledID)
+  return tostring(v.stage)..':'..tostring(reasonCode(v))..':'..tostring(v.start)..':'..tostring(v.L)..':'..tostring(v.E)..':'..tostring(v.era)..':'..tostring(v.token)..':'..tostring(v.completedID)..':'..tostring(v.cancelledID)
  end
  local function window(pid)
   local b=backend();return b and tostring(b.beginClosedTurns and b.beginClosedTurns[pid])..':'..tostring(b.beginOpenTurns and b.beginOpenTurns[pid])or 'UNKNOWN'
  end
- local function hint(p,label,text)
+ local function hint(p,label,helpKey)
   local k=key(p.pid,p.id);local old=hints[k];local signature=viewKey(view(k))
-  if old and old.label==label and old.text==text and old.view==signature then return end
+  if old and old.label==label and old.helpKey==helpKey and old.view==signature then return end
   local slot=old and old.slot
   if not slot then
    slot=hintNext;hintNext=hintNext%M.LIMIT+1
@@ -31,18 +35,18 @@ function M.New(P,client,kind,send,notify)
    if victim and hints[victim]and hints[victim].slot==slot then hints[victim]=nil end
    hintKeys[slot]=k
   end
-  hints[k]={label=label,text=text,view=signature,slot=slot}
+  hints[k]={label=label,helpKey=helpKey,view=signature,slot=slot}
   if notify then pcall(notify,p.pid,p.id)end
  end
- local function forget(k,label,text)
-  local p=rows[k];if p then rows[k]=nil;count=count-1;if label then hint(p,label,text)else hints[k]=nil end end
+ local function forget(k,label,helpKey)
+  local p=rows[k];if p then rows[k]=nil;count=count-1;if label then hint(p,label,helpKey)else hints[k]=nil end end
  end
  local function admit(c,origin)
   reset();local pid,id=c:GetOwner(),c:GetID();localPlayer=pid;local k=key(pid,id);local p=rows[k]
   local ref=reference(c)
   if p and p.reference~=ref then forget(k);p=nil end
   if not p then
-   if count>=M.LIMIT then d.error='TIMED_QUEUE_CAPACITY';hint({pid=pid,id=id},'暂不可用','当前排队候选已达安全容量上限；请保留日志。');return end
+   if count>=M.LIMIT then d.error='TIMED_QUEUE_CAPACITY';hint({pid=pid,id=id},'UNAVAILABLE','CANDIDATE_LIMIT');return end
    serial=serial+1;p={pid=pid,id=id,reference=ref,origin=origin,serial=serial,revision=0};rows[k]=p;count=count+1
   end
   return p
@@ -81,31 +85,31 @@ function M.New(P,client,kind,send,notify)
  local function exhausted(v)
   return v and (v.stage=='USED'or v.stage=='INELIGIBLE')
  end
- local function exhaustedText(v)
-  if v and (v.stage=='USED'or v.reason=='EST_KNOWLEDGE_REACHED')then
-   return kind=='EngineeringStudy'and '已达到当前可研习知识；若队列中仍有项目，请移除。'or '本游戏时代的时代对话机会已使用；若队列中仍有项目，请移除。'
+ local function exhaustedHelp(v)
+  if v and (v.stage=='USED'or reasonCode(v)=='EST_KNOWLEDGE_REACHED')then
+   return kind=='EngineeringStudy'and 'STUDY_KNOWLEDGE_REACHED'or 'DIALOGUE_ERA_USED'
   end
-  return '当前专业资格不满足；不会计时或发放奖励。'
+  return 'INELIGIBLE'
  end
  function d.Before(c,item,selected)
   if not item or item.Type~=spec.project then return nil end
   if not owned()or not c or selected or not P.IsTestPlayer(c:GetOwner())then return false end
   local p=admit(c,'EXPLICIT_SELECTION');if not p then return false end
-  if p.inserting then hint(p,'待入队','入队请求尚未确认，不重复加入；等待相关队列变化。');return false end
+  if p.inserting then hint(p,'WAITING_TO_QUEUE','QUEUE_REQUEST_PENDING');return false end
   p.revision=p.revision+1;p.force=true;p.attempt=nil;p.read=nil
   local v=view(key(p.pid,p.id));p.completedID=v and v.completedID;p.origin='EXPLICIT_SELECTION';p.initialAccepted=true
-  if exhausted(v)then forget(key(p.pid,p.id),'不可开始',exhaustedText(v));return false end
+  if exhausted(v)then forget(key(p.pid,p.id),'INELIGIBLE',exhaustedHelp(v));return false end
   local rev=p.revision;local ok,s=pcall(sample,c,p)
   if not current(p,rev,generation)then return false end
-  if not ok then hint(p,'待核实','生产队列暂不可确认，请稍后重新选择；不会重复加入项目。');return false end
+  if not ok then hint(p,'VERIFYING','CANNOT_CONFIRM_SELECTION');return false end
   p.read=true;work=true
   if s.count>0 then
-   p.confirmed=s.count==1;hint(p,s.count>1 and '已暂停'or '已排队',s.count>1 and '队列内存在重复项目，请只保留一项；不会重复发放。'or '此项目已在队列中，不会重复加入；成为唯一当前项目后才计时。')
+   p.confirmed=s.count==1;hint(p,s.count>1 and 'PAUSED'or 'ALREADY_QUEUED',s.count>1 and 'DUPLICATE_PROJECT'or 'ALREADY_QUEUED')
    return false -- existing entry is the explicit selection; never append a copy
   end
   local insertion={} -- private attempt identity survives optional notification reentry
   p.inserting=insertion -- native BUILD is asynchronous; lock before returning to the base panel
-  hint(p,'待入队','等待生产队列确认；尚未开始计时。')
+  hint(p,'WAITING_TO_QUEUE','QUEUE_INSERT_PENDING')
   if not current(p,rev,generation)then if p.inserting==insertion then p.inserting=nil end;return false end
   return true
  end
@@ -139,10 +143,10 @@ function M.New(P,client,kind,send,notify)
  local function allowedView(v)
   if not v or exhausted(v)or v.stage=='CALLING'then return false end
   if v.stage=='HELD'then
-   local why=v.reason or ''
+   local why=reasonCode(v)
+   if kind=='DialogueProjects'then return why=='DIALOGUE_RELATED_FACT_REQUIRED'end
    return why=='EST_SINGLE_PROJECT_REQUIRED'or why=='EST_RELATED_FACT_REQUIRED'or why=='EST_QUEUE_UNKNOWN'
-    or why:find('生产未确认',1,true)~=nil or why:find('队列必须只有',1,true)~=nil
-   end
+  end
   return v.stage=='AVAILABLE'or v.stage=='ACTIVE'
  end
  local function process(k,p)
@@ -150,7 +154,7 @@ function M.New(P,client,kind,send,notify)
   if p.origin=='RECOVERED_NATIVE_QUEUE'and not p.initialAccepted then
    if not v or not int(v.completedID)then p.read=nil;p.view=vk;return end
    if v.completedID>0 and (not int(v.completedTurn)or v.completedTurn>=p.initialTurn)then
-    forget(k,'待确认','本回合已有完成记录，无法确认此队列项是否为新一轮；请重新选择项目。');return
+    forget(k,'UNCONFIRMED','ALREADY_COMPLETED_THIS_TURN');return
    end
    p.initialAccepted=true
   end
@@ -163,7 +167,7 @@ function M.New(P,client,kind,send,notify)
    p.view=vk
   end
   if p.waitWindow and p.window~=w then p.read=true;p.revision=p.revision+1;p.waitWindow=nil end;p.window=w
-  if exhausted(v)then forget(k,'不可开始',exhaustedText(v));return end
+  if exhausted(v)then forget(k,'INELIGIBLE',exhaustedHelp(v));return end
   if not p.read then return end
   p.read=nil;local revision,gen=p.revision,generation
   local c=Players[p.pid]and Players[p.pid]:GetCities():FindID(p.id)
@@ -171,37 +175,37 @@ function M.New(P,client,kind,send,notify)
   if reference(c)~=p.reference then forget(k);return end
   local ok,s=pcall(sample,c,p)
   if not current(p,revision,gen)then return end
-  if not ok then hint(p,'待核实','生产队列尚不可确认，等待相关变化；不会完成项目。');return end
+  if not ok then hint(p,'VERIFYING','QUEUE_UNCONFIRMED');return end
   if s.count==0 then
-   if p.confirmed then forget(k)else hint(p,'待入队','等待生产队列确认；尚未开始计时。')end
+   if p.confirmed then forget(k)else hint(p,'WAITING_TO_QUEUE','QUEUE_INSERT_PENDING')end
    return
   end
   p.inserting=nil -- a real entry proves the insertion outcome
-  if s.count>1 then hint(p,'已暂停','队列内存在重复项目，请只保留一项；不会重复发放。');return end
+  if s.count>1 then hint(p,'PAUSED','DUPLICATE_PROJECT');return end
   p.confirmed=true
   if s.size~=1 or s.index~=0 then
    if s.index~=0 then p.force=true end
-   hint(p,s.index==0 and '已暂停'or '排队中',s.index==0 and '项目必须独占生产队列；移除其他项后自动核对计时。'or '尚未成为唯一当前项目，不计时；轮到后自动核对。')
+   hint(p,s.index==0 and 'PAUSED'or 'QUEUED',s.index==0 and 'REQUIRES_SOLE_ENTRY'or 'WAITS_TURN_IN_QUEUE')
    p.queue=s.signature;return
   end
-  if not allowedView(v)then hint(p,'待确认',v and v.reason or '等待专业资格与计时状态确认。');return end
+  if not allowedView(v)then hint(p,'UNCONFIRMED');return end
   if v.stage=='ACTIVE'and v.start==s.turn and not p.force then hints[k]=nil;p.waitWindow=nil;p.queue=s.signature;return end
   local b=backend()
   if b.beginClosedTurns and b.beginClosedTurns[p.pid]==s.turn then
-   p.waitWindow=true;hint(p,'待开始','本地回合已结束，等待下一个可靠回合起点开始完整计时。');return
+   p.waitWindow=true;hint(p,'WAITING_TO_START','WAITING_FOR_NEXT_TURN');return
   end
   local player=Players[p.pid];local method=P.Field(player,'IsTurnActive')
   local activeOK,active=false,nil;if type(method)=='function'then activeOK,active=pcall(method,player)end
   if not current(p,revision,gen)then return end
-  if not activeOK or active~=true then p.waitWindow=true;hint(p,'待开始','等待本地回合可操作状态确认；不补计排队时间。');return end
+  if not activeOK or active~=true then p.waitWindow=true;hint(p,'WAITING_TO_START','WAITING_FOR_ACTIVE_TURN');return end
   -- A confirmed owner cancellation changes cancelledID; unknown sends do not.
   local attempt=s.turn..':'..p.serial..':'..s.signature..':'..vk
   if p.attempt==attempt then return end
   p.attempt=attempt;p.force=nil;p.queue=s.signature -- latch before script-operation reentry
-  hint(p,'确认中','正在确认完整一回合计时；不会重复提交同一轮。')
+  hint(p,'CONFIRMING','CONFIRMING_FULL_TURN')
   if not current(p,revision,gen)or b~=backend()then return end
   local sent=pcall(send,p.pid,PlayerOperations.EXECUTE_SCRIPT,{OnStart='SPC_P0_Request',Action=spec.action,CityID=p.id,StartTurn=s.turn,Token='TQI:'..generation..':'..p.serial..':'..s.turn..':'..tostring(v.cancelledID or 0)})
-  if not sent and current(p,revision,gen)then hint(p,'待确认','启动请求结果未知；不会盲目重发，请保留日志。')end
+  if not sent and current(p,revision,gen)then hint(p,'UNCONFIRMED','START_REQUEST_UNCONFIRMED')end
  end
  function d.Pulse()
   if busy or not owned()or not client.Ready()then return end;reset()
@@ -215,7 +219,12 @@ function M.New(P,client,kind,send,notify)
  end
  local status=function(pid,id)
   if not owned()then return end;reset();local k=key(pid,id);local h=hints[k]
-  if h and h.view==viewKey(view(k))then return h.label,h.text end
+  local v=view(k)
+  if h and h.view==viewKey(v)then
+   local label=Locale.Lookup('LOC_SPC_TIMED_QUEUE_LABEL_'..h.label)
+   local help=h.helpKey and Locale.Lookup('LOC_SPC_TIMED_QUEUE_HELP_'..h.helpKey)
+   return label,help or (v and v.reason) or Locale.Lookup('LOC_SPC_TIMED_QUEUE_HELP_AWAITING_PROJECT_FACTS')
+  end
  end
  ExposedMembers[spec.status]=status
  function d.Close()

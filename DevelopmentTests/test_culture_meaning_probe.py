@@ -5,9 +5,7 @@ historical and are replaced here only for the explicitly changed contract.
 """
 from pathlib import Path
 import unittest,xml.etree.ElementTree as ET
-import sqlite3,zlib
-from project_paths import external_database
-from retired_crew_sources import B458, source as historical_source
+from retired_crew_sources import B458, B518, RETIRED_ADJACENCY_FILES, source as historical_source
 import test_culture_aesthetic as ae
 from test_p0_k import Fixture
 
@@ -16,6 +14,8 @@ R=Path(__file__).resolve().parents[1];M=R/'Mod'
 def fixture_source(relative):
  if relative=='CultureMeaningProbe.lua':
   return historical_source(relative,B458)
+ if relative in (*RETIRED_ADJACENCY_FILES,'DialogueModel.lua'):
+  return historical_source(relative,B518)
  return (M/relative).read_text()
 
 
@@ -41,24 +41,7 @@ def bind_actual_request(l):
 
 
 def database():
- # The external DB may already contain B149 definitions. Reset only the exact
- # test-owned L1 definitions in the disposable memory copy, then apply source.
- # No external DB mutation and no assertion weakened by fixture version drift.
- ro=sqlite3.connect('file:'+str(external_database(R))+'?mode=ro',uri=True)
- d=sqlite3.connect(':memory:');ro.backup(d);ro.close()
- d.create_function('Make_Hash',1,lambda text:zlib.crc32(text.encode()))
- carrier='BUILDING_SPC_CULTURE_AESTHETIC'
- for table,col,values in [
-  ('BuildingModifiers','BuildingType',[carrier]),('Buildings','BuildingType',[carrier]),('Types','Type',[carrier]),
-  ('ModifierArguments','ModifierId',[f'SPC_CULTURE_AESTHETIC_{i}'for i in range(16)]),
-  ('Modifiers','ModifierId',[f'SPC_CULTURE_AESTHETIC_{i}'for i in range(16)]),
-  ('RequirementArguments','RequirementId',[f'SPC_CULTURE_AESTHETIC_{i}_REQ'for i in range(16)]),
-  ('Requirements','RequirementId',[f'SPC_CULTURE_AESTHETIC_{i}_REQ'for i in range(16)]),
-  ('RequirementSetRequirements','RequirementSetId',[f'SPC_CULTURE_AESTHETIC_{i}_SET'for i in range(16)]),
-  ('RequirementSets','RequirementSetId',[f'SPC_CULTURE_AESTHETIC_{i}_SET'for i in range(16)])]:
-  d.executemany(f'DELETE FROM {table} WHERE {col}=?',[(x,)for x in values])
- d.execute('DROP TABLE IF EXISTS SPC_CultureAestheticBits')
- d.executescript((M/'Data/CultureAesthetic.sql').read_text())
+ d=ae.database()
  # Earlier probe definitions may be present in the read-only DB too. Rebuild
  # only the exact 37 owned carriers / 259 attachments in this memory copy.
  carriers=['BUILDING_SPC_MEANING_PROBE_'+y+'_'+str(bit)for y,bits in [('SCIENCE',4),('GOLD',6),('CULTURE',4),('PRODUCTION',4),('FOOD',3),('FAITH',3)]for bit in range(bits)]
@@ -86,7 +69,7 @@ class MeaningProbeTests(unittest.TestCase):
   def imported_include(n):
    # Model action visibility only. This cannot prove native VFS/include behavior.
    assert n+'.lua' in imports, 'Not visible in ImportFiles: '+n
-   l.execute(fixture_source(n+'.lua'))
+   l.execute(historical_source('Dialogue.lua',B518) if n=='Dialogue' else fixture_source(n+'.lua'))
   l.globals().include=imported_include
   for n in ['Dialogue','GreatWorkAdjacency','CultureMeaningProbe']:imported_include(n)
   if real_samples:imported_include('GreatWorkFacts')

@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B460, B461, package, source
+from retired_crew_sources import B460, B461, B516, package, source
 from test_o7_crew_retirement import verify_package_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -135,8 +135,9 @@ class CompletionEventObserverRetirement(unittest.TestCase):
             self.assertEqual((retired/'Mod/CompletionRecordProbe.lua').read_bytes(),
                              (previous/'Mod/CompletionRecordProbe.lua').read_bytes())
             for path in ('CityProgressionStore.lua','ClaimProjects.lua',
-                         'FreshBindingHook.lua','EffectiveFacts.lua','LegacyCleanup.lua'):
+                         'EffectiveFacts.lua','LegacyCleanup.lua'):
                 self.assertEqual((ROOT/'Mod'/path).read_bytes(),(previous/'Mod'/path).read_bytes())
+            self.assertEqual(source('FreshBindingHook.lua',B516),(previous/'Mod/FreshBindingHook.lua').read_text())
             before,after=actual_first_completion(previous,False),actual_first_completion(ROOT,True)
         self.assertEqual(after[0],before[0])
         self.assertEqual((before[1],after[1]),(4,0))

@@ -10,7 +10,7 @@
   </Button>
   <Button ID="ConfirmButton" Anchor="L,T" Offset="0,0" Size="44,53" Texture="UnitPanel_ActionButton" Hidden="1">
    <Image ID="ConfirmIcon" Anchor="C,C" Offset="0,-2" Size="38,38" />
-   <Label Anchor="C,B" Offset="0,1" Style="FontNormal12" String="确认" />
+   <Label Anchor="C,B" Offset="0,1" Style="FontNormal12" String="LOC_SPC_UNIT_ACTION_CONFIRM_LABEL" />
   </Button>
  </Grid>
 </Context>

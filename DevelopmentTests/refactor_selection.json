@@ -2,6 +2,109 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "O8IntegrationCandidate": [
+      "test_o8_integration_candidate",
+      "test_refactor_s5d3",
+      "test_o7_legacy_panel_cleanup.LegacyPanelCleanup",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
+    "O7BoostStartupHandoff": [
+      "test_o7_legacy_panel_cleanup.LegacyPanelCleanup",
+      "test_o7_retired_boost_test_controls_retirement",
+      "test_refactor_s9e3.CentralLegacy",
+      "test_refactor_s8c5c.Production",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
+    "O7DialogueTransport": [
+      "test_o7_retired_dialogue_overrides_retirement",
+      "test_refactor_s5d3",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
+    "O7BoostCleanup": [
+      "test_o7_retired_boost_test_controls_retirement",
+      "test_refactor_s9e3.CentralLegacy",
+      "test_o7_legacy_panel_cleanup.LegacyPanelCleanup.test_old_effect_commands_stop_and_both_saved_experiments_still_withdraw",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
+    "O7Level3Cleanup": [
+      "test_o7_level3_cleanup",
+      "test_refactor_s7e.Registry",
+      "test_refactor_s7e.Culture",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
+    "O7AestheticCleanup": [
+      "test_culture_aesthetic.AestheticTests.test_transferred_worker_percent_keeps_cold_and_failure_readback_order",
+      "test_culture_aesthetic.AestheticTests.test_worker_percent_read_route_keeps_payload_and_is_read_only",
+      "test_culture_aesthetic.AestheticTests.test_exact_worker_percent_package_retirement_and_rollback",
+      "test_refactor_s5d4c4",
+      "test_refactor_s7e.Convergence",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
+    "O7CommerceCleanup": [
+      "test_b239_commerce_integration.Retirement",
+      "test_refactor_s7e.Retirement",
+      "test_refactor_s7e.Convergence",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof",
+      "test_b397_network_transport.StrictTransactions",
+      "test_network_effect_write_boundary.CommercializationReadback"
+    ],
+    "O7MeaningCleanup": [
+      "test_o7_retired_great_work_adjacency_retirement",
+      "test_culture_meaning_automatic.AutomaticMeaningTests.test_unknown_old_carrier_presence_cannot_be_treated_as_absence",
+      "test_culture_meaning_automatic.AutomaticMeaningTests.test_retired_ui_producer_keeps_facts_without_base_adjacency_reads",
+      "test_culture_meaning_automatic.AutomaticMeaningTests.test_exact_legacy_cleanup_failure_blocks_only_affected_city",
+      "test_refactor_s5d4c5",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof"
+    ],
+    "O7InspirationCleanup": [
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_transferred_withdrawal_matches_exact_cold_failure_and_exit_order",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_exact_inspiration_probe_removal_and_rollback",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_sql_is_exact_city_percentage_primitive",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_all_eras_current_only_no_work_count_or_d_scaling",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_native_carrier_transition_removes_old_before_new",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_real_packet_callback_era_change_and_same_era_no_duplicate_write",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_retired_probe_has_no_active_hooks_or_manual_path",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_load_retires_old_then_uses_current_not_saved_value",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_missed_load_uses_confirmed_collection_without_panel",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_foreign_saved_carriers_cleared_without_ai_state",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_confirmed_loss_idempotent_and_return_recomputes",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_remove_failure_cannot_add_new_value_or_contaminate_other_city",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_panel_actual_callbacks_are_readonly_and_end_retired",
+      "test_culture_inspiration_automatic.InspirationAutomaticTests.test_startup_cleanup_failure_is_visible_and_city_scoped",
+      "test_refactor_s5d4c5",
+      "test_refactor_s8c3.DeferredEffects",
+      "test_refactor_s8c4.ActualCurrentOwners.test_real_current_start_options_match_every_exact_catalogue_group",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_refactor_s9c2.Startup",
+      "test_o7_legacy_completion_record_retirement.LegacyCompletionRecordRetirement.test_real_roots_keep_nonempty_route_proof",
+      "test_pu11_package_absence.Package"
+    ],
     "NStandardizationEffectReadback": [
       "test_network_effect_write_boundary",
       "test_network_source_witness.Standardization",
@@ -2434,6 +2537,14 @@
       "test_refactor_s9g4",
       "test_refactor_s9g3",
       "test_refactor_s9g2"
+    ],
+    "O8ResidualCleanup": [
+      "test_o8_residual_cleanup",
+      "test_refactor_s9c2.Startup",
+      "test_refactor_s8c5c.Production",
+      "test_refactor_s8c5c.FrozenBefore",
+      "test_b397_network_transport.StrictTransactions",
+      "test_p0_panel_current_layout.CurrentPanelTests"
     ]
   },
   "counterexamples": {},
@@ -2497,7 +2608,8 @@
       "test_refactor_s5d4b2",
       "test_refactor_s9c2",
       "test_refactor_s9c4a",
-      "test_refactor_s9c4b"
+      "test_refactor_s9c4b",
+      "test_o8_residual_cleanup"
     ],
     "Mod/UI/DialogueRefresh.lua": [
       "test_refactor_defects.Defects",
@@ -2619,7 +2731,7 @@
       "test_o7_production_report"
     ],
     "Mod/DevelopmentInvestment.lua": [
-      "test_refactor_s4b",
+      "test_o7_commercial_trace",
       "test_refactor_s6f.Consumers",
       "test_refactor_s6f.RetainedDevelopment",
       "test_refactor_s6f.RetainedGuards"
@@ -2645,6 +2757,7 @@
       "test_refactor_a8"
     ],
     "Mod/DialogueProjects.lua": [
+      "test_b398_queue_recovery.DialogueQueueView",
       "test_refactor_a8",
       "test_refactor_s7d4",
       "test_refactor_s9b2"
@@ -2656,7 +2769,18 @@
     "Mod/Data/DialogueEffects.sql": [
       "test_refactor_a8"
     ],
+    "Mod/InstitutionPresentation.lua": [
+      "test_b251_institutions.MetricPlacement",
+      "test_b251_institutions.Presentation",
+      "test_culture_institutions.CultureInstitutionDisplay",
+      "test_b265_city_presentation.EventPresentation"
+    ],
+    "Mod/Text/Restructuring.sql": [
+      "test_b251_institutions.MetricPlacement",
+      "test_b251_institutions.Presentation"
+    ],
     "Mod/Text/TestText.sql": [
+      "test_b251_institutions.MetricPlacement",
       "test_refactor_a8"
     ],
     "Mod/FactChanges.lua": [
@@ -2765,12 +2889,6 @@
       "test_refactor_s6e.RetainedReceipts",
       "test_refactor_s6e.RetainedGuards"
     ],
-    "Mod/DevelopmentInvestment.lua": [
-      "test_o7_commercial_trace",
-      "test_refactor_s6f.Consumers",
-      "test_refactor_s6f.RetainedDevelopment",
-      "test_refactor_s6f.RetainedGuards"
-    ],
     "Mod/UI/CapitalInvestmentPanel.lua": [
       "test_refactor_s6e.UIQuotes",
       "test_refactor_s6e.RetainedSidebar"
@@ -2859,6 +2977,11 @@
       "test_refactor_s7d1",
       "test_refactor_s7d4"
     ],
+    "Mod/UI/TimedProjectQueueIntent.lua": [
+      "test_b398_queue_recovery",
+      "test_b399_queue_boundaries.QueueCancellation",
+      "test_o6_production_panel"
+    ],
     "Mod/UI/TimedProjectSelectionClient.lua": [
       "test_refactor_s7d2",
       "test_refactor_s7d3b"
@@ -2912,7 +3035,8 @@
     ],
     "Mod/Probe.lua": [
       "test_o7_runtime_gc",
-      "test_refactor_s9e1"
+      "test_refactor_s9e1",
+      "test_o8_residual_cleanup"
     ],
     "Mod/ResearchCrossSample.lua": [
       "test_refactor_s9e2"
@@ -2982,6 +3106,24 @@
     "Mod/UI/SPCUnitPanelOfficial.lua": [
       "test_o6_unit_panel",
       "test_environment_assembly.UIBaseSelection"
+    ],
+    "Mod/UI/P0Panel.lua": [
+      "test_o8_residual_cleanup"
+    ],
+    "Mod/SpecializationP0.modinfo": [
+      "test_o8_residual_cleanup"
+    ],
+    "Mod/NetworkIsolation.lua": [
+      "test_o8_residual_cleanup"
+    ],
+    "Mod/CityInheritance.lua": [
+      "test_o8_residual_cleanup"
+    ],
+    "Mod/InheritanceShadow.lua": [
+      "test_o8_residual_cleanup"
+    ],
+    "Mod/CityInheritanceRead.lua": [
+      "test_o8_residual_cleanup"
     ]
   },
   "exclusions": {
@@ -3058,7 +3200,8 @@
     "Mod/UnitActions.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
     "Mod/NetworkBridge.lua|MEASURED_MISSING_EVENT": 2,
     "Mod/CrewProjects.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
-    "Mod/LegacyCleanup.lua|PROPERTY_PRODUCER_OWNERSHIP": 1
+    "Mod/LegacyCleanup.lua|PROPERTY_PRODUCER_OWNERSHIP": 1,
+    "Mod/LegacyCleanup.lua|SCOPED_WRAPPER_PLAYER_LOOP": 1
   },
   "static_review_boundary": "S2 reviewed current runtime debt; counts are heuristic alarms, not compliance. New/widened alarms block pending human review; later removal of old debt is allowed.",
   "resolved_counterexamples": {

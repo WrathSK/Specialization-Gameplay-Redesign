@@ -5,11 +5,90 @@ from refactor_harness import ROOT,Context,measure
 from test_refactor_s7d2 import ui_actual
 
 
-def display():
- v=ui_actual('Dialogue');v.globals().include('TimedProjectDisplay');return v
+def display(kind='Dialogue', *, language='zh_Hans_CN'):
+ v=ui_actual(kind)
+ if language != 'zh_Hans_CN':
+  from timed_project_ui_fixture import install_project_text
+  install_project_text(v,language)
+ v.globals().include('TimedProjectDisplay')
+ return v
 
 
 class Roles(unittest.TestCase):
+ def test_known_controller_notes_translate_at_the_final_display(self):
+  cases=(
+   ('Claim','1回合；保存读档继续计时','1 full turn. An eligible saved timer can resume after loading.'),
+   ('Dialogue','完整一回合计时中','The 1-turn timer has started.'),
+  )
+  for kind,reason,expected in cases:
+   with self.subTest(kind=kind):
+    display(kind,language='en_US').execute("""
+     local reason,expected=...
+     local w=T.writes()
+     local id=c:GetID()
+     q.target=project
+     local view={stage='ACTIVE',project=project,reason=reason}
+     shared[backendKey].views['0:'..id]=view
+     local turns,note=SPCTimedProjectDisplay.Text(0,id)
+     assert(turns=='1'and note==expected)
+     local item={Type=project,IsCurrentProduction=true,ToolTip='Project description'}
+     SPCTimedProjectDisplay.Items({Owner=0,City=c,ProjectItems={item}})
+     assert(item.TurnsLeft=='1'and item.ToolTip==expected..'[NEWLINE]Project description')
+     assert(view.reason==reason and T.writes()==w and uiBegins==0)
+     view.reason='NATIVE_REASON_UNRECOGNIZED'
+     _,note=SPCTimedProjectDisplay.Text(0,id)
+     assert(note=='NATIVE_REASON_UNRECOGNIZED')
+    """, reason, expected)
+
+ def test_claim_display_preserves_queue_count_and_source_failure_detail(self):
+  display('Claim',language='en_US').execute("""
+   local id=c:GetID()
+   local k='0:'..id
+   local w=T.writes()
+   q.target=project
+   shared.ClaimProjects.views[k]=nil
+   local raw='认领必须为唯一当前目标；队列数量=2'
+   ExposedMembers.SPC_ClaimSelection[k]=raw
+   local label,note=SPCTimedProjectDisplay.Text(0,id)
+   assert(label=='Confirming'and note=='Keep the claim project alone in the Production queue. Items queued: 2')
+   assert(ExposedMembers.SPC_ClaimSelection[k]==raw)
+   raw='启动请求失败：NATIVE_OUTCOME_UNKNOWN'
+   ExposedMembers.SPC_ClaimSelection[k]=raw
+   _,note=SPCTimedProjectDisplay.Text(0,id)
+   assert(note==raw and T.writes()==w and uiBegins==0)
+  """)
+
+ def test_localized_project_help_and_timer_are_read_only(self):
+  for kind,key in (('Claim','CLAIM'),('Dialogue','DIALOGUE'),('Engineering','STUDY')):
+   with self.subTest(kind=kind):
+    display(kind).execute("""
+    local kind=...
+    local w=T.writes()
+    projectTranslations['LOC_SPC_TIMED_PROJECT_'..kind..'_PREVIEW']='Localized preview'
+    projectTranslations.LOC_SPC_TIMED_PROJECT_TIMER_ACTIVE='Timer started: one turn'
+    projectTranslations.LOC_SPC_TIMED_PROJECT_TIMER_STATUS='Timer: {1}'
+    local cityKey='0:'..c:GetID()
+    local rows=shared[backendKey].views
+    rows[cityKey]=nil
+    local item={Type=project,IsCurrentProduction=false,ToolTip='Original'}
+    SPCTimedProjectDisplay.Items({Owner=0,City=c,ProjectItems={item}})
+    assert(item.TurnsLeft=='1'and item.Progress==0 and item.ToolTip=='Localized preview[NEWLINE]Original')
+    local function control()return {
+     SetText=function(self,text)self.text=text end,SetPercent=function()end,
+     SetShadowPercent=function()end,SetToolTipString=function(self,note)self.note=note end
+    }end
+    local parent={CurrentProductionCost=control(),CurrentProductionProgressString=control(),
+     CurrentProductionProgress=control(),ProductionIcon=control()}
+    q.target=project
+    rows[cityKey]={stage='ACTIVE',project=project,reason='Authoritative'}
+    SPCTimedProjectDisplay.Current(parent,0,c:GetID())
+    assert(parent.CurrentProductionProgressString.text=='Timer started: one turn')
+    rows[cityKey]={stage='CALLING',project=project,reason='Authoritative'}
+    SPCTimedProjectDisplay.Current(parent,0,c:GetID())
+    assert(parent.CurrentProductionProgressString.text=='Timer: '..(kind=='CLAIM'and '已暂停'or '待确认'))
+    assert(T.writes()==w and uiBegins==0)
+    """,key)
+
  def test_noncurrent_candidate_never_borrows_running_or_held_timer_state(self):
   v=display();v.execute("""
   local views=shared.DialogueProjects.views;local key='0:'..c:GetID();local writes=T.writes()
@@ -24,7 +103,7 @@ class Roles(unittest.TestCase):
   assert(T.writes()==writes and uiBegins==0)
   """)
  def test_current_without_timer_is_explicitly_not_yet_timed(self):
-  v=display();v.execute("q.target=project;shared.DialogueProjects.views['0:'..c:GetID()]=nil;local text,note=SPCDialogueProjectUI.Text(0,c:GetID());assert(text=='待计时'and note:find('独占生产队列',1,true)and note:find('未确认时不会完成',1,true));assert(not pending()and uiBegins==0)")
+  v=display();v.execute("q.target=project;shared.DialogueProjects.views['0:'..c:GetID()]=nil;local text,note=SPCDialogueProjectUI.Text(0,c:GetID());assert(text=='待计时'and note:find('独占生产队列',1,true)and note:find('确认前不会完成',1,true));assert(not pending()and uiBegins==0)")
  def test_current_active_calling_held_labels_and_reasons_remain_exact(self):
   v=display();v.execute("q.target=project;for stage,label in pairs({ACTIVE='1',CALLING='待确认',HELD='已暂停'})do shared.DialogueProjects.views['0:'..c:GetID()]={stage=stage,reason='Authoritative'};local text,note=SPCDialogueProjectUI.Text(0,c:GetID());assert(text==label and note=='Authoritative')end")
  def test_real_queued_selection_cannot_start_or_rearm_from_display(self):

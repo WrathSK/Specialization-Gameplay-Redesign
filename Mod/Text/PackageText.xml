@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+  <EnglishText>
+    <Row Tag="LOC_SPC_MOD_TITLE">
+      <Text>City Specialization (Bull Moose Test)</Text>
+    </Row>
+    <Row Tag="LOC_SPC_MOD_DESCRIPTION">
+      <Text>Test city specialization through institutions, investments, and domestic Trade Routes.</Text>
+    </Row>
+  </EnglishText>
+</GameData>

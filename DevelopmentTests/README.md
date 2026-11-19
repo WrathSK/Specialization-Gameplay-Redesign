@@ -39,6 +39,8 @@ Provide the external Civ VI/HD-generated database through `SPC_DEBUG_GAMEPLAY_DB
 
 Other retained Python scripts are historical, version-specific regression evidence unless selected by the current task contract for a specific regression. Their original paths/assertions are preserved; some require external historical snapshots and old manifests and are not portable current entry points. Do not batch-run and rewrite them until green. Their presence is not a promise that all historical suites pass against B051.67. Offline Lua models describe preparation, not implemented gameplay. `test_gpp.py`, `test_discovery.py`, `collect_gpp_log.py` belong to CityGPPProbe and are deliberately excluded.
 
+The historical city registration scripts are available at published commit `ac7b0cf86c45c46d7c4160f8aedd42c8a3a4e5c4`. The shared Store fixture retrieves their exact bytes for the two-city adapter. For old standalone tests that read them from `Mod/`, use the original test baseline or that published tree when it matches the test's other prerequisites. Use the [current Status](../Specialization/Status/Specialization_P0_Status.md#retire-the-detached-city-registration-files--s1079) for the actual package absence and rollback evidence.
+
 Results mean LOCAL_SIMULATION_PASS (local simulation), never USER_GAME_TEST_PASS. No game launch or GUI automation. Use no-bytecode mode. Deployment tests operate only in temporary directories and never touch the game runtime.
 
 ## Historical Architecture v2 Batch B (B071.98, develop only)

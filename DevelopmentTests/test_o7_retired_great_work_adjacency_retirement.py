@@ -3,7 +3,8 @@ import unittest
 from unittest.mock import patch
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B471, B472, package
+from retired_crew_sources import B471, B472, B518, B519, RETIRED_ADJACENCY_FILES, package
+from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_legacy_completion_record_retirement import load_cold_store, save_fixture, stored_records
 from test_o7_route_observer_retirement import exercise_proof
 from test_o7_runtime_gc import GC_NATIVE
@@ -25,13 +26,18 @@ def requests_and_routes(root, source):
       local retired=...
       local s=ExposedMembers.SPC_P0
       local d=s.GreatWorkAdjacency
-      assert(d.retired and not next(d.off) and s.StartStatus.MemoryObservation.state=='OK')
+      assert(s.StartStatus.MemoryObservation.state=='OK')
       local beforeRevision=ExposedMembers.SPC_RuntimeUIRevision
-      local audit=d.Audit
       auditCalls,readCalls=0,0
-      d.Audit=function(...) auditCalls=auditCalls+1;return audit(...)end
-      local describe=d.Describe
-      d.Describe=function(...) readCalls=readCalls+1;return describe(...)end
+      if retired then
+        assert(d==nil and s.StartStatus.GreatWorkAdjacency==nil)
+        assert(s.StartStatus.CultureMeaning.state=='OK')
+      else
+        assert(d.retired and not next(d.off))
+        local audit,describe=d.Audit,d.Describe
+        d.Audit=function(...) auditCalls=auditCalls+1;return audit(...)end
+        d.Describe=function(...) readCalls=readCalls+1;return describe(...)end
+      end
       local function request(action,token)
         GameEvents.SPC_P0_Request.Fire(0,{Action=action,Token=token,CityID=1,Page=1})
         assert(s.RequestIngress.action==action and s.RequestDepth==0 and s.FailureAt==nil)
@@ -49,7 +55,7 @@ def requests_and_routes(root, source):
           assert(s.LastToken==action and s.Snapshot:find('GWA_RETIRED',1,true))
         end
       end
-      assert(auditCalls==0 and not next(d.off) and ExposedMembers.SPC_RuntimeUIRevision==beforeRevision)
+      assert(auditCalls==0 and (d==nil or not next(d.off)) and ExposedMembers.SPC_RuntimeUIRevision==beforeRevision)
       request('NETWORK_READ','end')
       assert(s.LastToken=='end' and s.Snapshot==network and net.TransactionCurrent(0))
     """, source is None)
@@ -88,7 +94,7 @@ def meaning_cold(root):
         test = meaning_fixture.AutomaticMeaningTests()
         test.sql = meaning_fixture.legacy.database()
         try:
-            vm = test.runtime(ready=False)
+            vm = test.runtime(ready=False, historical=B471 if root != ROOT else None)
             return vm.execute("""
               seed(a,'BUILDING_SPC_B060_SCIENCE_P1')
               assert(oldCount(a)==1)
@@ -122,11 +128,11 @@ def panel(root, *, retired):
 
 class RetiredGreatWorkAdjacency(unittest.TestCase):
     def test_stale_adjacency_commands_leave_current_route_proof_intact(self):
-        with package(B471) as previous:
+        with package(B471) as previous, package(B472) as retired_commands:
             before, before_reads = requests_and_routes(previous, B471)
             for name in ('GreatWorkAdjacency.lua', 'CultureMeaning.lua', 'GreatWorkFacts.lua', 'UI/DialogueRefresh.lua',
                          'LegacyCleanup.lua', 'LegacyCleanupCatalog.lua', 'NetworkBridge.lua'):
-                self.assertEqual((previous/'Mod'/name).read_bytes(), (ROOT/'Mod'/name).read_bytes())
+                self.assertEqual((previous/'Mod'/name).read_bytes(), (retired_commands/'Mod'/name).read_bytes())
         after, after_reads = requests_and_routes(ROOT, None)
         self.assertEqual(before, after)
         self.assertEqual(len(after), 3)
@@ -149,6 +155,60 @@ class RetiredGreatWorkAdjacency(unittest.TestCase):
         self.assertEqual(before, after)
         self.assertEqual(after, (0,3,3))
         measure('retired_gwa_meaning', dict(old_carriers=after[0], science_values=list(after[1:])))
+
+    def test_cold_owner_removes_all_and_only_the_old_carriers_before_applying_new_values(self):
+        test = meaning_fixture.AutomaticMeaningTests()
+        test.sql = meaning_fixture.legacy.database()
+        try:
+            vm = test.runtime(ready=False)
+            vm.execute(r"""
+              local names,expected,removed={}, {}, {}
+              for row in GameInfo.Buildings()do
+                local name=row.BuildingType
+                if name:match('^BUILDING_SPC_B060_')then
+                  expected[row.Index]=true;names[#names+1]=name;seed(a,name)
+                  if name=='BUILDING_SPC_B060_FAITH_N12' then seed(b,name) end
+                end
+              end
+              assert(#names==156 and oldCount(b)==1)
+              local monument=GameInfo.Buildings.BUILDING_MONUMENT.Index
+              local probe=GameInfo.Buildings.BUILDING_SPC_B055_GW_CITY.Index
+              a.present[monument]=true;a.present[probe]=true;b.owner=3
+              local remove,create=P.RemoveBuilding,P.CreateBuilding
+              local count=0
+              P.RemoveBuilding=function(buildings,id)
+                if buildings.city==a and expected[id]then
+                  assert(not removed[id]);removed[id]=true;count=count+1
+                end
+                return remove(buildings,id)
+              end
+              P.CreateBuilding=function(queue,id)
+                if queue.city==a and GameInfo.Buildings[id].BuildingType:match('^BUILDING_SPC_MEANING_PROBE_')then
+                  assert(count==156 and oldCount(a)==0,'NEW_EFFECT_BEFORE_EXACT_CLEANUP')
+                end
+                return create(queue,id)
+              end
+              fire('LoadScreenClose')
+              assert(count==156 and oldCount(a)==0 and oldCount(b)==0)
+              assert(finalAmount(a,'SCIENCE')==3 and meaningCount(b)==0)
+              assert(a.present[monument] and a.present[probe])
+            """)
+        finally:
+            test.sql.close()
+        measure('meaning_cold_owner_retirement', dict(exact_removed=156, foreign_saved_carriers_cleared=True,
+            no_positive_application_before_readback=True, unrelated_buildings_retained=True))
+
+    def test_package_round_trips_remove_exactly_the_two_old_lua_files(self):
+        with package(B518) as baseline, package(B519) as retired:
+            previous,current=baseline/'Mod',retired/'Mod'
+            for name in ('LegacyCleanup.lua','LegacyCleanupCatalog.lua','Data/GreatWorkAdjacency.sql',
+                         'CultureMeaningModel.lua','GreatWorkFacts.lua'):
+                self.assertEqual((previous/name).read_bytes(),(current/name).read_bytes(),name)
+            profile=PackageVFS(manifest=current/'SpecializationP0.modinfo')
+            self.assertTrue(set(RETIRED_ADJACENCY_FILES).isdisjoint(profile.files))
+            self.assertTrue(set(RETIRED_ADJACENCY_FILES).isdisjoint(profile.imports))
+            verify_package_round_trip(self,previous,current,RETIRED_ADJACENCY_FILES,'CultureMeaning.lua')
+            verify_stable_round_trip(self,previous,current,RETIRED_ADJACENCY_FILES)
 
     def test_panel_retains_memory_and_removes_only_one_update_listener(self):
         with package(B471) as previous, package(B472) as retired:

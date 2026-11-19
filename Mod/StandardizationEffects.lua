@@ -14,6 +14,9 @@ function SPCStandardizationEffects.Start(P,shared)
  end
  local catalog,definitions,byTarget;local dirty={};local initialized=false;local cleaned={}
  local ownedIndex={};local healthSequence=0
+ local legacy={changes=0}
+ local withdrawDiscount=SPCStandardizationCatalog.LegacyWithdrawal(P,'DISCOUNT',legacy)
+ local withdrawCopy=SPCStandardizationCatalog.LegacyWithdrawal(P,'COPY',legacy)
  local trace=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'INDUSTRY_STANDARDIZATION')
  local function key(pid,cid)return tostring(pid)..':'..tostring(cid)end
  local function ref(c)return SPCNetworkInput.Reference(c)end
@@ -155,12 +158,11 @@ function SPCStandardizationEffects.Start(P,shared)
  local function retire(c)
   local k=key(c:GetOwner(),c:GetID());local reference=ref(c)
   if cleaned[k]==reference then return end
-  local before=shared.StandardizationDiscount.changes+shared.CopyYields.changes
-  assert(shared.StandardizationDiscount.retired and shared.CopyYields.retired,'STD_LEGACY_WRITER_ACTIVE')
-  assert(shared.StandardizationDiscount.Withdraw(c),'STD_LEGACY_DISCOUNT_PENDING')
-  assert(shared.CopyYields.Withdraw(c),'STD_LEGACY_COPY_PENDING')
+  local before=legacy.changes
+  withdrawDiscount(c)
+  withdrawCopy(c)
   cleaned[k]=reference
-  local removed=shared.StandardizationDiscount.changes+shared.CopyYields.changes-before
+  local removed=legacy.changes-before
   if trace and removed>0 then trace.Record('INDUSTRY_LEGACY_EXIT',{owner=c:GetOwner(),city=c:GetID(),count=removed,readStatus='VERIFIED',reason='EXACT_OWNED_IDS'})end
  end
  local function source(batch,pid,id)

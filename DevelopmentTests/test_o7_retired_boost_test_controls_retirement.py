@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B470, B471, package
+from retired_crew_sources import B470, B471, B523, B524, B525, package, source
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE, scalars
 
@@ -19,7 +19,7 @@ def context(root, source, name='Gameplay'):
     return Context(name=name, vfs=PackageVFS(manifest=root/'Mod/SpecializationP0.modinfo'), history=history)
 
 
-def boost_startup(root, source):
+def boost_startup(root, source, *, retired=False):
     gp, ui = (context(root, source, name) for name in ('Gameplay', 'UI/BoostRefresh'))
     for vm in (gp, ui):
         vm.execute(NATIVE)
@@ -28,7 +28,8 @@ def boost_startup(root, source):
       local retired=...
       local s=ExposedMembers.SPC_P0
       local boost=s.NetworkBoost
-      assert(boost.retired and not boost.ready and not s.GreatWorkProbe.ready)
+      local cleanup=s.GreatWorkLoadCleanup or s.GreatWorkProbe
+      assert(boost.retired and not boost.ready and not cleanup.ready)
       local defs,index={},0
       local function add(name)
         if defs[name] then return defs[name].Index end
@@ -53,7 +54,7 @@ def boost_startup(root, source):
       Game.SetProperty=function()error('BOOST_COMMAND_WROTE_PERSISTENT_STATE')end
       testCalls=0
       local test=boost.Test
-      boost.Test=function(...) testCalls=testCalls+1;return test(...)end
+      if test then boost.Test=function(...)testCalls=testCalls+1;return test(...)end end
       function send(packet)
         GameEvents.SPC_P0_Request.Fire(0,packet)
         assert(s.RequestIngress.action==packet.Action and s.RequestDepth==0 and s.FailureAt==nil)
@@ -70,12 +71,15 @@ def boost_startup(root, source):
           assert(s.LastToken==action and s.Snapshot:find('RESEARCH_NETWORK_DEFERRED_V01',1,true))
         end
       end
-      assert(not next(boost.testRaw) and #removed==0 and present[boostID] and present[gwID] and present[monumentID])
-    """, source is None)
+      assert((not boost.testRaw or not next(boost.testRaw)) and #removed==0 and present[boostID] and present[gwID] and present[monumentID])
+    """,retired)
     ui.load('UI/BoostRefresh')
     ui.execute("""
-      ExposedMembers.SPC_P0={Version=SPCP0.VERSION,NetworkBoost={ready=false},GreatWorkProbe={ready=false}}
-    """)
+      local s={Version=SPCP0.VERSION,NetworkBoost={ready=false}}
+      local key=... and 'GreatWorkProbe' or 'GreatWorkLoadCleanup'
+      s[key]={ready=false};ExposedMembers.SPC_P0=s
+      fixtureGreatWorkCleanup=s[key]
+    """,not retired)
     packets = []
 
     def emit(pid, operation, packet):
@@ -88,7 +92,8 @@ def boost_startup(root, source):
     gp.execute('send(...)', gp.table(packets[0]))
     gp.execute("""
       local s=ExposedMembers.SPC_P0
-      assert(s.NetworkBoost.ready and s.GreatWorkProbe.ready and s.NetworkBoost.changes==1)
+      local cleanup=s.GreatWorkLoadCleanup or s.GreatWorkProbe
+      assert(s.NetworkBoost.ready and cleanup.ready and s.NetworkBoost.changes==1)
       assert(not present[boostID] and not present[gwID] and present[monumentID])
       assert(#removed==2 and removed[1]=='BUILDING_SPC_B057_RESEARCH_2' and removed[2]=='BUILDING_SPC_B055_GW_CITY')
       send({Action='BOOST_READ',Token='kept-read',CityID=1})
@@ -99,7 +104,7 @@ def boost_startup(root, source):
     """)
     ui.execute("""
       local s=ExposedMembers.SPC_P0
-      s.NetworkBoost.ready=true;s.GreatWorkProbe.ready=true
+      s.NetworkBoost.ready=true;fixtureGreatWorkCleanup.ready=true
       Events.GameCoreEventPlaybackComplete.Fire()
     """)
     assert len(packets) == 1
@@ -135,16 +140,61 @@ class RetiredBoostTestControls(unittest.TestCase):
             before = boost_startup(previous, B470)
             for name in ('NetworkBoost.lua', 'LegacyCleanup.lua', 'LegacyCleanupCatalog.lua', 'UI/BoostRefresh.lua',
                          'UI/BoostGreatWorkRead.lua', 'GreatWorkProbe.lua', 'BoostConfig.lua', 'BoostIntegerConfig.lua'):
-                # The reader's byte identity belongs to the published B470/B471 transition.
-                candidate = retired if name == 'UI/BoostGreatWorkRead.lua' else ROOT
-                self.assertEqual((previous/'Mod'/name).read_bytes(), (candidate/'Mod'/name).read_bytes())
-        after = boost_startup(ROOT, None)
+                self.assertEqual((previous/'Mod'/name).read_bytes(), (retired/'Mod'/name).read_bytes())
+        with package(B525) as prior_route:
+            after = boost_startup(prior_route, B525, retired=True)
         self.assertEqual(before[:-1], after[:-1])
         self.assertEqual((before[-1], after[-1]), (4, 0))
         measure('retired_boost_test_controls', dict(
             manual_test_calls=[4,0], stale_commands_carrier_writes=[0,0],
             matching_background_init_packets=1, confirmed_carrier_removals=list(after[3].values()),
             ordinary_building_preserved=True, retained_boost_reports='MATCH'))
+
+    def test_startup_transfer_keeps_first_publish_and_turn_recovery(self):
+        from test_b239_commerce_integration import SETUP
+
+        outcomes = []
+        for historical in (True, False):
+            ctx = Context()
+            ctx.execute(SETUP)
+            if historical:
+                ctx.execute(source('NetworkBoost.lua', B523))
+                ctx.execute("SPCNetworkBoost.Start(P,shared,{retired=true,centralExit=true})")
+            else:
+                ctx.load('LegacyCleanup')
+                ctx.execute("SPCLegacyCleanup.StartBoostLoad(P,shared)")
+            ctx.execute("""
+              Game.GetLocalPlayer=function()return 0 end
+              local d=shared.NetworkBoost
+              local id='BUILDING_SPC_B057_RESEARCH_2'
+              cities[1].built[id]=true;cities[2].built.KEEP_EXTERNAL=true
+              failRemove=id
+              emit('GameCoreEventPublishComplete')
+              assert(not d.ready and d.errors[0] and cities[1].built[id])
+              local prior=reads
+              failRemove=nil
+              for i=1,32 do emit('GameCoreEventPublishComplete')end
+              assert(reads==prior and cities[1].built[id])
+              emit('PlayerTurnActivated',3);assert(reads==prior)
+              emit('PlayerTurnActivated',0)
+              assert(d.ready and not cities[1].built[id] and cities[2].built.KEEP_EXTERNAL)
+              prior=reads;emit('LoadScreenClose');emit('PlayerTurnActivated',0)
+              assert(reads==prior and d.changes==1)
+              observation={reads=reads,removeCalls=removeCount,report=d.Describe(0)}
+            """)
+            outcomes.append(scalars(ctx.eval('observation')))
+        self.assertEqual(*outcomes)
+
+    def test_exact_boost_writer_retirement_rolls_back(self):
+        from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
+
+        paths = ('NetworkBoost.lua',)
+        with package(B523) as previous, package(B524) as next_package:
+            for name in ('Data/NetworkBoost.sql', 'Data/NetworkBoostInteger.sql', 'Data/BoostIntegerTest.sql',
+                         'UI/BoostRefresh.lua', 'LegacyCleanupCatalog.lua'):
+                self.assertEqual((previous/'Mod'/name).read_bytes(), (next_package/'Mod'/name).read_bytes(), name)
+            verify_package_round_trip(self, previous/'Mod', next_package/'Mod', paths, 'LegacyCleanup.lua')
+            verify_stable_round_trip(self, previous/'Mod', next_package/'Mod', paths)
 
     def test_only_the_four_hidden_experimental_controls_retire(self):
         with package(B470) as previous, package(B471) as retired:

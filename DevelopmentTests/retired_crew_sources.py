@@ -44,6 +44,27 @@ B473 = 'fce8db9cc6b09d7894554b2d27eecdabcadc2982'
 B474 = '735f6ada29e1e893796507ae874c38c074d0c6a9'
 B475 = '28c04ef022466248ce5584b5767c9646dc8dd032'
 B476 = 'df9461790079ef858f4df11944c78dfc7e0877f3'
+B511 = '7de0ba2ed10c64a6e61e0620b25ac308531e630b'
+B512 = '79c128c77e4a927b615c779f44a0e1e8d536bce1'
+B513 = 'd376f6800c18024c660d0ce4e92e03fecf5f53f6'
+B514 = 'e49ca22aff1a7ed0b8f877d5e3549bb21e17d837'
+B515 = 'e776b4c9d0514cbc1f0c077b4256283b526f8b04'
+B516 = 'ac7b0cf86c45c46d7c4160f8aedd42c8a3a4e5c4'
+B517 = 'e8373a177d7dd1ef827277ffb2df223fec276c64'
+B518 = 'b426b7898679908c664142ec81aaa34a1810cee2'
+B519 = '808c9d0fc56673a83968471b4a786c9620a7f169'
+B520 = '8fdbfa885539a61fcbbaef16cebba62daf2b4edd'
+B521 = '809dfe5a1d1b5d3dea69bd075667be514923ff28'
+B522 = '723780deccccbddf757d4531b34084b38f7ec775'
+B523 = '4e0e1b8490a3b7fe34954c3e24ba3d2ee432f193'
+B524 = '83fda621a2857423a325f295aa530e5937651f78'
+B525 = '1d1d0e284ea14ef6a03d45b6c201979c71b6853c'
+B526 = '49d028488bb5a08481d67d0ce6267e663489d094'
+B527 = '5cf9b48463cc5f875ebab562cc89c9cedb9d0bcb'
+RETIRED_LEVEL3_FILES = ('Lv3Effects.lua', 'Lv3Support.lua')
+RETIRED_ADJACENCY_FILES = ('GreatWorkAdjacency.lua', 'GreatWorkAdjacencyModel.lua')
+RETIRED_CITY_STARTS = ('BindingProbe', 'CityJournalProbe', 'CityFlowProbe')
+RETIRED_CITY_FILES = tuple(sorted(name+'.lua' for name in (*RETIRED_CITY_STARTS, 'FreshBindingHook')))
 RETIRED = ('ConstructionProbe.lua', 'CrewPrecision.lua')
 RETIRED_GLOBALS = tuple('SPC' + Path(path).stem for path in RETIRED)
 
@@ -57,11 +78,11 @@ def source(relative, revision=B444):
 
 
 @contextmanager
-def package(revision=B444):
+def package(revision=B444, *, paths=('Mod',)):
     with tempfile.TemporaryDirectory(prefix='spc-package-history-') as directory:
         checkout = Path(directory)
         archive = checkout / 'package.tar'
-        subprocess.run(['git', 'archive', '-o', str(archive), revision, 'Mod'],
+        subprocess.run(['git', 'archive', '-o', str(archive), revision, *paths],
                        cwd=ROOT, check=True)
         with tarfile.open(archive) as tar:
             tar.extractall(checkout, filter='data')

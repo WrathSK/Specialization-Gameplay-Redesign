@@ -2,6 +2,10 @@
 UI native counters exclude actual Gameplay work. Historical UI doubles use the
 same inputs but their original handshake; no fabricated ACK or saved timer.
 """
+from contextlib import closing
+from functools import cache
+import sqlite3
+
 from refactor_harness import ROOT,legacy_source_observation
 from test_refactor_s7d1 import actual
 
@@ -11,8 +15,38 @@ SPECS={
  'Engineering':('EngineeringStudyUI','SPCEngineeringStudyUI','EngineeringStudy','SPC_EngineeringStudyRead','ENGINEERING_STUDY_BEGIN','ENGINEERING_STUDY_SYNC'),
 }
 
-def fixture(kind,gp_first=True,connect=False):
+@cache
+def _project_text(sql, language):
+ with closing(sqlite3.connect(':memory:')) as db:
+  db.execute('CREATE TABLE LocalizedText (Language TEXT, Tag TEXT, Text TEXT, PRIMARY KEY (Language, Tag))')
+  db.executescript(sql)
+  return dict(db.execute(
+      "SELECT Tag, Text FROM LocalizedText WHERE Language=? AND (Tag GLOB 'LOC_SPC_TIMED_QUEUE_*' OR Tag GLOB 'LOC_SPC_TIMED_PROJECT_*')",
+      (language,),
+  ))
+
+
+def install_project_text(vm, language='zh_Hans_CN'):
+ sql=(ROOT/'Mod/Text/TestText.sql').read_text()
+ vm.globals().projectTranslations=vm.table_from(_project_text(sql, language))
+ vm.execute("""
+ local lookup=Locale and Locale.Lookup
+ Locale=Locale or {}
+ Locale.Lookup=function(tag,...)
+  local value=projectTranslations[tag]
+  if not value then return (lookup and lookup(tag,...)) or tag end
+  for i=1,select('#',...)do
+   local arg=tostring(select(i,...))
+   value=value:gsub('{'..i..'}',function()return arg end)
+  end
+  return value
+ end
+ """)
+
+
+def fixture(kind,gp_first=True,connect=False,*,language='zh_Hans_CN'):
  vm=actual(kind)
+ install_project_text(vm,language)
  def include(name):
   candidates=(ROOT/'Mod/UI'/(name+'.lua'), ROOT/'Mod'/(name+'.lua'))
   p=next((x for x in candidates if x.is_file()),None)

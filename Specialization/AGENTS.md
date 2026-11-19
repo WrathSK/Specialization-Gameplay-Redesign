@@ -14,7 +14,7 @@ Follow [root guidance](../AGENTS.md). The user is the final semantic authority; 
 
 - [项目导航](README.md)定位Design、Architecture、Status与Validation；当前任务以Status CURRENT块及Authority指向的manifest为准。只读相关合同，不从旧DEV注释/历史报告推断当前完成度。
 - D/A修订、accepted hash及sync按现有流程维护；sync不等于已实现或实机通过。Historical、既有Backups、冻结结果不就地改写；纠正使用新记录并由Status引用。
-- 用户审核计划后才实施；玩法歧义用`DESIGN_DECISION_REQUIRED`，不因API限制或实现便利静默换规则。README/AGENTS/路径规则变更须用户授权。
+- 用户审核计划后才实施；已批准的[文档生命周期持续授权](Workflow/README.md#delegated-document-lifecycle-maintenance--accepted-2026-11-18)允许按职责、依赖与可靠恢复证据逐族清理，不因文件数量重复请批。玩法歧义用`DESIGN_DECISION_REQUIRED`，不因API限制或实现便利静默换规则。README/AGENTS/路径规则变更须用户授权。
 
 ## 用户交付与诊断
 

@@ -471,13 +471,14 @@ function M.Start(P,shared)
     -- writes, the existing fence invalidates preflight reads, then all plans
     -- sample the post-write phase. Never write inside EF's projection body.
     local retired={}
-    if shared.CommerceConvergence and shared.CommerceConvergence.Withdraw then
+    local cleanup=shared.CommerceLegacyCleanup
+    if cleanup then
      for k,pair in pairs(ids)do
       local c=city(pair[1],pair[2])
       if c and c:GetOwner()==pair[1]then
        local ok,why=pcall(function()
         local f=facts.Read(pair[1],c)
-        if Use.Qualification(f,'COMMERCE',3).status=='CONFIRMED'then shared.CommerceConvergence.Withdraw(c)end
+        if Use.Qualification(f,'COMMERCE',3).status=='CONFIRMED'then cleanup.Withdraw(c)end
        end)
        if not ok then retired[k]=why end
       end

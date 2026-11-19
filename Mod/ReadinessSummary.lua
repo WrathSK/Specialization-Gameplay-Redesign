@@ -15,7 +15,7 @@ function SPCReadinessSummary.Start(P,shared)
   end
  end
  local controls={{'REST','Restructuring'},{'CN','CultureNetwork'},{'CA','CultureAesthetic'},
-  {'S3_CLEANUP','Lv3Support'},{'E3_CLEANUP','Lv3Effects'}}
+  {'S3_CLEANUP','Lv3Support'},{'E3_CLEANUP','Lv3Effects'},{'B055_GW','GreatWorkLoadCleanup'}}
  local function value(pair)
   local ok,v=pcall(function()
    local module=shared[pair[2]];if not module then return 'MISSING'end

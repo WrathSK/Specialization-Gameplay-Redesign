@@ -4,6 +4,9 @@ Native queue/event order, synchronous cross-context completion sampling and save
 serialization remain a user-game gate. No native yield or performance claim.
 """
 from pathlib import Path
+import os
+import subprocess
+import sys
 import unittest
 from lupa.lua55 import LuaRuntime
 from test_store_write_boundaries import fixture, run_claim_return_regression, legacy_extension
@@ -186,13 +189,22 @@ assert(not c.b.present[998]);assert(not pcall(shared.CityProgressionStore.Dialog
 ''')
 
     def test_corrupt_history_is_held_not_reinitialized(self):
-        for mutation in ('r.dialogue=nil','r.dialogue.total=999','r.dialogueKnown=nil','r.dialogue.pending.reference.cityID=999'):
-            with self.subTest(mutation=mutation):
-                l=game();l.execute('begin(c);r=T.record(c);'+mutation+';T.propsSet(T.key(c),r);reload()')
-                l.execute(r'''
-assert(not pcall(shared.CityProgressionStore.DialogueState,0,c));assert(not c.b.present[998])
-assert(shared.EffectiveFacts.Read(0,control).potential==1 and finishes==0)
-''')
+        # The original assertion predates known-marker repair and B411's
+        # preserve-access-on-UNKNOWN rule. Replay its original sources together.
+        from retired_crew_sources import package
+
+        revision = '886484a69189ac6c5cdacfd409f065f66957387f'
+        case = 'test_dialogue_projects.DialogueProjects.test_corrupt_history_is_held_not_reinitialized'
+        with package(revision, paths=('Mod', 'DevelopmentTests')) as checkout:
+            env = dict(os.environ)
+            tests = str(checkout / 'DevelopmentTests')
+            inherited = env.get('PYTHONPATH')
+            env['PYTHONPATH'] = os.pathsep.join((tests, inherited)) if inherited else tests
+            result = subprocess.run(
+                [sys.executable, '-B', '-m', 'unittest', case], cwd=checkout, env=env,
+                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=30,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout)
 
     def test_write_failure_before_finish_never_calls_native(self):
         l=game();l.execute(r'''

@@ -17,52 +17,52 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_NAME','一级施工队'),
 ('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供260点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
 
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_250_NAME','一级施工队');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_250_NAME','Tier 1 Construction Crew');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供260点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_250_NAME','组建一级施工队');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_250_NAME','Form Tier 1 Construction Crew');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','Industry ACTIVE III. Standard speed: 390 Production creates one 260-Production Crew. Both cost and output scale with game speed.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_NAME','一级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 一级施工队可提供260点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_NAME','组建一级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','工业ACTIVE III开放。标准速度：基础成本390生产力，生成1支260生产力的施工队。成本与生产力随游戏速度同比缩放。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_420_NAME','二级施工队');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_420_NAME','Tier 2 Construction Crew');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_420_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 二级施工队可提供420点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_420_NAME','组建二级施工队');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_420_NAME','Form Tier 2 Construction Crew');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','Industry Lv1. Standard speed: 460 Production creates one 420-Production Crew. Both cost and output scale with game speed.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_420_NAME','二级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_420_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 二级施工队可提供420点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_420_NAME','组建二级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','工业专业Lv1开放。标准速度：成本460生产力，生成1支420生产力的施工队。成本与生产力随游戏速度同比缩放。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_750_NAME','三级施工队');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_750_NAME','Tier 3 Construction Crew');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_750_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 三级施工队可提供750点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_750_NAME','组建三级施工队');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_750_NAME','Form Tier 3 Construction Crew');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','Industry Lv1. Standard speed: 820 Production creates one 750-Production Crew. Both cost and output scale with game speed.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_750_NAME','三级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_750_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 三级施工队可提供750点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_750_NAME','组建三级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','工业专业Lv1开放。标准速度：成本820生产力，生成1支750生产力的施工队。成本与生产力随游戏速度同比缩放。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_1000_NAME','四级施工队');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_1000_NAME','Tier 4 Construction Crew');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 四级施工队可提供1000点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_1000_NAME','组建四级施工队');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_1000_NAME','Form Tier 4 Construction Crew');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','Industry Lv1. Standard speed: 1100 Production creates one 1000-Production Crew. Both cost and output scale with game speed.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_1000_NAME','四级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 四级施工队可提供1000点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1000_NAME','组建四级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','工业专业Lv1开放。标准速度：成本1100生产力，生成1支1000生产力的施工队。成本与生产力随游戏速度同比缩放。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_1360_NAME','五级施工队');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_1360_NAME','Tier 5 Construction Crew');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 五级施工队可提供1360点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_1360_NAME','组建五级施工队');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_1360_NAME','Form Tier 5 Construction Crew');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','Industry Lv1. Standard speed: 1500 Production creates one 1360-Production Crew. Both cost and output scale with game speed.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_1360_NAME','五级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','施工队拥有1点劳动力。可消耗1点劳动力，在区域、建筑或奇观所在的单元格进行施工，为其提供生产力。[NEWLINE]• 五级施工队可提供1360点生产力。[NEWLINE]• 超出当前建造项目剩余需求的生产力将被浪费。');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1360_NAME','组建五级施工队');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','工业专业Lv1开放。标准速度：成本1500生产力，生成1支1360生产力的施工队。成本与生产力随游戏速度同比缩放。');
 
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_LV4_RESEARCH_PERCENT_NAME','四级专业专家科技加成');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_LV4_RESEARCH_PERCENT_NAME','Level 4 Specialist Science Bonus');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_LV4_RESEARCH_PERCENT_NAME','四级专业专家科技加成');
 
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_LV4_CULTURE_PERCENT_NAME','四级专业专家文化加成');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_LV4_CULTURE_PERCENT_NAME','Level 4 Specialist Culture Bonus');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_LV4_CULTURE_PERCENT_NAME','四级专业专家文化加成');
 
@@ -219,21 +219,21 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_CULTURE_INSIGHTS_TOOLTIP','查看所选己方城市的历史文化见闻与当前有效见闻。'),
 ('en_US','LOC_SPC_CULTURE_INSIGHTS_TOOLTIP','View recorded and currently effective Insights for the selected owned city. Citywide Tourism and network effects are not implemented yet.'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_1','文艺同好会'),
-('en_US','LOC_SPC_CULTURE_INSTITUTION_1','文艺同好会'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_1','Arts Society'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_2','赞助人行会'),
-('en_US','LOC_SPC_CULTURE_INSTITUTION_2','赞助人行会'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_2','Patrons’ Guild'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_3','人文联合会'),
-('en_US','LOC_SPC_CULTURE_INSTITUTION_3','人文联合会'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_3','Humanities Federation'),
 ('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_4','博雅总院'),
-('en_US','LOC_SPC_CULTURE_INSTITUTION_4','博雅总院'),
-('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_1_HELP','创作者与爱好者因共同的艺文兴趣形成稳定社群，构成城市文化专业化的基础。[NEWLINE][NEWLINE]基础专家支持：[NEWLINE][ICON_BULLET] 每名正在工作的文化专家额外提供：+3 [ICON_Food]食物、+3 [ICON_Production]生产力。[NEWLINE][ICON_BULLET] 与原生专家收益叠加；更高等级继续沿用此基础支持。'),
-('en_US','LOC_SPC_CULTURE_INSTITUTION_1_HELP','创作者与爱好者因共同的艺文兴趣形成稳定社群，构成城市文化专业化的基础。[NEWLINE][NEWLINE]基础专家支持：[NEWLINE][ICON_BULLET] 每名正在工作的文化专家额外提供：+3 [ICON_Food]食物、+3 [ICON_Production]生产力。[NEWLINE][ICON_BULLET] 与原生专家收益叠加；更高等级继续沿用此基础支持。'),
-('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_2_HELP','稳定的资助、委托与社会支持，使文学、艺术与音乐创作成为持续的城市事业。[NEWLINE][NEWLINE]文艺赞助：[NEWLINE][ICON_BULLET] 本城剧院广场提供+1 [ICON_Housing]住房；每有一个包含合格普通建筑的建筑等级，再提供+1 [ICON_Housing]住房，同级不重复。[NEWLINE][ICON_BULLET] 每名正在工作的文化专家额外提供：2点基础[ICON_GreatWriter]大作家点数、2点基础[ICON_GreatArtist]大艺术家点数、2点基础[ICON_GreatMusician]大音乐家点数。[NEWLINE][ICON_BULLET] 上述点数可受伟人点数百分比加成影响。'),
-('en_US','LOC_SPC_CULTURE_INSTITUTION_2_HELP','稳定的资助、委托与社会支持，使文学、艺术与音乐创作成为持续的城市事业。[NEWLINE][NEWLINE]文艺赞助：[NEWLINE][ICON_BULLET] 本城剧院广场提供+1 [ICON_Housing]住房；每有一个包含合格普通建筑的建筑等级，再提供+1 [ICON_Housing]住房，同级不重复。[NEWLINE][ICON_BULLET] 每名正在工作的文化专家额外提供：2点基础[ICON_GreatWriter]大作家点数、2点基础[ICON_GreatArtist]大艺术家点数、2点基础[ICON_GreatMusician]大音乐家点数。[NEWLINE][ICON_BULLET] 上述点数可受伟人点数百分比加成影响。'),
-('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_3_HELP','作品不再只属于创作当下；历史不断赋予新的理解，艺术也逐渐塑造整座城市的审美。[NEWLINE][NEWLINE]时代对话：[NEWLINE][ICON_BULLET] 开展同名城市项目，占用1个完整生产回合；按启动时的游戏时代计算，每城每时代最多成功一次。[NEWLINE][ICON_BULLET] 完成时，合格馆藏每覆盖一个不同的作品时代，永久累加5个百分点的巨作原生[ICON_Tourism]旅游业绩倍率。[NEWLINE][ICON_BULLET] 不放大“意义延展”的追加产出。项目中断不消耗本时代成功次数。[NEWLINE][ICON_BULLET] 文化启用等级低于三级或转出文化身份时暂停加成，保留累计记录。[NEWLINE][NEWLINE]风雅熏陶：[NEWLINE][ICON_BULLET] 本城合格巨作每覆盖一个不同的作品时代，每座未遭掠夺的合格普通建筑额外提供+1 [ICON_Tourism]旅游业绩。[NEWLINE][ICON_BULLET] 按本城当前馆藏的时代覆盖数动态计算。'),
-('en_US','LOC_SPC_CULTURE_INSTITUTION_3_HELP','作品不再只属于创作当下；历史不断赋予新的理解，艺术也逐渐塑造整座城市的审美。[NEWLINE][NEWLINE]时代对话：[NEWLINE][ICON_BULLET] 开展同名城市项目，占用1个完整生产回合；按启动时的游戏时代计算，每城每时代最多成功一次。[NEWLINE][ICON_BULLET] 完成时，合格馆藏每覆盖一个不同的作品时代，永久累加5个百分点的巨作原生[ICON_Tourism]旅游业绩倍率。[NEWLINE][ICON_BULLET] 不放大“意义延展”的追加产出。项目中断不消耗本时代成功次数。[NEWLINE][ICON_BULLET] 文化启用等级低于三级或转出文化身份时暂停加成，保留累计记录。[NEWLINE][NEWLINE]风雅熏陶：[NEWLINE][ICON_BULLET] 本城合格巨作每覆盖一个不同的作品时代，每座未遭掠夺的合格普通建筑额外提供+1 [ICON_Tourism]旅游业绩。[NEWLINE][ICON_BULLET] 按本城当前馆藏的时代覆盖数动态计算。'),
-('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_4_HELP','成熟的人文体系从社会各领域理解文化，让巨作启发未来人才，并主动走向其它文明拓展自身视野。[NEWLINE][NEWLINE]意义延展：[NEWLINE][ICON_BULLET] 每件合格巨作，从本城各合格专业领域获得代表产出：每1点基础设施深度提供0.5份产出。[NEWLINE][ICON_BULLET] [ICON_Gold]金币每份3点，其它产出每份1点；同一领域取最高单区域深度。[NEWLINE][ICON_BULLET] 各领域收益分别向下取整后相加，再按合格巨作件数结算。[NEWLINE][ICON_BULLET] 可受原生主题化加成影响，不受“时代对话”放大。当前不计入市政广场与外交区的[ICON_Culture]文化追加。[NEWLINE][NEWLINE]巨作启迪：[NEWLINE][ICON_BULLET] 本城合格巨作每覆盖一个不同的作品时代，所有已有基础产出的伟人点数提高3%；最多8个时代，最高+24%。[NEWLINE][ICON_BULLET] 没有基础点数的伟人类别不会因此获得点数。[NEWLINE][NEWLINE]人文考察团：[NEWLINE][ICON_BULLET] 可训练人文考察团，全国同时最多拥有1支；采用间谍生产成本公式，训练次数独立累计。[NEWLINE][ICON_BULLET] 派遣至已遇见的外国主要文明，执行风土考察、艺文采撷、奇观巡礼；标准速度下均为2回合。[NEWLINE][ICON_BULLET] 每个来源城市对每个目标文明的每类任务，首次成功获得1份文化见闻并归档保留。[NEWLINE][ICON_BULLET] 当前有效见闻提供本城[ICON_Tourism]旅游业绩与文化网络加成。'),
-('en_US','LOC_SPC_CULTURE_INSTITUTION_4_HELP','成熟的人文体系从社会各领域理解文化，让巨作启发未来人才，并主动走向其它文明拓展自身视野。[NEWLINE][NEWLINE]意义延展：[NEWLINE][ICON_BULLET] 每件合格巨作，从本城各合格专业领域获得代表产出：每1点基础设施深度提供0.5份产出。[NEWLINE][ICON_BULLET] [ICON_Gold]金币每份3点，其它产出每份1点；同一领域取最高单区域深度。[NEWLINE][ICON_BULLET] 各领域收益分别向下取整后相加，再按合格巨作件数结算。[NEWLINE][ICON_BULLET] 可受原生主题化加成影响，不受“时代对话”放大。当前不计入市政广场与外交区的[ICON_Culture]文化追加。[NEWLINE][NEWLINE]巨作启迪：[NEWLINE][ICON_BULLET] 本城合格巨作每覆盖一个不同的作品时代，所有已有基础产出的伟人点数提高3%；最多8个时代，最高+24%。[NEWLINE][ICON_BULLET] 没有基础点数的伟人类别不会因此获得点数。[NEWLINE][NEWLINE]人文考察团：[NEWLINE][ICON_BULLET] 可训练人文考察团，全国同时最多拥有1支；采用间谍生产成本公式，训练次数独立累计。[NEWLINE][ICON_BULLET] 派遣至已遇见的外国主要文明，执行风土考察、艺文采撷、奇观巡礼；标准速度下均为2回合。[NEWLINE][ICON_BULLET] 每个来源城市对每个目标文明的每类任务，首次成功获得1份文化见闻并归档保留。[NEWLINE][ICON_BULLET] 当前有效见闻提供本城[ICON_Tourism]旅游业绩与文化网络加成。');
+('en_US','LOC_SPC_CULTURE_INSTITUTION_4','Academy of the Liberal Arts'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_1_HELP','创作者与爱好者聚在一起，让城市的文化生活扎根成长。[NEWLINE][NEWLINE]基础专家支持：[NEWLINE][ICON_BULLET] 每名在岗文化专家额外提供 +3 [ICON_Food] 食物和 +3 [ICON_Production] 生产力。'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_1_HELP','Artists and enthusiasts gather here to share their work.[NEWLINE][NEWLINE]Basic Specialist Support:[NEWLINE][ICON_BULLET] Each working Culture specialist provides +3 [ICON_Food] Food and +3 [ICON_Production] Production.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_2_HELP','稳定的资助与委托，让文学、艺术与音乐在城中长久兴盛。[NEWLINE][NEWLINE]文艺赞助：[NEWLINE][ICON_BULLET] 本城剧院广场 +1 [ICON_Housing] 住房。每个已有合格普通建筑的等级再 +1，同级只计一次。[NEWLINE][ICON_BULLET] 每名在岗文化专家额外提供 +2 [ICON_GreatWriter] 大作家、+2 [ICON_GreatArtist] 大艺术家、+2 [ICON_GreatMusician] 大音乐家基础点数。'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_2_HELP','Steady patronage and commissions help literature, art, and music flourish.[NEWLINE][NEWLINE]Arts Patronage:[NEWLINE][ICON_BULLET] This city''s Theater Square provides +1 [ICON_Housing] Housing, plus 1 for each tier of eligible buildings it contains. Each tier counts once.[NEWLINE][ICON_BULLET] Each working Culture specialist provides +2 base [ICON_GreatWriter] Great Writer points, +2 base [ICON_GreatArtist] Great Artist points, and +2 base [ICON_GreatMusician] Great Musician points.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_3_HELP','不同时代的巨作在此汇聚，旧作有了新的诠释，艺术也渐渐融入城市生活。[NEWLINE][NEWLINE]时代对话：[NEWLINE][ICON_BULLET] 项目需 1 个完整生产回合。每城每个游戏时代限完成一次，按开工时的时代计。[NEWLINE][ICON_BULLET] 完成时，合格馆藏每涵盖一个作品时代，巨作本身的 [ICON_Tourism] 旅游业绩倍率永久累积 5 个百分点。文化启用等级达到三级时生效。@SPC_METRIC@[NEWLINE][NEWLINE]风雅熏陶：[NEWLINE][ICON_BULLET] 本城合格馆藏每涵盖一个作品时代，每座完好的合格普通建筑 +1 [ICON_Tourism] 旅游业绩。'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_3_HELP','Great Works from many eras find new interpretations and enrich the life of the city.[NEWLINE][NEWLINE]Dialogue of Eras:[NEWLINE][ICON_BULLET] This project takes 1 full turn of Production. Each city can complete it once per game era. A completion counts toward the era in which the project began.[NEWLINE][ICON_BULLET] On completion, each distinct era represented in the city''s eligible collection adds 5 percentage points to its [ICON_Tourism] Tourism bonus for Great Works. The city keeps the accumulated bonus. It applies while Culture is active at Level 3 or higher.@SPC_METRIC@[NEWLINE][NEWLINE]Cultivated Taste:[NEWLINE][ICON_BULLET] Each eligible, unpillaged building gains +1 [ICON_Tourism] Tourism per era represented by the city''s current eligible Great Works.'),
+('zh_Hans_CN','LOC_SPC_CULTURE_INSTITUTION_4_HELP','学者借各领域的见解重读巨作，也把目光投向异国的风土与艺术。[NEWLINE][NEWLINE]意义延展：[NEWLINE][ICON_BULLET] 每件合格巨作从本城符合条件的专业领域获得额外产出。基础设施深度决定收益。可受主题化加成影响，不受「时代对话」放大。目前不计市政广场与外交区的文化追加。[NEWLINE][NEWLINE]巨作启迪：[NEWLINE][ICON_BULLET] 本城合格馆藏每涵盖一个作品时代，已有基础产出的 [ICON_GreatPerson] 伟人点数 +3%，最高 +24%。[NEWLINE][NEWLINE]人文考察团：[NEWLINE][ICON_BULLET] 可训练人文考察团，全国同时最多 1 支。派往已遇见的外国主要文明。每个来源城市对每个目标文明的每类任务首次成功时，取得 1 份文化见闻。[NEWLINE][ICON_BULLET] 有效见闻提高来源城市的 [ICON_Tourism] 旅游业绩，同一来源城市集齐同一文明的三类见闻后，可通过商路为合格的在岗专家提供 [ICON_Culture] 文化值。@SPC_METRIC@'),
+('en_US','LOC_SPC_CULTURE_INSTITUTION_4_HELP','Scholars draw on many fields to reinterpret Great Works and find inspiration in the art and customs of other civilizations.[NEWLINE][NEWLINE]Extended Meaning:[NEWLINE][ICON_BULLET] Eligible Great Works gain extra yields based on the infrastructure depth of this city''s qualifying district types. Theming bonuses apply. Dialogue of Eras boosts only the Great Works'' own Tourism. Government Plazas and Diplomatic Quarters currently grant no extra Culture through this ability.[NEWLINE][NEWLINE]Great Works Inspiration:[NEWLINE][ICON_BULLET] This city gains +3% [ICON_GreatPerson] Great Person points for each era represented in its eligible collection, up to +24%. Only types with base points in this city benefit.[NEWLINE][NEWLINE]Humanities Expedition:[NEWLINE][ICON_BULLET] Train a Humanities Expedition and send it to a foreign major civilization you have met. Your civilization can have 1 at a time. Each source city earns 1 Cultural Insight the first time each mission type succeeds in a given civilization.[NEWLINE][ICON_BULLET] Eligible Cultural Insights increase the source city''s [ICON_Tourism] Tourism. If that city collects all three types from a single civilization, Trade Routes can grant [ICON_Culture] Culture to eligible working specialists in connected cities.@SPC_METRIC@');
 
 -- B233: read-only Industry history/typed knowledge, no new gameplay effect.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
@@ -245,161 +245,354 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 -- B236: accepted Industry institution names; display only.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_1','匠作坊'),
-('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_1_HELP','工匠与生产人口在此聚集，将区域的生产条件转化为熟练劳动。[NEWLINE][NEWLINE]基础专家支持：[NEWLINE][ICON_BULLET] 每名正在工作的工业专家额外提供+3 [ICON_Food]食物。[NEWLINE][ICON_BULLET] 额外[ICON_Production]生产力等于本城工业区基础相邻生产力加成，按1:1转化，不计政策等相邻加成倍率。[NEWLINE][ICON_BULLET] 与原生专家收益叠加；各专业等级均沿用此公式。'),
-('en_US','LOC_SPC_INDUSTRY_INSTITUTION_1','匠作坊'),
-('en_US','LOC_SPC_INDUSTRY_INSTITUTION_1_HELP','工匠与生产人口在此聚集，将区域的生产条件转化为熟练劳动。[NEWLINE][NEWLINE]基础专家支持：[NEWLINE][ICON_BULLET] 每名正在工作的工业专家额外提供+3 [ICON_Food]食物。[NEWLINE][ICON_BULLET] 额外[ICON_Production]生产力等于本城工业区基础相邻生产力加成，按1:1转化，不计政策等相邻加成倍率。[NEWLINE][ICON_BULLET] 与原生专家收益叠加；各专业等级均沿用此公式。'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_1_HELP','工匠与劳动者在此聚集，将生产条件化为熟练的技艺。[NEWLINE][NEWLINE]基础专家支持：[NEWLINE][ICON_BULLET] 每名在岗工业专家额外提供 +3 [ICON_Food] 食物，并获得等同于本城工业区基础相邻加成的 [ICON_Production] 生产力，不计政策等倍率。'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_1','Artisans’ Workshop'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_1_HELP','Craftspeople gather here to share tools and perfect their trades.[NEWLINE][NEWLINE]Basic Specialist Support:[NEWLINE][ICON_BULLET] Each working Industry specialist provides +3 [ICON_Food] Food and [ICON_Production] Production equal to the Industrial Zone’s base adjacency bonus.'),
 ('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_2','百工会馆'),
-('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_2_HELP','不同工种与技术职业形成稳定分工，共同培养城市的工程人才。[NEWLINE][NEWLINE]专业分工：[NEWLINE][ICON_BULLET] 本城工业区提供+1 [ICON_Housing]住房；每有一个包含合格普通建筑的建筑等级，再提供+1 [ICON_Housing]住房，同级不重复。[NEWLINE][ICON_BULLET] 每名正在工作的工业专家额外提供2点基础[ICON_GreatEngineer]大工程师点数，可受伟人点数百分比加成影响。'),
-('en_US','LOC_SPC_INDUSTRY_INSTITUTION_2','百工会馆'),
-('en_US','LOC_SPC_INDUSTRY_INSTITUTION_2_HELP','不同工种与技术职业形成稳定分工，共同培养城市的工程人才。[NEWLINE][NEWLINE]专业分工：[NEWLINE][ICON_BULLET] 本城工业区提供+1 [ICON_Housing]住房；每有一个包含合格普通建筑的建筑等级，再提供+1 [ICON_Housing]住房，同级不重复。[NEWLINE][ICON_BULLET] 每名正在工作的工业专家额外提供2点基础[ICON_GreatEngineer]大工程师点数，可受伟人点数百分比加成影响。'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_2_HELP','不同工种分工合作，共同培养城市的工程人才。[NEWLINE][NEWLINE]专业分工：[NEWLINE][ICON_BULLET] 本城工业区 +1 [ICON_Housing] 住房。每个已有合格普通建筑的等级再 +1，同级只计一次。[NEWLINE][ICON_BULLET] 每名在岗工业专家额外提供 +2 基础 [ICON_GreatEngineer] 大工程师点数。'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_2','Guildhall'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_2_HELP','The city’s trades work together and train new engineers.[NEWLINE][NEWLINE]Division of Labor:[NEWLINE][ICON_BULLET] Gain +1 [ICON_Housing] Housing from the Industrial Zone and +1 for each tier of eligible buildings it contains. Each tier counts once.[NEWLINE][ICON_BULLET] Each working Industry specialist provides +2 base [ICON_GreatEngineer] Great Engineer points.'),
 ('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_3','工程局'),
-('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_3_HELP','工程规范、资源统筹与施工组织，使生产经验能够重复，施工力量能够部署。[NEWLINE][NEWLINE]标准化：[NEWLINE][ICON_BULLET] 已完成的建设经验记录为可靠模板；建造符合模板的区域与建筑时，获得+10%[ICON_Production]生产力。[NEWLINE][ICON_BULLET] 三级不提供[ICON_Gold]金币购买折扣。贸易路线相连的城市按专业网络规则共享模板。[NEWLINE][ICON_BULLET] 同一目标有多个可用来源时，仅取最高加成，不叠加。[NEWLINE][NEWLINE]施工队：[NEWLINE][ICON_BULLET] 解锁一级至三级施工队组建项目，组建成本为基础施工力的150%。[NEWLINE][ICON_BULLET] 对于当前所有者，每个来源城市最多同时支持2支现存施工队。[NEWLINE][ICON_BULLET] 仅能向正在建造的奇观一次性投入基础[ICON_Production]施工力，可受适用生产力加成影响；超出剩余所需的部分不溢出结转。'),
-('en_US','LOC_SPC_INDUSTRY_INSTITUTION_3','工程局'),
-('en_US','LOC_SPC_INDUSTRY_INSTITUTION_3_HELP','工程规范、资源统筹与施工组织，使生产经验能够重复，施工力量能够部署。[NEWLINE][NEWLINE]标准化：[NEWLINE][ICON_BULLET] 已完成的建设经验记录为可靠模板；建造符合模板的区域与建筑时，获得+10%[ICON_Production]生产力。[NEWLINE][ICON_BULLET] 三级不提供[ICON_Gold]金币购买折扣。贸易路线相连的城市按专业网络规则共享模板。[NEWLINE][ICON_BULLET] 同一目标有多个可用来源时，仅取最高加成，不叠加。[NEWLINE][NEWLINE]施工队：[NEWLINE][ICON_BULLET] 解锁一级至三级施工队组建项目，组建成本为基础施工力的150%。[NEWLINE][ICON_BULLET] 对于当前所有者，每个来源城市最多同时支持2支现存施工队。[NEWLINE][ICON_BULLET] 仅能向正在建造的奇观一次性投入基础[ICON_Production]施工力，可受适用生产力加成影响；超出剩余所需的部分不溢出结转。'),
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_3_HELP','工程师将建造经验编成规范，并组织施工队支援新的建设。[NEWLINE][NEWLINE]标准化：[NEWLINE][ICON_BULLET] 建造符合模板的区域和建筑时，+10% [ICON_Production] 生产力。模板可通过国内专业网络共享，同一目标只取最高加成。@SPC_METRIC@[NEWLINE][NEWLINE]施工队：[NEWLINE][ICON_BULLET] 解锁一级至三级施工队组建项目，工业启用三级时，组建成本为基础施工力的 150%。每个来源城市同时最多支持 2 支。[NEWLINE][ICON_BULLET] 消耗施工队，为当前在建奇观投入 [ICON_Production] 生产力。超出所需的部分不结转。'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_3','Engineering Bureau'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_3_HELP','Engineers turn construction experience into standards and organize crews for new projects.[NEWLINE][NEWLINE]Standardization:[NEWLINE][ICON_BULLET] +10% [ICON_Production] Production toward districts and buildings matching a template. Templates can be shared through the domestic specialization network. Only the highest bonus applies to a given target.@SPC_METRIC@[NEWLINE][NEWLINE]Construction Crews:[NEWLINE][ICON_BULLET] Unlocks the tier 1–3 Construction Crew projects. While Industry is active at Level 3, each crew costs 150% of its base Production contribution to form. Each source city can support up to 2 crews at a time.[NEWLINE][ICON_BULLET] Consume a crew to contribute [ICON_Production] Production to the Wonder the city is currently building. Excess Production does not carry over.'),
 ('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_4','土木工程总局'),
-('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_4_HELP','成熟的工程体系组织大型建设，并将实践经验与历史积累转化为更深厚的工程能力。[NEWLINE][NEWLINE]工程传统：[NEWLINE][ICON_BULLET] 本文明亲自建成的奇观，每覆盖一个不同的奇观时代，提供一份可供本城研习的经验。[NEWLINE][ICON_BULLET] 每次“工程传统研习”占用1个完整生产回合，永久积累1层成果。[NEWLINE][ICON_BULLET] 四级启用时，每层使“标准化”的[ICON_Production]建造加成与合格建筑的[ICON_Gold]购买折扣各提高2个百分点。[NEWLINE][ICON_BULLET] 已完成成果按城市历史保留，恢复四级启用后重新生效；购买折扣不包含区域本体。[NEWLINE][NEWLINE]工程实践：[NEWLINE][ICON_BULLET] 解锁四级、五级施工队组建项目。[NEWLINE][ICON_BULLET] 本城累计建成1、3、6座奇观时，组建成本由基础施工力的150%，依次降至140%、130%、120%。[NEWLINE][ICON_BULLET] 每支施工队的组建成本在开工时锁定。[NEWLINE][NEWLINE]巨构工程学：[NEWLINE][ICON_BULLET] 建造早于本文明当前时代的奇观时，按时代差获得[ICON_Production]建造生产力加成：[NEWLINE][ICON_BULLET] 落后1个时代：+10%；落后2个时代：+20%；落后3个及以上时代：+30%。[NEWLINE][ICON_BULLET] 符合条件时，此加成同样作用于施工队投入的基础施工力。'),
-('en_US','LOC_SPC_INDUSTRY_INSTITUTION_4','土木工程总局'),
-('en_US','LOC_SPC_INDUSTRY_INSTITUTION_4_HELP','成熟的工程体系组织大型建设，并将实践经验与历史积累转化为更深厚的工程能力。[NEWLINE][NEWLINE]工程传统：[NEWLINE][ICON_BULLET] 本文明亲自建成的奇观，每覆盖一个不同的奇观时代，提供一份可供本城研习的经验。[NEWLINE][ICON_BULLET] 每次“工程传统研习”占用1个完整生产回合，永久积累1层成果。[NEWLINE][ICON_BULLET] 四级启用时，每层使“标准化”的[ICON_Production]建造加成与合格建筑的[ICON_Gold]购买折扣各提高2个百分点。[NEWLINE][ICON_BULLET] 已完成成果按城市历史保留，恢复四级启用后重新生效；购买折扣不包含区域本体。[NEWLINE][NEWLINE]工程实践：[NEWLINE][ICON_BULLET] 解锁四级、五级施工队组建项目。[NEWLINE][ICON_BULLET] 本城累计建成1、3、6座奇观时，组建成本由基础施工力的150%，依次降至140%、130%、120%。[NEWLINE][ICON_BULLET] 每支施工队的组建成本在开工时锁定。[NEWLINE][NEWLINE]巨构工程学：[NEWLINE][ICON_BULLET] 建造早于本文明当前时代的奇观时，按时代差获得[ICON_Production]建造生产力加成：[NEWLINE][ICON_BULLET] 落后1个时代：+10%；落后2个时代：+20%；落后3个及以上时代：+30%。[NEWLINE][ICON_BULLET] 符合条件时，此加成同样作用于施工队投入的基础施工力。');
+('zh_Hans_CN','LOC_SPC_INDUSTRY_INSTITUTION_4_HELP','工程师研习历代奇观的建造经验，把过去的巧思用到今天的大工程上。[NEWLINE][NEWLINE]工程传统：[NEWLINE][ICON_BULLET] 按本文明亲建奇观的所属时代计算。每涵盖一个时代，本城可研习一次。每次占用 1 个完整生产回合，完成后积累 1 层。[NEWLINE][ICON_BULLET] 四级启用时，每层成果使「标准化」的 [ICON_Production] 建造加成和合格建筑的购买折扣各提高 2 个百分点。@SPC_METRIC@[NEWLINE][NEWLINE]工程实践：[NEWLINE][ICON_BULLET] 解锁四级、五级施工队组建项目。本城累计建成 1、3、6 座奇观后，组建成本依次降至基础施工力的 140%、130%、120%。[NEWLINE][NEWLINE]巨构工程学：[NEWLINE][ICON_BULLET] 建造比本文明当前时代早 1、2 或至少 3 个时代的奇观时，分别获得 +10%、+20% 或 +30% [ICON_Production] 生产力。施工队的投入也享受此加成。'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_4','Directorate of Civil Engineering'),
+('en_US','LOC_SPC_INDUSTRY_INSTITUTION_4_HELP','Engineers study the Wonders of the past to inform the great works of today.[NEWLINE][NEWLINE]Engineering Tradition:[NEWLINE][ICON_BULLET] This city can complete 1 study for each distinct era of Wonders your civilization has built. Count each Wonder''s own era. Each study takes 1 full turn of Production.[NEWLINE][ICON_BULLET] While Industry is active at Level 4, each completed study raises the Standardization [ICON_Production] Production bonus and the purchase discount for eligible buildings by 2 percentage points each.@SPC_METRIC@[NEWLINE][NEWLINE]Engineering Practice:[NEWLINE][ICON_BULLET] Unlocks the tier 4 and 5 Construction Crew projects. At 1, 3, and 6 Wonders built in this city, crew costs fall to 140%, 130%, and 120% of their base Production contribution, respectively.[NEWLINE][NEWLINE]Macro-Engineering:[NEWLINE][ICON_BULLET] +10%, +20%, or +30% [ICON_Production] Production toward Wonders from 1, 2, or at least 3 eras before your civilization’s current era, respectively. This bonus also applies to Construction Crew contributions.');
 
 -- B236 replaces old formation and general-construction wording exactly.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','拥有 1 次施工次数。标准速度下基础施工力为 260（随游戏速度缩放并在建成时锁定）。仅可用于正在建造的奇观；投入时可享受适用的生产力加成，超出奇观剩余所需的部分不会溢出结转。对于当前所有者，每个来源城市最多可同时拥有 2 支现存施工队；来源城市启用等级下降或易主不会移除已建成的施工队。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','本城工业启用等级达到 3 级时解锁。项目开工时即锁定本次生产成本：工业启用 3 级时为基础施工力的 150%；启用 4 级时，根据本城可靠历史奇观数量（N）依次降至 150% / 140% / 130% / 120%。标准速度下基础施工力为 260（随游戏速度缩放）。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。'),
-('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','One construction use. Base transfer Production 260 at Standard speed, scaled and locked at formation. Wonders only; applicable Production modifiers can increase the transfer; surplus does not carry over. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
-('en_US','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Base transfer Production 260 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_420_DESCRIPTION','拥有 1 次施工次数。标准速度下基础施工力为 420（随游戏速度缩放并在建成时锁定）。仅可用于正在建造的奇观；投入时可享受适用的生产力加成，超出奇观剩余所需的部分不会溢出结转。对于当前所有者，每个来源城市最多可同时拥有 2 支现存施工队；来源城市启用等级下降或易主不会移除已建成的施工队。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','本城工业启用等级达到 3 级时解锁。项目开工时即锁定本次生产成本：工业启用 3 级时为基础施工力的 150%；启用 4 级时，根据本城可靠历史奇观数量（N）依次降至 150% / 140% / 130% / 120%。标准速度下基础施工力为 420（随游戏速度缩放）。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。'),
-('en_US','LOC_UNIT_SPC_CREW_420_DESCRIPTION','One construction use. Base transfer Production 420 at Standard speed, scaled and locked at formation. Wonders only; applicable Production modifiers can increase the transfer; surplus does not carry over. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
-('en_US','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Base transfer Production 420 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_750_DESCRIPTION','拥有 1 次施工次数。标准速度下基础施工力为 750（随游戏速度缩放并在建成时锁定）。仅可用于正在建造的奇观；投入时可享受适用的生产力加成，超出奇观剩余所需的部分不会溢出结转。对于当前所有者，每个来源城市最多可同时拥有 2 支现存施工队；来源城市启用等级下降或易主不会移除已建成的施工队。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','本城工业启用等级达到 3 级时解锁。项目开工时即锁定本次生产成本：工业启用 3 级时为基础施工力的 150%；启用 4 级时，根据本城可靠历史奇观数量（N）依次降至 150% / 140% / 130% / 120%。标准速度下基础施工力为 750（随游戏速度缩放）。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。'),
-('en_US','LOC_UNIT_SPC_CREW_750_DESCRIPTION','One construction use. Base transfer Production 750 at Standard speed, scaled and locked at formation. Wonders only; applicable Production modifiers can increase the transfer; surplus does not carry over. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
-('en_US','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','Requires Industry ACTIVE III. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Base transfer Production 750 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','拥有 1 次施工次数。标准速度下基础施工力为 1000（随游戏速度缩放并在建成时锁定）。仅可用于正在建造的奇观；投入时可享受适用的生产力加成，超出奇观剩余所需的部分不会溢出结转。对于当前所有者，每个来源城市最多可同时拥有 2 支现存施工队；来源城市启用等级下降或易主不会移除已建成的施工队。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','本城工业启用等级达到 4 级时解锁。项目开工时即锁定本次生产成本：工业启用 3 级时为基础施工力的 150%；启用 4 级时，根据本城可靠历史奇观数量（N）依次降至 150% / 140% / 130% / 120%。标准速度下基础施工力为 1000（随游戏速度缩放）。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。'),
-('en_US','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','One construction use. Base transfer Production 1000 at Standard speed, scaled and locked at formation. Wonders only; applicable Production modifiers can increase the transfer; surplus does not carry over. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
-('en_US','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','Requires Industry ACTIVE IV. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Base transfer Production 1000 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
-('zh_Hans_CN','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','拥有 1 次施工次数。标准速度下基础施工力为 1360（随游戏速度缩放并在建成时锁定）。仅可用于正在建造的奇观；投入时可享受适用的生产力加成，超出奇观剩余所需的部分不会溢出结转。对于当前所有者，每个来源城市最多可同时拥有 2 支现存施工队；来源城市启用等级下降或易主不会移除已建成的施工队。'),
-('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','本城工业启用等级达到 4 级时解锁。项目开工时即锁定本次生产成本：工业启用 3 级时为基础施工力的 150%；启用 4 级时，根据本城可靠历史奇观数量（N）依次降至 150% / 140% / 130% / 120%。标准速度下基础施工力为 1360（随游戏速度缩放）。对于当前所有者，每个来源城市最多可同时支持 2 支现存施工队。'),
-('en_US','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','One construction use. Base transfer Production 1360 at Standard speed, scaled and locked at formation. Wonders only; applicable Production modifiers can increase the transfer; surplus does not carry over. A source supports two living Crews for its current owner. Completed Crews survive source qualification and ownership changes.'),
-('en_US','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','Requires Industry ACTIVE IV. Price locks at start: III 150%; IV 150/140/130/120% by local Wonder history. Base transfer Production 1360 at Standard speed, scaled by game speed. Two surviving Crews per source for its current owner.'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_250_DESCRIPTION','在城市当前建造的奇观地块上施工一次。标准速度下提供 260 点基础 [ICON_Production] 施工力，随游戏速度缩放，并在组建完成时锁定。适用的生产力加成可提高实际投入，溢出生产力不结转。[NEWLINE][NEWLINE]每个来源城市的当前所有者最多可保有 2 支本城组建的施工队。城市易主或失去组建资格后，已组建的队伍仍可使用。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','组建一支一级施工队，标准速度下拥有 260 点基础 [ICON_Production] 施工力。[NEWLINE][NEWLINE]需要工业启用等级达到三级。开工时锁定成本，四级工业的「工程实践」可降低成本。成本和施工力随游戏速度缩放。每个来源城市的当前所有者最多可保有 2 支本城组建的施工队。'),
+('en_US','LOC_UNIT_SPC_CREW_250_DESCRIPTION','Use once on the tile of a Wonder the city is building. Contributes 260 base [ICON_Production] Production at Standard Speed. The amount scales with game speed and locks when the Crew forms. Production bonuses can increase the contribution. Excess Production does not carry over.[NEWLINE][NEWLINE]Each source city supports up to 2 living Crews for its current owner. Formed Crews remain available if the city changes hands or loses eligibility.'),
+('en_US','LOC_PROJECT_SPC_CREW_250_DESCRIPTION','Forms a Tier 1 Construction Crew with 260 base [ICON_Production] Production at Standard Speed.[NEWLINE][NEWLINE]Requires active Industry at Level 3 or higher. Cost locks at the start of production. At Active Level 4, Engineering Practice can reduce the cost. Cost and capacity scale with game speed. Each source city can support up to 2 living Crews for its current owner.'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_420_DESCRIPTION','在城市当前建造的奇观地块上施工一次。标准速度下提供 420 点基础 [ICON_Production] 施工力，随游戏速度缩放，并在组建完成时锁定。适用的生产力加成可提高实际投入，溢出生产力不结转。[NEWLINE][NEWLINE]每个来源城市的当前所有者最多可保有 2 支本城组建的施工队。城市易主或失去组建资格后，已组建的队伍仍可使用。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','组建一支二级施工队，标准速度下拥有 420 点基础 [ICON_Production] 施工力。[NEWLINE][NEWLINE]需要工业启用等级达到三级。开工时锁定成本，四级工业的「工程实践」可降低成本。成本和施工力随游戏速度缩放。每个来源城市的当前所有者最多可保有 2 支本城组建的施工队。'),
+('en_US','LOC_UNIT_SPC_CREW_420_DESCRIPTION','Use once on the tile of a Wonder the city is building. Contributes 420 base [ICON_Production] Production at Standard Speed. The amount scales with game speed and locks when the Crew forms. Production bonuses can increase the contribution. Excess Production does not carry over.[NEWLINE][NEWLINE]Each source city supports up to 2 living Crews for its current owner. Formed Crews remain available if the city changes hands or loses eligibility.'),
+('en_US','LOC_PROJECT_SPC_CREW_420_DESCRIPTION','Forms a Tier 2 Construction Crew with 420 base [ICON_Production] Production at Standard Speed.[NEWLINE][NEWLINE]Requires active Industry at Level 3 or higher. Cost locks at the start of production. At Active Level 4, Engineering Practice can reduce the cost. Cost and capacity scale with game speed. Each source city can support up to 2 living Crews for its current owner.'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_750_DESCRIPTION','在城市当前建造的奇观地块上施工一次。标准速度下提供 750 点基础 [ICON_Production] 施工力，随游戏速度缩放，并在组建完成时锁定。适用的生产力加成可提高实际投入，溢出生产力不结转。[NEWLINE][NEWLINE]每个来源城市的当前所有者最多可保有 2 支本城组建的施工队。城市易主或失去组建资格后，已组建的队伍仍可使用。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','组建一支三级施工队，标准速度下拥有 750 点基础 [ICON_Production] 施工力。[NEWLINE][NEWLINE]需要工业启用等级达到三级。开工时锁定成本，四级工业的「工程实践」可降低成本。成本和施工力随游戏速度缩放。每个来源城市的当前所有者最多可保有 2 支本城组建的施工队。'),
+('en_US','LOC_UNIT_SPC_CREW_750_DESCRIPTION','Use once on the tile of a Wonder the city is building. Contributes 750 base [ICON_Production] Production at Standard Speed. The amount scales with game speed and locks when the Crew forms. Production bonuses can increase the contribution. Excess Production does not carry over.[NEWLINE][NEWLINE]Each source city supports up to 2 living Crews for its current owner. Formed Crews remain available if the city changes hands or loses eligibility.'),
+('en_US','LOC_PROJECT_SPC_CREW_750_DESCRIPTION','Forms a Tier 3 Construction Crew with 750 base [ICON_Production] Production at Standard Speed.[NEWLINE][NEWLINE]Requires active Industry at Level 3 or higher. Cost locks at the start of production. At Active Level 4, Engineering Practice can reduce the cost. Cost and capacity scale with game speed. Each source city can support up to 2 living Crews for its current owner.'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','在城市当前建造的奇观地块上施工一次。标准速度下提供 1000 点基础 [ICON_Production] 施工力，随游戏速度缩放，并在组建完成时锁定。适用的生产力加成可提高实际投入，溢出生产力不结转。[NEWLINE][NEWLINE]每个来源城市的当前所有者最多可保有 2 支本城组建的施工队。城市易主或失去组建资格后，已组建的队伍仍可使用。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','组建一支四级施工队，标准速度下拥有 1000 点基础 [ICON_Production] 施工力。[NEWLINE][NEWLINE]需要工业启用等级达到四级。开工时锁定成本，四级工业的「工程实践」可降低成本。成本和施工力随游戏速度缩放。每个来源城市的当前所有者最多可保有 2 支本城组建的施工队。'),
+('en_US','LOC_UNIT_SPC_CREW_1000_DESCRIPTION','Use once on the tile of a Wonder the city is building. Contributes 1,000 base [ICON_Production] Production at Standard Speed. The amount scales with game speed and locks when the Crew forms. Production bonuses can increase the contribution. Excess Production does not carry over.[NEWLINE][NEWLINE]Each source city supports up to 2 living Crews for its current owner. Formed Crews remain available if the city changes hands or loses eligibility.'),
+('en_US','LOC_PROJECT_SPC_CREW_1000_DESCRIPTION','Forms a Tier 4 Construction Crew with 1,000 base [ICON_Production] Production at Standard Speed.[NEWLINE][NEWLINE]Requires active Industry at Level 4 or higher. Cost locks at the start of production. At Active Level 4, Engineering Practice can reduce the cost. Cost and capacity scale with game speed. Each source city can support up to 2 living Crews for its current owner.'),
+('zh_Hans_CN','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','在城市当前建造的奇观地块上施工一次。标准速度下提供 1360 点基础 [ICON_Production] 施工力，随游戏速度缩放，并在组建完成时锁定。适用的生产力加成可提高实际投入，溢出生产力不结转。[NEWLINE][NEWLINE]每个来源城市的当前所有者最多可保有 2 支本城组建的施工队。城市易主或失去组建资格后，已组建的队伍仍可使用。'),
+('zh_Hans_CN','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','组建一支五级施工队，标准速度下拥有 1360 点基础 [ICON_Production] 施工力。[NEWLINE][NEWLINE]需要工业启用等级达到四级。开工时锁定成本，四级工业的「工程实践」可降低成本。成本和施工力随游戏速度缩放。每个来源城市的当前所有者最多可保有 2 支本城组建的施工队。'),
+('en_US','LOC_UNIT_SPC_CREW_1360_DESCRIPTION','Use once on the tile of a Wonder the city is building. Contributes 1,360 base [ICON_Production] Production at Standard Speed. The amount scales with game speed and locks when the Crew forms. Production bonuses can increase the contribution. Excess Production does not carry over.[NEWLINE][NEWLINE]Each source city supports up to 2 living Crews for its current owner. Formed Crews remain available if the city changes hands or loses eligibility.'),
+('en_US','LOC_PROJECT_SPC_CREW_1360_DESCRIPTION','Forms a Tier 5 Construction Crew with 1,360 base [ICON_Production] Production at Standard Speed.[NEWLINE][NEWLINE]Requires active Industry at Level 4 or higher. Cost locks at the start of production. At Active Level 4, Engineering Practice can reduce the cost. Cost and capacity scale with game speed. Each source city can support up to 2 living Crews for its current owner.'),
 ('zh_Hans_CN','LOC_SPC_CREW_FORMATION_HELP','本次开工锁价。同一玩家从每座来源城市最多保有2支存活施工队；队列中的施工队会预留名额。仅用于奇观，剩余施工力不结转。'),
 ('en_US','LOC_SPC_CREW_FORMATION_HELP','Price locks when ordered. Each player may have two surviving Crews from a source city; queued orders reserve capacity. Wonders only; unused transfer Production is discarded.');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_CREW_FORMATION_ERROR','组建未确认：{1}。请查看工业报告或回传日志。'),
-('en_US','LOC_SPC_CREW_FORMATION_ERROR','Formation unconfirmed: {1}. Check the Industry report or collect the trace.');
+('en_US','LOC_SPC_CREW_FORMATION_ERROR','Could not confirm Crew formation ({1}). See the Industry report.');
 
 -- B237 continuation labels; B238/D0053 base-input presentation below.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_CREW_RESUME_NAME','{1_Name}（续建）'),
 ('en_US','LOC_SPC_CREW_RESUME_NAME','{1_Name} (resume)'),
-('zh_Hans_CN','LOC_SPC_CREW_LOCKED_PRICE','已锁定开工成本：{1_Cost}（续建将沿用原项目的既有进度）。'),
-('en_US','LOC_SPC_CREW_LOCKED_PRICE','Started price: {1_Cost}. Resume the original project and its native progress.');
+('zh_Hans_CN','LOC_SPC_CREW_LOCKED_PRICE','已锁定成本：{1_Cost} [ICON_Production] 生产力。续建沿用已有进度。'),
+('en_US','LOC_SPC_CREW_LOCKED_PRICE','Locked cost: {1_Cost} [ICON_Production] Production. Resume to continue from the saved progress.');
 
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 ('zh_Hans_CN','LOC_SPC_CREW_BASE_PREVIEW','已锁定基础施工力：{1_Capacity}[NEWLINE]本次投入基础施工力：{2_Input} ｜ 剩余未使用基础施工力：{3_Unused}[NEWLINE]实际转化的生产力可享受适用加成；未使用的余量不会结转。'),
-('en_US','LOC_SPC_CREW_BASE_PREVIEW','Locked base Production: {1_Capacity}[NEWLINE]Base input: {2_Input}; unused base: {3_Unused}[NEWLINE]Applicable modifiers can increase actual Production; surplus does not carry over.'),
+('en_US','LOC_SPC_CREW_BASE_PREVIEW','Base capacity: {1_Capacity} [ICON_Production] Production[NEWLINE]Base contribution: {2_Input}[NEWLINE]Unused: {3_Unused}[NEWLINE]Applicable Production modifiers can increase the contribution. Excess Production does not carry over.'),
 ('zh_Hans_CN','LOC_SPC_CREW_BASE_CONFIRM','消耗此施工队，为当前正在建造的奇观投入 {1_Input} 点基础生产力（实际转化量可享受适用生产力加成）。[NEWLINE]此操作一旦确认无法撤销。'),
-('en_US','LOC_SPC_CREW_BASE_CONFIRM','Consume this Crew to supply {1_Input} base Production to the current Wonder, subject to applicable modifiers.[NEWLINE]This cannot be undone.'),
+('en_US','LOC_SPC_CREW_BASE_CONFIRM','Consume this Construction Crew to contribute {1_Input} base [ICON_Production] Production to the Wonder the city is currently building. Applicable Production modifiers can increase the contribution.[NEWLINE]This cannot be undone.'),
 ('zh_Hans_CN','LOC_SPC_CREW_BASE_READY','已锁定基础施工力：{1_Capacity}（可享受适用的生产力加成）。[NEWLINE]点击以预览详情并确认施工。'),
-('en_US','LOC_SPC_CREW_BASE_READY','Locked base Production: {1_Capacity}, subject to applicable Production modifiers.[NEWLINE]Prepare and confirm construction.');
+('en_US','LOC_SPC_CREW_BASE_READY','Base capacity: {1_Capacity} [ICON_Production] Production. Applicable Production modifiers can increase the contribution.[NEWLINE]Select Construct to preview the contribution.');
 
 -- B239: unfinished paid formation retains capacity.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
-('zh_Hans_CN','LOC_SPC_CREW_OCCUPANCY','本城名额占用：现存队伍 {1} ｜ 未完成组建 {2}（含可续建 {3}；未完成项目仍占用名额）'),
-('zh_Hans_CN','LOC_SPC_CREW_RESUME_CAPACITY_HELD','本城现存施工队及队列中的组建项目已占满名额上限；当前项目的锁定成本与已有进度已保留，待空出名额后即可继续建造。'),
-('zh_Hans_CN','LOC_SPC_CREW_FORMATION_HELP','源于本城的现存施工队与已开工但未完成的组建项目共同占用本城名额（已有进度的暂停项目仍继续占位）。续建项目将沿用已锁定的原成本与既有进度，不会额外占用新名额。'),
-('en_US','LOC_SPC_CREW_OCCUPANCY','来源名额：存活{1}，未完成组建{2}（含续建{3}）；未完成组建继续占用名额。'),
-('en_US','LOC_SPC_CREW_RESUME_CAPACITY_HELD','现役施工队及已排队项目已占满可完成名额；保留本次成本与进度，释放名额后可续建。'),
-('en_US','LOC_SPC_CREW_FORMATION_HELP','本城来源施工队及已接入的未完成组建共同占用名额；有进度的暂停项目继续占位。续建沿用原成本与已有进度，不额外申请名额。');
+('zh_Hans_CN','LOC_SPC_CREW_OCCUPANCY','本城名额：{1} 支现存施工队，{2} 项未完成组建（{3} 项暂停）。'),
+('zh_Hans_CN','LOC_SPC_CREW_RESUME_CAPACITY_HELD','施工队名额已满。开工成本和进度已保留，空出名额后可继续组建。'),
+('zh_Hans_CN','LOC_SPC_CREW_FORMATION_HELP','现存施工队和未完成的组建共用本城名额。续建沿用已锁定的成本与进度。'),
+('en_US','LOC_SPC_CREW_OCCUPANCY','This city’s slots: {1} living Crews, {2} unfinished formations ({3} paused).'),
+('en_US','LOC_SPC_CREW_RESUME_CAPACITY_HELD','Crew slots are full. Cost and progress are saved. Resume when a slot opens.'),
+('en_US','LOC_SPC_CREW_FORMATION_HELP','Living Crews and unfinished formations share this city’s slots. Resuming a formation keeps its cost and progress.');
 
 -- B251 institution preview and bounded live summaries.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INSTITUTION_PREVIEW','尚未建立');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INSTITUTION_PREVIEW','尚未建立');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INSTITUTION_PREVIEW','Not yet established');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_TRADITION','学术传统');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TRADITION','学术传统');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TRADITION','Academic Tradition');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_REPUTATION','商业信誉');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_REPUTATION','商业信誉');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_REPUTATION','Commercial Reputation');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_DIALOGUE','时代对话');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_DIALOGUE','时代对话');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_DIALOGUE','Dialogue of Eras');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_EXPEDITION','人文考察团');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_EXPEDITION','人文考察团');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_EXPEDITION','Humanities Expedition');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ENGINEERING','工程传统');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ENGINEERING','工程传统');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ENGINEERING','Engineering Tradition');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_STANDARDIZATION','标准化');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_STANDARDIZATION','标准化');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_STANDARDIZATION','Standardization');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_PENDING','当前数值待确认');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_PENDING','当前数值待确认');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_PENDING','Value awaiting confirmation');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_PENDING_SHORT','待确认');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_PENDING_SHORT','待确认');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_PENDING_SHORT','Pending');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_NOT_STARTED','尚未开始积累');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_NOT_STARTED','尚未开始积累');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_TRADITION_VALUE','已累计 {1} 回合；[ICON_Science]学术传统倍率 +{2}%。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TRADITION_VALUE','已累计 {1} 回合；[ICON_Science]学术传统倍率 +{2}%。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_NOT_STARTED','Accumulation has not started');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_TRADITION_VALUE','已累计 {1} 回合[NEWLINE]四级启用时：学术传统提供 +{2}% [ICON_Science] 科技值。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TRADITION_VALUE','Accumulated turns: {1}[NEWLINE]Academic Tradition at Active Level 4: +{2}% [ICON_Science] Science.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_TRADITION_NEXT','距下一档还需 {1} 回合。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TRADITION_NEXT','距下一档还需 {1} 回合。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TRADITION_NEXT','{1} turns until the next threshold.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ACCUMULATION_PAUSED','积累已暂停，历史保留。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ACCUMULATION_PAUSED','积累已暂停，历史保留。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_REPUTATION_VALUE','已累计信誉 {1}/40；[ICON_Gold]商业化增幅 +{2}%。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_REPUTATION_VALUE','已累计信誉 {1}/40；[ICON_Gold]商业化增幅 +{2}%。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ACCUMULATION_PAUSED','Accumulation paused. History retained.');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_REPUTATION_VALUE','已累计信誉 {1}/40[NEWLINE]四级启用时：商业化基础 [ICON_Gold] 金币在取整前提高 {2}%。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_REPUTATION_VALUE','Accumulated Reputation: {1}/40[NEWLINE]At Active Level 4: +{2}% base Commercialization [ICON_Gold] Gold before rounding.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_DIALOGUE_VALUE','[ICON_Tourism]已累计巨作旅游业绩倍率：+{1}%。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_DIALOGUE_VALUE','[ICON_Tourism]已累计巨作旅游业绩倍率：+{1}%。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_DIALOGUE_VALUE','Accumulated bonus: +{1}% [ICON_Tourism] Tourism from Great Works.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_INSIGHTS_VALUE','文化见闻：{1} 份。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_INSIGHTS_VALUE','文化见闻：{1} 份。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ENGINEERING_VALUE','已完成研习：{1} 层。[NEWLINE]四级启用时：[ICON_Production]标准化建造加成与合格建筑[ICON_Gold]金币折扣各增强 {2} 个百分点。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ENGINEERING_VALUE','已完成研习：{1} 层。[NEWLINE]四级启用时：[ICON_Production]标准化建造加成与合格建筑[ICON_Gold]金币折扣各增强 {2} 个百分点。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_INSIGHTS_VALUE','Cultural Insights: {1}');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ENGINEERING_VALUE','已完成研习：{1} 层。[NEWLINE]四级启用时：[ICON_Production] 标准化建造加成与合格建筑购买折扣各提高 {2} 个百分点。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ENGINEERING_VALUE','Completed study levels: {1}[NEWLINE]At Active Level 4, the [ICON_Production] Standardization bonus and eligible building [ICON_Gold] Gold discount each gain {2} percentage points.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_TEMPLATES_VALUE','本城已记录模板：建筑 {1} 项，区域 {2} 项。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TEMPLATES_VALUE','本城已记录模板：建筑 {1} 项，区域 {2} 项。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_STANDARDIZATION_VALUE','本城当前提供：[ICON_Production]生产力 +{1}%，合格建筑[ICON_Gold]金币购买折扣 {2}%。[NEWLINE]不含区域购买折扣。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_STANDARDIZATION_VALUE','本城当前提供：[ICON_Production]生产力 +{1}%，合格建筑[ICON_Gold]金币购买折扣 {2}%。[NEWLINE]不含区域购买折扣。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_TEMPLATES_VALUE','Templates recorded: {1} buildings, {2} districts.');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_STANDARDIZATION_VALUE','模板匹配的建造项目：+{1}% [ICON_Production] 生产力[NEWLINE]购买符合条件的建筑：{2}% [ICON_Gold] 金币折扣。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_STANDARDIZATION_VALUE','Construction for matching templates: +{1}% [ICON_Production] Production[NEWLINE]Eligible building purchases: {2}% [ICON_Gold] Gold discount.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_STANDARDIZATION_PAUSED','本城当前不提供标准化加成；已记录模板保留。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_STANDARDIZATION_PAUSED','本城当前不提供标准化加成；已记录模板保留。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_STANDARDIZATION_PAUSED','This city does not currently provide Standardization bonuses. Recorded templates are retained.');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ACTIVE_PENDING','当前启用等级暂待确认');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ACTIVE_PENDING','当前启用等级暂待确认');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ACTIVE_PENDING','Active Level awaiting confirmation');
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_LEGACY_HELP','曾建立的历史机构（当前已脱离该专业，不提供对应能力）');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_LEGACY_HELP','曾建立的历史机构（当前已脱离该专业，不提供对应能力）');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_PREVIEW_HELP','未来机构预览：专业潜力达到 {1} 级后建立；尚未授予本级能力。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_PREVIEW_HELP','未来机构预览：专业潜力达到 {1} 级后建立；尚未授予本级能力。');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ACTIVE_HELP','已达到本级机构的启用等级（具体收益仍需满足各能力的对应条件）');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ACTIVE_HELP','已达到本级机构的启用等级（具体收益仍需满足各能力的对应条件）');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_INACTIVE_HELP','尚未满足本级机构的启用条件（已建成的机构仍予以保留）');
-INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_INACTIVE_HELP','尚未满足本级机构的启用条件（已建成的机构仍予以保留）');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_LEGACY_HELP','A historical institution from a former specialization. Its abilities are not active.');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_PREVIEW_HELP','潜力达到 {1} 级后建立。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_PREVIEW_HELP','Unlocks at Potential Level {1}.');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_ACTIVE_HELP','机构已启用。各项能力可有额外生效条件。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_ACTIVE_HELP','This institution is active. Individual abilities may have additional requirements.');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('zh_Hans_CN','LOC_SPC_INST_INACTIVE_HELP','机构已建立。提升启用等级可使用本级能力。');
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES ('en_US','LOC_SPC_INST_INACTIVE_HELP','This institution is established. Its abilities require a higher Active Level.');
 
 -- B264: native-style institution presentation; no gameplay definitions.
 INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_INST_LEVEL_1','一'),
+('en_US','LOC_SPC_INST_LEVEL_1','1'),
+('zh_Hans_CN','LOC_SPC_INST_LEVEL_2','二'),
+('en_US','LOC_SPC_INST_LEVEL_2','2'),
+('zh_Hans_CN','LOC_SPC_INST_LEVEL_3','三'),
+('en_US','LOC_SPC_INST_LEVEL_3','3'),
+('zh_Hans_CN','LOC_SPC_INST_LEVEL_4','四'),
+('en_US','LOC_SPC_INST_LEVEL_4','4'),
 ('zh_Hans_CN','LOC_SPC_INST_CATEGORY','{1}专业·{2}级机构'),
-('en_US','LOC_SPC_INST_CATEGORY','{1}专业·{2}级机构'),
+('en_US','LOC_SPC_INST_CATEGORY','{1} Specialization · Level {2} Institution'),
 ('zh_Hans_CN','LOC_SPC_INST_REQUIREMENT','启用需求：{1}专业启用等级达到{2}级。'),
-('en_US','LOC_SPC_INST_REQUIREMENT','启用需求：{1}专业启用等级达到{2}级。'),
+('en_US','LOC_SPC_INST_REQUIREMENT','Requires {1} active at Level {2}.'),
 ('zh_Hans_CN','LOC_SPC_INST_STATE','当前状态：{1}'),
-('en_US','LOC_SPC_INST_STATE','当前状态：{1}'),
+('en_US','LOC_SPC_INST_STATE','Current status: {1}'),
 ('zh_Hans_CN','LOC_SPC_INST_RESEARCH','科研'),
-('en_US','LOC_SPC_INST_RESEARCH','科研'),
+('en_US','LOC_SPC_INST_RESEARCH','Research'),
 ('zh_Hans_CN','LOC_SPC_INST_CULTURE','文化'),
-('en_US','LOC_SPC_INST_CULTURE','文化'),
+('en_US','LOC_SPC_INST_CULTURE','Culture'),
 ('zh_Hans_CN','LOC_SPC_INST_INDUSTRY','工业'),
-('en_US','LOC_SPC_INST_INDUSTRY','工业'),
+('en_US','LOC_SPC_INST_INDUSTRY','Industry'),
 ('zh_Hans_CN','LOC_SPC_INST_COMMERCE','商业'),
-('en_US','LOC_SPC_INST_COMMERCE','商业'),
+('en_US','LOC_SPC_INST_COMMERCE','Commerce'),
 ('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_1','学者结社'),
-('en_US','LOC_SPC_RESEARCH_INSTITUTION_1','学者结社'),
-('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_1_HELP','学者在此结成稳定的研究共同体，构成城市科研专业化的基础。[NEWLINE][NEWLINE]基础专家支持：[NEWLINE][ICON_BULLET] 每名正在工作的科研专家额外提供：+3 [ICON_Food]食物、+3 [ICON_Production]生产力。'),
-('en_US','LOC_SPC_RESEARCH_INSTITUTION_1_HELP','学者在此结成稳定的研究共同体，构成城市科研专业化的基础。[NEWLINE][NEWLINE]基础专家支持：[NEWLINE][ICON_BULLET] 每名正在工作的科研专家额外提供：+3 [ICON_Food]食物、+3 [ICON_Production]生产力。'),
+('en_US','LOC_SPC_RESEARCH_INSTITUTION_1','Scholarly Circle'),
+('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_1_HELP','学者在此结社研习，为城市的科研事业奠定基础。[NEWLINE][NEWLINE]基础专家支持：[NEWLINE]每名在岗科研专家额外提供 +3 [ICON_Food] 食物和 +3 [ICON_Production] 生产力。'),
+('en_US','LOC_SPC_RESEARCH_INSTITUTION_1_HELP','Scholars gather here to study and lay the groundwork for the city''s research.[NEWLINE][NEWLINE]Basic Specialist Support:[NEWLINE]Each working Research specialist provides +3 [ICON_Food] Food and +3 [ICON_Production] Production.'),
 ('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_2','研修院'),
-('en_US','LOC_SPC_RESEARCH_INSTITUTION_2','研修院'),
-('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_2_HELP','系统的研修与人才培养，使科研从个人志业成为城市的长期事业。[NEWLINE][NEWLINE]人才培养：[NEWLINE][ICON_BULLET] 每名正在工作的科研专家额外提供2点基础[ICON_GreatScientist]大科学家点数，可受伟人点数百分比加成影响。[NEWLINE][ICON_BULLET] 本城学院区域及其每一级合格建筑各提供+1 [ICON_Housing]住房。'),
-('en_US','LOC_SPC_RESEARCH_INSTITUTION_2_HELP','系统的研修与人才培养，使科研从个人志业成为城市的长期事业。[NEWLINE][NEWLINE]人才培养：[NEWLINE][ICON_BULLET] 每名正在工作的科研专家额外提供2点基础[ICON_GreatScientist]大科学家点数，可受伟人点数百分比加成影响。[NEWLINE][ICON_BULLET] 本城学院区域及其每一级合格建筑各提供+1 [ICON_Housing]住房。'),
+('en_US','LOC_SPC_RESEARCH_INSTITUTION_2','Institute of Inquiry'),
+('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_2_HELP','系统的研修与人才培养，让科研成为城市的长期事业。[NEWLINE][NEWLINE]人才培养：[NEWLINE][ICON_BULLET] 每名在岗科研专家额外提供 +2 基础 [ICON_GreatScientist] 大科学家点数。[NEWLINE][ICON_BULLET] 本城学院及其每一级合格建筑各 +1 [ICON_Housing] 住房。'),
+('en_US','LOC_SPC_RESEARCH_INSTITUTION_2_HELP','With places to study and train, scholars make research a lasting pursuit.[NEWLINE][NEWLINE]Scholarly Training:[NEWLINE][ICON_BULLET] Each working Research specialist provides +2 base [ICON_GreatScientist] Great Scientist points.[NEWLINE][ICON_BULLET] Gain +1 [ICON_Housing] Housing from the Campus and +1 for each tier of eligible buildings it contains.'),
 ('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_3','学术联合会'),
-('en_US','LOC_SPC_RESEARCH_INSTITUTION_3','学术联合会'),
-('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_3_HELP','不同专业领域在此交流，使研究成果与城市实践相互促进。[NEWLINE][NEWLINE]跨学科研究：[NEWLINE][ICON_BULLET] 将本城除学院外的合格专业区域的基础相邻产出总和，按50%转化为[ICON_Science]科技值；汇总后向下取整。[NEWLINE][ICON_BULLET] 仅计入已建成且未被掠夺的区域；不计政策等相邻加成倍率及非相邻产出。适用区域见专业领域表。[NEWLINE][NEWLINE]学以致用：[NEWLINE][ICON_BULLET] 每名正在工作的科研专家，从本城每个其它合格专业领域获得对应产出。[NEWLINE][ICON_BULLET] 每1点基础设施深度提供0.5份产出：[ICON_Gold]金币每份3点，其它产出每份1点。[NEWLINE][ICON_BULLET] 同一领域取最高单区域深度；提供同种产出的不同领域分别计算后相加。[NEWLINE][ICON_BULLET] 每名专家的各项收益先向下取整，再按专家人数结算。'),
-('en_US','LOC_SPC_RESEARCH_INSTITUTION_3_HELP','不同专业领域在此交流，使研究成果与城市实践相互促进。[NEWLINE][NEWLINE]跨学科研究：[NEWLINE][ICON_BULLET] 将本城除学院外的合格专业区域的基础相邻产出总和，按50%转化为[ICON_Science]科技值；汇总后向下取整。[NEWLINE][ICON_BULLET] 仅计入已建成且未被掠夺的区域；不计政策等相邻加成倍率及非相邻产出。适用区域见专业领域表。[NEWLINE][NEWLINE]学以致用：[NEWLINE][ICON_BULLET] 每名正在工作的科研专家，从本城每个其它合格专业领域获得对应产出。[NEWLINE][ICON_BULLET] 每1点基础设施深度提供0.5份产出：[ICON_Gold]金币每份3点，其它产出每份1点。[NEWLINE][ICON_BULLET] 同一领域取最高单区域深度；提供同种产出的不同领域分别计算后相加。[NEWLINE][ICON_BULLET] 每名专家的各项收益先向下取整，再按专家人数结算。'),
+('en_US','LOC_SPC_RESEARCH_INSTITUTION_3','Research Consortium'),
+('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_3_HELP','不同领域在此交流，让研究成果与城市实践相互促进。[NEWLINE][NEWLINE]跨学科研究：[NEWLINE][ICON_BULLET] 本城学院以外已建成且未遭掠夺的合格专业区域，其基础相邻产出总和的 50% 转化为 [ICON_Science] 科技值。[NEWLINE][NEWLINE]学以致用：[NEWLINE][ICON_BULLET] 每名在岗科研专家从本城其他合格专业领域获得额外产出，数量取决于各领域的基础设施深度。'),
+('en_US','LOC_SPC_RESEARCH_INSTITUTION_3_HELP','Scholars bring discoveries from different fields into everyday use.[NEWLINE][NEWLINE]Interdisciplinary Research:[NEWLINE][ICON_BULLET] Gain [ICON_Science] Science equal to 50% of the combined base adjacency yields of this city’s other eligible specialization districts. Only completed, unpillaged districts count.[NEWLINE][NEWLINE]Applied Learning:[NEWLINE][ICON_BULLET] Each working Research specialist gains yields from this city’s other eligible specialization fields. The yields increase with each field’s infrastructure depth.'),
 ('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_4','学术总署'),
-('en_US','LOC_SPC_RESEARCH_INSTITUTION_4','学术总署'),
-('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_4_HELP','完善的科研设施、学术组织与长期传统，共同支撑深入研究。[NEWLINE][NEWLINE]科研基础设施：[NEWLINE][ICON_BULLET] 本城学院每1点基础设施深度，使每名正在工作的科研专家额外提供+1基础[ICON_Science]科技值。[NEWLINE][ICON_BULLET] 深度上限10点；达到上限时，5名专家共提供+50基础[ICON_Science]科技值。[NEWLINE][NEWLINE]学术主持：[NEWLINE][ICON_BULLET] 每名正在工作的科研专家，使本城每座未遭掠夺的普通学院一至四级建筑额外提供+1基础[ICON_Science]科技值。[NEWLINE][ICON_BULLET] 被掠夺的建筑不计入且不享受收益；额外科技值不提高基础设施深度。[NEWLINE][NEWLINE]学术传统：[NEWLINE][ICON_BULLET] 首次达到科研潜力四级后开始积累。启用四级时，初始提供+5%[ICON_Science]科技值。[NEWLINE][ICON_BULLET] 标准速度下，累计10、20、30、40回合，依次提高至10%、15%、20%、25%，上限25%。其它速度按比例缩放阶段回合数并向下取整。[NEWLINE][ICON_BULLET] 保有科研身份时持续积累；暂未启用四级不影响积累。转出科研后暂停并保留进度，转回后继续，不补算离开期间的回合。'),
-('en_US','LOC_SPC_RESEARCH_INSTITUTION_4_HELP','完善的科研设施、学术组织与长期传统，共同支撑深入研究。[NEWLINE][NEWLINE]科研基础设施：[NEWLINE][ICON_BULLET] 本城学院每1点基础设施深度，使每名正在工作的科研专家额外提供+1基础[ICON_Science]科技值。[NEWLINE][ICON_BULLET] 深度上限10点；达到上限时，5名专家共提供+50基础[ICON_Science]科技值。[NEWLINE][NEWLINE]学术主持：[NEWLINE][ICON_BULLET] 每名正在工作的科研专家，使本城每座未遭掠夺的普通学院一至四级建筑额外提供+1基础[ICON_Science]科技值。[NEWLINE][ICON_BULLET] 被掠夺的建筑不计入且不享受收益；额外科技值不提高基础设施深度。[NEWLINE][NEWLINE]学术传统：[NEWLINE][ICON_BULLET] 首次达到科研潜力四级后开始积累。启用四级时，初始提供+5%[ICON_Science]科技值。[NEWLINE][ICON_BULLET] 标准速度下，累计10、20、30、40回合，依次提高至10%、15%、20%、25%，上限25%。其它速度按比例缩放阶段回合数并向下取整。[NEWLINE][ICON_BULLET] 保有科研身份时持续积累；暂未启用四级不影响积累。转出科研后暂停并保留进度，转回后继续，不补算离开期间的回合。');
+('en_US','LOC_SPC_RESEARCH_INSTITUTION_4','Academic Directorate'),
+('zh_Hans_CN','LOC_SPC_RESEARCH_INSTITUTION_4_HELP','完备的学院设施让学者得以深入研究，学术传统也随岁月积累。[NEWLINE][NEWLINE]科研基础设施：[NEWLINE][ICON_BULLET] 本城学院每 1 点基础设施深度，使每名在岗科研专家额外提供 +1 基础 [ICON_Science] 科技值，最高 +10。[NEWLINE][NEWLINE]学术主持：[NEWLINE][ICON_BULLET] 每名在岗科研专家使本城每座完好的普通学院一至四级建筑 +1 基础 [ICON_Science] 科技值。[NEWLINE][NEWLINE]学术传统：[NEWLINE][ICON_BULLET] 科研潜力达到四级后开始积累。四级启用时，本城初始 +5% [ICON_Science] 科技值。[NEWLINE][ICON_BULLET] 保有科研身份时持续积累，即使暂未启用四级。转出科研后暂停，转回后继续积累。标准速度下，每累计 10 回合再提高 5 个百分点，最高 +25%。@SPC_METRIC@'),
+('en_US','LOC_SPC_RESEARCH_INSTITUTION_4_HELP','Well-equipped campuses support deeper inquiry and a lasting tradition of scholarship.[NEWLINE][NEWLINE]Research Infrastructure:[NEWLINE][ICON_BULLET] Each working Research specialist provides +1 base [ICON_Science] Science per point of infrastructure depth in this city''s Campus, up to +10 per specialist.[NEWLINE][NEWLINE]Academic Stewardship:[NEWLINE][ICON_BULLET] Each working Research specialist adds +1 base [ICON_Science] Science to each eligible, unpillaged tier 1–4 Campus building in this city.[NEWLINE][NEWLINE]Academic Tradition:[NEWLINE][ICON_BULLET] This city starts building Academic Tradition when its Research Potential reaches Level 4. It continues as long as the city specializes in Research, even while Level 4 is inactive. Progress pauses if the city leaves Research and resumes if it returns.[NEWLINE][ICON_BULLET] With Research active at Level 4, this city gains +5% [ICON_Science] Science, plus 5 percentage points for every 10 accumulated turns at Standard Speed, up to +25%.@SPC_METRIC@');
 
 -- B265: native city-panel shortcut; the badge numeral always represents ACTIVE.
 INSERT OR REPLACE INTO LocalizedText (Language,Tag,Text) VALUES
-('zh_Hans_CN','LOC_SPC_CITY_INSTITUTION_SHORTCUT','{1}专业 · 启用等级 {2}[NEWLINE]打开城市详情：专业机构、建筑、区域与奇观。'),
-('en_US','LOC_SPC_CITY_INSTITUTION_SHORTCUT','{1}专业 · 启用等级 {2}[NEWLINE]打开城市详情：专业机构、建筑、区域与奇观。');
+('zh_Hans_CN','LOC_SPC_CITY_INSTITUTION_SHORTCUT','{1}专业 · 启用等级 {2}[NEWLINE]查看机构、区域、建筑与奇观。'),
+('en_US','LOC_SPC_CITY_INSTITUTION_SHORTCUT','{1} Specialization · Active Level {2}[NEWLINE]View institutions, districts, buildings, and Wonders.');
+
+-- Production queue status labels and explanations.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_LABEL_UNAVAILABLE','暂不可用'),
+('en_US','LOC_SPC_TIMED_QUEUE_LABEL_UNAVAILABLE','Unavailable'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_LABEL_WAITING_TO_QUEUE','待入队'),
+('en_US','LOC_SPC_TIMED_QUEUE_LABEL_WAITING_TO_QUEUE','Awaiting queue'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_LABEL_INELIGIBLE','不可开始'),
+('en_US','LOC_SPC_TIMED_QUEUE_LABEL_INELIGIBLE','Unavailable'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_LABEL_VERIFYING','待确认'),
+('en_US','LOC_SPC_TIMED_QUEUE_LABEL_VERIFYING','Awaiting confirmation'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_LABEL_PAUSED','已暂停'),
+('en_US','LOC_SPC_TIMED_QUEUE_LABEL_PAUSED','Paused'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_LABEL_ALREADY_QUEUED','已排队'),
+('en_US','LOC_SPC_TIMED_QUEUE_LABEL_ALREADY_QUEUED','Queued'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_LABEL_UNCONFIRMED','待确认'),
+('en_US','LOC_SPC_TIMED_QUEUE_LABEL_UNCONFIRMED','Awaiting confirmation'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_LABEL_QUEUED','排队中'),
+('en_US','LOC_SPC_TIMED_QUEUE_LABEL_QUEUED','Queued'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_LABEL_WAITING_TO_START','待开始'),
+('en_US','LOC_SPC_TIMED_QUEUE_LABEL_WAITING_TO_START','Awaiting start'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_LABEL_CONFIRMING','确认中'),
+('en_US','LOC_SPC_TIMED_QUEUE_LABEL_CONFIRMING','Confirming'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_CANDIDATE_LIMIT','当前排队候选已达安全容量上限；请保留日志。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_CANDIDATE_LIMIT','Too many pending project requests. Keep the logs.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_STUDY_KNOWLEDGE_REACHED','本城已完成所有可研习的经验。若队列中仍有项目，请移除。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_STUDY_KNOWLEDGE_REACHED','All available studies are complete. Remove this project if it is still queued.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_DIALOGUE_ERA_USED','本游戏时代的时代对话已完成。若队列中仍有项目，请移除。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_DIALOGUE_ERA_USED','Dialogue of Eras is complete for this era. Remove this project if it is still queued.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_INELIGIBLE','当前专业资格不满足，项目不会计时或产生收益。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_INELIGIBLE','The city does not meet the requirements for this project.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_QUEUE_REQUEST_PENDING','入队请求待确认，不会重复加入。请等待队列更新。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_QUEUE_REQUEST_PENDING','Waiting for the queue to confirm the request.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_CANNOT_CONFIRM_SELECTION','生产队列待确认，请稍后重新选择。不会重复加入项目。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_CANNOT_CONFIRM_SELECTION','Could not confirm the queue. Select the project again later.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_DUPLICATE_PROJECT','队列中有重复项目，请只保留一项。不会重复发放收益。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_DUPLICATE_PROJECT','Keep only one copy in the Production queue. The reward can be granted only once.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_ALREADY_QUEUED','项目已在队列中，不会重复加入。成为唯一当前项目后才开始计时。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_ALREADY_QUEUED','Already queued. Timing starts when this is the only item in the queue.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_QUEUE_INSERT_PENDING','等待生产队列确认；尚未开始计时。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_QUEUE_INSERT_PENDING','Waiting for the queue. The timer has not started.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_ALREADY_COMPLETED_THIS_TURN','本回合已有完成记录，无法确认此队列项是否为新一轮。请重新选择项目。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_ALREADY_COMPLETED_THIS_TURN','Could not verify this as a new attempt after this turn’s completion. Select the project again.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_QUEUE_UNCONFIRMED','生产队列待确认。请等待相关状态更新，项目暂不结算。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_QUEUE_UNCONFIRMED','Waiting to confirm the Production queue. The project cannot complete yet.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_REQUIRES_SOLE_ENTRY','项目须独占生产队列。移除其他项目后自动核对计时。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_REQUIRES_SOLE_ENTRY','Remove the other items from the Production queue so the game can check the timer again.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_WAITS_TURN_IN_QUEUE','项目尚未成为唯一当前目标，不会计时。轮到时自动核对。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_WAITS_TURN_IN_QUEUE','The game checks the timer when this becomes the only item in the Production queue.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_WAITING_FOR_NEXT_TURN','本回合已结束。须等到下一回合确认可开始后才计时。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_WAITING_FOR_NEXT_TURN','Timing can start when your next turn is available.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_WAITING_FOR_ACTIVE_TURN','等待本地回合可操作状态确认。排队时间不计入项目。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_WAITING_FOR_ACTIVE_TURN','Timing waits until your turn is available. Time spent queued does not count.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_CONFIRMING_FULL_TURN','正在确认完整回合计时。不会重复提交本轮。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_CONFIRMING_FULL_TURN','Confirming the start of the 1-turn timer.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_START_REQUEST_UNCONFIRMED','启动请求结果待确认。状态没有变化时，系统会等待确认。请保留日志。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_START_REQUEST_UNCONFIRMED','Could not confirm the start request. Keep the logs.'),
+('zh_Hans_CN','LOC_SPC_TIMED_QUEUE_HELP_AWAITING_PROJECT_FACTS','等待专业资格与计时状态确认。'),
+('en_US','LOC_SPC_TIMED_QUEUE_HELP_AWAITING_PROJECT_FACTS','Waiting to confirm eligibility and the project timer.');
+
+-- Timed project previews, current status and production progress text.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_CLAIM_PREVIEW','项目须持续 1 个完整回合，完成后才确立专业。未分配及项目期间产生的生产力不会结转。'),
+('en_US','LOC_SPC_TIMED_PROJECT_CLAIM_PREVIEW','Complete 1 full turn to establish the specialization. Unassigned Production and Production earned during this project do not carry over.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_CLAIM_START_PENDING','等待项目状态确认。若持续如此，请查看当前项目提示。'),
+('en_US','LOC_SPC_TIMED_PROJECT_CLAIM_START_PENDING','Waiting to confirm the project start.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_DIALOGUE_PREVIEW','时代对话需持续 1 个完整生产回合。完成时，本城合格馆藏每涵盖一个作品时代，巨作原生 [ICON_Tourism] 旅游业绩加成永久累积 5 个百分点。加成在文化启用等级达到三级时生效。'),
+('en_US','LOC_SPC_TIMED_PROJECT_DIALOGUE_PREVIEW','Complete 1 full turn. Each distinct era in this city’s eligible collection permanently adds 5 percentage points to its bonus to original [ICON_Tourism] Tourism from Great Works.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_DIALOGUE_TIMER_PENDING','待计时'),
+('en_US','LOC_SPC_TIMED_PROJECT_DIALOGUE_TIMER_PENDING','Awaiting start'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_DIALOGUE_START_PENDING','此项目须独占生产队列并持续 1 个完整回合。计时待确认，确认前不会完成项目。'),
+('en_US','LOC_SPC_TIMED_PROJECT_DIALOGUE_START_PENDING','Keep Dialogue of Eras alone in the Production queue for 1 full turn. Timing is awaiting confirmation.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_ACTIVE','工程传统研习：完成 1 个完整生产回合后，本城永久积累 1 层成果。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_ACTIVE','Complete 1 full turn to gain 1 permanent study level in this city.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_COMPLETION_PENDING','原生完成回执待确认；不会重复发放。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_COMPLETION_PENDING','Waiting to confirm completion. The study level can be granted only once.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_REQUIRES_SOLE_ENTRY','工程传统研习须独占生产队列。移除其他项目后自动核对计时。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_REQUIRES_SOLE_ENTRY','Remove the other items from the Production queue so the game can check the timer again.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_PAUSED','研习未确认，请查看工业历史报告。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_PAUSED','Could not confirm the study. See the Industry History report.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_START_PENDING','请选择为唯一当前项目。中断后须重新选择。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_START_PENDING','Keep this project alone in the Production queue. Select it again after an interruption.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_STUDY_PREVIEW','需要工业启用等级达到四级，且本城研习层数少于本文明亲建奇观覆盖的时代数。中断会取消本轮。'),
+('en_US','LOC_SPC_TIMED_PROJECT_STUDY_PREVIEW','Requires Industry active at Level 4 and an unused study opportunity. Wonders your civilization built provide one opportunity per distinct era.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_TIMER_ACTIVE','计时已开启：1回合'),
+('en_US','LOC_SPC_TIMED_PROJECT_TIMER_ACTIVE','Timer started: 1 turn'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_TIMER_STATUS','计时：{1}'),
+('en_US','LOC_SPC_TIMED_PROJECT_TIMER_STATUS','Timer: {1}');
+
+-- Construction Crew and Settler action tooltips.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_UNIT_CREW_PREVIEW','施工预览[NEWLINE]当前目标：{1_Wonder}[NEWLINE]当前进度：{2_Progress} / {3_Cost}[NEWLINE]{4_Preview}'),
+('en_US','LOC_SPC_UNIT_CREW_PREVIEW','Construction Preview[NEWLINE]Current Wonder: {1_Wonder}[NEWLINE]Progress: {2_Progress} / {3_Cost}[NEWLINE]{4_Preview}'),
+('zh_Hans_CN','LOC_SPC_UNIT_CREW_CONFIRM','确认施工[NEWLINE]{1_Confirmation}'),
+('en_US','LOC_SPC_UNIT_CREW_CONFIRM','Confirm Construction[NEWLINE]{1_Confirmation}'),
+('zh_Hans_CN','LOC_SPC_UNIT_CREW_CONFIRM_TITLE','确认施工'),
+('en_US','LOC_SPC_UNIT_CREW_CONFIRM_TITLE','Confirm Construction'),
+('zh_Hans_CN','LOC_SPC_UNIT_CREW_READY','施工[NEWLINE]{1_Ready}'),
+('en_US','LOC_SPC_UNIT_CREW_READY','Construct[NEWLINE]{1_Ready}'),
+('zh_Hans_CN','LOC_SPC_UNIT_CREW_SITE','施工[NEWLINE]将施工队移动至正在建造奇观的单元格，即可预览施工。'),
+('en_US','LOC_SPC_UNIT_CREW_SITE','Construct[NEWLINE]Move the Crew to the tile of the Wonder the city is building to preview its contribution.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_PREVIEW','专业投资预览[NEWLINE]当前专业：{1_Profession}[NEWLINE]当前潜力：{2_Potential}级[NEWLINE]投资后潜力：{3_Next}级[NEWLINE]本次消耗：1 名移民[NEWLINE][NEWLINE]更高等级的专业能力仍需满足相应的总督就职与晋升条件。'),
+('en_US','LOC_SPC_UNIT_INVEST_PREVIEW','Specialization Investment Preview[NEWLINE]Current specialization: {1_Profession}[NEWLINE]Current Potential: Level {2_Potential}[NEWLINE]Potential after investment: Level {3_Next}[NEWLINE]Cost: 1 Settler[NEWLINE][NEWLINE]Higher-level abilities still require an established Governor with the appropriate promotions.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_CONFIRM','确认专业投资[NEWLINE]消耗此移民，将本城专业潜力永久提升至 {1_Next} 级。[NEWLINE]确认后无法撤销。'),
+('en_US','LOC_SPC_UNIT_INVEST_CONFIRM','Confirm Specialization Investment[NEWLINE]Consume this Settler to permanently increase this city’s Potential to Level {1_Next}.[NEWLINE]This cannot be undone.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_CONFIRM_TITLE','确认投资'),
+('en_US','LOC_SPC_UNIT_INVEST_CONFIRM_TITLE','Confirm Investment'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_READY','投资专业化[NEWLINE]消耗 1 名移民，使本城专业潜力永久提升 1 级。[NEWLINE]潜力变化：{1_Potential} 级 → {2_Next} 级[NEWLINE]点击查看投资预览，再确认投资。'),
+('en_US','LOC_SPC_UNIT_INVEST_READY','Invest in Specialization[NEWLINE]Consume 1 Settler to permanently raise this city’s Potential by 1 level.[NEWLINE]Potential: Level {1_Potential} → Level {2_Next}[NEWLINE]Select to preview the investment.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_FULL','投资专业化[NEWLINE]专业潜力已达 4 级，无法继续投资。'),
+('en_US','LOC_SPC_UNIT_INVEST_FULL','Invest in Specialization[NEWLINE]This city has reached Potential Level 4.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_PENDING','投资专业化[NEWLINE]上一次投资结果待确认，暂时无法再次投资。'),
+('en_US','LOC_SPC_UNIT_INVEST_PENDING','Invest in Specialization[NEWLINE]The previous investment is awaiting confirmation.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_SITE','投资专业化[NEWLINE]将移民移动至本城的专业区域，即可预览投资。'),
+('en_US','LOC_SPC_UNIT_INVEST_SITE','Invest in Specialization[NEWLINE]Move a Settler to this city’s specialization district to preview the investment.'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_GOVERNMENT','政府'),
+('en_US','LOC_SPC_UNIT_INVEST_GOVERNMENT','Government'),
+('zh_Hans_CN','LOC_SPC_UNIT_INVEST_MILITARY','军事'),
+('en_US','LOC_SPC_UNIT_INVEST_MILITARY','Military');
+
+-- Timed project captions in the native city panel.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_CITY_PANEL_TURNS','回合后完成'),
+('en_US','LOC_SPC_TIMED_PROJECT_CITY_PANEL_TURNS','turn remaining'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_CITY_PANEL_TITLE','计时项目'),
+('en_US','LOC_SPC_TIMED_PROJECT_CITY_PANEL_TITLE','Project Timer');
+
+-- Existing Claim and Era Dialogue notes, translated when displayed.
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CURRENT_PRODUCTION_UNKNOWN','当前生产不可读'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CURRENT_PRODUCTION_UNKNOWN','Current production is awaiting confirmation.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_ACTIVE','1回合；保存读档继续计时'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_ACTIVE','1 full turn. An eligible saved timer can resume after loading.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_SWITCHED','已改选目标；重新选择须完整占用一回合'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_SWITCHED','Production changed. Select the project again for 1 full turn.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_QUEUE_UNKNOWN','当前队列未确认；不完成项目'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_QUEUE_UNKNOWN','Waiting to confirm the Production queue. The project cannot complete yet.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_WINDOW_MISSED','错过完整回合窗口；请重新选择'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_WINDOW_MISSED','Select this project again to start a full turn.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_QUEUE_FACT_REQUIRED','当前队列未确认；等待相关事件，不完成项目'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_QUEUE_FACT_REQUIRED','Waiting to confirm the Production queue. The project cannot complete yet.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_NO_TIMER','当前项目没有计时；请先改选普通目标，再重选认领项目，重新占用完整一回合'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_NO_TIMER','The timer has not started. Select another production target, then select the claim project again.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_DIFFERENT_CLAIM','改选另一认领项目'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_DIFFERENT_CLAIM','Another claim project was selected.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_TARGET_CHANGED','当前目标已改变'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_TARGET_CHANGED','The current production target changed.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_FULL_TURN_UNCONFIRMED','未确认完整生产回合；请重新选择'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_FULL_TURN_UNCONFIRMED','A full turn of production could not be confirmed. Select the project again.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_COMPLETION_PENDING','等待原生完成事件；结果未知时不重复调用'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_COMPLETION_PENDING','Completion is awaiting confirmation. The request is sent only once.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_RESTART','已改选目标；需重新占用完整回合'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_RESTART','The production target changed. Select the project again to start a full turn.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_DISTRICT_UNAVAILABLE','找不到对应已完成区域；暂停认领'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_DISTRICT_UNAVAILABLE','Claim paused. Could not find the required completed district.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_SOLE_QUEUE','认领项目不能排在队列后面；请选为唯一当前目标'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_SOLE_QUEUE','Select the claim project as the only item in the Production queue.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_TARGET_PENDING','等待原生选择确认'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_TARGET_PENDING','Waiting to confirm the production target.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_RELOAD_PENDING','读档同步等待确认；不会自动重发'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_RELOAD_PENDING','Waiting to verify the project after loading.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_START_TIMEOUT','启动确认超时；请重新选择项目'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_START_TIMEOUT','The project start was not confirmed. Select it again.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_ACTIVE','完整一回合计时中'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_ACTIVE','The 1-turn timer has started.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_SOLE_QUEUE','时代对话必须为唯一当前生产目标'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_SOLE_QUEUE','Keep Dialogue of Eras alone in the Production queue.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_ELIGIBILITY_UNKNOWN','当前资格尚不可确认；未清除历史，也不完成项目'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_ELIGIBILITY_UNKNOWN','Waiting to confirm eligibility. Recorded history is retained and the project cannot complete yet.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_FACT_REQUIRED','当前资格或生产未确认；等待相关事件，不完成项目'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_FACT_REQUIRED','Waiting to confirm eligibility or production. The project cannot complete yet.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_COMPLETION_PENDING','原生完成已请求；结果不明时不重复调用'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_COMPLETION_PENDING','Completion was requested. The request is sent only once.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_COMPLETION_SOURCE_UNKNOWN','完成来源已不确定；不重放或补取之后的馆藏'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_COMPLETION_SOURCE_UNKNOWN','Could not confirm completion. The collection will not be checked again for this attempt.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_COLLECTION_UNKNOWN','完成时事实未确认；不以之后的馆藏补算'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_DIALOGUE_COLLECTION_UNKNOWN','Could not confirm the collection at completion. Later changes do not count toward this attempt.'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_SOLE_QUEUE_COUNT','认领必须为唯一当前目标；队列数量={1}'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_SOLE_QUEUE_COUNT','Keep the claim project alone in the Production queue. Items queued: {1}'),
+('zh_Hans_CN','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_QUEUE_COUNT_PENDING','等待队列确认；数量={1}'),
+('en_US','LOC_SPC_TIMED_PROJECT_REASON_CLAIM_QUEUE_COUNT_PENDING','Waiting for the Production queue. Items queued: {1}');
+
+INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
+('en_US','LOC_SPC_UNIT_ACTION_CONFIRM_LABEL','Confirm'),
+('zh_Hans_CN','LOC_SPC_UNIT_ACTION_CONFIRM_LABEL','确认');

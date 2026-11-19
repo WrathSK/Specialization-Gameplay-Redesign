@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+  <LocalizedText>
+    <Replace Language="zh_Hans_CN" Tag="LOC_SPC_MOD_TITLE">
+      <Text>城市专业化（罗斯福进步党测试）</Text>
+    </Replace>
+    <Replace Language="zh_Hans_CN" Tag="LOC_SPC_MOD_DESCRIPTION">
+      <Text>体验城市专业化中的机构、投资与专业网络。</Text>
+    </Replace>
+  </LocalizedText>
+</GameData>

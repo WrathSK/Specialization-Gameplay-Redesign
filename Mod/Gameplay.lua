@@ -63,13 +63,6 @@ local function request(playerID,params)
   if type(params.Action)=='string' and params.Action:match('^REST_') then
     if shared.Restructuring then shared.Restructuring.Request(playerID,params)end;return
   end
-  if params.Action=='NETWORK_ISOLATE' or params.Action=='NETWORK_ISOLATION_READ' then
-    local ok,out=pcall(function()
-      if params.Action=='NETWORK_ISOLATE' then return shared.NetworkIsolation.Begin(playerID,params.Epoch) end
-      return shared.NetworkIsolation.Read(playerID)
-    end)
-    shared.Snapshot=ok and out or ('Network隔离未就绪；停止对照并冷启动原存档：'..P.Scalar(out));shared.LastToken=params.Token;return
-  end
   if params.Action=='MEMORY_GC_READ' or params.Action=='MEMORY_GC_COLLECT' or params.Action=='MEMORY_GC_AUTO_ON' or params.Action=='MEMORY_GC_AUTO_OFF' then
     local ok,out=pcall(function()
       local d=shared.MemoryObservation;assert(d,'GC diagnostic not initialized')
@@ -395,27 +388,6 @@ local function request(playerID,params)
     end
     return
   end
-  if params.Action=='SHADOW_SELECT' or params.Action=='SHADOW_READ' then
-    shared.RequestToken=params.Token
-    if shared.InheritanceIsolation then
-      shared.Snapshot='城市所有权/继承模块已暂停。已有备份保留；不再记录转移或执行恢复。其它专业诊断入口仍可使用。'
-      shared.LastToken=params.Token;return
-    end
-    local ok,out=pcall(function()
-      local d=assert(shared.InheritanceShadow,'SHADOW_MODULE_NOT_LOADED')
-      if params.Action=='SHADOW_SELECT' then return d.Select(playerID,Players[playerID]:GetCities():FindID(params.CityID)) end
-      return shared.CityInheritance and shared.CityInheritance.Describe(playerID) or d.Describe(playerID)
-    end)
-    shared.Snapshot=ok and out or ('继承备份读取失败：'..tostring(out));shared.LastToken=params.Token;return
-  end
-  if params.Action=='INHERIT_RECORD' or params.Action=='INHERIT_READ' then
-    local ok,out=pcall(function()
-      local d=assert(shared.CityInheritanceRead,'INHERIT_MODULE_NOT_LOADED')
-      if params.Action=='INHERIT_RECORD' then return d.Record(playerID,Players[playerID]:GetCities():FindID(params.CityID)) end
-      return d.Read(playerID)
-    end)
-    shared.Snapshot=ok and out or ('继承观察未完成：'..tostring(out));shared.LastToken=params.Token;return
-  end
   if type(params.Action)=='string' and params.Action:find('^DEVELOPMENT_') then
     local ok,out=pcall(function()
       local d=assert(shared.DevelopmentInvestment,'DEVELOPMENT_MODULE_NOT_LOADED')
@@ -448,36 +420,15 @@ local function request(playerID,params)
     local c=Players[playerID]:GetCities():FindID(params.CityID);if not c then return end
     shared.Snapshot=shared.Dialogue.Describe(playerID,c);shared.LastToken=params.Token;return
   end
-  if params.Action=='BOOST_INIT' then
-    if not P.IsTestPlayer(playerID) then return end
-    local ok,err=pcall(function()
-      shared.NetworkBoost.EnsureReady(playerID)
-      if not shared.GreatWorkProbe.ready then shared.GreatWorkProbe.Clean() end
-    end)
-    if not ok then print('[SPC][B055][INIT] '..tostring(err)) end
-    return
-  end
   if params.Action=='BOOST_READ' or params.Action=='BOOST_BASELINE' then
     if not P.IsTestPlayer(playerID) then return end
     shared.Snapshot=shared.NetworkBoost.Describe(playerID);shared.LastToken=params.Token;return
-  end
-  if params.Action=='DISCOUNT_INIT' then
-    if shared.StandardizationDiscount then shared.StandardizationDiscount.Initialize(playerID,params) end
-    return
-  end
-  if params.Action=='DISCOUNT_ELIGIBILITY' then
-    if shared.StandardizationDiscount then shared.StandardizationDiscount.Receive(playerID,params) end
-    return
   end
   if params.Action=='DISCOUNT_READ' then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     if not c or c:GetOwner()~=playerID then return end
     shared.Snapshot=shared.StandardizationEffects.Describe(playerID,c,params.Page);shared.LastToken=params.Token;return
-  end
-  if params.Action=='COPY_YIELD_SAMPLE' then
-    if shared.CopyYields then shared.CopyYields.Receive(playerID,params) end
-    return
   end
   if params.Action=="INDUSTRY_HISTORY_READ" then
     if not P.IsTestPlayer(playerID) then return end
@@ -492,13 +443,14 @@ local function request(playerID,params)
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     if not c or c:GetOwner()~=playerID then return end
     shared.Lv4CopyRead=SPCLv4CopyRead.Metadata(P,shared,playerID,c,params.Token)
-    shared.Snapshot=shared.CopyYields.Describe(playerID,c);shared.LastToken=params.Token;return
+    shared.Snapshot=SPCLv4CopyRead.RetirementNotice;shared.LastToken=params.Token;return
   end
   if params.Action=="LV4_PERCENT_READ" then
     if not P.IsTestPlayer(playerID) then return end
     local c=Players[playerID]:GetCities():FindID(params.CityID)
     if not c or c:GetOwner()~=playerID then return end
-    shared.Snapshot=shared.Lv4Percent.Describe(playerID,c);shared.LastToken=params.Token;return
+    shared.Snapshot=shared.CultureAesthetic and shared.CultureAesthetic.Describe(playerID,c) or '旧文化专家百分比已退休；新能力等待确认。'
+    shared.LastToken=params.Token;return
   end
   if params.Action=="UNIT_ACTION_VIEW" then
     if P.IsTestPlayer(playerID) and type(params.UnitID)=="number" and shared.UnitActions then
@@ -680,7 +632,7 @@ end,nil,{deferNativeSubscriptions=true})
 
 composition.Run('CityProgressionStore',{'CityIdentityDefinition','FactChanges'},{'CityProgressionStore'},function()
  include('CityProgressionStore');SPCCityProgressionStore.Start(P,shared)
- -- Current production duties only:29 exits,23 returns. Exact cleanup stays in
+ -- Current production duties only:29 exits,22 returns. Exact cleanup stays in
  -- each existing owner; retired positive writers/optional observers add no gate.
  for _,row in ipairs({
   {'LegacyCleanup','LegacyCleanup'},
@@ -702,7 +654,6 @@ composition.Run('CityProgressionStore',{'CityIdentityDefinition','FactChanges'},
   {'GreatWorkFacts','GreatWorkFacts','GreatWorkFacts'},
   {'CultureAesthetic','CultureAesthetic','CultureAesthetic'},
   {'Dialogue',nil,'Dialogue'},
-  {'GreatWorkAdjacency',nil,'GreatWorkAdjacency'},
   {'CultureMeaning','CultureMeaning','CultureMeaning'},
   {'CultureInspiration','CultureInspiration','CultureInspiration'},
   {'ClaimProjects','ClaimProjects'},
@@ -729,13 +680,7 @@ composition.Run('LegacyCleanup',{'CityProgressionStore'},{'LegacyCleanup'},funct
  include('LegacyCleanup');local owner=SPCLegacyCleanup.Start(P,shared);exit=owner.Exit
 end)
 
-composition.Run('BindingProbe',{'CityProgressionStore'},{'BindingProbe'},function() include('BindingProbe');SPCBindingProbe.Start(P,shared) end)
-
-composition.Run('CityJournalProbe',{'CityProgressionStore'},{'CityJournalProbe'},function() include('CityJournalProbe');SPCCityJournalProbe.Start(P,shared) end)
-
-composition.Run('CityFlowProbe',{'CityProgressionStore'},{'CityFlowProbe'},function() include('FreshBindingHook');include('CityFlowProbe');SPCCityFlowProbe.Start(P,shared) end)
-
-composition.Run('EffectiveFacts',{'CityFlowProbe','CityProgressionStore'},{'EffectiveFacts'},function() include('EffectiveFacts');SPCEffectiveFacts.Start(P,shared) end)
+composition.Run('EffectiveFacts',{'CityProgressionStore'},{'EffectiveFacts'},function() include('EffectiveFacts');SPCEffectiveFacts.Start(P,shared) end)
 
 composition.Run('ResearchTradition',{'CityProgressionStore'},{'ResearchTradition'},function() SPCResearchTradition.Start(P,shared) end)
 
@@ -761,9 +706,9 @@ composition.Run('NetworkBridge',{'EffectiveFacts','NativeFacts'},{'NetworkBridge
 
 composition.Run('IndustrySupport',{'RuntimeRetirement','EffectiveFacts','CityProgressionStore','NativeFacts'},{'IndustrySupport'},function() include('IndustrySupport');SPCIndustrySupport.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('Lv3Support',{'RuntimeRetirement','EffectiveFacts','LegacyCleanup'},{'Lv3Support'},function() include('Lv3Support');SPCLv3Support.Start(P,shared,{centralExit=true}) end)
+composition.Run('Lv3Support',{'RuntimeRetirement','EffectiveFacts','LegacyCleanup'},{'Lv3Support'},function() SPCLegacyCleanup.StartLv3Support(P,shared) end)
 
-composition.Run('Lv3Effects',{'RuntimeRetirement','EffectiveFacts','NativeFacts','LegacyCleanup'},{'Lv3Effects'},function() include('Lv3Effects');SPCLv3Effects.Start(P,shared,{retireCommerce=true,centralExit=true}) end)
+composition.Run('Lv3Effects',{'RuntimeRetirement','EffectiveFacts','NativeFacts','LegacyCleanup'},{'Lv3Effects'},function() SPCLegacyCleanup.StartLv3Effects(P,shared) end)
 
 composition.Run('UnitTargets',{'EffectiveFacts'},{'UnitTargets'},function() include('UnitTargets');SPCUnitTargets.Start(P,shared) end)
 
@@ -777,8 +722,6 @@ pcall(function()if crewCompletionObservation then crewCompletionObservation.Afte
 
 composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'},function() include('PlayerActionReplies');SPCPlayerActionReplies.Start(P,shared) end)
 
-composition.Run('Lv4Percent',{'RuntimeRetirement','EffectiveFacts'},{'Lv4Percent'},function() include('Lv4Percent');SPCLv4Percent.Start(P,shared,{centralExit=true}) end)
-
 composition.Run('ResearchInfrastructure',{'RuntimeRetirement','EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchInfrastructure'},function() include('ResearchInfrastructure');SPCResearchInfrastructure.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
 composition.Run('ResearchCross',{'RuntimeRetirement','EffectiveFacts','NativeFacts'},{'ResearchCross'},function() include('ResearchCross');SPCResearchCross.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
@@ -788,37 +731,41 @@ composition.Run('ResearchApply',{'EffectiveFacts','DistrictCompleteness','Native
 composition.Run('ResearchChair',{'EffectiveFacts','DistrictCompleteness','NativeFacts'},{'ResearchChair'},function() include('ResearchChair');SPCResearchChair.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
 
-composition.Run('CopyYields',{},{'CopyYields'},function() include('CopyYields');SPCCopyYields.Start(P,shared,{retired=true}) end)
-
 composition.Run('IndustryHistory',{'CityProgressionStore'},{'IndustryHistory'},function() include('IndustryHistory');SPCIndustryHistory.Start(P,shared) end)
 
 composition.Run('Standardization',{'CityProgressionStore','EffectiveFacts'},{'Standardization'},function() include('StandardizationCatalog');include('Standardization');SPCStandardization.Start(P,shared) end)
 
-composition.Run('PurchaseProbe',{},{'PurchaseProbe'},function() include('PurchaseProbe');SPCPurchaseProbe.Start(P,shared,{centralExit=true}) end)
+composition.Run('PurchaseLoadCleanup',{},{},function()
+ if not SPCLegacyCleanup then include('LegacyCleanup')end
+ SPCLegacyCleanup.InstallPurchaseLoad(P)
+end)
 
-composition.Run('StandardizationDiscount',{},{'StandardizationDiscount'},function() include('StandardizationDiscount');SPCStandardizationDiscount.Start(P,shared,{retired=true}) end)
+composition.Run('StandardizationEffects',{'CityProgressionStore','Standardization','NetworkBridge','EffectiveFacts','NativeFacts'},{'StandardizationEffects'},function() include('StandardizationEffects');SPCStandardizationEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('StandardizationEffects',{'CityProgressionStore','Standardization','NetworkBridge','EffectiveFacts','CopyYields','StandardizationDiscount','NativeFacts'},{'StandardizationEffects'},function() include('StandardizationEffects');SPCStandardizationEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+composition.Run('NetworkBoost',{},{'NetworkBoost'},function()
+ if not SPCLegacyCleanup then include('LegacyCleanup')end
+ SPCLegacyCleanup.StartBoostLoad(P,shared)
+end)
 
-composition.Run('NetworkBoost',{},{'NetworkBoost'},function() include('NetworkBoost');SPCNetworkBoost.Start(P,shared,{retired=true,centralExit=true}) end)
-
-composition.Run('GreatWorkProbe',{},{'GreatWorkProbe'},function() include('GreatWorkProbe');SPCGreatWorkProbe.Start(P,shared,{centralExit=true}) end)
+composition.Run('GreatWorkLoadCleanup',{},{'GreatWorkLoadCleanup'},function()
+ if not SPCLegacyCleanup then include('LegacyCleanup')end
+ SPCLegacyCleanup.StartGreatWorkLoad(P,shared)
+end)
 
 composition.Run('GreatWorkFacts',{},{'GreatWorkFacts'},function() include('GreatWorkFacts');SPCGreatWorkFacts.Start(P,shared) end)
 
-composition.Run('CultureAesthetic',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Lv3Effects','Lv4Percent','NativeFacts'},{'CultureAesthetic'},function() include('CultureAesthetic');SPCCultureAesthetic.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+composition.Run('CultureAesthetic',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Lv3Effects','RuntimeRetirement','NativeFacts'},{'CultureAesthetic'},function() include('CultureAesthetic');SPCCultureAesthetic.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('Dialogue',{'GreatWorkFacts','LegacyCleanup'},{'Dialogue'},function() include('Dialogue');SPCDialogue.Start(P,shared,{centralExit=true}) end)
+composition.Run('Dialogue',{'GreatWorkFacts','LegacyCleanup'},{'Dialogue'},function() SPCGreatWorkFacts.StartDialogueTransport(P,shared) end)
 
-composition.Run('GreatWorkAdjacency',{},{'GreatWorkAdjacency'},function() include('GreatWorkAdjacency');SPCGWAdjacency.Start(P,shared,{retired=true,centralExit=true}) end)
+composition.Run('CultureMeaning',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','Dialogue','NativeFacts'},{'CultureMeaning'},function() include('CultureMeaning');SPCCultureMeaning.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('CultureMeaning',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','DistrictCompleteness','GreatWorkAdjacency','Dialogue','NativeFacts'},{'CultureMeaning'},function() include('CultureMeaning');SPCCultureMeaning.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
+composition.Run('CultureInspiration',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','NativeFacts'},{'CultureInspiration'},function() include('CultureInspiration');SPCCultureInspiration.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
-composition.Run('CultureInspirationProbe',{},{'CultureInspirationProbe'},function() include('CultureInspirationProbe');SPCCultureInspirationProbe.Start(P,shared,{retired=true}) end)
-
-composition.Run('CultureInspiration',{'CityProgressionStore','GreatWorkFacts','EffectiveFacts','CultureInspirationProbe','NativeFacts'},{'CultureInspiration'},function() include('CultureInspiration');SPCCultureInspiration.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
-
-composition.Run('CommerceConvergence',{'RuntimeRetirement'},{'CommerceConvergence'},function() include('CommerceConvergence');SPCCommerceConvergence.Start(P,shared,{retired=true,centralExit=true}) end)
+composition.Run('CommerceLegacyCleanup',{'RuntimeRetirement'},{'CommerceLegacyCleanup'},function()
+ if not SPCLegacyCleanup then include('LegacyCleanup')end
+ SPCLegacyCleanup.StartCommerceLoad(P,shared)
+end)
 
 
 -- Preserve the deliberate legacy-inheritance isolation boundary and observer order.
@@ -841,16 +788,13 @@ composition.Run('IndustryWonderEffects',{'CityProgressionStore','EffectiveFacts'
 
 composition.Run('CrewProjectsBind',{'CrewProjects'},{},function() shared.CrewProjects.BindPermanentWrites() end)
 
-composition.Run('Commerce',{'CityProgressionStore','EffectiveFacts','NetworkBridge','CommerceConvergence','NativeFacts'},{'Commerce'},function() include('Commerce');SPCCommerce.Start(P,shared) end)
+composition.Run('Commerce',{'CityProgressionStore','EffectiveFacts','NetworkBridge','CommerceLegacyCleanup','NativeFacts'},{'Commerce'},function() include('Commerce');SPCCommerce.Start(P,shared) end)
 
 composition.Run('CapitalInvestment',{'CityProgressionStore','EffectiveFacts','Commerce','NetworkBridge'},{'CapitalInvestment'},function() include('CapitalInvestment');SPCCapitalInvestment.Start(P,shared) end)
 
 composition.Run('DevelopmentInvestment',{'CityProgressionStore','EffectiveFacts','NetworkBridge'},{'DevelopmentInvestment'},function() include('DevelopmentInvestment');SPCDevelopmentInvestment.Start(P,shared) end)
 
 composition.Run('DialogueProjects',{'CityProgressionStore','EffectiveFacts','GreatWorkFacts'},{'DialogueProjects'},function() include('DialogueProjects');SPCDialogueProjects.Start(P,shared) end)
-
--- New effect failure never reactivates the retired Dialogue writer.
-if shared.Dialogue then shared.Dialogue.retired=true end
 
 composition.Run('DialogueEffects',{'CityProgressionStore','Dialogue','EffectiveFacts','GreatWorkFacts','NativeFacts'},{'DialogueEffects'},function() include('DialogueEffects');SPCDialogueEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
 
@@ -859,8 +803,6 @@ composition.Run('CityIdentityRead',{},{'CityIdentityRead'},function() SPCCityIde
 composition.Run('CityIdentityMapping',{},{'CityIdentityExperiment'},function() include('CityIdentityExperiment');include('CityIdentityMapping');SPCCityIdentityMapping.Start(P,shared) end)
 
 composition.Run('TimedProject',{},{'TimedProject'},function() include('TimedProject');SPCTimedProject.Start(P,shared) end)
-
-composition.Run('NetworkIsolation',{'NetworkBridge'},{'NetworkIsolation'},function() include('NetworkIsolation');SPCNetworkIsolation.Start(P,shared) end)
 
 composition.Run('MemoryObservation',{},{'MemoryObservation','MemoryEvidence'},function()
  SPCRuntimeGC.Start(P,shared,SPCPerformance and SPCPerformance.PrepareMemoryObserver)

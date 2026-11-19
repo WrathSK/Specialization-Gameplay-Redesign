@@ -12,6 +12,7 @@ import subprocess
 import unittest
 
 from lupa.lua55 import LuaRuntime
+from retired_crew_sources import B516, RETIRED_CITY_FILES, source as archived_source
 
 R = Path(__file__).resolve().parents[1]
 BASELINE = "cdd3ceb8b401c5cbe4d58cbbdbc7998b1edddeb7"
@@ -32,7 +33,14 @@ def instrument_store(source):
 def fixture(source=None):
     lua = LuaRuntime(unpack_returned_tuples=True)
     lua.globals().print = lambda *parts: None  # Expected injected hold diagnostics stay out of the summary.
-    lua.globals().include = lambda name: lua.execute((R / "Mod" / (name + ".lua")).read_text())
+    def fixture_source(name):
+        path = name + ".lua"
+        # The two-city adapter still exercises the retired foundation helpers.
+        # The normal package entry and its absence tests never use this loader.
+        if path in RETIRED_CITY_FILES:
+            return archived_source(path, B516)
+        return (R / "Mod" / path).read_text()
+    lua.globals().include = lambda name: lua.execute(fixture_source(name))
     lua.execute("""
 __store_storage={}; __store_snapshot={}; __store_visits=0
 function __store_pairs(t)
@@ -43,7 +51,7 @@ function __store_pairs(t)
 end
 """)
     for name in MODULES:
-        text = (R / "Mod" / (name + ".lua")).read_text()
+        text = fixture_source(name)
         lua.execute(instrument_store(source or text) if name == "CityProgressionStore" else text)
     e1 = (R / "DevelopmentTests/test_p0_e1.py").read_text()
     lua.execute("M=SPCCityIdentityRead\n" + e1[e1.index("function fixture()"):e1.index("function expect(")])
@@ -121,23 +129,30 @@ def legacy_extension(name):
 
 
 def run_claim_return_regression(body):
-    # Reuse the maintained B140 fixture adaptation only. Do not run its full body
-    # or historical package-version assertions and do not change old test files.
-    path = R / "DevelopmentTests/test_b140_templates.py"
-    source = path.read_text()
-    namespace = {"__file__": str(path)}
-    exec(compile(source[:source.index("extra=r" + chr(39)*3)], str(path), "exec"), namespace)
-    header = namespace["header"].replace("l=LuaRuntime()", "l=LuaRuntime()\nl.globals().print=lambda *parts: None")
-    selected = header + namespace["helpers"] + namespace["claim_setup"] + body + "\n" + chr(39)*3 + ")"
-    target = R / "DevelopmentTests/test_b124_claim.py"
-    exec(compile(selected, str(target), "exec"), {"__file__": str(target)})
+    # B140 is the compatibility source for the original B127/B128 scenario bodies.
+    from retired_crew_sources import package
+
+    revision = "58dd0cd2ebc2f6aba6f84ceb51cfdbdbc4291f55"
+    with package(revision, paths=("Mod", "DevelopmentTests")) as checkout:
+        tests = checkout / "DevelopmentTests"
+        path = tests / "test_b140_templates.py"
+        source = path.read_text()
+        quotes = chr(39) * 3
+        namespace = {"__file__": str(path)}
+        exec(compile(source[:source.index("extra=r" + quotes)], str(path), "exec"), namespace)
+        header = namespace["header"].replace(
+            "l=LuaRuntime()", "l=LuaRuntime()\nl.globals().print=lambda *parts: None",
+        )
+        selected = header + namespace["helpers"] + namespace["claim_setup"] + body + "\n" + quotes + ")"
+        target = tests / "test_b124_claim.py"
+        exec(compile(selected, str(target), "exec"), {"__file__": str(target)})
 
 
 class StoreWriteBoundaries(unittest.TestCase):
 
     def test_existing_b127_saved_claim_timer_regression(self):
         # Three unchanged groups: missed-load-hook resume, duplicate/same-turn,
-        # and incomplete end-turn proof. This is local reconstruction evidence.
+        # and incomplete end-turn proof. These replay the original fixture era.
         run_claim_return_regression(legacy_extension("test_b127_claim_resume.py"))
 
     def test_existing_b128_selected_store_return_regression(self):

@@ -4,7 +4,9 @@ Document Owner: Codex
 
 ## Current playtest
 
-B489.516 is the [active stable playtest baseline](Specialization_P0_Status.md#b489-stable-playtest-package-deployed--s1048). See the [scoped native result](Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047) for accepted scenarios. Positive official Culture Network output and the exact HD Engineering Study uplift remain open observations.
+B489.516 remains the [stable playtest baseline](Specialization_P0_Status.md#b489-stable-playtest-package-deployed--s1048); its [native acceptance](Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047) retains the actual tested profiles and scenarios. This page does not promote a later develop build.
+
+The development architecture convergence is [Owner-accepted](Specialization_P0_Status.md#owner-accepted-architecture-convergence-closeout--s1095). B527 added positive Culture Network and first-local-turn readiness evidence in an observed 69-target no-HD configuration. That result is not the pinned 28-target profile on B527, and no reload followed its positive benefit. Exact HD Engineering Study uplift remains an observation. B528's subsequent code retirement is locally verified and not deployed. Consult [Status CURRENT](Specialization_P0_Status.md#current-authoritative-state) and the [accepted closeout record](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md#结项后继续保留的事项) for current retained limits; do not reissue the historical tests below as a current queue.
 
 ## Historical issue intake
 

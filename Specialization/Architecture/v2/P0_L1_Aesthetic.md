@@ -70,7 +70,7 @@ Current Identity=Culture，Potential≥3且当前ACTIVE≥3；单人本地人类
 
 预计最小调整：`GreatWorkFacts.lua`确认通知/轻量读取，`OrdinaryBuildingCatalog.lua`及必要的`DistrictCompleteness.lua`事实，`Lv3Effects.lua`/`Lv4Percent.lua`及其SQL，`Gameplay.lua`/modinfo、P0Panel及Text。只有真实依赖要求时触及E2或其它共享模块，并扩大对应定向回归，不顺手重构。既有GW目录、桥、旧Dialogue/GWA原则上复用；如需触及，先读全部直接调用点。
 
-[manifest](../../Workflow/P0-L1.json)以完整能力对象、共享普通建筑合同、K实际检查点、事件合同及直接writer/source为核心；旧原生证据、E2 exit/return实现、受影响回归按动作展开。恢复/只读/验收归档只读当前切片及对应结果，不默认加载全部L/M/N计划、E2历史或全部中文设计阅读页。
+[manifest](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/7da41bcea04a0c17283b71e26c7c37e4d14df372/Specialization/Workflow/P0-L1.json)以完整能力对象、共享普通建筑合同、K实际检查点、事件合同及直接writer/source为核心；旧原生证据、E2 exit/return实现、受影响回归按动作展开。恢复/只读/验收归档只读当前切片及对应结果，不默认加载全部L/M/N计划、E2历史或全部中文设计阅读页。
 
 ## 验证、诊断与退出条件
 

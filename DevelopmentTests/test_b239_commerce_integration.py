@@ -10,6 +10,7 @@ import zlib
 import xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 from project_paths import external_database
+from retired_crew_sources import B519, B520, B521, B522, package, source
 
 ROOT=Path(__file__).resolve().parents[1]
 MOD=ROOT/'Mod'
@@ -70,7 +71,7 @@ end
 def retirement_runtime():
  lua=LuaRuntime(unpack_returned_tuples=True)
  lua.globals().include=lambda name:lua.execute((MOD/(name+'.lua')).read_text())
- lua.execute(SETUP);lua.execute((MOD/'CommerceConvergence.lua').read_text())
+ lua.execute(SETUP);lua.execute(source('CommerceConvergence.lua',B519))
  lua.execute('SPCCommerceConvergence.Start(P,shared,{retired=true});d=shared.CommerceConvergence')
  return lua
 
@@ -87,7 +88,7 @@ class Retirement(unittest.TestCase):
  def test_confirmed_loss_callback_exact_ids_only(self):
   self.check("seed(cities[3]);assert(not pcall(exits.CommerceConvergence,cities[3],{}));assert(remaining(cities[3])==48);exits.CommerceConvergence(cities[3],{confirmed=true});assert(remaining(cities[3])==0 and cities[3].built.KEEP_EXTERNAL and cities[3].built.BUILDING_SPC_COMMERCE_GOLD_0)")
  def test_three_old_specialist_carriers_retire_without_touching_new_gold(self):
-  lua=retirement_runtime();lua.execute((MOD/'Lv3Effects.lua').read_text())
+  lua=retirement_runtime();lua.execute(source('Lv3Effects.lua',B522))
   lua.execute("""
 for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY'})do cities[1].built['BUILDING_SPC_DEV_LV3_COM_'..kind]=true end
 cities[1].built.KEEP_EXTERNAL=true;cities[1].built.BUILDING_SPC_COMMERCE_GOLD_2=true
@@ -95,11 +96,54 @@ SPCLv3Effects.Start(P,shared,{retireCommerce=true});emit('LoadScreenClose')
 for _,kind in ipairs({'RESEARCH','CULTURE','INDUSTRY'})do assert(not cities[1].built['BUILDING_SPC_DEV_LV3_COM_'..kind])end
 assert(cities[1].built.KEEP_EXTERNAL and cities[1].built.BUILDING_SPC_COMMERCE_GOLD_2)
 """)
+ def test_exact_convergence_package_retirement_and_rollback(self):
+  from refactor_harness import PackageVFS
+  from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
+  removed=('CommerceConvergence.lua',)
+  with package(B520) as baseline, package(B521) as retirement:
+   previous,current=baseline/'Mod',retirement/'Mod'
+   profile=PackageVFS(manifest=current/'SpecializationP0.modinfo')
+   self.assertNotIn(removed[0],profile.files)
+   self.assertNotIn(removed[0],profile.imports)
+   for path in ('LegacyCleanup.lua','LegacyCleanupCatalog.lua','Commerce.lua','Gameplay.lua',
+                'CityProgressionStore.lua','Data/CommerceConvergence.sql'):
+    self.assertEqual((previous/path).read_bytes(),(current/path).read_bytes(),path)
+   verify_package_round_trip(self,previous,current,removed,'Commerce.lua')
+   verify_stable_round_trip(self,previous,current,removed)
+ def test_current_load_callback_retains_the_same_city_scope_and_proof(self):
+  original=retirement_runtime()
+  current=LuaRuntime(unpack_returned_tuples=True)
+  current.globals().include=lambda name:current.execute((MOD/(name+'.lua')).read_text())
+  current.execute(SETUP)
+  current.execute("include('RuntimeWork');include('LegacyCleanup');SPCLegacyCleanup.StartCommerceLoad(P,shared);d=shared.CommerceLegacyCleanup")
+  case=r'''
+   for _,city in ipairs(cities)do seed(city)end
+   unproven[2]=true
+   assert(hooks.LoadScreenClose and #hooks.LoadScreenClose==1)
+   emit('LoadScreenClose')
+   assert(remaining(cities[1])==0 and remaining(cities[2])==48 and remaining(cities[3])==48)
+   assert(removeCount==48 and d.errors['0:2']:find('STORE_REFERENCE_UNKNOWN',1,true))
+   unproven[2]=nil;unknownPresence='BUILDING_SPC_B061_CULTURE_7'
+   emit('LoadScreenClose');assert(remaining(cities[2])==48 and removeCount==48)
+   unknownPresence=nil;emit('LoadScreenClose')
+   assert(remaining(cities[2])==0 and remaining(cities[3])==48 and removeCount==96)
+   assert(not d.errors['0:2'])
+   for _,city in ipairs(cities)do assert(city.built.KEEP_EXTERNAL and city.built.BUILDING_SPC_COMMERCE_GOLD_0)end
+   return removeCount,d.writes
+  '''
+  self.assertEqual(original.execute(case),current.execute(case))
  def test_actual_new_writer_holds_legacy_until_confirmed_retirement(self):
   from test_b239_commerce import fixture
-  lua=fixture();lua.execute((MOD/'CommerceConvergence.lua').read_text())
-  lua.execute("""
-SPCCommerceConvergence.Start(P,shared,{retired=true});local legacy=shared.CommerceConvergence
+  for historical in (True, False):
+   with self.subTest(historical=historical):
+    lua=fixture(effect_source=source('Commerce.lua',B519) if historical else None)
+    if historical:
+     lua.execute(source('CommerceConvergence.lua',B519))
+     lua.execute("SPCCommerceConvergence.Start(P,shared,{retired=true})")
+    else:
+     lua.execute("include('LegacyCleanup');SPCLegacyCleanup.StartCommerceLoad(P,shared)")
+     lua.execute("assert(shared.CommerceConvergence==nil and shared.CommerceLegacyCleanup)")
+    lua.execute("""
 cities[2].present.BUILDING_SPC_B061_SCIENCE_0=true;removeFail=true
 assert(not toggle(2,'DISTRICT_CAMPUS',true));assert(ownedGold(cities[2])==0)
 assert(cities[2].present.BUILDING_SPC_B061_SCIENCE_0)

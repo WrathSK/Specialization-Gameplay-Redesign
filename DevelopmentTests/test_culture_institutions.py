@@ -12,13 +12,13 @@ from lupa.lua55 import LuaRuntime
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def display():
+def display(language="zh_Hans_CN"):
     lua=LuaRuntime()
     db=sqlite3.connect(':memory:')
     db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))')
     db.executescript((ROOT/'Mod/Text/TestText.sql').read_text())
     db.executescript((ROOT/'Mod/Text/Restructuring.sql').read_text())
-    lua.globals().loc=lua.table_from(dict(db.execute("select Tag,Text from LocalizedText where Language='zh_Hans_CN'")))
+    lua.globals().loc=lua.table_from(dict(db.execute("select Tag,Text from LocalizedText where Language=?", (language,))))
     db.close()
     lua.execute('''
       function include()end

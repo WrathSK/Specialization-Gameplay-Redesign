@@ -12,7 +12,7 @@
 
 | 问题 | 优先资料 | 仍须保留的边界 |
 |---|---|---|
-| 当前进度怎样保存、哪些档受支持 | [E2当前切片及完整合同](../../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing) | 当前实现与历史adapter分开；不能用旧City Property说明覆盖Game侧新记录 |
+| 当前进度怎样保存、哪些档受支持 | [现行保存与资格职责](../../Architecture/Specialization_v0.1_Architecture.md#事实保存与当前资格)、[引擎冷恢复参考](Engine_Reference.md#er04--cold-restore-and-persistent-facts) | [E2保存改造记录](../../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)保留早期适配、支持边界和原生证据 |
 | 为何不能仅看事件“看起来连续” | [B105原生事件反证](../../Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md)、[B106正面建城证据](../../Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md) | 首个Publish不保证事务已结束；后续FoundCity证据只限所测路径 |
 | 其它Mod怎样处理生命周期 | [其它Mod参考](Specialization_E2_Other_Mod_City_Lifecycle_References.md) | STATIC证据，不是本项目所有原生事件路径PASS |
 | 已证明的夺回、双城和新城范围 | [夺回结果](../../Status/Validation/Results/Specialization_B103_E2_Recapture_Pass.md)、[双城结果](../../Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md)、[新城结果](../../Status/Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md) | 各检查点限定场景，不能合并宣称B108新局三城已验收 |
@@ -50,7 +50,7 @@
 | 载体与 Modifier 足迹 | [2026-11-02 定义清单与复现办法](Investigations/Carrier_Modifier_Footprint/README.md) | 数字是当时的源码定义统计。实际安装数量和性能需要各自的测量。 |
 | 旧科研复制范围调查 | [D0014](Specialization_D0014_All_District_Copy.md)、[B051.66用户结果](../../Status/Validation/Results/Specialization_B051_66_User_Result.md) | [B051.67](../../Status/Validation/Results/Specialization_B051_67_User_Result.md)最小补测口头通过，非全部组合；旧四类白名单已废弃 |
 | B051自动刷新 | [实现](Specialization_B051_Automatic_Copy_Yields.md)、[事件修正](Specialization_B051_Background_Fix.md) | 65失败、66收益用户通过；不能只凭只读计算值认定载体已挂 |
-| 早期标准化目录/账本研究 | [目录快照：范围见D0015](Specialization_Standardization_Catalog_Candidate.md)、 [记录研究](Specialization_Standardization_Storage_Research.md)、[剩余研究](Specialization_v01_Remaining_Work_Review.md) | 该行描述早期研究时点；后续账本/折扣见下方B052–B054报告，当前任务不由此派发 |
+| 标准化建筑分类的由来 | [工业设计](../../Design/Industry.md)、[当前环境的 Tier 依据](Engine_Reference.md#er05--effective-chain-tier-and-actual-hd-seams)、[早期候选目录与账本原件](../../Historical/README.md#early-research-candidates-and-probe-procedures-in-git-history) | 现行模板匹配读取共享建筑层级，市中心沿用专门分组。167 栋的旧 HD 目录保留当时的分类比较、替代和名称来源 |
 | 商路来源与桥接 | [用户来源决定](Specialization_Network_Background_Source_Decision.md)、[B025](Specialization_B025_Background_Network.md)、[计数修正](Specialization_B026_Trade_Count_Fix.md)、[D0009](Specialization_D0009_Architecture_Sync.md) | 后台UI已接受；B026旧接收语义被D0009取代 |
 | 纯Gameplay调查 | [第二轮审计](Specialization_Trade_Authority_Second_Audit.md) | 未发现可靠全集，不能推断绝对不存在；不再阻塞后台UI主线 |
 | 永久存储与城市身份 | [Property/建筑](Specialization_P0_Marker_Storage.md)、[正常恢复](Specialization_B021_Normal_Load_Resume.md)、[丢史反例](Specialization_Load_History_Ambiguity.md) | 不用历史事件/当前建筑猜旧专业；极端丢写延后 |

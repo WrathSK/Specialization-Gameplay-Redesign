@@ -70,3 +70,26 @@ def verify_package_round_trip(case, before_mod, after_mod, removed, kept_path):
         case.assertEqual(deploy.snapshot(target), before)
         case.assertEqual(deploy.snapshot(Path(restored['develop_backup'])), after)
         case.assertFalse(temporary.boundary(target).exists())
+
+
+def verify_stable_round_trip(case, before_mod, after_mod, removed):
+    with tempfile.TemporaryDirectory(prefix='spc-exact-stable-round-trip-') as directory:
+        root = Path(directory).resolve()
+        past, candidate = root/'Prior/Mod', root/'Candidate/Mod'
+        target = root/'Game/Mods/SpecializationP0'
+        shutil.copytree(before_mod, past)
+        shutil.copytree(after_mod, candidate)
+        shutil.copytree(past, target)
+        commit(past.parent, 'main')
+        commit(candidate.parent, 'main')
+        before, after = deploy.snapshot(past), deploy.snapshot(candidate)
+        args = (candidate, target, after['digest'], before['digest'])
+        with case.assertRaisesRegex(ValueError, 'removal list mismatch'):
+            deploy.apply(*args, authorized=True, allow_remove=removed[:-1])
+        result = deploy.apply(*args, authorized=True, allow_remove=removed)
+        case.assertEqual(result['removed_paths'], list(removed))
+        case.assertEqual(deploy.snapshot(target), after)
+        case.assertEqual(deploy.snapshot(Path(result['backup'])), before)
+        deploy.apply(past, target, before['digest'], after['digest'], authorized=True)
+        case.assertEqual(deploy.snapshot(target), before)
+        case.assertFalse((target.parent/'.specialization-deploy-pending.json').exists())

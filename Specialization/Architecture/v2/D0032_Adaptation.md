@@ -12,7 +12,7 @@ Evidence: STATIC_CONFIRMED (source/database inspection), not a new LOCAL_SIMULAT
 
 ## Authority and reading order
 
-Design authority remains [Spec D0032](../../Design/Specialization_v0.1_Design_Spec.md), [Content index](../../Design/Content/README.md): Commerce/Industry D0032, Research D0031, Culture Gameplay D0029, Shared D0028, Culture Era Presentation D0032. No Design bytes changed. SHA256 provenance for every Design/Mod/v2 baseline file is in [source inventory](D0032_Runtime_Inventory.json).
+Design authority remains [Spec D0032](../../Design/Specialization_v0.1_Design_Spec.md), [Content index](../../Design/Content/README.md): Commerce/Industry D0032, Research D0031, Culture Gameplay D0029, Shared D0028, Culture Era Presentation D0032. No Design bytes changed. SHA256 provenance for every Design/Mod/v2 baseline file is in [source inventory](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/28e257c4598ff1169444a13d1482acef40c6991c/Specialization/Architecture/v2/D0032_Runtime_Inventory.json).
 
 Runtime archaeology baseline: develop `65170105c289bfcfc098ed3276cef795c6399a77`, Mod B076.103/modinfo103, identical to deployed121-file package at inspection. Mod implementation last changed in6a84027; `av2-runtime-b076.103` is performance baseline, not D0032 gameplay completion. main remains e3651f9/B069.96. The manifest description still says “Not deployed”; actual hash/authorized deployment record takes precedence over this old description. No runtime text corrected here.
 

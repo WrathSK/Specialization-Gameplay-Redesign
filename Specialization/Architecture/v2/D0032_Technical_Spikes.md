@@ -35,7 +35,7 @@ Baseline: B076.103; Design D0032 mixed authority map见[D0032_Adaptation](D0032_
 
 ## 只读来源与限制
 
-- `Mod/`实际调用/SQL与完整文件hash见[D0032_Runtime_Inventory.json](D0032_Runtime_Inventory.json)，不是仅从旧Status推断。
+- `Mod/`实际调用/SQL与完整文件hash见[D0032_Runtime_Inventory.json](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/28e257c4598ff1169444a13d1482acef40c6991c/Specialization/Architecture/v2/D0032_Runtime_Inventory.json)，不是仅从旧Status推断。
 - 当前本机 `Cache/DebugGameplay.sqlite` 查询确认上述DynamicModifiers、Units和购买机制定义；本次查询中SPC Buildings数量为0，因此它不证明当前运行包已加载，也不能用它重算旧PAC1894载体。未修改DB/config。
 - 原版 `Civ6.app/Contents/Assets/Base/Assets/UI/CitySupport.lua` growth显示/计算链及HD `SubMods/CityPolicies/CityPolicies.sql` 是静态线索；实际引擎结算仍要测。引用本机已安装资料，不假定其它版本相同。
 - 更完整的既有Commerce静态调查见Design的Commerce D0032 Review；本轮没有提升其证据等级。

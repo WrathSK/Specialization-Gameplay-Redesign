@@ -1,5 +1,5 @@
 -- B049: calculation preparation only. No property/carrier/yield writes.
-SPCLv4CopyRead={}
+SPCLv4CopyRead={RetirementNotice='旧工业区域生产力复制已退出。基础专家支持和公共网络保留。'}
 -- Keep engine details in Lua.log, never in the player-facing report.
 local function notice(raw)
  local text=tostring(raw)

@@ -1,9 +1,11 @@
 # R05 / R02–R06 — Minimal recovery-evidence persistence proposal
 
+**Current reading note (2026-11-18):** the approval and pending-implementation wording below describe the original 2026-10-25 checkpoint. Later [accepted Network rules](../../Design/Network.md#未确认不等于失效) and [current Architecture](../../Architecture/Specialization_v0.1_Architecture.md#network-pending-hold-and-confirmation-recovery) supersede the derived Commerce/Culture network-save target. Genuine history and deferred lifecycle duties retain their existing accepted scope. Read [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state) for actual implementation; this preserved proposal does not authorize restoring the retired persistence path.
+
 Status: USER_APPROVED_BOTH_EXTENSIONS — 2026-10-25. Technical implementation pending; no gameplay-rule amendment.
 
 The user explicitly approved both minimal extensions in this Primary session. The network/deferred-lifecycle scope below is authorized;do not request routine reauthorization. D-1/D-2/D-7,Standardization-only A,native outcome protection and deployment/main boundaries remain unchanged.
-Routing: existing [refactor intake](Audit_Followup_Priorities.md), R05. This is not a second backlog.
+Routing: existing [refactor intake](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/aa1aa7567c26076659cb3b6b9843780f1f753067/Specialization/Reports/Proposals/Audit_Followup_Priorities.md), R05. This is not a second backlog.
 
 ## What is already decided
 

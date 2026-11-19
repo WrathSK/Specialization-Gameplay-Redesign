@@ -3,12 +3,18 @@
 import unittest
 
 from refactor_harness import ROOT, measure
-from retired_crew_sources import package
+from retired_crew_sources import B513, B514, B515, package
+from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_network_effect_fact_receipts import composition
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_o7_route_observer_retirement import exercise_proof
 
 B479 = '6932e768644308849a761343c458bb4bc6c649b2'
+RETIRED_INDUSTRIAL_FILES = (
+    'CopyYields.lua', 'StandardizationDiscount.lua',
+    'UI/CopyYieldRefresh.lua', 'UI/CopyYieldRefresh.xml',
+    'UI/DiscountEligibility.lua', 'UI/DiscountEligibility.xml',
+)
 
 
 def read_production_report(root, revision=None):
@@ -42,7 +48,60 @@ return counts
     return packets, dict(readings.items())
 
 
+def replay_retired_industrial_requests(root, revision=None):
+    game = context(root, revision)
+    ui = context(root, revision, 'UI/BackgroundRoutes')
+    packets = exercise_proof(game, ui)
+    report = game.execute("""
+local s=ExposedMembers.SPC_P0
+local proof,revision=net.ProofRevision(0),net.Input(0).inputVersion
+local function request(action,token)
+ GameEvents.SPC_P0_Request.Fire(0,{Action=action,Token=token,CityID=1,Epoch=net.epoch})
+ assert(s.RequestIngress.action==action and s.RequestDepth==0)
+end
+request('LV4_COPY_READ','copy')
+assert(s.LastToken=='copy' and s.Snapshot:find('旧工业区域生产力复制已退出',1,true))
+local report=s.Snapshot
+local stage=s.Stage
+for _,action in ipairs({'DISCOUNT_INIT','DISCOUNT_ELIGIBILITY','COPY_YIELD_SAMPLE'}) do
+ request(action,action)
+ assert(s.Snapshot==report and s.LastToken=='copy' and s.Stage==stage)
+end
+request('NETWORK_ISOLATE','without-ack')
+assert(s.LastToken=='without-ack' and s.Snapshot:find('ISOLATION_UI_NOT_STOPPED',1,true))
+-- A synthetic ACK reaches the next existing admission check. Normal UI
+-- does not mount either of the old industrial sender contexts.
+for _,name in ipairs({'SPC_P0_BackgroundRoutes','SPC_CopyBackground','SPC_DiscountEligibility'}) do
+ ExposedMembers[name]={version=SPCP0.VERSION,networkStopped=true,networkStopEpoch=net.epoch}
+end
+request('NETWORK_ISOLATE','with-ack')
+assert(s.LastToken=='with-ack' and s.Snapshot:find('ISOLATION_MODULE_NOT_READY:CopyYields',1,true))
+assert(not s.NetworkIsolation.active and net.TransactionCurrent(0))
+assert(net.ProofRevision(0)==proof and net.Input(0).inputVersion==revision and s.Stage==stage)
+return report
+""")
+    return packets, report
+
+
 class NetworkDiagnostic(unittest.TestCase):
+    def test_exact_industrial_retirement_switch_and_rollback(self):
+        with package(B514) as previous, package(B515) as retired:
+            baseline, current = previous/'Mod', retired/'Mod'
+            for path in ('Data/CopyYields.sql','Data/StandardizationDiscount.sql',
+                         'StandardizationEffects.lua','StandardizationCatalog.lua','Lv4CopyRead.lua'):
+                self.assertEqual((current/path).read_bytes(), (baseline/path).read_bytes(), path)
+            verify_package_round_trip(self, baseline, current, RETIRED_INDUSTRIAL_FILES, 'StandardizationEffects.lua')
+            verify_stable_round_trip(self, baseline, current, RETIRED_INDUSTRIAL_FILES)
+
+    def test_retired_industrial_requests_preserve_report_and_strict_proof(self):
+        with package(B513) as old:
+            before = replay_retired_industrial_requests(old, B513)
+        after = replay_retired_industrial_requests(ROOT)
+        self.assertEqual(before, after)
+        self.assertEqual(len(after[0]), 3)
+        measure('retired_industrial_requests', dict(old_transport_effects=0,
+            read_only_report='MATCH', unarmed_isolation=True, strict_route_packets=3))
+
     def test_real_request_uses_the_publication_without_recapture(self):
         with package(B479) as old:
             before = read_production_report(old, B479)

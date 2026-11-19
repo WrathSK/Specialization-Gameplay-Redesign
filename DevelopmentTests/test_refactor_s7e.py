@@ -1,5 +1,5 @@
 """S7e exact retired IDs, reference-scoped success and actual owner hot paths."""
-from contextlib import contextmanager,nullcontext
+from contextlib import closing,contextmanager,nullcontext
 from hashlib import sha256
 from pathlib import Path
 import sqlite3
@@ -8,6 +8,7 @@ import unittest
 from unittest.mock import patch
 from refactor_harness import Context,ROOT,TrackedLua51,SOURCES,executed,completion,legacy_source_observation,measure
 from project_paths import external_database
+from retired_crew_sources import B519, B521, source as retired_source
 from test_refactor_s5d4c1 import actual_cross
 from refactor_defect_fixtures import startup
 import test_culture_aesthetic as aesthetic
@@ -47,18 +48,14 @@ def retirement():
  """);return c
 
 
-def culture():
+def culture(*,old=False):
  with patch.object(aesthetic,'LuaRuntime',TrackedLua51),legacy_source_observation():
-  if not hasattr(aesthetic.AestheticTests,'sql'):
-   # This explicit engine copy already contains the configured SQL. Reapplying
-   # the frozen non-idempotent initial schema would duplicate its bit rows.
-   src=sqlite3.connect(external_database(ROOT).as_uri()+'?mode=ro',uri=True)
-   aesthetic.AestheticTests.sql=sqlite3.connect(':memory:');src.backup(aesthetic.AestheticTests.sql);src.close()
-  vm=aesthetic.AestheticTests().runtime()
- return vm
+  with closing(aesthetic.database()) as db:
+   fixture=aesthetic.AestheticTests();fixture.sql=db
+   return fixture.runtime(historical=BASE if old else None)
 
 
-def convergence():
+def convergence(*,old=False):
  c=Context();c.execute("""
  counts={reads=0,writes=0,references=0};present={};exits={};reference=true
  P={Field=function(t,k)return t and t[k]end,IsTestPlayer=function(pid)return pid==0 end,
@@ -74,7 +71,10 @@ def convergence():
  assert(c==a and loss==proof,'WRONG_EXIT');exitNames=ids
  for _,id in ipairs(ids)do if present[id]then P.RemoveBuilding({},id)end end end}
  Players={[0]={GetCities=function()return {Members=function()return ipairs({a})end}end}}
- """);c.load('RuntimeWork');c.execute('SPCRuntimeWork.StartRetirement(P,shared)');c.load('CommerceConvergence');c.execute("SPCCommerceConvergence.Start(P,shared,{retired=true});d=shared.CommerceConvergence")
+ """);c.load('RuntimeWork');c.execute('SPCRuntimeWork.StartRetirement(P,shared)')
+ if old:c.load('CommerceConvergence') # history() supplies the pinned pre-repair source
+ else:c.execute(retired_source('CommerceConvergence.lua',B519))
+ c.execute("SPCCommerceConvergence.Start(P,shared,{retired=true});d=shared.CommerceConvergence")
  return c
 
 
@@ -160,7 +160,7 @@ class Culture(unittest.TestCase):
  def test_actual_aesthetic_legacy_reads_zero_after_warm_values_and_current_health_preserved(self):
   results=[]
   for old in (True,False):
-   with history()if old else nullcontext():vm=culture()
+   vm=culture(old=old)
    vm.execute("""
    oldReads=0;local has=P.HasBuilding;local old={}
    for bit=0,7 do for _,prefix in ipairs({'BUILDING_SPC_DEV_LV3_POP_CULTURE_','BUILDING_SPC_LV4_PERCENT_CULTURE_'})do old[GameInfo.Buildings[prefix..bit].Index]=true end end
@@ -186,7 +186,7 @@ class Convergence(unittest.TestCase):
  def test_retired_48_read_hotpath_has_fresh_historical_proof_even_on_hit(self):
   results=[]
   for old in (True,False):
-   with history()if old else nullcontext():c=convergence()
+   with history()if old else nullcontext():c=convergence(old=old)
    c.execute("""
    assert(d.Withdraw(a));counts.reads=0;counts.references=0
    for i=1,20 do assert(d.Withdraw(a))end
@@ -209,12 +209,19 @@ class Convergence(unittest.TestCase):
   a.owner=9;assert(not pcall(d.Withdraw,a)and counts.reads==96)
   """)
  def test_start_failure_skips_new_real_dependencies_without_changing_order(self):
+  for historical in (True,False):
+   with self.subTest(historical=historical):
+    self.assert_start_failure(historical)
+ def assert_start_failure(self,historical):
   c=startup();include=c.globals().include
   def injected(name):
    out=include(name)
    if name=='RuntimeWork':c.execute("local start=SPCRuntimeWork.StartRetirement;SPCRuntimeWork.StartRetirement=function(...)start(...);error('OWNER_FAILED')end")
    return out
-  c.globals().include=injected;c.load('Gameplay')
-  c.execute("local s=ExposedMembers.SPC_P0;for _,n in ipairs({'ResearchCross','Lv4Percent','CommerceConvergence','CultureAesthetic'})do assert(s.StartStatus[n].state=='SKIPPED_DEPENDENCY',n)end;assert(s.StartStatus.NetworkBridge.state=='OK'and not s.RuntimeRetirement)")
+  c.globals().include=injected
+  if historical:c.execute(retired_source('Gameplay.lua',B521))
+  else:c.load('Gameplay')
+  c.execute("local s=ExposedMembers.SPC_P0;for _,n in ipairs({'ResearchCross','CommerceLegacyCleanup','Commerce','CultureAesthetic'})do assert(s.StartStatus[n].state=='SKIPPED_DEPENDENCY',n)end;assert(s.StartStatus.NetworkBridge.state=='OK'and not s.RuntimeRetirement)")
+  c.execute("local s=ExposedMembers.SPC_P0;if ... then assert(s.StartStatus.Lv4Percent.state=='SKIPPED_DEPENDENCY')else assert(s.StartStatus.Lv4Percent==nil and s.Lv4Percent==nil)end",historical)
 
 if __name__=='__main__':unittest.main()

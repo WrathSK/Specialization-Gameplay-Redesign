@@ -32,7 +32,7 @@
 | `W/DevelopmentBackups/`、`W/DevelopmentReports/`、`W/DevelopmentTests/` | 不随本次迁移；冻结备份/旧测试留在原处，纯跳转页的链接更新。当前测试从R/DevelopmentTests进入 |
 | W内真实运行Mod、存档、日志、数据库及部署恢复目录 | 不迁移、不改配置；仍按部署合同及实际receipt确认 |
 
-`local/config.json:legacy_workspace`若仍为W，不自动改成新归档根：W内其它外部材料仍在原位。现行截图归档直接使用上述R下的明确位置；不依赖缺失的本机配置。Phase1_External_Materials及既有迁移清单描述当时位置，原文保留，当前位置以本映射与现行入口为准。
+`local/config.json:legacy_workspace`若仍为W，不自动改成新归档根：W内其它外部材料仍在原位。现行截图归档直接使用上述R下的明确位置；不依赖缺失的本机配置。[Phase1_External_Materials 原件](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/45643d575bb5df49e8847d58c3b9e1cbd8fc9951/Specialization/Reports/Proposals/Phase1_External_Materials.md)及既有迁移清单描述当时位置，原文由固定 Git 历史保留，当前位置以本映射与现行入口为准。
 
 外层DevelopmentReports的纯跳转页：历史文件转向实际存在的对应R文档（路径不一致时转向保留的归档原件）；“当前Status/Architecture/README”转向R中的活动入口。不能把冻结历史报告的当前/下一步表述当作新授权。
 

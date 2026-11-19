@@ -64,3 +64,5 @@ Published anchor: `a268a399439bb87730eb050da11ace85b1eff0e0`
 | `Specialization_B280_Refactor_S5a.md` | `Specialization_B280_Refactor_S5a_Closure.json` |
 | `Specialization_B281_Refactor_S5b.md` | `Specialization_B281_Refactor_S5b_Closure.json` |
 | `Specialization_B282_Refactor_S5c1.md` | `Specialization_B282_Refactor_S5c1_Closure.json` |
+
+The seven S4/S5 report names in the legacy table above now resolve through the [early local-result history table](../../../Historical/README.md#early-local-refactor-results-in-git-history). Their exact report originals remain at the fixed published commit there; the 31 Closure rows and original hashes above are unchanged.

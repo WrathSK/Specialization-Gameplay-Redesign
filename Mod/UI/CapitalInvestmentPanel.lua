@@ -11,29 +11,39 @@ local function number(n)
  if type(n)~='number'then return '—'end
  return string.format('%.6f',n):gsub('0+$',''):gsub('%.$','')
 end
+local reasonLabels={
+ CAPITAL_DOMAIN_OCCUPIED='REASON_DOMAIN_OCCUPIED',
+ CAPITAL_ACTIVE_III_REQUIRED='REASON_ACTIVE_III_REQUIRED',
+ CAPITAL_NETWORK_PENDING='REASON_NETWORK_PENDING',
+ CAPITAL_ATTAINMENT_HISTORY_UNKNOWN='REASON_ATTAINMENT_HISTORY_UNKNOWN',
+ CAPITAL_COMMERCE_PENDING='REASON_COMMERCE_PENDING',
+ CAPITAL_QUOTE_STALE='REASON_QUOTE_STALE',
+ CAPITAL_MONEY_UNCONFIRMED='REASON_MONEY_UNCONFIRMED',
+ CAPITAL_NATIVE_OUTCOME_UNKNOWN='REASON_NATIVE_OUTCOME_UNKNOWN',
+ CAPITAL_TREASURY_EMPTY='REASON_TREASURY_EMPTY',
+ CAPITAL_SOURCE_UNKNOWN='REASON_SOURCE_UNKNOWN',
+ CAPITAL_REFERENCE_UNAVAILABLE='REASON_REFERENCE_UNAVAILABLE',
+ CAPITAL_TREASURY_UNAVAILABLE='REASON_TREASURY_UNAVAILABLE',
+ CAPITAL_REPUTATION_UNKNOWN='REASON_REPUTATION_UNKNOWN',
+ CAPITAL_STANDARD_SPEED_ONLY='REASON_STANDARD_SPEED_ONLY',
+}
 local function reason(k,detail)
  local phases={DEBIT_INTENT_WRITE='PAUSE_INTENT',DEBIT_CALLING_WRITE='PAUSE_CALLING',NATIVE_DEBIT='PAUSE_DEBIT',
   CONTRACT_ACTIVATE='PAUSE_RECEIPT',ACTIVE_RECEIPT_WRITE='PAUSE_RECEIPT',CREDIT_INTENT_WRITE='PAUSE_CREDIT',
   CREDIT_CALLING_WRITE='PAUSE_CREDIT',NATIVE_CREDIT='PAUSE_CREDIT',SETTLED_RECEIPT_WRITE='PAUSE_CREDIT'}
  if detail and phases[detail.phase]then return L(phases[detail.phase])end
  if k and (k:match('^STORE_') or k:match('^PROGRESSION_') or k:match('^EVIDENCE_') or k=='CAPITAL_STATE_UNKNOWN')then return L('PAUSE_STATE')end
- local names={CAPITAL_DOMAIN_OCCUPIED='该领域已有未结算合同',CAPITAL_ACTIVE_III_REQUIRED='签约需要商业 ACTIVE III',
-  CAPITAL_NETWORK_PENDING='等待商路网络核验',CAPITAL_ATTAINMENT_HISTORY_UNKNOWN='同级来源缺少可靠机构建立时间',
-  CAPITAL_COMMERCE_PENDING='等待商业状态更新',CAPITAL_QUOTE_STALE='报价已变化，请核对新报价后再次确认',
-  CAPITAL_MONEY_UNCONFIRMED='金币实际变化与请求不符，已停止重复操作；请交回日志',
-  CAPITAL_NATIVE_OUTCOME_UNKNOWN='金币回执尚未确认；合同已暂停',CAPITAL_TREASURY_EMPTY='当前没有可投入金币',
-  CAPITAL_SOURCE_UNKNOWN='专业来源暂不可确认',CAPITAL_REFERENCE_UNAVAILABLE='城市归属暂不可确认',
-  CAPITAL_TREASURY_UNAVAILABLE='国库暂不可读取',CAPITAL_REPUTATION_UNKNOWN='信誉暂不可确认；风险投资暂停，稳健投资仍按独立资格判断',CAPITAL_STANDARD_SPEED_ONLY='本版资本投资仅支持标准速度'}
- return names[k] or (k and L('ERROR',k) or L('WAITING'))
+ local label=reasonLabels[k]
+ return label and L(label) or (k and L('ERROR',k) or L('WAITING'))
 end
 local function modeState(row,mode)return row and row.modes and row.modes[mode]end
 local function modeAllowed(row,mode)local state=modeState(row,mode);return state and state.canSign==true end
 local function reputationText(use,mode)
- if mode=='STABLE'then return '稳健投资不使用商业信誉。'end
- if use and use.status=='CONFIRMED'then return '已确认商业信誉：'..number(use.effective)
- elseif use and use.status=='NOT_APPLICABLE'then return '当前等级不使用信誉加成（R=0）。'
- elseif use and use.status=='POLICY_ZERO'then return '信誉记录异常；本次按无信誉加成政策计价（R=0），原记录保留。'end
- return '商业信誉暂不可确认，风险投资暂停。'
+ if mode=='STABLE'then return L('REPUTATION_STABLE')end
+ if use and use.status=='CONFIRMED'then return L('REPUTATION_CONFIRMED',number(use.effective))
+ elseif use and use.status=='NOT_APPLICABLE'then return L('REPUTATION_INACTIVE')
+ elseif use and use.status=='POLICY_ZERO'then return L('REPUTATION_POLICY_ZERO')end
+ return L('REPUTATION_UNKNOWN')
 end
 local function backend()
  local b=U.Backend();return b,b and current and b.views[current.owner..':'..current.city]
@@ -86,6 +96,16 @@ local function layout()
  Controls.Details:SetSizeY(y-12);Controls.DetailScroll:SetSizeY(math.max(40,body-top-54-90-8))
  return column
 end
+local contractStages={
+ ACTIVE='STAGE_ACTIVE',
+ SETTLED='STAGE_SETTLED',
+ TERMINATED='STAGE_TERMINATED',
+ HELD='STAGE_HELD',
+ DEBIT_INTENT='STAGE_DEBIT_INTENT',
+ DEBIT_CALLING='STAGE_DEBIT_CALLING',
+ CREDIT_INTENT='STAGE_CREDIT_INTENT',
+ CREDIT_CALLING='STAGE_CREDIT_CALLING',
+}
 render=function()
  local c=city();if not c then close();return end
  local b,v=backend();local row;local byID={}
@@ -105,10 +125,10 @@ render=function()
  Controls.Basis:SetText(q and (L('FUNDAMENTALS',q.D,q.S,number(q.C),number(q.r*100))..'[NEWLINE]'..(q.sSource and L('SOURCE',q.sSourceName,number(q.S)) or L('NO_SOURCE'))..'[NEWLINE]'..reputationText(q.reputationUse,current.mode)..'[NEWLINE][NEWLINE]'..L('HELP')) or L('WAITING'))
  local text=L('NO_CONTRACT')
  if contract then
-  local states={ACTIVE='执行中',SETTLED='已结算',TERMINATED='已终止',HELD='需核对回执',DEBIT_INTENT='确认中',DEBIT_CALLING='需核对扣款',CREDIT_INTENT='到期待结算',CREDIT_CALLING='需核对返还'}
-  text=L('CONTRACT_MODE',L(contract.mode=='STABLE' and 'MODE_STABLE' or 'MODE_VENTURE'))..'[NEWLINE]'..L('CONTRACT',states[contract.stage] or contract.stage,number(contract.principal),contract.due)
+  local stage=contractStages[contract.stage]
+  text=L('CONTRACT_MODE',L(contract.mode=='STABLE' and 'MODE_STABLE' or 'MODE_VENTURE'))..'[NEWLINE]'..L('CONTRACT',stage and L(stage) or contract.stage,number(contract.principal),contract.due)
   text=text..'[NEWLINE]'..L('ACTUAL_DEBIT',number(contract.debited))..'[NEWLINE]'..L('LOCKED_TERMS',contract.D,contract.S,number(contract.C),contract.sSourceName or L('SOURCE_NONE'))
-  text=text..'[NEWLINE]签约时：'..reputationText(contract.reputationSource,contract.mode)
+  text=text..'[NEWLINE]'..L('SIGNED_REPUTATION',reputationText(contract.reputationSource,contract.mode))
   if contract.stage=='SETTLED' then
    if contract.mode=='VENTURE' then text=text..'[NEWLINE]'..L(contract.won and 'RESULT_SUCCESS' or 'RESULT_FAILURE')end
    text=text..'[NEWLINE]'..L('SETTLED',number(contract.paid),number(contract.paid-(contract.debited or contract.principal)))

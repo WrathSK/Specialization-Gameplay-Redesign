@@ -97,18 +97,28 @@ class Identity(unittest.TestCase):
         self.assertEqual(db.execute('SELECT Domain,CivilizationType,LeaderType,Portrait,PortraitBackground FROM Players').fetchall(), [('Players:Expansion2_Players', CIV, LEADER, 'LEADER_T_ROOSEVELT_NEUTRAL', 'LEADER_T_ROOSEVELT_BACKGROUND')])
         # No PlayerItems table is even supplied: any accidental unique-item copy fails.
 
-    def test_chinese_copy_and_history_alias_do_not_copy_native_strategy(self):
+    def test_bilingual_copy_and_history_alias_keep_native_pages_intact(self):
         db = sqlite3.connect(':memory:'); self.addCleanup(db.close)
         db.execute('CREATE TABLE LocalizedText(Language TEXT,Tag TEXT,Text TEXT,PRIMARY KEY(Language,Tag))')
-        for family, identity in [('LEADERS','LEADER_T_ROOSEVELT'), ('CIVILIZATIONS','CIVILIZATION_AMERICA')]:
-            for chapter in ('HISTORY_PARA_1','DETAILED_BODY'):
-                db.execute('INSERT INTO LocalizedText VALUES (?,?,?)', ('zh_Hans_CN',f'LOC_PEDIA_{family}_PAGE_{identity}_CHAPTER_{chapter}', '原历史' if chapter.startswith('HISTORY') else '原特色能力说明'))
+        names = {'en_US': 'America (Specialization Test)', 'zh_Hans_CN': '美国（专业测试）'}
+        sources = {
+            'LOC_PEDIA_LEADERS_PAGE_LEADER_T_ROOSEVELT_CHAPTER_': 'LEADER_SPC_T_ROOSEVELT',
+            'LOC_PEDIA_CIVILIZATIONS_PAGE_CIVILIZATION_AMERICA_CHAPTER_': 'CIVILIZATION_SPC_AMERICA',
+        }
+        for language in names:
+            for prefix in sources:
+                db.execute('INSERT INTO LocalizedText VALUES (?,?,?)', (language, prefix+'HISTORY_PARA_1', language+' history'))
+                db.execute('INSERT INTO LocalizedText VALUES (?,?,?)', (language, prefix+'STRATEGY_BODY', 'Native strategy'))
         db.executescript((MOD / 'Text/TestAmerica.sql').read_text())
-        for lang in ('zh_Hans_CN','en_US'):
-            self.assertEqual(db.execute('SELECT Text FROM LocalizedText WHERE Language=? AND Tag=?', (lang,'LOC_SPC_AMERICA_NAME')).fetchone(), ('美国（专业测试）',))
-            self.assertEqual(db.execute('SELECT Text FROM LocalizedText WHERE Language=? AND Tag=?', (lang,'LOC_PEDIA_LEADERS_PAGE_LEADER_SPC_T_ROOSEVELT_CHAPTER_HISTORY_PARA_1')).fetchone(), ('原历史',))
-        inherited_bad = db.execute("SELECT Tag FROM LocalizedText WHERE Tag LIKE '%SPC%' AND Text='原特色能力说明'").fetchall()
-        self.assertEqual(inherited_bad, [])
+        for language, name in names.items():
+            self.assertEqual(db.execute('SELECT Text FROM LocalizedText WHERE Language=? AND Tag=?', (language,'LOC_SPC_AMERICA_NAME')).fetchone(), (name,))
+            for prefix, identity in sources.items():
+                original = prefix+'HISTORY_PARA_1'
+                alias = prefix[:prefix.index('PAGE_')+5]+identity+'_CHAPTER_HISTORY_PARA_1'
+                for tag in (original, alias):
+                    row = db.execute('SELECT Text FROM LocalizedText WHERE Language=? AND Tag=?', (language,tag)).fetchone()
+                    self.assertEqual(row, (language+' history',))
+        self.assertEqual(db.execute("SELECT count(*) FROM LocalizedText WHERE Tag LIKE '%SPC%' AND Text='Native strategy'").fetchone()[0], 0)
 
     def test_icon_aliases_leave_originals_and_rough_rider_separate(self):
         db = sqlite3.connect(':memory:'); self.addCleanup(db.close)
@@ -164,6 +174,27 @@ class Access(unittest.TestCase):
 
 
 class Package(unittest.TestCase):
+    def test_front_end_package_metadata_uses_both_supported_languages(self):
+        info = ET.parse(MOD/'SpecializationP0.modinfo').getroot()
+        title = info.findtext('Properties/Name')
+        description = info.findtext('Properties/Description')
+        self.assertEqual({title, description}, {'LOC_SPC_MOD_TITLE', 'LOC_SPC_MOD_DESCRIPTION'})
+        paths = [node.text for node in info.findall('LocalizedText/File')]
+        files = [node.text for node in info.findall('Files/File')]
+        self.assertEqual(len(paths), 2)
+        rows = {}
+        for path in paths:
+            self.assertEqual(files.count(path), 1, path)
+            table = ET.parse(MOD/path).getroot()
+            for row in table.findall('EnglishText/Row') + table.findall('LocalizedText/Replace'):
+                key = (row.get('Language', 'en_US'), row.get('Tag'))
+                self.assertNotIn(key, rows)
+                rows[key] = row.findtext('Text')
+        self.assertEqual(set(rows), {(lang, key) for lang in ('en_US', 'zh_Hans_CN') for key in (title, description)})
+        for (language, key), text in rows.items():
+            self.assertTrue(text, (language, key))
+            self.assertNotIn('B443.470', text)
+
     def test_leader_model_fallback_and_civilization_art_use_only_new_identity(self):
         for filename, identity, expected in [('Leaders.artdef',LEADER,'ART_LEADER_THEO'),('FallbackLeaders.artdef',LEADER,'FALLBACK_NEUTRAL_ROOSEVELT'),('Civilizations.artdef',CIV,'America')]:
             root=ET.parse(MOD/'ArtDefs'/filename).getroot()

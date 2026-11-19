@@ -45,7 +45,7 @@ class Dialogue(unittest.TestCase):
     def test_failure_waits_for_new_health_evidence_not_idle(self):
         l=self.fixture();l.execute("failCreate=true;history(a,{2});one();assert(total(a)==0 and effects.errors['0:1']);local n=writes;for i=1,1000 do publish()end;assert(writes==n);failCreate=false;pillage(0,1,GameInfo.Buildings.BUILDING_SPC_DIALOGUE_TOTAL_10.Index,false);publish();assert(total(a)==10 and a.history.total==10 and not effects.errors['0:1'])")
     def test_confirmed_store_exit_and_return_keep_history_and_recompute(self):
-        l=self.fixture();l.execute("a.owner=3;exits.DialogueEffects(a,{confirmed=true,targetID=1,origin={owner=0}});assert(total(a)==0 and a.history.total==5);a.owner=0;returns.DialogueEffects(0,a);assert(total(a)==5 and a.history.total==5)")
+        l=self.fixture();l.execute("a.owner=3;exits.DialogueEffects(a,{confirmed=true,targetID=1,origin={owner=0}});assert(total(a)==0 and a.history.total==5);a.owner=0;returns.DialogueEffects(0,a);assert(total(a)==0 and a.history.total==5);publish();assert(total(a)==5 and a.history.total==5)")
     def test_same_boundary_governor_repetition_coalesces_without_idle_work(self):
         l=self.fixture();l.execute("local read=shared.CityProgressionStore.DialogueState;calls=0;shared.CityProgressionStore.DialogueState=function(...)calls=calls+1;return read(...)end;for i=1,44 do fire('GovernorChanged')end;assert(calls==0);publish();assert(calls==2);for i=1,1000 do publish()end;assert(calls==2 and legacyCalls==0)")
         measure('S5d3_dialogue_native_queue',{'notifications':44,'effect_audits':1,'city_history_reads':2,'thousand_idle_extra_reads':0})

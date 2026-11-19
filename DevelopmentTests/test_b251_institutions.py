@@ -6,6 +6,7 @@ import sqlite3
 import struct
 import unittest
 import xml.etree.ElementTree as ET
+from retired_crew_sources import source as historical_source
 from test_culture_institutions import display
 from test_store_write_boundaries import fixture
 ROOT=Path(__file__).resolve().parents[1]
@@ -15,7 +16,7 @@ class Presentation(unittest.TestCase):
   l=display();l.execute("""
    v.potential=1;v.active=1;LuaEvents.SPC_PresentationChanged()
    assert(#rows.items==4 and rows.items[1].State.text=='当前')
-   assert(rows.items[4].State.text=='尚未建立' and rows.items[4].Top.tip:find('未来机构预览',1,true))
+   assert(rows.items[4].State.text=='尚未建立' and rows.items[4].Top.tip:find('潜力达到 4 级后建立',1,true))
    assert(rows.items[1].Name.color=='Gold' and rows.items[1].State.color=='Gold')
    assert(rows.items[2].Name.color=='White' and rows.items[2].Name.alpha<rows.items[1].Name.alpha)
    v.potential=4;v.active=1;LuaEvents.SPC_PresentationChanged()
@@ -46,13 +47,13 @@ class Presentation(unittest.TestCase):
    v.specialization='RESEARCH';v.institutionSummary={known=true,tradition={age=10,percent=10,nextAge=20,state='COUNTING'}};LuaEvents.SPC_PresentationChanged()
    assert(rows.items[4].Top.tip:find('已累计 10 回合',1,true) and rows.items[4].Top.tip:find('距下一档还需 10 回合',1,true))
    v.specialization='COMMERCE';v.institutionSummary={known=true,reputation={age=21,state='COUNTING'}};LuaEvents.SPC_PresentationChanged()
-   assert(rows.items[4].Top.tip:find('信誉 21/40',1,true) and rows.items[4].Top.tip:find('+10.5%',1,true))
+   assert(rows.items[4].Top.tip:find('信誉 21/40',1,true) and rows.items[4].Top.tip:find('四级启用时：商业化基础 [ICON_Gold] 金币在取整前提高 10.5%',1,true))
    v.specialization='INDUSTRY';v.institutionSummary={known=true,engineering=2,templatesKnown=true,buildingTemplates=7,districtTemplates=3};LuaEvents.SPC_PresentationChanged()
    assert(rows.items[3].Top.tip:find('建筑 7 项，区域 3 项',1,true))
-   assert(rows.items[3].Top.tip:find('生产力 +14%',1,true) and rows.items[3].Top.tip:find('折扣 4%',1,true))
+   assert(rows.items[3].Top.tip:find('+14% [ICON_Production] 生产力',1,true) and rows.items[3].Top.tip:find('购买符合条件的建筑：4% [ICON_Gold] 金币折扣',1,true))
    assert(rows.items[4].Top.tip:find('已完成研习：2 层',1,true)<rows.items[4].Top.tip:find('工程实践',1,true))
    v.active=3;LuaEvents.SPC_PresentationChanged()
-   assert(rows.items[3].Top.tip:find('生产力 +10%',1,true) and rows.items[3].Top.tip:find('折扣 0%',1,true))
+   assert(rows.items[3].Top.tip:find('+10% [ICON_Production] 生产力',1,true) and rows.items[3].Top.tip:find('购买符合条件的建筑：0% [ICON_Gold] 金币折扣',1,true))
    v.active=2;LuaEvents.SPC_PresentationChanged();assert(rows.items[3].Top.tip:find('当前不提供标准化',1,true))
    assert(rows.items[3].Top.tip:find('建筑 7 项',1,true))
   """)
@@ -70,6 +71,95 @@ class Presentation(unittest.TestCase):
    city={GetID=function()return 7 end,GetOwner=function()return 0 end,GetX=function()return 1 end,GetY=function()return 2 end}
    ViewPanelBreakdown({Owner=0,City=city,BuildingsAndDistricts={}});assert(Controls.InstitutionContainer.hidden)
   """)
+
+class MetricPlacement(unittest.TestCase):
+ def test_each_shipped_language_places_one_metric_at_its_slot(self):
+  for language in ('zh_Hans_CN','en_US'):
+   with self.subTest(language=language):
+    display(language).execute('''
+    local m=SPCInstitutionPresentation
+    local abilities={
+     RESEARCH={[4]=true}, COMMERCE={[4]=true},
+     CULTURE={[3]=true,[4]=true}, INDUSTRY={[3]=true,[4]=true}
+    }
+    v.institutionSummary={known=false}
+    local slot='@SPC_METRIC@'
+    for kind,levels in pairs(abilities)do
+     v.specialization=kind
+     for level,row in ipairs(m.GetRows(v))do
+      local help=loc[row.text]
+      local tip=m.Tooltip(level,v)
+      assert(not tip:find(slot,1,true),row.text)
+      if levels[level]then
+       local at=assert(help:find(slot,1,true),row.text)
+       assert(not help:find(slot,at+#slot,true),row.text)
+       local prefix=help:sub(1,at-1)
+       local actual=assert(tip:find(prefix,1,true),row.text)
+       assert(tip:sub(actual+#prefix):find('[NEWLINE][COLOR:',1,true)==1,row.text)
+      else
+       assert(not help:find(slot,1,true),row.text)
+      end
+     end
+    end
+    ''')
+
+ def test_shipped_english_names_and_tooltip_levels_use_the_same_locale(self):
+  display('en_US').execute('''
+  local names={
+   RESEARCH={'Scholarly Circle','Institute of Inquiry','Research Consortium','Academic Directorate'},
+   CULTURE={'Arts Society','Patrons’ Guild','Humanities Federation','Academy of the Liberal Arts'},
+   INDUSTRY={'Artisans’ Workshop','Guildhall','Engineering Bureau','Directorate of Civil Engineering'},
+   COMMERCE={'Merchant Settlement','Merchants’ Guild','Exchange','Capital Trust'}
+  }
+  for kind,entries in pairs(names)do
+   v.specialization=kind;LuaEvents.SPC_PresentationChanged()
+   local profession=Locale.Lookup('LOC_SPC_INST_'..kind)
+   assert(#rows.items==4 and Controls.InstitutionHeader.text=='Institutions')
+   for level,name in ipairs(entries)do
+    local row=rows.items[level]
+    local tip=row.Top.tip
+    assert(row.Name.text==name and row.Icon.icon=='ICON_SPC_LEVEL_'..kind..'_'..level)
+    assert(tip:find(profession..' Specialization · Level '..level..' Institution',1,true))
+    assert(tip:find('Requires '..profession..' active at Level '..level..'.',1,true))
+    assert(not tip:find('LOC_SPC_',1,true) and not tip:find('@SPC_METRIC@',1,true))
+   end
+  end
+  ''')
+
+ def test_english_preview_and_historical_rows_show_distinct_status_and_accrued_value(self):
+  display('en_US').execute('''
+  v.active=2;v.potential=3
+  v.institutionArchive={RESEARCH=4}
+  v.institutionSummary={known=true,tradition={age=10,percent=10,state='COUNTING'},dialogue=15,insights=2}
+  LuaEvents.SPC_PresentationChanged()
+  local history=rows.items[4]
+  assert(history.Name.text=='Academic Directorate' and history.State.text=='Historical Institution')
+  assert(history.Top.tip:find('Academic Tradition at Active Level 4: +10%',1,true))
+  assert(history.Top.tip:find('Its abilities are not active.',1,true))
+  assert(rows.items[7].State.text=='Inactive')
+  assert(rows.items[8].State.text=='Not yet established')
+  v.active=nil;v.activeStatus='UNKNOWN';LuaEvents.SPC_PresentationChanged()
+  assert(rows.items[7].State.text=='Pending')
+  assert(rows.items[7].Top.tip:find('Active Level awaiting confirmation',1,true))
+  ''')
+
+ def test_reworded_help_and_missing_or_duplicate_slots_keep_the_metric_visible_once(self):
+  display('en_US').execute('''
+  v.institutionSummary={known=true,dialogue=35,insights=6}
+  local tag='LOC_SPC_CULTURE_INSTITUTION_3_HELP'
+  local slot='@SPC_METRIC@'
+  local render=SPCInstitutionPresentation.Tooltip
+  local value=Locale.Lookup('LOC_SPC_INST_DIALOGUE_VALUE',35)
+  loc[tag]='Dialogue of Eras:[NEWLINE]Completion adds Tourism.'..slot
+    ..'[NEWLINE][NEWLINE]Cultivated Taste[NEWLINE]Other benefits.'..slot
+  local tip=render(3,v)
+  local at=assert(tip:find(value,1,true))
+  assert(at<tip:find('Cultivated Taste',1,true))
+  assert(not tip:find(value,at+#value,true)and not tip:find(slot,1,true))
+  loc[tag]='Older translation without a slot.'
+  tip=render(3,v)
+  assert(tip:find(loc[tag],1,true)<tip:find(value,1,true))
+  ''')
 
 class StoreSummary(unittest.TestCase):
  def runtime(self):
@@ -147,7 +237,9 @@ class Package(unittest.TestCase):
    self.assertEqual(a,(4,4,f'SPC_Institutions_{size}.dds'))
    b=(ROOT/'Mod/Textures'/a[2]).read_bytes();self.assertEqual(b[:4],b'DDS ');self.assertEqual(b[84:88],b'DXT5')
    self.assertEqual(struct.unpack_from('<II',b,12),(4*size,4*size));self.assertEqual(len(b),128+(4*size)**2)
-  root=ET.parse(ROOT/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'278')
+  approved=ET.fromstring(historical_source('SpecializationP0.modinfo','5be03451115cf60e29af31a661be483e28a56eb1'))
+  self.assertEqual(approved.get('version'),'278')
+  root=ET.parse(ROOT/'Mod/SpecializationP0.modinfo').getroot()
   listed=[x.text for x in root.findall('./Files/File')]
   actual={str(p.relative_to(ROOT/'Mod'))for p in (ROOT/'Mod').rglob('*')if p.is_file()and p.name not in ('.DS_Store','SpecializationP0.modinfo')}
   self.assertEqual(set(listed),actual);self.assertEqual(len(listed),len(set(listed)))
@@ -160,7 +252,9 @@ class Package(unittest.TestCase):
   self.assertEqual(controls['Icon'].get('Size'),'32,32')
   self.assertEqual(controls['State'].get('Anchor'),'R,C')
   self.assertEqual(controls['Name'].get('TruncateWidth'),'parent')
-  self.assertEqual(controls['Stage'].get('Style'),controls['Name'].get('Style')) # B252 native numerals
+  badges=ET.fromstring(historical_source('UI/Institutions.xml','efd54c0f353fcaa6751f0271c9a9461570ebb149'))
+  badge_controls={x.get('ID'):x for x in badges.iter()if x.get('ID')}
+  self.assertEqual(badge_controls['Stage'].get('Style'),badge_controls['Name'].get('Style')) # B252 native numerals
   source=(ROOT/'Mod/CityProgressionStore.lua').read_text()
   function=source.split(' function d.InstitutionSummary(pid,c)',1)[1].split(' function d.InstitutionArchive',1)[0]
   for bad in ('save(', 'ReadTemplates(', 'Refresh(', 'Discover(', ':Members(', 'SetProperty(', 'SetUpdate('):self.assertNotIn(bad,function)

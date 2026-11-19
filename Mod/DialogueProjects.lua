@@ -121,14 +121,18 @@ function SPCDialogueProjects.Start(P,shared)
   local reason=p and p.reason or (stage=='USED' and '本游戏时代已成功；不可重复' or stage=='AVAILABLE' and '从城市生产列表选择时代对话' or '需要文化身份及ACTIVE III')
   if not known then stage='HELD';reason='当前资格尚不可确认；未清除历史，也不完成项目'
   elseif not p and v and v.last and stage=='AVAILABLE' then reason=v.last.reason..'；可重新选择'end
-  if p and p.stage=='ACTIVE'and not rounds.CanRead(pid,id)then stage='HELD';reason='当前资格或生产未确认；等待相关事件，不完成项目'end
+  local reasonCode
+  if p and p.stage=='ACTIVE'and not rounds.CanRead(pid,id)then
+   stage='HELD';reasonCode='DIALOGUE_RELATED_FACT_REQUIRED'
+   reason='当前资格或生产未确认；等待相关事件，不完成项目'
+  end
   local lastGain,lastX,completedID,completedTurn=nil,nil,0,nil
   if v then for _,r in pairs(v.used)do
    if r.id>completedID then completedID=r.id;completedTurn=r.completed end
    if v.last and r.id==v.last.id then lastGain=r.gain;lastX=r.x end
   end end
   local cancelledID=not p and v and v.last and v.last.id>completedID and v.last.id or 0
-  publish(pid,id,{stage=stage,reason=reason,start=p and p.start,era=p and p.era or e,total=v and v.total or 0,
+  publish(pid,id,{stage=stage,reason=reason,reasonCode=reasonCode,start=p and p.start,era=p and p.era or e,total=v and v.total or 0,
    used=v and v.used[e]~=nil or false,x=lastX,gain=lastGain,reference=s.reference,token=s.token,completedID=completedID,completedTurn=completedTurn,cancelledID=cancelledID})
  end
  function d.Flush()

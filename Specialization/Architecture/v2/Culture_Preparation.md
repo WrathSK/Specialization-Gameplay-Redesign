@@ -1,34 +1,22 @@
 # 文化后续模块：计划与调查入口
 
-Current review: [B232 native acceptance and Culture remaining scope](../../Status/Validation/Results/Specialization_B232_Native_Review.md). Accepted rules are Culture D0051 / Shared D0045 / Presentation D0032; the current technical baseline is A0162. Source/live and authorization remain solely in [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state).
-
-Normal training, persistence, repeat missions, city Insight history/Tourism and Culture Network are implemented. B232's network update/withdrawal/recovery is accepted in the tested scope. **Expedition issues, remaining Meaning work and era-coverage presentation are HOLD and nonblocking**, by the user's latest decision. Existing accepted effects remain in place; Dialogue retains the accepted Tourism-only fallback. Balance is outside the current development task, not an Industry entry gate. Optional institution polish remains a separate follow-up. Next is [Industry planning](Industry_Preparation.md#current-planning-review-and-batch-grouping); no new implementation or user test is authorized here.
-
-The older B173–B185 preparation narrative below is historical evidence, not the current task queue. It must not turn already implemented N2/N3 into new development work or reopen completed tests. The module table is the current navigation summary.
-
 ## 当前切片与停止点
 
-Historical preparation snapshot below; current acceptance and HOLD boundaries are in the opening review and module table. Past authorizations are not new instructions.
-
-B173巨作启迪百分比API已获用户按所测范围接受；Scientist/Merchant精确来源与计算顺序仍是非阻塞UNKNOWN，不再派发小数排查。B166自动意义延展及其冷重启人工PASS保留，Culture追加隔离／主题化Balance边界不变。
-
-用户已授权时代对话首段：B175真实项目＋城市历史已取得所测取消、完成时取样、额度及用户冷重启确认的限定原生PASS；[B174合并观察与证据边界](../../Status/Validation/Results/Specialization_B175_Dialogue_B174_Native_Result.md)单独记录。见[M当前切片](P0_M_Dialogue.md#current-slice--b175202-project-and-history)。B176单城0/100/200%对照已取得所测巨作显示响应、五项意义追加不变及END恢复旧AUTO的证据；用户澄清整城面板存在同回合刷新问题，不作为本批反证或新增结算测试门禁，见[M当前切片](P0_M_Dialogue.md#current-slice--b176203-carrier-comparison)。[B177累计接入](P0_M_Dialogue.md#current-slice--b177204-earned-projection)已获授权并本地完成：明确采用Design允许的Tourism-only备用路径，旧动态writer退休；[四图原生整合](../../Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md)已确认累计5/资格暂停0/恢复5/完成后三时代累计20的所测路径。不扩大为所有M生命周期或所有原生产出通过。实际部署与证据只从Status读取。
-
-B168旧基础GPP及其它冻结证据保留；被D0049取代的方案不再是当前门禁。B180撤退证据不等于共存。[B182三图审阅](../../Status/Validation/Results/Specialization_B182_Expedition_Spy0_Native_Review.md)保留创建/来源/耗时及API错误事实。用户已授权并完成[B183定域修复](../../Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md)：Gameplay首都读取与错误报告，不改变Spy0、独立容量/来源绑定。81项定向本地检查保留；[B183五图原生审阅](../../Status/Validation/Results/Specialization_B183_Expedition_Spy0_Native_Review.md)已确认派遣计时进入，但精确到达失败，用户另报我方城重叠失败。不重复旧Spy0失败测试；[B184 Spy1本地原型](../../Status/Validation/Results/Specialization_B184_Expedition_Spy1_Isolation_Local.md)保留41项本地检查证据；[五图原生审阅](../../Status/Validation/Results/Specialization_B184_Expedition_Spy1_Native_Review.md)观察到派遣、抵达与同格1单位，但抵达ID变化且显示未绑定，原来源续接未通过。报告验证缺口已用实际模块反例复现；获取情报源仍禁止执行，原生/HD奖励未隔离。用户已授权并本地完成[B185连续身份与独立无奖励任务](../../Status/Validation/Results/Specialization_B185_Expedition_Identity_Task_Local.md)：67项定向检查通过；原生身份标记保留和任务隔离待一次增量验收。暂接受占用1个原生间谍名额；正式设计不变。[历史N1切片](P0_N_Expedition.md#current-slice--n1-travel-and-protection-gate)保留当时边界；当前实施范围见本页顶部。
+[现行文化设计](../../Design/Culture.md)说明能力、见闻、任务和分发规则。[现行架构](../Specialization_v0.1_Architecture.md#current-authoritative-state)说明事实、收益与持久记录的分工。实际构建和下一步见 [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)。早期文化实施顺序及当时的待验清单见[原始计划](../../Historical/README.md#delivered-culture-preparation-and-playtest-plans-in-git-history)。
 
 ## 按模块阅读
 
-| Module | Current implementation / evidence | Remaining scope |
-|---|---|---|
-| 风雅熏陶 L1 | [L1](P0_L1_Aesthetic.md): automatic building Tourism; B149 scoped acceptance plus [B226 Great Work refresh acceptance](../../Status/Validation/Results/Specialization_B226_Native_Review_Advisor_Handoff.md) | No new standalone test. |
-| 意义延展 L2 | [L2](P0_L2_Meaning.md): B166 automatic seven-domain/five-yield writer and cold-load acceptance | Remaining Meaning work, including Government/Diplomacy Culture projection, HOLD. Theming interaction accepted for v0.1; Balance outside the current task. Not full nine-domain implementation. |
-| 巨作启迪 L3 | [L3](P0_L3_Inspiration.md):3% × current E, local all-category percentage; B173 native API accepted | Exact Scientist/Merchant attribution/stacking order remains nonblocking UNKNOWN. |
-| 时代对话 M | [M](P0_M_Dialogue.md): one-turn project, saved quota/history and B177 accepted cumulative Tourism projection | Accepted Tourism-only fallback; full original-yield isolation unimplemented, not a fallback acceptance gate. |
-| 人文考察 N1/N2 | [N](P0_N_Expedition.md): normal training/binding/persistence, three missions, city history/report and city Tourism; [B224 Tourism acceptance](../../Status/Validation/Results/Specialization_B224_Native_Review.md) | Expedition activity/UI issues HOLD; source-loss reattachment remains later work. Centre-based WORKS/PLACES and temporary native Spy-capacity cost remain acknowledged. No blanket Expedition PASS. |
-| Culture Network N3 | [N3 contract](P0_N_Expedition.md#n3culture-network与精确旧eureka退出), B231 initial acceptance and [B232 update/withdrawal/recovery](../../Status/Validation/Results/Specialization_B232_Native_Review.md) | Current network native gate closed in the tested scope; no repeat long test. |
-| Hybrid D U2 / institutions | [U2](P0_U2_Culture_Era.md): compact covered/missing-era summary and tooltip plan; institution rows already exist | U2 unimplemented/on hold; institution visual polish remains optional follow-up. |
+| 要追查的行为 | 实施与验证入口 |
+|---|---|
+| 风雅熏陶的建筑业绩与馆藏更新 | [L1 实施](P0_L1_Aesthetic.md)、[B527 实机与冷读档](../../Status/Specialization_P0_Status.md#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091) |
+| 意义延展的领域产出和主题化 | [L2 实施与失败证据](P0_L2_Meaning.md#当前切片与停止点)，政府广场／外交区的文化追加已有设计规则，原生实现仍待定域验证。主题化见[现行文化设计](../../Design/Culture.md) |
+| 巨作启迪的各类伟人点数 | [L3 选用的原生百分比接口及精确归因限制](P0_L3_Inspiration.md) |
+| 时代对话的完整回合、额度、历史及旅游业绩 | [M 真实项目与累计投影](P0_M_Dialogue.md)、[B177 原生验证范围](../../Status/Validation/Results/Specialization_B177_Dialogue_Cumulative_Native_Result.md) |
+| 考察团训练、旅行、任务和见闻 | [N 实施与原生异常记录](P0_N_Expedition.md)，[结项后保留的人文考察团问题](../../Reports/Proposals/Architecture_Convergence_Closeout_Review.md#结项后继续保留的事项) |
+| 文化网络分发以及重新连通 | [N3 见闻与分发合同](P0_N_Expedition.md#n3culture-network与精确旧eureka退出)、[B232 当时的更新与退出](../../Status/Validation/Results/Specialization_B232_Native_Review.md)、[B527 无 HD 实际收益和环境范围](../../Status/Specialization_P0_Status.md#b527-no-hd-culture-network-and-load-readiness-verified--s1093) |
+| 机构后续与馆藏时代展示 | [U2 保留的展示方案](P0_U2_Culture_Era.md) |
 
-The following sections preserve earlier preparation/contracts and evidence boundaries. Their future-tense descriptions do not override the current implementation table or authorize sequential implementation. Design remains the semantic authority.
+下方保留早期接口、技术分界与已记录的测试限制。具体实施和待办按其所属构建解读。
 
 ## 共同输入与真实缺口
 
@@ -64,10 +52,4 @@ The following sections preserve earlier preparation/contracts and evidence bound
 
 ## 下一步边界与验证
 
-M分事务/ledger、native-only、正式cutover；N分交互、记录/整体旅游、Network；U2独立展示原型。切片获批时才固定具体文件与最小delta验收；已定玩法不重复请求用户决定，技术限制确实需要偏离规则时才提出DESIGN_DECISION_REQUIRED。
-
-按[公共更新与临时状态约束](../Specialization_v0.1_Architecture.md#公共更新与临时状态接入约束)声明原因、范围、必要事实与状态owner/失效/退出，不加每帧/hover扫描、粗略每城每回合一次限制或独立GC。普通增量继承未改共享生命周期证据；新持久块/归档/提交路径才做对应的保存/转移验证。原生步骤须有边际信息，不重跑默认OFF/冷启动/再启用的共享probe仪式。
-
-B166已完成获授权的意义延展自动writer／精确GWA退出源码，本地checkpoint与人工通过记录见[L2](P0_L2_Meaning.md#b166已授权--意义延展自动接入)。D0049完整L3已获本轮授权并本地完成，M/N/U2仍须独立审核授权；本准备页不授予后续实施。
-
-来源：[Culture D0049](../../Design/Content/Culture_D0049.json)、[Shared D0045](../../Design/Content/Shared_D0045.json)、[Spec Culture](../../Design/Specialization_v0.1_Design_Spec.md#6-culture--theater-square--cul)、[文化阅读版](../../Design/Culture.md)、[总切换合同](D0032_Implementation_Plan.md#明确的旧效果切换责任)。
+按[现行工作流](../../Workflow/README.md)和 [Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)确定任务范围与待验内容。文化准备阶段的切片顺序和旧组合测试方案见[完整原件](../../Historical/README.md#delivered-culture-preparation-and-playtest-plans-in-git-history)。

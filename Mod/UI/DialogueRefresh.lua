@@ -1,8 +1,6 @@
 include('DiagnosticLog')
 local print=SPCDiagnosticLog and SPCDiagnosticLog.For('DialogueRefresh') or print
 include('Probe')
-include('DialogueModel')
-include('GreatWorkAdjacencyModel')
 include('GreatWorkFacts')
 local P=SPCP0
 local busy,dirty,revision=false,true,0
@@ -50,6 +48,7 @@ local function refresh()
  if not dirty then return end
  busy=true;dirty=false;local thisRevision=revision
  collect=collect or SPCGreatWorkFacts.Collector(P)
+ -- Preserve the existing packet slots for the retired adjacency collection.
  local adjData,adjCount='',0
  local rows,signature,facts,refs={}, {}, {}, {};local factsCount,factsCities=0,0
  local seenCities={};public.scans=public.scans+1
@@ -80,11 +79,6 @@ local function refresh()
   end
   for id in pairs(cache) do if not seenCities[id] then cache[id]=nil end end
   assert(legacyValid,'GW_COLLECTION_UNAVAILABLE')
-  if s.GreatWorkAdjacency and not s.GreatWorkAdjacency.retired then
-   local aok,adata,acount=pcall(SPCGWAdjacencyModel.Collect,P,pid)
-   public.adjacencyError=not aok and tostring(adata) or nil
-   if aok then adjData,adjCount=adata,acount else adjData='';adjCount=-1 end
-  end
  end)
  -- Clear only the work that this collection consumed; concurrent marks survive.
  if revision==thisRevision then workDirty={};allWorks=false end
@@ -158,10 +152,6 @@ ContextPtr:SetInitHandler(function()
    if foreign(pid)then return end
    if pid==Game.GetLocalPlayer()then mark(reason,type(cid)=='number' and cid or nil,true)else mark(reason,nil,false)end
   end)
- end
- -- Preserve the existing adjacency dependencies. They do not recollect work slots.
- for _,name in ipairs({'ImprovementAddedToMap','ImprovementRemovedFromMap','FeatureRemovedFromMap','FeatureAddedToMap','CityTileOwnershipChanged'})do
-  local reason=name;bind(name,function()local s=ExposedMembers.SPC_P0;if s and s.GreatWorkAdjacency and not s.GreatWorkAdjacency.retired then mark(reason,nil,false)end end)
  end
  bind('LoadScreenClose',function()cache={};mark('LOAD_SCREEN_CLOSE',nil,true);safe()end)
  for _,name in ipairs({'SystemUpdateUI','GameCoreEventPublishComplete','GameCoreEventPlaybackComplete'})do bind(name,pulse)end

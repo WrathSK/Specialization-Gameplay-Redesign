@@ -3,7 +3,7 @@ import json,re,subprocess,unittest
 from unittest.mock import patch
 from pathlib import Path
 from refactor_harness import Context,ROOT,legacy_source_observation,measure
-from retired_crew_sources import B446, B447, B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B446, B447, B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B515, B517, B518, B521, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
 from refactor_defect_fixtures import request_context,startup
 from test_refactor_s5d4b2 import load_request
 from test_refactor_s7d5 import fixture as crew,FAULTS
@@ -89,7 +89,20 @@ class Startup(unittest.TestCase):
   for name in ('SPCStorageProbe','SPCEnvelopeProbe'):expected.remove(name)
   self.assertEqual(re.findall(pattern,retired_source('Gameplay.lua',B464)),expected)
   expected.remove('SPCCompletionRecordProbe')
-  self.assertEqual(re.findall(pattern,current),expected)
+  from test_refactor_s8c5c import RETIRED_INDUSTRIAL_STARTS, start_order
+  for name in RETIRED_INDUSTRIAL_STARTS:expected.remove('SPC'+name)
+  self.assertEqual(start_order(retired_source('Gameplay.lua',B515)),expected)
+  for name in RETIRED_CITY_STARTS:expected.remove('SPC'+name)
+  self.assertEqual(start_order(retired_source('Gameplay.lua',B517)),expected)
+  expected.remove('SPCCultureInspirationProbe')
+  self.assertEqual(start_order(retired_source('Gameplay.lua',B518)),expected)
+  expected.remove('SPCGWAdjacency')
+  self.assertEqual(start_order(retired_source('Gameplay.lua',B521)),expected)
+  expected.remove('SPCLv4Percent')
+  from retired_crew_sources import B527
+  self.assertEqual(start_order(retired_source('Gameplay.lua',B527)),expected)
+  expected.remove('SPCNetworkIsolation')
+  self.assertEqual(start_order(current),expected)
   self.assertIn("composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'}",current)
   c=startup();c.load('Gameplay');c.execute("assert(ExposedMembers.SPC_P0.StartStatus.PlayerActionReplies.state=='OK')")
  def test_original_composite_start_order_and_cleanup_assertion_remains_at_B356(self):
