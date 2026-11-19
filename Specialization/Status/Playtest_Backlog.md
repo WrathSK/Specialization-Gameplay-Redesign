@@ -4,9 +4,9 @@ Document Owner: Codex
 
 ## Current playtest
 
-B489.516 remains the [stable playtest baseline](Specialization_P0_Status.md#b489-stable-playtest-package-deployed--s1048); its [native acceptance](Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047) retains the actual tested profiles and scenarios. This page does not promote a later develop build.
+[B528.555](Specialization_P0_Status.md#b528555-stable-playtest-package-deployed--s1123) is the installed stable playtest baseline. Start new stable campaigns on B528 and use same-build saves. The [B528 code retirement](Specialization_P0_Status.md#residual-diagnostic-and-unloaded-city-files--s1096) has 35 local checks. The promotion verified the installed package and the rollback package.
 
-The development architecture convergence is [Owner-accepted](Specialization_P0_Status.md#owner-accepted-architecture-convergence-closeout--s1095). B527 added positive Culture Network and first-local-turn readiness evidence in an observed 69-target no-HD configuration. That result is not the pinned 28-target profile on B527, and no reload followed its positive benefit. Exact HD Engineering Study uplift remains an observation. B528's subsequent code retirement is locally verified and not deployed. Consult [Status CURRENT](Specialization_P0_Status.md#current-authoritative-state) and the [accepted closeout record](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md#结项后继续保留的事项) for current retained limits; do not reissue the historical tests below as a current queue.
+[B489 native acceptance](Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047) covers the tested HD and official Gathering Storm profiles, the latter with two test aids. [B527](Specialization_P0_Status.md#b527-no-hd-culture-network-and-load-readiness-verified--s1093) added positive no-HD Culture Network and first-local-turn evidence with 69 loaded targets. A cold check in the pinned 28-target profile and a reload after the positive benefit remain unobserved. The precise HD Engineering Study uplift also remains open. See the [accepted closeout](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md#结项后继续保留的事项) for the remaining scoped limits.
 
 ## Historical issue intake
 

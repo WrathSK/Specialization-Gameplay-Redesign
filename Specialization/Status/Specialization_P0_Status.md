@@ -1,28 +1,36 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1122
-Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
+Status Revision: S1123
+Implementation Build: B528.555 / modinfo555, promoted to main and verified in the live game directory.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
 Latest Accepted Design Revision: D0060
 Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
+Work State: STABLE_PLAYTEST_B528_DEPLOYED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
-| Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
-| Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | The identified document-maintenance pass is complete. Keep current rules and named review/technical evidence available. Treat any later retirement as a scoped dependency and recovery check when its current duty changes. |
+| Build and installation | [B528.555 stable deployment](#b528555-stable-playtest-package-deployed--s1123) matches all 310 files from main. |
+| Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
+| Validation | [Engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) and [35 B528 local checks](#residual-diagnostic-and-unloaded-city-files--s1096). Native observations keep their B489/B527 scopes. |
+| Next action | Use B528.555 for new stable games. Future gameplay and balance work follows separate scoped decisions on develop. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### B528.555 stable playtest package deployed — S1123
+
+On 2026-11-18 the Owner approved the bilingual README and the promotion of B528.555, then separately authorized stable installation. [PR #9](https://github.com/WrathSK/Specialization-Gameplay-Redesign/pull/9) merged at `0beca3138b58595bfa02749e4f5ba3662736b9e9`. Its parents are prior main `8a6aaa29` and approved head `e82f20bb`. Its tree matches the reviewed head and its Mod files match B528 source `e42caca0`.
+
+**STATIC_CONFIRMED deployment.** With the game closed, the B527 receipt `B527.554-1495cbd-playtest.json` reached `STABLE_RESTORED` before local main advanced. The stable tool then deployed the 310-file B528 package with the 29 reviewed outgoing paths. All installed files match main at SHA256 `1722ed6e5e93b4d320345248cb29778c1a108e3fc51b515ad2eff3aef0cb3095`. Receipt `.SpecializationP0-backup-f1x7zfau.receipt.json` reached `DEPLOYED`. The retained B489 rollback package matches its original 337 files at `fe601208d9fcdc359c3f8b46a017f5caa19b1284f952c9f7b60e986899b6de30`, and the outgoing B527 matches its 314 files. The final check found no pending transaction.
+
+**Playtest scope.** [B489](#b489-two-profile-native-acceptance-complete--s1047) covers the recorded HD and official Gathering Storm scenarios. The official game used two testing aids. [B527 HD](#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091) covers city-local Great Works and cold loading. The positive [B527 no-HD Culture Network observation](#b527-no-hd-culture-network-and-load-readiness-verified--s1093) used 69 loaded targets. The pinned 28-target B527 cold check, continuation across reload after that positive benefit, and the precise HD Study uplift remain open. The B528 cleanup has 35 recorded local checks and inherits native evidence only in its prior scopes. This release ran no new game test. Supported saves start and reload on the same build.
 
 ### Culture preparation routes and mixed-document cleanup checkpoint complete — S1122
 

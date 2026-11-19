@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "1495cbd1a32d2877df5aab8ecedcacbd733f35d9",
-  "runtime": "B527.554 / modinfo554 temporarily installed from develop, 314/314 MATCH. B489.516 recovery 337/337 MATCH.",
+  "runtime_commit": "0beca3138b58595bfa02749e4f5ba3662736b9e9",
+  "runtime": "B528.555 / modinfo555 stable, deployed from main PR #9. 310/310 MATCH.",
   "historical_inventory": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/28e257c4598ff1169444a13d1482acef40c6991c/Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
@@ -1556,7 +1556,7 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
-  "source_review": "S1096 verifies the four-file residual retirement after accepted B527 convergence closeout. Runtime/runtime_commit still identify the last verified installed B527 package.",
-  "source_runtime": "B528.555 / modinfo555 locally verified source candidate, not deployed.",
+  "source_review": "S1096 verifies four residual file retirements. S1123 verifies the same runtime tree on main and in the installed package.",
+  "source_runtime": "B528.555 / modinfo555, 310 files on main and in the game directory.",
   "tested_source_snapshot_sha256": "e10a426664e1a7f038d9d2f825abce54d6484d4a2e3dff3ad394f026ec48f31c"
 }

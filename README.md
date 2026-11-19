@@ -37,7 +37,7 @@ Xuting Zheng leads gameplay design and project direction, defines system boundar
 
 ### Status and next steps
 
-**v0.1 is in alpha playtesting.** `main` holds the approved stable playtest baseline, while `develop` holds ongoing work. B528 is planned as the next stable baseline together with this README update.
+**v0.1 is in alpha playtesting.** The stable playtest baseline on `main` is **B528.555**. Ongoing work continues on `develop`.
 
 Upcoming work includes:
 
@@ -99,7 +99,7 @@ Xuting Zheng 负责玩法设计、项目方向、系统边界与关键取舍，�
 
 ### 当前状态与后续方向
 
-**v0.1 处于 Alpha 实机测试阶段。** `main` 保存已批准的稳定测试基线，`develop` 保存持续开发内容。B528 计划随本次 README 更新一起晋升为下一版稳定基线。
+**v0.1 处于 Alpha 实机测试阶段。** `main` 的当前稳定测试基线为 **B528.555**，后续开发在 `develop` 上继续。
 
 接下来的工作包括：
 

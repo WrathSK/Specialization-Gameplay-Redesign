@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "AUTHORIZED",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0060",
     "research": "D0059",
@@ -11,14 +11,14 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1122",
+    "status": "S1123",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Preserve the reviewed lifecycle-maintenance result, the exact recovery routes and the current source/evidence boundaries for the next authorized task.",
+  "goal": "Record the approved B528 stable promotion, verified installation and retained evidence limits.",
   "implementation_authorized": false,
   "context": [
     {
@@ -30,14 +30,14 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Culture preparation routes and mixed-document cleanup checkpoint complete — S1122",
-      "reason": "Current delegated document family, evidence retained and next bounded work"
+      "selector": "### B528.555 stable playtest package deployed — S1123",
+      "reason": "Stable release, installed package, rollback and scoped test evidence"
     },
     {
-      "path": "Specialization/Workflow/README.md",
+      "path": "Specialization/Architecture/Playtest_Workflow.md",
       "kind": "section",
-      "selector": "### Delegated document lifecycle maintenance — accepted 2026-11-18",
-      "reason": "Standing Owner delegation, retirement criteria, recovery proof and preserved role/evidence boundaries"
+      "selector": "## Branch and documentation lifecycle — approved 2026-10-23",
+      "reason": "Source promotion and synchronization between main and develop"
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
@@ -53,48 +53,42 @@
     }
   ],
   "dependencies": [
-    "Current Authority, Status and accepted Design/Architecture govern; the Owner delegation in Workflow bounds document classification, preservation and retirement.",
-    "A document or section may retire only after checking actual current consumers/ownership and matching its original at an exact published commit/path. Preserve current Runtime_Index review evidence and independent results."
+    "Owner-approved README, source promotion and stable installation. Existing playtest workflow, exact B527 restore receipt and clean main deployment source."
   ],
   "old_writers": [
-    "NONE in this documentation scope: runtime writer ownership, initialization, cleanup and recovery responsibilities remain unchanged."
+    "This release ships the reviewed B528 runtime. S1096 records the four retired files and retained cleanup responsibilities."
   ],
   "conditional_context": [
-    "Read each affected family, actual inbound references and relevant current contract/provenance; use the Historical index for exact retired sources, not as current implementation authority.",
-    "If a document concerns native behavior, first use the existing action-scoped evidence route and Engine Reference. Do not launch a probe, game, deployment or broad audit as a side effect of maintenance."
+    "For gameplay observations, follow the profile-specific evidence in Status and Playtest_Backlog. For later documentation maintenance, use the existing Workflow delegation."
   ],
   "non_scope": [
-    "Gameplay/runtime/test code changes, save/GC changes, raw evidence/backups, editing other-role outputs, game launch, deployment, main promotion and unapproved support expansion."
+    "A new native test, gameplay changes, save migration, further deployment and implementation of roadmap items."
   ],
   "validation": [
-    "S1122: All 3 GitHub originals match bytes, Git blobs and SHA256. Retained contracts and evidence sections, current links and anchors, JSON, diff and Context Lock checks pass.",
-    "Before retirement: trace current duties/consumers and verify exact published-original bytes, Git blob and SHA256; keep true evidence and resolve current links without rewriting frozen conclusions.",
-    "For changed current documents/metadata: diff and JSON/reference checks, real context.py check/self-test/plan/read P0-H, stdlib helper tests when the active fixture changes, and explicit-path publication checks. Refresh only reviewed hashes.",
-    "Local checks are document/tool integrity only. Do not infer new runtime, performance or user-game PASS; existing native acceptance and unobserved cases retain their recorded scopes."
+    "Verify the merged head and tree, compare the installed package and recovery packages to reviewed hashes, and check terminal receipts and absence of pending transactions.",
+    "Verify the release record, links, Context Lock and branch synchronization. Preserve S1096 local checks and prior native evidence at their recorded scope."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
     "current_checkpoint": {
-      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
-      "compacted_files": 3,
-      "retired_files": 0,
-      "net_compacted_lines": 47,
-      "net_compacted_bytes": 11505,
-      "original_commit": "35d6a42d634193f5e65786df4748778a999a3fe8",
-      "historical_index": "Specialization/Historical/README.md#delivered-culture-preparation-and-playtest-plans-in-git-history",
-      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
-      "report": "Specialization/Status/Specialization_P0_Status.md#culture-preparation-routes-and-mixed-document-cleanup-checkpoint-complete--s1122",
-      "runtime_change": false,
-      "deployment": "NOT_RUN",
-      "native_validation": "NOT_RUN",
-      "validation": "All 3 GitHub originals match bytes, Git blobs and SHA256. Retained contracts and evidence sections, current links and anchors, JSON, diff and Context Lock checks pass."
+      "status": "STATIC_CONFIRMED_STABLE_DEPLOYMENT",
+      "pr": 9,
+      "merge": "0beca3138b58595bfa02749e4f5ba3662736b9e9",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b528555-stable-playtest-package-deployed--s1123",
+      "source_and_install": "310/310 MATCH",
+      "receipt": ".SpecializationP0-backup-f1x7zfau.receipt.json",
+      "removed_paths_count": 29,
+      "backup": "B489.516, 337/337 MATCH",
+      "outgoing_temporary": "B527.554, 314/314 MATCH",
+      "pending_transaction": false,
+      "native_validation": "NOT_RUN"
     },
     "runtime_identity": {
-      "source": "B528.555 / modinfo555, 310 files; locally verified, not deployed",
-      "installed": "B527.554 temporary; exact source/hash/receipt in Authority.live and Status CURRENT",
-      "stable": "B489.516 main; exact promotion/recovery identity in Authority.stable and Status CURRENT"
+      "source": "B528.555 / modinfo555 at the PR #9 merge",
+      "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
+      "stable": "main B528.555. B489.516 retained for rollback."
     },
     "engineering_closeout": {
       "status": "OWNER_ACCEPTED",
