@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S1118 marks acquisition-era dependencies and pending gates as historical and links the later accepted Tier, environment, UI and native records. Original source observations and Raw provenance are preserved.",
+  "review_basis": "S1119 retires five completed early implementation and setup notes, preserves their exact published originals and keeps native results, tests and current source review dependencies in place.",
   "files": {
     "AGENTS.md": "4f6d8f8e14c70b8a8fc50c90e92e23635c822d3353f3a7adf93b5559ca4973ab",
     "Art/Institutions/README.md": "23b7ace94796d7212ab848fb12a712a85ff2e837ec7daa0f3dcff1ad3efa7fcb",
@@ -493,7 +493,7 @@
     "Mod/UnitTargets.lua": "2fc049d186cbd684b3f7cf5c8d780ae11ed409d295234e80cae758ce29df7b8b",
     "Specialization/AGENTS.md": "7f2298d01f7ad2de8a52acf9c961c9aad01884cb6d7678764219257bd7126517",
     "Specialization/Architecture/Playtest_Workflow.md": "8b422060adbcfacaddc8ef96aa98c23591aca56ccf15439815280e63be19d15a",
-    "Specialization/Architecture/Specialization_v0.1_Architecture.md": "3e9c9c2e4ace2452b1054351cfe342162093803ef8c40c08cba37bee0a8dff3c",
+    "Specialization/Architecture/Specialization_v0.1_Architecture.md": "997b092c9b1ec48ec898290573789f375ac1bb394a8d0d90a9d2ef5d4ef064d6",
     "Specialization/Architecture/v2/Batch_A_Input_Contract.md": "7a3ad4ba4ca1f4c93d1d9a413557f5d2562a9b0788bf6d4d7dea50a6101fff18",
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
     "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md": "221a2656947d447b45a51f30ebbc7393670816a9f8fcb7b8834b21ae1a440831",
@@ -633,7 +633,7 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
     "Specialization/Status/Playtest_Backlog.md": "7b556d42cef45434320f5457cbece083b0e2b0ba21134a8bc6db48f3b6ffa358",
-    "Specialization/Status/Specialization_P0_Status.md": "e1d55c26f7c9b6986ebe6166edaf46eef5075af3a58bb45620140f3d207ab89b",
+    "Specialization/Status/Specialization_P0_Status.md": "9da1f46f03f8ceebb56f0bdf86d99410291d6d312529ca4e1a4b6af58ceb35f5",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -880,8 +880,8 @@
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md": "3ad3d5e3d7a0d7429ca62d3bf1b973bda0712dde3cae717511ec8477ed387467",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "b5be235aea5b767dd5a93ee1be05a19d7b63fc172e102def4146403bded25757",
-    "Specialization/Workflow/P0-H.json": "90f6da94be1f7f8f6221249066606b224f75693a61d8b257e2de7b3b33176f7b",
+    "Specialization/Workflow/Authority.json": "a468c463289380ab5dea58ea0c384ff34860a495681c08fc95e5f6ba5aa6c62b",
+    "Specialization/Workflow/P0-H.json": "a05d9098ca383e9f80c8ef3672c292c758b11991f021865dc4a87cb03610b0cb",
     "Specialization/Workflow/README.md": "eef4d03dd18f62db56661050dff4b2ea6e824338fc50b8009aeca04819049616",
     "Specialization/Workflow/Runtime_Index.json": "f23dc4f8a8825525949aafccd3ebe62d528ae887a0829195627a8f9d8e6ffa59",
     "Specialization/Workflow/context.py": "0ffff9d641a35bb6012a9882dcc7f0482bb0f27e47590151d491e20a81770a08",
@@ -1252,6 +1252,6 @@
     "DevelopmentTests/test_b064_shadow.py": "c7537c953dd0c214a01a6edf0409ccd22cfb44b7ac3f387115a9285151ba9176",
     "DevelopmentTests/test_b066_inheritance.py": "4e49337caaffc7c14cbe309511790a3ba894462480af0803f14db207d5049449",
     "DevelopmentTests/test_o8_residual_cleanup.py": "1be55ea0b8982e291b8a0db532bfba2fb818f4d920349bbc99aea6b05b9d72e4",
-    "Specialization/Historical/README.md": "7f0d7d06c9d803f04df52e62341fd69094c48d8a3762af35223c94c68f063fe1"
+    "Specialization/Historical/README.md": "66c7f4ead4d127a2cb833359124bcd0af24b41b52d04b57a3994e84fe53e0b3e"
   }
 }

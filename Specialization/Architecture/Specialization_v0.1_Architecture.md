@@ -352,7 +352,7 @@ B067.93已隔离所有权实验：Gameplay不再Start CityInheritanceRead/Inheri
 
 LOCAL_SIMULATION_PASS：实际Gameplay隔离段、暂停按钮ACK/无city与ledger访问、三模块未Start、shared回调/覆盖为空；核心前批回归和25%模型/SQL检查通过。不是新原生PASS；按用户要求不新增实机测试。整体验收由用户游玩中完成。
 
-当前收尾只有：等待用户界面要求，整理玩家可读专业/网络/投资信息与可进入的诊断层；版本/已知限制说明；完成后复核默认AUTO和测试开关、建立经用户授权的checkpoint。日志可记录错误/主动读取/关键变化，不周期全扫描或每帧打印。32次和通用资格不重新插入当前任务；未来专业不扩大。见[诊断与收尾评估](../Reports/Technical/Specialization_B067_Isolation_and_Diagnostics_Plan.md)。无新Design Revision、commit/push。
+当前收尾只有：等待用户界面要求，整理玩家可读专业/网络/投资信息与可进入的诊断层；版本/已知限制说明；完成后复核默认AUTO和测试开关、建立经用户授权的checkpoint。日志可记录错误/主动读取/关键变化，不周期全扫描或每帧打印。32次和通用资格不重新插入当前任务；未来专业不扩大。见[诊断与收尾评估](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6a01d72dfa9f1b8a05ab125335e6540d415aa56b/Specialization/Reports/Technical/Specialization_B067_Isolation_and_Diagnostics_Plan.md)。无新Design Revision、commit/push。
 
 ### HISTORICAL：B066范围评估与继承过程（不再派发测试）
 

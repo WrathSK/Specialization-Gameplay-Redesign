@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1118
+Status Revision: S1119
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Keep using the engine reference by question with current Architecture and scoped evidence. Continue reviewing remaining historical process reports against their actual evidence and review-source responsibilities. |
+| Next action | Preserve the remaining state and migration contracts, source-review locators and distinct technical/native findings. Further retirement of mixed files depends on tracing their live excerpts and retaining exact evidence. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Delivered early implementation and setup notes retired — S1119
+
+Five delivered setup and implementation notes leave HEAD (120 lines / 13,076 bytes). Early simulated city writes, the nine-button panel, the removed population diagnostic, B067 ownership isolation and the initial branch/playtest setup are preserved at [fixed published originals](../Historical/README.md#completed-early-implementation-and-setup-notes-in-git-history). The active Store contract, current workflow and original validation results remain the practical reading paths. The B038 five-image result retains the distinct native Getter and visible-panel evidence.
+
+The B067 history link in Architecture resolves to its exact original. Its older Status locator is indexed. Current module review dependencies and the old runnable fixtures retain their paths. All five published originals match their bytes, Git blobs and SHA256. Scoped link and anchor, JSON, diff and Context Lock checks passed. No user decision or game test is needed.
 
 ### Engine reference linked to implemented environment and scoped evidence — S1118
 

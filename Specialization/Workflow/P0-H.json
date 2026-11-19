@@ -11,7 +11,7 @@
     "shared": "D0060",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1118",
+    "status": "S1119",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
@@ -30,8 +30,8 @@
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
-      "selector": "### Engine reference linked to implemented environment and scoped evidence — S1118",
-      "reason": "Current documentation and evidence routing result"
+      "selector": "### Delivered early implementation and setup notes retired — S1119",
+      "reason": "Current delegated document family, evidence retained and next bounded work"
     },
     {
       "path": "Specialization/Workflow/README.md",
@@ -67,7 +67,7 @@
     "Gameplay/runtime/test code changes, save/GC changes, raw evidence/backups, editing other-role outputs, game launch, deployment, main promotion and unapproved support expansion."
   ],
   "validation": [
-    "S1118: Local checks passed for the 19 updated Markdown link and anchor references, JSON and Context Lock. The source-ID table and later district-attribution source evidence match the preceding bytes.",
+    "S1119: All five published originals match their bytes, Git blobs and SHA256. Scoped link and anchor, JSON, diff and Context Lock checks passed.",
     "Before retirement: trace current duties/consumers and verify exact published-original bytes, Git blob and SHA256; keep true evidence and resolve current links without rewriting frozen conclusions.",
     "For changed current documents/metadata: diff and JSON/reference checks, real context.py check/self-test/plan/read P0-H, stdlib helper tests when the active fixture changes, and explicit-path publication checks. Refresh only reviewed hashes.",
     "Local checks are document/tool integrity only. Do not infer new runtime, performance or user-game PASS; existing native acceptance and unobserved cases retain their recorded scopes."
@@ -77,13 +77,20 @@
   ],
   "result": {
     "current_checkpoint": {
-      "status": "STATIC_CONFIRMED_DOCUMENT_ROUTING",
-      "source_base": "07b47ff0a85dc496cdb4d900669b295d0c678f24",
-      "report": "Specialization/Status/Specialization_P0_Status.md#engine-reference-linked-to-implemented-environment-and-scoped-evidence--s1118",
-      "previous_reference_sha256": "b05dcd154e88d0aa6802b1361bdb3aec2b52da87413940edcabf223082c5be24",
-      "runtime_change": false,
+      "status": "STATIC_CONFIRMED_DOCUMENT_LIFECYCLE",
+      "retired_files": 5,
+      "retired_lines": 120,
+      "retired_bytes": 13076,
+      "original_commit": "6a01d72dfa9f1b8a05ab125335e6540d415aa56b",
+      "historical_index": "Specialization/Historical/README.md#completed-early-implementation-and-setup-notes-in-git-history",
+      "recovery": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
+      "runtime_test_change": false,
       "deployment": "NOT_RUN",
-      "validation": "LOCAL_DOCUMENT_CHECK_PASS"
+      "report": "Specialization/Status/Specialization_P0_Status.md#delivered-early-implementation-and-setup-notes-retired--s1119",
+      "runtime_change": false,
+      "native_validation": "NOT_RUN",
+      "source_base": "6a01d72dfa9f1b8a05ab125335e6540d415aa56b",
+      "validation": "All five published originals match their bytes, Git blobs and SHA256. Scoped link and anchor, JSON, diff and Context Lock checks passed."
     },
     "runtime_identity": {
       "source": "B528.555 / modinfo555, 310 files; locally verified, not deployed",
