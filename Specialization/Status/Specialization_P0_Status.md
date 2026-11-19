@@ -1,7 +1,7 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1115
+Status Revision: S1116
 Implementation Build: B528.555 / modinfo555 on develop, locally verified and not deployed. Temporary installation remains B527.554; stable main remains B489.516.
 Architecture Revision Reviewed: A0187
 Design Revision Reviewed: D0060
@@ -16,13 +16,19 @@ Work State: DOCUMENT_LIFECYCLE_DELEGATED_MAINTENANCE
 | Build and installation | B528.555 source candidate: four inert/unloaded Lua files retired, 310 package files, no deployment. The temporary installation remains [B527.554](#b527-verified-temporary-deployment-for-native-acceptance--s1090), 314 files. |
 | Stable | `main` B489.516 from PR #8. The temporary switch receipt identifies the verified B489.516 restore package. B307.334 is the earlier verified stable rollback package. |
 | Validation | [Owner-accepted engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) stays closed. [S1096](#residual-diagnostic-and-unloaded-city-files--s1096) records 35 local cleanup checks, static package checks and exact disposable rollback. Native evidence retains the B527/B489 scopes. |
-| Next action | Continue the delegated document review by checking the purpose and ownership of older agent and technical evidence families. Current requirements and active observations remain in Architecture, Design and Status. |
+| Next action | Continue with the remaining retired level, network and unit experiment procedures, and check each candidate against retained engine evidence and actual document consumers. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Early candidate research and city/save probe procedures retired — S1116
+
+Eighteen historical materials leave HEAD (5,474 lines / 216,068 bytes). The largest is the old Standardization catalog and its export, based on the HD table of that time. The technical index now routes readers to the current shared Tier definition and the industrial rules. The old catalogue, proposed ledger, remaining-work review, GW-002 candidate and initial agent handoff are recoverable along with the B010–B021 probe instructions. [Published originals and hashes](../Historical/README.md#early-research-candidates-and-probe-procedures-in-git-history) preserve exact source, alternatives and prior setup.
+
+Independent B011–B021 user/local results, original native limitations and the underlying technical investigations remain. B010’s historical deferral remains recorded, and unsupported storage, ownership and event edge cases retain their scope. Current readers and source review do not depend on these procedure copies. All 18 published originals matched byte-for-byte, with verified Git blobs and SHA256. Local checks passed for changed links and anchors, JSON, git diff and Context Lock. No user decision or game test is needed.
 
 ### Current architecture and historical implementation routes separated — S1115
 

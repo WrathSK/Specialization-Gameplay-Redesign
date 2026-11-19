@@ -50,7 +50,7 @@
 | 载体与 Modifier 足迹 | [2026-11-02 定义清单与复现办法](Investigations/Carrier_Modifier_Footprint/README.md) | 数字是当时的源码定义统计。实际安装数量和性能需要各自的测量。 |
 | 旧科研复制范围调查 | [D0014](Specialization_D0014_All_District_Copy.md)、[B051.66用户结果](../../Status/Validation/Results/Specialization_B051_66_User_Result.md) | [B051.67](../../Status/Validation/Results/Specialization_B051_67_User_Result.md)最小补测口头通过，非全部组合；旧四类白名单已废弃 |
 | B051自动刷新 | [实现](Specialization_B051_Automatic_Copy_Yields.md)、[事件修正](Specialization_B051_Background_Fix.md) | 65失败、66收益用户通过；不能只凭只读计算值认定载体已挂 |
-| 早期标准化目录/账本研究 | [目录快照：范围见D0015](Specialization_Standardization_Catalog_Candidate.md)、 [记录研究](Specialization_Standardization_Storage_Research.md)、[剩余研究](Specialization_v01_Remaining_Work_Review.md) | 该行描述早期研究时点；后续账本/折扣见下方B052–B054报告，当前任务不由此派发 |
+| 标准化建筑分类的由来 | [工业设计](../../Design/Industry.md)、[当前环境的 Tier 依据](Engine_Reference.md#er05--effective-chain-tier-and-actual-hd-seams)、[早期候选目录与账本原件](../../Historical/README.md#early-research-candidates-and-probe-procedures-in-git-history) | 现行模板匹配读取共享建筑层级，市中心沿用专门分组。167 栋的旧 HD 目录保留当时的分类比较、替代和名称来源 |
 | 商路来源与桥接 | [用户来源决定](Specialization_Network_Background_Source_Decision.md)、[B025](Specialization_B025_Background_Network.md)、[计数修正](Specialization_B026_Trade_Count_Fix.md)、[D0009](Specialization_D0009_Architecture_Sync.md) | 后台UI已接受；B026旧接收语义被D0009取代 |
 | 纯Gameplay调查 | [第二轮审计](Specialization_Trade_Authority_Second_Audit.md) | 未发现可靠全集，不能推断绝对不存在；不再阻塞后台UI主线 |
 | 永久存储与城市身份 | [Property/建筑](Specialization_P0_Marker_Storage.md)、[正常恢复](Specialization_B021_Normal_Load_Resume.md)、[丢史反例](Specialization_Load_History_Ambiguity.md) | 不用历史事件/当前建筑猜旧专业；极端丢写延后 |
