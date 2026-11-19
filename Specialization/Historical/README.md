@@ -681,3 +681,15 @@ Independent retrieval from GitHub matched bytes, SHA256 and Git blobs at publish
 |---|---|---|
 | [Commerce_Preparation.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/479c543bfffee73ac1bf3bd735075ab23e7306ca/Specialization/Architecture/v2/Commerce_Preparation.md) | Original implementation order and the B239 Commercialization/Crew, B241 Capital and B247 restructuring proposals | `20d967542d363f3b128b472322eb6a69ac1c3836ede103f2a9fc624c0071d9db` |
 | [Industry_Preparation.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/479c543bfffee73ac1bf3bd735075ab23e7306ca/Specialization/Architecture/v2/Industry_Preparation.md) | Original module matrix, first four test groupings, B233–B236 proposals and initial slice-order table | `5c2a57e8f7170babe3b6544d7b42631c7937e55fda48cd02868bcebfb9c04d36` |
+
+## Delivered Culture preparation and playtest plans in Git history
+
+The three original Culture pages preserve the exact planning basis for old report citations and the then-current test conditions. The working editions link to accepted Design and observed outcomes. The E2 and architectural references to implementation, native failures, ownership evidence and the still-open Expedition issue remain available.
+
+Independent retrieval from GitHub matched bytes, SHA256 and Git blobs at published `35d6a42d634193f5e65786df4748778a999a3fe8`. Read the exact original with `git show 35d6a42d634193f5e65786df4748778a999a3fe8:Specialization/Architecture/v2/<filename>`. The frozen reports retain their original relative links and recorded conclusions.
+
+| Full published original | Sections now in Git history | SHA256 |
+|---|---|---|
+| [Culture_Preparation.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/35d6a42d634193f5e65786df4748778a999a3fe8/Specialization/Architecture/v2/Culture_Preparation.md) | Superseded Culture task queue, B173–B185 preparation recap and initial sequence of checks | `136088ad0ebbab244b9a9ddf218e91fcb9a85bd64f90bbdde8de56787e3863af` |
+| [P0_N_Expedition.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/35d6a42d634193f5e65786df4748778a999a3fe8/Specialization/Architecture/v2/P0_N_Expedition.md) | B201 prototype background, combined cold-load procedure and prospective slice list | `176d75196d6dd5a85b76036331d4b1c48403cc191c2e069de261a6dcec3cd4c0` |
+| [P0_L2_Meaning.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/35d6a42d634193f5e65786df4748778a999a3fe8/Specialization/Architecture/v2/P0_L2_Meaning.md) | B165 advance-test procedures, early automatic-writer next steps and discarded dispatch copy | `b909910c96c3776997dc399903bbb9ced4551aff9958b5e10bdee154a525dfc1` |

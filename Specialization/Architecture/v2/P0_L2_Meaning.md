@@ -1,7 +1,6 @@
 # P0-L2 —「意义延展」计划与接口调查
 
-State: B166_MEANING_AUTOMATIC_USER_PASS；source/live B166.193，用户人工验收含冷重启自动重建，无截图。
-Authority: Spec D0048、Culture D0048及Shared D0045；只新增Meaning主题化暂行许可／Balance标记，Dialogue隔离与其它规则保持；用户条件后备采用临时实施隔离，不把技术延期改写成永久Design取消。B164源码已落实定域修复，原生证据与部署分别记录；source／live见[Status](../../Status/Specialization_P0_Status.md#current-authoritative-state)。
+[现行文化设计](../../Design/Culture.md)规定意义延展的领域和产出。[Status CURRENT](../../Status/Specialization_P0_Status.md#current-authoritative-state)记录实际构建与验收。下方各阶段保留产出、主题化和建筑进度的原始证据边界。
 
 ## 当前切片与停止点
 
@@ -9,7 +8,7 @@ B166.193正常自动意义延展已获用户整批人工PASS，并单独确认�
 
 B165原语与44项本地证据按原范围继承；当前七域五yield，Culture追加隔离及D0048主题化暂行／Balance保留。不扩大为完整九域六yield或所有环境通过。
 
-本批验收收口，下一建议为[L3-A](P0_L3_Inspiration.md#下一最小批次--l3-a-单城单class原生门禁)，等待授权；M/N/UI未授权。本轮只记录验收与计划，无新实现／部署。
+[B489 官方风暴环境的观察范围](../../Status/Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047)按其原始验收记录解读。B165/B166 接入准备阶段的手动场景和旧下一批建议见[完整原件](../../Historical/README.md#delivered-culture-preparation-and-playtest-plans-in-git-history)。
 
 ## B166已授权 — 意义延展自动接入
 
@@ -31,12 +30,7 @@ B165原语与44项本地证据按原范围继承；当前七域五yield，Cultur
 
 **生产复核结论。** [现有reader](../../../Mod/UI/BoostGreatWorkRead.lua:213)分别读`GetBuildingProgress()`与`GetProductionYield()`，没有取得当前目标的实时建设加成来源。原版`Base/Assets/UI/CitySupport.lua:214/328`分别读建筑进度和城市Production，不能证明本包raw getter已含目标倍率。只读加载定义DB虽有20%建筑加成定义，却没有本fixture实时资格／实例；不挑一个候选当来源。图中raw100→110、实际0→132只支持进度真实增长，`110×1.2=132`是线索，尚不能独立量化Meaning贡献。停止扩大调查，不读取存档、不扫描其它Mods。
 
-**一次最小连续session。** 用现有文化ACTIVE IV城，把两个不同历史时代的已支持作品放在本城未主题化宿主，确认报告“正常时代对话”＞0（这是旧自动倍率，不是城市项目）。普通建筑剩余需求应足够两个回合；工人／专家、总督、馆藏、人口／宜居度与生产修正保持可比，不砍树／收获／注入或换目标。
-
-1. 左键“意义延展·接入门禁”到①基线，右键记录进度P0／rawB；保持①正常过一回合，右键记P1／rawB，得到ΔB=P1−P0。①会精确hold旧GWA且新Meaning0，所以是正确对照，不能用END替代。
-2. 在刚才同一回合再左键到②追加中，右键。正常旧AUTO仍＞0，五项追加差值应等于当前报告的主题化前基值，不被旧Dialogue再乘。这里继承已测五项原语，只新增正Dialogue环境证明。
-3. 保持②再正常过一回合，右键记P2／rawA，得到ΔA=P2−P1。比较ΔA−ΔB与新增raw生产通过相同目标修正后的结果；例如raw100→110、实际增量120→132，支持新增10经过同一1.2倍率得到12。实际不同不强套例数；条件变化则记录具体歧义，不自动判PASS或要求长测。
-4. 正常结束验证即可，不再拍整套END／默认OFF／保存／冷加载／重新启用，既有证据继承。只需三次进度及②即时报告（可合并日志或截图），不按回合铺大量图。
+[原始 B165 对照流程](../../Historical/README.md#delivered-culture-preparation-and-playtest-plans-in-git-history)保留步骤、读数和当时的对照条件。
 
 **当时退出条件（B166已取代）。** 当时计划要求正旧AUTO及可比生产对照后申请正式接入；B166用户已接受按本模块新增不确定性收口，跨回合差的精确归因不再阻塞。失败只阻相应路径并给一项具体区分动作。主题化强度另留Balance，不调系数、不制造旧正倍率native PASS。原B165测试合同见下一节，它记录当时目标，不重复派发其已覆盖部分。
 
@@ -50,13 +44,11 @@ B165原语与44项本地证据按原范围继承；当前七域五yield，Cultur
 - **更新与临时状态。** 变化仍沿现有事实／K／probe定域Audit链路处理；同回合D/W真实变化保持响应，可靠输入不重复写。新增recipient proof由probe会话拥有，元数据本局固定，仅新会话替换；normalEnvironment随现有target在END／loss／加载清理退出。UI同回合baseline包含Dialogue／主题／馆藏／D／资格／reference，变化即失效；结算progress只读，不保存历史或native对象。
 - **验证与停止。** W0004 L2＋直接退出定向共55方法PASS；旧modinfo191专用断言保持原样、不适用于192，由当前192检查取代。原生只测本批新不确定性，不重复启用存档→END→冷加载harness仪式。正常Dialogue需>0，主题化若没有现成fixture则明确未验，不假造全门禁通过。失败只阻断对应正式cutover，不扩大清理、不改Design。
 
-**最小原生session。** 使用已有文化ACTIVE4城，至少两种支持时代使正常Dialogue>0，优先同时有现成正确主题化博物馆。选一项下一回合不会完成的普通建筑作为唯一生产目标。左键“意义延展·接入门禁”准备、右键记录基线；再左键启用、右键核对固定追加／正常倍率保持。保持本城生产条件不变过一个正常回合，再右键核对实际建筑进度。END后右键确认本模块精确退出、旧GWA按当前事实恢复。社区D6／Food3若已具备同场观察；不另做专门测试。无主题化fixture时该项留待验证，不要求重做五yield或共享load路径。
+[B165 结果与当时最小原生流程](../../Status/Validation/Results/Specialization_B165_Meaning_Native_Gates_Local.md)保留该阶段的证据和待验范围。
 
 ## 下一建议 — 意义延展正式接入
 
-该建议已获用户授权并由上方[B166自动接入合同](#b166已授权--意义延展自动接入)落实。此前手动单城原型并非正式玩法；当前自动writer为LOCAL完成，实际部署／原生验收以Status与B166记录为准。完整四专业盘点仍见[B164审查报告](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)，其当时“未落地”状态由各后续记录定域更新。
-
-**完成定义。** 不打开P0按当前资格／D／W自动生效，旧BASE不由加载、样本或旧按钮恢复；新正常加载／资格转换有对应原生验收。只记七域五yield支持，Culture延期及目录／recipient边界保留。通过后才提出L3批次，不自动实施。
+[B166 自动接入](#b166已授权--意义延展自动接入)落实该建议。原 [B164 四专业盘点](../../Reports/Technical/Specialization_B164_Implementation_Landing_Audit.md)记录当时尚未接入的状态。旧计划和手动原型退出条件见[完整原件](../../Historical/README.md#delivered-culture-preparation-and-playtest-plans-in-git-history)。
 
 ## 下一最小修复 — 文化隔离与社区D目录
 

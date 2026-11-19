@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S1121 compacts the delivered preparation sections in Commerce and Industry. Current Architecture anchors, ownership/verification evidence, and exact published original locators are retained.",
+  "review_basis": "S1122 completes the scoped mixed-document pass. Prior plans are recoverable at their published originals. Current authority, relevant Runtime_Index review sources, and the original technical/native limits remain.",
   "files": {
     "AGENTS.md": "4f6d8f8e14c70b8a8fc50c90e92e23635c822d3353f3a7adf93b5559ca4973ab",
     "Art/Institutions/README.md": "23b7ace94796d7212ab848fb12a712a85ff2e837ec7daa0f3dcff1ad3efa7fcb",
@@ -498,7 +498,7 @@
     "Specialization/Architecture/v2/Batch_C2_Copy_Industry_Lifecycle.md": "e9e74e61186344fe2aa6e5d00bbff9170ca40926d08e646bcc3f14481f120189",
     "Specialization/Architecture/v2/Batch_D2_Runtime_Propagation.md": "221a2656947d447b45a51f30ebbc7393670816a9f8fcb7b8834b21ae1a440831",
     "Specialization/Architecture/v2/Commerce_Preparation.md": "849ec566c00c9fe6b4e3dfda060fa10b0b3f4f97cf873dd82052fe5d8a2a35bb",
-    "Specialization/Architecture/v2/Culture_Preparation.md": "136088ad0ebbab244b9a9ddf218e91fcb9a85bd64f90bbdde8de56787e3863af",
+    "Specialization/Architecture/v2/Culture_Preparation.md": "a78635c72c0a29675d9ed92b165f2a8e50d5ee8e50d4f7ee8188ba0677fc5867",
     "Specialization/Architecture/v2/D0032_Adaptation.md": "06a1e928838d77436d8aa2a05515c089d370963716b675942eab09e365fc1f8c",
     "Specialization/Architecture/v2/D0032_Implementation_Plan.md": "4712e0c334d9b00cf8eb806a14e5e70beb916f2b733e1045ab5b40e42661477c",
     "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md": "788feff3b890388ec3eb37adbe84df6c2dcd8a72e306a34353e2ed7745b1810f",
@@ -522,10 +522,10 @@
     "Specialization/Architecture/v2/P0_F_Research_Tradition.md": "abe10ebdd320eb15c942874c4f2106ea6903f8ba8364992c4e8b7e20374fcc66",
     "Specialization/Architecture/v2/P0_K_Great_Work_Facts.md": "ee9a000c7653f0ae1c9e6a50f79bf72945a0f8c1e05787a6be6982166a8e9b08",
     "Specialization/Architecture/v2/P0_L1_Aesthetic.md": "ed3d574caa0e7ee84e8d8c925a368fa42649c76bd34c2092c2577d2dd5e72639",
-    "Specialization/Architecture/v2/P0_L2_Meaning.md": "b909910c96c3776997dc399903bbb9ced4551aff9958b5e10bdee154a525dfc1",
+    "Specialization/Architecture/v2/P0_L2_Meaning.md": "f52a7dd36d7ea1cdd55efae9f0380fb0096683b3f2e0ed55bd1be429226e5b92",
     "Specialization/Architecture/v2/P0_L3_Inspiration.md": "851d1349b1575fb1f6064673de06fa5be0b11fb58e9fce78a7e106a4a5610c7e",
     "Specialization/Architecture/v2/P0_M_Dialogue.md": "13ed36e22a7de4cab769c0010a95b9982f45eea957a2acdc2f2c17c3f2ea1a9f",
-    "Specialization/Architecture/v2/P0_N_Expedition.md": "176d75196d6dd5a85b76036331d4b1c48403cc191c2e069de261a6dcec3cd4c0",
+    "Specialization/Architecture/v2/P0_N_Expedition.md": "eee28cee6fcae0e25f6c30752ff28738bd7d627676735a4315c53ff760829c28",
     "Specialization/Architecture/v2/P0_N_Expedition_UI.md": "71ca5d3ba9981e72f3f0873b42bacaf2ca9c476cccc8b21c57711db7db5f2554",
     "Specialization/Architecture/v2/P0_U2_Culture_Era.md": "624bbff38d9bec142cc483f0d254571e7dd7dc0524d9164cd96d74e5e10c448d",
     "Specialization/Architecture/v2/Presentation_Institution_Carrier_Model.md": "862aca71fd288ce58380633a4b90cb4ddb5a1221ffddb7695ff7ce42bbc59af9",
@@ -633,7 +633,7 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
     "Specialization/Status/Playtest_Backlog.md": "7b556d42cef45434320f5457cbece083b0e2b0ba21134a8bc6db48f3b6ffa358",
-    "Specialization/Status/Specialization_P0_Status.md": "38b221f07ab7c2933aaea2a998f5b7f63a61eb4b329fb12832d1dfddda48da13",
+    "Specialization/Status/Specialization_P0_Status.md": "784d3b90c3e8f225ab041358c461f7f87db2a4724eab1617d5d4c6ece44097e3",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -880,8 +880,8 @@
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md": "3ad3d5e3d7a0d7429ca62d3bf1b973bda0712dde3cae717511ec8477ed387467",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "afdfaf1f3365d6a63cfc75d3811fc04c9a4cf7bb5f8ba0bb6837134913245c29",
-    "Specialization/Workflow/P0-H.json": "1f287a70fc38ce3cd94956f38eb28562ba1f5c07d8496d92ad2342d507b6c148",
+    "Specialization/Workflow/Authority.json": "0d7e2d21715395c2a3d6a6045440bccc978736eb9911385b1514556d2ceb1bd9",
+    "Specialization/Workflow/P0-H.json": "f481a11f44a1a90dc021c5541f847e9620d105b4be6d59d51404573890d62afd",
     "Specialization/Workflow/README.md": "eef4d03dd18f62db56661050dff4b2ea6e824338fc50b8009aeca04819049616",
     "Specialization/Workflow/Runtime_Index.json": "f23dc4f8a8825525949aafccd3ebe62d528ae887a0829195627a8f9d8e6ffa59",
     "Specialization/Workflow/context.py": "0ffff9d641a35bb6012a9882dcc7f0482bb0f27e47590151d491e20a81770a08",
@@ -1252,6 +1252,6 @@
     "DevelopmentTests/test_b064_shadow.py": "c7537c953dd0c214a01a6edf0409ccd22cfb44b7ac3f387115a9285151ba9176",
     "DevelopmentTests/test_b066_inheritance.py": "4e49337caaffc7c14cbe309511790a3ba894462480af0803f14db207d5049449",
     "DevelopmentTests/test_o8_residual_cleanup.py": "1be55ea0b8982e291b8a0db532bfba2fb818f4d920349bbc99aea6b05b9d72e4",
-    "Specialization/Historical/README.md": "ced5ca85909d6c1d0cd3250ab3efd79dc1fccc9059be1e93366bc2d67ea44c7f"
+    "Specialization/Historical/README.md": "a366fc86f36a50a928d76b61f93eeecee1b31631d11df04db5a31df249e75450"
   }
 }
