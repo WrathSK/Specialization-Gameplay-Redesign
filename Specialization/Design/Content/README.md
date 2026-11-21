@@ -5,19 +5,19 @@ Design Authority: User
 
 Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-and-repository-knowledge)。本索引只导航内容权威，不授予新玩法决定或实施权限。
 
-## Current accepted content — D0060 / D0059
+## Current accepted content — D0061 / D0059
 
 当前四专业及共同合同的唯一结构化入口：
 
 | 内容 | 当前正文 |
 |---|---|
-| 共同规则／Tier／网络／恢复 | [Shared D0060](Shared_D0060.json) |
+| 共同规则／Tier／网络／恢复 | [Shared D0061](Shared_D0061.json) |
 | 科研 | [Research D0059](Research_D0059.json) |
 | 文化 | [Culture D0059](Culture_D0059.json) |
-| 商业 | [Commerce D0059](Commerce_D0059.json) |
-| 工业 | [Industry D0059](Industry_D0059.json) |
+| 商业 | [Commerce D0061](Commerce_D0061.json) |
+| 工业 | [Industry D0061](Industry_D0061.json) |
 
-[当前Spec](../Specialization_v0.1_Design_Spec.md)与[接受记录](../Design_ChangeLog.md#accepted-d0060--2026-11-07)说明精确取代范围。D0060记录静修院／花园T4与T5权重5，各专业沿用D0059，代码／实机范围查Status。军事／港口D0037、市政D0047仍为未来设计，不扩当前运行范围。
+[当前Spec](../Specialization_v0.1_Design_Spec.md)与[接受记录](../Design_ChangeLog.md#accepted-d0061--2026-11-20)说明精确取代范围。D0061记录城市转移与毁城，科研、文化其余合同沿用D0059。代码与实机范围查Status。军事／港口D0037、市政D0047仍为未来设计，不扩当前运行范围。
 
 <details>
 <summary>Historical acceptance provenance — on demand, not current routing</summary>

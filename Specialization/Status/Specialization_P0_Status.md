@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1123
+Status Revision: S1124
 Implementation Build: B528.555 / modinfo555, promoted to main and verified in the live game directory.
 Architecture Revision Reviewed: A0187
-Design Revision Reviewed: D0060
-Latest Accepted Design Revision: D0060
-Design Sync State: D0060_OWNER_TIER_DECISIONS_SYNCED_O5A
-Work State: STABLE_PLAYTEST_B528_DEPLOYED
+Design Revision Reviewed: D0061
+Latest Accepted Design Revision: D0061
+Design Sync State: D0061_CITY_OWNERSHIP_ACCEPTED
+Work State: DEVELOP_CITY_OWNERSHIP_RULES_ACCEPTED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -16,13 +16,17 @@ Work State: STABLE_PLAYTEST_B528_DEPLOYED
 | Build and installation | [B528.555 stable deployment](#b528555-stable-playtest-package-deployed--s1123) matches all 310 files from main. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
 | Validation | [Engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) and [35 B528 local checks](#residual-diagnostic-and-unloaded-city-files--s1096). Native observations keep their B489/B527 scopes. |
-| Next action | Use B528.555 for new stable games. Future gameplay and balance work follows separate scoped decisions on develop. |
+| Current develop work | [Accepted city ownership rules](#city-ownership-rules-and-native-evidence--s1124). Implement first peaceful acquisition against a verified destination. Multi-owner continuity and permanent destruction require distinct evidence. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### City ownership rules and native evidence — S1124
+
+2026-11-20. The Owner accepted first peaceful acquisition, return after multiple transfers, and permanent destruction followed by refoundation. [Design acceptance](../Design/Design_ChangeLog.md#accepted-d0061--2026-11-20) records the branch-specific rules and exclusions. [Engine reference](../Reports/Technical/Engine_Reference.md#er09--城市换手身份与永久毁城) distinguishes two native outgoing gifts, one actual changed-ID return, official UI consumers, community implementations, and the still unobserved incoming/rebuild paths. Source and installed package here are B528.555. No new game test ran. Development starts with verified first acquisition; proposed additions to permanent storage require Owner review before implementation.
 
 ### B528.555 stable playtest package deployed — S1123
 

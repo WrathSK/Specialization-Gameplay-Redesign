@@ -2,13 +2,13 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0060
+Design Revision: D0061
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-11-07
-Acceptance Evidence: 用户确认静修院／花园保留T4、数据中心按真实链为T5并贡献5点D、学术主持仍覆盖T1–T4，并授权首片环境装配。
-Previous Accepted Revision: [D0059冻结原文](Revisions/Specialization_Design_Spec_D0059.md)
-Latest Accepted Design Revision: D0060
+Acceptance Date: 2026-11-20
+Acceptance Evidence: 用户认可城市易主草案第三节三条规则及分阶段实施顺序。
+Previous Accepted Revision: [D0060冻结原文](Revisions/Specialization_Design_Spec_D0060.md)
+Latest Accepted Design Revision: D0061
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
@@ -141,6 +141,10 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **明确征服例外：** REALLOCATING目标在配置前被其它玩家取得，立即销毁本次重组状态与未完成资产账本、清除旧Current Identity、解散绑定团队，城市无专业身份，双方均不能继续半成品。原玩家以后重新取得，按PROG-006至009无自身专业历史AI城snapshot/Claim分流，不按PROG-004恢复半成品；此时原REALLOCATING事务已经消失，原禁止Claim不再适用。销毁范围不是所有专业永久历史，未授权清空其它成果或补定其Potential/Legacy；非重组城市仍按正常继承。具名A–G状态按SHARED-LIFECYCLE-001及对应Content；其它未讨论资产边界不能类推。
 
+**PROG-012（D0061）** 城市的所有权真实转移后，和平取得与征服沿用同一分流。原有专业、投资和具名城市历史随可确认的同一城市，经过几个主人也一样。首次接手无专业历史城市，在交割时冻结已完工的合格区域，候选非空由玩家认领，空集等交割后的首次有效完工。已登记未认领城保留原模式与候选。只处理真正交割给各方的城市。处于清算后且配置前的重组目标按 PROG-011 的专门例外处理。
+
+**PROG-013（D0061）** 城市经可靠事实确认永久消失时，终止该城的专业记录效力。同址新城获得独立身份，自建走首个区域完工，首次取得无历史外城走交割认领。原文明的奇观信用和已兑现成果保留。关键城毁灭使未结资本或发展投资按既有关键城易主后果只终止一次。原玩家仍存续时，存活施工队保留使用权且不占新城名额，考察团失去归档城可重新挂靠，进行中重组目标被毁则绑定团队解散。证据仅限已确认的同一城市、已经完成的交割或永久毁城。位置、城名、单个移除通知和暂时读不到记录均不足以继承或销毁。原主人灭亡但无可靠关键城转移或毁灭证据、发展目标建筑或区域本身失效，两项继续暂缓。
+
 ## 4. v0.1共同Lv2规则 — SHARED
 
 **SHARED-001** ACTIVE Lv2起，对应专业区域本体及该区域每一级建筑各+1 Housing。
@@ -151,7 +155,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ### Shared Mechanical Vocabulary — D0028
 
-唯一当前共享定义：[Shared D0060](Content/Shared_D0060.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
+唯一当前共享定义：[Shared D0061](Content/Shared_D0061.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
 
 **D0035语义及引用覆盖：** D正式中文名“区域基础设施深度”，即Absolute Infrastructure Depth。不是完成百分比，不要求建满=10；三层链D6、四层链D10均为允许的额外投资差异。当前不引入Relative Completeness。已有专业冻结文件中Shared_D0028引用及“区域完善度”用语，当前解释统一遵从Shared_D0045保留的D0035语义澄清；旧文件字节不变、历史解释保留。公式、稳定concept ID及其它Shared合同不变。[Consumer/目录/术语审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)。
 
@@ -209,7 +213,7 @@ D0032批准[Culture时代馆藏Hybrid D方向](../Historical/Design/Records/Cult
 
 **D0053: DESIGN_FROZEN — D0052一级260及成本保留，施工接受适用Production加成并留待未来实测平衡； 在D0044职责／首测值上追加每模板来源绑定、正式Gold/Faith、研习中断、专业单位保护与最终Floor；模板可靠性及历史合同保留，implementation / balance validation pending.**
 
-唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry content](Content/Industry_D0059.json)。[本轮接受与取代](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)／[D0044既定职责](../Historical/Design/Reviews/Industry_D0044_Review.md)、[早期冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
+唯一Industry新公式、范围、参数和中文Tooltip正文：[Industry D0061](Content/Industry_D0061.json)。[本轮接受与取代](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)／[D0044既定职责](../Historical/Design/Reviews/Industry_D0044_Review.md)、[早期冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)。四机构累计永久存在；名称仍STRONG_CANDIDATE，机构不是普通engine Building。
 
 | Rule ID | 当前权威content条目 |
 |---|---|
@@ -248,7 +252,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 **D0057: DESIGN_FROZEN；发展投资同阶合格候选取最低理论购买价并列明依据、不绑定报价建筑；最高S同级按最早建立对应机构等级优先，其它合同保留；外部来源身份过滤与Harbor→Food已接受，D0054逐领域Floor保留；在D0045基础上按2026-10-16用户交接修订商业化、资本投资资格、风险保护与发展投资，其余D0039–D0045合同保持；不等于实现／平衡验收／技术通过。**
 
-唯一机械合同：[Commerce D0058](Content/Commerce_D0059.json)（[D0056](Content/Commerce_D0056.json)为历史）（[D0055](Content/Commerce_D0055.json)为历史）（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
+唯一机械合同：[Commerce D0061](Content/Commerce_D0061.json)（[D0056](Content/Commerce_D0056.json)为历史）（[D0055](Content/Commerce_D0055.json)为历史）（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
 
 | Rule ID | 当前权威content |
 |---|---|
@@ -268,7 +272,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 重组团队首版500Production、仅生产训练，明确不可捕获／转Owner，敌方原可捕获／消灭的交互保护撤回且无主动删除；沿用P→P−1及至少5完整混乱回合（v0.1只支持标准速度）、非Food产出/净余粮各−75%。配置前目标被征服立即销毁本次事务/未完成账本/旧当前身份并解散团队；原玩家后续夺回按PROG-011例外重新snapshot/Claim，不恢复半成品。
 
-五域及主要公式/初值已定，不再沿用D0032对应TBD；初值仍可Balance调整。D0050已关闭资本领域/S候选与等级/空池、同域并发作用域、保护组合与跨Owner、X聚合与发展参考态等剩余项；v0.1只支持标准速度。关键城市摧毁／移除、原主人在无可靠关键城转移证据时被消灭、发展投资签约后目标失效三项**暂缓到v0.1之后**，运行时保守处理只是技术保护。D0055仅增加来源身份过滤及港口总粮食映射；D0054逐领域Floor保留，无其它新增floor或上限。旧5F5P、网络类型专家加成、20%汇聚、单双向50/100等持续退出；共同中心接收分发不变。
+五域及主要公式/初值已定，不再沿用D0032对应TBD；初值仍可Balance调整。D0050已关闭资本领域/S候选与等级/空池、同域并发作用域、保护组合与跨Owner、X聚合与发展参考态等剩余项；v0.1只支持标准速度。永久毁城按 PROG-013 处理。原主人灭亡却无关键城转移或毁灭证据、发展投资签约后目标失效两项继续暂缓。D0055仅增加来源身份过滤及港口总粮食映射；D0054逐领域Floor保留，无其它新增floor或上限。旧5F5P、网络类型专家加成、20%汇聚、单双向50/100等持续退出；共同中心接收分发不变。
 
 **COM-LIFECYCLE-002 — ACCEPTED D0042** 商业化选择域及activation order是持久配置：容量减少LIFO暂停而非删除，容量恢复按原顺序前N项自动恢复；主动关闭删除，重开最新。保有Commerce Identity时总督／ACTIVE下降保留配置；Identity退出或易主清空；同Owner同身份读档先恢复配置、再按当前事实派生效果，信誉Owner保留规则独立。已训练重组团队不因训练来源总督／ACTIVE／Identity／Owner变化删除或转交；绑定后随目标REALLOCATING事务，训练来源仅provenance，其易主不能取消另一目标事务。目标易主仍执行既定销毁。
 

@@ -3,8 +3,18 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0060
+Latest Accepted Design Revision: D0061
 Document State: ACCEPTED
+
+## Accepted D0061 — 2026-11-20
+
+用户认可[城市易主草案第三节](../Reports/Proposals/City_Ownership_Change_Rules_Draft.md)的三项裁定及实施顺序。城市的所有权真实转移后，和平取得与征服沿用同一分流。原有专业、投资和具名城市历史随可确认的同一城市，经过几个主人也一样。首次接手无专业历史城市，在交割时冻结已完工的合格区域，候选非空由玩家认领，空集等交割后的首次有效完工。已登记未认领城保留原模式与候选。只处理真正交割给各方的城市。城市经可靠事实确认永久消失时，终止该城的专业记录效力。同址新城获得独立身份，自建走首个区域完工，首次取得无历史外城走交割认领。原文明的奇观信用和已兑现成果保留。关键城毁灭使未结资本或发展投资按既有关键城易主后果只终止一次。原玩家仍存续时，存活施工队保留使用权且不占新城名额，考察团失去归档城可重新挂靠，进行中重组目标被毁则绑定团队解散。证据仅限已确认的同一城市、已经完成的交割或永久毁城。位置、城名、单个移除通知和暂时读不到记录均不足以继承或销毁。原主人灭亡但无可靠关键城转移或毁灭证据、发展目标建筑或区域本身失效，两项继续暂缓。
+
+Accepted Spec SHA256: `52de79223fd0e6c8fcf6bf6aba2614d2fd0fb0f293a629208862a5211d871734`
+Frozen D0060 Spec SHA256: `782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39`
+[Shared D0061](Content/Shared_D0061.json) SHA256: `12cf3d8dbc86175aade322112421ce68b73a233d28f68167127d46f330e32dae`
+[Commerce D0061](Content/Commerce_D0061.json) SHA256: `555e16d4e1d75ba68285496122a6b5799a84b8a1d8f76ba04c4e241946a73481`
+[Industry D0061](Content/Industry_D0061.json) SHA256: `030fc379baacc519e7b6b0befa541b775b1657a1562d3b511695da9cff8e733c`
 
 ## Accepted D0060 — 2026-11-07
 

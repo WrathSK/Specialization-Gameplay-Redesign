@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "AUTHORIZED",
   "authority_versions": {
-    "design": "D0060",
+    "design": "D0061",
     "research": "D0059",
-    "industry": "D0059",
+    "industry": "D0061",
     "culture": "D0059",
-    "commerce": "D0059",
-    "shared": "D0060",
+    "commerce": "D0061",
+    "shared": "D0061",
     "presentation": "D0032",
     "architecture": "A0187",
-    "status": "S1123",
+    "status": "S1124",
     "runtime": "B528.555 / modinfo555",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the approved B528 stable promotion, verified installation and retained evidence limits.",
-  "implementation_authorized": false,
+  "goal": "Implement approved city ownership rules by proven branch, beginning with first peaceful acquisition.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -28,22 +28,16 @@
       "reason": "Current scope, package and next-action authority after engineering closeout"
     },
     {
-      "path": "Specialization/Status/Specialization_P0_Status.md",
+      "path": "Specialization/Design/Shared.md",
       "kind": "section",
-      "selector": "### B528.555 stable playtest package deployed — S1123",
-      "reason": "Stable release, installed package, rollback and scoped test evidence"
+      "selector": "### 和平受让、多次转手与同址重建",
+      "reason": "Accepted ownership, destruction and new-city rules"
     },
     {
-      "path": "Specialization/Architecture/Playtest_Workflow.md",
+      "path": "Specialization/Reports/Technical/Engine_Reference.md",
       "kind": "section",
-      "selector": "## Branch and documentation lifecycle — approved 2026-10-23",
-      "reason": "Source promotion and synchronization between main and develop"
-    },
-    {
-      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-      "kind": "section",
-      "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current accepted Architecture and implementation/approval boundaries"
+      "selector": "## ER09 — 城市换手、身份与永久毁城",
+      "reason": "Transfer windows, endpoint identity and scope of native evidence"
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
@@ -53,38 +47,24 @@
     }
   ],
   "dependencies": [
-    "Owner-approved README, source promotion and stable installation. Existing playtest workflow, exact B527 restore receipt and clean main deployment source."
+    "Accepted D0061. Existing CityProgressionStore and fixed-candidate Claim flow. Positive transfer evidence and live destination identity."
   ],
   "old_writers": [
-    "This release ships the reviewed B528 runtime. S1096 records the four retired files and retained cleanup responsibilities."
+    "CityProgressionStore remains the only progression admission writer. Do not create a second owner or bypass its history reservation."
   ],
   "conditional_context": [
-    "For gameplay observations, follow the profile-specific evidence in Status and Playtest_Backlog. For later documentation maintenance, use the existing Workflow delegation."
+    "Read individual professional loss/return rules only when their branch is touched. Consult the historical evidence linked from ER09 for native event claims."
   ],
   "non_scope": [
-    "A new native test, gameplay changes, save migration, further deployment and implementation of roadmap items."
+    "New permanent fields without Owner approval, save migration, unrelated owner elimination or target invalidation, deployment and game launch."
   ],
   "validation": [
-    "Verify the merged head and tree, compare the installed package and recovery packages to reviewed hashes, and check terminal receipts and absence of pending transactions.",
-    "Verify the release record, links, Context Lock and branch synchronization. Preserve S1096 local checks and prior native evidence at their recorded scope."
+    "Check accepted revision and content hashes, new endpoints and order, isolation from unrelated cities, old conquest/return behavior, and same-build readback. Separate local tests from native evidence."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
-    "current_checkpoint": {
-      "status": "STATIC_CONFIRMED_STABLE_DEPLOYMENT",
-      "pr": 9,
-      "merge": "0beca3138b58595bfa02749e4f5ba3662736b9e9",
-      "report": "Specialization/Status/Specialization_P0_Status.md#b528555-stable-playtest-package-deployed--s1123",
-      "source_and_install": "310/310 MATCH",
-      "receipt": ".SpecializationP0-backup-f1x7zfau.receipt.json",
-      "removed_paths_count": 29,
-      "backup": "B489.516, 337/337 MATCH",
-      "outgoing_temporary": "B527.554, 314/314 MATCH",
-      "pending_transaction": false,
-      "native_validation": "NOT_RUN"
-    },
     "runtime_identity": {
       "source": "B528.555 / modinfo555 at the PR #9 merge",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
@@ -116,6 +96,24 @@
       "index": "Specialization/Historical/README.md#previous-active-task-manifest-history-in-git",
       "verification": "REMOTE_BYTES_SHA256_GIT_BLOB_MATCH",
       "note": "Full previous result/validation/dependency history; use exact source and recorded prerequisites. Current original result files/raw evidence are untouched."
+    },
+    "stable_release": {
+      "status": "STATIC_CONFIRMED_STABLE_DEPLOYMENT",
+      "pr": 9,
+      "merge": "0beca3138b58595bfa02749e4f5ba3662736b9e9",
+      "report": "Specialization/Status/Specialization_P0_Status.md#b528555-stable-playtest-package-deployed--s1123",
+      "source_and_install": "310/310 MATCH",
+      "receipt": ".SpecializationP0-backup-f1x7zfau.receipt.json",
+      "removed_paths_count": 29,
+      "backup": "B489.516, 337/337 MATCH",
+      "outgoing_temporary": "B527.554, 314/314 MATCH",
+      "pending_transaction": false,
+      "native_validation": "NOT_RUN"
+    },
+    "current_checkpoint": {
+      "status": "ACCEPTED_DESIGN_AND_SCOPED_REFERENCE",
+      "report": "Specialization/Status/Specialization_P0_Status.md#city-ownership-rules-and-native-evidence--s1124",
+      "native_validation": "Existing native traces only; no new playtest."
     }
   }
 }
