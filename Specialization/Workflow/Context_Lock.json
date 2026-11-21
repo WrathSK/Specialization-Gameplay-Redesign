@@ -1159,7 +1159,7 @@
     "DevelopmentTests/test_pu06b_reputation_use.py": "c3342ce43df76a99b20561e87f23a6a37b35d743728c2ecdcdc1f4f299f8ee22",
     "DevelopmentTests/test_pu06c_capital_terms.py": "4a5fd7e63ab9d1ed62c2d8ef5b7d60d2bbac5ce163514f2427f9248e7e24d28a",
     "DevelopmentTests/test_pu07a_completion_scope.py": "9429b6e97745441f91d015d4b336c50a3db6e6e0b03661d6ada5661fe49888ed",
-    "Specialization/Reports/Technical/Engine_Reference.md": "6c5538bb535feae48e3555ff675c09a32d2f3ef78d8498c5715f5fb684e81673",
+    "Specialization/Reports/Technical/Engine_Reference.md": "d0a6feeb9a3c856c2599d7c45c5826af2dc8acc1abdc88872bba2b4172ade6b9",
     "DevelopmentTests/test_pu07_source_attribution.py": "5ebdb14123163475de6a3d918d825dbfecb5b391ff8f4cae15527b92a00f783a",
     "DevelopmentTests/test_pu08_cleanup.py": "3b99fac82860c0e0dae2699b0ae0473e9125359158baa61f18ebd03f63a87c6a",
     "DevelopmentTests/test_pu09_marker_roots.py": "61ed9ec817ec762c130048361c7ea7e5717290385e7d1f2155c975dc49f17f46",
