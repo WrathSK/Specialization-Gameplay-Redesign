@@ -1558,5 +1558,5 @@
   },
   "source_review": "S1127 verifies Crew zero-progress cancellation against already consumed completion receipts. Stable deployment remains B528.555.",
   "source_runtime": "B530.557 / modinfo557 develop, 310 files; no deployment.",
-  "tested_source_snapshot_sha256": "bfb19cb5902f14f0917aeac904043f9fa1e1109e9ec318f5c4ba52318a1b2fc5"
+  "tested_source_snapshot_sha256": "9407d84a0b20e63f38371d0f688c477ac217923c9a9768b278822022ca6745c4"
 }

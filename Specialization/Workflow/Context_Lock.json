@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S1127 verifies Crew zero-progress cancellation against already consumed completion receipts. Stable deployment remains B528.555.",
+  "review_basis": "S1128 records the B530 Store/Network transaction investigation. Free City conquest admission remains open in the parked ownership work.",
   "files": {
     "AGENTS.md": "4f6d8f8e14c70b8a8fc50c90e92e23635c822d3353f3a7adf93b5559ca4973ab",
     "Art/Institutions/README.md": "23b7ace94796d7212ab848fb12a712a85ff2e837ec7daa0f3dcff1ad3efa7fcb",
@@ -632,8 +632,8 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Spy_Identity_Naming.md": "463e60a38f5cf7017026ea0ba7db912f7b33caadccab3e72d05bc90745a159bf",
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
-    "Specialization/Status/Playtest_Backlog.md": "7c66920d2bc4dc0bf95d94d53ae7ad3c36ada9170328256c2fca39405fb0b4c7",
-    "Specialization/Status/Specialization_P0_Status.md": "697601ca19d97df040078921d357d915cfde86191542c87e5d9966939fe7da24",
+    "Specialization/Status/Playtest_Backlog.md": "5ddf70444f4b64fdf66b18f54db7ac4341c12864e8e5b050b6a9666eae6778f9",
+    "Specialization/Status/Specialization_P0_Status.md": "25f321db68bdd1afe5153988c76a7d287f553a4a4711dc2d10070f199a5ad917",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -880,10 +880,10 @@
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md": "3ad3d5e3d7a0d7429ca62d3bf1b973bda0712dde3cae717511ec8477ed387467",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "f27d0ba2284ed9f105800e3bbd3f9e96757e3fad567750bdd8782ee65a6d08ff",
-    "Specialization/Workflow/P0-H.json": "c6ce20b6dfbfd223e4873c27ed58fdcf9d5cc6eae5b75df2752cdeb58ca9e9df",
+    "Specialization/Workflow/Authority.json": "e35afa178e9b16e6baef938e4e0c6d5a1ffee273a630d810b06b249c12b4d68e",
+    "Specialization/Workflow/P0-H.json": "cf28c94a0158d0d368395c62d5801754cee355de19cd066485bc4ae81c124f61",
     "Specialization/Workflow/README.md": "eef4d03dd18f62db56661050dff4b2ea6e824338fc50b8009aeca04819049616",
-    "Specialization/Workflow/Runtime_Index.json": "fa31c684090fb2cdf28a7f4fc01795b1e2d66982f4e3f8b80b7e66c1500e9398",
+    "Specialization/Workflow/Runtime_Index.json": "2901a30badfeeb9f6059fcf94a7a06d5e2bd8460871d0c0b834e82a115cfe05a",
     "Specialization/Workflow/context.py": "0ffff9d641a35bb6012a9882dcc7f0482bb0f27e47590151d491e20a81770a08",
     "tools/build_raw_icons.py": "949ce17b8de6eedc9d99165d856668e69793dcfb48e70502b1b7c691164100ff",
     "tools/collect_expedition_trace.py": "3fc8cc637f201eeaf238624966d8e0fbdd75c4ab153754375577e764611c52e3",
@@ -1258,6 +1258,7 @@
     "Specialization/Design/Content/Shared_D0061.json": "12cf3d8dbc86175aade322112421ce68b73a233d28f68167127d46f330e32dae",
     "Specialization/Design/Content/Commerce_D0061.json": "555e16d4e1d75ba68285496122a6b5799a84b8a1d8f76ba04c4e241946a73481",
     "DevelopmentTests/test_city_peaceful_acquisition.py": "8a0838a0104c3082609a1abfd4c2bc2c31545103fa3ede2747ea7fbb94e16bbf",
-    "DevelopmentTests/test_crew_cancel_receipts.py": "43d8396e3e2cfa678538b23e690d51abea8385e804a0c788095301b9bf96203c"
+    "DevelopmentTests/test_crew_cancel_receipts.py": "43d8396e3e2cfa678538b23e690d51abea8385e804a0c788095301b9bf96203c",
+    "DevelopmentTests/test_network_city_registration.py": "7b82f1ea981c20635a455cc809246a97582d3fddec342ca0126983e5f6736b83"
   }
 }

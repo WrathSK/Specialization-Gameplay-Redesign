@@ -11,14 +11,14 @@
     "shared": "D0061",
     "presentation": "D0032",
     "architecture": "A0188",
-    "status": "S1127",
+    "status": "S1128",
     "runtime": "B530.557 / modinfo557",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Release only a cancelled Crew order whose completion count is already accounted for, and trace the separate Network registration finding.",
+  "goal": "Identify when a verified domestic route can be used for a new contract and why an unrelated incoming city can keep it pending.",
   "implementation_authorized": false,
   "context": [
     {
@@ -28,32 +28,32 @@
       "reason": "Current source, installed package and next decision"
     },
     {
-      "path": "Specialization/Design/Industry.md",
+      "path": "Specialization/Design/Network.md",
       "kind": "section",
-      "selector": "## 三级：工程动员与施工队",
-      "reason": "Crew admission and player-visible formation rules"
+      "selector": "## 未确认不等于失效",
+      "reason": "Passive continuity and the proof required for new contracts"
     },
     {
-      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "path": "Specialization/Design/Shared.md",
       "kind": "section",
-      "selector": "### Crew formation and source assets (B236)",
-      "reason": "Formation writer, source and irreversible grant evidence"
+      "selector": "### 和平受让、多次转手与同址重建",
+      "reason": "Accepted admission rule following a confirmed handover"
     }
   ],
   "dependencies": [
-    "Crew project queue snapshot, city order, validated player receipt and bound native inventory."
+    "CityProgressionStore -> EffectiveFacts -> NetworkInput -> NetworkBridge; Capital and Development use the verified transaction readers."
   ],
   "old_writers": [
-    "CrewProjects owns admission and grant. Network transaction authority remains with NetworkBridge."
+    "The Store owns identity admission. Network proof cannot create an identity or declare an incomplete transfer unspecialized."
   ],
   "conditional_context": [
-    "Read the existing ownership and Network contracts when tracing the unregistered-city finding."
+    "When ownership work resumes, use the existing backlog and ER09 before making native evidence claims."
   ],
   "non_scope": [
     "Ownership feature continuation, alternate attribution for unproved completions, new permanent fields, deployment and game launch."
   ],
   "validation": [
-    "Exercise actual Store/Crew code with distinct city/serial orders, paid work, ambiguous counts, readback, reload and replay; separate native evidence."
+    "Check a real Store and Bridge against an unchanged domestic route before transfer, between callbacks, after terminal confirmation, and on a simulated reload. Record Free City combat as open."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
@@ -105,10 +105,11 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "status": "LOCAL_SIMULATION_PASS_STATIC_CONFIRMED",
-      "report": "Specialization/Status/Specialization_P0_Status.md#crew-order-cancellation-after-another-completion--s1127",
-      "tests": 59,
-      "native_validation": "NOT_RUN for B530; earlier native cases retain their scopes.",
+      "status": "LOCAL_SIMULATION_PASS_WITH_OPEN_ADMISSION_GAP",
+      "report": "Specialization/Status/Specialization_P0_Status.md#city-registration-and-the-network-contract-gate--s1128",
+      "tests": 22,
+      "crew_repair": "Specialization/Status/Specialization_P0_Status.md#crew-order-cancellation-after-another-completion--s1127",
+      "native_validation": "NOT_RUN. Actual engine delivery and the parked ownership test remain separate.",
       "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"
     }
   }

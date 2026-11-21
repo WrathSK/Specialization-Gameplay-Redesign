@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1127
+Status Revision: S1128
 Implementation Build: develop B530.557 / modinfo557. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0188
 Design Revision Reviewed: D0061
 Latest Accepted Design Revision: D0061
 Design Sync State: D0061_CITY_OWNERSHIP_ACCEPTED
-Work State: CREW_CANCELLATION_LOCALLY_VERIFIED_NETWORK_IDENTITY_FOLLOW_UP
+Work State: CREW_CANCELLATION_VERIFIED_NETWORK_REGISTRATION_GAP_LOCATED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,14 +15,22 @@ Work State: CREW_CANCELLATION_LOCALLY_VERIFIED_NETWORK_IDENTITY_FOLLOW_UP
 |---|---|
 | Source and installation | Develop B530.557 includes the Crew cancellation repair and the [B529 city acquisition work](#peaceful-city-acquisition-and-direct-return--s1125). [Installed stable](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [59 local Crew checks](#crew-order-cancellation-after-another-completion--s1127). Earlier native evidence retains its recorded build and scope. |
-| Next action | Trace the player-wide transaction gate from an unregistered city through its actual Store and Network readers. The [city ownership follow-up](Playtest_Backlog.md#city-ownership-follow-up) stays parked. |
+| Validation | [59 local Crew checks](#crew-order-cancellation-after-another-completion--s1127) and [22 scoped checks for the city registration investigation](#city-registration-and-the-network-contract-gate--s1128). Existing native results retain their original scope. |
+| Next action | The [parked ownership backlog](Playtest_Backlog.md#city-ownership-follow-up) now identifies the Free City conquest admission to fix when work resumes. No immediate game test is scheduled. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### City registration and the Network contract gate — S1128
+
+The route between an established Commerce capital and a registered Research city stayed the same throughout the local test. While an unrelated incoming third city was already on the map but its handover had not finished, a fresh one-route packet was accepted and both investment network readers still withheld clearance. After a valid gift and another matching packet, the Store supplied a confirmed unspecialized city and both readers reopened. The reading survived a same-build simulated reload. A conflicting binding or a missing handover witness kept the strict checks active.
+
+**Open case (audit A-01/A-02).** In otherwise complete simulated transfers, a conquest from a major civilization and peaceful accession from Free Cities both registered. A military conquest from Free Cities reached the Store's old-owner filter and reported `ACQUISITION_SOURCE_INELIGIBLE`. The city remained unregistered, including after another accepted packet and reload. The capital-source lookup then refused and the outgoing development-route lookup returned UNKNOWN for the unrelated capital. A city missing its record can also be midway through a legitimate handover. Assigning NONE in the network reader would authorize both cases indiscriminately. The follow-up belongs to [city admission](Playtest_Backlog.md#city-ownership-follow-up) under the [accepted transfer rule](../Design/Shared.md#和平受让多次转手与同址重建).
+
+**Evidence.** Six [Store, EffectiveFacts and NetworkBridge cases](../../DevelopmentTests/test_network_city_registration.py), 15 existing ownership cases and one strict capital gate regression passed locally. The six include the actual network response to the still-open admission gap. Run `python -m unittest test_network_city_registration test_city_peaceful_acquisition test_pu06c_capital_terms.Sources.test_strict_common_network_and_balance_guards_remain` with DevelopmentTests on PYTHONPATH and the project Lupa modules available. These checks used actual project readers and simulated engine events and route packets. They exercised signing prerequisites only; no funds were moved and no game was run. This slice changes tests and navigation only.
 
 ### Crew order cancellation after another completion — S1127
 
