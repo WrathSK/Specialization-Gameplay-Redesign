@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1130
+Status Revision: S1131
 Implementation Build: develop B531.558 / modinfo558. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0188
 Design Revision Reviewed: D0061
 Latest Accepted Design Revision: D0061
 Design Sync State: D0061_CITY_OWNERSHIP_ACCEPTED
-Work State: CURRENT_GAMEPLAY_REGRESSION_ESTABLISHED
+Work State: COLD_EFFECT_CONTINUITY_OWNER_REVIEW
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,14 +15,35 @@ Work State: CURRENT_GAMEPLAY_REGRESSION_ESTABLISHED
 |---|---|
 | Source and installation | Develop B531.558 registers a verified first conquest of a Free City. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [Current gameplay regression](#current-gameplay-regression--s1130) passed 20 named cases. Previously verified acquisition and Crew evidence remains in the checkpoint history. |
-| Next action | Investigate same-build cold restoration for the six non-network effect owners. Intermediate ownership and permanent destruction remain parked. |
+| Validation | [Six cold effect paths](#same-build-cold-effect-continuity--s1131) recovered on related input in local simulation. All six showed an interruption in that simulation. The 24 current regression cases passed their stated assertions. |
+| Next action | Owner to settle local passive effect behavior while same-build load inputs are incomplete. Rare ownership evidence remains parked in the playtest backlog. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Same-build cold effect continuity — S1131
+
+A local reload of the same simulated city retained its installed buildings, plot properties and relevant saved history. Its Lua session records started fresh. We delayed either the first Great Work packet or one history read. All six effects dropped during the wait. Three idle publish boundaries left them off. A subsequent applicable signal restored each effect in the simulated runs.
+
+| Observed effect | Before reload | During the delay | After relevant input | Trigger tested |
+|---|---:|---:|---:|---|
+| Aesthetic Tourism on the city's district plots | 9 | 0 | 9 | Confirmed collection packet |
+| Meaning, Science per eligible work | 3 | 0 | 3 | Same packet |
+| Inspiration, Great Person points modifier | 3% | 0 | 3% | Same packet |
+| Dialogue, earned Tourism modifier | 5% | 0% | 5% | City history notification after a simulated read failure |
+| Local Insight Tourism | 2% | 0% | 2% | Local turn after the ledger became readable |
+| Development Investment, target's production bonus | Installed | Absent | Installed | Existing contract-history recovery notification |
+
+Development Investment preserved the target bonus while the Store reported that it was still initializing. Once initialization proceeded, the injected index read failed and the target bonus was removed. Restoring the reader, sending an idle publish and then delivering the local-turn event alone left the bonus off. Delivering the typed history notification through the real fact dispatcher restored it. The actual Store emits that recovery topic on applicable deferred lifecycle work. This simulation does not establish that simply becoming readable always emits it. A second delivery did not repeat the charge or change the receipt. The collection case also verified a confirmed empty collection withdrew the affected city's effects and preserved the other city's positive values.
+
+**LOCAL_SIMULATION_PASS** for eventual recovery and the other assertions in 24 [current regression cases](../../DevelopmentTests/README.md#current-gameplay-regression). All six measured continuity checks showed a gap. The six exercised owner modules matched the B531 source hashes. Native callback timing, the frequency of an index or ledger failure and any lost turn settlement remain unknown. The [earlier HD test](#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091) observed correct Great Work updates and eventual readiness. Its readiness marker does not measure these six installed effects during the interval.
+
+**Owner decision pending (A-17).** [Architecture](../Architecture/Specialization_v0.1_Architecture.md#accepted-convergence-boundaries--2026-11-04) describes cold restoration generally. [Shared Design](../Design/Shared.md#长期状态的七类归属) requires recalculation from current facts. [Network Design](../Design/Network.md#未确认不等于失效) explicitly defines what to keep during the wait for network facts. Primary recommends retaining the installed local passive effect for the same receiver until its required inputs are reliable, honoring confirmed identity, ownership and eligibility exits immediately. Transaction authority and one-time payments remain with their existing readers and receipts. The recommendation awaits Owner confirmation.
+
+Full measurements are in `local/refactor/CurrentGameplay-91e2df83c5564a8dbbd5688ff4ccb992/closure.json` (SHA256 `e849aa114526d8960f1f98b20506c44a7dde411f798a8f63b1cf29570ee7c5b3`). Tested source digest `e7f408ef27bae94bb2c675fb4d44a7fe2bdcbb0c6c8f0b6c6d7fde4b5fe48ed5`. Full artifact is local only.
 
 ### Current gameplay regression — S1130
 

@@ -11,14 +11,14 @@
     "shared": "D0061",
     "presentation": "D0032",
     "architecture": "A0188",
-    "status": "S1130",
+    "status": "S1131",
     "runtime": "B531.558 / modinfo558",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Keep a reproducible set of current gameplay assertions separate from version-specific historical controls.",
+  "goal": "Establish what six local passive effects do when restored native output precedes complete input on a same-build load.",
   "implementation_authorized": false,
   "context": [
     {
@@ -32,22 +32,40 @@
       "kind": "section",
       "selector": "## Current gameplay regression",
       "reason": "Exact current entry and prerequisites"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "selector": "### Accepted convergence boundaries — 2026-11-04",
+      "reason": "Accepted same-build cold restoration boundary"
+    },
+    {
+      "path": "Specialization/Design/Shared.md",
+      "kind": "section",
+      "selector": "## 长期状态的七类归属",
+      "reason": "Transient effects, authoritative history and same-reference reconciliation"
+    },
+    {
+      "path": "Specialization/Design/Network.md",
+      "kind": "section",
+      "selector": "## 未确认不等于失效",
+      "reason": "Explicit continuity rule for network effects"
     }
   ],
   "dependencies": [
-    "Lupa 2.8 with Lua 5.1 and the documented read-only HD database."
+    "Current B531 production owners and existing native doubles. The collection path exercises the real Gameplay Great Work packet receiver. The delayed history and index reads are injected."
   ],
   "old_writers": [
-    "Production writers and historical assertions are unchanged. The gate invokes existing real owners with local native doubles."
+    "Each original owner handles its own passive effect. This investigation changes only tests and records."
   ],
   "conditional_context": [
-    "Use the original stage and its corresponding commit to reproduce a superseded historical assertion."
+    "The previous HD cold-load evidence in S1091 covers readiness and observed Great Work changes. Use the ownership backlog separately for parked handover cases."
   ],
   "non_scope": [
-    "Runtime changes, deployment, native acceptance or changing frozen stage assertions."
+    "Production policy, polling, new save data, deployment, native tests and archived stage repairs."
   ],
   "validation": [
-    "Every named current case must pass. Confirm the runner rejects an empty or duplicate selection and the known B530 city-admission counterexample."
+    "Run CurrentGameplay. Check each measured effect before load, during incomplete input and following an applicable signal. Compare installed values and the saved contract and ledger. Keep eventual restoration distinct from uninterrupted output."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
@@ -99,9 +117,11 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#current-gameplay-regression--s1130",
-      "status": "LOCAL_SIMULATION_PASS",
-      "tests": 20,
+      "report": "Specialization/Status/Specialization_P0_Status.md#same-build-cold-effect-continuity--s1131",
+      "status": "LOCAL_RECOVERY_PASS_CONTINUITY_GAP_OWNER_REVIEW",
+      "tests": 24,
+      "owners_measured": 6,
+      "continuity_gaps_in_simulation": 6,
       "runner": "CurrentGameplay",
       "native_validation": "NOT_RUN",
       "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"

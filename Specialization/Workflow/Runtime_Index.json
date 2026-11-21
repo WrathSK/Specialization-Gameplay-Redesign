@@ -1558,5 +1558,5 @@
   },
   "source_review": "S1129 verifies first acquisition from a Free City and the strict network prerequisites on develop. Stable deployment remains B528.555.",
   "source_runtime": "B531.558 / modinfo558 develop, 310 files. No deployment.",
-  "tested_source_snapshot_sha256": "e42dee6d58914016022dd26578b05933f0afa39bbfed1de013959b3f39e0878e"
+  "tested_source_snapshot_sha256": "e7f408ef27bae94bb2c675fb4d44a7fe2bdcbb0c6c8f0b6c6d7fde4b5fe48ed5"
 }

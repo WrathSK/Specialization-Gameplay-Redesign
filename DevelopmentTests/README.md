@@ -19,6 +19,8 @@ From the repository root, run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTest
 
 The [named cases](refactor_selection.json) exercise current city acquisition and Claim, Crew cancellation and one-time delivery, network and investment gates, contract settlement across reload, and representative Research, Culture and Industry effects. The selection requires every named case to actually pass. A skip, a duplicate selection, or a registered counterexample cannot satisfy this gate. Each run emits its source and input digests and the location of its local evidence. Use the subsystem tests for changes outside these paths.
 
+The [cold-load scenarios](test_current_cold_effects.py) check recovery after a relevant signal and record the physical effect before load, while inputs are missing, and after recovery. A passing recovery case can still report an interruption (`continuous_at_observed_boundaries: false`). The simulated event intervals do not measure native time or a lost payout.
+
 Keep old stage selections with their original assertions. For example, the B126 Free City exclusion can be reproduced at `4dfa12b63322c074d00be34202b7e7d65878cc38`. Current conquest and Claim use the subsequently accepted ownership rules.
 
 ## Narrow Pre-U5 review gate
