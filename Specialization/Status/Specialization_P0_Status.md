@@ -1,28 +1,42 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1131
-Implementation Build: develop B531.558 / modinfo558. Installed stable B528.555 / modinfo555.
+Status Revision: S1132
+Implementation Build: develop B532.559 / modinfo559. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0188
 Design Revision Reviewed: D0061
 Latest Accepted Design Revision: D0061
 Design Sync State: D0061_CITY_OWNERSHIP_ACCEPTED
-Work State: COLD_EFFECT_CONTINUITY_OWNER_REVIEW
+Work State: SAME_BUILD_COLD_EFFECTS_LOCALLY_VERIFIED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B531.558 registers a verified first conquest of a Free City. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
+| Source and installation | Develop B532.559 preserves six local effects while same-build load inputs are pending. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [Six cold effect paths](#same-build-cold-effect-continuity--s1131) recovered on related input in local simulation. All six showed an interruption in that simulation. The 24 current regression cases passed their stated assertions. |
-| Next action | Owner to settle local passive effect behavior while same-build load inputs are incomplete. Rare ownership evidence remains parked in the playtest backlog. |
+| Validation | [Same-build cold restoration](#passive-effects-across-a-same-build-reload--s1132) passed all 25 current gameplay cases. The six installed effects continued during the delayed input. B532 native timing is unmeasured. |
+| Next action | Use the current gameplay gate for the next affected develop change. Native reload observation and rare city-transfer evidence can wait for ordinary play. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Passive effects across a same-build reload — S1132
+
+The November 4 [normal cold restoration rule](../Architecture/Specialization_v0.1_Architecture.md#accepted-convergence-boundaries--2026-11-04) applies to local passive effects and existing paid contracts. The request for a new Owner decision in S1131 was a routing error. Its six B531 observations remain the before-change evidence.
+
+On a same-build load, Culture keeps the installed district tourism, per-work yields, GPP bonus, Dialogue tourism and local Insight tourism while their collection or history is unreadable. At the first usable snapshot each owner compares the intended effect with the actual installation. An empty collection, a known qualification loss or a confirmed receiver change still withdraws the corresponding effect. Obsolete carrier retirement and known foreign-owner cleanup retain their existing responsibilities.
+
+Development Investment publishes its source and target index only after a complete Store visit. A partial visit keeps the installed target bonus and blocks new signatures. On complete evidence it clears orphan targets and checks existing contracts, including completion. Restoring a paid contract makes no treasury call.
+
+**Runtime impact.** The existing owners use the same events. On first reliable reconciliation Aesthetic compares the saved district flags and owner stamps. Insight tourism inspects its existing finite catalogue. During load Meaning and Inspiration retire the obsolete entries separately from current effects. Development builds its index in temporary tables and performs its existing owned-city cleanup after the read succeeds. Session records with only a city reference never attest a benefit or a transaction. There are no additional listeners, recurring scans or durable fields.
+
+**Local evidence.** The [current gate](../../DevelopmentTests/README.md#current-gameplay-regression) passed all 25 named cases. Across save, load, idle and reliable input, district tourism stayed at 9, Science per work at 3, Inspiration at 3%, Dialogue at 5%, local Insight tourism at 2% and the paid target bonus remained installed. Equal reliable input caused zero redundant effect writes in those cases. A confirmed downgrade or reference change withdrew the three collection effects while another city kept its benefits. A Store visit that failed after delivering a real contract row preserved the paid target and left new signatures blocked. On recovery the orphan was withdrawn, the paid target was untouched and its receipt and balance were identical. Thirteen focused regressions passed. Eight adjacent historical suites ran 234 tests on each version with the same pre-existing failure/error cases (3 failures and 55 errors). Those suites are still not green. Static validation compiled 182 Lua files for Lua 5.1, parsed 24 XML files and the modinfo, and resolved all 611 package file references. Native timing and payouts for B532 have not been measured.
+
+Local evidence: `local/refactor/CurrentGameplay-e1919963be174a44a5efa6fb966754e4/closure.json` (SHA256 `4379c8bea04e94b7a4ab8a44605d80182b490e8167887d47491d7ea3959c334f`). Tested source digest `4f75d925080798f8e28b4b8602c8b380c28c9a2d1b2cfe2cc7c11fc21010c82f`. Full artifact is local only.
 
 ### Same-build cold effect continuity — S1131
 

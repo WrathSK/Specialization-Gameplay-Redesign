@@ -69,7 +69,7 @@ class InsightsHealth(unittest.TestCase):
     def test_cold_cleanup_removes_foreign_saved_effect_without_history_changes(self):
         c=fixture(boot=False);c.execute("a.present[88]=true;foreign.present[12]=true;local before=history();Events.LoadScreenClose();assert(a.present[1] and not a.present[88] and not foreign.present[12] and history()==before);local r,w=reads,creates+removes;for i=1,1000 do pp()end;assert(reads==r and creates+removes==w)")
     def test_initialization_reentry_queues_without_repeat(self):
-        c=fixture(boot=False);c.execute("a.present[88]=true;local remove=P.RemoveBuilding;local count=0;P.RemoveBuilding=function(city,id)if city==a and id==88 then count=count+1;assert(d.initializing and not d.Audit({player=0,city=2}))end;return remove(city,id)end;d.Audit();assert(d.ready and not d.initializing and count==1);pp();assert(a.present[1] and b.present[1] and count==1)")
+        c=fixture(boot=False);c.execute("foreign.present[88]=true;local remove=P.RemoveBuilding;local count=0;P.RemoveBuilding=function(city,id)if city==foreign and id==88 then count=count+1;assert(d.initializing and not d.Audit({player=0,city=2}))end;return remove(city,id)end;d.Audit();assert(d.ready and not d.initializing and count==1 and not foreign.present[88]);pp();assert(a.present[1] and b.present[1] and count==1)")
     def test_new_reference_unknown_never_replays_old_effect(self):
         c=fixture();c.execute("local before=history();a.token='REPLACED';a.unknown=true;d.Audit({player=0,city=1});assert(not a.present[1] and d.errors['0:1'] and history()==before and b.present[1])")
     def test_confirmed_exit_return_preserves_history(self):

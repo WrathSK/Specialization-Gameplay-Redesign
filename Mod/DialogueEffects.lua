@@ -74,8 +74,9 @@ function SPCDialogueEffects.Start(P,shared)
    legacy.ready=false;legacy.Init() -- Exact legacy IDs; never infer history from those buildings.
    local n=0
    for _,player in pairs(Players)do local cities=player:GetCities();if cities then for _,c in cities:Members()do
-    n=n+1;assert(n<=2048,'DIALOGUE_CLEANUP_SCOPE_LIMIT');project(c,0)
-    if P.IsTestPlayer(c:GetOwner())then d.records[key(c:GetOwner(),c:GetID())]={owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY(),reference=SPCNetworkInput.Reference(c),applied=0,state='WAITING'}end
+    n=n+1;assert(n<=2048,'DIALOGUE_CLEANUP_SCOPE_LIMIT')
+    local _,_,eligibility=P.IsTestPlayer(c:GetOwner())
+    if eligibility=='INELIGIBLE' then project(c,0)end
    end end end
    -- Reuse the reviewed category-coverage proof, once per loaded game.
    coverage=SPCCultureMeaningModel.RecipientCoverage(P)
@@ -95,27 +96,33 @@ function SPCDialogueEffects.Start(P,shared)
   local prior=old and old.reference==reference and old.applied or nil
   local function clear(state)project(c,0,reference,prior);remember(nil,0,state)end
   local function unknown(reason)
-   if not old or old.reference~=reference then clear('WAITING')end
+   if old and old.reference~=reference then clear('WAITING')
+   elseif not old then remember(nil,nil,'WAITING')end
    error(reason)
   end
-  local function history()
-   local good,s=pcall(store.DialogueState,pid,c)
-   assert(good,'DIALOGUE_HISTORY_UNAVAILABLE')
+  local function validateHistory(s)
    assert(sameRef(s.reference,c),'DIALOGUE_EFFECT_REFERENCE_CHANGED')
    if s.value then
     SPCDialogueProjectModel.Validate(s.value)
     for era in pairs(s.value.used)do assert(eras[era],'DIALOGUE_HISTORY_ERA_UNAVAILABLE')end
     assert(s.value.total<=max,'DIALOGUE_TOTAL_UNREPRESENTABLE')
    end
+  end
+  local function history()
+   local readable,s=pcall(store.DialogueState,pid,c)
+   if not readable or s==nil then
+    if prior==nil and not tostring(s):find('DIALOGUE_HISTORY_ISOLATED',1,true)then unknown('DIALOGUE_HISTORY_UNAVAILABLE')end
+    clear('HELD');error('DIALOGUE_HISTORY_UNAVAILABLE')
+   end
+   local valid,why=pcall(validateHistory,s)
+   if not valid then clear('HELD');error(why)end
    return s
   end
   local factsOK,f=pcall(shared.EffectiveFacts.Read,pid,c)
   if not factsOK then
    -- EffectiveFacts also reads the Store: its error may be damaged history,
    -- not temporary governor uncertainty. Never retain a bonus on that guess.
-   if prior and prior>0 then
-    local good,why=pcall(history);if not good then clear('HELD');error(why)end
-   end
+   if prior and prior>0 then history()end
    unknown('DIALOGUE_CURRENT_FACTS_UNKNOWN')
   end
   if f.owner~=pid or f.cityID~=c:GetID()then clear('HELD');error('DIALOGUE_EFFECT_REFERENCE_CHANGED')end
@@ -125,11 +132,10 @@ function SPCDialogueEffects.Start(P,shared)
    clear('INACTIVE');d.errors[k]=nil;return
   end
   if f.activeStatus~='KNOWN' or f.investmentPending then
-   if prior and prior>0 then local good,why=pcall(history);if not good then clear('HELD');error(why)end end
+   if prior and prior>0 then history()end
    unknown('DIALOGUE_CURRENT_FACTS_UNKNOWN')
   end
-  local valid,s=pcall(history)
-  if not valid then clear('HELD');error(s)end
+  local s=history()
   if f.token~=s.token then clear('HELD');error('DIALOGUE_EFFECT_REFERENCE_CHANGED')end
   local total=s.value and s.value.total or 0
   local value=0;local state='INACTIVE'
@@ -139,7 +145,8 @@ function SPCDialogueEffects.Start(P,shared)
     assert(coverage and coverage.status=='VERIFIED_LOADED_SET','DIALOGUE_RECIPIENT_CATALOG_UNVERIFIED')
     local w=shared.GreatWorkFacts.Summary(pid,c:GetID())
     if not w or not w.hasConfirmed or w.availability~='KNOWN'then unknown('DIALOGUE_COLLECTION_UNKNOWN')end
-    if w.reference~=reference or w.modifierExcludedCount~=0 or w.unknownCategoryCount~=0 then
+    if w.reference~=reference then unknown('DIALOGUE_COLLECTION_REFERENCE_CHANGED')end
+    if w.modifierExcludedCount~=0 or w.unknownCategoryCount~=0 then
      project(c,0,reference);d.records[k]=nil;error('DIALOGUE_RECIPIENT_UNCONFIRMED')
     end
     if w.count>0 then value=total else state='NO_WORKS'end
@@ -198,7 +205,7 @@ function SPCDialogueEffects.Start(P,shared)
   if p and p.reference~=SPCNetworkInput.Reference(c)then p=nil end
   local lines={'实际收益：旅游业绩限定路径（已接受的技术备用方案）'}
   if err then lines[#lines+1]='待确认：'..(tostring(err):match('DIALOGUE_[A-Z_]+') or '历史或当前资格未就绪')end
-  if p then
+  if p and p.applied~=nil then
    lines[#lines+1]=(p.total~=nil and string.format('已得累计 +%d%%｜当前载体 +%d%%',p.total,p.applied) or string.format('当前载体 +%d%%｜已得历史见上方累计记录',p.applied))
    if p.state=='INACTIVE'then lines[#lines+1]='当前资格不足；已成功历史保留。'
    elseif p.state=='NO_WORKS'then lines[#lines+1]='当前没有合格巨作；累计记录保留。'end

@@ -137,7 +137,13 @@ class AutomaticMeaningTests(unittest.TestCase):
         """)
     def test_cold_unknown_and_missed_load_ready_on_real_sample(self):
         l=self.runtime(real=True,ready=False);l.execute("assert(not meaning.ready);sample(1,1,1);assert(meaning.ready and finalAmount(a,'SCIENCE')==3)")
-        l=self.runtime();l.execute("a.worksUnknown=true;fire('LoadScreenClose');assert(meaningCount(a)==0);a.worksUnknown=false;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(finalAmount(a,'SCIENCE')==3)")
+        for previous in (True, False):
+            with self.subTest(previous=previous), ae.cold_build(previous):
+                l = self.runtime()
+                saved = l.eval('meaningCount(a)')
+                self.assertGreater(saved, 0)
+                l.globals().atLoad = 0 if previous else saved
+                l.execute("a.worksUnknown=true;fire('LoadScreenClose');assert(meaningCount(a)==atLoad);a.worksUnknown=false;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(finalAmount(a,'SCIENCE')==3)")
     def test_foreign_saved_carriers_withdraw_without_ai_gameplay(self):
         l=self.runtime(ready=False);l.execute("b.owner=3;seed(b,'BUILDING_SPC_MEANING_PROBE_GOLD_VALUE_4');seed(b,'BUILDING_SPC_B060_GOLD_P1');b.factsUnknown=true;fire('LoadScreenClose');assert(oldCount(b)==0 and meaningCount(b)==0 and finalAmount(a,'SCIENCE')==3 and not meaning.records['3:2'])")
     def test_confirmed_loss_exit_unknown_no_clear_and_recapture_current_gate(self):

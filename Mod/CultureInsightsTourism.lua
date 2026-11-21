@@ -57,13 +57,16 @@ function M.Start(P,shared)
   if n and n>0 and has(c,n)then health.Remove(c,ids[n]);assert(not has(c,n),'INSIGHT_REMOVE_UNCONFIRMED')end
  end
  local function clear(c)
-  -- Full owned-ID cleanup only on first observation/load, fault recovery or confirmed exit.
+  -- Full withdrawal is reserved for known exits and failed projection writes.
   d.writing=key(c);local ok,err=pcall(function()for n=1,M.Max do remove(c,n)end end);d.writing=nil
   assert(ok,err)
  end
  local function reconcile(pid,c)
   validate();local k=key(c);local reference=ref(c);local old=d.records[k]
-  if not old or old.reference~=reference then clear(c);old={reference=reference,n=0,x=c:GetX(),y=c:GetY(),owner=pid};d.records[k]=old end
+  if old and old.reference~=reference then clear(c);old=nil end
+  if not old then
+   old={reference=reference,x=c:GetX(),y=c:GetY(),owner=pid};d.records[k]=old
+  end
   local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
   local records,civ
   if f.validity=='VERIFIED' and f.identity=='CULTURE' and f.potential and f.potential>=4 and f.activeStatus=='KNOWN' and f.active and f.active>=4 then
@@ -71,11 +74,13 @@ function M.Start(P,shared)
    local config=PlayerConfigurations and PlayerConfigurations[pid]
    civ=config and config:GetCivilizationTypeName()
   end
-  local n=M.Plan(f,records,civ) -- UNKNOWN holds only a confirmed same-reference session projection.
+  local n=M.Plan(f,records,civ)
   assert(c:GetOwner()==pid and ref(c)==reference,'INSIGHT_REFERENCE_CHANGED')
   d.writing=k
   local ok,err=pcall(function()
-   if old.n~=n then remove(c,old.n)end
+   if old.n==nil then
+    for i=1,M.Max do if i~=n then remove(c,i)end end
+   elseif old.n~=n then remove(c,old.n)end
    if n>0 then
     local present=has(c,n)
     if present then
@@ -96,11 +101,11 @@ function M.Start(P,shared)
   d.initializing=true
   local ok,why=pcall(function()
    validate()
-    -- Remove saved derived effects, including cities now owned by unsupported players.
+    -- Only a confirmed unsupported owner authorizes an unconditional withdrawal.
     d.records={};d.errors={}
     for _,p in pairs(Players)do local cities=p:GetCities();if cities then for _,c in cities:Members()do
-     clear(c)
-     if P.IsTestPlayer(c:GetOwner())then d.records[key(c)]={reference=ref(c),n=0,x=c:GetX(),y=c:GetY(),owner=c:GetOwner()}end
+     local _,_,eligibility=P.IsTestPlayer(c:GetOwner())
+     if eligibility=='INELIGIBLE' then clear(c)end
     end end end
    d.ready=true
   end)
@@ -150,7 +155,7 @@ function M.Start(P,shared)
  function d.AcceptFact(scope)return refresh(scope,true)end
  function d.Describe(pid,c)
   local k=key(c);local p=d.records[k];local err=d.errors[k] or d.error
-  local known=p and p.reference==ref(c) and not err
+  local known=p and p.n~=nil and p.reference==ref(c) and not err
   local percent=known and 2*p.n or nil
   print('[SPC][B191][N1_INSIGHT] kind=TOURISM owner='..pid..' city='..c:GetID()..' status='..(known and 'KNOWN' or 'UNKNOWN')..' percent='..tostring(percent))
   return known and Locale.Lookup('LOC_SPC_INSIGHT_TOURISM_CURRENT',percent) or Locale.Lookup('LOC_SPC_INSIGHT_TOURISM_UNKNOWN')

@@ -173,12 +173,14 @@ class InspirationAutomaticTests(unittest.TestCase):
    verify_package_round_trip(self,previous,current,removed,'CultureInspiration.lua')
    verify_stable_round_trip(self,previous,current,removed)
  def test_load_retires_old_then_uses_current_not_saved_value(self):
-  l=self.runtime();l.execute(r"""
-   seed(a,'BUILDING_SPC_INSPIRE_PROBE_10');a.eras=1;fire('LoadScreenClose')
-   assert(retired(a)==0 and inspiration(a)==3 and inspiration(b)==6)
-   a.worksUnknown=true;fire('LoadScreenClose');assert(inspiration(a)==0)
-   a.worksUnknown=false;a.eras=7;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(inspiration(a)==21)
-  """)
+  for previous in (True,False):
+   with self.subTest(previous=previous),ae.cold_build(previous):
+    l=self.runtime();l.globals().atLoad=0 if previous else 3;l.execute(r"""
+     seed(a,'BUILDING_SPC_INSPIRE_PROBE_10');a.eras=1;fire('LoadScreenClose')
+     assert(retired(a)==0 and inspiration(a)==3 and inspiration(b)==6)
+     a.worksUnknown=true;fire('LoadScreenClose');assert(inspiration(a)==atLoad)
+     a.worksUnknown=false;a.eras=7;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(inspiration(a)==21)
+    """)
  def test_missed_load_uses_confirmed_collection_without_panel(self):
   l=self.runtime(ready=False,real=True);l.execute("sample(1,1,1);assert(ins.ready and inspiration(a)==3)")
  def test_foreign_saved_carriers_cleared_without_ai_state(self):

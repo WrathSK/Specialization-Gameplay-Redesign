@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
+  "status": "COMPLETE",
   "authority_versions": {
     "design": "D0061",
     "research": "D0059",
@@ -11,21 +11,21 @@
     "shared": "D0061",
     "presentation": "D0032",
     "architecture": "A0188",
-    "status": "S1131",
-    "runtime": "B531.558 / modinfo558",
+    "status": "S1132",
+    "runtime": "B532.559 / modinfo559",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Establish what six local passive effects do when restored native output precedes complete input on a same-build load.",
+  "goal": "Preserve six installed effects on normal same-build reload until reliable inputs permit an exact reconciliation.",
   "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current source, installed package and next decision"
+      "reason": "Current source, installed package and verified scope"
     },
     {
       "path": "DevelopmentTests/README.md",
@@ -53,26 +53,26 @@
     }
   ],
   "dependencies": [
-    "Current B531 production owners and existing native doubles. The collection path exercises the real Gameplay Great Work packet receiver. The delayed history and index reads are injected."
+    "Existing Culture effect owners, the Gameplay Great Work receiver, Store history and Development Investment target occupancy."
   ],
   "old_writers": [
-    "Each original owner handles its own passive effect. This investigation changes only tests and records."
+    "The existing ability owners retain all writes. Retired carrier definitions keep their scoped withdrawal responsibilities."
   ],
   "conditional_context": [
     "The previous HD cold-load evidence in S1091 covers readiness and observed Great Work changes. Use the ownership backlog separately for parked handover cases."
   ],
   "non_scope": [
-    "Production policy, polling, new save data, deployment, native tests and archived stage repairs."
+    "New saved fields, new subscriptions, retries, investment terms, gameplay formulas, deployment and native validation."
   ],
   "validation": [
-    "Run CurrentGameplay. Check each measured effect before load, during incomplete input and following an applicable signal. Compare installed values and the saved contract and ledger. Keep eventual restoration distinct from uninterrupted output."
+    "Run CurrentGameplay. Compare active effects through delayed information, zero redundant writes on matching input, priority exits, complete contract indexing, original receipt and treasury calls."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
     "runtime_identity": {
-      "source": "B531.558 / modinfo558 on develop. Source and local evidence in S1129.",
+      "source": "B532.559 / modinfo559 on develop. Source and local verification in S1132.",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -117,11 +117,12 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#same-build-cold-effect-continuity--s1131",
-      "status": "LOCAL_RECOVERY_PASS_CONTINUITY_GAP_OWNER_REVIEW",
-      "tests": 24,
+      "report": "Specialization/Status/Specialization_P0_Status.md#passive-effects-across-a-same-build-reload--s1132",
+      "status": "LOCAL_SIMULATION_PASS",
+      "tests": 25,
       "owners_measured": 6,
-      "continuity_gaps_in_simulation": 6,
+      "continuity_gaps_in_simulation": 0,
+      "focused_regressions": 13,
       "runner": "CurrentGameplay",
       "native_validation": "NOT_RUN",
       "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"

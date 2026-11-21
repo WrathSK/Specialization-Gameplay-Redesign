@@ -95,10 +95,15 @@ function M.Start(P,shared)
   end
  end
  -- Model requires works only when the current Culture gate is satisfied.
- local function plan(pid,c,detail)
+ local function plan(pid,c,detail,reference)
   assert(c:GetOwner()==pid and P.IsTestPlayer(pid),'AE_OWNER_CHANGED')
   local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
-  local gw=shared.GreatWorkFacts.Summary(pid,c:GetID())
+  local gw
+  if f.validity=='VERIFIED' and f.identity=='CULTURE' and type(f.potential)=='number' and f.potential>=3
+   and f.activeStatus=='KNOWN' and type(f.active)=='number' and f.active>=3 then
+   gw=shared.GreatWorkFacts.Summary(pid,c:GetID())
+   if gw and gw.hasConfirmed then assert(gw.reference==(reference or SPCNetworkInput.Reference(c)),'AE_WORKS_REFERENCE_CHANGED')end
+  end
   local p=SPCCultureAestheticModel.Plan(f,gw,nil)
   local view
   if p.status=='NEEDS_BUILDINGS' then
@@ -110,10 +115,10 @@ function M.Start(P,shared)
  end
  local function reconcile(pid,c)
   validate();local key=cityKey(pid,c);local nativeRef=SPCNetworkInput.Reference(c);local old=d.records[key]
-  local ok,p,f,view=pcall(plan,pid,c)
+  local ok,p,f,view=pcall(plan,pid,c,nil,nativeRef)
   if not ok then
-   -- UNKNOWN never activates a new reference or resurrects a loaded effect snapshot.
-   if not old or old.reference~=nativeRef then withdraw(c);d.records[key]=nil end
+   if old and old.reference~=nativeRef then withdraw(c);old=nil end
+   if not old then d.records[key]={reference=nativeRef,owner=pid,x=c:GetX(),y=c:GetY()}end
    error(p)
   end
   assert(type(f.token)=='string','AE_REFERENCE_UNKNOWN')
@@ -136,14 +141,26 @@ function M.Start(P,shared)
    assert(n>=0 and n%1==0 and n<2^M.Bits,'AE_ENCODING_RANGE') -- technical bound, never truncate
   end
   local wanted=p.total>0
-  local unchanged=old and old.reference==nativeRef and old.token==f.token and same(old.amounts,p.amounts)
+  local unchanged=old and old.amounts and old.reference==nativeRef and old.token==f.token and same(old.amounts,p.amounts)
   if unchanged and present==wanted and (not present or healthy) then
    return -- same confirmed input/configuration: no projection write or flag scan
+  end
+  local record=p.status=='READY' and {reference=nativeRef,token=f.token,amounts=p.amounts,total=p.total,owner=pid,x=c:GetX(),y=c:GetY()} or nil
+  if (not old or not old.amounts) and present==wanted and (not present or healthy)then
+   local matches=true
+   for index,plot in pairs(targetPlots)do
+    local amount=p.amounts[index] or 0
+    if readAmount(plot)~=amount or plot:GetProperty(M.Key..'OWNER')~=(amount>0 and nativeRef or nil)then matches=false;break end
+   end
+   if matches then
+    assert(c:GetOwner()==pid and SPCNetworkInput.Reference(c)==nativeRef,'AE_REFERENCE_CHANGED')
+    d.records[key]=record;return
+   end
   end
   -- Disable the sole owner before mutating projection flags, so a partial write
   -- cannot grant a mixed amount. Failure keeps it withdrawn until reconciliation.
   removeCarrier(c)
-  if old then for index in pairs(old.amounts)do if not targetPlots[index]then
+  if old and old.amounts then for index in pairs(old.amounts)do if not targetPlots[index]then
    local plot=Map.GetPlotByIndex(index)
    if plot and plot:GetProperty(M.Key..'OWNER')==old.reference then
     for bit=0,M.Bits-1 do flag(plot,bit,0)end;P.SetProperty(plot,M.Key..'OWNER',nil)
@@ -161,7 +178,7 @@ function M.Start(P,shared)
    health.Create(c,carrier)
    local b=c:GetBuildings();assert(P.HasBuilding(b,carrier)==true and b:IsPillaged(carrier)==false,'AE_CREATE_UNCONFIRMED');d.changes=d.changes+1
   end
-  d.records[key]=p.status=='READY' and {reference=nativeRef,token=f.token,amounts=p.amounts,total=p.total,owner=pid,x=c:GetX(),y=c:GetY()} or nil
+  d.records[key]=record
  end
  local function audit(scope,taking)
   local live={}
@@ -226,7 +243,7 @@ function M.Start(P,shared)
    if err then lines[#lines+1]='待复核：'..(err:match('AE_[A-Z_]+') or '接口未就绪')end
    return table.concat(lines,'\n')
   end)
-  return ok and text or ('风雅熏陶：当前事实待复核；UNKNOWN不当作0。\n'..(tostring(text):match('AE_[A-Z_]+') or '接口未就绪')..'\n保留同一引用的最近确认配置；新引用/冷加载未确认前不施加。')
+  return ok and text or ('风雅熏陶：当前事实待复核。\n'..(tostring(text):match('AE_[A-Z_]+') or '接口未就绪')..'\n同城读档保留已有加成，待资格与馆藏确认后更新。')
  end
  local function bind(source,name,fn)local e=P.Field(source,name);if e and e.Add then e.Add(fn)end end
  bind(Events,'LoadScreenClose',function()

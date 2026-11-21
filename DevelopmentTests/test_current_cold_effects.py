@@ -42,6 +42,8 @@ class ColdEffects(unittest.TestCase):
             **observations,
         })
         self.assertTrue(saved, owner)
+        self.assertEqual(loaded, saved, owner)
+        self.assertEqual(idle, saved, owner)
         self.assertEqual(recovered, saved, owner)
 
     def test_late_collection_sample_reconciles_three_city_effects(self):
@@ -58,12 +60,25 @@ class ColdEffects(unittest.TestCase):
             cold = case.fixture(real=True, ready=False)
             restore_native_city_effects(warm, cold)
             self.assertEqual(applied(cold, 'a'), before)
+            cold.execute("""
+                plotWrites=0
+                local set=P.SetProperty
+                P.SetProperty=function(plot,key,value)
+                    if key:find(SPCCultureAesthetic.Key,1,true)==1 then plotWrites=plotWrites+1 end
+                    return set(plot,key,value)
+                end
+                function projectionWrites()
+                    return plotWrites+shared.CultureAesthetic.changes+shared.CultureMeaning.changes+shared.CultureInspiration.changes
+                end
+            """)
+            writes = cold.eval('projectionWrites()')
             cold.execute("fire('LoadScreenClose')")
             loaded = applied(cold, 'a')
             cold.execute("for n=1,3 do pp() end")
             idle = applied(cold, 'a')
             cold.execute("sample(1,1,1); pp()")
             recovered = applied(cold, 'a')
+            self.assertEqual(cold.eval('projectionWrites()'), writes)
             for i, owner in enumerate(('aesthetic', 'meaning_science', 'inspiration')):
                 self.record(owner, before[i], loaded[i], idle[i], recovered[i])
             self.assertEqual(applied(cold, 'b'), applied(warm, 'b'))
@@ -74,6 +89,25 @@ class ColdEffects(unittest.TestCase):
             self.assertEqual(applied(cold, 'a'), (0, 0, 0))
             self.assertEqual(applied(cold, 'b'), applied(warm, 'b'))
 
+    def test_confirmed_city_change_precedes_a_delayed_work_packet(self):
+        with projections(collection.CultureProjection) as case:
+            warm = case.fixture(real=True, ready=False)
+            warm.execute("fire('LoadScreenClose'); sample(1,1,1); pp()")
+            for change in ("a.active=2", "a.token='REPLACED'"):
+                with self.subTest(change=change):
+                    cold = case.fixture(real=True, ready=False)
+                    restore_native_city_effects(warm, cold)
+                    cold.execute("fire('LoadScreenClose'); assert(total(a)>0 and finalAmount(a,'SCIENCE')>0 and inspiration(a)>0)")
+                    cold.execute(change)
+                    cold.execute("""
+                        local scope={player=0,city=1}
+                        shared.CultureAesthetic.Audit(scope)
+                        shared.CultureMeaning.Audit(scope)
+                        shared.CultureInspiration.Audit(scope)
+                        assert(total(a)==0 and finalAmount(a,'SCIENCE')==0 and inspiration(a)==0)
+                        assert(total(b)>0 and finalAmount(b,'SCIENCE')>0 and inspiration(b)>0)
+                    """)
+
     def test_dialogue_history_delivery_restores_earned_percent(self):
         with projections(dialogue.Dialogue) as case:
             warm = case.fixture()
@@ -83,8 +117,18 @@ class ColdEffects(unittest.TestCase):
             self.assertEqual(cold.eval('total(a)'), before)
             cold.execute("""
                 a.historyError = true
+                dialogueWrites=0
+                local create,remove=P.CreateBuilding,P.RemoveBuilding
+                local function observe(c,id)
+                    if c==a and GameInfo.Buildings[id].BuildingType:find('^BUILDING_SPC_DIALOGUE_TOTAL_')then
+                        dialogueWrites=dialogueWrites+1
+                    end
+                end
+                P.CreateBuilding=function(q,id)observe(q.city,id);return create(q,id)end
+                P.RemoveBuilding=function(b,id)observe(b.city,id);return remove(b,id)end
                 SPCDialogueEffects.Start(P,shared)
                 fire('LoadScreenClose')
+                assert(shared.DialogueEffects.records['0:1'].applied==nil)
             """)
             loaded = cold.eval('total(a)')
             self.assertEqual(cold.eval('total(b)'), warm.eval('total(b)'))
@@ -99,6 +143,7 @@ class ColdEffects(unittest.TestCase):
                 historyChanged()
             """)
             self.record('dialogue', before, loaded, idle, cold.eval('total(a)'))
+            self.assertEqual(cold.eval('dialogueWrites'), 0)
             writes = cold.eval('writes')
             cold.execute('historyChanged()')
             self.assertEqual(cold.eval('writes'), writes)
@@ -115,6 +160,7 @@ class ColdEffects(unittest.TestCase):
 
         saved = percent()
         history = cold.eval('history()')
+        initial_writes = cold.eval('creates + removes')
         cold.execute("""
             local read = shared.CityProgressionStore.ExpeditionInsights
             delay = true
@@ -123,13 +169,14 @@ class ColdEffects(unittest.TestCase):
                 return read(pid,c)
             end
             Events.LoadScreenClose()
-            assert(b.present[1])
+            assert(b.present[1] and d.records['0:1'].n==nil)
         """)
         loaded = percent()
         cold.execute("for n=1,3 do pp() end")
         idle = percent()
         cold.execute("delay=false; Events.PlayerTurnActivated(0)")
         self.record('insights_tourism', saved, loaded, idle, percent())
+        self.assertEqual(cold.eval('creates + removes'), initial_writes)
         writes = cold.eval('creates + removes')
         cold.execute("Events.PlayerTurnActivated(0)")
         self.assertEqual(cold.eval('creates + removes'), writes)
@@ -153,19 +200,33 @@ class ColdEffects(unittest.TestCase):
             local visit=store.VisitDevelopment
             local readiness=store.HistoryStartStatus
             waitForHistory=true; delayIndex=true
+            partialRows=0; paidTargetWrites=0
+            local effect='BUILDING_SPC_DEVELOPMENT_DISTRICT_CAMPUS'
+            other.markers[effect]=true
+            local create,remove=P.CreateBuilding,P.RemoveBuilding
+            local function observe(bs,id)
+                if bs==research.markers and id==effect then paidTargetWrites=paidTargetWrites+1 end
+            end
+            P.CreateBuilding=function(bs,id)observe(bs,id);return create(bs,id)end
+            P.RemoveBuilding=function(bs,id)observe(bs,id);return remove(bs,id)end
             store.HistoryStartStatus=function()
                 if waitForHistory then return 'WAITING' end
                 if readiness then return readiness() end
             end
-            store.VisitDevelopment=function(...)
-                if delayIndex then error('TEST_INDEX_UNAVAILABLE') end
-                return visit(...)
+            store.VisitDevelopment=function(pid,receive)
+                visit(pid,function(value,r)
+                    receive(value,r)
+                    if delayIndex then partialRows=partialRows+1 end
+                end)
+                if delayIndex then error('DEVELOPMENT_TEST_INDEX_UNAVAILABLE')end
             end
             setupDevelopment()
             duringHistoryWait=active()
             assert(duringHistoryWait)
             waitForHistory=false
             Events.GameCoreEventPublishComplete.Fire()
+            local view=dev.Refresh(0,source:GetID(),true)
+            assert(partialRows>0 and view.stage=='HELD' and view.canSign==false)
         """)
         loaded = cold.eval('active()')
         cold.execute("for n=1,3 do Events.GameCoreEventPublishComplete.Fire() end")
@@ -176,12 +237,14 @@ class ColdEffects(unittest.TestCase):
             afterSilentReturn=active()
             Events.PlayerTurnActivated.Fire(0)
             afterTurn=active()
+            assert(afterSilentReturn and afterTurn and active(other))
             function historyRecovered()
                 shared.FactChanges.Emit{owner=0, cityID=source:GetID(), kinds={'HISTORY'}, topic='DEVELOPMENT_RECOVERY', cause='DEFERRED_LIFECYCLE_RECOVERED'}
                 shared.FactChanges.Flush()
                 Events.GameCoreEventPublishComplete.Fire()
             end
             historyRecovered()
+            assert(not active(other) and paidTargetWrites==0)
         """)
         self.record('development', saved, loaded, idle, cold.eval('active()'),
                     waiting_for_store=cold.eval('duringHistoryWait'), readable_without_notice=cold.eval('afterSilentReturn'),

@@ -28,12 +28,18 @@ function SPCCultureMeaning.Start(P,shared)
  local function installed(c,name)
   local has=P.HasBuilding(c:GetBuildings(),ids[name]);assert(type(has)=='boolean','ME_CARRIER_UNKNOWN');return has
  end
- local function project(c,want,expected)
+ local retired={}
+ local current={}
+ for _,yieldType in ipairs(M.ActiveWriteYields)do
+  for _,part in pairs(M.FinalValues[yieldType])do current[part.name]=true end
+ end
+ for _,name in ipairs(M.Owned)do if not current[name]then retired[#retired+1]=name end end
+ local function project(c,want,expected,removeFrom)
   validate();d.writing=key(c:GetOwner(),c:GetID())
   local ok,why=pcall(function()
    local failure
    -- Same exact removal-before-add algorithm as the native-tested probe.
-   for _,name in ipairs(M.Owned)do
+   for _,name in ipairs(removeFrom or M.Owned)do
     local good,err=pcall(function()
      local has=installed(c,name);local damaged=false
      if has and want[name]then
@@ -74,6 +80,11 @@ function SPCCultureMeaning.Start(P,shared)
    end
   end
  end
+ local function prepare(c)
+  retire(c)
+  local _,_,eligibility=P.IsTestPlayer(c:GetOwner())
+  project(c,{},nil,eligibility~='INELIGIBLE' and retired or nil)
+ end
  local function ready()
   if d.ready then return true end
   if d.initializing or d.startupFailed then return false end
@@ -88,7 +99,7 @@ function SPCCultureMeaning.Start(P,shared)
    end end
    if not supported then return false end -- Missed/early load is not an empty PASS.
    for _,c in ipairs(cities)do
-    local good,err=pcall(function()retire(c);project(c,{})end)
+    local good,err=pcall(prepare,c)
     if not good then local k=key(c:GetOwner(),c:GetID());d.errors[k]=tostring(err):sub(1,180);cleanupPending[k]=true end
    end
    -- This bounded immutable proof is reused for every city in this loaded game.
@@ -104,11 +115,15 @@ function SPCCultureMeaning.Start(P,shared)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'ME_OWNER_UNKNOWN')
   local k=key(pid,c:GetID());local reference=SPCNetworkInput.Reference(c);local old=d.records[k]
   -- A previously failed retirement is retried only for this affected city.
-  if cleanupPending[k]then retire(c);project(c,{});cleanupPending[k]=nil end
+  if cleanupPending[k]then prepare(c);cleanupPending[k]=nil end
   local ok,p=pcall(function()
    local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
-   local w=shared.GreatWorkFacts.Summary(pid,c:GetID())
-   if w then assert(w.reference==reference,'ME_REFERENCE_CHANGED')end
+   local w
+   if f.validity=='VERIFIED' and f.identity=='CULTURE' and type(f.potential)=='number' and f.potential>=4
+    and f.activeStatus=='KNOWN' and type(f.active)=='number' and f.active>=4 then
+    w=shared.GreatWorkFacts.Summary(pid,c:GetID())
+    if w then assert(w.reference==reference,'ME_WORKS_REFERENCE_CHANGED')end
+   end
    local plan=M.Plan(f,w,nil)
    if plan.status=='NEEDS_DEPTH'then
     assert(coverage and coverage.status=='VERIFIED_LOADED_SET','ME_RECIPIENT_CATALOG_UNVERIFIED')
@@ -119,11 +134,11 @@ function SPCCultureMeaning.Start(P,shared)
   end)
   if not ok then
    local code=tostring(p)
-   -- Temporary UNKNOWN on the same reference retains only a confirmed session
-   -- projection. Cold load/new reference never replays saved carrier authority.
-   if not old or old.reference~=reference or code:find('ME_FIXTURE_UNSUPPORTED_WORK',1,true)
-    or code:find('ME_RECIPIENT_',1,true) or code:find('ME_REFERENCE_CHANGED',1,true)then
+   if (old and old.reference~=reference) or code:find('ME_FIXTURE_UNSUPPORTED_WORK',1,true)
+    or code:find('ME_RECIPIENT_',1,true)then
     project(c,{});d.records[k]=nil
+   elseif not old then
+    d.records[k]={owner=pid,reference=reference,x=c:GetX(),y=c:GetY()}
    end
    error(p)
   end
@@ -193,7 +208,7 @@ function SPCCultureMeaning.Start(P,shared)
   local labels={SCIENCE='科技',PRODUCTION='生产力',GOLD='金币',FOOD='食物',FAITH='信仰'}
   local lines={'意义延展｜自动生效（无需手动启用）'}
   if err then lines[#lines+1]='待复核：'..(err:match('ME_[A-Z_]+') or '当前事实未就绪')end
-  if not p then lines[#lines+1]='等待当前资格与馆藏确认；不按旧收益快照恢复。'
+  if not p or not p.status then lines[#lines+1]='等待当前资格与馆藏确认。'
   elseif p.status=='INACTIVE'then lines[#lines+1]='当前未生效：需要文化身份、Potential IV及ACTIVE IV。'
   else
    lines[#lines+1]=string.format('合格巨作%d件｜ACTIVE %s',p.count,tostring(p.active))

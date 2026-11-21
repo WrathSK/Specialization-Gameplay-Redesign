@@ -1,14 +1,26 @@
 """P0-L1 scoped Lua/SQL regression; local projection is not native Tourism proof.
 Read-only external DB -> memory; two-city fixture, no game/deployment/stress.
 """
+from contextlib import contextmanager
 from pathlib import Path
+from unittest.mock import patch
 import os, sqlite3, subprocess, unittest, zlib, xml.etree.ElementTree as ET
 from project_paths import external_database
 from lupa.lua55 import LuaRuntime
 from test_environment_assembly import prepare_hd_inputs
-from retired_crew_sources import B521, B522, source as retired_source
+from retired_crew_sources import B521, B522, package, source as retired_source
 R=Path(os.environ.get('SPC_L1_ROOT',Path(__file__).resolve().parents[1]))
 M=R/'Mod'
+
+@contextmanager
+def cold_build(previous):
+    """Run the old cold-clear expectation against its last published Lua sources."""
+    if not previous:
+        yield
+        return
+    with package('4502dfc30a219a064ebe629dd9c04c989f852b6a', paths=('Mod/*.lua',)) as old:
+        with patch(__name__ + '.M', old / 'Mod'):
+            yield
 
 def database():
     ro=sqlite3.connect(external_database(R).as_uri()+'?mode=ro',uri=True)
@@ -80,7 +92,7 @@ end
 function building(c,kind,d,yes)
  local id=GameInfo.Buildings[kind].Index;c.present[id]=yes~=false;c.locations[id]=d.x;c.pillaged[id]=false
 end
-P={VERSION='P0-B-149.176',IsTestPlayer=function(pid)return pid==0 end,Field=function(t,k)return t and t[k]end,
+P={VERSION='P0-B-149.176',IsTestPlayer=function(pid)return pid==0,nil,pid==0 and 'ELIGIBLE' or 'INELIGIBLE' end,Field=function(t,k)return t and t[k]end,
  Count=function(k)counts[k]=(counts[k] or 0)+1 end}
 function P.Info(name,k)return GameInfo[name] and GameInfo[name][k]end
 function P.Rows(name)local out={};for row in GameInfo[name]()do out[#out+1]=row end;return out end
@@ -207,8 +219,11 @@ class AestheticTests(unittest.TestCase):
   l.execute('currentCatalog=SPCOrdinaryBuildingCatalog.Build(P)');l.execute(old);l.execute('oldCatalog=SPCOrdinaryBuildingCatalog.Build(P)')
   l.execute("for _,b in pairs(oldCatalog.buildings)do if b.ordinary then local n=currentCatalog.buildings[b.type];assert(n.ordinary and n.tier==b.tier and n.domain==b.domain,b.type)end end;assert(currentCatalog.Domain('DISTRICT_CITY_CENTER')==nil and currentCatalog.buildings.BUILDING_WALLS.ordinary and currentCatalog.buildings.BUILDING_WALLS.tier==nil)")
  def test_unknown_reference_load_and_gate(self):
-  l=self.runtime();l.execute('audit();local w=writes;a.worksUnknown=true;one();assert(writes==w and total(a)==12);a.worksUnknown=false;a.active=nil;one();assert(writes==w);a.active=3;a.factsUnknown=true;one();assert(writes==w);a.factsUnknown=false;a.eras=1;one();assert(total(a)==6);a.active=2;one();assert(total(a)==0);a.active=3;one();assert(total(a)==6)')
-  l.execute("a.worksUnknown=true;fire('LoadScreenClose');assert(total(a)==0 and total(b)==12);a.worksUnknown=false;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(total(a)==6);local w=writes;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(writes==w);a.token='different';a.worksUnknown=true;one();assert(total(a)==0)")
+  for previous in (True,False):
+   with self.subTest(previous=previous),cold_build(previous):
+    l=self.runtime();l.execute('audit();local w=writes;a.worksUnknown=true;one();assert(writes==w and total(a)==12);a.worksUnknown=false;a.active=nil;one();assert(writes==w);a.active=3;a.factsUnknown=true;one();assert(writes==w);a.factsUnknown=false;a.eras=1;one();assert(total(a)==6);a.active=2;one();assert(total(a)==0);a.active=3;one();assert(total(a)==6)')
+    l.globals().atLoad=0 if previous else 6
+    l.execute("a.worksUnknown=true;fire('LoadScreenClose');assert(total(a)==atLoad and total(b)==12);a.worksUnknown=false;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(total(a)==6);local w=writes;shared.GreatWorkFacts.OnConfirmed(0,{1});assert(writes==w);a.token='different';a.worksUnknown=true;one();assert(total(a)==0)")
  def test_confirmed_loss_recapture_only_current(self):
   l=self.runtime();l.execute("audit();local keep=total(b);local before=writes;local no={origin={owner=0},targetID=1,confirmed=false};assert(not pcall(exits.CultureAesthetic,a,no));assert(writes==before);a.owner=3;local loss={origin={owner=0},targetID=1,confirmed=true};exits.CultureAesthetic(a,loss);assert(total(a)==0 and total(b)==keep);local w=writes;exits.CultureAesthetic(a,loss);assert(writes==w);a.owner=0;a.active=1;returns.CultureAesthetic(0,a);assert(total(a)==0);a.active=3;a.eras=1;returns.CultureAesthetic(0,a);assert(total(a)==6)")
  def test_legacy_exact_cutover_and_commerce(self):

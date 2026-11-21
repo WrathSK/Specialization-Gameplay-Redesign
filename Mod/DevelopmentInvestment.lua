@@ -32,14 +32,15 @@ function SPCDevelopmentInvestment.Start(P,shared)
  local records,occupancy,reservations,dirty,quotes={},{},{},{},{}
  local loaded=false;local indexError;local indexErrors={};local indexArmed={};local startupPending={};local startupArmed={};local busy=false;local openViews={}
  d.startupErrors={}
- local function rebuild()
-  occupancy={}
-  for token,r in pairs(records)do for target,c in pairs(r.value.contracts)do if M.Open(c)then
-   assert(not occupancy[target] or occupancy[target]==token,'DEVELOPMENT_OCCUPANCY_CONFLICT');occupancy[target]=token
+ local function targetOccupancy(sourceRecords)
+  local byTarget={}
+  for token,r in pairs(sourceRecords)do for target,c in pairs(r.value.contracts)do if M.Open(c)then
+   assert(not byTarget[target] or byTarget[target]==token,'DEVELOPMENT_OCCUPANCY_CONFLICT');byTarget[target]=token
   end end end
+  return byTarget
  end
  local function remember(value,r)
-  records[r.token]={value=cp(value),reference=cp(r)};rebuild()
+  records[r.token]={value=cp(value),reference=cp(r)};occupancy=targetOccupancy(records)
  end
  local function set(c,name,want)
   local b=assert(P.Info('Buildings',name),'DEVELOPMENT_EFFECT_DEFINITION_MISSING')
@@ -130,7 +131,7 @@ function SPCDevelopmentInvestment.Start(P,shared)
    for _,contract in pairs(tracked.value.contracts)do if M.Open(contract)then
     local ok,target=validateReference(contract.target);if ok then effect(target,nil)end
    end end
-   records[token]=nil;rebuild();return
+   records[token]=nil;occupancy=targetOccupancy(records);return
   end
   local source=assert(city(r.owner,r.cityID),'DEVELOPMENT_CITY_UNKNOWN')
   local old=state(r.owner,source);assert(old,'DEVELOPMENT_HISTORY_UNAVAILABLE');local value=cp(old)
@@ -161,7 +162,7 @@ function SPCDevelopmentInvestment.Start(P,shared)
   invalidate(r.owner,r.cityID)
  end
  function d.Reconcile(pid,id)
-  if busy or not loaded or not P.IsTestPlayer(pid)then return end
+  if busy or not loaded or indexErrors[pid] or not P.IsTestPlayer(pid)then return end
   busy=true
   for token,r in pairs(records)do if r.reference.owner==pid then
    local relevant=id==nil or r.reference.cityID==id
@@ -173,20 +174,36 @@ function SPCDevelopmentInvestment.Start(P,shared)
   end end
   busy=false
  end
- local function readIndex(pid)
-  local ok,err=pcall(store.VisitDevelopment,pid,function(value,r)remember(value,r)end)
-  indexErrors[pid]=not ok and code(err) or nil;indexError=nil
-  for _,reason in pairs(indexErrors)do indexError=reason;break end
-  if not ok then d.error=failure(err,pid,nil,'LOAD_INDEX')end
- end
  local function startupCity(pid,c)
   local k=key(pid,c:GetID())
   local ok,err=pcall(function()
-   if store.Owns(c)then ref(c);effect(c,nil)end
+   if store.Owns(c)then
+    local r=ref(c)
+    local source=records[occupancy[r.token]]
+    local contract=source and source.value.contracts[r.token]
+    if not contract or contract.stage~='ACTIVE' or not same(contract.target,r)then effect(c,nil)end
+   end
   end)
   if ok then startupPending[k]=nil;d.startupErrors[k]=nil;d.Mark(pid,c:GetID())
   else startupPending[k]={pid,c:GetID()};d.startupErrors[k]=failure(err,pid,c:GetID(),'LOAD_CITY')end
   return ok
+ end
+ local function readIndex(pid)
+  local ok,err=pcall(function()
+   -- A visit may fail after delivering a source. Publish only a complete index.
+   local staged={}
+   for token,record in pairs(records)do staged[token]=record end
+   store.VisitDevelopment(pid,function(value,r)
+    staged[r.token]={value=cp(value),reference=cp(r)}
+   end)
+   local byTarget=targetOccupancy(staged)
+   records,occupancy=staged,byTarget
+  end)
+  indexErrors[pid]=not ok and code(err) or nil;indexError=nil
+  for _,reason in pairs(indexErrors)do indexError=reason;break end
+  if not ok then d.error=failure(err,pid,nil,'LOAD_INDEX');return end
+  for _,c in Players[pid]:GetCities():Members()do startupCity(pid,c)end
+  if loaded then d.Reconcile(pid)end
  end
  local function recoverCity(pid,id)
   local k=key(pid,id);if not startupPending[k]then return end
@@ -197,11 +214,10 @@ function SPCDevelopmentInvestment.Start(P,shared)
  local function initialize()
   if loaded then return true end
   if store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return false end
-  for pid,p in pairs(Players)do if P.IsTestPlayer(pid)then
+  for pid in pairs(Players)do if P.IsTestPlayer(pid)then
    -- Index completeness protects global target occupancy. A carrier/read failure
    -- in one city is a separate local problem and cannot poison that index.
    readIndex(pid)
-   for _,c in p:GetCities():Members()do startupCity(pid,c)end
   end end
   loaded=true
   for pid in pairs(Players)do if P.IsTestPlayer(pid)then d.Reconcile(pid)end end
@@ -369,7 +385,7 @@ function SPCDevelopmentInvestment.Start(P,shared)
  local function flush()
   if busy or not initialize()then return end
   local retryIndex=indexArmed;indexArmed={}
-  for pid in pairs(retryIndex)do readIndex(pid);d.Reconcile(pid)end
+  for pid in pairs(retryIndex)do if indexErrors[pid]then readIndex(pid)end end
   local armed=startupArmed;startupArmed={}
   for _,pair in pairs(armed)do recoverCity(pair[1],pair[2])end
   local todo=dirty;dirty={}

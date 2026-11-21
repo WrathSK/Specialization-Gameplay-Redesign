@@ -4,6 +4,7 @@
   "stages": {
     "CurrentGameplay": [
       "test_current_cold_effects.ColdEffects.test_late_collection_sample_reconciles_three_city_effects",
+      "test_current_cold_effects.ColdEffects.test_confirmed_city_change_precedes_a_delayed_work_packet",
       "test_current_cold_effects.ColdEffects.test_dialogue_history_delivery_restores_earned_percent",
       "test_current_cold_effects.ColdEffects.test_insight_ledger_becomes_readable_before_local_turn",
       "test_current_cold_effects.ColdEffects.test_development_reindexes_an_existing_paid_contract",

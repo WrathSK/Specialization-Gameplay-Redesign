@@ -121,9 +121,9 @@
       "provenance": "S1127 receipt-backed Crew cancellation and independent grant protection."
     },
     "Mod/CultureAesthetic.lua": {
-      "sha256": "bec9c327a270578761cb5bd07b94bee246e4d4f4aeae0070647b5b5db4ba0055",
+      "sha256": "b239a5c3afea4e43cd27b623595805c49a92549dc04b4be5728f9cddd7cc5778",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1084 verifies two-city Aesthetic cleanup with the old Lv4 Lua and its no-op binding absent, preserves the read report and confirmed exits, and proves the exact source removal rolls back."
+      "provenance": "S1132 B532. Check existing district flags against the first reliable collection before writing."
     },
     "Mod/CultureAestheticModel.lua": {
       "sha256": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
@@ -131,14 +131,14 @@
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
     },
     "Mod/CultureInsightsTourism.lua": {
-      "sha256": "cc489ce107d7469ac98988ba3de3e3a89a5f5ffa25dc721e7a364ad6eb547e87",
+      "sha256": "9b6a57ecc5a5e758bb304ecfe03efe9e26202ca0347ea2f9a1a8cb3a29c25651",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
+      "provenance": "S1132 B532. Retain the loaded Insight tourism carrier until the ledger and qualification can be reconciled."
     },
     "Mod/CultureInspiration.lua": {
-      "sha256": "67c03c973ead39880252fdca0998697dd014ebaa3544e38593a11ea9b6316b5f",
+      "sha256": "68d7f1cc3cd96506b1060e686941881af9e1097e06d9982f08a8bf5f220b9445",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1080 moves the four historical Inspiration carrier withdrawals to the current effect owner and retires the old probe Lua. Exact load and exit ordering, failed readback, scoped recovery, retained SQL and both disposable rollback paths are verified locally."
+      "provenance": "S1132 B532. Separate retired GPP probes from the current era carrier during cold admission."
     },
     "Mod/CultureInspirationModel.lua": {
       "sha256": "514fa59c5e95d9cd970b002892496f06f838b06706ee4b8ebf9d4e0018f59180",
@@ -146,9 +146,9 @@
       "provenance": "B276 user-approved eight-era correction only: E/X0–8, Inspiration24%, Dialogue round40/loaded-era coverage. Actual local/SQL evidence; no native/deployment claim."
     },
     "Mod/CultureMeaning.lua": {
-      "sha256": "273e645981b385ffe021a8fb69984bc18419fa365c4b3836e39affcf71e2addb",
+      "sha256": "55352c4210c4b1a470727d2f3921ef9ade616d802f445d9e3f8ed670e696d58f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1081 moves exact cold B060 withdrawals to Culture Meaning, preserves the confirmed city exit owner and Dialogue packet, and removes the two retired adjacency Lua paths."
+      "provenance": "S1132 B532. Retire obsolete values separately and reconcile the current per-work profile from reliable facts."
     },
     "Mod/CultureMeaningModel.lua": {
       "sha256": "90d37621b7e5a0bcc28c118a011473816ef8572432e426c08dd2c117844817cb",
@@ -431,9 +431,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "e75631d67c5c4e8bb6774ae4e78138e266d7955815c95ae327ace2c675ef94b7",
+      "sha256": "185b8595df382e8aa1a363976feb81a500f687ce41496c7ffad55103f3b51288",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
+      "provenance": "S1132 B532. Publish a complete contract index before checking target effects. Preserve strict admission and one-time payment."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "fa05facb8b55e559d47ab10580e9aa3c465ef247efb09579ffe15ba03f865f5a",
@@ -451,9 +451,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DialogueEffects.lua": {
-      "sha256": "322cff09574c27386c108446959ca4f4d18bf5e8ee7832dbeb7467f09c45de74",
+      "sha256": "041b711fe64a783cb4e29be4bfbd23abcf099ed0cc8e0e55bbf4f0e4adc861bf",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
+      "provenance": "S1132 B532. Distinguish unavailable cold history from a validated history or a confirmed exit."
     },
     "Mod/DialogueProjectModel.lua": {
       "sha256": "26fa24d6d4a0bf669fb61c9c07d2952880290ff2ed253fac0cb8e7d62705d706",
@@ -636,9 +636,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "7c47aa76e7381267cb23069f96f0e94c2ad7ce865f8db64b577907f4c7b1a5d6",
+      "sha256": "b860039efc9a6c2c2bc2e19e5fde8d8dc1410ecedc5a63c5de04001586269152",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1129 B531 package identity."
+      "provenance": "S1132 B532. Develop package identity."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -751,9 +751,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "5a7204a13b0d1e54e96f1dd0fd2fe564e0357e4cc1e87bcead6479b1c0f6e564",
+      "sha256": "6737616c783e1c057d9555cf4d7f7fa5881fb9295f86162f0940912850fc3f04",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1129 B531 package identity."
+      "provenance": "S1132 B532. Develop package identity."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1556,7 +1556,7 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
-  "source_review": "S1129 verifies first acquisition from a Free City and the strict network prerequisites on develop. Stable deployment remains B528.555.",
-  "source_runtime": "B531.558 / modinfo558 develop, 310 files. No deployment.",
-  "tested_source_snapshot_sha256": "e7f408ef27bae94bb2c675fb4d44a7fe2bdcbb0c6c8f0b6c6d7fde4b5fe48ed5"
+  "source_review": "S1132 applies the existing November 4 same-build restoration rule to five Culture effects and the paid Development target. Current local regressions pass. Stable remains B528.555.",
+  "source_runtime": "B532.559 / modinfo559 develop, 310 files. No deployment.",
+  "tested_source_snapshot_sha256": "4f75d925080798f8e28b4b8602c8b380c28c9a2d1b2cfe2cc7c11fc21010c82f"
 }

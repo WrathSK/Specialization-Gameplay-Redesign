@@ -33,7 +33,7 @@ def fixture():
        links[#links+1]={BuildingType=bn,ModifierId=mid}
       end
       P={Info=function(t,k)return info[t][k]end,Rows=function(t)return t=='ModifierArguments' and args or links end,
-       Field=function(t,k)return t[k]end,IsTestPlayer=function(pid)return pid==0 end,
+       Field=function(t,k)return t[k]end,IsTestPlayer=function(pid)return pid==0,nil,pid==0 and 'ELIGIBLE' or 'INELIGIBLE' end,
        HasBuilding=function(c,n)reads=reads+1;if unreadable then return nil end;return c.present[n]==true end,
        RemoveBuilding=function(c,n)if failRemove then error('remove failed')end;c.present[n]=nil;removes=removes+1;Events.CityBuildingsChanged(c.owner,c.id)end,
        CreateBuilding=function(c,n)creates=creates+1;if not failCreate then c.present[n]=true;c.pillaged[n]=nil end;Events.CityBuildingsChanged(c.owner,c.id)end}

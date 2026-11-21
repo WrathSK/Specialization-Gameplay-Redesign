@@ -68,17 +68,23 @@ function SPCCultureInspiration.Start(P,shared)
  end
  local function withdrawLegacy(c)
   validateLegacy()
-  local failure
+  local failure,conflict
   for _,suffix in ipairs(legacySuffixes)do
    local id=legacyIDs[suffix]
+   local removing=false
    local ok,why=pcall(function()
     if legacyPresent(c,id)then
+     removing=true
      P.RemoveBuilding(c:GetBuildings(),id)
      assert(not legacyPresent(c,id),'INSPIRE_REMOVE_UNCONFIRMED')
     end
    end)
-   if not ok then failure=failure or why end
+   if not ok then
+    failure=failure or why
+    if removing then conflict=why end
+   end
   end
+  if conflict then error('INSPIRE_REMOVE_UNCONFIRMED: '..tostring(conflict))end
   assert(not failure,failure)
  end
  local function project(c,want,expected)
@@ -108,11 +114,11 @@ function SPCCultureInspiration.Start(P,shared)
   end)
   d.writing=nil;assert(ok,why)
  end
- local function withdraw(c)
-  -- Attempt both exact groups; a failure cannot authorize a new value.
+ local function prepare(c)
   local ok,why=pcall(withdrawLegacy,c)
-  local cleared,err=pcall(project,c,nil)
-  assert(ok and cleared,not ok and why or err)
+  local _,_,eligibility=P.IsTestPlayer(c:GetOwner())
+  if eligibility=='INELIGIBLE' or (not ok and tostring(why):find('INSPIRE_REMOVE_UNCONFIRMED',1,true))then project(c,nil)end
+  assert(ok,why)
  end
  local function ready()
   if d.ready then return true end
@@ -126,7 +132,7 @@ function SPCCultureInspiration.Start(P,shared)
    if not supported then return false end
    -- One startup pass replaces the retired probe's pass, including foreign saved carriers.
    for _,c in ipairs(all)do
-    local good,err=pcall(withdraw,c)
+    local good,err=pcall(prepare,c)
     if not good then local k=key(c:GetOwner(),c:GetID());pendingCleanup[k]=true;d.errors[k]=tostring(err):sub(1,180)end
    end
    d.ready=true;return true
@@ -139,7 +145,7 @@ function SPCCultureInspiration.Start(P,shared)
  local function reconcile(pid,c)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'INSP_OWNER_UNKNOWN')
   local k=key(pid,c:GetID());local reference=SPCNetworkInput.Reference(c);local old=d.records[k]
-  if pendingCleanup[k]then withdraw(c);pendingCleanup[k]=nil end
+  if pendingCleanup[k]then prepare(c);pendingCleanup[k]=nil end
   local ok,p=pcall(function()
    local f=SPCCurrentSpecializationFacts.Read(P,shared,pid,c)
    -- No Shared D, buildings, workers, full work list or diagnostic construction.
@@ -152,10 +158,8 @@ function SPCCultureInspiration.Start(P,shared)
    return M.Plan(f,w)
   end)
   if not ok then
-   -- Same reference UNKNOWN holds only a confirmed session projection.
-   if not old or old.reference~=reference or tostring(p):find('INSP_REFERENCE_CHANGED',1,true)then
-    project(c,nil);d.records[k]=nil
-   end
+   if old and old.reference~=reference then project(c,nil);d.records[k]=nil
+   elseif not old then d.records[k]={owner=pid,reference=reference,x=c:GetX(),y=c:GetY()}end
    error(p)
   end
   assert(c:GetOwner()==pid and SPCNetworkInput.Reference(c)==reference,'INSP_REFERENCE_CHANGED')
@@ -210,7 +214,7 @@ function SPCCultureInspiration.Start(P,shared)
   local k=key(pid,c:GetID());local reference=SPCNetworkInput.Reference(c);local p=d.records[k]
   if p and p.reference~=reference then p=nil end
   local err=d.errors[k] or d.startupError or d.error;local lines={Locale.Lookup('LOC_SPC_INSPIRATION_AUTO')}
-  if err or not p then lines[#lines+1]=Locale.Lookup('LOC_SPC_INSPIRATION_PENDING')
+  if err or not p or not p.status then lines[#lines+1]=Locale.Lookup('LOC_SPC_INSPIRATION_PENDING')
   elseif p.status=='INACTIVE'then lines[#lines+1]=Locale.Lookup('LOC_SPC_INSPIRATION_INACTIVE')
   else lines[#lines+1]=Locale.Lookup('LOC_SPC_INSPIRATION_CURRENT',p.eras,p.percent)end
   local unresolved=0;for _ in pairs(pendingCleanup)do unresolved=unresolved+1 end
