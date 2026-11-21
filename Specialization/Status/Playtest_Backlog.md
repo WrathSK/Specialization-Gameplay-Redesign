@@ -8,6 +8,8 @@ Document Owner: Codex
 
 [B489 native acceptance](Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047) covers the tested HD and official Gathering Storm profiles, the latter with two test aids. [B527](Specialization_P0_Status.md#b527-no-hd-culture-network-and-load-readiness-verified--s1093) added positive no-HD Culture Network and first-local-turn evidence with 69 loaded targets. A cold check in the pinned 28-target profile and a reload after the positive benefit remain unobserved. The precise HD Engineering Study uplift also remains open. See the [accepted closeout](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md#结项后继续保留的事项) for the remaining scoped limits.
 
+**Develop B529.556, USER_GAME_TEST_REQUIRED.** In a separate new campaign on that build, accept a non-capital AI city with a finished Campus and no specialization history. After the deal, confirm Research is available to Claim and the city has no professional benefits yet. Save and reload on the same build, then complete the Claim once. If returning a previously owned city, check its original Potential/investment or frozen candidates. Record which way the city changed hands and the turn; the exact callback order needs a scoped trace. Free City joining, liberation to its actual recipient, intervening owners and razing/refoundation have independent evidence limits. A simple gift exercises the first path only. [Evidence and source](../Reports/Technical/Engine_Reference.md#er09--城市换手身份与永久毁城) · [Develop result](Specialization_P0_Status.md#peaceful-city-acquisition-and-direct-return--s1125)
+
 ## Historical issue intake
 
 Baseline: B069.96 / modinfo96

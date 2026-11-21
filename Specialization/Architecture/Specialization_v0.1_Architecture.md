@@ -1,12 +1,12 @@
-# Specialization v0.1 Architecture — A0187
+# Specialization v0.1 Architecture — A0188
 
 Document Owner: Codex
-Architecture Revision: A0187
-Design Spec Synced Through: D0060
-Design Spec SHA256: 782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39
-Latest Accepted Design Revision: D0060
-Latest Accepted Design SHA256: 782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39
-Sync Status: ACCEPTED_CONVERGENCE_IMPLEMENTED_SCOPED_EVIDENCE
+Architecture Revision: A0188
+Design Spec Synced Through: D0061
+Design Spec SHA256: 52de79223fd0e6c8fcf6bf6aba2614d2fd0fb0f293a629208862a5211d871734
+Latest Accepted Design Revision: D0061
+Latest Accepted Design SHA256: 52de79223fd0e6c8fcf6bf6aba2614d2fd0fb0f293a629208862a5211d871734
+Sync Status: D0061_SYNCED_OWNERSHIP_IMPLEMENTATION_TRACKED_IN_STATUS
 Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; this document defines target contracts, not a parallel deployment ledger.
 
 ## CURRENT AUTHORITATIVE STATE
@@ -16,6 +16,12 @@ A0184 records the Owner-accepted convergence successor and finite workflow/curre
 A0186 records the Owner's engineering closeout approval on 2026-11-17 after the Stable B527 scoped audit. It synchronizes the implemented responsibilities and identifies superseded experiment descriptions; it introduces no new gameplay, save contract, recovery policy or environment promise. The closed scope is the approved convergence program on B527.554, not every future Design capability or historical document-cleanup task. Evidence and retained observations remain in [Status CURRENT](../Status/Specialization_P0_Status.md#current-authoritative-state) and the [accepted closeout record](../Reports/Proposals/Architecture_Convergence_Closeout_Review.md). Main promotion and deployment retain separate authorization.
 
 A0187 records the subsequent narrow retirement of those three unloaded city files and the inert NetworkIsolation controller/request entries. Current network/effect owners, retained turn checks, owner-local withdrawal seams and GC protections are unchanged. This does not reopen the accepted convergence scope or authorize new save compatibility.
+
+### 和平交割与城市身份
+
+A0188 承接[城市易主规则](../Design/Shared.md#和平受让多次转手与同址重建)。进度存储仍独占城市身份写入。首次和平受让使用交割事件提供的新主人、新城市 ID 和明确原因，核对前主人、该城的加入／初始化顺序以及对象与地块两种查询。只在交割时读取一次该城已完工的区域；认领项目沿用原有候选和结算。已登记位置优先交给原城市记录处理。
+
+直接归还时，原标记缺失且出现 CityBuilt 的路径，需要完整的旧端点移除、新端点加入与初始化、同回合交割和已经确认的退出。和平交割还要求 CityBuilt 指向同一新端点并先于移除，交割原因由具名引擎枚举确认。现有保存字段分别记录来源与凭据版本，冷读档重新核对。三类和平原因共用该窗口，原生覆盖范围见[事件证据](../Reports/Technical/Engine_Reference.md#er09--城市换手身份与永久毁城)。外方间连续交割与永久毁城的实现边界见[当前状态](../Status/Specialization_P0_Status.md#peaceful-city-acquisition-and-direct-return--s1125)。
 
 ### Accepted convergence boundaries — 2026-11-04
 

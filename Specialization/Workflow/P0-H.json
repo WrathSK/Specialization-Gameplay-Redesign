@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "AUTHORIZED",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0061",
     "research": "D0059",
@@ -10,22 +10,22 @@
     "commerce": "D0061",
     "shared": "D0061",
     "presentation": "D0032",
-    "architecture": "A0187",
-    "status": "S1124",
-    "runtime": "B528.555 / modinfo555",
+    "architecture": "A0188",
+    "status": "S1125",
+    "runtime": "B529.556 / modinfo556",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Implement approved city ownership rules by proven branch, beginning with first peaceful acquisition.",
-  "implementation_authorized": true,
+  "goal": "First peaceful acquisition and direct return implemented. Review remaining native and persistence boundaries.",
+  "implementation_authorized": false,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
       "kind": "section",
       "selector": "## CURRENT AUTHORITATIVE STATE",
-      "reason": "Current scope, package and next-action authority after engineering closeout"
+      "reason": "Current source, installed package and next decision"
     },
     {
       "path": "Specialization/Design/Shared.md",
@@ -42,8 +42,8 @@
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "### 运行入口与职责",
-      "reason": "Current implementation responsibility map; historical implementation queues are not current tasks"
+      "selector": "### 和平交割与城市身份",
+      "reason": "Single Store writer, destination validation and direct-return proof"
     }
   ],
   "dependencies": [
@@ -66,7 +66,7 @@
   ],
   "result": {
     "runtime_identity": {
-      "source": "B528.555 / modinfo555 at the PR #9 merge",
+      "source": "B529.556 / modinfo556 on develop; source and checks in S1125.",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -111,9 +111,10 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "status": "ACCEPTED_DESIGN_AND_SCOPED_REFERENCE",
-      "report": "Specialization/Status/Specialization_P0_Status.md#city-ownership-rules-and-native-evidence--s1124",
-      "native_validation": "Existing native traces only; no new playtest."
+      "status": "LOCAL_SIMULATION_PASS_STATIC_CONFIRMED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#peaceful-city-acquisition-and-direct-return--s1125",
+      "tests": 109,
+      "native_validation": "USER_GAME_TEST_REQUIRED for B529; earlier tests retain their own scopes."
     }
   }
 }

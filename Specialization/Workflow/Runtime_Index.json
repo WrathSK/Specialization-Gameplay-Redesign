@@ -76,9 +76,9 @@
       "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "3f32b49e7d461c1baaa8556e3d0b3453b16afd01032f3c68f05cb72d25976f6f",
+      "sha256": "84c3715aa610b4f6107cbceae021538bb2189a70410f390c7c45ab458de8e970",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0973 B454 exact import-only network recovery prototype retirement."
+      "provenance": "B529 peaceful ownership and scoped original-return checks (S1125). Store owns admission and saved witness readback."
     },
     "Mod/ClaimProjects.lua": {
       "sha256": "84f28fdc61391fe9aaafdc60a78a3b476428f7c2fef39a8d8e9df75f16355608",
@@ -636,9 +636,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "167353e27731598a4e98626337e745c9851876edb939c3829a213745d3a7a623",
+      "sha256": "47eb12774dc53876fc561f3e2002ab9406cb164e1ca12160bbce26ac800ce664",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1096 B528 residual code retirement; production effect/Store/GC owners unchanged, no deployment."
+      "provenance": "B529 peaceful ownership and scoped original-return checks (S1125). Package identity."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -751,9 +751,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "f3e7c912036c51ab7d4a62e02e2ec9786bec7b3c4d253ad5febec2837322db32",
+      "sha256": "c26e560fab582865dd29f5423619647af569f649e642999047eb941d23c9719f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1096 B528 residual code retirement; production effect/Store/GC owners unchanged, no deployment."
+      "provenance": "B529 peaceful ownership and scoped original-return checks (S1125). Package identity."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1556,7 +1556,7 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
-  "source_review": "S1096 verifies four residual file retirements. S1123 verifies the same runtime tree on main and in the installed package.",
-  "source_runtime": "B528.555 / modinfo555, 310 files on main and in the game directory.",
-  "tested_source_snapshot_sha256": "e10a426664e1a7f038d9d2f825abce54d6484d4a2e3dff3ad394f026ec48f31c"
+  "source_review": "S1125 verifies B529 peaceful city acquisition and direct handback locally. Installed B528 remains the last stable deployment.",
+  "source_runtime": "B529.556 / modinfo556 develop, 310 files; no deployment.",
+  "tested_source_snapshot_sha256": "dff15e5dd7425d09fce3d7322c42b0da166c18f7dc97fb5ff02ee4566f501db2"
 }

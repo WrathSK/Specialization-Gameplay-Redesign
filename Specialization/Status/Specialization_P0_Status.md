@@ -1,28 +1,40 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1124
-Implementation Build: B528.555 / modinfo555, promoted to main and verified in the live game directory.
-Architecture Revision Reviewed: A0187
+Status Revision: S1125
+Implementation Build: develop B529.556 / modinfo556. Installed stable B528.555 / modinfo555.
+Architecture Revision Reviewed: A0188
 Design Revision Reviewed: D0061
 Latest Accepted Design Revision: D0061
 Design Sync State: D0061_CITY_OWNERSHIP_ACCEPTED
-Work State: DEVELOP_CITY_OWNERSHIP_RULES_ACCEPTED
+Work State: DEVELOP_PEACEFUL_OWNERSHIP_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Build and installation | [B528.555 stable deployment](#b528555-stable-playtest-package-deployed--s1123) matches all 310 files from main. |
+| Source and installation | [B529.556 on develop](#peaceful-city-acquisition-and-direct-return--s1125) implements first peaceful acquisition and direct return. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
 | Validation | [Engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) and [35 B528 local checks](#residual-diagnostic-and-unloaded-city-files--s1096). Native observations keep their B489/B527 scopes. |
-| Current develop work | [Accepted city ownership rules](#city-ownership-rules-and-native-evidence--s1124). Implement first peaceful acquisition against a verified destination. Multi-owner continuity and permanent destruction require distinct evidence. |
+| Next action | [Test an incoming gift on B529](Playtest_Backlog.md#current-playtest). Review the smallest persistent witness for intervening foreign owners. Confirm a native destruction boundary before retiring a city identity. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Peaceful city acquisition and direct return — S1125
+
+A previously unregistered foreign city can now offer its completed districts for Claim when it actually passes to the eligible player. The same terminal event to a third party gives the player nothing. A previously registered city goes to its original worker. During a direct gift back, a missing city marker plus an early CityBuilt formerly produced RETURN_NEW_FOUNDATION in the local replay. With a verified peaceful reason, the full directly observed transfer chain can now restore the old record. The historical asset, investment, fixed Claim choices and complete-exit requirement stay with that record. [Accepted rules](../Design/Shared.md#和平受让多次转手与同址重建) · [Technical contract](../Architecture/Specialization_v0.1_Architecture.md#和平交割与城市身份).
+
+**Runtime impact.** The existing Gameplay transfer listener and Store own the write. Incoming admission verifies the event's player/ID against the initialized plot and takes the existing one-city district snapshot once. An empty pending list skips that admission handler. A failed endpoint lookup marks only the matching pending identity, and an admission error can hold only its matching worker. Direct return adds one keyed destination read on the new ambiguous-Built path. No event subscriptions, timers, durable fields or alternate writers were added. Schema-3 acquisition uses the existing evidence label for a positive peaceful reason and omits the conquest sequence. For direct markerless return with early Built, existing returnEvidence carries the peaceful label and returnProof version 3 records the observed Built and ordered chain. Only same-build new campaigns/reloads are supported.
+
+**LOCAL_SIMULATION_PASS / STATIC_CONFIRMED.** 109 scoped tests passed, including 15 new cases for equal/changed IDs, the actual full-turn Claim, Free Cities and third-party liberation, scoped failures, direct return after foreign reload, preserved investment/current ACTIVE, duplicate events and invalid saved evidence. The scoped selection contains both current production paths and explicitly frozen historical controls. Lua 5.1 compiled all 182 runtime scripts; 24 XML files and the manifest parsed, all 611 file references resolve to 309 files. Reviewed source package SHA256 `4c5f2c97aa24192fc3709eb3dc435e182644729e90029d54176b2e50e0d87c5b` (310 files). No deployment or native test.
+
+Reproduce with Python 3.14 / Lupa 2.8, DevelopmentTests on PYTHONPATH, and the read-only B413 HD test database identified by SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`. Run `python3.14 -B -m unittest test_city_peaceful_acquisition test_pu07_source_attribution test_pu07a_completion_scope.PersistedGuards test_store_write_boundaries.StoreWriteBoundaries.test_existing_b128_selected_store_return_regression test_pu09_marker_roots.ClaimMarkers test_refactor_s8c1 test_refactor_s8c3 test_refactor_s7f test_refactor_defects.Defects.test_post_commit_observer_does_not_fail_completed_identity`. A wider exploratory run of the full PU07a/source and Store modules (76 methods) reproduced the same 10 non-pass cases/messages on B528 and B529, including four sizes of one frozen ledger comparison. Those cases retain their prior scope.
+
+**Remaining work.** In a local replay of player → A → B, the saved progression bytes after A → B remained identical to those after the first loss. After reload the record names A, while the live handback names B. The original loss target is still required by exit and deferred lifecycle receipts. The next storage decision is whether to retain a separately verified latest foreign endpoint on the lost city's record; no new field has been written. Before implementing it, verify intermediate delivery, attachment to the same city, and exit acknowledgements across reload. A separate local replay confirmed the index still reserves the former city site after removal and a new founding event. Permanent destruction needs a reliable native completion before introducing retirement and releasing the site. Reuse the scoped native checks in [Engine Reference](../Reports/Technical/Engine_Reference.md#er09--城市换手身份与永久毁城); preserve the existing evidence for conquest and direct recapture.
 
 ### City ownership rules and native evidence — S1124
 

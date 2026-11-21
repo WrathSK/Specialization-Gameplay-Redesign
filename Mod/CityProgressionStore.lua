@@ -13,6 +13,19 @@ if not SPCStoreDeferredLifecycle then include('StoreDeferredLifecycle')end
 if not SPCStoreLifecycleRecovery then include('StoreLifecycleRecovery')end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
+local conquestEvidence='CONQUEST+Initialized+Transfer'
+-- Saved tags describe the event actually delivered. Resolve live reason values by name.
+local peacefulEvidence={
+ ['GIFT+Initialized+Transfer']='BY_GIFT',
+ ['LIBERATION+Initialized+Transfer']='BY_LIBERATION',
+ ['CULTURAL_IDENTITY+Initialized+Transfer']='BY_CULTURAL_IDENTITY',
+}
+local function peacefulReason(P,value)
+ if type(value)~='number' then return nil end
+ for evidence,name in pairs(peacefulEvidence)do
+  if P.Field(CityTransferTypes,name)==value then return evidence end
+ end
+end
 local function publishFact(shared,c,cause,r,investment,topic)
  if not shared.FactChanges then return end -- isolated legacy import/tests have no automatic consumers
  local ok,err=pcall(function()
@@ -122,12 +135,18 @@ local function CreateProgressionRecord(P,shared,storage)
   return commerceMerge(SPCCommerceModel[method](commerceProjection(r),...),r)
  end
  local function ref(c)return {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}end
- local function validTransition(proof,loss,current)
-  if type(proof)~='table' or (proof.version~=1 and proof.version~=2) or not loss or not same(proof.from,loss.target)
+ local function validTransition(proof,loss,current,evidence)
+  if type(proof)~='table' or not loss or not same(proof.from,loss.target)
    or not same(proof.to,current) or type(proof.turn)~='number' or proof.turn<0 or proof.turn%1~=0 then return false end
   local r,a,i,t=proof.removed,proof.added,proof.initialized,proof.transferred
   if not (type(r)=='number' and type(a)=='number' and type(i)=='number' and type(t)=='number'
    and r>=1 and r%1==0 and a%1==0 and i%1==0 and t%1==0 and r<a and a<i and i<t) then return false end
+  if peacefulEvidence[evidence] then
+   local b=proof.foundation
+   return proof.version==3 and proof.conquest==nil and type(b)=='table' and same(b.to,current)
+    and b.turn==proof.turn and type(b.sequence)=='number' and b.sequence>=1 and b.sequence%1==0 and b.sequence<r
+  end
+  if evidence~='NATIVE_TRANSITION_V1' or (proof.version~=1 and proof.version~=2) then return false end
   if proof.version==2 then
    local c,b=proof.conquest,proof.foundation
    if type(c)~='table' or type(b)~='table' or c.fromOwner~=loss.target.owner or not same(c.to,current)
@@ -163,12 +182,15 @@ local function CreateProgressionRecord(P,shared,storage)
     and f.reason==f.reason and math.abs(f.reason)<math.huge and f.turn==r.base.foundationTurn,'STORE_FOUNDATION')
    else
     local f=r.acquisition
-    assert(type(f)=='table' and f.evidence=='CONQUEST+Initialized+Transfer' and same(f.reference,r.origin)
+    assert(type(f)=='table' and (f.evidence==conquestEvidence or peacefulEvidence[f.evidence]) and same(f.reference,r.origin)
      and type(f.oldOwner)=='number' and f.oldOwner>=0 and f.oldOwner%1==0 and f.oldOwner~=r.origin.owner
      and f.turn==r.base.foundationTurn and type(f.legacySet)=='table','STORE_ACQUISITION')
     local c,a,i,t=f.conquered,f.added,f.initialized,f.transferred
-    assert(type(c)=='number' and type(a)=='number' and type(i)=='number' and type(t)=='number'
-     and c>=1 and c%1==0 and a%1==0 and i%1==0 and t%1==0 and c<a and a<i and i<t,'STORE_ACQUISITION_ORDER')
+    assert(type(a)=='number' and type(i)=='number' and type(t)=='number'
+     and a>=1 and a%1==0 and i%1==0 and t%1==0 and a<i and i<t,'STORE_ACQUISITION_ORDER')
+    if f.evidence==conquestEvidence then
+     assert(type(c)=='number' and c>=1 and c%1==0 and c<a,'STORE_ACQUISITION_ORDER')
+    else assert(c==nil,'STORE_ACQUISITION_ORDER') end
     local n=0;for k,v in pairs(f.legacySet)do assert(kinds[k] and v==true,'STORE_LEGACY_SET');n=n+1 end
     assert(f.mode==(n>0 and 'LEGACY_CLAIM' or 'FIRST_COMPLETION'),'STORE_ACQUISITION_MODE')
     if f.mode=='LEGACY_CLAIM' and r.progression=='SPECIALIZED' then
@@ -203,7 +225,7 @@ local function CreateProgressionRecord(P,shared,storage)
    x=r.base.x,y=r.base.y,token=r.base.token,revision=1,stage='DONE',facts=r.base,target=r.base},INVEST=inv,TEMPLATES=r.templates}
   assert(M.Preview({ref=r.origin,values=v,ledger=r.binding}).state=='LOCAL_CANDIDATE','STORE_RECORD_INVALID')
   if r.current then
-   assert((r.returnEvidence=='CityTransfered+original_binding' or (r.returnEvidence=='NATIVE_TRANSITION_V1' and validTransition(r.returnProof,r.lastLoss,r.current))) and r.lastLoss and same(r.lastLoss.origin,r.origin)
+   assert((r.returnEvidence=='CityTransfered+original_binding' or validTransition(r.returnProof,r.lastLoss,r.current,r.returnEvidence)) and r.lastLoss and same(r.lastLoss.origin,r.origin)
     and r.lastLoss.target.owner~=r.origin.owner
     and r.current.owner==r.origin.owner and type(r.current.cityID)=='number' and r.current.cityID>=0 and r.current.cityID%1==0
     and r.current.x==r.origin.x and r.current.y==r.origin.y,'STORE_CURRENT_REFERENCE')
@@ -333,8 +355,8 @@ local function CreateProgressionRecord(P,shared,storage)
   if root.schema>=2 and not root.current then assert(binding(c,current)==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
   if root.current then
    local token=binding(c,current)
-   if root.returnEvidence=='NATIVE_TRANSITION_V1' then
-    assert(validTransition(root.returnProof,root.lastLoss,root.current) and (token==nil or token==root.base.token),'PROGRESSION_BINDING_CONFLICT')
+   if root.returnEvidence=='NATIVE_TRANSITION_V1' or peacefulEvidence[root.returnEvidence] then
+    assert(validTransition(root.returnProof,root.lastLoss,root.current,root.returnEvidence) and (token==nil or token==root.base.token),'PROGRESSION_BINDING_CONFLICT')
    else assert(token==root.base.token,'PROGRESSION_BINDING_UNAVAILABLE')end
   end
   return root
@@ -979,9 +1001,9 @@ local function CreateProgressionRecord(P,shared,storage)
   if root.schema==3 then
    local names={RESEARCH='科研',CULTURE='文化',INDUSTRY='工业',COMMERCE='商业'};local list={}
    for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY','COMMERCE'})do if root.acquisition.legacySet[k]then list[#list+1]=names[k]end end
-   local mode=root.acquisition.mode=='LEGACY_CLAIM' and '待完成对应认定项目' or '等待征服后的首个合格区域完成'
+   local mode=root.acquisition.mode=='LEGACY_CLAIM' and '待完成对应认定项目' or '等待取得城市后的首个合格区域完工'
    if root.progression=='SPECIALIZED' then mode=f.progression=='REALLOCATING' and '资产重组中' or ('当前专业：'..(names[f.specialization] or f.specialization))end
-   return P.VERSION..' | 征服城市进度\n取得已确认 | '..mode..'\n冻结候选：'..(#list>0 and table.concat(list,'、') or '无')
+   return P.VERSION..' | 受让或征服城市进度\n取得已确认 | '..mode..'\n冻结候选：'..(#list>0 and table.concat(list,'、') or '无')
     ..'\nPotential '..f.potential..' | ACTIVE '..tostring(f.active)..' | 投资 '..f.investmentCount..('\n认领：'..(shared.ClaimProjects and (shared.ClaimProjects.startupError or (shared.ClaimProjects.views[tostring(pid)..':'..c:GetID()] or {}).reason or shared.ClaimProjects.status) or '模块未初始化；请保留报告'))
     ..'\n独立记录已保存；候选不会随之后建设增加。'
   end
@@ -1350,28 +1372,40 @@ local function CreateProgressionRecord(P,shared,storage)
   local failed={};for name in pairs(errors)do failed[#failed+1]=name end;table.sort(failed)
   assert(#failed==0,'RETURN_CALLBACK_FAILED '..table.concat(failed,','))
  end
- local function recapture(c,current,newOwner,newID,oldOwner)
+ local function recapture(c,current,newOwner,newID,oldOwner,transferType)
   if not root.loss or root.stage~='HELD_TRANSFER' or newOwner~=root.origin.owner
    or oldOwner~=root.loss.target.owner or newID~=current.cityID or current.owner~=newOwner then return false end
   local generation,revision,loss,registration=exitTickets,root.revision,cp(root.loss),returnRevision
   d.returnCandidate=current.owner..'/'..current.cityID..' from '..tostring(oldOwner)
   d.returnRejection=nil -- latest matched attempt; diagnostics only
   assert(P.IsTestPlayer(newOwner),'RETURN_PLAYER_UNCONFIRMED')
-  local token=c:GetProperty(M.Keys.TOKEN);local proof
+  local token=c:GetProperty(M.Keys.TOKEN);local proof;local evidence
   if token~=root.base.token then
    assert(token==nil,'RETURN_BINDING_CONFLICT')
    assert(not transitionFault,transitionFault)
    assert(foreignSeen and transition,'RETURN_CHAIN_MISSING')
    proof=cp(transition);proof.transferred=eventSequence
+   evidence='NATIVE_TRANSITION_V1'
+   local peaceful=peacefulReason(P,transferType)
+   assert(not (conquest and peaceful),'RETURN_CONQUEST_CONFLICT')
    if foundation then
-    assert(conquest,'RETURN_NEW_FOUNDATION')
-    proof.version=2;proof.conquest=cp(conquest);proof.foundation=cp(foundation)
-    assert(validTransition(proof,root.loss,current),'RETURN_FOUNDATION_CONFLICT')
+    -- A gift can send CityBuilt before removal of the old foreign endpoint.
+    -- Its typed terminal event can disambiguate that specific sequence.
+    proof.foundation=cp(foundation)
+    if conquest then
+     proof.version=2;proof.conquest=cp(conquest)
+    else
+     assert(peaceful,'RETURN_NEW_FOUNDATION')
+     local destination=CityManager.GetCity(newOwner,newID)
+     assert(destination and same(ref(destination),current),'RETURN_DESTINATION_UNCONFIRMED')
+     proof.version=3;evidence=peaceful
+    end
+    assert(validTransition(proof,root.loss,current,evidence),'RETURN_FOUNDATION_CONFLICT')
    elseif conquest then
     assert(conquest.turn==proof.turn and conquest.fromOwner==root.loss.target.owner and same(conquest.to,current)
      and conquest.sequence<proof.removed,'RETURN_CONQUEST_CONFLICT')
    end
-   assert(proof.turn==Game.GetCurrentGameTurn() and validTransition(proof,root.loss,current),'RETURN_CHAIN_INCOMPLETE')
+   assert(proof.turn==Game.GetCurrentGameTurn() and validTransition(proof,root.loss,current,evidence),'RETURN_CHAIN_INCOMPLETE')
   end
   local count=0;for name in pairs(exits)do count=count+1;assert(finished[name],'RETURN_WITHDRAWAL_UNCONFIRMED')end
   assert(count>0,'RETURN_WITHDRAWAL_UNCONFIRMED')
@@ -1430,7 +1464,7 @@ local function CreateProgressionRecord(P,shared,storage)
    n.researchTradition=SPCResearchTradition.ResumeOwner(n.researchTradition,Game.GetCurrentGameTurn(),R.Current(n).specialization)
    resumedTradition=true
   end
-  n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence=proof and 'NATIVE_TRANSITION_V1' or 'CityTransfered+original_binding';n.returnProof=proof;n.referenceInvalidated=nil
+  n.lastLoss=n.loss;n.loss=nil;n.stage='ACTIVE';n.current=current;n.currentFirst=first;n.returnEvidence=evidence or 'CityTransfered+original_binding';n.returnProof=proof;n.referenceInvalidated=nil
   captureDeferred(n,true)
   assert(returnCurrent(generation,revision,loss,c,current,registration),'RETURN_CONTEXT_CHANGED')
   n.revision=n.revision+1;save(n)
@@ -1438,7 +1472,7 @@ local function CreateProgressionRecord(P,shared,storage)
   if resumedTradition then publishFact(shared,c,'TRADITION_COMMITTED',n,nil,'TRADITION')end
   return true
  end
- local function reconcile(newOwner,newID,oldOwner,returnGuarded)
+ local function reconcile(newOwner,newID,oldOwner,transferType,returnGuarded)
   if not ready or fault or not root then return end
   local returning=root.loss and root.stage=='HELD_TRANSFER'and newOwner==root.origin.owner and oldOwner==root.loss.target.owner
   if returning and not returnGuarded then if returnBusy then return end;returnBusy=true end
@@ -1448,7 +1482,7 @@ local function CreateProgressionRecord(P,shared,storage)
    if not c then d.observation='UNKNOWN_CITY';return end
    local current=ref(c)
    if type(current.owner)~='number' or current.owner<0 or type(current.cityID)~='number' then d.observation='UNKNOWN_OWNER';return end
-   if recapture(c,current,newOwner,newID,oldOwner) then return
+   if recapture(c,current,newOwner,newID,oldOwner,transferType) then return
    elseif same(current,root.origin) and root.stage=='PREPARED' then activate(c)
    elseif not root.loss and current.owner~=root.origin.owner and oldOwner==root.origin.owner
     and newOwner==current.owner and newID==current.cityID then
@@ -1488,7 +1522,7 @@ local function CreateProgressionRecord(P,shared,storage)
     local c=CityManager.GetCityAt(root.origin.x,root.origin.y);if not c then return end
     local r=ref(c);if r.owner~=owner or r.cityID~=id then return end
     pcall(observe,name,unpack(arguments,1,argumentCount))
-    reconcile(owner,id,x,true)
+    reconcile(owner,id,x,y,true)
    end)
    returnBusy=false
    if not ok then local text=errorText(why,'RETURN_READ_FAILED');d.observation='UNKNOWN: '..text;d.returnRejection='RETURN_READ_FAILED'end
@@ -1947,7 +1981,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   if fault or completionSourceFailure then return store.FailureReport() end
   if not c then return '请选择一座城市；不会默认读取另一城。'end
   local w=find(c)
-  if not w and modern then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n正常建城须收到确认事件；征服须确认完整事件与无专业历史，不能自动认领。'end
+  if not w and modern then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n建城后等候落城确认；接手外城后等候交割与原有专业记录核对。'end
   if not w then return '所选城市未登记；仍使用旧保存路径。右键迁移进度可登记完整的己方专业城。\n本批最多显式登记两城；先保留转换前存档。'end
   return w.Describe(pid,c)..w.TimingDescribe()..'\n已登记：'..count()..(modern and ' | 所选城 ' or '/2 | 所选城 ')..c:GetOwner()..'/'..c:GetID()
  end
@@ -2082,35 +2116,41 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  end
  local function admit(q)
   if not q or q.error or q.committing then return end
-  if q.conquest then if not q.transferred then return end
+  local acquired=q.conquest or q.transferEvidence
+  if acquired then if not q.transferred then return end
   elseif not q.initialized or not q.found then return end
   q.committing=true
   local ok,err=pcall(function()
    check();assert(modern or count()<2,'TWO_CITY_TEST_LIMIT')
    assert(hooks.CityInitialized and hooks.OnDistrictConstructed and hooks.LoadScreenClose,'FOUNDATION_HOOK_UNAVAILABLE')
-   if not q.conquest then assert(foundReason~=nil and hooks.UnitActivate,'FOUNDATION_HOOK_UNAVAILABLE')end
+   if not acquired then assert(foundReason~=nil and hooks.UnitActivate,'FOUNDATION_HOOK_UNAVAILABLE')end
    assert(q.turn==Game.GetCurrentGameTurn(),'FOUNDATION_CROSS_TURN')
    local c=assert(CityManager.GetCityAt(q.reference.x,q.reference.y),'FOUNDATION_CITY_UNAVAILABLE')
    assert(P.IsTestPlayer(q.reference.owner) and same(reference(c),q.reference),'FOUNDATION_REFERENCE_CHANGED')
    assert(not store.Owns(c) and not legacyPresent(c),'FOUNDATION_EXISTING_HISTORY')
    local acquisition
-   if q.conquest then
-    assert(modern and hooks.CityConquered and hooks.CityAddedToMap and hooks.CityTransfered,'ACQUISITION_HOOK_UNAVAILABLE')
-    assert(not q.found and q.added and q.initSequence and q.conquest.sequence<q.added and q.added<q.initSequence and q.initSequence<q.transferred,'ACQUISITION_ORDER')
-    local old=assert(Players[q.conquest.oldOwner],'ACQUISITION_OLD_OWNER_UNAVAILABLE')
-    local major=old:IsMajor();local minor=false
+   if acquired then
+    assert(modern and hooks.CityAddedToMap and hooks.CityTransfered,'ACQUISITION_HOOK_UNAVAILABLE')
+    assert(not q.found and q.added and q.initSequence and q.added<q.initSequence and q.initSequence<q.transferred,'ACQUISITION_ORDER')
+    if q.conquest then
+     assert(hooks.CityConquered and q.conquest.sequence<q.added,'ACQUISITION_ORDER')
+    end
+    local old=assert(Players[q.oldOwner],'ACQUISITION_OLD_OWNER_UNAVAILABLE')
+    local major=old:IsMajor();local eligibleSource=major==true
     assert(type(major)=='boolean','ACQUISITION_SOURCE_KIND_UNKNOWN')
     if not major then
      -- IsMinor is not a proven Gameplay interface. Resolve the original owner's
      -- configured civilization against the authoritative gameplay database instead.
-     local config=PlayerConfigurations and PlayerConfigurations[q.conquest.oldOwner]
+     local config=PlayerConfigurations and PlayerConfigurations[q.oldOwner]
      local ok,civ=P.Call(config,'GetCivilizationTypeName')
      assert(ok and type(civ)=='string' and civ~='','ACQUISITION_SOURCE_CIV_UNAVAILABLE')
      local row=P.Info('Civilizations',civ)
      assert(row and type(row.StartingCivilizationLevelType)=='string','ACQUISITION_SOURCE_LEVEL_UNAVAILABLE')
-     minor=row.StartingCivilizationLevelType=='CIVILIZATION_LEVEL_CITY_STATE'
+     local level=row.StartingCivilizationLevelType
+     eligibleSource=level=='CIVILIZATION_LEVEL_CITY_STATE'
+      or (q.transferEvidence~=conquestEvidence and level=='CIVILIZATION_LEVEL_FREE_CITIES')
     end
-    assert((major==true or minor==true) and old:IsHuman()==false and not P.IsTestPlayer(q.conquest.oldOwner),'ACQUISITION_AI_MAJOR_OR_CITY_STATE_REQUIRED')
+    assert(eligibleSource and old:IsHuman()==false and not P.IsTestPlayer(q.oldOwner),'ACQUISITION_SOURCE_INELIGIBLE')
     local set={};local seen={}
     q.stage='区域快照读取'
     local districts=assert(c:GetDistricts(),'ACQUISITION_DISTRICTS_UNAVAILABLE')
@@ -2124,8 +2164,8 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
      local row=assert(P.Info('Districts',district:GetType()),'ACQUISITION_DISTRICT_TYPE')
      local kind=family(row.DistrictType);if complete and kind then set[kind]=true end
     end
-    acquisition={evidence='CONQUEST+Initialized+Transfer',reference=cp(q.reference),oldOwner=q.conquest.oldOwner,
-     turn=q.turn,conquered=q.conquest.sequence,added=q.added,initialized=q.initSequence,transferred=q.transferred,
+    acquisition={evidence=q.transferEvidence,reference=cp(q.reference),oldOwner=q.oldOwner,
+     turn=q.turn,conquered=q.conquest and q.conquest.sequence,added=q.added,initialized=q.initSequence,transferred=q.transferred,
      legacySet=set,mode=next(set) and 'LEGACY_CLAIM' or 'FIRST_COMPLETION'}
    end
    q.stage='城市登记写入'
@@ -2175,9 +2215,13 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   q.committing=false
   if not ok then
    q.error=tostring(err)
-   local c=CityManager.GetCityAt(q.reference.x,q.reference.y)
-   local readable,w=pcall(find,c)
-   if readable and w then pcall(w.HoldCompletion,'FOUNDATION_ADMISSION_INCOMPLETE')end
+   pcall(function()
+    local c=CityManager.GetCityAt(q.reference.x,q.reference.y)
+    if c and same(reference(c),q.reference) then
+     local w=find(c)
+     if w then w.HoldCompletion('FOUNDATION_ADMISSION_INCOMPLETE')end
+    end
+   end)
    return
   end
   for i,v in ipairs(pending)do if v==q then table.remove(pending,i);break end end
@@ -2283,16 +2327,32 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  freshHook(Events,'CityInitialized',function(...)spatial('CityInitialized',...)end)
  freshHook(Events,'UnitActivate',founded)
  freshHook(GameEvents,'OnDistrictConstructed',constructed)
- freshHook(Events,'CityTransfered',function(owner,id,oldOwner)
+ freshHook(Events,'CityTransfered',function(owner,id,oldOwner,reason)
+  if #pending==0 then return end
   if modern and freshReady and P.IsTestPlayer(owner) then
-   local c=CityManager.GetCity(owner,id)
-   local q=c and at(c:GetX(),c:GetY())
-   if q and q.conquest then
-    if oldOwner~=q.conquest.oldOwner then q.error='ACQUISITION_OWNER_CONFLICT';return end
-    q.transferred=q.transferred or eventSerial
-    -- Pre-transfer delivery is not a subsequent completion. Snapshot current facts once.
-    q.completions={};admit(q);return
+   -- The old and new cities can have different IDs. Select by the event's new
+   -- endpoint, then cross-check against the earlier Added/Initialized location.
+   local ok,current=pcall(function()
+    local c=CityManager.GetCity(owner,id)
+    return c and reference(c)
+   end)
+   local q=ok and current and at(current.x,current.y)
+   if not q or current.owner~=owner or current.cityID~=id or not same(q.reference,current) then
+    for _,v in ipairs(pending)do
+     if v.reference.owner==owner and v.reference.cityID==id then v.error='ACQUISITION_REFERENCE_CHANGED' end
+    end
+    return
    end
+   if q.error or q.transferred then return end
+   if not integer(oldOwner) or oldOwner==owner then q.error='ACQUISITION_OWNER_INVALID';return end
+   local evidence=peacefulReason(P,reason)
+   if q.conquest then
+    if oldOwner~=q.conquest.oldOwner or evidence then q.error='ACQUISITION_CONFLICT';return end
+    evidence=conquestEvidence
+   elseif not evidence then q.error='ACQUISITION_TRANSFER_TYPE_UNCONFIRMED';return end
+   q.transferEvidence=evidence;q.oldOwner=oldOwner;q.transferred=eventSerial
+   -- Freeze at this boundary only. An earlier delivery is not a later completion.
+   q.completions={};admit(q);return
   end
   for _,q in ipairs(pending)do
    local c=CityManager.GetCityAt(q.reference.x,q.reference.y)
@@ -2313,7 +2373,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    local q=at(c:GetX(),c:GetY())
    if q then
     -- Keep raw error internally; the player report needs one actionable reason, not a traceback.
-    local reason=tostring(q.error or (q.conquest and '等待征服完成/城市转移确认') or (foundReason==nil or not hooks.UnitActivate) and 'FOUND_CITY监听/枚举不可用' or 'FOUND_CITY / 城市初始化')
+    local reason=tostring(q.error or (q.conquest and '等待征服完成/城市转移确认') or (foundReason==nil or not hooks.UnitActivate) and 'FOUND_CITY监听/枚举不可用' or '等待建城或城市交割确认')
     reason=reason:match('[^\r\n]+') or 'UNKNOWN'
     reason=reason:gsub('^.-:%d+: ','')
     return P.VERSION..' | 城市取得待确认'..'\n阶段：'..(q.stage or '事件确认')..'\n原因：'..reason
