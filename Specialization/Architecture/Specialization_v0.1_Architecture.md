@@ -1,12 +1,12 @@
-# Specialization v0.1 Architecture — A0188
+# Specialization v0.1 Architecture — A0189
 
 Document Owner: Codex
-Architecture Revision: A0188
-Design Spec Synced Through: D0061
-Design Spec SHA256: 52de79223fd0e6c8fcf6bf6aba2614d2fd0fb0f293a629208862a5211d871734
-Latest Accepted Design Revision: D0061
-Latest Accepted Design SHA256: 52de79223fd0e6c8fcf6bf6aba2614d2fd0fb0f293a629208862a5211d871734
-Sync Status: D0061_SYNCED_OWNERSHIP_IMPLEMENTATION_TRACKED_IN_STATUS
+Architecture Revision: A0189
+Design Spec Synced Through: D0062
+Design Spec SHA256: 5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c874cc9248
+Latest Accepted Design Revision: D0062
+Latest Accepted Design SHA256: 5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c874cc9248
+Sync Status: D0062_SYNCED_HARBOR_CATALOG
 Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; this document defines target contracts, not a parallel deployment ledger.
 
 ## CURRENT AUTHORITATIVE STATE
@@ -18,6 +18,8 @@ A0186 records the Owner's engineering closeout approval on 2026-11-17 after the 
 A0187 records the subsequent narrow retirement of those three unloaded city files and the inert NetworkIsolation controller/request entries. Current network/effect owners, retained turn checks, owner-local withdrawal seams and GC protections are unchanged. This does not reopen the accepted convergence scope or authorize new save compatibility.
 
 ### 和平交割与城市身份
+
+A0189 同步[三座 HD 港口建筑的资格](../Design/Shared.md#普通建筑与当前资格)。现有普通建筑目录提供资格和实际 Tier，区域深度与风雅熏陶沿用既有读取路径。投资面板可呈现当前商路证据中已知的阻塞原因；提示不参与签约判定。
 
 A0188 承接[城市易主规则](../Design/Shared.md#和平受让多次转手与同址重建)。进度存储仍独占城市身份写入。首次和平受让使用交割事件提供的新主人、新城市 ID 和明确原因，核对前主人、该城的加入／初始化顺序以及对象与地块两种查询。只在交割时读取一次该城已完工的区域；认领项目沿用原有候选和结算。已登记位置优先交给原城市记录处理。
 

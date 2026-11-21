@@ -314,6 +314,9 @@ function SPCDevelopmentInvestment.Start(P,shared)
   local c=city(pid,id);if not c then publish(pid,id,nil);quotes[key(pid,id)]=nil;openViews[key(pid,id)]=nil;return end
   local ok,v,q=pcall(function()if withQuotes then return snapshot(pid,c)else return sourceFacts(pid,c)end end)
   if not ok then v={stage='HELD',available=d.views[key(pid,id)] and d.views[key(pid,id)].available or false,canSign=false,reason=failure(v,pid,id,'REFRESH'),options={}}end
+  if v.reason=='DEVELOPMENT_OUTGOING_PENDING' and shared.NetworkBridge.InvestmentNotice then
+   v.networkNotice=shared.NetworkBridge.InvestmentNotice(pid)
+  end
   if withQuotes then quotes[key(pid,id)]=ok and q or nil;openViews[key(pid,id)]=true
   elseif openViews[key(pid,id)]then
    local previous=d.views[key(pid,id)]

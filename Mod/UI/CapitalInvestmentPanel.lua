@@ -27,11 +27,14 @@ local reasonLabels={
  CAPITAL_REPUTATION_UNKNOWN='REASON_REPUTATION_UNKNOWN',
  CAPITAL_STANDARD_SPEED_ONLY='REASON_STANDARD_SPEED_ONLY',
 }
-local function reason(k,detail)
+local function reason(k,detail,notice)
  local phases={DEBIT_INTENT_WRITE='PAUSE_INTENT',DEBIT_CALLING_WRITE='PAUSE_CALLING',NATIVE_DEBIT='PAUSE_DEBIT',
   CONTRACT_ACTIVATE='PAUSE_RECEIPT',ACTIVE_RECEIPT_WRITE='PAUSE_RECEIPT',CREDIT_INTENT_WRITE='PAUSE_CREDIT',
   CREDIT_CALLING_WRITE='PAUSE_CREDIT',NATIVE_CREDIT='PAUSE_CREDIT',SETTLED_RECEIPT_WRITE='PAUSE_CREDIT'}
  if detail and phases[detail.phase]then return L(phases[detail.phase])end
+ if notice and (k=='CAPITAL_COMMERCE_PENDING' or k=='CAPITAL_NETWORK_PENDING') then
+  return Locale.Lookup(notice.tag,notice.city and Locale.Lookup(notice.city) or '')
+ end
  if k and (k:match('^STORE_') or k:match('^PROGRESSION_') or k:match('^EVIDENCE_') or k=='CAPITAL_STATE_UNKNOWN')then return L('PAUSE_STATE')end
  local label=reasonLabels[k]
  return label and L(label) or (k and L('ERROR',k) or L('WAITING'))
@@ -134,8 +137,8 @@ render=function()
    text=text..'[NEWLINE]'..L('SETTLED',number(contract.paid),number(contract.paid-(contract.debited or contract.principal)))
   elseif contract.stage=='TERMINATED' then text=text..'[NEWLINE]'..L('TERMINATED')end
  end
- local message=pending and L('REQUEST_WAIT') or v and v.stage=='HELD' and reason(v.reason,v.failure) or requestError and reason(requestError,requestFailure)
-  or v and v.quoteStale and reason(v.reason or 'CAPITAL_QUOTE_STALE') or row and not row.canSign and reason(row.reason)
+ local message=pending and L('REQUEST_WAIT') or v and v.stage=='HELD' and reason(v.reason,v.failure,v.networkNotice) or requestError and reason(requestError,requestFailure)
+  or v and v.quoteStale and reason(v.reason or 'CAPITAL_QUOTE_STALE') or row and not row.canSign and reason(row.reason,nil,row.networkNotice)
   or row and current.mode and not modeAllowed(row,current.mode)and reason(modeState(row,current.mode)and modeState(row,current.mode).reason)
   or v and not v.canSign and reason(v.reason) or ''
  Controls.Current:SetText(text..(message~='' and '[NEWLINE][NEWLINE]'..message or ''))
@@ -148,7 +151,7 @@ render=function()
   local open=ct and ct.stage~='SETTLED' and ct.stage~='TERMINATED'
   item.Icon:SetIcon('ICON_'..id);item.Caption:SetText(L(d.name));item.Caption:SetTruncateWidth(column-96)
   item.Marker:SetText(open and L(ct.stage=='ACTIVE' and 'INVESTING' or 'CONTRACT_PENDING') or '');item.Marker:SetHide(not open)
-  item.State:SetText(dr and (dr.canSign and L('AVAILABLE') or reason(dr.reason)) or L('WAITING'));item.State:SetWrapWidth(column-96)
+  item.State:SetText(dr and (dr.canSign and L('AVAILABLE') or reason(dr.reason,nil,dr.networkNotice)) or L('WAITING'));item.State:SetWrapWidth(column-96)
   item.Root:SetSizeY(math.max(100,item.State:GetSizeY()+76));item.Caption:SetColorByName(current.domain==id and 'Gold' or 'White')
   item.Root:RegisterCallback(Mouse.eLClick,function()if current and not pending then current.domain=id;current.mode=nil;send('CAPITAL_REFRESH')end end)
  end

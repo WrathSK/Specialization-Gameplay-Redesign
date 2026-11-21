@@ -1,28 +1,44 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1132
-Implementation Build: develop B532.559 / modinfo559. Installed stable B528.555 / modinfo555.
-Architecture Revision Reviewed: A0188
-Design Revision Reviewed: D0061
-Latest Accepted Design Revision: D0061
-Design Sync State: D0061_CITY_OWNERSHIP_ACCEPTED
-Work State: SAME_BUILD_COLD_EFFECTS_LOCALLY_VERIFIED
+Status Revision: S1133
+Implementation Build: develop B533.560 / modinfo560. Installed stable B528.555 / modinfo555.
+Architecture Revision Reviewed: A0189
+Design Revision Reviewed: D0062
+Latest Accepted Design Revision: D0062
+Design Sync State: D0062_HARBOR_CATALOG_SYNCED
+Work State: HARBOR_QUALIFICATION_AND_INVESTMENT_FEEDBACK_LOCALLY_VERIFIED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B532.559 preserves six local effects while same-build load inputs are pending. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
+| Source and installation | Develop B533.560 recognizes the three HD Harbor upgrades and explains confirmed investment network blockers. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [Same-build cold restoration](#passive-effects-across-a-same-build-reload--s1132) passed all 25 current gameplay cases. The six installed effects continued during the delayed input. B532 native timing is unmeasured. |
-| Next action | Use the current gameplay gate for the next affected develop change. Native reload observation and rare city-transfer evidence can wait for ordinary play. |
+| Validation | [HD Harbor and investment feedback](#hd-harbor-qualification-and-investment-network-feedback--s1133) passed all 28 current cases. The two pinned environments and both localized panels were also checked locally. |
+| Next action | Use normal play for outstanding native observations. The next retirement candidate is the old network boost family, with its startup and city-exit responsibilities reviewed together. The unresolved network window and the two Commerce policy questions remain explicit. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### HD Harbor qualification and investment network feedback — S1133
+
+固定 HD 配置的渔业灯塔、渔市、离岸码头按本次用户决定纳入普通建筑。早期风雅清单 `f85a0a05` 使用无 `JNR_` 前缀的三个类型，当时将普通建筑身份与 D 资格分开。统一实际升级链的 `94542034` 将三个真实类型留在仅供标准化／发展投资使用的目录，并有测试固定这个差别。未发现针对这三座建筑的平衡例外。固定 HD 样本中的三级分别是 T1、T2、T3，沿该支线 D 为 1、3、6。两时代馆藏分别在一座、两座、三座完好建筑上合计产生 2、4、6 点风雅旅游业绩。中间建筑被掠夺时降至 D4、4 业绩；官方固定数据库没有这三项。标准化、报价与 D 上限沿用原规则。[环境与能力组合测试](../../DevelopmentTests/test_effective_building_tiers.py)
+
+资本与发展投资继续拒绝使用未完成的证明签约。商路已核实而本方城市专业资料仍不完整时，面板指出一座受影响的城市；同时有多座时取最小城市 ID。路数或报文超出既有传输上限时显示相应原因。普通初始化、已过期的城市样本及商业自身未就绪时，面板保留原提示。该实现不据等待时长推断永久故障。NET-005 对“超出正常初始化窗口”的严重提示仍缺少已确定的可观察判据，本批未新增全局通知。[两类合同和双语面板测试](../../DevelopmentTests/test_investment_network_notice.py)
+
+**Runtime impact.** 建筑资格改在现有共享目录。商路采样在已有城市遍历中记录一个城市 ID；只有采样不完整时可选读一次该城名字，失败时显示 ID。面板读已接收的会话数据。未增加城市遍历、监听、定时器、存档字段或新的交易凭据。城市名和展示提示不进入路线内容签名。
+
+**Validation.** CurrentGameplay 28/28；定域组合 92/92（含部分同名用例，不能相加）。可复现入口为 CurrentGameplay、`test_effective_building_tiers`、`test_investment_network_notice`、`test_network_city_registration`、`test_pu06c_capital_terms`、`test_b262_capital_sidebar.LocalizedCopy`、`test_refactor_s6f.RetainedDevelopment`。固定数据库从只读原件复制至内存。182 份 Lua 5.1 编译、24 份 XML 和 modinfo 解析、611 项包引用检查通过。当前游戏安装仍为 B528.555。B533 原生画面及收益未验。
+
+**退役载体调查（A-08）。** 对固定 HD 数据库和以现行 SQL 装配的官方数据库运行实际 [NetworkBoost 清单](../../Mod/LegacyCleanupCatalog.lua)，两侧都是 1,126 个独立内部建筑：B055 分数鼓舞 1,032，B057 对照用 4，B058 整数鼓舞 90。另两项同为 B055 前缀的巨作试验属于单独的清理责任。HD 快照至当前的三份鼓舞 SQL 和两份配置内容一致。实际 [启动撤除](../../Mod/LegacyCleanup.lua)在一座空模拟城市检查 1,126 次存在性、写入 0 次；去掉一个分数鼓舞定义后，启动清理报告缺少定义，未确认完成。这是数据库／本地调用计数，不能推算原生加载耗时或内存。若退出此族，需要一起处理清单、SQL、启动清理、隔离和城市退出确认，另保留公共网络读取的系数及巨作独立清理。复现方法：加载上述两个固定数据库到内存，按 `Group('NetworkBoost',nil,SPCBoostConfig.rows,SPCBoostIntegerConfig.rows)` 与内部建筑类型逐项比对；对单城空建筑调用 `StartBoostLoad / EnsureReady`，再仅对 `BUILDING_SPC_B055_RESEARCH_1_1` 返回缺少定义。此次未删载体。
+
+**仍需取舍。** 团队败退已有安全撤回规则。若资产清算之后、配置之前绑定团队在同一所有者下真正永久灭失，现有同一团队门禁将使城市继续承受混乱；暂时查不到单位无法证明永久灭失。发展投资已明确按最低可建层内最低理论价的 15% 报价，合同对整个选定区域的合格建筑加速 50%，直至该区域的下一座合格建筑完成。市中心 T0 候选成组，是否继续包括该组可在平衡时单独裁定。此次两条交易规则均照旧。跨多名外方主人的归还与同址毁城重建继续等[已登记的原生证据](Playtest_Backlog.md#city-ownership-follow-up)。
+
+Local evidence: `local/refactor/CurrentGameplay-03d941c5e38c4e17aaa30f220a0549f0/closure.json` (SHA256 `fab715c09d99ff30509c269a82b437a54ff13670dc296147cd2e8d4cf58f920c`). Tested source digest `fa9e7b1a74a83bc3fba92f1aa7b67bd76a1f318db26676f3b0b18b4be1eb5c8b`. Full artifact is local only.
 
 ### Passive effects across a same-build reload — S1132
 

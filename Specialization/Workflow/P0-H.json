@@ -3,22 +3,22 @@
   "batch": "P0-H",
   "status": "COMPLETE",
   "authority_versions": {
-    "design": "D0061",
+    "design": "D0062",
     "research": "D0059",
     "industry": "D0061",
     "culture": "D0059",
     "commerce": "D0061",
-    "shared": "D0061",
+    "shared": "D0062",
     "presentation": "D0032",
-    "architecture": "A0188",
-    "status": "S1132",
-    "runtime": "B532.559 / modinfo559",
+    "architecture": "A0189",
+    "status": "S1133",
+    "runtime": "B533.560 / modinfo560",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Preserve six installed effects on normal same-build reload until reliable inputs permit an exact reconciliation.",
+  "goal": "Implement verified HD Harbor admission and show confirmed network blockers in the two investment panels.",
   "implementation_authorized": false,
   "context": [
     {
@@ -53,26 +53,26 @@
     }
   ],
   "dependencies": [
-    "Existing Culture effect owners, the Gameplay Great Work receiver, Store history and Development Investment target occupancy."
+    "D0062 ordinary infrastructure, current loaded upgrade chain, existing strict proof and quotation views."
   ],
   "old_writers": [
-    "The existing ability owners retain all writes. Retired carrier definitions keep their scoped withdrawal responsibilities."
+    "The shared catalogue and existing profession owners retain all effect writes. The network report is display evidence only."
   ],
   "conditional_context": [
     "The previous HD cold-load evidence in S1091 covers readiness and observed Great Work changes. Use the ownership backlog separately for parked handover cases."
   ],
   "non_scope": [
-    "New saved fields, new subscriptions, retries, investment terms, gameplay formulas, deployment and native validation."
+    "Deployment, game launch, new investment or restructuring terms, removing carrier definitions, or a time-based escalation threshold."
   ],
   "validation": [
-    "Run CurrentGameplay. Compare active effects through delayed information, zero redundant writes on matching input, priority exits, complete contract indexing, original receipt and treasury calls."
+    "CurrentGameplay; fixed HD and official databases; localized investment panels; strict and recovered quotes; static package validation."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
     "runtime_identity": {
-      "source": "B532.559 / modinfo559 on develop. Source and local verification in S1132.",
+      "source": "B533.560 / modinfo560 on develop. Source and local verification in S1133.",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -117,12 +117,16 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#passive-effects-across-a-same-build-reload--s1132",
+      "report": "Specialization/Status/Specialization_P0_Status.md#hd-harbor-qualification-and-investment-network-feedback--s1133",
       "status": "LOCAL_SIMULATION_PASS",
-      "tests": 25,
-      "owners_measured": 6,
-      "continuity_gaps_in_simulation": 0,
-      "focused_regressions": 13,
+      "tests": 28,
+      "focused_cases": 92,
+      "hd_harbor_depth": [
+        1,
+        3,
+        6
+      ],
+      "retired_network_carriers_reviewed": 1126,
       "runner": "CurrentGameplay",
       "native_validation": "NOT_RUN",
       "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"

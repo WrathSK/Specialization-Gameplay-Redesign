@@ -3,8 +3,18 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0061
+Latest Accepted Design Revision: D0062
 Document State: ACCEPTED
+
+## Accepted D0062 — 2026-11-21
+
+用户确认渔业灯塔、渔市、离岸码头纳入普通港口建筑，共享事实按当前环境的升级链计算；固定 HD 配置中为 T1、T2、T3。D 的公式与上限、标准化模板、发展投资报价规则沿用原决定。官方环境没有这三座建筑。早期 B148 的普通建筑清单使用无 JNR 前缀的类型；B416 统一等级时保留了原有资格差异。本次决定覆盖这三项差异。
+
+本次也对齐了三处已选用的实施范围：B177 仅放大巨作原生旅游业绩、B234 隔离科研网络鼓舞、专用文明已改用美国／罗斯福展示。完整设计目标和历史接受证据继续保留。
+
+Accepted Spec SHA256: `5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c874cc9248`
+[Shared D0062](Content/Shared_D0062.json) SHA256: `f5a7f167f56fcde3986368466beed8ae66c1bae93b2a8492e8e6320e4adf627f`
+[Frozen D0061 Spec](Revisions/Specialization_Design_Spec_D0061.md) SHA256: `52de79223fd0e6c8fcf6bf6aba2614d2fd0fb0f293a629208862a5211d871734`
 
 ## Accepted D0061 — 2026-11-20
 

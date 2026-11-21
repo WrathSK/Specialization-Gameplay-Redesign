@@ -2,16 +2,18 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0061
+Design Revision: D0062
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-11-20
-Acceptance Evidence: 用户认可城市易主草案第三节三条规则及分阶段实施顺序。
-Previous Accepted Revision: [D0060冻结原文](Revisions/Specialization_Design_Spec_D0060.md)
-Latest Accepted Design Revision: D0061
+Acceptance Date: 2026-11-21
+Acceptance Evidence: 用户确认固定 HD 环境三座港口扩展建筑纳入普通建筑，按现行 Tier 和公式计算。
+Previous Accepted Revision: [D0061冻结原文](Revisions/Specialization_Design_Spec_D0061.md)
+Latest Accepted Design Revision: D0062
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
+
+**SCOPE-001（D0062）** 固定 HD 环境的渔业灯塔、渔市、离岸码头均属普通港口建筑。按当前环境的升级链取 Tier，完工且合格时贡献 D 并适用风雅熏陶。具体类型见[共同规则](Shared.md#普通建筑与当前资格)。
 
 **SCOPE-001（D0059）** 正式接受正常同构建恢复／会话有界来源见证、独立信誉政策零与合法退出、严重子记录范围化保护、当前环境有效升级链Tier及原生证据边界。明确取代旧冷加载例外A与派生网络保存接线目标、一般损坏后猜初始基线、跨构建兼容义务；真实历史／延迟生命周期责任保留。四专业其余公式、数值、资格、额度、城市归属玩法及A8八时代不变。D0059的接受依据见[接受记录](Design_ChangeLog.md#accepted-d0059--2026-11-04)。实施进度由Status记录。
 
@@ -84,7 +86,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 2. 测试文明与基本术语 — ID / TERMS
 
-**ID-001** 以独立新文明和独立领袖承载测试，不修改或覆盖原版Scotland。暂时复用Scotland的文明/领袖视觉、名称风格和可用展示资产，不复制其原有游戏能力。玩家可见名称采用Scotland (Specialization Test)、Robert the Bruce (Test)等明确测试标记。暂不制作原创美术与历史设定。当前计划只向专用白板文明开放，以Specialization为主要玩法和平衡基准；不默认兼容普通文明／领袖Gameplay bonuses叠加。未来复用须另行授权，遵循ELIG。
+**ID-001** 当前单人测试使用独立的美国／罗斯福身份及罗斯福人物包（Bull Moose）的展示资源。专用白板文明以专业化为主要玩法与平衡基准，不继承原文明能力。原创美术与历史设定留待后续。其它文明、领袖的玩法加成叠加及未来复用仍遵循 ELIG 的单独授权边界。早期苏格兰展示方案见 D0061 冻结原文。
 
 **ID-002** Industrial Zone保持正常科技位置，不作为提前解锁的特色区域。
 
@@ -155,7 +157,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ### Shared Mechanical Vocabulary — D0028
 
-唯一当前共享定义：[Shared D0061](Content/Shared_D0061.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
+唯一当前共享定义：[Shared D0062](Content/Shared_D0062.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
 
 **D0035语义及引用覆盖：** D正式中文名“区域基础设施深度”，即Absolute Infrastructure Depth。不是完成百分比，不要求建满=10；三层链D6、四层链D10均为允许的额外投资差异。当前不引入Relative Completeness。已有专业冻结文件中Shared_D0028引用及“区域完善度”用语，当前解释统一遵从Shared_D0045保留的D0035语义澄清；旧文件字节不变、历史解释保留。公式、稳定concept ID及其它Shared合同不变。[Consumer/目录/术语审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)。
 
@@ -180,7 +182,7 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 **RES-LIFECYCLE-001 — ACCEPTED D0040** 学术传统合格年龄为城市历史，无原Owner分账；原起算／速度门槛保持。支持Owner且仍有科研身份时ACTIVE下降不暂停年龄；身份退出暂停保留；未支持Owner冻结且不补失城年龄。任何enabled Owner重新满足科研ACTIVE IV按同一保留账本利用；不推导其它科研长期记录。
 
-**RES-005** Research Network仍按NET-RC增加Inspiration，当前数值与公式不变；标记NETWORK_REDESIGN_REQUIRED，不在本轮重做。D0028仅将RES_L4_INFRA输入替换为Shared区域完善度及其10上限；主持仍逐普通建筑生效，遵守共享被掠夺资格，不反向增加完善度。D0026 content作为历史冻结保留。
+**RES-005** v0.1 隔离科研网络鼓舞。科研城市仍参加公共商路拓扑，本城能力照常工作；当前网络不发放额外市政鼓舞。NET-RC 的旧公式留作重设计参考（B234）。D0028仅将RES_L4_INFRA输入替换为Shared区域完善度及其10上限；主持仍逐普通建筑生效，遵守共享被掠夺资格，不反向增加完善度。D0026 content作为历史冻结保留。
 
 ## 6. Culture / Theater Square — CUL
 
@@ -188,7 +190,7 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 **D0048: DESIGN_FROZEN主体保持；主题化许可为USER_ACCEPTED_V0.1_PROVISIONAL／BALANCE_REQUIRED。保留九域六产出、D0045参数、D0042生命周期、Dialogue隔离与D0038逐域Floor；implementation / balance validation pending.**
 
-唯一规则、公式、首版Tooltip与Mission内容：[Culture_D0058](Content/Culture_D0059.json)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
+文化能力及任务的完整设计与首版文案：[Culture_D0059](Content/Culture_D0059.json)。当前时代对话的玩家说明与实际收益均采用仅旅游业绩的备用路径，见[文化阅读页](Culture.md#累计效果)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
 
 | Rule ID | 当前content条目 |
 |---|---|
@@ -197,7 +199,7 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 | CUL-003 | CUL_L3_DIALOGUE、CUL_L3_AESTHETIC / 人文联合会 |
 | CUL-004 | CUL_L4_MEANING、CUL_L4_INSPIRE、CUL_L4_EXPEDITION / 博雅总院 |
 | CUL-005 | contracts.network_effect；新见闻传播取代旧Eureka；不继承NET-RC公式，多源按各来源独立完整考察文明集合并集 |
-| GW-001 | contracts.dialogue；同名项目替换旧动态时代多样性百分比 |
+| GW-001 | contracts.dialogue；同名项目替换旧动态时代多样性百分比；v0.1 使用已获接受的仅旅游业绩备用路径（B177） |
 | GW-002 | CUL_L4_MEANING；区域完善度产出份额替换旧基础相邻；D0038明确逐领域换算后Floor，再同yield相加，最后乘W |
 | GW-002A / GW-003 | contracts.work_pool与dialogue.precision/target/fallback；意义延展仅采用D0038明确Floor例外，旧逐件固定yield截断许可不自动迁入其它能力 |
 
@@ -290,7 +292,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 ### Research当前网络 / Culture旧网络历史 — NET-RC
 
-**D0028适用范围覆盖声明：** 下列NET-RC条款继续用于Research；其中Culture/Eureka、k_C等描述只保留旧合同审计，不再是当前Culture规则。Culture以CUL-005为准，新网络按CUL-005合并完整考察文明集合；不得叠加旧Eureka奖励。Research标记NETWORK_REDESIGN_REQUIRED而未改公式。
+**D0028适用范围覆盖声明：** 下列 NET-RC 条款保留旧科研公式供重设计参考；v0.1 科研鼓舞已隔离。其中Culture/Eureka、k_C等描述只保留旧合同审计，不再是当前Culture规则。Culture以CUL-005为准，新网络按CUL-005合并完整考察文明集合；不得叠加旧Eureka奖励。科研的旧公式留存，当前运行范围见 RES-005。
 
 **NET-RC-001** `Network Strength = k × L × sqrt(N)`。Research使用独立可调k_R，Culture使用k_C，初始测试均为1。结果是Research额外Inspiration百分点、Culture额外Eureka百分点。
 
@@ -596,7 +598,7 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 - Industry D0045保留D0044首测职责，关闭独立全局效率／Faith fallback／研习中断／单位捕获Owner Gameplay TBD。原Owner完全消失、城市彻底毁灭的未覆盖处置与候选命名保留；逐模板价格承载、完整1T、可受加成的基础施工、不溢出及普通Production modifier、保护回归、最终Floor／速度／保存为技术验证。Culture Hybrid D方向已确认，实机状态见Status。
 
 - D0040取代CUL-REVIEW-01/03原Owner见闻键／不继承；见闻与Dialogue均城市历史、独立资格与有效Owner过滤。CUL-REVIEW-02外交／城邦及04独立完整集合并集保留。City-State inclusion仍Future Candidate。
-- Research Network：NETWORK_REDESIGN_REQUIRED，现有Research规则保留；Culture已替代旧Eureka。
+- Research Network：NETWORK_REDESIGN_REQUIRED，旧公式留作参考，v0.1 隔离鼓舞；Culture已替代旧Eureka。
 - 意义延展政府广场／外交区Culture输入已按D0046恢复至九域六产出；当前六产出单城候选仍待原生共存验收。B155/B157负面证据保留，不能由Production多片反证推定文化根因已关闭。其它yield精度、recipient、倍率／结算门禁仍按各自实际证据，不因Design恢复而自动通过。
 - 固定完整生产回合、native-only巨作倍率、巨作启迪本城全类别GPP百分比及小数累计／叠加／状态更新、城市整体Tourism及非敌对独立Spy-style流程：TECHNICAL_INVESTIGATION_REQUIRED，不能因此自行降级Design。
 - Dialogue无额外累计cap、考察成本沿用当前Spy公式且考察团次数独立累计、全国现存cap1、K_T=2百分点、K_C=1及标准任务2T已定首测，不再是这些数值Gameplay TBD；真实平衡／原生验证仍开放。
@@ -613,4 +615,4 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 
 Research/Culture共享强度、Military_D0037分网络统一动员、Industry逐模板有效持有来源max和Community人口分发各按自身规则处理，不能互相覆盖。永久保护国与ACTIVE下降、Community资格与首次完成锁定、Virtual Specialists与实际工作专家等相互作用已列为显式审阅问题，不为实现便利默选答案。
 
-本文件为D0055当前Design入口；各专业content revision见对应章节。历史修订不覆盖新canonical规则。Design接受不等于Architecture已sync或Mod已实现；文档接受本身不授权实现、部署或promotion；实际实施与验证范围另见Status。
+现行规范的版本见页首，各专业正文见[现行内容表](Content/README.md#current-accepted-content)。历史修订不覆盖新canonical规则。Design接受不等于Architecture已sync或Mod已实现；文档接受本身不授权实现、部署或promotion；实际实施与验证范围另见Status。

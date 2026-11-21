@@ -22,7 +22,7 @@ MODULES = (
     'OrdinaryBuildingCatalog', 'DistrictCompleteness', 'FactUse',
     'StandardizationCatalog', 'DevelopmentInvestmentCatalog', 'DevelopmentInvestmentTargets',
     'ResearchApplyModel', 'ResearchChairModel', 'CultureMeaningModel', 'ResearchInfrastructureShadow',
-    'CommerceCalculation',
+    'CommerceCalculation', 'CultureAestheticModel',
 )
 
 
@@ -111,12 +111,50 @@ assert(cat.buildings.BUILDING_GRAND_BAZAAR.tier==market+1
         lua.execute("""
 local c=SPCOrdinaryBuildingCatalog.Read(P)
 for _,kind in ipairs({'BUILDING_JNR_LIGHTHOUSE_FISHING','BUILDING_JNR_FISH_MARKET','BUILDING_JNR_OFFSHORE_TERMINAL'})do
- assert(c.effectBuildings[kind].base=='DISTRICT_HARBOR' and not c.buildings[kind].ordinary)
+ assert(c.effectBuildings[kind].base=='DISTRICT_HARBOR' and c.buildings[kind].ordinary)
 end
 assert(c.effectBuildings.BUILDING_IZ_WATER_MILL.tier==1)
 assert(c.effectBuildings.BUILDING_HD_MANSION.tier==1)
 assert(c.effectBuildings.BUILDING_JNR_HOSPITIUM.tier==4 and c.effectBuildings.BUILDING_JNR_GARDEN.tier==4)
 """)
+
+    def test_supported_hd_harbor_chain_feeds_depth_and_aesthetic(self):
+        kinds = ('BUILDING_JNR_LIGHTHOUSE_FISHING', 'BUILDING_JNR_FISH_MARKET',
+                 'BUILDING_JNR_OFFSHORE_TERMINAL')
+        hd = runtime(self.hd)
+        hd.globals().kinds = hd.table_from(kinds)
+        hd.execute("""
+local catalog=SPCOrdinaryBuildingCatalog.Read(P)
+local std=SPCStandardizationCatalog.Build(P)
+local dev=SPCDevelopmentInvestmentCatalog.Build(P)
+local facts={validity='VERIFIED',identity='CULTURE',potential=3,active=3,activeStatus='KNOWN'}
+local works={hasConfirmed=true,availability='KNOWN',eraCount=2}
+local function check(port,expectedDepth,expectedTourism)
+ local view=verified(port)
+ assert(SPCFactUse.Depth(view,'DISTRICT_HARBOR').value==expectedDepth)
+ assert(SPCCultureAestheticModel.Plan(facts,works,view,false).total==expectedTourism)
+end
+local built={}
+for tier,kind in ipairs(kinds)do
+ local row=catalog.buildings[kind]
+ assert(row.ordinary and row.depthEligible and row.tier==tier)
+ assert(std.buildings[kind].tier==tier and dev.buildings[kind].tier==tier)
+ built[#built+1]=kind
+ check(district(1,'DISTRICT_HARBOR',built),({1,3,6})[tier],tier*2)
+end
+local port=district(1,'DISTRICT_HARBOR',built)
+port.buildings[2].pillaged=true;check(port,4,4)
+port.buildings[3].complete=false;check(port,1,2)
+port.pillaged=true
+local damaged=verified(port)
+assert(damaged.value.districts[1].value==0 and damaged.value.domains.DISTRICT_HARBOR==nil)
+assert(SPCCultureAestheticModel.Plan(facts,works,damaged,false).total==0)
+""")
+        official = runtime(self.official)
+        catalog = official.eval('SPCOrdinaryBuildingCatalog.Read(P)')
+        for kind in kinds:
+            self.assertIsNone(catalog.buildings[kind])
+            self.assertIsNone(catalog.effectBuildings[kind])
 
     def test_d_cap_and_consumer_roles(self):
         lua = runtime(self.hd)

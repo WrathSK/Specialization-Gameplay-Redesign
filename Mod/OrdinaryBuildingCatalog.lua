@@ -3,8 +3,11 @@
 -- The loaded upgrade graph and the selected assembly own Tier facts.
 SPCOrdinaryBuildingCatalog={}
 local M=SPCOrdinaryBuildingCatalog
-M.REVISION='D0060-B416'
+M.REVISION='D0062-B533'
 local known={
+ ['BUILDING_JNR_LIGHTHOUSE_FISHING']='DISTRICT_HARBOR',
+ ['BUILDING_JNR_FISH_MARKET']='DISTRICT_HARBOR',
+ ['BUILDING_JNR_OFFSHORE_TERMINAL']='DISTRICT_HARBOR',
  ['BUILDING_HD_BUS_STOP']='DISTRICT_NEIGHBORHOOD',
  ['BUILDING_HD_MANSION']='DISTRICT_NEIGHBORHOOD',
  ['BUILDING_HD_VILLA']='DISTRICT_NEIGHBORHOOD',
@@ -199,13 +202,9 @@ local domains={
  ['DISTRICT_NEIGHBORHOOD']=true,
 }
 
--- These are already in the Standardization/Development directory. Their
--- admission there does not extend D or the ordinary-building effects.
+-- The Palace remains an effect target outside ordinary buildings and D.
 local effectOnly={
  BUILDING_PALACE='DISTRICT_CITY_CENTER',
- BUILDING_JNR_LIGHTHOUSE_FISHING='DISTRICT_HARBOR',
- BUILDING_JNR_FISH_MARKET='DISTRICT_HARBOR',
- BUILDING_JNR_OFFSHORE_TERMINAL='DISTRICT_HARBOR',
 }
 local function flag(v)return v==true or v==1 end
 

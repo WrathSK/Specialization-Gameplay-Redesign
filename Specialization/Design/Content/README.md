@@ -5,28 +5,32 @@ Design Authority: User
 
 Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-and-repository-knowledge)。本索引只导航内容权威，不授予新玩法决定或实施权限。
 
-## Current accepted content — D0061 / D0059
+<a id="current-accepted-content"></a>
+<a id="current-accepted-content--d0061--d0059"></a>
+<a id="current-accepted-content--d0060--d0059"></a>
+
+## Current accepted content — D0062 / D0061 / D0059
 
 当前四专业及共同合同的唯一结构化入口：
 
 | 内容 | 当前正文 |
 |---|---|
-| 共同规则／Tier／网络／恢复 | [Shared D0061](Shared_D0061.json) |
+| 共同规则／Tier／网络／恢复 | [Shared D0062](Shared_D0062.json) |
 | 科研 | [Research D0059](Research_D0059.json) |
 | 文化 | [Culture D0059](Culture_D0059.json) |
 | 商业 | [Commerce D0061](Commerce_D0061.json) |
 | 工业 | [Industry D0061](Industry_D0061.json) |
 
-[当前Spec](../Specialization_v0.1_Design_Spec.md)与[接受记录](../Design_ChangeLog.md#accepted-d0061--2026-11-20)说明精确取代范围。D0061记录城市转移与毁城，科研、文化其余合同沿用D0059。代码与实机范围查Status。军事／港口D0037、市政D0047仍为未来设计，不扩当前运行范围。
+[当前Spec](../Specialization_v0.1_Design_Spec.md)与[接受记录](../Design_ChangeLog.md#accepted-d0062--2026-11-21)说明精确取代范围。D0062 确认三座 HD 港口建筑的资格。D0061记录城市转移与毁城，科研、文化其余合同沿用D0059。代码与实机范围查Status。军事／港口D0037、市政D0047仍为未来设计，不扩当前运行范围。
 
 <details>
 <summary>Historical acceptance provenance — on demand, not current routing</summary>
 
-以下保留历次接受时的规则和证据位置。直接进入旧段落时，可返回[现行规则表](#current-accepted-content--d0060--d0059)。旧Content与Spec原件保持冻结。
+以下保留历次接受时的规则和证据位置。直接进入旧段落时，可返回[现行规则表](#current-accepted-content)。旧Content与Spec原件保持冻结。
 
 ## D0058 — U1网络连续性与异常恢复
 
-D0058接受时的结构化正文如下。现行入口见[现行规则表](#current-accepted-content--d0060--d0059)。[Shared D0058](Shared_D0058.json)、[Research D0058](Research_D0058.json)、[Industry D0058](Industry_D0058.json)、[Culture D0058](Culture_D0058.json)、[Commerce D0058](Commerce_D0058.json)。正式同步网络保持／逐来源provenance／冷加载例外A、计龄恢复、未知信誉无加成、单能力安全恢复及项目／施工队凭据边界；其余数值、资格和归属保持。A8评估后用户明确确认全部按8时代统一，启迪最高24%／对话单次40个百分点，其它作品池、归属和额度保持。[接受记录](../Design_ChangeLog.md#accepted-d0058--2026-10-24)。以下各段按各自接受时点保留。旧Content与Spec冻结原字节。
+D0058接受时的结构化正文如下。现行入口见[现行规则表](#current-accepted-content)。[Shared D0058](Shared_D0058.json)、[Research D0058](Research_D0058.json)、[Industry D0058](Industry_D0058.json)、[Culture D0058](Culture_D0058.json)、[Commerce D0058](Commerce_D0058.json)。正式同步网络保持／逐来源provenance／冷加载例外A、计龄恢复、未知信誉无加成、单能力安全恢复及项目／施工队凭据边界；其余数值、资格和归属保持。A8评估后用户明确确认全部按8时代统一，启迪最高24%／对话单次40个百分点，其它作品池、归属和额度保持。[接受记录](../Design_ChangeLog.md#accepted-d0058--2026-10-24)。以下各段按各自接受时点保留。旧Content与Spec冻结原字节。
 
 [Research D0040](Research_D0040.json)是D0040接受时Research Lv1–Lv4的结构化正文（D0026/D0028原表冻结为历史），保存已冻结的机械合同、第一版中文Tooltip及领域映射。当时状态为 **DESIGN_FROZEN / implementation and balance validation pending**。Accepted Spec的RES节引用此表，不复制另一套新公式。仅Design冻结，不代表运行包实现。
 
@@ -35,7 +39,7 @@ D0058接受时的结构化正文如下。现行入口见[现行规则表](#curre
 
 ## D0057 — 发展投资多候选报价
 
-[Commerce D0057](Commerce_D0057.json)记录D0057接受时的商业规则，现行入口见[现行规则表](#current-accepted-content--d0060--d0059)。同一区域多个合格下一阶建筑取最低理论金币购买价，界面列明报价建筑与价格；合同仍绑定城市＋区域，完成下一座合格建筑结束。取代同阶HD建筑成本必然相同的假设，其它规则保留。[接受记录](../Design_ChangeLog.md#accepted-d0057--2026-10-18)。D0056及其Spec原件冻结保留；Design接受不等于原生报价／加速验收。
+[Commerce D0057](Commerce_D0057.json)记录D0057接受时的商业规则，现行入口见[现行规则表](#current-accepted-content)。同一区域多个合格下一阶建筑取最低理论金币购买价，界面列明报价建筑与价格；合同仍绑定城市＋区域，完成下一座合格建筑结束。取代同阶HD建筑成本必然相同的假设，其它规则保留。[接受记录](../Design_ChangeLog.md#accepted-d0057--2026-10-18)。D0056及其Spec原件冻结保留；Design接受不等于原生报价／加速验收。
 
 ## D0056 — 资本投资同级来源的机构建立时间
 
@@ -51,7 +55,7 @@ D0058接受时的结构化正文如下。现行入口见[现行规则表](#curre
 
 ## D0053 — 施工接受适用生产力加成
 
-[Industry D0053](Industry_D0053.json)记录D0053接受时的工业规则，现行入口见[现行规则表](#current-accepted-content--d0060--d0059)。施工队锁定基础施工力，允许适用的原生Production加成；未来实测综合强度，不在游戏内UI写平衡待办。数值、成本、来源、容量、目标和不溢出规则保留。[接受记录](../Design_ChangeLog.md#accepted-d0053--2026-10-18)。
+[Industry D0053](Industry_D0053.json)记录D0053接受时的工业规则，现行入口见[现行规则表](#current-accepted-content)。施工队锁定基础施工力，允许适用的原生Production加成；未来实测综合强度，不在游戏内UI写平衡待办。数值、成本、来源、容量、目标和不溢出规则保留。[接受记录](../Design_ChangeLog.md#accepted-d0053--2026-10-18)。
 
 ## D0052 — 一级施工力修正（历史接受）
 
@@ -59,7 +63,7 @@ D0058接受时的结构化正文如下。现行入口见[现行规则表](#curre
 
 ## D0051 — v0.1艺文采撷按城市馆藏维持
 
-[Culture D0051](Culture_D0051.json)记录D0051接受时的文化规则，现行入口见[现行规则表](#current-accepted-content--d0060--d0059)。只要目标城市当前仍有至少1件合格巨作，艺文采撷继续；不锁定具体作品／槽位／建筑。全城可靠空馆藏才取消，UNKNOWN保护保持。仅取代2026-10-16的艺文采撷具体对象锁定；奇观巡礼及其它文化规则不变。[接受记录](../Design_ChangeLog.md#accepted-d0051--2026-10-17)。Culture D0049及以下旧接受段保留追溯；Design同步不是实现或实机通过。
+[Culture D0051](Culture_D0051.json)记录D0051接受时的文化规则，现行入口见[现行规则表](#current-accepted-content)。只要目标城市当前仍有至少1件合格巨作，艺文采撷继续；不锁定具体作品／槽位／建筑。全城可靠空馆藏才取消，UNKNOWN保护保持。仅取代2026-10-16的艺文采撷具体对象锁定；奇观巡礼及其它文化规则不变。[接受记录](../Design_ChangeLog.md#accepted-d0051--2026-10-17)。Culture D0049及以下旧接受段保留追溯；Design同步不是实现或实机通过。
 
 ## D0050 — 商业交接同步
 
@@ -67,13 +71,13 @@ D0058接受时的结构化正文如下。现行入口见[现行规则表](#curre
 
 ## D0049 — 巨作启迪当前馆藏时代百分比
 
-[Culture D0049](Culture_D0049.json)记录D0049接受时的巨作启迪规则，现行入口见[现行规则表](#current-accepted-content--d0060--d0059)。巨作启迪在原ACTIVE IV／合格作品池下，按本城当前不同巨作时代E（0–7）给予全部伟人类别+3%×E，含文艺伟人，最高+21%；不使用D或作品总数，不增加项目、计时器或永久历史。取代旧0.1D×W基础GPP及文艺排除。百分比接口、类别覆盖、小数累计、叠加与生命周期仍待验证；不授权实现或改变优先级。[接受记录](../Design_ChangeLog.md#accepted-d0049--2026-10-08)。以下修订段保留更早的接受语境。
+[Culture D0049](Culture_D0049.json)记录D0049接受时的巨作启迪规则，现行入口见[现行规则表](#current-accepted-content)。巨作启迪在原ACTIVE IV／合格作品池下，按本城当前不同巨作时代E（0–7）给予全部伟人类别+3%×E，含文艺伟人，最高+21%；不使用D或作品总数，不增加项目、计时器或永久历史。取代旧0.1D×W基础GPP及文艺排除。百分比接口、类别覆盖、小数累计、叠加与生命周期仍待验证；不授权实现或改变优先级。[接受记录](../Design_ChangeLog.md#accepted-d0049--2026-10-08)。以下修订段保留更早的接受语境。
 
 2026-10-11：[考察团成本澄清](../Design_ChangeLog.md#accepted-d0049-clarification--2026-10-11)采用当前间谍公式、考察团次数独立累计；不是普通间谍下一份报价。其余D0049规则不变。
 
 ## D0048 — 意义延展主题化暂行首测规则
 
-[Culture D0048](Culture_D0048.json)记录D0048接受时的文化规则，现行入口见[现行规则表](#current-accepted-content--d0060--d0059)。Meaning追加允许原生主题化，v0.1暂接受／Balance待实测，仍不被Dialogue放大。K0.5、逐领域Floor、份额／W、九域六产出Design及其它能力／历史保持；不把B165 Writing×2推广为固定公式。Culture运行追加仍隔离，不等于自动writer或正Dialogue／精确结算已通过。[接受记录](../Design_ChangeLog.md#accepted-d0048--2026-10-05)。Shared／Industry／Commerce D0045、Research D0040、Government D0047、Military／Harbor D0037原件不改。
+[Culture D0048](Culture_D0048.json)记录D0048接受时的文化规则，现行入口见[现行规则表](#current-accepted-content)。Meaning追加允许原生主题化，v0.1暂接受／Balance待实测，仍不被Dialogue放大。K0.5、逐领域Floor、份额／W、九域六产出Design及其它能力／历史保持；不把B165 Writing×2推广为固定公式。Culture运行追加仍隔离，不等于自动writer或正Dialogue／精确结算已通过。[接受记录](../Design_ChangeLog.md#accepted-d0048--2026-10-05)。Shared／Industry／Commerce D0045、Research D0040、Government D0047、Military／Harbor D0037原件不改。
 
 ## D0047 — 当前市政基线与全系统载体范围
 
@@ -83,7 +87,7 @@ D0058接受时的结构化正文如下。现行入口见[现行规则表](#curre
 
 ## D0028共享入口
 
-[Shared_D0045](Shared_D0045.json)记录D0045当时接受的区域基础设施深度、产出份额、普通建筑资格、领域映射及Network概念。现行入口见[现行规则表](#current-accepted-content--d0060--d0059)。D0028保留历史。[Culture](Culture_D0051.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
+[Shared_D0045](Shared_D0045.json)记录D0045当时接受的区域基础设施深度、产出份额、普通建筑资格、领域映射及Network概念。现行入口见[现行规则表](#current-accepted-content)。D0028保留历史。[Culture](Culture_D0051.json)与Research通过引用使用。领域存在映射不意味着每个能力适用全部领域，各能力显式列出适用域。已有冻结历史表不得倒改。
 
 未来Civilopedia只从Shared生成一份术语说明，Tooltip正式用语为“区域基础设施深度”“一份产出”；历史“区域完善度”为同一D的旧称，runtime文字尚未迁移；UI实施未授权。Culture新增missions、state_tooltips、observations/network contracts与动态状态字段；D0029确认Culture完整考察文明集合并集；D0040明确取代其见闻原Owner分账，见闻与Dialogue为各自城市历史并分开当前有效资格；D0028内容与Review保留历史，不再代表这些边界的当前状态。
 

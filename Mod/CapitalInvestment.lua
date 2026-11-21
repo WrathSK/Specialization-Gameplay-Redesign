@@ -148,6 +148,10 @@ function SPCCapitalInvestment.Start(P,shared)
   end end
   if not found then d.Mark(pid)end
  end
+ local function networkNotice(pid)
+  local bridge=shared.NetworkBridge
+  if bridge and bridge.InvestmentNotice then return bridge.InvestmentNotice(pid) end
+ end
  local function prepare(pid,c,withQuotes,onlyDomain,onlyMode)
   local r=reference(c);local saved=store.CapitalState(pid,c);local value=saved.value or M.New();M.Validate(value)
   local f=shared.EffectiveFacts.Read(pid,c)
@@ -230,6 +234,7 @@ function SPCCapitalInvestment.Start(P,shared)
     internal[domain.id]={quote=q,old=cp(saved.value)}
    else
     row.canSign=false;row.reason=code(q)
+    if row.reason=='CAPITAL_NETWORK_PENDING' then row.networkNotice=networkNotice(pid) end
     local prior=d.views[key(pid,c:GetID())];local oldReason
     for _,oldRow in ipairs(prior and prior.domains or {})do if oldRow.id==row.id then oldReason=oldRow.reason end end
     if oldReason~=row.reason then failure(q,pid,c:GetID(),domain.id,phase)end
@@ -247,6 +252,7 @@ function SPCCapitalInvestment.Start(P,shared)
    local readError=v
    local old=d.views[k];v={reference=old and old.reference,token=old and old.token,available=old and old.available or false,
     canSign=false,stage='HELD',reason=code(readError),contracts=old and cp(old.contracts) or {},domains={}};internal={}
+   if v.reason=='CAPITAL_COMMERCE_PENDING' then v.networkNotice=networkNotice(pid) end
    local detail=failure(readError,pid,id,nil,'REFRESH_READ')
    v.failure=old and old.failure or detail
   end

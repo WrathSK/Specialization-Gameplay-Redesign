@@ -49,7 +49,7 @@ ACTIVE至少二级，剧院广场本体**+1住房**，每个存在合格普通�
 
 每次增加**5%×X**的巨作原生产出倍率，即**5个百分点×X**；历次加法永久累计，**不设置额外累计上限**。记录属于城市，不属于单件作品：后来入城的合格作品也受益，离城作品不把这座城的倍率带走。
 
-首选作用于合格巨作的**原生产出，包括旅游业绩**；绝不放大意义延展追加的收益。如果可靠的全原生产出路径无法实现，允许另行说明后采用仅旅游业绩的技术备用，不能未说明就当成相同效果。
+**当前游戏中，时代对话只提高本城合格巨作的原生旅游业绩。** 例如两时代的馆藏完成一次对话，会永久积累 10 个百分点。巨作的文化等其它原生产出和意义延展追加的收益都不随之增加。完整设计首选覆盖巨作各项原生产出；当前采用已获批准的[旅游业绩备用路径](../Architecture/v2/P0_M_Dialogue.md)。
 
 这一百分比效果接受原生floor，不额外补差；即使原生整数收益暂未增加，仍显示实际累计百分比。这个许可不外推成意义延展或其它能力的任意舍入授权。
 
@@ -208,7 +208,7 @@ ACTIVE四级可以训练人文考察团，首测生产成本**沿用当前间谍
 [返回Design导航](README.md)。本页为阅读呈现，不新增独立权威或实现授权。
 
 - [文化正式内容](Content/Culture_D0059.json)：全部能力、作品池、领域、任务、城市历史及当前Owner过滤与网络并集。
-- [当前Spec](Specialization_v0.1_Design_Spec.md)：CUL及GW取代关系；[Shared](Content/Shared_D0061.json)解释D和产出份额。
+- [当前Spec](Specialization_v0.1_Design_Spec.md)：CUL及GW取代关系；[Shared](Content/Shared_D0062.json)解释D和产出份额。
 - [A–D接受与替代](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：明确取代原Owner见闻分账，不改作品／意义延展规则。
 - [原冻结审阅](../Historical/Design/Reviews/Culture_D0028_Review.md)（只引用未被取代部分）、[边界接受审阅](../Historical/Design/Reviews/Culture_D0029_Review.md)、[Hybrid D正式方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)、[接受记录](Design_ChangeLog.md)。
 

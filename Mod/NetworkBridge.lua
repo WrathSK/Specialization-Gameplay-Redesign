@@ -26,6 +26,20 @@ function SPCNetworkBridge.Start(P,shared)
   return b~=nil and b.availability=='AVAILABLE' and b.revalidation=='VERIFIED'
    and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b) and not b.queuedWork and not b.negativeHeld and not isolatedForProof(pid)
  end
+ -- Display evidence for an already blocked investment. Reads only this player's accepted input.
+ function d.InvestmentNotice(pid)
+  local b=d.players[pid]
+  if not d.ready or not b or b.queuedWork or b.negativeHeld or isolatedForProof(pid)
+   or not currentGeneration(pid,b) or b.validity=='CONFIRMED_INVALID' then return end
+  if b.transportFailure and b.error==b.transportFailure and b.revalidation=='NEEDS_REVALIDATION' then
+   return {tag='LOC_SPC_INVESTMENT_NETWORK_LIMIT'}
+  end
+  local input=b.input
+  if b.revalidation=='VERIFIED' and b.signal==(shared.RouteSignalRevision or 0) and not b.error
+   and input and input.pending and input.pendingCityID then
+   return {tag='LOC_SPC_INVESTMENT_NETWORK_CITY',city=input.pendingCityName or ('#'..input.pendingCityID)}
+  end
+ end
  ExposedMembers.SPCNetworkEpoch=(ExposedMembers.SPCNetworkEpoch or 0)+1
  d.epoch=ExposedMembers.SPCNetworkEpoch
  local function integer(n) return type(n)=="number" and n>=0 and n%1==0 and n<2147483648 end

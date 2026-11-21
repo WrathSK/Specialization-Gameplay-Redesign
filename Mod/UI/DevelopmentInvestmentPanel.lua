@@ -13,7 +13,10 @@ local function L(k,...)return Locale.Lookup('LOC_SPC_DEVELOPMENT_'..k,...)end
 local function num(v)return type(v)=='number' and string.format('%.0f',v) or '—'end
 local function treasury(v)return type(v)=='number' and string.format('%.0f',math.floor(v)) or '—'end
 local function label(tab,id)local r=id and GameInfo[tab][id];return r and Locale.Lookup(r.Name) or '—'end
-local function reason(k)
+local function reason(k,notice)
+ if notice and k=='DEVELOPMENT_OUTGOING_PENDING' then
+  return Locale.Lookup(notice.tag,notice.city and Locale.Lookup(notice.city) or '')
+ end
  local keys={DEVELOPMENT_ACTIVE_IV_REQUIRED='ACTIVE_REQUIRED',DEVELOPMENT_CAPACITY_FULL='CAPACITY_FULL',DEVELOPMENT_TARGET_OCCUPIED='OCCUPIED',
  DEVELOPMENT_NO_BUILDING='NO_BUILDING',DEVELOPMENT_NO_OUTGOING='NO_OUTGOING',DEVELOPMENT_OUTGOING_PENDING='NETWORK_PENDING',
  DEVELOPMENT_PRICE_UNAVAILABLE='PRICE_UNKNOWN',DEVELOPMENT_PRICE_READER_UNAVAILABLE='PRICE_UNKNOWN',DEVELOPMENT_QUOTE_STALE='STALE',
@@ -152,7 +155,7 @@ render=function()
  Controls.CityName:SetText(Locale.Lookup(c:GetName()))
  Controls.Balance:SetText(L('TREASURY',treasury(v and v.balance)))
  Controls.Capacity:SetText(L('CAPACITY',v and v.used or 0,v and v.workers or 0))
- Controls.EmptyCities:SetText(#groups==0 and (reason(v and v.reason)~='' and reason(v.reason) or L('NO_OPTIONS')) or '')
+ Controls.EmptyCities:SetText(#groups==0 and (reason(v and v.reason)~='' and reason(v.reason,v.networkNotice) or L('NO_OPTIONS')) or '')
  Controls.EmptyCities:SetHide(#groups>0)
  Controls.EmptyDistricts:SetText(not g and L('SELECT_CITY') or reason(g.reason)~='' and reason(g.reason) or L('NO_DISTRICTS'))
  Controls.EmptyDistricts:SetHide(g and #g.rows>0 or false)
@@ -166,9 +169,9 @@ render=function()
  Controls.ContractCard:SetHide(false)
  Controls.ContractTitle:SetHide(not contract)
  Controls.Confirm:SetDisabled(not canConfirm(v,row));Controls.Refresh:SetDisabled(pending~=nil);Controls.CompactRefresh:SetDisabled(pending~=nil)
- local message=pending and L('WAITING') or requestError and reason(requestError) or v and v.stage=='HELD' and reason(v.reason)
+ local message=pending and L('WAITING') or requestError and reason(requestError) or v and v.stage=='HELD' and reason(v.reason,v.networkNotice)
   or v and v.quoteStale and L('STALE') or row and not row.canSign and not contract and reason(row.reason)
-  or v and not v.canSign and reason(v.reason) or #groups==0 and reason(v and v.reason) or ''
+  or v and not v.canSign and reason(v.reason,v.networkNotice) or #groups==0 and reason(v and v.reason) or ''
  Controls.Error:SetText(message);Controls.Error:SetToolTipString(message);Controls.Error:SetHide(message=='')
  local cityWidth,districtWidth=layout()
  cities:ResetInstances();districts:ResetInstances()

@@ -29,7 +29,7 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous,sampling)
  out.factAvailability='CONFIRMED';out.provenance={};out.factStamps={};out.factAuthority={}
  local function level(n)return type(n)=='number' and n>=0 and n<=4 and n%1==0 end
  local kinds={NONE=true,RESEARCH=true,CULTURE=true,INDUSTRY=true,COMMERCE=true}
- local count=0;local unresolved
+ local count=0;local unresolved;local pendingCity
  for _,c in cities:Members() do
   P.Count('city_scan');count=count+1;assert(count<=512,'NETWORK_CITY_LIMIT')
   local id=c:GetID();assert(c:GetOwner()==pid and not out.cities[id],'NETWORK_CITY_REFERENCE_INVALID')
@@ -106,11 +106,19 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous,sampling)
     provenance='UNKNOWN';reason='NETWORK_SOURCE_NEVER_CONFIRMED'
    end
   end
-  if provenance~='CONFIRMED' then out.pending=true;out.factAvailability='MIXED' end
+  if provenance~='CONFIRMED' then
+   out.pending=true;out.factAvailability='MIXED'
+   if not out.pendingCityID or id<out.pendingCityID then out.pendingCityID=id;pendingCity=c end
+  end
   local row={reference=reference,token=f.token,specialization=f.specialization,potential=f.potential,active=f.active,
    firstID=f.firstID or (f.first and f.first.districtID),firstType=f.firstType or (f.first and f.first.type),
    provenance=provenance,reason=reason}
   out.cities[id]=row;out.provenance[id]={reference=reference,status=provenance,reason=reason}
+ end
+ -- One optional display name from the same observation. It never enters the proof signature.
+ if pendingCity then
+  local named,label=pcall(function()return pendingCity:GetName()end)
+  if named and type(label)=='string' and label~='' then out.pendingCityName=label end
  end
  assert(not out.capital or out.cities[out.capital],'NETWORK_CAPITAL_UNAVAILABLE')
  -- Include all endpoints, including international references, without interpreting foreign progression.

@@ -3,6 +3,9 @@
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
     "CurrentGameplay": [
+      "test_investment_network_notice.NetworkNotice.test_scoped_city_current_proof_and_transport_limit",
+      "test_investment_network_notice.NetworkNotice.test_contract_services_keep_their_guards_and_clear_the_notice",
+      "test_investment_network_notice.NetworkNotice.test_both_panels_show_localized_cause_and_keep_confirmation_disabled",
       "test_current_cold_effects.ColdEffects.test_late_collection_sample_reconciles_three_city_effects",
       "test_current_cold_effects.ColdEffects.test_confirmed_city_change_precedes_a_delayed_work_packet",
       "test_current_cold_effects.ColdEffects.test_dialogue_history_delivery_restores_earned_percent",

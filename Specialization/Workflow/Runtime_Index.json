@@ -41,9 +41,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/CapitalInvestment.lua": {
-      "sha256": "d3d9be1fb22e9659fb19b44ca383edf01bc166bb15adc65a041163b8756abd9d",
+      "sha256": "bbf653bf9bf95c5ef5a24d43b644905bc37c0e0d8affd2e27e709c8b429282b6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0961 B449 optional commercial trace with exact business errors and receipts retained."
+      "provenance": "S1133 B533. Explain confirmed network blockers in investment views without changing strict admission."
     },
     "Mod/CapitalInvestmentDiagnostics.lua": {
       "sha256": "0ab8a511f180736f2d3d4a129d8fc9a15174e381a4ceaae1da6f78c7720542f9",
@@ -431,9 +431,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/DevelopmentInvestment.lua": {
-      "sha256": "185b8595df382e8aa1a363976feb81a500f687ce41496c7ffad55103f3b51288",
+      "sha256": "1dc317c1872b81e80079b32194676bc02932612246043e8ca26c45236e8b1c8b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1132 B532. Publish a complete contract index before checking target effects. Preserve strict admission and one-time payment."
+      "provenance": "S1133 B533. Explain confirmed network blockers in investment views without changing strict admission."
     },
     "Mod/DevelopmentInvestmentCatalog.lua": {
       "sha256": "fa05facb8b55e559d47ab10580e9aa3c465ef247efb09579ffe15ba03f865f5a",
@@ -611,14 +611,14 @@
       "provenance": "S1076 moves the existing copy report notice to the read-only report owner and drops two retired startups and their inert request aliases. Simulated network isolation admission and strict current proof match the prior build."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "26f7a5dc1f46e28004aa406b742aed4490c59c7801b128182fcfa2ea8cce6469",
+      "sha256": "cbea3604603d8ae460646daa61b6e2589fcbc201efb967cef3630b6262320a4a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1028 B482 capacity-driven proof notification registration after the ordered fact drain."
+      "provenance": "S1133 B533. Explain confirmed network blockers in investment views without changing strict admission."
     },
     "Mod/NetworkInput.lua": {
-      "sha256": "398b639f4e935dcce4a6d258d4ede18bcc95c2d150a777a95190c657d3168046",
+      "sha256": "2ee46a895b980fdc6c291a3f1451ac55dd5a46a99c091eae74203518042dc590",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0937 verifies the existing network proof with recipient-scoped unresolved roles for B437."
+      "provenance": "S1133 B533. Explain confirmed network blockers in investment views without changing strict admission."
     },
     "Mod/NetworkSender.lua": {
       "sha256": "7c8cd5237215aeb09345e9ac15b7356b83b3389d68f9957df36d8ead1a201675",
@@ -626,9 +626,9 @@
       "provenance": "S0967 B452 route UI and city presentation observation isolated from production."
     },
     "Mod/OrdinaryBuildingCatalog.lua": {
-      "sha256": "871658d702a9990d5299f73343f6f8832e3ef956c3afba584ab66dcf7ed761fa",
+      "sha256": "c7ee8fd0a9cb6da6dbef2a9210a90ced851b75bec8c45df05a4a4c1e145e776c",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B416.443 / S0910 effective loaded building Tier and D, both fixed profiles and selected consumers verified locally."
+      "provenance": "S1133 B533. Admit three approved HD Harbor definitions as ordinary and depth eligible."
     },
     "Mod/PerformanceCounters.lua": {
       "sha256": "298c7c9a468ed2c2d1496580a7144e2d21bcdd6d97f5af099f6cc7d60abe5d67",
@@ -636,9 +636,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "b860039efc9a6c2c2bc2e19e5fde8d8dc1410ecedc5a63c5de04001586269152",
+      "sha256": "c6ad1e919a9df6414a0661f7282ebd2446221624d5723c202ccad91d7c98a308",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1132 B532. Develop package identity."
+      "provenance": "S1133 B533. Develop package identity."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -751,9 +751,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "6737616c783e1c057d9555cf4d7f7fa5881fb9295f86162f0940912850fc3f04",
+      "sha256": "de61b486db3a7b2d0bfb417d9482fcc4719754325bb6fd6d77ef1439ebfc883b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1132 B532. Develop package identity."
+      "provenance": "S1133 B533. Develop package identity."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -776,9 +776,9 @@
       "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/Text/Commerce.sql": {
-      "sha256": "0bd85f3426c607d1128880da116c740cd009c10ce4ba3a1b816ed5c6e67d5c22",
+      "sha256": "d9f82d9719261d1e7a35017b72191226d92f305573ec890abd5783ae2f389996",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1065/B504.531 Terra commercial panel wording reviewed against source yields, theoretical prices and the current confirmation states."
+      "provenance": "S1133 B533. Explain confirmed network blockers in investment views without changing strict admission."
     },
     "Mod/Text/DevelopmentInvestment.sql": {
       "sha256": "3cb69c096fff7d4247105e9f212558c686fc67f57fce6bcb41d78190f3f95a21",
@@ -971,9 +971,9 @@
       "provenance": "S1009 B472 old Great Work adjacency command retirement."
     },
     "Mod/UI/CapitalInvestmentPanel.lua": {
-      "sha256": "40c8dd8789f35d5ef13f87561c06b2e52e905954ead0b330b1421e59c9c29d65",
+      "sha256": "5f9a8d28a81f78a95dbbc1dbc97dffcd1b7e12cead8bae68cdd9d93b75430b78",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1058/B497.524 Capital Investment UI status and scoped language changes with exact render comparisons."
+      "provenance": "S1133 B533. Explain confirmed network blockers in investment views without changing strict admission."
     },
     "Mod/UI/CapitalInvestmentPanel.xml": {
       "sha256": "ff0bcf91a2c7725fa69f717f55b1305d97bac389c9617442d311d8e59b1d4dfc",
@@ -1046,9 +1046,9 @@
       "provenance": "S0943 B441 samples an exact current Wonder in the native UI and retains Gameplay confirmation. Native use pending."
     },
     "Mod/UI/DevelopmentInvestmentPanel.lua": {
-      "sha256": "8ec0d4a6506e480c3801b652b7dff3a4e37768e8b6c8cc96e97f6b6ddba2d140",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B261_Commerce_Sidebar.md",
-      "provenance": "B261 approved UI and Escape refinement;19 scoped checks PASS; native pending."
+      "sha256": "536c0000fdd5e6db9db0e1f93e76a3a659415285f42188241c16880a0cac327a",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1133 B533. Explain confirmed network blockers in investment views without changing strict admission."
     },
     "Mod/UI/DevelopmentInvestmentPanel.xml": {
       "sha256": "48035d87eabd91a3df41c4c0c09274c4314f37e7a40aa6b5b1b73008ff433ec6",
@@ -1556,7 +1556,7 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
-  "source_review": "S1132 applies the existing November 4 same-build restoration rule to five Culture effects and the paid Development target. Current local regressions pass. Stable remains B528.555.",
-  "source_runtime": "B532.559 / modinfo559 develop, 310 files. No deployment.",
-  "tested_source_snapshot_sha256": "4f75d925080798f8e28b4b8602c8b380c28c9a2d1b2cfe2cc7c11fc21010c82f"
+  "source_review": "S1133 implements the Owner-approved HD Harbor scope and exposes two confirmed causes of a blocked investment. D0062 and A0189 record the scope. Local evidence only. Installed stable B528.555.",
+  "source_runtime": "B533.560 / modinfo560 develop, 310 files. No deployment.",
+  "tested_source_snapshot_sha256": "fa9e7b1a74a83bc3fba92f1aa7b67bd76a1f318db26676f3b0b18b4be1eb5c8b"
 }
