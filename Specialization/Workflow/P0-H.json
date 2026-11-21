@@ -11,14 +11,14 @@
     "shared": "D0061",
     "presentation": "D0032",
     "architecture": "A0188",
-    "status": "S1126",
-    "runtime": "B529.556 / modinfo556",
+    "status": "S1127",
+    "runtime": "B530.557 / modinfo557",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Preserve the B529 implementation checkpoint and the parked city ownership work while the Owner reviews the B528 stable audit.",
+  "goal": "Release only a cancelled Crew order whose completion count is already accounted for, and trace the separate Network registration finding.",
   "implementation_authorized": false,
   "context": [
     {
@@ -28,45 +28,39 @@
       "reason": "Current source, installed package and next decision"
     },
     {
-      "path": "Specialization/Design/Shared.md",
+      "path": "Specialization/Design/Industry.md",
       "kind": "section",
-      "selector": "### 和平受让、多次转手与同址重建",
-      "reason": "Accepted ownership, destruction and new-city rules"
-    },
-    {
-      "path": "Specialization/Reports/Technical/Engine_Reference.md",
-      "kind": "section",
-      "selector": "## ER09 — 城市换手、身份与永久毁城",
-      "reason": "Transfer windows, endpoint identity and scope of native evidence"
+      "selector": "## 三级：工程动员与施工队",
+      "reason": "Crew admission and player-visible formation rules"
     },
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "### 和平交割与城市身份",
-      "reason": "Single Store writer, destination validation and direct-return proof"
+      "selector": "### Crew formation and source assets (B236)",
+      "reason": "Formation writer, source and irreversible grant evidence"
     }
   ],
   "dependencies": [
-    "Accepted D0061. Existing CityProgressionStore and fixed-candidate Claim flow. Positive transfer evidence and live destination identity."
+    "Crew project queue snapshot, city order, validated player receipt and bound native inventory."
   ],
   "old_writers": [
-    "CityProgressionStore remains the only progression admission writer. Do not create a second owner or bypass its history reservation."
+    "CrewProjects owns admission and grant. Network transaction authority remains with NetworkBridge."
   ],
   "conditional_context": [
-    "Read individual professional loss/return rules only when their branch is touched. Consult the historical evidence linked from ER09 for native event claims."
+    "Read the existing ownership and Network contracts when tracing the unregistered-city finding."
   ],
   "non_scope": [
-    "New permanent fields without Owner approval, save migration, unrelated owner elimination or target invalidation, deployment and game launch."
+    "Ownership feature continuation, alternate attribution for unproved completions, new permanent fields, deployment and game launch."
   ],
   "validation": [
-    "Check accepted revision and content hashes, new endpoints and order, isolation from unrelated cities, old conquest/return behavior, and same-build readback. Separate local tests from native evidence."
+    "Exercise actual Store/Crew code with distinct city/serial orders, paid work, ambiguous counts, readback, reload and replay; separate native evidence."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
     "runtime_identity": {
-      "source": "B529.556 / modinfo556 on develop; source and checks in S1125.",
+      "source": "B530.557 / modinfo557 on develop; source and local checks in S1127.",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -112,9 +106,9 @@
     },
     "current_checkpoint": {
       "status": "LOCAL_SIMULATION_PASS_STATIC_CONFIRMED",
-      "report": "Specialization/Status/Specialization_P0_Status.md#peaceful-city-acquisition-and-direct-return--s1125",
-      "tests": 109,
-      "native_validation": "USER_GAME_TEST_REQUIRED for B529; earlier tests retain their own scopes.",
+      "report": "Specialization/Status/Specialization_P0_Status.md#crew-order-cancellation-after-another-completion--s1127",
+      "tests": 59,
+      "native_validation": "NOT_RUN for B530; earlier native cases retain their scopes.",
       "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"
     }
   }

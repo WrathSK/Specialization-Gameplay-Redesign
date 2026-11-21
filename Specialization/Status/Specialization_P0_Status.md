@@ -1,28 +1,36 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1126
-Implementation Build: develop B529.556 / modinfo556. Installed stable B528.555 / modinfo555.
+Status Revision: S1127
+Implementation Build: develop B530.557 / modinfo557. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0188
 Design Revision Reviewed: D0061
 Latest Accepted Design Revision: D0061
 Design Sync State: D0061_CITY_OWNERSHIP_ACCEPTED
-Work State: CITY_OWNERSHIP_PARKED_STABLE_AUDIT_READ
+Work State: CREW_CANCELLATION_LOCALLY_VERIFIED_NETWORK_IDENTITY_FOLLOW_UP
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Source and installation | [B529.556 on develop](#peaceful-city-acquisition-and-direct-return--s1125) implements first peaceful acquisition and direct return. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
+| Source and installation | Develop B530.557 includes the Crew cancellation repair and the [B529 city acquisition work](#peaceful-city-acquisition-and-direct-return--s1125). [Installed stable](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [Engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) and [35 B528 local checks](#residual-diagnostic-and-unloaded-city-files--s1096). Native observations keep their B489/B527 scopes. |
-| Next action | [City ownership is on the backlog](Playtest_Backlog.md#city-ownership-follow-up). The incoming-gift test has no scheduled date. The [stable audit review](#city-ownership-parked-and-stable-audit-read--s1126) identifies the unregistered-city transaction block and the Crew cancellation case for follow-up. |
+| Validation | [59 local Crew checks](#crew-order-cancellation-after-another-completion--s1127). Earlier native evidence retains its recorded build and scope. |
+| Next action | Trace the player-wide transaction gate from an unregistered city through its actual Store and Network readers. The [city ownership follow-up](Playtest_Backlog.md#city-ownership-follow-up) stays parked. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Crew order cancellation after another completion — S1127
+
+Removing an untouched order used to lock the city out of further Crew formation after another order of the same type completed. This was reproduced on the previous develop source with one unit issued and a refused new reservation. Reconciliation now releases the empty, zero-progress admission when the player receipt accounts for every counter increment since that order was booked. The same evidence can clear an earlier HELD order. A pending grant for the exact request, paid local progress, and an unexplained counter increase keep their protection. The cancellation path issues no unit.
+
+**Runtime impact.** The existing queue, Grant receipt and bound Crew identities supply the evidence. The grant writer remembers one earliest observed consumed ordinal per player and used project type for the load (five tiers × four ratios at the session speed). The published-city pass reuses its existing inventory. A direct action with a multi-ordinal gap can read living bindings once to verify the first required ordinal. A single receipt survives reload even after its unit is spent. After reload, a lone final watermark cannot explain several earlier increments if the first necessary witness is unavailable. Existing callbacks, grant sequence and durable fields continue to own those responsibilities.
+
+**LOCAL_SIMULATION_PASS / STATIC_CONFIRMED.** The focused Lua 5.1 run passed 59 cases, including 13 [cancellation cases](../../DevelopmentTests/test_crew_cancel_receipts.py), existing receipt protection, paid pauses, native callback doubles, duplicate delivery and the idle work check. The original two-city scenario now permits another order and still creates exactly one unit. Source checks compiled 182 Lua files, parsed 24 XML files and resolved all 611 modinfo file references. Current source is B530.557. No native test or deployment ran. Other completion orders and late callbacks keep their previous evidence limits.
 
 ### City ownership parked and stable audit read — S1126
 

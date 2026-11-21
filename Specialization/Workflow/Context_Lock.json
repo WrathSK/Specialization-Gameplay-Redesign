@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S1126 parks B529 city ownership follow-up and records the reading of the B528 main audit. Runtime evidence remains at S1125.",
+  "review_basis": "S1127 verifies Crew zero-progress cancellation against already consumed completion receipts. Stable deployment remains B528.555.",
   "files": {
     "AGENTS.md": "4f6d8f8e14c70b8a8fc50c90e92e23635c822d3353f3a7adf93b5559ca4973ab",
     "Art/Institutions/README.md": "23b7ace94796d7212ab848fb12a712a85ff2e837ec7daa0f3dcff1ad3efa7fcb",
@@ -275,7 +275,7 @@
     "Mod/Config/Players.sql": "3483a8e6119486bb11032306501fff90e834e6f5a2a1d11ff88c533229d83284",
     "Mod/Config/TestAmerica.sql": "1b463ca162e4fcc784a8a902cfcea635dde1ba04dc21ec651a081dc42e7d3905",
     "Mod/CrewModel.lua": "a789494fd538a59d216a7a407a944e9c7ce07386bb235a25526f213f1afeca20",
-    "Mod/CrewProjects.lua": "5e4b2edba0b3c2b57d00272d9d53e866cf23cb6a13e02c6d7b38d31f8f4155bb",
+    "Mod/CrewProjects.lua": "d9458493b22afca7fe8214effb2439af6fa46582cd9f60c4f7c1b25fe6df6cf5",
     "Mod/CultureAesthetic.lua": "bec9c327a270578761cb5bd07b94bee246e4d4f4aeae0070647b5b5db4ba0055",
     "Mod/CultureAestheticModel.lua": "668119ca656a3fe0041e9cef0c23adb1aa881d0c2b070d51192552bdc0211340",
     "Mod/CultureInsightsTourism.lua": "cc489ce107d7469ac98988ba3de3e3a89a5f5ffa25dc721e7a364ad6eb547e87",
@@ -368,7 +368,7 @@
     "Mod/NetworkSender.lua": "7c8cd5237215aeb09345e9ac15b7356b83b3389d68f9957df36d8ead1a201675",
     "Mod/OrdinaryBuildingCatalog.lua": "871658d702a9990d5299f73343f6f8832e3ef956c3afba584ab66dcf7ed761fa",
     "Mod/PerformanceCounters.lua": "298c7c9a468ed2c2d1496580a7144e2d21bcdd6d97f5af099f6cc7d60abe5d67",
-    "Mod/Probe.lua": "47eb12774dc53876fc561f3e2002ab9406cb164e1ca12160bbce26ac800ce664",
+    "Mod/Probe.lua": "82946d083a57792557b4d782005b0ca46a35ba68c8cc656b67bfc9ae30fe57d2",
     "Mod/ReadinessSummary.lua": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
     "Mod/ResearchApply.lua": "61d2d0bc74d4b4a7d8216a68485bf4fe31b9251a58929ce7f283c34669d914ef",
     "Mod/ResearchApplyModel.lua": "8f09915faa202858bbeec746723db882571f8f1ef4ed6bfdb8b937d20a655b30",
@@ -389,7 +389,7 @@
     "Mod/SampleLifecycle.lua": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
     "Mod/SpecialistSupport.lua": "476341541fc0284fe1164ac4c155593b9bb883342679106ccceebe37c9126ea9",
     "Mod/Specialization.dep": "77b56743d8848d681829a7cc4dc908c824672de86a6be2dbffd1cae3a6edba3b",
-    "Mod/SpecializationP0.modinfo": "c26e560fab582865dd29f5423619647af569f649e642999047eb941d23c9719f",
+    "Mod/SpecializationP0.modinfo": "c8c5ee4c0c745d4dae8dacd4840c85f0f0017ed07d25d5ab1d645e7152ec8d82",
     "Mod/Standardization.lua": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
     "Mod/StandardizationCatalog.lua": "de5b99ccbab52890dcd8bfb790d21fce23f62bb4e354fd05c01d9b7a469bc000",
     "Mod/StandardizationEffects.lua": "9853870ba496ffc00ccb2bf876c5bdde65a59bd35a2ebdacb2bddad54984cb29",
@@ -633,7 +633,7 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
     "Specialization/Status/Playtest_Backlog.md": "7c66920d2bc4dc0bf95d94d53ae7ad3c36ada9170328256c2fca39405fb0b4c7",
-    "Specialization/Status/Specialization_P0_Status.md": "f8a4f9d11927666ebf5990d64d2a2e50d71261075be52951772aad82c02c9f4d",
+    "Specialization/Status/Specialization_P0_Status.md": "697601ca19d97df040078921d357d915cfde86191542c87e5d9966939fe7da24",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -880,10 +880,10 @@
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md": "3ad3d5e3d7a0d7429ca62d3bf1b973bda0712dde3cae717511ec8477ed387467",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "b8a3d6bb6233a4f68a1788713d68ebd0b10fd877e4a60a0ab33b97667085950a",
-    "Specialization/Workflow/P0-H.json": "f934f62195ad94d425c81cb68d39ef62a318278f8f9d295b623cf3fb3e721c74",
+    "Specialization/Workflow/Authority.json": "f27d0ba2284ed9f105800e3bbd3f9e96757e3fad567750bdd8782ee65a6d08ff",
+    "Specialization/Workflow/P0-H.json": "c6ce20b6dfbfd223e4873c27ed58fdcf9d5cc6eae5b75df2752cdeb58ca9e9df",
     "Specialization/Workflow/README.md": "eef4d03dd18f62db56661050dff4b2ea6e824338fc50b8009aeca04819049616",
-    "Specialization/Workflow/Runtime_Index.json": "ab5bcb12ed0b72f9ee3466883bf8b5baaa87470f80b903882504c2bc01b7fd19",
+    "Specialization/Workflow/Runtime_Index.json": "fa31c684090fb2cdf28a7f4fc01795b1e2d66982f4e3f8b80b7e66c1500e9398",
     "Specialization/Workflow/context.py": "0ffff9d641a35bb6012a9882dcc7f0482bb0f27e47590151d491e20a81770a08",
     "tools/build_raw_icons.py": "949ce17b8de6eedc9d99165d856668e69793dcfb48e70502b1b7c691164100ff",
     "tools/collect_expedition_trace.py": "3fc8cc637f201eeaf238624966d8e0fbdd75c4ab153754375577e764611c52e3",
@@ -1257,6 +1257,7 @@
     "Specialization/Design/Content/Industry_D0061.json": "030fc379baacc519e7b6b0befa541b775b1657a1562d3b511695da9cff8e733c",
     "Specialization/Design/Content/Shared_D0061.json": "12cf3d8dbc86175aade322112421ce68b73a233d28f68167127d46f330e32dae",
     "Specialization/Design/Content/Commerce_D0061.json": "555e16d4e1d75ba68285496122a6b5799a84b8a1d8f76ba04c4e241946a73481",
-    "DevelopmentTests/test_city_peaceful_acquisition.py": "8a0838a0104c3082609a1abfd4c2bc2c31545103fa3ede2747ea7fbb94e16bbf"
+    "DevelopmentTests/test_city_peaceful_acquisition.py": "8a0838a0104c3082609a1abfd4c2bc2c31545103fa3ede2747ea7fbb94e16bbf",
+    "DevelopmentTests/test_crew_cancel_receipts.py": "43d8396e3e2cfa678538b23e690d51abea8385e804a0c788095301b9bf96203c"
   }
 }

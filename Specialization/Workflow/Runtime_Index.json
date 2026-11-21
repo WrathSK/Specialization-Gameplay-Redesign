@@ -116,9 +116,9 @@
       "provenance": "S0876/B404.431 PU05a:separate per-project consumed ordinal/source-order pending grant;one optional explicit queue reader.101local methods pass with documented Lua51 fixture adapter;new campaign for version2 receipt,PU05b native gap OPEN. Probe/modinfo labels only;no deployment/native PASS."
     },
     "Mod/CrewProjects.lua": {
-      "sha256": "5e4b2edba0b3c2b57d00272d9d53e866cf23cb6a13e02c6d7b38d31f8f4155bb",
+      "sha256": "d9458493b22afca7fe8214effb2439af6fa46582cd9f60c4f7c1b25fe6df6cf5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0953 B445 verified exact Crew diagnostic retirement and retained formal actions."
+      "provenance": "S1127 receipt-backed Crew cancellation and independent grant protection."
     },
     "Mod/CultureAesthetic.lua": {
       "sha256": "bec9c327a270578761cb5bd07b94bee246e4d4f4aeae0070647b5b5db4ba0055",
@@ -636,9 +636,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "47eb12774dc53876fc561f3e2002ab9406cb164e1ca12160bbce26ac800ce664",
+      "sha256": "82946d083a57792557b4d782005b0ca46a35ba68c8cc656b67bfc9ae30fe57d2",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B529 peaceful ownership and scoped original-return checks (S1125). Package identity."
+      "provenance": "S1127 B530 package identity."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -751,9 +751,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c26e560fab582865dd29f5423619647af569f649e642999047eb941d23c9719f",
+      "sha256": "c8c5ee4c0c745d4dae8dacd4840c85f0f0017ed07d25d5ab1d645e7152ec8d82",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B529 peaceful ownership and scoped original-return checks (S1125). Package identity."
+      "provenance": "S1127 B530 package identity."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1556,7 +1556,7 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
-  "source_review": "S1125 verifies B529 peaceful city acquisition and direct handback locally. Installed B528 remains the last stable deployment.",
-  "source_runtime": "B529.556 / modinfo556 develop, 310 files; no deployment.",
-  "tested_source_snapshot_sha256": "dff15e5dd7425d09fce3d7322c42b0da166c18f7dc97fb5ff02ee4566f501db2"
+  "source_review": "S1127 verifies Crew zero-progress cancellation against already consumed completion receipts. Stable deployment remains B528.555.",
+  "source_runtime": "B530.557 / modinfo557 develop, 310 files; no deployment.",
+  "tested_source_snapshot_sha256": "bfb19cb5902f14f0917aeac904043f9fa1e1109e9ec318f5c4ba52318a1b2fc5"
 }

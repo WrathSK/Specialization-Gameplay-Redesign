@@ -14,6 +14,9 @@ function SPCCrewProjects.Start(P,shared,readQueue)
  assert(type(queueReader)=='function','CREW_QUEUE_PROVIDER_INVALID')
  local d={ready=false,busy=false,errors={},views={},revision=0};shared.CrewProjects=d
  local consuming={}
+ -- After the first receipt, this writer advances the project watermark strictly by one.
+ -- Its first observed ordinal bounds what this load can prove, including after a unit is spent.
+ local firstReceipt={}
  local dirty,settling,failed,issued={}, {}, {}, {};local knownUnits={};local lastRequest,lastReply;local trace=SPCExpeditionTrainingDiagnostics.New(P,'CREW')
  local function key(pid,id)return pid..':'..id end
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
@@ -78,11 +81,11 @@ function SPCCrewProjects.Start(P,shared,readQueue)
   for _,u in Players[pid]:GetUnits():Members()do
    local row=P.Info('Units',u:GetType())
    if row and P.CrewBase(row.UnitType)then
-    local v=d.Unit(pid,u);assert(not seen[v.grant],'CREW_DUPLICATE_GRANT_UNIT');seen[v.grant]=true;units[u:GetID()]=v.source
+    local v=d.Unit(pid,u);assert(not seen[v.grant],'CREW_DUPLICATE_GRANT_UNIT');seen[v.grant]=v.tier;units[u:GetID()]=v.source
     counts[v.source]=(counts[v.source] or 0)+1
    end
   end
-  knownUnits[pid]=units;return counts
+  knownUnits[pid]=units;return counts,seen
  end
  local function receipts(pid)
   return M.ReceiptState(Players[pid]:GetProperty(M.RECEIPT_PROPERTY),pid)
@@ -120,13 +123,15 @@ function SPCCrewProjects.Start(P,shared,readQueue)
  local function queued(v)
   local n=0;for _,o in ipairs(v.orders)do if o.stage=='QUEUED'then n=n+1 end end;return n
  end
- local function reconcile(pid,c,v,old,q)
+ local function reconcile(pid,c,v,old,q,boundGrants)
   -- A native project owns one progress bucket even when absent from the queue.
   -- Keep at most one paid paused admission per native bucket; it still owns one slot.
   local initial=cp(v);local keep,paused,available={}, {},cp(q.projects)
+  local grants
   for _,o in ipairs(v.orders)do
    local before=o.stage;local retain=true
-   if before=='CALLING' or before=='HELD'then
+   if before=='CALLING' or (before=='HELD' and ((q.projects[o.project] or 0)>0 or q.progress[o.project]>0))then
+    -- Preserve an attempted grant or an unresolved order with live local work.
    elseif before~='PAUSED' and (available[o.project] or 0)>0 then
     available[o.project]=available[o.project]-1;o.stage='QUEUED';o.resuming=nil
    elseif before=='RESERVED' and issued[key(pid,c:GetID())..':'..o.serial]then
@@ -136,9 +141,29 @@ function SPCCrewProjects.Start(P,shared,readQueue)
     if not paused[o.project] and (q.projects[o.project] or 0)==0 then
      o.stage='PAUSED';o.resuming=nil;paused[o.project]=true
     else retain=false end
-   elseif (q.completed[o.project] or -1)>o.base then
-    o.stage='HELD' -- zero progress + new counter is not proof of cancellation
-   else retain=false end
+   else
+    local native=q.completed[o.project]
+    grants=grants or receipts(pid)
+    local water=grants.water[o.project]
+    assert(M.Int(native) and native>=o.base and native>=(water or 0),'CREW_NATIVE_COMPLETION_COUNTER_UNKNOWN')
+    local cancelled=false
+    if not grants.pending[M.ReceiptKey(v.source,o.serial)] then
+     if native==o.base then
+      cancelled=before~='HELD'
+     elseif water==native then
+      -- The first receipt may start above one. Only a witnessed interval counts.
+      local first=firstReceipt[pid] and firstReceipt[pid][o.project] or water
+      cancelled=first<=o.base+1
+      if not cancelled then
+       -- On cold load a surviving unit can witness the first required ordinal.
+       if not boundGrants then local _,bindings=d.Inventory(pid);boundGrants=bindings end
+       cancelled=boundGrants[pid..':'..o.project..':'..(o.base+1)]==o.tier
+      end
+     end
+    end
+    retain=not cancelled
+    if retain then o.stage='HELD' end
+   end
    if retain then keep[#keep+1]=o end
    if not retain or before~=o.stage then
     observe('CREW_ORDER_STATE',pid,c,{projectType=o.project,reservation=o.serial,lockedPrice=o.price,
@@ -149,11 +174,11 @@ function SPCCrewProjects.Start(P,shared,readQueue)
   if not same(v,initial)then save(c,old,v);old=cp(v)end
   return v,old
  end
- local function audit(pid,id,inventory)
+ local function audit(pid,id,inventory,boundGrants)
   local c=city(pid,id);local k=key(pid,id)
   if not c or c:GetOwner()~=pid then d.views[k]=nil;return end
   local a=source(pid,c);local v,old=orders(pid,c);local q,n=queue(pid,c)
-  v,old=reconcile(pid,c,v,old,q)
+  v,old=reconcile(pid,c,v,old,q,boundGrants)
   local count=assert(inventory)[a.token] or 0;local held=failed[k]
   for _,o in ipairs(v.orders)do if o.stage=='HELD' or o.stage=='CALLING'then held=true end end
   for _,r in pairs(receipts(pid).pending)do if r.stage=='CALLING' and r.source==a.token then held=true end end
@@ -198,11 +223,11 @@ function SPCCrewProjects.Start(P,shared,readQueue)
  end
  function d.Flush()
   if d.busy or not initialize()then return end;d.busy=true
-  local work=dirty;dirty={};local inventory={}
+  local work=dirty;dirty={};local inventory,boundGrants={},{}
   for _,v in pairs(work)do local pid,id=v[1],v[2]
    safe(pid,id,function()
-    if not inventory[pid]then inventory[pid]=d.Inventory(pid)end
-    audit(pid,id,inventory[pid])
+    if not inventory[pid]then inventory[pid],boundGrants[pid]=d.Inventory(pid)end
+    audit(pid,id,inventory[pid],boundGrants[pid])
    end)
   end;d.busy=false
  end
@@ -284,6 +309,9 @@ function SPCCrewProjects.Start(P,shared,readQueue)
    -- Missing return/binding never replays InitUnit; another source's +1 stays independent.
    o.stage='CALLING';save(c,old,v);old=cp(v)
    receiptSave(pid,all,next)
+   firstReceipt[pid]=firstReceipt[pid] or {}
+   local earliest=prior or native
+   firstReceipt[pid][row.ProjectType]=math.min(firstReceipt[pid][row.ProjectType] or earliest,earliest)
    local grant=pid..':'..row.ProjectType..':'..native
    assert(source(pid,c).token==a.token,'CREW_SOURCE_CHANGED_DURING_GRANT')
    local u=UnitManager.InitUnit(pid,'UNIT_SPC_CREW_'..M.IDS[tier],c:GetX(),c:GetY())
