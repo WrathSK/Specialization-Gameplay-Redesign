@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1129
+Status Revision: S1130
 Implementation Build: develop B531.558 / modinfo558. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0188
 Design Revision Reviewed: D0061
 Latest Accepted Design Revision: D0061
 Design Sync State: D0061_CITY_OWNERSHIP_ACCEPTED
-Work State: FREE_CITY_CONQUEST_ADMISSION_LOCALLY_VERIFIED
+Work State: CURRENT_GAMEPLAY_REGRESSION_ESTABLISHED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,14 +15,22 @@ Work State: FREE_CITY_CONQUEST_ADMISSION_LOCALLY_VERIFIED
 |---|---|
 | Source and installation | Develop B531.558 registers a verified first conquest of a Free City. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [Free City acquisition and transaction prerequisites](#verified-conquest-of-a-free-city--s1129) passed the scoped local checks. The [B530 Crew cancellation result](#crew-order-cancellation-after-another-completion--s1127) and existing native observations retain their original scope. |
-| Next action | Follow the [ownership backlog](Playtest_Backlog.md#city-ownership-follow-up) for native acquisition evidence, a return through an intermediate owner and permanent destruction. No immediate game test is scheduled. |
+| Validation | [Current gameplay regression](#current-gameplay-regression--s1130) passed 20 named cases. Previously verified acquisition and Crew evidence remains in the checkpoint history. |
+| Next action | Investigate same-build cold restoration for the six non-network effect owners. Intermediate ownership and permanent destruction remain parked. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Current gameplay regression — S1130
+
+The [current entry](../../DevelopmentTests/README.md#current-gameplay-regression) selects 20 named assertions on city admission and Claim, accounted Crew orders, investment terms and exactly-once settlement, Research writers, and local and network effects. The input includes the actual B531 owners. The city, queue, treasury and callback surfaces are simulated. This is a scoped regression set, not a statement about all historical stages (A-09).
+
+**LOCAL_SIMULATION_PASS.** All 20 passed under CPython 3.14.8, Lupa 2.8 / Lua 5.1 and the read-only B413 HD database (SHA256 `d483b5f2848907329b8439dc257c061ea285c4b90a88c22bdb792f0e4ab42439`). In an isolated copy, substituting only the B530 Store made the verified Free City conquest case fail. Restoring B531 returned it to green. Empty and duplicate current selections also returned a failing exit status. The original stage lists and frozen assertions retain their previous results. Runtime files and saved data were unchanged.
+
+Local evidence: `local/refactor/CurrentGameplay-6752647791c148adaa45c74a1deb9dff/closure.json` (SHA256 `4e45b1f364c5016ff8dd5fbfd780192d8aa47f5ec673fcbb632b6cb4d82205c0`). Tested source digest `e42dee6d58914016022dd26578b05933f0afa39bbfed1de013959b3f39e0878e`. Full artifact is local only.
 
 ### Verified conquest of a Free City — S1129
 

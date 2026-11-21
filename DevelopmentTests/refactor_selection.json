@@ -2,6 +2,28 @@
   "schema": 1,
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
+    "CurrentGameplay": [
+      "test_city_peaceful_acquisition.PeacefulAcquisition.test_gift_freezes_completed_districts_at_transfer_and_survives_reload",
+      "test_city_peaceful_acquisition.PeacefulAcquisition.test_actual_claim_project_offers_gift_candidates_and_settles_only_once",
+      "test_city_peaceful_acquisition.PeacefulAcquisition.test_return_after_foreign_load_keeps_research_investment_and_uses_current_governor",
+      "test_network_city_registration.Registration.test_free_city_conquest_waits_for_handover_and_freezes_completed_candidates",
+      "test_network_city_registration.Registration.test_an_unfinished_transfer_is_still_unknown_after_another_route_packet",
+      "test_network_city_registration.Registration.test_registered_city_with_unreadable_binding_is_not_a_reliable_negative",
+      "test_crew_cancel_receipts.CancellationProof.test_proven_other_city_completion_releases_only_cancelled_order",
+      "test_crew_cancel_receipts.CancellationProof.test_paid_progress_and_queued_order_keep_their_admission",
+      "test_crew_cancel_receipts.CancellationProof.test_unresolved_own_grant_is_never_released_or_replayed",
+      "test_crew_cancel_receipts.CancellationProof.test_single_receipt_survives_cold_load_and_loss_of_unit",
+      "test_pu06c_capital_terms.Differential.test_quantized_actual_receipts_preserve_theory_and_once_only",
+      "test_pu06c_capital_terms.Sources.test_strict_common_network_and_balance_guards_remain",
+      "test_refactor_s6f.RetainedDevelopment.test_reconstruction_preserves_receipt_and_rebuilds_effect",
+      "test_refactor_s6f.RetainedDevelopment.test_closed_contract_reconstruction_never_reactivates",
+      "test_refactor_s6f.RetainedDevelopment.test_wrong_or_unknown_route_cannot_sign",
+      "test_network_effect_write_boundary.CommercializationReadback.test_binding_unavailable_before_write_keeps_the_actual_effect",
+      "test_network_effect_write_boundary.CultureNetworkReadback.test_cold_interrupted_reconciliation_keeps_observation_separate_from_saved_aggregate",
+      "test_network_effect_write_boundary.StandardizationReadback.test_cold_start_finishes_with_a_non_test_city",
+      "test_shared_d_fact_read.SharedDFactRead.test_actual_research_writers_carriers_and_writes_match_eight_transitions",
+      "test_refactor_s5d4c5.CultureProjection.test_missed_load_real_sample_initializes_each_independently"
+    ],
     "O8IntegrationCandidate": [
       "test_o8_integration_candidate",
       "test_refactor_s5d3",

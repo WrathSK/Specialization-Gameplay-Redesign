@@ -54,6 +54,13 @@ def main():
             phase='discovery';suite=unittest.defaultTestLoader.loadTestsFromNames(names)
             phase='execution';result=unittest.TextTestRunner(resultclass=Result,verbosity=0).run(suite)
             report['failures']=[t.id()for t,_ in result.failures];report['errors']=[t.id()for t,_ in result.errors]
+            if args.stage == 'CurrentGameplay':
+                if not names or len(set(names)) != len(names):
+                    unexpected.append({'reason': 'current gameplay requires a nonempty, unique list of test methods'})
+                if sorted(passed) != sorted(names):
+                    unexpected.append({'reason': 'every selected current gameplay test must pass under its own name',
+                                       'missing_passes': sorted(set(names) - set(passed)),
+                                       'unlisted_passes': sorted(set(passed) - set(names))})
             phase='post_validation'
             report['source_stable']=before==source_snapshot(ROOT)
             report['external_input_stable']=external_before==external_identity(ROOT)

@@ -13,6 +13,14 @@ For context-helper maintenance: `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTe
 
 For deployment-tool changes only, `test_deployment.py` exercises temporary directories, never live runtime. Deployment itself follows the separate authorized workflow.
 
+## Current gameplay regression
+
+From the repository root, run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/run_refactor.py --stage CurrentGameplay`. Use the Lupa 2.8 and read-only database setup under [Environment and dependencies](#environment-and-dependencies). The first reference run used the fixed B413 HD database.
+
+The [named cases](refactor_selection.json) exercise current city acquisition and Claim, Crew cancellation and one-time delivery, network and investment gates, contract settlement across reload, and representative Research, Culture and Industry effects. The selection requires every named case to actually pass. A skip, a duplicate selection, or a registered counterexample cannot satisfy this gate. Each run emits its source and input digests and the location of its local evidence. Use the subsystem tests for changes outside these paths.
+
+Keep old stage selections with their original assertions. For example, the B126 Free City exclusion can be reproduced at `4dfa12b63322c074d00be34202b7e7d65878cc38`. Current conquest and Claim use the subsequently accepted ownership rules.
+
 ## Narrow Pre-U5 review gate
 
 Run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<lupa-environment>:DevelopmentTests python3.14 DevelopmentTests/run_pre_u5_review.py` from the repository root. Lupa2.8 must provide Lua51 and Lua55;the runner uses Lua51 and verifies repository test-module origins. All execution/compatibility steps are versioned here;no ignored runner or external DB is required. The entry includes the affected S7c FrozenD6 and CommerceFallback regressions;it fails selection if the frozen-source case or current16→15 reputation assertion is omitted. It does not claim every reverse-index or historical test passes. The shared fixture conditionally exposes ReputationInput only when its actual current or frozen model provides that protocol;historical assertions are unchanged. The existing numeric Capital fixture adapter applies only to the explicitly listed B245 Receipts/Guards and PU06a MoneyReceipts;current protocol tests run without it. Original business assertions remain unchanged. `--before` requires eight defect counterexamples against fixed B412 `b862242` to fail;that result is a baseline characterization,not a gameplay PASS. Each invocation writes a unique ignored artifact with environment,commands,actual closure,raw failures,source digest and limitations. Original B245 historical whole-file/old-quote comparisons and its obsolete UI fixture remain NOT_PASS and are not covered by this gate;current PU06c UI/terms tests are selected. Native Crew attribution remains OPEN.

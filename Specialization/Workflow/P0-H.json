@@ -11,14 +11,14 @@
     "shared": "D0061",
     "presentation": "D0032",
     "architecture": "A0188",
-    "status": "S1129",
+    "status": "S1130",
     "runtime": "B531.558 / modinfo558",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Register an ordered first military conquest from Free Cities under the existing city identity rules so a complete handover can clear an unrelated investment network hold.",
+  "goal": "Keep a reproducible set of current gameplay assertions separate from version-specific historical controls.",
   "implementation_authorized": false,
   "context": [
     {
@@ -28,38 +28,26 @@
       "reason": "Current source, installed package and next decision"
     },
     {
-      "path": "Specialization/Design/Network.md",
+      "path": "DevelopmentTests/README.md",
       "kind": "section",
-      "selector": "## 未确认不等于失效",
-      "reason": "Passive continuity and the proof required for new contracts"
-    },
-    {
-      "path": "Specialization/Design/Shared.md",
-      "kind": "section",
-      "selector": "### 和平受让、多次转手与同址重建",
-      "reason": "Accepted admission rule following a confirmed handover"
-    },
-    {
-      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-      "kind": "section",
-      "selector": "### 和平交割与城市身份",
-      "reason": "Store identity, handover witnesses and the distinction between admission and return"
+      "selector": "## Current gameplay regression",
+      "reason": "Exact current entry and prerequisites"
     }
   ],
   "dependencies": [
-    "CityProgressionStore -> EffectiveFacts -> NetworkInput -> NetworkBridge; Capital and Development use the verified transaction readers."
+    "Lupa 2.8 with Lua 5.1 and the documented read-only HD database."
   ],
   "old_writers": [
-    "The Store owns identity admission. Network proof cannot create an identity or declare an incomplete transfer unspecialized."
+    "Production writers and historical assertions are unchanged. The gate invokes existing real owners with local native doubles."
   ],
   "conditional_context": [
-    "Use the ownership backlog and ER09 for the remaining native evidence or intermediate-owner storage questions."
+    "Use the original stage and its corresponding commit to reproduce a superseded historical assertion."
   ],
   "non_scope": [
-    "Multi-owner return, permanent destruction, new saved fields, changes to profession and investment rules, deployment and game launch."
+    "Runtime changes, deployment, native acceptance or changing frozen stage assertions."
   ],
   "validation": [
-    "Reproduce the B530 Free City refusal first. Exercise both acquisition modes, terminal handover and fresh network proof, invalid sources and conflicting witnesses, duplicate delivery, unaffected cities and same-build reload. Compile Lua 5.1 and verify the package references."
+    "Every named current case must pass. Confirm the runner rejects an empty or duplicate selection and the known B530 city-admission counterexample."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
@@ -111,11 +99,11 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "status": "LOCAL_SIMULATION_PASS_STATIC_CONFIRMED",
-      "report": "Specialization/Status/Specialization_P0_Status.md#verified-conquest-of-a-free-city--s1129",
-      "tests": 122,
-      "crew_repair": "Specialization/Status/Specialization_P0_Status.md#crew-order-cancellation-after-another-completion--s1127",
-      "native_validation": "NOT_RUN. Native delivery of this Free City conquest and a same-build reload remain open.",
+      "report": "Specialization/Status/Specialization_P0_Status.md#current-gameplay-regression--s1130",
+      "status": "LOCAL_SIMULATION_PASS",
+      "tests": 20,
+      "runner": "CurrentGameplay",
+      "native_validation": "NOT_RUN",
       "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"
     }
   }
