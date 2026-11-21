@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1125
+Status Revision: S1126
 Implementation Build: develop B529.556 / modinfo556. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0188
 Design Revision Reviewed: D0061
 Latest Accepted Design Revision: D0061
 Design Sync State: D0061_CITY_OWNERSHIP_ACCEPTED
-Work State: DEVELOP_PEACEFUL_OWNERSHIP_LOCAL_PASS
+Work State: CITY_OWNERSHIP_PARKED_STABLE_AUDIT_READ
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -16,13 +16,21 @@ Work State: DEVELOP_PEACEFUL_OWNERSHIP_LOCAL_PASS
 | Source and installation | [B529.556 on develop](#peaceful-city-acquisition-and-direct-return--s1125) implements first peaceful acquisition and direct return. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
 | Validation | [Engineering closeout](#owner-accepted-architecture-convergence-closeout--s1095) and [35 B528 local checks](#residual-diagnostic-and-unloaded-city-files--s1096). Native observations keep their B489/B527 scopes. |
-| Next action | [Test an incoming gift on B529](Playtest_Backlog.md#current-playtest). Review the smallest persistent witness for intervening foreign owners. Confirm a native destruction boundary before retiring a city identity. |
+| Next action | [City ownership is on the backlog](Playtest_Backlog.md#city-ownership-follow-up). The incoming-gift test has no scheduled date. The [stable audit review](#city-ownership-parked-and-stable-audit-read--s1126) identifies the unregistered-city transaction block and the Crew cancellation case for follow-up. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### City ownership parked and stable audit read — S1126
+
+2026-11-21. The Owner parked [city ownership follow-up](Playtest_Backlog.md#city-ownership-follow-up). S1125 remains the B529 implementation and local validation record. Claude's Stable advisory `Main_Baseline_Audit_B528/B528_Full_Audit.md` reviewed main at `8859792c` (B528.555, D0060). The report, Chinese summary and evidence appendix are available in the local Advisory area. The following are review findings only.
+
+- **Unregistered own city and new contracts (A-01/A-02).** B529 handles verified peaceful admission and direct handback. Comparing the two branches shows the network input and strict contract checks are unchanged. If a city remains unregistered, the input still marks the player-wide network pending. New Capital and Development contracts then wait even in other cities. Future investigation should distinguish a confirmed city with no profession from an unreadable identity or an unfinished handover, and preserve the transaction proof requirement.
+- **Cancelling an untouched Crew order (A-03).** The Advisor reproduced a legal sequence locally. City A receives a Crew, then the player removes City B's zero-progress order of the same type. B retains the order as HELD. Without A's completion it cancels. The same reconciliation code is present on develop. This case is separate from the two same-turn completions already observed. The earlier [HD](#hd-production-interaction-verified-on-b443--s0948) and [official](#official-production-interaction-verified-on-b443--s0949) Wonder-use records also retain their original scope.
+- **Regression evidence (A-09).** The Advisor ran 178 historical stages on B528, with 37 stages passing and 141 failing (139 distinct failing tests). Retired files, changed assertions and old fixtures account for many cases. A release gate for current behavior still needs to be distinguished from frozen historical comparisons. This intake involved source comparison and documentation checks only.
 
 ### Peaceful city acquisition and direct return — S1125
 

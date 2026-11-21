@@ -11,14 +11,14 @@
     "shared": "D0061",
     "presentation": "D0032",
     "architecture": "A0188",
-    "status": "S1125",
+    "status": "S1126",
     "runtime": "B529.556 / modinfo556",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "First peaceful acquisition and direct return implemented. Review remaining native and persistence boundaries.",
+  "goal": "Preserve the B529 implementation checkpoint and the parked city ownership work while the Owner reviews the B528 stable audit.",
   "implementation_authorized": false,
   "context": [
     {
@@ -114,7 +114,8 @@
       "status": "LOCAL_SIMULATION_PASS_STATIC_CONFIRMED",
       "report": "Specialization/Status/Specialization_P0_Status.md#peaceful-city-acquisition-and-direct-return--s1125",
       "tests": 109,
-      "native_validation": "USER_GAME_TEST_REQUIRED for B529; earlier tests retain their own scopes."
+      "native_validation": "USER_GAME_TEST_REQUIRED for B529; earlier tests retain their own scopes.",
+      "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"
     }
   }
 }
