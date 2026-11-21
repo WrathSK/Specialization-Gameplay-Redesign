@@ -76,9 +76,9 @@
       "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "84c3715aa610b4f6107cbceae021538bb2189a70410f390c7c45ab458de8e970",
+      "sha256": "1ed76990405459dd975eea200af391442f00307525009faee95163132e87c846",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B529 peaceful ownership and scoped original-return checks (S1125). Store owns admission and saved witness readback."
+      "provenance": "B531 admits Free Cities as a verified previous owner for first military acquisition. The Store keeps the existing ordered handover and one-city district snapshot (S1129)."
     },
     "Mod/ClaimProjects.lua": {
       "sha256": "84f28fdc61391fe9aaafdc60a78a3b476428f7c2fef39a8d8e9df75f16355608",
@@ -636,9 +636,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/Probe.lua": {
-      "sha256": "82946d083a57792557b4d782005b0ca46a35ba68c8cc656b67bfc9ae30fe57d2",
+      "sha256": "7c47aa76e7381267cb23069f96f0e94c2ad7ce865f8db64b577907f4c7b1a5d6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1127 B530 package identity."
+      "provenance": "S1129 B531 package identity."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -751,9 +751,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "c8c5ee4c0c745d4dae8dacd4840c85f0f0017ed07d25d5ab1d645e7152ec8d82",
+      "sha256": "5a7204a13b0d1e54e96f1dd0fd2fe564e0357e4cc1e87bcead6479b1c0f6e564",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1127 B530 package identity."
+      "provenance": "S1129 B531 package identity."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1556,7 +1556,7 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
-  "source_review": "S1127 verifies Crew zero-progress cancellation against already consumed completion receipts. Stable deployment remains B528.555.",
-  "source_runtime": "B530.557 / modinfo557 develop, 310 files; no deployment.",
-  "tested_source_snapshot_sha256": "9407d84a0b20e63f38371d0f688c477ac217923c9a9768b278822022ca6745c4"
+  "source_review": "S1129 verifies first acquisition from a Free City and the strict network prerequisites on develop. Stable deployment remains B528.555.",
+  "source_runtime": "B531.558 / modinfo558 develop, 310 files. No deployment.",
+  "tested_source_snapshot_sha256": "c15fb28dcdda042980ed3456d8b22affb3f6f7357664189ce64ea190658d1554"
 }

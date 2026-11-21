@@ -2147,8 +2147,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
      local row=P.Info('Civilizations',civ)
      assert(row and type(row.StartingCivilizationLevelType)=='string','ACQUISITION_SOURCE_LEVEL_UNAVAILABLE')
      local level=row.StartingCivilizationLevelType
-     eligibleSource=level=='CIVILIZATION_LEVEL_CITY_STATE'
-      or (q.transferEvidence~=conquestEvidence and level=='CIVILIZATION_LEVEL_FREE_CITIES')
+     eligibleSource=level=='CIVILIZATION_LEVEL_CITY_STATE' or level=='CIVILIZATION_LEVEL_FREE_CITIES'
     end
     assert(eligibleSource and old:IsHuman()==false and not P.IsTestPlayer(q.oldOwner),'ACQUISITION_SOURCE_INELIGIBLE')
     local set={};local seen={}

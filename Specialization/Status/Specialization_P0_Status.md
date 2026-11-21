@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1128
-Implementation Build: develop B530.557 / modinfo557. Installed stable B528.555 / modinfo555.
+Status Revision: S1129
+Implementation Build: develop B531.558 / modinfo558. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0188
 Design Revision Reviewed: D0061
 Latest Accepted Design Revision: D0061
 Design Sync State: D0061_CITY_OWNERSHIP_ACCEPTED
-Work State: CREW_CANCELLATION_VERIFIED_NETWORK_REGISTRATION_GAP_LOCATED
+Work State: FREE_CITY_CONQUEST_ADMISSION_LOCALLY_VERIFIED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B530.557 includes the Crew cancellation repair and the [B529 city acquisition work](#peaceful-city-acquisition-and-direct-return--s1125). [Installed stable](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
+| Source and installation | Develop B531.558 registers a verified first conquest of a Free City. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [59 local Crew checks](#crew-order-cancellation-after-another-completion--s1127) and [22 scoped checks for the city registration investigation](#city-registration-and-the-network-contract-gate--s1128). Existing native results retain their original scope. |
-| Next action | The [parked ownership backlog](Playtest_Backlog.md#city-ownership-follow-up) now identifies the Free City conquest admission to fix when work resumes. No immediate game test is scheduled. |
+| Validation | [Free City acquisition and transaction prerequisites](#verified-conquest-of-a-free-city--s1129) passed the scoped local checks. The [B530 Crew cancellation result](#crew-order-cancellation-after-another-completion--s1127) and existing native observations retain their original scope. |
+| Next action | Follow the [ownership backlog](Playtest_Backlog.md#city-ownership-follow-up) for native acquisition evidence, a return through an intermediate owner and permanent destruction. No immediate game test is scheduled. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Verified conquest of a Free City — S1129
+
+A player's capital and a Research city could have a valid domestic route yet lose access to new investments after a third city was conquered. On B530 the Store rejected Free Cities as the previous owner even after all combat and handover evidence had arrived. B531 accepts the configured Free Cities level through the existing acquisition path. At handover the Store reads that city's completed districts once. Existing candidates become available for Claim. An empty set waits for the city's first subsequent qualifying completion. [Accepted ownership rules](../Design/Shared.md#和平受让多次转手与同址重建) · [B530 reproduction](#city-registration-and-the-network-contract-gate--s1128).
+
+**Runtime impact.** The source check uses the same civilization database lookup. City identity still requires matching owner, ID, plot and ordered transfer evidence. During an unfinished handover the capital and development network readers still withhold clearance. A completed handover and a fresh route proof clear that obstacle. Other investment conditions continue to apply. The change adds no listener, periodic read or saved field.
+
+**LOCAL_SIMULATION_PASS / STATIC_CONFIRMED.** 122 scoped cases passed. The [10 registration and route cases](../../DevelopmentTests/test_network_city_registration.py) include the two Free City cases that failed on B530, duplicate delivery, a same-build simulated reload, an unchanged unrelated route and incomplete or conflicting proof. The official and HD baseline databases both classify Free Cities separately from tribes. Lua 5.1 compiled all 182 runtime scripts, 24 XML files parsed, and all 611 manifest references resolved. No deployment or native test ran.
+
+To reproduce, use the Python, Lupa and database setup in [S1125](#peaceful-city-acquisition-and-direct-return--s1125). Run its nine unittest selections together with `test_network_city_registration`, `test_pu06c_capital_terms.Sources.test_strict_common_network_and_balance_guards_remain`, `test_refactor_s6f.RetainedDevelopment.test_wrong_or_unknown_route_cannot_sign` and `test_refactor_s6f.Composition.test_real_pair_confirmation_fresh_after_shared_inspection`. Running the original B246 fixture directly on both B530 and B531 returns `DEVELOPMENT_STATE_UNKNOWN` before the empty-route assertion. The listed S6f adapter exercises that same assertion successfully. The older B126 source-kind test was separately replayed at its original commit `4dfa12b63322c074d00be34202b7e7d65878cc38`, where military acquisition from Free Cities was deliberately excluded.
 
 ### City registration and the Network contract gate — S1128
 

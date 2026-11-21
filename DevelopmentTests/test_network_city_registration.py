@@ -52,25 +52,26 @@ function checkGate(ready)
   assert(outgoing.validity=='UNKNOWN' and outgoing.reason=='NETWORK_REVALIDATION_PENDING')
  end
 end
-function freeSource()
+function minorSource(civ,level)
  Players[3].IsMajor=function()return false end
- PlayerConfigurations={[3]={GetCivilizationTypeName=function()return 'CIVILIZATION_FREE_CITIES' end}}
+ PlayerConfigurations={[3]={GetCivilizationTypeName=function()return civ end}}
  local info=P.Info
  P.Info=function(t,k)
-  if t=='Civilizations' and k=='CIVILIZATION_FREE_CITIES' then
-   return {StartingCivilizationLevelType='CIVILIZATION_LEVEL_FREE_CITIES'}
+  if t=='Civilizations' and k==civ then
+   return {StartingCivilizationLevelType=level}
   end
   return info(t,k)
  end
 end
-function conquest()
+function freeSource() minorSource('CIVILIZATION_FREE_CITIES','CIVILIZATION_LEVEL_FREE_CITIES') end
+function beginConquest()
  local old=incoming:GetID()
  incoming.s.ref.owner,incoming.s.ref.cityID=0,902
  local x,y=incoming:GetX(),incoming:GetY()
  GameEvents.CityBuilt.Fire(0,902,x,y)
  GameEvents.CityConquered.Fire(0,3,902,x,y)
  Events.CityRemovedFromMap.Fire(3,old);Events.CityAddedToMap.Fire(0,902,x,y)
- Events.CityInitialized.Fire(0,902,x,y);final(incoming,CityTransferTypes.BY_COMBAT)
+ Events.CityInitialized.Fire(0,902,x,y)
 end
 function checkRegistered()
  local row=prove()
@@ -86,12 +87,17 @@ startNetwork()
 """
 
 
+def registration():
+    with patch.object(store_fixture, 'LuaRuntime', LuaRuntime):
+        lua = store_fixture.fixture()
+    lua.execute(SETUP)
+    lua.execute(NETWORK)
+    return lua
+
+
 class Registration(unittest.TestCase):
     def setUp(self):
-        with patch.object(store_fixture, 'LuaRuntime', LuaRuntime):
-            self.lua = store_fixture.fixture()
-        self.lua.execute(SETUP)
-        self.lua.execute(NETWORK)
+        self.lua = registration()
 
     def test_gift_waits_for_terminal_identity_and_fresh_route_proof(self):
         self.lua.execute("""
@@ -124,7 +130,14 @@ class Registration(unittest.TestCase):
         """)
 
     def test_combat_from_major_player_confirms_no_identity(self):
-        self.lua.execute("conquest();assert(T.record(incoming));checkRegistered()")
+        self.lua.execute("beginConquest();final(incoming,CityTransferTypes.BY_COMBAT);assert(T.record(incoming));checkRegistered()")
+
+    def test_combat_from_city_state_uses_its_configured_level(self):
+        self.lua.execute("""
+        minorSource('CITY_STATE_FIXTURE','CIVILIZATION_LEVEL_CITY_STATE')
+        beginConquest();final(incoming,CityTransferTypes.BY_COMBAT)
+        assert(T.record(incoming));checkRegistered()
+        """)
 
     def test_peaceful_free_city_confirms_no_identity(self):
         self.lua.execute("""
@@ -132,19 +145,71 @@ class Registration(unittest.TestCase):
         assert(T.record(incoming));checkRegistered()
         """)
 
-    def test_free_city_combat_obeys_actual_store_admission_across_reload(self):
-        # Test the network rule across either Store outcome, so a future admission fix
-        # can legitimately change this case. S1128 records the observed B530 branch.
+    def test_free_city_conquest_waits_for_handover_and_freezes_completed_candidates(self):
         self.lua.execute("""
-        freeSource();conquest();local admitted=shared.CityProgressionStore.Owns(incoming)
-        if admitted then checkRegistered() else
-         assert(shared.CityProgressionStore.Describe(0,incoming):find('ACQUISITION_SOURCE_INELIGIBLE',1,true))
-         checkUnresolved()
-        end
-        local saved=T.encode(T.props());T.reload();startNetwork()
-        assert(shared.CityProgressionStore.Owns(incoming)==admitted and T.encode(T.props())==saved)
-        if admitted then checkRegistered() else checkUnresolved() end
+        freeSource();assert(prove()==nil);checkGate(true)
+        local homeBefore,partnerBefore=T.encode(T.record(home)),T.encode(T.record(partner))
+        T.district(incoming,'DISTRICT_CAMPUS',301,true)
+        T.district(incoming,'DISTRICT_THEATER',302,false)
+        local scans=0;local districts=incoming.GetDistricts
+        incoming.GetDistricts=function(city)scans=scans+1;return districts(city)end
+        beginConquest();assert(not T.record(incoming) and scans==0);checkUnresolved()
+        final(incoming,CityTransferTypes.BY_COMBAT)
+        local record=assert(T.record(incoming),shared.CityProgressionStore.Describe(0,incoming))
+        local proof=record.acquisition
+        assert(scans==1 and record.schema==3 and proof.mode=='LEGACY_CLAIM')
+        assert(proof.evidence=='CONQUEST+Initialized+Transfer' and proof.oldOwner==3 and proof.reference.cityID==902)
+        assert(proof.conquered<proof.added and proof.added<proof.initialized and proof.initialized<proof.transferred)
+        assert(proof.legacySet.RESEARCH and not proof.legacySet.CULTURE and not record.claim)
+        assert(not net.TransactionCurrent(0));checkRegistered()
+        assert(T.encode(T.record(home))==homeBefore and T.encode(T.record(partner))==partnerBefore)
+        local saved,writes=T.encode(T.props()),T.writes()
+        T.complete(incoming,'DISTRICT_THEATER');final(incoming,CityTransferTypes.BY_COMBAT)
+        T.reload();startNetwork();checkRegistered()
+        assert(scans==1 and T.writes()==writes and T.encode(T.props())==saved)
+        assert(shared.CityProgressionStore.ClaimState(0,incoming).eligible)
         """)
+
+    def test_free_city_without_candidates_waits_for_the_first_later_completion(self):
+        self.lua.execute("""
+        freeSource();T.district(incoming,'DISTRICT_CAMPUS',301,false)
+        beginConquest();final(incoming,CityTransferTypes.BY_COMBAT)
+        local proof=assert(T.record(incoming),shared.CityProgressionStore.Describe(0,incoming)).acquisition
+        assert(proof.mode=='FIRST_COMPLETION' and next(proof.legacySet)==nil)
+        assert(shared.CityProgressionStore.ClaimState(0,incoming)==nil)
+        T.reload();startNetwork();checkRegistered()
+        T.complete(incoming,'DISTRICT_INDUSTRIAL_ZONE');T.complete(incoming,'DISTRICT_CAMPUS')
+        local facts=T.control(incoming)
+        assert(facts.specialization=='INDUSTRY' and facts.potential==1)
+        """)
+
+    def test_free_city_combat_reason_without_conquest_witness_cannot_register(self):
+        self.lua.execute("""
+        freeSource();local saved=T.encode(T.props())
+        mapTransfer(incoming,0,902);final(incoming,CityTransferTypes.BY_COMBAT)
+        assert(not T.record(incoming) and T.encode(T.props())==saved);checkUnresolved()
+        """)
+
+    def test_conquest_keeps_source_and_previous_owner_guards(self):
+        cases = (
+            ("minorSource('CIVILIZATION_BARBARIAN','CIVILIZATION_LEVEL_TRIBE')", 3, 'ACQUISITION_SOURCE_INELIGIBLE'),
+            ("minorSource('UNKNOWN',nil)", 3, 'ACQUISITION_SOURCE_LEVEL_UNAVAILABLE'),
+            ("freeSource();PlayerConfigurations=nil", 3, 'ACQUISITION_SOURCE_CIV_UNAVAILABLE'),
+            ("freeSource();Players[3].IsHuman=function()return true end", 3, 'ACQUISITION_SOURCE_INELIGIBLE'),
+            ("freeSource()", 4, 'ACQUISITION_CONFLICT'),
+        )
+        for setup, previous_owner, reason in cases:
+            with self.subTest(reason=reason, source=setup):
+                lua = registration()
+                lua.execute(setup)
+                lua.globals().previousOwner = previous_owner
+                lua.globals().reason = reason
+                lua.execute("""
+                local saved=T.encode(T.props())
+                beginConquest();final(incoming,CityTransferTypes.BY_COMBAT,previousOwner)
+                assert(not T.record(incoming) and T.encode(T.props())==saved)
+                assert(shared.CityProgressionStore.Describe(0,incoming):find(reason,1,true));checkUnresolved()
+                """)
 
 
 if __name__ == '__main__':

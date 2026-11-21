@@ -11,14 +11,14 @@
     "shared": "D0061",
     "presentation": "D0032",
     "architecture": "A0188",
-    "status": "S1128",
-    "runtime": "B530.557 / modinfo557",
+    "status": "S1129",
+    "runtime": "B531.558 / modinfo558",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Identify when a verified domestic route can be used for a new contract and why an unrelated incoming city can keep it pending.",
+  "goal": "Register an ordered first military conquest from Free Cities under the existing city identity rules so a complete handover can clear an unrelated investment network hold.",
   "implementation_authorized": false,
   "context": [
     {
@@ -38,6 +38,12 @@
       "kind": "section",
       "selector": "### 和平受让、多次转手与同址重建",
       "reason": "Accepted admission rule following a confirmed handover"
+    },
+    {
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "kind": "section",
+      "selector": "### 和平交割与城市身份",
+      "reason": "Store identity, handover witnesses and the distinction between admission and return"
     }
   ],
   "dependencies": [
@@ -47,20 +53,20 @@
     "The Store owns identity admission. Network proof cannot create an identity or declare an incomplete transfer unspecialized."
   ],
   "conditional_context": [
-    "When ownership work resumes, use the existing backlog and ER09 before making native evidence claims."
+    "Use the ownership backlog and ER09 for the remaining native evidence or intermediate-owner storage questions."
   ],
   "non_scope": [
-    "Ownership feature continuation, alternate attribution for unproved completions, new permanent fields, deployment and game launch."
+    "Multi-owner return, permanent destruction, new saved fields, changes to profession and investment rules, deployment and game launch."
   ],
   "validation": [
-    "Check a real Store and Bridge against an unchanged domestic route before transfer, between callbacks, after terminal confirmation, and on a simulated reload. Record Free City combat as open."
+    "Reproduce the B530 Free City refusal first. Exercise both acquisition modes, terminal handover and fresh network proof, invalid sources and conflicting witnesses, duplicate delivery, unaffected cities and same-build reload. Compile Lua 5.1 and verify the package references."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
     "runtime_identity": {
-      "source": "B530.557 / modinfo557 on develop; source and local checks in S1127.",
+      "source": "B531.558 / modinfo558 on develop. Source and local evidence in S1129.",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -105,11 +111,11 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "status": "LOCAL_SIMULATION_PASS_WITH_OPEN_ADMISSION_GAP",
-      "report": "Specialization/Status/Specialization_P0_Status.md#city-registration-and-the-network-contract-gate--s1128",
-      "tests": 22,
+      "status": "LOCAL_SIMULATION_PASS_STATIC_CONFIRMED",
+      "report": "Specialization/Status/Specialization_P0_Status.md#verified-conquest-of-a-free-city--s1129",
+      "tests": 122,
       "crew_repair": "Specialization/Status/Specialization_P0_Status.md#crew-order-cancellation-after-another-completion--s1127",
-      "native_validation": "NOT_RUN. Actual engine delivery and the parked ownership test remain separate.",
+      "native_validation": "NOT_RUN. Native delivery of this Free City conquest and a same-build reload remain open.",
       "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"
     }
   }
