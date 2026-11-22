@@ -3,8 +3,16 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0066
+Latest Accepted Design Revision: D0067
 Document State: ACCEPTED
+
+## Accepted D0067 — 2026-11-22
+
+负责人确定“专业管理容量”（工作名）作为决定城市当前专业等级的全国资源。所有来源每授予一个总督点，就另给一点容量。每城可分 0～4 点，允许高于当前潜力预配并逐回合到位。调入从下一回合起每城每回合生效一点，撤回立即生效。当前等级取潜力与已到位容量的较低值，无点时为零级。界面形式待定。实施进度见[当前状态](../Status/Specialization_P0_Status.md#current-authoritative-state)。
+
+Accepted Spec SHA256: `a27c2c90a2dcfec238beecc454320cfecb6f859f82e12aaf2bdd35397e6393c0`
+[Shared D0067](Content/Shared_D0067.json) SHA256: `cdd8e0a5adf2021ef8b0cd45730d9b9f2c3c1bbb0b63aa075b146200dbf40d41`
+[上一版已接受规范](Revisions/Specialization_Design_Spec_D0066.md)
 
 ## Accepted D0066 — 2026-11-21
 
@@ -19,7 +27,7 @@ Accepted Spec SHA256: `43c3e483fb77b275f556aa7e0b57a4820e59873e01c32999c0727d088
 
 单人游戏到玩家败北时结束。施工队说明移除了败局后的处置待办，保留失城、夺回及永久毁城时的归属与名额规则。沿用现有设计修订号。此前验收记录中的哈希对应其链接所指的原文。
 
-- [现行规范](Specialization_v0.1_Design_Spec.md) SHA256 `a0afe8bfadc3de7c7136596160bcd91d8bf7c0dee47ccdc3adf55ad6124044e4`
+- [该次文案校正后的规范](Revisions/Specialization_Design_Spec_D0066.md) SHA256 `a0afe8bfadc3de7c7136596160bcd91d8bf7c0dee47ccdc3adf55ad6124044e4`
 - [工业内容](Content/Industry_D0061.json) SHA256 `262082c4f6cf5ab912cda5cd6808bb7540faff8e68fe98d3a01eeac8712d9557`
 - [共同规则](Content/Shared_D0066.json) SHA256 `07576abc589472ff99fbd7ad3d47086533b9b6d9611717b2b7fab9e9de664849`
 

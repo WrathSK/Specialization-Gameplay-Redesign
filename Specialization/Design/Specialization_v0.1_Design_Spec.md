@@ -2,13 +2,13 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0066
+Design Revision: D0067
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
-Acceptance Date: 2026-11-21
-Acceptance Evidence: 负责人确认玩家败局结束，撤下无正常游戏场景的投资合同待办。
-Previous Accepted Revision: [D0065冻结原文](Revisions/Specialization_Design_Spec_D0065.md)
-Latest Accepted Design Revision: D0066
+Acceptance Date: 2026-11-22
+Acceptance Evidence: 负责人确定容量获取、跨城分配、逐级生效、立即撤回、无容量时零级，并确认允许超出当前潜力预配。
+Previous Accepted Revision: [D0066冻结原文](Revisions/Specialization_Design_Spec_D0066.md)
+Latest Accepted Design Revision: D0067
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
@@ -59,7 +59,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **ELIG-001 — Specialization-enabled Player / ACCEPTED** 当前计划只向专门的白板文明开放Specialization，并须明确赋予Player启用资格；不默认适配所有原版／HD／其它Mod Civilization与Leader Ability叠加。专业间系统平衡以无额外传统文明／领袖Gameplay bonuses为基准，现行单人本地人类范围不变。资格载体的内部技术标识不等于永久玩法身份，也不授权未来AI／多人配置。全文“玩家／己方／本城／首都”均受本节资格前提约束；未启用者不参与运行，但可按ELIG-005保留休眠的永久城市成果。
 
-只有Specialization-enabled Player建立城市Identity和Potential、使用Settler specialization investment、计算ACTIVE、建立Trade Center及专业网络、获得Local及Network效果、运行Community Immigration、Military体系、其它Specialization及Auxiliary机制。资格只决定谁参与，不修改既有投资、总督、专业等级、网络公式、多来源、专业及辅助区域规则。
+只有Specialization-enabled Player建立城市Identity和Potential、使用Settler specialization investment、计算ACTIVE、建立Trade Center及专业网络、获得Local及Network效果、运行Community Immigration、Military体系、其它Specialization及Auxiliary机制。资格只决定谁参与，不修改既有投资、容量分配、专业等级、网络公式、多来源、专业及辅助区域规则。
 
 **ELIG-002 — 当前白板载体与未来边界 / ACCEPTED** 当前计划的玩法载体为专用白板文明，不是任意既有文明＋专业系统；具体文明／领袖／Trait技术ID不作为永久语义。此前“当前载体可任意选择其它文明”“不得写成只有白板文明可用”及默认原文明／领袖能力共存的承诺，由D0047明确取代。无需为了所有历史文明的独特能力改写专业规则或承担叠加平衡。
 
@@ -77,8 +77,8 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 |---|---|---|
 | 无Identity、原Owner未运行/建立该城专业 → enabled Player | 不自动虚构Identity/Potential；按征服完成时一次snapshot确认既有发展候选 | 依PROG-006至009互斥进入Legacy Claim或Normal First Completion；不再统一从零监听后续完成 |
 | enabled专业城市 → 未启用Player | Identity、Potential和明确城市永久投资成果保留，不删除 | 系统休眠；不运行Local、ACTIVE效果、网络、Community、Military或其它专业机制；不因保留Identity而给Lv1效果 |
-| 有休眠成果的城市再次被enabled Player取得 | 已有Identity/Potential及永久成果恢复可用 | ACTIVE按当前Owner总督状态重算，网络按当前Owner实际网络重新派生，其它派生状态重算 |
-| 两个enabled Players之间征服 | 保留Identity、Potential和城市永久专业成果 | 依新Owner的Governor、Trade Centers、Trade Routes、Network和eligibility context重算派生状态 |
+| 有休眠成果的城市再次被enabled Player取得 | 已有Identity/Potential及永久成果恢复可用 | ACTIVE按当前Owner在本城的生效容量与潜力重算，网络按当前Owner实际网络重新派生，其它派生状态重算 |
+| 两个enabled Players之间征服 | 保留Identity、Potential和城市永久专业成果 | 依新Owner的本城生效容量、Trade Centers、Trade Routes、Network和eligibility context重算派生状态 |
 
 正常未专业化征服城与旧档缺失历史是不同问题；本规则不解决旧档首次加载的迁移初始化，也不删除此前已形成、虽由未启用Owner持有的休眠成果。当前Owner资格门槛适用于所有专业运行，永久成果本身不因此改变。
 
@@ -86,7 +86,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ### 玩家边界与异常证据
 
-城市交割、总督调任、商路开通或到期、同构建读档、正常打断生产及合法的单位撤退或消耗，都属于应当正确处理的玩法。普通游玩出现长期待确认、受保护单位失踪或事件来源丢失时，沿触发事件追查原因。人工制造的异常只能说明该条件下会发生什么。先利用现有证据；有缺口时，在发生变化的时点记录已知的对象、事件、缺失事实、受阻操作和先后顺序。
+城市交割、管理容量调配、商路开通或到期、同构建读档、正常打断生产及合法的单位撤退或消耗，都属于应当正确处理的玩法。普通游玩出现长期待确认、受保护单位失踪或事件来源丢失时，沿触发事件追查原因。人工制造的异常只能说明该条件下会发生什么。先利用现有证据；有缺口时，在发生变化的时点记录已知的对象、事件、缺失事实、受阻操作和先后顺序。
 
 - 新投资签约须有该笔交易所需的可靠城市与商路事实。第三城长期阻塞时核查实际依赖、交割及登记。不得猜测拓扑、超时放行或提供替代交易。[网络](Network.md#未确认不等于失效)
 - 原重组团队受保护。只有绑定的原队能在最低混乱期后配置。正常消耗和目标城易主或毁城按原规则处理。意外永久失踪应查明原因，无替队、付费、应急项目或到期自动配置。永久混乱不作为惩罚。[商业](Commerce.md#混乱期)
@@ -94,7 +94,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 - 首次定专业须能确认首个合格完工属于哪座城。不得以猜测或后续完工顶替。无法定位时现有实现暂停的范围需由依赖和正常流程验证，人工反例不确立全国暂停玩法。[共同规则](Shared.md#参与资格与城市易主)
 - 市中心按当前最低可建档次的合格建筑最低理论金币价报价。玩家可以延建便宜建筑并承担延迟获得其收益的代价。合同仍绑定城市与区域。[商业定价](Commerce.md#效果与结束)
 
-异常待核时，开拓者消耗、潜力提升、扣本金、结算和专业单位发放只能按各自凭据执行一次。不得编造永久历史、身份或必要网络事实，也不得把未知视为不存在。缩小现有保护前须核对其真实依赖、证明上述约束并验证正常流程。[共享内容](Content/Shared_D0066.json)
+异常待核时，开拓者消耗、潜力提升、扣本金、结算和专业单位发放只能按各自凭据执行一次。不得编造永久历史、身份或必要网络事实，也不得把未知视为不存在。缩小现有保护前须核对其真实依赖、证明上述约束并验证正常流程。[共享内容](Content/Shared_D0067.json)
 
 ## 2. 测试文明与基本术语 — ID / TERMS
 
@@ -114,11 +114,15 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **PROG-002** 专业确定后默认Potential Lv1。在己方城市消耗一个Settler，永久Potential +1，最高Lv4。Potential不由source数量、网络强度或网络积累产生。不凭空给没有专业的城市发专业能力。 D0042确认前只有查看／准备，无消费／潜力增加／待继承投资资产；确认后Settler消费、receipt成立和Potential更新视为原子完成。内部事件交错由技术原子性／可靠恢复解决，不存在Gameplay半份receipt、部分退款或跨Owner pending继承。
 
-**PROG-003** Lv2/3/4分别要求Potential至少2/3/4，并有已建立的总督满足2/3/4头衔门槛。ACTIVE取当前满足全部条件的最高等级；无已建立总督或总督调离时，已有专业仅保留Lv1，Potential投资不丢失。门槛不是要求额外消耗同样数量的Settler或额外重复支付头衔。
+**PROG-003（D0067）— 专业管理容量（工作名）** 启用专业化的玩家每实际获得 1 个总督点，全国获得 1 点独立的专业管理容量。所有授予来源均适用，包括市政、科技、奇观和领袖能力。玩家仍照常使用原生总督点。玩家通过界面在己方城市之间分配全国容量，每城 0～4 点，分配即占用、撤回即释放。增加分配时，从该玩家下一回合起，每城每回合生效 1 点，直至达到分配数。撤走已生效容量时立即降低该城上限，调入另一城仍须逐级生效。
+
+有专业身份且符合参与资格时，**ACTIVE 取永久潜力与本城已生效管理容量的较低值**。城市首次取得专业时潜力为 1，零容量对应 ACTIVE 0，一级能力亦不生效。允许高于当前潜力预配，超出的容量按相同速度到位。提高潜力后，已到位的容量立即可用。第 60 回合从零分配 4 点，第 60～64 回合的已生效容量依次为 0、1、2、3、4。若潜力始终为 1，同期 ACTIVE 为 0、1、1、1、1。[分配示例](Shared.md#开拓者投资与专业管理容量)
+
+本条取代各专业原先按本城总督的就职状态、头衔及无总督时保底一级计算 ACTIVE 的规则。各项能力继续按自身要求的 ACTIVE、身份或历史判断。参与玩家范围沿用 ELIG，界面形式待定。
 
 **PROG-004 — Conquest Inheritance / ACCEPTED** 适用于正常非重组城市；进行中资产重组被征服的显式例外见PROG-011。已有Specialization Identity/Potential的城市被征服后不进入Legacy Claim初始化，Specialization Identity、Potential、Settler investment history或等价永久投资事实，以及source城市自身永久掌握的标准化模板等明确城市成果保留。这些是城市长期发展成果，不是旧Owner临时全国buff。Potential Lv4 Research城被征服后仍为Research / Potential Lv4，不重置身份或潜力，不要求重新消耗Settler。
 
-当新Owner为Specialization-enabled Player时，ACTIVE不继承旧Owner状态，按新Owner的总督任命、established状态、头衔要求及共同等级条件重新计算；无新Owner合格已就职总督时，已有专业按共同规则仅保留ACTIVE Lv1，Potential Lv4不丢失。
+当新Owner为Specialization-enabled Player时，按新主人的本城生效容量、潜力及共同资格计算ACTIVE。例如潜力四级的城市在本城生效容量为零时，当前为零级。旧主人的ACTIVE不作为可继承的城市历史。
 
 旧Owner的Trade Center连接、source资格、recipient资格和distribution routes不作为永久成果继承。征服后ACTIVE、Network connection、recipient status、从其它来源接收的当前Industry Template Set、Network Strength、当前折扣和跨城输出均依新Owner真实状态重算。永久掌握模板不等于永久接收全国模板并集。若新Owner未启用，则按ELIG-005休眠，仅保留永久成果，不运行ACTIVE（包括Lv1）、网络或专业效果；重新由enabled Owner取得时再按上述规则重算。
 
@@ -169,7 +173,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ### Shared Mechanical Vocabulary — D0028
 
-唯一当前共享定义：[Shared D0066](Content/Shared_D0066.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
+唯一当前共享定义：[Shared D0067](Content/Shared_D0067.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
 
 **D0035语义及引用覆盖：** D正式中文名“区域基础设施深度”，即Absolute Infrastructure Depth。不是完成百分比，不要求建满=10；三层链D6、四层链D10均为允许的额外投资差异。当前不引入Relative Completeness。已有专业冻结文件中Shared_D0028引用及“区域完善度”用语，当前解释统一遵从Shared_D0045保留的D0035语义澄清；旧文件字节不变、历史解释保留。公式、稳定concept ID及其它Shared合同不变。[Consumer/目录/术语审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)。
 
@@ -252,7 +256,7 @@ Research及其它未列条款不变；本轮Culture首测值和Commerce专业单
 
 D0031有限库存问题已关闭：每具备工程动员资格的Industry来源城容量2，各档已完成队伍占1，四级不加；来源绑定、消耗/合法移除释放名额，离开Industry后已有队伍保留但不能补充。D0042已关闭来源易主／夺回计槽；单位不可被俘或转交给敌方，原生保护与回归接口仍待核实。完整规则以content为准。
 
-**IND-TRADITION-STUDY-001 — ACCEPTED D0044 / D0045中断增量** 全国E为B文明实际完成奇观自身时代去重历史，从游戏开始计、不要求工业；本城成功研习L为A城市历史。Industry ACTIVE IV且L<E可做完整1 Production Turn，成功提交L+1。IV来源输出建造10%＋2%×L、已有合法Gold／Faith购买折扣2%×L；III保留L／不研习，只输出基础10%／0%；低III或退出身份不输出；恢复IV直接恢复全部L。易主E<L不删除／降级／截断L，E只限制新增，不设五层／人工cap。明确采用与Dialogue相同完整1T事务、以Industry IV资格：ACTIVE不足IV（含总督离开）、Identity退出、REALLOCATING、Owner变化或正常生产中断取消本轮，无L、无半进度；重新合格且L<E重做完整1T，已提交历史L不变。不导入Dialogue时代额度／倍率。
+**IND-TRADITION-STUDY-001 — ACCEPTED D0044 / D0045中断增量** 全国E为B文明实际完成奇观自身时代去重历史，从游戏开始计、不要求工业；本城成功研习L为A城市历史。Industry ACTIVE IV且L<E可做完整1 Production Turn，成功提交L+1。IV来源输出建造10%＋2%×L、已有合法Gold／Faith购买折扣2%×L；III保留L／不研习，只输出基础10%／0%；低III或退出身份不输出；恢复IV直接恢复全部L。易主E<L不删除／降级／截断L，E只限制新增，不设五层／人工cap。明确采用与Dialogue相同完整1T事务、以Industry IV资格：ACTIVE不足IV、Identity退出、REALLOCATING、Owner变化或正常生产中断取消本轮，无L、无半进度；重新合格且L<E重做完整1T，已提交历史L不变。不导入Dialogue时代额度／倍率。
 
 **IND-PRACTICE-COST-001 — ACCEPTED D0044** 工程实践仍为当前ACTIVE IV能力，N为本城真实历史奇观数、不看完成Owner／Identity／ACTIVE／Governor。III成本统一150%；IV N0／1–2／3–5／6+为150／140／130／120%×锁定基础施工力，累计门槛1／3／6。只改组建投入，不强化标准化或队伍施工力。III开放I–III、IV额外IV–V，不要求E4／5或其它传统门槛。五档施工力260／420／750／1000／1360（一级按D0052修正），标准速度首测成本完整表见content。
 
@@ -292,7 +296,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 五域及主要公式/初值已定，不再沿用D0032对应TBD；初值仍可Balance调整。D0050已关闭资本领域/S候选与等级/空池、同域并发作用域、保护组合与跨Owner、X聚合与发展参考态等剩余项；v0.1只支持标准速度。永久毁城按 PROG-013 处理。D0055仅增加来源身份过滤及港口总粮食映射；D0054逐领域Floor保留，无其它新增floor或上限。旧5F5P、网络类型专家加成、20%汇聚、单双向50/100等持续退出；共同中心接收分发不变。
 
-**COM-LIFECYCLE-002 — ACCEPTED D0042** 商业化选择域及activation order是持久配置：容量减少LIFO暂停而非删除，容量恢复按原顺序前N项自动恢复；主动关闭删除，重开最新。保有Commerce Identity时总督／ACTIVE下降保留配置；Identity退出或易主清空；同Owner同身份读档先恢复配置、再按当前事实派生效果，信誉Owner保留规则独立。已训练重组团队不因训练来源总督／ACTIVE／Identity／Owner变化删除或转交；绑定后随目标REALLOCATING事务，训练来源仅provenance，其易主不能取消另一目标事务。目标易主仍执行既定销毁。
+**COM-LIFECYCLE-002 — ACCEPTED D0042** 商业化选择域及activation order是持久配置：容量减少LIFO暂停而非删除，容量恢复按原顺序前N项自动恢复；主动关闭删除，重开最新。保有Commerce Identity时ACTIVE下降保留配置；Identity退出或易主清空；同Owner同身份读档先恢复配置、再按当前事实派生效果，信誉Owner保留规则独立。已训练重组团队不因训练来源总督／ACTIVE／Identity／Owner变化删除或转交；绑定后随目标REALLOCATING事务，训练来源仅provenance，其易主不能取消另一目标事务。目标易主仍执行既定销毁。
 
 ## 9. Trade Center与Network核心 — NET
 
@@ -475,7 +479,7 @@ Civilian Conversion为**THEME CANDIDATE ONLY**：保留`R = |Strategic Types_us 
 
 **Framework Status: PROVISIONAL BUT ACCEPTED FRAMEWORK.** 用户已接受以下核心玩法框架及第一版公式，尚非最终数值定稿。Community仍属于Future / OUT_OF_V0.1；Local细节、权重与最终平衡继续保留PROVISIONAL/TBD，不因D0003接受而变为最终参数。
 
-**COMM-001 — 特殊专业候选 / PROVISIONAL** 保留HD中的Community/Neighborhood不是普通specialty district、不占普通区域容量且解锁较早的设计背景，允许特殊Community专业候选。暂定在其它专业身份确定前完成一个Neighborhood即可取得资格，一个暂定足够；Lv2–4仍正常消耗Settler并要求Governor。取得资格是否立即锁定及与共同锁定规则的优先关系仍须明确。
+**COMM-001 — 特殊专业候选 / PROVISIONAL** 保留HD中的Community/Neighborhood不是普通specialty district、不占普通区域容量且解锁较早的设计背景，允许特殊Community专业候选。暂定在其它专业身份确定前完成一个Neighborhood即可取得资格，一个暂定足够；潜力升级仍消耗Settler，ACTIVE按PROG-003计算。取得资格是否立即锁定及与共同锁定规则的优先关系仍须明确。
 
 **COMM-002 — Metropolis / Population Hub** 核心是人口枢纽，不是生育专业或单纯Population Growth加成。职责分为Local承载人口、International Immigration从外部世界吸引新人口、本国Domestic Distribution Network自动分配超过本城人口基盘的可输出人口。核心循环：`Foreign World → Metropolis → Domestic Network → Empire`。国际移民增加帝国总人口；国内分发只重新分配已有己方人口，不制造人口。不从具体AI城市扣人口，也不追踪移民来自哪个外国城市；移民叙事允许未来大幅调整数值，不把它解释成短期出生成年人。
 

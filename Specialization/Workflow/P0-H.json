@@ -3,22 +3,22 @@
   "batch": "P0-H",
   "status": "COMPLETE",
   "authority_versions": {
-    "design": "D0066",
+    "design": "D0067",
     "research": "D0059",
     "industry": "D0061",
     "culture": "D0065",
     "commerce": "D0066",
-    "shared": "D0066",
+    "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1139",
+    "status": "S1140",
     "runtime": "B537.564 / modinfo564",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Close the two hypothetical investment review items and point readers to the existing contract outcomes.",
+  "goal": "Record the Owner's shared management-capacity design, including advance allocation and its per-turn activation.",
   "implementation_authorized": false,
   "context": [
     {
@@ -28,32 +28,32 @@
       "reason": "Current source, installed package and verified scope"
     },
     {
-      "path": "Specialization/Design/Commerce.md",
+      "path": "Specialization/Design/Shared.md",
       "kind": "section",
-      "selector": "### 已签合同：普通资格延续与易主终止",
-      "reason": "Which city changes end a signed investment"
+      "selector": "### 开拓者投资与专业管理容量",
+      "reason": "Player-facing allocation, withdrawal and Potential examples"
     },
     {
-      "path": "Specialization/Design/Commerce.md",
-      "kind": "section",
-      "selector": "### 效果与结束",
-      "reason": "Development completion and slot release"
+      "path": "Specialization/Design/Content/Shared_D0067.json",
+      "kind": "json",
+      "selector": "/concepts/SPECIALIZATION_MANAGEMENT_CAPACITY",
+      "reason": "Accepted shared rule and turn-by-turn examples"
     }
   ],
   "dependencies": [
-    "Existing investment terms and the Owner clarification recorded in D0066."
+    "PROG-002 permanent Potential investment and the explicit Owner decisions in D0067."
   ],
   "old_writers": [
-    "Documentation only. Investment settlement and slot release stay with their existing runtime owners."
+    "Documentation only. Current builds still use the established governor and title thresholds."
   ],
   "conditional_context": [
-    "For parked ownership and Culture observations, consult the final section of the player-facing review."
+    "Read current profession rules only for their own ACTIVE, identity and permanent-history requirements. Prior investment and ownership evidence is scoped in Status."
   ],
   "non_scope": [
-    "Gameplay changes, new termination events, runtime recovery, deployment and native testing."
+    "Runtime or UI implementation, persistence changes, tests of native title delivery, deployment, new supported players and game launch."
   ],
   "validation": [
-    "Verify accepted document hashes, the previous accepted Spec, current references and the unchanged runtime tree. Run the context and publication checks."
+    "Verify D0066 frozen bytes, D0067 Spec and shared content hashes, allocation examples, authority routing, unchanged runtime and the publication gate."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
@@ -105,10 +105,10 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#investment-review-scope--s1139",
-      "owner_review": "Specialization/Reports/Proposals/Player_Facing_Boundary_Review.md",
-      "accepted_design": "D0066",
-      "status": "DOCUMENTATION_SYNC",
+      "report": "Specialization/Status/Specialization_P0_Status.md#specialization-management-capacity--s1140",
+      "owner_decision": "Specialization/Design/Design_ChangeLog.md#accepted-d0067--2026-11-22",
+      "accepted_design": "D0067",
+      "status": "DESIGN_ONLY",
       "prior_runtime_verification": "Specialization/Status/Specialization_P0_Status.md#expedition-archive-city-choice--s1138",
       "native_validation": "NOT_RUN"
     }

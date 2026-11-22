@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1139
+Status Revision: S1140
 Implementation Build: develop B537.564 / modinfo564. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
-Design Revision Reviewed: D0066
-Latest Accepted Design Revision: D0066
-Design Sync State: D0066_INVESTMENT_REVIEW_SCOPE
-Work State: INVESTMENT_REVIEW_CLOSED
+Design Revision Reviewed: D0067
+Latest Accepted Design Revision: D0067
+Design Sync State: D0067_MANAGEMENT_CAPACITY_DESIGN_ONLY
+Work State: MANAGEMENT_CAPACITY_DESIGN_RECORDED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -16,13 +16,19 @@ Work State: INVESTMENT_REVIEW_CLOSED
 | Source and installation | Develop B537.564 adds the archive-city action for an existing Expedition after a confirmed handover. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
 | Validation | [Archive city choice](#expedition-archive-city-choice--s1138) passed scoped local Gameplay and UI checks. Native action-bar appearance and transfer ordering await observation. [Earlier boundary review](#player-facing-boundary-decisions--s1137). |
-| Next action | The [investment review](#investment-review-scope--s1139) is closed. Observe the Expedition archive action on a natural handover when a later build is in play. Foreign handover chains, raze/refound and the two Culture-yield domains of Meaning Extension are parked. |
+| Next action | [专业管理容量](#specialization-management-capacity--s1140)已定下获取、分配和生效规则。下一步拟定分配界面与实施方案。当前开发包与稳定包仍使用总督门槛。考察团归档入口的自然交割观察，以及先前暂挂的多方易主、毁城重建和文化两域沿用原记录。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Specialization management capacity — S1140
+
+[共同设计 D0067](../Design/Shared.md#开拓者投资与专业管理容量)已接受。每个实际获得的总督点增加一点可分配容量。分配可以高于当前潜力，撤回立即释放，调入从下一回合起每城每回合到位一点。第 60 回合从零预配四点，第 64 回合全部到位；潜力仍为一级的城市这时只激活一级。提高潜力后，可立即利用已经到位的容量。
+
+本次只同步设计。B537.564 开发源码和 B528.555 稳定包仍按已就职总督的头衔计算等级。具体分配界面、原生授点的可靠读取和保存方案留待实施设计；当前没有该玩法的实机验收。
 
 ### Investment review scope — S1139
 

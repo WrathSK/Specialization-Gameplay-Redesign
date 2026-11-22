@@ -177,7 +177,7 @@ L属于**A类城市历史账本**，与文明历史B的E、城市真实完成数
 
 例如A文明在X城完成奇观，X城积累N，A文明积累E；X的成功研习另积累L。B征服X后，可以在当前工业IV利用城市N和L，但不能继承A的全国E。冷加载恢复可靠历史，再按当前资格派生输出，不重放旧ACTIVE／Network／carrier快照。
 
-研习采用与时代对话相同的完整1T事务语义：**未完整完成该Production Turn就失败、不增加L**；当前项目重新开始时必须重做当前轮完整1T，已经完成的历史L不受影响。总督离开导致ACTIVE不足、Industry ACTIVE低于IV、退出工业身份、REALLOCATING、Owner变化或正常生产中断，均只取消当前未完成轮、不保存半进度；重新符合工业IV且L<E后才能开始新的完整1T。不能把未提交尝试恢复成成功成果；具体技术方案后续调查／复用，本轮不实现。
+研习采用与时代对话相同的完整1T事务语义：**未完整完成该Production Turn就失败、不增加L**；当前项目重新开始时必须重做当前轮完整1T，已经完成的历史L不受影响。Industry ACTIVE低于IV、退出工业身份、REALLOCATING、Owner变化或正常生产中断，均只取消当前未完成轮、不保存半进度；重新符合工业IV且L<E后才能开始新的完整1T。不能把未提交尝试恢复成成功成果；具体技术方案后续调查／复用，本轮不实现。
 
 ## 工业网络与跨专业关系
 
@@ -207,7 +207,7 @@ L属于**A类城市历史账本**，与文明历史B的E、城市真实完成数
 [返回Design导航](README.md)。正文是阅读呈现，正式来源保持原权威。
 
 - [工业当前内容](Content/Industry_D0061.json)：全部本地效果、目录、历史、网络、队伍与容量。
-- [当前Spec](Specialization_v0.1_Design_Spec.md)：IND引用与取代边界；[Shared](Content/Shared_D0066.json)。
+- [当前Spec](Specialization_v0.1_Design_Spec.md)：IND引用与取代边界；[Shared](Content/Shared_D0067.json)。
 - [A–D生命周期接受](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：模板与工程实践随城，工程传统属实际完成文明。
 - [冻结审阅](../Historical/Design/Reviews/Industry_D0027_Review.md)、[容量接受记录](Design_ChangeLog.md)：D0032关闭容量2，旧D0031未决描述不覆盖它。
 - [旧施工合同](Revisions/Specialization_Design_Spec_D0026.md)：只用当前内容明确保留的成本／速度／劳动力／拒绝与溢出规则，不恢复旧解锁和目标。
