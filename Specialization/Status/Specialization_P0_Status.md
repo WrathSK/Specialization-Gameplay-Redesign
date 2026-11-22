@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1135
-Implementation Build: develop B535.562 / modinfo562. Installed stable B528.555 / modinfo555.
+Status Revision: S1136
+Implementation Build: develop B536.563 / modinfo563. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0191
 Design Revision Reviewed: D0063
 Latest Accepted Design Revision: D0063
 Design Sync State: D0063_EXPEDITION_TRAINING_CITY_TRANSFER_SYNCED
-Work State: EXPEDITION_TRAINING_CITY_TRANSFER_LOCALLY_VERIFIED
+Work State: PLAYER_BOUNDARIES_FOR_REVIEW_IMPORT_ONLY_EXPERIMENTS_RETIRED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B535.562 can release the original owner's confirmed Expedition training order after a verified city transfer and negative team check. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
+| Source and installation | Develop B536.563 omits eight unused Lua experiments. B535's training-city handover rule remains in effect. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [Current slice](#expedition-training-city-transfer--s1135) passed 37 current and 186 scoped local cases with overlap. Native ownership-event timing remains unobserved. |
-| Next action | Retain [parked ownership observations](Playtest_Backlog.md#city-ownership-follow-up). Eight import-only experiments still have test consumers. Review their retrieval and test ownership before package retirement. The existing network threshold, team-loss and City Center investment questions remain open. |
+| Validation | [Package cleanup](#player-facing-boundary-review-and-import-only-cleanup--s1136) passed 39 current and 235 scoped local cases with overlap, including a disposable package swap and rollback. Native ownership-event timing remains unobserved. |
+| Next action | Review the [player-facing boundary rules](../Reports/Proposals/Player_Facing_Boundary_Review.md). Multi-owner returns, razing and refounding remain on the [existing observation list](Playtest_Backlog.md#city-ownership-follow-up). The network warning threshold, team loss and City Center pricing remain open. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Player-facing boundary review and import-only cleanup — S1136
+
+[负责人审阅稿](../Reports/Proposals/Player_Facing_Boundary_Review.md)列出 25 个会影响玩家的场景，并区分已批准的设计、当前额外限制、已有实机观察和人工故障后果。重点包括第三座城身份未明时原有城市之间的签约、清算后原团队灭失、训练城失守后全国考察团名额的等待。此稿供审阅，未更改玩法裁定。
+
+**包与历史。** 从 develop 包移出八份只有导入声明的旧区域精度、巨作、城市身份与考察团实验脚本。已核对现行启动、界面和工具引用。当前考察团保留自己的训练与行动入口，历史实验测试从其已发布的版本读取原件。生产界面仍使用的溢出测试项目及单独 SQL 责任保留。八份 Lua 共 858 行、49,290 字节。计入清单变更，运行包从 306 个文件、17,283,494 字节变为 298 个文件、17,233,488 字节。原路径、固定提交和复现方法见[测试说明](../../DevelopmentTests/README.md#eight-retired-import-only-lua-scripts-b536)。本批没有增加监听、读取、写入或存档字段。
+
+**本地证据。** 当前玩法回归 39/39。相关测试 235/235，两组部分重合。真实考察团入口在禁止加载退役实现的条件下可用。历史 Gate 的美术数量与旧包清单断言分别在匹配的 B212、B223 包运行。临时目录中走过现有换包、恢复与稳定部署工具的往返路径，精确移除清单获准，缺项、多项均遭拒绝。173 份 Lua 经 Lua 5.1 编译，24 份 XML 与 modinfo 可解析，587 条文件引用均可定位。未执行依赖早期游戏环境的三份独立实验，没有新的实机观测。本机稳定安装仍为 B528.555。
+
+Local evidence: `local/refactor/CurrentGameplay-ffbb64e29f014a37ac14e1a1841870c3/closure.json` (SHA256 `4b98969474a849ca29fbfaa50d83faffb768914f1a9bb5f4dcffed17ef531278`). Tested source digest `1ef7a513c90fb3c4b9a3ab10a61361b868b276c8cd3207a0ec1562399bf89fee`. Full artifact is local only.
 
 ### Expedition training city transfer — S1135
 

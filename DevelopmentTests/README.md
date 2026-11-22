@@ -53,6 +53,22 @@ Provide the external Civ VI/HD-generated database through `SPC_DEBUG_GAMEPLAY_DB
 
 `python3 -m unittest test_network_boost_retirement` 在 DevelopmentTests 导入路径下验证两端商路系数、巨作读档清理、城市退出与临时安装目录的换包／回滚。数据库用例使用本页环境装配所列的 `SPC_OFFICIAL_DB` 和 `SPC_HD_DB`，只写内存副本。官方环境对照两份完整 SQL 装配，HD 对照固定原生库与相关 SQL 重放。旧数据、生成器及只适用于旧包的测试可从 develop 提交 `ef7cbd44ddcd2148799d6a9a7c54d903316e07cf` 按原路径取回，例如 `git show ef7cbd44:Mod/Data/NetworkBoost.sql`。
 
+### Eight retired import-only Lua scripts (B536)
+
+The current Expedition, production UI and Great Work readers run without the old experiments. Run `python3 -m unittest test_import_only_retirement test_expedition_gate test_expedition_spy_gate test_expedition_movement_probe test_p0_panel_current_layout test_o7_legacy_panel_cleanup.LegacyPanelCleanup` using the [local environment](#environment-and-dependencies). The B536 package transition test uses disposable install directories. It checks the exact eight removals, rejected shorter/longer lists and restoration. Run that version-specific comparison from the B536 source. CurrentGameplay also exercises the current Spy-based team with archived source loading forbidden.
+
+All eight originals are retrievable at published develop commit `421e6f8828c8ed2cefca2b5fad189505f4fce363`. From the repository root, use `git show 421e6f8828c8ed2cefca2b5fad189505f4fce363:Mod/DistrictPrecisionProbe.lua`, substituting the appropriate original path from the table. Git can also export the whole matching package with `git archive 421e6f8828c8ed2cefca2b5fad189505f4fce363 Mod`.
+
+| Experiment | Original paths under `Mod/` | Historical validation |
+|---|---|---|
+| District yield precision | `DistrictPrecisionProbe.lua`, `DistrictPrecisionRead.lua` | The [original precision script](test_district_precision_probe.py) checks a historical build stamp, controls, DB and a Git base. Use its B082 fix tree `8a163f2045c432f9c15877656187ba9a5eaeacea`. |
+| Non-Spy Expedition gate/window | `ExpeditionGate.lua`, `UI/ExpeditionGateWindow.lua` | Historical Gate and window assertions retrieve their old code. Eight-art-unit and package-version assertions use their own B212 and B223 packages. The current Spy team uses only the shared simulation setup. |
+| Expedition movement comparison | `ExpeditionMovementProbe.lua`, `UI/ExpeditionMovementProbe.lua` | The [movement comparison](test_expedition_movement_probe.py) explicitly loads the old observers and verifies their old manifest separately. |
+| City identity observer | `UI/CityIdentityEvidence.lua` | The [old/new panel comparison](test_o7_legacy_panel_cleanup.py) installs the observer only on its historical side. The standalone [E1 experiment](test_p0_e1_experiment.py) belongs with its early city experiment and controls (published B092 tree `cbf99b38894621fa345d68bb2ae4ba7df2b409be`). |
+| Per-work basis prototype | `UI/GreatWorkBasis.lua` | The [B058 basis script](test_b058_boost_gw_basis.py) also requires the former integer-boost generator and matching historical package. The B060 checkpoint `3382d7d9291052790a08e35b27e74c916316f17a` preserves the script, generator and source. |
+
+The standalone B058, B082 and E1 scripts have additional historical inputs. Their original whole-stage runs are outside the B536 acceptance count.
+
 ## Historical tests and models
 
 Other retained Python scripts are historical, version-specific regression evidence unless selected by the current task contract for a specific regression. Their original paths/assertions are preserved; some require external historical snapshots and old manifests and are not portable current entry points. Do not batch-run and rewrite them until green. Their presence is not a promise that all historical suites pass against B051.67. Offline Lua models describe preparation, not implemented gameplay. `test_gpp.py`, `test_discovery.py`, `collect_gpp_log.py` belong to CityGPPProbe and are deliberately excluded.

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="562">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="563">
   <Properties>
     <Name>LOC_SPC_MOD_TITLE</Name>
     <Description>LOC_SPC_MOD_DESCRIPTION</Description>
@@ -148,7 +148,6 @@
       <File>ExpeditionSpyStore.lua</File>
       <File>ExpeditionEntry.lua</File>
       <File>ExpeditionSpyGate.lua</File>
-      <File>ExpeditionMovementProbe.lua</File>
       <File>ExpeditionSpyUI.lua</File>
       <File>UI/ExpeditionSpyUnitPanel.lua</File>
       <File>UI/ExpeditionSpyChooser.lua</File>
@@ -156,10 +155,7 @@
       <File>ExpeditionSpyRead.lua</File>
       <File>UI/ExpeditionSpyActivity.lua</File>
       <File>UI/ExpeditionSpyWindow.lua</File>
-      <File>UI/ExpeditionMovementProbe.lua</File>
-      <File>ExpeditionGate.lua</File>
       <File>ExpeditionGateRead.lua</File>
-      <File>UI/ExpeditionGateWindow.lua</File>
       <File>ClaimProjects.lua</File>
       <File>DialogueProjectModel.lua</File>
       <File>DialogueProjects.lua</File>
@@ -175,7 +171,6 @@
       <File>UI/ProjectTurnRead.lua</File>
       <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityMapping.lua</File>
-      <File>UI/CityIdentityEvidence.lua</File>
       <File>CityProgressionStore.lua</File>
       <File>StoreSubrecords.lua</File>
       <File>StoreDeferredLifecycle.lua</File>
@@ -232,8 +227,6 @@
       <File>UI/ResearchCrossRefresh.lua</File>
       <File>UI/ResearchCrossRefresh.xml</File>
 
-      <File>DistrictPrecisionProbe.lua</File>
-      <File>DistrictPrecisionRead.lua</File>
       <File>Lv4CopyRead.lua</File>
       <File>Probe.lua</File>
       <File>ResearchSupport.lua</File><File>SpecialistSupport.lua</File><File>CarrierSet.lua</File><File>PropertyCell.lua</File><File>TurnLedger.lua</File><File>TimedProjectModel.lua</File><File>TimedProjects.lua</File><File>TimedProjectReaders.lua</File>
@@ -259,7 +252,6 @@
     <File>CrewProjects.lua</File>
       <File>BoostConfig.lua</File>
       <File>UI/BoostGreatWorkRead.lua</File>
-      <File>UI/GreatWorkBasis.lua</File>
       <File>GreatWorkCatalog.lua</File>
       <File>GreatWorkFacts.lua</File>
       <File>CultureMeaningModel.lua</File>
@@ -533,7 +525,6 @@
       <File>ExpeditionSpyStore.lua</File>
     <File>ExpeditionEntry.lua</File>
     <File>ExpeditionSpyGate.lua</File>
-      <File>ExpeditionMovementProbe.lua</File>
     <File>ExpeditionSpyUI.lua</File>
     <File>UI/ExpeditionSpyUnitPanel.lua</File>
     <File>UI/SPCUnitPanelHD.lua</File>
@@ -543,17 +534,14 @@
     <File>ExpeditionSpyRead.lua</File>
     <File>Data/ExpeditionSpyGate.sql</File>
     <File>UI/ExpeditionSpyWindow.lua</File>
-      <File>UI/ExpeditionMovementProbe.lua</File>
     <File>UI/ExpeditionSpyActivity.lua</File>
     <File>UI/ExpeditionTrainingName.xml</File>
     <File>UI/ExpeditionSpyActivity.xml</File>
     <File>UI/ExpeditionSpyWindow.xml</File>
     <File>UI/ExpeditionMovementProbe.xml</File>
     <File>Data/ExpeditionGate.sql</File>
-    <File>ExpeditionGate.lua</File>
     <File>ExpeditionGateRead.lua</File>
     <File>Text/ExpeditionGate.sql</File>
-    <File>UI/ExpeditionGateWindow.lua</File>
     <File>UI/ExpeditionGateWindow.xml</File>
     <File>CultureMeaningModel.lua</File>
     <File>CultureMeaning.lua</File>
@@ -589,7 +577,6 @@
     <File>UI/ProjectTurnRead.lua</File>
     <File>CityIdentityExperiment.lua</File>
       <File>CityIdentityMapping.lua</File>
-      <File>UI/CityIdentityEvidence.lua</File>
     <File>CityProgressionStore.lua</File>
     <File>StoreSubrecords.lua</File>
     <File>StoreDeferredLifecycle.lua</File>
@@ -651,8 +638,6 @@
       <File>UI/ResearchCrossRefresh.xml</File>
 
     <File>Data/CopyYields.sql</File>
-      <File>DistrictPrecisionProbe.lua</File>
-      <File>DistrictPrecisionRead.lua</File>
     <File>Data/HalfYieldProbe.sql</File>
     <File>Data/DistrictPrecisionProbe.sql</File>
     <File>Lv4CopyRead.lua</File>
@@ -720,7 +705,6 @@
     <File>BoostConfig.lua</File>
     <File>UI/BoostGreatWorkRead.lua</File>
     <File>Data/GreatWorkProbe.sql</File>
-    <File>UI/GreatWorkBasis.lua</File>
     <File>GreatWorkCatalog.lua</File>
     <File>GreatWorkFacts.lua</File>
     <File>Data/Dialogue.sql</File>

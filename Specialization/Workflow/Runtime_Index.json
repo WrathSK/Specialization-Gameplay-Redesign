@@ -450,16 +450,6 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "B421.448 / S0915 committed D and strict-use protection at the current queue and receipt bounds."
     },
-    "Mod/DistrictPrecisionProbe.lua": {
-      "sha256": "12a6b244c9694f8303400b544cd747e554ce56c88e9d2bf302a31c22f67aed6c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
-      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
-    },
-    "Mod/DistrictPrecisionRead.lua": {
-      "sha256": "d020abb8278d944b3c46ae63cc78baaa465fcd6fd77b0418e7ce6f45250ce590",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B082_Failed_Probe_B083_Fix.md",
-      "provenance": "B083 observed Gameplay API/caption fix, experiment SQL and formal effects unchanged"
-    },
     "Mod/EffectiveFacts.lua": {
       "sha256": "4a78761041d58a794cc85862576ed0f5260ddbce1116c1cc0189b64b8e748bcd",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
@@ -475,20 +465,10 @@
       "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
       "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
     },
-    "Mod/ExpeditionGate.lua": {
-      "sha256": "da6cfd270182658465c51b925acc3a2af0efa9fa758d6400796a740e22627e32",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
-      "provenance": "B183 approved Gameplay capital-context/error-report correction and build stamps; 81 scoped tests reviewed. Spy0/cap/binding/placement/unit definitions unchanged; native pending."
-    },
     "Mod/ExpeditionGateRead.lua": {
       "sha256": "2044cee5d389d4030cdec1ec8ec4c0ec5c414dddda333d8136da4a9def3c8392",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
-    },
-    "Mod/ExpeditionMovementProbe.lua": {
-      "sha256": "9210477b186ed1cf40bf6a0ae26485242d2f3eae7458f3f4377113dd9dbc8cae",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
       "sha256": "d412c5cb166a8160ad6690452b3555ac2c4537284e09e04c43d830211ce36df0",
@@ -616,9 +596,9 @@
       "provenance": "S1134 B534. Remove unused boost label."
     },
     "Mod/Probe.lua": {
-      "sha256": "c382503187a5aa1c8ef69b26775cd8c243a4537288741d281bb9a1870877187f",
+      "sha256": "31fa01b3e1d92c7df64f60d6e4d3957c1f477918e1ef9a05bd6784f1782d963a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1135 B535. Package identity."
+      "provenance": "S1136 B536. Build identity."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -731,9 +711,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "2a508c2e4149e50c46de525efa6e48fd9781460946c42fa72fc57192413ccb49",
+      "sha256": "2d51d9a3a64c32dc3ebee3f3ee65182326b82c94b9814078da5089f612142729",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1135 B535. Package identity."
+      "provenance": "S1136 B536. Removed eight import entries and their package declarations."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -975,11 +955,6 @@
       "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
       "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
     },
-    "Mod/UI/CityIdentityEvidence.lua": {
-      "sha256": "87bb4d9ef4c7d03959b448320e3c7bdef6e2d52d7968faf47b2f09923df335c6",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
-      "provenance": "B091 UI evidence supplement; no identity authority changes"
-    },
     "Mod/UI/CityPotential.lua": {
       "sha256": "3e98a4a7255892c3d32d692ba7301c2d1a9c069cf5ce5f1e3a7ca937730b6a7b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
@@ -1065,20 +1040,10 @@
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S1055/B494.521 localized timed-project preview and timer text, exact scoped display traces."
     },
-    "Mod/UI/ExpeditionGateWindow.lua": {
-      "sha256": "e25abd755e847cfb002c382d5a8d717fd7f713f4c6b36885f01c238133a8a82b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B183_Expedition_Context_Fix.md",
-      "provenance": "B183 approved Gameplay capital-context/error-report correction and build stamps; 81 scoped tests reviewed. Spy0/cap/binding/placement/unit definitions unchanged; native pending."
-    },
     "Mod/UI/ExpeditionGateWindow.xml": {
       "sha256": "5ce5ff851733a7b7d0bd1ab2e299b5b2acc11711c3d70c630144ce3b78a12373",
       "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
       "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
-    },
-    "Mod/UI/ExpeditionMovementProbe.lua": {
-      "sha256": "3a737d2cd3a6caf49d11b23e805a8248f4d2e7eacc27a03d872614cb154dab55",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B219_Movement_Comparison.md",
-      "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/UI/ExpeditionMovementProbe.xml": {
       "sha256": "91593e59267da919a9b433b67e4f0d4b22ede5544005f32469f0c7d078edfdea",
@@ -1142,11 +1107,6 @@
     },
     "Mod/UI/GPPRefresh.xml": {
       "sha256": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
-    "Mod/UI/GreatWorkBasis.lua": {
-      "sha256": "c76edc36a68408e790c0ff1d7bd05e5df0b11b473c6efb2baa0f54006f59574c",
       "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
       "provenance": "B076 unchanged inherited inventory"
     },
@@ -1536,7 +1496,7 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
-  "source_review": "S1135 B535. Confirmed training-city handover ends an unfinished Expedition order; release requires a reliable negative team check. Local validation only. B528.555 stable is installed.",
-  "source_runtime": "B535.562 / modinfo562 develop, 306 files. No deployment.",
-  "tested_source_snapshot_sha256": "193101f0f83b2d7f8f64d29f51bf3ce8cdb2c72e6f5c398d0342157b694d8701"
+  "source_review": "S1136 B536. Eight import-only experiments retired; current and archived tests separated. Player-facing boundary review ready for the Owner. Local validation only. Installed stable B528.555.",
+  "source_runtime": "B536.563 / modinfo563 develop, 298 files. No deployment.",
+  "tested_source_snapshot_sha256": "1ef7a513c90fb3c4b9a3ab10a61361b868b276c8cd3207a0ec1562399bf89fee"
 }

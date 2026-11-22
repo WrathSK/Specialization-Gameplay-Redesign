@@ -6,6 +6,7 @@ import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import test_expedition_spy_task as base
+from retired_crew_sources import B535, package, source
 R=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(R/'tools'))
 from read_expedition_trace import GATE_PATTERN
@@ -65,7 +66,7 @@ def ready(ui=False):
       savedBefore=shared.ExpeditionGate.Training.Read(2)
       P.VERSION='P0-B-219.246'
     """)
-    l.execute((R/'Mod/ExpeditionMovementProbe.lua').read_text());l.execute('SPCExpeditionMovementProbe.Start(P,shared)')
+    l.execute(source('ExpeditionMovementProbe.lua', B535));l.execute('SPCExpeditionMovementProbe.Start(P,shared)')
     if ui:
         l.execute("""
           SPCP0=P;include=function()end
@@ -92,7 +93,7 @@ def ready(ui=False):
         """)
         for e in ET.parse(R/'Mod/UI/ExpeditionMovementProbe.xml').iter():
             if e.get('ID'): l.globals().control(e.get('ID'))
-        l.execute((R/'Mod/UI/ExpeditionMovementProbe.lua').read_text());l.execute("init();fire('open');input(KeyEvents.KeyUp,Keys.VK_M)")
+        l.execute(source('UI/ExpeditionMovementProbe.lua', B535));l.execute("init();fire('open');input(KeyEvents.KeyUp,Keys.VK_M)")
     return l,lines
 
 
@@ -231,26 +232,27 @@ class MovementUI(unittest.TestCase):
         l,_=ready(True);l.execute("noPad=true;Controls.Move.click();assert(#calls==0 and not Controls.Move.disabled);noPad=false;Controls.Move.click();assert(sent==2 and #calls==2)")
 
     def test_ui_and_gameplay_contain_no_timer_or_property_writer(self):
-        src=''.join((R/p).read_text() for p in ['Mod/ExpeditionMovementProbe.lua','Mod/UI/ExpeditionMovementProbe.lua'])
+        src=''.join(source(p, B535) for p in ('ExpeditionMovementProbe.lua','UI/ExpeditionMovementProbe.lua'))
         for forbidden in ['SetUpdate','SetProperty','RequestOperation(', 'InitUnit(', 'Destroy(', 'AddExpeditionInsight','SetSpy','ChangeEraScore']:
             self.assertNotIn(forbidden,src)
 
     def test_package_localization_and_p0_entry(self):
-        doc=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot()
+        snapshot = self.enterContext(package(B535))
+        doc=ET.parse(snapshot/'Mod/SpecializationP0.modinfo').getroot()
         paths=[e.text.strip() for e in doc.findall('./Files/File')]
         for p in ['ExpeditionMovementProbe.lua','UI/ExpeditionMovementProbe.lua','UI/ExpeditionMovementProbe.xml']:
             self.assertEqual(paths.count(p),1)
         self.assertEqual(len(doc.findall(".//AddUserInterfaces[@id='SPC_ExpeditionMovementUI']")),0)
-        ET.parse(R/'Mod/UI/ExpeditionMovementProbe.xml')
+        ET.parse(snapshot/'Mod/UI/ExpeditionMovementProbe.xml')
         db=sqlite3.connect(':memory:');db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))')
-        db.executescript((R/'Mod/Text/ExpeditionGate.sql').read_text())
-        lua=(R/'Mod/UI/ExpeditionMovementProbe.lua').read_text();xml=(R/'Mod/UI/ExpeditionMovementProbe.xml').read_text()
+        db.executescript((snapshot/'Mod/Text/ExpeditionGate.sql').read_text())
+        lua=(snapshot/'Mod/UI/ExpeditionMovementProbe.lua').read_text();xml=(snapshot/'Mod/UI/ExpeditionMovementProbe.xml').read_text()
         keys=set(re.findall(r"L\('([A-Z_]+)'",lua))|set(re.findall('LOC_SPC_MOVE_PROBE_([A-Z_]+)',xml))
         keys.discard('STATUS_');keys.update({'STATUS_EXACT','STATUS_NOT_EXACT','STATUS_STOP'})
         for key in keys:self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',('LOC_SPC_MOVE_PROBE_'+key,)).fetchone()[0],2,key)
-        panel=(R/'Mod/UI/P0Panel.lua').read_text()
+        panel=(snapshot/'Mod/UI/P0Panel.lua').read_text()
         self.assertNotIn('Controls.ExpeditionGateButton:RegisterCallback(Mouse.eRClick',panel)
-        self.assertNotIn('SPCExpeditionMovementProbe.Start(P,shared)',(R/'Mod/Gameplay.lua').read_text())
+        self.assertNotIn('SPCExpeditionMovementProbe.Start(P,shared)',(snapshot/'Mod/Gameplay.lua').read_text())
         db.close()
 
 if __name__=='__main__':unittest.main()

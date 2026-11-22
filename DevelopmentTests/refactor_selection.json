@@ -39,7 +39,9 @@
       "test_expedition_training_source_loss.SourceLoss.test_unknown_off_map_then_spy_returns_without_repeated_idle_samples",
       "test_expedition_training_source_loss.SourceLoss.test_receipt_during_or_after_transfer_never_releases_order",
       "test_expedition_training_source_loss.SourceLoss.test_unconfirmed_reservation_and_different_binding_never_release",
-      "test_expedition_training_source_loss.SourceLoss.test_cancel_before_queue_updates_then_actual_handover"
+      "test_expedition_training_source_loss.SourceLoss.test_cancel_before_queue_updates_then_actual_handover",
+      "test_import_only_retirement.Retirement.test_current_spy_and_window_work_without_any_old_implementation",
+      "test_import_only_retirement.Retirement.test_current_package_keeps_the_real_actions_and_omits_the_eight_files"
     ],
     "O8IntegrationCandidate": [
       "test_o8_integration_candidate",

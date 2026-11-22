@@ -18,7 +18,7 @@ RETIRED_EXPERIMENT_FILES = ('GreatWorkProbe.lua', 'PurchaseProbe.lua', 'Purchase
 
 
 def panel(root, *, legacy=False):
-    doc, vm = panel_runtime(root / 'Mod/UI', real_identity_evidence=True)
+    doc, vm = panel_runtime(root / 'Mod/UI', real_identity_evidence=legacy)
     controls = vm.globals().Controls
     buttons = {}
     for node in doc.iter('GridButton'):

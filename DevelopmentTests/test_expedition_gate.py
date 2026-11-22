@@ -6,10 +6,12 @@ from pathlib import Path
 import re, sqlite3, unittest, zlib, xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 from project_paths import external_database
+from retired_crew_sources import B212, B535, package, source
 R=Path(__file__).resolve().parents[1]
 
 class Gate(unittest.TestCase):
-    def runtime(self):
+    @staticmethod
+    def environment():
         l=LuaRuntime(unpack_returned_tuples=True)
         l.execute(r'''
           kind='UNIT_SPC_EXPEDITION_ZERO'; currentTurn=81; initCalls=0; destroys=0; properties=0;placeCalls=0;finishCalls=0
@@ -92,7 +94,11 @@ class Gate(unittest.TestCase):
           end
         ''')
         l.execute((R/'Mod/NetworkInput.lua').read_text())
-        l.execute((R/'Mod/ExpeditionGate.lua').read_text())
+        return l
+
+    def runtime(self):
+        l = self.environment()
+        l.execute(source('ExpeditionGate.lua', B535))
         l.execute('SPCExpeditionGate.Start(P,shared)')
         return l
     def test_load_and_read_have_no_writes(self):
@@ -189,8 +195,8 @@ class Gate(unittest.TestCase):
         l=self.runtime();l.execute("req('CREATE','c');Players[2]:GetUnits().Members=function()error('collection unavailable')end;local r=req('READ','r');assert(r.snapshotUnknown and r.count==nil and r.errorStep=='READ' and r.errorDetail:find('collection unavailable'))")
 
 class Reader(unittest.TestCase):
-    def runtime(self):
-        l=Gate().runtime()
+    @staticmethod
+    def environment(l):
         l.execute(r'''
           unitID=40;units[40]=unit(40);helperCalls=0
           GameInfo={Units=info};PlayersVisibility={[2]={IsRevealed=function()return visible~=false end}}
@@ -210,7 +216,11 @@ class Reader(unittest.TestCase):
           UnitOperationTypes={SPY_TRAVEL_NEW_CITY=8,PARAM_X='X',PARAM_Y='Y'};Map={GetPlot=function(x,y)return {x=x,y=y}end}
           UnitManager.CanStartOperation=function(u,op,plot,params)assert(op==8 and plot.x==params.X and plot.y==params.Y);return nativeAllow==true end
         ''')
-        l.execute((R/'Mod/ExpeditionGateRead.lua').read_text());l.execute('reader=SPCExpeditionGateRead')
+        return l
+
+    def runtime(self):
+        l = self.environment(Gate().runtime())
+        l.execute(source('ExpeditionGateRead.lua', B535));l.execute('reader=SPCExpeditionGateRead')
         return l
     def test_query_scalar_result_never_deployment_pass(self):
         l=self.runtime();l.execute("local r=reader.Read(2,40,target);assert(r.status=='READ_OK' and r.travel==3 and r.establish==1 and r.total==4 and helperCalls==2 and r.deployed==nil and r.nativePass==nil and r.spyBefore==2 and r.spyAfter==2)")
@@ -264,27 +274,29 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute("select Tag from TypeTags where Type='UNIT_SPC_EXPEDITION_ZERO'").fetchall(),[('CLASS_LANDCIVILIAN',)])
         db.close()
     def test_registration_xml_localization_and_art(self):
-        m=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();files=[e.text for e in m.findall('./Files/File')]
+        snapshot = self.enterContext(package(B212))
+        m=ET.parse(snapshot/'Mod/SpecializationP0.modinfo').getroot();files=[e.text for e in m.findall('./Files/File')]
         self.assertEqual(len(files),len(set(files)))
         new=['ExpeditionGate.lua','ExpeditionGateRead.lua','Data/ExpeditionGate.sql','Text/ExpeditionGate.sql','UI/ExpeditionGateWindow.lua','UI/ExpeditionGateWindow.xml']
         for p in new:self.assertIn(p,files)
-        for e in m.findall('./InGameActions/*/File'):self.assertTrue((R/'Mod'/e.text).is_file(),e.text)
+        for e in m.findall('./InGameActions/*/File'):self.assertTrue((snapshot/'Mod'/e.text).is_file(),e.text)
         # B211: the current package version is asserted once, in test_expedition_spy_gate.
-        ET.parse(R/'Mod/UI/ExpeditionGateWindow.xml')
-        art=ET.parse(R/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text']for e in art.findall('m_RootCollections/Element/Element/m_Name')]
+        ET.parse(snapshot/'Mod/UI/ExpeditionGateWindow.xml')
+        art=ET.parse(snapshot/'Mod/ArtDefs/Units.artdef').getroot();names=[e.attrib['text']for e in art.findall('m_RootCollections/Element/Element/m_Name')]
         self.assertEqual(names.count('UNIT_SPC_EXPEDITION_GATE'),1);self.assertEqual(names.count('UNIT_SPC_EXPEDITION_ZERO'),1);self.assertEqual(names.count('UNIT_SPC_EXPEDITION_SPY'),1);self.assertEqual(len(names),8)  # B184 added the Expedition art
-        db=sqlite3.connect(':memory:');db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))');db.executescript((R/'Mod/Text/ExpeditionGate.sql').read_text())
-        text='\n'.join((R/'Mod'/p).read_text()for p in new)
+        db=sqlite3.connect(':memory:');db.execute('create table LocalizedText(Language text,Tag text,Text text,primary key(Language,Tag))');db.executescript((snapshot/'Mod/Text/ExpeditionGate.sql').read_text())
+        text='\n'.join((snapshot/'Mod'/p).read_text()for p in new)
         keys=set(re.findall(r'LOC_SPC_EXPEDITION_(?:GATE|ZERO)_[A-Z_]+',text))
         for k in keys:
             if k.endswith('_'):continue
             self.assertEqual(db.execute('select count(*) from LocalizedText where Tag=?',(k,)).fetchone()[0],2,k)
         db.close()
     def test_actual_icon_sql_reuses_builder_without_changing_existing_icons(self):
+        snapshot = self.enterContext(package(B212))
         db=sqlite3.connect(':memory:')
         db.execute('create table IconDefinitions(Name text primary key,Atlas text,"Index" integer)')
         db.executemany('insert into IconDefinitions values(?,?,?)', [('ICON_UNIT_BUILDER','BUILDER_ATLAS',3),('ICON_UNIT_BUILDER_PORTRAIT','BUILDER_PORTRAIT',4),('ICON_UNIT_SPY','SPY_ATLAS',5)])
-        db.executescript((R/'Mod/Data/Icons.sql').read_text())
+        db.executescript((snapshot/'Mod/Data/Icons.sql').read_text())
         for base in ('ICON_UNIT_BUILDER','ICON_UNIT_BUILDER_PORTRAIT'):
             expected=db.execute('select Atlas,"Index" from IconDefinitions where Name=?',(base,)).fetchone()
             for name in ('UNIT_SPC_EXPEDITION_GATE','UNIT_SPC_EXPEDITION_ZERO'):
@@ -292,7 +304,7 @@ class Package(unittest.TestCase):
         self.assertEqual(db.execute('select Atlas,"Index" from IconDefinitions where Name=?',('ICON_UNIT_SPY',)).fetchone(),('SPY_ATLAS',5))
         db.close()
     def test_no_spy_operation_or_saved_gameplay_write(self):
-        src=(R/'Mod/ExpeditionGate.lua').read_text();read=(R/'Mod/ExpeditionGateRead.lua').read_text()
+        src=source('ExpeditionGate.lua', B535);read=source('ExpeditionGateRead.lua', B535)
         for marker in ('RequestOperation(', 'SetProperty(', 'SetXY(', 'GetSpyOperation(', 'SetSpyOperation('):
             self.assertNotIn(marker,src+read)
         self.assertNotIn('RegisterExit(',src);self.assertNotIn('SPY_TRAVEL_NEW_CITY',src)
@@ -300,7 +312,7 @@ class Package(unittest.TestCase):
         for marker in ('SpyMissionCompleted','ChangeUnitAbilityCount','ChangeEraScore','SetSpy'):
             self.assertNotIn(marker,src+read)
     def test_ui_uses_own_ingress_and_no_periodic_native_read(self):
-        s=(R/'Mod/UI/ExpeditionGateWindow.lua').read_text()
+        s=source('UI/ExpeditionGateWindow.lua', B535)
         self.assertIn("OnStart='SPC_ExpeditionGateRequest'",s)
         self.assertEqual(s.count('R.Read('),1);self.assertIn("Controls.TravelButton:RegisterCallback",s)
         self.assertNotIn('SPC_P0_Request',s)
@@ -308,8 +320,8 @@ class Package(unittest.TestCase):
 
 
 class Window(unittest.TestCase):
-    def runtime(self, initialize=True):
-        l=Reader().runtime()
+    @staticmethod
+    def environment(l):
         l.execute(r"""
           P.VERSION='P0-B-183.210';SPCP0=P;units={};sent=0
           include=function()end;Mouse={eLClick=1};KeyEvents={KeyUp=1};Keys={VK_ESCAPE=27}
@@ -332,10 +344,14 @@ class Window(unittest.TestCase):
           Events.LocalPlayerTurnBegin={Add=function(fn)turnBegin=fn end,Remove=function(fn)assert(turnBegin==fn);turnBegin=nil end}
           Events.GameCoreEventPublishComplete={Add=function(fn)publish=fn end,Remove=function(fn)assert(publish==fn);publish=nil end}
         """)
-        for element in ET.parse(R/'Mod/UI/ExpeditionGateWindow.xml').getroot().iter():
+        return l
+
+    def runtime(self, initialize=True):
+        l = self.environment(Reader().runtime())
+        for element in ET.fromstring(source('UI/ExpeditionGateWindow.xml', B535)).iter():
             if element.get('ID'):
                 l.globals().makeControl(element.get('ID'),element.get('Hidden')=='1')
-        l.execute((R/'Mod/UI/ExpeditionGateWindow.lua').read_text())
+        l.execute(source('UI/ExpeditionGateWindow.lua', B535))
         if initialize:l.execute('init()')
         return l
     def test_closed_start_no_native_helpers_or_creation(self):

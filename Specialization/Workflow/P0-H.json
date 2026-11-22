@@ -11,14 +11,14 @@
     "shared": "D0062",
     "presentation": "D0032",
     "architecture": "A0191",
-    "status": "S1135",
-    "runtime": "B535.562 / modinfo562",
+    "status": "S1136",
+    "runtime": "B536.563 / modinfo563",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "End the original owner's confirmed unfinished Expedition order on verified city transfer and release the place only after reliably excluding a surviving team.",
+  "goal": "Retire eight import-only Lua experiments with their archived tests still reproducible and give the Owner a player-facing review of current boundary rules.",
   "implementation_authorized": false,
   "context": [
     {
@@ -34,39 +34,33 @@
       "reason": "Exact current entry and prerequisites"
     },
     {
-      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "path": "DevelopmentTests/README.md",
       "kind": "section",
-      "selector": "### 考察团训练城易主",
-      "reason": "City and training duties, evidence and release boundaries"
-    },
-    {
-      "path": "Specialization/Design/Culture.md",
-      "kind": "section",
-      "selector": "## 四级：人文考察团",
-      "reason": "Owner-approved training cap, loss during training and independent surviving units"
+      "selector": "### Eight retired import-only Lua scripts (B536)",
+      "reason": "Current entry, exact restoration paths and archived test scope"
     }
   ],
   "dependencies": [
-    "D0063, A0191. Existing city transfer evidence, binding token, team Store and panel-owned UI reader."
+    "Published B535 sources, prior art/package checkpoints, actual Gameplay and UI composition, and their local test fixtures."
   ],
   "old_writers": [
-    "City Store withdraws its declared marker. The existing Expedition Gate is the only team reservation writer."
+    "The retired scripts were import-only experiments. The active Spy-based Expedition remains the production writer."
   ],
   "conditional_context": [
-    "The B210 owned-source queue release and a living team awaiting reattachment are separate. Prior code and the B528 audit reproduce the original held reservation."
+    "Specialization/Reports/Proposals/Player_Facing_Boundary_Review.md is an Owner review aid. Check task-specific Design, current code and cited evidence when evaluating a specific rule."
   ],
   "non_scope": [
-    "Reattachment, new save fields, unit creation or destruction, network rules, package retirement, deployment and game launch."
+    "New gameplay or Design decisions, other retirement families, native timing tests, deployment and promotion."
   ],
   "validation": [
-    "Two-city same-build reload, protected receipts and units, stale inputs and UI teardown, named current suite and package validation."
+    "CurrentGameplay and scoped regressions, package references and Lua 5.1 compilation, frozen-source retrieval, exact authorized swap and restore in disposable directories."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
     "runtime_identity": {
-      "source": "B535.562 / modinfo562 on develop. Source and local verification in S1135.",
+      "source": "B536.563 / modinfo563 on develop. Source and local verification in S1136.",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -111,14 +105,15 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#expedition-training-city-transfer--s1135",
+      "report": "Specialization/Status/Specialization_P0_Status.md#player-facing-boundary-review-and-import-only-cleanup--s1136",
+      "owner_review": "Specialization/Reports/Proposals/Player_Facing_Boundary_Review.md",
       "status": "LOCAL_SIMULATION_PASS",
-      "tests": 37,
-      "focused_cases": 186,
-      "two_city_cases": 19,
+      "tests": 39,
+      "focused_cases": 235,
+      "counts_overlap": true,
       "runner": "CurrentGameplay",
-      "native_validation": "NOT_RUN",
-      "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"
+      "retired_imports": 8,
+      "native_validation": "NOT_RUN"
     }
   }
 }

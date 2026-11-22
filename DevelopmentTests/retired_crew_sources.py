@@ -13,6 +13,8 @@ from refactor_harness import Context, PackageVFS, ROOT, SOURCES
 B119 = 'b3667b20b0fab2c9361a347701785ad330ec34ed'
 B120 = '5f8f02fd3a5b4a58587b83cd2b37b3ae114f94ac'
 B121 = 'b46cd02857ea3d5c3d30700f4fd36a8ae8d0c9d8'
+B212 = '05970d043d4b80fa400bcc7542f23acea7d31008'
+B223 = '55d0cdb96cf41a90a063e90347392f1b3b5bfb14'
 B444 = '72947b5596825e030ad07b77f41bac6d65809cfe'
 B445 = '238cf182af66056eeae0da4e4797114a2a04d73f'
 B446 = 'af75e329546f583b94a90169d8af68ebb7e4b559'
@@ -62,6 +64,7 @@ B525 = '1d1d0e284ea14ef6a03d45b6c201979c71b6853c'
 B526 = '49d028488bb5a08481d67d0ce6267e663489d094'
 B527 = '5cf9b48463cc5f875ebab562cc89c9cedb9d0bcb'
 B533 = 'ef7cbd44ddcd2148799d6a9a7c54d903316e07cf'
+B535 = '421e6f8828c8ed2cefca2b5fad189505f4fce363'
 RETIRED_LEVEL3_FILES = ('Lv3Effects.lua', 'Lv3Support.lua')
 RETIRED_ADJACENCY_FILES = ('GreatWorkAdjacency.lua', 'GreatWorkAdjacencyModel.lua')
 RETIRED_CITY_STARTS = ('BindingProbe', 'CityJournalProbe', 'CityFlowProbe')

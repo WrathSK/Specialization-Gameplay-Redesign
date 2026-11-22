@@ -8,6 +8,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from lupa.lua55 import LuaRuntime
+from retired_crew_sources import B535, package
 
 ROOT = Path(__file__).resolve().parents[1]
 PANEL = ROOT / 'Mod' / 'UI'
@@ -209,7 +210,8 @@ class CurrentPanelTests(unittest.TestCase):
                 lua.execute("Controls.ExpeditionGateButton.callbacks[Mouse.eLClick]();assert(not Controls.Window.hidden and #requests==0);assert(Controls.Status.text:find('UI_OPEN_FAILED'))")
 
     def test_real_p0_to_separate_hidden_n1_context(self):
-        _, lua = panel_runtime()
+        panel = self.enterContext(package(B535)) / 'Mod/UI'
+        _, lua = panel_runtime(panel)
         # Load the actual N1 script into a separate Lua environment. Both
         # contexts share the real bridge shape, never an assumed-success opener.
         lua.execute(r"""
@@ -241,11 +243,11 @@ class CurrentPanelTests(unittest.TestCase):
                 KeyEvents={KeyUp=1},Keys={VK_ESCAPE=27}
             },{__index=_G})
         """)
-        for element in ET.parse(PANEL/'ExpeditionGateWindow.xml').getroot().iter():
+        for element in ET.parse(panel/'ExpeditionGateWindow.xml').getroot().iter():
             if element.get('ID'):
                 lua.globals().makeGateControl(element.get('ID'), element.get('Hidden')=='1')
         lua.eval("function(source)assert(load(source,'N1','t',gateEnv))()end")(
-            (PANEL/'ExpeditionGateWindow.lua').read_text())
+            (panel/'ExpeditionGateWindow.lua').read_text())
         lua.execute(r"""
             gateInit();assert(gateContext.hidden and gateControls.Window.hidden)
             Controls.OpenButton.callbacks[Mouse.eLClick]()
