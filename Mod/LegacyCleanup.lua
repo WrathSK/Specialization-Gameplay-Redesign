@@ -27,6 +27,7 @@ end
 
 function SPCLegacyCleanup.StartGreatWorkLoad(P,shared)
  local cleanup={ready=false}
+ local initializing=false
  local names=SPCLegacyCleanupCatalog.Group('GreatWorkProbe').names
  function cleanup.Clean()
   for _,player in pairs(Players)do
@@ -39,6 +40,19 @@ function SPCLegacyCleanup.StartGreatWorkLoad(P,shared)
   cleanup.ready=true
  end
  shared.GreatWorkLoadCleanup=cleanup
+ local function initialize()
+  if cleanup.ready or initializing or not P.IsTestPlayer(Game.GetLocalPlayer()) then return end
+  initializing=true
+  local ok,err=pcall(cleanup.Clean)
+  initializing=false
+  if not ok then print('[SPC][B055_GW][INIT] '..tostring(err))end
+ end
+ local load=P.Field(Events,'LoadScreenClose')
+ if load and load.Add then load.Add(initialize)end
+ local turn=P.Field(Events,'PlayerTurnActivated')
+ if turn and turn.Add then
+  turn.Add(function(pid)if P.IsTestPlayer(pid)then initialize()end end)
+ end
 end
 
 function SPCLegacyCleanup.StartCommerceLoad(P,shared)
@@ -213,101 +227,6 @@ function SPCLegacyCleanup.StartLv3Effects(P,shared)
  end)
 end
 
--- Deferred Research effects still need exact legacy cleanup on the original startup signals.
-function SPCLegacyCleanup.StartBoostLoad(P,shared)
- include('RuntimeWork')
- include('BoostConfig')
- include('BoostIntegerConfig')
- local d={ready=false,busy=false,retired=true,errors={},changes=0};shared.NetworkBoost=d
- local function isolated(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
- local testRows={}
- for _,kind in ipairs({'RESEARCH','CULTURE'}) do for _,amount in ipairs({2,4}) do
-  testRows[#testRows+1]='BUILDING_SPC_B057_'..kind..'_'..amount
- end end
- local function remove(c,id)
-  local row=assert(P.Info('Buildings',id),'B055_DATABASE_MISSING')
-  local b=c:GetBuildings()
-  local present=P.HasBuilding(b,row.Index)
-  assert(type(present)=='boolean','B055_CARRIER_UNKNOWN')
-  if present then
-   P.RemoveBuilding(b,row.Index)
-   assert(P.HasBuilding(b,row.Index)==false,'B055_WRITE_UNCONFIRMED')
-   d.changes=d.changes+1
-  end
- end
- function d.Clean()
-  for _,player in pairs(Players) do local cities=player:GetCities();if cities then for _,c in cities:Members() do P.Count('city_scan');
-   for _,r in pairs(SPCBoostConfig.rows) do remove(c,r.building) end
-   for _,id in pairs(SPCBoostIntegerConfig.rows) do if P.Info('Buildings',id) then remove(c,id) end end
-   for _,id in ipairs(testRows) do if P.Info('Buildings',id) then remove(c,id) end end
-  end end end
- end
- function d.EnsureReady(pid)
-  if isolated(pid) then return end
-  if not P.IsTestPlayer(pid) or d.busy then P.Count('busy_skip');return end
-  if not d.ready then
-   d.busy=true;local ok,err=pcall(d.Clean);d.busy=false
-   if not ok then d.errors[pid]=tostring(err);return end
-   d.ready=true
-   if SPCExpeditionTrainingDiagnostics then
-    local trace=SPCExpeditionTrainingDiagnostics.New(P,'RESEARCH_NETWORK_EXIT')
-    trace.Record('NETWORK_EFFECT_RETIRED',{owner=pid,networkKind='RESEARCH',readStatus='VERIFIED',count=d.changes,reason='DEFERRED_V01'})
-   end
-  end
- end
- -- B137 session-only isolation: this module owns the exact list and native withdrawal.
- function d.ExperimentalNetworkWithdraw(pid)
-  assert(isolated(pid),'NETWORK_ISOLATION_NOT_ARMED')
-  assert(P.IsTestPlayer(pid),'NETWORK_ISOLATION_PLAYER')
-  assert(not d.busy,'NETWORK_ISOLATION_CONSUMER_BUSY')
-  d.busy=true
-  local ok,why=pcall(function()
-   local ids={};for _,r in pairs(SPCBoostConfig.rows) do ids[#ids+1]=r.building end;for _,id in pairs(SPCBoostIntegerConfig.rows) do ids[#ids+1]=id end;for _,id in ipairs(testRows) do ids[#ids+1]=id end
-   local indexes={};for _,id in ipairs(ids) do
-    local r=assert(P.Info('Buildings',id),'NETWORK_ISOLATION_DATABASE:'..id)
-    assert(type(r.Index)=='number','NETWORK_ISOLATION_INDEX:'..id);indexes[#indexes+1]=r.Index
-   end
-   local player=assert(Players[pid],'NETWORK_ISOLATION_PLAYER_MISSING')
-   local cities=assert(player:GetCities(),'NETWORK_ISOLATION_CITIES_UNKNOWN')
-   for _,c in cities:Members() do
-    assert(c:GetOwner()==pid,'NETWORK_ISOLATION_OWNER_CHANGED')
-    local b=c:GetBuildings()
-    for _,index in ipairs(indexes) do
-     local present=P.HasBuilding(b,index);assert(type(present)=='boolean','NETWORK_ISOLATION_CARRIER_UNKNOWN:'..index)
-     if present then P.RemoveBuilding(b,index);assert(P.HasBuilding(b,index)==false,'NETWORK_ISOLATION_REMOVE_UNCONFIRMED:'..index);d.changes=d.changes+1 end
-    end
-   end
-   d.errors[pid]=nil
-  end)
-  d.busy=false;d.isolationError=not ok and tostring(why) or nil
-  if not ok then error(why) end
-  return true
- end
- function d.Describe()
-  return '科研网络鼓舞已按用户决定在 v0.1 隔离，重做留待后续。\n公共网络和科研本城能力保留。\n旧载体清理：'..(d.ready and '已确认' or '待完成')
- end
- local function hook(src,n,fn) local e=P.Field(src,n);if e and e.Add then e.Add(fn) end end
- -- The earlier publish fallback is only a Research attempt.
- -- Great Work cleanup waits for load close or an actual supported turn.
- local attempted,initializing=false,false
- local function initialize(afterLoad)
-  local cleanup=afterLoad and shared.GreatWorkLoadCleanup or nil
-  if initializing or d.busy or (d.ready and (not cleanup or cleanup.ready)) then return end
-  local pid=Game.GetLocalPlayer()
-  if not P.IsTestPlayer(pid)then return end
-  attempted=true;initializing=true
-  local ok,err=pcall(function()
-   d.EnsureReady(pid)
-   if cleanup and not cleanup.ready then cleanup.Clean()end
-  end)
-  initializing=false
-  if not ok then print('[SPC][B055][INIT] '..tostring(err))end
- end
- hook(Events,'LoadScreenClose',function()initialize(true)end)
- hook(Events,'GameCoreEventPublishComplete',function()if not attempted then initialize(false)end end)
- hook(Events,'PlayerTurnActivated',function(pid)if P.IsTestPlayer(pid)then initialize(true)end end)
-end
-
 -- The old Dialogue carriers are removed before applying the current Tourism projection.
 function SPCLegacyCleanup.InstallDialogueLoad(P,d,eraCount)
  local function remove(c,id)
@@ -362,12 +281,7 @@ function SPCLegacyCleanup.Start(P,shared)
   if not ok then error(value,0)end;return value
  end
  local function descriptor(key,c,loss,ticket,slot)
-  if key=='NetworkBoost'then
-   if not SPCBoostConfig then include('BoostConfig')end
-   if not SPCBoostIntegerConfig then include('BoostIntegerConfig')end
-   current(c,loss,ticket,slot)
-   return SPCLegacyCleanupCatalog.Group(key,nil,SPCBoostConfig and SPCBoostConfig.rows,SPCBoostIntegerConfig and SPCBoostIntegerConfig.rows)
-  elseif key=='Dialogue'then
+  if key=='Dialogue'then
    local n=read(c,loss,ticket,slot,function()local count=0;for _ in GameInfo.Eras()do count=count+1 end;return count end)
    return SPCLegacyCleanupCatalog.Group(key,n)
   end

@@ -62,7 +62,7 @@ local auditLabels={OTHER='其它',CultureAesthetic='审美',Lv3Support='三级�
  ResearchApply='学以致用',ResearchChair='学术主持',ResearchSupport='专家支持',
  IndustrySupport='工业支持',Lv3Effects='旧三级',Lv4Percent='旧四级',
  CommerceConvergence='旧商业汇聚',CopyYields='复制收益',StandardizationDiscount='工业折扣',
- NetworkBoost='旧网络',Dialogue='对话'}
+ Dialogue='对话'}
 local dispatchLabels={OTHER='其它',
  PlayerTurnActivated='回合',CityWorkerChanged='工人',CityFocusChanged='焦点',
  GovernorAssigned='总督指派',GovernorEstablished='总督就位',GovernorChanged='总督变化',GovernorPromoted='总督晋升',

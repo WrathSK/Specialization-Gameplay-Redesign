@@ -47,6 +47,10 @@ Evidence-tool checks only: `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/t
 
 Provide the external Civ VI/HD-generated database through `SPC_DEBUG_GAMEPLAY_DB` or ignored `local/config.json` (see root template). It is opened mode=ro and backed up into memory; never edited or copied into this repository. SQL integration checks require this external database; Lua-only model tests and deployment tests do not. Install Lupa into a local environment as needed; no game assets or Python environment is vendored. `requirements-test.txt` records the expected distribution (2.8 from the existing installation directory); existing package metadata is incomplete, so fresh installation is not claimed validated. Historical suites use lua55; the refactor profile verifies Lua5.1. A fresh temporary Lupa2.8 installation was verified for B272; no environment is vendored.
 
+### 旧商路鼓舞的退出验证
+
+`python3 -m unittest test_network_boost_retirement` 在 DevelopmentTests 导入路径下验证两端商路系数、巨作读档清理、城市退出与临时安装目录的换包／回滚。数据库用例使用本页环境装配所列的 `SPC_OFFICIAL_DB` 和 `SPC_HD_DB`，只写内存副本。官方环境对照两份完整 SQL 装配，HD 对照固定原生库与相关 SQL 重放。旧数据、生成器及只适用于旧包的测试可从 develop 提交 `ef7cbd44ddcd2148799d6a9a7c54d903316e07cf` 按原路径取回，例如 `git show ef7cbd44:Mod/Data/NetworkBoost.sql`。
+
 ## Historical tests and models
 
 Other retained Python scripts are historical, version-specific regression evidence unless selected by the current task contract for a specific regression. Their original paths/assertions are preserved; some require external historical snapshots and old manifests and are not portable current entry points. Do not batch-run and rewrite them until green. Their presence is not a promise that all historical suites pass against B051.67. Offline Lua models describe preparation, not implemented gameplay. `test_gpp.py`, `test_discovery.py`, `collect_gpp_log.py` belong to CityGPPProbe and are deliberately excluded.

@@ -3,7 +3,7 @@ from collections import Counter, deque
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B464, B465, B511, B513, B515, B516, B517, B518, B519, B521, B522, B523, B524, RETIRED_ADJACENCY_FILES, RETIRED_LEVEL3_FILES, RETIRED_CITY_FILES, RETIRED_CITY_STARTS, package, source
+from retired_crew_sources import B525, B533, B464, B465, B511, B513, B515, B516, B517, B518, B519, B521, B522, B523, B524, RETIRED_ADJACENCY_FILES, RETIRED_LEVEL3_FILES, RETIRED_CITY_FILES, RETIRED_CITY_STARTS, package, source
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_route_observer_retirement import exercise_proof
 from test_p0_panel_current_layout import panel_runtime
@@ -257,8 +257,8 @@ def routes(root,revision=B464,*,retired_culture=False,old_commerce_absent=False,
           assert(s.Lv3Effects.WithdrawCulture and s.Lv3Support.Describe)""")
     if boost_absent:
         gp.execute("""local s=ExposedMembers.SPC_P0
-          assert(s.StartStatus.NetworkBoost.state=='OK' and s.NetworkBoost.retired)
-          assert(not s.NetworkBoost.Plan and not s.NetworkBoost.Test)""")
+          assert(not s.StartStatus.NetworkBoost and not s.NetworkBoost)
+          assert(s.StartStatus.GreatWorkLoadCleanup.state=='OK' and s.NetworkBridge)""")
     if dialogue_absent:
         gp.execute("""local s=ExposedMembers.SPC_P0
           assert(s.StartStatus.Dialogue.state=='OK' and s.StartStatus.DialogueEffects.state=='OK')
@@ -291,9 +291,8 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
                 if name in RETIRED_CITY_FILES:
                     self.assertEqual(source(name,B516),(previous/'Mod'/name).read_text())
                     continue
-                # EffectiveFacts moved to the Store after the B464/B465 retirement.
-                owner = retired if name == 'EffectiveFacts.lua' else ROOT
-                self.assertEqual((owner/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
+                # File identity is a claim about the retirement commit. The running Store above is current.
+                self.assertEqual((retired/'Mod'/name).read_bytes(),(previous/'Mod'/name).read_bytes())
         self.assertEqual(before[:3],after[:3])
         self.assertEqual((before[3],after[3]),(1,0))
         # B465 removed the completion listener. The later startup detachment
@@ -402,11 +401,12 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
               package(B513) as no_experiments, package(B515) as no_writers, package(B517) as no_city_probes,
               package(B518) as no_inspiration_probe, package(B519) as no_adjacency, package(B521) as no_commerce,
               package(B522) as no_worker_percent, package(B523) as no_level3,
-              package(B524) as no_boost):
+              package(B524) as no_boost, package(B525) as no_dialogue, package(B533) as last_boost_cleanup):
             stages = [routes(previous), routes(pre_handoff,B511), routes(no_experiments,B513),
                       routes(no_writers,B515), routes(no_city_probes,B517), routes(no_inspiration_probe,B518),
                       routes(no_adjacency,B519), routes(no_commerce,B521),
                       routes(no_worker_percent,B522), routes(no_level3,B523), routes(no_boost,B524),
+                      routes(no_dialogue,B525), routes(last_boost_cleanup,B533),
                       routes(ROOT,retired_culture=True,old_commerce_absent=True,
                              worker_percent_absent=True,level3_absent=True,boost_absent=True,dialogue_absent=True)]
         self.assertEqual(len(stages[0][0]),3)
@@ -422,6 +422,8 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             RETIRED_LEVEL3_FILES,
             ('NetworkBoost.lua',),
             ('Dialogue.lua','DialogueModel.lua','NetworkInput.lua'),
+            ('NetworkIsolation.lua',),
+            ('RuntimeWork.lua','CityReference.lua','BoostIntegerConfig.lua'),
         )
         for before, after, retired in zip(stages, stages[1:], retirements):
             self.assertEqual(before[0],after[0])
@@ -434,7 +436,7 @@ class LegacyCompletionRecordRetirement(unittest.TestCase):
             experiment_module_loads_removed=2, industrial_module_loads_removed=5,
             legacy_city_module_loads_removed=len(RETIRED_CITY_FILES), inspiration_includes_removed=3,
             meaning_includes_removed=len(RETIRED_ADJACENCY_FILES),commerce_legacy_includes_removed=4,worker_percent_includes_removed=3,
-            level3_includes_removed=len(RETIRED_LEVEL3_FILES),boost_includes_removed=1,dialogue_includes_removed=3))
+            level3_includes_removed=len(RETIRED_LEVEL3_FILES),boost_includes_removed=1,dialogue_includes_removed=3,retired_boost_cleanup_includes_removed=3))
 
     def test_only_the_hidden_completion_record_request_retires(self):
         with package(B464) as previous, package(B465) as retired:

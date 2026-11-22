@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B470, B471, B523, B524, B525, package, source
+from retired_crew_sources import boost_history, B470, B471, B523, B524, B525, package, source
 from test_p0_panel_current_layout import panel_runtime
 from test_pu11_package_absence import NATIVE, scalars
 
@@ -157,11 +157,12 @@ class RetiredBoostTestControls(unittest.TestCase):
         for historical in (True, False):
             ctx = Context()
             ctx.execute(SETUP)
+            load_history = boost_history(ctx)
             if historical:
                 ctx.execute(source('NetworkBoost.lua', B523))
                 ctx.execute("SPCNetworkBoost.Start(P,shared,{retired=true,centralExit=true})")
             else:
-                ctx.load('LegacyCleanup')
+                load_history('LegacyCleanup')
                 ctx.execute("SPCLegacyCleanup.StartBoostLoad(P,shared)")
             ctx.execute("""
               Game.GetLocalPlayer=function()return 0 end

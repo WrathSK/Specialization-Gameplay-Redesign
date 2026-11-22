@@ -102,6 +102,9 @@ class Startup(unittest.TestCase):
   from retired_crew_sources import B527
   self.assertEqual(start_order(retired_source('Gameplay.lua',B527)),expected)
   expected.remove('SPCNetworkIsolation')
+  from retired_crew_sources import B533
+  self.assertEqual(start_order(retired_source('Gameplay.lua',B533)),expected)
+  expected.remove('SPCNetworkBoost')
   self.assertEqual(start_order(current),expected)
   self.assertIn("composition.Run('PlayerActionReplies',{'UnitActions'},{'PlayerActionReplies'}",current)
   c=startup();c.load('Gameplay');c.execute("assert(ExposedMembers.SPC_P0.StartStatus.PlayerActionReplies.state=='OK')")

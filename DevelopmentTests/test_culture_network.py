@@ -2,7 +2,7 @@
 from pathlib import Path
 import ast,subprocess,sqlite3,unittest,importlib.util,xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
-from retired_crew_sources import B523, source as retired_source
+from retired_crew_sources import B523, B533, boost_history, package, source as retired_source
 R=Path(__file__).resolve().parents[1];M=R/'Mod'
 def literal(file,name):
  t=ast.parse((R/'DevelopmentTests'/file).read_text())
@@ -199,7 +199,7 @@ class DatabaseAndRetirement(unittest.TestCase):
  def test_sql_research_unchanged_culture_inert_and_32_exact_specialist_ids(self):
   d=sqlite3.connect(':memory:');d.executescript('CREATE TABLE Types(Type TEXT,Kind TEXT);CREATE TABLE Buildings(BuildingType TEXT,Name TEXT,Cost INTEGER,PrereqDistrict TEXT,InternalOnly INTEGER,CitizenSlots INTEGER,Housing INTEGER);CREATE TABLE Modifiers(ModifierId TEXT,ModifierType TEXT);CREATE TABLE ModifierArguments(ModifierId TEXT,Name TEXT,Value TEXT);CREATE TABLE BuildingModifiers(BuildingType TEXT,ModifierId TEXT);CREATE TABLE Building_CitizenYieldChanges(BuildingType TEXT,YieldType TEXT,YieldChange INTEGER);')
   for file in ['Data/NetworkBoost.sql','Data/NetworkBoostInteger.sql','Data/BoostIntegerTest.sql']:
-   now=(M/file).read_text();old=subprocess.check_output(['git','show','224b679:Mod/'+file],cwd=R,text=True)
+   now=retired_source(file,B533);old=subprocess.check_output(['git','show','224b679:Mod/'+file],cwd=R,text=True)
    self.assertEqual([x for x in now.splitlines()if 'RESEARCH' in x],[x for x in old.splitlines()if 'RESEARCH' in x]);d.executescript(now)
   self.assertEqual(d.execute("SELECT count(*) FROM Buildings WHERE BuildingType LIKE 'BUILDING_SPC_B0%_CULTURE_%'").fetchone()[0],563)
   self.assertEqual(d.execute("SELECT count(*) FROM BuildingModifiers WHERE BuildingType LIKE '%_CULTURE_%'").fetchone()[0],0)
@@ -208,18 +208,21 @@ class DatabaseAndRetirement(unittest.TestCase):
   self.assertEqual(d.execute("SELECT count(*) FROM Building_CitizenYieldChanges").fetchone()[0],32)
   self.assertEqual(d.execute("SELECT sum(CitizenSlots)+sum(Housing) FROM Buildings WHERE BuildingType LIKE 'BUILDING_SPC_CULTURE_NETWORK_%'").fetchone()[0],0)
  def test_generators_reproduce_and_imports_package_version(self):
-  for file in ['generate_boost.py','generate_boost_integer.py']:
-   spec=importlib.util.spec_from_file_location(file,R/'tools'/file);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-   for path,text in module.render().items():self.assertEqual((R/path).read_text(),text)
-  root=ET.parse(M/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'253')
-  imports=[x.text for x in root.findall('.//ImportFiles/File')];self.assertEqual(imports.count('CultureNetwork.lua'),1)
-  for x in root.findall('./Files/File'):self.assertTrue((M/x.text).exists(),x.text)
+  # The original Culture network package is the subject of this historical assertion.
+  revision='fee812f5a142b40d9585f291f208b15791d6ebbb'
+  with package(revision, paths=('Mod','tools/generate_boost.py','tools/generate_boost_integer.py')) as checkout:
+   for file in ['generate_boost.py','generate_boost_integer.py']:
+    spec=importlib.util.spec_from_file_location(file,checkout/'tools'/file);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    for path,text in module.render().items():self.assertEqual((checkout/path).read_text(),text)
+   mod=checkout/'Mod';root=ET.parse(mod/'SpecializationP0.modinfo').getroot();self.assertEqual(root.get('version'),'253')
+   imports=[x.text for x in root.findall('.//ImportFiles/File')];self.assertEqual(imports.count('CultureNetwork.lua'),1)
+   for x in root.findall('./Files/File'):self.assertTrue((mod/x.text).exists(),x.text)
 
 
 
 class RuntimeRetirement(unittest.TestCase):
  def boost(self,old=False):
-  l=fixture();l.execute((M/'BoostConfig.lua').read_text());l.execute((M/'BoostIntegerConfig.lua').read_text())
+  l=fixture();load=boost_history(l);load('BoostConfig');load('BoostIntegerConfig')
   source=subprocess.check_output(['git','show','224b679:Mod/NetworkBoost.lua'],cwd=R,text=True) if old else retired_source('NetworkBoost.lua',B523)
   l.execute(source);l.execute('SPCNetworkBoost.Start(P,shared);boost=shared.NetworkBoost;boost.EnsureReady(0)');return l
  def test_normal_and_test_research_values_equal_previous_runtime(self):

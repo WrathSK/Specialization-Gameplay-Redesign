@@ -10,15 +10,15 @@
     "commerce": "D0061",
     "shared": "D0062",
     "presentation": "D0032",
-    "architecture": "A0189",
-    "status": "S1133",
-    "runtime": "B533.560 / modinfo560",
+    "architecture": "A0190",
+    "status": "S1134",
+    "runtime": "B534.561 / modinfo561",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Implement verified HD Harbor admission and show confirmed network blockers in the two investment panels.",
+  "goal": "Retire obsolete Research and Culture boost definitions with their exclusive readers while preserving the separate Great Work and live network paths.",
   "implementation_authorized": false,
   "context": [
     {
@@ -36,8 +36,8 @@
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "### Accepted convergence boundaries — 2026-11-04",
-      "reason": "Accepted same-build cold restoration boundary"
+      "selector": "### 网络与跨context数据",
+      "reason": "Network inputs, effect ownership and the separate Great Work cleanup responsibility"
     },
     {
       "path": "Specialization/Design/Shared.md",
@@ -53,26 +53,26 @@
     }
   ],
   "dependencies": [
-    "D0062 ordinary infrastructure, current loaded upgrade chain, existing strict proof and quotation views."
+    "D0062 and A0190. Current-build starts and same-build reloads. Public network coefficients retain their signed-input meaning."
   ],
   "old_writers": [
-    "The shared catalogue and existing profession owners retain all effect writes. The network report is display evidence only."
+    "The former NetworkBoost definitions, startup and exit group retire together. LegacyCleanup still owns Great Work startup and ten city-exit groups."
   ],
   "conditional_context": [
-    "The previous HD cold-load evidence in S1091 covers readiness and observed Great Work changes. Use the ownership backlog separately for parked handover cases."
+    "Former boost rows, SQL and generators can be retrieved from ef7cbd44ddcd2148799d6a9a7c54d903316e07cf. Historical checks use their original scope."
   ],
   "non_scope": [
-    "Deployment, game launch, new investment or restructuring terms, removing carrier definitions, or a time-based escalation threshold."
+    "Deployment, native timing, cross-build saves, network wait policy, team loss and City Center investment policy."
   ],
   "validation": [
-    "CurrentGameplay; fixed HD and official databases; localized investment panels; strict and recovered quotes; static package validation."
+    "CurrentGameplay, paired official SQL and fixed HD slice, bounded lifecycle and exact exit tests, real route proof and temporary package round trips."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
     "runtime_identity": {
-      "source": "B533.560 / modinfo560 on develop. Source and local verification in S1133.",
+      "source": "B534.561 / modinfo561 on develop. Source and local verification in S1134.",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -117,16 +117,15 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#hd-harbor-qualification-and-investment-network-feedback--s1133",
+      "report": "Specialization/Status/Specialization_P0_Status.md#retire-obsolete-network-boost-carriers--s1134",
       "status": "LOCAL_SIMULATION_PASS",
-      "tests": 28,
-      "focused_cases": 92,
-      "hd_harbor_depth": [
-        1,
-        3,
-        6
+      "tests": 30,
+      "focused_cases": 94,
+      "retired_network_boost_buildings": 1126,
+      "old_boost_checks_per_empty_test_city": [
+        1126,
+        0
       ],
-      "retired_network_carriers_reviewed": 1126,
       "runner": "CurrentGameplay",
       "native_validation": "NOT_RUN",
       "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"

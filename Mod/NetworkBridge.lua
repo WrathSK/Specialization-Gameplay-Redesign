@@ -1,6 +1,7 @@
 include('RuntimeWork')
 include('ReverseDependencies')
 -- AV2-B: one private derived view per accepted complete input; no consumer-yield cache.
+if not SPCBoostConfig then include('BoostConfig')end
 include("NetworkInput")
 include('ReadFailure')
 include('SafeCallbacks')

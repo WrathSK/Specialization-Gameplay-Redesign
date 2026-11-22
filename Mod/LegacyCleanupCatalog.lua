@@ -2,9 +2,9 @@
 if not SPCTombstones then include('Tombstones')end
 SPCLegacyCleanupCatalog={}
 local C=SPCLegacyCleanupCatalog
-local keys={'YieldCarrierProbe','HalfYieldProbe','GreatWorkProbe','PurchaseProbe','Lv3Support','Lv3Effects','Lv4Percent','NetworkBoost','GreatWorkAdjacency','Dialogue','CommerceConvergence'}
+local keys={'YieldCarrierProbe','HalfYieldProbe','GreatWorkProbe','PurchaseProbe','Lv3Support','Lv3Effects','Lv4Percent','GreatWorkAdjacency','Dialogue','CommerceConvergence'}
 function C.Keys()local out={};for i,key in ipairs(keys)do out[i]=key end;return out end
-function C.Group(key,eraCount,boostRows,integerRows)
+function C.Group(key,eraCount)
  local names,kind={},'buildings'
  if key=='YieldCarrierProbe'then names={'SPC_B029_ONE','SPC_B029_HALF'};kind='plot_flags'
  elseif key=='HalfYieldProbe'then
@@ -15,29 +15,6 @@ function C.Group(key,eraCount,boostRows,integerRows)
  elseif key=='Lv3Effects'then
   names=SPCTombstones.Names('Lv3Culture');for _,k in ipairs({'RESEARCH','CULTURE','INDUSTRY'})do names[#names+1]='BUILDING_SPC_DEV_LV3_COM_'..k end
  elseif key=='Lv4Percent'then names=SPCTombstones.Names('Lv4Culture')
- elseif key=='NetworkBoost'then
- assert(type(boostRows)=='table'and getmetatable(boostRows)==nil and next(boostRows),'LEGACY_BOOST_DIRECTORY_UNKNOWN')
- assert(type(integerRows)=='table'and getmetatable(integerRows)==nil and next(integerRows),'LEGACY_INTEGER_DIRECTORY_UNKNOWN')
- local boost={}
- local count=0
- for key,row in pairs(boostRows)do
-  assert(type(key)=='string'and type(row)=='table'and getmetatable(row)==nil,'LEGACY_BOOST_ROW_UNKNOWN')
-  local kind,weight,n=key:match('^(%u+):(%d+):(%d+)$');weight=tonumber(weight);n=tonumber(n)
-  assert((kind=='RESEARCH'or kind=='CULTURE')and weight and weight>=1 and weight<=4 and n and n>=1 and n<=129
-   and key==kind..':'..weight..':'..n and row.building=='BUILDING_SPC_B055_'..kind..'_'..weight..'_'..n,'LEGACY_BOOST_ROW_UNKNOWN')
-  count=count+1;boost[#boost+1]=row.building
- end
- assert(count==1032,'LEGACY_BOOST_DIRECTORY_INCOMPLETE');count=0
- for key,name in pairs(integerRows)do
-  assert(type(key)=='string','LEGACY_INTEGER_ROW_UNKNOWN')
-  local kind,n=key:match('^(%u+):(%d+)$');n=tonumber(n)
-  assert((kind=='RESEARCH'or kind=='CULTURE')and n and n>=1 and n<=45 and key==kind..':'..n
-   and name=='BUILDING_SPC_B058_'..kind..'_'..n,'LEGACY_INTEGER_ROW_UNKNOWN')
-  count=count+1;boost[#boost+1]=name
- end
- assert(count==90,'LEGACY_INTEGER_DIRECTORY_INCOMPLETE')
- for _,kind in ipairs({'RESEARCH','CULTURE'})do for _,n in ipairs({2,4})do boost[#boost+1]='BUILDING_SPC_B057_'..kind..'_'..n end end
- names=boost
  elseif key=='GreatWorkAdjacency'then
   for _,y in ipairs({'FOOD','PRODUCTION','GOLD','SCIENCE','CULTURE','FAITH'})do for _,sign in ipairs({'P','N'})do for bit=0,12 do names[#names+1]='BUILDING_SPC_B060_'..y..'_'..sign..bit end end end
  elseif key=='Dialogue'then
@@ -52,10 +29,10 @@ function C.Group(key,eraCount,boostRows,integerRows)
  end
  assert(#names>0,'LEGACY_DIRECTORY_EMPTY');table.sort(names);return {key=key,kind=kind,names=names}
 end
-function C.Build(eraCount,boostRows,integerRows)
+function C.Build(eraCount)
  local out,seen={},{}
  for _,key in ipairs(keys)do
-  local row=C.Group(key,eraCount,boostRows,integerRows)
+  local row=C.Group(key,eraCount)
   for _,name in ipairs(row.names)do assert(not seen[name],'LEGACY_DUPLICATE_OR_INVALID_NAME');seen[name]=true end
   out[#out+1]=row
  end

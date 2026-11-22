@@ -2,7 +2,7 @@
 import unittest
 
 from refactor_harness import Context, PackageVFS, ROOT, measure
-from retired_crew_sources import B476, B511, B512, B513, B525, B526, RETIRED_CITY_STARTS, package
+from retired_crew_sources import B476, B511, B512, B513, B525, B526, B533, RETIRED_CITY_STARTS, package
 from test_o7_crew_retirement import verify_package_round_trip, verify_stable_round_trip
 from test_o7_retired_great_work_adjacency_retirement import context
 from test_p0_panel_current_layout import panel_runtime
@@ -87,6 +87,15 @@ def fixture(root, revision):
                   boostPublish=Events.GameCoreEventPublishComplete.Count()
                   boostTurn=Events.PlayerTurnActivated.Count()
                 end
+              elseif not legacy then
+                local start=owner.StartGreatWorkLoad
+                owner.StartGreatWorkLoad=function(...)
+                  local publish=Events.GameCoreEventPublishComplete.Count()
+                  start(...)
+                  assert(Events.GameCoreEventPublishComplete.Count()==publish)
+                  workClose=Events.LoadScreenClose.Count()
+                  workTurn=Events.PlayerTurnActivated.Count()
+                end
               end
             """,legacy)
         return result
@@ -102,7 +111,13 @@ def fixture(root, revision):
         assert(not s.StartStatus.GreatWorkProbe and not s.StartStatus.PurchaseProbe)
       end
       local cleanup=s.GreatWorkLoadCleanup or s.GreatWorkProbe
-      assert(s.NetworkBoost.retired and not s.NetworkBoost.ready and not cleanup.ready)
+      assert(not cleanup.ready)
+      if workClose then
+        assert(not s.NetworkBoost and not s.StartStatus.NetworkBoost and SPCBoostIntegerConfig==nil)
+        assert(SPCBoostConfig.k.RESEARCH==1 and SPCBoostConfig.k.CULTURE==1 and not SPCBoostConfig.rows)
+      else
+        assert(s.NetworkBoost.retired and not s.NetworkBoost.ready)
+      end
       local definitions,index={},0
       local function add(name)
         if definitions[name] then return definitions[name].Index end
@@ -111,8 +126,10 @@ def fixture(root, revision):
         definitions[name]=row;definitions[index]=row
         return index
       end
-      for _,row in pairs(SPCBoostConfig.rows)do add(row.building)end
-      for _,name in pairs(SPCBoostIntegerConfig.rows)do add(name)end
+      if not workClose then
+        for _,row in pairs(SPCBoostConfig.rows)do add(row.building)end
+        for _,name in pairs(SPCBoostIntegerConfig.rows)do add(name)end
+      end
       boostID=add('BUILDING_SPC_B057_RESEARCH_2')
       cityWorkID=add('BUILDING_SPC_B055_GW_CITY')
       objectWorkID=add('BUILDING_SPC_B055_GW_OBJECT')
@@ -267,7 +284,8 @@ class LegacyPanelCleanup(unittest.TestCase):
 
     def test_absent_startup_ui_leaves_only_close_and_supported_turn_recovery(self):
         for first in ('CLOSE','TURN'):
-            gp=fixture(ROOT,None)
+            with package(B533) as prior:
+                gp=fixture(prior,B533)
             gp.execute("""
               local first=...
               local s=ExposedMembers.SPC_P0

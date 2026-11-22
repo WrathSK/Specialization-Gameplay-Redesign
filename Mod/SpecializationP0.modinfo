@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="560">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="561">
   <Properties>
     <Name>LOC_SPC_MOD_TITLE</Name>
     <Description>LOC_SPC_MOD_DESCRIPTION</Description>
@@ -259,7 +259,6 @@
     <File>CrewProjects.lua</File>
       <File>BoostConfig.lua</File>
       <File>UI/BoostGreatWorkRead.lua</File>
-      <File>BoostIntegerConfig.lua</File>
       <File>UI/GreatWorkBasis.lua</File>
       <File>GreatWorkCatalog.lua</File>
       <File>GreatWorkFacts.lua</File>
@@ -465,14 +464,6 @@
         <LoadOrder>10001006</LoadOrder>
       </Properties>
       <File>Data/Lv4Percent.sql</File>
-    </UpdateDatabase>
-    <UpdateDatabase id="SPC_B055_Boost">
-      <Properties>
-        <LoadOrder>2000002</LoadOrder>
-      </Properties>
-      <File>Data/NetworkBoost.sql</File>
-      <File>Data/BoostIntegerTest.sql</File>
-      <File>Data/NetworkBoostInteger.sql</File>
     </UpdateDatabase>
     <UpdateDatabase id="SPC_B055_GW">
       <Properties>
@@ -728,11 +719,7 @@
     <File>Data/ResearchChair.sql</File>
     <File>BoostConfig.lua</File>
     <File>UI/BoostGreatWorkRead.lua</File>
-    <File>Data/NetworkBoost.sql</File>
-      <File>Data/BoostIntegerTest.sql</File>
-      <File>Data/NetworkBoostInteger.sql</File>
     <File>Data/GreatWorkProbe.sql</File>
-    <File>BoostIntegerConfig.lua</File>
     <File>UI/GreatWorkBasis.lua</File>
     <File>GreatWorkCatalog.lua</File>
     <File>GreatWorkFacts.lua</File>

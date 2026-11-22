@@ -2,14 +2,14 @@
 import json,sqlite3,unittest
 from refactor_harness import Context,ROOT,measure
 from project_paths import external_database
-from retired_crew_sources import B457, B459, B511, B514, B517, B518, B519, B521, B522, B523, B524, source
+from retired_crew_sources import B457, B459, B511, B514, B517, B518, B519, B521, B522, B523, B524, boost_history, source
 
 OPTIONS={'Lv3Effects':'{retireCommerce=true}','NetworkBoost':'{retired=true}','GreatWorkAdjacency':'{retired=true}','CommerceConvergence':'{retired=true}','CopyYields':'{retired=true}','StandardizationDiscount':'{retired=true}','CultureInspirationProbe':'{retired=true}'}
 MODULES=('HalfYieldProbe','PurchaseProbe','GreatWorkProbe','Lv3Support','Lv3Effects','Lv4Percent','NetworkBoost','GreatWorkAdjacency','Dialogue','CommerceConvergence','CopyYields','StandardizationDiscount','CultureInspirationProbe')
 COUNTS={'HalfYieldProbe':32,'PurchaseProbe':2,'GreatWorkProbe':2,'Lv3Support':12,'Lv3Effects':11,'Lv4Percent':8,'NetworkBoost':1126,'GreatWorkAdjacency':156,'Dialogue':12,'CommerceConvergence':48}
 
 def catalog():
- c=Context();c.load('BoostConfig');c.load('BoostIntegerConfig');c.load('LegacyCleanupCatalog');return c
+ c=Context();load=boost_history(c);load('BoostConfig');load('BoostIntegerConfig');load('LegacyCleanupCatalog');return c
 
 def groups(c,eras=9):
  values=c.execute('return SPCLegacyCleanupCatalog.Build(...,SPCBoostConfig.rows,SPCBoostIntegerConfig.rows)',eras)
@@ -51,7 +51,7 @@ class ActualCurrentOwners(unittest.TestCase):
  @classmethod
  def tearDownClass(cls):cls.db.close()
  def capture(self):
-  c=Context();db=self.db
+  c=Context();boost_history(c);db=self.db
   tables={t:[dict(r)for r in db.execute('SELECT * FROM "'+t+'"')]for t in ('Eras','HD_BuildingTiers','HD_DUMMY_BUILDINGS')}
   buildings={r['BuildingType']:dict(r)for r in db.execute('SELECT rowid AS "Index",* FROM Buildings')}
   def rows(t):return c.lua.table_from([c.lua.table_from(r)for r in tables[t]])
@@ -95,7 +95,7 @@ class ActualCurrentOwners(unittest.TestCase):
    c.execute(symbol+'.Start(P,shared,'+OPTIONS.get(module,'nil')+')')
   c.execute(source('YieldCarrierProbe.lua',B457));c.execute('SPCYieldCarrierProbe.RegisterExit(shared)')
   c.execute("for name,fn in pairs(captured)do current=name;fn(city,{origin={owner=0,cityID=101}})end")
-  c.load('LegacyCleanupCatalog');return c,buildings
+  c.globals().include('LegacyCleanupCatalog');return c,buildings
  def test_real_current_start_options_match_every_exact_catalogue_group(self):
   c,buildings=self.capture();eraCount=len(list(self.db.execute('SELECT EraType FROM Eras')));planned=groups(c,eraCount)
   actual={k:set(v.values())for k,v in c.lua.globals().owned.items()}

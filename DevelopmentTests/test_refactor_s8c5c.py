@@ -4,7 +4,7 @@ from pathlib import Path
 from unittest.mock import patch
 import json,re,subprocess,unittest
 from refactor_harness import ROOT,measure
-from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, B518, B519, B521, B522, B523, B524, RETIRED_ADJACENCY_FILES, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
+from retired_crew_sources import B449, B452, B454, B455, B459, B460, B461, B462, B463, B464, B511, B513, B514, B515, B517, B518, B519, B521, B522, B523, B524, B533, boost_history, RETIRED_ADJACENCY_FILES, RETIRED_CITY_STARTS, RETIRED_GLOBALS, source as retired_source
 from test_refactor_s7f import actual_store
 from test_refactor_s8c5b import SETUP
 
@@ -51,7 +51,12 @@ def old_gameplay_assertion():
 
 
 def production(extra='',failure=None,late=None,*,modules=None,gameplay=None):
- v=actual_store();v.execute('priorInfo=P.Info;priorGameInfo=GameInfo');v.execute(SETUP.split('coreBeforeTurns=')[0])
+ gameplay=gameplay or (ROOT/'Mod/Gameplay.lua').read_text()
+ has_boost="composition.Run('NetworkBoost'" in gameplay
+ v=actual_store()
+ if has_boost:
+  boost_history(v);v.execute('historicalBoost=true')
+ v.execute('priorInfo=P.Info;priorGameInfo=GameInfo');v.execute(SETUP.split('coreBeforeTurns=')[0])
  v.execute("""
  P.Field=function(t,k)return t and t[k]end;P.Count=function()end
  P.Info=function(t,k)if t=='Buildings'then return definitions[k]end;return priorInfo(t,k)end
@@ -67,9 +72,8 @@ def production(extra='',failure=None,late=None,*,modules=None,gameplay=None):
   assert(composition.Run(name,{}, {},function()end))
  end
  """+extra)
- gameplay=gameplay or (ROOT/'Mod/Gameplay.lua').read_text()
  if modules is None:
-  modules=tuple(name for name in MODULES if name not in ('GreatWorkAdjacency','Lv4Percent')
+  modules=tuple(name for name in MODULES if name not in ('GreatWorkAdjacency','Lv4Percent','NetworkBoost')
                 or "composition.Run('"+name+"'" in gameplay)
  include=v.globals().include
  def wrapped(name):
@@ -151,6 +155,9 @@ class Production(unittest.TestCase):
    from retired_crew_sources import B527
    self.assertEqual([n for n in start_order(retired_source('Gameplay.lua',B527)) if n!='SPCLegacyCleanup'],expected)
    expected.remove('SPCNetworkIsolation')
+   if "composition.Run('NetworkBoost'" not in s:
+    self.assertEqual([n for n in start_order(retired_source('Gameplay.lua',B533)) if n!='SPCLegacyCleanup'],expected)
+    expected.remove('SPCNetworkBoost')
    if not reply_service:expected.remove('SPCPlayerActionReplies')
   self.assertEqual([n for n in names if n!='SPCLegacyCleanup'],expected)
   self.assertLess(s.index("composition.Run('CityProgressionStore'"),s.index("composition.Run('LegacyCleanup'"))
@@ -159,7 +166,9 @@ class Production(unittest.TestCase):
   self.assertNotIn("composition.Run('YieldCarrierExit'",s)
   for name in MODULES:
    slot=startup_slot(name,s)
-   if retired and name in ('GreatWorkAdjacency','Lv4Percent'):
+   if retired and name=='NetworkBoost' and "composition.Run('NetworkBoost'" not in s:
+    self.assertIn('StartBoostLoad',entry(name,retired_source('Gameplay.lua',B533)))
+   elif retired and name in ('GreatWorkAdjacency','Lv4Percent'):
     self.assertNotIn("composition.Run('"+name+"'",s)
     self.assertIn('centralExit=true',entry(name,retired_source('Gameplay.lua',B518 if name=='GreatWorkAdjacency' else B521)))
    elif replacement_method(name,s):
@@ -185,10 +194,13 @@ class Production(unittest.TestCase):
     self.assertNotIn('centralExit',entry(name,retired_source('Gameplay.lua',B517)))
    else:self.assertNotIn('centralExit',entry(name,s))
   v=production()
-  v.execute("for _,name in ipairs({...})do assert(shared.StartStatus[name].state=='OK',name)end",
-            *(startup_slot(name,s) for name in MODULES if not retired or name not in ('GreatWorkAdjacency','Lv4Percent')))
-  v.execute("local n=0;for name in pairs(registered)do assert(name=='LegacyCleanup');n=n+1 end;assert(n==1);lose();assert(status()=='WITHDRAWN'and removeCalls==1409 and plotWrites==2);assert(ca.present[999999]and cb.present[999999]and ca.plotValues.OTHER=='keep');for id in pairs(byID)do assert(not ca.present[id]and cb.present[id])end")
-  measure('S8c5c_actual_production_cleanup',{'prior_legacy_exits':11,'current_legacy_exit_gates':1,'building_removals':1409,'plot_writes':2,'native_effect_cleanup':'USER_GAME_TEST_REQUIRED','new_events_timers':0})
+  omitted={'GreatWorkAdjacency','Lv4Percent'} if retired else set()
+  if retired and "composition.Run('NetworkBoost'" not in s:omitted.add('NetworkBoost')
+  present=[startup_slot(name,s) for name in MODULES if name not in omitted]
+  v.execute("for _,name in ipairs({...})do assert(shared.StartStatus[name].state=='OK',name)end",*present)
+  expected_count=1409 if "composition.Run('NetworkBoost'" in s else 283
+  v.execute("local n=0;for name in pairs(registered)do assert(name=='LegacyCleanup');n=n+1 end;assert(n==1);lose();assert(status()=='WITHDRAWN'and removeCalls==... and plotWrites==2);assert(ca.present[999999]and cb.present[999999]and ca.plotValues.OTHER=='keep');for id in pairs(byID)do assert(not ca.present[id]and cb.present[id])end",expected_count)
+  measure('S8c5c_actual_production_cleanup',{'prior_legacy_exits':11,'current_legacy_exit_gates':1,'building_removals':expected_count,'plot_writes':2,'native_effect_cleanup':'USER_GAME_TEST_REQUIRED','new_events_timers':0})
  def test_thunk_is_registered_before_include_or_Start_can_fail(self):
   for failure,late in (('LegacyCleanup',None),(None,'LegacyCleanup')):
    v=production(failure=failure,late=late);v.execute("assert(shared.StartStatus.LegacyCleanup.state=='FAILED'and shared.LegacyCleanup==nil);assert(shared.StartStatus.Lv3Support.state=='SKIPPED_DEPENDENCY'and shared.StartStatus.Lv3Effects.state=='SKIPPED_DEPENDENCY'and shared.StartStatus.Dialogue.state=='SKIPPED_DEPENDENCY');lose();assert(status()=='PARTIAL_HELD'and removeCalls==0 and plotWrites==0);s.ExitConfirmed();s.ExitConfirmed();assert(status()=='PARTIAL_HELD')")
@@ -196,27 +208,27 @@ class Production(unittest.TestCase):
   for name in ('Lv3Support','Lv3Effects','Dialogue'):
    for is_late in (False,True):
     v=production(failure=None if is_late else name,late=name if is_late else None)
-    v.execute("failed=...;assert(shared.StartStatus[failed].state=='FAILED');lose();assert(status()=='PARTIAL_HELD'and plotWrites==2 and not ca.present[definitions[byGroup.NetworkBoost.names[1]].Index]);s.ExitConfirmed();s.ExitConfirmed();assert(status()=='PARTIAL_HELD')",name)
+    v.execute("failed=...;assert(shared.StartStatus[failed].state=='FAILED');lose();assert(status()=='PARTIAL_HELD'and plotWrites==2 and not ca.present[definitions[byGroup.GreatWorkProbe.names[1]].Index]);s.ExitConfirmed();s.ExitConfirmed();assert(status()=='PARTIAL_HELD')",name)
  def test_nonparticipant_start_failure_does_not_lose_its_physical_cleanup(self):
   source=(ROOT/'Mod/Gameplay.lua').read_text()
   for name in ('PurchaseProbe','GreatWorkProbe','Lv4Percent','NetworkBoost','GreatWorkAdjacency','CommerceConvergence'):
-   archive={'GreatWorkAdjacency':B518,'Lv4Percent':B521}.get(name)
+   archive={'GreatWorkAdjacency':B518,'Lv4Percent':B521,'NetworkBoost':B533}.get(name)
    gameplay=retired_source('Gameplay.lua',archive) if archive else source
    v=production(failure=name,gameplay=gameplay)
-   v.execute("assert(shared.StartStatus[...].state=='FAILED');lose();assert(status()=='WITHDRAWN'and removeCalls==1409 and plotWrites==2)",
-             startup_slot(name,source))
+   v.execute("local name,count=...;assert(shared.StartStatus[name].state=='FAILED');lose();assert(status()=='WITHDRAWN'and removeCalls==count and plotWrites==2)",
+             startup_slot(name,gameplay),1409 if archive else 283)
  def test_exact_adjacency_group_stays_in_confirmed_exit_without_the_old_module(self):
   v=production();v.execute(r'''
    assert(shared.GreatWorkAdjacency==nil and shared.StartStatus.GreatWorkAdjacency==nil)
    faultGroup='GreatWorkAdjacency';lose()
-   assert(status()=='PARTIAL_HELD' and removeByGroup.GreatWorkAdjacency==nil and removeCalls==1253)
+   assert(status()=='PARTIAL_HELD' and removeByGroup.GreatWorkAdjacency==nil and removeCalls==127)
    for _,name in ipairs(byGroup.GreatWorkAdjacency.names)do
     local id=definitions[name].Index
     assert(ca.present[id] and cb.present[id])
    end
    faultGroup=nil;s.ExitConfirmed()
-   assert(status()=='WITHDRAWN' and removeByGroup.GreatWorkAdjacency==156 and removeCalls==1409)
-   s.ExitConfirmed();assert(removeCalls==1409)
+   assert(status()=='WITHDRAWN' and removeByGroup.GreatWorkAdjacency==156 and removeCalls==283)
+   s.ExitConfirmed();assert(removeCalls==283)
    for _,name in ipairs(byGroup.GreatWorkAdjacency.names)do
     local id=definitions[name].Index
     assert(not ca.present[id] and cb.present[id])
@@ -234,7 +246,7 @@ class Production(unittest.TestCase):
   lose();s.ExitConfirmed();s.ExitConfirmed();assert(status()=='PARTIAL_HELD')
   local prior=removeCalls;supportReady=true;shared.Lv3Support.Audit({player=9,city=900})
   assert(status()=='PARTIAL_HELD'and removeCalls==prior+12)
-  effectsReady=true;shared.Lv3Effects.Audit({player=9,city=900});assert(status()=='WITHDRAWN'and removeCalls==1409)
+  effectsReady=true;shared.Lv3Effects.Audit({player=9,city=900});assert(status()=='WITHDRAWN'and removeCalls==283)
   local n=removeCalls;shared.Lv3Support.Audit({player=9,city=900});shared.Lv3Effects.Audit({player=9,city=900});assert(removeCalls==n)
   """)
  def test_exact_Dialogue_hold_clears_only_after_its_physical_readback(self):
@@ -250,7 +262,7 @@ class Production(unittest.TestCase):
  def test_Dialogue_post_fault_retains_only_its_group_until_same_original_retry(self):
   v=production();v.execute("""
   local d=shared.Dialogue;d.carrierTest=setmetatable({},{__index=function()error('POST_UNAVAILABLE')end})
-  lose();assert(status()=='PARTIAL_HELD'and removeCalls==1409);d.carrierTest=nil;s.ExitConfirmed();assert(status()=='WITHDRAWN'and removeCalls==1409)
+  lose();assert(status()=='PARTIAL_HELD'and removeCalls==283);d.carrierTest=nil;s.ExitConfirmed();assert(status()=='WITHDRAWN'and removeCalls==283)
   """)
  def test_Dialogue_return_reset_is_still_registered_and_history_unchanged(self):
   v=production();v.execute("""
@@ -282,7 +294,7 @@ class Production(unittest.TestCase):
    old=production()
   old.execute("assert(type(shared.GreatWorkProbe.Run)=='function'and type(shared.PurchaseProbe.Run)=='function')")
  def test_real_composition_late_module_failure_keeps_registered_runner_guarded(self):
-  v=production(late='Lv3Support');v.execute("lose();assert(status()=='PARTIAL_HELD');for i=1,5 do s.ExitConfirmed()end;assert(status()=='PARTIAL_HELD'and removeByGroup.Lv3Support==nil and removeCalls==1397)")
+  v=production(late='Lv3Support');v.execute("lose();assert(status()=='PARTIAL_HELD');for i=1,5 do s.ExitConfirmed()end;assert(status()=='PARTIAL_HELD'and removeByGroup.Lv3Support==nil and removeCalls==271)")
 
 
 class FrozenBefore(unittest.TestCase):

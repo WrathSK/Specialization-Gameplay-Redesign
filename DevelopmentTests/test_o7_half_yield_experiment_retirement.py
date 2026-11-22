@@ -100,12 +100,12 @@ class HalfYieldExperimentRetirement(unittest.TestCase):
             self.assertEqual(new_requests,old_requests)
 
     def test_exact_exit_and_Store_retry_preserve_flags_and_the_other_city(self):
-        with package(B459) as previous:
+        with package(B459) as previous, package(B460) as successor:
             for path in RETAINED:
-                self.assertEqual((ROOT/'Mod'/path).read_bytes(),(previous/'Mod'/path).read_bytes())
+                self.assertEqual((successor/'Mod'/path).read_bytes(),(previous/'Mod'/path).read_bytes())
         for context, removed in ((half_production(),False),(production(),True)):
             context.execute("""
-              local removed=...
+              local removed,expected=...
               assert((shared.HalfYieldProbe==nil)==removed)
               assert(shared.StartStatus.LegacyCleanup.state=='OK' and plotWrites==0)
               local names=byGroup.HalfYieldProbe.names
@@ -113,14 +113,14 @@ class HalfYieldExperimentRetirement(unittest.TestCase):
               ca.s.values.SPC_B050_HALF_ENABLED=true
               cb.s.values.SPC_B050_HALF_ENABLED=true
               faultGroup='HalfYieldProbe';lose()
-              assert(status()=='PARTIAL_HELD' and removeCalls==1377 and plotWrites==2)
+              assert(status()=='PARTIAL_HELD' and removeCalls==expected-32 and plotWrites==2)
               for _,name in ipairs(names)do
                 local id=definitions[name].Index
                 assert(ca.present[id] and cb.present[id])
               end
               faultGroup=nil;s.ExitConfirmed()
-              assert(status()=='WITHDRAWN' and removeCalls==1409 and removeByGroup.HalfYieldProbe==32)
-              s.ExitConfirmed();assert(removeCalls==1409 and plotWrites==2)
+              assert(status()=='WITHDRAWN' and removeCalls==expected and removeByGroup.HalfYieldProbe==32)
+              s.ExitConfirmed();assert(removeCalls==expected and plotWrites==2)
               for _,name in ipairs(names)do
                 local id=definitions[name].Index
                 assert(not ca.present[id] and cb.present[id])
@@ -128,7 +128,7 @@ class HalfYieldExperimentRetirement(unittest.TestCase):
               assert(ca.s.values.SPC_B050_HALF_ENABLED==true and cb.s.values.SPC_B050_HALF_ENABLED==true)
               assert(ca.plotValues.OTHER=='keep' and cb.plotValues.OTHER=='keep')
               assert(ca.present[999999] and cb.present[999999])
-            """,removed)
+            """,removed,283 if removed else 1409)
         measure('half_yield_exit',{'target_B050_carriers':32,'unrelated_city_and_flags_preserved':True,
             'existing_Store_retry':'CONFIRMED_IN_FIXTURE'})
 

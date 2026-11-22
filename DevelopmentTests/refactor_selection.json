@@ -3,6 +3,8 @@
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
     "CurrentGameplay": [
+      "test_network_boost_retirement.Retirement.test_work_cleanup_keeps_its_two_lifecycle_signals",
+      "test_network_boost_retirement.Retirement.test_confirmed_exit_waits_for_the_remaining_work",
       "test_investment_network_notice.NetworkNotice.test_scoped_city_current_proof_and_transport_limit",
       "test_investment_network_notice.NetworkNotice.test_contract_services_keep_their_guards_and_clear_the_notice",
       "test_investment_network_notice.NetworkNotice.test_both_panels_show_localized_cause_and_keep_confirmation_disabled",

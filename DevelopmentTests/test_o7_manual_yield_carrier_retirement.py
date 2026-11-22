@@ -100,13 +100,13 @@ class ManualYieldCarrierRetirement(unittest.TestCase):
             self.assertNotIn('CarrierOffButton', current_buttons)
             self.assertEqual(current_requests, old_requests)
             for path in ('LegacyCleanup.lua','LegacyCleanupCatalog.lua','Data/YieldCarrierProbe.sql'):
-                self.assertEqual((ROOT/'Mod'/path).read_bytes(), (previous/'Mod'/path).read_bytes())
+                self.assertEqual((retired/'Mod'/path).read_bytes(), (previous/'Mod'/path).read_bytes())
         game = cleanup_production()
         game.execute('''
           assert(SPCYieldCarrierProbe==nil and shared.StartStatus.LegacyCleanup.state=='OK')
           assert(plotWrites==0 and ca.plotValues.SPC_B029_ONE==1 and ca.plotValues.SPC_B029_HALF==1)
           lose()
-          assert(status()=='WITHDRAWN' and plotWrites==2 and removeCalls==1409)
+          assert(status()=='WITHDRAWN' and plotWrites==2 and removeCalls==283)
           assert(ca.plotValues.SPC_B029_ONE==0 and ca.plotValues.SPC_B029_HALF==0)
           assert(cb.plotValues.SPC_B029_ONE==1 and cb.plotValues.SPC_B029_HALF==1)
           assert(ca.plotValues.OTHER=='keep' and cb.plotValues.OTHER=='keep')

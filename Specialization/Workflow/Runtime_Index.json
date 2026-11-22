@@ -31,14 +31,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/BoostConfig.lua": {
-      "sha256": "05c07baa343ff4f97cee940a24d328051af41095bc9d134d1b92b2eb763f6ef5",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
-    },
-    "Mod/BoostIntegerConfig.lua": {
-      "sha256": "8e43d3e3ce29758d770f58682cd53e8d8abba7659f2587b3226a62881a4f65ab",
-      "review_source": "Specialization/Architecture/v2/D0032_Runtime_Archaeology.md",
-      "provenance": "B076 unchanged inherited inventory"
+      "sha256": "559cdc16c41808d92d13a201c3751d6df3d0a9afc26255648f6c345bd4eecd66",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1134 B534. Signed-input coefficients only."
     },
     "Mod/CapitalInvestment.lua": {
       "sha256": "bbf653bf9bf95c5ef5a24d43b644905bc37c0e0d8affd2e27e709c8b429282b6",
@@ -164,11 +159,6 @@
       "sha256": "c577cdb9f6e07b79f798185525a8da51a2828eee291409b2fb7ccd3c8bcaeb50",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
       "provenance": "S0874/B403.430 PU04:reliable Research anchor negatives precede unknown Governor assertion;existing sampler and guarded phase,known outputs unchanged.20new+144related pass,4exact-baseline health errors retained. Probe/modinfo labels only;no native/deployment PASS."
-    },
-    "Mod/Data/BoostIntegerTest.sql": {
-      "sha256": "78fe221ecc883eeb0948001dc98638ff12111491baa7e254339c853d398f1f1b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
-      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/Data/ClaimProjects.sql": {
       "sha256": "5d704c476ddb10b853d855dee8c751734bda1976251ca4bc55012e386f4f216d",
@@ -339,16 +329,6 @@
       "sha256": "0fa05ff3f0113d5635a136552fbcbec89b63a435c99521eec5c712f9a0a8fa38",
       "review_source": "Specialization/Architecture/v2/P0_L1_Aesthetic.md",
       "provenance": "B148 authorized L1 scoped source review;13 targeted and26 K local tests; native Tourism gate pending"
-    },
-    "Mod/Data/NetworkBoost.sql": {
-      "sha256": "bfb0b077ca00ab48999dd4c30ff294b48af1c10161d58246e2ec1e2ec3dd33d0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
-      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
-    },
-    "Mod/Data/NetworkBoostInteger.sql": {
-      "sha256": "de5daa69168a6600e09501752fdadbdede59d3e461532529f3efbb52d8a10f70",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B226_Culture_Network.md",
-      "provenance": "B226 user-authorized Culture Network and exact old Culture Eureka retirement; Research retained.670 targeted local PASS, independent bounded reviews. No new timer/schema/task-scheduler/GC change. Combined B225+B226 native pending."
     },
     "Mod/Data/OverflowSinkTest.sql": {
       "sha256": "f657b5cc1e8fb0c85d9b9cc854736a3d96b3239b145c296b6758fcb254839526",
@@ -546,9 +526,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Gameplay.lua": {
-      "sha256": "db1c2b3fa161d4d888ec54c678621a5c12b305ed97139f29b5df1055ff660817",
+      "sha256": "c6efc86f12b215c65e02b6663bcda7f12acaaaad69b2fa0a401272971800553b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1096 B528 residual code retirement; production effect/Store/GC owners unchanged, no deployment."
+      "provenance": "S1134 B534. Drop boost startup and preserve read-only requests."
     },
     "Mod/GreatWorkCatalog.lua": {
       "sha256": "c0669180efe21a4c2fd91289be9c0a1a4828ac785a3791ca1b059507cc2fec72",
@@ -611,9 +591,9 @@
       "provenance": "S1076 moves the existing copy report notice to the read-only report owner and drops two retired startups and their inert request aliases. Simulated network isolation admission and strict current proof match the prior build."
     },
     "Mod/NetworkBridge.lua": {
-      "sha256": "cbea3604603d8ae460646daa61b6e2589fcbc201efb967cef3630b6262320a4a",
+      "sha256": "b10404d1edf33ed0914287d66c6835898d629ce8ed45bc9cea83e2931d3b4887",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1133 B533. Explain confirmed network blockers in investment views without changing strict admission."
+      "provenance": "S1134 B534. Load both shared coefficients without the retired rows."
     },
     "Mod/NetworkInput.lua": {
       "sha256": "2ee46a895b980fdc6c291a3f1451ac55dd5a46a99c091eae74203518042dc590",
@@ -631,14 +611,14 @@
       "provenance": "S1133 B533. Admit three approved HD Harbor definitions as ordinary and depth eligible."
     },
     "Mod/PerformanceCounters.lua": {
-      "sha256": "298c7c9a468ed2c2d1496580a7144e2d21bcdd6d97f5af099f6cc7d60abe5d67",
+      "sha256": "af296b19cb3f9c866d9131bfb331f22a04b32ce65935b285955806c096241860",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
+      "provenance": "S1134 B534. Remove unused boost label."
     },
     "Mod/Probe.lua": {
-      "sha256": "c6ad1e919a9df6414a0661f7282ebd2446221624d5723c202ccad91d7c98a308",
+      "sha256": "f475cededc079ad7b6bdfcdac7f8bb4eb3879d432a41a65deabeac7c3193c828",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1133 B533. Develop package identity."
+      "provenance": "S1134 B534. Develop package identity."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -751,9 +731,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "de61b486db3a7b2d0bfb417d9482fcc4719754325bb6fd6d77ef1439ebfc883b",
+      "sha256": "cea9e81c6431aea12626d035dfc37b8bac796dd5b56836225a2a46af09c754d3",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1133 B533. Develop package identity."
+      "provenance": "S1134 B534. Remove four retired package paths."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1406,14 +1386,14 @@
       "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
     },
     "Mod/LegacyCleanupCatalog.lua": {
-      "sha256": "92320e3f9af46a296e15897000e6dfee6f615603125c3c4fd659405f1d41e373",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B339_Refactor_S8c5b.md",
-      "provenance": "B339.366 Prove isolated composite legacy cleanup before production wiring; local/static evidence only; no deployment/native PASS."
+      "sha256": "54c34960588feb484debf8d379b4a829eb3d5b13c1f2b09493af6502fc385aac",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1134 B534. Ten remaining exact city-exit responsibilities."
     },
     "Mod/LegacyCleanup.lua": {
-      "sha256": "8e1923044adc277646290d55086eb04c44ea69a7695f783d602e331b1b6edb36",
+      "sha256": "67c707b0b16f2c3e362d86fe9956db4aae9f4ceb3f66fe5a726e84c6204a7348",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1088 confirms in the actual local package that the existing load-close and supported-turn callbacks take over B055 Great Work cleanup with the old startup UI absent."
+      "provenance": "S1134 B534. Great Work independently cleans on its existing lifecycle boundaries."
     },
     "Mod/DevelopmentInvestmentTargets.lua": {
       "sha256": "0af2689c6ae0e01b5f9e50683da32a19f1499f10b1ae7c7d566ee3b5c9b119f8",
@@ -1556,7 +1536,7 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
-  "source_review": "S1133 implements the Owner-approved HD Harbor scope and exposes two confirmed causes of a blocked investment. D0062 and A0189 record the scope. Local evidence only. Installed stable B528.555.",
-  "source_runtime": "B533.560 / modinfo560 develop, 310 files. No deployment.",
-  "tested_source_snapshot_sha256": "fa9e7b1a74a83bc3fba92f1aa7b67bd76a1f318db26676f3b0b18b4be1eb5c8b"
+  "source_review": "S1134 removes the 1,126 obsolete Boost definitions with their readers. Great Work lifecycle and real domestic-route proof were verified locally. Stable B528.555 is installed.",
+  "source_runtime": "B534.561 / modinfo561 develop, 306 files. No deployment.",
+  "tested_source_snapshot_sha256": "abf93a4d28933f0a180f65838e46e03eb6077f17586bf61e0c74056885723a0f"
 }

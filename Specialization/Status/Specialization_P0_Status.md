@@ -1,28 +1,40 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1133
-Implementation Build: develop B533.560 / modinfo560. Installed stable B528.555 / modinfo555.
-Architecture Revision Reviewed: A0189
+Status Revision: S1134
+Implementation Build: develop B534.561 / modinfo561. Installed stable B528.555 / modinfo555.
+Architecture Revision Reviewed: A0190
 Design Revision Reviewed: D0062
 Latest Accepted Design Revision: D0062
 Design Sync State: D0062_HARBOR_CATALOG_SYNCED
-Work State: HARBOR_QUALIFICATION_AND_INVESTMENT_FEEDBACK_LOCALLY_VERIFIED
+Work State: RETIRED_NETWORK_BOOST_DEFINITIONS_AND_READERS_LOCALLY_VERIFIED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B533.560 recognizes the three HD Harbor upgrades and explains confirmed investment network blockers. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
+| Source and installation | Develop B534.561 removes obsolete network boost definitions and their dedicated checks. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [HD Harbor and investment feedback](#hd-harbor-qualification-and-investment-network-feedback--s1133) passed all 28 current cases. The two pinned environments and both localized panels were also checked locally. |
-| Next action | Use normal play for outstanding native observations. The next retirement candidate is the old network boost family, with its startup and city-exit responsibilities reviewed together. The unresolved network window and the two Commerce policy questions remain explicit. |
+| Validation | [Retired network boost and retained cleanup](#retire-obsolete-network-boost-carriers--s1134) passed 30 current cases and 94 focused cases with overlap. Official full SQL and HD slice replay used pinned native inputs. |
+| Next action | Collect the parked city handover and razing evidence when it occurs in normal play. Revisit the network waiting threshold, permanent team loss and City Center investment targets only with evidence or an Owner decision. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Retire obsolete network boost carriers — S1134
+
+v0.1 的正式网络仍供商业、文化见闻与工业标准化使用。早期实验还为已经停用的尤里卡／市政鼓舞定义了 1,126 座隐藏建筑，导致启动时每座城市都要查询这些建筑。此次一起移除 1,032 项分数配置、4 项对照、90 项整数配置，以及它们专用的启动、会话隔离和城市退出代码。网络的两个系数仍由 Bridge 加载并进入原输入签名。开发面板的原生读数和基线操作继续可用。
+
+**巨作与退出。** 两座旧巨作建筑与分数鼓舞共用 B055 编号，但有独立定义和用途。巨作清理直接接收读档关闭和受支持玩家的回合激活，重入有保护。两座建筑的撤除都读回确认后才完成；故障注入下，下一个有效事件可再次核对。普通发布事件不会启动该扫描。城市易主仍按同一城市、同一退出凭据逐组确认。九时代夹具里其余十组为 283 个建筑及两个地块标记。模拟一项巨作撤除未确认时，目标城保持待定，另一城及普通建筑保持原样；确认撤除后才放行。
+
+**工作量与环境。** 空模拟城市在首次加载时查询旧鼓舞建筑由 1,126 次降至 0 次，巨作两座建筑的四次存在性读取相同。无需新增监听来源、周期工作、存档字段或重试策略。官方无 HD 固定库完整重放前后两份包的 SQL；固定 HD 库在内存中精确剥离后，旧 SQL 可重建同样的六张表，再用现行清单验证移除。每边减少 1,126 个类型、1,126 座建筑、1,126 行掠夺规则、2,252 个 Modifier、3,378 个参数及 1,126 个建筑与 Modifier 关联。六张表其余行一致，外键检查没有新增问题。当前 Mod 从 310 到 306 个文件，减少 1,027,482 字节。以上不含新原生启动、帧耗时或内存实测。
+
+**恢复与验证。** 上一包完整位于已发布提交 `ef7cbd44ddcd2148799d6a9a7c54d903316e07cf`，按原路径可取回。运行包只移出 `Mod/BoostIntegerConfig.lua`、`Mod/Data/NetworkBoost.sql`、`Mod/Data/BoostIntegerTest.sql`、`Mod/Data/NetworkBoostInteger.sql`；开发工具另移出 `tools/generate_boost.py` 与 `tools/generate_boost_integer.py`。旧收益与旧清理的断言按对应固定版本重放。临时安装目录验证了逐路径准入、换包与回滚。真实 Gameplay/UI 组合的三次商路报文及交易证明结果与旧包相同。当前回归 30/30，定域组合 94/94，两个集合有重合。静态检查覆盖 181 份 Lua 5.1 源码、24 份 XML 及 modinfo、603 个包引用。[专项可复现入口](../../DevelopmentTests/README.md#旧商路鼓舞的退出验证)与[当前网络职责](../Architecture/Specialization_v0.1_Architecture.md#网络与跨context数据)。本轮未部署，实机仍使用 B528.555。
+
+Local evidence: `local/refactor/CurrentGameplay-a1d467ab4164464197925476b25d1b20/closure.json` (SHA256 `4564837878c0778faffc6db7c8a2c190f41927ab6f31ee1661143c1ca380ab76`). Tested source digest `abf93a4d28933f0a180f65838e46e03eb6077f17586bf61e0c74056885723a0f`. Full artifact is local only.
 
 ### HD Harbor qualification and investment network feedback — S1133
 

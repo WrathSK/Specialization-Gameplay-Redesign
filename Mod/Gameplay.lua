@@ -422,7 +422,7 @@ local function request(playerID,params)
   end
   if params.Action=='BOOST_READ' or params.Action=='BOOST_BASELINE' then
     if not P.IsTestPlayer(playerID) then return end
-    shared.Snapshot=shared.NetworkBoost.Describe(playerID);shared.LastToken=params.Token;return
+    shared.Snapshot='科研专业仍参与商路连接。v0.1 暂缓科研网络鼓舞效果。';shared.LastToken=params.Token;return
   end
   if params.Action=='DISCOUNT_READ' then
     if not P.IsTestPlayer(playerID) then return end
@@ -741,11 +741,6 @@ composition.Run('PurchaseLoadCleanup',{},{},function()
 end)
 
 composition.Run('StandardizationEffects',{'CityProgressionStore','Standardization','NetworkBridge','EffectiveFacts','NativeFacts'},{'StandardizationEffects'},function() include('StandardizationEffects');SPCStandardizationEffects.Start(P,shared) end,nil,{deferNativeSubscriptions=true})
-
-composition.Run('NetworkBoost',{},{'NetworkBoost'},function()
- if not SPCLegacyCleanup then include('LegacyCleanup')end
- SPCLegacyCleanup.StartBoostLoad(P,shared)
-end)
 
 composition.Run('GreatWorkLoadCleanup',{},{'GreatWorkLoadCleanup'},function()
  if not SPCLegacyCleanup then include('LegacyCleanup')end

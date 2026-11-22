@@ -2,11 +2,18 @@
 import unittest
 from refactor_harness import measure
 from test_refactor_s7f import actual_store
+from retired_crew_sources import boost_history
 
 SETUP="""
 ca,cb=a,b;originA=ca:GetID();s=shared.CityProgressionStore
-include('BoostConfig');include('BoostIntegerConfig');include('LegacyCleanupCatalog');include('LegacyCleanup')
-groups=SPCLegacyCleanupCatalog.Build(9,SPCBoostConfig.rows,SPCBoostIntegerConfig.rows);byGroup={};byID={};definitions={};local index=0
+include('LegacyCleanupCatalog');include('LegacyCleanup')
+if historicalBoost then
+ include('BoostConfig');include('BoostIntegerConfig')
+ groups=SPCLegacyCleanupCatalog.Build(9,SPCBoostConfig.rows,SPCBoostIntegerConfig.rows)
+else
+ groups=SPCLegacyCleanupCatalog.Build(9)
+end
+byGroup={};byID={};definitions={};local index=0
 for _,row in ipairs(groups)do byGroup[row.key]=row;if row.kind=='buildings'then for _,name in ipairs(row.names)do
  index=index+1;definitions[name]={BuildingType=name,Index=index,InternalOnly=1};byID[index]={name=name,group=row.key}
 end end end
@@ -61,35 +68,38 @@ function retryA()jobsA.Retry({player=9,city=900})end
 function retryB()jobsB.Retry({player=9,city=900})end
 function countPresent(c,key)local n=0;for _,name in ipairs(byGroup[key].names)do if c.present[definitions[name].Index]then n=n+1 end end;return n end
 """
-def core_fixture(extra=''):
- v=actual_store();v.execute(SETUP+extra);return v
+def core_fixture(extra='', *, historical_boost=False):
+ v=actual_store()
+ if historical_boost:
+  boost_history(v);v.execute('historicalBoost=true')
+ v.execute(SETUP+extra);return v
 
 
 class Composite(unittest.TestCase):
  def test_full_exact_cleanup_flags_and_unrelated_values_preserved_without_creation(self):
-  v=core_fixture();v.execute("local before=T.writes();lose(ca,900);assert(T.writes()==before+1);assert(status()=='WITHDRAWN'and removeCalls==1409 and plotWrites==2 and postCalls==1);assert(ca.present[999999]and cb.present[999999]and ca.plotValues.OTHER=='keep');for id in pairs(byID)do assert(not ca.present[id]and cb.present[id])end;local reads,writes=hasReads,T.writes();s.ExitConfirmed();for i=1,1000 do Events.GameCoreEventPublishComplete.Fire()end;assert(hasReads==reads and T.writes()==writes)")
-  measure('S8c5b_exact_composite',{'building_removals':1409,'plot_writes':2,'ordinary_and_other_city_untouched':True,'creation':0,'idle_extra_reads_writes':0,'production_wiring':'PENDING'})
+  v=core_fixture();v.execute("local before=T.writes();lose(ca,900);assert(T.writes()==before+1);assert(status()=='WITHDRAWN'and removeCalls==283 and plotWrites==2 and postCalls==1);assert(ca.present[999999]and cb.present[999999]and ca.plotValues.OTHER=='keep');for id in pairs(byID)do assert(not ca.present[id]and cb.present[id])end;local reads,writes=hasReads,T.writes();s.ExitConfirmed();for i=1,1000 do Events.GameCoreEventPublishComplete.Fire()end;assert(hasReads==reads and T.writes()==writes)")
+  measure('S8c5b_exact_composite',{'building_removals':283,'plot_writes':2,'ordinary_and_other_city_untouched':True,'creation':0,'idle_extra_reads_writes':0,'production_wiring':'PENDING'})
  def test_boost_directory_unknown_does_not_suppress_fixed_groups_or_flags(self):
-  v=core_fixture("SPCBoostConfig.rows['RESEARCH:1:1']=nil");v.execute("lose(ca,900);assert(status()=='PARTIAL_HELD'and plotWrites==2 and postCalls==1 and countPresent(ca,'NetworkBoost')==1126 and countPresent(ca,'HalfYieldProbe')==0 and countPresent(ca,'Lv3Support')==0)")
+  v=core_fixture("SPCBoostConfig.rows['RESEARCH:1:1']=nil", historical_boost=True);v.execute("lose(ca,900);assert(status()=='PARTIAL_HELD'and plotWrites==2 and postCalls==1 and countPresent(ca,'NetworkBoost')==1126 and countPresent(ca,'HalfYieldProbe')==0 and countPresent(ca,'Lv3Support')==0)")
  def test_era_directory_unknown_only_holds_Dialogue_group(self):
-  v=core_fixture("GameInfo.Eras=function()error('ERA_DIRECTORY_UNKNOWN')end");v.execute("lose(ca,900);assert(status()=='PARTIAL_HELD'and countPresent(ca,'Dialogue')==12 and countPresent(ca,'NetworkBoost')==0 and countPresent(ca,'HalfYieldProbe')==0 and plotWrites==2 and postCalls==0)")
+  v=core_fixture("GameInfo.Eras=function()error('ERA_DIRECTORY_UNKNOWN')end");v.execute("lose(ca,900);assert(status()=='PARTIAL_HELD'and countPresent(ca,'Dialogue')==12 and countPresent(ca,'GreatWorkAdjacency')==0 and countPresent(ca,'HalfYieldProbe')==0 and plotWrites==2 and postCalls==0)")
  def test_native_Buildings_unavailable_is_not_all_definitions_absent_but_flags_still_clear(self):
   for mode in ('nil','throw'):
    v=core_fixture();v.execute("if ...=='nil'then GameInfo.Buildings=nil else GameInfo=setmetatable({Eras=GameInfo.Eras},{__index=function()error('BUILDINGS_UNKNOWN')end})end;lose(ca,900);assert(status()=='PARTIAL_HELD'and removeCalls==0 and plotWrites==2)",mode)
  def test_exact_missing_definition_is_absent_but_lookup_exception_is_UNKNOWN(self):
-  v=core_fixture();v.execute("local name=byGroup.PurchaseProbe.names[1];local id=definitions[name].Index;definitions[name]=nil;ca.present[id]=nil;lose(ca,900);assert(status()=='WITHDRAWN'and removeCalls==1408)")
-  v=core_fixture();v.execute("local name=byGroup.PurchaseProbe.names[1];local old=definitions[name];definitions[name]=nil;getmetatable(definitions).__index=function(_,k)if k==name then error('LOOKUP_UNKNOWN')end end;lose(ca,900);assert(status()=='PARTIAL_HELD'and countPresent(ca,'NetworkBoost')==0 and not removeByGroup.PurchaseProbe);getmetatable(definitions).__index=nil;definitions[name]=old;s.ExitConfirmed();assert(status()=='WITHDRAWN')")
+  v=core_fixture();v.execute("local name=byGroup.PurchaseProbe.names[1];local id=definitions[name].Index;definitions[name]=nil;ca.present[id]=nil;lose(ca,900);assert(status()=='WITHDRAWN'and removeCalls==282)")
+  v=core_fixture();v.execute("local name=byGroup.PurchaseProbe.names[1];local old=definitions[name];definitions[name]=nil;getmetatable(definitions).__index=function(_,k)if k==name then error('LOOKUP_UNKNOWN')end end;lose(ca,900);assert(status()=='PARTIAL_HELD'and countPresent(ca,'GreatWorkAdjacency')==0 and not removeByGroup.PurchaseProbe);getmetatable(definitions).__index=nil;definitions[name]=old;s.ExitConfirmed();assert(status()=='WITHDRAWN')")
  def test_bad_definition_does_not_authorize_writing_and_peers_continue(self):
   for mode in ('index','internal'):
-   v=core_fixture();v.execute("local r=definitions[byGroup.PurchaseProbe.names[1]];if ...=='index'then r.Index='UNKNOWN'else r.InternalOnly=0 end;lose(ca,900);assert(status()=='PARTIAL_HELD'and not removeByGroup.PurchaseProbe and countPresent(ca,'NetworkBoost')==0)",mode)
+   v=core_fixture();v.execute("local r=definitions[byGroup.PurchaseProbe.names[1]];if ...=='index'then r.Index='UNKNOWN'else r.InternalOnly=0 end;lose(ca,900);assert(status()=='PARTIAL_HELD'and not removeByGroup.PurchaseProbe and countPresent(ca,'GreatWorkAdjacency')==0)",mode)
  def test_unprintable_partial_removal_recovers_by_readback_without_rewriting_deleted_rows(self):
-  v=core_fixture("removeMode='AFTER'");v.execute("lose(ca,900);assert(status()=='PARTIAL_HELD'and removeCalls==10 and plotWrites==2);removeMode=nil;s.ExitConfirmed();assert(status()=='WITHDRAWN'and removeCalls==1409)")
+  v=core_fixture("removeMode='AFTER'");v.execute("lose(ca,900);assert(status()=='PARTIAL_HELD'and removeCalls==9 and plotWrites==2);removeMode=nil;s.ExitConfirmed();assert(status()=='WITHDRAWN'and removeCalls==283)")
  def test_three_Store_attempts_then_independent_two_group_recovery_requires_both(self):
   v=core_fixture();v.execute("""
   local has=P.HasBuilding;P.HasBuilding=function(b,id)local key=byID[id].group;if key=='Lv3Support'and not readyA or key=='Lv3Effects'and not readyB then return nil end;return has(b,id)end
   lose(ca,900);s.ExitConfirmed();s.ExitConfirmed();assert(status()=='PARTIAL_HELD')
   local prior=removeCalls;readyA=true;retryA();assert(status()=='PARTIAL_HELD'and removeCalls==prior+12 and not jobsA.exits['9:900']and jobsB.exits['9:900'])
-  readyB=true;retryB();assert(status()=='WITHDRAWN'and removeCalls==1409 and not jobsB.exits['9:900'])
+  readyB=true;retryB();assert(status()=='WITHDRAWN'and removeCalls==283 and not jobsB.exits['9:900'])
   """)
  def test_newer_pending_during_physical_cleanup_is_preserved(self):
   v=core_fixture("faultGroup='Lv3Support'");v.execute("""
@@ -98,9 +108,9 @@ class Composite(unittest.TestCase):
   retryA();assert(status()=='WITHDRAWN'and not jobsA.exits['9:900']and jobsA.pending['9:900']~=old)
   """)
  def test_group_done_progress_does_not_cross_cities(self):
-  v=core_fixture("faultGroup='NetworkBoost';faultCity=ca");v.execute("lose(ca,900);lose(cb,901);assert(status(ca)=='PARTIAL_HELD'and status(cb)=='WITHDRAWN'and countPresent(ca,'NetworkBoost')==1126 and countPresent(cb,'NetworkBoost')==0);faultGroup=nil;s.ExitConfirmed();assert(status(ca)=='WITHDRAWN'and removeCalls==2818)")
+  v=core_fixture("faultGroup='GreatWorkAdjacency';faultCity=ca");v.execute("lose(ca,900);lose(cb,901);assert(status(ca)=='PARTIAL_HELD'and status(cb)=='WITHDRAWN'and countPresent(ca,'GreatWorkAdjacency')==156 and countPresent(cb,'GreatWorkAdjacency')==0);faultGroup=nil;s.ExitConfirmed();assert(status(ca)=='WITHDRAWN'and removeCalls==566)")
  def test_post_cleanup_failure_holds_only_group_and_runs_after_physical_readback(self):
-  v=core_fixture("postFault=true");v.execute("lose(ca,900);assert(status()=='PARTIAL_HELD'and removeCalls==1409 and postCalls==1);postFault=false;s.ExitConfirmed();assert(status()=='WITHDRAWN'and removeCalls==1409 and postCalls==2)")
+  v=core_fixture("postFault=true");v.execute("lose(ca,900);assert(status()=='PARTIAL_HELD'and removeCalls==283 and postCalls==1);postFault=false;s.ExitConfirmed();assert(status()=='WITHDRAWN'and removeCalls==283 and postCalls==2)")
  def test_new_loss_rechecks_all_groups_and_old_ticket_cannot_write(self):
   v=core_fixture();v.execute("""
   lose(ca,900);local first=captured[ca];local proof=M.Copy(losses[ca]);assert(status()=='WITHDRAWN')
@@ -108,7 +118,7 @@ class Composite(unittest.TestCase):
   for id in pairs(byID)do ca.present[id]=true end;ca.plotValues.SPC_B029_ONE=1;ca.plotValues.SPC_B029_HALF=1
   faultGroup='Lv3Support';lose(ca,900);assert(not rawequal(first,captured[ca])and status()=='PARTIAL_HELD')
   local writes,reads=removeCalls,hasReads;assert(not pcall(core.Exit,ca,proof,first));assert(removeCalls==writes and hasReads==reads)
-  faultGroup=nil;retryA();assert(status()=='WITHDRAWN'and removeCalls==2818 and plotWrites==4)
+  faultGroup=nil;retryA();assert(status()=='WITHDRAWN'and removeCalls==566 and plotWrites==4)
   """)
  def test_duplicate_unknown_registrations_fail_without_overwriting_existing_owners(self):
   v=core_fixture();v.execute("assert(not pcall(core.RegisterRunner,'Lv3Support',function()end));assert(not pcall(core.RegisterRunner,'Other',runnerA));assert(not pcall(core.RegisterPostCleanup,'Dialogue',function()end));assert(not pcall(core.RegisterPostCleanup,'Other',post));lose(ca,900);assert(status()=='WITHDRAWN')")
@@ -116,7 +126,7 @@ class Composite(unittest.TestCase):
   v=core_fixture();v.execute("""
   local has=P.HasBuilding;local once=true
   P.HasBuilding=function(b,id)if once then once=false;assert(not pcall(core.Exit,ca,losses[ca],captured[ca]))end;return has(b,id)end
-  lose(ca,900);assert(status()=='WITHDRAWN'and removeCalls==1409)
+  lose(ca,900);assert(status()=='WITHDRAWN'and removeCalls==283)
   """)
 
  def test_non_string_successful_tostring_does_not_skip_other_groups(self):
@@ -126,14 +136,14 @@ class Composite(unittest.TestCase):
    Map.GetPlot=function(...)local plot=get(...);plot.GetProperty=function()error(setmetatable({},{__tostring=function()
     if mode=='table'then return {}elseif mode=='number'then return 17 else return false end
    end}))end;return plot end
-   lose(ca,900);assert(status()=='PARTIAL_HELD'and removeCalls==1409 and plotWrites==0 and postCalls==1)
+   lose(ca,900);assert(status()=='PARTIAL_HELD'and removeCalls==283 and plotWrites==0 and postCalls==1)
    """,mode)
  def test_missing_required_participants_hold_only_their_groups(self):
   v=core_fixture();v.execute("""
   core=SPCLegacyCleanup.Start(P,shared);lose(ca,900)
-  assert(status()=='PARTIAL_HELD'and countPresent(ca,'Lv3Support')==12 and countPresent(ca,'Lv3Effects')==11 and countPresent(ca,'NetworkBoost')==0 and plotWrites==2)
+  assert(status()=='PARTIAL_HELD'and countPresent(ca,'Lv3Support')==12 and countPresent(ca,'Lv3Effects')==11 and countPresent(ca,'GreatWorkAdjacency')==0 and plotWrites==2)
   core.RegisterRunner('Lv3Support',runnerA);core.RegisterRunner('Lv3Effects',runnerB);core.RegisterPostCleanup('Dialogue',post)
-  s.ExitConfirmed();assert(status()=='WITHDRAWN'and removeCalls==1409 and postCalls==1)
+  s.ExitConfirmed();assert(status()=='WITHDRAWN'and removeCalls==283 and postCalls==1)
   """)
  def test_failed_Composition_participant_cannot_be_invoked_as_success(self):
   for kind in ('runner','post'):
@@ -146,7 +156,7 @@ class Composite(unittest.TestCase):
     core.RegisterRunner('Lv3Support',runnerA);core.RegisterRunner('Lv3Effects',runnerB)
     assert(not composition.Run('FailedPost',{}, {},function()core.RegisterPostCleanup('Dialogue',post);error('START_FAILED')end))
    end
-   lose(ca,900);assert(status()=='PARTIAL_HELD'and countPresent(ca,'NetworkBoost')==0)
+   lose(ca,900);assert(status()=='PARTIAL_HELD'and countPresent(ca,'GreatWorkAdjacency')==0)
    if kind=='runner'then assert(countPresent(ca,'Lv3Support')==12)else assert(postCalls==0 and countPresent(ca,'Dialogue')==0)end
    """,kind)
  def test_last_group_slot_replacement_keeps_old_candidate_unconfirmed(self):
@@ -232,7 +242,7 @@ class Composite(unittest.TestCase):
   end
   retryA();assert(status()=='PARTIAL_HELD'and removeCalls==removed and jobsA.exits['9:900'])
   assert(not s.IsExitCurrent('LegacyCleanup',ca,oldLoss,first))
-  faultGroup=nil;retryA();assert(status()=='WITHDRAWN'and removeCalls==1409)
+  faultGroup=nil;retryA();assert(status()=='WITHDRAWN'and removeCalls==283)
   """)
  def test_completed_old_ticket_is_not_retained_by_weak_ledger_value(self):
   v=core_fixture();v.execute("""

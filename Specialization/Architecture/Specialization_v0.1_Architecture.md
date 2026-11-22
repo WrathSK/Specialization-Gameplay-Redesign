@@ -1,7 +1,7 @@
-# Specialization v0.1 Architecture — A0189
+# Specialization v0.1 Architecture — A0190
 
 Document Owner: Codex
-Architecture Revision: A0189
+Architecture Revision: A0190
 Design Spec Synced Through: D0062
 Design Spec SHA256: 5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c874cc9248
 Latest Accepted Design Revision: D0062
@@ -170,6 +170,8 @@ The actual Settler transaction now returns call-local final-readback evidence th
 
 [版本发布](v2/Batch_A_Input_Contract.md)、[共享视图](v2/Batch_B_Shared_Network.md)、[请求/撤销生命周期](v2/Batch_C2_Copy_Industry_Lifecycle.md)、[事件传播](v2/Batch_D2_Runtime_Propagation.md)是可复用技术合同。不同专业payload不强制套同一公式。Current Commerce, CultureNetwork and StandardizationEffects own their independent passive-effect calculations; exact old-carrier withdrawal no longer depends on the retired writers. B226已接入[文化完整文明集合并集与专家投影](v2/P0_N_Expedition.md#n3culture-network与精确旧eureka退出)，并精确退出旧文化尤里卡。B234按用户决定隔离旧科研网络鼓舞至v0.1之后；共同拓扑与科研本城能力保留，原生验收见Status。Commerce uses the direct domestic-partner projection; Capital uses proved recipient sources; Development uses proved direct outgoing destinations. Their separate qualifications and irreversible-operation gates remain in their owners.
 
+A0190 的当前构建从数据库、启动及城市退出清单中一并移除 B055、B057、B058 三组旧科研／文化网络鼓舞建筑。公共网络的两个系数仍进入 NetworkInput 的输入签名。另属巨作试验的两座 B055 建筑继续由巨作清理负责：读档关闭或受支持玩家的回合激活可触发撤除，完成以写后读回为准。城市退出继续按该城逐组确认，正式文化网络的专家收益由原模块处理。
+
 ### Network pending hold and confirmation recovery
 
 This accepted successor replaces B240 UNKNOWN-as-withdrawal and A0183's cold exception/derived-persistence target. D0059 [Network](../Design/Network.md#未确认不等于失效) owns gameplay; existing native receipts and formulas retain their owners.
@@ -183,7 +185,7 @@ This accepted successor replaces B240 UNKNOWN-as-withdrawal and A0183's cold exc
 
 ### 收益应用与玩家呈现
 
-Research Infrastructure, Interdisciplinary Research, Applied Learning and Academic Chair retain their formal consumers and [cutover contracts](v2/README.md#收益应用与精度). Exact SQL and each owner govern native writes and withdrawals; no broad BUILDING-prefix deletion is permitted. StandardizationCatalog / StandardizationEffects now identify, withdraw and read back the exact B051/B054 industrial carriers before applying current effects. LegacyCleanup owns the transferred purchase, old Great Work, Commerce, level-three, Boost and Dialogue cleanup groups; current Culture owners retain their assigned exact withdrawals. CopyYields, StandardizationDiscount and NetworkBoost are absent as Lua writers, while required SQL definitions and permanent histories remain. See the [responsibility matrix](v2/D0032_Implementation_Plan.md#明确的旧效果切换责任) and current Status for scoped verification.
+Research Infrastructure, Interdisciplinary Research, Applied Learning and Academic Chair retain their formal consumers and [cutover contracts](v2/README.md#收益应用与精度). Exact SQL and each owner govern native writes and withdrawals; no broad BUILDING-prefix deletion is permitted. StandardizationCatalog / StandardizationEffects now identify, withdraw and read back the exact B051/B054 industrial carriers before applying current effects. LegacyCleanup owns the transferred purchase, old Great Work, Commerce, level-three and Dialogue cleanup groups; current Culture owners retain their assigned exact withdrawals. CopyYields, StandardizationDiscount and NetworkBoost are absent as Lua writers, while required SQL definitions and permanent histories remain. See the [responsibility matrix](v2/D0032_Implementation_Plan.md#明确的旧效果切换责任) and current Status for scoped verification.
 
 “每人口可产生小数”不证明“区域/每专家平坦收益可任意小数”；科研两条floor实现分别是汇总后取整、每专家取整，不能推广成全系统精度规则。具体原生路径与用户接受范围见[技术精度证据](../Reports/Technical/README.md#收益精度与原生效果)。
 

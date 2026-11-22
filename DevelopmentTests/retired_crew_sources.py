@@ -61,6 +61,7 @@ B524 = '83fda621a2857423a325f295aa530e5937651f78'
 B525 = '1d1d0e284ea14ef6a03d45b6c201979c71b6853c'
 B526 = '49d028488bb5a08481d67d0ce6267e663489d094'
 B527 = '5cf9b48463cc5f875ebab562cc89c9cedb9d0bcb'
+B533 = 'ef7cbd44ddcd2148799d6a9a7c54d903316e07cf'
 RETIRED_LEVEL3_FILES = ('Lv3Effects.lua', 'Lv3Support.lua')
 RETIRED_ADJACENCY_FILES = ('GreatWorkAdjacency.lua', 'GreatWorkAdjacencyModel.lua')
 RETIRED_CITY_STARTS = ('BindingProbe', 'CityJournalProbe', 'CityFlowProbe')
@@ -92,3 +93,15 @@ def package(revision=B444, *, paths=('Mod',)):
 def gameplay(checkout, *, revision=B444, name='Gameplay', **options):
     vfs = PackageVFS(manifest=checkout/'Mod/SpecializationP0.modinfo', **options)
     return Context(name=name, vfs=vfs, history=(checkout, revision))
+
+def boost_history(vm):
+    """Use the published B533 directories and cleanup when replaying their old contracts."""
+    include = vm.globals().include
+
+    def historical(name):
+        if name in ('BoostConfig', 'BoostIntegerConfig', 'LegacyCleanupCatalog', 'LegacyCleanup'):
+            return vm.execute(source(name + '.lua', B533))
+        return include(name)
+
+    vm.globals().include = historical
+    return historical
