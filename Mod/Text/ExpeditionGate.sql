@@ -434,6 +434,20 @@ INSERT OR REPLACE INTO LocalizedText(Language,Tag,Text) VALUES
 
 -- B196: explicit normal action views; diagnostic copy remains separate.
 INSERT OR REPLACE INTO LocalizedText (Language, Tag, Text) VALUES
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTION_ARCHIVE','选择归档城市'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ACTION_ARCHIVE','Choose an Archive City'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ARCHIVE_HINT','将今后的见闻归入一座己方文化城市。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ARCHIVE_HINT','Choose one of your Culture cities to receive future Insights.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ARCHIVE_CONFIRM','确认挂靠'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ARCHIVE_CONFIRM','Assign Expedition'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ARCHIVE_CHOOSE','请选择归档城市'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ARCHIVE_CHOOSE','Select an archive city.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ARCHIVE_EMPTY','当前没有可挂靠的文化城市。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ARCHIVE_EMPTY','You have no eligible Culture city.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ARCHIVE_PARTIAL','部分城市的身份暂时无法确认。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ARCHIVE_PARTIAL','Some cities could not be checked.'),
+ ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ARCHIVE_CHANGED','城市或考察团状态已变。请重新打开城市列表。'),
+ ('en_US','LOC_SPC_EXPEDITION_SPY_ARCHIVE_CHANGED','The city or Expedition has changed. Reopen the list.'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTION_TRAVEL','派遣到新城市'),
  ('en_US','LOC_SPC_EXPEDITION_SPY_ACTION_TRAVEL','Travel to a New City'),
  ('zh_Hans_CN','LOC_SPC_EXPEDITION_SPY_ACTION_TASK','任务'),

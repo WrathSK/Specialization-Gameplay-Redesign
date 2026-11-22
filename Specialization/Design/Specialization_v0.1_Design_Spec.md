@@ -2,13 +2,13 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0064
+Design Revision: D0065
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
 Acceptance Date: 2026-11-21
-Acceptance Evidence: 负责人于 2026-11-21 确认五个玩家可见边界及异常证据的处理原则。
-Previous Accepted Revision: [D0063冻结原文](Revisions/Specialization_Design_Spec_D0063.md)
-Latest Accepted Design Revision: D0064
+Acceptance Evidence: 负责人确认考察团失去归档城后的替代行动按钮与己方文化城选择流程。
+Previous Accepted Revision: [D0064冻结原文](Revisions/Specialization_Design_Spec_D0064.md)
+Latest Accepted Design Revision: D0065
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
@@ -204,7 +204,9 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 **人文考察团训练城易主（D0063）。** 训练城正式易主后，原主人在该城已确认、尚未完成的考察团训练订单作废。确认没有出生或生产完成凭据，并且能够可靠排除原主人仍有考察团时，其他文化四级城可重新训练。单位去向不明时继续占用全国名额。已成团的单位沿用存续与归档城规则。
 
-文化能力及任务的完整设计与首版文案：[Culture D0064](Content/Culture_D0064.json)。当前时代对话的玩家说明与实际收益均采用仅旅游业绩的备用路径，见[文化阅读页](Culture.md#累计效果)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
+**人文考察团重新挂靠（D0065）。** 已成团后需要重新指定归档城时，单位行动栏显示“选择归档城市”，取代派遣和任务。列表显示己方具有文化身份的城市。确认后，新见闻按所选城市的历史和名额归档。
+
+文化能力及任务的完整设计与首版文案：[Culture D0065](Content/Culture_D0065.json)。当前时代对话的玩家说明与实际收益均采用仅旅游业绩的备用路径，见[文化阅读页](Culture.md#累计效果)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
 
 | Rule ID | 当前content条目 |
 |---|---|

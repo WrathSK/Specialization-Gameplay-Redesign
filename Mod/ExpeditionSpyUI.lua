@@ -34,6 +34,7 @@ end
 function M.CanOpen(mode,u)
  local v=M.ActivityView(u)
  if not v or M.ActivityLocked(u)then return false end
+ if v.archivePending then return mode=='ARCHIVE' and (v.phase=='CREATED' or v.phase=='ARRIVED') end
  if mode=='TRAVEL'then return v.phase=='CREATED' or v.phase=='ARRIVED' or v.phase=='TASK_COMPLETE' end
  return mode=='TASK' and v.phase=='ARRIVED' and v.taskStart==nil
 end
@@ -74,7 +75,7 @@ local function selectionMode(u)
  if not M.IsTeam(u) or not M.IsTeam(selected) or selected:GetOwner()~=u:GetOwner()
   or selected:GetID()~=u:GetID()then return nil end
  local v=M.ActivityView(u)
- if not v or M.ActivityLocked(u)then return nil end
+ if not v or v.archivePending or M.ActivityLocked(u)then return nil end
  local ok,mode=pcall(function()
   if u:GetX()~=v.x or u:GetY()~=v.y or not u:IsReadyToMove()
    or UnitManager.GetActivityType(u)~=ActivityTypes.ACTIVITY_AWAKE then return nil end

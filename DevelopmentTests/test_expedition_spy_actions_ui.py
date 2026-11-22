@@ -13,7 +13,7 @@ class ExplicitActions(unittest.TestCase):
          phase('CREATED');local a=GetUnitActionsTable(team)
          assert(#a.SPECIFIC==2 and not a.SPECIFIC[1].disabled and a.SPECIFIC[2].disabled)
          assert(a.SPECIFIC[1].icon=='ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY')
-         assert(a.SPECIFIC[2].icon=='ICON_UNITOPERATION_SPY_GAIN_SOURCES')
+         assert(a.SPECIFIC[2].icon=='ICON_SPC_RAW_TASK')
          a.SPECIFIC[2].CallbackFunc();assert(routed==0)
          a.SPECIFIC[1].CallbackFunc();assert(routed==1 and routes[1].mode=='TRAVEL' and routes[1].id==40)
          phase('ARRIVED');a=GetUnitActionsTable(team)

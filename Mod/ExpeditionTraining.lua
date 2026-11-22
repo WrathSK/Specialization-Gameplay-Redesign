@@ -388,6 +388,15 @@ function SPCExpeditionTraining.Start(P,shared)
      and after.sourceCity==s.sourceCity and after.x==s.x and after.y==s.y
      and after.trainingToken==s.trainingToken and after.sourceRef==s.sourceRef,'TRAINING_EXIT_UNCONFIRMED')
     if reason==T.TransferredOrder then dirty=true end
+   elseif ticket and s.unitID and s.teamKey and s.owner==pid and s.sourceCity then
+    -- The original owner's city ID may differ after a verified return. The saved
+    -- endpoint, plot and Store token together identify the archive, even from abroad.
+    local token=assert(store.ReferenceToken(c),'ARCHIVE_BINDING_UNKNOWN')
+    local ref=SPCNetworkInput.ReferenceParts(pid,s.sourceCity,loss.origin.x,loss.origin.y,token)
+    if ref==s.sourceRef then
+     assert(store.IsExitCurrent('ExpeditionTraining',c,loss,ticket),'ARCHIVE_EXIT_CHANGED')
+     T.LoseArchive(pid,ref,s.teamKey)
+    end
    end
    return true
   end,function()return false end) -- an unrelated saved team is never held by this cleanup's failure

@@ -123,7 +123,9 @@ ACTIVE四级可以训练人文考察团，首测生产成本**沿用当前间谍
 
 原Owner可**免费、不限次数**重新挂靠到任意己方仍具有文化身份的城市，无须高ACTIVE或具备训练考察团的等级。这是重新指定归档机构，不是重新训练；完成后可开始新任务，后续成功记录进入新来源城、遵守该城原有类别额度。没有合法文化城市时，单位仍在，但不能开始新任务。
 
-总督迁移／城市选择式界面仅是后续技术候选。按[Shared专业单位保护](Shared.md)，人文考察团**不允许被敌方捕获，也不转换Owner**；原本可能导致捕获或消灭的交互采用保护式撤退／安全回归。具体原生接口属于技术调查，单位本体捕获后的归属不再是玩法TBD。来源易主仍优先执行上述任务取消、原Owner保留单位和重新挂靠规则。
+**玩家操作。** 需要重新挂靠时，行动栏用“选择归档城市”取代派遣与任务。点击后，从列表中选择一座己方文化城并确认。考察团留在原处，以后的见闻归入所选城市。
+
+按[Shared专业单位保护](Shared.md)，人文考察团**不允许被敌方捕获，也不转换Owner**；原本可能导致捕获或消灭的交互采用保护式撤退／安全回归。具体原生接口属于技术调查，单位本体捕获后的归属不再是玩法TBD。来源易主仍优先执行上述任务取消、原Owner保留单位和重新挂靠规则。
 
 ### 三类任务
 
@@ -211,7 +213,7 @@ ACTIVE四级可以训练人文考察团，首测生产成本**沿用当前间谍
 
 [返回Design导航](README.md)。本页为阅读呈现，不新增独立权威或实现授权。
 
-- [文化正式内容](Content/Culture_D0064.json)：全部能力、作品池、领域、任务、城市历史及当前Owner过滤与网络并集。
+- [文化正式内容](Content/Culture_D0065.json)：全部能力、作品池、领域、任务、城市历史及当前Owner过滤与网络并集。
 - [当前Spec](Specialization_v0.1_Design_Spec.md)：CUL及GW取代关系；[Shared](Content/Shared_D0064.json)解释D和产出份额。
 - [A–D接受与替代](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：明确取代原Owner见闻分账，不改作品／意义延展规则。
 - [原冻结审阅](../Historical/Design/Reviews/Culture_D0028_Review.md)（只引用未被取代部分）、[边界接受审阅](../Historical/Design/Reviews/Culture_D0029_Review.md)、[Hybrid D正式方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)、[接受记录](Design_ChangeLog.md)。

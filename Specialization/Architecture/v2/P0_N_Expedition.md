@@ -6,6 +6,8 @@
 
 **Current training-city transfer rule (D0063 / A0191).** A verified transfer can end a confirmed unfinished order even when the former owner can no longer read the source queue. Release depends on the original city binding, marker withdrawal, absence of receipts and a reliable unit check. See the [current transfer contract](../Specialization_v0.1_Architecture.md#考察团训练城易主). B210 below still describes native queue cancellation while the source is owned.
 
+**已成团后的归档入口（B537）。** 原归档城确认易主后，存续单位可通过行动栏选择新的己方文化城。已有城市历史留在原处。新入口的协议、读档与未决原生情形见[现行架构](../Specialization_v0.1_Architecture.md#已成团的考察团更换归档城)和[验证范围](../../Status/Specialization_P0_Status.md#expedition-archive-city-choice--s1138)。
+
 ## Current slice — B213 Expedition repair and Culture presentation
 
 **B229 evidence closure:** [bounded retained network reasons and all release exits](../../Status/Validation/Results/Specialization_B229_Retained_Diagnostics.md). Network report snapshots reuse the existing bounded ring; no new listener or state authority. Both owned release readback exits and unowned release emit branch diagnostics before ACK. Release criteria are unchanged; readiness is observational, not permission for forced wake.

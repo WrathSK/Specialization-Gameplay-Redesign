@@ -89,13 +89,17 @@ local function buildActions(u)
    end
   end)
  end
- add('TRAVEL','ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY','TRAVEL',-196)
- add('TASK','ICON_SPC_RAW_TASK','TASK',-197)
+ if R.ActivityView(u).archivePending then
+  add('ARCHIVE','ICON_DISTRICT_THEATER','ARCHIVE',-537)
+ else
+  add('TRAVEL','ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY','TRAVEL',-196)
+  add('TASK','ICON_SPC_RAW_TASK','TASK',-197)
+ end
  -- Allow only idle controls, not the base Spy builder or its mission hotkeys.
  -- Manual sleep is native-owned: it never writes the task activity lease.
  local function idle(selected)
   return R.IsTeam(selected) and selected:GetOwner()==owner and selected:GetID()==id
-   and R.CanOpen('TRAVEL',selected)
+   and (R.CanOpen('TRAVEL',selected) or R.CanOpen('ARCHIVE',selected))
  end
  local signature={tostring(owner),tostring(id),idleKind(u)}
  local function nativeAction(tableName,key,command)

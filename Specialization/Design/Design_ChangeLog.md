@@ -3,8 +3,16 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0064
+Latest Accepted Design Revision: D0065
 Document State: ACCEPTED
+
+## Accepted D0065 — 2026-11-21
+
+已成团且归档失效时，以“选择归档城市”取代派遣与任务。玩家选择一座己方文化城后确认。原有免费挂靠、全国名额和各城市分别保有见闻的规则继续适用。[文化规则](Culture.md#来源易主与重新挂靠)
+
+Accepted Spec SHA256: `feea441aafe38687c38d55604ac27ef3c2b4433306e18afa6a51f4cb7ee30d15`
+[Culture D0065](Content/Culture_D0065.json) SHA256: `26c1dae7af24111a0cfcfe11e742164beb770a075dfe5890a0fb10d8f4b62ed6`
+[上一版已接受规范](Revisions/Specialization_Design_Spec_D0064.md)
 
 ## Accepted D0064 — 2026-11-21
 

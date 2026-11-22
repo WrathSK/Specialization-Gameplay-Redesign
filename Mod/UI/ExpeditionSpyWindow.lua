@@ -9,7 +9,7 @@ local viewMode='DIAGNOSTIC';local requestedUnitID;local close
 local current,pending,pendingAction,travel,gain,before,audit,comparison
 local diagnosticPhase,diagnosticRevision,diagnosticTurn
 local targets={};local selected=1;local taskSelected=false;local request;local lastNativePermit
-local refreshHeader;local taskDisplay;local previewRow;local districtStrips={};local missionRows={};local missionKey;local missionSite
+local refreshHeader,populateSidebar;local taskDisplay;local previewRow;local districtStrips={};local missionRows={};local missionKey;local missionSite
 -- B212: the three Design missions (Culture D0049).
 local MISSIONS={{key='PEOPLE',icon='ICON_UNITOPERATION_SPY_LISTENING_POST'},{key='WORKS',icon='ICON_SPC_RAW_WORKS'},{key='PLACES',icon='ICON_DISTRICT_WONDER'}}
 local naming,nameStage,nameReason,nameObservation
@@ -174,6 +174,14 @@ local function failureText(v)
 end
 local function renderNormal()
  local exact=normalExact();local v=current
+ if viewMode=='ARCHIVE' then
+  local can=normalCanAct()
+  Controls.NormalConfirmButton:SetDisabled(not can or not targets[selected])
+  for _,row in ipairs(normalRows)do row.button:SetDisabled(not can);row.brace:SetHide(row.index~=selected)end
+  if v and v.error then setReport(L('ARCHIVE_CHANGED'))
+  elseif v and not exact then setReport(L('NORMAL_SELECTION_CHANGED'))end
+  resizeSidebar();return
+ end
  -- Native SLEEP can clear selection before an immediate task failure arrives.
  -- Keep that exact team's correlated error visible; selection still gates actions.
  local failure=(exact or (v and v.unitID==requestedUnitID and activityView())) and failureText(v) or nil
@@ -344,6 +352,12 @@ local function reply()
  current={};for key,item in pairs(v)do current[key]=item end
  diagnosticPhase=v.phase;diagnosticRevision=v.activityRevision;diagnosticTurn=v.turn
  if viewMode~='DIAGNOSTIC'then Controls.NormalFeedback:SetText('')end
+ if viewMode=='ARCHIVE' then
+  if action=='REBIND' and v.archiveAccepted and not v.error then close(true);return true end
+  if action=='ARCHIVES' or action=='REBIND' then
+   targets=v.archives or {};selected=nil;populateSidebar();render();return true
+  end
+ end
  if action=='CREATE' and not v.error then
   observing=true;missionEvents=0;lastMission=nil;taskBefore=nil;taskAfter=nil;taskEventsBefore=nil;afterPublish=false
   prepareName(v);return true
@@ -399,10 +413,12 @@ end
 request=function(action,detail)
  syncActivity()
  if viewMode~='DIAGNOSTIC'then
-  local expected=viewMode=='TRAVEL' and 'DISPATCH' or 'TASK'
-  if action~='READ' and action~='STOP' then
+  local expected=viewMode=='ARCHIVE' and 'REBIND' or viewMode=='TRAVEL' and 'DISPATCH' or 'TASK'
+  if action=='ARCHIVES' then
+   if viewMode~='ARCHIVE' or not U.CanOpen('ARCHIVE',UI.GetHeadSelectedUnit())then return end
+  elseif action~='READ' and action~='STOP' then
    if action~=expected or not normalCanAct()then setReport(L('ACTION_UNAVAILABLE'));return end
-   if action=='DISPATCH' and not targets[selected]then setReport(L('NORMAL_SELECT_CITY'));return end
+   if (action=='DISPATCH' or action=='REBIND') and not targets[selected]then setReport(L('NORMAL_SELECT_CITY'));return end
    if action=='TASK' and not taskSelected then setReport(L('NORMAL_SELECT_TASK'));return end
   end
  end
@@ -441,6 +457,14 @@ request=function(action,detail)
  ExposedMembers.SPC_ExpeditionGateSequence=(ExposedMembers.SPC_ExpeditionGateSequence or 0)+1
  pending='N1:'..P.VERSION..':'..ExposedMembers.SPC_ExpeditionGateSequence;pendingAction=action
  local packet={OnStart='SPC_ExpeditionGateRequest',Token=pending,Action=action,CityID=c and c:GetID(),UnitID=id,Detail=detail}
+ if action=='ARCHIVES' then
+  local unit=UI.GetHeadSelectedUnit();local view=U.ActivityView(unit)
+  if not view or unit:GetID()~=requestedUnitID then pending=nil;pendingAction=nil;return end
+  packet.UnitID=requestedUnitID;packet.TeamKey=view.teamKey
+ elseif action=='REBIND' then
+  local city=targets[selected]
+  packet.TeamKey=current.teamKey;packet.Revision=current.storeRevision;packet.CityID=city.id;packet.ArchiveRef=city.ref
+ end
  if action=='NAME' then
   -- Only the READY NativeName path calls NAME; Gameplay validates the current
   -- turn and raw name, while off-map enumeration remains this UI read boundary.
@@ -517,6 +541,17 @@ local function paintDistricts(row,items)
  page(0)
 end
 local function paintCity(row,display,showTime)
+ if viewMode=='ARCHIVE' then
+  row.BannerBase:SetHide(not display);row.DistrictInfo:SetHide(true);row.LocationNotice:SetHide(true)
+  row.TravelTimeStack:SetHide(true);row.DistrictsScrollLeftButton:SetHide(true);row.DistrictsScrollRightButton:SetHide(true)
+  if row.DestinationButton then row.DestinationButton:SetSizeY(51)end
+  if display then
+   local back,front=UI.GetPlayerColors(display.owner)
+   row.BannerBase:SetColor(back);row.CityName:SetColor(front)
+   TruncateStringWithTooltip(row.CityName,185,Locale.Lookup(display.name));row.BannerBase:SetToolTipString('')
+  end
+  return
+ end
  local valid=display and display.owner~=nil
  local incomplete=valid and display.locationStatus~='READABLE'
  row.LocationNotice:SetHide(not incomplete)
@@ -544,6 +579,15 @@ end
 refreshHeader=function()
  if viewMode=='DIAGNOSTIC'then return end
  local display
+ if viewMode=='ARCHIVE' then
+  local city=targets[selected]
+  paintCity(header,city,false);Controls.NormalEmptyLabel:SetHide(city~=nil)
+  local message=current and current.error and 'ARCHIVE_CHANGED' or #targets>0 and 'ARCHIVE_CHOOSE' or current and current.partial and 'ARCHIVE_PARTIAL' or 'ARCHIVE_EMPTY'
+  Controls.NormalEmptyLabel:SetText(pending and common('WAIT') or L(message))
+  Controls.NormalMissionGrid:SetHide(false)
+  if current and current.partial then setReport(L('ARCHIVE_PARTIAL'))end
+  return
+ end
  if viewMode=='TRAVEL'then display=targets[selected] and targets[selected].display
  elseif current and current.targetID and current.unitID==requestedUnitID then
   if not taskDisplay then
@@ -589,30 +633,39 @@ local function updateTarget()
  Controls.TargetLabel:SetText(label)
  if viewMode=='TRAVEL'then TruncateStringWithTooltip(Controls.NormalTargetLabel,250,label);refreshHeader()end
 end
-local function populateSidebar()
+populateSidebar=function()
  clearRows()
- Controls.NormalScroll:SetHide(viewMode~='TRAVEL')
- Controls.DestinationStack:SetHide(viewMode~='TRAVEL');Controls.MissionStack:SetHide(false)
- Controls.NormalMissionGrid:SetOffsetX(viewMode=='TRAVEL' and 296 or 0)
- Controls.NormalDrawerTitle:SetText(L(viewMode=='TRAVEL' and 'NORMAL_MISSION_PREVIEW' or 'ACTION_TASK'))
+ local cityMode=viewMode=='TRAVEL' or viewMode=='ARCHIVE'
+ Controls.NormalScroll:SetHide(not cityMode)
+ Controls.DestinationStack:SetHide(not cityMode);Controls.MissionStack:SetHide(viewMode=='ARCHIVE')
+ Controls.NormalMissionGrid:SetOffsetX(cityMode and 296 or 0)
+ Controls.NormalDrawerTitle:SetText(L(viewMode=='ARCHIVE' and 'ACTION_ARCHIVE' or viewMode=='TRAVEL' and 'NORMAL_MISSION_PREVIEW' or 'ACTION_TASK'))
  local generation,id=rowGeneration,requestedUnitID
- if viewMode=='TRAVEL'then
+ if cityMode then
+  local mode=viewMode
   for index,target in ipairs(targets)do
    local row=cityRows:GetInstance();local owner,cityID=target.owner,target.id
-   target.display=R.Presentation(Game.GetLocalPlayer(),id,target)
-   paintCity(row,target.display,true)
-   local config=PlayerConfigurations and PlayerConfigurations[owner]
-   local civType=config and config:GetCivilizationTypeName()
-   local civ=civType and GameInfo.Civilizations and GameInfo.Civilizations[civType]
-   row.DestinationButton:SetToolTipString(civ and Locale.Lookup(civ.Name) or L('SIDEBAR_CIV_UNKNOWN'))
+   if mode=='ARCHIVE' then
+    paintCity(row,target,false);row.DestinationButton:SetToolTipString(Locale.Lookup(target.name))
+   else
+    target.display=R.Presentation(Game.GetLocalPlayer(),id,target)
+    paintCity(row,target.display,true)
+    local config=PlayerConfigurations and PlayerConfigurations[owner]
+    local civType=config and config:GetCivilizationTypeName()
+    local civ=civType and GameInfo.Civilizations and GameInfo.Civilizations[civType]
+    row.DestinationButton:SetToolTipString(civ and Locale.Lookup(civ.Name) or L('SIDEBAR_CIV_UNKNOWN'))
+   end
    normalRows[#normalRows+1]={button=row.DestinationButton,brace=row.SelectorBrace,index=index}
    row.DestinationButton:RegisterCallback(Mouse.eLClick,function()
-    if generation~=rowGeneration or requestedUnitID~=id or viewMode~='TRAVEL' or not normalCanAct()
+    if generation~=rowGeneration or requestedUnitID~=id or viewMode~=mode or not normalCanAct()
      or targets[index]~=target or target.owner~=owner or target.id~=cityID then return end
-    selected=index;travel=nil;gain=nil;updateTarget();setReport('');render()
+    selected=index;travel=nil;gain=nil;setReport('')
+    if mode=='ARCHIVE' then refreshHeader()else updateTarget()end
+    render()
    end)
   end
  end
+ if viewMode=='ARCHIVE' then refreshHeader();return end
  missionRows={}
  for _,mission in ipairs(MISSIONS)do
   local row=taskRows:GetInstance();previewRow=previewRow or row
@@ -650,31 +703,31 @@ close=function(force)
 end
 local function open(mode,id)
  if not P.IsTestPlayer(Game.GetLocalPlayer()) or pending or naming then return end
- if mode~=nil and mode~='TRAVEL' and mode~='TASK'then return end
+ if mode~=nil and mode~='TRAVEL' and mode~='TASK' and mode~='ARCHIVE'then return end
  if mode then
   local u=UI.GetHeadSelectedUnit()
   if not U.IsTeam(u) or u:GetID()~=id or not U.CanOpen(mode,u)then return end
  end
  viewMode=mode or 'DIAGNOSTIC';requestedUnitID=mode and id or nil;taskDisplay=nil
- if mode then selected=nil end;taskSelected=false
+ if mode then selected=nil end;if mode=='ARCHIVE' then targets={} end;taskSelected=false
  Controls.DiagnosticPanel:SetHide(mode~=nil);Controls.NormalPanel:SetHide(mode==nil)
  Controls.TitleLabel:SetText(mode and L('ACTION_'..mode) or L('TITLE'))
  if mode then
   Controls.Title:SetText(L('ACTION_'..mode))
-  Controls.NormalIntro:SetText(L(mode=='TRAVEL' and 'SIDEBAR_TRAVEL_HINT' or 'SIDEBAR_TASK_HINT'))
-  Controls.NormalConfirmLabel:SetText(L(mode=='TASK' and 'NORMAL_START_TASK' or 'NORMAL_TRAVEL_CONFIRM'))
-  Controls.NormalConfirmIcon:SetIcon(mode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_SPC_RAW_TASK',32)
+  Controls.NormalIntro:SetText(L(mode=='ARCHIVE' and 'ARCHIVE_HINT' or mode=='TRAVEL' and 'SIDEBAR_TRAVEL_HINT' or 'SIDEBAR_TASK_HINT'))
+  Controls.NormalConfirmLabel:SetText(L(mode=='ARCHIVE' and 'ARCHIVE_CONFIRM' or mode=='TASK' and 'NORMAL_START_TASK' or 'NORMAL_TRAVEL_CONFIRM'))
+  Controls.NormalConfirmIcon:SetIcon(mode=='ARCHIVE' and 'ICON_DISTRICT_THEATER' or mode=='TRAVEL' and 'ICON_UNITOPERATION_SPY_TRAVEL_NEW_CITY' or 'ICON_SPC_RAW_TASK',32)
   Controls.NormalTargetLabel:SetHide(true);setReport('')
   -- Do not enable a control from a previous diagnostic reply.
   current=nil;Controls.NormalConfirmButton:SetDisabled(true)
  end
  ContextPtr:SetHide(false);Controls.Window:SetHide(false)
  if ContextPtr:IsHidden() or Controls.Window:IsHidden()then return end
- if mode~='TASK'then refreshTargets()end
+ if mode~='TASK' and mode~='ARCHIVE'then refreshTargets()end
  if mode then
   populateSidebar();resizeSidebar();Controls.SlideAnim:SetToBeginning();Controls.SlideAnim:Play()
  end
- request('READ');ExposedMembers.SPC_ExpeditionGateUIOpenVersion=P.VERSION
+ request(mode=='ARCHIVE' and 'ARCHIVES' or 'READ');ExposedMembers.SPC_ExpeditionGateUIOpenVersion=P.VERSION
 end
 local function visibility()
  if not P.IsTestPlayer(Game.GetLocalPlayer())then close(true)
@@ -724,7 +777,7 @@ local function initialize()
  Controls.NextButton:RegisterCallback(Mouse.eLClick,function()if viewMode=='DIAGNOSTIC'then move(1)end end)
  Controls.NormalConfirmButton:RegisterCallback(Mouse.eLClick,function()
   if viewMode=='DIAGNOSTIC' or not normalCanAct()then return end
-  request(viewMode=='TRAVEL' and 'DISPATCH' or 'TASK')
+  request(viewMode=='ARCHIVE' and 'REBIND' or viewMode=='TRAVEL' and 'DISPATCH' or 'TASK')
  end)
  for c,k in pairs({CreateButtonCaption='CREATE',TravelButtonCaption='CHECK',ArmButtonCaption='DISPATCH',TaskButtonCaption='TASK'})do Controls[c]:SetText(L(k))end
  for c,k in pairs({CloseButtonCaption='CLOSE',RefreshButtonCaption='REFRESH',EndButtonCaption='END',PreviousButtonCaption='PREVIOUS',NextButtonCaption='NEXT'})do Controls[c]:SetText(common(k))end

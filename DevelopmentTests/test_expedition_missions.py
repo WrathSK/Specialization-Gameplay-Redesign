@@ -68,7 +68,14 @@ MISSION_FIXTURE += r"""
   Players={[3]={GetCities=function()return {FindID=function(_,id)if id==targetCity.id then return uiMissionCity end end}end}}
  },{__index=_G})
 """
-MISSION_FIXTURE += "assert(load([==[" + (base.R/'Mod/ExpeditionSpyRead.lua').read_text() + "]==], 'UI_WorkReader', 't', workReaderEnv))()\n"
+MISSION_FIXTURE += "local readerSource=[==[" + (base.R/'Mod/ExpeditionSpyRead.lua').read_text() + "]==]\n"
+MISSION_FIXTURE += """
+ if _VERSION=='Lua 5.1' then
+  local chunk=assert(loadstring(readerSource,'UI_WorkReader'));setfenv(chunk,workReaderEnv);chunk()
+ else
+  assert(load(readerSource,'UI_WorkReader','t',workReaderEnv))()
+ end
+"""
 MISSION_FIXTURE += r"""
  SPCExpeditionSpyRead=SPCExpeditionSpyRead or {}
  SPCExpeditionSpyRead.WorksCity=workReaderEnv.SPCExpeditionSpyRead.WorksCity

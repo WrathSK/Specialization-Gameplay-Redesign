@@ -1,12 +1,12 @@
-# Specialization v0.1 Architecture — A0191
+# Specialization v0.1 Architecture — A0192
 
 Document Owner: Codex
-Architecture Revision: A0191
-Design Spec Synced Through: D0063
-Design Spec SHA256: 9030433e3cc78a6159164997becabe8865a54f0f1be5abe9b76fdc5d45c30e51
-Latest Accepted Design Revision: D0063
-Latest Accepted Design SHA256: 9030433e3cc78a6159164997becabe8865a54f0f1be5abe9b76fdc5d45c30e51
-Sync Status: D0063_SYNCED_EXPEDITION_TRAINING_CITY_TRANSFER
+Architecture Revision: A0192
+Design Spec Synced Through: D0065
+Design Spec SHA256: feea441aafe38687c38d55604ac27ef3c2b4433306e18afa6a51f4cb7ee30d15
+Latest Accepted Design Revision: D0065
+Latest Accepted Design SHA256: feea441aafe38687c38d55604ac27ef3c2b4433306e18afa6a51f4cb7ee30d15
+Sync Status: D0065_SYNCED_EXPEDITION_ARCHIVE_ACTION
 Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; this document defines target contracts, not a parallel deployment ledger.
 
 ## CURRENT AUTHORITATIVE STATE
@@ -28,6 +28,12 @@ A0188 承接[城市易主规则](../Design/Shared.md#和平受让多次转手与
 ### 考察团训练城易主
 
 城市 Store 负责确认交割、原城市绑定及训练准入标记的撤除。训练控制器将它们与同一张已入队订单核对。单位侧沿用现有玩家记录保存这一结果，来源丢失通知和外方队列均不能单独解除名额。随后在事件发布结束或同构建读档边界核对该玩家的单位名册及离图间谍数量。没有出生、完成或存续凭据、名册可识别且离图数为零时，才结束预留。正向凭据、身份不明的离图间谍或取样期间出现的新通知保留名额。后续相关单位或读取接口变化可重新核对。独立单位的归档城变更沿用[既有边界](v2/P0_N_Expedition.md#v01-scope-decisions-user-2026-10-16)。[文化设计](../Design/Culture.md#四级人文考察团)
+
+### 已成团的考察团更换归档城
+
+城市存储确认交割后，沿现有训练退出回调核对原主人、归档城位置及城市记录标识。已成团时由单位记录保存归档失效，结束未完成任务，按原有活动协议释放本团占用的休眠。只有一次读取失败时，继续区分未确认的来源与正式易主。既有单位身份和在途抵达仍按原有证据核实。
+
+单位面板根据已发布的状态显示“选择归档城市”。打开时才读取本玩家的城市身份，确认时重新核对所选城市、单位及这次选择所依据的记录版本。只修改该团的归档绑定；已获得的见闻及其成功名额保存在各自的城市记录。已签投资的两个未决情形与本入口无关。[玩家规则](../Design/Culture.md#来源易主与重新挂靠)
 
 ### Accepted convergence boundaries — 2026-11-04
 

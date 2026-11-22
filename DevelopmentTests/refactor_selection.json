@@ -3,6 +3,9 @@
   "profile": "Lua 5.1; explicit events; no-frame default",
   "stages": {
     "CurrentGameplay": [
+      "test_expedition_archive.ArchiveChoice.test_verified_exit_cold_load_and_free_choice_without_governor",
+      "test_expedition_archive.MissionLoss.test_next_mission_uses_chosen_archive_and_its_own_quota",
+      "test_expedition_archive.ArchiveUI.test_city_picker_confirms_without_native_dispatch",
       "test_network_boost_retirement.Retirement.test_work_cleanup_keeps_its_two_lifecycle_signals",
       "test_network_boost_retirement.Retirement.test_confirmed_exit_waits_for_the_remaining_work",
       "test_investment_network_notice.NetworkNotice.test_scoped_city_current_proof_and_transport_limit",

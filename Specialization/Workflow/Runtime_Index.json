@@ -471,9 +471,9 @@
       "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "d412c5cb166a8160ad6690452b3555ac2c4537284e09e04c43d830211ce36df0",
+      "sha256": "f7b78f5b22b90a00b19d31458fc6cddca19c2b396a3b480175fa5e408a8c6a09",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1135 B535. Existing team authority, strict unit roster and guarded release."
+      "provenance": "S1138 B537. Verified Expedition archive transfer and explicit city selection."
     },
     "Mod/ExpeditionSpyRead.lua": {
       "sha256": "74b1960a96970f0ee5bc80e59499ccff490eb27ad97f56b1d346872aabbce305",
@@ -486,14 +486,14 @@
       "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
     },
     "Mod/ExpeditionSpyUI.lua": {
-      "sha256": "a19873023674c435b9eb132a8cdbdee0d01fa928245ce42c5dfb6d6db79bdc06",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B205_Expedition_Reload_Diagnostics_Local.md",
-      "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
+      "sha256": "d6d6d472b046225b6e56a2a4821017442820e3cc38a762e1804b1c47388656a0",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1138 B537. Verified Expedition archive transfer and explicit city selection."
     },
     "Mod/ExpeditionTraining.lua": {
-      "sha256": "e5a181248e9d2c4ee7546e3eeae31111dd8c53ca839971e3b730162a77bd2575",
+      "sha256": "7395c22a8a13b2d79bfa90f82e432e8217a5cce6e0d5f065aaafa0eca680a8b6",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1135 B535. Queue, verified exit, receipt ordering and bounded vacancy reconciliation."
+      "provenance": "S1138 B537. Verified Expedition archive transfer and explicit city selection."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
       "sha256": "99711e0fc6e6d070518600f4596fb1d5eb3eb1231b21e065248f565bbdbe374b",
@@ -596,9 +596,9 @@
       "provenance": "S1134 B534. Remove unused boost label."
     },
     "Mod/Probe.lua": {
-      "sha256": "31fa01b3e1d92c7df64f60d6e4d3957c1f477918e1ef9a05bd6784f1782d963a",
+      "sha256": "1003594d361373e701a1513a541ebf1f886abddb51b37a135725deba73bcc489",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1136 B536. Build identity."
+      "provenance": "S1138 B537. Verified Expedition archive transfer and explicit city selection."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -711,9 +711,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "2d51d9a3a64c32dc3ebee3f3ee65182326b82c94b9814078da5089f612142729",
+      "sha256": "36b7429da85e66ecb30c53364fbb348182ae7e50336fd78278c879a4d8dc340e",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1136 B536. Removed eight import entries and their package declarations."
+      "provenance": "S1138 B537. Verified Expedition archive transfer and explicit city selection."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -756,9 +756,9 @@
       "provenance": "S1060/B499.526 approved Terra style applied to scoped one-turn project names and descriptions."
     },
     "Mod/Text/ExpeditionGate.sql": {
-      "sha256": "20b2fb28d13d38830266f596cf9037e1322b321efa6c6a5122ccf9b2c82aebd8",
+      "sha256": "d7748b539a482a75d0f486aa53872ea11deee1222cfad57b236e3c6cbb0d2a53",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1070/B509.536 Final Terra draft entries used by the Expedition window, Era Dialogue report and effect names."
+      "provenance": "S1138 B537. Verified Expedition archive transfer and explicit city selection."
     },
     "Mod/Text/LevelBanners.sql": {
       "sha256": "33260475fbc5f197eb0042a9692840932e4a8a9eb7cf3ed9054932089071fa9a",
@@ -1071,14 +1071,14 @@
       "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
-      "sha256": "bce506d8382a40f9410e186e407c6bc6087ee6af036aa16537d1780d7db12f36",
+      "sha256": "b2d33516370f60467998ea50c42dd74884c78dfa90d608acb480cc6a1a5b260a",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0940 B438 scopes the unit action adapter to the two selected UI bases. Native interaction pending."
+      "provenance": "S1138 B537. Verified Expedition archive transfer and explicit city selection."
     },
     "Mod/UI/ExpeditionSpyWindow.lua": {
-      "sha256": "8c0a5b6a203afc77c086b9193f55ffae205068b02f1afc38c541518d98550b58",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "sha256": "2a81712d04a379f63c4b726e24184770e4262478fb0c5b8a5a881feda97e228e",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1138 B537. Verified Expedition archive transfer and explicit city selection."
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "8a9b2f5ee3d27541f2880bf412ada76f19b5e265f6a8fae92a6fad6bc4109ec3",
@@ -1496,7 +1496,7 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
-  "source_review": "S1136 B536. Eight import-only experiments retired; current and archived tests separated. Player-facing boundary review ready for the Owner. Local validation only. Installed stable B528.555.",
-  "source_runtime": "B536.563 / modinfo563 develop, 298 files. No deployment.",
-  "tested_source_snapshot_sha256": "1ef7a513c90fb3c4b9a3ab10a61361b868b276c8cd3207a0ec1562399bf89fee"
+  "source_review": "S1138 D0065 A0192. Expedition archive selection after a verified city handover. Develop B537.564 locally verified. Installed B528.555 stable.",
+  "source_runtime": "B537.564 / modinfo564 develop, 298 files. No deployment.",
+  "tested_source_snapshot_sha256": "160f7438b90a2fbc60e51daf540a3d724d5adb10a14ee8e3fd76aa745bf45fbe"
 }

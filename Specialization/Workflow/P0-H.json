@@ -3,22 +3,22 @@
   "batch": "P0-H",
   "status": "COMPLETE",
   "authority_versions": {
-    "design": "D0064",
+    "design": "D0065",
     "research": "D0059",
     "industry": "D0061",
-    "culture": "D0064",
+    "culture": "D0065",
     "commerce": "D0064",
     "shared": "D0064",
     "presentation": "D0032",
-    "architecture": "A0191",
-    "status": "S1137",
-    "runtime": "B536.563 / modinfo563",
+    "architecture": "A0192",
+    "status": "S1138",
+    "runtime": "B537.564 / modinfo564",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the five Owner decisions and distinguish required gameplay safeguards, local fault examples and remaining diagnostic gaps.",
+  "goal": "Let a surviving Expedition choose an owned Culture archive after verified source transfer.",
   "implementation_authorized": false,
   "context": [
     {
@@ -28,39 +28,39 @@
       "reason": "Current source, installed package and verified scope"
     },
     {
-      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
+      "path": "Specialization/Design/Culture.md",
       "kind": "section",
-      "selector": "### 玩家边界与异常证据",
-      "reason": "Accepted player-facing evidence boundaries"
+      "selector": "### 来源易主与重新挂靠",
+      "reason": "Owner-approved archive choice and Insight history"
     },
     {
-      "path": "Specialization/Reports/Proposals/Player_Facing_Boundary_Review.md",
+      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "## 五项裁定的技术依据",
-      "reason": "Actual paths, scope of the evidence and targeted gaps"
+      "selector": "### 已成团的考察团更换归档城",
+      "reason": "Verified handover, unit identity and on-demand city choice"
     }
   ],
   "dependencies": [
-    "Accepted D0063 predecessor, frozen professional rules, and current B536.563 Gameplay and UI paths."
+    "Existing city Store exit proof, Expedition training exit duty, saved team binding, transition mirror and unit action sidebar."
   ],
   "old_writers": [
-    "No runtime writers changed. The previous package retirement and its evidence are recorded at S1136."
+    "The existing Expedition Gate remains the sole team writer. City Insight history remains with the city Store."
   ],
   "conditional_context": [
-    "Read the relevant professional contract and only the source or tests cited for the affected boundary."
+    "For outstanding investment outcomes or parked ownership and Culture items, read the last section of the player-facing review."
   ],
   "non_scope": [
-    "Production implementation, guard removal, new diagnostics, new native tests, deployment and main promotion."
+    "New city-loss detection, foreign multi-hop handover, raze/refound, HD effect coexistence, investment outcomes, deployment and native testing."
   ],
   "validation": [
-    "Verify prior accepted bytes, document links, decision hashes, task context and staged publication scope. Run the targeted local suites listed at S1137."
+    "CurrentGameplay, scoped Expedition and UnitPanel cases, Lua 5.1 and package checks, localization, context and publication checks."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
     "runtime_identity": {
-      "source": "B536.563 / modinfo563 on develop. Source and local verification in S1136.",
+      "source": "B537.564 / modinfo564 on develop. Source and local verification in S1138.",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -105,14 +105,13 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#player-facing-boundary-decisions--s1137",
+      "report": "Specialization/Status/Specialization_P0_Status.md#expedition-archive-city-choice--s1138",
       "owner_review": "Specialization/Reports/Proposals/Player_Facing_Boundary_Review.md",
-      "accepted_design": "D0064",
-      "source_reviewed": "8b490a84d7a4d918eb2cd2c4f8617275cba67774",
-      "source_evidence": "STATIC_CONFIRMED",
+      "accepted_design": "D0065",
       "status": "LOCAL_SIMULATION_PASS",
-      "targeted_cases": 73,
-      "scope": "Source and local responses only. The reachability of exceptional conditions in ordinary gameplay is not established.",
+      "current_gameplay_cases": 42,
+      "focused_cases": 183,
+      "new_lua51_cases": 9,
       "native_validation": "NOT_RUN"
     }
   }

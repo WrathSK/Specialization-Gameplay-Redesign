@@ -177,6 +177,9 @@ def ui(kind):
     """)
     from refresh_fixture import install
     install(l, handler='function() if selected then Refresh(selected:GetOwner(),selected:GetID())end end')
+    if kind == 'UnitPanel':
+        l.execute('GameInfo.UnitCommands={}')
+        l.execute((R/'Mod/RestructuringUI.lua').read_text())
     l.execute((R/'Mod/ExpeditionSpyUI.lua').read_text());l.execute((R/f'Mod/UI/ExpeditionSpy{kind}.lua').read_text());return l
 
 class UIIsolation(unittest.TestCase):

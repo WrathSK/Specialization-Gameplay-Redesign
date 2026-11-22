@@ -25,6 +25,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  local selectEntry=assert(SPCExpeditionEntry and SPCExpeditionEntry.Select,'ENTRY_RULE_UNAVAILABLE')
  -- v0.1 supports standard speed only; Design floor(2 x speed multiplier) is deferred.
  local TASK_TURNS=2
+ local archiveLost='ARCHIVE_SOURCE_LOST'
  local returnToCentre
  local capacityOwner;local capacityEvents=0;local capacityObserverFailed=false
  local function unitCapacityChanged(pid)
@@ -109,6 +110,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    teamKey=state.teamKey,activityKey=state.activityKey,phase=state.phase or 'IDLE',mode=recovering and 'RECOVER' or state.activityMode or 'NONE',recovering=recovering,loadReady=loadReady,sleepConfirmed=state.sleepConfirmed==true,
    owned=state.activityOwned==true,releasePending=state.activityPending==true,taskStart=state.taskStart,taskDue=state.taskDue,
    taskCompleted=state.taskCompleted,taskCompletions=state.taskCompletions,missionStatus=missionStatus,missionReason=missionReason,error=state.stop,activityFailure=state.activityFailure,
+   archivePending=state.stop==archiveLost or nil,
    trainingReceipt=state.phase=='TRAINING' and (state.trainingBorn~=nil or state.trainingCompleted==true) or nil,
    trainingQueued=state.phase=='TRAINING' and state.trainingQueued==true or nil}
   v.locked=v.mode~='NONE'
@@ -157,7 +159,14 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end
  local function source()
   local c=Players[state.owner]:GetCities():FindID(state.sourceCity)
-  assert(c and c:GetOwner()==state.owner and type(state.sourceRef)=='string' and SPCNetworkInput.Reference(c)==state.sourceRef,'SOURCE_REFERENCE_CHANGED')
+  assert(state.stop~=archiveLost and c and c:GetOwner()==state.owner and type(state.sourceRef)=='string','SOURCE_REFERENCE_CHANGED')
+  if SPCNetworkInput.Reference(c)~=state.sourceRef then
+   -- A verified return can retain its city history with no native binding property.
+   local store=shared.CityProgressionStore
+   assert(c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')==nil and store and store.HistoricalReference,'SOURCE_REFERENCE_CHANGED')
+   local ok,h=pcall(store.HistoricalReference,c)
+   assert(ok and h and SPCNetworkInput.ReferenceParts(h.owner,h.cityID,h.x,h.y,h.token)==state.sourceRef,'SOURCE_REFERENCE_CHANGED')
+  end
   return c
  end
  -- B212: any city of a met, living major civilization. The target need not be
@@ -394,7 +403,8 @@ function SPCExpeditionSpyGate.Start(P,shared)
   assert(state.owner==pid and state.unitID==p.UnitID and
    (state.phase=='NAMING' or state.phase=='CREATED'),'BOUND_TEAM_REQUIRED')
   assert(p.NameOffmapChecked==true and p.NameSampleTurn==Game.GetCurrentGameTurn(),'NAME_UI_SAMPLE_REQUIRED')
-  source();local u=owned(pid,state.unitID)
+  if state.stop~=archiveLost then source()end
+  local u=owned(pid,state.unitID)
   assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
   local names,count,civ=namePool(pid);local r=row(u)
   assert(type(p.Name)=='string' and #p.Name>0 and #p.Name<=220,'TEAM_NAME_INVALID')
@@ -434,7 +444,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end
  local function observe(allowTaskCompletion,knownUnits)
   if not state.unitID or state.phase=='ENDED' or state.phase=='HELD' then return end
-  source()
+  if state.stop~=archiveLost then source()end
   if state.phase=='NAMING' then
    local u=owned(state.owner,state.unitID)
    assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
@@ -474,6 +484,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    return
   end
   local u=tracked()
+  if state.stop==archiveLost then return end -- No activity or award until the player chooses an archive.
   assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
   if state.phase=='TASK_RUNNING' and not recovering then
    -- GetSpyOperation is established in UI, not assumed present in Gameplay.
@@ -546,7 +557,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    end
    v.createdID=state.createdID;v.trackedID=state.unitID;v.bound=false
    -- B212 presentation of the archive city's Insight history; display only.
-   if state.sourceCity and state.phase~='TRAINING' then
+   if state.sourceCity and state.phase~='TRAINING' and state.stop~=archiveLost then
     local ok,records=pcall(insights,pid)
     if ok then
      local own=pcall(civilization,pid) and civilization(pid) or nil
@@ -620,15 +631,55 @@ function SPCExpeditionSpyGate.Start(P,shared)
   state.missionCategory=nil;state.missionX=nil;state.missionY=nil;state.missionEvidence=nil;state.missionWorkID=nil;state.missionCompletionUnknownTurn=nil;state.taskOutcome=nil;missionStatus=nil;missionReason=nil;missionRetryKey=nil;missionUnknownReads=0
   state.phase='ARRIVED'
  end
+ -- Enumerate cities only for the open picker. A click reads its one target again.
+ local function archiveCity(pid,c)
+  assert(c and c:GetOwner()==pid,'ARCHIVE_CITY_CHANGED')
+  local b=insightStore().Base(pid,c)
+  if b.specialization~='CULTURE' then return nil end
+  local id,x,y=c:GetID(),c:GetX(),c:GetY()
+  assert(b.owner==pid and b.cityID==id and b.x==x and b.y==y and type(b.token)=='string' and b.token~='','ARCHIVE_CITY_CHANGED')
+  return {id=id,owner=pid,name=c:GetName(),ref=SPCNetworkInput.ReferenceParts(pid,id,x,y,b.token)}
+ end
+ local function archiveTeam(pid,p)
+  assert(state.stop==archiveLost and state.owner==pid and state.unitID==p.UnitID and state.teamKey==p.TeamKey
+   and (state.phase=='CREATED' or state.phase=='ARRIVED') and not recovering
+   and (not state.activityMode or state.activityMode=='NONE'),'ARCHIVE_ACTION_STALE')
+  local u=tracked()
+  assert(int(u:GetX()) and int(u:GetY()),'ARCHIVE_TEAM_UNAVAILABLE')
+  return u
+ end
  local function handle(pid,p)
   assert(type(p)=='table' and type(p.Token)=='string' and #p.Token>0 and #p.Token<=100,'BAD_REQUEST')
   assert(P.IsTestPlayer(pid),'SUPPORTED_PLAYER_REQUIRED')
-  assert(p.Action=='READ' or p.Action=='CREATE' or p.Action=='NAME' or p.Action=='DISPATCH' or p.Action=='STOP' or p.Action=='TASK' or p.Action=='ACTIVITY' or p.Action=='END','BAD_ACTION')
+  assert(p.Action=='READ' or p.Action=='CREATE' or p.Action=='NAME' or p.Action=='DISPATCH' or p.Action=='STOP' or p.Action=='TASK' or p.Action=='ACTIVITY' or p.Action=='END' or p.Action=='ARCHIVES' or p.Action=='REBIND','BAD_ACTION')
   if p.Action=='END' or p.Action=='STOP' or p.Action=='DISPATCH' or p.Action=='CREATE' then closePlacement('ACTION_CLOSE')end
   load(pid);step=p.Action
   if p.Action=='READ' then return snapshot(pid)end
   assert(not storeBlocked,'EXPEDITION_STORE_UNAVAILABLE')
-  if p.Action=='CREATE' then
+  if p.Action=='ARCHIVES' then
+   archiveTeam(pid,p)
+   local cities,partial={},false
+   for _,c in Players[pid]:GetCities():Members()do
+    local ok,item=pcall(archiveCity,pid,c)
+    if not ok then partial=true elseif item then cities[#cities+1]=item end
+   end
+   table.sort(cities,function(a,b)return a.id<b.id end)
+   return {owner=pid,phase=state.phase,bound=true,unitID=state.unitID,teamKey=state.teamKey,
+    storeRevision=envelope.revision,archives=cities,partial=partial}
+  elseif p.Action=='REBIND' then
+   archiveTeam(pid,p)
+   assert(int(p.CityID) and type(p.ArchiveRef)=='string' and p.Revision==envelope.revision,'ARCHIVE_ACTION_STALE')
+   local item=archiveCity(pid,Players[pid]:GetCities():FindID(p.CityID))
+   assert(item and item.ref==p.ArchiveRef,'ARCHIVE_CITY_CHANGED')
+   local u=archiveTeam(pid,p)
+   mutating=true
+   state.sourceCity=item.id;state.sourceRef=item.ref;state.sourceName=item.name
+   state.x=u:GetX();state.y=u:GetY()
+   if state.target and (state.x~=state.target.x or state.y~=state.target.y)then state.target=nil;state.phase='CREATED' end
+   state.stop=nil;state.errorStep=nil;state.errorDetail=nil;state.activityFailure=nil
+   save()
+   return {owner=pid,unitID=state.unitID,teamKey=state.teamKey,phase=state.phase,archiveAccepted=true}
+  elseif p.Action=='CREATE' then
    assert(state.phase~='TRAINING' and state.phase~='CREATING' and state.phase~='HELD' and (not state.unitID or state.phase=='ENDED'),'SPAWN_UNCERTAIN_NO_RETRY')
    assert(#list(pid)==0,'EXISTING_TEST_TEAM_COUNTS')
    local c=Players[pid]:GetCities():FindID(p.CityID)
@@ -671,6 +722,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
   elseif p.Action=='NAME' then
    mutating=true;acceptName(pid,p)
   elseif p.Action=='DISPATCH' then
+   assert(state.stop~=archiveLost,'ARCHIVE_REQUIRED')
    -- B211: a completed task may be redispatched once its native activity is released.
    local again=state.phase=='TASK_COMPLETE' and state.activityMode=='NONE' and not state.activityPending and not state.activityOwned
    assert(state.owner==pid and state.unitID==p.UnitID and (state.phase=='CREATED' or state.phase=='ARRIVED' or again),'BOUND_TEAM_REQUIRED')
@@ -696,6 +748,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
    mutating=true;state.phase='TRAVELLING';state.permit=p.Token
    save() -- Durable intent precedes the one-shot UI native permit; never replay on load.
   elseif p.Action=='TASK' then
+   assert(state.stop~=archiveLost,'ARCHIVE_REQUIRED')
    assert(state.owner==pid and state.unitID==p.UnitID,'BOUND_TEAM_REQUIRED')
    observe();assert(state.phase=='ARRIVED' and not state.taskStart,'TASK_NOT_AVAILABLE')
    local u=tracked()
@@ -753,7 +806,10 @@ function SPCExpeditionSpyGate.Start(P,shared)
      source();target(pid,state.target)
     elseif state.activityMode=='RELEASE' then
      if p.Sleeping then assert(state.activityOwned,'ACTIVITY_UNOWNED_SLEEP');state.sleepConfirmed=true
-     else state.activityMode='NONE';state.activityOwned=false;state.activityPending=false;returnToCentre()end
+     else
+      state.activityMode='NONE';state.activityOwned=false;state.activityPending=false
+      if state.stop==archiveLost then state.activityKey=nil;state.sleepConfirmed=nil else returnToCentre()end
+     end
     else error('ACTIVITY_RECOVERY_UNKNOWN')end
    elseif p.Result=='REJECTED' then
     -- B222: only a proven unarmed, unexecuted attempt may return to idle.
@@ -798,7 +854,7 @@ function SPCExpeditionSpyGate.Start(P,shared)
     local u=tracked();assert(u:GetX()==state.x and u:GetY()==state.y,'TEAM_DISPLACED_STOP')
     assert(p.NativeOperation==-1,'NATIVE_MISSION_ACTIVE_STOP')
     mutating=true;state.activityMode='NONE';state.activityOwned=false;state.activityPending=false
-    returnToCentre()
+    if state.stop==archiveLost then state.activityKey=nil;state.sleepConfirmed=nil else returnToCentre()end
    else
     assert(state.activityMode=='SLEEP' or state.activityMode=='ARMED' or state.activityMode=='ASLEEP' or state.activityMode=='RELEASE','ACTIVITY_NOT_PENDING')
     mutating=true;recovering=false
@@ -864,6 +920,38 @@ function SPCExpeditionSpyGate.Start(P,shared)
  function T.CapacityObservationFailed(failed)capacityObserverFailed=failed==true end
  function T.Read(pid)
   load(pid);local v=savedState();v.blocked=storeBlocked;return v
+ end
+ -- Called by the existing verified city-exit duty, after matching the old archive reference.
+ function T.LoseArchive(pid,ref,key)
+  assert(not busy and not storeBlocked and state.owner==pid and state.teamKey==key and state.sourceRef==ref,'ARCHIVE_EXIT_CHANGED')
+  if state.stop==archiveLost then return true end
+  local phase=state.phase
+  if phase=='HELD' then
+   if state.stop~='SOURCE_REFERENCE_CHANGED' then return true end -- Independent unit or transaction failure.
+   -- A source read can precede the verified exit. If travel was issued, the existing
+   -- native-name/arrival check still has to find this team before it can bind.
+   if not state.nameVerified then phase='NAMING'
+   elseif state.activityKey then phase='ARRIVED'
+   elseif state.target then phase='TRAVELLING'
+   else phase='CREATED' end
+  end
+  if phase=='ENDING' or phase=='CREATING' or phase=='ENDED' then return true end
+  if phase=='TASK_RUNNING' or phase=='TASK_PREPARING' or phase=='TASK_COMPLETE' then phase='ARRIVED' end
+  busy=true
+  local ok,err=pcall(function()
+   state.phase=phase;state.stop=archiveLost;state.errorStep=nil;state.errorDetail=nil
+   state.taskStart=nil;state.taskDue=nil;state.taskCompleted=nil;state.taskCompletions=nil
+   state.missionCategory=nil;state.missionX=nil;state.missionY=nil;state.missionEvidence=nil
+   state.missionWorkID=nil;state.missionCompletionUnknownTurn=nil;state.taskOutcome=nil
+   missionStatus=nil;missionReason=nil;missionRetryKey=nil;missionUnknownReads=0
+   recovering=false;preparingKey=nil;preparingTurn=nil
+   if state.activityOwned then releaseActivity()
+   else state.activityPending=nil;state.activityMode=nil;state.activityKey=nil;state.sleepConfirmed=nil end
+   save()
+  end)
+  busy=false;publishActivity()
+  if not ok then error(err,0)end
+  return true
  end
  function T.Available(pid)
   load(pid)
@@ -959,10 +1047,13 @@ function SPCExpeditionSpyGate.Start(P,shared)
   if not ok then
    local err=v;local failedStep=step;local raw=detail(err)
    if mutating then hold(err)end
-   local readOK,result=pcall(snapshot,pid)
-   v=readOK and result or {owner=pid,phase=state.phase or 'HELD',snapshotUnknown=true}
-   v.error=state.stop or reason(err)
-   v.errorStep=state.errorStep or failedStep;v.errorDetail=state.errorDetail or raw
+   if p.Action=='REBIND' or p.Action=='ARCHIVES' then
+    v={owner=pid,phase=state.phase,unitID=state.unitID,teamKey=state.teamKey,error=reason(err),errorStep=failedStep,errorDetail=raw}
+   else
+    local readOK,result=pcall(snapshot,pid)
+    v=readOK and result or {owner=pid,phase=state.phase or 'HELD',snapshotUnknown=true}
+    v.error=state.stop or reason(err);v.errorStep=state.errorStep or failedStep;v.errorDetail=state.errorDetail or raw
+   end
    if not mutating then logFailure(v.error,v.errorStep,v.errorDetail)end
   end
   mutating=false

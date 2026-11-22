@@ -1,28 +1,42 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1137
-Implementation Build: develop B536.563 / modinfo563. Installed stable B528.555 / modinfo555.
-Architecture Revision Reviewed: A0191
-Design Revision Reviewed: D0064
-Latest Accepted Design Revision: D0064
-Design Sync State: D0064_PLAYER_BOUNDARY_DECISIONS_RECORDED
-Work State: PLAYER_BOUNDARY_REVIEW_DECISIONS_RECORDED
+Status Revision: S1138
+Implementation Build: develop B537.564 / modinfo564. Installed stable B528.555 / modinfo555.
+Architecture Revision Reviewed: A0192
+Design Revision Reviewed: D0065
+Latest Accepted Design Revision: D0065
+Design Sync State: D0065_EXPEDITION_ARCHIVE_ACTION
+Work State: EXPEDITION_ARCHIVE_ACTION_LOCAL_PASS
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B536.563 omits eight unused Lua experiments. B535's training-city handover rule remains in effect. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
+| Source and installation | Develop B537.564 adds the archive-city action for an existing Expedition after a confirmed handover. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [Boundary review](#player-facing-boundary-decisions--s1137) verified against source with 73 scoped local cases. [Package cleanup](#player-facing-boundary-review-and-import-only-cleanup--s1136) passed 39 current and 235 scoped local cases with overlap, including a disposable package swap and rollback. Native ownership-event timing remains unobserved. |
-| Next action | Use the [five decisions and diagnostic limits](../Reports/Proposals/Player_Facing_Boundary_Review.md#五项裁定的技术依据) for credible reports. The two deferred post-signature outcomes are recorded there. Multi-owner returns, razing and refounding remain on the [existing observation list](Playtest_Backlog.md#city-ownership-follow-up). |
+| Validation | [Archive city choice](#expedition-archive-city-choice--s1138) passed scoped local Gameplay and UI checks. Native action-bar appearance and transfer ordering await observation. [Earlier boundary review](#player-facing-boundary-decisions--s1137). |
+| Next action | Review the [two outstanding contract examples](../Reports/Proposals/Player_Facing_Boundary_Review.md#仍待处理的事项). Foreign handover chains, raze/refound and the two Culture-yield domains of Meaning Extension are parked. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Expedition archive city choice — S1138
+
+归档城确认易主后，原主人选中存续的人文考察团，可从行动栏选择新的己方文化城。目的地可以没有总督。旧见闻留在原城，未完成任务结束，下一次任务按新城自己的见闻名额判断。没有合格城市时，保留原团与全国名额。[玩家规则](../Design/Culture.md#来源易主与重新挂靠) · [城市和单位各自的责任](../Architecture/Specialization_v0.1_Architecture.md#已成团的考察团更换归档城)
+
+**运行影响。** 复用已有的交割退出回调和单位存储。确认同一归档城时写一次单位记录。只在玩家打开选择器时遍历本方城市，确认时重读选中的城市与单位。单城读数不可用时提示列表可能不完整。保留现有到达与活动释放协议，旧请求不能代另一支团或替已经易主的城市确认。没有新增引擎监听、轮询、保存字段或玩家付款。
+
+**本地验证。** Python 3.14、Lupa 2.8。运行 `python3.14 -B DevelopmentTests/run_refactor.py --stage CurrentGameplay`，42 项通过。定域套件 183 项通过，与前者有重叠。新加的 9 项以 Lua 5.1 测试真实城市存储交割、同构建冷读、原团身份、无总督与低潜力、未决城市、失效的选择、任务取消与名额、已派遣单位到达及行动栏。原行动栏夹具补载随界面使用的重组助手，任务图标断言对齐已发布的素材，两种 Lua 测试环境各自加载隔离的作品读取器。173 份 Lua 在 5.1 编译通过，24 份 XML 解析通过，298 个包文件的清单引用可解析，新增 7 个文本键均有简体中文与英文。
+
+定域复现时在 `DevelopmentTests` 下运行 `python3.14 -B -m unittest test_expedition_archive test_expedition_spy_actions_ui test_expedition_spy_sidebar_ui test_expedition_training_source_loss test_expedition_missions.Missions test_expedition_spy_binding test_expedition_spy_store test_expedition_spy_recovery_activity test_expedition_spy_auto_open test_expedition_spy_selection_ui test_b414_crew_unit_panel`。外部数据库及依赖配置见[测试环境](../../DevelopmentTests/README.md#environment-and-dependencies)。
+
+本地完整运行记录位于 `local/refactor/CurrentGameplay-3c4aff7191f84a139c6e477df0c5517a/closure.json`，SHA256 `87ceb9af3f9ea1719c35b163ad54fc77b5cede8b51e0d5fbbeb0df7f8763848a`。输入文件摘要为 `160f7438b90a2fbc60e51daf540a3d724d5adb10a14ee8e3fd76aa745bf45fbe`。
+
+**实机范围。** 本地通过（`LOCAL_SIMULATION_PASS`）。归档城交割的原生事件顺序与原版／HD 界面仍待实机。永久毁城的独立证据入口和边境位移沿用现有待办。安装仍为稳定 B528.555。
 
 ### Player-facing boundary decisions — S1137
 
