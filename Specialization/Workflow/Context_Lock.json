@@ -568,10 +568,10 @@
     "Specialization/Design/Content/Shared_D0044.json": "a39e938d128d6ef3531487902bdf213fd38696a52a3431f33218a3524a9089f7",
     "Specialization/Design/Content/Shared_D0045.json": "104f28e604d45330e676549e4ce8c54c75ab7ee7625c3802629a95c639775516",
     "Specialization/Design/Culture.md": "fae04438d7f27da007e2c3f483c9a376d1f1aee8efcf7d8d5f284f0ea565f5cd",
-    "Specialization/Design/Design_ChangeLog.md": "294653e8940406bf72ca62777d010b8a393a85b38c53c1706f7e1aeeb54aa133",
+    "Specialization/Design/Design_ChangeLog.md": "11d48f0b61f7721ea0fbdce4a5590ce3b79a8c653b96e6ecd1f15c4c84ad8be0",
     "Specialization/Design/Government.md": "477e40349758498feeec418da60da7f68e0021c760449355079cda88639a3eb2",
     "Specialization/Design/Harbor.md": "d3970ebd146dfe1d1a231c40f3d340b49e21cba621fd6b694931edf315d31cc0",
-    "Specialization/Design/Industry.md": "a6698b609e9828deb7aa9b750387915f90a92337365fca136350cb5cb0b3fe65",
+    "Specialization/Design/Industry.md": "d2c8c5c708da0cc263ecf5128059eeee09346a85361091f023df70d2e569d8a4",
     "Specialization/Design/Military.md": "15aa728c44237e5980c69e440b249db563174e8054e858d78043c80b5526139e",
     "Specialization/Design/Network.md": "220af4dfb93e8f7337abf87239bbe65135234cf4dd4c4d59b64bd32fe1ea42a7",
     "Specialization/Design/README.md": "e0e78d4b6cf8c03631d3ba4bad0ee5588805cb2017692ecb8c2eb54553301da1",
@@ -598,7 +598,7 @@
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0055.md": "8548e2c69595a3e49058979968d35c506b2754e2f409ca7fd7fe14299ee4bbaf",
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0056.md": "7b0b1fe6bc8e19d8983201ef0799011636313261489cf1bbeb2c211f18e2c366",
     "Specialization/Design/Shared.md": "e3bd907e451073bd8148fd3406e78eae6c11e8d4918b5ff50a2cc9b98dadd6ff",
-    "Specialization/Design/Specialization_v0.1_Design_Spec.md": "43c3e483fb77b275f556aa7e0b57a4820e59873e01c32999c0727d088024f1b9",
+    "Specialization/Design/Specialization_v0.1_Design_Spec.md": "a0afe8bfadc3de7c7136596160bcd91d8bf7c0dee47ccdc3adf55ad6124044e4",
     "Specialization/Historical/Design/README.md": "b374ad22dddc16d492aca33ec8e3e877338f367b3185e09fe6ae354fac94de60",
     "Specialization/Historical/Design/Records/Culture_Era_Presentation_D0032.md": "e1a3e21e24fcca6d078299059a6b1299588c9148921784db8befd232ca8b1fb9",
     "Specialization/Historical/Design/Reviews/Commerce_D0039_Review.md": "194a83b2c7c00768ec109ddf9d6a34cdcf7125d71e8f6f587d7f0471dca3f7dd",
@@ -625,7 +625,7 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
     "Specialization/Status/Playtest_Backlog.md": "b688617bcafa7a4cc3c1fac53327bcce2ae813449d11a07566905d2baf60b75b",
-    "Specialization/Status/Specialization_P0_Status.md": "46ac28e08c60cd6f8bba2182db5e0fa13196c3af4940f167bbf7354465748b30",
+    "Specialization/Status/Specialization_P0_Status.md": "c2d5501a1670fc8b9a70c166d07e1e88cff3a6199e64d4c83d3e878baec3d6b1",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -1244,7 +1244,7 @@
     "DevelopmentTests/test_o8_residual_cleanup.py": "1be55ea0b8982e291b8a0db532bfba2fb818f4d920349bbc99aea6b05b9d72e4",
     "Specialization/Historical/README.md": "a366fc86f36a50a928d76b61f93eeecee1b31631d11df04db5a31df249e75450",
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0060.md": "782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39",
-    "Specialization/Design/Content/Industry_D0061.json": "030fc379baacc519e7b6b0befa541b775b1657a1562d3b511695da9cff8e733c",
+    "Specialization/Design/Content/Industry_D0061.json": "262082c4f6cf5ab912cda5cd6808bb7540faff8e68fe98d3a01eeac8712d9557",
     "Specialization/Design/Content/Shared_D0061.json": "12cf3d8dbc86175aade322112421ce68b73a233d28f68167127d46f330e32dae",
     "Specialization/Design/Content/Commerce_D0061.json": "555e16d4e1d75ba68285496122a6b5799a84b8a1d8f76ba04c4e241946a73481",
     "DevelopmentTests/test_city_peaceful_acquisition.py": "8a0838a0104c3082609a1abfd4c2bc2c31545103fa3ede2747ea7fbb94e16bbf",
@@ -1270,6 +1270,6 @@
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0064.md": "e5b0ced4562c3037b6800e9df2ff45553c9f5eaffb7b01cd79201a9d7573a4aa",
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0065.md": "feea441aafe38687c38d55604ac27ef3c2b4433306e18afa6a51f4cb7ee30d15",
     "Specialization/Design/Content/Commerce_D0066.json": "d41bc608bf2381c9f75e0ea2884ca8d7a742a4a7c81194197e0a4de4ccea3a9c",
-    "Specialization/Design/Content/Shared_D0066.json": "cd56809e65ec72e8c803f70c50014949161296b08d76eff39a8366309c207db7"
+    "Specialization/Design/Content/Shared_D0066.json": "07576abc589472ff99fbd7ad3d47086533b9b6d9611717b2b7fab9e9de664849"
   }
 }

@@ -167,7 +167,7 @@
             "Expedition source Owner change cancels unfinished mission/no record, retains original unit Owner, invalidates archive binding and requires defined reattachment.",
             "Industry source provenance/current-Owner capacity2 and original-owner recapture counting remain per-profession rules."
           ],
-          "technical_boundary": "Native retreat and destination remain implementation evidence. City destruction follows the D0061 named-unit rules. Unaddressed units and elimination of the original owner remain separate."
+          "technical_boundary": "Native retreat and destination remain implementation evidence. City destruction follows the D0061 named-unit rules. Other unit types fall outside this rule."
         }
       },
       "SETTLER_INVESTMENT_CONFIRMATION": {

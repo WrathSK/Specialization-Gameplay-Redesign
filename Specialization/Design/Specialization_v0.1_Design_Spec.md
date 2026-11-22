@@ -250,7 +250,7 @@ IND-REVIEW-01/02保留已接受暂行复审状态；03“模板与全局最高�
 
 Research及其它未列条款不变；本轮Culture首测值和Commerce专业单位保护增量见其当前Content；共同Network topology保留。旧Industry条文在D0026冻结原文，不能与新能力叠加。其它段落若仍描述旧Industry向外直接输出，以本节新content取代该Industry含义；不据此自行重做Commerce收益。当前实现和实机证据以Status为准，本节不维护另一份进度表。
 
-D0031有限库存问题已关闭：每具备工程动员资格的Industry来源城容量2，各档已完成队伍占1，四级不加；来源绑定、消耗/合法移除释放名额，离开Industry后已有队伍保留但不能补充。D0042已关闭来源易主／夺回计槽；单位本体不可捕获／转换Owner、保护回归原生接口待查，原Owner完全消失仍未定义。完整规则以content为准。
+D0031有限库存问题已关闭：每具备工程动员资格的Industry来源城容量2，各档已完成队伍占1，四级不加；来源绑定、消耗/合法移除释放名额，离开Industry后已有队伍保留但不能补充。D0042已关闭来源易主／夺回计槽；单位不可被俘或转交给敌方，原生保护与回归接口仍待核实。完整规则以content为准。
 
 **IND-TRADITION-STUDY-001 — ACCEPTED D0044 / D0045中断增量** 全国E为B文明实际完成奇观自身时代去重历史，从游戏开始计、不要求工业；本城成功研习L为A城市历史。Industry ACTIVE IV且L<E可做完整1 Production Turn，成功提交L+1。IV来源输出建造10%＋2%×L、已有合法Gold／Faith购买折扣2%×L；III保留L／不研习，只输出基础10%／0%；低III或退出身份不输出；恢复IV直接恢复全部L。易主E<L不删除／降级／截断L，E只限制新增，不设五层／人工cap。明确采用与Dialogue相同完整1T事务、以Industry IV资格：ACTIVE不足IV（含总督离开）、Identity退出、REALLOCATING、Owner变化或正常生产中断取消本轮，无L、无半进度；重新合格且L<E重做完整1T，已提交历史L不变。不导入Dialogue时代额度／倍率。
 
@@ -610,8 +610,8 @@ D奖励已完善的就业、教育、商业、工业、文化及城市服务，�
 
 ### 当前未决与技术适配
 
-- Commerce D0045保留D0039公式／首版值、D0040信誉／合同及D0042配置／来源，只同步单位保护；精确design_detail_required、城市消失／目标非法、hidden protection跨Owner仍未定，不重开已定Owner政策。
-- Industry D0045保留D0044首测职责，关闭独立全局效率／Faith fallback／研习中断／单位捕获Owner Gameplay TBD。原Owner完全消失、城市彻底毁灭的未覆盖处置与候选命名保留；逐模板价格承载、完整1T、可受加成的基础施工、不溢出及普通Production modifier、保护回归、最终Floor／速度／保存为技术验证。Culture Hybrid D方向已确认，实机状态见Status。
+- Commerce D0045保留D0039公式／首版值、D0040信誉／合同及D0042配置／来源，只同步单位保护。合同终止及风险投资保护的现行规则见[商业专业](Commerce.md#已关闭与仍未讨论的生命周期边界)。
+- Industry D0045保留D0044首测职责，关闭独立全局效率／Faith fallback／研习中断／单位捕获Owner Gameplay TBD。来源城永久毁灭时，施工队按 PROG-013 处理。候选命名保留。逐模板价格承载、完整1T、可受加成的基础施工、不溢出及普通Production modifier、保护回归、最终Floor／速度／保存为技术验证。Culture Hybrid D方向已确认，实机状态见Status。
 
 - D0040取代CUL-REVIEW-01/03原Owner见闻键／不继承；见闻与Dialogue均城市历史、独立资格与有效Owner过滤。CUL-REVIEW-02外交／城邦及04独立完整集合并集保留。City-State inclusion仍Future Candidate。
 - Research Network：NETWORK_REDESIGN_REQUIRED，旧公式留作参考，v0.1 隔离鼓舞；Culture已替代旧Eureka。

@@ -536,12 +536,9 @@
       "rule": "Each completed Team costs1 slot; cap2 across all tiers, no IV extra. Count only surviving Teams owned by current source-city Owner with that original training source. Consumption/legal removal frees slot; retreat while alive does not. No additional completed Team at full capacity.",
       "binding": "Permanent training-source provenance/capacity reference. Completed Team remains original Owner asset and usable despite source Governor/ACTIVE/Industry Identity/Owner changes. New training still requires current Engineering Mobilization qualification.",
       "respecialization": "Existing Teams survive leaving Industry. Source cannot replenish while not qualified as Industry; later consumption does not grant generic unit capacity to new specialization.",
-      "remaining_open": [
-        "Original unit Owner disappearance not defined by source-transfer or non-capture rule"
-      ],
+      "remaining_open": [],
       "open_status": [
-        "TECHNICAL_INVESTIGATION_REQUIRED_NON_CAPTURE_RETREAT_SAFE_RETURN_AND_BINDING_SAVE",
-        "DESIGN_DECISION_REQUIRED_ONLY_FOR_UNDEFINED_UNIT_DISPOSITION"
+        "TECHNICAL_INVESTIGATION_REQUIRED_NON_CAPTURE_RETREAT_SAFE_RETURN_AND_BINDING_SAVE"
       ],
       "intended_play": "Production banking and advance deployment to time Wonder unlocks are intended; filling old-era Wonders for engineering tradition is intended emergent gameplay.",
       "excluded_changes": [
@@ -663,7 +660,6 @@
       "English reference/localization",
       "two retained provisional template-ledger/directory carryovers; independent global maximum superseded",
       "native full1T transaction, template-specific Production/purchase carriers, speed/final-floor settlement, native amplified injection/no-overflow settlement, non-capture retreat/safe-return and binding/save interfaces",
-      "Unit original-owner elimination without confirmed key-city facts remains open.",
       "future Megaproject extension"
     ],
     "unchanged": [

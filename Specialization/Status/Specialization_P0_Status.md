@@ -28,6 +28,8 @@ Use [Authority](../Workflow/Authority.json) for the active task and version poin
 
 单人败局之后的投资结算，以及两城都在手却永久失去全部合格建筑，两项移出待办。发展投资仍按下一座合格建筑完工或任一合同城市易主、永久毁灭结束，释放名额。已结束的合同不会随夺回城市恢复。本次核对现行文字、结构化内容与任务入口，仅更新文档。[负责人裁定](../Design/Design_ChangeLog.md#accepted-d0066--2026-11-21)
 
+Crew wording follow-up. The [editorial correction](../Design/Design_ChangeLog.md#施工队文案校正--2026-11-21) removes the post-defeat question from the active unit review. No runtime or test status changed.
+
 ### Expedition archive city choice — S1138
 
 归档城确认易主后，原主人选中存续的人文考察团，可从行动栏选择新的己方文化城。目的地可以没有总督。旧见闻留在原城，未完成任务结束，下一次任务按新城自己的见闻名额判断。没有合格城市时，保留原团与全国名额。[玩家规则](../Design/Culture.md#来源易主与重新挂靠) · [城市和单位各自的责任](../Architecture/Specialization_v0.1_Architecture.md#已成团的考察团更换归档城)

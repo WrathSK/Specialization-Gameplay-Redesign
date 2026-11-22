@@ -10,10 +10,18 @@ Document State: ACCEPTED
 
 玩家败北时单人游戏结束。发展投资签约时目标城已有合格的建设对象，合同涵盖所选区域下一座合格建筑。“两城一直归玩家却永久失去所有合格建筑”没有对应的正常游戏场景。这两项移出合同待办。发展投资在合格建筑完工时正常结束。任一合同涉及的关键城易主或确认永久毁灭时，按原条款终止，后来夺回也不会恢复旧约。[发展投资](Commerce.md#效果与结束)
 
-Accepted Spec SHA256: `43c3e483fb77b275f556aa7e0b57a4820e59873e01c32999c0727d088024f1b9`
-[Shared D0066](Content/Shared_D0066.json) SHA256: `cd56809e65ec72e8c803f70c50014949161296b08d76eff39a8366309c207db7`
+Accepted Spec SHA256: `43c3e483fb77b275f556aa7e0b57a4820e59873e01c32999c0727d088024f1b9`（[当时的规范原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/f17d8444117fe489e607223e73619cce0aac1eab/Specialization/Design/Specialization_v0.1_Design_Spec.md)）
+[Shared D0066](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/f17d8444117fe489e607223e73619cce0aac1eab/Specialization/Design/Content/Shared_D0066.json) SHA256: `cd56809e65ec72e8c803f70c50014949161296b08d76eff39a8366309c207db7`
 [Commerce D0066](Content/Commerce_D0066.json) SHA256: `d41bc608bf2381c9f75e0ea2884ca8d7a742a4a7c81194197e0a4de4ccea3a9c`
 [上一版已接受规范](Revisions/Specialization_Design_Spec_D0065.md)
+
+### 施工队文案校正 — 2026-11-21
+
+单人游戏到玩家败北时结束。施工队说明移除了败局后的处置待办，保留失城、夺回及永久毁城时的归属与名额规则。沿用现有设计修订号。此前验收记录中的哈希对应其链接所指的原文。
+
+- [现行规范](Specialization_v0.1_Design_Spec.md) SHA256 `a0afe8bfadc3de7c7136596160bcd91d8bf7c0dee47ccdc3adf55ad6124044e4`
+- [工业内容](Content/Industry_D0061.json) SHA256 `262082c4f6cf5ab912cda5cd6808bb7540faff8e68fe98d3a01eeac8712d9557`
+- [共同规则](Content/Shared_D0066.json) SHA256 `07576abc589472ff99fbd7ad3d47086533b9b6d9611717b2b7fab9e9de664849`
 
 ## Accepted D0065 — 2026-11-21
 
@@ -61,7 +69,7 @@ Accepted Spec SHA256: `52de79223fd0e6c8fcf6bf6aba2614d2fd0fb0f293a629208862a5211
 Frozen D0060 Spec SHA256: `782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39`
 [Shared D0061](Content/Shared_D0061.json) SHA256: `12cf3d8dbc86175aade322112421ce68b73a233d28f68167127d46f330e32dae`
 [Commerce D0061](Content/Commerce_D0061.json) SHA256: `555e16d4e1d75ba68285496122a6b5799a84b8a1d8f76ba04c4e241946a73481`
-[Industry D0061](Content/Industry_D0061.json) SHA256: `030fc379baacc519e7b6b0befa541b775b1657a1562d3b511695da9cff8e733c`
+[Industry D0061](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/33b7a8cf65f6b4cd16453117a5fafd52633c5dd8/Specialization/Design/Content/Industry_D0061.json) SHA256: `030fc379baacc519e7b6b0befa541b775b1657a1562d3b511695da9cff8e733c`（[现行文字校正](#施工队文案校正--2026-11-21)）
 
 ## Accepted D0060 — 2026-11-07
 
