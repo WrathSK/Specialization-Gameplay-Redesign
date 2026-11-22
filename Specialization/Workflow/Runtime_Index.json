@@ -491,9 +491,9 @@
       "provenance": "B219 authorized explicit movement comparison, exact source/type/idle admission and transient Gate suspension; no normal relocation or permanent-state change. Direct callers and targeted tests reviewed; native pending."
     },
     "Mod/ExpeditionSpyGate.lua": {
-      "sha256": "7f46238a60dd3131d30737aab768533bebb6a7659e6950e395abe21666c9e52a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
-      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
+      "sha256": "d412c5cb166a8160ad6690452b3555ac2c4537284e09e04c43d830211ce36df0",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1135 B535. Existing team authority, strict unit roster and guarded release."
     },
     "Mod/ExpeditionSpyRead.lua": {
       "sha256": "74b1960a96970f0ee5bc80e59499ccff490eb27ad97f56b1d346872aabbce305",
@@ -511,9 +511,9 @@
       "provenance": "B211 user-approved: redispatch after a completed task once activity is released; taskCount for fresh activity keys; standard-speed TASK_TURNS; auto-open excludes completed teams; L2 Expedition suites only external-DB name failures (identical at HEAD)."
     },
     "Mod/ExpeditionTraining.lua": {
-      "sha256": "c5724a9b9c96508948be918d57c369139d75b882bd2a303f92bce5d11a3fa46f",
+      "sha256": "e5a181248e9d2c4ee7546e3eeae31111dd8c53ca839971e3b730162a77bd2575",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0888/B410.437:fixed required29exit/23return wrappers,existing owner callbacks retained;Training exact readable source-loss confirmation and post-native freshness;95localPASS,no native/deploy.2labels only."
+      "provenance": "S1135 B535. Queue, verified exit, receipt ordering and bounded vacancy reconciliation."
     },
     "Mod/ExpeditionTrainingDiagnostics.lua": {
       "sha256": "99711e0fc6e6d070518600f4596fb1d5eb3eb1231b21e065248f565bbdbe374b",
@@ -596,9 +596,9 @@
       "provenance": "S1134 B534. Load both shared coefficients without the retired rows."
     },
     "Mod/NetworkInput.lua": {
-      "sha256": "2ee46a895b980fdc6c291a3f1451ac55dd5a46a99c091eae74203518042dc590",
+      "sha256": "02edcb9580787040c730da13acd726d855f0efcf20527fdc9bd558209ab4b6fc",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1133 B533. Explain confirmed network blockers in investment views without changing strict admission."
+      "provenance": "S1135 B535. Same city-reference encoding for a live city or the verified original endpoint."
     },
     "Mod/NetworkSender.lua": {
       "sha256": "7c8cd5237215aeb09345e9ac15b7356b83b3389d68f9957df36d8ead1a201675",
@@ -616,9 +616,9 @@
       "provenance": "S1134 B534. Remove unused boost label."
     },
     "Mod/Probe.lua": {
-      "sha256": "f475cededc079ad7b6bdfcdac7f8bb4eb3879d432a41a65deabeac7c3193c828",
+      "sha256": "c382503187a5aa1c8ef69b26775cd8c243a4537288741d281bb9a1870877187f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1134 B534. Develop package identity."
+      "provenance": "S1135 B535. Package identity."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -731,9 +731,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "cea9e81c6431aea12626d035dfc37b8bac796dd5b56836225a2a46af09c754d3",
+      "sha256": "2a508c2e4149e50c46de525efa6e48fd9781460946c42fa72fc57192413ccb49",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1134 B534. Remove four retired package paths."
+      "provenance": "S1135 B535. Package identity."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1016,9 +1016,9 @@
       "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
     },
     "Mod/UI/CrewProjectOrder.lua": {
-      "sha256": "aa5bde64190698d9c651ee3ecdc685afa8d348c0a04180ef5e81da60d83d81ef",
+      "sha256": "6bd40dd09ae8b5361dd4c18bf4f9ead69405187f133955f9f1e79be3a41e866d",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0975 B455 exact observer retirement and retained queue-reader registration."
+      "provenance": "S1135 B535. Register and remove the training adapter’s two readers by identity."
     },
     "Mod/UI/CrewProjectUI.lua": {
       "sha256": "cd9e915db1b6b33ce67d2ac3fa4d74d836c82db32823d700c50e158315293e1b",
@@ -1131,9 +1131,9 @@
       "provenance": "B202 reviewed normal-training reservation/source/native-name delta;437 targeted local tests PASS; native pending. Resolved Spy production fields, separate Expedition copy history. Exact production adapter tested; no purchase/HD/travel/task/GC change."
     },
     "Mod/UI/ExpeditionTrainingUI.lua": {
-      "sha256": "a0692604da3e727f1a7686fa20840aea840d214a2784f56d5ef6bfacb0f6aa51",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "sha256": "a7b7efcb4f368d89af114d3da1edc6331f5046f7d640d3a59aed3d7efe47f759",
+      "review_source": "Specialization/Status/Specialization_P0_Status.md",
+      "provenance": "S1135 B535. Owner-local, fresh off-map spy count."
     },
     "Mod/UI/GPPRefresh.lua": {
       "sha256": "06e8a2200c787731bdd8ea1eb10d6cb51aae74884064cfe3a5a7b52453efec04",
@@ -1536,7 +1536,7 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     }
   },
-  "source_review": "S1134 removes the 1,126 obsolete Boost definitions with their readers. Great Work lifecycle and real domestic-route proof were verified locally. Stable B528.555 is installed.",
-  "source_runtime": "B534.561 / modinfo561 develop, 306 files. No deployment.",
-  "tested_source_snapshot_sha256": "abf93a4d28933f0a180f65838e46e03eb6077f17586bf61e0c74056885723a0f"
+  "source_review": "S1135 B535. Confirmed training-city handover ends an unfinished Expedition order; release requires a reliable negative team check. Local validation only. B528.555 stable is installed.",
+  "source_runtime": "B535.562 / modinfo562 develop, 306 files. No deployment.",
+  "tested_source_snapshot_sha256": "193101f0f83b2d7f8f64d29f51bf3ce8cdb2c72e6f5c398d0342157b694d8701"
 }

@@ -18,6 +18,15 @@ function SPCExpeditionTraining.Start(P,shared)
  local diag=SPCExpeditionTrainingDiagnostics and SPCExpeditionTrainingDiagnostics.New(P,'GAMEPLAY')
  local function observe(stage,c,s,extra)if diag then pcall(diag.Event,stage,c,s,extra)end end
  local busy=false;local dirty=false;local waitingReader;local readerAttempts=0;local lastToken,lastReply,latestRequest
+ local lastLossSample
+ -- Only the active transaction watches its own source across native calls.
+ local watchedOwner,watchedCity,watchedToken,positiveReceipt
+ local conflict='TRAINING_SOURCE_RECEIPT_CONFLICT'
+ local function missingTrainingSource(s)
+  return s.phase=='HELD' and s.stop=='TRAINING_SOURCE_CHANGED' and s.trainingToken~=nil and not s.unitID and not s.teamKey
+ end
+ local function watchOrder(s)watchedOwner,watchedCity,watchedToken,positiveReceipt=s.owner,s.sourceCity,s.trainingToken,false end
+ local function noNewReceipt()return watchedOwner~=nil and not positiveReceipt end
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
  local function observeAt(stage,pid,id,s,extra)
   if diag then pcall(function()observe(stage,id~=nil and city(pid,id) or nil,s,extra)end)end
@@ -124,7 +133,15 @@ function SPCExpeditionTraining.Start(P,shared)
   if busy or not P.IsTestPlayer(pid)then return end
   busy=true;shared.RequestDepth=(shared.RequestDepth or 0)+1
   local ok,v=pcall(fn)
+  if positiveReceipt then
+   local s=T.Read(pid)
+   if not s.blocked and s.trainingToken==watchedToken and (s.phase=='TRAINING' or missingTrainingSource(s))
+    and not s.trainingBorn and not s.trainingCompleted then
+    T.Hold(conflict);ok=false;v=conflict
+   end
+  end
   if not ok then if protect==nil or protect()then v=failure(pid,v)else v=tostring(v):gsub('^.-:%d+: ',''):sub(1,160)end;print('[SPC][B202][TRAINING] '..v)end
+  watchedOwner,watchedCity,watchedToken,positiveReceipt=nil,nil,nil,nil
   shared.RequestDepth=shared.RequestDepth-1;busy=false
   return ok,v
  end
@@ -157,9 +174,10 @@ function SPCExpeditionTraining.Start(P,shared)
     return {reserved=true,reservation=p.Token}
    elseif p.Action=='CONFIRM' or p.Action=='CANCEL' then
     assert(s.phase=='TRAINING' and s.trainingToken==p.Reservation and s.sourceCity==p.CityID,'TRAINING_RESERVATION_CHANGED')
+    if p.Action=='CANCEL' then watchOrder(s)end
     mutation=true;local n=queue(exact(s));assert(n<=1,'TRAINING_MULTIPLE_QUEUE_ENTRIES')
     if p.Action=='CANCEL' then
-     assert(n==0,'TRAINING_QUEUE_STILL_PRESENT');marker(exact(s),false);T.Cancel(pid,s.trainingToken)
+     assert(n==0,'TRAINING_QUEUE_STILL_PRESENT');marker(exact(s),false);T.Cancel(pid,s.trainingToken,noNewReceipt)
     elseif n==1 then T.Evidence(pid,s.trainingToken,'trainingQueued',true)
     else return {waiting=true}end
     return {confirmed=true}
@@ -172,6 +190,19 @@ function SPCExpeditionTraining.Start(P,shared)
   if not sameIdentity(latestRequest,attempt)then return end -- a newer accepted request owns publication
   lastToken=p.Token;lastReply=v;ExposedMembers.SPC_ExpeditionTrainingReply=v
  end
+ -- A late positive receipt vetoes release. A team appearing after handover
+ -- cannot be attributed to this order by position or unit type alone.
+ local function lossReceipt(pid,sourceID)
+  if watchedOwner==pid and (sourceID==nil or sourceID==watchedCity)then
+   positiveReceipt=true
+  end
+  local s=T.Read(pid)
+  if (missingTrainingSource(s) or s.phase=='HELD' and s.stop==T.TransferredOrder)
+   and (sourceID==nil or s.sourceCity==sourceID)then
+   T.Hold(conflict)
+   return true
+  end
+ end
  function d.Birth(pid,id)
   if not P.IsTestPlayer(pid)then return end
   if T.MarkUnitCapacity then
@@ -180,7 +211,9 @@ function SPCExpeditionTraining.Start(P,shared)
   end
   local u=Players[pid]:GetUnits():FindID(id);local r=u and P.Info('Units',u:GetType())
   if r and (r.UnitType==M.KIND or r.UnitType=='UNIT_SPY')then cultureObserve('UNIT_ADDED_OBSERVED',function()return {eventOwner=pid,eventUnit=id,unitType=r.UnitType,unitIndex=r.Index}end)end
+  if r and r.UnitType=='UNIT_SPY' and lastLossSample then dirty=true end
   if not r or r.UnitType~=M.KIND then return end
+  if lossReceipt(pid,nil)then return end
   run(pid,function()
    local s=T.Read(pid)
    cultureObserve('EXPEDITION_BIRTH_STATE',function()return {owner=pid,eventUnit=id,phase=s.phase,reservation=s.trainingToken,ready=s.phase=='TRAINING'}end)
@@ -203,11 +236,25 @@ function SPCExpeditionTraining.Start(P,shared)
   end)
   if kind~=0 then return end
   local r=P.Info('Units',index);if not r or r.UnitType~=M.KIND then return end
+  if cancelled~=true and lossReceipt(pid,id)then return end
   run(pid,function()
    popFlush('POP_SUMMARY',pid);observeAt('COMPLETE_CALLBACK',pid,id,nil,{eventOwner=pid,eventCity=id,eventKind=kind,eventIndex=index,cancelled=cancelled})
    local s=T.Read(pid)
    observeAt('COMPLETE_STATE',pid,id,s)
    if s.phase~='TRAINING' then return end
+   -- A cancellation can precede the native queue update. Until removal is
+   -- visible, the existing queue reconciliation or verified transfer owns it.
+   if cancelled==true and s.sourceCity~=id then return end
+   if cancelled==true and s.sourceCity==id and s.trainingQueued and not s.trainingBorn and not s.trainingCompleted then
+    watchOrder(s)
+    local c=exact(s)
+    if queue(c)==0 then
+     marker(c,false)
+     assert(queue(exact(s))==0,'TRAINING_QUEUE_STILL_PRESENT')
+     T.Cancel(pid,s.trainingToken,noNewReceipt)
+    else dirty=true end
+    return
+   end
    assert(s.sourceCity==id and not cancelled and (s.trainingQueued or s.trainingTurn==Game.GetCurrentGameTurn()),'TRAINING_COMPLETION_MISMATCH')
    -- B209: the marker exists only in the reserved city after the saved
    -- reservation, so a same-turn native completion there is the queue evidence.
@@ -216,14 +263,28 @@ function SPCExpeditionTraining.Start(P,shared)
    observeAt('COMPLETE_EXIT',pid,id,s,{completed=true})
   end)
  end
- function d.Pulse(pid,recovery)
+ function d.Pulse(pid,recovery,published)
   if not P.IsTestPlayer(pid)then return end
   local s=T.Read(pid)
+  if s.phase=='HELD' and s.stop==T.TransferredOrder then
+   local read=ExposedMembers.SPC_ExpeditionOffMapCount
+   local stamp=T.CapacityInputStamp(pid)
+   if lastLossSample and lastLossSample.token==s.trainingToken and lastLossSample.reader==read
+    and lastLossSample.stamp==stamp and not recovery then return end
+   if not published and not recovery then dirty=true;return end
+   lastLossSample={token=s.trainingToken,reader=read,stamp=stamp}
+   local ok,ended=pcall(T.ReleaseTransferredOrder,pid,s.trainingToken,read)
+   if not ok then print('[SPC][EXPEDITION_TRAINING] '..tostring(ended))end
+   if ok and ended then lastLossSample=nil end
+   return
+  end
+  lastLossSample=nil
   if s.phase=='HELD' and s.trainingToken then pcall(function()marker(exact(s),false)end);return end
   if s.phase~='TRAINING' then return end
   if type(ExposedMembers.SPC_ExpeditionQueueRead)~='function' then waitingReader=pid;return end
   if waitingReader then waitingReader=nil;readerAttempts=0;recovery=true end
   run(pid,function()
+   if s.trainingQueued and not s.trainingBorn and not s.trainingCompleted then watchOrder(s)end
    local c=exact(s);local n=queue(c);assert(n<=1,'TRAINING_MULTIPLE_QUEUE_ENTRIES')
    if s.trainingBorn and s.trainingCompleted then
     if n==0 then
@@ -242,7 +303,7 @@ function SPCExpeditionTraining.Start(P,shared)
     -- the map means the order was removed or replaced natively (including map
     -- placement paths that bypass the panel hook). A completed order would
     -- already have its unit, so late events cannot be mistaken for removal.
-    if T.NoUnits(pid) then marker(c,false);T.Cancel(pid,s.trainingToken)
+    if T.NoUnits(pid) then marker(c,false);T.Cancel(pid,s.trainingToken,noNewReceipt)
     elseif recovery then error('TRAINING_LOADED_QUEUE_MISSING')
     else marker(c,false)end
    elseif Game.GetCurrentGameTurn()>s.trainingTurn then
@@ -277,8 +338,8 @@ function SPCExpeditionTraining.Start(P,shared)
   if P.IsTestPlayer(pid)then local s=T.Read(pid);if s.phase=='TRAINING' and s.sourceCity==id then dirty=true end end
  end
  hook('CityProductionChanged',affected);hook('CityProductionQueueChanged',affected)
- local function current(recovery)
-  for pid in pairs(Players)do if P.IsTestPlayer(pid)then d.Pulse(pid,recovery);break end end
+ local function current(recovery,published)
+  for pid in pairs(Players)do if P.IsTestPlayer(pid)then d.Pulse(pid,recovery,published);break end end
  end
  hook('GameCoreEventPublishComplete',function()
   if waitingReader then
@@ -287,7 +348,7 @@ function SPCExpeditionTraining.Start(P,shared)
     readerAttempts=readerAttempts+1
     if readerAttempts>=12 then local pid=waitingReader;waitingReader=nil;run(pid,function()error('TRAINING_QUEUE_READER_UNAVAILABLE')end)end
    end
-  elseif dirty then dirty=false;current(false)end
+  elseif dirty then dirty=false;current(false,true)end
  end)
  hook('PlayerTurnActivated',function(pid)turnMark('TURN_BEGIN',pid);d.Pulse(pid,false)end)
  hook('LoadScreenClose',function()
@@ -296,23 +357,37 @@ function SPCExpeditionTraining.Start(P,shared)
   if diag then pcall(diag.Record,'LOAD_RECOVERY_RETURNED')end
  end)
  hook('CityTransfered',function()current(false)end)
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ExpeditionTraining',function(c,loss)
+ if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ExpeditionTraining',function(c,loss,ticket)
   local pid=loss.origin.owner
   local ok,value=run(pid,function()
    local s=T.Read(pid);assert(not s.blocked,'TRAINING_STATE_UNAVAILABLE')
+   local wasTraining=s.phase=='TRAINING' or missingTrainingSource(s)
+   local matched=wasTraining and s.sourceCity==loss.origin.cityID
+   if matched then watchOrder(s)end
    -- Physical ownership is independent of the current reservation/profession.
-   shared.CityProgressionStore.RemoveOwned(c,loss,{M.MARKER})
-   if s.phase=='TRAINING'and s.sourceCity==loss.origin.cityID then
+   local store=shared.CityProgressionStore
+   store.RemoveOwned(c,loss,{M.MARKER})
+   if matched then
     assert(s.owner==pid and s.x==loss.origin.x and s.y==loss.origin.y,'TRAINING_SOURCE_CHANGED')
-    local current=T.Read(pid) -- RemoveOwned crosses a native notification boundary.
-    assert(not current.blocked and current.phase=='TRAINING'and current.owner==s.owner
+    local reason='TRAINING_SOURCE_LOST'
+    if ticket and s.trainingQueued and not s.trainingBorn and not s.trainingCompleted and not s.trainingReceiptTurn
+     and not s.unitID and not s.createdID and not s.teamKey then
+     local token=assert(store.ReferenceToken(c),'TRAINING_SOURCE_BINDING_UNKNOWN')
+     assert(SPCNetworkInput.ReferenceParts(pid,s.sourceCity,s.x,s.y,token)==s.sourceRef,'TRAINING_SOURCE_BINDING_CHANGED')
+     assert(store.IsExitCurrent('ExpeditionTraining',c,loss,ticket),'TRAINING_EXIT_CHANGED')
+     reason=positiveReceipt and conflict or T.TransferredOrder
+    end
+    local current=T.Read(pid) -- Native reads/removal may have run another callback.
+    assert(not current.blocked and current.phase==s.phase and current.stop==s.stop and current.owner==s.owner
+     and current.trainingBorn==s.trainingBorn and current.trainingCompleted==s.trainingCompleted
      and current.sourceCity==s.sourceCity and current.x==s.x and current.y==s.y
      and current.trainingToken==s.trainingToken and current.sourceRef==s.sourceRef,'TRAINING_EXIT_CHANGED')
-    T.Hold('TRAINING_SOURCE_LOST') -- existing lawful source-loss transition
+    if reason==T.TransferredOrder then T.MarkTransferredOrder(pid,s.trainingToken)else T.Hold(reason)end
     local after=T.Read(pid)
-    assert(not after.blocked and after.phase=='HELD'and after.owner==pid
+    assert(not after.blocked and after.phase=='HELD'and after.stop==reason and after.owner==pid
      and after.sourceCity==s.sourceCity and after.x==s.x and after.y==s.y
      and after.trainingToken==s.trainingToken and after.sourceRef==s.sourceRef,'TRAINING_EXIT_UNCONFIRMED')
+    if reason==T.TransferredOrder then dirty=true end
    end
    return true
   end,function()return false end) -- an unrelated saved team is never held by this cleanup's failure

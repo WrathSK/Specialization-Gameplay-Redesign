@@ -1,28 +1,40 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1134
-Implementation Build: develop B534.561 / modinfo561. Installed stable B528.555 / modinfo555.
-Architecture Revision Reviewed: A0190
-Design Revision Reviewed: D0062
-Latest Accepted Design Revision: D0062
-Design Sync State: D0062_HARBOR_CATALOG_SYNCED
-Work State: RETIRED_NETWORK_BOOST_DEFINITIONS_AND_READERS_LOCALLY_VERIFIED
+Status Revision: S1135
+Implementation Build: develop B535.562 / modinfo562. Installed stable B528.555 / modinfo555.
+Architecture Revision Reviewed: A0191
+Design Revision Reviewed: D0063
+Latest Accepted Design Revision: D0063
+Design Sync State: D0063_EXPEDITION_TRAINING_CITY_TRANSFER_SYNCED
+Work State: EXPEDITION_TRAINING_CITY_TRANSFER_LOCALLY_VERIFIED
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B534.561 removes obsolete network boost definitions and their dedicated checks. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
+| Source and installation | Develop B535.562 can release the original owner's confirmed Expedition training order after a verified city transfer and negative team check. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [Retired network boost and retained cleanup](#retire-obsolete-network-boost-carriers--s1134) passed 30 current cases and 94 focused cases with overlap. Official full SQL and HD slice replay used pinned native inputs. |
-| Next action | Collect the parked city handover and razing evidence when it occurs in normal play. Revisit the network waiting threshold, permanent team loss and City Center investment targets only with evidence or an Owner decision. |
+| Validation | [Current slice](#expedition-training-city-transfer--s1135) passed 37 current and 186 scoped local cases with overlap. Native ownership-event timing remains unobserved. |
+| Next action | Retain [parked ownership observations](Playtest_Backlog.md#city-ownership-follow-up). Eight import-only experiments still have test consumers. Review their retrieval and test ownership before package retirement. The existing network threshold, team-loss and City Center investment questions remain open. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Expedition training city transfer — S1135
+
+两座文化四级城中，一城已经把考察团放入队列，随后易主。旧实现撤掉了训练准入标记，却因无法再读取原主人的队列，持续占用全国名额，读档也无法解除。该反例由实际城市 Store、训练控制器和单位记录配合模拟引擎重现。用户确认失城结束这张未完成订单，确认无团后可重新训练。[现行文化设计](../Design/Culture.md#四级人文考察团) · [架构合同](../Architecture/Specialization_v0.1_Architecture.md#考察团训练城易主)
+
+**处理与工作量。** 交割必须匹配训练城的原主人、城市编号、坐标和绑定标识，撤除训练准入标记后核对读回。原队列已确认、没有出生或完工凭据时，沿用单位记录保存已交割状态。在既有发布结束或读档边界，先取一次本玩家离图间谍数，零时才检查一次本玩家地图单位名册。离图间谍身份不明、单位类型读不到、另一份完成凭据或取样期间单位发生变化，都保留名额。单张订单复用相同读取接口和单位通知代次的结果，变化或同构建加载可重新核对。两城测试里连续 50 次未改变输入的回合／发布边界没有增加原生采样。普通取消也要确认队列实际为空；在撤标记期间、或原城已读不到但正式交割尚未确认时收到完工通知，仍保留名额。这两种顺序由本地回调注入验证。复用原有保存字段及写后读回。已成团单位的归档、任务及重新挂靠单列。
+
+**包内候选复核（静态）。** 当前清单的 ImportFiles 收入八份脚本：`DistrictPrecisionProbe.lua`、`DistrictPrecisionRead.lua`、`ExpeditionGate.lua`、`ExpeditionMovementProbe.lua` 及 `UI/` 下的 `GreatWorkBasis.lua`、`CityIdentityEvidence.lua`、`ExpeditionGateWindow.lua`、`ExpeditionMovementProbe.lua`。从现行入口未找到启动这些文件的路径。两个旧窗口的 XML 仅列入文件清单；当前考察团由 `ExpeditionSpyGate` 启动。历史测试仍按路径读取脚本，现行考察团测试夹具也间接借用旧 Gate。另一个候选 `PROJECT_SPC_OVERFLOW_SINK_TEST` 仍由 SQL 加载，生产面板的项目读取、选择和显示代码仍引用该定义。八份脚本及实验项目都留在本包。
+
+**证据。** Lua 5.1 的 19 个[两城用例](../../DevelopmentTests/test_expedition_training_source_loss.py)覆盖取消、交割前后回调顺序、冷读档、未入队、其他城市、未知／已出现单位、接口替换及读写期间重入。186 项定域检查通过，涵盖训练、存储、生产 UI、间谍入口及商路引用。当前回归通过 37/37，含上述用例中的七项。181 份 Lua 5.1 编译、24 份 XML 与 modinfo 解析、603 个包引用通过。实际引擎的捕城／交割顺序和离图单位名册仍待自然机会观察，已加入[既有待办](Playtest_Backlog.md#city-ownership-follow-up)。本轮未部署。
+
+Local evidence: `local/refactor/CurrentGameplay-4dc7986b547b460999755fef47a1105d/closure.json` (SHA256 `98ab61356e78b0cc17f983e97e10b8c022a7f0e1d68eaaf9eeeb1a2ad9e9db72`). Tested source digest `193101f0f83b2d7f8f64d29f51bf3ce8cdb2c72e6f5c398d0342157b694d8701`. Full artifact is local only.
 
 ### Retire obsolete network boost carriers — S1134
 

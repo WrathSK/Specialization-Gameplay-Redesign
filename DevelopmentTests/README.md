@@ -17,6 +17,8 @@ For deployment-tool changes only, `test_deployment.py` exercises temporary direc
 
 From the repository root, run `PYTHONDONTWRITEBYTECODE=1 python3 DevelopmentTests/run_refactor.py --stage CurrentGameplay`. Use the Lupa 2.8 and read-only database setup under [Environment and dependencies](#environment-and-dependencies). The first reference run used the fixed B413 HD database.
 
+The [Expedition training cases](test_expedition_training_source_loss.py) use the actual city Store, team save cell, training controller and production UI with two Culture IV cities. Run `python3 -m unittest test_expedition_training_source_loss` with DevelopmentTests on the import path. They distinguish a verified handover from a missing city, and absence of a team from an unreadable unit or unidentified off-map spy. Native handover timing remains a playtest observation.
+
 The [investment notice cases](test_investment_network_notice.py) cover a mixed city, bounded transport failure, recovery, strict signatures and both localized panels. For the HD Harbor chain and official absence, also run `python3 -m unittest test_effective_building_tiers` with the two pinned databases specified in that module.
 
 The [named cases](refactor_selection.json) exercise current city acquisition and Claim, Crew cancellation and one-time delivery, network and investment gates, contract settlement across reload, and representative Research, Culture and Industry effects. The selection requires every named case to actually pass. A skip, a duplicate selection, or a registered counterexample cannot satisfy this gate. Each run emits its source and input digests and the location of its local evidence. Use the subsystem tests for changes outside these paths.

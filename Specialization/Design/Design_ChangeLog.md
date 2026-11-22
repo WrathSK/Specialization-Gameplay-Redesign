@@ -3,8 +3,16 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0062
+Latest Accepted Design Revision: D0063
 Document State: ACCEPTED
+
+## Accepted D0063 — 2026-11-21
+
+训练城正式易主后，原主人在该城已确认、尚未完成的考察团训练订单作废。确认没有出生或生产完成凭据，并且能够可靠排除原主人仍有考察团时，其他文化四级城可重新训练。单位去向不明时继续占用全国名额。已成团的单位沿用存续与归档城规则。
+
+Accepted Spec SHA256: `9030433e3cc78a6159164997becabe8865a54f0f1be5abe9b76fdc5d45c30e51`
+[Culture D0063](Content/Culture_D0063.json) SHA256: `8ebb05f816c9cea25e494ea57f2729e7b57184ade092074f038ba8a89c7fb40d`
+[Frozen D0062 Spec](Revisions/Specialization_Design_Spec_D0062.md) SHA256: `5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c874cc9248`
 
 ## Accepted D0062 — 2026-11-21
 

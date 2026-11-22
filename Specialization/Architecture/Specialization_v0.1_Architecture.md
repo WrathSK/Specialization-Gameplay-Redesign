@@ -1,12 +1,12 @@
-# Specialization v0.1 Architecture — A0190
+# Specialization v0.1 Architecture — A0191
 
 Document Owner: Codex
-Architecture Revision: A0190
-Design Spec Synced Through: D0062
-Design Spec SHA256: 5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c874cc9248
-Latest Accepted Design Revision: D0062
-Latest Accepted Design SHA256: 5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c874cc9248
-Sync Status: D0062_SYNCED_HARBOR_CATALOG
+Architecture Revision: A0191
+Design Spec Synced Through: D0063
+Design Spec SHA256: 9030433e3cc78a6159164997becabe8865a54f0f1be5abe9b76fdc5d45c30e51
+Latest Accepted Design Revision: D0063
+Latest Accepted Design SHA256: 9030433e3cc78a6159164997becabe8865a54f0f1be5abe9b76fdc5d45c30e51
+Sync Status: D0063_SYNCED_EXPEDITION_TRAINING_CITY_TRANSFER
 Implementation / live evidence: see Status CURRENT and Workflow/Authority.json; this document defines target contracts, not a parallel deployment ledger.
 
 ## CURRENT AUTHORITATIVE STATE
@@ -24,6 +24,10 @@ A0189 同步[三座 HD 港口建筑的资格](../Design/Shared.md#普通建筑�
 A0188 承接[城市易主规则](../Design/Shared.md#和平受让多次转手与同址重建)。进度存储仍独占城市身份写入。首次和平受让使用交割事件提供的新主人、新城市 ID 和明确原因，核对前主人、该城的加入／初始化顺序以及对象与地块两种查询。只在交割时读取一次该城已完工的区域；认领项目沿用原有候选和结算。已登记位置优先交给原城市记录处理。
 
 直接归还时，原标记缺失且出现 CityBuilt 的路径，需要完整的旧端点移除、新端点加入与初始化、同回合交割和已经确认的退出。和平交割还要求 CityBuilt 指向同一新端点并先于移除，交割原因由具名引擎枚举确认。现有保存字段分别记录来源与凭据版本，冷读档重新核对。三类和平原因共用该窗口，原生覆盖范围见[事件证据](../Reports/Technical/Engine_Reference.md#er09--城市换手身份与永久毁城)。外方间连续交割与永久毁城的实现边界见[当前状态](../Status/Specialization_P0_Status.md#peaceful-city-acquisition-and-direct-return--s1125)。
+
+### 考察团训练城易主
+
+城市 Store 负责确认交割、原城市绑定及训练准入标记的撤除。训练控制器将它们与同一张已入队订单核对。单位侧沿用现有玩家记录保存这一结果，来源丢失通知和外方队列均不能单独解除名额。随后在事件发布结束或同构建读档边界核对该玩家的单位名册及离图间谍数量。没有出生、完成或存续凭据、名册可识别且离图数为零时，才结束预留。正向凭据、身份不明的离图间谍或取样期间出现的新通知保留名额。后续相关单位或读取接口变化可重新核对。独立单位的归档城变更沿用[既有边界](v2/P0_N_Expedition.md#v01-scope-decisions-user-2026-10-16)。[文化设计](../Design/Culture.md#四级人文考察团)
 
 ### Accepted convergence boundaries — 2026-11-04
 

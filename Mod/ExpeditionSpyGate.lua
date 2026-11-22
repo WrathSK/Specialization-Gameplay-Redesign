@@ -123,10 +123,13 @@ function SPCExpeditionSpyGate.Start(P,shared)
  local function int(n)return type(n)=='number' and n==n and n>=0 and n<math.huge and n%1==0 end
  local function flag(v)return v==true or v==1 end
  local function row(u)return u and P.Info('Units',u:GetType())end
- local function list(pid)
+ local function list(pid,requireKnownTypes)
   local out={}
   for _,u in Players[pid]:GetUnits():Members()do
    local r=row(u)
+   if requireKnownTypes then
+    assert(r and type(r.UnitType)=='string' and r.UnitType~='','TRAINING_UNIT_TYPE_UNKNOWN')
+   end
    if r and (r.UnitType==M.KIND or r.UnitType==M.LEGACY or r.UnitType==M.ZERO)then out[#out+1]=u end
   end
   return out
@@ -906,10 +909,32 @@ function SPCExpeditionSpyGate.Start(P,shared)
  end
  -- B210: no Expedition-family unit exists for the player (live native read).
  function T.NoUnits(pid)load(pid);return #list(pid)==0 end
- function T.Cancel(pid,token)
+ function T.Cancel(pid,token,noNewReceipt)
   assert(not storeBlocked and state.owner==pid and state.phase=='TRAINING' and state.trainingToken==token,'TRAINING_RESERVATION_CHANGED')
-  assert(not state.trainingBorn and not state.trainingCompleted and #list(pid)==0,'TRAINING_OUTCOME_UNKNOWN')
-  source();state={owner=pid,phase='ENDED'};save();publishActivity()
+  local reservation,unitEvents=envelope,capacityEvents
+  assert(not state.trainingBorn and not state.trainingCompleted and #list(pid,true)==0,'TRAINING_OUTCOME_UNKNOWN')
+  source()
+  assert(not storeBlocked and envelope==reservation and capacityEvents==unitEvents and noNewReceipt(),'TRAINING_OUTCOME_UNKNOWN')
+  state={owner=pid,phase='ENDED'};save();publishActivity()
+ end
+ -- This reason is recorded only by the matching, verified city-exit duty.
+ T.TransferredOrder='TRAINING_ORDER_VOID_ON_TRANSFER'
+ function T.MarkTransferredOrder(pid,token)
+  assert(not storeBlocked and state.owner==pid and state.trainingToken==token and state.trainingQueued
+   and (state.phase=='TRAINING' or state.phase=='HELD' and state.stop=='TRAINING_SOURCE_CHANGED'),'TRAINING_RESERVATION_CHANGED')
+  state.phase='HELD';state.stop=T.TransferredOrder;state.errorStep=nil;state.errorDetail=nil
+  save();publishActivity()
+ end
+ function T.ReleaseTransferredOrder(pid,token,offMap)
+  if storeBlocked or busy or capacityObserverFailed or state.owner~=pid or state.phase~='HELD'
+   or state.stop~=T.TransferredOrder or state.trainingToken~=token or not state.trainingQueued
+   or state.trainingBorn or state.trainingCompleted or state.trainingReceiptTurn
+   or state.unitID or state.createdID or state.teamKey then return false end
+  local reservation,unitEvents=envelope,capacityEvents
+  if type(offMap)~='function' or offMap(pid)~=0 or #list(pid,true)~=0 then return false end
+  if storeBlocked or busy or capacityObserverFailed or envelope~=reservation or capacityEvents~=unitEvents
+   or state.stop~=T.TransferredOrder or ExposedMembers.SPC_ExpeditionOffMapCount~=offMap then return false end
+  state={owner=pid,phase='ENDED'};save();publishActivity();return true
  end
  function T.Hold(err)hold(err);publishActivity()end
 

@@ -32,7 +32,14 @@
       "test_network_effect_write_boundary.CultureNetworkReadback.test_cold_interrupted_reconciliation_keeps_observation_separate_from_saved_aggregate",
       "test_network_effect_write_boundary.StandardizationReadback.test_cold_start_finishes_with_a_non_test_city",
       "test_shared_d_fact_read.SharedDFactRead.test_actual_research_writers_carriers_and_writes_match_eight_transitions",
-      "test_refactor_s5d4c5.CultureProjection.test_missed_load_real_sample_initializes_each_independently"
+      "test_refactor_s5d4c5.CultureProjection.test_missed_load_real_sample_initializes_each_independently",
+      "test_expedition_training_source_loss.SourceLoss.test_confirmed_transfer_releases_once_and_other_city_can_train_after_reload",
+      "test_expedition_training_source_loss.SourceLoss.test_early_source_read_failure_requires_matching_verified_handover",
+      "test_expedition_training_source_loss.SourceLoss.test_completion_between_source_disappearance_and_verified_handover_is_preserved",
+      "test_expedition_training_source_loss.SourceLoss.test_unknown_off_map_then_spy_returns_without_repeated_idle_samples",
+      "test_expedition_training_source_loss.SourceLoss.test_receipt_during_or_after_transfer_never_releases_order",
+      "test_expedition_training_source_loss.SourceLoss.test_unconfirmed_reservation_and_different_binding_never_release",
+      "test_expedition_training_source_loss.SourceLoss.test_cancel_before_queue_updates_then_actual_handover"
     ],
     "O8IntegrationCandidate": [
       "test_o8_integration_candidate",

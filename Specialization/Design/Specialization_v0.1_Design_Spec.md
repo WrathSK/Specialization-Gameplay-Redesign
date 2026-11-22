@@ -2,13 +2,13 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0062
+Design Revision: D0063
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
 Acceptance Date: 2026-11-21
-Acceptance Evidence: 用户确认固定 HD 环境三座港口扩展建筑纳入普通建筑，按现行 Tier 和公式计算。
-Previous Accepted Revision: [D0061冻结原文](Revisions/Specialization_Design_Spec_D0061.md)
-Latest Accepted Design Revision: D0062
+Acceptance Evidence: 用户确认失城结束旧考察团训练订单，确认无团后原主人可重新训练。
+Previous Accepted Revision: [D0062冻结原文](Revisions/Specialization_Design_Spec_D0062.md)
+Latest Accepted Design Revision: D0063
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
@@ -190,7 +190,9 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 **D0048: DESIGN_FROZEN主体保持；主题化许可为USER_ACCEPTED_V0.1_PROVISIONAL／BALANCE_REQUIRED。保留九域六产出、D0045参数、D0042生命周期、Dialogue隔离与D0038逐域Floor；implementation / balance validation pending.**
 
-文化能力及任务的完整设计与首版文案：[Culture_D0059](Content/Culture_D0059.json)。当前时代对话的玩家说明与实际收益均采用仅旅游业绩的备用路径，见[文化阅读页](Culture.md#累计效果)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
+**人文考察团训练城易主（D0063）。** 训练城正式易主后，原主人在该城已确认、尚未完成的考察团训练订单作废。确认没有出生或生产完成凭据，并且能够可靠排除原主人仍有考察团时，其他文化四级城可重新训练。单位去向不明时继续占用全国名额。已成团的单位沿用存续与归档城规则。
+
+文化能力及任务的完整设计与首版文案：[Culture D0063](Content/Culture_D0063.json)。当前时代对话的玩家说明与实际收益均采用仅旅游业绩的备用路径，见[文化阅读页](Culture.md#累计效果)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
 
 | Rule ID | 当前content条目 |
 |---|---|

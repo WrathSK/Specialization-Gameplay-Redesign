@@ -3,22 +3,22 @@
   "batch": "P0-H",
   "status": "COMPLETE",
   "authority_versions": {
-    "design": "D0062",
+    "design": "D0063",
     "research": "D0059",
     "industry": "D0061",
-    "culture": "D0059",
+    "culture": "D0063",
     "commerce": "D0061",
     "shared": "D0062",
     "presentation": "D0032",
-    "architecture": "A0190",
-    "status": "S1134",
-    "runtime": "B534.561 / modinfo561",
+    "architecture": "A0191",
+    "status": "S1135",
+    "runtime": "B535.562 / modinfo562",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Retire obsolete Research and Culture boost definitions with their exclusive readers while preserving the separate Great Work and live network paths.",
+  "goal": "End the original owner's confirmed unfinished Expedition order on verified city transfer and release the place only after reliably excluding a surviving team.",
   "implementation_authorized": false,
   "context": [
     {
@@ -36,43 +36,37 @@
     {
       "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
       "kind": "section",
-      "selector": "### 网络与跨context数据",
-      "reason": "Network inputs, effect ownership and the separate Great Work cleanup responsibility"
+      "selector": "### 考察团训练城易主",
+      "reason": "City and training duties, evidence and release boundaries"
     },
     {
-      "path": "Specialization/Design/Shared.md",
+      "path": "Specialization/Design/Culture.md",
       "kind": "section",
-      "selector": "## 长期状态的七类归属",
-      "reason": "Transient effects, authoritative history and same-reference reconciliation"
-    },
-    {
-      "path": "Specialization/Design/Network.md",
-      "kind": "section",
-      "selector": "## 未确认不等于失效",
-      "reason": "Explicit continuity rule for network effects"
+      "selector": "## 四级：人文考察团",
+      "reason": "Owner-approved training cap, loss during training and independent surviving units"
     }
   ],
   "dependencies": [
-    "D0062 and A0190. Current-build starts and same-build reloads. Public network coefficients retain their signed-input meaning."
+    "D0063, A0191. Existing city transfer evidence, binding token, team Store and panel-owned UI reader."
   ],
   "old_writers": [
-    "The former NetworkBoost definitions, startup and exit group retire together. LegacyCleanup still owns Great Work startup and ten city-exit groups."
+    "City Store withdraws its declared marker. The existing Expedition Gate is the only team reservation writer."
   ],
   "conditional_context": [
-    "Former boost rows, SQL and generators can be retrieved from ef7cbd44ddcd2148799d6a9a7c54d903316e07cf. Historical checks use their original scope."
+    "The B210 owned-source queue release and a living team awaiting reattachment are separate. Prior code and the B528 audit reproduce the original held reservation."
   ],
   "non_scope": [
-    "Deployment, native timing, cross-build saves, network wait policy, team loss and City Center investment policy."
+    "Reattachment, new save fields, unit creation or destruction, network rules, package retirement, deployment and game launch."
   ],
   "validation": [
-    "CurrentGameplay, paired official SQL and fixed HD slice, bounded lifecycle and exact exit tests, real route proof and temporary package round trips."
+    "Two-city same-build reload, protected receipts and units, stale inputs and UI teardown, named current suite and package validation."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
     "runtime_identity": {
-      "source": "B534.561 / modinfo561 on develop. Source and local verification in S1134.",
+      "source": "B535.562 / modinfo562 on develop. Source and local verification in S1135.",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -117,15 +111,11 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#retire-obsolete-network-boost-carriers--s1134",
+      "report": "Specialization/Status/Specialization_P0_Status.md#expedition-training-city-transfer--s1135",
       "status": "LOCAL_SIMULATION_PASS",
-      "tests": 30,
-      "focused_cases": 94,
-      "retired_network_boost_buildings": 1126,
-      "old_boost_checks_per_empty_test_city": [
-        1126,
-        0
-      ],
+      "tests": 37,
+      "focused_cases": 186,
+      "two_city_cases": 19,
       "runner": "CurrentGameplay",
       "native_validation": "NOT_RUN",
       "parked_follow_up": "Specialization/Status/Playtest_Backlog.md#city-ownership-follow-up"

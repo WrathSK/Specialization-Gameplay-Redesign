@@ -77,7 +77,10 @@ class UI(unittest.TestCase):
   self.check("entries={{Directive=2,UnitType=100},{Directive=1,UnitType=103},{Directive=1,UnitType=100}};assert(ExposedMembers.SPC_ExpeditionQueueRead(2,1).count==1)")
 
 def production_adapter():
- l=ui();l.execute("""
+ l=ui()
+ l.execute((R/'Mod/UI/SafeAdapters.lua').read_text())
+ l.execute("""
+ ContextPtr={SetShutdown=function(self,fn)panelShutdown=fn end};GameInfo.Projects={}
  include=function()end;SPCP0=P;nativeSelections=0;nativeBuilds=0
  RefreshCurrentProduction=function()end;GetDataHelper=function()return {ProjectItems={},City=city,UnitItems={}}end
  AdvanceProject=function()end;RemoveQueueItem=function()entries={}end
@@ -94,6 +97,16 @@ def production_adapter():
  """);l.execute((R/'Mod/UI/CrewProjectOrder.lua').read_text());return l
 
 class ProductionAdapter(unittest.TestCase):
+ def test_training_readers_close_with_their_owner_only(self):
+  l=production_adapter();l.execute("""
+  local old=assert(ExposedMembers.SPC_ExpeditionOffMapCount)
+  Players[2].GetDiplomacy=function()return {GetNumSpiesOffMap=function()return 0 end}end
+  assert(old(2)==0 and old(3)==nil)
+  local newer=function()return 1 end;ExposedMembers.SPC_ExpeditionOffMapCount=newer
+  panelShutdown()
+  assert(ExposedMembers.SPC_ExpeditionQueueRead==nil and old(2)==nil)
+  assert(ExposedMembers.SPC_ExpeditionOffMapCount==newer)
+  """)
  def test_ordinary_queue_selection_guard_called_once(self):
   l=production_adapter();l.execute("queueSelected=true;BuildUnit(city,{Type='UNIT_SPY'});assert(nativeSelections==1 and nativeBuilds==0)")
  def test_native_replacement_intent_releases_only_after_queue_change(self):

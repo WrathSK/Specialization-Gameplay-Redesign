@@ -24,6 +24,13 @@ function SPCExpeditionTrainingUI.New(P,send,notify,build)
   local pid=Game.GetLocalPlayer();if closed or owner~=pid then return false end
   local allowed=P.IsTestPlayer(owner);return not closed and allowed
  end
+ -- Off-map spy entries have no proven Expedition type. Only a fresh zero
+ -- excludes a surviving off-map team when its original training city is lost.
+ ExposedMembers.SPC_ExpeditionOffMapCount=function(pid)
+  if closed or Game.GetLocalPlayer()~=pid or not P.IsTestPlayer(pid)then return nil end
+  local count=Players[pid]:GetDiplomacy():GetNumSpiesOffMap()
+  if not closed then return count end
+ end
  ExposedMembers.SPC_ExpeditionQueueRead=function(pid,id)
   if closed then return nil end
   local c=assert(city(pid,id),'TRAINING_CITY_UNREADABLE');assert(c:GetOwner()==pid)

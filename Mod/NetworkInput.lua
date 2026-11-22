@@ -4,11 +4,13 @@ local N=SPCNetworkInput
 local function atom(v)
  local s=type(v)..':'..(type(v)=='number' and string.format('%.17g',v) or tostring(v));return #s..':'..s
 end
-function N.Reference(c)
- local owner,id,x,y,token=c:GetOwner(),c:GetID(),c:GetX(),c:GetY(),c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')
+function N.ReferenceParts(owner,id,x,y,token)
  for _,v in ipairs({owner,id,x,y})do assert(type(v)=='number' and v>=0 and v%1==0,'NETWORK_REFERENCE_UNAVAILABLE')end
  assert(type(owner)=='number' and type(id)=='number' and type(x)=='number' and type(y)=='number','NETWORK_REFERENCE_UNAVAILABLE')
  return table.concat({atom(owner),atom(id),atom(x),atom(y),atom(token)})
+end
+function N.Reference(c)
+ return N.ReferenceParts(c:GetOwner(),c:GetID(),c:GetX(),c:GetY(),c:GetProperty('SPC_DEV_BINDING_B013_TOKEN'))
 end
 function N.Signature(input)
  local parts={atom(input.validity),atom(input.routeSignature),atom(input.capital),atom(input.kResearch),atom(input.kCulture)}

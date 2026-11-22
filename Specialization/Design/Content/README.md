@@ -9,7 +9,9 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 <a id="current-accepted-content--d0061--d0059"></a>
 <a id="current-accepted-content--d0060--d0059"></a>
 
-## Current accepted content — D0062 / D0061 / D0059
+<a id="current-accepted-content--d0062--d0061--d0059"></a>
+
+## Current accepted content — D0063 / D0062 / D0061 / D0059
 
 当前四专业及共同合同的唯一结构化入口：
 
@@ -17,11 +19,11 @@ Design记录与决策边界见[W0005](../../Workflow/README.md#w0005--authority-
 |---|---|
 | 共同规则／Tier／网络／恢复 | [Shared D0062](Shared_D0062.json) |
 | 科研 | [Research D0059](Research_D0059.json) |
-| 文化 | [Culture D0059](Culture_D0059.json) |
+| 文化 | [Culture D0063](Culture_D0063.json) |
 | 商业 | [Commerce D0061](Commerce_D0061.json) |
 | 工业 | [Industry D0061](Industry_D0061.json) |
 
-[当前Spec](../Specialization_v0.1_Design_Spec.md)与[接受记录](../Design_ChangeLog.md#accepted-d0062--2026-11-21)说明精确取代范围。D0062 确认三座 HD 港口建筑的资格。D0061记录城市转移与毁城，科研、文化其余合同沿用D0059。代码与实机范围查Status。军事／港口D0037、市政D0047仍为未来设计，不扩当前运行范围。
+[当前Spec](../Specialization_v0.1_Design_Spec.md)与[接受记录](../Design_ChangeLog.md#accepted-d0063--2026-11-21)说明精确取代范围。D0063 明确考察团在训练城易主后的空缺名额。D0062 确认三座 HD 港口建筑的资格。D0061记录城市转移与毁城，科研、文化其余合同沿用D0059。代码与实机范围查Status。军事／港口D0037、市政D0047仍为未来设计，不扩当前运行范围。
 
 <details>
 <summary>Historical acceptance provenance — on demand, not current routing</summary>

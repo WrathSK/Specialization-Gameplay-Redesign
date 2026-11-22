@@ -173,7 +173,7 @@ end)
 
 -- B202 exact normal-unit queue admission, preserving the native insert mode.
 local baseBuildUnit=BuildUnit
-trainingSelection=adapters.Add('ExpeditionTrainingUI',one('UNIT_SPC_EXPEDITION_SPY'),{'SPC_ExpeditionQueueRead'},function()
+trainingSelection=adapters.Add('ExpeditionTrainingUI',one('UNIT_SPC_EXPEDITION_SPY'),{'SPC_ExpeditionQueueRead','SPC_ExpeditionOffMapCount'},function()
  include('ExpeditionTrainingUI');return SPCExpeditionTrainingUI.New(SPCP0,send,notify,baseBuildUnit)
 end,{Render={10,'Items'}})
 function BuildUnit(c,item)
