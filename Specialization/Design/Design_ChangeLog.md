@@ -3,8 +3,17 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0065
+Latest Accepted Design Revision: D0066
 Document State: ACCEPTED
+
+## Accepted D0066 — 2026-11-21
+
+玩家败北时单人游戏结束。发展投资签约时目标城已有合格的建设对象，合同涵盖所选区域下一座合格建筑。“两城一直归玩家却永久失去所有合格建筑”没有对应的正常游戏场景。这两项移出合同待办。发展投资在合格建筑完工时正常结束。任一合同涉及的关键城易主或确认永久毁灭时，按原条款终止，后来夺回也不会恢复旧约。[发展投资](Commerce.md#效果与结束)
+
+Accepted Spec SHA256: `43c3e483fb77b275f556aa7e0b57a4820e59873e01c32999c0727d088024f1b9`
+[Shared D0066](Content/Shared_D0066.json) SHA256: `cd56809e65ec72e8c803f70c50014949161296b08d76eff39a8366309c207db7`
+[Commerce D0066](Content/Commerce_D0066.json) SHA256: `d41bc608bf2381c9f75e0ea2884ca8d7a742a4a7c81194197e0a4de4ccea3a9c`
+[上一版已接受规范](Revisions/Specialization_Design_Spec_D0065.md)
 
 ## Accepted D0065 — 2026-11-21
 

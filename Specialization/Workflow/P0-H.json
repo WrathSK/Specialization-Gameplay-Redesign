@@ -3,22 +3,22 @@
   "batch": "P0-H",
   "status": "COMPLETE",
   "authority_versions": {
-    "design": "D0065",
+    "design": "D0066",
     "research": "D0059",
     "industry": "D0061",
     "culture": "D0065",
-    "commerce": "D0064",
-    "shared": "D0064",
+    "commerce": "D0066",
+    "shared": "D0066",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1138",
+    "status": "S1139",
     "runtime": "B537.564 / modinfo564",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Let a surviving Expedition choose an owned Culture archive after verified source transfer.",
+  "goal": "Close the two hypothetical investment review items and point readers to the existing contract outcomes.",
   "implementation_authorized": false,
   "context": [
     {
@@ -28,32 +28,32 @@
       "reason": "Current source, installed package and verified scope"
     },
     {
-      "path": "Specialization/Design/Culture.md",
+      "path": "Specialization/Design/Commerce.md",
       "kind": "section",
-      "selector": "### 来源易主与重新挂靠",
-      "reason": "Owner-approved archive choice and Insight history"
+      "selector": "### 已签合同：普通资格延续与易主终止",
+      "reason": "Which city changes end a signed investment"
     },
     {
-      "path": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
+      "path": "Specialization/Design/Commerce.md",
       "kind": "section",
-      "selector": "### 已成团的考察团更换归档城",
-      "reason": "Verified handover, unit identity and on-demand city choice"
+      "selector": "### 效果与结束",
+      "reason": "Development completion and slot release"
     }
   ],
   "dependencies": [
-    "Existing city Store exit proof, Expedition training exit duty, saved team binding, transition mirror and unit action sidebar."
+    "Existing investment terms and the Owner clarification recorded in D0066."
   ],
   "old_writers": [
-    "The existing Expedition Gate remains the sole team writer. City Insight history remains with the city Store."
+    "Documentation only. Investment settlement and slot release stay with their existing runtime owners."
   ],
   "conditional_context": [
-    "For outstanding investment outcomes or parked ownership and Culture items, read the last section of the player-facing review."
+    "For parked ownership and Culture observations, consult the final section of the player-facing review."
   ],
   "non_scope": [
-    "New city-loss detection, foreign multi-hop handover, raze/refound, HD effect coexistence, investment outcomes, deployment and native testing."
+    "Gameplay changes, new termination events, runtime recovery, deployment and native testing."
   ],
   "validation": [
-    "CurrentGameplay, scoped Expedition and UnitPanel cases, Lua 5.1 and package checks, localization, context and publication checks."
+    "Verify accepted document hashes, the previous accepted Spec, current references and the unchanged runtime tree. Run the context and publication checks."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
@@ -105,13 +105,11 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#expedition-archive-city-choice--s1138",
+      "report": "Specialization/Status/Specialization_P0_Status.md#investment-review-scope--s1139",
       "owner_review": "Specialization/Reports/Proposals/Player_Facing_Boundary_Review.md",
-      "accepted_design": "D0065",
-      "status": "LOCAL_SIMULATION_PASS",
-      "current_gameplay_cases": 42,
-      "focused_cases": 183,
-      "new_lua51_cases": 9,
+      "accepted_design": "D0066",
+      "status": "DOCUMENTATION_SYNC",
+      "prior_runtime_verification": "Specialization/Status/Specialization_P0_Status.md#expedition-archive-city-choice--s1138",
       "native_validation": "NOT_RUN"
     }
   }

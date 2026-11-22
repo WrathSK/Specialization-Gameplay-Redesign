@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1138
+Status Revision: S1139
 Implementation Build: develop B537.564 / modinfo564. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
-Design Revision Reviewed: D0065
-Latest Accepted Design Revision: D0065
-Design Sync State: D0065_EXPEDITION_ARCHIVE_ACTION
-Work State: EXPEDITION_ARCHIVE_ACTION_LOCAL_PASS
+Design Revision Reviewed: D0066
+Latest Accepted Design Revision: D0066
+Design Sync State: D0066_INVESTMENT_REVIEW_SCOPE
+Work State: INVESTMENT_REVIEW_CLOSED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -16,13 +16,17 @@ Work State: EXPEDITION_ARCHIVE_ACTION_LOCAL_PASS
 | Source and installation | Develop B537.564 adds the archive-city action for an existing Expedition after a confirmed handover. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
 | Validation | [Archive city choice](#expedition-archive-city-choice--s1138) passed scoped local Gameplay and UI checks. Native action-bar appearance and transfer ordering await observation. [Earlier boundary review](#player-facing-boundary-decisions--s1137). |
-| Next action | Review the [two outstanding contract examples](../Reports/Proposals/Player_Facing_Boundary_Review.md#仍待处理的事项). Foreign handover chains, raze/refound and the two Culture-yield domains of Meaning Extension are parked. |
+| Next action | The [investment review](#investment-review-scope--s1139) is closed. Observe the Expedition archive action on a natural handover when a later build is in play. Foreign handover chains, raze/refound and the two Culture-yield domains of Meaning Extension are parked. |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Investment review scope — S1139
+
+单人败局之后的投资结算，以及两城都在手却永久失去全部合格建筑，两项移出待办。发展投资仍按下一座合格建筑完工或任一合同城市易主、永久毁灭结束，释放名额。已结束的合同不会随夺回城市恢复。本次核对现行文字、结构化内容与任务入口，仅更新文档。[负责人裁定](../Design/Design_ChangeLog.md#accepted-d0066--2026-11-21)
 
 ### Expedition archive city choice — S1138
 
