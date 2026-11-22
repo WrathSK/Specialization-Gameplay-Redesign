@@ -21,6 +21,8 @@
 
 同回合多个区域完成，按游戏交付的有效完成通知先后确定，不按区域类型优先级，也不把整个回合合并处理。通知必须符合当前城市、区域类型、完成状态与历史资格；之后的通知不覆盖身份，加载时看到区域也不是新完成。征服无专业历史的城市先走下述互斥初始化流程，不能直接套用普通首建规则。
 
+首次定专业需要能定位到本城、并确认首个合格区域实际完工的证据。来源缺失或互相矛盾时，保留待核状态，不能用下一条完工补作第一条。现有异常暂停的影响范围见[负责人边界审阅](../Reports/Proposals/Player_Facing_Boundary_Review.md#五项裁定的技术依据)。
+
 ### 开拓者投资与总督门槛
 
 在己方已专业化城市消耗一个开拓者，永久潜力提高一级，最高四级。确认前只是查看／准备，不消耗单位、不增加Potential、没有待继承投资资产；确认后单位消费、receipt成立、Potential更新应原子完成。内部事件交错由技术原子性／可靠恢复解决，不设计部分退款、半份receipt或跨Owner待决投资继承。来源数量、网络强度或商路积累不会替代这一投资，也不凭空为没有专业的城市发放能力。
@@ -236,7 +238,7 @@ Tier权重只描述实际基础设施投入，不自动决定每D应给多少收
 本页是共同规则阅读入口，不是新的独立玩法权威。正式来源更新后同步受影响正文，不凭阅读叙事补规则。
 
 - [Design Spec](Specialization_v0.1_Design_Spec.md)：SCOPE、ELIG、TERMS、PROG与SHARED共同规则及明确例外。
-- [Shared正式内容](Content/Shared_D0062.json)与[语义审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)：普通建筑、当前资格、D、份额、领域词汇与消费者边界；旧Shared引用按当前澄清解释，历史原件不改。
+- [Shared正式内容](Content/Shared_D0064.json)与[语义审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)：普通建筑、当前资格、D、份额、领域词汇与消费者边界；旧Shared引用按当前澄清解释，历史原件不改。
 - [机构与能力展示原则](../Architecture/v2/Presentation_Institution_Carrier_Model.md)：已接受的累计机构、能力说明与隐藏载体分层；具体实现建议不升格为玩法。
 - [商业正式内容](Content/Commerce_D0050.json)：重组例外及当前商业身份／历史展示边界，完整商业合同仍见[商业阅读版](Commerce.md)。
 - [A–D生命周期接受与替代](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：城市、文明、机构和合同分别处理；不扩展未讨论边界。

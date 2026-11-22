@@ -2,13 +2,13 @@
 
 Document Owner: Codex
 Design Authority: User
-Design Revision: D0063
+Design Revision: D0064
 Document State: ACCEPTED
 User Acceptance: ACCEPTED
 Acceptance Date: 2026-11-21
-Acceptance Evidence: 用户确认失城结束旧考察团训练订单，确认无团后原主人可重新训练。
-Previous Accepted Revision: [D0062冻结原文](Revisions/Specialization_Design_Spec_D0062.md)
-Latest Accepted Design Revision: D0063
+Acceptance Evidence: 负责人于 2026-11-21 确认五个玩家可见边界及异常证据的处理原则。
+Previous Accepted Revision: [D0063冻结原文](Revisions/Specialization_Design_Spec_D0063.md)
+Latest Accepted Design Revision: D0064
 Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ## 1. 文档范围与确认边界 — SCOPE
@@ -84,6 +84,18 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 **ELIG-006 — Development / Future Compatibility边界** 当前专用白板文明、单人本地人类实施范围与征服休眠语义已经明确。AI未来可另行启用但不要求行为重写；原版／Mod文明叠加、多enabled玩家及多人仍非当前支持承诺。Old-save initialization、carrier技术实现、参与者成本过滤及跨Owner可靠识别保留既有Development／Future Compatibility边界，不据此修改Gameplay。本轮只同步设计与必要导航／状态元数据，不修改测试文明、源码、测试、部署或GC。
 
+### 玩家边界与异常证据
+
+城市交割、总督调任、商路开通或到期、同构建读档、正常打断生产及合法的单位撤退或消耗，都属于应当正确处理的玩法。普通游玩出现长期待确认、受保护单位失踪或事件来源丢失时，沿触发事件追查原因。人工制造的异常只能说明该条件下会发生什么。先利用现有证据；有缺口时，在发生变化的时点记录已知的对象、事件、缺失事实、受阻操作和先后顺序。
+
+- 新投资签约须有该笔交易所需的可靠城市与商路事实。第三城长期阻塞时核查实际依赖、交割及登记。不得猜测拓扑、超时放行或提供替代交易。[网络](Network.md#未确认不等于失效)
+- 原重组团队受保护。只有绑定的原队能在最低混乱期后配置。正常消耗和目标城易主或毁城按原规则处理。意外永久失踪应查明原因，无替队、付费、应急项目或到期自动配置。永久混乱不作为惩罚。[商业](Commerce.md#混乱期)
+- 普通离图间谍的总数不能证明哪一个是考察团。可靠排除仍有团之前保留全国名额，沿训练、出生、归属和读档证据核查。[文化](Culture.md#来源易主与重新挂靠)
+- 首次定专业须能确认首个合格完工属于哪座城。不得以猜测或后续完工顶替。无法定位时现有实现暂停的范围需由依赖和正常流程验证，人工反例不确立全国暂停玩法。[共同规则](Shared.md#参与资格与城市易主)
+- 市中心按当前最低可建档次的合格建筑最低理论金币价报价。玩家可以延建便宜建筑并承担延迟获得其收益的代价。合同仍绑定城市与区域。[商业定价](Commerce.md#效果与结束)
+
+异常待核时，开拓者消耗、潜力提升、扣本金、结算和专业单位发放只能按各自凭据执行一次。不得编造永久历史、身份或必要网络事实，也不得把未知视为不存在。缩小现有保护前须核对其真实依赖、证明上述约束并验证正常流程。[共享内容](Content/Shared_D0064.json)
+
 ## 2. 测试文明与基本术语 — ID / TERMS
 
 **ID-001** 当前单人测试使用独立的美国／罗斯福身份及罗斯福人物包（Bull Moose）的展示资源。专用白板文明以专业化为主要玩法与平衡基准，不继承原文明能力。原创美术与历史设定留待后续。其它文明、领袖的玩法加成叠加及未来复用仍遵循 ELIG 的单独授权边界。早期苏格兰展示方案见 D0061 冻结原文。
@@ -157,7 +169,7 @@ Maturity Notice: 其它既有PROVISIONAL/candidate/TBD状态不变
 
 ### Shared Mechanical Vocabulary — D0028
 
-唯一当前共享定义：[Shared D0062](Content/Shared_D0062.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
+唯一当前共享定义：[Shared D0064](Content/Shared_D0064.json)。`DISTRICT_DEVELOPMENT`、`YIELD_SHARE`、`ORDINARY_INFRASTRUCTURE`、`BUILDING_CURRENT_ELIGIBILITY`、`NETWORK_LAYER`及领域映射由此维护；专业引用，不在各专业复制不同定义。
 
 **D0035语义及引用覆盖：** D正式中文名“区域基础设施深度”，即Absolute Infrastructure Depth。不是完成百分比，不要求建满=10；三层链D6、四层链D10均为允许的额外投资差异。当前不引入Relative Completeness。已有专业冻结文件中Shared_D0028引用及“区域完善度”用语，当前解释统一遵从Shared_D0045保留的D0035语义澄清；旧文件字节不变、历史解释保留。公式、稳定concept ID及其它Shared合同不变。[Consumer/目录/术语审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)。
 
@@ -192,7 +204,7 @@ SHARED-003的旧Research支持提升不再适用，Research仅按RES_BASE_SUPPOR
 
 **人文考察团训练城易主（D0063）。** 训练城正式易主后，原主人在该城已确认、尚未完成的考察团训练订单作废。确认没有出生或生产完成凭据，并且能够可靠排除原主人仍有考察团时，其他文化四级城可重新训练。单位去向不明时继续占用全国名额。已成团的单位沿用存续与归档城规则。
 
-文化能力及任务的完整设计与首版文案：[Culture D0063](Content/Culture_D0063.json)。当前时代对话的玩家说明与实际收益均采用仅旅游业绩的备用路径，见[文化阅读页](Culture.md#累计效果)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
+文化能力及任务的完整设计与首版文案：[Culture D0064](Content/Culture_D0064.json)。当前时代对话的玩家说明与实际收益均采用仅旅游业绩的备用路径，见[文化阅读页](Culture.md#累计效果)。D0029边界接受原件：[Amendment Review](../Historical/Design/Reviews/Culture_D0029_Review.md)。各能力原Shared_D0028引用按D0035覆盖声明解释，不复制第二套区域基础设施深度/产出份额。
 
 | Rule ID | 当前content条目 |
 |---|---|
@@ -256,7 +268,7 @@ D0031有限库存问题已关闭：每具备工程动员资格的Industry来源�
 
 **D0057: DESIGN_FROZEN；发展投资同阶合格候选取最低理论购买价并列明依据、不绑定报价建筑；最高S同级按最早建立对应机构等级优先，其它合同保留；外部来源身份过滤与Harbor→Food已接受，D0054逐领域Floor保留；在D0045基础上按2026-10-16用户交接修订商业化、资本投资资格、风险保护与发展投资，其余D0039–D0045合同保持；不等于实现／平衡验收／技术通过。**
 
-唯一机械合同：[Commerce D0061](Content/Commerce_D0061.json)（[D0056](Content/Commerce_D0056.json)为历史）（[D0055](Content/Commerce_D0055.json)为历史）（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
+唯一机械合同：[Commerce D0064](Content/Commerce_D0064.json)（[D0056](Content/Commerce_D0056.json)为历史）（[D0055](Content/Commerce_D0055.json)为历史）（[D0054](Content/Commerce_D0054.json)为历史）（[D0050](Content/Commerce_D0050.json)为历史）（[D0045](Content/Commerce_D0045.json)为历史）；[A–D关闭与真实剩余边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)；[D0039公式接受](../Historical/Design/Reviews/Commerce_D0039_Review.md)；[D0032历史冻结审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)。机构与能力名全部LOCKED，四机构presentation-only累计展示，0/1/2/3仅为商业结构。
 
 | Rule ID | 当前权威content |
 |---|---|

@@ -1,13 +1,13 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1136
+Status Revision: S1137
 Implementation Build: develop B536.563 / modinfo563. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0191
-Design Revision Reviewed: D0063
-Latest Accepted Design Revision: D0063
-Design Sync State: D0063_EXPEDITION_TRAINING_CITY_TRANSFER_SYNCED
-Work State: PLAYER_BOUNDARIES_FOR_REVIEW_IMPORT_ONLY_EXPERIMENTS_RETIRED
+Design Revision Reviewed: D0064
+Latest Accepted Design Revision: D0064
+Design Sync State: D0064_PLAYER_BOUNDARY_DECISIONS_RECORDED
+Work State: PLAYER_BOUNDARY_REVIEW_DECISIONS_RECORDED
 
 ## CURRENT AUTHORITATIVE STATE
 
@@ -15,14 +15,27 @@ Work State: PLAYER_BOUNDARIES_FOR_REVIEW_IMPORT_ONLY_EXPERIMENTS_RETIRED
 |---|---|
 | Source and installation | Develop B536.563 omits eight unused Lua experiments. B535's training-city handover rule remains in effect. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [Package cleanup](#player-facing-boundary-review-and-import-only-cleanup--s1136) passed 39 current and 235 scoped local cases with overlap, including a disposable package swap and rollback. Native ownership-event timing remains unobserved. |
-| Next action | Review the [player-facing boundary rules](../Reports/Proposals/Player_Facing_Boundary_Review.md). Multi-owner returns, razing and refounding remain on the [existing observation list](Playtest_Backlog.md#city-ownership-follow-up). The network warning threshold, team loss and City Center pricing remain open. |
+| Validation | [Boundary review](#player-facing-boundary-decisions--s1137) verified against source with 73 scoped local cases. [Package cleanup](#player-facing-boundary-review-and-import-only-cleanup--s1136) passed 39 current and 235 scoped local cases with overlap, including a disposable package swap and rollback. Native ownership-event timing remains unobserved. |
+| Next action | Use the [five decisions and diagnostic limits](../Reports/Proposals/Player_Facing_Boundary_Review.md#五项裁定的技术依据) for credible reports. The two deferred post-signature outcomes are recorded there. Multi-owner returns, razing and refounding remain on the [existing observation list](Playtest_Backlog.md#city-ownership-follow-up). |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Player-facing boundary decisions — S1137
+
+The Owner accepted the [five boundaries in D0064](../Design/Design_ChangeLog.md#accepted-d0064--2026-11-21). A City Center investor may defer cheap construction. For a blocked signature, missing bound team, ambiguous off-map Spy or unattributed first completion, the [review](../Reports/Proposals/Player_Facing_Boundary_Review.md#五项裁定的技术依据) identifies the required safeguard, evidence already available and smallest missing observation. It retains the four professions’ city and player history rules. Elimination with unknown key-city outcomes and development target invalidation after signing remain deferred.
+
+**Evidence.** `STATIC_CONFIRMED` for the source paths at `8b490a84`. `LOCAL_SIMULATION_PASS` for 73 cases across city registration, investment notices, Expedition training source loss, district attribution, restructuring completion and four retained development quotation/settlement cases. Reproduce with Python 3.14 and Lupa’s Lua 5.1 runtime, put `DevelopmentTests` on the Python path, and run `python3.14 -B -m unittest` with `test_network_city_registration`, `test_investment_network_notice`, `test_expedition_training_source_loss`, `test_pu07_source_attribution`, `test_restructuring_completion` and the four methods below from `test_refactor_s6f.RetainedDevelopment`.
+
+- `test_price_minimum_of_constructible_next_tier_without_purchase_permission`
+- `test_unreadable_one_alternative_blocks_minimum_not_uses_other_price`
+- `test_not_constructible_candidate_does_not_affect_minimum`
+- `test_alternative_next_building_completes_and_releases_slot`
+
+The four methods errored when invoked directly against the old B246 fixture. The existing S6f adapter supplies its current protocol and all four passed there. A separate Lua 5.1 City Center example returned the cheaper same-tier price (200 vs 400), withheld only that district’s quote when the cheaper price was unreadable, then quoted 400 after the cheap building was built. No new native observation, package, probe or deployment. The documentation checkpoint leaves the source and installation at the versions above.
 
 ### Player-facing boundary review and import-only cleanup — S1136
 

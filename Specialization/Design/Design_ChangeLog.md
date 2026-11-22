@@ -3,8 +3,20 @@
 Document Owner: Codex
 Design Authority: User
 Latest Draft Design Revision: NONE
-Latest Accepted Design Revision: D0063
+Latest Accepted Design Revision: D0064
 Document State: ACCEPTED
+
+## Accepted D0064 — 2026-11-21
+
+负责人确认五项玩家边界。新签约以该笔交易实际所需的可靠城市和商路事实为据。重组维持原队绑定与保护，意外失队应调查。离图间谍身份不明时不能认定有团，也不能贸然释放全国名额。首次定专业需要可归属的首个合格完工。市中心延建低价建筑以保留有利报价属允许的选择。
+
+正常城市交割、单位生命周期及同构建恢复需要正确处理。可信的异常追查根因；人工反例保留为保护性证据。收窄保护须证明实际依赖与正常路径。该决定没有更改数值、合同或专业历史的归属。[按场景查看实际行为及证据](../Reports/Proposals/Player_Facing_Boundary_Review.md#五项裁定的技术依据)。
+
+Accepted Spec SHA256: `e5b0ced4562c3037b6800e9df2ff45553c9f5eaffb7b01cd79201a9d7573a4aa`
+[Shared D0064](Content/Shared_D0064.json) SHA256: `7c5f07f9ecbc990bc1c75d0f31ada4c50f1e6f68039c7ce892cc9294629634a5`
+[Commerce D0064](Content/Commerce_D0064.json) SHA256: `a95d215e6402ad5d8067a2c4fed4cf4605a5247f5308964cf4c7efe3efa8f0ad`
+[Culture D0064](Content/Culture_D0064.json) SHA256: `ce20dff4537e498673db9794e8a7b3cc0ba1d0e7aeeb04ed311ae2b5270eaa15`
+[Frozen D0063 Spec](Revisions/Specialization_Design_Spec_D0063.md) SHA256: `9030433e3cc78a6159164997becabe8865a54f0f1be5abe9b76fdc5d45c30e51`
 
 ## Accepted D0063 — 2026-11-21
 

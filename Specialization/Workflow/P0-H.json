@@ -3,22 +3,22 @@
   "batch": "P0-H",
   "status": "COMPLETE",
   "authority_versions": {
-    "design": "D0063",
+    "design": "D0064",
     "research": "D0059",
     "industry": "D0061",
-    "culture": "D0063",
-    "commerce": "D0061",
-    "shared": "D0062",
+    "culture": "D0064",
+    "commerce": "D0064",
+    "shared": "D0064",
     "presentation": "D0032",
     "architecture": "A0191",
-    "status": "S1136",
+    "status": "S1137",
     "runtime": "B536.563 / modinfo563",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Retire eight import-only Lua experiments with their archived tests still reproducible and give the Owner a player-facing review of current boundary rules.",
+  "goal": "Record the five Owner decisions and distinguish required gameplay safeguards, local fault examples and remaining diagnostic gaps.",
   "implementation_authorized": false,
   "context": [
     {
@@ -28,32 +28,32 @@
       "reason": "Current source, installed package and verified scope"
     },
     {
-      "path": "DevelopmentTests/README.md",
+      "path": "Specialization/Design/Specialization_v0.1_Design_Spec.md",
       "kind": "section",
-      "selector": "## Current gameplay regression",
-      "reason": "Exact current entry and prerequisites"
+      "selector": "### 玩家边界与异常证据",
+      "reason": "Accepted player-facing evidence boundaries"
     },
     {
-      "path": "DevelopmentTests/README.md",
+      "path": "Specialization/Reports/Proposals/Player_Facing_Boundary_Review.md",
       "kind": "section",
-      "selector": "### Eight retired import-only Lua scripts (B536)",
-      "reason": "Current entry, exact restoration paths and archived test scope"
+      "selector": "## 五项裁定的技术依据",
+      "reason": "Actual paths, scope of the evidence and targeted gaps"
     }
   ],
   "dependencies": [
-    "Published B535 sources, prior art/package checkpoints, actual Gameplay and UI composition, and their local test fixtures."
+    "Accepted D0063 predecessor, frozen professional rules, and current B536.563 Gameplay and UI paths."
   ],
   "old_writers": [
-    "The retired scripts were import-only experiments. The active Spy-based Expedition remains the production writer."
+    "No runtime writers changed. The previous package retirement and its evidence are recorded at S1136."
   ],
   "conditional_context": [
-    "Specialization/Reports/Proposals/Player_Facing_Boundary_Review.md is an Owner review aid. Check task-specific Design, current code and cited evidence when evaluating a specific rule."
+    "Read the relevant professional contract and only the source or tests cited for the affected boundary."
   ],
   "non_scope": [
-    "New gameplay or Design decisions, other retirement families, native timing tests, deployment and promotion."
+    "Production implementation, guard removal, new diagnostics, new native tests, deployment and main promotion."
   ],
   "validation": [
-    "CurrentGameplay and scoped regressions, package references and Lua 5.1 compilation, frozen-source retrieval, exact authorized swap and restore in disposable directories."
+    "Verify prior accepted bytes, document links, decision hashes, task context and staged publication scope. Run the targeted local suites listed at S1137."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
@@ -105,14 +105,14 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#player-facing-boundary-review-and-import-only-cleanup--s1136",
+      "report": "Specialization/Status/Specialization_P0_Status.md#player-facing-boundary-decisions--s1137",
       "owner_review": "Specialization/Reports/Proposals/Player_Facing_Boundary_Review.md",
+      "accepted_design": "D0064",
+      "source_reviewed": "8b490a84d7a4d918eb2cd2c4f8617275cba67774",
+      "source_evidence": "STATIC_CONFIRMED",
       "status": "LOCAL_SIMULATION_PASS",
-      "tests": 39,
-      "focused_cases": 235,
-      "counts_overlap": true,
-      "runner": "CurrentGameplay",
-      "retired_imports": 8,
+      "targeted_cases": 73,
+      "scope": "Source and local responses only. The reachability of exceptional conditions in ordinary gameplay is not established.",
       "native_validation": "NOT_RUN"
     }
   }

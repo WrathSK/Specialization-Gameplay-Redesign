@@ -229,6 +229,8 @@ D0050起发展投资整体改为新机制，旧的参考建设产能报价已退
 
 D0057：同一区域当前有多个合格下一阶候选时，采用其中的**最低理论金币购买价**。界面明确列出作为报价依据的建筑、理论价和15%费用；实际完成的建筑可以与报价建筑不同。
 
+**市中心的选择。** 当同一最低可建档次有多个合格建筑，玩家可以推迟建造其中较便宜的一座，以保留较低的报价，同时也会晚些获得该建筑的收益。签约使用当时的合格报价，不锁定该栋建筑，也不引用历史价格或额外调价。
+
 ### 效果与结束
 
 投资生效期间，目标城中**属于所选区域类型的建筑获得 +50% 建造生产力**。实现方向是只作用于该区域类型建筑的城市级生产力修正；世界议会“某区域建筑额外生产力”决议是相关原生先例，需实际检查后再复用，不能预设可行。
@@ -310,6 +312,8 @@ D0057：同一区域当前有多个合格下一阶候选时，采用其中的**�
 这代表清算后尚未配置的资本在混乱征服中被破坏／接管，旧计划失效。原玩家以后重新取得，按现有**首次取得无自身专业历史AI城的snapshot／Claim分流**处理，不恢复旧半成品；这是共同常规夺回规则的明确商业例外。
 
 销毁的是该事务及未完成账本，不授权一并删除科研传统、工业模板等所有永久历史。专业成果仍按各自Legacy；不自行给新Owner建立专业系统。
+
+若绑定原队在合法消耗或随目标城解散之外永久消失，应追查其最后一次可确认的归属与行动。保留原队绑定；不提供替代团队、额外付款、应急项目或计时自动配置。永久混乱并非对此意外设定的惩罚。
 
 ### 成本与历史
 
@@ -410,10 +414,10 @@ D0061已裁定可靠确认的关键城永久毁灭。原主人灭亡但没有可
 
 [返回Design导航](README.md)。本文是完整阅读呈现，不是独立Gameplay authority。用户Design Talk经确认后由Codex维护正式来源，并同步实际受影响的阅读章节。
 
-- [商业D0061正式内容](Content/Commerce_D0061.json)（[D0056](Content/Commerce_D0056.json)保留）（[D0055](Content/Commerce_D0055.json)保留）（[D0050](Content/Commerce_D0050.json)与[D0045](Content/Commerce_D0045.json)保留为历史）：本轮公式、初值、明确Legacy与剩余边界；机构／能力ID和名称沿D0032。
+- [商业D0064正式内容](Content/Commerce_D0064.json)（[D0056](Content/Commerce_D0056.json)保留）（[D0055](Content/Commerce_D0055.json)保留）（[D0050](Content/Commerce_D0050.json)与[D0045](Content/Commerce_D0045.json)保留为历史）：本轮公式、初值、明确Legacy与剩余边界；机构／能力ID和名称沿D0032。
 - [A–D生命周期接受审阅](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)及[D0039公式收口](../Historical/Design/Reviews/Commerce_D0039_Review.md)与[ChangeLog](Design_ChangeLog.md)：关闭项、代数解释和真实未决；不在Review另设公式权威。
 - [当前Spec](Specialization_v0.1_Design_Spec.md)：共同成长、参与资格、PROG-011显式重组征服例外、COM和NET。
-- [Shared D0062](Content/Shared_D0062.json)、[Shared](Shared.md)、[Network](Network.md)：共同D／普通建筑／领域词汇及连接；不是商业公式来源。
+- [Shared D0064](Content/Shared_D0064.json)、[Shared](Shared.md)、[Network](Network.md)：共同D／普通建筑／领域词汇及连接；不是商业公式来源。
 - [D0032历史冻结](Content/Commerce_D0032.json)及[历史审阅](../Historical/Design/Reviews/Commerce_D0032_Review.md)：主体接受与旧效果退出；其中本轮已关闭的TBD不再当前。
 - [工业当前内容](Content/Industry_D0061.json)：标准化自身模板／资格；商业叠加例子不改其Balance。
 

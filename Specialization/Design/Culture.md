@@ -111,6 +111,8 @@ ACTIVE四级可以训练人文考察团，首测生产成本**沿用当前间谍
 
 **训练期间失城。** 训练城正式易主后，原主人在该城已确认、尚未完成的考察团训练订单作废。确认没有出生或生产完成凭据，并且能够可靠排除原主人仍有考察团时，其他文化四级城可重新训练。单位去向不明时继续占用全国名额。已成团的单位沿用存续与归档城规则。
 
+普通间谍不占考察团名额。失城后，一个无法辨认的离图间谍只能说明仍不能排除有团，原名额因此暂时保留。应核查原训练、单位出生与归属、离图及读档证据；不自动释放名额或补发单位。
+
 考察团训练后是**独立单位**，最初以训练来源城作为报告归档机构。通过部署到外国城市开展非敌对考察，不靠普通地图步行；部署时间沿用间谍的距离／时间关系，任务时间另计。来源总督离开、ACTIVE下降、退出文化身份或进入REALLOCATING，都不销毁单位，也不妨碍已有单位继续任务；成功见闻仍归档到当前绑定来源城，能否利用由该城当前文化资格决定。
 
 ### 来源易主与重新挂靠
@@ -209,8 +211,8 @@ ACTIVE四级可以训练人文考察团，首测生产成本**沿用当前间谍
 
 [返回Design导航](README.md)。本页为阅读呈现，不新增独立权威或实现授权。
 
-- [文化正式内容](Content/Culture_D0063.json)：全部能力、作品池、领域、任务、城市历史及当前Owner过滤与网络并集。
-- [当前Spec](Specialization_v0.1_Design_Spec.md)：CUL及GW取代关系；[Shared](Content/Shared_D0062.json)解释D和产出份额。
+- [文化正式内容](Content/Culture_D0064.json)：全部能力、作品池、领域、任务、城市历史及当前Owner过滤与网络并集。
+- [当前Spec](Specialization_v0.1_Design_Spec.md)：CUL及GW取代关系；[Shared](Content/Shared_D0064.json)解释D和产出份额。
 - [A–D接受与替代](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)：明确取代原Owner见闻分账，不改作品／意义延展规则。
 - [原冻结审阅](../Historical/Design/Reviews/Culture_D0028_Review.md)（只引用未被取代部分）、[边界接受审阅](../Historical/Design/Reviews/Culture_D0029_Review.md)、[Hybrid D正式方向](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)、[接受记录](Design_ChangeLog.md)。
 
