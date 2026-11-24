@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "batch": "P0-H",
-  "status": "COMPLETE",
+  "status": "IMPLEMENTATION_COMPLETE_AWAITING_USER",
   "authority_versions": {
     "design": "D0067",
     "research": "D0059",
@@ -11,15 +11,15 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1140",
-    "runtime": "B537.564 / modinfo564",
+    "status": "S1141",
+    "runtime": "B538.565 / modinfo565",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
   },
   "goal_reference": "Specialization/Status/Specialization_P0_Status.md",
-  "goal": "Record the Owner's shared management-capacity design, including advance allocation and its per-turn activation.",
-  "implementation_authorized": false,
+  "goal": "Review the two in-game HUD positions and capacity allocation layout with sample cities.",
+  "implementation_authorized": true,
   "context": [
     {
       "path": "Specialization/Status/Specialization_P0_Status.md",
@@ -41,26 +41,26 @@
     }
   ],
   "dependencies": [
-    "PROG-002 permanent Potential investment and the explicit Owner decisions in D0067."
+    "Existing test-player UI scope, native TopPanel/LaunchBar and the four institution emblems."
   ],
   "old_writers": [
-    "Documentation only. Current builds still use the established governor and title thresholds."
+    "Governor-based ACTIVE remains the gameplay writer. The preview only edits its own four example rows."
   ],
   "conditional_context": [
     "Read current profession rules only for their own ACTIVE, identity and permanent-history requirements. Prior investment and ownership evidence is scoped in Status."
   ],
   "non_scope": [
-    "Runtime or UI implementation, persistence changes, tests of native title delivery, deployment, new supported players and game launch."
+    "Native title acquisition, real city/turn data, capacity and save implementation, main promotion and game launch."
   ],
   "validation": [
-    "Verify D0066 frozen bytes, D0067 Spec and shared content hashes, allocation examples, authority routing, unchanged runtime and the publication gate."
+    "Scoped Lua 5.1 preview checks, bilingual text and manifest, CurrentGameplay regressions, package and publication checks. Native layout review is separate."
   ],
   "full_audit_triggers": [
     "Stop only the affected operation for a genuine gameplay/architecture/authority/support or preservation-policy choice, irreplaceable evidence without reliable preservation, or unresolved ownership/safety. A stale historical instruction does not reopen completed work or authorize a new audit."
   ],
   "result": {
     "runtime_identity": {
-      "source": "B537.564 / modinfo564 on develop. Source and local verification in S1138.",
+      "source": "B538.565 / modinfo565 on develop. Scoped local verification in S1141.",
       "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -105,12 +105,11 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#specialization-management-capacity--s1140",
+      "report": "Specialization/Status/Specialization_P0_Status.md#management-capacity-layout-preview--s1141",
       "owner_decision": "Specialization/Design/Design_ChangeLog.md#accepted-d0067--2026-11-22",
       "accepted_design": "D0067",
-      "status": "DESIGN_ONLY",
-      "prior_runtime_verification": "Specialization/Status/Specialization_P0_Status.md#expedition-archive-city-choice--s1138",
-      "native_validation": "NOT_RUN"
+      "status": "LOCAL_SIMULATION_PASS",
+      "native_validation": "USER_GAME_TEST_REQUIRED"
     }
   }
 }

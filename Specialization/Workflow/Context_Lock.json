@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S1140 D0067 A0192. Management capacity accepted in Design. Source B537.564 and installed B528.555 still use the governor gate.",
+  "review_basis": "S1141 D0067 A0192. Sample-only management HUD on develop B538.565; native layout review pending.",
   "files": {
     "AGENTS.md": "4f6d8f8e14c70b8a8fc50c90e92e23635c822d3353f3a7adf93b5559ca4973ab",
     "Art/Institutions/README.md": "23b7ace94796d7212ab848fb12a712a85ff2e837ec7daa0f3dcff1ad3efa7fcb",
@@ -363,7 +363,7 @@
     "Mod/NetworkSender.lua": "7c8cd5237215aeb09345e9ac15b7356b83b3389d68f9957df36d8ead1a201675",
     "Mod/OrdinaryBuildingCatalog.lua": "c7ee8fd0a9cb6da6dbef2a9210a90ced851b75bec8c45df05a4a4c1e145e776c",
     "Mod/PerformanceCounters.lua": "af296b19cb3f9c866d9131bfb331f22a04b32ce65935b285955806c096241860",
-    "Mod/Probe.lua": "1003594d361373e701a1513a541ebf1f886abddb51b37a135725deba73bcc489",
+    "Mod/Probe.lua": "6658ee13229f30e7f7c95813439fdcb9e31c8ead72fa7baf415a8ab1093d0633",
     "Mod/ReadinessSummary.lua": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
     "Mod/ResearchApply.lua": "61d2d0bc74d4b4a7d8216a68485bf4fe31b9251a58929ce7f283c34669d914ef",
     "Mod/ResearchApplyModel.lua": "8f09915faa202858bbeec746723db882571f8f1ef4ed6bfdb8b937d20a655b30",
@@ -384,7 +384,7 @@
     "Mod/SampleLifecycle.lua": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
     "Mod/SpecialistSupport.lua": "476341541fc0284fe1164ac4c155593b9bb883342679106ccceebe37c9126ea9",
     "Mod/Specialization.dep": "77b56743d8848d681829a7cc4dc908c824672de86a6be2dbffd1cae3a6edba3b",
-    "Mod/SpecializationP0.modinfo": "36b7429da85e66ecb30c53364fbb348182ae7e50336fd78278c879a4d8dc340e",
+    "Mod/SpecializationP0.modinfo": "77f69ee9adf0268b160abb453318bc1044522a9c25bbd3879b52aaab427eec7e",
     "Mod/Standardization.lua": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
     "Mod/StandardizationCatalog.lua": "de5b99ccbab52890dcd8bfb790d21fce23f62bb4e354fd05c01d9b7a469bc000",
     "Mod/StandardizationEffects.lua": "9853870ba496ffc00ccb2bf876c5bdde65a59bd35a2ebdacb2bddad54984cb29",
@@ -625,7 +625,7 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
     "Specialization/Status/Playtest_Backlog.md": "b688617bcafa7a4cc3c1fac53327bcce2ae813449d11a07566905d2baf60b75b",
-    "Specialization/Status/Specialization_P0_Status.md": "bcc038534ed06c1ead6306b7dff6447868e497ba85d58f51713f1c1625c8a5f8",
+    "Specialization/Status/Specialization_P0_Status.md": "ed781eadd58423e060079dd9edb4e7f136403d76658211279dba24a0e7a9b3a9",
     "Specialization/Status/Validation/Results/Specialization_B078_Deployment_20260918.md": "d5c2d9ff22f720a42ec84a75f01288c22183ee7ba930a178e822f43a99aa344e",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_Deployment_20260920.md": "865fb292d00adc9406146ca1e66d77244aeeedf44e1bc77dc834b4008e0668bc",
     "Specialization/Status/Validation/Results/Specialization_B080_P0B2_User_Pass.md": "18b0f1a4aba8049fa4d33ed11894f1aa638334e83e48d3c63650b2c7d204c637",
@@ -872,10 +872,10 @@
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md": "3ad3d5e3d7a0d7429ca62d3bf1b973bda0712dde3cae717511ec8477ed387467",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "03c6bfb703fe299857aeaf7a52446b4d548a3ca89d5868e26e9519132ecd864e",
-    "Specialization/Workflow/P0-H.json": "a374d3c33ddc6226aeef112f51c2ae20dd04b1eb76bf408823bfac2aa4bb148e",
+    "Specialization/Workflow/Authority.json": "8f52ba24ee52694b30ca9294c0afc7b00e69dc3dab98c51f3bf7b8f616f63728",
+    "Specialization/Workflow/P0-H.json": "f3114ba31337c63e1f90935d33eef7c7a52239a1859be74bc2059cf83a60da0d",
     "Specialization/Workflow/README.md": "eef4d03dd18f62db56661050dff4b2ea6e824338fc50b8009aeca04819049616",
-    "Specialization/Workflow/Runtime_Index.json": "43865bc406dea427983858504c3b01dc96f224d2b10b9abc4796e5e8a6d67f7d",
+    "Specialization/Workflow/Runtime_Index.json": "7678ff68fed86f4d465644994062d94786fbd0a05bfc3c7bd84fca9993518523",
     "Specialization/Workflow/context.py": "0ffff9d641a35bb6012a9882dcc7f0482bb0f27e47590151d491e20a81770a08",
     "tools/build_raw_icons.py": "949ce17b8de6eedc9d99165d856668e69793dcfb48e70502b1b7c691164100ff",
     "tools/collect_expedition_trace.py": "3fc8cc637f201eeaf238624966d8e0fbdd75c4ab153754375577e764611c52e3",
@@ -1272,6 +1272,10 @@
     "Specialization/Design/Content/Commerce_D0066.json": "d41bc608bf2381c9f75e0ea2884ca8d7a742a4a7c81194197e0a4de4ccea3a9c",
     "Specialization/Design/Content/Shared_D0066.json": "07576abc589472ff99fbd7ad3d47086533b9b6d9611717b2b7fab9e9de664849",
     "Specialization/Design/Revisions/Specialization_Design_Spec_D0066.md": "a0afe8bfadc3de7c7136596160bcd91d8bf7c0dee47ccdc3adf55ad6124044e4",
-    "Specialization/Design/Content/Shared_D0067.json": "cdd8e0a5adf2021ef8b0cd45730d9b9f2c3c1bbb0b63aa075b146200dbf40d41"
+    "Specialization/Design/Content/Shared_D0067.json": "cdd8e0a5adf2021ef8b0cd45730d9b9f2c3c1bbb0b63aa075b146200dbf40d41",
+    "Mod/UI/ManagementCapacityPreview.xml": "8c87ff87312100896b4e494ff88c4c9f2f15f4961114938ad391513e3aa7549b",
+    "Mod/UI/ManagementCapacityPreview.lua": "4cdb5bcd449ddf2fa1d2f4bb6281a318e70831baca7f7adecdc8892cfd4b7e0f",
+    "Mod/Text/ManagementCapacityPreview.sql": "3723a89ba7377da9b570d08f1170834a4401191941a46775cda5a38e81a02c93",
+    "DevelopmentTests/test_management_capacity_preview.py": "3702349834a0e817eb42522e3d855dc8acdde07748af9652835debeb694bc806"
   }
 }

@@ -1,28 +1,38 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1140
-Implementation Build: develop B537.564 / modinfo564. Installed stable B528.555 / modinfo555.
+Status Revision: S1141
+Implementation Build: develop B538.565 / modinfo565. Installed stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
 Design Sync State: D0067_MANAGEMENT_CAPACITY_DESIGN_ONLY
-Work State: MANAGEMENT_CAPACITY_DESIGN_RECORDED
+Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 ## CURRENT AUTHORITATIVE STATE
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B537.564 adds the archive-city action for an existing Expedition after a confirmed handover. The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
+| Source and installation | Develop B538.565 / modinfo565 adds the [in-game management layout](#management-capacity-layout-preview--s1141). The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
 | Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
-| Validation | [Archive city choice](#expedition-archive-city-choice--s1138) passed scoped local Gameplay and UI checks. Native action-bar appearance and transfer ordering await observation. [Earlier boundary review](#player-facing-boundary-decisions--s1137). |
-| Next action | [专业管理容量](#specialization-management-capacity--s1140)已定下获取、分配和生效规则。下一步拟定分配界面与实施方案。当前开发包与稳定包仍使用总督门槛。考察团归档入口的自然交割观察，以及先前暂挂的多方易主、毁城重建和文化两域沿用原记录。 |
+| Validation | 容量界面的加载、试调和卸载已通过本地验证，游戏内排版待看。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
+| Next action | 临时换包前安装目录仍是 B528.555。换包并核验后再查看两排控件和侧栏。容量点获取和真实分配留待后续，正式专业等级仍按总督计算。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Management capacity layout preview — S1141
+
+顶端商路名额旁显示示例用量 6/10。下排使用原版启动栏按钮打开专业管理侧栏，四座示例城市允许试调、撤销和确认。徽记暂用原版市政广场图案。调配只存在于界面内存，重载后回到示例。真实容量授点、城市数据、回合和保存均未接入。玩法继续采用当前总督门槛。[设计规则](../Design/Shared.md#开拓者投资与专业管理容量)
+
+运行影响限于受支持玩家的界面。读档界面完成时挂载两个控件，同一界面的重复加载通知不会增加控件，卸载时归还顶栏与启动栏空间。四行固定示例与按钮响应没有城市扫描或持续轮询。
+
+本地验证（`LOCAL_SIMULATION_PASS`）使用 Python 3.14 和 Lupa 2.8 的 Lua 5.1。运行 `python3.14 -B -m unittest discover -s DevelopmentTests -p test_management_capacity_preview.py`，4 项通过，覆盖控件位置、重复挂载、卸载、测试文明范围、试调与双语装配。按现行固定 HD 数据库输入运行 `python3.14 -B DevelopmentTests/run_refactor.py --stage CurrentGameplay`，42 项通过。174 份 Lua 编译、25 份 XML 解析及 301 文件包的清单引用检查通过。实机排版待负责人查看。
+
+完整本地回归记录 `local/refactor/CurrentGameplay-939a9ae40dcd440d97bad570618cf2cf/closure.json`，SHA256 `89e664d42e4b9c1e08f4434730684bf714c01f15b7a75de4586c0b1ab6251701`。已测源码快照 `98671372481c0a1372c20b7ec0c49d77692fba03041c29ab26467314eb9a54f4`。
 
 ### Specialization management capacity — S1140
 

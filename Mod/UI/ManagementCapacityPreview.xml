@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Name="SPCManagementCapacityPreview" ColorSet="BodyTextCool" FontStyle="Shadow">
+  <!-- Only the two HUD controls are reparented. The preview window stays in its own context. -->
+  <Container ID="Parking" Hidden="1">
+    <Grid ID="Readout" Style="SubContainerSmall2" Size="65,24" ToolTip="LOC_SPC_CAP_PREVIEW_HINT">
+      <Image Anchor="L,C" Size="22,22" Icon="ICON_DISTRICT_GOVERNMENT" IconSize="22"/>
+      <Label ID="HUDCount" Anchor="L,C" Offset="24,0" Style="FontNormal14" ColorSet="TopBarValueCS"/>
+    </Grid>
+    <Container ID="LaunchItem" Size="56,49">
+      <Button ID="OpenButton" Anchor="L,C" Size="49,49" Texture="LaunchBar_Hook_GovernmentButton" Style="ButtonNormalText" StateOffsetIncrement="0,49" ToolTip="LOC_SPC_CAP_PREVIEW_HINT">
+        <Image Anchor="C,C" Size="32,32" Icon="ICON_DISTRICT_GOVERNMENT" IconSize="32"/>
+      </Button>
+      <Image Anchor="R,C" Offset="0,-2" Size="7,7" Texture="LaunchBar_TrackPip" Color="255,255,255,200"/>
+    </Container>
+  </Container>
+
+  <Grid ID="Window" Anchor="R,T" Offset="8,82" Size="432,442" Style="WindowFillHUD" Hidden="1" ConsumeMouse="1">
+    <Grid Size="parent,55" Texture="Controls_TitleBarDark" SliceCorner="21,17" SliceTextureSize="42,34">
+      <Label Anchor="C,C" Style="FontFlair24" String="LOC_SPC_CAP_TITLE"/>
+      <Button ID="Close" Anchor="R,C" Offset="9,0" Style="CloseButtonSmall"/>
+    </Grid>
+    <Grid Offset="10,60" Size="parent-20,54" Texture="Controls_SubHeader3" SliceCorner="10,10" SliceSize="14,14" SliceTextureSize="34,34">
+      <Label ID="Available" Anchor="L,C" Offset="14,0" Style="FontFlair20"/>
+      <Label ID="Total" Anchor="R,C" Offset="14,0" Style="FontNormal14"/>
+    </Grid>
+    <Label Offset="18,122" Style="FontNormal14" String="LOC_SPC_CAP_CITY_COLUMN"/>
+    <Label Anchor="R,T" Offset="28,122" Style="FontNormal14" String="LOC_SPC_CAP_POINTS_COLUMN"/>
+    <Stack ID="Cities" Offset="10,146" Size="parent-20,auto" StackGrowth="Bottom" StackPadding="3"/>
+    <Label Anchor="C,B" Offset="0,57" Style="FontNormal14" String="LOC_SPC_CAP_PREVIEW_NOTE"/>
+    <GridButton ID="Undo" Anchor="L,B" Offset="14,12" Size="194,35">
+      <GridData Style="ButtonLightWeightGrid"/>
+      <Label Anchor="C,C" Style="FontFlair16" String="LOC_SPC_CAP_UNDO"/>
+    </GridButton>
+    <GridButton ID="Confirm" Anchor="R,B" Offset="14,12" Size="194,35">
+      <GridData Style="ButtonLightWeightGrid"/>
+      <Label Anchor="C,C" Style="FontFlair16" String="LOC_SPC_CAP_CONFIRM"/>
+    </GridButton>
+  </Grid>
+
+  <Instance Name="CapacityCityRow">
+    <Grid ID="Root" Size="parent,51" Texture="Controls_ItemContainer" SliceCorner="8,8" SliceTextureSize="16,16">
+      <Image ID="ProfessionIcon" Anchor="L,C" Offset="9,0" Size="32,32"/>
+      <Label ID="Name" Offset="51,5" Style="FontFlair16" TruncateWidth="230"/>
+      <Label ID="Detail" Offset="51,27" Style="FontNormal14" TruncateWidth="230"/>
+      <GridButton ID="Minus" Anchor="R,C" Offset="85,0" Size="30,30">
+        <GridData Style="ButtonLightWeightGrid"/>
+        <Label Anchor="C,C" Style="FontFlair18" String="−"/>
+      </GridButton>
+      <Label ID="Points" Anchor="R,C" Offset="56,0" Style="FontFlair18"/>
+      <GridButton ID="Plus" Anchor="R,C" Offset="9,0" Size="30,30">
+        <GridData Style="ButtonLightWeightGrid"/>
+        <Label Anchor="C,C" Style="FontFlair18" String="+"/>
+      </GridButton>
+    </Grid>
+  </Instance>
+</Context>
