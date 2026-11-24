@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1141
-Implementation Build: develop B538.565 / modinfo565. Installed stable B528.555 / modinfo555.
+Status Revision: S1142
+Implementation Build: develop B538.565 / modinfo565. Installed temporary B538.565 / modinfo565. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,20 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B538.565 / modinfo565 adds the [in-game management layout](#management-capacity-layout-preview--s1141). The [installed stable package](#b528555-stable-playtest-package-deployed--s1123) is B528.555. |
-| Recovery | Verified B489.516 stable rollback package (337 files) and retained B527.554 temporary package (314 files). |
+| Source and installation | 本机已[临时安装界面预览](#management-capacity-preview-installed--s1142)，与 develop B538.565 / modinfo565 一致。main 稳定包为 B528.555。 |
+| Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | 容量界面的加载、试调和卸载已通过本地验证，游戏内排版待看。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | 临时换包前安装目录仍是 B528.555。换包并核验后再查看两排控件和侧栏。容量点获取和真实分配留待后续，正式专业等级仍按总督计算。 |
+| Next action | 使用专业化测试文明，第一回合即可查看商路名额旁的 6/10 和下排入口，打开侧栏核对位置与字号。四座示例城市供试调。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Engineering checkpoint history
+
+### Management capacity preview installed — S1142
+
+开发包 B538.565 / modinfo565 已临时安装。安装包 301 个文件与源码 `b33e7284bb68dfe756e723ae81b2ce4acb446e8b` 一致，SHA256 `46faf4af6eb94d54381266e79316db7e1a9fdc15be27d245cf0471e5239da952`。回执 `B538.565-b33e728-playtest.json` 记录了本次换包、12 个先前已退役的开发版路径及可还原的 B528.555 原包（310 个文件，SHA256 `1722ed6e5e93b4d320345248cb29778c1a108e3fc51b515ad2eff3aef0cb3095`）。事务标记已清除。游戏内显示由负责人接下来核对。
 
 ### Management capacity layout preview — S1141
 

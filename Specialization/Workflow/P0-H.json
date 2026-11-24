@@ -11,7 +11,7 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1141",
+    "status": "S1142",
     "runtime": "B538.565 / modinfo565",
     "military": "D0037",
     "harbor": "D0037",
@@ -61,7 +61,7 @@
   "result": {
     "runtime_identity": {
       "source": "B538.565 / modinfo565 on develop. Scoped local verification in S1141.",
-      "installed": "B528.555 stable, 310 files. Receipt and digest in Authority.live.",
+      "installed": "B538.565 / modinfo565 temporary, 301/301 MATCH at 46faf4af6eb94d54381266e79316db7e1a9fdc15be27d245cf0471e5239da952. Receipt B538.565-b33e728-playtest.json DEVELOP_ACTIVE. B528.555 backup verified; no pending transaction.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
     "engineering_closeout": {
@@ -109,7 +109,8 @@
       "owner_decision": "Specialization/Design/Design_ChangeLog.md#accepted-d0067--2026-11-22",
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",
-      "native_validation": "USER_GAME_TEST_REQUIRED"
+      "native_validation": "USER_GAME_TEST_REQUIRED",
+      "deployment": "Specialization/Status/Specialization_P0_Status.md#management-capacity-preview-installed--s1142"
     }
   }
 }
