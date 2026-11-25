@@ -15,7 +15,7 @@
 | 当前进度怎样保存、哪些档受支持 | [现行保存与资格职责](../../Architecture/Specialization_v0.1_Architecture.md#事实保存与当前资格)、[引擎冷恢复参考](Engine_Reference.md#er04--cold-restore-and-persistent-facts) | [E2保存改造记录](../../Architecture/v2/P0_E2_Plan.md#current-slice--recovery-and-action-routing)保留早期适配、支持边界和原生证据 |
 | 为何不能仅看事件“看起来连续” | [B105原生事件反证](../../Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md)、[B106正面建城证据](../../Status/Validation/Results/Specialization_B106_E2_Found_City_Pass.md) | 首个Publish不保证事务已结束；后续FoundCity证据只限所测路径 |
 | 其它Mod怎样处理生命周期 | [其它Mod参考](Specialization_E2_Other_Mod_City_Lifecycle_References.md) | STATIC证据，不是本项目所有原生事件路径PASS |
-| 已证明的夺回、双城和新城范围 | [夺回结果](../../Status/Validation/Results/Specialization_B103_E2_Recapture_Pass.md)、[双城结果](../../Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md)、[新城结果](../../Status/Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md) | 各检查点限定场景，不能合并宣称B108新局三城已验收 |
+| 已证明的夺回、双城和新城范围 | [夺回结果](../../Status/Validation/Results/Specialization_B103_E2_Recapture_Pass.md)、[双城结果](../../Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md)、[新城结果](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B107_E2_Fresh_Registration_Pass.md) | 各检查点限定场景，不能合并宣称B108新局三城已验收 |
 | 为什么缺失记录不能由区域补造 | [丢史反例](Specialization_Load_History_Ambiguity.md) | 缺失历史不等于确定无专业，不能猜旧首次完成 |
 
 ## 商路、传播与性能
@@ -30,10 +30,10 @@
 
 - [已知限制/反证索引](Specialization_Implementation_Caveats.md)：住房/GPP延迟、旧档挂载、总督事实时序等均保留测试场景；其中旧任务状态不能派工。
 - [每人口小数](Specialization_Fractional_PerPopulation_Evidence.md)、[HD政策0.3/0.2/0.7调查](HD_Policy_Fractional_PerPopulation_P0D1.md)：每人口路径不能推广为区域平坦收益或每专家任意小数。
-- [区域精度实验](../../Architecture/v2/P0_D1_District_Precision_Probe.md) → [正式科研floor路径](../../Architecture/v2/P0_D1_Research_Cross_Cutover.md)及[用户结果](../../Status/Validation/Results/Specialization_B084_P0D1_User_Pass.md)；[每专家floor](../../Architecture/v2/P0_D2_Research_Apply.md)是另一计算层级。不能把一个接口的成功/失败变成全引擎精度定理。
+- [区域精度实验](../../Architecture/v2/P0_D1_District_Precision_Probe.md) → [正式科研floor路径](../../Architecture/v2/P0_D1_Research_Cross_Cutover.md)及[用户结果](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B084_P0D1_User_Pass.md)；[每专家floor](../../Architecture/v2/P0_D2_Research_Apply.md)是另一计算层级。不能把一个接口的成功/失败变成全引擎精度定理。
 - [标准化账本](Specialization_B052_Standardization_Ledger.md)、[原生购买实验](Specialization_B053_Purchase_Currency.md)、[自动折扣](Specialization_B054_Network_Discounts.md)：保留旧实际技术路径；新Industry生产加速目标不能由旧购买折扣证明完成。
 
-- [意义延展HD共存与社区D目录](Specialization_B163_Culture_Coexistence_And_Neighborhood_Depth.md)：普通剧场直接附HD文化，外部效果接管风险；社区ordinaryOnly／Tier覆盖缺口。用户条件后备采用Culture临时实施隔离，B164修复见[本地记录](../../Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md)，社区原生合并后续；[五图实机](../../Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)分别记录五项读数与Culture失败。
+- [意义延展HD共存与社区D目录](Specialization_B163_Culture_Coexistence_And_Neighborhood_Depth.md)：普通剧场直接附HD文化，外部效果接管风险；社区ordinaryOnly／Tier覆盖缺口。用户条件后备采用Culture临时实施隔离，B164修复见[本地记录](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B164_Meaning_Quarantine_Neighborhood_Local.md)，社区原生合并后续；[五图实机](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Native.md)分别记录五项读数与Culture失败。
 - [原文化追加调查](Specialization_B155_Meaning_Culture_Path.md)：B055单flat证据与B155／B157反证保留；不是当前测试派发，也不证明同primitive普遍不能加算。
 
 ## 呈现与候选接口
@@ -48,7 +48,7 @@
 |---|---|---|
 | 早期架构图与直接监听 | [B393 逻辑架构总览](Investigations/Architecture_Reconstruction/Logical_Architecture_Overview.md)、[B396 监听审计](Investigations/Architecture_Reconstruction/Direct_Event_Listener_Audit.md) | 按各自源码基线查当时的模块与事件。现行约束见[正式架构](../../Architecture/Specialization_v0.1_Architecture.md#current-authoritative-state)。 |
 | 载体与 Modifier 足迹 | [2026-11-02 定义清单与复现办法](Investigations/Carrier_Modifier_Footprint/README.md) | 数字是当时的源码定义统计。实际安装数量和性能需要各自的测量。 |
-| 旧科研复制范围调查 | [D0014](Specialization_D0014_All_District_Copy.md)、[B051.66用户结果](../../Status/Validation/Results/Specialization_B051_66_User_Result.md) | [B051.67](../../Status/Validation/Results/Specialization_B051_67_User_Result.md)最小补测口头通过，非全部组合；旧四类白名单已废弃 |
+| 旧科研复制范围调查 | [D0014](Specialization_D0014_All_District_Copy.md)、[B051.66用户结果](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B051_66_User_Result.md) | [B051.67](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B051_67_User_Result.md)最小补测口头通过，非全部组合；旧四类白名单已废弃 |
 | B051自动刷新 | [实现](Specialization_B051_Automatic_Copy_Yields.md)、[事件修正](Specialization_B051_Background_Fix.md) | 65失败、66收益用户通过；不能只凭只读计算值认定载体已挂 |
 | 标准化建筑分类的由来 | [工业设计](../../Design/Industry.md)、[当前环境的 Tier 依据](Engine_Reference.md#er05--effective-chain-tier-and-actual-hd-seams)、[早期候选目录与账本原件](../../Historical/README.md#early-research-candidates-and-probe-procedures-in-git-history) | 现行模板匹配读取共享建筑层级，市中心沿用专门分组。167 栋的旧 HD 目录保留当时的分类比较、替代和名称来源 |
 | 商路来源与桥接 | [用户来源决定](Specialization_Network_Background_Source_Decision.md)、[B025](Specialization_B025_Background_Network.md)、[计数修正](Specialization_B026_Trade_Count_Fix.md)、[D0009](Specialization_D0009_Architecture_Sync.md) | 后台UI已接受；B026旧接收语义被D0009取代 |

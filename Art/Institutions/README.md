@@ -38,13 +38,13 @@ Generation: render the256px SVGs as one transparent4×1 atlas with the installed
 | `SPC_Institution_Backdrops_32.dds` |16512|`d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec`|
 | `SPC_Institution_Backdrops_64.dds` |65664|`912e8f148ea8698941d5e0be5482b70fdef9966340364b806b9b05c3ff03b0ce`|
 
-The user explicitly approved only these two fixed blobs for a separate, one-time binary publication exception. Every other B252 file still uses the ordinary staged gate. No permanent policy/hook/configuration change. See [B252 scope and checks](../../Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md).
+The user explicitly approved only these two fixed blobs for a separate, one-time binary publication exception. Every other B252 file still uses the ordinary staged gate. No permanent policy/hook/configuration change. See [B252 scope and checks](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md).
 
 ## B254 embedded serif levels
 
 `SPC_Level_{Research,Culture,Industry,Commerce}_{1..4}.svg` are the approved A-palette refinements: explicit serif paths, uniform7% numeral reduction, shortened serif overhangs and optical spacing; no horizontal compression or font dependency. They share the B252 gradient/bevel palette. Institution rows select their own tier; banner emblems select ACTIVE and draw the four segments with native Box controls. Original B251 and B252 sources/blobs remain unchanged.
 
-Render16 SVGs at256px per cell with the isolated browser SVG renderer, downsample a4×4 atlas once to32/64px cells, and encode lossless BGRA8 DDS without mipmaps. Decode must reproduce the raw raster exactly. See [B254 scope and validation](../../Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md).
+Render16 SVGs at256px per cell with the isolated browser SVG renderer, downsample a4×4 atlas once to32/64px cells, and encode lossless BGRA8 DDS without mipmaps. Decode must reproduce the raw raster exactly. See [B254 scope and validation](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md).
 
 | Runtime asset | Bytes | Reviewed SHA256 |
 |---|---:|---|
@@ -55,8 +55,8 @@ The user explicitly approved a one-time publication exception for exactly these 
 
 ## B258 exact map size
 
-The existing approved B254 SVGs produce an additional58px-cell atlas for the58-unit map Image control. Institution32px and existing64px files remain unchanged. Lossless BGRA8,232x232, no mipmaps; decoded raw pixels match exactly. `SPC_Level_Icons_58.dds`:215424 bytes; SHA256 `9d3277bca2704363223d7346592cbbcadd793883a851a2f190a1c0434258ad54`. The user explicitly approves a one-time publication exception for this exact blob only. See [B258](../../Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md).
+The existing approved B254 SVGs produce an additional58px-cell atlas for the58-unit map Image control. Institution32px and existing64px files remain unchanged. Lossless BGRA8,232x232, no mipmaps; decoded raw pixels match exactly. `SPC_Level_Icons_58.dds`:215424 bytes; SHA256 `9d3277bca2704363223d7346592cbbcadd793883a851a2f190a1c0434258ad54`. The user explicitly approves a one-time publication exception for this exact blob only. See [B258](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md).
 
 ## B259 measured map size
 
-Additional49px cell/control atlas derived from the same approved B254 artwork.4x4 cells,196x196 BGRA8, no mipmaps;153792 bytes. SHA256 `f4f3e925dd3f1d58027fdbd792099f64a7000a16c23b8fed859078ed6db3bcb6`. Reviewed decode matches raw pixels. User approved this exact blob for a one-time publication exception; old assets remain unchanged. [Measurement](../../Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md).
+Additional49px cell/control atlas derived from the same approved B254 artwork.4x4 cells,196x196 BGRA8, no mipmaps;153792 bytes. SHA256 `f4f3e925dd3f1d58027fdbd792099f64a7000a16c23b8fed859078ed6db3bcb6`. Reviewed decode matches raw pixels. User approved this exact blob for a one-time publication exception; old assets remain unchanged. [Measurement](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md).

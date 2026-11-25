@@ -71,7 +71,7 @@ Existing document contracts, schemas, W0001 reading scope, user approval, eviden
 | Accepted technical structure and durable constraints | [Current Architecture](../Architecture/Specialization_v0.1_Architecture.md) and accepted task contracts; retain qualified rejected/constrained approaches when forgetting them risks costly rediscovery |
 | Technical evidence / Reference | [Engine Reference](../Reports/Technical/Engine_Reference.md) and question-indexed [project findings](../Reports/Technical/README.md): source/version/context-qualified evidence, not accepted rules or implementation permission |
 | Current stage, implementation, unresolved work and next authorized boundary | [Status CURRENT block](../Status/Specialization_P0_Status.md), [Authority](Authority.json) and its current batch manifest; do not treat old plans as new permission |
-| What has actually been demonstrated | Status-linked [Validation Results](../Status/Validation/Results/), with STATIC / LOCAL / USER_GAME_TEST scope intact |
+| What has actually been demonstrated | [Status CURRENT](../Status/Specialization_P0_Status.md#current-authoritative-state), with retired records located through [Historical](../Historical/README.md), with STATIC / LOCAL / USER_GAME_TEST scope intact |
 | Exact source history | Git/GitHub; main = last promoted trusted source, develop = current development (including pending user validation) |
 | Canonical source versus deployed runtime | Authority/Status live references plus deployment receipts and [Playtest Workflow](../Architecture/Playtest_Workflow.md); a commit does not prove deployment |
 | Engineering operation / context freshness | Root/local AGENTS, W0001/W0004 here, Context_Lock and Runtime_Index review provenance |

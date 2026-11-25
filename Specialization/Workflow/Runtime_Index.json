@@ -7,23 +7,27 @@
   "files": {
     "Mod/ArtDefs/Civilizations.artdef": {
       "sha256": "b05df83d41ed1b5e1ff50ad778d59d3d088a24dd7acee5550de39e7455ffd926",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md"
     },
     "Mod/ArtDefs/Cultures.artdef": {
       "sha256": "3a27a4c4650366605bcf6f40c2632c26b4a8c7aa1f532cd5b9ca9056a16953c1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md"
     },
     "Mod/ArtDefs/FallbackLeaders.artdef": {
       "sha256": "d9ef152a001be47404b7a0a71b3c7bb3166c879f324fba9bb8a2e8228c6028a2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md"
     },
     "Mod/ArtDefs/Leaders.artdef": {
       "sha256": "444dd8087884d35bd0aa9777647e0aae28a9f748b60a3adb22e022bcefbf230c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md"
     },
     "Mod/ArtDefs/Units.artdef": {
       "sha256": "e93a32f35938a6354f2bc5d16aa7ace1d3f354cebccdf773f64825fd510209eb",
@@ -57,13 +61,15 @@
     },
     "Mod/CityIdentityExperiment.lua": {
       "sha256": "844c16c777649e2ee7126dcb9084cd4e3620e63a1f841493174edcfdced3bb31",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md",
-      "provenance": "B092 pure shadow; no authority/migration change"
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B092 pure shadow; no authority/migration change",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_E1_Game_Record_Experiment.md"
     },
     "Mod/CityIdentityMapping.lua": {
       "sha256": "767ef64bbc71fa9434a4abe93c768253ec8b1a80c1448f1bc7a93437df008b6f",
-      "review_source": "Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md",
-      "provenance": "B094 narrow authorized event wrapper compatibility fix"
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B094 narrow authorized event wrapper compatibility fix",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_E1_Persistent_Mapping_Plan.md"
     },
     "Mod/CityIdentityRead.lua": {
       "sha256": "c78eef76b28f9bb4a2458382ddf0790217749619aab3bcbd97e56d36e073ac20",
@@ -97,13 +103,15 @@
     },
     "Mod/Config/Players.sql": {
       "sha256": "3483a8e6119486bb11032306501fff90e834e6f5a2a1d11ff88c533229d83284",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md"
     },
     "Mod/Config/TestAmerica.sql": {
       "sha256": "1b463ca162e4fcc784a8a902cfcea635dde1ba04dc21ec651a081dc42e7d3905",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md"
     },
     "Mod/CrewModel.lua": {
       "sha256": "a789494fd538a59d216a7a407a944e9c7ce07386bb235a25526f213f1afeca20",
@@ -187,8 +195,9 @@
     },
     "Mod/Data/CopyYields.sql": {
       "sha256": "8261e4a4fc4542a53edf8b6577588e8259b6d7b2553d988bdea350a741da88c8",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_C_Research_Infrastructure.md"
     },
     "Mod/Data/Crew.sql": {
       "sha256": "c29c021ecb0b5475f1a99deaa322d10176e32e41b0cfe5dd78e6283967bea769",
@@ -217,13 +226,15 @@
     },
     "Mod/Data/CultureInspirationProbe.sql": {
       "sha256": "c0814c30d8cf913d36228a6528dc46aa8e8120327e0506e4112372fdcc33c552",
-      "review_source": "Specialization/Architecture/v2/P0_L3_Inspiration.md",
-      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B167 L3-A authorized fixed Scientist probe; direct paths/SQL/readout/owned lifecycle reviewed;29 targeted local PASS; native required.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_L3_Inspiration.md"
     },
     "Mod/Data/CultureMeaningProbe.sql": {
       "sha256": "963da6b8bdfbff5d63a5f04b7414f5fe109c02c5bc3fe43ac2a75fcd2686f024",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md",
-      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B163 user-authorized six final yields / D0046 Culture restoration; exact92/644 and Theater host candidate; scoped STATIC/LOCAL PASS, native pending; no formal cutover.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B163_Meaning_Final_Yields_Local.md"
     },
     "Mod/Data/CultureNetwork.sql": {
       "sha256": "00eb6f340493511413ff6454fba728ae94e7e989b07c43eecc0e75ee8a570ecc",
@@ -262,8 +273,9 @@
     },
     "Mod/Data/ExpeditionGate.sql": {
       "sha256": "a2444b37cc885e653b15e98c883dc2d794702b6aa505fd3fc3fb8af1e5c2f262",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
-      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md"
     },
     "Mod/Data/ExpeditionSpyGate.sql": {
       "sha256": "2e4c7595f31c041da028607550671a44fe5188f2876f9919f5081032996f6ce2",
@@ -297,8 +309,9 @@
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md",
-      "provenance": "B189 approved test-civilization native-name prototype;124 scoped local checks, explicit UI off-map observation boundary, own cap/source/task unchanged. Native pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B189 approved test-civilization native-name prototype;124 scoped local checks, explicit UI off-map observation boundary, own cap/source/task unchanged. Native pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B189_Expedition_Native_Name_Local.md"
     },
     "Mod/Data/IndustrySupport.sql": {
       "sha256": "cfc3b01995f758362026fb1bcfe280012a980f7341b798071ab567f7743a4064",
@@ -322,8 +335,9 @@
     },
     "Mod/Data/Lv3Support.sql": {
       "sha256": "688298fec1e2e9637e277d32c6bc8dc39643ce6101e8185a848764f158153c7b",
-      "review_source": "Specialization/Architecture/v2/P0_B1_Specialist_Support.md",
-      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression"
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B079 P0-B1 reviewed source + explicit change allowlist/regression",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_B1_Specialist_Support.md"
     },
     "Mod/Data/Lv4Percent.sql": {
       "sha256": "0fa05ff3f0113d5635a136552fbcbec89b63a435c99521eec5c712f9a0a8fa38",
@@ -342,8 +356,9 @@
     },
     "Mod/Data/RawIcons.sql": {
       "sha256": "6202048ac242973293b761c4406a3923c0b87ba6ae2a4aef622d48c799ad492c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Data/ResearchApply.sql": {
       "sha256": "6fe79eb49be9282c2507d616d1c975b1a84ee5bf3847e341a9c06f5fe68fc0e3",
@@ -352,8 +367,9 @@
     },
     "Mod/Data/ResearchChair.sql": {
       "sha256": "35f33ed4ecf35790addb1c6c1d707fec498854d58e4686e3562d0b815929a4b2",
-      "review_source": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
-      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_D3_Research_Chair.md"
     },
     "Mod/Data/ResearchCross.sql": {
       "sha256": "25e741a07c9014ed0868601d4d070c1521c396b710233b0a6fdc3fcba679ceec",
@@ -362,8 +378,9 @@
     },
     "Mod/Data/ResearchInfrastructure.sql": {
       "sha256": "b2c6dd3af4c57797040d6fb7cce967ced43a8f0eca6f95ce32d162cef279b248",
-      "review_source": "Specialization/Architecture/v2/P0_C_Research_Infrastructure.md",
-      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending"
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B081 P0-C reviewed implementation/cutover delta; local tests PASS, native pending",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_C_Research_Infrastructure.md"
     },
     "Mod/Data/ResearchSupport.sql": {
       "sha256": "fa06b82c35d28e4dc805cca7c6d84795fd4fadefb3bbdfe113524b95ecdce376",
@@ -392,18 +409,21 @@
     },
     "Mod/Data/TestAmerica.sql": {
       "sha256": "786e8af3a34adffb77a0dbe0a2f119e2ddf67d900df356293306dbf967cc0619",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md"
     },
     "Mod/Data/TestAmericaColors.xml": {
       "sha256": "b00b9049a181f2507fd06de6b3603e208ca4120bcad357623dc684c4f20e7ac7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md"
     },
     "Mod/Data/TestAmericaIcons.sql": {
       "sha256": "d4baa13a1f3369ef1d21996e8939d28bca8e952c48807f556c03a1d5ed73619a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md",
-      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B263 approved neutral Roosevelt shell, native presentation references and exact new/legacy identity access. Scoped local and native-schema checks PASS; native presentation pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B263_Roosevelt_Test_Shell.md"
     },
     "Mod/Data/YieldCarrierProbe.sql": {
       "sha256": "b63ddc3d9c7d6a1ca0634eeba3d610850fe4bfa2fe5f345237d2dcd14ffe91cd",
@@ -422,8 +442,9 @@
     },
     "Mod/DevelopmentInvestmentModel.lua": {
       "sha256": "c0f97e0933cb4da423a3ea73667f98ab9a7fc009ac45cefef4fa3869b225ddd1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
-      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md"
     },
     "Mod/DiagnosticLog.lua": {
       "sha256": "fd4c52434a868a69f74177321a8588aef51ea3e55cc4b0e5d53715ca0b780db3",
@@ -462,13 +483,15 @@
     },
     "Mod/EngineeringStudyProjects.lua": {
       "sha256": "672fd086a94c3fe5db8ae2ad58e85a52f97676aeddde4d54bc640a6c05087c52",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
-      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md"
     },
     "Mod/ExpeditionGateRead.lua": {
       "sha256": "2044cee5d389d4030cdec1ec8ec4c0ec5c414dddda333d8136da4a9def3c8392",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md",
-      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B182 approved isolated Spy0 fixture/own timer+source/placement gate; exact source and local tests reviewed. Native coexistence pending; no saved state/reward/Spy1.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B182_Expedition_Spy0_Local.md"
     },
     "Mod/ExpeditionSpyGate.lua": {
       "sha256": "f7b78f5b22b90a00b19d31458fc6cddca19c2b396a3b480175fa5e408a8c6a09",
@@ -477,13 +500,15 @@
     },
     "Mod/ExpeditionSpyRead.lua": {
       "sha256": "74b1960a96970f0ee5bc80e59499ccff490eb27ad97f56b1d346872aabbce305",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B355_Refactor_S9b3.md",
-      "provenance": "B355.382 Select Expedition entry cities from raw UI facts in Gameplay; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B355.382 Select Expedition entry cities from raw UI facts in Gameplay; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B355_Refactor_S9b3.md"
     },
     "Mod/ExpeditionSpyStore.lua": {
       "sha256": "13b1151f71155b6b030adf4c393e14b7197b3697ce197aeebc00acac99e2cc77",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md",
-      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B321.348 Share one-write one-read observation without unifying success policy; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B321_Refactor_S7b1.md"
     },
     "Mod/ExpeditionSpyUI.lua": {
       "sha256": "d6d6d472b046225b6e56a2a4821017442820e3cc38a762e1804b1c47388656a0",
@@ -522,8 +547,9 @@
     },
     "Mod/IndustryHistory.lua": {
       "sha256": "c361a4a8a9ea7a701fbec8bc45f391199da7886e6d06859245efb3e0257d1d76",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md",
-      "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md"
     },
     "Mod/IndustrySupport.lua": {
       "sha256": "3a2e017a0ede1ef7d5f71615430d9b8b12be0d2863c6a92cd5a2436ce885f02c",
@@ -537,8 +563,9 @@
     },
     "Mod/InspirationReadout.lua": {
       "sha256": "ddf00f11702763f6e705056d5aa4481d4aca3eed61edae1e168c23fb5b5d1c69",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md",
-      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B172 authorized D0049 automatic Inspiration / retired exact old probe / direct callbacks / readonly UI; 43 methods46 subTests local PASS, native pending. Unchanged shared state schema/GC.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B172_Inspiration_Automatic_Local.md"
     },
     "Mod/InstitutionPresentation.lua": {
       "sha256": "7b15b7e139a7caf9f6e70017583d08172a969136854b232dd9917b5b3f7ad847",
@@ -547,8 +574,9 @@
     },
     "Mod/InvestmentAction.lua": {
       "sha256": "c172e8793367032401f886b511bf9c0523e34ded1a1cccfa8921b9c5d60b3cb6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md",
-      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md"
     },
     "Mod/LevelBannerState.lua": {
       "sha256": "4929677c51ba8b923fd3ca86535e722ff252fe82081b52d3f0058aee01fda33a",
@@ -622,8 +650,9 @@
     },
     "Mod/ResearchChairModel.lua": {
       "sha256": "be4ca9495a29cd9dd7048972597ddaff11034580761e5132225d22c1ec43020f",
-      "review_source": "Specialization/Architecture/v2/P0_D3_Research_Chair.md",
-      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved"
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B086 P0-D3 owner-local ordinary Campus building Science; other effects preserved",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_D3_Research_Chair.md"
     },
     "Mod/ResearchCross.lua": {
       "sha256": "8a4dea30198825fd205a1462464425bc6b7744808e39b502d28c69b534809f33",
@@ -637,8 +666,9 @@
     },
     "Mod/ResearchCrossSample.lua": {
       "sha256": "3c4664da3386dc48595afc8a96bc2fbfb281e3b2c3a1ed089151a2ac58d785aa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md",
-      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B373.400 Scope adjacency sampling and notify only changed cities; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B373_Refactor_S9e2.md"
     },
     "Mod/ResearchInfrastructure.lua": {
       "sha256": "cffa8595cb7ca7247031ffbfeee46b1c30eb4d960cfcc0d3e79053610f45afee",
@@ -657,8 +687,9 @@
     },
     "Mod/ResearchTradition.lua": {
       "sha256": "a7645393beab985282a474805375f7249254079d47c0ef6b41ffad3434950e38",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md",
-      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B380.407 Resume retained Academic Tradition after confirmed city return plus bounded nil-scope correction;local/static only,no native/deployment PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md"
     },
     "Mod/ResearchTraditionEffects.lua": {
       "sha256": "f065b58ed977f23cb4ee6366f03a2c688906923c43937f5ca4fccba14006ce72",
@@ -692,8 +723,9 @@
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
-      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md"
     },
     "Mod/ShadowRouteState.lua": {
       "sha256": "6f35992fd9e5b8d2429061acbaf83e3f7747300592bf050dbb23e1e5fe9163e6",
@@ -717,8 +749,9 @@
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md",
-      "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md"
     },
     "Mod/StandardizationCatalog.lua": {
       "sha256": "de5b99ccbab52890dcd8bfb790d21fce23f62bb4e354fd05c01d9b7a469bc000",
@@ -782,13 +815,15 @@
     },
     "Mod/Textures/SPC_Institution_Backdrops_32.dds": {
       "sha256": "d6ced03eb0a7a91717eb008269c859a5da4efe99471b80902e223aa2c0458eec",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md"
     },
     "Mod/Textures/SPC_Institution_Backdrops_64.dds": {
       "sha256": "912e8f148ea8698941d5e0be5482b70fdef9966340364b806b9b05c3ff03b0ce",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md",
-      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B252 presentation-only: Commerce help, native Roman labels over four gradient backdrops, and grouped Development Investment sidebar.41 scoped local methods PASS; native visuals pending. No transaction, gameplay writer, save or timer changes. Exact DDS publication is separately user-approved.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B252_Commerce_UI.md"
     },
     "Mod/Textures/SPC_Institutions_32.dds": {
       "sha256": "a3f389f0a82e16599371e42fda5384868d915a3432e92e5f3f14ae678267fa91",
@@ -802,113 +837,135 @@
     },
     "Mod/Textures/SPC_Level_Icons_32.dds": {
       "sha256": "b08fe38e9a66bb0b157d9baf0b6ab818cb6431e4fdaa39cb6a801273559fde89",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md"
     },
     "Mod/Textures/SPC_Level_Icons_49.dds": {
       "sha256": "f4f3e925dd3f1d58027fdbd792099f64a7000a16c23b8fed859078ed6db3bcb6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md",
-      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B259 authorized measured presentation-only refinement;39 scoped checks PASS; native pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md"
     },
     "Mod/Textures/SPC_Level_Icons_58.dds": {
       "sha256": "9d3277bca2704363223d7346592cbbcadd793883a851a2f190a1c0434258ad54",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md",
-      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B258 approved presentation-only repair;40 local checks PASS; native pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B258_Badge_Investment_UI.md"
     },
     "Mod/Textures/SPC_Level_Icons_64.dds": {
       "sha256": "308bdf3bad9e027da81b9284c7b3a11c37fbb6312819995c9be763f1437e778e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_12.dds": {
       "sha256": "9504fb896cd5fbb5a1b5374287d184b9be451c3d40aad9f3b9430822b3244451",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_128.dds": {
       "sha256": "db535dc9086fd272743e7b46c97518d8ba761fb10b8216630cf576fe3cab4fea",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_16.dds": {
       "sha256": "7eb52e45e02202c85e58f686028ce40f045c8360d6885f18428546826380de57",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_20.dds": {
       "sha256": "f0cf275742ac0797e5fc91325742fcb1a1eb17fc4ee1c7cbbd4b5a11362c6f0e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_200.dds": {
       "sha256": "40bd878b9a9aac453ce21849db0915b7a31d6953295c43d56964747df7cf7286",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_22.dds": {
       "sha256": "c5f2f0ad7282ec4db1b9fd51e5734503dcac1c5a52899b3d8d3e277c08c785ff",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_24.dds": {
       "sha256": "024f16a9ba724357294cdcd69c6cbbbda9ff5bd0a8e76a9c3a2054a95ea830d2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_256.dds": {
       "sha256": "1fdc7a31f46f2105b1e1f85fb2ae4bde82f20f882461126c437fafc63f1ba23e",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_30.dds": {
       "sha256": "302b8855a3907b5983a7f9f3afe9a79f4f62e87d3dcfdcc3897bcde284f3f7bf",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_32.dds": {
       "sha256": "f6cfa2c9b29b6bd1d7ee7cfb9ff1413a5d684a8b315c8deadb0e177edb1e69a3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_38.dds": {
       "sha256": "04344a8f45bfdaf9fa5e673b02ff9f060e9ac9f0ba1fa08e22f123341d28947c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_40.dds": {
       "sha256": "00d3a4619df0b27b5fe87f3858a274a75a3fb0d299d430d6e319edee391812d8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_48.dds": {
       "sha256": "603bf3e156b03c374e632f2769ec17610c6bc24e8fe7e15dbf828ca44982ffc4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_50.dds": {
       "sha256": "317263cc93353d0efbd6cfcf9ec6a33a349325f1588114c71a68fc0b88e2fafd",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_64.dds": {
       "sha256": "b98cda65faf9ce37bb542588e5914ab69f971cf4d4cf3caa0b1e2df5cf1472f3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_70.dds": {
       "sha256": "b4c5fdd4de8bd23daea78397b59660f0f5925bfc720f524c99bb9e19abb3e825",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_80.dds": {
       "sha256": "78709259d0e893d9827fca6f3f034d2f47b9839c36973516144d46bac790f4a7",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/Textures/SPC_Raw_Icons_95.dds": {
       "sha256": "76a382c269dc7caff70c976235ccd5e08acb096972560296b8a03192080ce1ba",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/TimedProject.lua": {
       "sha256": "5fd1eda331046746024664c65030114505988ef9b305884b3373f90ef17f5779",
@@ -937,23 +994,27 @@
     },
     "Mod/UI/CapitalInvestmentPanel.xml": {
       "sha256": "ff0bcf91a2c7725fa69f717f55b1305d97bac389c9617442d311d8e59b1d4dfc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
-      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md"
     },
     "Mod/UI/CapitalInvestmentUI.lua": {
       "sha256": "5a4a84a59b532122e9e7a70cfd1f90ae0b741082f1af02c833ef3f4329786949",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
-      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md"
     },
     "Mod/UI/CityBannerManager_SPC_Levels.lua": {
       "sha256": "849d2a82448990deb91f7b51b273cb71f6a086cd9d0cae047463209673d6f067",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md"
     },
     "Mod/UI/CityBannerManager_SPC_TimedProject.lua": {
       "sha256": "bea16e06bb725a2a2169f5f1b6439f784c152a609c0bb4430cd3f32d4db763fe",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/UI/CityPotential.lua": {
       "sha256": "3e98a4a7255892c3d32d692ba7301c2d1a9c069cf5ce5f1e3a7ca937730b6a7b",
@@ -962,13 +1023,15 @@
     },
     "Mod/UI/CityPotential.xml": {
       "sha256": "ee21aabc5a688151475978bc1fbd261edfeb64368c8f73e7f91789ed35e24043",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md",
-      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B265 approved event-driven city presentation/admission refresh, ACTIVE shortcut, profession colors and bounded diagnostics; L2 local validation, native review pending. No gameplay rule or permanent-state change.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B265_City_Presentation_Refresh.md"
     },
     "Mod/UI/ClaimIconOverlay.lua": {
       "sha256": "6b4015a25fedc26809bc716f96e69abd165e231723f22fa198ded9456a4075fa",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/UI/ClaimProjectUI.lua": {
       "sha256": "3c81e736fd27d268e4897f8264a5acb1d43785b4a13df5ade4ab71d6a83ab167",
@@ -982,13 +1045,15 @@
     },
     "Mod/UI/CommercePanel.xml": {
       "sha256": "0ed8ca0ccec0289637c39110edec10cf75413c559549ee8e1789a61ec1f28396",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md",
-      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B262 approved presentation refinement;20 scoped checks PASS; native pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B262_Capital_Sidebar.md"
     },
     "Mod/UI/CommerceUI.lua": {
       "sha256": "ef9d498969592123616ec32b97a6fac2218545dc80623ca060ef0b828cdc031b",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
-      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md"
     },
     "Mod/UI/CrewProjectOrder.lua": {
       "sha256": "6bd40dd09ae8b5361dd4c18bf4f9ead69405187f133955f9f1e79be3a41e866d",
@@ -1007,18 +1072,21 @@
     },
     "Mod/UI/DevelopmentInvestmentPanel.xml": {
       "sha256": "48035d87eabd91a3df41c4c0c09274c4314f37e7a40aa6b5b1b73008ff433ec6",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md",
-      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B260 authorized presentation refinement;22 scoped checks PASS; native pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B260_UI_Alignment.md"
     },
     "Mod/UI/DevelopmentInvestmentRead.lua": {
       "sha256": "ca7a5726e8752958920bc1c1c40ca9508d16ed218eac9f44588e1a3c637a3b32",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
-      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md"
     },
     "Mod/UI/DevelopmentInvestmentUI.lua": {
       "sha256": "4b31475f35b1940444a8ab7c162261c94b5e0f756aa181b8ac1088a113482636",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md",
-      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B352.379 Refresh production actions from the selected owner view; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B352_Refactor_S9a2.md"
     },
     "Mod/UI/DialogueProjectUI.lua": {
       "sha256": "d570f52eb51bbd5e7b9040f7dc75a850e64ba5fc654a08728b38398d50de3526",
@@ -1042,8 +1110,9 @@
     },
     "Mod/UI/ExpeditionGateWindow.xml": {
       "sha256": "5ce5ff851733a7b7d0bd1ab2e299b5b2acc11711c3d70c630144ce3b78a12373",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md",
-      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B181 authorized UI-only sizing/caption/copy and build-stamp repair, actual source reviewed;42 gate +10 panel local methods PASS. Gameplay unit/reader unchanged; B180 native observation is separate.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B180_N1_Native_and_B181_Panel.md"
     },
     "Mod/UI/ExpeditionMovementProbe.xml": {
       "sha256": "91593e59267da919a9b433b67e4f0d4b22ede5544005f32469f0c7d078edfdea",
@@ -1052,23 +1121,27 @@
     },
     "Mod/UI/ExpeditionSpyActivity.lua": {
       "sha256": "ffb41a3f0a2381c36528bba0d4d7bbcf792aead94b00776ff0c41ba84e4f39eb",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md",
-      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B395.422 bounded Culture startup/recovery repairs and removable explicit GPP diagnostics;local/static only,native acceptance pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B395_Culture_Recovery.md"
     },
     "Mod/UI/ExpeditionSpyActivity.xml": {
       "sha256": "426ee2b79568fc0f3ea25761b2f1bf113d0d7a2c823cdfaebd47580ee91fcde0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md",
-      "provenance": "B190 approved task-controlled activity prototype;179 scoped methods PASS. Native activity/readiness pending; exact source/cap/name unchanged."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B190 approved task-controlled activity prototype;179 scoped methods PASS. Native activity/readiness pending; exact source/cap/name unchanged.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B190_Expedition_Task_Activity_Local.md"
     },
     "Mod/UI/ExpeditionSpyChooser.lua": {
       "sha256": "153c44a5d223d71ba7cf9bc20fcdd9c582b7b5fee9e7b006fd406438caf003bc",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md",
-      "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B200 reviewed selection-only presentation and measured-card/header/copy delta;209 targeted checks PASS, native UI pending. Source labels updated; no Gate/activity/capacity/binding/persistence or deployment change.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B200_Expedition_UI_Local.md"
     },
     "Mod/UI/ExpeditionSpyPopup.lua": {
       "sha256": "f96d75a0793ecf0fb3f2301f50bea57a3f414727998b0b8dabf0ad615f9400e4",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md",
-      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B196 approved explicit UI, quiet native routing and task lock; backing offset only;145 scoped tests PASS. Gameplay Gate/activity/capacity/binding unchanged; native UI pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B196_Expedition_Explicit_Actions_Local.md"
     },
     "Mod/UI/ExpeditionSpyUnitPanel.lua": {
       "sha256": "b2d33516370f60467998ea50c42dd74884c78dfa90d608acb480cc6a1a5b260a",
@@ -1082,8 +1155,9 @@
     },
     "Mod/UI/ExpeditionSpyWindow.xml": {
       "sha256": "8a9b2f5ee3d27541f2880bf412ada76f19b5e265f6a8fae92a6fad6bc4109ec3",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/UI/ExpeditionTrainingName.lua": {
       "sha256": "e795a4ec009c61358f28deef878da9d2415871532c3876153f3b5b60420b201b",
@@ -1102,8 +1176,9 @@
     },
     "Mod/UI/GPPRefresh.lua": {
       "sha256": "06e8a2200c787731bdd8ea1eb10d6cb51aae74884064cfe3a5a7b52453efec04",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
-      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md"
     },
     "Mod/UI/GPPRefresh.xml": {
       "sha256": "ab47d5dd42cb95b89c9cc1b82548446029cbbb00c8cf0e2fd3b17f08e7496109",
@@ -1112,8 +1187,9 @@
     },
     "Mod/UI/IndustryRefresh.lua": {
       "sha256": "f2ccea01405828a5c89c6aabac6b0920f3668a9f850773704bf33c651d413d31",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
-      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md"
     },
     "Mod/UI/IndustryRefresh.xml": {
       "sha256": "9af08ee9bb27efd3a6dee21d6cda407965200834b4172d63d064a6b1b9396ebe",
@@ -1127,28 +1203,33 @@
     },
     "Mod/UI/Institutions.lua": {
       "sha256": "f239ef9364fbbeb9d1b7574fd236253c51df7ffd5fed44da6df42373b9919864",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md",
-      "provenance": "B256 matched-size atlas repair/build stamps;32 local checks PASS; native visual confirmation pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B256 matched-size atlas repair/build stamps;32 local checks PASS; native visual confirmation pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B256_Icon_Size_Repair.md"
     },
     "Mod/UI/Institutions.xml": {
       "sha256": "212d7dd48aa2318d2cfba2fe396191cb7e1e506195229af9d40335ebca323f3c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md"
     },
     "Mod/UI/LevelBannerModel.lua": {
       "sha256": "e22793c3e794fca50ef89ac7752634549e1b67833f24859f206f5142760d3b73",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md",
-      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B254 approved read-only level projection, native banner lifetime, embedded serif icons.32 scoped methods PASS; native visuals pending. No gameplay/Property/timer change.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B254_Level_Icons.md"
     },
     "Mod/UI/LevelBanners.lua": {
       "sha256": "37388bc260a55ea6a963e9b387bd11f404229248183d7d0e814dbdb1e975fda5",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/UI/LevelBanners.xml": {
       "sha256": "ef129b895cc972d261a8562a0725f0cc3ad4516e0e1fab9ccf16bb2bda948bf0",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md",
-      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B268 explicitly selected raw-art replacement; targeted checks and separate fixed-DDS review complete; native rendering pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B268_Raw_Icons.md"
     },
     "Mod/UI/P0Panel.lua": {
       "sha256": "7fcafddea6296e89ab47975c144f2ac6d77de29455ed9b394e11501a02468244",
@@ -1167,8 +1248,9 @@
     },
     "Mod/UI/ResearchCrossRefresh.lua": {
       "sha256": "eaa746ed4fb69620442ebef640d0569d9ff7e6899794073242b249c64d29f5de",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md",
-      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md"
     },
     "Mod/UI/ResearchCrossRefresh.xml": {
       "sha256": "72f1e300b5cdd94839ee4a6308b265115783af2bf5321da52ef1bebdd8b77498",
@@ -1227,8 +1309,9 @@
     },
     "Mod/UI/UnitTargetMarkers.lua": {
       "sha256": "01d4a722684fe71b5a92afcd13cd37fbc9e072a09ee8516a6ce2317fcf735883",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md"
     },
     "Mod/UI/UnitTargetMarkers.xml": {
       "sha256": "d4a976b7811eb6f5df0f668f15b8a260e4c01576bca3716bfd8ad09e12792331",
@@ -1237,8 +1320,9 @@
     },
     "Mod/UnitActions.lua": {
       "sha256": "0354cdbf65bd6cd7f59c6c0c929cce9220447bfdd05ff85a30b72e2ac9f85cba",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md",
-      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B329.356 Move one-use Crew transaction to its owner; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B329_Refactor_S7d5.md"
     },
     "Mod/UnitTargets.lua": {
       "sha256": "2fc049d186cbd684b3f7cf5c8d780ae11ed409d295234e80cae758ce29df7b8b",
@@ -1247,8 +1331,9 @@
     },
     "Mod/EventTimingDiagnostics.lua": {
       "sha256": "5ff154ee0aa59d206a0c2e9d1eab161fb28d00bc6883815c6862c8409dd59662",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md",
-      "provenance": "B308.335 Git forward-port of B307 probe disable; local/static only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B308.335 Git forward-port of B307 probe disable; local/static only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B308_Probe_Disable_Forwardport.md"
     },
     "Mod/Data/InternalCarrierPillage.sql": {
       "sha256": "9e1fd53c44eb32f37d9ba0dc5efb1d0e3a9233b565eca8af94fd2f0a19b5ba72",
@@ -1267,8 +1352,9 @@
     },
     "Mod/UI/SafeAdapters.lua": {
       "sha256": "5ce86e802bfdea2edd562a1978a9e731d28b25a7e74572ac1fcc68626c622d52",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md"
     },
     "Mod/FactChanges.lua": {
       "sha256": "93e482db5d48bc1820b7bb54995c3c3e5afa0aaea9bb162713e4729134756e62",
@@ -1282,13 +1368,15 @@
     },
     "Mod/NativeFacts.lua": {
       "sha256": "141fc7440db95bc7aff69e5048c736f5c53db499fe92d7eb1b19018731a03008",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
-      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md"
     },
     "Mod/ReverseDependencies.lua": {
       "sha256": "a9c9f2bc4bba3b60b5eeab0313d5600c55f155f568a3d0e2cc6669bf54ea7c8a",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md",
-      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B306.333 Index retained source dependencies without changing receiver discovery; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B306_Refactor_S6d.md"
     },
     "Mod/UnitSiteFacts.lua": {
       "sha256": "c0fa76322f2e6f7189424137bc2d68cdf7b37244f0821b312cf77b186d0347d1",
@@ -1297,53 +1385,63 @@
     },
     "Mod/CarrierSet.lua": {
       "sha256": "c338c177088e9e0fa22601b1d5a8f93b07a15e76557178dcf93a08c094395421",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B320_Refactor_S7a6.md",
-      "provenance": "B320.347 Unify exact owned-carrier registries and close S7a extraction; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B320.347 Unify exact owned-carrier registries and close S7a extraction; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B320_Refactor_S7a6.md"
     },
     "Mod/PropertyCell.lua": {
       "sha256": "23f1622b9d2c4e6db1bc719b864b2fd058c949875d8fe925ddb23d94b8c30051",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md",
-      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B322.349 Complete property-cell mechanics and scoped decimal policy; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B322_Refactor_S7b2.md"
     },
     "Mod/TurnLedger.lua": {
       "sha256": "5056a904946a652b87e72564770c727529734f9a9f3e1c2e57ffb85d829a563c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md",
-      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B323.350 Share reliable turn boundaries and implement accepted D6 recovery; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B323_Refactor_S7c.md"
     },
     "Mod/TimedProjectModel.lua": {
       "sha256": "85b17900e90a763ec4e7de5a25163bb998283946d1155b3e6272a5fef4515214",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
-      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md"
     },
     "Mod/TimedProjects.lua": {
       "sha256": "d64e313c994c466e16de70c7a1de291d478ae2c236fbc60f1ce84c4ee58ee371",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md",
-      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B328.355 Suspend unknown project timers until related facts recover; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B328_Refactor_S7d4.md"
     },
     "Mod/UI/TimedProjectSelectionClient.lua": {
       "sha256": "98a0c30373efabf2f07518dc26ae156760b0c810e24905044a977bc523c69464",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md",
-      "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B398.425 scoped two-project queue repair;85selected methods/local restricted proof;native pending. No new saves or formulas.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B398_Timed_Project_Queue_Recovery.md"
     },
     "Mod/TimedProjectReaders.lua": {
       "sha256": "b55e09fad23abb6157b2118f1e753be0cbd492e30b8f98b8b854513caf4688ce",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md",
-      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B394 optional diagnostic-only tap;native reads/writes and original business decisions preserved in scoped local tests;native collection pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B394_Culture_Diagnostics.md"
     },
     "Mod/Tombstones.lua": {
       "sha256": "083ea53b413c4d52504d987572385cf2f875a57e6195bd78bf2872b35edad8ab",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md",
-      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B330.357 Exact reference-scoped retired carrier cleanup; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md"
     },
     "Mod/CityReference.lua": {
       "sha256": "f62f4a3ca528294865111a46718380a0e5d9403fe4d0fd113378ec13ad435924",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md",
-      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md"
     },
     "Mod/StoreSubrecords.lua": {
       "sha256": "9bfdd490878f6fedaa69f6d729bf8d109b82738f79e4033f56d210fb89e6a53f",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md",
-      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md"
     },
     "Mod/LegacyCleanupCatalog.lua": {
       "sha256": "54c34960588feb484debf8d379b4a829eb3d5b13c1f2b09493af6502fc385aac",
@@ -1357,38 +1455,45 @@
     },
     "Mod/DevelopmentInvestmentTargets.lua": {
       "sha256": "0af2689c6ae0e01b5f9e50683da32a19f1499f10b1ae7c7d566ee3b5c9b119f8",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md",
-      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B353.380 Move Development target selection into Gameplay without broadening price reads; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B353_Refactor_S9b1.md"
     },
     "Mod/ExpeditionEntry.lua": {
       "sha256": "3d443b87bf3dd5b256e49ed8fde047c776b9e7306c1170c70cef43f050e30695",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B355_Refactor_S9b3.md",
-      "provenance": "B355.382 Select Expedition entry cities from raw UI facts in Gameplay; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B355.382 Select Expedition entry cities from raw UI facts in Gameplay; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B355_Refactor_S9b3.md"
     },
     "Mod/PlayerActionReplies.lua": {
       "sha256": "4d7cbe0cae57b292bb87611c737563da9d69cc7f2344a2fd9700c8c369311f52",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md",
-      "provenance": "B363.390 Publish fixed institution views with protected city reference reads; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B363.390 Publish fixed institution views with protected city reference reads; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md"
     },
     "Mod/StoreDeferredLifecycle.lua": {
       "sha256": "6c0184656cbffedc80aec1e21a188e846ce79cdd92e3b2052fec3fa20945936c",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md",
-      "provenance": "B385.412 Prove fixed lifecycle delegates and independent reputation scope; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B385.412 Prove fixed lifecycle delegates and independent reputation scope; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md"
     },
     "Mod/StoreLifecycleRecovery.lua": {
       "sha256": "0fed22622fd438fe21df94de78b2435edc0442fa3776e9b4db888248c246c699",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md",
-      "provenance": "B385.412 Prove fixed lifecycle delegates and independent reputation scope; local/static evidence only; no deployment/native PASS."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B385.412 Prove fixed lifecycle delegates and independent reputation scope; local/static evidence only; no deployment/native PASS.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md"
     },
     "Mod/IdentityEqual.lua": {
       "sha256": "ebe8c7ff6c39c59a9fd1507a20ed1fb43e34080cf92bdfd95aa10e306e7efac2",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md",
-      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B392 restricted identity compatibility;scoped local regression;native recovery pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B392_Restricted_Lua_Identity.md"
     },
     "Mod/CultureDiagnostics.lua": {
       "sha256": "d1ad434584af661a853ade6b2681cfff4310024d270ff43ece67fef810617d22",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md",
-      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B396.423 removable four-profession GPP observation transport and budget repair;business differential/local/static evidence only,native semantics pending.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B396_GPP_Diagnostic_Wiring.md"
     },
     "Mod/UI/TimedProjectQueueIntent.lua": {
       "sha256": "2cad430da38d791707a47e054860900a0c3acd753cdea780e714b21f5edd391e",
@@ -1397,8 +1502,9 @@
     },
     "Mod/PlaytestBoundaryDiagnostics.lua": {
       "sha256": "e7b2512454f7dd52a7b21e952de67b7d3c8d9d253248c363058aa65ca9a5a5c1",
-      "review_source": "Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md",
-      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior."
+      "review_source": "Specialization/Historical/README.md",
+      "provenance": "B399.426 scoped confirmed-cancellation recovery and optional removable boundary observer;178selected local methods with named inherited failures separate;native pending. No new save/formula/unit behavior.",
+      "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B399_Queue_Repair_Removable_Boundaries.md"
     },
     "Mod/FactUse.lua": {
       "sha256": "ee14ab91af6aae3e3fab95eed4f70709b3fdc5c07e9503a0e51527e123439f5a",

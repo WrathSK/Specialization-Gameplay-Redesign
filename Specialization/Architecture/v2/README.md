@@ -33,7 +33,7 @@
 - [巨作事实层P0-K计划](P0_K_Great_Work_Facts.md)：已支持作品/历史时代/城市馆藏与国内索引；事实层已获授权实施，不包含新文化收益；实际证据/待验范围看Status。
 
 - [P0-A实际事实与shadow](P0_A_District_Completeness.md)：普通建筑目录、深度、只读专业事实；[读取修复](P0_A_Native_Read_Fix_B078.md)。目录覆盖不能由部分对象PASS外推。
-- [基础专家支持](P0_B1_Specialist_Support.md)、[二级资格/住房/GPP](P0_B2_Lv2_Qualification.md)：各自consumer和精确旧writer退出边界。
+- [基础专家支持](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_B1_Specialist_Support.md)、[二级资格/住房/GPP](P0_B2_Lv2_Qualification.md)：各自consumer和精确旧writer退出边界。
 
 ## 收益应用与精度
 
@@ -44,9 +44,9 @@
 - [人文考察团UI计划](P0_N_Expedition_UI.md)：训练、独立管理、目标／任务、失效后重挂靠、城市见闻及Network呈现；仅提案，借UI不等于复用Spy引擎。
 
 - [文化风雅熏陶L1已测结算](../../Status/Validation/Results/Specialization_B149_P0L1_Settlement_Pass.md)：所测逐栋加值与结算已通过；[原始实施检查点](P0_L1_Aesthetic.md#b148175--implementation-checkpoint)保留技术依据，当前任务/下一授权仍看Status。
-- [科研基础设施正式cutover](P0_C_Research_Infrastructure.md)、[科研基础设施早期计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_C_Plan.md)、[原生门禁](P0_C_Primitive_Gate.md)：计划/门禁是来源，不重新派发旧测试。
+- [科研基础设施正式cutover](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_C_Research_Infrastructure.md)、[科研基础设施早期计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_C_Plan.md)、[原生门禁](P0_C_Primitive_Gate.md)：计划/门禁是来源，不重新派发旧测试。
 - [跨学科研究正式路径](P0_D1_Research_Cross_Cutover.md)：后续已接受floor实现；[跨学科研究早期计划](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/6cfefeffc9a22fc8edd1ebfcbbca1065f9a46b71/Specialization/Architecture/v2/P0_D1_Plan.md)、[早期门禁](P0_D1_Primitive_Gate.md)、[区域精度实验](P0_D1_District_Precision_Probe.md)保留反证与测试路径。
-- [学以致用](P0_D2_Research_Apply.md)：每专家floor；[学术主持](P0_D3_Research_Chair.md)：逐普通建筑consumer。
+- [学以致用](P0_D2_Research_Apply.md)：每专家floor；[学术主持](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Architecture/v2/P0_D3_Research_Chair.md)：逐普通建筑consumer。
 - [精度待办](Yield_Precision_Backlog.md)：尚需研究/未批准的后续事项，不自动成为本轮实施任务。
 
 ## 呈现与跨context界面

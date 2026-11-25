@@ -55,7 +55,7 @@ Current support covers new games started on the active build and saves loaded on
 |---|---|
 | Gameplay rules and future designs | [Design guide](Specialization/Design/README.md) · [Shared rules](Specialization/Design/Shared.md) · [Domestic network](Specialization/Design/Network.md) |
 | System structure and implementation | [Architecture guide](Specialization/Architecture/README.md) · [Mod source](Mod/) |
-| Test results and technical investigations | [Validation records](Specialization/Status/Validation/Results/) · [Technical evidence](Specialization/Reports/Technical/README.md) |
+| Test results and technical investigations | [Current validation status](Specialization/Status/Specialization_P0_Status.md#current-authoritative-state) · [Technical evidence](Specialization/Reports/Technical/README.md) |
 | Development and project navigation | [Development guide](Specialization/Development_Guide.md) · [Project map](Specialization/README.md) · [Tools](tools/README.md) |
 
 Detailed gameplay design and engineering records are primarily in Chinese, with some technical documentation in English.
@@ -117,7 +117,7 @@ Xuting Zheng 负责玩法设计、项目方向、系统边界与关键取舍，�
 |---|---|
 | 玩法规则与未来设计 | [设计导航](Specialization/Design/README.md) · [共同规则](Specialization/Design/Shared.md) · [国内网络](Specialization/Design/Network.md) |
 | 架构与实现 | [架构入口](Specialization/Architecture/README.md) · [Mod 源码](Mod/) |
-| 测试结果与引擎调查 | [验收记录](Specialization/Status/Validation/Results/) · [技术证据](Specialization/Reports/Technical/README.md) |
+| 测试结果与引擎调查 | [现行验收状态](Specialization/Status/Specialization_P0_Status.md#current-authoritative-state) · [技术证据](Specialization/Reports/Technical/README.md) |
 | 开发与项目导航 | [开发指南](Specialization/Development_Guide.md) · [项目内部导航](Specialization/README.md) · [工具](tools/README.md) |
 
 详细设计和工程记录以中文为主，部分技术文档使用英文。

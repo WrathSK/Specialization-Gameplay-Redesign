@@ -698,3 +698,5 @@ Independent retrieval from GitHub matched bytes, SHA256 and Git blobs at publish
 
 
 - **旧版设计规范与内容**。固定提交 [36eceb2bf6d5](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/36eceb2bf6d5d619783c02546a053a8c25896f33/)，原路径范围 Design/Revisions、Design/Content。按[逐文件建议](../Reports/Advisory/Repository_Cleanup/Cleanup_File_Lists.md)查原路径，用 `git show 36eceb2bf6d5d619783c02546a053a8c25896f33:<原路径>` 取回。已核对 119 个原件的 SHA256，按路径排序的校验清单摘要为 `163c77e7242ef5e000ccfebaf598bf49f2e476519c1eedb98bf2b832c404df7c`（每行 SHA256、两个空格、仓库相对路径及换行）。
+
+- **历次验收和审阅出处**。固定提交 [36eceb2bf6d5](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/36eceb2bf6d5d619783c02546a053a8c25896f33/)，原路径范围 Status/Validation、Architecture/v2、Reports/Technical。按[逐文件建议](../Reports/Advisory/Repository_Cleanup/Cleanup_File_Lists.md)查原路径，用 `git show 36eceb2bf6d5d619783c02546a053a8c25896f33:<原路径>` 取回。已核对 363 个原件的 SHA256，按路径排序的校验清单摘要为 `716f0d78e8a7dc6b8efd3a1828359213338310b1f45358e2ccd73843111d913b`（每行 SHA256、两个空格、仓库相对路径及换行）。
