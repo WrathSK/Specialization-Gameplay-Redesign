@@ -7,7 +7,7 @@
   "implementation_status": "NOT_IMPLEMENTED",
   "balance_validation": "PENDING",
   "authority": "2026-09-20 Military redesign brief and five explicit follow-up decisions. Historical D0008 applies only where expressly re-adopted. 2026-09-20 comprehensive training breadth/quality and absolute-depth/efficiency amendment; detailed conversion expressly deferred. 2026-10-02 user Harbor handoff: naming-only Military amendment 行伍制度→行伍编制; 后勤编制→战地勤务. All Military gameplay contracts remain D0034.",
-  "shared_contract_ref": "Shared_D0028.json",
+  "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0028.json",
   "philosophy": "城市社会资源、组织能力、经验与人才转化为军事力量；防御、战前准备、扩张及紧急军事化均有价值，不要求和平经济产出来回本。",
   "ability_structure": {
     "counts": [

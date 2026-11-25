@@ -7,7 +7,7 @@
   "implementation_status": "SEE_STATUS_FOR_SCOPED_IMPLEMENTATION_AND_VALIDATION",
   "balance_validation": "PENDING",
   "authority": "User-accepted Commerce v0.1 Design Talk closure. Existing D0032 structure/names retained; only explicit decisions recorded. Remaining narrow qualification, ownership and technical boundaries are not inferred. D0040 user-approved A–D handoff supersedes only the explicit lifecycle fields. D0042 closes only the explicitly named E/F/G and investment-confirmation lifecycle boundaries. D0050 records the user-approved Commerce Design Talk handoff of 2026-10-16 (commercialization source/coefficient, Capital eligibility/S/minimums/concurrency, Venture failure protection, Development Investment replacement, Standard-speed-only v0.1, deferred lifecycle boundaries) plus the user's theoretical-purchase-price clarification. No implementation authorized. D0054: user explicitly chooses Floor of each commercialization domain separately, then addition, on 2026-10-18. No aggregate-first rounding or blanket monetary rounding authorized. D0055: 用户于2026-10-18接受外部来源对应专业身份要求，以及港口商业化输入改为城市总粮食（非余粮）；本城例外、公式及其它合同保留。仅授权Design同步，不授权实现。 D0056: 用户于2026-10-18明确确认资本投资最高当前ACTIVE S同级时，按最早建立对应机构等级的城市优先；仍同序按稳定City ID/stable key。其它规则全部保留；另明确授权B241实施。 D0057：用户在B246实施中明确选择，同一区域多个合格下一阶建筑采用最低理论金币购买价；界面明确列出报价依据。合同仍只绑定城市＋区域，完成下一座合格建筑即结束，不绑定报价建筑。其余规则保留。 D0058: 用户2026-10-24明确接受U1修订并授权S2–S10；早期不授权实现的措辞为对应历史批次边界，当前授权见Status／Authority。",
-  "shared_contract_ref": "Shared_D0066.json",
+  "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0066.json",
   "supported_locales": [
     "zh_CN"
   ],
@@ -367,7 +367,7 @@
       "conquest_intent": "Old assets were liquidated but new allocation not completed: chaos-time conquest destroys/takes remaining reallocatable capital, invalidating the plan.",
       "training_source_lifecycle": "Completed Team remains independent original-Owner asset, survives training-source Governor/ACTIVE/Commerce Identity/Owner changes. Once a REALLOCATING transaction binds it, lifecycle follows transaction/target city; training source is provenance only. Source Owner change never terminates another target transaction. Target transfer invokes conquest termination. No automatic new-owner unit grant from source transfer.",
       "professional_unit_protection": {
-        "shared_authority_ref": "Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE/G_PROFESSIONAL_UNITS_AND_SOURCE_BINDING/professional_unit_protection",
+        "shared_authority_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0045.json",
         "rule": "Reallocation Team cannot be captured or converted to enemy Owner; hostile capture/destruction uses protective retreat/safe return.",
         "priority": "Existing target REALLOCATING exceptional Owner-change termination/dissolution remains prior; training-source Owner change never grants the unit to the new Owner.",
         "technical_boundary": "Native execution/legal safe-return destination remains technical investigation, not captured-unit ownership Gameplay TBD."
@@ -398,7 +398,7 @@
       "status": "USER_CONFIRMED_DIRECTION / UI_PROTOTYPE_REQUIRED"
     },
     "confirmed_contracts": "D established contracts: ordinary Governor/ACTIVE/Identity/route/specialist-capacity changes never retroactively cancel. Key-city Owner change is subject rupture and immediate exceptional termination. Capital locks Commerce source + specific S source when one exists (otherwise no S source with S_effective=1), loses principal without maturity/failure/pity settlement; Development (D0050) binds Commerce source + target city + district type, no refund, immediately withdraws +50%/releases slot. Per-contract details above govern, not permanent-asset inheritance. D0061: confirmed permanent destruction of either actual key city terminates the same outstanding contract once, with the same effects as key-city transfer. Paid contracts are not reopened.",
-    "subrecord_recovery_ref": "Shared_D0059.json#/concepts/ABILITY_SUBRECORD_RECOVERY",
+    "subrecord_recovery_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0059.json",
     "pending_network_rule": "同一受支持构建的正常读档恢复等价的引擎事实、真实Mod历史与原生效果；Lua缓存／索引重建不构成业务变化。路线拓扑PENDING／UNKNOWN或必要事实／历史／拓扑尚未完整可消费时，不撤除、部分重算或改写已恢复的网络派生载体；标准化本城与网络共用物理载体整体保持。首个完整可靠可消费快照按现行公式幂等对账，旧输出不是当前网络事实或新不可逆交易资格。会话内拓扑已确认、单来源暂不可读时，仅保留引用仍有效的上次可靠贡献，其它可读来源使用新事实；逐来源区分confirmed／retained／unknown，无可靠见证不造贡献，不默认持久化派生来源。可靠负事实立即撤销相应严格资格并登记被动撤除责任；冷加载不可拆分整体且无可靠来源见证时，不猜拆减项，首个完整可消费快照执行撤除。接收城自身已确认身份／资格／Owner／reference／REALLOCATING退出仍按原有精确规则优先处理。事实恢复由相关事件、可用性／初始化完成交付触发，不增加轮询。超出正常初始化窗口仍不可恢复时，临时no-write、原输出标为未对账且显示严重错误、严格交易禁止；这不是永久旧全额支付、K-only或清空政策，真实新取舍交用户决定。资本／发展既有确认、余额、收据与已签合同存续规则不变。"
   },
   "parameters": {
@@ -700,7 +700,7 @@
     "boundary": "No blocking Commerce design decision remains for v0.1 dependent paths; technical investigations and deferred boundaries are not implementation authorization."
   },
   "previous_authority": "Commerce_D0064.json and its accepted Spec are retained in the Design history.",
-  "previous_content_revision": "Commerce_D0064.json",
+  "previous_content_revision": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0064.json",
   "amendment_kind": "OWNER_CONFIRMED_INVESTMENT_REVIEW_SCOPE",
   "design_detail_required": [
     {
@@ -731,7 +731,7 @@
   "u1_acceptance": {
     "date": "2026-10-24",
     "scope": "仅用户U1明确决定；未列公式、数值、归属、未来边界及平衡成熟度保留。实现／本地验证／实机证据另见Status。",
-    "shared_contract_ref": "Shared_D0058.json",
+    "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0058.json",
     "runtime_implementation": "REFACTOR_AUTHORIZED_NOT_YET_IMPLEMENTED"
   }
 }

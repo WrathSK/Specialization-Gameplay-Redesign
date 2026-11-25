@@ -693,3 +693,8 @@ Independent retrieval from GitHub matched bytes, SHA256 and Git blobs at publish
 | [Culture_Preparation.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/35d6a42d634193f5e65786df4748778a999a3fe8/Specialization/Architecture/v2/Culture_Preparation.md) | Superseded Culture task queue, B173–B185 preparation recap and initial sequence of checks | `136088ad0ebbab244b9a9ddf218e91fcb9a85bd64f90bbdde8de56787e3863af` |
 | [P0_N_Expedition.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/35d6a42d634193f5e65786df4748778a999a3fe8/Specialization/Architecture/v2/P0_N_Expedition.md) | B201 prototype background, combined cold-load procedure and prospective slice list | `176d75196d6dd5a85b76036331d4b1c48403cc191c2e069de261a6dcec3cd4c0` |
 | [P0_L2_Meaning.md](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/35d6a42d634193f5e65786df4748778a999a3fe8/Specialization/Architecture/v2/P0_L2_Meaning.md) | B165 advance-test procedures, early automatic-writer next steps and discarded dispatch copy | `b909910c96c3776997dc399903bbb9ced4551aff9958b5e10bdee154a525dfc1` |
+
+## 本轮清理的固定历史定位
+
+
+- **旧版设计规范与内容**。固定提交 [36eceb2bf6d5](https://github.com/WrathSK/Specialization-Gameplay-Redesign/tree/36eceb2bf6d5d619783c02546a053a8c25896f33/)，原路径范围 Design/Revisions、Design/Content。按[逐文件建议](../Reports/Advisory/Repository_Cleanup/Cleanup_File_Lists.md)查原路径，用 `git show 36eceb2bf6d5d619783c02546a053a8c25896f33:<原路径>` 取回。已核对 119 个原件的 SHA256，按路径排序的校验清单摘要为 `163c77e7242ef5e000ccfebaf598bf49f2e476519c1eedb98bf2b832c404df7c`（每行 SHA256、两个空格、仓库相对路径及换行）。

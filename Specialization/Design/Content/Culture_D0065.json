@@ -6,7 +6,7 @@
   "freeze_status": "DESIGN_FROZEN",
   "implementation_status": "SEE_STATUS_FOR_SCOPED_IMPLEMENTATION_AND_VALIDATION",
   "balance_validation": "PENDING",
-  "shared_contract_ref": "Shared_D0064.json",
+  "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0064.json",
   "supported_locales": [
     "zh_CN"
   ],
@@ -454,7 +454,7 @@
         "result": "After reattachment may start new missions; successful new records belong to new bound source city under its category quota. No eligible city: unit survives, cannot start mission.",
         "ui": "When the Expedition needs an archive, one Choose an Archive City action replaces Travel and Tasks. The picker lists eligible Culture cities of its owner. Confirming assigns that city as the archive for future Insights."
       },
-      "direct_unit_capture": "Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE/G_PROFESSIONAL_UNITS_AND_SOURCE_BINDING/professional_unit_protection: Expedition Teams cannot be captured by enemies or converted to another Owner; interactions otherwise causing capture/elimination use protective withdrawal/safe return. Native interface choice is TECHNICAL_INVESTIGATION_REQUIRED, not a Gameplay ownership TBD. Source-owner-change mission abort/original-Owner unit retention/free reattachment remains the higher-priority specific lifecycle; source transfer never grants the unit to the new Owner.",
+      "direct_unit_capture": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0045.json",
       "player_wide_cap": {
         "parameter_ref": "parameters.expedition_player_wide_cap",
         "count": "All currently existing Expedition Teams of the current player, regardless of training source, current source qualification, mission state or reattachment state. Source-owner-change units retained by original Owner still count for that Owner.",
@@ -541,7 +541,7 @@
       "supersedes": "0.1*D*W fractional base GPP; exclusion of Writer/Artist/Musician; former GPP_K=0.1. Prior native research evidence retained, not reinterpreted as percentage PASS.",
       "era_bound": "D0058 A8：远古至信息共8个馆藏时代，E=0–8，最高+24%；作品自身时代／作品池不变，不按当前世界时代裁剪历史作品。"
     },
-    "subrecord_recovery_ref": "Shared_D0059.json#/concepts/ABILITY_SUBRECORD_RECOVERY",
+    "subrecord_recovery_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0059.json",
     "pending_network_rule": "同一受支持构建的正常读档恢复等价的引擎事实、真实Mod历史与原生效果；Lua缓存／索引重建不构成业务变化。路线拓扑PENDING／UNKNOWN或必要事实／历史／拓扑尚未完整可消费时，不撤除、部分重算或改写已恢复的网络派生载体；标准化本城与网络共用物理载体整体保持。首个完整可靠可消费快照按现行公式幂等对账，旧输出不是当前网络事实或新不可逆交易资格。会话内拓扑已确认、单来源暂不可读时，仅保留引用仍有效的上次可靠贡献，其它可读来源使用新事实；逐来源区分confirmed／retained／unknown，无可靠见证不造贡献，不默认持久化派生来源。可靠负事实立即撤销相应严格资格并登记被动撤除责任；冷加载不可拆分整体且无可靠来源见证时，不猜拆减项，首个完整可消费快照执行撤除。接收城自身已确认身份／资格／Owner／reference／REALLOCATING退出仍按原有精确规则优先处理。事实恢复由相关事件、可用性／初始化完成交付触发，不增加轮询。超出正常初始化窗口仍不可恢复时，临时no-write、原输出标为未对账且显示严重错误、严格交易禁止；这不是永久旧全额支付、K-only或清空政策，真实新取舍交用户决定。资本／发展既有确认、余额、收据与已签合同存续规则不变。"
   },
   "missions": [
@@ -722,7 +722,7 @@
       ]
     }
   },
-  "previous_content_revision": "Culture_D0064.json",
+  "previous_content_revision": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0064.json",
   "future_candidates": [
     {
       "id": "CUL_FUTURE_CITY_STATE_EXCHANGE",
@@ -742,7 +742,7 @@
   "u1_acceptance": {
     "date": "2026-10-24",
     "scope": "仅用户U1明确决定；未列公式、数值、归属、未来边界及平衡成熟度保留。实现／本地验证／实机证据另见Status。",
-    "shared_contract_ref": "Shared_D0058.json",
+    "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0058.json",
     "runtime_implementation": "REFACTOR_AUTHORIZED_NOT_YET_IMPLEMENTED",
     "A8": "用户明确确认全部按8时代调整，原7为用户计数遗漏；本轮授权对应Design／校验／载体／测试实施。"
   }

@@ -455,8 +455,8 @@
     "D0028 shared pillage rule applies to current building effects; historical D0026 remains frozen.",
     "D0030: RES_L3_APPLY uses each domain own development, not total district count or all-domain sum repeated per domain. Old0/1/2/3 ability structure unchanged."
   ],
-  "previous_content_revision": "Research_D0058.json",
-  "shared_contract_ref": "Shared_D0059.json",
+  "previous_content_revision": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Research_D0058.json",
+  "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0059.json",
   "revision_note": "D0059 records the explicitly accepted convergence successor, normal restore, bounded session witnesses, scoped reputation/recovery and effective-chain Tier. Other mechanics/numbers remain unchanged; code/native acceptance is separate.",
   "parameters": {
     "applied_learning_K": {
@@ -471,10 +471,10 @@
   "u1_acceptance": {
     "date": "2026-10-24",
     "scope": "仅用户U1明确决定；未列公式、数值、归属、未来边界及平衡成熟度保留。实现／本地验证／实机证据另见Status。",
-    "shared_contract_ref": "Shared_D0058.json",
+    "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0058.json",
     "runtime_implementation": "REFACTOR_AUTHORIZED_NOT_YET_IMPLEMENTED"
   },
   "contracts": {
-    "subrecord_recovery_ref": "Shared_D0059.json#/concepts/ABILITY_SUBRECORD_RECOVERY"
+    "subrecord_recovery_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0059.json"
   }
 }

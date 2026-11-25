@@ -592,7 +592,7 @@
       "pending_fact_policy": "同一受支持构建的正常读档恢复等价的引擎事实、真实Mod历史与原生效果；Lua缓存／索引重建不构成业务变化。路线拓扑PENDING／UNKNOWN或必要事实／历史／拓扑尚未完整可消费时，不撤除、部分重算或改写已恢复的网络派生载体；标准化本城与网络共用物理载体整体保持。首个完整可靠可消费快照按现行公式幂等对账，旧输出不是当前网络事实或新不可逆交易资格。会话内拓扑已确认、单来源暂不可读时，仅保留引用仍有效的上次可靠贡献，其它可读来源使用新事实；逐来源区分confirmed／retained／unknown，无可靠见证不造贡献，不默认持久化派生来源。可靠负事实立即撤销相应严格资格并登记被动撤除责任；冷加载不可拆分整体且无可靠来源见证时，不猜拆减项，首个完整可消费快照执行撤除。接收城自身已确认身份／资格／Owner／reference／REALLOCATING退出仍按原有精确规则优先处理。事实恢复由相关事件、可用性／初始化完成交付触发，不增加轮询。超出正常初始化窗口仍不可恢复时，临时no-write、原输出标为未对账且显示严重错误、严格交易禁止；这不是永久旧全额支付、K-only或清空政策，真实新取舍交用户决定。资本／发展既有确认、余额、收据与已签合同存续规则不变。"
     },
     "professional_unit_protection": {
-      "shared_authority_ref": "Shared_D0045.json#/concepts/LONG_TERM_STATE_LIFECYCLE/G_PROFESSIONAL_UNITS_AND_SOURCE_BINDING/professional_unit_protection",
+      "shared_authority_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0045.json",
       "status": "USER_CONFIRMED_D0045",
       "rule": "Construction Teams follow the shared professional-unit contract: cannot be captured by enemies or converted to another Owner; hostile interactions that would capture/destroy them use protective retreat/safe return.",
       "priority": "Existing named special lifecycle/transaction rules remain prior. In Industry, source-city Owner transfer retains old Teams with original Owner, current-owner source capacity accounting and recapture rules unchanged; non-capture is not source transfer.",
@@ -605,7 +605,7 @@
       "intermediate": "Preserve the calculation until its required final integer settlement; avoid unnecessary repeated intermediate floors. The separately locked Team base capacity remains its existing integer unit value, not a transient city Production buff.",
       "technical_boundary": "Native carrier, speed handling, modifier composition and exact final settlement path require technical validation; do not change Gameplay rounding to fit an interface."
     },
-    "subrecord_recovery_ref": "Shared_D0059.json#/concepts/ABILITY_SUBRECORD_RECOVERY",
+    "subrecord_recovery_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0059.json",
     "pending_network_rule": "同一受支持构建的正常读档恢复等价的引擎事实、真实Mod历史与原生效果；Lua缓存／索引重建不构成业务变化。路线拓扑PENDING／UNKNOWN或必要事实／历史／拓扑尚未完整可消费时，不撤除、部分重算或改写已恢复的网络派生载体；标准化本城与网络共用物理载体整体保持。首个完整可靠可消费快照按现行公式幂等对账，旧输出不是当前网络事实或新不可逆交易资格。会话内拓扑已确认、单来源暂不可读时，仅保留引用仍有效的上次可靠贡献，其它可读来源使用新事实；逐来源区分confirmed／retained／unknown，无可靠见证不造贡献，不默认持久化派生来源。可靠负事实立即撤销相应严格资格并登记被动撤除责任；冷加载不可拆分整体且无可靠来源见证时，不猜拆减项，首个完整可消费快照执行撤除。接收城自身已确认身份／资格／Owner／reference／REALLOCATING退出仍按原有精确规则优先处理。事实恢复由相关事件、可用性／初始化完成交付触发，不增加轮询。超出正常初始化窗口仍不可恢复时，临时no-write、原输出标为未对账且显示严重错误、严格交易禁止；这不是永久旧全额支付、K-only或清空政策，真实新取舍交用户决定。资本／发展既有确认、余额、收据与已签合同存续规则不变。",
     "crew_completion_proof": "支持同回合多城合法施工队完成，正常路径优先可靠独立完成事件。累计差值仅发现遗漏，不能单独证明发放数量；每次发放必须具备唯一且可验证的请求、单位、来源及完成凭据。HELD／CALLING只凭新证据恢复，不重放不可逆操作，无法归属的结果保留诊断待确认。",
     "tier_source": "Tier由Specialization定义为当前加载环境中实际属于同一区域建筑升级链的级数，依据区域归属、有效前置与替代关系解释。只有真正同区域升级前置使层级递增；区域外建筑、虚拟门槛及其它非升级解锁不自动递增。BUILDING_IZ_WATER_MILL的HD虚拟前置不计，水磨坊为T1。不能仅因前置不在Tier表就忽略它；真正缺失、不完整、循环、分支歧义需明确报错，区分不适用，不静默T0／T1。HD旧Tier仅迁移对照，数据中心／静修院／花园等差异须说明，不为拟合旧值改规则；不维护跨环境固定Tier权威，不复制HD表。既有D公式、权重、cap及三层D6／四层D10保持。"
@@ -671,17 +671,17 @@
     ],
     "compatibility": "Design content only. No native effect, persistence, project, Team cost, injection or UI implementation claimed. Distinguish current first-test values from final balance and technical feasibility; no silent alternate Gameplay."
   },
-  "previous_content_revision": "Industry_D0059.json",
+  "previous_content_revision": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0059.json",
   "revision_note": "D0061 extends confirmed ownership transfer to peaceful acquisition and successive owners, and defines permanent city destruction. Source and native execution are tracked separately.",
   "amendment_kind": "OWNER_ACCEPTED_CITY_OWNERSHIP_RULES",
   "lifecycle_authority_ref": "../../Historical/Design/Reviews/Long_Term_State_D0042_Review.md",
   "revision_authority_ref": "../Design_ChangeLog.md#accepted-d0061--2026-11-20",
-  "shared_authority_ref": "Shared_D0059.json",
+  "shared_authority_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0059.json",
   "u1_acceptance": {
     "date": "2026-10-24",
     "scope": "仅用户U1明确决定；未列公式、数值、归属、未来边界及平衡成熟度保留。实现／本地验证／实机证据另见Status。",
-    "shared_contract_ref": "Shared_D0058.json",
+    "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0058.json",
     "runtime_implementation": "REFACTOR_AUTHORIZED_NOT_YET_IMPLEMENTED"
   },
-  "shared_contract_ref": "Shared_D0061.json"
+  "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0061.json"
 }

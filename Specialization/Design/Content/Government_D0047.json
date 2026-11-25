@@ -7,7 +7,7 @@
   "implementation_status": "NOT_IMPLEMENTED",
   "implementation_scope": "FUTURE_ONLY / OUT_OF_V0.1",
   "authority": "User-approved Government Design Talk; Codex records decisions only. Current Spec references this content; reading Markdown is not independent authority.",
-  "shared_contract_ref": "Shared_D0045.json",
+  "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0045.json",
   "philosophy": {
     "identity": "国家治理中枢 / Meta-specialization",
     "growth": [

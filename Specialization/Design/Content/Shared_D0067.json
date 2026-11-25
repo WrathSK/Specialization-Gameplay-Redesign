@@ -407,7 +407,7 @@
     "PRESERVE / LANDSCAPE and other future unmapped specialty domains; excluded until explicit mapping; not freeze blockers."
   ],
   "amendment_kind": "OWNER_ACCEPTED_SPECIALIZATION_MANAGEMENT_CAPACITY",
-  "previous_shared_revision": "Shared_D0066.json",
+  "previous_shared_revision": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0066.json",
   "consumer_confirmation": {
     "absolute_D": [
       "Research_D0040: 科研基础设施／学以致用",
@@ -430,23 +430,23 @@
   "reference_resolution": {
     "current_authority": "Shared_D0067.json",
     "unchanged_profession_files": [
-      "Research_D0031.json",
-      "Industry_D0032.json",
-      "Culture_D0029.json",
-      "Commerce_D0032.json",
-      "Military_D0034.json"
+      "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Research_D0031.json",
+      "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0032.json",
+      "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0029.json",
+      "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0032.json",
+      "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Military_D0034.json"
     ],
     "rule": "共同规则以D0067为准，各专业当前版本见 Content/README.md。下列旧对象按共同规则回指；D0060 相对 D0059 增加两项圣地T4例外和T5权重5；专业沿用各自现行资格。共享目录切换后，标准化同区域同Tier匹配及发展投资的Tier输入由共享事实提供，市中心特定分组继续适用。各能力读取区域基础设施深度事实，由共享事实计算资格、权重与深度上限。"
   },
   "catalog_coverage_boundary": "Ordinary Building Catalog completeness is implementation/environment coverage, not D normalization. Data Center, 集市, Art Publisher and investigated Harbor/Neighborhood expansion gaps require separate catalog audit/adaptation. Existing P0-A game PASS covers tested objects only, not the entire HD catalog. D0062 resolves the three JNR Harbor definitions named under ORDINARY_INFRASTRUCTURE. Other unreviewed buildings remain outside this decision.",
   "lifecycle_authority_ref": "../../Historical/Design/Reviews/Long_Term_State_D0042_Review.md",
   "revision_authority_ref": "../Design_ChangeLog.md#accepted-d0067--2026-11-22",
-  "previous_content_revision": "Shared_D0066.json",
+  "previous_content_revision": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0066.json",
   "revision_note": "专业管理容量取代城市总督头衔门槛。分配可高于当前潜力，容量逐回合到位，撤回立即生效。",
   "u1_acceptance": {
     "date": "2026-10-24",
     "scope": "仅用户U1明确决定；未列公式、数值、归属、未来边界及平衡成熟度保留。实现／本地验证／实机证据另见Status。",
-    "shared_contract_ref": "Shared_D0058.json",
+    "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0058.json",
     "runtime_implementation": "REFACTOR_AUTHORIZED_NOT_YET_IMPLEMENTED"
   }
 }

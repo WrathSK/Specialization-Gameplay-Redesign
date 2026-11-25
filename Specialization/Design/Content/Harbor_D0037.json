@@ -7,7 +7,7 @@
   "implementation_status": "NOT_IMPLEMENTED",
   "implementation_scope": "FUTURE_ONLY / OUT_OF_V0.1",
   "authority": "2026-10-02 user Harbor Design Talk Handoff, expressly accepted as new Harbor baseline. Supersedes old HARB naval/export contracts; Military D0034 mechanisms mirrored with D0037 names and explicit Harbor overrides. No numerical or technical gap is filled by Codex.",
-  "shared_contract_ref": "Shared_D0035.json",
+  "shared_contract_ref": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0035.json",
   "military_contract_ref": "Military_D0037.json",
   "philosophy": {
     "identity": "100% Maritime Commerce + 100% Naval Military, simultaneous full growth; not a choice or two half-strength branches.",

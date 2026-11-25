@@ -12,7 +12,7 @@ Document State: ACCEPTED
 
 Accepted Spec SHA256: `a27c2c90a2dcfec238beecc454320cfecb6f859f82e12aaf2bdd35397e6393c0`
 [Shared D0067](Content/Shared_D0067.json) SHA256: `cdd8e0a5adf2021ef8b0cd45730d9b9f2c3c1bbb0b63aa075b146200dbf40d41`
-[上一版已接受规范](Revisions/Specialization_Design_Spec_D0066.md)
+[上一版已接受规范](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0066.md)
 
 ## Accepted D0066 — 2026-11-21
 
@@ -21,15 +21,15 @@ Accepted Spec SHA256: `a27c2c90a2dcfec238beecc454320cfecb6f859f82e12aaf2bdd35397
 Accepted Spec SHA256: `43c3e483fb77b275f556aa7e0b57a4820e59873e01c32999c0727d088024f1b9`（[当时的规范原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/f17d8444117fe489e607223e73619cce0aac1eab/Specialization/Design/Specialization_v0.1_Design_Spec.md)）
 [Shared D0066](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/f17d8444117fe489e607223e73619cce0aac1eab/Specialization/Design/Content/Shared_D0066.json) SHA256: `cd56809e65ec72e8c803f70c50014949161296b08d76eff39a8366309c207db7`
 [Commerce D0066](Content/Commerce_D0066.json) SHA256: `d41bc608bf2381c9f75e0ea2884ca8d7a742a4a7c81194197e0a4de4ccea3a9c`
-[上一版已接受规范](Revisions/Specialization_Design_Spec_D0065.md)
+[上一版已接受规范](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0065.md)
 
 ### 施工队文案校正 — 2026-11-21
 
 单人游戏到玩家败北时结束。施工队说明移除了败局后的处置待办，保留失城、夺回及永久毁城时的归属与名额规则。沿用现有设计修订号。此前验收记录中的哈希对应其链接所指的原文。
 
-- [该次文案校正后的规范](Revisions/Specialization_Design_Spec_D0066.md) SHA256 `a0afe8bfadc3de7c7136596160bcd91d8bf7c0dee47ccdc3adf55ad6124044e4`
+- [该次文案校正后的规范](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0066.md) SHA256 `a0afe8bfadc3de7c7136596160bcd91d8bf7c0dee47ccdc3adf55ad6124044e4`
 - [工业内容](Content/Industry_D0061.json) SHA256 `262082c4f6cf5ab912cda5cd6808bb7540faff8e68fe98d3a01eeac8712d9557`
-- [共同规则](Content/Shared_D0066.json) SHA256 `07576abc589472ff99fbd7ad3d47086533b9b6d9611717b2b7fab9e9de664849`
+- [共同规则](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0066.json) SHA256 `07576abc589472ff99fbd7ad3d47086533b9b6d9611717b2b7fab9e9de664849`
 
 ## Accepted D0065 — 2026-11-21
 
@@ -37,7 +37,7 @@ Accepted Spec SHA256: `43c3e483fb77b275f556aa7e0b57a4820e59873e01c32999c0727d088
 
 Accepted Spec SHA256: `feea441aafe38687c38d55604ac27ef3c2b4433306e18afa6a51f4cb7ee30d15`
 [Culture D0065](Content/Culture_D0065.json) SHA256: `26c1dae7af24111a0cfcfe11e742164beb770a075dfe5890a0fb10d8f4b62ed6`
-[上一版已接受规范](Revisions/Specialization_Design_Spec_D0064.md)
+[上一版已接受规范](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0064.md)
 
 ## Accepted D0064 — 2026-11-21
 
@@ -46,18 +46,18 @@ Accepted Spec SHA256: `feea441aafe38687c38d55604ac27ef3c2b4433306e18afa6a51f4cb7
 正常城市交割、单位生命周期及同构建恢复需要正确处理。可信的异常追查根因；人工反例保留为保护性证据。收窄保护须证明实际依赖与正常路径。该决定没有更改数值、合同或专业历史的归属。[按场景查看实际行为及证据](../Reports/Proposals/Player_Facing_Boundary_Review.md#五项裁定的技术依据)。
 
 Accepted Spec SHA256: `e5b0ced4562c3037b6800e9df2ff45553c9f5eaffb7b01cd79201a9d7573a4aa`
-[Shared D0064](Content/Shared_D0064.json) SHA256: `7c5f07f9ecbc990bc1c75d0f31ada4c50f1e6f68039c7ce892cc9294629634a5`
+[Shared D0064](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0064.json) SHA256: `7c5f07f9ecbc990bc1c75d0f31ada4c50f1e6f68039c7ce892cc9294629634a5`
 [Commerce D0064](Content/Commerce_D0064.json) SHA256: `a95d215e6402ad5d8067a2c4fed4cf4605a5247f5308964cf4c7efe3efa8f0ad`
-[Culture D0064](Content/Culture_D0064.json) SHA256: `ce20dff4537e498673db9794e8a7b3cc0ba1d0e7aeeb04ed311ae2b5270eaa15`
-[Frozen D0063 Spec](Revisions/Specialization_Design_Spec_D0063.md) SHA256: `9030433e3cc78a6159164997becabe8865a54f0f1be5abe9b76fdc5d45c30e51`
+[Culture D0064](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0064.json) SHA256: `ce20dff4537e498673db9794e8a7b3cc0ba1d0e7aeeb04ed311ae2b5270eaa15`
+[Frozen D0063 Spec](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0063.md) SHA256: `9030433e3cc78a6159164997becabe8865a54f0f1be5abe9b76fdc5d45c30e51`
 
 ## Accepted D0063 — 2026-11-21
 
 训练城正式易主后，原主人在该城已确认、尚未完成的考察团训练订单作废。确认没有出生或生产完成凭据，并且能够可靠排除原主人仍有考察团时，其他文化四级城可重新训练。单位去向不明时继续占用全国名额。已成团的单位沿用存续与归档城规则。
 
 Accepted Spec SHA256: `9030433e3cc78a6159164997becabe8865a54f0f1be5abe9b76fdc5d45c30e51`
-[Culture D0063](Content/Culture_D0063.json) SHA256: `8ebb05f816c9cea25e494ea57f2729e7b57184ade092074f038ba8a89c7fb40d`
-[Frozen D0062 Spec](Revisions/Specialization_Design_Spec_D0062.md) SHA256: `5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c874cc9248`
+[Culture D0063](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0063.json) SHA256: `8ebb05f816c9cea25e494ea57f2729e7b57184ade092074f038ba8a89c7fb40d`
+[Frozen D0062 Spec](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0062.md) SHA256: `5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c874cc9248`
 
 ## Accepted D0062 — 2026-11-21
 
@@ -66,8 +66,8 @@ Accepted Spec SHA256: `9030433e3cc78a6159164997becabe8865a54f0f1be5abe9b76fdc5d4
 本次也对齐了三处已选用的实施范围：B177 仅放大巨作原生旅游业绩、B234 隔离科研网络鼓舞、专用文明已改用美国／罗斯福展示。完整设计目标和历史接受证据继续保留。
 
 Accepted Spec SHA256: `5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c874cc9248`
-[Shared D0062](Content/Shared_D0062.json) SHA256: `f5a7f167f56fcde3986368466beed8ae66c1bae93b2a8492e8e6320e4adf627f`
-[Frozen D0061 Spec](Revisions/Specialization_Design_Spec_D0061.md) SHA256: `52de79223fd0e6c8fcf6bf6aba2614d2fd0fb0f293a629208862a5211d871734`
+[Shared D0062](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0062.json) SHA256: `f5a7f167f56fcde3986368466beed8ae66c1bae93b2a8492e8e6320e4adf627f`
+[Frozen D0061 Spec](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0061.md) SHA256: `52de79223fd0e6c8fcf6bf6aba2614d2fd0fb0f293a629208862a5211d871734`
 
 ## Accepted D0061 — 2026-11-20
 
@@ -75,8 +75,8 @@ Accepted Spec SHA256: `5027051c4894ef30d67c9cbd7927ef0ce975ee2a2d1793e347fcf8c87
 
 Accepted Spec SHA256: `52de79223fd0e6c8fcf6bf6aba2614d2fd0fb0f293a629208862a5211d871734`
 Frozen D0060 Spec SHA256: `782d44e9b5b601ed26f110ea299506f256b87f8f2f7cb267b24632ee9ed7cf39`
-[Shared D0061](Content/Shared_D0061.json) SHA256: `12cf3d8dbc86175aade322112421ce68b73a233d28f68167127d46f330e32dae`
-[Commerce D0061](Content/Commerce_D0061.json) SHA256: `555e16d4e1d75ba68285496122a6b5799a84b8a1d8f76ba04c4e241946a73481`
+[Shared D0061](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0061.json) SHA256: `12cf3d8dbc86175aade322112421ce68b73a233d28f68167127d46f330e32dae`
+[Commerce D0061](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0061.json) SHA256: `555e16d4e1d75ba68285496122a6b5799a84b8a1d8f76ba04c4e241946a73481`
 [Industry D0061](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/33b7a8cf65f6b4cd16453117a5fafd52633c5dd8/Specialization/Design/Content/Industry_D0061.json) SHA256: `030fc379baacc519e7b6b0befa541b775b1657a1562d3b511695da9cff8e733c`（[现行文字校正](#施工队文案校正--2026-11-21)）
 
 ## Accepted D0060 — 2026-11-07
@@ -99,7 +99,7 @@ Shared D0060 SHA256: `d4ba4cc8ab619cd0364253af3b727c00f592d574206aeebe5252b01869
 
 Tier取当前环境真实同区域升级链位置；区外、虚拟或非升级门槛不自动递增，工业水磨坊为T1；真实缺链／循环／分支歧义不可静默T0/T1。HD旧Tier仅对照，不拟合旧cap/bump；撤回跨环境固定Tier表方向。D公式、权重、cap及三层D6／四层D10不变。四专业其它数值／公式／资格／归属、A8八时代、原GC保持；当前同步不实施Tier或HD解耦。
 
-[Shared D0059](Content/Shared_D0059.json)、[Research D0059](Content/Research_D0059.json)、[Industry D0059](Content/Industry_D0059.json)、[Culture D0059](Content/Culture_D0059.json)、[Commerce D0059](Content/Commerce_D0059.json)是后继正文；D0058 Content原字节及[D0058 Spec](Revisions/Specialization_Design_Spec_D0058.md)冻结。候选退出默认阅读，正式Markdown接管；代码／实机结果及下一授权边界只查Status。后续PU/O、U5、main、部署与历史删除均不在本次PU01授权内。
+[Shared D0059](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0059.json)、[Research D0059](Content/Research_D0059.json)、[Industry D0059](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0059.json)、[Culture D0059](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0059.json)、[Commerce D0059](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0059.json)是后继正文；D0058 Content原字节及[D0058 Spec](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0058.md)冻结。候选退出默认阅读，正式Markdown接管；代码／实机结果及下一授权边界只查Status。后续PU/O、U5、main、部署与历史删除均不在本次PU01授权内。
 
 Accepted Spec SHA256: `2ba50adf66bf9251430cec392480a23597848b899a4c785fb0d47d5a0f98ae4f`
 Frozen D0058 Spec SHA256: `da691d7797733f6b689012f0cf2e4721fd3fcf34580b44c1bede396ba0d7cc77`
@@ -117,7 +117,7 @@ D-4保留三项目独立玩法，只抽公共技术机制；UNKNOWN不是取消�
 
 D-8至D-12及D-15按用户范围记录于A0182／Workflow。D-13改为本地工程检查点、必要原生问题才请求最小实机；无自动部署／main晋升。D-14先新增A8定域评估；评估后用户明确确认全部按8时代统一，原7为用户计数遗漏。启迪E0–8／最高24%，对话X0–8／单次最高40个百分点；扩对应校验／载体，作品池／自身时代／游戏时代额度／城市历史归属不变。城市易主玩法、考察团功能修复及其它排除项保持。S2–S10已授权按依赖顺序推进；Design接受不构成新实机PASS。
 
-[Shared D0058](Content/Shared_D0058.json)、[Research D0058](Content/Research_D0058.json)、[Industry D0058](Content/Industry_D0058.json)、[Culture D0058](Content/Culture_D0058.json)、[Commerce D0058](Content/Commerce_D0058.json)与当前Spec／实际受影响阅读页同步。旧Content原字节及[D0057 Spec](Revisions/Specialization_Design_Spec_D0057.md)保留；未列公式、数值、资格、A–G归属与未来范围不变。
+[Shared D0058](Content/Shared_D0058.json)、[Research D0058](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Research_D0058.json)、[Industry D0058](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0058.json)、[Culture D0058](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0058.json)、[Commerce D0058](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0058.json)与当前Spec／实际受影响阅读页同步。旧Content原字节及[D0057 Spec](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0057.md)保留；未列公式、数值、资格、A–G归属与未来范围不变。
 
 Accepted Spec SHA256: `da691d7797733f6b689012f0cf2e4721fd3fcf34580b44c1bede396ba0d7cc77`
 Frozen D0057 Spec SHA256: `f5a1f82d9bf7207e50672e3ea3ea108ddbd6527116d99259c81235109239dd1d`
@@ -131,7 +131,7 @@ Commerce D0058 SHA256: `7a1bdee459a31910b5540f835069853eda1f435759d06a37c89dbd4f
 
 用户在B246实施中明确选择：**取合格候选中的最低理论购买价，界面明确列出报价依据。** 同一区域多个当前合格下一阶建筑不再假设同价；合同仍只绑定目标城市＋区域，完成下一座合格建筑即结束，不绑定报价建筑。
 
-[Commerce D0057](Content/Commerce_D0057.json)、[商业阅读版](Commerce.md)及当前Spec同步。其它资格、15%费用、+50%加速、名额、完成／易主与暂缓边界保持。B246实现／部署／实机证据分别记录；本条不宣称原生报价或加成已验收。D0056结构化正文及本次冻结的[D0056 Spec](Revisions/Specialization_Design_Spec_D0056.md)保留原字节。
+[Commerce D0057](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0057.json)、[商业阅读版](Commerce.md)及当前Spec同步。其它资格、15%费用、+50%加速、名额、完成／易主与暂缓边界保持。B246实现／部署／实机证据分别记录；本条不宣称原生报价或加成已验收。D0056结构化正文及本次冻结的[D0056 Spec](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0056.md)保留原字节。
 
 Accepted Spec SHA256: `f5a1f82d9bf7207e50672e3ea3ea108ddbd6527116d99259c81235109239dd1d`
 Commerce D0057 SHA256: `3729ed2a0c81eb5b20982a056f81f06d4e36e980d1358acc35ada4bf6967df19`
@@ -141,7 +141,7 @@ Frozen D0056 Spec SHA256: `7b0b1fe6bc8e19d8983201ef0799011636313261489cf1bbeb2c2
 
 用户明确确认：资本投资S仍使用最高当前有效ACTIVE；多个最高S同级时，优先选择最早建立对应永久机构等级的城市，不按ACTIVE首次达到／总督就任排序；再按稳定City ID／stable key。其它规则全部保留，包括锁定具体S来源、普通资格下降继续、关键合同城市易主异常终止。此澄清不取消来源绑定，不改变收益公式、期限、保护或其它专业。用户另明确授权B241实施；Design接受与本地／实机证据分别记录。
 
-[Commerce D0056](Content/Commerce_D0056.json)、[商业阅读版](Commerce.md)与当前Spec已同步。D0055结构化原件及本次冻结的[D0055 Spec](Revisions/Specialization_Design_Spec_D0055.md)保持原字节。
+[Commerce D0056](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0056.json)、[商业阅读版](Commerce.md)与当前Spec已同步。D0055结构化原件及本次冻结的[D0055 Spec](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0055.md)保持原字节。
 
 Accepted Spec SHA256: `7b0b1fe6bc8e19d8983201ef0799011636313261489cf1bbeb2c211f18e2c366`
 Commerce D0056 SHA256: `8c56fdc71927359443e4a8cf5b423f7d1fec049046380010bf0f544fce39b6da`
@@ -156,7 +156,7 @@ Frozen D0055 Spec SHA256: `8548e2c69595a3e49058979968d35c506b2754e2f409ca7fd7fe1
 
 明确取代旧“外部来源无对应身份限制”和“Harbor→Gold”。ACTIVE III、专家名额、本地D、0.05系数、有效信誉及逐领域Floor后相加不变；其它商业合同保持。后续实现不应为旧金币输入保留循环拆装carrier、历史采样或通用递归求解；实现与性能验证须另行授权。
 
-[Commerce D0055](Content/Commerce_D0055.json)、[商业阅读版](Commerce.md)与当前Spec已同步。[Commerce D0054](Content/Commerce_D0054.json)及[D0054 Spec冻结原文](Revisions/Specialization_Design_Spec_D0054.md)保持原始字节。B239仍为旧实现，本轮不改代码、SQL、测试或部署；不宣称新规则实机通过。
+[Commerce D0055](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0055.json)、[商业阅读版](Commerce.md)与当前Spec已同步。[Commerce D0054](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0054.json)及[D0054 Spec冻结原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0054.md)保持原始字节。B239仍为旧实现，本轮不改代码、SQL、测试或部署；不宣称新规则实机通过。
 
 Accepted Spec SHA256: `8548e2c69595a3e49058979968d35c506b2754e2f409ca7fd7fe14299ee4bbaf`
 Commerce D0055 SHA256: `c2d772724b9efb779ab0fc3bef9b580ba5b97af869ea94a6c1f8dad06300681d`
@@ -166,7 +166,7 @@ Frozen D0054 Spec SHA256: `bb55a137c2974cfdc38abb7bdef63a934ef9570935c5c78d135cb
 
 用户明确选择：**商业化每个领域分别Floor，再相加。** 每领域先计算0.05×本地D×最高合法城市总产出X×(1+0.005×有效信誉)，对该领域取Floor，最后合计金币。两个领域各原始2.7时结果为4，而非合计后Floor的5。保留各领域原始值以供解释；不改变D／X／来源／专家容量／信誉／生命周期，不新增额外上限，不将取整外推到资本本金、回款、发展投资报价或其它专业。
 
-[Commerce D0054](Content/Commerce_D0054.json)、[商业阅读版](Commerce.md)和当前Spec同步；Commerce D0050及[D0053 Spec冻结原文](Revisions/Specialization_Design_Spec_D0053.md)保持原样。该Design决定解决B239金币精度边界，不等于原生金币、来源排除或其它商业能力已通过实机。
+[Commerce D0054](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0054.json)、[商业阅读版](Commerce.md)和当前Spec同步；Commerce D0050及[D0053 Spec冻结原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0053.md)保持原样。该Design决定解决B239金币精度边界，不等于原生金币、来源排除或其它商业能力已通过实机。
 
 Accepted Spec SHA256: `bb55a137c2974cfdc38abb7bdef63a934ef9570935c5c78d135cb7f379310859`
 Commerce D0054 SHA256: `8da4f16d70a6a47441cfcdefcbe7d169254c08a6f33360c10c54e6e1b917a7b8`
@@ -178,7 +178,7 @@ Frozen D0053 Spec SHA256: `d5bdaab7e47155a66b7124cb145144aa25dc9f2233cbeca0fe66c
 
 综合倍率下的投入／产出强度作为未来需要实测的非阻塞平衡点；**未来平衡待办不进入游戏内UI**。界面只说明基础施工力可受适用加成，不再承诺固定最终进度。用户另明确：区域本体的模板购买折扣难以遇到，v0.1不以其实现／验收为门禁；保留Design规则，技术状态在Status记录，不扩大本次实现。
 
-[Industry D0053](Content/Industry_D0053.json)、[工业阅读版](Industry.md)与当前Spec同步；旧Industry D0052、[D0052 Spec](Revisions/Specialization_Design_Spec_D0052.md)及B236/B237原始结果保持原样。Design接受不改写以前的实机结果或宣称新包通过。
+[Industry D0053](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0053.json)、[工业阅读版](Industry.md)与当前Spec同步；旧Industry D0052、[D0052 Spec](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0052.md)及B236/B237原始结果保持原样。Design接受不改写以前的实机结果或宣称新包通过。
 
 Accepted Spec SHA256: `d5bdaab7e47155a66b7124cb145144aa25dc9f2233cbeca0fe66c98fd30c95f3`
 Industry D0053 SHA256: `7acc70dec753de348653c6ccfa918fb9596070f38dd3f5ff5f8e9e5b70eeac77`
@@ -188,7 +188,7 @@ Frozen D0052 Spec SHA256: `fee5f82512a7f37c6bf0d5b86173bcac8bf41bf63203bfe3e0bc1
 
 用户批准B237并明确：**一级施工队基础施工力260，不是250；其它相关数值对应更新。** 标准速度150%／140%／130%／120%组建成本为390／364／338／312。II–V施工力420／750／1000／1360及其成本不变；开工锁价、速度／Floor、固定注入不受普通Production倍率放大、来源／容量／生命周期、名字与成熟度不变。
 
-[Industry D0052](Content/Industry_D0052.json)、[工业阅读版](Industry.md)与当前Spec同步。旧[Industry D0045](Content/Industry_D0045.json)和[D0051 Spec](Revisions/Specialization_Design_Spec_D0051.md)保持字节原样。B237实现结果和未解决的原生注入接口限制另见Status；不把技术阻塞写成新Gameplay规则。
+[Industry D0052](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0052.json)、[工业阅读版](Industry.md)与当前Spec同步。旧[Industry D0045](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0045.json)和[D0051 Spec](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0051.md)保持字节原样。B237实现结果和未解决的原生注入接口限制另见Status；不把技术阻塞写成新Gameplay规则。
 
 Accepted Spec SHA256: `fee5f82512a7f37c6bf0d5b86173bcac8bf41bf63203bfe3e0bc1e8092f7602c`
 Industry D0052 SHA256: `9f89e0a0ccaca6af88560e1e3ce3186baa495a951be9371790fe2572f8f55f44`
@@ -196,7 +196,7 @@ Frozen D0051 Spec SHA256: `01020901195455d07918b7d3f2ca0c3eb517ad051729640527b83
 
 ## Accepted Industry formation price clarification — 2026-10-17
 
-用户明确选择：**开工时锁定本次成本，下一队使用新价。** 施工队组建期间N或ACTIVE改变，不重算这一队的成本。仅补齐成本取样时点，不改变D0045既定倍率／施工力／容量／归属，不新增Design版本；当前[Industry D0045](Content/Industry_D0045.json)、[工业阅读版](Industry.md)和Spec同步，旧冻结原件与历史hash不改。
+用户明确选择：**开工时锁定本次成本，下一队使用新价。** 施工队组建期间N或ACTIVE改变，不重算这一队的成本。仅补齐成本取样时点，不改变D0045既定倍率／施工力／容量／归属，不新增Design版本；当前[Industry D0045](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0045.json)、[工业阅读版](Industry.md)和Spec同步，旧冻结原件与历史hash不改。
 
 本条是用户Design决定；B236实现和实机验证仍分别记录于Status。当前Industry Content SHA256：`3fdf0536e2c1d8b124834758f38534c7ce863e630dfd83033e5f7496b1f1375a`；当前Spec SHA256：`01020901195455d07918b7d3f2ca0c3eb517ad051729640527b8322376db9f3e`。
 
@@ -206,7 +206,7 @@ Frozen D0051 Spec SHA256: `01020901195455d07918b7d3f2ca0c3eb517ad051729640527b83
 
 本条只取代下方2026-10-16具体对象锁定中的**艺文采撷**部分；奇观巡礼仍锁定选定奇观。作品池、任务时长、容量、来源绑定、奖励去重、其它外交失效与生命周期规则不变。已完成类别不应使整个任务面板不可打开；具体已完成条目继续受成功额度保护。
 
-[Culture D0051](Content/Culture_D0051.json)、当前Spec及中文阅读版同步；[D0050 Spec冻结原文](Revisions/Specialization_Design_Spec_D0050.md)和Culture D0049原文保留。本次接受不代表B224已实现新规则，也不授权下一Gameplay批次。
+[Culture D0051](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0051.json)、当前Spec及中文阅读版同步；[D0050 Spec冻结原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0050.md)和Culture D0049原文保留。本次接受不代表B224已实现新规则，也不授权下一Gameplay批次。
 
 ## Accepted target clarification and wording alignment — 2026-10-16
 
@@ -240,9 +240,9 @@ Acceptance Evidence: 用户提交Commerce Design Handoff（D0045基础上的七�
 Accepted Spec SHA256: a4b0bf6a3956723338bfcae4a475a2fc32448df31d6b9546b30eac4aee17643c
 Canonical Commerce Content SHA256: a3da62da67e379ef44d3e8d767ef2263f67057ec5290420ac6917ae16d508eda
 Previous Accepted Revision: D0049
-Frozen D0049: [原文](Revisions/Specialization_Design_Spec_D0049.md)
+Frozen D0049: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0049.md)
 Frozen D0049 SHA256: 22a7d50b6539c4e3b7762f1a7d4287e64712b6d382b9cd14b5a14ba6b9ca25d6
-Content: [Commerce D0050](Content/Commerce_D0050.json) / [商业阅读版](Commerce.md)
+Content: [Commerce D0050](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0050.json) / [商业阅读版](Commerce.md)
 
 - **商业化：** 系数0.1→0.05，`G=0.05×D×X×M`；X为合法候选（本城及任意方向直接国内商路的本国城市）中该领域**城市总产出**最高者，各领域独立择优；不做区域／建筑／专家／改良／修正归因；商业化金币不递归进入X；与未来港口的相互作用暂缓，不建假想跨专业防御系统。
 - **资本投资：** 可投领域为有对应已实施专业的领域（v0.1：科研、文化、商业、工业），不自动纳入宗教、港口等；来源城不需该领域区域；S读同一既有专业网络中该领域当前有效ACTIVE最高等级（非Potential），不新建连通模型；`D_eff=max(1,D)`、`S_eff=max(1,S)`，无来源时S=1，最低值不使未实施领域合格；同最高S的决胜规则保持；并发限制为每商业来源城每投资领域1笔，不同来源城可同域并存，无全国总数上限；本金、期限、收益与结算不变。
@@ -268,7 +268,7 @@ Acceptance Evidence: 用户本轮Design Handoff明确接受完整新机制，授
 Accepted Spec SHA256: b3feaf64de02bfd9310b60a91544d998c147a041f5e32515bac8a183e29cd22a
 Canonical Culture Content SHA256: 3515cdb4c5639407222ebc09eb2271b8f5704893cfd356129a627f4440186ad1
 Previous Accepted Revision: D0048
-Frozen D0048: [原文](Revisions/Specialization_Design_Spec_D0048.md)
+Frozen D0048: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0048.md)
 Frozen D0048 SHA256: 2edf9900e847e36968b8bfb4ac7e5237718ea2c679bcd122913f7239ad8254e0
 Content: [Culture D0049](Content/Culture_D0049.json) / [文化阅读版](Culture.md#巨作启迪)
 
@@ -284,9 +284,9 @@ Acceptance Evidence: 用户B165反馈“主题化可以接受，先Mark，需实
 Accepted Spec SHA256: 2edf9900e847e36968b8bfb4ac7e5237718ea2c679bcd122913f7239ad8254e0
 Canonical Culture Content SHA256: 8df7841e42a686ab4ba737e17cb32dd00e3db2dbd9fc83d535ba7c579a9bbe9b
 Previous Accepted Revision: D0047
-Frozen D0047: [原文](Revisions/Specialization_Design_Spec_D0047.md)
+Frozen D0047: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0047.md)
 Frozen D0047 SHA256: 8b38c4f5d81a1b6d219fecc2e43e8dd6da6ed314d064953532447448f95d149c
-Content: [Culture D0048](Content/Culture_D0048.json) / [文化阅读版](Culture.md)
+Content: [Culture D0048](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0048.json) / [文化阅读版](Culture.md)
 
 只取代D0041／D0046中Meaning主题化排除：追加按原生主题化规则作用，v0.1暂行许可，Balance待实测。Dialogue仍只放大作品原生产出、不放大Meaning；K0.5、逐域Floor→同yield和→W作为主题化前基值，份额、九域六产出Design、作品资格、ACTIVE IV及城市历史不改。没有新倍率、cap、补偿或其它公共倍率豁免；B165所测×2不是普适固定公式。
 
@@ -299,7 +299,7 @@ Acceptance Evidence: 用户完整市政Design Talk明确要求将本轮规则同
 Accepted Spec SHA256: 8b38c4f5d81a1b6d219fecc2e43e8dd6da6ed314d064953532447448f95d149c
 Canonical Government Content SHA256: d915e2d0c43f8c73e6d4a47f327d58df6ea68308efb3a7686b65a52296852fa4
 Previous Accepted Revision: D0046
-Frozen D0046: [原文](Revisions/Specialization_Design_Spec_D0046.md)
+Frozen D0046: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0046.md)
 Frozen D0046 SHA256: 3ed49ed7f047e7e02fd35d0bf1451fd6d75a41878349d4517c8c3cd10770cc09
 Content: [Government D0047](Content/Government_D0047.json) / [市政完整阅读版](Government.md)
 
@@ -317,8 +317,8 @@ Acceptance Evidence: 用户“把文化再加回来，然后授权实施”。�
 Accepted Spec SHA256: 3ed49ed7f047e7e02fd35d0bf1451fd6d75a41878349d4517c8c3cd10770cc09
 Canonical Culture Content SHA256: ce8a1ec8b6cbef511d2ae88988bfa0c772f76d9c646ea1d6f32f02a9d279d4cc
 Previous Accepted Revision: D0045
-Frozen D0045: [原文](Revisions/Specialization_Design_Spec_D0045.md)
-Content: [Culture D0046](Content/Culture_D0046.json) / [文化阅读版](Culture.md)；其它专业、Shared原件不变。
+Frozen D0045: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0045.md)
+Content: [Culture D0046](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0046.json) / [文化阅读版](Culture.md)；其它专业、Shared原件不变。
 
 K0.5首测、逐领域Floor→同yield相加→W、份额、作品资格、ACTIVE IV、Dialogue／主题化不放大追加均保持。用户同时授权单城六产出最终值原型；不等于正式全城cutover或原生收益已通过。[B155/B157文化反证](../Status/Validation/Results/Specialization_B157_Modifier_Comparison_Native.md)保留；多片Production失败不能证明Culture单片共存已解决，技术门禁独立记录于[当前切片](../Architecture/v2/P0_L2_Meaning.md#当前切片与停止点)。没有新名称、数值或其它玩法变化。
 
@@ -332,8 +332,8 @@ Canonical Culture Content SHA256: 1ddff9df63abddccbbced9a30c326b5d1af9c29a7e0299
 Canonical Shared Content SHA256: 104f28e604d45330e676549e4ce8c54c75ab7ee7625c3802629a95c639775516
 Canonical Commerce Content SHA256: 5f4857256c381212dbec391665ee0f200e9389f385c4821073e98230cb7d366f
 Previous Accepted Revision: D0044
-Frozen D0044: [原文](Revisions/Specialization_Design_Spec_D0044.md)
-Content: [Industry D0045](Content/Industry_D0045.json) / [Culture D0045](Content/Culture_D0045.json) / [Shared D0045](Content/Shared_D0045.json) / [Commerce D0045](Content/Commerce_D0045.json)
+Frozen D0044: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0044.md)
+Content: [Industry D0045](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0045.json) / [Culture D0045](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0045.json) / [Shared D0045](Content/Shared_D0045.json) / [Commerce D0045](Content/Commerce_D0045.json)
 Review: [覆盖、六项旧规则取代与真实剩余](../Historical/Design/Reviews/Industry_Culture_Future_D0045_Review.md)
 
 工业每模板只在实际持有它的有效来源中分别择最高建造／合法购买效率；Faith与Gold正式同等合法渠道，不新增购买权。研习明确与Dialogue同完整1T事务、以IV资格取消／重做，不清成功L；最终整数Production／Gold／Cost使用Floor，不外推Commerce或GPP。D0044全部职责与首测值保留：III10%／0、IV每L两项+2个百分点，III150%、IV按N1／3／6为140／130／120%；III I–III／IV IV–V无E门槛，巨构仅正常城市Production，固定施工力注入不受buff且不溢出。专业单位不可捕获／转Owner，保护回归原生接口仍Technical；专属事务退出优先。
@@ -352,8 +352,8 @@ Accepted Spec SHA256: c5e44a10015af9d0f390953479d376b1ffd5d9bcd01ed3821ccb83d6bd
 Canonical Industry Content SHA256: 4381a35bc545d316a83fc62145d68c0e9d4859442e1da55a7cb4a6d7e9c15557
 Canonical Shared Content SHA256: a39e938d128d6ef3531487902bdf213fd38696a52a3431f33218a3524a9089f7
 Previous Accepted Revision: D0043
-Frozen D0043: [原文](Revisions/Specialization_Design_Spec_D0043.md)
-Content: [Industry D0044](Content/Industry_D0044.json) / [Shared D0044](Content/Shared_D0044.json) / [工业阅读版](Industry.md)
+Frozen D0043: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0043.md)
+Content: [Industry D0044](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0044.json) / [Shared D0044](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0044.json) / [工业阅读版](Industry.md)
 Review: [覆盖、取代、保留与真实剩余](../Historical/Design/Reviews/Industry_D0044_Review.md)
 
 三级标准化基础建造10%／Gold0%；四级文明工程传统E供本城完整1 Production Turn研习L，成功每层两项输出各增2个百分点。L属A城市历史，III保留但只输出基础，IV恢复全L，跨Owner E<L不回退，E只限制新增。工程实践仍IV，以N1／3／6降低组建成本倍率150／140／130／120%，不强化标准化；III I–III、IV额外IV–V，无E门槛。巨构只加速自行生产旧时代奇观，时代差1／2／3+首测10／20／30%封顶；施工队固定min(锁定施工力,剩余Production)，不受任何普通生产buff放大，余量不溢出。全部新数值为v0.1首测，名称候选／未提交研习／技术边界分开保留。
@@ -367,7 +367,7 @@ Acceptance Evidence: 用户明确“暂时采用忽略市政/外交的方案，�
 Accepted Spec SHA256: 46d1e7f17ade47da5f394e1cb0400a87ff22baf8ce225e29616517dddd4705cb
 Canonical Culture Content SHA256: 748c816685e6258e025ea1dd0c31b16cef9eae7a84b37afa3ce52aaa347c1c37
 Previous Accepted Revision: D0042
-Frozen D0042: [原文](Revisions/Specialization_Design_Spec_D0042.md)
+Frozen D0042: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0042.md)
 Content: [Culture D0043](Content/Culture_D0043.json) / [文化阅读版](Culture.md)；Shared／Research／Industry／Commerce原件及其当前revision不变
 
 意义延展仅暂排Government Plaza／Diplomatic Quarter，当前七域输出Science／Production／Gold／Faith／Food，无Culture或Tourism追加。Shared完整映射与其它consumer／专业规则不删；K0.5首版值、金币份额3、逐域换算后Floor→同yield相加→乘W、作品资格、ACTIVE IV、独立追加和D0042生命周期保持。
@@ -384,8 +384,8 @@ Canonical Industry Content SHA256: 9548e7c079704f8f749f6f02863f074a1955befc217fb
 Canonical Culture Content SHA256: 62351cb7ec167ff5b70ab6c1a637d616a41e58a267648320243c5bc3d3f3278f
 Canonical Commerce Content SHA256: 8af0f3f8f774b6ba1aee3d270938bfe12b1f4c0d0bc8b51525cfe57cce664e1a
 Previous Accepted Revision: D0041
-Frozen D0041: [原文](Revisions/Specialization_Design_Spec_D0041.md)
-Content: [Shared](Content/Shared_D0042.json) / [Culture](Content/Culture_D0042.json) / [Industry](Content/Industry_D0042.json) / [Commerce](Content/Commerce_D0042.json)；Research D0040不变
+Frozen D0041: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0041.md)
+Content: [Shared](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0042.json) / [Culture](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0042.json) / [Industry](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0042.json) / [Commerce](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0042.json)；Research D0040不变
 Review: [接受、替代、T1–T11及真实剩余](../Historical/Design/Reviews/Long_Term_State_D0042_Review.md)
 
 未提交Dialogue取消无历史／成功额度／半进度；考察团来源易主中止任务、原Owner保留并免费重挂靠。商业化选择栈容量不足暂停不删、恢复按顺序，身份退出或易主清空；纯派生当前重算。工业队来源易主存续、当前Owner容量2与夺回复计明确；重组队生命周期随目标事务，训练来源易主不终止。Settler确认视为原子完成，中间窗口是技术而非Gameplay TBD。
@@ -399,8 +399,8 @@ Acceptance Evidence: 用户最新明确“先测出技术原型，然后先按�
 Accepted Spec SHA256: c0f65456ccee1ed36f0f42a031652fbb6d931e2fdf0fd0df2a80a718a5492838
 Canonical Culture Content SHA256: 6f93bce9213f854f89d234ae936c1e8809b167a62c1a72f9ebcf567d636ced64
 Previous Accepted Revision: D0040
-Frozen D0040: [原文](Revisions/Specialization_Design_Spec_D0040.md)
-Content: [Culture D0041](Content/Culture_D0041.json) / [文化阅读版](Culture.md)
+Frozen D0040: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0040.md)
+Content: [Culture D0041](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0041.json) / [文化阅读版](Culture.md)
 
 意义延展追加按既有逐领域Floor／同yield相加／乘W固定计算，Dialogue与theming均不放大；市政／外交追加Culture也不是native来源。作品原生产出照常使用自身倍率。用户较早主题化包含追加的设想保留为未来选项，不与当前规则并存。其它公共倍率的豁免不自行推断。
 
@@ -417,8 +417,8 @@ Canonical Industry Content SHA256: fac58b6ff3d5c6c3354a1345ecffcd7956d014a058375
 Canonical Culture Content SHA256: a3f58f2b2ca7e37e030a7cc6d014e15c3b058d4fedab8b010c3e0e08a2eb0b44
 Canonical Commerce Content SHA256: 44f6ee424bb6454cf1fb06a540d6ee4a20067bf01923592138fcfeda71b70f8d
 Previous Accepted Revision: D0039
-Frozen D0039: [原文](Revisions/Specialization_Design_Spec_D0039.md)
-Content: [Shared](Content/Shared_D0040.json) / [Research](Content/Research_D0040.json) / [Industry](Content/Industry_D0040.json) / [Culture](Content/Culture_D0040.json) / [Commerce](Content/Commerce_D0040.json)
+Frozen D0039: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0039.md)
+Content: [Shared](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Shared_D0040.json) / [Research](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Research_D0040.json) / [Industry](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0040.json) / [Culture](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0040.json) / [Commerce](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0040.json)
 Review: [关闭项、替代与未讨论边界](../Historical/Design/Reviews/Long_Term_State_D0040_Review.md)
 
 明确A城市历史随城、B实际完成文明信用不转移、C信誉依持续Commerce Identity且Owner无关、D合同关键城市易主异常终止。取代文化见闻原Owner分账及工程实践完成Owner限制；资本锁具体S来源、同S最早达级／稳定tie及UI。学术传统跨Owner随城决策关闭，D0036模板四分保护及D0039重组征服例外保留。
@@ -432,8 +432,8 @@ Acceptance Evidence: 用户明确附件商业Design Talk收口作为新的Design
 Accepted Spec SHA256: edf0d66fd0bb58ea5e6d51c2dc391ae0c5e32367c7795b98706a18dae5a43311
 Canonical Commerce Content SHA256: 77f4206158e07d0c0df0444cc4cdc6f1289bc4ccb9b58207fe34ed580a105f92
 Previous Accepted Revision: D0038
-Frozen D0038: [原文](Revisions/Specialization_Design_Spec_D0038.md)
-Content: [Commerce D0039](Content/Commerce_D0039.json) / [商业阅读版](Commerce.md)
+Frozen D0038: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0038.md)
+Content: [Commerce D0039](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Commerce_D0039.json) / [商业阅读版](Commerce.md)
 Review: [关闭与精确剩余边界](../Historical/Design/Reviews/Commerce_D0039_Review.md)
 
 五领域商业化与0.1DX/信誉公式、资本本金25%/标准10T/DSC回报/风险概率及失败递推、信誉R0–40/身份消失清零、发展10T/+50%/地块参考报价/专家容量/目标域唯一/标准化加算、已签合同source资格下降连续执行、500P团队/保护败退/无删除与REALLOCATING征服半成品销毁已接受。首版数值可Balance调整，不等于最终平衡或原生接口通过。
@@ -447,8 +447,8 @@ Acceptance Evidence: 用户明确“每领域分别floor，之后同yield相加�
 Accepted Spec SHA256: 128af123ee3c1ae0faf9a24d789fd602e886973868605f865afdd13de29bd8ab
 Canonical Culture Content SHA256: 3296ddf8037f250fd46a51e00bf51f8d98e41cb7073db69fb2269e8faac4383e
 Previous Accepted Revision: D0037
-Frozen D0037: [原文](Revisions/Specialization_Design_Spec_D0037.md)
-Content: [Culture D0038](Content/Culture_D0038.json) / [文化阅读版](Culture.md)
+Frozen D0037: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0037.md)
+Content: [Culture D0038](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Culture_D0038.json) / [文化阅读版](Culture.md)
 
 每个合格领域先floor(0.5×D×该yield份额)，再合并同yield的每件追加量，最后乘合格巨作件数W。意义延展K0.5、金币份额3、领域/D/作品资格及原生产出倍率不放大追加值的合同保持；GPP与其它能力不继承此例外。D0029与D0037原件冻结保留，旧Shared引用不顺便改。没有接受其它primitive或宣称两个接口门禁通过；本记录不扩大已授权P0-L2B单城门禁原型，正式六yield/全局旧GWA切换仍未授权。
 
@@ -460,7 +460,7 @@ Accepted Spec SHA256: 2108535871d901179fd82c1c296b66b93ec8f3f784617add4cc41057b7
 Canonical Harbor Content SHA256: bb7e02bf42efd156a8f8f214e73f593ff72fe1a1ae09fbfed59fcdf750bab7d0
 Canonical Military Content SHA256: 760c3a1cabd7d333a7a3d3c445695c8843eb175fcca01a7031736368eb2f98a7
 Previous Accepted Revision: D0036
-Frozen D0036: [原文](Revisions/Specialization_Design_Spec_D0036.md)
+Frozen D0036: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0036.md)
 Review: [接受、取代与未决边界](../Historical/Design/Reviews/Harbor_D0037_Review.md)
 
 接受完整海运商业/海军双线及同级双机构、当前Military镜像；旧Actual出口、+15%XP、III领悟、驻扎和海军动员退出。不额外设Network；经营进度暂停而已得容量不因Governor/暂失ACTIVE撤回，其它Legacy不推断。Military仅两处正式改名，原D0034机制保持。当前v0.1仍仅四专业，B148文化待验及计划权限不变；未实现Harbor、未改运行包、未部署，未改写旧冻结原件。
@@ -472,7 +472,7 @@ Acceptance Evidence: 用户明确“可靠保存模板历史∪当前存在的�
 Accepted Spec SHA256: 8e2bbe116f4ce83583b456c61f0def2e3960abf0eb6f52c61926d08e7ecabb4c
 Canonical Industry Content SHA256: a9b95d484528136bea8673d5ebc1236ab04634547b6521c61d5774f871d4bdac
 Previous Accepted Revision: D0035
-Frozen D0035: [原文](Revisions/Specialization_Design_Spec_D0035.md)
+Frozen D0035: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0035.md)
 
 新增IND-TEMPLATE-006：合法首次工业身份、确认同城夺回时局部同步；外方新增现存建筑可补录；可靠历史不反向删除；空账本≠缺失账本，缺失/损坏历史不得伪装首次初始化。不追溯未观察且已消失的外方建筑，不扩大AI职责、目录或效率参数。其它专业与Shared不变；D0032工业原件保留。实现/实机状态另见Status，Design接受不等于游戏验收。
 
@@ -483,7 +483,7 @@ Acceptance Evidence: 用户以D0034为基线确认Absolute Infrastructure Depth�
 Accepted Spec SHA256: be4452d0c48d221da5097def108b830a2a252b55cf1b8d3702e20db45bd77ef5
 Canonical Shared Content SHA256: f690053a45d54f702468180d0d957444b411c5f7ab7bd3656800e875c91b19a1
 Previous Accepted Revision: D0034
-Frozen D0034: [原文](Revisions/Specialization_Design_Spec_D0034.md)
+Frozen D0034: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0034.md)
 Review: [Shared语义与consumer审阅](../Historical/Design/Reviews/Shared_D0035_Review.md)
 
 正式中文“区域基础设施深度”；公式min(10,ΣTier1/2/3/4)不变，三层D6与四层D10均为有意允许的结果。旧profession Shared_D0028引用按当前Spec语义覆盖，原文件及Military_D0034不改。Catalog缺口独立登记，既有P0-A PASS不扩展。未实现、未改runtime/main、未部署；不进入P0-B2。
@@ -495,7 +495,7 @@ Acceptance Evidence: 用户F–F8确认Breadth→Quality和Depth→Training Effi
 Accepted Spec SHA256: 3554bb9b6ad956580db01e399f34bc9eb8992b754ad1dd5be2e58f1ee9d44fae
 Canonical Military Content SHA256: 0c5ea293621f8cd22f6b3e14969801a65a65548bae49bd073a2d747bb0a845ad
 Previous Accepted Revision: D0033
-Frozen D0033: [原文](Revisions/Specialization_Design_Spec_D0033.md)
+Frozen D0033: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0033.md)
 Review: [综合训练双层结构](../Historical/Design/Reviews/Military_D0034_Review.md)
 
 T1永久+1CS/领域且最多5不变；相同五领域的基础设施深度增加本城训练效率，T1-only无深度收益、T2阶段开始，三层D6和四层D10差异为预期。不新建Ability或Shared指标，不自动推导D>=3精确门槛/线性公式/购买折扣。其它Military规则、Shared、四专业及runtime不改。历史D0033保留。
@@ -507,7 +507,7 @@ Acceptance Evidence: Military redesign brief and five user replies: land/provena
 Accepted Spec SHA256: 5ea3f31eeaddbfdb9d14f1c063b6ed44362ad34eecf661182230b7d62aeeeb8f
 Canonical Military Content SHA256: 8956f9230f20610cb7cc5953fbb90fefad132cb659e8f84437dbabc6105aff3d
 Previous Accepted Revision: D0032
-Frozen D0032: [原文](Revisions/Specialization_Design_Spec_D0032.md)
+Frozen D0032: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0032.md)
 Review: [Military freeze](../Historical/Design/Reviews/Military_D0033_Review.md)
 
 旧II15%XP、III5F5P、驻扎训练与全国自动送兵pool退出当前Military；Insight旧算式保留但E改出生锁定，不再持续读取来源城。其它四专业、Shared与历史内容不改；不实现、不部署、不扩展P0。A0161尚未适配Military新设计；旧P0上下文显式标记待复核，不伪刷新hash。
@@ -521,7 +521,7 @@ Canonical Commerce Content SHA256: deef125d3c12b25830fb6b1e9ce9c0a6ae510b7e5c143
 Canonical Industry Content SHA256: 89c999ba46cbaea5282da6926ba9e83d4c7aabc4517d4ab3f404c63e19ae8510
 Confirmed closures: 隐藏失败保护按Commerce来源城独立、同城所有风险领域共享；发展投资仅签约检查出发路线，之后断路不改变原期限/效果，无合格路线不能新签；易主/征服/Identity丧失仍后置。
 Previous Accepted Revision: D0031
-Frozen D0031: [原文](Revisions/Specialization_Design_Spec_D0031.md)
+Frozen D0031: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0031.md)
 Review: [Commerce freeze / cross-design review](../Historical/Design/Reviews/Commerce_D0032_Review.md)
 Presentation: [Hybrid D approved](../Historical/Design/Records/Culture_Era_Presentation_D0032.md)
 
@@ -535,7 +535,7 @@ Accepted Spec SHA256: 48845fe2ccc53c57d8aca4439b6a3ad70ac22ac90b8c485e140d3d12bf
 Canonical Research Content SHA256: 6253c4eff548394fd3ee351e6f02abd2665b468e6c46f30865352351177b6dc1
 Canonical Industry Content SHA256: 4660d2146caff847979281f094c51a01175758a9b55dd65e41ff37555bb9a11a
 Previous Accepted Revision: D0030
-Frozen D0030: [原文](Revisions/Specialization_Design_Spec_D0030.md)
+Frozen D0030: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0030.md)
 Review: [边界审阅](../Historical/Design/Reviews/Boundary_D0031_Review.md)
 Presentation: [需求及UI调查](../Historical/Design/Records/Culture_Era_Presentation_D0031.md)
 
@@ -548,8 +548,8 @@ Acceptance Evidence: 用户明确学以致用采用区域完善度，K暂定0.5�
 Accepted Spec SHA256: 85ed1e4b8cf4a148dd06abbe69f6a358a0db5e966a59820b6ec17168c976c050
 Canonical Research Content SHA256: 646abdbb4dcdc16a5f4a061ba6ac58184f0c663428dee157db7aa9f2c05e9e3e
 Previous Accepted Revision: D0029
-Frozen D0029: [原文](Revisions/Specialization_Design_Spec_D0029.md)
-Content: [Research D0030](Content/Research_D0030.json) / [三专业审查](../Historical/Design/Reviews/Research_D0030_Review.md)
+Frozen D0029: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0029.md)
+Content: [Research D0030](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Research_D0030.json) / [三专业审查](../Historical/Design/Reviews/Research_D0030_Review.md)
 
 仅RES_L3_APPLY从不同类型数X改各领域D，沿用既有领域/yield与Shared份额，K显式0.5；其余能力只审查不修改。Shared、Culture D0029、Industry D0027、源码/运行包不变；历史Research保留，不自行改精度。
 
@@ -560,7 +560,7 @@ Acceptance Evidence: 用户明确三组Culture边界及CUL-REVIEW-01至04状态�
 Accepted Spec SHA256: 89c3f72484555610512a932d7006cb6cf53946b5bf0a4d344aa983150941cc94
 Canonical Culture Content SHA256: 00cd612e6765487c003083124b18d9429896f9c9568f01db5ffb4feec520541b
 Previous Accepted Revision: D0028
-Frozen D0028: [原文](Revisions/Specialization_Design_Spec_D0028.md)
+Frozen D0028: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0028.md)
 Content: [Culture D0029](Content/Culture_D0029.json) / [Review](../Historical/Design/Reviews/Culture_D0029_Review.md)
 
 见闻original-owner/source-city scope正式确认且收回城市可恢复；Dialogue city scope保留倍率/启动时代额度；来源独立3/3集合先成立再并集；Major资格与战争不中断正式明确，City-State独立Future Candidate。旧D0028条文冻结，Shared/Research/Industry不改；没有数值、能力、Mission或实现变更。
@@ -574,7 +574,7 @@ Canonical Culture Content SHA256: ed16ada45442037207bd736f90b7ec00b293d29316f023
 Canonical Shared Content SHA256: 9ce20c5047d525321d5efc025f0578afac25a63f91b75acddefd631cc1f5d05a
 Canonical Research Content SHA256: 372fdd5f6d6687935f8ddf906b6dd365ac7b1f79c72ebee21ba3e04401f4f2e4
 Previous Accepted Revision: D0027
-Frozen D0027: [原文](Revisions/Specialization_Design_Spec_D0027.md)
+Frozen D0027: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0027.md)
 Review: [Culture D0028](../Historical/Design/Reviews/Culture_D0028_Review.md)
 
 Culture项目累积/建筑审美/完善度巨作产出与GPP/非敌对考察及国内见闻网络；原Owner记录等暂定标记保留。旧Culture Eureka退出，Research网络待重设计。Shared建筑掠夺默认排除、区域完善度cap10、产出份额独立权威；Research基础设施输入按用户新指令迁入cap10，历史D0026与Industry D0027内容不改。Architecture尚未sync、Mod不变，不将技术接口或多源合并宣称完成。
@@ -586,8 +586,8 @@ Acceptance Evidence: 用户Industry冻结授权及七项边界明确回复；指
 Accepted Spec SHA256: 8dc189f80c33c4edbf946869b7835c6473ff6a0be67ee6a01be620fa477c2746
 Canonical Industry Content SHA256: 762648eb6e21edffb179b700451a15bbf25e6e7712d83ab1c616196c509387d0
 Previous Accepted Revision: D0026
-Frozen D0026: [原文](Revisions/Specialization_Design_Spec_D0026.md)
-Content: [Industry](Content/Industry_D0027.json) / [review](../Historical/Design/Reviews/Industry_D0027_Review.md)
+Frozen D0026: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0026.md)
+Content: [Industry](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Industry_D0027.json) / [review](../Historical/Design/Reviews/Industry_D0027_Review.md)
 
 Industry机构累计、Lv3标准化/工程动员、Lv4巨构工程学/实践/传统；旧低级网络折扣和IV直接产出、旧施工队范围/解锁被替代。两种效率与曲线/cap/传统门槛BALANCE_REQUIRED，未擅定数值；命名候选不升级。Research D0026原content保持不变，Architecture尚未sync，源码/运行包未改。
 
@@ -598,8 +598,8 @@ Acceptance Evidence: 用户本轮冻结授权，并确认特色归一/完成未�
 Accepted Spec SHA256: 1265719810ce087cca1c6ceb28cf7ad4bf2a5ae153c0c358b86af5a90c30996b
 Canonical Research Content SHA256: 14cad8a62621baea8bcf6b5813f83d683aba2d4d18503606196cda2a99a952ff
 Previous Accepted Revision: D0025
-Frozen D0025: [原文](Revisions/Specialization_Design_Spec_D0025.md)
-Content: [Research](Content/Research_D0026.json) / [schema](Content/README.md) / [review](../Historical/Design/Reviews/Research_D0026_Review.md)
+Frozen D0025: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0025.md)
+Content: [Research](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Content/Research_D0026.json) / [schema](Content/README.md) / [review](../Historical/Design/Reviews/Research_D0026_Review.md)
 
 仅Research本地等级更新；Network及其它专业不变。机构累计、6个阶段能力与统一领域映射；旧三级人口Science/5F5P与四级旧效果被替换。五组待决已关闭；英文TBD和社区Food候选不阻塞。Architecture仍synced D0025，需后续设计适配审查；本轮未实现、未部署，不升级任何游戏验证状态。
 
@@ -609,7 +609,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确要求时代对话从15%调整到25%，不需要验证。
 Accepted Spec SHA256: 81dc772c1038718e567496cfdb165167e6090fae2b7b472b7301435d766d994b
 Previous Accepted Revision: D0024
-Frozen D0024: [原文](Revisions/Specialization_Design_Spec_D0024.md)
+Frozen D0024: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0024.md)
 
 仅GW-001系数改为25%×max(0,D−1)；作品分类、创作者时代/文物例外、原生theming、其它Culture IV能力不变。不新增实机测试，不将此决定冒充25%版本实机PASS。
 
@@ -619,7 +619,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户本轮GW002全部pass/小数截断不修复；商业四“最终汇聚收益向下取整，先做可玩版”；实际总产出备选来自此前明确条件授权，现因精确外来分解接口不可得而采用。
 Accepted Spec SHA256: 4f7d0169a3a8abce67501010a9c8ca600e345ce8b1ae23f3af6c28be069144f1
 Previous Accepted Revision: D0023
-Frozen D0023: [原文](Revisions/Specialization_Design_Spec_D0023.md)
+Frozen D0023: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0023.md)
 
 GW002A记录原生逐件截断边界。COM006采用Actual总产出替代纯本地；COM009三类各自20%后floor一次、城市层绝对替换，不求和、不允许Commerce作源。未改Boost量化、Network拓扑或其它能力。三方间接反馈不声称已排除。
 
@@ -629,7 +629,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户“没错，然后推进到需要实机测试”确认此前三个GW002范围条目。
 Accepted Spec SHA256: 6a4dfdeb4a2dc8abe736fa428b0640b7c1fa627ba01b0ef167a9378c6edf265a
 Previous Accepted Revision: D0022
-Frozen D0022: [原文](Revisions/Specialization_Design_Spec_D0022.md)
+Frozen D0022: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0022.md)
 
 GW002明确七类(含Artifact、不含Relic/Product)、全部已完成专业区域含Theater和特色替代、分别保留原yield的50%BASE。政策倍率/非相邻产出不计；不统一转Culture，不改GW001。原生半点精度等待实机，不擅自截断或改城市补贴。
 
@@ -639,7 +639,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确时代对话改15%×max(0,D−1) Culture/Tourism；D采用创作者时代，用户另明确接受文物历史时代例外。
 Accepted Spec SHA256: 10e6d7d1b618f2fda3a745602a6a6413fa7773b8023075048520946352204557
 Previous Accepted Revision: D0021
-Frozen D0021: [原文](Revisions/Specialization_Design_Spec_D0021.md)
+Frozen D0021: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0021.md)
 
 GW-001/003和OPEN-08同步；退出D0021固定yield及固定旅游追加路线，不再逐件保值。不加cap，D7仅例子；作品数不决定百分比。Product/Relic排除，Artifact保留；GW002和其它CultureIV及Boost规则未改。原生theming实际叠加仍需实测。
 
@@ -649,7 +649,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确以“时代对话”替换逐件保值：D为不同创作时代数，每件k×max(0,D−1) Culture/Tourism，k=1；theming保留自然行为并报告。
 Accepted Spec SHA256: 1a14fc5f98ea364706b20f8db5ecb957a0bf2bcbd6b7958acf184fbc32d2eb10
 Previous Accepted Revision: D0020
-Frozen D0020: [原文](Revisions/Specialization_Design_Spec_D0020.md)
+Frozen D0020: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0020.md)
 
 GW-001/003、CUL-004引用与OPEN-08同步。逐件补差/最高基础值及强制恢复所有倍率路线superseded；Product/Relic排除、Artifact保留、GW002及其它CultureIV、Boost规则不变。仅确认设计，不等于统一旅游业接口或theming已实机通过。
 
@@ -659,7 +659,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户将遗物与产品一样排除出巨作保值；本机遗物基础均4Faith/8Tourism，无保值差额。
 Accepted Spec SHA256: 971fa1618e13362cf310efaec85400aa9c024cf4952dc814056a1d6829adad9f
 Previous Accepted Revision: D0019
-Frozen D0019: [原文](Revisions/Specialization_Design_Spec_D0019.md)
+Frozen D0019: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0019.md)
 
 仅修正GW-001/003与OPEN-08的遗物保值范围；文物ARTIFACT仍适用，Culture/Tourism逐项最大和作品倍率/主题化要求不变。其它Mod将来新增不同基础遗物，不会自行重新纳入；需用户另行授权。
 
@@ -669,7 +669,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 本轮用户回答：分别取最大；遗物补信仰和旅游业；作品专属倍率与主题化也必须适用。
 Accepted Spec SHA256: 63948c5abf683d6e0340af47ae0121b8891188b427cd7245a4025fb763a9e8df
 Previous Accepted Revision: D0018
-Frozen D0018: [原文](Revisions/Specialization_Design_Spec_D0018.md)
+Frozen D0018: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0018.md)
 
 GW-001/003与OPEN-08同步。拒绝把普通城市补贴作为最终替代；实现需遵循倍率要求。未修改Boost契约或GW002范围。
 
@@ -679,7 +679,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确决定最终Boost接口floor(x+0.5)一次量化，并将巨作改为本城文化类/遗物分组最高基础值补齐；产品排除。
 Accepted Spec SHA256: 398de69aea82c26e7993b423558645b1bfb15a596b833261d247f30a09b71610
 Previous Accepted Revision: D0017
-Frozen D0017: [原文](Revisions/Specialization_Design_Spec_D0017.md)
+Frozen D0017: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0017.md)
 
 NET-RC-005取代D0017舍去不修复策略；先验证明确整数写入，再正式集成，不改k/L/N/topology或Entertainment参数。GW-001/003取代时代曲线，未擅自确定不同yield排序、遗物yield维度或主题化倍率；OPEN-06/08同步。历史原文冻结，已通过的原生截断观察仍有效，但不再是目标实现契约。
 
@@ -689,7 +689,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确接受Boost引擎舍去小数时不修复，直接构建实测；首批临时权重1.1/2.2/3.3/4.5。
 Accepted Spec SHA256: 5132c9a300853d0107ad84cf4adebadd5f7c173dbc0c72943a4b3e241deb2d06
 Previous Accepted Revision: D0016
-Frozen D0016: [原文](Revisions/Specialization_Design_Spec_D0016.md)
+Frozen D0016: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0016.md)
 
 仅NET-RC-005/OPEN-06的小数策略与测试配置；正式公式、max ACTIVE、recipient去重、k_R/k_C独立不变。最终封顶、GW时代曲线及未决类别不因此确定。开发接口实验不等于已完成GW玩法或实机通过。
 
@@ -699,7 +699,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确“如果想要排除信仰打折较难实现，那么也接受信仰打折”。
 Accepted Spec SHA256: 2ddfffd482fff85b35fb82f06e902346e18501beb8c877a9fc674b2aba1b4759
 Previous Accepted Revision: D0015
-Frozen D0015: [原文](Revisions/Specialization_Design_Spec_D0015.md)
+Frozen D0015: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0015.md)
 
 IND-NET-002记录条件授权，003/005引用一致；不自动扩大目录或解锁购买。B053将调查实际货币效果，设计授权不等于实机通过。
 
@@ -709,7 +709,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户指定所有合格建筑记录模板，v0.1按区域与市中心三组开放原本合法Gold购买的标准化折扣，包含特色建筑并保留后续开放资格。
 Accepted Spec SHA256: 9cf3eb5c57552e560fd61ba45160c92691b958a42598ba0b9abbc3a74ffa971e
 Previous Accepted Revision: D0014
-Frozen D0014: [原文](Revisions/Specialization_Design_Spec_D0014.md)
+Frozen D0014: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0014.md)
 
 更新IND-NET-004并新增IND-NET-005；规则只在Spec正文维护。目录/启用分离，Faith与购买资格不变。属于设计确认，未实现模板账本或折扣，不升级任何游戏验证状态。D0014科研复制与其它既定数值不变。
 
@@ -719,7 +719,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户本轮明确科研IV原设计不区分非学院区域类型，社区/娱乐等非专业化区域的实际产出也复制50%。
 Accepted Spec SHA256: 759365dd68c3b4a166b0f05e250b72f14e33dcc145c3889f6afefa16f999005c
 Previous Accepted Revision: D0013
-Frozen D0013: [原文](Revisions/Specialization_Design_Spec_D0013.md)
+Frozen D0013: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0013.md)
 
 RES-004删除“合格专业区域”的窄范围歧义，采用所有非Campus区域Actual复制基数；不改变50%、ACTIVE门槛、学院专家百分比、工业输出、精度或标准化规则。按用户明确修正落盘，其它TBD保持。
 
@@ -729,7 +729,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户本轮明确确认IND-NET-004的四项学习规则。
 Accepted Spec SHA256: abce0024d9a1003ef7f7ac5aa680da9643bbc7e9df346441b007aab7d5959569
 Previous Accepted Revision: D0012
-Frozen D0012: [原文](Revisions/Specialization_Design_Spec_D0012.md)
+Frozen D0012: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0012.md)
 
 新增IND-NET-004：任何合法获得/完成、首次Industry一次补录、后续事件增量、HD Tier+允许范围双门槛。没有改变等级、折扣、网络、永久继承、Crew或任何其它设计。用户未授权恢复实现；本轮仅文档同步。
 
@@ -739,7 +739,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确“接受，并且显示整数”，承接Crew按游戏速度缩放后向下取整提案。
 Accepted Spec SHA256: 2ba726ffeceb70f73ee1951fbeefb9cc4913f9e3eec2f27e634f122d8582a551
 Previous Accepted Revision: D0011
-Frozen D0011: [原文](Revisions/Specialization_Design_Spec_D0011.md)
+Frozen D0011: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0011.md)
 Frozen D0011 SHA256: 29e3669f00c30eb72d6a986fd4b29500c7743b388d65f1d064ef5a562a91edd7
 
 CREW-004与OPEN-09明确Crew=floor(标准金额×速度系数)，提示与执行统一整数；项目成本继续原生计算，基础数值和其它规则不变。每队不足1点的比例差异得到用户接受；不影响其它系统的小数产出。
@@ -750,7 +750,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确选择“五档从工业Lv1全部开放；项目成本与施工力均按游戏速度同比缩放”。
 Accepted Spec SHA256: 29e3669f00c30eb72d6a986fd4b29500c7743b388d65f1d064ef5a562a91edd7
 Previous Accepted Revision: D0010
-Frozen D0010: [原文](Revisions/Specialization_Design_Spec_D0010.md)
+Frozen D0010: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0010.md)
 
 CREW-004确定全部五档的开放与双侧速度缩放，OPEN-09原设计问题关闭；五档基准数值不变，未新增档位。非整数引擎精度仍需技术验证，不授权静默取整。D0010其它设计、成熟度及征服规则保持。
 
@@ -760,7 +760,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户正式确认征服无Identity城市的Legacy Claim初始化与空集合普通完成模式，要求影响当前Development/Conquest测试的正常sync。
 Accepted Spec SHA256: a8393b5fa879b060acfa3b89c8a3fc906a2d50849a1a83bcea193506ed9a12e2
 Previous Accepted Revision: D0009
-Frozen D0009: [原文](Revisions/Specialization_Design_Spec_D0009.md)
+Frozen D0009: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0009.md)
 Frozen D0009 SHA256: 07920f9e87bd7cb08089bdb5bfd1aa6f74ed6483a02fb6167db61cecd76c31d8
 
 - PROG-006/007：ownership transition完成时只snapshot一次当时完整合法v0.1专业区域及正式replacement family。非空LegacySet冻结，项目仅在此集合选择；可永远不选，后续完成不增候选、不触发first-completion。
@@ -776,7 +776,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确要求同一Design Revision纠正Network direct接收并重做Commerce IV，20%为正式初始值。
 Accepted Spec SHA256: 07920f9e87bd7cb08089bdb5bfd1aa6f74ed6483a02fb6167db61cecd76c31d8
 Previous Accepted Revision: D0008
-Frozen D0008: [原文](Revisions/Specialization_Design_Spec_D0008.md)
+Frozen D0008: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0008.md)
 Frozen D0008 SHA256: 3dca4434a468f81a8e203a7a19d8c87dff5b24170d0667f50283ed2a23bd761c
 
 - NET-001/002/003、NET-RC-002：任一Trade Center直接接入网络即接收且可分发，包括首都天然自身专业连接；无需虚构self-route或Commerce IV，recipient按UID去重。仅收到distribution仍是receive-only，不得推导direct-source、递归relay或Convergence。
@@ -791,7 +791,7 @@ Acceptance: ACCEPTED（登记及明确方向；不统一接受候选为最终玩
 Acceptance Evidence: 用户要求同步Harbor Naval branch、Military Mobilization模型及外交任务，并严格保留各项成熟度；不得影响另一对话v0.1开发。
 Accepted Spec SHA256: 3dca4434a468f81a8e203a7a19d8c87dff5b24170d0667f50283ed2a23bd761c
 Previous Accepted Revision: D0007
-Frozen D0007: [原文](Revisions/Specialization_Design_Spec_D0007.md)
+Frozen D0007: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0007.md)
 Frozen D0007 SHA256: 15e011b665c6a53232673f8195d88acca954f80aa0d18efcdd256d1995cd3d88
 
 - HARB-005至009/MIL-013：海军平移为ACCEPTED DIRECTION，默认II每专家15%正常Combat XP、III实际晋升Insight、IV完整驻扎后+1训练及邻近海军带教；训练仅Harbor和可合法进入的本城City Center，不含Canal。海军资格、额外建筑互动、Naval Mobilization继续独立待定，商业/GPP不覆盖。
@@ -807,7 +807,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确确认Universal System + Opt-in Player Eligibility、仅参与者运行成本、AI同规则资格及Conquest × Eligibility四种情形，并要求新Design Revision。
 Accepted Spec SHA256: 15e011b665c6a53232673f8195d88acca954f80aa0d18efcdd256d1995cd3d88
 Previous Accepted Revision: D0006
-Frozen D0006: [原文](Revisions/Specialization_Design_Spec_D0006.md)
+Frozen D0006: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0006.md)
 Frozen D0006 SHA256: 666acc471f1f441b9987dab547afec2801d0c04fa5823c5e1706e60dd88b6f11
 
 - 新增ELIG-001至006：只有明确enabled Player参与专业身份/投资/ACTIVE/网络/Local/Community/Military/Auxiliary等全系统；不是Human-only，不永久绑定测试文明或领袖。未启用者不建立或运行专业状态，已有永久成果可休眠保存。
@@ -824,7 +824,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确确认Military IV Professional Standing Army / 职业常备军体系，要求登记新正式Design Revision。
 Accepted Spec SHA256: 666acc471f1f441b9987dab547afec2801d0c04fa5823c5e1706e60dd88b6f11
 Previous Accepted Revision: D0005
-Frozen D0005: [原文](Revisions/Specialization_Design_Spec_D0005.md)
+Frozen D0005: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0005.md)
 Frozen D0005 SHA256: ca5af83f6ab722e80199c47add0dae781a1d06d34c74404a6666af08028c80a0
 
 - MIL-003/009：Military IV城市的City Center、Encampment提供后方训练；合格己方陆地战斗单位连续完整驻扎周期后每有效回合+1独立Training XP。首次进入不奖励；离开清除连续状态，返回重新计周期；不受Combat XP modifiers放大。
@@ -840,7 +840,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确将Industry多来源、Capital天然Trade Center自身专业自接入、Conquest继承登记为正式设计，并要求建立新revision。
 Accepted Spec SHA256: ca5af83f6ab722e80199c47add0dae781a1d06d34c74404a6666af08028c80a0
 Previous Accepted Revision: D0004
-Frozen D0004: [原文](Revisions/Specialization_Design_Spec_D0004.md)
+Frozen D0004: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0004.md)
 Frozen D0004 SHA256: a3fd779fdcb166ecd3d39e1560fabe26ef3d26cb67c499ab632c9dac7eeebbab
 
 - IND-004/IND-NET-001/003：Lv4生产力取有效来源实际output最大值；模板取当前有效来源并集；Gold折扣取有效来源最高值，模板与折扣允许不同源。保留10%/20%/30%/40%、Gold-only及来源自身永久模板，撤销失效来源当前网络贡献。
@@ -856,7 +856,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户针对按有效完成通知先后锁定的建议明确答复“是的，你的建议没问题，继续”。
 Accepted Spec SHA256: a3fd779fdcb166ecd3d39e1560fabe26ef3d26cb67c499ab632c9dac7eeebbab
 Previous Accepted Revision: D0003
-Frozen D0003: [原文](Revisions/Specialization_Design_Spec_D0003.md)
+Frozen D0003: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0003.md)
 Frozen D0003 SHA256: 0e2891b44ff507c5cb7fce32396bf9266020f3e275461352af7e378ca87d4fa6
 
 - 新增PROG-005；PROG-004/OPEN-04移除同时完成顺序待决，旧档初始化和征服继承继续保留。
@@ -870,7 +870,7 @@ Community Framework Status: PROVISIONAL BUT ACCEPTED FRAMEWORK
 Acceptance Evidence: 用户明确要求登记Community / Metropolis新框架并建立下一版；接受框架不等于最终数值定稿。
 Accepted Spec SHA256: 0e2891b44ff507c5cb7fce32396bf9266020f3e275461352af7e378ca87d4fa6
 Previous Accepted Revision: D0002
-Frozen D0002: [原文](Revisions/Specialization_Design_Spec_D0002.md)
+Frozen D0002: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0002.md)
 Frozen D0002 SHA256: 22c5023528aa1d0380ca96e89a8551d55d73d87bcfad8bb4a21e5ef29f4efa32
 
 - COMM-002/003：循环改为Foreign World → Metropolis → Domestic Network → Empire；国际移民增帝国人口，国内网络仅分配现有人口，不扣具体外国城人口。旧国内Migration进度公式被取代。
@@ -888,7 +888,7 @@ Acceptance: ACCEPTED
 Acceptance Evidence: 用户明确要求将已确认的Military II / Military III经验体系登记为正式Design，不再作为balance candidate，并建立下一版Design revision。
 Accepted Spec SHA256: 22c5023528aa1d0380ca96e89a8551d55d73d87bcfad8bb4a21e5ef29f4efa32
 Previous Accepted Revision: D0001
-Frozen D0001: [原文](Revisions/Specialization_Design_Spec_D0001.md)
+Frozen D0001: [原文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Design/Revisions/Specialization_Design_Spec_D0001.md)
 Frozen D0001 SHA256: 10323a0350ff5b97be179b25c1c315b42aa7c6a41cb4cf6d55b9c7a34aee2ae6
 
 - MIL-001/005：每名实际工作军营专家+15% Combat XP正式接受；保留正常modifier叠加、政策互动与8 XP cap，明确人口/建筑/政策机会成本和无额外XP政策的主要平衡环境。

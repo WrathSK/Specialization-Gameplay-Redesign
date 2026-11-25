@@ -279,7 +279,7 @@ class FinalYieldTests(unittest.TestCase):
    with self.subTest(lua=p):self.assertIsNotNone(l.eval('function(s)return assert(load(s))end')(legacy.fixture_source(p)))
   root=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(root.attrib['version'],'190')
   for f in root.findall('.//File'): self.assertTrue((R/'Mod'/f.text).is_file(),f.text)
-  self.assertEqual((R/'Specialization/Design/Revisions/Specialization_Design_Spec_D0045.md').read_bytes(),subprocess.check_output(['git','show','b9c6bb7:Specialization/Design/Specialization_v0.1_Design_Spec.md'],cwd=R))
+  self.assertEqual(subprocess.check_output(['git','show','36eceb2bf6d5d619783c02546a053a8c25896f33:Specialization/Design/Revisions/Specialization_Design_Spec_D0045.md'],cwd=R),subprocess.check_output(['git','show','b9c6bb7:Specialization/Design/Specialization_v0.1_Design_Spec.md'],cwd=R))
  test_k_cold_pair=legacy.MeaningProbeTests.test_real_sample_request_cold_c00_uses_both_receivers
  test_k_duplicate_sequence=legacy.MeaningProbeTests.test_real_sample_duplicate_sequence_does_not_reinterpret_changed_payload
  test_old_writer_failure=legacy.MeaningProbeTests.test_old_withdrawal_failure_does_not_enable_new
